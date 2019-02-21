@@ -13,4 +13,4 @@ The features of the above products are encapsulated in WSO2 EI as separate runti
 - MSF4J profile: Provides the capability of creating microservices in Java to facilitate your integration use cases.
 - Analytics profile: Provides the capability of monitoring statistics of integration flows (processed in the ESB runtime) as well as business process (processed in the Business Process runtime). 
 
-For more information, see [Overview](#introduction.md).
+For more information, see [Introduction](/en/Overview/introduction.md).
