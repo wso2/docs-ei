@@ -17,4 +17,4 @@ WSO2 EI comprises of profiles that offer different integration capabilities.
 
 The **ESB profile** in WSO2 EI provides its fundamental services through an event-driven and standards-based messaging engine (the bus), which allows integration architects to exploit the value of messaging without writing code. This ESB profile is a step ahead of the previous releases of WSO2 Enterprise Service Bus, as it provides data integration capabilities within the same runtime. This eliminates the need to use a separate data services server for your integration processes.
 
-![alt text](/en/images/ESB_architecture1.png "ESB architecture")
+![alt text](../images/ESB_architecture1.png "ESB architecture")
