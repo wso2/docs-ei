@@ -5,12 +5,12 @@ WSO2 Enterprise Integrator (WSO2 EI) is a comprehensive solution that allows you
 For this quick start guide, let's consider a basic Health Care System where WSO2 EI is used as the integration software. In this guide, an external party (a patient) wants to make a doctor's reservation at a given hospital.
 
 > Before you begin,
-   1. Get a free trial subscription that enables you to download the product with the latest updates. Then, download the product installer from here, and run the installer. 
-
-   2. Download and start the back-end service that will process appointment requests:
-   3. Download the back-end service and copy it to the <EI_HOME>/wso2/msf4j/deployment/microservices directory. 
-      The back-end service is now deployed in the MSF4J profile, which will run microservices for your integration flows. 
-   4. Start the MSF4J profile:
+>   1. Get a free trial subscription that enables you to download the product with the latest updates. Then, download the product installer from here, and run the installer. 
+>
+>   2. Download and start the back-end service that will process appointment requests:
+>   3. Download the back-end service and copy it to the <EI_HOME>/wso2/msf4j/deployment/microservices directory. 
+>      The back-end service is now deployed in the MSF4J profile, which will run microservices for your integration flows. 
+>   4. Start the MSF4J profile:
 
 
 Open a terminal and execute the following command:
