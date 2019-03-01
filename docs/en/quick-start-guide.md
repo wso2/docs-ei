@@ -11,17 +11,11 @@ For this quick start guide, let's consider a basic Health Care System where WSO2
 >   3. Download the back-end service and copy it to the <EI_HOME>/wso2/msf4j/deployment/microservices directory. 
 >      The back-end service is now deployed in the MSF4J profile, which will run microservices for your integration flows. 
 >   4. Start the MSF4J profile:
+>      1.  Open a terminal and execute the following command:
+>      `wso2ei-6.4.0-msf4j`
+>.     2. Go to Start Menu -> Programs -> WSO2 -> Enterprise Integrator 6.4.0 MSF4J. This will open a terminal and start the MSF4J profile.
+>.  5. If you are on a Windows OS, install cURL. For more information, see the cURL Releases and Downloads.
 
-
-Open a terminal and execute the following command:
-wso2ei-6.4.0-msf4j
-
-
-Go to Start Menu -> Programs -> WSO2 -> Enterprise Integrator 6.4.0 MSF4J. This will open a terminal and start the MSF4J profile.
-
-
-
-If you are on a Windows OS, install cURL. For more information, see the cURL Releases and Downloads.
 Let's get started!
 
 ## Routing requests based on message content
