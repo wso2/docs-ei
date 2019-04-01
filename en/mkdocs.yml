@@ -1,0 +1,90 @@
+# Copyright (c) 2019, WSO2 Inc. (http://www.wso2.org) All Rights Reserved.
+#
+# WSO2 Inc. licenses this file to you under the Apache License,
+# Version 2.0 (the "License"); you may not use this file except
+# in compliance with the License.
+# You may obtain a copy of the License at
+#
+# http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing,
+# software distributed under the License is distributed on an
+# "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+# KIND, either express or implied. See the License for the
+# specific language governing permissions and limitations
+# under the License.
+
+# Project information
+site_name: WSO2 Enterprise Integrator Documentation
+site_description: 'Documentation for WSO2 Enterprise Integrator'
+site_author: 'WSO2'
+site_url: 'https://wso2.com/'
+
+# Repository
+repo_name: wso2/docs-ei
+repo_url: https://github.com/wso2/docs-ei
+edit_uri: https://github.com/wso2/docs-ei/edit/master/en/docs/
+
+# Copyright
+copyright: WSO2 Enterprise Integrator - Documentation
+
+# Configuration
+base_url: /
+theme: material
+theme:
+  name: material
+  palette:
+    primary: 'deep-orange'
+    accent: 'deep-orange'
+  custom_dir: 'theme/material'
+  logo: 'images/logo.svg'
+  highlightjs: true
+  feature:
+    tabs: true
+  language: 'en'
+  
+# Navigation
+nav:
+- Key Concepts:
+      - 'Single Sign-On and Identity Federation': 'key-concepts/single-sign-on-and-identity-federation_.md'
+      - 'Identity Provisioning and its Standards': 'key-concepts/identity-provisioning-and-its-standards.md'
+      - 'Access Control and Entitlement Management': 'key-concepts/access-control-and-entitlement-management.md'
+      - 'Identity Anti-patterns and the Identity Bus': 'key-concepts/identity-anti-patterns-and-the-identity-bus.md'
+- Basic Tutorials:
+      - 'Adaptive Authentication': 
+        - 'Adaptive Authentication Overview': 'tutorials/adaptive-authentication-overview.md'
+        - 'Configuring a Service Provider for Adaptive Authentication': 'tutorials/configuring-a-service-provider-for-adaptive-authentication.md'
+        - Adaptive Authentication Scenarios:
+          - 'Configuring Role-Based Adaptive Authentication': 'tutorials/configuring-role-based-adaptive-authentication.md'
+          - 'Configuring User-Age-Based Adaptive Authentication': 'tutorials/configuring-user-age-based-adaptive-authentication.md'
+          - 'Configuring Tenant-Based Adaptive Authentication': 'tutorials/configuring-tenant-based-adaptive-authentication.md'
+- References:
+      - 'Configuration Catalog': 'references/config-catalog.md'
+      - 'Default Ports of WSO2 Products': 'references/default-ports-of-wso2-products.md'
+      - 'API Permissions': 'references/api-permissions.md'
+      - 'Adaptive Authentication JS API Reference': 'references/adaptive-authentication-js-api-reference.md'
+     
+# Extensions
+markdown_extensions:
+    - fenced_code
+    - codehilite
+    - admonition
+    - pymdownx.details
+    - pymdownx.inlinehilite
+    - pymdownx.superfences
+    
+# Customization
+extra_css:
+  - 'assets/css/theme.css'
+extra_javascript:
+  - 'assets/js/theme.js'
+extra:
+  social:
+    - type: 'github'
+      link: 'https://github.com/wso2'
+    - type: 'twitter'
+      link: 'https://twitter.com/wso2'
+    - type: 'linkedin'
+      link: 'https://www.linkedin.com/company/wso2'
+  base_url: /
+  site_version: 5.7.0
