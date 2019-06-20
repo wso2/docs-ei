@@ -46,9 +46,9 @@ theme:
 # Navigation
 nav:
     - Introduction:
-      - 'Overview': 'intro/overview.md'
-      - 'Architecture': 'intro/architecture.md'
-      - 'About this Release': 'intro/about_this_release.md'
+      - 'Overview': 'overview/overview.md'
+      - 'Architecture': 'overview/architecture.md'
+      - 'About this Release': 'overview/about_this_release.md'
     - Quick Start Guide:
       - 'Quick Start Guide': 'qsg.md'
     - Concepts:
@@ -94,9 +94,9 @@ nav:
     - Administration and Observability:
       - 'User Management' : 'admin/user_management.md'
     - References:
-      - 'Mediator Catalog' : 'ref/mediator_catalog.md'
-      - 'Property Catalog' : 'ref/property_catalog.md'
-      - 'Configuration Catalog' : 'ref/ei_config_catalog.md'
+      - 'Mediator Catalog' : 'references/mediator_catalog.md'
+      - 'Property Catalog' : 'references/property_catalog.md'
+      - 'Configuration Catalog' : 'references/ei_config_catalog.md'
     - '': page-not-found.md
      
 # Extensions
