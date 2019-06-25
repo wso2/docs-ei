@@ -46,11 +46,11 @@ theme:
 # Navigation
 nav:
     - Introduction:
-      - 'Overview': 'intro/overview.md'
-      - 'Architecture': 'intro/architecture.md'
-      - 'About this Release': 'intro/about_this_release.md'
+      - 'Overview': 'overview/introduction.md'
+      - 'Architecture': 'overview/architecture.md'
+      - 'About this Release': 'overview/about-this-release.md'
     - Quick Start Guide:
-      - 'Quick Start Guide': 'qsg.md'
+      - 'Quick Start Guide': 'quick-start-guide/quick-start-guide.md'
     - Concepts:
       - 'Concepts': 'concepts.md'
     - Setup and Install:
@@ -85,14 +85,14 @@ nav:
             - 'Setting up a Read-Write Active Directory' : 'setup/setting_up_rw_ad.md'
         - Security Hardening :
           - Setting up Keystores:
-            - 'Creating New Keystores' : 'security/creating_keystores.md'
-            - 'Adding SSL certificates to keystores' : 'security/importing_ssl_certificate.md'
-            - 'Renewing a CA-signed Certificate' : 'security/renewing_ca_signed_certificate_in_keystore.md'
-            - 'Configuring Keystores' : 'security/configuring_keystores.md'
-          - 'Using Symmetric Encryption' : 'security/single_key_encryption.md'
-          - 'Encrypting Plain Text' : 'security/encrypting_plain_text.md'
-          - 'Mitigating Cross Site Request Forgery Attacks' : 'security/mitigating_csrf.md'
-          - 'Mitigating Cross Site Scripting' : 'security/mitigating_css.md'
+            - 'Creating New Keystores' : 'setup/security/creating_keystores.md'
+            - 'Adding SSL certificates to keystores' : 'setup/security/importing_ssl_certificate.md'
+            - 'Renewing a CA-signed Certificate' : 'setup/security/renewing_ca_signed_certificate_in_keystore.md'
+            - 'Configuring Keystores' : 'setup/security/configuring_keystores.md'
+          - 'Using Symmetric Encryption' : 'setup/security/single_key_encryption.md'
+          - 'Encrypting Plain Text' : 'setup/security/encrypting_plain_text.md'
+          - 'Mitigating Cross Site Request Forgery Attacks' : 'setup/security/mitigating_csrf.md'
+          - 'Mitigating Cross Site Scripting' : 'setup/security/mitigating_css.md'
         - Performance Tuning:
           - 'Tuning Database Performance' : 'setup/tuning_db_performance.md'
           - 'Tuning Network and OS Performance' : 'setup/network_os_performance.md'
