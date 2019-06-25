@@ -110,9 +110,12 @@ nav:
     - Administration and Observability:
       - 'User Management' : 'admin/user_management.md'
     - References:
-      - 'Mediator Catalog' : 'references/mediator_catalog.md'
+      - 'Configuration Catalog' : 'references/ei_config_catalog.md'
+      - 'Mediator Catalog' : 
+        - 'Mediator Catlog' : 'references/mediator_catalog.md'
         - 'Working with Mediators via Tooling' : 'references/working-with-Mediators-via-Tooling.md'
-        - 'ESB Mediators' : 'references/eSB-Mediators.md'
+        - 'ESB Mediators' : 
+          - 'ESB Mediators' : 'references/eSB-Mediators.md'
           - 'Aggregate Mediators' : 'references/eSB-Mediators.md'
           - 'Bean Mediator' : 'references/eSB-Mediators.md'
           - 'Builder Mediator' : 'references/eSB-Mediators.md'
@@ -137,7 +140,6 @@ nav:
           - 'Clone Mediator' : 'references/eSB-Mediators.md'
           - 'Clone Mediator' : 'references/eSB-Mediators.md'
       - 'Property Catalog' : 'references/property_catalog.md'
-      - 'Configuration Catalog' : 'references/ei_config_catalog.md'
     - '': page-not-found.md
      
 # Extensions
