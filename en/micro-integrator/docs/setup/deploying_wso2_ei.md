@@ -20,10 +20,9 @@ Follow the instructions on [setting up a load balancer](../setup/setting_up_lb.m
 By default, the embedded H2 database is configured as the product's primary database. Select your preferred database type from the following list and follow the given instructions:
 
 * [Setting up MySQL](../setup/db/setting-up-MySQL.md)
-* [Setting up a MySQL cluster](../stup/db/setting-up-a-MySQL-Cluster.md)
 * [Setting up MSSQL](../setup/db/setting-up-MSSQL.md)
 * [Setting up Oracle](../setup/db/setting-up-Oracle.md)
-* [Setting up Oracle RAC](../setup/db/setting-up-Orable-RAC.md)
+* [Setting up Oracle RAC](../setup/db/setting-up-Oracle-RAC.md)
 * [Setting up IBM Informix](../setup/db/setting-up-IBM-Informix.md)
 * [Setting up IBM DB2](../setup/db/setting-up-IBM-DB2.md)
 * [Setting up Maria DB](../setup/db/setting-up-MariaDB.md)
@@ -34,8 +33,8 @@ By default, the embedded H2 database is configured as the product's primary data
 
 ## Updating keystores
 
-1. [Create a new SSL certificate](../security/importing_ssl_certificate.md) and import it to the primary keyStore and trustStore (which are located in the /repository/security/ directory). Your primary keystore can now be configured for SSL communication.
-2. [Create a new keystore](../security/creating_keystores.md) to use as the internal keystore (for the purpose of data encryption/decryption in internal data stores).
+1. [Create a new SSL certificate](../setup/security/importing_ssl_certificate.md) and import it to the primary keyStore and trustStore (which are located in the /repository/security/ directory). Your primary keystore can now be configured for SSL communication.
+2. [Create a new keystore](../setup/security/creating_keystores.md) to use as the internal keystore (for the purpose of data encryption/decryption in internal data stores).
 
 ## Configuring the WSO2 EI nodes
 
@@ -54,60 +53,9 @@ Follow the steps given below to configure the two nodes in the WSO2 EI deploymen
     // If you are running both product nodes (of your cluster) on the same VM, set a port offset for on the servers.
     offset = 0
     ```
-   To find additional server-level parameters that you can use, see the [configuration catalog](../../setup/setting_up_lb/#configuring-the-load-balancer).
+   Find more [parameters](../../references/ei_config_catalog/#configuring-the-default-deployment-settings) for deployment settings.
 
-3. To enable the two nodes to access the shared database, be sure that the following configurations in the esb.toml file is updated with the details of your database.
-
-    Go to the section on [setting up the primary database](../setup/deploying_wso2_ei.md#Setting up the primary database), select your database type, and verify the parameters specific to your database.
-
-    ```Java
-    // The config section that groups the parameters for the primary database that will be shared by both product nodes in the cluster.
-    [database.shared.db]
-
-    // Specify the type of database.
-    type= "<database_type>"
-
-    // Specify the connection URL of your database. The following default URL connects to the H2 database that is shipped with the product.
-    url="jdbc:h2:./repository/database/WSO2SHARED_DB;DB_CLOSE_ON_EXIT=FALSE;LOCK_TIMEOUT=60000"
-
-    // The username for connecting to the database. By default, 'root' is the MySQL username.
-    username = "root"
-
-    // The password for connecting to the database. By default, 'root' is the MySQL password.
-    password = "root"
-
-    ```
-
-    To find additional parameters for configuring the database connection, see the [configuration catalog](../reference/config_catalog.md#connecting-to-the-user-store).
-
-4. To change the credentials of the admin user of each node in the cluster, update the following parameters in the esb.toml file.
-    ``` java
-    // The config section that groups the parameters defining the system administrator.
-    [super_admin]
-
-    // Specify the username of connecting to the server.
-    username = "admin"
-
-    // Specify the password for connecting to the server.
-    password = "admin"
-
-    // Set this property to 'true'. This ensures that the admin account is created in the user store.
-    create_admin_account = true
-    ```
-
-     To find additional parameters for configuring the system administrator, see the [configuration catalog](../reference/config_catalog.md#connecting-to-the-user-store).
-
- 5. To manage the users and roles in the system, update the following parameters in the esb.toml file.
-    ``` java
-    // The config section that groups the parameters that define the user store (which is the shared DB in this example) connected to the server.
-    [user_store]
-
-    // Specify "database" as the database type to infer the connection details of your shared DB.
-    type = "database"
-    ```
-    To find additional parameters for connecting to the user store, see the [configuration catalog](../reference/config_catalog.md#connecting-to-the-user-store).
-
- 6. To define the clustering configurations that specify how the two nodes communicate with one another, add the following to the esb.toml file and update the values.
+3. To define the clustering configurations that specify how the two nodes communicate with one another, add the following to the esb.toml file and update the values.
     ``` java
     // The config section that groups the parameters that define cluster coordination.
     [clustering]
@@ -121,8 +69,43 @@ Follow the steps given below to configure the two nodes in the WSO2 EI deploymen
     // Specify the IP address:port of each of the nodes in the cluster as shown below. Be sure to use the same port number and hostname you specified above.
     members = ["10.100.5.86:4000","10.100.5.86:4001"]
     ```
-    To find additional parameters to define cluster coordination, see the [configuration catalog](../../reference/ei_config_catalog#configuring-then).
+    Find more [parameters](../../references/ei_config_catalog/#configuring-the-cluster-settings) to define clustering.
 
+4. To enable the two nodes to access the shared database, go to the section on [setting up the primary database](../setup/deploying_wso2_ei.md#Setting up the primary database), select your database type, and verify the parameters specific to your database.
+
+ 5. To manage the users and roles in the system, update the `[user_store]` section in the esb.toml file.
+    
+    * If you are using primary database of your product as the user store, use the following:
+        ``` java
+        // The config section that groups the parameters that define the user store (which is the shared DB in this example) connected to the server.
+        [user_store]
+
+        // Specify "database" as the database type to infer the connection details of your shared DB.
+        type = "database"
+        ```
+      Find more [parameters](../../references/ei_config_catalog/#connecting-to-the-primary-data-store) to configure the primary database.
+    * If you have set up a separate database, LDAP, or Active Directory user store, see the section under [changing the default user store](../setup/deploying_wso2_ei.md#changing-the-default-user-store).
+
+6. To change the credentials of the admin user of each node in the cluster, update the following parameters in the esb.toml file. In the below example, a plain text password is used. If required, you can [encrypt the password](../setup/security/encrypting_plain_text.md).
+    ``` java
+    // The config section that groups the parameters defining the system administrator.
+    [super_admin]
+
+    // Specify the username of connecting to the server.
+    username = "admin"
+
+    // Specify the password for connecting to the server.
+    password = "admin"
+
+    // Set this property to 'true'. This ensures that the admin account is created in the user store.
+    create_admin_account = true
+    ```
+    
+    Find more [parameters](../../references/ei_config_catalog/#configuring-the-system-administrator) to configure the system administrator.
+
+7. If you have [separated the internal keystore](../setup/deploying_wso2_ei.md#updating-keystores) of your product, update the `[keystore.internal]` section in the esb.toml file.
+   See [Configuring Keystores](../setup/security/configuring_keystores.md) for instructions.
+    
 ## Optional configurations
 
 See the topics given below.

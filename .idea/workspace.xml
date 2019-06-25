@@ -1,28 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="b305cdb4-dc75-482e-8e2e-d9e98f5b6004" name="Default Changelist" comment="Committing latest changes to deployment docs.">
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs-ei.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/en/micro-integrator/docs/assets/img/deployment_ei.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/en/micro-integrator/docs/setup/db/setting-up-Embedded-Derby.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/en/micro-integrator/docs/setup/db/setting-up-Embedded-H2.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/en/micro-integrator/docs/setup/db/setting-up-IBM-DB2.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/en/micro-integrator/docs/setup/db/setting-up-IBM-Informix.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/en/micro-integrator/docs/setup/db/setting-up-MSSQL.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/en/micro-integrator/docs/setup/db/setting-up-MariaDB.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/en/micro-integrator/docs/setup/db/setting-up-Oracle-RAC.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/en/micro-integrator/docs/setup/db/setting-up-Oracle.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/en/micro-integrator/docs/setup/db/setting-up-PostgreSQL.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/en/micro-integrator/docs/setup/db/setting-up-Remote-Derby.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/en/micro-integrator/docs/setup/db/setting-up-Remote-H2.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/en/micro-integrator/docs/setup/db/setting_up_db.md" afterDir="false" />
+    <list default="true" id="b305cdb4-dc75-482e-8e2e-d9e98f5b6004" name="Default Changelist" comment="Committing the diagrams for qsg.">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/en/micro-integrator/docs/references/ei_config_catalog.md" beforeDir="false" afterPath="$PROJECT_DIR$/en/micro-integrator/docs/references/ei_config_catalog.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/en/micro-integrator/docs/setup/db/setting-up-Embedded-Derby.md" beforeDir="false" afterPath="$PROJECT_DIR$/en/micro-integrator/docs/setup/db/setting-up-Embedded-Derby.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/en/micro-integrator/docs/setup/db/setting-up-Embedded-H2.md" beforeDir="false" afterPath="$PROJECT_DIR$/en/micro-integrator/docs/setup/db/setting-up-Embedded-H2.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/en/micro-integrator/docs/setup/db/setting-up-IBM-DB2.md" beforeDir="false" afterPath="$PROJECT_DIR$/en/micro-integrator/docs/setup/db/setting-up-IBM-DB2.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/en/micro-integrator/docs/setup/db/setting-up-IBM-Informix.md" beforeDir="false" afterPath="$PROJECT_DIR$/en/micro-integrator/docs/setup/db/setting-up-IBM-Informix.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/en/micro-integrator/docs/setup/db/setting-up-MSSQL.md" beforeDir="false" afterPath="$PROJECT_DIR$/en/micro-integrator/docs/setup/db/setting-up-MSSQL.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/en/micro-integrator/docs/setup/db/setting-up-MariaDB.md" beforeDir="false" afterPath="$PROJECT_DIR$/en/micro-integrator/docs/setup/db/setting-up-MariaDB.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/en/micro-integrator/docs/setup/db/setting-up-MySQL.md" beforeDir="false" afterPath="$PROJECT_DIR$/en/micro-integrator/docs/setup/db/setting-up-MySQL.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/en/micro-integrator/docs/setup/db/setting-up-Oracle-RAC.md" beforeDir="false" afterPath="$PROJECT_DIR$/en/micro-integrator/docs/setup/db/setting-up-Oracle-RAC.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/en/micro-integrator/docs/setup/db/setting-up-Oracle.md" beforeDir="false" afterPath="$PROJECT_DIR$/en/micro-integrator/docs/setup/db/setting-up-Oracle.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/en/micro-integrator/docs/setup/db/setting-up-PostgreSQL.md" beforeDir="false" afterPath="$PROJECT_DIR$/en/micro-integrator/docs/setup/db/setting-up-PostgreSQL.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/en/micro-integrator/docs/setup/db/setting-up-Remote-Derby.md" beforeDir="false" afterPath="$PROJECT_DIR$/en/micro-integrator/docs/setup/db/setting-up-Remote-Derby.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/en/micro-integrator/docs/setup/db/setting-up-Remote-H2.md" beforeDir="false" afterPath="$PROJECT_DIR$/en/micro-integrator/docs/setup/db/setting-up-Remote-H2.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/en/micro-integrator/docs/setup/deploying_wso2_ei.md" beforeDir="false" afterPath="$PROJECT_DIR$/en/micro-integrator/docs/setup/deploying_wso2_ei.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/en/micro-integrator/docs/setup/deployment_synchronization.md" beforeDir="false" afterPath="$PROJECT_DIR$/en/micro-integrator/docs/setup/deployment_synchronization.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/en/micro-integrator/docs/setup/install_in_docker.md" beforeDir="false" afterPath="$PROJECT_DIR$/en/micro-integrator/docs/setup/install_in_docker.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/en/micro-integrator/docs/setup/install_in_kubernetes.md" beforeDir="false" afterPath="$PROJECT_DIR$/en/micro-integrator/docs/setup/install_in_kubernetes.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/en/micro-integrator/docs/setup/install_in_vm.md" beforeDir="false" afterPath="$PROJECT_DIR$/en/micro-integrator/docs/setup/install_in_vm.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/en/micro-integrator/mkdocs.yml" beforeDir="false" afterPath="$PROJECT_DIR$/en/micro-integrator/mkdocs.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/en/micro-integrator/docs/setup/registry_mounting.md" beforeDir="false" afterPath="$PROJECT_DIR$/en/micro-integrator/docs/setup/registry_mounting.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/en/micro-integrator/docs/setup/setting_up_lb.md" beforeDir="false" afterPath="$PROJECT_DIR$/en/micro-integrator/docs/setup/setting_up_lb.md" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -37,11 +37,11 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/en/micro-integrator/docs/setup/deploying_wso2_ei.md">
+        <entry file="file://$PROJECT_DIR$/en/micro-integrator/docs/setup/db/setting-up-MySQL.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-            <state split_layout="FIRST">
-              <first_editor relative-caret-position="603">
-                <caret line="56" column="17" lean-forward="true" selection-start-line="56" selection-start-column="17" selection-end-line="56" selection-end-column="17" />
+            <state split_layout="SPLIT">
+              <first_editor relative-caret-position="386">
+                <caret line="77" column="111" selection-start-line="77" selection-start-column="111" selection-end-line="77" selection-end-column="111" />
               </first_editor>
               <second_editor />
             </state>
@@ -49,22 +49,13 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/en/micro-integrator/docs/setup/deployment_synchronization.md">
+        <entry file="file://$PROJECT_DIR$/en/micro-integrator/docs/setup/db/setting-up-Oracle-RAC.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="FIRST">
-              <first_editor relative-caret-position="1020">
-                <caret line="68" selection-start-line="68" selection-end-line="68" />
+              <first_editor relative-caret-position="386">
+                <caret line="80" column="111" selection-start-line="80" selection-start-column="111" selection-end-line="80" selection-end-column="111" />
               </first_editor>
               <second_editor />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/en/micro-integrator/mkdocs.yml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1965">
-              <caret line="131" column="18" lean-forward="true" selection-start-line="131" selection-start-column="18" selection-end-line="131" selection-end-column="18" />
             </state>
           </provider>
         </entry>
@@ -72,9 +63,9 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/en/micro-integrator/docs/setup/db/setting-up-IBM-Informix.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-            <state split_layout="SECOND">
-              <first_editor relative-caret-position="750">
-                <caret line="50" column="2" selection-start-line="50" selection-start-column="2" selection-end-line="50" selection-end-column="2" />
+            <state split_layout="FIRST">
+              <first_editor relative-caret-position="386">
+                <caret line="81" column="111" selection-start-line="81" selection-start-column="111" selection-end-line="81" selection-end-column="111" />
               </first_editor>
               <second_editor />
             </state>
@@ -82,11 +73,59 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/en/micro-integrator/docs/setup/db/setting-up-MSSQL.md">
+          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+            <state split_layout="FIRST">
+              <first_editor relative-caret-position="386">
+                <caret line="54" column="111" selection-start-line="54" selection-start-column="111" selection-end-line="54" selection-end-column="111" />
+              </first_editor>
+              <second_editor />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/en/micro-integrator/docs/setup/db/setting-up-IBM-DB2.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-            <state split_layout="SECOND">
-              <first_editor relative-caret-position="1425">
-                <caret line="95" selection-start-line="95" selection-end-line="95" />
+            <state split_layout="FIRST">
+              <first_editor relative-caret-position="386">
+                <caret line="95" column="111" selection-start-line="95" selection-start-column="111" selection-end-line="95" selection-end-column="111" />
+              </first_editor>
+              <second_editor />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/en/micro-integrator/docs/setup/db/setting-up-Remote-H2.md">
+          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+            <state split_layout="FIRST">
+              <first_editor relative-caret-position="386">
+                <caret line="85" column="111" selection-start-line="85" selection-start-column="111" selection-end-line="85" selection-end-column="111" />
+              </first_editor>
+              <second_editor />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/en/micro-integrator/docs/setup/db/setting-up-Embedded-Derby.md">
+          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+            <state split_layout="FIRST">
+              <first_editor relative-caret-position="371">
+                <caret line="39" column="111" selection-start-line="39" selection-start-column="111" selection-end-line="39" selection-end-column="111" />
+              </first_editor>
+              <second_editor />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/en/micro-integrator/docs/setup/db/setting-up-Embedded-H2.md">
+          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+            <state split_layout="FIRST">
+              <first_editor relative-caret-position="386">
+                <caret line="63" column="111" selection-start-line="63" selection-start-column="111" selection-end-line="63" selection-end-column="111" />
               </first_editor>
               <second_editor />
             </state>
@@ -95,25 +134,44 @@
       </file>
     </leaf>
   </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>shared</find>
+      <find>system admini</find>
+      <find>tuning</find>
+    </findStrings>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
+        <option value="$PROJECT_DIR$/en/micro-integrator/docs/setup/install_in_kubernetes.md" />
         <option value="$PROJECT_DIR$/en/micro-integrator/docs/setup/install_in_vm.md" />
+        <option value="$PROJECT_DIR$/en/micro-integrator/docs/setup/install_in_docker.md" />
+        <option value="$PROJECT_DIR$/en/micro-integrator/docs/setup/setting_up_lb.md" />
+        <option value="$PROJECT_DIR$/en/micro-integrator/docs/setup/registry_mounting.md" />
+        <option value="$PROJECT_DIR$/en/micro-integrator/docs/setup/deployment_synchronization.md" />
         <option value="$PROJECT_DIR$/en/micro-integrator/docs/setup/db/setting-up-MariaDB.md" />
+        <option value="$PROJECT_DIR$/en/micro-integrator/docs/quick-start-guide/quick-start-guide.md" />
+        <option value="$PROJECT_DIR$/en/micro-integrator/mkdocs.yml" />
+        <option value="$PROJECT_DIR$/en/micro-integrator/docs/overview/architecture.md" />
+        <option value="$PROJECT_DIR$/en/micro-integrator/docs/setup/security/importing_ssl_certificate.md" />
+        <option value="$PROJECT_DIR$/en/micro-integrator/docs/setup/deploying_wso2_ei.md" />
+        <option value="$PROJECT_DIR$/en/micro-integrator/docs/setup/security/single_key_encryption.md" />
+        <option value="$PROJECT_DIR$/en/micro-integrator/docs/references/ei_config_catalog.md" />
         <option value="$PROJECT_DIR$/en/micro-integrator/docs/setup/db/setting-up-Oracle.md" />
+        <option value="$PROJECT_DIR$/en/micro-integrator/docs/setup/db/setting-up-MySQL.md" />
         <option value="$PROJECT_DIR$/en/micro-integrator/docs/setup/db/setting-up-Oracle-RAC.md" />
         <option value="$PROJECT_DIR$/en/micro-integrator/docs/setup/db/setting-up-PostgreSQL.md" />
         <option value="$PROJECT_DIR$/en/micro-integrator/docs/setup/db/setting-up-Remote-Derby.md" />
         <option value="$PROJECT_DIR$/en/micro-integrator/docs/setup/db/setting-up-Remote-H2.md" />
-        <option value="$PROJECT_DIR$/en/micro-integrator/docs/setup/db/setting-up-Embedded-H2.md" />
         <option value="$PROJECT_DIR$/en/micro-integrator/docs/setup/db/setting-up-Embedded-Derby.md" />
+        <option value="$PROJECT_DIR$/en/micro-integrator/docs/setup/db/setting-up-Embedded-H2.md" />
         <option value="$PROJECT_DIR$/en/micro-integrator/docs/setup/db/setting-up-IBM-DB2.md" />
         <option value="$PROJECT_DIR$/en/micro-integrator/docs/setup/db/setting-up-IBM-Informix.md" />
-        <option value="$PROJECT_DIR$/en/micro-integrator/docs/setup/deploying_wso2_ei.md" />
-        <option value="$PROJECT_DIR$/en/micro-integrator/mkdocs.yml" />
+        <option value="$PROJECT_DIR$/en/micro-integrator/docs/setup/db/setting-up-MSSQL.md" />
       </list>
     </option>
   </component>
@@ -123,21 +181,10 @@
       <select />
     </treeState>
   </component>
-  <component name="ProjectConfigurationFiles">
-    <option name="files">
-      <list>
-        <option value="$PROJECT_DIR$/docs-ei.iml" />
-        <option value="$PROJECT_DIR$/.idea/misc.xml" />
-        <option value="$PROJECT_DIR$/.idea/modules.xml" />
-        <option value="$PROJECT_DIR$/.idea/vcs.xml" />
-      </list>
-    </option>
-  </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="84" />
-    <option name="y" value="23" />
-    <option name="width" value="1276" />
-    <option name="height" value="951" />
+    <option name="y" value="178" />
+    <option name="width" value="1680" />
+    <option name="height" value="669" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
@@ -177,7 +224,16 @@
               <item name="en" type="462c0819:PsiDirectoryNode" />
               <item name="micro-integrator" type="462c0819:PsiDirectoryNode" />
               <item name="docs" type="462c0819:PsiDirectoryNode" />
-              <item name="references" type="462c0819:PsiDirectoryNode" />
+              <item name="setup" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="docs-ei" type="b2602c69:ProjectViewProjectNode" />
+              <item name="docs-ei" type="462c0819:PsiDirectoryNode" />
+              <item name="en" type="462c0819:PsiDirectoryNode" />
+              <item name="micro-integrator" type="462c0819:PsiDirectoryNode" />
+              <item name="docs" type="462c0819:PsiDirectoryNode" />
+              <item name="setup" type="462c0819:PsiDirectoryNode" />
+              <item name="db" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -187,6 +243,12 @@
   </component>
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/en/micro-integrator/docs/overview" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/en/micro-integrator/docs/overview" />
+    </key>
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -211,19 +273,56 @@
       <option name="presentableId" value="Default" />
       <updated>1561375028197</updated>
     </task>
+    <task id="LOCAL-00001" summary="Committing latest changes to deployment docs.">
+      <created>1561436863359</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1561436863359</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Committing the yml changes to the overview section.">
+      <created>1561451222803</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1561451222803</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Committing the micro integrator qsg">
+      <created>1561451254769</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1561451254769</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Yaml updated.">
+      <created>1561451478873</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1561451478873</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Committing the diagrams for qsg.">
+      <created>1561451788001</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1561451788001</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="84" y="23" width="1276" height="951" extended-state="0" />
+    <frame x="150" y="178" width="1680" height="669" extended-state="0" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.29092383" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.26800978" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
       <window_info id="UI Designer" order="4" />
       <window_info id="Capture Tool" order="5" />
       <window_info id="Favorites" order="6" side_tool="true" />
-      <window_info active="true" anchor="bottom" id="Messages" visible="true" weight="0.32945284" />
+      <window_info anchor="bottom" id="Messages" weight="0.32945284" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32947975" />
       <window_info anchor="bottom" id="Run" order="2" />
@@ -233,7 +332,7 @@
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Terminal" order="7" />
       <window_info anchor="bottom" id="Event Log" order="8" side_tool="true" />
-      <window_info anchor="bottom" id="Version Control" order="9" weight="0.077456646" />
+      <window_info anchor="bottom" id="Version Control" order="9" visible="true" weight="0.11438475" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -286,7 +385,11 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Committing latest changes to deployment docs." />
-    <option name="LAST_COMMIT_MESSAGE" value="Committing latest changes to deployment docs." />
+    <MESSAGE value="Committing the yml changes to the overview section." />
+    <MESSAGE value="Committing the micro integrator qsg" />
+    <MESSAGE value="Yaml updated." />
+    <MESSAGE value="Committing the diagrams for qsg." />
+    <option name="LAST_COMMIT_MESSAGE" value="Committing the diagrams for qsg." />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/en/micro-integrator/docs/setup/setting_up_rw_ad.md">
@@ -304,16 +407,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/en/micro-integrator/docs/setup/install_in_vm.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="FIRST">
-          <first_editor relative-caret-position="870">
-            <caret line="58" column="44" selection-start-line="58" selection-start-column="44" selection-end-line="58" selection-end-column="44" />
-          </first_editor>
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/en/micro-integrator/docs/setup/db/setting_up_db.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
@@ -322,111 +415,23 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/en/micro-integrator/docs/setup/db/setting-up-Remote-H2.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SECOND">
-          <first_editor relative-caret-position="255">
-            <caret line="17" column="2" lean-forward="true" selection-start-line="17" selection-start-column="2" selection-end-line="17" selection-end-column="2" />
-          </first_editor>
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/en/micro-integrator/docs/setup/db/setting-up-Remote-Derby.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SECOND">
-          <first_editor relative-caret-position="780">
-            <caret line="52" selection-start-line="52" selection-end-line="52" />
-          </first_editor>
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/en/micro-integrator/docs/setup/db/setting-up-PostgreSQL.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SECOND">
-          <first_editor relative-caret-position="549">
-            <caret line="56" column="20" lean-forward="true" selection-start-line="56" selection-start-column="20" selection-end-line="56" selection-end-column="20" />
-          </first_editor>
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/en/micro-integrator/docs/setup/db/setting-up-Oracle-RAC.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SECOND">
-          <first_editor relative-caret-position="725">
-            <caret line="79" column="158" selection-start-line="79" selection-start-column="158" selection-end-line="79" selection-end-column="158" />
-          </first_editor>
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/en/micro-integrator/docs/setup/db/setting-up-Oracle.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SECOND">
-          <first_editor relative-caret-position="730">
-            <caret line="89" column="158" selection-start-line="89" selection-start-column="158" selection-end-line="89" selection-end-column="158" />
-          </first_editor>
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/en/micro-integrator/docs/setup/db/setting-up-MSSQL.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SECOND">
-          <first_editor />
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/en/micro-integrator/docs/setup/db/setting-up-H2.md" />
-    <entry file="file://$PROJECT_DIR$/en/micro-integrator/docs/setup/db/setting-up-Embedded-H2.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SECOND">
-          <first_editor relative-caret-position="739">
-            <caret line="62" column="158" selection-start-line="62" selection-start-column="158" selection-end-line="62" selection-end-column="158" />
-          </first_editor>
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/en/micro-integrator/docs/setup/db/changing-to-MSSQL.md" />
-    <entry file="file://$PROJECT_DIR$/en/micro-integrator/docs/setup/db/setting-up-Embedded-Derby.md">
+    <entry file="file://$PROJECT_DIR$/en/micro-integrator/docs/setup/install_in_kubernetes.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SECOND">
-          <first_editor relative-caret-position="405">
-            <caret line="27" column="50" selection-start-line="27" selection-start-column="50" selection-end-line="27" selection-end-column="50" />
+        <state split_layout="FIRST">
+          <first_editor relative-caret-position="225">
+            <caret line="15" column="49" selection-start-line="15" selection-start-column="49" selection-end-line="15" selection-end-column="49" />
           </first_editor>
           <second_editor />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/en/micro-integrator/docs/setup/db/setting-up-MySQL.md">
+    <entry file="file://$PROJECT_DIR$/en/micro-integrator/docs/setup/install_in_docker.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor relative-caret-position="309">
-            <caret line="45" column="101" lean-forward="true" selection-start-line="45" selection-start-column="101" selection-end-line="45" selection-end-column="101" />
-          </first_editor>
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/en/micro-integrator/docs/setup/db/setting-up-MariaDB.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SECOND">
-          <first_editor relative-caret-position="230">
-            <caret line="63" column="2" selection-start-line="63" selection-start-column="2" selection-end-line="63" selection-end-column="2" />
-          </first_editor>
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/en/micro-integrator/docs/setup/db/setting-up-IBM-Informix.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SECOND">
-          <first_editor relative-caret-position="750">
-            <caret line="50" column="2" selection-start-line="50" selection-start-column="2" selection-end-line="50" selection-end-column="2" />
+        <state split_layout="FIRST">
+          <first_editor relative-caret-position="570">
+            <caret line="38" column="4" selection-start-line="38" selection-start-column="4" selection-end-line="38" selection-end-column="4" />
           </first_editor>
           <second_editor />
         </state>
@@ -435,8 +440,103 @@
     <entry file="file://$PROJECT_DIR$/en/micro-integrator/docs/setup/deployment_synchronization.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="FIRST">
-          <first_editor relative-caret-position="1020">
-            <caret line="68" selection-start-line="68" selection-end-line="68" />
+          <first_editor relative-caret-position="683">
+            <caret line="72" column="45" selection-start-line="72" selection-start-column="45" selection-end-line="72" selection-end-column="45" />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/en/micro-integrator/docs/setup/install_in_vm.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="FIRST">
+          <first_editor relative-caret-position="126">
+            <caret line="110" column="8" selection-start-line="110" selection-start-column="8" selection-end-line="110" selection-end-column="8" />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/en/micro-integrator/docs/setup/registry_mounting.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="30">
+            <caret line="2" lean-forward="true" selection-start-line="2" selection-end-line="2" />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/en/micro-integrator/docs/setup/setting_up_lb.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="FIRST">
+          <first_editor relative-caret-position="579">
+            <caret line="194" selection-start-line="194" selection-end-line="194" selection-end-column="33" />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/en/micro-integrator/docs/quick-start-guide/quick-start-guide.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="FIRST">
+          <first_editor relative-caret-position="575">
+            <caret line="65" lean-forward="true" selection-start-line="65" selection-end-line="65" />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/en/micro-integrator/docs/overview/architecture.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="15">
+            <caret line="1" lean-forward="true" selection-start-line="1" selection-end-line="1" />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/en/micro-integrator/docs/setup/db/setting-up-MariaDB.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="FIRST">
+          <first_editor relative-caret-position="423">
+            <caret line="80" column="17" lean-forward="true" selection-start-line="80" selection-start-column="17" selection-end-line="80" selection-end-column="17" />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/en/micro-integrator/docs/overview/about-this-release.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor />
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/en/micro-integrator/mkdocs.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="183">
+          <caret line="49" column="46" lean-forward="true" selection-start-line="49" selection-start-column="46" selection-end-line="49" selection-end-column="46" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/en/micro-integrator/docs/setup/security/importing_ssl_certificate.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="339">
+            <caret line="40" column="33" selection-start-line="40" selection-start-column="33" selection-end-line="40" selection-end-column="33" />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/en/micro-integrator/docs/setup/security/single_key_encryption.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="270">
+            <caret line="29" column="3" lean-forward="true" selection-start-line="29" selection-start-column="3" selection-end-line="29" selection-end-column="3" />
           </first_editor>
           <second_editor />
         </state>
@@ -445,16 +545,18 @@
     <entry file="file://$PROJECT_DIR$/en/micro-integrator/docs/references/ei_config_catalog.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="FIRST">
-          <first_editor />
+          <first_editor relative-caret-position="144">
+            <caret line="530" column="60" selection-start-line="530" selection-start-column="20" selection-end-line="530" selection-end-column="60" />
+          </first_editor>
           <second_editor />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/en/micro-integrator/docs/setup/db/setting-up-IBM-DB2.md">
+    <entry file="file://$PROJECT_DIR$/en/micro-integrator/docs/setup/db/setting-up-Oracle.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SECOND">
-          <first_editor relative-caret-position="1425">
-            <caret line="95" selection-start-line="95" selection-end-line="95" />
+        <state split_layout="FIRST">
+          <first_editor relative-caret-position="371">
+            <caret line="89" lean-forward="true" selection-start-line="89" selection-end-line="90" selection-end-column="111" />
           </first_editor>
           <second_editor />
         </state>
@@ -468,17 +570,110 @@
       </provider>
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="FIRST">
-          <first_editor relative-caret-position="603">
-            <caret line="56" column="17" lean-forward="true" selection-start-line="56" selection-start-column="17" selection-end-line="56" selection-end-column="17" />
+          <first_editor relative-caret-position="329">
+            <caret line="85" column="6" selection-start-line="85" selection-start-column="6" selection-end-line="85" selection-end-column="137" />
           </first_editor>
           <second_editor />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/en/micro-integrator/mkdocs.yml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1965">
-          <caret line="131" column="18" lean-forward="true" selection-start-line="131" selection-start-column="18" selection-end-line="131" selection-end-column="18" />
+    <entry file="file://$PROJECT_DIR$/en/micro-integrator/docs/setup/db/setting-up-Oracle-RAC.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="FIRST">
+          <first_editor relative-caret-position="386">
+            <caret line="80" column="111" selection-start-line="80" selection-start-column="111" selection-end-line="80" selection-end-column="111" />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/en/micro-integrator/docs/setup/db/setting-up-Remote-H2.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="FIRST">
+          <first_editor relative-caret-position="386">
+            <caret line="85" column="111" selection-start-line="85" selection-start-column="111" selection-end-line="85" selection-end-column="111" />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/en/micro-integrator/docs/setup/db/setting-up-Embedded-Derby.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="FIRST">
+          <first_editor relative-caret-position="371">
+            <caret line="39" column="111" selection-start-line="39" selection-start-column="111" selection-end-line="39" selection-end-column="111" />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/en/micro-integrator/docs/setup/db/setting-up-Embedded-H2.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="FIRST">
+          <first_editor relative-caret-position="386">
+            <caret line="63" column="111" selection-start-line="63" selection-start-column="111" selection-end-line="63" selection-end-column="111" />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/en/micro-integrator/docs/setup/db/setting-up-IBM-Informix.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="FIRST">
+          <first_editor relative-caret-position="386">
+            <caret line="81" column="111" selection-start-line="81" selection-start-column="111" selection-end-line="81" selection-end-column="111" />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/en/micro-integrator/docs/setup/db/setting-up-MySQL.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="386">
+            <caret line="77" column="111" selection-start-line="77" selection-start-column="111" selection-end-line="77" selection-end-column="111" />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/en/micro-integrator/docs/setup/db/setting-up-PostgreSQL.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="FIRST">
+          <first_editor relative-caret-position="386">
+            <caret line="69" column="111" selection-start-line="69" selection-start-column="111" selection-end-line="69" selection-end-column="111" />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/en/micro-integrator/docs/setup/db/setting-up-MSSQL.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="FIRST">
+          <first_editor relative-caret-position="386">
+            <caret line="54" column="111" selection-start-line="54" selection-start-column="111" selection-end-line="54" selection-end-column="111" />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/en/micro-integrator/docs/setup/db/setting-up-Remote-Derby.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="FIRST">
+          <first_editor relative-caret-position="371">
+            <caret line="52" column="111" selection-start-line="52" selection-start-column="111" selection-end-line="52" selection-end-column="111" />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/en/micro-integrator/docs/setup/db/setting-up-IBM-DB2.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="FIRST">
+          <first_editor relative-caret-position="386">
+            <caret line="95" column="111" selection-start-line="95" selection-start-column="111" selection-end-line="95" selection-end-column="111" />
+          </first_editor>
+          <second_editor />
         </state>
       </provider>
     </entry>

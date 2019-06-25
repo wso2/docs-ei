@@ -65,17 +65,18 @@ To enable the two nodes to access the shared database, update the following para
 [database.shared.db]
 
 // Specify the type of database.
-type = "mysql"
+type = "ibm_informix"
 
 // Specify the connection URL of your database. The following default URL connects to the H2 database that is shipped with the product.
-url="jdbc:h2:./repository/database/WSO2SHARED_DB;DB_CLOSE_ON_EXIT=FALSE;LOCK_TIMEOUT=60000"
+url="jdbc:informix-sqli://localhost:1533/AM_DB;CLIENT_LOCALE=en_US.utf8;DB_LOCALE=en_us.utf8;IFX_USE_STRENC=true;"
 
-// The username for connecting to the database. By default, 'root' is the MySQL username.
-username = "root"
+// The username for connecting to the database.
+username = "regadmin"
 
-// The password for connecting to the database. By default, 'root' is the MySQL password.
-password = "root"
+// The password for connecting to the database.
+password = "regadmin"
 
 ```
 
-To find additional parameters for configuring the database connection, see the [configuration catalog](../ref/config_catalog.md#connecting-to-the-user-store).
+Find more parameters for [connecting to the primary database](../../../references/ei_config_catalog/#connecting-to-the-primary-data-store) and for 
+[tuning the primary database](../../../references/ei_config_catalog/#tuning-the-primary-data-store-connection).
