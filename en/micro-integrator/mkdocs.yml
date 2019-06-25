@@ -46,11 +46,11 @@ theme:
 # Navigation
 nav:
     - Introduction:
-      - 'Overview': 'intro/overview.md'
-      - 'Architecture': 'intro/architecture.md'
-      - 'About this Release': 'intro/about_this_release.md'
+      - 'Overview': 'overview/introduction.md'
+      - 'Architecture': 'overview/architecture.md'
+      - 'About this Release': 'overview/about-this-release.md'
     - Quick Start Guide:
-      - 'Quick Start Guide': 'qsg.md'
+      - 'Quick Start Guide': 'quick-start-guide/quick-start-guide.md'
     - Concepts:
       - 'Concepts': 'concepts.md'
     - Setup and Install:
@@ -67,8 +67,17 @@ nav:
           - 'Setting up a Load Balancer' : 'setup/setting_up_lb.md'
           - 'Configuring Deployment Synchronization' : 'setup/deployment_synchronization.md'
           - Setting up Databases:
-            - 'Setting up a MySQL Database' : 'setup/db/setting-up-MySQL.md'
-            - 'Setting up an MSSQL Database' : 'setup/db/setting-up-MSSQL.md'
+            - 'Setting up MySQL' : 'setup/db/setting-up-MySQL.md'
+            - 'Setting up MSSQL' : 'setup/db/setting-up-MSSQL.md'
+            - 'Setting up Oracle' : 'setup/db/setting-up-Oracle.md'
+            - 'Setting up Oracle RAC' : 'setup/db/setting-up-Oracle-RAC.md'
+            - 'Setting up IBM Informix' : 'setup/db/setting-up-IBM-Informix.md'
+            - 'Setting up IBM DB2' : 'setup/db/setting-up-IBM-DB2.md'
+            - 'Setting up Maria DB' : 'setup/db/setting-up-MariaDB.md'
+            - 'Setting up Embedded Derby' : 'setup/db/setting-up-Embedded-Derby.md'
+            - 'Setting up Remote Derby' : 'setup/db/setting-up-Remote-Derby.md'
+            - 'Setting up PostgreSQL' : 'setup/db/setting-up-PostgreSQL.md'
+            - 'Setting up Remote H2' : 'setup/db/setting-up-Remote-H2.md'
           - Setting up a User Store:
             - 'Setting up a JDBC User Store' : 'setup/setting_up_jdbc_userstore.md'
             - 'Setting up a Read-Only LDAP' : 'setup/setting_up_ro_ldap.md'
@@ -76,14 +85,14 @@ nav:
             - 'Setting up a Read-Write Active Directory' : 'setup/setting_up_rw_ad.md'
         - Security Hardening :
           - Setting up Keystores:
-            - 'Creating New Keystores' : 'security/creating_keystores.md'
-            - 'Adding SSL certificates to keystores' : 'security/importing_ssl_certificate.md'
-            - 'Renewing a CA-signed Certificate' : 'security/renewing_ca_signed_certificate_in_keystore.md'
-            - 'Configuring Keystores' : 'security/configuring_keystores.md'
-          - 'Using Symmetric Encryption' : 'security/single_key_encryption.md'
-          - 'Encrypting Plain Text' : 'security/encrypting_plain_text.md'
-          - 'Mitigating Cross Site Request Forgery Attacks' : 'security/mitigating_csrf.md'
-          - 'Mitigating Cross Site Scripting' : 'security/mitigating_css.md'
+            - 'Creating New Keystores' : 'setup/security/creating_keystores.md'
+            - 'Adding SSL certificates to keystores' : 'setup/security/importing_ssl_certificate.md'
+            - 'Renewing a CA-signed Certificate' : 'setup/security/renewing_ca_signed_certificate_in_keystore.md'
+            - 'Configuring Keystores' : 'setup/security/configuring_keystores.md'
+          - 'Using Symmetric Encryption' : 'setup/security/single_key_encryption.md'
+          - 'Encrypting Plain Text' : 'setup/security/encrypting_plain_text.md'
+          - 'Mitigating Cross Site Request Forgery Attacks' : 'setup/security/mitigating_csrf.md'
+          - 'Mitigating Cross Site Scripting' : 'setup/security/mitigating_css.md'
         - Performance Tuning:
           - 'Tuning Database Performance' : 'setup/tuning_db_performance.md'
           - 'Tuning Network and OS Performance' : 'setup/network_os_performance.md'
@@ -101,9 +110,12 @@ nav:
     - Administration and Observability:
       - 'User Management' : 'admin/user_management.md'
     - References:
-      - 'Mediator Catalog' : 'references/mediator_catalog.md'
+      - 'Configuration Catalog' : 'references/ei_config_catalog.md'
+      - 'Mediator Catalog' : 
+        - 'Mediator Catlog' : 'references/mediator_catalog.md'
         - 'Working with Mediators via Tooling' : 'references/working-with-Mediators-via-Tooling.md'
-        - 'ESB Mediators' : 'references/eSB-Mediators.md'
+        - 'ESB Mediators' : 
+          - 'ESB Mediators' : 'references/eSB-Mediators.md'
           - 'Aggregate Mediators' : 'references/eSB-Mediators.md'
           - 'Bean Mediator' : 'references/eSB-Mediators.md'
           - 'Builder Mediator' : 'references/eSB-Mediators.md'
@@ -128,7 +140,6 @@ nav:
           - 'Clone Mediator' : 'references/eSB-Mediators.md'
           - 'Clone Mediator' : 'references/eSB-Mediators.md'
       - 'Property Catalog' : 'references/property_catalog.md'
-      - 'Configuration Catalog' : 'references/ei_config_catalog.md'
     - '': page-not-found.md
      
 # Extensions
