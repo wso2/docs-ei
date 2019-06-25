@@ -1,8 +1,10 @@
+# Backup and Recovery
+
 We recommend that you use a proper artifact management system such as Puppet to back up and manage your artifacts before deploying them in the WSO2 Carbon runtime. Also, use the WSO2 Update Manager (WUM) tool, which is a command-line utility that allows you to get the latest updates (bug fixes and security fixes) of a particular product release.
 
-<a href=""><img src="../../images/backup_recovery.png"></a>
+<a href=""><img src="../../assets/img/admin-guide-configuration-mgmt.png"></a>
 
-# Recovery recommendations
+## Recovery recommendations
 Be sure to determine the following depending on your business-continuity requirements:
 
 * Recovery Time Objective (RTO): How long does it take to recover to the RPO.
@@ -15,7 +17,7 @@ Align your artifact deployment and recovery processes.
 Schedule disaster recovery drills to test the recoverability of the system.
 Test your artifacts in an environment that is identical to the production environment before deploying them into production.
 
-# Recovery strategy
+## Recovery strategy
 The following steps include how to recover your setup using the backups:
 
 1. Recover the hot-deployment artifacts by replacing the <PRODUCT_HOME>/repository directory with the backed up copy.

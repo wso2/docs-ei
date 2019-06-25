@@ -104,7 +104,8 @@ Follow the steps given below to configure the two nodes in the WSO2 EI deploymen
     Find more [parameters](../../references/ei_config_catalog/#configuring-the-system-administrator) to configure the system administrator.
 
 7. If you have [separated the internal keystore](../setup/deploying_wso2_ei.md#updating-keystores) of your product, update the `[keystore.internal]` section in the esb.toml file.
-   See [Configuring Keystores](../setup/security/configuring_keystores.md) for instructions.
+   
+    See [Configuring Keystores](../setup/security/configuring_keystores.md) for instructions.
     
 ## Optional configurations
 

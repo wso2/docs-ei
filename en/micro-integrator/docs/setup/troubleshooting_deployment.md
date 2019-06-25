@@ -4,15 +4,6 @@ The following sections provide information on how to troubleshoot
 various problems that may arise for deployment in production
 environments.
 
--   [Analyzing a stack
-    trace](#TroubleshootinginProductionEnvironments-Analyzingastacktrace)
--   [Capturing the state of the
-    system](#TroubleshootinginProductionEnvironments-Capturingthestateofthesystem)
--   [Viewing process threads in
-    Solaris](#TroubleshootinginProductionEnvironments-ViewingprocessthreadsinSolaris)
--   [Checking the health of a
-    cluster](#TroubleshootinginProductionEnvironments-Checkingthehealthofacluster)
-
 ### Analyzing a stack trace
 
 When your Java process starts to spin your CPU, you must immediately
@@ -23,12 +14,8 @@ on the process ID (pid).
 1.  `          jstack <pid> > thread-dump.txt         `
 2.  `           ps -C java -L -o pcpu,cpu,nice,state,cputime,pid,tid > thread-usage.txt                     `
 
-        !!! tip
+> OS X users can alternatively use the command `ps M <PID>` instead.
     
-        **Tip** : OS X users can alternatively use the command
-        `           ps M <PID>          ` instead.
-    
-
 These commands provide you with the **thread-dump.txt** file and the
 **thread-usage.txt** file. After obtaining these two files, do the
 following.
@@ -64,21 +51,21 @@ following.
     that spins is as follows.
 
     ``` java
-            "HTTPS-Sender I/O dispatcher-1" prio=10 tid=0x00007fb54c010000 nid=0x644 runnable [0x00007fb534e20000]
-               java.lang.Thread.State: RUNNABLE
-                    at org.apache.http.impl.nio.reactor.IOSessionImpl.getEventMask(IOSessionImpl.java:139)
-                    - locked <0x00000006cd91fef8> (a org.apache.http.impl.nio.reactor.IOSessionImpl)
-                    at org.apache.http.nio.reactor.ssl.SSLIOSession.updateEventMask(SSLIOSession.java:300)
-                    at org.apache.http.nio.reactor.ssl.SSLIOSession.inboundTransport(SSLIOSession.java:402)
-                    - locked <0x00000006cd471df8> (a org.apache.http.nio.reactor.ssl.SSLIOSession)
-                    at org.apache.http.impl.nio.reactor.AbstractIODispatch.inputReady(AbstractIODispatch.java:121)
-                    at org.apache.http.impl.nio.reactor.BaseIOReactor.readable(BaseIOReactor.java:160)
-                    at org.apache.http.impl.nio.reactor.AbstractIOReactor.processEvent(AbstractIOReactor.java:342)
-                    at org.apache.http.impl.nio.reactor.AbstractIOReactor.processEvents(AbstractIOReactor.java:320)
-                    at org.apache.http.impl.nio.reactor.AbstractIOReactor.execute(AbstractIOReactor.java:280)
-                    at org.apache.http.impl.nio.reactor.BaseIOReactor.execute(BaseIOReactor.java:106)
-                    at org.apache.http.impl.nio.reactor.AbstractMultiworkerIOReactor$Worker.run(AbstractMultiworkerIOReactor.java:604)
-                    at java.lang.Thread.run(Thread.java:722)
+    "HTTPS-Sender I/O dispatcher-1" prio=10 tid=0x00007fb54c010000 nid=0x644 runnable [0x00007fb534e20000]
+     java.lang.Thread.State: RUNNABLE
+     at org.apache.http.impl.nio.reactor.IOSessionImpl.getEventMask(IOSessionImpl.java:139)
+     - locked <0x00000006cd91fef8> (a org.apache.http.impl.nio.reactor.IOSessionImpl)
+     at org.apache.http.nio.reactor.ssl.SSLIOSession.updateEventMask(SSLIOSession.java:300)
+     at org.apache.http.nio.reactor.ssl.SSLIOSession.inboundTransport(SSLIOSession.java:402)
+     - locked <0x00000006cd471df8> (a org.apache.http.nio.reactor.ssl.SSLIOSession)
+     at org.apache.http.impl.nio.reactor.AbstractIODispatch.inputReady(AbstractIODispatch.java:121)
+     at org.apache.http.impl.nio.reactor.BaseIOReactor.readable(BaseIOReactor.java:160)
+     at org.apache.http.impl.nio.reactor.AbstractIOReactor.processEvent(AbstractIOReactor.java:342)
+     at org.apache.http.impl.nio.reactor.AbstractIOReactor.processEvents(AbstractIOReactor.java:320)
+     at org.apache.http.impl.nio.reactor.AbstractIOReactor.execute(AbstractIOReactor.java:280)
+     at org.apache.http.impl.nio.reactor.BaseIOReactor.execute(BaseIOReactor.java:106)
+     at org.apache.http.impl.nio.reactor.AbstractMultiworkerIOReactor$Worker.run(AbstractMultiworkerIOReactor.java:604)
+     at java.lang.Thread.run(Thread.java:722)
     ```
 
 ### Capturing the state of the system
@@ -190,22 +177,20 @@ a lower value if nodes are to be declared dead in a shorter time frame.
 However, you must verify this in your system and adjust as necessary
 depending on your scenario.
 
-!!! warning
-
-**Warning** : Reducing the value of this property to a lower value can
+> **Warning**: Reducing the value of this property to a lower value can
 result in nodes being considered as dead even if they are not. This
 results in multiple messages indicating that a node is leaving and
 rejoining the cluster.
 
 
-Do the following steps to configure the maximum time between heartbeats.
+To configure the maximum time between heartbeats: 
 
-1.  Create a property file called hazelcast.properties, and add the
-    following property to it.  
-    `          hazelcast.max.no.heartbeat.seconds=300         `
-2.  Place this file in the
-    `          <PRODUCT_HOME>/repository/conf/         ` directory in
-    all the nodes in your cluster.
-3.  Restart the servers.
+1. Open the esb.toml file and add the following configuration:
+    ```java
+    [config_heading]
+ 
+    hazelcast.max.no.heartbeat.seconds= 300 
+    ```
+2.  Restart the servers.
 
   
