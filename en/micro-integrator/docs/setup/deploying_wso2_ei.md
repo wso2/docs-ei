@@ -1,12 +1,11 @@
 # Deploying WSO2 Enterprise Integrator
-The following sections provide information and instructions on how to cluster the ESB profile of
-WSO2 Enterprise Integrator (WSO2 EI) with a third-party load balancer.
+The following sections provide information and instructions on how to cluster the ESB profile of WSO2 Enterprise Integrator (WSO2 EI) with a third-party load balancer.
 
 ## The deployment pattern
 
 This deployment scenario uses a two-node ESB cluster. That is, two ESB nodes are configured to serve requests with high availability and scalability. As depicted by the following diagram, the product nodes in the cluster are fronted by an external third-party load balancer, which routes requests to the two nodes on a round-robin basis.
 
-<a href=""><img src="../../images/deployment_ei.png"></a>
+<a href=""><img src="../../assets/img/deployment_ei.png"></a>
 
 ## Installing WSO2 Enterprise Integrator
 
@@ -21,7 +20,17 @@ Follow the instructions on [setting up a load balancer](../setup/setting_up_lb.m
 By default, the embedded H2 database is configured as the product's primary database. Select your preferred database type from the following list and follow the given instructions:
 
 * [Setting up MySQL](../setup/db/setting-up-MySQL.md)
+* [Setting up a MySQL cluster](../stup/db/setting-up-a-MySQL-Cluster.md)
 * [Setting up MSSQL](../setup/db/setting-up-MSSQL.md)
+* [Setting up Oracle](../setup/db/setting-up-Oracle.md)
+* [Setting up Oracle RAC](../setup/db/setting-up-Orable-RAC.md)
+* [Setting up IBM Informix](../setup/db/setting-up-IBM-Informix.md)
+* [Setting up IBM DB2](../setup/db/setting-up-IBM-DB2.md)
+* [Setting up Maria DB](../setup/db/setting-up-MariaDB.md)
+* [Setting up embedded Derby](../setup/db/setting-up-Embedded-Derby.md)
+* [Setting up remote Derby](../setup/db/setting-up-Remote-Derby.md)
+* [Setting up PostgreSQL](../setup/db/setting-up-PostgreSQL.md)
+* [Setting up remote H2](../setup/db/setting-up-Remote-H2.md)
 
 ## Updating keystores
 
@@ -69,7 +78,7 @@ Follow the steps given below to configure the two nodes in the WSO2 EI deploymen
 
     ```
 
-    To find additional parameters for configuring the database connection, see the [configuration catalog](../ref/config_catalog.md#connecting-to-the-user-store).
+    To find additional parameters for configuring the database connection, see the [configuration catalog](../reference/config_catalog.md#connecting-to-the-user-store).
 
 4. To change the credentials of the admin user of each node in the cluster, update the following parameters in the esb.toml file.
     ``` java
@@ -86,7 +95,7 @@ Follow the steps given below to configure the two nodes in the WSO2 EI deploymen
     create_admin_account = true
     ```
 
-     To find additional parameters for configuring the system administrator, see the [configuration catalog](../ref/config_catalog.md#connecting-to-the-user-store).
+     To find additional parameters for configuring the system administrator, see the [configuration catalog](../reference/config_catalog.md#connecting-to-the-user-store).
 
  5. To manage the users and roles in the system, update the following parameters in the esb.toml file.
     ``` java
@@ -96,7 +105,7 @@ Follow the steps given below to configure the two nodes in the WSO2 EI deploymen
     // Specify "database" as the database type to infer the connection details of your shared DB.
     type = "database"
     ```
-    To find additional parameters for connecting to the user store, see the [configuration catalog](../ref/config_catalog.md#connecting-to-the-user-store).
+    To find additional parameters for connecting to the user store, see the [configuration catalog](../reference/config_catalog.md#connecting-to-the-user-store).
 
  6. To define the clustering configurations that specify how the two nodes communicate with one another, add the following to the esb.toml file and update the values.
     ``` java
@@ -112,7 +121,7 @@ Follow the steps given below to configure the two nodes in the WSO2 EI deploymen
     // Specify the IP address:port of each of the nodes in the cluster as shown below. Be sure to use the same port number and hostname you specified above.
     members = ["10.100.5.86:4000","10.100.5.86:4001"]
     ```
-    To find additional parameters to define cluster coordination, see the [configuration catalog](../../ref/ei_config_catalog#configuring-then).
+    To find additional parameters to define cluster coordination, see the [configuration catalog](../../reference/ei_config_catalog#configuring-then).
 
 ## Optional configurations
 
