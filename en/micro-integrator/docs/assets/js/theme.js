@@ -288,4 +288,3 @@ window.addEventListener('scroll', function() {
         editIcon.classList.remove('active');
     }
 });
-
