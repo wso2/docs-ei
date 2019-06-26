@@ -84,16 +84,28 @@ nav:
             - 'Setting up a Read-Only LDAP' : 'setup/setting_up_ro_ldap.md'
             - 'Setting up a Read-Write LDAP' : 'setup/setting_up_rw_ldap.md'
             - 'Setting up a Read-Write Active Directory' : 'setup/setting_up_rw_ad.md'
+          - 'Adding a Custom Proxy Path' : 'setup/adding_a_custom_proxy__path.md'
+          - 'Configuring a Proxy Server' : 'setup/configuring_proxy_servers.md'
+          - 'Changing Default Ports' : 'setup/changing_default_ports.md'
+          - 'Enabling CORS for Data Services' : 'setup/enabling_CORS_for_data_services.md'
+          - 'Configuring Time Stamp Conversion for RDBMS' : 'setup/configuring_timestamp_conversion_for_rdbms.md'
         - Security Hardening :
           - Setting up Keystores:
             - 'Creating New Keystores' : 'setup/security/creating_keystores.md'
             - 'Adding SSL certificates to keystores' : 'setup/security/importing_ssl_certificate.md'
             - 'Renewing a CA-signed Certificate' : 'setup/security/renewing_ca_signed_certificate_in_keystore.md'
             - 'Configuring Keystores' : 'setup/security/configuring_keystores.md'
+          - 'Complying with GDPR' : 'setup/security/gdpr_ei.md'
           - 'Using Symmetric Encryption' : 'setup/security/single_key_encryption.md'
           - 'Encrypting Plain Text' : 'setup/security/encrypting_plain_text.md'
           - 'Mitigating Cross Site Request Forgery Attacks' : 'setup/security/mitigating_csrf.md'
           - 'Mitigating Cross Site Scripting' : 'setup/security/mitigating_css.md'
+          - 'Configuring SAML2 SSO Across Products' : 'setup/security/configuring_SAML2_SSO_across_prods.md'
+          - 'Securing Carbon Applications' : 'setup/security/securing_carbon_applications.md'
+        - 'Customizing Error Messages' : 'setup/customizing_error_pages.md'
+        - 'Configuring the Task Scheduling Component' : 'setup/configuring_task_scheduling_comp.md'
+        - 'Governing External Reference Across Environments' : 'setup/govern_ext_refs_across_env.md'
+        - 'Enable SSL Tunneling through Proxy Server' : 'setup/enabling_SSL_tunneling_thru_proxy_server.md'
         - Performance Tuning:
           - 'Tuning JVM Performance' : 'setup/tuning_jvm_performance.md'
           - 'Tuning Network and OS Performance' : 'setup/network_os_performance.md'
@@ -112,6 +124,19 @@ nav:
         - 'Message Routing' : 'guides/message_routing.md'
     - Administration and Observability:
       - 'Observability' : 'administer-and-observe/observability.md'
+      - 'JMX Monitoring' : 'administer-and-observe/jmx_monitoring.md'
+      - 'SNMP Monitoring' : 'administer-and-observe/snmp_monitoring.md'
+      - 'Monitoring with Prometheus' : 'administer-and-observe/monitoring_with_prometheus.md'
+      - Monitoring Logs:
+        - 'About Logs' : 'administer-and-observe/monitoring_logs.md'
+        - 'Monitoring Access Logs' : 'administer-and-observe/monitoring_access_logs.md'
+        - 'Configuring Log4j Properties' : 'administer-and-observe/configuring_log4j_properties.md'
+        - 'Configuring the Log Provider' : 'administer-and-observe/configuring_the_log_provider.md'
+        - 'Masking Sensitive Information in Logs' : 'administer-and-observe/masking_sensitive_info_in_logs.md'
+      - Monitoring TCP Messages:
+        - 'Starting TCPMon' : 'administer-and-observe/starting_tcp_mon.md'
+        - 'Message Monitoring with TCPMon' : 'administer-and-observe/message_monitoring_with_tcpmon.md'
+        - 'Other Usages of TCPMon' : 'administer-and-observe/other_usages_of_tcpmon.md'
     - References:
       - 'Configuration Catalog' : 'references/ei_config_catalog.md'
       - 'Mediator Catalog' : 
