@@ -1,9 +1,15 @@
-Outline:
+####Tutorial Outline
 - Preparing the server
-- Creating a basic Kafka Source
+- Consuming from a Kafka topic
 - Logging incoming Kafka events
-- Getting to know more Kafka Source configurations
+- Configuring more Kafka Consumer parameters
     - Specifying Kafka Offsets
     - Etc
-- Publishing events to a basic Kafka Sink
-- Getting to know more Kafka Sink configurations
+- Publishing to a Kafka topic
+- Configuring more Kafka Publisher parameters
+
+####Preparing the server
+
+
+
+
