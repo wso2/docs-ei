@@ -103,6 +103,8 @@ nav:
       - 'Designing an Integration Use Case' : 'develop/designing-an-integration-usecase.md'
       - 'Testing an Integration Use Case' : 'develop/testing.md'
       - 'Continuous Development and Deployment' : 'develop/cicd.md'
+      - 'WSO2 Integration Studio' : 'develop/wSO2-Integration-Studio.md'
+      - 'Working with Integration Studio' : 'develop/working-with-WSO2-Integration-Studio.md'
     - Use Cases:
       - Samples:
         - 'Invoking a RESTful Service' : 'use-cases/guides.md'
