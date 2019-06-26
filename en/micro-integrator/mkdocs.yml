@@ -197,6 +197,7 @@ nav:
           - 'ForEach Mediator' : 'references/eSB-Mediators.md'
           - 'ForEach Mediator' : 'references/eSB-Mediators.md'
       - 'Property Catalog' : 'references/property_catalog.md'
+      - 'Best Practices' : 'references/best-Practices.md'
     - '': page-not-found.md
      
 # Extensions
