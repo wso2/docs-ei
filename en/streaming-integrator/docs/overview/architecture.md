@@ -1,2 +1,2 @@
 
-# Architecture of WSO2 Enterprise Integrator
+# Architecture of Streaming Integrator Profile
