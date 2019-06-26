@@ -66,5 +66,8 @@ Note: You can run the Cron job on one given node (master) at a given time. If yo
 *   *  *   *   *     /home/ubuntu/setup/rsync-for-depsync/rsync-for-depsync.sh
 ```
 
+## Configuring the WSO2 EI server
 
-## Using a Configuration Management System
+Depending on the deployment pattern you are setting up, you may have one or several WSO2 EI nodes installed in your deployment.
+
+See [Deploying WSO2 Enterprise Integrator](deploying_wso2_ei.md) for instructions on how to set up your deployment.

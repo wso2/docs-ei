@@ -74,4 +74,5 @@ password = "root"
 
 ```
 
-To find additional parameters for configuring the database connection, see the [configuration catalog](../ref/config_catalog.md#connecting-to-the-user-store).
+Find more parameters for [connecting to the primary database](../../../references/ei_config_catalog/#connecting-to-the-primary-data-store) and for 
+[tuning the primary database](../../../references/ei_config_catalog/#tuning-the-primary-data-store-connection).

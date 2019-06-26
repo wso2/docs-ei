@@ -25,7 +25,7 @@ protocol = "value"
 <div class="mb-config-catalog">
     <section class="title">
         <div class="mb-config-options">    
-            <h2>Configuring the default deployment settings</h2>
+            <h2 id="configuring-the-default-deployment-settings">Configuring the default deployment settings</h2>
         </div>
         <div class="mb-config-example"></div>
     </section>
@@ -255,7 +255,7 @@ proxy_context_path = ""</code></pre>
 <div class="mb-config-catalog">
     <section class="title">
         <div class="mb-config-options">    
-            <h2>Configuring the cluster settings</h2>
+            <h2 id="configuring-the-cluster-settings">Configuring the cluster settings</h2>
         </div>
         <div class="mb-config-example"></div>
     </section>
@@ -406,7 +406,7 @@ domain = "wso2.carbon.domain"
 <div class="mb-config-catalog">
     <section class="title">
         <div class="mb-config-options">    
-            <h2>Connecting to the primary data store</h2>
+            <h2 id="connecting-to-the-primary-data-store">Connecting to the primary data store</h2>
         </div>
         <div class="mb-config-example"></div>
     </section>
@@ -528,7 +528,7 @@ password=wso2carbon</code></pre>
 <div class="mb-config-catalog">
     <section class="title">
         <div class="mb-config-options">    
-            <h2>Tuning the primary data store connection</h2>
+            <h2 id="tuning-the-primary-data-store-connection">Tuning the primary data store connection</h2>
         </div>
         <div class="mb-config-example"></div>
     </section>
@@ -821,7 +821,7 @@ base_dn="dc=example,dc=com"
 <div class="mb-config-catalog">
     <section class="title">
         <div class="mb-config-options">    
-            <h2 id="configuring-then">Configuring the system administrator</h2>
+            <h2 id="configuring-the-system-administrator">Configuring the system administrator</h2>
         </div>
         <div class="mb-config-example"></div>
     </section>

@@ -34,11 +34,11 @@ Follow the steps below to set up an Oracle RAC database.
     below:
 
     ``` powershell
-        Create user <USER_NAME> identified by password account unlock;
-        grant connect to <USER_NAME>;
-        grant create session, create table, create sequence, create trigger to <USER_NAME>;
-        alter user <USER_NAME> quota <SPACE_QUOTA_SIZE_IN_MEGABYTES> on '<TABLE_SPACE_NAME>';
-        commit;
+    Create user <USER_NAME> identified by password account unlock;
+    grant connect to <USER_NAME>;
+    grant create session, create table, create sequence, create trigger to <USER_NAME>;
+    alter user <USER_NAME> quota <SPACE_QUOTA_SIZE_IN_MEGABYTES> on '<TABLE_SPACE_NAME>';
+    commit;
     ```
 
 4.  Exit from the SQL\*Plus session by executing the
@@ -64,17 +64,18 @@ To enable the two nodes to access the shared database, update the following para
 [database.shared.db]
 
 // Specify the type of database.
-type = "mysql"
+type = "oracle_rac"
 
 // Specify the connection URL of your database. The following default URL connects to the H2 database that is shipped with the product.
-url="jdbc:h2:./repository/database/WSO2SHARED_DB;DB_CLOSE_ON_EXIT=FALSE;LOCK_TIMEOUT=60000"
+url="jdbc:oracle:thin:@(DESCRIPTION=(LOAD_BALANCE=on)(ADDRESS=(PROTOCOL=TCP)(HOST=racnode1) (PORT=1521))(ADDRESS=(PROTOCOL=TCP)(HOST=racnode2) (PORT=1521))CONNECT_DATA=(SERVICE_NAME=rac)))"
 
-// The username for connecting to the database. By default, 'root' is the MySQL username.
-username = "root"
+// The username for connecting to the database.
+username = "regadmin"
 
-// The password for connecting to the database. By default, 'root' is the MySQL password.
-password = "root"
+// The password for connecting to the database.
+password = "regadmin"
 
 ```
 
-To find additional parameters for configuring the database connection, see the [configuration catalog](../ref/config_catalog.md#connecting-to-the-user-store).
+Find more parameters for [connecting to the primary database](../../../references/ei_config_catalog/#connecting-to-the-primary-data-store) and for 
+[tuning the primary database](../../../references/ei_config_catalog/#tuning-the-primary-data-store-connection).

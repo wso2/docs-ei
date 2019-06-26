@@ -29,8 +29,6 @@ server permissions.
 [Download](https://msdn.microsoft.com/en-us/data/aa937724.aspx) and copy the sqljdbc4 Microsoft SQL JDBC driver file to the WSO2 product's
 <PRODUCT_HOME>/repository/components/lib/directory. Use com.microsoft.sqlserver.jdbc.SQLServerDriver as the <driverClassName> in your datasource configuration in <PRODUCT_HOME>/repository/conf/datasources/master-datasources.xml file as explained in the next section.
 
-> In WSO2 IoT Server copy the driver file to the <IOTS_HOME>/lib directory.
-
 ## Connecting the database to the server
 
 To enable the two nodes to access the shared database, update the following parameters in the esb.toml file.
@@ -53,4 +51,5 @@ password = "regadmin"
 
 ```
 
-To find additional parameters for configuring the database connection, see the [configuration catalog](../ref/config_catalog.md#connecting-to-the-user-store).
+Find more parameters for [connecting to the primary database](../../../references/ei_config_catalog/#connecting-to-the-primary-data-store) and for 
+[tuning the primary database](../../../references/ei_config_catalog/#tuning-the-primary-data-store-connection).

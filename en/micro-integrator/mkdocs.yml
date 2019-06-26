@@ -94,7 +94,7 @@ nav:
           - 'Mitigating Cross Site Request Forgery Attacks' : 'setup/security/mitigating_csrf.md'
           - 'Mitigating Cross Site Scripting' : 'setup/security/mitigating_css.md'
         - Performance Tuning:
-          - 'Tuning Database Performance' : 'setup/tuning_db_performance.md'
+          - 'Tuning JVM Performance' : 'setup/tuning_jvm_performance.md'
           - 'Tuning Network and OS Performance' : 'setup/network_os_performance.md'
         - 'Backup and Recovery' : 'setup/backup_recovery.md'
         - 'Product Deployment Checklist' : 'setup/deployment_checklist.md'

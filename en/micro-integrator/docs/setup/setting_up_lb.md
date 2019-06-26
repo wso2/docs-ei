@@ -5,24 +5,20 @@ multiple WSO2 product instances. It enables you to achieve greater
 levels of fault tolerance in your cluster and provides the required
 balancing of load needed to distribute traffic.
 
-!!! info ""
-	- These configurations are not required if your clustering setup does
-    not have a load balancer.
-	- The load balancer ports of the deployment pattern that is shown
-    above are HTTP 80 and HTTPS 443. If your system uses any other
-    ports, be sure to replace 80 and 443 values with the corresponding
-    ports when you follow the configuration steps in this section.
-	- The load balancer directs requests to the server on a round robin
-    basis. For example, the load balancer will direct requests to node 1
-    ( `          xxx.xxx.xxx.xx1         ` ) of the ESB cluster as
-    follows:
-  		- HTTP requests will be directed to node 1 using the
+## Before you begin
+
+Note the following:
+
+* These configurations are not required if your clustering setup does not have a load balancer.
+* The load balancer ports of the deployment pattern that is shown above are HTTP 80 and HTTPS 443. If your system uses any other ports, be sure to replace 80 and 443 values with the corresponding ports when you follow the configuration steps in this section.
+* The load balancer directs requests to the server on a round robin basis. For example, the load balancer will direct requests to node 1 (` xxx.xxx.xxx.xx1`) of the ESB cluster as follows:
+    * HTTP requests will be directed to node 1 using the
         `             http://xxx.xxx.xxx.xx1/<service>            ` URL
         via HTTP 80 port.
-			- HTTPS requests will be directed to node 1 using the
+    * HTTPS requests will be directed to node 1 using the
         `             https://xxx.xxx.xxx.xx1/<service>            ` URL
         via HTTPS 443 port.
-			- The management console of node 1 will be accessed using the
+    * The management console of node 1 will be accessed using the
         `             https://xxx.xxx.xxx.xx1/carbon/            ` URL
         via HTTPS 443 port.
 
@@ -40,7 +36,9 @@ community](http://nginx.org/) version 1.9.2 as the load balancer.
 2.  Create a VHost file named ei.http.conf in the /etc/nginx/conf.d directory and add the
     following configurations. This configures NGINX Plus to direct the HTTP requests to the two
     ESB nodes (xxx.xxx.xxx.xx1 and xxx.xxx.xxx.xx2) via the HTTP 80 port using
-    the http://ei.wso2.com/ URL. If you are setting up NGINX on a Mac OS, you will not have the conf.d directory. Follow the steps given below to add the VHost files mentioned in this step and the preceding steps: Create a directory named conf in the nginx directory, and create the ei.http.conf file in it. Open the nginx/nginx.conf file and add the following entry before the final }. This includes all the files in the conf directory into the NGINX server: `include conf/*.conf;`
+    the http://ei.wso2.com/ URL. If you are setting up NGINX on a Mac OS, you will not have the conf.d directory. 
+    
+    > Follow the steps given below to add the VHost files mentioned in this step and the preceding steps: 1. Create a directory named conf in the nginx directory, and create the ei.http.conf file in it. 2. Open the nginx/nginx.conf file and add the following entry before the final }. This includes all the files in the conf directory into the NGINX server: `include conf/*.conf;`
 
 		```
 		upstream ssl.wso2.ei.com {
