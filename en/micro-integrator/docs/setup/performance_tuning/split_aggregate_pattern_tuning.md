@@ -16,7 +16,7 @@ sends the same message to target endpoints using different target
 sequences. The Aggregate mediator collects all the response messages and
 creates one response message.
 
-### Split-aggregate use case
+## Split-aggregate use case
 
 The following use case demonstrates the split-aggregate pattern:
 
@@ -88,15 +88,14 @@ response.
     </soapenv:Envelope>
 ```
 
-### Tuning the performance
+## Tuning the performance
 
 The Iterate, Clone and Aggregate mediators demonstrate high performance
 due to default threading and memory configuration. The performance of
 these mediators can be further increased by tuning the following
-parameters in the `         <EI_HOME>/conf/synapse.properties        `
-file:
+parameters in the esb.toml file:
 
-##### `         synapse.threads.core        ` and `         synapse.threads.max        `
+### `         synapse.threads.core        ` and `         synapse.threads.max        `
 
 Iterate and Clone mediators use a thread pool to create new threads when
 processing messages and sending messages parallelly. You can configure
@@ -108,14 +107,14 @@ results in higher performance of the Iterate and Clone mediators. You
 can specify the maximum number of synapse threads in the pool by the
 `         synapse.threads.max        ` parameter.
 
-##### `         synapse.threads.keepalive        `
+### `         synapse.threads.keepalive        `
 
 The keep-alive time for idle threads in milliseconds. Once this time has
 elapsed for an idle thread, it will be destroyed. This parameter is
 applicable only if the Iterate or the Clone mediator is used to handle a
 high load.
 
-##### `         synapse.threads.qlen        `
+### `         synapse.threads.qlen        `
 
 You can use this parameter to specify the length of the queue that is
 used to hold the runnable tasks to be executed by the pool. You can

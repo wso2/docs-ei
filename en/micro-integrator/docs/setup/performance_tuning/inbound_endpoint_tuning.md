@@ -43,16 +43,12 @@ performance with the Kafka inbound.
     non-sequential mode as it allows better performance than the
     sequential mode.
 
-    ``` xml
-        <parameter name="sequential">false</parameter>
-    ```
-
 -   Change the inbound thread pool size based on your use case.
     Recommended values are specified below. These parameters can be
-    configured in the
-    `           <EI_HOME>/conf/synapse.properties          ` file.
+    configured in the esb.toml file.
 
-    ``` xml
-            inbound.threads.core = 200 
-            inbound.threads.max = 1000          
+    ``` java
+    [mediation]
+    inbound.threads.core = 200 
+    inbound.threads.max = 1000          
     ```
