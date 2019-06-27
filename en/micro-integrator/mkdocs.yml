@@ -160,6 +160,7 @@ nav:
         - 'Working with Templates' : 'use-cases/tasks/templates/working-with-templates.md'
         - 'Working with Endpoints' : 'use-cases/tasks/endpoints/working-with-endpoints.md'
         - 'Scheduling an ESB Task' : 'use-cases/tasks/scheduling-esb-tasks.md'
+        - 'Working with Connectors' : 'use-cases/tasks/connectors/working-with-connectors.md'
         - Registry Artifacts:
           - 'Working with Registry Artifacts' :  'use-cases/tasks/registry_artifacts/working-with-registry-artifacts.md'
           - 'Managing Registry Artifacts' : 'use-cases/tasks/registry_artifacts/managing-the-registry.md'
@@ -288,6 +289,10 @@ nav:
           - 'Template Endpoint' : 'references/endpoints/template-endpoint.md'
           - 'Recipient List Endpoint' : 'references/endpoints/recipient-list-endpoint.md'
           - 'Websocket Endpoint' : 'references/endpoints/websocket-endpoint.md'
+      - Connectors:
+        - 'About Connectors' : 'references/connectors/about-esb-connectors.md'
+        - Connectors:
+          - 'SAP Connector' : 'references/connectors/sap-connector.md'
       - 'Synapse Templates' : 'references/templates/synapse_templates.md'
       - 'Synapse Handlers' : 'references/synapse_handlers/synapse-handlers.md'
       - 'Best Practices' : 'references/best-Practices.md'
