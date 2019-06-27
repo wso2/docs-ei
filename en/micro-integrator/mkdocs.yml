@@ -126,6 +126,7 @@ nav:
     - Developer Experience:
       - 'Continuous Development and Deployment' : 'develop/cicd.md'
       - 'Developing an Integration Use Case' : 'develop/developing-Cloud-Native-Integration.md'
+      - 'Using the Command-Line Interface' : 'develop/using-the-command-line-interface.md'
       - 'Testing an Integration Use Case' : 'develop/testing.md'
       - WSO2 Integration Studio:
         - 'WSO2 Integration Studio' : 'develop/wSO2-Integration-Studio.md'
