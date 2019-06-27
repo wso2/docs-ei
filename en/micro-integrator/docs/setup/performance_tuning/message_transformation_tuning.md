@@ -11,7 +11,7 @@ mediator](https://docs.wso2.com/display/EI650/PayloadFactory+Mediator) .
 This section describes different message transformation use cases and
 parameters you can configure for optimal performance.
 
-### Comparison of the fast XSLT mediator and the XSLT mediator
+## Comparison of the fast XSLT mediator and the XSLT mediator
 
 The FastXSLT Mediator and XSLT mediator can be used to do XSLT based
 message transformations in WSO2 EI. Both mediators can be used to
@@ -22,11 +22,7 @@ instead of applying it to the XML message payload, but with the FastXSLT
 mediator you cannot specify the source, properties, features, or
 resources as you can with the XSLT mediator.
 
-!!! info
-
-Note
-
-Always use the FastXSLT mediator instead of the default XSLT mediator
+> Always use the FastXSLT mediator instead of the default XSLT mediator
 for better performance in implementations where the original message
 remains unmodified.
 
@@ -37,7 +33,7 @@ FastXSLT mediator, because the transformation logic is applied to the
 original message stream instead of the message payload.
 
 
-### Optimizing the XSLT Mediator
+## Optimizing the XSLT Mediator
 
 In real world scenarios, you might come across use cases where you do
 pre-processing before doing the XSLT message transformation using the
@@ -50,12 +46,14 @@ the message size is larger.
 It is possible to tune the XSLT mediator configuration to perform better
 for large message sizes.  
 In the XSLT mediator, the following two parameters control the memory
-usage of the server. These two parameters can be configured in the
-`         <EI_HOME>/conf/synapse.properties        ` file.
+usage of the server. 
 
-``` xml
-    synapse.temp_data.chunk.size=3072
-    synapse.temp_data.chunk.threshold=8
+Open the esb.toml file and update the following:
+
+``` java
+[mediation]
+synapse.temp_data.chunk.size=3072
+synapse.temp_data.chunk.threshold=8
 ```
 
 These parameters decide when to write to the file system when the
@@ -72,9 +70,10 @@ For example if you know that your message size is going to be less than
 512k (i.e., 16384 \* 32), you can set the values of the above parameters
 as follows:
 
-``` xml
-    synapse.temp_data.chunk.size=16384
-    synapse.temp_data.chunk.threshold=32
+``` java
+[mediation]
+synapse.temp_data.chunk.size=16384
+synapse.temp_data.chunk.threshold=32
 ```
 
 Then the XSLT transformation happens in memory without writing data to
@@ -92,30 +91,18 @@ If you cannot perform your transformation with the FastXSLT mediator,
 then it is recommended to write a custom class mediator to do your
 transformation, since it will be much faster than the XSLT mediator.
 
-You can enable the FastXSLT mediator by following the steps below:
+Open the esb.toml file and update the following:
 
--   Add the following parameter in the
-    `           <EI_HOME>/conf/synapse.properties          ` file to
-    enable streaming XPath for fastXSLT mediator.
+``` java
+[mediation]
+// Enable streaming XPath for fastXSLT mediator.
+synapse.streaming.xpath.enabled=true
 
-    ``` xml
-            synapse.streaming.xpath.enabled=true
-    ```
+synapse.temp_data.chunk.size=3072 
+synapse.temp_data.chunk.threshold=32
+```
 
--   Configure the following parameters in the
-    `           <EI_HOME>/conf/synapse.properties          `
-    file depending on the expected message size.
-
-    ``` xml
-            synapse.temp_data.chunk.size=3072 
-            synapse.temp_data.chunk.threshold=32
-    ```
-
-!!! info
-
-Note
-
-To enable the FastXSLT mediator, your XSLT script must include the
+> To enable the FastXSLT mediator, your XSLT script must include the
 following parameter in the XSL output.
 
 ``` xml
