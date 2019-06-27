@@ -11,7 +11,7 @@ WSO2 Carbon-based products are shipped with a default keystore named wso2carbon.
 
 Follow the steps given below to change the default primary keystore that is shipped with the product.
 
-1. [Create a new keystore](../setup/creating_keystores.md) and copy it to the <EI_HOME>/repository/security/ directory.
+1. [Create a new keystore](../../setup/security/creating_keystores.md) and copy it to the <EI_HOME>/repository/security/ directory.
   > Note that CA-signed certificates are recommended for this keystore because it is used for communicating with external parties.
 
 2. Open the ei.toml file, add the following config section and update the parameters of our internal keystore.
@@ -32,7 +32,7 @@ By default, the primary keystore is used for internal **data encryption** (encry
 
 Follow the steps given below to separate the keystore that is used for encrypting data in internal data stores.
 
-1. [Create a new keystore](../setup/creating_keystores.md) and copy it to the <EI_HOME>/repository/security/ directory.
+1. [Create a new keystore](../../setup/security/creating_keystores.md) and copy it to the <EI_HOME>/repository/security/ directory.
   > Note that you do not require CA-signed certificates for this keystore because it will not be used for communicating with external parties.
 
 2. Open the ei.toml file, add the following config section and update the parameters of our internal keystore.
@@ -48,7 +48,7 @@ Follow the steps given below to separate the keystore that is used for encryptin
 ## Optional: Changing the default truststore
 The truststore is used for storing the digital certificates that are used for SSL communication over the network. If required, you can change the default truststore (which is the truststore.jks file stored in the <EI_HOME>/repository/security/ directory) as follows:
 
-1. [Create a new keystore](../setup/creating_keystores.md) and copy it to the <EI_HOME>/repository/security/ directory.
+1. [Create a new keystore](../../setup/security/creating_keystores.md) and copy it to the <EI_HOME>/repository/security/ directory.
   > Note that you do not require CA-signed certificates for this keystore because it will not be used for communicating with external parties.
 
 2. Open the ei.toml file, add the following config section and update the parameters of our internal keystore.

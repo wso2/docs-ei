@@ -6,11 +6,9 @@ WSO2 Identity Server acts as the identity provider while other WSO2
 products act as the relying party. This topic provides instructions on
 how to set up Single Sign-On between different WSO2 products.
 
-#### Step 1 - Installing the SAML2 relying party (SAML2 SSO Authenticator) feature in a Carbon Server
+## Step 1 - Installing the SAML2 relying party (SAML2 SSO Authenticator) feature in WSO2 Micro Integrator
 
-!!! note
-
-You only need to do this step if "SAML2 based Single Sign-On
+>You only need to do this step if "SAML2 based Single Sign-On
 authenticator" is not installed in your WSO2 product.
 
 
@@ -28,29 +26,25 @@ through the Carbon Feature Manager.
     Sign-On authenticator" from the result and click "Install." See
     Installing Features .
 
-#### Step 2 - Configuring the Carbon Server to use the SAML2-based authentication instead of default username/password-based authentication
+## Step 2 - Configuring WSO2 Micro Integrator to use the SAML2-based authentication
 
 After installing the SAML2 relying party components (SAML2 SSO
 authenticator), it is necessary to configure the SAML2 SSO
 authentication component to communicate with the Identity Server for
-user authentication. This can be configured in the
-`         <PRODUCT_HOME>/repository/conf/security/authenticators.xml        `
-file. This file will contain configurations for different
-authenticators. By default, it is shipped with a sample configuration
+user authentication. By default, it is shipped with a sample configuration
 for SAML2 SSO authenticator and requires minor modifications to prior to
 setup.
 
+To update this configuration, open the esb.toml file and update the following:
+
 ``` java
-    <Authenticator name="SAML2SSOAuthenticator" disabled="false">
-            <Priority>10</Priority>
-            <Config>
-                <Parameter name="LoginPage">/carbon/admin/login.jsp</Parameter>
-                <Parameter name="ServiceProviderID">carbonServer</Parameter>
-                <Parameter name="IdentityProviderSSOServiceURL">https://localhost:9443/samlsso</Parameter>
-                <Parameter name="NameIDPolicyFormat">urn:oasis:names:tc:SAML:1.1:nameid-format:unspecified</Parameter>
-                <Parameter name="IdPCertAlias">wso2carbon</Parameter>
-            </Config>
-    </Authenticator>
+[config_heading]
+Priority=10
+LoginPage=/carbon/admin/login.jsp
+ServiceProviderID=carbonServer
+IdentityProviderSSOServiceURL=https://localhost:9443/samlsso
+NameIDPolicyFormat=urn:oasis:names:tc:SAML:1.1:nameid-format:unspecified
+IdPCertAlias=wso2carbon
 ```
 
 -   `          Authenticator disabled         ` - This should be set to
@@ -84,7 +78,7 @@ setup.
     `          <PRODUCT_HOME>/repository/conf/security/authenticators.xml         `
     file.
 
-#### Step 3 - Configuring the Identity Server as the Single Sign-On provider
+## Step 3 - Configuring the Identity Server as the Single Sign-On provider
 
 Finally, you need to configure the Identity Server to act as the Single
 Sign-on provider. Each relying party should be registered as a service
@@ -107,13 +101,10 @@ configuration for registering a Carbon server as a service provider.
 6.  Fill in the form that appears.
     -   Specify the **Issuer** . This should be equal to the
         `            ServiceProviderID           ` value mentioned in
-        the `            authenticators.xml           ` of the relying
-        party Carbon server.
+        the `esb.toml` file of the Micro Integrator.
     -   Specify the **Assertion Consumer URL** . This is the URL to
         which the browser should be redirected after the authentication
-        is successful. It should have this format:
-        `                         https://(host-name):(port)/acs                       `
-        .
+        is successful. It should have this format: `https://(host-name):(port)/acs`.
     -   Select **Use fully qualified username in SAML Response** if that
         feature is required.
     -   Select **Enable Response Signing** to sign the SAML2 Responses
