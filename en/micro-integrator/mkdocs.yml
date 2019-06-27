@@ -109,6 +109,7 @@ nav:
           - 'Tuning the VFS Transport' : 'setup/performance_tuning/vfs_transport_tuning.md'
           - 'Tuning the RabbitMQ Transport' : 'setup/performance_tuning/rabbitmq_transport_tuning.md'
       - 'Backup and Recovery' : 'setup/backup_recovery.md'
+      - 'Working with Admin Services' : 'setup/working-with-admin-services.md'
       - Supporting Configurations:
         - 'Optional: Mounting a Registry': 'setup/registry_mounting.md'
         - 'Setting up a Load Balancer': 'setup/setting_up_lb.md'
@@ -131,10 +132,21 @@ nav:
         - 'Working with Integration Studio' : 'develop/working-with-WSO2-Integration-Studio.md'
         - 'Working with Mediators via Integration Studio' : 'develop/working-with-Mediators-via-Tooling.md'
     - Use Cases:
-      - Samples:
-        - 'Invoking a RESTful Service' : 'use-cases/guides.md'
+      - Examples:
+        - 'Using REST with a Proxy Service' : 'use-cases/examples/rest-with-a-proxy-service.md'
+        - 'Spcific REST API Use Cases' : 'use-cases/examples/specific-rest-use-cases.md'
       - Guides:
         - 'Message Routing' : 'guides/message_routing.md'
+      - Tasks:
+        - 'Creating a REST API' : 'use-cases/tasks/rest_api_tasks/creating-an-api.md'
+        - 'Applying Security to a REST API' : 'use-cases/tasks/rest_api_tasks/applying-security-to-an-api.md'
+        - 'Enabling Logs for an API' : 'use-cases/tasks/rest_api_tasks/enabling-logs-for-api.md'
+        - 'Creating a Proxy Service' : 'use-cases/tasks/proxy_service_tasks/creating-a-proxy-service.md'
+        - 'Applying Security to a Proxy Service' : 'use-cases/tasks/proxy_service_tasks/applying-security-to-a-proxy-service.md'
+        - 'Enabling Logs for Services' : 'use-cases/tasks/proxy_service_tasks/enabling-logs-for-services.md'
+        - 'Publishing a Custom WSDL' : 'use-cases/tasks/proxy_service_tasks/publishing-a-custom-wsdl.md'
+        - 'Chaning the Endpoint of Deployed Service' : 'use-cases/tasks/proxy_service_tasks/changing-the-endpoint-of-deployed-service.md'
+        - 'Using Pinned Servers with Proxy Services' : 'use-cases/tasks/proxy_service_tasks/using-pinned-servers.md'
     - Administration and Observability:
       - 'Observability' : 'administer-and-observe/observability.md'
       - 'JMX Monitoring' : 'administer-and-observe/jmx_monitoring.md'
