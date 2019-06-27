@@ -7,26 +7,19 @@ with the communication. SSL tunneling is available when your proxy
 service uses either the [HTTP PassThrough
 transport](https://docs.wso2.com/display/EI650/PassThrough+Transport) or
 the [HTTP-NIO
-transport](https://docs.wso2.com/display/EI650/HTTP-NIO+Transport) .
+transport](https://docs.wso2.com/display/EI650/HTTP-NIO+Transport).
 
 The following section walks you through the steps to enable SSL
 tunneling through a proxy server. Here we will use
 [Squid](http://www.squid-cache.org/) as the caching and forwarding HTTP
 web proxy.
 
--   [Setting up
-    Squid](#EnablingSSLTunnelingthroughaProxyServer-SettingupSquid)
--   [Configuring SSL
-    tunneling](#EnablingSSLTunnelingthroughaProxyServer-ConfiguringSSLtunneling)
-
-#### Setting up Squid
+## Setting up Squid
 
 Follow the steps below to set up Squid:
 
-1.  Install Squid as described
-    [here](http://wiki.squid-cache.org/SquidFaq/InstallingSquid) .
-2.  Add the following lines in the
-    `           <SQUID_HOME>/etc/squid3/squid.conf          ` file:
+1.  Install Squid as described [here](http://wiki.squid-cache.org/SquidFaq/InstallingSquid) .
+2.  Add the following lines in the `<SQUID_HOME>/etc/squid3/squid.conf` file:
 
     ``` java
         acl SSL_ports port 443 8443 8448 8248 8280
@@ -54,32 +47,18 @@ Follow the steps below to set up Squid:
         http_port 3128
     ```
 
-#### Configuring SSL tunneling
+## Configuring SSL tunneling
 
-Follow the steps below to configure SSL tunneling through the proxy
-server:
+To configure SSL tunneling through the proxy server, open the esb.toml file and update the following parameters:
 
-1.  In `           <EI_HOME>/conf/axis2/axis2.xml          ` , add the
-    following parameters to the `           transportSender          `
-    configuration for `           PassThroughHttpSender          ` ,
-    `           PassThroughHttpSSLSender          ` ,
-    `           HttpCoreNIOSender          ` , and
-    `           HttpCoreNIOSSLSender          ` :
+```java
+[config_heading]
+http.proxyHost=false                           
+hostName=
+portNumber=               
+HostnameVerifier=AllowAll
 
-    -   `             <parameter name="http.proxyHost" locked="false">                           hostName                          </parameter>            `
-
-    -   `             <parameter name="http.proxyPort" locked="false">                           portNumber                          </parameter>            `
-
-        where `                         hostName                       `
-        and `                         portNumber                       `
-        specify the host name and port number of the proxy server.
-
-2.  Uncomment the following parameter in the
-    `          PassThroughHttpSSLSender         ` and
-    `          HttpCoreNIOSSLSender         ` configurations and change
-    the value to `          AllowAll         ` .  
-
-    `           <parameter name="HostnameVerifier">AllowAll</parameter>          `
+```
 
 For example, if the host name and port number of proxy server is
 `         localhost:8080        ` , your
@@ -87,19 +66,19 @@ For example, if the host name and port number of proxy server is
 `         PassThroughHttPSender        ` and
 `         PassThroughHttpSSLSender        ` would be as follows:
 
-**PassThroughHTTPSender**
+  **PassThroughHTTPSender**
 
-``` html/xml
+   ``` xml
     <transportSender name="http" class="org.apache.synapse.transport.passthru.PassThroughHttpSender">
             <parameter name="non-blocking" locked="false">true</parameter>
             <parameter name="http.proxyHost" locked="false">localhost</parameter>
             <parameter name="http.proxyPort" locked="false">8080</parameter>
     </transportSender>
-```
+   ```
 
-**PassThroughHttpSSLSender**
+  **PassThroughHttpSSLSender**
 
-``` html/xml
+   ```xml
     <transportSender name="https" class="org.apache.synapse.transport.passthru.PassThroughHttpSSLSender">
             <parameter name="non-blocking" locked="false">true</parameter>
             <parameter name="keystore" locked="false">
@@ -121,4 +100,4 @@ For example, if the host name and port number of proxy server is
             <parameter name="http.proxyPort" locked="false">8080</parameter>
             <parameter name="HostnameVerifier">AllowAll</parameter>
     </transportSender>
-```
+   ```

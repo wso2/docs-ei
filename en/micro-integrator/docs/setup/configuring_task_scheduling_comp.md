@@ -1,41 +1,24 @@
 # Configuring the Task Scheduling Component
 
-!!! info
-
 The **Task Scheduling** component in a WSO2 product allows you to define
-specific tasks and to invoke them periodiclly. This functionality is
-used by WSO2 products such as WSO2 Enterprise Integrator (WSO2 EI), WSO2
-Enterprise Service Bus (WSO2 ESB), and WSO2 Data Services Server (WSO2
-DSS).
+specific tasks and to invoke them periodically. 
 
 Follow the instructions given on this page to configure and set up
 this component **.** Then, see the respective product's documentation
 for details on how to use task scheduling.
 
+Given below are the settings that you can configure:
 
-The task scheduling component is configured in the
-`         tasks-config.xml        ` file (stored in the
-`         <PRODUCT_HOME>/conf/etc/        ` directory for WSO2 EI, and
-in the `         <PRODUCT_HOME>/repository/conf/etc/        ` directory
-for other products).
+## Step 1: Setting the task server mode
 
-Given below are the settings that you can configure in the
-`         tasks-config.xml        ` file.
+Open the esb.toml file and update the following property.
 
--   [Step 1: Setting the task server
-    mode](#ConfiguringtheTaskSchedulingComponent-Step1Step1:Settingthetaskservermode)
--   [Step 2: Configuring a cluster of task
-    servers](#ConfiguringtheTaskSchedulingComponent-Step2:Configuringaclusteroftaskservers)
-    -   [Setting the task server
-        count](#ConfiguringtheTaskSchedulingComponent-tastk_server_countSettingthetaskservercount)
-    -   [Setting the default location
-        resolver](#ConfiguringtheTaskSchedulingComponent-Settingthedefaultlocationresolver)
+```java
+[config_heading]
+taskservermode=""
+```
 
-### Step 1: Setting the task server mode
-
-Select one of the following values for the
-`         <taskServerMode>        ` element in the
-`         tasks-config.xml        ` file:
+Given below are the possible values:
 
 -   **AUTO** : This is the default task handling mode. This setting
     detects if [clustering is enabled in the
@@ -50,32 +33,23 @@ Select one of the following values for the
     the tasks will be rescheduled in one of the remaining server
     nodes.  
 
-        !!! note
-    
-        Find out more about [clustering WSO2
-        products](https://docs.wso2.com/display/CLUSTER44x/Clustering+WSO2+Products)
-        .
-    
-
-### Step 2: Configuring a cluster of task servers
+## Step 2: Configuring a cluster of task servers
 
 If you have enabled the CLUSTERED task server mode in [step
-1](#ConfiguringtheTaskSchedulingComponent-Step1) , the following
-configuration elements in the `         tasks-config.xml        ` file
-will be effective:
+1](#ConfiguringtheTaskSchedulingComponent-Step1), you can update the following:
 
-#### Setting the task server count
-
-Use the parameter shown below to specify the number of servers (in the
-cluster) that can handle tasks. The task server count is set to "1" by
-default, which indicates that at least one node in the cluster is
-required for task handling.
-
-``` java
-    <taskServerCount>1</taskServerCount>
+```java
+[config_heading]
+taskServerCount="1"
+locationResolver=""
 ```
 
-Note that a product cluster begins the process of scheduling tasks only
+The parameters used above are explained below.
+
+- **taskServerCount**: Use the parameter shown below to specify the number of servers (in the
+    cluster) that can handle tasks. The task server count is set to "1" by
+    default, which indicates that at least one node in the cluster is
+    required for task handling. Note that a product cluster begins the process of scheduling tasks only
 after the given number of servers are activated. For example, consider a
 situation where ten tasks are saved and scheduled in your product and
 there are five task-handling servers. As the individual servers become
@@ -83,54 +57,30 @@ active, we do not want the first active server to schedule all the
 tasks. Instead, all five servers should become active and share the ten
 tasks between them.
 
-#### Setting the default location resolver
 
-The default location resolver controls how the scheduled tasks are
+- **locationResolver**: The default location resolver controls how the scheduled tasks are
 shared by multiple sever nodes of a cluster. Note that the task server
 count should be a value larger than '1' for this location resolver
 setting to be effective. For example, if there are 5 task-handling
 servers in the cluster, the location resolver determines how the tasks
 get shared among the 5 servers.
 
-!!! info
-
-Handling task failover
-
-The location resolver parameter also controls how task failover is
+    > **Handling task failover**
+    > The location resolver parameter also controls how task failover is
 handled in a clustered environment. A scheduled task will only run in
 one of the nodes (at a given time) in a clustered environment. The task
 will failover to another node only if the first node fails. This
 parameter determines how nodes are selected for task failover.
 
+    One of the following options can be used for the **location resolver** .
 
-One of the following options can be used for the **location resolver** .
+    - `RoundRobinTaskLocationResolver`: Cluster nodes are selected on a round-robin basis and the tasks
+    are allocated.
 
--   `                       RoundRobinTaskLocationResolver                     `
-    : Cluster nodes are selected on a round-robin basis and the tasks
-    are allocated. This location resolver is enabled in the
-    `           tasks-config.xml          ` file **by default** as shown
-    below.
-
-    ``` java
-        <defaultLocationResolver>
-                <locationResolverClass>org.wso2.carbon.ntask.core.impl.RoundRobinTaskLocationResolver</locationResolverClass>
-        </defaultLocationResolver>
-    ```
-
--   `                       RandomTaskLocationResolver                     `
-    : Cluster nodes are randomly selected and the tasks are allocated.
+    - `RandomTaskLocationResolver`: Cluster nodes are randomly selected and the tasks are allocated.
     If you want to enable this location resolver, you need to change the
-    default configuration (shown above) in the
-    `           tasks-config.xml          ` file as shown below.
-
-    ``` java
-            <defaultLocationResolver>
-                    <locationResolverClass>org.wso2.carbon.ntask.core.impl.RandomTaskLocationResolver</locationResolverClass>
-            </defaultLocationResolver>
-    ```
-
--   `                       RuleBasedLocationResolver                     `
-    : This allows you to set the criteria for selecting the cluster
+    default configuration (shown above).
+    -  `RuleBasedLocationResolver`: This allows you to set the criteria for selecting the cluster
     nodes to which the tasks should be allocated. The
     \[task-type-pattern\],\[task-name-pattern\], and \[address-pattern
     of the server node\] can be used as criteria. For example, with this
@@ -138,13 +88,11 @@ One of the following options can be used for the **location resolver** .
     \[task-type-pattern\], and \[task-name-pattern\] will be allocated
     to the server node with a particular \[address-pattern\]. If
     multiple server nodes in the cluster match the \[address-pattern\],
-    the nodes are selected on a round robin basis. This criteria is
-    specified in the configuration using the
-    `           <property>          ` element. Therefore, you can define
+    the nodes are selected on a round robin basis. Therefore, you can define
     multiple properties containing different criteria.  
     Before you enable this location resolver, you need to first comment
     out the default location resolver that is already enabled in the
-    `           task-config.xml          ` file. You can then uncomment
+    esb.toml file. You can then uncomment
     the following code block, and update the property values as
     required.
 
@@ -167,9 +115,7 @@ One of the following options can be used for the **location resolver** .
     if it matches the criteria in rule-1, and if it does not, it will
     check rule-2.
 
-        !!! note
-    
-        The `           RuleBasedLocationResolver          ` allows you to
+    > The `RuleBasedLocationResolver` allows you to
         address scenarios where tasks are required to be executed in
         specific server nodes first. Then, it can fail-over to another set
         of server nodes if the first (preferred) one is not available.
