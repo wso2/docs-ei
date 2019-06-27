@@ -135,18 +135,35 @@ nav:
       - Examples:
         - 'Using REST with a Proxy Service' : 'use-cases/examples/rest-with-a-proxy-service.md'
         - 'Spcific REST API Use Cases' : 'use-cases/examples/specific-rest-use-cases.md'
+        - 'Working with Transactions' : 'use-cases/examples/working-with-transactions.md'
+        - 'Configuring Endpoints using REST APIs' : 'use-cases/examples/configuring-endpoints-using-apis.md'
       - Guides:
-        - 'Message Routing' : 'guides/message_routing.md'
+        - 'Using Inbound Endpoints' : 'use-cases/guides/using-inbound-endpoints.md'
+        - 'Using Templates' : 'use-cases/guides/using-templates.md'
+        - 'Guaranteed Delivery with Failover' : 'use-cases/guides/guaranteed-delivery-with-failover.md'
       - Tasks:
-        - 'Creating a REST API' : 'use-cases/tasks/rest_api_tasks/creating-an-api.md'
-        - 'Applying Security to a REST API' : 'use-cases/tasks/rest_api_tasks/applying-security-to-an-api.md'
-        - 'Enabling Logs for an API' : 'use-cases/tasks/rest_api_tasks/enabling-logs-for-api.md'
-        - 'Creating a Proxy Service' : 'use-cases/tasks/proxy_service_tasks/creating-a-proxy-service.md'
-        - 'Applying Security to a Proxy Service' : 'use-cases/tasks/proxy_service_tasks/applying-security-to-a-proxy-service.md'
-        - 'Enabling Logs for Services' : 'use-cases/tasks/proxy_service_tasks/enabling-logs-for-services.md'
-        - 'Publishing a Custom WSDL' : 'use-cases/tasks/proxy_service_tasks/publishing-a-custom-wsdl.md'
-        - 'Chaning the Endpoint of Deployed Service' : 'use-cases/tasks/proxy_service_tasks/changing-the-endpoint-of-deployed-service.md'
-        - 'Using Pinned Servers with Proxy Services' : 'use-cases/tasks/proxy_service_tasks/using-pinned-servers.md'
+        - REST APIs:
+          - 'Creating a REST API' : 'use-cases/tasks/rest_api_tasks/creating-an-api.md'
+          - 'Applying Security to a REST API' : 'use-cases/tasks/rest_api_tasks/applying-security-to-an-api.md'
+          - 'Enabling Logs for an API' : 'use-cases/tasks/rest_api_tasks/enabling-logs-for-api.md'
+        - Proxy Services:
+          - 'Creating a Proxy Service' : 'use-cases/tasks/proxy_service_tasks/creating-a-proxy-service.md'
+          - 'Applying Security to a Proxy Service' : 'use-cases/tasks/proxy_service_tasks/applying-security-to-a-proxy-service.md'
+          - 'Enabling Logs for Services' : 'use-cases/tasks/proxy_service_tasks/enabling-logs-for-services.md'
+          - 'Publishing a Custom WSDL' : 'use-cases/tasks/proxy_service_tasks/publishing-a-custom-wsdl.md'
+          - 'Changing the Endpoint of Deployed Service' : 'use-cases/tasks/proxy_service_tasks/changing-the-endpoint-of-deployed-service.md'
+          - 'Using Pinned Servers with Proxy Services' : 'use-cases/tasks/proxy_service_tasks/using-pinned-servers.md'
+        - 'Creating an Inbound Endpoint' : 'use-cases/tasks/inbound_endpoint_tasks/creating-an-inbound-endpoint.md'
+        - Message Stores & Processors:
+          - 'Creating a Message Store' : 'use-cases/tasks/message_stores_processors/creating-a-message-store.md' 
+          - 'Creating a Message Processor' : 'use-cases/tasks/message_stores_processors/creating-a-message-processor.md'
+        - 'Working with Templates' : 'use-cases/tasks/templates/working-with-templates.md'
+        - 'Working with Endpoints' : 'use-cases/tasks/endpoints/working-with-endpoints.md'
+        - 'Scheduling an ESB Task' : 'use-cases/tasks/scheduling-esb-tasks.md'
+        - Registry Artifacts:
+          - 'Working with Registry Artifacts' :  'use-cases/tasks/registry_artifacts/working-with-registry-artifacts.md'
+          - 'Managing Registry Artifacts' : 'use-cases/tasks/registry_artifacts/managing-the-registry.md'
+          - 'Working with Local Registry Entries' : 'use-cases/tasks/registry_artifacts/working-with-local-registry-entries.md'
     - Administration and Observability:
       - 'Observability' : 'administer-and-observe/observability.md'
       - 'JMX Monitoring' : 'administer-and-observe/jmx_monitoring.md'
@@ -166,7 +183,7 @@ nav:
       - 'Enterprise Integration Patterns' : 'references/enterprise-Integration-Patterns.md'
       - 'Configuration Catalog' : 'references/ei_config_catalog.md'
       - 'Mediator Catalog' : 
-        - 'Mediator Catlog' : 'references/mediator_catalog.md'
+        - 'Mediator Catalog' : 'references/mediator_catalog.md'
         - 'ESB Mediators' : 
           - 'ESB Mediators' : 'references/eSB-Mediators.md'
           - 'Aggregate Mediators' : 'references/eSB-Mediators.md'
@@ -220,6 +237,59 @@ nav:
           - 'ForEach Mediator' : 'references/eSB-Mediators.md'
           - 'ForEach Mediator' : 'references/eSB-Mediators.md'
       - 'Property Catalog' : 'references/property_catalog.md'
+      - Inbound Endpoints:
+        - 'About Inbound Endpoints' : 'references/inbound_endpoints/about-inbound-endpoints.md'
+        - Listening Endpoints:
+          - 'HTTP Inbound Protocol' : 'references/inbound_endpoints/listening_inbound_endpoint/http-inbound-protocol.md'
+          - 'HTTPS Inbound Protocol' : 'references/inbound_endpoints/listening_inbound_endpoint/https-inbound-protocol.md'
+          - 'HL7 Inbound Protocol' : 'references/inbound_endpoints/listening_inbound_endpoint/hl7-inbound-protocol.md'
+          - 'CXF WS-RM Inbound Protocol' : 'references/inbound_endpoints/listening_inbound_endpoint/cxf-ws-rm-inbound-protocol.md'
+          - 'Websocket Inbound Protocol' : 'references/inbound_endpoints/listening_inbound_endpoint/websocket-inbound-protocol.md'
+          - 'Secure Websocket Inbound Protocol' : 'references/inbound_endpoints/listening_inbound_endpoint/secure-websocket-inbound-protocol.md'
+        - Polling Endpoints:
+          - 'File Inbound Protocol' : 'references/inbound_endpoints/polling_inbound_endpoint/file-Inbound-Protocol.md'
+          - 'JMS Inbound Protocol' : 'references/inbound_endpoints/polling_inbound_endpoint/jms-Inbound-Protocol.md'
+          - 'Kafka Inbound Protocol' : 'references/inbound_endpoints/polling_inbound_endpoint/kafka-Inbound-Protocol.md'
+        - Event-based Endpoints:
+          - 'MQTT Inbound Protocol' : 'references/inbound_endpoints/event_based_inbound_endpoint/mqtt-inbound-protocol.md'
+          - 'RabbitMQ Inbound Protocol' : 'references/inbound_endpoints/event_based_inbound_endpoint/rabbitmq-inbound-protocol.md'
+        - 'Custom Inbound Endpoints' : 'references/inbound_endpoints/custom-Inbound-endpoint.md'
+      - Message Stores & Processors:
+        - 'About Message Stores and Processors' : 'references/message_stores_processors/about-message-stores-processors.md'
+        - Message Stores:
+          - 'In-Memory Message Store' : 'references/message_stores_processors/message_stores/in-memory-message-store.md'
+          - 'JMS Message Store' : 'references/message_stores_processors/message_stores/jms-message-store.md'
+          - 'RabbitMQ Message Store' : 'references/message_stores_processors/message_stores/rabbitmq-message-store.md'
+          - 'JDBC Message Store' : 'references/message_stores_processors/message_stores/jdbc-message-store.md'
+          - 'Resequencer Message Store' : 'references/message_stores_processors/message_stores/resequence-message-store.md'
+          - 'WSO2 MB Message Store' : 'references/message_stores_processors/message_stores/wso2-mb-message-store.md'
+          - 'Custom Message Store' : 'references/message_stores_processors/message_stores/custom-Message-Store.md'
+        - Message Processors:
+          - 'Custom Message Processor' : 'references/message_stores_processors/message_processors/custom-message-processor.md'
+          - 'Message Sampling Processor' : 'references/message_stores_processors/message_processors/message-sampling-processor.md'
+          - 'Scheduled Failover Message Forwarding Processor' : 'references/message_stores_processors/message_processors/scheduled-failover-message-forwarding-processor.md'
+          - 'Scheduled Message Forwarding Processor' : 'references/message_stores_processors/message_processors/scheduled-message-forwarding-processor.md'
+          - 'Message Processing in Worker-Manager Cluster' : 'references/message_stores_processors/message_processors/message-processing-in-worker-manager-cluster.md'
+          - 'Handling Poison Messages' : 'references/message_stores_processors/message_processors/handling-poison-messages.md'
+      - 'JSON Messages' : 'references/json_messages/working-with-json-message-payloads.md'
+      - Endpoints:
+        - 'About Endpoints' : 'references/endpoints/about-endpoints.md'
+        - 'Endpoint Error Handling' : 'references/endpoints/endpoint-error-handling.md'
+        - Endpoints:
+          - 'Address Endpoint' : 'references/endpoints/address-endpoint.md'
+          - 'Dynamic Load-Balance Endpoint' : 'references/endpoints/dynamic-load-balance-endpoint.md'
+          - 'Failover Endpoint' : 'references/endpoints/failover-endpoint.md'
+          - 'Dynamic Load-Balance Endpoint' : 'references/endpoints/dynamic-load-balance-endpoint.md'
+          - 'HTTP Endpoint' : 'references/endpoints/http-endpoint.md'
+          - 'WSDL Endpoint' : 'references/endpoints/wsdl-endpoint.md'
+          - 'Load Balance Group Endpoint' : 'references/endpoints/load-balance-group.md'
+          - 'Indirect and Resolving Endpoint' : 'references/endpoints/indirect-and-resolving-endpoints.md'
+          - 'Default Endpoint' : 'references/endpoints/default-endpoint.md'
+          - 'Template Endpoint' : 'references/endpoints/template-endpoint.md'
+          - 'Recipient List Endpoint' : 'references/endpoints/recipient-list-endpoint.md'
+          - 'Websocket Endpoint' : 'references/endpoints/websocket-endpoint.md'
+      - 'Synapse Templates' : 'references/templates/synapse_templates.md'
+      - 'Synapse Handlers' : 'references/synapse_handlers/synapse-handlers.md'
       - 'Best Practices' : 'references/best-Practices.md'
     - '': page-not-found.md
      
