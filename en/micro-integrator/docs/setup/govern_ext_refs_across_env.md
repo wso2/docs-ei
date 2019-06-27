@@ -1,11 +1,5 @@
 # Governing External References Across Environments
 
-!!! note
-
-This content is currently restricted to confluence admins as it is being
-updated.
-
-
 Some artifacts must change based on the environment where the
 application is deployed. For example, when you deploy a WSO2 Enterprise
 Integrator(WSO2 EI) application to Dev, QA, and Production environments,
@@ -21,12 +15,7 @@ proxy service (environment independent artifact) configuration. By doing
 this, the proxy service configuration does not need to be edited each
 time it is deployed in a different environment.
 
--   [Understanding the
-    Users](#GoverningExternalReferencesAcrossEnvironments-UnderstandingtheUsers)
--   [Best Practices for
-    Migration](#GoverningExternalReferencesAcrossEnvironments-BestPracticesforMigration)
-
-### Understanding the Users
+## Understanding the Users
 
 Users interacting with artifacts in each environment often have
 different roles and have access to different resources and tools. For
@@ -43,7 +32,7 @@ example:
     endpoints before they deploy in the different environments.
     Typically, they do not have WSO2 EI Tooling.
 
-### Best Practices for Migration
+## Best Practices for Migration
 
 The following are the best practices that allow you to easily migrate
 applications across environments:
@@ -68,7 +57,7 @@ applications across environments:
     deploying the application, or make this an automatic part of your
     deployment process.
 
-#### Maven Users
+### Maven Users
 
 Maven can be used to build and deploy your artifacts across
 environments. When using Maven, you are also able to define the
@@ -80,9 +69,7 @@ available at
 <http://susinda.blogspot.ae/2017/01/wso2-esb-how-to-assign-endpoints-at.html>
 .
 
-!!! tip
-
-In WSO2 EI Tooling, a Maven Multi Module(MMM) project is used to contain
+> In WSO2 EI Tooling, a Maven Multi Module(MMM) project is used to contain
 all the project information. For more information on Maven Multi Module
 projects, see
 <http://www.sonatype.com/books/mvnex-book/reference/multimodule.html> .

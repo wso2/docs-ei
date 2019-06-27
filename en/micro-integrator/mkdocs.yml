@@ -56,61 +56,72 @@ nav:
       - 'Concepts': 'concepts/concepts.md'
     - Setup and Install:
       - Installation Guide:
-        - 'Install in a VM': 'setup/install_in_vm.md'
-        - 'Install in Docker': 'setup/install_in_docker.md'
-        - 'Install in Kubernetes': 'setup/install_in_kubernetes.md'
+        - 'Install in a VM': 'setup/installation/install_in_vm.md'
+        - 'Install in Docker': 'setup/installation/install_in_docker.md'
+        - 'Install in Kubernetes': 'setup/installation/install_in_kubernetes.md'
       - Product Deployment:
-        - 'Deploying WSO2 Enterprise Integrator' : 'setup/deploying_wso2_ei.md'
-        - 'Upgrading from a Previous Release' : 'setup/upgrading.md'
-        - 'Troubleshooting Production Deployment' : 'setup/troubleshooting_deployment.md'
-        - Supporting Configurations:
-          - 'Optional: Mounting a Registry' : 'setup/registry_mounting.md'
-          - 'Setting up a Load Balancer' : 'setup/setting_up_lb.md'
-          - 'Configuring Deployment Synchronization' : 'setup/deployment_synchronization.md'
-          - Setting up Databases:
-            - 'Setting up MySQL' : 'setup/db/setting-up-MySQL.md'
-            - 'Setting up MSSQL' : 'setup/db/setting-up-MSSQL.md'
-            - 'Setting up Oracle' : 'setup/db/setting-up-Oracle.md'
-            - 'Setting up Oracle RAC' : 'setup/db/setting-up-Oracle-RAC.md'
-            - 'Setting up IBM Informix' : 'setup/db/setting-up-IBM-Informix.md'
-            - 'Setting up IBM DB2' : 'setup/db/setting-up-IBM-DB2.md'
-            - 'Setting up Maria DB' : 'setup/db/setting-up-MariaDB.md'
-            - 'Setting up Embedded Derby' : 'setup/db/setting-up-Embedded-Derby.md'
-            - 'Setting up Remote Derby' : 'setup/db/setting-up-Remote-Derby.md'
-            - 'Setting up PostgreSQL' : 'setup/db/setting-up-PostgreSQL.md'
-            - 'Setting up Remote H2' : 'setup/db/setting-up-Remote-H2.md'
-          - Setting up a User Store:
-            - 'Setting up a JDBC User Store' : 'setup/setting_up_jdbc_userstore.md'
-            - 'Setting up a Read-Only LDAP' : 'setup/setting_up_ro_ldap.md'
-            - 'Setting up a Read-Write LDAP' : 'setup/setting_up_rw_ldap.md'
-            - 'Setting up a Read-Write Active Directory' : 'setup/setting_up_rw_ad.md'
-          - 'Adding a Custom Proxy Path' : 'setup/adding_a_custom_proxy__path.md'
-          - 'Configuring a Proxy Server' : 'setup/configuring_proxy_servers.md'
-          - 'Changing Default Ports' : 'setup/changing_default_ports.md'
-          - 'Enabling CORS for Data Services' : 'setup/enabling_CORS_for_data_services.md'
-          - 'Configuring Time Stamp Conversion for RDBMS' : 'setup/configuring_timestamp_conversion_for_rdbms.md'
-        - Security Hardening :
-          - Setting up Keystores:
-            - 'Creating New Keystores' : 'setup/security/creating_keystores.md'
-            - 'Adding SSL certificates to keystores' : 'setup/security/importing_ssl_certificate.md'
-            - 'Renewing a CA-signed Certificate' : 'setup/security/renewing_ca_signed_certificate_in_keystore.md'
-            - 'Configuring Keystores' : 'setup/security/configuring_keystores.md'
-          - 'Complying with GDPR' : 'setup/security/gdpr_ei.md'
-          - 'Using Symmetric Encryption' : 'setup/security/single_key_encryption.md'
-          - 'Encrypting Plain Text' : 'setup/security/encrypting_plain_text.md'
-          - 'Mitigating Cross Site Request Forgery Attacks' : 'setup/security/mitigating_csrf.md'
-          - 'Mitigating Cross Site Scripting' : 'setup/security/mitigating_css.md'
-          - 'Configuring SAML2 SSO Across Products' : 'setup/security/configuring_SAML2_SSO_across_prods.md'
-          - 'Securing Carbon Applications' : 'setup/security/securing_carbon_applications.md'
-        - 'Customizing Error Messages' : 'setup/customizing_error_pages.md'
-        - 'Configuring the Task Scheduling Component' : 'setup/configuring_task_scheduling_comp.md'
-        - 'Governing External Reference Across Environments' : 'setup/govern_ext_refs_across_env.md'
-        - 'Enable SSL Tunneling through Proxy Server' : 'setup/enabling_SSL_tunneling_thru_proxy_server.md'
-        - Performance Tuning:
-          - 'Tuning JVM Performance' : 'setup/tuning_jvm_performance.md'
-          - 'Tuning Network and OS Performance' : 'setup/network_os_performance.md'
-        - 'Backup and Recovery' : 'setup/backup_recovery.md'
-        - 'Product Deployment Checklist' : 'setup/deployment_checklist.md'
+        - 'Deploying WSO2 Enterprise Integrator' : 'setup/deployment/deploying_wso2_ei.md'
+        - 'Upgrading from a Previous Release' : 'setup/deployment/upgrading.md'
+        - 'Troubleshooting Production Deployment' : 'setup/deployment/troubleshooting_deployment.md'
+        - 'Product Deployment Checklist' : 'setup/deployment/deployment_checklist.md'
+      - Using Data Stores:
+        - Setting up Databases:
+          - 'Setting up MySQL' : 'setup/databases/setting-up-MySQL.md'
+          - 'Setting up MSSQL' : 'setup/databases/setting-up-MSSQL.md'
+          - 'Setting up Oracle' : 'setup/databases/setting-up-Oracle.md'
+          - 'Setting up Oracle RAC' : 'setup/databases/setting-up-Oracle-RAC.md'
+          - 'Setting up IBM Informix' : 'setup/databases/setting-up-IBM-Informix.md'
+          - 'Setting up IBM DB2' : 'setup/databases/setting-up-IBM-DB2.md'
+          - 'Setting up Maria DB' : 'setup/databases/setting-up-MariaDB.md'
+          - 'Setting up Embedded Derby' : 'setup/databases/setting-up-Embedded-Derby.md'
+          - 'Setting up Remote Derby' : 'setup/databases/setting-up-Remote-Derby.md'
+          - 'Setting up PostgreSQL' : 'setup/databases/setting-up-PostgreSQL.md'
+          - 'Setting up Remote H2' : 'setup/databases/setting-up-Remote-H2.md'
+        - Setting up a User Store:
+          - 'Setting up a JDBC User Store' : 'setup/user_stores/setting_up_jdbc_userstore.md'
+          - 'Setting up a Read-Only LDAP' : 'setup/user_stores/setting_up_ro_ldap.md'
+          - 'Setting up a Read-Write LDAP' : 'setup/user_stores/setting_up_rw_ldap.md'
+          - 'Setting up a Read-Write Active Directory' : 'setup/user_stores/setting_up_rw_ad.md'
+      - Security Hardening :
+        - Setting up Keystores:
+          - 'Creating New Keystores' : 'setup/security/creating_keystores.md'
+          - 'Adding SSL certificates to keystores' : 'setup/security/importing_ssl_certificate.md'
+          - 'Renewing a CA-signed Certificate' : 'setup/security/renewing_ca_signed_certificate_in_keystore.md'
+          - 'Configuring Keystores' : 'setup/security/configuring_keystores.md'
+        - 'Complying with GDPR' : 'setup/security/gdpr_ei.md'
+        - 'Using Symmetric Encryption' : 'setup/security/single_key_encryption.md'
+        - 'Encrypting Plain Text' : 'setup/security/encrypting_plain_text.md'
+        - 'Mitigating Cross Site Request Forgery Attacks' : 'setup/security/mitigating_csrf.md'
+        - 'Mitigating Cross Site Scripting' : 'setup/security/mitigating_css.md'
+        - 'Configuring SAML2 SSO Across Products' : 'setup/security/configuring_SAML2_SSO_across_prods.md'
+        - 'Securing Carbon Applications' : 'setup/security/securing_carbon_applications.md'
+      - Performance Tuning:
+        - 'Tuning JVM Performance' : 'setup/performance_tuning/tuning_jvm_performance.md'
+        - 'Tuning Network and OS Performance' : 'setup/performance_tuning/network_os_performance.md'
+        - Tuning Use Cases:
+          - 'Tuning the Split-Aggregator Pattern' : 'setup/performance_tuning/split_aggregate_pattern_tuning.md'
+          - 'Tuning Message Transformation Scenarios' : 'setup/performance_tuning/message_transformation_tuning.md'
+          - 'Tuning JMS Scenarios' : 'setup/performance_tuning/jms_scenarios.md'
+          - 'Tuning Inbound Endpoints' : 'setup/performance_tuning/inbound_endpoint_tuning.md'
+        - Tuning Transports:
+          - 'Tuning the HTTP Transport' : 'setup/performance_tuning/http_transport_tuning.md'
+          - 'Tuning the JMS Transport' : 'setup/performance_tuning/jms_transport_tuning.md'
+          - 'Tuning the VFS Transport' : 'setup/performance_tuning/vfs_transport_tuning.md'
+          - 'Tuning the RabbitMQ Transport' : 'setup/performance_tuning/rabbitmq_transport_tuning.md'
+      - 'Backup and Recovery' : 'setup/backup_recovery.md'
+      - Supporting Configurations:
+        - 'Optional: Mounting a Registry': 'setup/registry_mounting.md'
+        - 'Setting up a Load Balancer': 'setup/setting_up_lb.md'
+        - 'Configuring Deployment Synchronization': 'setup/deployment_synchronization.md'
+        - 'Adding a Custom Proxy Path': 'setup/adding_a_custom_proxy__path.md'
+        - 'Configuring a Proxy Server': 'setup/configuring_proxy_servers.md'
+        - 'Changing Default Ports': 'setup/changing_default_ports.md'
+        - 'Enabling CORS for Data Services': 'setup/enabling_CORS_for_data_services.md'
+        - 'Configuring Time Stamp Conversion for RDBMS': 'setup/configuring_timestamp_conversion_for_rdbms.md'
+        - 'Customizing Error Messages': 'setup/customizing_error_pages.md'
+        - 'Configuring the Task Scheduling Component': 'setup/configuring_task_scheduling_comp.md'
+        - 'Governing External Reference Across Environments': 'setup/govern_ext_refs_across_env.md'
+        - 'Enable SSL Tunneling through Proxy Server': 'setup/enabling_SSL_tunneling_thru_proxy_server.md'
     - Developer Experience:
       - 'Continuous Development and Deployment' : 'develop/cicd.md'
       - 'Developing an Integration Use Case' : 'develop/developing-Cloud-Native-Integration.md'
@@ -245,4 +256,4 @@ extra:
       link: https://twitter.com/wso2
     - type: linkedin
       link: https://www.linkedin.com/company/wso2
-  site_version: 5.8.0
+  site_version: 7.0.0

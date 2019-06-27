@@ -8,37 +8,22 @@ proxy server as illustrated in the following diagram:
 
 ![](attachments/119130243/119130245.png)
 
-For such scenarios, you need to configure the ESB transport sender to
-forward messages through a proxy server.
-
--   [Routing messages through a proxy
-    server](#WorkingwithProxyServers-Routingmessagesthroughaproxyserver)
-    -   [For non-blocking service
-        calls](#WorkingwithProxyServers-Fornon-blockingservicecalls)
-    -   [For blocking service
-        calls](#WorkingwithProxyServers-Forblockingservicecalls)
--   [Configuring proxy profiles in the ESB
-    profile](#WorkingwithProxyServers-ConfiguringproxyprofilesintheESBprofile)
-
-### Routing messages through a proxy server
+## Routing messages through a proxy server
 
 See the instructions given below.
 
-#### For non-blocking service calls
+### For non-blocking service calls
 
-To configure the ESB profile to route messages through a proxy server
-(for non-blocking service calls), add the parameters given below to the
-`         axis2.xml        ` file (stored in the
-`         <EI_HOME>/conf/axis2/        ` directory) and update the
+To configure the ESB to route messages through a proxy server
+(for non-blocking service calls), add the parameters given below to the esb.toml file and update the
 values. This configuration ensures that all HTTP requests pass through
 the configured proxy server.
 
 ``` java
-    <transportSender name="http" class="org.apache.synapse.transport.passthru.PassThroughHttpSender">    
-        <parameter name="non-blocking" locked="false">true</parameter>
-        <parameter name="http.proxyHost" locked="false"></parameter>
-        <parameter name="http.proxyPort" locked="false"></parameter>
-    </transportSender>
+[config_section]
+non-blocking=true
+http.proxyHost=""
+http.proxyPort=""
 ```
 
 The parameters are described below.
@@ -64,24 +49,19 @@ The parameters are described below.
 </tbody>
 </table>
 
-#### For blocking service calls
+### For blocking service calls
 
 To configure the ESB profile to route messages through a proxy server
-(for blocking service calls), add the parameters given below to the
-`         axis2_blocking_client.xml        ` file (stored in the
-`         <EI_HOME>/conf/axis2/        ` directory) and update the
+(for blocking service calls), add the parameters given below to the esb.toml file, and update the
 values. This configuration ensures that all HTTP requests pass through
 the configured proxy server.
 
-``` xml
-    <parameter name="Proxy">
-         <parameters>
-           <ProxyHost></ProxyHost>
-           <ProxyPort></ProxyPort>
-           <ProxyUser></ProxyUser>
-           <ProxyPassword></ProxyPassword>
-         </parameters>
-    </parameter>
+``` java
+[config_heading]
+ProxyHost=""
+ProxyPort=""
+ProxyUser=""
+ProxyPassword=""
 ```
 
 The parameters are described below.
@@ -111,37 +91,29 @@ The parameters are described below.
 </tbody>
 </table>
 
-!!! info
+>**Bypass the proxy server for blocking calls?**
 
-Bypass the proxy server for blocking calls?
-
-In the case of blocking service calls, you can apply a system property
+> In the case of blocking service calls, you can apply a system property
 in the ESB profile to bypass the proxy server and route messages
 directly to the hosts that should receive the messages. Explained below
 are two methods of applying the system property:
-
--   Set the system property in the product startup script that is
+> - Set the system property in the product startup script that is
     located in the `           <PRODUCT_HOME>/bin/          ` directory
     as shown below. Note that the list of host names are separated by
     the pipe symbol ('\|').
-
     ``` java
         -Dhttp.nonProxyHosts =10.|localhost|127.0.0.1|.\.domain.com \
     ```
-    
-    -   Pass the system property when you start the server as shown below.
-    
+> -   Pass the system property when you start the server as shown below.
     ``` java
             ./integrator.sh -Dhttp.nonProxyHosts =10.|localhost|127.0.0.1|.\.domain.com
     ```
         
-!!! info
-
-A proxy server might require HTTP basic authentication before it handles
+> A proxy server might require HTTP basic authentication before it handles
 communication from the ESB profile.
 
 
-### Configuring proxy profiles in the ESB profile
+## Configuring proxy profiles in the ESB profile
 
 When using the ESB profile, there can be scenarios where you need to
 configure multiple proxy servers to route messages to different
@@ -152,48 +124,33 @@ endpoints as illustrated in the following diagram.
 When you need to route messages to different endpoints through multiple
 proxy servers, you can configure proxy profiles.
 
-To configure proxy profiles in the ESB profile:
-
--   Edit the `           <EI_HOME>/conf/axis2/axis2.xml          ` file,
-    add the `           proxyProfiles          ` parameter in the
-    `           <transportSender>          ` configuration of the http
-    transport, and then define multiple profiles based on the number of
+To configure proxy profiles in the ESB, open the esb.toml file and define multiple profiles based on the number of
     proxy servers you need to have.
 
-        !!! info
-    
-        When you define a profile, it is mandatory to specify the
-        `           targetHosts          ` ,
-        `           proxyHost          ` and
-        `           proxyPort          ` parameters for each profile.
-    
+> When you define a profile, it is mandatory to specify the `targetHosts`, `proxyHost` and `proxyPort` parameters for each profile.   
 
 The following is a sample proxy profile configuration that you can have
 in the `         <transportSender>        ` configuration of the HTTP
 transport:
 
-``` xml
-    <parameter name="proxyProfiles">
-          <profile>
-              <targetHosts>example.com, .*.sample.com</targetHosts>
-              <proxyHost>localhost</proxyHost>
-              <proxyPort>3128</proxyPort>
-              <proxyUserName>squidUser</proxyUserName>
-              <proxyPassword>password</proxyPassword>
-              <bypass>xxx.sample.com</bypass>
-          </profile>
-          <profile>
-              <targetHosts>localhost</targetHosts>
-              <proxyHost>localhost</proxyHost>
-              <proxyPort>7443</proxyPort>
-          </profile>
-          <profile>
-              <targetHosts>*</targetHosts>
-              <proxyHost>localhost</proxyHost>
-              <proxyPort>7443</proxyPort>
-              <bypass>test.com, direct.com</bypass>
-          </profile>
-     </parameter>
+``` Java
+[config_heading]
+targetHosts=example.com, .*.sample.com
+proxyHost=localhost
+proxyPort=3128
+proxyUserName=squidUser
+proxyPassword=password
+bypass=xxx.sample.com
+
+targetHosts=localhost
+proxyHost=localhost
+proxyPort=7443
+
+targetHosts="*"
+proxyHost=localhost
+proxyPort="7443"
+bypass="test.com, direct.com"
+
 ```
 
 When you configure a proxy profile, following are details of the

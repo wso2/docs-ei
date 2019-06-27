@@ -12,12 +12,11 @@ messages in Apache Tomcat.
 
 From Carbon 4.4.6 onwards, the pages that should be displayed on a
 certain throwable exception, error or an HTTP status code are specified
-in the
-`         <CARBON_HOME>repository/conf/tomcat/carbon/WEB-INF/web.        `
+in the `<CARBON_HOME>repository/conf/tomcat/carbon/WEB-INF/web.`
 xml file. You can customize those error pages as preferred. For example,
 if you try to access a resource that is not available in the Carbon
 server (e.g., https://10.100.5.72:9443/abc ), you will view the error
-page as follows: " `         Error 404 - Not Found        ` ".
+page as follows: `Error 404 - Not Found`.
 
 You can customize the above error message by following the instructions
 given below.
@@ -32,12 +31,9 @@ given below.
     `           <PROJECT_HOME>/src/main/          ` directory, and then
     create another directory named `           web          ` inside it.
 
-        !!! tip
-    
-        `           <PROJECT_HOME>          ` denotes the top-level
+     > `           <PROJECT_HOME>          ` denotes the top-level
         directory of your Maven project.
     
-
 4.  Create a new HTML error page (e.g. `           new_          `
     `           error_404.html          ` file) as shown below. This
     contains the customized error page.
@@ -119,9 +115,7 @@ given below.
             </error-page>
     ```
 
-        !!! tip
-    
-        You need to replicate this configuration, and change the values of
+    > You need to replicate this configuration, and change the values of
         the `           <error-code>          ` and
         `           <location>          ` elements accordingly for each new
         HTML error page you add.
