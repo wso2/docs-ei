@@ -111,7 +111,7 @@ nav:
     - 'Working with Siddhi Connectors':
       - 'Downloading and Installing Siddhi Connectors': 'admin/downloading-and-Installing-Siddhi-Extensions.md'
       - 'Writing Custom Siddhi Extensions': 'admin/writing-Custom-Siddhi-Extensions.md'
-      - 'Configuring System Parameters for Siddhi Extensions': 'admin/configuring-System-Parameters-for-Siddhi-Extensions.md
+      - 'Configuring System Parameters for Siddhi Extensions': 'admin/configuring-System-Parameters-for-Siddhi-Extensions.md'
     - 'Creating Business Rules Templates': 'admin/creating-business-rules-templates.md'
     - 'Monitoring the Streaming Integrator': 'admin/monitoring-the streaming-integrator'
     - 'General Data Protection Regulations': 'admin/general-data-protection-regulations.md'
