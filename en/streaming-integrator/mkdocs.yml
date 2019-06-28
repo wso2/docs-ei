@@ -73,42 +73,58 @@ nav:
       - 'Configuring Datasources': 'configuring-Datasources.md'
       - 'Setting up Physical Databases': 'setting-up-physical-databases.md'
   - 'Developer Experience':
-      - 'Streaming Integrator Studio Overview': 'develop/streaming-integrator-studio-overview.md'
-      - 'Designing Siddhi Applications':
-        - 'Working with the Source View': 'develop/working-with-source-view.md'
-        - 'Working with the Design View': 'develop/working-with-design-view.md'
-      - 'Testing Siddhi Applications':
-        - 'Testing a Siddhi Application': 'develop/testing-a-siddhi-application.md'
-        - 'Simulating Events': 'develop/simulating-events.md'
-      - 'Debugging Siddhi Applications': 'develop/debugging_siddhi_applications.md'
-      - 'Exporting Siddhi Files':
-        - 'Exporting a Single Siddhi File': 'develop/exporting-a-single-siddhi-file.md'
-        - 'Exporting Siddhi Files as Docker Artifacts': 'develop/exporting-siddhi-files-as-docker-artifacts.md'
+    - 'Streaming Integrator Studio Overview': 'develop/streaming-integrator-studio-overview.md'
+    - 'Designing Siddhi Applications':
+      - 'Working with the Source View': 'develop/working-with-source-view.md'
+      - 'Working with the Design View': 'develop/working-with-design-view.md'
+    - 'Testing Siddhi Applications':
+      - 'Testing a Siddhi Application': 'develop/testing-a-siddhi-application.md'
+      - 'Simulating Events': 'develop/simulating-events.md'
+    - 'Debugging Siddhi Applications': 'develop/debugging_siddhi_applications.md'
+    - 'Exporting Siddhi Files':
+      - 'Exporting a Single Siddhi File': 'develop/exporting-a-single-siddhi-file.md'
+      - 'Exporting Siddhi Files as Docker Artifacts': 'develop/exporting-siddhi-files-as-docker-artifacts.md'
   - 'Use Cases':
-      - 'Examples':
-        - 'Performing Real-time ETL with MySQL': 'performing-real-time-etl-with-mysql.md'
-        - 'Performing Real-time ETL with Files': 'performing-real-time-etl-with-files.md'
-        - 'Working with Kafka': 'working-with-kafka.md'
-        - 'Working with NATS': 'working-with-nats.md'
-        - 'Transforming JSON Messages': 'transforming-json-messages.md'
-        - 'Transforming XML Messages': 'transforming-xml-messages.md'
-        - 'Integrating Databases to Data Flows': 'integrating-databases-to-data-flows.md'
-        - 'Exposing Processed Data as API': 'exposing-processed-data-as-api.md'
-        - 'Triggering Integrations via Micro Integrator': 'triggering-integrations-via-micro-integrator.md'
-        - 'Analyzing Data and Deriving Insights': 'analyzing-data-and-deriving-insights.md'
-        - 'Performing Reliable Data Integration (Error Streams)': 'reliable-data-integration.md'
-        - 'Summarizing and Aggregating Data in Real Time': 'summarizing-and-aggregating-data.md'
-      - 'Guides':
-        - 'Consuming Data': 'collecting-events.md'
-        - 'Transforming Data': 'transforming-data.md'
-        - 'Enriching Data': 'enriching-data.md'
-        - 'Cleansing Data': 'cleansing-data.md'
-        - 'Correlating Data': 'complex-Event-processing.md'
-        - 'Summarizing Data': 'incremental-Analysis.md'
-        - 'Triggering Integration Flows': 'triggering-integration-flows.md'
+    - 'Examples':
+      - 'Performing Real-time ETL with MySQL': 'examples/performing-real-time-etl-with-mysql.md'
+      - 'Performing Real-time ETL with Files': 'examples/performing-real-time-etl-with-files.md'
+      - 'Working with Kafka': 'examples/working-with-kafka.md'
+      - 'Working with NATS': 'examples/working-with-nats.md'
+      - 'Transforming JSON Messages': 'examples/transforming-json-messages.md'
+      - 'Transforming XML Messages': 'examples/transforming-xml-messages.md'
+      - 'Integrating Databases to Data Flows': 'examples/integrating-databases-to-data-flows.md'
+      - 'Exposing Processed Data as API': 'examples/exposing-processed-data-as-api.md'
+      - 'Triggering Integrations via Micro Integrator': 'examples/triggering-integrations-via-micro-integrator.md'
+      - 'Analyzing Data and Deriving Insights': 'examples/analyzing-data-and-deriving-insights.md'
+      - 'Performing Reliable Data Integration (Error Streams)': 'examples/reliable-data-integration.md'
+      - 'Summarizing and Aggregating Data in Real Time': 'examples/summarizing-and-aggregating-data.md'
+    - 'Guides':
+      - 'Consuming Data': 'guides/collecting-events.md'
+      - 'Transforming Data': 'guides/transforming-data.md'
+      - 'Enriching Data': 'guides/enriching-data.md'
+      - 'Cleansing Data': 'guides/cleansing-data.md'
+      - 'Correlating Data': 'guides/complex-Event-processing.md'
+      - 'Summarizing Data': 'guides/incremental-Analysis.md'
+      - 'Triggering Integration Flows': 'guides/triggering-integration-flows.md'
   - 'Admin Guide':
-      -
-  - 'Tutor
+    - 'Configuring the Streaming Integration Profile': 'admin/configure-si-profile.md'
+    - 'Working with Siddhi Connectors':
+      - 'Downloading and Installing Siddhi Connectors': 'admin/downloading-and-Installing-Siddhi-Extensions.md'
+      - 'Writing Custom Siddhi Extensions': 'admin/writing-Custom-Siddhi-Extensions.md'
+      - 'Configuring System Parameters for Siddhi Extensions': 'admin/configuring-System-Parameters-for-Siddhi-Extensions.md
+    - 'Creating Business Rules Templates': 'admin/creating-business-rules-templates.md'
+    - 'Monitoring the Streaming Integrator': 'admin/monitoring-the streaming-integrator'
+    - 'General Data Protection Regulations': 'admin/general-data-protection-regulations.md'
+    - 'Supporting Different Transports': 'admin/supporting-Different-Transports.md'
+    - 'User Management': 'admin/user-Management.md'
+    - 'Protecting Sensitive Data via the Secure Vault': 'admin/protecting-sensitive-data-via-the-secure-vault.md'
+    - 'Adding Third Party Non OSGi Library': 'admin/adding-Third-Party-Non-OSGi-Libraries.md'
+  - 'Reference Guide':
+    - 'Streaming Integration REST API Guide': 'ref/si-rest-api-guide.md'
+    - 'Performance Analysis Results': 'ref/performance-analysis-results.md'
+    - 'Configuring Default Ports': 'ref/configuring-Default-Ports.md'
+    - 'Working with Data Providers': 'ref/working-with-Data-Providers.md'
+    - 'Streaming Integration Profiles': 'ref/wSO2-Stream-Processor-Profiles.md'
   - 'FAQ':
     - 'FAQ': faq/fAQ.md
   - '': page-not-found.md
