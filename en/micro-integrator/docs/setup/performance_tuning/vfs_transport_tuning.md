@@ -11,9 +11,7 @@ builds the file inside it. To overcome this issue, WSO2 EI provides VFS
 file streaming support. With VFS file streaming, only the stream is
 passed and therefore memory consumption is less.
 
-!!! tip
-
-**Tip** : When you transfer a file to a remote FTP location via VFS, the
+> **Tip** : When you transfer a file to a remote FTP location via VFS, the
 ESB tries to detect the FTP location by navigating from the root folder
 first. If the ESB does not have **at least list permission** to the root
 (/), the file transfer fails.
@@ -26,42 +24,37 @@ below:
     `           messageBuilders          ` section, add the binary
     message builder as follows:
 
-    ``` html/xml
-        <messageBuilder contentType="application/binary" class="org.apache.axis2.format.BinaryBuilder"/>
+    ```
+    <messageBuilder contentType="application/binary" class="org.apache.axis2.format.BinaryBuilder"/>
     ```
 
-    and in the `           messageFormatters          ` section, add the
+    and in the `messageFormatters` section, add the
     binary message formatter as follows:
 
-    ``` html/xml
-            <messageFormatter contentType="application/binary" class="org.apache.axis2.format.BinaryFormatter"/>
+    ```
+    <messageFormatter contentType="application/binary"class="org.apache.axis2.format.BinaryFormatter">
     ```
 
 2.  In the proxy service where you use the VFS transport, add the
     following parameter to enable streaming:
 
-    ``` html/xml
-            <parameter name="transport.vfs.Streaming">true</parameter>
+    ```java
+    <parameter name="transport.vfs.Streaming">true</parameter>
     ```
 
 3.  In the same proxy service, before the Send mediator, add the
     following property:
 
-        !!! info
-    
-        Note
-    
-        You also need to add the following property if you want to use the
+    > You also need to add the following property if you want to use the
         VFS transport to transfer files from VFS to VFS.
-    
 
-    ``` html/xml
-        <property name="ClientApiNonBlocking" value="true" scope="axis2" action="remove"/>
+
+    ```
+    <property name="ClientApiNonBlocking" value="true" scope="axis2" action="remove"/>
     ```
 
     For more information, see Example 3 of the [Send
-    Mediator](https://docs.wso2.com/display/EI650/Send+Mediator#SendMediator-blocking)
-    .
+    Mediator](https://docs.wso2.com/display/EI650/Send+Mediator#SendMediator-blocking).
 
 Following is a sample configuration that uses the VFS transport to
 handle large files:
@@ -86,7 +79,7 @@ handle large files:
                     <property name="ClientApiNonBlocking" value="true" scope="axis2" action="remove"/>
                     <send>
                         <endpoint>
-                            <address uri="vfs:smb://host/test/out"/> 
+                            <address uri="vfs:smb://host/test/out"/>
                         </endpoint>
                     </send>
                 </inSequence>

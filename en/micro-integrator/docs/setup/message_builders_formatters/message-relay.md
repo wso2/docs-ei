@@ -10,16 +10,6 @@ properties](https://docs.wso2.com/display/EI650/Properties+Reference)
 like request URLs or transport headers instead. With Message Relay, the
 ESB can achieve a very high throughput.
 
-The following topics provide more information about Message Relay:
-
--   [Working with Message Builders and
-    Formatters](_Working_with_Message_Builders_and_Formatters_)
--   [Configuring Message Relay](_Configuring_Message_Relay_)
--   [Builder
-    Mediator](https://docs.wso2.com/display/EI650/Builder+Mediator)
--   [Message Relay Module](_Message_Relay_Module_)
--   [Message Relay Module Policy](_Message_Relay_Module_Policy_)
-
 See also [PassThrough
 Transport](https://docs.wso2.com/display/EI650/PassThrough+Transport) .
 
@@ -32,7 +22,7 @@ content types with the Message Relay builder and formatter to pass these
 messages through the ESB profile of WSO2 Enterprise Integrator (WSO2 EI)
 without building them.
 
-!!! warning Content cannot be altered once the b inary relay is enabled.
+> Warning Content cannot be altered once the b inary relay is enabled.
 Therefore, if you are enabling the binary relay, c ontent-aware
 
 ##### Message Relay Builder and Formatter Class Names
@@ -88,23 +78,22 @@ file.
 In the `         Message Builders        ` section:
 
 ``` xml
-    <messageBuilder contentType="image/png" 
+    <messageBuilder contentType="image/png"
                             class="org.wso2.carbon.relay.BinaryRelayBuilder"/>
 ```
 
 In the `         Message Formatters        ` section:
 
 ``` xml
-    <messageFormatter contentType="image/png" 
+    <messageFormatter contentType="image/png"
                             class="org.wso2.carbon.relay.ExpandingMessageFormatter"/>
 ```
 
 ## Message Relay Module Policy
 
 Syntax of Relay Module Policy.
-
-``` java
-    <wsp:Policy wsu:Id="MessageRelayPolicy" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy"
+```
+<wsp:Policy wsu:Id="MessageRelayPolicy" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy"
                     xmlns:wsmr="http://www.wso2.org/ns/2010/01/carbon/message-relay"
                     xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd">
             <wsmr:RelayAssertion>
@@ -120,7 +109,7 @@ Syntax of Relay Module Policy.
                     </wsp:All>
                 </wsp:Policy>
             </wsmr:RelayAssertion>
-    </wsp:Policy>
+</wsp:Policy>
 ```
 
 These are the assertions:
@@ -134,18 +123,10 @@ These are the assertions:
     message.
 -   **wsmr:builder** - A message builder to be used for a content type.
 
-!!! info
-
-Note
-
-After changing the policy, the user has to restart the ESB profile of
+> After changing the policy, the user has to restart the ESB profile of
 WSO2 EI for the changes to take effect.
 
-!!! info
-
-Note
-
-If the Message Relay is enabled for particular content type, there
+> If the Message Relay is enabled for particular content type, there
 cannot be any services with security enabled for that content type.
 
 ## Message Relay Module
@@ -158,33 +139,26 @@ message from the messages that went through the Message Relay. See
 To enable this module, the user has to enable the relay module globally
 in the `         axis2.xml.        `
 
-``` java
-    <module ref="relay"/>
+```
+<module ref="relay"/>
 ```
 
-Also, the user has to put the following phase into the
-`         InFlow        ` of `         axis2        ` .
+Also, the user has to put the following phase into the `InFlow` of `axis2`.
 
-``` java
-    <phase name="BuildingPhase"/>
+```
+<phase name="BuildingPhase"/>
 ```
 
 This module is designed to be used by Admin Services that runs inside
 the ESB profile. All the admin services are running with content type:
-`         application/soap+xml        ` . So if a user wants to use the
+`application/soap+xml`. So if a user wants to use the
 admin console of the ESB profile for receiving messages with content
-type `         application/soap+xml        ` , this module should be
+type `application/soap+xml`, this module should be
 used.
 
 Users can configure the module by going to the modules section in
 the admin console and then going to the relay module. The module
-configuration is specified as a module
-[policy](_Message_Relay_Module_Policy_) .
+configuration is specified as a module [policy](_Message_Relay_Module_Policy_).
 
-!!! info
-
-Note
-
-After changing the policy, the user has to restart the ESB for changes
+> After changing the policy, the user has to restart the ESB for changes
 to take effect.
-
