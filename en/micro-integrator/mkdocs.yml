@@ -123,6 +123,8 @@ nav:
         - 'Configuring the Task Scheduling Component': 'setup/configuring_task_scheduling_comp.md'
         - 'Governing External Reference Across Environments': 'setup/govern_ext_refs_across_env.md'
         - 'Enable SSL Tunneling through Proxy Server': 'setup/enabling_SSL_tunneling_thru_proxy_server.md'
+        - 'Configuring Message Builders and Formatters' : 'setup/message_builders_formatters/message-builders-and-formatters.md'
+        - 'Configuring Message Relay' : 'setup/message_builders_formatters/message-relay.md'
     - Developer Experience:
       - 'Continuous Development and Deployment' : 'develop/cicd.md'
       - 'Developing an Integration Use Case' : 'develop/developing-Cloud-Native-Integration.md'
