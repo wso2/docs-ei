@@ -7,8 +7,6 @@ This deployment scenario uses a two-node ESB cluster. That is, two ESB nodes are
 
 ![Micro Integrator Deployment Pattern](../../assets/img/deployment_ei.png)
 
-<a href=""><img src="../../../assets/img/deployment_ei.png"></a>
-
 ## Installing WSO2 Enterprise Integrator
 
 Follow the instructions on [downloading and installing WSO2 EI](../setup/installation/install_in_vm.md) on a single machine.
