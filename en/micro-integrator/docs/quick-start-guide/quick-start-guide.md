@@ -56,11 +56,13 @@ the **HelloWorld** service will return the following response: `{"Hello":"World"
             COPY hello-world-config-projectCompositeApplication/target/hello-world-config-projectCompositeApplication_1.0.0.car /home/wso2carbon/wso2mi/repository/deployment/server/carbonapps
 
             ```
+            
             **Note** that this file is configured to use the community version of the WSO2 Micro Integrator base Docker image (from DockerHub ). If you want to use the Micro Integrator that includes the latest product updates, you can update the image name in this Docker file as explained here .
         </details>
         <details>
             <summary>k8s-deployment.yaml</summary>
             This is sample Kubernetes configuration file that is configured to deploy WSO2 Micro Integrator in a Kubernetes cluster.
+    
             ```
             apiVersion: apps/v1
             kind: Deployment
