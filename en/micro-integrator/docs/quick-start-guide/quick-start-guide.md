@@ -57,7 +57,7 @@ the **HelloWorld** service will return the following response: `{"Hello":"World"
 
             ```
             
-            **Note** that this file is configured to use the community version of the WSO2 Micro Integrator base Docker image (from DockerHub ). If you want to use the Micro Integrator that includes the latest product updates, you can update the image name in this Docker file as explained here .
+           **Note** that this file is configured to use the community version of the WSO2 Micro Integrator base Docker image (from DockerHub ). If you want to use the Micro Integrator that includes the latest product updates, you can update the image name in this Docker file as explained here .
         </details>
         <details>
             <summary>k8s-deployment.yaml</summary>
