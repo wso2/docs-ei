@@ -19,8 +19,8 @@ the **HelloWorld** service will return the following response: `{"Hello":"World"
     Studio](../develop/working-with-WSO2-Integration-Studio.md) :
     1.  Download the <a href="../assets/attach/MI_QSG_HOME.zip">project file</a>
         for this guide, and extract it to a known location. Let's call
-        this **MI_QSG_HOME>**.
-    2.  Go to the **MI_GS_HOME>** directory.
+        this **MI_QSG_HOME**.
+    2.  Go to the **MI_GS_HOME** directory.
         The following project files, and Docker/Kubernetes configuration
         files are available.
         <details>
