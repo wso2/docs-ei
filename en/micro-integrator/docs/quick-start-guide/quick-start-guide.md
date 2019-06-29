@@ -7,7 +7,7 @@ instance of WSO2 Micro Integrator. You can deploy this HelloWorld
 service on a **Docker** container, on **Kubernetes**, or on a **VM**. When invoked,
 the **HelloWorld** service will return the following response: `{"Hello":"World"}`
 
-<a href=""><img src="../../assets/img/micro-integrator-01.png"></a>
+![Micro Integrator Deployment Pattern](../assets/img/micro-integrator-01.png)
 
 ### Set up the workspace
 
