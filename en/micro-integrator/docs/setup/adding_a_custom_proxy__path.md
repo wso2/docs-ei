@@ -48,7 +48,7 @@ WSO2 product servers as examples; WSO2 Application Server and WSO2 ESB
 as the back-end servers, and [nginx](http://nginx.org/) as the reverse
 proxy.
 
-Follow the steps given below. 
+Follow the steps given below.
 
 ### Step 1: Install and configure a reverse proxy
 
@@ -115,28 +115,28 @@ Follow the steps given below.
 
 9.  Open the `           /etc/nginx/sites-enabled/wso2          ` file
     and enter the following configurations.
-    
+
     ``` java
                 #Configurations for listener 8243.
                 server {
                     listen 8243;
                     server_name wso2test.com;
                     client_max_body_size 100M;
-                 
+
                     root /usr/share/nginx/www;
                     index index.html index.htm;
-                 
+
                     ssl on;
                     ssl_certificate /etc/nginx/ssl/server.crt;
                     ssl_certificate_key /etc/nginx/ssl/server.key;
-                 
+
                     #with portOffset 0 running AS
                     location /appserver/ {
                         proxy_pass https://wso2test.com:9443/;
                         proxy_redirect https://wso2test.com:8243/ https://wso2test.com:8243/appserver/;
                         proxy_cookie_path / /appserver;
                     }
-                 
+
                     #with portOffset 10 running ESB
                     location /esb/ {
                         proxy_pass https://wso2test.com:9453/;
@@ -144,23 +144,23 @@ Follow the steps given below.
                         proxy_cookie_path / /esb;
                     }
                 }
-            
+
                 #Configurations for listener 8280.
                 server {
                     listen 8280;
                     server_name wso2test.com;
                     client_max_body_size 100M;
-                 
+
                     root /usr/share/nginx/www;
                     index index.html index.htm;
-                 
+
                     #with portOffset 0 running AS
                     location /appserver/ {
                         proxy_pass http://wso2test.com:9763/;
                         proxy_redirect http://wso2test.com:8280/ http://wso2test.com:8280/appserver/;
                         proxy_cookie_path / /appserver;
                     }
-                 
+
                     #with portOffset 10 running ESB
                     location /esb/ {
                         proxy_pass http://wso2test.com:9773/;
@@ -169,7 +169,7 @@ Follow the steps given below.
                     }
                 }
     ```
-        
+
     > According to the nginx configuration, https requests with the /appserver/\* pattern are directed to the /\* pattern and then when the service is served to the client, it resolves the url pattern to /appserver/\*. This works the same for http requests.
 
 10. Save the file and restart the nginx server using the following
@@ -187,7 +187,7 @@ Follow the steps given below.
     `           /etc/hosts          ` file as shown below.  
 
     ``` java
-            127.0.0.1  wso2test.com 
+            127.0.0.1  wso2test.com
             127.0.0.1  as.wso2test.com
             127.0.0.1  esb.wso2test.com
     ```
@@ -252,13 +252,11 @@ Follow the steps given below.
     `           <PRODUCT_HOME>/repository/conf/tomcat/catalina-server.xml          `
     file and add the "proxyPort" entries.  
 
-        !!! note
-    
-        Note that after you define proxy ports (8243 and 8280) in the
+    > Note that after you define proxy ports (8243 and 8280) in the
         `           catalina-server.xml          ` file, it will no longer
         be possible to access the products using the normal ports (9443 and
         9453).
-    
+
 
     For example, the "proxyPort" entries for Application Server are as
     follows:
@@ -267,7 +265,7 @@ Follow the steps given below.
         <Connector  protocol="org.apache.coyote.http11.Http11NioProtocol"
                         port="9763"
                         proxyPort="8280"
-                        redirectPort="9443" 
+                        redirectPort="9443"
                         bindOnInit="false"
                         maxHttpHeaderSize="8192"
                         acceptorThreadCount="2"

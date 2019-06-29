@@ -17,7 +17,7 @@ the **HelloWorld** service will return the following response:
 -   Install [Curl](https://curl.haxx.se/) .
 -   To set up the integration workspace for this quick guide, we will
     use an integration project that was built using [WSO2 Integration
-    Studio](_WSO2_Integration_Studio_) :
+    Studio](../develop/working-with-WSO2-Integration-Studio.md) :
     1.  Download the [project file](attachments/119133388/119137072.zip)
         for this guide, and extract it to a known location. Let's call
         this `            <MI_QSG_HOME>           ` .

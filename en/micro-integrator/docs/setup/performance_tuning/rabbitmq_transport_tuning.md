@@ -4,15 +4,6 @@ RabbitMQ transport allows you to send or receive AMQP messages by
 calling an AMQP broker (RabbitMQ) directly. In order to improve the
 performance of the RabbitMQ transport you can do following.
 
--   [Set queue and exchange declaration parameters to
-    false](#TuningtheRabbitMQTransport-Setqueueandexchangedeclarationparameterstofalse)
--   [Increase the connection pool
-    size](#TuningtheRabbitMQTransport-Increasetheconnectionpoolsize)
--   [Increasing the member
-    count](#TuningtheRabbitMQTransport-Increasingthemembercount)
--   [Reuse the connection factory in the
-    publisher](#TuningtheRabbitMQTransport-Reusetheconnectionfactoryinthepublisher)
-
 ### Set queue and exchange declaration parameters to `         false        `
 
 Setting `         rabbitmq.queue.autodeclare        ` and
@@ -38,9 +29,6 @@ file.
     <parameter name="rabbitmq.connection.pool.size" locked="false">25</parameter>
 ```
 
-![](images/icons/grey_arrow_down.png){.expand-control-image} Sample
-Receiver Configuration
-
 ``` xml
     <transportReceiver name="rabbitmq" class="org.apache.axis2.transport.rabbitmq.RabbitMQListener">
        <parameter name="AMQPConnectionFactory" locked="false">
@@ -55,9 +43,6 @@ Receiver Configuration
     </transportReceiver>
 ```
 
-![](images/icons/grey_arrow_down.png){.expand-control-image} Sample
-Sender Configuration
-
 ``` xml
     <transportSender name="rabbitmq" class="org.apache.axis2.transport.rabbitmq.RabbitMQSender">
        <parameter name="RabbitMQConnectionFactory" locked="false">
@@ -71,7 +56,6 @@ Sender Configuration
        </parameter>
     </transportSender>
 ```
-
 ### Increasing the member count
 
 If you set the following parameter to false in the
