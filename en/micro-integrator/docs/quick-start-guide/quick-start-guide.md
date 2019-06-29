@@ -19,8 +19,8 @@ the **HelloWorld** service will return the following response: `{"Hello":"World"
     Studio](../develop/working-with-WSO2-Integration-Studio.md) :
     1.  Download the <a href="../assets/attach/MI_QSG_HOME.zip">project file</a>
         for this guide, and extract it to a known location. Let's call
-        this `<MI_QSG_HOME>           ` .
-    2.  Go to the `             <MI_GS_HOME>            ` directory .
+        this **MI_QSG_HOME>**.
+    2.  Go to the **MI_GS_HOME>** directory.
         The following project files, and Docker/Kubernetes configuration
         files are available.
         <details>
@@ -115,13 +115,12 @@ the **HelloWorld** service will return the following response: `{"Hello":"World"
 ### Run on Docker
 
 Once you have [set up your
-workspace](#QuickStartwithWSO2MicroIntegrator-Setuptheworkspace) , you
+workspace](#set-up-the-workspace), you
 can run the HelloWorld service on Docker:
 
 #### Build a Docker image
 
-Open a terminal, navigate to the `         <MI_QSG_HOME>        `
-directory (which stores the Dockerfile), and execute the following
+Open a terminal, navigate to the **MI_QSG_HOME** directory (which stores the Dockerfile), and execute the following
 command to build a Docker image with WSO2 Micro Integrator and the
 integration artifacts.
 
@@ -139,8 +138,7 @@ This command executes the following tasks:
 
 #### Run Docker container
 
-From the `         <MI_QSG_HOME>        ` directory, execute the
-following command to start a Docker container for the Micro Integrator.
+From the **MI_QSG_HOME>** directory, execute the following command to start a Docker container for the Micro Integrator.
 
 ``` java
 docker run -d -p 8290:8290 hello_world_docker_image
@@ -165,9 +163,7 @@ Upon invocation, you should be able to observe the following response:
 
 ### Run on Kubernetes
 
-Once you have [set up your
-workspace](#QuickStartwithWSO2MicroIntegrator-Setuptheworkspace) , you
-can run the HelloWorld service on Kubernetes:
+Once you have [set up your workspace](#set-up-the-workspace), you can run the HelloWorld service on Kubernetes:
 
 #### Install Minikube
 
@@ -197,7 +193,7 @@ as explained below.
 
 #### Build a Docker image
 
-Open a terminal, navigate to the `         <MI_QSG_HOME>        `
+Open a terminal, navigate to the **<MI_QSG_HOME>**
 directory (which stores the Dockerfile), and execute the following
 command to build a Docker image (with WSO2 Micro Integrator and the
 integration artifacts) **in the Minikube environment** .
@@ -211,7 +207,7 @@ docker build -t wso2-mi-hello-world .
 Follow the steps given below to start a Docker container for Docker
 image on Minikube.
 
-1.  Navigate to the `<MI_QSG_HOME>` directory
+1.  Navigate to the **MI_QSG_HOME>** directory
     (which stores the `k8s-deployment.yaml` file),
     and execute the following command:
 
@@ -267,7 +263,7 @@ Follow the steps given below to run the HelloWorld service on a Micro Integrator
 ### Download and install the Micro Integrator
 
 1. Go to the WSO2 Micro Integrator [product page](https://wso2.com/integration/micro-integrator/) and click **Download** to download the product installer (**.pkg** file).
-2. Double-click the installer to open the installation wizard, which will guide you through the installation. The installation location (**<MI_HOME>**) will depend on your OS:
+2. Double-click the installer to open the installation wizard, which will guide you through the installation. The installation location (**MI_HOME**) will depend on your OS:
     <table style="width:100%;">
     <colgroup>
       <col style="width: 9%" />
@@ -301,7 +297,7 @@ Follow the steps given below to run the HelloWorld service on a Micro Integrator
 
 ### Deploy the HelloWorld service
 
-Copy the CAR file of the HelloWorld service (**hello-world-config-projectCompositeApplication_1.0.0.car**), from the <MI_QSG_HOME>/hello-world-config-projectCompositeApplication/target/ directory to the <MI_HOME>/repository/deployment/server/carbonapps directory.
+Copy the CAR file of the HelloWorld service (**hello-world-config-projectCompositeApplication_1.0.0.car**), from the MI_QSG_HOME/hello-world-config-projectCompositeApplication/target/ directory to the MI_HOME/repository/deployment/server/carbonapps directory.
 
 ### Start the Micro Integrator
 
