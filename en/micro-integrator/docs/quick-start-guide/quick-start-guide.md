@@ -26,6 +26,7 @@ the **HelloWorld** service will return the following response: `{"Hello":"World"
         <details>
             <summary>hello-world-config-project</summary>
             This is the ESB Config Project folder with the integration artifacts (synapse artifacts) for the HelloWorld service (HelloWorld.xml). This service consists of the following REST API:
+    
             ```
             <api context="/hello-world" name="HelloWorld" xmlns="http://ws.apache.org/ns/synapse">
                 <resource methods="GET">
@@ -49,6 +50,7 @@ the **HelloWorld** service will return the following response: `{"Hello":"World"
         <details>
             <summary>Dockerfile</summary>
             This Docker configuration file is configured to build a Docker image for WSO2 Micro Integrator with the HelloWorld service.
+    
             ```
             FROM wso2/micro-integrator:1.0.0
             COPY hello-world-config-projectCompositeApplication/target/hello-world-config-projectCompositeApplication_1.0.0.car /home/wso2carbon/wso2mi/repository/deployment/server/carbonapps
