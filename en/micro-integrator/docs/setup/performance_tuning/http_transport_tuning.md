@@ -190,17 +190,13 @@ You can configure the NHTTP properties as required in the
 
     When there is an increased load, it is recommended to increase the
     number of threads mentioned in the properties above to balance it.  
-      
+
 
 -   Following are the HTTP listener thread pool properties:
 
-        !!! info
-    
-        Note
-    
-        Listener-side properties generally have the same values as the
+    > Listener-side properties generally have the same values as the
         sender-side properties .
-    
+
 
     | Property                                                 | Description                                                                                                                                                                                                                                                                                                                                                                               |  Default Value|
     |----------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|--------------:|

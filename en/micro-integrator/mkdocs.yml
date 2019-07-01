@@ -123,6 +123,8 @@ nav:
         - 'Configuring the Task Scheduling Component': 'setup/configuring_task_scheduling_comp.md'
         - 'Governing External Reference Across Environments': 'setup/govern_ext_refs_across_env.md'
         - 'Enable SSL Tunneling through Proxy Server': 'setup/enabling_SSL_tunneling_thru_proxy_server.md'
+        - 'Configuring Message Builders and Formatters' : 'setup/message_builders_formatters/message-builders-and-formatters.md'
+        - 'Configuring Message Relay' : 'setup/message_builders_formatters/message-relay.md'
     - Developer Experience:
       - 'Continuous Development and Deployment' : 'develop/cicd.md'
       - 'Developing an Integration Use Case' : 'develop/developing-Cloud-Native-Integration.md'
@@ -131,7 +133,6 @@ nav:
       - WSO2 Integration Studio:
         - 'WSO2 Integration Studio' : 'develop/wSO2-Integration-Studio.md'
         - 'Working with Integration Studio' : 'develop/working-with-WSO2-Integration-Studio.md'
-        - 'Working with Mediators via Integration Studio' : 'develop/working-with-Mediators-via-Tooling.md'
     - Use Cases:
       - Examples:
         - 'Using REST with a Proxy Service' : 'use-cases/examples/rest-with-a-proxy-service.md'
