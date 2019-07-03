@@ -22,7 +22,7 @@ below:
     `          ReceiveAndCount         ` to demostrate the debugging
     functionality. To open this Siddhi application, click on the
     sample.  
-    ![Streaming Integration Studio Welcome Page](https://github.com/wso2/docs-ei/blob/master/en/streaming-integrator/theme/material/images/Debugging-Siddhi-Applications/Stream_Processor_Studio_Welcome_Page.png){width="800"}  
+    ![Streaming Integration Studio Welcome Page](../images/Debugging-Siddhi-Applications/Stream_Processor_Studio_Welcome_Page.png)  
     The `          ReceiveAndCount         ` Siddhi application opens in
     a new tab.
 3.  In order to debug the Siddhi file, you need to first save it in the
@@ -36,16 +36,16 @@ below:
         specified in the previous step.
     
     As a result, the following log is printed in the console.  
-    ![Siddhi application successfully started in debug mode](https://github.com/wso2/docs-ei/blob/master/en/streaming-integrator/theme/material/images/Debugging-Siddhi-Applications/Debug-Mode-Console-Message.png){width="913"}  
+    ![Siddhi application successfully started in debug mode](../images/Debugging-Siddhi-Applications/Debug-Mode-Console-Message.png)  
     Also, another console tab is opened with debug options as shown
     below.  
-    ![Debug console tab](https://github.com/wso2/docs-ei/blob/master/en/streaming-integrator/theme/material/images/Debugging-Siddhi-Applications/Console_Tab.png){width="913"}  
+    ![Debug console tab](../images/Debugging-Siddhi-Applications/Console_Tab.png)  
 
 5.  Apply debug points for the required queries. To mark a debug point,
     you need to click on the left of the required line number so that it
     is marked with a dot as shown in the image below.
 
-    ![Marking debug points](https://github.com/wso2/docs-ei/blob/master/en/streaming-integrator/theme/material/images/Debugging-Siddhi-Applications/Debug-Points.png){width="800"}
+    ![Marking debug points](../images/Debugging-Siddhi-Applications/Debug-Points.png)
 
     !!! info
         You can only mark lines with `from` or `insert into` statements as debug points.
@@ -64,7 +64,7 @@ below:
         - [Simulating Multiple Events via Databases](_Simulating_Multiple_Events_via_Databases_)
         - [Generating Random Data](_Generating_Random_Data_)
     
-    ![Debug points being hit](https://github.com/wso2/docs-ei/blob/master/en/streaming-integrator/theme/material/imagess/Debugging-Siddhi-Applications/Hitting-Debug-Points.png){width="800"}  
+    ![Debug points being hit](../imagess/Debugging-Siddhi-Applications/Hitting-Debug-Points.png) 
     Two viewing options are provided under both **Event State** and the
     **Query State** sections of the **Debug** tab for each debug point
     hit as shown above.
@@ -72,7 +72,7 @@ below:
 7.  To expand the tree and understand the details of the processed
     attributes  and their values etc., click the following icon for the
     relevant query.  
-    ![Expand icon](https://github.com/wso2/docs-ei/blob/master/en/streaming-integrator/theme/material/images/Debugging-Siddhi-Applications/Expand-Icon.png){width="20"}
+    ![Expand icon](../images/Debugging-Siddhi-Applications/Expand-Icon.png)
 
     When you observe the details, note that the value for
     `outputData` in the **Event State** section is
@@ -80,7 +80,7 @@ below:
     query. Also note that the value calculated via the
     `count()` function is still displayed as
     `0` in the **Query State** section.  
-    ![Debug results](https://github.com/wso2/docs-ei/blob/master/en/streaming-integrator/theme/material/images/Debugging-Siddhi-Applications/Debug-Results.png){width="800"}  
+    ![Debug results](../images/Debugging-Siddhi-Applications/Debug-Results.png) 
     The following icons are displayed in the **Debug** tab of the
     console:
 
@@ -94,13 +94,13 @@ below:
     <tbody>
     <tr class="odd">
     <td><div class="content-wrapper">
-    <p><img src="https://github.com/wso2/docs-ei/blob/master/en/streaming-integrator/theme/material/images/Debugging-Siddhi-Applications/Resume.png" /></p>
+    <p><img src="../images/Debugging-Siddhi-Applications/Resume.png" /></p>
     </div></td>
     <td>Click this to proceed from the current debug point to the next available debug point. If there is no debug point marked after the current debug point, the existing debug point continues to be displayed in the tab.</td>
     </tr>
     <tr class="even">
     <td><div class="content-wrapper">
-    <p><img src="https://github.com/wso2/docs-ei/blob/master/en/streaming-integrator/theme/material/images/Debugging-Siddhi-Applications/Step_Over.png" /></p>
+    <p><img src="../images/Debugging-Siddhi-Applications/Step_Over.png" /></p>
     </div></td>
     <td>Click this to proceed from the current debug point even if no debug point exists after it.</td>
     </tr>
@@ -113,4 +113,4 @@ below:
     above you can further analyze the processed attributes and its values as shown below. Note that
     after the `count()` aggregate function, a value of 1 has been
     calculated.  
-    ![Debugging results](https://github.com/wso2/docs-ei/blob/master/en/streaming-integrator/theme/material/images/Debugging-Siddhi-Applications/Debug-Results-2.png){width="800"}
+    ![Debugging results](../images/Debugging-Siddhi-Applications/Debug-Results-2.png)
