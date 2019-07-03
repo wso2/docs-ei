@@ -94,13 +94,13 @@ below:
     <tbody>
     <tr class="odd">
     <td><div class="content-wrapper">
-    <p><img src="../images/Debugging-Siddhi-Applications/Resume.png" /></p>
+    <p><img src="../../images/Debugging-Siddhi-Applications/Resume.png" /></p>
     </div></td>
     <td>Click this to proceed from the current debug point to the next available debug point. If there is no debug point marked after the current debug point, the existing debug point continues to be displayed in the tab.</td>
     </tr>
     <tr class="even">
     <td><div class="content-wrapper">
-    <p><img src="../images/Debugging-Siddhi-Applications/Step_Over.png" /></p>
+    <p><img src="../../images/Debugging-Siddhi-Applications/Step_Over.png" /></p>
     </div></td>
     <td>Click this to proceed from the current debug point even if no debug point exists after it.</td>
     </tr>
