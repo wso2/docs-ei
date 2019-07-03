@@ -1,1 +1,0 @@
-#Creating a Simple Streaming Application
