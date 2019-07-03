@@ -57,32 +57,38 @@ Open a text file and copy-paste following app into it.
 @App:description('Consume events from a Kafka Topic and log the messages on the console.')
 
 @source(type='kafka',
-        topic.list='kafka_topic',
+        topic.list='productions',
         threading.option='single.thread',
         group.id="group",
         bootstrap.servers='localhost:9092',
-        @map(type='json'))
-@sink(type='log')        
+        @map(type='json'))        
 define stream SweetProductionStream (name string, amount double);
+
+@sink(type='log')
+define stream OutputStream (name string, amount double);
+
+from SweetProductionStream
+select *
+insert into OutputStream;
 ```
 
 Save this file as HelloKafka.siddhi into {WSO2SPHome}/wso2/worker/deployment/siddhi-files directory.
 
-> **_INFO:_**  We just created a Siddhi app which listens to Kafka topic 'kafka_topic' and log any incoming messages. However, we still either have not created such a Kafka topic or have pushed any messages to it.  We will do that in the following section.
+> **_INFO:_**  We just created a Siddhi app which listens to Kafka topic 'productions' and log any incoming messages. However, we still either have not created such a Kafka topic or have pushed any messages to it.  We will do that in the following section.
 
 ####Generating Kafka messages
 
 Now let's generate some Kafka messages so that the Stream Processor would receive those. 
 
-First, let's create a topic named "kafka_topic" in the Kafka server.
+First, let's create a topic named "productions" in the Kafka server.
 
-Navigate to {KafkaHome} and run following command:
+To do that, navigate to {KafkaHome} and run following command:
 ```
-bin/kafka-topics.sh --create --bootstrap-server localhost:9092 --replication-factor 1 --partitions 1 --topic kafka_topic
+bin/kafka-topics.sh --create --bootstrap-server localhost:9092 --replication-factor 1 --partitions 1 --topic productions
 ```
 Now let's run the Kafka command line client to push a few messages to the Kafka server.
 ```
-bin/kafka-console-producer.sh --broker-list localhost:9092 --topic kafka_topic
+bin/kafka-console-producer.sh --broker-list localhost:9092 --topic productions
 ```
 Now you are prompted to type the messages on the console. Type following on the command prompt:
 ```
@@ -92,5 +98,5 @@ This will push a message to Kafka Server which will then be consumed by the Sidd
 ```
 INFO {org.wso2.siddhi.core.stream.output.sink.LogSink} - HelloKafka : SweetProductionStream : Event{timestamp=1562069868006, data=[KitKat, 100.0], isExpired=false}
 ```
-
+####Configuring more Kafka Consumer parameters
 
