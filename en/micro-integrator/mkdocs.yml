@@ -341,6 +341,7 @@ nav:
           - 'Configuring WebLogic' : 'references/transports/jms/configure-with-WebLogic.md'
           - 'Configuring HornetQ' : 'references/transports/jms/configure-with-HornetQ.md'
           - 'Configuring Multiple Brokers' : 'references/transports/jms/configure-with-multiple-brokers.md'
+      - 'Using Keystores' : 'references/using_keystore.md'
       - 'Error Handling' : 'references/error_handling.md'
       - 'Best Practices' : 'references/best-Practices.md'
     - '': page-not-found.md
