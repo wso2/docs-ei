@@ -27,36 +27,35 @@ If you used the **installer** to install the product, this is located in
 a place specific to your OS as shown below:
 
 <table style="width:100%;">
-<colgroup>
-<col style="width: 9%" />
-<col style="width: 90%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>OS</th>
-<th>Home directory</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Mac OS</td>
-<td><code>              /Library/WSO2/MicroIntegrator/1.0.0             </code></td>
-</tr>
-<tr class="even">
-<td>Windows</td>
-<td><code>              C:\Program Files\WSO2\MicroIntegrator\1.0.0             </code></td>
-</tr>
-<tr class="odd">
-<td>Ubuntu</td>
-<td><code>              /usr/lib/wso2/MicroIntegrator/1.0.0             </code></td>
-</tr>
-<tr class="even">
-<td>CentOS</td>
-<td><code>              /usr/lib64/MicroIntegrator/1.0.0             </code></td>
-</tr>
-</tbody>
+   <colgroup>
+      <col style="width: 9%" />
+      <col style="width: 90%" />
+   </colgroup>
+   <thead>
+      <tr class="header">
+         <th>OS</th>
+         <th>Home directory</th>
+      </tr>
+   </thead>
+   <tbody>
+      <tr class="odd">
+         <td>Mac OS</td>
+         <td><code>              /Library/WSO2/MicroIntegrator/1.0.0             </code></td>
+      </tr>
+      <tr class="even">
+         <td>Windows</td>
+         <td><code>              C:\Program Files\WSO2\MicroIntegrator\1.0.0             </code></td>
+      </tr>
+      <tr class="odd">
+         <td>Ubuntu</td>
+         <td><code>              /usr/lib/wso2/MicroIntegrator/1.0.0             </code></td>
+      </tr>
+      <tr class="even">
+         <td>CentOS</td>
+         <td><code>              /usr/lib64/MicroIntegrator/1.0.0             </code></td>
+      </tr>
+   </tbody>
 </table>
-
 ### Uninstalling the product
 
 If you used the **installer** to install the product, you can uninstall

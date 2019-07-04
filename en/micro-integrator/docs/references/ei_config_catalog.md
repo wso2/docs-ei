@@ -914,7 +914,7 @@ create_admin_account=true
 <div class="mb-config-catalog">
     <section class="title">
         <div class="mb-config-options">    
-            <h2>Configuring the TLS keystore</h2>
+            <h2 id="configuring-the-tls-keystore">Configuring the TLS keystore</h2>
         </div>
         <div class="mb-config-example"></div>
     </section>
@@ -1050,7 +1050,7 @@ key_password="wso2carbon"
 <div class="mb-config-catalog">
     <section class="title">
         <div class="mb-config-options">    
-            <h2>Configuring the internal keystore</h2>
+            <h2 id="configuring-the-internal-keystore">Configuring the internal keystore</h2>
         </div>
         <div class="mb-config-example"></div>
     </section>

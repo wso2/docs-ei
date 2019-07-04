@@ -50,19 +50,17 @@ below is how to discover them using the
     `           osgi> listAdminServices          `
 5.  The list of admin services of your product are listed. For
     example:  
-    ![](attachments/38479046/75108145.png)
+    <a href=""><img src="../../assets/img/listAdminServices.png"></a>
 6.  To see the service contract of an admin service, select the admin
     service's URL and then paste it in your browser with **?wsdl** at
     the end. For example:  
     `            https://localhost:9443/services/RemoteUserStoreManagerService?wsdl           `
 
-        !!! tip
-    
-        In products like WSO2 ESB and WSO2 API Manager, the port is 8243
+    > In products like WSO2 ESB and WSO2 API Manager, the port is 8243
         (assuming 0 port offset). However, you should be accessing the Admin
         Services via the management console port, which is 9443 when there
         is no port offset.
-    
+
 
 7.  Note that the admin service's URL appears as follows in the list you
     discovered in step 6:
@@ -71,11 +69,8 @@ below is how to discover them using the
         RemoteUserStoreManagerService, RemoteUserStoreManagerService, https://<host IP>:9443/services/RemoteUserStoreManagerService/  
     ```
 
-        !!! note
-    
-        After discovering admin service you can restart the server without
-        `            -DosgiConsole           `
-    
+    > After discovering admin service you can restart the server without `-DosgiConsole`
+
 
 ### Invoking an admin service
 
@@ -88,9 +83,7 @@ basic authentication. To invoke a service, you do the following:
 1.  Authenticate yourself and get the session cookie.
 2.  Generate the client stubs to access the back-end Web services.
 
-!!! tip
-
-To generate the stubs, you can write your own client program using the
+> To generate the stubs, you can write your own client program using the
 Axis2 client API or use an existing tool like
 [SoapUI](http://www.soapui.org/) (4.5.1 or later) or wsdl2java.
 
@@ -105,13 +98,10 @@ You can also use the Java client program given
 to invoke admin services. All dependency JAR files that you need to run
 this client are found in the `          /lib         ` directory.
 
-
 #### Authenticate the user
 
 The example code below authenticates the user and gets the session
 cookie:
-
-  
 
 ``` java
      import org.apache.axis2.AxisFault;  
@@ -121,52 +111,45 @@ cookie:
      import org.wso2.carbon.authenticator.stub.LogoutAuthenticationExceptionException;  
      import org.apache.axis2.context.ServiceContext;  
      import java.rmi.RemoteException;  
-       
+
      public class LoginAdminServiceClient {  
        private final String serviceName = "AuthenticationAdmin";  
          private AuthenticationAdminStub authenticationAdminStub;  
          private String endPoint;  
-       
+
          public LoginAdminServiceClient(String backEndUrl) throws AxisFault {  
            this.endPoint = backEndUrl + "/services/" + serviceName;  
            authenticationAdminStub = new AuthenticationAdminStub(endPoint);  
          }  
-       
+
          public String authenticate(String userName, String password) throws RemoteException,  
                                            LoginAuthenticationExceptionException {  
-       
+
            String sessionCookie = null;  
-       
+
            if (authenticationAdminStub.login(userName, password, "localhost")) {  
              System.out.println("Login Successful");  
-       
+
              ServiceContext serviceContext = authenticationAdminStub.  
                  _getServiceClient().getLastOperationContext().getServiceContext();  
              sessionCookie = (String) serviceContext.getProperty(HTTPConstants.COOKIE_STRING);  
              System.out.println(sessionCookie);  
            }  
-       
+
            return sessionCookie;  
          }  
-       
+
          public void logOut() throws RemoteException, LogoutAuthenticationExceptionException {  
            authenticationAdminStub.logout();  
          }  
      }
 ```
 
-!!! tip
+> To resolve dependency issues, if any, add the following dependency JARs
+location to the class path: `<PRODUCT_HOME>/repository/components/plugins`.
 
-To resolve dependency issues, if any, add the following dependency JARs
-location to the class path:
-`           <PRODUCT_HOME>/repository/components/plugins          ` .
-
-!!! tip
-
-The the `           AuthenticationAdminStub          ` class requires
-`           org.apache.axis2.context.ConfigurationContext          ` as
+> The the `AuthenticationAdminStub` class requires `org.apache.axis2.context.ConfigurationContext` as
 a parameter. You can give a null value there.
-
 
 #### Generate the client stubs
 
@@ -186,34 +169,34 @@ find in
      import org.wso2.carbon.service.mgt.stub.ServiceAdminStub;  
      import org.wso2.carbon.service.mgt.stub.types.carbon.ServiceMetaDataWrapper;  
      import java.rmi.RemoteException;  
-       
+
      public class ServiceAdminClient {  
        private final String serviceName = "ServiceAdmin";  
        private ServiceAdminStub serviceAdminStub;  
        private String endPoint;  
-       
+
        public ServiceAdminClient(String backEndUrl, String sessionCookie) throws AxisFault {  
          this.endPoint = backEndUrl + "/services/" + serviceName;  
          serviceAdminStub = new ServiceAdminStub(endPoint);  
          //Authenticate Your stub from sessionCooke  
          ServiceClient serviceClient;  
          Options option;  
-       
+
          serviceClient = serviceAdminStub._getServiceClient();  
          option = serviceClient.getOptions();  
          option.setManageSession(true);  
          option.setProperty(org.apache.axis2.transport.http.HTTPConstants.COOKIE_STRING, sessionCookie);  
        }  
-       
+
        public void deleteService(String[] serviceGroup) throws RemoteException {  
          serviceAdminStub.deleteServiceGroups(serviceGroup);  
-       
+
        }  
-       
+
        public ServiceMetaDataWrapper listServices() throws RemoteException {  
          return serviceAdminStub.listServices("ALL", "*", 0);  
        }  
-     } 
+     }
 ```
 
 The following sample code lists the back-end Web services:
@@ -223,9 +206,9 @@ The following sample code lists the back-end Web services:
      import org.wso2.carbon.authenticator.stub.LogoutAuthenticationExceptionException;  
      import org.wso2.carbon.service.mgt.stub.types.carbon.ServiceMetaData;  
      import org.wso2.carbon.service.mgt.stub.types.carbon.ServiceMetaDataWrapper;  
-       
+
      import java.rmi.RemoteException;  
-       
+
      public class ListServices {  
        public static void main(String[] args)  
            throws RemoteException, LoginAuthenticationExceptionException,  
@@ -234,7 +217,7 @@ The following sample code lists the back-end Web services:
          System.setProperty("javax.net.ssl.trustStorePassword", "wso2carbon");  
          System.setProperty("javax.net.ssl.trustStoreType", "JKS");  
          String backEndUrl = "https://localhost:9443";  
-       
+
          LoginAdminServiceClient login = new LoginAdminServiceClient(backEndUrl);  
          String session = login.authenticate("admin", "admin");  
          ServiceAdminClient serviceAdminClient = new ServiceAdminClient(backEndUrl, session);  
@@ -243,7 +226,7 @@ The following sample code lists the back-end Web services:
          for (ServiceMetaData serviceData : serviceList.getServices()) {  
            System.out.println(serviceData.getName());  
          }  
-       
+
          login.logOut();  
        }  
      }  

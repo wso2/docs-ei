@@ -1,31 +1,5 @@
 # Working with Message Builders and Formatters
 
--   [Overview](#WorkingwithMessageBuildersandFormatters-Overview)
--   [Configuring message builders and
-    formatters](#WorkingwithMessageBuildersandFormatters-Configuringmessagebuildersandformatters)
--   [Using message
-    relay](#WorkingwithMessageBuildersandFormatters-Usingmessagerelay)
--   [Handling messages with no content
-    type](#WorkingwithMessageBuildersandFormatters-Handlingmessageswithnocontenttype)
--   [Handling text/csv
-    messages](#WorkingwithMessageBuildersandFormatters-Handlingtext/csvmessages)
--   [Handling illegal XML characters in plain text
-    payloads](#WorkingwithMessageBuildersandFormatters-HandlingillegalXMLcharactersinplaintextpayloads)
--   [JSON message builders and
-    formatters](#WorkingwithMessageBuildersandFormatters-MessageBuildersandFormattersJSONmessagebuildersandformatters)
-    -   [Default message builder and
-        formatter](#WorkingwithMessageBuildersandFormatters-Defaultmessagebuilderandformatter)
-    -   [Other message builders and
-        formatters](#WorkingwithMessageBuildersandFormatters-Othermessagebuildersandformatters)
-    -   [Validating JSON
-        messages](#WorkingwithMessageBuildersandFormatters-ValidatingJSONmessages)
--   [Writing a custom Message Builder and
-    Formatter](#WorkingwithMessageBuildersandFormatters-WritingacustomMessageBuilderandFormatter)
-    -   [Custom message
-        builder](#WorkingwithMessageBuildersandFormatters-Custommessagebuilder)
-    -   [Custom message
-        formatter](#WorkingwithMessageBuildersandFormatters-Custommessageformatter)
-
 ### Overview
 
 When a message comes in to the ESB profile of WSO2 Enterprise Integrator
@@ -37,7 +11,7 @@ the outgoing stream from the message. As with message builders, the
 message formatter is selected based on the message's content type. In a
 typical routing scenario of the ESB, here is the flow:
 
-![](attachments/119131526/119131527.png){width="763" height="143"}
+<a href=""><img src="../../../assets/img/message-builders-formatters.png"></a>
 
 You can use the messageType property to change the message's content
 type as it flows through ESB. For example, if the incoming message is in
@@ -111,9 +85,9 @@ request/response payload of CSV by configuring the
 `         org.apache.axis2.format.PlainTextFormatter        ` for the
 text/csv content type in `         axis2.xml        ` . For example:
 
-``` html/xml
-    <messagebuilder contenttype="text/csv" class="org.apache.axis2.format.PlainTextBuilder"/>
-    <messageformatter contenttype="text/csv" class="org.apache.axis2.format.PlainTextFormatter"/>
+```java
+<messagebuilder contenttype="text/csv" class="org.apache.axis2.format.PlainTextBuilder"/>
+<messageformatter contenttype="text/csv" class="org.apache.axis2.format.PlainTextFormatter"/>
 ```
 
 When a text/csv message comes into the ESB, the log will include an
@@ -181,19 +155,14 @@ mediation flow begins, you need to add the message builder and formatter
 shown below. Note that some data loss can occur during the JSON to XML
 to JSON conversion process.
 
--   `           <parameter name="passthruJsonBuilder">org.apache.synapse.commons.json.JsonBuilder</parameter>          `
-
--   `           <parameter name="passthruJsonFormatter">org.apache.synapse.commons.json.JsonFormatter</parameter>          `
+- `<parameter name="passthruJsonBuilder">org.apache.synapse.commons.json.JsonBuilder<parameter>`
+- `<parameter name="passthruJsonFormatter">org.apache.synapse.commons.json.JsonFormatter<parameter>`
 
 You can enable the following builders and formatters for JSON mapping in
 data services.
 
--   \<parameter name="dsJsonBuilder"\>
-    `          org.apache.axis2.json.gson.JsonBuilder         `
-    \</parameter\>
--   \<parameter name="dsJsonFormatter"\>
-    `          org.apache.axis2.json.JSONMessageFormatter         `
-    \</parameter\>
+-  `\<parameter name="dsJsonBuilder"\>org.apache.axis2.json.gson.JsonBuilder\</parameter\>`
+-  `\<parameter name="dsJsonFormatter"\>org.apache.axis2.json.JSONMessageFormatter\</parameter\>`
 
 You can also enable the following builders and formatters if necessary.
 Note that this is necessary for compatibility with WSO2 ESB:
@@ -208,37 +177,31 @@ Note that this is necessary for compatibility with WSO2 ESB:
 -   `          <parameter name="passthruJSONBuilder">org.apache.axis2.json.JSONBadgerfishOMBuilder</parameter>         `
 -   `           <parameter name="passthruJSONFormatter">org.apache.axis2.json.JSONBadgerfishMessageFormatter</parameter>          `
 
-!!! note
-
-Always use the same type of builder and formatter combination. Mixing
+> Always use the same type of builder and formatter combination. Mixing
 different builders and formatters will cause errors at runtime.
 
-!!! tip
-
-If you want the ESB Profile of WSO2 EI to handle JSON payloads that are
+> If you want the ESB Profile of WSO2 EI to handle JSON payloads that are
 sent using a media type other than `         application/json        ` ,
 you must register the JSON builder and formatter for that media type in
 the following two files at minimum (for best results, register them in
 all Axis2 configuration files found in the
 `         <EI_HOME>/conf/axis2        ` directory):
 
--   `          <EI_HOME>/conf/axis2/axis2.xml         `
+-   `         <EI_HOME>/conf/axis2/axis2.xml         `
 -   `          <EI_HOME>/conf/axis2/axis2_blocking_client.xml         `
 
 For example, if the media type is `         text/javascript        ` ,
 register the message builder and formatter as follows:
 
-``` html/xml
-    <messageBuilder contentType="text/javascript" 
+```java
+<messageBuilder contentType="text/javascript"
                    class="org.apache.synapse.commons.json.JsonStreamBuilder"/>
-    
-    <messageFormatter contentType="text/javascript" 
-                    class="org.apache.synapse.commons.json.JsonStreamFormatter"/> 
-```
-    
-!!! note
 
-When you modify the builders/formatters in Axis2 configuration, make
+<messageFormatter contentType="text/javascript"
+                    class="org.apache.synapse.commons.json.JsonStreamFormatter"/>
+```
+
+> When you modify the builders/formatters in Axis2 configuration, make
 sure that you have enabled only one correct message builder/formatter
 pair for a given media type.
 
@@ -278,7 +241,7 @@ processed in the WSO2 EI mediation flow.
 
     ``` xml
             package org.test.builder;
-        
+
             import org.apache.axiom.om.OMAbstractFactory;
             import org.apache.axiom.om.OMElement;
             import org.apache.axiom.om.impl.OMNodeEx;
@@ -294,27 +257,27 @@ processed in the WSO2 EI mediation flow.
             import org.apache.axis2.builder.Builder;
             import org.apache.axis2.context.MessageContext;
             import org.apache.commons.codec.binary.Base64;
-        
+
             import javax.xml.stream.XMLStreamException;
             import java.io.IOException;
             import java.io.InputStream;
             import java.io.PushbackInputStream;
-        
+
             public class CustomBuilderForTextXml implements Builder{
                 public OMElement processDocument(InputStream inputStream, String s, MessageContext messageContext) throws AxisFault {
                     SOAPFactory soapFactory = OMAbstractFactory.getSOAP11Factory();
                     SOAPEnvelope soapEnvelope = soapFactory.getDefaultEnvelope();
-        
+
                     PushbackInputStream pushbackInputStream = new PushbackInputStream(inputStream);
-        
+
                     try {
                         int byteVal = pushbackInputStream.read();
                         if (byteVal != -1) {
                             pushbackInputStream.unread(byteVal);
-        
+
                             javax.xml.stream.XMLStreamReader xmlReader = StAXUtils.createXMLStreamReader(StAXParserConfiguration.SOAP,
                                     pushbackInputStream, (String) messageContext.getProperty(Constants.Configuration.CHARACTER_SET_ENCODING));
-        
+
                             StAXBuilder builder = new StAXOMBuilder(xmlReader);
                             OMNodeEx documentElement = (OMNodeEx) builder.getDocumentElement();
                             documentElement.setParent(null);
@@ -329,7 +292,7 @@ processed in the WSO2 EI mediation flow.
                     } catch (XMLStreamException e) {
                         e.printStackTrace();
                     }
-        
+
                     return soapEnvelope;
                 }
             }
@@ -369,11 +332,8 @@ environment](https://docs.wso2.com/display/EI611/Product+Administration#ProductA
 ):
 
 ``` xml
-    <messageFormatter contentType= "text/xml" class="org.apache.axis2.transport.http.SOAPMessageFormatter" /> 
+    <messageFormatter contentType= "text/xml" class="org.apache.axis2.transport.http.SOAPMessageFormatter" />
 ```
 
-!!! note
-
-The class name used in the above line should be the name used for the
+> The class name used in the above line should be the name used for the
 class when writing the formatter.
-

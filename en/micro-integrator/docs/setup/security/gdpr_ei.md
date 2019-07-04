@@ -78,7 +78,7 @@ The following tools are shipped with WSO2 EI:
         in WSO2
         Products](https://docs.wso2.com/display/ADMIN44x/Removing+References+to+Deleted+User+Identities+in+WSO2+Products)
         in the WSO2 Administration Guide.
-    
+
 
 -   In addition to this tool, the BPS profile also contains a set of SQL
     scripts that can remove PII by completely removing any process
@@ -172,7 +172,7 @@ Let's look at how to anonymize the username value in log files.
 
     ``` java
             {
-             "processors" : [ 
+             "processors" : [
                "log-file"
              ],
              "directories": [
@@ -202,15 +202,13 @@ Let's look at how to anonymize the username value in log files.
         the `             <EI_HOME>/repository/logs/            `
         directory.
 
-                !!! note
-        
-                Be sure to replace the "log-file-path" value with the correct
+        > Be sure to replace the "log-file-path" value with the correct
                 absolute path to the location where the log files are stored. If
                 you are **on Windows** , be sure to use the forward slash ("/")
                 instead of the back slash ("\\"). For example:
                 `             C:/Users/Administrator/Desktop/wso2ei-6.2.0/repository/log            `
                 .
-        
+
 
     -   **"log-file-name-regex"** : This gives the list of log files
         (stored in the log-file-path) that will persist the user's PII.
@@ -258,7 +256,7 @@ Let's look at how to anonymize the username value in log files.
         this
         [link](https://docs.wso2.com/display/ADMIN44x/Removing+References+to+Deleted+User+Identities+in+WSO2+Products)
         .
-    
+
 
 ### Deleting original (archived) log files
 

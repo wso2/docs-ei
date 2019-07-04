@@ -15,7 +15,7 @@
 # under the License.
 
 # Project information
-site_name: WSO2 Enterprise Integrator Documentation
+site_name: Streaming Integration Documentation
 site_description: Documentation for WSO2 Enterprise Integrator
 site_author: WSO2
 site_url: https://wso2.com/integration/
@@ -78,7 +78,7 @@ nav:
       - 'Working with the Source View': 'develop/working-with-source-view.md'
       - 'Working with the Design View': 'develop/working-with-design-view.md'
     - 'Testing Siddhi Applications':
-      - 'Testing a Siddhi Application': 'develop/testing-a-siddhi-application.md'
+      - 'Testing a Siddhi Application': 'develop/testing-a-Siddhi-Application.md'
       - 'Simulating Events': 'develop/simulating-events.md'
     - 'Debugging Siddhi Applications': 'develop/debugging_siddhi_applications.md'
     - 'Exporting Siddhi Files':
@@ -111,7 +111,7 @@ nav:
     - 'Working with Siddhi Connectors':
       - 'Downloading and Installing Siddhi Connectors': 'admin/downloading-and-Installing-Siddhi-Extensions.md'
       - 'Writing Custom Siddhi Extensions': 'admin/writing-Custom-Siddhi-Extensions.md'
-      - 'Configuring System Parameters for Siddhi Extensions': 'admin/configuring-System-Parameters-for-Siddhi-Extensions.md
+      - 'Configuring System Parameters for Siddhi Extensions': 'admin/configuring-System-Parameters-for-Siddhi-Extensions.md'
     - 'Creating Business Rules Templates': 'admin/creating-business-rules-templates.md'
     - 'Monitoring the Streaming Integrator': 'admin/monitoring-the streaming-integrator'
     - 'General Data Protection Regulations': 'admin/general-data-protection-regulations.md'
