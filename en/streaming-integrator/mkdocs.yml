@@ -78,7 +78,7 @@ nav:
       - 'Working with the Source View': 'develop/working-with-source-view.md'
       - 'Working with the Design View': 'develop/working-with-design-view.md'
     - 'Testing Siddhi Applications':
-      - 'Testing a Siddhi Application': 'develop/testing-a-siddhi-application.md'
+      - 'Testing a Siddhi Application': 'develop/testing-a-Siddhi-Application.md'
       - 'Simulating Events': 'develop/simulating-events.md'
     - 'Debugging Siddhi Applications': 'develop/debugging_siddhi_applications.md'
     - 'Exporting Siddhi Files':

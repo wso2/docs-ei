@@ -1,0 +1,2211 @@
+<!--
+ * Copyright (c) 2019, WSO2 Inc. (http://www.wso2.org) All Rights Reserved.
+ *
+ * WSO2 Inc. licenses this file to you under the Apache License,
+ * Version 2.0 (the "License"); you may not use this file except
+ * in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied. See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
+-->
+
+
+
+
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      <meta http-equiv="x-ua-compatible" content="ie=edge">
+      
+        <meta name="description" content="Documentation for WSO2 Enterprise Integrator">
+      
+      
+        <link rel="canonical" href="https://wso2.com/integration/setup/defining-Tables-for-Physical-Stores/">
+      
+      
+        <meta name="author" content="WSO2">
+      
+      
+        <meta name="lang:clipboard.copy" content="Copy to clipboard">
+      
+        <meta name="lang:clipboard.copied" content="Copied to clipboard">
+      
+        <meta name="lang:search.language" content="en">
+      
+        <meta name="lang:search.pipeline.stopwords" content="True">
+      
+        <meta name="lang:search.pipeline.trimmer" content="True">
+      
+        <meta name="lang:search.result.none" content="No matching documents">
+      
+        <meta name="lang:search.result.one" content="1 matching document">
+      
+        <meta name="lang:search.result.other" content="# matching documents">
+      
+        <meta name="lang:search.tokenizer" content="[\s\-]+">
+      
+      <link rel="shortcut icon" href="../../images/favicon.png">
+      <meta name="generator" content="mkdocs-1.0.4, mkdocs-material-4.0.2">
+    
+    
+      
+        <title>Defining Tables for Physical Stores - Streaming Integration Documentation</title>
+      
+    
+    
+  
+      <link rel="stylesheet" href="../../assets/stylesheets/application.982221ab.css">
+      
+        <link rel="stylesheet" href="../../assets/stylesheets/application-palette.224b79ff.css">
+      
+      
+        
+        
+        <meta name="theme-color" content="#ff7043">
+      
+    
+  <link rel="stylesheet" href="../../assets/fonts/font-awesome.css">
+
+    
+      <script src="../../assets/javascripts/modernizr.1f0bcf2b.js"></script>
+    
+    
+      
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700|Roboto+Mono">
+        <style>body,input{font-family:"Roboto","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono","Courier New",Courier,monospace}</style>
+      
+    
+    <link rel="stylesheet" href="../../assets/fonts/material-icons.css">
+    
+    
+      <link rel="stylesheet" href="../../assets/lib/highlightjs/default.min.css">
+    
+      <link rel="stylesheet" href="../../assets/css/theme.css">
+    
+    
+      
+    
+    
+  </head>
+  
+    
+    
+    <body dir="ltr" data-md-color-primary="deep-orange" data-md-color-accent="deep-orange">
+  
+    <svg class="md-svg">
+      <defs>
+        
+        
+          <svg xmlns="http://www.w3.org/2000/svg" width="416" height="448"
+    viewBox="0 0 416 448" id="__github">
+  <path fill="currentColor" d="M160 304q0 10-3.125 20.5t-10.75 19-18.125
+        8.5-18.125-8.5-10.75-19-3.125-20.5 3.125-20.5 10.75-19 18.125-8.5
+        18.125 8.5 10.75 19 3.125 20.5zM320 304q0 10-3.125 20.5t-10.75
+        19-18.125 8.5-18.125-8.5-10.75-19-3.125-20.5 3.125-20.5 10.75-19
+        18.125-8.5 18.125 8.5 10.75 19 3.125 20.5zM360
+        304q0-30-17.25-51t-46.75-21q-10.25 0-48.75 5.25-17.75 2.75-39.25
+        2.75t-39.25-2.75q-38-5.25-48.75-5.25-29.5 0-46.75 21t-17.25 51q0 22 8
+        38.375t20.25 25.75 30.5 15 35 7.375 37.25 1.75h42q20.5 0
+        37.25-1.75t35-7.375 30.5-15 20.25-25.75 8-38.375zM416 260q0 51.75-15.25
+        82.75-9.5 19.25-26.375 33.25t-35.25 21.5-42.5 11.875-42.875 5.5-41.75
+        1.125q-19.5 0-35.5-0.75t-36.875-3.125-38.125-7.5-34.25-12.875-30.25-20.25-21.5-28.75q-15.5-30.75-15.5-82.75
+        0-59.25 34-99-6.75-20.5-6.75-42.5 0-29 12.75-54.5 27 0 47.5 9.875t47.25
+        30.875q36.75-8.75 77.25-8.75 37 0 70 8 26.25-20.5
+        46.75-30.25t47.25-9.75q12.75 25.5 12.75 54.5 0 21.75-6.75 42 34 40 34
+        99.5z" />
+</svg>
+        
+      </defs>
+    </svg>
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
+    
+      <a href="#defining-tables-for-physical-stores" tabindex="1" class="md-skip">
+        Skip to content
+      </a>
+    
+    
+      <!--
+ * Copyright (c) 2019, WSO2 Inc. (http://www.wso2.org) All Rights Reserved.
+ *
+ * WSO2 Inc. licenses this file to you under the Apache License,
+ * Version 2.0 (the "License"); you may not use this file except
+ * in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied. See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
+-->
+
+<header class="md-header" data-md-component="header" id="page-header" data-url="" data-lang="en">
+  <nav class="md-header-nav md-grid">
+    <div class="md-flex">
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <a href="https://wso2.com/integration/" title="Streaming Integration Documentation" class="md-header-nav__button md-logo">
+          
+            <img src="../../images/logo.svg" width="24" height="24">
+          
+        </a>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--menu md-header-nav__button" for="__drawer"></label>
+      </div>
+      <div class="md-flex__cell md-flex__cell--stretch">
+        <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
+          
+            <span class="md-header-nav__topic">
+              Streaming Integration Documentation
+            </span>
+            <span class="md-header-nav__topic">
+              Defining Tables for Physical Stores
+            </span>
+          
+        </div>
+        <div class="md-flex__ellipsis md-header__version-select">
+            <div class="mb-tabs__dropdown version-select">
+                <a class="md-tabs__link md-tabs__dropdown-link" href="#!" data-target="version-select-dropdown">7.0.0</a>
+                <ul id="version-select-dropdown" class="mb-tabs__dropdown-content" tabindex="0">
+                    <!-- Versions will added here dynamically -->
+                    <li class="md-tabs__item mb-tabs__dropdown">
+                        <a href="#" id="show-all-versions-link">Show all</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        
+          <label class="md-icon md-icon--search md-header-nav__button" for="__search"></label>
+          
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query" data-md-state="active">
+      <label class="md-icon md-search__icon" for="__search"></label>
+      <button type="reset" class="md-icon md-search__icon" data-md-component="reset" tabindex="-1">
+        &#xE5CD;
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="result">
+          <div class="md-search-result__meta">
+            Type to start searching
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+        
+      </div>
+    </div>
+  </nav>
+</header>
+    
+    <div class="md-container">
+      
+        
+      
+      
+        
+
+<nav class="md-tabs" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  <li class="md-tabs__item home_icon">
+    
+      <a href="../.." title="Home" class="md-tabs__link md-tabs__link--active">
+          <i class="fa fa-home"></i>
+      </a>
+    
+  </li>
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../overview/overview/" title="Overview" class="md-tabs__link">
+          Overview
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../quick-start-guide/quick-start-guide/" title="Quick Start Guide" class="md-tabs__link">
+          Quick Start Guide
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../concepts/" title="Concepts" class="md-tabs__link">
+          Concepts
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    
+    
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../installing-si-using-docker/" title="Installation Guide" class="md-tabs__link">
+          Installation Guide
+        </a>
+      
+    </li>
+  
+
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../develop/streaming-integrator-studio-overview/" title="Developer Experience" class="md-tabs__link">
+          Developer Experience
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    
+    
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../examples/performing-real-time-etl-with-mysql/" title="Use Cases" class="md-tabs__link">
+          Use Cases
+        </a>
+      
+    </li>
+  
+
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../admin/configure-si-profile/" title="Admin Guide" class="md-tabs__link">
+          Admin Guide
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../ref/si-rest-api-guide/" title="Reference Guide" class="md-tabs__link">
+          Reference Guide
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../faq/fAQ.md" title="FAQ" class="md-tabs__link">
+          FAQ
+        </a>
+      
+    </li>
+  
+
+      
+        
+      
+    </ul>
+    <div class="quick_links">
+        
+        <a href="https://github.com/wso2/docs-is/edit/master/en/docs/setup/defining-Tables-for-Physical-Stores.md" target="blank" id="editIcon" title="Edit this page"
+           title="Edit this page" class="md-icon md-content__icon nav_link edit_link"></a>
+        
+    </div>
+    <a href="#" title="Report Issues" class="feedbackBtn" 
+        onclick=window.open("https://github.com/"+"wso2/docs-ei"+"/issues/new?title=Doc%20Feedback:&body=Location%20:%20"+window.location.href); >
+        Report Issues</a>
+  </div>
+</nav>
+      
+      <main class="md-main">
+        <div class="md-main__inner md-grid" data-md-component="container">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" data-md-level="0">
+    <label class="md-nav__title md-nav__title--site" for="__drawer">
+      <a href="https://wso2.com/integration/" title="Streaming Integration Documentation"
+         class="md-nav__button md-logo">
+        
+          <img src="../../images/logo.svg" width="48" height="48">
+        
+      </a>
+      Streaming Integration Documentation
+    </label>
+    
+      <div class="md-nav__source">
+        
+
+
+  
+
+<a href="https://github.com/wso2/docs-ei/" title="Go to repository" class="md-source" data-md-source="github">
+  
+    <div class="md-source__icon">
+      <svg viewBox="0 0 24 24" width="24" height="24">
+        <use xlink:href="#__github" width="24" height="24"></use>
+      </svg>
+    </div>
+  
+  <div class="md-source__repository">
+    wso2/docs-ei
+  </div>
+</a>
+      </div>
+    
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        
+        
+        
+
+
+  <li class="md-nav__item">
+    <a href="../.." title="Home" class="md-nav__link">
+      Home
+    </a>
+  </li>
+
+      
+        
+        
+        
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2">
+    
+    <label class="md-nav__link" for="nav-2">
+      Overview
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-2">
+        Overview
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../overview/overview/" title="Overview" class="md-nav__link">
+      Overview
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../overview/architecture/" title="Architecture" class="md-nav__link">
+      Architecture
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../overview/about_this_release/" title="About this Release" class="md-nav__link">
+      About this Release
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+      
+        
+        
+        
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3">
+    
+    <label class="md-nav__link" for="nav-3">
+      Quick Start Guide
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-3">
+        Quick Start Guide
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../quick-start-guide/quick-start-guide/" title="Quick Start Guide" class="md-nav__link">
+      Quick Start Guide
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+      
+        
+        
+        
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4">
+    
+    <label class="md-nav__link" for="nav-4">
+      Concepts
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-4">
+        Concepts
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../concepts/" title="Concepts" class="md-nav__link">
+      Concepts
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+      
+        
+        
+        
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5">
+    
+    <label class="md-nav__link" for="nav-5">
+      Installation Guide
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-5">
+        Installation Guide
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5-1" type="checkbox" id="nav-5-1">
+    
+    <label class="md-nav__link" for="nav-5-1">
+      Installing the Product
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-5-1">
+        Installing the Product
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../installing-si-using-docker/" title="Installing the Streaming Integrator Using Docker" class="md-nav__link">
+      Installing the Streaming Integrator Using Docker
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../installing-si-using-docker-compose/" title="Installing the Streaming Integrator Using Docker Compose" class="md-nav__link">
+      Installing the Streaming Integrator Using Docker Compose
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../installing-si-using-ansible/" title="Installing the Streaming Integrator Using Ansible" class="md-nav__link">
+      Installing the Streaming Integrator Using Ansible
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../installing-si-using-kubernetes/" title="Installing the Streaming Integrator Using Kubernetes" class="md-nav__link">
+      Installing the Streaming Integrator Using Kubernetes
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../installing-si-using-vagrant/" title="Installing the Streaming Integrator Using Vagrant" class="md-nav__link">
+      Installing the Streaming Integrator Using Vagrant
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../installing-si-using-puppet/" title="Installing the Streaming Integrator Using Puppet" class="md-nav__link">
+      Installing the Streaming Integrator Using Puppet
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../installing-si-using-helm/" title="Installing the Streaming Integrator Using Helm" class="md-nav__link">
+      Installing the Streaming Integrator Using Helm
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../installing-si-using-aws-cloud-formation/" title="Installing the Streaming Integrator Using AWS Cloud Formation" class="md-nav__link">
+      Installing the Streaming Integrator Using AWS Cloud Formation
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../installing-si-using-apt/" title="Installing the Streaming Integrator Using Apt" class="md-nav__link">
+      Installing the Streaming Integrator Using Apt
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../installing-si-using-yum/" title="Installing the Streaming Integrator Using Yum" class="md-nav__link">
+      Installing the Streaming Integrator Using Yum
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../installing-si-using-brew/" title="Installing the Streaming Integrator Using Brew" class="md-nav__link">
+      Installing the Streaming Integrator Using Brew
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5-2" type="checkbox" id="nav-5-2">
+    
+    <label class="md-nav__link" for="nav-5-2">
+      Deploying Streaming Integrator Profile
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-5-2">
+        Deploying Streaming Integrator Profile
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../deploying-si-as-minimum-ha-cluster/" title="Deploying the Streaming Integrator Profile as a Minimum HA cluster" class="md-nav__link">
+      Deploying the Streaming Integrator Profile as a Minimum HA cluster
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5-3" type="checkbox" id="nav-5-3">
+    
+    <label class="md-nav__link" for="nav-5-3">
+      Setting up Databases
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-5-3">
+        Setting up Databases
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../configuring-Datasources.md" title="Configuring Datasources" class="md-nav__link">
+      Configuring Datasources
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../setting-up-physical-databases.md" title="Setting up Physical Databases" class="md-nav__link">
+      Setting up Physical Databases
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+      
+        
+        
+        
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-6" type="checkbox" id="nav-6">
+    
+    <label class="md-nav__link" for="nav-6">
+      Developer Experience
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-6">
+        Developer Experience
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../develop/streaming-integrator-studio-overview/" title="Streaming Integrator Studio Overview" class="md-nav__link">
+      Streaming Integrator Studio Overview
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-6-2" type="checkbox" id="nav-6-2">
+    
+    <label class="md-nav__link" for="nav-6-2">
+      Designing Siddhi Applications
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-6-2">
+        Designing Siddhi Applications
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../develop/working-with-source-view.md" title="Working with the Source View" class="md-nav__link">
+      Working with the Source View
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../develop/working-with-design-view/" title="Working with the Design View" class="md-nav__link">
+      Working with the Design View
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-6-3" type="checkbox" id="nav-6-3">
+    
+    <label class="md-nav__link" for="nav-6-3">
+      Testing Siddhi Applications
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-6-3">
+        Testing Siddhi Applications
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../develop/testing-a-siddhi-application.md" title="Testing a Siddhi Application" class="md-nav__link">
+      Testing a Siddhi Application
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../develop/simulating-events.md" title="Simulating Events" class="md-nav__link">
+      Simulating Events
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../develop/debugging_siddhi_applications/" title="Debugging Siddhi Applications" class="md-nav__link">
+      Debugging Siddhi Applications
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-6-5" type="checkbox" id="nav-6-5">
+    
+    <label class="md-nav__link" for="nav-6-5">
+      Exporting Siddhi Files
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-6-5">
+        Exporting Siddhi Files
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../develop/exporting-a-single-siddhi-file.md" title="Exporting a Single Siddhi File" class="md-nav__link">
+      Exporting a Single Siddhi File
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../develop/exporting-siddhi-files-as-docker-artifacts.md" title="Exporting Siddhi Files as Docker Artifacts" class="md-nav__link">
+      Exporting Siddhi Files as Docker Artifacts
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+      
+        
+        
+        
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-7" type="checkbox" id="nav-7">
+    
+    <label class="md-nav__link" for="nav-7">
+      Use Cases
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-7">
+        Use Cases
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-7-1" type="checkbox" id="nav-7-1">
+    
+    <label class="md-nav__link" for="nav-7-1">
+      Examples
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-7-1">
+        Examples
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../examples/performing-real-time-etl-with-mysql/" title="Performing Real-time ETL with MySQL" class="md-nav__link">
+      Performing Real-time ETL with MySQL
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../examples/performing-real-time-etl-with-files/" title="Performing Real-time ETL with Files" class="md-nav__link">
+      Performing Real-time ETL with Files
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../examples/working-with-kafka/" title="Working with Kafka" class="md-nav__link">
+      Working with Kafka
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../examples/working-with-nats.md" title="Working with NATS" class="md-nav__link">
+      Working with NATS
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../examples/transforming-json-messages/" title="Transforming JSON Messages" class="md-nav__link">
+      Transforming JSON Messages
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../examples/transforming-xml-messages/" title="Transforming XML Messages" class="md-nav__link">
+      Transforming XML Messages
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../examples/integrating-databases-to-data-flows/" title="Integrating Databases to Data Flows" class="md-nav__link">
+      Integrating Databases to Data Flows
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../examples/exposing-processed-data-as-api/" title="Exposing Processed Data as API" class="md-nav__link">
+      Exposing Processed Data as API
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../examples/triggering-integrations-via-micro-integrator/" title="Triggering Integrations via Micro Integrator" class="md-nav__link">
+      Triggering Integrations via Micro Integrator
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../examples/analyzing-data-and-deriving-insights/" title="Analyzing Data and Deriving Insights" class="md-nav__link">
+      Analyzing Data and Deriving Insights
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../examples/reliable-data-integration/" title="Performing Reliable Data Integration (Error Streams)" class="md-nav__link">
+      Performing Reliable Data Integration (Error Streams)
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../examples/summarizing-and-aggregating-data/" title="Summarizing and Aggregating Data in Real Time" class="md-nav__link">
+      Summarizing and Aggregating Data in Real Time
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-7-2" type="checkbox" id="nav-7-2">
+    
+    <label class="md-nav__link" for="nav-7-2">
+      Guides
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-7-2">
+        Guides
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../guides/collecting-events.md" title="Consuming Data" class="md-nav__link">
+      Consuming Data
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../guides/transforming-data/" title="Transforming Data" class="md-nav__link">
+      Transforming Data
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../guides/enriching-data/" title="Enriching Data" class="md-nav__link">
+      Enriching Data
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../guides/cleansing-data/" title="Cleansing Data" class="md-nav__link">
+      Cleansing Data
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../guides/complex-Event-processing.md" title="Correlating Data" class="md-nav__link">
+      Correlating Data
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../guides/incremental-Analysis/" title="Summarizing Data" class="md-nav__link">
+      Summarizing Data
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../guides/triggering-integration-flows/" title="Triggering Integration Flows" class="md-nav__link">
+      Triggering Integration Flows
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+      
+        
+        
+        
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-8" type="checkbox" id="nav-8">
+    
+    <label class="md-nav__link" for="nav-8">
+      Admin Guide
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-8">
+        Admin Guide
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../admin/configure-si-profile/" title="Configuring the Streaming Integration Profile" class="md-nav__link">
+      Configuring the Streaming Integration Profile
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-8-2" type="checkbox" id="nav-8-2">
+    
+    <label class="md-nav__link" for="nav-8-2">
+      Working with Siddhi Connectors
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-8-2">
+        Working with Siddhi Connectors
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../admin/downloading-and-Installing-Siddhi-Extensions/" title="Downloading and Installing Siddhi Connectors" class="md-nav__link">
+      Downloading and Installing Siddhi Connectors
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../admin/writing-Custom-Siddhi-Extensions/" title="Writing Custom Siddhi Extensions" class="md-nav__link">
+      Writing Custom Siddhi Extensions
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../admin/configuring-System-Parameters-for-Siddhi-Extensions/" title="Configuring System Parameters for Siddhi Extensions" class="md-nav__link">
+      Configuring System Parameters for Siddhi Extensions
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../admin/creating-business-rules-templates.md" title="Creating Business Rules Templates" class="md-nav__link">
+      Creating Business Rules Templates
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../admin/monitoring-the streaming-integrator" title="Monitoring the Streaming Integrator" class="md-nav__link">
+      Monitoring the Streaming Integrator
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../admin/general-data-protection-regulations/" title="General Data Protection Regulations" class="md-nav__link">
+      General Data Protection Regulations
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../admin/supporting-Different-Transports.md" title="Supporting Different Transports" class="md-nav__link">
+      Supporting Different Transports
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../admin/user-Management.md" title="User Management" class="md-nav__link">
+      User Management
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../admin/protecting-sensitive-data-via-the-secure-vault.md" title="Protecting Sensitive Data via the Secure Vault" class="md-nav__link">
+      Protecting Sensitive Data via the Secure Vault
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../admin/adding-Third-Party-Non-OSGi-Libraries.md" title="Adding Third Party Non OSGi Library" class="md-nav__link">
+      Adding Third Party Non OSGi Library
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+      
+        
+        
+        
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-9" type="checkbox" id="nav-9">
+    
+    <label class="md-nav__link" for="nav-9">
+      Reference Guide
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-9">
+        Reference Guide
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../ref/si-rest-api-guide/" title="Streaming Integration REST API Guide" class="md-nav__link">
+      Streaming Integration REST API Guide
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../ref/performance-analysis-results/" title="Performance Analysis Results" class="md-nav__link">
+      Performance Analysis Results
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../ref/configuring-Default-Ports.md" title="Configuring Default Ports" class="md-nav__link">
+      Configuring Default Ports
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../ref/working-with-Data-Providers.md" title="Working with Data Providers" class="md-nav__link">
+      Working with Data Providers
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../ref/wSO2-Stream-Processor-Profiles/" title="Streaming Integration Profiles" class="md-nav__link">
+      Streaming Integration Profiles
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+      
+        
+        
+        
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-10" type="checkbox" id="nav-10">
+    
+    <label class="md-nav__link" for="nav-10">
+      FAQ
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-10">
+        FAQ
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../faq/fAQ.md" title="FAQ" class="md-nav__link">
+      FAQ
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+      
+        
+        
+        
+
+
+  <li class="md-nav__item">
+    <a href="../../page-not-found/" title="" class="md-nav__link">
+      
+    </a>
+  </li>
+
+      
+    </ul>
+  </nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary">
+    
+    
+    
+    
+    
+    <a href="#" title="On this page" class="nav_link md-icon md-content__icon toc_icon" id="tocToggleBtn">toc</a>
+    <label class="md-nav__title" for="__toc">On this page</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+        
+        <li class="md-nav__item">
+  <a href="#rdbms" title="RDBMS" class="md-nav__link">
+    RDBMS
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#query-syntax" title="Query syntax" class="md-nav__link">
+    Query syntax
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#parameters" title="Parameters" class="md-nav__link">
+    Parameters
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example" title="Example" class="md-nav__link">
+    Example
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+        <li class="md-nav__item">
+  <a href="#apache-hbase" title="Apache HBase" class="md-nav__link">
+    Apache HBase
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#query-syntax_1" title="Query syntax" class="md-nav__link">
+    Query syntax
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#parameters_1" title="Parameters" class="md-nav__link">
+    Parameters
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example_1" title="Example" class="md-nav__link">
+    Example
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+        <li class="md-nav__item">
+  <a href="#apache-solr" title="Apache Solr" class="md-nav__link">
+    Apache Solr
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#query-syntax_2" title="Query syntax" class="md-nav__link">
+    Query syntax
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#parameters_2" title="Parameters" class="md-nav__link">
+    Parameters
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example_2" title="Example" class="md-nav__link">
+    Example
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+        
+        
+        
+        
+    </ul>
+    
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+  
+                
+                  <a href="https://github.com/wso2/docs-is/edit/master/en/docs/setup/defining-Tables-for-Physical-Stores.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
+                
+                
+                <h1 id="defining-tables-for-physical-stores">Defining Tables for Physical Stores<a class="headerlink" href="#defining-tables-for-physical-stores" title="Permanent link">&para;</a></h1>
+<p>This section explains how to define data tables to store data handled by
+WSO2 Stream Processor in physical databases. T he @store annotation
+syntax for defining these tables differ based on the database type as
+well as where the properties are defined.</p>
+<p>The store properties(such as URL, username and password) can be defined
+in the following ways:</p>
+<ul>
+<li>
+<p><strong>Inline definition</strong> : The data store can be defined within the
+    Siddhi application as shown in the example below:</p>
+<pre class="codehilite"><code class="language-sql linenums">    @Store(type='hbase', hbase.zookeeper.quorum='localhost')
+    @primaryKey('name')
+    define table SweetProductionTable (name string, amount double);</code></pre>
+
+<pre class="codehilite"><code class="linenums">!!! info
+
+This method is not recommended in a production environment because
+is less secure compared to the other methods.</code></pre>
+
+
+</li>
+<li>
+<p><strong>As references in the deployment file</strong> : In order to do this, the
+    store configuration needs to be defined for the relevant deployment
+    environment in the
+    <code class="codehilite">&lt;SP_HOME&gt;/conf/&lt;PROFILE&gt;/deployment.yaml</code> file
+    as a ref (i.e., in a separate section siddhi: and subsection refs:)
+    as shown in the example below.  </p>
+<pre class="codehilite"><code class="linenums">!!! info
+
+The database connection is started when a Siddhi application is
+deployed, and disconnected when the Siddhi application is
+undeployed. Therefore, this metho is not recommended if the same
+database is used across multiple Siddhi applications.</code></pre>
+
+
+<pre class="codehilite"><code class="language-xml linenums">    siddhi:   
+      refs:
+        -
+           ref:
+             name: 'store1'
+             type: 'rdbms'
+             properties:
+               jdbc.url: 'jdbc:h2:./repository/database/ANALYTICS_EVENT_STORE'
+               username: 'root'
+               password: ${sec:store1.password}
+               field.length='currentTime:100'
+               jdbc.driver.name: 'org.h2.Driver'</code></pre>
+
+<p>Then you need to refer to that store via the
+<code class="codehilite">@store</code> annotation as in the Siddhi
+application as shown in the example below.</p>
+<pre class="codehilite"><code class="language-sql linenums">        @Store(ref='store1')
+        @PrimaryKey('id')
+        @Index('houseId')
+        define table SmartHomeTable (id string, value float, property bool, plugId int, householdId int, houseId int, currentTime string);</code></pre>
+
+</li>
+<li>
+<p><strong>Using WSO2 data sources configuration</strong> : Once a data source
+    defined in the wso2.datasources section of the file,
+    <code class="codehilite">&lt;SP_HOME&gt;/conf/&lt;PROFILE&gt;/deployment.yaml,</code> the
+    same connection can be used across different Siddhi applications.
+    This is done by specifying the data source to which you need to
+    connect via the <code class="codehilite">@store</code> annotation in the
+    following format.</p>
+<pre class="codehilite"><code class="language-xml linenums">        @Store(type='&lt;DATABASE_TYPE&gt;', datasource=’&lt;carbon.datasource.name&gt;’)</code></pre>
+
+<pre class="codehilite"><code class="linenums">!!! info
+
+The database connection pool is initialized at server startup, and
+destroyed at server shut down.</code></pre>
+
+
+<p>This is further illustrated by the following example.</p>
+<pre class="codehilite"><code class="language-sql linenums">    @Store(type='rdbms', datasource=’SweetFactoryDB’)@PrimaryKey("symbol")
+    define table FooTable (symbol string, price float, volume long);</code></pre>
+
+<p>For more information about definig datasources, see <a href="_Configuring_Datasources_">Configuring
+Datasources</a> .</p>
+</li>
+</ul>
+<p>The following database types are currently supported for WSO2 SP.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+</div>
+<p>Before you begin:</p>
+<p>In order to create and use an event table to store data, the following
+should be completed:</p>
+<ul>
+<li>The required database (MySql, MongoDB, Oracle Database, etc) should
+    be downloaded and installed.</li>
+<li>A database instance should be started.</li>
+<li>The user IDs used to perform the required table operations should be
+    granted the relevant privileges.</li>
+<li>
+<p>The relevant JDBC Driver must be downloaded and the jar must be put
+    in the <code class="codehilite">&lt;SP_HOME&gt;/lib</code> directory.</p>
+</li>
+<li>
+<p><a href="#DefiningTablesforPhysicalStores-RDBMS">RDBMS</a></p>
+</li>
+<li><a href="#DefiningTablesforPhysicalStores-ApacheHBase">Apache HBase</a></li>
+<li><a href="#DefiningTablesforPhysicalStores-ApacheSolr">Apache Solr</a></li>
+<li><a href="#DefiningTablesforPhysicalStores-MongoDB">MongoDB</a></li>
+</ul>
+<h2 id="rdbms">RDBMS<a class="headerlink" href="#rdbms" title="Permanent link">&para;</a></h2>
+<p>The RDBMS database types that are currently supported are as follows:</p>
+<ul>
+<li>H2</li>
+<li>MySQL</li>
+<li>Oracle database</li>
+<li>My SQL Server</li>
+<li>PostgreSQL</li>
+<li>IBM DB2</li>
+</ul>
+<h4 id="query-syntax">Query syntax<a class="headerlink" href="#query-syntax" title="Permanent link">&para;</a></h4>
+<p>The following is the syntax for an RDBMS event table configuration:</p>
+<pre class="codehilite"><code class="language-sql linenums">    @store(type="rdbms", jdbc.url="&lt;jdbc.url&gt;", username="&lt;username&gt;", password="&lt;password&gt;",pool.properties="&lt;prop1&gt;:&lt;val1&gt;,&lt;prop2&gt;:&lt;val2&gt;")
+    @PrimaryKey("col1")
+    @IndexBy("col3")
+    define table &lt;table_name&gt;(col1 datatype1, col2 datatype2, col3 datatype3);</code></pre>
+
+<h5 id="parameters">Parameters<a class="headerlink" href="#parameters" title="Permanent link">&para;</a></h5>
+<p>The following parameters are configured in the definition of an RDBMS
+event table.</p>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+<th>Required/Optional</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong><code class="codehilite">jdbc.url</code></strong></td>
+<td>The JDBC URL via which the RDBMS data store is accessed.</td>
+<td>Required</td>
+</tr>
+<tr>
+<td><strong><code class="codehilite">username</code></strong></td>
+<td>The username to be used to access the RDBMS data store.</td>
+<td>Required</td>
+</tr>
+<tr>
+<td><strong><code class="codehilite">password</code></strong></td>
+<td>The password to be used to access the RDBMS data store.</td>
+<td>Required</td>
+</tr>
+<tr>
+<td><strong><code class="codehilite">pool.properties</code></strong></td>
+<td>Any pool parameters for the database connection must be specified as key value pairs.</td>
+<td>Required</td>
+</tr>
+<tr>
+<td><strong><code class="codehilite">jndi.resource</code></strong></td>
+<td>The name of the JNDI resource through which the connection is attempted. If this is found, the pool properties described above are not taken into account.</td>
+<td>Optional</td>
+</tr>
+<tr>
+<td><strong><code class="codehilite">table.name</code></strong></td>
+<td>The name of the RDBMS table created.</td>
+<td>Optional</td>
+</tr>
+<tr>
+<td><strong><code class="codehilite">field.length</code></strong></td>
+<td>The number of characters that the values for fields of the <code class="codehilite">STRING</code> type in the table definition must contain. If this is not specified, the default number of characters specific to the database type is considered.</td>
+<td>Optional</td>
+</tr>
+</tbody>
+</table>
+<p>In addition to the above parameters, you can add the
+<code class="codehilite">@primary</code> and <code class="codehilite">@index</code> annotations in
+the RDBMS table configuration.</p>
+<ul>
+<li><code class="codehilite">@primary</code> : This specifies
+    a list of comma-separated values to be treated as unique fields in
+    the table. Each record in the table must have a unique combination
+    of values for the fields specified here.</li>
+<li><code class="codehilite">@index</code> : This specifies
+    the fields that must be indexed at the database level. You can
+    specify multiple values as a come-separated list.</li>
+</ul>
+<h4 id="example">Example<a class="headerlink" href="#example" title="Permanent link">&para;</a></h4>
+<p>The following is an example of an RDBMS table definition:</p>
+<pre class="codehilite"><code class="language-sql linenums">    @Store(type="rdbms", jdbc.url="jdbc:h2:repository/database/ANALYTICS_EVENT_STORE", username="root", password="root",field.length="symbol:254")
+    @PrimaryKey("symbol")
+    define table FooTable (symbol string, price float, volume long);</code></pre>
+
+<h2 id="apache-hbase">Apache HBase<a class="headerlink" href="#apache-hbase" title="Permanent link">&para;</a></h2>
+<h4 id="query-syntax_1">Query syntax<a class="headerlink" href="#query-syntax_1" title="Permanent link">&para;</a></h4>
+<p>The query syntax to define an HBase table is as follows.</p>
+<pre class="codehilite"><code class="language-sql linenums">    @Store(type="hbase", any.hbase.property="&lt;STRING&gt;", table.name="&lt;STRING&gt;", column.family.name="&lt;STRING&gt;")
+    @PrimaryKey("PRIMARY_KEY")
+    @Index("INDEX")</code></pre>
+
+<h5 id="parameters_1">Parameters<a class="headerlink" href="#parameters_1" title="Permanent link">&para;</a></h5>
+<p>The following parameters are configured in the definition of an HBase
+event table:</p>
+<table>
+<thead>
+<tr class="header">
+<th>Parameter</th>
+<th>Description</th>
+<th>Required/Optional</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><p><code>                             table.name                           </code></p></td>
+<td><p>The name with which the table should be persisted in the store. If no table name is specified, the table in the store is assigned the same name as the corresponding Siddhi table.</p></td>
+<td>Optional</td>
+</tr>
+<tr class="even">
+<td><code>                           column.family.name                         </code></td>
+<td>The name of the HBase column family from which data must be stored/referred to.</td>
+<td>Required</td>
+</tr>
+<tr class="odd">
+<td>any.hbase.property</td>
+<td><p>Any property that can be specified for HBase connectivity in hbase-site.xml is also accepted by the HBase Store implementation. The most frequently used properties are...</p>
+<p>hbase.zookeeper.quorum - The hostname of the server in which the zookeeper node is run.</p>
+<p>hbase.zookeeper.property.clientPort - The port of the zookeeper node.</p></td>
+<td>Required</td>
+</tr>
+</tbody>
+</table>
+
+<p>In addition, the following annotations are used in the HBase definition.</p>
+<ul>
+<li><code class="codehilite">@primary</code> : This specifies
+    a list of comma-separated values to be treated as unique fields in
+    the table. Each record in the table must have a unique combination
+    of values for the fields specified here. Primary keys allow you to
+    fetch records in a table by providing a unique reference for each
+    record. Therefore, if you do not include one or more primary keys in
+    the table definition, it is not possible to perform table operations
+    such as searching, updating, deleting and joining. For more
+    information about table operations, see <a href="_Managing_Stored_Data_via_Streams_">Managing Stored Data via
+    Streams</a> and <a href="_Managing_Stored_Data_via_REST_APIs_">Managing Stored
+    Data via REST APIs</a> .</li>
+<li><code class="codehilite">@index</code> : This specifies
+    the fields that must be indexed at the database level. You can
+    specify multiple values as a comma separated list.</li>
+</ul>
+<h4 id="example_1">Example<a class="headerlink" href="#example_1" title="Permanent link">&para;</a></h4>
+<pre class="codehilite"><code class="language-sql linenums">    @Store(type=”hbase”, table.name=”SomeTestTable”, column.family.name=”SomeCF”, hbase.zookeeper.quorum=”localhost”, hbase.zookeeper.property.clientPort=”2181”)
+    @PrimaryKey(symbol)
+    define table FooTable (symbol string, price float, volume long);</code></pre>
+
+<h2 id="apache-solr">Apache Solr<a class="headerlink" href="#apache-solr" title="Permanent link">&para;</a></h2>
+<h4 id="query-syntax_2">Query syntax<a class="headerlink" href="#query-syntax_2" title="Permanent link">&para;</a></h4>
+<p>The query syntax to define an SOLR table is as follows.</p>
+<pre class="codehilite"><code class="language-sql linenums">    @PrimaryKey("id")
+    @store(type=“solr”, url=&lt;solr-cloud-zookeeper-url&gt;, collection=&lt;solr-collection-name&gt;, base.config=&lt;config-name&gt;, shards=&lt;no-of-shards&gt;, replicas=&lt;no-of-replicas&gt;, schema=&lt;schema-definition&gt;, commit.async=true|false)
+    define table Footable (time long, date string);</code></pre>
+
+<h5 id="parameters_2">Parameters<a class="headerlink" href="#parameters_2" title="Permanent link">&para;</a></h5>
+<p>The following parameters are configured in an SOLR table definition.</p>
+<table>
+<thead>
+<tr class="header">
+<th>Parameter</th>
+<th>Description</th>
+<th>Required/Optional</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>             collection            </code></td>
+<td>The name of the solr collection/table.</td>
+<td>Required</td>
+</tr>
+<tr class="even">
+<td><code>             url            </code></td>
+<td>The URL of the zookeeper master of SOLR cloud.</td>
+<td>Required</td>
+</tr>
+<tr class="odd">
+<td><p><code>              base.config             </code></p></td>
+<td>The default configuration that should be used for the SOLR schema.</td>
+<td>Optional</td>
+</tr>
+<tr class="even">
+<td><code>             shards            </code></td>
+<td>The number of shards.</td>
+<td>Optional</td>
+</tr>
+<tr class="odd">
+<td><code>             replica            </code></td>
+<td>The number of replica.</td>
+<td>Optional</td>
+</tr>
+<tr class="even">
+<td><code>             schema            </code></td>
+<td>The SOLR schema definition.</td>
+<td>Optional</td>
+</tr>
+<tr class="odd">
+<td><code>             commit.async            </code></td>
+<td><p>If this is set to <code>              true             </code> , the results all the operations carried out for the table (described below) are applied at a specified time interval. If this is set to <code>              false             </code> , the results of the operations are applied soon after they are performed with the vent arrival.</p>
+<p>e.g., If this is set to <code>              false             </code> , an event selected to be inserted into the table is inserted as soon as it arrives to the event stream.</p></td>
+<td>N/A</td>
+</tr>
+</tbody>
+</table>
+
+<h4 id="example_2">Example<a class="headerlink" href="#example_2" title="Permanent link">&para;</a></h4>
+<p>This query defines an SOLR table named <code class="codehilite">FooTable</code> in
+which a schema that consists of the two attributes
+<code class="codehilite">time</code> (of <code class="codehilite">long</code> type) and date (of
+the <code class="codehilite">string</code> type) is maintained. The values for both
+attributes are stored.</p>
+<pre class="codehilite"><code class="language-sql linenums">"shards='2', replicas='2', schema='time long stored, date string stored', commit.async='true') " +
+"define table Footable(time long, date string);</code></pre>
+
+<pre class="codehilite"><code class="linenums">## MongoDB
+
+#### Query syntax
+
+The following is the query syntax to define a MongoDB event table.</code></pre>
+
+
+<pre class="codehilite"><code class="language-sql linenums">@Store(type="mongodb", mongodb.uri="&lt;MONGODB CONNECTION URI&gt;")
+@PrimaryKey("ATTRIBUTE_NAME")
+@IndexBy("&lt;ATTRIBUTE_NAME&gt; &lt;SORTING ORDER&gt; &lt;INDEX OPTIONS&gt;")
+define table &lt;TABLE_NME&gt; (&lt;ATTRIBUTE1_NAME&gt; &lt;ATTRIBUTE1_TYPE&gt;, &lt;ATTRIBUTE2_NAME&gt; &lt;ATTRIBUTE2_TYPE&gt;, &lt;ATTRIBUTE3_NAME&gt; &lt;ATTRIBUTE3_TYPE&gt;, ...);</code></pre>
+
+<pre class="codehilite"><code class="linenums">The `         mongodb.uri        ` parameter specifies the URI via which
+MongoDB user store is accessed.
+
+In addition, the following annotations are used in the MongoDB
+definition.
+
+-   `                     @primary                   ` : This specifies
+    a list of comma-separated values to be treated as unique fields in
+    the table. Each record in the table must have a unique combination
+    of values for the fields specified here.
+-   `                     @index                   ` : This specifies
+    the fields that must be indexed at the database level. You can
+    specify multiple values as a comma separated list.
+
+#### Example
+
+The following query defines a MongoDB table named
+`         FooTable        ` with the `         symbol        ` ,
+`         price        ` , and `         volume        ` attributes. The
+`         symbol        ` attribute is considered the primary key and it
+is also indexed.</code></pre>
+
+
+<pre class="codehilite"><code class="language-sql linenums">@Store(type="mongodb", mongodb.uri="mongodb://admin:admin@localhost:27017/Foo?ssl=true")
+@PrimaryKey("symbol")
+@IndexBy("symbol 1 {background:true}")
+define table FooTable (symbol string, price float, volume long);</code></pre>
+                
+                  
+                
+              
+  <a href="#" class="cd-top text--replace js-cd-top">Top</a>
+
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+          <div class="md-footer-copyright__highlight">
+            WSO2 Enterprise Integrator - Documentation
+          </div>
+        
+        &copy;2019 <a href="https://wso2.com/">WSO2</a>
+      </div>
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../../assets/javascripts/application.d9aa80ab.js"></script>
+      
+      <script>app.initialize({version:"1.0.4",url:{base:"../.."}})</script>
+      
+        <script src="../../assets/lib/highlightjs/highlight.min.js"></script>
+      
+        <script src="../../assets/js/theme.js"></script>
+      
+        <script src="../../assets/lib/backtotop/js/util.js"></script>
+      
+        <script src="../../assets/lib/backtotop/js/main.js"></script>
+      
+    
+  </body>
+</html>

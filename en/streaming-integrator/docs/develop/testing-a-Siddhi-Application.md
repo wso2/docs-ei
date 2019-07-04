@@ -18,23 +18,23 @@ validated before they are run in an actual production environment.
 To validate a Siddhi application, follow the procedure below:
 
 1.  Start and access the Stream Processor Studio. For detailed
-    instructions, see [Starting Stream Processor
-    Studio](Stream-Processor-Studio-Overview_112390916.html#StreamProcessorStudioOverview-StartingStreamProcessorStudio)
+    instructions, see [Starting Stream Processor Studio](Stream-Processor-Studio-Overview_112390916.html#StreamProcessorStudioOverview-StartingStreamProcessorStudio)
     .
 2.  In this example, let's use an existing sample as an example. Click
     on the **ReceiveAndCount** sample to open it.
 3.  Sample opens in a new tab. This sample does not have errors, and
     therefore, no errors are displayed in the editor. To create an error
-    for demonstration purposes, change the
-    `           count()          ` function in the
-    `           query1          ` query
-    `           tocountNew()          ` as shown below.
+    for demonstration purposes, change the `count()` function in the `query1` query
+    `tocountNew()` as shown below.
 
-    `             @info(name='query1') from SweetProductionStream select                           countNew()                          as totalCount insert into TotalCountStream;            `
+    `@info(name='query1') 
+    from SweetProductionStream 
+    select countNew() as totalCount 
+    insert into TotalCountStream;            `
 
     Now, the editor indicates that there is a syntax error. If you move
     the cursor over the error icon, it indicates that
-    `           countNew          ` is an invalid function name as shown
+    `countNew` is an invalid function name as shown
     below.  
     ![](attachments/112390856/112390865.png){height="250"}
 
@@ -45,8 +45,7 @@ you have written is correct. To start a Siddhi application in the
 run/debug mode, follow the procedure below:
 
 1.  Start and access the Stream Processor Studio. For detailed
-    instructions, see [Starting Stream Processor
-    Studio](Stream-Processor-Studio-Overview_112390916.html#StreamProcessorStudioOverview-StartingStreamProcessorStudio)
+    instructions, see [Starting Stream Processor Studio](Stream-Processor-Studio-Overview_112390916.html#StreamProcessorStudioOverview-StartingStreamProcessorStudio)
     .
 2.  For this example, click the **existing** sample **ReceiveAndCount**
     . It opens in a new untitled tab.
