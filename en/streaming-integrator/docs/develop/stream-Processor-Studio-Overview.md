@@ -17,6 +17,7 @@ also run the Siddhi application in the debug mode to detect errors in
 the Stream Processor logic.
 
 ## Starting Stream Processor Studio
+(#start-integration-studio)
 
 To start and access the Stream Processor Studio, follow the steps below:
 
