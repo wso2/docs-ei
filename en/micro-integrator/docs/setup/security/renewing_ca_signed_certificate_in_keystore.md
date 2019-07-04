@@ -1,14 +1,12 @@
 # Renewing a CA-Signed Certificate in a Keystore
 
-A digital certificate has a validity period, after which the certificate
-expires. Once a certificate expires, it is no longer valid, and it can
-cause the client-server communication to fail at the SSL handshake
-level. Therefore, it is important to plan certificate renewal ahead of
-time. Neglecting certificate renewal can eventually lead to a
-catastrophic situation such as major service outage.
+The [digital certificates](../../references/using_keystores.md) that are used for SSL handshaking has a validity period. Once a certificate expires, it can cause the client-server communication to fail at the SSL handshake level. 
 
-Following are a few important points to keep in mind when you are
-renewing an expired certificate:
+> **Note** that it is required to renew the certificates before the expiration date.
+
+## Before you begin
+
+Note the following:
 
 -   Use the same certificate authority that you used when you first got
     the public certificate. If you use a different certificate authority
@@ -20,9 +18,9 @@ renewing an expired certificate:
     CA-signed certificate to the keystore:
 
     ``` java
-        keytool error: java.lang.Exception: Failed to establish chain from reply
+    keytool error: java.lang.Exception: Failed to establish chain from reply
     ```
-
+    
     To overcome the above error, be sure to first import the CA-signed certificate as well as the intermediate certificates to the keystore in the correct order.
 
 
@@ -115,5 +113,5 @@ keytool -import -v -trustcacerts -alias <current_alias> -file <ca_signed_cert.ce
 > If you want to view information related to the renewed certificate,execute the following keytool command:
 
 ``` java
-    keytool -list -keystore <keystore_name.jks> -alias <cert_alias> -v
+keytool -list -keystore <keystore_name.jks> -alias <cert_alias> -v
 ```
