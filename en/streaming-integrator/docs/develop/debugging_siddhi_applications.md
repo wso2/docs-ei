@@ -1,6 +1,6 @@
 # Debugging a Siddhi Application
 
-WSO2 Streaming Integration Studio allows debugging tasks to be carried out to
+WSO2 Streaming Integrator Studio allows debugging tasks to be carried out to
 ensure that the Siddhi applications you create and deploy are validated
 before they are run on an actual production environment. To debug a
 Siddhi application, you can run it in the debug mode, apply debug point
@@ -15,14 +15,14 @@ below:
     view.
 
 
-1.  Start the Streaming Integration Studio following the instructions in
+1.  Start the Streaming Integrator Studio following the instructions in
     [Starting Stream Integration Studio](streaming-integrator-studio-overview.md#Starting-Streaming-Integration-Studio).  
 2.  You are directed to the welcome-page. In this scenario, let's use
     the existing sample Siddhi application named
     `ReceiveAndCount` to demostrate the debugging
     functionality. To open this Siddhi application, click on the
     sample.  
-    ![Streaming Integration Studio Welcome Page](../images/Debugging-Siddhi-Applications/Stream_Processor_Studio_Welcome_Page.png)  
+    ![Streaming Integrator Studio Welcome Page](../images/Debugging-Siddhi-Applications/Stream_Processor_Studio_Welcome_Page.png)  
     The `ReceiveAndCount` Siddhi application opens inca new tab.
 3.  In order to debug the Siddhi file, you need to first save it in the
     `workspace` directory. To do this, click **File**
