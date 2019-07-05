@@ -90,7 +90,9 @@ nav:
           - 'Configuring Keystores' : 'setup/security/configuring_keystores.md'
         - 'Complying with GDPR' : 'setup/security/gdpr_ei.md'
         - 'Using Symmetric Encryption' : 'setup/security/single_key_encryption.md'
-        - 'Encrypting Plain Text' : 'setup/security/encrypting_plain_text.md'
+        - Working with Passwords:
+          - 'Encrypting Passwords' : 'setup/security/encrypting_plain_text.md'
+          - 'Set Passwords using Environment Variables/System Properties' : 'setup/security/replace_passwords_env_variables_sys_properties.md'
         - 'Mitigating Cross Site Request Forgery Attacks' : 'setup/security/mitigating_csrf.md'
         - 'Mitigating Cross Site Scripting' : 'setup/security/mitigating_css.md'
         - 'Configuring SAML2 SSO Across Products' : 'setup/security/configuring_SAML2_SSO_across_prods.md'
@@ -348,6 +350,8 @@ nav:
           - 'Configuring WebLogic' : 'references/transports/jms/configure-with-WebLogic.md'
           - 'Configuring HornetQ' : 'references/transports/jms/configure-with-HornetQ.md'
           - 'Configuring Multiple Brokers' : 'references/transports/jms/configure-with-multiple-brokers.md'
+      - Security:
+        - 'Customizing Secure Vault' : 'references/security/customizing-secure-vault.md'
       - 'Using Keystores' : 'references/using_keystores.md'
       - 'Error Handling' : 'references/error_handling.md'
       - 'Best Practices' : 'references/best-Practices.md'
