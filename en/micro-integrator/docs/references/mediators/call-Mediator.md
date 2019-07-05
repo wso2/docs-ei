@@ -304,12 +304,7 @@ the proxy service, or in a sequence as shown in the sample proxy
 configuration below.
 
 !!! info
-
-Set the value of the
-`         BLOCKING_SENDER_PRESERVE_REQ_HEADERS        ` property to
-`         false        ` , to receive the response message headers. If
-you set it to `         true        ` , you cannot get the response
-headers, but the request headers will be preserved.
+    Set the value of the `         BLOCKING_SENDER_PRESERVE_REQ_HEADERS        ` property to `         false        `, to receive the response message headers. If you set it to `         true        `, you cannot get the response headers, but the request headers will be preserved.
 
 
 ``` xml
@@ -342,10 +337,3 @@ headers, but the request headers will be preserved.
        <description/>
     </proxy>
 ```
-
-#### Samples
-
-For another example, see [Sample 500: Call Mediator for Non-Blocking
-Service
-Invocation](https://docs.wso2.com/display/EI6xx/Sample+500%3A+Call+Mediator+for+Non-Blocking+Service+Invocation)
-.
