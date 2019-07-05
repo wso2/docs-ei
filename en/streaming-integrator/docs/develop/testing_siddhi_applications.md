@@ -76,7 +76,13 @@ run/debug mode, follow the procedure below:
 ### Simulating events
 
 This section demonstrates how to test a Siddhi application via event
-simulation. There are multiple methods to simulate events. In this
+simulation. Events are simulated in the following methods:
+
+
+
+
+
+There are multiple methods to simulate events. In this
 example, you can use single simulation. For more information about all
 available methods, see [Simulating Events](_Simulating_Events_) .
 
