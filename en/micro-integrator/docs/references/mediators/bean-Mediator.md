@@ -1,10 +1,7 @@
 # Bean Mediator
 
 !!! info
-
-Note
-
-Please note that this feature is deprecated.
+    Please note that this feature is deprecated.
 
 
 The **Bean Mediator** is used to manipulate a JavaBean that is bound to
@@ -12,10 +9,7 @@ the Synapse message context as a property. Classes of objects
 manipulated by this mediator need to follow the JavaBeans specification.
 
 !!! info
-
-The Bean mediator is a
-[content-aware](ESB-Mediators_119131045.html#ESBMediators-Content-awareness)
-mediator.
+    The Bean mediator is a [content-aware](ESB-Mediators_119131045.html#ESBMediators-Content-awareness) mediator.
 
 
 ------------------------------------------------------------------------
@@ -81,7 +75,7 @@ The parameters available to configure the Bean mediator are as follows.
 <li><strong>Expression:</strong> If this is selected, the property value can be entered as a dynamic value. You can enter the XPath expression to evaluate the relevant property value.</li>
 </ul>
 !!! tip
-<p>You can click <strong>NameSpaces</strong> to add namespaces if you are providing an expression. Then the <strong>Namespace Editor</strong> panel would appear where you can provide any number of namespace prefixes and URLs used in the XPath expression.</p>
+    <p>You can click <strong>NameSpaces</strong> to add namespaces if you are providing an expression. Then the <strong>Namespace Editor</strong> panel would appear where you can provide any number of namespace prefixes and URLs used in the XPath expression.</p>
 
 </div></td>
 </tr>
