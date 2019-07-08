@@ -30,8 +30,7 @@ example:
 
 ## Mitigating CSRF attacks
 
-[OWASP
-CSRFGuard](https://www.owasp.org/index.php/Category:OWASP_CSRFGuard_Project)
+[OWASP CSRFGuard](https://www.owasp.org/index.php/Category:OWASP_CSRFGuard_Project)
 is an OWASP flagship project that provides synchronizer token
 pattern-based CSRF protection in a comprehensive and customizable
 manner. You can use the best practices and configuration recommendations
@@ -126,7 +125,7 @@ Follow the steps below to secure web applications.
     name = "oauthiwa"
     service = "%servletContext%/commonauth/iwa/*" 
    ```
-   Find out more about [CSRF configuration parameters](../reference/ei_config_catalog/#configuring-owsp).
+   Find out more about [CSRF configuration parameters](../../../references/ei_config_catalog/#configuring-owsp).
 
 4. Add the following configurations to the ei.toml file to specity CSRF configurations.
    ```java
@@ -135,14 +134,14 @@ Follow the steps below to secure web applications.
    token_length=32
    random_number_generator_algo="SHA1PRNG" 
    ```
-   Find out more about [CSRF configuration parameters](../../reference/ei_config_catalog/#configuring-owsp).
+   Find out more about [CSRF configuration parameters](../../../references/ei_config_catalog/#configuring-owsp).
 
 5. Add the follownig configurations to the ei.toml file to specify the header name.
     ```
     [owasp.csrfguard.js_servlet]
     x_request_with_header = "WSO2 CSRF Protection"
     ```
-    Find out more about [CSRF configuration parameters](../../reference/ei_config_catalog/#configuring-owsp).
+    Find out more about [CSRF configuration parameters](../../../references/ei_config_catalog/#configuring-owsp).
    
 ### Securing Jaggery applications
 
@@ -205,7 +204,7 @@ Follow the steps below to secure Jaggery applications.
    name = "oauthiwa"
    service = "%servletContext%/commonauth/iwa/*" 
    ```
-   Find out more about [CSRF configuration parameters](../../reference/ei_config_catalog/#configuring-owsp).
+   Find out more about [CSRF configuration parameters](../../../references/ei_config_catalog/#configuring-owsp).
 
 4. Add the following configurations to the ei.toml file to specity CSRF configurations.
    ```java
@@ -214,4 +213,4 @@ Follow the steps below to secure Jaggery applications.
    token_length=32
    random_number_generator_algo="SHA1PRNG" 
    ```
-   Find out more about [CSRF configuration parameters](../../reference/ei_config_catalog/#configuring-owsp).
+   Find out more about [CSRF configuration parameters](../../../references/ei_config_catalog/#configuring-owsp).
