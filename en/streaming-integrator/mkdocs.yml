@@ -15,7 +15,7 @@
 # under the License.
 
 # Project information
-site_name: Streaming Integration Documentation
+site_name: WSO2 Enterprise Integrator Documentation
 site_description: Documentation for WSO2 Enterprise Integrator
 site_author: WSO2
 site_url: https://wso2.com/integration/
@@ -23,7 +23,7 @@ site_url: https://wso2.com/integration/
 # Repository
 repo_name: wso2/docs-ei
 repo_url: https://github.com/wso2/docs-ei
-edit_uri: https://github.com/wso2/docs-is/edit/master/en/docs/
+edit_uri: https://github.com/wso2/docs-is/edit/master/en/streaming-integrator/docs/
 
 # Copyright
 copyright: WSO2 Enterprise Integrator - Documentation
@@ -74,9 +74,7 @@ nav:
       - 'Setting up Physical Databases': 'setting-up-physical-databases.md'
   - 'Developer Experience':
     - 'Streaming Integrator Studio Overview': 'develop/streaming-integrator-studio-overview.md'
-    - 'Designing Siddhi Applications':
-      - 'Working with the Source View': 'develop/working-with-source-view.md'
-      - 'Working with the Design View': 'develop/working-with-design-view.md'
+    - 'Creating Siddhi Applications': 'develop/creating-a-Siddhi-Application.md'
     - 'Testing a Siddhi Application': 'develop/testing-a-Siddhi-Application.md'
     - 'Debugging Siddhi Applications': 'develop/debugging_siddhi_applications.md'
     - 'Exporting Siddhi Files':
