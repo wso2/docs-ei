@@ -219,6 +219,11 @@ if (tocBtn) {
     tocBtn.onclick = function () {
         event.preventDefault();
         tocClass.classList.toggle('hide-toc');
+        if (tocBtn.innerHTML === "keyboard_arrow_right") {
+            tocBtn.innerHTML = "keyboard_arrow_left";
+        } else {
+            tocBtn.innerHTML = "keyboard_arrow_right";
+        }
     };
 }
 
