@@ -42,15 +42,15 @@ to systematically test the solution before deploying in production.
 Given below are the basic steps you need to follow to run the Micro
 Integrator on Docker:
 
-1.  **[Export the integration
-    artifacts](Working-with-WSO2-Integration-Studio_119133415.html#WorkingwithWSO2IntegrationStudio-ExportingtheESBartifacts)**
+1.  [Export the integration artifacts](../../../develop/working-with-WSO2-Integration-Studio/#exporting-the-esb-artifacts)
     into a CAR file.
-
 2.  **Create the Dockerfile** as shown below. This file contains
     instructions to download the base Docker image of WSO2 Micro
     Integrator from DockerHub (community version) or the WSO2 Docker
     Registry (includes updates), and to copy the integration artifacts
     to the Micro Integrator.  
+
+    The **Dockerfile**:
 
     ``` java
     FROM <docker_image_name>:1.0.0
@@ -60,6 +60,10 @@ Integrator on Docker:
 
     <table>
     <tbody>
+    <tr>
+        <th>Parameter</th>
+        <th>Description</th>
+    </tr>
     <tr class="odd">
     <td>FROM</td>
     <td><div class="content-wrapper">
@@ -114,12 +118,12 @@ Integrator on Docker:
     location of your Dockerfile.
 
     ``` java
-            docker build -t sample_docker_image .
+    docker build -t sample_docker_image .
     ```
 
 4.  **Start a Docker container** by running the Docker image as shown
     below.
 
     ``` java
-            docker run -d -p 8290:8290 sample_docker_image
+    docker run -d -p 8290:8290 sample_docker_image
     ```

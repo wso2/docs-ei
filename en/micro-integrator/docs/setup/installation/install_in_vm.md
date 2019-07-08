@@ -1,18 +1,13 @@
 # Installing in a VM
 
-Follow the steps given below to install and run the Micro Integrator on
+Follow the steps given below to install and run WSO2 Micro Integrator on
 a VM.
 
 ## Installing the WSO2 Micro Integrator
 
 Follow the steps below:
 
-1.  Go to the WSO2 Micro Integrator [product page](https://wso2.com/integration/micro-integrator/) and download.
-
-    > Note that there are several options for installing the product in
-        various environments. Use the available links for more information
-        on each option.
-    
+1.  Go to the WSO2 Micro Integrator [product page](https://wso2.com/integration/micro-integrator/) and click **Download** to get the **.pkg** file. Alternatively, go to **Other Installation Options** and click **Binary** to download the product distribution as a ZIP file.
 
 2.  If you used the installer, double-click to open the installation
     wizard, which will guide you through the installation. When you

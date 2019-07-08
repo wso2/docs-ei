@@ -90,9 +90,9 @@ nav:
           - 'Renewing a CA-signed Certificate' : 'setup/security/renewing_ca_signed_certificate_in_keystore.md'
           - 'Configuring Keystores' : 'setup/security/configuring_keystores.md'
         - 'Complying with GDPR' : 'setup/security/gdpr_ei.md'
-        - 'Using Symmetric Encryption' : 'setup/security/single_key_encryption.md'
         - Working with Passwords:
           - 'Encrypting Passwords' : 'setup/security/encrypting_plain_text.md'
+          - 'Using Symmetric Encryption' : 'setup/security/single_key_encryption.md'
           - 'Set Passwords using Environment Variables/System Properties' : 'setup/security/replace_passwords_env_variables_sys_properties.md'
         - 'Mitigating Cross Site Request Forgery Attacks' : 'setup/security/mitigating_csrf.md'
         - 'Mitigating Cross Site Scripting' : 'setup/security/mitigating_css.md'
@@ -111,7 +111,6 @@ nav:
           - 'Tuning the JMS Transport' : 'setup/performance_tuning/jms_transport_tuning.md'
           - 'Tuning the VFS Transport' : 'setup/performance_tuning/vfs_transport_tuning.md'
           - 'Tuning the RabbitMQ Transport' : 'setup/performance_tuning/rabbitmq_transport_tuning.md'
-      - 'Working with Admin Services' : 'setup/working-with-admin-services.md'
       - Supporting Configurations:
         - 'Optional: Mounting a Registry': 'setup/registry_mounting.md'
         - 'Setting up a Load Balancer': 'setup/setting_up_lb.md'
@@ -198,6 +197,7 @@ nav:
       - 'JMX Monitoring' : 'administer-and-observe/jmx_monitoring.md'
       - 'SNMP Monitoring' : 'administer-and-observe/snmp_monitoring.md'
       - 'Monitoring with Prometheus' : 'administer-and-observe/monitoring_with_prometheus.md'
+      - 'Working with Admin Services' : 'setup/working-with-admin-services.md'
       - Monitoring Logs:
         - 'About Logs' : 'administer-and-observe/monitoring_logs.md'
         - 'Monitoring Access Logs' : 'administer-and-observe/monitoring_access_logs.md'
