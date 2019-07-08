@@ -13,8 +13,7 @@ Note the following:
     * HTTP requests will be directed to node 1 using the `http://xxx.xxx.xxx.xx1/<service>` URL via HTTP 80 port.
     * HTTPS requests will be directed to node 1 using the `https://xxx.xxx.xxx.xx1/<service>` URL via HTTPS 443 port.
 
-!!! Tip ""
-	It is recommended to use NGINX Plus as your load balancer of choice.
+> It is recommended to use NGINX Plus as your load balancer of choice.
 
 ## Configuring the load balancer
 
@@ -30,9 +29,7 @@ community](http://nginx.org/) version 1.9.2 as the load balancer.
     the http://ei.wso2.com/ URL. If you are setting up NGINX on a Mac OS, you will not have the conf.d directory. 
     
     > Follow the steps given below to add the VHost files mentioned in this step and the preceding steps: 
-
     > 1. Create a directory named conf in the nginx directory, and create the ei.http.conf file in it. 
-
     > 2. Open the nginx/nginx.conf file and add the following entry before the final }. This includes all the files in the conf directory into the NGINX server: `include conf/*.conf;`
 
 	```
@@ -64,48 +61,48 @@ community](http://nginx.org/) version 1.9.2 as the load balancer.
 
 3. Create a VHost file (ei.https.conf) in the nginx/conf.d directory or in the nginx/conf directory if you are on a Mac OS and add the following configurations. This configures NGINX Plus to direct the HTTPS requests to the two ESB nodes (xxx.xxx.xxx.xx1 and xxx.xxx.xxx.xx2) via the HTTPS 443 port using the https://ei.wso2.com/ URL.
 	* NGINX Community version
-	```
-	upstream ssl.wso2.ei.com {
-	server xxx.xxx.xxx.xx1:8243;
-	server xxx.xxx.xxx.xx2:8243;
-	ip_hash;
-	}  
-	server {
-		listen 443;
-		server_name ei.wso2.com;
-		ssl on;
-		ssl_certificate /etc/nginx/ssl/server.crt;
-		ssl_certificate_key /etc/nginx/ssl/server.key;
-		location / {
-			proxy_set_header X-Forwarded-Host $host;
-			proxy_set_header X-Forwarded-Server $host;
-			proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-			proxy_set_header Host $http_host;
-			proxy_read_timeout 5m;
-			proxy_send_timeout 5m;
-			proxy_pass https://ssl.wso2.ei.com;  
-			proxy_http_version 1.1;
-			proxy_set_header Upgrade $http_upgrade;
-			proxy_set_header Connection "upgrade";
+		```
+		upstream ssl.wso2.ei.com {
+		server xxx.xxx.xxx.xx1:8243;
+		server xxx.xxx.xxx.xx2:8243;
+		ip_hash;
+		}  
+		server {
+			listen 443;
+			server_name ei.wso2.com;
+			ssl on;
+			ssl_certificate /etc/nginx/ssl/server.crt;
+			ssl_certificate_key /etc/nginx/ssl/server.key;
+			location / {
+				proxy_set_header X-Forwarded-Host $host;
+				proxy_set_header X-Forwarded-Server $host;
+				proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+				proxy_set_header Host $http_host;
+				proxy_read_timeout 5m;
+				proxy_send_timeout 5m;
+				proxy_pass https://ssl.wso2.ei.com;  
+				proxy_http_version 1.1;
+				proxy_set_header Upgrade $http_upgrade;
+				proxy_set_header Connection "upgrade";
+					}
 				}
-			}
-	```
+		```
 	* NGINX Plus
-	```
-	upstream ssl.wso2.ei.com {
-    server xxx.xxx.xxx.xx1:8243;
-    server xxx.xxx.xxx.xx2:8243;
-            sticky learn create=$upstream_cookie_jsessionid
-            lookup=$cookie_jsessionid
-            zone=client_sessions:1m;
+		```
+		upstream ssl.wso2.ei.com {
+    		server xxx.xxx.xxx.xx1:8243;
+    		server xxx.xxx.xxx.xx2:8243;
+            	sticky learn create=$upstream_cookie_jsessionid
+            	lookup=$cookie_jsessionid
+            	zone=client_sessions:1m;
 					}
 					server {
 						listen 443;
     		server_name ei.wso2.com;
-    	ssl on;
-    	ssl_certificate /etc/nginx/ssl/server.crt;
-    	ssl_certificate_key /etc/nginx/ssl/server.key;
-    	location / {
+    		ssl on;
+    		ssl_certificate /etc/nginx/ssl/server.crt;
+    		ssl_certificate_key /etc/nginx/ssl/server.key;
+    		location / {
 				proxy_set_header X-Forwarded-Host $host;
 				proxy_set_header X-Forwarded-Server $host;
 				proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
@@ -116,9 +113,9 @@ community](http://nginx.org/) version 1.9.2 as the load balancer.
                proxy_http_version 1.1;
                proxy_set_header Upgrade $http_upgrade;
                proxy_set_header Connection "upgrade";
-        }
+        	}
 			}
-	```
+		```
 4. Create a directory named ssl inside the nginx directory.
 5. Follow the instructions below to create SSL certificates for both Micro Integrator nodes.
 
@@ -159,8 +156,7 @@ community](http://nginx.org/) version 1.9.2 as the load balancer.
 	  	sudo service  nginx  restart
 	  	```
 
-	!!! Info ""
-		Execute the following command if you do not need to restart the server when you are simply making a modification to the VHost file:
+	> Execute the following command if you do not need to restart the server when you are simply making a modification to the VHost file:
 		```
 		sudo service nginx reload
 		```

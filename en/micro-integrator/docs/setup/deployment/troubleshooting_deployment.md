@@ -1,18 +1,16 @@
 # Troubleshooting in Production Environments
 
-The following sections provide information on how to troubleshoot
-various problems that may arise for deployment in production
-environments.
+The following sections will guide you to troubleshoot various issues that may arise in your [Micro Integrator deployment](../deployment/deploying_wso2_ei.md).
 
-### Analyzing a stack trace
+## Analyzing a stack trace
 
 When your Java process starts to spin your CPU, you must immediately
 analyze the issue using the following two commands and obtain the
 invaluable information required to tackle the issue. This is done based
 on the process ID (pid).
 
-1.  `          jstack <pid> > thread-dump.txt         `
-2.  `           ps -C java -L -o pcpu,cpu,nice,state,cputime,pid,tid > thread-usage.txt                     `
+1.  `jstack <pid> > thread-dump.txt`
+2.  `ps -C java -L -o pcpu,cpu,nice,state,cputime,pid,tid > thread-usage.txt`
 
 > OS X users can alternatively use the command `ps M <PID>` instead.
     
@@ -46,7 +44,7 @@ following.
     order to identify the thread that spins. In this case, the
     hexadecimal value to search for is 644. The **thread-dump.txt** file
     should have that value as a thread ID of one thread.
-4.  That thread usually has a stack trace, and that's the lead you need
+4.  That thread usually has a stack trace, and that's the lead you need in order
     to find the issue. In this example, the stack trace of the thread
     that spins is as follows.
 
@@ -68,55 +66,53 @@ following.
      at java.lang.Thread.run(Thread.java:722)
     ```
 
-### Capturing the state of the system
+## Capturing the state of the system
 
-Carbondump is a tool used to collect all the necessary data from a
+**Carbondump** is a tool that is used to collect all the necessary data from a
 running WSO2 product instance at the time of an error.
 The carbondump generates a ZIP archive with the collected data that
-helps to analyze the system and determine the problem that caused the
+helps to analyze the system and to determine the problem that caused the
 error. Therefore, it is recommended that you run this tool as soon as an
-error occurs in the WSO2 product instance.
+error occurs in the your product instance.
 
 When using the tool, you have to provide the process ID (pid) of the
-product instance and the `         <PRODUCT_HOME>        ` location,
-which is where your unzipped Carbon distribution files reside. The
+product instance and the `MI_HOME` location,
+which is where your unzipped Micro Integrator distribution files reside. The
 command takes the following format:
 
 ``` java
-    sh carbondump.sh [-carbonHome path] [-pid of the carbon instance]
+sh carbondump.sh [-carbonHome path] [-pid of the carbon instance]
 ```
 
 For example,
 
-``` java
-    In Linux: sh carbondump.sh -carbonHome /home/user/wso2carbon-3.0.0/ -pid 5151
+- In Linux: `sh carbondump.sh -carbonHome /home/user/wso2carbon-3.0.0/ -pid 5151`
     
-    In Windows: carbondump.bat -carbonHome c:\wso2carbon-3.0.0\ -pid 5151
-```
+- In Windows: `carbondump.bat -carbonHome c:\wso2carbon-3.0.0\ -pid 5151`
 
 The tool captures the following information about the system:
 
--   Operating system information \*\* OS (kernel) version
+-   Operating system information (**kernel version**)
     -   Installed modules lists and their information
     -   List of running tasks in the system
--   Memory information of the Java process \*\* Java heap memory dump
+-   Memory information of the Java process (**Java heap memory dump**)
     -   Histogram of the heap
     -   Objects waiting for finalization
     -   Java heap summary. GC algo used, etc.
     -   Statistics on permgen space of Java heap
--   Information about the running Carbon instance \*\* Product name and
-    version
+-   Information about the running Micro Integrator instance (**Product name and
+    version**)
     -   Carbon framework version (This includes the patched version)
-    -   \<PRODUCT\_HOME\>, \<JAVA\_HOME\>
-    -   configuration files
-    -   log files
+    -   MI_HOME, JAVA_HOME
+    -   Configuration files
+    -   Log files
     -   H2 database files
 -   Thread dump
--   Checksum values of all the files found in the $CARBON\_HOME
+-   Checksum values of all the files found in the MI_HOME.
 
-### Viewing process threads in Solaris
+## Viewing process threads in Solaris
 
-This information is useful to know in situations when the database
+This information is useful to understandand whether the database
 processes are not fully utilizing the CPU's threading capabilities. It
 gives you a better understanding on how 11g and 10g takes advantage of
 threading and how you can validate those queries from the system.
@@ -135,11 +131,11 @@ is parallelized and is taking advantage of the threading within the CPU.
     code block for an example.  
 
     ``` java
-              PID USERNAME  SIZE   RSS STATE  PRI NICE      TIME  CPU PROCESS/NLWP       
-            ...
-            12905 root     4472K 3640K cpu0    59    0   0:00:01 0.4% prstat/1
-            18403 monitor   474M  245M run     59   17   1:01:28 9.1% java/103
-             4102 oracle     12G   12G run     59    0   0:00:12 4.5% oracle/1
+    PID USERNAME  SIZE   RSS STATE  PRI NICE      TIME  CPU PROCESS/NLWP       
+    ...
+    12905 root     4472K 3640K cpu0    59    0   0:00:01 0.4% prstat/1
+    18403 monitor   474M  245M run     59   17   1:01:28 9.1% java/103
+    4102 oracle     12G   12G run     59    0   0:00:12 4.5% oracle/1
     ```
 
     If you observe the `           PROCESS/NLWP          ` value in the
@@ -147,50 +143,11 @@ is parallelized and is taking advantage of the threading within the CPU.
     and `           oracle          ` are single thread processes, while
     `           java          ` is a multi-threaded process.
 
-3.  Alternatively, you can analyze individual thread activity of a
+3.  Alternatively, you can analyze individual thread activities of a
     multi-threaded process by using the `           -L          ` and
-    `           -p          ` options, like
+    `           -p          ` options such as
     `           prstat -L -p pid          ` . This displays a line for
-    each thread sorted by CPU activity. In that case, the last column is
-    labeled `           PROCESS/LWPID          ` , where LWPID is the
+    each thread sorted by the CPU activity. In that case, the last column is
+    labeled `           PROCESS/LWPID          `, where LWPID is the
     thread ID. If more than one thread shows significant activity, your
     process is actively taking advantage of multi-threading.
-
-### Checking the health of a cluster
-
-In Hazelcast, the health of a member in the cluster is determined by the
-heartbeats the member sends. If the well-known member does not receive a
-heartbeat within a given amount of time (this can be configured), then
-the node is assumed dead. By default, the given amount of time is 600
-seconds (or 10mins), which might be too much for some scenarios.
-
-Failure detectors used in distributed systems can be unreliable. In
-these sort of scenarios, Hazelcast uses heartbeat monitoring as a fault
-detection mechanism and the nodes send heartbeats to other nodes.
-
-If a heartbeat message is not received by a given amount of time,
-Hazelcast assumes the node is dead. This is configured via the
-`         hazelcast.max.no.heartbeat.seconds        ` property. The
-optimum value for this property depends on the system. Although the
-default is 600 seconds, it might be necessary to reduce the heartbeat to
-a lower value if nodes are to be declared dead in a shorter time frame.
-However, you must verify this in your system and adjust as necessary
-depending on your scenario.
-
-> **Warning**: Reducing the value of this property to a lower value can
-result in nodes being considered as dead even if they are not. This
-results in multiple messages indicating that a node is leaving and
-rejoining the cluster.
-
-
-To configure the maximum time between heartbeats: 
-
-1. Open the esb.toml file and add the following configuration:
-    ```java
-    [config_heading]
- 
-    hazelcast.max.no.heartbeat.seconds= 300 
-    ```
-2.  Restart the servers.
-
-  
