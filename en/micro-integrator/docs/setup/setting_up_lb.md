@@ -29,9 +29,7 @@ community](http://nginx.org/) version 1.9.2 as the load balancer.
     the http://ei.wso2.com/ URL. If you are setting up NGINX on a Mac OS, you will not have the conf.d directory. 
     
     > Follow the steps given below to add the VHost files mentioned in this step and the preceding steps: 
-
     > 1. Create a directory named conf in the nginx directory, and create the ei.http.conf file in it. 
-
     > 2. Open the nginx/nginx.conf file and add the following entry before the final }. This includes all the files in the conf directory into the NGINX server: `include conf/*.conf;`
 
 	```
