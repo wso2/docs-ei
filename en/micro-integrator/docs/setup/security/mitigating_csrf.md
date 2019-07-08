@@ -74,8 +74,9 @@ Open the ei.toml file and add the following configurations:
 - To specify the header name.
   ```
   [owasp.csrfguard.js_servlet]
-   x_request_with_header = "WSO2 CSRF Protection"
-   ```
+  x_request_with_header = "WSO2 CSRF Protection"
+  ```
+
 Find out more about [CSRF configuration parameters](../../../references/ei_config_catalog/#configuring-owsp).
 
 ## Securing web applications
