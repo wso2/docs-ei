@@ -2,7 +2,7 @@
 
 We recommend that you use a proper artifact management system such as Puppet to back up and manage your artifacts before deploying them in the WSO2 Carbon runtime. Also, use the WSO2 Update Manager (WUM) tool, which is a command-line utility that allows you to get the latest updates (bug fixes and security fixes) of a particular product release.
 
-<a href=""><img src="../../assets/img/admin-guide-configuration-mgmt.png"></a>
+![Backup and recovery flow](../../assets/img/admin-guide-configuration-mgmt.png)
 
 ## Recovery recommendations
 Be sure to determine the following depending on your business-continuity requirements:
