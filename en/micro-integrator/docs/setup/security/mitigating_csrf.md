@@ -204,9 +204,9 @@ Follow the steps below to secure Jaggery applications.
 
 3. Add the following configurations to the ei.toml file to specify the patterns that should be excluded from CSRF protection.
    ```java
-    [[owasp.csrfguard.unprotected.service]]
-    name = "oauthiwa"
-    service = "%servletContext%/commonauth/iwa/*" 
+   [[owasp.csrfguard.unprotected.service]]
+   name = "oauthiwa"
+   service = "%servletContext%/commonauth/iwa/*" 
    ```
 
 4. Add the following configurations to the ei.toml file to specity CSRF configurations.
