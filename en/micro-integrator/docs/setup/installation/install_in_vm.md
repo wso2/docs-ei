@@ -1,4 +1,4 @@
-# Installing in a VM
+# Installing WSO2 Micro Integrator on a VM
 
 Follow the steps given below to install and run WSO2 Micro Integrator on
 a VM.

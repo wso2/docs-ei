@@ -62,10 +62,11 @@ nav:
       - Product Deployment:
         - 'Deploying WSO2 Enterprise Integrator' : 'setup/deployment/deploying_wso2_ei.md'
         - 'Upgrading from a Previous Release' : 'setup/deployment/upgrading.md'
+        - 'Setting up a Load Balancer': 'setup/setting_up_lb.md'
         - 'Troubleshooting Production Deployment' : 'setup/deployment/troubleshooting_deployment.md'
         - 'Product Deployment Checklist' : 'setup/deployment/deployment_checklist.md'
         - 'Backup and Recovery' : 'setup/deployment/backup_recovery.md'
-      - Using Data Stores:
+      - Data Storing:
         - Setting up Databases:
           - 'Setting up MySQL' : 'setup/databases/setting-up-MySQL.md'
           - 'Setting up MSSQL' : 'setup/databases/setting-up-MSSQL.md'
@@ -78,6 +79,7 @@ nav:
           - 'Setting up Remote Derby' : 'setup/databases/setting-up-Remote-Derby.md'
           - 'Setting up PostgreSQL' : 'setup/databases/setting-up-PostgreSQL.md'
           - 'Setting up Remote H2' : 'setup/databases/setting-up-Remote-H2.md'
+        - 'Setting up a File-Based Registry' : 'setup/file_based_registry.md'
         - Setting up a User Store:
           - 'Setting up a JDBC User Store' : 'setup/user_stores/setting_up_jdbc_userstore.md'
           - 'Setting up a Read-Only LDAP' : 'setup/user_stores/setting_up_ro_ldap.md'
@@ -111,21 +113,21 @@ nav:
           - 'Tuning the JMS Transport' : 'setup/performance_tuning/jms_transport_tuning.md'
           - 'Tuning the VFS Transport' : 'setup/performance_tuning/vfs_transport_tuning.md'
           - 'Tuning the RabbitMQ Transport' : 'setup/performance_tuning/rabbitmq_transport_tuning.md'
-      - Supporting Configurations:
+      - Feature-Specific Configurations:
+        - 'Configuring the Task Scheduling Component': 'setup/configuring_task_scheduling_comp.md'
+        - 'Enabling CORS for Data Services': 'setup/enabling_CORS_for_data_services.md'
+        - 'Configuring Time Stamp Conversion for RDBMS': 'setup/configuring_timestamp_conversion_for_rdbms.md'
+        - 'Configuring Message Builders and Formatters' : 'setup/message_builders_formatters/message-builders-and-formatters.md'
+        - 'Configuring Message Relay' : 'setup/message_builders_formatters/message-relay.md'
+      - Additional Configurations:
         - 'Optional: Mounting a Registry': 'setup/registry_mounting.md'
-        - 'Setting up a Load Balancer': 'setup/setting_up_lb.md'
         - 'Configuring Deployment Synchronization': 'setup/deployment_synchronization.md'
         - 'Adding a Custom Proxy Path': 'setup/adding_a_custom_proxy__path.md'
         - 'Configuring a Proxy Server': 'setup/configuring_proxy_servers.md'
         - 'Changing Default Ports': 'setup/changing_default_ports.md'
-        - 'Enabling CORS for Data Services': 'setup/enabling_CORS_for_data_services.md'
-        - 'Configuring Time Stamp Conversion for RDBMS': 'setup/configuring_timestamp_conversion_for_rdbms.md'
         - 'Customizing Error Messages': 'setup/customizing_error_pages.md'
-        - 'Configuring the Task Scheduling Component': 'setup/configuring_task_scheduling_comp.md'
         - 'Governing External Reference Across Environments': 'setup/govern_ext_refs_across_env.md'
         - 'Enable SSL Tunneling through Proxy Server': 'setup/enabling_SSL_tunneling_thru_proxy_server.md'
-        - 'Configuring Message Builders and Formatters' : 'setup/message_builders_formatters/message-builders-and-formatters.md'
-        - 'Configuring Message Relay' : 'setup/message_builders_formatters/message-relay.md'
     - Developer Experience:
       - 'Continuous Development and Deployment' : 'develop/cicd.md'
       - 'Developing an Integration Use Case' : 'develop/developing-Cloud-Native-Integration.md'

@@ -1,5 +1,5 @@
 
-# Installing WSO2 EI on Docker
+# Installing WSO2 Micro Integrator on Docker
 
 To run your Micro Integrator solutions on Docker or Kubernetes, you need
 to first create an **immutable** docker image with the required synapse
@@ -14,8 +14,7 @@ to systematically test the solution before deploying in production.
     **Note** that you need a valid WSO2 subscription to use the Docker
     image with updates. Therefore, you need to provide your log in
     credentials when downloading the Docker image. If you do not already
-    have a subscription, you can get a [free trial
-    subscription](https://wso2.com/subscription/free-trial) .
+    have a subscription, you can get a [free trial subscription](https://wso2.com/subscription/free-trial).
 
     **Micro Integrator Docker image (with updates)**
 
@@ -52,7 +51,7 @@ Integrator on Docker:
 
     The **Dockerfile**:
 
-    ``` java
+    ```java
     FROM <docker_image_name>:1.0.0
     COPY <directoy_path>/<capp_name> /home/wso2ei/wso2mi/repository/deployment/server/carbonapps
     ```
