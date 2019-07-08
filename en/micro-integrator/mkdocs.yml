@@ -63,6 +63,7 @@ nav:
         - 'Deploying WSO2 Enterprise Integrator' : 'setup/deployment/deploying_wso2_ei.md'
         - 'Upgrading from a Previous Release' : 'setup/deployment/upgrading.md'
         - 'Setting up a Load Balancer': 'setup/setting_up_lb.md'
+        - 'Configuring Deployment Synchronization': 'setup/deployment_synchronization.md'
         - 'Troubleshooting Production Deployment' : 'setup/deployment/troubleshooting_deployment.md'
         - 'Product Deployment Checklist' : 'setup/deployment/deployment_checklist.md'
         - 'Backup and Recovery' : 'setup/deployment/backup_recovery.md'
@@ -121,7 +122,6 @@ nav:
         - 'Configuring Message Relay' : 'setup/message_builders_formatters/message-relay.md'
       - Additional Configurations:
         - 'Optional: Mounting a Registry': 'setup/registry_mounting.md'
-        - 'Configuring Deployment Synchronization': 'setup/deployment_synchronization.md'
         - 'Adding a Custom Proxy Path': 'setup/adding_a_custom_proxy__path.md'
         - 'Configuring a Proxy Server': 'setup/configuring_proxy_servers.md'
         - 'Changing Default Ports': 'setup/changing_default_ports.md'
