@@ -64,6 +64,7 @@ nav:
         - 'Upgrading from a Previous Release' : 'setup/deployment/upgrading.md'
         - 'Troubleshooting Production Deployment' : 'setup/deployment/troubleshooting_deployment.md'
         - 'Product Deployment Checklist' : 'setup/deployment/deployment_checklist.md'
+        - 'Backup and Recovery' : 'setup/deployment/backup_recovery.md'
       - Using Data Stores:
         - Setting up Databases:
           - 'Setting up MySQL' : 'setup/databases/setting-up-MySQL.md'
@@ -110,7 +111,6 @@ nav:
           - 'Tuning the JMS Transport' : 'setup/performance_tuning/jms_transport_tuning.md'
           - 'Tuning the VFS Transport' : 'setup/performance_tuning/vfs_transport_tuning.md'
           - 'Tuning the RabbitMQ Transport' : 'setup/performance_tuning/rabbitmq_transport_tuning.md'
-      - 'Backup and Recovery' : 'setup/backup_recovery.md'
       - 'Working with Admin Services' : 'setup/working-with-admin-services.md'
       - Supporting Configurations:
         - 'Optional: Mounting a Registry': 'setup/registry_mounting.md'
