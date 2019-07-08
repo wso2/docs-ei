@@ -1,12 +1,11 @@
 # Mitigating Cross Site Request Forgery Attacks
 
-The following sections describe the impact of the Cross Site Request
-Forgery (CSRF) attack and how to mitigate it.
+Follow the instructions given below to secure any custom applications in your Micro Integrator from Cross Site Request Forgery (CSRF) attacks.
 
 ## How can CSRF attacks be harmful?
 
 Cross Site Request Forgery (CSRF) attacks trick you to send a malicious
-request, by forcing you to execute unwanted actions on an already
+request by forcing you to execute unwanted actions on an already
 authenticated web browser. The session in which you logged in to the web
 application on the browser is used to bypass the authentication step
 during this attack. If you are already authenticated on the website, the
@@ -56,159 +55,132 @@ contains a CSRF token.
 
 ## Configuring applications in WSO2 product to mitigate CSRF attacks
 
-**Before you begin**, note the following:
-
--   If your WSO2 product is based on Carbon 4.4.6 or a later version, t
-    he configurations for mitigating CSRF attacks are enabled by default
-    for all the applications that are built into the product. Therefore,
-    you need to apply these configurations manually, only if you have
-    any custom applications deployed in your product.
--   If your WSO2 product is based on a Carbon version prior to version
-    4.4.6, the configurations for mitigating CSRF attacks should be
-    applied to all applications manually.
--   **Important!** Some updates of JDK 1.8 (for example,
-    **JDK1.8.0\_151** ) are affected by a [known
-    issue](https://bugs.openjdk.java.net/browse/JDK-8189789) related to
-    GZIP decoding, which may prevent these CSRF-related configurations
-    from working for your product. Therefore, until this issue is fixed,
-    we recommend one of the following approaches:
-    -   Be sure that your product is running on **JDK1.8.0\_144** or
-        **JDK1.8.0\_077** . We have verified that these JDK versions are
-        not affected by the [known
-        issue](https://bugs.openjdk.java.net/browse/JDK-8189789) .
-    -   Alternatively, you can disable GZIP decoding for your product by
-        following the steps given below. This will ensure that your
-        product is not affected by the [known
-        issue](https://bugs.openjdk.java.net/browse/JDK-8189789) .
-        1.  Open the `              catalina-server.xml             `
-            file from the
-            `              <PRODUCT_HOME>/repository/conf/tomcat/             `
-            directory.
-        2.  Set the `               compression              ` parameter
-            (under each of the connector configurations) to false as
-            shown below:
-
-            ``` java
-                        compression="off"
-            ```
-
-         3.  Restart the server.
-
-
-See the following for instructions on manually updating CSRF
-configurations in WSO2 products:  
+See the following for instructions on manually updating CSRF configurations. 
 
 ### Securing web applications
 
 Follow the steps below to secure web applications.
 
 1.  Add the following configurations in the
-    `           web.xml          ` file of your application.
+    `web.xml` file of your application.
 
     ``` xml
-        <!-- OWASP CSRFGuard context listener used to read CSRF configuration -->
-        <listener>
-            <listener-class>org.owasp.csrfguard.CsrfGuardServletContextListener</listener-class>
-        </listener>
-        <!-- OWASP CSRFGuard session listener used to generate per-session CSRF token -->
-        <listener>
-            <listener-class>org.owasp.csrfguard.CsrfGuardHttpSessionListener</listener-class>
-        </listener>
-        <!-- OWASP CSRFGuard per-application configuration property file location-->
-        <context-param>
-            <param-name>Owasp.CsrfGuard.Config</param-name>
-            <param-value>/repository/conf/security/Owasp.CsrfGuard.properties</param-value>
-        </context-param>
-        <!-- OWASP CSRFGuard filter used to validate CSRF token-->
-        <filter>
-            <filter-name>CSRFGuard</filter-name>
-            <filter-class>org.owasp.csrfguard.CsrfGuardFilter</filter-class>
-        </filter>
-        <!-- OWASP CSRFGuard filter mapping used to validate CSRF token-->
-        <filter-mapping>
-            <filter-name>CSRFGuard</filter-name>
-            <url-pattern>/*</url-pattern>
-        </filter-mapping>
-        <!-- OWASP CSRFGuard servlet that serves dynamic token injection JavaScript (application can customize the URL pattern as required)-->
-        <servlet>
-            <servlet-name>JavaScriptServlet</servlet-name>
-            <servlet-class>org.owasp.csrfguard.servlet.JavaScriptServlet</servlet-class>
-        </servlet>
-        <servlet-mapping>
-            <servlet-name>JavaScriptServlet</servlet-name>
-            <url-pattern>/csrf.js</url-pattern>
-        </servlet-mapping>
+    <!-- OWASP CSRFGuard context listener used to read CSRF configuration -->
+    <listener>
+        <listener-class>org.owasp.csrfguard.CsrfGuardServletContextListener</listener-class>
+    </listener>
+    <!-- OWASP CSRFGuard session listener used to generate per-session CSRF token -->
+    <listener>
+        <listener-class>org.owasp.csrfguard.CsrfGuardHttpSessionListener</listener-class>
+    </listener>
+    <!-- OWASP CSRFGuard per-application configuration property file location-->
+    <context-param>
+        <param-name>Owasp.CsrfGuard.Config</param-name>
+        <param-value>/repository/conf/security/Owasp.CsrfGuard.properties</param-value>
+    </context-param>
+    <!-- OWASP CSRFGuard filter used to validate CSRF token-->
+    <filter>
+        <filter-name>CSRFGuard</filter-name>
+        <filter-class>org.owasp.csrfguard.CsrfGuardFilter</filter-class>
+    </filter>
+    <!-- OWASP CSRFGuard filter mapping used to validate CSRF token-->
+    <filter-mapping>
+        <filter-name>CSRFGuard</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+    <!-- OWASP CSRFGuard servlet that serves dynamic token injection JavaScript (application can customize the URL pattern as required)-->
+    <servlet>
+        <servlet-name>JavaScriptServlet</servlet-name>
+        <servlet-class>org.owasp.csrfguard.servlet.JavaScriptServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>JavaScriptServlet</servlet-name>
+        <url-pattern>/csrf.js</url-pattern>
+    </servlet-mapping>
     ```
 
 2.  Include the following JavaScriptServlet as the first JavaScript
-    inclusion of the `           <head>          ` element, in the HTML
+    inclusion of the `<head>` element, in the HTML
     template of all pages of the application that you need to protect.
 
-    ``` js
+    ``` java
+    …
+    <html>
+        <head>
             …
-            <html>
-                <head>
-                    …
-                    <script type=”text/javascript” src=”/csrf.js”></script>
+            <script type=”text/javascript” src=”/csrf.js”></script>
 
-                    <!-- other JavaScript inclusions should follow “csrf.js” inclusion -->
-                    <script type=”text/javascript” src=”/main.js”></script>
-                    …
-                </head>
-                <body>
-                    ...
-                </body>
-            </html>
+                <!-- other JavaScript inclusions should follow “csrf.js” inclusion -->
+                <script type=”text/javascript” src=”/main.js”></script>
+                …
+        </head>
+        <body>
+            ...
+        </body>
+    </html>
     ```
 
-3. Open the esb.toml file add the following configuration section
+3. Add the following configurations to the ei.toml file to specify the patterns that should be excluded from CSRF protection.
    ```java
-   [config_heading]
-   
-   //Defines the hashing algorithm used to generate the CSRF token.  
-   org.owasp.csrfguard.PRNG=SHA1PRNG
-
-   //Defines the length of the CSRF token. 
-   org.owasp.csrfguard.TokenLength=32
-
-   //Invalidates the user session, if a CSRF attack attempt was blocked by CSRFGuard.
-   org.owasp.csrfguard.action.Invalidate=org.owasp.csrfguard.action.Invalidate 
+    [[owasp.csrfguard.unprotected.service]]
+    name = "oauthiwa"
+    service = "%servletContext%/commonauth/iwa/*" 
    ```
+
+4. Add the following configurations to the ei.toml file to specify the patterns that should be excluded from CSRF protection.
+   ```java
+   [owasp.csrfguard]
+   
+   //True to create csrf token per page. When false csrf token per session. There is a performance impact.  
+   create_token_per_page=false 
+
+   //To increase csrf token length for extra security. 
+   token_length=32
+
+   //To change Pseudo-random Number Generator algo for extra security.
+   random_number_generator_algo="SHA1PRNG" 
+   ```
+
+5. Other..
+    ```
+    [owasp.csrfguard.js_servlet]
+    x_request_with_header = "WSO2 CSRF Protection"
+    ```
    
 ### Securing Jaggery applications
 
 Follow the steps below to secure Jaggery applications.
 
 1.  Add the following configurations in the
-    `           jaggery.conf          ` file of your application.
+    `jaggery.conf` file of your application.
 
     ``` java
-             "listeners" : [
-                {
-                    "class" : "org.owasp.csrfguard.CsrfGuardServletContextListener"
-                },
-                {
-                    "class" : "org.owasp.csrfguard.CsrfGuardHttpSessionListener"    
-                }
-                ],
-                "servlets" : [
-                {
-                    "name" : "JavaScriptServlet",
-                    "class" : "org.owasp.csrfguard.servlet.JavaScriptServlet"
-                }
-                ],
-                "servletMappings" : [
-                {
-                    "name" : "JavaScriptServlet",
-                    "url" : "/csrf.js"
-                }
-                ],
-                "contextParams" : [
-                {
-                    "name" : "Owasp.CsrfGuard.Config",
-                    "value" : "/repository/conf/security/Owasp.CsrfGuard.dashboard.properties"
-                }
-                ]
+    "listeners" : [
+    {
+        "class" : "org.owasp.csrfguard.CsrfGuardServletContextListener"
+    },
+    {
+        "class" : "org.owasp.csrfguard.CsrfGuardHttpSessionListener"    
+    }
+    ],
+    "servlets" : [
+    {
+    "name" : "JavaScriptServlet",
+    "class" : "org.owasp.csrfguard.servlet.JavaScriptServlet"
+    }
+    ],
+    "servletMappings" : [
+    {
+    "name" : "JavaScriptServlet",
+    "url" : "/csrf.js"
+    }
+    ],
+    "contextParams" : [
+    {
+    "name" : "Owasp.CsrfGuard.Config",
+    "value" : "/repository/conf/security/Owasp.CsrfGuard.dashboard.properties"
+    }
+    ]
     ```
 
 2.  Include the following JavaScriptServlet as the first JavaScript
@@ -216,31 +188,44 @@ Follow the steps below to secure Jaggery applications.
     template of all pages of the application that you need to protect.
 
     ``` js
-            <html>
-                <head>
-                    …
-                    <script type=”text/javascript” src=”/csrf.js”></script>
+    <html>
+        <head>
+            …
+            <script type=”text/javascript” src=”/csrf.js”></script>
 
-                    <!-- other JavaScript inclusions should follow “csrf.js” inclusion -->
-                    <script type=”text/javascript” src=”/main.js”></script>
-                    …
-                </head>
-                <body>
-                    ...
-                </body>
-            </html>
+            <!-- other JavaScript inclusions should follow “csrf.js” inclusion -->
+            <script type=”text/javascript” src=”/main.js”></script>
+            …
+        </head>
+        <body>
+            ...
+        </body>
+    </html>
     ```
 
-3.  Open the esb.toml file add the following configuration section
-       ```java
-       [config_heading]
-       
-       //Defines the hashing algorithm used to generate the CSRF token.  
-       org.owasp.csrfguard.PRNG=SHA1PRNG
-    
-       //Defines the length of the CSRF token. 
-       org.owasp.csrfguard.TokenLength=32
-    
-       //Invalidates the user session, if a CSRF attack attempt was blocked by CSRFGuard.
-       org.owasp.csrfguard.action.Invalidate=org.owasp.csrfguard.action.Invalidate  
-       ```
+3.  Add the following configurations to the ei.toml file to specify the patterns that should be excluded from CSRF protection.
+   ```java
+    [[owasp.csrfguard.unprotected.service]]
+    name = "oauthiwa"
+    service = "%servletContext%/commonauth/iwa/*" 
+   ```
+
+4. Add the following configurations to the ei.toml file to specify the patterns that should be excluded from CSRF protection.
+   ```java
+   [owasp.csrfguard]
+   
+   //True to create csrf token per page. When false csrf token per session. There is a performance impact.  
+   create_token_per_page=false 
+
+   //To increase csrf token length for extra security. 
+   token_length=32
+
+   //To change Pseudo-random Number Generator algo for extra security.
+   random_number_generator_algo="SHA1PRNG" 
+
+   ```
+5. Other..
+    ```
+    [owasp.csrfguard.js_servlet]
+    x_request_with_header = "WSO2 CSRF Protection"
+    ```
