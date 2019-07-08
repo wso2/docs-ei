@@ -74,9 +74,7 @@ nav:
       - 'Setting up Physical Databases': 'setting-up-physical-databases.md'
   - 'Developer Experience':
     - 'Streaming Integrator Studio Overview': 'develop/streaming-integrator-studio-overview.md'
-    - 'Designing Siddhi Applications':
-      - 'Working with the Source View': 'develop/working-with-source-view.md'
-      - 'Working with the Design View': 'develop/working-with-design-view.md'
+    - 'Creating Siddhi Applications': 'develop/creating-a-Siddhi-Application.md'
     - 'Testing a Siddhi Application': 'develop/testing-a-Siddhi-Application.md'
     - 'Debugging Siddhi Applications': 'develop/debugging_siddhi_applications.md'
     - 'Exporting Siddhi Files':
