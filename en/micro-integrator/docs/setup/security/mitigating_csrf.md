@@ -4,8 +4,8 @@ Follow the instructions given below to secure any custom applications in your Mi
 
 ## How can CSRF attacks be harmful?
 
-Cross Site Request Forgery (CSRF) attacks trick you to send a malicious
-request by forcing you to execute unwanted actions on an already
+Cross Site Request Forgery (CSRF) attacks trick you into sending malicious
+requests by forcing you to execute unwanted actions on an already
 authenticated web browser. The session in which you logged in to the web
 application on the browser is used to bypass the authentication step
 during this attack. If you are already authenticated on the website, the
@@ -25,13 +25,12 @@ example:
     number with a malicious account number. Then the attacker disguises
     this URL by including it in a clickable image and sends it to you in
     an email with other content.
--   You may unknowingly click on this URL, which will send a transfer
+-   You may unknowingly click on this URL, which will send a
     request to the bank to transfer money to the malicious bank account.
 
 ## Mitigating CSRF attacks
 
-[OWASP
-CSRFGuard](https://www.owasp.org/index.php/Category:OWASP_CSRFGuard_Project)
+[OWASP CSRFGuard](https://www.owasp.org/index.php/Category:OWASP_CSRFGuard_Project)
 is an OWASP flagship project that provides synchronizer token
 pattern-based CSRF protection in a comprehensive and customizable
 manner. You can use the best practices and configuration recommendations
@@ -48,16 +47,39 @@ field.
 
 You can protect HTTP GET requests sent as a result of resource
 inclusions and links can by appending a relevant token in the “href” or
-“src” attributes. Include these tokens manually using provided JSP tag
-library or by using a JavaScript based automated injection mechanism.
+“src” attributes. Include these tokens manually using a provided JSP tag
+library or by using a JavaScript-based automated injection mechanism.
 AJAX requests are protected by injecting an additional header, which
 contains a CSRF token.
 
-## Configuring applications in WSO2 product to mitigate CSRF attacks
+## Configuring the Micro Integrator to mitigate CSRF attacks
 
-See the following for instructions on manually updating CSRF configurations. 
+Open the ei.toml file and add the following configurations: 
 
-### Securing web applications
+- To specify the patterns that should be excluded from CSRF protection:
+  ```java
+  [[owasp.csrfguard.unprotected.service]]
+  name = "oauthiwa"
+  service = "%servletContext%/commonauth/iwa/*" 
+  ```
+
+- To specity CSRF configurations.
+  ```java
+  [owasp.csrfguard] 
+  create_token_per_page=false 
+  token_length=32
+  random_number_generator_algo="SHA1PRNG" 
+  ```
+
+- To specify the header name.
+  ```
+  [owasp.csrfguard.js_servlet]
+  x_request_with_header = "WSO2 CSRF Protection"
+  ```
+
+Find out more about [CSRF configuration parameters](../../../references/ei_config_catalog/#configuring-owsp).
+
+## Securing web applications
 
 Follow the steps below to secure web applications.
 
@@ -100,7 +122,7 @@ Follow the steps below to secure web applications.
     ```
 
 2.  Include the following JavaScriptServlet as the first JavaScript
-    inclusion of the `<head>` element, in the HTML
+    inclusion of the `<head>` element in the HTML
     template of all pages of the application that you need to protect.
 
     ``` java
@@ -119,35 +141,8 @@ Follow the steps below to secure web applications.
         </body>
     </html>
     ```
-
-3. Add the following configurations to the ei.toml file to specify the patterns that should be excluded from CSRF protection.
-   ```java
-    [[owasp.csrfguard.unprotected.service]]
-    name = "oauthiwa"
-    service = "%servletContext%/commonauth/iwa/*" 
-   ```
-
-4. Add the following configurations to the ei.toml file to specify the patterns that should be excluded from CSRF protection.
-   ```java
-   [owasp.csrfguard]
    
-   //True to create csrf token per page. When false csrf token per session. There is a performance impact.  
-   create_token_per_page=false 
-
-   //To increase csrf token length for extra security. 
-   token_length=32
-
-   //To change Pseudo-random Number Generator algo for extra security.
-   random_number_generator_algo="SHA1PRNG" 
-   ```
-
-5. Other..
-    ```
-    [owasp.csrfguard.js_servlet]
-    x_request_with_header = "WSO2 CSRF Protection"
-    ```
-   
-### Securing Jaggery applications
+## Securing Jaggery applications
 
 Follow the steps below to secure Jaggery applications.
 
@@ -183,8 +178,7 @@ Follow the steps below to secure Jaggery applications.
     ]
     ```
 
-2.  Include the following JavaScriptServlet as the first JavaScript
-    inclusion of the `           <head>          ` element in the HTML
+2.  Include the following JavaScriptServlet as the first JavaScript inclusion of the `<head>` element in the HTML
     template of all pages of the application that you need to protect.
 
     ``` js
@@ -201,31 +195,4 @@ Follow the steps below to secure Jaggery applications.
             ...
         </body>
     </html>
-    ```
-
-3.  Add the following configurations to the ei.toml file to specify the patterns that should be excluded from CSRF protection.
-   ```java
-    [[owasp.csrfguard.unprotected.service]]
-    name = "oauthiwa"
-    service = "%servletContext%/commonauth/iwa/*" 
-   ```
-
-4. Add the following configurations to the ei.toml file to specify the patterns that should be excluded from CSRF protection.
-   ```java
-   [owasp.csrfguard]
-   
-   //True to create csrf token per page. When false csrf token per session. There is a performance impact.  
-   create_token_per_page=false 
-
-   //To increase csrf token length for extra security. 
-   token_length=32
-
-   //To change Pseudo-random Number Generator algo for extra security.
-   random_number_generator_algo="SHA1PRNG" 
-
-   ```
-5. Other..
-    ```
-    [owasp.csrfguard.js_servlet]
-    x_request_with_header = "WSO2 CSRF Protection"
     ```
