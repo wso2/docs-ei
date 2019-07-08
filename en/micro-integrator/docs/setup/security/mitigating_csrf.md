@@ -130,14 +130,8 @@ Follow the steps below to secure web applications.
 4. Add the following configurations to the ei.toml file to specify the patterns that should be excluded from CSRF protection.
    ```java
    [owasp.csrfguard]
-   
-   //True to create csrf token per page. When false csrf token per session. There is a performance impact.  
    create_token_per_page=false 
-
-   //To increase csrf token length for extra security. 
    token_length=32
-
-   //To change Pseudo-random Number Generator algo for extra security.
    random_number_generator_algo="SHA1PRNG" 
    ```
 
@@ -212,15 +206,9 @@ Follow the steps below to secure Jaggery applications.
 
 4. Add the following configurations to the ei.toml file to specify the patterns that should be excluded from CSRF protection.
    ```java
-   [owasp.csrfguard]
-   
-   //True to create csrf token per page. When false csrf token per session. There is a performance impact.  
+   [owasp.csrfguard]  
    create_token_per_page=false 
-
-   //To increase csrf token length for extra security. 
    token_length=32
-
-   //To change Pseudo-random Number Generator algo for extra security.
    random_number_generator_algo="SHA1PRNG" 
 
    ```
