@@ -13,8 +13,7 @@ Note the following:
     * HTTP requests will be directed to node 1 using the `http://xxx.xxx.xxx.xx1/<service>` URL via HTTP 80 port.
     * HTTPS requests will be directed to node 1 using the `https://xxx.xxx.xxx.xx1/<service>` URL via HTTPS 443 port.
 
-!!! Tip ""
-	It is recommended to use NGINX Plus as your load balancer of choice.
+> It is recommended to use NGINX Plus as your load balancer of choice.
 
 ## Configuring the load balancer
 
@@ -159,8 +158,7 @@ community](http://nginx.org/) version 1.9.2 as the load balancer.
 	  	sudo service  nginx  restart
 	  	```
 
-	!!! Info ""
-		Execute the following command if you do not need to restart the server when you are simply making a modification to the VHost file:
+	> Execute the following command if you do not need to restart the server when you are simply making a modification to the VHost file:
 		```
 		sudo service nginx reload
 		```
