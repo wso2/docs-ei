@@ -1,5 +1,5 @@
 
-# Installing WSO2 EI on Kubernetes
+# Installing WSO2 Micro Integrator on Kubernetes
 
 Kubernetes is an open source container orchestration system for
 automating, scaling, and managing your application deployments. To run
