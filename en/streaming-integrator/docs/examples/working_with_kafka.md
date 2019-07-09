@@ -92,11 +92,60 @@ bin/kafka-console-producer.sh --broker-list localhost:9092 --topic productions
 ```
 Now you are prompted to type the messages on the console. Type following on the command prompt:
 ```
-{"event":{ "name":"KitKat", "amount":100.0}} 
+{"event":{ "name":"Almond cookie", "amount":100.0}} 
 ```
 This will push a message to Kafka Server which will then be consumed by the Siddhi app we deployed in the Stream Processor. As a result, you should now see following log on the Stream Processor log:
 ```
-INFO {org.wso2.siddhi.core.stream.output.sink.LogSink} - HelloKafka : SweetProductionStream : Event{timestamp=1562069868006, data=[KitKat, 100.0], isExpired=false}
+INFO {org.wso2.siddhi.core.stream.output.sink.LogSink} - HelloKafka : SweetProductionStream : Event{timestamp=1562069868006, data=[Almond cookie, 100.0], isExpired=false}
 ```
-####Configuring more Kafka Consumer parameters
+####Consuming with an offset
 
+Previously, we consumed messages from the topic 'productions' *without an offset*. In other words, the Kafka offset was zero. Rather than consuming with a zero offset, now we will specify an offset value and consume messages from that offset onwards.
+
+For this purpose, we will use the configuration parameter 'topic.offsets.map'.  
+
+Let's modify our previous Siddhi app to specify an offset value. We will specify offset value 2 so that the Siddhi app will consume messages bearing index 2 and above. 
+
+Open HelloKafka.siddhi file, located in {WSO2SPHome}/wso2/worker/deployment/siddhi-files directory and add following new configuration parameter:
+``` 
+topic.offsets.map='productions=2' 
+```
+Refer complete siddhi app below:
+```
+@App:name("HelloKafka")
+
+@App:description('Consume events from a Kafka Topic and log the messages on the console.')
+
+@source(type='kafka',
+        topic.list='productions',
+        threading.option='single.thread',
+        group.id="group",
+        bootstrap.servers='localhost:9092',
+        topic.offsets.map='productions=2',
+        @map(type='json'))        
+define stream SweetProductionStream (name string, amount double);
+
+@sink(type='log')
+define stream OutputStream (name string, amount double);
+
+from SweetProductionStream
+select *
+insert into OutputStream;
+```
+Save the file.
+
+Now push following message to the Kafka server:
+```
+{"event":{ "name":"Baked Alaska", "amount":20.0}} 
+```
+Notice that this is the second message that we pushed (hence bearing index 1) and therefore it is not consumed by the stream processor.
+
+Let's push another message (bearing index 2) to the Kafka server:
+```
+{"event":{ "name":"Cup cake", "amount":300.0}} 
+```
+Now you will see following log on the Stream Processor. 
+```
+INFO {org.wso2.siddhi.core.stream.output.sink.LogSink} - HelloKafka : OutputStream : Event{timestamp=1562676477785, data=[Cup cake, 300.0], isExpired=false}
+```  
+As we configured our Siddhi app to consume messages with offset 2, all messages bearing index 2 or above will be consumed.   
