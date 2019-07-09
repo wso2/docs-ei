@@ -9,10 +9,7 @@ is, the Iterate mediator splits a message into different parts, whereas
 the Clone mediator makes multiple identical copies of the message.
 
 !!! info
-
-The Clone mediator is a
-[content-aware](ESB-Mediators_119131045.html#ESBMediators-Content-awareness)
-mediator.
+    The Clone mediator is a [content-aware](ESB-Mediators_119131045.html#ESBMediators-Content-awareness) mediator.
 
 
 ------------------------------------------------------------------------
@@ -119,9 +116,9 @@ The parameters available to configure the target are as follows.
 <td><strong>Endpoint</strong></td>
 <td><p>The <a href="https://docs.wso2.com/display/EI650/Working+with+Endpoints">endpoint</a> to which the cloned messages should be sent. Possible options are as follows.</p>
 <ul>
-<li><strong>None</strong> : If this is selected, the cloned messages are not sent to an <a href="https://docs.wso2.com/display/EI650/Working+with+Endpoints">endpoint</a> .</li>
-<li><strong>Anonymous</strong> : If this is selected, you can define an anonymous <a href="https://docs.wso2.com/display/EI650/Working+with+Endpoints">endpoint</a> within the iterate target configuration to which the cloned messages should be sent. Click the <strong>Add</strong> link which appears after selecting this option to add the anonymous <a href="https://docs.wso2.com/display/EI650/Working+with+Endpoints">endpoint</a> . See <a href="https://docs.wso2.com/display/EI650/Working+with+Endpoints+via+Tooling">Adding an Endpoint</a> for further information.</li>
-<li><strong>Pick from Registry</strong> : If this is selected, you can refer to a pre-defined <a href="https://docs.wso2.com/display/EI650/Working+with+Endpoints">endpoint</a> that is currently saves as a resource in the registry. Click either <strong>Configuration Registry</strong> or <strong>Governance Registry</strong> as relevant to select the required <a href="https://docs.wso2.com/display/EI650/Working+with+Endpoints">endpoint</a> from the resource tree.</li>
+<li><strong>None</strong> : If this is selected, the cloned messages are not sent to an <a href="../references/endpoints/about-endpoints.md">endpoint</a> .</li>
+<li><strong>Anonymous</strong> : If this is selected, you can define an anonymous endpoint within the iterate target configuration to which the cloned messages should be sent. Click the <strong>Add</strong> link which appears after selecting this option to add the anonymous endpoint. </li>
+<li><strong>Pick from Registry</strong> : If this is selected, you can refer to a pre-defined endpoint that is currently saved as a resource in the registry. Click either <strong>Configuration Registry</strong> or <strong>Governance Registry</strong> as relevant to select the required endpoint from the resource tree.</li>
 </ul></td>
 </tr>
 </tbody>
@@ -129,10 +126,7 @@ The parameters available to configure the target are as follows.
 
 Example
 
-In this example, the Clone Mediator clones messages and redirects them
-to a [default
-endpoint](https://docs.wso2.com/display/EI650/Default+Endpoint) and an
-existing sequence.
+In this example, the Clone Mediator clones messages and redirects them to a [default endpoint](../references/endpoints/default-endpoint.md) and an existing sequence.
 
 ``` java
     <clone xmlns="http://ws.apache.org/ns/synapse">
