@@ -171,4 +171,6 @@ state.persistence:
     location: siddhi-app-persistence
 ``` 
 
-Set `enabled` option to `true`. 
+Set `enabled` option to `true`, save the file and restart the Stream Processor server for this change to be effective.
+
+ 
