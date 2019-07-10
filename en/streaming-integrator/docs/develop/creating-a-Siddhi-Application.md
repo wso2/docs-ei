@@ -215,7 +215,7 @@ To create a Siddhi application via the source view of the Streaming Integrator S
 
 4.  To save this Siddhi application, click **File** , and then click
     **Save** . By default siddhi applications are saved in the
-    `<SI-PROFILE_HOME>/wso2/editor/deployment/workspace` directory.
+    `<SI_HOME>/wso2/editor/deployment/workspace` directory.
 
 5.  To export the Siddhi application to your preferred location, click
     **File** , and then click **Export File** .
