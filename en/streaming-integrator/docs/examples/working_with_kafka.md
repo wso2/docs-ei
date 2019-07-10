@@ -100,7 +100,7 @@ INFO {org.wso2.siddhi.core.stream.output.sink.LogSink} - HelloKafka : SweetProdu
 ```
 ####Consuming with an offset
 
-Previously, we consumed messages from the topic 'productions' *without an offset*. In other words, the Kafka offset was zero. Rather than consuming with a zero offset, now we will specify an offset value and consume messages from that offset onwards.
+Previously, we consumed messages from the topic 'productions' *without specifying an offset*. In other words, the Kafka offset was zero. Rather than consuming with a zero offset, now we will specify an offset value and consume messages from that offset onwards.
 
 For this purpose, we will use the configuration parameter 'topic.offsets.map'.  
 
@@ -136,7 +136,7 @@ Save the file.
 
 Now push following message to the Kafka server:
 ```
-{"event":{ "name":"Baked Alaska", "amount":20.0}} 
+{"event":{ "name":"Baked alaska", "amount":20.0}} 
 ```
 Notice that this is the second message that we pushed (hence bearing index 1) and therefore it is not consumed by the stream processor.
 
@@ -148,4 +148,27 @@ Now you will see following log on the Stream Processor.
 ```
 INFO {org.wso2.siddhi.core.stream.output.sink.LogSink} - HelloKafka : OutputStream : Event{timestamp=1562676477785, data=[Cup cake, 300.0], isExpired=false}
 ```  
-As we configured our Siddhi app to consume messages with offset 2, all messages bearing index 2 or above will be consumed.   
+As we configured our Siddhi app to consume messages with offset 2, all messages bearing index 2 or above will be consumed.
+
+####Restoring message consumption after system failure  
+
+Consider the scenario where the system fails (Stream Processor is shutdown) at the point where the Kafka consumer has consumed upto offset number 5. When the system failure is restored we do not want the Kafka consumer to consume from the beginning (that is offset 0), rather we want the consumption to resume from the point it stopped. To achieve this behaviour, we can use the state persistence capability in the Stream Processor.
+
+If you enable state persistence in the Stream Processor, the Kafka consumer offset will be remembered by the server and upon server restart, the consumption will resume from the point where it stopped. 
+
+To enable state persistence in the Stream Processor, do following.
+
+Open {WSO2SPHome}/conf/worker/deployment.yaml file on a text editor and locate the `state.persistence` section.
+
+``` 
+  # Periodic Persistence Configuration
+state.persistence:
+  enabled: true
+  intervalInMin: 1
+  revisionsToKeep: 2
+  persistenceStore: org.wso2.carbon.stream.processor.core.persistence.FileSystemPersistenceStore
+  config:
+    location: siddhi-app-persistence
+``` 
+
+Set `enabled` option to `true`. 
