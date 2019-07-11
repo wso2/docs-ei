@@ -129,12 +129,18 @@ nav:
         - 'Governing External Reference Across Environments': 'setup/govern_ext_refs_across_env.md'
         - 'Enable SSL Tunneling through Proxy Server': 'setup/enabling_SSL_tunneling_thru_proxy_server.md'
     - Developer Experience:
-      - 'Continuous Development and Deployment' : 'develop/cicd.md'
-      - 'Developing an Integration Use Case' : 'develop/developing-Cloud-Native-Integration.md'
-      - 'Using the Command-Line Interface' : 'develop/using-the-command-line-interface.md'
-      - 'Testing an Integration Use Case' : 'develop/testing.md'
+      - 'About Developing Integration': 'develop/intro-integration-development.md'
+      - 'Developer Kick Start' : 'develop/integration-development-kickstart.md'
+      - 'Designing Integration' : 'develop/designing-integration.md'
+      - Developing Integration:
+        - 'Set up the Workspace': 'develop/setup-workspace.md'
+        - 'Develop Artifacts': 'develop/develop-artifacts.md'
+        - 'Build and Run the Integration' : 'develop/build-and-run.md'
+        - 'Iterate and Improve' : 'develop/iterate-improve-integration.md'
+        - 'Publish to Production' : 'develop/publish-to-production.md'
+      - 'Using a CI/CD Pipeline' : 'develop/using-cicd-pipeline.md'
       - WSO2 Integration Studio:
-        - 'WSO2 Integration Studio' : 'develop/wSO2-Integration-Studio.md'
+        - 'WSO2 Integration Studio' : 'develop/WSO2-Integration-Studio.md'
         - 'Working with Integration Studio' : 'develop/working-with-WSO2-Integration-Studio.md'
     - Use Cases:
       - Examples:
@@ -200,6 +206,7 @@ nav:
       - 'SNMP Monitoring' : 'administer-and-observe/snmp_monitoring.md'
       - 'Monitoring with Prometheus' : 'administer-and-observe/monitoring_with_prometheus.md'
       - 'Working with Admin Services' : 'setup/working-with-admin-services.md'
+      - 'Using the Command-Line Interface' : 'administer-and-observe/using-the-command-line-interface.md'
       - Monitoring Logs:
         - 'About Logs' : 'administer-and-observe/monitoring_logs.md'
         - 'Monitoring Access Logs' : 'administer-and-observe/monitoring_access_logs.md'
@@ -213,6 +220,7 @@ nav:
     - References:
       - 'Enterprise Integration Patterns' : 'references/enterprise-Integration-Patterns.md'
       - 'Configuration Catalog' : 'references/ei_config_catalog.md'
+      - 'Config Catalog' : 'references/config-catalog.md'
       - 'Mediator Catalog' : 
         - 'Aggregate Mediators' : 'references/mediators/aggregate-Mediator.md'
         - 'Bean Mediator' : 'references/mediators/bean-Mediator.md'

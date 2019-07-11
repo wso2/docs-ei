@@ -33,6 +33,10 @@
     padding-bottom: 80px;
 }
 
+.md-main__inner {
+    padding-top: 3.5rem;
+}
+
 .md-sidebar[data-md-state=lock] {
     top: 5.9rem;
 }
@@ -55,12 +59,6 @@
 
 .md-header-nav__topic {
     top: 0;
-}
-
-.md-header-nav__title .md-header-nav__topic:first-child:after {
-    content: '/';
-    padding: 0 15px;
-    color: #7d7d7d;
 }
 
 [data-md-color-primary=deep-orange] .md-header {
@@ -86,7 +84,7 @@
 .md-header__distribution-select .md-tabs__link.md-tabs__dropdown-link {
     display: inline-block;
     padding: .45rem;
-    margin-top: .35rem;
+    margin-top: .3rem;
     border-radius: .1rem;
 }
 
@@ -107,10 +105,6 @@
     [data-md-color-primary=deep-orange] .md-tabs {
         background-color: #f5f5f5;
         box-shadow: 0 0 0.2rem rgba(0,0,0,.1), 0 0.2rem 0.4rem rgba(0,0,0,.2);
-    }
-
-    .md-main__inner {
-        padding-top: 3.5rem;
     }
 }
 
@@ -539,10 +533,6 @@ html .md-typeset .superfences-tabs > label:hover {
     top: -14px;
 }
 
-.hide-toc .toc_icon {
-    padding-left: 2px;
-}
-
 .nav_link:hover,
 .edit_link.active:hover  {
     opacity: 1;
@@ -750,6 +740,12 @@ html .md-footer-meta.md-typeset a,
     display: none;
 }
 
+@media only screen and (max-width: 1220px) {
+    .nav_link {
+        display: none;
+    }
+}
+
 .md-nav--secondary ul > li.md-nav__item {
     border-left: 4px solid transparent;
     transition: border 500ms;
@@ -805,6 +801,12 @@ html .md-footer-meta.md-typeset a,
     position: fixed;
 }
 
+@media screen and (min-width: 1220px) and (max-width: 1599px) {
+    .nav_link {
+        top: 62px;
+    }
+}
+
 .md-sidebar--secondary .md-nav--secondary .md-nav__item {
     padding: 0 0 0 1.1rem;
 }
@@ -822,20 +824,6 @@ html .md-footer-meta.md-typeset a,
     width: 12.1rem;
 }
 
-@media (max-width: 500px) {
-    .md-header__distribution-select {
-        display: none;
-    }
-}
-
-@media (min-width: 1200px) {
-    .md-header__distribution-select {
-        width: 23.5rem;
-    }
-}
-
-@media (min-width: 1100px) and (max-width: 1199px) {
-    .md-header__distribution-select {
-        width: calc(100% - 445px)
-    }
+.md-header[data-md-state=shadow] {
+    box-shadow: none;
 }
