@@ -316,17 +316,73 @@ Now let's publish some messages and see how the load is distributed among the co
 ```
 Now observe the Stream Processor logs.
 ```
-[2019-07-11 18:48:06,792]  INFO {org.wso2.siddhi.core.stream.output.sink.LogSink} - HelloKafka : OutputStream : Event{timestamp=1562851086792, data=[Fortune cookie, 100.0, consumer-1], isExpired=false}
-[2019-07-11 18:48:12,100]  INFO {org.wso2.siddhi.core.stream.output.sink.LogSink} - HelloKafka : OutputStream : Event{timestamp=1562851092100, data=[Frozen yogurt, 350.0, consumer-1], isExpired=false}
-[2019-07-11 18:48:14,459]  INFO {org.wso2.siddhi.core.stream.output.sink.LogSink} - HelloKafka : OutputStream : Event{timestamp=1562851094459, data=[Gingerbread, 450.0, consumer-2], isExpired=false}
-[2019-07-11 18:48:16,434]  INFO {org.wso2.siddhi.core.stream.output.sink.LogSink} - HelloKafka : OutputStream : Event{timestamp=1562851096434, data=[Hot-fudge sundae, 150.0, consumer-1], isExpired=false}
-[2019-07-11 18:48:18,328]  INFO {org.wso2.siddhi.core.stream.output.sink.LogSink} - HelloKafka : OutputStream : Event{timestamp=1562851098328, data=[Hot-chocolate pudding, 200.0, consumer-1], isExpired=false}
-[2019-07-11 18:48:20,309]  INFO {org.wso2.siddhi.core.stream.output.sink.LogSink} - HelloKafka : OutputStream : Event{timestamp=1562851100309, data=[Ice cream cake, 250.0, consumer-2], isExpired=false}
+INFO {org.wso2.siddhi.core.stream.output.sink.LogSink} - HelloKafka : OutputStream : Event{timestamp=1562851086792, data=[Fortune cookie, 100.0, consumer-1], isExpired=false}
+INFO {org.wso2.siddhi.core.stream.output.sink.LogSink} - HelloKafka : OutputStream : Event{timestamp=1562851092100, data=[Frozen yogurt, 350.0, consumer-1], isExpired=false}
+INFO {org.wso2.siddhi.core.stream.output.sink.LogSink} - HelloKafka : OutputStream : Event{timestamp=1562851094459, data=[Gingerbread, 450.0, consumer-2], isExpired=false}
+INFO {org.wso2.siddhi.core.stream.output.sink.LogSink} - HelloKafka : OutputStream : Event{timestamp=1562851096434, data=[Hot-fudge sundae, 150.0, consumer-1], isExpired=false}
+INFO {org.wso2.siddhi.core.stream.output.sink.LogSink} - HelloKafka : OutputStream : Event{timestamp=1562851098328, data=[Hot-chocolate pudding, 200.0, consumer-1], isExpired=false}
+INFO {org.wso2.siddhi.core.stream.output.sink.LogSink} - HelloKafka : OutputStream : Event{timestamp=1562851100309, data=[Ice cream cake, 250.0, consumer-2], isExpired=false}
 ```
 You could observe the pattern that the load is distributed among consumer-1 and consumer-2 in 2:1 ratio. This is because we assigned two partitions to consumer-1 and assigned only one partition to consumer-2. 
 
+####Publishing to a Kafka topic
 
+We started this tutorial with a Siddhi app to consume from a Kafka topic and log the incoming messages. Now we will create a new Siddhi app to consume from `productions` topic, filter the incoming messages based on a condition and then, to publish those filtered messages to another Kafka topic. 
+'
+First, let's create a new topic named "bulk-orders" in the Kafka server. We will publish the filtered messages to this Kafka topic.
 
+To do that, navigate to {KafkaHome} and run following command:
+```
+bin/kafka-topics.sh --create --bootstrap-server localhost:9092 --replication-factor 1 --partitions 1 --topic bulk-orders
+```
+Next, let's create the Siddhi app.
 
+Open a text file and copy-paste following app into it.
 
+```
+@App:name("PublishToKafka")
+
+@App:description('Consume events from a Kafka Topic, do basic filtering and publish filtered messages to a Kafka topic.')
+
+@source(type='kafka',
+        topic.list='productions',
+        threading.option='single.thread',
+        group.id="group2",
+        bootstrap.servers='localhost:9092',
+        @map(type='json'))        
+define stream SweetProductionStream (name string, amount double);
+
+@sink(type='kafka',
+      topic='bulk-orders',
+      bootstrap.servers='localhost:9092',
+      partition.no='0',
+      @map(type='json'))
+define stream BulkOrdersStream (name string, amount double);
+
+from SweetProductionStream[amount > 100]
+select *
+insert into BulkOrdersStream;
+```
+Save this file as PublishToKafka.siddhi into {WSO2SPHome}/wso2/worker/deployment/siddhi-files directory. Upon successful deployment of the Siddhi app, you will see following INFO log on the Stream Processor console.
+```
+INFO {org.wso2.carbon.stream.processor.core.internal.StreamProcessorService} - Siddhi App PublishToKafka deployed successfully
+```
+> **_INFO:_**  The Siddhi app `PublishToKafka` consumes all the messages from the topic `productions` and populates the stream `SweetProductionStream`. All the sweet productions having the amount greater than 100 will be inserted into stream `BulkOrdersStream` and those events will be pushed to Kafka topic `bulk-orders`. 
+
+Now to observe the messages in the `bulk-orders` topic, we will run a Kafka Console Consumer. Navigate to {KafkaHome} and run following command:
+```
+bin/kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic bulk-orders --from-beginning
+```
+You will see following messages on the Consumer log, which are the productions having amount greater than 100:
+```
+{"event":{ "name":"Cup cake", "amount":300.0}}
+{"event":{ "name":"Doughnut", "amount":500.0}} 
+{"event":{ "name":"Danish pastry", "amount":200.0}} 
+{"event":{ "name":"Eclair", "amount":400.0}} 
+{"event":{ "name":"Frozen yogurt", "amount":350.0}} 
+{"event":{ "name":"Frozen yogurt", "amount":350.0}} 
+{"event":{ "name":"Hot-fudge sundae", "amount":150.0}}
+{"event":{ "name":"Hot-chocolate pudding", "amount":200.0}} 
+{"event":{ "name":"Ice cream cake", "amount":250.0}}
+``` 
 
