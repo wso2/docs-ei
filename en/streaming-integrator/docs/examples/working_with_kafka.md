@@ -59,7 +59,7 @@ Open a text file and copy-paste following app into it.
 @source(type='kafka',
         topic.list='productions',
         threading.option='single.thread',
-        group.id="group",
+        group.id="group1",
         bootstrap.servers='localhost:9092',
         @map(type='json'))        
 define stream SweetProductionStream (name string, amount double);
@@ -119,7 +119,7 @@ Refer complete siddhi app below:
 @source(type='kafka',
         topic.list='productions',
         threading.option='single.thread',
-        group.id="group",
+        group.id="group1",
         bootstrap.servers='localhost:9092',
         topic.offsets.map='productions=2',
         @map(type='json'))        
@@ -150,7 +150,7 @@ INFO {org.wso2.siddhi.core.stream.output.sink.LogSink} - HelloKafka : OutputStre
 ```  
 As we configured our Siddhi app to consume messages with offset 2, all messages bearing index 2 or above will be consumed.
 
-####Restoring message consumption after system failure  
+####Restoring Offset after system failure  
 
 Consider the scenario where the system fails (Stream Processor is shutdown) at the point where the Kafka consumer has consumed upto offset number 5. When the system failure is restored we do not want the Kafka consumer to consume from the beginning (that is offset 0), rather we want the consumption to resume from the point it stopped. To achieve this behaviour, we can use the state persistence capability in the Stream Processor.
 
@@ -173,4 +173,160 @@ state.persistence:
 
 Set `enabled` option to `true`, save the file and restart the Stream Processor server for this change to be effective.
 
- 
+####Adding more Consumers to the Consumer Group
+
+In our `HelloKafka` Siddhi app, notice the parameter `group.id`. This is used to define the Kafka Consumer Group. 
+
+Now let's modify the Siddhi app to add another Kafka consumer to the same consumer group.
+
+```
+@App:name("HelloKafka")
+
+@App:description('Consume events from a Kafka Topic and log the messages on the console.')
+
+@source(type='kafka',
+        topic.list='productions',
+        threading.option='single.thread',
+        group.id="group1",
+        bootstrap.servers='localhost:9092',
+        @map(type='json'))        
+define stream SweetProductionStream1 (name string, amount double);
+
+@source(type='kafka',
+        topic.list='productions',
+        threading.option='single.thread',
+        group.id="group1",
+        bootstrap.servers='localhost:9092',
+        @map(type='json'))        
+define stream SweetProductionStream2 (name string, amount double);
+
+@sink(type='log')
+define stream OutputStream (name string, amount double, id string);
+
+from SweetProductionStream1
+select name, amount, 'consumer-1' as id 
+insert into OutputStream;
+
+from SweetProductionStream2
+select name, amount, 'consumer-2' as id 
+insert into OutputStream;
+```  
+
+Navigate to {KafkaHome} and run following command:
+```  
+bin/kafka-topics.sh --alter --bootstrap-server localhost:9092 --partitions 2 --topic productions
+```  
+This will add another partition to the Kafka topic: 'productions'. 
+
+Now push following messages to the Kafka server using the Kafka Console Producer. 
+```
+{"event":{ "name":"Doughnut", "amount":500.0}} 
+```
+```
+{"event":{ "name":"Danish pastry", "amount":200.0}} 
+```
+```
+{"event":{ "name":"Eclair", "amount":400.0}} 
+```
+```
+{"event":{ "name":"Eclair toffee", "amount":100.0}} 
+```
+Now observe the Stream Processor logs.
+```
+INFO {org.wso2.siddhi.core.stream.output.sink.LogSink} - HelloKafka : OutputStream : Event{timestamp=1562759480019, data=[Doughnut, 500.0, consumer-2], isExpired=false}
+INFO {org.wso2.siddhi.core.stream.output.sink.LogSink} - HelloKafka : OutputStream : Event{timestamp=1562759494710, data=[Danish pastry, 200.0, consumer-1], isExpired=false}
+INFO {org.wso2.siddhi.core.stream.output.sink.LogSink} - HelloKafka : OutputStream : Event{timestamp=1562759506252, data=[Eclair, 400.0, consumer-2], isExpired=false}
+INFO {org.wso2.siddhi.core.stream.output.sink.LogSink} - HelloKafka : OutputStream : Event{timestamp=1562759508757, data=[Eclair toffee, 100.0, consumer-1], isExpired=false}
+```
+You could see that the events are being received by the two consumers in a round robin manner. Events received by first consumer can be identified by the id `consumer-1` and similarly, events received by the second consumer can be identified by the id `consumer-2`.
+
+####Assigning Consumers to Partitions  
+In the previous scenario, we had two partitions for the Kafka topic and had two consumers. We did not assign the consumers to the partitions, rather we let Kafka do the assignments. Optionally, we can assign consumers to partitions. In case we have multiple consumers which do not perform in an identical way (some consumers might be slow), we might want to use this option and balance the load among the consumers.
+
+Let's alter our topic to have three partitions. After that, we will assign two partitions to consumer-1 and the remaining partition to consumer-2.
+
+Navigate to {KafkaHome} and run following command:
+```  
+bin/kafka-topics.sh --alter --bootstrap-server localhost:9092 --partitions 3 --topic productions
+```  
+This will add another partition to the Kafka topic: 'productions' (total of three partitions now). 
+
+To assign partitions to the consumers, we use below Siddhi configuration parameter:
+```
+partition.no.list
+```
+
+Let's modify our `HelloKafka` siddhi app as follows:
+```  
+@App:name("HelloKafka")
+
+@App:description('Consume events from a Kafka Topic and log the messages on the console.')
+
+-- consumer-1
+@source(type='kafka',
+        topic.list='productions',
+        threading.option='single.thread',
+        group.id="group1",
+        bootstrap.servers='localhost:9092',
+        partition.no.list='0,1',
+        @map(type='json'))
+define stream SweetProductionStream1 (name string, amount double);
+
+-- consumer-2
+@source(type='kafka',
+        topic.list='productions',
+        threading.option='single.thread',
+        group.id="group1",
+        bootstrap.servers='localhost:9092',
+        partition.no.list='2',
+        @map(type='json'))
+define stream SweetProductionStream2 (name string, amount double);
+
+@sink(type='log')
+define stream OutputStream (name string, amount double, id string);
+
+from SweetProductionStream1
+select name, amount, 'consumer-1' as id
+insert into OutputStream;
+
+from SweetProductionStream2
+select name, amount, 'consumer-2' as id
+insert into OutputStream;
+```  
+Notice that consumer-1 has partitions 0 and 1 assigned; while consumer-2 has partition 2 assigned. 
+
+Now let's publish some messages and see how the load is distributed among the consumers with the new partition assignments. 
+```
+{"event":{ "name":"Fortune cookie", "amount":100.0}} 
+```
+```
+{"event":{ "name":"Frozen yogurt", "amount":350.0}} 
+```
+```
+{"event":{ "name":"Gingerbread", "amount":450.0}} 
+```
+```
+{"event":{ "name":"Hot-fudge sundae", "amount":150.0}} 
+```
+```
+{"event":{ "name":"Hot-chocolate pudding", "amount":200.0}} 
+```
+```
+{"event":{ "name":"Ice cream cake", "amount":250.0}} 
+```
+Now observe the Stream Processor logs.
+```
+[2019-07-11 18:48:06,792]  INFO {org.wso2.siddhi.core.stream.output.sink.LogSink} - HelloKafka : OutputStream : Event{timestamp=1562851086792, data=[Fortune cookie, 100.0, consumer-1], isExpired=false}
+[2019-07-11 18:48:12,100]  INFO {org.wso2.siddhi.core.stream.output.sink.LogSink} - HelloKafka : OutputStream : Event{timestamp=1562851092100, data=[Frozen yogurt, 350.0, consumer-1], isExpired=false}
+[2019-07-11 18:48:14,459]  INFO {org.wso2.siddhi.core.stream.output.sink.LogSink} - HelloKafka : OutputStream : Event{timestamp=1562851094459, data=[Gingerbread, 450.0, consumer-2], isExpired=false}
+[2019-07-11 18:48:16,434]  INFO {org.wso2.siddhi.core.stream.output.sink.LogSink} - HelloKafka : OutputStream : Event{timestamp=1562851096434, data=[Hot-fudge sundae, 150.0, consumer-1], isExpired=false}
+[2019-07-11 18:48:18,328]  INFO {org.wso2.siddhi.core.stream.output.sink.LogSink} - HelloKafka : OutputStream : Event{timestamp=1562851098328, data=[Hot-chocolate pudding, 200.0, consumer-1], isExpired=false}
+[2019-07-11 18:48:20,309]  INFO {org.wso2.siddhi.core.stream.output.sink.LogSink} - HelloKafka : OutputStream : Event{timestamp=1562851100309, data=[Ice cream cake, 250.0, consumer-2], isExpired=false}
+```
+You could observe the pattern that the load is distributed among consumer-1 and consumer-2 in 2:1 ratio. This is because we assigned two partitions to consumer-1 and assigned only one partition to consumer-2. 
+
+
+
+
+
+
