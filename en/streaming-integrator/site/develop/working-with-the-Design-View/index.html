@@ -1,0 +1,3078 @@
+<!--
+ * Copyright (c) 2019, WSO2 Inc. (http://www.wso2.org) All Rights Reserved.
+ *
+ * WSO2 Inc. licenses this file to you under the Apache License,
+ * Version 2.0 (the "License"); you may not use this file except
+ * in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied. See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
+-->
+
+
+
+
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      <meta http-equiv="x-ua-compatible" content="ie=edge">
+      
+        <meta name="description" content="Documentation for WSO2 Enterprise Integrator">
+      
+      
+        <link rel="canonical" href="https://wso2.com/integration/develop/working-with-the-Design-View/">
+      
+      
+        <meta name="author" content="WSO2">
+      
+      
+        <meta name="lang:clipboard.copy" content="Copy to clipboard">
+      
+        <meta name="lang:clipboard.copied" content="Copied to clipboard">
+      
+        <meta name="lang:search.language" content="en">
+      
+        <meta name="lang:search.pipeline.stopwords" content="True">
+      
+        <meta name="lang:search.pipeline.trimmer" content="True">
+      
+        <meta name="lang:search.result.none" content="No matching documents">
+      
+        <meta name="lang:search.result.one" content="1 matching document">
+      
+        <meta name="lang:search.result.other" content="# matching documents">
+      
+        <meta name="lang:search.tokenizer" content="[\s\-]+">
+      
+      <link rel="shortcut icon" href="../../images/favicon.png">
+      <meta name="generator" content="mkdocs-1.0.4, mkdocs-material-4.0.2">
+    
+    
+      
+        <title>Working with the Design View - WSO2 Enterprise Integrator Documentation</title>
+      
+    
+    
+  
+      <link rel="stylesheet" href="../../assets/stylesheets/application.982221ab.css">
+      
+        <link rel="stylesheet" href="../../assets/stylesheets/application-palette.224b79ff.css">
+      
+      
+        
+        
+        <meta name="theme-color" content="#ff7043">
+      
+    
+  <link rel="stylesheet" href="../../assets/fonts/font-awesome.css">
+
+    
+      <script src="../../assets/javascripts/modernizr.1f0bcf2b.js"></script>
+    
+    
+      
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700|Roboto+Mono">
+        <style>body,input{font-family:"Roboto","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono","Courier New",Courier,monospace}</style>
+      
+    
+    <link rel="stylesheet" href="../../assets/fonts/material-icons.css">
+    
+    
+      <link rel="stylesheet" href="../../assets/lib/highlightjs/default.min.css">
+    
+      <link rel="stylesheet" href="../../assets/css/theme.css">
+    
+    
+      
+    
+    
+  </head>
+  
+    
+    
+    <body dir="ltr" data-md-color-primary="deep-orange" data-md-color-accent="deep-orange">
+  
+    <svg class="md-svg">
+      <defs>
+        
+        
+          <svg xmlns="http://www.w3.org/2000/svg" width="416" height="448"
+    viewBox="0 0 416 448" id="__github">
+  <path fill="currentColor" d="M160 304q0 10-3.125 20.5t-10.75 19-18.125
+        8.5-18.125-8.5-10.75-19-3.125-20.5 3.125-20.5 10.75-19 18.125-8.5
+        18.125 8.5 10.75 19 3.125 20.5zM320 304q0 10-3.125 20.5t-10.75
+        19-18.125 8.5-18.125-8.5-10.75-19-3.125-20.5 3.125-20.5 10.75-19
+        18.125-8.5 18.125 8.5 10.75 19 3.125 20.5zM360
+        304q0-30-17.25-51t-46.75-21q-10.25 0-48.75 5.25-17.75 2.75-39.25
+        2.75t-39.25-2.75q-38-5.25-48.75-5.25-29.5 0-46.75 21t-17.25 51q0 22 8
+        38.375t20.25 25.75 30.5 15 35 7.375 37.25 1.75h42q20.5 0
+        37.25-1.75t35-7.375 30.5-15 20.25-25.75 8-38.375zM416 260q0 51.75-15.25
+        82.75-9.5 19.25-26.375 33.25t-35.25 21.5-42.5 11.875-42.875 5.5-41.75
+        1.125q-19.5 0-35.5-0.75t-36.875-3.125-38.125-7.5-34.25-12.875-30.25-20.25-21.5-28.75q-15.5-30.75-15.5-82.75
+        0-59.25 34-99-6.75-20.5-6.75-42.5 0-29 12.75-54.5 27 0 47.5 9.875t47.25
+        30.875q36.75-8.75 77.25-8.75 37 0 70 8 26.25-20.5
+        46.75-30.25t47.25-9.75q12.75 25.5 12.75 54.5 0 21.75-6.75 42 34 40 34
+        99.5z" />
+</svg>
+        
+      </defs>
+    </svg>
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
+    
+      <a href="#working-with-the-design-view" tabindex="1" class="md-skip">
+        Skip to content
+      </a>
+    
+    
+      <!--
+ * Copyright (c) 2019, WSO2 Inc. (http://www.wso2.org) All Rights Reserved.
+ *
+ * WSO2 Inc. licenses this file to you under the Apache License,
+ * Version 2.0 (the "License"); you may not use this file except
+ * in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied. See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
+-->
+
+<header class="md-header" data-md-component="header" id="page-header" data-url="" data-lang="en">
+  <nav class="md-header-nav md-grid">
+    <div class="md-flex">
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <a href="https://wso2.com/integration/" title="WSO2 Enterprise Integrator Documentation" class="md-header-nav__button md-logo">
+          
+            <img src="../../images/logo.svg" width="24" height="24">
+          
+        </a>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--menu md-header-nav__button" for="__drawer"></label>
+      </div>
+      <div class="md-flex__cell md-flex__cell--stretch">
+        <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
+          
+            <span class="md-header-nav__topic">
+               Enterprise Integrator Documentation
+            </span>
+            <span class="md-header-nav__topic">
+              Working with the Design View
+            </span>
+          
+        </div>
+        <div class="md-flex__ellipsis md-header__distribution-select">
+          <div class="mb-tabs__dropdown version-select">
+            <a class="md-tabs__link md-tabs__dropdown-link" href="#!" data-target="distribution-select-dropdown">
+            Streaming Integrator</a>
+            <ul id="distribution-select-dropdown" class="mb-tabs__dropdown-content" tabindex="0">
+            </ul>
+          </div>
+        </div>
+        <div class="md-flex__ellipsis md-header__version-select">
+          <div class="mb-tabs__dropdown version-select">
+            <a class="md-tabs__link md-tabs__dropdown-link" href="#!" data-target="version-select-dropdown">7.0.0</a>
+            <ul id="version-select-dropdown" class="mb-tabs__dropdown-content" tabindex="0">
+              <!-- Versions will added here dynamically -->
+              <li class="md-tabs__item mb-tabs__dropdown">
+                <a href="#" id="show-all-versions-link">Show all</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        
+          <label class="md-icon md-icon--search md-header-nav__button" for="__search"></label>
+          
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query" data-md-state="active">
+      <label class="md-icon md-search__icon" for="__search"></label>
+      <button type="reset" class="md-icon md-search__icon" data-md-component="reset" tabindex="-1">
+        &#xE5CD;
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="result">
+          <div class="md-search-result__meta">
+            Type to start searching
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+        
+      </div>
+    </div>
+  </nav>
+</header>
+    
+    <div class="md-container">
+      
+        
+      
+      
+        
+
+  
+
+<nav class="md-tabs md-tabs--active" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  <li class="md-tabs__item home_icon">
+    
+      <a href="../.." title="Home" class="md-tabs__link">
+          <i class="fa fa-home"></i>
+      </a>
+    
+  </li>
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../overview/overview/" title="Overview" class="md-tabs__link">
+          Overview
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../quick-start-guide/quick-start-guide/" title="Quick Start Guide" class="md-tabs__link">
+          Quick Start Guide
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../concepts/" title="Concepts" class="md-tabs__link">
+          Concepts
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    
+    
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../setup/installing-si-using-docker/" title="Installation Guide" class="md-tabs__link">
+          Installation Guide
+        </a>
+      
+    </li>
+  
+
+  
+
+      
+        
+  
+  
+    
+    
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../streaming-integrator-studio-overview/" title="Developer Experience" class="md-tabs__link md-tabs__link--active">
+          Developer Experience
+        </a>
+      
+    </li>
+  
+
+  
+
+      
+        
+  
+  
+    
+    
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../examples/performing-real-time-etl-with-mysql/" title="Use Cases" class="md-tabs__link">
+          Use Cases
+        </a>
+      
+    </li>
+  
+
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../admin/configure-si-profile/" title="Admin Guide" class="md-tabs__link">
+          Admin Guide
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../ref/si-rest-api-guide/" title="Reference Guide" class="md-tabs__link">
+          Reference Guide
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../faq/fAQ.md" title="FAQ" class="md-tabs__link">
+          FAQ
+        </a>
+      
+    </li>
+  
+
+      
+        
+      
+    </ul>
+    <div class="quick_links">
+        
+        <a href="https://github.com/wso2/docs-is/edit/master/en/streaming-integrator/docs/develop/working-with-the-Design-View.md" target="blank" id="editIcon" title="Edit this page"
+           title="Edit this page" class="md-icon md-content__icon nav_link edit_link"></a>
+        
+    </div>
+    <a href="#" title="Report Issues" class="feedbackBtn" 
+        onclick=window.open("https://github.com/"+"wso2/docs-ei"+"/issues/new?title=Doc%20Feedback:&body=Location%20:%20"+window.location.href); >
+        Report Issues</a>
+  </div>
+</nav>
+      
+      <main class="md-main">
+        <div class="md-main__inner md-grid" data-md-component="container">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" data-md-level="0">
+    <label class="md-nav__title md-nav__title--site" for="__drawer">
+      <a href="https://wso2.com/integration/" title="WSO2 Enterprise Integrator Documentation"
+         class="md-nav__button md-logo">
+        
+          <img src="../../images/logo.svg" width="48" height="48">
+        
+      </a>
+      WSO2 Enterprise Integrator Documentation
+    </label>
+    
+      <div class="md-nav__source">
+        
+
+
+  
+
+<a href="https://github.com/wso2/docs-ei/" title="Go to repository" class="md-source" data-md-source="github">
+  
+    <div class="md-source__icon">
+      <svg viewBox="0 0 24 24" width="24" height="24">
+        <use xlink:href="#__github" width="24" height="24"></use>
+      </svg>
+    </div>
+  
+  <div class="md-source__repository">
+    wso2/docs-ei
+  </div>
+</a>
+      </div>
+    
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        
+        
+        
+
+
+  <li class="md-nav__item">
+    <a href="../.." title="Home" class="md-nav__link">
+      Home
+    </a>
+  </li>
+
+      
+        
+        
+        
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2">
+    
+    <label class="md-nav__link" for="nav-2">
+      Overview
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-2">
+        Overview
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../overview/overview/" title="Overview" class="md-nav__link">
+      Overview
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../overview/architecture/" title="Architecture" class="md-nav__link">
+      Architecture
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../overview/about_this_release/" title="About this Release" class="md-nav__link">
+      About this Release
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+      
+        
+        
+        
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3">
+    
+    <label class="md-nav__link" for="nav-3">
+      Quick Start Guide
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-3">
+        Quick Start Guide
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../quick-start-guide/quick-start-guide/" title="Quick Start Guide" class="md-nav__link">
+      Quick Start Guide
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+      
+        
+        
+        
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4">
+    
+    <label class="md-nav__link" for="nav-4">
+      Concepts
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-4">
+        Concepts
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../concepts/" title="Concepts" class="md-nav__link">
+      Concepts
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+      
+        
+        
+        
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5">
+    
+    <label class="md-nav__link" for="nav-5">
+      Installation Guide
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-5">
+        Installation Guide
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5-1" type="checkbox" id="nav-5-1">
+    
+    <label class="md-nav__link" for="nav-5-1">
+      Installing the Product
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-5-1">
+        Installing the Product
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../setup/installing-si-using-docker/" title="Installing the Streaming Integrator Using Docker" class="md-nav__link">
+      Installing the Streaming Integrator Using Docker
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../setup/installing-si-using-docker-compose/" title="Installing the Streaming Integrator Using Docker Compose" class="md-nav__link">
+      Installing the Streaming Integrator Using Docker Compose
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../setup/installing-si-using-ansible/" title="Installing the Streaming Integrator Using Ansible" class="md-nav__link">
+      Installing the Streaming Integrator Using Ansible
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../setup/installing-si-using-kubernetes/" title="Installing the Streaming Integrator Using Kubernetes" class="md-nav__link">
+      Installing the Streaming Integrator Using Kubernetes
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../setup/installing-si-using-vagrant/" title="Installing the Streaming Integrator Using Vagrant" class="md-nav__link">
+      Installing the Streaming Integrator Using Vagrant
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../setup/installing-si-using-puppet/" title="Installing the Streaming Integrator Using Puppet" class="md-nav__link">
+      Installing the Streaming Integrator Using Puppet
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../setup/installing-si-using-helm/" title="Installing the Streaming Integrator Using Helm" class="md-nav__link">
+      Installing the Streaming Integrator Using Helm
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../setup/installing-si-using-aws-cloud-formation/" title="Installing the Streaming Integrator Using AWS Cloud Formation" class="md-nav__link">
+      Installing the Streaming Integrator Using AWS Cloud Formation
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../setup/installing-si-using-apt/" title="Installing the Streaming Integrator Using Apt" class="md-nav__link">
+      Installing the Streaming Integrator Using Apt
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../setup/installing-si-using-yum/" title="Installing the Streaming Integrator Using Yum" class="md-nav__link">
+      Installing the Streaming Integrator Using Yum
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../setup/installing-si-using-brew/" title="Installing the Streaming Integrator Using Brew" class="md-nav__link">
+      Installing the Streaming Integrator Using Brew
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5-2" type="checkbox" id="nav-5-2">
+    
+    <label class="md-nav__link" for="nav-5-2">
+      Deploying Streaming Integrator Profile
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-5-2">
+        Deploying Streaming Integrator Profile
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../setup/deploying-si-as-minimum-ha-cluster/" title="Deploying the Streaming Integrator Profile as a Minimum HA cluster" class="md-nav__link">
+      Deploying the Streaming Integrator Profile as a Minimum HA cluster
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5-3" type="checkbox" id="nav-5-3">
+    
+    <label class="md-nav__link" for="nav-5-3">
+      Setting up Databases
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-5-3">
+        Setting up Databases
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../configuring-Datasources.md" title="Configuring Datasources" class="md-nav__link">
+      Configuring Datasources
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../setting-up-physical-databases.md" title="Setting up Physical Databases" class="md-nav__link">
+      Setting up Physical Databases
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+      
+        
+        
+        
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-6" type="checkbox" id="nav-6" checked>
+    
+    <label class="md-nav__link" for="nav-6">
+      Developer Experience
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-6">
+        Developer Experience
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-6-1" type="checkbox" id="nav-6-1" checked>
+    
+    <label class="md-nav__link" for="nav-6-1">
+      Streaming Integrator Tooling
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-6-1">
+        Streaming Integrator Tooling
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../streaming-integrator-studio-overview/" title="Streaming Integrator Tooling Overview" class="md-nav__link">
+      Streaming Integrator Tooling Overview
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Working with the Design View
+      </label>
+    
+    <a href="./" title="Working with the Design View" class="md-nav__link md-nav__link--active">
+      Working with the Design View
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+    
+    
+    
+    
+    
+    <a href="#" title="On this page" class="nav_link md-icon md-content__icon toc_icon"
+       id="tocToggleBtn">keyboard_arrow_right</a>
+    <label class="md-nav__title" for="__toc">On this page</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+        
+        <li class="md-nav__item">
+  <a href="#accesing-the-design-view" title="Accesing the Design View" class="md-nav__link">
+    Accesing the Design View
+  </a>
+  
+</li>
+        
+        <li class="md-nav__item">
+  <a href="#adding-siddhi-components" title="Adding Siddhi components" class="md-nav__link">
+    Adding Siddhi components
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#stream" title="Stream" class="md-nav__link">
+    Stream
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#source" title="Source" class="md-nav__link">
+    Source
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sink" title="Sink" class="md-nav__link">
+    Sink
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#table" title="Table" class="md-nav__link">
+    Table
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#window" title="Window" class="md-nav__link">
+    Window
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#trigger" title="Trigger" class="md-nav__link">
+    Trigger
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#aggregation" title="Aggregation" class="md-nav__link">
+    Aggregation
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#function" title="Function" class="md-nav__link">
+    Function
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#projection-query" title="Projection Query" class="md-nav__link">
+    Projection Query
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#filter-query" title="Filter Query" class="md-nav__link">
+    Filter Query
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#window-query" title="Window Query" class="md-nav__link">
+    Window Query
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#join-query" title="Join Query" class="md-nav__link">
+    Join Query
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pattern-query" title="Pattern Query" class="md-nav__link">
+    Pattern Query
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sequence-query" title="Sequence Query" class="md-nav__link">
+    Sequence Query
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#partitions" title="Partitions" class="md-nav__link">
+    Partitions
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+        <li class="md-nav__item">
+  <a href="#connecting-siddhi-components" title="Connecting Siddhi components" class="md-nav__link">
+    Connecting Siddhi components
+  </a>
+  
+</li>
+        
+        <li class="md-nav__item">
+  <a href="#saving-running-and-debugging-siddhi-applications" title="Saving, running and debugging Siddhi applications" class="md-nav__link">
+    Saving, running and debugging Siddhi applications
+  </a>
+  
+</li>
+        
+        
+        
+        
+        
+    </ul>
+    
+</nav>
+    
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../creating-a-Siddhi-Application/" title="Creating Siddhi Applications" class="md-nav__link">
+      Creating Siddhi Applications
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../testing-a-Siddhi-Application/" title="Testing a Siddhi Application" class="md-nav__link">
+      Testing a Siddhi Application
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../debugging_siddhi_applications/" title="Debugging Siddhi Applications" class="md-nav__link">
+      Debugging Siddhi Applications
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-6-5" type="checkbox" id="nav-6-5">
+    
+    <label class="md-nav__link" for="nav-6-5">
+      Exporting Siddhi Files
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-6-5">
+        Exporting Siddhi Files
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../exporting-a-single-siddhi-file.md" title="Exporting a Single Siddhi File" class="md-nav__link">
+      Exporting a Single Siddhi File
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../exporting-siddhi-files-as-docker-artifacts.md" title="Exporting Siddhi Files as Docker Artifacts" class="md-nav__link">
+      Exporting Siddhi Files as Docker Artifacts
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+      
+        
+        
+        
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-7" type="checkbox" id="nav-7">
+    
+    <label class="md-nav__link" for="nav-7">
+      Use Cases
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-7">
+        Use Cases
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-7-1" type="checkbox" id="nav-7-1">
+    
+    <label class="md-nav__link" for="nav-7-1">
+      Examples
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-7-1">
+        Examples
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../examples/performing-real-time-etl-with-mysql/" title="Performing Real-time ETL with MySQL" class="md-nav__link">
+      Performing Real-time ETL with MySQL
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../examples/performing-real-time-etl-with-files/" title="Performing Real-time ETL with Files" class="md-nav__link">
+      Performing Real-time ETL with Files
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../examples/working-with-kafka/" title="Working with Kafka" class="md-nav__link">
+      Working with Kafka
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../examples/working-with-nats.md" title="Working with NATS" class="md-nav__link">
+      Working with NATS
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../examples/transforming-json-messages/" title="Transforming JSON Messages" class="md-nav__link">
+      Transforming JSON Messages
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../examples/transforming-xml-messages/" title="Transforming XML Messages" class="md-nav__link">
+      Transforming XML Messages
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../examples/integrating-databases-to-data-flows/" title="Integrating Databases to Data Flows" class="md-nav__link">
+      Integrating Databases to Data Flows
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../examples/exposing-processed-data-as-api/" title="Exposing Processed Data as API" class="md-nav__link">
+      Exposing Processed Data as API
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../examples/triggering-integrations-via-micro-integrator/" title="Triggering Integrations via Micro Integrator" class="md-nav__link">
+      Triggering Integrations via Micro Integrator
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../examples/analyzing-data-and-deriving-insights/" title="Analyzing Data and Deriving Insights" class="md-nav__link">
+      Analyzing Data and Deriving Insights
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../examples/reliable-data-integration/" title="Performing Reliable Data Integration (Error Streams)" class="md-nav__link">
+      Performing Reliable Data Integration (Error Streams)
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../examples/summarizing-and-aggregating-data/" title="Summarizing and Aggregating Data in Real Time" class="md-nav__link">
+      Summarizing and Aggregating Data in Real Time
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-7-2" type="checkbox" id="nav-7-2">
+    
+    <label class="md-nav__link" for="nav-7-2">
+      Guides
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-7-2">
+        Guides
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../guides/collecting-events.md" title="Consuming Data" class="md-nav__link">
+      Consuming Data
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../guides/transforming-data/" title="Transforming Data" class="md-nav__link">
+      Transforming Data
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../guides/enriching-data/" title="Enriching Data" class="md-nav__link">
+      Enriching Data
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../guides/cleansing-data/" title="Cleansing Data" class="md-nav__link">
+      Cleansing Data
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../guides/complex-Event-processing.md" title="Correlating Data" class="md-nav__link">
+      Correlating Data
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../guides/incremental-Analysis/" title="Summarizing Data" class="md-nav__link">
+      Summarizing Data
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../guides/triggering-integration-flows/" title="Triggering Integration Flows" class="md-nav__link">
+      Triggering Integration Flows
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+      
+        
+        
+        
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-8" type="checkbox" id="nav-8">
+    
+    <label class="md-nav__link" for="nav-8">
+      Admin Guide
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-8">
+        Admin Guide
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../admin/configure-si-profile/" title="Configuring the Streaming Integration Profile" class="md-nav__link">
+      Configuring the Streaming Integration Profile
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-8-2" type="checkbox" id="nav-8-2">
+    
+    <label class="md-nav__link" for="nav-8-2">
+      Working with Siddhi Connectors
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-8-2">
+        Working with Siddhi Connectors
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../admin/downloading-and-Installing-Siddhi-Extensions/" title="Downloading and Installing Siddhi Connectors" class="md-nav__link">
+      Downloading and Installing Siddhi Connectors
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../admin/writing-Custom-Siddhi-Extensions/" title="Writing Custom Siddhi Extensions" class="md-nav__link">
+      Writing Custom Siddhi Extensions
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../admin/configuring-System-Parameters-for-Siddhi-Extensions/" title="Configuring System Parameters for Siddhi Extensions" class="md-nav__link">
+      Configuring System Parameters for Siddhi Extensions
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../admin/creating-business-rules-templates.md" title="Creating Business Rules Templates" class="md-nav__link">
+      Creating Business Rules Templates
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../admin/monitoring-the streaming-integrator" title="Monitoring the Streaming Integrator" class="md-nav__link">
+      Monitoring the Streaming Integrator
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../admin/general-data-protection-regulations/" title="General Data Protection Regulations" class="md-nav__link">
+      General Data Protection Regulations
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../admin/supporting-Different-Transports.md" title="Supporting Different Transports" class="md-nav__link">
+      Supporting Different Transports
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../admin/user-Management.md" title="User Management" class="md-nav__link">
+      User Management
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../admin/protecting-sensitive-data-via-the-secure-vault.md" title="Protecting Sensitive Data via the Secure Vault" class="md-nav__link">
+      Protecting Sensitive Data via the Secure Vault
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../admin/adding-Third-Party-Non-OSGi-Libraries.md" title="Adding Third Party Non OSGi Library" class="md-nav__link">
+      Adding Third Party Non OSGi Library
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+      
+        
+        
+        
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-9" type="checkbox" id="nav-9">
+    
+    <label class="md-nav__link" for="nav-9">
+      Reference Guide
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-9">
+        Reference Guide
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../ref/si-rest-api-guide/" title="Streaming Integration REST API Guide" class="md-nav__link">
+      Streaming Integration REST API Guide
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../ref/performance-analysis-results/" title="Performance Analysis Results" class="md-nav__link">
+      Performance Analysis Results
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../ref/configuring-Default-Ports.md" title="Configuring Default Ports" class="md-nav__link">
+      Configuring Default Ports
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../ref/working-with-Data-Providers.md" title="Working with Data Providers" class="md-nav__link">
+      Working with Data Providers
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../ref/wSO2-Stream-Processor-Profiles/" title="Streaming Integration Profiles" class="md-nav__link">
+      Streaming Integration Profiles
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+      
+        
+        
+        
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-10" type="checkbox" id="nav-10">
+    
+    <label class="md-nav__link" for="nav-10">
+      FAQ
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-10">
+        FAQ
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../faq/fAQ.md" title="FAQ" class="md-nav__link">
+      FAQ
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+      
+        
+        
+        
+
+
+  <li class="md-nav__item">
+    <a href="../../page-not-found/" title="" class="md-nav__link">
+      
+    </a>
+  </li>
+
+      
+    </ul>
+  </nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary">
+    
+    
+    
+    
+    
+    <a href="#" title="On this page" class="nav_link md-icon md-content__icon toc_icon"
+       id="tocToggleBtn">keyboard_arrow_right</a>
+    <label class="md-nav__title" for="__toc">On this page</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+        
+        <li class="md-nav__item">
+  <a href="#accesing-the-design-view" title="Accesing the Design View" class="md-nav__link">
+    Accesing the Design View
+  </a>
+  
+</li>
+        
+        <li class="md-nav__item">
+  <a href="#adding-siddhi-components" title="Adding Siddhi components" class="md-nav__link">
+    Adding Siddhi components
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#stream" title="Stream" class="md-nav__link">
+    Stream
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#source" title="Source" class="md-nav__link">
+    Source
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sink" title="Sink" class="md-nav__link">
+    Sink
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#table" title="Table" class="md-nav__link">
+    Table
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#window" title="Window" class="md-nav__link">
+    Window
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#trigger" title="Trigger" class="md-nav__link">
+    Trigger
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#aggregation" title="Aggregation" class="md-nav__link">
+    Aggregation
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#function" title="Function" class="md-nav__link">
+    Function
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#projection-query" title="Projection Query" class="md-nav__link">
+    Projection Query
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#filter-query" title="Filter Query" class="md-nav__link">
+    Filter Query
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#window-query" title="Window Query" class="md-nav__link">
+    Window Query
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#join-query" title="Join Query" class="md-nav__link">
+    Join Query
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pattern-query" title="Pattern Query" class="md-nav__link">
+    Pattern Query
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sequence-query" title="Sequence Query" class="md-nav__link">
+    Sequence Query
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#partitions" title="Partitions" class="md-nav__link">
+    Partitions
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+        <li class="md-nav__item">
+  <a href="#connecting-siddhi-components" title="Connecting Siddhi components" class="md-nav__link">
+    Connecting Siddhi components
+  </a>
+  
+</li>
+        
+        <li class="md-nav__item">
+  <a href="#saving-running-and-debugging-siddhi-applications" title="Saving, running and debugging Siddhi applications" class="md-nav__link">
+    Saving, running and debugging Siddhi applications
+  </a>
+  
+</li>
+        
+        
+        
+        
+        
+    </ul>
+    
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+  
+                
+                  <a href="https://github.com/wso2/docs-is/edit/master/en/streaming-integrator/docs/develop/working-with-the-Design-View.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
+                
+                
+                <h1 id="working-with-the-design-view">Working with the Design View<a class="headerlink" href="#working-with-the-design-view" title="Permanent link">&para;</a></h1>
+<p>This section provides an overview of the design view of the Streaming Integrator Tooling.</p>
+<h2 id="accesing-the-design-view">Accesing the Design View<a class="headerlink" href="#accesing-the-design-view" title="Permanent link">&para;</a></h2>
+<p>To open the design view of the Streaming Integrator Tooling:</p>
+<ol>
+<li>Start the Stream Processor Studio and log in with your credentials. For detailed instructions, see 
+    <a href="Stream-Processor-Studio-Overview_112390916.html#StreamProcessorStudioOverview-StartingStreamProcessorStudio">Streaming Integrator Tooling Overview - Starting Streaming Integrator Tooling</a>.</li>
+<li>Click <strong>New</strong> and open a new Siddhi file, or click <strong>Open</strong> and open an existing Siddhi file.</li>
+<li>Click <strong>Design View</strong> to open the Design View.<br />
+<img alt="Design View button" src="../../images/working-with-the design-view/Open_Design_View.png" /><br />
+    The design view opens as shown in the example below. It consists of
+    a grid to which you can drag and drop the Siddhi components
+    represented by icons displayed in the left panel to design a Siddhi
+    application.<br />
+<img alt="Design View" src="../../images/working-with-the design-view/Design_View.png" /></li>
+</ol>
+<h2 id="adding-siddhi-components">Adding Siddhi components<a class="headerlink" href="#adding-siddhi-components" title="Permanent link">&para;</a></h2>
+<p>To add a Siddhi component to the Siddhi application that you are creating/editing in the design view, click on the 
+relevant icon in the left pane, and then drag and drop it to the grid as demonstrated in the example below.</p>
+<p><img alt="Dragging and dropping Siddhi components" src="../../images/working-with-the design-view/Drag-And-Drop-Siddhi-Component.gif" /></p>
+<p>Once you add a Siddhi component, you can configure it as required. To
+configure a Siddhi component, click the settings icon on the component.
+This opens a form with parameters related to the relevant component.</p>
+<p><img alt="Configure Siddhi component settings" src="../../images/working-with-the design-view/Configure-Siddhi-Component-In-Design-View.png" /></p>
+<p>The following is the complete list of Siddhi components that you can add
+to the grid of the design view when you create a Siddhi application.</p>
+<h3 id="stream">Stream<a class="headerlink" href="#stream" title="Permanent link">&para;</a></h3>
+<table>
+<tbody>
+<tr class="odd">
+<td>Icon</td>
+<td><div class="content-wrapper">
+<p><img src="../../images/working-with-the design-view/Stream_Icon.png" /></p>
+</div></td>
+</tr>
+<tr class="even">
+<td>Description</td>
+<td>A stream represents a logical series of events ordered in time. For a detailed description of streams, see <a href="https://siddhi-io.github.io/siddhi/documentation/siddhi-4.x/query-guide-4.x/#stream">Siddhi Query Guide - Stream</a> .</td>
+</tr>
+<tr class="odd">
+<td>Form</td>
+<td><div class="content-wrapper">
+<p>To configure the stream, click the settings icon on the stream component you added to the grid. Then enter values as follows:</p>
+<p><strong>Stream Name</strong> <strong>:</strong> A unique name for the stream. This should be specified in title caps, and without spaces (e.g., <code>               ProductionDataStream              </code> ).</p>
+<p><strong>Attributes</strong> : Attributes of streams are specified as name and type pairs in the <strong>Attributes</strong> table.</p>
+</div></td>
+</tr>
+<tr class="even">
+<td>Example</td>
+<td><div class="content-wrapper">
+<p><img src="../../images/working-with-the design-view/Stream_Configuration.png"/></p>
+<p>The details entered in the above <strong></strong> form creates a stream configuration as follows:</p>
+<div class="code panel pdl" style="border-width: 1px;">
+<div class="codeContent panelContent pdl">
+<div class="sourceCode" id="cb1" data-syntaxhighlighter-params="brush: sql; gutter: false; theme: Confluence" data-theme="Confluence" style="brush: sql; gutter: false; theme: Confluence"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb1-1"><a href="#cb1-1"></a>define stream SweetProductionStream (amount <span class="dt">double</span>, name string);</span></code></pre></div>
+</div>
+</div>
+</div></td>
+</tr>
+<tr class="odd">
+<td>Source</td>
+<td><ul>
+<li>Sources</li>
+<li>Projection queries</li>
+<li>Filter queries</li>
+<li>Window queries</li>
+<li>Join queries</li>
+</ul></td>
+</tr>
+<tr class="even">
+<td>Target</td>
+<td><ul>
+<li>Sinks</li>
+<li>Projection queries</li>
+<li>Filter queries</li>
+<li>Window queries</li>
+<li>Join queries</li>
+</ul></td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="source">Source<a class="headerlink" href="#source" title="Permanent link">&para;</a></h3>
+<table>
+<tbody>
+<tr class="odd">
+<td>Icon</td>
+<td><div class="content-wrapper">
+<p><img src="../../images/working-with-the design-view/Source_Icon.png"/></p>
+</div></td>
+</tr>
+<tr class="even">
+<td>Description</td>
+<td>A source receives events in the specified transport and in the specified format. For more information, see <a href="https://siddhi-io.github.io/siddhi/documentation/siddhi-4.x/query-guide-4.x/#source">Siddhi Query Guide - Source</a> .</td>
+</tr>
+<tr class="odd">
+<td>Form</td>
+<td><div class="content-wrapper">
+<p>To configure the source, click the settings icon on the source component you added to the grid. This opens a form where you can enter the following information:<br />
+</p>
+!!! info
+<p>To access the form in which you can configure a source, you must first connect the source as the source (input) object to a stream component.</p>
+
+<p><br />
+</p>
+<ul>
+<li><strong>Source Type</strong> : This specifies the transport type via which the events are received. The value should be entered in lower case (e.g., t <code>                cp               </code> ). The other parameters displayed for the source depends on the source type selected.</li>
+<li><strong>Map Type</strong> : This specifies the format in which you want to receive the events (e.g., <code>                xml               </code> ). The other parameters displayed for the map depends on the map type selected. If you want to add more configurations to the mapping, click <strong>Customized Options</strong> and set the required properties and key value pairs.<br />
+</li>
+<li><p><strong>Map Attribute as Key/Value Pairs</strong> : If this check box is selected, you can define custom mapping by entering key value pairs. You can add as many key value pairs as required under this check box.</p></li>
+</ul>
+</div></td>
+</tr>
+<tr class="even">
+<td>Example</td>
+<td><div class="content-wrapper">
+<p><img src="../../images/working-with-the design-view/Source-Configuration.png"/></p>
+<p>The details entered in the above <strong></strong> form creates a source configuration as follows:</p>
+<div class="code panel pdl" style="border-width: 1px;">
+<div class="codeContent panelContent pdl">
+<div class="sourceCode" id="cb1" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence" style="brush: java; gutter: false; theme: Confluence"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb1-1"><a href="#cb1-1"></a><span class="at">@source</span>(type = &#39;tcp&#39;, </span>
+<span id="cb1-2"><a href="#cb1-2"></a>    <span class="at">@map</span>(type = &#39;json&#39;, </span>
+<span id="cb1-3"><a href="#cb1-3"></a>        <span class="at">@attributes</span>(name = <span class="st">&quot;$.sweet&quot;</span>, amount = <span class="st">&quot;$.batch.count&quot;</span>)))</span></code></pre></div>
+</div>
+</div>
+</div></td>
+</tr>
+<tr class="odd">
+<td>Source</td>
+<td>No connection can start from another Siddhi component and link to a source because a source is the point from which events selected into the event flow of the Siddhi application start.</td>
+</tr>
+<tr class="even">
+<td>Target</td>
+<td><p>Streams</p></td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="sink">Sink<a class="headerlink" href="#sink" title="Permanent link">&para;</a></h3>
+<table>
+<tbody>
+<tr class="odd">
+<td>Icon</td>
+<td><div class="content-wrapper">
+<p><img src="../../images/working-with-the design-view/Sink_Icon.png"/></p>
+</div></td>
+</tr>
+<tr class="even">
+<td>Description</td>
+<td>A sink publishes events via the specified transport and in the specified format. For more information, see <a href="https://siddhi-io.github.io/siddhi/documentation/siddhi-4.x/query-guide-4.x/#sink">Siddhi Query Guide - Sink</a> .</td>
+</tr>
+<tr class="odd">
+<td>Form</td>
+<td><div class="content-wrapper">
+<p>To configure the sink, click the settings icon on the sink component you added to the grid.<br />
+</p>
+!!! info
+<p>To access the form in which you can configure a sink, you must first connect the sinke as the target object to a stream component.</p>
+
+<ul>
+<li><strong>Sink Type</strong> : This specifies the transport via which the sink publishes processed events. The value should be entered in lower case (e.g., <code>                log               </code> ).<br />
+</li>
+<li><strong>Map Type</strong> : This specifies the format in which you want to publish the events (e.g., <code>                passThrough               </code> ). The other parameters displayed for the map depends on the map type selected. If you want to add more configurations to the mapping, click <strong>Customized Options</strong> and set the required properties and key value pairs.</li>
+<li><p><strong>Map Attribute as Key/Value Pairs</strong> : If this check box is selected, you can define custom mapping by entering key value pairs. You can add as many key value pairs as required under this check box.<br />
+</p></li>
+</ul>
+</div></td>
+</tr>
+<tr class="even">
+<td>Example</td>
+<td><div class="content-wrapper">
+<p><img src="../../images/working-with-the design-view/Sink_Configuration_Form.png"/></p>
+<p>The details entered in the above <strong></strong> form creates a sink configuration as follows:</p>
+<div class="code panel pdl" style="border-width: 1px;">
+<div class="codeContent panelContent pdl">
+<div class="sourceCode" id="cb1" data-syntaxhighlighter-params="brush: sql; gutter: false; theme: Confluence" data-theme="Confluence" style="brush: sql; gutter: false; theme: Confluence"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb1-1"><a href="#cb1-1"></a><span class="ot">@sink(type = &#39;log&#39;, prefix = &quot;Sweet Totals:&quot;)</span></span></code></pre></div>
+</div>
+</div>
+</div></td>
+</tr>
+<tr class="odd">
+<td>Source</td>
+<td>Streams</td>
+</tr>
+<tr class="even">
+<td>Target</td>
+<td><p>N/A</p>
+<p>A sink cannot be followed by another Siddhi component because it represents the last stage of the event flow where the results of the processing carried out by the Siddhi application are communicated via the required interface.</p></td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="table">Table<a class="headerlink" href="#table" title="Permanent link">&para;</a></h3>
+<table>
+<tbody>
+<tr class="odd">
+<td>Icon</td>
+<td><div class="content-wrapper">
+<p><img src="../../images/working-with-the design-view/Table_Icon.png"/></p>
+</div></td>
+</tr>
+<tr class="even">
+<td>Description</td>
+<td>A table is a stored version of an stream or a table of events. For more information, see <a href="https://siddhi-io.github.io/siddhi/documentation/siddhi-4.x/query-guide-4.x/#table">Siddhi Query Guide - Table</a> .</td>
+</tr>
+<tr class="odd">
+<td>Form</td>
+<td><p>To configure the table, click the settings icon on the table component you added to the grid.</p>
+<p><strong>Name</strong> <strong>:</strong> This field specifies unique name for the table. This should be specified in title caps, and without spaces (e.g., <code>              ProductionDataTable             </code> ).</p>
+<p><strong>Attributes</strong> : Attributes of tables are specified as name and type pairs in the <strong>Attributes</strong> table. To add a new attribute, click <strong>+Attribute</strong> .</p>
+<p><strong>Store Type</strong> : This specifies the specific database type in which you want to stopre data or whether the data is to be stored in-memory. Once the store type is selected, select an option to indicate whether the datastore needs to be defined inline, whether you want to use a datasource defined in the <code>              &lt;SP_HOME&gt;/conf/worker/deployment.yaml             </code> file, or connected to a JNDI resource. For more information, see <a href="https://docs.wso2.com/display/SP440/Defining+Tables+for+Physical+Stores">Defining Tables for Physical Stores</a> . The other parameters configured under <strong>Store Type</strong> depend on the store type you select.</p>
+<p><strong>Annotations</strong> : This section allows you to specify the table attributes you want to use as the primary key and indexes via the <code>              @primarykey             </code> and <code>              @index             </code> annotations. For more information, see <a href="https://docs.wso2.com/display/SP440/Defining+Data+Tables">Defining Data Tables</a> . If you want to add any other custom annotations to your table definition, click <strong>+Annotation</strong> to define them.</p></td>
+</tr>
+<tr class="even">
+<td>Example</td>
+<td><div class="content-wrapper">
+<p><img src="../../images/working-with-the design-view/Table_Configuration_Form.png"/></p>
+<p>The details entered in the above <strong></strong> form creates a table definition as follows:</p>
+<div class="code panel pdl" style="border-width: 1px;">
+<div class="codeContent panelContent pdl">
+<div class="sourceCode" id="cb1" data-syntaxhighlighter-params="brush: sql; gutter: false; theme: Confluence" data-theme="Confluence" style="brush: sql; gutter: false; theme: Confluence"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb1-1"><a href="#cb1-1"></a><span class="ot">@store(type = &#39;rdbms&#39;, datasource = &quot;SweetProductionDB&quot;)</span></span>
+<span id="cb1-2"><a href="#cb1-2"></a>define <span class="kw">table</span> ShipmentDetails (name string, supplier string, amount <span class="dt">double</span>);</span></code></pre></div>
+</div>
+</div>
+</div></td>
+</tr>
+<tr class="odd">
+<td>Source</td>
+<td><ul>
+<li>Projection queries</li>
+<li>Window queries</li>
+<li>Filter queries</li>
+<li>Join queries</li>
+</ul></td>
+</tr>
+<tr class="even">
+<td>Target</td>
+<td><ul>
+<li>Projection queries</li>
+<li>Window queries</li>
+<li>Filter queries</li>
+<li>Join queries</li>
+</ul></td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="window">Window<a class="headerlink" href="#window" title="Permanent link">&para;</a></h3>
+<table>
+<tbody>
+<tr class="odd">
+<td>Icon</td>
+<td><div class="content-wrapper">
+<p><img src="../../images/working-with-the design-view/Window_Icon.png"/></p>
+</div></td>
+</tr>
+<tr class="even">
+<td>Description</td>
+<td>This icon represents a window definition that can be shared across multiple queries. For more information, see <a href="https://siddhi-io.github.io/siddhi/documentation/siddhi-4.x/query-guide-4.x/#defined-window">Siddhi Query Guide - (Defined) Window</a> .</td>
+</tr>
+<tr class="odd">
+<td>Form</td>
+<td><p>To configure the window, <a href="#WorkingwiththeDesignView-Settings">click the settings icon</a> on the window component you added to the grid, and update the following information.</p>
+<ul>
+<li><strong>Name</strong> : This field specifies a unique name for the window. <code>               PascalCase              </code> is used for window names as a convention.</li>
+<li><strong>Attributes</strong> : Attributes of windows are specified as name and type pairs in the <strong>Attributes</strong> table.</li>
+<li><strong>Window Type</strong> : This specifies the function of the window (i.e., the window type such as <code>               time              </code> , <code>               length              </code> , <code>               frequent              </code> etc.). The window types supported include <a href="https://siddhi-io.github.io/siddhi/api/latest/#time-window">time</a> , <a href="https://siddhi-io.github.io/siddhi/api/latest/#timebatch-window">timeBatch</a> , <a href="https://siddhi-io.github.io/siddhi/api/latest/#timelength-window">timeLength</a> , <a href="https://siddhi-io.github.io/siddhi/api/latest/#length-window">length</a> , <a href="https://siddhi-io.github.io/siddhi/api/latest/#lengthbatch-window">lengthBatch</a> , <a href="https://siddhi-io.github.io/siddhi/api/latest/#sort-window">sort</a> , <a href="https://siddhi-io.github.io/siddhi/api/latest/#frequent-window">frequent</a> , <a href="https://siddhi-io.github.io/siddhi/api/latest/#lossyfrequent-window">lossyFrequent</a> , <a href="https://siddhi-io.github.io/siddhi/api/latest/#cron-window">cron</a> , <a href="https://siddhi-io.github.io/siddhi/api/latest/#externaltime-window">externalTime</a> , <a href="https://siddhi-io.github.io/siddhi/api/latest/#externaltimebatch-window">externalTimeBatch</a> .</li>
+<li><strong>Parameters</strong> : This section allows you to define one or more parameters for the window definition based on the window type you entered in the <strong>Window Type</strong> field.</li>
+<li><strong>Annotations</strong> : If you want to add any other custom annotations to your window definition, click <strong>+Annotation</strong> to define them.</li>
+</ul></td>
+</tr>
+<tr class="even">
+<td>Example</td>
+<td><div class="content-wrapper">
+<p><img src="../../images/working-with-the design-view/Window_Configuration_Form.png"/></p>
+<p>The details entered in the above form creates a window definition as follows:</p>
+<div class="code panel pdl" style="border-width: 1px;">
+<div class="codeContent panelContent pdl">
+<div class="sourceCode" id="cb1" data-syntaxhighlighter-params="brush: sql; gutter: false; theme: Confluence" data-theme="Confluence" style="brush: sql; gutter: false; theme: Confluence"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb1-1"><a href="#cb1-1"></a>define window FiveMinTempWindow (roomNo <span class="dt">int</span>, temp <span class="dt">double</span>) <span class="dt">time</span>(<span class="dv">5</span> <span class="fu">min</span>) output <span class="kw">all</span> <span class="kw">events</span>;</span></code></pre></div>
+</div>
+</div>
+</div></td>
+</tr>
+<tr class="odd">
+<td>Source</td>
+<td><ul>
+<li>Projection queries</li>
+<li>Window queries</li>
+<li>Filter queries</li>
+<li>Join queries</li>
+</ul></td>
+</tr>
+<tr class="even">
+<td>Target</td>
+<td><ul>
+<li>Projection queries</li>
+<li>Window queries</li>
+<li>Filter queries</li>
+<li>Join queries</li>
+</ul></td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="trigger">Trigger<a class="headerlink" href="#trigger" title="Permanent link">&para;</a></h3>
+<table>
+<tbody>
+<tr class="odd">
+<td>Icon</td>
+<td><div class="content-wrapper">
+<p><img src="../../images/working-with-the design-view/Trigger_Icon.png"/></p>
+</div></td>
+</tr>
+<tr class="even">
+<td>Description</td>
+<td>A trigger allows you to generate events periodically. For more information, see <a href="https://siddhi-io.github.io/siddhi/documentation/siddhi-4.x/query-guide-4.x/#trigger">Siddhi Query Guide - Trigger</a> .</td>
+</tr>
+<tr class="odd">
+<td>Form</td>
+<td><div class="content-wrapper">
+<p>To configure the trigger, <a href="#WorkingwiththeDesignView-Settings">click the settings icon</a> on the trigger component you added to the grid, and update the following information.</p>
+<ul>
+<li><strong>Name</strong> : A unique name for the trigger.</li>
+<li><strong>Trigger Criteria</strong> : This specifies the criteria based on which the trigger is activated. Possible values are as follows:
+<ul>
+<li><strong>start</strong> : Select this to trigger events when the SP server has started.</li>
+<li><strong>every</strong> : Select this to specify a time interval at which events should be triggered.</li>
+<li><strong>cron-expression</strong> : Select this to enter a cron expression based on which the events can be triggered. For more information about cron expressions, see the <a href="http://www.quartz-scheduler.org/documentation/quartz-2.2.x/tutorials/tutorial-lesson-06">quartz-scheduler</a> .</li>
+</ul></li>
+</ul>
+</div></td>
+</tr>
+<tr class="even">
+<td>Example</td>
+<td><div class="content-wrapper">
+<p><br />
+</p>
+<img src="../../images/working-with-the design-view/Trigger_Configuration_Form.png"/>
+<p>The details entered in the above orm creates a trigger definition as follows:</p>
+<div class="code panel pdl" style="border-width: 1px;">
+<div class="codeContent panelContent pdl">
+<div class="sourceCode" id="cb1" data-syntaxhighlighter-params="brush: sql; gutter: false; theme: Confluence" data-theme="Confluence" style="brush: sql; gutter: false; theme: Confluence"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb1-1"><a href="#cb1-1"></a>define <span class="kw">trigger</span> FiveMinTriggerStream <span class="kw">at</span> every <span class="dv">5</span> <span class="fu">min</span>;</span></code></pre></div>
+</div>
+</div>
+<p><br />
+</p>
+</div></td>
+</tr>
+<tr class="odd">
+<td>Source</td>
+<td>N/A</td>
+</tr>
+<tr class="even">
+<td>Target</td>
+<td><ul>
+<li>Projection queries</li>
+<li>Window queries</li>
+<li>Filter queries</li>
+<li>Join queries</li>
+</ul></td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="aggregation">Aggregation<a class="headerlink" href="#aggregation" title="Permanent link">&para;</a></h3>
+<table>
+<tbody>
+<tr class="odd">
+<td>Icon</td>
+<td><div class="content-wrapper">
+<p><img src="../../images/working-with-the design-view/Aggregation_Icon.png"/></p>
+</div></td>
+</tr>
+<tr class="even">
+<td>Description</td>
+<td><div class="content-wrapper">
+<p>Incremental aggregation allows you to obtain aggregates in an incremental manner for a specified set of time periods. For more information, see <a href="https://siddhi-io.github.io/siddhi/documentation/siddhi-4.x/query-guide-4.x/#incremental-aggregation">Siddhi Query Guide - Incremental Aggregation</a> .</p>
+!!! tip
+<p>Before you add an aggregation:</p>
+<p>Make sure that you have already added the stream with the events to which the aggregation is applied is already defined.</p>
+
+</div></td>
+</tr>
+<tr class="odd">
+<td>Form</td>
+<td><div class="content-wrapper">
+<p>To configure the aggregation, <a href="#WorkingwiththeDesignView-Settings">click the settings icon</a> on the aggregation component you added to the grid, and update the following information.</p>
+<ul>
+<li><strong>Aggregation Meta Information</strong> : In this section, define a unique name for the aggregation in the <strong>Name</strong> field, and specify the stream from which the input information is taken to perform the aggregations. You can also select the optional annotations you want to use in the aggregation definition by selecting the relevant check boxes. For more information about configuring the annotations once you select them, see <a href="https://docs.wso2.com/display/SP440/Incremental+Analysis#IncrementalAnalysis-annotation">Incremental Analysis</a> .</li>
+<li><strong>Projection</strong> : This section specifies the attributes to be included in the aggregation query. In the <strong>Select</strong> field, you can select <strong>All</strong> attributes to perform the aggregation for all the attributes of the stream specified under <strong>Input</strong> , or select <strong>User Defined Attributes</strong> to select specific attributes. If you select <strong>User Defined Attributes</strong> , you can add attributes to be selected to be inserted into the output stream. Here, you can enter the names of specific attributes in the input stream, or enter expressions to convert input stream attribute values as required to generate output events. You can also specify the attribute(s) by which you want to group the output.</li>
+<li><strong>Aggregation Criteria</strong> : Here, you can specify the time values based on which the aggregates are calculated.</li>
+</ul>
+</div></td>
+</tr>
+<tr class="even">
+<td>Example</td>
+<td><div class="content-wrapper">
+<p><img src="../../images/working-with-the design-view/Aggregation_Configuration_Form.png"/></p>
+<p>The details entered in the above form creates an aggregation definition as follows:<br />
+</p>
+<div class="code panel pdl" style="border-width: 1px;">
+<div class="codeContent panelContent pdl">
+<div class="sourceCode" id="cb1" data-syntaxhighlighter-params="brush: sql; gutter: false; theme: Confluence" data-theme="Confluence" style="brush: sql; gutter: false; theme: Confluence"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb1-1"><a href="#cb1-1"></a>define aggregation TradeAggregation</span>
+<span id="cb1-2"><a href="#cb1-2"></a><span class="kw">from</span> TradeStream</span>
+<span id="cb1-3"><a href="#cb1-3"></a><span class="kw">select</span> symbol, <span class="fu">avg</span>(price) <span class="kw">as</span> avgPrice, <span class="fu">sum</span>(price) <span class="kw">as</span> total</span>
+<span id="cb1-4"><a href="#cb1-4"></a>    <span class="kw">group</span> <span class="kw">by</span> symbol</span>
+<span id="cb1-5"><a href="#cb1-5"></a>    aggregate <span class="kw">by</span> <span class="dt">timestamp</span> every seconds<span class="op">..</span>.years;</span></code></pre></div>
+</div>
+</div>
+</div></td>
+</tr>
+<tr class="odd">
+<td>Source</td>
+<td>N/A</td>
+</tr>
+<tr class="even">
+<td>Target</td>
+<td>Join queries</td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="function">Function<a class="headerlink" href="#function" title="Permanent link">&para;</a></h3>
+<table>
+<tbody>
+<tr class="odd">
+<td>Icon</td>
+<td><div class="content-wrapper">
+<p><img src="../../images/working-with-the design-view/Function_Icon.png"/></p>
+</div></td>
+</tr>
+<tr class="even">
+<td>Description</td>
+<td>The function icon represents <a href="https://siddhi-io.github.io/siddhi/documentation/siddhi-4.x/query-guide-4.x/#script">Script in Siddhi Query Language</a> . It allows you to write functions in other programming languages and execute them within Siddhi queries. A function component in a Siddhi application is not connected to ther Siddhi components in the design UI. However, the configuration of one or more Query components can include a reference to it.</td>
+</tr>
+<tr class="odd">
+<td>Form</td>
+<td><p>To configure the function, <a href="#WorkingwiththeDesignView-Settings">click the settings icon</a> on the function component you added to the grid, and update the following information.</p>
+<ul>
+<li><strong>Name</strong> : A unique name for the function.</li>
+<li><strong>Script Type</strong> : The language in which the function is written.</li>
+<li><strong>Return Value</strong> : The data format of the value that is generated as the output via the function.<br />
+</li>
+<li><strong>Script Body</strong> : This is a free text field to write the function in the specified script type.<br />
+</li>
+</ul></td>
+</tr>
+<tr class="even">
+<td>Example</td>
+<td><div class="content-wrapper">
+<p><img src="../../images/working-with-the design-view/Function_Configuration_Form.png"/></p>
+<p>The details entered in the above form creates a function definition as follows:</p>
+<div class="code panel pdl" style="border-width: 1px;">
+<div class="codeContent panelContent pdl">
+<div class="sourceCode" id="cb1" data-syntaxhighlighter-params="brush: sql; gutter: false; theme: Confluence" data-theme="Confluence" style="brush: sql; gutter: false; theme: Confluence"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb1-1"><a href="#cb1-1"></a>define <span class="kw">function</span> concatFN[JAVASCRIPT] <span class="kw">return</span> string {</span>
+<span id="cb1-2"><a href="#cb1-2"></a>    var str1 <span class="op">=</span> <span class="kw">data</span>[<span class="dv">0</span>];</span>
+<span id="cb1-3"><a href="#cb1-3"></a>    var str2 <span class="op">=</span> <span class="kw">data</span>[<span class="dv">1</span>];</span>
+<span id="cb1-4"><a href="#cb1-4"></a>    var str3 <span class="op">=</span> <span class="kw">data</span>[<span class="dv">2</span>];</span>
+<span id="cb1-5"><a href="#cb1-5"></a>    var responce <span class="op">=</span> str1 <span class="op">+</span> str2 <span class="op">+</span> str3;</span>
+<span id="cb1-6"><a href="#cb1-6"></a>    <span class="kw">return</span> responce;</span>
+<span id="cb1-7"><a href="#cb1-7"></a>};</span></code></pre></div>
+</div>
+</div>
+</div></td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="projection-query">Projection Query<a class="headerlink" href="#projection-query" title="Permanent link">&para;</a></h3>
+<table>
+<tbody>
+<tr class="odd">
+<td>Icon</td>
+<td><div class="content-wrapper">
+<p><img src="../../images/working-with-the design-view/Projection_Query_Icon.png"/></p>
+</div></td>
+</tr>
+<tr class="even">
+<td>Description</td>
+<td><div class="content-wrapper">
+!!! tip
+<p>Before you add a projection query:</p>
+<p>You need to add and configure the following:</p>
+<ul>
+<li>The input stream with the events to be processed by the query.</li>
+<li>The output stream to which the events processed by the query are directed.</li>
+</ul>
+
+<p>This icon represents a query to project the events in an input stream to an output stream. This invoves selectng the attributes to be included in the output, renaming attributes, introducing constant values, and using mathematical and/or logical expressions. For more information, see <a href="https://siddhi-io.github.io/siddhi/documentation/siddhi-4.x/query-guide-4.x/#query-projection">Siddhi Query Guide - Query Projection</a> .</p>
+</div></td>
+</tr>
+<tr class="odd">
+<td>Form</td>
+<td><div class="content-wrapper">
+<p>Once you connect the query to an input stream (source) and an output stream (target), you can configure it. To configure the projection query, <a href="#WorkingwiththeDesignView-Settings">click the settings icon</a> on the projection query component you added to the grid, and update the following information.</p>
+<ul>
+<li><strong>Query Meta Information</strong> : This section specifies the stream to be considered as the input stream with the events to which the query needs to be applied. The input stream connected to the query as the source is automatically displayed.</li>
+<li><strong>Projection</strong> : This section specifies the attributes to be included in the output. In the <strong>Select</strong> field, you can select <strong>All Attributes</strong> to select all the attributes of the events, or select <strong>User Defined Attributes</strong> to select specific attributes from the input stream. If you select <strong>User Defined Attributes</strong> , you can add attributes to be selected to be inserted into the output stream. Here, you can enter the names of specific attributes in the input stream, or enter expressions to convert input stream attribute values as required to generate output events. You can also specify the attribute(s) by which you want to group the output.</li>
+<li><strong>Output</strong> : This section specifies the action to be performed on the output event. The fields to be configured in this section are as follows:
+<ul>
+<li><strong>Operation</strong> : This field specifies the operation to be performed on the generated output event (e.g., <code>                  Insert                 </code> to insert events to a selected stream/table/window).</li>
+<li><strong>Into</strong> : This field specifies the stream/table/window in which the operation specified need to be performed.</li>
+<li><strong>Event Type</strong> This field specifies whether the operation needs to be performed for all output events, only current events or for only expired events.|</li>
+</ul></li>
+</ul>
+</div></td>
+</tr>
+<tr class="even">
+<td>Example</td>
+<td><div class="content-wrapper">
+<p><img src="../../images/working-with-the design-view/Projection_QueryConfiguration_Form.png"/></p>
+<p>The details entered in the above form creates a query as follows:</p>
+<div class="code panel pdl" style="border-width: 1px;">
+<div class="codeContent panelContent pdl">
+<div class="sourceCode" id="cb1" data-syntaxhighlighter-params="brush: sql; gutter: false; theme: Confluence" data-theme="Confluence" style="brush: sql; gutter: false; theme: Confluence"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb1-1"><a href="#cb1-1"></a><span class="kw">from</span> TradeStream</span>
+<span id="cb1-2"><a href="#cb1-2"></a><span class="kw">select</span> symbol, <span class="fu">avg</span>(price) <span class="kw">as</span> averagePrice, <span class="fu">sum</span>(volume) <span class="kw">as</span> total</span>
+<span id="cb1-3"><a href="#cb1-3"></a><span class="kw">insert</span> <span class="kw">all</span> <span class="kw">events</span> <span class="kw">into</span> OutputStream;</span></code></pre></div>
+</div>
+</div>
+</div></td>
+</tr>
+<tr class="odd">
+<td>Source</td>
+<td><ul>
+<li>Streams</li>
+<li>Tables</li>
+<li>Triggers</li>
+<li>Windows</li>
+</ul></td>
+</tr>
+<tr class="even">
+<td>Target</td>
+<td><ul>
+<li>Streams</li>
+<li>Tables</li>
+<li>Windows</li>
+</ul></td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="filter-query">Filter Query<a class="headerlink" href="#filter-query" title="Permanent link">&para;</a></h3>
+<table>
+<tbody>
+<tr class="odd">
+<td>Icon</td>
+<td><div class="content-wrapper">
+<p><img src="../../images/working-with-the design-view/Filter_Query_Icon.png"/></p>
+</div></td>
+</tr>
+<tr class="even">
+<td>Description</td>
+<td><div class="content-wrapper">
+!!! tip
+<p>Before you add a filter query:</p>
+<p>You need to add and configure the following:</p>
+<ul>
+<li>The input stream with the events to be processed by the query.</li>
+<li>The output stream to which the events processed by the query are directed.</li>
+</ul>
+
+<p>A filter query filters information in an input stream based on a given condition. For more information, see <a href="https://siddhi-io.github.io/siddhi/documentation/siddhi-4.x/query-guide-4.x/#filter">Siddhi Query Guide - Filters</a> .</p>
+</div></td>
+</tr>
+<tr class="odd">
+<td>Form</td>
+<td><div class="content-wrapper">
+<p>Once you connect the query to an input stream (source) and an output stream (target), you can configure it. To configure the filter query, <a href="#WorkingwiththeDesignView-Settings">click the settings icon</a> on the filter query component you added to the grid, and update the following information.</p>
+<ul>
+<li><p>By default, the <strong>Stream Handler</strong> check box is selected, and a stream handler of the <code>filter</code> type is available under it to indicate that the query is a filter. Expand this stream handler, and enter the condition based on which the information needs to be filtered.</p>
+<p>!!! info</p>
+<p>A Siddhi application can have multiple stream handlers. To add another stream handler, click the <strong>+ Stream Handler</strong> . Multiple functions, filters and windows can be defined within the same form as stream handlers.</p>
+</p></li>
+<li><strong>Projection</strong> : This section specifies the attributes to be included in the output. In the <strong>Select</strong> field, you can select <strong>All Attributes</strong> to select all the attributes of the events, or select <strong>User Defined Attributes</strong> to select specific attributes from the input stream. If you select <strong>User Defined Attributes</strong> , you can add attributes to be selected to be inserted into the output stream. Here, you can enter the names of specific attributes in the input stream, or enter expressions to convert input stream attribute values as required to generate output events. You can also specify the attribute(s) by which you want to group the output.</li>
+<li><strong>Output</strong> : This section specifies the action to be performed on the output event. The fields to be configured in this section are as follows:
+<ul>
+<li><strong>Operation</strong> : This field specifies the operation to be performed on the generated output event (e.g., <code>Insert</code> to insert events to a selected stream/table/window).</li>
+<li><strong>Into</strong> : This field specifies the stream/table/window in which the operation specified need to be performed.</li>
+<li><strong>Event Type</strong> This field specifies whether the operation needs to be performed for all output events, only current events or for only expired events.</li>
+</ul></li>
+</ul>
+</div></td>
+</tr>
+<tr class="even">
+<td>Example</td>
+<td><div class="content-wrapper">
+<p><img src="../../images/working-with-the design-view/Filter_Query_Configuration_Form.png"/></p>
+<p>The details entered in the above form creates a query with a filter as follows:</p>
+<div class="code panel pdl" style="border-width: 1px;">
+<div class="codeContent panelContent pdl">
+<div class="sourceCode" id="cb1" data-syntaxhighlighter-params="brush: sql; gutter: false; theme: Confluence" data-theme="Confluence" style="brush: sql; gutter: false; theme: Confluence"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb1-1"><a href="#cb1-1"></a><span class="kw">from</span> TradeStream[<span class="fu">sum</span>(amount) <span class="op">&gt;</span> <span class="dv">10000</span>]</span>
+<span id="cb1-2"><a href="#cb1-2"></a><span class="kw">select</span> symbol, <span class="fu">avg</span>(price) <span class="kw">as</span> averagePrice, <span class="fu">sum</span>(amount) <span class="kw">as</span> total</span>
+<span id="cb1-3"><a href="#cb1-3"></a><span class="kw">insert</span> <span class="kw">all</span> <span class="kw">events</span> <span class="kw">into</span> OutputStream;</span></code></pre></div>
+</div>
+</div>
+</div></td>
+</tr>
+<tr class="odd">
+<td>Source</td>
+<td><ul>
+<li>Streams</li>
+<li>Tables</li>
+<li>Triggers</li>
+<li>Windows</li>
+</ul></td>
+</tr>
+<tr class="even">
+<td>Target</td>
+<td><ul>
+<li>Streams</li>
+<li>Tables</li>
+<li>Windows</li>
+</ul></td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="window-query">Window Query<a class="headerlink" href="#window-query" title="Permanent link">&para;</a></h3>
+<table>
+<tbody>
+<tr class="odd">
+<td>Icon</td>
+<td><div class="content-wrapper">
+<p><img src="../../images/working-with-the design-view/Window_Query_Icon.png"/></p>
+</div></td>
+</tr>
+<tr class="even">
+<td>Description</td>
+<td><div class="content-wrapper">
+
+!!! tip
+    <p>Before you add a window query:</p>
+    <p>You need to add and configure the following:</p>
+    <ul>
+    <li>The input stream with the events to be processed by the query.</li>
+    <li>The output stream to which the events processed by the query are directed.</li>
+    </ul>
+
+<p>Window queries include a window to select a subset of events to be processed based on a specific criterion. For more information, see <a href="https://siddhi-io.github.io/siddhi/documentation/siddhi-4.x/query-guide-4.x/#defined-window">Siddhi Query Guide - (Defined) Window</a> .</p>
+</div></td>
+</tr>
+<tr class="odd">
+<td>Form</td>
+<td><div class="content-wrapper">
+<p>Once you connect the query to an input stream (source) and an output stream (target), you can configure it. To configure the window query, <a href="#WorkingwiththeDesignView-Settings">click the settings icon</a> on the window query component you added to the grid, and update the following information.</p>
+<ul>
+<li><p>By default, the <strong>Stream Handler</strong> check box is selected, and a stream handler of the <code>window</code> type is available under it to indicate that the query is a filter. Expand this stream handler, and enter details to determine the window including the window type and the basis on which the subset of events considered by the window is determined (i.e., based on the window type selected).</p>
+<p>!!! info</p>
+<p>A Siddhi application can have multiple stream handlers. To add another stream handler, click the <strong>+ Stream Handler</strong> . Multiple functions, filters and windows can be defined within the same form as stream handlers.</p>
+</p></li>
+<li><strong>Projection</strong> : This section specifies the attributes to be included in the output. In the <strong>Select</strong> field, you can select <strong>All Attributes</strong> to select all the attributes of the events, or select <strong>User Defined Attributes</strong> to select specific attributes from the input stream. If you select <strong>User Defined Attributes</strong> , you can add attributes to be selected to be inserted into the output stream. Here, you can enter the names of specific attributes in the input stream, or enter expressions to convert input stream attribute values as required to generate output events. You can also specify the attribute(s) by which you want to group the output.</li>
+<li><strong>Output</strong> : This section specifies the action to be performed on the output event. The fields to be configured in this section are as follows:
+<ul>
+<li><strong>Operation</strong> : This field specifies the operation to be performed on the generated output event (e.g., <code>Insert</code> to insert events to a selected stream/table/window).</li>
+<li><strong>Into</strong> : This field specifies the stream/table/window in which the operation specified need to be performed.</li>
+<li><strong>Event Type</strong> This field specifies whether the operation needs to be performed for all output events, only current events or for only expired events.</li>
+</ul></li>
+</ul>
+</div></td>
+</tr>
+<tr class="even">
+<td>Example</td>
+<td><div class="content-wrapper">
+<p><img src="../../images/working-with-the design-view/Filter_Query_Configuration_Form.png"/></p>
+<p>The details entered in the above <strong>Query Configuration</strong> form creates a query with a window as follows:</p>
+<div class="code panel pdl" style="border-width: 1px;">
+<div class="codeContent panelContent pdl">
+<div class="sourceCode" id="cb1" data-syntaxhighlighter-params="brush: sql; gutter: false; theme: Confluence" data-theme="Confluence" style="brush: sql; gutter: false; theme: Confluence"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb1-1"><a href="#cb1-1"></a><span class="kw">from</span> TradeStream#window.<span class="dt">time</span>(<span class="dv">1</span> <span class="dt">month</span>)</span>
+<span id="cb1-2"><a href="#cb1-2"></a><span class="kw">select</span> symbol, <span class="fu">avg</span>(price) <span class="kw">as</span> averagePrice, <span class="fu">sum</span>(amount) <span class="kw">as</span> total</span>
+<span id="cb1-3"><a href="#cb1-3"></a><span class="kw">insert</span> <span class="kw">all</span> <span class="kw">events</span> <span class="kw">into</span> OutputStream;</span></code></pre></div>
+</div>
+</div>
+</div></td>
+</tr>
+<tr class="odd">
+<td>Source</td>
+<td><div class="content-wrapper">
+!!! info
+<p>A window query can have only one source at a given time.</p>
+
+<ul>
+<li>Streams</li>
+<li>Tables</li>
+<li>Triggers</li>
+<li>Windows</li>
+</ul>
+</div></td>
+</tr>
+<tr class="even">
+<td>Target</td>
+<td><ul>
+<li>Streams</li>
+<li>Tables</li>
+<li>Windows</li>
+</ul></td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="join-query">Join Query<a class="headerlink" href="#join-query" title="Permanent link">&para;</a></h3>
+<table>
+<tbody>
+<tr class="odd">
+<td>Icon</td>
+<td><div class="content-wrapper">
+<p><img src="../../images/working-with-the design-view/Join_Query_Icon.png"/></p>
+</div></td>
+</tr>
+<tr class="even">
+<td>Description</td>
+<td>A join query derives a combined result from two streams in real-time based on a specified condition. For more information, see <a href="https://siddhi-io.github.io/siddhi/documentation/siddhi-4.x/query-guide-4.x/#join-stream">Siddhi Query Guide - Join</a> .</td>
+</tr>
+<tr class="odd">
+<td>Form</td>
+<td><div class="content-wrapper">
+<p>Once you connect two Siddhi components to the join query as sources and another Siddhi component as the target, you can configure the join query. To configure the join query, <a href="#WorkingwiththeDesignView-Settings">click the settings icon</a> on the join query component you added to the grid and update the following information.</p>
+<ul>
+<li><strong>Query Meta Information</strong> : In this section, enter a unique name for the query and any annotations that you want to include in the query. The <code>                @dist               </code> annotation is supported by default to use the query in a fully distributed deployment if required (for more information, see <a href="https://docs.wso2.com/display/SP440/Converting+to+a+Distributed+Streaming+Application">Converting to a Distributed Streaming Application</a> ). You can also add customized annotations.<br />
+</li>
+<li><strong>Input</strong> : Here, you can specify the input sources, the references, the join type, join condition, and stream handlers for the left source and right source of the join. For a detailed explanation of the join concept, see <a href="https://siddhi-io.github.io/siddhi/documentation/siddhi-4.x/query-guide-4.x/#join-stream">Siddhi Query Guide - Joins</a> .</li>
+<li><strong>Projection</strong> : This section specifies the attributes to be included in the output. In the <strong>Select</strong> field, you can select <strong>All Attributes</strong> to select all the attributes of the events, or select <strong>User Defined Attributes</strong> to select specific attributes from the input stream. If you select <strong>User Defined Attributes</strong> , you can add attributes to be selected to be inserted into the output stream. Here, you can enter the names of specific attributes in the input stream, or enter expressions to convert input stream attribute values as required to generate output events. You can also specify the attribute(s) by which you want to group the output.</li>
+<li><strong>Output</strong> : This section specifies the action to be performed on the output event. The fields to be configured in this section are as follows:
+<ul>
+<li><strong>Operation</strong> : This field specifies the operation to be performed on the generated output event (e.g., <code>                  Insert                 </code> to insert events to a selected stream/table/window).</li>
+<li><strong>Into</strong> : This field specifies the stream/table/window in which the operation specified need to be performed.</li>
+<li><strong>Event Type</strong> This field specifies whether the operation needs to be performed for all output events, only current events or for only expired events.</li>
+</ul></li>
+</ul>
+</div></td>
+</tr>
+<tr class="even">
+<td>Example</td>
+<td><div class="content-wrapper">
+<p>A join query is configured as follows:</p>
+<p><strong><img src="../../images/working-with-the design-view/Join_Query_Configuration_Form.png" /><br />
+</strong> The above configurations result in creating the following join query.</p>
+<div class="code panel pdl" style="border-width: 1px;">
+<div class="codeContent panelContent pdl">
+<div class="sourceCode" id="cb1" data-syntaxhighlighter-params="brush: sql; gutter: false; theme: Confluence" data-theme="Confluence" style="brush: sql; gutter: false; theme: Confluence"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb1-1"><a href="#cb1-1"></a><span class="kw">from</span> TempStream[temp <span class="op">&gt;</span> <span class="fl">30.0</span>]#window.<span class="dt">time</span>(<span class="dv">1</span> <span class="fu">min</span>) <span class="kw">as</span> T</span>
+<span id="cb1-2"><a href="#cb1-2"></a>  <span class="kw">join</span> RegulatorStream[isOn <span class="op">==</span> <span class="kw">false</span>]#window.<span class="fu">length</span>(<span class="dv">1</span>) <span class="kw">as</span> R</span>
+<span id="cb1-3"><a href="#cb1-3"></a>  <span class="kw">on</span> T.roomNo <span class="op">==</span> R.roomNo</span>
+<span id="cb1-4"><a href="#cb1-4"></a><span class="kw">select</span> T.roomNo, R.deviceID, <span class="st">&#39;start&#39;</span> <span class="kw">as</span> action</span>
+<span id="cb1-5"><a href="#cb1-5"></a><span class="kw">insert</span> <span class="kw">into</span> RegulatorActionStream;</span></code></pre></div>
+</div>
+</div>
+</div></td>
+</tr>
+<tr class="odd">
+<td>Source</td>
+<td><div class="content-wrapper">
+!!! info
+    A join query must always be connected to two sources, and at least one of them must be a defined stream/trigger/window.
+
+<ul>
+<li>Streams</li>
+<li>Tables</li>
+<li>Aggregations</li>
+<li>Windows</li>
+</ul>
+</div></td>
+</tr>
+<tr class="even">
+<td>Target</td>
+<td><div class="content-wrapper">
+!!! info
+    A join query must always be connected to a single target.
+
+<ul>
+<li>Streams</li>
+<li>Tables</li>
+<li>Windows</li>
+</ul>
+</div></td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="pattern-query">Pattern Query<a class="headerlink" href="#pattern-query" title="Permanent link">&para;</a></h3>
+<table style="width:100%;">
+<colgroup>
+<col style="width: 7%" />
+<col style="width: 92%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td>Icon</td>
+<td><div class="content-wrapper">
+<p><img src="../../images/working-with-the design-view/Pattern_Query_Icon.png"/></p>
+</div></td>
+</tr>
+<tr class="even">
+<td>Description</td>
+<td><div class="content-wrapper">
+!!! tip
+<p>Before you add a pattern query:</p>
+<p>You need to add and configure the following:</p>
+<ul>
+<li>The input stream with the events to be processed by the query.</li>
+<li>The output stream to which the events processed by the query are directed.</li>
+</ul>
+
+<p>A pattern query detects patterns in events that arrive overtime. For more information, see <a href="https://siddhi-io.github.io/siddhi/documentation/siddhi-4.x/query-guide-4.x/#pattern">Siddhi Query Guide - Patterns</a> .</p>
+</div></td>
+</tr>
+<tr class="odd">
+<td>Form</td>
+<td><div class="content-wrapper">
+<p>Once you connect the query to an input stream (source) and an output stream (target), you can configure it. To configure the pattern query, <a href="#WorkingwiththeDesignView-Settings">click the settings icon</a> on the pattern query component you added to the grid and update the following information.<br />
+</p>
+<ul>
+<li><strong>Query Meta Information</strong> : In this section, enter a unique name for the query and any annotations that you want to include in the query. The <code>                @dist               </code> annotation is supported by default to use the query in a fully distributed deployment if required (for more information, see <a href="https://docs.wso2.com/display/SP440/Converting+to+a+Distributed+Streaming+Application">Converting to a Distributed Streaming Application</a> ). You can also add customized annotations.</li>
+<li><strong>Input</strong> : This section defines the conditions based on which patterns are identified. This involves specifying a unique ID and the input stream considered for each condition. Multiple conditions can be added. Each condition is configured in a separate tab within this section. For more information about the Pattern concept, see <a href="https://siddhi-io.github.io/siddhi/documentation/siddhi-4.x/query-guide-4.x/#pattern">Siddhi Query Guide - Patterns</a> .</li>
+<li><strong>Projection</strong> : This section specifies the attributes to be included in the output. In the <strong>Select</strong> field, you can select <strong>All Attributes</strong> to select all the attributes of the events, or select <strong>User Defined Attributes</strong> to select specific attributes from the input stream. If you select <strong>User Defined Attributes</strong> , you can add attributes to be selected to be inserted into the output stream. Here, you can enter the names of specific attributes in the input stream, or enter expressions to convert input stream attribute values as required to generate output events. You can also specify the attribute(s) by which you want to group the output.</li>
+<li><strong>Output</strong> : This section specifies the action to be performed on the output event. The fields to be configured in this section are as follows:
+<ul>
+<li><strong>Operation</strong> : This field specifies the operation to be performed on the generated output event (e.g., <code>                  Insert                 </code> to insert events to a selected stream/table/window).</li>
+<li><strong>Into</strong> : This field specifies the stream/table/window in which the operation specified need to be performed.</li>
+<li><strong>Event Type</strong> This field specifies whether the operation needs to be performed for all output events, only current events or for only expired events.</li>
+</ul></li>
+</ul>
+</div></td>
+</tr>
+<tr class="even">
+<td>Example</td>
+<td><div class="content-wrapper">
+<p><img src="attachments/112390944/112390969.png" width="900" /></p>
+<p>The above configuration results in creating the following query.</p>
+<div class="code panel pdl" style="border-width: 1px;">
+<div class="codeContent panelContent pdl">
+<div class="sourceCode" id="cb1" data-syntaxhighlighter-params="brush: sql; gutter: false; theme: Confluence" data-theme="Confluence" style="brush: sql; gutter: false; theme: Confluence"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb1-1"><a href="#cb1-1"></a><span class="kw">from</span> every (e1<span class="op">=</span>MaterialSupplyStream) <span class="op">-&gt;</span> <span class="kw">not</span> MaterialConsumptionStream[name <span class="op">==</span> e1.name <span class="kw">and</span> amount <span class="op">==</span> e1.amount]</span>
+<span id="cb1-2"><a href="#cb1-2"></a>    <span class="cf">for</span> <span class="dv">15</span> sec</span>
+<span id="cb1-3"><a href="#cb1-3"></a><span class="kw">select</span> e1.name, e1.amount</span>
+<span id="cb1-4"><a href="#cb1-4"></a><span class="kw">insert</span> <span class="kw">into</span> ProductionDelayAlertStream;</span></code></pre></div>
+</div>
+</div>
+</div></td>
+</tr>
+<tr class="odd">
+<td>Source</td>
+<td><ul>
+<li>Streams</li>
+<li>Tables</li>
+<li>Triggers</li>
+<li>Windows</li>
+</ul></td>
+</tr>
+<tr class="even">
+<td>Target</td>
+<td><ul>
+<li>Streams</li>
+<li>Tables</li>
+<li>Windows</li>
+</ul></td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="sequence-query">Sequence Query<a class="headerlink" href="#sequence-query" title="Permanent link">&para;</a></h3>
+<table style="width:100%;">
+<colgroup>
+<col style="width: 7%" />
+<col style="width: 92%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td>Icon</td>
+<td><div class="content-wrapper">
+<p><img src="attachments/112390944/112390961.png" width="76" /></p>
+</div></td>
+</tr>
+<tr class="even">
+<td>Description</td>
+<td><div class="content-wrapper">
+!!! tip
+<p>Before you add a sequence query:</p>
+<p>You need to add and configure the following:</p>
+<ul>
+<li>The input stream with the events to be processed by the query.</li>
+<li>The output stream to which the events processed by the query are directed.</li>
+</ul>
+
+<p>A sequence query detects sequences in event occurrences over time. For more information, see <a href="https://siddhi-io.github.io/siddhi/documentation/siddhi-4.x/query-guide-4.x/#sequence">Siddhi Query Guide - Sequence</a> .</p>
+</div></td>
+</tr>
+<tr class="odd">
+<td>Form</td>
+<td><div class="content-wrapper">
+<p>Once you connect the query to an input stream (source) and an output stream (target), you can configure it. To configure the sequence query, <a href="#WorkingwiththeDesignView-Settings">click the settings icon</a> on the sequence query component you added to the grid and update the following information.</p>
+<ul>
+<li><strong>Query Meta Information</strong> : In this section, enter a unique name for the query and any annotations that you want to include in the query. The <code>                @dist               </code> annotation is supported by default to use the query in a fully distributed deployment if required (for more information, see <a href="https://docs.wso2.com/display/SP440/Converting+to+a+Distributed+Streaming+Application">Converting to a Distributed Streaming Application</a> ). You can also add customized annotations.</li>
+<li><strong>Input</strong> : This section defines the conditions based on which sequences are identified. This involves specifying a unique ID and the input stream considered for each condition. Multiple conditions can be added. Each condition is configured in a separate tab within this section. For more information about the Sequence concept, see <a href="https://siddhi-io.github.io/siddhi/documentation/siddhi-4.x/query-guide-4.x/#sequence">Siddhi Query Guide - Sequences</a> .</li>
+<li><strong>Projection</strong> : This section specifies the attributes to be included in the output. In the <strong>Select</strong> field, you can select <strong>All Attributes</strong> to select all the attributes of the events, or select <strong>User Defined Attributes</strong> to select specific attributes from the input stream. If you select <strong>User Defined Attributes</strong> , you can add attributes to be selected to be inserted into the output stream. Here, you can enter the names of specific attributes in the input stream, or enter expressions to convert input stream attribute values as required to generate output events. You can also specify the attribute(s) by which you want to group the output.</li>
+<li><strong>Output</strong> : This section specifies the action to be performed on the output event. The fields to be configured in this section are as follows:
+<ul>
+<li><strong>Operation</strong> : This field specifies the operation to be performed on the generated output event (e.g., <code>                  Insert                 </code> to insert events to a selected stream/table/window).</li>
+<li><strong>Into</strong> : This field specifies the stream/table/window in which the operation specified need to be performed.</li>
+<li><strong>Event Type</strong> This field specifies whether the operation needs to be performed for all output events, only current events or for only expired events.</li>
+</ul></li>
+</ul>
+</div></td>
+</tr>
+<tr class="even">
+<td>Example</td>
+<td><div class="content-wrapper">
+<p><img src="attachments/112390944/112390960.png" width="900" /></p>
+<p>The above configuration results in creating the following query.</p>
+<div class="code panel pdl" style="border-width: 1px;">
+<div class="codeContent panelContent pdl">
+<div class="sourceCode" id="cb1" data-syntaxhighlighter-params="brush: sql; gutter: false; theme: Confluence" data-theme="Confluence" style="brush: sql; gutter: false; theme: Confluence"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb1-1"><a href="#cb1-1"></a><span class="kw">from</span> every e1<span class="op">=</span>SweetProductionStream, </span>
+<span id="cb1-2"><a href="#cb1-2"></a>e2<span class="op">=</span>SweetProductionStream[e1.amount <span class="op">&gt;</span> amount <span class="kw">and</span> (<span class="dt">timestamp</span> <span class="op">-</span> e1.<span class="dt">timestamp</span>) <span class="op">&lt;</span> <span class="dv">10</span> <span class="op">*</span> <span class="dv">60000</span>]<span class="op">*</span>,</span>
+<span id="cb1-3"><a href="#cb1-3"></a>e3<span class="op">=</span>SweetProductionStream[<span class="dt">timestamp</span> <span class="op">-</span> e1.<span class="dt">timestamp</span> <span class="op">&gt;</span> <span class="dv">10</span> <span class="op">*</span> <span class="dv">60000</span> <span class="kw">and</span> e1.amount <span class="op">&gt;</span> amount]</span>
+<span id="cb1-4"><a href="#cb1-4"></a><span class="kw">select</span> e1.name, e1.amount <span class="kw">as</span> initialAmount, e2.amount <span class="kw">as</span> finalAmount, e2.<span class="dt">timestamp</span></span>
+<span id="cb1-5"><a href="#cb1-5"></a><span class="kw">insert</span> <span class="kw">into</span> DecreasingTrendAlertStream;</span></code></pre></div>
+</div>
+</div>
+</div></td>
+</tr>
+<tr class="odd">
+<td>Source</td>
+<td><ul>
+<li>Streams</li>
+<li>Tables</li>
+<li>Triggers</li>
+<li>Windows</li>
+</ul></td>
+</tr>
+<tr class="even">
+<td>Target</td>
+<td><ul>
+<li>Streams</li>
+<li>Tables</li>
+<li>Windows</li>
+</ul></td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="partitions">Partitions<a class="headerlink" href="#partitions" title="Permanent link">&para;</a></h3>
+<table style="width:100%;">
+<colgroup>
+<col style="width: 7%" />
+<col style="width: 92%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td>Icon</td>
+<td><div class="content-wrapper">
+<p><img src="attachments/112390944/112390970.png" width="76" /></p>
+</div></td>
+</tr>
+<tr class="even">
+<td>Description</td>
+<td><div class="content-wrapper">
+!!! tip
+<p>Before you add a partition:</p>
+<p>You need to add the stream to be partitioned.</p>
+
+<p>Partitions divide streams and queries into isolated groups in order to process them in parallel and in isolation. For more information, see <a href="https://siddhi-io.github.io/siddhi/documentation/siddhi-4.x/query-guide-4.x/#partition">Siddhi Query Guide - Partition</a> .</p>
+</div></td>
+</tr>
+<tr class="odd">
+<td>Form</td>
+<td><div class="content-wrapper">
+<p>Once the stream to be partitioned is connected as a source to the partition, you can configure the partition. In order to do so, move the cursor over the partition and <a href="#WorkingwiththeDesignView-Settings">click the settings icon</a> on the partition component. This opens the <strong>Partition Configuration</strong> form. In this form, you can enter expressions to convert the attributes of the stream that is selected to be partitioned.</p>
+</div></td>
+</tr>
+<tr class="even">
+<td>Example</td>
+<td><div class="content-wrapper">
+<p><img src="attachments/112390944/112390972.png" height="250" /></p>
+<p>The above configuration creates the following partition query.</p>
+<div class="code panel pdl" style="border-width: 1px;">
+<div class="codeContent panelContent pdl">
+<div class="sourceCode" id="cb1" data-syntaxhighlighter-params="brush: sql; gutter: false; theme: Confluence" data-theme="Confluence" style="brush: sql; gutter: false; theme: Confluence"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb1-1"><a href="#cb1-1"></a><span class="kw">partition</span> <span class="kw">with</span> ( roomNo <span class="op">&gt;=</span> <span class="dv">1030</span> <span class="kw">as</span> <span class="st">&#39;serverRoom&#39;</span> <span class="kw">or</span> </span>
+<span id="cb1-2"><a href="#cb1-2"></a>                 roomNo <span class="op">&lt;</span> <span class="dv">1030</span> <span class="kw">and</span> roomNo <span class="op">&gt;=</span> <span class="dv">330</span> <span class="kw">as</span> <span class="st">&#39;officeRoom&#39;</span> <span class="kw">or</span> </span>
+<span id="cb1-3"><a href="#cb1-3"></a>                 roomNo <span class="op">&lt;</span> <span class="dv">330</span> <span class="kw">as</span> <span class="st">&#39;lobby&#39;</span> <span class="kw">of</span> TempStream)</span>
+<span id="cb1-4"><a href="#cb1-4"></a><span class="cf">begin</span></span>
+<span id="cb1-5"><a href="#cb1-5"></a>    <span class="kw">from</span> TempStream#window.<span class="dt">time</span>(<span class="dv">10</span> <span class="fu">min</span>)</span>
+<span id="cb1-6"><a href="#cb1-6"></a>    <span class="kw">select</span> roomNo, deviceID, <span class="fu">avg</span>(temp) <span class="kw">as</span> avgTemp</span>
+<span id="cb1-7"><a href="#cb1-7"></a>    <span class="kw">insert</span> <span class="kw">into</span> AreaTempStream</span>
+<span id="cb1-8"><a href="#cb1-8"></a><span class="cf">end</span>;</span></code></pre></div>
+</div>
+</div>
+</div></td>
+</tr>
+<tr class="odd">
+<td>Source</td>
+<td>Streams</td>
+</tr>
+<tr class="even">
+<td>Target</td>
+<td>N/A</td>
+</tr>
+</tbody>
+</table>
+
+<h2 id="connecting-siddhi-components">Connecting Siddhi components<a class="headerlink" href="#connecting-siddhi-components" title="Permanent link">&para;</a></h2>
+<p>In order to define how the Siddhi components in a Siddhi application
+interact with each other to process events, you need to define
+connections between Siddhi components. A connection is defined by
+drawing an arrow from one component to another by dragging the cursor as
+demonstrated below.</p>
+<p><img alt="" src="attachments/112390944/119112618.gif" /></p>
+<h2 id="saving-running-and-debugging-siddhi-applications">Saving, running and debugging Siddhi applications<a class="headerlink" href="#saving-running-and-debugging-siddhi-applications" title="Permanent link">&para;</a></h2>
+<p>To save a Siddhi application that you created in the design view, you
+need to switch to the source view. You also need to switch to the source
+view to run or debug a Siddhi application. For more information, see the
+following sections:</p>
+<ul>
+<li><a href="_Stream_Processor_Studio_Overview_">Stream Processor Studio
+    Overview</a></li>
+<li><a href="_Debugging_a_Siddhi_Application_">Debugging a Siddhi Application</a></li>
+</ul>
+                
+                  
+                
+              
+  <a href="#" class="cd-top text--replace js-cd-top">Top</a>
+
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+        
+          <a href="../streaming-integrator-studio-overview/" title="Streaming Integrator Tooling Overview" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+            </div>
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                Streaming Integrator Tooling Overview
+              </span>
+            </div>
+          </a>
+        
+        
+          <a href="../creating-a-Siddhi-Application/" title="Creating Siddhi Applications" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                Creating Siddhi Applications
+              </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+          <div class="md-footer-copyright__highlight">
+            WSO2 Enterprise Integrator - Documentation
+          </div>
+        
+        &copy;2019 <a href="https://wso2.com/">WSO2</a>
+      </div>
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../../assets/javascripts/application.d9aa80ab.js"></script>
+      
+      <script>app.initialize({version:"1.0.4",url:{base:"../.."}})</script>
+      
+        <script src="../../assets/lib/highlightjs/highlight.min.js"></script>
+      
+        <script src="../../assets/js/theme.js"></script>
+      
+        <script src="../../assets/lib/backtotop/js/util.js"></script>
+      
+        <script src="../../assets/lib/backtotop/js/main.js"></script>
+      
+    
+  </body>
+</html>

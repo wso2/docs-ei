@@ -914,7 +914,7 @@ create_admin_account=true
 <div class="mb-config-catalog">
     <section class="title">
         <div class="mb-config-options">    
-            <h2>Configuring the TLS keystore</h2>
+            <h2 id="configuring-the-tls-keystore">Configuring the TLS keystore</h2>
         </div>
         <div class="mb-config-example"></div>
     </section>
@@ -1050,7 +1050,7 @@ key_password="wso2carbon"
 <div class="mb-config-catalog">
     <section class="title">
         <div class="mb-config-options">    
-            <h2>Configuring the internal keystore</h2>
+            <h2 id="configuring-the-internal-keystore">Configuring the internal keystore</h2>
         </div>
         <div class="mb-config-example"></div>
     </section>
@@ -1179,6 +1179,205 @@ type="JKS"
 password="wso2carbon"
 alias="wso2carbon"
 key_password="wso2carbon"
+</code></pre>
+        </div>
+    </section>
+</div>
+<div class="mb-config-catalog">
+    <section class="title">
+        <div class="mb-config-options">    
+            <h2 id="configuring-owsp">Configuring OWASP</h2>
+        </div>
+        <div class="mb-config-example"></div>
+    </section>
+    <section>
+        <div class="mb-config-options">
+            <div class="mb-config">
+                <div class="config-wrap">
+                    <code>[[owasp.csrfguard.unprotected.service]]</code>
+                    <p>
+                        ......</a>.
+                    </p>
+                </div>
+                <div class="params-wrap">
+                    <div class="param">
+                        <div class="param-name">
+                          <span class="param-name-wrap"><code>name</code></span>
+                        </div>
+                        <div class="param-info">
+                            <div>
+                                <p>
+                                    <span class="param-type string"> string</span>
+                                </p>
+                                <div class="param-default">
+                                    <span class="param-default-value"><code>...</code></span>
+                                </div>
+                                <div class="param-possible">
+                                    <span class="param-possible-value"><code></code></span>
+                                </div>
+                            </div>
+                            <div class="param-description">
+                                <p>The.....</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="param">
+                        <div class="param-name">
+                          <span class="param-name-wrap"> <code>service</code> </span>
+                        </div>
+                        <div class="param-info">
+                            <div>
+                                <p>
+                                    <span class="param-type string"> string </span>
+                                </p>
+                                <div class="param-default">
+                                    <span class="param-default-value">...<span>
+                                </div>
+                                <div class="param-possible">
+                                    <span class="param-possible-value"></span>
+                                </div>
+                            </div>
+                            <div class="param-description">
+                                <p>The....</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="mb-config-example">
+<pre><code class="toml">[[owasp.csrfguard.unprotected.service]]
+ name = "oauthiwa"
+ service = "%servletContext%/commonauth/iwa/*" 
+</code></pre>
+        </div>
+    </section>
+</div>
+<div class="mb-config-catalog">
+    <section>
+        <div class="mb-config-options">
+            <div class="mb-config">
+                <div class="config-wrap">
+                    <code>[owasp.csrfguard]</code>
+                    <p>
+                        ......</a>.
+                    </p>
+                </div>
+                <div class="params-wrap">
+                    <div class="param">
+                        <div class="param-name">
+                          <span class="param-name-wrap"><code>create_token_per_page</code></span>
+                        </div>
+                        <div class="param-info">
+                            <div>
+                                <p>
+                                    <span class="param-type string"> string</span>
+                                </p>
+                                <div class="param-default">
+                                    <span class="param-default-value"><code>...</code></span>
+                                </div>
+                                <div class="param-possible">
+                                    <span class="param-possible-value"><code></code></span>
+                                </div>
+                            </div>
+                            <div class="param-description">
+                                <p>The.....</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="param">
+                        <div class="param-name">
+                          <span class="param-name-wrap"> <code>token_length</code> </span>
+                        </div>
+                        <div class="param-info">
+                            <div>
+                                <p>
+                                    <span class="param-type string"> string </span>
+                                </p>
+                                <div class="param-default">
+                                    <span class="param-default-value">...<span>
+                                </div>
+                                <div class="param-possible">
+                                    <span class="param-possible-value"></span>
+                                </div>
+                            </div>
+                            <div class="param-description">
+                                <p>The....</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="param">
+                        <div class="param-name">
+                          <span class="param-name-wrap"> <code>random_number_generator_algo</code> </span>
+                        </div>
+                        <div class="param-info">
+                            <div>
+                                <p>
+                                    <span class="param-type string"> string </span>
+                                </p>
+                                <div class="param-default">
+                                    <span class="param-default-value">...<span>
+                                </div>
+                                <div class="param-possible">
+                                    <span class="param-possible-value"></span>
+                                </div>
+                            </div>
+                            <div class="param-description">
+                                <p>The....</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="mb-config-example">
+<pre><code class="toml">[owasp.csrfguard] 
+create_token_per_page=false 
+token_length=32
+random_number_generator_algo="SHA1PRNG" 
+
+</code></pre>
+        </div>
+    </section>
+</div>
+<div class="mb-config-catalog">
+    <section>
+        <div class="mb-config-options">
+            <div class="mb-config">
+                <div class="config-wrap">
+                    <code>[owasp.csrfguard.js_servlet]</code>
+                    <p>
+                        ......</a>.
+                    </p>
+                </div>
+                <div class="params-wrap">
+                    <div class="param">
+                        <div class="param-name">
+                          <span class="param-name-wrap"><code>x_request_with_header</code></span>
+                        </div>
+                        <div class="param-info">
+                            <div>
+                                <p>
+                                    <span class="param-type string"> string</span>
+                                </p>
+                                <div class="param-default">
+                                    <span class="param-default-value"><code>...</code></span>
+                                </div>
+                                <div class="param-possible">
+                                    <span class="param-possible-value"><code></code></span>
+                                </div>
+                            </div>
+                            <div class="param-description">
+                                <p>The.....</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="mb-config-example">
+<pre><code class="toml">[owasp.csrfguard.js_servlet]
+x_request_with_header = "WSO2 CSRF Protection"
 </code></pre>
         </div>
     </section>

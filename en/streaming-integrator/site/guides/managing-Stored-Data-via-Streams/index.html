@@ -1,0 +1,2212 @@
+<!--
+ * Copyright (c) 2019, WSO2 Inc. (http://www.wso2.org) All Rights Reserved.
+ *
+ * WSO2 Inc. licenses this file to you under the Apache License,
+ * Version 2.0 (the "License"); you may not use this file except
+ * in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied. See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
+-->
+
+
+
+
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      <meta http-equiv="x-ua-compatible" content="ie=edge">
+      
+        <meta name="description" content="Documentation for WSO2 Enterprise Integrator">
+      
+      
+        <link rel="canonical" href="https://wso2.com/integration/guides/managing-Stored-Data-via-Streams/">
+      
+      
+        <meta name="author" content="WSO2">
+      
+      
+        <meta name="lang:clipboard.copy" content="Copy to clipboard">
+      
+        <meta name="lang:clipboard.copied" content="Copied to clipboard">
+      
+        <meta name="lang:search.language" content="en">
+      
+        <meta name="lang:search.pipeline.stopwords" content="True">
+      
+        <meta name="lang:search.pipeline.trimmer" content="True">
+      
+        <meta name="lang:search.result.none" content="No matching documents">
+      
+        <meta name="lang:search.result.one" content="1 matching document">
+      
+        <meta name="lang:search.result.other" content="# matching documents">
+      
+        <meta name="lang:search.tokenizer" content="[\s\-]+">
+      
+      <link rel="shortcut icon" href="../../images/favicon.png">
+      <meta name="generator" content="mkdocs-1.0.4, mkdocs-material-4.0.2">
+    
+    
+      
+        <title>Managing Stored Data via Streams - WSO2 Enterprise Integrator Documentation</title>
+      
+    
+    
+  
+      <link rel="stylesheet" href="../../assets/stylesheets/application.982221ab.css">
+      
+        <link rel="stylesheet" href="../../assets/stylesheets/application-palette.224b79ff.css">
+      
+      
+        
+        
+        <meta name="theme-color" content="#ff7043">
+      
+    
+  <link rel="stylesheet" href="../../assets/fonts/font-awesome.css">
+
+    
+      <script src="../../assets/javascripts/modernizr.1f0bcf2b.js"></script>
+    
+    
+      
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700|Roboto+Mono">
+        <style>body,input{font-family:"Roboto","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono","Courier New",Courier,monospace}</style>
+      
+    
+    <link rel="stylesheet" href="../../assets/fonts/material-icons.css">
+    
+    
+      <link rel="stylesheet" href="../../assets/lib/highlightjs/default.min.css">
+    
+      <link rel="stylesheet" href="../../assets/css/theme.css">
+    
+    
+      
+    
+    
+  </head>
+  
+    
+    
+    <body dir="ltr" data-md-color-primary="deep-orange" data-md-color-accent="deep-orange">
+  
+    <svg class="md-svg">
+      <defs>
+        
+        
+          <svg xmlns="http://www.w3.org/2000/svg" width="416" height="448"
+    viewBox="0 0 416 448" id="__github">
+  <path fill="currentColor" d="M160 304q0 10-3.125 20.5t-10.75 19-18.125
+        8.5-18.125-8.5-10.75-19-3.125-20.5 3.125-20.5 10.75-19 18.125-8.5
+        18.125 8.5 10.75 19 3.125 20.5zM320 304q0 10-3.125 20.5t-10.75
+        19-18.125 8.5-18.125-8.5-10.75-19-3.125-20.5 3.125-20.5 10.75-19
+        18.125-8.5 18.125 8.5 10.75 19 3.125 20.5zM360
+        304q0-30-17.25-51t-46.75-21q-10.25 0-48.75 5.25-17.75 2.75-39.25
+        2.75t-39.25-2.75q-38-5.25-48.75-5.25-29.5 0-46.75 21t-17.25 51q0 22 8
+        38.375t20.25 25.75 30.5 15 35 7.375 37.25 1.75h42q20.5 0
+        37.25-1.75t35-7.375 30.5-15 20.25-25.75 8-38.375zM416 260q0 51.75-15.25
+        82.75-9.5 19.25-26.375 33.25t-35.25 21.5-42.5 11.875-42.875 5.5-41.75
+        1.125q-19.5 0-35.5-0.75t-36.875-3.125-38.125-7.5-34.25-12.875-30.25-20.25-21.5-28.75q-15.5-30.75-15.5-82.75
+        0-59.25 34-99-6.75-20.5-6.75-42.5 0-29 12.75-54.5 27 0 47.5 9.875t47.25
+        30.875q36.75-8.75 77.25-8.75 37 0 70 8 26.25-20.5
+        46.75-30.25t47.25-9.75q12.75 25.5 12.75 54.5 0 21.75-6.75 42 34 40 34
+        99.5z" />
+</svg>
+        
+      </defs>
+    </svg>
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
+    
+      <a href="#managing-stored-data-via-streams" tabindex="1" class="md-skip">
+        Skip to content
+      </a>
+    
+    
+      <!--
+ * Copyright (c) 2019, WSO2 Inc. (http://www.wso2.org) All Rights Reserved.
+ *
+ * WSO2 Inc. licenses this file to you under the Apache License,
+ * Version 2.0 (the "License"); you may not use this file except
+ * in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied. See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
+-->
+
+<header class="md-header" data-md-component="header" id="page-header" data-url="" data-lang="en">
+  <nav class="md-header-nav md-grid">
+    <div class="md-flex">
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <a href="https://wso2.com/integration/" title="WSO2 Enterprise Integrator Documentation" class="md-header-nav__button md-logo">
+          
+            <img src="../../images/logo.svg" width="24" height="24">
+          
+        </a>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--menu md-header-nav__button" for="__drawer"></label>
+      </div>
+      <div class="md-flex__cell md-flex__cell--stretch">
+        <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
+          
+            <span class="md-header-nav__topic">
+               Enterprise Integrator Documentation
+            </span>
+            <span class="md-header-nav__topic">
+              Managing Stored Data via Streams
+            </span>
+          
+        </div>
+        <div class="md-flex__ellipsis md-header__distribution-select">
+          <div class="mb-tabs__dropdown version-select">
+            <a class="md-tabs__link md-tabs__dropdown-link" href="#!" data-target="distribution-select-dropdown">
+            Streaming Integrator</a>
+            <ul id="distribution-select-dropdown" class="mb-tabs__dropdown-content" tabindex="0">
+            </ul>
+          </div>
+        </div>
+        <div class="md-flex__ellipsis md-header__version-select">
+          <div class="mb-tabs__dropdown version-select">
+            <a class="md-tabs__link md-tabs__dropdown-link" href="#!" data-target="version-select-dropdown">7.0.0</a>
+            <ul id="version-select-dropdown" class="mb-tabs__dropdown-content" tabindex="0">
+              <!-- Versions will added here dynamically -->
+              <li class="md-tabs__item mb-tabs__dropdown">
+                <a href="#" id="show-all-versions-link">Show all</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        
+          <label class="md-icon md-icon--search md-header-nav__button" for="__search"></label>
+          
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query" data-md-state="active">
+      <label class="md-icon md-search__icon" for="__search"></label>
+      <button type="reset" class="md-icon md-search__icon" data-md-component="reset" tabindex="-1">
+        &#xE5CD;
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="result">
+          <div class="md-search-result__meta">
+            Type to start searching
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+        
+      </div>
+    </div>
+  </nav>
+</header>
+    
+    <div class="md-container">
+      
+        
+      
+      
+        
+
+<nav class="md-tabs" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  <li class="md-tabs__item home_icon">
+    
+      <a href="../.." title="Home" class="md-tabs__link md-tabs__link--active">
+          <i class="fa fa-home"></i>
+      </a>
+    
+  </li>
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../overview/overview/" title="Overview" class="md-tabs__link">
+          Overview
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../quick-start-guide/quick-start-guide/" title="Quick Start Guide" class="md-tabs__link">
+          Quick Start Guide
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../concepts/" title="Concepts" class="md-tabs__link">
+          Concepts
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    
+    
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../setup/installing-si-using-docker/" title="Installation Guide" class="md-tabs__link">
+          Installation Guide
+        </a>
+      
+    </li>
+  
+
+  
+
+      
+        
+  
+  
+    
+    
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../develop/streaming-integrator-studio-overview/" title="Developer Experience" class="md-tabs__link">
+          Developer Experience
+        </a>
+      
+    </li>
+  
+
+  
+
+      
+        
+  
+  
+    
+    
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../examples/performing-real-time-etl-with-mysql/" title="Use Cases" class="md-tabs__link">
+          Use Cases
+        </a>
+      
+    </li>
+  
+
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../admin/configure-si-profile/" title="Admin Guide" class="md-tabs__link">
+          Admin Guide
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../ref/si-rest-api-guide/" title="Reference Guide" class="md-tabs__link">
+          Reference Guide
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../faq/fAQ.md" title="FAQ" class="md-tabs__link">
+          FAQ
+        </a>
+      
+    </li>
+  
+
+      
+        
+      
+    </ul>
+    <div class="quick_links">
+        
+        <a href="https://github.com/wso2/docs-is/edit/master/en/streaming-integrator/docs/guides/managing-Stored-Data-via-Streams.md" target="blank" id="editIcon" title="Edit this page"
+           title="Edit this page" class="md-icon md-content__icon nav_link edit_link"></a>
+        
+    </div>
+    <a href="#" title="Report Issues" class="feedbackBtn" 
+        onclick=window.open("https://github.com/"+"wso2/docs-ei"+"/issues/new?title=Doc%20Feedback:&body=Location%20:%20"+window.location.href); >
+        Report Issues</a>
+  </div>
+</nav>
+      
+      <main class="md-main">
+        <div class="md-main__inner md-grid" data-md-component="container">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" data-md-level="0">
+    <label class="md-nav__title md-nav__title--site" for="__drawer">
+      <a href="https://wso2.com/integration/" title="WSO2 Enterprise Integrator Documentation"
+         class="md-nav__button md-logo">
+        
+          <img src="../../images/logo.svg" width="48" height="48">
+        
+      </a>
+      WSO2 Enterprise Integrator Documentation
+    </label>
+    
+      <div class="md-nav__source">
+        
+
+
+  
+
+<a href="https://github.com/wso2/docs-ei/" title="Go to repository" class="md-source" data-md-source="github">
+  
+    <div class="md-source__icon">
+      <svg viewBox="0 0 24 24" width="24" height="24">
+        <use xlink:href="#__github" width="24" height="24"></use>
+      </svg>
+    </div>
+  
+  <div class="md-source__repository">
+    wso2/docs-ei
+  </div>
+</a>
+      </div>
+    
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        
+        
+        
+
+
+  <li class="md-nav__item">
+    <a href="../.." title="Home" class="md-nav__link">
+      Home
+    </a>
+  </li>
+
+      
+        
+        
+        
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2">
+    
+    <label class="md-nav__link" for="nav-2">
+      Overview
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-2">
+        Overview
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../overview/overview/" title="Overview" class="md-nav__link">
+      Overview
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../overview/architecture/" title="Architecture" class="md-nav__link">
+      Architecture
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../overview/about_this_release/" title="About this Release" class="md-nav__link">
+      About this Release
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+      
+        
+        
+        
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3">
+    
+    <label class="md-nav__link" for="nav-3">
+      Quick Start Guide
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-3">
+        Quick Start Guide
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../quick-start-guide/quick-start-guide/" title="Quick Start Guide" class="md-nav__link">
+      Quick Start Guide
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+      
+        
+        
+        
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4">
+    
+    <label class="md-nav__link" for="nav-4">
+      Concepts
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-4">
+        Concepts
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../concepts/" title="Concepts" class="md-nav__link">
+      Concepts
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+      
+        
+        
+        
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5">
+    
+    <label class="md-nav__link" for="nav-5">
+      Installation Guide
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-5">
+        Installation Guide
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5-1" type="checkbox" id="nav-5-1">
+    
+    <label class="md-nav__link" for="nav-5-1">
+      Installing the Product
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-5-1">
+        Installing the Product
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../setup/installing-si-using-docker/" title="Installing the Streaming Integrator Using Docker" class="md-nav__link">
+      Installing the Streaming Integrator Using Docker
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../setup/installing-si-using-docker-compose/" title="Installing the Streaming Integrator Using Docker Compose" class="md-nav__link">
+      Installing the Streaming Integrator Using Docker Compose
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../setup/installing-si-using-ansible/" title="Installing the Streaming Integrator Using Ansible" class="md-nav__link">
+      Installing the Streaming Integrator Using Ansible
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../setup/installing-si-using-kubernetes/" title="Installing the Streaming Integrator Using Kubernetes" class="md-nav__link">
+      Installing the Streaming Integrator Using Kubernetes
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../setup/installing-si-using-vagrant/" title="Installing the Streaming Integrator Using Vagrant" class="md-nav__link">
+      Installing the Streaming Integrator Using Vagrant
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../setup/installing-si-using-puppet/" title="Installing the Streaming Integrator Using Puppet" class="md-nav__link">
+      Installing the Streaming Integrator Using Puppet
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../setup/installing-si-using-helm/" title="Installing the Streaming Integrator Using Helm" class="md-nav__link">
+      Installing the Streaming Integrator Using Helm
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../setup/installing-si-using-aws-cloud-formation/" title="Installing the Streaming Integrator Using AWS Cloud Formation" class="md-nav__link">
+      Installing the Streaming Integrator Using AWS Cloud Formation
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../setup/installing-si-using-apt/" title="Installing the Streaming Integrator Using Apt" class="md-nav__link">
+      Installing the Streaming Integrator Using Apt
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../setup/installing-si-using-yum/" title="Installing the Streaming Integrator Using Yum" class="md-nav__link">
+      Installing the Streaming Integrator Using Yum
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../setup/installing-si-using-brew/" title="Installing the Streaming Integrator Using Brew" class="md-nav__link">
+      Installing the Streaming Integrator Using Brew
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5-2" type="checkbox" id="nav-5-2">
+    
+    <label class="md-nav__link" for="nav-5-2">
+      Deploying Streaming Integrator Profile
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-5-2">
+        Deploying Streaming Integrator Profile
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../setup/deploying-si-as-minimum-ha-cluster/" title="Deploying the Streaming Integrator Profile as a Minimum HA cluster" class="md-nav__link">
+      Deploying the Streaming Integrator Profile as a Minimum HA cluster
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5-3" type="checkbox" id="nav-5-3">
+    
+    <label class="md-nav__link" for="nav-5-3">
+      Setting up Databases
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-5-3">
+        Setting up Databases
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../configuring-Datasources.md" title="Configuring Datasources" class="md-nav__link">
+      Configuring Datasources
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../setting-up-physical-databases.md" title="Setting up Physical Databases" class="md-nav__link">
+      Setting up Physical Databases
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+      
+        
+        
+        
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-6" type="checkbox" id="nav-6">
+    
+    <label class="md-nav__link" for="nav-6">
+      Developer Experience
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-6">
+        Developer Experience
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-6-1" type="checkbox" id="nav-6-1">
+    
+    <label class="md-nav__link" for="nav-6-1">
+      Streaming Integrator Tooling
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-6-1">
+        Streaming Integrator Tooling
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../develop/streaming-integrator-studio-overview/" title="Streaming Integrator Tooling Overview" class="md-nav__link">
+      Streaming Integrator Tooling Overview
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../develop/working-with-the-Design-View/" title="Working with the Design View" class="md-nav__link">
+      Working with the Design View
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../develop/creating-a-Siddhi-Application/" title="Creating Siddhi Applications" class="md-nav__link">
+      Creating Siddhi Applications
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../develop/testing-a-Siddhi-Application/" title="Testing a Siddhi Application" class="md-nav__link">
+      Testing a Siddhi Application
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../develop/debugging_siddhi_applications/" title="Debugging Siddhi Applications" class="md-nav__link">
+      Debugging Siddhi Applications
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-6-5" type="checkbox" id="nav-6-5">
+    
+    <label class="md-nav__link" for="nav-6-5">
+      Exporting Siddhi Files
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-6-5">
+        Exporting Siddhi Files
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../develop/exporting-a-single-siddhi-file.md" title="Exporting a Single Siddhi File" class="md-nav__link">
+      Exporting a Single Siddhi File
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../develop/exporting-siddhi-files-as-docker-artifacts.md" title="Exporting Siddhi Files as Docker Artifacts" class="md-nav__link">
+      Exporting Siddhi Files as Docker Artifacts
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+      
+        
+        
+        
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-7" type="checkbox" id="nav-7">
+    
+    <label class="md-nav__link" for="nav-7">
+      Use Cases
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-7">
+        Use Cases
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-7-1" type="checkbox" id="nav-7-1">
+    
+    <label class="md-nav__link" for="nav-7-1">
+      Examples
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-7-1">
+        Examples
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../examples/performing-real-time-etl-with-mysql/" title="Performing Real-time ETL with MySQL" class="md-nav__link">
+      Performing Real-time ETL with MySQL
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../examples/performing-real-time-etl-with-files/" title="Performing Real-time ETL with Files" class="md-nav__link">
+      Performing Real-time ETL with Files
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../examples/working-with-kafka/" title="Working with Kafka" class="md-nav__link">
+      Working with Kafka
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../examples/working-with-nats.md" title="Working with NATS" class="md-nav__link">
+      Working with NATS
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../examples/transforming-json-messages/" title="Transforming JSON Messages" class="md-nav__link">
+      Transforming JSON Messages
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../examples/transforming-xml-messages/" title="Transforming XML Messages" class="md-nav__link">
+      Transforming XML Messages
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../examples/integrating-databases-to-data-flows/" title="Integrating Databases to Data Flows" class="md-nav__link">
+      Integrating Databases to Data Flows
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../examples/exposing-processed-data-as-api/" title="Exposing Processed Data as API" class="md-nav__link">
+      Exposing Processed Data as API
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../examples/triggering-integrations-via-micro-integrator/" title="Triggering Integrations via Micro Integrator" class="md-nav__link">
+      Triggering Integrations via Micro Integrator
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../examples/analyzing-data-and-deriving-insights/" title="Analyzing Data and Deriving Insights" class="md-nav__link">
+      Analyzing Data and Deriving Insights
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../examples/reliable-data-integration/" title="Performing Reliable Data Integration (Error Streams)" class="md-nav__link">
+      Performing Reliable Data Integration (Error Streams)
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../examples/summarizing-and-aggregating-data/" title="Summarizing and Aggregating Data in Real Time" class="md-nav__link">
+      Summarizing and Aggregating Data in Real Time
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-7-2" type="checkbox" id="nav-7-2">
+    
+    <label class="md-nav__link" for="nav-7-2">
+      Guides
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-7-2">
+        Guides
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../collecting-events.md" title="Consuming Data" class="md-nav__link">
+      Consuming Data
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../transforming-data/" title="Transforming Data" class="md-nav__link">
+      Transforming Data
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../enriching-data/" title="Enriching Data" class="md-nav__link">
+      Enriching Data
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../cleansing-data/" title="Cleansing Data" class="md-nav__link">
+      Cleansing Data
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../complex-Event-processing.md" title="Correlating Data" class="md-nav__link">
+      Correlating Data
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../incremental-Analysis/" title="Summarizing Data" class="md-nav__link">
+      Summarizing Data
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../triggering-integration-flows/" title="Triggering Integration Flows" class="md-nav__link">
+      Triggering Integration Flows
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+      
+        
+        
+        
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-8" type="checkbox" id="nav-8">
+    
+    <label class="md-nav__link" for="nav-8">
+      Admin Guide
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-8">
+        Admin Guide
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../admin/configure-si-profile/" title="Configuring the Streaming Integration Profile" class="md-nav__link">
+      Configuring the Streaming Integration Profile
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-8-2" type="checkbox" id="nav-8-2">
+    
+    <label class="md-nav__link" for="nav-8-2">
+      Working with Siddhi Connectors
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-8-2">
+        Working with Siddhi Connectors
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../admin/downloading-and-Installing-Siddhi-Extensions/" title="Downloading and Installing Siddhi Connectors" class="md-nav__link">
+      Downloading and Installing Siddhi Connectors
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../admin/writing-Custom-Siddhi-Extensions/" title="Writing Custom Siddhi Extensions" class="md-nav__link">
+      Writing Custom Siddhi Extensions
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../admin/configuring-System-Parameters-for-Siddhi-Extensions/" title="Configuring System Parameters for Siddhi Extensions" class="md-nav__link">
+      Configuring System Parameters for Siddhi Extensions
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../admin/creating-business-rules-templates.md" title="Creating Business Rules Templates" class="md-nav__link">
+      Creating Business Rules Templates
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../admin/monitoring-the streaming-integrator" title="Monitoring the Streaming Integrator" class="md-nav__link">
+      Monitoring the Streaming Integrator
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../admin/general-data-protection-regulations/" title="General Data Protection Regulations" class="md-nav__link">
+      General Data Protection Regulations
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../admin/supporting-Different-Transports.md" title="Supporting Different Transports" class="md-nav__link">
+      Supporting Different Transports
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../admin/user-Management.md" title="User Management" class="md-nav__link">
+      User Management
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../admin/protecting-sensitive-data-via-the-secure-vault.md" title="Protecting Sensitive Data via the Secure Vault" class="md-nav__link">
+      Protecting Sensitive Data via the Secure Vault
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../admin/adding-Third-Party-Non-OSGi-Libraries.md" title="Adding Third Party Non OSGi Library" class="md-nav__link">
+      Adding Third Party Non OSGi Library
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+      
+        
+        
+        
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-9" type="checkbox" id="nav-9">
+    
+    <label class="md-nav__link" for="nav-9">
+      Reference Guide
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-9">
+        Reference Guide
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../ref/si-rest-api-guide/" title="Streaming Integration REST API Guide" class="md-nav__link">
+      Streaming Integration REST API Guide
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../ref/performance-analysis-results/" title="Performance Analysis Results" class="md-nav__link">
+      Performance Analysis Results
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../ref/configuring-Default-Ports.md" title="Configuring Default Ports" class="md-nav__link">
+      Configuring Default Ports
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../ref/working-with-Data-Providers.md" title="Working with Data Providers" class="md-nav__link">
+      Working with Data Providers
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../ref/wSO2-Stream-Processor-Profiles/" title="Streaming Integration Profiles" class="md-nav__link">
+      Streaming Integration Profiles
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+      
+        
+        
+        
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-10" type="checkbox" id="nav-10">
+    
+    <label class="md-nav__link" for="nav-10">
+      FAQ
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-10">
+        FAQ
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../faq/fAQ.md" title="FAQ" class="md-nav__link">
+      FAQ
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+      
+        
+        
+        
+
+
+  <li class="md-nav__item">
+    <a href="../../page-not-found/" title="" class="md-nav__link">
+      
+    </a>
+  </li>
+
+      
+    </ul>
+  </nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary">
+    
+    
+    
+    
+    
+    <a href="#" title="On this page" class="nav_link md-icon md-content__icon toc_icon"
+       id="tocToggleBtn">keyboard_arrow_right</a>
+    <label class="md-nav__title" for="__toc">On this page</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+        
+        <li class="md-nav__item">
+  <a href="#inserting-records" title="Inserting records" class="md-nav__link">
+    Inserting records
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#prerequisites" title="Prerequisites" class="md-nav__link">
+    Prerequisites
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#query-syntax" title="Query syntax" class="md-nav__link">
+    Query syntax
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example" title="Example" class="md-nav__link">
+    Example
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+        <li class="md-nav__item">
+  <a href="#retrieving-records" title="Retrieving records" class="md-nav__link">
+    Retrieving records
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#prerequisites_1" title="Prerequisites" class="md-nav__link">
+    Prerequisites
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#query-syntax_1" title="Query syntax" class="md-nav__link">
+    Query syntax
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example_1" title="Example" class="md-nav__link">
+    Example
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+        <li class="md-nav__item">
+  <a href="#updating-a-table" title="Updating a table" class="md-nav__link">
+    Updating a table
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#prerequisites_2" title="Prerequisites" class="md-nav__link">
+    Prerequisites
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#query-syntax_2" title="Query syntax" class="md-nav__link">
+    Query syntax
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example_2" title="Example" class="md-nav__link">
+    Example
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#methods-of-updating-the-columns-in-a-table" title="Methods of Updating the columns in a table" class="md-nav__link">
+    Methods of Updating the columns in a table
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+        <li class="md-nav__item">
+  <a href="#deleting-records" title="Deleting Records" class="md-nav__link">
+    Deleting Records
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#prerequisites_3" title="Prerequisites" class="md-nav__link">
+    Prerequisites
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#query-syntax_3" title="Query syntax" class="md-nav__link">
+    Query syntax
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example_3" title="Example" class="md-nav__link">
+    Example
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+        <li class="md-nav__item">
+  <a href="#searching-records" title="Searching records" class="md-nav__link">
+    Searching records
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#prerequisites_4" title="Prerequisites" class="md-nav__link">
+    Prerequisites
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#query-syntax_4" title="Query syntax" class="md-nav__link">
+    Query syntax
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example_4" title="Example" class="md-nav__link">
+    Example
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+        <li class="md-nav__item">
+  <a href="#insertingupdating-records" title="Inserting/updating records" class="md-nav__link">
+    Inserting/updating records
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#prerequisites_5" title="Prerequisites" class="md-nav__link">
+    Prerequisites
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#query-syntax_5" title="Query syntax" class="md-nav__link">
+    Query syntax
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example_5" title="Example" class="md-nav__link">
+    Example
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+        
+        
+        
+        
+    </ul>
+    
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+  
+                
+                  <a href="https://github.com/wso2/docs-is/edit/master/en/streaming-integrator/docs/guides/managing-Stored-Data-via-Streams.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
+                
+                
+                <h1 id="managing-stored-data-via-streams">Managing Stored Data via Streams<a class="headerlink" href="#managing-stored-data-via-streams" title="Permanent link">&para;</a></h1>
+<p>This section covers how to manage stored data in event tables via
+streams.</p>
+<ul>
+<li><a href="#ManagingStoredDataviaStreams-Insertingrecords">Inserting records</a></li>
+<li><a href="#ManagingStoredDataviaStreams-Retrievingrecords">Retrieving
+    records</a></li>
+<li><a href="#ManagingStoredDataviaStreams-Updatingatable">Updating a table</a></li>
+<li><a href="#ManagingStoredDataviaStreams-DeletingRecords">Deleting Records</a></li>
+<li><a href="#ManagingStoredDataviaStreams-Searchingrecords">Searching records</a></li>
+<li><a href="#ManagingStoredDataviaStreams-Inserting/updatingrecords">Inserting/updating
+    records</a></li>
+</ul>
+<h2 id="inserting-records">Inserting records<a class="headerlink" href="#inserting-records" title="Permanent link">&para;</a></h2>
+<h4 id="prerequisites">Prerequisites<a class="headerlink" href="#prerequisites" title="Permanent link">&para;</a></h4>
+<p>In order to insert events to a table:</p>
+<ul>
+<li><a href="#ManagingStoredDataviaStreams-GeneralPrerequisites">General
+    prerequisites</a>
+    should be completed.</li>
+<li>The event stream from which the events to be inserted are taken
+    should be defined.</li>
+<li>The table to which events are to be inserted should be defined. For
+    more information, see <a href="#ManagingStoredDataviaStreams-Define">Defining a
+    table</a> .</li>
+</ul>
+<h4 id="query-syntax">Query syntax<a class="headerlink" href="#query-syntax" title="Permanent link">&para;</a></h4>
+<p>The following is the syntax to insert events into a table.</p>
+<pre class="codehilite"><code class="language-sql linenums">    from &lt;STREAM_NAME&gt;
+    select &lt;ATTRIBUTE1_NAME&gt;, &lt;ATTRIBUTE2_NAME&gt;, &lt;ATTRIBUTE3_NAME&gt; ...
+    insert into &lt;TABLE_NAME&gt;;</code></pre>
+
+<h4 id="example">Example<a class="headerlink" href="#example" title="Permanent link">&para;</a></h4>
+<p>The following query inserts events from the FooStream stream to the
+<code class="codehilite">FooTable</code> table with the <code class="codehilite">symbol</code> ,
+<code class="codehilite">price</code> , and <code class="codehilite">volume</code> attributes.</p>
+<pre class="codehilite"><code class="language-sql linenums">    from FooStream
+    select symbol, price, volume
+    insert into FooTable;</code></pre>
+
+<h2 id="retrieving-records">Retrieving records<a class="headerlink" href="#retrieving-records" title="Permanent link">&para;</a></h2>
+<h4 id="prerequisites_1">Prerequisites<a class="headerlink" href="#prerequisites_1" title="Permanent link">&para;</a></h4>
+<p>In order to retrieve events from a table:</p>
+<ul>
+<li><a href="#ManagingStoredDataviaStreams-GeneralPrerequisites">General
+    prerequisites</a>
+    should be completed.</li>
+<li>The table to be read should be already defined. For more
+    information, see <a href="#ManagingStoredDataviaStreams-Define">Defining a
+    table</a> .</li>
+<li>One or more events should be inserted into the table. For more
+    information, see <a href="#ManagingStoredDataviaStreams-Insert">Inserting
+    events</a> .</li>
+</ul>
+<h4 id="query-syntax_1">Query syntax<a class="headerlink" href="#query-syntax_1" title="Permanent link">&para;</a></h4>
+<p>The following is the query syntax to retrieve events from an existing
+table. For more information, please refer to <a href="https://siddhi-io.github.io/siddhi/documentation/siddhi-4.x/query-guide-4.x/#join-table">Siddhi Query Guide - Join
+Table</a>
+.</p>
+<pre class="codehilite"><code class="language-sql linenums">    from &lt;STREAM_NAME&gt; join &lt;TABLE_NAME&gt;
+        on &lt;CONDITION&gt;
+    select (&lt;STREAM_NAME&gt;|&lt;TABLE_NAME&gt;).&lt;ATTRIBUTE1_NAME&gt;, (&lt;STREAM_NAME&gt;|&lt;TABLE_NAME&gt;).&lt;ATTRIBUTE2_NAME&gt;, ...
+    insert into &lt;OUTPUT_STREAM&gt;</code></pre>
+
+<h4 id="example_1">Example<a class="headerlink" href="#example_1" title="Permanent link">&para;</a></h4>
+<p>The following query joins the <code class="codehilite">FooStream</code> events with
+the events stored in the <code class="codehilite">StockTable</code> table. An output
+event is created for each matching pair of events, and it is inserted
+into another stream named <code class="codehilite">OutputStream</code> .</p>
+<pre class="codehilite"><code class="language-sql linenums">    from FooStream#window.length(1) join StockTable
+    select FooStream.symbol as checkSymbol, StockTable.symbol as symbol, StockTable.volume as volume 
+    insert into OutputStream</code></pre>
+
+<p>The information inserted with the output event is as follows.</p>
+<table>
+<thead>
+<tr>
+<th>Source</th>
+<th>Value of</th>
+<th>Attribute name in the output event</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code class="codehilite">FooStream</code> stream</td>
+<td><code class="codehilite">symbol</code> attribute</td>
+<td><code class="codehilite">checkSymbol</code></td>
+</tr>
+<tr>
+<td><code class="codehilite">StockTable</code> table</td>
+<td><code class="codehilite">symbol</code> attribute</td>
+<td><code class="codehilite">symbol</code></td>
+</tr>
+<tr>
+<td><code class="codehilite">StockTable</code> table</td>
+<td><code class="codehilite">volume</code> attribute</td>
+<td><code class="codehilite">volume</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="updating-a-table">Updating a table<a class="headerlink" href="#updating-a-table" title="Permanent link">&para;</a></h2>
+<p>This section explains how to update the selected records of an existing
+table.</p>
+<h4 id="prerequisites_2">Prerequisites<a class="headerlink" href="#prerequisites_2" title="Permanent link">&para;</a></h4>
+<p>In order to update events in a table:</p>
+<ul>
+<li><a href="#ManagingStoredDataviaStreams-General">General prerequisites</a>
+    should be completed.</li>
+<li>The table to be updated should be already defined. For more
+    information, see <a href="#ManagingStoredDataviaStreams-Define">Defining a
+    table</a> .</li>
+<li>The event stream with the events based on which the updates are made
+    must be already defined.</li>
+<li>One or more events should be inserted into the table. For more
+    information, see <a href="#ManagingStoredDataviaStreams-Insert">Inserting
+    events</a> .</li>
+</ul>
+<h4 id="query-syntax_2">Query syntax<a class="headerlink" href="#query-syntax_2" title="Permanent link">&para;</a></h4>
+<pre class="codehilite"><code class="language-sql linenums">    from &lt;STREAM_NAME&gt; 
+    select &lt;ATTRIBUTE1_NAME&gt;, &lt;ATTRIBUTE2_NAME&gt;, ...
+    update &lt;TABLE_NAME&gt; (for &lt;OUTPUT_EVENT_TYPE&gt;)? 
+        set &lt;TABLE_NAME&gt;.&lt;ATTRIBUTE_NAME&gt; = (&lt;ATTRIBUTE_NAME&gt;|&lt;EXPRESSION&gt;)?, &lt;TABLE_NAME&gt;.&lt;ATTRIBUTE_NAME&gt; = (&lt;ATTRIBUTE_NAME&gt;|&lt;EXPRESSION&gt;)?, ...
+        on &lt;CONDITION&gt;</code></pre>
+
+<h4 id="example_2">Example<a class="headerlink" href="#example_2" title="Permanent link">&para;</a></h4>
+<p>The following query updates the events in the
+<code class="codehilite">FooTable</code> table with values from the latest events of
+the <code class="codehilite">FooStream</code> event stream. The events in the table
+are updated only if the existing record in the table has the same value
+as the new event for the <code class="codehilite">symbol</code> attribute, and a
+value greater than <code class="codehilite">50</code> for the
+<code class="codehilite">price</code> attribute.</p>
+<pre class="codehilite"><code class="language-sql linenums">    from FooStream
+    select symbol, price, volume
+    update FooTable 
+    set FooTable.symbol = symbol, FooTable.price = price, FooTable.volume = volume 
+    on (FooTable.symbol == symbol and price &gt; 50)</code></pre>
+
+<h4 id="methods-of-updating-the-columns-in-a-table">Methods of Updating the columns in a table<a class="headerlink" href="#methods-of-updating-the-columns-in-a-table" title="Permanent link">&para;</a></h4>
+<p>This section gives further information on methods of updating the
+columns in an existing table.</p>
+<p>The value used for updating a table column can be any of the following:</p>
+<ul>
+<li>
+<p>A constant</p>
+<pre class="codehilite"><code class="language-sql linenums">        FROM sensorStream
+        SELECT sensorId, temperature, humidity
+        UPDATE sensorTable
+            SET sensorTable.column_temp = 1 
+            ON  sensorId &lt; sensorTable.column_ID</code></pre>
+
+</li>
+<li>
+<p>One of the attributes specified in the <code class="codehilite">SELECT</code>
+    clause</p>
+<pre class="codehilite"><code class="language-sql linenums">        FROM fooStream
+        SELECT roomNo, time: timestampInMilliseconds() as ts
+        UPDATE barTable
+            SET barTable.timestamp = ts
+            ON  barTable.room_no == roomNo AND roomNo &gt; 2</code></pre>
+
+</li>
+<li>
+<p>A basic arithmetic operation applied on an output attribute</p>
+<pre class="codehilite"><code class="language-sql linenums">        FROM sensorStream
+        SELECT sensorId, temperature, humidity
+        UPDATE sensorTable
+            SET sensorTable.column_temp = temperature + 10  
+            ON  sensorId &lt; sensorTable.column_ID</code></pre>
+
+</li>
+<li>
+<p>A basic arithmetic operation applied to a column value in the event
+    table</p>
+<pre class="codehilite"><code class="language-sql linenums">        FROM sensorStream
+        SELECT sensorId, temperature, humidity
+        UPDATE sensorTable
+            SET sensorTable.column_temp = sensorTable.column_temp + 10  
+            ON  sensorId &lt; sensorTable.column_ID</code></pre>
+
+</li>
+</ul>
+<h2 id="deleting-records">Deleting Records<a class="headerlink" href="#deleting-records" title="Permanent link">&para;</a></h2>
+<p>This section explains how to delete existing records in a table based on
+a specific condition.</p>
+<h4 id="prerequisites_3">Prerequisites<a class="headerlink" href="#prerequisites_3" title="Permanent link">&para;</a></h4>
+<p>In order to delete selected events in a table:</p>
+<ul>
+<li><a href="#ManagingStoredDataviaStreams-Ge">General prerequisites</a> should be
+    completed.</li>
+<li>The table with the records to be deleted should be already
+    defined. For more information, see <a href="#ManagingStoredDataviaStreams-De">Defining a
+    table</a> .</li>
+<li>The event stream with the events with which the records in the table
+    are compared (i.e., to apply the condition based on which the events
+    are deleted) must be already defined.</li>
+<li>One or more events should be inserted into the table. For more
+    information, see <a href="#ManagingStoredDataviaStreams-Insert">Inserting
+    events</a> .</li>
+</ul>
+<h4 id="query-syntax_3">Query syntax<a class="headerlink" href="#query-syntax_3" title="Permanent link">&para;</a></h4>
+<pre class="codehilite"><code class="language-sql linenums">    from &lt;STREAM_NAME&gt; 
+    select &lt;ATTRIBUTE1_NAME&gt;, &lt;ATTRIBUTE2_NAME&gt;, ...
+    delete &lt;TABLE_NAME&gt; (for &lt;OUTPUT_EVENT_TYPE&gt;)?
+        on &lt;CONDITION&gt;</code></pre>
+
+<h4 id="example_3">Example<a class="headerlink" href="#example_3" title="Permanent link">&para;</a></h4>
+<p>This query deletes the events in the RoomTypeTable table if its value
+for the roomNo attribute is equal to the roomNumber attribute value of
+DeleteStream.</p>
+<pre class="codehilite"><code class="language-sql linenums">    from DeleteStream
+    delete RoomTypeTable
+        on RoomTypeTable.roomNo == roomNumber;</code></pre>
+
+<h2 id="searching-records">Searching records<a class="headerlink" href="#searching-records" title="Permanent link">&para;</a></h2>
+<p>This section explains how to check whether a specific record exists in
+an event table.</p>
+<h4 id="prerequisites_4">Prerequisites<a class="headerlink" href="#prerequisites_4" title="Permanent link">&para;</a></h4>
+<p>In order to search for a record in a table that matches a specific
+condition:</p>
+<ul>
+<li><a href="#ConfiguringEventTablestoStoreData-Ge">General prerequisites</a>
+    should be completed.</li>
+<li>The table to be searched should be already defined. For more
+    information, see <a href="#ConfiguringEventTablestoStoreData-De">Defining a
+    table</a> .</li>
+<li>The event stream with the events with which the records in the table
+    are compared (i.e., to apply the condition based on which the events
+    are searched) must be already defined.</li>
+<li>One or more events should be inserted into the table. For more
+    information, see <a href="#ConfiguringEventTablestoStoreData-Insert">Inserting
+    events</a> .</li>
+</ul>
+<h4 id="query-syntax_4">Query syntax<a class="headerlink" href="#query-syntax_4" title="Permanent link">&para;</a></h4>
+<pre class="codehilite"><code class="language-sql linenums">    from &lt;STREAM_NAME&gt;[&lt;CONDITION&gt; in &lt;TABLE_NAME&gt;]
+    select &lt;ATTRIBUTE1_NAME&gt;, &lt;ATTRIBUTE2_NAME&gt;, ...
+    insert into &lt;OUTPUT_STREAM_NAME&gt;</code></pre>
+
+<h4 id="example_4">Example<a class="headerlink" href="#example_4" title="Permanent link">&para;</a></h4>
+<p>The following query matches events arriving from the
+<code class="codehilite">FooStream</code> event stream with the existing recored
+stored in the <code class="codehilite">StockTable</code> table. If
+the symbol attribute of an event saved in the table has the same value
+as the event from the <code class="codehilite">FooStream</code> stream, that event is
+inserted into the <code class="codehilite">OutputStream</code> stream.</p>
+<pre class="codehilite"><code class="language-sql linenums">    from FooStream[StockTable.symbol==symbol in StockTable]
+    insert into OutputStream;</code></pre>
+
+<h2 id="insertingupdating-records">Inserting/updating records<a class="headerlink" href="#insertingupdating-records" title="Permanent link">&para;</a></h2>
+<p>This section explains how to update a selection of records in a table
+based on the new events from a specific event stream. The selection is
+made based on a specific condition that matches events from the stream
+with events in the table. When the events from the stream have no
+matching events in the table, they are inserted into the table as new
+events.</p>
+<h4 id="prerequisites_5">Prerequisites<a class="headerlink" href="#prerequisites_5" title="Permanent link">&para;</a></h4>
+<ul>
+<li><a href="#ConfiguringEventTablestoStoreData-Ge">General prerequisites</a>
+    should be completed.</li>
+<li>The table for which this operations is to be performed must be
+    already defined. For more information, see <a href="#ConfiguringEventTablestoStoreData-De">Defining a
+    table</a> .</li>
+<li>The event stream from which the events with which the records in the
+    table are compared (i.e., to apply the condition based on which the
+    events are inserted/updated) must be already defined.</li>
+</ul>
+<h4 id="query-syntax_5">Query syntax<a class="headerlink" href="#query-syntax_5" title="Permanent link">&para;</a></h4>
+<p>The query syntax to perform the insert/update operation for a table is
+as follows.</p>
+<pre class="codehilite"><code class="language-sql linenums">    from &lt;STREAM_NAME&gt; 
+    select &lt;ATTRIBUTE1_NAME&gt;, &lt;ATTRIBUTE2_NAME&gt;, ...
+    update or insert into &lt;TABLE_NAME&gt; (for &lt;OUTPUT_EVENT_TYPE&gt;)? 
+        set &lt;TABLE_NAME&gt;.&lt;ATTRIBUTE_NAME&gt; = &lt;EXPRESSION&gt;, &lt;TABLE_NAME&gt;.&lt;ATTRIBUTE_NAME&gt; = &lt;EXPRESSION&gt;, ...
+        on &lt;CONDITION&gt;</code></pre>
+
+<h4 id="example_5">Example<a class="headerlink" href="#example_5" title="Permanent link">&para;</a></h4>
+<p>This query matches events from the <code class="codehilite">FooStream</code> stream
+with the events stored in the <code class="codehilite">StockTable</code> table. When
+an event in the table has the same value for the
+<code class="codehilite">symbol</code> attribute as the matching new event from the
+event stream, it is updated based on the new event. If a new event from
+the event stream does not have a matching event in the table (i.e., an
+event with the same value for the <code class="codehilite">symbol</code> attribute),
+that event is inserted as a new event.</p>
+<pre class="codehilite"><code class="language-sql linenums">    from FooStream
+    select *
+    update or insert into StockTable
+    on StockTable.symbol == symbol</code></pre>
+                
+                  
+                
+              
+  <a href="#" class="cd-top text--replace js-cd-top">Top</a>
+
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+          <div class="md-footer-copyright__highlight">
+            WSO2 Enterprise Integrator - Documentation
+          </div>
+        
+        &copy;2019 <a href="https://wso2.com/">WSO2</a>
+      </div>
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../../assets/javascripts/application.d9aa80ab.js"></script>
+      
+      <script>app.initialize({version:"1.0.4",url:{base:"../.."}})</script>
+      
+        <script src="../../assets/lib/highlightjs/highlight.min.js"></script>
+      
+        <script src="../../assets/js/theme.js"></script>
+      
+        <script src="../../assets/lib/backtotop/js/util.js"></script>
+      
+        <script src="../../assets/lib/backtotop/js/main.js"></script>
+      
+    
+  </body>
+</html>

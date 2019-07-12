@@ -1,0 +1,2752 @@
+<!--
+ * Copyright (c) 2019, WSO2 Inc. (http://www.wso2.org) All Rights Reserved.
+ *
+ * WSO2 Inc. licenses this file to you under the Apache License,
+ * Version 2.0 (the "License"); you may not use this file except
+ * in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied. See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
+-->
+
+
+
+
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      <meta http-equiv="x-ua-compatible" content="ie=edge">
+      
+        <meta name="description" content="Documentation for WSO2 Enterprise Integrator">
+      
+      
+        <link rel="canonical" href="https://wso2.com/integration/guides/incremental-Analysis/">
+      
+      
+        <meta name="author" content="WSO2">
+      
+      
+        <meta name="lang:clipboard.copy" content="Copy to clipboard">
+      
+        <meta name="lang:clipboard.copied" content="Copied to clipboard">
+      
+        <meta name="lang:search.language" content="en">
+      
+        <meta name="lang:search.pipeline.stopwords" content="True">
+      
+        <meta name="lang:search.pipeline.trimmer" content="True">
+      
+        <meta name="lang:search.result.none" content="No matching documents">
+      
+        <meta name="lang:search.result.one" content="1 matching document">
+      
+        <meta name="lang:search.result.other" content="# matching documents">
+      
+        <meta name="lang:search.tokenizer" content="[\s\-]+">
+      
+      <link rel="shortcut icon" href="../../images/favicon.png">
+      <meta name="generator" content="mkdocs-1.0.4, mkdocs-material-4.0.2">
+    
+    
+      
+        <title>Summarizing Data - WSO2 Enterprise Integrator Documentation</title>
+      
+    
+    
+  
+      <link rel="stylesheet" href="../../assets/stylesheets/application.982221ab.css">
+      
+        <link rel="stylesheet" href="../../assets/stylesheets/application-palette.224b79ff.css">
+      
+      
+        
+        
+        <meta name="theme-color" content="#ff7043">
+      
+    
+  <link rel="stylesheet" href="../../assets/fonts/font-awesome.css">
+
+    
+      <script src="../../assets/javascripts/modernizr.1f0bcf2b.js"></script>
+    
+    
+      
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700|Roboto+Mono">
+        <style>body,input{font-family:"Roboto","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono","Courier New",Courier,monospace}</style>
+      
+    
+    <link rel="stylesheet" href="../../assets/fonts/material-icons.css">
+    
+    
+      <link rel="stylesheet" href="../../assets/lib/highlightjs/default.min.css">
+    
+      <link rel="stylesheet" href="../../assets/css/theme.css">
+    
+    
+      
+    
+    
+  </head>
+  
+    
+    
+    <body dir="ltr" data-md-color-primary="deep-orange" data-md-color-accent="deep-orange">
+  
+    <svg class="md-svg">
+      <defs>
+        
+        
+          <svg xmlns="http://www.w3.org/2000/svg" width="416" height="448"
+    viewBox="0 0 416 448" id="__github">
+  <path fill="currentColor" d="M160 304q0 10-3.125 20.5t-10.75 19-18.125
+        8.5-18.125-8.5-10.75-19-3.125-20.5 3.125-20.5 10.75-19 18.125-8.5
+        18.125 8.5 10.75 19 3.125 20.5zM320 304q0 10-3.125 20.5t-10.75
+        19-18.125 8.5-18.125-8.5-10.75-19-3.125-20.5 3.125-20.5 10.75-19
+        18.125-8.5 18.125 8.5 10.75 19 3.125 20.5zM360
+        304q0-30-17.25-51t-46.75-21q-10.25 0-48.75 5.25-17.75 2.75-39.25
+        2.75t-39.25-2.75q-38-5.25-48.75-5.25-29.5 0-46.75 21t-17.25 51q0 22 8
+        38.375t20.25 25.75 30.5 15 35 7.375 37.25 1.75h42q20.5 0
+        37.25-1.75t35-7.375 30.5-15 20.25-25.75 8-38.375zM416 260q0 51.75-15.25
+        82.75-9.5 19.25-26.375 33.25t-35.25 21.5-42.5 11.875-42.875 5.5-41.75
+        1.125q-19.5 0-35.5-0.75t-36.875-3.125-38.125-7.5-34.25-12.875-30.25-20.25-21.5-28.75q-15.5-30.75-15.5-82.75
+        0-59.25 34-99-6.75-20.5-6.75-42.5 0-29 12.75-54.5 27 0 47.5 9.875t47.25
+        30.875q36.75-8.75 77.25-8.75 37 0 70 8 26.25-20.5
+        46.75-30.25t47.25-9.75q12.75 25.5 12.75 54.5 0 21.75-6.75 42 34 40 34
+        99.5z" />
+</svg>
+        
+      </defs>
+    </svg>
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
+    
+      <a href="#incremental-analysis" tabindex="1" class="md-skip">
+        Skip to content
+      </a>
+    
+    
+      <!--
+ * Copyright (c) 2019, WSO2 Inc. (http://www.wso2.org) All Rights Reserved.
+ *
+ * WSO2 Inc. licenses this file to you under the Apache License,
+ * Version 2.0 (the "License"); you may not use this file except
+ * in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied. See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
+-->
+
+<header class="md-header" data-md-component="header" id="page-header" data-url="" data-lang="en">
+  <nav class="md-header-nav md-grid">
+    <div class="md-flex">
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <a href="https://wso2.com/integration/" title="WSO2 Enterprise Integrator Documentation" class="md-header-nav__button md-logo">
+          
+            <img src="../../images/logo.svg" width="24" height="24">
+          
+        </a>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--menu md-header-nav__button" for="__drawer"></label>
+      </div>
+      <div class="md-flex__cell md-flex__cell--stretch">
+        <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
+          
+            <span class="md-header-nav__topic">
+               Enterprise Integrator Documentation
+            </span>
+            <span class="md-header-nav__topic">
+              Summarizing Data
+            </span>
+          
+        </div>
+        <div class="md-flex__ellipsis md-header__distribution-select">
+          <div class="mb-tabs__dropdown version-select">
+            <a class="md-tabs__link md-tabs__dropdown-link" href="#!" data-target="distribution-select-dropdown">
+            Streaming Integrator</a>
+            <ul id="distribution-select-dropdown" class="mb-tabs__dropdown-content" tabindex="0">
+            </ul>
+          </div>
+        </div>
+        <div class="md-flex__ellipsis md-header__version-select">
+          <div class="mb-tabs__dropdown version-select">
+            <a class="md-tabs__link md-tabs__dropdown-link" href="#!" data-target="version-select-dropdown">7.0.0</a>
+            <ul id="version-select-dropdown" class="mb-tabs__dropdown-content" tabindex="0">
+              <!-- Versions will added here dynamically -->
+              <li class="md-tabs__item mb-tabs__dropdown">
+                <a href="#" id="show-all-versions-link">Show all</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        
+          <label class="md-icon md-icon--search md-header-nav__button" for="__search"></label>
+          
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query" data-md-state="active">
+      <label class="md-icon md-search__icon" for="__search"></label>
+      <button type="reset" class="md-icon md-search__icon" data-md-component="reset" tabindex="-1">
+        &#xE5CD;
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="result">
+          <div class="md-search-result__meta">
+            Type to start searching
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+        
+      </div>
+    </div>
+  </nav>
+</header>
+    
+    <div class="md-container">
+      
+        
+      
+      
+        
+
+  
+
+<nav class="md-tabs md-tabs--active" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  <li class="md-tabs__item home_icon">
+    
+      <a href="../.." title="Home" class="md-tabs__link">
+          <i class="fa fa-home"></i>
+      </a>
+    
+  </li>
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../overview/overview/" title="Overview" class="md-tabs__link">
+          Overview
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../quick-start-guide/quick-start-guide/" title="Quick Start Guide" class="md-tabs__link">
+          Quick Start Guide
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../concepts/" title="Concepts" class="md-tabs__link">
+          Concepts
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    
+    
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../setup/installing-si-using-docker/" title="Installation Guide" class="md-tabs__link">
+          Installation Guide
+        </a>
+      
+    </li>
+  
+
+  
+
+      
+        
+  
+  
+    
+    
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../develop/streaming-integrator-studio-overview/" title="Developer Experience" class="md-tabs__link">
+          Developer Experience
+        </a>
+      
+    </li>
+  
+
+  
+
+      
+        
+  
+  
+    
+    
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../examples/performing-real-time-etl-with-mysql/" title="Use Cases" class="md-tabs__link">
+          Use Cases
+        </a>
+      
+    </li>
+  
+
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../admin/configure-si-profile/" title="Admin Guide" class="md-tabs__link">
+          Admin Guide
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../ref/si-rest-api-guide/" title="Reference Guide" class="md-tabs__link">
+          Reference Guide
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../faq/fAQ.md" title="FAQ" class="md-tabs__link">
+          FAQ
+        </a>
+      
+    </li>
+  
+
+      
+        
+      
+    </ul>
+    <div class="quick_links">
+        
+        <a href="https://github.com/wso2/docs-is/edit/master/en/streaming-integrator/docs/guides/incremental-Analysis.md" target="blank" id="editIcon" title="Edit this page"
+           title="Edit this page" class="md-icon md-content__icon nav_link edit_link"></a>
+        
+    </div>
+    <a href="#" title="Report Issues" class="feedbackBtn" 
+        onclick=window.open("https://github.com/"+"wso2/docs-ei"+"/issues/new?title=Doc%20Feedback:&body=Location%20:%20"+window.location.href); >
+        Report Issues</a>
+  </div>
+</nav>
+      
+      <main class="md-main">
+        <div class="md-main__inner md-grid" data-md-component="container">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" data-md-level="0">
+    <label class="md-nav__title md-nav__title--site" for="__drawer">
+      <a href="https://wso2.com/integration/" title="WSO2 Enterprise Integrator Documentation"
+         class="md-nav__button md-logo">
+        
+          <img src="../../images/logo.svg" width="48" height="48">
+        
+      </a>
+      WSO2 Enterprise Integrator Documentation
+    </label>
+    
+      <div class="md-nav__source">
+        
+
+
+  
+
+<a href="https://github.com/wso2/docs-ei/" title="Go to repository" class="md-source" data-md-source="github">
+  
+    <div class="md-source__icon">
+      <svg viewBox="0 0 24 24" width="24" height="24">
+        <use xlink:href="#__github" width="24" height="24"></use>
+      </svg>
+    </div>
+  
+  <div class="md-source__repository">
+    wso2/docs-ei
+  </div>
+</a>
+      </div>
+    
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        
+        
+        
+
+
+  <li class="md-nav__item">
+    <a href="../.." title="Home" class="md-nav__link">
+      Home
+    </a>
+  </li>
+
+      
+        
+        
+        
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2">
+    
+    <label class="md-nav__link" for="nav-2">
+      Overview
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-2">
+        Overview
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../overview/overview/" title="Overview" class="md-nav__link">
+      Overview
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../overview/architecture/" title="Architecture" class="md-nav__link">
+      Architecture
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../overview/about_this_release/" title="About this Release" class="md-nav__link">
+      About this Release
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+      
+        
+        
+        
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3">
+    
+    <label class="md-nav__link" for="nav-3">
+      Quick Start Guide
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-3">
+        Quick Start Guide
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../quick-start-guide/quick-start-guide/" title="Quick Start Guide" class="md-nav__link">
+      Quick Start Guide
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+      
+        
+        
+        
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4">
+    
+    <label class="md-nav__link" for="nav-4">
+      Concepts
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-4">
+        Concepts
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../concepts/" title="Concepts" class="md-nav__link">
+      Concepts
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+      
+        
+        
+        
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5">
+    
+    <label class="md-nav__link" for="nav-5">
+      Installation Guide
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-5">
+        Installation Guide
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5-1" type="checkbox" id="nav-5-1">
+    
+    <label class="md-nav__link" for="nav-5-1">
+      Installing the Product
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-5-1">
+        Installing the Product
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../setup/installing-si-using-docker/" title="Installing the Streaming Integrator Using Docker" class="md-nav__link">
+      Installing the Streaming Integrator Using Docker
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../setup/installing-si-using-docker-compose/" title="Installing the Streaming Integrator Using Docker Compose" class="md-nav__link">
+      Installing the Streaming Integrator Using Docker Compose
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../setup/installing-si-using-ansible/" title="Installing the Streaming Integrator Using Ansible" class="md-nav__link">
+      Installing the Streaming Integrator Using Ansible
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../setup/installing-si-using-kubernetes/" title="Installing the Streaming Integrator Using Kubernetes" class="md-nav__link">
+      Installing the Streaming Integrator Using Kubernetes
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../setup/installing-si-using-vagrant/" title="Installing the Streaming Integrator Using Vagrant" class="md-nav__link">
+      Installing the Streaming Integrator Using Vagrant
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../setup/installing-si-using-puppet/" title="Installing the Streaming Integrator Using Puppet" class="md-nav__link">
+      Installing the Streaming Integrator Using Puppet
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../setup/installing-si-using-helm/" title="Installing the Streaming Integrator Using Helm" class="md-nav__link">
+      Installing the Streaming Integrator Using Helm
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../setup/installing-si-using-aws-cloud-formation/" title="Installing the Streaming Integrator Using AWS Cloud Formation" class="md-nav__link">
+      Installing the Streaming Integrator Using AWS Cloud Formation
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../setup/installing-si-using-apt/" title="Installing the Streaming Integrator Using Apt" class="md-nav__link">
+      Installing the Streaming Integrator Using Apt
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../setup/installing-si-using-yum/" title="Installing the Streaming Integrator Using Yum" class="md-nav__link">
+      Installing the Streaming Integrator Using Yum
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../setup/installing-si-using-brew/" title="Installing the Streaming Integrator Using Brew" class="md-nav__link">
+      Installing the Streaming Integrator Using Brew
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5-2" type="checkbox" id="nav-5-2">
+    
+    <label class="md-nav__link" for="nav-5-2">
+      Deploying Streaming Integrator Profile
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-5-2">
+        Deploying Streaming Integrator Profile
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../setup/deploying-si-as-minimum-ha-cluster/" title="Deploying the Streaming Integrator Profile as a Minimum HA cluster" class="md-nav__link">
+      Deploying the Streaming Integrator Profile as a Minimum HA cluster
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5-3" type="checkbox" id="nav-5-3">
+    
+    <label class="md-nav__link" for="nav-5-3">
+      Setting up Databases
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-5-3">
+        Setting up Databases
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../configuring-Datasources.md" title="Configuring Datasources" class="md-nav__link">
+      Configuring Datasources
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../setting-up-physical-databases.md" title="Setting up Physical Databases" class="md-nav__link">
+      Setting up Physical Databases
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+      
+        
+        
+        
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-6" type="checkbox" id="nav-6">
+    
+    <label class="md-nav__link" for="nav-6">
+      Developer Experience
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-6">
+        Developer Experience
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-6-1" type="checkbox" id="nav-6-1">
+    
+    <label class="md-nav__link" for="nav-6-1">
+      Streaming Integrator Tooling
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-6-1">
+        Streaming Integrator Tooling
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../develop/streaming-integrator-studio-overview/" title="Streaming Integrator Tooling Overview" class="md-nav__link">
+      Streaming Integrator Tooling Overview
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../develop/working-with-the-Design-View/" title="Working with the Design View" class="md-nav__link">
+      Working with the Design View
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../develop/creating-a-Siddhi-Application/" title="Creating Siddhi Applications" class="md-nav__link">
+      Creating Siddhi Applications
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../develop/testing-a-Siddhi-Application/" title="Testing a Siddhi Application" class="md-nav__link">
+      Testing a Siddhi Application
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../develop/debugging_siddhi_applications/" title="Debugging Siddhi Applications" class="md-nav__link">
+      Debugging Siddhi Applications
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-6-5" type="checkbox" id="nav-6-5">
+    
+    <label class="md-nav__link" for="nav-6-5">
+      Exporting Siddhi Files
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-6-5">
+        Exporting Siddhi Files
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../develop/exporting-a-single-siddhi-file.md" title="Exporting a Single Siddhi File" class="md-nav__link">
+      Exporting a Single Siddhi File
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../develop/exporting-siddhi-files-as-docker-artifacts.md" title="Exporting Siddhi Files as Docker Artifacts" class="md-nav__link">
+      Exporting Siddhi Files as Docker Artifacts
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+      
+        
+        
+        
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-7" type="checkbox" id="nav-7" checked>
+    
+    <label class="md-nav__link" for="nav-7">
+      Use Cases
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-7">
+        Use Cases
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-7-1" type="checkbox" id="nav-7-1">
+    
+    <label class="md-nav__link" for="nav-7-1">
+      Examples
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-7-1">
+        Examples
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../examples/performing-real-time-etl-with-mysql/" title="Performing Real-time ETL with MySQL" class="md-nav__link">
+      Performing Real-time ETL with MySQL
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../examples/performing-real-time-etl-with-files/" title="Performing Real-time ETL with Files" class="md-nav__link">
+      Performing Real-time ETL with Files
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../examples/working-with-kafka/" title="Working with Kafka" class="md-nav__link">
+      Working with Kafka
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../examples/working-with-nats.md" title="Working with NATS" class="md-nav__link">
+      Working with NATS
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../examples/transforming-json-messages/" title="Transforming JSON Messages" class="md-nav__link">
+      Transforming JSON Messages
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../examples/transforming-xml-messages/" title="Transforming XML Messages" class="md-nav__link">
+      Transforming XML Messages
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../examples/integrating-databases-to-data-flows/" title="Integrating Databases to Data Flows" class="md-nav__link">
+      Integrating Databases to Data Flows
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../examples/exposing-processed-data-as-api/" title="Exposing Processed Data as API" class="md-nav__link">
+      Exposing Processed Data as API
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../examples/triggering-integrations-via-micro-integrator/" title="Triggering Integrations via Micro Integrator" class="md-nav__link">
+      Triggering Integrations via Micro Integrator
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../examples/analyzing-data-and-deriving-insights/" title="Analyzing Data and Deriving Insights" class="md-nav__link">
+      Analyzing Data and Deriving Insights
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../examples/reliable-data-integration/" title="Performing Reliable Data Integration (Error Streams)" class="md-nav__link">
+      Performing Reliable Data Integration (Error Streams)
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../examples/summarizing-and-aggregating-data/" title="Summarizing and Aggregating Data in Real Time" class="md-nav__link">
+      Summarizing and Aggregating Data in Real Time
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-7-2" type="checkbox" id="nav-7-2" checked>
+    
+    <label class="md-nav__link" for="nav-7-2">
+      Guides
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-7-2">
+        Guides
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../collecting-events.md" title="Consuming Data" class="md-nav__link">
+      Consuming Data
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../transforming-data/" title="Transforming Data" class="md-nav__link">
+      Transforming Data
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../enriching-data/" title="Enriching Data" class="md-nav__link">
+      Enriching Data
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../cleansing-data/" title="Cleansing Data" class="md-nav__link">
+      Cleansing Data
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../complex-Event-processing.md" title="Correlating Data" class="md-nav__link">
+      Correlating Data
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Summarizing Data
+      </label>
+    
+    <a href="./" title="Summarizing Data" class="md-nav__link md-nav__link--active">
+      Summarizing Data
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+    
+    
+    
+    
+    
+    <a href="#" title="On this page" class="nav_link md-icon md-content__icon toc_icon"
+       id="tocToggleBtn">keyboard_arrow_right</a>
+    <label class="md-nav__title" for="__toc">On this page</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+        
+        <li class="md-nav__item">
+  <a href="#configuring-aggregation-queries" title="Configuring aggregation queries" class="md-nav__link">
+    Configuring aggregation queries
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#step-1-calculate-and-persist-time-based-aggregate-values" title="Step 1: Calculate and persist time-based aggregate values" class="md-nav__link">
+    Step 1: Calculate and persist time-based aggregate values
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-2-retrieve-calculated-and-persisted-aggregate-values" title="Step 2: Retrieve calculated and persisted aggregate values" class="md-nav__link">
+    Step 2: Retrieve calculated and persisted aggregate values
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+        <li class="md-nav__item">
+  <a href="#incremental-aggregation-in-single-node-deployments-and-ha-deployments" title="Incremental aggregation in single-node deployments and HA deployments" class="md-nav__link">
+    Incremental aggregation in single-node deployments and HA deployments
+  </a>
+  
+</li>
+        
+        <li class="md-nav__item">
+  <a href="#scaling-through-distributed-aggregations" title="Scaling through distributed aggregations" class="md-nav__link">
+    Scaling through distributed aggregations
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#syntax" title="Syntax" class="md-nav__link">
+    Syntax
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example" title="Example" class="md-nav__link">
+    Example
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+        
+        
+        
+        
+    </ul>
+    
+</nav>
+    
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../triggering-integration-flows/" title="Triggering Integration Flows" class="md-nav__link">
+      Triggering Integration Flows
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+      
+        
+        
+        
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-8" type="checkbox" id="nav-8">
+    
+    <label class="md-nav__link" for="nav-8">
+      Admin Guide
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-8">
+        Admin Guide
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../admin/configure-si-profile/" title="Configuring the Streaming Integration Profile" class="md-nav__link">
+      Configuring the Streaming Integration Profile
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-8-2" type="checkbox" id="nav-8-2">
+    
+    <label class="md-nav__link" for="nav-8-2">
+      Working with Siddhi Connectors
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-8-2">
+        Working with Siddhi Connectors
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../admin/downloading-and-Installing-Siddhi-Extensions/" title="Downloading and Installing Siddhi Connectors" class="md-nav__link">
+      Downloading and Installing Siddhi Connectors
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../admin/writing-Custom-Siddhi-Extensions/" title="Writing Custom Siddhi Extensions" class="md-nav__link">
+      Writing Custom Siddhi Extensions
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../admin/configuring-System-Parameters-for-Siddhi-Extensions/" title="Configuring System Parameters for Siddhi Extensions" class="md-nav__link">
+      Configuring System Parameters for Siddhi Extensions
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../admin/creating-business-rules-templates.md" title="Creating Business Rules Templates" class="md-nav__link">
+      Creating Business Rules Templates
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../admin/monitoring-the streaming-integrator" title="Monitoring the Streaming Integrator" class="md-nav__link">
+      Monitoring the Streaming Integrator
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../admin/general-data-protection-regulations/" title="General Data Protection Regulations" class="md-nav__link">
+      General Data Protection Regulations
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../admin/supporting-Different-Transports.md" title="Supporting Different Transports" class="md-nav__link">
+      Supporting Different Transports
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../admin/user-Management.md" title="User Management" class="md-nav__link">
+      User Management
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../admin/protecting-sensitive-data-via-the-secure-vault.md" title="Protecting Sensitive Data via the Secure Vault" class="md-nav__link">
+      Protecting Sensitive Data via the Secure Vault
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../admin/adding-Third-Party-Non-OSGi-Libraries.md" title="Adding Third Party Non OSGi Library" class="md-nav__link">
+      Adding Third Party Non OSGi Library
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+      
+        
+        
+        
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-9" type="checkbox" id="nav-9">
+    
+    <label class="md-nav__link" for="nav-9">
+      Reference Guide
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-9">
+        Reference Guide
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../ref/si-rest-api-guide/" title="Streaming Integration REST API Guide" class="md-nav__link">
+      Streaming Integration REST API Guide
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../ref/performance-analysis-results/" title="Performance Analysis Results" class="md-nav__link">
+      Performance Analysis Results
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../ref/configuring-Default-Ports.md" title="Configuring Default Ports" class="md-nav__link">
+      Configuring Default Ports
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../ref/working-with-Data-Providers.md" title="Working with Data Providers" class="md-nav__link">
+      Working with Data Providers
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../ref/wSO2-Stream-Processor-Profiles/" title="Streaming Integration Profiles" class="md-nav__link">
+      Streaming Integration Profiles
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+      
+        
+        
+        
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-10" type="checkbox" id="nav-10">
+    
+    <label class="md-nav__link" for="nav-10">
+      FAQ
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-10">
+        FAQ
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../faq/fAQ.md" title="FAQ" class="md-nav__link">
+      FAQ
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+      
+        
+        
+        
+
+
+  <li class="md-nav__item">
+    <a href="../../page-not-found/" title="" class="md-nav__link">
+      
+    </a>
+  </li>
+
+      
+    </ul>
+  </nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary">
+    
+    
+    
+    
+    
+    <a href="#" title="On this page" class="nav_link md-icon md-content__icon toc_icon"
+       id="tocToggleBtn">keyboard_arrow_right</a>
+    <label class="md-nav__title" for="__toc">On this page</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+        
+        <li class="md-nav__item">
+  <a href="#configuring-aggregation-queries" title="Configuring aggregation queries" class="md-nav__link">
+    Configuring aggregation queries
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#step-1-calculate-and-persist-time-based-aggregate-values" title="Step 1: Calculate and persist time-based aggregate values" class="md-nav__link">
+    Step 1: Calculate and persist time-based aggregate values
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-2-retrieve-calculated-and-persisted-aggregate-values" title="Step 2: Retrieve calculated and persisted aggregate values" class="md-nav__link">
+    Step 2: Retrieve calculated and persisted aggregate values
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+        <li class="md-nav__item">
+  <a href="#incremental-aggregation-in-single-node-deployments-and-ha-deployments" title="Incremental aggregation in single-node deployments and HA deployments" class="md-nav__link">
+    Incremental aggregation in single-node deployments and HA deployments
+  </a>
+  
+</li>
+        
+        <li class="md-nav__item">
+  <a href="#scaling-through-distributed-aggregations" title="Scaling through distributed aggregations" class="md-nav__link">
+    Scaling through distributed aggregations
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#syntax" title="Syntax" class="md-nav__link">
+    Syntax
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example" title="Example" class="md-nav__link">
+    Example
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+        
+        
+        
+        
+    </ul>
+    
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+  
+                
+                  <a href="https://github.com/wso2/docs-is/edit/master/en/streaming-integrator/docs/guides/incremental-Analysis.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
+                
+                
+                <h1 id="incremental-analysis">Incremental Analysis<a class="headerlink" href="#incremental-analysis" title="Permanent link">&para;</a></h1>
+<p>Incremental aggregation allows you to obtain aggregates in an
+incremental manner for a specified set of time periods.</p>
+<p>This not only allows you to calculate aggregations with varied time
+granularity, but also allows you to access them in an interactive manner
+for reports, dashboards, and for further processing. Its schema is
+defined via the aggregation definition.</p>
+<ul>
+<li><a href="#IncrementalAnalysis-Configuringaggregationqueries">Configuring aggregation
+    queries</a></li>
+<li><a href="#IncrementalAnalysis-Incrementalaggregationinsingle-nodedeploymentsandHAdeployments">Incremental aggregation in single-node deployments and HA
+    deployments</a></li>
+<li><a href="#IncrementalAnalysis-ScalingthroughdistributedaggregationsPartitionAggregation">Scaling through distributed
+    aggregations</a></li>
+</ul>
+<h2 id="configuring-aggregation-queries">Configuring aggregation queries<a class="headerlink" href="#configuring-aggregation-queries" title="Permanent link">&para;</a></h2>
+<p>This section explains how to calculate aggregates in an incremental
+manner for different sets of time periods, store the calculated values
+in a data store and then retrieve that information.</p>
+<p>To demonstrate this, consider a scenario where a business that sells
+multiple brands stores its sales data in a physicaldatabase for the
+purpose of retrieving them later to perform sales analysis. Each sales
+transaction is received with the following details:</p>
+<ul>
+<li><code class="codehilite">symbol</code> : The symbol that represents the brand
+    of the items sold.</li>
+<li><code class="codehilite">price</code> : the price at which each item was sold.</li>
+<li><code class="codehilite">amount</code> : The number of items sold.</li>
+</ul>
+<p>The Sales Analyst needs to retrieve the total number of items sold of
+each brand per month, per week, per day etc., and then retrieve these
+totals for specific time durations to prepare sales analysis reports.</p>
+<p>To address the above use case, Siddhi queries need to be designed in two
+steps as follows:</p>
+<ul>
+<li><a href="#IncrementalAnalysis-Step1:Calculateandpersisttime-basedaggregatevalues">Step 1: Calculate and persist time-based aggregate
+    values</a></li>
+<li><a href="#IncrementalAnalysis-Step2:RetrievecalculatedandpersistedaggregatevaluesRetrieveAggregations">Step 2: Retrieve calculated and persisted aggregate
+    values</a></li>
+</ul>
+<h3 id="step-1-calculate-and-persist-time-based-aggregate-values">Step 1: Calculate and persist time-based aggregate values<a class="headerlink" href="#step-1-calculate-and-persist-time-based-aggregate-values" title="Permanent link">&para;</a></h3>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+</div>
+<p>Before you begin:</p>
+<p>Before creating queries to calculate and persist aggregate values, the
+following prerequisites need to be completed:</p>
+<ul>
+<li>When you are defining a physical store to store aggregate values,
+    you need to first download, install and set up the required database
+    type. For more information about setting up the database, see
+    <a href="_Defining_Tables_for_Physical_Stores_">Defining Tables for Physical
+    Stores</a> .</li>
+<li>If the aggregation query included in the Siddhi application is only
+    for read-only purposes, disable data purging.</li>
+</ul>
+<p>To write the required Siddhi queries to calculate and persist aggregate
+values required for the scenario outlined above, follow the steps below:</p>
+<ol>
+<li>
+<p>To capture the input events based on which the aggregations are
+    calculated, define an input stream as follows. The stream definition
+    includes attributes named symbol, price and amount to capture the
+    details described above.</p>
+<p><code class="codehilite">define stream TradeStream (symbol string, price double, quantity long, timestamp long);</code></p>
+<p>The stream definition includes attributes named
+<code class="codehilite">symbol</code> , <code class="codehilite">price</code> and
+<code class="codehilite">amount</code> to capture the details described
+above. In addition, it has an attribute named
+<code class="codehilite">timestamp</code> to capture the time at which the
+sales transaction occurs. The aggregations are executed based on
+this time.</p>
+<pre class="codehilite"><code class="linenums">!!! info
+
+This attribute's value could either be a long value (reflecting the
+Unix timestamp in milliseconds), or a string value adhering to one
+of the following formats.
+
+-   **`             &amp;lt;yyyy&amp;gt;-&amp;lt;MM&amp;gt;-&amp;lt;dd&amp;gt; &amp;lt;HH&amp;gt;:&amp;lt;mm&amp;gt;:&amp;lt;ss&amp;gt; &amp;lt;Z&amp;gt;            `**
+    : This format can be used if the timezone needs to be specified
+    explicitly. Here the ISO 8601 UTC offset must be provided for
+    \&amp;lt;Z\&amp;gt; . e.g., +05:30 reflects the India Time Zone. If time is
+    not in GMT, this value must be provided.)
+-   **`             &amp;lt;yyyy&amp;gt;-&amp;lt;MM&amp;gt;-&amp;lt;dd&amp;gt; &amp;lt;HH&amp;gt;:&amp;lt;mm&amp;gt;:&amp;lt;ss&amp;gt;            `** :
+    This format can be used if the timezone is in GMT.</code></pre>
+
+
+</li>
+<li>
+<p>To persist the aggregates that are calculated via your Siddhi
+    application, include a store definition as follows, if not the data
+    is stored in-memory and lost when siddhi app is stopped.</p>
+<p><code class="codehilite">define stream TradeStream (symbol string, price double, quantity long, timestamp long);</code></p>
+<p><strong><code class="codehilite">@store(type='rdbms', jdbc.url="jdbc:                             mysql://localhost:3306/TestDB                            ", username="root", password="root" ,                             jdbc.driver.name                            ="com.mysql.jdbc.Driver")</code></strong></p>
+</li>
+<li>
+<p>Define an aggregation as follows. You can name it
+    <code class="codehilite">TradeAggregation</code> .</p>
+<pre class="codehilite"><code class="linenums">!!! info
+
+When you save aggregate values in a store, the system uses the
+aggregation name you define here as part of the database table name.
+Table name is
+`           &amp;lt;Aggregation_Name&amp;gt;_&amp;lt;Granularity&amp;gt;          ` . Some
+database types have length limitations for table names (e.g., for
+Oracle, it is 30 characters). Therefore, you need to check whether
+the database type you have used for the store has such table name
+length limitation, and make sure that the aggregation name does not
+exceed that maximum length.
+
+define aggregation TradeAggregation</code></pre>
+
+
+</li>
+<li>
+<p>To calculate aggregations, include a query as follows:</p>
+<ol>
+<li>
+<p>To get input <code class="codehilite">events</code> from the
+    <code class="codehilite">TradeStream</code> stream that you
+    previously defined, add a <code class="codehilite">from</code> clause
+    as follows.</p>
+<p><code class="codehilite">define aggregation TradeAggregation</code></p>
+<p><strong><code class="codehilite">from TradeStream</code></strong></p>
+</li>
+<li>
+<p>To select attributes to be included in the output event, add a
+    <code class="codehilite">select</code> clause as follows.</p>
+<p><code class="codehilite">define aggregation TradeAggregation</code></p>
+<p><code class="codehilite">from TradeStream</code><br />
+<strong><code class="codehilite">select symbol, avg(price) as avgPrice, sum(quantity) as total</code></strong></p>
+<p>Based on this, each output event has the following attributes.</p>
+<table>
+<thead>
+<tr>
+<th>Attribute</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code class="codehilite">symbol</code></td>
+<td>The symbol representing the product sold is included in each output event.</td>
+</tr>
+<tr>
+<td><code class="codehilite">avgPrice</code></td>
+<td>The average price at which the brand is sold. This is derived by applying the <code class="codehilite">avg()</code> function to the <code class="codehilite">price</code> attribute with each input event.</td>
+</tr>
+<tr>
+<td><code class="codehilite">total</code></td>
+<td>The total number of items sold for each product. This is derived by applying the <code class="codehilite">sum()</code> function to the quantity attribute with each input event.</td>
+</tr>
+</tbody>
+</table>
+<p>The average price and the total number of items are the
+aggregates calculated in this scenario.</p>
+</li>
+<li>
+<p>To group the output by the symbol, add a
+    <code class="codehilite">group by</code> clause as follows.</p>
+<p><code class="codehilite">define aggregation TradeAggregation</code></p>
+<p><code class="codehilite">from TradeStream</code><br />
+<code class="codehilite">select symbol, avg(price) as avgPrice, sum(quantity) as total</code></p>
+<p><strong><code class="codehilite">group by symbol</code></strong></p>
+<p>The group by clause is optional in incremental aggregations. If
+it is not provided, all the events are aggregated together for
+each duration.</p>
+</li>
+<li>
+<p>The timestamp included in each input event allows you to
+    calculate aggregates for the range of time granularities
+    seconds-years. Therefore, to calculate aggregates for each time
+    granularity within this range, add the
+    <code class="codehilite">aggregate by</code> clause to this aggregate
+    query as follows.</p>
+<p><code class="codehilite">define aggregation TradeAggregation</code></p>
+<p><code class="codehilite">from TradeStream</code><br />
+<code class="codehilite">select symbol, avg(price) as avgPrice, sum(quantity) as total</code></p>
+<p><code class="codehilite">group by symbol</code></p>
+<p><strong><code class="codehilite">aggregate by timestamp every sec ... year;</code></strong></p>
+<p>This results in the average price and the total number of items
+sold being calculated per second, minute, hour, day, month and
+year. These time-based calculations are saved in the MySQL store
+you defined.</p>
+<pre class="codehilite"><code class="linenums">    !!! warning
+
+    If you exclude one or more time granularities from this range,
+    you cannot later retrieve aggregates for them. e.g., You cannot
+    aggregate by timestamp every
+    `             sec ... day            ` in the aggregate
+    definition, and then attempt to retrieve per
+    `             months            ` . This is because monthly
+    values are not calculated and persisted.
+
+    !!! info
+
+    You can also provide comma-separated values such as
+    `             every day, month,            ` ...</code></pre>
+
+
+<p>The complete Siddhi application with all the definitions and
+queries added looks as follows.</p>
+<pre class="codehilite"><code class="language-sql linenums">        @App:name('TradeApp')
+
+        define stream TradeStream (symbol string, price double, quantity long, timestamp long);
+
+        @store(type='rdbms', jdbc.url="jdbc:mysql://localhost:3306/TestDB", username="root", password="root" , jdbc.driver.name="com.mysql.jdbc.Driver")
+
+        define aggregation TradeAggregation
+        from TradeStream
+        select symbol, avg(price) as avgPrice, sum(quantity) as total
+        group by symbol
+        aggregate by timestamp every sec ... year;</code></pre>
+
+</li>
+</ol>
+</li>
+</ol>
+<p>The following is a list of optional annotations supported for
+incremental aggregation.</p>
+<ul>
+<li>
+<p><strong><code class="codehilite">@store(type=&lt;store type&gt;, ...)</code></strong><br />
+    The aggregated results are stored in the database defined via this
+    annotation in tables corresponding to each aggregate duration. For
+    more information on how to define a store, see <a href="_Defining_Tables_for_Physical_Stores_">Defining Tables for
+    Physical Stores</a> .</p>
+<pre class="codehilite"><code class="linenums">!!! info
+
+When these database entries are created, the primary key is defined
+internally. Therefore, you must not include an
+`           @PrimaryKey          ` annotation within this
+`           @store          ` annotation in the aggregation
+definition.</code></pre>
+
+
+<p>If a store is not defined via this annotation, the aggregated
+results are stored in in-memory tables by default. Adding a specific
+store definition is useful in a production environment. This is
+because the aggregations stored in in-memory tables can be lost if a
+system failure occurs.  </p>
+<p>The names of the tables are created in the
+<code class="codehilite">&lt;AGGREGATION_NAME&gt;_&lt;DURATION&gt;</code> format. In this
+scenario, the following tables are created:</p>
+<ul>
+<li>
+<p><code class="codehilite">TradeAggregation_SECONDS</code></p>
+</li>
+<li>
+<p><code class="codehilite">TradeAggregation_MINUTES</code></p>
+</li>
+<li>
+<p><code class="codehilite">TradeAggregation_HOURS</code></p>
+</li>
+<li>
+<p><code class="codehilite">TradeAggregation_DAYS</code></p>
+</li>
+<li>
+<p><code class="codehilite">TradeAggregation_MONTHS</code></p>
+</li>
+<li>
+<p><code class="codehilite">TradeAggregation_YEARS</code></p>
+</li>
+</ul>
+<p>The primary keys of these tables are determined as follows:<br />
+<img alt="" src="attachments/112390719/112390725.png" />{width="500"}</p>
+<p><code class="codehilite">AGG_TIMESTAMP</code> and
+<code class="codehilite">AGG_EVENT_TIMESTAMP</code> are internally calculated
+values that reflect the time bucket of an aggregation for a
+particular duration. e.g. for the <code class="codehilite">day</code>
+aggregations, <code class="codehilite">AGG_TIMESTAMP = 1515110400000</code>
+reflects that it is the aggregation for the 5<sup>th</sup> of January 2018 (
+<code class="codehilite">1515110400000</code> is the Unix time for
+<code class="codehilite">2018-01-05 00:00:00</code> ). All aggregations are
+based on GMT timezone.</p>
+<p>The other values stored in the table would be aggregations and other
+function calculations done in the aggregate definition. If any such
+function calculation is not an aggregation, the output value
+corresponds with the function calculation for the latest event of
+that time bucket. e.g., If a multiplication is carried out, the
+multiplication value corresponds with the latest event's
+multiplication as per the duration.  </p>
+<p>Certain aggregations are internally stored as a collection of other
+aggregations. e.g., the average aggregation is internally calculated
+as a function of sum and count. Hence, the table only reflects a sum
+and a count. The actual average is returned when the user retrieves
+the aggregate values as described in <a href="#IncrementalAnalysis-RetrieveAggregations">Step 2: Retrieve calculated
+and persisted aggregate
+values</a> .</p>
+<p>The other values stored in the database table are aggregations and
+other function calculations carried out via the aggregation
+definition.</p>
+<p>In the scenario described in this section, a timestamp is assigned
+to each input event via the <code class="codehilite">timestamp</code>
+attribute, and <code class="codehilite">symbol</code> is the
+<code class="codehilite">group by</code> key. Therefore, the
+<code class="codehilite">TestDB</code> store defined via the
+<code class="codehilite">@store</code> annotation uses the
+<code class="codehilite">AGG_EVENT_TIMESTAMP</code> and
+<code class="codehilite">symbol</code> attributes as primary keys. Each
+record . in this store must have a unique combination of values for
+these two attributes.</p>
+</li>
+<li>
+<p><strong><code class="codehilite">@purge</code></strong>  </p>
+<p>This specifies whether automatic data purging is enabled or not. If
+automatic data purging is enabled, you need to specify the time
+interval at which the data purging should be carried out. In
+addition, you need to specify the time period for which the data
+should be retained based on the granularity by including the
+<code class="codehilite">@retentionPeriod</code> annotation (described
+below). If this annotation is not included in an incremental
+aggregation query, the data purging is carried out every 15 minutes
+based on the default retention periods mentioned in the description
+of the <code class="codehilite">@retentionPeriod</code> annotation.</p>
+<pre class="codehilite"><code class="linenums">!!! tip
+
+If you want to disable automatic data purging, you can use this
+annotation as follows:
+
+`           @purge(enable=&quot;false&quot;)          `
+
+You should disable data purging if the aggregation query is included
+in the Siddhi application for read-only purposes.</code></pre>
+
+
+<p><table>
+<colgroup>
+<col style="width: 100%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><table>
+<caption> </caption>
+<tbody>
+<tr class="odd">
+<td><img src="attachments/112390719/112390721.png" class="gliffy-macro-image" /></td>
+</tr>
+</tbody>
+</table></td>
+</tr>
+</tbody>
+</table></p>
+</li>
+<li>
+<p><strong><code class="codehilite">@retentionPeriod</code></strong>  </p>
+<p>This specifies the time period for which data needs to be retained
+before it is purged, based on the granularity. The retention period
+defined for each granularity should be greater than, or equal to the
+minimum retention period as given below:</p>
+<ul>
+<li><code class="codehilite">second</code> : 120 seconds</li>
+<li><code class="codehilite">minute</code> : 120 minutes</li>
+<li><code class="codehilite">hour</code> : 25 hours</li>
+<li><code class="codehilite">day</code> : 32 days</li>
+<li><code class="codehilite">month</code> : 13 months</li>
+<li><code class="codehilite">year</code> : none</li>
+</ul>
+<p>If the retention period is not specified, the default retention
+period for each granularity is applied as given below:</p>
+<ul>
+<li><code class="codehilite">second</code> : 120 seconds</li>
+<li><code class="codehilite">minute</code> : 24 hours</li>
+<li><code class="codehilite">hour</code> : 30 days</li>
+<li><code class="codehilite">day</code> : 1 year</li>
+<li><code class="codehilite">month</code> : All</li>
+<li><code class="codehilite">year</code> : All</li>
+</ul>
+</li>
+</ul>
+<h3 id="step-2-retrieve-calculated-and-persisted-aggregate-values">Step 2: Retrieve calculated and persisted aggregate values<a class="headerlink" href="#step-2-retrieve-calculated-and-persisted-aggregate-values" title="Permanent link">&para;</a></h3>
+<p>This step involves retrieving the aggregate values that you calculated
+and persisted in Step 1. To do this, let's add the Siddhi definitions
+and queries required for retrieval to the <code class="codehilite">TradeApp</code>
+Siddhi application that you have already started creating for this
+scenario.</p>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+</div>
+<p>Retrieval logic for the same aggregation can be defined in different
+Siddhi app. However, only one aggregation should carry out the
+processing (i.e. the aggregation input stream should only feed events to
+one aggregation definition).</p>
+<p>For this scenario, let's assume that the Sales Analyst needs to retrieve
+the sales totals for the time duration between 15<sup>th</sup> February 2014 and
+16<sup>th</sup> March 2014.</p>
+<ol>
+<li>
+<p>To retrieve aggregations, you need to make retrieval requests. To
+    capture these requests as events, let's define a stream as follows.</p>
+<p><code class="codehilite">@App:name('TradeApp')                          define stream TradeStream (symbol string, price double, quantity long, timestamp long);</code></p>
+<p><strong><code class="codehilite">define stream TradeSummaryRetrievalStream (symbol string);</code></strong></p>
+<p><code class="codehilite">@store(type='rdbms', jdbc.url="jdbc:mysql://localhost:3306/TestDB", username="root", password="root" , jdbc.driver.name="com.mysql.jdbc.Driver")                          define aggregation TradeAggregation                          from TradeStream select symbol, avg(price) as avgPrice, sum(quantity) as total group by symbol aggregate by timestamp every sec ... year;</code></p>
+</li>
+<li>
+<p>To process the events captured via the
+    <code class="codehilite">TradeSummaryRetrievalStream</code> stream you
+    defined, add a new query as follows.</p>
+<pre class="codehilite"><code class="linenums">from TradeSummaryRetrievalStream as b join TradeAggregation as a
+on a.symbol == b.symbol 
+within &quot;2014-02-15 00:00:00 +05:30&quot;, &quot;2014-03-16 00:00:00 +05:30&quot; 
+per &quot;days&quot; 
+select a.symbol, a.total, a.avgPrice 
+insert into TradeSummaryStream;</code></pre>
+
+
+<p>This query matches events in the
+<code class="codehilite">TradeSummaryRetrievalStream</code> stream and the
+<code class="codehilite">TradeAggregation</code> aggregation that was defined
+in step 1 based on the value for the <code class="codehilite">symbol</code>
+attribute, and performs a join for each matching pair. Based on that
+join, it produces an output event(s) with the
+<code class="codehilite">symbo</code> l, <code class="codehilite">total</code> and
+<code class="codehilite">avgPrice</code> attributes for the day granularity
+within the time range <code class="codehilite">2014-02-15 00:00:00</code> to
+<code class="codehilite">2014-03-16 00:00:00</code> . The time zone is
+represented by <code class="codehilite">+05:30</code> .  </p>
+<p>Note the following about the query given above:</p>
+<ul>
+<li>The <strong><code class="codehilite">on</code></strong> condition is optional for
+    retrieval.</li>
+<li>You can provide the <strong><code class="codehilite">within</code></strong>
+    duration in two ways as follows:<ul>
+<li><strong><code class="codehilite">within &lt;start_time&gt;, &lt;end_time&gt;</code></strong>
+    : The <code class="codehilite">&lt;start_time&gt;</code> and
+    <code class="codehilite">&lt;end_time&gt;</code> can be
+    <code class="codehilite">STRING</code> or
+    <code class="codehilite">LONG</code> values. If it is a string
+    value, the format needs to be
+    <code class="codehilite">&lt;yyyy&gt;-&lt;MM&gt;-&lt;dd&gt; &lt;HH&gt;:&lt;mm&gt;:&lt;ss&gt; &lt;Z&gt;</code>
+    ( <code class="codehilite">&lt;Z&gt;</code> represents the timezone.
+    It can be omitted if the time is in GMT).  You can provide
+    long values if you need to specify the times as Unix
+    timestamps (in milliseconds). In the above query, you are
+    specifying the time duration via this method in the
+    <code class="codehilite">STRING</code> format.</li>
+<li>
+<p><strong><code class="codehilite">within &lt;within_duration&gt;</code></strong>
+    : This method allows you to enter the time duration only as
+    a STRING value. The format can be one of the following:  </p>
+<ul>
+<li><code class="codehilite">&lt;yyyy&gt;-**-** **:**:** &lt;Z&gt;</code></li>
+<li><code class="codehilite">&lt;yyyy&gt;-&lt;MM&gt;-** **:**:** &lt;Z&gt;</code></li>
+<li><code class="codehilite">&lt;yyyy&gt;-&lt;MM&gt;-&lt;dd&gt; **:**:** &lt;Z&gt;</code></li>
+<li><code class="codehilite">&lt;yyyy&gt;-&lt;MM&gt;-&lt;dd&gt; &lt;HH&gt;:**:** &lt;Z&gt;</code></li>
+<li><code class="codehilite">&lt;yyyy&gt;-&lt;MM&gt;-&lt;dd&gt; &lt;HH&gt;:&lt;mm&gt;:** &lt;Z&gt;</code></li>
+<li><code class="codehilite">&lt;yyyy&gt;-&lt;MM&gt;-&lt;dd&gt; &lt;HH&gt;:&lt;mm&gt;:&lt;ss&gt; &lt;Z&gt;</code></li>
+</ul>
+<p>e.g., If the duration is specified as
+<code class="codehilite">2018-01-** **:**:**</code> , it means
+within the first month of 2018. This is equal to the
+<code class="codehilite">2018-01-01 00:00:00", "2018-02-01 00:00:00</code>
+clause provided as per the previous method.  </p>
+<p>You do not need to specify the timezone via
+<code class="codehilite">&lt;Z&gt;</code> if the time is in GMT.
+    -   The <code class="codehilite">per</code> clause specifies the time
+        granularity for which the aggregations need to be retrieved. The
+        value for this clause can be <code class="codehilite">seconds</code> ,
+        <code class="codehilite">minutes</code> ,
+        <code class="codehilite">hours</code> , <code class="codehilite">days</code> ,
+        <code class="codehilite">months</code> , or
+        <code class="codehilite">years</code> . The time granularity for which
+        you want to retrieve values must have been included in the time
+        range you specified when calculating and persisting aggregates.
+        For more information, see <a href="#IncrementalAnalysis-SelectTimeRange">Calculating and persisting time-based
+        aggregate values - Step 4, substep
+        d</a> .
+    -   The output contains the <code class="codehilite">total</code> and
+        <code class="codehilite">avgPrice</code> per
+        <code class="codehilite">symbol</code> for all the days falling within
+        the given time range.</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+</div>
+<p>The following are other ways in which you can construct the query to
+retrieve aggregate values:</p>
+<ul>
+<li>
+<p>Instead of providing the within and per values as constants in the
+    query itself, you can retrieve them via attributes in the input
+    stream definition as shown below.</p>
+<ol>
+<li>
+<p>Define the input stream as follows.</p>
+<pre class="codehilite"><code class="linenums">define stream TradeSummaryRetrievalStream (symbol string, startTime long, endTime long, perDuration string);</code></pre>
+
+
+<p>The above schema allows you to enter the start time and the end
+time of the time duration for which you want to retrieve
+aggregates in the aggregate retrieval request by including
+values for the <code class="codehilite">startTime</code> and
+<code class="codehilite">endTime</code> attributes. The time
+granularity for which the aggregations need to be retrieved can
+be specified as the value for the
+<code class="codehilite">perDuration</code> attribute.</p>
+</li>
+<li>
+<p>Then add the query as follows.</p>
+<p><code class="codehilite">from TradeSummaryRetrievalStream as b join TradeAggregation as a on a.symbol == b.symbol                               within b.startTime, b.endTime per b.perDuration                              select a.symbol, a.total, a.avgPrice  insert into TradeSummaryStream;</code></p>
+<p>Here, the <code class="codehilite">within</code> and
+<code class="codehilite">per</code> clauses refer to the attributes
+in the input stream that specify the time duration and the per
+duration.</p>
+</li>
+</ol>
+</li>
+<li>
+<p>If you want the retrieved aggregates to be sorted in the ascending
+    order based on time, include the
+    <code class="codehilite">AGG_TIMESTAMP</code> in the
+    <code class="codehilite">select</code> clause as shown below. Once it is
+    included in the <code class="codehilite">select</code> clause, you can add
+    the <code class="codehilite">order by AGG_TIMESTAMP</code> clause.</p>
+<p><code class="codehilite">from TradeSummaryRetrievalStream as b join TradeAggregation as a on a.symbol == b.symbol  within "2014-02-15 00:00:00 +05:30", "2014-03-16 00:00:00 +05:30"  per "days"  select                           AGG_TIMESTAMP                          , a.symbol, a.total, a.avgPrice                           order by AGG_TIMESTAMP                          insert into TradeSummaryStream;</code></p>
+</li>
+</ul>
+<h2 id="incremental-aggregation-in-single-node-deployments-and-ha-deployments">Incremental aggregation in single-node deployments and HA deployments<a class="headerlink" href="#incremental-aggregation-in-single-node-deployments-and-ha-deployments" title="Permanent link">&para;</a></h2>
+<p>In order to understand how incremental aggregation is carried out in
+different deployment, consider the following example that explains how
+the aggregation is executed internally.</p>
+<p>Assume that six events arrive in the following sequence, with the given
+timestamps.</p>
+<ul>
+<li>event 0 → 2018-01-01 05:59:58</li>
+<li>event 1 → 2018-01-01 05:59:58</li>
+<li>event 2 → 2018-01-01 05:59:59</li>
+<li>event 3 → 2018-01-01 06:00:00</li>
+<li>event 4 → 2018-01-01 06:00:01</li>
+<li>event 5 → 2018-01-01 06:00:02</li>
+</ul>
+<p>In this scenario, the aggregation is done for second, minute and hour
+durations. Therefore, based on the above timestamps, the second, minute,
+and hour during which each event occured is as follows.</p>
+<p><img alt="" src="attachments/112390719/112390724.png" />{width="500"}</p>
+<p>As mentioned before, when storing, time based aggregatesa table is
+created for each time granularity in the
+<code class="codehilite">&lt;AGGREGATE_NAME&gt;_&lt;TIME_GRANUARITY&gt;</code> format. Assuming
+that the name of the aggregation in <code class="codehilite">TradeAggregation</code>
+, three tables are created as follows.</p>
+<ul>
+<li><code class="codehilite">TradeAggregation_SECONDS</code></li>
+<li><code class="codehilite">TradeAggregation_MINUTES</code></li>
+<li><code class="codehilite">TradeAggregation_HOURS</code></li>
+</ul>
+<p>The incremental analysis related execution that is carried out by the
+system with the arrival of each event is described in the table below.</p>
+<table style="width:100%;">
+<colgroup>
+<col style="width: 5%" />
+<col style="width: 94%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: center;">Arriving Event</th>
+<th>Execution</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">0</td>
+<td>The system initially processes event 0 at the <code>             SECOND            </code> executor level. The aggregation is retained in memory until the 58th second elapses.</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">1</td>
+<td>This event also occurs during the 58th second (same as event 0). Therefore, the system aggregates events 0 and 1 together.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">2</td>
+<td><p>Event 2 arrives during the 59th second. The 58th second has elapsed at the time of this event arrival. Therefore, the system does the following:</p>
+<ul>
+<li>Writes the aggregation for the 58th second (i.e., the total aggregation for events 0 and 1) to the <code>               TradeAggregation_SECONDS              </code> table and then forwards the aggregation to be processed at the <code>               MINUTE              </code> executor level.</li>
+<li>Processes event 2 in the in-memory table at t he <code>               SECOND              </code> executor level for the 59th second.</li>
+</ul></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">3</td>
+<td><p>Event 3 arrives during the second 0 of 06.00 minute. With this arrival, the aggregations for the 59th second and 59th minute expire. Therefore, the system does the following:</p>
+<ul>
+<li>Writes the aggregation for the 59th second (i.e., aggregation of event 2) to the <code>               TradeAggregation_SECONDS              </code> table, and forwards the aggregation to be processed at the <code>               MINUTE              </code> executor level .</li>
+<li>Writes the aggregation for the 59th minute to the <code>               TradeAggregation_MINUTES              </code> table, and forwards the aggregation to be processed at the <code>               HOUR              </code> execution level. The <code>               HOUR              </code> executor processes this for the 5th hour.</li>
+<li>Processes event 3 in the in-memory table at the <code>               SECOND              </code> executor level.<br />
+<br />
+</li>
+</ul></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">4</td>
+<td><p>At the time event 4 arrives during the 1st second of the 06.00 minute, second 0 of the same minute has elapsed. Therefore, the system does the following:</p>
+<ul>
+<li>Writes the aggregation for second 0 to the <code>               TradeAggregation_SECONDS              </code> table, and forwards the aggregation to be processed at the <code>               MINUTE              </code> executor level.</li>
+<li>Processes event 4 in the in-memory table at the <code>               SECOND              </code> executor level.</li>
+</ul></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">5</td>
+<td><p>Event 5 arrives during the 2nd second. At this time, the 1st second has elapsed. Therefore, the system does the following:</p>
+<ul>
+<li>Writes the aggregation for the 1st second (i.e., aggregation for event 4) to the <code>               TradeAggregation_SECONDS              </code> table, and forwards the aggregation to be processed at the <code>               MINUTE              </code> executor level. Once the aggregation for event 4 is forwarded to the <code>               MINUTE              </code> executor level, events 3 and 4 are aggregated together because they occured during the same minute.</li>
+<li>Processes event 5 in the in-memory table at the <code>               SECOND              </code> executor level.<br />
+</li>
+</ul></td>
+</tr>
+</tbody>
+</table>
+
+<p>The following is the aggregation status after all six events have
+arrrived.</p>
+<table>
+<thead>
+<tr class="header">
+<th>In-memory Table</th>
+<th>Available Aggregation Records</th>
+<th>Processing In-Memory</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>             TradeAggregation_SECONDS            </code></td>
+<td><ol>
+<li>Aggregation for <code>               2018-01-01 05:59:58              </code> (Aggregation of event 0 and 1)</li>
+<li>Aggregation for <code>               2018-01-01 05:59:59              </code> (event 2)</li>
+<li>Aggregation for <code>               2018-01-01 06:00:00              </code> (event 3)</li>
+<li>Aggregation for <code>               2018-01-01 06:00:01              </code> (event 4)</li>
+</ol></td>
+<td><p>Aggregation for <code>              2018-01-01 06:00:02             </code> (event 5)</p></td>
+</tr>
+<tr class="even">
+<td><code>             TradeAggregation_MINUTES            </code></td>
+<td><p>Aggregation for <code>              2018-01-01 05:59:00             </code> (Aggregation of event 0, 1 and 2)</p></td>
+<td><p>Aggregation for 2018-01-01 06:00:00 (i.e., minute 0 of the 6th hour. Here, event 3 and 4 are aggregated together.)</p></td>
+</tr>
+<tr class="odd">
+<td><code>             TradeAggregation_HOURS            </code></td>
+<td>None</td>
+<td>Aggregation for 2018-01-01 05:00:00 (i.e., the 5th hour. Here, events 0,1, and 2 are aggregated together.)</td>
+</tr>
+</tbody>
+</table>
+
+<p>Now let's consider how the scenario described above works in a single
+node deployment and an HA deployment.</p>
+<ul>
+<li>
+<p><strong>Single node deployment</strong><br />
+    If the <code class="codehilite">@store</code> configurtation is not provided,
+    the  system stores older aggregations (i.e., aggregations that are
+    already completed for a particular second, minute etc., and
+    therefore not running in-memory) in in-memory tables. In such a
+    situation, a server failure results in all these aggregations done
+    up to the time of the failure being lost.  </p>
+<p>If a database configuration is provided via the
+<code class="codehilite">@store</code> annotation, the older aggregations are
+stored in the external database. Therefore, if the node fails, the
+system recreates the in-memory running aggregations from this stored
+data once you restart the server. In the given scenario, in-memory
+aggregations for the <code class="codehilite">MINUTE</code> execution level can
+be recreated with data in the
+<code class="codehilite">TradeAggregation_SECONDS</code> table (i.e., points 3
+and 4 in the above aggregation status summary table). Similarly,
+in-memory aggregations for the <code class="codehilite">HOUR</code> execution
+level can be recreated from the
+<code class="codehilite">TradeAggregation_MINUTES</code> table.  </p>
+<p>However, the recreation described above cannot be done for the most
+granular duration for which aggregation done. e.g., In the given
+scenario, the system cannot recreate  the in-memory aggregations for
+the <code class="codehilite">SECOND</code> execution level because there is no
+database table for a prior duration.  </p>
+<p>Assume that in the given scenario, a server failure occurs after all
+five events have arrived. Once you restart the server, only event 5
+is lost because that was the only aggregation being executed for the
+<code class="codehilite">SECOND</code> execution level in the in-memory tables
+at that time.
+-   <strong>HA deployment</strong></p>
+<pre class="codehilite"><code class="linenums">!!! info
+
+To understand how WSO2 SP runs as a minimum HA cluster, see [Minimum
+High Availability (HA)
+Deployment](https://docs.wso2.com/display/SP400/Minimum+High+Availability+%2528HA%2529+Deployment)
+.</code></pre>
+
+
+<p>In a minimum HA setup, one runs as an active node and the other is
+passive. No events are lost even if the
+<code class="codehilite">@store</code> configuration is not provided due to
+snapshoting the current state of SP. When a snapshot iof the SP
+state is created, the system does not recreate aggregations from
+tables because it is not required. The newly active node (which was
+previously passive) continues to process the new events that arrive
+after the failure of the other node as in a situation where no
+server failura has occured.</p>
+</li>
+</ul>
+<p>The following is a summary of the retrievability of aggregates based on
+how they are stored and how WSO2 SP is deployed.</p>
+<table>
+<colgroup>
+<col style="width: 100%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><table>
+<caption> </caption>
+<tbody>
+<tr class="odd">
+<td><img src="attachments/112390719/112390723.png" class="gliffy-macro-image" /></td>
+</tr>
+</tbody>
+</table></td>
+</tr>
+</tbody>
+</table>
+
+<h2 id="scaling-through-distributed-aggregations">Scaling through distributed aggregations<a class="headerlink" href="#scaling-through-distributed-aggregations" title="Permanent link">&para;</a></h2>
+<p>Distributed aggregations partially process aggregations in different
+nodes. This allows you to assign one node to process only a part of an
+aggregation (regional scaling, etc.). In order to do this all the
+aggregations must have a physical database and must be linked to the
+same database.</p>
+<h4 id="syntax">Syntax<a class="headerlink" href="#syntax" title="Permanent link">&para;</a></h4>
+<p>The <code class="codehilite">@PartitionById</code> annotation must be added before
+the aggregation definition as shown below.</p>
+<p><code class="codehilite">@store(type="&lt;store type&gt;", ...)</code></p>
+<p><strong><code class="codehilite">@PartitionById(enable='true')</code></strong></p>
+<p><code class="codehilite">define aggregation &lt;aggregator name&gt;</code><br />
+<code class="codehilite">from &lt;input stream&gt;</code></p>
+<p><code class="codehilite">select &lt;attribute name&gt;, &lt;aggregate function&gt;(&lt;attribute name&gt;) as &lt;attribute name&gt;, ...</code></p>
+<p><code class="codehilite">group by &lt;attribute name&gt;</code></p>
+<p><code class="codehilite">aggregate by &lt;timestamp attribute&gt; every &lt;time periods&gt; ;</code></p>
+<p>You can enable all Siddhi applications to partition aggregations in this
+manner by adding the following system parameters in the
+<code class="codehilite">&lt;SP_HOME&gt;/conf/&lt;PROFILE/deployment.yaml</code> file under
+<code class="codehilite">siddhi</code> .</p>
+<pre class="codehilite"><code class="language-xml linenums">    siddhi:
+      properties
+        partitionById: true
+        shardId: wso2-sp</code></pre>
+
+<p>A unique ID must be provided for each node via a system parameter named
+<code class="codehilite">shardId</code> . This parameter is required when
+partitioning aggregations is enabled for a single Siddhi application as
+well as when it is enabled for all Siddhi applications.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+</div>
+<p>To maintain data consistency, do not change the shard IDs after the
+first configuration.</p>
+<p>When you enable the aggregation partitioning feature, a new column ID
+named <code class="codehilite">SHARD_ID</code> is introduced to the aggregation
+tables. Therefore, you need to do one of the following options after
+enabling this feature to avoid errors occuring due to the differences in
+the table schema.</p>
+<ul>
+<li>Delete all the aggregation tables for <code class="codehilite">SECONDS</code> ,
+    <code class="codehilite">MINUTES</code> , <code class="codehilite">HOURS</code> ,
+    <code class="codehilite">DAYS</code> , <code class="codehilite">MONTHS</code> ,
+    <code class="codehilite">YEARS</code> .</li>
+<li>Edit the aggregation tables by adding a new column named
+    <code class="codehilite">SHARD_ID</code> , and specify it as a primary key.</li>
+</ul>
+<h4 id="example">Example<a class="headerlink" href="#example" title="Permanent link">&para;</a></h4>
+<p>The following query can be included in two Siddhi applications in two
+different nodes that are connected to the same database. Separate input
+events are generated for both nodes. Each node performs the aggregations
+and stores the results in the database. When the aggregations are
+retrieved, the collective result of both nodes are considered.</p>
+<pre class="codehilite"><code class="language-sql linenums">    define stream TradeStream (symbol string, price double, quantity long, timestamp long);
+
+    @store(type='rdbms', jdbc.url="jdbc:mysql://localhost:3306/TestDB", username="root", password="root" , jdbc.driver.name="com.mysql.jdbc.Driver")
+    @PartitionById(enable='true')
+    define aggregation TradeAggregation
+    from TradeStream
+    select symbol, avg(price) as avgPrice, sum(quantity) as total
+    group by symbol
+    aggregate by timestamp every sec ... year;</code></pre>
+
+<p>Let's assume that the following input events were generated for the two
+nodes during a specific hour.</p>
+<p><strong>Node 1</strong></p>
+<table>
+<thead>
+<tr>
+<th>Event</th>
+<th>symbol</th>
+<th>price</th>
+<th>quantity</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>wso2</td>
+<td>100</td>
+<td>10</td>
+</tr>
+<tr>
+<td>2</td>
+<td>wso2</td>
+<td>100</td>
+<td>20</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Node 2</strong></p>
+<table>
+<thead>
+<tr>
+<th>Event</th>
+<th>symbol</th>
+<th>price</th>
+<th>quantity</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>wso2</td>
+<td>100</td>
+<td>10</td>
+</tr>
+<tr>
+<td>2</td>
+<td>wso2</td>
+<td>100</td>
+<td>30</td>
+</tr>
+</tbody>
+</table>
+<p>Here, node 1 calculates an hourly total of 30, and node 2 calculates an
+hourly total of 40. When you retrieve the total for this hour via a
+retrieval query, the result is 70.</p>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+</div>
+<p>For more information about incremental aggregation, see <a href="https://siddhi-io.github.io/siddhi/documentation/siddhi-4.x/query-guide-4.x/#incremental-aggregation">Siddhi Query
+Guide - Incremental
+Aggregation</a>
+.</p>
+                
+                  
+                
+              
+  <a href="#" class="cd-top text--replace js-cd-top">Top</a>
+
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+        
+          <a href="../cleansing-data/" title="Cleansing Data" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+            </div>
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                Cleansing Data
+              </span>
+            </div>
+          </a>
+        
+        
+          <a href="../triggering-integration-flows/" title="Triggering Integration Flows" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                Triggering Integration Flows
+              </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+          <div class="md-footer-copyright__highlight">
+            WSO2 Enterprise Integrator - Documentation
+          </div>
+        
+        &copy;2019 <a href="https://wso2.com/">WSO2</a>
+      </div>
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../../assets/javascripts/application.d9aa80ab.js"></script>
+      
+      <script>app.initialize({version:"1.0.4",url:{base:"../.."}})</script>
+      
+        <script src="../../assets/lib/highlightjs/highlight.min.js"></script>
+      
+        <script src="../../assets/js/theme.js"></script>
+      
+        <script src="../../assets/lib/backtotop/js/util.js"></script>
+      
+        <script src="../../assets/lib/backtotop/js/main.js"></script>
+      
+    
+  </body>
+</html>
