@@ -2,92 +2,92 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
      <loc>https://wso2.com/integration/</loc>
-     <lastmod>2019-07-01</lastmod>
+     <lastmod>2019-07-12</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://wso2.com/integration/overview/overview/</loc>
-     <lastmod>2019-07-01</lastmod>
+     <lastmod>2019-07-12</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://wso2.com/integration/overview/architecture/</loc>
-     <lastmod>2019-07-01</lastmod>
+     <lastmod>2019-07-12</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://wso2.com/integration/overview/about_this_release/</loc>
-     <lastmod>2019-07-01</lastmod>
+     <lastmod>2019-07-12</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://wso2.com/integration/quick-start-guide/quick-start-guide/</loc>
-     <lastmod>2019-07-01</lastmod>
+     <lastmod>2019-07-12</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://wso2.com/integration/concepts/</loc>
-     <lastmod>2019-07-01</lastmod>
+     <lastmod>2019-07-12</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://wso2.com/integration/setup/installing-si-using-docker/</loc>
-     <lastmod>2019-07-01</lastmod>
+     <lastmod>2019-07-12</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://wso2.com/integration/setup/installing-si-using-docker-compose/</loc>
-     <lastmod>2019-07-01</lastmod>
+     <lastmod>2019-07-12</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://wso2.com/integration/setup/installing-si-using-ansible/</loc>
-     <lastmod>2019-07-01</lastmod>
+     <lastmod>2019-07-12</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://wso2.com/integration/setup/installing-si-using-kubernetes/</loc>
-     <lastmod>2019-07-01</lastmod>
+     <lastmod>2019-07-12</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://wso2.com/integration/setup/installing-si-using-vagrant/</loc>
-     <lastmod>2019-07-01</lastmod>
+     <lastmod>2019-07-12</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://wso2.com/integration/setup/installing-si-using-puppet/</loc>
-     <lastmod>2019-07-01</lastmod>
+     <lastmod>2019-07-12</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://wso2.com/integration/setup/installing-si-using-helm/</loc>
-     <lastmod>2019-07-01</lastmod>
+     <lastmod>2019-07-12</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://wso2.com/integration/setup/installing-si-using-aws-cloud-formation/</loc>
-     <lastmod>2019-07-01</lastmod>
+     <lastmod>2019-07-12</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://wso2.com/integration/setup/installing-si-using-apt/</loc>
-     <lastmod>2019-07-01</lastmod>
+     <lastmod>2019-07-12</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://wso2.com/integration/setup/installing-si-using-yum/</loc>
-     <lastmod>2019-07-01</lastmod>
+     <lastmod>2019-07-12</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://wso2.com/integration/setup/installing-si-using-brew/</loc>
-     <lastmod>2019-07-01</lastmod>
+     <lastmod>2019-07-12</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://wso2.com/integration/setup/deploying-si-as-minimum-ha-cluster/</loc>
-     <lastmod>2019-07-01</lastmod>
+     <lastmod>2019-07-12</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
@@ -102,32 +102,27 @@
     </url>
     <url>
      <loc>https://wso2.com/integration/develop/streaming-integrator-studio-overview/</loc>
-     <lastmod>2019-07-01</lastmod>
+     <lastmod>2019-07-12</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
-     <loc></loc>
-     
+     <loc>https://wso2.com/integration/develop/working-with-the-Design-View/</loc>
+     <lastmod>2019-07-12</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
-     <loc>https://wso2.com/integration/develop/working-with-design-view/</loc>
-     <lastmod>2019-07-01</lastmod>
+     <loc>https://wso2.com/integration/develop/creating-a-Siddhi-Application/</loc>
+     <lastmod>2019-07-12</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
-     <loc></loc>
-     
-     <changefreq>daily</changefreq>
-    </url>
-    <url>
-     <loc></loc>
-     
+     <loc>https://wso2.com/integration/develop/testing-a-Siddhi-Application/</loc>
+     <lastmod>2019-07-12</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://wso2.com/integration/develop/debugging_siddhi_applications/</loc>
-     <lastmod>2019-07-01</lastmod>
+     <lastmod>2019-07-12</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
@@ -142,17 +137,17 @@
     </url>
     <url>
      <loc>https://wso2.com/integration/examples/performing-real-time-etl-with-mysql/</loc>
-     <lastmod>2019-07-01</lastmod>
+     <lastmod>2019-07-12</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://wso2.com/integration/examples/performing-real-time-etl-with-files/</loc>
-     <lastmod>2019-07-01</lastmod>
+     <lastmod>2019-07-12</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://wso2.com/integration/examples/working-with-kafka/</loc>
-     <lastmod>2019-07-01</lastmod>
+     <lastmod>2019-07-12</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
@@ -162,42 +157,42 @@
     </url>
     <url>
      <loc>https://wso2.com/integration/examples/transforming-json-messages/</loc>
-     <lastmod>2019-07-01</lastmod>
+     <lastmod>2019-07-12</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://wso2.com/integration/examples/transforming-xml-messages/</loc>
-     <lastmod>2019-07-01</lastmod>
+     <lastmod>2019-07-12</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://wso2.com/integration/examples/integrating-databases-to-data-flows/</loc>
-     <lastmod>2019-07-01</lastmod>
+     <lastmod>2019-07-12</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://wso2.com/integration/examples/exposing-processed-data-as-api/</loc>
-     <lastmod>2019-07-01</lastmod>
+     <lastmod>2019-07-12</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://wso2.com/integration/examples/triggering-integrations-via-micro-integrator/</loc>
-     <lastmod>2019-07-01</lastmod>
+     <lastmod>2019-07-12</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://wso2.com/integration/examples/analyzing-data-and-deriving-insights/</loc>
-     <lastmod>2019-07-01</lastmod>
+     <lastmod>2019-07-12</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://wso2.com/integration/examples/reliable-data-integration/</loc>
-     <lastmod>2019-07-01</lastmod>
+     <lastmod>2019-07-12</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://wso2.com/integration/examples/summarizing-and-aggregating-data/</loc>
-     <lastmod>2019-07-01</lastmod>
+     <lastmod>2019-07-12</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
@@ -207,17 +202,17 @@
     </url>
     <url>
      <loc>https://wso2.com/integration/guides/transforming-data/</loc>
-     <lastmod>2019-07-01</lastmod>
+     <lastmod>2019-07-12</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://wso2.com/integration/guides/enriching-data/</loc>
-     <lastmod>2019-07-01</lastmod>
+     <lastmod>2019-07-12</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://wso2.com/integration/guides/cleansing-data/</loc>
-     <lastmod>2019-07-01</lastmod>
+     <lastmod>2019-07-12</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
@@ -227,32 +222,32 @@
     </url>
     <url>
      <loc>https://wso2.com/integration/guides/incremental-Analysis/</loc>
-     <lastmod>2019-07-01</lastmod>
+     <lastmod>2019-07-12</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://wso2.com/integration/guides/triggering-integration-flows/</loc>
-     <lastmod>2019-07-01</lastmod>
+     <lastmod>2019-07-12</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://wso2.com/integration/admin/configure-si-profile/</loc>
-     <lastmod>2019-07-01</lastmod>
+     <lastmod>2019-07-12</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://wso2.com/integration/admin/downloading-and-Installing-Siddhi-Extensions/</loc>
-     <lastmod>2019-07-01</lastmod>
+     <lastmod>2019-07-12</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://wso2.com/integration/admin/writing-Custom-Siddhi-Extensions/</loc>
-     <lastmod>2019-07-01</lastmod>
+     <lastmod>2019-07-12</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://wso2.com/integration/admin/configuring-System-Parameters-for-Siddhi-Extensions/</loc>
-     <lastmod>2019-07-01</lastmod>
+     <lastmod>2019-07-12</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
@@ -267,7 +262,7 @@
     </url>
     <url>
      <loc>https://wso2.com/integration/admin/general-data-protection-regulations/</loc>
-     <lastmod>2019-07-01</lastmod>
+     <lastmod>2019-07-12</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
@@ -292,12 +287,12 @@
     </url>
     <url>
      <loc>https://wso2.com/integration/ref/si-rest-api-guide/</loc>
-     <lastmod>2019-07-01</lastmod>
+     <lastmod>2019-07-12</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://wso2.com/integration/ref/performance-analysis-results/</loc>
-     <lastmod>2019-07-01</lastmod>
+     <lastmod>2019-07-12</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
@@ -312,7 +307,7 @@
     </url>
     <url>
      <loc>https://wso2.com/integration/ref/wSO2-Stream-Processor-Profiles/</loc>
-     <lastmod>2019-07-01</lastmod>
+     <lastmod>2019-07-12</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
@@ -322,7 +317,7 @@
     </url>
     <url>
      <loc>https://wso2.com/integration/page-not-found/</loc>
-     <lastmod>2019-07-01</lastmod>
+     <lastmod>2019-07-12</lastmod>
      <changefreq>daily</changefreq>
     </url>
 </urlset>

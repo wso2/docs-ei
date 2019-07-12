@@ -1,50 +1,34 @@
 # Working with the Design View
 
-This section provides an overview of the design view of the Stream
-Processor Studio.
-
--   [Accesing the Design
-    View](#WorkingwiththeDesignView-AccesingtheDesignView)
--   [Adding Siddhi
-    components](#WorkingwiththeDesignView-AddingSiddhicomponents)
--   [Connecting Siddhi
-    components](#WorkingwiththeDesignView-ConnectingSiddhicomponents)
--   [Saving, running and debugging Siddhi
-    applications](#WorkingwiththeDesignView-Saving,runninganddebuggingSiddhiapplications)
+This section provides an overview of the design view of the Streaming Integrator Tooling.
 
 ## Accesing the Design View
 
-To open the design view of the Stream Processor Studio:
+To open the design view of the Streaming Integrator Tooling:
 
-1.  Start the Stream Processor Studio and log in with your credentials.
-    For detailed instructions, see [Stream Processor Studio Overview -
-    Starting Stream Processor
-    Studio](Stream-Processor-Studio-Overview_112390916.html#StreamProcessorStudioOverview-StartingStreamProcessorStudio)
-    .
-2.  Click **New** and open a new Siddhi file, or click **Open** and open
-    an existing Siddhi file.
+1.  Start the Stream Processor Studio and log in with your credentials. For detailed instructions, see 
+    [Streaming Integrator Tooling Overview - Starting Streaming Integrator Tooling](Stream-Processor-Studio-Overview_112390916.html#StreamProcessorStudioOverview-StartingStreamProcessorStudio).
+2.  Click **New** and open a new Siddhi file, or click **Open** and open an existing Siddhi file.
 3.  Click **Design View** to open the Design View.  
-    ![](attachments/112390944/112390975.png)  
+    ![Design View button](../images/working-with-the design-view/Open_Design_View.png)  
     The design view opens as shown in the example below. It consists of
     a grid to which you can drag and drop the Siddhi components
     represented by icons displayed in the left panel to design a Siddhi
     application.  
-    ![](attachments/112390944/112390985.png){width="790"}
+    ![Design View](../images/working-with-the design-view/Design_View.png)
 
 ## Adding Siddhi components
 
-To add a Siddhi component to the Siddhi application that you are
-creating/editing in the design view, click on the relevant icon in the
-left pane, and then drag and drop it to the grid as demonstrated in the
-example below.
+To add a Siddhi component to the Siddhi application that you are creating/editing in the design view, click on the 
+relevant icon in the left pane, and then drag and drop it to the grid as demonstrated in the example below.
 
-![](attachments/112390944/119112441.gif){width="791"}
+![Dragging and dropping Siddhi components](../images/working-with-the design-view/Drag-And-Drop-Siddhi-Component.gif)
 
 Once you add a Siddhi component, you can configure it as required. To
 configure a Siddhi component, click the settings icon on the component.
 This opens a form with parameters related to the relevant component.
 
-![](attachments/112390944/119112466.png){width="100"}
+![Configure Siddhi component settings](../images/working-with-the design-view/Configure-Siddhi-Component-In-Design-View.png)
 
 The following is the complete list of Siddhi components that you can add
 to the grid of the design view when you create a Siddhi application.
@@ -56,7 +40,7 @@ to the grid of the design view when you create a Siddhi application.
 <tr class="odd">
 <td>Icon</td>
 <td><div class="content-wrapper">
-<p><img src="attachments/112390944/112390952.png" width="78" height="78" /></p>
+<p><img src="../../images/working-with-the design-view/Stream_Icon.png" /></p>
 </div></td>
 </tr>
 <tr class="even">
@@ -74,7 +58,7 @@ to the grid of the design view when you create a Siddhi application.
 <tr class="even">
 <td>Example</td>
 <td><div class="content-wrapper">
-<p><img src="attachments/112390944/112390955.png" width="706" /></p>
+<p><img src="../../images/working-with-the design-view/Stream_Configuration.png"/></p>
 <p>The details entered in the above <strong></strong> form creates a stream configuration as follows:</p>
 <div class="code panel pdl" style="border-width: 1px;">
 <div class="codeContent panelContent pdl">
@@ -115,7 +99,7 @@ to the grid of the design view when you create a Siddhi application.
 <tr class="odd">
 <td>Icon</td>
 <td><div class="content-wrapper">
-<p><img src="attachments/112390944/112390954.png" width="78" height="78" /></p>
+<p><img src="../../images/working-with-the design-view/Source_Icon.png"/></p>
 </div></td>
 </tr>
 <tr class="even">
@@ -143,7 +127,7 @@ to the grid of the design view when you create a Siddhi application.
 <tr class="even">
 <td>Example</td>
 <td><div class="content-wrapper">
-<p><img src="attachments/112390944/119112474.png" width="900" /></p>
+<p><img src="../../images/working-with-the design-view/Source-Configuration.png"/></p>
 <p>The details entered in the above <strong></strong> form creates a source configuration as follows:</p>
 <div class="code panel pdl" style="border-width: 1px;">
 <div class="codeContent panelContent pdl">
@@ -174,7 +158,7 @@ to the grid of the design view when you create a Siddhi application.
 <tr class="odd">
 <td>Icon</td>
 <td><div class="content-wrapper">
-<p><img src="attachments/112390944/112390956.png" width="77" height="78" /></p>
+<p><img src="../../images/working-with-the design-view/Sink_Icon.png"/></p>
 </div></td>
 </tr>
 <tr class="even">
@@ -201,7 +185,7 @@ to the grid of the design view when you create a Siddhi application.
 <tr class="even">
 <td>Example</td>
 <td><div class="content-wrapper">
-<p><img src="attachments/112390944/112390959.png" width="900" /></p>
+<p><img src="../../images/working-with-the design-view/Sink_Configuration_Form.png"/></p>
 <p>The details entered in the above <strong></strong> form creates a sink configuration as follows:</p>
 <div class="code panel pdl" style="border-width: 1px;">
 <div class="codeContent panelContent pdl">
@@ -229,7 +213,7 @@ to the grid of the design view when you create a Siddhi application.
 <tr class="odd">
 <td>Icon</td>
 <td><div class="content-wrapper">
-<p><img src="attachments/112390944/112390949.png" width="77" height="77" /></p>
+<p><img src="../../images/working-with-the design-view/Table_Icon.png"/></p>
 </div></td>
 </tr>
 <tr class="even">
@@ -247,7 +231,7 @@ to the grid of the design view when you create a Siddhi application.
 <tr class="even">
 <td>Example</td>
 <td><div class="content-wrapper">
-<p><img src="attachments/112390944/112390953.png" height="250" /></p>
+<p><img src="../../images/working-with-the design-view/Table_Configuration_Form.png"/></p>
 <p>The details entered in the above <strong></strong> form creates a table definition as follows:</p>
 <div class="code panel pdl" style="border-width: 1px;">
 <div class="codeContent panelContent pdl">
@@ -285,7 +269,7 @@ to the grid of the design view when you create a Siddhi application.
 <tr class="odd">
 <td>Icon</td>
 <td><div class="content-wrapper">
-<p><img src="attachments/112390944/112390947.png" width="78" height="77" /></p>
+<p><img src="../../images/working-with-the design-view/Window_Icon.png"/></p>
 </div></td>
 </tr>
 <tr class="even">
@@ -306,7 +290,7 @@ to the grid of the design view when you create a Siddhi application.
 <tr class="even">
 <td>Example</td>
 <td><div class="content-wrapper">
-<p><img src="attachments/112390944/112390946.png" width="900" /></p>
+<p><img src="../../images/working-with-the design-view/Window_Configuration_Form.png"/></p>
 <p>The details entered in the above form creates a window definition as follows:</p>
 <div class="code panel pdl" style="border-width: 1px;">
 <div class="codeContent panelContent pdl">
@@ -343,7 +327,7 @@ to the grid of the design view when you create a Siddhi application.
 <tr class="odd">
 <td>Icon</td>
 <td><div class="content-wrapper">
-<p><img src="attachments/112390944/112390951.png" width="76" height="78" /></p>
+<p><img src="../../images/working-with-the design-view/Trigger_Icon.png"/></p>
 </div></td>
 </tr>
 <tr class="even">
@@ -370,7 +354,7 @@ to the grid of the design view when you create a Siddhi application.
 <td><div class="content-wrapper">
 <p><br />
 </p>
-<img src="attachments/112390944/112390950.png" width="461" />
+<img src="../../images/working-with-the design-view/Trigger_Configuration_Form.png"/>
 <p>The details entered in the above orm creates a trigger definition as follows:</p>
 <div class="code panel pdl" style="border-width: 1px;">
 <div class="codeContent panelContent pdl">
@@ -404,7 +388,7 @@ to the grid of the design view when you create a Siddhi application.
 <tr class="odd">
 <td>Icon</td>
 <td><div class="content-wrapper">
-<p><img src="attachments/112390944/112390988.png" width="77" height="76" /></p>
+<p><img src="../../images/working-with-the design-view/Aggregation_Icon.png"/></p>
 </div></td>
 </tr>
 <tr class="even">
@@ -431,7 +415,7 @@ to the grid of the design view when you create a Siddhi application.
 <tr class="even">
 <td>Example</td>
 <td><div class="content-wrapper">
-<p><img src="attachments/112390944/112390990.png" width="900" /></p>
+<p><img src="../../images/working-with-the design-view/Aggregation_Configuration_Form.png"/></p>
 <p>The details entered in the above form creates an aggregation definition as follows:<br />
 </p>
 <div class="code panel pdl" style="border-width: 1px;">
@@ -463,7 +447,7 @@ to the grid of the design view when you create a Siddhi application.
 <tr class="odd">
 <td>Icon</td>
 <td><div class="content-wrapper">
-<p><img src="attachments/112390944/112390979.png" width="77" height="78" /></p>
+<p><img src="../../images/working-with-the design-view/Function_Icon.png"/></p>
 </div></td>
 </tr>
 <tr class="even">
@@ -485,7 +469,7 @@ to the grid of the design view when you create a Siddhi application.
 <tr class="even">
 <td>Example</td>
 <td><div class="content-wrapper">
-<p><img src="attachments/112390944/119112626.png" width="800" /></p>
+<p><img src="../../images/working-with-the design-view/Function_Configuration_Form.png"/></p>
 <p>The details entered in the above form creates a function definition as follows:</p>
 <div class="code panel pdl" style="border-width: 1px;">
 <div class="codeContent panelContent pdl">
@@ -510,7 +494,7 @@ to the grid of the design view when you create a Siddhi application.
 <tr class="odd">
 <td>Icon</td>
 <td><div class="content-wrapper">
-<p><img src="attachments/112390944/112390967.png" width="78" height="76" /></p>
+<p><img src="../../images/working-with-the design-view/Projection_Query_Icon.png"/></p>
 </div></td>
 </tr>
 <tr class="even">
@@ -546,7 +530,7 @@ to the grid of the design view when you create a Siddhi application.
 <tr class="even">
 <td>Example</td>
 <td><div class="content-wrapper">
-<p><img src="attachments/112390944/112390963.png" width="900" /></p>
+<p><img src="../../images/working-with-the design-view/Projection_QueryConfiguration_Form.png"/></p>
 <p>The details entered in the above form creates a query as follows:</p>
 <div class="code panel pdl" style="border-width: 1px;">
 <div class="codeContent panelContent pdl">
@@ -584,7 +568,7 @@ to the grid of the design view when you create a Siddhi application.
 <tr class="odd">
 <td>Icon</td>
 <td><div class="content-wrapper">
-<p><img src="attachments/112390944/112390981.png" width="76" height="77" /></p>
+<p><img src="../../images/working-with-the design-view/Filter_Query_Icon.png"/></p>
 </div></td>
 </tr>
 <tr class="even">
@@ -606,14 +590,14 @@ to the grid of the design view when you create a Siddhi application.
 <td><div class="content-wrapper">
 <p>Once you connect the query to an input stream (source) and an output stream (target), you can configure it. To configure the filter query, <a href="#WorkingwiththeDesignView-Settings">click the settings icon</a> on the filter query component you added to the grid, and update the following information.</p>
 <ul>
-<li><p>By default, the <strong>Stream Handler</strong> check box is selected, and a stream handler of the <code>                 filter                </code> type is available under it to indicate that the query is a filter. Expand this stream handler, and enter the condition based on which the information needs to be filtered.</p>
+<li><p>By default, the <strong>Stream Handler</strong> check box is selected, and a stream handler of the <code>filter</code> type is available under it to indicate that the query is a filter. Expand this stream handler, and enter the condition based on which the information needs to be filtered.</p>
 <p>!!! info</p>
 <p>A Siddhi application can have multiple stream handlers. To add another stream handler, click the <strong>+ Stream Handler</strong> . Multiple functions, filters and windows can be defined within the same form as stream handlers.</p>
 </p></li>
 <li><strong>Projection</strong> : This section specifies the attributes to be included in the output. In the <strong>Select</strong> field, you can select <strong>All Attributes</strong> to select all the attributes of the events, or select <strong>User Defined Attributes</strong> to select specific attributes from the input stream. If you select <strong>User Defined Attributes</strong> , you can add attributes to be selected to be inserted into the output stream. Here, you can enter the names of specific attributes in the input stream, or enter expressions to convert input stream attribute values as required to generate output events. You can also specify the attribute(s) by which you want to group the output.</li>
 <li><strong>Output</strong> : This section specifies the action to be performed on the output event. The fields to be configured in this section are as follows:
 <ul>
-<li><strong>Operation</strong> : This field specifies the operation to be performed on the generated output event (e.g., <code>                  Insert                 </code> to insert events to a selected stream/table/window).</li>
+<li><strong>Operation</strong> : This field specifies the operation to be performed on the generated output event (e.g., <code>Insert</code> to insert events to a selected stream/table/window).</li>
 <li><strong>Into</strong> : This field specifies the stream/table/window in which the operation specified need to be performed.</li>
 <li><strong>Event Type</strong> This field specifies whether the operation needs to be performed for all output events, only current events or for only expired events.</li>
 </ul></li>
@@ -623,7 +607,7 @@ to the grid of the design view when you create a Siddhi application.
 <tr class="even">
 <td>Example</td>
 <td><div class="content-wrapper">
-<p><img src="attachments/112390944/112390983.png" width="900" /></p>
+<p><img src="../../images/working-with-the design-view/Filter_Query_Configuration_Form.png"/></p>
 <p>The details entered in the above form creates a query with a filter as follows:</p>
 <div class="code panel pdl" style="border-width: 1px;">
 <div class="codeContent panelContent pdl">
@@ -661,19 +645,20 @@ to the grid of the design view when you create a Siddhi application.
 <tr class="odd">
 <td>Icon</td>
 <td><div class="content-wrapper">
-<p><img src="attachments/112390944/112390948.png" width="76" height="77" /></p>
+<p><img src="../../images/working-with-the design-view/Window_Query_Icon.png"/></p>
 </div></td>
 </tr>
 <tr class="even">
 <td>Description</td>
 <td><div class="content-wrapper">
+
 !!! tip
-<p>Before you add a window query:</p>
-<p>You need to add and configure the following:</p>
-<ul>
-<li>The input stream with the events to be processed by the query.</li>
-<li>The output stream to which the events processed by the query are directed.</li>
-</ul>
+    <p>Before you add a window query:</p>
+    <p>You need to add and configure the following:</p>
+    <ul>
+    <li>The input stream with the events to be processed by the query.</li>
+    <li>The output stream to which the events processed by the query are directed.</li>
+    </ul>
 
 <p>Window queries include a window to select a subset of events to be processed based on a specific criterion. For more information, see <a href="https://siddhi-io.github.io/siddhi/documentation/siddhi-4.x/query-guide-4.x/#defined-window">Siddhi Query Guide - (Defined) Window</a> .</p>
 </div></td>
@@ -683,14 +668,14 @@ to the grid of the design view when you create a Siddhi application.
 <td><div class="content-wrapper">
 <p>Once you connect the query to an input stream (source) and an output stream (target), you can configure it. To configure the window query, <a href="#WorkingwiththeDesignView-Settings">click the settings icon</a> on the window query component you added to the grid, and update the following information.</p>
 <ul>
-<li><p>By default, the <strong>Stream Handler</strong> check box is selected, and a stream handler of the <code>                 window                </code> type is available under it to indicate that the query is a filter. Expand this stream handler, and enter details to determine the window including the window type and the basis on which the subset of events considered by the window is determined (i.e., based on the window type selected).</p>
+<li><p>By default, the <strong>Stream Handler</strong> check box is selected, and a stream handler of the <code>window</code> type is available under it to indicate that the query is a filter. Expand this stream handler, and enter details to determine the window including the window type and the basis on which the subset of events considered by the window is determined (i.e., based on the window type selected).</p>
 <p>!!! info</p>
 <p>A Siddhi application can have multiple stream handlers. To add another stream handler, click the <strong>+ Stream Handler</strong> . Multiple functions, filters and windows can be defined within the same form as stream handlers.</p>
 </p></li>
 <li><strong>Projection</strong> : This section specifies the attributes to be included in the output. In the <strong>Select</strong> field, you can select <strong>All Attributes</strong> to select all the attributes of the events, or select <strong>User Defined Attributes</strong> to select specific attributes from the input stream. If you select <strong>User Defined Attributes</strong> , you can add attributes to be selected to be inserted into the output stream. Here, you can enter the names of specific attributes in the input stream, or enter expressions to convert input stream attribute values as required to generate output events. You can also specify the attribute(s) by which you want to group the output.</li>
 <li><strong>Output</strong> : This section specifies the action to be performed on the output event. The fields to be configured in this section are as follows:
 <ul>
-<li><strong>Operation</strong> : This field specifies the operation to be performed on the generated output event (e.g., <code>                  Insert                 </code> to insert events to a selected stream/table/window).</li>
+<li><strong>Operation</strong> : This field specifies the operation to be performed on the generated output event (e.g., <code>Insert</code> to insert events to a selected stream/table/window).</li>
 <li><strong>Into</strong> : This field specifies the stream/table/window in which the operation specified need to be performed.</li>
 <li><strong>Event Type</strong> This field specifies whether the operation needs to be performed for all output events, only current events or for only expired events.</li>
 </ul></li>
@@ -700,7 +685,7 @@ to the grid of the design view when you create a Siddhi application.
 <tr class="even">
 <td>Example</td>
 <td><div class="content-wrapper">
-<p><img src="attachments/112390944/112390983.png" width="900" /></p>
+<p><img src="../../images/working-with-the design-view/Filter_Query_Configuration_Form.png"/></p>
 <p>The details entered in the above <strong>Query Configuration</strong> form creates a query with a window as follows:</p>
 <div class="code panel pdl" style="border-width: 1px;">
 <div class="codeContent panelContent pdl">
@@ -743,7 +728,7 @@ to the grid of the design view when you create a Siddhi application.
 <tr class="odd">
 <td>Icon</td>
 <td><div class="content-wrapper">
-<p><img src="attachments/112390944/112390976.png" width="76" height="76" /></p>
+<p><img src="../../images/working-with-the design-view/Join_Query_Icon.png"/></p>
 </div></td>
 </tr>
 <tr class="even">
@@ -772,7 +757,7 @@ to the grid of the design view when you create a Siddhi application.
 <td>Example</td>
 <td><div class="content-wrapper">
 <p>A join query is configured as follows:</p>
-<p><strong><img src="attachments/112390944/119115456.png" width="900" /><br />
+<p><strong><img src="../../images/working-with-the design-view/Join_Query_Configuration_Form.png" /><br />
 </strong> The above configurations result in creating the following join query.</p>
 <div class="code panel pdl" style="border-width: 1px;">
 <div class="codeContent panelContent pdl">
@@ -789,7 +774,7 @@ to the grid of the design view when you create a Siddhi application.
 <td>Source</td>
 <td><div class="content-wrapper">
 !!! info
-<p>A join query must always be connected to two sources, and at least one of them must be a defined stream/trigger/window.</p>
+    A join query must always be connected to two sources, and at least one of them must be a defined stream/trigger/window.
 
 <ul>
 <li>Streams</li>
@@ -803,7 +788,7 @@ to the grid of the design view when you create a Siddhi application.
 <td>Target</td>
 <td><div class="content-wrapper">
 !!! info
-<p>A join query must always be connected to a single target.</p>
+    A join query must always be connected to a single target.
 
 <ul>
 <li>Streams</li>
@@ -826,7 +811,7 @@ to the grid of the design view when you create a Siddhi application.
 <tr class="odd">
 <td>Icon</td>
 <td><div class="content-wrapper">
-<p><img src="attachments/112390944/112390965.png" width="76" /></p>
+<p><img src="../../images/working-with-the design-view/Pattern_Query_Icon.png"/></p>
 </div></td>
 </tr>
 <tr class="even">
@@ -864,14 +849,14 @@ to the grid of the design view when you create a Siddhi application.
 <tr class="even">
 <td>Example</td>
 <td><div class="content-wrapper">
-<p><img src="attachments/112390944/112390969.png" width="900" /></p>
+<p><img src="../../images/working-with-the design-view/Pattern_Query_Configuration.png"/></p>
 <p>The above configuration results in creating the following query.</p>
 <div class="code panel pdl" style="border-width: 1px;">
 <div class="codeContent panelContent pdl">
 <div class="sourceCode" id="cb1" data-syntaxhighlighter-params="brush: sql; gutter: false; theme: Confluence" data-theme="Confluence" style="brush: sql; gutter: false; theme: Confluence"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb1-1"><a href="#cb1-1"></a><span class="kw">from</span> every (e1<span class="op">=</span>MaterialSupplyStream) <span class="op">-&gt;</span> <span class="kw">not</span> MaterialConsumptionStream[name <span class="op">==</span> e1.name <span class="kw">and</span> amount <span class="op">==</span> e1.amount]</span>
-<span id="cb1-2"><a href="#cb1-2"></a>    <span class="cf">for</span> <span class="dv">15</span> sec</span>
-<span id="cb1-3"><a href="#cb1-3"></a><span class="kw">select</span> e1.name, e1.amount</span>
-<span id="cb1-4"><a href="#cb1-4"></a><span class="kw">insert</span> <span class="kw">into</span> ProductionDelayAlertStream;</span></code></pre></div>
+<span id="cb1-2"><a href="#cb1-2"></a>    for 15</span> sec
+<span id="cb1-3"><a href="#cb1-3"></a>select e1.name, e1.amount
+<span id="cb1-4"><a href="#cb1-4"></a>insert into ProductionDelayAlertStream;</code></pre></div>
 </div>
 </div>
 </div></td>
@@ -909,7 +894,7 @@ to the grid of the design view when you create a Siddhi application.
 <tr class="odd">
 <td>Icon</td>
 <td><div class="content-wrapper">
-<p><img src="attachments/112390944/112390961.png" width="76" /></p>
+<p><img src="../../images/working-with-the design-view/Sequence_Query_Icon.png"/></p>
 </div></td>
 </tr>
 <tr class="even">
@@ -946,7 +931,7 @@ to the grid of the design view when you create a Siddhi application.
 <tr class="even">
 <td>Example</td>
 <td><div class="content-wrapper">
-<p><img src="attachments/112390944/112390960.png" width="900" /></p>
+<p><img src="../../images/working-with-the design-view/Sequence_Query_Configuration.png"/></p>
 <p>The above configuration results in creating the following query.</p>
 <div class="code panel pdl" style="border-width: 1px;">
 <div class="codeContent panelContent pdl">
@@ -990,7 +975,7 @@ to the grid of the design view when you create a Siddhi application.
 <tr class="odd">
 <td>Icon</td>
 <td><div class="content-wrapper">
-<p><img src="attachments/112390944/112390970.png" width="76" /></p>
+<p><img src="../../images/working-with-the design-view/Partition_Query_Icon.png"/></p>
 </div></td>
 </tr>
 <tr class="even">
@@ -1012,7 +997,7 @@ to the grid of the design view when you create a Siddhi application.
 <tr class="even">
 <td>Example</td>
 <td><div class="content-wrapper">
-<p><img src="attachments/112390944/112390972.png" height="250" /></p>
+<p><img src="../../images/working-with-the design-view/Partition_Configuration.png"/></p>
 <p>The above configuration creates the following partition query.</p>
 <div class="code panel pdl" style="border-width: 1px;">
 <div class="codeContent panelContent pdl">
@@ -1049,7 +1034,7 @@ connections between Siddhi components. A connection is defined by
 drawing an arrow from one component to another by dragging the cursor as
 demonstrated below.
 
-![](attachments/112390944/119112618.gif)
+![Connecting Siddhi components](../../images/working-with-the design-view/Connect-Siddhi-Componentsgif)
 
 ## Saving, running and debugging Siddhi applications
 
@@ -1058,6 +1043,5 @@ need to switch to the source view. You also need to switch to the source
 view to run or debug a Siddhi application. For more information, see the
 following sections:
 
--   [Stream Processor Studio
-    Overview](_Stream_Processor_Studio_Overview_)
+-   [Stream Processor Studio Overview](_Stream_Processor_Studio_Overview_)
 -   [Debugging a Siddhi Application](_Debugging_a_Siddhi_Application_)

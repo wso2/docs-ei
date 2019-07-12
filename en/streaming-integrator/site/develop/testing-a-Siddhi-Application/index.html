@@ -60,7 +60,7 @@
     
     
       
-        <title>Testing a Siddhi Application - Streaming Integration Documentation</title>
+        <title>Testing a Siddhi Application - WSO2 Enterprise Integrator Documentation</title>
       
     
     
@@ -133,7 +133,7 @@
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
     <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
     
-      <a href="#testing-a-siddhi-application" tabindex="1" class="md-skip">
+      <a href="#testing-siddhi-applications" tabindex="1" class="md-skip">
         Skip to content
       </a>
     
@@ -160,7 +160,7 @@
   <nav class="md-header-nav md-grid">
     <div class="md-flex">
       <div class="md-flex__cell md-flex__cell--shrink">
-        <a href="https://wso2.com/integration/" title="Streaming Integration Documentation" class="md-header-nav__button md-logo">
+        <a href="https://wso2.com/integration/" title="WSO2 Enterprise Integrator Documentation" class="md-header-nav__button md-logo">
           
             <img src="../../images/logo.svg" width="24" height="24">
           
@@ -173,23 +173,31 @@
         <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
           
             <span class="md-header-nav__topic">
-              Streaming Integration Documentation
+               Enterprise Integrator Documentation
             </span>
             <span class="md-header-nav__topic">
               Testing a Siddhi Application
             </span>
           
         </div>
+        <div class="md-flex__ellipsis md-header__distribution-select">
+          <div class="mb-tabs__dropdown version-select">
+            <a class="md-tabs__link md-tabs__dropdown-link" href="#!" data-target="distribution-select-dropdown">
+            Streaming Integrator</a>
+            <ul id="distribution-select-dropdown" class="mb-tabs__dropdown-content" tabindex="0">
+            </ul>
+          </div>
+        </div>
         <div class="md-flex__ellipsis md-header__version-select">
-            <div class="mb-tabs__dropdown version-select">
-                <a class="md-tabs__link md-tabs__dropdown-link" href="#!" data-target="version-select-dropdown">7.0.0</a>
-                <ul id="version-select-dropdown" class="mb-tabs__dropdown-content" tabindex="0">
-                    <!-- Versions will added here dynamically -->
-                    <li class="md-tabs__item mb-tabs__dropdown">
-                        <a href="#" id="show-all-versions-link">Show all</a>
-                    </li>
-                </ul>
-            </div>
+          <div class="mb-tabs__dropdown version-select">
+            <a class="md-tabs__link md-tabs__dropdown-link" href="#!" data-target="version-select-dropdown">7.0.0</a>
+            <ul id="version-select-dropdown" class="mb-tabs__dropdown-content" tabindex="0">
+              <!-- Versions will added here dynamically -->
+              <li class="md-tabs__item mb-tabs__dropdown">
+                <a href="#" id="show-all-versions-link">Show all</a>
+              </li>
+            </ul>
+          </div>
         </div>
       </div>
       <div class="md-flex__cell md-flex__cell--shrink">
@@ -231,14 +239,16 @@
       
         
 
-<nav class="md-tabs" data-md-component="tabs">
+  
+
+<nav class="md-tabs md-tabs--active" data-md-component="tabs">
   <div class="md-tabs__inner md-grid">
     <ul class="md-tabs__list">
       
         
   <li class="md-tabs__item home_icon">
     
-      <a href="../.." title="Home" class="md-tabs__link md-tabs__link--active">
+      <a href="../.." title="Home" class="md-tabs__link">
           <i class="fa fa-home"></i>
       </a>
     
@@ -306,6 +316,10 @@
         
   
   
+    
+    
+  
+  
     <li class="md-tabs__item">
       
         <a href="../streaming-integrator-studio-overview/" title="Developer Experience" class="md-tabs__link">
@@ -313,6 +327,8 @@
         </a>
       
     </li>
+  
+
   
 
       
@@ -379,7 +395,7 @@
     </ul>
     <div class="quick_links">
         
-        <a href="https://github.com/wso2/docs-is/edit/master/en/docs/develop/testing-a-Siddhi-Application.md" target="blank" id="editIcon" title="Edit this page"
+        <a href="https://github.com/wso2/docs-is/edit/master/en/streaming-integrator/docs/develop/testing-a-Siddhi-Application.md" target="blank" id="editIcon" title="Edit this page"
            title="Edit this page" class="md-icon md-content__icon nav_link edit_link"></a>
         
     </div>
@@ -398,13 +414,13 @@
                   <div class="md-sidebar__inner">
                     <nav class="md-nav md-nav--primary" data-md-level="0">
     <label class="md-nav__title md-nav__title--site" for="__drawer">
-      <a href="https://wso2.com/integration/" title="Streaming Integration Documentation"
+      <a href="https://wso2.com/integration/" title="WSO2 Enterprise Integrator Documentation"
          class="md-nav__button md-logo">
         
           <img src="../../images/logo.svg" width="48" height="48">
         
       </a>
-      Streaming Integration Documentation
+      WSO2 Enterprise Integrator Documentation
     </label>
     
       <div class="md-nav__source">
@@ -841,10 +857,12 @@
         
         
 
+  
 
-  <li class="md-nav__item md-nav__item--nested">
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-6" type="checkbox" id="nav-6">
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-6" type="checkbox" id="nav-6" checked>
     
     <label class="md-nav__link" for="nav-6">
       Developer Experience
@@ -861,28 +879,16 @@
           
 
 
-  <li class="md-nav__item">
-    <a href="../streaming-integrator-studio-overview/" title="Streaming Integrator Studio Overview" class="md-nav__link">
-      Streaming Integrator Studio Overview
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
   <li class="md-nav__item md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-6-2" type="checkbox" id="nav-6-2">
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-6-1" type="checkbox" id="nav-6-1">
     
-    <label class="md-nav__link" for="nav-6-2">
-      Designing Siddhi Applications
+    <label class="md-nav__link" for="nav-6-1">
+      Streaming Integrator Tooling
     </label>
     <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
-      <label class="md-nav__title" for="nav-6-2">
-        Designing Siddhi Applications
+      <label class="md-nav__title" for="nav-6-1">
+        Streaming Integrator Tooling
       </label>
       <ul class="md-nav__list" data-md-scrollfix>
         
@@ -893,8 +899,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../working-with-source-view.md" title="Working with the Source View" class="md-nav__link">
-      Working with the Source View
+    <a href="../streaming-integrator-studio-overview/" title="Streaming Integrator Tooling Overview" class="md-nav__link">
+      Streaming Integrator Tooling Overview
     </a>
   </li>
 
@@ -905,7 +911,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../working-with-design-view/" title="Working with the Design View" class="md-nav__link">
+    <a href="../working-with-the-Design-View/" title="Working with the Design View" class="md-nav__link">
       Working with the Design View
     </a>
   </li>
@@ -921,46 +927,110 @@
           
 
 
-  <li class="md-nav__item md-nav__item--nested">
-    
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-6-3" type="checkbox" id="nav-6-3">
-    
-    <label class="md-nav__link" for="nav-6-3">
-      Testing Siddhi Applications
-    </label>
-    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
-      <label class="md-nav__title" for="nav-6-3">
-        Testing Siddhi Applications
-      </label>
-      <ul class="md-nav__list" data-md-scrollfix>
-        
-        
-          
-          
-          
-
-
   <li class="md-nav__item">
-    <a href="../testing-a-siddhi-application.md" title="Testing a Siddhi Application" class="md-nav__link">
+    <a href="../creating-a-Siddhi-Application/" title="Creating Siddhi Applications" class="md-nav__link">
+      Creating Siddhi Applications
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Testing a Siddhi Application
+      </label>
+    
+    <a href="./" title="Testing a Siddhi Application" class="md-nav__link md-nav__link--active">
       Testing a Siddhi Application
     </a>
-  </li>
-
+    
+      
+<nav class="md-nav md-nav--secondary">
+    
+    
+    
+    
+    
+    <a href="#" title="On this page" class="nav_link md-icon md-content__icon toc_icon"
+       id="tocToggleBtn">keyboard_arrow_right</a>
+    <label class="md-nav__title" for="__toc">On this page</label>
+    <ul class="md-nav__list" data-md-scrollfix>
         
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../simulating-events.md" title="Simulating Events" class="md-nav__link">
-      Simulating Events
-    </a>
-  </li>
-
+        <li class="md-nav__item">
+  <a href="#validating-a-siddhi-application" title="Validating a Siddhi application" class="md-nav__link">
+    Validating a Siddhi application
+  </a>
+  
+</li>
+        
+        <li class="md-nav__item">
+  <a href="#running-or-debugging-a-siddhi-application" title="Running or debugging a Siddhi application" class="md-nav__link">
+    Running or debugging a Siddhi application
+  </a>
+  
+</li>
+        
+        <li class="md-nav__item">
+  <a href="#simulating-events" title="Simulating events" class="md-nav__link">
+    Simulating events
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#simulating-a-single-event" title="Simulating a single event" class="md-nav__link">
+    Simulating a single event
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#simulating-multiple-events-via-csv-files" title="Simulating multiple events via CSV files" class="md-nav__link">
+    Simulating multiple events via CSV files
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#simulating-multiple-events-via-databases" title="Simulating multiple events via databases" class="md-nav__link">
+    Simulating multiple events via databases
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#generating-random-events" title="Generating random events" class="md-nav__link">
+    Generating random events
+  </a>
+  
+</li>
         
       </ul>
     </nav>
+  
+</li>
+        
+        
+        
+        
+        
+    </ul>
+    
+</nav>
+    
   </li>
 
         
@@ -1658,7 +1728,8 @@
     
     
     
-    <a href="#" title="On this page" class="nav_link md-icon md-content__icon toc_icon" id="tocToggleBtn">toc</a>
+    <a href="#" title="On this page" class="nav_link md-icon md-content__icon toc_icon"
+       id="tocToggleBtn">keyboard_arrow_right</a>
     <label class="md-nav__title" for="__toc">On this page</label>
     <ul class="md-nav__list" data-md-scrollfix>
         
@@ -1681,6 +1752,40 @@
     Simulating events
   </a>
   
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#simulating-a-single-event" title="Simulating a single event" class="md-nav__link">
+    Simulating a single event
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#simulating-multiple-events-via-csv-files" title="Simulating multiple events via CSV files" class="md-nav__link">
+    Simulating multiple events via CSV files
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#simulating-multiple-events-via-databases" title="Simulating multiple events via databases" class="md-nav__link">
+    Simulating multiple events via databases
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#generating-random-events" title="Generating random events" class="md-nav__link">
+    Generating random events
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
         
         
@@ -1700,119 +1805,529 @@
               
   
                 
-                  <a href="https://github.com/wso2/docs-is/edit/master/en/docs/develop/testing-a-Siddhi-Application.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
+                  <a href="https://github.com/wso2/docs-is/edit/master/en/streaming-integrator/docs/develop/testing-a-Siddhi-Application.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
                 
                 
-                <h1 id="testing-a-siddhi-application">Testing a Siddhi Application<a class="headerlink" href="#testing-a-siddhi-application" title="Permanent link">&para;</a></h1>
-<p>WSO2 Stream Processor Studio allows the following tasks to be carried
+                <h1 id="testing-siddhi-applications">Testing Siddhi Applications<a class="headerlink" href="#testing-siddhi-applications" title="Permanent link">&para;</a></h1>
+<p>The Streaming Integrator allows the following tasks to be carried
 out to ensure that the Siddhi applications you create and deploy are
 validated before they are run in an actual production environment.</p>
 <ul>
-<li>Validate Siddhi applications that are written in the Stream
-    Processor Studio.</li>
-<li>Run Siddhi applications that were written in the Stream Processor
-    Studio in either Run or Debug mode.</li>
+<li>Validate Siddhi applications that are written in the Streaming Integrator Studio.</li>
+<li>Run Siddhi applications that were written in the Streaming Integrator Studio in either Run or Debug mode.</li>
 <li>Simulate events to test the Siddhi applications and analyze events
     that are received and sent. This allows you to analyze the status of
     each query within a Siddhi application at different execution
     points.</li>
 </ul>
-<h3 id="validating-a-siddhi-application">Validating a Siddhi application<a class="headerlink" href="#validating-a-siddhi-application" title="Permanent link">&para;</a></h3>
+<h2 id="validating-a-siddhi-application">Validating a Siddhi application<a class="headerlink" href="#validating-a-siddhi-application" title="Permanent link">&para;</a></h2>
 <p>To validate a Siddhi application, follow the procedure below:</p>
 <ol>
-<li>Start and access the Stream Processor Studio. For detailed
-    instructions, see <a href="Stream-Processor-Studio-Overview_112390916.html#StreamProcessorStudioOverview-StartingStreamProcessorStudio">Starting Stream Processor
-    Studio</a>
+<li>Start and access the Streaming Integrator Studio. For detailed
+    instructions, see <a href="../streaming-integrator-studio-overview/#Starting-Streaming-Integration-Studio">Starting Stream Integration Studio</a>
     .</li>
 <li>In this example, let's use an existing sample as an example. Click
     on the <strong>ReceiveAndCount</strong> sample to open it.</li>
 <li>
 <p>Sample opens in a new tab. This sample does not have errors, and
     therefore, no errors are displayed in the editor. To create an error
-    for demonstration purposes, change the
-    <code class="codehilite">count()</code> function in the
-    <code class="codehilite">query1</code> query
-    <code class="codehilite">tocountNew()</code> as shown below.</p>
-<p><code class="codehilite">@info(name='query1') from SweetProductionStream select                           countNew()                          as totalCount insert into TotalCountStream;</code></p>
+    for demonstration purposes, change the <code class="codehilite">count()</code> function in the <code class="codehilite">query1</code> query to
+    <code class="codehilite">countNew()</code> as shown below.</p>
+<pre class="codehilite"><code class="language-sql linenums">@info(name='query1') 
+from SweetProductionStream 
+select countNew() as totalCount 
+insert into TotalCountStream;      `</code></pre>
+
 <p>Now, the editor indicates that there is a syntax error. If you move
 the cursor over the error icon, it indicates that
 <code class="codehilite">countNew</code> is an invalid function name as shown
 below.<br />
-<img alt="" src="attachments/112390856/112390865.png" />{height="250"}</p>
+<img alt="Source View indicates a syntax error" src="../../images/Testing-Siddhi-Applications/Syntax_Error_Indicated.png" /></p>
 </li>
 </ol>
-<h3 id="running-or-debugging-a-siddhi-application">Running or debugging a Siddhi application<a class="headerlink" href="#running-or-debugging-a-siddhi-application" title="Permanent link">&para;</a></h3>
-<p>You can run or debug a siddhi application to verify whether the logic
+<h2 id="running-or-debugging-a-siddhi-application">Running or debugging a Siddhi application<a class="headerlink" href="#running-or-debugging-a-siddhi-application" title="Permanent link">&para;</a></h2>
+<p>You can run or debug a Siddhi application to verify whether the logic
 you have written is correct. To start a Siddhi application in the
 run/debug mode, follow the procedure below:</p>
 <ol>
-<li>Start and access the Stream Processor Studio. For detailed
-    instructions, see <a href="Stream-Processor-Studio-Overview_112390916.html#StreamProcessorStudioOverview-StartingStreamProcessorStudio">Starting Stream Processor
-    Studio</a>
-    .</li>
-<li>For this example, click the <strong>existing</strong> sample <strong>ReceiveAndCount</strong>
-    . It opens in a new untitled tab.</li>
-<li>Save the Siddhi file sothat you can run it in the Run or Debug mode.
-     To save it, click <strong>File</strong> => <strong>Save</strong> .  Once the file is saved,
-    you can see the <strong>Run</strong> and <strong>Debug</strong> menu options enables as shown
-    below.</li>
-<li>Go to <strong>File</strong> and click <strong>Save</strong> . (Default saved in default
-    workspace folder). Once saved you can see the above options are now
-    enabled.<br />
-<img alt="" src="attachments/112390856/112390859.png" />{height="250"}<ol>
-<li>To start the application in Run mode, click <strong>Run</strong> => <strong>Run</strong>
-    . This logs the following output in the console.<br />
-<img alt="" src="attachments/112390856/112390864.png" />{height="250"}</li>
+<li>
+<p>Start and access the Streaming Integrator Studio. For detailed
+    instructions, see <a href="../streaming-integrator-studio-overview/#Starting-Streaming-Integration-Studio">Starting Stream Integration Studio</a>.</p>
+</li>
+<li>
+<p>For this example, click the <strong>existing</strong> sample <strong>ReceiveAndCount</strong>. It opens in a new untitled tab.</p>
+</li>
+<li>Save the Siddhi file so that you can run it in the Run or Debug mode.
+     To save it, click <strong>File</strong> => <strong>Save</strong>.  Once the file is saved,
+    you can see the <strong>Run</strong> and <strong>Debug</strong> menu options enabled as shown
+    below.<br />
+<img alt="Run and Debug options enabled" src="../../images/Testing-Siddhi-Applications/Enable_Run_Debug.png" /><ol>
+<li>To start the application in Run mode, click <strong>Run</strong> => <strong>Run</strong>. This logs the following output in the console.<br />
+<img alt="Run log" src="../../images/Testing-Siddhi-Applications/Run-Log.png" /></li>
 <li>Start the application in the Debug mode, click <strong>Run</strong> =>
     <strong>Debug</strong> . As a result, the following mesage is logged in the
     console. You can also note that another console tab is opened
     with debug options.<br />
-<img alt="" src="attachments/112390856/112390863.png" />{width="913"}</li>
+<img alt="Console with Debug Tab" src="../../images/Testing-Siddhi-Applications/Console-with_Debug-Tab.png" /></li>
 </ol>
 </li>
-<li>To create an error for demonstration purposes, change the
-    <code class="codehilite">count()</code> function in the
-    <code class="codehilite">query1</code> query to <code class="codehilite">countNew()</code>
-    , and save. Then click <strong>Run</strong> => <strong>Run</strong> . As a result, the
+<li>To create an error for demonstration purposes, change the <code class="codehilite">count()</code> function in the
+    <code class="codehilite">query1</code> query to <code class="codehilite">countNew()</code>, and save. Then click <strong>Run</strong> => <strong>Run</strong>. As a result, the
     following output is logged in the console.<br />
-<img alt="" src="attachments/112390856/112390858.png" /></li>
+<img alt="Siddhi application in a faulty state" src="../../images/Testing-Siddhi-Applications/Faulty_Siddhi_Application_Message.png" /></li>
 </ol>
-<h3 id="simulating-events">Simulating events<a class="headerlink" href="#simulating-events" title="Permanent link">&para;</a></h3>
-<p>This section demonstrates how to test a Siddhi application via event
-simulation. There are multiple methods to simulate events. In this
-example, you can use single simulation. For more information about all
-available methods, see <a href="_Simulating_Events_">Simulating Events</a> .</p>
-<p>To simulate a single event in order to check the status of your Siddhi
-queries, follow the procedure below:</p>
+<h2 id="simulating-events">Simulating events<a class="headerlink" href="#simulating-events" title="Permanent link">&para;</a></h2>
+<p>This section demonstrates how to test a Siddhi application via event simulation. Event simulation involves simulating 
+predefined event streams. These event stream definitions have stream attributes. You can use event simulator to create 
+events by assigning values to the defined stream attributes and send them as events. This is useful for testing Siddhi 
+applications in order to evaluate whether they function as expected</p>
+<p>Events can be simulated in the following methods:</p>
+<ul>
+<li><a href="#Simulating-a-single-event">Simulating a single event</a></li>
+<li><a href="#Simulating-multiple-events-via-CSV-files">Simulating multiple events via CSV files</a></li>
+<li><a href="#Simulating-multiple-events-via-databases">Simulating multiple events via databases</a></li>
+<li><a href="#Generating-random-events">Generating random events</a></li>
+</ul>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
-</div>
 <p>Before you simulate events for a Siddhi application, you need to run or
-debug it. Therefore, before you try this section, see <a href="#TestingaSiddhiApplication-RunorDebug">Run or debug a
-Siddhi application</a> .</p>
+debug it. Therefore, before you try this section, see 
+<a href="./#Running-or-debugging-a-Siddhi-application">Running or debugging a Siddhi application</a>.</p>
+</div>
+<h3 id="simulating-a-single-event">Simulating a single event<a class="headerlink" href="#simulating-a-single-event" title="Permanent link">&para;</a></h3>
+<p>This section demonstrates how to simulate a single event to be processed
+via the Streaming Integrator.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Before simulating events, a Siddhi application should be deployed.</p>
+</div>
+<p>To simulate a single event, follow the steps given below.</p>
 <ol>
 <li>
-<p>Run the <code class="codehilite">ReceiveAndCount</code> Siddhi application.</p>
+<p>Access the Streaming Integrator Studio via the <code class="codehilite">http://localhost:/editor</code>
+    URL. The Streaming Integrator Studio opens as shown below.</p>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>The default URL is<code class="codehilite">http://localhost:9090/editor</code>.</p>
+</div>
+<p><img alt="SI Studio Welcome Page" src="../../images/Testing-Siddhi-Applications/Stream_Processor_Studio_Welcome_Page.png" />  </p>
 </li>
 <li>
-<p>Click the following icon for event simulation.<br />
-<img alt="" src="attachments/112390856/112390862.png" />{width="50"}<br />
+<p>Click the <strong>Event Simulator</strong> icon in the left pane of the editor to
+    open the <strong>Single Simulation</strong> panel.<br />
+<img alt="Event Simulation icon" src="../../images/Testing-Siddhi-Applications/Event_Simulation_Icon.png" /><br />
     It opens the left panel for event simulation as follows.<br />
-<img alt="" src="attachments/112390856/112390857.png" /></p>
+<img alt="Event Simulation Panel" src="../../images/Testing-Siddhi-Applications/Event_Simulation_Panel.png" /></p>
 </li>
-<li>In the <strong>Siddhi App Name</strong> field, select the name of the application
-    for which you want to simulate events. For this example, select
-    <strong>ReceiveAndCount</strong> .</li>
-<li>In the <strong>Stream Name</strong> field, select the stream defined in the
-    Siddhi application for which you want to simulate events. For this
-    example, select <strong>SweetProductionStream</strong> .</li>
-<li>Enter values for the attributes of the selected stream that appear
-    in the pane, and click <strong>Send</strong> .</li>
-<li>In this Siddhi application, you have a sink of the log
-    type connected to the <code class="codehilite">TotalCountStream</code> output
-    stream. Therefore, once the events are received at the input stream,
-    a log ise printed in the output console as shown below.<br />
-<img alt="" src="attachments/112390856/112390861.png" />{width="913"}</li>
+<li>Enter Information in the <strong>Single Simulation</strong> panel as described
+     below.  <ol>
+<li>In the <strong>Siddhi App Name</strong> field, select a currently deployed
+    Siddhi application.</li>
+<li>In the <strong>Stream Name</strong> field, select the event stream for which
+    you want to simulate events. The list displays all the event
+    streams defined in the selected Siddhi application.</li>
+<li>If you want to simulate the event for a specific time different
+    to the current time, enter a valid timestamp in the
+    <strong>Timestamp</strong> field. To select a timestamp, click the time and
+    calendar icon next to the <strong>Timestamp</strong> field.<br />
+<img alt="Time and Calendar icon" src="../../images/Testing-Siddhi-Applications/Time_And_Calendar.png" /> <br/>
+    Then select the required date, hour, minute, second and millisecond. Click
+    <strong>Done</strong> to select the time stamp entered. If you want to select
+    the current time, you can click <strong>Now</strong>.</li>
+<li>Enter values for the attributes of the selected stream.</li>
+</ol>
+</li>
+<li>Click <strong>Send</strong> to start sending the event. The simulated event is
+    logged similar to the sample log given below.<br />
+<img alt="Output Log" src="../../images/Testing-Siddhi-Applications/Output_Log.png" /></li>
+</ol>
+<h3 id="simulating-multiple-events-via-csv-files">Simulating multiple events via CSV files<a class="headerlink" href="#simulating-multiple-events-via-csv-files" title="Permanent link">&para;</a></h3>
+<p>This section explains how to generate multiple events via CSV files to
+be analyzed via the Streaming Integrator.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Before simulating events, a Siddhi application should be deployed.</p>
+</div>
+<p>To simulate multiple events from a CSV file, follow the steps given
+below.</p>
+<ol>
+<li>
+<p>Access the Streaming Integrator Studio via the <code class="codehilite">http://localhost:/editor</code>
+   URL. The Streaming Integrator Studio opens as shown below.</p>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>The default URL is<code class="codehilite">http://localhost:9090/editor</code>.</p>
+</div>
+<p><img alt="SI Studio Welcome Page" src="../../images/Testing-Siddhi-Applications/Stream_Processor_Studio_Welcome_Page.png" />  </p>
+</li>
+<li>
+<p>Click the <strong>Event Simulator</strong> icon in the left pane of the editor.<br />
+<img alt="Event Simulator Icon" src="../../images/Testing-Siddhi-Applications/Event_Simulation_Icon.png" /></p>
+</li>
+<li>
+<p>In the event simulation left panel that opens, click on the <strong>Feed Simulation</strong> tab.<br />
+<img alt="Feed Simulation tab" src="../../images/Testing-Siddhi-Applications/Feed_Simulation_Tab.png" />  </p>
+</li>
+<li>
+<p>To create a new simulation, click <strong>Create</strong> . This opens the
+    following panel.<br />
+<img alt="New feed simulatioin" src="../../images/Testing-Siddhi-Applications/Feed_Simulation.png" /></p>
+</li>
+<li>Enter values for the displayed fields as follows.<ol>
+<li>In the <strong>Simulation Name</strong> field, enter a name for the event
+    simulation.</li>
+<li>In the <strong>Description</strong> field, enter a description for the event
+    simulation.</li>
+<li>If you want to receive events only during a specific time
+    interval, enter that time interval in the <strong>Time Interval</strong>
+    field.</li>
+<li>Click <strong>Advanced Configurations</strong> if you want to enter detailed
+    specifications to filter events from the CSV file. Then enter
+    information as follows.<ol>
+<li>If you want to include only events that belong to a specific
+    time interval in the simulation feed, enter the start time
+    and the end time  in the <strong>Starting Event's Timestamp</strong> and
+    <strong>Ending Event's Timestamp</strong> fields respectively. To select
+    a timestamp, click the time and calendar icon next to the
+    field.<br />
+<img alt="Time and calendar icon" src="../../images/Testing-Siddhi-Applications/Time_And_Calendar.png" /><br />
+    Then select the required date, hour, minute, second and
+    millisecond. Click <strong>Done</strong> to select the time stamp
+    entered. If you want to select the current time, you can
+    click <strong>Now</strong> .</li>
+<li>If you want to restrict the event simulation feed to a
+    specific number of events, enter the required number in the
+    <strong>No of Events</strong> field.</li>
+</ol>
+</li>
+<li>In the <strong>Simulation Source</strong> field, select <strong>CSV File</strong> .</li>
+<li>Click <strong>Add Simulation Source</strong> to open the following section.<br />
+<img alt="Simulation Source" src="../../images/Testing-Siddhi-Applications/Simulation_Source.png" /><br />
+    In the <strong>Siddhi App Name</strong> field, select the required Siddhi
+    application. Then more fields as shown below.<br />
+<img alt="Feed simulation details" src="../../images/Testing-Siddhi-Applications/Feed_Simulation_Details.png" /><br />
+    Enter details as follows:<ol>
+<li>In the <strong>Stream Name</strong> field, select the stream for which
+    you want to simulate events. All the streams defined in the
+    Siddhi App you selected are available in the list.</li>
+<li>In the <strong>CSV File</strong> field, select an available CSV file. If
+    no CSV files are currently uploaded, select <strong>Upload File</strong>
+    from the list. This opens the <strong>Upload File</strong> dialog box.<br />
+<img alt="Uploading the CSV file" src="../../images/Testing-Siddhi-Applications/Upload_CSV.png" /><br />
+    Click <strong>Choose File</strong> and browse for the CSV file you want
+    to upload. Then click <strong>Upload</strong> .</li>
+<li>In the <strong>Delimiter</strong> field, enter the character you want to
+    use in order to separate the attribute values in each row of
+    the CSV file.</li>
+<li>If you want to enter more detailed specificiations, click
+    <strong>Advanced Configuration</strong> . Then enter details as follows.<ol>
+<li>To use the index value as the event timestamp, select
+    the <strong>Timestamp Index</strong> option. Then enter the relevant
+    index.</li>
+<li>If you want to increase the value of the timestamp for
+    each new event, select the <strong>Increment event time
+    by(ms)</strong> option. Then enter the number of milliseconds
+    by which you want to increase the timestamp of each
+    event.</li>
+<li>If you want the events to arrive in order based on the
+    timestamp, select <strong>Yes</strong> under the <strong>Timestamp
+    Interval</strong> option.</li>
+</ol>
+</li>
+<li>Click <strong>Save</strong> to save the information relating to the CSV
+    file. The name os the CSV file appears in the <strong>Feed
+    Simulation</strong> tab in the left panel.</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>To simulate a CSV file that is uploaded and visible in the <strong>Feed
+    Simulation</strong> tab in the left panel, click on the arrow to its right.
+    The simulated events are logged n the output console.</li>
+</ol>
+<h3 id="simulating-multiple-events-via-databases">Simulating multiple events via databases<a class="headerlink" href="#simulating-multiple-events-via-databases" title="Permanent link">&para;</a></h3>
+<p>This section explains how to generate multiple events via databases to
+be analyzed via the Streaming Integrator.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Before simulating events via databases:
+-   A Siddhi application must be created.
+-   The database from which you want to simulate events must be already
+    configured for the Streaming Integrator.</p>
+</div>
+<p>To simulate multiple events from a database, follow the procedure below:</p>
+<ol>
+<li>
+<p>Access the Streaming Integrator Studio via the <code class="codehilite">http://localhost:/editor</code>
+   URL. The Streaming Integrator Studio opens as shown below.</p>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>The default URL is<code class="codehilite">http://localhost:9090/editor</code>.</p>
+</div>
+<p><img alt="SI Studio Welcome Page" src="../../images/Testing-Siddhi-Applications/Stream_Processor_Studio_Welcome_Page.png" />  </p>
+</li>
+<li>
+<p>Click the <strong>Event Simulator</strong> icon in the left pane of the editor.<br />
+<img alt="Event Simulator Icon" src="../../images/Testing-Siddhi-Applications/Event_Simulation_Icon.png" /></p>
+</li>
+<li>Click the <strong>Feed</strong> tab to open the <strong>Feed Simulation</strong> panel.<br />
+<img alt="Feed Simulation tab" src="../../images/Testing-Siddhi-Applications/Feed_Simulation.png" /></li>
+<li>To create a new simulation, click <strong>Create</strong>. This opens the
+    following panel.<br />
+<img alt="New Simulation" src="../../images/Testing-Siddhi-Applications/Database_Simulation.png" /></li>
+<li>
+<p>Enter values for the displayed fields as follows.</p>
+<ol>
+<li>In the <strong>Simulation Name</strong> field, enter a name for the event
+    simulation.</li>
+<li>In the <strong>Description</strong> field, enter a description for the event
+    simulation.</li>
+<li>If you want to simulate events at time intervals of a specific
+    length, enter that length in milliseconds in the <strong>Time
+    Interval(ms)</strong> field.</li>
+<li>If you want to enter more advanced conditions to simulate the
+    events, click <strong>Advanced Configurations</strong>. As a result, the
+    following section is displayed.<br />
+<img alt="Advanced onfigurations" src="../../images/Testing-Siddhi-Applications/Feed_Simulation_Database_Advanced.png" />{width="442"
+    height="191"}<br />
+    Then enter details as follows.<ol>
+<li>If you want to include only events that belong to a specific
+    time interval in the simulation feed, enter the start time
+    and the end time  in the <strong>Starting Event's Timestamp</strong> and
+    <strong>Ending Event's Timestamp</strong> fields respectively. To select
+    a timestamp, click the time and calendar icon next to the
+    field.<br />
+<img alt="Time and Calendar icon" src="../../images/Testing-Siddhi-Applications/Time_And_Calendar.png" /><br />
+    Then select the required date, hour, minute, second and
+    millisecond. Click <strong>Done</strong> to select the time stamp
+    entered. If you want to select the current time, you can
+    click <strong>Now</strong> .</li>
+<li>If you want to restrict the event simulation feed to a
+    specific number of events, enter the required number in the
+    <strong>No of Events</strong> field.</li>
+</ol>
+</li>
+<li>
+<p>In the <strong>Simulation Source</strong> field, select <strong>Database</strong> . To
+    connect to a new database, click <strong>Add Simulation Source</strong> to
+    open the following section.<br />
+<img alt="Configuring the database" src="../../images/Testing-Siddhi-Applications/Configure_Database_For_Simulation.png" /><br />
+    Enter information as follows:</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Siddhi App Name</strong></td>
+<td>Select the Siddhi Application in which the event stream for which you want to simulate events is defined.</td>
+</tr>
+<tr>
+<td><strong>Stream Name</strong></td>
+<td>Select the event stream for which you want to simulate events. All the streams defined in the Siddhi Application you selected are available to be selected.</td>
+</tr>
+<tr>
+<td><strong>Data Source</strong></td>
+<td>The JDBC URL to be used to access the required database.</td>
+</tr>
+<tr>
+<td><strong>Driver Class</strong></td>
+<td>The driver class name of the selected database.</td>
+</tr>
+<tr>
+<td><strong>Username</strong></td>
+<td>The username that must be used to access the database.</td>
+</tr>
+<tr>
+<td><strong>Password</strong></td>
+<td>The password that must be used to access the database.</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li>
+<p>Once you have entered the above information, click <strong>Connect to
+    Database</strong> . If the datasource is correctly configured, the
+    following is displayed to indicate that Streaming Integrator can successfully
+    connect to the database.<br />
+<img alt="Successfully connected to database" src="../../images/Testing-Siddhi-Applications/Successfully_Connected_Message.png" /></p>
+</li>
+<li>To use the index value as the event timestamp, select the
+    <strong>Timestamp Index</strong> option. Then enter the relevant index. If
+    you want the vents in the CSV file to be sorted based on the
+    timestamp, select the <strong>Yes</strong> option under <strong>CSV File is Ordered
+    by Timestamp</strong> .</li>
+<li>To increase the timestamp of the published events, select the
+    <strong>Timestamp Interval</strong> option. Then enter the number of
+    milliseconds by which you want to increase the timestamp of each
+    event.</li>
+</ol>
+</li>
+<li>
+<p>Click <strong>Save</strong>. This adds the fed simulation you created as an
+    active simulation in the <strong>Feed Simulation</strong> tab of the left panel
+    as shown below.<br />
+<img alt="Feed simulation added" src="../../images/Testing-Siddhi-Applications/Created_Feed_Simulation.png" /></p>
+</li>
+<li>Click on the play button of this simulation to open the <strong>Run or
+    Debug</strong> dialog box.<br />
+<img alt="Run or Debug dialog box" src="../images/Testing-Siddhi-Applications/Run_Or_Debug..png" /></li>
+<li>If you want to run the Siddhi application you previously selected
+    and simulate events for it, select <strong>Run</strong> . If you want to simulate
+    events in the <strong>Debug</strong> mode, select <strong>Debug</strong> . Once you have
+    selected the required mode, click <strong>Start Simulation</strong> . A message
+    appears to inform you that the feed simulation started successfully.
+    Similarly, when the simulation is completed, a message appears to
+    inform you that the event simulation has finished.</li>
+</ol>
+<h3 id="generating-random-events">Generating random events<a class="headerlink" href="#generating-random-events" title="Permanent link">&para;</a></h3>
+<p>This section explains how to generate random data to be analyzed via the Streaming Integrator.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Before simulating events, a Siddhi application should be deployed.</p>
+</div>
+<p>To simulate random events, follow the steps given below:</p>
+<ol>
+<li>
+<p>Access the Streaming Integrator Studio via the <code class="codehilite">http://localhost:/editor</code>
+   URL. The Streaming Integrator Studio opens as shown below.</p>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>The default URL is<code class="codehilite">http://localhost:9090/editor</code>.</p>
+</div>
+<p><img alt="SI Studio Welcome Page" src="../../images/Testing-Siddhi-Applications/Stream_Processor_Studio_Welcome_Page.png" />  </p>
+</li>
+<li>
+<p>Click the <strong>Event Simulator</strong> icon in the left pane of the editor.<br />
+<img alt="Event Simulator Icon" src="../../images/Testing-Siddhi-Applications/Event_Simulation_Icon.png" /></p>
+</li>
+<li>Click the <strong>Feed</strong> tab to open the <strong>Feed Simulation</strong> panel.<br />
+<img alt="Feed Simulation" src="../../images/Testing-Siddhi-Applications/Feed_Simulation_Panel.png" /></li>
+<li>To create a new simulation, click <strong>Create</strong> . This opens the
+    following panel.<br />
+<img alt="Create feed simulation" src="../../images/Testing-Siddhi-Applications/WSO2_Feed_Simulation.png" /></li>
+<li>
+<p>Enter values for the displayed fields as follows.</p>
+<ol>
+<li>In the <strong>Simulation Name</strong> field, enter a name for the event
+    simulation.</li>
+<li>In the <strong>Description</strong> field, enter a description for the event
+    simulation.</li>
+<li>If you want to include only events that belong to a specific
+    time interval in the simulation feed, enter the start time and
+    the end time  in the <strong>Starting Event's Timestamp</strong> and <strong>Ending
+    Event's Timestamp</strong> fields respectively. To select a timestamp,
+    click the time and calendar icon next to the field.<br />
+<img alt="Time and Calendar icon" src="../../images/Testing-Siddhi-Applications/Time_And_Calendar.png" /><br />
+    Then select the required date, hour, minute, second and
+    millisecond. Click <strong>Done</strong> to select the time stamp entered. If
+    you want to select the current time, you can click <strong>Now</strong> .</li>
+<li>If you want to restrict the event simulation feed to a specific
+    number of events, enter the required number in the <strong>No of
+    Events</strong> field.</li>
+<li>If you want to receive events only during a specific time
+    interval, enter that time interval in the <strong>Time Interval</strong>
+    field.</li>
+<li>In the <strong>Simulation Source</strong> field, select <strong>Random</strong>.</li>
+<li>If the random simulation source from which you want to simulate
+    events does not already exist in the <strong>Feed Simulation</strong> pane,
+    click <strong>Add New</strong> to open the following section.<br />
+<img alt="Random Simulation Source" src="../../images/Testing-Siddhi-Applications/Random_Simulation_Source.png" /></li>
+<li>
+<p>Enter information relating to the random source as follows:</p>
+<ol>
+<li>In the <strong>Siddhi App Name</strong> field, s elect the name of the
+    Siddhi App with the event stream for which the events are
+    simulated.</li>
+<li>In the <strong>Stream Name</strong> field, select the event stream for
+    which you want to simulate events. All the streams defined
+    in the Siddhi Application you selected are available to be
+    selected.</li>
+<li>In the <strong>Timestamp Interval</strong> field, enter the number of
+    milliseconds by which you want to increase the timestamp of
+    each event.</li>
+<li>
+<p>To enter values for the stream attributes, follow
+    the instructions below.</p>
+<ul>
+<li>To enter a custom value for a stream attribute, select
+    <strong>Custom data based</strong> from the list. When you select
+    this value, data field in which the required value can
+    be entered appears as shown in the example below.<br />
+<img alt="Custom data based simulation" src="../../images/Testing-Siddhi-Applications/Custom-data-based.png" />{width="235"
+    height="88"}</li>
+<li>
+<p>To enter a primitive based value, select <strong>Primitive
+    based</strong> from the list. The information to be entered
+    varies depending on the data type of the attribute. The
+    following table explains the information you need to
+    enter when you select <strong>Primitive based</strong> for each data
+    type.  </p>
+<p><table>
+<thead>
+<tr class="header">
+<th>Data Type</th>
+<th>Values to enter</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>                     STRING                    </code></td>
+<td>Specify a length in the <strong>Length</strong> field that appears. This results in a value of the specified length being auto-generated.</td>
+</tr>
+<tr class="even">
+<td><code>                     FLOAT                    </code> or <code>                     DOUBLE                    </code></td>
+<td>The value generated for the attribute is based on the following values specified.
+<ul>
+<li><strong>Min</strong> : The minimum value.</li>
+<li><strong>Max</strong> : The maximum value.</li>
+<li><strong>Precision</strong> : The precise value. The number of decimals included in the auto-generated values are the same as that of the value specified here.</li>
+</ul></td>
+</tr>
+<tr class="odd">
+<td><code>                     INT                    </code> or <code>                     LONG                    </code></td>
+<td>The value generated for the attribute is based on the following values specified.
+<ul>
+<li><strong>Min</strong> : The minimum value.</li>
+<li><strong>Max</strong> : The maximum value.</li>
+</ul></td>
+</tr>
+<tr class="even">
+<td><code>                     BOOL                    </code></td>
+<td>No further information is required because <code>                     true                    </code> and <code>                     false                    </code> values are randomly generated.</td>
+</tr>
+</tbody>
+</table></p>
+</li>
+<li>
+<p>To randomly assign values based on a pre-defined set of
+    meaningful values, select <strong>Property based</strong> from the
+    list. When you select this value, a field in which the
+    set of available values are listed appears as shown in
+    the example below.<br />
+<img alt="Property-based simulation" src="../../images/Testing-Siddhi-Applications/Property-based.png" /></p>
+</li>
+<li>To assign a regex value, select <strong>Regex based</strong> from the
+    list.</li>
+</ul>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>
+<p>Click <strong>Save</strong> to save the simulation information.  The saved random
+    simulation appears in the <strong>Feed</strong> tab of the left panel.</p>
+</li>
+<li>To simulate events, click the arrow to the right os the saved
+    simulation (shown in the example below).<br />
+<img alt="Simulating random events" src="../../images/Testing-Siddhi-Applications/Simulate_Events.png" /><br />
+    The simulated events are logged in the CLI as shown in the extract
+    below.<br />
+<img alt="Random Events Output Log" src="../../images/Testing-Siddhi-Applications/Random_Events_Output_Log.png" />  </li>
 </ol>
                 
                   
@@ -1832,6 +2347,41 @@ Siddhi application</a> .</p>
       
         
 <footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+        
+          <a href="../creating-a-Siddhi-Application/" title="Creating Siddhi Applications" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+            </div>
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                Creating Siddhi Applications
+              </span>
+            </div>
+          </a>
+        
+        
+          <a href="../debugging_siddhi_applications/" title="Debugging Siddhi Applications" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                Debugging Siddhi Applications
+              </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
