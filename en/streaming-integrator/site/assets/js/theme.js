@@ -183,6 +183,28 @@ request.onerror = function() {
 request.send();
 
 /*
+ * Initialize distribution dropdown component
+ */
+
+var distributionDropdown =  document.getElementById('distribution-select-dropdown');
+
+const distributionURLList = [ 'ballerina-integrator','micro-integrator','streaming-integrator' ];
+
+if (distributionDropdown){
+    distributionURLList.forEach(function(key){
+        var liElem = document.createElement('li');
+        var target = '_self';
+        var url = docSetUrl + key;
+
+        liElem.className = 'md-tabs__item mb-tabs__dropdown';
+        liElem.innerHTML =  '<a href="' + url + '" target="' +
+            target + '">' + key.replace(/-/g, " ") + '</a>';
+
+        distributionDropdown.insertBefore(liElem, distributionDropdown.lastChild);
+    });
+}
+
+/*
  * Initialize highlightjs
  */
 hljs.initHighlightingOnLoad();
@@ -193,11 +215,17 @@ hljs.initHighlightingOnLoad();
 var tocBtn = document.querySelector('.md-sidebar.md-sidebar--secondary #tocToggleBtn');
 var tocClass = document.getElementsByTagName('main')[0];
 
-tocBtn.onclick = function () {
-    event.preventDefault();
-    tocClass.classList.toggle('hide-toc');
-};
-
+if (tocBtn) {
+    tocBtn.onclick = function () {
+        event.preventDefault();
+        tocClass.classList.toggle('hide-toc');
+        if (tocBtn.innerHTML === "keyboard_arrow_right") {
+            tocBtn.innerHTML = "keyboard_arrow_left";
+        } else {
+            tocBtn.innerHTML = "keyboard_arrow_right";
+        }
+    };
+}
 
 /*
  * TOC position highlight on scroll
@@ -218,7 +246,9 @@ var callback = function(mutationsList, observer) {
 
 var observer = new MutationObserver(callback);
 
-listElems[0].classList.add('active');
+if (listElems.length > 0) {
+    listElems[0].classList.add('active');
+}
 
 for (var i = 0; i < observeeList.length; i++) {
     var el = observeeList[i];
@@ -288,4 +318,3 @@ window.addEventListener('scroll', function() {
         editIcon.classList.remove('active');
     }
 });
-
