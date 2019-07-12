@@ -1,4 +1,4 @@
-# Developing Cloud Native Integration
+# Integration Development Kick Start
 
 Integration developers need efficient tools to build and test all the
 integration use cases required by the enterprise before pushing them
@@ -9,21 +9,8 @@ case using **WSO2 Integration Studio** . This tool contains an embedded
 allows you to conveniently design, develop, and test your integration
 artifacts before deploying them in your production environment.
 
--   [Example use case](#DevelopingCloudNativeIntegration-Exampleusecase)
--   [Running the use
-    case](#DevelopingCloudNativeIntegration-Runningtheusecase)
-    -   [Step 1: Set up the
-        workspace](#DevelopingCloudNativeIntegration-Step1:Setuptheworkspace)
-    -   [Step 2: Develop the integration
-        artifacts](#DevelopingCloudNativeIntegration-Step2:Developtheintegrationartifacts)
-    -   [Step 3: Build and Run the integration
-        artifacts](#DevelopingCloudNativeIntegration-Step3:BuildandRuntheintegrationartifacts)
-    -   [Step 4: Test the integration
-        flow](#DevelopingCloudNativeIntegration-testingStep4:Testtheintegrationflow)
-    -   [Step 5: Publish to
-        production](#DevelopingCloudNativeIntegration-Step5:Publishtoproduction)
 
-### Example use case
+## Example use case
 
 You will set up a service (named **integration-service** ), which can
 communicate with a backend service (named **order-processing-be** ) that
@@ -34,20 +21,20 @@ mediator in the API forwards the request to the URL of the backend
 service ( **order-processing-be** ).
 
 ![Running a REST API on
-Docker](attachments/119136105/119136106.png "Running a REST API on Docker"){width="550"}
+Docker](../assets/img/developer_workflow.png)
 
 The **order-processing-be** receives the message, processes the request,
 and returns the response by appending the 'orderID', 'price', and
 'status' to the order details.
 
 ![Order processing backend
-service](attachments/119136105/119136107.png "Order processing backend service"){width="650"}  
+service](../assets/img/backend.png)
 
-### Running the use case
+## Running the use case
 
 Follow the steps given below and get started.
 
-#### Step 1: Set up the workspace
+### Step 1: Set up the workspace
 
 In this guide, you will see how this use case can be executed by running
 the Micro Integrator on Docker, on Kubernetes, or on a VM.
@@ -63,7 +50,7 @@ the Micro Integrator on Docker, on Kubernetes, or on a VM.
     have completed this step, you should have **kubectl** configured to
     use Minikube from your terminal.
 
-#### Step 2: Develop the integration artifacts
+### Step 2: Develop the integration artifacts
 
 We use **WSO2 Integration Studio** to develop the integration artifacts.
 To run this use case, you need two REST API artifacts for the frontend
@@ -75,16 +62,9 @@ artifacts](#DevelopingCloudNativeIntegration-import_artifacts) of the
 two services to WSO2 Integration Studio, and proceed from there. If you
 want to build the artifacts from scratch, see [Working with WSO2
 Integration
-Studio](https://docs.wso2.com/display/EI650/Working+with+WSO2+Integration+Studio)
-.
+Studio](https://docs.wso2.com/display/EI650/Working+with+WSO2+Integration+Studio).
 
-![](images/icons/grey_arrow_down.png){.expand-control-image} Integration
-service
-
--   [**Design View**](#59299674bbaa4a9fb5619dd4d60cec99)
--   [**Source View**](#0c639e4d49284ca0a98501cf206b93bd)
-
-![](attachments/119136105/119136108.png){width="700"}
+**Integration Service**
 
 ``` java
     <?xml version="1.0" encoding="UTF-8"?>
@@ -104,13 +84,7 @@ service
     </api>
 ```
 
-![](images/icons/grey_arrow_down.png){.expand-control-image} Backend
-service
-
--   [**Design View**](#00e4a2c0a07f4a78ba59af1adfd6e92b)
--   [**Source View**](#5272304b87e64862ab8bec8e000cf04d)
-
-![](attachments/119136105/119136109.png){width="800" height="414"}
+**Backend Service**
 
 ``` java
     <?xml version="1.0" encoding="UTF-8"?>
@@ -165,18 +139,18 @@ To export the pre-built artifacts:
         backend should be as follows:
 
         ``` java
-                <endpoint>
-                    <address uri="http://backend:8290/order"/>
-                </endpoint>
+        <endpoint>
+            <address uri="http://backend:8290/order"/>
+        </endpoint>
         ```
 
     2.  When you run the two services on Kubernetes, the endpoint URL of
         the backend should be as follows:
 
         ``` java
-                    <endpoint>
-                        <address uri="http://order-process-be-service:8290/order"/>
-                    </endpoint>
+        <endpoint>
+            <address uri="http://order-process-be-service:8290/order"/>
+        </endpoint>
         ```
 
     3.  When you run the two services on your VM, the endpoint URL of
@@ -185,29 +159,28 @@ To export the pre-built artifacts:
         localhost as the IP address.
 
         ``` java
-                    <endpoint>
-                        <address uri="http://localhost:8291/order"/>
-                    </endpoint>
+        <endpoint>
+            <address uri="http://localhost:8291/order"/>
+        </endpoint>
         ```
 
 You can now build and run the artifacts in your local environment.
 
-#### Step 3: Build and Run the integration artifacts
+### Step 3: Build and Run the integration artifacts
 
-![](images/icons/grey_arrow_down.png){.expand-control-image} Build and
-Run on Docker
+#### Using Docker
 
-To **Build the backend (Docker image)** :
-
-1.  Right-click the **BackendServiceCompositeApplication** (application
+To Build the backend (Docker image):
+    
+1. Right-click the **BackendServiceCompositeApplication** (application
     project of the Backend service) in the project explorer, and click
-    **Generate Docker Image** .
-2.  In the dialog that opens, enter the following details, and click
-    **Next** .
+    **Generate Docker Image**.
 
-    |                             |                                                                                                                                                                              |
+2.  In the dialog that opens, enter the following details, and click **Next**.
+
+    | Parameter                   |                                Description                                                                                                                                   |
     |-----------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-    | **Name of the application** | The name of the composite application with the artifacts created for your EI project. The name of the EI project is displayed by default, but it can be changed if required. |
+    | Name of the application     | The name of the composite application with the artifacts created for your EI project. The name of the EI project is displayed by default, but it can be changed if required. |
     | Application version         | Enter **1.0.0** as the version of the composite application.                                                                                                                 |
     | Name of Docker Image        | Enter **backend\_docker\_image** as the name of the Docker image.                                                                                                            |
     | Docker Image Tag            | Enter **latest** as the tag for the Docker image to be used for reference.                                                                                                   |
@@ -219,7 +192,7 @@ To **Build the backend (Docker image)** :
     the backend service) is now created and deployed your local Docker
     registry.
 
-To **build the integration service (Docker image)** :
+To build the integration service (Docker image):
 
 1.  Right-click the **IntegrationServiceCompositeApplication**
     (application project of the integration service) in the project
@@ -227,7 +200,7 @@ To **build the integration service (Docker image)** :
 2.  In the dialog that opens, enter the following details, and click
     **Next** .
 
-    |                             |                                                                                                                                                                               |
+    |         Parameter           |                     Description                                                                                                                                              |
     |-----------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
     | **Name of the application** | The name of the composite application with the artifacts created for your EI project. The name of the EI projecty is displayed by default, but it can be changed if required. |
     | Application version         | Enter **1.0.0** as the version of the composite application.                                                                                                                  |
@@ -241,7 +214,7 @@ To **build the integration service (Docker image)** :
     the integration service) is now created and deployed your local
     Docker registry.
 
-To **compose and run the Docker images** :
+To compose and run the Docker images:
 
 1.  Download the
     [docker-compose.yml](attachments/119136105/119136934.yml) file
@@ -275,14 +248,13 @@ To **compose and run the Docker images** :
     images.
 
     ``` java
-            docker-compose up -d
+    docker-compose up -d
     ```
 
 The two Docker containers are now running. You can now [test the
 integration flow](#DevelopingCloudNativeIntegration-testing) .
 
-![](images/icons/grey_arrow_down.png){.expand-control-image} Build and
-Run on Kubernetes
+#### Using Kubernetes
 
 To **build the backend (Docker image)** :
 
@@ -292,9 +264,9 @@ To **build the backend (Docker image)** :
 2.  In the dialog that opens, enter the following details, and click
     **Next** .
 
-    |                             |                                                                                                                                                                              |
+    |    Parameter                |                                             Description                                                                                                                     |
     |-----------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-    | **Name of the application** | The name of the composite application with the artifacts created for your EI project. The name of the EI project is displayed by default, but it can be changed if required. |
+    | Name of the application | The name of the composite application with the artifacts created for your EI project. The name of the EI project is displayed by default, but it can be changed if required. |
     | Application version         | Enter **1.0.0** as the version of the composite application.                                                                                                                 |
     | Name of Docker Image        | Enter **backend\_docker\_image\_k8** as the name of the Docker image.                                                                                                        |
     | Docker Image Tag            | Enter **latest** as the tag for the Docker image to be used for reference.                                                                                                   |
@@ -303,29 +275,21 @@ To **build the backend (Docker image)** :
 3.  Select the integration artifacts in the **BackendService** project
     folder, and click **Finish** .
 
-To **build the integration service (Docker image)** :
+To **build the integration service (Docker image)**:
 
-!!! tip
-
-Before you build the integration service, be sure that you have changed
-the endpoint URL of your integration service to the following:
-
+> Before you build the integration service, be sure that you have changed the endpoint URL of your integration service to the following:
 ``` java
-    <endpoint>
-        <address uri="http://order-process-be-service:8290/order"/>
-    </endpoint>
+<endpoint>
+    <address uri="http://order-process-be-service:8290/order"/>
+</endpoint>
 ```
-    
 
-1.  Right-click the **IntegrationServiceCompositeApplication**
-    (application project of the integration service) in the project
-    explorer, and click **Generate Docker Image** .
-2.  In the dialog that opens, enter the following details, and click
-    **Next** .
+1.  Right-click the **IntegrationServiceCompositeApplication** (application project of the integration service) in the project explorer, and click **Generate Docker Image** .
+2.  In the dialog that opens, enter the following details, and click **Next**.
 
-    |                             |                                                                                                                                                                              |
+    |    Parameter                |                                             Description                                                                                                                     |
     |-----------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-    | **Name of the application** | The name of the composite application with the artifacts created for your EI project. The name of the EI project is displayed by default, but it can be changed if required. |
+    | Name of the application | The name of the composite application with the artifacts created for your EI project. The name of the EI project is displayed by default, but it can be changed if required. |
     | Application version         | Enter **1.0.0** as the version of the composite application.                                                                                                                 |
     | Name of Docker Image        | Enter **integration\_docker\_image\_k8** as the name of the Docker image.                                                                                                    |
     | Docker Image Tag            | Enter **latest** as the tag for the Docker image to be used for reference.                                                                                                   |
@@ -339,7 +303,7 @@ To set up a **Minikube** cluster:
 1.  Start Minikube on your terminal:
 
     ``` java
-        minikube start
+    minikube start
     ```
 
 2.  Execute the command given below to start using Minikube's built-in
@@ -347,7 +311,7 @@ To set up a **Minikube** cluster:
     Docker images for the Minikube environment.
 
     ``` java
-            eval $(minikube docker-env)
+    eval $(minikube docker-env)
     ```
 
 To **load the two Docker images** to the Minikube environment execute
@@ -357,7 +321,7 @@ directory paths to the .tar files of your Docker images.
 1.  To load the backend service, execute the following command:
 
     ``` java
-            docker load --input <file_path-tar_file_of_backend_service>
+    docker load --input <file_path-tar_file_of_backend_service>
     ```
 
     Verify (by running the '
@@ -368,13 +332,13 @@ directory paths to the .tar files of your Docker images.
     Use the image ID and tag your image in Minikube:
 
     ``` java
-            docker tag 3fd3399caa63 backend_docker_image_k8
+    docker tag 3fd3399caa63 backend_docker_image_k8
     ```
 
 2.  To load the integration service execute the following command:
 
     ``` java
-            docker load --input <file_path-tar_file_of_integration_service>
+    docker load --input <file_path-tar_file_of_integration_service>
     ```
 
     Verify (by running the '
@@ -386,7 +350,7 @@ directory paths to the .tar files of your Docker images.
     Use the image ID and tag your image in Minikube:  
 
     ``` java
-            docker tag 10d6e28754fd integration_docker_image_k8
+    docker tag 10d6e28754fd integration_docker_image_k8
     ```
 
 To **compose and run the Docker images** on Minikube:
@@ -399,48 +363,43 @@ To **compose and run the Docker images** on Minikube:
     execute the following command:
 
     ``` java
-            kubectl create -f k8s-deployment.yaml
+    kubectl create -f k8s-deployment.yaml
     ```
-
-      
 
 3.  Check whether all the Kubernetes artifacts are deployed successfully
     by executing the following command:
-      
 
     ``` java
-            kubectl get all
+    kubectl get all
     ```
 
     You will get a result similar to the following. Be sure that the
     deployment is in 'Running' state.
 
     ``` java
-            NAME                                            READY   STATUS    RESTARTS   AGE
-            pod/mi-helloworld-deployment-56f58c9676-djbwh   1/1     Running   0          14m
-            pod/mi-helloworld-deployment-56f58c9676-xj4fq   1/1     Running   0          14m
+    NAME                                            READY   STATUS    RESTARTS   AGE
+    pod/mi-helloworld-deployment-56f58c9676-djbwh   1/1     Running   0          14m
+    pod/mi-helloworld-deployment-56f58c9676-xj4fq   1/1     Running   0          14m
              
-            NAME                            TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)          AGE
-            service/kubernetes              ClusterIP   10.96.0.1       <none>        443/TCP          25m
-            service/mi-helloworld-service   NodePort    10.110.50.146   <none>        8290:32100/TCP   14m
-            NAME                                       READY   UP-TO-DATE   AVAILABLE   AGE
-            deployment.apps/mi-helloworld-deployment   2/2     2            2           14m
+    NAME                            TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)          AGE
+    service/kubernetes              ClusterIP   10.96.0.1       <none>        443/TCP          25m
+    service/mi-helloworld-service   NodePort    10.110.50.146   <none>        8290:32100/TCP   14m
+    NAME                                       READY   UP-TO-DATE   AVAILABLE   AGE
+    deployment.apps/mi-helloworld-deployment   2/2     2            2           14m
              
-            NAME                                                  DESIRED   CURRENT   READY   AGE
-            replicaset.apps/mi-helloworld-deployment-56f58c9676   2         2         2       14m
+    NAME                                                  DESIRED   CURRENT   READY   AGE
+    replicaset.apps/mi-helloworld-deployment-56f58c9676   2         2         2       14m
     ```
 
 The two Docker containers are now running. You can now [test the
-integration flow](#DevelopingCloudNativeIntegration-testing) .
+integration flow](#DevelopingCloudNativeIntegration-testing).
 
-![](images/icons/grey_arrow_down.png){.expand-control-image} Build and
-Run on a VM
+#### Using a VM
 
 **Build and Run the backend service**
 
 1.  Install the [binary of WSO2 Micro
-    Integrator](https://docs.wso2.com/display/EI650/Installing+WSO2+Micro+Integrator#InstallingWSO2MicroIntegrator-MicroIntegratoronaVM)
-    . The installation location of this server instance will be referred
+    Integrator](https://docs.wso2.com/display/EI650/Installing+WSO2+Micro+Integrator#InstallingWSO2MicroIntegrator-MicroIntegratoronaVM). The installation location of this server instance will be referred
     to as \<MI1\_HOME\>.
 2.  Setup the backend server
     1.  Create a CAR file from the artifacts in your BackendService
@@ -454,8 +413,7 @@ Run on a VM
         of 11. This changes the effective port of the Micro Integrator
         to **8291** . Note that the following commands are applicable if
         the product is set up [using the
-        **installer**](https://docs.wso2.com/display/EI650/Installing+WSO2+Micro+Integrator#InstallingWSO2MicroIntegrator-RunningtheMicroIntegrator)
-        .
+        **installer**](https://docs.wso2.com/display/EI650/Installing+WSO2+Micro+Integrator#InstallingWSO2MicroIntegrator-RunningtheMicroIntegrator).
 
         -   [**On
             MacOS/Linux/CentOS**](#a823082378094767aea79d0b5dcd67a5)
@@ -464,11 +422,11 @@ Run on a VM
         Open a terminal and execute the following command:
 
         ``` java
-                    sudo wso2mi-1.0.0 -DportOffset=11
+        sudo wso2mi-1.0.0 -DportOffset=11
         ```
 
         First, open the
-        `                         carbon.xml                        `
+        ` carbon.xml                        `
         file (stored in the
         `                         <MI1_HOME>/conf/                        `
         directory) and set the port offset to 11:
@@ -483,9 +441,7 @@ Run on a VM
 
 **Build and run the integration service**
 
-!!! tip
-
-Before you build the integration service, be sure that you have changed
+> Before you build the integration service, be sure that you have changed
 the endpoint URL of your integration service to the following:
 
 ``` java
@@ -503,13 +459,13 @@ Artifacts and Run** .
 The two services are now running on two instances of WSO2 Micro
 Integrator.
 
-#### Step 4: Test the integration flow
+### Step 4: Test the integration flow
 
 -   If the Micro Integrator is running on Docker or a VM, open a
     terminal and send the following request using **Curl.**
 
     ``` java
-        curl --header "Content-Type: application/json" --request POST   --data '{"store": {"book": [{"author": "Nigel Rees","title": "Sayings of the Century"},{"author": "J. R. R. Tolkien","title": "The Lord of the Rings","isbn": "0-395-19395-8"}]}}' http://localhost:8290/forward
+    curl --header "Content-Type: application/json" --request POST   --data '{"store": {"book": [{"author": "Nigel Rees","title": "Sayings of the Century"},{"author": "J. R. R. Tolkien","title": "The Lord of the Rings","isbn": "0-395-19395-8"}]}}' http://localhost:8290/forward
     ```
 
 -   If the Micro Integrator is running on Kubernetes, open a terminal
@@ -517,26 +473,26 @@ Integrator.
     MINIKUBE\_IP with the IP of your Minikube installation.
 
     ``` java
-            curl --header "Content-Type: application/json" --request POST   --data '{"store": {"book": [{"author": "Nigel Rees","title": "Sayings of the Century"},{"author": "J. R. R. Tolkien","title": "The Lord of the Rings","isbn": "0-395-19395-8"}]}}' http://MINIKUBE_IP:32100/forward
+    curl --header "Content-Type: application/json" --request POST   --data '{"store": {"book": [{"author": "Nigel Rees","title": "Sayings of the Century"},{"author": "J. R. R. Tolkien","title": "The Lord of the Rings","isbn": "0-395-19395-8"}]}}' http://MINIKUBE_IP:32100/forward
     ```
 
 The following response will be received:
 
 ``` java
-    {
-        "orderDetails":{"store": {"book": [{"author": "Nigel Rees","title": "Sayings of the Century"},{"author": "J. R. R. Tolkien","title": "The Lord of the Rings","isbn": "0-395-19395-8"}]}},
-        "orderID":"1a23456",
-        "price":25.65,
-        "status":"successful"
-    }
+{
+"orderDetails":{"store": {"book": [{"author": "Nigel Rees","title": "Sayings of the Century"},{"author": "J. R. R. Tolkien","title": "The Lord of the Rings","isbn": "0-395-19395-8"}]}},
+"orderID":"1a23456",
+"price":25.65,
+"status":"successful"
+}
 ```
 
-#### Step 5: Publish to production
+### Step 5: Publish to production
 
 You can now publish your integration artifacts into your production
 environment.
 
-**What's next?**
+### What's next?
 
 -   Use [WSO2 Micro Integrator's CLI
     Tool](_Using_the_Command-Line_Interface_) to check the integration
