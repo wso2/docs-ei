@@ -381,8 +381,7 @@ You will see following messages on the Consumer log, which are the productions h
 {"event":{ "name":"Cup cake", "amount":300.0}}
 {"event":{ "name":"Doughnut", "amount":500.0}} 
 {"event":{ "name":"Danish pastry", "amount":200.0}} 
-{"event":{ "name":"Eclair", "amount":400.0}} 
-{"event":{ "name":"Frozen yogurt", "amount":350.0}} 
+{"event":{ "name":"Eclair", "amount":400.0}}  
 {"event":{ "name":"Frozen yogurt", "amount":350.0}} 
 {"event":{ "name":"Hot-fudge sundae", "amount":150.0}}
 {"event":{ "name":"Hot-chocolate pudding", "amount":200.0}} 
