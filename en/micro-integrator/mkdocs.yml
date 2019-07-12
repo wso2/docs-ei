@@ -92,7 +92,9 @@ nav:
           - 'Adding SSL certificates to keystores' : 'setup/security/importing_ssl_certificate.md'
           - 'Renewing a CA-signed Certificate' : 'setup/security/renewing_ca_signed_certificate_in_keystore.md'
           - 'Configuring Keystores' : 'setup/security/configuring_keystores.md'
-        - 'Complying with GDPR' : 'setup/security/gdpr_ei.md'
+        - Complying with GDPR: 
+          - 'GDPR for the WSO2 Micro Integrator' : 'setup/security/gdpr_ei.md'
+          - 'About the Identity Anonymization Tool' : 'setup/security/about_forgetme_tool.md'
         - Working with Passwords:
           - 'Encrypting Passwords' : 'setup/security/encrypting_plain_text.md'
           - 'Using Symmetric Encryption' : 'setup/security/single_key_encryption.md'
