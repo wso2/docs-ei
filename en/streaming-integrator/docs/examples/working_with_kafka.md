@@ -40,16 +40,16 @@ sh {WSO2SPHome}/bin/jartobundle.sh <{Source} Directory Path> <{Destination} Dire
 
 6. Copy all the jars from the {Source} directory to {WSO2SPHome}/samples/sample-clients/lib directory. 
 
-####Starting Kafka 
+#### Starting Kafka 
 
 1. Navigate to {KafkaHome} and start zookeeper node using "sh bin/zookeeper-server-start.sh config/zookeeper.properties" command.
 
 2. Navigate to {KafkaHome} and start Kafka server node using "sh bin/kafka-server-start.sh config/server.properties" command.
 
-####Starting Stream Processor
+#### Starting Stream Processor
 Navigate to {WSO2SPHome}/bin directory and issue command "sh worker.sh" 
 
-####Consuming from a Kafka topic
+#### Consuming from a Kafka topic
 
 Let's create a basic Siddhi app to consume messages from a Kafka topic.
 
@@ -80,7 +80,7 @@ Save this file as HelloKafka.siddhi into {WSO2SPHome}/wso2/worker/deployment/sid
 
 > **_INFO:_**  We just created a Siddhi app which listens to Kafka topic 'productions' and log any incoming messages. However, we still either have not created such a Kafka topic or have pushed any messages to it.  We will do that in the following section.
 
-#####Generating Kafka messages
+##### Generating Kafka messages
 
 Now let's generate some Kafka messages so that the Stream Processor would receive those. 
 
@@ -102,7 +102,7 @@ This will push a message to Kafka Server which will then be consumed by the Sidd
 ```
 INFO {org.wso2.siddhi.core.stream.output.sink.LogSink} - HelloKafka : SweetProductionStream : Event{timestamp=1562069868006, data=[Almond cookie, 100.0], isExpired=false}
 ```
-####Consuming with an offset
+#### Consuming with an offset
 
 Previously, we consumed messages from the topic 'productions' *without specifying an offset*. In other words, the Kafka offset was zero. Rather than consuming with a zero offset, now we will specify an offset value and consume messages from that offset onwards.
 
@@ -154,7 +154,7 @@ INFO {org.wso2.siddhi.core.stream.output.sink.LogSink} - HelloKafka : OutputStre
 ```  
 As we configured our Siddhi app to consume messages with offset 2, all messages bearing index 2 or above will be consumed.
 
-####Restoring Offset after system failure  
+#### Restoring Offset after system failure  
 
 Consider the scenario where the system fails (Stream Processor is shutdown) at the point where the Kafka consumer has consumed upto offset number 5. When the system failure is restored we do not want the Kafka consumer to consume from the beginning (that is offset 0), rather we want the consumption to resume from the point it stopped. To achieve this behaviour, we can use the state persistence capability in the Stream Processor.
 
@@ -177,7 +177,7 @@ state.persistence:
 
 Set `enabled` option to `true`, save the file and restart the Stream Processor server for this change to be effective.
 
-####Adding more Consumers to the Consumer Group
+#### Adding more Consumers to the Consumer Group
 
 In our `HelloKafka` Siddhi app, notice the parameter `group.id`. This is used to define the Kafka Consumer Group. 
 
@@ -244,7 +244,7 @@ INFO {org.wso2.siddhi.core.stream.output.sink.LogSink} - HelloKafka : OutputStre
 ```
 You could see that the events are being received by the two consumers in a round robin manner. Events received by first consumer can be identified by the id `consumer-1` and similarly, events received by the second consumer can be identified by the id `consumer-2`.
 
-####Assigning Consumers to Partitions  
+#### Assigning Consumers to Partitions  
 In the previous scenario, we had two partitions for the Kafka topic and had two consumers. We did not assign the consumers to the partitions, rather we let Kafka do the assignments. Optionally, we can assign consumers to partitions. In case we have multiple consumers which do not perform in an identical way (some consumers might be slow), we might want to use this option and balance the load among the consumers.
 
 Let's alter our topic to have three partitions. After that, we will assign two partitions to consumer-1 and the remaining partition to consumer-2.
@@ -329,7 +329,7 @@ INFO {org.wso2.siddhi.core.stream.output.sink.LogSink} - HelloKafka : OutputStre
 ```
 You could observe the pattern that the load is distributed among consumer-1 and consumer-2 in 2:1 ratio. This is because we assigned two partitions to consumer-1 and assigned only one partition to consumer-2. 
 
-####Publishing to a Kafka topic
+#### Publishing to a Kafka topic
 
 We started this tutorial with a Siddhi app to consume from a Kafka topic and log the incoming messages. Now we will create a new Siddhi app to consume from `productions` topic, filter the incoming messages based on a condition and then, to publish those filtered messages to another Kafka topic. 
 '
