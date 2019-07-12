@@ -24,18 +24,19 @@ Follow these steps to prepare the server in order to consume/publish from/to Kaf
 We will call the extracted location as {KafkaHome}
 
 2. Create a directory named {Source} in a preferred location in your machine and copy the following JARs to it from the {KafkaHome}/libs directory.
-* kafka_2.12-2.3.0.jar
-* kafka-clients-2.3.0.jar
-* metrics-core-2.2.0.jar
-* scala-library-2.12.8.jar
-* zkclient-0.11.jar
-* zookeeper-3.4.14.jar
+    * kafka_2.12-2.3.0.jar
+    * kafka-clients-2.3.0.jar
+    * metrics-core-2.2.0.jar
+    * scala-library-2.12.8.jar
+    * zkclient-0.11.jar
+    * zookeeper-3.4.14.jar
 
 3. Create another directory named {Destination} in a preferred location in your machine.
 
 4. Issue following command:
+```
 sh {WSO2SPHome}/bin/jartobundle.sh <{Source} Directory Path> <{Destination} Directory Path>
-
+```
 5. Copy all the jars from the {Destination} directory to {WSO2SPHome}/lib directory.
 
 6. Copy all the jars from the {Source} directory to {WSO2SPHome}/samples/sample-clients/lib directory. 
