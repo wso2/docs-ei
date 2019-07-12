@@ -129,9 +129,19 @@ nav:
         - 'Governing External Reference Across Environments': 'setup/govern_ext_refs_across_env.md'
         - 'Enable SSL Tunneling through Proxy Server': 'setup/enabling_SSL_tunneling_thru_proxy_server.md'
     - Developer Experience:
-      - 'About Developing Integration': 'develop/intro-integration-development.md'
+      - 'About Developing Integration' : 'develop/intro-integration-development.md'
       - 'Developer Kick Start' : 'develop/integration-development-kickstart.md'
+<<<<<<< HEAD
       - 'Development Workflow': 'develop/developing_integration.md'
+=======
+      - 'Designing Integration' : 'develop/designing-integration.md'
+      - Developing Integration:
+        - 'Set up the Workspace' : 'develop/setup-workspace.md'
+        - 'Develop Artifacts' : 'develop/develop-artifacts.md'
+        - 'Build and Run the Integration' : 'develop/build-and-run.md'
+        - 'Iterate and Improve' : 'develop/iterate-improve-integration.md'
+        - 'Publish to Production' : 'develop/publish-to-production.md'
+>>>>>>> 30e4ebd308ba0aedc607e043b32e3f80bff93668
       - 'Using a CI/CD Pipeline' : 'develop/using-cicd-pipeline.md'
       - WSO2 Integration Studio:
         - 'Quick Tour - WSO2 Integration Studio' : 'develop/WSO2-Integration-Studio.md'
