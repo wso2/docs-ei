@@ -1185,7 +1185,7 @@ connections between Siddhi components. A connection is defined by
 drawing an arrow from one component to another by dragging the cursor as
 demonstrated below.
 
-![Connecting Siddhi components](../../images/working-with-the design-view/Connect-Siddhi-Componentsgif)
+![Connecting Siddhi components](../images/working-with-the design-view/Connect-Siddhi-Componentsgif)
 
 ## Saving, running and debugging Siddhi applications
 
