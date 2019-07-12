@@ -7,13 +7,13 @@ This tutorial takes you through, consuming from a Kafka topic, processing the me
 ## Tutorial Outline
 - [Preparing the server](#preparing-the-server)
 - [Starting Kafka](#starting-kafka)
-- Starting Stream Processor
-- Consuming from a Kafka topic
-- Consuming with an offset
-- Restoring Offset after system failure
-- Adding more Consumers to the Consumer Group
-- Assigning Consumers to Partitions
-- Publishing to a Kafka topic
+- [Starting Stream Processor](#starting-stream-processor)
+- [Consuming from a Kafka topic](#consuming-from-a-kafka-topic)
+- [Consuming with an offset](#consuming-with-an-offset)
+- [Restoring Offset after system failure](#restoring-offset-after-system-failure)
+- [Adding more Consumers to the Consumer Group](#adding-more-consumers-to-the-consumer-group)
+- [Assigning Consumers to Partitions](#assigning-consumers-to-partitions)
+- [Publishing to a Kafka topic](#publishing-to-a-kafka-topic)
 
 
 ## Preparing the server<a name="prep"></a>
