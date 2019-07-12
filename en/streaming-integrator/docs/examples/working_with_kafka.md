@@ -5,8 +5,8 @@ Streaming integrator could be used to consume from a Kafka topic as well as publ
 This tutorial takes you through, consuming from a Kafka topic, processing the messages and finally publishing output to a Kafka topic. 
 
 ## Tutorial Outline
-- [Preparing the server](## Preparing the server)
-- Starting Kafka
+- [Preparing the server](##prep)
+- [Starting Kafka](##Starting Kafka)
 - Starting Stream Processor
 - Consuming from a Kafka topic
 - Consuming with an offset
@@ -16,7 +16,7 @@ This tutorial takes you through, consuming from a Kafka topic, processing the me
 - Publishing to a Kafka topic
 
 
-## Preparing the server
+## Preparing the server<a name="prep"></a>
 
 Follow these steps to prepare the server in order to consume/publish from/to Kafka.
 
