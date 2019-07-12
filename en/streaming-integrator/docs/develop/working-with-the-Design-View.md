@@ -6,7 +6,7 @@ This section provides an overview of the design view of the Streaming Integrato
 
 To open the design view of the Streaming Integrator Tooling:
 
-1.  Start the Stream Processor Studio and log in with your credentials. For detailed instructions, see 
+1.  Start the Streaming Integrator Tooling and log in with your credentials. For detailed instructions, see 
     [Streaming Integrator Tooling Overview - Starting Streaming Integrator Tooling](Stream-Processor-Studio-Overview_112390916.html#StreamProcessorStudioOverview-StartingStreamProcessorStudio).
 2.  Click **New** and open a new Siddhi file, or click **Open** and open an existing Siddhi file.
 3.  Click **Design View** to open the Design View.  
@@ -394,7 +394,7 @@ to the grid of the design view when you create a Siddhi application.
                   <li>
                      <strong>Trigger Criteria</strong> : This specifies the criteria based on which the trigger is activated. Possible values are as follows:
                      <ul>
-                        <li><strong>start</strong> : Select this to trigger events when the SP server has started.</li>
+                        <li><strong>start</strong> : Select this to trigger events when the Streaming Integrator server has started.</li>
                         <li><strong>every</strong> : Select this to specify a time interval at which events should be triggered.</li>
                         <li><strong>cron-expression</strong> : Select this to enter a cron expression based on which the events can be triggered. For more information about cron expressions, see the <a href="http://www.quartz-scheduler.org/documentation/quartz-2.2.x/tutorials/tutorial-lesson-06">quartz-scheduler</a>.</li>
                      </ul>
@@ -1185,7 +1185,7 @@ connections between Siddhi components. A connection is defined by
 drawing an arrow from one component to another by dragging the cursor as
 demonstrated below.
 
-![Connecting Siddhi components](../../images/working-with-the design-view/Connect-Siddhi-Componentsgif)
+![Connecting Siddhi components](../images/working-with-the design-view/Connect-Siddhi-Componentsgif)
 
 ## Saving, running and debugging Siddhi applications
 
@@ -1194,5 +1194,5 @@ need to switch to the source view. You also need to switch to the source
 view to run or debug a Siddhi application. For more information, see the
 following sections:
 
--   [Stream Processor Studio Overview](_Stream_Processor_Studio_Overview_)
+-   [Streaming Integrator Tiooling Overview](streaming-integrator-studio-overview.md)
 -   [Debugging a Siddhi Application](_Debugging_a_Siddhi_Application_)
