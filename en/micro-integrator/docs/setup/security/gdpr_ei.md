@@ -51,7 +51,7 @@ can also find the original GDPR legal text
 
 The Micro Integrator can persist PII in various log files (carbon logs, audit logs, API logs, and service-specific logs) depending on the mediation logic defined. The Micro Integrator does not persist a user's PII in any RDBMS by default.
 
-### Tools for removing PII in WSO2 Micro Integrator
+## Tools for removing PII in WSO2 Micro Integrator
 
 The following tools are shipped with the Micro Integrator:
 
@@ -71,7 +71,7 @@ The following tools are shipped with the Micro Integrator:
     > If you want to use the Forget-Me tool to remove PII in multiple WSO2 products at the same time, you can use the standalone version of the tool. Find more information on how to [build and run the Forget-Me tool in standalone mode](../security/about_forgetme_tool.md).
 
 
-### Prerequisites for removing PII
+## Prerequisites for removing PII
 
 As explained in [How the WSO2 Micro Integrator persists a user's PII](#how-the-wso2-micro-integrator-persists-pii)
 , the Micro Integrator will store user information in log
@@ -84,7 +84,7 @@ of the user's PII contained in log files are successfully archived. You
 can then follow the instructions given below to remove the user's PII
 references from the archived log files.
 
-### Removing PII from the Micro Integrator
+## Removing PII from the Micro Integrator
 
 **Before you begin**:
 
@@ -97,7 +97,7 @@ references from the archived log files.
     However, please note that it is **not recommended** to log PII from
     a proxy service.
 
-### Anonymizing PII references
+## Anonymizing PII references
 
 You can use the [Forget-Me
 Tool](#tools-for-removing-pii-in-wso2-micro-integrator) to remove
@@ -229,7 +229,7 @@ Let's look at how to anonymize the username value in log files.
 
         > For the list of commands you can run using the Forget-Me tool, see this [link](../security/about_forgetme_tool.md).
 
-### Deleting original (archived) log files
+## Deleting original (archived) log files
 
 Note that the PII is not removed from the original log files. It is the
 responsibility of the organization to remove the original log files that
