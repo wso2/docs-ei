@@ -131,17 +131,12 @@ nav:
     - Developer Experience:
       - 'About Developing Integration': 'develop/intro-integration-development.md'
       - 'Developer Kick Start' : 'develop/integration-development-kickstart.md'
-      - 'Designing Integration' : 'develop/designing-integration.md'
-      - Developing Integration:
-        - 'Set up the Workspace': 'develop/setup-workspace.md'
-        - 'Develop Artifacts': 'develop/develop-artifacts.md'
-        - 'Build and Run the Integration' : 'develop/build-and-run.md'
-        - 'Iterate and Improve' : 'develop/iterate-improve-integration.md'
-        - 'Publish to Production' : 'develop/publish-to-production.md'
+      - 'Development Workflow': 'develop/developing_integration.md'
       - 'Using a CI/CD Pipeline' : 'develop/using-cicd-pipeline.md'
       - WSO2 Integration Studio:
-        - 'WSO2 Integration Studio' : 'develop/WSO2-Integration-Studio.md'
-        - 'Working with Integration Studio' : 'develop/working-with-WSO2-Integration-Studio.md'
+        - 'Quick Tour - WSO2 Integration Studio' : 'develop/WSO2-Integration-Studio.md'
+        - 'Installing WSO2 Integration Studio' : 'develop/install-WSO2-Integration-Studio.md'
+        - 'Using WSO2 Integration Studio' : 'develop/working-with-WSO2-Integration-Studio.md'
     - Use Cases:
       - Examples:
         - 'Using REST with a Proxy Service' : 'use-cases/examples/rest-with-a-proxy-service.md'

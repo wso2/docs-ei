@@ -1,0 +1,5652 @@
+<!--
+ * Copyright (c) 2019, WSO2 Inc. (http://www.wso2.org) All Rights Reserved.
+ *
+ * WSO2 Inc. licenses this file to you under the Apache License,
+ * Version 2.0 (the "License"); you may not use this file except
+ * in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied. See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
+-->
+
+
+
+
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      <meta http-equiv="x-ua-compatible" content="ie=edge">
+      
+        <meta name="description" content="Documentation for WSO2 Enterprise Integrator">
+      
+      
+        <link rel="canonical" href="https://wso2.com/integration/use-cases/tasks/registry_artifacts/managing-the-registry/">
+      
+      
+        <meta name="author" content="WSO2">
+      
+      
+        <meta name="lang:clipboard.copy" content="Copy to clipboard">
+      
+        <meta name="lang:clipboard.copied" content="Copied to clipboard">
+      
+        <meta name="lang:search.language" content="en">
+      
+        <meta name="lang:search.pipeline.stopwords" content="True">
+      
+        <meta name="lang:search.pipeline.trimmer" content="True">
+      
+        <meta name="lang:search.result.none" content="No matching documents">
+      
+        <meta name="lang:search.result.one" content="1 matching document">
+      
+        <meta name="lang:search.result.other" content="# matching documents">
+      
+        <meta name="lang:search.tokenizer" content="[\s\-]+">
+      
+      <link rel="shortcut icon" href="../../../../images/favicon.png">
+      <meta name="generator" content="mkdocs-1.0.4, mkdocs-material-4.1.1">
+    
+    
+      
+        <title>Managing Registry Artifacts - WSO2 Enterprise Integrator Documentation</title>
+      
+    
+    
+  
+      <link rel="stylesheet" href="../../../../assets/stylesheets/application.3020aac5.css">
+      
+        <link rel="stylesheet" href="../../../../assets/stylesheets/application-palette.224b79ff.css">
+      
+      
+        
+        
+        <meta name="theme-color" content="#ff7043">
+      
+    
+  <link rel="stylesheet" href="../../../../assets/fonts/font-awesome.css">
+
+    
+      <script src="../../../../assets/javascripts/modernizr.01ccdecf.js"></script>
+    
+    
+      
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700|Roboto+Mono">
+        <style>body,input{font-family:"Roboto","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono","Courier New",Courier,monospace}</style>
+      
+    
+    <link rel="stylesheet" href="../../../../assets/fonts/material-icons.css">
+    
+    
+      <link rel="stylesheet" href="../../../../assets/lib/highlightjs/default.min.css">
+    
+      <link rel="stylesheet" href="../../../../assets/css/theme.css">
+    
+    
+      
+    
+    
+  </head>
+  
+    
+    
+    <body dir="ltr" data-md-color-primary="deep-orange" data-md-color-accent="deep-orange">
+  
+    <svg class="md-svg">
+      <defs>
+        
+        
+          <svg xmlns="http://www.w3.org/2000/svg" width="416" height="448"
+    viewBox="0 0 416 448" id="__github">
+  <path fill="currentColor" d="M160 304q0 10-3.125 20.5t-10.75 19-18.125
+        8.5-18.125-8.5-10.75-19-3.125-20.5 3.125-20.5 10.75-19 18.125-8.5
+        18.125 8.5 10.75 19 3.125 20.5zM320 304q0 10-3.125 20.5t-10.75
+        19-18.125 8.5-18.125-8.5-10.75-19-3.125-20.5 3.125-20.5 10.75-19
+        18.125-8.5 18.125 8.5 10.75 19 3.125 20.5zM360
+        304q0-30-17.25-51t-46.75-21q-10.25 0-48.75 5.25-17.75 2.75-39.25
+        2.75t-39.25-2.75q-38-5.25-48.75-5.25-29.5 0-46.75 21t-17.25 51q0 22 8
+        38.375t20.25 25.75 30.5 15 35 7.375 37.25 1.75h42q20.5 0
+        37.25-1.75t35-7.375 30.5-15 20.25-25.75 8-38.375zM416 260q0 51.75-15.25
+        82.75-9.5 19.25-26.375 33.25t-35.25 21.5-42.5 11.875-42.875 5.5-41.75
+        1.125q-19.5 0-35.5-0.75t-36.875-3.125-38.125-7.5-34.25-12.875-30.25-20.25-21.5-28.75q-15.5-30.75-15.5-82.75
+        0-59.25 34-99-6.75-20.5-6.75-42.5 0-29 12.75-54.5 27 0 47.5 9.875t47.25
+        30.875q36.75-8.75 77.25-8.75 37 0 70 8 26.25-20.5
+        46.75-30.25t47.25-9.75q12.75 25.5 12.75 54.5 0 21.75-6.75 42 34 40 34
+        99.5z" />
+</svg>
+        
+      </defs>
+    </svg>
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
+    
+      <a href="#managing-the-registry" tabindex="1" class="md-skip">
+        Skip to content
+      </a>
+    
+    
+      <!--
+ * Copyright (c) 2019, WSO2 Inc. (http://www.wso2.org) All Rights Reserved.
+ *
+ * WSO2 Inc. licenses this file to you under the Apache License,
+ * Version 2.0 (the "License"); you may not use this file except
+ * in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied. See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
+-->
+
+<header class="md-header" data-md-component="header" id="page-header" data-url="" data-lang="en">
+  <nav class="md-header-nav md-grid">
+    <div class="md-flex">
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <a href="https://wso2.com/integration/" title="WSO2 Enterprise Integrator Documentation" class="md-header-nav__button md-logo">
+          
+            <img src="../../../../images/logo.svg" width="24" height="24">
+          
+        </a>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--menu md-header-nav__button" for="__drawer"></label>
+      </div>
+      <div class="md-flex__cell md-flex__cell--stretch">
+        <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
+          
+            <span class="md-header-nav__topic">
+               Enterprise Integrator Documentation
+            </span>
+            <span class="md-header-nav__topic">
+              Managing Registry Artifacts
+            </span>
+          
+        </div>
+        <div class="md-flex__ellipsis md-header__distribution-select">
+          <div class="mb-tabs__dropdown version-select">
+            <a class="md-tabs__link md-tabs__dropdown-link" href="#!" data-target="distribution-select-dropdown">
+            Micro Integrator</a>
+            <ul id="distribution-select-dropdown" class="mb-tabs__dropdown-content" tabindex="0">
+            </ul>
+          </div>
+        </div>
+        <div class="md-flex__ellipsis md-header__version-select">
+          <div class="mb-tabs__dropdown version-select">
+            <a class="md-tabs__link md-tabs__dropdown-link" href="#!" data-target="version-select-dropdown">7.0.0</a>
+            <ul id="version-select-dropdown" class="mb-tabs__dropdown-content" tabindex="0">
+              <!-- Versions will added here dynamically -->
+              <li class="md-tabs__item mb-tabs__dropdown">
+                <a href="#" id="show-all-versions-link">Show all</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        
+          <label class="md-icon md-icon--search md-header-nav__button" for="__search"></label>
+          
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query" data-md-state="active">
+      <label class="md-icon md-search__icon" for="__search"></label>
+      <button type="reset" class="md-icon md-search__icon" data-md-component="reset" tabindex="-1">
+        &#xE5CD;
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="result">
+          <div class="md-search-result__meta">
+            Type to start searching
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+        
+      </div>
+    </div>
+  </nav>
+</header>
+    
+    <div class="md-container">
+      
+        
+      
+      
+        
+
+  
+
+<nav class="md-tabs md-tabs--active" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  <li class="md-tabs__item home_icon">
+    
+      <a href="../../../.." title="Home" class="md-tabs__link">
+          <i class="fa fa-home"></i>
+      </a>
+    
+  </li>
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../../../overview/introduction/" title="Introduction" class="md-tabs__link">
+          Introduction
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../../../quick-start-guide/quick-start-guide/" title="Quick Start Guide" class="md-tabs__link">
+          Quick Start Guide
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../../../concepts/concepts/" title="Concepts" class="md-tabs__link">
+          Concepts
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    
+    
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../../../setup/installation/install_in_vm/" title="Setup and Install" class="md-tabs__link">
+          Setup and Install
+        </a>
+      
+    </li>
+  
+
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../../../develop/intro-integration-development/" title="Developer Experience" class="md-tabs__link">
+          Developer Experience
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    
+    
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../../examples/rest-with-a-proxy-service/" title="Use Cases" class="md-tabs__link">
+          Use Cases
+        </a>
+      
+    </li>
+  
+
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../../../administer-and-observe/observability/" title="Administration and Observability" class="md-tabs__link">
+          Administration and Observability
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../../../references/enterprise-Integration-Patterns/" title="References" class="md-tabs__link">
+          References
+        </a>
+      
+    </li>
+  
+
+      
+        
+      
+    </ul>
+    <div class="quick_links">
+        
+        <a href="https://github.com/wso2/docs-ei/edit/master/en/docs/use-cases/tasks/registry_artifacts/managing-the-registry.md" target="blank" id="editIcon" title="Edit this page"
+           title="Edit this page" class="md-icon md-content__icon nav_link edit_link"></a>
+        
+    </div>
+    <a href="#" title="Report Issues" class="feedbackBtn" 
+        onclick=window.open("https://github.com/"+"wso2/docs-ei"+"/issues/new?title=Doc%20Feedback:&body=Location%20:%20"+window.location.href); >
+        Report Issues</a>
+  </div>
+</nav>
+      
+      <main class="md-main">
+        <div class="md-main__inner md-grid" data-md-component="container">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" data-md-level="0">
+    <label class="md-nav__title md-nav__title--site" for="__drawer">
+      <a href="https://wso2.com/integration/" title="WSO2 Enterprise Integrator Documentation"
+         class="md-nav__button md-logo">
+        
+          <img src="../../../../images/logo.svg" width="48" height="48">
+        
+      </a>
+      WSO2 Enterprise Integrator Documentation
+    </label>
+    
+      <div class="md-nav__source">
+        
+
+
+  
+
+<a href="https://github.com/wso2/docs-ei/" title="Go to repository" class="md-source" data-md-source="github">
+  
+    <div class="md-source__icon">
+      <svg viewBox="0 0 24 24" width="24" height="24">
+        <use xlink:href="#__github" width="24" height="24"></use>
+      </svg>
+    </div>
+  
+  <div class="md-source__repository">
+    wso2/docs-ei
+  </div>
+</a>
+      </div>
+    
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        
+        
+        
+
+
+  <li class="md-nav__item">
+    <a href="../../../.." title="Home" class="md-nav__link">
+      Home
+    </a>
+  </li>
+
+      
+        
+        
+        
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2">
+    
+    <label class="md-nav__link" for="nav-2">
+      Introduction
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-2">
+        Introduction
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../overview/introduction/" title="Overview" class="md-nav__link">
+      Overview
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../overview/architecture/" title="Architecture" class="md-nav__link">
+      Architecture
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../overview/about-this-release/" title="About this Release" class="md-nav__link">
+      About this Release
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+      
+        
+        
+        
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3">
+    
+    <label class="md-nav__link" for="nav-3">
+      Quick Start Guide
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-3">
+        Quick Start Guide
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../quick-start-guide/quick-start-guide/" title="Quick Start Guide" class="md-nav__link">
+      Quick Start Guide
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+      
+        
+        
+        
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4">
+    
+    <label class="md-nav__link" for="nav-4">
+      Concepts
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-4">
+        Concepts
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../concepts/concepts/" title="Concepts" class="md-nav__link">
+      Concepts
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+      
+        
+        
+        
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5">
+    
+    <label class="md-nav__link" for="nav-5">
+      Setup and Install
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-5">
+        Setup and Install
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5-1" type="checkbox" id="nav-5-1">
+    
+    <label class="md-nav__link" for="nav-5-1">
+      Installation Guide
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-5-1">
+        Installation Guide
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../setup/installation/install_in_vm/" title="Install in a VM" class="md-nav__link">
+      Install in a VM
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../setup/installation/install_in_docker/" title="Install in Docker" class="md-nav__link">
+      Install in Docker
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../setup/installation/install_in_kubernetes/" title="Install in Kubernetes" class="md-nav__link">
+      Install in Kubernetes
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5-2" type="checkbox" id="nav-5-2">
+    
+    <label class="md-nav__link" for="nav-5-2">
+      Product Deployment
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-5-2">
+        Product Deployment
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../setup/deployment/deploying_wso2_ei/" title="Deploying WSO2 Enterprise Integrator" class="md-nav__link">
+      Deploying WSO2 Enterprise Integrator
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../setup/deployment/upgrading/" title="Upgrading from a Previous Release" class="md-nav__link">
+      Upgrading from a Previous Release
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../setup/setting_up_lb/" title="Setting up a Load Balancer" class="md-nav__link">
+      Setting up a Load Balancer
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../setup/deployment_synchronization/" title="Configuring Deployment Synchronization" class="md-nav__link">
+      Configuring Deployment Synchronization
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../setup/deployment/troubleshooting_deployment/" title="Troubleshooting Production Deployment" class="md-nav__link">
+      Troubleshooting Production Deployment
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../setup/deployment/deployment_checklist/" title="Product Deployment Checklist" class="md-nav__link">
+      Product Deployment Checklist
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../setup/deployment/backup_recovery/" title="Backup and Recovery" class="md-nav__link">
+      Backup and Recovery
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5-3" type="checkbox" id="nav-5-3">
+    
+    <label class="md-nav__link" for="nav-5-3">
+      Data Storing
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-5-3">
+        Data Storing
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5-3-1" type="checkbox" id="nav-5-3-1">
+    
+    <label class="md-nav__link" for="nav-5-3-1">
+      Setting up Databases
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="3">
+      <label class="md-nav__title" for="nav-5-3-1">
+        Setting up Databases
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../setup/databases/setting-up-MySQL/" title="Setting up MySQL" class="md-nav__link">
+      Setting up MySQL
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../setup/databases/setting-up-MSSQL/" title="Setting up MSSQL" class="md-nav__link">
+      Setting up MSSQL
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../setup/databases/setting-up-Oracle/" title="Setting up Oracle" class="md-nav__link">
+      Setting up Oracle
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../setup/databases/setting-up-Oracle-RAC/" title="Setting up Oracle RAC" class="md-nav__link">
+      Setting up Oracle RAC
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../setup/databases/setting-up-IBM-Informix/" title="Setting up IBM Informix" class="md-nav__link">
+      Setting up IBM Informix
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../setup/databases/setting-up-IBM-DB2/" title="Setting up IBM DB2" class="md-nav__link">
+      Setting up IBM DB2
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../setup/databases/setting-up-MariaDB/" title="Setting up Maria DB" class="md-nav__link">
+      Setting up Maria DB
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../setup/databases/setting-up-Embedded-Derby/" title="Setting up Embedded Derby" class="md-nav__link">
+      Setting up Embedded Derby
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../setup/databases/setting-up-Remote-Derby/" title="Setting up Remote Derby" class="md-nav__link">
+      Setting up Remote Derby
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../setup/databases/setting-up-PostgreSQL/" title="Setting up PostgreSQL" class="md-nav__link">
+      Setting up PostgreSQL
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../setup/databases/setting-up-Remote-H2/" title="Setting up Remote H2" class="md-nav__link">
+      Setting up Remote H2
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../setup/file_based_registry/" title="Setting up a File-Based Registry" class="md-nav__link">
+      Setting up a File-Based Registry
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5-3-3" type="checkbox" id="nav-5-3-3">
+    
+    <label class="md-nav__link" for="nav-5-3-3">
+      Setting up a User Store
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="3">
+      <label class="md-nav__title" for="nav-5-3-3">
+        Setting up a User Store
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../setup/user_stores/setting_up_jdbc_userstore/" title="Setting up a JDBC User Store" class="md-nav__link">
+      Setting up a JDBC User Store
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../setup/user_stores/setting_up_ro_ldap/" title="Setting up a Read-Only LDAP" class="md-nav__link">
+      Setting up a Read-Only LDAP
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../setup/user_stores/setting_up_rw_ldap/" title="Setting up a Read-Write LDAP" class="md-nav__link">
+      Setting up a Read-Write LDAP
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../setup/user_stores/setting_up_rw_ad/" title="Setting up a Read-Write Active Directory" class="md-nav__link">
+      Setting up a Read-Write Active Directory
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5-4" type="checkbox" id="nav-5-4">
+    
+    <label class="md-nav__link" for="nav-5-4">
+      Security Hardening
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-5-4">
+        Security Hardening
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5-4-1" type="checkbox" id="nav-5-4-1">
+    
+    <label class="md-nav__link" for="nav-5-4-1">
+      Setting up Keystores
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="3">
+      <label class="md-nav__title" for="nav-5-4-1">
+        Setting up Keystores
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../setup/security/creating_keystores/" title="Creating New Keystores" class="md-nav__link">
+      Creating New Keystores
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../setup/security/importing_ssl_certificate/" title="Adding SSL certificates to keystores" class="md-nav__link">
+      Adding SSL certificates to keystores
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../setup/security/renewing_ca_signed_certificate_in_keystore/" title="Renewing a CA-signed Certificate" class="md-nav__link">
+      Renewing a CA-signed Certificate
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../setup/security/configuring_keystores/" title="Configuring Keystores" class="md-nav__link">
+      Configuring Keystores
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../setup/security/gdpr_ei/" title="Complying with GDPR" class="md-nav__link">
+      Complying with GDPR
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5-4-3" type="checkbox" id="nav-5-4-3">
+    
+    <label class="md-nav__link" for="nav-5-4-3">
+      Working with Passwords
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="3">
+      <label class="md-nav__title" for="nav-5-4-3">
+        Working with Passwords
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../setup/security/encrypting_plain_text/" title="Encrypting Passwords" class="md-nav__link">
+      Encrypting Passwords
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../setup/security/single_key_encryption/" title="Using Symmetric Encryption" class="md-nav__link">
+      Using Symmetric Encryption
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../setup/security/replace_passwords_env_variables_sys_properties/" title="Set Passwords using Environment Variables/System Properties" class="md-nav__link">
+      Set Passwords using Environment Variables/System Properties
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../setup/security/mitigating_csrf/" title="Mitigating Cross Site Request Forgery Attacks" class="md-nav__link">
+      Mitigating Cross Site Request Forgery Attacks
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../setup/security/mitigating_css/" title="Mitigating Cross Site Scripting" class="md-nav__link">
+      Mitigating Cross Site Scripting
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../setup/security/configuring_SAML2_SSO_across_prods/" title="Configuring SAML2 SSO Across Products" class="md-nav__link">
+      Configuring SAML2 SSO Across Products
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../setup/security/securing_carbon_applications/" title="Securing Carbon Applications" class="md-nav__link">
+      Securing Carbon Applications
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5-5" type="checkbox" id="nav-5-5">
+    
+    <label class="md-nav__link" for="nav-5-5">
+      Performance Tuning
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-5-5">
+        Performance Tuning
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../setup/performance_tuning/tuning_jvm_performance/" title="Tuning JVM Performance" class="md-nav__link">
+      Tuning JVM Performance
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../setup/performance_tuning/network_os_performance/" title="Tuning Network and OS Performance" class="md-nav__link">
+      Tuning Network and OS Performance
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5-5-3" type="checkbox" id="nav-5-5-3">
+    
+    <label class="md-nav__link" for="nav-5-5-3">
+      Tuning Use Cases
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="3">
+      <label class="md-nav__title" for="nav-5-5-3">
+        Tuning Use Cases
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../setup/performance_tuning/split_aggregate_pattern_tuning/" title="Tuning the Split-Aggregator Pattern" class="md-nav__link">
+      Tuning the Split-Aggregator Pattern
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../setup/performance_tuning/message_transformation_tuning/" title="Tuning Message Transformation Scenarios" class="md-nav__link">
+      Tuning Message Transformation Scenarios
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../setup/performance_tuning/jms_scenarios/" title="Tuning JMS Scenarios" class="md-nav__link">
+      Tuning JMS Scenarios
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../setup/performance_tuning/inbound_endpoint_tuning/" title="Tuning Inbound Endpoints" class="md-nav__link">
+      Tuning Inbound Endpoints
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5-5-4" type="checkbox" id="nav-5-5-4">
+    
+    <label class="md-nav__link" for="nav-5-5-4">
+      Tuning Transports
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="3">
+      <label class="md-nav__title" for="nav-5-5-4">
+        Tuning Transports
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../setup/performance_tuning/http_transport_tuning/" title="Tuning the HTTP Transport" class="md-nav__link">
+      Tuning the HTTP Transport
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../setup/performance_tuning/jms_transport_tuning/" title="Tuning the JMS Transport" class="md-nav__link">
+      Tuning the JMS Transport
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../setup/performance_tuning/vfs_transport_tuning/" title="Tuning the VFS Transport" class="md-nav__link">
+      Tuning the VFS Transport
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../setup/performance_tuning/rabbitmq_transport_tuning/" title="Tuning the RabbitMQ Transport" class="md-nav__link">
+      Tuning the RabbitMQ Transport
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5-6" type="checkbox" id="nav-5-6">
+    
+    <label class="md-nav__link" for="nav-5-6">
+      Feature-Specific Configurations
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-5-6">
+        Feature-Specific Configurations
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../setup/configuring_task_scheduling_comp/" title="Configuring the Task Scheduling Component" class="md-nav__link">
+      Configuring the Task Scheduling Component
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../setup/enabling_CORS_for_data_services/" title="Enabling CORS for Data Services" class="md-nav__link">
+      Enabling CORS for Data Services
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../setup/configuring_timestamp_conversion_for_rdbms/" title="Configuring Time Stamp Conversion for RDBMS" class="md-nav__link">
+      Configuring Time Stamp Conversion for RDBMS
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../setup/message_builders_formatters/message-builders-and-formatters/" title="Configuring Message Builders and Formatters" class="md-nav__link">
+      Configuring Message Builders and Formatters
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../setup/message_builders_formatters/message-relay/" title="Configuring Message Relay" class="md-nav__link">
+      Configuring Message Relay
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5-7" type="checkbox" id="nav-5-7">
+    
+    <label class="md-nav__link" for="nav-5-7">
+      Additional Configurations
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-5-7">
+        Additional Configurations
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../setup/registry_mounting/" title="Optional: Mounting a Registry" class="md-nav__link">
+      Optional: Mounting a Registry
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../setup/adding_a_custom_proxy__path/" title="Adding a Custom Proxy Path" class="md-nav__link">
+      Adding a Custom Proxy Path
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../setup/configuring_proxy_servers/" title="Configuring a Proxy Server" class="md-nav__link">
+      Configuring a Proxy Server
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../setup/changing_default_ports/" title="Changing Default Ports" class="md-nav__link">
+      Changing Default Ports
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../setup/customizing_error_pages/" title="Customizing Error Messages" class="md-nav__link">
+      Customizing Error Messages
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../setup/govern_ext_refs_across_env/" title="Governing External Reference Across Environments" class="md-nav__link">
+      Governing External Reference Across Environments
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../setup/enabling_SSL_tunneling_thru_proxy_server/" title="Enable SSL Tunneling through Proxy Server" class="md-nav__link">
+      Enable SSL Tunneling through Proxy Server
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+      
+        
+        
+        
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-6" type="checkbox" id="nav-6">
+    
+    <label class="md-nav__link" for="nav-6">
+      Developer Experience
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-6">
+        Developer Experience
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../develop/intro-integration-development/" title="About Developing Integration" class="md-nav__link">
+      About Developing Integration
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../develop/integration-development-kickstart/" title="Developer Kick Start" class="md-nav__link">
+      Developer Kick Start
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../develop/designing-integration/" title="Designing Integration" class="md-nav__link">
+      Designing Integration
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-6-4" type="checkbox" id="nav-6-4">
+    
+    <label class="md-nav__link" for="nav-6-4">
+      Developing Integration
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-6-4">
+        Developing Integration
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../develop/setup-workspace/" title="Set up the Workspace" class="md-nav__link">
+      Set up the Workspace
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../develop/develop-artifacts/" title="Develop Artifacts" class="md-nav__link">
+      Develop Artifacts
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../develop/build-and-run/" title="Build and Run" class="md-nav__link">
+      Build and Run
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../develop/iterate-improve-integration/" title="Iterate and Improve" class="md-nav__link">
+      Iterate and Improve
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../develop/publish-to-production/" title="Publish to Production" class="md-nav__link">
+      Publish to Production
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../develop/using-cicd-pipeline/" title="Using a CI/CD Pipeline" class="md-nav__link">
+      Using a CI/CD Pipeline
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-6-6" type="checkbox" id="nav-6-6">
+    
+    <label class="md-nav__link" for="nav-6-6">
+      WSO2 Integration Studio
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-6-6">
+        WSO2 Integration Studio
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../develop/WSO2-Integration-Studio/" title="WSO2 Integration Studio" class="md-nav__link">
+      WSO2 Integration Studio
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../develop/working-with-WSO2-Integration-Studio/" title="Working with Integration Studio" class="md-nav__link">
+      Working with Integration Studio
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+      
+        
+        
+        
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-7" type="checkbox" id="nav-7" checked>
+    
+    <label class="md-nav__link" for="nav-7">
+      Use Cases
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-7">
+        Use Cases
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-7-1" type="checkbox" id="nav-7-1">
+    
+    <label class="md-nav__link" for="nav-7-1">
+      Examples
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-7-1">
+        Examples
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../examples/rest-with-a-proxy-service/" title="Using REST with a Proxy Service" class="md-nav__link">
+      Using REST with a Proxy Service
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../examples/specific-rest-use-cases/" title="Spcific REST API Use Cases" class="md-nav__link">
+      Spcific REST API Use Cases
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../examples/working-with-transactions/" title="Working with Transactions" class="md-nav__link">
+      Working with Transactions
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../examples/configuring-endpoints-using-apis/" title="Configuring Endpoints using REST APIs" class="md-nav__link">
+      Configuring Endpoints using REST APIs
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-7-1-5" type="checkbox" id="nav-7-1-5">
+    
+    <label class="md-nav__link" for="nav-7-1-5">
+      JMS Use Cases
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="3">
+      <label class="md-nav__title" for="nav-7-1-5">
+        JMS Use Cases
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../examples/jms_examples/esb-as-a-jms-consumer/" title="ESB as a JMS Consumer" class="md-nav__link">
+      ESB as a JMS Consumer
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../examples/jms_examples/esb-as-a-jms-producer/" title="ESB as a JMS Producer" class="md-nav__link">
+      ESB as a JMS Producer
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../examples/jms_examples/esb-as-jms-consumer-and-producer/" title="ESB as a JMS Consumer & Producer" class="md-nav__link">
+      ESB as a JMS Consumer & Producer
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../examples/jms_examples/dual-channel-http-to-jms/" title="Dual Channel HTTP-to-JMS" class="md-nav__link">
+      Dual Channel HTTP-to-JMS
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../examples/jms_examples/quad-channel-jms-to-jms/" title="Quad Channel JMS-to-JMS" class="md-nav__link">
+      Quad Channel JMS-to-JMS
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../examples/jms_examples/store-and-forward-using-jms-message-stores/" title="Store and Forward using JMS Message Store" class="md-nav__link">
+      Store and Forward using JMS Message Store
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../examples/jms_examples/publish-subscribe-with-jms/" title="Publish and Subscribe with JMS" class="md-nav__link">
+      Publish and Subscribe with JMS
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../examples/jms_examples/shared-topic-subscription/" title="Shared Topic Subscription" class="md-nav__link">
+      Shared Topic Subscription
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../examples/jms_examples/detecting-repeatedly-redelivered-messages/" title="Detecting Repeatedly Redelivered Messages" class="md-nav__link">
+      Detecting Repeatedly Redelivered Messages
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../examples/jms_examples/specifying-a-delivery-delay-on-messages/" title="Specifying Delivery Delay on Messages" class="md-nav__link">
+      Specifying Delivery Delay on Messages
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../examples/rabbitmq-use-cases/" title="RabbitMQ Use Cases" class="md-nav__link">
+      RabbitMQ Use Cases
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-7-2" type="checkbox" id="nav-7-2">
+    
+    <label class="md-nav__link" for="nav-7-2">
+      Guides
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-7-2">
+        Guides
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../guides/integration/sending-a-simple-message-to-a-service/" title="Sending a Simple Message to a Service" class="md-nav__link">
+      Sending a Simple Message to a Service
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../guides/integration/sending-a-simple-message-to-a-datasource/" title="Sending a Simple Message to a Datasource" class="md-nav__link">
+      Sending a Simple Message to a Datasource
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../guides/integration/routing-requests-based-on-message-content/" title="Routing Requests based on Message Content" class="md-nav__link">
+      Routing Requests based on Message Content
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../guides/integration/transforming-message-content/" title="Transforming Message Content" class="md-nav__link">
+      Transforming Message Content
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../guides/integration/exposing-several-services-as-a-single-service/" title="Exposing Several Services as a Single Service" class="md-nav__link">
+      Exposing Several Services as a Single Service
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../guides/integration/storing-and-forwarding-messages/" title="Storing and Forwarding Messages" class="md-nav__link">
+      Storing and Forwarding Messages
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../guides/integration/using-the-gmail-connector/" title="Using the Gmail Connector" class="md-nav__link">
+      Using the Gmail Connector
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../guides/integration/managing-a-business-process/" title="Managing a Business Process" class="md-nav__link">
+      Managing a Business Process
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../guides/integration/using-the-analytics-dashboard/" title="Using the Analytics Dashboard" class="md-nav__link">
+      Using the Analytics Dashboard
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../guides/using-inbound-endpoints/" title="Using Inbound Endpoints" class="md-nav__link">
+      Using Inbound Endpoints
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../guides/using-templates/" title="Using Templates" class="md-nav__link">
+      Using Templates
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../guides/guaranteed-delivery-with-failover/" title="Guaranteed Delivery with Failover" class="md-nav__link">
+      Guaranteed Delivery with Failover
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../guides/sap-integration/" title="Integrating with SAP" class="md-nav__link">
+      Integrating with SAP
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-7-3" type="checkbox" id="nav-7-3" checked>
+    
+    <label class="md-nav__link" for="nav-7-3">
+      Tasks
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-7-3">
+        Tasks
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-7-3-1" type="checkbox" id="nav-7-3-1">
+    
+    <label class="md-nav__link" for="nav-7-3-1">
+      REST APIs
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="3">
+      <label class="md-nav__title" for="nav-7-3-1">
+        REST APIs
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../rest_api_tasks/creating-an-api/" title="Creating a REST API" class="md-nav__link">
+      Creating a REST API
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../rest_api_tasks/applying-security-to-an-api/" title="Applying Security to a REST API" class="md-nav__link">
+      Applying Security to a REST API
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../rest_api_tasks/enabling-logs-for-api/" title="Enabling Logs for an API" class="md-nav__link">
+      Enabling Logs for an API
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-7-3-2" type="checkbox" id="nav-7-3-2">
+    
+    <label class="md-nav__link" for="nav-7-3-2">
+      Proxy Services
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="3">
+      <label class="md-nav__title" for="nav-7-3-2">
+        Proxy Services
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../proxy_service_tasks/creating-a-proxy-service/" title="Creating a Proxy Service" class="md-nav__link">
+      Creating a Proxy Service
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../proxy_service_tasks/applying-security-to-a-proxy-service/" title="Applying Security to a Proxy Service" class="md-nav__link">
+      Applying Security to a Proxy Service
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../proxy_service_tasks/enabling-logs-for-services/" title="Enabling Logs for Services" class="md-nav__link">
+      Enabling Logs for Services
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../proxy_service_tasks/publishing-a-custom-wsdl/" title="Publishing a Custom WSDL" class="md-nav__link">
+      Publishing a Custom WSDL
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../proxy_service_tasks/changing-the-endpoint-of-deployed-service/" title="Changing the Endpoint of Deployed Service" class="md-nav__link">
+      Changing the Endpoint of Deployed Service
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../proxy_service_tasks/using-pinned-servers/" title="Using Pinned Servers with Proxy Services" class="md-nav__link">
+      Using Pinned Servers with Proxy Services
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../inbound_endpoint_tasks/creating-an-inbound-endpoint/" title="Creating an Inbound Endpoint" class="md-nav__link">
+      Creating an Inbound Endpoint
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-7-3-4" type="checkbox" id="nav-7-3-4">
+    
+    <label class="md-nav__link" for="nav-7-3-4">
+      Message Stores & Processors
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="3">
+      <label class="md-nav__title" for="nav-7-3-4">
+        Message Stores & Processors
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../message_stores_processors/creating-a-message-store/" title="Creating a Message Store" class="md-nav__link">
+      Creating a Message Store
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../message_stores_processors/creating-a-message-processor/" title="Creating a Message Processor" class="md-nav__link">
+      Creating a Message Processor
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../templates/working-with-templates/" title="Working with Templates" class="md-nav__link">
+      Working with Templates
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../endpoints/working-with-endpoints/" title="Working with Endpoints" class="md-nav__link">
+      Working with Endpoints
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../scheduling-esb-tasks/" title="Scheduling an ESB Task" class="md-nav__link">
+      Scheduling an ESB Task
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../connectors/working-with-connectors/" title="Working with Connectors" class="md-nav__link">
+      Working with Connectors
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../working_with_synapse_passwords/" title="Working with Synapse Passwords" class="md-nav__link">
+      Working with Synapse Passwords
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../working-with-mediators/" title="Working with Mediators" class="md-nav__link">
+      Working with Mediators
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-7-3-11" type="checkbox" id="nav-7-3-11" checked>
+    
+    <label class="md-nav__link" for="nav-7-3-11">
+      Registry Artifacts
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="3">
+      <label class="md-nav__title" for="nav-7-3-11">
+        Registry Artifacts
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../working-with-registry-artifacts/" title="Working with Registry Artifacts" class="md-nav__link">
+      Working with Registry Artifacts
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Managing Registry Artifacts
+      </label>
+    
+    <a href="./" title="Managing Registry Artifacts" class="md-nav__link md-nav__link--active">
+      Managing Registry Artifacts
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+    
+    
+    
+    
+    
+    <a href="#" title="On this page" class="nav_link md-icon md-content__icon toc_icon"
+       id="tocToggleBtn">keyboard_arrow_right</a>
+    <label class="md-nav__title" for="__toc">On this page</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+        
+        <li class="md-nav__item">
+  <a href="#adding-different-remote-registry-instances" title="Adding different remote registry instances" class="md-nav__link">
+    Adding different remote registry instances
+  </a>
+  
+</li>
+        
+        <li class="md-nav__item">
+  <a href="#adding-collections-and-resources" title="Adding collections and resources" class="md-nav__link">
+    Adding collections and resources
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#upload-content-from-file" title="Upload content from file" class="md-nav__link">
+    Upload content from file
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+        <li class="md-nav__item">
+  <a href="#adding-properties-associations-dependencies-comments-and-tags-for-a-resource-or-collection" title="Adding properties, associations, dependencies, comments and tags for a resource or collection" class="md-nav__link">
+    Adding properties, associations, dependencies, comments and tags for a resource or collection
+  </a>
+  
+</li>
+        
+        <li class="md-nav__item">
+  <a href="#linking-with-the-editor" title="Linking with the editor" class="md-nav__link">
+    Linking with the editor
+  </a>
+  
+</li>
+        
+        <li class="md-nav__item">
+  <a href="#adding-multiple-files-and-folders-from-file-system" title="Adding multiple files and folders from file system" class="md-nav__link">
+    Adding multiple files and folders from file system
+  </a>
+  
+</li>
+        
+        <li class="md-nav__item">
+  <a href="#importingexporting-resources-and-collections" title="Importing/exporting resources and collections" class="md-nav__link">
+    Importing/exporting resources and collections
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#import-from" title="Import From" class="md-nav__link">
+    Import From
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#export-to" title="Export To" class="md-nav__link">
+    Export To
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+        <li class="md-nav__item">
+  <a href="#drag-and-drop-resources-and-collections" title="Drag and drop resources and collections" class="md-nav__link">
+    Drag and drop resources and collections
+  </a>
+  
+</li>
+        
+        <li class="md-nav__item">
+  <a href="#modifying-permission-for-a-resource-or-collection" title="Modifying permission for a resource or collection" class="md-nav__link">
+    Modifying permission for a resource or collection
+  </a>
+  
+</li>
+        
+        <li class="md-nav__item">
+  <a href="#refreshing-the-registry" title="Refreshing the registry" class="md-nav__link">
+    Refreshing the registry
+  </a>
+  
+</li>
+        
+        <li class="md-nav__item">
+  <a href="#viewing-information-per-resource-and-collection" title="Viewing information per resource and collection" class="md-nav__link">
+    Viewing information per resource and collection
+  </a>
+  
+</li>
+        
+        <li class="md-nav__item">
+  <a href="#checking-out-a-collection-to-a-local-project" title="Checking-out a collection to a local project" class="md-nav__link">
+    Checking-out a collection to a local project
+  </a>
+  
+</li>
+        
+        <li class="md-nav__item">
+  <a href="#updating-the-registry" title="Updating the registry" class="md-nav__link">
+    Updating the registry
+  </a>
+  
+</li>
+        
+        <li class="md-nav__item">
+  <a href="#viewing-and-restoring-versions" title="Viewing and restoring versions" class="md-nav__link">
+    Viewing and restoring versions
+  </a>
+  
+</li>
+        
+        <li class="md-nav__item">
+  <a href="#opening-the-resource-in-the-relevant-editor-of-eclipse" title="Opening the resource in the relevant editor of Eclipse" class="md-nav__link">
+    Opening the resource in the relevant editor of Eclipse
+  </a>
+  
+</li>
+        
+        <li class="md-nav__item">
+  <a href="#changing-role-permissions-of-resources" title="Changing role permissions of resources" class="md-nav__link">
+    Changing role permissions of resources
+  </a>
+  
+</li>
+        
+        
+        
+        
+        
+    </ul>
+    
+</nav>
+    
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../working-with-local-registry-entries/" title="Working with Local Registry Entries" class="md-nav__link">
+      Working with Local Registry Entries
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+      
+        
+        
+        
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-8" type="checkbox" id="nav-8">
+    
+    <label class="md-nav__link" for="nav-8">
+      Administration and Observability
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-8">
+        Administration and Observability
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../administer-and-observe/observability/" title="Observability" class="md-nav__link">
+      Observability
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../administer-and-observe/jmx_monitoring/" title="JMX Monitoring" class="md-nav__link">
+      JMX Monitoring
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../administer-and-observe/snmp_monitoring/" title="SNMP Monitoring" class="md-nav__link">
+      SNMP Monitoring
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../administer-and-observe/monitoring_with_prometheus/" title="Monitoring with Prometheus" class="md-nav__link">
+      Monitoring with Prometheus
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../setup/working-with-admin-services/" title="Working with Admin Services" class="md-nav__link">
+      Working with Admin Services
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../administer-and-observe/using-the-command-line-interface/" title="Using the Command-Line Interface" class="md-nav__link">
+      Using the Command-Line Interface
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-8-7" type="checkbox" id="nav-8-7">
+    
+    <label class="md-nav__link" for="nav-8-7">
+      Monitoring Logs
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-8-7">
+        Monitoring Logs
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../administer-and-observe/monitoring_logs/" title="About Logs" class="md-nav__link">
+      About Logs
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../administer-and-observe/monitoring_access_logs/" title="Monitoring Access Logs" class="md-nav__link">
+      Monitoring Access Logs
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../administer-and-observe/configuring_log4j_properties/" title="Configuring Log4j Properties" class="md-nav__link">
+      Configuring Log4j Properties
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../administer-and-observe/configuring_the_log_provider/" title="Configuring the Log Provider" class="md-nav__link">
+      Configuring the Log Provider
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../administer-and-observe/masking_sensitive_info_in_logs/" title="Masking Sensitive Information in Logs" class="md-nav__link">
+      Masking Sensitive Information in Logs
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-8-8" type="checkbox" id="nav-8-8">
+    
+    <label class="md-nav__link" for="nav-8-8">
+      Monitoring TCP Messages
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-8-8">
+        Monitoring TCP Messages
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../administer-and-observe/starting_tcp_mon/" title="Starting TCPMon" class="md-nav__link">
+      Starting TCPMon
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../administer-and-observe/message_monitoring_with_tcpmon/" title="Message Monitoring with TCPMon" class="md-nav__link">
+      Message Monitoring with TCPMon
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../administer-and-observe/other_usages_of_tcpmon/" title="Other Usages of TCPMon" class="md-nav__link">
+      Other Usages of TCPMon
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+      
+        
+        
+        
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-9" type="checkbox" id="nav-9">
+    
+    <label class="md-nav__link" for="nav-9">
+      References
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-9">
+        References
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../references/enterprise-Integration-Patterns/" title="Enterprise Integration Patterns" class="md-nav__link">
+      Enterprise Integration Patterns
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../references/ei_config_catalog/" title="Configuration Catalog" class="md-nav__link">
+      Configuration Catalog
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../references/config-catalog/" title="Config Catalog" class="md-nav__link">
+      Config Catalog
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-9-4" type="checkbox" id="nav-9-4">
+    
+    <label class="md-nav__link" for="nav-9-4">
+      Mediator Catalog
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-9-4">
+        Mediator Catalog
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../references/mediators/aggregate-Mediator/" title="Aggregate Mediators" class="md-nav__link">
+      Aggregate Mediators
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../references/mediators/bean-Mediator/" title="Bean Mediator" class="md-nav__link">
+      Bean Mediator
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../references/mediators/builder-Mediator/" title="Builder Mediator" class="md-nav__link">
+      Builder Mediator
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../references/mediators/cache-Mediator/" title="Cache Mediator" class="md-nav__link">
+      Cache Mediator
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../references/mediators/call-Mediator/" title="Call Mediator" class="md-nav__link">
+      Call Mediator
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../references/mediators/call-Template-Mediator/" title="Call Template Mediator" class="md-nav__link">
+      Call Template Mediator
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../references/mediators/callout-Mediator/" title="Callout Mediator" class="md-nav__link">
+      Callout Mediator
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../references/mediators/class-Mediator/" title="Class Mediator" class="md-nav__link">
+      Class Mediator
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../references/mediators/clone-Mediator/" title="Clone Mediator" class="md-nav__link">
+      Clone Mediator
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../references/mediators/conditional-Router-Mediator/" title="Conditional Router Mediator" class="md-nav__link">
+      Conditional Router Mediator
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../references/mediators/data-Mapper-Mediator/" title="Data Mapper Mediator" class="md-nav__link">
+      Data Mapper Mediator
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../references/mediators/dBLookup-Mediator/" title="DBLookup Mediator" class="md-nav__link">
+      DBLookup  Mediator
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../references/mediators/dB-Report-Mediator/" title="DB Report Mediator" class="md-nav__link">
+      DB Report Mediator
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../references/mediators/drop-Mediator/" title="Drop Mediator" class="md-nav__link">
+      Drop Mediator
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../references/mediators/eJB-Mediator/" title="EJB Mediator" class="md-nav__link">
+      EJB Mediator
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../references/mediators/enqueue-Mediator/" title="Enqueue Mediator" class="md-nav__link">
+      Enqueue Mediator
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../references/mediators/enrich-Mediator/" title="Enrich Mediator" class="md-nav__link">
+      Enrich Mediator
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../references/mediators/entitlement-Mediator/" title="Entitlement Mediator" class="md-nav__link">
+      Entitlement Mediator
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../references/mediators/event-Mediator/" title="Event Mediator" class="md-nav__link">
+      Event Mediator
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../references/mediators/fastXSLT-Mediator/" title="FastXSLT Mediator" class="md-nav__link">
+      FastXSLT Mediator
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../references/mediators/fault-Mediator/" title="Fault Mediator" class="md-nav__link">
+      Fault Mediator
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../references/mediators/filter-Mediator/" title="Filter Mediator" class="md-nav__link">
+      Filter Mediator
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../references/mediators/forEach-Mediator/" title="ForEach Mediator" class="md-nav__link">
+      ForEach Mediator
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../references/mediators/header-Mediator/" title="Header Mediator" class="md-nav__link">
+      Header Mediator
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../references/mediators/in-and-Out-Mediators/" title="In and Out Mediator" class="md-nav__link">
+      In and Out Mediator
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../references/mediators/iterate-Mediator/" title="Iterate Mediator" class="md-nav__link">
+      Iterate Mediator
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../references/mediators/log-Mediator/" title="Log Mediator" class="md-nav__link">
+      Log Mediator
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../references/mediators/loopback-Mediator/" title="Loopback Mediator" class="md-nav__link">
+      Loopback Mediator
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../references/mediators/oAuth-Mediator/" title="OAuth Mediator" class="md-nav__link">
+      OAuth Mediator
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../references/mediators/payloadFactory-Mediator/" title="PayloadFactory Mediator" class="md-nav__link">
+      PayloadFactory Mediator
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../references/mediators/pOJOCommand-Mediator/" title="POJOCommand Mediator" class="md-nav__link">
+      POJOCommand Mediator
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../references/mediators/property-Mediator/" title="Property Mediator" class="md-nav__link">
+      Property Mediator
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../references/mediators/property-Group-Mediator/" title="Property Group Mediator" class="md-nav__link">
+      Property Group Mediator
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../references/mediators/publish-Event-Mediator/" title="Publish Event Mediator" class="md-nav__link">
+      Publish Event Mediator
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../references/mediators/respond-Mediator/" title="Respond Mediator" class="md-nav__link">
+      Respond Mediator
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../references/mediators/rule-Mediator/" title="Rule Mediator" class="md-nav__link">
+      Rule Mediator
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../references/mediators/script-Mediator/" title="Script Mediator" class="md-nav__link">
+      Script Mediator
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../references/mediators/send-Mediator/" title="Send Mediator" class="md-nav__link">
+      Send Mediator
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../references/mediators/sequence-Mediator/" title="Sequence Mediator" class="md-nav__link">
+      Sequence Mediator
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../references/mediators/smooks-Mediator/" title="Smooks Mediator" class="md-nav__link">
+      Smooks Mediator
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../references/mediators/spring-Mediator/" title="Spring Mediator" class="md-nav__link">
+      Spring Mediator
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../references/mediators/store-Mediator/" title="Store Mediator" class="md-nav__link">
+      Store Mediator
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../references/mediators/switch-Mediator/" title="Switch Mediator" class="md-nav__link">
+      Switch Mediator
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../references/mediators/throttle-Mediator/" title="Throttle Mediator" class="md-nav__link">
+      Throttle Mediator
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../references/mediators/transaction-Mediator/" title="Transaction Mediator" class="md-nav__link">
+      Transaction Mediator
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../references/mediators/uRLRewrite-Mediator/" title="URLRewrite Mediator" class="md-nav__link">
+      URLRewrite Mediator
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../references/mediators/validate-Mediator/" title="Validate Mediator" class="md-nav__link">
+      Validate Mediator
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../references/mediators/xQuery-Mediator/" title="XQuery Mediator" class="md-nav__link">
+      XQuery Mediator
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../references/mediators/xSLT-Mediator/" title="XSLT Mediator" class="md-nav__link">
+      XSLT Mediator
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../references/property_catalog.md" title="Property Catalog" class="md-nav__link">
+      Property Catalog
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-9-6" type="checkbox" id="nav-9-6">
+    
+    <label class="md-nav__link" for="nav-9-6">
+      Inbound Endpoints
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-9-6">
+        Inbound Endpoints
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../references/inbound_endpoints/about-inbound-endpoints/" title="About Inbound Endpoints" class="md-nav__link">
+      About Inbound Endpoints
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-9-6-2" type="checkbox" id="nav-9-6-2">
+    
+    <label class="md-nav__link" for="nav-9-6-2">
+      Listening Endpoints
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="3">
+      <label class="md-nav__title" for="nav-9-6-2">
+        Listening Endpoints
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../references/inbound_endpoints/listening_inbound_endpoint/http-inbound-protocol/" title="HTTP Inbound Protocol" class="md-nav__link">
+      HTTP Inbound Protocol
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../references/inbound_endpoints/listening_inbound_endpoint/https-inbound-protocol/" title="HTTPS Inbound Protocol" class="md-nav__link">
+      HTTPS Inbound Protocol
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../references/inbound_endpoints/listening_inbound_endpoint/hl7-inbound-protocol/" title="HL7 Inbound Protocol" class="md-nav__link">
+      HL7 Inbound Protocol
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../references/inbound_endpoints/listening_inbound_endpoint/cxf-ws-rm-inbound-protocol/" title="CXF WS-RM Inbound Protocol" class="md-nav__link">
+      CXF WS-RM Inbound Protocol
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../references/inbound_endpoints/listening_inbound_endpoint/websocket-inbound-protocol/" title="Websocket Inbound Protocol" class="md-nav__link">
+      Websocket Inbound Protocol
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../references/inbound_endpoints/listening_inbound_endpoint/secure-websocket-inbound-protocol/" title="Secure Websocket Inbound Protocol" class="md-nav__link">
+      Secure Websocket Inbound Protocol
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-9-6-3" type="checkbox" id="nav-9-6-3">
+    
+    <label class="md-nav__link" for="nav-9-6-3">
+      Polling Endpoints
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="3">
+      <label class="md-nav__title" for="nav-9-6-3">
+        Polling Endpoints
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../references/inbound_endpoints/polling_inbound_endpoint/file-Inbound-Protocol/" title="File Inbound Protocol" class="md-nav__link">
+      File Inbound Protocol
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../references/inbound_endpoints/polling_inbound_endpoint/jms-Inbound-Protocol/" title="JMS Inbound Protocol" class="md-nav__link">
+      JMS Inbound Protocol
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../references/inbound_endpoints/polling_inbound_endpoint/kafka-Inbound-Protocol/" title="Kafka Inbound Protocol" class="md-nav__link">
+      Kafka Inbound Protocol
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-9-6-4" type="checkbox" id="nav-9-6-4">
+    
+    <label class="md-nav__link" for="nav-9-6-4">
+      Event-based Endpoints
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="3">
+      <label class="md-nav__title" for="nav-9-6-4">
+        Event-based Endpoints
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../references/inbound_endpoints/event_based_inbound_endpoint/mqtt-inbound-protocol/" title="MQTT Inbound Protocol" class="md-nav__link">
+      MQTT Inbound Protocol
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../references/inbound_endpoints/event_based_inbound_endpoint/rabbitmq-inbound-protocol/" title="RabbitMQ Inbound Protocol" class="md-nav__link">
+      RabbitMQ Inbound Protocol
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../references/inbound_endpoints/custom-Inbound-endpoint/" title="Custom Inbound Endpoints" class="md-nav__link">
+      Custom Inbound Endpoints
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-9-7" type="checkbox" id="nav-9-7">
+    
+    <label class="md-nav__link" for="nav-9-7">
+      Message Stores & Processors
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-9-7">
+        Message Stores & Processors
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../references/message_stores_processors/about-message-stores-processors/" title="About Message Stores and Processors" class="md-nav__link">
+      About Message Stores and Processors
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-9-7-2" type="checkbox" id="nav-9-7-2">
+    
+    <label class="md-nav__link" for="nav-9-7-2">
+      Message Stores
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="3">
+      <label class="md-nav__title" for="nav-9-7-2">
+        Message Stores
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../references/message_stores_processors/message_stores/in-memory-message-store/" title="In-Memory Message Store" class="md-nav__link">
+      In-Memory Message Store
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../references/message_stores_processors/message_stores/jms-message-store/" title="JMS Message Store" class="md-nav__link">
+      JMS Message Store
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../references/message_stores_processors/message_stores/rabbitmq-message-store/" title="RabbitMQ Message Store" class="md-nav__link">
+      RabbitMQ Message Store
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../references/message_stores_processors/message_stores/jdbc-message-store/" title="JDBC Message Store" class="md-nav__link">
+      JDBC Message Store
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../references/message_stores_processors/message_stores/resequence-message-store/" title="Resequencer Message Store" class="md-nav__link">
+      Resequencer Message Store
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../references/message_stores_processors/message_stores/wso2-mb-message-store/" title="WSO2 MB Message Store" class="md-nav__link">
+      WSO2 MB Message Store
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../references/message_stores_processors/message_stores/custom-Message-Store/" title="Custom Message Store" class="md-nav__link">
+      Custom Message Store
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-9-7-3" type="checkbox" id="nav-9-7-3">
+    
+    <label class="md-nav__link" for="nav-9-7-3">
+      Message Processors
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="3">
+      <label class="md-nav__title" for="nav-9-7-3">
+        Message Processors
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../references/message_stores_processors/message_processors/custom-message-processor/" title="Custom Message Processor" class="md-nav__link">
+      Custom Message Processor
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../references/message_stores_processors/message_processors/message-sampling-processor/" title="Message Sampling Processor" class="md-nav__link">
+      Message Sampling Processor
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../references/message_stores_processors/message_processors/scheduled-failover-message-forwarding-processor/" title="Scheduled Failover Message Forwarding Processor" class="md-nav__link">
+      Scheduled Failover Message Forwarding Processor
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../references/message_stores_processors/message_processors/scheduled-message-forwarding-processor/" title="Scheduled Message Forwarding Processor" class="md-nav__link">
+      Scheduled Message Forwarding Processor
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../references/message_stores_processors/message_processors/message-processing-in-worker-manager-cluster/" title="Message Processing in Worker-Manager Cluster" class="md-nav__link">
+      Message Processing in Worker-Manager Cluster
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../references/message_stores_processors/message_processors/handling-poison-messages/" title="Handling Poison Messages" class="md-nav__link">
+      Handling Poison Messages
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../references/json_messages/working-with-json-message-payloads/" title="JSON Messages" class="md-nav__link">
+      JSON Messages
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-9-9" type="checkbox" id="nav-9-9">
+    
+    <label class="md-nav__link" for="nav-9-9">
+      Endpoints
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-9-9">
+        Endpoints
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../references/endpoints/about-endpoints/" title="About Endpoints" class="md-nav__link">
+      About Endpoints
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../references/endpoints/endpoint-error-handling/" title="Endpoint Error Handling" class="md-nav__link">
+      Endpoint Error Handling
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-9-9-3" type="checkbox" id="nav-9-9-3">
+    
+    <label class="md-nav__link" for="nav-9-9-3">
+      Endpoints
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="3">
+      <label class="md-nav__title" for="nav-9-9-3">
+        Endpoints
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../references/endpoints/address-endpoint/" title="Address Endpoint" class="md-nav__link">
+      Address Endpoint
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../references/endpoints/dynamic-load-balance-endpoint/" title="Dynamic Load-Balance Endpoint" class="md-nav__link">
+      Dynamic Load-Balance Endpoint
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../references/endpoints/failover-endpoint/" title="Failover Endpoint" class="md-nav__link">
+      Failover Endpoint
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../references/endpoints/dynamic-load-balance-endpoint/" title="Dynamic Load-Balance Endpoint" class="md-nav__link">
+      Dynamic Load-Balance Endpoint
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../references/endpoints/http-endpoint/" title="HTTP Endpoint" class="md-nav__link">
+      HTTP Endpoint
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../references/endpoints/wsdl-endpoint/" title="WSDL Endpoint" class="md-nav__link">
+      WSDL Endpoint
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../references/endpoints/load-balance-group/" title="Load Balance Group Endpoint" class="md-nav__link">
+      Load Balance Group Endpoint
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../references/endpoints/indirect-and-resolving-endpoints/" title="Indirect and Resolving Endpoint" class="md-nav__link">
+      Indirect and Resolving Endpoint
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../references/endpoints/default-endpoint/" title="Default Endpoint" class="md-nav__link">
+      Default Endpoint
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../references/endpoints/template-endpoint/" title="Template Endpoint" class="md-nav__link">
+      Template Endpoint
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../references/endpoints/recipient-list-endpoint/" title="Recipient List Endpoint" class="md-nav__link">
+      Recipient List Endpoint
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../references/endpoints/websocket-endpoint/" title="Websocket Endpoint" class="md-nav__link">
+      Websocket Endpoint
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-9-10" type="checkbox" id="nav-9-10">
+    
+    <label class="md-nav__link" for="nav-9-10">
+      Connectors
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-9-10">
+        Connectors
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../references/connectors/about-esb-connectors/" title="About Connectors" class="md-nav__link">
+      About Connectors
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-9-10-2" type="checkbox" id="nav-9-10-2">
+    
+    <label class="md-nav__link" for="nav-9-10-2">
+      Connectors
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="3">
+      <label class="md-nav__title" for="nav-9-10-2">
+        Connectors
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../references/connectors/sap-connector/" title="SAP Connector" class="md-nav__link">
+      SAP Connector
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../references/templates/synapse_templates/" title="Synapse Templates" class="md-nav__link">
+      Synapse Templates
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../references/synapse_handlers/synapse-handlers/" title="Synapse Handlers" class="md-nav__link">
+      Synapse Handlers
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-9-13" type="checkbox" id="nav-9-13">
+    
+    <label class="md-nav__link" for="nav-9-13">
+      Transports
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-9-13">
+        Transports
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../references/transports/jms/passthrough-transport.md" title="PassThrough Transport" class="md-nav__link">
+      PassThrough Transport
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../references/transports/http-nio-transport/" title="HTTP-NIO Transport" class="md-nav__link">
+      HTTP-NIO Transport
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../references/transports/https-nio-transport/" title="HTTPS-NIO Transport" class="md-nav__link">
+      HTTPS-NIO Transport
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../references/transports/http-servlet-transport/" title="HTTP Servlet Transport" class="md-nav__link">
+      HTTP Servlet Transport
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../references/transports/https-servlet-transport/" title="HTTPS Servlet Transport" class="md-nav__link">
+      HTTPS Servlet Transport
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../references/transports/fix-transport/" title="FIX Transport" class="md-nav__link">
+      FIX Transport
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../references/transports/vfs-transport/" title="VFS Transport" class="md-nav__link">
+      VFS Transport
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../references/transports/local-transport/" title="Local Transport" class="md-nav__link">
+      Local Transport
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../references/transports/mailto-transport/" title="MailTo Transport" class="md-nav__link">
+      MailTo Transport
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../references/transports/msmq-transport/" title="MSMQ Transport" class="md-nav__link">
+      MSMQ Transport
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../references/transports/tcp-transport/" title="TCP Transport" class="md-nav__link">
+      TCP Transport
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../references/transports/udp-transport/" title="UDP Transport" class="md-nav__link">
+      UDP Transport
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../references/transports/hl7-transport/" title="HL7 Transport" class="md-nav__link">
+      HL7 Transport
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../references/transports/multi-https-transport/" title="Multi-HTTPS Transport" class="md-nav__link">
+      Multi-HTTPS Transport
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../references/transports/webSocket-Transport/" title="WebSocket Transport" class="md-nav__link">
+      WebSocket Transport
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../references/transports/rabbitmq-amqp-transport/" title="RabbitMQ AMQP Transport" class="md-nav__link">
+      RabbitMQ AMQP Transport
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../references/transports/mq-telemetry-transport/" title="MQ Telemetry Transport" class="md-nav__link">
+      MQ Telemetry Transport
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-9-13-18" type="checkbox" id="nav-9-13-18">
+    
+    <label class="md-nav__link" for="nav-9-13-18">
+      JMS Transport
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="3">
+      <label class="md-nav__title" for="nav-9-13-18">
+        JMS Transport
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../references/transports/jms/about-jms-transport/" title="About the JMS Transport" class="md-nav__link">
+      About the JMS Transport
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../references/transports/jms/configure-with-the-WSO2-MB/" title="Configuring WSO2 MB" class="md-nav__link">
+      Configuring WSO2 MB
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../references/transports/jms/configure-with-ActiveMQ/" title="Configuring Active MQ" class="md-nav__link">
+      Configuring Active MQ
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../references/transports/jms/configure-with-IBM-WebSphere-MQ/" title="Configuring IBM Websphere MQ" class="md-nav__link">
+      Configuring IBM Websphere MQ
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../references/transports/jms/configure-with-IBM-WebSphere-application-server/" title="Configuring IBM Webspher Application Server" class="md-nav__link">
+      Configuring IBM Webspher Application Server
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../references/transports/jms/configure-with-JBossMQ/" title="Configuring JBossMQ" class="md-nav__link">
+      Configuring JBossMQ
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../references/transports/jms/configure-with-MSMQ/" title="Configuring MSMQ" class="md-nav__link">
+      Configuring MSMQ
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../references/transports/jms/configure-with-Tibco-EMS/" title="Configuring Tibco EMS" class="md-nav__link">
+      Configuring Tibco EMS
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../references/transports/jms/configure-with-SwiftMQ/" title="Configuring SwiftMQ" class="md-nav__link">
+      Configuring SwiftMQ
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../references/transports/jms/configure-with-WebLogic/" title="Configuring WebLogic" class="md-nav__link">
+      Configuring WebLogic
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../references/transports/jms/configure-with-HornetQ/" title="Configuring HornetQ" class="md-nav__link">
+      Configuring HornetQ
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../references/transports/jms/configure-with-multiple-brokers/" title="Configuring Multiple Brokers" class="md-nav__link">
+      Configuring Multiple Brokers
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-9-14" type="checkbox" id="nav-9-14">
+    
+    <label class="md-nav__link" for="nav-9-14">
+      Security
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-9-14">
+        Security
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../references/security/customizing-secure-vault/" title="Customizing Secure Vault" class="md-nav__link">
+      Customizing Secure Vault
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../references/using_keystores/" title="Using Keystores" class="md-nav__link">
+      Using Keystores
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../references/error_handling/" title="Error Handling" class="md-nav__link">
+      Error Handling
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../references/best-Practices/" title="Best Practices" class="md-nav__link">
+      Best Practices
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+      
+        
+        
+        
+
+
+  <li class="md-nav__item">
+    <a href="../../../../page-not-found/" title="" class="md-nav__link">
+      
+    </a>
+  </li>
+
+      
+    </ul>
+  </nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary">
+    
+    
+    
+    
+    
+    <a href="#" title="On this page" class="nav_link md-icon md-content__icon toc_icon"
+       id="tocToggleBtn">keyboard_arrow_right</a>
+    <label class="md-nav__title" for="__toc">On this page</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+        
+        <li class="md-nav__item">
+  <a href="#adding-different-remote-registry-instances" title="Adding different remote registry instances" class="md-nav__link">
+    Adding different remote registry instances
+  </a>
+  
+</li>
+        
+        <li class="md-nav__item">
+  <a href="#adding-collections-and-resources" title="Adding collections and resources" class="md-nav__link">
+    Adding collections and resources
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#upload-content-from-file" title="Upload content from file" class="md-nav__link">
+    Upload content from file
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+        <li class="md-nav__item">
+  <a href="#adding-properties-associations-dependencies-comments-and-tags-for-a-resource-or-collection" title="Adding properties, associations, dependencies, comments and tags for a resource or collection" class="md-nav__link">
+    Adding properties, associations, dependencies, comments and tags for a resource or collection
+  </a>
+  
+</li>
+        
+        <li class="md-nav__item">
+  <a href="#linking-with-the-editor" title="Linking with the editor" class="md-nav__link">
+    Linking with the editor
+  </a>
+  
+</li>
+        
+        <li class="md-nav__item">
+  <a href="#adding-multiple-files-and-folders-from-file-system" title="Adding multiple files and folders from file system" class="md-nav__link">
+    Adding multiple files and folders from file system
+  </a>
+  
+</li>
+        
+        <li class="md-nav__item">
+  <a href="#importingexporting-resources-and-collections" title="Importing/exporting resources and collections" class="md-nav__link">
+    Importing/exporting resources and collections
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#import-from" title="Import From" class="md-nav__link">
+    Import From
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#export-to" title="Export To" class="md-nav__link">
+    Export To
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+        <li class="md-nav__item">
+  <a href="#drag-and-drop-resources-and-collections" title="Drag and drop resources and collections" class="md-nav__link">
+    Drag and drop resources and collections
+  </a>
+  
+</li>
+        
+        <li class="md-nav__item">
+  <a href="#modifying-permission-for-a-resource-or-collection" title="Modifying permission for a resource or collection" class="md-nav__link">
+    Modifying permission for a resource or collection
+  </a>
+  
+</li>
+        
+        <li class="md-nav__item">
+  <a href="#refreshing-the-registry" title="Refreshing the registry" class="md-nav__link">
+    Refreshing the registry
+  </a>
+  
+</li>
+        
+        <li class="md-nav__item">
+  <a href="#viewing-information-per-resource-and-collection" title="Viewing information per resource and collection" class="md-nav__link">
+    Viewing information per resource and collection
+  </a>
+  
+</li>
+        
+        <li class="md-nav__item">
+  <a href="#checking-out-a-collection-to-a-local-project" title="Checking-out a collection to a local project" class="md-nav__link">
+    Checking-out a collection to a local project
+  </a>
+  
+</li>
+        
+        <li class="md-nav__item">
+  <a href="#updating-the-registry" title="Updating the registry" class="md-nav__link">
+    Updating the registry
+  </a>
+  
+</li>
+        
+        <li class="md-nav__item">
+  <a href="#viewing-and-restoring-versions" title="Viewing and restoring versions" class="md-nav__link">
+    Viewing and restoring versions
+  </a>
+  
+</li>
+        
+        <li class="md-nav__item">
+  <a href="#opening-the-resource-in-the-relevant-editor-of-eclipse" title="Opening the resource in the relevant editor of Eclipse" class="md-nav__link">
+    Opening the resource in the relevant editor of Eclipse
+  </a>
+  
+</li>
+        
+        <li class="md-nav__item">
+  <a href="#changing-role-permissions-of-resources" title="Changing role permissions of resources" class="md-nav__link">
+    Changing role permissions of resources
+  </a>
+  
+</li>
+        
+        
+        
+        
+        
+    </ul>
+    
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+  
+                
+                  <a href="https://github.com/wso2/docs-ei/edit/master/en/docs/use-cases/tasks/registry_artifacts/managing-the-registry.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
+                
+                
+                <h1 id="managing-the-registry">Managing the Registry<a class="headerlink" href="#managing-the-registry" title="Permanent link">&para;</a></h1>
+<p>The following sections explain how you can manage the Registry using
+WSO2 EI Tooling.</p>
+<ul>
+<li><a href="#ManagingtheRegistry-Addingdifferentremoteregistryinstances">Adding different remote registry
+    instances</a></li>
+<li><a href="#ManagingtheRegistry-Addingcollectionsandresources">Adding collections and
+    resources</a></li>
+<li><a href="#ManagingtheRegistry-Addingproperties,associations,dependencies,commentsandtagsforaresourceorcollection">Adding properties, associations, dependencies, comments and tags
+    for a resource or
+    collection</a></li>
+<li><a href="#ManagingtheRegistry-Linkingwiththeeditor">Linking with the editor</a></li>
+<li><a href="#ManagingtheRegistry-Addingmultiplefilesandfoldersfromfilesystem">Adding multiple files and folders from file
+    system</a></li>
+<li><a href="#ManagingtheRegistry-Importing/exportingresourcesandcollections">Importing/exporting resources and
+    collections</a></li>
+<li><a href="#ManagingtheRegistry-Draganddropresourcesandcollections">Drag and drop resources and
+    collections</a></li>
+<li><a href="#ManagingtheRegistry-Modifyingpermissionforaresourceorcollection">Modifying permission for a resource or
+    collection</a></li>
+<li><a href="#ManagingtheRegistry-Refreshingtheregistry">Refreshing the
+    registry</a></li>
+<li><a href="#ManagingtheRegistry-Viewinginformationperresourceandcollection">Viewing information per resource and
+    collection</a></li>
+<li><a href="#ManagingtheRegistry-Checking-outacollectiontoalocalproject">Checking-out a collection to a local
+    project</a></li>
+<li><a href="#ManagingtheRegistry-Updatingtheregistry">Updating the registry</a></li>
+<li><a href="#ManagingtheRegistry-Viewingandrestoringversions">Viewing and restoring
+    versions</a></li>
+<li><a href="#ManagingtheRegistry-OpeningtheresourceintherelevanteditorofEclipse">Opening the resource in the relevant editor of
+    Eclipse</a></li>
+<li><a href="#ManagingtheRegistry-Changingrolepermissionsofresources">Changing role permissions of
+    resources</a></li>
+</ul>
+<h3 id="adding-different-remote-registry-instances">Adding different remote registry instances<a class="headerlink" href="#adding-different-remote-registry-instances" title="Permanent link">&para;</a></h3>
+<ol>
+<li>
+<p>To open the WSO2 registry perspective, click <strong>Window > Open
+    Perspective > Other > WSO2 Registry</strong> . In this perspective, you
+    will get a <strong>WSO2 Registry Browser</strong> view.</p>
+<p><img alt="" src="attachments/119131680/119131681.png" />{width="800" height="370"}</p>
+<p><img alt="" src="attachments/119131680/119131700.png" /></p>
+</li>
+<li>
+<p>Add a remote registry instance. On the WSO2 Registry Browser view,
+    click the <strong>Add Registry</strong> icon.</p>
+<p><img alt="" src="attachments/119131680/119131792.png" /><br />
+In the dialog box that appears, fill in the necessary information.
+The default information for the Registry has been automatically
+filled in. You can either specify root ( <code class="codehilite">/</code> )
+or any other valid registry path for a collection (eg:
+<code class="codehilite">/_system/local</code> ,
+<code class="codehilite">/_system</code> etc). Elements down the given path
+will be loaded in the Registry Browser view.</p>
+<p><img alt="" src="attachments/119131680/119131694.png" /></p>
+<p>If you selected root ( <code class="codehilite">/</code> ) as the path, you
+will get the following registry tree:</p>
+<p><img alt="" src="attachments/119131680/119131785.png" /></p>
+<p>If you selected <code class="codehilite">/_system/local</code> as the path,
+you will get the following registry tree:</p>
+<p><img alt="" src="attachments/119131680/119131782.png" /></p>
+</li>
+</ol>
+<h3 id="adding-collections-and-resources">Adding collections and resources<a class="headerlink" href="#adding-collections-and-resources" title="Permanent link">&para;</a></h3>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+</div>
+<p>Do not set the media type for WSDLs and WSDL resources (it is then
+automatically set to <code class="codehilite">application/xml</code> ). This is done
+to ensure that the WSDL handler does not intercept the Registry
+<code class="codehilite">PUT</code> operation.</p>
+<ol>
+<li>
+<p>Add a new collection. Expand the <code class="codehilite">Repository</code>
+    node, right-click on the root ( <code class="codehilite">/</code> )
+    collection and click <strong>Add a new Collection</strong> .</p>
+<p><img alt="" src="attachments/119131680/119131687.png" />  </p>
+<p>An editor appears where you can enter a name, media type and
+description for the collection.</p>
+<p>To add the collection, save the changes ( <strong>CTRL + S</strong> ) done in the
+editor. A new collection with the given name will be added to the
+selected node.  </p>
+<p><img alt="" src="attachments/119131680/119131744.png" /></p>
+<p>In the <strong>Media Type</strong> combo box, you have the ability to create your
+own media type by selecting the <strong>Other</strong> option.  </p>
+<p><img alt="" src="attachments/119131680/119131728.png" /></p>
+</li>
+<li>
+<p>Add a new resource. Select a collection, right-click on it and click
+    <strong>Add a new resource</strong> . You will get the same editor as you got for
+    the collection. You can add a resource in the following ways:</p>
+<ol>
+<li>Upload content from file</li>
+<li>Create custom content</li>
+<li>
+<p>Import content from URL</p>
+</li>
+<li>
+<h5 id="upload-content-from-file">Upload content from file<a class="headerlink" href="#upload-content-from-file" title="Permanent link">&para;</a></h5>
+<p>This is the default method to add a resource. Browse to the file
+you want to add from the file system. Resource name and media
+type will be filled accordingly. You can change the default
+values if required.  </p>
+<p><img alt="" src="attachments/119131680/119131690.png" /></p>
+</li>
+<li>
+<p>Create custom content. Use this method to create your own
+    resource files from the editor. Give a name, mediatype,
+    description and content for the file. You can edit content
+    according to the specified media type.</p>
+<p><img alt="" src="attachments/119131680/119131781.png" /></p>
+</li>
+<li>
+<p>Import content from URL. Using this method, you can import
+    content from a URL. When you give the URL, make sure it does not
+    contain characters like <strong>~</strong> since it is considered as an
+    invalid character for abdera. The name and media type will be
+    filled according to the given URL. You can change the values if
+    required.</p>
+<p><img alt="" src="attachments/119131680/119131721.png" /></p>
+</li>
+</ol>
+</li>
+</ol>
+<p>After adding a resource to your G-Reg project, the resource editor
+appears. If you close the editor and want to open it again at any point,
+simply select your registry resource project from the Project Explorer,
+right-click and click <strong>Registry Resources Editor</strong> .</p>
+<p><img alt="" src="attachments/119131680/119131689.png" /></p>
+<p>It is also possible to edit the information later. To edit media type or
+resource description, right-click on the resource and click
+<strong>Information</strong> . You can delete the collection or resource you added by
+right-clicking on the resource or collection and clicking <strong>Delete</strong> .</p>
+<h3 id="adding-properties-associations-dependencies-comments-and-tags-for-a-resource-or-collection">Adding properties, associations, dependencies, comments and tags for a resource or collection<a class="headerlink" href="#adding-properties-associations-dependencies-comments-and-tags-for-a-resource-or-collection" title="Permanent link">&para;</a></h3>
+<p>For a collection or resource, there are two main fields of properties
+you can add.</p>
+<ol>
+<li>Metadata</li>
+<li>Community Features</li>
+</ol>
+<p>In the <strong>Metadata</strong> category, you can add properties, associations and
+dependencies. In the <strong>Community Features</strong> category, you can add
+comments and tags.</p>
+<ol>
+<li>
+<p>Add metadata.</p>
+<p><img alt="" src="attachments/119131680/119131704.png" />  </p>
+<ol>
+<li>
+<p>Add a property. Right-click on the collection or resource to
+    which you want to add a property and click <strong>Metadata ></strong> <strong>Add
+    a Property</strong> . On the editor that appears, you can add, edit and
+    delete properties.</p>
+<p><img alt="" src="attachments/119131680/119131726.png" /></p>
+<p>To delete a property, select the property and click <strong>Delete
+Property</strong> . You can undo the action by clicking <strong>Undelete
+Property</strong> . If not, the property will be removed when you save
+the editor.</p>
+</li>
+<li>
+<p>Add a dependency. Right-click on the collection or resource to
+    which you want to add a dependency and click <strong>Metadata ></strong>
+    <strong>Add a Dependency</strong> . On the editor that appears, add the
+    dependencies you need.</p>
+<p><img alt="" src="attachments/119131680/119131787.png" /></p>
+<p>Note that the path should be valid registry paths. If not, an
+error message appears when you click <strong>Save</strong> .  </p>
+<p><img alt="" src="attachments/119131680/119131777.png" /></p>
+</li>
+<li>
+<p>Add an association. Right click on the collection or resource to
+    which you want to add an association and click <strong>Metadata ></strong>
+    <strong>Add an Association</strong> .</p>
+<p>On the editor that appears, add the associations necessary. Note
+that the path should be valid registry paths. If not, an error
+message appears when you click <strong>Save</strong> . You can edit the
+values, delete associations, and undo delete as required.  </p>
+<p><img alt="" src="attachments/119131680/119131745.png" /></p>
+</li>
+</ol>
+</li>
+<li>
+<p>Add community features.</p>
+<p><img alt="" src="attachments/119131680/119131746.png" /></p>
+<ol>
+<li>
+<p>Add comment. Right click on the collection or resource to which
+    you want to add a comment and click <strong>Community ></strong> <strong>Add
+    Comment</strong> . On the editor that appears, you can add, edit and
+    delete comments. To delete a comment, select the comment and
+    click <strong>Delete Comment</strong> .</p>
+<p><img alt="" src="attachments/119131680/119131791.png" /></p>
+<p>You can undo the action by clicking <strong>Undelete Comment</strong> . If
+not, the comment will be removed when you save the editor.</p>
+</li>
+<li>
+<p>Add a tag. Right click on the collection or resource to which
+    you want to add a tag and click <strong>Community ></strong> <strong>Add a Tag</strong> .
+    On the editor that appears, you can add, edit and delete (or
+    undelete) tags. You can give any string value as a tag.</p>
+<p><img alt="" src="attachments/119131680/119131732.png" /></p>
+<p>You can not have two tags with the same name.</p>
+<p><img alt="" src="attachments/119131680/119131783.png" /></p>
+</li>
+</ol>
+</li>
+</ol>
+<h3 id="linking-with-the-editor">Linking with the editor<a class="headerlink" href="#linking-with-the-editor" title="Permanent link">&para;</a></h3>
+<p>This is similar to a feature that is available in Eclipse IDE. If you
+click on the <strong>Link with Editor</strong> option, the mouse pointer will focus
+on the path of the active editor of the <strong>WSO2 Registry Browser</strong> .</p>
+<p><strong>Link With Editor</strong> option is available only in the
+<code class="codehilite">Repository</code> level, since it is a global function. To
+activate the <strong>Link With Editor</strong> option, right-click on <strong>Repository</strong>
+and click <strong>Link With Editor</strong> . The same functionality is available in
+the toolbar of the <strong>WSO2 Registry Browser</strong> view as well.</p>
+<p><img alt="" src="attachments/119131680/119131750.png" /></p>
+<p>Now you can open several resources in seperate editors by double
+clicking on the resource. You can swap among different editors. You will
+see the correct path related to the selected resource focused in the
+WSO2 Registry Browser view.</p>
+<h3 id="adding-multiple-files-and-folders-from-file-system">Adding multiple files and folders from file system<a class="headerlink" href="#adding-multiple-files-and-folders-from-file-system" title="Permanent link">&para;</a></h3>
+<p>You can add multiple folders and files from the local file system. This
+option is availabe for a collection. Right-click on the collection to
+which you want to add multiple files and folders, and click <strong>Add local
+resources</strong> and choose the option you want.</p>
+<ol>
+<li>Multiple files</li>
+<li>Folder</li>
+</ol>
+<p>Select multiple files or folders that you want to add and click <strong>OK</strong>
+. Click <strong>OK</strong> on the confirmation message.  The selected multiple
+resources will be added under the collection.</p>
+<h3 id="importingexporting-resources-and-collections">Importing/exporting resources and collections<a class="headerlink" href="#importingexporting-resources-and-collections" title="Permanent link">&para;</a></h3>
+<p>With this functionality, you can import a resource and collection from
+the same registry instance or a different registry instance that you
+have added. Similarly, you can export a resource or collection to the
+same registry instance or a different registry instance. <strong>Import From</strong>
+is only applicable for a collection since you cannot import a collection
+or resource under a resource.</p>
+<ol>
+<li>
+<h5 id="import-from">Import From<a class="headerlink" href="#import-from" title="Permanent link">&para;</a></h5>
+<p>Go to the collection to which you want to import resources,
+right-click and click <strong>Import From</strong> . On the dialog box that
+appears, select the resources that you want to import from the
+available registry instances. Browse through the registry instance,
+select the resource or collection you need and click <strong>OK</strong> .</p>
+<p>Click OK on the confirmation message that appears. The imported
+resource will be added under the selected collection.</p>
+</li>
+<li>
+<h5 id="export-to">Export To<a class="headerlink" href="#export-to" title="Permanent link">&para;</a></h5>
+<p>Go to the collection or resource you want to export to another
+location. Right-click and click <strong>Export To</strong> . On the dialog box
+that appears, choose the location to which you want to export the
+resource. Browse the registry, select the path and click <strong>OK</strong> .</p>
+<p>Click <strong>OK</strong> on the confirmation message that appears. Now you will
+see the selected resource has been exported to the given location.</p>
+</li>
+</ol>
+<h3 id="drag-and-drop-resources-and-collections">Drag and drop resources and collections<a class="headerlink" href="#drag-and-drop-resources-and-collections" title="Permanent link">&para;</a></h3>
+<p>With this functionality, you can drag any resource or collection and
+drop it to a location of the same registry instance or different
+registry instance that is available.</p>
+<p>Before dropping the resource, you will get a confirmation message. After
+confirming, the resource will be added to the dropped location.</p>
+<h3 id="modifying-permission-for-a-resource-or-collection">Modifying permission for a resource or collection<a class="headerlink" href="#modifying-permission-for-a-resource-or-collection" title="Permanent link">&para;</a></h3>
+<p>You can modify the permission of a resource or collection by
+right-clicking on the resource or collection and clicking <strong>Modify
+Permissions</strong> .</p>
+<p>In the dialog box that appears, you will see available roles and their
+permissions. You can define the permissions and click <strong>OK</strong> . You can
+check whether the permission has been changed from the management
+console as well as from the tool.</p>
+<p>From the management console:</p>
+<p><img alt="" src="attachments/119131680/119131709.png" /></p>
+<p>From the tool:</p>
+<p><img alt="" src="attachments/119131680/119131752.png" /></p>
+<h3 id="refreshing-the-registry">Refreshing the registry<a class="headerlink" href="#refreshing-the-registry" title="Permanent link">&para;</a></h3>
+<p>You can refresh the registry instance which will enable a sync with the
+latest updates. This option is available in all stages. You can select
+<strong>Refresh</strong> by right-clicking as well as from the toolbar of the <strong>WSO2
+Registry Browser</strong> view.</p>
+<h3 id="viewing-information-per-resource-and-collection">Viewing information per resource and collection<a class="headerlink" href="#viewing-information-per-resource-and-collection" title="Permanent link">&para;</a></h3>
+<p>You can view information related to a resource or collection by
+right-clicking and clicking <strong>Information</strong> .</p>
+<p>It is a multi-tab editor which includes general information, properties,
+associations, dependencies, tags and comments. You have the ability to
+edit them at the same time.</p>
+<h3 id="checking-out-a-collection-to-a-local-project">Checking-out a collection to a local project<a class="headerlink" href="#checking-out-a-collection-to-a-local-project" title="Permanent link">&para;</a></h3>
+<p>You can check-out a resource or a collection to a local project in the
+workspace. Right-click on the resource or collection and click
+<strong>Checkout</strong> .</p>
+<p>Select the checkout location. If you have any projects in the workspace,
+they are shown in the dialog box. If not, the dialog box is blank. As a
+result, you have to create a project in the workspace before
+checking-out.</p>
+<p>A checked-out resource can have several states.</p>
+<ol>
+<li>Synched</li>
+<li>Updated</li>
+<li>Conflicted</li>
+<li>Added</li>
+<li>Resolved</li>
+</ol>
+<p>When you check-out, it is at the <strong>sync</strong> state so the folder will have
+a <strong>green</strong> icon.</p>
+<p><img alt="" src="attachments/119131680/119131769.png" /></p>
+<p>If you double click a resource, edit and then save, the state will
+change to <strong>Updated</strong> and the folder icon will be <strong>yellow</strong> .</p>
+<p><img alt="" src="attachments/119131680/119131774.png" /></p>
+<p>If you add a new file, the state will change to <strong>Added</strong> and the folder
+will have a star icon.</p>
+<p><img alt="" src="attachments/119131680/119131717.png" /></p>
+<h3 id="updating-the-registry">Updating the registry<a class="headerlink" href="#updating-the-registry" title="Permanent link">&para;</a></h3>
+<p>The changes you did in the checked-out folder can be checked-in to the
+registry. When you check-in, you can not check-in resource wise. You
+have to check-in the whole folder.</p>
+<p>To check-in, right-click the folder that has been updated, which will
+have an icon in <strong>yellow</strong> , and click <strong>WSO2 Registry > Commit changes
+as user</strong> .</p>
+<p><img alt="" src="attachments/119131680/119131800.png" /></p>
+<p>If you have several registry instances with different users, you can
+choose as to what user you want to commit the folder. Give the correct
+credentials and you will get a message confirming that the commit was
+successful.</p>
+<p>After committing the changes, the folder will be changed to the <strong>Sync</strong>
+stage again where the folder icon will be <strong>green</strong> again.</p>
+<h3 id="viewing-and-restoring-versions">Viewing and restoring versions<a class="headerlink" href="#viewing-and-restoring-versions" title="Permanent link">&para;</a></h3>
+<p>Go back to the <strong>WSO2 Registry</strong> perspective. Resources have different
+versions. If there are versions available for the resource, it will be
+displayed in the right-click menu of the resource. The five latest
+versions are displayed.</p>
+<p><img alt="" src="attachments/119131680/119131809.png" /></p>
+<p>You can either view or restore a version. When you click <strong>View</strong> , the
+content of the version is displayed. The <strong>Restore</strong> option will reset
+the selected version to the previous version.</p>
+<h3 id="opening-the-resource-in-the-relevant-editor-of-eclipse">Opening the resource in the relevant editor of Eclipse<a class="headerlink" href="#opening-the-resource-in-the-relevant-editor-of-eclipse" title="Permanent link">&para;</a></h3>
+<p>By double clcking on a resource, you can view it in the supported
+editor.</p>
+<h3 id="changing-role-permissions-of-resources">Changing role permissions of resources<a class="headerlink" href="#changing-role-permissions-of-resources" title="Permanent link">&para;</a></h3>
+<p>You can change resources and set permissions to those resources of the
+given role. This feature is availble for non-admin roles. Go to a
+non-admin role such as <strong>everyone</strong> or <strong>wso2.annonymous.role</strong> ,
+right-click and click <strong>Change Permission</strong> .</p>
+<p>A wizard appears where you can select resources or collections from
+available registry instances. You can make multiple selections from this
+registry browser.</p>
+<p>You can assign permissions to the selected resources. Permission will be
+<strong>grayed</strong> if you select multiple resources and not all of them are
+already assigned to that permission. Select the permissions you want to
+add and click <strong>Finish</strong> . The selected permissions will be added to the
+resources you choose.</p>
+                
+                  
+                
+              
+  <a href="#" class="cd-top text--replace js-cd-top">Top</a>
+
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+        
+          <a href="../working-with-registry-artifacts/" title="Working with Registry Artifacts" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+            </div>
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                Working with Registry Artifacts
+              </span>
+            </div>
+          </a>
+        
+        
+          <a href="../working-with-local-registry-entries/" title="Working with Local Registry Entries" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                Working with Local Registry Entries
+              </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+          <div class="md-footer-copyright__highlight">
+            WSO2 Enterprise Integrator - Documentation
+          </div>
+        
+        &copy;2019 <a href="https://wso2.com/">WSO2</a>
+      </div>
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../../../../assets/javascripts/application.dc02f8ce.js"></script>
+      
+      <script>app.initialize({version:"1.0.4",url:{base:"../../../.."}})</script>
+      
+        <script src="../../../../assets/lib/highlightjs/highlight.min.js"></script>
+      
+        <script src="../../../../assets/js/theme.js"></script>
+      
+        <script src="../../../../assets/lib/backtotop/js/util.js"></script>
+      
+        <script src="../../../../assets/lib/backtotop/js/main.js"></script>
+      
+    
+  </body>
+</html>
