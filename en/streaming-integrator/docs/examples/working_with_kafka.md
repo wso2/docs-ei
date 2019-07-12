@@ -5,12 +5,15 @@ This tutorial takes you through, consuming from a Kafka topic, processing the me
 
 ####Tutorial Outline
 - Preparing the server
+- Starting Kafka
+- Starting Stream Processor
 - Consuming from a Kafka topic
-- Configuring more Kafka Consumer parameters
-    - Specifying Kafka Offsets
-    - Etc
+- Consuming with an offset
+- Restoring Offset after system failure
+- Adding more Consumers to the Consumer Group
+- Assigning Consumers to Partitions
 - Publishing to a Kafka topic
-- Configuring more Kafka Publisher parameters
+
 
 ####Preparing the server
 
@@ -76,7 +79,7 @@ Save this file as HelloKafka.siddhi into {WSO2SPHome}/wso2/worker/deployment/sid
 
 > **_INFO:_**  We just created a Siddhi app which listens to Kafka topic 'productions' and log any incoming messages. However, we still either have not created such a Kafka topic or have pushed any messages to it.  We will do that in the following section.
 
-####Generating Kafka messages
+#####Generating Kafka messages
 
 Now let's generate some Kafka messages so that the Stream Processor would receive those. 
 
