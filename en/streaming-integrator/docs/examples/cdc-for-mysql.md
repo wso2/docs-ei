@@ -23,20 +23,20 @@ You could capture following type of changes done to a database table:
 
 ## Tutorial Outline
 - Polling mode
-    - Preparing server and database for the tutorial
+    - Preparing server and database for this tutorial
     - Capturing inserts
     - Capturing updates
     - Capturing deletes
 - Listening mode
-    - Preparing server and database for the tutorial
+    - Preparing server and database for this tutorial
     - Capturing inserts
     - Capturing updates
     - Capturing deletes    
 - Enabling persistence
 
-## Polling mode
+## Listening mode
 
-### Preparing server and database for the tutorial
+### Preparing server and database for this tutorial
 
 1. It is assumed that you have access to a MySQL server instance. Enable binary logging in the MySQL server. You may follow https://debezium.io/docs/connectors/mysql/#enabling-the-binlog. 
 
@@ -44,8 +44,57 @@ You could capture following type of changes done to a database table:
     - Download the MySQL JDBC driver from: https://dev.mysql.com/get/Downloads/Connector-J/mysql-connector-java-5.1.45.tar.gz
     - Unzip the archive.
     - Copy mysql-connector-java-5.1.45-bin.jar to {WSO2SPHome}/lib directory.
-
-
-
+    
+3. Let's create a new database in the MySQL server which we will be using throughout this tutorial. 
+```
+CREATE SCHEMA production;
+```  
+4. Create a new user using below SQL query.
+```
+GRANT SELECT, RELOAD, SHOW DATABASES, REPLICATION SLAVE, REPLICATION CLIENT ON *.* TO 'wso2sp' IDENTIFIED BY 'wso2';
+```
+5. Change into the production database and create a new table, by executing following queries:
+```
+use production;
+```
+```
+CREATE TABLE SweetProductionTable (name VARCHAR(20),amount double(10,2));
+```
 
 ### Capturing inserts
+Now we will write a simple Siddhi app to monitor the `SweetProductionTable` for insert operations. 
+
+Open a text file and copy-paste following app into it.
+
+``` 
+@App:name('CDCWithListeningMode')
+
+@App:description('Capture MySQL Inserts using CDC listening mode.')
+
+@source(type = 'cdc', url = 'jdbc:mysql://localhost:3306/production', username = 'wso2sp', password = 'wso2', table.name = 'SweetProductionTable', operation = 'insert', 
+	@map(type = 'keyvalue'))
+define stream insertSweetProductionStream (name string, amount double);
+
+@sink(type = 'log')
+define stream logStream (name string, amount double);
+
+@info(name = 'query')
+from insertSweetProductionStream
+select name, amount
+insert into logStream;
+``` 
+Here the `url` parameter has being configured to jdbc:mysql://localhost:3306/production`. Change it to point to your MySQL server.
+
+Save this file as CDCWithListeningMode.siddhi into {WSO2SPHome}/wso2/worker/deployment/siddhi-files directory.
+
+Above Siddhi app will capture all inserts done to the database table `SweetProductionTable` and log them.
+
+Now let's perform an insert operation on the MySQL table. Execute following MySQL query on the database:
+```
+insert into SweetProductionTable values('chocolate',100.0);
+```
+You will see following log on the SP console:
+``` 
+INFO {org.wso2.siddhi.core.stream.output.sink.LogSink} - CDCWithListeningMode : logStream : Event{timestamp=1563200225948, data=[chocolate, 100.0], isExpired=false}
+```
+
