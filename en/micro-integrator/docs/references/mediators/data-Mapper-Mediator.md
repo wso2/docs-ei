@@ -21,10 +21,7 @@ configured Data Mapper Engine to execute the transformation and adds the
 output message to the ESB profile message flow.
 
 !!! info
-
-The Data Mapper mediator is a
-[content-aware](https://docs.wso2.com/display/ESB500/Mediators#Mediators-Content-awareness)
-mediator.
+    The Data Mapper mediator is a [content-aware](https://docs.wso2.com/display/ESB500/Mediators#Mediators-Content-awareness) mediator.
 
 
 -   [Prerequisites](#DataMapperMediator-Prerequisites)
@@ -42,7 +39,7 @@ mediator.
 You need to install the WSO2 Integration Studio to use the Data Mapper
 mediator. For instructions on installing this Plugin, see [Installing
 WSO2 Integration
-Studio](https://docs.wso2.com/display/EI650/WSO2+Integration+Studio) .
+Studio](../develop/wSO2-Integration-Studio.md) .
 
 ------------------------------------------------------------------------
 
@@ -137,12 +134,7 @@ Mapper tool generates them when loading the input and output files as
 shown below.
 
 !!! info
-
-You can also create the input and output JSON Schemas manually using the
-Data Mapper Diagram Editor. For instructions, see [Creating a JSON
-Schema
-Manually](https://docs.wso2.com/display/ESB500/Creating+a+JSON+Schema+Manually)
-.
+    You can also create the input and output JSON Schemas manually using the Data Mapper Diagram Editor. For instructions, see [Creating a JSON Schema Manually](https://docs.wso2.com/display/ESB500/Creating+a+JSON+Schema+Manually).
 
 
 ![](attachments/119131284/119134796.png){width="900" height="192"}  
@@ -152,12 +144,7 @@ Manually](https://docs.wso2.com/display/ESB500/Creating+a+JSON+Schema+Manually)
 You can load the following input/output message formats:
 
 !!! info
-
-When loading a sample input XML file, you cannot have the default
-namespace (i.e. without a prefix in the namespace element). Also, you
-need to use the same prefix in all occurrences that refer to the same
-namespace within one XML file. For example, see the use of the prefix
-`         axis2ns11        ` in the example below.
+    When loading a sample input XML file, you cannot have the default namespace (i.e. without a prefix in the namespace element). Also, you need to use the same prefix in all occurrences that refer to the same namespace within one XML file. For example, see the use of the prefix `         axis2ns11        ` in the example below.
 
   
 
