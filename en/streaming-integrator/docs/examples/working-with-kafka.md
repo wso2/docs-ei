@@ -1,5 +1,7 @@
 # Working with Kafka
 
+## Introduction
+
 Streaming integrator could be used to consume from a Kafka topic as well as to publish to a Kafka topic, in a streaming way.
 
 This tutorial takes you through, consuming from a Kafka topic, processing the messages and finally publishing output to a Kafka topic. 
