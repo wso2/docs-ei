@@ -16,7 +16,7 @@ This tutorial takes you through, consuming from a Kafka topic, processing the me
 - [Publishing to a Kafka topic](#publishing-to-a-kafka-topic)
 
 
-## Preparing the server<a name="prep"></a>
+## Preparing the server
 
 Follow these steps to prepare the server in order to consume/publish from/to Kafka.
 
