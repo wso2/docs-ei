@@ -10,10 +10,7 @@ selected element of the current message payload. In addition, you can:
     mediator by adding them as resources.
 
 !!! info
-
-The XSLT mediator is a [content
-aware](ESB-Mediators_119131045.html#ESBMediators-Content-awareness)
-mediator.
+    The XSLT mediator is a [content aware](ESB-Mediators_119131045.html#ESBMediators-Content-awareness) mediator.
 
 
 [Syntax](#XSLTMediator-Syntax) \|
@@ -322,8 +319,7 @@ stylesheet is defined as a local entry named `         XSLTTest        `
     </localEntry>
 ```
 
-For example, pass the following payload to the
-`         XSLTProxy        ` proxy service of the above configuration.
+For example, pass the following payload to the `         XSLTProxy        ` proxy service of the above configuration.
 
 ``` xml
     <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
