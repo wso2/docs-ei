@@ -79,9 +79,7 @@ nav:
     - 'Creating Siddhi Applications': 'develop/creating-a-Siddhi-Application.md'
     - 'Testing a Siddhi Application': 'develop/testing-a-Siddhi-Application.md'
     - 'Debugging Siddhi Applications': 'develop/debugging_siddhi_applications.md'
-    - 'Exporting Siddhi Files':
-      - 'Exporting a Single Siddhi File': 'develop/exporting-a-single-siddhi-file.md'
-      - 'Exporting Siddhi Files as Docker Artifacts': 'develop/exporting-siddhi-files-as-docker-artifacts.md'
+    - 'Exporting Siddhi Files': 'develop/exporting-Siddhi-Files.md'
   - 'Use Cases':
     - 'Examples':
       - 'Performing Real-time ETL with MySQL': 'examples/performing-real-time-etl-with-mysql.md'
