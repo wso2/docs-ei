@@ -1,9 +1,8 @@
-# General Data Protection Regulation (GDPR) for WSO2 EI
+# GDPR Compliance in the WSO2 Micro Integrator
 
-WSO2 Enterprise Integrator (WSO2 EI) consists of four profiles (ESB,
-Message Broker, Business Process Server, and Analytics) that can persist
+WSO2 Micro Integrator can persist
 a user's personally identifiable information (PII) in various sources,
-namely log files and RDBMSs. However, organizations that use WSO2 EI
+namely log files and RDBMSs. However, organizations that use the Micro Integrator
 have a legal obligation to remove all instances of a user's PII from the
 system if the relevant user requests. For example, consider a situation
 where an employee resigns from the organization and, thereby, requests
@@ -13,7 +12,7 @@ the user's PII in the system, or (in some cases) by completely removing
 such PII from the system.
 
 See the topics given below for instructions on how to remove PII from
-each profile of WSO2 EI.
+the WSO2 Micro Integrator.
 
 ## What is GDPR?
 
@@ -48,97 +47,78 @@ can also find the original GDPR legal text
 [here](http://eur-lex.europa.eu/legal-content/en/TXT/?uri=CELEX%3A32016R0679)
 .
 
-## How WSO2 EI persists a user's PII
+## How the WSO2 Micro Integrator persists PII
 
-The ESB profile can persist PII in various log files (carbon logs, audit logs, API logs, and service-specific logs) depending on the mediation logic defined. The ESB does not persist a user's PII in any RDBMS by default.
+The Micro Integrator can persist PII in various log files (carbon logs, audit logs, API logs, and service-specific logs) depending on the mediation logic defined. The Micro Integrator does not persist a user's PII in any RDBMS by default.
 
-### Tools for removing PII in WSO2 EI
+## Tools for removing PII in WSO2 Micro Integrator
 
-The following tools are shipped with WSO2 EI:
+The following tools are shipped with the Micro Integrator:
 
--   WSO2 EI is shipped with the **Forget-Me Tool** , which can anonymize
+-   The **Forget-Me Tool** , which can anonymize
     a user's PII in log files and RDBMSs by replacing all occurrences of
     the deleted user with either a randomly generated UUID value or a
     specified pseudonym. This tool is stored in the
-    `           <EI_HOME>/wso2/tools/forget-me/          ` directory of
-    WSO2 EI. Find out about all the capabilities of the Forget-Me tool
-    from
-    [here](https://docs.wso2.com/display/ADMIN44x/Removing+References+to+Deleted+User+Identities+in+WSO2+Products)
-    .  
+    `           MI_HOME/wso2/tools/forget-me/          ` directory of
+    the Micro Integrator. Find out about all the capabilities of the Forget-Me tool
+    from [here](../security/about_forgetme_tool.md).
+
     **Important!** In the case of log files, note that the Forget-Me
     Tool does not replace PII values in the actual log files. Instead,
     the tool will create a new set of log files with anonymized PII
     values. The organization can then remove the original log files.
 
-     > If you want to use the Forget-Me tool to remove PII in multiple WSO2
-        products at the same time, you can use the standalone version of the
-        tool.  
-        For information on how to build and run the Forget-Me tool in
-        standalone mode, see [Removing References to Deleted User Identities
-        in WSO2
-        Products](https://docs.wso2.com/display/ADMIN44x/Removing+References+to+Deleted+User+Identities+in+WSO2+Products)
-        in the WSO2 Administration Guide.
+    > If you want to use the Forget-Me tool to remove PII in multiple WSO2 products at the same time, you can use the standalone version of the tool. Find more information on how to [build and run the Forget-Me tool in standalone mode](../security/about_forgetme_tool.md).
 
 
--   In addition to this tool, the BPS profile also contains a set of SQL
-    scripts that can remove PII by completely removing any process
-    instances associated with a particular user. This method is only
-    applicable to BPEL and Human Task processes.
+## Prerequisites for removing PII
 
-### Prerequisites for removing PII
-
-As explained in [How WSO2 EI persists a user's
-PII](#GeneralDataProtectionRegulation(GDPR)forWSO2EI-how_PII_is_stored)
-, the ESB profile and the BPS profile will store user information in log
+As explained in [How the WSO2 Micro Integrator persists a user's PII](#how-the-wso2-micro-integrator-persists-pii)
+, the Micro Integrator will store user information in log
 files. Note that we can only remove a deleted user's PII from archived
 log files, and not the live log files that are connected to the system.
 
-Therefore, **before you start removing PII** stored by the ESB profile
-and the BPMN component, be sure that the relevant user has been inactive
+Therefore, **before you start removing PII** stored by the Micro Integrator, be sure that the relevant user has been inactive
 in the system for a sufficient amount of time. This will ensure that all
 of the user's PII contained in log files are successfully archived. You
 can then follow the instructions given below to remove the user's PII
 references from the archived log files.
 
-### Removing PII from the ESB profile
+## Removing PII from the Micro Integrator
 
-**Before you begin** ,
+**Before you begin**:
 
--   Find out about [how the ESB profile stores a user's
-    PII](#GeneralDataProtectionRegulation(GDPR)forWSO2EI-how_PII_is_stored)
-    .
+-   Find out about [how the Micro Integrator stores a user's
+    PII](#how-the-wso2-micro-integrator-persists-pii).
 -   See the [prerequisites for removing PII from the
-    ESB](#GeneralDataProtectionRegulation(GDPR)forWSO2EI-prerequisites)
-    .
+    ESB](#prerequisites-for-removing-pii).
 -   In the instructions given below, we will use a proxy service that
-    logs PII to demonstrate how PII can be removed from the ESB profile.
+    logs PII to demonstrate how PII can be removed from the Micro Integrator.
     However, please note that it is **not recommended** to log PII from
     a proxy service.
 
-
-### Anonymizing PII references
+## Anonymizing PII references
 
 You can use the [Forget-Me
-Tool](#GeneralDataProtectionRegulation(GDPR)forWSO2EI-Tools) to remove
+Tool](#tools-for-removing-pii-in-wso2-micro-integrator) to remove
 references to personally identifiable information (PII) from logs in the
-ESB profile. For example, consider a proxy service that logs the
+Micro Integrator. For example, consider a proxy service that logs the
 username that is sent through a payload. A Log mediator can be used for
 this as shown below.
 
 ``` java
-    <log level="custom">
+<log level="custom">
     <property expression="//Authentication/username" name="USER_NAME"/>
-    </log>
+</log>
 ```
 
 The user name that is used when you invoke this query will be logged in
 the following log files: wso2carbon.log file, audit.log file, warn.log,
-and the [service-specific log
-file](https://docs.wso2.com/display/EI6xx/Creating+a+Proxy+Service#CreatingaProxyService-Enablinglogsforservices)
+and the [service-specific log file](../../use-cases/tasks/proxy_service_tasks/enabling-logs-for-services.md)
 that is enabled for the proxy service.
 
 ``` java
-    [EI-Core]  INFO - LogMediator USER_NAME = Sam
+[EI-Core]  INFO - LogMediator USER_NAME = Sam
 ```
 
 Let's look at how to anonymize the username value in log files.
@@ -151,55 +131,53 @@ Let's look at how to anonymize the username value in log files.
 
     This pattern should be added to the
     `           ei-patterns.xml          ` file (stored in the
-    `           <EI_HOME>/wso2/tools/forget-me/conf/log-config/          `
+    `           MI_HOME/wso2/tools/forget-me/conf/log-config/          `
     directory).
 
     ``` java
-            <pattern key="pattern3">
-                   <detectPattern>(.)*(USER_NAME)(.)*${username}(.)*</detectPattern>
-                   <replacePattern>${username}</replacePattern>
-            </pattern>
+    <pattern key="pattern3">
+        <detectPattern>(.)*(USER_NAME)(.)*${username}(.)*</detectPattern>
+        <replacePattern>${username}</replacePattern>
+    </pattern>
     ```
 
 2.  Update the `           config.json          ` file (stored in the
-    `           <EI_HOME>/wso2/tools/forget-me/conf/          `
+    `           MI_HOME/wso2/tools/forget-me/conf/          `
     directory) as shown below. This file contains references to all the
-    log files (except any [service-specific log
-    file](https://docs.wso2.com/display/EI6xx/Creating+a+Proxy+Service#CreatingaProxyService-Enablinglogsforservices)
-    ) in the system that store the above user information. If you have
+    log files (except any [service-specific log file](../../use-cases/tasks/proxy_service_tasks/enabling-logs-for-services.md) in the system that store the above user information. If you have
     enabled a service-specific log file, you need to add that file name
     (see the element descriptions given below).
 
     ``` java
+    {
+        "processors" : [
+        "log-file"
+        ],
+        "directories": [
             {
-             "processors" : [
-               "log-file"
-             ],
-             "directories": [
-               {
-                 "dir": "log-config",
-                 "type": "log-file",
-                 "processor" : "log-file",
-                 "log-file-path" : "<EI_HOME>/repository/logs",
-                 "log-file-name-regex" : "(audit.log|warn.log|wso2carbon.log)(.)*"
-               }
-             ]
+                "dir": "log-config",
+                "type": "log-file",
+                "processor" : "log-file",
+                "log-file-path" : "<EI_HOME>/repository/logs",
+                "log-file-name-regex" : "(audit.log|warn.log|wso2carbon.log)(.)*"
             }
+        ]
+    }
     ```
 
     The elements in the above configuration are explained below.
 
     -   **"processors"** : The processors listed for this element
         specifies whether the tool will on log files, RDBMSs, or
-        analytics streams. In the case of the ESB profile, we only need
+        analytics streams. In the case of the Micro Integrator, we only need
         to remove PII from log files, and therefore, the processor is
         set to "log-file".
     -   **"directories"** : This element lists the directories that
-        correspond to the processors. In the case of the ESB profile, we
+        correspond to the processors. In the case of the Micro Integrator, we
         need to specify the directories that store log files.
     -   **"log-file-path"** : This specifies the directory path to the
         log files. Note that all the relevant log files are stored in
-        the `             <EI_HOME>/repository/logs/            `
+        the `             MI_HOME/repository/logs/            `
         directory.
 
         > Be sure to replace the "log-file-path" value with the correct
@@ -214,13 +192,10 @@ Let's look at how to anonymize the username value in log files.
         (stored in the log-file-path) that will persist the user's PII.
         Note that the above log-file-name-regex includes the audit.log,
         warn.log, and wso2carbon.log files, **as well as** the archived
-        files of the same logs. If you have enabled a [service-specific
-        log
-        file](https://docs.wso2.com/display/EI6xx/Creating+a+Proxy+Service#CreatingaProxyService-Enablinglogsforservices)
-        , **be sure to add** the file name to this list.
+        files of the same logs. If you have enabled a [service-specific log file](../../use-cases/tasks/proxy_service_tasks/enabling-logs-for-services.md), **be sure to add** the file name to this list.
 
 3.  Open a command prompt and navigate to the
-    `           <EI_HOME>/bin          ` directory.
+    `           MI_HOME/bin          ` directory.
 
 4.  Execute the following command to anonymize the user information that
     was added to the ei-patterns.xml file.  
@@ -228,13 +203,13 @@ Let's look at how to anonymize the username value in log files.
     -   On Linux:
 
         ``` java
-                ./forgetme.sh -U Sam
+        ./forgetme.sh -U Sam
         ```
 
     -   On Windows:
 
         ``` java
-                    forgetme.bat -U
+        forgetme.bat -U
         ```
 
     This will result in the following:
@@ -249,16 +224,12 @@ Let's look at how to anonymize the username value in log files.
         display the user information as a pseudonym.
 
         ``` java
-                    [EI-Core]  INFO - LogMediator USER_NAME = 86c3bfd9-f97c-4b08-9f15-772dcb0c1c
+        [EI-Core]  INFO - LogMediator USER_NAME = 86c3bfd9-f97c-4b08-9f15-772dcb0c1c
         ```
 
-        > For the list of commands you can run using the Forget-Me tool, see
-        this
-        [link](https://docs.wso2.com/display/ADMIN44x/Removing+References+to+Deleted+User+Identities+in+WSO2+Products)
-        .
+        > For the list of commands you can run using the Forget-Me tool, see this [link](../security/about_forgetme_tool.md).
 
-
-### Deleting original (archived) log files
+## Deleting original (archived) log files
 
 Note that the PII is not removed from the original log files. It is the
 responsibility of the organization to remove the original log files that

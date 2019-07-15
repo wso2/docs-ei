@@ -15,7 +15,7 @@
 # under the License.
 
 # Project information
-site_name: Streaming Integration Documentation
+site_name: WSO2 Enterprise Integrator Documentation
 site_description: Documentation for WSO2 Enterprise Integrator
 site_author: WSO2
 site_url: https://wso2.com/integration/
@@ -23,7 +23,7 @@ site_url: https://wso2.com/integration/
 # Repository
 repo_name: wso2/docs-ei
 repo_url: https://github.com/wso2/docs-ei
-edit_uri: https://github.com/wso2/docs-is/edit/master/en/docs/
+edit_uri: https://github.com/wso2/docs-is/edit/master/en/streaming-integrator/docs/
 
 # Copyright
 copyright: WSO2 Enterprise Integrator - Documentation
@@ -73,15 +73,13 @@ nav:
       - 'Configuring Datasources': 'configuring-Datasources.md'
       - 'Setting up Physical Databases': 'setting-up-physical-databases.md'
   - 'Developer Experience':
-    - 'Streaming Integrator Studio Overview': 'develop/streaming-integrator-studio-overview.md'
-    - 'Designing Siddhi Applications':
-      - 'Working with the Source View': 'develop/working-with-source-view.md'
-      - 'Working with the Design View': 'develop/working-with-design-view.md'
+    - 'Streaming Integrator Tooling':
+      - 'Streaming Integrator Tooling Overview': 'develop/streaming-integrator-studio-overview.md'
+      - 'Working with the Design View': 'develop/working-with-the-Design-View.md'
+    - 'Creating Siddhi Applications': 'develop/creating-a-Siddhi-Application.md'
     - 'Testing a Siddhi Application': 'develop/testing-a-Siddhi-Application.md'
     - 'Debugging Siddhi Applications': 'develop/debugging_siddhi_applications.md'
-    - 'Exporting Siddhi Files':
-      - 'Exporting a Single Siddhi File': 'develop/exporting-a-single-siddhi-file.md'
-      - 'Exporting Siddhi Files as Docker Artifacts': 'develop/exporting-siddhi-files-as-docker-artifacts.md'
+    - 'Exporting Siddhi Files': 'develop/exporting-Siddhi-Files.md'
   - 'Use Cases':
     - 'Examples':
       - 'Performing Real-time ETL with MySQL': 'examples/performing-real-time-etl-with-mysql.md'
