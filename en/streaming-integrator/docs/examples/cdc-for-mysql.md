@@ -12,7 +12,7 @@ There are two modes you could perform CDC using the Streaming Integrator: **Poll
 
 In polling mode, the datasource is periodically polled for capturing the changes. The polling period can be configured. 
  
-On listening mode, the Streaming Integrator will keep listening to the Change Log of the database and notify in case a change has taken place.
+On listening mode, the Streaming Integrator will keep listening to the Change Log of the database and notify in case a change has taken place. Here, you are immediately notified about the change, compared to polling mode.
 
 #### Type of events captured
 
