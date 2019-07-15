@@ -17,7 +17,7 @@ On listening mode, the Streaming Integrator will keep listening to the Change Lo
 #### Type of events captured
 
 You could capture following type of changes done to a database table:
-- Insert operations 
+- Insert operations  
 - Update operations
 - Delete operations
 
