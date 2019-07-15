@@ -62,32 +62,33 @@ CREATE TABLE SweetProductionTable (name VARCHAR(20),amount double(10,2));
 ```
 
 ### Capturing inserts
+
 Now we will write a simple Siddhi app to monitor the `SweetProductionTable` for insert operations. 
 
 Open a text file and copy-paste following app into it.
 
 ``` 
-@App:name('CDCWithListeningMode')
+@App:name('CDCListenForInserts')
 
 @App:description('Capture MySQL Inserts using CDC listening mode.')
 
 @source(type = 'cdc', url = 'jdbc:mysql://localhost:3306/production', username = 'wso2sp', password = 'wso2', table.name = 'SweetProductionTable', operation = 'insert', 
 	@map(type = 'keyvalue'))
-define stream insertSweetProductionStream (name string, amount double);
+define stream InsertSweetProductionStream (name string, amount double);
 
 @sink(type = 'log')
-define stream logStream (name string, amount double);
+define stream LogStream (name string, amount double);
 
 @info(name = 'query')
-from insertSweetProductionStream
+from InsertSweetProductionStream
 select name, amount
-insert into logStream;
+insert into LogStream;
 ``` 
 Here the `url` parameter has being configured to jdbc:mysql://localhost:3306/production`. Change it to point to your MySQL server.
 
-Save this file as CDCWithListeningMode.siddhi into {WSO2SPHome}/wso2/worker/deployment/siddhi-files directory.
+Save this file as `CDCListenForInserts.siddhi` into {WSO2SPHome}/wso2/worker/deployment/siddhi-files directory.
 
-Above Siddhi app will capture all inserts done to the database table `SweetProductionTable` and log them.
+Above Siddhi app will capture all the inserts done to the database table `SweetProductionTable` and log them.
 
 Now let's perform an insert operation on the MySQL table. Execute following MySQL query on the database:
 ```
@@ -98,3 +99,38 @@ You will see following log on the SP console:
 INFO {org.wso2.siddhi.core.stream.output.sink.LogSink} - CDCWithListeningMode : logStream : Event{timestamp=1563200225948, data=[chocolate, 100.0], isExpired=false}
 ```
 
+### Capturing updates
+
+Now we will write another Siddhi app to monitor the `SweetProductionTable` for update operations.
+
+Open a text file and copy-paste following app into it.
+``` 
+@App:name('CDCListenForUpdates')
+
+@App:description('Capture MySQL Updates using CDC listening mode.')
+
+@source(type = 'cdc', url = 'jdbc:mysql://localhost:3306/production', username = 'wso2sp', password = 'wso2', table.name = 'SweetProductionTable', operation = 'update', 
+	@map(type = 'keyvalue'))
+define stream UpdateSweetProductionStream (before_name string, name string, before_amount double, amount double);
+
+@sink(type = 'log')
+define stream LogStream (before_name string, name string, before_amount double, amount double);
+
+@info(name = 'query')
+from UpdateSweetProductionStream
+select name, amount
+insert into LogStream;
+``` 
+Save this file as `CDCListenForUpdates.siddhi` into {WSO2SPHome}/wso2/worker/deployment/siddhi-files directory.
+
+Above Siddhi app will capture all the updates done to the database table `SweetProductionTable` and log them.
+
+Now let's perform an update operation on the MySQL table. Execute following MySQL query on the database:
+```
+update SweetProductionTable SET name = 'Almond cookie' where name = 'chocolate';
+```
+You will see following log on the SP console:
+```
+INFO {org.wso2.siddhi.core.stream.output.sink.LogSink} - CDCWithListeningMode : updateSweetProductionStream : Event{timestamp=1563201040953, data=[chocolate, Almond cookie, 100.0, 100.0], isExpired=false}
+```
+> **_INFO:_** Here `before_name` attributes contains the name prior to the update: `chocolate` in this case. `name` attribute contains the current name which is `Almond cookie`. 
