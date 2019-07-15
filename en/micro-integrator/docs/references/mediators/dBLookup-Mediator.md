@@ -6,20 +6,14 @@ message context. The DB connection used may be looked up from an
 external data source or specified inline.
 
 !!! info
-
-The DBLookup mediator can set a property from one row in a result set.
+    The DBLookup mediator can set a property from one row in a result set.
 It cannot return multiple rows. If you need to get multiple records, or
-if you have a table with multiple parameters (such as URLs), you can use
-the [WSO2 Data Services
-Server](http://wso2.com/products/data-services-server/) to create a data
+if you have a table with multiple parameters (such as URLs), you can use WSO2 enterprise Integrator to create a data
 service and invoke that service from the ESB using the [Callout
 mediator](_Callout_Mediator_) instead.
 
 !!! info
-
-The DBLookup mediator is a
-[content-aware](ESB-Mediators_119131045.html#ESBMediators-Content-awareness)
-mediator.
+    The DBLookup mediator is a [content-aware](ESB-Mediators_119131045.html#ESBMediators-Content-awareness) mediator.
 
 
 ------------------------------------------------------------------------
@@ -117,16 +111,7 @@ The parameters available to configure the DBLookup mediator are as
 follows:
 
 !!! info
-
-When specifying the DB connection using a connection pool, other than
-specifying parameter values inline, you can also specify following
-parameter values of the connection information (i.e. Driver, URL, User
-and password) as registry entries. The advantage of specifying a
-parameter value as a registry entry is that the same connection
-information configurations can be used in different environments simply
-by changing the registry entry value. To do this, give the registry path
-within the `            key           ` attribute as shown in the
-example below.
+    When specifying the DB connection using a connection pool, other than specifying parameter values inline, you can also specify following parameter values of the connection information (i.e. Driver, URL, User and password) as registry entries. The advantage of specifying a parameter value as a registry entry is that the same connection information configurations can be used in different environments simply by changing the registry entry value. To do this, give the registry path within the `            key           ` attribute as shown in the example below.
 
 ``` xml
     <dblookup xmlns="http://ws.apache.org/ns/synapse">
