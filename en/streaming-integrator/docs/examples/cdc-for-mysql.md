@@ -88,7 +88,7 @@ Here the `url` parameter has being configured to jdbc:mysql://localhost:3306/pro
 
 Save this file as `CDCListenForInserts.siddhi` into {WSO2SPHome}/wso2/worker/deployment/siddhi-files directory.
 
-> **_INFO:_** Above Siddhi app will capture all the inserts done to the database table `SweetProductionTable` and log them.
+Above Siddhi app will capture all the inserts done to the database table `SweetProductionTable` and log them.
 
 Now let's perform an insert operation on the MySQL table. Execute following MySQL query on the database:
 ```
@@ -123,7 +123,7 @@ insert into LogStream;
 ``` 
 Save this file as `CDCListenForUpdates.siddhi` into {WSO2SPHome}/wso2/worker/deployment/siddhi-files directory.
 
-> **_INFO:_** Above Siddhi app will capture all the updates done to the database table `SweetProductionTable` and log them.
+Above Siddhi app will capture all the updates done to the database table `SweetProductionTable` and log them.
 
 Now let's perform an update operation on the MySQL table. Execute following MySQL query on the database:
 ```
@@ -133,8 +133,4 @@ You will see following log on the SP console:
 ```
 INFO {org.wso2.siddhi.core.stream.output.sink.LogSink} - CDCWithListeningMode : updateSweetProductionStream : Event{timestamp=1563201040953, data=[chocolate, Almond cookie, 100.0, 100.0], isExpired=false}
 ```
-> **_INFO:_** Here `before_name` attributes contains the name prior to the update: `chocolate` in this case. `name` attribute contains the current name which is `Almond cookie`.
-
-### Capturing deletes
-
- 
+> **_INFO:_** Here `before_name` attributes contains the name prior to the update: `chocolate` in this case. `name` attribute contains the current name which is `Almond cookie`. 
