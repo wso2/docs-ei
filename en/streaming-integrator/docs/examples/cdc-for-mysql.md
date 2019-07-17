@@ -133,7 +133,7 @@ You will see following log on the SP console:
 ```
 INFO {org.wso2.siddhi.core.stream.output.sink.LogSink} - CDCWithListeningMode : updateSweetProductionStream : Event{timestamp=1563201040953, data=[chocolate, Almond cookie, 100.0, 100.0], isExpired=false}
 ```
-> **_INFO:_** Here `before_name` attributes contains the name prior to the update: `chocolate` in this case. `name` attribute contains the current name which is `Almond cookie`.
+> **_INFO:_** Here `before_name` attribute contains the name prior to the update: `chocolate` in this case. `name` attribute contains the current name which is `Almond cookie`.
 
 ### Capturing deletes
 
@@ -147,15 +147,28 @@ Open a text file and copy-paste following app into it.
 
 @source(type = 'cdc', url = 'jdbc:mysql://localhost:3306/production', username = 'wso2sp', password = 'wso2', table.name = 'SweetProductionTable', operation = 'delete', 
 	@map(type = 'keyvalue'))
-define stream DeleteSweetProductionStream (before_name string, name string, before_amount double, amount double);
+define stream DeleteSweetProductionStream (before_name string, before_amount double);
 
 @sink(type = 'log')
-define stream LogStream (before_name string, name string, before_amount double, amount double);
+define stream LogStream (before_name string, before_amount double);
 
 @info(name = 'query')
 from DeleteSweetProductionStream
 select name, amount
 insert into LogStream;
 ```
+Save this file as `CDCListenForDeletes.siddhi` into {WSO2SPHome}/wso2/worker/deployment/siddhi-files directory.
+
+> **_INFO:_** Above Siddhi app will capture all the delete operations done to the database table `SweetProductionTable` and log them.
+
+Now let's perform a delete operation on the MySQL table. Execute following MySQL query on the database:
+```
+delete from SweetProductionTable where name = 'Almond cookie';
+```
+You will see following log on the SP console:
+```
+INFO {org.wso2.siddhi.core.stream.output.sink.LogSink} - CDCWithListeningMode : DeleteSweetProductionStream : Event{timestamp=1563367367098, data=[Almond cookie, 100.0], isExpired=false}
+```
+> **_INFO:_** Here `before_name` attribute contains the deleted name: `Almond cookie` in this case. Similarly, `before_amount` attribute contains the amount being deleted.  
 
  
