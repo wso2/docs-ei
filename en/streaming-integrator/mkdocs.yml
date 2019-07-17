@@ -95,12 +95,12 @@ nav:
       - 'Performing Reliable Data Integration (Error Streams)': 'examples/reliable-data-integration.md'
       - 'Summarizing and Aggregating Data in Real Time': 'examples/summarizing-and-aggregating-data.md'
     - 'Guides':
-      - 'Consuming Data': 'guides/collecting-events.md'
+      - 'Consuming Data': 'guides/consuming-messages.md'
       - 'Transforming Data': 'guides/transforming-data.md'
       - 'Enriching Data': 'guides/enriching-data.md'
       - 'Cleansing Data': 'guides/cleansing-data.md'
-      - 'Correlating Data': 'guides/complex-Event-processing.md'
-      - 'Summarizing Data': 'guides/incremental-Analysis.md'
+      - 'Correlating Data': 'guides/correlating-events.md'
+      - 'Summarizing Data': 'guides/summarizing-data.md'
       - 'Triggering Integration Flows': 'guides/triggering-integration-flows.md'
   - 'Admin Guide':
     - 'Configuring the Streaming Integration Profile': 'admin/configure-si-profile.md'
