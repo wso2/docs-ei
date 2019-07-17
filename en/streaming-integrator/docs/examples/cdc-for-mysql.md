@@ -101,7 +101,7 @@ INFO {org.wso2.siddhi.core.stream.output.sink.LogSink} - CDCWithListeningMode : 
 
 ### Capturing updates
 
-Now we will write another Siddhi app to monitor the `SweetProductionTable` for update operations.
+Now we will write a Siddhi app to monitor the `SweetProductionTable` for update operations.
 
 Open a text file and copy-paste following app into it.
 ``` 
@@ -136,5 +136,26 @@ INFO {org.wso2.siddhi.core.stream.output.sink.LogSink} - CDCWithListeningMode : 
 > **_INFO:_** Here `before_name` attributes contains the name prior to the update: `chocolate` in this case. `name` attribute contains the current name which is `Almond cookie`.
 
 ### Capturing deletes
+
+Now we will write a Siddhi app to monitor the `SweetProductionTable` for delete operations.
+
+Open a text file and copy-paste following app into it.
+``` 
+@App:name('CDCListenForDeletes')
+
+@App:description('Capture MySQL Deletes using CDC listening mode.')
+
+@source(type = 'cdc', url = 'jdbc:mysql://localhost:3306/production', username = 'wso2sp', password = 'wso2', table.name = 'SweetProductionTable', operation = 'delete', 
+	@map(type = 'keyvalue'))
+define stream DeleteSweetProductionStream (before_name string, name string, before_amount double, amount double);
+
+@sink(type = 'log')
+define stream LogStream (before_name string, name string, before_amount double, amount double);
+
+@info(name = 'query')
+from DeleteSweetProductionStream
+select name, amount
+insert into LogStream;
+```
 
  
