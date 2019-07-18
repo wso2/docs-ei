@@ -22,7 +22,7 @@ This tutorial takes you through consuming from a Kafka topic, processing the mes
 
 To prepare the server to consume from or to publish to Kafka, follow the steps below:
 
-1. Download the Kafka broker from [the Apache site()https://www.apache.org/dyn/closer.cgi?path=/kafka/2.3.0/kafka_2.12-2.3.0.tgz) and extract it.
+1. Download the Kafka broker from [the Apache site](https://www.apache.org/dyn/closer.cgi?path=/kafka/2.3.0/kafka_2.12-2.3.0.tgz) and extract it.
 From here onwards, this directory is referred to as `<KAFKA_HOME>`.
 
 2. Create a directory named `Source` in a preferred location in your machine and copy the following JARs to it from the `<KAFKA_HOME>/libs` directory.
