@@ -1117,10 +1117,46 @@
           
 
 
-  <li class="md-nav__item">
-    <a href="../../setup/security/gdpr_ei/" title="Complying with GDPR" class="md-nav__link">
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5-4-2" type="checkbox" id="nav-5-4-2">
+    
+    <label class="md-nav__link" for="nav-5-4-2">
       Complying with GDPR
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="3">
+      <label class="md-nav__title" for="nav-5-4-2">
+        Complying with GDPR
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../setup/security/gdpr_ei/" title="GDPR for the WSO2 Micro Integrator" class="md-nav__link">
+      GDPR for the WSO2 Micro Integrator
     </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../setup/security/about_forgetme_tool/" title="About the Identity Anonymization Tool" class="md-nav__link">
+      About the Identity Anonymization Tool
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
   </li>
 
         
@@ -1675,93 +1711,9 @@
 
 
   <li class="md-nav__item">
-    <a href="../../develop/designing-integration/" title="Designing Integration" class="md-nav__link">
-      Designing Integration
+    <a href="../../develop/developer-workflow/" title="Development Workflow" class="md-nav__link">
+      Development Workflow
     </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item md-nav__item--nested">
-    
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-6-4" type="checkbox" id="nav-6-4">
-    
-    <label class="md-nav__link" for="nav-6-4">
-      Developing Integration
-    </label>
-    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
-      <label class="md-nav__title" for="nav-6-4">
-        Developing Integration
-      </label>
-      <ul class="md-nav__list" data-md-scrollfix>
-        
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../develop/setup-workspace/" title="Set up the Workspace" class="md-nav__link">
-      Set up the Workspace
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../develop/develop-artifacts/" title="Develop Artifacts" class="md-nav__link">
-      Develop Artifacts
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../develop/build-and-run/" title="Build and Run" class="md-nav__link">
-      Build and Run
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../develop/iterate-improve-integration/" title="Iterate and Improve" class="md-nav__link">
-      Iterate and Improve
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../develop/publish-to-production/" title="Publish to Production" class="md-nav__link">
-      Publish to Production
-    </a>
-  </li>
-
-        
-      </ul>
-    </nav>
   </li>
 
         
@@ -1784,13 +1736,13 @@
 
   <li class="md-nav__item md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-6-6" type="checkbox" id="nav-6-6">
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-6-5" type="checkbox" id="nav-6-5">
     
-    <label class="md-nav__link" for="nav-6-6">
+    <label class="md-nav__link" for="nav-6-5">
       WSO2 Integration Studio
     </label>
     <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
-      <label class="md-nav__title" for="nav-6-6">
+      <label class="md-nav__title" for="nav-6-5">
         WSO2 Integration Studio
       </label>
       <ul class="md-nav__list" data-md-scrollfix>
@@ -1802,8 +1754,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../../develop/WSO2-Integration-Studio/" title="WSO2 Integration Studio" class="md-nav__link">
-      WSO2 Integration Studio
+    <a href="../../develop/WSO2-Integration-Studio/" title="Quick Tour - WSO2 Integration Studio" class="md-nav__link">
+      Quick Tour - WSO2 Integration Studio
     </a>
   </li>
 
@@ -1814,8 +1766,20 @@
 
 
   <li class="md-nav__item">
-    <a href="../../develop/working-with-WSO2-Integration-Studio/" title="Working with Integration Studio" class="md-nav__link">
-      Working with Integration Studio
+    <a href="../../develop/installing-WSO2-Integration-Studio/" title="Installing WSO2 Integration Studio" class="md-nav__link">
+      Installing WSO2 Integration Studio
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../develop/working-with-WSO2-Integration-Studio/" title="Using WSO2 Integration Studio" class="md-nav__link">
+      Using WSO2 Integration Studio
     </a>
   </li>
 
@@ -5483,7 +5447,6 @@ pool_options.maxActiv=5
 <pre><code class="toml">[server]
 hostname="localhost"
 node_ip = "10.100.1.80"
-base_path = "127.0.0.1"
 enable_mtom=false
 enable_swa=false
 userAgent = "WSO2 ${product.key} ${product.version}"
@@ -5514,7 +5477,7 @@ proxy_context_path = ""
                                             <span class="badge-required">Required</span>
                                         </p>
                                         <div class="param-default">
-                                            <span class="param-default-value">Default: <code>&quot;localhost&quot;</code></span>
+                                            <span class="param-default-value"> Default: <code>&quot;localhost&quot;</code></span>
                                         </div>
                                         <div class="param-possible">
                                             <span class="param-possible-values">Possible Values: <code>&quot;127.0.0.1&quot;,&quot;localhost&quot;,&quot;&lt;any-ip-address&gt;&quot;</code></span>
@@ -5536,11 +5499,131 @@ proxy_context_path = ""
                                         </p>
                                         <div class="param-default">
                                             <span class="param-default-value">Default: <code>&quot;127.0.0.1&quot;</code></span>
-                                        </div>
-
+                                        </div>       
                                     </div>
                                     <div class="param-description">
                                         <p>The IP address of the server node.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="param">
+                                <div class="param-name">
+                                  <span class="param-name-wrap"> <code>base_path</code> </span>
+                                </div>
+                                <div class="param-info">
+                                    <div>
+                                        <p>
+                                            <span class="param-type string"> string </span>
+                                            <span class="badge-required">Required</span>
+                                        </p>
+                                        <div class="param-default">
+                                            <span class="param-default-value">Default: <code>&quot;localhost&quot;</code></span>
+                                        </div>
+                                        <div class="param-possible">
+                                            <span class="param-possible-values">Possible Values: <code>&quot;127.0.0.1&quot;,&quot;localhost&quot;,&quot;&lt;any-ip-address&gt;&quot;</code></span>
+                                        </div>
+                                    </div>
+                                    <div class="param-description">
+                                        <p>The hostname of the WSO2 EI server instance.</p>
+                                    </div>
+                                </div>
+                            </div><div class="param">
+                                <div class="param-name">
+                                  <span class="param-name-wrap"> <code>enable_mtom</code> </span>
+                                </div>
+                                <div class="param-info">
+                                    <div>
+                                        <p>
+                                            <span class="param-type boolean">boolean</span>
+                                            <span class="badge-required">Required</span>
+                                        </p>
+                                        <div class="param-default">
+                                            <span class="param-default-value">Default: <code>false</code></span>
+                                        </div>
+                                        <div class="param-possible">
+                                            <span class="param-possible-values">Possible Values: <code>true</code></span>
+                                        </div>       
+                                    </div>
+                                    <div class="param-description">
+                                        <p>Use this paramater to enable MTOM (Message Transmission Optimization Mechanism) for the product server.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="param">
+                                <div class="param-name">
+                                  <span class="param-name-wrap"> <code>enable_swa</code> </span>
+                                </div>
+                                <div class="param-info">
+                                    <div>
+                                        <p>
+                                            <span class="param-type boolean"> boolean </span>
+                                            <span class="badge-required">Required</span>
+                                        </p>
+                                        <div class="param-default">
+                                            <span class="param-default-value">Default: <code>false</code></span>
+                                        </div>
+                                        <div class="param-possible">
+                                            <span class="param-possible-values">Possible Values: <code>true</code></span>
+                                        </div>
+                                    </div>
+                                    <div class="param-description">
+                                        <p>Use this paramater to enable SwA (SOAP with Attachments) for the product server. When SwA is enabled, the ESB will process the files attached to SOAP messages.</p>
+                                    </div>
+                                </div>
+                            </div><div class="param">
+                                <div class="param-name">
+                                  <span class="param-name-wrap"> <code>userAgent</code> </span>
+                                </div>
+                                <div class="param-info">
+                                    <div>
+                                        <p>
+                                            <span class="param-type string"> string </span>
+                                            <span class="badge-required">Required</span>
+                                        </p>
+                                        <div class="param-default">
+                                            <span class="param-default-value">Default: <code>&quot;127.0.0.1&quot;</code></span>
+                                        </div>       
+                                    </div>
+                                    <div class="param-description">
+                                        <p>The IP address of the server node.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="param">
+                                <div class="param-name">
+                                  <span class="param-name-wrap"> <code>offset</code> </span>
+                                </div>
+                                <div class="param-info">
+                                    <div>
+                                        <p>
+                                            <span class="param-type integer"> integer </span>
+                                            <span class="badge-required">Required</span>
+                                        </p>
+                                        <div class="param-default">
+                                            <span class="param-default-value">Default: <code>0</code></span>
+                                        </div>       
+                                    </div>
+                                    <div class="param-description">
+                                        <p>Port offset allows you to run multiple WSO2 products, multiple instances of a WSO2 product, or multiple WSO2 product clusters on the same server or virtual machine (VM). Port offset defines the number by which all ports defined in the runtime such as the HTTP/S ports will be offset. For example, if the default HTTP port is 9443 and the portOffset is 1, the effective HTTP port will be 9444. Therefore, for each additional WSO2 product instance, set the port offset to a unique value (the default is 0) so that they can all run on the same server without any port conflicts.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="param">
+                                <div class="param-name">
+                                  <span class="param-name-wrap"> <code>proxy_context_path</code> </span>
+                                </div>
+                                <div class="param-info">
+                                    <div>
+                                        <p>
+                                            <span class="param-type string"> string </span>
+                                            <span class="badge-required">Required</span>
+                                        </p>
+                                        <div class="param-default">
+                                            <span class="param-default-value">Default: <code>&quot;127.0.0.1&quot;</code></span>
+                                        </div>       
+                                    </div>
+                                    <div class="param-description">
+                                        <p>......</p>
                                     </div>
                                 </div>
                             </div>
@@ -5553,6 +5636,8 @@ proxy_context_path = ""
 </div>
 
 <h2 id="clustering">Clustering<a class="headerlink" href="#clustering" title="Permanent link">&para;</a></h2>
+<!--
+
 <div class="mb-config-catalog">
     <section>
         <div class="mb-config-options">
@@ -5629,7 +5714,11 @@ domain = "wso2.carbon.domain"
     </section>
 </div>
 
+-->
+
 <h2 id="primary-data-store">Primary data store<a class="headerlink" href="#primary-data-store" title="Permanent link">&para;</a></h2>
+<!--
+
 <div class="mb-config-catalog">
     <section>
         <div class="mb-config-options">
@@ -5705,7 +5794,11 @@ password=wso2carbon
     </section>
 </div>
 
+-->
+
 <h2 id="data-store-tuning">Data store tuning<a class="headerlink" href="#data-store-tuning" title="Permanent link">&para;</a></h2>
+<!--
+
 <div class="mb-config-catalog">
     <section>
         <div class="mb-config-options">
@@ -5781,8 +5874,11 @@ defaultAutoCommit=true
         </div>
     </section>
 </div>
+-->
 
 <h2 id="user-stores">User stores<a class="headerlink" href="#user-stores" title="Permanent link">&para;</a></h2>
+<!--
+
 <div class="mb-config-catalog">
     <section>
         <div class="mb-config-options">
@@ -5858,8 +5954,10 @@ base_dn="dc=example,dc=com"
         </div>
     </section>
 </div>
+-->
 
 <h2 id="system-administrator">System administrator<a class="headerlink" href="#system-administrator" title="Permanent link">&para;</a></h2>
+<!--
 <div class="mb-config-catalog">
     <section>
         <div class="mb-config-options">
@@ -5933,8 +6031,10 @@ create_admin_account=true
         </div>
     </section>
 </div>
+-->
 
 <h2 id="primary-keystore">Primary keystore<a class="headerlink" href="#primary-keystore" title="Permanent link">&para;</a></h2>
+<!--
 <div class="mb-config-catalog">
     <section>
         <div class="mb-config-options">
@@ -6010,8 +6110,10 @@ key_password="wso2carbon"
         </div>
     </section>
 </div>
+-->
 
 <h2 id="internal-keystore">Internal keystore<a class="headerlink" href="#internal-keystore" title="Permanent link">&para;</a></h2>
+<!--
 <div class="mb-config-catalog">
     <section>
         <div class="mb-config-options">
@@ -6087,8 +6189,10 @@ key_password="wso2carbon"
         </div>
     </section>
 </div>
+-->
 
 <h2 id="owasp">OWASP<a class="headerlink" href="#owasp" title="Permanent link">&para;</a></h2>
+<!--
 <div class="mb-config-catalog">
     <section>
         <div class="mb-config-options">
@@ -6169,8 +6273,10 @@ x_request_with_header = "WSO2 CSRF Protection"
         </div>
     </section>
 </div>
+-->
 
 <h2 id="trust-store">Trust store<a class="headerlink" href="#trust-store" title="Permanent link">&para;</a></h2>
+<!--
 <div class="mb-config-catalog">
     <section>
         <div class="mb-config-options">
@@ -6246,8 +6352,10 @@ algorithm=""
         </div>
     </section>
 </div>
+-->
 
 <h2 id="server-request-processor">Server request processor<a class="headerlink" href="#server-request-processor" title="Permanent link">&para;</a></h2>
+<!--
 <div class="mb-config-catalog">
     <section>
         <div class="mb-config-options">
@@ -6320,8 +6428,10 @@ class = "org.wso2.appcloud.api.swagger.processors.json.SwaggerJsonProcessor"
         </div>
     </section>
 </div>
+-->
 
 <h2 id="http-transport">HTTP transport<a class="headerlink" href="#http-transport" title="Permanent link">&para;</a></h2>
+<!--
 <div class="mb-config-catalog">
     <section>
         <div class="mb-config-options">
@@ -6445,8 +6555,10 @@ blocking_sender.so_timeout = "1m"
         </div>
     </section>
 </div>
+-->
 
 <h2 id="http-proxy-profile">HTTP proxy profile<a class="headerlink" href="#http-proxy-profile" title="Permanent link">&para;</a></h2>
+<!--
 <div class="mb-config-catalog">
     <section>
         <div class="mb-config-options">
@@ -6523,8 +6635,10 @@ bypass_hosts = [""]
         </div>
     </section>
 </div>
+-->
 
 <h2 id="local-transport">Local transport<a class="headerlink" href="#local-transport" title="Permanent link">&para;</a></h2>
+<!--
 <div class="mb-config-catalog">
     <section>
         <div class="mb-config-options">
@@ -6597,8 +6711,10 @@ sender.enabled=false
         </div>
     </section>
 </div>
+-->
 
 <h2 id="vfs-transport">VFS transport<a class="headerlink" href="#vfs-transport" title="Permanent link">&para;</a></h2>
+<!--
 <div class="mb-config-catalog">
     <section>
         <div class="mb-config-options">
@@ -6676,8 +6792,10 @@ sender.enable = true
         </div>
     </section>
 </div>
+-->
 
 <h2 id="mail-transport-listener">MAIL transport listener<a class="headerlink" href="#mail-transport-listener" title="Permanent link">&para;</a></h2>
+<!--
 <div class="mb-config-catalog">
     <section>
         <div class="mb-config-options">
@@ -6750,8 +6868,10 @@ name = "mailto"
         </div>
     </section>
 </div>
+-->
 
 <h2 id="mail-transport-sender">MAIL transport sender<a class="headerlink" href="#mail-transport-sender" title="Permanent link">&para;</a></h2>
+<!--
 <div class="mb-config-catalog">
     <section>
         <div class="mb-config-options">
@@ -6830,8 +6950,10 @@ parameter.from = "demo_user@wso2.com"
         </div>
     </section>
 </div>
+-->
 
 <h2 id="jms-transport-listener">JMS transport listener<a class="headerlink" href="#jms-transport-listener" title="Permanent link">&para;</a></h2>
+<!--
 <div class="mb-config-catalog">
     <section>
         <div class="mb-config-options">
@@ -6943,8 +7065,10 @@ parameter.consume_error_progression = "2.0"
         </div>
     </section>
 </div>
+-->
 
 <h2 id="jms-transport-sender">JMS transport sender<a class="headerlink" href="#jms-transport-sender" title="Permanent link">&para;</a></h2>
+<!--
 <div class="mb-config-catalog">
     <section>
         <div class="mb-config-options">
@@ -7059,8 +7183,10 @@ parameter.vender_class_loader = false
         </div>
     </section>
 </div>
+-->
 
 <h2 id="jndi-connection-factories">JNDI connection factories<a class="headerlink" href="#jndi-connection-factories" title="Permanent link">&para;</a></h2>
+<!--
 <div class="mb-config-catalog">
     <section>
         <div class="mb-config-options">
@@ -7133,8 +7259,10 @@ TopicConnectionFactory = "amqp://admin:admin@clientID/carbon?brokerlist='tcp://l
         </div>
     </section>
 </div>
+-->
 
 <h2 id="jndi-queues">JNDI queues<a class="headerlink" href="#jndi-queues" title="Permanent link">&para;</a></h2>
+<!--
 <div class="mb-config-catalog">
     <section>
         <div class="mb-config-options">
@@ -7207,8 +7335,10 @@ StockQuotesQueue = "StockQuotesQueue"
         </div>
     </section>
 </div>
+-->
 
 <h2 id="jndi-topics">JNDI topics<a class="headerlink" href="#jndi-topics" title="Permanent link">&para;</a></h2>
+<!--
 <div class="mb-config-catalog">
     <section>
         <div class="mb-config-options">
@@ -7280,8 +7410,10 @@ MyTopic = "example.MyTopic"
         </div>
     </section>
 </div>
+-->
 
 <h2 id="rabbitmq-listener">RabbitMQ listener<a class="headerlink" href="#rabbitmq-listener" title="Permanent link">&para;</a></h2>
+<!--
 <div class="mb-config-catalog">
     <section>
         <div class="mb-config-options">
@@ -7386,8 +7518,10 @@ parameter.truststore_password = "$ref{truststore.password}"
         </div>
     </section>
 </div>
+-->
 
 <h2 id="rabbitmq-sender">RabbitMQ sender<a class="headerlink" href="#rabbitmq-sender" title="Permanent link">&para;</a></h2>
+<!--
 <div class="mb-config-catalog">
     <section>
         <div class="mb-config-options">
@@ -7476,8 +7610,10 @@ parameter.exchange_auto_declare = ""
         </div>
     </section>
 </div>
+-->
 
 <h2 id="fix-transport">FIX transport<a class="headerlink" href="#fix-transport" title="Permanent link">&para;</a></h2>
+<!--
 <div class="mb-config-catalog">
     <section>
         <div class="mb-config-options">
@@ -7552,8 +7688,10 @@ sender.enabled=false
         </div>
     </section>
 </div>
+-->
 
 <h2 id="mqtt-transport">MQTT transport<a class="headerlink" href="#mqtt-transport" title="Permanent link">&para;</a></h2>
+<!--
 <div class="mb-config-catalog">
     <section>
         <div class="mb-config-options">
@@ -7644,8 +7782,10 @@ sender.enable = false
         </div>
     </section>
 </div>
+-->
 
 <h2 id="hl7-transport">HL7 transport<a class="headerlink" href="#hl7-transport" title="Permanent link">&para;</a></h2>
+<!--
 <div class="mb-config-catalog">
     <section>
         <div class="mb-config-options">
@@ -7722,8 +7862,10 @@ sender.non_blocking = true
         </div>
     </section>
 </div>
+-->
 
 <h2 id="sap-transport">SAP transport<a class="headerlink" href="#sap-transport" title="Permanent link">&para;</a></h2>
+<!--
 <div class="mb-config-catalog">
     <section>
         <div class="mb-config-options">
@@ -7796,8 +7938,10 @@ sender.enabled=false
         </div>
     </section>
 </div>
+-->
 
 <h2 id="msmq-transport">MSMQ transport<a class="headerlink" href="#msmq-transport" title="Permanent link">&para;</a></h2>
+<!--
 <div class="mb-config-catalog">
     <section>
         <div class="mb-config-options">
@@ -7872,8 +8016,10 @@ sender.enable = false
         </div>
     </section>
 </div>
+-->
 
 <h2 id="tcp-transport">TCP transport<a class="headerlink" href="#tcp-transport" title="Permanent link">&para;</a></h2>
+<!--
 <div class="mb-config-catalog">
     <section>
         <div class="mb-config-options">
@@ -7950,8 +8096,10 @@ sender.enable = true
         </div>
     </section>
 </div>
+-->
 
 <h2 id="websocket-transport">Websocket transport<a class="headerlink" href="#websocket-transport" title="Permanent link">&para;</a></h2>
+<!--
 <div class="mb-config-catalog">
     <section>
         <div class="mb-config-options">
@@ -8026,8 +8174,10 @@ sender.parameter.outflow_dispatch_fault_sequence = "outflowFaultSeq"
         </div>
     </section>
 </div>
+-->
 
 <h2 id="secure-websocket-transport">Secure Websocket transport<a class="headerlink" href="#secure-websocket-transport" title="Permanent link">&para;</a></h2>
+<!--
 <div class="mb-config-catalog">
     <section>
         <div class="mb-config-options">
@@ -8104,8 +8254,10 @@ sender.truststore_password = "$ref{truststore.password}"
         </div>
     </section>
 </div>
+-->
 
 <h2 id="udp-transport">UDP transport<a class="headerlink" href="#udp-transport" title="Permanent link">&para;</a></h2>
+<!--
 <div class="mb-config-catalog">
     <section>
         <div class="mb-config-options">
@@ -8179,8 +8331,10 @@ sender.enable =false
         </div>
     </section>
 </div>
+-->
 
 <h2 id="custom-transport-listener">Custom transport listener<a class="headerlink" href="#custom-transport-listener" title="Permanent link">&para;</a></h2>
+<!--
 <div class="mb-config-catalog">
     <section>
         <div class="mb-config-options">
@@ -8269,8 +8423,10 @@ ssl_profile.read_interval = "30s"
         </div>
     </section>
 </div>
+-->
 
 <h2 id="custom-transport-sender">Custom transport sender<a class="headerlink" href="#custom-transport-sender" title="Permanent link">&para;</a></h2>
+<!--
 <div class="mb-config-catalog">
     <section>
         <div class="mb-config-options">
@@ -8358,8 +8514,10 @@ ssl_profile.read_interval = "30s"
         </div>
     </section>
 </div>
+-->
 
 <h2 id="mediation-process">Mediation process<a class="headerlink" href="#mediation-process" title="Permanent link">&para;</a></h2>
+<!--
 <div class="mb-config-catalog">
     <section>
         <div class="mb-config-options">
@@ -8459,6 +8617,7 @@ inbound.max_threads = 100
         </div>
     </section>
 </div>
+-->
                 
                   
                 
