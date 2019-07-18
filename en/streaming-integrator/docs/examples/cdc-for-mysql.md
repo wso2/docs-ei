@@ -2,7 +2,7 @@
 
 ## Introduction
 
-Streaming Integrator allows you to capture changes to a data base table, in a streaming way.
+Streaming Integrator allows you to capture changes to a database table, in a streaming way.
 
 This tutorial takes you through the different modes and  options you could use to perform Change Data Capturing (CDC) using the Streaming Integrator. In this tutorial, we will be using a MySQL datasource.  
 
@@ -19,7 +19,7 @@ On listening mode, the Streaming Integrator will keep listening to the Change Lo
 You could capture following type of changes done to a database table:
 - Insert operations  
 - Update operations
-- Delete operations
+- Delete operations (available for Listening mode only) 
 
 ## Tutorial Outline
 - Listening mode
@@ -30,8 +30,7 @@ You could capture following type of changes done to a database table:
 - Polling mode
     - Preparing server and database for this tutorial
     - Capturing inserts
-    - Capturing updates     
-- Enabling persistence
+    - Capturing updates 
 
 ## Listening mode
 
