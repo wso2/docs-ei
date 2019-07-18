@@ -60,7 +60,7 @@
     
     
       
-        <title>Complying with GDPR - WSO2 Enterprise Integrator Documentation</title>
+        <title>GDPR for the WSO2 Micro Integrator - WSO2 Enterprise Integrator Documentation</title>
       
     
     
@@ -133,7 +133,7 @@
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
     <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
     
-      <a href="#general-data-protection-regulation-gdpr-for-wso2-ei" tabindex="1" class="md-skip">
+      <a href="#gdpr-compliance-in-the-wso2-micro-integrator" tabindex="1" class="md-skip">
         Skip to content
       </a>
     
@@ -176,7 +176,7 @@
                Enterprise Integrator Documentation
             </span>
             <span class="md-header-nav__topic">
-              Complying with GDPR
+              GDPR for the WSO2 Micro Integrator
             </span>
           
         </div>
@@ -1123,6 +1123,27 @@
   
 
 
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5-4-2" type="checkbox" id="nav-5-4-2" checked>
+    
+    <label class="md-nav__link" for="nav-5-4-2">
+      Complying with GDPR
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="3">
+      <label class="md-nav__title" for="nav-5-4-2">
+        Complying with GDPR
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+  
+
+
   <li class="md-nav__item md-nav__item--active">
     
     <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
@@ -1131,11 +1152,11 @@
     
     
       <label class="md-nav__link md-nav__link--active" for="__toc">
-        Complying with GDPR
+        GDPR for the WSO2 Micro Integrator
       </label>
     
-    <a href="./" title="Complying with GDPR" class="md-nav__link md-nav__link--active">
-      Complying with GDPR
+    <a href="./" title="GDPR for the WSO2 Micro Integrator" class="md-nav__link md-nav__link--active">
+      GDPR for the WSO2 Micro Integrator
     </a>
     
       
@@ -1158,50 +1179,44 @@
 </li>
         
         <li class="md-nav__item">
-  <a href="#how-wso2-ei-persists-a-users-pii" title="How WSO2 EI persists a user's PII" class="md-nav__link">
-    How WSO2 EI persists a user's PII
-  </a>
-  
-    <nav class="md-nav">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#tools-for-removing-pii-in-wso2-ei" title="Tools for removing PII in WSO2 EI" class="md-nav__link">
-    Tools for removing PII in WSO2 EI
+  <a href="#how-the-wso2-micro-integrator-persists-pii" title="How the WSO2 Micro Integrator persists PII" class="md-nav__link">
+    How the WSO2 Micro Integrator persists PII
   </a>
   
 </li>
         
-          <li class="md-nav__item">
+        <li class="md-nav__item">
+  <a href="#tools-for-removing-pii-in-wso2-micro-integrator" title="Tools for removing PII in WSO2 Micro Integrator" class="md-nav__link">
+    Tools for removing PII in WSO2 Micro Integrator
+  </a>
+  
+</li>
+        
+        <li class="md-nav__item">
   <a href="#prerequisites-for-removing-pii" title="Prerequisites for removing PII" class="md-nav__link">
     Prerequisites for removing PII
   </a>
   
 </li>
         
-          <li class="md-nav__item">
-  <a href="#removing-pii-from-the-esb-profile" title="Removing PII from the ESB profile" class="md-nav__link">
-    Removing PII from the ESB profile
+        <li class="md-nav__item">
+  <a href="#removing-pii-from-the-micro-integrator" title="Removing PII from the Micro Integrator" class="md-nav__link">
+    Removing PII from the Micro Integrator
   </a>
   
 </li>
         
-          <li class="md-nav__item">
+        <li class="md-nav__item">
   <a href="#anonymizing-pii-references" title="Anonymizing PII references" class="md-nav__link">
     Anonymizing PII references
   </a>
   
 </li>
         
-          <li class="md-nav__item">
+        <li class="md-nav__item">
   <a href="#deleting-original-archived-log-files" title="Deleting original (archived) log files" class="md-nav__link">
     Deleting original (archived) log files
   </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
         
@@ -1213,6 +1228,23 @@
     
 </nav>
     
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../about_forgetme_tool/" title="About the Identity Anonymization Tool" class="md-nav__link">
+      About the Identity Anonymization Tool
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
   </li>
 
         
@@ -1767,93 +1799,9 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../develop/designing-integration/" title="Designing Integration" class="md-nav__link">
-      Designing Integration
+    <a href="../../../develop/developer-workflow/" title="Development Workflow" class="md-nav__link">
+      Development Workflow
     </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item md-nav__item--nested">
-    
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-6-4" type="checkbox" id="nav-6-4">
-    
-    <label class="md-nav__link" for="nav-6-4">
-      Developing Integration
-    </label>
-    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
-      <label class="md-nav__title" for="nav-6-4">
-        Developing Integration
-      </label>
-      <ul class="md-nav__list" data-md-scrollfix>
-        
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../../develop/setup-workspace/" title="Set up the Workspace" class="md-nav__link">
-      Set up the Workspace
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../../develop/develop-artifacts/" title="Develop Artifacts" class="md-nav__link">
-      Develop Artifacts
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../../develop/build-and-run/" title="Build and Run" class="md-nav__link">
-      Build and Run
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../../develop/iterate-improve-integration/" title="Iterate and Improve" class="md-nav__link">
-      Iterate and Improve
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../../develop/publish-to-production/" title="Publish to Production" class="md-nav__link">
-      Publish to Production
-    </a>
-  </li>
-
-        
-      </ul>
-    </nav>
   </li>
 
         
@@ -1876,13 +1824,13 @@
 
   <li class="md-nav__item md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-6-6" type="checkbox" id="nav-6-6">
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-6-5" type="checkbox" id="nav-6-5">
     
-    <label class="md-nav__link" for="nav-6-6">
+    <label class="md-nav__link" for="nav-6-5">
       WSO2 Integration Studio
     </label>
     <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
-      <label class="md-nav__title" for="nav-6-6">
+      <label class="md-nav__title" for="nav-6-5">
         WSO2 Integration Studio
       </label>
       <ul class="md-nav__list" data-md-scrollfix>
@@ -1894,8 +1842,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../develop/WSO2-Integration-Studio/" title="WSO2 Integration Studio" class="md-nav__link">
-      WSO2 Integration Studio
+    <a href="../../../develop/WSO2-Integration-Studio/" title="Quick Tour - WSO2 Integration Studio" class="md-nav__link">
+      Quick Tour - WSO2 Integration Studio
     </a>
   </li>
 
@@ -1906,8 +1854,20 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../develop/working-with-WSO2-Integration-Studio/" title="Working with Integration Studio" class="md-nav__link">
-      Working with Integration Studio
+    <a href="../../../develop/installing-WSO2-Integration-Studio/" title="Installing WSO2 Integration Studio" class="md-nav__link">
+      Installing WSO2 Integration Studio
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../develop/working-with-WSO2-Integration-Studio/" title="Using WSO2 Integration Studio" class="md-nav__link">
+      Using WSO2 Integration Studio
     </a>
   </li>
 
@@ -4976,50 +4936,44 @@
 </li>
         
         <li class="md-nav__item">
-  <a href="#how-wso2-ei-persists-a-users-pii" title="How WSO2 EI persists a user's PII" class="md-nav__link">
-    How WSO2 EI persists a user's PII
-  </a>
-  
-    <nav class="md-nav">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#tools-for-removing-pii-in-wso2-ei" title="Tools for removing PII in WSO2 EI" class="md-nav__link">
-    Tools for removing PII in WSO2 EI
+  <a href="#how-the-wso2-micro-integrator-persists-pii" title="How the WSO2 Micro Integrator persists PII" class="md-nav__link">
+    How the WSO2 Micro Integrator persists PII
   </a>
   
 </li>
         
-          <li class="md-nav__item">
+        <li class="md-nav__item">
+  <a href="#tools-for-removing-pii-in-wso2-micro-integrator" title="Tools for removing PII in WSO2 Micro Integrator" class="md-nav__link">
+    Tools for removing PII in WSO2 Micro Integrator
+  </a>
+  
+</li>
+        
+        <li class="md-nav__item">
   <a href="#prerequisites-for-removing-pii" title="Prerequisites for removing PII" class="md-nav__link">
     Prerequisites for removing PII
   </a>
   
 </li>
         
-          <li class="md-nav__item">
-  <a href="#removing-pii-from-the-esb-profile" title="Removing PII from the ESB profile" class="md-nav__link">
-    Removing PII from the ESB profile
+        <li class="md-nav__item">
+  <a href="#removing-pii-from-the-micro-integrator" title="Removing PII from the Micro Integrator" class="md-nav__link">
+    Removing PII from the Micro Integrator
   </a>
   
 </li>
         
-          <li class="md-nav__item">
+        <li class="md-nav__item">
   <a href="#anonymizing-pii-references" title="Anonymizing PII references" class="md-nav__link">
     Anonymizing PII references
   </a>
   
 </li>
         
-          <li class="md-nav__item">
+        <li class="md-nav__item">
   <a href="#deleting-original-archived-log-files" title="Deleting original (archived) log files" class="md-nav__link">
     Deleting original (archived) log files
   </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
         
@@ -5043,11 +4997,10 @@
                   <a href="https://github.com/wso2/docs-ei/edit/master/en/docs/setup/security/gdpr_ei.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
                 
                 
-                <h1 id="general-data-protection-regulation-gdpr-for-wso2-ei">General Data Protection Regulation (GDPR) for WSO2 EI<a class="headerlink" href="#general-data-protection-regulation-gdpr-for-wso2-ei" title="Permanent link">&para;</a></h1>
-<p>WSO2 Enterprise Integrator (WSO2 EI) consists of four profiles (ESB,
-Message Broker, Business Process Server, and Analytics) that can persist
+                <h1 id="gdpr-compliance-in-the-wso2-micro-integrator">GDPR Compliance in the WSO2 Micro Integrator<a class="headerlink" href="#gdpr-compliance-in-the-wso2-micro-integrator" title="Permanent link">&para;</a></h1>
+<p>WSO2 Micro Integrator can persist
 a user's personally identifiable information (PII) in various sources,
-namely log files and RDBMSs. However, organizations that use WSO2 EI
+namely log files and RDBMSs. However, organizations that use the Micro Integrator
 have a legal obligation to remove all instances of a user's PII from the
 system if the relevant user requests. For example, consider a situation
 where an employee resigns from the organization and, thereby, requests
@@ -5056,7 +5009,7 @@ organization's system. You can fulfill this requirement by anonymizing
 the user's PII in the system, or (in some cases) by completely removing
 such PII from the system.</p>
 <p>See the topics given below for instructions on how to remove PII from
-each profile of WSO2 EI.</p>
+the WSO2 Micro Integrator.</p>
 <h2 id="what-is-gdpr">What is GDPR?<a class="headerlink" href="#what-is-gdpr" title="Permanent link">&para;</a></h2>
 <p>The General Data Protection Regulation (GDPR) is a new legal framework
 that was formalized by the European Union (EU) in 2016. It comes into
@@ -5093,86 +5046,66 @@ homepage</a> . You
 can also find the original GDPR legal text
 <a href="http://eur-lex.europa.eu/legal-content/en/TXT/?uri=CELEX%3A32016R0679">here</a>
 .</p>
-<h2 id="how-wso2-ei-persists-a-users-pii">How WSO2 EI persists a user's PII<a class="headerlink" href="#how-wso2-ei-persists-a-users-pii" title="Permanent link">&para;</a></h2>
-<p>The ESB profile can persist PII in various log files (carbon logs, audit logs, API logs, and service-specific logs) depending on the mediation logic defined. The ESB does not persist a user's PII in any RDBMS by default.</p>
-<h3 id="tools-for-removing-pii-in-wso2-ei">Tools for removing PII in WSO2 EI<a class="headerlink" href="#tools-for-removing-pii-in-wso2-ei" title="Permanent link">&para;</a></h3>
-<p>The following tools are shipped with WSO2 EI:</p>
+<h2 id="how-the-wso2-micro-integrator-persists-pii">How the WSO2 Micro Integrator persists PII<a class="headerlink" href="#how-the-wso2-micro-integrator-persists-pii" title="Permanent link">&para;</a></h2>
+<p>The Micro Integrator can persist PII in various log files (carbon logs, audit logs, API logs, and service-specific logs) depending on the mediation logic defined. The Micro Integrator does not persist a user's PII in any RDBMS by default.</p>
+<h2 id="tools-for-removing-pii-in-wso2-micro-integrator">Tools for removing PII in WSO2 Micro Integrator<a class="headerlink" href="#tools-for-removing-pii-in-wso2-micro-integrator" title="Permanent link">&para;</a></h2>
+<p>The following tools are shipped with the Micro Integrator:</p>
 <ul>
 <li>
-<p>WSO2 EI is shipped with the <strong>Forget-Me Tool</strong> , which can anonymize
+<p>The <strong>Forget-Me Tool</strong> , which can anonymize
     a user's PII in log files and RDBMSs by replacing all occurrences of
     the deleted user with either a randomly generated UUID value or a
     specified pseudonym. This tool is stored in the
-    <code class="codehilite">&lt;EI_HOME&gt;/wso2/tools/forget-me/</code> directory of
-    WSO2 EI. Find out about all the capabilities of the Forget-Me tool
-    from
-    <a href="https://docs.wso2.com/display/ADMIN44x/Removing+References+to+Deleted+User+Identities+in+WSO2+Products">here</a>
-    .<br />
-<strong>Important!</strong> In the case of log files, note that the Forget-Me
-    Tool does not replace PII values in the actual log files. Instead,
-    the tool will create a new set of log files with anonymized PII
-    values. The organization can then remove the original log files.</p>
+    <code class="codehilite">MI_HOME/wso2/tools/forget-me/</code> directory of
+    the Micro Integrator. Find out about all the capabilities of the Forget-Me tool
+    from <a href="../about_forgetme_tool/">here</a>.</p>
+<p><strong>Important!</strong> In the case of log files, note that the Forget-Me
+Tool does not replace PII values in the actual log files. Instead,
+the tool will create a new set of log files with anonymized PII
+values. The organization can then remove the original log files.</p>
 <blockquote>
-<p>If you want to use the Forget-Me tool to remove PII in multiple WSO2
-    products at the same time, you can use the standalone version of the
-    tool.<br />
-    For information on how to build and run the Forget-Me tool in
-    standalone mode, see <a href="https://docs.wso2.com/display/ADMIN44x/Removing+References+to+Deleted+User+Identities+in+WSO2+Products">Removing References to Deleted User Identities
-    in WSO2
-    Products</a>
-    in the WSO2 Administration Guide.</p>
+<p>If you want to use the Forget-Me tool to remove PII in multiple WSO2 products at the same time, you can use the standalone version of the tool. Find more information on how to <a href="../about_forgetme_tool/">build and run the Forget-Me tool in standalone mode</a>.</p>
 </blockquote>
 </li>
-<li>
-<p>In addition to this tool, the BPS profile also contains a set of SQL
-    scripts that can remove PII by completely removing any process
-    instances associated with a particular user. This method is only
-    applicable to BPEL and Human Task processes.</p>
-</li>
 </ul>
-<h3 id="prerequisites-for-removing-pii">Prerequisites for removing PII<a class="headerlink" href="#prerequisites-for-removing-pii" title="Permanent link">&para;</a></h3>
-<p>As explained in <a href="#GeneralDataProtectionRegulation(GDPR)forWSO2EI-how_PII_is_stored">How WSO2 EI persists a user's
-PII</a>
-, the ESB profile and the BPS profile will store user information in log
+<h2 id="prerequisites-for-removing-pii">Prerequisites for removing PII<a class="headerlink" href="#prerequisites-for-removing-pii" title="Permanent link">&para;</a></h2>
+<p>As explained in <a href="#how-the-wso2-micro-integrator-persists-pii">How the WSO2 Micro Integrator persists a user's PII</a>
+, the Micro Integrator will store user information in log
 files. Note that we can only remove a deleted user's PII from archived
 log files, and not the live log files that are connected to the system.</p>
-<p>Therefore, <strong>before you start removing PII</strong> stored by the ESB profile
-and the BPMN component, be sure that the relevant user has been inactive
+<p>Therefore, <strong>before you start removing PII</strong> stored by the Micro Integrator, be sure that the relevant user has been inactive
 in the system for a sufficient amount of time. This will ensure that all
 of the user's PII contained in log files are successfully archived. You
 can then follow the instructions given below to remove the user's PII
 references from the archived log files.</p>
-<h3 id="removing-pii-from-the-esb-profile">Removing PII from the ESB profile<a class="headerlink" href="#removing-pii-from-the-esb-profile" title="Permanent link">&para;</a></h3>
-<p><strong>Before you begin</strong> ,</p>
+<h2 id="removing-pii-from-the-micro-integrator">Removing PII from the Micro Integrator<a class="headerlink" href="#removing-pii-from-the-micro-integrator" title="Permanent link">&para;</a></h2>
+<p><strong>Before you begin</strong>:</p>
 <ul>
-<li>Find out about <a href="#GeneralDataProtectionRegulation(GDPR)forWSO2EI-how_PII_is_stored">how the ESB profile stores a user's
-    PII</a>
-    .</li>
-<li>See the <a href="#GeneralDataProtectionRegulation(GDPR)forWSO2EI-prerequisites">prerequisites for removing PII from the
-    ESB</a>
-    .</li>
+<li>Find out about <a href="#how-the-wso2-micro-integrator-persists-pii">how the Micro Integrator stores a user's
+    PII</a>.</li>
+<li>See the <a href="#prerequisites-for-removing-pii">prerequisites for removing PII from the
+    ESB</a>.</li>
 <li>In the instructions given below, we will use a proxy service that
-    logs PII to demonstrate how PII can be removed from the ESB profile.
+    logs PII to demonstrate how PII can be removed from the Micro Integrator.
     However, please note that it is <strong>not recommended</strong> to log PII from
     a proxy service.</li>
 </ul>
-<h3 id="anonymizing-pii-references">Anonymizing PII references<a class="headerlink" href="#anonymizing-pii-references" title="Permanent link">&para;</a></h3>
-<p>You can use the <a href="#GeneralDataProtectionRegulation(GDPR)forWSO2EI-Tools">Forget-Me
+<h2 id="anonymizing-pii-references">Anonymizing PII references<a class="headerlink" href="#anonymizing-pii-references" title="Permanent link">&para;</a></h2>
+<p>You can use the <a href="#tools-for-removing-pii-in-wso2-micro-integrator">Forget-Me
 Tool</a> to remove
 references to personally identifiable information (PII) from logs in the
-ESB profile. For example, consider a proxy service that logs the
+Micro Integrator. For example, consider a proxy service that logs the
 username that is sent through a payload. A Log mediator can be used for
 this as shown below.</p>
-<pre class="codehilite"><code class="language-java linenums">    &lt;log level="custom"&gt;
+<pre class="codehilite"><code class="language-java linenums">&lt;log level="custom"&gt;
     &lt;property expression="//Authentication/username" name="USER_NAME"/&gt;
-    &lt;/log&gt;</code></pre>
+&lt;/log&gt;</code></pre>
 
 <p>The user name that is used when you invoke this query will be logged in
 the following log files: wso2carbon.log file, audit.log file, warn.log,
-and the <a href="https://docs.wso2.com/display/EI6xx/Creating+a+Proxy+Service#CreatingaProxyService-Enablinglogsforservices">service-specific log
-file</a>
+and the <a href="../../../use-cases/tasks/proxy_service_tasks/enabling-logs-for-services/">service-specific log file</a>
 that is enabled for the proxy service.</p>
-<pre class="codehilite"><code class="language-java linenums">    [EI-Core]  INFO - LogMediator USER_NAME = Sam</code></pre>
+<pre class="codehilite"><code class="language-java linenums">[EI-Core]  INFO - LogMediator USER_NAME = Sam</code></pre>
 
 <p>Let's look at how to anonymize the username value in log files.</p>
 <ol>
@@ -5184,52 +5117,50 @@ that is enabled for the proxy service.</p>
     anonymize the username.</p>
 <p>This pattern should be added to the
 <code class="codehilite">ei-patterns.xml</code> file (stored in the
-<code class="codehilite">&lt;EI_HOME&gt;/wso2/tools/forget-me/conf/log-config/</code>
+<code class="codehilite">MI_HOME/wso2/tools/forget-me/conf/log-config/</code>
 directory).</p>
-<pre class="codehilite"><code class="language-java linenums">        &lt;pattern key="pattern3"&gt;
-               &lt;detectPattern&gt;(.)*(USER_NAME)(.)*${username}(.)*&lt;/detectPattern&gt;
-               &lt;replacePattern&gt;${username}&lt;/replacePattern&gt;
-        &lt;/pattern&gt;</code></pre>
+<pre class="codehilite"><code class="language-java linenums">&lt;pattern key="pattern3"&gt;
+    &lt;detectPattern&gt;(.)*(USER_NAME)(.)*${username}(.)*&lt;/detectPattern&gt;
+    &lt;replacePattern&gt;${username}&lt;/replacePattern&gt;
+&lt;/pattern&gt;</code></pre>
 
 </li>
 <li>
 <p>Update the <code class="codehilite">config.json</code> file (stored in the
-    <code class="codehilite">&lt;EI_HOME&gt;/wso2/tools/forget-me/conf/</code>
+    <code class="codehilite">MI_HOME/wso2/tools/forget-me/conf/</code>
     directory) as shown below. This file contains references to all the
-    log files (except any <a href="https://docs.wso2.com/display/EI6xx/Creating+a+Proxy+Service#CreatingaProxyService-Enablinglogsforservices">service-specific log
-    file</a>
-    ) in the system that store the above user information. If you have
+    log files (except any <a href="../../../use-cases/tasks/proxy_service_tasks/enabling-logs-for-services/">service-specific log file</a> in the system that store the above user information. If you have
     enabled a service-specific log file, you need to add that file name
     (see the element descriptions given below).</p>
-<pre class="codehilite"><code class="language-java linenums">        {
-         "processors" : [
-           "log-file"
-         ],
-         "directories": [
-           {
-             "dir": "log-config",
-             "type": "log-file",
-             "processor" : "log-file",
-             "log-file-path" : "&lt;EI_HOME&gt;/repository/logs",
-             "log-file-name-regex" : "(audit.log|warn.log|wso2carbon.log)(.)*"
-           }
-         ]
-        }</code></pre>
+<pre class="codehilite"><code class="language-java linenums">{
+    "processors" : [
+    "log-file"
+    ],
+    "directories": [
+        {
+            "dir": "log-config",
+            "type": "log-file",
+            "processor" : "log-file",
+            "log-file-path" : "&lt;EI_HOME&gt;/repository/logs",
+            "log-file-name-regex" : "(audit.log|warn.log|wso2carbon.log)(.)*"
+        }
+    ]
+}</code></pre>
 
 <p>The elements in the above configuration are explained below.</p>
 <ul>
 <li><strong>"processors"</strong> : The processors listed for this element
     specifies whether the tool will on log files, RDBMSs, or
-    analytics streams. In the case of the ESB profile, we only need
+    analytics streams. In the case of the Micro Integrator, we only need
     to remove PII from log files, and therefore, the processor is
     set to "log-file".</li>
 <li><strong>"directories"</strong> : This element lists the directories that
-    correspond to the processors. In the case of the ESB profile, we
+    correspond to the processors. In the case of the Micro Integrator, we
     need to specify the directories that store log files.</li>
 <li>
 <p><strong>"log-file-path"</strong> : This specifies the directory path to the
     log files. Note that all the relevant log files are stored in
-    the <code class="codehilite">&lt;EI_HOME&gt;/repository/logs/</code>
+    the <code class="codehilite">MI_HOME/repository/logs/</code>
     directory.</p>
 <blockquote>
 <p>Be sure to replace the "log-file-path" value with the correct
@@ -5245,16 +5176,13 @@ directory).</p>
     (stored in the log-file-path) that will persist the user's PII.
     Note that the above log-file-name-regex includes the audit.log,
     warn.log, and wso2carbon.log files, <strong>as well as</strong> the archived
-    files of the same logs. If you have enabled a <a href="https://docs.wso2.com/display/EI6xx/Creating+a+Proxy+Service#CreatingaProxyService-Enablinglogsforservices">service-specific
-    log
-    file</a>
-    , <strong>be sure to add</strong> the file name to this list.</p>
+    files of the same logs. If you have enabled a <a href="../../../use-cases/tasks/proxy_service_tasks/enabling-logs-for-services/">service-specific log file</a>, <strong>be sure to add</strong> the file name to this list.</p>
 </li>
 </ul>
 </li>
 <li>
 <p>Open a command prompt and navigate to the
-    <code class="codehilite">&lt;EI_HOME&gt;/bin</code> directory.</p>
+    <code class="codehilite">MI_HOME/bin</code> directory.</p>
 </li>
 <li>
 <p>Execute the following command to anonymize the user information that
@@ -5262,12 +5190,12 @@ directory).</p>
 <ul>
 <li>
 <p>On Linux:</p>
-<pre class="codehilite"><code class="language-java linenums">        ./forgetme.sh -U Sam</code></pre>
+<pre class="codehilite"><code class="language-java linenums">./forgetme.sh -U Sam</code></pre>
 
 </li>
 <li>
 <p>On Windows:</p>
-<pre class="codehilite"><code class="language-java linenums">            forgetme.bat -U</code></pre>
+<pre class="codehilite"><code class="language-java linenums">forgetme.bat -U</code></pre>
 
 </li>
 </ul>
@@ -5283,19 +5211,16 @@ directory).</p>
 <li>
 <p>The PII will be anonymized in the copies. The log files will
     display the user information as a pseudonym.</p>
-<pre class="codehilite"><code class="language-java linenums">            [EI-Core]  INFO - LogMediator USER_NAME = 86c3bfd9-f97c-4b08-9f15-772dcb0c1c</code></pre>
+<pre class="codehilite"><code class="language-java linenums">[EI-Core]  INFO - LogMediator USER_NAME = 86c3bfd9-f97c-4b08-9f15-772dcb0c1c</code></pre>
 
 <blockquote>
-<p>For the list of commands you can run using the Forget-Me tool, see
-this
-<a href="https://docs.wso2.com/display/ADMIN44x/Removing+References+to+Deleted+User+Identities+in+WSO2+Products">link</a>
-.</p>
+<p>For the list of commands you can run using the Forget-Me tool, see this <a href="../about_forgetme_tool/">link</a>.</p>
 </blockquote>
 </li>
 </ol>
 </li>
 </ol>
-<h3 id="deleting-original-archived-log-files">Deleting original (archived) log files<a class="headerlink" href="#deleting-original-archived-log-files" title="Permanent link">&para;</a></h3>
+<h2 id="deleting-original-archived-log-files">Deleting original (archived) log files<a class="headerlink" href="#deleting-original-archived-log-files" title="Permanent link">&para;</a></h2>
 <p>Note that the PII is not removed from the original log files. It is the
 responsibility of the organization to remove the original log files that
 contain the user's PII.</p>
@@ -5336,13 +5261,13 @@ contain the user's PII.</p>
           </a>
         
         
-          <a href="../encrypting_plain_text/" title="Encrypting Passwords" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+          <a href="../about_forgetme_tool/" title="About the Identity Anonymization Tool" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
             <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
               <span class="md-flex__ellipsis">
                 <span class="md-footer-nav__direction">
                   Next
                 </span>
-                Encrypting Passwords
+                About the Identity Anonymization Tool
               </span>
             </div>
             <div class="md-flex__cell md-flex__cell--shrink">
