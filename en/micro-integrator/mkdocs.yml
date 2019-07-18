@@ -138,6 +138,7 @@ nav:
         - 'Quick Tour - WSO2 Integration Studio' : 'develop/WSO2-Integration-Studio.md'
         - 'Installing WSO2 Integration Studio' : 'develop/installing-WSO2-Integration-Studio.md'
         - 'Using WSO2 Integration Studio' : 'develop/working-with-WSO2-Integration-Studio.md'
+        - 'Troubleshooting WSO2 Integration Studio' : 'develop/troubleshooting-WSO2-Integration-Studio.md'
     - Use Cases:
       - Examples:
         - 'Using REST with a Proxy Service' : 'use-cases/examples/rest-with-a-proxy-service.md'
