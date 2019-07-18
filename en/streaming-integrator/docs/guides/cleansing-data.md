@@ -1,7 +1,9 @@
-#Cleansing Data
+# Cleansing Data
 
-##Introduction
+## Introduction
 
-##Filtering requests
+## Filtering data based on conditions
 
-##Handling attributes with null values
+## Modifying, removing and replacing attributes
+
+## Handling attributes with null values
