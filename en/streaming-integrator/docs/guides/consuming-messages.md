@@ -1,4 +1,4 @@
-#Publishing Messages
+#Consuming Messages
 
 ## Introduction
 
