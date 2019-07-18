@@ -6,11 +6,11 @@ Streaming Integrator allows you to capture changes to a data base table, in a st
 
 This tutorial takes you through the different modes and  options you could use to perform Change Data Capturing (CDC) using the Streaming Integrator. In this tutorial, we will be using a MySQL datasource.  
 
-#### Polling mode and Listening mode
+#### Listening mode and Polling mode 
 
-There are two modes you could perform CDC using the Streaming Integrator: **Polling mode** and **Listening mode**. 
+There are two modes you could perform CDC using the Streaming Integrator: **Listening mode** and **Polling mode**.  
 
-In polling mode, the datasource is periodically polled for capturing the changes. The polling period can be configured. 
+In polling mode, the datasource is periodically polled for capturing the changes. The polling period can be configured.
  
 On listening mode, the Streaming Integrator will keep listening to the Change Log of the database and notify in case a change has taken place. Here, you are immediately notified about the change, compared to polling mode.
 
@@ -22,16 +22,15 @@ You could capture following type of changes done to a database table:
 - Delete operations
 
 ## Tutorial Outline
-- Polling mode
-    - Preparing server and database for this tutorial
-    - Capturing inserts
-    - Capturing updates
-    - Capturing deletes
 - Listening mode
     - Preparing server and database for this tutorial
     - Capturing inserts
     - Capturing updates
-    - Capturing deletes    
+    - Capturing deletes   
+- Polling mode
+    - Preparing server and database for this tutorial
+    - Capturing inserts
+    - Capturing updates     
 - Enabling persistence
 
 ## Listening mode
@@ -199,16 +198,16 @@ GRANT SELECT, RELOAD, SHOW DATABASES, REPLICATION SLAVE, REPLICATION CLIENT ON *
     - Unzip the archive.
     - Copy mysql-connector-java-5.1.45-bin.jar to {WSO2SPHome}/lib directory.
   
- ### Capturing inserts
+### Capturing inserts
  
 Now we will write a simple Siddhi app to monitor the `SweetProductionTable` for insert operations. 
  
 Open a text file and copy-paste following app into it.
  
 ``` 
-@App:name("CDCPollingForInserts")
+@App:name("CDCPolling")
 
-@App:description("Capture MySQL Inserts, using cdc source polling mode.") 
+@App:description("Capture MySQL changes, using CDC source - polling mode.") 
 
 @source(type = 'cdc',
 	url = 'jdbc:mysql://localhost:3306/production_pol?useSSL=false',
@@ -220,21 +219,21 @@ Open a text file and copy-paste following app into it.
 	password = 'wso2',
 	table.name = 'SweetProductionTable',
 	@map(type = 'keyvalue' ))
-define stream InsertSweetProductionStream (name string, amount double);
+define stream SweetProductionStream (name string, amount double);
 
 @sink(type = 'log')
 define stream LogStream (name string, amount double);
 
 @info(name = 'query')
-from InsertSweetProductionStream
+from SweetProductionStream
 select name, amount
 insert into LogStream;
 ```
 Here the `url` parameter has being configured to `jdbc:mysql://localhost:3306/production_pol`. Change it to point to your MySQL server.
 
-Save this file as `CDCPollingForInserts.siddhi` into {WSO2SPHome}/wso2/worker/deployment/siddhi-files directory.
+Save this file as `CDCPolling.siddhi` into {WSO2SPHome}/wso2/worker/deployment/siddhi-files directory.
 
-> **_INFO:_** Above Siddhi app will periodically poll the database, capture the inserts done to the database table `SweetProductionTable` during the polled interval, and log them. The polling interval has being configured using the parameter `polling.interval` in the Siddhi app, when defining the CDC source. In this example, the polling interval is 10 seconds.
+> **_INFO:_** Above Siddhi app will periodically poll the database, capture the changes done to the database table `SweetProductionTable` during the polled interval, and log them. The polling interval has being configured using the parameter `polling.interval` in the Siddhi app, when defining the CDC source. In this example, the polling interval is 10 seconds.
 
 Now let's perform an insert operation on the MySQL table. Execute following MySQL query on the database:
 ```
@@ -244,5 +243,16 @@ You will see following log on the SP console:
 ``` 
 INFO {org.wso2.siddhi.core.stream.output.sink.LogSink} - CDCWithPollingMode : LogStream : Event{timestamp=1563378804914, data=[chocolate, 100.0], isExpired=false}
 ``` 
+### Capturing Updates
 
+We will use the same Siddhi app, `CDCPolling.siddhi`, we deployed under 'Capturing inserts' section for capturing updates.
+
+Let's perform an update operation on the MySQL table. Execute following MySQL query on the database:
+```
+update SweetProductionTable SET name = 'Almond cookie' where name = 'chocolate';
+```
+You will see following log on the SP console:
+```
+INFO {org.wso2.siddhi.core.stream.output.sink.LogSink} - CDCWithPollingMode : logStream : Event{timestamp=1563436388530, data=[Almond cookie, 100.0], isExpired=false}  
+```
 
