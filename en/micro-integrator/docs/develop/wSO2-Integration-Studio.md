@@ -1,4 +1,4 @@
-# WSO2 Integration Studio
+# Quick Tour - WSO2 Integration Studio
 
 WSO2 Integration Studio is a development environment used to design your
 integration scenarios and develop them. This can be used to develop
@@ -7,13 +7,13 @@ dependencies through a simplified graphical editor.
 
 ------------------------------------------------------------------------
 
-[Workbench](#WSO2IntegrationStudio-Workbench) \|
-[Editor](#WSO2IntegrationStudio-Editor) \| [Project
-explorer](#WSO2IntegrationStudio-Projectexplorer) \|
-[Outline](#WSO2IntegrationStudio-Outline) \|
-[Properties](#WSO2IntegrationStudio-Properties) \|
-[Console](#WSO2IntegrationStudio-Console) \| [Template
-guide](#WSO2IntegrationStudio-Templateguide)
+[Workbench](#workbench) |
+[Editor](#editor) | 
+[Project explorer](#project-explorer) |
+[Outline](#outline) |
+[Properties](#properties)|
+[Console](#console)| 
+[Template guide](#template-guide)
 
 ------------------------------------------------------------------------
 
@@ -27,7 +27,7 @@ your workspace. This includes, the Project Explorer, the Editor,
 Template Guide, Outline, etc. Multiple Workbench windows can be opened
 simultaneously for an enhanced and fine-tuned developer experience.
 
-![](attachments/119133393/119133394.png){width="900"}  
+![workbench](../../assets/img/workbench/workbench-integration-studio.png)  
 
 ### Editor
 
@@ -58,14 +58,14 @@ to tile them in order to view source files simultaneously.
 Here is an example of a text editor in the Workbench. This is the source
 view of a .pom file.
 
-![](attachments/119133393/119133396.png){width="700"}
+![editor](../../assets/img/workbench/workbench-editor.png)
 
 ### Project explorer
 
 The Project Explorer provides a view of all the files and folder
 structure within a project.
 
-![](attachments/119133393/119133398.png)
+![project explorer](../../assets/img/workbench/workbench-project-explorer.png)
 
 ### Outline
 
@@ -77,7 +77,7 @@ Outline view are editor specific. For example, in a Java source file,
 the structural elements are classes, fields, and methods. The contents
 of the toolbar are also editor specific.
 
-![](attachments/119133393/119133397.png)
+![outline](../../assets/img/workbench/workbench-outline.png)
 
 ### Properties
 
@@ -87,7 +87,7 @@ properties by category or to filter advanced properties. Another toolbar
 button allows you to restore the selected property to its default
 value.  
 
-![](attachments/119133393/119133395.png){width="700"}  
+![properties](../../assets/img/workbench/workbench-properties.png)
 
 ### Console
 
@@ -97,10 +97,10 @@ type of development and the current set of user settings.
 The three consol e s that are provided by default with WSO2 Integration
 Studio are:
 
--   **Process Consol e** - Shows standard output, error, and input
--   **Stacktrace Consol e** - Well-formatted Java stacktrace with
+-   **Process Console** - Shows standard output, error, and input
+-   **Stacktrace Console** - Well-formatted Java stacktrace with
     hyperlinks to specific source code locations
--   **CVS Consol e** - Displays output from CVS operations
+-   **CVS Console** - Displays output from CVS operations
 
 ### Template guide
 
@@ -112,12 +112,6 @@ sample of how it addresses common integration problems.
 
 **What's next**
 
--   See [Installing WSO2 Integration
-    Studio](_Installing_WSO2_Integration_Studio_) for installation
-    instructions.
--   See [Working with WSO2 Integration
-    Studio](_Working_with_WSO2_Integration_Studio_) for more information
-    on how to setup and use tooling.
--   See [Troubleshooting WSO2 Integration
-    Studio](_Troubleshooting_WSO2_Integration_Studio_) for information
-    on troubleshooting errors you may run into while using EI Tooling.
+-   See [Installing WSO2 Integration Studio](../develop/installing-WSO2-Integration-Studio.md) for installation instructions.
+-   See [Working with WSO2 Integration Studio](../develop/working-with-WSO2-Integration-Studio.md) for more information on how to setup and use tooling.
+-   See [Troubleshooting WSO2 Integration Studio](../develop/troubleshooting-WSO2-Integration-Studio.md) for information on troubleshooting errors you may run into while using EI Tooling.

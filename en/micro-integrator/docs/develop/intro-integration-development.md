@@ -2,7 +2,7 @@
 
 The contents on this page will walk you through the topics related to developing integration solutions for the WSO2 Micro Integrator.
 
-## [Development workflow](../develop/integration-development-kickstart.md)
+## Development workflow
 
 Integration developers will follow the workflow illustrated by the following diagram.
 

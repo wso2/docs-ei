@@ -427,6 +427,7 @@ To generate Docker images, follow the steps below:
 
     The **WSO2 Platform Distribution - Generate Docker Image** wizard
     opens.
+    
 3.  Enter information in the wizard as follows:
 
     1.  In the **Generate Docker Image** page, enter the following
