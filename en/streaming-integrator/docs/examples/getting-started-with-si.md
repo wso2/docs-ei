@@ -46,7 +46,7 @@ curl -X POST -d "{\"event\": {\"name\":\"sugar\",\"amount\": 20.5}}"  http://loc
 ```  
 Notice that we publish a message with a lower case name: `sugar`. 
 
-You should see following output on the SI console:
+You should see an output, similar to following, on the SI console:
 ```
 INFO {io.siddhi.core.stream.output.sink.LogSink} - MySimpleApp : TransformedProductionStream : Event{timestamp=1563539561686, data=[SUGAR, 20.5], isExpired=false}
 ```
