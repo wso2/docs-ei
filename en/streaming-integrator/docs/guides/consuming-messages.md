@@ -29,9 +29,7 @@ To create a Siddhi application with the source configuration defined inline, fol
 
 1. Open the Streaming Integrator Studio and start creating a new Siddhi application. For more information, see [Creating a Siddhi Application](../develop/creating-a-Siddhi-Application.md).
 2. Enter a name for the Siddhi application as shown below.<br/>
-   `@App:name("<Siddhi_Application_Name>)`<br/>
-   
-   e.g., `@App:name("SalesTotalsApp")`<br/>
+   `@App:name("<Siddhi_Application_Name>)`<br/>e.g., `@App:name("SalesTotalsApp")`<br/>
    
 3. Define an input stream to define the schema based on which input events are selected to the streaming integrator flow as follows.
 
@@ -52,23 +50,31 @@ To create a Siddhi application with the source configuration defined inline, fol
 5. Configure parameters for the source you added.
    e.g., You can specify an HTTP URL for the `http` source in the example used.
    
-   ```
-   @source(type='http', receiver.url='http://localhost:5005/SweetProductionEP')
-   define stream ConsumeSalesTotalsStream (transNo int, product string, price int, quantity int, salesValue long);
-   ```
-6. Complete the Siddhi application by adding the rest of the required Siddhi constructs as follows.
-    1. To publish the output, define an output stream and connect a sink to it as follows.
-    !!!info
-        Publishing the output is explained in detail in the [Publishing Data guide](publishing-data.md).
-    ```
-    @sink(type='<SINK_TYPE>')
-    define stream <Stream_Name>(attribute1_name attribute1_type, attribute2_name attribute2_type, ...);
-    ```
-    e.g., Assuming that you are publishing the events with the existing values as logs in the output console without any further processing, you can add an output stream connected to a sink as follows.
-     ```
-     @source(type='log', prefix='Sales Totals:')
-     define stream PublishSalesTotalsStream (transNo int, product string, price int, quantity int, salesValue long);
-     ```
+       ```
+       @source(type='http', receiver.url='http://localhost:5005/SweetProductionEP')
+       define stream ConsumeSalesTotalsStream (transNo int, product string, price int, quantity int, salesValue long);
+       ```
+       
+6. Complete the Siddhi application by adding the rest of the required Siddhi constructs as follows.<br/>
+     
+    1. To publish the output, define an output stream and connect a sink to it as follows.<br/>
+        
+        !!!info
+                Publishing the output is explained in detail in the [Publishing Data guide](publishing-data.md).
+        
+        ```jql
+        @sink(type='<SINK_TYPE>')
+        define stream <Stream_Name>(attribute1_name attribute1_type, attribute2_name attribute2_type, ...);
+        ```<br/>
+        
+        e.g., Assuming that you are publishing the events with the existing values as logs in the output console without any further processing, you can add an output stream connected to a sink as follows.
+            
+            ```
+            @source(type='log', prefix='Sales Totals:')
+            define stream PublishSalesTotalsStream (transNo int, product string, price int, quantity int, salesValue long);
+            ```
+            
+      
     2. Add a Siddhi query to specify how the output is derived.
         ```jql
         from <INPUT_STREAM_NAME>
@@ -78,13 +84,16 @@ To create a Siddhi application with the source configuration defined inline, fol
         ```
 
     e.g., Assuming that you are publishing the events with the existing values as logs in the output console without any further processing, you can define the query as follows.
+    
         ```jql
         from ConsumeSalesTotalsStream
         select transNo, product, price, quantity, salesValue
         group by product
         insert into PublishSalesTotalsStream;
         ```
-7. Save the Siddhi Application
+        
+7. Save the Siddhi Application.
+
     
 
 ## Defining event source externally in the configuration file
