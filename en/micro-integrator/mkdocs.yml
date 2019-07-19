@@ -131,21 +131,14 @@ nav:
         - 'Governing External Reference Across Environments': 'setup/govern_ext_refs_across_env.md'
         - 'Enable SSL Tunneling through Proxy Server': 'setup/enabling_SSL_tunneling_thru_proxy_server.md'
     - Developer Experience:
-      - 'About Developing Integration' : 'develop/intro-integration-development.md'
+      - 'Developing Integration Solutions': 'develop/intro-integration-development.md'
       - 'Developer Kick Start' : 'develop/integration-development-kickstart.md'
-      - 'Development Workflow': 'develop/developing_integration.md'
-      - 'Designing Integration' : 'develop/designing-integration.md'
-      - Developing Integration:
-        - 'Set up the Workspace' : 'develop/setup-workspace.md'
-        - 'Develop Artifacts' : 'develop/develop-artifacts.md'
-        - 'Build and Run the Integration' : 'develop/build-and-run.md'
-        - 'Iterate and Improve' : 'develop/iterate-improve-integration.md'
-        - 'Publish to Production' : 'develop/publish-to-production.md'
       - 'Using a CI/CD Pipeline' : 'develop/using-cicd-pipeline.md'
       - WSO2 Integration Studio:
         - 'Quick Tour - WSO2 Integration Studio' : 'develop/WSO2-Integration-Studio.md'
-        - 'Installing WSO2 Integration Studio' : 'develop/install-WSO2-Integration-Studio.md'
+        - 'Installing WSO2 Integration Studio' : 'develop/installing-WSO2-Integration-Studio.md'
         - 'Using WSO2 Integration Studio' : 'develop/working-with-WSO2-Integration-Studio.md'
+        - 'Troubleshooting WSO2 Integration Studio' : 'develop/troubleshooting-WSO2-Integration-Studio.md'
     - Use Cases:
       - Examples:
         - 'Using REST with a Proxy Service' : 'use-cases/examples/rest-with-a-proxy-service.md'
