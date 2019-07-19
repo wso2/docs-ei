@@ -31,6 +31,7 @@ define stream SweetProductionStream (name string, amount double);
 @sink(type='log')
 define stream TransformedProductionStream (nameInUpperCase string, amount double);
 
+-- Simple Siddhi query to transform the name to upper case.
 from SweetProductionStream
 select str:upper(name) as nameInUpperCase, amount
 insert into TransformedProductionStream;
@@ -41,9 +42,12 @@ Now execute following CURL command on the console:
 ```
 curl -X POST -d "{\"event\": {\"name\":\"sugar\",\"amount\": 20.5}}"  http://localhost:8006/productionStream --header "Content-Type:application/json"
 ```  
+Notice that we publish a message with a lower case name: `sugar`. 
+
 You should see following output on the SI console:
 ```
 INFO {io.siddhi.core.stream.output.sink.LogSink} - MySimpleApp : TransformedProductionStream : Event{timestamp=1563539561686, data=[SUGAR, 20.5], isExpired=false}
 ```
-You may notice that the `name` has being converted into uppercase (from `"sugar"` to `"SUGAR"`).
+Notice that the output message has an uppercase name: `SUGAR`. This is because of the simple message transformation done using the Siddhi app. 
+
  
