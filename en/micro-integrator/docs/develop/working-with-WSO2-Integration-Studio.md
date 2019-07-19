@@ -10,12 +10,8 @@ For instructions, see [Installing WSO2 Integration Studio](../develop/installing
 
 ## Using Integration Templates
 
-WSO2 Integration Studio provides a set of artifact templates that will
-help you get started with the most prominent integration use cases. C
-lick the icon on the top-right of the WSO2 Integration Studio interface
-to open the **Getting Started** view shown below and then select the
-required template. There are ESB templates, data services templates, as
-well as business process templates.
+WSO2 Integration Studio provides a set of artifact templates that will help you get started with the most prominent integration use cases. Click the icon on the top-right of the WSO2 Integration Studio interface to open the **Getting Started** view shown below and then select the
+required template. There are ESB templates, data services templates, as well as business process templates.
 
 ![Using Templates](../../assets/img/using_templates.png)
 
@@ -35,7 +31,7 @@ Create the project directories that are required for storing the various synapse
                     <img src="../../assets/img/create_project/new_esb_project.png">
                 </li>
                 <li>
-                    In the <b>New ESB Solution Project</b> dialog that opens, enter a name for the ESB config project. Select the relevant check boxes if you want to create a <a href="#registry-resource-project">Registry Resources project</a>, <a href="#connector-exporter-project">Connector Exporter project</a>, and/or a <a href="#composite-application-project">omposite Application project</a> along with the <a href="#ebs-config-project">ESB Config project</a>.</br></br>
+                    In the <b>New ESB Solution Project</b> dialog that opens, enter a name for the ESB config project. Select the relevant check boxes if you want to create a <a href="#registry-resource-project">Registry Resources project</a>, <a href="#connector-exporter-project">Connector Exporter project</a>, and/or a <a href="#composite-application-project">Composite Application project</a> along with the <a href="#esb-config-project">ESB Config project</a>.</br></br>
                     <img src="../../assets/img/create_project/new_esb_soln_dialog.png">
                 </li>
                 <li>
@@ -46,9 +42,9 @@ Create the project directories that are required for storing the various synapse
         </td>
     </tr>
     <tr>
-        <td><b>ESB Config Project</b></td>
+        <td id="esb-config-project"><b>ESB Config Project</b></td>
         <td>
-            This project directory stores the ESB artifacts that are used when defining a mediation flow. Use one of the following approaches to create an ESB config project:
+            This project directory stores the ESB artifacts that are used when defining a mediation flow.
             <ol>
                <li>
                     Open <b>WSO2 Integration Studio</b> and click <b>Miscellaneous → Create New Config Project</b> in the <b>Getting Started</b>view as shown below.</br></br>
@@ -64,11 +60,11 @@ Create the project directories that are required for storing the various synapse
                     Click <b>Finish</b> and see that the project is now listed in the project explorer.
                 </li>
             </ol>
-            You can now start creating the ESB config artifacts in your ESB Config project.
+            You can now start creating the <a href="#creating-synapse-artifacts">synapse artifacts</a> in your ESB Config project.
         </td>
     </tr>
     <tr>
-        <td><b>Registry Resource Project</b></td>
+        <td id="registry-resource-project"><b>Registry Resource Project</b></td>
         <td>
             Create this project directory if you want to create registry resources for your mediation flow. You can later use these registry artifacts when you define your mediation sequences in the ESB config project.
             <ol>
@@ -83,11 +79,11 @@ Create the project directories that are required for storing the various synapse
                   Click <b>Finish</b> and see that the project is now listed in the project explorer.  
                 </li>
             </ol>
-            See the instructions on creating and using registry artifacts.
+            See the instructions on <a href="../../use-cases/tasks/registry_artifacts/working-with-registry-artifacts">creating and using registry artifacts</a>.
         </td>
     </tr>
     <tr>
-        <td><b>Mediator Project</b></td>
+        <td id="mediator-project"><b>Mediator Project</b></td>
         <td>
            Create this project directory to start creating custom mediator artifacts. You can use these customer mediators when you define the mediation flow in your ESB config project.
            <ol>
@@ -106,11 +102,11 @@ Create the project directories that are required for storing the various synapse
                    Click <b>Finish</b> and see that the project is now listed in the project explorer.
                </li>
            </ol>
-           You can now start creating the ESB config artifacts in your ESB Config project.
+           You can now start creating <a href="../../use-cases/tasks/working-with-mediators">custom mediators</a>.
         </td>
     </tr>
     <tr>
-        <td><b>Data Services Project</b></td>
+        <td id="data-services-project"><b>Data Services Project</b></td>
         <td>
             Create this project directory to start creating data services (.dbs files) for exposing various datasources as a service.</br></br>
             <ol>
@@ -125,17 +121,17 @@ Create the project directories that are required for storing the various synapse
                     Click <b>Finish</b> and see that the project is now listed in the project explorer.
                 </li>
             </ol>
-            See instructions on managing data service artifacts using **WSO2 Integration Studio**.
+            You can now start <a href="../../use-cases/tasks/managing-data-services-artifacts">managing data service artifacts</a> using <b>WSO2 Integration Studio</b>.
         </td>
     </tr>
     <tr>
-        <td><b>Connector Exporter Project</b></td>
+        <td id="connector-exporter-project"><b>Connector Exporter Project</b></td>
         <td>
-            Create this project directory if you have used ESB connectors in your medition sequence (defined in the ESB config project). All connector artifacts need to be stored in a connector exporter project before packaging. See the instructions on <a href="../use-cases/tasks/working-with-connectors.md">creating and using connectors</a>.
+            Create this project directory if you have used ESB connectors in your medition sequence (defined in the ESB config project). All connector artifacts need to be stored in a connector exporter project before packaging. See the instructions on <a href="../../use-cases/tasks/connectors/working-with-connectors">creating and using connectors</a>.
         </td>
     </tr>
     <tr>
-        <td><b>Composite Application Project</b></td>
+        <td id="composite-application-project"><b>Composite Application Project</b></td>
         <td>
             This poject directory allows you to package all the artifacts (stored in other ESB projects) into one composite application (C-APP). This C-APP can then be deployed in the ESB server. See the instructions on packaging ESB artifacts.
         </td>
@@ -260,36 +256,36 @@ the artifacts under those projects.
     <tr>
         <td><b>Synapse Configurations</b></td>
         <td>
-            After creating the <a href="#creating-esb-projects">ESB Config Project</a>, you can define the mediation flow by using the required integration artifacts. Right-click the ESB config project, click <b>New</b>, and select the required ESB artifact.</br></br> See the links given below for more information on each of the artifacts: </br></br>
-            <a href="https://docs.wso2.com/display/EI650/Working+with+Proxy+Services">Proxy Service</a> | <a href="https://docs.wso2.com/display/EI650/Working+with+APIs">REST API</a> | <a href="https://docs.wso2.com/display/EI650/Working+with+Inbound+Endpoints">Inbound Endpoint</a> | <a href="https://docs.wso2.com/display/EI650/Scheduling+ESB+Tasks">Scheduled Tasks</a> | <a href="https://docs.wso2.com/display/EI650/Mediation+Sequences">Sequence</a> | <a href="https://docs.wso2.com/display/EI650/Working+with+Templates">Template</a> | <a href="https://docs.wso2.com/display/EI650/Working+with+Endpoints">Endpoint</a> | <a href="https://docs.wso2.com/display/EI650/Working+with+Local+Registry+Entries">Local Entry</a> | <a href="https://docs.wso2.com/display/EI650/Message+Processors">Message Processor</a> | <a href="https://docs.wso2.com/display/EI650/Message+Stores">Message Store</a> </br></br>
+            After creating the <a href="#esb-config-project">ESB Config Project</a>, you can define the mediation flow by using the required integration artifacts. Right-click the ESB config project, click <b>New</b>, and select the required ESB artifact.</br></br> See the links given below for more information on each of the artifacts: </br></br>
+            <a href="../../use-cases/tasks/proxy_service_tasks/creating-a-proxy-service">Proxy Service</a> | <a href="../../use-cases/tasks/rest_api_tasks/creating-an-api">REST API</a> | <a href="../../use-cases/tasks/rest_api_tasks/creating-an-api">Inbound Endpoint</a> | <a href="../../use-cases/tasks/inbound_endpoint_tasks/creating-an-inbound-endpoint">Scheduled Tasks</a> | <a href="../../use-cases/tasks/sequences/working-with-sequences-via-tooling">Sequence</a> | <a href="../../use-cases/tasks/templates/working-with-templates">Template</a> | <a href="../../use-cases/tasks/endpoints/working-with-endpoints">Endpoint</a> | <a href="../../use-cases/tasks/registry_artifacts/working-with-local-registry-entries">Local Entry</a> | <a href="../../use-cases/tasks/message_stores_processors/creating-a-message-processor">Message Processor</a> | <a href="../../use-cases/tasks/message_stores_processors/creating-a-message-store">Message Store</a> </br></br>
             <img src="../../assets/img/create_project/create_synapse_artifacts.png">
         </td>
     </tr>
     <tr>
         <td><b>Registry artifacts</b></td>
         <td>
-            Registry artifacts are resources (such as images, WSDLs, XSLTs), which are stored in a central repository. To create such artifacts, right-click the <a href="WorkingwithWSO2IntegrationStudio-registry_project">Registry Resource project</a>, click <b>New</b>, and select <b>Registry Resource</b>. </br></br>
-            See the instructions on <a href="https://docs.wso2.com/display/EI650/Working+with+Registry+Artifacts">creating and using registry artifacts</a>. </br></br>
+            Registry artifacts are resources (such as images, WSDLs, XSLTs), which are stored in a central repository. To create such artifacts, right-click the <a href="#registry-resource-project">Registry Resource project</a>, click <b>New</b>, and select <b>Registry Resource</b>. </br></br>
+            See the instructions on <a href="../../use-cases/tasks/registry_artifacts/working-with-registry-artifacts">creating and using registry artifacts</a>. </br></br>
             <img src="../../assets/img/create_project/create_registry_artifact.png">
         </td>
     </tr>
     <tr>
         <td><b>Connectors</b></td>
-        <td>After creating the <a href="WorkingwithWSO2IntegrationStudio-connector_project">Connector Exporter project</a>, right-click the project, click <b>New</b>, and select <b>Add/Remove Connector</b> to start adding connector artifacts to your project.</br></br>
-        See the instructions on <a href="https://docs.wso2.com/display/EI650/Working+with+Connectors+via+Tooling">working with connectors</a>.</br></br>
+        <td>After creating the <a href="#connector-exporter-project">Connector Exporter project</a>, right-click the project, click <b>New</b>, and select <b>Add/Remove Connector</b> to start adding connector artifacts to your project.</br></br>
+        See the instructions on <a href="../../use-cases/tasks/connectors/working-with-connectors">working with connectors</a>.</br></br>
         <img src="../../assets/img/create_project/create_connectors.png">
         </td>
     </tr>
     <tr>
         <td><b>Data Services</b></td>
-        <td>Data service artifacts are used for exposing data as a service. After creating the <a href="WorkingwithWSO2IntegrationStudio-data_service_project">Data Service project</a>, right-click the project, click <b>New</b>, and select required artifact types. See the instructions on <a href="https://docs.wso2.com/display/EI650/Managing+Data+Integration+Artifacts+via+Tooling">creating and using data services</a>.</br></br>
+        <td>Data service artifacts are used for exposing data as a service. After creating the <a href="#data-services-project">Data Service project</a>, right-click the project, click <b>New</b>, and select required artifact types. See the instructions on <a href="../../use-cases/tasks/managing-data-services-artifacts">creating and using data services</a>.</br></br>
         <img src="../../assets/img/create_project/create_data_services.png">
         </td>
     </tr>
     <tr>
         <td><b>Custom Mediators</b></td>
-        <td>After creating the <a href="WorkingwithWSO2IntegrationStudio-mediator_project">Mediator project</a>, right-click the project, click <b>New</b>, and select required artifact types. </br></br>
-            See the instructions on <a href="https://docs.wso2.com/display/EI650/Working+with+Mediators+via+Tooling">creating and using custom mediators</a>.</br></br>
+        <td>After creating the <a href="#mediator-project">Mediator project</a>, right-click the project, click <b>New</b>, and select required artifact types. </br></br>
+            See the instructions on <a href="../../use-cases/tasks/working-with-mediators">creating and using custom mediators</a>.</br></br>
         <img src="../../assets/img/create_project/create_custom_mediator.png">
         </td>
     </tr>
@@ -361,14 +357,13 @@ mediators](https://docs.wso2.com/display/EI650/Working+with+Mediators+via+Toolin
 ## Packaging Synapse artifacts
 
 To package the ESB artifacts, you need to create a **[Composite
-Application Project](#WorkingwithWSO2IntegrationStudio-capp_project)** .
+Application Project](#composite-application-project)**.
 Use one of the following methods:
 
 ### Using an existing composite application
 
-If you have an already created composite appliction project, do the following to package the [ESB
-artifacts](#WorkingwithWSO2IntegrationStudio-CreatingESBartifacts) into
-the composite application:
+If you have an already created composite appliction project, do the following to package the [Synapse
+artifacts](#creating-synapse-artifacts) into the composite application:
 
 1.  Select the `pom.xml` file that is under the composite application project in the project explorer.  
     ![Create CAPP](../../assets/img/create_project/capp_proj_explorer.png)
@@ -408,6 +403,18 @@ Alternatively,
     under **Dependencies** , note the information for each of the
     projects you selected earlier.  
     ![Create new CAPP](../../assets/img/create_project/create_new_project_capp_dependencies_view.png)
+
+## Exporting packaged Synapse artifacts
+
+Once you have [packaged your artifacts](#packaging-synapse-artifacts) into a composite application, you can
+export it into a CAR file (.car file):
+
+1.  Select the composite application project in the project explorer,
+    right-click, and click **Export Composite Application Project** .  
+    ![export artifacts](../../assets/img/create_project/export_esb_artifacts.png)
+2.  In the dialog that opens, give a name for the CAR file, the destination where the file should be saved, and click **Next**.
+3.  You can select the artifacts that should be packaged in the CAR file.
+4.  Click **Finish** to generate the CAR file.
 
 ## Generating Docker images
 
@@ -456,8 +463,7 @@ To generate Docker images, follow the steps below:
 
 ## Testing: Build and run the integration
 
-You can test artifacts by deploying the [packaged
-artifacts](_Working_with_WSO2_Integration_Studio_) in the built-in Micro
+You can test artifacts by deploying the [packaged artifacts](#packaging-synapse-artifacts) in the built-in Micro
 Integrator:
 
 1.  Be sure to create a **composite application project** and include
@@ -472,30 +478,32 @@ Integrator:
     Integrator and the server will start. See the startup log in the
     **Console** tab:  
     ![Create docker image](../../assets/img/create_project/testing_log.png)
-5.  If you find errors in your mediation sequence, use the [debugging
-    features](https://docs.wso2.com/display/EI650/Debugging+Mediation)
+5.  If you find errors in your mediation sequence, use the [debugging features](../use-cases/tasks/sequences/debugging-mediation.md)
     to troubleshoot.
+
+## Debugging integration solutions
+
+Once you have [build and run](#testing-build-and-run-the-integration) your integration solution, you may encounter errors and identify the required modifications for your artifacts.
+
+Use the [mediation debugging](../use-cases/tasks/sequences/debugging-mediation.md) feature in WSO2 Integration Studio to troubleshoot errors.
+
+## Add/Redeploy synapse artifacts
+
+Once you have build and run your integration artifacts in the Micro Integrator, you can later redeploy modified artifacts:
+
+1. Go to the **Servers** tab and select the running Micro Integrator instance.
+2. Right-click and click **Add/Deploy**. 
+3. In the dialog that opens, you can select the new/modified CAR files that you want to deploy in the running server.
 
 ## Deploying integration solutions
 
-### Deploying integration solutions in WSO2 Micro Integrator
+### Deploying in WSO2 Micro Integrator
 
-WSO2 EI includes an ESB profile and WSO2 Integration Studio. The
-light-weight Micro Integrator is already included in your WSO2
-Integration Studio package, which allows you to deploy and run the
-artifacts instantly.
+The light-weight Micro Integrator is already included in your WSO2 Integration Studio package, which allows you to [deploy and run the artifacts instantly](#testing-build-and-run-the-integration). 
 
-Once you have created a composite application of your artifacts, you can
-export it into a CAR file (.car file):
+However, when your solutions are ready to be moved to your production environments, it is recommended to [use a CICD pipeline](../develop/using-cicd-pipeline.md). Alternatively, you can [export your packaged artifacts](#exporting-packaged-synapse-artifacts) and deploy the CAR file in the **MI_HOME/repository/deployment/server/carbonapps/** directory, where **MI_HOME** is the root folder of your Micro Integrator installation.
 
-1.  Select the composite application project in the project explorer,
-    right-click, and click **Export Composite Application Project** .  
-    ![Create docker image](../../assets/img/create_project/export_esb_artifacts.png)
-2.  In the dialog that opens, give a name for the CAR file, the destination where the file should be saved, and click **Next**.
-3.  You can select the artifacts that should be packaged in the CAR file.
-4.  Click **Finish** to generate the CAR file.
-
-### Deploying integration solutions in WSO2 Integration Cloud
+### Deploying in WSO2 Integration Cloud
 
 Once you have developed an EI solution, you can host it on the
 Integration Cloud to make it available for multiple users. To understand
@@ -568,14 +576,11 @@ how to host a solution on Integration Cloud, follow the steps below:
             in the Integration Cloud.
         -   **Password** : The password with which you sign in to the
             Integration Cloud.
-    3.  Click **Finish** . The **WSO2 Platform Distribution** wizard
-        opens.
-    4.  In the **WSO2 Platform Distribution** wizard, select the
-        applications that you want to include in the CAR file that you
-        are deploying to the Integration Cloud. For this example, select
-        **HelloWorldApps** as shown below.  
+    3.  Click **Finish**. The **WSO2 Platform Distribution** wizard opens.
+    4.  In the **WSO2 Platform Distribution** wizard, select the applications that you want to include in the CAR file that you
+        are deploying to the Integration Cloud. For this example, select **HelloWorldApps** as shown below.  
         ![Cloud](../../assets/img/create_project/integration_cloud/8.Select-helloworld-Artifacts.png)
-    5.  Click **Next** , and then click **Finish** . A message appears
+    5.  Click **Next**, and then click **Finish** . A message appears
         to inform you that your application is being deployed to the
         cloud. Once the deployment is complete, the following message
         appears.  
