@@ -8,7 +8,7 @@ In this tutorial, we will download the SI distribution, start it and then try ou
 
 ## Downloading Streaming Integrator
 
-Download the Streaming Integrator distribution from TODO and extract it to a location of your choice. Hereafter, we will call the extracted location {WSO2SIHome}.  
+Download the Streaming Integrator distribution from TODO and extract it to a location of your choice. Hereafter, we will call the extracted location as {WSO2SIHome}.  
 
 ## Starting the server
 
