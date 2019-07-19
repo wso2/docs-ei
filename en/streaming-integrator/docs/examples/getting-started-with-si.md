@@ -4,7 +4,7 @@
 
 This tutorial will get you started with the Streaming Integrator (SI), in just 5 minutes.
 
-In this tutorial, we will download the SI, start it and then try out a simple Siddhi app.
+In this tutorial, we will download the SI distribution, start it and then try out a simple Siddhi app.
 
 ## Downloading Streaming Integrator
 
