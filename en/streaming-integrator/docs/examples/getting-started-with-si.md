@@ -36,6 +36,8 @@ from SweetProductionStream
 select str:upper(name) as nameInUpperCase, amount
 insert into TransformedProductionStream;
 ```
+Save this file as `MySimpleApp.siddhi` into {WSO2SIHome}/wso2/server/deployment/siddhi-files directory.
+
 > **_INFO:_** Once we deploy above Siddhi app, it creates a new HTTP endpoint at `http://localhost:8006/productionStream` and starts listening to the endpoint for incoming messages. Next, we will push a message to this endpoint using a CURL command. 
 
 Now execute following CURL command on the console:
