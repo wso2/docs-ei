@@ -1,7 +1,7 @@
-#Publishing Messages
+#Consuming Messages
 
 ## Introduction
 
-## Defining transport type inline
+## Defining event source inline in the Siddhi application
 
-## Defining the transport type externally
+## Defining event source externally in the configuration file

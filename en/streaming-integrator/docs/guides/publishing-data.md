@@ -1,7 +1,7 @@
-#Publishing Messages
+# Publishing Messages
 
 ## Introduction
 
-## Defining transport type inline
+## Defining event sink inline in the Siddhi application
 
-## Defining the transport type externally
+## Defining event sink externally in the configuration file

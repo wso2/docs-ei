@@ -1,6 +1,6 @@
-#Summarizing Data
+# Summarizing Data
 
-##Introduction
+## Introduction
 
 ### Step 1: Calculate and store time-based aggregate values
 
