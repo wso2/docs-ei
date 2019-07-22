@@ -6,6 +6,12 @@ This tutorial will get you started with the Streaming Integrator (SI), in just 5
 
 In this tutorial, we will download the SI distribution, start it and then try out a simple Siddhi app.
 
+## Tutorial Outline
+
+- [Downloading Streaming Integrator](#downloading-streaming-integrator)
+- [Starting the server](#starting-the-server)
+- [Deploying a simple Siddhi app](#deploying-a-simple-siddhi-app)
+
 ## Downloading Streaming Integrator
 
 Download the Streaming Integrator distribution from TODO and extract it to a location of your choice. Hereafter, we will call the extracted location as {WSO2SIHome}.  

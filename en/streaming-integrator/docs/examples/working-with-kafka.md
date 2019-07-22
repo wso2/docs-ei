@@ -39,9 +39,7 @@ From here onwards, this directory is referred to as `<KAFKA_HOME>`.
    ```
    sh <SI_HOME>/bin/jartobundle.sh <{Source}_Directory_Path> <{Destination}_Directory_Path>
    ```
-5. Copy all the jars from the `Destination` directory to the `<SI_HOME>/lib` directory.
-
-6. Copy all the jars from the `Source` directory to `<SI_HOME>/samples/sample-clients/lib` directory. 
+5. Copy all the jars from the `Destination` directory to the `<SI_HOME>/lib` directory. 
 
 ## Starting Kafka 
 
@@ -53,7 +51,7 @@ From here onwards, this directory is referred to as `<KAFKA_HOME>`.
 
 ## Starting Stream Processor
 Navigate to the `<SI_HOME>/bin` directory and issue the following command. 
-`sh worker.sh`
+`sh server.sh`
 
 ## Consuming from a Kafka topic
 
@@ -77,16 +75,17 @@ define stream SweetProductionStream (name string, amount double);
 @sink(type='log')
 define stream OutputStream (name string, amount double);
 
+-- Query to transform the name to upper case.
 from SweetProductionStream
-select *
+select str:upper(name) as name, amount
 insert into OutputStream;
 ```
 
-Save this file as `HelloKafka.siddhi` in the `<SI_HOME>/wso2/worker/deployment/siddhi-files` directory.
+Save this file as `HelloKafka.siddhi` in the `<SI_HOME>/wso2/server/deployment/siddhi-files` directory.
 
 !!! info
     You just created a Siddhi application that listens to a Kafka topic named `productions` and logs any incoming 
-    messages. However, you have still not created this Kafka topic or published any messages to it. To do this, proceed 
+    messages. When logging, the name attribute of the message is converted to upper case. However, you have still not created this Kafka topic or published any messages to it. To do this, proceed 
     to the next section. 
 
 
@@ -94,7 +93,7 @@ Save this file as `HelloKafka.siddhi` in the `<SI_HOME>/wso2/worker/deployment/s
 
 Now let's generate some Kafka messages that the Streaming Integrator can receive. 
 
-1. First, let's create a topic named `productions` in the Kafka server. To do this, navigate to {KafkaHome} and run following command:
+1. First, let's create a topic named `productions` in the Kafka server. To do this, navigate to `<KAFKA_HOME>` and run following command:
    ```
    bin/kafka-topics.sh --create --bootstrap-server localhost:9092 --replication-factor 1 --partitions 1 --topic productions
    ```
@@ -108,8 +107,64 @@ Now let's generate some Kafka messages that the Streaming Integrator can receive
    ```
    This pushes a message to the Kafka Server. Then, the Siddhi application you deployed in the Streaming Integrator consumes this message. As a result, the Streaming Integrator log displays the following:
    ```
-   INFO {org.wso2.siddhi.core.stream.output.sink.LogSink} - HelloKafka : SweetProductionStream : Event{timestamp=1562069868006, data=[Almond cookie, 100.0], isExpired=false}
+   INFO {org.wso2.siddhi.core.stream.output.sink.LogSink} - HelloKafka : SweetProductionStream : Event{timestamp=1562069868006, data=[ALMOND COOKIE, 100.0], isExpired=false}
    ```
+You may notice that the output message has an uppercase name: `ALMOND COOKIE`. This is because of the simple message transformation done in the Siddhi application.   
+
+## Publishing to a Kafka topic
+ 
+Now let's create a new Siddhi application to consume from the `productions` topic, filter the incoming messages based 
+on a condition, and then publish those filtered messages to another Kafka topic. 
+
+1. First, let's create a new topic named `bulk-orders` in the Kafka server. 
+2. To publish the filtered messages to the `bulk-orders` Kafka topic you created, issue the following command.
+    ```
+    bin/kafka-topics.sh --create --bootstrap-server localhost:9092 --replication-factor 1 --partitions 1 --topic bulk-orders
+    ```
+3. Next, let's create the Siddhi application. Open a text file and copy-paste following Siddhi application into it.
+
+```
+    @App:name("PublishToKafka")
+    
+    @App:description('Consume events from a Kafka Topic, do basic filtering and publish filtered messages to a Kafka topic.')
+    
+    @source(type='kafka',
+            topic.list='productions',
+            threading.option='single.thread',
+            group.id="group2",
+            bootstrap.servers='localhost:9092',
+            @map(type='json'))        
+    define stream SweetProductionStream (name string, amount double);
+    
+    @sink(type='kafka',
+          topic='bulk-orders',
+          bootstrap.servers='localhost:9092',
+          partition.no='0',
+          @map(type='json'))
+    define stream BulkOrdersStream (name string, amount double);
+    
+    from SweetProductionStream[amount > 50]
+    select *
+    insert into BulkOrdersStream;
+```
+4. Save this file as `PublishToKafka.siddhi` in the `<SI_HOME>/wso2/server/deployment/siddhi-files` directory. When the 
+   Siddhi application is successfully deployed, the following `INFO` log appears in the Streaming Integrator console.
+    ```
+    INFO {org.wso2.carbon.stream.processor.core.internal.StreamProcessorService} - Siddhi App PublishToKafka deployed successfully
+    ```
+    !!!info
+        The `PublishToKafka` Siddhi application consumes all the messages from the `productions` topic and populates the `SweetProductionStream` stream. All the sweet production runs where the amount is greater than 100 are inserted into the `BulkOrdersStream` stream. These events are pushed to the `bulk-orders` Kafka topic.
+    
+
+5. To observe the messages in the `bulk-orders` topic, run a Kafka Console Consumer. Then navigate to the `<KAFKA_HOME>` directory and issue the following command.
+    ```
+    bin/kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic bulk-orders --from-beginning
+    ```
+   You can see the following message in the Kafka Consumer log, which are the productions of which the amount is greater than 50.
+    ```
+    {"event":{ "name":"Almond cookie", "amount":100.0}}
+    ``` 
+   
 ## Consuming with an offset
 
 Previously, you consumed messages from the `productions` topic *without specifying an offset*. In other words, the Kafka
@@ -118,7 +173,7 @@ Previously, you consumed messages from the `productions` topic *without specifyi
 
 For this purpose, you can configure the `topic.offsets.map` parameter. Let's modify our previous Siddhi application to specify an offset value. Specify an offset value `2` so that the Siddhi application consumes messages with index `2` and above. 
 
-1. Open the `<SI_HOME>/wso2/worker/deployment/siddhi-files/HelloKafka.siddhi` file and add the following new configuration parameter
+1. Open the `<SI_HOME>/wso2/server/deployment/siddhi-files/HelloKafka.siddhi` file and add the following new configuration parameter
    ``` 
    topic.offsets.map='productions=2' 
    ```
@@ -141,7 +196,7 @@ For this purpose, you can configure the `topic.offsets.map` parameter. Let's mod
     define stream OutputStream (name string, amount double);
     
     from SweetProductionStream
-    select *
+    select str:upper(name) as name, amount
     insert into OutputStream;
     ```
 2. Save the file.
@@ -158,7 +213,7 @@ For this purpose, you can configure the `topic.offsets.map` parameter. Let's mod
    ```
    Now you can see the following log in the Streaming Integrator Studio console. 
    ```
-   INFO {org.wso2.siddhi.core.stream.output.sink.LogSink} - HelloKafka : OutputStream : Event{timestamp=1562676477785, data=[Cup cake, 300.0], isExpired=false}
+   INFO {org.wso2.siddhi.core.stream.output.sink.LogSink} - HelloKafka : OutputStream : Event{timestamp=1562676477785, data=[CUP CAKE, 300.0], isExpired=false}
    ```  
 As you configured your Siddhi application to consume messages with offset `2`, all messages bearing index 2 or above are consumed.
 
@@ -172,7 +227,7 @@ achieve this, you can use the state persistence capability in the Streaming Inte
 If you enable state persistence in the Streaming Integrator, the server remembers the Kafka consumer offset. As a 
 result, once the server restarts, it resumes consuming messages from the point it stopped.
 
-To enable state persistence in the Streaming integrator, open the `<SI_HOME>/conf/worker/deployment.yaml` file on a text 
+To enable state persistence in the Streaming integrator, open the `<SI_HOME>/conf/server/deployment.yaml` file on a text 
 editor and locate the `state.persistence` section.
 
 ``` 
@@ -219,11 +274,11 @@ In our `HelloKafka` Siddhi application, note the `group.id` parameter. This para
     define stream OutputStream (name string, amount double, id string);
     
     from SweetProductionStream1
-    select name, amount, 'consumer-1' as id 
+    select str:upper(name) as name, amount, 'consumer-1' as id  
     insert into OutputStream;
     
     from SweetProductionStream2
-    select name, amount, 'consumer-2' as id 
+    select str:upper(name) as name, amount, 'consumer-2' as id 
     insert into OutputStream;
     ```  
 
@@ -248,10 +303,10 @@ In our `HelloKafka` Siddhi application, note the `group.id` parameter. This para
     ```
    Now observe the Stream Processor logs.
     ```
-    INFO {org.wso2.siddhi.core.stream.output.sink.LogSink} - HelloKafka : OutputStream : Event{timestamp=1562759480019, data=[Doughnut, 500.0, consumer-2], isExpired=false}
-    INFO {org.wso2.siddhi.core.stream.output.sink.LogSink} - HelloKafka : OutputStream : Event{timestamp=1562759494710, data=[Danish pastry, 200.0, consumer-1], isExpired=false}
-    INFO {org.wso2.siddhi.core.stream.output.sink.LogSink} - HelloKafka : OutputStream : Event{timestamp=1562759506252, data=[Eclair, 400.0, consumer-2], isExpired=false}
-    INFO {org.wso2.siddhi.core.stream.output.sink.LogSink} - HelloKafka : OutputStream : Event{timestamp=1562759508757, data=[Eclair toffee, 100.0, consumer-1], isExpired=false}
+    INFO {org.wso2.siddhi.core.stream.output.sink.LogSink} - HelloKafka : OutputStream : Event{timestamp=1562759480019, data=[DOUGHNUT, 500.0, consumer-2], isExpired=false}
+    INFO {org.wso2.siddhi.core.stream.output.sink.LogSink} - HelloKafka : OutputStream : Event{timestamp=1562759494710, data=[DANISH PASTRY, 200.0, consumer-1], isExpired=false}
+    INFO {org.wso2.siddhi.core.stream.output.sink.LogSink} - HelloKafka : OutputStream : Event{timestamp=1562759506252, data=[ECLAIR, 400.0, consumer-2], isExpired=false}
+    INFO {org.wso2.siddhi.core.stream.output.sink.LogSink} - HelloKafka : OutputStream : Event{timestamp=1562759508757, data=[ECLAIR TOFFEE, 100.0, consumer-1], isExpired=false}
     ```
    You can see that the events are being received by the two consumers in a Round Robin manner. Events received by the 
    first consumer can be identified by the `consumer-1` ID and similarly, events received by the second consumer can be 
@@ -302,11 +357,11 @@ Let's alter your topic to have three partitions. After that, you can assign two 
     define stream OutputStream (name string, amount double, id string);
     
     from SweetProductionStream1
-    select name, amount, 'consumer-1' as id
+    select str:upper(name) as name, amount, 'consumer-1' as id
     insert into OutputStream;
     
     from SweetProductionStream2
-    select name, amount, 'consumer-2' as id
+    select str:upper(name) as name, amount, 'consumer-2' as id
     insert into OutputStream;
     ```  
     Note that `consumer-1` is assigned partitions `0` and `1`, while `consumer-2` is assigned partition `2`. 
@@ -332,74 +387,12 @@ Let's alter your topic to have three partitions. After that, you can assign two 
     ```
 4. Now observe the Streaming Integrator logs. The following is displayed.
     ```
-    INFO {org.wso2.siddhi.core.stream.output.sink.LogSink} - HelloKafka : OutputStream : Event{timestamp=1562851086792, data=[Fortune cookie, 100.0, consumer-1], isExpired=false}
-    INFO {org.wso2.siddhi.core.stream.output.sink.LogSink} - HelloKafka : OutputStream : Event{timestamp=1562851092100, data=[Frozen yogurt, 350.0, consumer-1], isExpired=false}
-    INFO {org.wso2.siddhi.core.stream.output.sink.LogSink} - HelloKafka : OutputStream : Event{timestamp=1562851094459, data=[Gingerbread, 450.0, consumer-2], isExpired=false}
-    INFO {org.wso2.siddhi.core.stream.output.sink.LogSink} - HelloKafka : OutputStream : Event{timestamp=1562851096434, data=[Hot-fudge sundae, 150.0, consumer-1], isExpired=false}
-    INFO {org.wso2.siddhi.core.stream.output.sink.LogSink} - HelloKafka : OutputStream : Event{timestamp=1562851098328, data=[Hot-chocolate pudding, 200.0, consumer-1], isExpired=false}
-    INFO {org.wso2.siddhi.core.stream.output.sink.LogSink} - HelloKafka : OutputStream : Event{timestamp=1562851100309, data=[Ice cream cake, 250.0, consumer-2], isExpired=false}
+    INFO {org.wso2.siddhi.core.stream.output.sink.LogSink} - HelloKafka : OutputStream : Event{timestamp=1562851086792, data=[FORTUNE COOKIE, 100.0, consumer-1], isExpired=false}
+    INFO {org.wso2.siddhi.core.stream.output.sink.LogSink} - HelloKafka : OutputStream : Event{timestamp=1562851092100, data=[FROZEN YOGURT, 350.0, consumer-1], isExpired=false}
+    INFO {org.wso2.siddhi.core.stream.output.sink.LogSink} - HelloKafka : OutputStream : Event{timestamp=1562851094459, data=[GINGERBREAD, 450.0, consumer-2], isExpired=false}
+    INFO {org.wso2.siddhi.core.stream.output.sink.LogSink} - HelloKafka : OutputStream : Event{timestamp=1562851096434, data=[HOT-FUDGE SUNDAE, 150.0, consumer-1], isExpired=false}
+    INFO {org.wso2.siddhi.core.stream.output.sink.LogSink} - HelloKafka : OutputStream : Event{timestamp=1562851098328, data=[HOT-CHOCOLATE PUDDING, 200.0, consumer-1], isExpired=false}
+    INFO {org.wso2.siddhi.core.stream.output.sink.LogSink} - HelloKafka : OutputStream : Event{timestamp=1562851100309, data=[ICE CREAM CAKE, 250.0, consumer-2], isExpired=false}
     ```
    You can observe a pattern where the load is distributed among `consumer-1` and `consumer-2` in the 2:1 ratio. This is because you assigned two partitions to `consumer-1` and assigned only one partition to `consumer-2`. 
-
-## Publishing to a Kafka topic
-
-You started this tutorial with a Siddhi application to consume from a Kafka topic and log the incoming messages. 
-Now let's create a new Siddhi application to consume from the `productions` topic, filter the incoming messages based 
-on a condition, and then publish those filtered messages to another Kafka topic. 
-
-1. First, let's create a new topic named `bulk-orders` in the Kafka server. 
-2. To publish the filtered messages to the `bulk-orders` Kafka topic you created, issue the following command.
-    ```
-    bin/kafka-topics.sh --create --bootstrap-server localhost:9092 --replication-factor 1 --partitions 1 --topic bulk-orders
-    ```
-3. Next, let's create the Siddhi application. Open a text file and copy-paste following Siddhi application into it.
-
-    ```
-    @App:name("PublishToKafka")
-    
-    @App:description('Consume events from a Kafka Topic, do basic filtering and publish filtered messages to a Kafka topic.')
-    
-    @source(type='kafka',
-            topic.list='productions',
-            threading.option='single.thread',
-            group.id="group2",
-            bootstrap.servers='localhost:9092',
-            @map(type='json'))        
-    define stream SweetProductionStream (name string, amount double);
-    
-    @sink(type='kafka',
-          topic='bulk-orders',
-          bootstrap.servers='localhost:9092',
-          partition.no='0',
-          @map(type='json'))
-    define stream BulkOrdersStream (name string, amount double);
-    
-    from SweetProductionStream[amount > 100]
-    select *
-    insert into BulkOrdersStream;
-    ```
-4. Save this file as `PublishToKafka.siddhi` in the `<SI_HOME>/wso2/worker/deployment/siddhi-files` directory. When the 
-   Siddhi application is successfully deployed, the following `INFO` log appears in the Streaming Integrator console.
-    ```
-    INFO {org.wso2.carbon.stream.processor.core.internal.StreamProcessorService} - Siddhi App PublishToKafka deployed successfully
-    ```
-    !!!info
-        The `PublishToKafka` Siddhi application consumes all the messages from the `productions` topic and populates the `SweetProductionStream` stream. All the sweet production runs where the amount is greater than 100 are inserted into the `BulkOrdersStream` stream. These events are pushed to the `bulk-orders` Kafka topic.
-    
-
-5. To observe the messages in the `bulk-orders` topic, run a Kafka Console Consumer. Then navigate to the `<KAFKA_HOME>` directory and issue the following command.
-    ```
-    bin/kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic bulk-orders --from-beginning
-    ```
-   You can see the following messages in the Consumer log, which are the production runs of which the amount is greater than 100.
-    ```
-    {"event":{ "name":"Cup cake", "amount":300.0}}
-    {"event":{ "name":"Doughnut", "amount":500.0}} 
-    {"event":{ "name":"Danish pastry", "amount":200.0}} 
-    {"event":{ "name":"Eclair", "amount":400.0}}  
-    {"event":{ "name":"Frozen yogurt", "amount":350.0}} 
-    {"event":{ "name":"Hot-fudge sundae", "amount":150.0}}
-    {"event":{ "name":"Hot-chocolate pudding", "amount":200.0}} 
-    {"event":{ "name":"Ice cream cake", "amount":250.0}}
-    ``` 
 
