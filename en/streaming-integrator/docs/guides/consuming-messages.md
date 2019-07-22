@@ -164,3 +164,11 @@ e.g., The HTTP source that you previously created can be referred to as follows.
 @source(ref='HTTP')
 define stream ConsumeSalesTotalsStream (transNo int, product string, price int, quantity int, salesValue long);
 ```
+### Supported Event Source types
+<source categories table here> 
+
+### Supported message formats
+
+#### Consuming a message in default format
+
+#### Consuming a message in custom format
