@@ -1,6 +1,4 @@
-# Installing Stream Processor Using Docker
-
-!!! tip
+# Installing Streaming Integrator Using Docker
 
 Before you begin:
 
@@ -12,71 +10,39 @@ Before you begin:
     [here](https://docs.docker.com/install/) .
 
 
-WSO2 provides open source Docker images to run WSO2 Stream Processor in
+WSO2 provides open source Docker images to run WSO2 Streaming Integrator in
 Docker Hub. You can view these images from
 [here](https://hub.docker.com/u/wso2/) .
 
-## Downloading and installing WSO2 Stream Processor
+## Downloading and installing WSO2 Streaming Integrator
 
-Issue the following commands to pull tghe required WSO2 Stream Processor
-profile with updates from the Docker image.
+Provide the following commands to pull the required WSO2 Streaming Integrator
+distribution with updates from the Docker image.
 
-| Profile   | Command                                                      |
-|-----------|--------------------------------------------------------------|
-| worker    | `             docker pull wso2/wso2sp-worker            `    |
-| manager   | `             docker pull wso2/wso2sp-manager            `   |
-| editor    | `             docker pull wso2/wso2sp-editor            `    |
-| dashboard | `             docker pull wso2/wso2sp-dashboard            ` |
+```
+docker pull wso2/streaming-integrator
+```
 
-## Running WSO2 Stream Processor
+## Running WSO2 Streaming Integration
 
-To run WSO2 SP, follow the steps below:
+To run WSO2 Streaming Integrator, execute the follow the command below:
 
-1.  To start each WSO2 Stream Processor profile in a Docker container,
-    issue the following commands:
+```
+docker run -it wso2/streaming-integrator
+```
 
-    -   **For dashboard:  
-        **
-
-        ``` text
-                docker run -it -p 9643:9643  wso2/wso2sp-dashboard
-        ```
-
-    -   **For editor:  
-        **
-
-        ``` text
-                    docker run -it \
-                    -p 9390:9390 \
-                    -p 9743:9743 \
-                    wso2/wso2sp-editor
-        ```
-
-    -   **For manager:  
-        **
-
-        ``` text
-                    docker run -it wso2/wso2sp-manager
-        ```
-
-    -   **For worker:**
-
-        ``` text
-                    docker run -it wso2/wso2sp-worker
-        ```
-
-2.  Once the container is started, access the UIs of each profile via
-    the following URLs on your favourite browser. You can enter
-    `          admin         ` as both the username and the password.
-    -   **Dashboard**
-        -   **Business Rules** :
-            `              https://localhost:9643/business-rules             `
-        -   **Dashboard Portal** :
-            `              https://localhost:9643/portal             `
-        -   **Status Dashboard** :
-            `              https://localhost:9643/monitoring             `
-    -   **Editor**
-        -   **Steam Processor Studio** :
-            `              https://localhost:9390/editor             `
-        -   **Template Editor** :
-            `              https://localhost:930/template-editor             `
+!!! tip
+    to expose the required ports via docker when running the docker container please use the following command. 
+    
+    ```bash
+        docker run -it \
+        -p 9443:9443   \
+        -p 9090:9090   \
+        -p 7070:7070   \
+        -p 7443:7443   \
+        -p 9712:9712   \
+        -p 7711:7711   \
+        -p 7611:7611   \
+        wso2/streaming-integrator
+    ```
+    For more details regarding the ports in Streaming Integrator please refer to ["Configuring Default Ports"](https://docs.wso2.com/display/SP4xx/Configuring+Default+Ports) 
