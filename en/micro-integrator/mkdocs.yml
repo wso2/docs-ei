@@ -106,6 +106,7 @@ nav:
       - Performance Tuning:
         - 'Tuning JVM Performance' : 'setup/performance_tuning/tuning_jvm_performance.md'
         - 'Tuning Network and OS Performance' : 'setup/performance_tuning/network_os_performance.md'
+        - 'Tuning JDBC Configurations' : 'setup/performance_tuning/jdbc_tuning.md'
         - Tuning Use Cases:
           - 'Tuning the Split-Aggregator Pattern' : 'setup/performance_tuning/split_aggregate_pattern_tuning.md'
           - 'Tuning Message Transformation Scenarios' : 'setup/performance_tuning/message_transformation_tuning.md'
