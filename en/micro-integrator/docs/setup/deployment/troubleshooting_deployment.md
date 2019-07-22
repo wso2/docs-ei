@@ -23,14 +23,14 @@ following.
     **thread-usage.txt** file.
 
     ``` java
-        %CPU CPU  NI S     TIME   PID   TID
-        .......... 
-          0.0   -   0 S 00:00:00  1519  1602
-          0.0   -   0 S 00:00:00  1519  1603
-         24.8   -   0 R 00:06:19  1519  1604
-          2.4   -   0 S 00:00:37  1519  1605
-          0.0   -   0 S 00:00:00  1519  1606
-        ..........
+    %CPU CPU  NI S     TIME   PID   TID
+    .......... 
+    0.0   -   0 S 00:00:00  1519  1602
+    0.0   -   0 S 00:00:00  1519  1603
+    24.8  -   0 R 00:06:19  1519  1604
+    2.4   -   0 S 00:00:37  1519  1605
+    0.0   -   0 S 00:00:00  1519  1606
+    ..........
     ```
 
     In this example, the thread ID that takes up the highest CPU usage
@@ -74,6 +74,20 @@ The carbondump generates a ZIP archive with the collected data that
 helps to analyze the system and to determine the problem that caused the
 error. Therefore, it is recommended that you run this tool as soon as an
 error occurs in the your product instance.
+
+As with any other java product, if your WSO2 Micro Integrator cluster fails due to a resource exhaustion, the heap and thread dumps will always point you towards the cause of the leak. Therefore, it is important to be able to retrieve heap and thread dumps from an environment at the point when an error occurs. This will avoid the necessity of reproducing the exact issue again (specially, in the case of production issues). A resource exhaustion can happen for two reasons:
+
+- Due to a bug in the system.
+- An actual limitation of resources based on low configuration values.
+
+You can easily create a heap dump and thread dump using the CarbonDump tool that is shipped with your product. These will also provide information about the product version and any patch inconsistencies.
+
+!!! info
+    If you are using an Ubuntu version 10.10 or above and if you get an error on being unable to attach the process, execute the following command to rectify it: 
+
+    `echo 0 | sudo tee /proc/sys/kernel/yama/ptrace_scope`
+
+    This changes the yama/ptrace_scope variable of the kernel temporarily (i.e., until the next reboot). For more information, see the [Oracle documentation](https://bugs.java.com/bugdatabase/view_bug.do?bug_id=7050524).
 
 When using the tool, you have to provide the process ID (pid) of the
 product instance and the `MI_HOME` location,
