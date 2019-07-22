@@ -2,7 +2,7 @@
 
 ## Introduction
 
-Streaming Integrator allows you to capture changes to a database table, in a streaming way.
+Streaming Integrator allows you to capture changes to a data base table, in a streaming manner.
 
 This tutorial takes you through the different modes and  options you could use to perform Change Data Capturing (CDC) using the Streaming Integrator. In this tutorial, we will be using a MySQL datasource.  
 
@@ -42,6 +42,7 @@ You could capture following type of changes done to a database table:
     - Download the MySQL JDBC driver from: https://dev.mysql.com/get/Downloads/Connector-J/mysql-connector-java-5.1.45.tar.gz
     - Unzip the archive.
     - Copy mysql-connector-java-5.1.45-bin.jar to {WSO2SPHome}/lib directory.
+    - Start the Stream Processor server.
     
 3. Let's create a new database in the MySQL server which we will be using throughout this tutorial. 
 ```
