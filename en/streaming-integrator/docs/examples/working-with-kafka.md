@@ -123,7 +123,7 @@ on a condition, and then publish those filtered messages to another Kafka topic.
     ```
 3. Next, let's create the Siddhi application. Open a text file and copy-paste following Siddhi application into it.
 
-    ```
+```
     @App:name("PublishToKafka")
     
     @App:description('Consume events from a Kafka Topic, do basic filtering and publish filtered messages to a Kafka topic.')
@@ -146,7 +146,7 @@ on a condition, and then publish those filtered messages to another Kafka topic.
     from SweetProductionStream[amount > 50]
     select *
     insert into BulkOrdersStream;
-    ```
+```
 4. Save this file as `PublishToKafka.siddhi` in the `<SI_HOME>/wso2/server/deployment/siddhi-files` directory. When the 
    Siddhi application is successfully deployed, the following `INFO` log appears in the Streaming Integrator console.
     ```
@@ -160,7 +160,7 @@ on a condition, and then publish those filtered messages to another Kafka topic.
     ```
     bin/kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic bulk-orders --from-beginning
     ```
-   You can see the following message in the Consumer log, which are the productions of which the amount is greater than 50.
+   You can see the following message in the Kafka Consumer log, which are the productions of which the amount is greater than 50.
     ```
     {"event":{ "name":"Almond cookie", "amount":100.0}}
     ``` 
@@ -196,7 +196,7 @@ For this purpose, you can configure the `topic.offsets.map` parameter. Let's mod
     define stream OutputStream (name string, amount double);
     
     from SweetProductionStream
-    select *
+    select str:upper(name) as name, amount
     insert into OutputStream;
     ```
 2. Save the file.
@@ -213,7 +213,7 @@ For this purpose, you can configure the `topic.offsets.map` parameter. Let's mod
    ```
    Now you can see the following log in the Streaming Integrator Studio console. 
    ```
-   INFO {org.wso2.siddhi.core.stream.output.sink.LogSink} - HelloKafka : OutputStream : Event{timestamp=1562676477785, data=[Cup cake, 300.0], isExpired=false}
+   INFO {org.wso2.siddhi.core.stream.output.sink.LogSink} - HelloKafka : OutputStream : Event{timestamp=1562676477785, data=[CUP CAKE, 300.0], isExpired=false}
    ```  
 As you configured your Siddhi application to consume messages with offset `2`, all messages bearing index 2 or above are consumed.
 
@@ -274,11 +274,11 @@ In our `HelloKafka` Siddhi application, note the `group.id` parameter. This para
     define stream OutputStream (name string, amount double, id string);
     
     from SweetProductionStream1
-    select name, amount, 'consumer-1' as id 
+    select str:upper(name) as name, amount, 'consumer-1' as id  
     insert into OutputStream;
     
     from SweetProductionStream2
-    select name, amount, 'consumer-2' as id 
+    select str:upper(name) as name, amount, 'consumer-2' as id 
     insert into OutputStream;
     ```  
 
@@ -303,10 +303,10 @@ In our `HelloKafka` Siddhi application, note the `group.id` parameter. This para
     ```
    Now observe the Stream Processor logs.
     ```
-    INFO {org.wso2.siddhi.core.stream.output.sink.LogSink} - HelloKafka : OutputStream : Event{timestamp=1562759480019, data=[Doughnut, 500.0, consumer-2], isExpired=false}
-    INFO {org.wso2.siddhi.core.stream.output.sink.LogSink} - HelloKafka : OutputStream : Event{timestamp=1562759494710, data=[Danish pastry, 200.0, consumer-1], isExpired=false}
-    INFO {org.wso2.siddhi.core.stream.output.sink.LogSink} - HelloKafka : OutputStream : Event{timestamp=1562759506252, data=[Eclair, 400.0, consumer-2], isExpired=false}
-    INFO {org.wso2.siddhi.core.stream.output.sink.LogSink} - HelloKafka : OutputStream : Event{timestamp=1562759508757, data=[Eclair toffee, 100.0, consumer-1], isExpired=false}
+    INFO {org.wso2.siddhi.core.stream.output.sink.LogSink} - HelloKafka : OutputStream : Event{timestamp=1562759480019, data=[DOUGHNUT, 500.0, consumer-2], isExpired=false}
+    INFO {org.wso2.siddhi.core.stream.output.sink.LogSink} - HelloKafka : OutputStream : Event{timestamp=1562759494710, data=[DANISH PASTRY, 200.0, consumer-1], isExpired=false}
+    INFO {org.wso2.siddhi.core.stream.output.sink.LogSink} - HelloKafka : OutputStream : Event{timestamp=1562759506252, data=[ECLAIR, 400.0, consumer-2], isExpired=false}
+    INFO {org.wso2.siddhi.core.stream.output.sink.LogSink} - HelloKafka : OutputStream : Event{timestamp=1562759508757, data=[ECLAIR TOFFEE, 100.0, consumer-1], isExpired=false}
     ```
    You can see that the events are being received by the two consumers in a Round Robin manner. Events received by the 
    first consumer can be identified by the `consumer-1` ID and similarly, events received by the second consumer can be 
@@ -357,11 +357,11 @@ Let's alter your topic to have three partitions. After that, you can assign two 
     define stream OutputStream (name string, amount double, id string);
     
     from SweetProductionStream1
-    select name, amount, 'consumer-1' as id
+    select str:upper(name) as name, amount, 'consumer-1' as id
     insert into OutputStream;
     
     from SweetProductionStream2
-    select name, amount, 'consumer-2' as id
+    select str:upper(name) as name, amount, 'consumer-2' as id
     insert into OutputStream;
     ```  
     Note that `consumer-1` is assigned partitions `0` and `1`, while `consumer-2` is assigned partition `2`. 
@@ -387,12 +387,12 @@ Let's alter your topic to have three partitions. After that, you can assign two 
     ```
 4. Now observe the Streaming Integrator logs. The following is displayed.
     ```
-    INFO {org.wso2.siddhi.core.stream.output.sink.LogSink} - HelloKafka : OutputStream : Event{timestamp=1562851086792, data=[Fortune cookie, 100.0, consumer-1], isExpired=false}
-    INFO {org.wso2.siddhi.core.stream.output.sink.LogSink} - HelloKafka : OutputStream : Event{timestamp=1562851092100, data=[Frozen yogurt, 350.0, consumer-1], isExpired=false}
-    INFO {org.wso2.siddhi.core.stream.output.sink.LogSink} - HelloKafka : OutputStream : Event{timestamp=1562851094459, data=[Gingerbread, 450.0, consumer-2], isExpired=false}
-    INFO {org.wso2.siddhi.core.stream.output.sink.LogSink} - HelloKafka : OutputStream : Event{timestamp=1562851096434, data=[Hot-fudge sundae, 150.0, consumer-1], isExpired=false}
-    INFO {org.wso2.siddhi.core.stream.output.sink.LogSink} - HelloKafka : OutputStream : Event{timestamp=1562851098328, data=[Hot-chocolate pudding, 200.0, consumer-1], isExpired=false}
-    INFO {org.wso2.siddhi.core.stream.output.sink.LogSink} - HelloKafka : OutputStream : Event{timestamp=1562851100309, data=[Ice cream cake, 250.0, consumer-2], isExpired=false}
+    INFO {org.wso2.siddhi.core.stream.output.sink.LogSink} - HelloKafka : OutputStream : Event{timestamp=1562851086792, data=[FORTUNE COOKIE, 100.0, consumer-1], isExpired=false}
+    INFO {org.wso2.siddhi.core.stream.output.sink.LogSink} - HelloKafka : OutputStream : Event{timestamp=1562851092100, data=[FROZEN YOGURT, 350.0, consumer-1], isExpired=false}
+    INFO {org.wso2.siddhi.core.stream.output.sink.LogSink} - HelloKafka : OutputStream : Event{timestamp=1562851094459, data=[GINGERBREAD, 450.0, consumer-2], isExpired=false}
+    INFO {org.wso2.siddhi.core.stream.output.sink.LogSink} - HelloKafka : OutputStream : Event{timestamp=1562851096434, data=[HOT-FUDGE SUNDAE, 150.0, consumer-1], isExpired=false}
+    INFO {org.wso2.siddhi.core.stream.output.sink.LogSink} - HelloKafka : OutputStream : Event{timestamp=1562851098328, data=[HOT-CHOCOLATE PUDDING, 200.0, consumer-1], isExpired=false}
+    INFO {org.wso2.siddhi.core.stream.output.sink.LogSink} - HelloKafka : OutputStream : Event{timestamp=1562851100309, data=[ICE CREAM CAKE, 250.0, consumer-2], isExpired=false}
     ```
    You can observe a pattern where the load is distributed among `consumer-1` and `consumer-2` in the 2:1 ratio. This is because you assigned two partitions to `consumer-1` and assigned only one partition to `consumer-2`. 
 
