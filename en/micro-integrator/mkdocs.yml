@@ -198,11 +198,11 @@ nav:
           - 'Managing Registry Artifacts' : 'use-cases/tasks/registry_artifacts/managing-the-registry.md'
           - 'Working with Local Registry Entries' : 'use-cases/tasks/registry_artifacts/working-with-local-registry-entries.md'
     - Administration and Observability:
-      - 'Observability' : 'administer-and-observe/observability.md'
+      - 'Monitoring Message Round Trip' : 'administer-and-observe/observability.md'
       - 'JMX Monitoring' : 'administer-and-observe/jmx_monitoring.md'
       - 'SNMP Monitoring' : 'administer-and-observe/snmp_monitoring.md'
       - 'Monitoring with Prometheus' : 'administer-and-observe/monitoring_with_prometheus.md'
-      - 'Working with Admin Services' : 'setup/working-with-admin-services.md'
+      - 'Working with Admin Services' : 'administer-and-observe/working-with-admin-services.md'
       - 'Using the Command-Line Interface' : 'administer-and-observe/using-the-command-line-interface.md'
       - Monitoring Logs:
         - 'About Logs' : 'administer-and-observe/monitoring_logs.md'
