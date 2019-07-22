@@ -1,18 +1,17 @@
-# Working with Observability
+# Monitoring Message Round Trip
 
-Product observability enables rapid debugging of product issues. The ESB
-profile of WSO2 Enterprise Integrator (WSO2 EI) enables observability
+Product observability enables rapid debugging of product issues. The WSO2 Micro Integrator enables observability
 using correlation logs. Correlation logs allow you to monitor individual
-HTTP requests from the point that a message is received by the ESB until
+HTTP requests from the point that a message is received by the Micro Integrator until
 the corresponding response message is sent back to the original message
 sender. That is, the complete round trip of an HTTP message (client →
-ESB → back-end → ESB → client) can be tracked and anlyzed using a log
+Micro Integrator → back-end → Micro Integrator → client) can be tracked and anlyzed using a log
 file.
 
-When correlation logs are enabled for the ESB server, a separate log
+When correlation logs are enabled for the Micro Integrator server, a separate log
 file named `         correlation.log        ` is created in the
-`         <EI_HOME>/repository/logs/        ` directory. Every HTTP
-message that flows through the ESB and between the ESB and external
+`         MI_HOME/repository/logs/        ` directory. Every HTTP
+message that flows through the ESB and between the Micro Integrator and external
 clients undergoes several state changes. A new log entry is created in
 the `         correlation.log        ` file corresponding to the state
 changes in the round trip of a single HTTP request. A correlation ID
@@ -21,58 +20,24 @@ corresponding to the request. Therefore, you can use this correlation ID
 to easily locate the logs relevant to the round trip of a specific HTTP
 request and, thereby, analyze the behaviour of the message flow.
 
-!!! note
+## Configuring correlation logs
 
--   By default, product observability is not enabled as it impacts on
-    the product's performance.
--   In order to use this feature, apply the WUM update that is released
-    on 2018-11-24.
-
-    !!! warning
-
-    If you want to deploy a WUM update into production, you need to have
-    a paid subscription. If you do not have a paid subscription, you can
-    use this feature with the next version of WSO2 Enterprise Integrator
-    when it is released. For more information on updating WSO2 products
-    using WUM, see [Getting Started with
-    WUM](https://docs.wso2.com/display/ADMIN44x/Getting+Started+with+WUM)
-    .
-
-
-
-See the following topics for details:
-
--   [Configuring correlation
-    logs](#WorkingwithObservability-Configuringcorrelationlogs)
--   [Enabling correlation logs in the
-    ESB](#WorkingwithObservability-EnablingcorrelationlogsintheESB)
--   [Sending an HTTP request with a correlation
-    ID](#WorkingwithObservability-SendinganHTTPrequestwithacorrelationID)
--   [Accessing the correlation
-    logs](#WorkingwithObservability-Accessingthecorrelationlogs)
--   [Reading correlation
-    logs](#WorkingwithObservability-Readingcorrelationlogs)
-
-### Configuring correlation logs
-
-Follow the steps given below to configure correlation logs in the ESB
+Follow the steps given below to configure correlation logs in the Micro Integrator
 server.
 
-1.  Add the following parameters to the
-    `           log4j.properties          ` file (stored in the
-    `           <EI_HOME>/conf/          ` directory):
+1.  Add the following parameters to the `log4j.properties` file (stored in the `MI_HOME/conf/` directory):
 
     ``` java
-        # correlation logs
-            log4j.logger.correlation=INFO, CORRELATION
-            log4j.additivity.correlation=false
-            # Appender config for correlation logs
-            log4j.appender.CORRELATION=org.apache.log4j.RollingFileAppender
-            log4j.appender.CORRELATION.File=${carbon.home}/repository/logs/${instance.log}/correlation.log
-            log4j.appender.CORRELATION.MaxFileSize=10MB
-            log4j.appender.CORRELATION.layout=org.apache.log4j.PatternLayout
-            log4j.appender.CORRELATION.Threshold=INFO
-            log4j.appender.CORRELATION.layout.ConversionPattern=%d{yyyy-MM-dd HH:mm:ss,SSS}|%X{Correlation-ID}|%t|%m%n
+    # correlation logs
+    log4j.logger.correlation=INFO, CORRELATION
+    log4j.additivity.correlation=false
+    # Appender config for correlation logs
+    log4j.appender.CORRELATION=org.apache.log4j.RollingFileAppender
+    log4j.appender.CORRELATION.File=${carbon.home}/repository/logs/${instance.log}/correlation.log
+    log4j.appender.CORRELATION.MaxFileSize=10MB
+    log4j.appender.CORRELATION.layout=org.apache.log4j.PatternLayout
+    log4j.appender.CORRELATION.Threshold=INFO
+    log4j.appender.CORRELATION.layout.ConversionPattern=%d{yyyy-MM-dd HH:mm:ss,SSS}|%X{Correlation-ID}|%t|%m%n
     ```
 
 2.  Note that the maximum file size of the correlation log is set to
@@ -81,114 +46,106 @@ server.
     this file size.
 
 3.  **If required** , you can change the default HTTP header (which is
-    'activity\_id') that is used to carry the correlation ID by adding
+    'activity_id') that is used to carry the correlation ID by adding
     the following property to the
-    `           passthru-http.properties          ` file (stored in the
-    `           <EI_HOME>/conf/          ` directory). Replace
-    `           <correlation_id>          ` with a value of your choice.
+    `ei.toml` file (stored in the `MI_HOME/conf/` directory). Replace
+    `<correlation_id>` with a value of your choice.
 
-    ``` java
-            correlation_header_name=<correlation_id>
+    ``` toml
+    [correlation_header]
+    correlation_header_name=<correlation_id>
     ```
 
 Once the logs are configured, correlation logging should be enabled in
-the ESB as explained in the next section.
+the Micro Integrator as explained in the next section.
 
-### Enabling correlation logs in the ESB
+## Enabling correlation logs
 
 You can enable correlation logging by passing a system property.
 
 -   If you want correlation logs to be enabled every time the server
     starts, add the following system property to the product start-up
-    script (stored in the `           <EI_HOME>/bin/          `
+    script (stored in the `MI_HOME/bin/          `
     directory) and set it to `           true          ` .
 
     ``` java
-            -DenableCorrelationLogs=true \
+    -DenableCorrelationLogs=true \
     ```
 
 -   Alternatively, you can pass the system property at the time of
     starting the server by executing the following command:
 
-    |                       |                                                                                                                                             |
-    |-----------------------|---------------------------------------------------------------------------------------------------------------------------------------------|
-    | On Linux/MacOS/CentOS | `               sh integrator.sh              ` `               -DenableCorrelationLogs=              ` `               true              ` |
-    | On Windows            | `               integrator.bat              ` `               -DenableCorrelationLogs=              ` `               true              `   |
+    - On **Linux/MacOS/CentOS**: `sh micro-integrator.sh -DenableCorrelationLogs=true`
+    - On **Windows**: `integrator.bat -DenableCorrelationLogs=true`
 
-Now when you start the ESB server, the
+
+Now when you start the Micro Integrator, the
 `         correlation.log        ` file is created in the
-`         <EI_HOME>/repository/logs/        ` directory.
+`         MI_HOME/repository/logs/        ` directory.
 
-### Sending an HTTP request with a correlation ID
+## Sending an HTTP request with a correlation ID
 
-When the client sends an HTTP request to the ESB, a correlation ID for
+When the client sends an HTTP request to the Micro Integrator, a correlation ID for
 the request can be passed using the correlation header that is
-configured in the ESB. By default, the correlation header is
-'activity\_id'. If you want to change the default correlation header,
-wee the topic on [configuring correlation
-logs](#WorkingwithObservability-Configuringcorrelationlogs) . If the
-client does not pass a correlation ID in the request, the ESB will
+configured in the Micro Integrator. By default, the correlation header is
+'activity_id'. If you want to change the default correlation header,
+wee the topic on [configuring correlation logs](#configuring-correlation-logs). If the
+client does not pass a correlation ID in the request, the Micro Integrator will
 generate an internal value and assign it to the request. The correlation
 ID assigned to the incoming request is assigned to all the log entries
 that are related to the same request.
 
-Shown below is the POST request that is sent using the CURL client in
-the [quick start
-guide](https://docs.wso2.com/display/EI650/Quick+Start+Guide) . Note
-that the correlation ID is set in this request.
+Shown below is the POST request that is sent using the CURL client. Note that the correlation ID is set in this request.
 
 ``` java
-    curl -X POST --data @request.json http://localhost:8280/healthcare/categories/surgery/reserve -H "Content-Type:application/json" -H "activityid:correlationID"
+curl -X POST --data @request.json http://localhost:8280/healthcare/categories/surgery/reserve -H "Content-Type:application/json" -H "activityid:correlationID"
 ```
 
-### Accessing the correlation logs
+## Accessing the correlation logs
 
 If you know the correlation ID of the HTTP request that you want to
 analyze, you can isolate the relevant logs as explained below.
 
 1.  Open a terminal and navigate to the
-    `          <EI_HOME>/repository/logs/         ` directory where the
+    `          MI_HOME/repository/logs/         ` directory where the
     `          correlation.log         ` file is saved.
 2.  Execute the following command with the required correlation ID.
-    Replace \<correlation\_ID\> with the required value.
+    Replace `<correlation_ID>` with the required value.
 
     ``` java
-            cat correlation.log | grep "<correlation_ID>"
+    cat correlation.log | grep "<correlation_ID>"
     ```
 
 Shown below is an example of correlation log entries corresponding to
 the round trip of a single HTTP request.
 
 ``` java
-    2018-11-30 15:27:27,262|correlationID|HTTP-Listener I/O dispatcher-5|0|HTTP State Transition|http-incoming-17|POST|/healthcare/categories/surgery/reserve|REQUEST_HEAD
-    2018-11-30 15:27:27,262|correlationID|HTTP-Listener I/O dispatcher-5|0|HTTP State Transition|http-incoming-17|POST|/healthcare/categories/surgery/reserve|REQUEST_BODY
-    2018-11-30 15:27:27,263|correlationID|HTTP-Listener I/O dispatcher-5|1|HTTP State Transition|http-incoming-17|POST|/healthcare/categories/surgery/reserve|REQUEST_DONE
-    2018-11-30 15:27:27,265|correlationID|HTTP-Sender I/O dispatcher-4|42173|HTTP State Transition|http-outgoing-4|POST|http://localhost:9090/grandoaks/categories/surgery/reserve|REQUEST_HEAD
-    2018-11-30 15:27:27,265|correlationID|HTTP-Sender I/O dispatcher-4|0|HTTP State Transition|http-outgoing-4|POST|http://localhost:9090/grandoaks/categories/surgery/reserve|REQUEST_DONE
-    2018-11-30 15:27:27,267|correlationID|HTTP-Sender I/O dispatcher-4|2 |HTTP|sourhttp://localhost:9090/grandoaks/categories/surgery/reserve|BACKEND LATENCY
-    2018-11-30 15:27:27,267|correlationID|HTTP-Sender I/O dispatcher-4|2|HTTP State Transition|http-outgoing-4|POST|http://localhost:9090/grandoaks/categories/surgery/reserve|RESPONSE_HEAD
-    2018-11-30 15:27:27,267|correlationID|HTTP-Sender I/O dispatcher-4|0|HTTP State Transition|http-outgoing-4|POST|http://localhost:9090/grandoaks/categories/surgery/reserve|RESPONSE_BODY
-    2018-11-30 15:27:27,267|correlationID|HTTP-Sender I/O dispatcher-4|0|HTTP State Transition|http-outgoing-4|POST|http://localhost:9090/grandoaks/categories/surgery/reserve|RESPONSE_DONE
-    2018-11-30 15:27:27,269|correlationID|HTTP-Listener I/O dispatcher-5|6|HTTP State Transition|http-incoming-17|POST|/healthcare/categories/surgery/reserve|RESPONSE_HEAD
-    2018-11-30 15:27:27,269|correlationID|HTTP-Listener I/O dispatcher-5|0|HTTP State Transition|http-incoming-17|POST|/healthcare/categories/surgery/reserve|RESPONSE_BODY
-    2018-11-30 15:27:27,269|correlationID|HTTP-Listener I/O dispatcher-5|0|HTTP State Transition|http-incoming-17|POST|/healthcare/categories/surgery/reserve|RESPONSE_DONE
-    2018-11-30 15:27:27,269|correlationID|HTTP-Listener I/O dispatcher-5|7|HTTP|http-incoming-17|POST|/healthcare/categories/surgery/reserve|ROUND-TRIP LATENCY
+2018-11-30 15:27:27,262|correlationID|HTTP-Listener I/O dispatcher-5|0|HTTP State Transition|http-incoming-17|POST|/healthcare/categories/surgery/reserve|REQUEST_HEAD
+2018-11-30 15:27:27,262|correlationID|HTTP-Listener I/O dispatcher-5|0|HTTP State Transition|http-incoming-17|POST|/healthcare/categories/surgery/reserve|REQUEST_BODY
+2018-11-30 15:27:27,263|correlationID|HTTP-Listener I/O dispatcher-5|1|HTTP State Transition|http-incoming-17|POST|/healthcare/categories/surgery/reserve|REQUEST_DONE
+2018-11-30 15:27:27,265|correlationID|HTTP-Sender I/O dispatcher-4|42173|HTTP State Transition|http-outgoing-4|POST|http://localhost:9090/grandoaks/categories/surgery/reserve|REQUEST_HEAD
+2018-11-30 15:27:27,265|correlationID|HTTP-Sender I/O dispatcher-4|0|HTTP State Transition|http-outgoing-4|POST|http://localhost:9090/grandoaks/categories/surgery/reserve|REQUEST_DONE
+2018-11-30 15:27:27,267|correlationID|HTTP-Sender I/O dispatcher-4|2 |HTTP|sourhttp://localhost:9090/grandoaks/categories/surgery/reserve|BACKEND LATENCY
+2018-11-30 15:27:27,267|correlationID|HTTP-Sender I/O dispatcher-4|2|HTTP State Transition|http-outgoing-4|POST|http://localhost:9090/grandoaks/categories/surgery/reserve|RESPONSE_HEAD
+2018-11-30 15:27:27,267|correlationID|HTTP-Sender I/O dispatcher-4|0|HTTP State Transition|http-outgoing-4|POST|http://localhost:9090/grandoaks/categories/surgery/reserve|RESPONSE_BODY
+2018-11-30 15:27:27,267|correlationID|HTTP-Sender I/O dispatcher-4|0|HTTP State Transition|http-outgoing-4|POST|http://localhost:9090/grandoaks/categories/surgery/reserve|RESPONSE_DONE
+2018-11-30 15:27:27,269|correlationID|HTTP-Listener I/O dispatcher-5|6|HTTP State Transition|http-incoming-17|POST|/healthcare/categories/surgery/reserve|RESPONSE_HEAD
+2018-11-30 15:27:27,269|correlationID|HTTP-Listener I/O dispatcher-5|0|HTTP State Transition|http-incoming-17|POST|/healthcare/categories/surgery/reserve|RESPONSE_BODY
+2018-11-30 15:27:27,269|correlationID|HTTP-Listener I/O dispatcher-5|0|HTTP State Transition|http-incoming-17|POST|/healthcare/categories/surgery/reserve|RESPONSE_DONE
+2018-11-30 15:27:27,269|correlationID|HTTP-Listener I/O dispatcher-5|7|HTTP|http-incoming-17|POST|/healthcare/categories/surgery/reserve|ROUND-TRIP LATENCY
 ```
 
-### Reading correlation logs
+## Reading correlation logs
 
 The pattern/format of a correlation log is shown below along with an
 example log entry.
 
--   [**Log Pattern**](#fae88ac6b61247e8b1a061b8b1a51674)
--   [**Example Log**](#9a817fd43cb54fdfa1f22d39985f63b5)
-
-``` java
-    Time Stamp|Correlation ID|Thread name|Duration|Call type|Connection name|Method type|Connection URL|HTTP state
+``` bash tab="Log Pattern"
+Time Stamp|Correlation ID|Thread name|Duration|Call type|Connection name|Method type|Connection URL|HTTP state
 ```
 
-``` java
-    2018-10-26 17:34:40,464|de461a83-fc74-4660-93ed-1b609ecfac23|HTTP-Listener I/O dispatcher-3|535|HTTP|http-incoming-3|GET|/api/querydoctor/surgery|ROUND-TRIP LATENCY
+``` bash tab="Example Log"
+2018-10-26 17:34:40,464|de461a83-fc74-4660-93ed-1b609ecfac23|HTTP-Listener I/O dispatcher-3|535|HTTP|http-incoming-3|GET|/api/querydoctor/surgery|ROUND-TRIP LATENCY
 ```
 
 The detail recorded in a log entry is described below.
@@ -199,6 +156,10 @@ The detail recorded in a log entry is described below.
 <col style="width: 86%" />
 </colgroup>
 <tbody>
+<tr>
+    <th>State</th>
+    <th>Description</th>
+</tr>
 <tr class="odd">
 <td>Time Stamp</td>
 <td><div class="content-wrapper">
@@ -298,7 +259,7 @@ The detail recorded in a log entry is described below.
 </div></td>
 </tr>
 <tr class="even">
-<td>Connection URL</td>
+<td id="connection-url">Connection URL</td>
 <td><div class="content-wrapper">
 <p>The connection URL of the external client with which the message is being communicated. For example, if the message is being read from the client, the connection URL corresponds to the client sending the message. However, if the message is being written to the backend, the URL corresponds to the backend client.</p>
 <div class="code panel pdl" style="border-width: 1px;">
@@ -313,7 +274,7 @@ The detail recorded in a log entry is described below.
 </tr>
 <tr class="odd">
 <td>HTTP state</td>
-<td><p>Listed below are the state changes that a message goes through when it flows through the ESB, and when the message flows between the ESB and external clients. Typically, a new log entry is generated for each of the states. However, there can be two separate log entries created for one particular state (e xcept for BACKEND LATENCY and ROUND-TRIP LATENCY) depending on whether the message is being read or written. You can identify the two separate log entries from the <a href="#WorkingwithObservability-ConnectionURL">connection URL</a> explained above.</p>
+<td><p>Listed below are the state changes that a message goes through when it flows through the ESB, and when the message flows between the ESB and external clients. Typically, a new log entry is generated for each of the states. However, there can be two separate log entries created for one particular state (e xcept for BACKEND LATENCY and ROUND-TRIP LATENCY) depending on whether the message is being read or written. You can identify the two separate log entries from the <a href="#connection-url">connection URL</a> explained above.</p>
 <ul>
 <li><strong>REQUEST_HEAD:</strong> All HTTP headers in the incoming request are being read/or being written to the backend.</li>
 <li><strong>REQUEST_BODY</strong> : The body of the incoming request is being read/or being written to the backend.</li>

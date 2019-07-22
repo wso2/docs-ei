@@ -2,42 +2,43 @@
 
 Simple Network Management Protocol (SNMP) is an Internet-standard
 protocol for managing devices on IP networks. Given below is how to
-configure SNMP in WSO2 Enterprise Integrator(WSO2 EI), which exposes
+configure SNMP in WSO2 Micro Integrator, which exposes
 various MBeans via SNMP.
 
-1.  Download the following jar files from
-    [http://www.snmp4j.org](http://www.snmp4j.org/) and add them to
-    `          <EI_HOME>/         ` `          lib         ` .  
-    -   `            snmp4j-2.1.0.jar           `
-    -   `            snmp4j-agent-2.0.6.jar           `
-2.  Enable SNMP in the
-    `          <EI_HOME>/conf/synapse.properties         ` file by
-    adding the following entry:  
+## Enabling SNMP
 
-        synapse.snmp.enabled=true
+1.  Download the following jar files from [http://www.snmp4j.org](http://www.snmp4j.org/) and add them to the
+    `MI_HOME/lib` directory. 
+    -  **snmp4j-2.1.0.jar**
+    -  **snmp4j-agent-2.0.6.jar**
+2.  Enable SNMP in the `ei.toml` file, stored in the `MI_HOME/conf/` file by
+    adding the following entry: 
+    
+    ```toml
+    [snpm_enabled]
+    synapse.snmp.enabled=true
 
-WSO2 EI can now monitor MBeans with SNMP. For example:
+    ``` 
+
+WSO2 Micro Integrator can now monitor MBeans with SNMP. For example:
 
 ``` java
-    Monitoring Info : OID branch "1.3.6.1.4.1.18060.14" with the following sub-branches:
+Monitoring Info : OID branch "1.3.6.1.4.1.18060.14" with the following sub-branches:
     
-    1 - ServerManager MBean
-    
-    2 - Transport MBeans
-    
-    3 - NHttpConnections MBeans
-    
-    4 - NHTTPLatency MBeans
-    
-    5 - NHTTPS2SLatency MBeans
+1 - ServerManager MBean
+2 - Transport MBeans
+3 - NHttpConnections MBeans
+4 - NHTTPLatency MBeans
+5 - NHTTPS2SLatency MBeans
 ```
 
-### MBean OID mappings
+## MBean OID mappings
 
-Following are the OID equivalents of the server manager and transport
-MBeans, which are described in [JMX Monitoring](_JMX_Monitoring_) :
+Following are the OID equivalents of the server manager and transport MBeans, which are described in [JMX Monitoring](../administer-and-observe/jmx_monitoring.md):
 
-Name=ServerManager@ServerState as OID: 1.3.6.1.4.1.18060.14.1.21.1.0
+```
+Name=ServerManager@ServerState as OID: 
+1.3.6.1.4.1.18060.14.1.21.1.0
 
 Name=passthru-http-sender@ActiveThreadCount as OID:
 1.3.6.1.4.1.18060.14.2.17.1.0
@@ -254,3 +255,4 @@ Name=passthru-https-receiver@TimeoutsReceiving as OID:
 
 Name=passthru-https-receiver@TimeoutsSending as OID:
 1.3.6.1.4.1.18060.14.2.20.19.0
+```
