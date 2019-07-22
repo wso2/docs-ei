@@ -2,7 +2,7 @@
 
 ## Introduction
 
-Streaming Integrator allows you to capture changes to a database table, in a streaming way.
+Streaming Integrator allows you to capture changes to a data base table, in a streaming manner.
 
 This tutorial takes you through the different modes and  options you could use to perform Change Data Capturing (CDC) using the Streaming Integrator. In this tutorial, we will be using a MySQL datasource.  
 
