@@ -97,10 +97,9 @@ To create a Siddhi application with the source configuration defined inline, fol
 ## Defining event source externally in the configuration file
 
 If you want to use the same source configuration in multiple Siddhi applications, you  can define it externally in the 
-`<SI_HOME>/conf/server/deployment.yaml` file and then refer to it from Siddhi applications. To learn how to do this, 
-follow the procedures below.
+`<SI_HOME>/conf/server/deployment.yaml` file and then refer to it from Siddhi applications. To understand how to do this, 
+follow the procedure below.
 
-To define the source configuration externally:
 
 1. Open the `<SI_HOME>/conf/server/deployment.yaml` file.
 2. Add a section named `siddi`, and then add a subsection named `refs:` as shown below.
@@ -146,7 +145,7 @@ siddhi:
  refs:
   -
    name:'HTTPSource'
-   type: 'HTTP'
+   type: 'http'
    properties
        receiver.url:'http://localhost:5005/SweetProductionEP'
 ```

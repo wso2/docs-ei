@@ -89,6 +89,58 @@ To create a Siddhi application with the sink configuration defined inline, follo
 7. Save the Siddhi Application.
 
 #### Defining event sink externally in the configuration file
+If you want to use the same sin k configuration in multiple Siddhi applications, you  can define it externally in the 
+`<SI_HOME>/conf/server/deployment.yaml` file and then refer to it from Siddhi applications. To understand how to do this, 
+follow the procedure below.
+
+1. Open the `<SI_HOME>/conf/server/deployment.yaml` file.
+2. Add a section named `siddi`, and then add a subsection named `refs:` as shown below.
+    ```jql    
+    siddhi:  
+     refs:
+      -
+    ```
+3. In the `refs` subsection, enter a parameter named `name` and enter a name for the sink.
+    ```jql    
+    siddhi:  
+     refs:
+      -
+       name:`<SINK_NAME>`
+    ```
+    
+4. To specify the sink type, add another parameter named `type` and enter the relevant sink type.
+    ```jql
+    siddhi:  
+     refs:
+      -
+       name:'<SINK_NAME>'
+       type: '<SINK_TYPE>'
+    ```
+5. To configure other parameters for the sink (based on the sink type), add a subsection named `properties` as shown below.
+    ```jql
+    siddhi:  
+     refs:
+      -
+       name:'SINK_NAME'
+       type: '<SINK_TYPE>'
+       properties
+           <PROPERTY1_NAME>:'<PROPERTY1_VALUE>'
+           <PROPERTY2_NAME>:'<PROPERTY2_VALUE>'
+           ...
+    ```
+    
+6. Save the configuration file.
+
+e.g., The log sink used as the example in the previous section can be defined externally as follows:
+```jql
+    siddhi:  
+     refs:
+      -
+       name:'LogSink'
+       type: 'log'
+       properties
+           prefix:'Sales Totals'
+```
 
 ### Supported event sink types
 <Sink categories table here> 
