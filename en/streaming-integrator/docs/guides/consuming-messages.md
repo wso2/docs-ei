@@ -97,3 +97,70 @@ To create a Siddhi application with the source configuration defined inline, fol
     
 
 ## Defining event source externally in the configuration file
+
+If you want to use the same source configuration in multiple Siddhi applications, you  can define it externally in the 
+`<SI_HOME>/conf/server/deployment.yaml` file and then refer to it from Siddhi applications. To learn how to do this, 
+follow the procedures below.
+
+To define the source configuration externally:
+
+1. Open the `<SI_HOME>/conf/server/deployment.yaml` file.
+2. Add a section named `siddi`, and then add a subsection named `refs:` as shown below.
+    ```jql    
+    siddhi:  
+     refs:
+      -
+    ```
+3. In the `refs` subsection, enter a parameter named `name` and enter a name for the source.
+    ```jql    
+    siddhi:  
+     refs:
+      -
+       name:`<SOURCE_NAME>`
+    ```
+    
+4. To specify the source type, add another parameter named `type` and enter the relevant source type.
+    ```jql
+    siddhi:  
+     refs:
+      -
+       name:'<SOURCE_NAME>'
+       type: '<SOURCE_TYPE>'
+    ```
+5. To configure other parameters for the source (based on the source type), add a subsection named `properties` as shown below.
+    ```jql
+    siddhi:  
+     refs:
+      -
+       name:'SOURCE_NAME'
+       type: '<SOURCE_TYPE>'
+       properties
+           <PROPERTY1_NAME>:'<PROPERTY1_VALUE>'
+           <PROPERTY2_NAME>:'<PROPERTY2_VALUE>'
+           ...
+    ```
+    
+6. Save the configuration file.
+
+e.g., The HTTP source used as the example in the previous section can be defined externally as follows:
+```jql
+siddhi:  
+ refs:
+  -
+   name:'HTTPSource'
+   type: 'HTTP'
+   properties
+       receiver.url:'http://localhost:5005/SweetProductionEP'
+```
+
+The source configuration you added can be referred to in a Siddhi application as follows:
+```jql
+@source(ref='SOURCE_NAME')
+define stream ConsumeSalesTotalsStream (transNo int, product string, price int, quantity int, salesValue long);
+```
+e.g., The HTTP source that you previously created can be referred to as follows.
+
+```
+@source(ref='HTTP')
+define stream ConsumeSalesTotalsStream (transNo int, product string, price int, quantity int, salesValue long);
+```
