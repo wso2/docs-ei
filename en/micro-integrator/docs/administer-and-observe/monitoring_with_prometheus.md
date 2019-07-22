@@ -58,5 +58,5 @@ You may also visit following url in Prometheus server to plot the
 graphs.
 
 ``` java
-http://localhost:9191/graph
+http://localhost:9190/graph
 ```
