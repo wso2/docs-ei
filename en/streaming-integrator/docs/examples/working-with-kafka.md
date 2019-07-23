@@ -35,7 +35,7 @@ From here onwards, this directory is referred to as `<KAFKA_HOME>`.
 
 3. Create another directory named `Destination` in a preferred location in your machine.
 
-4. To convert the Kafka JARS you copied to the `Source` directory, issue following command:
+4. To convert the Kafka JARS you copied to the `Source` directory, issue the following command:
    ```
    sh <SI_HOME>/bin/jartobundle.sh <{Source}_Directory_Path> <{Destination}_Directory_Path>
    ```
@@ -111,7 +111,7 @@ Now let's generate some Kafka messages that the Streaming Integrator can receive
    ```
    bin/kafka-console-producer.sh --broker-list localhost:9092 --topic productions
    ```
-3. Now you are prompted to type the messages in the console. Type following in the command prompt:
+3. Now you are prompted to type messages in the console. Type the following in the command prompt:
    ```
     {"event":{ "name":"Almond cookie", "amount":100.0}} 
    ```
@@ -131,7 +131,7 @@ on a condition, and then publish those filtered messages to another Kafka topic.
     ```
     bin/kafka-topics.sh --create --bootstrap-server localhost:9092 --replication-factor 1 --partitions 1 --topic bulk-orders
     ```
-3. Next, let's create the Siddhi application. Open a text file and copy-paste following Siddhi application into it.
+3. Next, let's create the Siddhi application. Open a text file, and copy-paste following Siddhi application into it.
 
 ```
     @App:name("PublishToKafka")
@@ -183,7 +183,7 @@ Previously, you consumed messages from the `productions` topic *without specifyi
 
 For this purpose, you can configure the `topic.offsets.map` parameter. Let's modify our previous Siddhi application to specify an offset value. Specify an offset value `2` so that the Siddhi application consumes messages with index `2` and above. 
 
-1. Open the `<SI_HOME>/wso2/server/deployment/siddhi-files/HelloKafka.siddhi` file and add the following new configuration parameter
+1. Open the `<SI_HOME>/wso2/server/deployment/siddhi-files/HelloKafka.siddhi` file and add the following new configuration parameter.
    ``` 
    topic.offsets.map='productions=2' 
    ```
@@ -211,7 +211,7 @@ For this purpose, you can configure the `topic.offsets.map` parameter. Let's mod
     ```
 2. Save the file.
 
-3. Push following message to the Kafka server.
+3. Push the following message to the Kafka server.
    ```
    {"event":{ "name":"Baked alaska", "amount":20.0}} 
    ```
@@ -293,7 +293,7 @@ Let's add another Siddhi application `HelloKafka_2`, to add another Kafka consum
 ## Assigning Consumers to Partitions  
 In the previous scenario, you had two partitions for the Kafka topic and two consumers. Instead of assigning the 
 consumers to the partitions, you allowed Kafka do the assignments. Optionally, you can assign consumers to partitions. 
-This option is useful if you have multiple consumers with different performance speeds to balance the load among the 
+This option is useful if you have multiple consumers with different performance speeds, and you need to balance the load among the 
 consumers.
 
 Let's alter your topic to have three partitions. After that, you can assign two partitions to `consumer-1`, and the remaining partition to `consumer-2`.

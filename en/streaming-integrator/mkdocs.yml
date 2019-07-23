@@ -101,6 +101,7 @@ nav:
       - 'Cleansing Data': 'guides/cleansing-data.md'
       - 'Correlating Data': 'guides/correlating-events.md'
       - 'Summarizing Data': 'guides/summarizing-data.md'
+      - 'Publishing Data': 'guides/publishing-data.md'
       - 'Triggering Integration Flows': 'guides/triggering-integration-flows.md'
   - 'Admin Guide':
     - 'Configuring the Streaming Integration Profile': 'admin/configure-si-profile.md'

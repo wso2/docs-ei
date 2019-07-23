@@ -7,7 +7,7 @@ to produce the required output.
  
 For the Streaming Integrator to consume events, the following is required.
 
-* A message schema: The Streaming Integrator identifies the messages that it selects into a streaming integration flows by their schema. The schema based on which the messages are selected are defimed via a *stream*.
+* A message schema: The Streaming Integrator identifies the messages that it selects into a streaming integration flows by their schemas. The schema based on which the messages are selected are defined via a *stream*.
 
 * A source: The messages are consumed from different sources including streaming applications, cloud-based applications, databases, and files. The source is defined via a *source configuration*.
   ![Receiving events](../images/consuming-messages/ConsumingMessages.png)
@@ -18,8 +18,6 @@ For the Streaming Integrator to consume events, the following is required.
   + **`@map`**: This annotation specifies the format in which messages are consumed, and allows you to configure the mapping parameters (which change based of the mapping type/format selected). For the complete list of supported mapping types, see [Siddhi Query Guide - Source Mapper](https://siddhi.io/en/v4.x/docs/query-guide/#source-mapper)
   + **`@attributes`**: This annotation specifies a custom mapping based on which events to be selected into the streaming integration flow are identified. This is useful when the attributes of the incoming messages you want the Streaming Integrator to consume are different to the corresponding attribute name in the stream definition. e.g., In a scenario where the Streaming Integrator is reading employee records, the employee name might be defined as `emp No` in the database from which you are extracting the records. However, the corresponding attribute name in the stream definition is `employeeNo` because that is how yoy want to refer to the attribute in the streaming integration flow. In this instance, you need a custom mapping to indicate that `emp No` is the same as `employeeNo`.
   
-    !!!info
-        This guide covers the `@source` annotation. The `@map` and `attributes` annotations used within it are more relevant to transforming messages. Therefore, they explained in more detail in the [Transforming Data guide](transforming-data.md).
   
   In a Siddhi application, you can define a source configuration inline or refer to a source configuration defined externally in a configuration file.
 
@@ -99,10 +97,9 @@ To create a Siddhi application with the source configuration defined inline, fol
 ## Defining event source externally in the configuration file
 
 If you want to use the same source configuration in multiple Siddhi applications, you  can define it externally in the 
-`<SI_HOME>/conf/server/deployment.yaml` file and then refer to it from Siddhi applications. To learn how to do this, 
-follow the procedures below.
+`<SI_HOME>/conf/server/deployment.yaml` file and then refer to it from Siddhi applications. To understand how to do this, 
+follow the procedure below.
 
-To define the source configuration externally:
 
 1. Open the `<SI_HOME>/conf/server/deployment.yaml` file.
 2. Add a section named `siddi`, and then add a subsection named `refs:` as shown below.
@@ -148,7 +145,7 @@ siddhi:
  refs:
   -
    name:'HTTPSource'
-   type: 'HTTP'
+   type: 'http'
    properties
        receiver.url:'http://localhost:5005/SweetProductionEP'
 ```

@@ -63,7 +63,6 @@ nav:
         - 'Deploying WSO2 Enterprise Integrator' : 'setup/deployment/deploying_wso2_ei.md'
         - 'Upgrading from a Previous Release' : 'setup/deployment/upgrading.md'
         - 'Setting up a Load Balancer': 'setup/setting_up_lb.md'
-        - 'Configuring Deployment Synchronization': 'setup/deployment_synchronization.md'
         - 'Troubleshooting Production Deployment' : 'setup/deployment/troubleshooting_deployment.md'
         - 'Product Deployment Checklist' : 'setup/deployment/deployment_checklist.md'
         - 'Backup and Recovery' : 'setup/deployment/backup_recovery.md'
@@ -106,6 +105,7 @@ nav:
       - Performance Tuning:
         - 'Tuning JVM Performance' : 'setup/performance_tuning/tuning_jvm_performance.md'
         - 'Tuning Network and OS Performance' : 'setup/performance_tuning/network_os_performance.md'
+        - 'Tuning JDBC Configurations' : 'setup/performance_tuning/jdbc_tuning.md'
         - Tuning Use Cases:
           - 'Tuning the Split-Aggregator Pattern' : 'setup/performance_tuning/split_aggregate_pattern_tuning.md'
           - 'Tuning Message Transformation Scenarios' : 'setup/performance_tuning/message_transformation_tuning.md'
@@ -205,15 +205,15 @@ nav:
       - 'Working with Admin Services' : 'administer-and-observe/working-with-admin-services.md'
       - 'Using the Command-Line Interface' : 'administer-and-observe/using-the-command-line-interface.md'
       - Monitoring Logs:
-        - 'About Logs' : 'administer-and-observe/monitoring_logs.md'
-        - 'Monitoring Access Logs' : 'administer-and-observe/monitoring_access_logs.md'
-        - 'Configuring Log4j Properties' : 'administer-and-observe/configuring_log4j_properties.md'
-        - 'Configuring the Log Provider' : 'administer-and-observe/configuring_the_log_provider.md'
-        - 'Masking Sensitive Information in Logs' : 'administer-and-observe/masking_sensitive_info_in_logs.md'
+        - 'About Logs' : 'administer-and-observe/logs/monitoring_logs.md'
+        - 'Monitoring Access Logs' : 'administer-and-observe/logs/monitoring_access_logs.md'
+        - 'Configuring Log4j Properties' : 'administer-and-observe/logs/configuring_log4j_properties.md'
+        - 'Configuring the Log Provider' : 'administer-and-observe/logs/configuring_the_log_provider.md'
+        - 'Masking Sensitive Information in Logs' : 'administer-and-observe/logs/masking_sensitive_info_in_logs.md'
       - Monitoring TCP Messages:
-        - 'Starting TCPMon' : 'administer-and-observe/starting_tcp_mon.md'
-        - 'Message Monitoring with TCPMon' : 'administer-and-observe/message_monitoring_with_tcpmon.md'
-        - 'Other Usages of TCPMon' : 'administer-and-observe/other_usages_of_tcpmon.md'
+        - 'Starting TCPMon' : 'administer-and-observe/tcp/starting_tcp_mon.md'
+        - 'Message Monitoring with TCPMon' : 'administer-and-observe/tcp/message_monitoring_with_tcpmon.md'
+        - 'Other Usages of TCPMon' : 'administer-and-observe/tcp/other_usages_of_tcpmon.md'
     - References:
       - 'Enterprise Integration Patterns' : 'references/enterprise-Integration-Patterns.md'
       - 'Configuration Catalog' : 'references/ei_config_catalog.md'
