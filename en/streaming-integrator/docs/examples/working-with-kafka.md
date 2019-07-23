@@ -53,6 +53,11 @@ From here onwards, this directory is referred to as `<KAFKA_HOME>`.
 Navigate to the `<SI_HOME>/bin` directory and issue the following command. 
 `sh server.sh`
 
+You will see following log on the SI console when the server is started successfully.
+```
+INFO {org.wso2.carbon.kernel.internal.CarbonStartupHandler} - WSO2 Streaming Integrator started in 4.240 sec
+```
+
 ## Consuming from a Kafka topic
 
 Let's create a basic Siddhi application to consume messages from a Kafka topic.
@@ -83,6 +88,11 @@ insert into OutputStream;
 
 Save this file as `HelloKafka.siddhi` in the `<SI_HOME>/wso2/server/deployment/siddhi-files` directory.
 
+You will see following log on the SI console.
+```
+INFO {org.wso2.carbon.streaming.integrator.core.internal.StreamProcessorService} - Siddhi App HelloKafka deployed successfully
+```
+
 !!! info
     You just created a Siddhi application that listens to a Kafka topic named `productions` and logs any incoming 
     messages. When logging, the name attribute of the message is converted to upper case. However, you have still not created this Kafka topic or published any messages to it. To do this, proceed 
@@ -107,7 +117,7 @@ Now let's generate some Kafka messages that the Streaming Integrator can receive
    ```
    This pushes a message to the Kafka Server. Then, the Siddhi application you deployed in the Streaming Integrator consumes this message. As a result, the Streaming Integrator log displays the following:
    ```
-   INFO {org.wso2.siddhi.core.stream.output.sink.LogSink} - HelloKafka : SweetProductionStream : Event{timestamp=1562069868006, data=[ALMOND COOKIE, 100.0], isExpired=false}
+   INFO {io.siddhi.core.stream.output.sink.LogSink} - HelloKafka : OutputStream : Event{timestamp=1562069868006, data=[ALMOND COOKIE, 100.0], isExpired=false}
    ```
 You may notice that the output message has an uppercase name: `ALMOND COOKIE`. This is because of the simple message transformation done in the Siddhi application.   
 
@@ -150,7 +160,7 @@ on a condition, and then publish those filtered messages to another Kafka topic.
 4. Save this file as `PublishToKafka.siddhi` in the `<SI_HOME>/wso2/server/deployment/siddhi-files` directory. When the 
    Siddhi application is successfully deployed, the following `INFO` log appears in the Streaming Integrator console.
     ```
-    INFO {org.wso2.carbon.stream.processor.core.internal.StreamProcessorService} - Siddhi App PublishToKafka deployed successfully
+    INFO {org.wso2.carbon.streaming.integrator.core.internal.StreamProcessorService} - Siddhi App PublishToKafka deployed successfully
     ```
     !!!info
         The `PublishToKafka` Siddhi application consumes all the messages from the `productions` topic and populates the `SweetProductionStream` stream. All the sweet production runs where the amount is greater than 100 are inserted into the `BulkOrdersStream` stream. These events are pushed to the `bulk-orders` Kafka topic.
@@ -213,35 +223,9 @@ For this purpose, you can configure the `topic.offsets.map` parameter. Let's mod
    ```
    Now you can see the following log in the Streaming Integrator Studio console. 
    ```
-   INFO {org.wso2.siddhi.core.stream.output.sink.LogSink} - HelloKafka : OutputStream : Event{timestamp=1562676477785, data=[CUP CAKE, 300.0], isExpired=false}
+   INFO {io.siddhi.core.stream.output.sink.LogSink} - HelloKafka : OutputStream : Event{timestamp=1562676477785, data=[CUP CAKE, 300.0], isExpired=false}
    ```  
-As you configured your Siddhi application to consume messages with offset `2`, all messages bearing index 2 or above are consumed.
-
-## Restoring Offset after system failure  
-
-Consider a scenario where the system fails (i.e., the Streaming Integrator is shutdown) when the Kafka consumer has 
-consumed upto offset number `5`. When the system failure is restored you do not want the Kafka consumer to consume from 
-the beginning (i.e., from offset 0). Instead, you want the Kafka consumer to resume consuming the point it stopped. To 
-achieve this, you can use the state persistence capability in the Streaming Integrator.
-
-If you enable state persistence in the Streaming Integrator, the server remembers the Kafka consumer offset. As a 
-result, once the server restarts, it resumes consuming messages from the point it stopped.
-
-To enable state persistence in the Streaming integrator, open the `<SI_HOME>/conf/server/deployment.yaml` file on a text 
-editor and locate the `state.persistence` section.
-
-``` 
-  # Periodic Persistence Configuration
-state.persistence:
-  enabled: true
-  intervalInMin: 1
-  revisionsToKeep: 2
-  persistenceStore: org.wso2.carbon.stream.processor.core.persistence.FileSystemPersistenceStore
-  config:
-    location: siddhi-app-persistence
-``` 
-
-Set `enabled` parameter to `true` and save the file. Then restart the Streaming Integrator server for this change to be effective.
+As you configured your Siddhi application to consume messages with offset `2`, all messages bearing index `2` or above are consumed.
 
 ## Adding more Consumers to the Consumer Group
 
@@ -298,10 +282,10 @@ Let's add another Siddhi application `HelloKafka_2`, to add another Kafka consum
     ```
    Now observe the logs on the SI console.
     ```
-    INFO {org.wso2.siddhi.core.stream.output.sink.LogSink} - HelloKafka_2 : OutputStream : Event{timestamp=1562759480019, data=[DOUGHNUT, 500.0], isExpired=false}
-    INFO {org.wso2.siddhi.core.stream.output.sink.LogSink} - HelloKafka : OutputStream : Event{timestamp=1562759494710, data=[DANISH PASTRY, 200.0], isExpired=false}
-    INFO {org.wso2.siddhi.core.stream.output.sink.LogSink} - HelloKafka_2 : OutputStream : Event{timestamp=1562759506252, data=[ECLAIR, 400.0], isExpired=false}
-    INFO {org.wso2.siddhi.core.stream.output.sink.LogSink} - HelloKafka : OutputStream : Event{timestamp=1562759508757, data=[ECLAIR TOFFEE, 100.0], isExpired=false}
+    INFO {io.siddhi.core.stream.output.sink.LogSink} - HelloKafka_2 : OutputStream : Event{timestamp=1562759480019, data=[DOUGHNUT, 500.0], isExpired=false}
+    INFO {io.siddhi.core.stream.output.sink.LogSink} - HelloKafka : OutputStream : Event{timestamp=1562759494710, data=[DANISH PASTRY, 200.0], isExpired=false}
+    INFO {io.siddhi.core.stream.output.sink.LogSink} - HelloKafka_2 : OutputStream : Event{timestamp=1562759506252, data=[ECLAIR, 400.0], isExpired=false}
+    INFO {io.siddhi.core.stream.output.sink.LogSink} - HelloKafka : OutputStream : Event{timestamp=1562759508757, data=[ECLAIR TOFFEE, 100.0], isExpired=false}
     ```
    You can see that the events are being received by the two consumers in a Round Robin manner. Events received by the 
    first consumer are logged by Siddhi application `HelloKafka`, whilst events received by the second consumer are logged by Siddhi application `HelloKafka_2`
@@ -381,12 +365,131 @@ Let's alter your topic to have three partitions. After that, you can assign two 
     ```
 4. Now observe the Streaming Integrator logs. The following is displayed.
     ```
-    INFO {org.wso2.siddhi.core.stream.output.sink.LogSink} - HelloKafka : OutputStream : Event{timestamp=1562851086792, data=[FORTUNE COOKIE, 100.0, consumer-1], isExpired=false}
-    INFO {org.wso2.siddhi.core.stream.output.sink.LogSink} - HelloKafka : OutputStream : Event{timestamp=1562851092100, data=[FROZEN YOGURT, 350.0, consumer-1], isExpired=false}
-    INFO {org.wso2.siddhi.core.stream.output.sink.LogSink} - HelloKafka : OutputStream : Event{timestamp=1562851094459, data=[GINGERBREAD, 450.0, consumer-2], isExpired=false}
-    INFO {org.wso2.siddhi.core.stream.output.sink.LogSink} - HelloKafka : OutputStream : Event{timestamp=1562851096434, data=[HOT-FUDGE SUNDAE, 150.0, consumer-1], isExpired=false}
-    INFO {org.wso2.siddhi.core.stream.output.sink.LogSink} - HelloKafka : OutputStream : Event{timestamp=1562851098328, data=[HOT-CHOCOLATE PUDDING, 200.0, consumer-1], isExpired=false}
-    INFO {org.wso2.siddhi.core.stream.output.sink.LogSink} - HelloKafka : OutputStream : Event{timestamp=1562851100309, data=[ICE CREAM CAKE, 250.0, consumer-2], isExpired=false}
+    INFO {io.siddhi.core.stream.output.sink.LogSink} - HelloKafka : OutputStream : Event{timestamp=1562851086792, data=[FORTUNE COOKIE, 100.0, consumer-1], isExpired=false}
+    INFO {io.siddhi.core.stream.output.sink.LogSink} - HelloKafka : OutputStream : Event{timestamp=1562851092100, data=[FROZEN YOGURT, 350.0, consumer-1], isExpired=false}
+    INFO {io.siddhi.core.stream.output.sink.LogSink} - HelloKafka : OutputStream : Event{timestamp=1562851094459, data=[GINGERBREAD, 450.0, consumer-2], isExpired=false}
+    INFO {io.siddhi.core.stream.output.sink.LogSink} - HelloKafka : OutputStream : Event{timestamp=1562851096434, data=[HOT-FUDGE SUNDAE, 150.0, consumer-1], isExpired=false}
+    INFO {io.siddhi.core.stream.output.sink.LogSink} - HelloKafka : OutputStream : Event{timestamp=1562851098328, data=[HOT-CHOCOLATE PUDDING, 200.0, consumer-1], isExpired=false}
+    INFO {io.siddhi.core.stream.output.sink.LogSink} - HelloKafka : OutputStream : Event{timestamp=1562851100309, data=[ICE CREAM CAKE, 250.0, consumer-2], isExpired=false}
     ```
-   You can observe a pattern where the load is distributed among `consumer-1` and `consumer-2` in the 2:1 ratio. This is because you assigned two partitions to `consumer-1` and assigned only one partition to `consumer-2`. 
+   You can observe a pattern where the load is distributed among `consumer-1` and `consumer-2` in the 2:1 ratio. This is because you assigned two partitions to `consumer-1` and assigned only one partition to `consumer-2`.
+
+## Preserving State of the application through a system failure
+
+Let's try out a scenario in which you are going to deploy a siddhi app to count the total number of productions.
+
+!!!info
+    In this scenario, the current count should be "remembered" by the SI server through system failures, so that when the system is restored, the count is not reset to zero. 
+    To achieve this, you can use the state persistence capability in the Streaming Integrator.
+
+1. Enable state persistence feature in SI server as follows. Open the `<SI_HOME>/conf/server/deployment.yaml` file on a text editor and locate the `state.persistence` section.  
+
+``` 
+  # Periodic Persistence Configuration
+state.persistence:
+  enabled: true
+  intervalInMin: 1
+  revisionsToKeep: 2
+  persistenceStore: org.wso2.carbon.streaming.integrator.core.persistence.FileSystemPersistenceStore
+  config:
+    location: siddhi-app-persistence
+```   
+Set `enabled` parameter to `true` and save the file. 
+
+2. Enable state persistence debug logs as follows. Open the `<SI_HOME>/conf/server/log4j2.xml` file on a text editor and locate following line in it.
+```
+ <Logger name="com.zaxxer.hikari" level="error"/>
+``` 
+Add following `<Logger>` element below that.
+```
+<Logger name="org.wso2.carbon.streaming.integrator.core.persistence" level="debug"/>
+```
+Save the file.
+
+3. Restart the Streaming Integrator server for above change to be effective.
+
+4. Let's create a new topic named `sandwich_productions` in the Kafka server. To do this, navigate to `<KAFKA_HOME>` and run following command:
+   ```
+   bin/kafka-topics.sh --create --bootstrap-server localhost:9092 --replication-factor 1 --partitions 1 --topic sandwich_productions
+   ```
+
+5. Open a text file and copy-paste following Siddhi application to it. 
+
+```
+    @App:name("CountProductions")
+    
+    @App:description('Siddhi application to count the total number of orders.')
+    
+    @source(type='kafka',
+            topic.list='sandwich_productions',
+            threading.option='single.thread',
+            group.id="group3",
+            bootstrap.servers='localhost:9092',
+            partition.no.list='0',
+            @map(type='json'))        
+    define stream SandwichProductionStream (name string, amount double);
+    
+    @sink(type='log')
+    define stream OutputStream (totalProductions double);
+    
+    from SandwichProductionStream
+    select sum(amount) as totalProductions
+    insert into OutputStream;
+```  
+6. Save this file as `CountProductions.siddhi` in the `<SI_HOME>/wso2/server/deployment/siddhi-files` directory. When the 
+   Siddhi application is successfully deployed, the following `INFO` log appears in the Streaming Integrator console.
+```
+    INFO {org.wso2.carbon.stream.processor.core.internal.StreamProcessorService} - Siddhi App CountProductions deployed successfully
+``` 
+7. Now let's run the Kafka command line client to push a few messages to the Kafka server. Navigate to `<KAFKA_HOME>` and run following command:
+   ```
+   bin/kafka-console-producer.sh --broker-list localhost:9092 --topic sandwich_productions
+   ```
+8. Now you are prompted to type the messages in the console. Type following in the command prompt:
+```
+    {"event":{ "name":"Bagel", "amount":100.0}}
+```
+```    
+    {"event":{ "name":"Buterbrod", "amount":100.0}} 
+```
+Now you will see following logs on the SI console.
+```
+INFO {io.siddhi.core.stream.output.sink.LogSink} - CountProductions : OutputStream : Event{timestamp=1563903034768, data=[100.0], isExpired=false}
+INFO {io.siddhi.core.stream.output.sink.LogSink} - CountProductions : OutputStream : Event{timestamp=1563903034768, data=[200.0], isExpired=false}
+```
+These logs print the sandwich production count. Notice that the current count of sandwich productions is being printed as `200` in the second log. This is because we have so far produced `200` sandwiches: `100` Bagels and `100` Buterbrods.
+
+9. Now wait for following logs to appear on the SI console
+```
+DEBUG {org.wso2.carbon.streaming.integrator.core.persistence.FileSystemPersistenceStore} - Periodic persistence of CountProductions persisted successfully
+```
+This log indicates that the current state of the Siddhi application is successfully persisted. Siddhi application state is persisted every minute, hence you will notice this log appearing every minute.
+
+Next, you are going to push two sandwich production messages to the Kafka server and shutdown the SI server before state persistence happens (in other words, before above log appears). 
+
+!!!Tip
+    It is better to start pushing messages immediately after the state persistence log appears, so that you have plenty of time to push messages and shutdown the server, until next log appears.
+    
+10. Now push following messages to the Kafka server using the Kafka Console Producer:
+```
+    {"event":{ "name":"Croissant", "amount":100.0}}
+```
+```    
+    {"event":{ "name":"Croutons", "amount":100.0}} 
+```      
+11. Shutdown SI server. Here we deliberately create a scenario where the server crashes before the SI server could persist the latest production count. 
+
+!!!Info
+    Now that you shutdown the SI server before the state is persisted, the SI server could not count the last two productions. The good news is, Kafka source will replay the last two messages, hence recovering successfully from the server crash.
+    
+12. Restart the SI server and wait for about one minute.
+
+13. Now you will see following logs on the SI console.
+```
+INFO {io.siddhi.core.stream.output.sink.LogSink} - CountProductions : OutputStream : Event{timestamp=1563904912073, data=[300.0], isExpired=false}
+INFO {io.siddhi.core.stream.output.sink.LogSink} - CountProductions : OutputStream : Event{timestamp=1563904912076, data=[400.0], isExpired=false}
+```     
+
+Notice that the Kafka source has replayed the last two messages. As a result, the sandwich productions count has correctly restored.   
+    
 
