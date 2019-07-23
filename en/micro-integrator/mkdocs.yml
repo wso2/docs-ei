@@ -60,7 +60,7 @@ nav:
         - 'Install in Docker': 'setup/installation/install_in_docker.md'
         - 'Install in Kubernetes': 'setup/installation/install_in_kubernetes.md'
       - Product Deployment:
-        - 'Deploying WSO2 Enterprise Integrator' : 'setup/deployment/deploying_wso2_ei.md'
+        - 'Deploying WSO2 Micro Integrator' : 'setup/deployment/deploying_wso2_ei.md'
         - 'Upgrading from a Previous Release' : 'setup/deployment/upgrading.md'
         - 'Setting up a Load Balancer': 'setup/setting_up_lb.md'
         - 'Troubleshooting Production Deployment' : 'setup/deployment/troubleshooting_deployment.md'
