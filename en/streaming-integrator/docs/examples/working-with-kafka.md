@@ -35,7 +35,7 @@ From here onwards, this directory is referred to as `<KAFKA_HOME>`.
 
 3. Create another directory named `Destination` in a preferred location in your machine.
 
-4. To convert the Kafka JARS you copied to the `Source` directory, issue following command:
+4. To convert the Kafka JARS you copied to the `Source` directory, issue the following command:
    ```
    sh <SI_HOME>/bin/jartobundle.sh <{Source}_Directory_Path> <{Destination}_Directory_Path>
    ```
@@ -101,7 +101,7 @@ Now let's generate some Kafka messages that the Streaming Integrator can receive
    ```
    bin/kafka-console-producer.sh --broker-list localhost:9092 --topic productions
    ```
-3. Now you are prompted to type the messages in the console. Type following in the command prompt:
+3. Now you are prompted to type messages in the console. Type the following in the command prompt:
    ```
     {"event":{ "name":"Almond cookie", "amount":100.0}} 
    ```
@@ -121,7 +121,7 @@ on a condition, and then publish those filtered messages to another Kafka topic.
     ```
     bin/kafka-topics.sh --create --bootstrap-server localhost:9092 --replication-factor 1 --partitions 1 --topic bulk-orders
     ```
-3. Next, let's create the Siddhi application. Open a text file and copy-paste following Siddhi application into it.
+3. Next, let's create the Siddhi application. Open a text file, and copy-paste following Siddhi application into it.
 
 ```
     @App:name("PublishToKafka")
@@ -160,7 +160,7 @@ on a condition, and then publish those filtered messages to another Kafka topic.
     ```
     bin/kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic bulk-orders --from-beginning
     ```
-   You can see the following message in the Kafka Consumer log, which are the productions of which the amount is greater than 50.
+   You can see the following message in the Kafka Consumer log, which are the production runs of which the amount is greater than 50.
     ```
     {"event":{ "name":"Almond cookie", "amount":100.0}}
     ``` 
@@ -173,7 +173,7 @@ Previously, you consumed messages from the `productions` topic *without specifyi
 
 For this purpose, you can configure the `topic.offsets.map` parameter. Let's modify our previous Siddhi application to specify an offset value. Specify an offset value `2` so that the Siddhi application consumes messages with index `2` and above. 
 
-1. Open the `<SI_HOME>/wso2/server/deployment/siddhi-files/HelloKafka.siddhi` file and add the following new configuration parameter
+1. Open the `<SI_HOME>/wso2/server/deployment/siddhi-files/HelloKafka.siddhi` file and add the following new configuration parameter.
    ``` 
    topic.offsets.map='productions=2' 
    ```
@@ -201,7 +201,7 @@ For this purpose, you can configure the `topic.offsets.map` parameter. Let's mod
     ```
 2. Save the file.
 
-3. Push following message to the Kafka server.
+3. Push the following message to the Kafka server.
    ```
    {"event":{ "name":"Baked alaska", "amount":20.0}} 
    ```
@@ -219,7 +219,7 @@ As you configured your Siddhi application to consume messages with offset `2`, a
 
 ## Restoring Offset after system failure  
 
-Consider a scenario where the system fails (i.e., the Streaming Integrator is shutdown) when the Kafka consumer has 
+Consider a scenario where the system fails (i.e., the Streaming Integrator is shutdown) after the Kafka consumer has 
 consumed upto offset number `5`. When the system failure is restored you do not want the Kafka consumer to consume from 
 the beginning (i.e., from offset 0). Instead, you want the Kafka consumer to resume consuming the point it stopped. To 
 achieve this, you can use the state persistence capability in the Streaming Integrator.
@@ -227,7 +227,7 @@ achieve this, you can use the state persistence capability in the Streaming Inte
 If you enable state persistence in the Streaming Integrator, the server remembers the Kafka consumer offset. As a 
 result, once the server restarts, it resumes consuming messages from the point it stopped.
 
-To enable state persistence in the Streaming integrator, open the `<SI_HOME>/conf/server/deployment.yaml` file on a text 
+To enable state persistence in the Streaming Integrator, open the `<SI_HOME>/conf/server/deployment.yaml` file on a text 
 editor and locate the `state.persistence` section.
 
 ``` 
@@ -315,7 +315,7 @@ In our `HelloKafka` Siddhi application, note the `group.id` parameter. This para
 ## Assigning Consumers to Partitions  
 In the previous scenario, you had two partitions for the Kafka topic and two consumers. Instead of assigning the 
 consumers to the partitions, you allowed Kafka do the assignments. Optionally, you can assign consumers to partitions. 
-This option is useful if you have multiple consumers with different performance speeds to balance the load among the 
+This option is useful if you have multiple consumers with different performance speeds, and you need to balance the load among the 
 consumers.
 
 Let's alter your topic to have three partitions. After that, you can assign two partitions to `consumer-1`, and the remaining partition to `consumer-2`.
