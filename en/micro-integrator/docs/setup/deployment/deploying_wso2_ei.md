@@ -80,17 +80,13 @@ Follow the steps given below to configure the two nodes in the Micro Integrator 
    
     See [Configuring Keystores](../../setup/security/configuring_keystores.md) for instructions.
     
-## Optional configurations
-
-See the topics given below.
-
-### Configuring Analytics
+## (Optional) Configuring Analytics
 
 If you have already done the configurations explained above, you have the option of applying the following configurations for your deployment.
 
 If you wish to view reports, statistics, and graphs related to the message mediation that happens through the Micro Integrator, you need to configure Analytics for the Micro Integrator. Follow configuring WSO2 EI Analytics in a production setup.
 
-## Verify your deployment
+## Verifying your deployment
 
 Ensure that you have taken into account the respective security hardening factors (e.g., changing and encrypting the default passwords, configuring JVM security etc.) before deploying the Micro Integrator. For more information, see the [Production Deployment Checklist](../../setup/deployment/deployment_checklist.md).
 
