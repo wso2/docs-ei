@@ -9,7 +9,7 @@ This tutorial takes you through consuming from a Kafka topic, processing the mes
 ## Tutorial Outline
 - [Preparing the server](#preparing-the-server)
 - [Starting Kafka](#starting-kafka)
-- [Starting Stream Processor](#starting-stream-processor)
+- [Starting Streaming Integrator](#starting-streaming-integrator)
 - [Consuming from a Kafka topic](#consuming-from-a-kafka-topic)
 - [Consuming with an offset](#consuming-with-an-offset)
 - [Restoring Offset after system failure](#restoring-offset-after-system-failure)
@@ -49,7 +49,7 @@ From here onwards, this directory is referred to as `<KAFKA_HOME>`.
 2. Navigate to `<KAFKA_HOME>` and start Kafka server node by issuing the following command.
    `sh bin/kafka-server-start.sh config/server.properties`
 
-## Starting Stream Processor
+## Starting Streaming Integrator
 Navigate to the `<SI_HOME>/bin` directory and issue the following command. 
 `sh server.sh`
 
@@ -301,7 +301,7 @@ In our `HelloKafka` Siddhi application, note the `group.id` parameter. This para
     ```
     {"event":{ "name":"Eclair toffee", "amount":100.0}} 
     ```
-   Now observe the Stream Processor logs.
+   Now observe the logs on the SI console.
     ```
     INFO {org.wso2.siddhi.core.stream.output.sink.LogSink} - HelloKafka : OutputStream : Event{timestamp=1562759480019, data=[DOUGHNUT, 500.0, consumer-2], isExpired=false}
     INFO {org.wso2.siddhi.core.stream.output.sink.LogSink} - HelloKafka : OutputStream : Event{timestamp=1562759494710, data=[DANISH PASTRY, 200.0, consumer-1], isExpired=false}
