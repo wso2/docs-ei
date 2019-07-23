@@ -247,10 +247,12 @@ Set `enabled` parameter to `true` and save the file. Then restart the Streaming 
 
 In our `HelloKafka` Siddhi application, note the `group.id` parameter. This parameter defines the Kafka consumer group. 
 
-1. Let's modify the Siddhi application to add another Kafka consumer to the same consumer group.
+Let's add another Siddhi application `HelloKafka_2`, to add another Kafka consumer to the same consumer group.
+
+1. Open a text file and copy-paste following Siddhi application to it.
 
     ```
-    @App:name("HelloKafka")
+    @App:name("HelloKafka_2")
     
     @App:description('Consume events from a Kafka Topic and log the messages on the console.')
     
@@ -260,35 +262,28 @@ In our `HelloKafka` Siddhi application, note the `group.id` parameter. This para
             group.id="group1",
             bootstrap.servers='localhost:9092',
             @map(type='json'))        
-    define stream SweetProductionStream1 (name string, amount double);
-    
-    @source(type='kafka',
-            topic.list='productions',
-            threading.option='single.thread',
-            group.id="group1",
-            bootstrap.servers='localhost:9092',
-            @map(type='json'))        
-    define stream SweetProductionStream2 (name string, amount double);
+    define stream SweetProductionStream (name string, amount double);
     
     @sink(type='log')
-    define stream OutputStream (name string, amount double, id string);
+    define stream OutputStream (name string, amount double);
     
-    from SweetProductionStream1
-    select str:upper(name) as name, amount, 'consumer-1' as id  
-    insert into OutputStream;
-    
-    from SweetProductionStream2
-    select str:upper(name) as name, amount, 'consumer-2' as id 
+    from SweetProductionStream
+    select str:upper(name) as name, amount   
     insert into OutputStream;
     ```  
+2. Save this file as `HelloKafka_2.siddhi` in the `<SI_HOME>/wso2/server/deployment/siddhi-files` directory. When the 
+   Siddhi application is successfully deployed, the following `INFO` log appears in the Streaming Integrator console.
+    ```
+    INFO {org.wso2.carbon.stream.processor.core.internal.StreamProcessorService} - Siddhi App HelloKafka_2 deployed successfully
+    ```    
 
-2. Navigate to the `<KAFKA_HOME>` directory and run following command.
+3. Navigate to the `<KAFKA_HOME>` directory and run following command.
     ```  
     bin/kafka-topics.sh --alter --bootstrap-server localhost:9092 --partitions 2 --topic productions
     ```  
    This adds another partition to the `productions` Kafka topic. 
 
-3. Push following messages to the Kafka server using the Kafka Console Producer. 
+4. Push following messages to the Kafka server using the Kafka Console Producer. 
     ```
     {"event":{ "name":"Doughnut", "amount":500.0}} 
     ```
@@ -303,14 +298,13 @@ In our `HelloKafka` Siddhi application, note the `group.id` parameter. This para
     ```
    Now observe the logs on the SI console.
     ```
-    INFO {org.wso2.siddhi.core.stream.output.sink.LogSink} - HelloKafka : OutputStream : Event{timestamp=1562759480019, data=[DOUGHNUT, 500.0, consumer-2], isExpired=false}
-    INFO {org.wso2.siddhi.core.stream.output.sink.LogSink} - HelloKafka : OutputStream : Event{timestamp=1562759494710, data=[DANISH PASTRY, 200.0, consumer-1], isExpired=false}
-    INFO {org.wso2.siddhi.core.stream.output.sink.LogSink} - HelloKafka : OutputStream : Event{timestamp=1562759506252, data=[ECLAIR, 400.0, consumer-2], isExpired=false}
-    INFO {org.wso2.siddhi.core.stream.output.sink.LogSink} - HelloKafka : OutputStream : Event{timestamp=1562759508757, data=[ECLAIR TOFFEE, 100.0, consumer-1], isExpired=false}
+    INFO {org.wso2.siddhi.core.stream.output.sink.LogSink} - HelloKafka_2 : OutputStream : Event{timestamp=1562759480019, data=[DOUGHNUT, 500.0], isExpired=false}
+    INFO {org.wso2.siddhi.core.stream.output.sink.LogSink} - HelloKafka : OutputStream : Event{timestamp=1562759494710, data=[DANISH PASTRY, 200.0], isExpired=false}
+    INFO {org.wso2.siddhi.core.stream.output.sink.LogSink} - HelloKafka_2 : OutputStream : Event{timestamp=1562759506252, data=[ECLAIR, 400.0], isExpired=false}
+    INFO {org.wso2.siddhi.core.stream.output.sink.LogSink} - HelloKafka : OutputStream : Event{timestamp=1562759508757, data=[ECLAIR TOFFEE, 100.0], isExpired=false}
     ```
    You can see that the events are being received by the two consumers in a Round Robin manner. Events received by the 
-   first consumer can be identified by the `consumer-1` ID and similarly, events received by the second consumer can be 
-   identified by the`consumer-2` ID.
+   first consumer are logged by Siddhi application `HelloKafka`, whilst events received by the second consumer are logged by Siddhi application `HelloKafka_2`
 
 ## Assigning Consumers to Partitions  
 In the previous scenario, you had two partitions for the Kafka topic and two consumers. Instead of assigning the 
