@@ -50,9 +50,9 @@ categorized as below,
 
 !!! note
 
-    - Note that the following configurations need to be done in the <SP_HOME>/conf/worker/deployment.yaml file for both 
-      the WSO2 SP nodes in the cluster.
-    - If you need to run both SP instances in the same host, make sure that you do a port offset to change the default 
+    - Note that the following configurations need to be done in the <SI_HOME>/conf/server/deployment.yaml file for both 
+      the WSO2 SI nodes in the cluster.
+    - If you need to run both SI instances in the same host, make sure that you do a port offset to change the default 
       ports in one of the hosts. For more information about the default ports, see Configuring Default Ports.
       
 See below the steps and configuration details need to carry out to configure the HA cluster.
@@ -181,7 +181,7 @@ configurations (HA configuration)
             vi .workerThreads - Define a number of worker threads for the TCP server to handle the connections.
                 Default value is 10.
                 
-    g . To configure the TCP client via which requests are sent to the SP cluster, add a subsection named 
+    g . To configure the TCP client via which requests are sent to the SI cluster, add a subsection named 
         eventSyncClientPool and add information as follows
             
             i . maxActive - Define the maximum number of active connections that must be allowed in the TCP client pool
