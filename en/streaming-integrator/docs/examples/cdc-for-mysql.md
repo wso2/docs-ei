@@ -10,9 +10,9 @@ This tutorial takes you through the different modes and  options you could use t
 
 There are two modes you could perform CDC using the SI: **Listening mode** and **Polling mode**.  
 
-In polling mode, the datasource is periodically polled for capturing the changes. The polling period can be configured.
+- Polling mode: In polling mode, the datasource is periodically polled for capturing the changes. The polling period can be configured.
  
-On listening mode, the SI will keep listening to the Change Log of the database and notify in case a change has taken place. Here, you are immediately notified about the change, compared to polling mode.
+- Listening mode:  On listening mode, the SI will keep listening to the Change Log of the database and notify in case a change has taken place. Here, you are immediately notified about the change, compared to polling mode.
 
 #### Type of events captured
 
@@ -22,15 +22,15 @@ You could capture following type of changes done to a database table:
 - Delete operations (available for Listening mode only) 
 
 ## Tutorial Outline
-- Listening mode
-    - Preparing server and database for this tutorial
-    - Capturing inserts
-    - Capturing updates
-    - Capturing deletes   
-- Polling mode
-    - Preparing server and database for this tutorial
-    - Capturing inserts
-    - Capturing updates 
+- [Listening mode](#listening-mode)
+    - [Preparing server and database for this tutorial](#Preparing-server-and-database-for-this-tutorial)
+    - [Capturing inserts](#Capturing-inserts)
+    - [Capturing updates](#Capturing-updates)
+    - [Capturing deletes](#Capturing-deletes)   
+- [Polling mode](#polling-mode)
+    - [Preparing server and database for this tutorial](#Preparing-server-and-database-for-this-tutorial-1)
+    - [Capturing inserts](#Capturing-inserts-1)
+    - [Capturing updates](#Capturing-updates-1) 
 
 ## Listening mode
 
@@ -87,7 +87,8 @@ Here the `url` parameter has being configured to `jdbc:mysql://localhost:3306/pr
 
 Save this file as `CDCListenForInserts.siddhi` into `<SI_HOME>/wso2/server/deployment/siddhi-files` directory.
 
-> **_INFO:_** Above Siddhi application will capture all the inserts done to the database table `SweetProductionTable` and log them.
+!!!info
+    Above Siddhi application will capture all the inserts done to the database table `SweetProductionTable` and log them.
 
 Now let's perform an insert operation on the MySQL table. Execute following MySQL query on the database:
 ```
@@ -117,12 +118,13 @@ define stream LogStream (before_name string, name string, before_amount double, 
 
 @info(name = 'query')
 from UpdateSweetProductionStream
-select name, amount
+select *
 insert into LogStream;
 ``` 
 Save this file as `CDCListenForUpdates.siddhi` into `<SI_HOME>/wso2/server/deployment/siddhi-files` directory.
 
-> **_INFO:_** Above Siddhi application will capture all the updates done to the database table `SweetProductionTable` and log them.
+!!!Info
+    Above Siddhi application will capture all the updates done to the database table `SweetProductionTable` and log them.
 
 Now let's perform an update operation on the MySQL table. Execute following MySQL query on the database:
 ```
@@ -132,7 +134,8 @@ You will see following log on the SI console:
 ```
 INFO {org.wso2.siddhi.core.stream.output.sink.LogSink} - CDCWithListeningMode : updateSweetProductionStream : Event{timestamp=1563201040953, data=[chocolate, Almond cookie, 100.0, 100.0], isExpired=false}
 ```
-> **_INFO:_** Here `before_name` attribute contains the name prior to the update: `chocolate` in this case. `name` attribute contains the current name which is `Almond cookie`.
+!!!Info
+    Here `before_name` attribute contains the name prior to the update: `chocolate` in this case. `name` attribute contains the current name which is `Almond cookie`.
 
 ### Capturing deletes
 
@@ -153,12 +156,13 @@ define stream LogStream (before_name string, before_amount double);
 
 @info(name = 'query')
 from DeleteSweetProductionStream
-select name, amount
+select * 
 insert into LogStream;
 ```
 Save this file as `CDCListenForDeletes.siddhi` into `<SI_HOME>/wso2/server/deployment/siddhi-files` directory.
 
-> **_INFO:_** Above Siddhi application will capture all the delete operations done to the database table `SweetProductionTable` and log them.
+!!!Info
+    Above Siddhi application will capture all the delete operations done to the database table `SweetProductionTable` and log them.
 
 Now let's perform a delete operation on the MySQL table. Execute following MySQL query on the database:
 ```
@@ -168,7 +172,8 @@ You will see following log on the SI console:
 ```
 INFO {org.wso2.siddhi.core.stream.output.sink.LogSink} - CDCWithListeningMode : DeleteSweetProductionStream : Event{timestamp=1563367367098, data=[Almond cookie, 100.0], isExpired=false}
 ```
-> **_INFO:_** Here `before_name` attribute contains the deleted name: `Almond cookie` in this case. Similarly, `before_amount` attribute contains the amount being deleted.
+!!!Info
+    Here `before_name` attribute contains the deleted name: `Almond cookie` in this case. Similarly, `before_amount` attribute contains the amount being deleted.
 
 ## Polling mode
 
@@ -187,7 +192,8 @@ use production_pol;
 ```
 CREATE TABLE SweetProductionTable (last_update TIMESTAMP, name VARCHAR(20),amount double(10,2));
 ```  
-> **_NOTE:_** You might have already done following preparation items (step 4 and step 5) if you have tried out the 'Listening mode' section of this tutorial. If so, skip following two preparation steps. 
+!!!Note
+    You might have already done following preparation items (step 4 and step 5) if you have tried out the 'Listening mode' section of this tutorial. If so, skip following two preparation steps. 
 
 4. Create a new user using below SQL query.
 ```
@@ -231,9 +237,10 @@ insert into LogStream;
 ```
 Here the `url` parameter has being configured to `jdbc:mysql://localhost:3306/production_pol`. Change it to point to your MySQL server.
 
-Save this file as `CDCPolling.siddhi` into `<SI_HOME>/wso2/worker/deployment/siddhi-files` directory.
+Save this file as `CDCPolling.siddhi` into `<SI_HOME>/wso2/server/deployment/siddhi-files` directory.
 
-> **_INFO:_** Above Siddhi application will periodically poll the database, capture the changes done to the database table `SweetProductionTable` during the polled interval, and log them. The polling interval has being configured using the parameter `polling.interval` in the Siddhi application, when defining the CDC source. In this example, the polling interval is 10 seconds.
+!!!Info
+    Above Siddhi application will periodically poll the database, capture the changes done to the database table `SweetProductionTable` during the polled interval, and log them. The polling interval has being configured using the parameter `polling.interval` in the Siddhi application, when defining the CDC source. In this example, the polling interval is 10 seconds.
 
 Now let's perform an insert operation on the MySQL table. Execute following MySQL query on the database:
 ```
