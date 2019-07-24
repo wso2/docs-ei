@@ -1,7 +1,9 @@
 #Minimum High Availability (HA) Deployment
 
-Minimum high availability deployment mainly focused on providing high availability which grantees no data loss if the 
-system suffer any failing due to several unforeseeable reasons using minimum amount of infrastructure resources possible. 
+Minimum high availability deployment mainly focused on providing high availability which guarantees no data loss if the 
+system suffer any failing due to several unforeseeable reasons. One of the main adavantage of this is it uses minimum 
+amount of infrastructure resources possible. Thus this deployment pattern comprise of only two Streaming integration 
+servers.
 
 In minimum HA setup, one node is assigned as the active node while the other node is assigned as the passive node.
 Only the active node processes the incoming events and publishes the outgoing events. Internally, the active node 
@@ -17,7 +19,7 @@ into the system.
 
 For a two-node minimum HA cluster to work, only the active node should receive events. By design, you can only send 
 events to active node. To achieve this, you can use a load balancing mechanism that sends events in failover manner. See
-below the diagram .
+ the diagram below.
 
 [[Diagram]]
 
@@ -39,7 +41,12 @@ In order to configure a minimum HA cluster, the following prerequisites must be 
     
 ### Configuring a minimum HA cluster
 
-To configure a minimum HA cluster, follow the steps below:
+There are three main configurations which need to be configured in order to setup a minimum HA cluster which can be 
+categorized as below,
+    
+    - Cluster Configuration
+    - Persistent configuration
+    - HA configuration
 
 !!! note
 
@@ -48,12 +55,13 @@ To configure a minimum HA cluster, follow the steps below:
     - If you need to run both SP instances in the same host, make sure that you do a port offset to change the default 
       ports in one of the hosts. For more information about the default ports, see Configuring Default Ports.
       
+See below the steps and configuration details need to carry out to configure the HA cluster.
 
 1 . For each node, enter a unique ID for the id property under the wso2.carbon section. (e.g., id: wso2-si). 
 This is used to identify each node within a cluster.
 
 2 . To allow the two nodes to use same persistence storage, you need to configure RDBMS persistence configuration under
- the state.persistence. The following is a configuration for db-based file persistence.
+ the state.persistence. The following is a configuration for db-based file persistence (Persistent configuration).
  
     - state.persistence:
         enabled: true
@@ -86,7 +94,7 @@ This is used to identify each node within a cluster.
               isAutoCommit: false
               
 3 . To allow the two nodes in the cluster to coordinate effectively, configure carbon coordination by updating the 
-cluster.config section of the <SI_HOME>/conf/worker/deployment.yaml as follows:
+cluster.config section of the <SI_HOME>/conf/worker/deployment.yaml as follows (Cluster Configuration):
 
     a . To enable the cluster mode, set the enabled property to true.
     b . In order to cluster the two nodes together, enter the same ID as the group ID for both nodes 
@@ -141,7 +149,7 @@ cluster.config section of the <SI_HOME>/conf/worker/deployment.yaml as follows:
               eventPollingInterval: 5000
                  
 4 . Next add the deployment.config section to the <SI_HOME>/conf/server/deployment.yaml file with following 
-configurations
+configurations (HA configuration)
 
     a . type - To enable 2 node minimum HA, set the type property to "ha".
     b . passiveNodeDetailsWaitTimeOutMillis - Time in miliseconds to wait till passive node details gets available in 
@@ -192,7 +200,7 @@ configurations
                 pool before it is eligible for eviction. Default value is 120000
                 
     
-    The following extract is an example of the deployment configuration that is defined by following the above steps.
+    Sample HA configuration can be as below :
     
        - deployment.config:
            type: ha
