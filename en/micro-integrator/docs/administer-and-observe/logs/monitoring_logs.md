@@ -1,120 +1,12 @@
-# Monitoring Logs
-
-!!! note
-
-This page is currently restricted to confluence administrators.
-
-
-There are two ways of configuring log4j logging in WSO2 Carbon products:
-you can manually edit the `         log4j.properties        ` file or
-configure logging through the management console. Configuration made
-through the management console can be persisted in the WSO2 registry so
-that it is available even after the server restarts. There is also an
-option to restore the original Log4j configuration from the
-`         log4j.properties        ` file using the management console.
-However, if you modify the `         log4j.properties        ` file and
-restart the server, the earlier log4j configuration persisted in the
-registry is overwritten.
-
-!!! info
-
-For information on viewing the contents of **Application Logs** and
-**System Logs** in your WSO2 product, see [View and
-Download](https://docs.wso2.com/display/ADMIN44x/View+and+Download+Logs)
-Logs in the WSO2 Administration Guide.
-
-
-In the **Integration** profile of WSO2 EI, you can enable wire logs to
-monitor HTTP messages that flow through the ESB. Please note that wire
-logs should be enabled for the troubleshooting purposes only. Running
-productions systems with wire logs enabled is not recommended.
-
-### Enabling wire logs
-
-Follow the steps given below to enable wire logs for the **Integration**
-profile:
-
-1.  Go to the `          <EI_HOME>/conf/         ` directory and open
-    the log4j.properties file.
-2.  Enable the following entry in the file. This is commented out by
-    default.
-
-    ``` java
-        log4j.logger.org.apache.synapse.transport.http.wire=DEBUG
-    ```
-
-### Run a mediation sequence
-
-......
-
-### Reading wire logs
-
-In order to read the wire logs, you must first identify message
-direction.
-
--   **DEBUG - wire \>\>** represents the message coming into the ESB
-    from the wire.
--   **DEBUG - wire \<\<** represents the message that goes to the wire
-    from the ESB.
-
-There are two incoming messages and two outgoing messages in the above
-log. The f irst part of the message log contains the HTTP headers and is
-followed by the message payload. As shown in this example, wire logs are
-very useful when it comes to troubleshooting unexpected issues that
-occur while integrating systems. You can verify whether a message
-payload is correctly going out from the ESB, http headers like
-Content-Type is properly set in the outgoing message, etc. by looking at
-the wire logs.
-
-
--------------------------
+# Using Log Files
 
 Logging is one of the most important aspects of a production-grade
 server. A properly configured logging system is vital for identifying
 errors, security threats, and usage patterns.
 
-See the following topics for details:
-
--   [Log types in WSO2
-    products](#MonitoringLogs-log_typesLogtypesinWSO2products)
--   [Configuring products for log
-    monitoring](#MonitoringLogs-Configuringproductsforlogmonitoring)
-    -   [Setting the Log4j log
-        level](#MonitoringLogs-SettingtheLog4jloglevel)
--   [Managing log growth](#MonitoringLogs-Managingloggrowth)
-    -   [Managing the growth of Carbon
-        logs](#MonitoringLogs-ManagingthegrowthofCarbonlogs)
-    -   [Limiting the size of Carbon log
-        files](#MonitoringLogs-LimitingthesizeofCarbonlogfiles)
-    -   [Limiting the size of audit log
-        files](#MonitoringLogs-Limitingthesizeofauditlogfiles)
--   [Monitoring logs](#MonitoringLogs-Monitoringlogs)
-
-  
-
-### Log types in WSO2 products
-
-Listed below are the various log types that are used in WSO2 products.
-
 !!! info
-
-Separate log files are created for each of the log types given below in
-the `         <PRODUCT_HOME>/repository/logs        ` directory .
-
-
--   ** Carbon logs** : All WSO2 products are shipped with log4j logging
-    capabilities that generate administrative activities and server side
-    logs. The Carbon log ( `           wso2carbon.log          ` ) is a
-    log file that covers all the management features of a product.
-    Carbon logs are configured in t he
-    `           log4j.properties          ` file (stored in the
-    `           <PRODUCT_HOME>/repository/conf          ` directory) .
-
-        !!! info
     
-        **Java logging and Log4j integration:** I n addition to the logs
-        from libraries that use Log4j, all logs from libraries (such as,
-        Tomcat, Hazelcast and more) that use Java logging framework are also
+    **Java logging and Log4j integration:** I n addition to the logs from libraries that use Log4j, all logs from libraries (such as, Tomcat, Hazelcast and more) that use Java logging framework are also
         visible in the same log files. That is, when Java logging is enabled
         in Carbon, only the Log4j appenders will write to the log files. If
         the Java Logging Handlers have logs, these logs will be delegated to
@@ -125,173 +17,270 @@ the `         <PRODUCT_HOME>/repository/logs        ` directory .
         `           log4j.properties          ` file are used for this
         implementation:
     
-        -   `            org.wso2.carbon.logging.appenders.CarbonConsoleAppender           `
+        - `            org.wso2.carbon.logging.appenders.CarbonConsoleAppender           `
         -   `            org.wso2.carbon.logging.appenders.CarbonDailyRollingFileAppender           `
-    
 
--   **Audit logs:** Audit logs are used for tracking the sequence of
-    actions that affect a particular task carried out on the server.
-    These are also configured in t he
-    `          log4j.properties         ` file.
--   **HTTP access logs:** HTTP requests/responses are logged in access
-    logs to monitor the activities related to an application's usage.
-    These logs are configured in the
-    `          catalina-server.xml         ` file (stored in the \<
-    `          PRODUCT_HOME>/repository/conf/tomcat/         `
-    directory).
--   **Patch logs:** These logs contain details related to patches
-    applied to the product. Patch logs cannot be customized. See [WSO2
-    Patch Application
-    Process](https://docs.wso2.com/display/ADMIN44x/WSO2+Patch+Application+Process)
-    for more information.
--   **Service/Event logs:** These are logs that are enabled in some WSO2
-    products for tracing services and events using a separate log file (
-    `          wso2-<product>-trace.log         ` ). If server/event
-    tracing logs are used in your WSO2 product, you can configure them
-    in the `          log4j.properties         ` file.
--   **Product-specific logs:** Each WSO2 product may generate other log
-    files in addition to the Carbon logs, Audit logs, HTTP access logs,
-    Patch logs and Service/Event logs. See the product's documentation
-    for descriptions of these log files and instructions on how to
-    configure and use them.
+Listed below are the various log types used in WSO2 Micro Integrator.
 
-### Configuring products for log monitoring
+!!! Info
+    Separate log files are created in the `MI_HOME/repository/logs` directory for each of the log types given below.
 
-See the following information on configuring **Carbon logs** , **Audit
-logs,** **HTTP access logs** , and **Service/Event logs** for your WSO2
-product.
+## Carbon logs
 
--   ****Configuring Carbon logs****
+The Carbon log file (`wso2carbon.log`) covers all the management features of a product. Carbon logs are configured in the `log4j.properties` file (stored in the `MI_HOME/conf` directory).
 
-    You can easily configure Carbon logs using the management console of
-    your product, or you can manually edit the
-    `           log4j.properties          ` file. It is recommended to
-    use the management console to configure logging because all changes
-    made to log4j through the management console persists in the WSO2
-    Registry. Therefore, those changes will be available after the
-    server restarts and will get priority over what is defined in
-    the log4j.properties file. Also, note that the logging configuration
-    you define using the management console will apply at run time.
-    However, if you modify the `           log4j.properties          `
-    file and restart the server, the earlier log4j configuration that
-    persisted in the registry will be overwritten. T here is also an
-    option in the management console to restore the original log4j
-    configuration from the `           log4j.properties          ` file.
-    The log levels that can be configured are [listed
-    below](#MonitoringLogs-log4j_levels) .
+The Carbon log file is enabled in the product by default. You can configure the details that is captured in this log file by configuring the log4j properties.
 
-    **Identifying forged messages:  
-    **
+```
+# CARBON_LOGFILE is set to be a DailyRollingFileAppender using a PatternLayout.
+log4j.appender.CARBON_LOGFILE=org.wso2.carbon.utils.logging.appenders.CarbonDailyRollingFileAppender
 
-    T he log pattern d efines the output format of the log file. From
-    Carbon 4.4.3 onwards, the conversion character 'K' can be used in
-    the pattern layout to log a UUID. For example, the log pattern can
-    be \[%K\] \[%T\] \[%S\] \[%d\] %P%5p {%c} - %x %m {%c}%n,
-    where \[%K\] is the UUID.
+# Log file will be overridden by the configuration setting in the DB. This path should be relative to WSO2 Carbon Home
+log4j.appender.CARBON_LOGFILE.File=${carbon.home}/repository/logs/${instance.log}/wso2carbon${instance.log}.log
+log4j.appender.CARBON_LOGFILE.Append=true
+log4j.appender.CARBON_LOGFILE.layout=org.wso2.carbon.utils.logging.TenantAwarePatternLayout
 
-    The UUID can be used for identifying forged messages in the log. By
-    default, the UUID will be generated every time the server starts .
-    If required, you can configure the UUID regeneration period by
-    manually adding the following property to the
-    `           log4j.properties          ` file (stored in the
-    `           <PRODUCT_HOME>/repository/conf          ` directory):
+# ConversionPattern will be overridden by the configuration setting in the DB
+log4j.appender.CARBON_LOGFILE.layout.ConversionPattern=[%d] [%T] [%S] [%t] %P%5p {%c} - %x %m%n
+log4j.appender.CARBON_LOGFILE.layout.TenantPattern=%U%@%D [%T] [%S]
+log4j.appender.CARBON_LOGFILE.threshold=DEBUG
+```
 
-    ``` java
-        log4j.appender.CARBON_LOGFILE.layout.LogUUIDUpdateInterval=<number_of_hours>
-    ```
+## Audit logs
 
-        !!! info
-    
-        **Carbon logs in [WSO2 Data Analytics
-        Server](http://wso2.com/smart-analytics) (WSO2 DAS)**
-    
-        Carbon logs are configured in the
-        `           log4j.properties          ` file (stored in the
-        `           <PRODUCT_HOME>/repository/conf          ` directory) for
-        all WSO2 products. However, WSO2 DAS generates some additional
-        Carbon logs (which will be stored in the same [Carbon log
-        file](#MonitoringLogs-Carbon_logs) ) that should be separately
-        configured by creating a new `           log4j.properties          `
-        file in the
-        `           <DAS_HOME>/repository/conf/analytics/spark          `
-        directory. **Note:** To create this file, you need to rename the
-        `           log4j.properties.template          ` file that is
-        available in the
-        `           <DAS_HOME>/repository/conf/analytics/spark          `
-        directory to l `           og4j.properties          ` .
-    
+Audit logs are used for tracking the sequence of actions that affect a particular task carried out on the server. These are also configured in the `log4j.properties` file (stored in the `MI_HOME/conf` directory).
 
-    See the following topics for instructions:
+Audit logs are enabled in the product by default. You can configure the details that is captured in this log file by configuring the log4j properties.
 
-    -   [Configuring Log4j Properties](_Configuring_Log4j_Properties_)
-    -   [Configuring the Log Provider](_Configuring_the_Log_Provider_)
-
--   **Configuring Audit logs**
-
-    Audit logs are enabled in WSO2 products by default. You can change
-    the following default configuration by manually updating the the
-    `           log4j.properties          ` file. The log levels that
-    can be configured are [listed below](#MonitoringLogs-log4j_levels) .
-
-    ``` java
-        log4j.logger.AUDIT_LOG=INFO, AUDIT_LOGFILE
+```
+log4j.logger.AUDIT_LOG=INFO, AUDIT_LOGFILE
          
-        # Appender config to AUDIT_LOGFILE
-        log4j.appender.AUDIT_LOGFILE=org.wso2.carbon.utils.logging.appenders.CarbonDailyRollingFileAppender
-        log4j.appender.AUDIT_LOGFILE.File=${carbon.home}/repository/logs/audit.log
-        log4j.appender.AUDIT_LOGFILE.Append=true
-        log4j.appender.AUDIT_LOGFILE.layout=org.wso2.carbon.utils.logging.TenantAwarePatternLayout
-        log4j.appender.AUDIT_LOGFILE.layout.ConversionPattern=[%d] %P%5p {%c}- %x %m %n
-        log4j.appender.AUDIT_LOGFILE.layout.TenantPattern=%U%@%D [%T] [%S]
-        log4j.appender.AUDIT_LOGFILE.threshold=INFO
-        log4j.additivity.AUDIT_LOG=false
+# Appender config to AUDIT_LOGFILE
+log4j.appender.AUDIT_LOGFILE=org.wso2.carbon.utils.logging.appenders.CarbonDailyRollingFileAppender
+log4j.appender.AUDIT_LOGFILE.File=${carbon.home}/repository/logs/audit.log
+log4j.appender.AUDIT_LOGFILE.Append=true
+log4j.appender.AUDIT_LOGFILE.layout=org.wso2.carbon.utils.logging.TenantAwarePatternLayout
+log4j.appender.AUDIT_LOGFILE.layout.ConversionPattern=[%d] %P%5p {%c}- %x %m %n
+log4j.appender.AUDIT_LOGFILE.layout.TenantPattern=%U%@%D [%T] [%S]
+log4j.appender.AUDIT_LOGFILE.threshold=INFO
+log4j.additivity.AUDIT_LOG=false
+```
+
+## Patch logs 
+
+These logs contain details related to patches applied to the product. Patch logs cannot be customized.
+
+## Wire logs 
+
+You can enable wire logs to monitor HTTP messages that flow through the Micro Integrator. 
+
+!!! Warning
+    Please note that wire logs should be enabled for the troubleshooting purposes only. Running productions systems with wire logs enabled is not recommended.
+
+In order to read the wire logs, you must first identify message direction.
+<table>
+    <tr>
+        <td><b>DEBUG - wire >></b></td>
+        <td>Represents the message coming into the Micro Integrator from the wire.</td>
+    </tr>
+    <tr>
+        <td><b>DEBUG - wire <<</b></td>
+        <td>Represents the message that goes to the wire from the Micro Integrator.</td>
+    </tr>
+</table>
+
+There are two incoming messages and two outgoing messages in the above log. The first part of the message log contains the HTTP headers and is followed by the message payload. As shown in this example, wire logs are very useful for troubleshooting unexpected issues that occur while integrating systems. You can verify whether a message payload is correctly going out from the Micro Integrator, whether HTTP headers such as Content-Type is properly set in the outgoing message, etc. by looking at the wire logs.
+
+Enable wire logs by setting by uncommenting the following parameter and updating the log level (which is DEBUG by default).
+
+``` java
+log4j.logger.org.apache.synapse.transport.http.wire=DEBUG
+```
+
+## Service/Event Tracing logs 
+
+These are logs that are enabled in some WSO2 Micro Integrator for tracing services and events using a separate log file (`wso2-<product>-trace.log`). If server/event tracing logs are used in your product, you can configure them in the `log4j.properties` file (stored in the `MI_HOME/conf` directory).
+
+A separate log file for tracing services/events are enabled for certain WSO2 products in the `           log4j.properties          `file using a specific appender. These logs are published to a file named `           wso2-<product>-trace.log          ` .
+
+## HTTP Access logs
+
+HTTP requests/responses are logged to monitor the activities related to an application's usage. HTTP access logs help you monitor information such as the persons who access the product, how many hits are received, what the errors are, etc. This information is useful for troubleshooting errors.
+
+In the Micro Integrator, access logs can be generated for the PassThrough and NIO transports. The PassThrough/NIO transports works on 8280/8243 ports and is used for API/Service invocations. By default, the access logs from both the servlet transport and the PassThrough/NIO transports are written to a common access log file located in the `MI_HOME/repository/logs/` directory.
+
+<!--
+### Configuring access logs for the HTTP servlet transport
+
+!!! note
+
+**Note** that access logs for the HTTP servlet transport logs details of
+the request as well as the response on a single log line.
+
+
+As the runtime of WSO2 products is based on Apache Tomcat, you can use
+the `         Access_Log_Valve        ` variable in Tomcat as explained
+below to configure access logs for the HTTP servlet transport:
+
+1.  Open the \<
+    `           EI_HOME>/conf/tomcat/catalina-server.xml          ` file
+    (which is the server descriptor file for the embedded Tomcat
+    integration)
+
+2.  Customize the attributes for the
+    `           Access_Log_Valve          ` variable shown below.
+
+    ``` java
+        <Valve className="org.apache.catalina.valves.AccessLogValve" 
+                       directory="${carbon.home}/repository/logs"
+                       prefix="http_access_management_console_" 
+                       suffix=".log"
+                       pattern="combined" />
     ```
 
--   **Configuring HTTP access logs**
+    The attributes that are used by default are explained below. See the
+    descriptions of the Tomcat-supported [Access Log
+    Valve attributes](http://tomcat.apache.org/tomcat-7.0-doc/config/valve.html#Access_Log_Valve/Attributes)
+    and customize the required values.
 
-    See [HTTP Access Logging](_HTTP_Access_Logging_) for instructions on
-    how to configure and use HTTP access logs.
-
--   **Configuring Service/Event tracing logs**  
-    A separate log file for tracing services/events are enabled for
-    certain WSO2 products in the `           log4j.properties          `
-    file using a specific appender. These logs are published to a file
-    named `           wso2-<product>-trace.log          ` . See the
-    table given below for instructions relevant to your product:
-
-    <table>
-    <thead>
-    <tr class="header">
-    <th>Product</th>
-    <th>Description</th>
-    </tr>
-    </thead>
+    <table style="width:100%;">
+    <colgroup>
+    <col style="width: 5%" />
+    <col style="width: 94%" />
+    </colgroup>
     <tbody>
     <tr class="odd">
-    <td>WSO2 DAS</td>
+    <td>directory</td>
+    <td>The path to the directory that will store the access log file. By default, this location is set to " <code>               ${carbon.home}/repository/logs"              </code> in all WSO2 products.</td>
+    </tr>
+    <tr class="even">
+    <td>prefix</td>
+    <td>The prefix added to the log file's name. By default, this is "http_access_management_console_".</td>
+    </tr>
+    <tr class="odd">
+    <td>suffix</td>
+    <td>The suffix added to the log file's name. By default, this is ".log".</td>
+    </tr>
+    <tr class="even">
+    <td>pattern</td>
     <td><div class="content-wrapper">
-    <p>Event tracing logs are enabled in WSO2 DAS using the <code>                 EVENT_TRACE_LOGGER                </code> appender as shown below (Click <strong>Message tracing log configuration</strong> ). This log file stores logs related to events in WSO2 DAS. By default, this appender uses the root log level, which is INFO. You can override the root log level by giving a specific log level for the appender as <a href="#MonitoringLogs-log4j_levels">explained here</a> .</p>
-    <div id="expander-618749401" class="expand-container">
-    <div id="expander-control-618749401" class="expand-control">
-    <img src="images/icons/grey_arrow_down.png" class="expand-control-image" /> Message tracing log configuration
-    </div>
-    <div id="expander-content-618749401" class="expand-content">
+    <p>The attribute defines the format for the log pattern, which consists of the information fields from the requests and responses that should be logged. The pattern format is created using the following attributes:</p>
+    <ul>
+    <li><p>A standard value to represent a particular string. For example, "%h" represents the remote host name in the request. See the list of <a href="https://tomcat.apache.org/tomcat-7.0-doc/api/org/apache/catalina/valves/AccessLogValve.html">string replacement values supported by the Tomcat valve</a> .</p></li>
+    <li><strong>%{xxx}i</strong> is used to represent the header in the incoming request (xxx=header value).</li>
+    <li><strong>%{xxx}o</strong> is used to represents the header in the outgoing request (xxx=header value).</li>
+    </ul>
+    <p>While you can use the above attributes to define a custom pattern, the standard patterns shown below can be used.</p>
+    <ul>
+    <li><p><strong>common</strong> ( <a href="http://httpd.apache.org/docs/1.3/logs.html#common">Apache common log pattern</a> ):</p>
     <div class="code panel pdl" style="border-width: 1px;">
     <div class="codeContent panelContent pdl">
-    <div class="sourceCode" id="cb1" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence" style="brush: java; gutter: false; theme: Confluence"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb1-1"><a href="#cb1-1"></a>log4j.<span class="fu">category</span>.<span class="fu">EVENT_TRACE_LOGGER</span>=INFO, EVENT_TRACE_APPENDER, EVENT_TRACE_MEMORYAPPENDER</span>
-    <span id="cb1-2"><a href="#cb1-2"></a>log4j.<span class="fu">additivity</span>.<span class="fu">EVENT_TRACE_LOGGER</span>=<span class="kw">false</span></span>
-    <span id="cb1-3"><a href="#cb1-3"></a>log4j.<span class="fu">appender</span>.<span class="fu">EVENT_TRACE_APPENDER</span>=org.<span class="fu">apache</span>.<span class="fu">log4j</span>.<span class="fu">DailyRollingFileAppender</span></span>
-    <span id="cb1-4"><a href="#cb1-4"></a>log4j.<span class="fu">appender</span>.<span class="fu">EVENT_TRACE_APPENDER</span>.<span class="fu">File</span>=${carbon.<span class="fu">home</span>}/repository/logs/${instance.<span class="fu">log</span>}/wso2-das-trace${instance.<span class="fu">log</span>}.<span class="fu">log</span></span>
-    <span id="cb1-5"><a href="#cb1-5"></a>log4j.<span class="fu">appender</span>.<span class="fu">EVENT_TRACE_APPENDER</span>.<span class="fu">Append</span>=<span class="kw">true</span></span>
-    <span id="cb1-6"><a href="#cb1-6"></a>log4j.<span class="fu">appender</span>.<span class="fu">EVENT_TRACE_APPENDER</span>.<span class="fu">layout</span>=org.<span class="fu">apache</span>.<span class="fu">log4j</span>.<span class="fu">PatternLayout</span></span>
-    <span id="cb1-7"><a href="#cb1-7"></a>log4j.<span class="fu">appender</span>.<span class="fu">EVENT_TRACE_APPENDER</span>.<span class="fu">layout</span>.<span class="fu">ConversionPattern</span>=%d{HH:mm:ss,SSS} [%X{ip}-%X{host}] [%t] %5p %c{<span class="dv">1</span>} %m%n</span>
-    <span id="cb1-8"><a href="#cb1-8"></a># The memory appender <span class="kw">for</span> trace logger</span>
-    <span id="cb1-9"><a href="#cb1-9"></a>log4j.<span class="fu">appender</span>.<span class="fu">EVENT_TRACE_MEMORYAPPENDER</span>=org.<span class="fu">wso2</span>.<span class="fu">carbon</span>.<span class="fu">utils</span>.<span class="fu">logging</span>.<span class="fu">appenders</span>.<span class="fu">MemoryAppender</span></span>
-    <span id="cb1-10"><a href="#cb1-10"></a>log4j.<span class="fu">appender</span>.<span class="fu">EVENT_TRACE_MEMORYAPPENDER</span>.<span class="fu">bufferSize</span>=<span class="dv">2000</span></span>
-    <span id="cb1-11"><a href="#cb1-11"></a>log4j.<span class="fu">appender</span>.<span class="fu">EVENT_TRACE_MEMORYAPPENDER</span>.<span class="fu">layout</span>=org.<span class="fu">apache</span>.<span class="fu">log4j</span>.<span class="fu">PatternLayout</span></span>
-    <span id="cb1-12"><a href="#cb1-12"></a>log4j.<span class="fu">appender</span>.<span class="fu">EVENT_TRACE_MEMORYAPPENDER</span>.<span class="fu">layout</span>.<span class="fu">ConversionPattern</span>=%d{HH:mm:ss,SSS} [%X{ip}-%X{host}] [%t] %5p %m%n</span></code></pre></div>
+    <div class="sourceCode" id="cb1" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence" style="brush: java; gutter: false; theme: Confluence"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb1-1"><a href="#cb1-1"></a>pattern=%h %l %u %t <span class="st">&quot;%r&quot;</span> %s %b</span></code></pre></div>
+    </div>
+    </div></li>
+    <li><p><strong>combined</strong> ( <a href="http://httpd.apache.org/docs/1.3/logs.html#combined">Apache combined log pattern</a> ):</p>
+    <div class="code panel pdl" style="border-width: 1px;">
+    <div class="codeContent panelContent pdl">
+    <div class="sourceCode" id="cb2" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence" style="brush: java; gutter: false; theme: Confluence"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb2-1"><a href="#cb2-1"></a>pattern=%h %l %u %t <span class="st">&quot;%r&quot;</span> %s %b <span class="st">&quot;%{Referer}i&quot;</span> <span class="st">&quot;%{User-Agent}i&quot;</span></span></code></pre></div>
+    </div>
+    </div></li>
+    </ul>
+    <p>Note that, by default, the "combined" pattern is enabled in the ESB.</p>
+    </div></td>
+    </tr>
+    </tbody>
+    </table>
+
+3.  Restart the server. According to the default configurations, a log
+    file named `           http_access_management_console          ` \_
+    `           .{DATE}.log          ` is created inside the \<
+    `           EI_HOME>/repository/logs          ` directory. The log
+    is rotated on a daily basis.
+-->
+
+### Configuring access logs for the PassThrough and NIO transports (Service/API invocation)
+
+!!! note
+    Access logs for the PassThrough/NIO transports log the request and the response on **two** separate log lines.
+
+By default, access logs related to service/API invocation are disabled for performance reasons in the above products. You should enable these access log only for troubleshooting errors. Follow the steps given below to enable access logs for the PassThrough transport:
+
+1.  Change the log level from `           WARN          ` to `           INFO          ` for the following entry in the
+    `           MI_HOME/conf/log4j.properties          ` configuration file.
+
+    ``` xml
+    log4j.logger.org.apache.synapse.transport.http.access=INFO
+    ```
+
+2.  You can customize the format of this access log by changing the following property values in the `MI_HOME/conf/access-log.properties` configuration file. If this file does not exist in the product by default, you can create a new file with the following parameters.
+
+    <table>
+    <tbody>
+    <tr class="odd">
+    <td>access_log_directory</td>
+    <td>Add this property ONLY if you want to change the default location of the log file. By default, the product is configured to store access logs in the <code>               &lt;EI_HOME&gt;/repository/logs              </code> directory.</td>
+    </tr>
+    <tr class="even">
+    <td>access_log_prefix</td>
+    <td><div class="content-wrapper">
+    <p>The prefix added to the log file's name. The default value is as follows:</p>
+    <div class="code panel pdl" style="border-width: 1px;">
+    <div class="codeContent panelContent pdl">
+    <div class="sourceCode" id="cb1" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence" style="brush: java; gutter: false; theme: Confluence"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb1-1"><a href="#cb1-1"></a>access_log_prefix=http_access_</span></code></pre></div>
     </div>
     </div>
+    </div></td>
+    </tr>
+    <tr class="odd">
+    <td>access_log_suffix</td>
+    <td><div class="content-wrapper">
+    <p>The suffix added to the log file's name. The default value is as follows:</p>
+    <div class="code panel pdl" style="border-width: 1px;">
+    <div class="codeContent panelContent pdl">
+    <div class="sourceCode" id="cb2" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence" style="brush: java; gutter: false; theme: Confluence"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb2-1"><a href="#cb2-1"></a>access_log_suffix=.<span class="fu">log</span></span></code></pre></div>
+    </div>
+    </div>
+    </div></td>
+    </tr>
+    <tr class="even">
+    <td>access_log_file_date_format</td>
+    <td><div class="content-wrapper">
+    <p>The date format used in access logs. The default value is as follows:</p>
+    <div class="code panel pdl" style="border-width: 1px;">
+    <div class="codeContent panelContent pdl">
+    <div class="sourceCode" id="cb3" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence" style="brush: java; gutter: false; theme: Confluence"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb3-1"><a href="#cb3-1"></a>access_log_file_date_format=yyyy-MM-dd</span></code></pre></div>
+    </div>
+    </div>
+    </div></td>
+    </tr>
+    <tr class="odd">
+    <td>access_log_pattern</td>
+    <td><div class="content-wrapper">
+    <p>The attribute defines the format for the log pattern, which consists of the information fields from the requests and responses that should be logged. The pattern format is created using the following attributes:</p>
+    <ul>
+    <li><p>A standard value to represent a particular string. For example, "%h" represents the remote host name in the request. Note that all the <a href="https://tomcat.apache.org/tomcat-7.0-doc/api/org/apache/catalina/valves/AccessLogValve.html">string replacement values supported by Tomcat</a> are NOT supported for the PassThrough transport's access logs. The list of supported values are <a href="#MonitoringAccessLogs-Supportedlogpatternformatsforthepassthroughtransport">given below</a> .</p></li>
+    <li><strong>%{xxx}i</strong> is used to represent the header in the incoming request (xxx=header value).</li>
+    <li><strong>%{xxx}o</strong> is used to represents the header in the outgoing request (xxx=header value).</li>
+    </ul>
+    <p>While you can use the above attributes to define a custom pattern, the standard patterns shown below can be used.</p>
+    <ul>
+    <li><p><strong>common</strong> ( <a href="http://httpd.apache.org/docs/1.3/logs.html#common">Apache common log pattern</a> ):</p>
+    <div class="code panel pdl" style="border-width: 1px;">
+    <div class="codeContent panelContent pdl">
+    <div class="sourceCode" id="cb4" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence" style="brush: java; gutter: false; theme: Confluence"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb4-1"><a href="#cb4-1"></a>access_log_pattern=%h %l %u %t <span class="st">&quot;%r&quot;</span> %s %b</span></code></pre></div>
+    </div>
+    </div></li>
+    <li><p><strong>combined</strong> ( <a href="http://httpd.apache.org/docs/1.3/logs.html#combined">Apache combined log pattern</a> ):</p>
+    <div class="code panel pdl" style="border-width: 1px;">
+    <div class="codeContent panelContent pdl">
+    <div class="sourceCode" id="cb5" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence" style="brush: java; gutter: false; theme: Confluence"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb5-1"><a href="#cb5-1"></a>access_log_pattern=%h %l %u %t <span class="st">&quot;%r&quot;</span> %s %b <span class="st">&quot;%{Referer}i&quot;</span> <span class="st">&quot;%{User-Agent}i&quot;</span></span></code></pre></div>
+    </div>
+    </div></li>
+    </ul>
+    <p>By default, a modified version of the <a href="http://httpd.apache.org/docs/1.3/logs.html#combined">Apache combined log format</a> is enabled in the ESB as shown below. Note that the "X-Forwarded-For" header is appended to the beginning of the usually <strong>combined</strong> log format. This correctly identifies the original node that sent the request (in situations where requests go through a proxy such as a load balancer). The "X-Forwarded-For" header must be present in the incoming request for this to be logged.</p>
+    <div class="code panel pdl" style="border-width: 1px;">
+    <div class="codeContent panelContent pdl">
+    <div class="sourceCode" id="cb6" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence" style="brush: java; gutter: false; theme: Confluence"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb6-1"><a href="#cb6-1"></a>access_log_pattern=%{X-Forwarded-For}i %h %l %u %t \<span class="st">&quot;%r</span><span class="sc">\&quot;</span><span class="st"> %s %b </span><span class="sc">\&quot;</span><span class="st">%{Referer}i</span><span class="sc">\&quot;</span><span class="st"> </span><span class="sc">\&quot;</span><span class="st">%{User-Agent}i</span><span class="sc">\&quot;</span></span></code></pre></div>
     </div>
     </div>
     </div></td>
@@ -299,126 +288,125 @@ product.
     </tbody>
     </table>
 
-#### Setting the Log4j log level
+3.  Restart the server.
 
-The log level can be set specifically for each appender in the
-`         log4j.properties        ` file by setting the threshold value.
-If a log level is not specifically given for an appender as explained
-below, the root log level (INFO) will apply to all appenders by default.
+4.  Invoke a proxy service or REST API that is deployed in the Micro. For testing purposes, use the artifacts in the [quick start
+    guide](https://docs.wso2.com/display/EI650/Quick+Start+Guide). The access log file for the service/API will be created in the
+    `MI_HOME/repository/logs` directory. The default name of the log file is `http_access_.log` .
 
-For example, shown below is how the log level is set to DEBUG for the
-`         CARBON_LOGFILE        ` appender ( [Carbon
-log](#MonitoringLogs-Carbon_logs) ):
-
-``` java
-    log4j.appender.CARBON_LOGFILE.threshold=DEBUG
-```
-
-Listed below are the log levels that can be configured:
-
-  
-
-| Level | Description                                                                                                                                                                                                                                                                     |
-|-------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| OFF   | The highest possible log level. This is intended for disabling logging.                                                                                                                                                                                                         |
-| FATAL | Indicates server errors that cause premature termination. These logs are expected to be immediately visible on the command line that you used for starting the server.                                                                                                          |
-| ERROR | Indicates other runtime errors or unexpected conditions. These logs are expected to be immediately visible on the command line that you used for starting the server.                                                                                                           |
-| WARN  | Indicates the use of deprecated APIs, poor use of API, possible errors, and other runtime situations that are undesirable or unexpected but not necessarily wrong. These logs are expected to be immediately visible on the command line that you used for starting the server. |
-| INFO  | Indicates important runtime events, such as server startup/shutdown. These logs are expected to be immediately visible on the command line that you used for starting the server . It is recommended to keep these logs to a minimum.                                           |
-| DEBUG | Provides detailed information on the flow through the system. This information is expected to be written to logs only. Generally, most lines logged by your application should be written as DEBUG logs.                                                                        |
-| TRACE | Provides additional details on the behavior of events and services. This information is expected to be written to logs only.                                                                                                                                                    |
-
-  
-
-### Managing log growth
-
-See the following content on managing the growth of **Carbon logs** and
-**Audit logs** :
-
-#### Managing the growth of Carbon logs
-
-Log growth (in [Carbon logs](#MonitoringLogs-Carbon_logs) ) can be
-managed by the following configurations in the
-`         <PRODUCT_HOME>/repository/conf/        `
-`         log4j.properties        ` file.
-
--   Configurable log rotation: By default, log rotation is on a daily
-    basis.
--   Log rotation based on time as opposed to size: This helps to inspect
-    the events that occurred during a specific time.
--   Log files are archived to maximise the use of space.
-
-The `         log4j-        ` based logging mechanism uses appenders to
-append all the log messages into a file. That is, at the end of the log
-rotation period, a new file will be created with the appended logs and
-archived. The name of the archived log file will always contain the date
-on which the file is archived.
-
-#### Limiting the size of Carbon log files
-
-You can limit the size of the
-`         <PRODUCT_HOME>/repository/logs/         wso2carbon.log        `
-file by following the steps given below. This is useful if you want to
-archive the logs and get backups periodically.
-
-1.  Change the
-    `           log4j.appender.CARBON_LOGFILE=org.wso2.carbon.utils.logging.appenders.CarbonDailyRollingFileAppender          `
-    appender in the
-    `           <PRODUCT_HOME>/repository/conf/          `
-    `           log4j.properties          ` file as follows:
-
-    ``` java
-            log4j.appender.CARBON_LOGFILE=org.apache.log4j.RollingFileAppender
-    ```
-
-2.  Add the following two properties under
-    `           RollingFileAppender          `
-
-    -   `             log4j.appender.CARBON_LOGFILE.MaxFileSize=10MB            `
-
-    -   `            log4j.appender.CARBON_LOGFILE.MaxBackupIndex=20           `
-
-        !!! info
-    
-        If the size of the log file is exceeding the value defined in the
-        `           MaxFileSize          ` property, the content is copied
-        to a backup file and the logs are continued to be added to a new
-        empty log file. The `           MaxBackupIndex          ` property
-        makes the Log4j maintain a maximum number of backup files for the
-        logs.
+    !!! Tip
+        Note that there will be delay in printing the logs to the log file.
     
 
-#### Limiting the size of audit log files
+### Supported log pattern formats for the PassThrough and NIO transports
 
-In WSO2 servers, audit logs are enabled by default. We can limit the
-audit log files with the following configuration:
-
-1.  Change the
-    `          log4j.appender.AUDIT_LOGFILE=org.wso2.carbon.logging.appenders.CarbonDailyRollingFileAppender         `
-    appender in the
-    `          <PRODUCT_HOME>/repository/conf/log4j.properties         `
-    file as follows:
-    `          log4j.appender.AUDIT_LOGFILE=org.apache.log4j.RollingFileAppender         `
-2.  Add the following two properties under
-    `          RollingFileAppender         ` :
-    -   `            log4j.appender.AUDIT_LOGFILE.MaxFileSize=10MB           `
-    -   `            log4j.appender.AUDIT_LOGFILE.MaxBackupIndex=20           `
-
-### Monitoring logs
-
-In each WSO2 product, users can configure and adjust the logging levels
-for each type of activity/transaction. There are several ways to view
-and monitor the logs:
-
--   Carbon logs (system logs and application logs) of a running Carbon
-    instance can be monitoring [using the management
-    console](_View_and_Download_Logs_) .
--   Carbon logs, as well as HTTP access logs will be printed on the
-    command terminal that open when you execute the product startup
-    script.
--   Alternatively, all log files can be viewed from the
-    `          <PRODUCT_HOME>/repository/logs         ` folder. This
-    folder contains **Audit logs** , **HTTP access logs** as well as the
-    **Carbon logs** in separate log files with time stamps . Note that
-    older Carbon logs are archived in the
-    `          wso2carbon.log         ` file.
+<table>
+<thead>
+<tr class="header">
+<th>Attribute</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><pre><code>%a</code></pre></td>
+<td><p>Remote IP address</p></td>
+</tr>
+<tr class="even">
+<td><pre><code>%A</code></pre></td>
+<td><p>Local IP address</p></td>
+</tr>
+<tr class="odd">
+<td><pre><code>%b</code></pre></td>
+<td><p>Bytes sent, excluding HTTP headers, or '-' if zero</p></td>
+</tr>
+<tr class="even">
+<td><pre><code>%B</code></pre></td>
+<td><p>Bytes sent, excluding HTTP headers</p></td>
+</tr>
+<tr class="odd">
+<td><pre><code>%c</code></pre></td>
+<td><p>Cookie value</p></td>
+</tr>
+<tr class="even">
+<td><pre><code>%C</code></pre></td>
+<td><p>Accept header</p></td>
+</tr>
+<tr class="odd">
+<td><pre><code>%e</code></pre></td>
+<td><p>Accept Encoding</p></td>
+</tr>
+<tr class="even">
+<td><pre><code>%E</code></pre></td>
+<td><p>Transfer Encoding</p></td>
+</tr>
+<tr class="odd">
+<td><pre><code>%h</code></pre></td>
+<td><p>Remote host name (or IP address if enableLookups for the connector is false)</p></td>
+</tr>
+<tr class="even">
+<td><pre><code>%l</code></pre></td>
+<td><p>Remote logical username from identd (always returns '-')</p></td>
+</tr>
+<tr class="odd">
+<td><pre><code>%L</code></pre></td>
+<td><p>Accept Language</p></td>
+</tr>
+<tr class="even">
+<td><pre><code>%k</code></pre></td>
+<td><p>Keep Alive</p></td>
+</tr>
+<tr class="odd">
+<td><pre><code>%m</code></pre></td>
+<td><p>Request method (GET, POST, etc.)</p></td>
+</tr>
+<tr class="even">
+<td><pre><code>%n</code></pre></td>
+<td><p>Content Encoding</p></td>
+</tr>
+<tr class="odd">
+<td><pre><code>%r</code></pre></td>
+<td><p>Request Element</p></td>
+</tr>
+<tr class="even">
+<td><pre><code>%s</code></pre></td>
+<td><p>HTTP status code of the response</p></td>
+</tr>
+<tr class="odd">
+<td><pre><code>%S</code></pre></td>
+<td><p>Accept Chatset</p></td>
+</tr>
+<tr class="even">
+<td><pre><code>%t</code></pre></td>
+<td><p>Date and time, in Common Log Format</p></td>
+</tr>
+<tr class="odd">
+<td><pre><code>%T</code></pre></td>
+<td><p>Time taken to process the request in seconds.</p></td>
+</tr>
+<tr class="even">
+<td><pre><code>%u</code></pre></td>
+<td><p>Remote user that was authenticated (if any), else '-'</p></td>
+</tr>
+<tr class="odd">
+<td><pre><code>%U</code></pre></td>
+<td><p>Requested URL path</p></td>
+</tr>
+<tr class="even">
+<td><pre><code>%v</code></pre></td>
+<td><p>Local server name</p></td>
+</tr>
+<tr class="odd">
+<td><pre><code>%V</code></pre></td>
+<td><p>Vary Header</p></td>
+</tr>
+<tr class="even">
+<td><pre><code>%x</code></pre></td>
+<td><p>Connection Header</p></td>
+</tr>
+<tr class="odd">
+<td><pre><code>%Z</code></pre></td>
+<td><p>Server Header</p></td>
+</tr>
+</tbody>
+</table>
