@@ -5,7 +5,7 @@ The following sections provide information and instructions on how to cluster th
 
 This deployment scenario uses a two-node Micro Integrator cluster. That is, two Micro Integrator nodes are configured to serve requests with high availability and scalability. As depicted by the following diagram, the product nodes in the cluster are fronted by an external third-party load balancer, which routes requests to the two nodes on a round-robin basis.
 
-![Micro Integrator Deployment Pattern](../../assets/img/deployment_ei.png)
+![Micro Integrator Deployment Pattern](../../assets/img/mi_deployment.png)
 
 ## Installing WSO2 Micro Integrator
 
