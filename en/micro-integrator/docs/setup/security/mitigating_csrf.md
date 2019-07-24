@@ -57,14 +57,14 @@ contains a CSRF token.
 Open the ei.toml file and add the following configurations: 
 
 - To specify the patterns that should be excluded from CSRF protection:
-  ```java
+  ```toml
   [[owasp.csrfguard.unprotected.service]]
   name = "oauthiwa"
   service = "%servletContext%/commonauth/iwa/*" 
   ```
 
 - To specity CSRF configurations.
-  ```java
+  ```toml
   [owasp.csrfguard] 
   create_token_per_page=false 
   token_length=32
@@ -72,7 +72,7 @@ Open the ei.toml file and add the following configurations:
   ```
 
 - To specify the header name.
-  ```
+  ```toml
   [owasp.csrfguard.js_servlet]
   x_request_with_header = "WSO2 CSRF Protection"
   ```

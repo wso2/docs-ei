@@ -60,31 +60,13 @@ nav:
         - 'Install in Docker': 'setup/installation/install_in_docker.md'
         - 'Install in Kubernetes': 'setup/installation/install_in_kubernetes.md'
       - Product Deployment:
-        - 'Deploying WSO2 Enterprise Integrator' : 'setup/deployment/deploying_wso2_ei.md'
+        - 'Deploying WSO2 Micro Integrator' : 'setup/deployment/deploying_wso2_ei.md'
         - 'Upgrading from a Previous Release' : 'setup/deployment/upgrading.md'
         - 'Setting up a Load Balancer': 'setup/setting_up_lb.md'
         - 'Troubleshooting Production Deployment' : 'setup/deployment/troubleshooting_deployment.md'
         - 'Product Deployment Checklist' : 'setup/deployment/deployment_checklist.md'
         - 'Backup and Recovery' : 'setup/deployment/backup_recovery.md'
-      - Data Storing:
-        - Setting up Databases:
-          - 'Setting up MySQL' : 'setup/databases/setting-up-MySQL.md'
-          - 'Setting up MSSQL' : 'setup/databases/setting-up-MSSQL.md'
-          - 'Setting up Oracle' : 'setup/databases/setting-up-Oracle.md'
-          - 'Setting up Oracle RAC' : 'setup/databases/setting-up-Oracle-RAC.md'
-          - 'Setting up IBM Informix' : 'setup/databases/setting-up-IBM-Informix.md'
-          - 'Setting up IBM DB2' : 'setup/databases/setting-up-IBM-DB2.md'
-          - 'Setting up Maria DB' : 'setup/databases/setting-up-MariaDB.md'
-          - 'Setting up Embedded Derby' : 'setup/databases/setting-up-Embedded-Derby.md'
-          - 'Setting up Remote Derby' : 'setup/databases/setting-up-Remote-Derby.md'
-          - 'Setting up PostgreSQL' : 'setup/databases/setting-up-PostgreSQL.md'
-          - 'Setting up Remote H2' : 'setup/databases/setting-up-Remote-H2.md'
         - 'Setting up a File-Based Registry' : 'setup/file_based_registry.md'
-        - Setting up a User Store:
-          - 'Setting up a JDBC User Store' : 'setup/user_stores/setting_up_jdbc_userstore.md'
-          - 'Setting up a Read-Only LDAP' : 'setup/user_stores/setting_up_ro_ldap.md'
-          - 'Setting up a Read-Write LDAP' : 'setup/user_stores/setting_up_rw_ldap.md'
-          - 'Setting up a Read-Write Active Directory' : 'setup/user_stores/setting_up_rw_ad.md'
       - Security Hardening :
         - Setting up Keystores:
           - 'Creating New Keystores' : 'setup/security/creating_keystores.md'
@@ -197,23 +179,23 @@ nav:
           - 'Working with Registry Artifacts' :  'use-cases/tasks/registry_artifacts/working-with-registry-artifacts.md'
           - 'Managing Registry Artifacts' : 'use-cases/tasks/registry_artifacts/managing-the-registry.md'
           - 'Working with Local Registry Entries' : 'use-cases/tasks/registry_artifacts/working-with-local-registry-entries.md'
-    - Administration and Observability:
-      - 'Monitoring Message Round Trip' : 'administer-and-observe/observability.md'
-      - 'JMX Monitoring' : 'administer-and-observe/jmx_monitoring.md'
-      - 'SNMP Monitoring' : 'administer-and-observe/snmp_monitoring.md'
-      - 'Monitoring with Prometheus' : 'administer-and-observe/monitoring_with_prometheus.md'
+    - Administration:
+      - Observability:
+        - 'Monitoring Message Round Trip' : 'administer-and-observe/observability.md'
+        - 'JMX Monitoring' : 'administer-and-observe/jmx_monitoring.md'
+        - 'SNMP Monitoring' : 'administer-and-observe/snmp_monitoring.md'
+        - 'Prometheus for Monitoring' : 'administer-and-observe/monitoring_with_prometheus.md'
+        - 'CLI for Monitoring' : 'administer-and-observe/using-the-command-line-interface.md'
+        - Monitoring Logs:
+          - 'Using Logs in WSO2 Micro Integrator' : 'administer-and-observe/logs/monitoring_logs.md'
+          - 'Configuring Log4j Properties' : 'administer-and-observe/logs/configuring_log4j_properties.md'
+          - 'Managing Log Growth' : 'administer-and-observe/logs/managing_log_growth.md'
+          - 'Masking Sensitive Information in Logs' : 'administer-and-observe/logs/masking_sensitive_info_in_logs.md'
+        - Monitoring TCP Messages:
+          - 'Starting TCPMon' : 'administer-and-observe/tcp/starting_tcp_mon.md'
+          - 'Message Monitoring with TCPMon' : 'administer-and-observe/tcp/message_monitoring_with_tcpmon.md'
+          - 'Other Usages of TCPMon' : 'administer-and-observe/tcp/other_usages_of_tcpmon.md'
       - 'Working with Admin Services' : 'administer-and-observe/working-with-admin-services.md'
-      - 'Using the Command-Line Interface' : 'administer-and-observe/using-the-command-line-interface.md'
-      - Monitoring Logs:
-        - 'About Logs' : 'administer-and-observe/logs/monitoring_logs.md'
-        - 'Monitoring Access Logs' : 'administer-and-observe/logs/monitoring_access_logs.md'
-        - 'Configuring Log4j Properties' : 'administer-and-observe/logs/configuring_log4j_properties.md'
-        - 'Configuring the Log Provider' : 'administer-and-observe/logs/configuring_the_log_provider.md'
-        - 'Masking Sensitive Information in Logs' : 'administer-and-observe/logs/masking_sensitive_info_in_logs.md'
-      - Monitoring TCP Messages:
-        - 'Starting TCPMon' : 'administer-and-observe/tcp/starting_tcp_mon.md'
-        - 'Message Monitoring with TCPMon' : 'administer-and-observe/tcp/message_monitoring_with_tcpmon.md'
-        - 'Other Usages of TCPMon' : 'administer-and-observe/tcp/other_usages_of_tcpmon.md'
     - References:
       - 'Enterprise Integration Patterns' : 'references/enterprise-Integration-Patterns.md'
       - 'Configuration Catalog' : 'references/ei_config_catalog.md'
