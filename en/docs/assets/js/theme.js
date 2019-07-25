@@ -151,7 +151,7 @@ request.onload = function() {
         
           // Pre-release version update
           document.getElementById('pre-release-version-documentation-link')
-              .setAttribute('href', docSetUrl + 'next/');
+              .setAttribute('href', docSetUrl + 'next/ballerina-integrator');
       }
       
   } else {
