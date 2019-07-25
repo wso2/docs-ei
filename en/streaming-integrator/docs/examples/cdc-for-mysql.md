@@ -40,22 +40,22 @@ You can capture following type of changes done to a database table:
     Before you begin:<br/>
     - You need to have access to a MySQL instance.<br/>
     - Enable binary logging in the MySQL server. For detailed instructions, see [Enabling the Binlog tutorial by debezium](https://debezium.io/docs/connectors/mysql/#enabling-the-binlog). 
+    - Add the MySQL JDBC driver into the `<SI_HOME>/lib` directory as follows:
+      1. Download the MySQL JDBC driver from [the MySQL site](https://dev.mysql.com/get/Downloads/Connector-J/mysql-connector-java-5.1.45.tar.gz).
+      2. Unzip the archive.
+      3. Copy the `mysql-connector-java-5.1.45-bin.jar` to the `<SI_HOME>/lib` directory.
+      4. Start the SI server.
 
-1. Add the MySQL JDBC driver into the `<SI_HOME>/lib` directory as follows:
-    1. Download the MySQL JDBC driver from [the MySQL site](https://dev.mysql.com/get/Downloads/Connector-J/mysql-connector-java-5.1.45.tar.gz).
-    2. Unzip the archive.
-    3. Copy the `mysql-connector-java-5.1.45-bin.jar` to the `<SI_HOME>/lib` directory.
-    4. Start the SI server.
     
-2. Let's create a new database in the MySQL server which you are to use throughout this tutorial. To do this, execute the following query.
+1. Let's create a new database in the MySQL server which you are to use throughout this tutorial. To do this, execute the following query.
     ```
     CREATE SCHEMA production;
     ```  
-3. Create a new user by executing the following SQL query.
+2. Create a new user by executing the following SQL query.
     ```
     GRANT SELECT, RELOAD, SHOW DATABASES, REPLICATION SLAVE, REPLICATION CLIENT ON *.* TO 'wso2si' IDENTIFIED BY 'wso2';
     ```
-4. Switch to the `production` database and create a new table, by executing the following queries:
+3. Switch to the `production` database and create a new table, by executing the following queries:
     ```
     use production;
     ```
