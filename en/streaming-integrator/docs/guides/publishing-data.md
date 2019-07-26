@@ -187,3 +187,19 @@ the completed Siddhi application is as follows.
 
 SI publishes messages in the custom format when it makes changes to the attribute names in the output stream before 
 publishing. To understand how this is done, follow the procedure below:
+
+!!!info
+    In this section, you can update the same Siddhi application that you saved in the [Publishing a message in default format](#publishing-a-message-in-default-format)section.
+    
+1. Open your Siddhi application with a sink configuration.
+2. Within the `@map` annotation of the sink configuration, add an `@payload` annotation. There are two ways to configure this as follows:
+    + Some mappers such as `xml`, `json`, and `text` accept only one output payload using the following format: 
+        `@payload( '<PAYLOAD>' )`
+     e.g., In the example, the mapping type is `text`. Therefore, you can add a message to be printed with the output by configuring the `@payload` annotation as follows.
+     ```jql
+
+     ```
+    + Some mappers such as `key-value` accept series of mapping values defined as follows: 
+        `@payload( key1='mapping_1', 'key2'='user : {{user}}') `
+        
+3. Save the Siddhi application.
