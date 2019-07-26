@@ -286,5 +286,4 @@ schema before it processes the message. To understand how messages are consumed 
         @source(type='http', receiver.url='http://localhost:5005/SalesTotalsEP', @map(type='json', @attributes(transNo = '$.transaction', product = product, quantity = quantity, salesValue = '$.sales')))
         define stream ConsumerSalesTotalsStream(transNo int, product string, price int, quantity int, salesValue long);
         ```
-     
-
+   
