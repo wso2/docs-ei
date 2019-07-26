@@ -211,7 +211,7 @@ schema before it processes the message. To understand how messages are consumed 
     @source(type='http', receiver.url='http://localhost:5005/SalesTotalsEP', @map(type='json'))
     define stream ConsumerSalesTotalsStream(transNo int, product string, price int, quantity int, salesValue long);
     ```
-3. Save the Siddhi application.
+3. Save the Siddhi application. If you save the Siddhi application that was created using the example configurations, the completed Siddhi application is as follows.
     ```jql
     @App:name("SalesTotalsApp")
     @App:description("Description of the plan")
