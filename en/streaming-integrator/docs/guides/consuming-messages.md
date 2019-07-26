@@ -188,7 +188,7 @@ e.g., The HTTP source that you previously created can be referred to as follows.
 @source(ref='HTTP')
 define stream ConsumeSalesTotalsStream (transNo int, product string, price int, quantity int, salesValue long);
 ```
-### Supported Event Source types
+### Supported event source types
 <source categories table here> 
 
 ### Supported message formats
@@ -198,7 +198,8 @@ define stream ConsumeSalesTotalsStream (transNo int, product string, price int, 
 SI consumes a message in the default format when it makes no changes to the names of the attributes of the message 
 schema before it processes the message. To understand how messages are consumed in default format, follow the procedure below.
 
-1. Create a Siddhi application with a source configuration following the instructions in the previous sections.
+
+1. Create a Siddhi application with a source configuration following the instructions in the [Defining event source inline in Siddhi Application](#defining-event-source-inline-in-the-siddhi-application) subsection.
 2. In the source configuration, make sure that an `@map` annotation is included with the mapping type as shown below.
     ```
     @source(type='<SOURCE_TYPE>', <PARAMETER1_NAME>='<PARAMETER1_VALUE>', @map(type='<MAP_TYPE>'))
@@ -245,9 +246,45 @@ schema before it processes the message. To understand how messages are consumed 
     }'
     ```
 
- 
-
 #### Consuming a message in custom format
 
 SI consumes a message in the custom format when it makes changes to the names of the attributes of the message 
 schema before it processes the message. To understand how messages are consumed in custom format, follow the procedure below.
+
+!!!info
+    For this section, you can edit the same Siddhi application that you saved in the [Consuming a message in default format](#consuming-a-message-in-default-format)subsection.
+    
+1. Open your Siddhi application with a source configuration.
+2. In the @map annotation within the source configuration, add the `@attributes` annotation with mappings for different attributes. This can be done in two ways as shown below.
+    - Defining attributes as keys and mapping content as values in the following format.
+        ```
+        @source(type='<SOURCE_TYPE>', <PARAMETER1_NAME>='<PARAMETER1_VALUE>', @map(type='<MAP_TYPE>', @attributes( attributeN='mapping_N', attribute1='mapping_1')))
+        define stream <Stream_Name>(attribute1_name attribute1_type, attribute2_name attribute2_type, ...);
+        ``` 
+       e.g., In the Siddhi application used as an example in the previous section, assume that when receiving events, the `transNo` attribute is received as `transaction` and the `salesValue` attribute is received as `sales`.  The mapping type is JSON. therefore, you can  add the mappings as JSONPath expressions.
+       
+          |**Stream Attribute Name**|**JSON Event Attribute Name**|**JSONPath Expression**|
+          |----------------|----------------|----------------|
+          |`transNo`|`transaction`|`$.transaction`|
+          |`salesValue`| `sales` | `$.sales`|
+       
+         The mapping can be defined as follows.
+      
+         ```
+         @source(type='http', receiver.url='http://localhost:5005/SalesTotalsEP', @map(type='json', @attributes(transNo = '$.transaction', salesValue = '$.sales')))
+         define stream ConsumerSalesTotalsStream(transNo int, product string, price int, quantity int, salesValue long);
+         ```
+        
+    - Defining the mapping content of all attributes in the same order as how the attributes are defined in stream definition.        
+        ```
+        @source(type='<SOURCE_TYPE>', <PARAMETER1_NAME>='<PARAMETER1_VALUE>', @map(type='<MAP_TYPE>', @attributes( 'mapping_1', 'mapping_N')))
+        define stream <Stream_Name>(attribute1_name attribute1_type, attributeN_name attributeN_type, ...);
+        ``` 
+    e.g., If you consider the same example, mapping can be defined as follows.
+              
+        ```
+        @source(type='http', receiver.url='http://localhost:5005/SalesTotalsEP', @map(type='json', @attributes(transNo = '$.transaction', product = product, quantity = quantity, salesValue = '$.sales')))
+        define stream ConsumerSalesTotalsStream(transNo int, product string, price int, quantity int, salesValue long);
+        ```
+     
+
