@@ -25,16 +25,14 @@ pool_options.maxActiv=5
 
 
 
-
 ## Deployment
 
 <div class="mb-config-catalog">
     <section>
         <div class="mb-config-options">
             <div class="superfences-tabs">
-            
-            <input name="2" type="checkbox" id="_tab_2">
-                <label class="tab-selector" for="_tab_2"><i class="icon fa fa-code"></i></label>
+            <input name="__tabs_1" type="checkbox" id="__tab_1_0">
+                <label class="tab-selector" for="__tab_1_0"><i class="icon fa fa-code"></i></label>
                 <div class="superfences-content">
                     <div class="mb-config-example">
 <pre><code class="toml">[server]
@@ -56,7 +54,7 @@ proxy_context_path = ""
                             <code>[server]</code>
                             <span class="badge-required">Required</span>
                             <p>
-                                You can count on it.This toml header groups the parameters that define the server node details.
+                                This toml header groups the parameters that are used for identifying a server node. You need to update these values when you <a href="https://wso2docs-configurationcatalog-3.netlify.com/setup/deploying_wso2_ei">set up a deployment</a>
                             </p>
                         </div>
                         <div class="params-wrap">
@@ -98,6 +96,63 @@ proxy_context_path = ""
                                     </div>
                                     <div class="param-description">
                                         <p>The IP address of the server node.</p>
+                                    </div>
+                                </div>
+                            </div><div class="param">
+                                <div class="param-name">
+                                  <span class="param-name-wrap"> <code>enable_mtom</code> </span>
+                                </div>
+                                <div class="param-info">
+                                    <div>
+                                        <p>
+                                            <span class="param-type string"> boolean </span>
+                                            
+                                        </p>
+                                        <div class="param-default">
+                                            <span class="param-default-value">Default: <code></code></span>
+                                        </div>
+                                        
+                                    </div>
+                                    <div class="param-description">
+                                        <p>Use this paramater to enable MTOM (Message Transmission Optimization Mechanism) for the product server.</p>
+                                    </div>
+                                </div>
+                            </div><div class="param">
+                                <div class="param-name">
+                                  <span class="param-name-wrap"> <code>enable_swa</code> </span>
+                                </div>
+                                <div class="param-info">
+                                    <div>
+                                        <p>
+                                            <span class="param-type string"> boolean </span>
+                                            
+                                        </p>
+                                        <div class="param-default">
+                                            <span class="param-default-value">Default: <code></code></span>
+                                        </div>
+                                        
+                                    </div>
+                                    <div class="param-description">
+                                        <p>Use this paramater to enable SwA (SOAP with Attachments) for the product server. When SwA is enabled, the ESB will process the files attached to SOAP messages.</p>
+                                    </div>
+                                </div>
+                            </div><div class="param">
+                                <div class="param-name">
+                                  <span class="param-name-wrap"> <code>offset</code> </span>
+                                </div>
+                                <div class="param-info">
+                                    <div>
+                                        <p>
+                                            <span class="param-type string"> integer </span>
+                                            
+                                        </p>
+                                        <div class="param-default">
+                                            <span class="param-default-value">Default: <code></code></span>
+                                        </div>
+                                        
+                                    </div>
+                                    <div class="param-description">
+                                        <p>Port offset allows you to run multiple WSO2 products, multiple instances of a WSO2 product, or multiple WSO2 product clusters on the same server or virtual machine (VM). Port offset defines the number by which all ports defined in the runtime such as the HTTP/S ports will be offset. For example, if the default HTTP port is 9443 and the portOffset is 1, the effective HTTP port will be 9444. Therefore, for each additional WSO2 product instance, set the port offset to a unique value (the default is 0) so that they can all run on the same server without any port conflicts.</p>
                                     </div>
                                 </div>
                             </div>
@@ -116,9 +171,8 @@ proxy_context_path = ""
     <section>
         <div class="mb-config-options">
             <div class="superfences-tabs">
-            
-            <input name="3" type="checkbox" id="_tab_3">
-                <label class="tab-selector" for="_tab_3"><i class="icon fa fa-code"></i></label>
+            <input name="__tabs_1" type="checkbox" id="__tab_1_0">
+                <label class="tab-selector" for="__tab_1_0"><i class="icon fa fa-code"></i></label>
                 <div class="superfences-content">
                     <div class="mb-config-example">
 <pre><code class="toml">[clustering]
@@ -133,16 +187,16 @@ domain = "wso2.carbon.domain"
                 <div class="doc-wrapper">
                     <div class="mb-config">
                         <div class="config-wrap">
-                            <code>[server]</code>
+                            <code>[clustering]</code>
                             <span class="badge-required">Required</span>
                             <p>
-                                You can count on it.This toml header groups the parameters that define the server node details.
+                                This config heading groups the parameters that connects the server to a clustered deployment.
                             </p>
                         </div>
                         <div class="params-wrap">
                             <div class="param">
                                 <div class="param-name">
-                                  <span class="param-name-wrap"> <code>hostname</code> </span>
+                                  <span class="param-name-wrap"> <code>members</code> </span>
                                 </div>
                                 <div class="param-info">
                                     <div>
@@ -151,178 +205,36 @@ domain = "wso2.carbon.domain"
                                             <span class="badge-required">Required</span>
                                         </p>
                                         <div class="param-default">
-                                            <span class="param-default-value">Default: <code>&quot;localhost&quot;</code></span>
-                                        </div>
-                                        <div class="param-possible">
-                                            <span class="param-possible-values">Possible Values: <code>&quot;127.0.0.1&quot;,&quot;localhost&quot;,&quot;&lt;any-ip-address&gt;&quot;</code></span>
-                                        </div>
-                                    </div>
-                                    <div class="param-description">
-                                        <p>The hostname of the WSO2 EI server instance.</p>
-                                    </div>
-                                </div>
-                            </div><div class="param">
-                                <div class="param-name">
-                                  <span class="param-name-wrap"> <code>node_ip</code> </span>
-                                </div>
-                                <div class="param-info">
-                                    <div>
-                                        <p>
-                                            <span class="param-type string"> string </span>
-                                            <span class="badge-required">Required</span>
-                                        </p>
-                                        <div class="param-default">
-                                            <span class="param-default-value">Default: <code>&quot;127.0.0.1&quot;</code></span>
+                                            <span class="param-default-value">Default: <code>[&quot;10.100.5.86:4000&quot;,&quot;10.100.5.86:4001&quot;]</code></span>
                                         </div>
                                         
                                     </div>
                                     <div class="param-description">
-                                        <p>The IP address of the server node.</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-</div>
-
-
-## Primary data store
-
-<div class="mb-config-catalog">
-    <section>
-        <div class="mb-config-options">
-            <div class="superfences-tabs">
-            
-            <input name="4" type="checkbox" id="_tab_4">
-                <label class="tab-selector" for="_tab_4"><i class="icon fa fa-code"></i></label>
-                <div class="superfences-content">
-                    <div class="mb-config-example">
-<pre><code class="toml">[database.shared_db]
-type="H2"
-url="jdbc:h2:./repository/database/WSO2SHARED_DB;DB_CLOSE_ON_EXIT=FALSE;LOCK_TIMEOUT=60000"
-username=wso2carbon
-password=wso2carbon
-</code></pre>
-                    </div>
-                </div>
-                <div class="doc-wrapper">
-                    <div class="mb-config">
-                        <div class="config-wrap">
-                            <code>[server]</code>
-                            <span class="badge-required">Required</span>
-                            <p>
-                                You can count on it.This toml header groups the parameters that define the server node details.
-                            </p>
-                        </div>
-                        <div class="params-wrap">
-                            <div class="param">
-                                <div class="param-name">
-                                  <span class="param-name-wrap"> <code>hostname</code> </span>
-                                </div>
-                                <div class="param-info">
-                                    <div>
-                                        <p>
-                                            <span class="param-type string"> string </span>
-                                            <span class="badge-required">Required</span>
-                                        </p>
-                                        <div class="param-default">
-                                            <span class="param-default-value">Default: <code>&quot;localhost&quot;</code></span>
-                                        </div>
-                                        <div class="param-possible">
-                                            <span class="param-possible-values">Possible Values: <code>&quot;127.0.0.1&quot;,&quot;localhost&quot;,&quot;&lt;any-ip-address&gt;&quot;</code></span>
-                                        </div>
-                                    </div>
-                                    <div class="param-description">
-                                        <p>The hostname of the WSO2 EI server instance.</p>
+                                        <p>Specify the well-known members in the cluster in both nodes as shown below. For example, when you configure one ESB node, you need to specify the other nodes in the cluster as well-known members as shown below. The port value for the WKA node must be the same value as it&#39;s localMemberPort (in this case it is 4000). Note that You can also use IP address ranges for the hostname (e.g., 192.168.1.2-10). However, you can define a range only for the last portion of the IP address. Smaller the range, faster the time it takes to discover members since each node has to scan a lesser number of potential members. The best practice is to add all the members (including itself) in all the nodes to avoid any conflicts in configurations.</p>
                                     </div>
                                 </div>
                             </div><div class="param">
                                 <div class="param-name">
-                                  <span class="param-name-wrap"> <code>node_ip</code> </span>
+                                  <span class="param-name-wrap"> <code>local_member_port</code> </span>
                                 </div>
                                 <div class="param-info">
                                     <div>
                                         <p>
-                                            <span class="param-type string"> string </span>
+                                            <span class="param-type string"> integer </span>
                                             <span class="badge-required">Required</span>
                                         </p>
                                         <div class="param-default">
-                                            <span class="param-default-value">Default: <code>&quot;127.0.0.1&quot;</code></span>
+                                            <span class="param-default-value">Default: <code>4000</code></span>
                                         </div>
                                         
                                     </div>
                                     <div class="param-description">
-                                        <p>The IP address of the server node.</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-</div>
-
-
-## Data store tuning
-
-<div class="mb-config-catalog">
-    <section>
-        <div class="mb-config-options">
-            <div class="superfences-tabs">
-            
-            <input name="5" type="checkbox" id="_tab_5">
-                <label class="tab-selector" for="_tab_5"><i class="icon fa fa-code"></i></label>
-                <div class="superfences-content">
-                    <div class="mb-config-example">
-<pre><code class="toml">[database.shared_db_options]
-maxActive="50"
-maxWait="6000"
-testOnBorrow=true
-validationInterval="30000"
-defaultAutoCommit=true
-</code></pre>
-                    </div>
-                </div>
-                <div class="doc-wrapper">
-                    <div class="mb-config">
-                        <div class="config-wrap">
-                            <code>[server]</code>
-                            <span class="badge-required">Required</span>
-                            <p>
-                                You can count on it.This toml header groups the parameters that define the server node details.
-                            </p>
-                        </div>
-                        <div class="params-wrap">
-                            <div class="param">
-                                <div class="param-name">
-                                  <span class="param-name-wrap"> <code>hostname</code> </span>
-                                </div>
-                                <div class="param-info">
-                                    <div>
-                                        <p>
-                                            <span class="param-type string"> string </span>
-                                            <span class="badge-required">Required</span>
-                                        </p>
-                                        <div class="param-default">
-                                            <span class="param-default-value">Default: <code>&quot;localhost&quot;</code></span>
-                                        </div>
-                                        <div class="param-possible">
-                                            <span class="param-possible-values">Possible Values: <code>&quot;127.0.0.1&quot;,&quot;localhost&quot;,&quot;&lt;any-ip-address&gt;&quot;</code></span>
-                                        </div>
-                                    </div>
-                                    <div class="param-description">
-                                        <p>The hostname of the WSO2 EI server instance.</p>
+                                        <p>The port that is assigned to the server node in the deployment. This port number is not affected by the port offset value specified under the [server] section. If this port number is already assigned to another server, the clustering framework automatically increments this port number. However, if there are two servers running on the same machine, ensure that a unique port is set for each server. For example, you can have port 4000 for node 1 and port 4001 for node 2.</p>
                                     </div>
                                 </div>
                             </div><div class="param">
                                 <div class="param-name">
-                                  <span class="param-name-wrap"> <code>node_ip</code> </span>
+                                  <span class="param-name-wrap"> <code>local_member_port</code> </span>
                                 </div>
                                 <div class="param-info">
                                     <div>
@@ -331,170 +243,52 @@ defaultAutoCommit=true
                                             <span class="badge-required">Required</span>
                                         </p>
                                         <div class="param-default">
-                                            <span class="param-default-value">Default: <code>&quot;127.0.0.1&quot;</code></span>
-                                        </div>
-                                        
-                                    </div>
-                                    <div class="param-description">
-                                        <p>The IP address of the server node.</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-</div>
-
-
-## User stores
-
-<div class="mb-config-catalog">
-    <section>
-        <div class="mb-config-options">
-            <div class="superfences-tabs">
-            
-            <input name="6" type="checkbox" id="_tab_6">
-                <label class="tab-selector" for="_tab_6"><i class="icon fa fa-code"></i></label>
-                <div class="superfences-content">
-                    <div class="mb-config-example">
-<pre><code class="toml">[user_store]
-type="database"
-connection_url=""
-connection_name="uid=admin,ou=wso2ei"
-connection_password="$secret{ldap_password}"
-base_dn="dc=example,dc=com"
-</code></pre>
-                    </div>
-                </div>
-                <div class="doc-wrapper">
-                    <div class="mb-config">
-                        <div class="config-wrap">
-                            <code>[server]</code>
-                            <span class="badge-required">Required</span>
-                            <p>
-                                You can count on it.This toml header groups the parameters that define the server node details.
-                            </p>
-                        </div>
-                        <div class="params-wrap">
-                            <div class="param">
-                                <div class="param-name">
-                                  <span class="param-name-wrap"> <code>hostname</code> </span>
-                                </div>
-                                <div class="param-info">
-                                    <div>
-                                        <p>
-                                            <span class="param-type string"> string </span>
-                                            <span class="badge-required">Required</span>
-                                        </p>
-                                        <div class="param-default">
-                                            <span class="param-default-value">Default: <code>&quot;localhost&quot;</code></span>
+                                            <span class="param-default-value">Default: <code>10.100.5.86</code></span>
                                         </div>
                                         <div class="param-possible">
-                                            <span class="param-possible-values">Possible Values: <code>&quot;127.0.0.1&quot;,&quot;localhost&quot;,&quot;&lt;any-ip-address&gt;&quot;</code></span>
+                                            <span class="param-possible-values">Possible Values: <code>The hostname of the server node. When you have multiple nodes in the deployment, this hostname will be used to identify the node during inter-node communications.</code></span>
                                         </div>
                                     </div>
                                     <div class="param-description">
-                                        <p>The hostname of the WSO2 EI server instance.</p>
+                                        <p>The hostname of the server node. When you have multiple nodes in the deployment, this hostname will be used to identify the node during inter-node communications.</p>
                                     </div>
                                 </div>
                             </div><div class="param">
                                 <div class="param-name">
-                                  <span class="param-name-wrap"> <code>node_ip</code> </span>
+                                  <span class="param-name-wrap"> <code>membership_scheme</code> </span>
                                 </div>
                                 <div class="param-info">
                                     <div>
                                         <p>
                                             <span class="param-type string"> string </span>
-                                            <span class="badge-required">Required</span>
+                                            
                                         </p>
                                         <div class="param-default">
-                                            <span class="param-default-value">Default: <code>&quot;127.0.0.1&quot;</code></span>
+                                            <span class="param-default-value">Default: <code>wka</code></span>
                                         </div>
                                         
                                     </div>
                                     <div class="param-description">
-                                        <p>The IP address of the server node.</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-</div>
-
-
-## System administrator
-
-<div class="mb-config-catalog">
-    <section>
-        <div class="mb-config-options">
-            <div class="superfences-tabs">
-            
-            <input name="7" type="checkbox" id="_tab_7">
-                <label class="tab-selector" for="_tab_7"><i class="icon fa fa-code"></i></label>
-                <div class="superfences-content">
-                    <div class="mb-config-example">
-<pre><code class="toml">[super_admin]
-username="admin"
-password="admin"
-create_admin_account=true
-</code></pre>
-                    </div>
-                </div>
-                <div class="doc-wrapper">
-                    <div class="mb-config">
-                        <div class="config-wrap">
-                            <code>[server]</code>
-                            <span class="badge-required">Required</span>
-                            <p>
-                                You can count on it.This toml header groups the parameters that define the server node details.
-                            </p>
-                        </div>
-                        <div class="params-wrap">
-                            <div class="param">
-                                <div class="param-name">
-                                  <span class="param-name-wrap"> <code>hostname</code> </span>
-                                </div>
-                                <div class="param-info">
-                                    <div>
-                                        <p>
-                                            <span class="param-type string"> string </span>
-                                            <span class="badge-required">Required</span>
-                                        </p>
-                                        <div class="param-default">
-                                            <span class="param-default-value">Default: <code>&quot;localhost&quot;</code></span>
-                                        </div>
-                                        <div class="param-possible">
-                                            <span class="param-possible-values">Possible Values: <code>&quot;127.0.0.1&quot;,&quot;localhost&quot;,&quot;&lt;any-ip-address&gt;&quot;</code></span>
-                                        </div>
-                                    </div>
-                                    <div class="param-description">
-                                        <p>The hostname of the WSO2 EI server instance.</p>
+                                        <p>Add this parameter to change the default membership scheme. By default, the well-known address registration method (WKA) is used, which ensures that each node sends cluster initiation messages to the WKA members.</p>
                                     </div>
                                 </div>
                             </div><div class="param">
                                 <div class="param-name">
-                                  <span class="param-name-wrap"> <code>node_ip</code> </span>
+                                  <span class="param-name-wrap"> <code>domain</code> </span>
                                 </div>
                                 <div class="param-info">
                                     <div>
                                         <p>
                                             <span class="param-type string"> string </span>
-                                            <span class="badge-required">Required</span>
+                                            
                                         </p>
                                         <div class="param-default">
-                                            <span class="param-default-value">Default: <code>&quot;127.0.0.1&quot;</code></span>
+                                            <span class="param-default-value">Default: <code>wso2.carbon.domain</code></span>
                                         </div>
                                         
                                     </div>
                                     <div class="param-description">
-                                        <p>The IP address of the server node.</p>
+                                        <p>Add this parameter to change the default cluster (domain name) to which the server node joins. By default, wso2.carbon.domain is set.</p>
                                     </div>
                                 </div>
                             </div>
@@ -513,9 +307,8 @@ create_admin_account=true
     <section>
         <div class="mb-config-options">
             <div class="superfences-tabs">
-            
-            <input name="8" type="checkbox" id="_tab_8">
-                <label class="tab-selector" for="_tab_8"><i class="icon fa fa-code"></i></label>
+            <input name="__tabs_1" type="checkbox" id="__tab_1_0">
+                <label class="tab-selector" for="__tab_1_0"><i class="icon fa fa-code"></i></label>
                 <div class="superfences-content">
                     <div class="mb-config-example">
 <pre><code class="toml">[keystore.tls]
@@ -530,51 +323,108 @@ key_password="wso2carbon"
                 <div class="doc-wrapper">
                     <div class="mb-config">
                         <div class="config-wrap">
-                            <code>[server]</code>
-                            <span class="badge-required">Required</span>
+                            <code>[[keystore_tls]</code>
+                            
                             <p>
-                                You can count on it.This toml header groups the parameters that define the server node details.
+                                This config heading in the ei.toml file groups the parameters that connect the server to the primary keystore. This keystore is used for SSL handshaking (when the server communicates with another server) and for encrypting plain text information in configuration files. By default, this keystore is also used for encrypted data in internal datastores, unless you have configured a separate keystore for internal data encryption. Read more about configuring the primary keystore.
                             </p>
                         </div>
                         <div class="params-wrap">
                             <div class="param">
                                 <div class="param-name">
-                                  <span class="param-name-wrap"> <code>hostname</code> </span>
+                                  <span class="param-name-wrap"> <code>file_name</code> </span>
                                 </div>
                                 <div class="param-info">
                                     <div>
                                         <p>
                                             <span class="param-type string"> string </span>
-                                            <span class="badge-required">Required</span>
+                                            
                                         </p>
                                         <div class="param-default">
-                                            <span class="param-default-value">Default: <code>&quot;localhost&quot;</code></span>
-                                        </div>
-                                        <div class="param-possible">
-                                            <span class="param-possible-values">Possible Values: <code>&quot;127.0.0.1&quot;,&quot;localhost&quot;,&quot;&lt;any-ip-address&gt;&quot;</code></span>
-                                        </div>
-                                    </div>
-                                    <div class="param-description">
-                                        <p>The hostname of the WSO2 EI server instance.</p>
-                                    </div>
-                                </div>
-                            </div><div class="param">
-                                <div class="param-name">
-                                  <span class="param-name-wrap"> <code>node_ip</code> </span>
-                                </div>
-                                <div class="param-info">
-                                    <div>
-                                        <p>
-                                            <span class="param-type string"> string </span>
-                                            <span class="badge-required">Required</span>
-                                        </p>
-                                        <div class="param-default">
-                                            <span class="param-default-value">Default: <code>&quot;127.0.0.1&quot;</code></span>
+                                            <span class="param-default-value">Default: <code>wso2carbon.jks</code></span>
                                         </div>
                                         
                                     </div>
                                     <div class="param-description">
-                                        <p>The IP address of the server node.</p>
+                                        <p>The name of the keystore file that is used for SSL communication and for encrypting/decrypting data in configuration files.</p>
+                                    </div>
+                                </div>
+                            </div><div class="param">
+                                <div class="param-name">
+                                  <span class="param-name-wrap"> <code>type</code> </span>
+                                </div>
+                                <div class="param-info">
+                                    <div>
+                                        <p>
+                                            <span class="param-type string"> string </span>
+                                            
+                                        </p>
+                                        <div class="param-default">
+                                            <span class="param-default-value">Default: <code>JKS</code></span>
+                                        </div>
+                                        <div class="param-possible">
+                                            <span class="param-possible-values">Possible Values: <code>&quot;JKS&quot;,&quot;PKCS12&quot;</code></span>
+                                        </div>
+                                    </div>
+                                    <div class="param-description">
+                                        <p>The type of the keystore file.</p>
+                                    </div>
+                                </div>
+                            </div><div class="param">
+                                <div class="param-name">
+                                  <span class="param-name-wrap"> <code>password</code> </span>
+                                </div>
+                                <div class="param-info">
+                                    <div>
+                                        <p>
+                                            <span class="param-type string"> string </span>
+                                            
+                                        </p>
+                                        <div class="param-default">
+                                            <span class="param-default-value">Default: <code>wso2carbon</code></span>
+                                        </div>
+                                        
+                                    </div>
+                                    <div class="param-description">
+                                        <p>The password of the keystore file that is used for SSL communication and for encrypting/decrypting data in configuration files. The keystore password is used when accessing the keys in the keystore.</p>
+                                    </div>
+                                </div>
+                            </div><div class="param">
+                                <div class="param-name">
+                                  <span class="param-name-wrap"> <code>alias</code> </span>
+                                </div>
+                                <div class="param-info">
+                                    <div>
+                                        <p>
+                                            <span class="param-type string"> string </span>
+                                            
+                                        </p>
+                                        <div class="param-default">
+                                            <span class="param-default-value">Default: <code>wso2carbon</code></span>
+                                        </div>
+                                        
+                                    </div>
+                                    <div class="param-description">
+                                        <p>The alias of the public key corresponding to the private key that is included in the keystore. The public key is used for encrypting data in the ESB server, which only the corresponding private key can decrypt. The public key is embedded in a digital certificate, and this certificate can be shared over the internet by storing it in a separate trust store file.</p>
+                                    </div>
+                                </div>
+                            </div><div class="param">
+                                <div class="param-name">
+                                  <span class="param-name-wrap"> <code>key_password</code> </span>
+                                </div>
+                                <div class="param-info">
+                                    <div>
+                                        <p>
+                                            <span class="param-type string"> string </span>
+                                            
+                                        </p>
+                                        <div class="param-default">
+                                            <span class="param-default-value">Default: <code>wso2carbon</code></span>
+                                        </div>
+                                        
+                                    </div>
+                                    <div class="param-description">
+                                        <p>The password of the private key that is included in the keystore. The private key is used to decrypt the data that has been encrypted using the keystore&#39;s public key.</p>
                                     </div>
                                 </div>
                             </div>
@@ -593,9 +443,8 @@ key_password="wso2carbon"
     <section>
         <div class="mb-config-options">
             <div class="superfences-tabs">
-            
-            <input name="9" type="checkbox" id="_tab_9">
-                <label class="tab-selector" for="_tab_9"><i class="icon fa fa-code"></i></label>
+            <input name="__tabs_1" type="checkbox" id="__tab_1_0">
+                <label class="tab-selector" for="__tab_1_0"><i class="icon fa fa-code"></i></label>
                 <div class="superfences-content">
                     <div class="mb-config-example">
 <pre><code class="toml">[keystore.internal]
@@ -610,136 +459,108 @@ key_password="wso2carbon"
                 <div class="doc-wrapper">
                     <div class="mb-config">
                         <div class="config-wrap">
-                            <code>[server]</code>
+                            <code>[[keystore_internal]]</code>
                             <span class="badge-required">Required</span>
                             <p>
-                                You can count on it.This toml header groups the parameters that define the server node details.
+                                Add this config heading to the ei.toml file to group the parameters that connect the server to the keystore used for encrypting/decrypting data in internal data stores. You may sometimes choose to configure a separate keystore for this purpose because the primary keystore that is used by the [keystore.tls] configuration needs to renew certificates frequently. However, for encrypting information in internal data stores, the keystore certificates should not be changed frequently because the data that is already encrypted will become unusable every time the certificate changes. Read more about configuring the internal keystore.
                             </p>
                         </div>
                         <div class="params-wrap">
                             <div class="param">
                                 <div class="param-name">
-                                  <span class="param-name-wrap"> <code>hostname</code> </span>
+                                  <span class="param-name-wrap"> <code>file_name</code> </span>
                                 </div>
                                 <div class="param-info">
                                     <div>
                                         <p>
                                             <span class="param-type string"> string </span>
-                                            <span class="badge-required">Required</span>
+                                            
                                         </p>
                                         <div class="param-default">
-                                            <span class="param-default-value">Default: <code>&quot;localhost&quot;</code></span>
-                                        </div>
-                                        <div class="param-possible">
-                                            <span class="param-possible-values">Possible Values: <code>&quot;127.0.0.1&quot;,&quot;localhost&quot;,&quot;&lt;any-ip-address&gt;&quot;</code></span>
-                                        </div>
-                                    </div>
-                                    <div class="param-description">
-                                        <p>The hostname of the WSO2 EI server instance.</p>
-                                    </div>
-                                </div>
-                            </div><div class="param">
-                                <div class="param-name">
-                                  <span class="param-name-wrap"> <code>node_ip</code> </span>
-                                </div>
-                                <div class="param-info">
-                                    <div>
-                                        <p>
-                                            <span class="param-type string"> string </span>
-                                            <span class="badge-required">Required</span>
-                                        </p>
-                                        <div class="param-default">
-                                            <span class="param-default-value">Default: <code>&quot;127.0.0.1&quot;</code></span>
+                                            <span class="param-default-value">Default: <code>wso2carbon.jks</code></span>
                                         </div>
                                         
                                     </div>
                                     <div class="param-description">
-                                        <p>The IP address of the server node.</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-</div>
-
-
-## OWASP
-
-<div class="mb-config-catalog">
-    <section>
-        <div class="mb-config-options">
-            <div class="superfences-tabs">
-            
-            <input name="10" type="checkbox" id="_tab_10">
-                <label class="tab-selector" for="_tab_10"><i class="icon fa fa-code"></i></label>
-                <div class="superfences-content">
-                    <div class="mb-config-example">
-<pre><code class="toml">[[owasp.csrfguard.unprotected.service]]
- name = "oauthiwa"
- service = "%servletContext%/commonauth/iwa/*"
- 
-[owasp.csrfguard]
-create_token_per_page=false
-token_length=32
-random_number_generator_algo="SHA1PRNG"
-
-[owasp.csrfguard.js_servlet]
-x_request_with_header = "WSO2 CSRF Protection"
-</code></pre>
-                    </div>
-                </div>
-                <div class="doc-wrapper">
-                    <div class="mb-config">
-                        <div class="config-wrap">
-                            <code>[server]</code>
-                            <span class="badge-required">Required</span>
-                            <p>
-                                You can count on it.This toml header groups the parameters that define the server node details.
-                            </p>
-                        </div>
-                        <div class="params-wrap">
-                            <div class="param">
-                                <div class="param-name">
-                                  <span class="param-name-wrap"> <code>hostname</code> </span>
-                                </div>
-                                <div class="param-info">
-                                    <div>
-                                        <p>
-                                            <span class="param-type string"> string </span>
-                                            <span class="badge-required">Required</span>
-                                        </p>
-                                        <div class="param-default">
-                                            <span class="param-default-value">Default: <code>&quot;localhost&quot;</code></span>
-                                        </div>
-                                        <div class="param-possible">
-                                            <span class="param-possible-values">Possible Values: <code>&quot;127.0.0.1&quot;,&quot;localhost&quot;,&quot;&lt;any-ip-address&gt;&quot;</code></span>
-                                        </div>
-                                    </div>
-                                    <div class="param-description">
-                                        <p>The hostname of the WSO2 EI server instance.</p>
+                                        <p>The name of the keystore file that is used for data encryption/decryption in internal data stores.</p>
                                     </div>
                                 </div>
                             </div><div class="param">
                                 <div class="param-name">
-                                  <span class="param-name-wrap"> <code>node_ip</code> </span>
+                                  <span class="param-name-wrap"> <code>type</code> </span>
                                 </div>
                                 <div class="param-info">
                                     <div>
                                         <p>
                                             <span class="param-type string"> string </span>
-                                            <span class="badge-required">Required</span>
+                                            
                                         </p>
                                         <div class="param-default">
-                                            <span class="param-default-value">Default: <code>&quot;127.0.0.1&quot;</code></span>
+                                            <span class="param-default-value">Default: <code>JKS</code></span>
+                                        </div>
+                                        <div class="param-possible">
+                                            <span class="param-possible-values">Possible Values: <code>&quot;JKS&quot;,&quot;PKCS12&quot;</code></span>
+                                        </div>
+                                    </div>
+                                    <div class="param-description">
+                                        <p>The type of the keystore file.</p>
+                                    </div>
+                                </div>
+                            </div><div class="param">
+                                <div class="param-name">
+                                  <span class="param-name-wrap"> <code>password</code> </span>
+                                </div>
+                                <div class="param-info">
+                                    <div>
+                                        <p>
+                                            <span class="param-type string"> string </span>
+                                            
+                                        </p>
+                                        <div class="param-default">
+                                            <span class="param-default-value">Default: <code>wso2carbon</code></span>
                                         </div>
                                         
                                     </div>
                                     <div class="param-description">
-                                        <p>The IP address of the server node.</p>
+                                        <p>The password of the keystore file that is used for data encryption/decryption in internal data stores. The keystore password is used when accessing the keys in the keystore.</p>
+                                    </div>
+                                </div>
+                            </div><div class="param">
+                                <div class="param-name">
+                                  <span class="param-name-wrap"> <code>alias</code> </span>
+                                </div>
+                                <div class="param-info">
+                                    <div>
+                                        <p>
+                                            <span class="param-type string"> string </span>
+                                            
+                                        </p>
+                                        <div class="param-default">
+                                            <span class="param-default-value">Default: <code>wso2carbon</code></span>
+                                        </div>
+                                        
+                                    </div>
+                                    <div class="param-description">
+                                        <p>The alias of the public key corresponding to the private key that is included in the keystore. The public key is used for encrypting data in the ESB server, which only the corresponding private key can decrypt. The public key is embedded in a digital certificate, and this certificate can be shared over the internet by storing it in a separate trust store file.</p>
+                                    </div>
+                                </div>
+                            </div><div class="param">
+                                <div class="param-name">
+                                  <span class="param-name-wrap"> <code>key_password</code> </span>
+                                </div>
+                                <div class="param-info">
+                                    <div>
+                                        <p>
+                                            <span class="param-type string"> string </span>
+                                            
+                                        </p>
+                                        <div class="param-default">
+                                            <span class="param-default-value">Default: <code>wso2carbon</code></span>
+                                        </div>
+                                        
+                                    </div>
+                                    <div class="param-description">
+                                        <p>The password of the private key that is included in the keystore. The private key is used to decrypt the data that has been encrypted using the keystore&#39;s public key.</p>
                                     </div>
                                 </div>
                             </div>
@@ -758,9 +579,8 @@ x_request_with_header = "WSO2 CSRF Protection"
     <section>
         <div class="mb-config-options">
             <div class="superfences-tabs">
-            
-            <input name="11" type="checkbox" id="_tab_11">
-                <label class="tab-selector" for="_tab_11"><i class="icon fa fa-code"></i></label>
+            <input name="__tabs_1" type="checkbox" id="__tab_1_0">
+                <label class="tab-selector" for="__tab_1_0"><i class="icon fa fa-code"></i></label>
                 <div class="superfences-content">
                     <div class="mb-config-example">
 <pre><code class="toml">[truststore]
@@ -775,55 +595,289 @@ algorithm=""
                 <div class="doc-wrapper">
                     <div class="mb-config">
                         <div class="config-wrap">
-                            <code>[server]</code>
+                            <code>[truststore]</code>
                             <span class="badge-required">Required</span>
                             <p>
-                                You can count on it.This toml header groups the parameters that define the server node details.
+                                Add this config heading to the ei.toml file to group the parameters that connect the server to the keystore file (trust store) that is used to store the digital certificates that the server trusts for SSL communication. All keystore files used by this product should be stored in the EI_HOME/repository/resources/security/ directory. The product is configured to use the default trust store (wso2truststore.jks), which contains the self-signed digital certificate of the default keystore. Read more about asymetric encryption in WSO2 EI. Read more about configuring the truststore.
                             </p>
                         </div>
                         <div class="params-wrap">
                             <div class="param">
                                 <div class="param-name">
-                                  <span class="param-name-wrap"> <code>hostname</code> </span>
+                                  <span class="param-name-wrap"> <code>file_name</code> </span>
                                 </div>
                                 <div class="param-info">
                                     <div>
                                         <p>
                                             <span class="param-type string"> string </span>
-                                            <span class="badge-required">Required</span>
+                                            
                                         </p>
                                         <div class="param-default">
-                                            <span class="param-default-value">Default: <code>&quot;localhost&quot;</code></span>
-                                        </div>
-                                        <div class="param-possible">
-                                            <span class="param-possible-values">Possible Values: <code>&quot;127.0.0.1&quot;,&quot;localhost&quot;,&quot;&lt;any-ip-address&gt;&quot;</code></span>
-                                        </div>
-                                    </div>
-                                    <div class="param-description">
-                                        <p>The hostname of the WSO2 EI server instance.</p>
-                                    </div>
-                                </div>
-                            </div><div class="param">
-                                <div class="param-name">
-                                  <span class="param-name-wrap"> <code>node_ip</code> </span>
-                                </div>
-                                <div class="param-info">
-                                    <div>
-                                        <p>
-                                            <span class="param-type string"> string </span>
-                                            <span class="badge-required">Required</span>
-                                        </p>
-                                        <div class="param-default">
-                                            <span class="param-default-value">Default: <code>&quot;127.0.0.1&quot;</code></span>
+                                            <span class="param-default-value">Default: <code>wso2truststore.jks</code></span>
                                         </div>
                                         
                                     </div>
                                     <div class="param-description">
-                                        <p>The IP address of the server node.</p>
+                                        <p>The name of the keystore file that is used for storing the trusted digital certificates.</p>
+                                    </div>
+                                </div>
+                            </div><div class="param">
+                                <div class="param-name">
+                                  <span class="param-name-wrap"> <code>type</code> </span>
+                                </div>
+                                <div class="param-info">
+                                    <div>
+                                        <p>
+                                            <span class="param-type string"> string </span>
+                                            
+                                        </p>
+                                        <div class="param-default">
+                                            <span class="param-default-value">Default: <code>JKS</code></span>
+                                        </div>
+                                        <div class="param-possible">
+                                            <span class="param-possible-values">Possible Values: <code>&quot;JKS&quot;,&quot;PKCS12&quot;</code></span>
+                                        </div>
+                                    </div>
+                                    <div class="param-description">
+                                        <p>The type of the keystore file that is used as the trust store.</p>
+                                    </div>
+                                </div>
+                            </div><div class="param">
+                                <div class="param-name">
+                                  <span class="param-name-wrap"> <code>password</code> </span>
+                                </div>
+                                <div class="param-info">
+                                    <div>
+                                        <p>
+                                            <span class="param-type string"> string </span>
+                                            
+                                        </p>
+                                        <div class="param-default">
+                                            <span class="param-default-value">Default: <code>wso2carbon</code></span>
+                                        </div>
+                                        
+                                    </div>
+                                    <div class="param-description">
+                                        <p>The password of the keystore file that is used as the trust store.</p>
+                                    </div>
+                                </div>
+                            </div><div class="param">
+                                <div class="param-name">
+                                  <span class="param-name-wrap"> <code>alias</code> </span>
+                                </div>
+                                <div class="param-info">
+                                    <div>
+                                        <p>
+                                            <span class="param-type string"> string </span>
+                                            
+                                        </p>
+                                        <div class="param-default">
+                                            <span class="param-default-value">Default: <code>symmetric.key.value</code></span>
+                                        </div>
+                                        
+                                    </div>
+                                    <div class="param-description">
+                                        <p>The alias is the password of the digital certificate (which holds the public key) that is included in the trustore.</p>
+                                    </div>
+                                </div>
+                            </div><div class="param">
+                                <div class="param-name">
+                                  <span class="param-name-wrap"> <code>algorithm</code> </span>
+                                </div>
+                                <div class="param-info">
+                                    <div>
+                                        <p>
+                                            <span class="param-type string"> string </span>
+                                            
+                                        </p>
+                                        <div class="param-default">
+                                            <span class="param-default-value">Default: <code></code></span>
+                                        </div>
+                                        
+                                    </div>
+                                    <div class="param-description">
+                                        <p></p>
                                     </div>
                                 </div>
                             </div>
                         </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+
+## OWASP CSRF Guard
+
+<div class="mb-config-catalog">
+    <section>
+        <div class="mb-config-options">
+            <div class="superfences-tabs">
+            <input name="__tabs_1" type="checkbox" id="__tab_1_0">
+                <label class="tab-selector" for="__tab_1_0"><i class="icon fa fa-code"></i></label>
+                <div class="superfences-content">
+                    <div class="mb-config-example">
+<pre><code class="toml">[[owasp.csrfguard.unprotected.service]]
+ name = "oauthiwa"
+ service = "%servletContext%/commonauth/iwa/*"
+
+[owasp.csrfguard]
+create_token_per_page=false
+token_length=32
+random_number_generator_algo="SHA1PRNG"
+
+[owasp.csrfguard.js_servlet]
+x_request_with_header = "WSO2 CSRF Protection"
+</code></pre>
+                    </div>
+                </div>
+                <div class="doc-wrapper">
+                    <div class="mb-config">
+                        <div class="config-wrap">
+                            <code>[[owasp.csrfguard]]</code>
+                            <span class="badge-required">Required</span>
+                            <p>
+                                The .......
+                            </p>
+                        </div>
+                        <div class="params-wrap">
+                            <div class="param">
+                                <div class="param-name">
+                                  <span class="param-name-wrap"> <code>create_token_per_page</code> </span>
+                                </div>
+                                <div class="param-info">
+                                    <div>
+                                        <p>
+                                            <span class="param-type string"> boolean </span>
+                                            <span class="badge-required">Required</span>
+                                        </p>
+                                        <div class="param-default">
+                                            <span class="param-default-value">Default: <code>false</code></span>
+                                        </div>
+                                        <div class="param-possible">
+                                            <span class="param-possible-values">Possible Values: <code>&quot;true&quot;,&quot;false&quot;</code></span>
+                                        </div>
+                                    </div>
+                                    <div class="param-description">
+                                        <p>The.....</p>
+                                    </div>
+                                </div>
+                            </div><div class="param">
+                                <div class="param-name">
+                                  <span class="param-name-wrap"> <code>token_length</code> </span>
+                                </div>
+                                <div class="param-info">
+                                    <div>
+                                        <p>
+                                            <span class="param-type string"> integer </span>
+                                            
+                                        </p>
+                                        <div class="param-default">
+                                            <span class="param-default-value">Default: <code>32</code></span>
+                                        </div>
+                                        <div class="param-possible">
+                                            <span class="param-possible-values">Possible Values: <code>...</code></span>
+                                        </div>
+                                    </div>
+                                    <div class="param-description">
+                                        <p>The....</p>
+                                    </div>
+                                </div>
+                            </div><div class="param">
+                                <div class="param-name">
+                                  <span class="param-name-wrap"> <code>random_number_generator_algo</code> </span>
+                                </div>
+                                <div class="param-info">
+                                    <div>
+                                        <p>
+                                            <span class="param-type string"> string </span>
+                                            
+                                        </p>
+                                        <div class="param-default">
+                                            <span class="param-default-value">Default: <code>SHA1PRNG</code></span>
+                                        </div>
+                                        <div class="param-possible">
+                                            <span class="param-possible-values">Possible Values: <code>...</code></span>
+                                        </div>
+                                    </div>
+                                    <div class="param-description">
+                                        <p>The....</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+
+## OWASP CSRF JS Servlet
+
+<div class="mb-config-catalog">
+    <section>
+        <div class="mb-config-options">
+            <div class="superfences-tabs">
+            <input name="__tabs_1" type="checkbox" id="__tab_1_0">
+                <label class="tab-selector" for="__tab_1_0"><i class="icon fa fa-code"></i></label>
+                <div class="superfences-content">
+                    <div class="mb-config-example">
+<pre><code class="toml">[[owasp.csrfguard.unprotected.service]]
+ name = "oauthiwa"
+ service = "%servletContext%/commonauth/iwa/*"
+
+[owasp.csrfguard]
+create_token_per_page=false
+token_length=32
+random_number_generator_algo="SHA1PRNG"
+
+[owasp.csrfguard.js_servlet]
+x_request_with_header = "WSO2 CSRF Protection"
+</code></pre>
+                    </div>
+                </div>
+                <div class="doc-wrapper">
+                    <div class="mb-config">
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+
+## OWASP CSRF Unprotected Service
+
+<div class="mb-config-catalog">
+    <section>
+        <div class="mb-config-options">
+            <div class="superfences-tabs">
+            <input name="__tabs_1" type="checkbox" id="__tab_1_0">
+                <label class="tab-selector" for="__tab_1_0"><i class="icon fa fa-code"></i></label>
+                <div class="superfences-content">
+                    <div class="mb-config-example">
+<pre><code class="toml">[[owasp.csrfguard.unprotected.service]]
+ name = "oauthiwa"
+ service = "%servletContext%/commonauth/iwa/*"
+
+[owasp.csrfguard]
+create_token_per_page=false
+token_length=32
+random_number_generator_algo="SHA1PRNG"
+
+[owasp.csrfguard.js_servlet]
+x_request_with_header = "WSO2 CSRF Protection"
+</code></pre>
+                    </div>
+                </div>
+                <div class="doc-wrapper">
+                    <div class="mb-config">
+                        
                     </div>
                 </div>
             </div>
@@ -838,9 +892,8 @@ algorithm=""
     <section>
         <div class="mb-config-options">
             <div class="superfences-tabs">
-            
-            <input name="12" type="checkbox" id="_tab_12">
-                <label class="tab-selector" for="_tab_12"><i class="icon fa fa-code"></i></label>
+            <input name="__tabs_1" type="checkbox" id="__tab_1_0">
+                <label class="tab-selector" for="__tab_1_0"><i class="icon fa fa-code"></i></label>
                 <div class="superfences-content">
                     <div class="mb-config-example">
 <pre><code class="toml">[[server.get_request_processor]]
@@ -852,16 +905,16 @@ class = "org.wso2.appcloud.api.swagger.processors.json.SwaggerJsonProcessor"
                 <div class="doc-wrapper">
                     <div class="mb-config">
                         <div class="config-wrap">
-                            <code>[server]</code>
+                            <code>[[[server.get_request_processor]]]</code>
                             <span class="badge-required">Required</span>
                             <p>
-                                You can count on it.This toml header groups the parameters that define the server node details.
+                                The...
                             </p>
                         </div>
                         <div class="params-wrap">
                             <div class="param">
                                 <div class="param-name">
-                                  <span class="param-name-wrap"> <code>hostname</code> </span>
+                                  <span class="param-name-wrap"> <code>item</code> </span>
                                 </div>
                                 <div class="param-info">
                                     <div>
@@ -870,19 +923,19 @@ class = "org.wso2.appcloud.api.swagger.processors.json.SwaggerJsonProcessor"
                                             <span class="badge-required">Required</span>
                                         </p>
                                         <div class="param-default">
-                                            <span class="param-default-value">Default: <code>&quot;localhost&quot;</code></span>
+                                            <span class="param-default-value">Default: <code>swagger.json</code></span>
                                         </div>
                                         <div class="param-possible">
-                                            <span class="param-possible-values">Possible Values: <code>&quot;127.0.0.1&quot;,&quot;localhost&quot;,&quot;&lt;any-ip-address&gt;&quot;</code></span>
+                                            <span class="param-possible-values">Possible Values: <code>...</code></span>
                                         </div>
                                     </div>
                                     <div class="param-description">
-                                        <p>The hostname of the WSO2 EI server instance.</p>
+                                        <p>The....</p>
                                     </div>
                                 </div>
                             </div><div class="param">
                                 <div class="param-name">
-                                  <span class="param-name-wrap"> <code>node_ip</code> </span>
+                                  <span class="param-name-wrap"> <code>class</code> </span>
                                 </div>
                                 <div class="param-info">
                                     <div>
@@ -891,12 +944,12 @@ class = "org.wso2.appcloud.api.swagger.processors.json.SwaggerJsonProcessor"
                                             <span class="badge-required">Required</span>
                                         </p>
                                         <div class="param-default">
-                                            <span class="param-default-value">Default: <code>&quot;127.0.0.1&quot;</code></span>
+                                            <span class="param-default-value">Default: <code>org.wso2.appcloud.api.swagger.processors.json.SwaggerJsonProcessor</code></span>
                                         </div>
                                         
                                     </div>
                                     <div class="param-description">
-                                        <p>The IP address of the server node.</p>
+                                        <p>The.....</p>
                                     </div>
                                 </div>
                             </div>
@@ -915,9 +968,8 @@ class = "org.wso2.appcloud.api.swagger.processors.json.SwaggerJsonProcessor"
     <section>
         <div class="mb-config-options">
             <div class="superfences-tabs">
-            
-            <input name="13" type="checkbox" id="_tab_13">
-                <label class="tab-selector" for="_tab_13"><i class="icon fa fa-code"></i></label>
+            <input name="__tabs_1" type="checkbox" id="__tab_1_0">
+                <label class="tab-selector" for="__tab_1_0"><i class="icon fa fa-code"></i></label>
                 <div class="superfences-content">
                     <div class="mb-config-example">
 <pre><code class="toml">[transport.http]
@@ -980,37 +1032,184 @@ blocking_sender.so_timeout = "1m"
                 <div class="doc-wrapper">
                     <div class="mb-config">
                         <div class="config-wrap">
-                            <code>[server]</code>
+                            <code>[[transport.http]]</code>
                             <span class="badge-required">Required</span>
                             <p>
-                                You can count on it.This toml header groups the parameters that define the server node details.
+                                Add this config heading to the ei.toml file to group the parameters for configuring the HTTP/S transports in the product.
                             </p>
                         </div>
                         <div class="params-wrap">
                             <div class="param">
                                 <div class="param-name">
-                                  <span class="param-name-wrap"> <code>hostname</code> </span>
+                                  <span class="param-name-wrap"> <code>socket_timeout</code> </span>
                                 </div>
                                 <div class="param-info">
                                     <div>
                                         <p>
-                                            <span class="param-type string"> string </span>
+                                            <span class="param-type string"> integer </span>
                                             <span class="badge-required">Required</span>
                                         </p>
                                         <div class="param-default">
-                                            <span class="param-default-value">Default: <code>&quot;localhost&quot;</code></span>
+                                            <span class="param-default-value">Default: <code>3m</code></span>
                                         </div>
                                         <div class="param-possible">
-                                            <span class="param-possible-values">Possible Values: <code>&quot;127.0.0.1&quot;,&quot;localhost&quot;,&quot;&lt;any-ip-address&gt;&quot;</code></span>
+                                            <span class="param-possible-values">Possible Values: <code>.....</code></span>
                                         </div>
                                     </div>
                                     <div class="param-description">
-                                        <p>The hostname of the WSO2 EI server instance.</p>
+                                        <p>The....</p>
                                     </div>
                                 </div>
                             </div><div class="param">
                                 <div class="param-name">
-                                  <span class="param-name-wrap"> <code>node_ip</code> </span>
+                                  <span class="param-name-wrap"> <code>core_worker_pool_size</code> </span>
+                                </div>
+                                <div class="param-info">
+                                    <div>
+                                        <p>
+                                            <span class="param-type string"> integer </span>
+                                            <span class="badge-required">Required</span>
+                                        </p>
+                                        <div class="param-default">
+                                            <span class="param-default-value">Default: <code>400</code></span>
+                                        </div>
+                                        <div class="param-possible">
+                                            <span class="param-possible-values">Possible Values: <code>....</code></span>
+                                        </div>
+                                    </div>
+                                    <div class="param-description">
+                                        <p>The....</p>
+                                    </div>
+                                </div>
+                            </div><div class="param">
+                                <div class="param-name">
+                                  <span class="param-name-wrap"> <code>max_worker_pool_size</code> </span>
+                                </div>
+                                <div class="param-info">
+                                    <div>
+                                        <p>
+                                            <span class="param-type string"> integer </span>
+                                            <span class="badge-required">Required</span>
+                                        </p>
+                                        <div class="param-default">
+                                            <span class="param-default-value">Default: <code>400</code></span>
+                                        </div>
+                                        <div class="param-possible">
+                                            <span class="param-possible-values">Possible Values: <code>....</code></span>
+                                        </div>
+                                    </div>
+                                    <div class="param-description">
+                                        <p>The....</p>
+                                    </div>
+                                </div>
+                            </div><div class="param">
+                                <div class="param-name">
+                                  <span class="param-name-wrap"> <code>worker_pool_queue_length</code> </span>
+                                </div>
+                                <div class="param-info">
+                                    <div>
+                                        <p>
+                                            <span class="param-type string"> integer </span>
+                                            <span class="badge-required">Required</span>
+                                        </p>
+                                        <div class="param-default">
+                                            <span class="param-default-value">Default: <code>-1</code></span>
+                                        </div>
+                                        <div class="param-possible">
+                                            <span class="param-possible-values">Possible Values: <code>....</code></span>
+                                        </div>
+                                    </div>
+                                    <div class="param-description">
+                                        <p>The....</p>
+                                    </div>
+                                </div>
+                            </div><div class="param">
+                                <div class="param-name">
+                                  <span class="param-name-wrap"> <code>io_buffer_size</code> </span>
+                                </div>
+                                <div class="param-info">
+                                    <div>
+                                        <p>
+                                            <span class="param-type string"> integer </span>
+                                            <span class="badge-required">Required</span>
+                                        </p>
+                                        <div class="param-default">
+                                            <span class="param-default-value">Default: <code>16384</code></span>
+                                        </div>
+                                        <div class="param-possible">
+                                            <span class="param-possible-values">Possible Values: <code>....</code></span>
+                                        </div>
+                                    </div>
+                                    <div class="param-description">
+                                        <p>The....</p>
+                                    </div>
+                                </div>
+                            </div><div class="param">
+                                <div class="param-name">
+                                  <span class="param-name-wrap"> <code>max_http_connection_per_host_port</code> </span>
+                                </div>
+                                <div class="param-info">
+                                    <div>
+                                        <p>
+                                            <span class="param-type string"> integer </span>
+                                            <span class="badge-required">Required</span>
+                                        </p>
+                                        <div class="param-default">
+                                            <span class="param-default-value">Default: <code>32767</code></span>
+                                        </div>
+                                        <div class="param-possible">
+                                            <span class="param-possible-values">Possible Values: <code>....</code></span>
+                                        </div>
+                                    </div>
+                                    <div class="param-description">
+                                        <p>The....</p>
+                                    </div>
+                                </div>
+                            </div><div class="param">
+                                <div class="param-name">
+                                  <span class="param-name-wrap"> <code>preserve_http_user_agent</code> </span>
+                                </div>
+                                <div class="param-info">
+                                    <div>
+                                        <p>
+                                            <span class="param-type string"> boolean </span>
+                                            <span class="badge-required">Required</span>
+                                        </p>
+                                        <div class="param-default">
+                                            <span class="param-default-value">Default: <code>false</code></span>
+                                        </div>
+                                        <div class="param-possible">
+                                            <span class="param-possible-values">Possible Values: <code>&quot;true&quot;,&quot;false&quot;</code></span>
+                                        </div>
+                                    </div>
+                                    <div class="param-description">
+                                        <p>The....</p>
+                                    </div>
+                                </div>
+                            </div><div class="param">
+                                <div class="param-name">
+                                  <span class="param-name-wrap"> <code>preserve_http_server_name</code> </span>
+                                </div>
+                                <div class="param-info">
+                                    <div>
+                                        <p>
+                                            <span class="param-type string"> boolean </span>
+                                            <span class="badge-required">Required</span>
+                                        </p>
+                                        <div class="param-default">
+                                            <span class="param-default-value">Default: <code>false</code></span>
+                                        </div>
+                                        <div class="param-possible">
+                                            <span class="param-possible-values">Possible Values: <code>&quot;true&quot;,&quot;false&quot;</code></span>
+                                        </div>
+                                    </div>
+                                    <div class="param-description">
+                                        <p>The....</p>
+                                    </div>
+                                </div>
+                            </div><div class="param">
+                                <div class="param-name">
+                                  <span class="param-name-wrap"> <code>preserve_http_headers</code> </span>
                                 </div>
                                 <div class="param-info">
                                     <div>
@@ -1019,12 +1218,875 @@ blocking_sender.so_timeout = "1m"
                                             <span class="badge-required">Required</span>
                                         </p>
                                         <div class="param-default">
-                                            <span class="param-default-value">Default: <code>&quot;127.0.0.1&quot;</code></span>
+                                            <span class="param-default-value">Default: <code>Content-Type</code></span>
                                         </div>
-                                        
+                                        <div class="param-possible">
+                                            <span class="param-possible-values">Possible Values: <code>....</code></span>
+                                        </div>
                                     </div>
                                     <div class="param-description">
-                                        <p>The IP address of the server node.</p>
+                                        <p>The....</p>
+                                    </div>
+                                </div>
+                            </div><div class="param">
+                                <div class="param-name">
+                                  <span class="param-name-wrap"> <code>disable_connection_keepalive</code> </span>
+                                </div>
+                                <div class="param-info">
+                                    <div>
+                                        <p>
+                                            <span class="param-type string"> boolean </span>
+                                            <span class="badge-required">Required</span>
+                                        </p>
+                                        <div class="param-default">
+                                            <span class="param-default-value">Default: <code>false</code></span>
+                                        </div>
+                                        <div class="param-possible">
+                                            <span class="param-possible-values">Possible Values: <code>&quot;true&quot;,&quot;false&quot;</code></span>
+                                        </div>
+                                    </div>
+                                    <div class="param-description">
+                                        <p>The....</p>
+                                    </div>
+                                </div>
+                            </div><div class="param">
+                                <div class="param-name">
+                                  <span class="param-name-wrap"> <code>enable_message_size_validation</code> </span>
+                                </div>
+                                <div class="param-info">
+                                    <div>
+                                        <p>
+                                            <span class="param-type string"> boolean </span>
+                                            <span class="badge-required">Required</span>
+                                        </p>
+                                        <div class="param-default">
+                                            <span class="param-default-value">Default: <code>false</code></span>
+                                        </div>
+                                        <div class="param-possible">
+                                            <span class="param-possible-values">Possible Values: <code>&quot;true&quot;,&quot;false&quot;</code></span>
+                                        </div>
+                                    </div>
+                                    <div class="param-description">
+                                        <p>The....</p>
+                                    </div>
+                                </div>
+                            </div><div class="param">
+                                <div class="param-name">
+                                  <span class="param-name-wrap"> <code>max_message_size_bytes</code> </span>
+                                </div>
+                                <div class="param-info">
+                                    <div>
+                                        <p>
+                                            <span class="param-type string"> integer </span>
+                                            <span class="badge-required">Required</span>
+                                        </p>
+                                        <div class="param-default">
+                                            <span class="param-default-value">Default: <code>81920</code></span>
+                                        </div>
+                                        <div class="param-possible">
+                                            <span class="param-possible-values">Possible Values: <code>....</code></span>
+                                        </div>
+                                    </div>
+                                    <div class="param-description">
+                                        <p>The....</p>
+                                    </div>
+                                </div>
+                            </div><div class="param">
+                                <div class="param-name">
+                                  <span class="param-name-wrap"> <code>max_open_connections</code> </span>
+                                </div>
+                                <div class="param-info">
+                                    <div>
+                                        <p>
+                                            <span class="param-type string"> integer </span>
+                                            <span class="badge-required">Required</span>
+                                        </p>
+                                        <div class="param-default">
+                                            <span class="param-default-value">Default: <code>-1</code></span>
+                                        </div>
+                                        <div class="param-possible">
+                                            <span class="param-possible-values">Possible Values: <code>....</code></span>
+                                        </div>
+                                    </div>
+                                    <div class="param-description">
+                                        <p>The....</p>
+                                    </div>
+                                </div>
+                            </div><div class="param">
+                                <div class="param-name">
+                                  <span class="param-name-wrap"> <code>force_xml_validation</code> </span>
+                                </div>
+                                <div class="param-info">
+                                    <div>
+                                        <p>
+                                            <span class="param-type string"> boolean </span>
+                                            <span class="badge-required">Required</span>
+                                        </p>
+                                        <div class="param-default">
+                                            <span class="param-default-value">Default: <code>false</code></span>
+                                        </div>
+                                        <div class="param-possible">
+                                            <span class="param-possible-values">Possible Values: <code>....</code></span>
+                                        </div>
+                                    </div>
+                                    <div class="param-description">
+                                        <p>The....</p>
+                                    </div>
+                                </div>
+                            </div><div class="param">
+                                <div class="param-name">
+                                  <span class="param-name-wrap"> <code>force_json_validation</code> </span>
+                                </div>
+                                <div class="param-info">
+                                    <div>
+                                        <p>
+                                            <span class="param-type string"> boolean </span>
+                                            <span class="badge-required">Required</span>
+                                        </p>
+                                        <div class="param-default">
+                                            <span class="param-default-value">Default: <code>false</code></span>
+                                        </div>
+                                        <div class="param-possible">
+                                            <span class="param-possible-values">Possible Values: <code>....</code></span>
+                                        </div>
+                                    </div>
+                                    <div class="param-description">
+                                        <p>The....</p>
+                                    </div>
+                                </div>
+                            </div><div class="param">
+                                <div class="param-name">
+                                  <span class="param-name-wrap"> <code>listener.port</code> </span>
+                                </div>
+                                <div class="param-info">
+                                    <div>
+                                        <p>
+                                            <span class="param-type string"> integer </span>
+                                            <span class="badge-required">Required</span>
+                                        </p>
+                                        <div class="param-default">
+                                            <span class="param-default-value">Default: <code>8280</code></span>
+                                        </div>
+                                        <div class="param-possible">
+                                            <span class="param-possible-values">Possible Values: <code>....</code></span>
+                                        </div>
+                                    </div>
+                                    <div class="param-description">
+                                        <p>The port on which this transport receiver should listen for incoming messages.</p>
+                                    </div>
+                                </div>
+                            </div><div class="param">
+                                <div class="param-name">
+                                  <span class="param-name-wrap"> <code>listener.wsdl_epr_prefix</code> </span>
+                                </div>
+                                <div class="param-info">
+                                    <div>
+                                        <p>
+                                            <span class="param-type string"> string </span>
+                                            <span class="badge-required">Required</span>
+                                        </p>
+                                        <div class="param-default">
+                                            <span class="param-default-value">Default: <code>$ref{server.hostname}</code></span>
+                                        </div>
+                                        <div class="param-possible">
+                                            <span class="param-possible-values">Possible Values: <code>....</code></span>
+                                        </div>
+                                    </div>
+                                    <div class="param-description">
+                                        <p>A URL prefix which will be added to all service EPRs and EPRs in WSDLs etc.</p>
+                                    </div>
+                                </div>
+                            </div><div class="param">
+                                <div class="param-name">
+                                  <span class="param-name-wrap"> <code>listener.bind_address</code> </span>
+                                </div>
+                                <div class="param-info">
+                                    <div>
+                                        <p>
+                                            <span class="param-type string"> string </span>
+                                            <span class="badge-required">Required</span>
+                                        </p>
+                                        <div class="param-default">
+                                            <span class="param-default-value">Default: <code>$ref{server.hostname}</code></span>
+                                        </div>
+                                        <div class="param-possible">
+                                            <span class="param-possible-values">Possible Values: <code>....</code></span>
+                                        </div>
+                                    </div>
+                                    <div class="param-description">
+                                        <p>The....</p>
+                                    </div>
+                                </div>
+                            </div><div class="param">
+                                <div class="param-name">
+                                  <span class="param-name-wrap"> <code>listener.secured_port</code> </span>
+                                </div>
+                                <div class="param-info">
+                                    <div>
+                                        <p>
+                                            <span class="param-type string"> integer </span>
+                                            <span class="badge-required">Required</span>
+                                        </p>
+                                        <div class="param-default">
+                                            <span class="param-default-value">Default: <code>8243</code></span>
+                                        </div>
+                                        <div class="param-possible">
+                                            <span class="param-possible-values">Possible Values: <code>....</code></span>
+                                        </div>
+                                    </div>
+                                    <div class="param-description">
+                                        <p>The secured port on which this transport receiver should listen for incoming messages.</p>
+                                    </div>
+                                </div>
+                            </div><div class="param">
+                                <div class="param-name">
+                                  <span class="param-name-wrap"> <code>listener.secured_wsdl_epr_prefix</code> </span>
+                                </div>
+                                <div class="param-info">
+                                    <div>
+                                        <p>
+                                            <span class="param-type string"> string </span>
+                                            <span class="badge-required">Required</span>
+                                        </p>
+                                        <div class="param-default">
+                                            <span class="param-default-value">Default: <code>$ref{server.hostname}</code></span>
+                                        </div>
+                                        <div class="param-possible">
+                                            <span class="param-possible-values">Possible Values: <code>....</code></span>
+                                        </div>
+                                    </div>
+                                    <div class="param-description">
+                                        <p>A URL prefix which will be added to all service EPRs and EPRs in WSDLs etc.</p>
+                                    </div>
+                                </div>
+                            </div><div class="param">
+                                <div class="param-name">
+                                  <span class="param-name-wrap"> <code>listener.secured_bind_address</code> </span>
+                                </div>
+                                <div class="param-info">
+                                    <div>
+                                        <p>
+                                            <span class="param-type string"> string </span>
+                                            <span class="badge-required">Required</span>
+                                        </p>
+                                        <div class="param-default">
+                                            <span class="param-default-value">Default: <code>$ref{server.hostname}</code></span>
+                                        </div>
+                                        <div class="param-possible">
+                                            <span class="param-possible-values">Possible Values: <code>....</code></span>
+                                        </div>
+                                    </div>
+                                    <div class="param-description">
+                                        <p>The...</p>
+                                    </div>
+                                </div>
+                            </div><div class="param">
+                                <div class="param-name">
+                                  <span class="param-name-wrap"> <code>listener.secured_protocols</code> </span>
+                                </div>
+                                <div class="param-info">
+                                    <div>
+                                        <p>
+                                            <span class="param-type string"> string </span>
+                                            <span class="badge-required">Required</span>
+                                        </p>
+                                        <div class="param-default">
+                                            <span class="param-default-value">Default: <code>TLSv1,TLSv1.1,TLSv1.2</code></span>
+                                        </div>
+                                        <div class="param-possible">
+                                            <span class="param-possible-values">Possible Values: <code>....</code></span>
+                                        </div>
+                                    </div>
+                                    <div class="param-description">
+                                        <p>The...</p>
+                                    </div>
+                                </div>
+                            </div><div class="param">
+                                <div class="param-name">
+                                  <span class="param-name-wrap"> <code>listener.verify_client</code> </span>
+                                </div>
+                                <div class="param-info">
+                                    <div>
+                                        <p>
+                                            <span class="param-type string"> string </span>
+                                            <span class="badge-required">Required</span>
+                                        </p>
+                                        <div class="param-default">
+                                            <span class="param-default-value">Default: <code>require</code></span>
+                                        </div>
+                                        <div class="param-possible">
+                                            <span class="param-possible-values">Possible Values: <code>....</code></span>
+                                        </div>
+                                    </div>
+                                    <div class="param-description">
+                                        <p>The...</p>
+                                    </div>
+                                </div>
+                            </div><div class="param">
+                                <div class="param-name">
+                                  <span class="param-name-wrap"> <code>listener.ssl_profile.file_path</code> </span>
+                                </div>
+                                <div class="param-info">
+                                    <div>
+                                        <p>
+                                            <span class="param-type string"> string </span>
+                                            <span class="badge-required">Required</span>
+                                        </p>
+                                        <div class="param-default">
+                                            <span class="param-default-value">Default: <code>conf/sslprofiles/listenerprofiles.xml</code></span>
+                                        </div>
+                                        <div class="param-possible">
+                                            <span class="param-possible-values">Possible Values: <code>....</code></span>
+                                        </div>
+                                    </div>
+                                    <div class="param-description">
+                                        <p>The...</p>
+                                    </div>
+                                </div>
+                            </div><div class="param">
+                                <div class="param-name">
+                                  <span class="param-name-wrap"> <code>listener.ssl_profile.read_interval</code> </span>
+                                </div>
+                                <div class="param-info">
+                                    <div>
+                                        <p>
+                                            <span class="param-type string"> string </span>
+                                            <span class="badge-required">Required</span>
+                                        </p>
+                                        <div class="param-default">
+                                            <span class="param-default-value">Default: <code>1h</code></span>
+                                        </div>
+                                        <div class="param-possible">
+                                            <span class="param-possible-values">Possible Values: <code>....</code></span>
+                                        </div>
+                                    </div>
+                                    <div class="param-description">
+                                        <p>The...</p>
+                                    </div>
+                                </div>
+                            </div><div class="param">
+                                <div class="param-name">
+                                  <span class="param-name-wrap"> <code>listener.preferred_ciphers</code> </span>
+                                </div>
+                                <div class="param-info">
+                                    <div>
+                                        <p>
+                                            <span class="param-type string"> string </span>
+                                            <span class="badge-required">Required</span>
+                                        </p>
+                                        <div class="param-default">
+                                            <span class="param-default-value">Default: <code>TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA256,TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256,TLS_DHE_RSA_WITH_AES_128_CBC_SHA256,TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA,TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA,TLS_DHE_RSA_WITH_AES_128_CBC_SHA,TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256,TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256,TLS_DHE_RSA_WITH_AES_128_GCM_SHA256</code></span>
+                                        </div>
+                                        <div class="param-possible">
+                                            <span class="param-possible-values">Possible Values: <code>....</code></span>
+                                        </div>
+                                    </div>
+                                    <div class="param-description">
+                                        <p>The...</p>
+                                    </div>
+                                </div>
+                            </div><div class="param">
+                                <div class="param-name">
+                                  <span class="param-name-wrap"> <code>listener.keystore.file_name</code> </span>
+                                </div>
+                                <div class="param-info">
+                                    <div>
+                                        <p>
+                                            <span class="param-type string"> string </span>
+                                            <span class="badge-required">Required</span>
+                                        </p>
+                                        <div class="param-default">
+                                            <span class="param-default-value">Default: <code>$ref{keystore.tls.file_name}</code></span>
+                                        </div>
+                                        <div class="param-possible">
+                                            <span class="param-possible-values">Possible Values: <code>....</code></span>
+                                        </div>
+                                    </div>
+                                    <div class="param-description">
+                                        <p>The...</p>
+                                    </div>
+                                </div>
+                            </div><div class="param">
+                                <div class="param-name">
+                                  <span class="param-name-wrap"> <code>listener.keystore.type</code> </span>
+                                </div>
+                                <div class="param-info">
+                                    <div>
+                                        <p>
+                                            <span class="param-type string"> string </span>
+                                            <span class="badge-required">Required</span>
+                                        </p>
+                                        <div class="param-default">
+                                            <span class="param-default-value">Default: <code>$ref{keystore.tls.type}</code></span>
+                                        </div>
+                                        <div class="param-possible">
+                                            <span class="param-possible-values">Possible Values: <code>....</code></span>
+                                        </div>
+                                    </div>
+                                    <div class="param-description">
+                                        <p>The...</p>
+                                    </div>
+                                </div>
+                            </div><div class="param">
+                                <div class="param-name">
+                                  <span class="param-name-wrap"> <code>listener.keystore.password</code> </span>
+                                </div>
+                                <div class="param-info">
+                                    <div>
+                                        <p>
+                                            <span class="param-type string"> string </span>
+                                            <span class="badge-required">Required</span>
+                                        </p>
+                                        <div class="param-default">
+                                            <span class="param-default-value">Default: <code>$ref{keystore.tls.password}</code></span>
+                                        </div>
+                                        <div class="param-possible">
+                                            <span class="param-possible-values">Possible Values: <code>....</code></span>
+                                        </div>
+                                    </div>
+                                    <div class="param-description">
+                                        <p>The...</p>
+                                    </div>
+                                </div>
+                            </div><div class="param">
+                                <div class="param-name">
+                                  <span class="param-name-wrap"> <code>listener.keystore.key_password</code> </span>
+                                </div>
+                                <div class="param-info">
+                                    <div>
+                                        <p>
+                                            <span class="param-type string"> string </span>
+                                            <span class="badge-required">Required</span>
+                                        </p>
+                                        <div class="param-default">
+                                            <span class="param-default-value">Default: <code>$ref{keystore.tls.key_password}</code></span>
+                                        </div>
+                                        <div class="param-possible">
+                                            <span class="param-possible-values">Possible Values: <code>....</code></span>
+                                        </div>
+                                    </div>
+                                    <div class="param-description">
+                                        <p>The...</p>
+                                    </div>
+                                </div>
+                            </div><div class="param">
+                                <div class="param-name">
+                                  <span class="param-name-wrap"> <code>listener.truststore.file_name</code> </span>
+                                </div>
+                                <div class="param-info">
+                                    <div>
+                                        <p>
+                                            <span class="param-type string"> string </span>
+                                            <span class="badge-required">Required</span>
+                                        </p>
+                                        <div class="param-default">
+                                            <span class="param-default-value">Default: <code>$ref{truststore.file_name}</code></span>
+                                        </div>
+                                        <div class="param-possible">
+                                            <span class="param-possible-values">Possible Values: <code>....</code></span>
+                                        </div>
+                                    </div>
+                                    <div class="param-description">
+                                        <p>The...</p>
+                                    </div>
+                                </div>
+                            </div><div class="param">
+                                <div class="param-name">
+                                  <span class="param-name-wrap"> <code>listener.truststore.type</code> </span>
+                                </div>
+                                <div class="param-info">
+                                    <div>
+                                        <p>
+                                            <span class="param-type string"> string </span>
+                                            <span class="badge-required">Required</span>
+                                        </p>
+                                        <div class="param-default">
+                                            <span class="param-default-value">Default: <code>$ref{truststore.type}</code></span>
+                                        </div>
+                                        <div class="param-possible">
+                                            <span class="param-possible-values">Possible Values: <code>....</code></span>
+                                        </div>
+                                    </div>
+                                    <div class="param-description">
+                                        <p>The...</p>
+                                    </div>
+                                </div>
+                            </div><div class="param">
+                                <div class="param-name">
+                                  <span class="param-name-wrap"> <code>listener.truststore.password</code> </span>
+                                </div>
+                                <div class="param-info">
+                                    <div>
+                                        <p>
+                                            <span class="param-type string"> string </span>
+                                            <span class="badge-required">Required</span>
+                                        </p>
+                                        <div class="param-default">
+                                            <span class="param-default-value">Default: <code>$ref{truststore.password}</code></span>
+                                        </div>
+                                        <div class="param-possible">
+                                            <span class="param-possible-values">Possible Values: <code>....</code></span>
+                                        </div>
+                                    </div>
+                                    <div class="param-description">
+                                        <p>The...</p>
+                                    </div>
+                                </div>
+                            </div><div class="param">
+                                <div class="param-name">
+                                  <span class="param-name-wrap"> <code>sender.warn_on_http_500</code> </span>
+                                </div>
+                                <div class="param-info">
+                                    <div>
+                                        <p>
+                                            <span class="param-type string"> string </span>
+                                            <span class="badge-required">Required</span>
+                                        </p>
+                                        <div class="param-default">
+                                            <span class="param-default-value">Default: <code>...</code></span>
+                                        </div>
+                                        <div class="param-possible">
+                                            <span class="param-possible-values">Possible Values: <code>....</code></span>
+                                        </div>
+                                    </div>
+                                    <div class="param-description">
+                                        <p>If the outgoing messages should be sent through an HTTP proxy server, use this parameter to specify the target proxy.</p>
+                                    </div>
+                                </div>
+                            </div><div class="param">
+                                <div class="param-name">
+                                  <span class="param-name-wrap"> <code>sender.proxy_host</code> </span>
+                                </div>
+                                <div class="param-info">
+                                    <div>
+                                        <p>
+                                            <span class="param-type string"> string </span>
+                                            <span class="badge-required">Required</span>
+                                        </p>
+                                        <div class="param-default">
+                                            <span class="param-default-value">Default: <code>${deployement.node_ip}</code></span>
+                                        </div>
+                                        <div class="param-possible">
+                                            <span class="param-possible-values">Possible Values: <code>....</code></span>
+                                        </div>
+                                    </div>
+                                    <div class="param-description">
+                                        <p>If the outgoing messages should be sent through an HTTP proxy server, use this parameter to specify the target proxy.</p>
+                                    </div>
+                                </div>
+                            </div><div class="param">
+                                <div class="param-name">
+                                  <span class="param-name-wrap"> <code>sender.proxy_port</code> </span>
+                                </div>
+                                <div class="param-info">
+                                    <div>
+                                        <p>
+                                            <span class="param-type string"> integer </span>
+                                            <span class="badge-required">Required</span>
+                                        </p>
+                                        <div class="param-default">
+                                            <span class="param-default-value">Default: <code>3128</code></span>
+                                        </div>
+                                        <div class="param-possible">
+                                            <span class="param-possible-values">Possible Values: <code>....</code></span>
+                                        </div>
+                                    </div>
+                                    <div class="param-description">
+                                        <p>The port through which the target proxy accepts HTTP traffic.</p>
+                                    </div>
+                                </div>
+                            </div><div class="param">
+                                <div class="param-name">
+                                  <span class="param-name-wrap"> <code>sender.non_proxy_hosts</code> </span>
+                                </div>
+                                <div class="param-info">
+                                    <div>
+                                        <p>
+                                            <span class="param-type string"> string </span>
+                                            <span class="badge-required">Required</span>
+                                        </p>
+                                        <div class="param-default">
+                                            <span class="param-default-value">Default: <code>[&quot;$ref{server.hostname}&quot;]</code></span>
+                                        </div>
+                                        <div class="param-possible">
+                                            <span class="param-possible-values">Possible Values: <code>....</code></span>
+                                        </div>
+                                    </div>
+                                    <div class="param-description">
+                                        <p>The list of hosts to which the HTTP traffic should be sent directly without going through the proxy. When trying to add multiple hostnames along with an asterisk in order to define a set of sub-domains for non-proxy hosts, you need to add a period before the asterisk when configuring proxy server.</p>
+                                    </div>
+                                </div>
+                            </div><div class="param">
+                                <div class="param-name">
+                                  <span class="param-name-wrap"> <code>sender.hostname_verifier</code> </span>
+                                </div>
+                                <div class="param-info">
+                                    <div>
+                                        <p>
+                                            <span class="param-type string"> string </span>
+                                            <span class="badge-required">Required</span>
+                                        </p>
+                                        <div class="param-default">
+                                            <span class="param-default-value">Default: <code>AllowAll</code></span>
+                                        </div>
+                                        <div class="param-possible">
+                                            <span class="param-possible-values">Possible Values: <code>....</code></span>
+                                        </div>
+                                    </div>
+                                    <div class="param-description">
+                                        <p>The list of hosts to which the HTTP traffic should be sent directly without going through the proxy. When trying to add multiple hostnames along with an asterisk in order to define a set of sub-domains for non-proxy hosts, you need to add a period before the asterisk when configuring proxy server.</p>
+                                    </div>
+                                </div>
+                            </div><div class="param">
+                                <div class="param-name">
+                                  <span class="param-name-wrap"> <code>sender.keystore.file_name</code> </span>
+                                </div>
+                                <div class="param-info">
+                                    <div>
+                                        <p>
+                                            <span class="param-type string"> string </span>
+                                            <span class="badge-required">Required</span>
+                                        </p>
+                                        <div class="param-default">
+                                            <span class="param-default-value">Default: <code>$ref{keystore.tls.file_name}</code></span>
+                                        </div>
+                                        <div class="param-possible">
+                                            <span class="param-possible-values">Possible Values: <code>....</code></span>
+                                        </div>
+                                    </div>
+                                    <div class="param-description">
+                                        <p>The......</p>
+                                    </div>
+                                </div>
+                            </div><div class="param">
+                                <div class="param-name">
+                                  <span class="param-name-wrap"> <code>sender.keystore.type</code> </span>
+                                </div>
+                                <div class="param-info">
+                                    <div>
+                                        <p>
+                                            <span class="param-type string"> string </span>
+                                            <span class="badge-required">Required</span>
+                                        </p>
+                                        <div class="param-default">
+                                            <span class="param-default-value">Default: <code>$ref{keystore.tls.type}</code></span>
+                                        </div>
+                                        <div class="param-possible">
+                                            <span class="param-possible-values">Possible Values: <code>....</code></span>
+                                        </div>
+                                    </div>
+                                    <div class="param-description">
+                                        <p>The......</p>
+                                    </div>
+                                </div>
+                            </div><div class="param">
+                                <div class="param-name">
+                                  <span class="param-name-wrap"> <code>sender.keystore.password</code> </span>
+                                </div>
+                                <div class="param-info">
+                                    <div>
+                                        <p>
+                                            <span class="param-type string"> string </span>
+                                            <span class="badge-required">Required</span>
+                                        </p>
+                                        <div class="param-default">
+                                            <span class="param-default-value">Default: <code>$ref{keystore.tls.password}</code></span>
+                                        </div>
+                                        <div class="param-possible">
+                                            <span class="param-possible-values">Possible Values: <code>....</code></span>
+                                        </div>
+                                    </div>
+                                    <div class="param-description">
+                                        <p>The......</p>
+                                    </div>
+                                </div>
+                            </div><div class="param">
+                                <div class="param-name">
+                                  <span class="param-name-wrap"> <code>sender.keystore.key_password</code> </span>
+                                </div>
+                                <div class="param-info">
+                                    <div>
+                                        <p>
+                                            <span class="param-type string"> string </span>
+                                            <span class="badge-required">Required</span>
+                                        </p>
+                                        <div class="param-default">
+                                            <span class="param-default-value">Default: <code>$ref{keystore.tls.key_password}</code></span>
+                                        </div>
+                                        <div class="param-possible">
+                                            <span class="param-possible-values">Possible Values: <code>....</code></span>
+                                        </div>
+                                    </div>
+                                    <div class="param-description">
+                                        <p>The......</p>
+                                    </div>
+                                </div>
+                            </div><div class="param">
+                                <div class="param-name">
+                                  <span class="param-name-wrap"> <code>sender.truststore.file_name</code> </span>
+                                </div>
+                                <div class="param-info">
+                                    <div>
+                                        <p>
+                                            <span class="param-type string"> string </span>
+                                            <span class="badge-required">Required</span>
+                                        </p>
+                                        <div class="param-default">
+                                            <span class="param-default-value">Default: <code>$ref{truststore.file_name}</code></span>
+                                        </div>
+                                        <div class="param-possible">
+                                            <span class="param-possible-values">Possible Values: <code>....</code></span>
+                                        </div>
+                                    </div>
+                                    <div class="param-description">
+                                        <p>The......</p>
+                                    </div>
+                                </div>
+                            </div><div class="param">
+                                <div class="param-name">
+                                  <span class="param-name-wrap"> <code>sender.truststore.type</code> </span>
+                                </div>
+                                <div class="param-info">
+                                    <div>
+                                        <p>
+                                            <span class="param-type string"> string </span>
+                                            <span class="badge-required">Required</span>
+                                        </p>
+                                        <div class="param-default">
+                                            <span class="param-default-value">Default: <code>$ref{truststore.type}</code></span>
+                                        </div>
+                                        <div class="param-possible">
+                                            <span class="param-possible-values">Possible Values: <code>....</code></span>
+                                        </div>
+                                    </div>
+                                    <div class="param-description">
+                                        <p>The......</p>
+                                    </div>
+                                </div>
+                            </div><div class="param">
+                                <div class="param-name">
+                                  <span class="param-name-wrap"> <code>sender.truststore.password</code> </span>
+                                </div>
+                                <div class="param-info">
+                                    <div>
+                                        <p>
+                                            <span class="param-type string"> string </span>
+                                            <span class="badge-required">Required</span>
+                                        </p>
+                                        <div class="param-default">
+                                            <span class="param-default-value">Default: <code>$ref{truststore.password}</code></span>
+                                        </div>
+                                        <div class="param-possible">
+                                            <span class="param-possible-values">Possible Values: <code>....</code></span>
+                                        </div>
+                                    </div>
+                                    <div class="param-description">
+                                        <p>The......</p>
+                                    </div>
+                                </div>
+                            </div><div class="param">
+                                <div class="param-name">
+                                  <span class="param-name-wrap"> <code>blocking_sender.enable_client_caching</code> </span>
+                                </div>
+                                <div class="param-info">
+                                    <div>
+                                        <p>
+                                            <span class="param-type string"> boolean </span>
+                                            <span class="badge-required">Required</span>
+                                        </p>
+                                        <div class="param-default">
+                                            <span class="param-default-value">Default: <code>true</code></span>
+                                        </div>
+                                        <div class="param-possible">
+                                            <span class="param-possible-values">Possible Values: <code>&quot;true&quot;,&quot;false&quot;</code></span>
+                                        </div>
+                                    </div>
+                                    <div class="param-description">
+                                        <p>This parameter is used to specify whether the HTTP client should save cache entries and the cached responses in the JVM memory or not.</p>
+                                    </div>
+                                </div>
+                            </div><div class="param">
+                                <div class="param-name">
+                                  <span class="param-name-wrap"> <code>blocking_sender.transfer_encoding</code> </span>
+                                </div>
+                                <div class="param-info">
+                                    <div>
+                                        <p>
+                                            <span class="param-type string"> string </span>
+                                            <span class="badge-required">Required</span>
+                                        </p>
+                                        <div class="param-default">
+                                            <span class="param-default-value">Default: <code>chunked</code></span>
+                                        </div>
+                                        <div class="param-possible">
+                                            <span class="param-possible-values">Possible Values: <code>&quot;chunked&quot;,&quot;false&quot;</code></span>
+                                        </div>
+                                    </div>
+                                    <div class="param-description">
+                                        <p>This parameter enables you to specify whether the data sent should be chunked. It can be used instead of the Content-Length header if you want to upload data without having to know the amount of data to be uploaded in advance.</p>
+                                    </div>
+                                </div>
+                            </div><div class="param">
+                                <div class="param-name">
+                                  <span class="param-name-wrap"> <code>blocking_sender.default_connections_per_host</code> </span>
+                                </div>
+                                <div class="param-info">
+                                    <div>
+                                        <p>
+                                            <span class="param-type string"> boolean </span>
+                                            <span class="badge-required">Required</span>
+                                        </p>
+                                        <div class="param-default">
+                                            <span class="param-default-value">Default: <code>true</code></span>
+                                        </div>
+                                        <div class="param-possible">
+                                            <span class="param-possible-values">Possible Values: <code>&quot;true&quot; or &quot;false&quot;</code></span>
+                                        </div>
+                                    </div>
+                                    <div class="param-description">
+                                        <p>The maximum number of connections that will be created per host server by the client. If the backend server is slow, the connections in use at a given time will take a long time to be released and added back to the connection pool. As a result, connections may not be available for some requests. In such situations, it is recommended to increase the value for this parameter.</p>
+                                    </div>
+                                </div>
+                            </div><div class="param">
+                                <div class="param-name">
+                                  <span class="param-name-wrap"> <code>blocking_sender.omit_soap12_action</code> </span>
+                                </div>
+                                <div class="param-info">
+                                    <div>
+                                        <p>
+                                            <span class="param-type string"> string </span>
+                                            <span class="badge-required">Required</span>
+                                        </p>
+                                        <div class="param-default">
+                                            <span class="param-default-value">Default: <code>true</code></span>
+                                        </div>
+                                        <div class="param-possible">
+                                            <span class="param-possible-values">Possible Values: <code>&quot;true&quot; or &quot;false&quot;</code></span>
+                                        </div>
+                                    </div>
+                                    <div class="param-description">
+                                        <p>If following is set to &#39;true&#39;, optional action part of the Content-Type will not be added to the SOAP 1.2 messages.</p>
+                                    </div>
+                                </div>
+                            </div><div class="param">
+                                <div class="param-name">
+                                  <span class="param-name-wrap"> <code>blocking_sender.so_timeout</code> </span>
+                                </div>
+                                <div class="param-info">
+                                    <div>
+                                        <p>
+                                            <span class="param-type string"> boolean </span>
+                                            <span class="badge-required">Required</span>
+                                        </p>
+                                        <div class="param-default">
+                                            <span class="param-default-value">Default: <code>true</code></span>
+                                        </div>
+                                        <div class="param-possible">
+                                            <span class="param-possible-values">Possible Values: <code>&quot;true&quot; or &quot;false&quot;</code></span>
+                                        </div>
+                                    </div>
+                                    <div class="param-description">
+                                        <p>If following is set to &#39;true&#39;, optional action part of the Content-Type will not be added to the SOAP 1.2 messages.</p>
                                     </div>
                                 </div>
                             </div>
@@ -1043,9 +2105,8 @@ blocking_sender.so_timeout = "1m"
     <section>
         <div class="mb-config-options">
             <div class="superfences-tabs">
-            
-            <input name="14" type="checkbox" id="_tab_14">
-                <label class="tab-selector" for="_tab_14"><i class="icon fa fa-code"></i></label>
+            <input name="__tabs_1" type="checkbox" id="__tab_1_0">
+                <label class="tab-selector" for="__tab_1_0"><i class="icon fa fa-code"></i></label>
                 <div class="superfences-content">
                     <div class="mb-config-example">
 <pre><code class="toml">[[transport.http.proxy_profile]]
@@ -1124,9 +2185,8 @@ bypass_hosts = [""]
     <section>
         <div class="mb-config-options">
             <div class="superfences-tabs">
-            
-            <input name="15" type="checkbox" id="_tab_15">
-                <label class="tab-selector" for="_tab_15"><i class="icon fa fa-code"></i></label>
+            <input name="__tabs_1" type="checkbox" id="__tab_1_0">
+                <label class="tab-selector" for="__tab_1_0"><i class="icon fa fa-code"></i></label>
                 <div class="superfences-content">
                     <div class="mb-config-example">
 <pre><code class="toml">[transport.local]
@@ -1201,9 +2261,8 @@ sender.enabled=false
     <section>
         <div class="mb-config-options">
             <div class="superfences-tabs">
-            
-            <input name="16" type="checkbox" id="_tab_16">
-                <label class="tab-selector" for="_tab_16"><i class="icon fa fa-code"></i></label>
+            <input name="__tabs_1" type="checkbox" id="__tab_1_0">
+                <label class="tab-selector" for="__tab_1_0"><i class="icon fa fa-code"></i></label>
                 <div class="superfences-content">
                     <div class="mb-config-example">
 <pre><code class="toml">[transport.vfs]
@@ -1283,9 +2342,8 @@ sender.enable = true
     <section>
         <div class="mb-config-options">
             <div class="superfences-tabs">
-            
-            <input name="17" type="checkbox" id="_tab_17">
-                <label class="tab-selector" for="_tab_17"><i class="icon fa fa-code"></i></label>
+            <input name="__tabs_1" type="checkbox" id="__tab_1_0">
+                <label class="tab-selector" for="__tab_1_0"><i class="icon fa fa-code"></i></label>
                 <div class="superfences-content">
                     <div class="mb-config-example">
 <pre><code class="toml">[transport.mail.listener]
@@ -1360,9 +2418,8 @@ name = "mailto"
     <section>
         <div class="mb-config-options">
             <div class="superfences-tabs">
-            
-            <input name="18" type="checkbox" id="_tab_18">
-                <label class="tab-selector" for="_tab_18"><i class="icon fa fa-code"></i></label>
+            <input name="__tabs_1" type="checkbox" id="__tab_1_0">
+                <label class="tab-selector" for="__tab_1_0"><i class="icon fa fa-code"></i></label>
                 <div class="superfences-content">
                     <div class="mb-config-example">
 <pre><code class="toml">[[transport.mail.sender]]
@@ -1443,9 +2500,8 @@ parameter.from = "demo_user@wso2.com"
     <section>
         <div class="mb-config-options">
             <div class="superfences-tabs">
-            
-            <input name="19" type="checkbox" id="_tab_19">
-                <label class="tab-selector" for="_tab_19"><i class="icon fa fa-code"></i></label>
+            <input name="__tabs_1" type="checkbox" id="__tab_1_0">
+                <label class="tab-selector" for="__tab_1_0"><i class="icon fa fa-code"></i></label>
                 <div class="superfences-content">
                     <div class="mb-config-example">
 <pre><code class="toml">[[transport.jms.listener]]
@@ -1559,9 +2615,8 @@ parameter.consume_error_progression = "2.0"
     <section>
         <div class="mb-config-options">
             <div class="superfences-tabs">
-            
-            <input name="20" type="checkbox" id="_tab_20">
-                <label class="tab-selector" for="_tab_20"><i class="icon fa fa-code"></i></label>
+            <input name="__tabs_1" type="checkbox" id="__tab_1_0">
+                <label class="tab-selector" for="__tab_1_0"><i class="icon fa fa-code"></i></label>
                 <div class="superfences-content">
                     <div class="mb-config-example">
 <pre><code class="toml">[[transport.jms.sender]]
@@ -1678,9 +2733,8 @@ parameter.vender_class_loader = false
     <section>
         <div class="mb-config-options">
             <div class="superfences-tabs">
-            
-            <input name="21" type="checkbox" id="_tab_21">
-                <label class="tab-selector" for="_tab_21"><i class="icon fa fa-code"></i></label>
+            <input name="__tabs_1" type="checkbox" id="__tab_1_0">
+                <label class="tab-selector" for="__tab_1_0"><i class="icon fa fa-code"></i></label>
                 <div class="superfences-content">
                     <div class="mb-config-example">
 <pre><code class="toml">[transport.jndi.connection_factories]
@@ -1755,9 +2809,8 @@ TopicConnectionFactory = "amqp://admin:admin@clientID/carbon?brokerlist='tcp://l
     <section>
         <div class="mb-config-options">
             <div class="superfences-tabs">
-            
-            <input name="22" type="checkbox" id="_tab_22">
-                <label class="tab-selector" for="_tab_22"><i class="icon fa fa-code"></i></label>
+            <input name="__tabs_1" type="checkbox" id="__tab_1_0">
+                <label class="tab-selector" for="__tab_1_0"><i class="icon fa fa-code"></i></label>
                 <div class="superfences-content">
                     <div class="mb-config-example">
 <pre><code class="toml">[transport.jndi.queue]
@@ -1832,9 +2885,8 @@ StockQuotesQueue = "StockQuotesQueue"
     <section>
         <div class="mb-config-options">
             <div class="superfences-tabs">
-            
-            <input name="23" type="checkbox" id="_tab_23">
-                <label class="tab-selector" for="_tab_23"><i class="icon fa fa-code"></i></label>
+            <input name="__tabs_1" type="checkbox" id="__tab_1_0">
+                <label class="tab-selector" for="__tab_1_0"><i class="icon fa fa-code"></i></label>
                 <div class="superfences-content">
                     <div class="mb-config-example">
 <pre><code class="toml">[transport.jndi.topic]
@@ -1908,9 +2960,8 @@ MyTopic = "example.MyTopic"
     <section>
         <div class="mb-config-options">
             <div class="superfences-tabs">
-            
-            <input name="24" type="checkbox" id="_tab_24">
-                <label class="tab-selector" for="_tab_24"><i class="icon fa fa-code"></i></label>
+            <input name="__tabs_1" type="checkbox" id="__tab_1_0">
+                <label class="tab-selector" for="__tab_1_0"><i class="icon fa fa-code"></i></label>
                 <div class="superfences-content">
                     <div class="mb-config-example">
 <pre><code class="toml">[[transport.rabbitmq.listener]]
@@ -2017,9 +3068,8 @@ parameter.truststore_password = "$ref{truststore.password}"
     <section>
         <div class="mb-config-options">
             <div class="superfences-tabs">
-            
-            <input name="25" type="checkbox" id="_tab_25">
-                <label class="tab-selector" for="_tab_25"><i class="icon fa fa-code"></i></label>
+            <input name="__tabs_1" type="checkbox" id="__tab_1_0">
+                <label class="tab-selector" for="__tab_1_0"><i class="icon fa fa-code"></i></label>
                 <div class="superfences-content">
                     <div class="mb-config-example">
 <pre><code class="toml">[[transport.rabbitmq.sender]]
@@ -2110,9 +3160,8 @@ parameter.exchange_auto_declare = ""
     <section>
         <div class="mb-config-options">
             <div class="superfences-tabs">
-            
-            <input name="26" type="checkbox" id="_tab_26">
-                <label class="tab-selector" for="_tab_26"><i class="icon fa fa-code"></i></label>
+            <input name="__tabs_1" type="checkbox" id="__tab_1_0">
+                <label class="tab-selector" for="__tab_1_0"><i class="icon fa fa-code"></i></label>
                 <div class="superfences-content">
                     <div class="mb-config-example">
 <pre><code class="toml">[transport.ws]
@@ -2189,9 +3238,8 @@ sender.enabled=false
     <section>
         <div class="mb-config-options">
             <div class="superfences-tabs">
-            
-            <input name="27" type="checkbox" id="_tab_27">
-                <label class="tab-selector" for="_tab_27"><i class="icon fa fa-code"></i></label>
+            <input name="__tabs_1" type="checkbox" id="__tab_1_0">
+                <label class="tab-selector" for="__tab_1_0"><i class="icon fa fa-code"></i></label>
                 <div class="superfences-content">
                     <div class="mb-config-example">
 <pre><code class="toml">[transport.mqtt]
@@ -2284,9 +3332,8 @@ sender.enable = false
     <section>
         <div class="mb-config-options">
             <div class="superfences-tabs">
-            
-            <input name="28" type="checkbox" id="_tab_28">
-                <label class="tab-selector" for="_tab_28"><i class="icon fa fa-code"></i></label>
+            <input name="__tabs_1" type="checkbox" id="__tab_1_0">
+                <label class="tab-selector" for="__tab_1_0"><i class="icon fa fa-code"></i></label>
                 <div class="superfences-content">
                     <div class="mb-config-example">
 <pre><code class="toml">[transport.hl7]
@@ -2365,9 +3412,8 @@ sender.non_blocking = true
     <section>
         <div class="mb-config-options">
             <div class="superfences-tabs">
-            
-            <input name="29" type="checkbox" id="_tab_29">
-                <label class="tab-selector" for="_tab_29"><i class="icon fa fa-code"></i></label>
+            <input name="__tabs_1" type="checkbox" id="__tab_1_0">
+                <label class="tab-selector" for="__tab_1_0"><i class="icon fa fa-code"></i></label>
                 <div class="superfences-content">
                     <div class="mb-config-example">
 <pre><code class="toml">[transport.sap]
@@ -2442,9 +3488,8 @@ sender.enabled=false
     <section>
         <div class="mb-config-options">
             <div class="superfences-tabs">
-            
-            <input name="30" type="checkbox" id="_tab_30">
-                <label class="tab-selector" for="_tab_30"><i class="icon fa fa-code"></i></label>
+            <input name="__tabs_1" type="checkbox" id="__tab_1_0">
+                <label class="tab-selector" for="__tab_1_0"><i class="icon fa fa-code"></i></label>
                 <div class="superfences-content">
                     <div class="mb-config-example">
 <pre><code class="toml">[transport.msmq]
@@ -2521,9 +3566,8 @@ sender.enable = false
     <section>
         <div class="mb-config-options">
             <div class="superfences-tabs">
-            
-            <input name="31" type="checkbox" id="_tab_31">
-                <label class="tab-selector" for="_tab_31"><i class="icon fa fa-code"></i></label>
+            <input name="__tabs_1" type="checkbox" id="__tab_1_0">
+                <label class="tab-selector" for="__tab_1_0"><i class="icon fa fa-code"></i></label>
                 <div class="superfences-content">
                     <div class="mb-config-example">
 <pre><code class="toml">[transport.tcp]
@@ -2602,9 +3646,8 @@ sender.enable = true
     <section>
         <div class="mb-config-options">
             <div class="superfences-tabs">
-            
-            <input name="32" type="checkbox" id="_tab_32">
-                <label class="tab-selector" for="_tab_32"><i class="icon fa fa-code"></i></label>
+            <input name="__tabs_1" type="checkbox" id="__tab_1_0">
+                <label class="tab-selector" for="__tab_1_0"><i class="icon fa fa-code"></i></label>
                 <div class="superfences-content">
                     <div class="mb-config-example">
 <pre><code class="toml">[transport.ws]
@@ -2681,9 +3724,8 @@ sender.parameter.outflow_dispatch_fault_sequence = "outflowFaultSeq"
     <section>
         <div class="mb-config-options">
             <div class="superfences-tabs">
-            
-            <input name="33" type="checkbox" id="_tab_33">
-                <label class="tab-selector" for="_tab_33"><i class="icon fa fa-code"></i></label>
+            <input name="__tabs_1" type="checkbox" id="__tab_1_0">
+                <label class="tab-selector" for="__tab_1_0"><i class="icon fa fa-code"></i></label>
                 <div class="superfences-content">
                     <div class="mb-config-example">
 <pre><code class="toml">[transport.wss]
@@ -2762,9 +3804,8 @@ sender.truststore_password = "$ref{truststore.password}"
     <section>
         <div class="mb-config-options">
             <div class="superfences-tabs">
-            
-            <input name="34" type="checkbox" id="_tab_34">
-                <label class="tab-selector" for="_tab_34"><i class="icon fa fa-code"></i></label>
+            <input name="__tabs_1" type="checkbox" id="__tab_1_0">
+                <label class="tab-selector" for="__tab_1_0"><i class="icon fa fa-code"></i></label>
                 <div class="superfences-content">
                     <div class="mb-config-example">
 <pre><code class="toml">[transport.udp]
@@ -2840,9 +3881,8 @@ sender.enable =false
     <section>
         <div class="mb-config-options">
             <div class="superfences-tabs">
-            
-            <input name="35" type="checkbox" id="_tab_35">
-                <label class="tab-selector" for="_tab_35"><i class="icon fa fa-code"></i></label>
+            <input name="__tabs_1" type="checkbox" id="__tab_1_0">
+                <label class="tab-selector" for="__tab_1_0"><i class="icon fa fa-code"></i></label>
                 <div class="superfences-content">
                     <div class="mb-config-example">
 <pre><code class="toml">[[custom_transport.listener]]
@@ -2933,9 +3973,8 @@ ssl_profile.read_interval = "30s"
     <section>
         <div class="mb-config-options">
             <div class="superfences-tabs">
-            
-            <input name="36" type="checkbox" id="_tab_36">
-                <label class="tab-selector" for="_tab_36"><i class="icon fa fa-code"></i></label>
+            <input name="__tabs_1" type="checkbox" id="__tab_1_0">
+                <label class="tab-selector" for="__tab_1_0"><i class="icon fa fa-code"></i></label>
                 <div class="superfences-content">
                     <div class="mb-config-example">
 <pre><code class="toml">[[custom_transport.sender]]
@@ -2962,51 +4001,326 @@ ssl_profile.read_interval = "30s"
                 <div class="doc-wrapper">
                     <div class="mb-config">
                         <div class="config-wrap">
-                            <code>[server]</code>
-                            <span class="badge-required">Required</span>
+                            <code>[[[custom_transport.sender]]]</code>
+                            
                             <p>
-                                You can count on it.This toml header groups the parameters that define the server node details.
+                                This config heading is used to group the parameters for a custom transport implementation that you want to use in your product.
                             </p>
                         </div>
                         <div class="params-wrap">
                             <div class="param">
                                 <div class="param-name">
-                                  <span class="param-name-wrap"> <code>hostname</code> </span>
+                                  <span class="param-name-wrap"> <code>class</code> </span>
                                 </div>
                                 <div class="param-info">
                                     <div>
                                         <p>
                                             <span class="param-type string"> string </span>
-                                            <span class="badge-required">Required</span>
+                                            
                                         </p>
                                         <div class="param-default">
-                                            <span class="param-default-value">Default: <code>&quot;localhost&quot;</code></span>
+                                            <span class="param-default-value">Default: <code>....</code></span>
                                         </div>
                                         <div class="param-possible">
-                                            <span class="param-possible-values">Possible Values: <code>&quot;127.0.0.1&quot;,&quot;localhost&quot;,&quot;&lt;any-ip-address&gt;&quot;</code></span>
+                                            <span class="param-possible-values">Possible Values: <code>...</code></span>
                                         </div>
                                     </div>
                                     <div class="param-description">
-                                        <p>The hostname of the WSO2 EI server instance.</p>
+                                        <p>...</p>
                                     </div>
                                 </div>
                             </div><div class="param">
                                 <div class="param-name">
-                                  <span class="param-name-wrap"> <code>node_ip</code> </span>
+                                  <span class="param-name-wrap"> <code>protocol</code> </span>
                                 </div>
                                 <div class="param-info">
                                     <div>
                                         <p>
                                             <span class="param-type string"> string </span>
-                                            <span class="badge-required">Required</span>
+                                            
                                         </p>
                                         <div class="param-default">
-                                            <span class="param-default-value">Default: <code>&quot;127.0.0.1&quot;</code></span>
+                                            <span class="param-default-value">Default: <code>ISO8583</code></span>
                                         </div>
-                                        
+                                        <div class="param-possible">
+                                            <span class="param-possible-values">Possible Values: <code>....</code></span>
+                                        </div>
                                     </div>
                                     <div class="param-description">
-                                        <p>The IP address of the server node.</p>
+                                        <p>The....</p>
+                                    </div>
+                                </div>
+                            </div><div class="param">
+                                <div class="param-name">
+                                  <span class="param-name-wrap"> <code>parameter.port</code> </span>
+                                </div>
+                                <div class="param-info">
+                                    <div>
+                                        <p>
+                                            <span class="param-type string"> string </span>
+                                            
+                                        </p>
+                                        <div class="param-default">
+                                            <span class="param-default-value">Default: <code>8081</code></span>
+                                        </div>
+                                        <div class="param-possible">
+                                            <span class="param-possible-values">Possible Values: <code>...</code></span>
+                                        </div>
+                                    </div>
+                                    <div class="param-description">
+                                        <p>The....</p>
+                                    </div>
+                                </div>
+                            </div><div class="param">
+                                <div class="param-name">
+                                  <span class="param-name-wrap"> <code>parameter.hostname</code> </span>
+                                </div>
+                                <div class="param-info">
+                                    <div>
+                                        <p>
+                                            <span class="param-type string"> string </span>
+                                            
+                                        </p>
+                                        <div class="param-default">
+                                            <span class="param-default-value">Default: <code>$ref{server.node_ip}</code></span>
+                                        </div>
+                                        <div class="param-possible">
+                                            <span class="param-possible-values">Possible Values: <code>...</code></span>
+                                        </div>
+                                    </div>
+                                    <div class="param-description">
+                                        <p>The....</p>
+                                    </div>
+                                </div>
+                            </div><div class="param">
+                                <div class="param-name">
+                                  <span class="param-name-wrap"> <code>parameter.non-blocking</code> </span>
+                                </div>
+                                <div class="param-info">
+                                    <div>
+                                        <p>
+                                            <span class="param-type string"> boolean </span>
+                                            
+                                        </p>
+                                        <div class="param-default">
+                                            <span class="param-default-value">Default: <code>true</code></span>
+                                        </div>
+                                        <div class="param-possible">
+                                            <span class="param-possible-values">Possible Values: <code>&quot;true&quot;,&quot;false&quot;</code></span>
+                                        </div>
+                                    </div>
+                                    <div class="param-description">
+                                        <p>The...</p>
+                                    </div>
+                                </div>
+                            </div><div class="param">
+                                <div class="param-name">
+                                  <span class="param-name-wrap"> <code>parameter.non_proxy_host</code> </span>
+                                </div>
+                                <div class="param-info">
+                                    <div>
+                                        <p>
+                                            <span class="param-type string"> string </span>
+                                            
+                                        </p>
+                                        <div class="param-default">
+                                            <span class="param-default-value">Default: <code></code></span>
+                                        </div>
+                                        <div class="param-possible">
+                                            <span class="param-possible-values">Possible Values: <code>...</code></span>
+                                        </div>
+                                    </div>
+                                    <div class="param-description">
+                                        <p>The....</p>
+                                    </div>
+                                </div>
+                            </div><div class="param">
+                                <div class="param-name">
+                                  <span class="param-name-wrap"> <code>keystore.file_name</code> </span>
+                                </div>
+                                <div class="param-info">
+                                    <div>
+                                        <p>
+                                            <span class="param-type string"> string </span>
+                                            
+                                        </p>
+                                        <div class="param-default">
+                                            <span class="param-default-value">Default: <code>$ref{keystore.tls.file_name}</code></span>
+                                        </div>
+                                        <div class="param-possible">
+                                            <span class="param-possible-values">Possible Values: <code>...</code></span>
+                                        </div>
+                                    </div>
+                                    <div class="param-description">
+                                        <p>The....</p>
+                                    </div>
+                                </div>
+                            </div><div class="param">
+                                <div class="param-name">
+                                  <span class="param-name-wrap"> <code>keystore.type</code> </span>
+                                </div>
+                                <div class="param-info">
+                                    <div>
+                                        <p>
+                                            <span class="param-type string"> string </span>
+                                            
+                                        </p>
+                                        <div class="param-default">
+                                            <span class="param-default-value">Default: <code>$ref{keystore.tls.type}</code></span>
+                                        </div>
+                                        <div class="param-possible">
+                                            <span class="param-possible-values">Possible Values: <code>...</code></span>
+                                        </div>
+                                    </div>
+                                    <div class="param-description">
+                                        <p>The....</p>
+                                    </div>
+                                </div>
+                            </div><div class="param">
+                                <div class="param-name">
+                                  <span class="param-name-wrap"> <code>keystore.password</code> </span>
+                                </div>
+                                <div class="param-info">
+                                    <div>
+                                        <p>
+                                            <span class="param-type string"> string </span>
+                                            
+                                        </p>
+                                        <div class="param-default">
+                                            <span class="param-default-value">Default: <code>$ref{keystore.tls.password}</code></span>
+                                        </div>
+                                        <div class="param-possible">
+                                            <span class="param-possible-values">Possible Values: <code>...</code></span>
+                                        </div>
+                                    </div>
+                                    <div class="param-description">
+                                        <p>The....</p>
+                                    </div>
+                                </div>
+                            </div><div class="param">
+                                <div class="param-name">
+                                  <span class="param-name-wrap"> <code>keystore.key_password</code> </span>
+                                </div>
+                                <div class="param-info">
+                                    <div>
+                                        <p>
+                                            <span class="param-type string"> string </span>
+                                            
+                                        </p>
+                                        <div class="param-default">
+                                            <span class="param-default-value">Default: <code>$ref{keystore.tls.key_password}</code></span>
+                                        </div>
+                                        <div class="param-possible">
+                                            <span class="param-possible-values">Possible Values: <code>...</code></span>
+                                        </div>
+                                    </div>
+                                    <div class="param-description">
+                                        <p>The....</p>
+                                    </div>
+                                </div>
+                            </div><div class="param">
+                                <div class="param-name">
+                                  <span class="param-name-wrap"> <code>truststore.file_name</code> </span>
+                                </div>
+                                <div class="param-info">
+                                    <div>
+                                        <p>
+                                            <span class="param-type string"> string </span>
+                                            
+                                        </p>
+                                        <div class="param-default">
+                                            <span class="param-default-value">Default: <code>$ref{truststore.file_name}</code></span>
+                                        </div>
+                                        <div class="param-possible">
+                                            <span class="param-possible-values">Possible Values: <code>...</code></span>
+                                        </div>
+                                    </div>
+                                    <div class="param-description">
+                                        <p>The....</p>
+                                    </div>
+                                </div>
+                            </div><div class="param">
+                                <div class="param-name">
+                                  <span class="param-name-wrap"> <code>truststore.type</code> </span>
+                                </div>
+                                <div class="param-info">
+                                    <div>
+                                        <p>
+                                            <span class="param-type string"> string </span>
+                                            
+                                        </p>
+                                        <div class="param-default">
+                                            <span class="param-default-value">Default: <code>$ref{truststore.type}</code></span>
+                                        </div>
+                                        <div class="param-possible">
+                                            <span class="param-possible-values">Possible Values: <code>...</code></span>
+                                        </div>
+                                    </div>
+                                    <div class="param-description">
+                                        <p>The....</p>
+                                    </div>
+                                </div>
+                            </div><div class="param">
+                                <div class="param-name">
+                                  <span class="param-name-wrap"> <code>truststore.password</code> </span>
+                                </div>
+                                <div class="param-info">
+                                    <div>
+                                        <p>
+                                            <span class="param-type string"> string </span>
+                                            
+                                        </p>
+                                        <div class="param-default">
+                                            <span class="param-default-value">Default: <code>$ref{truststore.password}</code></span>
+                                        </div>
+                                        <div class="param-possible">
+                                            <span class="param-possible-values">Possible Values: <code>...</code></span>
+                                        </div>
+                                    </div>
+                                    <div class="param-description">
+                                        <p>The....</p>
+                                    </div>
+                                </div>
+                            </div><div class="param">
+                                <div class="param-name">
+                                  <span class="param-name-wrap"> <code>ssl_profile.file_path</code> </span>
+                                </div>
+                                <div class="param-info">
+                                    <div>
+                                        <p>
+                                            <span class="param-type string"> string </span>
+                                            
+                                        </p>
+                                        <div class="param-default">
+                                            <span class="param-default-value">Default: <code>conf/sslprofiles/senderprofiles.xml</code></span>
+                                        </div>
+                                        <div class="param-possible">
+                                            <span class="param-possible-values">Possible Values: <code>...</code></span>
+                                        </div>
+                                    </div>
+                                    <div class="param-description">
+                                        <p>The....</p>
+                                    </div>
+                                </div>
+                            </div><div class="param">
+                                <div class="param-name">
+                                  <span class="param-name-wrap"> <code>ssl_profile.read_interval</code> </span>
+                                </div>
+                                <div class="param-info">
+                                    <div>
+                                        <p>
+                                            <span class="param-type string"> string </span>
+                                            
+                                        </p>
+                                        <div class="param-default">
+                                            <span class="param-default-value">Default: <code>30s</code></span>
+                                        </div>
+                                        <div class="param-possible">
+                                            <span class="param-possible-values">Possible Values: <code>...</code></span>
+                                        </div>
+                                    </div>
+                                    <div class="param-description">
+                                        <p>The....</p>
                                     </div>
                                 </div>
                             </div>
@@ -3025,9 +4339,8 @@ ssl_profile.read_interval = "30s"
     <section>
         <div class="mb-config-options">
             <div class="superfences-tabs">
-            
-            <input name="37" type="checkbox" id="_tab_37">
-                <label class="tab-selector" for="_tab_37"><i class="icon fa fa-code"></i></label>
+            <input name="__tabs_1" type="checkbox" id="__tab_1_0">
+                <label class="tab-selector" for="__tab_1_0"><i class="icon fa fa-code"></i></label>
                 <div class="superfences-content">
                     <div class="mb-config-example">
 <pre><code class="toml">[mediation]
@@ -3066,51 +4379,515 @@ inbound.max_threads = 100
                 <div class="doc-wrapper">
                     <div class="mb-config">
                         <div class="config-wrap">
-                            <code>[server]</code>
+                            <code>[[mediation]]</code>
                             <span class="badge-required">Required</span>
                             <p>
-                                You can count on it.This toml header groups the parameters that define the server node details.
+                                Add this config heading to the ei.toml file to group the parameters for tuning the mediation process (Synapse engine) of the ESB. These parameters are mainly used when mediators such as Iterate and Clone (which leverage on internal thread pools) are used.
                             </p>
                         </div>
                         <div class="params-wrap">
                             <div class="param">
                                 <div class="param-name">
-                                  <span class="param-name-wrap"> <code>hostname</code> </span>
+                                  <span class="param-name-wrap"> <code>synapse.core_threads</code> </span>
                                 </div>
                                 <div class="param-info">
                                     <div>
                                         <p>
-                                            <span class="param-type string"> string </span>
-                                            <span class="badge-required">Required</span>
+                                            <span class="param-type string"> integer </span>
+                                            
                                         </p>
                                         <div class="param-default">
-                                            <span class="param-default-value">Default: <code>&quot;localhost&quot;</code></span>
+                                            <span class="param-default-value">Default: <code>20</code></span>
                                         </div>
                                         <div class="param-possible">
-                                            <span class="param-possible-values">Possible Values: <code>&quot;127.0.0.1&quot;,&quot;localhost&quot;,&quot;&lt;any-ip-address&gt;&quot;</code></span>
+                                            <span class="param-possible-values">Possible Values: <code>...</code></span>
                                         </div>
                                     </div>
                                     <div class="param-description">
-                                        <p>The hostname of the WSO2 EI server instance.</p>
+                                        <p>The initial number of synapse threads in the pool. This parameter is applicable only if the Iterate or the Clone mediator is used to handle a higher load. The number of threads specified for this parameter should be increased as required to balance an increased load.</p>
                                     </div>
                                 </div>
                             </div><div class="param">
                                 <div class="param-name">
-                                  <span class="param-name-wrap"> <code>node_ip</code> </span>
+                                  <span class="param-name-wrap"> <code>synapse.max_threads</code> </span>
+                                </div>
+                                <div class="param-info">
+                                    <div>
+                                        <p>
+                                            <span class="param-type string"> integer </span>
+                                            
+                                        </p>
+                                        <div class="param-default">
+                                            <span class="param-default-value">Default: <code>100</code></span>
+                                        </div>
+                                        <div class="param-possible">
+                                            <span class="param-possible-values">Possible Values: <code>....</code></span>
+                                        </div>
+                                    </div>
+                                    <div class="param-description">
+                                        <p>The maximum number of synapse threads in the pool. This parameter is applicable only if the Iterate or the Clone mediator is used to handle a higher load. The number of threads specified for this parameter should be increased as required to balance an increased load.</p>
+                                    </div>
+                                </div>
+                            </div><div class="param">
+                                <div class="param-name">
+                                  <span class="param-name-wrap"> <code>synapse.threads_queue_length</code> </span>
+                                </div>
+                                <div class="param-info">
+                                    <div>
+                                        <p>
+                                            <span class="param-type string"> integer </span>
+                                            
+                                        </p>
+                                        <div class="param-default">
+                                            <span class="param-default-value">Default: <code>10</code></span>
+                                        </div>
+                                        <div class="param-possible">
+                                            <span class="param-possible-values">Possible Values: <code>....</code></span>
+                                        </div>
+                                    </div>
+                                    <div class="param-description">
+                                        <p>The length of the queue that is used to hold the runnable tasks to be executed by the pool. This parameter is applicable only if the Iterate or the Clone mediator is used to handle a higher load.</p>
+                                    </div>
+                                </div>
+                            </div><div class="param">
+                                <div class="param-name">
+                                  <span class="param-name-wrap"> <code>synapse.global_timeout_interval_millis</code> </span>
+                                </div>
+                                <div class="param-info">
+                                    <div>
+                                        <p>
+                                            <span class="param-type string"> integer </span>
+                                            
+                                        </p>
+                                        <div class="param-default">
+                                            <span class="param-default-value">Default: <code>120000</code></span>
+                                        </div>
+                                        <div class="param-possible">
+                                            <span class="param-possible-values">Possible Values: <code>...</code></span>
+                                        </div>
+                                    </div>
+                                    <div class="param-description">
+                                        <p>The maximum number of milliseconds within which a response for the request should be received. A response which arrives after the specified number of seconds cannot be correlated with the request. Hence, a warning all be logged and the request will be dropped. This parameter is also referred to as the time-out handler.</p>
+                                    </div>
+                                </div>
+                            </div><div class="param">
+                                <div class="param-name">
+                                  <span class="param-name-wrap"> <code>synapse.enable_xpath_dom_failover</code> </span>
+                                </div>
+                                <div class="param-info">
+                                    <div>
+                                        <p>
+                                            <span class="param-type string"> boolean </span>
+                                            
+                                        </p>
+                                        <div class="param-default">
+                                            <span class="param-default-value">Default: <code>true</code></span>
+                                        </div>
+                                        <div class="param-possible">
+                                            <span class="param-possible-values">Possible Values: <code>&quot;true&quot;,&quot;false&quot;</code></span>
+                                        </div>
+                                    </div>
+                                    <div class="param-description">
+                                        <p>If this parameter is set to true , it will be possible for ESB to switch to xpath 2.0. The default value for this parameter is false since xpath 2.0 evaluations can cause performance degradation. WSO2 EI uses the Saxon Home Edition in implementing XPATH 2.0 functionalities, and thus supports all the functions that are shipped with it. For more information on the supported functions, see Saxon Documentation.</p>
+                                    </div>
+                                </div>
+                            </div><div class="param">
+                                <div class="param-name">
+                                  <span class="param-name-wrap"> <code>synapse.temp_data_chunk_size</code> </span>
+                                </div>
+                                <div class="param-info">
+                                    <div>
+                                        <p>
+                                            <span class="param-type string"> integer </span>
+                                            
+                                        </p>
+                                        <div class="param-default">
+                                            <span class="param-default-value">Default: <code>3072</code></span>
+                                        </div>
+                                        <div class="param-possible">
+                                            <span class="param-possible-values">Possible Values: <code>...</code></span>
+                                        </div>
+                                    </div>
+                                    <div class="param-description">
+                                        <p>The message size that can be processed by the ESB server.</p>
+                                    </div>
+                                </div>
+                            </div><div class="param">
+                                <div class="param-name">
+                                  <span class="param-name-wrap"> <code>synapse.command_debugger_port</code> </span>
+                                </div>
+                                <div class="param-info">
+                                    <div>
+                                        <p>
+                                            <span class="param-type string"> integer </span>
+                                            
+                                        </p>
+                                        <div class="param-default">
+                                            <span class="param-default-value">Default: <code>9005</code></span>
+                                        </div>
+                                        <div class="param-possible">
+                                            <span class="param-possible-values">Possible Values: <code>...</code></span>
+                                        </div>
+                                    </div>
+                                    <div class="param-description">
+                                        <p>The..</p>
+                                    </div>
+                                </div>
+                            </div><div class="param">
+                                <div class="param-name">
+                                  <span class="param-name-wrap"> <code>synapse.script_mediator_pool_size</code> </span>
+                                </div>
+                                <div class="param-info">
+                                    <div>
+                                        <p>
+                                            <span class="param-type string"> integer </span>
+                                            
+                                        </p>
+                                        <div class="param-default">
+                                            <span class="param-default-value">Default: <code>15</code></span>
+                                        </div>
+                                        <div class="param-possible">
+                                            <span class="param-possible-values">Possible Values: <code>..</code></span>
+                                        </div>
+                                    </div>
+                                    <div class="param-description">
+                                        <p>When using externally referenced scripts, this parameter is used to specify the size of the script engine pool to be used per script mediator. The script engines from this pool are used for externally referenced script execution where updates to external scripts on an engine currently in use may otherwise not be thread safe. It is recommended to keep this value at a reasonable size since there will be a pool per externally referenced script.</p>
+                                    </div>
+                                </div>
+                            </div><div class="param">
+                                <div class="param-name">
+                                  <span class="param-name-wrap"> <code>synapse.enable_xml_nil</code> </span>
+                                </div>
+                                <div class="param-info">
+                                    <div>
+                                        <p>
+                                            <span class="param-type string"> boolean </span>
+                                            
+                                        </p>
+                                        <div class="param-default">
+                                            <span class="param-default-value">Default: <code>false</code></span>
+                                        </div>
+                                        <div class="param-possible">
+                                            <span class="param-possible-values">Possible Values: <code>&quot;true&quot;,&quot;false&quot;</code></span>
+                                        </div>
+                                    </div>
+                                    <div class="param-description">
+                                        <p>The..</p>
+                                    </div>
+                                </div>
+                            </div><div class="param">
+                                <div class="param-name">
+                                  <span class="param-name-wrap"> <code>synapse.disable_auto_primitive_regex</code> </span>
                                 </div>
                                 <div class="param-info">
                                     <div>
                                         <p>
                                             <span class="param-type string"> string </span>
-                                            <span class="badge-required">Required</span>
+                                            
                                         </p>
                                         <div class="param-default">
-                                            <span class="param-default-value">Default: <code>&quot;127.0.0.1&quot;</code></span>
+                                            <span class="param-default-value">Default: <code>^-?(0|[1-9][0-9]*)(\.[0-9]+)?([eE][+-]?[0-9]+)?$</code></span>
                                         </div>
-                                        
+                                        <div class="param-possible">
+                                            <span class="param-possible-values">Possible Values: <code>..</code></span>
+                                        </div>
                                     </div>
                                     <div class="param-description">
-                                        <p>The IP address of the server node.</p>
+                                        <p>The...</p>
+                                    </div>
+                                </div>
+                            </div><div class="param">
+                                <div class="param-name">
+                                  <span class="param-name-wrap"> <code>synapse.disable_custom_replace_regex</code> </span>
+                                </div>
+                                <div class="param-info">
+                                    <div>
+                                        <p>
+                                            <span class="param-type string"> string </span>
+                                            
+                                        </p>
+                                        <div class="param-default">
+                                            <span class="param-default-value">Default: <code>@@@</code></span>
+                                        </div>
+                                        <div class="param-possible">
+                                            <span class="param-possible-values">Possible Values: <code>...</code></span>
+                                        </div>
+                                    </div>
+                                    <div class="param-description">
+                                        <p>The.. </p>
+                                    </div>
+                                </div>
+                            </div><div class="param">
+                                <div class="param-name">
+                                  <span class="param-name-wrap"> <code>synapse.enable_namespace_declaration</code> </span>
+                                </div>
+                                <div class="param-info">
+                                    <div>
+                                        <p>
+                                            <span class="param-type string"> boolean </span>
+                                            
+                                        </p>
+                                        <div class="param-default">
+                                            <span class="param-default-value">Default: <code>false</code></span>
+                                        </div>
+                                        <div class="param-possible">
+                                            <span class="param-possible-values">Possible Values: <code>&quot;true&quot;,&quot;false&quot;</code></span>
+                                        </div>
+                                    </div>
+                                    <div class="param-description">
+                                        <p>The.. </p>
+                                    </div>
+                                </div>
+                            </div><div class="param">
+                                <div class="param-name">
+                                  <span class="param-name-wrap"> <code>synapse.build_valid_nc_name</code> </span>
+                                </div>
+                                <div class="param-info">
+                                    <div>
+                                        <p>
+                                            <span class="param-type string"> boolean </span>
+                                            
+                                        </p>
+                                        <div class="param-default">
+                                            <span class="param-default-value">Default: <code>false</code></span>
+                                        </div>
+                                        <div class="param-possible">
+                                            <span class="param-possible-values">Possible Values: <code>&quot;true&quot;,&quot;false&quot;</code></span>
+                                        </div>
+                                    </div>
+                                    <div class="param-description">
+                                        <p>The..</p>
+                                    </div>
+                                </div>
+                            </div><div class="param">
+                                <div class="param-name">
+                                  <span class="param-name-wrap"> <code>synapse.enable_auto_primitive</code> </span>
+                                </div>
+                                <div class="param-info">
+                                    <div>
+                                        <p>
+                                            <span class="param-type string"> boolean </span>
+                                            
+                                        </p>
+                                        <div class="param-default">
+                                            <span class="param-default-value">Default: <code>false</code></span>
+                                        </div>
+                                        <div class="param-possible">
+                                            <span class="param-possible-values">Possible Values: <code>&quot;true&quot;,&quot;false&quot;</code></span>
+                                        </div>
+                                    </div>
+                                    <div class="param-description">
+                                        <p>The..</p>
+                                    </div>
+                                </div>
+                            </div><div class="param">
+                                <div class="param-name">
+                                  <span class="param-name-wrap"> <code>synapse.json_out_auto_array</code> </span>
+                                </div>
+                                <div class="param-info">
+                                    <div>
+                                        <p>
+                                            <span class="param-type string"> boolean </span>
+                                            
+                                        </p>
+                                        <div class="param-default">
+                                            <span class="param-default-value">Default: <code>false</code></span>
+                                        </div>
+                                        <div class="param-possible">
+                                            <span class="param-possible-values">Possible Values: <code>&quot;true&quot;,&quot;false&quot;</code></span>
+                                        </div>
+                                    </div>
+                                    <div class="param-description">
+                                        <p>The..</p>
+                                    </div>
+                                </div>
+                            </div><div class="param">
+                                <div class="param-name">
+                                  <span class="param-name-wrap"> <code>synapse.preserve_namespace_on_xml_to_json</code> </span>
+                                </div>
+                                <div class="param-info">
+                                    <div>
+                                        <p>
+                                            <span class="param-type string"> boolean </span>
+                                            
+                                        </p>
+                                        <div class="param-default">
+                                            <span class="param-default-value">Default: <code>false</code></span>
+                                        </div>
+                                        <div class="param-possible">
+                                            <span class="param-possible-values">Possible Values: <code>&quot;true&quot;,&quot;false&quot;</code></span>
+                                        </div>
+                                    </div>
+                                    <div class="param-description">
+                                        <p>Preserves the namespace declarations in the JSON output in XML to JSON transformations.</p>
+                                    </div>
+                                </div>
+                            </div><div class="param">
+                                <div class="param-name">
+                                  <span class="param-name-wrap"> <code>flow.statistics.enable</code> </span>
+                                </div>
+                                <div class="param-info">
+                                    <div>
+                                        <p>
+                                            <span class="param-type string"> boolean </span>
+                                            
+                                        </p>
+                                        <div class="param-default">
+                                            <span class="param-default-value">Default: <code>false</code></span>
+                                        </div>
+                                        <div class="param-possible">
+                                            <span class="param-possible-values">Possible Values: <code>&quot;true&quot;,&quot;false&quot;</code></span>
+                                        </div>
+                                    </div>
+                                    <div class="param-description">
+                                        <p>Set this property to true and enable statistics for the required ESB artifact, to record information such as the following. &lt;ul&gt;&lt;li&gt;The time spent on each mediator.&lt;/li&gt;&lt;li&gt;The time spent to process each message.&lt;/li&gt;&lt;li&gt;The fault count of a single message flow.&lt;/li&gt;&lt;/ul&gt;</p>
+                                    </div>
+                                </div>
+                            </div><div class="param">
+                                <div class="param-name">
+                                  <span class="param-name-wrap"> <code>flow.statistics.capture_all</code> </span>
+                                </div>
+                                <div class="param-info">
+                                    <div>
+                                        <p>
+                                            <span class="param-type string"> boolean </span>
+                                            
+                                        </p>
+                                        <div class="param-default">
+                                            <span class="param-default-value">Default: <code>false</code></span>
+                                        </div>
+                                        <div class="param-possible">
+                                            <span class="param-possible-values">Possible Values: <code>&quot;true&quot;,&quot;false&quot;</code></span>
+                                        </div>
+                                    </div>
+                                    <div class="param-description">
+                                        <p>Set this property to true and set the mediation.flow.statistics.enable property also to true, to enable mediation statistics for all the artifacts in the ESB profile by default. If you set this property to false, you need to set the mediation.flow.statistics.enable property to true and manually enable statistics for the required ESB artifact.</p>
+                                    </div>
+                                </div>
+                            </div><div class="param">
+                                <div class="param-name">
+                                  <span class="param-name-wrap"> <code>statistics.enable_clean</code> </span>
+                                </div>
+                                <div class="param-info">
+                                    <div>
+                                        <p>
+                                            <span class="param-type string"> boolean </span>
+                                            
+                                        </p>
+                                        <div class="param-default">
+                                            <span class="param-default-value">Default: <code>true</code></span>
+                                        </div>
+                                        <div class="param-possible">
+                                            <span class="param-possible-values">Possible Values: <code>&quot;true&quot;,&quot;false&quot;</code></span>
+                                        </div>
+                                    </div>
+                                    <div class="param-description">
+                                        <p>If this parameter is set to true, all the existing statistics would be cleared before processing a request. This is recommended if you want to increase the processing speed.</p>
+                                    </div>
+                                </div>
+                            </div><div class="param">
+                                <div class="param-name">
+                                  <span class="param-name-wrap"> <code>statistics.clean_interval</code> </span>
+                                </div>
+                                <div class="param-info">
+                                    <div>
+                                        <p>
+                                            <span class="param-type string"> string </span>
+                                            
+                                        </p>
+                                        <div class="param-default">
+                                            <span class="param-default-value">Default: <code>1000ms</code></span>
+                                        </div>
+                                        <div class="param-possible">
+                                            <span class="param-possible-values">Possible Values: <code>..</code></span>
+                                        </div>
+                                    </div>
+                                    <div class="param-description">
+                                        <p>The..</p>
+                                    </div>
+                                </div>
+                            </div><div class="param">
+                                <div class="param-name">
+                                  <span class="param-name-wrap"> <code>flow.statistics.tracer.collect_payload</code> </span>
+                                </div>
+                                <div class="param-info">
+                                    <div>
+                                        <p>
+                                            <span class="param-type string"> boolean </span>
+                                            
+                                        </p>
+                                        <div class="param-default">
+                                            <span class="param-default-value">Default: <code>false</code></span>
+                                        </div>
+                                        <div class="param-possible">
+                                            <span class="param-possible-values">Possible Values: <code>&quot;true&quot;,&quot;false&quot;</code></span>
+                                        </div>
+                                    </div>
+                                    <div class="param-description">
+                                        <p>Set this property to true and enable tracing for the required ESB artifact, to record the message payload before and after the mediation performed by individual mediators.</p>
+                                    </div>
+                                </div>
+                            </div><div class="param">
+                                <div class="param-name">
+                                  <span class="param-name-wrap"> <code>flow.statistics.tracer.collect_properties</code> </span>
+                                </div>
+                                <div class="param-info">
+                                    <div>
+                                        <p>
+                                            <span class="param-type string"> boolean </span>
+                                            
+                                        </p>
+                                        <div class="param-default">
+                                            <span class="param-default-value">Default: <code>false</code></span>
+                                        </div>
+                                        <div class="param-possible">
+                                            <span class="param-possible-values">Possible Values: <code>&quot;true&quot;,&quot;false&quot;</code></span>
+                                        </div>
+                                    </div>
+                                    <div class="param-description">
+                                        <p>Set this property to true and enable tracing for the required ESB artifact, to record the following information. &lt;ul&gt;&lt;li&gt;Message context properties.&lt;/li&gt;&lt;li&gt;Message transport-scope properties.&lt;/li&gt;&lt;/ul&gt;</p>
+                                    </div>
+                                </div>
+                            </div><div class="param">
+                                <div class="param-name">
+                                  <span class="param-name-wrap"> <code>inbound.core_threads</code> </span>
+                                </div>
+                                <div class="param-info">
+                                    <div>
+                                        <p>
+                                            <span class="param-type string"> integer </span>
+                                            
+                                        </p>
+                                        <div class="param-default">
+                                            <span class="param-default-value">Default: <code>20</code></span>
+                                        </div>
+                                        <div class="param-possible">
+                                            <span class="param-possible-values">Possible Values: <code>...</code></span>
+                                        </div>
+                                    </div>
+                                    <div class="param-description">
+                                        <p>The...</p>
+                                    </div>
+                                </div>
+                            </div><div class="param">
+                                <div class="param-name">
+                                  <span class="param-name-wrap"> <code>inbound.max_threads</code> </span>
+                                </div>
+                                <div class="param-info">
+                                    <div>
+                                        <p>
+                                            <span class="param-type string"> integer </span>
+                                            
+                                        </p>
+                                        <div class="param-default">
+                                            <span class="param-default-value">Default: <code>100</code></span>
+                                        </div>
+                                        <div class="param-possible">
+                                            <span class="param-possible-values">Possible Values: <code>...</code></span>
+                                        </div>
+                                    </div>
+                                    <div class="param-description">
+                                        <p>The...</p>
                                     </div>
                                 </div>
                             </div>
@@ -3121,4 +4898,3 @@ inbound.max_threads = 100
         </div>
     </section>
 </div>
-
