@@ -4,7 +4,10 @@
 
 The Streaming Integrator (SI) allows you to capture changes to a data base table, in a streaming manner.
 
-This tutorial takes you through the different modes and  options you could use to perform Change Data Capturing (CDC) using the SI. In this tutorial, you will be using a MySQL datasource.  
+This tutorial takes you through the different modes and  options you could use to perform Change Data Capturing (CDC) using the SI. In this tutorial, you will be using a MySQL datasource. 
+
+!!!Tip
+    To use a different database, refer [dependencies for CDC](https://github.com/siddhi-io/siddhi-io-cdc#dependencies) and add corresponding driver jars. In addition to that, modify the JDBC URL accordingly, in `url` parameter in all Siddhi applications.    
 
 #### Listening mode and Polling mode 
 
