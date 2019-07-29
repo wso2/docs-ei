@@ -59,24 +59,7 @@ Follow the steps given below to configure the two nodes in the Micro Integrator 
     ```
     Find more [parameters](../../../references/ei_config_catalog/#configuring-the-cluster-settings) to define clustering.
 
-4. To change the credentials of the admin user of each node in the cluster, update the following parameters in the esb.toml file. In the below example, a plain text password is used. If required, you can [encrypt the password](../../setup/security/encrypting_plain_text.md).
-    ``` toml
-    // The config section that groups the parameters defining the system administrator.
-    [super_admin]
-
-    // Specify the username of connecting to the server.
-    username = "admin"
-
-    // Specify the password for connecting to the server.
-    password = "admin"
-
-    // Set this property to 'true'. This ensures that the admin account is created in the user store.
-    create_admin_account = true
-    ```
-    
-    Find more [parameters](../../../references/ei_config_catalog/#configuring-the-system-administrator) to configure the system administrator.
-
-5. If you have [separated the internal keystore](../../setup/deployment/deploying_wso2_ei.md#updating-keystores) of your product, update the `[keystore.internal]` section in the esb.toml file.
+4. If you have [separated the internal keystore](../../setup/deployment/deploying_wso2_ei.md#updating-keystores) of your product, update the `[keystore.internal]` section in the esb.toml file.
    
     See [Configuring Keystores](../../setup/security/configuring_keystores.md) for instructions.
     
