@@ -2,7 +2,7 @@
 
 Minimum high availability deployment mainly focused on providing high availability which guarantees no data loss if the 
 system suffer any failing due to several unforeseeable reasons. One of the main adavantage of this is it uses minimum 
-amount of infrastructure resources possible. Thus this deployment pattern comprise of only two Streaming integration 
+amount of infrastructure resources possible. Thus deployment pattern comprise of only two Streaming integration 
 servers.
 
 In minimum HA setup, one node is assigned as the active node while the other node is assigned as the passive node.
@@ -30,7 +30,7 @@ In order to configure a minimum HA cluster, the following prerequisites must be 
   - It is recommended to run this setup with two CPUs. Each CPU should have four cores, and 4GB memory.
   - Two binary packs of WSO2 SI must be available.
   - A working RDBMS instance to be used for clustering of the 2 nodes. 
-  - Download the MySQL connector from here. Extract and find the mysql-connector-java-5.*.*-bin.jar. Place this JAR in the 
+  - Download the MySQL connector from <a target="_blank" href="https://dev.mysql.com/downloads/connector/j/">here</a>. Extract and find the mysql-connector-java-5.*.*-bin.jar. Place this JAR in the 
     <SI_HOME>/lib directory of both nodes. 
   - In order to retrieve the state of the Siddhi Applications deployed in the system in case of a scenario where both the 
     nodes fail, state persistence must be enabled for both nodes by specifying the same datasource/file location. 
