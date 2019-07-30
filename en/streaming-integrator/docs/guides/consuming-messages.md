@@ -1,4 +1,4 @@
-#Consuming Messages
+#Consuming Data
 
 ## Introduction
 

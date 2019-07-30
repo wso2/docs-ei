@@ -2,9 +2,78 @@
 
 ## Introduction
 
+The Streaming Integrator allows you to perform a wide range of transformations to the input data received. Some of these 
+transformations are carried out via operators that are defined inline within the Siddhi application. For the rest of the
+ transformations, you can use Siddhi extensions that are available to be downloaded via the [Siddhi Extension Store](https://store.wso2.com/store/assets/analyticsextension/list).
+ Most of these extensions are shipped with the Streaming Integrator by default.
+
 ## Transform data using inline operators
+
+The operators that you can configure inline within Siddhi applications in order to carry out data transformations are listed in the [Siddhi Query Guide - Inbuild Aggregation Functions section](https://siddhi.io/en/v5.0/docs/query-guide/#select).
+
+To show how an inline operators are configured, let's consider an example where readings from a sensor that indicates 
+the temperature of a room every second are transformed to indicate the average tempertature and the average humidity as at each second.
+
+1. Open the Streaming Integrator Studio and start creating a new Siddhi application. For more information, see [Creating a Siddhi Application](../develop/creating-a-Siddhi-Application.md).
+2. Enter a name for the Siddhi application as shown below.<br/>
+   `@App:name("<Siddhi_Application_Name>)`<br/>
+   
+   In this example, let's name the application `TemperatureApp`.
+   
+3. Let's define the input stream to define the schema based on which data is selected to the streaming integration flow.
+    1. In this example, let's assume that each event indicates the device ID, the room ID, and the temperature. Therefore, let's define an input stream as follows:
+       ```
+       define stream TempStream (deviceID long, roomNo int, temp double);
+       ```
+       
+       !!!info
+           For more information about defining input streams to receive events, see the [Consuming Data guide](consuming-messages.md).
+           
+          
+4. To do the required transformation, let's add the query as follows:
+    1. Add the `from` clause with the name of the input stream to indicate that the events to be processed are taken from the input stream.
+       ```jql
+       from TempStream
+       ```
+    2. Add the `to` clause with the name of the output stream to indicate that the processed events are directed to that stream.
+      ```jql
+      from TempStream
+      to OutputStream;
+      ```
+    3.Add a `select` clause in a line between the `from` and `to` clauses. To derive the average temperature from the temperature, apply the `avg()` to the `temp` 
+    attribute, and then specify `avgTemp` as the name with which the result should be output. 
+    
+      ```jql
+      from TempStream
+      select roomNo, deviceID, avg(temp) as avgTemp
+      to OutputStream;
+      ```
+    4. To group by a specific attribute (by the `roomNo` attribute in this example), specify it via the `group by` clause as shown below.
+      ```jql
+      from TempStream
+      select roomNo, deviceID, avg(temp) as avgTemp
+      group by roomNo
+      to OutputStream;
+      ```
+    
+5. Save the Siddhi application. The completed Siddhi application is as follows.
+
+    ```jql
+    @App:name("TemperatureApp")
+    @App:description("Description of the plan")
+    
+    define stream TempStream (deviceID long, roomNo int, temp double);
+    
+    
+    from TempStream
+    select roomNo, deviceID, avg(temp) as avgTemp
+    group by roomNo
+    insert into OutputStream;
+    ```
+
 Give an example and point to existing inline math and logical operators.
-https://siddhi.io/en/v5.0/docs/query-guide/#select
+
+
 
 ## Transform data using in-built extensions
 In-build extensions offers a wide variety of options to do data transformation. Below is a list of all extension this can provide data transform functionalities. These will be linked to extension documentation pages or better yet list functions from each extention. 
@@ -20,6 +89,12 @@ In-build extensions offers a wide variety of options to do data transformation. 
 ## Transform data using custom function calls
 Siddhi-script-js to write custom function calls 
 
-## Transforming between message formats (XML to JSON etc)
-Will be explained using consuming and publishing sections
+## Transforming message formats (XML to JSON etc)
+
+These transformations involve converting the message format to a different format after a the message is received, or 
+converting the format before publishing the message. This is managed via mapping. For detailed instructions to convert
+ message formats via mapping, see the following guides:
+ 
+ - [Consuming Messages - Supported Message Formats](consuming-messages/#supported-message-formats)
+ - [Publishing Messages - Supported Message Formats](publishing-data/#supported-message-formats)
 

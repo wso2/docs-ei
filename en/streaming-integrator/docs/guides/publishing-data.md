@@ -1,4 +1,4 @@
-# Publishing Messages
+# Publishing Data
 
 ## Introduction
 Once information is processed by the Streaming Integrator, the output is presented as events in a streaming manner. 
@@ -16,11 +16,11 @@ schemas. This schema is defined via an output stream definition.
  
  As shown in the image above, a sink configuration consists of three parts.
  
-   + **`@sink`**: This annotation defines the sink type via which the messages are published, and allows you to configure the sink parameters (which change depending on the sink type). For the complete list of supported sink types, see [Siddhi Query Guide - Sink](https://siddhi.io/en/v4.x/docs/query-guide/#sink)
-   + **`@map`**: This annotation specifies the format in which messages are published, and allows you to configure the mapping parameters (which change based of the mapping type/format selected). For the complete list of supported mapping types, see [Siddhi Query Guide - Sink Mapper](https://siddhi.io/en/v4.x/docs/query-guide/#sink-mapper)
+   + **`@sink`**: This annotation defines the sink type via which the data is published, and allows you to configure the sink parameters (which change depending on the sink type). For the complete list of supported sink types, see [Siddhi Query Guide - Sink](https://siddhi.io/en/v4.x/docs/query-guide/#sink)
+   + **`@map`**: This annotation specifies the format in which the data is published, and allows you to configure the mapping parameters (which change based of the mapping type/format selected). For the complete list of supported mapping types, see [Siddhi Query Guide - Sink Mapper](https://siddhi.io/en/v4.x/docs/query-guide/#sink-mapper)
    + **`@attributes`**: This annotation specifies a custom mapping based on which events in the streaming integration flow that need to be published are identified. This is useful when the attributes of the output messages you want the Streaming Integrator to publish are different to the corresponding attribute name in the stream definition. e.g., In a scenario where the Streaming Integrator is publishing the average temperature per second, the temperature can be referred to as  `avgTemp` in the output stream definition in your Siddhi application. However, you want to publish it with the `Temperature` to the streaming application to which you are publishing. In this instance, you need a custom mapping to indicate that `Temperature` is the same as `avgTemp`.
 
-## Publishing messages using an event sink
+## Publishing data using an event sink
 This section explains how to configure a basic sink without mapping. A Siddhi application can contain a sink configuration inline, or refer to a sink configuration that is defined externally in a configuration file.
 
 #### Defining event sink inline in the Siddhi application
@@ -29,7 +29,7 @@ To create a Siddhi application with the sink configuration defined inline, follo
 1. Open the Streaming Integrator Studio and start creating a new Siddhi application. For more information, see [Creating a Siddhi Application](../develop/creating-a-Siddhi-Application.md).
 2. Enter a name for the Siddhi application as shown below.<br/>
    `@App:name("<Siddhi_Application_Name>)`<br/>e.g., `@App:name("SalesTotalsApp")`<br/>
-3. Define the output stream based on the schema in which you want to publish messages. The format is as follows. <br/>
+3. Define the output stream based on the schema in which you want to publish data. The format is as follows. <br/>
    `define stream <Stream_Name>(attribute1_name attribute1_type, attribute2_name attribute2_type, ...);`
    e.g., 
    `define stream PublishSalesTotalsStream (transNo int, product string, price int, quantity int, salesValue long);`
@@ -57,15 +57,15 @@ To create a Siddhi application with the sink configuration defined inline, follo
     define stream PublishSalesTotalsStream (transNo int, product string, price int, quantity int, salesValue long);
     ```
     
-6. Now let's complete adding the required Siddhi constructs to receive and process the input messages.
+6. Now let's complete adding the required Siddhi constructs to receive and process the input data.
 
-    1. Add an input stream with a connected source configuration as shown below. For more information, see the [Consuming Messages guide](consuming-messages.md).
+    1. Add an input stream with a connected source configuration as shown below. For more information, see the [Consuming Data guide](consuming-messages.md).
         ```
         @source(type='<SOURCE_TYPE>')
         define stream <Stream_Name>(attribute1_name attribute1_type, attribute2_name attribute2_type, ...);
         ```
         
-        e.g., Assuming that the schema of the input messages are same as that of the output messages, and that they are received via HTTP, you can add the input stream definition
+        e.g., Assuming that the schema of the input events are same as that of the output events, and that they are received via HTTP, you can add the input stream definition
        ```
        @source(type='http', receiver.url='http://localhost:5005/SweetProductionEP')
        define stream ConsumeSalesTotalsStream (transNo int, product string, price int, quantity int, salesValue long);
@@ -145,10 +145,10 @@ e.g., The log sink used as the example in the previous section can be defined ex
 ### Supported event sink types
 <Sink categories table here> 
 
-### Supported message formats
+### Supported event formats
 
-#### Publishing a message in default format
-SI publishes messages in default format when it does not make any changes to the attribute names in the output stream 
+#### Publishing data in default format
+SI publishes events in default format when it does not make any changes to the attribute names in the output stream 
 before publishing. To understand how this is done, follow the procedure below:
 
 1. Create a Siddhi application with a sink configuration following the instructions in the [Defining event sink inline in the Siddhi application](#defining-event-sink-inline-in-the-siddhi-application) section.
@@ -157,7 +157,7 @@ before publishing. To understand how this is done, follow the procedure below:
     @sink(type='<SINK_TYPE>', @map(type='MAP_TYPE'))
     define stream <Stream_Name>(attribute1_name attribute1_type, attribute2_name attribute2_type, ...);
     ```
-    The map type specifies the format in which the messages are published. e.g., In the example that you used, you can 
+    The map type specifies the format in which the events are published. e.g., In the example that you used, you can 
     specify the output logs to be printed in the text format by specifying `text` as the mapping type.
     
     ```
@@ -183,13 +183,13 @@ the completed Siddhi application is as follows.
     ```
 
 
-#### Publishing a message in custom format
+#### Publishing data in custom format
 
-SI publishes messages in the custom format when it makes changes to the attribute names in the output stream before 
+SI publishes data in the custom format when it makes changes to the attribute names in the output stream before 
 publishing. To understand how this is done, follow the procedure below:
 
 !!!info
-    In this section, you can update the same Siddhi application that you saved in the [Publishing a message in default format](#publishing-a-message-in-default-format)section.
+    In this section, you can update the same Siddhi application that you saved in the [Publishing data in default format](#publishing-a-message-in-default-format)section.
     
 1. Open your Siddhi application with a sink configuration.
 2. Within the `@map` annotation of the sink configuration, add an `@payload` annotation. There are two ways to configure this as follows:
