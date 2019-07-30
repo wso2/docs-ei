@@ -180,22 +180,20 @@ nav:
           - 'Managing Registry Artifacts' : 'use-cases/tasks/registry_artifacts/managing-the-registry.md'
           - 'Working with Local Registry Entries' : 'use-cases/tasks/registry_artifacts/working-with-local-registry-entries.md'
     - Administration:
-      - Observability:
-        - 'Monitoring Message Round Trip' : 'administer-and-observe/observability.md'
-        - 'JMX Monitoring' : 'administer-and-observe/jmx_monitoring.md'
-        - 'SNMP Monitoring' : 'administer-and-observe/snmp_monitoring.md'
-        - 'Prometheus for Monitoring' : 'administer-and-observe/monitoring_with_prometheus.md'
-        - 'CLI for Monitoring' : 'administer-and-observe/using-the-command-line-interface.md'
-        - Monitoring Logs:
-          - 'Using Logs in WSO2 Micro Integrator' : 'administer-and-observe/logs/monitoring_logs.md'
-          - 'Configuring Log4j Properties' : 'administer-and-observe/logs/configuring_log4j_properties.md'
-          - 'Managing Log Growth' : 'administer-and-observe/logs/managing_log_growth.md'
-          - 'Masking Sensitive Information in Logs' : 'administer-and-observe/logs/masking_sensitive_info_in_logs.md'
-        - Monitoring TCP Messages:
-          - 'Starting TCPMon' : 'administer-and-observe/tcp/starting_tcp_mon.md'
-          - 'Message Monitoring with TCPMon' : 'administer-and-observe/tcp/message_monitoring_with_tcpmon.md'
-          - 'Other Usages of TCPMon' : 'administer-and-observe/tcp/other_usages_of_tcpmon.md'
-      - 'Working with Admin Services' : 'administer-and-observe/working-with-admin-services.md'
+      - 'Monitoring Message Round Trip' : 'administer-and-observe/observability.md'
+      - 'JMX Monitoring' : 'administer-and-observe/jmx_monitoring.md'
+      - 'SNMP Monitoring' : 'administer-and-observe/snmp_monitoring.md'
+      - 'Prometheus for Monitoring' : 'administer-and-observe/monitoring_with_prometheus.md'
+      - 'CLI for Monitoring' : 'administer-and-observe/using-the-command-line-interface.md'
+      - Monitoring Logs:
+        - 'Using Logs in WSO2 Micro Integrator' : 'administer-and-observe/logs/monitoring_logs.md'
+        - 'Configuring Log4j Properties' : 'administer-and-observe/logs/configuring_log4j_properties.md'
+        - 'Managing Log Growth' : 'administer-and-observe/logs/managing_log_growth.md'
+        - 'Masking Sensitive Information in Logs' : 'administer-and-observe/logs/masking_sensitive_info_in_logs.md'
+      - Monitoring TCP Messages:
+        - 'Starting TCPMon' : 'administer-and-observe/tcp/starting_tcp_mon.md'
+        - 'Message Monitoring with TCPMon' : 'administer-and-observe/tcp/message_monitoring_with_tcpmon.md'
+        - 'Other Usages of TCPMon' : 'administer-and-observe/tcp/other_usages_of_tcpmon.md'
     - References:
       - 'Enterprise Integration Patterns' : 'references/enterprise-Integration-Patterns.md'
       - 'Configuration Catalog' : 'references/ei_config_catalog.md'
