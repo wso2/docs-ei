@@ -112,7 +112,7 @@ nav:
         - 'Customizing Error Messages': 'setup/customizing_error_pages.md'
         - 'Governing External Reference Across Environments': 'setup/govern_ext_refs_across_env.md'
         - 'Enable SSL Tunneling through Proxy Server': 'setup/enabling_SSL_tunneling_thru_proxy_server.md'
-    - Developer Experience:
+    - Develop:
       - 'Developing Integration Solutions': 'develop/intro-integration-development.md'
       - 'Developer Kick Start' : 'develop/integration-development-kickstart.md'
       - 'Using a CI/CD Pipeline' : 'develop/using-cicd-pipeline.md'
