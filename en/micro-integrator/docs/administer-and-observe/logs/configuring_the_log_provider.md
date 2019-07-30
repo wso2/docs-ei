@@ -1,11 +1,9 @@
 # Configuring the Log Provider
 
 Logs of a system can be stored in many ways. For example, they can be
-stored in a file system, an sql server such as MySQL, a no-sql server
-like Cassandra, etc. According to the default configurations in a Carbon
-product, the logs are stored in the
-`         <PRODUCT_HOME>/repository/logs/        ` directory as
-`         .log        ` files.
+stored in a file system, an SQL server such as MySQL, a no-SQL server
+such as Cassandra, etc. According to the default configurations in WSO2 Micro Integrator, the logs are stored in the
+`MI_HOME/repository/logs/        ` directory as `         .log        ` files.
 
 To [view and download the logs](_View_and_Download_Logs_) using the
 management console, the following configurations are required: the

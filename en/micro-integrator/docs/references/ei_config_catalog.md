@@ -36,7 +36,7 @@ protocol = "value"
                     <code>[server]</code>
                     <span class="badge-required">Required</span>
                     <p>
-                        This toml header groups the parameters that are used for identifying a server node. You need to update these values when you <a href="https://wso2docs-configurationcatalog-3.netlify.com/setup/deploying_wso2_ei">set up a deployment</a>.
+                        This toml header groups the parameters that are used for identifying a server node. You need to update these values when you <a href="../../setup/deploying_wso2_ei">set up a deployment</a>.
                     </p>
                 </div>
                 <div class="params-wrap">

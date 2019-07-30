@@ -34,25 +34,25 @@ To create a Siddhi application with the sink configuration defined inline, follo
    e.g., 
    `define stream PublishSalesTotalsStream (transNo int, product string, price int, quantity int, salesValue long);`
 4. Connect a sink to the stream definition you added as follows.
-    ```jql
+    ```
     @sink(type='<SINK_TYPE>')
     define stream <Stream_Name>(attribute1_name attribute1_type, attribute2_name attribute2_type, ...);
     ```
     Here, the sink type needs to be selected based on the interface to which you want to publish the output. For more information, see [Supported sink types](#supported-event-sink-types).
     
     e.g., If you want to publish the output as logs in the console, you can add a sink with `log` as the type.
-    ```jql
+    ```
     @sink(type='log')
     define stream PublishSalesTotalsStream (transNo int, product string, price int, quantity int, salesValue long);
     ```
     
 5. Add and configure parameters related to the sink type you selected as shown below.
-    ```jql
+    ```
     @sink(type='<SINK_TYPE>', <PARAMETER1_NAME>='<PARAMETER1_VALUE>', ...)
     define stream <Stream_Name>(attribute1_name attribute1_type, attribute2_name attribute2_type, ...);
     ```
     e.g., By adding a parameter named `prefix` to the log sink used as an example in the previous step, you can specify a prefix with which you want to see the output logs printed.
-    ```jql
+    ```
     @sink(type='log', prefix='Sales Totals:')
     define stream PublishSalesTotalsStream (transNo int, product string, price int, quantity int, salesValue long);
     ```
@@ -71,7 +71,7 @@ To create a Siddhi application with the sink configuration defined inline, follo
        define stream ConsumeSalesTotalsStream (transNo int, product string, price int, quantity int, salesValue long);
        ```
     2. Add a query to get the received events from the input stream and direct them to the output stream as follows.
-        ```jql
+        ```
         from <INPUT_STREAM_NAME>
         select <ATTRIBUTE1_Name>, <ATTRIBUTE2_NAME>, ... 
         group by <ATTRIBUTE_NAME>
@@ -79,7 +79,7 @@ To create a Siddhi application with the sink configuration defined inline, follo
         ```
         e.g., Assuming that you are publishing the events with the existing values as logs in the output console without any further processing, you can define the query as follows.
         
-        ```jql
+        ```
         from ConsumeSalesTotalsStream
         select transNo, product, price, quantity, salesValue
         group by product
@@ -109,7 +109,7 @@ follow the procedure below.
     ```
     
 4. To specify the sink type, add another parameter named `type` and enter the relevant sink type.
-    ```jql
+    ```
     siddhi:  
      refs:
       -
@@ -117,7 +117,7 @@ follow the procedure below.
        type: '<SINK_TYPE>'
     ```
 5. To configure other parameters for the sink (based on the sink type), add a subsection named `properties` as shown below.
-    ```jql
+    ```
     siddhi:  
      refs:
       -
@@ -132,7 +132,7 @@ follow the procedure below.
 6. Save the configuration file.
 
 e.g., The log sink used as the example in the previous section can be defined externally as follows:
-```jql
+```
     siddhi:  
      refs:
       -
@@ -148,6 +148,58 @@ e.g., The log sink used as the example in the previous section can be defined ex
 ### Supported message formats
 
 #### Publishing a message in default format
+SI publishes messages in default format when it does not make any changes to the attribute names in the output stream 
+before publishing. To understand how this is done, follow the procedure below:
+
+1. Create a Siddhi application with a sink configuration following the instructions in the [Defining event sink inline in the Siddhi application](#defining-event-sink-inline-in-the-siddhi-application) section.
+2. Add an `@map` annotation with the mapping type to the sink configuration as shown below.
+    ```
+    @sink(type='<SINK_TYPE>', @map(type='MAP_TYPE'))
+    define stream <Stream_Name>(attribute1_name attribute1_type, attribute2_name attribute2_type, ...);
+    ```
+    The map type specifies the format in which the messages are published. e.g., In the example that you used, you can 
+    specify the output logs to be printed in the text format by specifying `text` as the mapping type.
+    
+    ```
+    @sink(type='log', prefix='Sales Totals:', @map(type=text))
+    define stream PublishSalesTotalsStream (transNo int, product string, price int, quantity int, salesValue long);
+    ```
+3. Save the Siddhi application. If you save the Siddhi application that was created using the example configurations, 
+the completed Siddhi application is as follows.
+    ```jql
+    @App:name("SalesTotalsApp")
+    @App:description("Description of the plan")
+    
+    @source(type='http', receiver.url='http://localhost:5005/SalesTotalsEP', @map(type='json'))
+    define stream ConsumerSalesTotalsStream(transNo int, product string, price int, quantity int, salesValue long);
+    
+    @sink(type='log', prefix='Sales Totals:', @map(type=text))
+    define stream PublishSalesTotalsStream (transNo int, product string, price int, quantity int, salesValue long);
+    
+    from ConsumerSalesTotalsStream
+    select transNo, product, price, quantity, salesValue
+    group by product
+    insert into PublishSalesTotalsStream;
+    ```
+
 
 #### Publishing a message in custom format
 
+SI publishes messages in the custom format when it makes changes to the attribute names in the output stream before 
+publishing. To understand how this is done, follow the procedure below:
+
+!!!info
+    In this section, you can update the same Siddhi application that you saved in the [Publishing a message in default format](#publishing-a-message-in-default-format)section.
+    
+1. Open your Siddhi application with a sink configuration.
+2. Within the `@map` annotation of the sink configuration, add an `@payload` annotation. There are two ways to configure this as follows:
+    + Some mappers such as `xml`, `json`, and `text` accept only one output payload using the following format: 
+        `@payload( '<PAYLOAD>' )`
+     e.g., In the example, the mapping type is `text`. Therefore, you can add a message to be printed with the output by configuring the `@payload` annotation as follows.
+     ```jql
+
+     ```
+    + Some mappers such as `key-value` accept series of mapping values defined as follows: 
+        `@payload( key1='mapping_1', 'key2'='user : {{user}}') `
+        
+3. Save the Siddhi application.
