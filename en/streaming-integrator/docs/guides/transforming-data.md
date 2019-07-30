@@ -87,7 +87,39 @@ In-build extensions offers a wide variety of options to do data transformation. 
  - Siddhi-execution-json : Can perform manipulations to json strings
 
 ## Transform data using custom function calls
-Siddhi-script-js to write custom function calls 
+To write custom function calls with Siddhi-script-js, follow the procedure below:
+
+!!!
+    In this section, you can reuse the `TemperatureApp` Siddhi application that you previously created. For this section,
+     assume that you need to derive a unique ID for each temperature reading by combining the room number and the device ID.
+    
+1. In the `TemperatureApp` Siddhi application, add a script definition as follows.
+
+    ```
+    define function <function name>[<language name>] return <return type> {
+        <operation of the function>
+    };
+    ```
+    
+    In this example, you can write a function that can be used to concatanate the room number and device ID as follows.
+    
+    ```
+    define function concatFn[javascript] return string {
+        var str1 = data[0];
+        var str2 = data[1];
+        var str3 = data[2];
+        var responce = str1 + str2 + str3;
+        return responce;
+    };
+    ```
+
+2. Add another Siddhi query to apply the script you wrote to the relevant attributes of the input stream definition.
+    ```
+    from TempStream
+    select concatFn(roomNo,'-',deviceID) as id, temp 
+    insert into DeviceTempStream;
+    ```
+3. Save the Siddhi application.
 
 ## Transforming message formats (XML to JSON etc)
 
