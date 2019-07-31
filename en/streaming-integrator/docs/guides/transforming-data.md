@@ -76,15 +76,46 @@ Give an example and point to existing inline math and logical operators.
 
 
 ## Transform data using in-built extensions
-In-build extensions offers a wide variety of options to do data transformation. Below is a list of all extension this can provide data transform functionalities. These will be linked to extension documentation pages or better yet list functions from each extention. 
- - Siddhi-execution-math : Can perform mathematical operations and transform data
- - Siddhi-execution-unitconversion : Can perform unit conversions ranging from length, weight, volume etc
- - Siddhi-execution-string : Can perform string manipulations
- - Siddhi-execution-time : Can perform time based transformations like converting time zones 
- - Siddhi-execution-map : Can convert events into maps and perform transformations like concatenating and removing 
- attributes
- - Siddhi-execution-reorder : Can rectify the order of incoming event flow
- - Siddhi-execution-json : Can perform manipulations to json strings
+
+The Streaming Integrator offers a variety of options to carry out data transformations via in-built extensions. The 
+following table describes the complete list of extensions that provide data transformation functionality.
+
+<table class="tg">
+  <tr>
+    <th class="tg-0pky">Extension</th>
+    <th class="tg-0pky">Description</th>
+  </tr>
+  <tr>
+    <td class="tg-0pky">`<a href="https://siddhi-io.github.io/siddhi-execution-math/api/latest/#log-function">Siddhi-execution-math</a>`</td>
+    <td class="tg-0pky">Transforms data by performing mathematical operations.</td>
+  </tr>
+  <tr>
+    <td class="tg-0pky">`<a href="https://siddhi-io.github.io/siddhi-execution-unitconversion/">Siddhi-execution-unitconversion</a>`</td>
+    <td class="tg-0pky">Performs unit conversions ranging from length, weight, volume, etc.</td>
+  </tr>
+  <tr>
+    <td class="tg-0pky">`<a href="https://siddhi-io.github.io/siddhi-execution-string/">Siddhi-execution-string</a>`</td>
+    <td class="tg-0pky">Performs string manipulations.</td>
+  </tr>
+  <tr>
+    <td class="tg-0pky">`<a href="https://siddhi-io.github.io/siddhi-execution-time/">Siddhi-execution-time`</a></td>
+    <td class="tg-0pky">Performs time-based transformations such as converting time zones.</td>
+  </tr>
+  <tr>
+    <td class="tg-0pky">`<a href="https://siddhi-io.github.io/siddhi-execution-map/">Siddhi-execution-map</a>`</td>
+    <td class="tg-0pky">Converts events into maps and performs transformations such as concatenating and removing attributes.</td>
+  </tr>
+  <tr>
+    <td class="tg-0pky">`<a href="https://siddhi-io.github.io/siddhi-execution-reorder/">Siddhi-execution-reorder</a>`</td>
+    <td class="tg-0pky">Rearranges the order of the incoming event flow.</td>
+  </tr>
+  <tr>
+    <td class="tg-0pky">`<a href="https://siddhi-io.github.io/siddhi-execution-json/">Siddhi-execution-json</a>`</td>
+    <td class="tg-0pky">Performs manipulations to JSON strings.</td>
+  </tr>
+</table>
+
+These extensions are shipped with the Streaming Integrator by default. If you want to use a Siddhi extension that is not shipped by default, see [Downloading and Installing Siddhi Extensions](../admin/downloading-and-Installing-Siddhi-Extensions.md)
 
 ## Transform data using custom function calls
 To write custom function calls with Siddhi-script-js, follow the procedure below:
