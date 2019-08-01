@@ -94,10 +94,9 @@ Now you can write a simple Siddhi application to monitor the `SweetProductionTab
     Here the `url` parameter has the value `jdbc:mysql://localhost:3306/production`. Change it to point to your MySQL server.
 
 2. Save this file as `CDCListenForInserts.siddhi` in the `<SI_HOME>/wso2/server/deployment/siddhi-files` directory.
-
+    
     !!!info
         This Siddhi application captures all the inserts made to the `SweetProductionTable` database table and logs them.
-
 
 3. Now let's perform an insert operation on the MySQL table by executing the following MySQL query on the database:
     ```
