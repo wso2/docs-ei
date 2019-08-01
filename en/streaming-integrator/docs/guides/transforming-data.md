@@ -15,12 +15,14 @@ To show how an inline operators are configured, let's consider an example where 
 the temperature of a room every second are transformed to indicate the average tempertature and the average humidity as at each second.
 
 1. Open the Streaming Integrator Studio and start creating a new Siddhi application. For more information, see [Creating a Siddhi Application](../develop/creating-a-Siddhi-Application.md).
+
 2. Enter a name for the Siddhi application as shown below.<br/>
    `@App:name("<Siddhi_Application_Name>)`<br/>
    
    In this example, let's name the application `TemperatureApp`.
    
 3. Let's define the input stream to define the schema based on which data is selected to the streaming integration flow.
+
     1. In this example, let's assume that each event indicates the device ID, the room ID, and the temperature. Therefore, let's define an input stream as follows:
        ```
        define stream TempStream (deviceID long, roomNo int, temp double);
@@ -31,15 +33,18 @@ the temperature of a room every second are transformed to indicate the average t
            
           
 4. To do the required transformation, let's add the query as follows:
+
     1. Add the `from` clause with the name of the input stream to indicate that the events to be processed are taken from the input stream.
        ```
        from TempStream
        ```
+       
     2. Add the `insert into` clause with the name of the output stream to indicate that the processed events are directed to that stream.
       ```
       from TempStream
       insert into OutputStream;
       ```
+      
     3.Add a `select` clause in a line between the `from` and `insert into` clauses. To derive the average temperature from the temperature, apply the `avg()` to the `temp` 
     attribute, and then specify `avgTemp` as the name with which the result should be output. 
     
@@ -48,6 +53,7 @@ the temperature of a room every second are transformed to indicate the average t
       select roomNo, deviceID, avg(temp) as avgTemp
       insert into OutputStream;
       ```
+      
     4. To group by a specific attribute (by the `roomNo` attribute in this example), specify it via the `group by` clause as shown below.
       ```
       from TempStream
@@ -150,6 +156,7 @@ To write custom function calls with Siddhi-script-js, follow the procedure below
     select concatFn(roomNo,'-',deviceID) as id, temp 
     insert into DeviceTempStream;
     ```
+    
 3. Save the Siddhi application.
 
 ## Transforming message formats (XML to JSON etc)
