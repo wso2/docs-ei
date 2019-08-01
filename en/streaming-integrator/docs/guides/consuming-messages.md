@@ -97,7 +97,7 @@ To create a Siddhi application with the source configuration defined inline, fol
     
         ```jql
         from ConsumerSalesTotalsStream
-        select transNo, product, price, quantity, salesValue
+        select *
         group by product
         insert into PublishSalesTotalsStream;
         ```
@@ -114,7 +114,7 @@ To create a Siddhi application with the source configuration defined inline, fol
     define stream PublishSalesTotalsStream (transNo int, product string, price int, quantity int, salesValue long);
     
     from ConsumerSalesTotalsStream
-    select transNo, product, price, quantity, salesValue
+    select *
     group by product
     insert into PublishSalesTotalsStream;
     ```
@@ -223,7 +223,7 @@ schema before it processes the message. To understand how messages are consumed 
     define stream PublishSalesTotalsStream (transNo int, product string, price int, quantity int, salesValue long);
     
     from ConsumerSalesTotalsStream
-    select transNo, product, price, quantity, salesValue
+    select *
     group by product
     insert into PublishSalesTotalsStream;
     ```

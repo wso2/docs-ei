@@ -81,7 +81,7 @@ To create a Siddhi application with the sink configuration defined inline, follo
         
         ```
         from ConsumeSalesTotalsStream
-        select transNo, product, price, quantity, salesValue
+        select *
         group by product
         insert into PublishSalesTotalsStream;
         ``` 
@@ -177,7 +177,7 @@ the completed Siddhi application is as follows.
     define stream PublishSalesTotalsStream (transNo int, product string, price int, quantity int, salesValue long);
     
     from ConsumerSalesTotalsStream
-    select transNo, product, price, quantity, salesValue
+    select *
     group by product
     insert into PublishSalesTotalsStream;
     ```

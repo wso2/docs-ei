@@ -35,25 +35,25 @@ the temperature of a room every second are transformed to indicate the average t
        ```jql
        from TempStream
        ```
-    2. Add the `to` clause with the name of the output stream to indicate that the processed events are directed to that stream.
+    2. Add the `insert into` clause with the name of the output stream to indicate that the processed events are directed to that stream.
       ```jql
       from TempStream
-      to OutputStream;
+      insert into OutputStream;
       ```
-    3.Add a `select` clause in a line between the `from` and `to` clauses. To derive the average temperature from the temperature, apply the `avg()` to the `temp` 
+    3.Add a `select` clause in a line between the `from` and `insert into` clauses. To derive the average temperature from the temperature, apply the `avg()` to the `temp` 
     attribute, and then specify `avgTemp` as the name with which the result should be output. 
     
       ```jql
       from TempStream
       select roomNo, deviceID, avg(temp) as avgTemp
-      to OutputStream;
+      insert into OutputStream;
       ```
     4. To group by a specific attribute (by the `roomNo` attribute in this example), specify it via the `group by` clause as shown below.
       ```jql
       from TempStream
       select roomNo, deviceID, avg(temp) as avgTemp
       group by roomNo
-      to OutputStream;
+      insert into OutputStream;
       ```
     
 5. Save the Siddhi application. The completed Siddhi application is as follows.
@@ -86,31 +86,31 @@ following table describes the complete list of extensions that provide data tran
     <th class="tg-0pky">Description</th>
   </tr>
   <tr>
-    <td class="tg-0pky">`<a href="https://siddhi-io.github.io/siddhi-execution-math/api/latest/#log-function">Siddhi-execution-math</a>`</td>
+    <td class="tg-0pky"><a href="https://siddhi-io.github.io/siddhi-execution-math/api/latest/#log-function">Siddhi-execution-math</a></td>
     <td class="tg-0pky">Transforms data by performing mathematical operations.</td>
   </tr>
   <tr>
-    <td class="tg-0pky">`<a href="https://siddhi-io.github.io/siddhi-execution-unitconversion/">Siddhi-execution-unitconversion</a>`</td>
+    <td class="tg-0pky"><a href="https://siddhi-io.github.io/siddhi-execution-unitconversion/">Siddhi-execution-unitconversion</a></td>
     <td class="tg-0pky">Performs unit conversions ranging from length, weight, volume, etc.</td>
   </tr>
   <tr>
-    <td class="tg-0pky">`<a href="https://siddhi-io.github.io/siddhi-execution-string/">Siddhi-execution-string</a>`</td>
+    <td class="tg-0pky"><a href="https://siddhi-io.github.io/siddhi-execution-string/">Siddhi-execution-string</a></td>
     <td class="tg-0pky">Performs string manipulations.</td>
   </tr>
   <tr>
-    <td class="tg-0pky">`<a href="https://siddhi-io.github.io/siddhi-execution-time/">Siddhi-execution-time`</a></td>
+    <td class="tg-0pky"><a href="https://siddhi-io.github.io/siddhi-execution-time/">Siddhi-execution-time</a></td>
     <td class="tg-0pky">Performs time-based transformations such as converting time zones.</td>
   </tr>
   <tr>
-    <td class="tg-0pky">`<a href="https://siddhi-io.github.io/siddhi-execution-map/">Siddhi-execution-map</a>`</td>
+    <td class="tg-0pky"><a href="https://siddhi-io.github.io/siddhi-execution-map/">Siddhi-execution-map</a></td>
     <td class="tg-0pky">Converts events into maps and performs transformations such as concatenating and removing attributes.</td>
   </tr>
   <tr>
-    <td class="tg-0pky">`<a href="https://siddhi-io.github.io/siddhi-execution-reorder/">Siddhi-execution-reorder</a>`</td>
+    <td class="tg-0pky"><a href="https://siddhi-io.github.io/siddhi-execution-reorder/">Siddhi-execution-reorder</a></td>
     <td class="tg-0pky">Rearranges the order of the incoming event flow.</td>
   </tr>
   <tr>
-    <td class="tg-0pky">`<a href="https://siddhi-io.github.io/siddhi-execution-json/">Siddhi-execution-json</a>`</td>
+    <td class="tg-0pky"><a href="https://siddhi-io.github.io/siddhi-execution-json/">Siddhi-execution-json</a></td>
     <td class="tg-0pky">Performs manipulations to JSON strings.</td>
   </tr>
 </table>
