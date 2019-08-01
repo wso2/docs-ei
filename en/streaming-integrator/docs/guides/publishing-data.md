@@ -60,11 +60,7 @@ To create a Siddhi application with the sink configuration defined inline, follo
 6. Now let's complete adding the required Siddhi constructs to receive and process the input data.
 
     1. Add an input stream with a connected source configuration as shown below. For more information, see the [Consuming Data guide](consuming-messages.md).
-        ```
-        @source(type='<SOURCE_TYPE>')
-        define stream <Stream_Name>(attribute1_name attribute1_type, attribute2_name attribute2_type, ...);
-        ```
-        
+
         e.g., Assuming that the schema of the input events are same as that of the output events, and that they are received via HTTP, you can add the input stream definition
        ```
        @source(type='http', receiver.url='http://localhost:5005/SweetProductionEP')
@@ -95,13 +91,13 @@ follow the procedure below.
 
 1. Open the `<SI_HOME>/conf/server/deployment.yaml` file.
 2. Add a section named `siddi`, and then add a subsection named `refs:` as shown below.
-    ```jql    
+    ```   
     siddhi:  
      refs:
       -
     ```
 3. In the `refs` subsection, enter a parameter named `name` and enter a name for the sink.
-    ```jql    
+    ```   
     siddhi:  
      refs:
       -
@@ -166,7 +162,7 @@ before publishing. To understand how this is done, follow the procedure below:
     ```
 3. Save the Siddhi application. If you save the Siddhi application that was created using the example configurations, 
 the completed Siddhi application is as follows.
-    ```jql
+    ```
     @App:name("SalesTotalsApp")
     @App:description("Description of the plan")
     
@@ -177,7 +173,7 @@ the completed Siddhi application is as follows.
     define stream PublishSalesTotalsStream (transNo int, product string, price int, quantity int, salesValue long);
     
     from ConsumerSalesTotalsStream
-    select *
+    select transNo, product, price, quantity, salesValue
     group by product
     insert into PublishSalesTotalsStream;
     ```
@@ -189,15 +185,15 @@ SI publishes data in the custom format when it makes changes to the attribute na
 publishing. To understand how this is done, follow the procedure below:
 
 !!!info
-    In this section, you can update the same Siddhi application that you saved in the [Publishing data in default format](#publishing-a-message-in-default-format)section.
+    In this section, you can update the same Siddhi application that you saved in the [Publishing data in default format](#publishing-a-message-in-default-format) section.
     
 1. Open your Siddhi application with a sink configuration.
 2. Within the `@map` annotation of the sink configuration, add an `@payload` annotation. There are two ways to configure this as follows:
     + Some mappers such as `xml`, `json`, and `text` accept only one output payload using the following format: 
         `@payload( '<PAYLOAD>' )`
      e.g., In the example, the mapping type is `text`. Therefore, you can add a message to be printed with the output by configuring the `@payload` annotation as follows.
-     ```jql
-
+     ```
+    @payload( 'This is a test message from {{user}}.' )
      ```
     + Some mappers such as `key-value` accept series of mapping values defined as follows: 
         `@payload( key1='mapping_1', 'key2'='user : {{user}}') `

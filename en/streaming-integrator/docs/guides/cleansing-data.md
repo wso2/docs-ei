@@ -44,7 +44,7 @@ the required output, follow the procedures below:
         insert into FilteredResultsStream;
         ```
        The saved Siddhi application is as follows:
-        ```jql
+        ```
         @App:name("TemperatureApp")
         @App:description("Description of the plan")
         
@@ -55,8 +55,18 @@ the required output, follow the procedures below:
         select *
         insert into FilteredResultsStream;
         ```
- - Filtering based on pattern match of attribute - regex extension
- - Filtering based on multiple criterias
+ - **Filtering based on pattern match of attribute - regex extension**
+    For this purpose, you can use the `TemperatureApp` Siddhi application that you created in the previous example. 
+    
+ - **Filtering based on multiple criteria**
+    For this purpose, you can use the `TemperatureApp` Siddhi application that you created in the previous example. 
+    However, instead of filtering only readings for room No `2233`, assume that you need to filter the readings for a range
+    of rooms (e.g., rooms 100-210) where the temperature is greater than 40. For this, you can update the filter as follows.
+    
+    `[(roomNo >= 100 and roomNo < 210) and temp > 40]`
+    
+    Here, the `and` logical expression is used to indicate that both the filter conditions provided need to be considered
+    
 
 ## Modifying, removing and replacing attributes
 Modifying and replacing will be referred to transform and enriching sections

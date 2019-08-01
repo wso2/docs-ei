@@ -32,24 +32,24 @@ the temperature of a room every second are transformed to indicate the average t
           
 4. To do the required transformation, let's add the query as follows:
     1. Add the `from` clause with the name of the input stream to indicate that the events to be processed are taken from the input stream.
-       ```jql
+       ```
        from TempStream
        ```
     2. Add the `insert into` clause with the name of the output stream to indicate that the processed events are directed to that stream.
-      ```jql
+      ```
       from TempStream
       insert into OutputStream;
       ```
     3.Add a `select` clause in a line between the `from` and `insert into` clauses. To derive the average temperature from the temperature, apply the `avg()` to the `temp` 
     attribute, and then specify `avgTemp` as the name with which the result should be output. 
     
-      ```jql
+      ```
       from TempStream
       select roomNo, deviceID, avg(temp) as avgTemp
       insert into OutputStream;
       ```
     4. To group by a specific attribute (by the `roomNo` attribute in this example), specify it via the `group by` clause as shown below.
-      ```jql
+      ```
       from TempStream
       select roomNo, deviceID, avg(temp) as avgTemp
       group by roomNo
@@ -58,7 +58,7 @@ the temperature of a room every second are transformed to indicate the average t
     
 5. Save the Siddhi application. The completed Siddhi application is as follows.
 
-    ```jql
+    ```
     @App:name("TemperatureApp")
     @App:description("Description of the plan")
     
