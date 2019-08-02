@@ -12,11 +12,7 @@ Vault. The WSO2 product will then look up this alias in Secure Vault
 during runtime, decrypt and use its password.
 
 !!! note
-
-Go to the WSO2 administration guide for more information about the
-[Secure Vault implementation in WSO2
-products](https://docs.wso2.com/display/ADMIN44x/Carbon+Secure+Vault+Implementation)
-.
+    Go to the WSO2 administration guide for more information about the [Secure Vault implementation in WSO2 products](https://docs.wso2.com/display/ADMIN44x/Carbon+Secure+Vault+Implementation).
 
 
 In all WSO2 products, Secure Vault is commonly used for encrypting
@@ -25,41 +21,7 @@ you use the ESB profile of WSO2 EI, you can encrypt sensitive
 information contained in synapse configurations in addition to the
 information in configuration files. See the following topics:
 
--   [Encrypting passwords in configuration
-    files](#WorkingwithPasswordsintheESBprofile-Encryptingpasswordsinconfigurationfiles)
--   [Encrypting passwords for synapse
-    configurations](#WorkingwithPasswordsintheESBprofile-Encryptingpasswordsforsynapseconfigurations)
-    -   [Using encrypted passwords in synapse
-        configurations](#WorkingwithPasswordsintheESBprofile-Usingencryptedpasswordsinsynapseconfigurations)
--   [Updating the password
-    validation](#WorkingwithPasswordsintheESBprofile-Updatingthepasswordvalidation)
-
-### Encrypting passwords in configuration files
-
-To encrypt passwords in configuration files, you simply have to update
-the `         cipher-text.properties        ` and
-`         cipher-tool.properties        ` files that are stored in the
-`         <EI_HOME>/conf/security/        ` directory and then run the
-Cipher tool that is shipped with the product. Go to the links given
-below to see instructions in the WSO2 administration guide:
-
--   [Encrypting passwords using the automated
-    process](https://docs.wso2.com/display/ADMIN44x/Encrypting+Passwords+with+Cipher+Tool#EncryptingPasswordswithCipherTool-automated)
-    .
--   [Encrypting passwords using the manual
-    process](https://docs.wso2.com/display/ADMIN44x/Encrypting+Passwords+with+Cipher+Tool#EncryptingPasswordswithCipherTool-manual_process)
-    . This is relevant when the location of the configuration files
-    (that contain the elements to be encrypted) cannot be specified
-    using an xpath in the `          cipher         ` -
-    `          tool.properties         ` file.
--   [Changing already encrypted
-    passwords](https://docs.wso2.com/display/ADMIN44x/Encrypting+Passwords+with+Cipher+Tool#EncryptingPasswordswithCipherTool-changing_encrypted_passwords)
-    .
--   [Resolving already encrypted
-    passwords](https://docs.wso2.com/display/ADMIN44x/Resolving+Encrypted+Passwords)
-    .
-
-### Encrypting passwords for synapse configurations
+## Encrypting passwords for synapse configurations
 
 The ESB profile of WSO2 EI provides a UI that can be used for encrypting
 passwords and other sensitive information in synapse configurations.
@@ -126,7 +88,7 @@ Follow the steps given below if you are using the ESB profile.
 
     ![](attachments/119130247/119130248.png){width="669" height="309"}
 
-#### Using encrypted passwords in synapse configurations
+## Using encrypted passwords in synapse configurations
 
 To use the alias of an encrypted password in a synapse configuration,
 you need to add the `         {wso2:vault-lookup('alias')}        `
@@ -141,7 +103,7 @@ This password in the synapse configuration can now be retrieved by
 using the `         {wso2:vault-lookup('alias')}        ` custom path
 expression to logically reference the password mapping.
 
-### Updating the password validation
+## Updating the password validation
 
 The default expression used for password validation is
 `         ^[\\S]{5,30}$        ` . This allows the password to have 5 to
