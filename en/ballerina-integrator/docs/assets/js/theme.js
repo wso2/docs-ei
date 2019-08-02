@@ -168,7 +168,7 @@ request.onload = function() {
 
           // Pre-release version update
           document.getElementById('pre-release-version-documentation-link')
-              .setAttribute('href', docSetUrl + 'next/');
+              .setAttribute('href', docSetUrl + 'next/ballerina-integrator');
       }
 
   } else {
@@ -194,7 +194,8 @@ if (distributionDropdown){
     distributionURLList.forEach(function(key){
         var liElem = document.createElement('li');
         var target = '_self';
-        var url = docSetUrl + key;
+        var version = window.location.pathname.split('/')[2] + '/';
+        var url = docSetUrl + version + key;
 
         liElem.className = 'md-tabs__item mb-tabs__dropdown';
         liElem.innerHTML =  '<a href="' + url + '" target="' +

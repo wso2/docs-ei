@@ -2,6 +2,7 @@
 
 ## Introduction
 
-## Calling micro integrator
+## Triggering integration flows through micro integrator
+   
+## Triggering integration flows through external services
 
-## Calling an external service
