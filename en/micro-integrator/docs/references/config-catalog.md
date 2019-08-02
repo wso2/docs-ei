@@ -1,5 +1,5 @@
 # Configuration Catalog
-This document describes all the configuration parameters that are used in WSO2 Identity Server. 
+This document describes all the configuration parameters that are used in WSO2 Micro Integrator. 
 
 ## Instructions for use
 
@@ -56,7 +56,7 @@ proxy_context_path = ""
                             <code>[server]</code>
                             <span class="badge-required">Required</span>
                             <p>
-                                This toml header groups the parameters that are used for identifying a server node. You need to update these values when you <a href="https://wso2docs-configurationcatalog-3.netlify.com/setup/deploying_wso2_ei">set up a deployment</a>
+                                This toml header groups the parameters that are used for identifying a server node. You need to update these values when you <a href="../../setup/deployment/deploying_wso2_ei">set up a deployment</a>.
                             </p>
                         </div>
                         <div class="params-wrap">
@@ -74,11 +74,12 @@ proxy_context_path = ""
                                             <span class="param-default-value">Default: <code>&quot;localhost&quot;</code></span>
                                         </div>
                                         <div class="param-possible">
-                                            <span class="param-possible-values">Possible Values: <code>&quot;127.0.0.1&quot;,&quot;localhost&quot;,&quot;&lt;any-ip-address&gt;&quot;</code></span>
+                                            <span class="param-possible-values">Possible Values: <code>&quot;localhost&quot;
+,&quot;127.0.0.1&quot;,&quot;&lt;any-ip-address&gt;&quot;</code></span>
                                         </div>
                                     </div>
                                     <div class="param-description">
-                                        <p>The hostname of the WSO2 EI server instance.</p>
+                                        <p>The hostname of the Micro Integrator instance.</p>
                                     </div>
                                 </div>
                             </div><div class="param">
@@ -111,9 +112,11 @@ proxy_context_path = ""
                                             
                                         </p>
                                         <div class="param-default">
-                                            <span class="param-default-value">Default: <code></code></span>
+                                            <span class="param-default-value">Default: <code>false</code></span>
                                         </div>
-                                        
+                                        <div class="param-possible">
+                                            <span class="param-possible-values">Possible Values: <code>&quot;true&quot; or &quot;false&quot;</code></span>
+                                        </div>
                                     </div>
                                     <div class="param-description">
                                         <p>Use this paramater to enable MTOM (Message Transmission Optimization Mechanism) for the product server.</p>
@@ -130,12 +133,14 @@ proxy_context_path = ""
                                             
                                         </p>
                                         <div class="param-default">
-                                            <span class="param-default-value">Default: <code></code></span>
+                                            <span class="param-default-value">Default: <code>false</code></span>
                                         </div>
-                                        
+                                        <div class="param-possible">
+                                            <span class="param-possible-values">Possible Values: <code>&quot;true&quot; or &quot;false&quot;</code></span>
+                                        </div>
                                     </div>
                                     <div class="param-description">
-                                        <p>Use this paramater to enable SwA (SOAP with Attachments) for the product server. When SwA is enabled, the ESB will process the files attached to SOAP messages.</p>
+                                        <p>Use this paramater to enable SwA (SOAP with Attachments) for the product server. When SwA is enabled, the Micro Integrator will process the files attached to SOAP messages.</p>
                                     </div>
                                 </div>
                             </div><div class="param">
@@ -149,12 +154,12 @@ proxy_context_path = ""
                                             
                                         </p>
                                         <div class="param-default">
-                                            <span class="param-default-value">Default: <code></code></span>
+                                            <span class="param-default-value">Default: <code>0</code></span>
                                         </div>
                                         
                                     </div>
                                     <div class="param-description">
-                                        <p>Port offset allows you to run multiple WSO2 products, multiple instances of a WSO2 product, or multiple WSO2 product clusters on the same server or virtual machine (VM). Port offset defines the number by which all ports defined in the runtime such as the HTTP/S ports will be offset. For example, if the default HTTP port is 9443 and the portOffset is 1, the effective HTTP port will be 9444. Therefore, for each additional WSO2 product instance, set the port offset to a unique value (the default is 0) so that they can all run on the same server without any port conflicts.</p>
+                                        <p>Port offset allows you to run multiple WSO2 products, multiple instances of a WSO2 product, or multiple WSO2 product clusters on the same server or virtual machine (VM). </br></br>Port offset defines the number by which all ports defined in the runtime such as the HTTP/S ports will be offset. For example, if the default HTTP port is 9443 and the portOffset is 1, the effective HTTP port will be 9444. Therefore, for each additional WSO2 product instance, set the port offset to a unique value (the default is 0) so that they can all run on the same server without any port conflicts.</p>
                                     </div>
                                 </div>
                             </div>
@@ -193,7 +198,7 @@ domain = "wso2.carbon.domain"
                             <code>[clustering]</code>
                             <span class="badge-required">Required</span>
                             <p>
-                                This config heading groups the parameters that connects the server to a clustered deployment.
+                                This toml header groups the parameters that connect the server to a <a href="../../setup/deployment/deploying_wso2_ei">clustered deployment</a>.
                             </p>
                         </div>
                         <div class="params-wrap">
@@ -213,7 +218,7 @@ domain = "wso2.carbon.domain"
                                         
                                     </div>
                                     <div class="param-description">
-                                        <p>Specify the well-known members in the cluster in both nodes as shown below. For example, when you configure one ESB node, you need to specify the other nodes in the cluster as well-known members as shown below. The port value for the WKA node must be the same value as it's localMemberPort (in this case it is 4000). Note that You can also use IP address ranges for the hostname (e.g., 192.168.1.2-10). However, you can define a range only for the last portion of the IP address. Smaller the range, faster the time it takes to discover members since each node has to scan a lesser number of potential members. The best practice is to add all the members (including itself) in all the nodes to avoid any conflicts in configurations.</p>
+                                        <p>Specify the well-known members in the cluster in both nodes of a two-node cluster. For example, when you configure one Micro Integrator node, you need to specify the other nodes in the cluster as well-known member. The port value for the WKA node must be the same value as its <b>local_member_port</b> (in this case it is 4000).<details class="warning classes" open="open"><summary>Note</summary><p>You can also use IP address ranges for the hostname (e.g., 192.168.1.2-10). However, you can define a range only for the last portion of the IP address. Smaller the range, faster the time it takes to discover members since each node has to scan a lesser number of potential members. The best practice is to add all the members (including itself) in all the nodes to avoid any conflicts in configurations.</p></details></p>
                                     </div>
                                 </div>
                             </div><div class="param">
@@ -232,12 +237,12 @@ domain = "wso2.carbon.domain"
                                         
                                     </div>
                                     <div class="param-description">
-                                        <p>The port that is assigned to the server node in the deployment. This port number is not affected by the port offset value specified under the [server] section. If this port number is already assigned to another server, the clustering framework automatically increments this port number. However, if there are two servers running on the same machine, ensure that a unique port is set for each server. For example, you can have port 4000 for node 1 and port 4001 for node 2.</p>
+                                        <p>The port that is assigned to the server node in the deployment. This port number is not affected by the port offset value specified under the "[server]" section. If this port number is already assigned to another server, the clustering framework automatically increments this port number. However, if there are two servers running on the same machine, ensure that a unique port is set for each server. For example, you can have port 4000 for node 1 and port 4001 for node 2.</p>
                                     </div>
                                 </div>
                             </div><div class="param">
                                 <div class="param-name">
-                                  <span class="param-name-wrap"> <code>local_member_port</code> </span>
+                                  <span class="param-name-wrap"> <code>local_member_host</code> </span>
                                 </div>
                                 <div class="param-info">
                                     <div>
@@ -249,7 +254,7 @@ domain = "wso2.carbon.domain"
                                             <span class="param-default-value">Default: <code>10.100.5.86</code></span>
                                         </div>
                                         <div class="param-possible">
-                                            <span class="param-possible-values">Possible Values: <code>The hostname of the server node. When you have multiple nodes in the deployment, this hostname will be used to identify the node during inter-node communications.</code></span>
+                                            <span class="param-possible-values">Possible Values: <code>...</code></span>
                                         </div>
                                     </div>
                                     <div class="param-description">
@@ -291,7 +296,7 @@ domain = "wso2.carbon.domain"
                                         
                                     </div>
                                     <div class="param-description">
-                                        <p>Add this parameter to change the default cluster (domain name) to which the server node joins. By default, wso2.carbon.domain is set.</p>
+                                        <p>Add this parameter to change the default cluster (domain name) to which the server node joins.</p>
                                     </div>
                                 </div>
                             </div>
@@ -330,7 +335,7 @@ key_password="wso2carbon"
                             <code>[[keystore_tls]</code>
                             
                             <p>
-                                This config heading in the ei.toml file groups the parameters that connect the server to the primary keystore. This keystore is used for SSL handshaking (when the server communicates with another server) and for encrypting plain text information in configuration files. By default, this keystore is also used for encrypted data in internal datastores, unless you have configured a separate keystore for internal data encryption. Read more about configuring the primary keystore.
+                                This config heading in the ei.toml file groups the parameters that connect the server to the primary keystore. This keystore is used for SSL handshaking (when the server communicates with another server) and for encrypting plain text information in configuration files. By default, this keystore is also used for encrypted data in internal datastores, unless you have configured a separate keystore for internal data encryption. Read more about <a href="../../setup/security/configuring_keystores/#changing-the-default-primary-keystore">configuring the primary keystore</a>.
                             </p>
                         </div>
                         <div class="params-wrap">
@@ -409,7 +414,7 @@ key_password="wso2carbon"
                                         
                                     </div>
                                     <div class="param-description">
-                                        <p>The alias of the public key corresponding to the private key that is included in the keystore. The public key is used for encrypting data in the ESB server, which only the corresponding private key can decrypt. The public key is embedded in a digital certificate, and this certificate can be shared over the internet by storing it in a separate trust store file.</p>
+                                        <p>The alias of the public key corresponding to the private key that is included in the keystore. The public key is used for encrypting data in the Micro Integrator server, which only the corresponding private key can decrypt. The public key is embedded in a digital certificate, and this certificate can be shared over the internet by storing it in a separate trust store file.</p>
                                     </div>
                                 </div>
                             </div><div class="param">
@@ -467,7 +472,7 @@ key_password="wso2carbon"
                             <code>[[keystore_internal]]</code>
                             <span class="badge-required">Required</span>
                             <p>
-                                Add this config heading to the ei.toml file to group the parameters that connect the server to the keystore used for encrypting/decrypting data in internal data stores. You may sometimes choose to configure a separate keystore for this purpose because the primary keystore that is used by the [keystore.tls] configuration needs to renew certificates frequently. However, for encrypting information in internal data stores, the keystore certificates should not be changed frequently because the data that is already encrypted will become unusable every time the certificate changes. Read more about configuring the internal keystore.
+                                Add this config heading to the ei.toml file to group the parameters that connect the server to the keystore used for encrypting/decrypting data in internal data stores. You may sometimes choose to configure a separate keystore for this purpose because the primary keystore that is used by the "[keystore.tls]" configuration needs to renew certificates frequently. However, for encrypting information in internal data stores, the keystore certificates should not be changed frequently because the data that is already encrypted will become unusable every time the certificate changes. Read more about <a href="../../setup/security/configuring_keystores/#separating-the-internal-keystore">configuring the internal keystore</a>.
                             </p>
                         </div>
                         <div class="params-wrap">
@@ -546,7 +551,7 @@ key_password="wso2carbon"
                                         
                                     </div>
                                     <div class="param-description">
-                                        <p>The alias of the public key corresponding to the private key that is included in the keystore. The public key is used for encrypting data in the ESB server, which only the corresponding private key can decrypt. The public key is embedded in a digital certificate, and this certificate can be shared over the internet by storing it in a separate trust store file.</p>
+                                        <p>The alias of the public key corresponding to the private key that is included in the keystore. The public key is used for encrypting data in the Micro Integrator server, which only the corresponding private key can decrypt. The public key is embedded in a digital certificate, and this certificate can be shared over the internet by storing it in a separate trust store file.</p>
                                     </div>
                                 </div>
                             </div><div class="param">
@@ -604,7 +609,7 @@ algorithm=""
                             <code>[truststore]</code>
                             <span class="badge-required">Required</span>
                             <p>
-                                Add this config heading to the ei.toml file to group the parameters that connect the server to the keystore file (trust store) that is used to store the digital certificates that the server trusts for SSL communication. All keystore files used by this product should be stored in the EI_HOME/repository/resources/security/ directory. The product is configured to use the default trust store (wso2truststore.jks), which contains the self-signed digital certificate of the default keystore. Read more about asymetric encryption in WSO2 EI. Read more about configuring the truststore.
+                                Add this config heading to the ei.toml file to group the parameters that connect the server to the keystore file (trust store) that is used to store the digital certificates that the server trusts for SSL communication. All keystore files used by this product should be stored in the MI_HOME/repository/resources/security/ directory. The product is configured to use the default trust store (wso2truststore.jks), which contains the self-signed digital certificate of the default keystore. Read more about <a href="../../setup/security/configuring_keystores/#optional-changing-the-default-truststore">configuring the truststore</a>.
                             </p>
                         </div>
                         <div class="params-wrap">

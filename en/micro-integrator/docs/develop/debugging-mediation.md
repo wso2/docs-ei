@@ -1,5 +1,9 @@
 # Debugging Mediation
 
+Once you have [build and run](#testing-build-and-run-the-integration) your integration solution, you may encounter errors and identify the required modifications for your artifacts.
+
+Use the [mediation debugging](../use-cases/tasks/sequences/debugging-mediation.md) feature in WSO2 Integration Studio to troubleshoot errors.
+
 Message mediation mode is one of the operational modes of the ESB
 profile where the ESB profile functions as an intermediate message
 router. W hen operating in this mode, i t can filter, transform, drop or
@@ -10,20 +14,6 @@ each mediator is a unit entity that can input a message, carry out a
 predefined processing task on the message, and output the message for
 further processing.
 
--   [What is debugging with respect to
-    mediation](#DebuggingMediation-Whatisdebuggingwithrespecttomediation)
--   [Instant debugging using Micro
-    Integrator](#DebuggingMediation-InstantdebuggingusingMicroIntegrator)
--   [Debugging with external WSO2 EI
-    server](#DebuggingMediation-DebuggingwithexternalWSO2EIserver)
-    -   [Creating the artifact](#DebuggingMediation-Creatingtheartifact)
-    -   [Enabling mediation
-        debugging](#DebuggingMediation-Enablingmediationdebugging)
-    -   [Information provided by the Debugger
-        Tool](#DebuggingMediation-InformationprovidedbytheDebuggerTool)
-    -   [Changing the property
-        values](#DebuggingMediation-Changingthepropertyvalues)
-    -   [Viewing wire logs](#DebuggingMediation-Viewingwirelogs)
 
 ## What is debugging with respect to mediation
 

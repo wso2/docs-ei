@@ -1,146 +1,29 @@
 # Applying Security to an API
 
--   [Using a Basic Auth
-    handler](#ApplyingSecuritytoanAPI-BasicAuthUsingaBasicAuthhandler)
-    -   [Using a custom basic auth
-        handler](#ApplyingSecuritytoanAPI-Usingacustombasicauthhandler)
--   [Using Kerberos to secure the REST
-    API](#ApplyingSecuritytoanAPI-UsingKerberostosecuretheRESTAPI)
--   [Using an OAuth base security
-    token](#ApplyingSecuritytoanAPI-UsinganOAuthbasesecuritytoken)
-    -   [Creating the custom
-        handler](#ApplyingSecuritytoanAPI-Creatingthecustomhandler)
-    -   [Creating the API](#ApplyingSecuritytoanAPI-CreatingtheAPI)
-    -   [Getting the OAuth
-        token](#ApplyingSecuritytoanAPI-GettingtheOAuthtoken)
--   [Using a policy file to authenticate with a secured back-end
-    service](#ApplyingSecuritytoanAPI-Usingapolicyfiletoauthenticatewithasecuredback-endservice)
--   [Transforming Basic Auth to
-    WS-Security](#ApplyingSecuritytoanAPI-TransformingBasicAuthtoWS-Security)
-
-### Using a Basic Auth handler
+## Using a Basic Auth handler
 
 In most of the real-world use cases of REST, when a consumer attempts to
 access a privileged resource, access will be denied unless the
 consumer's credentials are provided in an Authorization header. By
-default, the ESB profile of WSO2 EI and [WSO2 Micro
-Integrator](https://docs.wso2.com/display/EI650/WSO2+Micro+Integrator)
-validates the credentials of the consumer (that is provided in the
+default, the WSO2 Micro Integrator validates the credentials of the consumer (that is provided in the
 Authorization header) against the credentials of users that are
-registered in the user store connected to the server. This validation is
-done using the following basic auth handler that is built into the ESB.
-When a REST API is created, this handler should be added to the API
-configuration in order to enable basic auth.
+registered in the user store connected to the server. 
 
--   [**ESB profile**](#92a3a94fa689457cbb9fe069d1cf67bc)
--   [**WSO2 Micro Integrator**](#767f16ef4c3144c8b110afe6fda93600)
+This validation is done using the following basic auth handler. When a REST API is created, this handler should be added to the API configuration in order to enable basic auth.
 
-**Using the basic auth handler of the ESB profile**
-
-You need to use the following handler for the ESB profile.
-
-``` html/xml
-    <handlers>
-        <handler class="org.wso2.carbon.integrator.core.handler.RESTBasicAuthHandler"/>
-    </handlers>
+```
+<handlers>
+    <handler class="org.wso2.carbon.micro.integrator.security.handler.RESTBasicAuthHandler"/>
+</handlers>
 ```
 
-See the REST API given below for an example of how the default basic
-auth handler is used.
 
-``` html/xml
-    <api xmlns="http://ws.apache.org/ns/synapse" name="StockQuoteAPI" context="/stockquote">
-       <resource methods="GET" uri-template="/view/{symbol}">
-          <inSequence>
-             <payloadFactory media-type="xml">
-                <format>
-                   <m0:getQuote xmlns:m0="http://services.samples">
-                      <m0:request>
-                         <m0:symbol>$1</m0:symbol>
-                      </m0:request>
-                   </m0:getQuote>
-                </format>
-                <args>
-                   <arg evaluator="xml" expression="get-property('uri.var.symbol')"/>
-                </args>
-             </payloadFactory>
-             <header name="Action" scope="default" value="urn:getQuote"/>
-             <send>
-                <endpoint>
-                   <address uri="http://localhost:9000/services/SimpleStockQuoteService" format="soap11"/>
-                </endpoint>
-             </send>
-          </inSequence>
-          <outSequence>
-             <send/>
-          </outSequence>
-          <faultSequence/>
-       </resource>
-       <handlers>
-        <handler class="org.wso2.carbon.integrator.core.handler.RESTBasicAuthHandler"/>
-       </handlers>
-    </api>
+### Creating the API
+
+See the REST API given below for an example of how the default basic auth handler is used.
+
 ```
-
-Follow the steps given below to test the above REST API:
-
-1.  Create the REST API given above using WSO2 Integration Studio, and
-    deploy it in the ESB profile of WSO2 EI.
-2.  The above REST API invokes the SimpleStockQuoteService, which is a
-    sample back-end service that is shipped with the product. Follow the
-    instructions given
-    [here](https://docs.wso2.com/display/EI650/Setting+Up+the+ESB+Samples#SettingUptheESBSamples-Deployingsampleback-endservices)
-    to start this back-end service.
-3.  First, invoke the service using the following service URL without
-    providing any user credentials:
-    <http://127.0.0.1:8280/stockquote/view/IBM>  
-    Note that you will receive the following error: '401 Unauthorized'
-4.  Now, invoke the service again by providing the credentials of a user
-    that is registered in the ESB's user store. For example, use admin
-    as the username and password. The request will be successfully
-    passed to the back-end service and you will receive the following
-    response:
-
-    ``` java
-            <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
-                <soapenv:Body>
-                    <ns:getQuoteResponse xmlns:ns="http://services.samples">
-                        <ns:return xmlns:ax21="http://services.samples/xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ax21:GetQuoteResponse">
-                            <ax21:change>-2.6989539095024164</ax21:change>
-                            <ax21:earnings>12.851852793420885</ax21:earnings>
-                            <ax21:high>-166.81703170012037</ax21:high>
-                            <ax21:last>170.03627716039932</ax21:last>
-                            <ax21:lastTradeTimestamp>Mon Jul 30 15:10:56 IST 2018</ax21:lastTradeTimestamp>
-                            <ax21:low>178.02122263133768</ax21:low>
-                            <ax21:marketCap>-7306984.135450081</ax21:marketCap>
-                            <ax21:name>IBM Company</ax21:name>
-                            <ax21:open>-165.86249647643422</ax21:open>
-                            <ax21:peRatio>23.443106773044992</ax21:peRatio>
-                            <ax21:percentageChange>1.5959734616866617</ax21:percentageChange>
-                            <ax21:prevClose>-169.11019978052138</ax21:prevClose>
-                            <ax21:symbol>IBM</ax21:symbol>
-                            <ax21:volume>9897</ax21:volume>
-                        </ns:return>
-                    </ns:getQuoteResponse>
-                </soapenv:Body>
-            </soapenv:Envelope>
-    ```
-
-****Using the basic auth handler of WSO2 Micro Integrator****
-
-You need to use the following handler for WSO2 Micro Integrator.
-
-``` html/xml
-    <handlers>
-        <handler class="org.wso2.carbon.micro.integrator.security.handler.RESTBasicAuthHandler"/>
-    </handlers>
-```
-
-See the REST API given below for an example of how the default basic
-auth handler is used.
-
-``` html/xml
-    <api xmlns="http://ws.apache.org/ns/synapse" name="StockQuoteAPI" context="/stockquote">
+<api xmlns="http://ws.apache.org/ns/synapse" name="StockQuoteAPI" context="/stockquote">
        <resource methods="GET" uri-template="/view/{symbol}">
           <inSequence>
              <payloadFactory media-type="xml">
@@ -170,48 +53,17 @@ auth handler is used.
        <handlers>
         <handler class="org.wso2.carbon.micro.integrator.security.handler.RESTBasicAuthHandler"/>
        </handlers>
-    </api>
+</api>
 ```
 
-Follow the steps given below to test the above REST API:
+### Configuring the user store
 
-1.  Create the REST API given above using WSO2 Integration Studio.  
-    For more information on creating a REST API, see [Creating an
-    API](_Creating_an_API_) . Once the API is created, you can copy the
-    code given above to the source view of the API.
-2.  Create the CAR file:  
-    1.  Open the `               pom.xml              ` file of the
-        C-App project in the Composite Application Project POM Editor.
-    2.  Select the artifact that needs to be included into the CAR file.
-    3.  Click and define the location you want to create the CAR file.  
-3.  Add the [CAR file you created](#ApplyingSecuritytoanAPI-car-file) to
-    the
-    `             <MI_HOME>/repository/deployment/server/carbonapps            `
-    directory to deploy it in WSO2 Micro Integrator.
-4.  The above REST API invokes the
-    `             SimpleStockQuoteService            ` , which is a
-    sample back-end service that is shipped with the product.  
-    Follow the instructions given
-    [here](https://docs.wso2.com/display/EI650/Setting+Up+the+ESB+Samples#SettingUptheESBSamples-Deployingsampleback-endservices)
-    to start this back-end service.
-5.  Configuring the user store:
-    1.  Create your user store and host it because WSO2 Micro Integrator
-        does not include a default user store.
-    2.  Once hosted, configure the following properties in the
-        `                <MI_HOME>/conf/user-mgt.xml               `
-        file with your user store's details.
+1.  Create your user store and host it because WSO2 Micro Integrator does not include a default user store.
+2.  Once hosted, configure the following properties in the `                <MI_HOME>/conf/user-mgt.xml               ` file with your user store's details.
 
-                !!! info
-        
-                For more information on configuring the user store, see
-                [Configuring User
-                Stores](https://docs.wso2.com/display/ADMIN44x/Configuring+User+Stores)
-                .
-        
+For this sample, we configure a read- only LDAP user store.
 
-        For this sample, we configure a read- only LDAP user store.
-
-        <table>
+<table>
         <thead>
         <tr class="header">
         <th>Property</th>
@@ -247,41 +99,27 @@ Follow the steps given below to test the above REST API:
         <td>Distinguish Name ( DN) of the context or object under which the group entries are stored in the user store. When the user store searches for groups, it will start from this location of the directory.</td>
         </tr>
         </tbody>
-        </table>
+</table>
 
-6.  Start WSO2 Micro Integrator:
+### Testing the API
 
-    1.  Navigate to the `                <MI_HOME>/bin               `
-        directory via the terminal.
+1.  First, invoke the service using the following service URL without
+    providing any user credentials:m`http://127.0.0.1:8280/stockquote/view/IBM             `
 
-    2.  Run the Micro Integrator:
-
-        -   On Linux/Mac OS:
-            `                  sh micro-integrator.sh                 `
-
-        -   On Windows:
-            `                  micro-integrator.bat                 `
-
-7.  First, invoke the service using the following service URL without
-    providing any user credentials:
-    `              http://127.0.0.1:8280/stockquote/view/IBM             `
-
-        !!! info
-    
+    !!! info
         You can invoke the service using Postman or curl.
     
-
     Note that you will receive the following error because the username
     and password are not passed and the service cannot be authenticated:
     `              '401 Unauthorized'             `
 
-8.  Now, invoke the service again by providing the credentials of a user
+2.  Now, invoke the service again by providing the credentials of a user
     that is registered in the user store that is hosted.  
     The request is passed to the back-end service and you will receive a
     response similar to what is shown below:
 
     ``` java
-        <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+    <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
             <soapenv:Body>
                 <ns:getQuoteResponse xmlns:ns="http://services.samples">
                     <ns:return xmlns:ax21="http://services.samples/xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ax21:GetQuoteResponse">
@@ -302,22 +140,19 @@ Follow the steps given below to test the above REST API:
                     </ns:return>
                 </ns:getQuoteResponse>
             </soapenv:Body>
-        </soapenv:Envelope>
+    </soapenv:Envelope>
     ```
 
-#### **Using a custom basic auth handler**
+## Using a custom basic auth handler
 
 If required, you can implement a custom basic auth handler (instead of
 the default handler explained above). The following example of a
 primitive security handler serves as a template that can be used to
-write your own security handler to secure an API in the ESB profile.
+write your own security handler to secure an API.
 
-![](images/icons/grey_arrow_down.png){.expand-control-image} Click here
-to expand...
+### Creating the custom handler
 
-The custom Basic Auth handler in this sample simply verifies whether the
-request uses username: admin and password: admin. Following is the code
-for this handler:
+The custom Basic Auth handler in this sample simply verifies whether the request uses username: admin and password: admin. Following is the code for this handler:
 
 ``` java
     package org.wso2.rest;
@@ -398,13 +233,9 @@ accessing its source here:
 <https://github.com/wso2/product-esb/tree/v5.0.0/modules/samples/integration-scenarios/starbucks_sample/BasicAuth-handler>
 
 !!! note
+    When building the sample using the source ensure you update `           pom.xml          ` with the online repository. To do this, add the following section before `           <dependencies>          ` tag in `pom.xml` :
 
-When building the sample using the source ensure you update
-`           pom.xml          ` with the online repository. To do this,
-add the following section before `           <dependencies>          `
-tag in `           pom.xml          ` :
-
-``` java
+    ``` java
     <repositories>
         <repository>
            <id>wso2-nexus</id>
@@ -430,19 +261,20 @@ tag in `           pom.xml          ` :
            </releases>
         </repository>
     </repositories>
-```
-    
+    ```
 
 Alternatively, you can download the JAR file from the following
 location, copy it to the `           <EI_HOME>/lib          ` directory,
-and restart WSO2 EI:
+and restart the Micro Integrator:
 
 <https://github.com/wso2/product-esb/blob/v5.0.0/modules/samples/integration-scenarios/starbucks_sample/bin/WSO2-REST-BasicAuth-Handler-1.0-SNAPSHOT.jar>
 
+### Creating the API
+
 Add the handler to the REST API:
 
-``` html/xml
-    <api xmlns="http://ws.apache.org/ns/synapse" name="StockQuoteAPI" context="/stockquote">
+```
+<api xmlns="http://ws.apache.org/ns/synapse" name="StockQuoteAPI" context="/stockquote">
        <resource methods="GET" uri-template="/view/{symbol}">
           <inSequence>
              <payloadFactory media-type="xml">
@@ -472,12 +304,15 @@ Add the handler to the REST API:
        <handlers>
          <handler class="org.wso2.rest.BasicAuthHandler"/>
         </handlers>
-    </api>                                    
+</api>                                    
 ```
 
 You can now send a request to the secured API.
 
-### Using Kerberos to secure the REST API
+
+## Using Kerberos to secure the REST API
+
+### Setting up the Kerberos server
 
 First, you need to set up the Kerberos server and create the credentials
 for the ESB server (which hold the REST API). For example, let's set up
@@ -508,7 +343,7 @@ Active Directory as the kerberos server (KDC):
     Principal Name (spn) for the ESB server:
 
     ``` java
-            setspn -s HTTP/myserver esbservice
+    setspn -s HTTP/myserver esbservice
     ```
 
     You will now have the following:
@@ -537,49 +372,46 @@ Active Directory as the kerberos server (KDC):
     ``` java
     ```
     
-    Follow the steps given below to apply the Kerberos handler to the ESB
-    server:
-    
-    1.  Download the
+1.  Download the
         `                     WSO2-REST-KerberosAuth-Handler-1.0.0-SNAPSHOT.jar                   `
         file and copy it to the `          <EI_HOME>/lib         `
         directory.
-    2.  Create the following REST API and add the Kerberos handler to secure
+
+### Creating the API
+
+1. Create the following REST API and add the Kerberos handler to secure
         it with Kerberos authentication. Be sure to replace the handler
         configurations as described below.
     
-    ``` java
-    <api xmlns="http://ws.apache.org/ns/synapse"
+        ``` java
+        <api xmlns="http://ws.apache.org/ns/synapse"
         name="HealthCheckAPI"
         context="/HealthCheck">
-      <resource methods="GET" url-mapping="/status" faultSequence="fault">
-         <inSequence>
-            <payloadFactory media-type="json">
-               <format>{"Status":"OK"}</format>
-               <args/>
-            </payloadFactory>
-            <log>
-               <property name="JSON-Payload" expression="json-eval($.)"/>
-            </log>
-            <property name="NO_ENTITY_BODY" scope="axis2" action="remove"/>
-            <property name="messageType"
-                      value="application/json"
-                      scope="axis2"
-                      type="STRING"/>
-            <respond/>
-         </inSequence>
-      </resource>
-      <handlers>
-         <handler class="org.wso2.rest.handler.KerberosAuthHandler">
-            <property name="keyTabFilePath" value="<PATH_TO_KEYTAB_FILE>"/>
-         </handler>
-      </handlers>
-    </api>
-    ```
+        <resource methods="GET" url-mapping="/status" faultSequence="fault">
+            <inSequence>
+                <payloadFactory media-type="json">
+                    <format>{"Status":"OK"}</format>
+                    <args/>
+                </payloadFactory>
+                <log>
+                <property name="JSON-Payload" expression="json-eval($.)"/>
+                </log>
+                <property name="NO_ENTITY_BODY" scope="axis2" action="remove"/>
+                <property name="messageType" value="application/json" scope="axis2" type="STRING"/>
+                <respond/>
+            </inSequence>
+        </resource>
+        <handlers>
+            <handler class="org.wso2.rest.handler.KerberosAuthHandler">
+                <property name="keyTabFilePath" value="<PATH_TO_KEYTAB_FILE>"/>
+            </handler>
+        </handlers>
+        </api>
+        ```
     
-        Kerberos handler parameters:
+    Kerberos handler parameters:
     
-        <table>
+    <table>
         <colgroup>
         <col style="width: 11%" />
         <col style="width: 88%" />
@@ -600,30 +432,24 @@ Active Directory as the kerberos server (KDC):
         <td>This is the server principal name (spn) that was generated for the ESB server.</td>
         </tr>
         </tbody>
-        </table>
+    </table>
     
-    You have now configured a REST API which is secured with the Kerberos
-    authentication.  
+You have now configured a REST API which is secured with the Kerberos authentication.  
+
+## Using an OAuth base security token
     
-    ### Using an OAuth base security token
+You can generate an OAuth base security token using WSO2 Identity Server, and then use that token when invoking your API to connect to a REST endpoint. This approach involves the following tasks:
     
-    You can generate an OAuth base security token using WSO2 Identity
-    Server, and then use that token when invoking your API to connect to a
-    REST endpoint. This approach involves the following tasks:
-    
-    1.  Create a custom handler that will validate the token
-    2.  Create an API that points to the REST endpoint and includes the
+1.  Create a custom handler that will validate the token
+2.  Create an API that points to the REST endpoint and includes the
         custom handler
-    3.  Create an OAuth application in Identity Server and get the access
+3.  Create an OAuth application in Identity Server and get the access
         token
-    4.  Invoke the API with the access token
+4.  Invoke the API with the access token
     
-    #### Creating the custom handler
+### Creating the custom handler
     
-    The custom handler must extend AbstractHandler and implement
-    ManagedLifecycle as shown in the following example. You can download the
-    Maven project for this example at
-    <https://github.com/wso2-docs/ESB/tree/master/ESB-Artifacts/OAuthHandler_Sample>
+The custom handler must extend AbstractHandler and implement ManagedLifecycle as shown in the following example. You can download the Maven project for this example at <https://github.com/wso2-docs/ESB/tree/master/ESB-Artifacts/OAuthHandler_Sample>
     
 ``` java
 package org.wso2.handler;
@@ -768,20 +594,22 @@ public class SimpleOauthHandler extends AbstractHandler implements ManagedLifecy
     }
 }
 ```
+
+Copy the custom `          handler.jar         ` to the `          <EI_HOME>/lib         ` directory.
     
-    #### Creating the API
+### Creating the API
     
-    You will now create an API named TestGoogle that connects to the
+You will now create an API named TestGoogle that connects to the
     following endpoint: https://www.google.lk/search?q=wso2
     
-    1.  In WSO2 EI Management Console, go to Manage -\> Service Bus and
+1.  In WSO2 EI Management Console, go to Manage -\> Service Bus and
         click Source View .
-    2.  Insert the following XML configuration into the source view before
+2.  Insert the following XML configuration into the source view before
         the closing `           </definitions>          ` tag to create the
         TestGoogle API:
     
-    ``` html/xml
-     <api xmlns="http://ws.apache.org/ns/synapse"
+    ```
+    <api xmlns="http://ws.apache.org/ns/synapse"
          name="TestGoogle"
          context="/search">
        <resource methods="GET">
@@ -802,57 +630,43 @@ public class SimpleOauthHandler extends AbstractHandler implements ManagedLifecy
     </api>
     ```
         
-            Notice that the `           <handlers>          ` tag contains the
-            reference to the custom handler class.
+    Notice that the `           <handlers>          ` tag contains the reference to the custom handler class.
         
-        3.  Copy the custom `          handler.jar         ` to the
-            `          <EI_HOME>/lib         ` directory.
-        4.  Open `           <EI_HOME>/repository/axis2/axis2.xml          ` and
+3.  Open `           <EI_HOME>/repository/axis2/axis2.xml          ` and
             add the following parameters:
         
-    ``` html/xml
+    ```
     <!-- OAuth2 Token Validation Service -->
     <parameter name="oauth2TokenValidationService">https://localhost:9444/services/OAuth2TokenValidationService</parameter>
     <!-- Server credentials -->
     <parameter name="identityServerUserName">admin</parameter>
     <parameter name="identityServerPw">admin</parameter>
     ```
+5.  Restart WSO2 EI.
         
-        5.  Restart WSO2 EI.
+### Getting the OAuth token
         
-        #### Getting the OAuth token
-        
-        You will now use Identity Server to create an OAuth application and
+You will now use Identity Server to create an OAuth application and
         generate the security token.
         
-        1.  Start WSO2 Identity Server and log into the management console.
-        2.  On the **Main** tab, click **Add** under **Service Providers** , and
+1.  Start WSO2 Identity Server and log into the management console.
+2.  On the **Main** tab, click **Add** under **Service Providers** , and
             then [add a service
             provider](https://docs.wso2.com/display/IS570/Adding+and+Configuring+a+Service+Provider)
             [.](http://docs.wso2.com/identity-server/Adding%20a%20Service%20Provider)
-        3.  Note the access token URL and embed it in a cURL request to get the
-            token. For example, use the following command and replace and with
-            the actual values:  
-              
-            curl -v -k -X POST --user : -H "Content-Type:
-            application/x-www-form-urlencoded;charset=UTF-8" -d
-            'grant\_type=password&username=admin&password=admin'
-            https://localhost:9444/oauth2/token
+3.  Note the access token URL and embed it in a cURL request to get the token. For example, use the following command and replace and with the actual values: `curl -v -k -X POST --user : -H "Content-Type: application/x-www-form-urlencoded;charset=UTF-8" -d 'grant\_type=password&username=admin&password=admin' https://localhost:9444/oauth2/token`
         
-        Identity Server returns the access token, which you can now use when
-        invoking the API. For example:
+Identity Server returns the access token, which you can now use when invoking the API. For example: `curl -v -X GET -H "Authorization: Bearer ca1799fc84986bd87c120ba499838a7" http://localhost:8280/search`
         
-        `                   curl -v -X GET -H "Authorization: Bearer ca1799fc84986bd87c120ba499838a7"                     http://localhost:8280/search                           `
+## Using a policy file to authenticate with a secured back-end service
         
-        ### Using a policy file to authenticate with a secured back-end service
+You can connect a REST client to a secured back-end service (such as a SOAP service) through an API that reads from a policy file.
+
+### Creating the API
         
-        You can connect a REST client to a secured back-end service (such as a
-        SOAP service) through an API that reads from a policy file.
-        
-        First, you configure the ESB profile to expose the API to the REST
-        client. For example:
-        
-``` html/xml
+First, you configure the ESB profile to expose the API to the REST client. For example:
+    
+```
 <definitions xmlns="http://ws.apache.org/ns/synapse">
    <localEntry key="sec_policy"
                src="file:repository/samples/resources/policy/policy_3.xml"/>
@@ -904,20 +718,16 @@ public class SimpleOauthHandler extends AbstractHandler implements ManagedLifecy
    </api>
 </definitions>
 ```
+ 
+The policy file stores the security parameters that are going to authenticated by the back-end service. You specify the policy file with the localEntry property, which in this example we've named sec_policy:
     
-    The policy file stores the security parameters that are going to
-    authenticated by the back-end service. You specify the policy file with
-    the localEntry property, which in this example we've named sec\_policy:
-    
-``` html/xml
-<localEntry key="sec_policy"
-               src="file:repository/samples/resources/policy/policy_3.xml"/> 
+```
+<localEntry key="sec_policy" src="file:repository/samples/resources/policy/policy_3.xml"/> 
 ```
     
-    You use then reference the policy file by its localEntry name when
-    enabling the security policy for the end point:
+You use then reference the policy file by its localEntry name when enabling the security policy for the end point:
     
-``` html/xml
+```
 <address uri="http://localhost:9000/services/SecureStockQuoteService"
     format="soap11">
     <enableAddressing/>
@@ -925,71 +735,36 @@ public class SimpleOauthHandler extends AbstractHandler implements ManagedLifecy
 </address>
 ```
     
-    In the outSequence property, the security header must be removed before
-    sending the response back to the REST client.
+In the outSequence property, the security header must be removed before sending the response back to the REST client.
     
-``` html/xml
+```
 <outSequence trace="enable">
-            <header xmlns:wsse="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd"
-                    name="wsse:Security"
-                    action="remove"/>
+<header xmlns:wsse="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd" name="wsse:Security" action="remove"/>
 ```
     
-    To test this API configuration, you must run the
-    SecureStockQuoteService, which is bundled in the samples folder, as the
-    back-end server. Start this sample as described in [Setting Up the ESB
-    Samples](https://docs.wso2.com/display/EI650/Setting+Up+the+ESB+Samples)
-    . This sample uses Apache Rampart as the back-end security
-    implementation. Therefore, you need to download and install the
-    unlimited strength policy files for your JDK before using Apache
-    Rampart.
+To test this API configuration, you must run the SecureStockQuoteService, which is bundled in the samples folder, as the back-end server. Start this sample as described in [Setting Up the ESB Samples](https://docs.wso2.com/display/EI650/Setting+Up+the+ESB+Samples). This sample uses Apache Rampart as the back-end security implementation. Therefore, you need to download and install the unlimited strength policy files for your JDK before using Apache Rampart.
+
+### Testing the API
+
+To download and install the unlimited strength policy files:
     
-    **To download and install the unlimited strength policy files:**
+1.  Go to <http://www.oracle.com/technetwork/java/javase/downloads/jce8-download-2133166.html>, and download the unlimited strength JCE policy files for your JDK version.
+2.  Uncompress and extract the downloaded ZIP file. This creates a directory named JCE that contains the `local_policy.jar` and `US_export_policy.jar` files.
+3.  In your Java installation directory, go to the `jre/lib/security` directory, make a copy of the existing `local_policy.jar` and `US_export_policy.jar` files, and then replace the original policy files with the policy files you extracted in the previous step.
     
-    1.  Go to
-        <http://www.oracle.com/technetwork/java/javase/downloads/jce8-download-2133166.html>
-        , and download the unlimited strength JCE policy files for your JDK
-        version.
-    2.  Uncompress and extract the downloaded ZIP file. This creates a
-        directory named JCE that contains the
-        `          local_policy.jar         ` and
-        `          US_export_policy.jar         ` files.
-    3.  In your Java installation directory, go to the
-        `          jre/lib/security         ` directory, make a copy of the
-        existing `          local_policy.jar         ` and
-        `          US_export_policy.jar         ` files, and then replace
-        the original policy files with the policy files you extracted in the
-        previous step.
+Now that you have set up the API and the secured back-end SOAP service, you are ready to test this configuration with the following curl command.
     
-    Now that you have set up the API and the secured back-end SOAP service,
-    you are ready to test this configuration with the following curl
-    command.
+`curl -v http://127.0.0.1:8280/stockquote/view/IBM`
     
-    `         curl -v                   http://127.0.0.1:8280/stockquote/view/IBM                 `
+Observe that the REST client is getting the correct response (the `wsse:Security` header is removed from the decrypted message) while going through the secured back-end service and the API implemented in the WSO2 EI. You can use a TCP monitoring tool such as [tcpmon](https://code.google.com/p/tcpmon/downloads/list) to monitor the message sent from the the ESB profile and the response message received by the ESB profile. For a tutorial on using tcpmon, see: <http://technonstop.com/tcpmon-tutorial>
     
-    Observe that the REST client is getting the correct response (the
-    `         wsse:Security        ` header is removed from the decrypted
-    message) while going through the secured back-end service and the API
-    implemented in the WSO2 EI. You can use a TCP monitoring tool such as
-    [tcpmon](https://code.google.com/p/tcpmon/downloads/list) to monitor the
-    message sent from the the ESB profile and the response message received
-    by the ESB profile. For a tutorial on using tcpmon, see:
-    <http://technonstop.com/tcpmon-tutorial>
+## Transforming Basic Auth to WS-Security
     
-    ### Transforming Basic Auth to WS-Security
+REST clients typically use Basic Auth over HTTP to authenticate the user name and password, but if the back-end service uses WS-Security, you can configure the API to transform the authentication from Basic Auth to WS-Security.
     
-    REST clients typically use Basic Auth over HTTP to authenticate the user
-    name and password, but if the back-end service uses WS-Security, you can
-    configure the API to transform the authentication from Basic Auth to
-    WS-Security.
+![](attachments/119130394/119130399.png){width="700"}
     
-    ![](attachments/119130394/119130399.png){width="700"}
-    
-    To achieve this transformation, you configure the ESB profile to expose
-    the API to the REST client as shown in the [previous
-    example](#ApplyingSecuritytoanAPI-policyConf) , but you add the HTTPS
-    protocol and [Basic Auth handler](#ApplyingSecuritytoanAPI-BasicAutho)
-    to the configuration as shown below:
+To achieve this transformation, you configure the ESB profile to expose the API to the REST client as shown in the [previous example](#ApplyingSecuritytoanAPI-policyConf) , but you add the HTTPS protocol and [Basic Auth handler](#ApplyingSecuritytoanAPI-BasicAutho) to the configuration as shown below:
     
 ``` java
 <definitions xmlns="http://ws.apache.org/ns/synapse">
@@ -1005,11 +780,7 @@ src="file:repository/samples/resources/policy/policy_3.xml"/>
   </api>
 </definitions>
 ```
-    
-    This configuration allows two-fold security: the client authenticates
-    with the API using Basic Auth over HTTPS, and then the API sends the
-    request to the back-end service using the security policy. You can test
-    this configuration using the following command:
+This configuration allows two-fold security: the client authenticates with the API using Basic Auth over HTTPS, and then the API sends the request to the back-end service using the security policy. You can test this configuration using the following command:
     
 ``` bash
  curl -v -k -H "Authorization: Basic YWRtaW46YWRtaW4=" https://localhost:8243/stockquote/view/IBM  
