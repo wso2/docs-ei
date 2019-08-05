@@ -12,9 +12,12 @@ This section will explain how to join with a stream
 This section will explain how to call external HTTP services and use that responses to enrich
 
 ## Enrich data using built-in extensions
- - Siddhi-execution-streamingml 
- - Siddhi-execution-env 
- - Siddhi-execution-math
- - Siddhi-execution-string
- - Siddhi-execution-time
- - Siddhi-execution-json
+
+The following is a list of Siddhi extensions with which you can enrich data.
+
+ - [Siddhi-execution-streamingml](https://siddhi-io.github.io/siddhi-execution-streamingml/)
+ - [Siddhi-execution-env](https://wso2-extensions.github.io/siddhi-execution-env/)
+ - [Siddhi-execution-math](https://wso2-extensions.github.io/siddhi-execution-math/)
+ - [Siddhi-execution-string](https://siddhi-io.github.io/siddhi-execution-string/)
+ - [Siddhi-execution-time](https://siddhi-io.github.io/siddhi-execution-time/)
+ - [Siddhi-execution-json](https://siddhi-io.github.io/siddhi-execution-json/)
