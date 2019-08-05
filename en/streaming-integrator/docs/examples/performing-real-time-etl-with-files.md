@@ -14,8 +14,8 @@ This tutorial takes you through the different modes and options you could use, i
     - [Tailing a text file using a regular expression](#Tailing-a-text-file-using-a-regular-expression)
     - [Reading a text file and moving it after processing](#Reading-a-text-file-and-moving-it-after-processing)
     - [Reading a binary file and moving it after processing](#reading-a-binary-file-and-moving-it-after-processing)
-    - [Reading a file line by line and deleting it after processing](#Reading-a-file-line-by-line-and-deleting-it-after-processing)
-    - [Reading a file using a regular expression and moving it after processing](#Reading-a-file-using-a-regular-expression-and-moving-it-after-processing)
+    - [Reading a file line by line and delete it after processing](#Reading-a-file-line-by-line-and-delete-it-after-processing)
+    - [Reading a file using a regular expression and deleting it after processing](#reading-a-file-using-a-regular-expression-and-deleting-it-after-processing)
 
 - [Extracting data from a folder](#Extracting-data-from-a-folder)
     - [Processing all files in the folder](#Processing-all-files-in-the-folder)
