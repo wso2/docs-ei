@@ -41,23 +41,23 @@ the required output, follow the procedures below:
         select *
         ```
         
-    3. Add the `insert to` clause and direct the output to a stream named `FilteredResultsStream`.
+    3. Add the `insert to` clause and direct the output to a stream named `Room2233AnalysisStream`.
         !!!info
-            Note that the `FilteredResultsStream` is not defined in the Siddhi application. It is inferred by specifying
+            Note that the `Room2233AnalysisStream` is not defined in the Siddhi application. It is inferred by specifying
              it as an output stream.
         ```
         from TempStream [roomNo=='2233']
         select *
-        insert into FilteredResultsStream;
+        insert into Room2233AnalysisStream;
         ```
         
         !!!tip
             As a best practice, name your queries using the `@info` annotation. In this example, you can name the query `Filtering` as follows.
             ```
-            @info(name = 'Filtering') 
+            @info(name = 'Filtering2233') 
             from TempStream [roomNo=='2233']
             select *
-            insert into FilteredResultsStream;
+            insert into Room2233AnalysisStream;
             ```
         The saved Siddhi application is as follows:
         
@@ -67,15 +67,58 @@ the required output, follow the procedures below:
         
         define stream TempStream (deviceID long, roomNo string, temp double);
         
-        @info(name = 'Filtering') 
+        @info(name = 'Filtering2233') 
         from TempStream [roomNo=='2233']
         select *
-        insert into FilteredResultsStream;
+        insert into Room2233AnalysisStream
         ```
         
- - **Filtering based on pattern match of attribute - regex extension**
+ - **Filtering based on regex pattern**
+ 
+    You can filter events by providing a condition where only events that match a specific Regex pattern are taken for 
+    further processing.
  
     For this purpose, you can use the `TemperatureApp` Siddhi application that you created in the previous example. 
+    However, instead of filtering the readings for a specific room no, you can filter the readings for many rooms of 
+    which the room number matches a specific regex pattern.
+     
+    Assume that you want to filter the temperature readings for a specific rage of rooms located in the Southern wing 
+    and used for purpose B. Also assume that this can be derived from the room number because the first three characters
+     of the room no represent the wing, and the eighth character represents the purpose. e.g., in room no `SOU5438B765`,
+    the first three characters `SOU` represent the Southern wing, and the eighth character `B` represents purpose B.
+    
+    To filter events as described, follow the procedure below.
+    
+    1. Open the `TemperatureApp' Siddi application.
+    2. Create a new query named `FilteredRoomRange` as follows:
+        1. Add a `from` clause as follows to get the required events from the `TempStream` stream.
+           `from TempStream`
+        2. Add `select` statement with the `regex` pattern as follows:
+            `select deviceID, regex.find(SOU*B*) as roomNo, temp`
+        3. Add the `insert to` clause as follows to insert the results into a stream named `FilteredResultsStream`. 
+           `insert into FilteredResultsStream;`
+           
+           The completed query is as follows.
+           
+           ```
+           @info(name = 'FilteredRoomRange')
+           from TempStream
+           select deviceID, regex.find(SOU*B*) as roomNo, temp
+           insert into FilteredResultsStream;
+           ```
+    3. Save the Siddhi application. The completed Siddhi application looks as follows.
+        ```
+        @App:name("TemperatureApp")
+        @App:description("Description of the plan")
+        
+        define stream TempStream (deviceID long, roomNo string, temp double);
+        
+        @info(name = 'FilteredRoomRange')
+        from TempStream
+        select deviceID, regex.find(SOU*B*) as roomNo, temp
+        insert into FilteredResultsStream;
+        ```
+       
     
  - **Filtering based on multiple criteria**
  
@@ -90,6 +133,15 @@ the required output, follow the procedures below:
     
 
 ## Modifying, removing and replacing attributes
+
+The input data may include attributes that are not required in order to generate the required output, attributes with 
+values that need to be updated or replaced before further processing.
+ 
+To understand this, assume that in the previous example, you do not need the device ID for further processing, and you 
+need to remove some unnecessary white spaces from the roomNo before sending the input data for further processing. To do this, follow the procedure below:
+
+1. Open the 
+ 
 Modifying and replacing will be referred to transform and enriching sections
 
 ## Handling attributes with null values
