@@ -89,7 +89,7 @@ the required output, follow the procedures below:
     
     To filter events as described, follow the procedure below.
     
-    1. Open the `TemperatureApp' Siddi application.
+    1. Open the `TemperatureApp` Siddi application.
     2. Create a new query named `FilteredRoomRange` as follows:
         1. Add a `from` clause as follows to get the required events from the `TempStream` stream.
            `from TempStream`
@@ -135,18 +135,43 @@ the required output, follow the procedures below:
 ## Modifying, removing and replacing attributes
 
 The input data may include attributes that are not required in order to generate the required output, attributes with 
-values that need to be updated or replaced before further processing.
+values that need to be updated or replaced before further processing. 
  
-To understand this, assume that in the previous example, you do not need the device ID for further processing, and you 
-need to remove some unnecessary white spaces from the roomNo before sending the input data for further processing. To do this, follow the procedure below:
+Assume that in the previous example, you do not need the device ID for further processing, and you 
+need to remove some unnecessary white spaces from the `roomNo` before sending the input data for further processing. To do this, follow the procedure below:
 
-1. Open the 
- 
-Modifying and replacing will be referred to transform and enriching sections
+1. Open the `TemperatureApp` Siddhi application that you previously created in the [Filtering data based on conditions](##filtering-data-based-on-conditions) section and start adding a new query. You can name it as `CleaningData` as shown below.
+   `@info(name = 'CleaningData')`
+   
+2. Add the `from` clause and enter `FilteredResultsStream` as the input stream from which the input data is taken.
+    ```
+    from FilteredResultsStream
+    ```
+3. Let's create the `select` statement as follows.
+    1. To select only the `roomNo` and `temp` attributes for further processing and remove the `deviceID` attribute, add them as follows.
+       `select roomNo, temp`
+    2. To remove the unnecessary white spaces from the room number, add the `trim()` function as shown below.
+        `trim(roomNo)`
+        
+   Now the completed `select` statement is as follows.
+   `select trim(roomNo), temp`
+   
+4. Insert the results into an output stream as follows.
+   `insert into CleansedDataStream;`
+   
+The completed query is as follows:
+```
+@info(name = 'CleaningData')
+from FilteredResultsStream
+select trim(roomNo), temp
+insert into CleansedDataStream;
+```
+
+Modifying and replacing is also demonstrated in the [Enriching Data](enriching-data.md) and [Transforming Data](transforming-data.md) guides.
 
 ## Handling attributes with null values
 
-To explain this, assume that in the `TemperatureApp` Siddhi application that you created in the [Filtering data based on conditions](##filtering-data-based-on-conditions).
+To understand this section, you can reuse the `TemperatureApp` Siddhi application that you created in the [Filtering data based on conditions](##filtering-data-based-on-conditions).
 Assume that some events arrive with null values for the `deviceID` attribute, and you want to assign the value `unknown` in such scenarios.
 To do this, follow the procedure below:
 
@@ -154,7 +179,7 @@ To do this, follow the procedure below:
     `@info(name = 'AddingMissingValues')`
     
     
-2. Add the `from` clause and enter `FilteredResultsStream` as the input stream from which the input data.
+2. Add the `from` clause and enter `FilteredResultsStream` as the input stream from which the input data is taken.
     ```
     from FilteredResultsStream
     ```
