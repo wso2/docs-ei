@@ -1,7 +1,7 @@
 #Scalable High Availability (HA) Deployment
 
 Scalable high availability deployment predominantly focused on scaling the system according to the load or the TPS of
-the system. This is achieved With the help of horizontal scalability.
+the system. This is achieved with the help of horizontal scalability.
 
 Streaming Integration underneath uses siddhi as the streaming language. In siddhi one can write siddhi logic in a 
 stateless and stateful way. 
@@ -14,12 +14,13 @@ Below are the detail descriptions of two approaches.
 
 #### Stateless Scalable High Availability (HA) Deployment
 
-As described in the stateless scenario in order to scale we can keep adding SI servers to the system and front them with
- a load balancer which will publish the events in round robin way. 
+In stateless scenarios system does not work with any inmemory state.Thus in order to scale we can keep adding SI servers
+ to the system and front them with a load balancer which will publish the events in round robin way. 
  
 See below the architecture depicted 
 
 ##![overview](../images/statelessDeploymentOverview.jpg?)
+
 
 
 #### Stateful Scalable High Availability (HA) Deployment
@@ -118,9 +119,7 @@ partition the Cluster Configuration **group id** should be different for each cl
             heartbeatMaxRetry: 5
             eventPollingInterval: 5000
             
-            
-// do we need to mention the advance configuring of stateful siddhi apps by putting a consuming siddhii apps which will
-put to a inmemory sink so that multiple inmemory sources can subscribe for them 
+           
 
 
   

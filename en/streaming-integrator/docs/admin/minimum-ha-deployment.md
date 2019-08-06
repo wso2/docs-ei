@@ -73,7 +73,7 @@ This is used to identify each node within a cluster.
           table: PERSISTENCE_TABLE
           
  The datasource named PERSISTENCE_DB in the above configuration can be defined in the 
- <SI_HOME>/conf/worker/deployment.yaml file under the wso2.datasources section. Following is a sample 
+ <SI_HOME>/conf/server/deployment.yaml file under the wso2.datasources section. Following is a sample 
  datasource configuration.
     
     - name: PERSISTENCE_DB
@@ -94,7 +94,7 @@ This is used to identify each node within a cluster.
               isAutoCommit: false
               
 3 . To allow the two nodes in the cluster to coordinate effectively, configure carbon coordination by updating the 
-cluster.config section of the <SI_HOME>/conf/worker/deployment.yaml as follows (Cluster Configuration):
+cluster.config section of the <SI_HOME>/conf/server/deployment.yaml as follows (Cluster Configuration):
 
     a . To enable the cluster mode, set the enabled property to true.
     b . In order to cluster the two nodes together, enter the same ID as the group ID for both nodes 
