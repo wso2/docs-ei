@@ -5,7 +5,6 @@ server. A properly configured logging system is vital for identifying
 errors, security threats, and usage patterns.
 
 !!! info
-    
     **Java logging and Log4j integration:** I n addition to the logs from libraries that use Log4j, all logs from libraries (such as, Tomcat, Hazelcast and more) that use Java logging framework are also
         visible in the same log files. That is, when Java logging is enabled
         in Carbon, only the Log4j appenders will write to the log files. If
@@ -16,9 +15,9 @@ errors, security threats, and usage patterns.
         default log4j appenders in the
         `           log4j.properties          ` file are used for this
         implementation:
-    
-        - `            org.wso2.carbon.logging.appenders.CarbonConsoleAppender           `
-        -   `            org.wso2.carbon.logging.appenders.CarbonDailyRollingFileAppender           `
+
+    - org.wso2.carbon.logging.appenders.CarbonConsoleAppender
+    - org.wso2.carbon.logging.appenders.CarbonDailyRollingFileAppender
 
 Listed below are the various log types used in WSO2 Micro Integrator.
 
@@ -29,7 +28,7 @@ Listed below are the various log types used in WSO2 Micro Integrator.
 
 The Carbon log file (`wso2carbon.log`) covers all the management features of a product. Carbon logs are configured in the `log4j.properties` file (stored in the `MI_HOME/conf` directory).
 
-The Carbon log file is enabled in the product by default. You can configure the details that is captured in this log file by configuring the log4j properties.
+The Carbon log file is enabled in the product by default as shown below. You can configure the details that is captured in this log file by [configuring the log4j properties](../logs/configuring_log4j_properties.md).
 
 ```
 # CARBON_LOGFILE is set to be a DailyRollingFileAppender using a PatternLayout.
@@ -50,7 +49,7 @@ log4j.appender.CARBON_LOGFILE.threshold=DEBUG
 
 Audit logs are used for tracking the sequence of actions that affect a particular task carried out on the server. These are also configured in the `log4j.properties` file (stored in the `MI_HOME/conf` directory).
 
-Audit logs are enabled in the product by default. You can configure the details that is captured in this log file by configuring the log4j properties.
+Audit logs are enabled in the product by default as shown below. You can configure the details that are captured in this log file by [configuring the log4j properties](../logs/configuring_log4j_properties.md).
 
 ```
 log4j.logger.AUDIT_LOG=INFO, AUDIT_LOGFILE
@@ -91,7 +90,7 @@ In order to read the wire logs, you must first identify message direction.
 
 There are two incoming messages and two outgoing messages in the above log. The first part of the message log contains the HTTP headers and is followed by the message payload. As shown in this example, wire logs are very useful for troubleshooting unexpected issues that occur while integrating systems. You can verify whether a message payload is correctly going out from the Micro Integrator, whether HTTP headers such as Content-Type is properly set in the outgoing message, etc. by looking at the wire logs.
 
-Enable wire logs by setting by uncommenting the following parameter and updating the log level (which is DEBUG by default).
+Enable wire logs by setting by uncommenting the following parameter and [updating the log level](../configuring_log4j_properties/#setting-the-log-level) (which is DEBUG by default).
 
 ``` java
 log4j.logger.org.apache.synapse.transport.http.wire=DEBUG
@@ -101,7 +100,9 @@ log4j.logger.org.apache.synapse.transport.http.wire=DEBUG
 
 These are logs that are enabled in some WSO2 Micro Integrator for tracing services and events using a separate log file (`wso2-<product>-trace.log`). If server/event tracing logs are used in your product, you can configure them in the `log4j.properties` file (stored in the `MI_HOME/conf` directory).
 
-A separate log file for tracing services/events are enabled for certain WSO2 products in the `           log4j.properties          `file using a specific appender. These logs are published to a file named `           wso2-<product>-trace.log          ` .
+A separate log file for tracing services/events are enabled for certain WSO2 products in the `           log4j.properties          `file using a specific appender. These logs are published to a file named `           wso2-<product>-trace.log          ` . 
+
+See instructions on [configuring the log4j properties](../logs/configuring_log4j_properties.md).
 
 ## HTTP Access logs
 
@@ -216,82 +217,107 @@ By default, access logs related to service/API invocation are disabled for per
 
     <table>
     <tbody>
-    <tr class="odd">
-    <td>access_log_directory</td>
-    <td>Add this property ONLY if you want to change the default location of the log file. By default, the product is configured to store access logs in the <code>               &lt;EI_HOME&gt;/repository/logs              </code> directory.</td>
-    </tr>
-    <tr class="even">
-    <td>access_log_prefix</td>
-    <td><div class="content-wrapper">
-    <p>The prefix added to the log file's name. The default value is as follows:</p>
-    <div class="code panel pdl" style="border-width: 1px;">
-    <div class="codeContent panelContent pdl">
-    <div class="sourceCode" id="cb1" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence" style="brush: java; gutter: false; theme: Confluence"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb1-1"><a href="#cb1-1"></a>access_log_prefix=http_access_</span></code></pre></div>
-    </div>
-    </div>
-    </div></td>
-    </tr>
-    <tr class="odd">
-    <td>access_log_suffix</td>
-    <td><div class="content-wrapper">
-    <p>The suffix added to the log file's name. The default value is as follows:</p>
-    <div class="code panel pdl" style="border-width: 1px;">
-    <div class="codeContent panelContent pdl">
-    <div class="sourceCode" id="cb2" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence" style="brush: java; gutter: false; theme: Confluence"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb2-1"><a href="#cb2-1"></a>access_log_suffix=.<span class="fu">log</span></span></code></pre></div>
-    </div>
-    </div>
-    </div></td>
-    </tr>
-    <tr class="even">
-    <td>access_log_file_date_format</td>
-    <td><div class="content-wrapper">
-    <p>The date format used in access logs. The default value is as follows:</p>
-    <div class="code panel pdl" style="border-width: 1px;">
-    <div class="codeContent panelContent pdl">
-    <div class="sourceCode" id="cb3" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence" style="brush: java; gutter: false; theme: Confluence"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb3-1"><a href="#cb3-1"></a>access_log_file_date_format=yyyy-MM-dd</span></code></pre></div>
-    </div>
-    </div>
-    </div></td>
-    </tr>
-    <tr class="odd">
-    <td>access_log_pattern</td>
-    <td><div class="content-wrapper">
-    <p>The attribute defines the format for the log pattern, which consists of the information fields from the requests and responses that should be logged. The pattern format is created using the following attributes:</p>
-    <ul>
-    <li><p>A standard value to represent a particular string. For example, "%h" represents the remote host name in the request. Note that all the <a href="https://tomcat.apache.org/tomcat-7.0-doc/api/org/apache/catalina/valves/AccessLogValve.html">string replacement values supported by Tomcat</a> are NOT supported for the PassThrough transport's access logs. The list of supported values are <a href="#MonitoringAccessLogs-Supportedlogpatternformatsforthepassthroughtransport">given below</a> .</p></li>
-    <li><strong>%{xxx}i</strong> is used to represent the header in the incoming request (xxx=header value).</li>
-    <li><strong>%{xxx}o</strong> is used to represents the header in the outgoing request (xxx=header value).</li>
-    </ul>
-    <p>While you can use the above attributes to define a custom pattern, the standard patterns shown below can be used.</p>
-    <ul>
-    <li><p><strong>common</strong> ( <a href="http://httpd.apache.org/docs/1.3/logs.html#common">Apache common log pattern</a> ):</p>
-    <div class="code panel pdl" style="border-width: 1px;">
-    <div class="codeContent panelContent pdl">
-    <div class="sourceCode" id="cb4" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence" style="brush: java; gutter: false; theme: Confluence"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb4-1"><a href="#cb4-1"></a>access_log_pattern=%h %l %u %t <span class="st">&quot;%r&quot;</span> %s %b</span></code></pre></div>
-    </div>
-    </div></li>
-    <li><p><strong>combined</strong> ( <a href="http://httpd.apache.org/docs/1.3/logs.html#combined">Apache combined log pattern</a> ):</p>
-    <div class="code panel pdl" style="border-width: 1px;">
-    <div class="codeContent panelContent pdl">
-    <div class="sourceCode" id="cb5" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence" style="brush: java; gutter: false; theme: Confluence"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb5-1"><a href="#cb5-1"></a>access_log_pattern=%h %l %u %t <span class="st">&quot;%r&quot;</span> %s %b <span class="st">&quot;%{Referer}i&quot;</span> <span class="st">&quot;%{User-Agent}i&quot;</span></span></code></pre></div>
-    </div>
-    </div></li>
-    </ul>
-    <p>By default, a modified version of the <a href="http://httpd.apache.org/docs/1.3/logs.html#combined">Apache combined log format</a> is enabled in the ESB as shown below. Note that the "X-Forwarded-For" header is appended to the beginning of the usually <strong>combined</strong> log format. This correctly identifies the original node that sent the request (in situations where requests go through a proxy such as a load balancer). The "X-Forwarded-For" header must be present in the incoming request for this to be logged.</p>
-    <div class="code panel pdl" style="border-width: 1px;">
-    <div class="codeContent panelContent pdl">
-    <div class="sourceCode" id="cb6" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence" style="brush: java; gutter: false; theme: Confluence"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb6-1"><a href="#cb6-1"></a>access_log_pattern=%{X-Forwarded-For}i %h %l %u %t \<span class="st">&quot;%r</span><span class="sc">\&quot;</span><span class="st"> %s %b </span><span class="sc">\&quot;</span><span class="st">%{Referer}i</span><span class="sc">\&quot;</span><span class="st"> </span><span class="sc">\&quot;</span><span class="st">%{User-Agent}i</span><span class="sc">\&quot;</span></span></code></pre></div>
-    </div>
-    </div>
-    </div></td>
-    </tr>
+      <tr class="odd">
+         <td>access_log_directory</td>
+         <td>Add this property ONLY if you want to change the default location of the log file. By default, the product is configured to store access logs in the <code>MI_HOME/repository/logs</code> directory.</td>
+      </tr>
+      <tr class="even">
+         <td>access_log_prefix</td>
+         <td>
+            <div class="content-wrapper">
+               <p>The prefix added to the log file's name. The default value is as follows:</p>
+               <div class="code panel pdl" style="border-width: 1px;">
+                  <div class="codeContent panelContent pdl">
+                     <div class="sourceCode" id="cb1" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence" style="brush: java; gutter: false; theme: Confluence">
+                        <pre class="sourceCode java"><code class="sourceCode java"><span id="cb1-1"><a href="#cb1-1"></a>access_log_prefix=http_access_</span></code></pre>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </td>
+      </tr>
+      <tr class="odd">
+         <td>access_log_suffix</td>
+         <td>
+            <div class="content-wrapper">
+               <p>The suffix added to the log file's name. The default value is as follows:</p>
+               <div class="code panel pdl" style="border-width: 1px;">
+                  <div class="codeContent panelContent pdl">
+                     <div class="sourceCode" id="cb2" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence" style="brush: java; gutter: false; theme: Confluence">
+                        <pre class="sourceCode java"><code class="sourceCode java"><span id="cb2-1"><a href="#cb2-1"></a>access_log_suffix=.<span class="fu">log</span></span></code></pre>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </td>
+      </tr>
+      <tr class="even">
+         <td>access_log_file_date_format</td>
+         <td>
+            <div class="content-wrapper">
+               <p>The date format used in access logs. The default value is as follows:</p>
+               <div class="code panel pdl" style="border-width: 1px;">
+                  <div class="codeContent panelContent pdl">
+                     <div class="sourceCode" id="cb3" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence" style="brush: java; gutter: false; theme: Confluence">
+                        <pre class="sourceCode java"><code class="sourceCode java"><span id="cb3-1"><a href="#cb3-1"></a>access_log_file_date_format=yyyy-MM-dd</span></code></pre>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </td>
+      </tr>
+      <tr class="odd">
+         <td>access_log_pattern</td>
+         <td>
+            <div class="content-wrapper">
+               <p>The attribute defines the format for the log pattern, which consists of the information fields from the requests and responses that should be logged. The pattern format is created using the following attributes:</p>
+               <ul>
+                  <li>
+                     <p>A standard value to represent a particular string. For example, "%h" represents the remote host name in the request. Note that all the <a href="https://tomcat.apache.org/tomcat-7.0-doc/api/org/apache/catalina/valves/AccessLogValve.html">string replacement values supported by Tomcat</a> are NOT supported for the PassThrough transport's access logs. The list of supported values are <a href="#supported-log-pattern-formats-for-the-passthrough-and-nio-transports">given below</a> .</p>
+                  </li>
+                  <li><strong>%{xxx}i</strong> is used to represent the header in the incoming request (xxx=header value).</li>
+                  <li><strong>%{xxx}o</strong> is used to represents the header in the outgoing request (xxx=header value).</li>
+               </ul>
+               <p>While you can use the above attributes to define a custom pattern, the standard patterns shown below can be used.</p>
+               <ul>
+                  <li>
+                     <p><strong>common</strong> ( <a href="http://httpd.apache.org/docs/1.3/logs.html#common">Apache common log pattern</a> ):</p>
+                     <div class="code panel pdl" style="border-width: 1px;">
+                        <div class="codeContent panelContent pdl">
+                           <div class="sourceCode" id="cb4" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence" style="brush: java; gutter: false; theme: Confluence">
+                              <pre class="sourceCode java"><code class="sourceCode java"><span id="cb4-1"><a href="#cb4-1"></a>access_log_pattern=%h %l %u %t <span class="st">&quot;%r&quot;</span> %s %b</span></code></pre>
+                           </div>
+                        </div>
+                     </div>
+                  </li>
+                  <li>
+                     <p><strong>combined</strong> ( <a href="http://httpd.apache.org/docs/1.3/logs.html#combined">Apache combined log pattern</a> ):</p>
+                     <div class="code panel pdl" style="border-width: 1px;">
+                        <div class="codeContent panelContent pdl">
+                           <div class="sourceCode" id="cb5" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence" style="brush: java; gutter: false; theme: Confluence">
+                              <pre class="sourceCode java"><code class="sourceCode java"><span id="cb5-1"><a href="#cb5-1"></a>access_log_pattern=%h %l %u %t <span class="st">&quot;%r&quot;</span> %s %b <span class="st">&quot;%{Referer}i&quot;</span> <span class="st">&quot;%{User-Agent}i&quot;</span></span></code></pre>
+                           </div>
+                        </div>
+                     </div>
+                  </li>
+               </ul>
+               <p>By default, a modified version of the <a href="http://httpd.apache.org/docs/1.3/logs.html#combined">Apache combined log format</a> is enabled in the ESB as shown below. Note that the "X-Forwarded-For" header is appended to the beginning of the usually <strong>combined</strong> log format. This correctly identifies the original node that sent the request (in situations where requests go through a proxy such as a load balancer). The "X-Forwarded-For" header must be present in the incoming request for this to be logged.</p>
+               <div class="code panel pdl" style="border-width: 1px;">
+                  <div class="codeContent panelContent pdl">
+                     <div class="sourceCode" id="cb6" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence" style="brush: java; gutter: false; theme: Confluence">
+                        <pre class="sourceCode java"><code class="sourceCode java"><span id="cb6-1"><a href="#cb6-1"></a>access_log_pattern=%{X-Forwarded-For}i %h %l %u %t \<span class="st">&quot;%r</span><span class="sc">\&quot;</span><span class="st"> %s %b </span><span class="sc">\&quot;</span><span class="st">%{Referer}i</span><span class="sc">\&quot;</span><span class="st"> </span><span class="sc">\&quot;</span><span class="st">%{User-Agent}i</span><span class="sc">\&quot;</span></span></code></pre>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </td>
+      </tr>
     </tbody>
     </table>
 
 3.  Restart the server.
 
-4.  Invoke a proxy service or REST API that is deployed in the Micro. For testing purposes, use the artifacts in the [quick start
-    guide](https://docs.wso2.com/display/EI650/Quick+Start+Guide). The access log file for the service/API will be created in the
+4.  Invoke a proxy service or REST API that is deployed in the Micro. For testing purposes, use the artifacts in the [quick start guide](../../quick-start-guide/quick-start-guide.md). The access log file for the service/API will be created in the
     `MI_HOME/repository/logs` directory. The default name of the log file is `http_access_.log` .
 
     !!! Tip

@@ -199,7 +199,7 @@ nav:
       - 'Prometheus for Monitoring' : 'administer-and-observe/monitoring_with_prometheus.md'
       - 'CLI for Monitoring' : 'administer-and-observe/using-the-command-line-interface.md'
       - Monitoring Logs:
-        - 'Using Logs in WSO2 Micro Integrator' : 'administer-and-observe/logs/monitoring_logs.md'
+        - 'Logs in WSO2 Micro Integrator' : 'administer-and-observe/logs/monitoring_logs.md'
         - 'Configuring Log4j Properties' : 'administer-and-observe/logs/configuring_log4j_properties.md'
         - 'Managing Log Growth' : 'administer-and-observe/logs/managing_log_growth.md'
         - 'Masking Sensitive Information in Logs' : 'administer-and-observe/logs/masking_sensitive_info_in_logs.md'
