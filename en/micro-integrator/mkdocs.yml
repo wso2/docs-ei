@@ -151,22 +151,21 @@ nav:
     - Use Cases:
       - 'Integration Use Cases': 'use-cases/integration-use-cases.md'
       - Examples:
-        - 'Using REST with a Proxy Service' : 'use-cases/examples/rest-with-a-proxy-service.md'
-        - 'Spcific REST API Use Cases' : 'use-cases/examples/specific-rest-use-cases.md'
-        - 'Working with Transactions' : 'use-cases/examples/working-with-transactions.md'
-        - 'Configuring Endpoints using REST APIs' : 'use-cases/examples/configuring-endpoints-using-apis.md'
         - REST APIs:
           - 'Applying Security to a REST API' : 'use-cases/examples/rest_api_examples/applying-security-to-an-api.md'
+          - 'Spcific REST API Use Cases' : 'use-cases/examples/rest_api_examples/specific-rest-use-cases.md'
+          - 'Configuring Endpoints using REST APIs' : 'use-cases/examples/rest_api_examples/configuring-endpoints-using-apis.md'
         - Proxy Services:
           - 'Applying Security to a Proxy Service' : 'use-cases/examples/proxy_service_examples/applying-security-to-a-proxy-service.md'
-          - 'Publishing a Custom WSDL' : 'use-cases/examples/proxy_service_tasks/publishing-a-custom-wsdl.md'
-          - 'Changing the Endpoint of Deployed Service' : 'use-cases/examples/proxy_service_tasks/changing-the-endpoint-of-deployed-service.md'
-          - 'Using Pinned Servers with Proxy Services' : 'use-cases/examples/proxy_service_tasks/using-pinned-servers.md'
+          - 'Publishing a Custom WSDL' : 'use-cases/examples/proxy_service_examples/publishing-a-custom-wsdl.md'
+          - 'Changing the Endpoint of Deployed Service' : 'use-cases/examples/proxy_service_examples/changing-the-endpoint-of-deployed-service.md'
+          - 'Using Pinned Servers with Proxy Services' : 'use-cases/examples/proxy_service_examples/using-pinned-servers.md'
+          - 'Using REST with a Proxy Service' : 'use-cases/examples/proxy_service_examples/rest-with-a-proxy-service.md'
         - Registry Artifacts:
           - 'Working with Registry Artifacts' :  'use-cases/examples/registry_examples/working-with-registry-artifacts.md'
           - 'Managing Registry Artifacts' : 'use-cases/examples/registry_examples/managing-the-registry.md'
           - 'Working with Local Registry Entries' : 'use-cases/examples/registry_examples/working-with-local-registry-entries.md'
-        - JMS Use Cases:
+        - JMS Examples:
           - 'ESB as a JMS Consumer' : 'use-cases/examples/jms_examples/esb-as-a-jms-consumer.md'
           - 'ESB as a JMS Producer' : 'use-cases/examples/jms_examples/esb-as-a-jms-producer.md'
           - 'ESB as a JMS Consumer & Producer' : 'use-cases/examples/jms_examples/esb-as-jms-consumer-and-producer.md'
@@ -177,7 +176,8 @@ nav:
           - 'Shared Topic Subscription' : 'use-cases/examples/jms_examples/shared-topic-subscription.md'
           - 'Detecting Repeatedly Redelivered Messages' : 'use-cases/examples/jms_examples/detecting-repeatedly-redelivered-messages.md'
           - 'Specifying Delivery Delay on Messages' : 'use-cases/examples/jms_examples/specifying-a-delivery-delay-on-messages.md'
-        - 'RabbitMQ Use Cases' : 'use-cases/examples/rabbitmq-use-cases.md'
+          - 'RabbitMQ Use Cases' : 'use-cases/examples/rabbitmq-use-cases.md'
+          - 'Working with Transactions' : 'use-cases/examples/working-with-transactions.md'
       - Guides:
         - 'Sending a Simple Message to a Service' : 'use-cases/guides/integration/sending-a-simple-message-to-a-service.md'
         - 'Sending a Simple Message to a Datasource' : 'use-cases/guides/integration/sending-a-simple-message-to-a-datasource.md'
