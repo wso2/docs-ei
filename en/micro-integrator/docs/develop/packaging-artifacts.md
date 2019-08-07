@@ -1,13 +1,11 @@
 # Packaging Synapse artifacts
 
-To package the ESB artifacts, you need to create a **[Composite
-Application Project](#composite-application-project)**.
+To package Synapse artifacts, you need to create a [Composite Application Project](../../../develop/creating-projects/#composite-application-project).
 Use one of the following methods:
 
 ## Using an existing composite application
 
-If you have an already created composite appliction project, do the following to package the [Synapse
-artifacts](#creating-synapse-artifacts) into the composite application:
+If you have an already created composite appliction project, do the following to package the [Synapse artifacts](creating-artifacts/creating-an-api.md) into the composite application:
 
 1.  Select the `pom.xml` file that is under the composite application project in the project explorer.  
     ![Create CAPP](../../assets/img/create_project/capp_proj_explorer.png)
@@ -22,8 +20,7 @@ artifacts](#creating-synapse-artifacts) into the composite application:
 
 ## Creating a new composite application
 
-If you have not previously created a composite application project, do
-the following to package the artifacts in your ESB Config project.
+If you have not previously created a composite application project, do the following to package the artifacts in your ESB Config project.
 
 1.  Open the **Getting Started** view and click **Miscellaneous → Create
     New Composite Application** .  

@@ -1,6 +1,6 @@
 # Exporting packaged Synapse artifacts
 
-Once you have [packaged your artifacts](#packaging-synapse-artifacts) into a composite application, you can
+Once you have [packaged your artifacts](packaging-artifacts.md) into a composite application, you can
 export it into a CAR file (.car file):
 
 1.  Select the composite application project in the project explorer,

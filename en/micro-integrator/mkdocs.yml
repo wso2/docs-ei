@@ -123,7 +123,6 @@ nav:
         - Creating New Artifacts:
           - 'Creating a REST API': 'develop/creating-artifacts/creating-an-api.md'
           - 'Creating a Proxy Service': 'develop/creating-artifacts/creating-a-proxy-service.md'
-          - 'Creating a REST API': 'develop/creating-artifacts/creating-an-api.md'
           - 'Creating an Inbound Endpoint': 'develop/creating-artifacts/creating-an-inbound-endpoint.md'
           - 'Scheduling ESB Tasks' : 'develop/creating-artifacts/scheduling-esb-tasks.md'
           - 'Creating a Message Store': 'develop/creating-artifacts/creating-a-message-store.md'
@@ -136,16 +135,15 @@ nav:
           - 'Encrypting Synapse Passwords' : 'develop/creating-artifacts/encrypting-synapse-passwords.md'
         - 'Importing Artifacts': 'develop/importing-artifacts.md'
         - 'Designing Message Flow': 'develop/designing-mediation-flow.md'
-        - 'Packaging Arfiacts': 'develop/packaging-artifacts.md'
+        - 'Packaging Artifacts': 'develop/packaging-artifacts.md'
         - 'Exporting Artifacts': 'develop/exporting-artifacts.md'
         - 'Generating Docker Images': 'develop/generate-docker-image.md'
-        - 'Build and Run Artifacts': 'develop/build-and-run.md'
+        - 'Deploy and Run Artifacts': 'develop/deploy-and-run.md'
         - Debugging Integrations:
           - 'Mediation Debugging': 'develop/debugging-mediation.md'
           - 'Monitoring Proxy Service Access Logs': 'develop/enabling-logs-for-services.md'
           - 'Monitoring REST API Access Logs': 'develop/enabling-logs-for-api.md'
-        - 'Deploy/Redeploy Artifacts': 'develop/deploy-redeploy.md'
-        - 'Deploying on WSO2 Integration Studio': 'develop/deploying-in-integration-cloud.md'
+        - 'Running on WSO2 Integration Cloud': 'develop/deploying-in-integration-cloud.md'
         - 'Troubleshooting WSO2 Integration Studio' : 'develop/troubleshooting-WSO2-Integration-Studio.md'
       - 'Using a CI/CD Pipeline' : 'develop/using-cicd-pipeline.md'
     - Use Cases:
