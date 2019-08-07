@@ -2,12 +2,13 @@
 
 To generate Docker images, follow the steps below:
 
-> **Before you begin:**
+## Before you begin
 
-> 1.  Install Docker from the [Docker Site](https://docs.docker.com/) .
-> 2.  Create a Docker Account at [Docker Hub](https://hub.docker.com) and log in.
-> 3.  Start the Docker server.
+1.  Install Docker from the [Docker Site](https://docs.docker.com/) .
+2.  Create a Docker Account at [Docker Hub](https://hub.docker.com) and log in.
+3.  Start the Docker server.
 
+## Generate the Docker image
 
 1.  Open the WSO2 Integration Studio interface.
 2.  Open an existing project. Right-click on **Composite Project** and
