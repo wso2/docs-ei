@@ -1,17 +1,11 @@
 # Scheduled Message Forwarding Processor
 
-The scheduled message forwarding processor is a [message
-processor](_Message_Processors_) that consumes messages in a message
-store and sends them to an
-[endpoint](https://docs.wso2.com/display/EI650/Working+with+Endpoints) .
-If a message is successfully delivered to the endpoint , the processor
-deletes the message from the message store. In case of a failure, it
-will retry after a specified interval.
+The scheduled message forwarding processor is a **message processor** that consumes messages in a message store and sends them to an
+**endpoint**. If a message is successfully delivered to the endpoint, the processor deletes the message from the message store. In case of a failure, it will retry after a specified interval.
 
-### Scheduled message forwarding processor parameters
+## Required parameters
 
-Following are the parameters and the description for each of the
-parameters you need to specify when creating a scheduled message
+Following are the parameters and the description for each of the parameters you need to specify when creating a scheduled message
 forwarding processor.
 
 <table>
@@ -143,28 +137,12 @@ found at <a href="http://quartz-scheduler.org/documentation/quartz-2.x/configura
 </tbody>
 </table>
 
-In addition to specifying the required parameters, you can click **Show
-Additional Parameters** and set any of the additional parameters if
-necessary.
+## Additional parameters
 
-### Message context properties to be used with the scheduled message forwarding processor
+Message context properties to be used with the scheduled message forwarding processor
 
 | Property Name                               | Value                                                                                                                                                                                                  | Required                        |
 |---------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------------------------|
 | `              targetEndpoint             ` | Name of the Address Endpoint where the message should be delivered. This property is deprecated and is no longer required, but for backward compatibility, it does not cause errors if it is included. | Yes                             |
 | OUT\_ONLY                                   | Set to `              true             ` if this is an out-only message                                                                                                                                | Required for out-only scenarios |
 | FORCE\_ERROR\_ON\_SOAP\_FAULT               | Set to `              true             ` if it is required to retry in case of SOAP fault.                                                                                                             | NO                              |
-
-### Samples
-
-For samples illustrating how to use the message forwarding processor,
-see:
-
--   [Sample 702: Introduction to Message Forwarding
-    Processor](https://docs.wso2.com/display/EI650/Sample+702%3A+Introduction+to+Message+Forwarding+Processor)
--   [Sample 703: Adding Security to Message Forwarding
-    Processor](https://docs.wso2.com/display/EI650/Sample+703%3A+Adding+Security+to+Message+Forwarding+Processor)
--   [Sample 704: RESTful Invocations with Message Forwarding
-    Processor](https://docs.wso2.com/display/EI650/Sample+704%3A+RESTful+Invocations+with+Message+Forwarding+Processor)
--   [Sample 705: Load Balancing with Message Forwarding
-    Processor](https://docs.wso2.com/display/EI650/Sample+705%3A+Load+Balancing+with+Message+Forwarding+Processor)

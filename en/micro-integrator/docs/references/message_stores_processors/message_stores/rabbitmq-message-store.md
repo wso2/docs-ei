@@ -7,45 +7,22 @@ specifying the class as
 and then setting all other required parameters to connect to a
 RabbitMQ broker.
 
--   [Required parameters](#RabbitMQMessageStore-Requiredparameters)
--   [SSL enabled RabbitMQ message store
-    parameters](#RabbitMQMessageStore-SSLEnabledParaSSLenabledRabbitMQmessagestoreparameters)
--   [Additional RabbitMQ message store
-    parameters](#RabbitMQMessageStore-RabbitMQParaAdditionalRabbitMQmessagestoreparameters)
--   [Example RabbitMQ message store
-    configurations](#RabbitMQMessageStore-ExampleRabbitMQmessagestoreconfigurations)
+## Sample configuration 1
 
-### Required parameters
+Following is a basic sample RabbitMQ message store configuration:
 
-When you add a RabbitMQ message store, it is required to specify values
-for the following:
+``` xml
+    <messageStore class="org.apache.synapse.message.store.impl.rabbitMQ.RabbitMQStore" name="RabbitMS" xmlns="http://ws.apache.org/ns/synapse">
+      <parameter name="store.rabbitmq.host.name">localhost</parameter>
+      <parameter name="store.rabbitmq.queue.name">EIStore</parameter>
+      <parameter name="store.rabbitmq.host.port">5672</parameter>
+      <parameter name="store.rabbitmq.username">guest</parameter>
+      <parameter name="store.rabbitmq.password">guest</parameter>
+      <parameter name="store.rabbitmq.exchange.name">exchange</parameter>
+    </messageStore>   
+```
 
--   **Name** - A unique name for the RabbitMQ message store.
--   **RabbitMQ Server Host Name** (
-    `          store.rabbitmq.host.name         ` ) - The address of the
-    RabbitMQ broker.
--   **RabbitMQ Server Host Port** (
-    `          store.rabbitmq.host.port         ` ) - The port number of
-    the RabbitMQ message broker.
--   **SSL Enabled** - Whether or not SSL is enabled on the message
-    store.
-
-When **SSL Enabled** is set to true, you can set the parameters relating
-to the SSL configuration. For descriptions of each of these parameters
-you can set, see [SSL enabled RabbitMQ message store
-parameters](#RabbitMQMessageStore-SSLEnablePara) .
-
-### SSL enabled RabbitMQ message store parameters
-
-| Parameter Name                                                                                      | Value                                                                                                                                 |
-|-----------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------|
-| SSL Key Store Location ( `             rabbitmq.connection.ssl.keystore.location            ` )     | The location of the keystore file.                                                                                                    |
-| SSL Key Store Type ( `             rabbitmq.connection.ssl.keystore.type            ` )             | The type of the keystore used (e.g., JKS, PKCS12).                                                                                    |
-| SSL Key Store Password ( `             rabbitmq.connection.ssl.keystore.password            ` )     | The password to access the keystore.                                                                                                  |
-| SSL Trust Store Location ( `             rabbitmq.connection.ssl.truststore.location            ` ) | The location of the Java keystore file containing the collection of CA certificates trusted by this application process (truststore). |
-| SSL Trust Store Type ( `             rabbitmq.connection.ssl.truststore.type            `           | The type of the truststore used.                                                                                                      |
-| SSL Trust Store Password ( `             rabbitmq.connection.ssl.truststore.password            ` ) | The password to unlock the trust store file specified in `             rabbitmq.connection.ssl.truststore.location            `       |
-| SSL Version ( `             rabbitmq.connection.ssl.version            ` )                          | SSL protocol version (e.g., SSL, TLSV1, TLSV1.2)                                                                                      |
+## Sample configuration 2 (SSL Enabled)                                                                                      |
 
 Following is a sample configuration for SSL enabled RabbitMQ message
 store:
@@ -84,6 +61,8 @@ parameter to specify the SSL version. If
 `         true        ` , you need to provide keystore and truststore
 information.
 
+## Sample configuration 3
+
 Following is a sample message store configuration where
 `         fail_if_no_peer_cert        ` is set to
 `         false        ` :
@@ -96,9 +75,7 @@ Following is a sample message store configuration where
                    {fail_if_no_peer_cert,false}]}  
 ```
 
-  
-
-### Additional RabbitMQ message store parameters
+## Additional parameters
 
 | Parameter Name                                                                     | Value                                                                                                                                                     | Required                                                                                                                                                                   |
 |------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -108,32 +85,3 @@ Following is a sample message store configuration where
 | User Name ( `             store.rabbitmq.username            ` )                   | The user name to connect to the broker.                                                                                                                   | No                                                                                                                                                                         |
 | Password ( `             store.rabbitmq.password            ` )                    | The password to connect to the broker.                                                                                                                    | No                                                                                                                                                                         |
 | Virtual Host ( `             store.rabbitmq.virtual.host            ` )            | The virtual host name of the broker.                                                                                                                      | No                                                                                                                                                                         |
-
-If you need to ensure guaranteed delivery when you store incoming
-messages to a RabbitMQ message store, and then deliver them to a
-particular backend, click **Show Guaranteed Delivery Parameters** and
-specify values for the following parameters:
-
--   **Enable Producer Guaranteed Delivery** (
-    `          store.producer.guaranteed.delivery.enable         ` ) -
-    Whether it is required to enable guaranteed delivery on the producer
-    side.
--   **Failover Message Store** (
-    `                     store.failover.message.store.name                   `
-    ) - The message store to which the store mediator should send
-    messages when the original message store fails.
-
-### Example RabbitMQ message store configurations
-
-Following is a basic sample RabbitMQ message store configuration:
-
-``` xml
-    <messageStore class="org.apache.synapse.message.store.impl.rabbitMQ.RabbitMQStore" name="RabbitMS" xmlns="http://ws.apache.org/ns/synapse">
-      <parameter name="store.rabbitmq.host.name">localhost</parameter>
-      <parameter name="store.rabbitmq.queue.name">EIStore</parameter>
-      <parameter name="store.rabbitmq.host.port">5672</parameter>
-      <parameter name="store.rabbitmq.username">guest</parameter>
-      <parameter name="store.rabbitmq.password">guest</parameter>
-      <parameter name="store.rabbitmq.exchange.name">exchange</parameter>
-    </messageStore>   
-```

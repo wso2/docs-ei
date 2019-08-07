@@ -12,36 +12,7 @@ The resequencing store is an extension of the existing JDBC-based
 message store. Hence, it inherits most of its properties from the [JDBC
 Message Store](_JDBC_Message_Store_) .  
 
-### UI Configuration
-
-In the WSO2 ESB Management Console, click **Main** , click **Message
-Stores** in the **Service Bus** menu, and then click **Resequence
-Message Store** , to configure it as follows.
-
-![add resequence message store](attachments/119131501/119131503.png)
-
-Enter the configuration details in the below screen.
-
-![enter details of the Resequence Message
-Store](attachments/119131501/119131502.png)
-
-When you add a Resequence Message Store, it is required to specify
-values for the following:
-
--   **Name** : A unique name for the RabbitMQ message store.
--   **Database Table** : Table name of the database in which, messages
-    will be stored.
--   **Connection Information** : If the database is connected via a
-    Carbon datasource or via a connection pool.
--   **Driver** : The class name of the database driver.
--   **Url** : URL of the database.
--   **User** : The username to access the database.
--   **Password** : The password to access the database.
--   **Resequence Timeout (Seconds)** : The time the Message Processor
-    waits for a message, which is missing to reorder them based on a
-    specified order.
--   **Sequence ID Path** : The path from which, the Store identifies the
-    sequence ID from the message content.
+## Sample configuration
 
 The following is a sample ESB configuration of the Resequence Message
 Store.
@@ -65,8 +36,9 @@ Store.
     </messageStore>
 ```
 
-The following are the properties related to the Resequence Message
-Store.
+## Additional parameters
+
+The following are the properties related to the Resequence Message Store.
 
 <table>
 <thead>
@@ -145,9 +117,3 @@ Store.
 </tr>
 </tbody>
 </table>
-
-!!! info
-
-For more information on its usage, go to [Resequencer Pattern in the EIP
-Guide](https://docs.wso2.com/display/IntegrationPatterns/Resequencer) .
-

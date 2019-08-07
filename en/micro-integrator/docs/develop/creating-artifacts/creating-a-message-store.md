@@ -2,14 +2,9 @@
 
 Follow the instructions given below to create a new Message Store artifact in WSO2 Integration Studio.
 
-!!! tip
-    **Importing a Message Store?**
-
-    If you already have a Message Store created, you have the option of importing the XML configuration. Select **Import Artifact** and follow the instructions on the UI.
-
 ## Instructions
 
-1.  Right click the project and go to **New → Message Store** to open the **New Message Store Artifact** dialog.
+1.  If you have already created an [ESB Config project](../../creating-projects/#esb-config-project), right-click the project and go to **New → Message Store** to open the **New Message Store Artifact** dialog.
 2.  Leave the **Create a new message-store artifact** option selected and click **Next**.
 3.  Type a unique name for this message store, specify the type of store you are creating, and then specify values for the other fields required to create the store type you you selected.
 
@@ -64,7 +59,10 @@ Follow the instructions given below to create a new Message Store artifact in WS
 					<li>
 						<b>store.jms.cache.connection</b>: true/false Enable Connection caching.
 					</li>
-				</ul>
+				</ul></br></br>
+				If you need to ensure guaranteed delivery when you store incoming messages to a JMS message store, and later deliver them to a particular backend, click Show Guaranteed Delivery Parameters and specify values for the following parameters:
+				<code>Enable Producer Guaranteed Delivery</code>: `store.producer.guaranteed.delivery.enable `: Whether it is required to enable guaranteed delivery on the producer side.
+				<code>Failover Message Store</code>: `store.failover.message.store.name`: The message store to which the store mediator should send messages when the original message store fails.
 			</td>
 		</tr>
 		<tr>
@@ -167,9 +165,7 @@ Follow the instructions given below to create a new Message Store artifact in WS
 		</tr>
 	</table>
 
-4.  Click **Finish**. 
-
-The message store is created in the `          src/main/synapse-config/message-stores         ` folder under the EI Config project you specified and appears in the editor. 
+4.  Click **Finish**. The message store is created in the `src/main/synapse-config/message-stores` folder under the ESB Config project you specified and appears in the editor. 
 
 ## Properties
 

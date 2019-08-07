@@ -1,7 +1,7 @@
 # Scheduled Failover Message Forwarding Processor
 
-The scheduled failover message forwarding processor is a [message
-processor](_Message_Processors_) that ensures reliable message delivery.
+The scheduled failover message forwarding processor is a **message
+processor** that ensures reliable message delivery.
 This message processor is useful when it comes to scenarios where a
 message store failure takes place and it is necessary to ensure
 guaranteed message delivery.
@@ -12,13 +12,7 @@ scheduled message forwarding processor forwards messages to a defined
 endpoint, whereas the scheduled failover message forwarding processor
 forwards messages to a target message store.
 
-For an example scenario where the scheduled failover message forwarding
-processor is used, see [Guaranteed Delivery with Failover Message Store
-and Scheduled Failover Message Forwarding
-Processor](_Guaranteed_Delivery_with_Failover_Message_Store_and_Scheduled_Failover_Message_Forwarding_Processor_)
-.
-
-### Scheduled failover message forwarding processor parameters
+## Parameters
 
 Following are the parameters and the description for each of the
 parameters you need to specify when creating a scheduled failover
@@ -107,7 +101,3 @@ found at <a href="http://quartz-scheduler.org/documentation/quartz-2.x/configura
 </tr>
 </tbody>
 </table>
-
-In addition to specifying the required parameters, you can click **Show
-Additional Parameters** and set any of the additional parameters if
-necessary.

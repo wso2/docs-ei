@@ -1,17 +1,12 @@
 # Creating an Endpoint
 Follow the instructions given below to create a new REST API artifact in WSO2 Integration Studio.
 
-!!! tip
-    **Importing an Endpoint artifact?**
-
-    If you already have an Endpoint artifact created, you have the option of importing the XML configuration. Select **Import Artifact** and follow the instructions on the UI.
-
 ## Instructions
 
-1.  Right click the project and go to **New → Endpoint** to open the **New Endpoint Artifact** dialog.
+1.  If you have already created an [ESB Config project](../../creating-projects/#esb-config-project), right-click the project and go to **New → Endpoint** to open the **New Endpoint Artifact** dialog.
 2.  Select **Create a New Endpoint** and click **Next**.
-3.  Type a unique name for the endpoint, and then specify the [type of
-    endpoint](_ESB_Endpoints_) you are creating.
+3.  Type a unique name for the endpoint, and then specify the type of
+    endpoint you are creating.
 
     <table>
         <tr>
@@ -57,9 +52,6 @@ Follow the instructions given below to create a new REST API artifact in WSO2 In
     -   To save the endpoint in a new ESB Config project, click **Create new Project** and create the new project.
     -   To save the endpoint in a Registry Resource Project, click **Make this a Dynamic Endpoint**, click the **Browse** button next to **Save endpoint in** and select the registry, and then select the registry (Configuration or Governance) where you want to save the endpoint. Lastly, type the endpoint name in the **Registry Path** box.
 
-    !!! tip
-        For instructions on creating a Registry Resource Project, see [Working with Registry Artifacts](https://docs.wso2.com/display/EI620/Working+with+Registry+Artifacts).
-
 ## Properties
 
 Click **Add Property** to open the **Properties** tab and add the required properties.
@@ -89,7 +81,7 @@ Click **Add Property** to open the **Properties** tab and add the required prope
     <li><strong>Axis2</strong></li>
     <li><strong>axis2-client</strong></li>
     </ul>
-    <p>For more information about these scopes, see <a href="https://docs.wso2.com/display/EI6xx/Accessing+Properties+with+XPath#AccessingPropertieswithXPath-XPathExtensionFunctions">XPath Extension Functions</a> .</p></td>
+    <p>For more information about these scopes, see <a href="../references/mediators/accessing-Properties-with-XPath.md">XPath Extension Functions</a> .</p></td>
     </tr>
     <tr class="even">
     <td><strong>Action</strong></td>
