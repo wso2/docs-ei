@@ -11,7 +11,7 @@ follow the sections below.
 This section explains how to enrich the data in a specific stream by joining it with a data store. For this purpose, consider 
 a scenario where you receive sales records generated from multiple locations as events via a system. 
 
-!!!Prerequisites
+!!!tip "Before you begin:"
     In this scenario, you need to enrich the sales information you receive based on the records in a database table. You 
     can download and install MySQL, and create this table before you carry out the procedure in this subsection.<br/>
     For detailed instructions to create a database table, expand the following section. <br/>
@@ -23,26 +23,7 @@ a scenario where you receive sales records generated from multiple locations as 
            `mysql -u username -p `
         5. When prompted, specify the password you are using to access the databases with the username you specified.
         6. Add the following configurations for three database tables under the `Data Sources Configuration` section of the `<SI_HOME>/conf/server/deployment.yaml` file.<br/>
-          ```
-            - name: TransactionDataDB
-             description: Datasource used for Sales Records
-             jndiConfig:
-               name: jdbc/test
-               useJndiReference: true
-             definition:
-               type: RDBMS
-               configuration:
-                 jdbcUrl: 'jdbc:mysql://localhost:3306/TransactionDataDB?useSSL=false'
-                 username: root
-                 password: root
-                 driverClassName: com.mysql.jdbc.Driver
-                 maxPoolSize: 50
-                 idleTimeout: 60000
-                 connectionTestQuery: SELECT 1
-                 validationTimeout: 30000
-                 isAutoCommit: false
-                 
-           
+          ```         
             - name: UserDataDB
               description: Datasource used for User Data
               jndiConfig:
@@ -60,33 +41,8 @@ a scenario where you receive sales records generated from multiple locations as 
                   connectionTestQuery: SELECT 1
                   validationTimeout: 30000
                   isAutoCommit: false
-                  
-            - name: TriggerStateDataDB
-              description: Datasource used to store the Last Processed ID
-              jndiConfig:
-                name: jdbc/test
-                useJndiReference: true
-              definition:
-                type: RDBMS
-                configuration:
-                  jdbcUrl: 'jdbc:mysql://localhost:3306/TriggerStateDB?useSSL=false'
-                  username: root
-                  password: root
-                  driverClassName: com.mysql.jdbc.Driver
-                  maxPoolSize: 50
-                  idleTimeout: 60000
-                  connectionTestQuery: SELECT 1
-                  validationTimeout: 30000
-                  isAutoCommit: false
           ```
-        7. To create three database tables named TransactionDataDB, UserDataDB, and TriggerStateDB, issue the following commands from the terminal.
-           - To create the `TransactionDataDB` table:
-             ```
-             mysql> create database TransactionDataDB;
-             mysql> use TransactionDataDB;
-             mysql> source <SP_HOME>/wso2/editor/dbscripts/metrics/mysql.sql;
-             mysql> grant all on TransactionDataDB.* TO username@localhost identified by "password";
-             ```
+        7. To create a database named `UserDataDB` with a table named `UserTable` issue the following commands from the terminal:
            - To create the `UserDataDB` table:
              ```
              mysql> create database UserDataDB;
@@ -94,13 +50,63 @@ a scenario where you receive sales records generated from multiple locations as 
              mysql> source <SP_HOME>/wso2/editor/dbscripts/metrics/mysql.sql;
              mysql> grant all on UserDataDB.* TO username@localhost identified by "password";
              ```
-           - To create the `TriggerStateDB` table.
+           - To create the `UserTable` table:
              ```
-             mysql> create database TriggerStateDB;
-             mysql> use TrggerStateDB;
-             mysql> source <SP_HOME>/wso2/editor/dbscripts/metrics/mysql.sql;
-             mysql> grant all on TriggerStateDB.* TO username@localhost identified by "password";
+            create table UserTable (
+            userId LONG,
+            firstname VARCHAR,
+            lastname VARCHAR,
+            )
              ```
+             
+1. Start creating a new Siddhi application. You can name it `EnrichingTransactionsApp` For instructions, see [Creating a Siddhi Application](../develop/creating-a-Siddhi-Application.md).
+ 
+2. Define the input stream and the database table that need to be joined as follows.
+    1. Define the stream as follows. 
+        `define stream TrasanctionStream (userId long, transactionAmount double, location string);`
+    2. Define the table as follows.
+        `define table UserTable (userId long, firstName string, lastName string);`
+3. Then define the Siddhi query to join the stream and the table, and handle the result as required.
+    1. Add the `from` clause as follows with the `join` key word to join the table and the stream.
+       ```
+       from TransactionStream as t join UserTable as u on t.userId == u.userId       
+       ```
+       !!!info
+           Note the following about the `from` clause:
+           - In this example, the input data is taken from both a stream and a table. You need to assign a unique reference
+            for each of them to allow the query to differentiate between the common attributes. In this example, `TransactionStream` 
+            stream is referred to as `t`, and the `UserTable` table is referred to as `u`.
+           - The `join ` keyword joins the stream and the table together while specifying the unique references.
+           - The condition for the stream and the table to be joined is `t.userId == u.userId `, which means that for an 
+           event to be taken from the `TransactionStream` for the join, one or more events that have the same value for 
+           the `userId` must exist in the `UserTable` table and vice versa.
+                  
+    2. To specify how the value for each attribute in the output stream is derived, add a `select` clause as follows.
+       ```
+        select t.userId, str:concat( u.firstName, " ", u.lastName) as userName, transactionAmount, location
+       ```
+       !!!info
+           Note the following in the `select` statement:
+           - The `userId` attribute name is common to both the stream and the table. Therefore, you need to specify from where this attribute needs gto be taken. Here, you can also specify `u.userId` instead of `t.userId`.
+           - You are specifying the output generated to include an attribute named `userName`. The value for that is derived
+            by concatenating the values of two attributes in the `UserTable` table (i.e., `firstName` and `lastName` attributes)
+             by applying the `str:concat()` function. Similarly, you can apply any of the range of Siddhi functions available to further enrich the joined output. For more information, see [Siddhi Extensions](https://siddhi.io/en/v4.x/docs/extensions/#extensions-released-under-apache-20-license).
+    3. To infer an output stream into which the enriched data must be directed, add the `insert into` clause as follows.
+       `insert into EnrichedTrasanctionStream;`
+       
+The completed Siddhi application is as follows.
+```sql
+@App:name("EnrichingTransactionsApp")
+
+
+define stream TrasanctionStream (userId long, transactionAmount double, location string);
+
+define table UserTable (userId long, firstName string, lastName string);
+
+from TrasanctionStream as t join UserTable as u on t.userId == u.userId 
+select t.userId, str:concat( u.firstName, " ", u.lastName) as userName, transactionAmount, location
+insert into EnrichedTrasanctionStream;
+```
 
 ## Enrich data by connecting with another stream of data 
 
@@ -113,7 +119,6 @@ procedure below.
 
 1. Start creating a new Siddhi application. You can name it `BankTransactionsApp` For instructions, see [Creating a Siddhi Application](../develop/creating-a-Siddhi-Application.md).
 2. First, define the two input streams via which you are receiving informations about withdrawals and deposits.
-    !!!info
         
     1. Define a stream named `CashWithdrawalStream` to capture information about withdrawals as follows.
         `define stream CashWithdrawalStream(branchID int, amount long);`
@@ -167,7 +172,7 @@ from CashWithdrawalStream as w
 select w.branchID as branchID, w.amount as withdrawals, d.amount as deposits
 having w.amount > d.amount * 0.95
 ```
-    
+For the different types of joins you can perform via Siddhi logic, see [Siddhi Query Guide - Join](https://siddhi.io/en/v4.x/docs/query-guide/#join-stream)
 
 ## Enrich data by connecting with external services 
 
