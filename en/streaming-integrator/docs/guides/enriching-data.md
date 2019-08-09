@@ -129,6 +129,7 @@ procedure below.
         `define stream CashWithdrawalStream(branchID int, amount long);`
     2. Define a stream named `CashDepositsStream` to capture information about deposits as follows.
         `define stream CashDepositsStream(branchID string, amount long);`
+        
 3. Now let's define an output stream to which the combined information from both the input streams need to be directed 
    after the join. 
     ```
