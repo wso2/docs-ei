@@ -10,7 +10,8 @@ But with the single node also you can achieve resilient deployment as explained 
 Resiliency guarantees the ability to withstand or recover from any system failure and carry out the process without 
 loosing any data. Streaming integrator has the capability to achieve above using a broker which can replay data from a 
 certain checkpoint. Kafka is one such broker which can configure with wso2 Streaming integrator to achieve said 
-advantage. The only addtional configuration which need to be done on SI is the state persistence.
+advantage. The only additional configuration which need to be done on SI is the state persistence.For detailed 
+instructions, see <a target="_blank" href="configuring-Database-and-File-System-State-Persistence">state persistence.
 
 ##![overview](../images/singleNodeDeployment.jpg?)
 

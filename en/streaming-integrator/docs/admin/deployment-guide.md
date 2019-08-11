@@ -7,6 +7,6 @@ handle increasing system loads (scalability) and provide near-zeor downtime and 
 installation and deployment, high maintainability and DevOps friendliness.
 
 Mainly following three deployment options can be followed, 
- - Single Node Deployment 
- - Minimum High Available(HA) Deployment
- - Scalable High Available(HA) Deployment 
+ - <a target="_blank" href="single-node-deployment">Single Node Deployment</a>
+ - <a target="_blank" href="minimum-ha-deployment">Minimum High Available(HA) Deployment</a>
+ - <a target="_blank" href="scalable-ha-deployment">Scalable High Available(HA) Deployment</a>

@@ -21,7 +21,7 @@ For a two-node minimum HA cluster to work, only the active node should receive e
 events to active node. To achieve this, you can use a load balancing mechanism that sends events in failover manner. See
  the diagram below.
 
-[[Diagram]]
+##![overview](../images/minimumTwoNodeHA.jpg?)
 
 ### Prerequisites
 
@@ -30,11 +30,13 @@ In order to configure a minimum HA cluster, the following prerequisites must be 
   - It is recommended to run this setup with two CPUs. Each CPU should have four cores, and 4GB memory.
   - Two binary packs of WSO2 SI must be available.
   - A working RDBMS instance to be used for clustering of the 2 nodes. 
-  - Download the MySQL connector from <a target="_blank" href="https://dev.mysql.com/downloads/connector/j/">here</a>. Extract and find the mysql-connector-java-5.*.*-bin.jar. Place this JAR in the 
+  - Download the MySQL connector from <a target="_blank" href="https://dev.mysql.com/downloads/connector/j/">here</a>. 
+    Extract and find the mysql-connector-java-5.*.*-bin.jar. Place this JAR in the 
     <SI_HOME>/lib directory of both nodes. 
   - In order to retrieve the state of the Siddhi Applications deployed in the system in case of a scenario where both the 
     nodes fail, state persistence must be enabled for both nodes by specifying the same datasource/file location. 
-    For detailed instructions, see Configuring Database and File System State Persistence.
+    For detailed instructions, see <a target="_blank" href="configuring-Database-and-File-System-State-Persistence">
+    Configuring Database and File System State Persistence</a> for more information.
   - A load balancer or some other client-side data publishing mechanism that works in a failover manner must be available 
     to publish events to one of the available nodes (i.e., to the active node). 
     
