@@ -5,91 +5,20 @@ it among a set of listed [endpoints](_Working_with_Endpoints_) or static
 members by evaluating the load balancing policy and other relevant
 parameters.
 
-------------------------------------------------------------------------
-
-[XML Configuration](#Load-balanceGroup-XMLConfiguration) \|
-[Parameters](#Load-balanceGroup-Parameters)
-
-------------------------------------------------------------------------
-
-### XML Configuration
+## Synapse configuration
 
 The syntax of the load balance endpoint is as follows.
 
-``` html/xml
-    <session type="http|simpleClientSession"/>?
-    <loadBalance [policy="roundRobin"] [algorithm="impl of org.apache.synapse.endpoints.algorithms.LoadbalanceAlgorithm"]
+```
+<session type="http|simpleClientSession"/>?
+<loadBalance [policy="roundRobin"] [algorithm="impl of org.apache.synapse.endpoints.algorithms.LoadbalanceAlgorithm"]
             [failover="true|false"]>
-        <endpoint .../>+
-        <member hostName="host" [httpPort="port"] [httpsPort="port2"]>+
-    </loadBalance>
+  <endpoint .../>+
+  <member hostName="host" [httpPort="port"] [httpsPort="port2"]>+
+</loadBalance>
 ```
 
-The Load-balance attributes and elements:
-
--   The `          policy         ` attribute of the load balance
-    element specifies the load balance policy (algorithm) to be used for
-    selecting the target endpoint or static member.
-
-!!! info
-
-Tip
-
-Currently only the `         roundRobin        ` policy is supported.
-
-
--   The `          failover         ` attribute determines if the next
-    endpoint or static member should be selected once the currently
-    selected endpoint or static member has failed, and defaults to true.
-
-<!-- -->
-
--   The `          loadBalance         ` element allows to list the set
-    of endpoints or static members among which the load has to be
-    distributed. These endpoints can belong to any endpoint type (see
-    [Address Endpoint](_Address_Endpoint_) , [WSDL
-    Endpoint](_WSDL_Endpoint_) , [Default Endpoint](_Default_Endpoint_)
-    , [Configuring Failover Endpoints](_Configuring_Failover_Endpoints_)
-    ). For example, Failover Endpoints can be listed inside the
-    Load-balance endpoint to load balance between failover groups etc.
-
-!!! info
-
-Tip
-
-The `         loadBalance        ` element cannot have both endpoint and
-member child elements in the same configuration. In the case of the
-member child element, the `         hostName        ` ,
-`         httpPort        ` and/or `         httpsPort        `
-attributes could be specified.
-
-
--   The optional `          session         ` element makes the endpoint
-    a session affinity based load balancing endpoint. If it is
-    specified, sessions are bound to endpoints in the first message and
-    all successive messages for those sessions are directed to their
-    associated endpoints.
-
-!!! info
-
-Tip
-
-Currently there are two types of sessions supported in SAL endpoints.
-Namely HTTP transport based session which identifies the sessions based
-on HTTP cookies and the client session which identifies the session by
-looking at a SOAP header sent by the client with the
-`         QName "[http://ws.apache.org/ns/synapse]ClientID"        ` .
-
-
--   The `          failover         ` attribute mentioned above is not
-    applicable for session affinity based endpoints and it is always
-    considered as set to false. If it is required to have failover
-    behavior in session affinity based load balance endpoints, list
-    failover endpoints as the target endpoints.
-
-    ------------------------------------------------------------------------
-
-### Parameters
+## Parameters
 
 The parameters available to configure a load-balance endpoint are as
 follows.
@@ -134,3 +63,43 @@ follows.
 </tr>
 </tbody>
 </table>
+
+The Load-balance attributes and elements:
+
+-   The `policy` attribute of the load balance
+    element specifies the load balance policy (algorithm) to be used for
+    selecting the target endpoint or static member.
+
+    !!! Tip
+        Currently only the `roundRobin` policy is supported.
+
+-   The `          failover         ` attribute determines if the next
+    endpoint or static member should be selected once the currently
+    selected endpoint or static member has failed, and defaults to true.
+
+<!-- -->
+
+-   The `          loadBalance         ` element allows to list the set
+    of endpoints or static members among which the load has to be
+    distributed. These endpoints can belong to any endpoint type (see
+    [Address Endpoint](_Address_Endpoint_) , [WSDL
+    Endpoint](_WSDL_Endpoint_) , [Default Endpoint](_Default_Endpoint_)
+    , [Configuring Failover Endpoints](_Configuring_Failover_Endpoints_)
+    ). For example, Failover Endpoints can be listed inside the
+    Load-balance endpoint to load balance between failover groups etc.
+
+    !!! Tip
+        The `         loadBalance        ` element cannot have both endpoint and member child elements in the same configuration. In the case of the member child element, the `         hostName        `, `         httpPort        ` and/or `         httpsPort        ` attributes could be specified.
+-   The optional `          session         ` element makes the endpoint
+    a session affinity based load balancing endpoint. If it is
+    specified, sessions are bound to endpoints in the first message and
+    all successive messages for those sessions are directed to their
+    associated endpoints.
+    !!! Tip
+        Currently there are two types of sessions supported in SAL endpoints. Namely HTTP transport based session which identifies the sessions based on HTTP cookies and the client session which identifies the session by looking at a SOAP header sent by the client with the `QName "[http://ws.apache.org/ns/synapse]ClientID"`.
+        
+-   The `          failover         ` attribute mentioned above is not
+    applicable for session affinity based endpoints and it is always
+    considered as set to false. If it is required to have failover
+    behavior in session affinity based load balance endpoints, list
+    failover endpoints as the target endpoints.

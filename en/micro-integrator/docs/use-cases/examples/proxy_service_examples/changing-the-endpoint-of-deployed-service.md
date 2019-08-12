@@ -197,3 +197,83 @@ without changing its configuration.
     hosted in WSO2 EI as seen in the image below.
 
     ![](attachments/119130841/119130845.png)
+
+### Changing an endpoint reference
+
+Once the endpoint has been created, you can update it using any one of
+the options listed below. The options below describe how you can update
+the endpoint value for QA environment.
+
+#### Option 1: Using WSO2 Integration Studio
+
+1.  Open the `          HelloWorldEP.xml         ` file under
+    **HelloWorldQAResources** project and replace the URL with the QA
+    URL.
+2.  Save all changes.
+
+Your CApp can be deployed to your QA EI server. For details on how to
+deploy the CApp project, see [Running the ESB profile via WSO2
+Integration
+Studio](https://docs.wso2.com/display/EI650/Running+the+Product#RunningtheProduct-RunningtheESBprofileviaWSO2IntegrationStudio)
+.
+
+#### Option 2: From Command Line
+
+1.  Open a Terminal window and navigate to
+    `          <ESB_TOOLING_WORKSPACE>/HelloWorldQAResources/src/main/synapse_configendpoints/HelloWorldEP.xml         `
+    file.
+2.  Edit the HelloWorldEP.xml (e.g. using gedit or vi) under
+    HelloWorldResources/QA and replace the URL with the QA one.
+
+    ``` xml
+            ...
+            <address uri="http://192.168.1.110:9773/services/HelloService/"/>
+            ...
+    ```
+
+3.  Navigate to
+    `           <ESB_TOOLING_WORKSPACE>/HelloWorldQAResources          `
+    and build the ESB Config project using the following command:
+
+    ``` xml
+            mvn clean install
+    ```
+
+4.  Navigate to
+    `           <ESB_TOOLING_WORKSPACE>/HelloWorldQACApp          ` and
+    build the CApp project using the following command:
+
+    ``` xml
+            mvn clean install
+    ```
+
+5.  The resulting CAR file can be deployed directly to the QA ESB
+    server. For details, see [Running the ESB profile via WSO2
+    Integration
+    Studio](https://docs.wso2.com/display/EI650/Running+the+Product#RunningtheProduct-RunningtheESBprofileviaWSO2IntegrationStudio)
+    .
+
+!!! note
+
+-   To build the projects using the above commands, you need an active
+    network connection.
+-   Creating a Maven Multi Module project that contains the above
+    projects, allows you to projects in one go by simply building the
+    parent Maven Multi Module project.
+
+
+#### Option 3: Using a Script
+
+Alternatively you can have a CAR file with dummy values for the endpoint
+URLs and use a customized shell script or batch script. The script
+created would need to do the following:
+
+1.  Extract the CAR file.
+2.  Edit the URL values.
+3.  Re-create the CAR file with new values.
+
+The resulting CAR file can be deployed directly to the QA ESB server.
+For details, see [Running the ESB profile via WSO2 Integration
+Studio](https://docs.wso2.com/display/EI650/Running+the+Product#RunningtheProduct-RunningtheESBprofileviaWSO2IntegrationStudio)
+.
+

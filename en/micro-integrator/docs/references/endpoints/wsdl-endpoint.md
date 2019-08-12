@@ -8,58 +8,39 @@ The WSDL document can be specified in 2 ways:
 -   As a URI.
 -   As an inlined definition within the endpoint configuration.
 
-------------------------------------------------------------------------
-
-[XML Configuration](#WSDLEndpoint-XMLConfiguration) \|
-[Parameters](#WSDLEndpoint-Parameters)
-
-------------------------------------------------------------------------
-
-### XML Configuration
+## Synapse configuration
 
 The syntax of the endpoint is as follows.
 
-``` html/xml
-    <wsdl [uri="wsdl-uri"] service="qname" port/endpoint="qname">
+```
+<wsdl [uri="wsdl-uri"] service="qname" port/endpoint="qname">
         <wsdl:definition>...</wsdl:definition>?
         <wsdl20:description>...</wsdl20:description>?
         <enableRM [policy="key"]/>?
         <enableSec [policy="key"]/>?
         <enableAddressing/>?
     
-        <timeout>
-            <duration>timeout duration in milliseconds</duration>
-            <action>discard|fault</action>
-        </timeout>?
+    <timeout>
+        <duration>timeout duration in milliseconds</duration>
+        <action>discard|fault</action>
+    </timeout>?
     
-        <markForSuspension>
-            [<errorCodes>xxx,yyy</errorCodes>]
-            <retriesBeforeSuspension>m</retriesBeforeSuspension>
-            <retryDelay>d</retryDelay>
-        </markForSuspension>
+    <markForSuspension>
+        [<errorCodes>xxx,yyy</errorCodes>]
+        <retriesBeforeSuspension>m</retriesBeforeSuspension>
+        <retryDelay>d</retryDelay>
+    </markForSuspension>
     
-        <suspendOnFailure>
-            [<errorCodes>xxx,yyy</errorCodes>]
-            <initialDuration>n</initialDuration>
-            <progressionFactor>r</progressionFactor>
-            <maximumDuration>l</maximumDuration>
-        </suspendOnFailure>
-    </wsdl>
+    <suspendOnFailure>
+        [<errorCodes>xxx,yyy</errorCodes>]
+        <initialDuration>n</initialDuration>
+        <progressionFactor>r</progressionFactor>
+        <maximumDuration>l</maximumDuration>
+    </suspendOnFailure>
+</wsdl>
 ```
 
-The `         service        ` and `         port        ` name
-containing the target EPR has to be specified with the
-`         service        ` and `         port        ` (or
-`         endpoint        ` ) attributes respectively.
-
-`         enableRM        ` , `         enableSec        ` ,
-`         enableAddressing        ` ,
-`         suspendOnFailure        ` and `         timeout        `
-elements are same as for an [Address Endpoint](_Address_Endpoint_) .
-
-------------------------------------------------------------------------
-
-### Parameters
+## Parameters
 
 Parameters available to configure a WSDL endpoint are as follows.
 
@@ -101,3 +82,13 @@ Parameters available to configure a WSDL endpoint are as follows.
 </tr>
 </tbody>
 </table>
+
+The `         service        ` and `         port        ` name
+containing the target EPR has to be specified with the
+`         service        ` and `         port        ` (or
+`         endpoint        ` ) attributes respectively.
+
+`         enableRM        ` , `         enableSec        ` ,
+`         enableAddressing        ` ,
+`         suspendOnFailure        ` and `         timeout        `
+elements are same as for an [Address Endpoint](_Address_Endpoint_) .

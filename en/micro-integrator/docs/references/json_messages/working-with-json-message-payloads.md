@@ -1,424 +1,275 @@
 # Working with JSON Message Payloads
 
-The ESB Profile of WSO2 Enterprise Integrator (WSO2 EI) provides support
-for [JavaScript Object Notation (JSON)](http://www.json.org/) payloads
-in messages. The following sections describe how to work with JSON via
-the ESB Profile of WSO2 EI:
+WSO2 Micro Integrator provides support for [JavaScript Object Notation (JSON)](http://www.json.org/) payloads in messages. The following sections describe how to work with JSON via the Micro Integrator.
 
--   [Handling JSON to XML
-    conversion](#WorkingwithJSONMessagePayloads-HandlingJSONtoXMLconversion)
-    -   [Empty objects](#WorkingwithJSONMessagePayloads-Emptyobjects)
-    -   [Empty strings](#WorkingwithJSONMessagePayloads-Emptystrings)
-    -   [Empty array](#WorkingwithJSONMessagePayloads-Emptyarray)
-    -   [Named arrays](#WorkingwithJSONMessagePayloads-Namedarrays)
-    -   [Anonymous
-        arrays](#WorkingwithJSONMessagePayloads-Anonymousarrays)
-    -   [XML processing instructions
-        (PIs)](#WorkingwithJSONMessagePayloads-XMLprocessinginstructions(PIs))
-    -   [Special
-        characters](#WorkingwithJSONMessagePayloads-Specialcharacters)
-    -   [Converting
-        spaces](#WorkingwithJSONMessagePayloads-Convertingspaces)
--   [Handling XML to JSON
-    conversion](#WorkingwithJSONMessagePayloads-HandlingXMLtoJSONconversion)
-    -   [Empty XML
-        elements](#WorkingwithJSONMessagePayloads-EmptyXMLelements)
-    -   [Empty XML elements with the 'nil'
-        attribute](#WorkingwithJSONMessagePayloads-EmptyXMLelementswiththe'nil'attribute)
--   [Converting a payload between XML and
-    JSON](#WorkingwithJSONMessagePayloads-ConvertingapayloadbetweenXMLandJSON)
--   [Accessing content from JSON
-    payloads](#WorkingwithJSONMessagePayloads-AccessingcontentfromJSONpayloads)
-    -   [JSON path
-        syntax](#WorkingwithJSONMessagePayloads-JSONpathsyntax)
--   [Logging JSON
-    payloads](#WorkingwithJSONMessagePayloads-LoggingJSONpayloads)
--   [Constructing and transforming JSON
-    payloads](#WorkingwithJSONMessagePayloads-ConstructingandtransformingJSONpayloads)
-    -   [PayloadFactory
-        mediator](#WorkingwithJSONMessagePayloads-PayloadFactorymediator)
-        -   [Configuring the payload
-            format](#WorkingwithJSONMessagePayloads-Configuringthepayloadformat)
-    -   [Script
-        mediator](#WorkingwithJSONMessagePayloads-ScriptScriptmediator)
--   [XML to JSON transformation
-    parameters](#WorkingwithJSONMessagePayloads-XMLtoJSONtransformationparameters)
--   [Validating JSON
-    messages](#WorkingwithJSONMessagePayloads-ValidatingJSONmessages)
-    -   [Validate
-        mediator](#WorkingwithJSONMessagePayloads-Validatemediator)
--   [Troubleshooting, debugging, and
-    logging](#WorkingwithJSONMessagePayloads-Troubleshooting,debugging,andlogging)
+## Handling JSON to XML conversion
 
-### Handling JSON to XML conversion
+When building the XML tree, JSON builders attach the converted XML infoset to a special XML element that acts as the root element of the
+final XML tree. If the original JSON payload is of type `object` , the special element is `<jsonObject/>`. If it is an `array`, the special element is `<jsonArray/>`. Following are examples of JSON and XML representations of various objects and arrays.
 
-When building the XML tree, JSON builders attach the converted XML
-infoset to a special XML element that acts as the root element of the
-final XML tree. If the original JSON payload is of type
-`         object        ` , the special element is
-`         <jsonObject/>        ` . If it is an `         array        `
-, the special element is `         <jsonArray/>        ` . Following are
-examples of JSON and XML representations of various objects and arrays.
+### Empty objects
 
-##### Empty objects
-
-JSON:
-
-``` javascript
-    {"object":{}}
+``` javascript tab='JSON'
+{"object":{}}
 ```
 
-XML:
-
-``` html/xml
-    <jsonObject>
-       <object></object>
-    </jsonObject>
+``` html tab='XML'
+<jsonObject>
+  <object></object>
+</jsonObject>
 ```
 
-##### Empty strings
+### Empty strings
 
-JSON:
-
-``` javascript
-    {"object":""}
+``` javascript tab='JSON'
+{"object":""}
 ```
 
-XML:
-
-``` html/xml
-    <jsonObject>
-       <object></object>
-    </jsonObject>
+``` html tab='XML'
+<jsonObject>
+  <object></object>
+</jsonObject>
 ```
 
-##### Empty array
+### Empty array
 
-JSON:
-
-``` javascript
-    []
+``` javascript tab='JSON'
+[]
 ```
 
-XML (JsonStreamBuilder):
-
-``` html/xml
-    <jsonArray></jsonArray>
+``` html tab='XML (JsonStreamBuilder)'
+<jsonArray></jsonArray>
 ```
 
-XML (JsonBuilder):
+``` html tab='XML (JsonBuilder)'
+<jsonArray>
+  <?xml-multiple jsonElement?>
+</jsonArray>
+```
 
-``` html/xml
-    <jsonArray>
+### Named arrays
+
+``` javascript tab='JSON'
+{"array":[1,2]}
+```
+
+``` html tab='XML (JsonStreamBuilder)'
+<jsonObject>
+  <array>1</array>
+  <array>2</array>
+</jsonObject>
+```
+
+``` html tab='XML (JsonBuilder)'
+<jsonObject>
+  <?xml-multiple array?>
+  <array>1</array>
+  <array>2</array>
+</jsonObject>
+```
+
+``` javascript tab='JSON'
+{"array":[]}
+```
+
+``` html tab='XML (JsonStreamBuilder)'
+<jsonObject></jsonObject>
+```
+
+``` html tab='XML (JsonBuilder)'
+<jsonObject>
+  <?xml-multiple array?>
+</jsonObject>
+```
+
+### Anonymous arrays
+
+``` javascript tab='JSON'
+[1,2]
+```
+
+``` html tab='XML (JsonStreamBuilder)'
+<jsonArray>
+   <jsonElement>1</jsonElement>
+   <jsonElement>2</jsonElement>
+</jsonArray>
+```
+
+``` html tab='XML (JsonBuilder)'
+<jsonArray>
+  <?xml-multiple jsonElement?>
+  <jsonElement>1</jsonElement>
+  <jsonElement>2</jsonElement>
+</jsonArray>
+```
+
+``` javascript tab='JSON'
+[1, []]
+```
+
+``` html tab='XML (JsonStreamBuilder)'
+<jsonArray>
+  <jsonElement>1</jsonElement>
+  <jsonElement>
+     <jsonArray></jsonArray>
+  </jsonElement>
+</jsonArray>
+```
+
+``` html tab='XML (JsonBuilder)'
+<jsonArray>
+  <?xml-multiple jsonElement?>
+  <jsonElement>1</jsonElement>
+  <jsonElement>
+     <jsonArray>
        <?xml-multiple jsonElement?>
-    </jsonArray>
+     </jsonArray>
+  </jsonElement>
+</jsonArray>
 ```
 
-##### Named arrays
+## XML processing instructions (PIs)
 
-JSON:
+Note the addition of `xml-multiple` processing instructions to the XML payloads whose JSON representations contain arrays. `JsonBuilder` (via StAXON) adds these instructions to the XML payload that it builds during the JSON to XML conversion so that during the XML to JSON conversion, `JsonFormatter` can reconstruct the arrays that are present in the original JSON payload. `JsonFormatter` interprets the elements immediately following a processing instruction to construct an array.
 
-``` javascript
-    {"array":[1,2]}
+## Special characters
+
+When building XML elements, the EI handles the ‘$’ character and digits in a special manner when they appear as the first character of a JSON key. Following are examples of two such occurrences. Note the addition of the `_JsonReader_PS_` and `_JsonReader_PD_` prefixes in place of the ‘$’ and digit characters, respectively.
+
+``` javascript tab='JSON'
+{"$key":1234}
 ```
 
-XML (JsonStreamBuilder):
-
-``` html/xml
-    <jsonObject>
-       <array>1</array>
-       <array>2</array>
-    </jsonObject>
+``` html tab='XML'
+<jsonObject>
+  <_JsonReader_PS_key>1234</_JsonReader_PS_key>
+</jsonObject>
 ```
 
-XML (JsonBuilder):
-
-``` html/xml
-    <jsonObject>
-       <?xml-multiple array?>
-       <array>1</array>
-       <array>2</array>
-    </jsonObject>
+``` javascript tab='JSON'
+{"32X32":"image_32x32.png"}
 ```
 
-JSON:
-
-``` javascript
-    {"array":[]}
+``` html tab='XML'
+<jsonObject>
+  <_JsonReader_PD_32X32>image_32x32.png</_JsonReader_PD_32X32>
+</jsonObject>
 ```
 
-XML (JsonStreamBuilder):
+## Converting spaces
 
-``` html/xml
-    <jsonObject></jsonObject>
-```
-
-XML (JsonBuilder):
-
-``` html/xml
-    <jsonObject>
-       <?xml-multiple array?>
-    </jsonObject>
-```
-
-##### Anonymous arrays
-
-JSON:
-
-``` javascript
-    [1,2]
-```
-
-XML (JsonStreamBuilder):
-
-``` html/xml
-    <jsonArray>
-       <jsonElement>1</jsonElement>
-       <jsonElement>2</jsonElement>
-    </jsonArray>
-```
-
-XML (JsonBuilder):
-
-``` html/xml
-    <jsonArray>
-       <?xml-multiple jsonElement?>
-       <jsonElement>1</jsonElement>
-       <jsonElement>2</jsonElement>
-    </jsonArray>
-```
-
-JSON:
-
-``` javascript
-    [1, []]
-```
-
-XML (JsonStreamBuilder):
-
-``` html/xml
-    <jsonArray>
-       <jsonElement>1</jsonElement>
-       <jsonElement>
-           <jsonArray></jsonArray>
-       </jsonElement>
-    </jsonArray>
-```
-
-XML (JsonBuilder):
-
-``` html/xml
-    <jsonArray>
-       <?xml-multiple jsonElement?>
-       <jsonElement>1</jsonElement>
-       <jsonElement>
-           <jsonArray>
-               <?xml-multiple jsonElement?>
-           </jsonArray>
-       </jsonElement>
-    </jsonArray>
-```
-
-##### XML processing instructions (PIs)
-
-Note the addition of `         xml-multiple        ` processing
-instructions to the XML payloads whose JSON representations contain
-arrays. `         JsonBuilder        ` (via StAXON) adds these
-instructions to the XML payload that it builds during the JSON to XML
-conversion so that during the XML to JSON conversion,
-`         JsonFormatter        ` can reconstruct the arrays that are
-present in the original JSON payload. `         JsonFormatter        `
-interprets the elements immediately following a processing instruction
-to construct an array.
-
-##### Special characters
-
-When building XML elements, the EI handles the ‘$’ character and digits
-in a special manner when they appear as the first character of a JSON
-key. Following are examples of two such occurrences. Note the addition
-of the `         _JsonReader_PS_        ` and
-`         _JsonReader_PD_        ` prefixes in place of the ‘$’ and
-digit characters, respectively.
-
-JSON:
-
-``` javascript
-    {"$key":1234}
-```
-
-XML:
-
-``` html/xml
-    <jsonObject>
-       <_JsonReader_PS_key>1234</_JsonReader_PS_key>
-    </jsonObject>
-```
-
-JSON:
-
-``` javascript
-    {"32X32":"image_32x32.png"}
-```
-
-XML:
-
-``` html/xml
-    <jsonObject>
-       <_JsonReader_PD_32X32>image_32x32.png</_JsonReader_PD_32X32>
-    </jsonObject>
-```
-
-##### Converting spaces
-
-Although you can have spaces in JSON elements, [you cannot have them
-when converted to XML](https://www.w3.org/TR/REC-xml/#sec-common-syn) .
-Therefore, you can handle spaces when converting JSON message payloads
-to XML, by adding the following property to the
-`         <EI_HOME>/conf/synapse.properties        ` file:
-`         synapse.commons.json.buildValidNCNames        `
+Although you can have spaces in JSON elements, [you cannot have them when converted to XML](https://www.w3.org/TR/REC-xml/#sec-common-syn). Therefore, you can handle spaces when converting JSON message payloads to XML, by adding the following property to the `MI_HOME/conf/synapse.properties` file:
+`synapse.commons.json.buildValidNCNames`
 
 For example, consider the following JSON message:
 
-``` js
-    {
-      "abc def" : "this is a sample value"
-    }
+```
+{
+  "abc def" : "this is a sample value"
+}
 ```
 
 The output converted to XML is as follows:
 
-``` xml
-    <abc_jsonreader_32_def>this is a sample value</abc_jsonreader_32_def> 
+```
+<abc_jsonreader_32_def>this is a sample value</abc_jsonreader_32_def> 
 ```
 
-!!! tip
+!!! Tip
+    The value 32 represents the standard char value of the space. This works other way around as well. When you need to convert XML to JSON, with a JSON element that needs to have a space within it. Then, you use " `         _JsonReader_32_        ` " in the XML element, to get the space in the JSON output. For example, if you consider the following XML payload;
 
-The value 32 represents the standard char value of the space.
+    `<abc_jsonreader_32_def>this is a sample value</abc_jsonreader_32_def>`
 
-!!! info
+    The JSON output will be as follows:
 
-This works other way around as well. When you need to convert XML to
-JSON, with a JSON element that needs to have a space within it. Then,
-you use " `         _JsonReader_32_        ` " in the XML element, to
-get the space in the JSON output. For example, if you consider the
-following XML payload;
+    `{ "abc def" : "this is a sample value"}`
 
-`         <abc_jsonreader_32_def>this is a sample value</abc_jsonreader_32_def>        `
-
-The JSON output will be as follows:
-
-`         {        `
-
-`        ` `         "abc def" : "this is a sample value"        `
-
-`         }        `
-
-
-### Handling XML to JSON conversion
+## Handling XML to JSON conversion
 
 When an XML element is converted to JSON, the following rules apply:
 
-##### Empty XML elements
+### Empty XML elements
 
 Consider the following empty XML elements:
 
--   [**Example 1**](#5b5644c9d0124675b64cfc47c0eb707e)
--   [**Example 2**](#827f4bada1954b7e8eb60e972bef6854)
-
-``` html/xml
-    <jsonObject>
-        <object></object>
-    </jsonObject>
+``` html tab='Example 1'
+<jsonObject>
+  <object></object>
+</jsonObject>
 ```
 
-``` html/xml
-    <jsonObject>
-        <object/>
-    </jsonObject>
+``` html tab='Example 2'
+<jsonObject>
+  <object/>
+</jsonObject>
 ```
 
-By default, empty XML elements convert to JSON as null objects as shown
-below.
+By default, empty XML elements convert to JSON as null objects as shown below.
 
 ``` java
-    {"object":null}
+{"object":null}
 ```
 
-If you set the '
-`         synapse.commons.enableXmlNullForEmptyElement=false'        `
-property in the `         synapse.properties        ` file (stored in
-the `         <EI_HOME>/conf/        ` directory), the JSON
-representaion of empty XML elements will change as shown below.
+If you set the `synapse.commons.enableXmlNullForEmptyElement=false` property in the `synapse.properties` file (stored in
+the `MI_HOME/conf/` directory), the JSON representaion of empty XML elements will change as shown below.
 
 ``` javascript
-    {"object":""}
+{"object":""}
 ```
 
-##### Empty XML elements with the 'nil' attribute
+### Empty XML elements with the 'nil' attribute
 
-Consider the following XML element that has the 'nil' attribute set to
-true.
+Consider the following XML element that has the 'nil' attribute set to true.
 
-``` html/xml
-    <jsonObject>
-        <object nil=true></object>
-    </jsonObject>
+```
+<jsonObject>
+  <object nil=true></object>
+</jsonObject>
 ```
 
 By default, the above XML element converts to JSON as shown below.
 
 ``` javascript
-    {"object":{"@nil":"true"}}
+{"object":{"@nil":"true"}}
 ```
 
-If you set the
-`         synapse.commons.enableXmlNilReadWrite=true        ` property
-in the `         synapse.properties        ` file (stored in the
-`         <EI_HOME>/conf/        ` directory), XML elements where the
-'nil' attribue is set to true will be represented in JSON as null
-objects as shown below.
+If you set the `synapse.commons.enableXmlNilReadWrite=true` property in the `synapse.properties` file (stored in the `MI_HOME/conf/` directory), XML elements where the 'nil' attribue is set to true will be represented in JSON as null objects as shown below.
 
 ``` javascript
-    {"object":null}
+{"object":null}
 ```
 
 ### Converting a payload between XML and JSON
 
-To convert an XML payload to JSON, set the
-`         messageType        ` property to
-`         application/json        ` in the axis2 scope before sending
-message to an endpoint. Similarly, to convert a JSON payload to XML, set
-the `         messageType        ` property to
-`         application/xml        ` or `         text/xml        ` . For
-example:
+To convert an XML payload to JSON, set the `messageType` property to `application/json` in the axis2 scope before sending message to an endpoint. Similarly, to convert a JSON payload to XML, set the `messageType` property to `application/xml` or `text/xml`. For example:
 
-``` html/xml
-    <proxy xmlns="http://ws.apache.org/ns/synapse"
+```
+<proxy xmlns="http://ws.apache.org/ns/synapse"
           name="tojson"
           transports="https,http"
           statistics="disable"
           trace="disable"
           startOnLoad="true">
-      <target>
-         <inSequence>
-            <property name="messageType" value="application/json" scope="axis2"/>
-            <respond/>
-         </inSequence>
-      </target>
-      <description/>
-    </proxy>
+  <target>
+    <inSequence>
+       <property name="messageType" value="application/json" scope="axis2"/>
+       <respond/>
+    </inSequence>
+  </target>
+  <description/>
+</proxy>
 ```
 
 Use the following command to invoke this proxy service:
 
 ``` bash
-    curl -v -X POST -H "Content-Type:application/xml" -d@request1.xml "http://localhost:8280/services/tojson"
+curl -v -X POST -H "Content-Type:application/xml" -d@request1.xml "http://localhost:8280/services/tojson"
 ```
 
 If the request payload is as follows:
 
-``` html/xml
-    <coordinates>
+```
+<coordinates>
        <location>
            <name>Bermuda Triangle</name>
            <n>25.0000</n>
@@ -429,13 +280,13 @@ If the request payload is as follows:
            <n>48.8582</n>
            <e>2.2945</e>
        </location>
-    </coordinates>
+</coordinates>
 ```
 
 The response payload will look like this:
 
 ``` javascript
-    {
+{
       "coordinates":{
          "location":[
             {
@@ -450,54 +301,36 @@ The response payload will look like this:
             }
          ]
       }
-    }
+}
 ```
 
-Note that we have used the [Property
-mediator](https://docs.wso2.com/display/EI650/Property+Mediator) to mark
-the outgoing payload to be formatted as JSON:
+Note that we have used the [Property mediator](https://docs.wso2.com/display/EI650/Property+Mediator) to mark the outgoing payload to be formatted as JSON:
 
-``` html/xml
-    <property name="messageType" value="application/json" scope="axis2"/>
+```
+<property name="messageType" value="application/json" scope="axis2"/>
 ```
 
-!!! note
+!!! Note
+    JSON requests cannot be converted to XML if it contains invalid XML characters.
 
-JSON requests cannot be converted to XML if it contains invalid XML
-characters.
+!!! Info
+    If you need to convert complex XML responses (e.g., XML with with `         xsi:type        ` values), you will need to set the message type using the [Property mediator](https://docs.wso2.com/display/EI650/Property+Mediator) as follows:
 
-!!! info
+    `<property name="messageType" value="application/json/badgerfish" scope="axis2" type="STRING"/>`
 
-If you need to convert complex XML responses (e.g., XML with with
-`         xsi:type        ` values), you will need to set the message
-type using the [Property
-mediator](https://docs.wso2.com/display/EI650/Property+Mediator) as
-follows:
+    You will also need to ensure you register the following message builder and formatter as specified in [Message Builders and Formatters](#WorkingwithJSONMessagePayloads-MessageBuildersandFormatters).
 
-    <property name="messageType" value="application/json/badgerfish" scope="axis2" type="STRING"/>
-
-You will also need to ensure you register the following message builder
-and formatter as specified in [Message Builders and
-Formatters](#WorkingwithJSONMessagePayloads-MessageBuildersandFormatters)
-.
-
-``` xml
-    <messageBuilder contentType="text/javascript" 
-                   class="org.apache.axis2.json.JSONBadgerfishOMBuilder"/>
-    
-    <messageFormatter contentType="text/javascript" 
-                    class="org.apache.axis2.json.JSONBadgerfishMessageFormatter"/> 
-```
+    ``` xml
+    <messageBuilder contentType="text/javascript" class="org.apache.axis2.json.JSONBadgerfishOMBuilder"/>
+    <messageFormatter contentType="text/javascript" class="org.apache.axis2.json.JSONBadgerfishMessageFormatter"/> 
+    ```
     
 
 ### Accessing content from JSON payloads
 
-There are two ways to access the content of a JSON payload within the
-EI.
+There are two ways to access the content of a JSON payload within the EI.
 
--   JSONPath expressions (with `           json-eval()          `
-    method)
-
+-   JSONPath expressions (with `json-eval()` method)
 -   XPath expressions
 
 JSONPath allows you to access fields of JSON payloads with faster
@@ -660,19 +493,18 @@ below. The `         json-eval()        ` method returns the
 payload.
 
 ``` html/xml
-    <log>
-        <property name="JSON-Payload" expression="json-eval($.)"/>
-    </log>
+<log>
+  <property name="JSON-Payload" expression="json-eval($.)"/>
+</log>
 ```
 
 To log JSON payloads as XML, use the Log mediator as shown below:
 
-``` html/xml
-    <log level="full"/>
+```
+<log level="full"/>
 ```
 
-For more information on logging, see [Troubleshooting, debugging, and
-logging](#WorkingwithJSONMessagePayloads-troubleshooting) below.
+For more information on logging, see [Troubleshooting, debugging, and logging](#WorkingwithJSONMessagePayloads-troubleshooting) below.
 
 ### Constructing and transforming JSON payloads
 
@@ -681,10 +513,7 @@ mediator or Script mediator as described in the rest of this section.
 
 #### PayloadFactory mediator
 
-The [PayloadFactory
-mediator](https://docs.wso2.com/display/EI650/PayloadFactory+Mediator)
-provides the simplest way to work with JSON payloads. Suppose we have a
-service that returns the following response for a search query:
+The [PayloadFactory mediator](https://docs.wso2.com/display/EI650/PayloadFactory+Mediator) provides the simplest way to work with JSON payloads. Suppose we have a service that returns the following response for a search query:
 
 ``` javascript
     {
@@ -721,9 +550,7 @@ service that returns the following response for a search query:
     }
 ```
 
-We can create a proxy service that consumes the above response and
-creates a new response containing the location name and tags associated
-with the location based on several fields from the above response.
+We can create a proxy service that consumes the above response and creates a new response containing the location name and tags associated with the location based on several fields from the above response.
 
 ``` html/xml
     <proxy xmlns="http://ws.apache.org/ns/synapse"
@@ -759,28 +586,25 @@ with the location based on several fields from the above response.
 Use the following command to invoke this service:
 
 ``` bash
-    curl -v -X GET "http://localhost:8280/services/singleresponse"
+curl -v -X GET "http://localhost:8280/services/singleresponse"
 ```
 
 The response payload would look like this:
 
 ``` javascript
-    {
-       "location_response":{
-          "name":"Biaggio Cafe",
-          "tags":["bar", "restaurant", "food", "establishment"]
-       }
+{
+    "location_response":{
+      "name":"Biaggio Cafe",
+      "tags":["bar", "restaurant", "food", "establishment"]
     }
+}
 ```
 
 Note the following aspects of the proxy service configuration:
 
--   We use the `          payloadFactory         ` mediator to construct
-    the new JSON payload.
--   The `          media-type         ` attribute is set to
-    `          json         ` .
--   Because JSONPath expressions are used in arguments, the
-    `          json         ` evaluators are specified.
+-   We use the `          payloadFactory         ` mediator to construct the new JSON payload.
+-   The `          media-type         ` attribute is set to `          json         ` .
+-   Because JSONPath expressions are used in arguments, the `          json         ` evaluators are specified.
 
 ##### Configuring the payload format
 
@@ -825,12 +649,8 @@ to the registry resource key):
     </payloadFactory>
 ```
 
-!!! note
-
-When saving format text for the PayloadFactory mediator as a registry
-resource, be sure to save it as text content with the “text/plain” media
-type.
-
+!!! Note
+    When saving format text for the PayloadFactory mediator as a registry resource, be sure to save it as text content with the “text/plain” media type.
 
 #### Script mediator
 
@@ -1240,9 +1060,9 @@ When adding this sample schema file to the Registry, specify the **Media
 Type** as application/json.
 
 
-``` java
-    {
-      "$schema": "http://json-schema.org/draft-04/schema#",
+```
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
       "type": "object",
       "properties": {
         "getQuote": {
@@ -1272,20 +1092,13 @@ Type** as application/json.
      
 ```
 
-In this example, the required schema for validating messages going
-through the Validate mediator is given as a registry key (i.e.
-`         schema\StockQuoteSchema.json        ` ). You do not have any
-source attributes specified. Therefore, the schema will be used to
-validate the complete JSON body. The mediation logic to follow if the
-validation fails is defined within the on-fail element. In this example,
-the [PayloadFactory
-mediator](https://docs.wso2.com/display/EI650/PayloadFactory+Mediator)
-creates a fault to be sent back to the party, which sends the message.
+In this example, the required schema for validating messages going through the Validate mediator is given as a registry key (i.e.
+`         schema\StockQuoteSchema.json        ` ). You do not have any source attributes specified. Therefore, the schema will be used to validate the complete JSON body. The mediation logic to follow if the validation fails is defined within the on-fail element. In this example, the [PayloadFactory mediator](https://docs.wso2.com/display/EI650/PayloadFactory+Mediator) creates a fault to be sent back to the party, which sends the message.
 
-``` java
-    <validate>
-        <schema key="conf:/schema/StockQuoteSchema.json"/>
-        <on-fail>
+```
+<validate>
+  <schema key="conf:/schema/StockQuoteSchema.json"/>
+    <on-fail>
             <payloadFactory media-type="json">
                 <format>{"Error":$1"}</format>
                 <args>
@@ -1294,57 +1107,46 @@ creates a fault to be sent back to the party, which sends the message.
             </payloadFactory>
             <property name="HTTP_SC" value="500" scope="axis2"/>
             <respond/>
-        </on-fail>
-    </validate>
+    </on-fail>
+</validate>
 ```
 
 An example for a valid JSON payload request is given below.
 
-``` java
-    {
-       "getQuote": {
-          "request": {
-             "symbol": "WSO2"
-          }
-       }
+```
+{
+  "getQuote": {
+   "request": {
+      "symbol": "WSO2"
     }
+  }
+}
 ```
 
-### Troubleshooting, debugging, and logging
+## Troubleshooting, debugging, and logging
 
-To assist with troubleshooting, you can enable debug logging at several
-stages of the mediation of a JSON payload within the EI by adding one or
-more of the following loggers to the
-`         <EI_HOME>/conf/log4j.properties        ` file and restarting
-the EI.
+To assist with troubleshooting, you can enable debug logging at several stages of the mediation of a JSON payload by adding one or more of the following loggers to the `MI_HOME/conf/log4j.properties` file and restarting the EI.
 
-!!! info
-
-Be sure to turn off these loggers when running the EI in a production
-environment, as logging every message will significantly reduce
-performance.
-
+!!! Info
+    Be sure to turn off these loggers when running the EI in a production environment, as logging every message will significantly reduce performance.
 
 Following are the available loggers:
 
 Message builders and formatters
 
--   `           log4j.logger.org.apache.synapse.commons.json.JsonStreamBuilder=DEBUG          `
-
--   `           log4j.logger.org.apache.synapse.commons.json.JsonStreamFormatter=DEBUG          `
-
--   `           log4j.logger.org.apache.synapse.commons.json.JsonBuilder=DEBUG          `
-
--   `           log4j.logger.org.apache.synapse.commons.json.JsonFormatter=DEBUG          `
+- `log4j.logger.org.apache.synapse.commons.json.JsonStreamBuilder=DEBUG`
+- `log4j.logger.org.apache.synapse.commons.json.JsonStreamFormatter=DEBUG`
+- `log4j.logger.org.apache.synapse.commons.json.JsonBuilder=DEBUG`
+- `log4j.logger.org.apache.synapse.commons.json.JsonFormatter=DEBUG`
 
 JSON utility class
 
-`         log4j.logger.org.apache.synapse.commons.json.JsonUtil=DEBUG        `
+`log4j.logger.org.apache.synapse.commons.json.JsonUtil=DEBUG`
 
 PayloadFactory mediator
 
-`         log4j.logger.org.apache.synapse.mediators.transform.PayloadFactoryMediator=DEBUG        `
+`log4j.logger.org.apache.synapse.mediators.transform.PayloadFactoryMediator=DEBUG`
 
 JSONPath evaluator
 
-`         log4j.logger.org.apache.synapse.util.xpath.SynapseJsonPath=DEBUG        `
+`log4j.logger.org.apache.synapse.util.xpath.SynapseJsonPath=DEBUG`

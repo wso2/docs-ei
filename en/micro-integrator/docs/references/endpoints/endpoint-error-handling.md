@@ -1,33 +1,5 @@
 # Endpoint Error Handling
 
-..This page describes error handling for endpoints. It contains the
-following sections:
-
--   [Overview](#EndpointErrorHandling-Overview)
--   [Endpoint states](#EndpointErrorHandling-Endpointstates)
-    -   [Active](#EndpointErrorHandling-ActiveActive)
-    -   [Timeout](#EndpointErrorHandling-TimeoutTimeout)
-    -   [Suspended](#EndpointErrorHandling-SuspendedSuspended)
--   [Configuring leaf
-    endpoints](#EndpointErrorHandling-ConfiguringleafendpointsLeafEndpointConfigurations)
-    -   ["Timeout"
-        settings](#EndpointErrorHandling-%22Timeout%22settingstimeoutSettings)
-    -   ["MarkForSuspension"
-        settings](#EndpointErrorHandling-%22MarkForSuspension%22settingsmarkForSuspension)
-    -   ["suspendOnFailure"
-        settings](#EndpointErrorHandling-%22suspendOnFailure%22settingssuspendOnFailure)
--   [Dynamic endpoint failover
-    management](#EndpointErrorHandling-Dynamicendpointfailovermanagement)
-    -   [Disabling endpoint
-        suspension](#EndpointErrorHandling-Disablingendpointsuspension)
-    -   [Enabling the endpoint after
-        suspension](#EndpointErrorHandling-Enablingtheendpointaftersuspension)
--   [Configuring retry](#EndpointErrorHandling-Configuringretry)
--   [Configuring a failover
-    endpoint](#EndpointErrorHandling-ConfiguringafailoverendpointFailoverEndpointConfigurations)
-
-### Overview
-
 The last step of a message processing inside WSO2 Enterprise Service Bus
 is to send the message to a service provider (see also [Working with
 Mediators](https://docs.wso2.com/display/EI650/Working+with+Mediators) )
@@ -54,7 +26,7 @@ For information on general error handling and error codes in the
 Enterprise Integrator, see [Error
 Handling](https://docs.wso2.com/display/EI650/Error+Handling) .
 
-### Endpoint states
+## Endpoint states
 
 At any given time, the state of the endpoint can be one of the
 following:
@@ -66,7 +38,7 @@ following:
 | [Suspended](#EndpointErrorHandling-Suspended) | Endpoint encountered errors and cannot send or receive messages. Incoming messages to a suspended endpoint result in a fault.     |
 | OFF                                           | Endpoint is not active. To put an endpoint into the OFF state, or to move it from OFF to Active, you must use JMX.                |
 
-##### Active
+### Active
 
 When WSO2 Enterprise Service Bus starts, endpoints are in the "Active"
 state and ready to handle messages. If the user does not put the
@@ -81,7 +53,7 @@ is a "Suspended" error. If the error is not defined for either "Timeout"
 or "Suspended," the error will be ignored and the endpoint will stay
 Active.
 
-##### Timeout
+### Timeout
 
 When an endpoint is in the "Timeout" state, it will continue to attempt
 to receive messages until one message succeeds or the maximum retry
@@ -97,7 +69,7 @@ error, the endpoint is put in the "Suspended" state. If one of the
 messages succeeds before the retry maximum is met, the endpoint will be
 marked as "Active."
 
-##### Suspended
+### Suspended
 
 A "Suspended" endpoint cannot send or receive messages. When an endpoint
 is put into this state, the Enterprise Integrator waits until after an
@@ -115,21 +87,15 @@ maximum duration as part of the [suspendOnFailure
 settings](#EndpointErrorHandling-suspendOnFailure) . On each retry, the
 suspension duration increases, up to the maximum duration.
 
-### Configuring leaf endpoints
+## Properties
 
 The following is the configuration for the [address
 endpoint](_Address_Endpoint_) . Since we all are only interested in
 error configurations, the same applies for WSDL endpoints as well. The
 error handling configuration are as follows:
 
--   **[Timeout settings](#EndpointErrorHandling-timeoutSettings)**
--   **[MarkForSuspension
-    settings](#EndpointErrorHandling-markForSuspension)**
--   **[suspendOnFailure
-    settings](#EndpointErrorHandling-suspendOnFailure)**
-
-``` java
-    <address uri="endpoint address" [format="soap11|soap12|pox|get"]
+```
+<address uri="endpoint address" [format="soap11|soap12|pox|get"]
         [optimize="mtom|swa"] [encoding="charset encoding"]
         [statistics="enable|disable"] [trace="enable|disable"]>
         <enableRM [policy="key"]/>?
@@ -153,17 +119,17 @@ error handling configuration are as follows:
                     <progressionFactor>r</progressionFactor>
                     <maximumDuration>l</maximumDuration>
             </suspendOnFailure>
-    </address>
+</address>
 ```
 
-##### "Timeout" settings
+### "Timeout" properties
 
 | Name           | Values                        | Default | Description                                                                                                                                                                                                               |
 |----------------|-------------------------------|---------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | duration       | Miliseconds/ XPATH expression | 60000   | Connection timeout interval. If the remote endpoint does not respond in this time, it will be marked as "Timeout." This can be defined as a static value or as a [dynamic value](#EndpointErrorHandling-dynamicTimeout) . |
 | responseAction | discard, fault, never         | never   | When a response comes to a timed out request, specifies whether to discard it or invoke the fault handler. If you select "never", the endpoint remains in the "Active" state.                                             |
 
-##### "MarkForSuspension" settings
+### "MarkForSuspension" properties
 
 <table>
 <thead>
@@ -201,7 +167,7 @@ error handling configuration are as follows:
 </tbody>
 </table>
 
-##### "suspendOnFailure" settings
+### "suspendOnFailure" properties
 
 <table>
 <thead>
@@ -246,10 +212,10 @@ error handling configuration are as follows:
 </tbody>
 </table>
 
-**Sample Configuration:**
+## Example 1
 
-``` java
-    <endpoint name="Sample_First" statistics="enable" >
+```
+<endpoint name="Sample_First" statistics="enable" >
         <address uri="http://localhost/myendpoint" statistics="enable" trace="disable">
             <timeout>
                 <duration>60000</duration>
@@ -269,7 +235,7 @@ error handling configuration are as follows:
             </suspendOnFailure>
     
         </address>
-    </endpoint>
+</endpoint>
 ```
 
 In this example, the errors 101504 and 101505 move the endpoint into the
@@ -293,7 +259,7 @@ be sixty seconds until the endpoint succeeds and is back in the Active
 state, at which point the initial duration will be used on subsequent
 suspensions.
 
-**Sample Configuration for Endpoint Dynamic Timeout:**
+## Example 2: Configuration for Endpoint Dynamic Timeout
 
 Let's look at a sample configuration where you have dynamic timeout for
 the endpoint.
@@ -335,13 +301,13 @@ For more information about error codes, see [Error
 Codes](https://docs.wso2.com/display/EI650/Error+Handling#ErrorHandling-codes)
 .
 
-### Dynamic endpoint failover management
+## Example 3: Dynamic endpoint failover management
 
 If a dynamic URL is used as the endpoint and if one URL fails, the
 endpoint is suspended even though the URL is changed dynamically. Follow
 the steps given below to avoid suspension or to re-enable the endpoint.
 
-#### Disabling endpoint suspension
+## Example 4: Disabling endpoint suspension
 
 If you do not want the endpoint to be suspended at all, you can
 configure the `         Timeout        ` ,
@@ -382,7 +348,7 @@ Example:
        </endpoint>
 ```
 
-#### Enabling the endpoint after suspension
+## Example 5: Enabling the endpoint after suspension
 
 Follow any of the options given below to re-enable an endpoint that is
 suspended.
@@ -404,7 +370,7 @@ suspended.
     Management Console, manually activate the endpoint by clicking
     **Switch On** .
 
-### Configuring retry
+## Example 6: Configuring retry
 
 You can configure the Enterprise Integrator to enable or disable retry
 for an endpoint when a specific error code occurs. For example:
@@ -431,8 +397,3 @@ to the first endpoint, the endpoint is not retried, whereas in the
 second endpoint, the endpoint is always retried if error code 101503
 occurs. You can specify enabled or disabled error codes (but not both)
 for a given endpoint.
-
-### Configuring a failover endpoint
-
-For information on configuring a failover endpoint to handle errors, see
-[Configuring Failover Endpoints](_Configuring_Failover_Endpoints_) .
