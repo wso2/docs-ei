@@ -166,7 +166,7 @@ two specified locations withi 15 minutes. For this, you can create a Siddhi appl
         minutes is applied to each condition in a sliding manner. For more information about time windows, see the [Siddhi Query Guide - Calculate and store clock time-based aggregate values](https://ei.docs.wso2.com/en/next/streaming-integrator/guides/summarizing-data/#calculate-and-store-clock-time-based-aggregate-values).
 
 5. To derive the information relating to the delay to be published as the output, add the `select` clause as follows.
-    `select taxiID, driverID, ‘Unexpected Delay’ as message`
+    `select LocationStream.taxiID, LocationStream.driverID, 'Unexpected Delay' as message`
     
    The alert message is a standard message that is assigned as a static value to the `message` attribute.
 
@@ -184,7 +184,7 @@ define stream LocationStream (taxiID string, driverID string, latitude double, l
 define stream AlertStream (taxiID string, driverID string, message string);
 
 from not LocationStream[latitude == 44.0096 and longitude == 81.2735] for 15 minutes or not LocationStream[latitude == 43.0096 and longitude == 81.2737] for 15 minutes
-select taxiID, driverID, 'Unexpected Delay' as message
+select LocationStream.taxiID, LocationStream.driverID, 'Unexpected Delay' as message
 insert into AlertStream;
 ```
 
@@ -199,7 +199,60 @@ This section explains how you can use Siddhi sequences to detect trends in event
 - Logical Sequences: These identify logical relationships between events.
 
 ### Count and match multiple events for a given trend
+
+Counting and matching multiple events over a given period is done via sequences when you need to identify trends in events 
+that occur in a specific order. To understand how this is done, consider a scenario where the temperature is read from a 
+sensor and you need to identify the peaks in temperature. If an event (i.e., a single reading) is a peak, it should report 
+a temperaature greater than that reported by the event that occured immediately before it as well as the event that occurred 
+immediately after it. Therefore, to identify the peaks, follow the procedure below:
+
+1. Start creating a new Siddhi application. You can name it `TemperaturePeaksApp` For instructions, see [Creating a Siddhi Application](../develop/creating-a-Siddhi-Application.md).
+    `@App:name("TemperaturePeaksApp")`
+    
+2. To capture the temperature readings, define an input stream as follows.
+    `define stream TempStream(deviceID long, roomNo int, temp double);`
+
+3. To report the peaks once they are identified, define an output stream as follows.
+    `
+    @sink(type='log', prefix='TemperaturePeak]:')
+    define stream PeakTempStream(initialTemp double, peakTemp double);
+    `
+   The output directed to this stream is published via a sink of the `log` type. For more information about publishing data via sinks, see the [Publishing Data guide](publishing-data.md).
+
+4. To specify how to identify the peaks, add a `from` clause as follows.
+    `from every e1=TempStream, e2=TempStream[e1.temp <= temp]+, e3=TempStream[e2[last].temp > temp]`
+    
+    !!!info
+        Note the following about the `from` clause:
+        - `every` indicates that all the events in the `TempStream` must be checked for the given conditions.
+        - Here, `e2` is the reference for the event identified as the peak temperature. The `e2=TempStream[e1.temp <= temp]+` condition specifies that to be identified as an event reporting a peak temperature, an event should have one or more preceding events that reports a lower or an equal temperature.
+        - The `e3=TempStream[e2[last].temp > temp]` condition specifies a condition for `e3` which is the event that follows `e2`. It indicates that `e2`, the peak temperature event should be the last event before `e3`, and that the temperature reported by `e2` must be greater than the temperature reported by `e3`.
+        
+
+5. To specify how to derive the values for the attributes in the `PeakTempStream` output stream are derived, add a `select` clause as follows. 
+    `select e1.temp as initialTemp, e2[last].temp as peakTemp`
+    
+    Here, the temperature reported by `e2` event is selected to be output as `peakTemp` because it is greater than the temperatures reported by events occuring before and after `e2`. The temperature reported by the event immediately before `e2` is selected as `initialTemp`.
+
+6. To insert the output generated into the `PeakTempStream` output stream, add an `insert into` clause as follows.
+    `insert into PeakTempStream;`
+
+The completed Siddhi application is as follows.
+```
+@App:name("TemperaturePeaksApp")
+
+define stream TempStream(deviceID long, roomNo int, temp double);
+
+@sink(type='log', prefix='TemperaturePeak]:')
+define stream PeakTempStream(initialTemp double, peakTemp double);
+
+from every e1=TempStream, e2=TempStream[e1.temp <= temp]+, e3=TempStream[e2[last].temp > temp]
+select e1.temp as initialTemp, e2[last].temp as peakTemp
+insert into PeakTempStream;
+```
+
 ### Combine several trends logically and match events
+
 
 ##Correlating two streams of data and unify
 
