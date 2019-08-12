@@ -1,31 +1,26 @@
 # HTTP Endpoint
 
-The **HTTP endpoint** allows you to define REST
-[endpoints](_Working_with_Endpoints_) using [URI
-templates](https://docs.wso2.com/enterprise-service-bus/Working+with+APIs#WorkingwithAPIs-URItemplates)
-similar to the REST API. The URI templates allow a RESTful URI to
-contain variables that can be populated during mediation runtime using
-property values whose names have the " `         uri.var.        ` "
-prefix. An HTTP endpoint can also define the particular HTTP method to
-use in the RESTful invocation.
+The **HTTP endpoint** allows you to define REST endpoints using [URI templates](https://docs.wso2.com/enterprise-service-bus/Working+with+APIs#WorkingwithAPIs-URItemplates) similar to the REST API. The URI templates allow a RESTful URI to contain variables that can be populated during mediation runtime using property values whose names have the " `         uri.var.        ` "
+prefix. An HTTP endpoint can also define the particular HTTP method to use in the RESTful invocation.
 
-------------------------------------------------------------------------
+You can create HTTP endpoints by specifying values for the parameters given below.
 
-[XML Configuration](#HTTPEndpoint-XMLConfigurationXMLConfiguration) \|
-[Parameters](#HTTPEndpoint-Parameters) \|
-[Examples](#HTTPEndpoint-Examples)
+Alternatively, you can specify one parameter as the HTTP endpoint by
+using multiple other parameters, and then pass that to define the HTTP
+endpoint as follows:
 
-------------------------------------------------------------------------
-
-### XML Configuration
-
-The syntax is as follows.
-
-``` xml
-    <http uri-template="URI Template" method="GET|POST|PATCH|PUT|DELETE|OPTIONS|HEAD" />
+```
+<property name="uri.var.httpendpointurl" expression="fn:concat($ctx:prefixuri, $ctx:host, $ctx:port, $ctx:urlparam1, $ctx:urlparam2)" />
+    <send>
+    <endpoint>
+        <http uri-template="{uri.var.httpendpointurl}"/>
+    </endpoint>
+</send>
 ```
 
-#### HTTP Endpoint Attributes
+## Parameters
+
+The parameters to configure an HTTP endpoint are as follows.
 
 <table>
 <thead>
@@ -57,12 +52,6 @@ The syntax is as follows.
 </tr>
 </tbody>
 </table>
-
-------------------------------------------------------------------------
-
-### Parameters
-
-The parameters to configure an HTTP endpoint are as follows.
 
 <table>
 <thead>
@@ -98,7 +87,6 @@ The parameters to configure an HTTP endpoint are as follows.
 </div>
 <p>Here <code>               VAR              </code> is the url you need to have set as environment property.</p>
 <p>This is useful when you need to need to deploy the endpoint in a container.</p>
-
 </div></td>
 </tr>
 <tr class="odd">
@@ -122,71 +110,39 @@ The parameters to configure an HTTP endpoint are as follows.
 </tbody>
 </table>
 
-You can create HTTP endpoints by specifying values for the parameters
-given above.
-
-Alternatively, you can specify one parameter as the HTTP endpoint by
-using multiple other parameters, and then pass that to define the HTTP
-endpoint as follows:
-
-``` xml
-    <property name="uri.var.httpendpointurl" expression="fn:concat($ctx:prefixuri, $ctx:host, $ctx:port, $ctx:urlparam1, $ctx:urlparam2)" />
-    <send>
-    <endpoint>
-    <http uri-template="
-    {uri.var.httpendpointurl}
-    "/>
-    </endpoint>
-    </send>
-```
-
 ------------------------------------------------------------------------
 
-### Examples
+## Example 1: Populating an HTTP endpoint during mediation
 
-#### Example 1 - populating an HTTP endpoint during mediation
-
-``` html/xml
-    <endpoint xmlns="http://ws.apache.org/ns/synapse" name="HTTPEndpoint">
-        <http uri-template="http://localhost:8080/{uri.var.servicepath}/restapi/{uri.var.servicename}/menu?category={uri.var.category}&amp;type={uri.var.pizzaType}" method="GET">
+```
+<endpoint xmlns="http://ws.apache.org/ns/synapse" name="HTTPEndpoint">
+    <http uri-template="http://localhost:8080/{uri.var.servicepath}/restapi/{uri.var.servicename}/menu?category={uri.var.category}&amp;type={uri.var.pizzaType}" method="GET">
     </http>
-    </endpoint>
+</endpoint>
 ```
 
-The URI template variables in this example HTTP endpoint can be
-populated during mediation as follows:
+The URI template variables in this example HTTP endpoint can be populated during mediation as follows:
 
-``` html/xml
-    <inSequence>           
-                <property name="uri.var.servicepath" value="PizzaShopServlet"/>
-                <property name="uri.var.servicename" value="PizzaWS"/>
-                <property name="uri.var.category" value="pizza"/>
-                <property name="uri.var.pizzaType" value="pan"/>
-                <send>
-                    <endpoint key="HTTPEndpoint"/>
-                </send>
-    </inSequence>
+```
+<inSequence>           
+    <property name="uri.var.servicepath" value="PizzaShopServlet"/>
+    <property name="uri.var.servicename" value="PizzaWS"/>
+    <property name="uri.var.category" value="pizza"/>
+    <property name="uri.var.pizzaType" value="pan"/>
+     <send>
+        <endpoint key="HTTPEndpoint"/>
+    </send>
+</inSequence>
 ```
 
-This configuration will cause the RESTful URL to evaluate to:
+This configuration will cause the RESTful URL to evaluate to: `http://localhost:8080/PizzaShopServlet/restapi/PizzaWS/menu?category=pizza&type=pan`
 
-    http://localhost:8080/PizzaShopServlet/restapi/PizzaWS/menu?category=pizza&type=pan
 
-#### Example 2 - Sending a Message from a WebSocket Client to an HTTP Endpoint
+## Example 2; Sending a Message from a WebSocket Client to an HTTP Endpoint
 
 The following sections walk you through a sample scenario that
 demonstrates how to send a message from a WebSocket client to an HTTP
 endpoint via the ESB Profile of WSO2 Enterprise Integrator (WSO2 EI):
-
--   [Introduction](#HTTPEndpoint-Introduction)
--   [Prerequisites](#HTTPEndpoint-Prerequisites)
--   [Configuring the sample
-    scenario](#HTTPEndpoint-Configuringthesamplescenario)
--   [Executing the sample
-    scenario](#HTTPEndpoint-Executingthesamplescenario)
--   [Analyzing the output](#HTTPEndpoint-Analyzingtheoutput)
-
-##### Introduction
 
 If you need to send a message from a WebSocket client to an HTTP
 endpoint via the ESB Profile of WSO2 EI, you need to establish a
@@ -196,23 +152,14 @@ To demonstrate this scenario, you need to create two dispatching
 sequences. One for the client to back-end mediation, and another for the
 back-end to client mediation. Finally you need to configure the
 WebSocket inbound endpoint of the ESB Profile of WSO2 EI to use the
-created sequences and listen on port 9091.
+created sequences and listen on port 9091. 
 
-##### Prerequisites
+### Synapse configuration
 
--   Start the ESB Profile of WSO2 EI. For information on how to start
-    the ESB Profile, see [Running the
-    Product](https://docs.wso2.com/display/EI650/Running+the+Product) .
--   Download the [sample netty
-    artifacts](https://github.com/wso2-docs/ESB/blob/master/ESB-Artifacts/Netty_artifacts_for_WebSocket_samples/netty-example-4.0.30.Final.jar)
-    .
+Create the sequence for client to back-end mediation, a sequence for back-end to client mediation, and configure the WebSocket inbound endpoint in the ESB Profile of WSO2 EI as follows to use the created sequences and listen on port 9091.
 
-##### Configuring the sample scenario
-
--   Create the sequence for client to back-end mediation as follows:
-
-    ``` xml
-            <sequence name="dispatchSeq" xmlns="http://ws.apache.org/ns/synapse">
+``` java tab='Sequence (Backend Mediation)'
+<sequence name="dispatchSeq" xmlns="http://ws.apache.org/ns/synapse">
               <switch source="get-property('websocket.source.handshake.present')">
                 <case regex="true">
                   <drop/>
@@ -226,46 +173,33 @@ created sequences and listen on port 9091.
                  <respond/>
                  </default>
                </switch>
-            </sequence>
-    ```
+</sequence>
+```
 
-    This sequence calls an HTTP endpoint.
+``` java tab='Sequence (Backend to Client Mediation)'
+<sequence name="outDispatchSeq" xmlns="http://ws.apache.org/ns/synapse">
+    <log/>
+    <respond/>
+</sequence>
+```
 
--   Create the sequence for back-end to client mediation as follows:
+``` java tab='Inbound Endpoint (Websocket)'
+<inboundEndpoint name="test" onError="falut" protocol="ws"sequence="dispatchSeq" suspend="false" xmlns="http://ws.apache.org/ns/synapse">
+    <parameters>
+        <parameter name="inbound.ws.port">9091</parameter>
+        <parameter name="ws.outflow.dispatch.sequence">outDispatchSeq</parameter>
+        <parameter name="ws.client.side.broadcast.level">0</parameter>
+         <parameter name="ws.outflow.dispatch.fault.sequence">fault</parameter>
+    </parameters>
+</inboundEndpoint>
+```
 
-    ``` xml
-            <sequence name="outDispatchSeq" xmlns="http://ws.apache.org/ns/synapse">
-              <log/>
-              <respond/>
-            </sequence>
-    ```
+### Run the Example
 
--   Configure the WebSocket inbound endpoint in the ESB Profile of WSO2
-    EI as follows to use the created sequences and listen on port 9091:
-
-    ``` xml
-            <inboundEndpoint name="test" onError="falut" protocol="ws"
-                sequence="dispatchSeq" suspend="false" xmlns="http://ws.apache.org/ns/synapse">
-                <parameters>
-                    <parameter name="inbound.ws.port">9091</parameter>
-                    <parameter name="ws.outflow.dispatch.sequence">outDispatchSeq</parameter>
-                    <parameter name="ws.client.side.broadcast.level">0</parameter>
-                    <parameter name="ws.outflow.dispatch.fault.sequence">fault</parameter>
-                </parameters>
-            </inboundEndpoint>
-    ```
-
-##### Executing the sample scenario
-
--   Execute the following command to start the WebSocket client:
-
+1. Start the ESB Profile of WSO2 EI. For information on how to start the ESB Profile, see [Running the Product](https://docs.wso2.com/display/EI650/Running+the+Product) .
+2.  Download the [sample netty artifacts](https://github.com/wso2-docs/ESB/blob/master/ESB-Artifacts/Netty_artifacts_for_WebSocket_samples/netty-example-4.0.30.Final.jar)
+3.  Execute the following command to start the WebSocket client:
     ``` java
-            java -DclientPort=9091 -cp netty-example-4.0.30.Final.jar:lib/*:. io.netty.example.http.websocketx.client.WebSocketClient
+    java -DclientPort=9091 -cp netty-example-4.0.30.Final.jar:lib/*:. io.netty.example.http.websocketx.client.WebSocketClient
     ```
-
-##### Analyzing the output
-
-If you analyze the log, you will see that a connection from the
-WebSocket client to the ESB Profile of WSO2 EI is established. You will
-also see that the sequences are executed by the WebSocket inbound
-endpoint.
+4.  Analyzing the output: If you analyze the log, you will see that a connection from the WebSocket client to the ESB Profile of WSO2 EI is established. You will also see that the sequences are executed by the WebSocket inbound endpoint.

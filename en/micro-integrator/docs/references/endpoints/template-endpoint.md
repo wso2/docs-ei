@@ -6,7 +6,7 @@ Parameters of the endpoint template used as the target are copied to the
 endpoint configuration. However, you can make modifications by removing
 some of the copied parameters and/or adding new parameters.
 
-### Parameters
+## Parameters
 
 Enter the required values for the following parameters.
 
@@ -39,7 +39,3 @@ Enter the required values for the following parameters.
 </tbody>
 </table>
 
-You can save the endpoint configuration int he Synapse configuration or
-the
-[Registry](https://docs.wso2.com/display/ADMIN44x/Working+with+the+Registry)
-.

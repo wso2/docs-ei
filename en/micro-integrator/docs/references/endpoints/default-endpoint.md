@@ -10,47 +10,38 @@ endpoint differs from the address endpoint only in the
 `         URI        ` attribute which will not be present in this
 endpoint.
 
-------------------------------------------------------------------------
+## Synapse configuration
 
-[XML Configuration](#DefaultEndpoint-XMLConfiguration) \|
-[Parameters](#DefaultEndpoint-Parameters)
-
-------------------------------------------------------------------------
-
-### XML Configuration
-
-``` html/xml
-    <default [format="soap11|soap12|pox|get"] [optimize="mtom|swa"]
+```
+<default [format="soap11|soap12|pox|get"] [optimize="mtom|swa"]
          [encoding="charset encoding"]
          [statistics="enable|disable"] [trace="enable|disable"]>
     
-        <enableRM [policy="key"]/>?
-        <enableSec [policy="key"]/>?
-        <enableAddressing [version="final|submission"] [separateListener="true|false"]/>?
+    <enableRM [policy="key"]/>?
+    <enableSec [policy="key"]/>?
+    <enableAddressing [version="final|submission"] [separateListener="true|false"]/>?
     
-        <timeout>
-            <duration>timeout duration in milliseconds</duration>
-            <action>discard|fault</action>
-        </timeout>?
+    <timeout>
+        <duration>timeout duration in milliseconds</duration>
+        <action>discard|fault</action>
+    </timeout>?
     
-        <markForSuspension>
-            [<errorCodes>xxx,yyy</errorCodes>]
-            <retriesBeforeSuspension>m</retriesBeforeSuspension>
-            <retryDelay>d</retryDelay>
-        </markForSuspension>
+    <markForSuspension>
+        [<errorCodes>xxx,yyy</errorCodes>]
+        <retriesBeforeSuspension>m</retriesBeforeSuspension>
+        <retryDelay>d</retryDelay>
+    </markForSuspension>
     
-        <suspendOnFailure>
-            [<errorCodes>xxx,yyy</errorCodes>]
-            <initialDuration>n</initialDuration>
-            <progressionFactor>r</progressionFactor>
-            <maximumDuration>l</maximumDuration>
-        </suspendOnFailure>
-    </default>
+    <suspendOnFailure>
+        [<errorCodes>xxx,yyy</errorCodes>]
+        <initialDuration>n</initialDuration>
+        <progressionFactor>r</progressionFactor>
+        <maximumDuration>l</maximumDuration>
+    </suspendOnFailure>
+</default>
 ```
 
-------------------------------------------------------------------------
-
-### Parameters
+## Parameters
 
 Parameters available to configure the default endpoint are as follows.
 

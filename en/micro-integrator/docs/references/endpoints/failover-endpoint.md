@@ -1,12 +1,4 @@
-# Configuring Failover Endpoints
-
--   [XML configuration](#ConfiguringFailoverEndpoints-XMLconfiguration)
--   [Handling errors in failover
-    endpoints](#ConfiguringFailoverEndpoints-Handlingerrorsinfailoverendpoints)
-    -   [Sample failover with one address
-        endpoint](#ConfiguringFailoverEndpoints-Samplefailoverwithoneaddressendpoint)
-    -   [Sample failover with multiple address
-        endpoints](#ConfiguringFailoverEndpoints-Samplefailoverwithmultipleaddressendpoints)
+# Failover Endpoints
 
 With leaf endpoints, if an error occurs during a message transmission
 process, that message will be lost. The failed message will not be
@@ -29,35 +21,20 @@ long as there is at least one active endpoint among the listed
 endpoints. The ESB switches back to the primary endpoint as soon as it
 becomes available. This behaviour is known as dynamic failover.
 
-!!! info
+!!! Info
+    An endpoint failure occurs when an endpoint is unable to invoke a service. An endpoint, which responds with an error is not considered a failed endpoint.
 
-An endpoint failure occurs when an endpoint is unable to invoke a
-service. An endpoint, which responds with an error is not considered a
-failed endpoint.
+## Synapse configuration
 
-
-  
-
-------------------------------------------------------------------------
-
-[XML configuration](#ConfiguringFailoverEndpoints-XMLconfiguration) \|
-[Handling errors in failover
-endpoints](#ConfiguringFailoverEndpoints-Handlingerrorsinfailoverendpoints)
-
-------------------------------------------------------------------------
-
-### XML configuration
-
-``` html/xml
-    <failover>
-        <endpoint .../>+
-    </failover>
+```
+<failover>
+    <endpoint .../>
+</failover>
 ```
 
-### Handling errors in failover endpoints
+## Example 1: Handling errors in failover endpoints
 
-An endpoint can be in one of the following states:
-`         Active        ` , T `         imeout        ` or
+An endpoint can be in one of the following states: `Active` , `Timeout` or
 `         Suspended        ` . You can handle errors and configure the
 looping between the failover child endpoints via the
 `         <timeout>        ` , `         <suspendOnFailure>        ` and
@@ -65,14 +42,14 @@ looping between the failover child endpoints via the
 For more information about these states and properties, see [Endpoint
 Error Handling](_Endpoint_Error_Handling_) .
 
-#### Sample failover with one address endpoint
+## Example 2: Failover with one address endpoint
 
 When message failure is not tolerable even though there is only one
 service endpoint, then failovers are possible with a single endpoint as
 shown in the below configuration.
 
-``` java
-    <endpoint name="SampleFailover">
+```
+<endpoint name="SampleFailover">
         <failover>
             <endpoint name="Sample_First" statistics="enable" >
                 <address uri="http://localhost/myendpoint" statistics="enable" trace="disable">
@@ -95,7 +72,7 @@ shown in the below configuration.
                 </address>
             </endpoint>
         </failover>
-    </endpoint>
+</endpoint>
 ```
 
 In the above example, the `         Sample_First        ` endpoint is
@@ -113,23 +90,17 @@ property (i.e., `         10        ` miliseconds in the above example).
 
 For all the other errors, it will be marked as
 `         Suspended        ` . For more information about these states
-and properties, see [Endpoint Error Handling](_Endpoint_Error_Handling_)
-.
+and properties, see [Endpoint Error Handling](_Endpoint_Error_Handling_).
 
-!!! info
-
-The retry count is per endpoint, not per message. The retry happens in
-parallel. Since messages come to this endpoint via many threads, the
-same message may not be retried three times. Another message may fail
-and can reduce the retry count.
-
+!!! Info
+    The retry count is per endpoint, not per message. The retry happens in parallel. Since messages come to this endpoint via many threads, the same message may not be retried three times. Another message may fail and can reduce the retry count.
 
 In this configuration, we assume that these errors are rare and if they
 happen once in a while, it is okay to retry again. If they happen
 frequently and continuously, it means that it requires immediate
 attention to get it back to normal state.
 
-#### Sample failover with multiple address endpoints
+## Example 3: Failover with multiple address endpoints
 
 When a message reaches a failover endpoint with multiple address
 endpoints, it will go through its list of endpoints to pick the first
@@ -156,7 +127,7 @@ The following is an example failover endpoint configuration with
 multiple address endpoints.
 
 ``` java
-    <endpoint>
+<endpoint>
         <failover>
             <endpoint name="fooEP">
                 <http uri-template="http://localhost:8080/foo">
@@ -190,23 +161,16 @@ multiple address endpoints.
         </http>
     </endpoint>
     </failover>
-    </endpoint>
+</endpoint>
 ```
 
-!!! note
+!!! Note
+    The `         <retryConfig>        ` property configures the last child endpoint to stop retying by ending the loop (i.e. to make the endpoint respond back to the service), after attempting to send requests to all the child endpoints and when all the attempts fail.
 
-The `         <retryConfig>        ` property configures the last child
-endpoint to stop retying by ending the loop (i.e. to make the endpoint
-respond back to the service), after attempting to send requests to all
-the child endpoints and when all the attempts fail.
-
-``` java
+    ```
     <retryConfig>
             <disabledErrorCodes>101507,101504</disabledErrorCodes>
     </retryConfig>
-```
-    
-    Thus, in the above configuration, erros of the codes
-    `         101504        ` and `         101507        ` stop retrying
-    and put the endpoint to the `         Timeout        ` state.
-    
+    ```
+
+    Thus, in the above configuration, erros of the codes `101504` and `101507` stop retrying and put the endpoint to the `Timeout` state.

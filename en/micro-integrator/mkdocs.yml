@@ -133,6 +133,7 @@ nav:
           - 'Creating a Custom Sequence': 'develop/creating-artifacts/creating-custom-sequences.md'
           - 'Adding Connectors': 'develop/creating-artifacts/adding-connectors.md'
           - 'Encrypting Synapse Passwords' : 'develop/creating-artifacts/encrypting-synapse-passwords.md'
+          - 'Using Fault Sequences' : 'develop/creating-artifacts/using-fault-sequences.md'
         - 'Importing Artifacts': 'develop/importing-artifacts.md'
         - 'Designing Message Flow': 'develop/designing-mediation-flow.md'
         - 'Packaging Artifacts': 'develop/packaging-artifacts.md'
@@ -297,11 +298,11 @@ nav:
         - Endpoints:
           - 'About Endpoints' : 'references/endpoints/about-endpoints.md'
           - 'Endpoint Error Handling' : 'references/endpoints/endpoint-error-handling.md'
+          - 'Endpoint Trace Logs': 'references/endpoints/endpoing-trace-logs.md'
           - Endpoints:
             - 'Address Endpoint' : 'references/endpoints/address-endpoint.md'
             - 'Dynamic Load-Balance Endpoint' : 'references/endpoints/dynamic-load-balance-endpoint.md'
             - 'Failover Endpoint' : 'references/endpoints/failover-endpoint.md'
-            - 'Dynamic Load-Balance Endpoint' : 'references/endpoints/dynamic-load-balance-endpoint.md'
             - 'HTTP Endpoint' : 'references/endpoints/http-endpoint.md'
             - 'WSDL Endpoint' : 'references/endpoints/wsdl-endpoint.md'
             - 'Load Balance Group Endpoint' : 'references/endpoints/load-balance-group.md'
@@ -352,9 +353,8 @@ nav:
       - Security:
         - 'Customizing Secure Vault' : 'references/security/customizing-secure-vault.md'
         - 'Using Keystores' : 'references/using_keystores.md'
-      - Best Practice:
-        - 'Error Handling' : 'references/error_handling.md'
-        - 'Best Practices' : 'references/best-Practices.md'
+      - 'Best Practices' : 'references/best-Practices.md'
+      - 'Error Codes' : 'references/error_handling.md'
     - '': page-not-found.md
      
 # Extensions
