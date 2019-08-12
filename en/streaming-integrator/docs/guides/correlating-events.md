@@ -188,7 +188,7 @@ select taxiID, driverID, 'Unexpected Delay' as message
 insert into AlertStream;
 ```
 
-For the complete list of methods in which you can apply Siddhi patterns to detect non occuring events, see [Siddhi Query Guide - Dtecting Non-Occurring Events](https://siddhi.io/en/v4.x/docs/query-guide/#detecting-non-occurring-events).
+For the complete list of methods in which you can apply Siddhi patterns to detect non occuring events, see [Siddhi Query Guide - Detecting Non-Occurring Events](https://siddhi.io/en/v4.x/docs/query-guide/#detecting-non-occurring-events).
 
 
 ##Correlating events to find a trend(sequence)
