@@ -136,13 +136,66 @@ insert into ProductionDecreaseAlertStream;
 
 ## Find non-occurance of events
 
-This section explains how to detect non-occurring events.
+This section explains how to analyze data by observing scenarios where events do not occur. To understand how this is 
+done, consider a taxi service company that tracks the movements of the taxis it runs and wants to be notified of unexpected 
+delays. Consider a specific scenario where the manager needs to contact the driver if the taxi has not reached either of 
+two specified locations withi 15 minutes. For this, you can create a Siddhi application as follows:
+
+1. Start creating a new Siddhi application. You can name it `DelayDetectionApp` For instructions, see [Creating a Siddhi Application](../develop/creating-a-Siddhi-Application.md).
+    `@App:name("DelayDetectionApp")`
+    
+2. To receive information about the location of taxis, define an input stream as follows.
+    `define stream LocationStream (taxiID string, driverID string, latitude double, longitude double);`
+
+3. To publish delay notification as a message, define an output stream as follows.
+    `
+    @sink(type='http', publisher.url='http://headoffice:8080/endpoint', @map(type = 'json'))
+    define stream AlertStream (taxiID string, driverID string, message string);
+    `
+    The output directed to this stream is published via a sink of the `http` type. For more information about publishing data via sinks, see the [Publishing Data guide](publishing-data.md).
+
+4. To specify the pattern to be used to detect the delays, add the `from` clause as follows.
+    `from not LocationStream[latitude == 44.0096 and longitude == 81.2735] for 15 minutes or not LocationStream[latitude == 43.0096 and longitude == 81.2737] for 15 minutes`
+    !!!info
+        Note the following about this `from` clause:
+        - The `not` keyword is added to indicate that the SI should look for instances where an event has *not* occurred when the given conditions are met.
+        - Two conditions are given. The alert is generated when either of the two conditions has not occured. To indicate this, the `or` keyword is used between the two conditions.
+        - The given conditions indicate that the taxi should have reached either the `latitude == 44.0096 and longitude == 81.2735` 
+        location or the `latitude == 43.0096 and longitude == 81.2737` location. Either of the locations should be 
+        reached within 15 minutes. Therefore, each location is specified as a separate condition and a time window of 15 
+        minutes is applied to each condition in a sliding manner. For more information about time windows, see the [Siddhi Query Guide - Calculate and store clock time-based aggregate values](https://ei.docs.wso2.com/en/next/streaming-integrator/guides/summarizing-data/#calculate-and-store-clock-time-based-aggregate-values).
+
+5. To derive the information relating to the delay to be published as the output, add the `select` clause as follows.
+    `select taxiID, driverID, ‘Unexpected Delay’ as message`
+    
+   The alert message is a standard message that is assigned as a static value to the `message` attribute.
+
+6. To insert the results into the `AlertStream` so that the message about the delay can be published, add the `insert into` clause as follows.
+    `insert into AlertStream;`
+    
+The completed Siddhi application is as follows.
+
+```
+@App:name("DelayDetectionApp")
+
+define stream LocationStream (taxiID string, driverID string, latitude double, longitude double);
+
+@sink(type='http', publisher.url='http://headoffice:8080/endpoint', @map(type = 'json'))
+define stream AlertStream (taxiID string, driverID string, message string);
+
+from not LocationStream[latitude == 44.0096 and longitude == 81.2735] for 15 minutes or not LocationStream[latitude == 43.0096 and longitude == 81.2737] for 15 minutes
+select taxiID, driverID, 'Unexpected Delay' as message
+insert into AlertStream;
+```
+
+For the complete list of methods in which you can apply Siddhi patterns to detect non occuring events, see [Siddhi Query Guide - Dtecting Non-Occurring Events](https://siddhi.io/en/v4.x/docs/query-guide/#detecting-non-occurring-events).
+
 
 ##Correlating events to find a trend(sequence)
 
 This section explains how you can use Siddhi sequences to detect trends in events that arrive in a specific order. There are two types of Siddhi sequences as follows:
 
-- Counting Sequences: These count the number of intances that match the given sequence condition.
+- Counting Sequences: These count the number of instances that match the given sequence condition.
 - Logical Sequences: These identify logical relationships between events.
 
 ### Count and match multiple events for a given trend
