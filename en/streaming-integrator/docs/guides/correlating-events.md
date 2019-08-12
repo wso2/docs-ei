@@ -47,6 +47,7 @@ products where the treshold for such occurrences is reached, create a query as f
             - The event in the `PurchasesStream` stream need to arrive before the matching event in the `RepairsStream` stream.
             - The matching event in the `RepairsStream` stream should arrive within two months after the arrival of the event in the `PurchasesStream` stream.
             - `<5:>` indicates that an output is generated only when the matching condition is met five times.
+            - A time window of `2 months` is added to consider only a period of two months in a sliding manner when counting the number of times the matching condition for the pattern is met. For more information about time windows, see the [Siddhi Query Guide - Calculate and store clock time-based aggregate values](https://ei.docs.wso2.com/en/next/streaming-integrator/guides/summarizing-data/#calculate-and-store-clock-time-based-aggregate-values).
        
     2. To specify how the value for each attribute in the `DefectiveProductsStream` output stream is defined, add the `select` clause as follows.
         `select e1.productName`
@@ -73,8 +74,65 @@ select e1.productName
 insert into DefectiveProductsStream
 ```
 
-
+!!!INFO
+    For more information, see [Siddhi Query Guide - Counting Patterns](https://siddhi.io/en/v4.x/docs/query-guide/#counting-pattern).
+    
 ### Combine several patterns logically and match events
+
+To understand how to combine several patterns logically and match events, consider an example of a factory foreman who 
+needs to observe the factory output, identify any production decreases and check whether those decreases have reached 
+maximum threshold which requires him to take action. To do this, you can create a Siddhi application as follows:
+
+1. Start creating a new Siddhi application. You can name it `ProductionDecreaseDetectionApp` For instructions, see [Creating a Siddhi Application](../develop/creating-a-Siddhi-Application.md).
+    `@App:name("ProductionDecreaseDetectionApp")`
+
+2. Define an input stream as follows to capture the factory output.
+    `define stream ProductionStream(productName string, factoryBranch string, productionAmount long);`
+
+3. Now define an output stream as follows to present the observed production trend after applying the logical pattern.
+    ```
+    @sink(type='log', prefix='Decrease in production detected:')
+    define stream ProductionDecreaseAlertStream (productName string, originalAmount long, laterAmount long, factoryBranch string);
+    ```
+    The output directed to this stream is published via a sink of the `log` type. For more information about publishing data via sinks, see the [Publishing Data guide](publishing-data.md).
+
+4. To apply the pattern so that the production trend can be observed, add the `from` clause as follows.
+    ```
+    from every (e1=ProductionStream) -> e2=ProductionStream[e1.productName == e2.productName and e1.productionAmount - e2.productionAmount > 10]
+         within 10 min
+    ```
+    !!!info
+        Observe the following about the `from`clause:
+        - Here, two events from the same stream are compared to identify whether the production has decreased. The unique reference for the first event is `e1`, and the unique reference for the second event is `e2`.
+        - `e2` arrives after `e1`, but it is not necessarily the event that arrives immediately after `e1`.
+        - The condition that should be met for `e1` and `e2` to be compared is `e1.productName == e2.productName and e1.productionAmount - e2.productionAmount > 10`. 
+        This means, both the events should report the production of the same product, and there should be a decrease in 
+        production that is greater than 10 between the `e1` and `e2` events.
+        - A `10 min` time window is included to indicate that an output event is generated only if the decrease in production by 10 or more units takes place every ten minutes in a sliding manner. For more information about time windows, see the [Siddhi Query Guide - Calculate and store clock time-based aggregate values](https://ei.docs.wso2.com/en/next/streaming-integrator/guides/summarizing-data/#calculate-and-store-clock-time-based-aggregate-values).
+
+5. To present the required output by deriving values for the attributes of the `ProductionDecreaseAlertStream` output stream you created, add the `select` clause as follows.
+    `select e1.productName, e1.productionAmount as originalAmount, e2.productionAmount as laterAmount, e1.factoryBranch`
+    
+    Here, the production amount of the first event is presented as `originalAmount`, and the amount of the second event is presented as `laterAmount`.
+
+6. To insert the output into the `ProductionDecreaseAlertStream` output stream, add the `insert into` clause as follows.
+    `insert into ProductionDecreaseAlertStream;`
+    
+The completed Siddhi application is as follows.
+```
+@App:name("ProductionDecreaseDetectionApp")
+
+
+define stream ProductionStream(productName string, factoryBranch string, productionAmount long);
+
+@sink(type='log', prefix='Decrease in production detected:')
+define stream ProductionDecreaseAlertStream (productName string, originalAmount long, laterAmount long, factoryBranch string);
+
+from every (e1=ProductionStream) -> e2=ProductionStream[e1.productName == e2.productName and e1.productionAmount - e2.productionAmount > 10] within 10 min
+select e1.productName, e1.productionAmount as originalAmount, e2.productionAmount as laterAmount, e1.factoryBranch
+insert into ProductionDecreaseAlertStream;
+```
+
 
 ## Find non-occurance of events
 
