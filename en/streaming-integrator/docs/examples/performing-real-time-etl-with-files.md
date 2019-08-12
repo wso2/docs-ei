@@ -12,7 +12,7 @@ This tutorial takes you through the different modes and options you could use, i
 - [Extracting data from a file](#Extracting-data-from-a-file)
     - [Tailing a text file line by line](#Tailing-a-text-file-line-by-line)
     - [Tailing a text file using a regular expression](#Tailing-a-text-file-using-a-regular-expression)
-    - [Reading a text file and moving it after processing](#Reading-a-text-file-and-moving-it-after-processing)
+    - [Reading a remote text file and moving it after processing](#Reading-a-remote-text-file-and-moving-it-after-processing)
     - [Reading a binary file and moving it after processing](#reading-a-binary-file-and-moving-it-after-processing)
     - [Reading a file line by line and delete it after processing](#Reading-a-file-line-by-line-and-delete-it-after-processing)
     - [Reading a file using a regular expression and deleting it after processing](#reading-a-file-using-a-regular-expression-and-deleting-it-after-processing)
@@ -148,21 +148,25 @@ In this scenario, you are using a regular expression to extract data from the fi
     INFO {io.siddhi.core.stream.output.sink.LogSink} - TailFileRegex : LogStream : Event{timestamp=1564588585214, data=[IBM, 88.0, 150], isExpired=false}
     ```
 
-### Reading a text file and moving it after processing
+### Reading a remote text file and moving it after processing
 
 In the previous scenarios, you tailed a file and each file generated multiple events. In this scenario, you will read the complete file to build a single event. 
 
-1. Download `portfolio.txt` file from [here](todo) and save it in a location of your choice.
+Furthermore, to try out the capability of processing remote files, you will process a remote file here, instead of a file located in the local file system. 
+
+1. Download `portfolio.txt` file from [here](todo) and upload it into an FTP server.
+
+2. Create a directory on the FTP server.  The `portfolio.txt` file will be moved in to this folder after the processing is done.
  
-2. Open a text file and copy-paste following Siddhi application to it.
+3. Open a text file and copy-paste following Siddhi application to it.
     ```
     @App:name('TextFullFileProcessing')
         
     @App:description('Reads a text file and moves it after processing.')
     
     @source(type='file', mode='TEXT.FULL',
-        file.uri='file:/Users/foo/portfolio.txt',
-        action.after.process='MOVE', move.after.process='file:/Users/foo/move.after.process', 
+        file.uri="ftp://<username>:<password>@<ftp_hostname>:<ftp_port>/Users/foo/portfolio.txt",
+        action.after.process='MOVE', move.after.process="ftp://<username>:<password>@<ftp_hostname>:<ftp_port>/Users/foo/move.after.process", 
         @map(type='json', enclosing.element="$.portfolio", @attributes(symbol = "stock.company.symbol", price = "stock.price", volume = "stock.volume")))
     define stream StockStream (symbol string, price float, volume long);
      
@@ -174,19 +178,21 @@ In the previous scenarios, you tailed a file and each file generated multiple ev
     insert into LogStream;
     ```
  
-    Change the `file.uri` parameter above, to the file path to which you downloaded `portfolio.txt` file in step 1. 
+    Change the `file.uri` parameter above, to the remote file path to which you uploaded `portfolio.txt` file in step 1. 
+    In addition to that, change `move.after.process` so that it points to the remote folder you created in step 2.
+    When configuring both of the above parameters, change `<username>`, `<password>`, `<ftp_hostname>` and `<ftp_port>` accordingly.   
  
-3. Save this file as `TextFullFileProcessing.siddhi` in the `<SI_HOME>/wso2/server/deployment/siddhi-files` directory.
+4. Save this file as `TextFullFileProcessing.siddhi` in the `<SI_HOME>/wso2/server/deployment/siddhi-files` directory.
 
     !!!info
-        This Siddhi application reads the file `portfolio.txt` fully to create a `StockStream` event. After that, a simple transformation is done on the `StockStream`. That is the `symbol` attribute from the event is converted into upper case. Finally, the output is logged on the SI console.
+        This Siddhi application reads the remote file `portfolio.txt`, fully, to create a `StockStream` event. After that, a simple transformation is done on the `StockStream`. That is the `symbol` attribute from the event is converted into upper case. Finally, the output is logged on the SI console.
         
     Upon successful deployment, following log appears on the SI console:
     ```
     INFO {org.wso2.carbon.streaming.integrator.core.internal.StreamProcessorService} - Siddhi App TextFullFileProcessing deployed successfully
     ```
  
-4. Now the Siddhi application starts to process the `portfolio.txt` file. 
+5. Now the Siddhi application starts to process the `portfolio.txt` file. 
     
     As a result, the following log appears in the SI console:
     ```
