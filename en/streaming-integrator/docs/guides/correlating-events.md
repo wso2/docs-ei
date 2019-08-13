@@ -253,6 +253,61 @@ insert into PeakTempStream;
 
 ### Combine several trends logically and match events
 
+Logical sequences are used to identify logical relationships between events that occur in a specific order. To understand 
+this consider a scenario where an application is able to notify the state only when the event that notifies that the regulator 
+is switched on is immediately followed by two other events to report the temperature and humidity. To create such a Siddhi 
+application, follow the procedure below.
+
+1. Start creating a new Siddhi application. You can name it `RoomStateApp` For instructions, see [Creating a Siddhi Application](../develop/creating-a-Siddhi-Application.md).
+    `@App:name("RoomStateApp")`
+    
+2. You need three input streams to capture information about the state of the regulator, the temperature, and humidity.
+
+    1. Define the inpt stream that captures the state of the regulator as follows.
+        `define stream RegulatorStream(deviceID long, isOn bool);`
+    
+    2. Define the input stream that captures the temperature as follows.
+        `define stream TempStream(deviceID long, temp double);`
+    
+    3. Define the input stream that captures the humidity as follows.
+        `
+        @sink(type='log', prefix='RoomState]:')
+        define stream StateNotificationStream(temp double, humid double);
+        `
+       The output directed to this stream is published via a sink of the `log` type. For more information about publishing data via sinks, see the [Publishing Data guide](publishing-data.md).
+       
+3. Now let's define an output stream to publish the temperature and humidity.
+    `define stream StateNotificationStream(temp double, humid double)`
+
+4. To apply the logical sequence to derive the output, add the `from` clause as follows.
+    `from every e1=RegulatorStream, e2=TempStream and e3=HumidStream`
+    
+    Here, the unique references `e1`, `e2`, and `e3` are assigned to the first, second, and thid events respectively. `e1` must arrive at the `RegulatorStream` stream, `e2` must arrive at the `TempStream` stream, and `e3` must arrive at the `HumidStream` stream in that order. The output event is generated only after all three of these input events have arrived.
+
+5. To derive values for the attributes of the `StateNotificationStream` output stream, add a `select` clause as follows.
+    `select e2.temp, e3.humid`
+    
+   To generate the output event, the value for the `temp` attribute must be taken from the `e2` (second) event, and the value for the `humid` attribute must be taken from the `e3` (third) event. 
+
+6. To direct the output to the `StateNotificationStream` output stream so that it can be logged, add an `insert into` clause as follows.
+    `insert into StateNotificationStream;`
+    
+The completed Siddhi application is as follows.
+
+```
+@App:name("RoomStateApp")
+
+define stream TempStream(deviceID long, temp double);
+define stream HumidStream(deviceID long, humid double);
+define stream RegulatorStream(deviceID long, isOn bool);
+
+@sink(type='log', prefix='RoomState]:')
+define stream StateNotificationStream(temp double, humid double);
+
+from every e1=RegulatorStream, e2=TempStream and e3=HumidStream
+select e2.temp, e3.humid
+insert into StateNotificationStream;
+```
 
 ##Correlating two streams of data and unify
 
