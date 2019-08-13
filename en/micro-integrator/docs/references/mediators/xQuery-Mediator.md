@@ -3,10 +3,7 @@
 The **XQuery Mediator** performs an XQuery transformation on messages.
 
 !!! info
-
-The XQuery mediator is a [content
-aware](ESB-Mediators_119131045.html#ESBMediators-Content-awareness)
-mediator.
+    The XQuery mediator is a [content aware](ESB-Mediators_119131045.html#ESBMediators-Content-awareness) mediator.
 
 
 ------------------------------------------------------------------------
@@ -53,8 +50,7 @@ follows.
 <td><div class="content-wrapper">
 <p>The key that represents the XQuery transformation. The value you enter depends on the value you selected for the <strong>Key Type</strong> parameter. If you selected <strong>Static</strong> for the <strong>Key Type</strong> parameter, click <strong>Configuration Registry</strong> or <strong>Governance Registry</strong> as relevant to select the key from the resource tree. If you selected <strong>Dynamic</strong> for the <strong>Key Type</strong> parameter, enter the XPatch expression which calculates the dynamic key.</p>
 !!! tip
-<p>You can click <strong>NameSpaces</strong> to add namespaces if you are providing an expression. Then the <strong>Namespace Editor</strong> panel would appear where you can provide any number of namespace prefixes and URLs used in the XPath expression.</p>
-
+    You can click <strong>NameSpaces</strong> to add namespaces if you are providing an expression. Then the <strong>Namespace Editor</strong> panel would appear where you can provide any number of namespace prefixes and URLs used in the XPath expression.
 <p><br />
 </p>
 </div></td>
@@ -64,7 +60,7 @@ follows.
 <td><div class="content-wrapper">
 <p>This parameter specifies the node of the message to which the XQuery transformation should be applied. The node is evaluated via an XPath expression. If no value is specified for this parameter, the XQuery transformation is applied to the first child of the SOAP body.</p>
 !!! tip
-<p>You can click <strong>NameSpaces</strong> to add namespaces if you are providing an expression. Then the <strong>Namespace Editor</strong> panel would appear where you can provide any number of namespace prefixes and URLs used in the XPath expression.</p>
+    You can click <strong>NameSpaces</strong> to add namespaces if you are providing an expression. Then the <strong>Namespace Editor</strong> panel would appear where you can provide any number of namespace prefixes and URLs used in the XPath expression.
 
 </div></td>
 </tr>

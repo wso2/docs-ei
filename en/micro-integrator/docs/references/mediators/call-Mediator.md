@@ -2,7 +2,7 @@
 
 The **Call mediator** is used to send messages out of the ESB profile to
 an
-[endpoint](https://docs.wso2.com/display/EI650/Working+with+Endpoints) .
+[endpoint](../references/endpoints/about-endpoints.md) .
 You can invoke services either in blocking or non-blocking manner.
 
 When you invoke a service in non-blocking mode, the underlying worker
@@ -43,10 +43,7 @@ or Group Endpoint (i.e. Failover/Load balance/Recipient list). Group
 Endpoint is only supported in non-blocking mode.
 
 !!! info
-
-The Call mediator is a
-[content-unaware](ESB-Mediators_119131045.html#ESBMediators-Content-awareness)
-mediator.
+    The Call mediator is a [content-unaware](ESB-Mediators_119131045.html#ESBMediators-Content-awareness) mediator.
 
 
 ------------------------------------------------------------------------
@@ -57,7 +54,7 @@ mediator.
 
 ------------------------------------------------------------------------
 
-### Set up
+### Setup
 
 #### Enabling mutual SSL in the blocking mode
 
@@ -72,7 +69,7 @@ settings to the `         <EI_HOME>/bin/integrator.sh        ` file:
     -Drampart.axiom.parser.pool=false \
 ```
 
-### S yntax
+### Syntax
 
 ``` java
     <call [blocking="true"] />
@@ -118,7 +115,7 @@ message should be delivered.
 </tr>
 <tr class="even">
 <td><strong>Define Inline</strong></td>
-<td>If this is selected, the endpoint to which the message should be sent can be included within the Call mediator configuration. Click <strong>Add</strong> to add the required endpoint. For more information on Adding an endpoint, see <a href="https://docs.wso2.com/display/EI650/Working+with+Endpoints+via+Tooling">Adding an Endpoint</a> .</td>
+<td>If this is selected, the endpoint to which the message should be sent can be included within the Call mediator configuration. Click <strong>Add</strong> to add the required endpoint. For more information on Adding an endpoint, see <a href="../use-cases/tasks/endpoints/working-with-endpoints.md">Adding an Endpoint</a> .</td>
 </tr>
 <tr class="odd">
 <td><strong>Pick From Registry</strong></td>
@@ -129,7 +126,7 @@ message should be delivered.
 <td><div class="content-wrapper">
 <p>If this is selected, the endpoint to which the message should be sent will be derived via an XPath expression. You are required to enter the relevant XPath expression in the text field that appears when this option is selected.</p>
 !!! tip
-<p>You can click <strong>NameSpaces</strong> to add namespaces if you are providing an expression. Then the <strong>Namespace Editor</strong> panel would appear where you can provide any number of namespace prefixes and URLs used in the XPath expression.</p>
+    <p>You can click <strong>NameSpaces</strong> to add namespaces if you are providing an expression. Then the <strong>Namespace Editor</strong> panel would appear where you can provide any number of namespace prefixes and URLs used in the XPath expression.</p>
 
 </div></td>
 </tr>
@@ -307,12 +304,7 @@ the proxy service, or in a sequence as shown in the sample proxy
 configuration below.
 
 !!! info
-
-Set the value of the
-`         BLOCKING_SENDER_PRESERVE_REQ_HEADERS        ` property to
-`         false        ` , to receive the response message headers. If
-you set it to `         true        ` , you cannot get the response
-headers, but the request headers will be preserved.
+    Set the value of the `         BLOCKING_SENDER_PRESERVE_REQ_HEADERS        ` property to `         false        `, to receive the response message headers. If you set it to `         true        `, you cannot get the response headers, but the request headers will be preserved.
 
 
 ``` xml
@@ -345,10 +337,3 @@ headers, but the request headers will be preserved.
        <description/>
     </proxy>
 ```
-
-#### Samples
-
-For another example, see [Sample 500: Call Mediator for Non-Blocking
-Service
-Invocation](https://docs.wso2.com/display/EI6xx/Sample+500%3A+Call+Mediator+for+Non-Blocking+Service+Invocation)
-.

@@ -1,15 +1,12 @@
 # DB Report Mediator
 
 The **DB Report Mediator** is similar to the [DBLookup
-Mediator](_DBLookup_Mediator_) . The difference between the two
+Mediator](_DBLookup_Mediator_). The difference between the two
 mediators is that the DB Report mediator writes information to a
 database using the specified insert SQL statement.
 
 !!! info
-
-The DB Report mediator is a
-[content-aware](ESB-Mediators_119131045.html#ESBMediators-Content-awareness)
-mediator.
+    The DB Report mediator is a [content-aware](ESB-Mediators_119131045.html#ESBMediators-Content-awareness) mediator.
 
 
 ------------------------------------------------------------------------
@@ -119,16 +116,7 @@ The parameters available to configure the DB Report mediator are as
 follows.
 
 !!! info
-
-When specifying the DB connection using a connection pool, other than
-specifying parameter values inline, you can also specify following
-parameter values of the connection information (i.e. Driver, URL, User
-and password) as registry entries. The advantage of specifying a
-parameter value as a registry entry is that the same connection
-information configurations can be used in different environments simply
-by changing the registry entry value. To do this, give the registry path
-within the `            key           ` attribute as shown in the
-example below.
+    When specifying the DB connection using a connection pool, other thanspecifying parameter values inline, you can also specify followingparameter values of the connection information (i.e. Driver, URL, User and password) as registry entries. The advantage of specifying a parameter value as a registry entry is that the same connection information configurations can be used in different environments simply by changing the registry entry value. To do this, give the registry path within the `            key           ` attribute as shown in the example below.
 
 ``` xml
     <dblookup xmlns="http://ws.apache.org/ns/synapse">
