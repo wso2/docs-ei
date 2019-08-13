@@ -4,7 +4,7 @@
 
 Summarizing data refers to obtaining aggregates in an incremental manner for a specified set of time periods.
 
-## Performing clock-time based summarization
+## Performing clock-time-based summarization
 
 Performing clock-time based based summarization involves calculating, storing, and then retrieving aggregations for a 
 selected range of time granularities. This process is carried out in two parts:
@@ -23,11 +23,14 @@ The Sales Analyst needs to retrieve the total number of items sold of each brand
 !!!info
     It is not always required to maintain a physical database for incremental analysis, but it enables you to try out your aggregations with ease.
     
-The followinbg sections explain how to calculate and store time-based aggregations for this scenarios, and then retrieve them.
+The following sections explain how to calculate and store time-based aggregations for this scenarios, and then retrieve them.
 
 
-### Calculate and store clock time-based aggregate values
+### Calculate and store clock-time-based aggregate values
+To calculate and store time-based aggregation values for the scenario explained above, follow the procedure below.
+
 ### Retrieve the stored aggregate values
+To retrieve the time-based aggregations that you already calculated and stored for your example, follow the procedure below.
 
 ## Summarizing data based on built in windowing criterias
  - siddhi-execution-unique
