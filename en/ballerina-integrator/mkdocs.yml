@@ -46,30 +46,25 @@ theme:
 # Navigation
 nav:
     - 'Home': index.md
-    - Introduction:
-      - 'Overview': 'overview/introduction.md'
-      - 'Architecture': 'overview/architecture.md'
-      - 'About this Release': 'overview/about-this-release.md'
-    - Quick Start Guide:
-      - 'Quick Start Guide': 'quick-start-guide/quick-start-guide.md'
-    - Concepts:
-      - 'Concepts': 'concepts/concepts.md'
-    - Setup and Install:
-      - Installation Guide:
-        - 'Install in a VM': 'setup/installation/install_in_vm.md'
-        - 'Install in Docker': 'setup/installation/install_in_docker.md'
-        - 'Install in Kubernetes': 'setup/installation/install_in_kubernetes.md'
-    - Developer Experience:
-      - 'Continuous Development and Deployment' : 'develop/cicd.md'
-    - Use Cases:
-      - Examples:
-        - 'Using REST with a Proxy Service' : 'use-cases/examples/rest-with-a-proxy-service.md'
+    - Getting Started:
+      - 'Introduction': 'getting-started/introduction.md'
+      - 'Quick Start Guide': 'getting-started/quick-start-guide.md'
+    - Learn:
+      - Tutorials:
+        - 'Sending a Simple Message to a Service' : 'learn/integration-tutorials/sending-a-simple-message-to-a-service/README.md'
+        - 'Sending a Simple Message to a Datasource' : 'learn/integration-tutorials/sending-a-simple-message-to-a-datasource/README.md'
+        - 'Routing Requests Based on Message Content' : 'learn/integration-tutorials/routing-requests-based-on-message-content/README.md'
+        - 'Transforming Message Content' : 'learn/integration-tutorials/transforming-message-content/README.md'
+        - 'Exposing Several Services as a Single Service' : 'learn/integration-tutorials/exposing-several-services-as-a-single-service/README.md'
+        - 'Storing and Forwarding Messages' : 'learn/integration-tutorials/storing-and-forwarding-messages/README.md'
+        - 'Using the Gmail Connector' : 'learn/integration-tutorials/using-the-gmail-connector/README.md'
+        - 'Using the Analytics Dashboard' : 'learn/integration-tutorials/using-the-analytics-dashboard/README.md'
       - Guides:
-        - 'Sending a Simple Message to a Service' : 'use-cases/guides/integration/sending-a-simple-message-to-a-service.md'
-      - Tasks:
-        - 'Creating a REST API' : 'use-cases/tasks/rest_api_tasks/creating-an-api.md'
-    - References:
-      - 'Enterprise Integration Patterns' : 'references/enterprise-Integration-Patterns.md'
+        - 'Sending a Simple Message to a Service' : 'learn/guides/integration/sending-a-simple-message-to-a-service.md'
+    - Setup:
+      - 'Deploy on Docker': 'setup/deploy-on-docker.md'
+    - Develop:
+      - 'Using Modules' : 'develop/using-modules.md'
     - '': page-not-found.md
      
 # Extensions
