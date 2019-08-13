@@ -146,7 +146,47 @@ insert into TradeSummaryStream;
 
 ## Summarizing data based on built in windowing criterias
 
-This section explains how to 
+This section explains how to apply Siddhi logic to process a subset of events received to a stream based on time or the number of events. This is achieved via [Siddi Windows](<br/>)
+The window can apply to a batch of events or in a sliding manner. This is further explained in the following sections.
+
+### Performing a time-based summarization in a sliding manner
+
+This subsection demonstrates how to summarize data for a short term based on time and well as how to do a summarization in a sliding manner.
+
+To demonstrate this, consider a factory manager who wants to be able to check the production for the last hour at any given time. Every event represents a production run. For this purpose, a Siddhi application can be created as follows:
+
+1. To capture details about each production run, define an input stream as follows.
+    `define stream SweetProductionStream (name string, amount long, timestamp long);`
+    
+2. To publish the production for the last hour, define the output stream as follows.
+    `
+    @sink(type='log', prefix='Sweet totals over the past minute:')
+    define stream PastHourProductionStream (name string, pastHourTotal long);
+    `
+3. To define how the output is derived, add the `select` statement as follows:
+    `select name, sum(amount) as pastHourTotal`
+    
+    Here, the total is derived by applying the `sum()` function to the `amount` attribute of the `SweetProductionStream` input stream.
+    
+4. To specify that the processing done as defined via the `select` statement applies to a time window, add the `from` clause and include the time window as shown below. This must be added above the `select` clause.
+    `from SweetProductionStream#window.time(1 hour)`
+    
+5. To group by the sweet name, add the `group by` clause as follows.
+    `group by name`
+    
+6. To insert the results into the `PastHourProductionStream` output stream, add the `insert into` clause as follows.
+    `insert into PastHourProductionStream;`
+
+
+### Performing a length-based summarization to a batch of events
+
+This subsection demonstrates how to summarize data for a specific number of events as well as how to do that summarization for batches of events.
+
+To demonstrate this, assume that a factory manager wants to track the maximum production in every 10 production runs.
+
+
+
+
  - siddhi-execution-unique
  
  Other windows will also be explained here.
