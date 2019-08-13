@@ -23,7 +23,7 @@ site_url: https://wso2.com/integration/
 # Repository
 repo_name: wso2/docs-ei
 repo_url: https://github.com/wso2/docs-ei
-edit_uri: https://github.com/wso2/docs-is/edit/master/en/streaming-integrator/docs/
+edit_uri: https://github.com/wso2/docs-ei/edit/master/en/streaming-integrator/docs/
 
 # Copyright
 copyright: WSO2 Enterprise Integrator - Documentation
@@ -95,12 +95,13 @@ nav:
       - 'Performing Reliable Data Integration (Error Streams)': 'examples/reliable-data-integration.md'
       - 'Summarizing and Aggregating Data in Real Time': 'examples/summarizing-and-aggregating-data.md'
     - 'Guides':
-      - 'Consuming Data': 'guides/collecting-events.md'
+      - 'Consuming Data': 'guides/consuming-messages.md'
       - 'Transforming Data': 'guides/transforming-data.md'
       - 'Enriching Data': 'guides/enriching-data.md'
       - 'Cleansing Data': 'guides/cleansing-data.md'
-      - 'Correlating Data': 'guides/complex-Event-processing.md'
-      - 'Summarizing Data': 'guides/incremental-Analysis.md'
+      - 'Correlating Data': 'guides/correlating-events.md'
+      - 'Summarizing Data': 'guides/summarizing-data.md'
+      - 'Publishing Data': 'guides/publishing-data.md'
       - 'Triggering Integration Flows': 'guides/triggering-integration-flows.md'
   - 'Admin Guide':
     - 'Configuring the Streaming Integration Profile': 'admin/configure-si-profile.md'

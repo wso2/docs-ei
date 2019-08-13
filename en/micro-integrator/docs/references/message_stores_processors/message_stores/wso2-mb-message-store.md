@@ -7,22 +7,7 @@ the parameters you need to configure for a WSO2 MB Message Store. Also,
 find details of other configurations that are relevant to the WSO2 MB
 Message Store.
 
-See the following topics for details:
-
--   [WSO2 MB Message Store
-    parameters](#WSO2MBMessageStore-WSO2MBMessageStoreparameters)
--   [Other configurations](#WSO2MBMessageStore-Otherconfigurations)
--   [Related topics](#WSO2MBMessageStore-Relatedtopics)
-
-### WSO2 MB Message Store parameters
-
-!!! tip
-
-Use [this link](_Creating_a_Message_Store_) for instructions on how to
-create a message store artifact for the ESB. Be sure to set the message
-store type as **WSO2 MB Message Store** , and configure the parameters
-as explained below.
-
+## Required parameters
 
 Listed below are the **required** parameters for configuring the WSO2 MB
 Message Store.
@@ -76,7 +61,7 @@ values for the following parameters:
 | Enable Producer Guaranteed Delivery | This flag specifies whether guaranteed delivery is enabled on the producer side. The value is set to `             False            ` , by default. |
 | Failover Message Store              | The message store to which the store mediator should send messages when the original message store fails.                                           |
 
-### Other configurations
+## Special considerations
 
 When you use the Message Broker profile as the message broker and
 configure a [Message Processor](_Message_Processors_) with
@@ -87,14 +72,5 @@ this, add the following line in the
 `         <EI_HOME>/bin/integrator.sh        ` file:
 
 ``` java
-    -DAndesAckWaitTimeOut=3600000 \
+-DAndesAckWaitTimeOut=3600000 \
 ```
-
-### Related topics
-
--   See the tutorial on [Storing and Forwarding
-    Messages](https://docs.wso2.com/display/EI650/Storing+and+Forwarding+Messages)
-    .
--   Read more about this use case: [Store and Forward Using JMS Message
-    Stores](https://docs.wso2.com/display/EI650/Store+and+Forward+Using+JMS+Message+Stores)
-    .

@@ -20,15 +20,13 @@ receives the request that is sent from a client, and the **Call**
 mediator in the API forwards the request to the URL of the backend
 service ( **order-processing-be** ).
 
-![Running a REST API on
-Docker](../assets/img/developer_workflow.png)
+![Running a REST API on Docker](../assets/img/developer_workflow.png)
 
 The **order-processing-be** receives the message, processes the request,
 and returns the response by appending the 'orderID', 'price', and
 'status' to the order details.
 
-![Order processing backend
-service](../assets/img/backend.png)
+![Order processing backend service](../assets/img/backend.png)
 
 ## Running the use case
 
@@ -52,86 +50,61 @@ the Micro Integrator on Docker, on Kubernetes, or on a VM.
 
 ### Step 2: Develop the integration artifacts
 
-We use **WSO2 Integration Studio** to develop the integration artifacts.
-To run this use case, you need two REST API artifacts for the frontend
-service ( **integration** service) and a backend service (
-**order-processing** service) respectively. The synapse artifacts of
-these two services are given below. To run this tutorial, let's [import
-the pre-built
-artifacts](#DevelopingCloudNativeIntegration-import_artifacts) of the
-two services to WSO2 Integration Studio, and proceed from there. If you
-want to build the artifacts from scratch, see [Working with WSO2
-Integration
-Studio](https://docs.wso2.com/display/EI650/Working+with+WSO2+Integration+Studio).
+We use **WSO2 Integration Studio** to develop the integration artifacts. To run this use case, you need two REST API artifacts for the frontend service ( **integration** service) and a backend service (**order-processing** service) respectively. The synapse artifacts of these two services are given below. To run this tutorial, let's import
+the pre-built artifacts of the two services to WSO2 Integration Studio, and proceed from there. If you want to build the artifacts from scratch, see the instruction in [Using WSO2 Integration Studio](../develop/working-with-WSO2-Integration-Studio.md).
 
-**Integration Service**
-
-``` java
-    <?xml version="1.0" encoding="UTF-8"?>
-    <api context="/forward" name="forwardOrderApi" xmlns="http://ws.apache.org/ns/synapse">
-        <resource methods="POST">
-            <inSequence>
-                <call>
-                    <endpoint>
-                        <address uri="http://backed:8290/order"/>
-                    </endpoint>
-                </call>
-                <respond/>
-            </inSequence>
-            <outSequence/>
-            <faultSequence/>
-        </resource>
-    </api>
+``` java tab="Integration Service"
+<?xml version="1.0" encoding="UTF-8"?>
+<api context="/forward" name="forwardOrderApi" xmlns="http://ws.apache.org/ns/synapse">
+    <resource methods="POST">
+        <inSequence>
+            <call>
+                 <endpoint>
+                    <address uri="http://backed:8290/order"/>
+                </endpoint>
+            </call>
+            <respond/>
+        </inSequence>
+        <outSequence/>
+        <faultSequence/>
+    </resource>
+</api>
 ```
 
-**Backend Service**
-
-``` java
-    <?xml version="1.0" encoding="UTF-8"?>
-    <api context="/order" name="OrderProcessApi" xmlns="http://ws.apache.org/ns/synapse">
-        <resource methods="POST">
-            <inSequence>
-                <payloadFactory description="order placement payload" media-type="json">
-                    <format>{
-        "orderDetails":$1,
-        "orderID":"1a23456",
-        "price":25.65,
-        "status":"successful"
-    }</format>
-                    <args>
-                        <arg evaluator="json" expression="$"/>
-                    </args>
-                </payloadFactory>
-                <log description="order result log" level="full"/>
-                <respond description="respond with order placement details"/>
-            </inSequence>
-            <outSequence/>
-            <faultSequence/>
-        </resource>
-    </api>
+``` java tab="Backend Service"
+<?xml version="1.0" encoding="UTF-8"?>
+<api context="/order" name="OrderProcessApi" xmlns="http://ws.apache.org/ns/synapse">
+    <resource methods="POST">
+        <inSequence>
+            <payloadFactory description="order placement payload" media-type="json">
+                <format>{
+                "orderDetails":$1,
+                "orderID":"1a23456",
+                "price":25.65,
+                "status":"successful"
+                }</format>
+                <args>
+                    <arg evaluator="json" expression="$"/>
+                </args>
+            </payloadFactory>
+            <log description="order result log" level="full"/>
+            <respond description="respond with order placement details"/>
+        </inSequence>
+        <outSequence/>
+        <faultSequence/>
+    </resource>
+</api>
 ```
 
-To export the pre-built artifacts:
+To import the pre-built artifacts:
 
-1.  Download the [project files](attachments/119136105/119136889.zip)
-    with the integration artifacts.
-2.  Open WSO2 Integration Studio, and [import the project
-    files](https://docs.wso2.com/display/EI650/Working+with+WSO2+Integration+Studio#WorkingwithWSO2IntegrationStudio-ImportingESBprojects)
-    .
+1.  Download the <a href="../assets/attach/tutorial/MI_Tutorial.zip">project file</a> with the integration artifacts.
+2.  Open WSO2 Integration Studio, and [import the project files](../working-with-WSO2-Integration-Studio/#importing-projects-to-workspace).
+3.  The project files of the frontend (integration service) and the backend (order-processing-be service) are listed in the project explorer:
 
-3.  The project files of the frontend (integration service) and the
-    backend (order-processing-be service) are listed in the project
-    explorer:
+    ![project explorer](../../assets/img/developer-kickstart-proj-explorer.png)
 
-    ![](attachments/119136105/119136110.png){width="300" height="184"}
-
-    The **BackendService** and the **IntegrationService** project
-    folders contain the synapse configurations of the backend service
-    and integration service respectively. The
-    **BackendServiceCompositeApplication** and the
-    **IntegrationServiceCompositeApplication** project folders are the
-    composite application projects that are used for packaging the
-    synapse artifacts.
+    The **BackendService** and the **IntegrationService** project folders contain the synapse configurations of the backend service and integration service respectively. The **BackendServiceCompositeApplication** and the **IntegrationServiceCompositeApplication** project folders are the composite application projects that are used for packaging the synapse artifacts.
 
 4.  Open the REST API of the integration service and verify that the
     endpoint URL correctly points to the backend service:
@@ -216,17 +189,15 @@ To build the integration service (Docker image):
 
 To compose and run the Docker images:
 
-1.  Download the
-    [docker-compose.yml](attachments/119136105/119136934.yml) file
+1.  Download the <a href="../assets/attach/tutorial/docker-compose.yml">docker-compose.yml</a> file
     (shown below) and save it to a known directory. According to the
     contents of this file, the Docker container with the backend service
     will start on port **8291** and the Docker container with the
-    integration service will start on port **8290** .
+    integration service will start on port **8290**.
 
-    ![](images/icons/grey_arrow_down.png){.expand-control-image}
-    docker-compose.yml
-
-    ``` java
+    <details>
+        <summary>docker-compose.yml</summary>    
+        ``` java
             version: "3.7"
             services:
               service:
@@ -239,7 +210,8 @@ To compose and run the Docker images:
                   - 8290
                 ports:
                   - 8291:8290
-    ```
+        ```
+    </details>
 
 2.  Open a terminal, navigate to the directory with the
     docker-compose.yml file, and execute the following command. This
@@ -268,7 +240,7 @@ To **build the backend (Docker image)** :
     |-----------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
     | Name of the application | The name of the composite application with the artifacts created for your EI project. The name of the EI project is displayed by default, but it can be changed if required. |
     | Application version         | Enter **1.0.0** as the version of the composite application.                                                                                                                 |
-    | Name of Docker Image        | Enter **backend\_docker\_image\_k8** as the name of the Docker image.                                                                                                        |
+    | Name of Docker Image        | Enter **backend_docker_image_k8** as the name of the Docker image.                                                                                                        |
     | Docker Image Tag            | Enter **latest** as the tag for the Docker image to be used for reference.                                                                                                   |
     | Export Destination          | The .tar file of the Docker image will be saved to this location.                                                                                                            |
 
@@ -327,7 +299,7 @@ directory paths to the .tar files of your Docker images.
     Verify (by running the '
     `               docker image ls              ` ' command) that the
     docker image has been loaded to Minikube without a tag.  
-    ![](attachments/119136105/119136446.png){width="1000" height="38"}
+    ![load docker image](../assets/img/load-docker-img.png)
 
     Use the image ID and tag your image in Minikube:
 
@@ -345,7 +317,7 @@ directory paths to the .tar files of your Docker images.
     `               docker image ls              ` ' command) that the
     docker image has been loaded to Minikube without a tag .
 
-    ![](attachments/119136105/119136447.png){width="1000" height="55"}  
+    ![tag docker image](../assets/img/tag-docker-img.png) 
 
     Use the image ID and tag your image in Minikube:  
 
@@ -355,10 +327,7 @@ directory paths to the .tar files of your Docker images.
 
 To **compose and run the Docker images** on Minikube:
 
-1.  Download the
-    [k8-deployment.yaml](attachments/119136105/119136409.yaml) file and
-    save it to a know location.
-
+1.  Download the <a href="../assets/attach/tutorial/docker-compose.yml">k8-deployment.yaml</a> file and save it to a know location.
 2.  Navigate to the location of the k8-deployment.yaml file , and
     execute the following command:
 
@@ -391,53 +360,42 @@ To **compose and run the Docker images** on Minikube:
     replicaset.apps/mi-helloworld-deployment-56f58c9676   2         2         2       14m
     ```
 
-The two Docker containers are now running. You can now [test the
-integration flow](#DevelopingCloudNativeIntegration-testing).
+The two Docker containers are now running. You can now [test the integration flow](#step-4-test-the-integration-flow).
 
 #### Using a VM
 
 **Build and Run the backend service**
 
-1.  Install the [binary of WSO2 Micro
-    Integrator](https://docs.wso2.com/display/EI650/Installing+WSO2+Micro+Integrator#InstallingWSO2MicroIntegrator-MicroIntegratoronaVM). The installation location of this server instance will be referred
-    to as \<MI1\_HOME\>.
-2.  Setup the backend server
+1.  Install the [binary of WSO2 Micro Integrator](../../setup/installation/install_in_vm/#using-the-binary-distribution). The installation location of this server instance will be referred to as MI1_HOME.
+2.  Setup the backend server:
     1.  Create a CAR file from the artifacts in your BackendService
         project: Right-click the **BackendServiceCompositeApplication**
         and click **Export Composite Application Project** . Follow the
         steps on the wizard to save the CAR file.
-    2.  Copy the CAR file to the
-        `                <MI1_HOME>/repository/deployment/server/carbonapps/               `
-        directory.
+    2.  Copy the CAR file to the `MI1_HOME/repository/deployment/server/carbonapps/` directory.
     3.  Start the Micro Integrator instance (MI1) with a port offset
         of 11. This changes the effective port of the Micro Integrator
         to **8291** . Note that the following commands are applicable if
-        the product is set up [using the
-        **installer**](https://docs.wso2.com/display/EI650/Installing+WSO2+Micro+Integrator#InstallingWSO2MicroIntegrator-RunningtheMicroIntegrator).
+        the product is set up [using the **installer**](../../setup/installation/install_in_vm/#using-the-installer).
 
-        -   [**On
-            MacOS/Linux/CentOS**](#a823082378094767aea79d0b5dcd67a5)
-        -   [**On Windows**](#c44f97607dde40aebacf783382156201)
+        - On **MacOS/Linux/CentOS**:
 
-        Open a terminal and execute the following command:
+            Open a terminal and execute the following command:
 
-        ``` java
-        sudo wso2mi-1.0.0 -DportOffset=11
-        ```
+            ``` java
+            sudo wso2mi-1.0.0 -DportOffset=11
+            ```
 
-        First, open the
-        ` carbon.xml                        `
-        file (stored in the
-        `                         <MI1_HOME>/conf/                        `
-        directory) and set the port offset to 11:
+        - On **Windows**:
+    
+            First, open the `ei.toml` file (stored in the `MI1_HOME/conf/` directory) and set the port offset to 11:
 
-        ``` java
-                    <Offset>11</Offset>
-        ```
+            ``` toml
+            [port_offset]
+            offset=11
+            ```
 
-        Next, go to **Start Menu -\> Programs -\> WSO2 -\> Micro
-        Integrator.** This will open a terminal and start the relevant
-        profile.
+            Next, go to **Start Menu -> Programs -> WSO2 -> Micro Integrator.** This will open a terminal and start the relevant profile.
 
 **Build and run the integration service**
 
@@ -445,19 +403,16 @@ integration flow](#DevelopingCloudNativeIntegration-testing).
 the endpoint URL of your integration service to the following:
 
 ``` java
-    <endpoint>
-        <address uri="http://localhost:8291/order"/>
-    </endpoint>
+<endpoint>
+    <address uri="http://localhost:8291/order"/>
+</endpoint>
 ```
-    
 
 Let's run the integration service in the Micro Integrator that is
-embedded in WSO2 Integration Studio: Right-click the
-IntegrationServiceCompositeApplication, and click **Export Project
+embedded in WSO2 Integration Studio: Right-click the **IntegrationServiceCompositeApplication**, and click **Export Project
 Artifacts and Run** .
 
-The two services are now running on two instances of WSO2 Micro
-Integrator.
+The two services are now running on two instances of WSO2 Micro Integrator.
 
 ### Step 4: Test the integration flow
 
@@ -470,7 +425,7 @@ Integrator.
 
 -   If the Micro Integrator is running on Kubernetes, open a terminal
     and send the following request using curl. Be sure to replace
-    MINIKUBE\_IP with the IP of your Minikube installation.
+    MINIKUBE\IP with the IP of your Minikube installation.
 
     ``` java
     curl --header "Content-Type: application/json" --request POST   --data '{"store": {"book": [{"author": "Nigel Rees","title": "Sayings of the Century"},{"author": "J. R. R. Tolkien","title": "The Lord of the Rings","isbn": "0-395-19395-8"}]}}' http://MINIKUBE_IP:32100/forward
@@ -489,14 +444,9 @@ The following response will be received:
 
 ### Step 5: Publish to production
 
-You can now publish your integration artifacts into your production
-environment.
+You can now publish your integration artifacts into your production environment. It is recommended to use a [CICD pipeline](../develop/using-cicd-pipeline.md).
 
 ### What's next?
 
--   Use [WSO2 Micro Integrator's CLI
-    Tool](_Using_the_Command-Line_Interface_) to check the integration
-    artifacts deployed in the Micro Integrator instance.
--   Use **Prometheus** and other tools to [monitor your Micro
-    Integrator](https://docs.wso2.com/display/EI650/Monitoring+WSO2+Micro+Integrator)
-    instance.
+-   Use [WSO2 Micro Integrator's CLI Tool](../administer-and-observe/using-the-command-line-interface.md) to check the integration artifacts deployed in the Micro Integrator instance.
+-   Use **Prometheus** to [monitor your Micro Integrator](../administer-and-observe/monitoring_with_prometheus.md) instance.

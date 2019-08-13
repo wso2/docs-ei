@@ -5,15 +5,16 @@ The instructions on this page explain how plain text passwords in configuration 
 Note that you can customize the default secure vault configurations in the product by implementing a new secret repository, call back handler etc.
 
 ## Before you begin
-If you are using Windows, you need to have [Ant](http://ant.apache.org/) installed before using the Cipher Tool.
+
+- If you are using **Windows**, you need to have [Ant](http://ant.apache.org/) installed before using the Cipher Tool.
+- If required, you can enable [single key encryption](../../setup/security/single_key_encryption.md) instead of (the default) asymmetric encryption.
 
 ## Encrypting passwords
 
 1. Open the ei.toml file and add the `[secrets]` configuration section as shown below. Give an alias for the password type followed by the actual password. The following example lists the most common passwords in configuration files.
 
-    ```
+    ```toml
     [secrets]
-    db_password = "password_1"
     admin_password = "password_2"
     keystore_password = "password_3"
     key_password = "password_4"
@@ -28,9 +29,8 @@ If you are using Windows, you need to have [Ant](http://ant.apache.org/) install
     * On Windows: `./ciphertool.bat -Dconfigure`
 
 3. Go back to the ei.toml file and see that the alias passwords are encrypted.
-    ```
+    ```toml
     [secrets]
-    db_password = "encrypted_pass_1"
     admin_password = "encrypted_pass_2"
     keystore_password = "encrypted_pass_3"
     key_password = "encrypted_pass_4"
@@ -39,7 +39,7 @@ If you are using Windows, you need to have [Ant](http://ant.apache.org/) install
 
     See the complete list of [configuration parameters](../../references/ei_config_catalog.md).
 
-## Using encrypted Passwords
+## Using encrypted passwords
 When you have [encrypted passwords](#encrypting-passwords), you can refer them from the relevant configuration files: The ei.toml file or LOG4j properties.
 
 ### Passwords in ei.toml
@@ -48,10 +48,7 @@ You can add the encrypted password to the relevant sections in the ei.toml file 
 
 > Note that you can also replace your passwords by refering values passed by environment variables and system properties. See [Set Passwords using Environment Variables/System Properties](../../setup/security/replace_passwords_env_variables_sys_properties.md)
 
-```
-[database.shared_db]
-password = "$ref{db_password}"
-
+```toml
 [super_admin]
 username="admin"
 password="$ref{admin_password}"

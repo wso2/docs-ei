@@ -1,12 +1,11 @@
 # Message Sampling Processor
 
-The message sampling processor consumes messages in a [message
-store](_Message_Stores_) and sends them to a configured
-[sequence](https://docs.wso2.com/display/EI650/Mediation+Sequences) .
+The message sampling processor consumes messages in a **message
+store** and sends them to a configured **sequence**.
 This process happens in a preconfigured interval. This message processor
 does not ensure reliable messaging.
 
-### Message sampling processor parameters
+## Additional parameters
 
 Following are the additional parameters you can set when adding a
 message sampling processor:
@@ -42,10 +41,3 @@ found at <a href="http://quartz-scheduler.org/documentation/quartz-2.x/configura
 </tr>
 </tbody>
 </table>
-
-### Samples
-
-For samples illustrating how to use the message sampling processor, see:
-
--   [Sample 701: Introduction to Message Sampling
-    Processor](https://docs.wso2.com/display/EI650/Sample+701%3A+Introduction+to+Message+Sampling+Processor)

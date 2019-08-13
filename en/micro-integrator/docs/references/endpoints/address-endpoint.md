@@ -1,47 +1,40 @@
 # Address Endpoint
 
-The **Address endpoint** is an [endpoint](_Working_with_Endpoints_)
-defined by specifying the EPR (Endpoint Reference) and other attributes
-of the configuration.
+The **Address endpoint** is defined by specifying the EPR (Endpoint Reference) and other attributes of the configuration.
 
-------------------------------------------------------------------------
+## Synapse configuration
 
-[XML configuration](#AddressEndpoint-XMLconfigurationXMLConfiguration)
-\| [Parameters](#AddressEndpoint-Parameters)
-
-------------------------------------------------------------------------
-
-### XML configuration
-
-``` html/xml
-    <address uri="endpoint address" [format="soap11|soap12|pox|rest|get"] [optimize="mtom|swa"]
+```
+<address uri="endpoint address" [format="soap11|soap12|pox|rest|get"] [optimize="mtom|swa"]
         [encoding="charset encoding"]
         [statistics="enable|disable"] [trace="enable|disable"]>
     
-        <enableSec [policy="key"]/>?
-        <enableAddressing [version="final|submission"] [separateListener="true|false"]/>?
+    <enableSec [policy="key"]/>?
+    <enableAddressing [version="final|submission"] [separateListener="true|false"]/>?
     
-        <timeout>
-            <duration>timeout duration in milliseconds</duration>
-            <responseAction>discard|fault</responseAction>
-        </timeout>?
+    <timeout>
+        <duration>timeout duration in milliseconds</duration>
+        <responseAction>discard|fault</responseAction>
+    </timeout>?
     
-        <markForSuspension>
-            [<errorCodes>xxx,yyy</errorCodes>]
-            <retriesBeforeSuspension>m</retriesBeforeSuspension>
-            <retryDelay>d</retryDelay>
-        </markForSuspension>
+    <markForSuspension>
+        [<errorCodes>xxx,yyy</errorCodes>]
+        <retriesBeforeSuspension>m</retriesBeforeSuspension>
+        <retryDelay>d</retryDelay>
+    </markForSuspension>
     
-        <suspendOnFailure>
-            [<errorCodes>xxx,yyy</errorCodes>]
-            <initialDuration>n</initialDuration>
-            <progressionFactor>r</progressionFactor>
-            <maximumDuration>l</maximumDuration>
-        </suspendOnFailure>
-    </address>
+    <suspendOnFailure>
+        [<errorCodes>xxx,yyy</errorCodes>]
+        <initialDuration>n</initialDuration>
+        <progressionFactor>r</progressionFactor>
+        <maximumDuration>l</maximumDuration>
+    </suspendOnFailure>
+</address>
 ```
 
-#### Address endpoint attributes
+## Properties 
+
+### Required
 
 | Attribute  | Description                                   |
 |------------|-----------------------------------------------|
@@ -52,128 +45,7 @@ of the configuration.
 | statistics | This enables statistics for the endpoint.     |
 | trace      | This enables trace for the endpoint.          |
 
-#### Other elements
-
-##### QoS for the endpoint
-
-QoS (Quality of Service) aspects such as WS-Security and WS-Addressing
-may be enabled on messages sent to an endpoint using
-`         enableSec        ` and `         enableAddressing        `
-elements. Optionally, the WS-Security policies could be specified using
-the `         policy        ` attribute.
-
-###### QoS configuration
-
-|                                                                                          |                                                                                                                                                                      |
-|------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| enableSec \[policy=" *key* "\]                                                           | This enables WS-Security for the message which is sent to the endpoint. The optional `              policy             ` attribute specifies the WS-Security policy. |
-| enableAddressing \[version="final \| submission"\] \[seperateListener=" true \| false"\] | This enables WS-Addressing for the message which is sent to the endpoint. User can specify to have separate listener with version final or submission.               |
-
-##### Endpoint timeout
-
-The parameters available to configure an endpoint time out are as
-follows.
-
-<table>
-<tbody>
-<tr class="odd">
-<td><p>duration</p></td>
-<td><p>Timeout duration that should elapse before the end point is timed out.</p></td>
-</tr>
-<tr class="even">
-<td><p>responseAction</p></td>
-<td><div class="content-wrapper">
-<p>This parameter is used to specify the action to perform once an endpoint has timed out. The available options are as follows.</p>
-<ul>
-<li><code>                discard               </code> : If this is selected, the responses which arrive after the endpoint has timed out will be discarded.</li>
-<li><code>                fault               </code> : If this is selected, a fault is triggered when the endpoint is timed out.</li>
-</ul>
-!!! tip
-<p>You can specify a value that is 1 millisecond less than the time duration you specify for the endpoint time out for the <code>               synapse.timeout_handler_interval              </code> property in the <code>               &lt;EI_Home&gt;/conf/synapse.properties              </code> file. This would minimise the number of late responses from the backend.</p>
-
-</div></td>
-</tr>
-</tbody>
-</table>
-
-##### Marking an endpoint for suspension
-
-The `         markForSuspension        ` element contains the following
-parameters which affect the suspension of a  endpoint which would be
-timed out after a specified time duration.
-
-<table>
-<colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
-</colgroup>
-<tbody>
-<tr class="odd">
-<td><p>errorCodes</p></td>
-<td><p>This parameter is used to specify one or more error codes which can cause the endpoint to be marked for suspension when they are returned by the endpoint. Multiple error codes can be specified separated by comas. See <a href="https://svn.apache.org/repos/asf/synapse/trunk/java/modules/core/src/main/java/org/apache/synapse/SynapseConstants.java">SynpaseConstant</a> class for a list of available error codes.</p></td>
-</tr>
-<tr class="even">
-<td><p>retriesBeforeSuspension</p></td>
-<td><p>Number of retries before go into suspended state.</p>
-<p>The number of times the endpoint should be allowed to retry sending the response before it is marked for suspension.</p></td>
-</tr>
-<tr class="odd">
-<td><p>retryDelay</p></td>
-<td><p>The delay between each try.</p></td>
-</tr>
-</tbody>
-</table>
-
-###### Suspending the endpoint on failure
-
-Leaf endpoints(Address and WSDL) can be suspended if they are detected
-as failed endpoints. When an endpoint is in in suspended state for a
-specified time duration following a failure, it cannot process any new
-messages. The following formula determines the wait time before the next
-attempt.
-
-`         next suspension time period = Max (Initial Suspension duration * (progression factor*        `
-`                              try count                           `
-`         *), Maximum Duration)        `
-
-All the variables in the above formula are configuration values used to
-calculate the try count. Try count is the number of tries carried out
-after the endpoint is suspended. The increase in the try count causes an
-increase in the next suspension time period. This time period is bound
-to a maximum duration.
-
-The parameters available to configure a suspension of an endpoint due to
-failure are as follows.
-
-<table>
-<thead>
-<tr class="header">
-<th>Parameter Name</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>errorCode</td>
-<td><p>A comma separated error code list which can be returned by the endpoint.</p>
-<p>This parameter is used to specify one or more error codes which can cause the endpoint to be suspended when they are returned from the endpoint. Multiple error codes can be specified, separated by commas.</p></td>
-</tr>
-<tr class="even">
-<td>initialDuration</td>
-<td>The number of milliseconds after which the endpoint should be suspended when it is being suspended for the first time.</td>
-</tr>
-<tr class="odd">
-<td>progressionFactor</td>
-<td>The progression factor for the geometric series. See the above formula for a more detailed description.</td>
-</tr>
-<tr class="even">
-<td>maximumDuration</td>
-<td>The maximum duration (in milliseconds) to suspend the endpoint.</td>
-</tr>
-</tbody>
-</table>
-
-###### Following are the sample address URI definition.
+Following are the sample address URI definition.
 
 <table>
 <thead>
@@ -209,8 +81,6 @@ transport.jms.DestinationType=topic</p></td>
 </tr>
 </tbody>
 </table>
-
-### Parameters
 
 The parameters available to configure the endpoint are as follows.
 
@@ -283,6 +153,122 @@ The parameters available to configure the endpoint are as follows.
 <tr class="even">
 <td><strong>Add Property</strong></td>
 <td>This section is used to add properties to an endpoint.</td>
+</tr>
+</tbody>
+</table>
+
+### Quality of Service
+
+QoS (Quality of Service) aspects such as WS-Security and WS-Addressing
+may be enabled on messages sent to an endpoint using
+`         enableSec        ` and `         enableAddressing        `
+elements. Optionally, the WS-Security policies could be specified using
+the `         policy        ` attribute.
+
+|                                                                                          |                                                                                                                                                                      |
+|------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| enableSec \[policy=" *key* "\]                                                           | This enables WS-Security for the message which is sent to the endpoint. The optional `              policy             ` attribute specifies the WS-Security policy. |
+| enableAddressing \[version="final \| submission"\] \[seperateListener=" true \| false"\] | This enables WS-Addressing for the message which is sent to the endpoint. User can specify to have separate listener with version final or submission.               |
+
+### Timeout 
+
+The parameters available to configure an endpoint time out are as follows.
+
+<table>
+<tbody>
+<tr class="odd">
+<td><p>duration</p></td>
+<td><p>Timeout duration that should elapse before the end point is timed out.</p></td>
+</tr>
+<tr class="even">
+<td><p>responseAction</p></td>
+<td><div class="content-wrapper">
+<p>This parameter is used to specify the action to perform once an endpoint has timed out. The available options are as follows.</p>
+<ul>
+<li><code>                discard               </code> : If this is selected, the responses which arrive after the endpoint has timed out will be discarded.</li>
+<li><code>                fault               </code> : If this is selected, a fault is triggered when the endpoint is timed out.</li>
+</ul>
+!!! tip
+<p>You can specify a value that is 1 millisecond less than the time duration you specify for the endpoint time out for the <code>               synapse.timeout_handler_interval              </code> property in the <code>               &lt;EI_Home&gt;/conf/synapse.properties              </code> file. This would minimise the number of late responses from the backend.</p>
+
+</div></td>
+</tr>
+</tbody>
+</table>
+
+### Suspend Endpoint
+
+The `         markForSuspension        ` element contains the following
+parameters which affect the suspension of a  endpoint which would be
+timed out after a specified time duration.
+
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><p>errorCodes</p></td>
+<td><p>This parameter is used to specify one or more error codes which can cause the endpoint to be marked for suspension when they are returned by the endpoint. Multiple error codes can be specified separated by comas. See <a href="https://svn.apache.org/repos/asf/synapse/trunk/java/modules/core/src/main/java/org/apache/synapse/SynapseConstants.java">SynpaseConstant</a> class for a list of available error codes.</p></td>
+</tr>
+<tr class="even">
+<td><p>retriesBeforeSuspension</p></td>
+<td><p>Number of retries before go into suspended state.</p>
+<p>The number of times the endpoint should be allowed to retry sending the response before it is marked for suspension.</p></td>
+</tr>
+<tr class="odd">
+<td><p>retryDelay</p></td>
+<td><p>The delay between each try.</p></td>
+</tr>
+</tbody>
+</table>
+
+### Suspend Endpoint on Failure
+
+Leaf endpoints(Address and WSDL) can be suspended if they are detected
+as failed endpoints. When an endpoint is in in suspended state for a
+specified time duration following a failure, it cannot process any new
+messages. The following formula determines the wait time before the next
+attempt.
+
+`         next suspension time period = Max (Initial Suspension duration * (progression factor*        `
+`                              try count                           `
+`         *), Maximum Duration)        `
+
+All the variables in the above formula are configuration values used to
+calculate the try count. Try count is the number of tries carried out
+after the endpoint is suspended. The increase in the try count causes an
+increase in the next suspension time period. This time period is bound
+to a maximum duration.
+
+The parameters available to configure a suspension of an endpoint due to
+failure are as follows.
+
+<table>
+<thead>
+<tr class="header">
+<th>Parameter Name</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>errorCode</td>
+<td><p>A comma separated error code list which can be returned by the endpoint.</p>
+<p>This parameter is used to specify one or more error codes which can cause the endpoint to be suspended when they are returned from the endpoint. Multiple error codes can be specified, separated by commas.</p></td>
+</tr>
+<tr class="even">
+<td>initialDuration</td>
+<td>The number of milliseconds after which the endpoint should be suspended when it is being suspended for the first time.</td>
+</tr>
+<tr class="odd">
+<td>progressionFactor</td>
+<td>The progression factor for the geometric series. See the above formula for a more detailed description.</td>
+</tr>
+<tr class="even">
+<td>maximumDuration</td>
+<td>The maximum duration (in milliseconds) to suspend the endpoint.</td>
 </tr>
 </tbody>
 </table>

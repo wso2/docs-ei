@@ -36,7 +36,7 @@ protocol = "value"
                     <code>[server]</code>
                     <span class="badge-required">Required</span>
                     <p>
-                        This toml header groups the parameters that are used for identifying a server node. You need need to update these values when you <a href="https://wso2docs-configurationcatalog-3.netlify.com/setup/deploying_wso2_ei">set up a deployment</a>.
+                        This toml header groups the parameters that are used for identifying a server node. You need to update these values when you <a href="../../setup/deploying_wso2_ei">set up a deployment</a>.
                     </p>
                 </div>
                 <div class="params-wrap">
@@ -51,10 +51,10 @@ protocol = "value"
                                     <span class="badge-required">Required</span>
                                 </p>
                                 <div class="param-default">
-                                    <span class="param-default-value"><code>"localhost"</code></span>
+                                    <span class="param-default-value">Default:<code>"localhost"</code></span>
                                 </div>
                                 <div class="param-possible">
-                                    <span class="param-possible-value"><code></code></span>
+                                    <span class="param-possible-value">Possible:<code></code></span>
                                 </div>
                             </div>
                             <div class="param-description">
@@ -73,10 +73,10 @@ protocol = "value"
                                     <span class="badge-required">Required</span>
                                 </p>
                                 <div class="param-default">
-                                    <span class="param-default-value"><code>"10.100.1.80"</code></span>
+                                    <span class="param-default-value">Default:<code>"10.100.1.80"</code></span>
                                 </div>
                                 <div class="param-possible">
-                                    <span class="param-possible-value"><code></code></span>
+                                    <span class="param-possible-value">Possible:<code></code></span>
                                 </div>
                             </div>
                             <div class="param-description">
@@ -118,10 +118,10 @@ protocol = "value"
                                     <span class="param-type boolean"> boolean </span>
                                 </p>
                                 <div class="param-default">
-                                    <span class="param-default-value"><code>false</code></span>
+                                    <span class="param-default-value">Default:<code>false</code></span>
                                 </div>
                                 <div class="param-possible">
-                                    <span class="param-possible-value"><code></code></span>
+                                    <span class="param-possible-value">Possible:<code></code></span>
                                 </div>
                             </div>
                             <div class="param-description">
@@ -139,10 +139,10 @@ protocol = "value"
                                     <span class="param-type boolean"> boolean </span>
                                 </p>
                                 <div class="param-default">
-                                    <span class="param-default-value"><code>false</code></span>
+                                    <span class="param-default-value">Default:<code>false</code></span>
                                 </div>
                                 <div class="param-possible">
-                                    <span class="param-possible-value"><code></code></span>
+                                    <span class="param-possible-value">Possible:<code></code></span>
                                 </div>
                             </div>
                             <div class="param-description">
@@ -201,10 +201,10 @@ protocol = "value"
                                     <span class="param-type integer"> integer </span>
                                 </p>
                                 <div class="param-default">
-                                    <span class="param-default-value"><code>0</code></span>
+                                    <span class="param-default-value">Default:<code>0</code></span>
                                 </div>
                                 <div class="param-possible">
-                                    <span class="param-possible-value"><code></code></span>
+                                    <span class="param-possible-value">Possible:<code></code></span>
                                 </div>
                             </div>
                             <div class="param-description">
@@ -281,10 +281,10 @@ proxy_context_path = ""</code></pre>
                                     <span class="badge-required">Required</span>
                                 </p>
                                 <div class="param-default">
-                                    <span class="param-default-value"><code>["10.100.5.86:4000","10.100.5.86:4001"]</code></span>
+                                    <span class="param-default-value">Default:<code>["10.100.5.86:4000","10.100.5.86:4001"]</code></span>
                                 </div>
                                 <div class="param-possible">
-                                    <span class="param-possible-value"><code></code></span>
+                                    <span class="param-possible-value">Possible:<code></code></span>
                                 </div>
                             </div>
                             <div class="param-description">
@@ -308,10 +308,10 @@ proxy_context_path = ""</code></pre>
                                     <span class="badge-required">Required</span>
                                 </p>
                                 <div class="param-default">
-                                    <span class="param-default-value"><code>4000</code></span>
+                                    <span class="param-default-value">Default:<code>4000</code></span>
                                 </div>
                                 <div class="param-possible">
-                                    <span class="param-possible-value"><code></code></span>
+                                    <span class="param-possible-value">Possible:<code></code></span>
                                 </div>
                             </div>
                             <div class="param-description">
@@ -336,10 +336,10 @@ proxy_context_path = ""</code></pre>
                                     <span class="badge-required">Required</span>
                                 </p>
                                 <div class="param-default">
-                                    <span class="param-default-value"><code>"10.100.5.86"</code></span>
+                                    <span class="param-default-value">Default:<code>"10.100.5.86"</code></span>
                                 </div>
                                 <div class="param-possible">
-                                    <span class="param-possible-value"><code></code></span>
+                                    <span class="param-possible-value">Possible:<code></code></span>
                                 </div>
                             </div>
                             <div class="param-description">
@@ -357,10 +357,10 @@ proxy_context_path = ""</code></pre>
                                     <span class="param-type string">string</span>
                                 </p>
                                 <div class="param-default">
-                                    <span class="param-default-value"><code>'wka'</code></span>
+                                    <span class="param-default-value">Default:<code>'wka'</code></span>
                                 </div>
                                 <div class="param-possible">
-                                    <span class="param-possible-value"><code></code></span>
+                                    <span class="param-possible-value">Possible:<code></code></span>
                                 </div>
                             </div>
                             <div class="param-description">
@@ -378,10 +378,10 @@ proxy_context_path = ""</code></pre>
                                     <span class="param-type string"> string </span>
                                 </p>
                                 <div class="param-default">
-                                    <span class="param-default-value"><code>"wso2.carbon.domain"</code></span>
+                                    <span class="param-default-value">Default: <code>"wso2.carbon.domain"</code></span>
                                 </div>
                                 <div class="param-possible">
-                                    <span class="param-possible-value"><code></code></span>
+                                    <span class="param-possible-value">Possible: <code></code></span>
                                 </div>
                             </div>
                             <div class="param-description">
@@ -432,10 +432,10 @@ domain = "wso2.carbon.domain"
                                     <span class="badge-required">Required</span>
                                 </p>
                                 <div class="param-default">
-                                    <span class="param-default-value"><code>"H2"</code></span>
+                                    <span class="param-default-value">Default: <code>"H2"</code></span>
                                 </div> </br>
                                 <div class="param-possible">
-                                	<span class="param-possible-value"><code>"MySQL"</code>,<code>"Oracle"</code>,<code>"Postgre"</code>.</span>
+                                	<span class="param-possible-value">Possible: <code>"MySQL"</code>,<code>"Oracle"</code>,<code>"Postgre"</code>.</span>
                                 </div>
                             </div>
                             <div class="param-description">
@@ -458,10 +458,10 @@ domain = "wso2.carbon.domain"
                                     <span class="badge-required">Required</span>
                                 </p>
                                 <div class="param-default">
-                                    <span class="param-default-value"><code>"jdbc:h2:./repository/database/WSO2SHARED_DB;DB_CLOSE_ON_EXIT=FALSE;LOCK_TIMEOUT=60000"</code></span>
+                                    <span class="param-default-value">Default: <code>"jdbc:h2:./repository/database/WSO2SHARED_DB;DB_CLOSE_ON_EXIT=FALSE;LOCK_TIMEOUT=60000"</code></span>
                                 </div>
                                 <div class="param-possible">
-                                    <span class="param-possible-value"><code></code></span>
+                                    <span class="param-possible-value">Possible: <code></code></span>
                                 </div>
                             </div>
                             <div class="param-description">
@@ -480,10 +480,10 @@ domain = "wso2.carbon.domain"
                                     <span class="badge-required">Required</span>
                                 </p>
                                 <div class="param-default">
-                                    <span class="param-default-value"><code>wso2carbon</code></span>
+                                    <span class="param-default-value">Default: <code>wso2carbon</code></span>
                                 </div>
                                 <div class="param-possible">
-                                    <span class="param-possible-value"><code></code></span>
+                                    <span class="param-possible-value">Possible: <code></code></span>
                                 </div>
                             </div>
                             <div class="param-description">
@@ -502,10 +502,10 @@ domain = "wso2.carbon.domain"
                                     <span class="badge-required">Required</span>
                                 </p>
                                 <div class="param-default">
-                                    <span class="param-default-value"><code>wso2carbon</code></span>
+                                    <span class="param-default-value">Default: <code>wso2carbon</code></span>
                                 </div>
                                 <div class="param-possible">
-                                    <span class="param-possible-value"><code></code></span>
+                                    <span class="param-possible-value">Possible: <code></code></span>
                                 </div>
                             </div>
                             <div class="param-description">
@@ -552,10 +552,10 @@ password=wso2carbon</code></pre>
                                     <span class="param-type integer"> integer </span>
                                 </p>
                                 <div class="param-default">
-                                    <span class="param-default-value"><code>"50"</code></span>
+                                    <span class="param-default-value">Default: <code>"50"</code></span>
                                 </div> </br>
                                 <div class="param-possible">
-                                	<span class="param-possible-value"><code>"MySQL"</code></span>
+                                	<span class="param-possible-value">Possible: <code>"MySQL"</code></span>
                                 </div>
                             </div>
                             <div class="param-description">
@@ -573,10 +573,10 @@ password=wso2carbon</code></pre>
                                     <span class="param-type integer"> integer </span>
                                 </p>
                                 <div class="param-default">
-                                    <span class="param-default-value"><code>"6000"</code></span>
+                                    <span class="param-default-value">Default: <code>"6000"</code></span>
                                 </div>
                                 <div class="param-possible">
-                                    <span class="param-possible-value"><code></code></span>
+                                    <span class="param-possible-value">Possible: <code></code></span>
                                 </div>
                             </div>
                             <div class="param-description">
@@ -594,10 +594,10 @@ password=wso2carbon</code></pre>
                                     <span class="param-type boolean"> boolean </span>
                                 </p>
                                 <div class="param-default">
-                                    <span class="param-default-value"><code>true</code></span>
+                                    <span class="param-default-value">Default: <code>true</code></span>
                                 </div>
                                 <div class="param-possible">
-                                    <span class="param-possible-value"><code>true</code>,<code>false</code></span>
+                                    <span class="param-possible-value">Possible: <code>true</code>,<code>false</code></span>
                                 </div>
                             </div>
                             <div class="param-description">
@@ -615,10 +615,10 @@ password=wso2carbon</code></pre>
                                     <span class="param-type integer"> integer </span>
                                 </p>
                                 <div class="param-default">
-                                    <span class="param-default-value"><code>"30000"</code></span>
+                                    <span class="param-default-value">Default: <code>"30000"</code></span>
                                 </div>
                                 <div class="param-possible">
-                                    <span class="param-possible-value"><code></code></span>
+                                    <span class="param-possible-value">Possible: <code></code></span>
                                 </div>
                             </div>
                             <div class="param-description">
@@ -636,10 +636,10 @@ password=wso2carbon</code></pre>
                                     <span class="param-type boolean"> boolean </span>
                                 </p>
                                 <div class="param-default">
-                                    <span class="param-default-value"><code>true</code></span>
+                                    <span class="param-default-value">Default: <code>true</code></span>
                                 </div>
                                 <div class="param-possible">
-                                    <span class="param-possible-value"><code>true</code>,<code>false</code></span>
+                                    <span class="param-possible-value">Possible: <code>true</code>,<code>false</code></span>
                                 </div>
                             </div>
                             <div class="param-description">
@@ -690,10 +690,10 @@ defaultAutoCommit=true
                                     <span class="badge-required">Required</span>
                                 </p>
                                 <div class="param-default">
-                                    <span class="param-default-value"><code>"database"</code></span>
+                                    <span class="param-default-value">Default: <code>"database"</code></span>
                                 </div>
                                 <div class="param-possible">
-                                	<span class="param-possible-value"><code>"database"</code>, <code>"JDBC"</code>, <code>"RW LDAP"</code>, <code>"RO LDAP"</code>, <code>"AD"</code>, <code>"Custom"</code>
+                                	<span class="param-possible-value">Possible: <code>"database"</code>, <code>"JDBC"</code>, <code>"RW LDAP"</code>, <code>"RO LDAP"</code>, <code>"AD"</code>, <code>"Custom"</code>
                                 	</span>
                                 </div>
                             </div>
@@ -725,10 +725,10 @@ defaultAutoCommit=true
                                 </p>
                             </div>
                             <div class="param-default">
-                                    <span class="param-default-value"><code>"jdbc:h2:./repository/database/WSO2SHARED_DB;DB_CLOSE_ON_EXIT=FALSE;LOCK_TIMEOUT=60000"</code></span>
+                                    <span class="param-default-value">Default: <code>"jdbc:h2:./repository/database/WSO2SHARED_DB;DB_CLOSE_ON_EXIT=FALSE;LOCK_TIMEOUT=60000"</code></span>
                             </div>
                             <div class="param-possible">
-                                    <span class="param-possible-value"><code></code></span>
+                                    <span class="param-possible-value">Possible: <code></code></span>
                             </div>
                             <div class="param-description">
                                 <p>Add this parameter if you have changed the default user store type. You need to change the default connection URL by specifying the connection URL of your new user store (LDAP or AD user store).</p>
@@ -772,10 +772,10 @@ defaultAutoCommit=true
                                     <span class="badge-required">Required</span>
                                 </p>
                                 <div class="param-default">
-                                    <span class="param-default-value"><code>wso2carbon</code></span>
+                                    <span class="param-default-value">Default: <code>wso2carbon</code></span>
                                 </div>
                                 <div class="param-possible">
-                                    <span class="param-possible-value"><code></code></span>
+                                    <span class="param-possible-value">Possible: <code></code></span>
                                 </div>
                             </div>
                             <div class="param-description">
@@ -794,10 +794,10 @@ defaultAutoCommit=true
                                 </p>
                             </div>
                             <div class="param-default">
-                                    <span class="param-default-value"><code></code></span>
+                                    <span class="param-default-value">Default: <code></code></span>
                                 </div>
                                 <div class="param-possible">
-                                    <span class="param-possible-value"><code></code></span>
+                                    <span class="param-possible-value">Possible: <code></code></span>
                                 </div>
                             <div class="param-description">
                                 <p>The.....</p>
@@ -847,7 +847,7 @@ base_dn="dc=example,dc=com"
                                     <span class="badge-required">Required</span>
                                 </p>
                                 <div class="param-default">
-                                    <span class="param-default-value"><code>"admin"</code></span>
+                                    <span class="param-default-value">Default: <code>"admin"</code></span>
                                 </div>
                             </div>
                             <div class="param-description">
@@ -866,10 +866,10 @@ base_dn="dc=example,dc=com"
                                     <span class="badge-required">Required</span>
                                 </p>
                                 <div class="param-default">
-                                	<span class="param-default-value"><code>"admin"</code><span>
+                                	<span class="param-default-value">Default: <code>"admin"</code><span>
                                 </div>
                                 <div class="param-possible">
-                                    <span class="param-possible-value"><span>
+                                    <span class="param-possible-value">Possible: <span>
                                 </div>
                             </div>
                             <div class="param-description">
@@ -888,10 +888,10 @@ base_dn="dc=example,dc=com"
                                     <span class="badge-required">Required</span>
                                 </p>
                                 <div class="param-default">
-                                	<span class="param-default-value"><code>true</code></span>
+                                	<span class="param-default-value">Default: <code>true</code></span>
                                 </div>
                                 <div class="param-possible">
-                                    <span class="param-possible-value"><code>true</code> or <code>false</code></span>
+                                    <span class="param-possible-value">Possible: <code>true</code> or <code>false</code></span>
                                 </div>
                             </div>
                             <div class="param-description">
@@ -938,10 +938,10 @@ create_admin_account=true
                                     <span class="param-type string"> string</span>
                                 </p>
                                 <div class="param-default">
-                                    <span class="param-default-value"><code>"wso2carbon.jks"</code></span>
+                                    <span class="param-default-value">Default: <code>"wso2carbon.jks"</code></span>
                                 </div>
                                 <div class="param-possible">
-                                    <span class="param-possible-value"><code></code></span>
+                                    <span class="param-possible-value">Possible: <code></code></span>
                                 </div>
                             </div>
                             <div class="param-description">
@@ -959,10 +959,10 @@ create_admin_account=true
                                     <span class="param-type string"> string </span>
                                 </p>
                                 <div class="param-default">
-                                	<span class="param-default-value">"JKS"<span>
+                                	<span class="param-default-value"> Default: <code>JKS</code><span>
                                 </div>
                                 <div class="param-possible">
-                                	<span class="param-possible-value"><code>"JKS"</code> or <code>"PKCS12"</code></span>
+                                	<span class="param-possible-value">Possible: <code>"JKS"</code> or <code>"PKCS12"</code></span>
                                 </div>
                             </div>
                             <div class="param-description">
@@ -980,10 +980,10 @@ create_admin_account=true
                                     <span class="param-type string"> string </span>
                                 </p>
                                 <div class="param-default">
-                                	<span class="param-default-value"><code>"wso2carbon"</code></span>
+                                	<span class="param-default-value">Default: <code>"wso2carbon"</code></span>
                                 </div>
                                 <div class="param-possible">
-                                    <span class="param-possible-value"><code></code></span>
+                                    <span class="param-possible-value">Possible: <code></code></span>
                                 </div>
                             </div>
                             <div class="param-description">
@@ -1001,10 +1001,10 @@ create_admin_account=true
                                     <span class="param-type string"> string </span>
                                 </p>
                                 <div class="param-default">
-                                	<span class="param-default-value"><code>"wso2carbon"</code></span>
+                                	<span class="param-default-value">Default: <code>"wso2carbon"</code></span>
                                 </div>
                                 <div class="param-possible">
-                                    <span class="param-possible-value"><code></code></span>
+                                    <span class="param-possible-value">Possible: <code></code></span>
                                 </div>
                             </div>
                             <div class="param-description">
@@ -1022,10 +1022,10 @@ create_admin_account=true
                                     <span class="param-type string"> string </span>
                                 </p>
                                 <div class="param-default">
-                                	<span class="param-default-value"><code>"wso2carbon"</code></span>
+                                	<span class="param-default-value">Default: <code>"wso2carbon"</code></span>
                                 </div>
                                 <div class="param-possible">
-                                    <span class="param-possible-value"><code></code></span>
+                                    <span class="param-possible-value">Possible: <code></code></span>
                                 </div>
                             </div>
                             <div class="param-description">
@@ -1074,10 +1074,10 @@ key_password="wso2carbon"
                                     <span class="param-type string"> string</span>
                                 </p>
                                 <div class="param-default">
-                                    <span class="param-default-value"><code>"wso2carbon.jks"</code></span>
+                                    <span class="param-default-value">Default: <code>"wso2carbon.jks"</code></span>
                                 </div>
                                 <div class="param-possible">
-                                    <span class="param-possible-value"><code></code></span>
+                                    <span class="param-possible-value">Possible: <code></code></span>
                                 </div>
                             </div>
                             <div class="param-description">
@@ -1095,10 +1095,10 @@ key_password="wso2carbon"
                                     <span class="param-type string"> string </span>
                                 </p>
                                 <div class="param-default">
-                                    <span class="param-default-value">"JKS"<span>
+                                    <span class="param-default-value">Default: <code>JKS</code><span>
                                 </div>
                                 <div class="param-possible">
-                                    <span class="param-possible-value"><code>"JKS"</code> or <code>"PKCS12"</code></span>
+                                    <span class="param-possible-value">Possible: <code>JKS</code> or <code>PKCS12</code></span>
                                 </div>
                             </div>
                             <div class="param-description">
@@ -1116,10 +1116,10 @@ key_password="wso2carbon"
                                     <span class="param-type string"> string </span>
                                 </p>
                                 <div class="param-default">
-                                    <span class="param-default-value"><code>"wso2carbon"</code></span>
+                                    <span class="param-default-value">Default: <code>"wso2carbon"</code></span>
                                 </div>
                                 <div class="param-possible">
-                                    <span class="param-possible-value"><code></code></span>
+                                    <span class="param-possible-value">Possible: <code></code></span>
                                 </div>
                             </div>
                             <div class="param-description">
@@ -1137,10 +1137,10 @@ key_password="wso2carbon"
                                     <span class="param-type string"> string </span>
                                 </p>
                                 <div class="param-default">
-                                    <span class="param-default-value"><code>"wso2carbon"</code></span>
+                                    <span class="param-default-value">Default: <code>wso2carbon</code></span>
                                 </div>
                                 <div class="param-possible">
-                                    <span class="param-possible-value"><code></code></span>
+                                    <span class="param-possible-value">Possible: <code></code></span>
                                 </div>
                             </div>
                             <div class="param-description">
@@ -1158,10 +1158,10 @@ key_password="wso2carbon"
                                     <span class="param-type string"> string </span>
                                 </p>
                                 <div class="param-default">
-                                    <span class="param-default-value"><code>"wso2carbon"</code></span>
+                                    <span class="param-default-value">Default: <code>wso2carbon</code></span>
                                 </div>
                                 <div class="param-possible">
-                                    <span class="param-possible-value"><code></code></span>
+                                    <span class="param-possible-value">Possible: <code></code></span>
                                 </div>
                             </div>
                             <div class="param-description">
@@ -1409,10 +1409,10 @@ x_request_with_header = "WSO2 CSRF Protection"
                                     <span class="param-type string"> string</span>
                                 </p>
                                 <div class="param-default">
-                                    <span class="param-default-value"><code>"wso2truststore.jks"</code></span>
+                                    <span class="param-default-value">Default: <code>wso2truststore.jks</code></span>
                                 </div>
                                 <div class="param-possible">
-                                    <span class="param-possible-value"><code></code></span>
+                                    <span class="param-possible-value">Possible: <code></code></span>
                                 </div>
                             </div>
                             <div class="param-description">
@@ -1430,10 +1430,10 @@ x_request_with_header = "WSO2 CSRF Protection"
                                     <span class="param-type string"> string </span>
                                 </p>
                                 <div class="param-default">
-                                    <span class="param-default-value">"JKS"<span>
+                                    <span class="param-default-value">Default: <code>JKS</code><span>
                                 </div>
                                 <div class="param-possible">
-                                    <span class="param-possible-value"><code>"JKS"</code> or <code>"PKCS12"</code></span>
+                                    <span class="param-possible-value">Possible: <code>"JKS"</code> or <code>"PKCS12"</code></span>
                                 </div>
                             </div>
                             <div class="param-description">
@@ -1451,10 +1451,10 @@ x_request_with_header = "WSO2 CSRF Protection"
                                     <span class="param-type string"> string </span>
                                 </p>
                                 <div class="param-default">
-                                    <span class="param-default-value"><code>"wso2carbon"</code></span>
+                                    <span class="param-default-value">Default: <code>"wso2carbon"</code></span>
                                 </div>
                                 <div class="param-possible">
-                                    <span class="param-possible-value"><code></code></span>
+                                    <span class="param-possible-value">Possible: <code></code></span>
                                 </div>
                             </div>
                             <div class="param-description">
@@ -1472,10 +1472,10 @@ x_request_with_header = "WSO2 CSRF Protection"
                                     <span class="param-type string"> string </span>
                                 </p>
                                 <div class="param-default">
-                                    <span class="param-default-value"><code>"symmetric.key.value"</code></span>
+                                    <span class="param-default-value">Default: <code>"symmetric.key.value"</code></span>
                                 </div>
                                 <div class="param-possible">
-                                    <span class="param-possible-value"><code></code></span>
+                                    <span class="param-possible-value">Possible: <code></code></span>
                                 </div>
                             </div>
                             <div class="param-description">
@@ -1493,10 +1493,10 @@ x_request_with_header = "WSO2 CSRF Protection"
                                     <span class="param-type string"> string </span>
                                 </p>
                                 <div class="param-default">
-                                    <span class="param-default-value"><code>.....</code></span>
+                                    <span class="param-default-value">Default: <code>.....</code></span>
                                 </div>
                                 <div class="param-possible">
-                                    <span class="param-possible-value"><code></code></span>
+                                    <span class="param-possible-value">Possible: <code></code></span>
                                 </div>
                             </div>
                             <div class="param-description">
@@ -1545,10 +1545,10 @@ algorithm=""
                                     <span class="param-type string"> string</span>
                                 </p>
                                 <div class="param-default">
-                                    <span class="param-default-value"><code>"swagger.json"</code></span>
+                                    <span class="param-default-value">Default: <code>"swagger.json"</code></span>
                                 </div>
                                 <div class="param-possible">
-                                    <span class="param-possible-value"><code></code></span>
+                                    <span class="param-possible-value">Possible: <code></code></span>
                                 </div>
                             </div>
                             <div class="param-description">
@@ -1566,10 +1566,10 @@ algorithm=""
                                     <span class="param-type string"> string </span>
                                 </p>
                                 <div class="param-default">
-                                    <span class="param-default-value"><code>"org.wso2.appcloud.api.swagger.processors.json.SwaggerJsonProcessor"</code><span>
+                                    <span class="param-default-value">Default: <code>"org.wso2.appcloud.api.swagger.processors.json.SwaggerJsonProcessor"</code><span>
                                 </div>
                                 <div class="param-possible">
-                                    <span class="param-possible-value"><code></code></span>
+                                    <span class="param-possible-value">Possible: <code></code></span>
                                 </div>
                             </div>
                             <div class="param-description">
