@@ -14,7 +14,7 @@ Integration is at the heart of any digital transformation. By connecting differe
 <p><a href="https://ei.docs.wso2.com/en/next/micro-integrator/overview/introduction/" class="">Micro Integrator Documentation</a></p>
 </li>
 <li>
-<p><a href="https://ei.docs.wso2.com/en/next/ballerina-integrator/overview/introduction/" class="">Ballerina Integrator Documentation</a></p>
+<p><a href="https://ei.docs.wso2.com/en/next/ballerina-integrator/getting-started/introduction/" class="">Ballerina Integrator Documentation</a></p>
 </li>
 <li>
 <p><a href="https://ei.docs.wso2.com/en/next/streaming-integrator/overview/overview/" class="">Streaming Integrator Documentation</a></p>
