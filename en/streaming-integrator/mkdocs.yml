@@ -54,21 +54,15 @@ nav:
     - 'Quick Start Guide': quick-start-guide/quick-start-guide.md
   - 'Concepts':
       - 'Concepts': 'concepts.md'
-  - 'Installation Guide':
+  - 'Setup and Install':
     - 'Installing the Product':
-      - 'Installing the Streaming Integrator Using Docker': 'setup/installing-si-using-docker.md'
-      - 'Installing the Streaming Integrator Using Docker Compose': 'setup/installing-si-using-docker-compose.md'
-      - 'Installing the Streaming Integrator Using Ansible': 'setup/installing-si-using-ansible.md'
-      - 'Installing the Streaming Integrator Using Kubernetes': 'setup/installing-si-using-kubernetes.md'
-      - 'Installing the Streaming Integrator Using Vagrant': 'setup/installing-si-using-vagrant.md'
-      - 'Installing the Streaming Integrator Using Puppet': 'setup/installing-si-using-puppet.md'
-      - 'Installing the Streaming Integrator Using Helm': 'setup/installing-si-using-helm.md'
-      - 'Installing the Streaming Integrator Using AWS Cloud Formation': 'setup/installing-si-using-aws-cloud-formation.md'
-      - 'Installing the Streaming Integrator Using Apt': 'setup/installing-si-using-apt.md'
-      - 'Installing the Streaming Integrator Using Yum': 'setup/installing-si-using-yum.md'
-      - 'Installing the Streaming Integrator Using Brew': 'setup/installing-si-using-brew.md'
+      - 'Install in a VM': 'installing-si-in-vm.md'
+      - 'Installing in Docker': 'setup/installing-si-using-docker.md'
+      - 'Installing in Kubernetes': 'setup/installing-si-using-kubernetes.md'
     - 'Deploying Streaming Integrator Profile':
-      - 'Deploying the Streaming Integrator Profile as a Minimum HA cluster': 'setup/deploying-si-as-minimum-ha-cluster.md'
+      - 'Single Deployment': 'setup/deploying-si-as-a-single-deployment.md'
+      - 'Minimum HA Cluster': 'setup/deploying-si-as-minimum-ha-cluster.md'
+      - 'Scalable Cluster': 'setup/deploying-si-as-a-scalable-cluster.md'
     - 'Setting up Databases':
       - 'Configuring Datasources': 'configuring-Datasources.md'
       - 'Setting up Physical Databases': 'setting-up-physical-databases.md'

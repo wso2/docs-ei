@@ -102,12 +102,16 @@ maximum threshold which requires him to take action. To do this, you can create 
          within 10 min
     ```
     !!!info
-        Observe the following about the `from`clause:
-        - Here, two events from the same stream are compared to identify whether the production has decreased. The unique reference for the first event is `e1`, and the unique reference for the second event is `e2`.
-        - `e2` arrives after `e1`, but it is not necessarily the event that arrives immediately after `e1`.
+        Observe the following about the `from`clause:<br/>
+        
+        - Here, two events from the same stream are compared to identify whether the production has decreased. The unique reference for the first event is `e1`, and the unique reference for the second event is `e2`.<br/>
+        
+        - `e2` arrives after `e1`, but it is not necessarily the event that arrives immediately after `e1`.<br/>
+        
         - The condition that should be met for `e1` and `e2` to be compared is `e1.productName == e2.productName and e1.productionAmount - e2.productionAmount > 10`. 
         This means, both the events should report the production of the same product, and there should be a decrease in 
-        production that is greater than 10 between the `e1` and `e2` events.
+        production that is greater than 10 between the `e1` and `e2` events.<br/>
+        
         - A `10 min` time window is included to indicate that an output event is generated only if the decrease in production by 10 or more units takes place every ten minutes in a sliding manner. For more information about time windows, see the [Siddhi Query Guide - Calculate and store clock time-based aggregate values](https://ei.docs.wso2.com/en/next/streaming-integrator/guides/summarizing-data/#calculate-and-store-clock-time-based-aggregate-values).
 
 5. To present the required output by deriving values for the attributes of the `ProductionDecreaseAlertStream` output stream you created, add the `select` clause as follows.
@@ -156,10 +160,14 @@ two specified locations withi 15 minutes. For this, you can create a Siddhi appl
 
 4. To specify the pattern to be used to detect the delays, add the `from` clause as follows.
     `from not LocationStream[latitude == 44.0096 and longitude == 81.2735] for 15 minutes or not LocationStream[latitude == 43.0096 and longitude == 81.2737] for 15 minutes`
+    
     !!!info
-        Note the following about this `from` clause:
-        - The `not` keyword is added to indicate that the SI should look for instances where an event has *not* occurred when the given conditions are met.
-        - Two conditions are given. The alert is generated when either of the two conditions has not occured. To indicate this, the `or` keyword is used between the two conditions.
+        Note the following about this `from` clause:<br/>
+        
+        - The `not` keyword is added to indicate that the SI should look for instances where an event has *not* occurred when the given conditions are met.<br/>
+        
+        - Two conditions are given. The alert is generated when either of the two conditions has not occured. To indicate this, the `or` keyword is used between the two conditions.<br/>
+        
         - The given conditions indicate that the taxi should have reached either the `latitude == 44.0096 and longitude == 81.2735` 
         location or the `latitude == 43.0096 and longitude == 81.2737` location. Either of the locations should be 
         reached within 15 minutes. Therefore, each location is specified as a separate condition and a time window of 15 
@@ -223,9 +231,12 @@ immediately after it. Therefore, to identify the peaks, follow the procedure bel
     `from every e1=TempStream, e2=TempStream[e1.temp <= temp]+, e3=TempStream[e2[last].temp > temp]`
     
     !!!info
-        Note the following about the `from` clause:
-        - `every` indicates that all the events in the `TempStream` must be checked for the given conditions.
-        - Here, `e2` is the reference for the event identified as the peak temperature. The `e2=TempStream[e1.temp <= temp]+` condition specifies that to be identified as an event reporting a peak temperature, an event should have one or more preceding events that reports a lower or an equal temperature.
+        Note the following about the `from` clause:<br/>
+        
+        - `every` indicates that all the events in the `TempStream` must be checked for the given conditions.<br/>
+        
+        - Here, `e2` is the reference for the event identified as the peak temperature. The `e2=TempStream[e1.temp <= temp]+` condition specifies that to be identified as an event reporting a peak temperature, an event should have one or more preceding events that reports a lower or an equal temperature.<br/>
+        
         - The `e3=TempStream[e2[last].temp > temp]` condition specifies a condition for `e3` which is the event that follows `e2`. It indicates that `e2`, the peak temperature event should be the last event before `e3`, and that the temperature reported by `e2` must be greater than the temperature reported by `e3`.
         
 
