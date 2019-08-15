@@ -180,7 +180,8 @@ To demonstrate this, consider a factory manager who wants to be able to check th
 5. To specify that the processing done as defined via the `select` statement applies to a time window, add the `from` clause and include the time window as shown below. This must be added above the `select` clause.
     `from ProductionStream#window.time(1 hour)`
     
-   `window.time` indicates that the window added is a time window. The time considered is one hour. For details about other window types supported, see [Siddhi Extentions - Siddhi Execution Unique](https://siddhi-io.github.io/siddhi-execution-unique/api/latest/).
+   `window.time` indicates that the window added is a time window. The time considered is one hour. The window is a sliding window which considers the last hour at any given time (e.g., Once Siddhi calculates the total production during the time 13.00-14.00, next it calculates the total production during the time 13.01-14.01 after the 13.01 minute as elapsed.) For details about other window types supported, see [Siddhi Extentions - Siddhi Execution Unique](https://siddhi-io.github.io/siddhi-execution-unique/api/latest/).
+   ![Sliding Window](../../images/summarizing-data/Sliding-Window.png) )
     
 6. To group by the product name, add the `group by` clause as follows.
     `group by name`
