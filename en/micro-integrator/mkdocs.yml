@@ -129,6 +129,7 @@ nav:
           - 'Creating a Message Processor': 'develop/creating-artifacts/creating-a-message-processor.md'
           - 'Creating an Endpoint': 'develop/creating-artifacts/creating-endpoints.md'
           - 'Creating an Endpoint Template': 'develop/creating-artifacts/creating-endpoint-templates.md'
+          - 'Creating a Sequence Template': 'develop/creating-artifacts/creating-sequence-templates.md'
           - 'Creating a Custom Mediator': 'develop/creating-artifacts/creating-custom-mediators.md'
           - 'Creating a Custom Sequence': 'develop/creating-artifacts/creating-custom-sequences.md'
           - 'Adding Connectors': 'develop/creating-artifacts/adding-connectors.md'
@@ -144,6 +145,7 @@ nav:
           - 'Mediation Debugging': 'develop/debugging-mediation.md'
           - 'Monitoring Proxy Service Access Logs': 'develop/enabling-logs-for-services.md'
           - 'Monitoring REST API Access Logs': 'develop/enabling-logs-for-api.md'
+          - 'Endpoint Tracing' : 'develop/endpoing-trace-logs.md'
         - 'Running on WSO2 Integration Cloud': 'develop/deploying-in-integration-cloud.md'
         - 'Troubleshooting WSO2 Integration Studio' : 'develop/troubleshooting-WSO2-Integration-Studio.md'
       - 'Using a CI/CD Pipeline' : 'develop/using-cicd-pipeline.md'
@@ -160,10 +162,25 @@ nav:
           - 'Changing the Endpoint of Deployed Service' : 'use-cases/examples/proxy_service_examples/changing-the-endpoint-of-deployed-service.md'
           - 'Using Pinned Servers with Proxy Services' : 'use-cases/examples/proxy_service_examples/using-pinned-servers.md'
           - 'Using REST with a Proxy Service' : 'use-cases/examples/proxy_service_examples/rest-with-a-proxy-service.md'
+        - Inbound Endpoints:
+          - 'Using Inbound Endpoints' : 'use-cases/examples/inbound_endpoint_examples/using-inbound-endpoints.md'
         - Registry Artifacts:
           - 'Working with Registry Artifacts' :  'use-cases/examples/registry_examples/working-with-registry-artifacts.md'
           - 'Managing Registry Artifacts' : 'use-cases/examples/registry_examples/managing-the-registry.md'
           - 'Working with Local Registry Entries' : 'use-cases/examples/registry_examples/working-with-local-registry-entries.md'
+        - Synapse Templates:
+          - 'Using Sequence Templates' : 'use-cases/examples/template_examples/using-sequence-templates.md'
+          - 'Using Endpoint Templates' : 'use-cases/examples/template_examples/using-endpoint-templates.md'
+        - Message Stores and Processors:
+          - 'Using a JDBC Message Store' : 'use-cases/examples/message_store_processor_examples/using-jdbc-message-store.md'
+          - 'Using Message Stores - Special Considerations' : 'use-cases/examples/message_store_processor_examples/message-store-considerations.md'
+        - Endpoints:
+          - 'Using Failover Endpoints' : 'use-cases/examples/endpoint_examples/using-failover-endpoints.md'
+          - 'Using HTTP Endpoints' : 'use-cases/examples/endpoint_examples/using-http-endpoints.md'
+          - 'Using a WebSocket Endpoint' : 'use-cases/examples/endpoint_examples/using-websocket-endpoints.md'
+          - 'Using Indirect Endpoints' : 'use-cases/examples/endpoint_examples/using-indirect-endpoints.md'
+          - 'Using Resolving Endpoints' : 'use-cases/examples/endpoint_examples/using-resolving-endpoints.md'
+          - 'Endpoint Error Handling' : 'use-cases/examples/endpoint_examples/endpoint-error-handling.md'
         - JMS Examples:
           - 'ESB as a JMS Consumer' : 'use-cases/examples/jms_examples/esb-as-a-jms-consumer.md'
           - 'ESB as a JMS Producer' : 'use-cases/examples/jms_examples/esb-as-a-jms-producer.md'
@@ -262,7 +279,6 @@ nav:
           - 'XQuery Mediator' : 'references/mediators/xQuery-Mediator.md'
           - 'XSLT Mediator' : 'references/mediators/xSLT-Mediator.md'
         - Inbound Endpoints:
-          - 'About Inbound Endpoints' : 'references/inbound_endpoints/about-inbound-endpoints.md'
           - Listening Endpoints:
             - 'HTTP Inbound Protocol' : 'references/inbound_endpoints/listening_inbound_endpoint/http-inbound-protocol.md'
             - 'HTTPS Inbound Protocol' : 'references/inbound_endpoints/listening_inbound_endpoint/https-inbound-protocol.md'
@@ -278,45 +294,6 @@ nav:
             - 'MQTT Inbound Protocol' : 'references/inbound_endpoints/event_based_inbound_endpoint/mqtt-inbound-protocol.md'
             - 'RabbitMQ Inbound Protocol' : 'references/inbound_endpoints/event_based_inbound_endpoint/rabbitmq-inbound-protocol.md'
           - 'Custom Inbound Endpoints' : 'references/inbound_endpoints/custom-Inbound-endpoint.md'
-        - Message Stores & Processors:
-          - 'About Message Stores and Processors' : 'references/message_stores_processors/about-message-stores-processors.md'
-          - Message Stores:
-            - 'In-Memory Message Store' : 'references/message_stores_processors/message_stores/in-memory-message-store.md'
-            - 'JMS Message Store' : 'references/message_stores_processors/message_stores/jms-message-store.md'
-            - 'RabbitMQ Message Store' : 'references/message_stores_processors/message_stores/rabbitmq-message-store.md'
-            - 'JDBC Message Store' : 'references/message_stores_processors/message_stores/jdbc-message-store.md'
-            - 'Resequencer Message Store' : 'references/message_stores_processors/message_stores/resequence-message-store.md'
-            - 'WSO2 MB Message Store' : 'references/message_stores_processors/message_stores/wso2-mb-message-store.md'
-            - 'Custom Message Store' : 'references/message_stores_processors/message_stores/custom-Message-Store.md'
-          - Message Processors:
-            - 'Custom Message Processor' : 'references/message_stores_processors/message_processors/custom-message-processor.md'
-            - 'Message Sampling Processor' : 'references/message_stores_processors/message_processors/message-sampling-processor.md'
-            - 'Scheduled Failover Message Forwarding Processor' : 'references/message_stores_processors/message_processors/scheduled-failover-message-forwarding-processor.md'
-            - 'Scheduled Message Forwarding Processor' : 'references/message_stores_processors/message_processors/scheduled-message-forwarding-processor.md'
-            - 'Message Processing in Worker-Manager Cluster' : 'references/message_stores_processors/message_processors/message-processing-in-worker-manager-cluster.md'
-            - 'Handling Poison Messages' : 'references/message_stores_processors/message_processors/handling-poison-messages.md'
-        - Endpoints:
-          - 'About Endpoints' : 'references/endpoints/about-endpoints.md'
-          - 'Endpoint Error Handling' : 'references/endpoints/endpoint-error-handling.md'
-          - 'Endpoint Trace Logs': 'references/endpoints/endpoing-trace-logs.md'
-          - Endpoints:
-            - 'Address Endpoint' : 'references/endpoints/address-endpoint.md'
-            - 'Dynamic Load-Balance Endpoint' : 'references/endpoints/dynamic-load-balance-endpoint.md'
-            - 'Failover Endpoint' : 'references/endpoints/failover-endpoint.md'
-            - 'HTTP Endpoint' : 'references/endpoints/http-endpoint.md'
-            - 'WSDL Endpoint' : 'references/endpoints/wsdl-endpoint.md'
-            - 'Load Balance Group Endpoint' : 'references/endpoints/load-balance-group.md'
-            - 'Indirect and Resolving Endpoint' : 'references/endpoints/indirect-and-resolving-endpoints.md'
-            - 'Default Endpoint' : 'references/endpoints/default-endpoint.md'
-            - 'Template Endpoint' : 'references/endpoints/template-endpoint.md'
-            - 'Recipient List Endpoint' : 'references/endpoints/recipient-list-endpoint.md'
-            - 'Websocket Endpoint' : 'references/endpoints/websocket-endpoint.md'
-        - Connectors:
-          - 'About Connectors' : 'references/connectors/about-esb-connectors.md'
-          - Connectors:
-            - 'SAP Connector' : 'references/connectors/sap-connector.md'
-        - 'Synapse Templates' : 'references/templates/synapse_templates.md'
-      - 'Synapse Properties' : 'references/property_catalog.md'
       - 'Synapse Handlers' : 'references/synapse_handlers/synapse-handlers.md'
       - 'JSON Messages' : 'references/json_messages/working-with-json-message-payloads.md'
       - Transports:

@@ -9,10 +9,12 @@ endpoints without restarting the server.
 Configuration parameters for a HTTPS inbound endpoint are XML fragments
 that represent various properties.
 
+## Synapse configuration
+
 Following is a sample HTTPS inbound endpoint configuration:
 
-``` html/xml
-    <inboundEndpoint name="HttpListenerEP" protocol="https" suspend="false" sequence="TestIn" onError="fault" >
+```
+<inboundEndpoint name="HttpListenerEP" protocol="https" suspend="false" sequence="TestIn" onError="fault" >
         <p:parameters xmlns:p="http://ws.apache.org/ns/synapse">
             <p:parameter  name="inbound.http.port">8081</p:parameter>
             <p:parameter name="keystore">
@@ -40,10 +42,10 @@ Following is a sample HTTPS inbound endpoint configuration:
                 </CertificateRevocationVerifier>
              </p:parameter>
          </p:parameters>
-    </inboundEndpoint>
+</inboundEndpoint>
 ```
 
-### HTTPS inbound endpoint parameters
+## HTTPS inbound endpoint parameters
 
 <table>
 <colgroup>
@@ -100,23 +102,13 @@ If the <code>              enable             </code> attribute of this paramete
 </tbody>
 </table>
 
-!!! info
+!!! Note
+    -   A sequence should be designed with a call/respond or send/receive sequence. It is not recommended to use a sequence that has in and out mediators.
+    -   If a send mediator is used within the inbound endpoint sequence, specify a receiving sequence . If you do not specify a receiving sequence, the response will dispatch to the `           main          ` sequence.
 
-Note
+## Worker pool configuration parameters
 
--   A sequence should be designed with a call/respond or send/receive
-    sequence. It is not recommended to use a sequence that has in and
-    out mediators.
--   If a send mediator is used within the inbound endpoint sequence, s
-    pecify a receiving sequence . If you do not specify a receiving
-    sequence, the response will dispatch to the
-    `           main          ` sequence.
-
-
-#### Worker pool configuration parameters
-
-By default inbound endpoints share the PassThrough transport worker pool
-to handle incoming requests. If you need a separate worker pool for the
+By default inbound endpoints share the PassThrough transport worker pool to handle incoming requests. If you need a separate worker pool for the
 inbound endpoint, you need to configure the following parameters:
 
 | Parameter                                                         | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                               | Default Value                           |
@@ -128,10 +120,3 @@ inbound endpoint, you need to configure the following parameters:
 | `              inbound.thread.group.id             `              | Unique Identifier of the thread group.                                                                                                                                                                                                                                                                                                                                                                                                                                    | PassThrough inbound worker thread group |
 | `              inbound.thread.id             `                    | Unique Identifier of the thread.                                                                                                                                                                                                                                                                                                                                                                                                                                          | PassThroughInboundWorkerThread          |
 | `             dispatch.filter.pattern            `                | The regular expression that defines the proxy services and API's to expose via the inbound endpoint. Provide the `             .*            ` expression to expose all proxy services and API's or provide an expression similar to `             ^(/foo|/bar|/services/MyProxy)$            ` to define a set of services to expose via the inbound endpoint. If you do not provide an expression only the defined sequence of the inbound endpoint will be accessible. | blank                                   |
-
-### Samples
-
-For a sample that demonstrates how an HTTPS inbound endpoint can act as
-a dynamic https listener, see [Sample 903: HTTPS Inbound Endpoint
-Sample](https://docs.wso2.com/display/EI650/Sample+903%3A+HTTPS+Inbound+Endpoint+Sample)
-.

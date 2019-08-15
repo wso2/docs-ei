@@ -6,23 +6,17 @@ failures. The CXF WS­-RM inbound endpoint allows a client (RM Source) to
 communicate with the ESB profile of WSO2 EI (RM Destination) with a
 guarantee that a message sent will be delivered.
 
-!!! info
+!!! Note
+    To configure the CXF WS-RM Inbound endpoint, you need to install the **CXF WS Reliable Messaging** feature.
 
-Note
 
-To configure the CXF WS-RM Inbound endpoint, you need to install the
-**CXF WS Reliable Messaging** feature. For information on how to install
-this feature, see [Installing
-Features](https://docs.wso2.com/display/EI500/Installing+Features) .
-After you install this feature, you can configure the CXF WS-RM inbound
-endpoint as a custom inbound endpoint.
-
+## Synapse configuration
 
 Following is a sample sequence that sends messages that are from a RM
 source to a non RM backend:
 
-``` xml
-    <sequence xmlns="http://ws.apache.org/ns/synapse" name="RMIn" onError="fault">
+``` 
+<sequence xmlns="http://ws.apache.org/ns/synapse" name="RMIn" onError="fault">
        <in>
           <property name="PRESERVE_WS_ADDRESSING" value="true"/>
           <header xmlns:wsrm="http://schemas.xmlsoap.org/ws/2005/02/rm" name="wsrm:Sequence" action="remove"/>
@@ -40,22 +34,20 @@ source to a non RM backend:
           </log>
           <send/>
        </out>
-    </sequence>
+</sequence>
 ```
 
-Since the WS-ReliableMessaging protocol uses specific SOAP headers,
-those SOAP headers should be removed from the sequence since in most
+Since the WS-ReliableMessaging protocol uses specific SOAP headers, those SOAP headers should be removed from the sequence since in most
 cases the backend service would fail to understand them.
 
-The CXF bus should be configured as required in order to control the
-manner in which WS-RM communication takes place. This can be done
-through a CXF spring configuration. Create a directory named
-`         cxf        ` within `         <EI_HOME>/conf        ` and save
-the CXF spring configuration file in the `         <EI_HOME>        `
-`         /conf/        ` `         cxf        ` directory .
+## CXF Bus configuration
 
-``` xml
-    <beans
+The CXF bus should be configured as required in order to control the manner in which WS-RM communication takes place. This can be done
+through a CXF spring configuration. Create a directory named `         cxf        ` within `<EI_HOME>/conf` and save
+the CXF spring configuration file in the `<EI_HOME>/conf/cxf` directory .
+
+```
+<beans
         xmlns="http://www.springframework.org/schema/beans"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xmlns:wsa="http://cxf.apache.org/ws/addressing"
@@ -87,14 +79,13 @@ the CXF spring configuration file in the `         <EI_HOME>        `
                 </wsrm-mgr:reliableMessaging>
             </cxf:features>
         </cxf:bus>
-    </beans>
+</beans>
 ```
 
-If you need to secure the endpoint, you should change the CXF spring
-configuration as follows:
+If you need to secure the endpoint, you should change the CXF spring configuration as follows:
 
-``` xml
-    <beans
+```
+<beans
         xmlns="http://www.springframework.org/schema/beans"
         xmlns:sec="http://cxf.apache.org/configuration/security"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -156,33 +147,12 @@ configuration as follows:
                 </httpj:tlsServerParameters>
             </httpj:engine>
         </httpj:engine-factory>
-    </beans>
+</beans>
 ```
 
-Sample CXF WS-RM Inbound
+## Parameter
 
-``` xml
-    <inboundEndpoint xmlns="http://ws.apache.org/ns/synapse"
-                     name="RM_INBOUND"
-                     sequence="RMIn"
-                     onError="fault"
-                     class="org.wso2.carbon.inbound.endpoint.ext.wsrm.InboundRMHttpListener"
-                     suspend="false">
-       <parameters>
-          <parameter name="inbound.cxf.rm.port">20940</parameter>
-          <parameter name="inbound.cxf.rm.config-file">conf/cxf/server.xml</parameter>
-          <parameter name="coordination">true</parameter>
-          <parameter name="inbound.cxf.rm.host">127.0.0.1</parameter>
-          <parameter name="inbound.behavior">listening</parameter>
-          <parameter name="sequential">true</parameter>
-       </parameters>
-    </inboundEndpoint>
-```
-
-  
-
-The CXF WS-RM Inbound endpoint can be configured by specifying the
-following parameters:
+The CXF WS-RM Inbound endpoint can be configured by specifying the following parameters:
 
 -   `           Sequence          ` - The sequence that the message will
     be injected to.
@@ -221,3 +191,23 @@ following parameters:
 -   `           enableSSL          ` - Set to
     `           true          ` if SSL is enabled in the CXF Spring
     configuration file.
+
+## Sample CXF WS-RM Inbound
+
+```
+<inboundEndpoint xmlns="http://ws.apache.org/ns/synapse"
+                     name="RM_INBOUND"
+                     sequence="RMIn"
+                     onError="fault"
+                     class="org.wso2.carbon.inbound.endpoint.ext.wsrm.InboundRMHttpListener"
+                     suspend="false">
+       <parameters>
+          <parameter name="inbound.cxf.rm.port">20940</parameter>
+          <parameter name="inbound.cxf.rm.config-file">conf/cxf/server.xml</parameter>
+          <parameter name="coordination">true</parameter>
+          <parameter name="inbound.cxf.rm.host">127.0.0.1</parameter>
+          <parameter name="inbound.behavior">listening</parameter>
+          <parameter name="sequential">true</parameter>
+       </parameters>
+</inboundEndpoint>
+```

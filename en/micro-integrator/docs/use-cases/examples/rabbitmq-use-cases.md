@@ -2,46 +2,33 @@
 
 The following are some of the main RabbitMQ use cases of WSO2 EI.
 
--   [WSO2 EI as a RabbitMQ Message
-    Consumer](#RabbitMQUseCases-WSO2EIasaRabbitMQMessageConsumer)
-    -   [Prerequisites](#RabbitMQUseCases-Prerequisites)
-    -   [Configure the sample](#RabbitMQUseCases-Configurethesample)
-    -   [Execute the sample
-        client](#RabbitMQUseCases-Executethesampleclient)
-    -   [Analyzing the output](#RabbitMQUseCases-Analyzingtheoutput)
--   [WSO2 EI as a RabbitMQ Message
-    Producer](#RabbitMQUseCases-WSO2EIasaRabbitMQMessageProducer)
-    -   [Prerequisites](#RabbitMQUseCases-Prerequisites.1)
-    -   [Configure the sample](#RabbitMQUseCases-Configurethesample.1)
-    -   [Execute the sample
-        client](#RabbitMQUseCases-Executethesampleclient.1)
-    -   [Analyzing the output](#RabbitMQUseCases-Analyzingtheoutput.1)
--   [Remote Procedure Call(RPC) with
-    RabbitMQ](#RabbitMQUseCases-RemoteProcedureCall(RPC)withRabbitMQ)
+## Using the RabbitMQ Message Store
 
-### WSO2 EI as a RabbitMQ Message Consumer
+Following is a sample message store configuration where
+`         fail_if_no_peer_cert        ` is set to
+`         false        ` :
+
+``` java
+    {ssl_options, [{cacertfile,"/path/to/testca/cacert.pem"},
+                   {certfile,"/path/to/server/cert.pem"},
+                   {keyfile,"/path/to/server/key.pem"},
+                   {verify,verify_peer},
+                   {fail_if_no_peer_cert,false}]}  
+```
+
+## WSO2 EI as a RabbitMQ Message Consumer
 
 This section describes how WSO2 Enterprise Integrator(WSO2 EI) can be
 configured as a RabbitMQ message consumer.
-
-![](attachments/119130373/119130376.png)
 
 The following is a sample scenario that demonstrates how WSO2 EI is
 configured to listen to a rabbitMQ queue, consume messages, and send the
 messages to an HTTP back­-end service.
 
-!!! info
+!!! Info
+    To create proxy services, sequences, endpoints, message stores and message processors in WSO2 EI, you can either use the management console or copy the XML configuration to the source view. To access the source view on the WSO2 EI management console, go to **Manage** -\> **Service Bus** -\> **Source View**.
 
-Note
-
-To create proxy services, sequences, endpoints, message stores and
-message processors in WSO2 EI, you can either use the management console
-or copy the XML configuration to the source view. To access the source
-view on the WSO2 EI management console, go to **Manage** -\> **Service
-Bus** -\> **Source View** .
-
-
-#### Prerequisites
+### Prerequisites
 
 -   Configure the RabbitMQ AMQP transport. For information on how to
     configure the transport, see [Configuring the RabbitMQ AMQP
@@ -49,7 +36,7 @@ Bus** -\> **Source View** .
     .
 -   Start the WSO2 EI server.
 
-#### Configure the sample
+### Configure the sample
 
 1.  Create a custom proxy service with the following configuration. For
     more information on creating proxy services, see [Working with Proxy

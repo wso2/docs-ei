@@ -1,48 +1,8 @@
-# Failover Endpoints
+# Using Failover Endpoints
 
-With leaf endpoints, if an error occurs during a message transmission
-process, that message will be lost. The failed message will not be
-retried again. These errors occur very rarely, but still message
-failures can occur. With some applications these message losses are
-acceptable, but if even rare message failures are not acceptable, use
-the failover endpoint.
+See the examples given below.
 
-A **Failover Group** is a list of leaf endpoints grouped together for
-the purpose of passing an incoming message from one endpoint to another
-if a failover occurs. The first endpoint in failover group is considered
-the primary endpoint. An incoming message is first directed to the
-primary endpoint, and all other endpoints in the group serve as
-back-ups.
-
-If the primary endpoint fails, the next active endpoint is selected as
-the primary endpoint, and the failed endpoint is marked as
-inactive. Thus, failover group ensures that a message is delivered as
-long as there is at least one active endpoint among the listed
-endpoints. The ESB switches back to the primary endpoint as soon as it
-becomes available. This behaviour is known as dynamic failover.
-
-!!! Info
-    An endpoint failure occurs when an endpoint is unable to invoke a service. An endpoint, which responds with an error is not considered a failed endpoint.
-
-## Synapse configuration
-
-```
-<failover>
-    <endpoint .../>
-</failover>
-```
-
-## Example 1: Handling errors in failover endpoints
-
-An endpoint can be in one of the following states: `Active` , `Timeout` or
-`         Suspended        ` . You can handle errors and configure the
-looping between the failover child endpoints via the
-`         <timeout>        ` , `         <suspendOnFailure>        ` and
-`         <markForSuspension>        ` properties based on these states.
-For more information about these states and properties, see [Endpoint
-Error Handling](_Endpoint_Error_Handling_) .
-
-## Example 2: Failover with one address endpoint
+## Example 1: Failover with one address endpoint
 
 When message failure is not tolerable even though there is only one
 service endpoint, then failovers are possible with a single endpoint as
@@ -100,7 +60,7 @@ happen once in a while, it is okay to retry again. If they happen
 frequently and continuously, it means that it requires immediate
 attention to get it back to normal state.
 
-## Example 3: Failover with multiple address endpoints
+## Example 2: Failover with multiple address endpoints
 
 When a message reaches a failover endpoint with multiple address
 endpoints, it will go through its list of endpoints to pick the first

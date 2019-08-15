@@ -59,8 +59,7 @@ Therefore, Error code = 101504 + 3 = 101507
 ## Endpoint Error Codes
 
 This section describes the error codes for endpoint failures. For more
-information on handling endpoint errors, see [Endpoint Error
-Handling](https://docs.wso2.com/display/EI650/Endpoint+Error+Handling) .
+information on handling endpoint errors, see [Endpoint Error Handling](endpoints/endpoint-error-handling.md) .
 
 ### General errors
 
@@ -72,7 +71,7 @@ Handling](https://docs.wso2.com/display/EI650/Endpoint+Error+Handling) .
 | 303001         | Address Endpoint is not ready to connect      |
 | 303002         | WSDL Address is not ready to connect          |
 
-**Failure on endpoint in the session**
+### Failure on endpoint in the session
 
 | **Error Code** | **Detail**                                                    |
 |----------------|---------------------------------------------------------------|

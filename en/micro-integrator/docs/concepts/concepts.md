@@ -1,31 +1,11 @@
 # Key Concepts
 
-Following are definitions of some of the concepts and terminology
-associated with each of the profiles of WSO2 EI .
-
-#### Load balancing
-
-The load balancer automatically distributes incoming traffic across
-multiple WSO2 product instances. It enables you to achieve greater
-levels of fault tolerance in your cluster and provides the required
-balancing of load needed to distribute traffic. For more information,
-see [Clustering the ESB
-Profile](https://docs.wso2.com/display/EI611/Clustering+the+ESB+Profile)
-.
-
-![load balancing](attachments/119129502/119129509.png "load balancing")
-
-------------------------------------------------------------------------
-
 Following are the key concepts with respect to the key
 constructs/artifacts of WSO2 EI.
 
-![constructs of WSO2
-EI](attachments/119129502/119129513.png "constructs of WSO2 EI")
+## Message entry points
 
-#### Message entry points
-
-##### Proxy services
+### Proxy services
 
 Proxy services are virtual services that receive messages and optionally
 process them before forwarding them to a service at a given
@@ -36,11 +16,7 @@ service. Any available transport can be used to receive and send
 messages from the proxy services. A proxy service is externally visible
 and can be accessed using a URL similar to a normal web service address.
 
-For more information, see [Working with Proxy
-Services](https://docs.wso2.com/display/EI650/Working+with+Proxy+Services)
-.
-
-##### REST APIs
+### REST APIs
 
 A REST API in Enterprise Integrator is analogous to a web application
 deployed in the Enterprise Integrator runtime. Each API is anchored at a
@@ -63,22 +39,57 @@ the requesting client.
 REST APIs allow you to send messages directly into the Enterprise
 Integrator using REST.
 
-For more information, see [Working with
-APIs](https://docs.wso2.com/display/EI650/Working+with+APIs) .
+### Inbound endpoints
 
-##### Inbound endpoints
+An inbound endpoint is a message entry point that can inject messages
+directly from the transport layer to the mediation layer, without going
+through the Axis2 engine. The following diagram illustrates the inbound
+endpoint architecture.
 
-An inbound endpoint is a message source that can be configured
-dynamically. In the Enterprise Integrator, when it comes to the existing
-Axis2 based transports, only the HTTP transport works in
-a multi-tenant mode. Inbound endpoints support all transports to work in
-a multi-tenant mode.
+Out of the existing transports only the HTTP transport supports
+multi-tenancy, this is one limitation that is overcome with the
+introduction of the inbound architecture. Another limitation when it
+comes to conventional Axis2 based transports is that the transports do
+not support dynamic configurations. With the ESB profile inbound
+endpoints, it is possible to create inbound messaging channels
+dynamically, and there is also built-in cluster coordination as well as
+multi-tenancy support for all transports.
 
-For more information, see [Working with Inbound
-Endpoints](https://docs.wso2.com/display/EI650/Working+with+Inbound+Endpoints)
-.
+For detailed information on each type of inbound endpoint available with
+the ESB profile, see WSO2 EI Inbound Endpoints.
 
-##### Tasks
+**Synapse configuration**: Following is a sample inbound endpoint configuration:
+
+```
+<inboundEndpoint xmlns="http://ws.apache.org/ns/synapse"
+                    name="HttpListenerEP"
+                    sequence="TestIn"
+                    onError="fault"
+                    protocol="http"
+                    suspend="false">
+  <parameters>
+    <parameter name="inbound.http.port">8085</parameter>
+  </parameters>
+</inboundEndpoint>
+```
+
+In an inbound endpoint configuration, the common inbound endpoint parameters are specified as attributes of the `<inboundEndpoint>` element whereas the protocol specific parameters are specified as `<parameter>` elements.
+
+**Listening Inbound Endpoints**: A listening inbound endpoint listens on a given port for requests that
+are coming in. When a request is available it is injected to a given
+sequence. Listening inbound endpoints support two way operations and are synchronous.
+
+**Polling Inbound Endpoints**: A polling inbound endpoint polls periodically for data and when data is
+available the data is injected to a given sequence. For example,  the
+JMS inbound endpoint checks the JMS queue periodically for messages and
+when a message is available that message is injected to a specified
+sequence. Polling inbound endpoints support one way operations and are
+asynchronous.
+
+**Event-Based Inbound Endpoints**: An event-based inbound endpoint polls only once to establish a
+connection with the remote server and then consumes events.
+
+### Tasks
 
 A task allows you to run a piece of code triggered by a timer. WSO2
 Enterprise Integrator provides a default task implementation, which you
@@ -86,12 +97,9 @@ can use to inject a message to the Enterprise Integrator at a scheduled
 interval. You can also write your own custom tasks by implementing a
 Java interface.
 
-For more information, see [Scheduling ESB
-Tasks](https://docs.wso2.com/display/EI650/Scheduling+ESB+Tasks) .
+## Message processing units
 
-#### Message processing units
-
-##### Mediators
+### Mediators
 
 Mediators are individual processing units that perform a specific
 function, such as sending, transforming, or filtering messages. WSO2
@@ -103,19 +111,186 @@ Integration Patterns
 functionality using various technologies such as Java, scripting, and
 Spring.
 
-For more information, see [ESB
-Mediators](https://docs.wso2.com/display/EI650/ESB+Mediators) .
-
-##### Sequences
+### Sequences
 
 A sequence is a set of mediators organized into a logical flow, allowing
 you to implement pipes and filter patterns. You can add sequences to
 proxy services and REST APIs.
 
-For more information, see [Mediation
-Sequences](https://docs.wso2.com/display/EI650/Mediation+Sequences) .
+### Message stores and processors
 
-#### Message exit points
+A **message store** is used to temporarily store messages before they
+are delivered to their destination by a **message
+processor**. This approach is useful for serving
+traffic to back-end services that can only accept messages at a given
+rate, whereas incoming traffic to the Micro Integrator arrives at different
+rates. You must have added a message store before you can add a message processor.
+
+To store incoming traffic in a message store, use the Store mediator, and then use a message processor to deliver messages to the back-end service at a
+given rate. Using message processors and message stores allows you to
+implement different messaging and integration patterns.
+
+Multiple message processors can use the same message store. For example,
+in a clustered environment, each of the nodes would have an instance of
+the same message processor, each of which would connect to the same
+message store and evenly consume messages. The message store
+acts as a manager of these consumers and their connections and ensures
+that messages are processed by only one message processor, preventing
+message duplication. You can further control which nodes a message
+processor runs on by specifying pinned servers.
+
+!!! Info
+    You can increase performance of message processors either by **increasing the member count** or by having multiple message processors. If you increase the member count, it will create multiple child processors of the message processor.
+
+**Message Stores**
+
+<table>
+	<tr>
+		<th>Message Store Type</th>
+		<th>Description</th>
+	</tr>
+	<tr>
+		<td>
+			JDBC Message Store
+		</td>
+		<td>
+			The JDBC message store can be used to store and retrieve messages more efficiently in comparison with other message stores. The JDBC message store implementation is a variation of the already existing synapse message store implementation and is designed in a manner similar to the message store of the ESB profile. The JDBC message store uses a JDBC connector to connect to external relational databases.</br></br>
+			The advantages of using a JDBC message store instead of any other message store are as follows:
+			<ul>
+				<li>
+					<b>Easy to connect</b>: You only need to have a JDBC connector to connect to an external relational database.
+				</li>
+				<li>
+					<b>Quick transactions</b>: JDBC message stores are capable of handling a large number of transactions per second.
+				</li>
+				<li>
+					<b>Ability to work with a high capacity for a long period of time</b>: Since JDBC stores use databases as the medium to store data, it can store a large volume of data and is capable of handling data for a longer period of time.
+				</li>
+			</ul>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			JMS Message Store
+		</td>
+		<td>
+			The JMS message store persists messages in a JMS queue inside a JMS Broker. The JMS message store can be configured by specifying the class as  <code>org.apache.synapse.message.store.impl.jms.JmsStore</code>. Since the JMS message stores persist messages in a JMS queue in an ordered manner, JMS message stores can be used to implement the store-and-forward pattern.
+		</td>
+	</tr>
+	<tr>
+		<td>
+			RabbitMQ Message Store
+		</td>
+		<td>
+			RabbitMQ message store persists messages in a RabbitMQ queue inside a RabbitMQ broker. The RabbitMQ message store can be configured by specifying the class as <code>org.apache.synapse.message.store.impl.rabbitmq.RabbitmqStore</code> and then setting all other required parameters to connect to a RabbitMQ broker.
+		</td>
+	</tr>
+	<tr>
+		<td>
+			Resequence Message Store
+		</td>
+		<td>
+			The Resequence Message Store is used to store a stream of related but out-of-sequence messages to put them back into the correct order. It collects and re-orders the stored messages based on a defined sequence number derived from some part of the message, so that they can be published to the output channel in a specific order. This is advantageous specially when the order of message delivery is important to avoid some messages arriving earlier than others.</br>
+			The resequencing store is an extension of the existing JDBC-based message store. Hence, it inherits most of its properties from the **JDBC Message Store**.
+		</td>
+	</tr>
+	<tr>
+		<td>
+			WSO2 MB Message Store
+		</td>
+		<td>
+			WSO2 Enterprise Integrator (WSO2 EI) is shipped with a separate message broker profile (WSO2 MB). You can easily set up this WSO2 MB profile as the **message store** for the ESB. Explained below are the parameters you need to configure for a WSO2 MB Message Store. Also, find details of other configurations that are relevant to the WSO2 MB Message Store.  
+		</td>
+	</tr>
+	<tr>
+		<td>
+			In-Memory Message Store
+		</td>
+		<td>
+			In memory message store is a basic **Message Store** that stores messages in an in-memory queue. Since the messages are stored in an in-memory queue in case of a ESB profile restart, all the messages stored will be lost.</br>
+			The in memory message store is lot faster than a persistent message store implementation, so it can be used to temporarily store messages for use cases such as the implementation of a high-speed store and forwarded pattern where message persistence is not a requirement.</br></br>
+			<b>Note</b>: In memory message stores are not recommended for use in production as well as in scenarios where large scale message storing is required. You can use an external message store (e.g., **JMS message store**) for such scenarios.
+		</td>
+	</tr>
+	<tr>
+		<td>Custom Message Store</td>
+		<td>
+			**Custom Message Store** allows users to create a message store with their own message store implementation. It can be configured using configuration by giving the fully qualified class name of the message store implementation as the class value.
+			Messages will be stored as specified in the underlying message store implementation. Parameter configuration can be used to pass any configuration parameters that is needed by the message store implementation class.
+		</td>
+	</tr>
+</table>
+
+**Message Processors**
+
+<table>
+	<tr>
+		<th>Message Processor</th>
+		<th>
+			Description
+		</th>
+	</tr>
+	<tr>
+		<td>
+			Message Sampling Processor
+		</td>
+		<td>
+			The message sampling processor consumes messages in a **message store** and sends them to a configured **sequence**. This process happens in a preconfigured interval. This message processor does not ensure reliable messaging.
+		</td>
+	</tr>
+	<tr>
+		<td>Scheduled Failover Message Forwarding Processor</td>
+		<td>
+			The scheduled failover message forwarding processor is a **message processor** that ensures reliable message delivery. This message processor is useful when it comes to scenarios where a message store failure takes place and it is necessary to ensure guaranteed message delivery.</br></br>
+			The only difference of the scheduled failover message forwarding processor from the scheduled message forwarding processor is that the scheduled message forwarding processor forwards messages to a defined endpoint, whereas the scheduled failover message forwarding processor forwards messages to a target message store.
+		</td>
+	</tr>
+	<tr>
+		<td>Scheduled Message Forwarding Processor'</td>
+		<td>
+			The scheduled message forwarding processor is a **message processor** that consumes messages in a message store and sends them to an **endpoint**. If a message is successfully delivered to the endpoint, the processor deletes the message from the message store. In case of a failure, it will retry after a specified interval.
+		</td>
+	</tr>
+	<tr>
+		<td>Custom Message Processor</td>
+		<td>
+			Existing message processor implementations are created using the [Quartz](http://quartz-scheduler.org/) enterprise job scheduler. If needed, you can create your own implementations of message processors by creating a Java class that implements the `MessageProcessor` interface. You then select the **Add Custom Message Processor** option when adding a message processor and specify your implementation class.
+			Note that message processors go through several life-cycle stages, so you must take great care when creating your own implementation. Because existing implementations are tested and proven under high loads, the best practice is to use the existing implementations whenever possible.
+		</td>
+	</tr>
+</table>
+
+### Templates
+
+The synapse configuration language is a very powerful and robust way of driving enterprise data/messages through the Micro Integrator mediation engine. However, a large number of configuration files in the form of **sequences**, **endpoints**, **proxy services**, and transformations can be required to satisfy all the mediation requirements of your system. To keep your configurations manageable, it's important to avoid scattering configuration files across different locations and to avoid duplicating redundant configurations.
+
+**Templates** help minimize this redundancy by creating prototypes that users can use and reuse when needed. This is very much analogous to classes and instances of classes: a template is a class that can be used to wield instance objects such as templates and endpoints. Thus, templates are an ideal way to improve reusability and readability of synapse configurations. Additionally, users can use predefined templates that reflect common **enterprise integration patterns** for rapid development of message/mediation flows in the Micro Integrator.
+
+**Endpoint Template**: Defines a templated form of an endpoint. An endpoint template can parameterize an endpoint defined inline. An endpoint template would be useless without a template endpoint referring to it.
+
+**Sequence Template**: A **Sequence Template** is a parametrized **sequence** providing an abstract or generic form of a sequence defined in the Micro Integrator. Parameters of a template are defined in the form of XPath statement/s. Callers can invoke the template by populating the parameters with static values/XPath expressions using the **Call Template** Mediator, which makes a sequence template into a concrete sequence.
+
+!!! Info
+    The **Call Template** mediator allows you to construct a sequence by passing values into a **sequence template**. This is currently only supported for special types of mediators such as the **Iterator** and **Aggregate Mediators**, where actual XPath operations are performed on a different SOAP message, and not on the message coming into the mediator.
+
+Sequence template parameters can be referenced using an XPath expression defined inside the in-line sequence. For example, the parameter named "foo" can be referenced by the Property mediator (defined inside the in-line sequence of the template) in the following ways:
+
+`<property name=”fooValue” expression=”$func:foo” />`
+
+or
+
+`<property name=”fooValue” expression=”get-property('foo','func')” />`
+
+Using function scope or "?func?" in the XPath expression allows us to refer to a particular parameter value passed externally by an invoker
+such as the Call Template mediator.
+
+### Connectors
+
+Connectos allow your message flows to connect to and interact with services such as Twitter and Salesforce. A connector is a collection of **templates** that define specific operations. Typically, connectors are used to wrap the API of an external service such as Twitter or a Google Spreadsheet. Each connector provides operations that perform different actions in that service. For example, the Twitter connector has operations for creating a tweet, getting a user's followers, and more.
+
+To download a required connector, go to the [WSO2 Connector Store](https://store.wso2.com/store).
+
+## Message exit points
 
 A message exit point or an endpoint defines an external destination for
 a message. An endpoint can connect to any external service after
@@ -133,41 +308,150 @@ transports . When you configure a message mediation sequence or a proxy
 service to handle the incoming message, you specify which transport to
 use and the endpoint where the message will be sent.
 
-For more information, see [Working with
-Endpoints](https://docs.wso2.com/display/EI650/Working+with+Endpoints) .
+### Endpoints
 
-#### Message stores and processors
+An **endpoint** defines an external destination to which Micro Integrator should send a message. Typically, the endpoint is the address of a proxy service, which acts as the front end to the actual service. For example, the endpoint for the simple stock quote sample is `http://localhost:9000/services/SimpleStockQuoteService`.
 
-Message stores and message processors are used to store and forward
-messages while guaranteeing reliable message delivery. For more
-information, see [Working with Message Stores and Message
-Processors](https://docs.wso2.com/display/EI650/Working+with+Message+Stores+and+Message+Processors)
-.
+**Named endpoints**: You can use the `name` attribute to create a named endpoint. You can reuse a named endpoint by referencing it in another endpoint using the `key` attribute. For example, if there is an endpoint named *foo* , you can reference the *foo* endpoint in any other endpoint where you want to use *foo*: `<endpoint key="foo"/>`. This approach allows you to reuse existing endpoints in multiple places.
 
-Templates
+Indirect and Resolving endpoints are endpoint configurations with a key
+which refers to an existing endpoint.
 
-Templates help you to manage your configurations without scattering or
-duplicating them by creating prototypes that you can use and reuse when
-required. Templates improve re-usability and readability of your ESB
-configurations (XML files). There are two types of templates available
-in the ESB profile as Sequence templates and Endpoint templates. For
-more information on templates, see [Working with
-Templates](https://docs.wso2.com/display/EI650/Working+with+Templates) .
+**Indirect Endpoints**: The **Indirect Endpoint** refers to an actual
+[endpoint](_Working_with_Endpoints_) by a key. This endpoint fetches the
+actual endpoint at runtime. Then it delegates the message sending to the
+actual endpoint. When endpoints are stored in the
+[registry](https://docs.wso2.com/display/ADMIN44x/Working+with+the+Registry)
+and referred, this endpoint can be used. The `         key        ` is a
+static value for this endpoint.
 
-#### Connectors
+**Resolving Endpoint**: The **Resolving Endpoint** refers to an actual endpoint using a dynamic key. The key is an XPath expression.
 
-A connector is a collection of templates that define operations that can
-be called from the Enterprise Integrator and is used when connecting the
-Enterprise Integrator to external third party APIs. WSO2 Enterprise
-Integrator provides a variety of connectors via the [WSO2 Connector
-Store](https://store.wso2.com/store/pages/top-assets) .
+1. The XPath is evaluated against the current message and key is
+calculated at run time.  
+2. Resolving endpoint fetches the actual endpoint using the calculated
+key.  
+3. Resolving endpoint delegates the message sending it to the actual
+endpoint.
 
-For information on using a connector in your EI configuration, see
-[Using the Gmail
-Connector](https://docs.wso2.com/display/EI650/Using+the+Gmail+Connector)
-.
+When endpoints are stored in the registry and referred, this endpoint
+can be used.
 
-#### Transports
+!!! Info
+	The XPath expression specified in a Resolving endpoint configuration derives an existing [endpoint](_Working_with_Endpoints_) rather than the URL of the endpoint to which the message is sent. To derive the endpoint URL to which the message is sent via an XPath expression, use the [Header Mediator](https://docs.wso2.com/display/EI650/Header+Mediator#HeaderMediator-ToHeader).
+
+**Load-balanced Group**: The **Load-balanced Group** distributes the messages (load) arriving at
+it among a set of listed [endpoints](_Working_with_Endpoints_) or static
+members by evaluating the load balancing policy and other relevant
+parameters.
+
+<table>
+	<tr>
+		<th>Endpoint</th>
+		<th>Description</th>
+	</tr>
+	<tr>
+		<td>Address Endpoint</td>
+		<td>
+			The **Address endpoint** is defined by specifying the EPR (Endpoint Reference) and other attributes of the configuration.
+		</td>
+	</tr>
+	<tr>
+		<td>Default Endpoint</td>
+		<td>
+			The **Default Endpoint** is an [endpoint](_Working_with_Endpoints_) defined for adding QoS and other configurations to the endpoint which is resolved from the `         To        ` address of the message context. All the configurations such as message format for the endpoint, the method to optimize attachments, and security policies for the endpoint can be specified as in the [Address Endpoint](_Address_Endpoint_) . This endpoint differs from the address endpoint only in the `         URI        ` attribute which will not be present in this endpoint.
+		</td>
+	</tr>
+	<tr>
+		<td>HTTP Endpoint</td>
+		<td>
+			The **HTTP endpoint** allows you to define REST endpoints using [URI templates](https://docs.wso2.com/enterprise-service-bus/Working+with+APIs#WorkingwithAPIs-URItemplates) similar to the REST API. The URI templates allow a RESTful URI to contain variables that can be populated during mediation runtime using property values whose names have the " `         uri.var.        ` " prefix. An HTTP endpoint can also define the particular HTTP method to use in the RESTful invocation. You can create HTTP endpoints by specifying values for the parameters given below. Alternatively, you can specify one parameter as the HTTP endpoint by using multiple other parameters, and then pass that to define the HTTP endpoint.
+		</td>
+	</tr>
+	<tr>
+		<td>Failover Endpoint</td>
+		<td>
+			With leaf endpoints, if an error occurs during a message transmission process, that message will be lost. The failed message will not be retried again. These errors occur very rarely, but still message failures can occur. With some applications these message losses are acceptable, but if even rare message failures are not acceptable, use the failover endpoint.</br>
+			A **Failover Group** is a list of leaf endpoints grouped together for the purpose of passing an incoming message from one endpoint to another if a failover occurs. The first endpoint in failover group is considered the primary endpoint. An incoming message is first directed to the primary endpoint, and all other endpoints in the group serve as back-ups.</br>
+			If the primary endpoint fails, the next active endpoint is selected as the primary endpoint, and the failed endpoint is marked as inactive. Thus, failover group ensures that a message is delivered as long as there is at least one active endpoint among the listed endpoints. The ESB switches back to the primary endpoint as soon as it becomes available. This behaviour is known as dynamic failover.
+			<b>Note</b>: An endpoint failure occurs when an endpoint is unable to invoke a service. An endpoint, which responds with an error is not considered a failed endpoint.
+		</td>
+	</tr>
+	<tr>
+		<td>Dynamic Load-Balance Endpoint</td>
+		<td>
+			The **Dynamic Load-balance** **Endpoint** is an [endpoint](_Working_with_Endpoints_) that distributes its messages (load) among application members by evaluating the load-balancing policy and any other relevant parameters. These application members will be discovered using the `         membershipHandler        ` class, which generally uses a group communication mechanism to discover the application members. The `         class        ` attribute of the `         membershipHandler        ` element should be an implementation of `         org.apache.synapse.core.LoadBalanceMembershipHandler        `. You can specify `         membershipHandler        ` properties using the `         property        ` elements. The `         policy        ` attribute of the `         dynamicLoadbalance        ` element specifies the load-balancing policy (algorithm) to be used for selecting the next member that will receive the message.</br></br>
+			<b>Note</b>: Currently only the `         roundRobin        ` policy is supported. The `         failover        ` attribute determines if the next member should be selected once the currently selected member has failed and defaults to true.
+		</td>
+	</tr>
+	<tr>
+		<td>Template Endpoint</td>
+		<td>
+			Template endpoints are created based on predefined [endpoint templates](https://docs.wso2.com/display/EI650/Endpoint+Template). Parameters of the endpoint template used as the target are copied to the endpoint configuration. However, you can make modifications by removing some of the copied parameters and/or adding new parameters.
+		</td>
+	</tr>
+	<tr>
+		<td>WSDL Endpoint</td>
+		<td>
+			The **WSDL Endpoint** is an endpoint definition based on a specified WSDL document. The WSDL document can be specified in 2 ways:
+			<ul>
+				<li>As a URI.</li>
+				<li>As an inlined definition within the endpoint configuration.</li>
+			</ul>
+		</td>
+	</tr>
+	<tr>
+		<td>Recepient List Endpoint</td>
+		<td>
+			A Recipient List endpoint can contain multiple child endpoints or member elements. It routes cloned copies of messages to each child recipient.
+			This will assume that all immediate child endpoints are identical in state (state is replicated) or state is not maintained at those endpoints.
+		</td>
+	</tr>
+</table>
+
+#### Endpoint states
+
+At any given time, the state of the endpoint can be one of the
+following:
+
+<table>
+	<tr>
+		<th>State</th>
+		<th>Description</th>
+	</tr>
+	<tr>
+		<td>Active</td>
+		<td>
+			Endpoint is running and handling requests.</br></br>
+			When WSO2 Enterprise Service Bus starts, endpoints are in the "Active" state and ready to handle messages. If the user does not put the endpoint into the OFF state, it will be in the "Active" state until an error occurs.</br></br>
+			The endpoint can be configured to stay in the "Active" state or to go to "Timeout" or "Suspended" based on the error codes you configure for those states. When an error occurs, the endpoint checks to see whether it is a "Timeout" error first, and if not, it checks to see whether it is a "Suspended" error. If the error is not defined for either "Timeout" or "Suspended," the error will be ignored and the endpoint will stay Active.
+		</td>
+	</tr>
+	<tr>
+		<td>Timeout</td>
+		<td>
+			Endpoint encountered an error but can still send and receive messages. If it continues to encounter errors, it will be suspended.</br></br>
+			When an endpoint is in the "Timeout" state, it will continue to attempt to receive messages until one message succeeds or the maximum retry setting has been reached. If the maximum is reached at which point the endpoint is marked as "Suspended." If one message succeeds, the endpoint is marked as "Active".</br></br>
+			For example, let's assume the number of retries is set to 3. When an error occurs and the endpoint is set to the "Timeout" state, the Enterprise Integrator can try to send up to three more messages to the endpoint. If the next three messages sent to this endpoint result in an error, the endpoint is put in the "Suspended" state. If one of the messages succeeds before the retry maximum is met, the endpoint will be marked as "Active."
+		</td>
+	</tr>
+	<tr>
+		<td>Suspended</td>
+		<td>
+			Endpoint encountered errors and cannot send or receive messages. Incoming messages to a suspended endpoint result in a fault.</br></br>
+			A "Suspended" endpoint cannot send or receive messages. When an endpoint is put into this state, the Enterprise Integrator waits until after an initial duration has elapsed (default is 30 seconds) before attempting to send messages to this endpoint again. If the message succeeds, the endpoint is marked as "Active." If the next message fails, the endpoint is marked as "Suspended" or "Timeout" depending on the error, and the Enterprise Integrator waits before retrying messages using the following formula: <code>Min(current suspension duration * progressionFactor, maximumDuration)</code>.</br></br>
+			You configure the initial suspension duration, progression factor, and maximum duration as part of the [suspendOnFailure settings](#EndpointErrorHandling-suspendOnFailure) . On each retry, the suspension duration increases, up to the maximum duration.
+		</td>
+	</tr>
+	<tr>
+		<td>OFF</td>
+		<td>
+			Endpoint is not active. To put an endpoint into the OFF state, or to move it from OFF to Active, you must use JMX.
+		</td>
+	</tr>
+</table>
+
+## Transports
 
 A transport is responsible for carrying messages that are in a specific
 format. The Enterprise Integrator supports all the widely used
@@ -178,10 +462,7 @@ provides a receiver, which the Enterprise Integrator uses to receive
 messages, and a sender, which it uses to send messages. The transport
 receivers and senders are independent of the Enterprise Integrator core.
 
-For more information, see [Carrying
-Messages](https://docs.wso2.com/display/EI650/Carrying+Messages) .
-
-#### Message builders and formatters
+## Message builders and formatters
 
 When a message comes into the Enterprise Integrator, the receiving
 transport selects a **message builder** based on the message's content
@@ -197,45 +478,28 @@ builders, the message formatter is selected based on the message's
 content type.
 
 You can implement new message builders and formatters using the Axis2
-framework. For more information, see [Working with Message Builders and
-Formatters](https://docs.wso2.com/display/EI650/Working+with+Message+Builders+and+Formatters)
-.
+framework.
 
-------------------------------------------------------------------------
-
-#### Applying security to artifacts
+## Applying security to artifacts
 
 You can apply security to artifacts of the ESB profile using WSO2
 Integration Studio. The Quality of Service (QoS) component implements
-security. For more information, see [Applying Security to a Proxy
-Service](https://docs.wso2.com/display/EI650/Applying+Security+to+a+Proxy+Service)
-.
+security.
 
-------------------------------------------------------------------------
 
-#### Logging messages
+## Logging messages
 
-You can use the Log mediator to log mediated messages. For more
-information on the usage of the log mediator, see [Log
-Mediator](https://docs.wso2.com/display/EI650/Log+Mediator) .
+You can use the Log mediator to log mediated messages. 
 
-------------------------------------------------------------------------
-
-#### Message tracing
+## Message tracing
 
 Message tracing helps you to track issues after an integration process
 finishes and thereby, allows you to identify and fix issues by
 identifying the root cause. It is used to trace, track and visualize a
 body of a message in each intermediate stage of its transmission. T his
-is useful for a number of reasons, including auditing and debugging. For
-instructions on how to do message tracing, see [Monitoring WSO2 EI with
-EI
-Analytics](https://docs.wso2.com/display/EI620/Monitoring+WSO2+EI+with+EI+Analytics#MonitoringWSO2EIwithEIAnalytics-Step5-Analyzestatistics)
-.
+is useful for a number of reasons, including auditing and debugging.
 
-------------------------------------------------------------------------
-
-#### Debugging mediation
+## Debugging mediation
 
 Message mediation mode is one of the operational modes of WSO2 EI where
 EI functions as an intermediate message router. A unit of the mediation
@@ -244,12 +508,17 @@ mediator is a unit entity that can input a message, carry out a
 predefined processing task on the message, and output the message for
 further processing. Debugging is where you want to know if these units,
 which function as separate entities are operating as intended, or if a
-combination of these units are operating as a whole as intended. For
-more information, see [Debugging
-Mediation](https://docs.wso2.com/display/EI650/Debugging+Mediation) .
+combination of these units are operating as a whole as intended.
+
+## Load balancing
+
+The load balancer automatically distributes incoming traffic across
+multiple WSO2 product instances. It enables you to achieve greater
+levels of fault tolerance in your cluster and provides the required
+balancing of load needed to distribute traffic.
 
 
-#### Enterprise Integration Patterns
+## Enterprise Integration Patterns
 
 Enterprise Application Integration (EAI) enables you to connect business
 applications with heterogeneous systems. The [EIP patterns
@@ -259,15 +528,13 @@ architects over the years can be simulated using various constructs in
 the ESB profile.
 
 
-#### ESB tooling
+## WSO2 Integration Studio
 
 You can use WSO2 Integration Studio to create various integration
 artifacts that you can build and deploy to the ESB profile of WSO2 EI in
 order to process requests.
 
-<!--
-
-#### Data service
+## Data service
 
 The data in your organization can be a complex pool of information that
 is stored in heterogeneous systems, ranging from RDBMSs to Excel files,
@@ -285,7 +552,7 @@ However, you also have the option of creating REST resources. Therefore,
 the applications and systems consuming the data service can have both
 SOAP-based, and RESTful access to your data.
 
-#### Datasources
+### Datasources
 
 Your organization's data can be stored in various data storage systems,
 which are thedatasources. Data services in WSO2 EI support the
@@ -295,7 +562,7 @@ Additionally, you can also useJNDIdatasources, and create
 customdatasources. Read about using variousdatasourceswith data services
 defined in WSO2 EI.
 
-#### RESTful data services
+### RESTful data services
 
 A data service exposes your data (stored in various data stores) as a
 service. You can enable RESTful access to your data, by defining RESTful
@@ -306,7 +573,7 @@ medium. Secure resources with HTTP(S) Basic Auth integrated to
 enterprise identity systems (via [WSO2 Identity
 Server](http://wso2.com/products/identity-server/) ).
 
-#### OData services
+### OData services
 
 RESTful data services in WSO2 EI supports OData (
 [OData](http://www.odata.org/) protocol version 4 - OASIS standards) ,
@@ -327,7 +594,7 @@ following endpoints:
 -   For normal tenants:
     http://localhost:9763/odata/t/{tenantId}/{dataserviceName}/{datasourceId}/
 
-#### Data Federation
+### Data Federation
 
 A data service defined in WSO2 EI has the ability to aggregate the data
 that is stored in various, disparate datasources, and present the
@@ -345,7 +612,7 @@ ways:
     the result you get from one query as input to another query. That
     is, data can be combined into a single response or resource.
 
-#### Distributed transactions
+### Distributed transactions
 
 A distributed transaction is a set of operations that should be
 performed on two or more, distributed RDBMS data stores. If the
@@ -368,7 +635,7 @@ Transaction API (JTA), which allows distributed transactions to be
 carried out across multiple XA resources in a Java environment. You can
 also override this transaction manager.
 
-#### Batch processing
+### Batch processing
 
 A data service is an interface that receives requests from data
 consumers and performs the requested tasks in the relevant data stores.
@@ -408,19 +675,19 @@ transactions (performed on one node of the data store), as well as
 distributed transactions (performed on multiple nodes of the data
 store).
 
-#### Data transformation
+### Data transformation
 
 XSLT transformation is used in data services to transform the result of
 an already defined operation into a different result. The user can
 define the transformation xslt and provide the url of the transformation
 file in the result element.
 
-#### Managed data access
+### Managed data access
 
 Most businesses require secure and managed data access across these
 federated data stores .
 
-#### Streaming
+### Streaming
 
 Data service streaming helps manage large data chunks sent back to the
 client by the data service as the response to a request. When streaming
@@ -428,7 +695,7 @@ is enabled, the data is sent to the client as it is generated, without
 memory building up in the server. By default, streaming is enabled in
 data services.
 
-#### Namespaces
+### Namespaces
 
 The service namespace uniquely identifies a Web service and is specified
 by the `         <targetNamespace>        ` element in the WSDL that
@@ -440,7 +707,7 @@ are no conflicting element names in the XML. Although namespaces are
 optional for data services, in some scenarios they are necessary. For
 more information, see Defining Namespaces .
 
-#### Error Handling
+### Error Handling
 
 The main role of WSO2 Enterprise Integrator (WSO2 EI) is to act as the
 backbone of an organization’s service-oriented architecture. It is the
@@ -453,4 +720,3 @@ be full of errors. Applications crash. Network routers and links get
 into states where they cannot pass messages through with the expected
 efficiency. These error conditions are very likely to cause a fault or
 trigger a runtime exception in the ESB.
--->
