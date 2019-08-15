@@ -4,9 +4,7 @@ If you have a REST front-end client, REST back-end service, or both a REST clien
 
 ## Example 1: REST Client and SOAP Service
 
-This usecase represents the scenario where a REST front-end client has to communicate in plain old XML (POX) with a SOAP back-end service. This can be easily achieved by placing WSO2 Micro Integrator in the middle with a proxy service.
-
-![](attachments/119130866/119130869.png)  
+This usecase represents the scenario where a REST front-end client has to communicate in plain old XML (POX) with a SOAP back-end service. This can be easily achieved by placing WSO2 Micro Integrator in the middle with a proxy service. 
 
 Assume the front-end REST client is using http/https as its transport protocol, and the back-end service is expecting SOAP1.1. 
 
@@ -47,12 +45,10 @@ The proxy service configuration would look like this:
 1.  Start the Micro Integrator and change the configuration as shown above.
 2.  Deploy the back-end service 'SimpleStockQuoteService' and start the
     Axis2 server using the instructions in [Starting Sample Back-End
-    Services](https://docs.wso2.com/display/EI650/Setting+Up+the+ESB+Samples)
-    .  
+    Services](https://docs.wso2.com/display/EI650/Setting+Up+the+ESB+Samples).  
     You will now send a message to the back-end service through the ESB
     profile using the sample [Stock Quote
-    Client](https://docs.wso2.com/display/EI650/Using+the+Sample+Clients)
-    . This client can run in several modes.
+    Client](https://docs.wso2.com/display/EI650/Using+the+Sample+Clients). This client can run in several modes.
 3.  Run the following ant command from the
     `MI_HOME/samples/axis2Client         ` directory to
     trigger a sample message to the back-end service:  
@@ -60,15 +56,9 @@ The proxy service configuration would look like this:
 
 If the message is mediated successfully, it will display an output on the Axis2 server's start-up console along with an output message on the client console. If you want to see exactly how the REST messages are transformed to SOAP messages, you could place an Apache tcpmon application between the client and WSO2 Micro Integrator and another between the Micro Integrator and the back-end service.
 
-For another example of POX to SOAP conversion, see [Sample 50: POX to SOAP
-Conversion](https://docs.wso2.com/display/EI611/Sample+50%3A+POX+to+SOAP+conversion)
-.
-
 ## Example 2: SOAP Client and REST Service
 
 This usecase represents the scenario where a SOAP front-end client has to communicate with a REST back-end service. This can be easily achieved by placing WSO2 Micro Integrator in the middle with a proxy service.
-
-![](attachments/119130866/119130867.png)  
 
 In this scenario, the client sends a SOAP message to the Micro Integrator, which transforms it to a REST message and sends it to the back-end service. Once the back-end response is received, the Micro Integrator sends it back to the client as a SOAP message.
 
@@ -113,7 +103,7 @@ The proxy service configuration would look like this:
 </proxy>
 ```
 
-The [filter mediator](https://docs.wso2.com/display/EI650/Filter+Mediator) is used to identify the required service. Though this example only has one filter, there could be many filters in the real scenario. The REST_URL_POSTFIX property is a well-defined property, and its value is appended to the target URL when sending messages out in a RESTful manner. Similar to REST_URL_POSTFIX, the HTTP_METHOD property is also well-defined and sets the HTTP verb to GET.
+The **filter mediator** is used to identify the required service. Though this example only has one filter, there could be many filters in the real scenario. The REST_URL_POSTFIX property is a well-defined property, and its value is appended to the target URL when sending messages out in a RESTful manner. Similar to REST_URL_POSTFIX, the HTTP_METHOD property is also well-defined and sets the HTTP verb to GET.
 
 Note that the format of the endpoint is set to `         pox        ` . This format works for GET, PUT, and DELETE methods, but if you want to use POST and the URI has a postfix, the format must be `         rest        `.
 
@@ -145,15 +135,10 @@ To implement this scenario:
     </Customer>
     ```
 
-For another example, see [Sample 152: Switching Transports and Message Format from SOAP to REST
-POX](https://docs.wso2.com/display/EI611/Sample+152%3A+Switching+Transports+and+Message+Format+from+SOAP+to+REST+POX).
-
 ## Example 3: REST Client and REST Service
 
 This usecase represents the scenario where a REST front-end client has to communicate with a REST back-end service. Even though they are both using the same architecture, let’s assume the front-end client is using JSON whereas the back-end service is using plain old XML (POX). This can be easily achieved by placing WSO2 Micro Integrator in the middle with a proxy
 service.
-
-![](attachments/119130866/119130868.png)  
 
 In this scenario, WSO2 Micro Integrator simply changes the message type of the client into XML and then passes it to the REST service. Once the Micro Integrator has received the XML message, it transforms it back into a JSON message and sends it to the client.
 
@@ -187,9 +172,8 @@ The proxy service configuration is as follows:
 </proxy>                            
 ```
 
-!!! info
-
-Typically, it’s very important to set the HTTP_METHOD property, because this represents the required HTTP action to be sent to the back-end service. However, in this scenario we will use a [curl](http://curl.haxx.se/) request, which is done using the HTTP GET method, so by default any request is using GET as its HTTP action, even if the HTTP_METHOD property is not set.
+!!! Info
+    Typically, it’s very important to set the HTTP_METHOD property, because this represents the required HTTP action to be sent to the back-end service. However, in this scenario we will use a [curl](http://curl.haxx.se/) request, which is done using the HTTP GET method, so by default any request is using GET as its HTTP action, even if the HTTP_METHOD property is not set.
 
 ### Run the Example
 
@@ -216,8 +200,6 @@ successful execution of the scenario:
 ## Example 4: JMS Client and REST Service
 
 This use case represents the scenario where a JMS front-end client has to communicate with a REST back-end service. This can be easily achieved by placing WSO2 Micro Integrator in the middle with a proxy service.  
-  
-![](https://docs.google.com/a/wso2.com/drawings/d/stbjvPeuoQ7TdQWIq843iow/image?w=635&h=254&rev=71&ac=1)
 
 In this scenario, a proxy service in the Micro Integrator listens to a JMS queue, picks up available messages from that queue, and delivers the messages to the REST back-end service. For the JMS front-end client, we will use the [sample
 JMSClient](https://docs.wso2.com/display/EI650/Using+the+Sample+Clients) that ships with the ESB profile. For the REST back-end service, we will use the [JAX-RS Basics](https://docs.wso2.com/display/EI650/JAX-RS+Basics) sample service that is shipped with the ESB profile. We will use ActiveMQ as the message broker.

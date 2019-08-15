@@ -2,6 +2,15 @@
 
 You can develop configurations with connectors, and deploy the configurations and connectors as composite application archive (CAR) files in WSO2 Micro Integrator using WSO2 Integration Studio.
 
+!!! Info
+    In addition to the below methods, you can enable a connector by creating a configuration file in the `MI_HOME/repository/deployment/server/synapse-configs/default/imports` directory with the following configurations.Replace the value of the `name` property with the name of your connector, and name the configuration file `{org.wso2.carbon.connector}<CONNECTOR_NAME>.xml` (e.g., `{org.wso2.carbon.connector}salesforce.xml`).
+    ```
+    <import xmlns="http://ws.apache.org/ns/synapse"
+            name="salesforce"
+            package="org.wso2.carbon.connector"
+            status="enabled"/>
+    ```
+
 ## Importing connectors
 
 Follow the steps below to import connectors into WSO2 Integration

@@ -15,9 +15,7 @@ take a sample request that is sent to the
 curl -v -X GET "http://localhost:8280/stockquote/view/IBM?param1=value1&param2=value2"
 ```
 
-In this request, there are two query parameters (customer name and ID)
-that must be set in the outgoing message from the ESB profile. We can
-configure the API to set those parameters as follows:
+In this request, there are two query parameters (customer name and ID) that must be set in the outgoing message from the Micro Integrator. We can configure the API to set those parameters as follows:
 
 ### Synapse configuration
 
@@ -125,28 +123,11 @@ This section describes how you can transform the content type of a message using
 -   POST - accepts XML request and returns response in JSON format
 -   PUT - accepts JSON request and returns response in JSON format
 -   DELETE - empty request body should be sent
-    
-Transformation in HTTP GET:
-    
-![](attachments/119130400/119130405.png)  
-
-Transformation in HTTP POST:
-    
-![](attachments/119130400/119130406.png)
-    
-Transformation in HTTP PUT:
-    
-![](attachments/119130400/119130403.png)
-    
+       
 ### Setting up the back end
     
-To deploy the REST back-end, download the StarbucksService.war from <https://svn.wso2.org/repos/wso2/people/charitham/REST-API/> and follow the steps below to deploy it in the ESB profile:
+To deploy the REST back-end, download the StarbucksService.war from <https://svn.wso2.org/repos/wso2/people/charitham/REST-API/> and deploy it in the Micro Integrator:
     
-1.  Log in to WSO2 EI management consoles at
-        <https://localhost:8243/carbon/> using admin as the user name and
-        password.
-2.  Navigate to Applications -\> Add -\> Web Applications and upload the
-        StarbucksService.war file you downloaded.
     
 ### Configuring the API
     
@@ -206,11 +187,11 @@ Create an API using the following configuration:
     
 ### Executing the sample
     
-The context of the API is ‘/Starbucks\_Service’. For every HTTP method, a url-mapping or uri-template is defined, and the URL to call the methods differ with the defined mapping or template.
+The context of the API is ‘/Starbucks_Service’. For every HTTP method, a url-mapping or uri-template is defined, and the URL to call the methods differ with the defined mapping or template.
     
 Following is the CURL command to send a GET request to the API:
     
-`         curl -v -X GET                              http://localhost:8280/Starbucks_Service/orders/123                           `
+` curl -v -X GET http://localhost:8280/Starbucks_Service/orders/123                           `
     
 The response from the back end to the ESB profile will be:
     
@@ -290,8 +271,6 @@ This request will be sent to the back end, and the order with the specified ID w
 ## Enabling REST to SOAP
     
 In this scenario, you expose a SOAP service over REST using an API in the ESB profile.
-    
-![](attachments/119130400/119130402.png)
     
 ### Setting up the back end
     
@@ -381,7 +360,7 @@ Save the following sample place order request as placeorder.xml in your local fi
  
 You will see something similar to following line printed in the sample axis2 server (back-end server) console.
     
-`         Tue Mar 19 09:30:33 IST 2013 samples.services.SimpleStockQuoteService  :: Accepted order #1 for : 10 stocks of IBM at $ 50.0        `
+`Tue Mar 19 09:30:33 IST 2013 samples.services.SimpleStockQuoteService  :: Accepted order #1 for : 10 stocks of IBM at $ 50.0`
     
 This SOAP service invocation is an OUT\_ONLY invocation, so the ESB profile is not expecting any response back from the SOAP service. Since we have set the FORCE\_SC\_ACCEPTED property value to true, the ESB profile returns a 202 response back to the client.
     
@@ -423,12 +402,7 @@ The response message will contain the following response code (201) as configure
     
 ## Enabling REST to JMS
     
-This section describes how an API can receive an HTTP message sent from a REST client and place it on a JMS queue.
-    
-      
-![](https://docs.google.com/a/wso2.com/drawings/d/svKnhPUX3GnCiQ1N-YQlaRQ/image?w=635&h=283&rev=74&ac=1)  
-    
-The API receives the HTTP message and sends it to a JMS queue that resides in a message broker.
+This section describes how an API can receive an HTTP message sent from a REST client and place it on a JMS queue. The API receives the HTTP message and sends it to a JMS queue that resides in a message broker.
     
 ### Create a queue in the message broker
     
@@ -479,8 +453,6 @@ If you go to the management console of the MB profile and inspect the SimpleStoc
 ## Exposing a back-end REST service using a different API
     
 In this scenario, we are exposing a back-end REST service using a REST API in the ESB profile. That means we are exposing a different API to the client for a REST back-end service.
-    
-![](attachments/119130400/119130401.png)
     
 ### Setting up the back end
     
@@ -707,15 +679,15 @@ Create a new sequence with the following configuration:
 ```
 ### Executing the sample
     
-    Send an invalid request to the back end as follows:
+Send an invalid request to the back end as follows:
     
-``` xml
+```
 curl -X GET http://localhost:8280/jaxrs/customers-wrong/123
 ```
     
-    You will get the following response:
+You will get the following response:
     
-``` xml
+```
 <tp:fault xmlns:tp="http://test.com">
 <tp:code>404</tp:code>
 <tp:type>Status report</tp:type>
@@ -775,7 +747,7 @@ Send a request to the backend as follows:
 curl -v -X HEAD http://localhost:8280/StarbucksService/services/Starbucks_Outlet_Service/orders/
 ```
     
-!!! info
+!!! Info
     To send the above request to the API, the starbucks service should be deployed in WSO2 Application server.
 
 You would get the following response:
@@ -856,21 +828,20 @@ Configure the API as follows:
 </api>
 ```
 
-In this configuration, `         name        ` , `         company        ` and `         country        ` are defined as
-properties to be sent as form data using the [Property mediator](https://docs.wso2.com/display/EI650/Property+Mediator) . These properties are set as key value pairs by the [PayloadFactory mediator](https://docs.wso2.com/display/EI650/PayloadFactory+Mediator) and sent to the the ESB profile. Then the messageType property is set to `         application/x-www-form-urlencoded        ` to enable the ESB profile to identify these key value pairs as form data. The
-DISABLE\_CHUNKING property is set to `         true        ` t remove the chunking from the outgoing message. Then the [Call
-mediator](https://docs.wso2.com/display/EI650/Call+Mediator) is used to send the message to the endpoint defined for the REST backend service.
+In this configuration, `name` , `company` and `country` are defined as
+properties to be sent as form data using the **Property mediator**. These properties are set as key value pairs by the [PayloadFactory mediator](https://docs.wso2.com/display/EI650/PayloadFactory+Mediator) and sent to the the ESB profile. Then the messageType property is set to `         application/x-www-form-urlencoded        ` to enable the ESB profile to identify these key value pairs as form data. The
+DISABLE\_CHUNKING property is set to `         true        ` t remove the chunking from the outgoing message. Then the **Call
+mediator** (https://docs.wso2.com/display/EI650/Call+Mediator) is used to send the message to the endpoint defined for the REST backend service.
 
 ### Executing the sample
 
 Send a request to the backend as follows:
 
-`         curl -v -X POST -d @request -H "Content-Type: text/xml"                   http://localhost:8280/Service                 `
+`curl -v -X POST -d @request -H "Content-Type: text/xml" http://localhost:8280/Service`
 
 ## Uncommon Scenarios for HTTP Methods in REST
 
-When [sending REST messages to an API](_Configuring_Specific_Use_Cases_)
-, you typically use POST or PUT to send a message and GET to request a
+When sending REST messages to an API, you typically use POST or PUT to send a message and GET to request a
 message. However, there are some unusual scenarios you might want to
 support, which are described in the following sections:
 
@@ -878,9 +849,7 @@ support, which are described in the following sections:
 
 Typically, POST is used to send a message that has data enclosed as a payload inside an HTML body. However, you can also use POST without a payload. WSO2 Enterprise Integrator (WSO2 EI) treats it as a normal message and forwards it to the endpoint without any extra configuration.
 
-The following diagram depicts a scenario where a REST client communicates with a REST service using the ESB profile. Apache Tcpmon is used solely for monitoring the communication between the ESB profile and the back-end service and has no impact on the messages passed between the ESB profile and back-end service. For this particular scenario, the cURL client is used as the REST client, and the [basic JAX-RS sample](https://docs.wso2.com/display/EI650/JAX-RS+Basics) is used as the back-end REST service.
-
-![](attachments/119130400/119130404.png)  
+The following diagram depicts a scenario where a REST client communicates with a REST service using the ESB profile. Apache Tcpmon is used solely for monitoring the communication between the ESB profile and the back-end service and has no impact on the messages passed between the ESB profile and back-end service. For this particular scenario, the cURL client is used as the REST client, and the [basic JAX-RS sample](https://docs.wso2.com/display/EI650/JAX-RS+Basics) is used as the back-end REST service.  
 
 To implement this scenario:
 
@@ -922,10 +891,10 @@ To implement this scenario:
     </definitions>
     ```
 
-    In this proxy configuration, testAPI intercepts messages that are sent to the relative URL `           /customerservice/customers          ` and sends them to the relevant endpoint by appending the url-mapping of the resource tag to the end of the endpoint URL.
+    In this proxy configuration, testAPI intercepts messages that are sent to the relative URL `/customerservice/customers` and sends them to the relevant endpoint by appending the url-mapping of the resource tag to the end of the endpoint URL.
 3.  Start tcpmon and make it listen to port 8282 of your local machine. It is also important to set the target host name and the port as required. In this case, the target port needs to be set to 8280 (i.e. the port where the backend service is running).  We will now test the connection by sending a POST message that includes a payload inside an HTML body. 
 4.  Go to the terminal and issue the following command: 
-    `           curl -v -H "Content-Type: application/xml" -d "<Customer><id>123</id><name>John</name></Customer>"                                    http://localhost:8280/customerservice/customers                                 `  
+    `curl -v -H "Content-Type: application/xml" -d "<Customer><id>123</id><name>John</name></Customer>" http://localhost:8280/customerservice/customers`  
 5.  The following reply message appears in the console:
 
     ```
@@ -938,7 +907,7 @@ To implement this scenario:
 6.  Now send the same POST message but without the enclosed data as follows:  
     `curl -v -H "Content-Type: application/xml" -d "" http://localhost:8280/customerservice/customer`
 
-    !!! note
+    !!! Note
         You would need to configure the backend service to handle such requests, if not the theESB profile will throw exceptions.
 
 The tcpmon output shows the same REST request that was sent by the client, demonstrating that the ESB profile handled the POST message regardless of whether it included a payload.
@@ -954,7 +923,7 @@ To test this scenario, use the same setup as above, but instead of
 removing the data part from the request, add some query parameters to
 the URL as follows:
 
-`curl -v -H "Content-Type: text/xml" -d "<Customer><id>123</id><name>John</name></Customer>" '                   http://localhost:8280/customerservice/customers?param1=value1&param2=value2                  '        `
+`curl -v -H "Content-Type: text/xml" -d "<Customer><id>123</id><name>John</name></Customer>" 'http://localhost:8280/customerservice/customers?param1=value1&param2=value2'`
 
 When you execute this command, you can see the following output in tcpmon:
 
@@ -981,7 +950,7 @@ request that contains a body, it drops the message body as it sends the
 message to the endpoint. You can test this scenario using the same setup
 as above, but this time the client command should look like this:
 
-`         curl -v -H "Content-Type: text/xml" -d "<Customer><id>123</id><name>John</name></Customer>" '                   http://localhost:8280/jaxrs_basic/services/customers/customerservice/customers/123                  ' -X GET        `
+`curl -v -H "Content-Type: text/xml" -d "<Customer><id>123</id><name>John</name></Customer>" 'http://localhost:8280/jaxrs_basic/services/customers/customerservice/customers/123' -X GET`
 
 The additional parameter `         -X        ` replaces the original
 POST method with the specified method, which in this case is GET. This
@@ -999,9 +968,8 @@ EI.
 
 Follow the steps below to implement this scenario.
 
-1.  [Start the ESB profile](https://docs.wso2.com/display/EI650/Running+the+Product)
-    and create the API that is defined in the following configuration.
-    For instructions, see [Creating an API](_Creating_an_API_) .
+1.  Start the ESB profile and create the API that is defined in the following configuration.
+    For instructions, see Creating an API.
 
     **DropPayloadFromDelete API**
 

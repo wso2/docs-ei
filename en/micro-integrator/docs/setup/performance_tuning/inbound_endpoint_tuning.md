@@ -52,3 +52,21 @@ performance with the Kafka inbound.
     inbound.threads.core = 200 
     inbound.threads.max = 1000          
     ```
+
+### Tuning the HL7 inbound endpoint
+
+The HL7 inbound endpoint can be configured using the
+`         <EI_HOME>/conf/hl7.properties        ` file.
+
+The supported list of tuning parameters for this file are as follows:
+
+| Property              | Description                                                                                                                                                            | Value                                                                           |
+|-----------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------|
+| hl7\_id\_generator    | By default the HAPI HL7 parsing library uses a file based ID generator to generate unique control IDs. To use a UUID based ID generator you can change this to ‘uuid’. | file \| uuid (default = file)                                                   |
+| worker\_threads\_core | Defines the HL7 inbound worker thread pool size.                                                                                                                       | \[0..9\]\* (default = 100)                                                      |
+| io\_thread\_count     | Defines the number of IO threads the IO Reactor uses. It is recommended to set this to the number of cores on the machine.                                             | \[0..9\]\* (default = 2)                                                        |
+| so\_timeout           | Defines TCP socket timeout.                                                                                                                                            | \[0..9\]\* (default = 0)                                                        |
+| connect\_timeout      | Defines the TCP connect timeout.                                                                                                                                       | \[0..9\]\* (default = 0)                                                        |
+| so\_keep\_alive       | Defines TCP socket keep alive.                                                                                                                                         | true \| false (default = true)                                                  |
+| so\_rcvbuf            | Defines the TCP socket receive buffer size.                                                                                                                            | \[0..9\]\* (default = 0 uses OS default. Maximum value depends on OS settings). |
+| so\_sndbuf            | Defines the TCP socket send buffer size.                                                                                                                               | \[0..9\]\* (default = 0 uses OS default. Maximum value depends on OS settings). |

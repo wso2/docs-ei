@@ -10,40 +10,31 @@ endpoints without restarting the server.
 
 Following is a sample HTTP inbound endpoint configuration:
 
-``` html/xml
-    <inboundEndpoint name="HttpListenerEP" protocol="http" suspend="false" sequence="TestIn" onError="fault" >
-        <p:parameters xmlns:p="http://ws.apache.org/ns/synapse">
-            <p:parameter  name="inbound.http.port">8081</p:parameter>
-        </p:parameters>
-    </inboundEndpoint>
+``` 
+<inboundEndpoint name="HttpListenerEP" protocol="http" suspend="false" sequence="TestIn" onError="fault" >
+    <p:parameters xmlns:p="http://ws.apache.org/ns/synapse">
+        <p:parameter  name="inbound.http.port">8081</p:parameter>
+    </p:parameters>
+<inboundEndpoint>
 ```
 
-### HTTP inbound endpoint parameters
+## HTTP inbound endpoint parameters
 
 | Parameter                                    | Description                                                | Required |
 |----------------------------------------------|------------------------------------------------------------|----------|
-| `             inbound.http.port            ` | The port on which the endpoint listener should be started. | Yes      |
+| ` inbound.http.port            ` | The port on which the endpoint listener should be started. | Yes      |
 
-!!! info
-
-Note
-
--   A sequence should be designed with a call/respond or send/receive
-    sequence. It is not recommended to use a sequence that has in and
-    out mediators.
--   If a send mediator is used within the inbound endpoint sequence,
-    specify a receiving sequence. If you do not specify a receiving
-    sequence, the response will dispatch to the
-    `           main          ` sequence.
+!!! Note
+    -   A sequence should be designed with a call/respond or send/receive sequence. It is not recommended to use a sequence that has in and out mediators.
+    -   If a send mediator is used within the inbound endpoint sequence, specify a receiving sequence. If you do not specify a receiving sequence, the response will dispatch to the `           main          ` sequence.
 
 
-#### Worker pool configuration parameters
+## Worker pool configuration parameters
 
-By default inbound endpoints share the PassThrough transport worker pool
-to handle incoming requests. If you need a separate worker pool for the
+By default inbound endpoints share the PassThrough transport worker pool to handle incoming requests. If you need a separate worker pool for the
 inbound endpoint, you need to configure the following parameters:
 
-| Parameter                                                         | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                               | Default Value                           |
+| Parameter                                                         | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                          | Default Value                           |
 |-------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------|
 | `              inbound.worker.pool.size.core             `        | The initial number of threads in the worker thread pool. This value can be changed accordingly based on the number of messages to be processed. The maximum value that can be specified here is the value of the `             i             nbound.worker.pool.size.max            ` parameter.                                                                                                                                                                          | 400                                     |
 | `              inbound.worker.pool.size.max             `         | The maximum number of threads in the worker thread pool. Specify a maximum limit in order to avoid performance degradation that can occur due to context switching.                                                                                                                                                                                                                                                                                                       | 500                                     |
@@ -52,14 +43,12 @@ inbound endpoint, you need to configure the following parameters:
 | `              inbound.thread.group.id             `              | Unique Identifier of the thread group.                                                                                                                                                                                                                                                                                                                                                                                                                                    | PassThrough inbound worker thread group |
 | `              inbound.thread.id             `                    | Unique Identifier of the thread.                                                                                                                                                                                                                                                                                                                                                                                                                                          | PassThroughInboundWorkerThread          |
 | `             dispatch.filter.pattern            `                | The regular expression that defines the proxy services and API's to expose via the inbound endpoint. Provide the `             .*            ` expression to expose all proxy services and API's or provide an expression similar to `             ^(/foo|/bar|/services/MyProxy)$            ` to define a set of services to expose via the inbound endpoint. If you do not provide an expression only the defined sequence of the inbound endpoint will be accessible. | blank                                   |
-
   
 
-Following is a sample configuration for an inbound endpoint with
-a separate worker pool:
+Following is a sample configuration for an inbound endpoint with a separate worker pool:
 
-``` html/xml
-    <inboundEndpoint name="HttpListenerEP" protocol="http" suspend="false" sequence="TestIn" onError="fault" >
+```
+<inboundEndpoint name="HttpListenerEP" protocol="http" suspend="false" sequence="TestIn" onError="fault" >
         <p:parameters xmlns:p="http://ws.apache.org/ns/synapse">
             <p:parameter  name="inbound.http.port">8081</p:parameter>
             <p:parameter  name="api.dispatching.enabled">false</p:parameter> 
@@ -70,13 +59,12 @@ a separate worker pool:
             <p:parameter name="inbound.worker.pool.size.core">400</p:parameter>
             <p:parameter name="inbound.worker.thread.keep.alive.sec">60</p:parameter>
         </p:parameters>
-     </inboundEndpoint>
+</inboundEndpoint>
 ```
 
-#### Inbound endpoint parameter for proxy services
+## Inbound endpoint parameter for proxy services
 
-If a proxy service is to be exposed only via inbound endpoints, the
-following service parameter has to be set in the proxy configuration.
+If a proxy service is to be exposed only via inbound endpoints, the following service parameter has to be set in the proxy configuration.
 
 <table>
 <colgroup>
@@ -103,8 +91,8 @@ following service parameter has to be set in the proxy configuration.
 
 Following is a sample proxy configuration:
 
-``` java
-    <proxy xmlns="http://ws.apache.org/ns/synapse" name="InboundProxy" transports="https,http" statistics="disable" trace="disable" startOnLoad="true">
+```
+<proxy xmlns="http://ws.apache.org/ns/synapse" name="InboundProxy" transports="https,http" statistics="disable" trace="disable" startOnLoad="true">
         <target>
             <outSequence>
                 <send/>
@@ -114,12 +102,5 @@ Following is a sample proxy configuration:
             </endpoint>
         </target>
         <parameter name="inbound.only">true</parameter>
-    </proxy>
+</proxy>
 ```
-
-### Samples
-
-For a sample that demonstrates how a HTTP inbound endpoint can act as a
-dynamic http listener, see [Sample 902: HTTP Inbound Endpoint
-Sample](https://docs.wso2.com/display/EI611/Sample+902%3A+HTTP+Inbound+Endpoint+Sample)
-.
