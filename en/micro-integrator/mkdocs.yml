@@ -130,7 +130,6 @@ nav:
           - 'Creating an Endpoint': 'develop/creating-artifacts/creating-endpoints.md'
           - 'Creating an Endpoint Template': 'develop/creating-artifacts/creating-endpoint-templates.md'
           - 'Creating a Sequence Template': 'develop/creating-artifacts/creating-sequence-templates.md'
-          - 'Creating a Custom Mediator': 'develop/creating-artifacts/creating-custom-mediators.md'
           - 'Creating a Custom Sequence': 'develop/creating-artifacts/creating-custom-sequences.md'
           - 'Adding Connectors': 'develop/creating-artifacts/adding-connectors.md'
           - 'Encrypting Synapse Passwords' : 'develop/creating-artifacts/encrypting-synapse-passwords.md'
@@ -164,6 +163,7 @@ nav:
           - 'Using REST with a Proxy Service' : 'use-cases/examples/proxy_service_examples/rest-with-a-proxy-service.md'
         - Inbound Endpoints:
           - 'Using Inbound Endpoints' : 'use-cases/examples/inbound_endpoint_examples/using-inbound-endpoints.md'
+          - 'Using the CXF WS RM Inbound Endpoint' : 'use-cases/examples/inbound_endpoint_examples/using-CXF-WS-RM-Inbound.md'
         - Registry Artifacts:
           - 'Working with Registry Artifacts' :  'use-cases/examples/registry_examples/working-with-registry-artifacts.md'
           - 'Managing Registry Artifacts' : 'use-cases/examples/registry_examples/managing-the-registry.md'
@@ -227,8 +227,9 @@ nav:
       - 'Enterprise Integration Patterns' : 'references/enterprise-Integration-Patterns.md'
       - 'Configuration Catalog' : 'references/ei_config_catalog.md'
       - 'Config Catalog' : 'references/config-catalog.md'
-      - Synapse Artifacts:
-        - Mediator Catalog: 
+      - Synapse Properties:
+        - 'Inbound Endpoint Properties': 'references/synapse-properties/inbound-endpoint-properties.md'
+        - Mediator Properties: 
           - 'Aggregate Mediators' : 'references/mediators/aggregate-Mediator.md'
           - 'Bean Mediator' : 'references/mediators/bean-Mediator.md'
           - 'Builder Mediator' : 'references/mediators/builder-Mediator.md'
@@ -278,24 +279,15 @@ nav:
           - 'Validate Mediator' : 'references/mediators/validate-Mediator.md'
           - 'XQuery Mediator' : 'references/mediators/xQuery-Mediator.md'
           - 'XSLT Mediator' : 'references/mediators/xSLT-Mediator.md'
-        - Inbound Endpoints:
-          - Listening Endpoints:
-            - 'HTTP Inbound Protocol' : 'references/inbound_endpoints/listening_inbound_endpoint/http-inbound-protocol.md'
-            - 'HTTPS Inbound Protocol' : 'references/inbound_endpoints/listening_inbound_endpoint/https-inbound-protocol.md'
-            - 'HL7 Inbound Protocol' : 'references/inbound_endpoints/listening_inbound_endpoint/hl7-inbound-protocol.md'
-            - 'CXF WS-RM Inbound Protocol' : 'references/inbound_endpoints/listening_inbound_endpoint/cxf-ws-rm-inbound-protocol.md'
-            - 'Websocket Inbound Protocol' : 'references/inbound_endpoints/listening_inbound_endpoint/websocket-inbound-protocol.md'
-            - 'Secure Websocket Inbound Protocol' : 'references/inbound_endpoints/listening_inbound_endpoint/secure-websocket-inbound-protocol.md'
-          - Polling Endpoints:
-            - 'File Inbound Protocol' : 'references/inbound_endpoints/polling_inbound_endpoint/file-Inbound-Protocol.md'
-            - 'JMS Inbound Protocol' : 'references/inbound_endpoints/polling_inbound_endpoint/jms-Inbound-Protocol.md'
-            - 'Kafka Inbound Protocol' : 'references/inbound_endpoints/polling_inbound_endpoint/kafka-Inbound-Protocol.md'
-          - Event-based Endpoints:
-            - 'MQTT Inbound Protocol' : 'references/inbound_endpoints/event_based_inbound_endpoint/mqtt-inbound-protocol.md'
-            - 'RabbitMQ Inbound Protocol' : 'references/inbound_endpoints/event_based_inbound_endpoint/rabbitmq-inbound-protocol.md'
-          - 'Custom Inbound Endpoints' : 'references/inbound_endpoints/custom-Inbound-endpoint.md'
-      - 'Synapse Handlers' : 'references/synapse_handlers/synapse-handlers.md'
+        - 'Message Store Properties': 'references/synapse-properties/message-store-properties.md'
+        - 'Message Processor Properties': 'references/synapse-properties/message-processor-properties.md'
+        - 'Template Properties': 'references/synapse-properties/template-properties.md'
+        - 'Endpoint Properties': 'references/synapse-properties/endpoint-properties.md'
       - 'JSON Messages' : 'references/json_messages/working-with-json-message-payloads.md'
+      - 'VFS Parameters': 'references/synapse-properties/vfs-parameters.md'
+      - Extending the Micro Integrator:
+        - 'Creating a Custom Inbound Endpoint' : 'references/customizations/creating-custom-Inbound-endpoint.md'
+        - 'Creating a Custom Mediator': 'references/customizations/creating-custom-mediators.md'
       - Transports:
         - 'PassThrough Transport' : 'references/transports/jms/passthrough-transport.md'
         - 'HTTP-NIO Transport' : 'references/transports/http-nio-transport.md'
@@ -329,7 +321,7 @@ nav:
           - 'Configuring Multiple Brokers' : 'references/transports/jms/configure-with-multiple-brokers.md'
       - Security:
         - 'Customizing Secure Vault' : 'references/security/customizing-secure-vault.md'
-        - 'Using Keystores' : 'references/using_keystores.md'
+        - 'Using Keystores' : 'references/security/using_keystores.md'
       - 'Best Practices' : 'references/best-Practices.md'
       - 'Error Codes' : 'references/error_handling.md'
     - '': page-not-found.md
