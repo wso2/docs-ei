@@ -56,7 +56,7 @@ nav:
       - 'Concepts': 'concepts.md'
   - 'Setup and Install':
     - 'Installing the Product':
-      - 'Install in a VM': 'installing-si-in-vm.md'
+      - 'Install in a VM': 'setup/installing-si-in-vm.md'
       - 'Installing in Docker': 'setup/installing-si-using-docker.md'
       - 'Installing in Kubernetes': 'setup/installing-si-using-kubernetes.md'
     - 'Deploying Streaming Integrator Profile':
@@ -97,7 +97,7 @@ nav:
       - 'Summarizing Data': 'guides/summarizing-data.md'
       - 'Publishing Data': 'guides/publishing-data.md'
       - 'Triggering Integration Flows': 'guides/triggering-integration-flows.md'
-  - 'Admin Guide':
+  - 'Administration':
     - 'Configuring the Streaming Integration Profile': 'admin/configure-si-profile.md'
     - 'Working with Siddhi Connectors':
       - 'Downloading and Installing Siddhi Connectors': 'admin/downloading-and-Installing-Siddhi-Extensions.md'
