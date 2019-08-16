@@ -1,12 +1,12 @@
 # Configuring Database and File System State Persistence
 
 This section explains how to prevent the loss of data that can result
-from a system failure by persisting the state of WSO2 SP periodically
+from a system failure by persisting the state of WSO2 SI periodically
 either into a database system or into the file system.
 
 ### Prerequisites
 
-Before configuring database persistence, the following prerequisites
+Before configuring RDBMS database persistence, the following prerequisites
 must be completed.
 
 -   One or more Siddhi Applications must be running in the WSO2 SI

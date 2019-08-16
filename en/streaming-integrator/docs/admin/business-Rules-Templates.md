@@ -207,15 +207,22 @@ for the templated parameters.</p></td>
 </tbody>
 </table>
 
+### Deploy business rule in SI server
+
+## Prerequisites
+
+SI server/servers should be up and running
+Tooling server should be up and running
+
   
 
 1.  Save the template group you created as a
     `           .json          ` file in the
-    `           <SP_HOME>/wso2/dashboard/resources/businessRules/templates          `
+    `           <SI_TOOLING_HOME>/wso2/server/resources/businessRules/templates          `
     directory.
 
 2.  In the `           BusinessRules          ` section of the
-    `           <SP_HOME>/conf/dashboard/deployment.yaml          `
+    `           <SI_TOOLING_HOME>/conf/server/deployment.yaml          `
     file, add a configuration for the template you created as shown
     below.
 
@@ -233,9 +240,8 @@ for the templated parameters.</p></td>
 
         !!! info
     
-        If you add this configuration, the business rules template is
-        deployed only in the specified nodes when you run the worker and
-        dashboard servers of your SP setup. If you do not add this
-        configuration, the template is deployed in all the worker nodes of
-        your SP set up.
+        nodeURL1 should be with the format of IP:Port .If you add this configuration, the business rules template is
+        deployed only in the specified nodes when you run the dashbord in tooling and
+        SI servers of your SI setup. If you do not specifically add business rule template ID's in the 
+        configuration, all templates in templates directory will deployed in all specified SI servers.
     

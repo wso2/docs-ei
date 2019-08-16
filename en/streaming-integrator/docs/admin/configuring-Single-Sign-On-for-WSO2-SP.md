@@ -1,5 +1,6 @@
-# Configuring Single Sign-On for WSO2 SP
+# Configuring Single Sign-On for WSO2 SI
 
+//todo 
 !!! note
 
 The functionality described in this section is not yet released.
@@ -9,7 +10,7 @@ SSO (Single Sign-On) allows you to be authenticated to access one
 application, and gain access to multiple other applications without
 having to repeatedly provide your credentials for authentication
 purposes. This section explains how you can configure single sign-on for
-the WSO2 Dashboard Portal, Status Dashboard and the Business Rules
+the Status Dashboard and the Business Rules
 Manager.
 
 !!! tip
@@ -17,7 +18,7 @@ Manager.
 Before you begin:
 
 Configure the external identity provider (IdP) that you are using for
-SSO. By default, WSO2 SP uses WSO2 IS (versions 5.4.0 and later) as the
+SSO. By default, WSO2 SI uses WSO2 IS (versions 5.4.0 and later) as the
 Identity Provider. For detailed instructions to configure WSO2 IS for
 this scenario, see [OAuth2 Token Validation and
 Introspection](http://docs.wso2.com/identity-server/OAuth2%20Token%20Validation%20and%20Introspection)
@@ -32,14 +33,14 @@ configurations (which differ based on the IdP).
 
 -   [Enabling SSO](#ConfiguringSingleSign-OnforWSO2SP-EnablingSSO)
 -   [Testing the SSO
-    configuration](#ConfiguringSingleSign-OnforWSO2SP-TestingtheSSOconfiguration)
+    configuration](#ConfiguringSingleSign-OnforWSO2SI-TestingtheSSOconfiguration)
 
   
 
 ## Enabling SSO
 
 To configure SSO for the WSO2 SP, open the
-`         <SP_HOME>/conf/dashboard/deployment.yaml        ` file and
+`         <SI_TOOLING_HOME>/conf/server/deployment.yaml        ` file and
 update it as follows:
 
 1.  In the `           auth.configs          ` section, start creating a
@@ -177,9 +178,9 @@ Once the above changes are made, you can start the dashboard server of
 WSO2 SP and access all the UIs in it with a single sign-on. To try this
 out, follow the steps below:
 
-1.  Start the dashbaord server by issuing one of the following commands:
-    -   **On Windows** : `            dashboard.bat --run           `
-    -   **On Linux/Mac OS** : `             sh dashboard.sh            `
+1.  Start the tooling server by issuing one of the following commands:
+    -   **On Windows** : `            tooling.bat --run           `
+    -   **On Linux/Mac OS** : `             sh tooling.sh            `
 
 2.  Access the Dashboard Portal via the following URL.  
 

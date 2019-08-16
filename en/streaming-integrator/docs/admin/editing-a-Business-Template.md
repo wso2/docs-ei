@@ -1,13 +1,13 @@
 # Editing a Business Template
 
-WSO2 SP allows you to make edits to a business template that you have
+WSO2 SI allows you to make edits to a business template that you have
 already created and saved. To edit a template via the Template Editor
 tool, follow the steps below.
 
-1.  Start the WSO2 editor profile by issuing one of the following
+1.  Start the WSO2 SI Tooling profile by issuing one of the following
     commands.
-    -   For Windows: `            editor.bat           `
-    -   For Linux: ./ `            editor.sh           `
+    -   For Windows: `            tooling.bat           `
+    -   For Linux: ./ `            tooling.sh           `
 2.  Access the Template Editor via the URL that appears for it in the
     start up logs as shown in the example below.  
     ![](attachments/112390790/112390794.png)

@@ -5,14 +5,14 @@
 WSO2 Business Rules Manager uses ruleTemplates within templateGroups, to
 derive business rules from. Each ruleTemplate will have a UUID - that is
 used to uniquely identify itself. When a ruleTemplate is specified under
-a worker node; SiddhiApps derived in business rules created out of that
-ruleTemplate will be deployed in the specified worker node.
+a SI server node, SiddhiApps derived in business rules created out of that
+ruleTemplate will be deployed in the specified SI server node.
 
 1.  Open the `          deployment.yaml         ` file in the
-    `          <WSO2SP_HOME>/conf/dashboard         ` directory.
+    `          <SI_TOOLING_HOME>/conf/server         ` directory.
 2.  Deployment configurations for the Business Rules Manager are
     specified under `           wso2.business.rules.manager          ` .
-    Provide the URL(s) of worker node(s) that is/are available to deploy
+    Provide the URL(s) of SI server node(s) that is/are available to deploy
     SiddhiApps, under `           deployment_configs          ` in the
     `           <HOST_NAME>:<PORT>          ` format.
 
@@ -59,9 +59,7 @@ ruleTemplate will be deployed in the specified worker node.
     
         Before entering a specific rule template under multiple node, make
         sure that you have selected **Many** for the **Instance Count**
-        field of the template. For more information, see [Creating a
-        Business Rule
-        Template](https://docs.wso2.com/display/SP440/Creating+a+Business+Rule+Template#CreatingaBusinessRuleTemplate-InstanceCount)
+        field of the template. For more information, see -   [creating-Business-Rules](#creating-Business-Rules)
         .
     
 

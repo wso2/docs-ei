@@ -16,8 +16,8 @@ User management in Stream Processor has the following features,
 
   
 
-Follwing sections includes further information and configuration steps
-for the user mangement in SP,
+Following sections includes further information and configuration steps
+for the user management in Streaming Integrator,
 
 -   [Introduction to User Management](_Introduction_to_User_Management_)
 -   [User Management via the IdP Client

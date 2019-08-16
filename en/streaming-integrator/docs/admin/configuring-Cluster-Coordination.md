@@ -1,23 +1,21 @@
 # Configuring Cluster Coordination
 
-Multiple WSO2 SP nodes can be configured to work together by configuring
+Multiple WSO2 SI nodes can be configured to work together by configuring
 a cluster coordination strategy that is used in various deployments such
-as the [Minimum HA
-Deployment](https://docs.wso2.com/display/SP440/Minimum+High+Availability+Deployment)
-and [Fully Distributed
-Deployment](https://docs.wso2.com/display/SP440/Fully+Distributed+Deployment)
+as the <a target="_blank" href="minimum-ha-deployment">Minimum High Available(HA) Deployment</a>
+and <a target="_blank" href="scalable-ha-deployment">Scalable High Available(HA) Deployment</a>
 . At present, cluster coordination is supported via an RDBMS instance
 using and RDBMS coordination strategy. Support for cluster coordination
 via a Zookeeper instance will be supported in the near future.
 
-At any given time, there is a leader in an SP cluster that is
+At any given time, there is a leader in an SI cluster that is
 arbitrarily selected among the members of the cluster. The RDBMS
 coordination strategy that is used for cluster coordination works on the
 concept of heartbeats where the members of the cluster periodically send
 heartbeat signals via the datasource to the leader of the cluster. If
 the leader node does not detect a pre configured consecutive number of
 heartbeats from a specific node, the relevant node is removed from the
-cluster. Simillarly, if the leader node fails to update its heartbeat,
+cluster. Similarly, if the leader node fails to update its heartbeat,
 the cluster re-elects a new leader.
 
 ### Prerequisites
@@ -25,20 +23,15 @@ the cluster re-elects a new leader.
 In order to configure a cluster, the following prerequisites must be
 completed:
 
--   A minimum of two binary packs of WSO2 SP must be available.
+-   A minimum of two binary packs of WSO2 SI must be available.
 -   A working RDBMS instance must be available to be shared among the
     nodes of the cluster.
-
-        !!! info
-    
-        Currently, we only support MySQL. Support for other databases will
-        be added soon.
     
 
 ### Configuring the Cluster with the RDBMS coordination strategy
 
 To configure a cluster for several nodes, the cluster.config section of
-the `         <SP_HOME>/conf/<worker|manager>/deployment.yaml        `
+the `         <SI_HOME>/conf/server/deployment.yaml        `
 should be configured for **all the nodes** as follows:
 
 | Parameter                                                        | Purpose                                                                                                                                                                                                                                                                              | Sample Values                                                                                  |
@@ -65,7 +58,7 @@ coordination in the deployment.yaml
       coordinationStrategyClass: org.wso2.carbon.cluster.coordinator.rdbms.RDBMSCoordinationStrategy
       strategyConfig:
         datasource: <DATASOURCE NAME>
-        heartbeatInterval: 1000
-        heartbeatMaxRetry: 2
-        eventPollingInterval: 1000
+        heartbeatInterval: 5000
+        heartbeatMaxRetry: 5
+        eventPollingInterval: 5000
 ```
