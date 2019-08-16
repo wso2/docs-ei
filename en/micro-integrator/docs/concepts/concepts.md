@@ -89,6 +89,136 @@ asynchronous.
 **Event-Based Inbound Endpoints**: An event-based inbound endpoint polls only once to establish a
 connection with the remote server and then consumes events.
 
+#### File Inbound Protocol
+
+The file inbound protocol is a multi-tenant capable alternative to the VFS transport. The file inbound protocol uses the [VFS transport](https://docs.wso2.com/display/EI650/VFS+Transport) to process files in a specified source directory. After processing the files, it moves them to a specified location or deletes them. Note that files cannot remain in the source directory after processing or they will be processed again, so if you need to maintain these files or keep track of the files that are processed, specify the option to move them instead of deleting them after processing.
+
+#### Kafka Inbound Protocol
+
+Kafka is a distributed, partitioned, replicated commit log service. It provides the functionality of a messaging system. Kafka maintains feeds of messages in topics. Producers write data to topics and consumers read from topics. For more information on Apache Kafka, go to [Apache Kafka documentation](http://kafka.apache.org/documentation.html) .
+			The kafka inbound endpoint acts as a message consumer. It creates a connection to ZooKeeper and requests messages for a topic, topics or topic filters. In order to use the kafka inbound endpoint, you need to download and install [Apache Kafka](http://kafka.apache.org/downloads.html) . The recommended version is `         kafka_2.9.2-0.8.1.1        ` .
+			To configure the kafka inbound endpoint, copy the following client libraries from the `<KAFKA_HOME>/libs        ` directory to the `<EI_HOME>/lib` directory.
+			-   `          kafka_2.9.2-0.8.1.1.jar         `
+			-   `           scala-library-2.9.2.jar          `
+			-   `           zkclient-0.3.jar          `
+			-   `           zookeeper-3.3.4.jar          `
+			-   `           metrics-core-2.2.0.jar          `
+			**Note**:    
+			-   If you are using `          kafka_2.x.x-0.8.2.0         ` or later, you also need to add the `          kafka-clients-0.8.x.x.jar         ` file to the `          <EI_HOME>/lib         ` directory.
+    		-   If you are using a newer version of ZooKeeper, follow the steps below:
+        		1.  Create a directory named `             conf            ` inside the `             <EI_HOME>/repository            ` directory.
+        		2.  Create a directory named identity inside the `             <EI_HOME>/repository/conf            ` directory.
+        		3.  Add the [jaas.conf](attachments/119130492/119130493.conf) file to the `             <EI_HOME>/repository/conf/identity            ` directory. This is required because Kerberos authentication is enforced on newer versions of ZooKeeper.
+
+#### JMS Inbound Protocol
+
+The JMS inbound protocol is a multi-tenant capable alternative to the
+JMS transport. The JMS inbound protocol implementation requires an
+active JMS server instance to be able to receive messages, and you need
+to place the client JARs for your JMS server in the ESB profile
+classpath.
+
+This section provides information on using the Broker Profile of WSO2 EI
+or Apache ActiveMQ as the JMS server, but other implementations such as
+Apache Qpid and Tibco are also supported.
+
+Configuration parameters for a JMS inbound endpoint are XML fragments
+that represent JMS connection factories.
+
+#### HTTP Inbound Protocol
+
+The HTTP inbound protocol is used to separate endpoint listeners for
+each HTTP inbound endpoint so that messages are handle separately. The
+HTTP inbound endpoint can bypass the inbound side axis2 layer and
+directly inject messages to a given sequence or API. For proxy services,
+messages will be routed through the axis2 transport layer in a manner
+similar to normal transports. You can start dynamic HTTP inbound
+endpoints without restarting the server.
+
+Following is a sample HTTP inbound endpoint configuration:
+
+
+!!! Note
+    -   A sequence should be designed with a call/respond or send/receive sequence. It is not recommended to use a sequence that has in and out mediators.
+    -   If a send mediator is used within the inbound endpoint sequence, specify a receiving sequence. If you do not specify a receiving sequence, the response will dispatch to the `           main          ` sequence.
+
+#### HTTPS Inbound Protocol
+
+The HTTPS inbound protocol is used to separate endpoint listeners for
+each HTTPS inbound endpoint so that messages are handle separately. This
+transport can bypass the inbound side axis2 layer and directly inject
+messages to a given sequence or API. You can start dynamic HTTPS inbound
+endpoints without restarting the server.
+
+Configuration parameters for a HTTPS inbound endpoint are XML fragments
+that represent various properties.
+
+
+!!! Note
+    -   A sequence should be designed with a call/respond or send/receive sequence. It is not recommended to use a sequence that has in and out mediators.
+    -   If a send mediator is used within the inbound endpoint sequence, specify a receiving sequence . If you do not specify a receiving sequence, the response will dispatch to the `           main          ` sequence.
+
+#### WebSocket Inbound Protocol
+
+The ESB profile of WSO2 Enterprise Integrator (WSO2 EI) WebSocket
+protocol implementation is based on the [WebSocket
+protocol](http://tools.ietf.org/html/rfc6455) , and allows full-duplex
+message mediation.
+
+#### Secure WebSocket Inbound Protocol
+
+The secure WebSocket inbound protocol implementation is based on the
+[WebSocket protocol](http://tools.ietf.org/html/rfc6455) , and allows
+full-duplex, secure message mediation.
+
+#### HL7 Inbound Protocol
+
+The ESB profile of WSO2 Enterprise Integrator (WSO2 EI) HL7 inbound
+protocol is a multi-tenant capable alternative to the HL7 transport. The
+HL7 inbound endpoint implementation is fully asynchronous and is based
+on the **Minimal Lower Layer Protocol(MLLP)** implemented on top of
+event driven I/O.
+
+#### CXF WS-RM Inbound Protocol
+
+WS­ReliableMessaging allows SOAP messages to be reliably delivered
+between distributed applications, regardless of software or hardware
+failures. The CXF WS­-RM inbound endpoint allows a client (RM Source) to
+communicate with the ESB profile of WSO2 EI (RM Destination) with a
+guarantee that a message sent will be delivered.
+
+!!! Note
+    To configure the CXF WS-RM Inbound endpoint, you need to install the **CXF WS Reliable Messaging** feature.
+
+#### RabbitMQ Inbound Protocol
+
+[AMQP](http://en.wikipedia.org/wiki/Advanced_Message_Queuing_Protocol)
+is a wire-level messaging protocol that describes the format of the data
+that is sent across the network. If a system or application can read and
+write AMQP, it can exchange messages with any other system or
+application that understands AMQP regardless of the implementation
+language.
+
+Configuration parameters for a RabbitMQ inbound endpoint are XML
+fragments that represent various properties.
+
+#### MQTT Inbound Protocol
+
+MQ Telemetry Transport (MQTT) is a lightweight broker-based
+publish/subscribe messaging protocol, designed to be open, simple,
+lightweight and easy to implement. These characteristics make it ideal
+for use in constrained environments.
+
+For example,
+
+-   When the network is expensive, has low bandwidth or is unreliable.
+
+-   When running on an embedded device with limited processor or memory
+    resources.
+
+To configure the MQTT inbound endpoint, you need to specify XML
+fragments that represents various parameters.
+
 ### Tasks
 
 A task allows you to run a piece of code triggered by a timer. WSO2

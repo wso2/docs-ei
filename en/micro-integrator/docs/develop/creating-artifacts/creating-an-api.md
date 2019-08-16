@@ -121,7 +121,6 @@ In the **Design** view of the API Resource, click the **Resource** icon to enabl
     </tr>
     </tbody>
     </table>
-
 3.  Select the sequences: The resource also contains **sequences**
     (in-sequence/out-sequence/fault sequence), which contains the
     mediation logic to process the message.

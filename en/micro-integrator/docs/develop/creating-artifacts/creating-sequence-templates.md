@@ -16,18 +16,6 @@ Follow these steps to create a new scheduled task.
     the file in the editor, or you can right-click the template in the
     project explorer and click **Open With \> ESB Editor**.
 
-## Properties
-
-The parameters available to configure the Sequence Template are as follows.
-
-| Parameter Name      | Description                                                       |
-|---------------------|-------------------------------------------------------------------|
-| Name                | The name of the Sequence Template                                 |
-| onError             | Select the error sequence that needs to be invoked.               |
-| Trace Enabled       | Whether or not trace is to be enabled for the sequence.           |
-| Statistics Enabled  | Whether or not statistics is to be enabled for the sequence.      |
-| Template Parameters | The input parameter that are supported by this Sequence Template. |
-
 ## Examples
 ..
 

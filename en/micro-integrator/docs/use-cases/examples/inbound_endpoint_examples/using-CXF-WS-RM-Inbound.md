@@ -1,16 +1,4 @@
-# CXF WS-RM Inbound Protocol
-
-WS­ReliableMessaging allows SOAP messages to be reliably delivered
-between distributed applications, regardless of software or hardware
-failures. The CXF WS­-RM inbound endpoint allows a client (RM Source) to
-communicate with the ESB profile of WSO2 EI (RM Destination) with a
-guarantee that a message sent will be delivered.
-
-!!! Note
-    To configure the CXF WS-RM Inbound endpoint, you need to install the **CXF WS Reliable Messaging** feature.
-
-
-## Synapse configuration
+# Using the CXF WS-RM Inbound Protocol
 
 Following is a sample sequence that sends messages that are from a RM
 source to a non RM backend:
@@ -149,48 +137,6 @@ If you need to secure the endpoint, you should change the CXF spring configurati
         </httpj:engine-factory>
 </beans>
 ```
-
-## Parameter
-
-The CXF WS-RM Inbound endpoint can be configured by specifying the following parameters:
-
--   `           Sequence          ` - The sequence that the message will
-    be injected to.
-
--   `           Error sequence          ` - The sequence to be called if
-    a fault occurs.
-
--   `          Suspend         ` - If the inbound listener should pause
-    when accepting incoming requests, set this to
-    `          true         ` . If the inbound listener should not pause
-    when accepting incoming requests, set this to
-    `          false         ` .
--   `           inbound.cxf.rm.host          ` - The host name.
-
--   `           inbound.cxf.rm.port          ` - The port to listen to.
-
-        !!! info
-    
-        Note
-    
-        When configuring a SSL enabled cxf\_ws\_rm inbound endpoint, the
-        `           inbound.cxf.rm.port          ` parameter should be set
-        to the same value as the engine port number specified in the CXF
-        spring configuration file saved in the
-        `           <EI_HOME>/conf/cxf          ` directory.
-    
-        For example, in the above CXF spring configuration, the engine port
-        is 8081. This same port number should be specified as the
-        `           inbound.cxf.rm.port          ` in the cxf\_ws\_rm
-        inbound endpoint configuration.
-    
-
--   `           inbound.cxf.rm.config-file          ` - The path to the
-    CXF Spring configuration file.
-
--   `           enableSSL          ` - Set to
-    `           true          ` if SSL is enabled in the CXF Spring
-    configuration file.
 
 ## Sample CXF WS-RM Inbound
 
