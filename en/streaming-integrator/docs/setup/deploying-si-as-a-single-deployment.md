@@ -15,6 +15,7 @@ instructions, see <a target="_blank" href="configuring-Database-and-File-System-
 
 ##![overview](../images/singleNodeDeployment.jpg?)
 
+
 With this capability if the streaming integrator node failed to receive any incoming events, with the state persistence 
 configured in SI , once the server comes back online it will start working from the latest snapshot which retrieved from 
 database and ask the broker to send events which were not able to process due to the failure.

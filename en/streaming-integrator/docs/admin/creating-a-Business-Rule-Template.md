@@ -5,11 +5,10 @@
 To create a business template using the Business Template editor, follow
 the procedure below:
 
-1.  Go to `          <SP_HOME>         ` from the terminal and Access
-    the Stream Processor Studio via the
-    `          http://<HOST_NAME>:<EDITOR_PORT>/editor         ` URL.  
-    -   On Windows: `            editor.bat --run           `
-    -   On Linux/Mac OS:  ./ `             editor.sh            `
+1.  Go to `          <SI_TOOLING_HOME>         ` from the terminal and start
+    the Streaming Integrator Tooling as mentioned below.  
+    -   On Windows: `            tooling.bat --run           `
+    -   On Linux/Mac OS:  ./ `             tooling.sh            `
 
 2.  Access the Business Rules Template Editor via the
     `           http://<HOST_NAME>:<PORT>/template-editor          `

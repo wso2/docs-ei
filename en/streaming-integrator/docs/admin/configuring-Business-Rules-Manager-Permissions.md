@@ -19,14 +19,14 @@ permissions.
 
 Before configuring Business Rules Manager permissions, the user roles to
 be assigned permissions must be already defined in the user store with
-the required user IDs. For detailed instructions, see [User
+the required user IDs. For detailed instructions, //todo see [User
 Management](https://docs.wso2.com/display/SP440/User+Management) .
 
 ## Configuring permissions
 
 Roles related to the Business Rules Manager need to be added under the
 `         wso2.business.rules.manager        ` component namespace in
-the `         <SP_HOME>/conf/ dashboard/deployment.yaml        ` file.
+the `         <SI_TOOLING_HOME>/conf/server/deployment.yaml        ` file.
 
 The following is a sample configuration of user roles for the Business
 Rules Manager.  
