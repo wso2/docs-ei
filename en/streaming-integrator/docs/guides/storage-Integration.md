@@ -223,11 +223,36 @@ To understand how to define a store inline, follow the procedure below:
 
 
 
-
-
 ## Performing CRUD operations
 
 ###Performing CRUD operations via streams
+
+If you tried out the example in the previous sections of this guide, you have already performed an update or insert operation 
+via streams when you updated or inserted a record relating to the purchase records into the `ShipmentDetails` table. In 
+this section, you can try more CRUD operations via streams as follows:
+
+- If you want to insert all the records from the `RawMaterialStream` stream to the `ShipmentDetails` table, you can write the Siddhi query as follows.
+    ```
+    from RawMaterialStream
+    select *
+    insert into ShipmentDetails
+    ```
+- If you want to search for all the records by a specific supplier, you can write the Siddhi query as follows.
+    ```
+    from RawMaterialStream on supplier == 'Lakspur landing' in ShipmentDetails
+    select *
+    insert into SearchResultsStream
+    ```
+    
+    Here, you search for records by entering the search condition in the `from` clause and directing the filtered results into an output stream named `SearchResultsStream`.
+
+- If you want to delete all the records for a specific material, you can write the Siddhi query as follows:
+    ```
+    from DeleteMaterialStream on material == 'honey' in ShipmentDetails
+    select *
+    delete ShipmentDeails on ShipmentDetails.material == matarial;
+    ```
+    
 
 ###Performing CRUD operations via REST API
 
