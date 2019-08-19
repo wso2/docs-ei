@@ -96,6 +96,7 @@ nav:
       - 'Cleansing Data': 'guides/cleansing-data.md'
       - 'Correlating Data': 'guides/correlating-events.md'
       - 'Summarizing Data': 'guides/summarizing-data.md'
+      - 'Integrating Stores': 'guides/storage-integration.md'
       - 'Publishing Data': 'guides/publishing-data.md'
       - 'Triggering Integration Flows': 'guides/triggering-integration-flows.md'
   - 'Administration':
