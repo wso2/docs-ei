@@ -256,6 +256,70 @@ this section, you can try more CRUD operations via streams as follows:
 
 ###Performing CRUD operations via REST API
 
+This section explains how to use REST API to perform the same CRUD operations that you previously performed via streams.
+
+!!!info"Before you begin:"
+    The Siddhi store query endpoint can be configured as follows:    
+    1. In the siddhi.stores.query.api: section of the `<SI_HOME>/conf/server/deployment.yaml` file, configure the following properties. The following is a sample configuration with default values.
+        ```
+        siddhi.stores.query.api:
+          transportProperties:
+            -
+              name: "server.bootstrap.socket.timeout"
+              value: 60
+            -
+              name: "client.bootstrap.socket.timeout"
+              value: 60
+            -
+              name: "latency.metrics.enabled"
+              value: true
+           listenerConfigurations:
+            -
+              id: "default"
+              host: "0.0.0.0"
+              port: 7070
+            -
+              id: "msf4j-https"
+              host: "0.0.0.0"
+              port: 7443
+              scheme: https
+              keyStoreFile: "${carbon.home}/resources/security/wso2carbon.jks"
+              keyStorePassword: wso2carbon
+              certPass: wso2carbon
+        ```    
+        - **transport properties**
+           - `server.bootstrap.socket.timeout`: The number of seconds after which the connection socket of the bootstrap server times out.
+           - `client.bootstrap.socket.timeout`: The number of seconds after which the connection socket of the bootstrap server times out.
+           - `latency.metrics.enabled`: If this is set to `true`, the latency metrics are enabled and logged for the HTTP transport.
+        - **listenerConfigurations**: Multiple listeners can be configured as shown in the above sample.
+           - `id`: A unique ID for the listener.
+           - `host`: The host of the listener.
+           - `port`: The port of the listener.
+           - `scheme `: This specifies whether the transport scheme is HTTP or HTTPS.
+           - `keyStoreFile`: If the transport scheme is HTTPS, this parameter specifies the path to the key store file.
+           - `keyStorePassword`: If the transport scheme is HTTPS, this parameter specifies the key store password.          
+    2. In the `siddhi.stores.query.api:` section of the `<SI_HOME>/conf/server/deployment.yaml` file, the following properties are configured by default:
+        ```        
+        siddhi.stores.query.api:
+          transportProperties:
+            -
+              name: "server.bootstrap.socket.timeout"
+              value: 60
+            -
+              name: "client.bootstrap.socket.timeout"
+              value: 60
+            -
+              name: "latency.metrics.enabled"
+              value: true
+           listenerConfigurations:
+            -
+              id: "default"
+              host: "0.0.0.0"
+              port: 7370
+        ```
+        The same parameter descriptions provided for the `<SI_HOME>/conf/server/deployment.yaml ` file apply to this configuration.
+        
+
 
 ## Change Data Capture
 
