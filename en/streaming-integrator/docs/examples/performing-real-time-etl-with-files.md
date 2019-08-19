@@ -23,6 +23,8 @@ This tutorial takes you through the different modes and options you could use, i
 - [Loading data into a file](#Loading-data-into-a-file)
     - [Appending or over-writing events to a file](#Appending-or-over-writing-events-to-a-file)
     
+- [Preserving the State of the application through a system failure](#Preserving-the-State-of-the-application-through-a-system-failure)
+    
 ## Preparing the server 
 Navigate to the `<SI_HOME>/bin` directory and issue the following command: `sh server.sh`
 
@@ -479,4 +481,120 @@ In this scenario, you will append a stream of events to the end of a file.
     @sink(type='file', append='false',  @map(type='json'), file.uri='/Users/foo/low_productions.txt')
        define stream LowProductionAlertStream (name string, amount double);
     ``` 
-    Refer other configuration options in [Siddhi File Sink documentation](https://siddhi-io.github.io/siddhi-io-file/api/latest/#file-sink).   
+    Refer other configuration options in [Siddhi File Sink documentation](https://siddhi-io.github.io/siddhi-io-file/api/latest/#file-sink).
+    
+## Preserving the State of the application through a system failure
+
+Let's try out a scenario in which you are going to deploy a Siddhi application to count the total number of productions of a sweets factory. 
+
+The production data is updated in a file and therefore you have to keep tailing this file, in order to get updates on the productions. 
+
+!!!info
+    In this scenario, the current count should be "remembered" by the SI server through system failures, so that when the system is restored, the count is not reset to zero. 
+    To achieve this, you can use the state persistence capability in the Streaming Integrator.
+
+1. Enable state persistence feature in SI server as follows. Open the `<SI_HOME>/conf/server/deployment.yaml` file on a text editor and locate the `state.persistence` section.  
+
+    ``` 
+      # Periodic Persistence Configuration
+    state.persistence:
+      enabled: true
+      intervalInMin: 1
+      revisionsToKeep: 2
+      persistenceStore: org.wso2.carbon.streaming.integrator.core.persistence.FileSystemPersistenceStore
+      config:
+        location: siddhi-app-persistence
+    ```   
+    Set `enabled` parameter to `true` and save the file. 
+
+2. Enable state persistence debug logs as follows. Open the `<SI_HOME>/conf/server/log4j2.xml` file on a text editor and locate following line in it.
+    ```
+     <Logger name="com.zaxxer.hikari" level="error"/>
+    ``` 
+    Add following `<Logger>` element below that.
+    ```
+    <Logger name="org.wso2.carbon.streaming.integrator.core.persistence" level="debug"/>
+    ```
+    Save the file.
+
+3. Restart the Streaming Integrator server for above change to be effective.
+
+4. Download `productions.csv` file from [here](todo) and save it in a location of your choice. 
+
+5. Open a text file and copy-paste following Siddhi application to it.
+    ```
+    @App:name('CountProductions')
+    
+    @App:description('Siddhi application to count the total number of orders.')
+    
+    @source(type='file', mode='LINE',
+        file.uri='file:/Users/foo/productions.csv',
+        tailing='true',
+        @map(type='csv'))
+    define stream SweetProductionStream (name string, amount double);
+    
+    @sink(type = 'log')
+    define stream LogStream (totalProductions double);
+    
+    -- Following query counts the number of sweet productions.
+    @info(name = 'query')
+    from SweetProductionStream
+    select sum(amount) as totalProductions
+    insert into LogStream;
+    ```
+    Change the `file.uri` parameter above, to the file path to which you downloaded `productions.csv` file in step 4. 
+    
+6. Save this file as `CountProductions.siddhi` in the `<SI_HOME>/wso2/server/deployment/siddhi-files` directory.   
+
+    !!!info
+        This Siddhi application tails the file `productions.csv` line by line. Each line is converted into an event in `SweetProductionStream`. After that, a simple transformation is done on the sweet productions. That is the `name` attribute from the event is converted into upper case. Finally, the output is logged on the SI console.
+        
+    Upon successful deployment, following log appears on the SI console:
+    ```
+    INFO {org.wso2.carbon.streaming.integrator.core.internal.StreamProcessorService} - Siddhi App CountProductions deployed successfully
+    ```
+7. Now the Siddhi application starts to process the `productions.csv` file. The file has below two entries:
+    ```
+    Almond cookie,100.0
+    Baked alaska,20.0
+    ```  
+    As a result, the following log appears in the SI console:
+    ```
+    INFO {io.siddhi.core.stream.output.sink.LogSink} - CountProductions : LogStream : Event{timestamp=1565097506866, data=[100.0], isExpired=false}
+    INFO {io.siddhi.core.stream.output.sink.LogSink} - CountProductions : LogStream : Event{timestamp=1565097506866, data=[120.0], isExpired=false}
+    ```
+    These logs print the sweet production count. Notice that the current count of sweet productions is being printed as `120` in the second log. This is because we have so far produced `120` sweets: `100` Almond cookies and `20` Baked alaskas.
+    
+8. Now wait for following log to appear on the SI console
+    ```
+    DEBUG {org.wso2.carbon.streaming.integrator.core.persistence.FileSystemPersistenceStore} - Periodic persistence of CountProductions persisted successfully
+    ```
+    This log indicates that the current state of the Siddhi application is successfully persisted. Siddhi application state is persisted every minute, hence you will notice this log appearing every minute.
+    
+    Next, you are going to append two sweet production entries into the `productions.csv` file and shutdown the SI server before the state persistence happens (in other words, before above log appears). 
+    
+    !!!Tip
+        It is better to start appending the records immediately after the state persistence log appears, so that you have plenty of time to append the records and shutdown the server, until next log appears.
+        
+9. Now append following content into the `productions.csv` file:
+    ```
+    Croissant,100.0
+    Croutons,100.0
+    ```   
+
+10. Shutdown SI server. Here we deliberately create a scenario where the server crashes before the SI server could persist the latest production count. 
+    
+    !!!Info
+        As the SI server crashed before the state is persisted, the SI server could not persist the latest count (which should include the last two productions `100` Croissants and `100` Croutons). The good news is, `File source` will replay the last two messages, hence recovering successfully from the server crash.
+ 
+11. Restart the SI server and wait for about one minute.
+
+12. The following log appears in the SI console:
+    ```
+    INFO {io.siddhi.core.stream.output.sink.LogSink} - CountProductions : LogStream : Event{timestamp=1565097846807, data=[220.0], isExpired=false}
+    INFO {io.siddhi.core.stream.output.sink.LogSink} - CountProductions : LogStream : Event{timestamp=1565097846812, data=[320.0], isExpired=false}
+    ``` 
+Notice that the `File source` has replayed the last two messages. As a result, the sweet productions count has being correctly restored.
+
+
+     
