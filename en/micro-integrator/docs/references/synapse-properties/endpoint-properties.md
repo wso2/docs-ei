@@ -118,19 +118,19 @@
         <td>
             The message format for the endpoint. The available values are as follows.
             <ul>
-                <li>Leave As-Is: If this is selected, no transformation is done to the outgoing message.</li>
-                <li>SOAP 1.1: If this is selected the message is transformed to SOAP 1.1.</li>
-                <li>SOAP 1.2: If this is selected the message is transformed to SOAP 1.2.</li>
-                <li>Plain Old XML (POX): If this is selected the message is transformed to plain old XML format.</li>
-                <li>Representational State Transfer (REST): If this is selected, the message is transformed to REST.</li>
-                <li>GET: If this is selected, the message is transformed to a HTTP Get Request.</li>
+                <li><b>Leave As-Is</b>: If this is selected, no transformation is done to the outgoing message.</li>
+                <li><b>SOAP 1.1</b>: If this is selected the message is transformed to SOAP 1.1.</li>
+                <li><b>SOAP 1.2</b>: If this is selected the message is transformed to SOAP 1.2.</li>
+                <li><b>Plain Old XML (POX)</b>: If this is selected the message is transformed to plain old XML format.</li>
+                <li><b>Representational State Transfer (REST)</b>: If this is selected, the message is transformed to REST.</li>
+                <li><b>GET</b>: If this is selected, the message is transformed to a HTTP Get request.</li>
             </ul>
         </td>
     </tr>
     <tr>
         <td>Trace Enabled</td>
         <td> 
-            This enables trace for the endpoint. 
+            This enables tracing for the endpoint. You can <a href="develop/endpoint-trace-logs.md">use trace logs to debug</a> mediation errors.
         </td>
     </tr>
     <tr>

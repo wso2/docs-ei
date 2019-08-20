@@ -144,7 +144,7 @@ nav:
           - 'Mediation Debugging': 'develop/debugging-mediation.md'
           - 'Monitoring Proxy Service Access Logs': 'develop/enabling-logs-for-services.md'
           - 'Monitoring REST API Access Logs': 'develop/enabling-logs-for-api.md'
-          - 'Endpoint Tracing' : 'develop/endpoing-trace-logs.md'
+          - 'Endpoint Tracing' : 'develop/endpoint-trace-logs.md'
         - 'Running on WSO2 Integration Cloud': 'develop/deploying-in-integration-cloud.md'
         - 'Troubleshooting WSO2 Integration Studio' : 'develop/troubleshooting-WSO2-Integration-Studio.md'
       - 'Using a CI/CD Pipeline' : 'develop/using-cicd-pipeline.md'
@@ -285,11 +285,12 @@ nav:
         - 'Endpoint Properties': 'references/synapse-properties/endpoint-properties.md'
       - 'JSON Messages' : 'references/json_messages/working-with-json-message-payloads.md'
       - 'VFS Parameters': 'references/synapse-properties/vfs-parameters.md'
-      - Extending the Micro Integrator:
+      - Creating Custom Artifacts:
         - 'Creating a Custom Inbound Endpoint' : 'references/customizations/creating-custom-Inbound-endpoint.md'
         - 'Creating a Custom Mediator': 'references/customizations/creating-custom-mediators.md'
+        - 'Creating a Synapse Handlers': 'references/customizations/creating-synapse-handlers.md'
       - Transports:
-        - 'PassThrough Transport' : 'references/transports/jms/passthrough-transport.md'
+        - 'PassThrough Transport' : 'references/transports/passthrough-transport.md'
         - 'HTTP-NIO Transport' : 'references/transports/http-nio-transport.md'
         - 'HTTPS-NIO Transport' : 'references/transports/https-nio-transport.md'
         - 'HTTP Servlet Transport' : 'references/transports/http-servlet-transport.md'

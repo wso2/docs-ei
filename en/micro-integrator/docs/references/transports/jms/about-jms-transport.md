@@ -19,14 +19,11 @@ JMS supports two models for messaging as follows:
 -   Queues : point-to-point
 -   Topics : publish and subscribe
 
-!!! tip
-
-The ESB Profile of WSO2 EI supports the following messaging features
-introduced with JMS 2.0:
-
--   Shared Topic Subscription
--   JMSX Delivery Count
--   JMS Message Delivery Delay
+!!! Tip
+    The Micro Integrator supports the following messaging featuresmintroduced with JMS 2.0:
+    -   Shared Topic Subscription
+    -   JMSX Delivery Count
+    -   JMS Message Delivery Delay
 
 
 The Java Message Service (JMS) transport in WSO2 Enterprise
@@ -51,20 +48,9 @@ also supported. For information on how to configure the JMS transport
 with the most common broker servers that can be integrated with WSO2 EI,
 see [Configuring the JMS Transport](_Configuring_the_JMS_Transport_) .
 
--   [JMS connection factory
-    parameters](#JMSTransport-ConnectionFactoryParamsJMSconnectionfactoryparameters)
--   [Service level JMS configuration
-    parameters](#JMSTransport-ServicelevelJMSconfigurationparameters)
--   [JMS MapMessage support](#JMSTransport-JMSMapMessagesupport)
-    -   [Producing a MapMessage](#JMSTransport-ProducingaMapMessage)
-    -   [Consuming a MapMessage](#JMSTransport-ConsumingaMapMessage)
+## JMS connection factory parameters
 
-### JMS connection factory parameters
-
-Configuration parameters for the JMS receiver and the sender are XML
-fragments that represent JMS connection factories. Following is a
-typical JMS configuration that uses [WSO2 Message
-Broker](http://wso2.com/products/message-broker/) as the message broker:
+Configuration parameters for the JMS receiver and the sender are XML fragments that represent JMS connection factories. Following is a typical JMS configuration that uses [WSO2 Message Broker](http://wso2.com/products/message-broker/) as the message broker:
 
 ``` java
     <parameter name="myTopicConnectionFactory">
@@ -79,15 +65,8 @@ This is a bare minimal JMS connection factory configuration that
 consists of four connection factory parameters. The following table
 describes each JMS connection factory parameter in detail:
 
-!!! info
-
-Tip
-
-In transport parameter tables, literals displayed in italic mode under
-the **Possible Values** column should be considered as fixed literal
-constant values. Those values can be directly used in transport
-configurations.
-
+!!! Info
+    In transport parameter tables, literals displayed in italic mode under the **Possible Values** column should be considered as fixed literal constant values. Those values can be directly used in transport configurations.
 
 <table>
 <thead>
@@ -427,7 +406,7 @@ JMS transport implementation has some parameters that should be
 configured at service level. For example, parameters that should be
 configured in the service XML files of individual services.
 
-### Service level JMS configuration parameters
+## Service level JMS configuration parameters
 
 Following are some of the common parameters you can configure at the
 service level.
@@ -478,14 +457,14 @@ see [Tuning the JMS
 Transport](https://docs.wso2.com/display/EI650/Tuning+the+JMS+Transport)
 .
 
-### JMS MapMessage support
+## JMS MapMessage support
 
 In the ESB Profile of WSO2 Enterprise Integrator (WSO2 EI), the JMS
 transport supports producing and consuming JMS
 [MapMessage](http://docs.oracle.com/javaee/1.4/api/javax/jms/MapMessage.html)
 objects, which send a set of name/value pairs.
 
-#### Producing a MapMessage
+### Producing a MapMessage
 
 To send a MapMessage from a proxy service or API to a queue, construct
 an XML payload using the [PayloadFactor
@@ -510,7 +489,7 @@ The JMS sender will then produce the equivalent MapMessage object:
     message.setString("name3", "value3");
 ```
 
-#### Consuming a MapMessage
+### Consuming a MapMessage
 
 When a proxy service receives a JMS MapMessage via a JMS broker, it will
 convert it to an XML message like this:
