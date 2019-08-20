@@ -2,19 +2,25 @@
 
 **FIX (Financial Information eXchang) transport** implementation is a
 module developed under the Apache Synapse project. This transport is
-mainly used with WSO2 Enterprise Integrator and WSO2 ESB in conjunction
-with proxy services. The following class acts as the transport receiver:
+mainly used in conjunction with proxy services. This transport supports JMX.
 
--   `          org.apache.synapse.transport.fix.FIXTransportListener         `
+FIX transport does not support any global parameters. All the FIX
+configuration parameters should be specified at service level.
 
-The
-`         org.apache.synapse.transport.fix.FIXTransportSender        `
-acts as the transport sender implementation. These classes can be found
-in the
-`         <EI_HOME>/wso2/components/plugins/synapse-fix-transport.jar        `
-file. The transport implementation is based on Quickfix/J open source
-FIX engine and hence the following additional dependencies are required
-to enable the FIX transport.
+QuickFix 4J configuration parameters can be found
+[here](http://www.quickfixengine.org/quickfix/doc/html/configuration.html)
+
+## Configuring the FIX transport
+
+Update the following configurations in the ei.toml file:
+
+```toml
+[transport.fix]
+listener.enabled=false
+sender.enabled=false
+```
+
+The transport implementation is based on Quickfix/J open source FIX engine and hence the following additional dependencies are required to enable the FIX transport.
 
 -   `          mina-core.jar         `
 -   `          quickfixj-core.jar         `
@@ -26,30 +32,15 @@ to enable the FIX transport.
 -   `          slf4j-api.jar         `
 -   `          slf4j-log4j12.jar         `
 
-This transport supports JMX.
-
 Download [Quickfix/J](https://www.quickfixj.org/) and in the
 distribution archive you will find all the dependencies listed above.
 Also please refer to Quickfix/J documentation on configuring FIX
 acceptors and initiators.
 
-FIX transport does not support any global parameters. All the FIX
-configuration parameters should be specified at service level.
-
-QuickFix 4J configuration parameters can be found
-[here](http://www.quickfixengine.org/quickfix/doc/html/configuration.html)
-
 ### Service Level FIX Parameters
 
-!!! info
-
-Tip
-
-In transport parameter tables, literals displayed in italic mode under
-the "Possible Values" column should be considered as fixed literal
-constant values. Those values can be directly put in transport
-configurations.
-
+!!! Info
+	In transport parameter tables, literals displayed in italic mode under the "Possible Values" column should be considered as fixed literal constant values. Those values can be directly put in transport configurations.
 
 <table>
 <colgroup>
@@ -256,22 +247,3 @@ one.</p></td>
 </tr>
 </tbody>
 </table>
-
-For more information, see the following topics:
-
--   [Carrying
-    Messages](https://docs.wso2.com/display/EI650/Carrying+Messages)
--   [Setting Up the ESB
-    Samples](https://docs.wso2.com/display/EI650/Setting+Up+the+ESB+Samples)
--   [Sample 257: Proxy Services with the FIX
-    Transport](https://docs.wso2.com/display/ESB500/Sample+257%3A+Proxy+Services+with+the+FIX+Transport)
--   [Sample 258: Switching from HTTP to
-    FIX](https://docs.wso2.com/display/ESB500/Sample+258%3A+Switching+from+HTTP+to+FIX)
--   [Sample 259: Switch from FIX to
-    HTTP](https://docs.wso2.com/display/ESB500/Sample+259%3A+Switch+from+FIX+to+HTTP)
--   [Sample 260: Switch from FIX to
-    AMQP](https://docs.wso2.com/display/ESB500/Sample+260%3A+Switch+from+FIX+to+AMQP)
--   [Sample 261: Switching between FIX
-    Versions](https://docs.wso2.com/display/ESB500/Sample+261%3A+Switching+between+FIX+Versions)
--   [Sample 262: CBR of FIX
-    Messages](https://docs.wso2.com/display/ESB500/Sample+262%3A+CBR+of+FIX+Messages)

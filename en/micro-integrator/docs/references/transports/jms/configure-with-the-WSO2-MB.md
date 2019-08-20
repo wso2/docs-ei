@@ -1,78 +1,16 @@
 # Configure with the Broker Profile
 
-Follow the steps below to configure the JMS transport of the ESB profile
-with the Broker profile.
+Follow the steps below to configure the JMS transport of the ESB profile with the Broker profile.
 
-!!! note
+1.  To enable the JMS transport of the Micro Integrator to communicate with the Broker, update the following configuration in the ei.toml file:
 
-From the below configurations, do the ones in the **axis2.xml** file
-based on the profile you use as follows:
-
--   To enable the JMS transport in the ESB profile, edit the
-    `          <EI_HOME>/conf/axis2/axis2.xml         ` file.
--   To enable the JMS transport in other profiles, edit the
-    `          <EI_HOME>/wso2/<PROFILE_HOME>/conf/axis2/axis2.xml         `
-    file. `          <PROFILE_HOME>         ` refers to the main
-    directory of the profile inside the WSO2 EI distribution. For
-    example, to enable the JMS transport in the Business Process
-    profile, edit the
-    `          <EI_HOME>/wso2/business-process/conf/axis2/axis2.xml         `
-    file
-
-
-1.  To enable the JMS transport of the ESB profile to communicate with
-    the Broker profile, edit the
-    `           <EI_HOME>/conf/axis2/axis2.xml          ` file , find
-    the commented `           <transport receiver>          ` block and
-    uncomment it as shown below.
-
-    ``` html/xml
-         <!--Uncomment this and configure as appropriate for JMS transport support with WSO2 EI Broker Profile -->
-           <transportReceiver name="jms" class="org.apache.axis2.transport.jms.JMSListener">
-               <parameter name="myTopicConnectionFactory" locked="false">
-                  <parameter name="java.naming.factory.initial" locked="false">org.wso2.andes.jndi.PropertiesFileInitialContextFactory</parameter>
-                   <parameter name="java.naming.provider.url" locked="false">conf/jndi.properties</parameter>
-                   <parameter name="transport.jms.ConnectionFactoryJNDIName" locked="false">TopicConnectionFactory</parameter>
-                   <parameter name="transport.jms.ConnectionFactoryType" locked="false">topic</parameter>
-               </parameter>
-         
-               <parameter name="myQueueConnectionFactory" locked="false">
-                   <parameter name="java.naming.factory.initial" locked="false">org.wso2.andes.jndi.PropertiesFileInitialContextFactory</parameter>
-                   <parameter name="java.naming.provider.url" locked="false">conf/jndi.properties</parameter>
-                   <parameter name="transport.jms.ConnectionFactoryJNDIName" locked="false">QueueConnectionFactory</parameter>
-                  <parameter name="transport.jms.ConnectionFactoryType" locked="false">queue</parameter>
-               </parameter>
-         
-               <parameter name="default" locked="false">
-                   <parameter name="java.naming.factory.initial" locked="false">org.wso2.andes.jndi.PropertiesFileInitialContextFactory</parameter>
-                   <parameter name="java.naming.provider.url" locked="false">conf/jndi.properties</parameter>
-                   <parameter name="transport.jms.ConnectionFactoryJNDIName" locked="false">QueueConnectionFactory</parameter>
-                   <parameter name="transport.jms.ConnectionFactoryType" locked="false">queue</parameter>
-               </parameter>
-           </transportReceiver>
+    ```toml
     ```
 
-2.  Uncomment the following `           <transport sender>          `
-    block for JMS in the same file:
-
-    ``` html/xml
-            <!-- uncomment this and configure to use connection pools for sending messages>
-            <transportSender name="jms" class="org.apache.axis2.transport.jms.JMSSender"/>
-    ```
-
-        !!! info
-    
-        For more information on the JMS configuration parameters used in the
-        code segments above, see [JMS Connection Factory
-        Parameters](https://docs.wso2.com/display/EI600/JMS+Transport#JMSTransport-JMSConnectionFactoryParameters)
-        .
-    
-
-3.  `                     Open                       <EI_HOME>/conf/jndi.properties           `
+3.   Open    the                    `<EI_HOME>/conf/jndi.properties           `
     file and make a reference to the running Broker profile as specified
     below: `                               `
     -   Use **carbon** as the virtual host.
-
     -   Define a queue named `            JMSMS           ` .
     -   Comment out the topic, since it is not required in this
         scenario. However, in order to avoid getting the
@@ -92,15 +30,6 @@ based on the profile you use as follows:
                 queue.JMSMS=JMSMS
                 queue.StockQuotesQueue = StockQuotesQueue
         ```
-
-                !!! note
-        
-                For instructions on configuring the JMS transport in **a
-                cluster** of the WSO2 EI Broker profile, see [Running the Broker
-                instances](https://docs.wso2.com/display/EI600/Handling+Failover#HandlingFailover-Runningthebrokerinstances)
-                .
-        
-
 4.  Ensure that the Broker profile is running, and then open a command
     prompt (or a shell in Linux) and go to the
     `          <EI_HOME>/bin/         ` directory.

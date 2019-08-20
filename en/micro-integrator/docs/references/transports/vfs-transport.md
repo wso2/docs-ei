@@ -17,43 +17,27 @@ Processing](https://docs.wso2.com/display/EI620/Sample+271%3A+File+Processing)
 **Note** that the VFS transport is enabled by default from WSO2 EI
 version 6.5.0 onwards.
 
-!!! tip
+!!! Tip
+    When you transfer a file to a remote FTP location via VFS, the ESB tries to detect the FTP location by navigating from the root folder first. If the ESB does not have **at least list permission** to the root (/), the file transfer fails.
 
-**Tip** : When you transfer a file to a remote FTP location via VFS, the
-ESB tries to detect the FTP location by navigating from the root folder
-first. If the ESB does not have **at least list permission** to the root
-(/), the file transfer fails.
+## Configuring the endpoint
 
+To configure a VFS endpoint, use the `         vfs:file        ` prefix in the URI. For example:
 
-------------------------------------------------------------------------
-
-[Configuring the endpoint](#VFSTransport-Configuringtheendpoint) \|
-[Security](#VFSTransport-Security) \| [Failure
-tracking](#VFSTransport-Failuretracking) \| [Transferring large
-files](#VFSTransport-Transferringlargefiles) \| [VFS service-level
-parameters](#VFSTransport-VFSservice-levelparameters) \| [VFS URL
-parameters](#VFSTransport-VFSURLparameters) \|
-[Samples](#VFSTransport-Samples)
-
-### Configuring the endpoint
-
-To configure a VFS endpoint, use the `         vfs:file        ` prefix
-in the URI. For example:
-
-``` html/xml
-    <endpoint>
-        <address uri="vfs:file:///home/user/test/out"/>
-    </endpoint>
+```
+<endpoint>
+    <address uri="vfs:file:///home/user/test/out"/>
+</endpoint>
 ```
 
-### Security
+## Security
 
 The VFS transport supports the **SFTP protocol** with **Secure Sockets
 Layer (SSL)** . The configuration is identical to other protocols with
 the only difference being the URL prefixes and parameters. For more
 information, see [VFS URL parameters](#VFSTransport-URLparams) below.
 
-#### Securing VFS password in a proxy service
+### Securing VFS password in a proxy service
 
 The following instructions describe how to secure the VFS password in a
 proxy service configuration.
@@ -62,34 +46,29 @@ proxy service configuration.
     following lines in
     `           <EI_HOME>/conf/axis2/axis2.xml          ` file:
 
-    ``` java
-            <transportReceiver class="org.apache.synapse.transport.vfs.VFSTransportListener" name="vfs">
+    ```
+    <transportReceiver class="org.apache.synapse.transport.vfs.VFSTransportListener" name="vfs">
             <parameter locked="false" name="keystore.identity.location">repository/resources/security/wso2carbon.jks</parameter>
             <parameter locked="false" name="keystore.identity.type">JKS</parameter>
             <parameter locked="false" name="keystore.identity.store.password">wso2carbon</parameter>
             <parameter locked="false" name="keystore.identity.key.password">wso2carbon</parameter>
             <parameter locked="false" name="keystore.identity.alias">wso2carbon</parameter>
-            </transportReceiver>
+    </transportReceiver>
     ```
 
-        !!! info
-    
-        If you need to secure the passwords provided in the above
-        configuration, you can do so using [secure
-        vault.](https://docs.wso2.com/display/ADMIN44x/Carbon+Secure+Vault+Implementation)
-        The secured configuration would look like this:
+    !!! Info
+        If you need to secure the passwords provided in the above configuration, you can do so using [secure vault.](https://docs.wso2.com/display/ADMIN44x/Carbon+Secure+Vault+Implementation) The secured configuration would look like this:
     
     ``` java
-            <transportReceiver class="org.apache.synapse.transport.vfs.VFSTransportListener" name="vfs">
+    <transportReceiver class="org.apache.synapse.transport.vfs.VFSTransportListener" name="vfs">
             <parameter locked="false" name="keystore.identity.location">repository/resources/security/wso2carbon.jks</parameter>
             <parameter locked="false" name="keystore.identity.type">JKS</parameter>
             <parameter locked="false" name="keystore.identity.store.password" svns:secretAlias="vfs.transport.keystore.password">password</parameter>
             <parameter locked="false" name="keystore.identity.key.password" svns:secretAlias="vfs.transport.key.password">password</parameter>
             <parameter locked="false" name="keystore.identity.alias">wso2carbon</parameter>
-            </transportReceiver>
+    </transportReceiver>
     ```
         
-
 2.  Manually encrypt the password using Cipher Tool. See, [Encrypting
     Passwords in Cipher
     Tool](https://docs.wso2.com/display/ADMIN44x/Encrypting+Passwords+with+Cipher+Tool#EncryptingPasswordswithCipherTool-Encryptingpasswordsmanually)
@@ -98,10 +77,10 @@ proxy service configuration.
     adding the following parameter:
 
     ``` java
-        <parameter name="transport.vfs.FileURI">smb://{wso2:vault-decrypt('encryptedValue')}</parameter>
+    <parameter name="transport.vfs.FileURI">smb://{wso2:vault-decrypt('encryptedValue')}</parameter>
     ```
 
-### Failure tracking
+## Failure tracking
 
 To track failures in file processing, which can occur when a resource
 becomes unavailable, the VFS transport creates and maintains a failed
@@ -112,54 +91,45 @@ iteration occurs, the VFS transport checks each file against the failed
 records file, and if a file is listed as a failed record, it will skip
 processing and schedule a move task to move that file.
 
-### Transferring large files
+## Transferring large files
 
 If you need to transfer large files using the VFS transport, you can
 avoid out-of-memory failures by taking the following steps:
 
-1.  In `           <EI_HOME>/conf/axis2/axis2.xml          ` , in the
-    `           messageBuilders          ` section, add the binary
-    message builder as follows:
+1.  In `           <EI_HOME>/conf/axis2/axis2.xml          ` , in the `           messageBuilders          ` section, add the binary message builder as follows:
 
-    ``` html/xml
-            <messageBuilder contentType="application/binary" class="org.apache.axis2.format.BinaryBuilder"/>
+    ```
+    <messageBuilder contentType="application/binary" class="org.apache.axis2.format.BinaryBuilder"/>
     ```
 
     and in the `           messageFormatters          ` section, add the
     binary message formatter as follows:
 
-    ``` html/xml
-            <messageFormatter contentType="application/binary" class="org.apache.axis2.format.BinaryFormatter"/>
+    ```
+    <messageFormatter contentType="application/binary" class="org.apache.axis2.format.BinaryFormatter"/>
     ```
 
 2.  In the proxy service where you use the VFS transport, add the
     following parameter to enable streaming (see [VFS service-level
     parameters](#VFSTransport-parameters) below for more information):
 
-    ``` html/xml
-            <parameter name="transport.vfs.Streaming">true</parameter>
+    ```
+    <parameter name="transport.vfs.Streaming">true</parameter>
     ```
 
 3.  In the same proxy service, before the Send mediator, add the
     following property:
 
-        !!! info
-    
-        Note
-    
-        You also need to add the following property if you want to use the
-        VFS transport to transfer files from VFS to VFS.
-    
+    !!! Info
+        You also need to add the following property if you want to use the VFS transport to transfer files from VFS to VFS.
 
-    ``` html/xml
-        <property name="ClientApiNonBlocking" value="true" scope="axis2" action="remove"/>
+    ```
+    <property name="ClientApiNonBlocking" value="true" scope="axis2" action="remove"/>
     ```
 
-    For more information, see Example 3 of the [Send
-    Mediator](https://docs.wso2.com/display/EI650/Send+Mediator#SendMediator-blocking)
-    .
+    For more information, see Example 3 of the [Send Mediator](https://docs.wso2.com/display/EI650/Send+Mediator#SendMediator-blocking).
 
-### VFS service-level parameters
+## VFS service-level parameters
 
 The VFS transport does not have any global parameters to be configured.
 Rather, it has a set of service-level parameters that must be specified
@@ -466,7 +436,7 @@ FileProcessInterval</td>
 </tbody>
 </table>
 
-### VFS URL parameters
+## VFS URL parameters
 
 When you use the [transport.vfs.FileURI](#VFSTransport-file_URL)
 parameter, you can set connection-specific VFS parameters as URL query
@@ -475,8 +445,8 @@ as shown below. Note that
 [transport.vfs.AvoidPermissionCheck](#VFSTransport-avoid_permissions) is
 a mandatory parameter for this URL when SFTP is used.
 
-``` html/xml
-    <parameter name="transport.vfs.FileURI">vfs:ftps://test:test123@10.200.2.63/vfs/in?vfs.ssl.keystore=/home/user/openssl/keystore.jks&amp;vfs.ssl.truststore=/home/user/openssl/vfs-truststore.jks&amp;vfs.ssl.kspassword=importkey&amp;vfs.ssl.tspassword=wso2vfs&amp;vfs.ssl.keypassword=importkey;transport.vfs.AvoidPermissionCheck=true</parameter>
+```
+<parameter name="transport.vfs.FileURI">vfs:ftps://test:test123@10.200.2.63/vfs/in?vfs.ssl.keystore=/home/user/openssl/keystore.jks&amp;vfs.ssl.truststore=/home/user/openssl/vfs-truststore.jks&amp;vfs.ssl.kspassword=importkey&amp;vfs.ssl.tspassword=wso2vfs&amp;vfs.ssl.keypassword=importkey;transport.vfs.AvoidPermissionCheck=true</parameter>
 ```
 
 Following are details on the URL parameters you can set. To configure
@@ -575,16 +545,3 @@ the proxy over ftp/sftp click
 </tr>
 </tbody>
 </table>
-
-### Samples
-
--   [Sample 254: Using the File System as Transport Medium
-    (VFS)](https://docs.wso2.com/pages/viewpage.action?pageId=85369151)
--   [Sample 255: Switching from FTP Transport Listener to Mail Transport
-    Sender](https://docs.wso2.com/display/EI6xx/Sample+255%3A+Switching+from+FTP+Transport+Listener+to+Mail+Transport+Sender)
--   [Sample 265: Accessing a Windows Share Using the VFS
-    Transport](https://docs.wso2.com/display/EI6xx/Sample+265%3A+Accessing+a+Windows+Share+Using+the+VFS+Transport)
--   [Sample 271: File
-    Processing](https://docs.wso2.com/display/EI6xx/Sample+271%3A+File+Processing)
--   [Sample 654: Smooks
-    Mediator](https://docs.wso2.com/display/EI6xx/Sample+654%3A+Smooks+Mediator)

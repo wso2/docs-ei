@@ -3,53 +3,9 @@
 Here are the guidelines and recommendations to design, develop, test,
 and deploy WSO2 integration solutions:
 
--   [Design](#BestPractices-Design)
-    -   [Implementing enterprise integration patterns
-        (EIPs)](#BestPractices-Implementingenterpriseintegrationpatterns(EIPs))
--   [Development](#BestPractices-Development)
-    -   [Creating a tooling
-        project](#BestPractices-Creatingatoolingproject)
-    -   [Creating artifacts](#BestPractices-Creatingartifacts)
-    -   [Naming
-        artifacts](#BestPractices-NamingGuidelinesNamingartifacts)
-    -   [Using mediators](#BestPractices-Usingmediators)
-        -   [Using the Log mediator](#BestPractices-UsingtheLogmediator)
-        -   [Using the Class/Custom
-            mediators](#BestPractices-UsingtheClass/Custommediators)
-        -   [Using the Call vs. Callout vs.
-            Send mediators](#BestPractices-UsingtheCallvs.Calloutvs.Sendmediators)
-        -   [Using the In and
-            Out mediators](#BestPractices-UsingtheInandOutmediators)
-        -   [Using
-            the ForEach mediator](#BestPractices-UsingtheForEachmediator)
-        -   [Using the Clone
-            mediator](#BestPractices-UsingtheClonemediator)
-        -   [Using the Loopback 
-            mediator](#BestPractices-UsingtheLoopbackmediator)
-        -   [Using the Send
-            mediator](#BestPractices-UsingtheSendmediator)
-        -   [Mediators for message
-            transformation](#BestPractices-Mediatorsformessagetransformation)
-        -   [General mediator best
-            practices](#BestPractices-Generalmediatorbestpractices)
-    -   [Working with proxy
-        services](#BestPractices-Workingwithproxyservices)
-    -   [Working with APIs](#BestPractices-WorkingwithAPIs)
-    -   [Working with endpoints](#BestPractices-Workingwithendpoints)
-    -   [Error handling](#BestPractices-HandlingErrorsErrorhandling)
-        -   [Behaviour of the
-            FaultSequence](#BestPractices-BehaviouroftheFaultSequence)
-        -   [Best practices](#BestPractices-Bestpractices)
--   [Troubleshooting](#BestPractices-Troubleshooting)
--   [Testing](#BestPractices-Testing)
--   [Deployment](#BestPractices-Deployment)
-    -   [General guidelines](#BestPractices-Generalguidelines)
-    -   [Recommended deployment
-        patterns](#BestPractices-Recommendeddeploymentpatterns)
+## Design
 
-### Design
-
-#### Implementing enterprise integration patterns (EIPs)
+### Implementing enterprise integration patterns (EIPs)
 
 See [Enterprise Integration Patterns with WSO2 Enterprise
 Integrator](https://docs.wso2.com/display/EIP/Enterprise+Integration+Patterns+with+WSO2+Enterprise+Integrator)
@@ -57,9 +13,9 @@ on how to simulate the patterns in the [Enterprise Integration Patterns
 catalog](http://www.enterpriseintegrationpatterns.com/) using various
 constructs of WSO2 Enterprise Integrator.
 
-### Development
+## Development
 
-#### Creating a tooling project
+### Creating a tooling project
 
 -   When you start [WSO2 Enterprise Integrator
     Tooling](https://docs.wso2.com/enterprise-integrator/WSO2+Enterprise+Integrator+Tooling)
@@ -90,7 +46,7 @@ constructs of WSO2 Enterprise Integrator.
     `          org.acme.integration.sampleesb-demo-project1.0.0         `
     .
 
-#### Creating artifacts
+### Creating artifacts
 
 -   When you create an artifact, use the proper naming convention from
     the start.
@@ -122,19 +78,13 @@ constructs of WSO2 Enterprise Integrator.
     Vault](https://docs.wso2.com/display/ADMIN44x/Encrypting+Passwords+with+Cipher+Tool)
     .
 
-#### Naming artifacts
+### Naming artifacts
 
 When you create a project structure, be sure to follow the naming
 convention described in the table below:
 
-!!! info
-
-Note
-
-The runtime server of your project is shared with other projects.
-Therefore, give unique names for artifacts to avoid name conflicts when
-you have multiple projects.
-
+!!! Info
+    Therefore, give unique names for artifacts to avoid name conflicts when you have multiple projects.
 
 <table style="width:100%;">
 <colgroup>
@@ -195,11 +145,10 @@ Listed below are the best practices for working with the source code:
 -   Given below is the naming convention for WSO2 source files:  
 
     ``` java
-        <ProjectName>_<FileName>_<FileType>.<Extension>
-    
-        Example: 
-        Student_Student_Sequence.xml, Stocks_StockQuote_FileInbound.xml
+    <ProjectName>_<FileName>_<FileType>.<Extension>
     ```
+    
+    Example: `Student_Student_Sequence.xml`, `Stocks_StockQuote_FileInbound.xml`
 
     You can use a general naming convention for other known source
     files. If applicable, you can use a class naming convention that
@@ -210,9 +159,9 @@ Listed below are the best practices for working with the source code:
     Practices](http://wso2.com/library/articles/2015/10/article-wso2-developer-studio-development-and-deployment-best-practices/)
     .
 
-#### Using mediators
+### Using mediators
 
-##### Using the [Log](https://docs.wso2.com/enterprise-integrator/Log+Mediator) mediator
+#### Using the [Log](https://docs.wso2.com/enterprise-integrator/Log+Mediator) mediator
 
 -   When a server encounters errors, you should have enough information
     about the errors in the logs.
@@ -254,7 +203,7 @@ Listed below are the best practices for working with the source code:
     `           FaultSequences          ` will be available in the
     wso2carbon.log that is in the main log file.
 
-##### Using the [Class](https://docs.wso2.com/enterprise-integrator/Class+Mediator) /Custom mediators
+#### Using the [Class](https://docs.wso2.com/enterprise-integrator/Class+Mediator) /Custom mediators
 
 -   You should not write a Class mediator if the intended functionality
     can be achieved using the enterprise service bus capabilities of
@@ -275,7 +224,7 @@ Listed below are the best practices for working with the source code:
     practices](http://www.oracle.com/technetwork/java/codeconventions-135099.html)
     when you write the code for Class mediators.
 
-##### Using the [Call](https://docs.wso2.com/enterprise-integrator/Call+mediator) vs. [Callout](https://docs.wso2.com/enterprise-integrator/Callout+mediator) vs. [Send](https://docs.wso2.com/enterprise-integrator/Send+mediator) mediators
+#### Using the [Call](https://docs.wso2.com/enterprise-integrator/Call+mediator) vs. [Callout](https://docs.wso2.com/enterprise-integrator/Callout+mediator) vs. [Send](https://docs.wso2.com/enterprise-integrator/Send+mediator) mediators
 
 -   You can use either the Call mediator, Callout mediator or Send
     mediator to send a message to an endpoint.
@@ -302,31 +251,22 @@ Listed below are the best practices for working with the source code:
     Transactions](https://docs.wso2.com/enterprise-integrator/JMS+Transactions)
     .
 
-        !!! info
+    !!! Info
+        You should not use the Callout mediator unless there is a specific requirement for blocking behaviour in the underlying transport implementation.
     
-        Note
-    
-        You should not use the Callout mediator unless there is a specific
-        requirement for blocking behaviour in the underlying transport
-        implementation.
-    
-        !!! tip
-    
-        The Callout mediator functionality has been merged into the Call
-        mediator in WSO2 Enterprise Integrator. Therefore, you can use the
-        Call mediator and set the blocking flag appropriately to switch
-        between non-blocking and blocking behaviour.
-    
+    !!! Tip
+        The Callout mediator functionality has been merged into the Call mediator in WSO2 Enterprise Integrator. Therefore, you can use the Call mediator and set the blocking flag appropriately to switch between non-blocking and blocking behaviour.
 
-    The following diagram illustrates a proxy/REST API with a Send
-    mediator:
+    The following diagram illustrates a proxy/REST API with a Send mediator:
 
 ![](attachments/119133370/119133372.png){width="700"}  
+
 The following diagram illustrates a proxy/REST API with a Call/Callout
 mediator:  
+
 ![](attachments/119133370/119133371.png){width="700"}
 
-##### Using the [In and Out](https://docs.wso2.com/enterprise-integrator/In+and+Out+Mediators) mediators
+#### Using the [In and Out](https://docs.wso2.com/enterprise-integrator/In+and+Out+Mediators) mediators
 
 A Proxy service or REST API resource has a `         InSequence        `
 to handle the request message flow and has an
@@ -335,13 +275,9 @@ Therefore, the In mediator and Out mediator should not be used in proxy
 services or REST API resources. However, you should use the In mediator
 and Out mediator in the main sequence.
 
-##### Using the [ForEach](https://docs.wso2.com/display/EI650/ForEach+Mediator) mediator
+#### Using the [ForEach](https://docs.wso2.com/display/EI650/ForEach+Mediator) mediator
 
-[Iterate Mediator](https://docs.wso2.com/display/EI650/Iterate+Mediator)
-is quite similar to the ForEach mediator. You can use complex XPath
-expressions to conditionally select elements to iterate over in both
-mediators. Following are the main difference between ForEach and Iterate
-mediators:
+[Iterate Mediator](https://docs.wso2.com/display/EI650/Iterate+Mediator) is quite similar to the ForEach mediator. You can use complex XPath expressions to conditionally select elements to iterate over in both mediators. Following are the main difference between ForEach and Iterate mediators:
 
 -   Use the ForEach mediator only for message transformations. If you
     need to make back-end calls from each iteration, then use the
@@ -371,7 +307,7 @@ ForEach function of the complex XSLT mediators using a ForEach mediator
 and a Payload Factory mediator. However, to implement the
 split-aggregate pattern, you still need to use Iterate mediator.
 
-##### Using the [Clone](https://docs.wso2.com/display/EI650/Clone+Mediator) mediator
+#### Using the [Clone](https://docs.wso2.com/display/EI650/Clone+Mediator) mediator
 
 When using a Clone mediator, use a Call mediator in the target
 sequence to bring the responses back into the In-Sequence. This
@@ -382,32 +318,25 @@ method in the `         SynapseCallbackReceiver        ` class.
 Otherwise, the Continuation Stack becomes empty in the Synapse Message
 Context if you do not use a Call mediator in the target sequence.
 
-##### Using the [Loopback](https://docs.wso2.com/enterprise-integrator/Loopback+Mediator) mediator
+#### Using the [Loopback](https://docs.wso2.com/enterprise-integrator/Loopback+Mediator) mediator
 
 Do not include the Loopback mediator in the
 `         OutSequence        ` .
 
-!!! tip
+!!! Tip
+    When a message passes from the `         InSequence        ` (request path) to the `         OutSequence        ` (response path), you cannot use the Loopback mediator to move the message back to the `         OutSequence        ` again.
 
-When a message passes from the `         InSequence        ` (request
-path) to the `         OutSequence        ` (response path), you cannot
-use the Loopback mediator to move the message back to the
-`         OutSequence        ` again.
-
-
-The following diagram illustrates a proxy/REST API with a Loopback
-mediator:
+The following diagram illustrates a proxy/REST API with a Loopback mediator:
 
 ![](attachments/119133370/119133377.png)
 
-##### Using the [Send](https://docs.wso2.com/enterprise-integrator/Send+Mediator) mediator
+#### Using the [Send](https://docs.wso2.com/enterprise-integrator/Send+Mediator) mediator
 
 -   You should not specify any mediator after the [Send
     Mediator](https://docs.wso2.com/enterprise-integrator/Send+Mediator)
     [or the](https://docs.wso2.com/enterprise-integrator/Send+Mediator)
     [Respond
-    Mediator](https://docs.wso2.com/enterprise-integrator/Respond+Mediator)
-    .  
+    Mediator](https://docs.wso2.com/enterprise-integrator/Respond+Mediator).  
       
     A message flow must end from these two mediators. Here, the *message
     flow* does not mean the current sequence. If you have these two
@@ -428,7 +357,7 @@ mediator:
 
     ![](attachments/119133370/119133375.png){width="700"}
 
-##### Mediators for message transformation
+#### Mediators for message transformation
 
 Follow the guidelines below to use mediators in scenarios that require
 message transformation:
@@ -461,13 +390,8 @@ message transformation:
     Mediator](https://docs.wso2.com/enterprise-integrator/XSLT+Mediator)
     to do the transformation.
 
-        !!! note
-    
-        Note
-    
-        When you use the XSLT mediator, a third party engine does the
-        message transformation. Therefore, this can impact the performance.
-    
+    !!! Note
+        When you use the XSLT mediator, a third party engine does the message transformation. Therefore, this can impact the performance.
 
 -   If you want to change the structure of the data in a message or
     convert and transform one data format to another, use the [Data
@@ -478,27 +402,20 @@ message transformation:
     Mediator](https://docs.wso2.com/enterprise-integrator/Smooks+Mediator)
     .
 
-##### General mediator best practices
+#### General mediator best practices
 
--   Use the
-    [Iterate](https://docs.wso2.com/display/EI650/Iterate+Mediator)
+-   Use the [Iterate](https://docs.wso2.com/display/EI650/Iterate+Mediator)
     mediator in association with the
     [Aggregate](https://docs.wso2.com/display/EI650/Aggregate+Mediator)
     mediator.
-
 -   Do not do any configuration after the Send mediator.
-
 -   Do proper error handling to handle mediation errors as well as
     endpoint errors.
-
 -   Use appropriate intervals for tasks.
-
 -   Use the ForEach mediator only for message transformations. If you
     need to make back-end calls from each iteration, then use the
     iterate mediator.
-
--   Do not use the DB mediators (
-    [DBReport](https://docs.wso2.com/enterprise-integrator/DB+Report+Mediator)
+-   Do not use the DB mediators ([DBReport](https://docs.wso2.com/enterprise-integrator/DB+Report+Mediator)
     and
     [DBLookup](https://docs.wso2.com/enterprise-integrator/DBLookup+Mediator)
     ) with complex SQL queries or in scenarios where you need to
@@ -530,16 +447,12 @@ message transformation:
     Variables](https://docs.wso2.com/enterprise-integrator/Synapse+XPath+Variables)
     .
 
-        !!! note
-    
-        Note
-    
+    !!! Note
         The use of the `           get-property()          ` function can
         have a lower performance because it does a registry lookup when the
         value is not available in the message context. Therefore, the
         recommended approach is to use predefined XPath variables when you
         need to retrieve a property.
-    
         You will encounter this performance issue only if you are using WSO2
         ESB 4.9.0 or below.
     
@@ -564,8 +477,6 @@ message transformation:
     using the Sequence mediator:
 
 ![](attachments/119133370/119133373.png){width="700"}
-
-  
 
 When you are adding the last mediator in a sequence, make sure to use
 one of the following mediators depending on the scenario. Any mediator
@@ -597,20 +508,15 @@ added after one of the following mediators will not be applied.
     `            InSequence           ` to the
     `            OutSequence           ` .
 
-        !!! info
+    !!! Info
+        The Loopback mediator prevents the execution of subsequent mediators in the `            In           ` Sequence.
     
-        Note
-    
-        The Loopback mediator prevents the execution of subsequent mediators
-        in the `            In           ` Sequence.
-    
-
 -   Use the [Store
     mediator](https://docs.wso2.com/enterprise-integrator/Store+Mediator)
     as the last mediator if you want to enqueue messages to a [message
     store](https://docs.wso2.com/enterprise-integrator/Message+Stores) .
 
-#### Working with proxy services
+### Working with proxy services
 
 Use [REST
 APIs](https://docs.wso2.com/enterprise-integrator/Using+REST+with+APIs)
@@ -621,7 +527,7 @@ appropriately. For more information on how the
 `         FaultSequence        ` works, see the section on [Handling
 errors](#BestPractices-HandlingErrors) .
 
-#### Working with APIs
+### Working with APIs
 
 The following are some [best
 practices](https://s3.amazonaws.com/tfpearsonecollege/bestpractices/RESTful+Best+Practices.pdf)
@@ -661,7 +567,7 @@ to keep in mind when designing your APIs for use with REST.
     [Securing APIs](https://docs.wso2.com/display/EI650/Applying+Security+to+an+API)
     .
 
-#### Working with endpoints
+### Working with endpoints
 
 -   Do not use anonymous endpoints. Always use [named
     endpoints](https://docs.wso2.com/enterprise-integrator/Working+with+Endpoints#WorkingwithEndpoints-named_endpoints)
@@ -785,9 +691,9 @@ to keep in mind when designing your APIs for use with REST.
     solution as a RESTful service, and use HTTP endpoints to logically
     represent a RESTful backend service.
 
-#### Error handling
+### Error handling
 
-##### Behaviour of the `         FaultSequence        `
+#### Behaviour of the `         FaultSequence        `
 
 -   If a sequence explicitly defines a fault handler using the
     [onError](https://docs.wso2.com/enterprise-integrator/Sample+4%3A+Specifying+a+Fault+Sequence+with+a+Regular+Mediation+Sequence)
@@ -847,7 +753,7 @@ to keep in mind when designing your APIs for use with REST.
     `           _resource_mismatch_handler_          ` to handle such
     requests.
 
-##### Best practices
+#### Best practices
 
 -   Whenever an error occurs in WSO2 Enterprise Integrator, the
     mediation engine attempts to provide as much information as possible
@@ -885,7 +791,7 @@ inside a `          FaultSequence         ` path.
     sequence)](https://docs.wso2.com/enterprise-integrator/Sample+4%3A+Specifying+a+Fault+Sequence+with+a+Regular+Mediation+Sequence)
     in each sequence.
 
-### Troubleshooting
+## Troubleshooting
 
 For a complete guide on troubleshooting issues that you may come across
 when working with enterprise service bus capabilities, see the
@@ -895,7 +801,7 @@ troubleshooting with tooling, see [Troubleshooting WSO2 Integration
 Studio](https://docs.wso2.com/display/EI650/Troubleshooting+WSO2+Integration+Studio)
 .
 
-### Testing
+## Testing
 
 -   Define a test strategy to plan what should be tested in a specific
     project.
@@ -1043,9 +949,9 @@ Studio](https://docs.wso2.com/display/EI650/Troubleshooting+WSO2+Integration+Stu
 -   It is not sufficient to test only the happy path.
 -   Do performance tests.
 
-### Deployment
+## Deployment
 
-#### General guidelines
+### General guidelines
 
 -   Ensure that you tune the deployment environment based on the
     [performance tuning
@@ -1057,14 +963,8 @@ Studio](https://docs.wso2.com/display/EI650/Troubleshooting+WSO2+Integration+Stu
     environments](https://docs.wso2.com/display/ADMIN44x/WSO2+Patch+Application+Process)
     .
 
-        !!! info
-    
-        Note
-    
-        If you are using WSO2 ESB 4.9.0 or above, ensure that you have all
-        [WUM](https://docs.wso2.com/display/ADMIN44x/Updating+WSO2+Products)
-        updates installed at any given time.
-    
+    !!! Info
+        If you are using WSO2 ESB 4.9.0 or above, ensure that you have all [WUM](https://docs.wso2.com/display/ADMIN44x/Updating+WSO2+Products) updates installed at any given time.
 
 -   Pre-test patches in a test environment before going into the
     production environment. You should use an automated test suite to do
@@ -1101,7 +1001,7 @@ balancing to maintain availability of services for consumers while they
 are being undeployed.
 
 
-#### Recommended deployment patterns
+### Recommended deployment patterns
 
 **Push model**
 
@@ -1109,8 +1009,6 @@ are being undeployed.
     system such as SVN or Git.
 -   The CI/CD server checks out the artifacts, builds and pushes the
     artifacts to individual WSO2 Enterprise Integrator nodes.
-
-  
 
 ![](attachments/119133370/119133381.png){width="600"}
 
@@ -1144,15 +1042,9 @@ set of nodes.
         coordination/inbound endpoint coordination, hazelcast clustering
         should be enabled.
 
-                !!! note
+        !!! Note
+            Hazelcast is known to be unstable when the network is unreliable. Therefore, do not enable Hazelcast clustering unless coordination is required.
         
-                Note
-        
-                Hazelcast is known to be unstable when the network is
-                unreliable. Therefore, do not enable Hazelcast clustering unless
-                coordination is required.
-        
-
     -   Hazelcast clustering can be enabled with any of the above
         deployment patterns.
     -   When you use Hazelcast, it can result in cluster-wide failure if

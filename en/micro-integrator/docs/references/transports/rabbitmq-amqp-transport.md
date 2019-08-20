@@ -32,59 +32,69 @@ in the ESB Profile of WSO2 EI, along with information on how to enable
 connection recovery, how to enable SSL support as well as a sample
 RabbitMQ proxy service that describes how to use the RabbitMQ transport.
 
-------------------------------------------------------------------------
+## Configuring the RabbitMQ AMQP transport
 
-\[ [Configuring the RabbitMQ AMQP
-transport](#RabbitMQAMQPTransport-ConfigRabbitMQConfiguringtheRabbitMQAMQPtransport)
-\] \[ [RabbitMQ AMQP transport
-parameters](#RabbitMQAMQPTransport-RabbitMQAMQPtransportparameters) \]
-\[ [Connection recovery in
-RabbitMQ](#RabbitMQAMQPTransport-ConnectionrecoveryinRabbitMQ) \] \[
-[SSL enabled RabbitMQ
-transport](#RabbitMQAMQPTransport-SSLenabledRabbitMQtransport) \] \[
-[Higher Throughput of Message Delivery to
-RabbitMQ](#RabbitMQAMQPTransport-HigherThroughputofMessageDeliverytoRabbitMQ)
-\] \[ [Creating the RabbitMQ proxy
-service](#RabbitMQAMQPTransport-proxyServiceCreatingtheRabbitMQproxyservice)
-\] \[ [Rolling failed messages
-back](#RabbitMQAMQPTransport-Rollingfailedmessagesback) \]
+Update the following configurations in the ei.toml file:
 
-------------------------------------------------------------------------
+```toml tab='Listener'
+[[transport.rabbitmq.listener]]
+name = "rabbitMQListener"
+parameter.hostname = "localhost"
+parameter.port = 5672
+parameter.username = "guest"
+parameter.password = "guest"
+parameter.connection_factory = ""
+parameter.exchange_name = "amq.direct"
+parameter.queue_name = "MyQueue"
+parameter.queue_auto_ack = false
+parameter.consumer_tag = ""
+parameter.channel_consumer_qos = ""
+parameter.durable = ""
+parameter.queue_exclusive = ""
+parameter.queue_auto_delete = ""
+parameter.queue_routing_key = ""
+parameter.queue_auto_declare = ""
+parameter.exchange_auto_declare = ""
+parameter.exchange_type = ""
+parameter.exchange_durable = ""
+parameter.exchange_auto_delete = ""
+parameter.message_content_type = ""
+parameter.retry_interval = "10s"
+parameter.retry_count = 5
+parameter.ssl_enable = true
+parameter.ssl_version = "SSL"
+parameter.keystore_file_name ="$ref{keystore.tls.file_name}"
+parameter.keystore_type = "$ref{keystore.tls.type}"
+parameter.keystore_password = "$ref{keystore.tls.password}"
+parameter.truststore_file_name ="$ref{truststore.file_name}"
+parameter.truststore_type = "$ref{truststore.type}"
+parameter.truststore_password = "$ref{truststore.password}"
+```
 
-### Configuring the RabbitMQ AMQP transport
+```toml tab='Sender'
+[[transport.rabbitmq.sender]]
+name = "rabbitMQSender"
+parameter.hostname = "localhost"
+parameter.port = 5672
+parameter.username = "guest"
+parameter.password = "guest"
+parameter.exchange_name = "amq.direct"
+parameter.routing_key = "MyQueue"
+parameter.reply_to_name = ""
+parameter.queue_delivery_mode = 1 # 1/2
+parameter.exchange_type = ""
+parameter.queue_name = "MyQueue"
+parameter.queue_durable = false
+parameter.queue_exclusive = false
+parameter.queue_auto_delete = false
+parameter.exchange_durable = ""
+parameter.queue_auto_declare = ""
+parameter.exchange_auto_declare = ""
+```
 
-1.  Open `          <EI_HOME>/conf/axis2/axis2.xml         ` for
-    editing.
-2.  In the transport **listeners** section, add the following RabbitMQ
-    transport listener, replacing the values with your host, port,
-    username, and password to connect to the AMQP broker.
-
-    ``` html/xml
-        <transportReceiver name="rabbitmq" class="org.apache.axis2.transport.rabbitmq.RabbitMQListener">
-           <parameter name="AMQPConnectionFactory" locked="false">
-              <parameter name="rabbitmq.server.host.name" locked="false">192.168.0.3</parameter>
-              <parameter name="rabbitmq.server.port" locked="false">5672</parameter>
-              <parameter name="rabbitmq.server.user.name" locked="false">user</parameter>
-              <parameter name="rabbitmq.server.password" locked="false">abc123</parameter>
-           </parameter>
-        </transportReceiver>
-    ```
-
-    As an optional step, you can create multiple connection factories if
-    you want this listener to connect to multiple brokers.
-
-3.  In the transport **senders** section, add the following RabbitMQ
-    transport sender, which will be used for sending AMQP messages to a
-    queue:
-
-    ``` html/xml
-            <transportSender name="rabbitmq" class="org.apache.axis2.transport.rabbitmq.RabbitMQSender"/>
-    ```
-
-4.  Download the "
-    [amqp-client-5.7.0.jar](https://www.rabbitmq.com/java-client.html) "
-    and copy it into `          <EI_HOME>/lib         ` folder
-5.  Start WSO2 EI.
+!!! Info
+    - As an optional step, you can create multiple connection factories if you want this listener to connect to multiple brokers.
+    - Download the "[amqp-client-5.7.0.jar](https://www.rabbitmq.com/java-client.html)" and copy it into `          <EI_HOME>/lib         ` folder.
 
 ### RabbitMQ AMQP transport parameters
 
@@ -299,8 +309,8 @@ configured in the transport listener to enable connection recovery in
 RabbitMQ.
 
 ``` xml
-    <parameter name="rabbitmq.connection.retry.interval" locked="false">10000</parameter>
-    <parameter name="rabbitmq.connection.retry.count" locked="false">5</parameter>   
+<parameter name="rabbitmq.connection.retry.interval" locked="false">10000</parameter>
+<parameter name="rabbitmq.connection.retry.count" locked="false">5</parameter>   
 ```
 
 If the parameters specified above are set, the WSO2 EI server will retry
