@@ -1,6 +1,6 @@
 # Message Store Properties
 
-You can click its icon in the editor to view its properties.
+See the topics given below for details.
 
 ## Properties: In Memory Message Store 
 
@@ -25,8 +25,7 @@ Listed below are the properties that can be configured for the In-Memory Message
 
 ## Properties: JMS Message Store
 
-Following is a sample JMS message store configuration that uses the
-Message Broker profile of WSO2 EI as the message broker:
+Following are two sample JMS message store configurations that uses two different brokers (WSO2 MB and ActiveMQ:
 
 ``` java tab='WSO2 MB'
     <messageStore name="JMSMS" class="org.apache.synapse.message.store.impl.jms.JmsStore" xmlns="http://ws.apache.org/ns/synapse">
@@ -48,6 +47,8 @@ Message Broker profile of WSO2 EI as the message broker:
     </messageStore>
 ```
 
+### Required Properties
+
 Listed below are the properties that are required for the JMS Message Store.
 
 <table>
@@ -56,8 +57,12 @@ Listed below are the properties that are required for the JMS Message Store.
     <th>Description</th>
   </tr>
   <tr>
-    <td>Name</td>
+    <td>Message Store Name</td>
     <td>A unique name for the JMS message store.</td>
+  </tr>
+  <tr>
+    <td>Message Store Type</td>
+    <td>Select <b>JMS Message Store</b> from the list.</td>
   </tr>
   <tr>
     <td>Initial Context Factory</td>
@@ -72,6 +77,8 @@ Listed below are the properties that are required for the JMS Message Store.
     </td>
   </tr>
 </table>
+
+### Optional Properties
 
 Listed below are the additional properties that can be configured for the JMS Message Store.
 
@@ -125,13 +132,13 @@ Listed below are the additional properties that can be configured for the JMS Me
   <tr>
     <td>Enable Producer Guaranteed Delivery</td>
     <td>
-      dsfd
+      See the <a href="#properties-guaranteed-delivery-of-messages">Properties for Guaranteed Delivery of Messages</a>.
     </td>
   </tr>
   <tr>
     <td>Failover Message Store</td>
     <td>
-      ddd
+      See the <a href="#properties-guaranteed-delivery-of-messages">Properties for Guaranteed Delivery of Messages</a>.
     </td>
   </tr>
 </table>
@@ -171,6 +178,8 @@ Following is a basic sample RabbitMQ message store configuration:
     </messageStore>
 ```
 
+###  Required Properties
+
 Listed below are the properties that are required for the RabbitMQ Message Store.
 
 <table>
@@ -197,6 +206,8 @@ Listed below are the properties that are required for the RabbitMQ Message Store
     </td>
   </tr>
 </table>
+
+### Optional Properties
 
 Listed below are the optional properties for the RabbitMQ Message Store.
 
@@ -241,14 +252,26 @@ Listed below are the optional properties for the RabbitMQ Message Store.
       The virtual host name of the broker.
     </td>
   </tr>
+  <tr>
+    <td>Enable Producer Guaranteed Delivery</td>
+    <td>
+      See the <a href="#properties-guaranteed-delivery-of-messages">Properties for Guaranteed Delivery of Messages</a>.
+    </td>
+  </tr>
+  <tr>
+    <td>Failover Message Store</td>
+    <td>
+      See the <a href="#properties-guaranteed-delivery-of-messages">Properties for Guaranteed Delivery of Messages</a>.
+    </td>
+  </tr>
 </table>
+
+### SSL Properties
 
 Listed below are the SSL properties that are required for the RabbitMQ Message Store.
 
-!!! Info
-  Configuring parameters that provide information related to keystores and truststores can be optional based on your broker configuration.
-  For example, if `         fail_if_no_peer_cert        ` is set to `         false        ` in the RabbitMQ broker configuration, then you only need to specify `         <parameter name="rabbitmq.connection.ssl.enabled" locked="false">true</parameter>        `. Additionally, you can also set
-  `         <parameter name="rabbitmq.connection.ssl.version" locked="false">true</parameter>        ` parameter to specify the SSL version. If `         fail_if_no_peer_cert        ` is set to `         true        ` , you need to provide keystore and truststore information.
+!!! Note
+    Configuring parameters that provide information related to keystores and truststores can be optional based on your broker configuration. For example, if `         fail_if_no_peer_cert        ` is set to `         false        ` in the RabbitMQ broker configuration, then you only need to specify `         <parameter name="rabbitmq.connection.ssl.enabled" locked="false">true</parameter>        `. Additionally, you can also set `         <parameter name="rabbitmq.connection.ssl.version" locked="false">true</parameter>        ` parameter to specify the SSL version. If `         fail_if_no_peer_cert        ` is set to `         true        ` , you need to provide keystore and truststore information.
 
 <table>
   <tr>
@@ -299,8 +322,7 @@ Listed below are the SSL properties that are required for the RabbitMQ Message S
 
 ## Properties: JDBC Message Store
 
-The syntax of the JDBC message store can be different depending on whether you connect to the database using a connection pool, or using a
-datasource. Click on the relevant tab to view the syntax based on how you want to connect to the database.
+The syntax of the JDBC message store can be different depending on whether you connect to the database using a connection pool, or using a datasource.
 
 ``` java tab="Connection Pool"
 <messageStore class="org.apache.synapse.message.store.jdbc.JDBCMessageStore" name="MyStore" xmlns="http://ws.apache.org/ns/synapse">  
@@ -319,6 +341,8 @@ datasource. Click on the relevant tab to view the syntax based on how you want t
 </messageStore>
 ```
 
+### Required Properties
+
 Listed below are the properties that are required for the JDBC Message Store.
 
 <table>
@@ -336,16 +360,6 @@ Listed below are the properties that are required for the JDBC Message Store.
     <td>Database Table</td>
     <td>
       The name of the database table.
-    </td>
-  </tr>
-  <tr>
-    <td>Connection Information</td>
-    <td>...</td>
-  </tr>
-  <tr>
-    <td>RDBMS Type</td>
-    <td>
-      mmmmm
     </td>
   </tr>
   <tr>
@@ -374,57 +388,101 @@ Listed below are the properties that are required for the JDBC Message Store.
   </tr>
 </table>
 
-### Parameters (Required)
+### Connection Pool Properties
 
-Following are descriptions of the fields that are displayed:
-
-| Field          | Description                                                    |
-|----------------|----------------------------------------------------------------|
-| Name           | The name of the message store                                  |
-| Database Table | The name of the database table.                                |
-| Driver         | The class name of the database driver.                         |
-| Url            | The JDBC URL of the database that the data will be written to. |
-| User           | The user name used to connect to the database.                 |
-| Password       | The password used to connect to the database.                  |
-
-### Parameters (Connection pool)
-
-Following are the parameters that should be specified and the
+Following are the properties that should be specified and the
 description for each:
 
-| Parameter                                                    | Description                            | Required |
-|--------------------------------------------------------------|----------------------------------------|----------|
-| `                 store.jdbc.driver                `         | The class name of the database driver. | YES      |
-| `                 store.jdbc.connection.url                ` | The database URL.                      | YES      |
-| `                 store.jdbc.username                `       | The user name to access the database.  | YES      |
-| `                 store.jdbc.password                `       | The password to access the database.   | NO       |
-| `                 store.jdbc.table                `          | Table name of the database.            | YES      |
+<table>
+  <tr>
+    <th>Property</th>
+    <th>Description</th>
+  </tr>
+  <tr>
+    <td>store.jdbc.driver </td>
+    <td>
+      The class name of the database driver.
+    </td>
+  </tr>
+  <tr>
+    <td>store.jdbc.connection.url</td>
+    <td>
+      The database URL.
+    </td>
+  </tr>
+  <tr>
+    <td>store.jdbc.username </td>
+    <td>
+      The user name to access the database.
+    </td>
+  </tr>
+  <tr>
+    <td>store.jdbc.password</td>
+    <td>
+      The password to access the database.
+    </td>
+  </tr>
+  <tr>
+    <td>store.jdbc.table  </td>
+    <td>
+      Table name of the database.
+    </td>
+  </tr>
+</table>
 
-### Parameters (External Datasource)
+### External Datasource Properties
 
 Following are the parameters that should be specified and the description for each:
 
-| Parameter                                            | Description                                | Required |
-|:-----------------------------------------------------|--------------------------------------------|----------|
-| `                 store.jdbc.dsName                ` | The name of the datasource to be looked up | YES      |
-| `                 store.jdbc.table                `  | The table name of the database.            | YES      | 
+<table>
+  <tr>
+    <th>Property</th>
+    <th>Description</th>
+  </tr>
+  <tr>
+    <td>store.jdbc.dsName</td>
+    <td>
+      The name of the datasource to be looked up.
+    </td>
+  </tr>
+  <tr>
+    <td>store.jdbc.table</td>
+    <td>
+      The table name of the database.
+    </td>
+  </tr>
+</table>
 
-### Paramaters (Carbon Datasource)
+### Internal Datasource Properties
 
 To make sure that the datasource appears in the **Datasource Name** list, you need to expose it as a JNDI datasource.
 
-Following are descriptions of the fields that are displayed:
-
-| Field           | Description                       |
-|-----------------|-----------------------------------|
-| Name            | The name for the message store    |
-| Database Table  | The name of the database table.   |
-| Datasource Name | The class name of the datasource. |
-
+<table>
+  <tr>
+    <th>Property</th>
+    <th>Description</th>
+  </tr>
+  <tr>
+    <td>Name</td>
+    <td>The name for the message store.</td>
+  </tr>
+  <tr>
+    <td>Database Table</td>
+    <td>
+      The name of the database table.
+    </td>
+  </tr>
+  <tr>
+    <td>Datasource Name</td>
+    <td>
+      The class name of the datasource.
+    </td>
+  </tr>
+</table>
 
 ## Properties: Resequence Message Store
 
-The following is a sample ESB configuration of the Resequence Message Store.
+The following is a sample synapse configuration of the Resequence Message Store.
 
 ```
 <?xml version="1.0" encoding="UTF-8"?>
@@ -444,6 +502,7 @@ The following is a sample ESB configuration of the Resequence Message Store.
        <parameter name="store.jdbc.table">tbl_resequence</parameter>
 </messageStore>
 ```
+### Required Properties
 
 Listed below are the properties that are required for the Resequence Message Store.
 
@@ -458,16 +517,6 @@ Listed below are the properties that are required for the Resequence Message Sto
     <td>Database Table</td>
     <td>
       The name of the database table.
-    </td>
-  </tr>
-  <tr>
-    <td>Connection Information</td>
-    <td>..</td>
-  </tr>
-  <tr>
-    <td>RDBMS Type</td>
-    <td>
-      ....
     </td>
   </tr>
   <tr>
@@ -507,6 +556,8 @@ Listed below are the properties that are required for the Resequence Message Sto
     </td>
   </tr>
 </table>
+
+### Optional Properties
 
 The following are the additional properties related to the Resequence Message Store.
 
@@ -588,49 +639,54 @@ Listed below are the properties that are required for the Custom Message Store.
 
 ## Properties: WSO2 MB Message Store
 
-Listed below are the **required** parameters for configuring the WSO2 MB
-Message Store.
+Listed below are the **required** parameters for configuring the WSO2 MB Message Store.
 
 <table>
-<thead>
-<tr class="header">
-<th><p>Parameter Name</p></th>
-<th><p>Description</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Message Store Name</td>
-<td>Give a unique name for the JMS message store.</td>
-</tr>
-<tr class="even">
-<td>Message Store Type</td>
-<td>Select <strong>WSO2 MB Message Store</strong> from the list of options.</td>
-</tr>
-<tr class="odd">
-<td>Initial Context Factory</td>
-<td>This specifies the JNDI initial context factory class ( <code>             java.naming.factory.initial            </code> ). This class implements the implement the <code>             java.naming.spi.InitialContextFactory            </code> interface. The value is set to <code>             org.wso2.andes.jndi.PropertiesFileInitialContextFactory            </code> , by default.</td>
-</tr>
-<tr class="even">
-<td>Queue Connection Factory</td>
-<td><div class="content-wrapper">
-<p>This is the connection factory URlfor connecting to WSO2 MB. By default, the value is set to <code>               amqp://admin:admin@clientID/carbon?brokerlist='tcp://localhost:5673'              </code> .</p>
-!!! note
-<p>Important!</p>
-<p>Be sure to change the port to 5675.</p>
-
-</div></td>
-</tr>
-<tr class="odd">
-<td>JNDI Queue Name</td>
-<td>The name of the queue in the broker that will store messages.</td>
-</tr>
-<tr class="even">
-<td>JMS API Specification Version</td>
-<td>The JMS API version to be used. Possible values are 1.1 or 1.0. The value is set to 1.1, by default.</td>
-</tr>
-</tbody>
+   <thead>
+      <tr>
+         <th>
+            <p>Parameter Name</p>
+         </th>
+         <th>
+            <p>Description</p>
+         </th>
+      </tr>
+   </thead>
+   <tbody>
+      <tr>
+         <td>Message Store Name</td>
+         <td>Give a unique name for the JMS message store.</td>
+      </tr>
+      <tr>
+         <td>Message Store Type</td>
+         <td>Select <strong>WSO2 MB Message Store</strong> from the list of options.</td>
+      </tr>
+      <tr>
+         <td>Initial Context Factory</td>
+         <td>This specifies the JNDI initial context factory class ( <code>             java.naming.factory.initial            </code> ). This class implements the implement the <code>             java.naming.spi.InitialContextFactory            </code> interface. The value is set to <code>             org.wso2.andes.jndi.PropertiesFileInitialContextFactory            </code> , by default.</td>
+      </tr>
+      <tr>
+         <td>Queue Connection Factory</td>
+         <td>
+            <div class="content-wrapper">
+               <p>This is the connection factory URlfor connecting to WSO2 MB. By default, the value is set to <code>               amqp://admin:admin@clientID/carbon?brokerlist='tcp://localhost:5673'              </code> .</p>
+               <b>Important!</b>
+               <p>Be sure to change the port to 5675.</p>
+            </div>
+         </td>
+      </tr>
+      <tr>
+         <td>JNDI Queue Name</td>
+         <td>The name of the queue in the broker that will store messages.</td>
+      </tr>
+      <tr>
+         <td>JMS API Specification Version</td>
+         <td>The JMS API version to be used. Possible values are 1.1 or 1.0. The value is set to 1.1, by default.</td>
+      </tr>
+   </tbody>
 </table>
+
+## Properties: Guaranteed Delivery of Messages
 
 If you need to ensure guaranteed delivery of your messages, specify values for the following parameters:
 

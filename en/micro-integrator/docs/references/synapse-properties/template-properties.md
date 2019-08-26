@@ -15,7 +15,7 @@ The parameters available to configure the Sequence Template are as follows.
 
 ## Properties: Endpoint Templates
 
-The parameters available to configure the Endpoint template are as follows.
+The basic parameters available to configure the Endpoint template are as follows.
 
 <table>
   <tr>
@@ -31,3 +31,5 @@ The parameters available to configure the Endpoint template are as follows.
     <td>Parameters added to the endpoint template. As the endpoint defined within the endpoint template is parameterized using these parameters. Therefore, these can be accessed from Template Endpoints.</td>
   </tr>
 </table>
+
+To configure the properties of the inline Endpoint, see [Endpoint Properties](endpoint-properties.md).

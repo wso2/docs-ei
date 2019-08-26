@@ -1,54 +1,30 @@
 # Inbound Endpoint Properties
 
-Right-click the inbound endpoint and click **Show Properties View** to go to the **Property** tab. You can update the parameters relevant to the type of inbound endpoint.
+See the topics given below for details.
 
-## Common inbound endpoint parameters
+## Common Inbound Endpoint Properties
 
 The following parameters are common to all inbound endpoints:
 
 <table>
-   <colgroup>
-      <col style="width: 20%" />
-      <col style="width: 20%" />
-      <col style="width: 20%" />
-      <col style="width: 20%" />
-      <col style="width: 20%" />
-   </colgroup>
-   <thead>
-      <tr class="header">
+      <tr>
          <th>
-            <p>Parameter Name</p>
+            Property
          </th>
          <th>
-            <p>Description</p>
-         </th>
-         <th>
-            <p>Required</p>
-         </th>
-         <th>
-            <p>Possible Values</p>
-         </th>
-         <th>
-            <p>Default Value</p>
+            Description
          </th>
       </tr>
-   </thead>
    <tbody>
-      <tr class="odd">
+      <tr>
          <td>sequential</td>
          <td>The behavior when executing the given sequence.<br />
-            When set as <code>             true            </code> , mediation will happen within the same thread. When set as <code>             false            </code> , the mediation engine will use the inbound thread pool. (The default thread pool values can be found in the <code>             &lt;EI_HOME&gt;/conf/synapse.properties            </code> file).
+            When set as <code>true</code> , mediation will happen within the same thread. When set as <code>false</code> , the mediation engine will use the inbound thread pool. The default thread pool values can be found in the <code>MI_HOME/conf/synapse.properties</code> file. The default setting is <code>true</code>.
          </td>
-         <td>Yes</td>
-         <td>true or false</td>
-         <td>true</td>
       </tr>
-      <tr class="even">
+      <tr>
          <td>suspend</td>
-         <td>When set to <code>             true            </code> , this makes the inbound endpoint inactive.</td>
-         <td>Yes</td>
-         <td>true or false</td>
-         <td>false</td>
+         <td>When set to <code>true</code>, this makes the inbound endpoint inactive. The default setting is <code>false</code>.</td>
       </tr>
    </tbody>
 </table>
@@ -63,7 +39,7 @@ The following parameters are common to all inbound endpoints:
 <inboundEndpoint>
 ```
 
-``` java tab='HTTPS'
+``` java tab='HTTPS Listener'
 <inboundEndpoint name="HttpListenerEP" protocol="https" suspend="false" sequence="TestIn" onError="fault" >
         <p:parameters xmlns:p="http://ws.apache.org/ns/synapse">
             <p:parameter  name="inbound.http.port">8081</p:parameter>
@@ -159,14 +135,100 @@ The following parameters are common to all inbound endpoints:
     </inboundEndpoint>
 ```
 
-### HTTP inbound endpoint parameters
+### HTTP Inbound Endpoint Properties (Required)
 
-| Parameter                                    | Description                                                | Required |
-|----------------------------------------------|------------------------------------------------------------|----------|
-| ` inbound.http.port            ` | The port on which the endpoint listener should be started. | Yes      |
+<table>
+  <tr>
+    <th>Property</th>
+    <th>Description</th>
+  </tr>
+  <tr>
+    <td>inbound.http.port</td>
+    <td>
+      The port on which the endpoint listener should be started.
+    </td>
+  </tr>
+</table>
 
+### HTTPS Inbount Endpoint (Required Properties)
 
-**Worker pool configuration parameters**
+<table>
+  <tr>
+    <th>Property Name</th>
+    <th>Description</th>
+  </tr>
+  <tr>
+    <td>
+            inbound.http.port
+    </td>
+    <td>
+            <p>The port on which the e ndpoint listener should be started .</p>
+    </td>
+    </tr>
+   <tr>
+         <td>
+            keystore
+         </td>
+         <td>The KeyStore location where keys are stored.</td>
+  </tr>
+</table>
+
+### HTTPS Inbount Endpoint (Optional Properties)
+<table>
+   <thead>
+      <tr>
+         <th>
+            <p>Property Name</p>
+         </th>
+         <th>
+            <p>Description</p>
+         </th>
+      </tr>
+   </thead>
+   <tbody>
+      <tr>
+         <td>
+            truststore
+         </td>
+         <td>The TrustStore location where keys are stored.</td>
+      </tr>
+      <tr>
+         <td>
+          SSLVerifyClient
+         </td>
+         <td>
+            <p>Used when enabling mutual verification.</p>
+         </td>
+      </tr>
+      <tr>
+         <td>
+          HttpsProtocols
+         </td>
+         <td>The supporting protocols.</td>
+      </tr>
+      <tr>
+         <td>
+            SSLProtocol
+         </td>
+         <td>The supporting SSL protocol.</td>
+      </tr>
+      <tr>
+         <td>
+            CertificateRevocationVerifier
+         </td>
+         <td>
+            When the <code>enable</code> attribute is set to <code>true</code>, this validates and verifies the revocation status of the host certificates using OCSP/CRL when making HTTPS connections.<br />
+            If the <code>enable</code> attribute of this parameter is set to <code>true</code>, you also need to specify the following:
+            <ul>
+              <li><b>CacheSize</b>: The maximum size of the cache.</li>
+              <li><b>CacheDelay</b>: The time duration between two consecutive scheduled cache managing tasks that perform housekeeping work for the cache.</li>
+            </ul>
+         </td>
+      </tr>
+   </tbody>
+</table>
+
+### HTTP/HTTPS Worker Pool Configuration Properties
 
 Following is a sample configuration for an inbound endpoint with a separate worker pool:
 
@@ -185,20 +247,52 @@ Following is a sample configuration for an inbound endpoint with a separate wor
 </inboundEndpoint>
 ```
 
-By default inbound endpoints share the PassThrough transport worker pool to handle incoming requests. If you need a separate worker pool for the
-inbound endpoint, you need to configure the following parameters:
+By default inbound endpoints share the PassThrough transport worker pool to handle incoming requests. If you need a separate worker pool for the inbound endpoint, you need to configure the following parameters:
 
-| Parameter                                                         | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                          | Default Value                           |
-|-------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------|
-| `              inbound.worker.pool.size.core             `        | The initial number of threads in the worker thread pool. This value can be changed accordingly based on the number of messages to be processed. The maximum value that can be specified here is the value of the `             i             nbound.worker.pool.size.max            ` parameter.                                                                                                                                                                          | 400                                     |
-| `              inbound.worker.pool.size.max             `         | The maximum number of threads in the worker thread pool. Specify a maximum limit in order to avoid performance degradation that can occur due to context switching.                                                                                                                                                                                                                                                                                                       | 500                                     |
-| `              inbound.worker.thread.keep.alive.sec             ` | The keep-alive time for extra threads in the worker pool. This value should be less than the socket timeout. When this time is elapsed for an extra thread, it will be destroyed. The purpose of this parameter is to optimize the usage of resources by avoiding wastage that results from having extra threads that are not utilized.                                                                                                                                   | `             60            `           |
-| `              inbound.worker.pool.queue.length             `     | The length of the queue that is used to hold runnable tasks to be executed by the worker pool. The thread pool starts queuing jobs when all existing threads are busy and the pool has reached the maximum number of threads. The value for this parameter should be -1 to use an unbounded queue. If a bound queue is used and the queue gets filled to its capacity, and any further attempt to submit jobs will fail causing synapse to drop some messages.            | -1                                      |
-| `              inbound.thread.group.id             `              | Unique Identifier of the thread group.                                                                                                                                                                                                                                                                                                                                                                                                                                    | PassThrough inbound worker thread group |
-| `              inbound.thread.id             `                    | Unique Identifier of the thread.                                                                                                                                                                                                                                                                                                                                                                                                                                          | PassThroughInboundWorkerThread          |
-| `             dispatch.filter.pattern            `                | The regular expression that defines the proxy services and API's to expose via the inbound endpoint. Provide the `             .*            ` expression to expose all proxy services and API's or provide an expression similar to `             ^(/foo|/bar|/services/MyProxy)$            ` to define a set of services to expose via the inbound endpoint. If you do not provide an expression only the defined sequence of the inbound endpoint will be accessible. | blank                                   |
+<table>
+  <tr>
+    <th>Property Name</th>
+    <th>Description</th>
+  </tr>
+  <tr>
+    <td>inbound.worker.pool.size.core</td>
+    <td>
+      The initial number of threads in the worker thread pool. This value can be changed accordingly based on the number of messages to be processed. The maximum value that can be specified here is the value of the inbound.worker.pool.size.max parameter.</br></br> The default value is 400.
+    </td>
+  </tr>
+  <tr>
+    <td>inbound.worker.pool.size.max</td>
+    <td>
+      The maximum number of threads in the worker thread pool. Specify a maximum limit in order to avoid performance degradation that can occur due to context switching.</br></br> The default value is 500.
+    </td>
+  </tr>
+  <tr>
+    <td>inbound.worker.thread.keep.alive.sec</td>
+    <td>
+      The keep-alive time for extra threads in the worker pool. This value should be less than the socket timeout. When this time is elapsed for an extra thread, it will be destroyed. The purpose of this parameter is to optimize the usage of resources by avoiding wastage that results from having extra threads that are not utilized.</br></br> The default value is 60.
+    </td>
+  </tr>
+  <tr>
+    <td>inbound.worker.pool.queue.length</td>
+    <td>
+      The length of the queue that is used to hold runnable tasks that are to be executed by the worker pool. The thread pool starts queuing jobs when all existing threads are busy and the pool has reached the maximum number of threads. The value for this parameter should be -1 to use an unbounded queue. If a bound queue is used and the queue gets filled to its capacity, any further attempt to submit jobs will fail causing synapse to drop some messages. </br></br> The default value is -1.
+    </td>
+  </tr>
+  <tr>
+    <td>inbound.thread.group.id</td>
+    <td>
+      Unique Identifier of the thread group. The default value is the PassThrough inbound worker thread group.
+    </td>
+  </tr>
+  <tr>
+    <td>dispatch.filter.pattern</td>
+    <td>
+      The regular expression that defines the proxy services and API's to expose via the inbound endpoint. Provide the .* expression to expose all proxy services and API's or provide an expression similar to <code>^(/foo|/bar|/services/MyProxy)$</code> to define a set of services to expose via the inbound endpoint. If you do not provide an expression only the defined sequence of the inbound endpoint will be accessible.
+    </td>
+  </tr>
+</table>
 
-**Inbound endpoint parameter for proxy services**
+**Inbound endpoint properties for proxy services**
 
 Following is a sample proxy configuration:
 
@@ -219,441 +313,319 @@ Following is a sample proxy configuration:
 If a proxy service is to be exposed only via inbound endpoints, the following service parameter has to be set in the proxy configuration.
 
 <table>
-   <colgroup>
-      <col style="width: 33%" />
-      <col style="width: 33%" />
-      <col style="width: 33%" />
-   </colgroup>
    <thead>
-      <tr class="header">
+      <tr>
          <th>Service Parameter</th>
          <th>Description</th>
-         <th>Default Value</th>
       </tr>
    </thead>
    <tbody>
-      <tr class="odd">
-         <td><code>             inbound.only            </code></td>
+      <tr>
+         <td>inbound.only</td>
          <td>
             <p>Whether the proxy service needs to be exposed only via inbound endpoints.</p>
-            <p>If set to <code>              true             </code> all requests that the proxy service receives via normal transport will be rejected. The proxy service will process only the requests that are received via inbound endpoints.</p>
+            <p>If set to <code>true</code> all requests that the proxy service receives via normal transport will be rejected. The proxy service will process only the requests that are received via inbound endpoints.</br></br> The default setting is <code>false</code>.</p>
          </td>
-         <td>false</td>
       </tr>
    </tbody>
 </table>
 
-### HTTPS Inbount Protocol
-
-<table>
-   <colgroup>
-      <col style="width: 33%" />
-      <col style="width: 33%" />
-      <col style="width: 33%" />
-   </colgroup>
-   <thead>
-      <tr class="header">
-         <th>
-            <p>Parameter</p>
-         </th>
-         <th>
-            <p>Description</p>
-         </th>
-         <th>
-            <p>Required</p>
-         </th>
-      </tr>
-   </thead>
-   <tbody>
-      <tr class="odd">
-         <td>
-            <pre><code>inbound.http.port</code></pre>
-         </td>
-         <td>
-            <p>The port on which the e ndpoint listener should be started .</p>
-         </td>
-         <td>Yes</td>
-      </tr>
-      <tr class="even">
-         <td>
-            <pre><code>keystore</code></pre>
-         </td>
-         <td>The KeyStore location where keys are stored.</td>
-         <td>Yes</td>
-      </tr>
-      <tr class="odd">
-         <td>
-            <pre><code>truststore</code></pre>
-         </td>
-         <td>The TrustStore location where keys are stored.</td>
-         <td>No</td>
-      </tr>
-      <tr class="even">
-         <td>
-            <pre><code>SSLVerifyClient</code></pre>
-         </td>
-         <td>
-            <p>Used when enabling mutual verification.</p>
-         </td>
-         <td>No</td>
-      </tr>
-      <tr class="odd">
-         <td>
-            <pre><code>HttpsProtocols</code></pre>
-         </td>
-         <td>The supporting protocols.</td>
-         <td>No</td>
-      </tr>
-      <tr class="even">
-         <td>
-            <pre><code>SSLProtocol</code></pre>
-         </td>
-         <td>The supporting SSL protocol.</td>
-         <td>No</td>
-      </tr>
-      <tr class="odd">
-         <td>
-            <pre><code>CertificateRevocationVerifier</code></pre>
-         </td>
-         <td>
-            <p>When the <code>              enable             </code> attribute is set to <code>              true             </code> , this validates and verifies the revocation status of the host certificates using OCSP/CRL, when making HTTPS connections.<br />
-               If the <code>              enable             </code> attribute of this parameter is set to <code>              true             </code> , you also need to specify the <code>              CacheSize             </code> and <code>              CacheDelay             </code> .<br />
-               <code>              CacheSize -             </code> The maximum size of the cache.<br />
-               <code>              CacheDelay -             </code> The time duration between two consecutive scheduled cache managing tasks that perform housekeeping work for the cache.
-            </p>
-         </td>
-         <td>No</td>
-      </tr>
-   </tbody>
-</table>
-
-**Worker pool configuration parameters**
-
-By default inbound endpoints share the PassThrough transport worker pool to handle incoming requests. If you need a separate worker pool for the
-inbound endpoint, you need to configure the following parameters:
-
-| Parameter                                                         | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                               | Default Value                           |
-|-------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------|
-| `              inbound.worker.pool.size.core             `        | The initial number of threads in the worker thread pool. This value can be changed accordingly based on the number of messages to be processed. The maximum value that can be specified here is the value of the `             i             nbound.worker.pool.size.max            ` parameter.                                                                                                                                                                          | 400                                     |
-| `              inbound.worker.pool.size.max             `         | The maximum number of threads in the worker thread pool. Specify a maximum limit in order to avoid performance degradation that can occur due to context switching.                                                                                                                                                                                                                                                                                                       | 500                                     |
-| `              inbound.worker.thread.keep.alive.sec             ` | The keep-alive time for extra threads in the worker pool. This value should be less than the socket timeout. When this time is elapsed for an extra thread, it will be destroyed. The purpose of this parameter is to optimize the usage of resources by avoiding wastage that results from having extra threads that are not utilized.                                                                                                                                   | `             60            `           |
-| `              inbound.worker.pool.queue.length             `     | The length of the queue that is used to hold runnable tasks to be executed by the worker pool. The thread pool starts queuing jobs when all existing threads are busy and the pool has reached the maximum number of threads. The value for this parameter should be -1 to use an unbounded queue. If a bound queue is used and the queue gets filled to its capacity, and any further attempt to submit jobs will fail causing synapse to drop some messages.            | -1                                      |
-| `              inbound.thread.group.id             `              | Unique Identifier of the thread group.                                                                                                                                                                                                                                                                                                                                                                                                                                    | PassThrough inbound worker thread group |
-| `              inbound.thread.id             `                    | Unique Identifier of the thread.                                                                                                                                                                                                                                                                                                                                                                                                                                          | PassThroughInboundWorkerThread          |
-| `             dispatch.filter.pattern            `                | The regular expression that defines the proxy services and API's to expose via the inbound endpoint. Provide the `             .*            ` expression to expose all proxy services and API's or provide an expression similar to `             ^(/foo|/bar|/services/MyProxy)$            ` to define a set of services to expose via the inbound endpoint. If you do not provide an expression only the defined sequence of the inbound endpoint will be accessible. | blank                                   |
-
-### CXF WS-RM Inbound Protocol
+### CXF WS-RM Inbound Endpoint Properties
 
 The CXF WS-RM Inbound endpoint can be configured by specifying the following parameters:
 
--   `           Sequence          ` - The sequence that the message will
-    be injected to.
-
--   `           Error sequence          ` - The sequence to be called if
-    a fault occurs.
-
--   `          Suspend         ` - If the inbound listener should pause
-    when accepting incoming requests, set this to
-    `          true         ` . If the inbound listener should not pause
-    when accepting incoming requests, set this to
-    `          false         ` .
--   `           inbound.cxf.rm.host          ` - The host name.
-
--   `           inbound.cxf.rm.port          ` - The port to listen to.
-
-        !!! info
-    
-        Note
-    
-        When configuring a SSL enabled cxf\_ws\_rm inbound endpoint, the
-        `           inbound.cxf.rm.port          ` parameter should be set
-        to the same value as the engine port number specified in the CXF
-        spring configuration file saved in the
-        `           <EI_HOME>/conf/cxf          ` directory.
-    
-        For example, in the above CXF spring configuration, the engine port
-        is 8081. This same port number should be specified as the
-        `           inbound.cxf.rm.port          ` in the cxf\_ws\_rm
-        inbound endpoint configuration.
-    
-
--   `           inbound.cxf.rm.config-file          ` - The path to the
-    CXF Spring configuration file.
-
--   `           enableSSL          ` - Set to
-    `           true          ` if SSL is enabled in the CXF Spring
-    configuration file.
+<table>
+  <tr>
+    <th>Property Name</th>
+    <th>Description</th>
+  </tr>
+  <tr>
+    <td>Sequence</td>
+    <td>
+      The sequence to which the message will be injected.
+    </td>
+  </tr>
+  <tr>
+    <td>Error sequence</td>
+    <td>
+      The sequence to be called if a fault occurs.
+    </td>
+  </tr>
+  <tr>
+    <td>Suspend</td>
+    <td>
+      If the inbound listener should pause when accepting incoming requests, set this to <code>true</code>. If the inbound listener should not pause when accepting incoming requests, set this to <code>false</code>.
+    </td>
+  </tr>
+  <tr>
+    <td>inbound.cxf.rm.host</td>
+    <td>
+      The host name.
+    </td>
+  </tr>
+  <tr>
+    <td>inbound.cxf.rm.port</td>
+    <td>
+      The port to listen to.</br></br>
+      <b>Note</b>: When configuring an SSL-enabled cxf\_ws\_rm inbound endpoint, the <code>inbound.cxf.rm.port</code> parameter should be set to the same value as the engine port number specified in the CXF spring configuration file saved in the MI_HOME/conf/cxf directory. For example, in the above CXF spring configuration, the engine port is 8081. This same port number should be specified as the <code>inbound.cxf.rm.port</code> in the cxf\_ws\_rm inbound endpoint configuration.
+    </td>
+  </tr>
+  <tr>
+    <td>inbound.cxf.rm.config-file</td>
+    <td>
+      The path to the CXF Spring configuration file.
+    </td>
+  </tr>
+  <tr>
+    <td>enableSSL</td>
+    <td>
+      Set to <code>true</code> if SSL is enabled in the CXF Spring configuration file.
+    </td>
+  </tr>
+</table>
 
 ### HL7 Inbound Endpoint
 
-**HL7 inbound endpoint parameters**: The following table provides information on the HL7 inbound endpoint parameters you can set:
+#### HL7 Endpoint Properties
+
+The following table provides information on the HL7 inbound endpoint parameters you can set:
 
 <table>
    <thead>
-      <tr class="header">
-         <th><strong>Parameter</strong></th>
+      <tr>
+         <th><strong>Property</strong></th>
          <th><strong>Description</strong></th>
-         <th><strong>Default Value</strong></th>
-         <th><strong>Possible Values</strong></th>
       </tr>
    </thead>
    <tbody>
-      <tr class="odd">
+      <tr>
          <td>inbound.hl7.Port</td>
          <td>The port on which you need to run the MLLP listener.</td>
-         <td>N/A</td>
-         <td>You need to specify this.</td>
       </tr>
-      <tr class="even">
+      <tr>
          <td>inbound.hl7.AutoAck</td>
-         <td>Whether or not an auto acknowledgement should be sent on message receipt. If set to false, you can define the type of HL7 acknowledgement to be sent . For more information, see <a href="#HL7InboundProtocol-MediationProperties">HL7 inbound endpoint mediation level properties</a> .</td>
-         <td>true</td>
-         <td>true | false</td>
+         <td>Whether or not an auto acknowledgement should be sent on message receipt. If set to false, you can define the type of HL7 acknowledgement to be sent. For more information, see <a href="#hl7-mediation-level-properties">HL7 inbound endpoint mediation level properties</a>.</br></br> The default setting is <code>true</code>.</td>
       </tr>
-      <tr class="odd">
+      <tr>
          <td>inbound.hl7.ValidateMessage</td>
-         <td>This enables HL7 message validation.</td>
-         <td>true</td>
-         <td>true | false</td>
+         <td>This enables HL7 message validation.</br></br> The default setting is <code>true</code>.</td>
       </tr>
-      <tr class="even">
+      <tr>
          <td>inbound.hl7.TimeOut</td>
-         <td>The timeout interval in milliseconds to trigger a NACK message.</td>
-         <td>10000</td>
-         <td>[0..9]*</td>
+         <td>The timeout interval in milliseconds to trigger a NACK message.</br></br> The default values is 10000.</td>
       </tr>
-      <tr class="odd">
+      <tr>
          <td>inbound.hl7.CharSet</td>
-         <td>The character set used for encoding and decoding messages. Some multi-byte character encodings (e.g. UTF-16, UTF-32) may result in byte values equal to the MLLP framing characters or byte values lower than 0x1F, resulting in errors.</td>
-         <td>UTF-8</td>
-         <td>ISO-8859-1<br />
-            UTF-8<br />
-            US-ASCII
-         </td>
+         <td>
+          The character set used for encoding and decoding messages. Some multi-byte character encodings (e.g. UTF-16, UTF-32) may result in byte values equal to the MLLP framing characters or byte values lower than 0x1F, which results in errors. Possible values are <code>UTF-8</code>, <code>UTF-8</code>, and <code>US-ASCII</code>.</br></br> Default value is <code>US-ASCII</code>.
+        </td>
       </tr>
-      <tr class="even">
+      <tr>
          <td>inbound.hl7.BuildInvalidMessages</td>
-         <td>If the <code>             inbound.hl7.ValidateMessage            </code> parameter is set to <code>             false            </code> and the incoming message is invalid, this parameter specifies whether the raw message received through the MLLP transport should be passed onto the mediation layer.</td>
-         <td>false</td>
-         <td>true | false</td>
+         <td>If the <code>inbound.hl7.ValidateMessage</code> parameter is set to <code>false</code> and the incoming message is invalid, this parameter specifies whether the raw message received through the MLLP transport should be passed onto the mediation layer.</br></br> The default setting is <code>false</code>.</td>
       </tr>
-      <tr class="odd">
+      <tr>
          <td>inbound.hl7.PassthroughInvalidMessages</td>
-         <td>If the <code>             inbound.hl7.BuildInvalidMessages            </code> parameter is set to <code>             true            </code> , this parameter notifies the Axis2 HL7 transport sender whether to use the raw message.</td>
-         <td>false</td>
-         <td>true | false</td>
+         <td>If the <code>inbound.hl7.BuildInvalidMessages</code> parameter is set to <code>true</code>, this parameter notifies the Axis2 HL7 transport sender whether to use the raw message. The default setting is <code>false</code>.</td>
       </tr>
-      <tr class="even">
+      <tr>
          <td>inbound.hl7.MessagePreProcessor</td>
-         <td>An implementation of the <code>             org.wso2.carbon.inbound.endpoint.protocol.hl7.HL7MessagePreprocessor            </code> interface can be defined here. It provides an extension point to intercept incoming messages before any type of message parsing occurs.</td>
-         <td>N/A</td>
-         <td>Fully qualified class name.</td>
+         <td>
+          An implementation of the <code>org.wso2.carbon.inbound.endpoint.protocol.hl7.HL7MessagePreprocessor</code> interface can be defined here. It provides an extension point to intercept incoming messages before any type of message parsing occurs. You can use any fully qualified class name.
+        </td>
       </tr>
    </tbody>
 </table>
 
-**HL7 inbound endpoint mediation level properties**
+#### HL7 Mediation-Level Properties
 
 Following are the mediation level properties that you can set in the HL7 inbound endpoint:
 
 !!! Note
-    The scope of these properties is the `         default        ` scope.
-
+    The scope of these properties is the `default` scope.
 
 | **Property**                                                                                            | **Description**                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
 |---------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `             <property name="HL7_RESULT_MODE" value="ACK|NACK" scope="default"/>            `          | This is use to define the type of HL7 acknowledgement to be sent. If the `             inbound.hl7.AutoAck            ` parameter is set to `             true            ` this property has no effect.                                                                                                                                                                                                                                                                                                             |
+| `                         `          | This is use to define the type of HL7 acknowledgement to be sent. If the `             inbound.hl7.AutoAck            ` parameter is set to `             true            ` this property has no effect.                                                                                                                                                                                                                                                                                                             |
 | `             <property name="HL7_NACK_MESSAGE" value="<ERROR MESSAGE>" scope="default" />            ` | This is used to define a custom error message to be sent if you have set the property `             HL7_RESULT_MODE            ` as `             NACK            ` .                                                                                                                                                                                                                                                                                                                                                |
-| `             <property name="HL7_APPLICATION_ACK" value="true" scope="default"/>            `          | If the `             inbound.hl7.AutoAck            ` parameter is set to `             false            ` and no immediate auto generated ACK is sent back to the client, this property defines whether we should automatically generate the ACK for the request once the mediation flow is complete. If both the `             inbound.hl7.AutoAck            ` parameter and this property are set to `             false            ` , you need to generate an ACK message in the correct format as a response. |
+| `             <property name="HL7_APPLICATION_ACK" value="true" scope="default"/>            `          | If the `             inbound.hl7.AutoAck            ` parameter is set to `             false            ` and no immediate auto generated ACK is sent back to the client, this property defines whether we should automatically generate the ACK for the request once the mediation flow is complete. If both the `             inbound.hl7.AutoAck            ` parameter and this property are set to `             false            `, you need to generate an ACK message in the correct format as a response. |
 
-### WebSocket inbound endpoint parameters
+### WebSocket Inbound Endpoint Properties
+
+#### Required Properties
+
+<table>
+  <tr>
+    <th>Property</th>
+    <th>Description</th>
+  </tr>
+  <tr>
+    <td>inbound.ws.port</td>
+    <td>The netty listener port on which the WebSocket inbound listens.</td>
+  </tr>
+  <tr>
+    <td>ws.client.side.broadcast.level</td>
+    <td>The client broadcast level that defines how WebSocket frames are broadcast from the WebSocket inbound endpoint to the client. Broadcast happens based on the subscriber path client connected to the WebSocket inbound endpoint. The three possible levels are as follows:<br />
+      0 - Only a unique client can receive the frame from a WebSocket inbound endpoint.<br />
+      1 - All the clients connected with the same subscriber path receives the WebSocket frame.<br />
+      2 - All the clients connected with the same subscriber path, except the one who publishes the frame to the inbound, receives the WebSocket frame.
+    </td>
+  </tr>
+  <tr>
+    <td>ws.outflow.dispatch.sequence</td>
+    <td>The sequence for the back-end to client mediation.</td>
+  </tr>
+  <tr>
+    <td>ws.outflow.dispatch.fault.sequence</td>
+    <td>The fault sequence for the back-end to client mediation path.</td>
+  </tr>
+</table>
+
+#### Optional Properties
 
 <table>
    <thead>
-      <tr class="header">
-         <th>Parameter</th>
+      <tr>
+         <th>Property</th>
          <th>Description</th>
-         <th>Required</th>
       </tr>
    </thead>
    <tbody>
-      <tr class="odd">
-         <td><code>             inbound.ws.port            </code></td>
-         <td>The netty listener port on which the WebSocket inbound listens.</td>
-         <td>Yes</td>
-      </tr>
-      <tr class="even">
-         <td><code>             ws.client.side.broadcast.level            </code></td>
-         <td>The client broadcast level that defines how WebSocket frames are broadcasted from the WebSocket inbound endpoint to the client. Broadcast happens based on the subscriber path client connected to the WebSocket inbound endpoint. The three possible levels are as follows:<br />
-            0 - Only a unique client can receive the frame from a WebSocket inbound endpoint.<br />
-            1 - All the clients connected with the same subscriber path receives the WebSocket frame.<br />
-            2 - All the clients connected with the same subscriber path, except the one who publishes the frame to the inbound, receives the WebSocket frame.
-         </td>
-         <td>Yes</td>
-      </tr>
-      <tr class="odd">
-         <td><code>             ws.outflow.dispatch.sequence            </code></td>
-         <td>The sequence for the back-end to client mediation.</td>
-         <td>Yes</td>
-      </tr>
-      <tr class="even">
-         <td><code>             ws.outflow.dispatch.fault.sequence            </code></td>
-         <td>The fault sequence for the back-end to client mediation path .</td>
-         <td>Yes</td>
-      </tr>
-      <tr class="odd">
-         <td><code>             ws.boss.thread.pool.size            </code></td>
+      <tr>
+         <td>ws.boss.thread.pool.size</td>
          <td>The size of the netty boss pool.</td>
-         <td>No</td>
       </tr>
-      <tr class="even">
-         <td><code>             ws.worker.thread.pool.size            </code></td>
+      <tr>
+         <td>ws.worker.thread.pool.size</td>
          <td>The size of the worker thread pool.</td>
-         <td>No</td>
       </tr>
-      <tr class="odd">
-         <td><code>             ws.subprotocol.handler.class            </code></td>
+      <tr>
+         <td>ws.subprotocol.handler.class</td>
          <td>Specify one or more custom subprotocol handler classes that are required. Separate each custom subprotocol handler class using a semicolon.</td>
-         <td>No</td>
       </tr>
-      <tr class="even">
-         <td><code>             ws.default.content.type            </code></td>
+      <tr>
+         <td>ws.default.content.type</td>
          <td>
-            <div class="content-wrapper">
-               <p>Specifies the content type of the Web Socket frames that are received from the inbound endpoint.</p>
-            </div>
+            Specifies the content type of the Web Socket frames that are received from the inbound endpoint.
          </td>
-         <td>No</td>
       </tr>
-      <tr class="odd">
-         <td><code>             ws.shutdown.status.code            </code></td>
+      <tr>
+         <td>ws.shutdown.status.code</td>
          <td>Specifies the status code of the closed web socket frame sent when the inbound endpoint is closed.</td>
-         <td>No</td>
       </tr>
-      <tr class="even">
-         <td><code>             ws.shutdown.status.message            </code></td>
+      <tr>
+         <td>ws.shutdown.status.message</td>
          <td>Specifies the status message of the closed web socket frame when the inbound endpoint is closed.</td>
-         <td>No</td>
       </tr>
-      <tr class="odd">
-         <td><code>             ws.pipeline.handler.class            </code></td>
+      <tr>
+         <td>ws.pipeline.handler.class</td>
          <td>
-            <p>The fully qualified class name of a pipeline handler class that you implemented.</p>
+           The fully qualified class name of a pipeline handler class that you implemented.
          </td>
-         <td>No</td>
       </tr>
    </tbody>
 </table>
 
-### WebSocket inbound endpoint parameters
+### Secured WebSocket Inbound Endpoint Properties
+
+#### Required Properties
+
+<table>
+  <tr>
+    <th>Property</th>
+    <th>Description</th>
+  </tr>
+  <tr>
+    <td>inbound.ws.port</td>
+    <td>The netty listener port on which the WebSocket inbound listens.</td>
+  </tr>
+  <tr>
+    <td>ws.client.side.broadcast.level</td>
+    <td>The client broadcast level that defines how WebSocket frames are broadcast from the WebSocket inbound endpoint to the client. Broadcast happens based on the subscriber path client connected to the WebSocket inbound endpoint. The three possible levels are as follows:<br />
+      0 - Only a unique client can receive the frame from a WebSocket inbound endpoint.<br />
+      1 - All the clients connected with the same subscriber path receives the WebSocket frame.<br />
+      2 - All the clients connected with the same subscriber path, except the one who publishes the frame to the inbound, receives the WebSocket frame.
+    </td>
+  </tr>
+  <tr>
+    <td>ws.outflow.dispatch.sequence</td>
+    <td>The sequence for the back-end to client mediation.</td>
+  </tr>
+  <tr>
+    <td>ws.outflow.dispatch.fault.sequence</td>
+    <td>The fault sequence for the back-end to client mediation path.</td>
+  </tr>
+  <tr>
+    <td>wss.ssl.key.store.file</td>
+    <td>The keystore location where keys are stored.</td>
+  </tr>
+  <tr>
+    <td>wss.ssl.key.store.pass</td>
+    <td>The password to access the keystore file.</td>
+  </tr>
+  <tr>
+    <td>wss.ssl.trust.store.file</td>
+    <td>The truststore location where keys are stored.</td>
+  </tr>
+  <tr>
+    <td>wss.ssl.trust.store.pass</td>
+    <td>The password to access the truststore file.</td>
+  </tr>
+  <tr>
+    <td>wss.ssl.cert.pass</td>
+    <td>The SSL certificate password.</td>
+  </tr>
+</table>
+
+#### Optional Properties
 
 <table>
    <thead>
-      <tr class="header">
-         <th>Parameter</th>
+      <tr>
+         <th>Property</th>
          <th>Description</th>
-         <th>Required</th>
       </tr>
    </thead>
    <tbody>
-      <tr class="odd">
-         <td><code>             inbound.ws.port            </code></td>
-         <td>The netty listener port on which the WebSocket inbound listens.</td>
-         <td>Yes</td>
-      </tr>
-      <tr class="even">
-         <td><code>             ws.client.side.broadcast.level            </code></td>
-         <td>The client broadcast level that defines how WebSocket frames are broadcasted from the WebSocket inbound endpoint to the client. Broadcast happens based on the subscriber path client connected to the WebSocket inbound endpoint. The three possible levels are as follows:<br />
-            0 - Only a unique client can receive the frame from a WebSocket inbound endpoint.<br />
-            1 - All the clients connected with the same subscriber path receives the WebSocket frame.<br />
-            2 - All the clients connected with the same subscriber path, except the one who publishes the frame to the inbound, receives the WebSocket frame.
-         </td>
-         <td>Yes</td>
-      </tr>
-      <tr class="odd">
-         <td><code>             ws.outflow.dispatch.sequence            </code></td>
-         <td>The sequence for the back-end to client mediation.</td>
-         <td>Yes</td>
-      </tr>
-      <tr class="even">
-         <td><code>             ws.outflow.dispatch.fault.sequence            </code></td>
-         <td>The fault sequence for the back-end to client mediation path .</td>
-         <td>Yes</td>
-      </tr>
-      <tr class="odd">
-         <td><code>             wss.ssl.key.store.file            </code></td>
-         <td>The keystore location where keys are stored.</td>
-         <td>Yes</td>
-      </tr>
-      <tr class="even">
-         <td><code>             wss.ssl.key.store.pass            </code></td>
-         <td>The password to access the keystore file.</td>
-         <td>Yes</td>
-      </tr>
-      <tr class="odd">
-         <td><code>             wss.ssl.trust.store.file            </code></td>
-         <td>The truststore location where keys are stored.</td>
-         <td>Yes</td>
-      </tr>
-      <tr class="even">
-         <td><code>             wss.ssl.trust.store.pass            </code></td>
-         <td>The password to access the truststore file.</td>
-         <td>Yes</td>
-      </tr>
-      <tr class="odd">
-         <td><code>             wss.ssl.cert.pass            </code></td>
-         <td>The SSL certificate password.</td>
-         <td>Yes</td>
-      </tr>
-      <tr class="even">
-         <td><code>             ws.boss.thread.pool.size            </code></td>
+      <tr>
+         <td>ws.boss.thread.pool.size</td>
          <td>The size of the netty boss pool.</td>
-         <td>No</td>
       </tr>
-      <tr class="odd">
-         <td><code>             ws.worker.thread.pool.size            </code></td>
+      <tr>
+         <td>ws.worker.thread.pool.size</td>
          <td>The size of the worker thread pool.</td>
-         <td>No</td>
       </tr>
-      <tr class="even">
-         <td><code>             ws.subprotocol.handler.class            </code></td>
+      <tr>
+         <td>ws.subprotocol.handler.class</td>
          <td>Specify one or more custom subprotocol handler classes that are required. Separate each custom subprotocol handler class using a semicolon.</td>
-         <td>No</td>
       </tr>
-      <tr class="odd">
-         <td><code>             ws.default.content.type            </code></td>
+      <tr>
+         <td>ws.default.content.type</td>
          <td>
-            <div class="content-wrapper">
-               <p>Specifies the content type of the Web Socket frames that are received from the inbound endpoint.</p>
-            </div>
+            Specifies the content type of the Web Socket frames that are received from the inbound endpoint.
          </td>
-         <td>No</td>
       </tr>
-      <tr class="even">
-         <td><code>             ws.shutdown.status.code            </code></td>
-         <td>Specifies the s tatus code of the closed web socket frame sent when the inbound endpoint is closed.</td>
-         <td>No</td>
+      <tr>
+         <td>ws.shutdown.status.code</td>
+         <td>Specifies the status code of the closed web socket frame sent when the inbound endpoint is closed.</td>
       </tr>
-      <tr class="odd">
-         <td><code>             ws.shutdown.status.message            </code></td>
-         <td>Specifies the s tatus message of the closed web socket frame when the inbound endpoint is closed.</td>
-         <td>No</td>
+      <tr>
+         <td>ws.shutdown.status.message</td>
+         <td>Specifies the status message of the closed web socket frame when the inbound endpoint is closed.</td>
       </tr>
-      <tr class="even">
-         <td><code>             ws.pipeline.handler.class            </code></td>
+      <tr>
+         <td>ws.pipeline.handler.class</td>
          <td>The fully qualified class name of a pipeline handler class that you implemented.</td>
-         <td>No</td>
       </tr>
-      <tr class="odd">
-         <td><code>             wss.ssl.protocols            </code></td>
-         <td>Enables the SSL protocol for the particular WebSocket inbound endpoint. Default value is "TLS". You can change it to a TLS version(s), which is/are enabled with the SSL protocol (i.e., TLSv1,TLSv1.1,TLSv1.2) . E.g., <code>             &lt;parameter name="wss.ssl.protocols"&gt;TLSv1.1,TLSv1.2&lt;/parameter&gt;            </code></td>
-         <td>No</td>
+      <tr>
+         <td>wss.ssl.protocols</td>
+         <td>Enables the SSL protocol for the particular WebSocket inbound endpoint. Default value is "TLS". You can change it to a TLS version(s), which is/are enabled with the SSL protocol (i.e., TLSv1,TLSv1.1,TLSv1.2). For example, <code>parameter name="wss.ssl.protocols"TLSv1.1,TLSv1.2/parameter</code></td>
       </tr>
-      <tr class="even">
-         <td><code>             wss.ssl.cipher.suites            </code></td>
+      <tr>
+         <td>wss.ssl.cipher.suites</td>
          <td>
             <div class="content-wrapper">
-               <p>Enables the specified Cipher Suites for the particular WebSocket inbound endpoint. For example,</p>
+               <p>Enables the specified Cipher Suites for the particular WebSocket inbound endpoint. For example:</p>
                <div class="code panel pdl" style="border-width: 1px;">
                   <div class="codeContent panelContent pdl">
                      <div class="sourceCode" id="cb1" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence" style="brush: java; gutter: false; theme: Confluence">
@@ -670,21 +642,36 @@ Following are the mediation level properties that you can set in the HL7 inbou
                </div>
             </div>
          </td>
-         <td>No</td>
       </tr>
    </tbody>
 </table>
 
-## Polling inbound endpoint parameters
+## Polling Inbound Endpoint Properties
 
 The following parameters are common to all polling inbound endpoints:
 
-| Parameter Name | Description                                                                                                                                                                                                                                                                                                                                                       | Required | Possible Values    | Default Value |
-|----------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------|--------------------|---------------|
-| interval       | The polling interval for the inbound endpoint to execute each cycle. This value is set in milliseconds.                                                                                                                                                                                                                                                           | No       | A positive integer | \-            |
-| coordination   | This parameter only applicable in a cluster environment. In a cluster environment an inbound endpoint will only be executed in worker nodes. If set to `             true            ` in a cluster setup, this will run the inbound only in a single worker node. Once the running worker is down the inbound starts on another available worker in the cluster. | No       | true or false      | true          |
+### Common Polling Inbound Endpoint Properties
 
-### JMS inbound endpoint parameters
+<table>
+  <tr>
+    <th>Property</th>
+    <th>Description</th>
+  </tr>
+  <tr>
+    <td>interval</td>
+    <td>
+      The polling interval for the inbound endpoint to execute each cycle. This value is set in milliseconds.
+    </td>
+  </tr>
+  <tr>
+    <td>coordination</td>
+    <td>
+      This optional property is only applicable in a cluster environment. In a clustered environment, an inbound endpoint will only be executed in worker nodes. If set to <code>true</code> in a cluster setup, this will run the inbound only in a single worker node. Once the running worker is down, the inbound starts on another available worker in the cluster. By default, coordniation is enabled.
+    </td>
+  </tr>
+</table>
+
+### JMS Inbound Endpoint Properties
 
 Following is a sample JMS inbound endpoint configuration:
 
@@ -708,397 +695,214 @@ Following is a sample JMS inbound endpoint configuration:
           </parameters>
 </inboundEndpoint>
 ```
+#### Required Properties
 
-The parameters `         interval        ` and
-`         coordination        ` are common to all polling inbound
-endpoints. For descriptions of these parameters, see [Common polling
-inbound endpoint
-parameters](Polling-Inbound-Endpoints_119130486.html#PollingInboundEndpoints-CommonPolling)
-.
+Listed below are the required properties when defining a JMS Inbound Endpint:
+
+<table>
+  <tr>
+    <th>Property</th>
+    <th>Description</th>
+  </tr>
+  <tr>
+    <td>
+      <p>java.naming.factory.initial</p>
+    </td>
+    <td>
+      <p>The JNDI initial context factory class. The class must implement the <code>java.naming.spi.InitialContextFactory</code> interface.</p>
+    </td>
+  </tr>
+  <tr>
+    <td>
+       <p>java.naming.provider.url</p>
+     </td>
+     <td>
+       <p>The URL of the JNDI provider.</p>
+     </td>
+  </tr>
+  <tr>
+    <td>
+      <p>transport.jms.ConnectionFactoryJNDIName</p>
+    </td>
+    <td>
+      <p>The JNDI name of the connection factory.</p>
+    </td>
+  </tr>
+  <tr>
+    <td>
+       sequential
+     </td>
+     <td>Whether the messages need to be polled and injected sequentially or not.</td>
+  </tr>
+</table>
+
+#### Optional Properties
+
+Listed below are the optional properties when defining a JMS Inbound Endpint:
 
 <table>
    <thead>
-      <tr class="header">
+      <tr>
          <th>
-            <p>Parameter Name</p>
+            <p>Property Name</p>
          </th>
          <th>
             <p>Description</p>
          </th>
-         <th>
-            <p>Required</p>
-         </th>
-         <th>
-            <p>Possible Values</p>
-         </th>
-         <th>
-            <p>Default Value</p>
-         </th>
       </tr>
    </thead>
    <tbody>
-      <tr class="odd">
+      <tr>
          <td>
-            <p><code>              java.naming.factory.initial             </code></p>
+            transport.jms.ConnectionFactoryType
          </td>
          <td>
-            <p>The JNDI initial context factory class. The class must implement the <code>              java.naming.spi.InitialContextFactory             </code> interface.</p>
-         </td>
-         <td>
-            <p>Yes</p>
-         </td>
-         <td>
-            <p>A valid class name</p>
-         </td>
-         <td>
-            <p>-</p>
+            The type of the connection factory.</br></br>  Set to <b>queue</b> by default.
          </td>
       </tr>
-      <tr class="even">
+      <tr>
          <td>
-            <p><code>              java.naming.provider.url             </code></p>
-         </td>
-         <td>
-            <p>The URL of the JNDI provider.</p>
-         </td>
-         <td>
-            <p>Yes</p>
-         </td>
-         <td>
-            <p>A valid URL</p>
-         </td>
-         <td>
-            <p>-</p>
-         </td>
-      </tr>
-      <tr class="odd">
-         <td>
-            <p><code>              transport.jms.ConnectionFactoryJNDIName             </code></p>
-         </td>
-         <td>
-            <p>The JNDI name of the connection factory.</p>
-         </td>
-         <td>
-            <p>Yes</p>
-         </td>
-         <td>
-            <p>-</p>
-         </td>
-         <td>
-            <p>-</p>
-         </td>
-      </tr>
-      <tr class="even">
-         <td>
-            <pre><code>sequential</code></pre>
-         </td>
-         <td>Whether the messages need to be polled and injected sequentially or not.</td>
-         <td>Yes</td>
-         <td>
-            <pre><code>true, false</code></pre>
-         </td>
-         <td>
-            <pre><code>true</code></pre>
-         </td>
-      </tr>
-      <tr class="odd">
-         <td>
-            <p><code>              transport.jms.ConnectionFactoryType             </code></p>
-         </td>
-         <td>
-            <p>The type of the connection factory.</p>
-         </td>
-         <td>
-            <p>No</p>
-         </td>
-         <td>
-            <p><code>              queue             </code> , <em></em> <code>              topic             </code></p>
-         </td>
-         <td>
-            <p><code>              queue             </code></p>
-         </td>
-      </tr>
-      <tr class="even">
-         <td>
-            <p><code>              transport.jms.Destination             </code></p>
+            <p>transport.jms.Destination/p>
          </td>
          <td>
             <p>The JNDI name of the destination.</p>
          </td>
+      </tr>
+      <tr>
          <td>
-            <p>No</p>
+            transport.jms.SessionAcknowledgement
          </td>
          <td>
-            <p>-</p>
-         </td>
-         <td>
-            <p>The defaults value is the service name.</p>
+            <p>The JMS session acknowledgment mode. You can use one of the following: <code>AUTO_ACKNOWLEDGE</code> , <code>CLIENT_ACKNOWLEDGE</code> , <code>DUPS_OK_ACKNOWLEDGE</code> , <code>SESSION_TRANSACTED</code>.</p>
          </td>
       </tr>
-      <tr class="odd">
+      <tr>
          <td>
-            <p><code>              transport.jms.SessionAcknowledgement             </code></p>
+            transport.jms.CacheLevel
          </td>
          <td>
-            <p>The JMS session acknowledgment mode.</p>
-         </td>
-         <td>
-            <p>No</p>
-         </td>
-         <td>
-            <p><code>              AUTO_ACKNOWLEDGE             </code> , <code>              CLIENT_ACKNOWLEDGE             </code> , <code>              DUPS_OK_ACKNOWLEDGE             </code> , <code>              SESSION_TRANSACTED             </code></p>
-         </td>
-         <td>
-            <p><code>              AUTO_ACKNOWLEDGE             </code></p>
+            <p>The JMS resource cache level. Possible values are as follows: <code>0</code>(none), <code>1</code>(connection), <code>2</code>(session), <code>3</code>(consumer).</br></br> The default value is <code>0-none</code>.</br></br>
+            <b>Note</b>:To subscribe to topics, set the value of <code>transport.jms.CacheLevel</code> to <code>3</code>.</p>
          </td>
       </tr>
-      <tr class="even">
+      <tr>
          <td>
-            <p><code>              transport.jms.CacheLevel             </code></p>
-         </td>
-         <td>
-            <p>The JMS resource cache level.</p>
-         </td>
-         <td>
-            <p>No</p>
-         </td>
-         <td>
-            <div class="content-wrapper">
-               <p><code>               0-               none               , 1-               connection               , 2-               session, 3-consumer              </code></p>
-               !!! info
-               <p>To subscribe to topics, set the value of <code>               transport.jms.CacheLevel              </code> to <code>               3              </code> .</p>
-            </div>
-         </td>
-         <td>
-            <p>0</p>
-         </td>
-      </tr>
-      <tr class="odd">
-         <td>
-            <p><code>              transport.jms.UserName             </code></p>
+            transport.jms.UserName
          </td>
          <td>
             <p>The JMS connection username.</p>
          </td>
-         <td>
-            <p>No</p>
-         </td>
-         <td>
-            <p>-</p>
-         </td>
-         <td>
-            <p>-</p>
-         </td>
       </tr>
-      <tr class="even">
+      <tr>
          <td>
-            <p><code>              transport.jms.Password             </code></p>
+            transport.jms.Password
          </td>
          <td>
             <p>The JMS connection password.</p>
          </td>
+      </tr>
+      <tr>
          <td>
-            <p>No</p>
+            transport.jms.JMSSpecVersion
          </td>
          <td>
-            <p>-</p>
-         </td>
-         <td>
-            <p>-</p>
+            <p>The JMS API version. The possible values are as follows: <code>1.0.2b</code>, <code>1.1</code>, <code>2.0</code>.</br></br> The default value is <code>1.1.</code>.</p>
          </td>
       </tr>
-      <tr class="odd">
-         <td>
-            <p><code>              transport.jms.JMSSpecVersion             </code></p>
-         </td>
-         <td>
-            <p>The JMS API version.</p>
-         </td>
-         <td>
-            <p>No</p>
-         </td>
-         <td>
-            <p><code>              1.0.2b             </code> , <code>              1.1             </code> , <code>              2.0             </code></p>
-         </td>
-         <td>
-            <p><code>              1.1             </code></p>
-         </td>
-      </tr>
-      <tr class="even">
-         <td><code>             transport.jms.SubscriptionDurable            </code></td>
+      <tr>
+         <td>transport.jms.SubscriptionDurable</td>
          <td>Whether the connection factory is subscription durable or not.</td>
-         <td>No</td>
-         <td><code>             true            </code> , <code>             false            </code></td>
-         <td><code>             false            </code></td>
       </tr>
-      <tr class="odd">
-         <td><code>             transport.jms.DurableSubscriberClientID            </code></td>
-         <td>The <code>             ClientId            </code> parameter when using durable subscriptions.</td>
-         <td>Required if the value specified as <code>             transport.jms.SubscriptionDurable            </code> is <code>             true            </code> .</td>
-         <td>-</td>
-         <td>-</td>
+      <tr>
+         <td>transport.jms.DurableSubscriberClientID</td>
+         <td>The <code>ClientId</code> parameter when using durable subscriptions. This property is required if the value specified as <code>transport.jms.SubscriptionDurable</code> is <code>true</code>.</td>
       </tr>
-      <tr class="even">
+      <tr>
          <td>
-            <p><code>              transport.jms.DurableSubscriberName             </code></p>
+            transport.jms.DurableSubscriberName
          </td>
          <td>
-            <p>The name of the durable subscriber.</p>
-         </td>
-         <td>
-            <p>Required if the value specified as <code>              transport.jms.SubscriptionDurable             </code> is <code>              true             </code> .</p>
-         </td>
-         <td>
-            <p>-</p>
-         </td>
-         <td>
-            <p>-</p>
+            <p>The name of the durable subscriber. This property is required if the value specified as <code>transport.jms.SubscriptionDurable</code> is <code>true</code>.</p>
          </td>
       </tr>
-      <tr class="odd">
+      <tr>
          <td>
-            <p><code>              transport.jms.MessageSelector             </code></p>
+            transport.jms.MessageSelector
          </td>
          <td>
-            <p>Message selector implementation.</p>
-         </td>
-         <td>
-            <p>No</p>
-         </td>
-         <td>
-            <p>-</p>
-         </td>
-         <td>
-            <p><br /></p>
+            Message selector implementation.
          </td>
       </tr>
-      <tr class="even">
+      <tr>
          <td>
-            <p><code>              transport.jms.ReceiveTimeout             </code></p>
+            transport.jms.ReceiveTimeout
          </td>
          <td>The time to wait for a JMS message during polling.<br />
-            Set this parameter value to a negative integer to wait indefinitely. Set it to zero to prevent waiting.
+            Set this parameter value to a negative integer to wait indefinitely. Set it to zero to prevent waiting.</br></br> The default value is 1.
          </td>
-         <td>No</td>
-         <td>The number of milliseconds to wait.</td>
-         <td><code>             1            </code></td>
       </tr>
-      <tr class="odd">
-         <td><code>             transport.jms.ContentType            </code></td>
-         <td>How the inbound listener should determine the content type of received messages. Priority is always given to the JMS message type.</td>
-         <td>No</td>
-         <td>A simple string value, in which case the transport listener assumes that the received messages always have the specified content type, or a set of rules. For more information, see <a href="http://axis.apache.org/axis2/java/transports/jms.html#Service_configuration">http://axis.apache.org/axis2/java/transports/jms.html#Service_configuration</a> .</td>
-         <td>-</td>
+      <tr>
+         <td>transport.jms.ContentType</td>
+         <td>How the inbound listener should determine the content type of received messages. Priority is always given to the JMS message type. Possible values are any simple string value. In which case the transport listener assumes that the received messages always have the specified content type, or a set of rules. For more information, see <a href="http://axis.apache.org/axis2/java/transports/jms.html#Service_configuration">http://axis.apache.org/axis2/java/transports/jms.html#Service_configuration</a>.</td>
       </tr>
-      <tr class="even">
-         <td><code>             transport.jms.ContentTypeProperty            </code></td>
-         <td>Get the content type from message property.</td>
-         <td>No</td>
-         <td><code>             contentType            </code></td>
-         <td>-</td>
+      <tr>
+         <td>transport.jms.ContentTypeProperty</td>
+         <td>Gets the content type from the message property.</td>
       </tr>
-      <tr class="odd">
-         <td><code>             transport.jms.ReplyDestination            </code></td>
-         <td>The destination that the response generated by the back-end service is stored.</td>
-         <td>No</td>
-         <td>-</td>
-         <td>ReplyTo from the message</td>
+      <tr>
+         <td>transport.jms.ReplyDestination</td>
+         <td>The destination where the response generated by the back-end service is stored.</td>
       </tr>
-      <tr class="even">
+      <tr>
          <td>
-            <p><code>              transport.jms.PubSubNoLocal             </code></p>
+            <p>transport.jms.PubSubNoLocal</p>
          </td>
          <td>
             <p>Whether messages should be published via the same connection that they were received.</p>
          </td>
+      </tr>
+      <tr>
          <td>
-            <p>No</p>
+            transport.jms.SharedSubscription
          </td>
          <td>
-            <p><code>              true, false             </code></p>
-         </td>
-         <td>
-            <p>false</p>
+            <p>If set to <code>true</code>, messages will be forwarded to only one of the consumers and consumers will share the messages that are published to the topic.</p>
          </td>
       </tr>
-      <tr class="odd">
+      <tr>
          <td>
-            <p><code>              transport.jms.SharedSubscription             </code></p>
-         </td>
-         <td>
-            <p>If set to true, messages will be forwarded to only one of the consumers and consumers will share the messages that are published to the topic.</p>
-         </td>
-         <td>
-            <p>No</p>
-         </td>
-         <td>
-            <p><code>              true, false                           </code></p>
-         </td>
-         <td>
-            <p>false</p>
-         </td>
-      </tr>
-      <tr class="even">
-         <td>
-            <p><code>              pinnedServers             </code></p>
+            <p>pinnedServers</p>
          </td>
          <td>
             <p>List of synapse server names separated by commas or spaces where this inbound endpoint should be deployed. If there is no pinned server list, the inbound endpoint configuration will be deployed in all server instances.</p>
          </td>
+      </tr>
+      <tr>
+         <td>transport.jms.ConcurrentConsumers</td>
+         <td>Number of concurrent threads to be started to consume messages when polling.</br></br> The default value is 1. You can change this to any positive integer. However, for topics the value must always be 1.</td>
+      </tr>
+      <tr>
          <td>
-            <p>No</p>
+            transport.jms.retry.duration
          </td>
          <td>
-            <p>List of valid synapse server names</p>
-         </td>
-         <td>
-            <p>-</p>
+            <p>The retry interval (in miliseconds) to reconnect to the JMS server.</p>
          </td>
       </tr>
-      <tr class="odd">
-         <td><code>             transport.jms.ConcurrentConsumers            </code></td>
-         <td>Number of concurrent threads to be started to consume messages when polling.</td>
-         <td>No</td>
-         <td>Any positive integer.<br />
-            For topics this must always be 1.
-         </td>
-         <td>1</td>
+      <tr>
+         <td>transport.jms.RetriesBeforeSuspension</td>
+         <td>The number of consecutive mediation failures after which polling should be suspended. Specify any positive numerical value based on your requirement. Polling will be suspended when the mediation failure count reaches the specified value.</td>
       </tr>
-      <tr class="even">
-         <td>
-            <p><code>              transport.jms.retry.duration             </code></p>
-         </td>
-         <td>
-            <p>The retry interval to reconnect to the JMS server.</p>
-         </td>
-         <td>
-            <p>No</p>
-         </td>
-         <td>Retry interval in miliseconds.</td>
-         <td>
-            <p>-</p>
-         </td>
-      </tr>
-      <tr class="odd">
-         <td><code>             transport.jms.RetriesBeforeSuspension            </code></td>
-         <td>The number of consecutive mediation failures after which polling should be suspended.</td>
-         <td>No</td>
-         <td>Specify any positive numerical value based on your requirement. Polling will be suspended when the mediation failure count reaches the specified value.</td>
-         <td>-</td>
-      </tr>
-      <tr class="even">
-         <td><code>             transport.jms.PollingSuspensionPeriod            </code></td>
-         <td>The period of time that polling is to be suspended when the <code>             transport.jms.RetriesBeforeSuspension            </code> parameter is set.</td>
-         <td>No</td>
-         <td>Specify a required time period in milliseconds.</td>
-         <td>60000</td>
+      <tr>
+         <td>transport.jms.PollingSuspensionPeriod</td>
+         <td>The period of time that polling is to be suspended when the <code>             transport.jms.RetriesBeforeSuspension</code> parameter is set.</br></br> Default value is 60000.</td>
       </tr>
    </tbody>
 </table>
 
-### Kafka inbound endpoint parameters
+### Kafka Inbound Endpoint Properties
 
-Following are two high level Kafka configurations that can be used to consume messages in two ways: Using **specific topics** or using a **topic filter**.
+Following are two high-level Kafka configurations that can be used to consume messages in two ways: Using **specific topics** or using a **topic filter**.
 
 ``` java tab='Using Specific Topics'
 <inboundEndpoint xmlns="http://ws.apache.org/ns/synapse"
@@ -1141,303 +945,202 @@ Following are two high level Kafka configurations that can be used to consume me
 </inboundEndpoint>
 ```
 
-Kafka inbound endpoint parameters for a high level configuration
+Listed below are the Kafka inbound endpoint properties for a high-level configuration.
+
+#### High-level Kafka Configuration (Required Properties)
 
 <table>
-   <thead>
-      <tr class="header">
-         <th>
-            <p>Parameter</p>
-            <p><br /></p>
-         </th>
-         <th>
-            <p>Description</p>
-            <p><br /></p>
-         </th>
-         <th>
-            <p>Required</p>
-            <p><br /></p>
-         </th>
-         <th>Possible Values</th>
-         <th>Default Value</th>
+  <tr>
+    <th>Property</th>
+    <th>Description</th>
+  </tr>
+  <tr>
+      <td>
+        zookeeper.connect
+      </td>
+      <td>The host and port of a ZooKeeper server (<code>hostname:port</code>).</td>
       </tr>
-   </thead>
-   <tbody>
-      <tr class="odd">
+      <tr>
          <td>
-            <pre><code>zookeeper.connect</code></pre>
+            consumer.type
          </td>
-         <td>The host and port of a ZooKeeper server ( <code>             hostname:port            </code> ).</td>
-         <td>Yes</td>
-         <td>localhost:2181</td>
-         <td><br /></td>
+         <td>The consumer configuration type. This can either be <code>simple</code> or <code>highlevel</code>.</td>
       </tr>
-      <tr class="even">
+      <tr>
          <td>
-            <pre><code>consumer.type</code></pre>
-         </td>
-         <td>The consumer configuration type. This can either be <code>             simple            </code> or <code>             highlevel            </code> .</td>
-         <td>Yes</td>
-         <td>highlevel, simple</td>
-         <td><br /></td>
-      </tr>
-      <tr class="odd">
-         <td>
-            <pre><code>interval</code></pre>
+          interval
          </td>
          <td>The polling interval for the inbound endpoint to poll the messages.</td>
-         <td>Yes</td>
-         <td><br /></td>
-         <td><br /></td>
       </tr>
-      <tr class="even">
+      <tr>
          <td>
-            <pre><code>coordination</code></pre>
+          coordination
          </td>
-         <td>If set to <code>             true            </code> in a cluster setup, this will run the inbound only in a single worker node.</td>
-         <td>Yes</td>
-         <td>true, false</td>
-         <td>true</td>
+         <td>If set to <code>true</code> in a clustered setup, this will run the inbound only in a single worker node.</br></br> The property is set to <code>true</code> by default.</td>
       </tr>
-      <tr class="odd">
+      <tr>
          <td>
-            <pre><code>sequential</code></pre>
+           sequential
          </td>
-         <td>The behaviour when executing the given sequence.</td>
-         <td>Yes</td>
-         <td>true, false</td>
-         <td>true</td>
+         <td>The behaviour when executing the given sequence.</br></br> The property is set to <code>true</code> by default.</td>
       </tr>
-      <tr class="even">
+      <tr>
          <td>
-            <pre><code>topics</code></pre>
+            topics
          </td>
-         <td>The category to feed the messages. A high level kafka configuration can have more than one topic. You can specify multiple topic names as comma separated values.</td>
-         <td>Yes</td>
-         <td><br /></td>
-         <td><br /></td>
+         <td>The category to feed the messages. A high-level kafka configuration can have more than one topic. You can specify multiple topic names as comma separated values.</td>
       </tr>
-      <tr class="odd">
+      <tr>
          <td>
-            <pre><code>content.type</code></pre>
+           content.type
          </td>
-         <td>The content of the message.</td>
-         <td>Yes</td>
-         <td>appllication/xml, application/json</td>
-         <td><br /></td>
+         <td>The content of the message. The possible values are as follows: <code>appllication/xml</code> or <code>application/json</code>.</td>
       </tr>
-      <tr class="even">
+      <tr>
          <td>
-            <pre><code>group.id</code></pre>
+          group.id
          </td>
          <td>
             <p>If all the consumer instances have the same consumer group, this works as a traditional queue balancing the load over the consumers.</p>
-            <p>If all the consumer instances have different consumer groups, this works as publish-subscribe and all messages are broadcast to all consumers.</p>
          </td>
-         <td>Yes</td>
-         <td><br /></td>
-         <td><br /></td>
       </tr>
-      <tr class="odd">
+</table>
+
+#### High-level Kafka Configuration (Optional Properties)
+
+<table>
+   <thead>
+      <tr>
+         <th>
+           Property Name
+         </th>
+         <th>
+            <p>Description</p>
+         </th>
+      </tr>
+   </thead>
+   <tbody>
+      <tr>
          <td>
-            <pre><code>thread.count</code></pre>
+          thread.count
          </td>
-         <td>The number of threads.</td>
-         <td>No</td>
-         <td><br /></td>
-         <td>1</td>
+         <td>The number of threads. The default value is 1.</td>
       </tr>
-      <tr class="even">
-         <td><code>             consumer.id            </code></td>
-         <td>The id of the consumer.</td>
-         <td>No</td>
-         <td><br /></td>
-         <td>null</td>
+      <tr>
+         <td>consumer.id</td>
+         <td>The id of the consumer. The default value is <code>null</code>.</td>
       </tr>
-      <tr class="odd">
-         <td><code>             socket.timeout.ms            </code></td>
-         <td>The socket timeout for network requests.</td>
-         <td>No</td>
-         <td><br /></td>
-         <td>30 * 1000</td>
+      <tr>
+         <td>socket.timeout.ms</td>
+         <td>The socket timeout for network requests. The default value is <code>30 * 1000</code>.</td>
       </tr>
-      <tr class="even">
-         <td><code>             socket.receive.buffer.bytes            </code></td>
-         <td>The socket receive buffer for network requests.</td>
-         <td>No</td>
-         <td><br /></td>
-         <td>64 * 1024</td>
+      <tr>
+         <td>socket.receive.buffer.bytes</td>
+         <td>The socket receive buffer for network requests. The default value is <code>64 * 1024</code>.</td>
       </tr>
-      <tr class="odd">
-         <td><code>             fetch.message.max.bytes            </code></td>
-         <td>The number of byes of messages to attempt to fetch for each topic-partition in each fetch request.</td>
-         <td>No</td>
-         <td><br /></td>
-         <td>1024 * 1024</td>
+      <tr>
+         <td>fetch.message.max.bytes</td>
+         <td>The number of bytes of messages that the system should attempt to fetch for each topic-partition in each fetch request. The default values is <code>1024 * 1024</code>.</td>
       </tr>
-      <tr class="even">
-         <td><code>             num.consumer.fetchers            </code></td>
-         <td>The number fetcher threads used to fetch data.</td>
-         <td>No</td>
-         <td><br /></td>
-         <td>1</td>
+      <tr>
+         <td>num.consumer.fetchers</td>
+         <td>The number fetcher threads used to fetch data. The default value is 1.</td>
       </tr>
-      <tr class="odd">
-         <td><code>             auto.commit.enable            </code></td>
-         <td>The committed offset to be used as the position from which the new consumer will begin when the process fails.</td>
-         <td>No</td>
-         <td>true, false</td>
-         <td>true</td>
+      <tr>
+         <td>auto.commit.enable</td>
+         <td>The committed offset to be used as the position from which the new consumer will begin when the process fails.</br></br> The default value is <code>true</code>.</td>
       </tr>
-      <tr class="even">
-         <td><code>             auto.commit.interval.ms            </code></td>
-         <td>The frequency in ms that the consumer offsets are committed to zookeeper.</td>
-         <td>No</td>
-         <td><br /></td>
-         <td>60 * 1000</td>
+      <tr>
+         <td>auto.commit.interval.ms</td>
+         <td>The frequency (in miliseconds) at which the consumer offsets are committed to zookeeper.</br></br> The default value is <code>60 * 1000</code>.</td>
       </tr>
-      <tr class="odd">
-         <td><code>             queued.max.message.chunks            </code></td>
-         <td>The maximum number of message chunks buffered for consumption. Each chunk can go up to the value specified in <code>             fetch.message.max.bytes            </code> .</td>
-         <td>No</td>
-         <td><br /></td>
-         <td>2</td>
+      <tr>
+         <td>queued.max.message.chunks</td>
+         <td>The maximum number of message chunks buffered for consumption. Each chunk can go up to the value specified in <code>fetch.message.max.bytes</code>.</br></br> The default value is 2.</td>
       </tr>
-      <tr class="even">
-         <td><code>             rebalance.max.retries            </code></td>
-         <td>The maximum number of retry attempts.</td>
-         <td>No</td>
-         <td><br /></td>
-         <td>4</td>
+      <tr>
+         <td>rebalance.max.retries</td>
+         <td>The maximum number of retry attempts. The default value is 4.</td>
       </tr>
-      <tr class="odd">
-         <td><code>             fetch.min.bytes            </code></td>
-         <td>The minimum amount of data the server should return for a fetch request.</td>
-         <td>No</td>
-         <td><br /></td>
-         <td>1</td>
+      <tr>
+         <td>fetch.min.bytes</td>
+         <td>The minimum amount of data the server should return for a fetch request. The default value is 1.</td>
       </tr>
-      <tr class="even">
-         <td><code>             fetch.wait.max.ms            </code></td>
-         <td>The maximum amount of time the server will block before responding to the fetch request when sufficient data is not available to immediately serve <code>             fetch.min.bytes            </code> .</td>
-         <td>No</td>
-         <td><br /></td>
-         <td>100</td>
+      <tr>
+         <td>fetch.wait.max.ms</td>
+         <td>The maximum amount of time the server will stay blocked before responding to the fetch request when sufficient data is not available to immediately serve <code>fetch.min.bytes</code>.</br></br> The default value is <code>100</code></td>
       </tr>
-      <tr class="odd">
-         <td><code>             rebalance.backoff.ms            </code></td>
-         <td>The backoff time between retries during rebalance.</td>
-         <td>No</td>
-         <td><br /></td>
-         <td>2000</td>
+      <tr>
+         <td>rebalance.backoff.ms</td>
+         <td>The backoff time between retries during rebalance. The default value is 2000.</td>
       </tr>
-      <tr class="even">
-         <td><code>             refresh.leader.backoff.ms            </code></td>
-         <td>The backoff time to wait before trying to determine the leader of a partition that has just lost its leader.</td>
-         <td>No</td>
-         <td><br /></td>
-         <td>200</td>
+      <tr>
+         <td>refresh.leader.backoff.ms</td>
+         <td>The backoff time to wait before trying to determine the leader of a partition that has just lost its leader.</br></br> The default value is 200.</td>
       </tr>
-      <tr class="odd">
-         <td><code>             auto.offset.reset            </code></td>
+      <tr>
+         <td>auto.offset.reset</td>
          <td>
             <p>Set this to one of the following values based on what you need to do when there is no initial offset in ZooKeeper or if an offset is out of range.</p>
-            <p>smallest - Automatically reset the offset to the smallest offset.<br />
-               largest - Automatically reset the offset to the largest offset.<br />
-               anything else - Throw an exception to the consumer.
-            </p>
+            <ul>
+              <li><b>smallest</b>: Automatically reset the offset to the smallest offset.</li>
+              <li><b>largest</b>: Automatically reset the offset to the largest offset.</li>
+              <li><b>anything else</b>: Throw an exception to the consumer.</li>
+            </ul>
+            The default values is <b>largest</b>.
          </td>
-         <td>No</td>
-         <td>smallest, largest, anything else</td>
-         <td>largest</td>
       </tr>
-      <tr class="even">
-         <td><code>             consumer.timeout.ms            </code></td>
-         <td>The timeout interval after which a timeout exception is to be thrown to the consumer if no message is available for consumption. It is a good practice to set this value lower than the interval of the Kafka inbound endpoint.</td>
-         <td>No</td>
-         <td><br /></td>
-         <td>3000</td>
+      <tr>
+         <td>consumer.timeout.ms</td>
+         <td>The timeout interval after which a timeout exception is to be thrown to the consumer if no message is available for consumption. It is a good practice to set this value lower than the interval of the Kafka inbound endpoint. The default value is 2000.</td>
       </tr>
-      <tr class="odd">
-         <td><code>             exclude.internal.topics            </code></td>
-         <td>Set to <code>             true            </code> if messages from internal topics such as offsets should be exposed to the consumer.</td>
-         <td>No</td>
-         <td>true, false</td>
-         <td>true</td>
+      <tr>
+         <td>exclude.internal.topics</td>
+         <td>Set to <code>true</code> if messages from internal topics such as offsets should be exposed to the consumer. The default value is <code>true</code>.</td>
       </tr>
-      <tr class="even">
-         <td><code>             partition.assignment.strategy            </code></td>
-         <td>The partitions assignment strategy to be used when assigning partitions to consumer streams.</td>
-         <td>No</td>
-         <td>range, roundrobin</td>
-         <td>range</td>
+      <tr>
+         <td>partition.assignment.strategy</td>
+         <td>The partitions assignment strategy to be used when assigning partitions to consumer streams. Possible values are <code>range</code> and <code>roundrobin</code>.</br></br> Default setting is <code>range</code>.</td>
       </tr>
-      <tr class="odd">
-         <td><code>             client.id            </code></td>
+      <tr>
+         <td>client.id</td>
          <td>The user specified string sent in each request to help trace calls.</td>
-         <td>No</td>
-         <td><br /></td>
-         <td>value of group  id</td>
       </tr>
-      <tr class="even">
+      <tr>
          <td>
-            <p><code>              zookeeper.session.timeout.ms             </code></p>
+            <p>zookeeper.session.timeout.ms</p>
          </td>
-         <td>The ZooKeeper session timeout value in milliseconds.</td>
-         <td>No</td>
-         <td><br /></td>
-         <td>6000</td>
+         <td>The ZooKeeper session timeout value in milliseconds. The default value is 6000.</td>
       </tr>
-      <tr class="odd">
-         <td><code>             zookeeper.connection.timeout.ms            </code></td>
-         <td>The maximum time in milliseconds that the client should wait while establishing a connection to ZooKeeper .</td>
-         <td>No</td>
-         <td><br /></td>
-         <td>6000</td>
+      <tr>
+         <td>zookeeper.connection.timeout.ms</td>
+         <td>The maximum time in milliseconds that the client should wait while establishing a connection to ZooKeeper.</br></br> The default value is 6000.</td>
       </tr>
-      <tr class="even">
+      <tr>
          <td>
-            <p><code>              zookeeper.sync.time.ms             </code></p>
+            <p>zookeeper.sync.time.ms</p>
          </td>
-         <td>The time difference in milliseconds that a ZooKeeper follower can be behind a ZooKeeper leader.</td>
-         <td>No</td>
-         <td><br /></td>
-         <td>2000</td>
+         <td>The time difference in milliseconds that a ZooKeeper follower can be behind a ZooKeeper leader. The default value is 2000.</td>
       </tr>
-      <tr class="odd">
-         <td><code>             offsets.storage            </code></td>
-         <td>The offsets storage location.</td>
-         <td>No</td>
-         <td>zookeeper, kafka</td>
-         <td>zookeeper</td>
+      <tr>
+         <td>offsets.storage</td>
+         <td>The offsets storage location. Possible values are <code>zookeeper<code> and <code>kafka</code>. Default setting is <code>zookeeper</code>.</td>
       </tr>
-      <tr class="even">
-         <td><code>             offsets.channel.backoff.ms            </code></td>
-         <td>The backoff period in milliseconds when reconnecting the offsets channel or retrying failed offset fetch/commit requests.</td>
-         <td>No</td>
-         <td><br /></td>
-         <td>1000</td>
+      <tr>
+         <td>offsets.channel.backoff.ms</td>
+         <td>The backoff period in milliseconds when reconnecting the offsets channel or retrying failed offset fetch/commit requests.</br></br> Default value is 1000.</td>
       </tr>
-      <tr class="odd">
-         <td><code>             offsets.channel.socket.timeout.ms            </code></td>
-         <td>The socket timeout in milliseconds when reading responses for offset fetch/commit requests.</td>
-         <td>No</td>
-         <td><br /></td>
-         <td>10000</td>
+      <tr>
+         <td>offsets.channel.socket.timeout.ms</td>
+         <td>The socket timeout in milliseconds when reading responses for offset fetch/commit requests.</br></br> The default value is 10000.</td>
       </tr>
-      <tr class="even">
-         <td><code>             offsets.commit.max.retries            </code></td>
-         <td>The maximum retry attempts allowed. If a consumer metadata request fails for any reason, retry takes place but does not have an impact on this limit.</td>
-         <td>No</td>
-         <td><br /></td>
-         <td>5</td>
+      <tr>
+         <td>offsets.commit.max.retries</td>
+         <td>The maximum retry attempts allowed. If a consumer metadata request fails for any reason, retry takes place but does not have an impact on this limit.</br></br> Default value is 5.</td>
       </tr>
-      <tr class="odd">
-         <td><code>             dual.commit.enabled            </code></td>
-         <td>If <code>             offsets.storage            </code> is set to <code>             kafka            </code> , the commit offsets can be dual to ZooKeeper. Set this to true if you need to perform migration from zookeeper-based offset storage to kafka-based offset storage.</td>
-         <td>No</td>
-         <td>true, false</td>
-         <td>true</td>
+      <tr>
+         <td>dual.commit.enabled</td>
+         <td>If <code>offsets.storage</code> is set to <code>kafka</code>, the commit offsets can be dual to ZooKeeper. Set this to <code>true</code> if you need to perform migration from zookeeper-based offset storage to kafka-based offset storage. The default value is <code>true</code>.</td>
       </tr>
    </tbody>
 </table>
@@ -1445,52 +1148,44 @@ Kafka inbound endpoint parameters for a high level configuration
 Following are descriptions of the parameters set to consume topic filters in a kafka configuration:
 
 !!! Info
-    In high level kafka configurations, the follwing parameters are used instead of the `         topics        ` paramater.
+    In high-level kafka configurations, the follwing parameters are used instead of the `topics` paramater.
     <parameter name="topic.filter">test</parameter>
     <parameter name="filter.from.whitelist">true</parameter>
 
 <table>
    <thead>
-      <tr class="header">
+      <tr>
          <th>
             <p>Parameter</p>
-            <p><br /></p>
          </th>
          <th>
             <p>Description</p>
-            <p><br /></p>
-         </th>
-         <th>
-            <p>Required</p>
-            <p><br /></p>
          </th>
       </tr>
    </thead>
    <tbody>
-      <tr class="odd">
+      <tr>
          <td>
-            <pre><code>topic.filter</code></pre>
+            topic.filter
          </td>
          <td>The name of the topic filter.</td>
-         <td>Yes</td>
       </tr>
-      <tr class="even">
+      <tr>
          <td>
-            <pre><code>filter.from.whitelist</code></pre>
+            filter.from.whitelist
          </td>
-         <td>If this is set to <code>             true            </code> , messages are consumed from the whitelist(include).<br />
-            If this is set to <code>             false            </code> , messages are consumed from the blacklist(exclude).
+         <td>If this is set to <code>true</code>, messages are consumed from the whitelist(include).<br />
+            If this is set to <code>false</code>, messages are consumed from the blacklist(exclude).
          </td>
-         <td>Yes</td>
       </tr>
    </tbody>
 </table>
 
-Kafka inbound endpoint parameters for a low level configuration:
+#### Low-Level Kafka Inbound Endpoint Properties
 
-Following is a sample low level kafka configuration that can be used to
-consume messages from a specific server in a specific partition, so that
-the messages are limited:
+Kafka inbound endpoint parameters for a low-level configuration:
+
+Following is a sample low-level Kafka configuration that can be used to consume messages from a specific server in a specific partition, so that the messages are limited:
 
 ```
 <inboundEndpoint xmlns="http://ws.apache.org/ns/synapse"
@@ -1517,63 +1212,52 @@ the messages are limited:
 
 <table>
    <thead>
-      <tr class="header">
+      <tr>
          <th>
-            <p>Parameter</p>
-            <p><br /></p>
+            <p>Property</p>
          </th>
          <th>
             <p>Description</p>
-            <p><br /></p>
-         </th>
-         <th>
-            <p>Required</p>
-            <p><br /></p>
          </th>
       </tr>
    </thead>
    <tbody>
-      <tr class="odd">
+      <tr>
          <td>
-            <pre><code>simple.topic</code></pre>
+            simple.topic
          </td>
          <td>The category to feed the messages.</td>
-         <td>Yes</td>
       </tr>
-      <tr class="even">
+      <tr>
          <td>
-            <pre><code>simple.brokers</code></pre>
+            simple.brokers
          </td>
          <td>The specific Kafka broker name.</td>
-         <td>Yes</td>
       </tr>
-      <tr class="odd">
+      <tr>
          <td>
-            <pre><code>simple.port</code></pre>
+            simple.port
          </td>
          <td>The specific Kafka server port number.</td>
-         <td>Yes</td>
       </tr>
-      <tr class="even">
+      <tr>
          <td>
-            <pre><code>simple.partition</code></pre>
+            simple.partition
          </td>
          <td>The partition of the topic.</td>
-         <td>Yes</td>
       </tr>
-      <tr class="odd">
+      <tr>
          <td>
-            <pre><code>simple.max.messages.to.read</code></pre>
+            simple.max.messages.to.read
          </td>
          <td>
             <p>The maximum number of messages to retrieve.</p>
          </td>
-         <td>Yes</td>
       </tr>
    </tbody>
 </table>
 
-## Event-based endpoint parameters
+## Event-based Inbound Endpoint Properties
 
 ``` java tab='MQTT Inbound Protocol'
     <inboundEndpoint xmlns="http://ws.apache.org/ns/synapse" name="Test" sequence="TestIn" onError="fault" protocol="mqtt" suspend="false">
@@ -1612,447 +1296,407 @@ the messages are limited:
     </inboundEndpoint>
 ```
 
+### Common Event-Based Endpoint Properties
+
 The following parameter is common to all event-based inbound endpoints:
 
 <table>
    <thead>
-      <tr class="header">
+      <tr>
          <th>
-            <p>Parameter Name</p>
+            Property
          </th>
          <th>
-            <p>Description</p>
-         </th>
-         <th>
-            <p>Required</p>
-         </th>
-         <th>
-            <p>Possible Values</p>
-         </th>
-         <th>
-            <p>Default Value</p>
+            Description
          </th>
       </tr>
    </thead>
    <tbody>
-      <tr class="odd">
+      <tr>
          <td>coordination</td>
-         <td>This parameter is only applicable in a cluster environment.<br />
-            In a cluster environment an inbound endpoint will only be executed in worker nodes. If this parameter is set to <code>             true            </code> in a cluster environment, the inbound will only be executed in a single worker node. Once the running worker node is down the inbound will start on another available worker node in the cluster.
+         <td>This parameter is only applicable in a clustered environment.<br />
+            In a cluster environment an inbound endpoint will only be executed in worker nodes. If this parameter is set to <code>true</code> in a clustered environment, the inbound will only be executed in a single worker node. Once the running worker node is down, the inbound will start on another available worker node in the cluster. By default, this setting is <code>true</code>.
          </td>
-         <td>No</td>
-         <td>true or false</td>
-         <td>true</td>
       </tr>
    </tbody>
 </table>
 
-### MQTT Inbound Protocol parameters
+### MQTT Inbound Protocol Properties
+
+#### Required Properties
+
+Listed below are the required properties when you define an MQTT Inbound Endpoint:
 
 <table>
-<colgroup>
-   <col style="width: 33%" />
-   <col style="width: 33%" />
-   <col style="width: 33%" />
-</colgroup>
+  <tr>
+    <th>Property</th>
+    <th>Description</th>
+  </tr>
+  <tr>
+      <td>
+         sequential
+      </td>
+      <td>The behaviour when executing the given sequence.</td>
+   </tr>
+   <tr>
+      <td>
+         coordination
+      </td>
+      <td>In a clustered setup, if set to <code>true</code>, the inbound endpoint will run only in a single worker node. If set to false, it will run on all worker nodes.</td>
+   </tr>
+   <tr>
+      <td>
+         suspend
+      </td>
+      <td>If set to <code>true</code>, the inbound listener will not accept incoming requests from clients and will not inject messages to the synapse message mediation. If set to <code>false</code>, incoming messages will be accepted.</td>
+   </tr>
+   <tr>
+      <td>
+         mqtt.connection.factory
+      </td>
+      <td>Name of the connection factory.</td>
+   </tr>
+   <tr>
+      <td>
+         mqtt.server.host.name
+      </td>
+      <td>
+        Address of the message broker (eg., localhost).
+      </td>
+   </tr>
+   <tr>
+      <td>
+         mqtt.server.port
+      </td>
+      <td>Port of the message broker (e.g., 1883).</td>
+   </tr>
+   <tr>
+      <td>
+         mqtt.topic.name
+      </td>
+      <td>MQTT topic to which the message should be published.</td>
+   </tr>
+   <tr>
+      <td>
+         content.type
+      </td>
+      <td>The content type of the message, i.e., XML or JSON)</td>
+   </tr>
+</table>
+
+#### Optional Properties
+
+Listed below are the optional properties when you define an MQTT Inbound Endpoint:
+
+<table>
 <thead>
-   <tr class="header">
+   <tr>
       <th>
-         <p>Parameter</p>
+        Property
       </th>
       <th>
-         <p>Description</p>
-      </th>
-      <th>
-         <p>Required</p>
+        Description
       </th>
    </tr>
 </thead>
 <tbody>
-   <tr class="odd">
+   <tr>
       <td>
-         <pre><code>sequential</code></pre>
-      </td>
-      <td>The behaviour when executing the given sequence.</td>
-      <td>Yes</td>
-   </tr>
-   <tr class="even">
-      <td>
-         <pre><code>coordination</code></pre>
-      </td>
-      <td>In a cluster setup, if set to true, the inbound endpoint will run only in a single worker node. If set to false,  it will run on all worker nodes.</td>
-      <td>Yes</td>
-   </tr>
-   <tr class="odd">
-      <td>
-         <pre><code>suspend</code></pre>
-      </td>
-      <td>If set to true, the inbound listener will not accept incoming request messages from clients and will not inject messages to the synapse message mediation. If set to false, incoming messages will be accepted.</td>
-      <td>Yes</td>
-   </tr>
-   <tr class="even">
-      <td>
-         <pre><code>mqtt.connection.factory</code></pre>
-      </td>
-      <td>Name of the connection factory.</td>
-      <td>Yes</td>
-   </tr>
-   <tr class="odd">
-      <td>
-         <pre><code>mqtt.server.host.name</code></pre>
-      </td>
-      <td>
-         <p>Address of the message broker (eg., localhost).</p>
-      </td>
-      <td>Yes</td>
-   </tr>
-   <tr class="even">
-      <td>
-         <pre><code>mqtt.server.port</code></pre>
-      </td>
-      <td>Port of the message broker (e.g., 1883).</td>
-      <td>Yes</td>
-   </tr>
-   <tr class="odd">
-      <td>
-         <pre><code>mqtt.topic.name</code></pre>
-      </td>
-      <td>MQTT topic to which the message should be published.</td>
-      <td>Yes</td>
-   </tr>
-   <tr class="even">
-      <td>
-         <pre><code>mqtt.subscription.qos</code></pre>
+         mqtt.subscription.qos
       </td>
       <td>The quality of service level that need to be maintained with the subscription. The quality of service level can be either 0,1 or 2.<br />
          0 -  Specifying this level ensures that the message delivery is efficient. However, specifying this level does not guarantee that the message will be delivered to its recipient.<br />
          1 -  Specifying this level ensures that the message is delivered at least once, but this can lead to messages being duplicated.<br />
          2 - This is the highest level of quality of service. Specifying this guarantees that the message is delivered and that it is delivered only once.
       </td>
-      <td>No</td>
    </tr>
-   <tr class="odd">
+   <tr>
       <td>
-         <pre><code>mqtt.client.id</code></pre>
+         mqtt.client.id
       </td>
       <td>The id of the client.</td>
-      <td>No</td>
    </tr>
-   <tr class="even">
+   <tr>
       <td>
-         <pre><code>content.type</code></pre>
-      </td>
-      <td>The content type of the message. (i.e., XML or JSON)</td>
-      <td>Yes</td>
-   </tr>
-   <tr class="odd">
-      <td>
-         <pre><code>mqtt.session.clean</code></pre>
+         mqtt.session.clean
       </td>
       <td>
-         <p>Whether the client and server should remember the state across restarts and reconnects.</p>
+        Whether the client and server should remember the state across restarts and reconnects.
       </td>
-      <td>No</td>
    </tr>
-   <tr class="even">
+   <tr>
       <td>
-         <pre><code>mqtt.ssl.enable</code></pre>
+         mqtt.ssl.enable
       </td>
-      <td>Whether to use tcp connection or ssl connection.</td>
-      <td>No</td>
-   </tr>
-   <tr class="odd">
       <td>
-         <pre><code>mqtt.subscription.username</code></pre>
+        Whether to use TCP connection or SSL connection.
+      </td>
+   </tr>
+   <tr>
+      <td>
+         mqtt.subscription.username
       </td>
       <td>The username for the subscription.</td>
-      <td>No</td>
    </tr>
-   <tr class="even">
+   <tr>
       <td>
-         <pre><code>mqtt.subscription.password</code></pre>
+         mqtt.subscription.password
       </td>
       <td>The password for the subscription.</td>
-      <td>No</td>
    </tr>
-   <tr class="odd">
+   <tr>
       <td>
-         <pre><code>mqtt.temporary.store.directory</code></pre>
+         mqtt.temporary.store.directory
       </td>
       <td>
-         <p>Path of the directory to be used as the persistent data store for quality of service purposes.</p>
+        Path of the directory to be used as the persistent data store for quality of service purposes.
       </td>
-      <td>No</td>
    </tr>
-   <tr class="even">
+   <tr>
       <td>
-         <pre><code>mqtt.reconnection.interval</code></pre>
+         mqtt.reconnection.interval
       </td>
       <td>
-         <p>The retry interval to reconnect to the MQTT server.</p>
+        The retry interval to reconnect to the MQTT server.
       </td>
-      <td>No</td>
    </tr>
 </tbody>
 </table>
 
-### RabbitMQ Inbound Protocol parameters
+### RabbitMQ Inbound Protocol Properties
+
+#### Required Properties
+
+Listed below are the required properties when you define a RabbitMQ Inbound Endpoint:
+
+<table>
+  <tr>
+    <th>Property</th>
+    <th>Description</th>
+  </tr>
+  <tr>
+         <td>
+            sequential
+         </td>
+         <td>The behavior when executing the given sequence.</td>
+      </tr>
+      <tr>
+         <td>
+            rabbitmq.connection.factory
+         </td>
+         <td>Name of the connection factory.</td>
+      </tr>
+      <tr>
+         <td>
+            rabbitmq.server.host.name
+         </td>
+         <td>
+            Host name of the server.
+         </td>
+      </tr>
+      <tr>
+         <td>
+            rabbitmq.server.port
+         </td>
+         <td>The port number of the server.</td>
+      </tr>
+      <tr>
+         <td>
+            rabbitmq.server.user.name
+         </td>
+         <td>The user name to connect to the server.</td>
+      </tr>
+      <tr>
+         <td>
+            rabbitmq.server.password
+         </td>
+         <td>The password to connect to the server.</td>
+      </tr>
+      <tr>
+         <td>
+            rabbitmq.queue.name
+         </td>
+         <td>The queue name to send or consume messages.</td>
+      </tr>
+      <tr>
+         <td>
+            rabbitmq.exchange.name
+         </td>
+         <td>The name of the RabbitMQ exchange to which the queue is bound.</td>
+      </tr>
+</table>
+
+#### Optional Properties
+
+Listed below are the optional properties when you define a RabbitMQ Inbound Endpoint:
 
 <table>
    <thead>
-      <tr class="header">
+      <tr>
          <th>
-            <p>Parameter Name</p>
-            <p><br /></p>
+          Property Name
          </th>
          <th>
-            <p>Description</p>
-            <p><br /></p>
-         </th>
-         <th>
-            <p>Required</p>
-            <p><br /></p>
+          Description
          </th>
       </tr>
    </thead>
    <tbody>
-      <tr class="odd">
+      <tr>
          <td>
-            <pre><code>sequential</code></pre>
+            rabbitmq.server.virtual.host
          </td>
-         <td>The behavior when executing the given sequence.</td>
-         <td>Yes</td>
+         <td>The virtual host name of the server (if available).</td>
       </tr>
-      <tr class="even">
+      <tr>
          <td>
-            <pre><code>rabbitmq.connection.factory</code></pre>
-         </td>
-         <td>Name of the connection factory.</td>
-         <td>Yes</td>
-      </tr>
-      <tr class="odd">
-         <td>
-            <pre><code>rabbitmq.server.host.name</code></pre>
-         </td>
-         <td>
-            <p>Host name of the server.</p>
-         </td>
-         <td>Yes</td>
-      </tr>
-      <tr class="even">
-         <td>
-            <pre><code>rabbitmq.server.port</code></pre>
-         </td>
-         <td>The port number of the server.</td>
-         <td>Yes</td>
-      </tr>
-      <tr class="odd">
-         <td>
-            <pre><code>rabbitmq.server.user.name</code></pre>
-         </td>
-         <td>The user name to connect to the server.</td>
-         <td>Yes</td>
-      </tr>
-      <tr class="even">
-         <td>
-            <pre><code>rabbitmq.server.password</code></pre>
-         </td>
-         <td>The password to connect to the server.</td>
-         <td>Yes</td>
-      </tr>
-      <tr class="odd">
-         <td>
-            <pre><code>rabbitmq.queue.name</code></pre>
-         </td>
-         <td>The queue name to send or consume messages.</td>
-         <td>Yes</td>
-      </tr>
-      <tr class="even">
-         <td>
-            <pre><code>rabbitmq.exchange.name</code></pre>
-         </td>
-         <td>The name of the RabbitMQ exchange to which the queue is bound.</td>
-         <td>Yes</td>
-      </tr>
-      <tr class="odd">
-         <td>
-            <pre><code>rabbitmq.server.virtual.host</code></pre>
-         </td>
-         <td>The virtual host name of the server, if available.</td>
-         <td>No</td>
-      </tr>
-      <tr class="even">
-         <td>
-            <pre><code>rabbitmq.connection.ssl.enabled</code></pre>
+            rabbitmq.connection.ssl.enabled
          </td>
          <td>Whether to use TCP connection or SSL connection.</td>
-         <td>No</td>
       </tr>
-      <tr class="odd">
+      <tr>
          <td>
-            <pre><code>rabbitmq.connection.ssl.keystore.location</code></pre>
+            rabbitmq.connection.ssl.keystore.location
          </td>
          <td>The keystore location.</td>
-         <td>No</td>
       </tr>
-      <tr class="even">
+      <tr>
          <td>
-            <pre><code>rabbitmq.connection.ssl.keystore.type</code></pre>
+            rabbitmq.connection.ssl.keystore.type
          </td>
          <td>
-            <p>The keystore type.</p>
+          The keystore type.
          </td>
-         <td>No</td>
       </tr>
-      <tr class="odd">
+      <tr>
          <td>
-            <pre><code>rabbitmq.connection.ssl.keystore.password</code></pre>
+            rabbitmq.connection.ssl.keystore.password
          </td>
          <td>The keystore password.</td>
-         <td>No</td>
       </tr>
-      <tr class="even">
+      <tr>
          <td>
-            <pre><code>rabbitmq.connection.ssl.truststore.location</code></pre>
+            rabbitmq.connection.ssl.truststore.location
          </td>
          <td>The truststore location.</td>
-         <td>No</td>
       </tr>
-      <tr class="odd">
+      <tr>
          <td>
-            <pre><code>rabbitmq.connection.ssl.truststore.type</code></pre>
+            rabbitmq.connection.ssl.truststore.type
          </td>
          <td>The truststore type.</td>
-         <td>No</td>
       </tr>
-      <tr class="even">
+      <tr>
          <td>
-            <pre><code>rabbitmq.connection.ssl.truststore.password</code></pre>
+            rabbitmq.connection.ssl.truststore.password
          </td>
          <td>The truststore password.</td>
-         <td>No</td>
       </tr>
-      <tr class="odd">
+      <tr>
          <td>
-            <pre><code>rabbitmq.connection.ssl.version</code></pre>
+            rabbitmq.connection.ssl.version
          </td>
          <td>The SSL version.</td>
-         <td>No</td>
       </tr>
-      <tr class="even">
+      <tr>
          <td>
-            <pre><code>rabbitmq.queue.durable</code></pre>
+            rabbitmq.queue.durable
          </td>
          <td>Whether the queue should remain declared even if the broker restarts.</td>
-         <td>No</td>
       </tr>
-      <tr class="odd">
+      <tr>
          <td>
-            <pre><code>rabbitmq.queue.exclusive</code></pre>
+            rabbitmq.queue.exclusive
          </td>
          <td>Whether the queue should be exclusive or should be consumable by other connections.</td>
-         <td>No</td>
       </tr>
-      <tr class="even">
+      <tr>
          <td>
-            <pre><code>rabbitmq.queue.auto.delete</code></pre>
+            rabbitmq.queue.auto.delete
          </td>
          <td>Whether to keep the queue even if it is not being consumed anymore.</td>
-         <td>No</td>
       </tr>
-      <tr class="odd">
+      <tr>
          <td>
-            <pre><code>rabbitmq.queue.auto.ack</code></pre>
+            rabbitmq.queue.auto.ack
          </td>
          <td>Whether to send back an acknowledgment.</td>
-         <td>No</td>
       </tr>
-      <tr class="even">
+      <tr>
          <td>
-            <pre><code>rabbitmq.queue.routing.key</code></pre>
+            rabbitmq.queue.routing.key
          </td>
          <td>The routing key of the queue.</td>
-         <td>No</td>
       </tr>
-      <tr class="odd">
+      <tr>
          <td>
-            <pre><code>rabbitmq.queue.delivery.mode</code></pre>
+            rabbitmq.queue.delivery.mode
          </td>
-         <td>The delivery mode of the queue (ie., Whether it is persistent or not).</td>
-         <td>No</td>
+         <td>The delivery mode of the queue (whether or not the queue is persistent).</td>
       </tr>
-      <tr class="even">
+      <tr>
          <td>
-            <pre><code>rabbitmq.exchange.type</code></pre>
+            rabbitmq.exchange.type
          </td>
          <td>The type of the exchange.</td>
-         <td>No</td>
       </tr>
-      <tr class="odd">
+      <tr>
          <td>
-            <pre><code>rabbitmq.exchange.durable</code></pre>
+            rabbitmq.exchange.durable
          </td>
          <td>Whether the exchange should remain declared even if the broker restarts.</td>
-         <td>No</td>
       </tr>
-      <tr class="even">
+      <tr>
          <td>
-            <pre><code>rabbitmq.exchange.auto.delete</code></pre>
+            rabbitmq.exchange.auto.delete
          </td>
          <td>Whether to keep the queue even if it is not used anymore.</td>
-         <td>No</td>
       </tr>
-      <tr class="odd">
+      <tr>
          <td>
-            <pre><code>rabbitmq.factory.heartbeat</code></pre>
-         </td>
+            rabbitmq.factory.heartbeat
          <td>
             <p>The period of time after which the connection should be considered dead.</p>
          </td>
-         <td>No</td>
       </tr>
-      <tr class="even">
+      <tr>
          <td>
-            <pre><code>rabbitmq.message.content.type</code></pre>
+            rabbitmq.message.content.type
          </td>
          <td>The content type of the message.</td>
-         <td>No</td>
       </tr>
    </tbody>
 </table>
 
-**Connection recovery parameters**
+**Connection recovery properties**
 
-In case of a network failure or broker shutdown, the ESB can try to
+In case of a network failure or broker shutdown, the Micro Integrator can try to
 recreate the connection.
 
 If you want to enable connection recovery, you should configure the
 following parameters in the inbound endpoint:
 
-``` xml
-    <parameter name="rabbitmq.connection.retry.interval" locked="false">10000</parameter>
-    <parameter name="rabbitmq.connection.retry.count" locked="false">5</parameter>   
+```
+<parameter name="rabbitmq.connection.retry.interval" locked="false">10000</parameter>
+<parameter name="rabbitmq.connection.retry.count" locked="false">5</parameter>   
 ```
 
 If the parameters are configured with sample values as given above, the
-ESB makes 5 retry attempts with a time interval of 10000 ms between each
+server makes 5 retry attempts with a time interval of 10000 miliseconds between each
 retry attempt to reconnect when the connection is lost. If reconnecting
-fails after 5 retry attempts, the ESB terminates the connection.
+fails after 5 retry attempts, the Micro Integrator terminates the connection.
 
 In addition to the above parameters, if you want to set the interval
 between retry attempts with which the RabbitMQ client should try
-reconnecting to the ESB, you can configure the following parameter:
+reconnecting to the Micro Integrator, you can configure the following parameter:
 
-``` xml
-    <parameter name="rabbitmq.server.retry.interval" locked="false">10000</parameter>
+```
+<parameter name="rabbitmq.server.retry.interval" locked="false">10000</parameter>
 ```
 
-Setting the value of `         rabbitmq.server.retry.interval        `
-to be less than the value of
-`         rabbitmq.connection.retry.interval        ` helps synchronize
-the reconnection of the ESB and the RabbitMQ client.
+Setting the value of `rabbitmq.server.retry.interval` to be less than the value of `rabbitmq.connection.retry.interval` helps synchronize the reconnection of the Micro Integrator and the RabbitMQ client.
 
-## Custom Inbound Endpoint parameters
+## Custom Inbound Endpoint Properties
 
 Sample customer inbound endpoint implementation.
 
@@ -2089,204 +1733,47 @@ Sample customer inbound endpoint implementation.
 </inboundEndpoint>
 ```
 
-### Custom listening inbound endpoint parameters
+Given below are the properties that should be configured when you define a custom inbound endpoint.
 
 <table>
    <thead>
-      <tr class="header">
+      <tr>
          <th>
             <p>Parameter Name</p>
          </th>
          <th>
             <p>Description</p>
          </th>
-         <th>
-            <p>Required</p>
-         </th>
-         <th>
-            <p>Possible Values</p>
-         </th>
-         <th>
-            <p>Default Value</p>
-         </th>
       </tr>
    </thead>
    <tbody>
-      <tr class="odd">
+      <tr>
          <td>
-            <pre><code>class</code></pre>
+          class
          </td>
          <td>
-            <p>Name of the custom class implementation</p>
-         </td>
-         <td>
-            <p>Yes</p>
-         </td>
-         <td>
-            <p>A valid class name</p>
-         </td>
-         <td>
-            <p>n/a</p>
+          Name of the custom class implementation. Specify a valid class name.
          </td>
       </tr>
-      <tr class="even">
+      <tr>
          <td>
-            <pre><code>sequence</code></pre>
-            <p><br /></p>
+          sequence
          </td>
-         <td>Name of the sequence message that should be injected</td>
-         <td>Yes</td>
-         <td>A valid sequence name</td>
-         <td>n/a</td>
+         <td>Name of the sequence message that should be injected. Specify a valid sequence name.</td>
       </tr>
-      <tr class="odd">
+      <tr>
          <td>
-            <pre><code>onError</code></pre>
-            <p><br /></p>
+            onError
          </td>
-         <td>Name of the fault sequence that should be invoked in case of failure</td>
-         <td>Yes</td>
-         <td>
-            <p>A valid fault sequence name</p>
-         </td>
-         <td>n/a</td>
+         <td>Name of the fault sequence that should be invoked in case of failure. Specify a valid sequence name.</td>
       </tr>
-      <tr class="even">
+      <tr>
          <td>
-            <pre><code>inbound.behavior</code></pre>
+          inbound.behavior
          </td>
          <td>
-            <p>The behaviour of the inbound endpoint</p>
+          The behaviour of the inbound endpoint. Specify <code>listening</code>.
          </td>
-         <td>Yes</td>
-         <td><code>             listening            </code></td>
-         <td>n/a</td>
-      </tr>
-   </tbody>
-</table>
-
-### Custom polling inbound endpoint parameters
-
-<table>
-   <colgroup>
-      <col style="width: 20%" />
-      <col style="width: 20%" />
-      <col style="width: 20%" />
-      <col style="width: 20%" />
-      <col style="width: 20%" />
-   </colgroup>
-   <thead>
-      <tr class="header">
-         <th>
-            <p>Parameter Name</p>
-         </th>
-         <th>
-            <p>Description</p>
-         </th>
-         <th>
-            <p>Required</p>
-         </th>
-         <th>
-            <p>Possible Values</p>
-         </th>
-         <th>
-            <p>Default Value</p>
-         </th>
-      </tr>
-   </thead>
-   <tbody>
-      <tr class="odd">
-         <td>
-            <pre><code>class</code></pre>
-         </td>
-         <td>
-            <p>Name of the custom class implementation</p>
-         </td>
-         <td>
-            <p>Yes</p>
-         </td>
-         <td>
-            <p>A valid class name</p>
-         </td>
-         <td>
-            <p>n/a</p>
-         </td>
-      </tr>
-   </tbody>
-</table>
-
-### Custom event-based inbound endpoint parameters
-
-<table>
-   <thead>
-      <tr class="header">
-         <th>
-            <p>Parameter Name</p>
-         </th>
-         <th>
-            <p>Description</p>
-         </th>
-         <th>
-            <p>Required</p>
-         </th>
-         <th>
-            <p>Possible Values</p>
-         </th>
-         <th>
-            <p>Default Value</p>
-         </th>
-      </tr>
-   </thead>
-   <tbody>
-      <tr class="odd">
-         <td>
-            <pre><code>class</code></pre>
-         </td>
-         <td>
-            <p>Name of the custom class implementation</p>
-         </td>
-         <td>
-            <p>Yes</p>
-         </td>
-         <td>
-            <p>A valid class name</p>
-         </td>
-         <td>
-            <p>n/a</p>
-         </td>
-      </tr>
-      <tr class="even">
-         <td>
-            <pre><code>sequence</code></pre>
-            <p><br /></p>
-         </td>
-         <td>Name of the sequence message that should be injected</td>
-         <td>Yes</td>
-         <td>A valid sequence name</td>
-         <td>n/a</td>
-      </tr>
-      <tr class="odd">
-         <td>
-            <pre><code>onError</code></pre>
-            <p><br /></p>
-         </td>
-         <td>Name of the fault sequence that should be invoked in case of failure</td>
-         <td>Yes</td>
-         <td>
-            <p>A valid fault sequence name</p>
-         </td>
-         <td>n/a</td>
-      </tr>
-      <tr class="even">
-         <td>
-            <pre><code>inbound.behavior</code></pre>
-         </td>
-         <td>
-            <p>The behaviour of the inbound endpoint</p>
-         </td>
-         <td>Yes</td>
-         <td><code>             event-based            </code></td>
-         <td>n/a</td>
       </tr>
    </tbody>
 </table>
