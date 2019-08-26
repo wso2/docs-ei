@@ -11,16 +11,10 @@ message. Otherwise, the mediator validates the first child of the SOAP
 body of the current message.
 
 !!! tip
-
-A [Fault mediator](_Fault_Mediator_) should be added as a child to the
-Validate mediator in order specify the fault sequence to be followed if
-the validation fails.
+    A [Fault mediator](_Fault_Mediator_) should be added as a child to the Validate mediator in order specify the fault sequence to be followed if the validation fails.
 
 !!! info
-
-The Validate mediator is a [content
-aware](ESB-Mediators_119131045.html#ESBMediators-Content-awareness)
-mediator.
+    The Validate mediator is a [content aware](ESB-Mediators_119131045.html#ESBMediators-Content-awareness) mediator.
 
 
   
@@ -67,8 +61,7 @@ follows.
 <td><div class="content-wrapper">
 <p>The XPath expression to extract the XML that needs to be validated. The Validate mediator validates the evaluation of this expression against the schema specified in the <strong>Schema keys defined for Validate Mediator</strong> table. If this is not specified, the validation is performed against the first child of the SOAP body of the current message.</p>
 !!! info
-<p>Tip</p>
-<p>You can click <strong>NameSpaces</strong> to add namespaces if you are providing an expression. Then the <strong>Namespace Editor</strong> panel would appear where you can provide any number of namespace prefixes and URLs used in the XPath expression.</p>
+    You can click <strong>NameSpaces</strong> to add namespaces if you are providing an expression. Then the <strong>Namespace Editor</strong> panel would appear where you can provide any number of namespace prefixes and URLs used in the XPath expression.
 
 </div></td>
 </tr>
@@ -107,10 +100,7 @@ should be enabled and which should be disabled. The parameters available
 in this section are as follows.
 
 !!! info
-
-Only the
-[FEATURE\_SECURE\_PROCESSING](http://java.sun.com/javase/6/docs/api/constant-values.html#javax.xml.XMLConstants.FEATURE_SECURE_PROCESSING)
-feature is currently supported by the validator.
+    Only the [FEATURE\_SECURE\_PROCESSING](http://java.sun.com/javase/6/docs/api/constant-values.html#javax.xml.XMLConstants.FEATURE_SECURE_PROCESSING) feature is currently supported by the validator.
 
 
 | Parameter Name   | Description                                                                      |
@@ -217,17 +207,10 @@ part of the message. Otherwise, the mediator validates the complete
 content of the current message.
 
 !!! tip
-
-A [Fault mediator](_Fault_Mediator_) or [PayloadFactory
-mediator](_PayloadFactory_Mediator_) should be added as a child to the
-Validate mediator in order specify the fault sequence to be followed if
-the validation fails.
+    A [Fault mediator](_Fault_Mediator_) or [PayloadFactory mediator](_PayloadFactory_Mediator_) should be added as a child to the Validate mediator in order specify the fault sequence to be followed if the validation fails.
 
 !!! info
-
-The Validate mediator is a [content
-aware](ESB-Mediators_119131045.html#ESBMediators-Content-awareness)
-mediator.
+    The Validate mediator is a [content aware](ESB-Mediators_119131045.html#ESBMediators-Content-awareness) mediator.
 
 
   

@@ -6,10 +6,7 @@ action for each fragment of a selected property value. Alternatively,
 you can rewrite the entire URL string at once.
 
 !!! info
-
-The URLRewrite mediator is a [content
-aware](ESB-Mediators_119131045.html#ESBMediators-Content-awareness)
-mediator.
+    The URLRewrite mediator is a [content aware](ESB-Mediators_119131045.html#ESBMediators-Content-awareness) mediator.
 
 
 ------------------------------------------------------------------------
@@ -117,7 +114,7 @@ The parameters available to configure a rewrite action are as follows.
 <li><strong>Full</strong></li>
 </ul>
 !!! info
-<p>Note that this breakdown is inline with the URI specification (RFC2396). URL rewrite mediator enables rewriting each of the above segments separately and finally combining them to get the final URL value. It also supports rewriting the entire URL string at once.</p>
+    Note that this breakdown is inline with the URI specification (RFC2396). URL rewrite mediator enables rewriting each of the above segments separately and finally combining them to get the final URL value. It also supports rewriting the entire URL string at once.
 
 </div></td>
 </tr>

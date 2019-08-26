@@ -14,15 +14,10 @@ requester and the message is not passed on. If a similar message has not
 been seen before, then the message is passed on.
 
 !!! info
-
-The Cache mediator is a
-[content-aware](ESB-Mediators_119131045.html#ESBMediators-Content-awareness)
-mediator.
+    The Cache mediator is a [content-aware](ESB-Mediators_119131045.html#ESBMediators-Content-awareness) mediator.
 
 !!! tip
-
-The Cache mediator supports only local caching. It does not support
-distributed caching.
+    The Cache mediator supports only local caching. It does not support distributed caching.
 
 
   
@@ -56,20 +51,7 @@ remotely](#CacheMediator-Invalidatingcachedresponsesremotely)
 ```
 
 !!! info
-
-Note
-
-In a message flow you can use the cache mediator as a finder (in the
-incoming path to check the request) or as a collector (in the outgoing
-path to cache the response).
-
-It is not possible to have more than one cache mediator in the same
-message flow because mediation is terminated after the finder on a cache
-hit, and the response is not passed on to the next finder after a cache
-hit.
-
-  
-
+    In a message flow you can use the cache mediator as a finder (in the incoming path to check the request) or as a collector (in the outgoing path to cache the response). It is not possible to have more than one cache mediator in the same message flow because mediation is terminated after the finder on a cache hit, and the response is not passed on to the next finder after a cache hit.
 
 Following is an example where the expected response from the last cache
 hit is not received because the response is sent once the request comes
@@ -329,19 +311,8 @@ response message.
     </api>
 ```
 
-### Samples
-
-[Sample 420: Simple Response Cache in the ESB for an Actual
-Service](https://docs.wso2.com/display/EI6xx/Sample+420%3A+Simple+Response+Cache+in+the+ESB+for+an+Actual+Service)
-
 ### Invalidating cached responses remotely
 
-You can invalidate all cached response remotely by using any [JMX
-monitoring tool such as
-Jconsole](https://docs.wso2.com/display/EI650/JMX+Monitoring) via the
-exposed MBeans. You can use the
-`         invalidateTheWholeCache()        ` operation of the
-`         org.wso2.carbon.mediatio        ` `         n        ` MBean
-for this as shown below.
+You can invalidate all cached response remotely by using any [JMX monitoring tool such as Jconsole](../administer-and-observe/jmx_monitoring.md) via the exposed MBeans. You can use the `         invalidateTheWholeCache()        ` operation of the `         org.wso2.carbon.mediation        ` MBean for this as shown below.
 
 ![](attachments/119131075/119131080.png){width="600" height="520"}

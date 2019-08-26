@@ -94,10 +94,9 @@ Now you can write a simple Siddhi application to monitor the `SweetProductionTab
     Here the `url` parameter has the value `jdbc:mysql://localhost:3306/production`. Change it to point to your MySQL server.
 
 2. Save this file as `CDCListenForInserts.siddhi` in the `<SI_HOME>/wso2/server/deployment/siddhi-files` directory.
-
+    
     !!!info
         This Siddhi application captures all the inserts made to the `SweetProductionTable` database table and logs them.
-
 
 3. Now let's perform an insert operation on the MySQL table by executing the following MySQL query on the database:
     ```
@@ -189,7 +188,7 @@ Now you can write a Siddhi application to monitor the `SweetProductionTable` for
 
 ### Preserving State of the application through a system failure
 
-Let's try out a scenario in which you are going to deploy a siddhi application to count the total number of productions.
+Let's try out a scenario in which you are going to deploy a Siddhi application to count the total number of productions.
 
 !!!info
     In this scenario, the current count should be "remembered" by the SI server through system failures, so that when the system is restored, the count is not reset to zero. 
@@ -265,10 +264,10 @@ Let's try out a scenario in which you are going to deploy a siddhi application t
     ```
     This log indicates that the current state of the Siddhi application is successfully persisted. Siddhi application state is persisted every minute, hence you will notice this log appearing every minute.
     
-    Next, you are going to insert two sweet productions into the `SweetProductionTable` and shutdown the SI server before state persistence happens (in other words, before above log appears). 
+    Next, you are going to insert two sweet productions into the `SweetProductionTable` and shutdown the SI server before the state persistence happens (in other words, before above log appears). 
     
     !!!Tip
-        It is better to start pushing messages immediately after the state persistence log appears, so that you have plenty of time to push messages and shutdown the server, until next log appears.
+        It is better to start inserting records immediately after the state persistence log appears, so that you have plenty of time to push messages and shutdown the server, until next log appears.
         
 8. Now insert following sweets into the `SweetProductionTable` by executing following queries on the database :
     ```
@@ -289,7 +288,7 @@ Let's try out a scenario in which you are going to deploy a siddhi application t
     INFO {io.siddhi.core.stream.output.sink.LogSink} - CountProductions : LogStream : Event{timestamp=1564151078607, data=[220.0], isExpired=false}
     INFO {io.siddhi.core.stream.output.sink.LogSink} - CountProductions : LogStream : Event{timestamp=1564151078612, data=[320.0], isExpired=false}
     ``` 
-Notice that the `CDC source` has replayed the last two messages. As a result, the sweet productions count has correctly restored.
+Notice that the `CDC source` has replayed the last two messages. As a result, the sweet productions count has being correctly restored.
 
 ## Polling mode
 
@@ -389,7 +388,7 @@ INFO {org.wso2.siddhi.core.stream.output.sink.LogSink} - CDCWithPollingMode : lo
 
 ### Preserving State of the application through a system failure
 
-Let's try out a scenario in which you are going to deploy a siddhi app to count the total number of productions.
+Let's try out a scenario in which you are going to deploy a Siddhi app to count the total number of productions.
 
 !!!info
     In this scenario, the current count should be "remembered" by the SI server through system failures, so that when the system is restored, the count is not reset to zero. 

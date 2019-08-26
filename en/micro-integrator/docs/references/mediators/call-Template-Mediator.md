@@ -5,12 +5,8 @@ values into a [sequence
 template](https://docs.wso2.com/display/EI650/Sequence+Template) .
 
 !!! info
-
-This is currently only supported for special types of mediators such as
-the [Iterator](_Iterate_Mediator_) and [Aggregate
-Mediators](_Aggregate_Mediator_) , where actual XPath operations are
-performed on a different SOAP message, and not on the message coming
-into the mediator.
+    This is currently only supported for special types of mediators such as the [Iterator](_Iterate_Mediator_) and [Aggregate
+Mediators](_Aggregate_Mediator_) , where actual XPath operations are performed on a different SOAP message, and not on the message coming into the mediator.
 
 
 ### Syntax
@@ -137,9 +133,7 @@ template configuration itself.
     </template>
 ```
 
-See [Sequence
-Template](https://docs.wso2.com/display/EI650/Sequence+Template) for a
-more information about this scenario.
+See [Sequence Template](../references/templates/synapse_templates.md) for a more information about this scenario.
 
 #### Example two
 

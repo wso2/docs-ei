@@ -1,33 +1,33 @@
 # Configuring Database and File System State Persistence
 
 This section explains how to prevent the loss of data that can result
-from a system failure by persisting the state of WSO2 SP periodically
+from a system failure by persisting the state of WSO2 SI periodically
 either into a database system or into the file system.
 
 ### Prerequisites
 
-Before configuring database persistence, the following prerequisites
+Before configuring RDBMS database persistence, the following prerequisites
 must be completed.
 
--   One or more Siddhi Applications must be running in the WSO2 SP
+-   One or more Siddhi Applications must be running in the WSO2 SI
     server.
 -   A working RDBMS instance that can be used for data persistence must
     exist.
 -   The requirements of the datasource must be already defined
     `          .         `
 -   Database persistence involves updating the databases connected to
-    WSO2 Steam Processor with the latest information relating to the
-    events that are being processed by WSO2 SP at a given time.
+    WSO2 Steaming Integrator with the latest information relating to the
+    events that are being processed by WSO2 SI at a given time.
 
 ### Configuring database system persistence
 
 The supported databases are H2, MySQL, Postgres, MSSQL and Oracle. The
 relevant jdbc driver jar should be downloaded and added to the
-`         <SP_HOME>/lib        ` directory to prior to using database
+`         <SI_HOME>/lib        ` directory to prior to using database
 system persistence.
 
 To configure periodic data persistence, update the
-`         <SP_HOME>/conf/worker/deployment.yaml        ` file under
+`         <SI_HOME>/conf/server/deployment.yaml        ` file under
 `         state.persistence        ` as follows:
 
 <table>
@@ -73,7 +73,7 @@ To configure periodic data persistence, update the
 </table>
 
 The following is a sample segment of the required configurations in the
-`         <SP_HOME>/conf/worker/deployment.yaml        ` file to
+`         <SI_HOME>/conf/server/deployment.yaml        ` file to
 configure file system persistence.
 
 **Sample deployment.yaml segment**
@@ -96,7 +96,7 @@ configure file system persistence.
 This section explains how to persist the states of Siddhi applications
 during a required time interval in the file system in order to maintain
 back-ups. To configure state persistence, update the
-`         <SP_HOME>/conf/worker/deployment.yaml        ` file under
+`         <SI_HOME>/conf/server/deployment.yaml        ` file under
 `         state        ` .p `         ersistence        ` as follows:
 
 <table>
@@ -140,7 +140,7 @@ back-ups. To configure state persistence, update the
   
 
 The following is a sample segment of the required configurations in the
-`         <SP_HOME>/conf/worker/deployment.yaml        ` file to
+`         <SI_HOME>/conf/server/deployment.yaml        ` file to
 configure file system persistence.
 
 **Sample deployment.yaml segment**

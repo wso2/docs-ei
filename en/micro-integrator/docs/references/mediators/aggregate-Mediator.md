@@ -10,10 +10,7 @@ even if you set the `         sequential        ` attribute to
 `         true        ` on the Iterate mediator.
 
 !!! info
-
-The Aggregate mediator is a
-[content-aware](ESB-Mediators_119131045.html#ESBMediators-Content-awareness)
-mediator.
+    The Aggregate mediator is a [content-aware](ESB-Mediators_119131045.html#ESBMediators-Content-awareness) mediator.
 
 
   
@@ -80,7 +77,7 @@ follows.
 <td><div class="content-wrapper">
 <p>This is an XPath expression which provides the basis on which response messages should be selected for aggregation. This is done by specifying a set of elements for which the messages selected should have matching values. A specific aggregation condition is set via the <strong>Aggregation Expression</strong> field.</p>
 !!! tip
-<p>You can click <strong>NameSpaces</strong> to add namespaces if you are providing an expression. Then the <strong>Namespace Editor</strong> panel would appear where you can provide any number of namespace prefixes and URLs used in the XPath expression.</p>
+    <p>You can click <strong>NameSpaces</strong> to add namespaces if you are providing an expression. Then the <strong>Namespace Editor</strong> panel would appear where you can provide any number of namespace prefixes and URLs used in the XPath expression.</p>
 
 </div></td>
 </tr>
@@ -178,15 +175,3 @@ The above configuration includes the following:
 </tr>
 </tbody>
 </table>
-
-#### Samples
-
-For more examples, see:
-
--   [Sample 62: Routing a Message to a Dynamic List of Recipients and
-    Aggregating
-    Responses](https://docs.wso2.com/display/EI6xx/Sample+62%3A+Routing+a+Message+to+a+Dynamic+List+of+Recipients+and+Aggregating+Responses)
--   [Sample 400: Message Splitting and Aggregating the
-    Responses](https://docs.wso2.com/display/EI6xx/Sample+400%3A+Message+Splitting+and+Aggregating+the+Responses)
--   [Sample 751: Message Split Aggregate Using
-    Templates](https://docs.wso2.com/display/EI6xx/Sample+751%3A+Message+Split+Aggregate+Using+Templates)

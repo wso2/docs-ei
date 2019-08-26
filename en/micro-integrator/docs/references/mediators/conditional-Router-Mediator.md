@@ -1,11 +1,7 @@
 # Conditional Router Mediator
 
 !!! info
-
-Note
-
-Please note that the Conditional Router Mediator is deprecated and will
-be removed from the next release.
+    Please note that the Conditional Router Mediator is deprecated and will be removed from the next release.
 
 
 The **Conditional Router Mediator** specifies how a message should be
@@ -14,10 +10,7 @@ routed based on given conditions. The specified target
 mediator evaluates to `         true        ` .
 
 !!! info
-
-The Conditional Router mediator is a
-[content-aware](ESB-Mediators_119131045.html#ESBMediators-Content-awareness)
-mediator.
+    The Conditional Router mediator is a [content-aware](ESB-Mediators_119131045.html#ESBMediators-Content-awareness) mediator.
 
 
 ------------------------------------------------------------------------
@@ -102,8 +95,3 @@ parameters available to configure a conditional route are as follows.
 </tbody>
 </table>
 
-### Example
-
-See [Sample 157: Conditional Router for Routing Messages based on HTTP
-URL](https://docs.wso2.com/display/EI6xx/Sample+157%3A+Conditional+Router+for+Routing+Messages+based+on+HTTP+URL%2C+HTTP+Headers+and+Query+Parameters)
-for an example of the Conditional Router mediator.

@@ -12,12 +12,7 @@ Axis2 configuration, and
 repository unless these are specified separately.
 
 !!! tip
-
-The [Call mediator](_Call_Mediator_) leverages the non-blocking
-transports for much greater performance than the Callout mediator, so
-you should use the Call mediator in most cases. However, the Callout
-mediator is recommended in situations where you need to execute the
-mediation flow in a single thread.
+    The [Call mediator](_Call_Mediator_) leverages the non-blocking transports for much greater performance than the Callout mediator, so you should use the Call mediator in most cases. However, the Callout mediator is recommended in situations where you need to execute the mediation flow in a single thread.
 
 
 ------------------------------------------------------------------------
@@ -226,9 +221,7 @@ The below example uses a C allout mediator to set a HTTP method when
 invoking a REST service.
 
 !!! info
-
-For this, you need to define the following property:
-`         <property name="HTTP_METHOD" expression="$axis2:HTTP_METHOD" scope="axis2-client"/>        `
+    For this, you need to define the following property: `         <property name="HTTP_METHOD" expression="$axis2:HTTP_METHOD" scope="axis2-client"/>        `
 
 
 ``` java
@@ -279,8 +272,3 @@ For this, you need to define the following property:
     </proxy>
 ```
 
-### Samples
-
-[Sample 430: Callout Mediator for Synchronous Service
-Invocation](https://docs.wso2.com/display/EI6xx/Sample+430%3A+Callout+Mediator+for+Synchronous+Service+Invocation)
-.

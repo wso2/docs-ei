@@ -1,5 +1,6 @@
 # Configuring the Status Dashboard
 
+//todo 
 The following sections cover the configurations that need to be done in
 order to view statistics relating to the performance of your WSO2 SP
 deployment in the status dashboard.
