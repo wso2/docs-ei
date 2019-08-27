@@ -1,19 +1,61 @@
-# Quick Start Guide
+# Getting Started with Streaming Integrator in 5 mins
 
-WSO2 Enterprise Integrator (WSO2 EI) is a comprehensive solution that allows you to seamlessly integrate applications, services, data, and business processes to support modern enterprise integration requirements. 
+## Introduction
 
-For this quick start guide, let's consider a basic Health Care System where WSO2 EI is used as the integration software. In this guide, an external party (a patient) wants to make a doctor's reservation at a given hospital.
+This quick start guide gets you started with the Streaming Integrator (SI), in just 5 minutes.
 
-> Before you begin,
->   1. Get a [free trial subscription](#https://wso2.com/subscription/free-trial) that enables you to download the product with the latest updates. Then, download the product installer from [here](#https://wso2.com/integration/install/download/), and run the installer. 
->
->   2. Download the [back-end service](#https://github.com/wso2-docs/WSO2_EI/blob/master/Back-End-Service/Hospital-Service-2.0.0.jar) and copy it to the `<EI_HOME>/wso2/msf4j/deployment/microservices` directory. 
->      The back-end service is now deployed in the MSF4J profile, which will run microservices for your integration flows. 
->   3. Start the MSF4J profile:
->      1.  Open a terminal and execute the following command:
->      `wso2ei-6.4.0-msf4j`
->      2. Go to **Start Menu** -> **Programs** -> **WSO2** -> **Enterprise Integrator 6.4.0 MSF4J**. This will open a terminal and start the MSF4J profile.
->   4. If you are on a Windows OS, install cURL. For more information, see the [cURL Releases and Downloads](#https://curl.haxx.se/download.html).
+In this guide, you will download the SI distribution, start it and then try out a simple Siddhi application.
 
-Let's get started!
+## Tutorial Outline
 
+- [Downloading Streaming Integrator](#downloading-streaming-integrator)
+- [Starting the server](#starting-the-server)
+- [Deploying a simple Siddhi app](#deploying-a-simple-siddhi-app)
+
+## Downloading Streaming Integrator
+
+Download the Streaming Integrator distribution from TODO and extract it to a location of your choice. Hereafter, the extracted location is referred to as `<SI_HOME>`.  
+
+## Starting the server
+
+Navigate to the `<SI_HOME>/bin` directory in the console and issue the following command. <br/> `server.sh`
+
+## Deploying a simple Siddhi application
+
+Let's create a simple Siddhi application that receives an HTTP message, does a simple transformation to the message, and then logs it in the SI console. 
+
+Open a text file and copy-paste following Siddhi application into it.
+```
+@App:name('MySimpleApp')
+
+@App:description('Receive events via HTTP transport and view the output on the console')
+
+@Source(type = 'http', receiver.url='http://localhost:8006/productionStream', basic.auth.enabled='false',
+    @map(type='json'))
+define stream SweetProductionStream (name string, amount double);
+
+@sink(type='log')
+define stream TransformedProductionStream (nameInUpperCase string, amount double);
+
+-- Simple Siddhi query to transform the name to upper case.
+from SweetProductionStream
+select str:upper(name) as nameInUpperCase, amount
+insert into TransformedProductionStream;
+```
+Save this file as `MySimpleApp.siddhi` in the `<SI_HOME>/wso2/server/deployment/siddhi-files` directory.
+
+!!info
+    Once you deploy the above Siddhi application, it creates a new `HTTP` endpoint at `http://localhost:8006/productionStream` and starts listening to the endpoint for incoming messages. 
+    Therefore, the next step is to publish a message to this endpoint via a CURL command. 
+
+Now execute following `CURL` command on the console:
+```
+curl -X POST -d "{\"event\": {\"name\":\"sugar\",\"amount\": 20.5}}"  http://localhost:8006/productionStream --header "Content-Type:application/json"
+```  
+Notice that you published a message with a lower case name: `sugar`. 
+
+However, the output you observe in the SI console is similar to following:
+```
+INFO {io.siddhi.core.stream.output.sink.LogSink} - MySimpleApp : TransformedProductionStream : Event{timestamp=1563539561686, data=[SUGAR, 20.5], isExpired=false}
+```
+Notice that the output message has an uppercase name: `SUGAR`. This is because of the simple message transformation carried out by the Siddhi application. 
