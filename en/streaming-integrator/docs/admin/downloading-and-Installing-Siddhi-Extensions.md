@@ -18,7 +18,7 @@ To download the Siddhii extensions, follow the steps below
    ![Download Extension](../images/downloading-and-installing-siddhi-extensions/Download_Extension.png) 
    In the dialog box that appears, enter your e-mail address and click **Submit**. The extension JAR is downloaded to 
    the default location in your machine (based on your settings).
-3.  If you are not using the latest version of the Streaming Integrator or WSO2 SP/CEP/DAS, and you
+3.  If you are not using the latest version of the Streaming Integrator, and you
     want to select the version of the extension that matches your current product version, expand **Version Support** 
     in the left navigator for the selected extension.
 

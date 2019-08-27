@@ -10,46 +10,45 @@ the sender/receiver configurations. In addition to enabling the
 transport, you can add more properties to this configuration to control
 the behavior of the transport.
 
-!!! info
-
-This transport implementation is available as a module of the WS-Commons
-Transports project. The JAR consisting of the MailTo transport
-implementation is named `         axis2-transport-mail.jar        ` and
-the following sender and receiver classes should be included in the WSO2
-EI configuration to enable the MailTo transport:
+!!! Info
+    This transport implementation is available as a module of the WS-Commons Transports project. The JAR consisting of the MailTo transport implementation is named `         axis2-transport-mail.jar        ` and the following sender and receiver classes should be included in the WSO2 EI configuration to enable the MailTo transport:
 
 -   `          org.apache.axis2.transport.mail.MailTransportSender         `
 -   `          org.apache.axis2.transport.mail.MailTransportListener         `
 
+## Configuring the MailTo transport
 
--   [Sending emails from a mediation
-    sequence](#MailToTransport-Sendingemailsfromamediationsequence)
-    -   [Step 1: Enabling the transport
-        sender](#MailToTransport-enableMailToStep1:Enablingthetransportsender)
-    -   [Step 2: Configuring the mediation
-        flow](#MailToTransport-Step2:Configuringthemediationflow)
-        -   [To send emails from the global
-            sender](#MailToTransport-Tosendemailsfromtheglobalsender)
-        -   [To send emails from a service-specific
-            sender](#MailToTransport-Tosendemailsfromaservice-specificsender)
--   [Receiving emails to a mediation
-    sequence](#MailToTransport-Receivingemailstoamediationsequence)
-    -   [Step 1: Enabling the transport
-        receiver](#MailToTransport-Step1:Enablingthetransportreceiver)
-    -   [Step 2: Configuring the mediation
-        flow](#MailToTransport-Step2:Configuringthemediationflow.1)
+Update the following configurations in the ei.toml file:
 
-### Sending emails from a mediation sequence
+```toml tab='Listener'
+[transport.mail.listener]
+enable = true
+name = "mailto"
+```
+
+```toml tab='Sender'
+[[transport.mail.sender]]
+name = "mailto"
+parameter.hostname = "smtp.gmail.com"
+parameter.port = "587"
+parameter.enable_tls = true
+parameter.auth = true
+parameter.username = "demo_user"
+parameter.password = "mailpassword"
+parameter.from = "demo_user@wso2.com"
+```
+
+## Example 1: Sending emails from a mediation sequence
 
 Follow the steps given below to configure your mediation sequences to
 trigger emails.
 
-#### Step 1: Enabling the transport sender
+### Step 1: Enabling the transport sender
 
 To enable the MailTo sender, uncomment the following in the axis2.xml
 file (stored in the `         <EI_HOME>/conf/axis2/        ` directory):
 
-``` html/xml
+```
     <transportSender name="mailto" class="org.apache.axis2.transport.mail.MailTransportSender">
         <parameter name="mail.smtp.host">smtp.gmail.com</parameter>
         <parameter name="mail.smtp.port">587</parameter>
@@ -140,13 +139,13 @@ sender supports the following parameters.
 </tbody>
 </table>
 
-#### Step 2: Configuring the mediation flow
+### Step 2: Configuring the mediation flow
 
 Once the MailTo transport sender is enabled, you can configure email
 messaging within your mediation flow by applying the MailTo transport
 properties.
 
-##### To send emails from the global sender
+#### To send emails from the global sender
 
 1.  Use WSO2 EI Tooling to create a simple passthru proxy service with
     the following configurations:
@@ -180,7 +179,7 @@ properties.
     target endpoint. You will receive an email from the email sender
     that is configured globally in the axis2.xml file.
 
-##### To send emails from a service-specific sender
+#### To send emails from a service-specific sender
 
 1.  Use WSO2 EI Tooling to create a simple passthru proxy service with
     the following configurations:
@@ -209,11 +208,6 @@ properties.
 
     The following proxy service is generated:
 
-    -   [**Design View**](#7cd1666f7a754f59a8cbbd1df776f759)
-    -   [**Source View**](#8727b4006ef34c6d9e753df9a1fa14cb)
-
-    ![](attachments/119130357/119130359.png){width="600"}
-
     ``` java
         <?xml version="1.0" encoding="UTF-8"?>
         <proxy name="EmailSender" startOnLoad="true" transports="https http" xmlns="http://ws.apache.org/ns/synapse">
@@ -238,21 +232,10 @@ properties.
     configurations in the axis2.xml](#MailToTransport-enableMailTo)
     explained above. Shown below is the new mediation sequence:
 
-        !!! tip
-    
+    !!! Tip
         Note the following:
-    
-        -   You need to update the property values with actual values of the
-            mail sender account.
-        -   In some email service providers, the value for the
-            'mail.smtp.user' property is the same as the email address of
-            the account.
-    
-
-    -   [**Design View**](#98c9a834a905468aa0357e150ededc92)
-    -   [**Source View**](#9802631cbddd4131b9bbd071dd693bd7)
-
-    ![](attachments/119130357/119130358.png){width="700"}
+        -   You need to update the property values with actual values of the mail sender account.
+        -   In some email service providers, the value for the 'mail.smtp.user' property is the same as the email address of the account.
 
     ``` java
         <?xml version="1.0" encoding="UTF-8"?>
@@ -274,24 +257,23 @@ properties.
             </target>
         </proxy>
     ```
-
 3.  Deploy the proxy service in you WSO2 EI server.
 4.  Invoke the proxy service by sending a request.
 5.  Check your inbox. You will receive an email from the email sender
     that you configured for the proxy service.
 
-### Receiving emails to a mediation sequence
+## Example 2: Receiving emails to a mediation sequence
 
 Follow the steps given below to configure your mediation sequence to
 receive emails, and then process the contents within the sequence.
 
-#### Step 1: Enabling the transport receiver
+### Step 1: Enabling the transport receiver
 
 To enable the MailTo receiver globally, uncomment the following:
 
-``` html/xml
-    <transportReceiver name="mailto" class="org.apache.axis2.transport.mail.MailTransportListener">
-    </transportReceiver> 
+```
+<transportReceiver name="mailto" class="org.apache.axis2.transport.mail.MailTransportListener">
+</transportReceiver> 
 ```
 
 The MailTo transport receiver should be configured at service level and
@@ -299,15 +281,10 @@ each service configuration should explicitly state the mail transport
 receiver configuration. This is required to enable different services to
 receive mails over different mail accounts and configurations.
 
-!!! info
+!!! Info
+    You need to provide correct parameters for a valid mail account at the service level.
 
-Note
-
-You need to provide correct parameters for a valid mail account at the
-service level.
-
-
-#### Step 2: Configuring the mediation flow
+### Step 2: Configuring the mediation flow
 
 Once the MailTo transport receiver is enabled, you can configure email
 messaging within your mediation flow by applying the MailTo transport
@@ -321,13 +298,8 @@ Summary](https://javaee.github.io/javamail/docs/api/com/sun/mail/pop3/package-su
 parameters in addition to the parameters described in the JavaMail API
 documentation.
 
-!!! tip
-
-In the following transport parameter tables, the literals displayed in
-italics in the **Possible Values** column should be considered as fixed
-literal constant values. Those values can be directly specified in the
-transport configuration.
-
+!!! Tip
+    In the following transport parameter tables, the literals displayed in italics in the **Possible Values** column should be considered as fixed literal constant values. Those values can be directly specified in the transport configuration.
 
 <table>
 <thead>
@@ -448,14 +420,3 @@ transport configuration.
 </tr>
 </tbody>
 </table>
-
-## What's Next?
-
--   [Carrying
-    Messages](https://docs.wso2.com/display/EI650/Carrying+Messages)
--   [Sample 255: Switching from FTP Transport Listener to Mail Transport
-    Sender](https://docs.wso2.com/display/EI610/Sample+255%3A+Switching+from+FTP+Transport+Listener+to+Mail+Transport+Sender)
--   [Sample 256: Proxy Services with the MailTo
-    Transport](https://docs.wso2.com/display/EI610/Sample+256%3A+Proxy+Services+with+the+MailTo+Transport)
--   [Sample 271: File
-    Processing](https://docs.wso2.com/display/EI610/Sample+271%3A+File+Processing)

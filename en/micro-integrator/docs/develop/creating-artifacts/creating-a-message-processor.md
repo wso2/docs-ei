@@ -11,10 +11,6 @@ Follow the instructions given below to create a new Message Processor artifact i
 
 The message processor is created in the `src/main/synapse-config/message-processors` folder under the ESB Config project you specified and appears in the editor. 
 
-## Properties
-
-You can click its icon in the editor to view its properties.
-
 ## Examples
 
 ## Guides

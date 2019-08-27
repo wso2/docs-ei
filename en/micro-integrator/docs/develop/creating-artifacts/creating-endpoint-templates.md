@@ -89,10 +89,6 @@ Follow these steps to create a new scheduled task.
     the file in the editor, or you can right-click the template in the
     project explorer and click **Open With \> ESB Editor**.
 
-## Properties
-
-....
-
 ## Examples
 ..
 

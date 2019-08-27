@@ -34,12 +34,6 @@ Follow the steps below to create a new inbound endpoint.
 
     Note that this setting may be required in Windows environments as the process of closing a port can sometimes take longer than 10 seconds.xss
 
-## Properties
-
-Right-click the inbound endpoint and click **Show Properties View** to go to the **Property** tab. You can update the parameters relevant to the type of inbound endpoint.
-
-Go to [WSO2 EI Inbound Endpoints](_WSO2_EI_Inbound_Endpoints_) for details of the parameters available for each inbound endpoint type.
-
 ## Examples
 ..
 

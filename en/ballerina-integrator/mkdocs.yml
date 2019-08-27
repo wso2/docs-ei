@@ -60,11 +60,36 @@ nav:
         - 'Using the Gmail Connector' : 'learn/integration-tutorials/using-the-gmail-connector/using-the-gmail-connector.md'
         - 'Using the Analytics Dashboard' : 'learn/integration-tutorials/using-the-analytics-dashboard/using-the-analytics-dashboard.md'
       - Guides:
-        - 'Sending a Simple Message to a Service' : 'learn/guides/integration/sending-a-simple-message-to-a-service.md'
+        - Messaging:
+          - 'Asynchronous Messaging' : 'learn/guides/messaging/asynchronous-messaging/asynchronous-messaging.md'
+          - 'Message Broadcasting' : 'learn/guides/messaging/message-broadcasting/message-broadcasting.md'
+          - 'Messaging with ActiveMQ' : 'learn/guides/messaging/messaging-with-activemq/messaging-with-activemq.md'
+          - 'Messaging with Kafka' : 'learn/guides/messaging/messaging-with-kafka/messaging-with-kafka.md'
+          - 'Reliable Delivery' : 'learn/guides/messaging/reliable-delivery/reliable-delivery.md'
+        - Services:
+          - 'Exposing a REST Service' : 'learn/guides/services/restful-service/exposing-a-rest-service/exposing-a-rest-service.md'
+          - 'Exposing a SOAP Service' : 'learn/guides/services/restful-service/exposing-a-soap-service/exposing-a-soap-service.md'
+          - 'Service Composition' : 'learn/guides/services/service-composition/service-composition.md'
+          - 'Asynchronous Invocation' : 'learn/guides/services/asynchronous-invocation/asynchronous-invocation.md'
+          - 'Parallel Service Orchestration' : 'learn/guides/services/parallel-service-orchestration/parallel-service-orchestration.md'
+        - Integration Patterns:
+          - 'Content-based Routing' : 'learn/guides/integration-patterns/content-based-routing/content-based-routing.md'
+          - 'Pass-through Messaging' : 'learn/guides/integration-patterns/pass-through-messaging/pass-through-messaging.md'
+          - 'Scatter-gather Messaging' : 'learn/guides/integration-patterns/scatter-gather-messaging/scatter-gather-messaging.md'
+          - 'Message Filtering' : 'learn/guides/integration-patterns/message-filtering/message-filtering.md'
+          - 'Backend for Frontend' : 'learn/guides/integration-patterns/backend-for-frontend/backend-for-frontend.md'
+          - 'EIP Message Construction' : 'learn/guides/integration-patterns/eip-message-construction/eip-message-construction.md'
+          - 'EIP Message Transformation' : 'learn/guides/integration-patterns/eip-message-transformation/eip-message-transformation.md'
+        - Database Integration:
+          - 'Data-backed Service' : 'learn/guides/database-integrations/data-backed-service/data-backed-service.md'
+          - 'Managing Database Transactions' : 'learn/guides/database-integrations/managing-database-transactions/managing-database-transactions.md'
+          - 'Integration with MongoDB' : 'learn/guides/database-integrations/mongo/mongo.md'
     - Setup:
       - 'Deploy on Docker': 'setup/deploy-on-docker.md'
+      - 'Deploy on Kubernetes': 'setup/deploy-on-kubernetes.md'
     - Develop:
       - 'Using Modules' : 'develop/using-modules.md'
+      - 'CI/CD' : 'develop/cicd.md'
     - '': page-not-found.md
      
 # Extensions

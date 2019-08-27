@@ -5,73 +5,32 @@ International](http://www.hl7.org/about/index.cfm?ref=common) (HL7)
 messages. The following sections describe how to install, enable, and
 configure the HL7 transport:
 
-!!! info
+## Configuring the HL7 transport
 
-WSO2 Enterprise Integrator(WSO2 EI) uses the HAPI parser to provide HL7
-support, which currently does not support HL7v3.
+Update the following configurations in the ei.toml file:
 
+```toml
+[transport.hl7]
 
--   [Enabling the transport](#HL7Transport-Enablingthetransport)
--   [Configuring the transport](#HL7Transport-Configuringthetransport)
-    -   [Conformance profile](#HL7Transport-Conformanceprofile)
-    -   [Message pre-processing](#HL7Transport-Messagepre-processing)
-    -   [Acknowledgement](#HL7Transport-Acknowledgement)
-        -   [Configuring application
-            acknowledgement](#HL7Transport-Configuringapplicationacknowledgement)
-    -   [Validating messages](#HL7Transport-Validatingmessages)
-    -   [Configuring the thread
-        pool](#HL7Transport-Configuringthethreadpool)
-    -   [Storing messages](#HL7Transport-Storingmessages)
--   [Creating an HL7 Proxy
-    Service](#HL7Transport-createCreatinganHL7ProxyService)
-    -   [Accept acknowledgement](#HL7Transport-Acceptacknowledgement)
-    -   [Application
-        acknowledgement](#HL7Transport-ApplicationacknowledgementApplicationacknowledgement)
--   [Exchanging HL7 messages with the File
-    System](#HL7Transport-ExchangingHL7messageswiththeFileSystem)
-    -   [Transferring messages from file system to file
-        system](#HL7Transport-Transferringmessagesfromfilesystemtofilesystem)
-    -   [Transferring messages between HL7 and the file
-        system](#HL7Transport-TransferringmessagesbetweenHL7andthefilesystem)
-    -   [Transferring messages between HL7 and
-        FTP](#HL7Transport-TransferringmessagesbetweenHL7andFTP)
+listener.enable = false
+listener.port = 9292
 
-### Enabling the transport
-
-You can [create an HL7 proxy service](#HL7Transport-create) using this
-transport after enabling it. You enable the HL7 transport in the
-`         <EI_HOME>/conf/axis2/axis2.xml        ` file as follows:
-
-``` java
-    <transportReceiver name="hl7" class="org.wso2.carbon.business.messaging.hl7.transport.HL7TransportListener">
-        <parameter name="port">9292</parameter>
-    </transportReceiver>
-    <transportSender name="hl7" class="org.wso2.carbon.business.messaging.hl7.transport.HL7TransportSender">
-        <!--parameter name="non-blocking">true</parameter-->
-    </transportSender>
-    ...
-    <messageFormatters>
-      <messageFormatter contentType="application/edi-hl7" class="org.wso2.carbon.business.messaging.hl7.message.HL7MessageFormatter"/>
-    ...
-    </messageFormatters>
-    ...
-    <messageBuilders>
-      <messageBuilder contentType="application/edi-hl7" class="org.wso2.carbon.business.messaging.hl7.message.HL7MessageBuilder"/>
-    </messageBuilders>
+sender.enable = false
+sender.non_blocking = true
 ```
 
-### Configuring the transport
+## Examples
 
 When [creating an HL7 proxy service](#HL7Transport-create) , you can
 optionally configure the following behavior of the HL7 transport.
 
-#### Conformance profile
+### Example 1: Conformance profile
 
 Add the parameter "transport.hl7.ConformanceProfilePath" in the proxy
 service to point to a URL where the HL7 conformance profile (XML file)
 can be found.
 
-#### Message pre-processing
+### Example 2: Message pre-processing
 
 Add the "transport.hl7.MessagePreprocessorClass" parameter in the proxy
 service to point to an implementation class of the interface
@@ -79,7 +38,7 @@ service to point to an implementation class of the interface
 which is used to process raw HL7 messages before parsing them so that
 potential errors in the messages can be rectified using the transport.
 
-#### Acknowledgement
+### Example 3: Acknowledgement
 
 You can enable or disable automatic message acknowledgment. When
 automatic message acknowledgment is enabled, an ACK is immediately sent
@@ -98,24 +57,24 @@ NACK message is required instead, use the message context properties
 In the proxy service, add the following parameters to enable or disable
 auto-acknowledgement and validation:
 
-``` html/xml
-    <proxy>...
-       <parameter name="transport.hl7.AutoAck">true|false</parameter> <!-- default is true -->
-    </proxy> 
+```
+<proxy>...
+  <parameter name="transport.hl7.AutoAck">true|false</parameter> <!-- default is true -->
+</proxy> 
 ```
 
 When ‘AutoAck’ is false, you can set the following properties inside an
 integration sequence.
 
-``` html/xml
-    <property name="HL7_RESULT_MODE" value="ACK|NACK" scope="axis2" /> <!-- notice the properties should be in axis2 scope --> 
+```
+<property name="HL7_RESULT_MODE" value="ACK|NACK" scope="axis2" /> <!-- notice the properties should be in axis2 scope --> 
 ```
 
 When the result mode is ‘NACK’, you can use the following property to
 provide a custom description of the error message.
 
-``` html/xml
-    <property name="HL7_NACK_MESSAGE" value="<ERROR MESSAGE>" scope="axis2" />
+```
+<property name="HL7_NACK_MESSAGE" value="<ERROR MESSAGE>" scope="axis2" />
 ```
 
 You can use the property "HL7\_RAW\_MESSAGE" in the axis2 scope to
@@ -126,7 +85,7 @@ particularly helpful inside a custom mediator.
 To control the encoding type of incoming messages, set the Java system
 property "ca.uhn.hl7v2.llp.charset".
 
-##### Configuring application acknowledgement
+### Example 4: Configuring application acknowledgement
 
 In general, we don't wait for the back-end application's response before
 sending an "accept-acknowledgement" message to the client. If you do
@@ -149,16 +108,16 @@ acknowledgment, see [Application
 acknowledgement](#HL7Transport-Applicationacknowledgement) in [Creating
 an HL7 Proxy Service](#HL7Transport-create) .
 
-#### Validating messages
+### Example 5: Validating messages
 
 By default, the HL7 transport validates messages before building their
 XML representation. You configure validation with the following
 parameter in the proxy service:
 
-``` html/xml
-    <proxy>...
+```
+<proxy>...
        <parameter name="transport.hl7.ValidateMessage">true|false</parameter> <!-- default is true -->
-    </proxy> 
+</proxy> 
 ```
 
 When `         transport.hl7.ValidateMessage        ` is set to false,
@@ -174,11 +133,7 @@ you can set the following parameters to handle invalid messages:
     whether to pass this message through (true) or to throw a fault
     (false).
 
-The following diagram illustrates these flows.
-
-![](https://lh6.googleusercontent.com/lg4_50q29gFZ9i9C_abk6kMed9yfKN_4yyJcT7tAlOoV5oUEm-DJ0BMa6hob_mmh_y5duotKKtjyrYOel3-4gogVTc5d4UjBVXzP8qyhMDoDhaMck7eyJp4cWA)
-
-#### Configuring the thread pool
+### Example 6: Configuring the thread pool
 
 The HL7 transport uses a thread pool to manage connections. A larger
 thread pool provides greater performance, because the transport can
@@ -194,7 +149,7 @@ thread pool to suit your environment:
     milliseconds to keep idle threads alive before releasing them.
     Default is 10000 (10 seconds).
 
-#### Storing messages
+### Example 7: Storing messages
 
 You can use the HL7 message store to automatically store HL7 messages,
 allowing you to audit and replay messages as needed. The HL7 store is a
@@ -207,8 +162,8 @@ message store, you take the following steps:
 
 For example:
 
-``` html/xml
-    <definitions xmlns="http://ws.apache.org/ns/synapse">
+```
+<definitions xmlns="http://ws.apache.org/ns/synapse">
     
        <proxy name="HL7Store" startOnLoad="true" trace="disable" transports=”hl7”>
           <description/>
@@ -254,7 +209,7 @@ For example:
           <parameter name="openjpa.jdbc.DBDictionary">blobTypeName=LONGBLOB</parameter>
        </messageStore>
     
-    </definitions>
+</definitions>
 ```
 
 In this configuration, when the HL7 proxy service runs, an HL7 service
@@ -289,7 +244,7 @@ Selected messages can be edited and injected into a proxy service.
 Reinjecting a message to the same service will result in a new message
 being stored with a different message UUID.
 
-### Creating an HL7 Proxy Service
+### Example 8: Creating an HL7 Proxy Service
 
 You can create a proxy service that uses the HL7 transport, to connect
 to an HL7 server. This proxy service will receive HL7-client connections
@@ -297,14 +252,8 @@ and send them to the HL7 server. It can also receive XML messages over
 HTTP/HTTPS and transform them into HL7 before sending them to the
 server, and it will transform the HL7 responses back into XML.
 
-!!! info
-
-If you want to try the example configurations on this page, you must
-have an HL7 client and HL7 back-end application set up and running. To
-see a sample that illustrates how to create an HL7 client and back-end
-application, see:  
-<https://github.com/wso2/carbon-mediation/tree/v4.6.6/components/business-adaptors/hl7/org.wso2.carbon.business.messaging.hl7.samples/src/main/java/org/wso2/carbon/business/messaging/hl7/samples>
-
+!!! Info
+    If you want to try the example configurations on this page, you must have an HL7 client and HL7 back-end application set up and running. To see a sample that illustrates how to create an HL7 client and back-end application, see: <https://github.com/wso2/carbon-mediation/tree/v4.6.6/components/business-adaptors/hl7/org.wso2.carbon.business.messaging.hl7.samples/src/main/java/org/wso2/carbon/business/messaging/hl7/samples>
 
 **To create the HL7 proxy service:**
 
@@ -325,8 +274,8 @@ application, see:
 
 For example:
 
-``` html/xml
-    <proxy xmlns="http://ws.apache.org/ns/synapse" name="hl7testproxy" transports="https,http,hl7" statistics="disable" trace="disable" startOnLoad="true">
+```
+<proxy xmlns="http://ws.apache.org/ns/synapse" name="hl7testproxy" transports="https,http,hl7" statistics="disable" trace="disable" startOnLoad="true">
            <target>
               <inSequence>
                  <log level="full" />
@@ -340,21 +289,21 @@ For example:
               </endpoint>
            </target>
            <parameter name="transport.hl7.Port">9292</parameter>
-        </proxy>
+</proxy>
 ```
 
 For information on additional configuration you can set on the HL7
 transport, see [HL7 Transport](_HL7_Transport_) .
 
-#### Accept acknowledgement
+### Example 9: Accept acknowledgement
 
 If user doesn't want to wait for the back-end service to process the
 message and only needs acknowledgment from the system that the message
 was received, you can configure the proxy service to send an ACK/NACK
 message after the message is received. For example:
 
-``` html/xml
-    <proxy name="HL7Proxy" transports="hl7" startOnLoad="true" trace="disable">
+```
+<proxy name="HL7Proxy" transports="hl7" startOnLoad="true" trace="disable">
         <description/>
         <target>
             <inSequence>
@@ -375,10 +324,10 @@ message after the message is received. For example:
          </target>
          <parameter name="transport.hl7.AutoAck">false</parameter>
          <parameter name="transport.hl7.ValidateMessage">false</parameter>
-    </proxy>
+</proxy>
 ```
 
-#### Application acknowledgement
+### Example 10: Application acknowledgement
 
 If you want to wait for the application's response before sending the
 acknowledgment message (see [Configuring application
@@ -387,8 +336,8 @@ you add the HL7\_APPLICATION\_ACK property to the inSequence and any
 additional HL7 properties and transport parameters as needed. For
 example:
 
-``` html/xml
-    <proxy xmlns="http://ws.apache.org/ns/synapse" name="HL7Proxy" transports="hl7" statistics="disable" trace="disable" startOnLoad="true"> 
+```
+<proxy xmlns="http://ws.apache.org/ns/synapse" name="HL7Proxy" transports="hl7" statistics="disable" trace="disable" startOnLoad="true"> 
       <target> 
           <inSequence> 
                <property name="HL7_APPLICATION_ACK" value="true" scope="axis2"/>  
@@ -407,44 +356,14 @@ example:
       <parameter name="transport.hl7.AutoAck">false</parameter> 
       <parameter name="transport.hl7.ValidateMessage">true</parameter> 
       <description></description> 
-    </proxy>
+</proxy>
 ```
 
-### Exchanging HL7 messages with the File System
+### Example 11: Exchanging HL7 messages with the File System
 
 The following samples demonstrate how to read and write HL7 messages to
 and from the file system using the [HL7 Transport](_HL7_Transport_) and
 [VFS Transport](_VFS_Transport_) :
-
--   [Enabling the transport](#HL7Transport-Enablingthetransport)
--   [Configuring the transport](#HL7Transport-Configuringthetransport)
-    -   [Conformance profile](#HL7Transport-Conformanceprofile)
-    -   [Message pre-processing](#HL7Transport-Messagepre-processing)
-    -   [Acknowledgement](#HL7Transport-Acknowledgement)
-        -   [Configuring application
-            acknowledgement](#HL7Transport-Configuringapplicationacknowledgement)
-    -   [Validating messages](#HL7Transport-Validatingmessages)
-    -   [Configuring the thread
-        pool](#HL7Transport-Configuringthethreadpool)
-    -   [Storing messages](#HL7Transport-Storingmessages)
--   [Creating an HL7 Proxy
-    Service](#HL7Transport-createCreatinganHL7ProxyService)
-    -   [Accept acknowledgement](#HL7Transport-Acceptacknowledgement)
-    -   [Application
-        acknowledgement](#HL7Transport-ApplicationacknowledgementApplicationacknowledgement)
--   [Exchanging HL7 messages with the File
-    System](#HL7Transport-ExchangingHL7messageswiththeFileSystem)
-    -   [Transferring messages from file system to file
-        system](#HL7Transport-Transferringmessagesfromfilesystemtofilesystem)
-    -   [Transferring messages between HL7 and the file
-        system](#HL7Transport-TransferringmessagesbetweenHL7andthefilesystem)
-    -   [Transferring messages between HL7 and
-        FTP](#HL7Transport-TransferringmessagesbetweenHL7andFTP)
-
-For more information on creating an HL7 proxy service, see [Creating an
-HL7 Proxy
-Service](https://docs.wso2.com/display/EI6xx/HL7+Transport#HL7Transport-createCreatinganHL7ProxyService)
-.
 
 #### Transferring messages from file system to file system
 
@@ -460,15 +379,11 @@ Transport](_HL7_Transport_) and [VFS Transport](_VFS_Transport_) .
 Once you have enabled the transports and started the WSO2 EI server, use
 the following proxy service configuration to run the sample.
 
-!!! info
+!!! Info
+    This sample uses the UNIX temporary directory /tmp/ in several VFS parameters; be sure to change them to match a location in your file system.
 
-This sample uses the UNIX temporary directory /tmp/ in several VFS
-parameters; be sure to change them to match a location in your file
-system.
-
-
-``` html/xml
-    <proxy xmlns="http://ws.apache.org/ns/synapse" name="FileSystemToFileSystem" transports="vfs">
+```
+<proxy xmlns="http://ws.apache.org/ns/synapse" name="FileSystemToFileSystem" transports="vfs">
       <target>
         <inSequence>
           <property name="OUT_ONLY" value="true" scope="default" type="STRING"/>
@@ -486,15 +401,12 @@ system.
       <parameter name="transport.vfs.FileNamePattern">.*\.hl7</parameter>
       <parameter name="transport.vfs.ContentType">application/edi-hl7;charset="iso-8859-15"</parameter>
       <parameter name="transport.hl7.ValidateMessage">false</parameter>
-    </proxy>
+</proxy>
 ```
 
-Now, copy the following HL7 message into a text editor and save it as an
-`         .hl7        ` file inside the directory you specified with the
-`         transport.vfs.FileURI        ` parameter (
-`         /tmp/in        ` in the above example).
+Now, copy the following HL7 message into a text editor and save it as an `         .hl7        ` file inside the directory you specified with the `         transport.vfs.FileURI        ` parameter (`         /tmp/in        ` in the above example).
 
-    MSH|^~\&|Abc|Def|Ghi|JKL|20131231000000||ADT^A01|1234567|P|2.6|||NE|NE|CH|
+MSH|^~\&|Abc|Def|Ghi|JKL|20131231000000||ADT^A01|1234567|P|2.6|||NE|NE|CH|
 
 The proxy service is configured to detect `         .hl7        ` files
 in the `         transport.vfs.FileURI        ` directory. We have also
@@ -522,8 +434,8 @@ example, ensure that you have the VFS and HL7 transports and their
 builders/formatters enabled, and replace the temporary directories shown
 in the sample with actual directories on your file system.
 
-``` html/xml
-    <proxy xmlns="http://ws.apache.org/ns/synapse" 
+```
+<proxy xmlns="http://ws.apache.org/ns/synapse" 
          name="HL7ToFileSystem" 
          transports="hl7" 
          statistics="disable" 
@@ -548,7 +460,7 @@ in the sample with actual directories on your file system.
      <parameter name="transport.hl7.Port">55555</parameter> 
      <parameter name="transport.hl7.ValidateMessage">false</parameter> 
      <description/> 
-    </proxy> 
+</proxy> 
 ```
 
 To invoke this proxy, use the HAPI Test Panel to connect to the HL7
@@ -572,8 +484,8 @@ following proxy service example. The proxy service will detect
 `         transport.vfs.FileURI        ` directory and send them to the
 HL7 endpoint.
 
-``` html/xml
-    <proxy xmlns="http://ws.apache.org/ns/synapse"
+```
+<proxy xmlns="http://ws.apache.org/ns/synapse"
            name="SFTPToHL7"
            transports="vfs"
            statistics="disable"
@@ -605,7 +517,7 @@ HL7 endpoint.
        <parameter name="transport.vfs.ActionAfterFailure">MOVE</parameter>
        <parameter name="transport.hl7.ValidateMessage">false</parameter>
        <description/>
-    </proxy>  
+</proxy>  
 ```
 
 Once you start the endpoint of the WSO2 EI server, if you place an HL7

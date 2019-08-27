@@ -8,128 +8,7 @@ truststores and a keystores for SSL protocol implementation. WSO2 EI can
 listen to different host IPs and ports for incoming HTTPS connections,
 and each IP/Port will have a separate SSL profile configured.
 
-------------------------------------------------------------------------
-
-[Enabling the transport](#Multi-HTTPSTransport-Enablingthetransport) \|
-[Synchronizing the profiles in a
-cluster](#Multi-HTTPSTransport-Synchronizingtheprofilesinacluster) \|
-[Dynamic SSL profiles](#Multi-HTTPSTransport-DynamicSSLprofiles)
-
-------------------------------------------------------------------------
-
-### Enabling the transport
-
-The following [transport receiver](#Multi-HTTPSTransport-rcvr) and
-[transport sender](#Multi-HTTPSTransport-sampleRequestForAddEntry)
-classes should be included in the WSO2 EI configuration in order to
-enable the Multi-HTTPS transport.
-
-#### Transport receiver
-
-The receiver class can either be
-`         org.apache.synapse.transport.nhttp.HttpCoreNIOMultiSSLListener        `
-or
-`         org.apache.synapse.transport.passthru.PassThroughHttpMultiSSLListener        `
-.
-
-You can enable the Multi-HTTPS transport receiver by adding the
-following configuration in the
-`         <EI_HOME>/conf/Axis2/axis2.xml        ` file under the
-**Transport Ins (Listeners)** section:
-
-``` html/xml
-    <transportReceiver name="multi-https" class="org.apache.synapse.transport.nhttp.HttpCoreNIOMultiSSLListener">
-            <parameter name="port">8343</parameter>
-            <parameter name="non-blocking">true</parameter>
-            <parameter name="SSLProfiles">
-                <profile>
-                    <bindAddress>192.168.1.2</bindAddress>
-                    <KeyStore>
-                        <Location>/path/to/testhost1.p12</Location>
-                        <Type>PKCS12</Type>
-                        <Password>test</Password>
-                        <KeyPassword>test</KeyPassword>
-                    </KeyStore>
-                </profile>
-                <profile>
-                    <bindAddress>192.168.1.3</bindAddress>
-                    <KeyStore>
-                        <Location>/path/to/testhost2.p12</Location>
-                        <Type>PKCS12</Type>
-                        <Password>test</Password>
-                        <KeyPassword>test</KeyPassword>
-                    </KeyStore>
-                </profile>
-                <profile>
-                    <bindAddress>192.168.1.4</bindAddress>
-                    <KeyStore>
-                        <Location>/path/to/testhost3.p12</Location>
-                        <Type>PKCS12</Type>
-                        <Password>test</Password>
-                        <KeyPassword>test</KeyPassword>
-                    </KeyStore>
-                    <TrustStore>
-                        <Location>/path/to/testtrust.jks</Location>
-                        <Type>JKS</Type>
-                        <Password>nopassword</Password>
-                    </TrustStore>
-                    <SSLVerifyClient>require</SSLVerifyClient>
-                </profile>
-            </parameter>
-    </transportReceiver>
-```
-
-#### Transport sender
-
-The sender class can either be
-`         org.apache.synapse.transport.nhttp.HttpCoreNIOSSLSender        `
-or
-`         org.apache.synapse.transport.passthru.PassThroughHttpSSLSender        `
-.
-
-You can enable the Multi-HTTPS transport sender by adding the following
-configuration in the `         <EI_HOME>/conf/Axis2/axis2.xml        `
-file under the **Transport Outs (Senders)** section:
-
-``` html/xml
-    <transportSender name="https" class="org.apache.synapse.transport.nhttp.HttpCoreNIOSSLSender">
-            <parameter name="non-blocking" locked="false">true</parameter>
-        <parameter name="customSSLProfiles">
-            <profile>
-            <servers>localhost:8244</servers>
-            <KeyStore>
-                <Location>repository/resources/security/esb.jks</Location>
-                <Type>JKS</Type>
-                <Password>123456</Password>
-                <KeyPassword>123456</KeyPassword>
-            </KeyStore>
-            <TrustStore>          
-                <Location>repository/resources/security/esbtruststore.jks</Location>
-                <Type>JKS</Type>
-                <Password>123456</Password>
-            </TrustStore>
-            </profile>
-        </parameter>
-        <parameter name="keystore" locked="false">
-                <KeyStore>                
-                    <Location>repository/resources/security/wso2carbon.jks</Location>
-                    <Type>JKS</Type>
-                    <Password>wso2carbon</Password>
-                    <KeyPassword>wso2carbon</KeyPassword>
-                </KeyStore>
-        </parameter>
-        <parameter name="truststore" locked="false">
-                <TrustStore>               
-                    <Location>repository/resources/security/client-truststore.jks</Location>
-                    <Type>JKS</Type>
-                    <Password>wso2carbon</Password>
-                </TrustStore>
-            </parameter>
-        <parameter name="HostnameVerifier">AllowAll</parameter>
-    </transportSender>
-```
-
-### Synchronizing the profiles in a cluster
+## Synchronizing the profiles in a cluster
 
 If you are running in a clustered environment and want your SSL profiles
 to be synchronised across the cluster nodes, you can move the
@@ -144,14 +23,14 @@ the configuration.
 For example, the Multi-HTTPS transport configuration in the
 `         axis2.xml        ` file will now look as follows:
 
-``` html/xml
-    <transportReceiver name="multi-https" class="org.apache.synapse.transport.nhttp.HttpCoreNIOMultiSSLListener">
+```
+<transportReceiver name="multi-https" class="org.apache.synapse.transport.nhttp.HttpCoreNIOMultiSSLListener">
             <parameter name="port">8343</parameter>
             <parameter name="non-blocking">true</parameter>
             <parameter name="SSLProfilesConfigPath">
                <filePath>/repository/deployment/server/multi_ssl_profiles.xml</filePath>
             </parameter>
-    </transportReceiver>
+</transportReceiver>
 ```
 
 To synchronise this configuration between two EI nodes, you must enable
@@ -168,7 +47,7 @@ JConsole. For more information, see [JMX-based
 Monitoring](https://docs.wso2.com/display/ADMIN44x/JMX-Based+Monitoring)
 .
 
-### Dynamic SSL profiles
+## Dynamic SSL profiles
 
 In addition to updating `         axis2.xml        ` with the SSL
 profile configurations, you can dynamically load the SSL profiles at
@@ -177,7 +56,7 @@ reloading the entire `         axis2.xml        ` at runtime, you can
 reload the new configuration files that contain only the custom profile
 information for the sender and receiver.
 
-#### Enabling dynamic SSL profiles
+### Enabling dynamic SSL profiles
 
 The following configuration changes should be done in the Multi-HTTPS
 transport receiver and sender.
@@ -293,7 +172,7 @@ transport receiver and sender.
     destination server specified within the
     `           <servers>          ` element as IP:Port combination.
 
-#### Loading SSL profiles dynamically at runtime
+### Loading SSL profiles dynamically at runtime
 
 You can either use a periodic schedule or a JMX invocation to apply
 custom profiles at runtime. The following section describes the two

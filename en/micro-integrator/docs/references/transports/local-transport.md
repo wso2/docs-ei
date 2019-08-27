@@ -8,27 +8,15 @@ class implements the sender API:
 
 -   `          org.apache.axis2.transport.local.NonBlockingLocalTransportSender         `
 
-!!! info
+!!! Info
+    -   WS-Security cannot be used with the local transport. Since the local is mainly used to make calls within the same VM, WS-Security is generally not required in scenarios where it is used.
+    -   If you want to make calls across tenants, you should use a non local transport even if they run from the same VM.
+    -   If you need to use local transport with callout mediator, you do not need to perform configuration mentioned in this section as callout mediator requires blocking local transport which is configured by default in WSO2 Enterprise Integrator distribution.
 
--   WS-Security cannot be used with the local transport. Since the local
-    is mainly used to make calls within the same VM, WS-Security is
-    generally not required in scenarios where it is used.
--   If you want to make calls across tenants, you should use a non local
-    transport even if they run from the same VM.
--   If you need to use local transport with callout mediator, you do not
-    need to perform configuration mentioned in this section as callout
-    mediator requires blocking local transport which is configured by
-    default in WSO2 Enterprise Integrator distribution.
+To use this transport, configure an endpoint with the `         local://        ` prefix. For example, to make an in-VM call to the HelloService, use `         local://services/HelloService        ` . Note that the local
+transport cannot be used to send REST API calls, which require the HTTP/S transports.
 
-
-To use this transport, configure an endpoint with the
-`         local://        ` prefix. For example, to make an in-VM call
-to the HelloService, use
-`         local://services/HelloService        ` . Note that the local
-transport cannot be used to send REST API calls, which require the
-HTTP/S transports.
-
-### Configuring the Local Transport
+## Configuring the Local Transport
 
 By default, WSO2 EI provides CarbonLocalTransportSender and
 CarbonLocalTransportReceiver, which are used for internal communication
@@ -36,39 +24,22 @@ among Carbon components and are not suitable for WSO2 EI service
 invocation. To enable the local transport for service invocation, follow
 these steps.
 
-1\. In the carbon.xml file at location `         <EI_HOME>/conf        `
-, an endpoint is available as follows by default.
+Update the following configuration to enable the endpoint in the ei.toml file:
 
-``` html/xml
-    <ServerURL>local://services/</ServerURL>
+```toml
 ```
 
-Replace it with,
+Update the following cofnigurations in the ei.toml file:
 
-``` html/xml
-    <ServerURL>https://${carbon.local.ip}:${carbon.management.port}${carbon.context}/services/</ServerURL>
-```
-
-2\. In the axis2.xml file at location
-`         <EI_HOME>/conf/axis2/axis2.        ` xml, there is a transport
-sender and receiver named 'local' specified as follows in two different
-places:
-
-``` html/xml
-    <transportReceiver name="local" class="org.wso2.carbon.core.transports.local.CarbonLocalTransportReceiver"/>
-    
-    <transportSender name="local" class="org.wso2.carbon.core.transports.local.CarbonLocalTransportSender"/>
-```
-
-Remove both these lines and add following line.
-
-``` html/xml
-    <transportSender name="local" class="org.apache.axis2.transport.local.NonBlockingLocalTransportSender"/>
+```toml
+[transport.local]
+listener.enabled=false
+sender.enabled=false
 ```
 
 For more information about transports, see Carrying Messages .
 
-### Example
+## Example
 
 There are three proxy services in WSO2 EI named
 `         LocalTransportProxy        ` , `         SecondProxy        `
@@ -105,7 +76,3 @@ between proxy services will be reduced since no network overhead will be
 introduced.
 
 ![](attachments/119130361/119130362.png)
-
-Run [sample
-268](https://docs.wso2.com/display/EI650/Sample+268%3A+Proxy+Services+with+the+Local+Transport)
-for a demonstration of this scenario.
