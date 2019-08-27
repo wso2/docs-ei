@@ -8,7 +8,7 @@ WSO2 Streaming Integrator(SI) is a streaming data processing sever which lets us
 
 WSO2 SI can be effectively used for 
 + **Realtime ETL**: CDC for DBs, tailing files, scraping HTTP Endpoints, etc.
-+ **Work with streaming messaging systems**: fully compatible with Kafka and NATS.
++ **Work with streaming messaging systems**: Fully compatible with Kafka and NATS and provides advanced stream processing capabilities required to utlize the full potential of streaming data.
 + **Streaming data Integration**: Let’s users treat all data sources as streams and connect such streams with any destination. 
 + **Execute complex integrations based on streaming data**: SI has native support work hand-in-hand with WSO2 Micro integrator, so that complex integration flows can be triggered based on decision derived with stateful stream processing logics
 
