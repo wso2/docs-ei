@@ -2,57 +2,91 @@
 
 MQ Telemetry Transport (MQTT) is a simple and lightweight network
 protocol for device communication. This is an easy to implement protocol
-that is based on the principle of publish/subscribe. These
-characteristics make MQTT ideal for use in constrained environments.
+that is based on the publish/subscribe model. MQTT is ideal for use in constrained environments such as the following:
 
-For example,
-
--   When the network is expensive, has low bandwidth or is unreliable.
--   When running on an embedded device with limited processor or memory
-    resources.
+-   When the network is expensive, has low bandwidth, or is unreliable.
+-   When running on an embedded device with limited processor or memory resources.
 
 The MQTT transport implementation requires an MQTT server instance to be
 able to send and receive messages. The recommended MQTT server is the
 Mosquitto message broker.
 
-Configuration parameters for the MQTT receiver and sender are XML
-fragments that represent MQTT connection factories.
+## MQTT Connection Factory Parameters
 
-Following is a sample MQTT connection factory configuration that
-consists of four connection factory parameters:
+### Required Parameters
 
-``` java
-<parameter locked="false" name="mqttConFactory">
-    <parameter locked="false" name="mqtt.server.host.name">localhost</parameter>
-    <parameter locked="false" name="mqtt.server.port">1883</parameter>
-    <parameter locked="false" name="mqtt.client.id">esb.test.listener</parameter>
-    <parameter locked="false" name="mqtt.topic.name">esb.test2</parameter>
-</parameter>
-```
+<table>
+	<tr>
+		<th>Property</th>
+		<th>Description</th>
+	</tr>
+	<tr>
+         <td>mqtt.server.host.name</td>
+         <td>The name of the host.</td>
+      </tr>
+      <tr>
+         <td>mqtt.server.port</td>
+         <td>The port ID. The possible values are <code>1883</code> or <code>1885</code>.</td>
+      </tr>
+      <tr>
+         <td>mqtt.client.id</td>
+         <td>The client ID.</td>
+      </tr>
+      <tr>
+         <td>mqtt.topic.name</td>
+         <td>The name of the topic</td>
+      </tr>
+</table>
 
-## Configuring the MQTT transport
+### Optional Parameters
 
-Update the following configurations in the ei.toml file:
-
-```toml
-[transport.mqtt]
-listener.enable = false
-listener.parameter.hostname = "$ref{server.hostname}"
-listener.parameter.connection_factory = "mqttConFactory"
-listener.parameter.server_port = 1883
-listener.parameter.client_id = "client-id-1234"
-listener.parameter.topic_name = "esb.test"
-
-# not reqired parameter list
-listener.parameter.subscription_qos = 0
-listener.parameter.session_clean = false
-listener.parameter.enable_ssl = false
-listener.parameter.subscription_username = ""
-listener.parameter.subscription_password = ""
-listener.parameter.temporary_store_directory = ""
-listener.parameter.blocking_sender = false
-listener.parameter.connect_type = "text/plain"
-listener.parameter.message_retained = false
-
-sender.enable = false
-```
+<table>
+   <thead>
+      <tr>
+         <th>
+            Property
+         </th>
+         <th>
+            Description
+         </th>
+      </tr>
+   </thead>
+   <tbody>
+      <tr>
+         <td>mqtt.subscription.qos</td>
+         <td>The QoS value. The possible values are <code>0</code>, <code>1</code>, or <code>2</code>.</td>
+      </tr>
+      <tr>
+         <td>mqtt.session.clean</td>
+         <td>Whether session clean should be enabled or not.</td>
+      </tr>
+      <tr>
+         <td>mqtt.ssl.enable</td>
+         <td>Whether ssl should be enabled or not.</td>
+      </tr>
+      <tr>
+         <td>mqtt.subscription.username</td>
+         <td>The username for the subscription.</td>
+      </tr>
+      <tr>
+         <td>mqtt.subscription.password</td>
+         <td>The password for the subscription.</td>
+      </tr>
+      <tr>
+         <td>mqtt.temporary.store.directory</td>
+         <td>The path of the directory to be used as the persistent data store for quality of service purposes. The default value is the Micro Integrator temp path.</td>
+      </tr>
+      <tr>
+         <td>mqtt.blocking.sender</td>
+         <td>Whether blocking sender should be enabled or not.</td>
+      </tr>
+      <tr>
+         <td>mqtt.content.type</td>
+         <td>The content type. The default content type is <code>text/plain</code>.</td>
+      </tr>
+      <tr>
+         <td>mqtt.message.retained</td>
+         <td>Whether the messaging engine should retain a published message or not. This parameter can be used only in the transport sender. By default, this parameter is set to <code>false</code>.</td>
+      </tr>
+   </tbody>
+</table>

@@ -5,245 +5,133 @@ module developed under the Apache Synapse project. This transport is
 mainly used in conjunction with proxy services. This transport supports JMX.
 
 FIX transport does not support any global parameters. All the FIX
-configuration parameters should be specified at service level.
-
-QuickFix 4J configuration parameters can be found
+configuration parameters should be specified at service level. QuickFix 4J configuration parameters can be found
 [here](http://www.quickfixengine.org/quickfix/doc/html/configuration.html)
 
-## Configuring the FIX transport
-
-Update the following configurations in the ei.toml file:
-
-```toml
-[transport.fix]
-listener.enabled=false
-sender.enabled=false
-```
-
-The transport implementation is based on Quickfix/J open source FIX engine and hence the following additional dependencies are required to enable the FIX transport.
-
--   `          mina-core.jar         `
--   `          quickfixj-core.jar         `
--   `          quickfixj-msg-fix40.jar         `
--   `          quickfixj-msg-fix41.jar         `
--   `          quickfixj-msg-fix42.jar         `
--   `          quickfixj-msg-fix43.jar         `
--   `          quickfixj-msg-fix44.jar         `
--   `          slf4j-api.jar         `
--   `          slf4j-log4j12.jar         `
-
-Download [Quickfix/J](https://www.quickfixj.org/) and in the
-distribution archive you will find all the dependencies listed above.
-Also please refer to Quickfix/J documentation on configuring FIX
-acceptors and initiators.
-
-### Service Level FIX Parameters
+## Service Level FIX Parameters
 
 !!! Info
 	In transport parameter tables, literals displayed in italic mode under the "Possible Values" column should be considered as fixed literal constant values. Those values can be directly put in transport configurations.
 
 <table>
-<colgroup>
-<col style="width: 20%" />
-<col style="width: 20%" />
-<col style="width: 20%" />
-<col style="width: 20%" />
-<col style="width: 20%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th><p>Parameter Name</p></th>
-<th><p>Description</p></th>
-<th><p>Requried</p></th>
-<th><p>Possible Values</p></th>
-<th><p>Default Value</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><p>transport.fix.<br />
-AcceptorConfigURL</p></td>
-<td><p>URL to the Quickfix/J<br />
-acceptor configuration<br />
-file (see notes below).</p></td>
-<td><p>Required for receiving<br />
-messages over FIX</p></td>
-<td><p>A valid URL</p></td>
-<td><p><br />
-</p></td>
-</tr>
-<tr class="even">
-<td><p>transport.fix.<br />
-InitiatorConfigURL</p></td>
-<td><p>URL to the Quickfix/J<br />
-initiator configuration<br />
-file (see notes below).</p></td>
-<td><p>Required for sending<br />
-messages over FIX</p></td>
-<td><p>A valid URL</p></td>
-<td><p><br />
-</p></td>
-</tr>
-<tr class="odd">
-<td><p>transport.fix.<br />
-AcceptorLogFactory</p></td>
-<td><p>Log factory implementation<br />
-to be used for the<br />
-FIX acceptor (Determines<br />
-how logging is done at the<br />
-acceptor level).</p></td>
-<td><p>No</p></td>
-<td><p><em>console, file, jdbc</em></p></td>
-<td><p>Logging disabled</p></td>
-</tr>
-<tr class="even">
-<td><p>transport.fix.<br />
-InitiatorLogFactory</p></td>
-<td><p>Log factory implementation<br />
-to be used for the<br />
-FIX acceptor (Determines<br />
-how logging is done at the<br />
-acceptor level).</p></td>
-<td><p>No</p></td>
-<td><p><em>console, file, jdbc</em></p></td>
-<td><p>Logging disabled</p></td>
-</tr>
-<tr class="odd">
-<td><p>transport.fix.<br />
-AcceptorMessage<br />
-Store</p></td>
-<td><p>Message store<br />
-mechanism to be<br />
-used with the<br />
-acceptor (Determines<br />
-how the FIX message<br />
-store is maintained).</p></td>
-<td><p>No</p></td>
-<td><p><em>memory, file,</em><br />
-<em>sleepycat, jdbc</em></p></td>
-<td><p>memory</p></td>
-</tr>
-<tr class="even">
-<td><p>transport.fix.<br />
-InitiatorMessage<br />
-Store</p></td>
-<td><p>Message store<br />
-mechanism to be<br />
-used with the initiator<br />
-(Determines how the<br />
-FIX message store is<br />
-maintained).</p></td>
-<td><p>No</p></td>
-<td><p><em>memory, file,</em><br />
-<em>sleepycat, jdbc</em></p></td>
-<td><p>memory</p></td>
-</tr>
-<tr class="odd">
-<td><p>transport.fix.<br />
-ResponseDeliverTo<br />
-CompID</p></td>
-<td><p>If the response FIX<br />
-messages should<br />
-be delivered to a<br />
-location different<br />
-from the location<br />
-the request was<br />
-originated use this<br />
-property to set the<br />
-DeliverToCompID<br />
-field of the FIX<br />
-messages.</p></td>
-<td><p>No</p></td>
-<td><p><br />
-</p></td>
-<td><p><br />
-</p></td>
-</tr>
-<tr class="even">
-<td><p>transport.fix.<br />
-ResponseDeliverTo<br />
-SubID</p></td>
-<td><p>If the response FIX<br />
-messages should<br />
-be delivered to a<br />
-location different<br />
-from the location<br />
-the request was<br />
-originated use this<br />
-property to set<br />
-the DeliverToSubID<br />
-field of the FIX<br />
-messages.</p></td>
-<td><p>No</p></td>
-<td><p><br />
-</p></td>
-<td><p><br />
-</p></td>
-</tr>
-<tr class="odd">
-<td><p>transport.fix.<br />
-ResponseDeliverTo<br />
-LocationID</p></td>
-<td><p>If the response FIX<br />
-messages should<br />
-be delivered to a<br />
-location different<br />
-from the location<br />
-the request was<br />
-originated use this<br />
-property to set the<br />
-DeliverToLocationID<br />
-field of the FIX<br />
-messages.</p></td>
-<td><p>No</p></td>
-<td><p><br />
-</p></td>
-<td><p><br />
-</p></td>
-</tr>
-<tr class="even">
-<td><p>transport.fix.<br />
-SendAllToInSequence</p></td>
-<td><p>By default, all received<br />
-FIX messages (including<br />
-responses) will be<br />
-directed to the in<br />
-sequence of the proxy<br />
-service.<br />
-<br />
-Use this property to<br />
-override that behavior.</p></td>
-<td><p>No</p></td>
-<td><p><em>true, false</em></p></td>
-<td><p>true</p></td>
-</tr>
-<tr class="odd">
-<td><p>transport.fix.<br />
-BeginStringValidation</p></td>
-<td><p>Whether the transport<br />
-should validate<br />
-BeginString values<br />
-when forwrding FIX<br />
-messages across<br />
-sessions.</p></td>
-<td><p>No</p></td>
-<td><p><em>true, false</em></p></td>
-<td><p>true</p></td>
-</tr>
-<tr class="even">
-<td><p>transport.fix.<br />
-DropExtraResponses</p></td>
-<td><p>In situation where the<br />
-FIX recipient sends<br />
-multiple responses<br />
-per request use this<br />
-parameter to drop<br />
-excessive responses<br />
-and use only the first<br />
-one.</p></td>
-<td><p>No</p></td>
-<td><p><em>true, false</em></p></td>
-<td><p>false</p></td>
-</tr>
-</tbody>
+   <thead>
+      <tr>
+         <th>
+          Property
+         </th>
+         <th>
+           Description
+         </th>
+      </tr>
+   </thead>
+   <tbody>
+      <tr>
+         <td>
+			transport.fix.AcceptorConfigURL
+         </td>
+         <td>
+            URL to the Quickfix/J acceptor configuration file (see notes below).</br></br> This is required for receiving messages over FIX.
+         </td>
+      </tr>
+      <tr>
+         <td>
+            transport.fix.InitiatorConfigURL
+         </td>
+         <td>
+            URL to the Quickfix/J initiator configuration file (see notes below).</br></br>
+            Required for sendingmessages over FIX
+         </td>
+      </tr>
+      <tr>
+         <td>
+            transport.fix.AcceptorLogFactory
+         </td>
+         <td>
+            Log factory implementation to be used for the FIX acceptor (Determines how logging is done at the acceptor level).</br></br>
+            Possible values are <code>console</code>, <code>file</code>, and <code>jdbc</code>.</br></br>
+            Logging is disabled by default.
+         </td>
+      </tr>
+      <tr>
+         <td>
+            transport.fix.InitiatorLogFactory
+         </td>
+         <td>
+            Log factory implementation to be used for the FIX acceptor (Determines how logging is done at the acceptor level).</br></br>
+            Possible values are <code>console</code>, <code>file</code>, and <code>jdbc</code>.</br></br>
+            Logging is disabled by default.
+         </td>
+      </tr>
+      <tr>
+         <td>
+            transport.fix.AcceptorMessageStore
+         </td>
+         <td>
+            Message store mechanism to be used with the acceptor (Determines how the FIX message store is maintained).</br></br>
+            Possible values are <code>memory</code>, <code>file</code>, <code>sleepycat</code>, and <code>jdbc</code>.</br></br>
+            The default value is <code>memory</code>.
+         </td>
+      </tr>
+      <tr>
+         <td>
+            transport.fix.InitiatorMessageStore
+         </td>
+         <td>
+            Message store mechanism to be used with the initiator (Determines how the FIX message store is maintained).</br></br>
+            Possible values are <code>memory</code>, <code>file</code>, <code>sleepycat</code>, and <code>jdbc</code>.</br></br>
+            The default value is <code>memory</code>.
+         </td>
+      </tr>
+      <tr>
+         <td>
+            transport.fix.ResponseDeliverToCompID
+         </td>
+         <td>
+            If the response FIX messages should be delivered to a location different from the location the request was originated use this property to set the DeliverToCompID field of the FIX messages.
+         </td>
+      </tr>
+      <tr>
+         <td>
+            transport.fix.ResponseDeliverToSubID
+         </td>
+         <td>
+            If the response FIX messages should be delivered to a location different from the location the request was  originated use this property to set the DeliverToSubID field of the FIX messages.
+         </td>
+      </tr>
+      <tr>
+         <td>
+            transport.fix.ResponseDeliverToLocationID
+         </td>
+         <td>
+            If the response FIX messages should be delivered to a location different from the location the request was originated use this property to set the DeliverToLocationID field of the FIX messages.
+         </td>
+      </tr>
+      <tr>
+         <td>
+            transport.fix.endAllToInSequence
+         </td>
+         <td>
+            By default, all received FIX messages (including responses) will be directed to the in sequence of the proxy service. Use this property to override that behavior.<br/><br/>
+            By default, this setting is <code>true</code>.
+         </td>
+      </tr>
+      <tr>
+         <td>
+            transport.fix.BeginStringValidation
+         </td>
+         <td>
+            Whether the transport should validate BeginString values when forwrding FIX messages across sessions.<br/><br/>
+            By default, this setting is <code>true</code>.
+         </td>
+      </tr>
+      <tr>
+         <td>
+            transport.fix.DropExtraResponses
+         </td>
+         <td>
+            In situation where the FIX recipient sends multiple responses per request use this parameter to drop excessive responses and use only the first one.<br/><br/>
+            By default, this setting is <code>false</code>.
+         </td>
+      </tr>
+   </tbody>
 </table>
