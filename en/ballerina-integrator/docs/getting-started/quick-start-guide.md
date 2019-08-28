@@ -73,7 +73,21 @@ $ curl http://localhost:9090/calculatorService/calculate -H "Content-Type: appli
 You get the following response.
 
 ```
-Hello Ballerina!
+*   Trying ::1...
+* TCP_NODELAY set
+* Connected to localhost (::1) port 9092 (#0)
+> POST /calculatorService/calculate HTTP/1.1
+> Host: localhost:9092
+> User-Agent: curl/7.54.0
+> Accept: */*
+> Content-Type: application/json
+> Content-Length: 52
+> 
+* upload completely sent off: 52 out of 52 bytes
+< HTTP/1.1 500 Internal Server Error
+* no chunk, no close, no size. Assume close to signal end
+< 
+* Closing connection 0
 ```
 
 You just started Ballerina, created a project, started a service, invoked the service you created, and received a response.
