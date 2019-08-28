@@ -17,68 +17,28 @@ to a REST back-end service (microservice) that is defined as an HTTP
 endpoint in the ESB. If you want to see how information stored in a
 database (instead of a microservice) can be used, see the tutorial on
 [sending a simple message to
-a datasource](_Sending_a_Simple_Message_to_a_Datasource_) .
-
-  
+a datasource](_Sending_a_Simple_Message_to_a_Datasource_) . 
 
 ![](attachments/119132413/119132450.png){height="250"}
 
-!!! tip
-
-**Before you begin** ,
-
--   Install Oracle Java SE Development Kit (JDK) version 1.8.\* and set
-    the `          JAVA_HOME         ` environment variable.
--   Go to the [product page](https://wso2.com/integration/) of **WSO2
-    Enterprise Integrator** , select **Other Installation Options** ,
+!!! Tip
+    **Before you begin**
+    -   Go to the [product page](https://wso2.com/integration/) of **WSO2 Enterprise Integrator** , select **Other Installation Options** ,
     and download the **Binary** distribution . Extract the ZIP file of
     the binary. This will be your `          <EI_HOME>         `
     directory.
--   Select and download the relevant WSO2 Integration Studio ZIP file
+    -   Select and download the relevant WSO2 Integration Studio ZIP file
     based on your operating system from
     [here](https://wso2.com/integration/tooling/) and then extract the
     ZIP file.  
     The path to this folder is referred to as
     `           <EI_TOOLING>          ` throughout this tutorial.
 
-    !!! info
-
-    Getting an error message? See the troubleshooting tips given under
-    [Installing WSO2 Integration
-    Studio](https://docs.wso2.com/display/EI650/Installing+WSO2+Integration+Studio#InstallingWSO2IntegrationStudio-Troubleshooting)
-    .
-
-
--   Download the MSF4J service from
-    [here](https://github.com/wso2-docs/WSO2_EI/blob/master/Back-End-Service/Hospital-Service-2.0.0.jar)
-    and copy the JAR file to the
-    `          <EI_HOME>/wso2/msf4j/deployment/microservices         `
-    folder. The back-end service is now deployed in the MSF4J profile of
-    WSO2 EI.
-
-
-**Let's get started!**
+Let's get started!
 
 This tutorial includes the following sections:
 
--   [Creating the message mediation
-    artifacts](#SendingaSimpleMessagetoaService-Creatingthemessagemediationartifacts)
-    -   [Creating the deployable artifacts
-        project](#SendingaSimpleMessagetoaService-Creatingthedeployableartifactsproject)
-    -   [Connecting to the back-end
-        service](#SendingaSimpleMessagetoaService-Connectingtotheback-endservice)
-    -   [Mediating requests to the back-end
-        service](#SendingaSimpleMessagetoaService-Mediatingrequeststotheback-endservice)
--   [Packaging the
-    artifacts](#SendingaSimpleMessagetoaService-Packagingtheartifacts)
--   [Starting the ESB profile and deploying the
-    artifacts](#SendingaSimpleMessagetoaService-StartingtheESBprofileanddeployingtheartifacts)
--   [Starting the MSF4J
-    profile](#SendingaSimpleMessagetoaService-StartingtheMSF4Jprofile)
--   [Sending requests to the
-    ESB](#SendingaSimpleMessagetoaService-SendingrequeststotheESB)
-
-### Creating the message mediation artifacts
+## Creating the message mediation artifacts
 
 Requests going through the ESB profile of WSO2 EI are called messages,
 and [message
@@ -89,19 +49,14 @@ to the back-end service (healthcare service). We use the Eclipse-based
 WSO2 Integration Studio to create the message mediation artifacts and
 then deploy them to the ESB profile of WSO2 EI.
 
-!!! note
-
-See the following topics for a description of the **concepts** that you
-need to know when creating ESB artifacts:
-
--   [REST
-    API](https://docs.wso2.com/display/EI650/Key+Concepts#KeyConcepts-restAPI)
--   [Endpoints](https://docs.wso2.com/display/EI650/Key+Concepts#KeyConcepts-Messageexitpoints)
--   [Sequences  
-    ](https://docs.wso2.com/display/EI650/Key+Concepts#KeyConcepts-Sequences)
+!!! Note
+    See the following topics for a description of the **concepts** that you need to know when creating ESB artifacts:
+    -   [REST API](https://docs.wso2.com/display/EI650/Key+Concepts#KeyConcepts-restAPI)
+    -   [Endpoints](https://docs.wso2.com/display/EI650/Key+Concepts#KeyConcepts-Messageexitpoints)
+    -   [Sequences](https://docs.wso2.com/display/EI650/Key+Concepts#KeyConcepts-Sequences)
 
 
-#### Creating the deployable artifacts project
+### Creating the deployable artifacts project
 
 Follow the steps given below to create an ESB solution project.
 
@@ -130,26 +85,18 @@ Follow the steps given below to create an ESB solution project.
 Next, we create an endpoint inside the SampleServices ESB Solution
 project that will allow the ESB to connect to the back-end service.
 
-#### Connecting to the back-end service
+### Connecting to the back-end service
 
 To connect to the back-end service, we must expose a URL that can be
 used to connect to the service. To do this, we will create an endpoint
 for this service.
 
-!!! info
-
-The sample back-end service (i.e. the
-`                   Hospital-Service-2.0.0.jar                 ` file)
-we are using in this tutorial is a sample [MSF4J
-service](https://docs.wso2.com/display/EI650/Key+Concepts#KeyConcepts-msf4j)
-.
-
+!!! Info
+    The sample back-end service (i.e. the `                   Hospital-Service-2.0.0.jar                 ` file) we are using in this tutorial is a sample [MSF4J service](https://docs.wso2.com/display/EI650/Key+Concepts#KeyConcepts-msf4j).
 
 1.  Right-click **SampleServices** in the Project Explorer and navigate
-    to **New -\> Endpoint** .
-
-2.  Ensure **Create a New Endpoint** is selected and click **Next** .  
-
+    to **New -\> Endpoint**.
+2.  Ensure **Create a New Endpoint** is selected and click **Next**.
 3.  Enter the information given below to create the new endpoint.  
 
     <table>
@@ -197,7 +144,7 @@ service](https://docs.wso2.com/display/EI650/Key+Concepts#KeyConcepts-msf4j)
 
     ![](attachments/119132413/119132428.png){width="550" height="506"}
 
-4.  Click **Finish** .  
+4.  Click **Finish**.  
     The QueryDoctorEP endpoint is saved in the
     `           endpoints          ` folder within the ESB
     Solution Project you created.  
@@ -208,10 +155,10 @@ time to create the REST API and the relevant API resource that will
 receive requests from client applications, mediate them and send them to
 the endpoint, and return the results to the client.
 
-#### Mediating requests to the back-end service
+### Mediating requests to the back-end service
 
 We use WSO2 Integration Studio to create a REST API named
-`         HealthcareAPI        ` . Next, we create a resource within
+`         HealthcareAPI        `. Next, we create a resource within
 this API for the GET HTTP method that is used to send requests to the
 Healthcare back-end service and retrieve available doctor information.
 
@@ -235,12 +182,10 @@ Healthcare back-end service and retrieve available doctor information.
     `           HealthcareAPI.xml          ` file will appear as shown
     below. You can now start configuring the API resource.
 
-        !!! note
-    
-        -   The top part of the canvas is the **In sequence** , which
+    !!! Note
+        -   The top part of the canvas is the **In sequence**, which
             controls how incoming messages are mediated.
-        -   The middle part of the canvas is the **Out sequence** , which
-            controls how responses are handled. In this case, a Send
+        -   The middle part of the canvas is the **Out sequence**, which controls how responses are handled. In this case, a Send
             mediator is already in place to send responses back to the
             requesting client.
         -   The bottom part of the canvas is the **Fault sequence** , which
@@ -254,8 +199,7 @@ Healthcare back-end service and retrieve available doctor information.
 5.  Double-click the **Resource** icon on the left side of the canvas.  
     The properties for the API resource appear on the **Properties** tab
     at the bottom of the window. If they do not appear, you can
-    right-click the **Resource** icon and click **Show Properties View**
-    .
+    right-click the **Resource** icon and click **Show Properties View**.
 
 6.  On the **Properties** tab, provide the following as **Basic**
     properties:
