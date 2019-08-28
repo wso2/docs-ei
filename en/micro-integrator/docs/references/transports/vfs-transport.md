@@ -20,528 +20,492 @@ version 6.5.0 onwards.
 !!! Tip
     When you transfer a file to a remote FTP location via VFS, the ESB tries to detect the FTP location by navigating from the root folder first. If the ESB does not have **at least list permission** to the root (/), the file transfer fails.
 
-## Configuring the endpoint
+## VFS Service-Level Parameters
 
-To configure a VFS endpoint, use the `         vfs:file        ` prefix in the URI. For example:
-
-```
-<endpoint>
-    <address uri="vfs:file:///home/user/test/out"/>
-</endpoint>
-```
-
-## Security
-
-The VFS transport supports the **SFTP protocol** with **Secure Sockets
-Layer (SSL)** . The configuration is identical to other protocols with
-the only difference being the URL prefixes and parameters. For more
-information, see [VFS URL parameters](#VFSTransport-URLparams) below.
-
-### Securing VFS password in a proxy service
-
-The following instructions describe how to secure the VFS password in a
-proxy service configuration.
-
-1.  Provide configuration for the password decryption by adding the
-    following lines in
-    `           <EI_HOME>/conf/axis2/axis2.xml          ` file:
-
-    ```
-    <transportReceiver class="org.apache.synapse.transport.vfs.VFSTransportListener" name="vfs">
-            <parameter locked="false" name="keystore.identity.location">repository/resources/security/wso2carbon.jks</parameter>
-            <parameter locked="false" name="keystore.identity.type">JKS</parameter>
-            <parameter locked="false" name="keystore.identity.store.password">wso2carbon</parameter>
-            <parameter locked="false" name="keystore.identity.key.password">wso2carbon</parameter>
-            <parameter locked="false" name="keystore.identity.alias">wso2carbon</parameter>
-    </transportReceiver>
-    ```
-
-    !!! Info
-        If you need to secure the passwords provided in the above configuration, you can do so using [secure vault.](https://docs.wso2.com/display/ADMIN44x/Carbon+Secure+Vault+Implementation) The secured configuration would look like this:
-    
-    ``` java
-    <transportReceiver class="org.apache.synapse.transport.vfs.VFSTransportListener" name="vfs">
-            <parameter locked="false" name="keystore.identity.location">repository/resources/security/wso2carbon.jks</parameter>
-            <parameter locked="false" name="keystore.identity.type">JKS</parameter>
-            <parameter locked="false" name="keystore.identity.store.password" svns:secretAlias="vfs.transport.keystore.password">password</parameter>
-            <parameter locked="false" name="keystore.identity.key.password" svns:secretAlias="vfs.transport.key.password">password</parameter>
-            <parameter locked="false" name="keystore.identity.alias">wso2carbon</parameter>
-    </transportReceiver>
-    ```
-        
-2.  Manually encrypt the password using Cipher Tool. See, [Encrypting
-    Passwords in Cipher
-    Tool](https://docs.wso2.com/display/ADMIN44x/Encrypting+Passwords+with+Cipher+Tool#EncryptingPasswordswithCipherTool-Encryptingpasswordsmanually)
-    in the administration guide.
-3.  Provide the encrypted password value in your proxy configuration by
-    adding the following parameter:
-
-    ``` java
-    <parameter name="transport.vfs.FileURI">smb://{wso2:vault-decrypt('encryptedValue')}</parameter>
-    ```
-
-## Failure tracking
-
-To track failures in file processing, which can occur when a resource
-becomes unavailable, the VFS transport creates and maintains a failed
-records file. This text file contains a list of files that failed to be
-processed. When a failure occurs, an entry with the failed file name and
-the timestamp is logged in the text file. When the next polling
-iteration occurs, the VFS transport checks each file against the failed
-records file, and if a file is listed as a failed record, it will skip
-processing and schedule a move task to move that file.
-
-## Transferring large files
-
-If you need to transfer large files using the VFS transport, you can
-avoid out-of-memory failures by taking the following steps:
-
-1.  In `           <EI_HOME>/conf/axis2/axis2.xml          ` , in the `           messageBuilders          ` section, add the binary message builder as follows:
-
-    ```
-    <messageBuilder contentType="application/binary" class="org.apache.axis2.format.BinaryBuilder"/>
-    ```
-
-    and in the `           messageFormatters          ` section, add the
-    binary message formatter as follows:
-
-    ```
-    <messageFormatter contentType="application/binary" class="org.apache.axis2.format.BinaryFormatter"/>
-    ```
-
-2.  In the proxy service where you use the VFS transport, add the
-    following parameter to enable streaming (see [VFS service-level
-    parameters](#VFSTransport-parameters) below for more information):
-
-    ```
-    <parameter name="transport.vfs.Streaming">true</parameter>
-    ```
-
-3.  In the same proxy service, before the Send mediator, add the
-    following property:
-
-    !!! Info
-        You also need to add the following property if you want to use the VFS transport to transfer files from VFS to VFS.
-
-    ```
-    <property name="ClientApiNonBlocking" value="true" scope="axis2" action="remove"/>
-    ```
-
-    For more information, see Example 3 of the [Send Mediator](https://docs.wso2.com/display/EI650/Send+Mediator#SendMediator-blocking).
-
-## VFS service-level parameters
-
-The VFS transport does not have any global parameters to be configured.
-Rather, it has a set of service-level parameters that must be specified
-for each proxy service that uses the VFS transport.
+The VFS transport does not have any global parameters to be configured. Rather, it has a set of service-level parameters that must be specified for each proxy service that uses the VFS transport.
 
 <table>
-<thead>
-<tr class="header">
-<th><p>Parameter Name</p></th>
-<th><p>Description</p></th>
-<th><p>Required</p></th>
-<th><p>Possible Values</p></th>
-<th><p>Default Value</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><div class="content-wrapper">
-<p>transport.vfs.FileURI</p>
-</div></td>
-<td><div class="content-wrapper">
-<p>The URI of the location of your files. This should be the source location of the files (i f you are configuring the ESB to read files) or the destination of the files ( if you are configuring the ESB to send files). You can specify connection-level parameters on the URL (see <a href="#VFSTransport-URLparams">VFS URL parameters</a> below).</p>
-<p>When you need to access the absolute path of the URL, you can define the URL with <code>               sftpPathFromRoot              </code> as shown below. Also, note that <a href="#VFSTransport-avoid_permissions">transport.vfs.AvoidPermissionCheck</a> is a mandatory parameter for this URL when SFTP is used.</p>
-<div class="code panel pdl" style="border-width: 1px;">
-<div class="codeContent panelContent pdl">
-<div class="sourceCode" id="cb1" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence" style="brush: java; gutter: false; theme: Confluence"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb1-1"><a href="#cb1-1"></a>&lt;parameter name=<span class="st">&quot;transport.vfs.FileURI&quot;</span>&gt;sftp:<span class="co">//[ username[: password]@] hostname[: port][ absolute-path]?sftpPathFromRoot=true;transport.vfs.AvoidPermissionCheck=true&lt;/parameter&gt;</span></span></code></pre></div>
-</div>
-</div>
-</div></td>
-<td><p>Yes</p></td>
-<td><p>A valid file URI in the following form:<br />
-<code>              file://&lt;path&gt;             </code></p></td>
-<td><p><br />
-</p></td>
-</tr>
-<tr class="even">
-<td><p>transport.vfs.ContentType</p></td>
-<td><p>Content type of the files processed by the transport. To specify the encoding, follow the content type with a semi-colon and the character set. For example:</p>
-<div>
-<div>
-<code>               &lt;parameter name="transport.vfs.ContentType“&gt;text/plain;charset=UTF-32&lt;/parameter&gt;              </code>
-</div>
-<div>
-When writing a file, you can set a different encoding with the <code>               CHARACTER_SET_ENCODING              </code> property:
-</div>
-<div>
-<code>               &lt;property name="CHARACTER_SET_ENCODING" value="UTF-8" scope="axis2" type="STRING"/&gt;              </code>
-</div>
-</div></td>
-<td><p>Yes</p></td>
-<td><p>A valid content type for the files (e.g., <code>              text/xml             </code> ). You can specify the encoding after the content type, such as <code>              text/plain;charset=UTF-32             </code></p></td>
-<td><p><br />
-</p></td>
-</tr>
-<tr class="odd">
-<td><p>transport.vfs.<br />
-FileNamePattern</p></td>
-<td><p>If the VFS listener should process only a subset of the files available at the specified file URI location, use this parameter to select those files by name using a regular expression.</p></td>
-<td><p>No</p></td>
-<td><p>A regular expression to select files by name (e.g., <code>              *\.xml             </code> )</p></td>
-<td><p><br />
-</p></td>
-</tr>
-<tr class="even">
-<td><p>transport.<br />
-PollInterval</p></td>
-<td><p>The polling interval for the transport receiver to poll the file URI location. The value is expressed in seconds unless you add "ms" for milliseconds, e.g., "2" or "2000ms" to specify 2 seconds.</p></td>
-<td><p>No</p></td>
-<td><p>A positive integer.</p></td>
-<td><p><br />
-</p></td>
-</tr>
-<tr class="odd">
-<td><p>transport.vfs.<br />
-ActionAfterProcess</p></td>
-<td><p>Whether to move, delete or take no action on the files after the transport has processed them.</p></td>
-<td><p>No</p></td>
-<td><p><code>              MOVE             </code> , <code>              DELETE             </code> or <code>              NONE             </code></p></td>
-<td><p><code>              DELETE             </code></p></td>
-</tr>
-<tr class="even">
-<td><p>transport.vfs.<br />
-ActionAfterFailure</p></td>
-<td><p>Whether to move, delete or take no action on the files if a failure occurs.</p></td>
-<td><p>No</p></td>
-<td><p><code>              MOVE             </code> , <code>              DELETE             </code> or <code>              NONE             </code></p></td>
-<td><p><code>              DELETE             </code></p></td>
-</tr>
-<tr class="odd">
-<td><p>transport.vfs.<br />
-MoveAfterProcess</p></td>
-<td><p>Where to move the files after processing if ActionAfterProcess is MOVE.</p></td>
-<td><p>Yes, if<br />
-ActionAfterProcess<br />
-is MOVE</p></td>
-<td><p>A valid file URI</p></td>
-<td><p><br />
-</p></td>
-</tr>
-<tr class="even">
-<td><p>transport.vfs.<br />
-MoveAfterFailure</p></td>
-<td><p>Where to move the files after processing if ActionAfterFailure is MOVE.</p></td>
-<td><p>Yes, if<br />
-ActionAfterFailure<br />
-is MOVE</p></td>
-<td><p>A valid file URI</p></td>
-<td><p><br />
-</p></td>
-</tr>
-<tr class="odd">
-<td><p>transport.vfs.<br />
-ReplyFileURI</p></td>
-<td><p>The location where reply files should be written by the transport.</p></td>
-<td><p>No</p></td>
-<td><p>A valid file URI</p></td>
-<td><p><br />
-</p></td>
-</tr>
-<tr class="even">
-<td><p>transport.vfs.<br />
-ReplyFileName</p></td>
-<td><p>The name for reply files written by the transport.</p></td>
-<td><p>No</p></td>
-<td><p>A valid file name</p></td>
-<td><p><code>              response.xml             </code></p></td>
-</tr>
-<tr class="odd">
-<td><p>transport.vfs.<br />
-MoveTimestampFormat</p></td>
-<td><p>The pattern/format of the timestamps added to file names as prefixes when moving files.</p></td>
-<td><p>No</p></td>
-<td><p>A valid <a href="http://docs.oracle.com/javase/7/docs/api/java/text/SimpleDateFormat.html">timestamp pattern</a><br />
-(e.g., <code>              yyyy-MM-dd'T'HH:mm:ss.SSSZ             </code> )</p></td>
-<td><p><br />
-</p></td>
-</tr>
-<tr class="even">
-<td><p>transport.vfs.<br />
-Streaming</p></td>
-<td><p>Whether files should be transferred in streaming mode, which is useful when transferring large files</p></td>
-<td><p>No</p></td>
-<td><p><code>              true             </code> or <code>              false             </code></p></td>
-<td><p><code>              false             </code></p></td>
-</tr>
-<tr class="odd">
-<td><p>transport.vfs.<br />
-ReconnectTimeout</p></td>
-<td><p>Reconnect timeout value in seconds to be used in case of an error when transferring files</p></td>
-<td><p>No</p></td>
-<td><p>A positive integer</p></td>
-<td><p>30 sec</p></td>
-</tr>
-<tr class="even">
-<td><p>transport.vfs.<br />
-MaxRetryCount</p></td>
-<td><p>Maximum number of retry attempts to carry out in case of errors.</p></td>
-<td><p>No</p></td>
-<td><p>A positive integer</p></td>
-<td><p>3</p></td>
-</tr>
-<tr class="odd">
-<td><p>transport.vfs.Append</p></td>
-<td><p>When writing the response to a file, whether the response should be appended to the response file instead of overwriting the file. This value should be defined as a query parameter in the out/reply<br />
-file URI. For example:<br />
-<code>              "                             vfs:file:///home/user/test/out                            ?             </code><br />
-<code>              transport.vfs.Append=true"             </code></p>
-<p>or:</p>
-<p><code>              &lt;parameter name="             </code><br />
-<code>              transport.vfs.ReplyFileURI"&gt;             </code><br />
-<code>              file:///home/user/test/out?             </code><br />
-<code>              transport.vfs.Append=true             </code><br />
-<code>              &lt;/parameter&gt;             </code></p></td>
-<td><p>No</p></td>
-<td><p><code>              true             </code> or <code>              false             </code></p></td>
-<td><p><code>              false             </code> (the response file will be completely overwritten).</p></td>
-</tr>
-<tr class="even">
-<td><p>transport.vfs.<br />
-MoveAfterFailedMove</p></td>
-<td><p>Where to move the failed file.</p></td>
-<td><p>No</p></td>
-<td><p>A valid file URI</p></td>
-<td><p><br />
-</p></td>
-</tr>
-<tr class="odd">
-<td><p>transport.vfs.<br />
-FailedRecordsFileName</p></td>
-<td><p>The name of the file that maintains<br />
-the list of failed files.</p></td>
-<td><p>No</p></td>
-<td><p>A valid file name</p></td>
-<td><p><code>              vfs-move-failed-records.             </code><br />
-<code>              properties             </code></p></td>
-</tr>
-<tr class="even">
-<td><p>transport.vfs.<br />
-FailedRecordsFile<br />
-Destination</p></td>
-<td><p>Where to store the failed records file.</p></td>
-<td><p>No</p></td>
-<td><p>A folder URI</p></td>
-<td><p><code>                           </code></p></td>
-</tr>
-<tr class="odd">
-<td><p>transport.vfs.<br />
-MoveFailedRecord<br />
-TimestampFormat</p></td>
-<td><p>Entries in the failed records file include the name of the file that failed and the timestamp of its failure. This property configures the time stamp format.</p></td>
-<td><p>No</p></td>
-<td><p>A valid <a href="http://docs.oracle.com/javase/7/docs/api/java/text/SimpleDateFormat.html">timestamp pattern</a><br />
-(e.g., <code>              yyyy-MM-dd'T'HH:mm:ss.SSSZ             </code> )</p></td>
-<td><p><code>              dd-MM-yyyy HH:mm:ss             </code></p></td>
-</tr>
-<tr class="even">
-<td><p>transport.vfs.<br />
-FailedRecordNext<br />
-RetryDuration</p></td>
-<td><p>The time in milliseconds to wait before retrying the move task.</p></td>
-<td><p>No</p></td>
-<td><p>A positive integer</p></td>
-<td><p>3000 milliseconds</p></td>
-</tr>
-<tr class="odd">
-<td><p>transport.vfs.Locking</p></td>
-<td><p>By default, file locking is enabled in the VFS transport. This parameter lets you configure the locking behavior on a per service basis. You can also disable locking globally by specifying the parameter at the receiver level and selectively enable locking only for a set of services.</p></td>
-<td><p>No</p></td>
-<td><p><code>              enable             </code> or <code>              disable             </code></p></td>
-<td><p><code>              enable             </code></p></td>
-</tr>
-<tr class="even">
-<td>transport.vfs.<br />
-FileProcessCount</td>
-<td>This setting allows you to throttle the VFS listener by processing files in batches. Specify the number of files you want to process in each batch.</td>
-<td>No</td>
-<td>A positive integer, such as 10</td>
-<td>N/A</td>
-</tr>
-<tr class="odd">
-<td>transport.vfs.<br />
-FileProcessInterval</td>
-<td>The interval in milliseconds between two file processes.</td>
-<td>No</td>
-<td>A positive integer, such as 1000</td>
-<td>N/A</td>
-</tr>
-<tr class="even">
-<td>transport.vfs.ClusterAware</td>
-<td>Whether VFS coordination support is enabled in a clustered deployment or not.</td>
-<td>No</td>
-<td><code>             true            </code> or <code>             false            </code></td>
-<td><code>             false            </code></td>
-</tr>
-<tr class="odd">
-<td>transport.vfs.FileSizeLimit</td>
-<td>Only file sizes that are less than or equal to the defined limit are processed.</td>
-<td>No</td>
-<td>File size in bytes</td>
-<td><p>-1(unlimited file size)</p></td>
-</tr>
-<tr class="even">
-<td>transport.vfs.AutoLockReleaseInterval</td>
-<td><p>The timeout value for stale locks where the VFS transport will ignore those file locks once the defined time period is reached. (The time period is calculated from the time the lock is created to the time you attempt to access it.)</p>
-<p>If you need stale locks to never timeout provide -1 as the timeout value.</p></td>
-<td>No</td>
-<td>Time in milliseconds</td>
-<td>20000</td>
-</tr>
-<tr class="odd">
-<td>transport.vfs.SFTPIdentities</td>
-<td>Location of the private key</td>
-<td>No</td>
-<td>A valid file path</td>
-<td>N/A</td>
-</tr>
-<tr class="even">
-<td>transport.vfs.SFTPIdentityPassPhrase</td>
-<td>Passphrase of the private key</td>
-<td>No</td>
-<td>A valid passphrase</td>
-<td>N/A</td>
-</tr>
-<tr class="odd">
-<td>transport.vfs.SFTPUserDirIsRoot</td>
-<td>If the SFTP user directory should be treated as root</td>
-<td>No</td>
-<td><code>             true            </code> or <code>             false            </code></td>
-<td>true</td>
-</tr>
-<tr class="even">
-<td>transport.vfs.ResolveHostsDynamically</td>
-<td><div class="content-wrapper">
-<p>Whether hostnames should be resolved at the time of deployment or whether it is necessary to resolve hostnames dynamically at runtime. By default hostnames are resolved at the time of deployment. If you want to resolve hostnames at runtime, set this parameter to <code>               true              </code> .</p>
-!!! note
-<p>Note</p>
-<p>Reolving hostnames at runtime is only possible for the Server Message Block (SMB) protocol.</p>
-
-</div></td>
-<td>No</td>
-<td><code>             true            </code> or <code>             false            </code></td>
-<td><code>             false            </code></td>
-</tr>
-</tbody>
+   <thead>
+      <tr>
+         <th>
+          Parameter
+         </th>
+         <th>
+          Description
+         </th>
+      </tr>
+   </thead>
+   <tbody>
+      <tr>
+         <td id="vfs-transport-file_url">
+            transport.vfs.FileURI
+         </td>
+         <td>
+            <div class="content-wrapper">
+               <p>The URI of the location of your files. This should be the source location of the files (i f you are configuring the ESB to read files) or the destination of the files ( if you are configuring the ESB to send files). You can specify connection-level parameters on the URL (see <a href="#VFSTransport-URLparams">VFS URL parameters</a> below).</p>
+               <p>When you need to access the absolute path of the URL, you can define the URL with <code>               sftpPathFromRoot              </code> as shown below. Also, note that <a href="#VFSTransport-avoid_permissions">transport.vfs.AvoidPermissionCheck</a> is a mandatory parameter for this URL when SFTP is used.</p>
+               <div class="code panel pdl" style="border-width: 1px;">
+                  <div class="codeContent panelContent pdl">
+                     <div class="sourceCode" id="cb1" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence" style="brush: java; gutter: false; theme: Confluence">
+                        <pre class="sourceCode java"><code class="sourceCode java"><span id="cb1-1"><a href="#cb1-1"></a>&lt;parameter name=<span class="st">&quot;transport.vfs.FileURI&quot;</span>&gt;sftp:<span class="co">//[ username[: password]@] hostname[: port][ absolute-path]?sftpPathFromRoot=true;transport.vfs.AvoidPermissionCheck=true&lt;/parameter&gt;</span></span></code></pre>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            You need to specify a valid file URI in the following form: <code>file://path</code>.
+         </td>
+      </tr>
+      <tr>
+         <td>
+           transport.vfs.ContentType
+         </td>
+         <td>
+            Content type of the files processed by the transport. To specify the encoding, follow the content type with a semi-colon and the character set. For example:
+            <div>
+               <div>
+                  <code>parameter name="transport.vfs.ContentType“text/plain;charset=UTF-32/parameter</code>
+               </div>
+               <div>
+                  When writing a file, you can set a different encoding with the <code>CHARACTER_SET_ENCODING</code> property:
+               </div>
+               <div>
+                  <code>property name="CHARACTER_SET_ENCODING" value="UTF-8" scope="axis2" type="STRING"/ </code>
+               </div>
+            </div>
+            Specify a valid content type. For example, <code>text/xml</code>. You can specify the encoding after the content type, such as <code>text/plain;charset=UTF-32</code>.
+         </td>
+      </tr>
+      <tr>
+         <td>
+            transport.vfs.FileNamePattern
+         </td>
+         <td>
+            If the VFS listener should process only a subset of the files available at the specified file URI location, use this parameter to select those files by name using a regular expression.
+            Specify a regular expression. For example: <code>*\.xml</code>.
+         </td>
+      </tr>
+      <tr>
+         <td>
+          transport.PollInterval
+         </td>
+         <td>
+            The polling interval for the transport receiver to poll the file URI location. The value is expressed in seconds unless you add "ms" for milliseconds, e.g., "2" or "2000ms" to specify 2 seconds.
+            Specify a positive integer.
+         </td>
+      </tr>
+      <tr>
+         <td>
+           transport.vfs.ActionAfterProcess
+         </td>
+         <td>
+           Whether to move, delete or take no action on the files after the transport has processed them. Possible values are <code>MOVE</code> , <code>DELETE</code>, or <code>NONE</code>. The default value is <code>DELETE</code>.
+         </td>
+      </tr>
+      <tr>
+         <td>
+            transport.vfs.ActionAfterFailure
+         </td>
+         <td>
+            Whether to move, delete or take no action on the files if a failure occurs. Possible values are <code>MOVE</code> , <code>DELETE</code>, or <code>NONE</code>. The default value is <code>DELETE</code>.
+         </td>
+      </tr>
+      <tr>
+         <td>
+            transport.vfs.MoveAfterProcess
+         </td>
+         <td>
+            Where to move the files after processing if ActionAfterProcess is MOVE. This parameter is required if the <b>ActionAfterProcess</b> is <code>MOVE</code>.
+         </td>
+      </tr>
+      <tr>
+         <td>
+            transport.vfs.MoveAfterFailure
+         </td>
+         <td>
+            Where to move the files after processing if ActionAfterFailure is MOVE. This parameter is required if the <b>ActionAfterFailure</b> is <code>MOVE</code>.
+         </td>
+      </tr>
+      <tr>
+         <td>
+            transport.vfs.ReplyFileURI
+         </td>
+         <td>
+           The location where reply files should be written by the transport.
+         </td>
+      </tr>
+      <tr>
+         <td>
+            transport.vfs.ReplyFileName
+         </td>
+         <td>
+            The name for reply files written by the transport. The default value is <code>response.xml</code>.
+         </td>
+      </tr>
+      <tr>
+         <td>
+           transport.vfs.MoveTimestampFormat
+         </td>
+         <td>
+            The pattern/format of the timestamps added to file names as prefixes when moving files. Specify a valid <a href="http://docs.oracle.com/javase/7/docs/api/java/text/SimpleDateFormat.html">timestamp pattern</a>. For example, <code>yyyy-MM-dd'T'HH:mm:ss.SSSZ</code>.
+         </td>
+      </tr>
+      <tr>
+         <td>
+            transport.vfs.Streaming
+         </td>
+         <td>
+            Whether files should be transferred in streaming mode, which is useful when transferring large files. The default setting is <code>false</code>.
+         </td>
+      </tr>
+      <tr>
+         <td>
+            transport.vfs.ReconnectTimeout
+         </td>
+         <td>
+            Reconnect timeout value in seconds to be used in case of an error when transferring files. Specify a positive integer. The default values i <code>30</code> seconds.
+         </td>
+      </tr>
+      <tr>
+         <td>
+            transport.vfs.MaxRetryCount
+         </td>
+         <td>
+            Maximum number of retry attempts to carry out in case of errors. Specify a positive integer. The default values i <code>3</code>.
+         </td>
+      </tr>
+      <tr>
+         <td>
+           transport.vfs.Append
+         </td>
+         <td>
+            When writing the response to a file, whether the response should be appended to the response file instead of overwriting the file. This value should be defined as a query parameter in the out/reply file URI. For example:<br />
+               <code>vfs:file:///home/user/test/out?transport.vfs.Append=true</code><br />
+            or,
+            <code>parameter name="transport.vfs.ReplyFileURI"file:///home/user/test/out?transport.vfs.Append=true/parameter</code>.<br />
+            By default, the parameter is set to <code>false</code> (the response file will be completely overwritten).
+         </td>
+      </tr>
+      <tr>
+         <td>
+            transport.vfs.MoveAfterFailedMove
+         </td>
+         <td>
+           Where to move the failed file.
+         </td>
+      </tr>
+      <tr>
+         <td>
+            transport.vfs.FailedRecordsFileName
+         </td>
+         <td>
+            The name of the file that maintains the list of failed files. Example file name: vfs-move-failed-records.properties.
+         </td>
+      </tr>
+      <tr>
+         <td>
+            transport.vfs.FailedRecordsFileDestination
+         </td>
+         <td>
+            Where to store the failed records file.
+         </td>
+      </tr>
+      <tr>
+         <td>
+            transport.vfs.MoveFailedRecordTimestampFormat
+         </td>
+         <td>
+            Entries in the failed records file include the name of the file that failed and the timestamp of its failure. This property configures the time stamp format. Specify a valid <a href="http://docs.oracle.com/javase/7/docs/api/java/text/SimpleDateFormat.html">timestamp pattern</a>. For example, <code>yyyy-MM-dd'T'HH:mm:ss.SSSZ</code>. By default, the parameter is set to <code>dd-MM-yyyy HH:mm:ss</code>.
+         </td>
+      </tr>
+      <tr>
+         <td>
+            transport.vfs.FailedRecordNextRetryDuration
+         </td>
+         <td>
+           The time in milliseconds to wait before retrying the move task. Specify a positive integer. The default value is <code>3000</code> miliseconds.
+         </td>
+      </tr>
+      <tr>
+         <td>
+            transport.vfs.Locking
+         </td>
+         <td>
+            By default, file locking is enabled in the VFS transport. This parameter lets you configure the locking behavior on a per service basis. You can also disable locking globally by specifying the parameter at the receiver level and selectively enable locking only for a set of services. The setting is enabled by default.
+         </td>
+      </tr>
+      <tr>
+         <td>transport.vfs.FileProcessCount
+         </td>
+         <td>This setting allows you to throttle the VFS listener by processing files in batches. Specify the number of files you want to process in each batch. Specify a positive integer, such as <code>10</code>.</br></br>
+          <b>Note</b>: If you specify the <code>transport.vfs.FileProcessCount</code> parameter you do not need to specify the <code>transport.vfs.FileProcessInterval</code> parameter in a configuration, and vice versa. These two parameters cannot be used at the same time.</td>
+      </tr>
+      <tr>
+         <td>transport.vfs.FileProcessInterval
+         </td>
+         <td>The interval in milliseconds between two file processes. Specify a positive integer, such as <code>10</code>1000</td>
+      </tr>
+      <tr>
+         <td>transport.vfs.ClusterAware</td>
+         <td>Whether VFS coordination support is enabled in a clustered deployment or not. By default, this setting is set to <code>false</code>.</td>
+      </tr>
+      <tr>
+         <td>*transport.vfs.FileSizeLimit</td>
+         <td>Only file sizes that are less than or equal to the defined limit are processed. Specify the file size in bytes. The default value is <code>-1</code>(unlimited file size).</td>
+      </tr>
+      <tr>
+         <td>transport.vfs.AutoLockReleaseInterval</td>
+         <td>
+            The timeout value for stale locks where the VFS transport will ignore those file locks once the defined time period is reached. The time period is calculated from the time the lock is created to the time you attempt to access it. If you need stale locks to never timeout provide -1 as the timeout value. Specify the time in miliseconds. The default value is <code>20000</code>.
+         </td>
+      </tr>
+      <tr>
+         <td>transport.vfs.SFTPIdentities</td>
+         <td>Location of the private key</td>
+      </tr>
+      <tr>
+         <td>transport.vfs.SFTPIdentityPassPhrase</td>
+         <td>Passphrase of the private key</td>
+      </tr>
+      <tr>
+         <td>transport.vfs.SFTPUserDirIsRoot</td>
+         <td>If the SFTP user directory should be treated as root. By default, this parameter is set to <code>true</code>.</td>
+      </tr>
+      <tr>
+         <td>transport.vfs.ResolveHostsDynamically</td>
+         <td>
+            Whether hostnames should be resolved at the time of deployment or whether it is necessary to resolve hostnames dynamically at runtime. By default hostnames are resolved at the time of deployment. If you want to resolve hostnames at runtime, set this parameter to <code>true</code>.
+            <b>Note</b>: Resolving hostnames at runtime is only possible for the Server Message Block (SMB) protocol. </br>
+            By default, this setting is <code>false</code>.
+         </td>
+      </tr>
+      <tr>
+         <td>
+            transport.vfs.DistributedLock
+         </td>
+         <td>This applies only in cluster deployments. Set to <code>true</code> if you need to avoid multiple servers trying to process the same file simultaneously.</td>
+      </tr>
+      <tr>
+         <td>
+          transport.vfs.DistributedTimeout
+         </td>
+         <td>The timeout period in seconds for the distributed lock. Specify a positive integer, such as 10.</td>
+      </tr>
+      <tr>
+         <td>
+          transport.vfs.AutoLockRelease
+         </td>
+         <td>Set to true if you need to release locking in order to avoid files not being processed due to faulty locking. This works together with the <code>transport.vfs.AutoLockReleaseInterval</code> and <code>transport.vfs.LockReleaseSameNode</code> parameters.</td>
+      </tr>
+      <tr>
+         <td>
+          transport.vfs.LockReleaseSameNode
+         </td>
+         <td>Set to <code>true</code> if you need to release the locks only accrued by the same worker node.<br />
+            If this is set to <code>false</code>, locks accrued by other nodes will be released according to the value specified in <code>transport.vfs.AutoLockReleaseInterval</code>. By default, this setting is <code>true</code>.
+         </td>
+      </tr>
+      <tr>
+         <td>transport.vfs.FileSortAttribute</td>
+         <td>The attribute by which the files should be sorted and processed. The possible values are <code>NONE</code>, <code>Size</code>, <code>Lastmodifiedtimestamp</code>.</td>
+      </tr>
+      <tr>
+         <td>transport.vfs.FileSortAsscending</td>
+         <td>The sort order to sort and process the files. If set to <code>true</code> files will be sorted in ascending order based on the attribute you specify in <code>transport.vfs.FileSortAttribute</code>. By default, this setting is <code>true</code>.</td>
+      </tr>
+      <tr>
+         <td>transport.vfs.CreateFolder</td>
+         <td>Set to <code>true</code> to create a folder if a folder does not exist when moving files. By default, this setting is <code>false</code>.</td>
+      </tr>
+      <tr>
+         <td>transport.vfs.SubFolderTimestampFormat</td>
+         <td>The pattern/format of the timestamps added to the folder structure when moving files. You need to set <code>transport.vfs.CreateFolder</code> to <code>true</code> to in order to specify a value for this parameter. Specify a valid <a href="http://docs.oracle.com/javase/7/docs/api/java/text/SimpleDateFormat.html">timestamp pattern</a>. For example, <code>yyyy-MM-dd'T'HH:mm:ss.SSSZ</code>.</td>
+      </tr>
+      <tr>
+         <td>transport.vfs.Build</td>
+         <td>Set to <code>true</code> if you need to build the content inside the file before injecting the file to the mediation engine. If there is a build error, the file will not be injected to the mediation engine. By default, this setting is <code>false</code>.</td>
+      </tr>
+   </tbody>
 </table>
 
-## VFS URL parameters
+The following service-level parameters are required for Inbound Endpoints.
 
-When you use the [transport.vfs.FileURI](#VFSTransport-file_URL)
-parameter, you can set connection-specific VFS parameters as URL query
-parameters. For example, to use SFTP with SSL, you could specify the URL
-as shown below. Note that
-[transport.vfs.AvoidPermissionCheck](#VFSTransport-avoid_permissions) is
-a mandatory parameter for this URL when SFTP is used.
+<table>
+   <tr>
+    <th>
+      Parameter
+    </th>
+    <th>
+      Description
+    </th>
+  </tr>
+   <tbody>
+      <tr>
+         <td>interval</td>
+         <td>The time duration in milliseconds between two file scans that checks for updates.</td>
+      </tr>
+      <tr>
+         <td>sequential</td>
+         <td>Files will be processed sequentially when this parameter is set to true.</td>
+      </tr>
+      <tr>
+         <td>coordination</td>
+         <td>
+            <p>This should be true for clustered deployments in order to prevent two nodes from retrieving the same file.</p>
+         </td>
+      </tr>
+   </tbody>
+</table>
+
+## VFS URL Parameters
+
+When you use the [transport.vfs.FileURI](#vfs-transport-file_url) parameter, you can set connection-specific VFS parameters as URL query parameters. For example, to use SFTP with SSL, you could specify the URL as shown below. Note that [transport.vfs.AvoidPermissionCheck](#vfs-transport-avoid_permissions) is a mandatory parameter for this URL when SFTP is used.
 
 ```
 <parameter name="transport.vfs.FileURI">vfs:ftps://test:test123@10.200.2.63/vfs/in?vfs.ssl.keystore=/home/user/openssl/keystore.jks&amp;vfs.ssl.truststore=/home/user/openssl/vfs-truststore.jks&amp;vfs.ssl.kspassword=importkey&amp;vfs.ssl.tspassword=wso2vfs&amp;vfs.ssl.keypassword=importkey;transport.vfs.AvoidPermissionCheck=true</parameter>
 ```
+<table>
+   <thead>
+      <tr>
+         <th>
+           Property
+         </th>
+         <th>
+           Description
+         </th>
+      </tr>
+   </thead>
+   <tbody>
+      <tr>
+         <td id="vfs-transport-avoid_permissions">
+            transport.vfs.AvoidPermissionCheck
+         </td>
+         <td>
+            <b>Be sure</b> to set this parameter to <strong>true</strong> for an SFTP connection. This is because (by default) the VFS transport checks whether the user has permission to access the location of the files (the source location or the destination). However, since the system is reading files in an external server through the SFTP connection, this permission check is not required and should be avoided.
+         </td>
+      </tr>
+      <tr>
+         <td>
+           vfs.passive
+         </td>
+         <td>
+           Enable FTP passive mode. This is required when the FTP client and server are not in the same network. By default, this setting is <code>false</code>.
+         </td>
+      </tr>
+      <tr>
+         <td>transport.vfs.Append</td>
+         <td>If file with same name exists, this parameter tells whether to create a new file and write content or append content to existing file. By default, this setting is <code>false</code>.</td>
+      </tr>
+      <tr>
+         <td>vfs.protection</td>
+         <td>
+            Set data channel protection level using FTP PROT command. Possible values are as follows:
+            <ul>
+               <li>C - Clear</li>
+               <li>S - Safe(SSL protocol only)</li>
+               <li>E - Confidential(SSL protocol only)</li>
+               <li>P - Private</li>
+            </ul>
+            The default value is <code>C</code>.
+         </td>
+         <td>
+      </tr>
+      <tr>
+         <td>vfs.ssl.keystore</td>
+         <td>Private key store to use for mutual SSL. Your keystore must be signed by a certificate authority. For more information, see <a href="index">http://docs.oracle.com/cd/E19509-01/820-3503/ggfen/index.html</a>. Possible value: String (Path of keystore).</td>
+      </tr>
+      <tr>
+         <td>vfs.ssl.kspassword</td>
+         <td>Private key store password.</td>
+      </tr>
+      <tr>
+         <td>vfs.ssl.keypassword</td>
+         <td>Private key password</td>
+      </tr>
+      <tr>
+         <td>vfs.ssl.truststore</td>
+         <td>Trust store to use for SFTP</td>
+      </tr>
+      <tr>
+         <td>vfs.ssl.tspassword</td>
+         <td>Trust store password</td>
+      </tr>
+      <tr>
+         <td>transport.vfs.CreateFolder</td>
+         <td>If the directory does not exists create and write the file. The default setting is <code>false</code>.</td>
+      </tr>
+      <tr>
+         <td>transport. vfs.SendFileSynchronously</td>
+         <td>Whether to send files synchronously to the file host. When this parameter is set to <code>true</code> , files will be sent one after another to the file host. This synchronous write can be configured on a per host basis. The default setting is <code>false</code>.</td>
+      </tr>
+   </tbody>
+</table>
 
-Following are details on the URL parameters you can set. To configure
-the proxy over ftp/sftp click
-[here](https://docs.wso2.com/display/EI650/Configuring+File+Inbound+Protocol+for+FTP%2C+SFTP+and+FILE+Connections#ConfiguringFileInboundProtocolforFTP,SFTPandFILEConnections-ConfigSFTP)
-.
+**Configuring a Proxy Server over FTP and SFTP Connections**
+
+Proxy server specific parameters can be set as URL query parameters. For example, to use Proxy over FTP, you could specify the URL as follows:
+
+```
+ftp://username:password@127.0.0.1/home/wso2/res?proxyServer=127.0.0.1&proxyPort=3128&proxyUsername=proxyuser&proxyPassword=proxyPass&timeout=2500&retryCount=3
+```
+
+Following are the URL parameters you can set:
 
 <table>
-<thead>
-<tr class="header">
-<th><p>Parameter Name</p></th>
-<th><p>Description</p></th>
-<th><p>Possible Values</p></th>
-<th>Default Value</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><div class="content-wrapper">
-<p>transport.vfs.AvoidPermissionCheck</p>
-</div></td>
-<td><p><strong>Be sure</strong> to set this parameter to <strong>true</strong> for an SFTP connection. This is because (by default) the VFS transport checks whether the user has permission to access the location of the files (the source location or the destination). However, since the system is reading files in an external server through the SFTP connection, this permission check is not required and should be avoided.</p></td>
-<td>true | false</td>
-<td><br />
-</td>
-</tr>
-<tr class="even">
-<td><p>vfs.passive</p></td>
-<td><p>Enable FTP passive mode. This is required when the FTP client and server are not in the same network.</p></td>
-<td>true | false</td>
-<td>false</td>
-</tr>
-<tr class="odd">
-<td>transport. vfs . Append</td>
-<td>If file with same name exists, this parameter tells whether to create a new file and write content or append content to existing file</td>
-<td><p>true | false</p></td>
-<td>false</td>
-</tr>
-<tr class="even">
-<td>vfs.protection</td>
-<td><p>Set data channel protection level using FTP PROT command</p></td>
-<td><ul>
-<li>C - Clear</li>
-<li>S - Safe(SSL protocol only)</li>
-<li>E - Confidential(SSL protocol only)</li>
-<li>P - Private</li>
-</ul></td>
-<td>C</td>
-</tr>
-<tr class="odd">
-<td>vfs.ssl.keystore</td>
-<td>Private key store to use for mutual SSL. Your keystore must be signed by a certificate authority. For more information, see <a href="index">http://docs.oracle.com/cd/E19509-01/820-3503/ggfen/index.html</a> .</td>
-<td>String - Path of keystore</td>
-<td><br />
-</td>
-</tr>
-<tr class="even">
-<td>vfs.ssl.kspassword</td>
-<td>Private key store password</td>
-<td>String</td>
-<td><br />
-</td>
-</tr>
-<tr class="odd">
-<td>vfs.ssl.keypassword</td>
-<td>Private key password</td>
-<td>String</td>
-<td><br />
-</td>
-</tr>
-<tr class="even">
-<td>vfs.ssl.truststore</td>
-<td>Trust store to use for SFTP</td>
-<td>String - Path of keystore</td>
-<td><br />
-</td>
-</tr>
-<tr class="odd">
-<td>vfs.ssl.tspassword</td>
-<td>Trust store password</td>
-<td>String</td>
-<td><br />
-</td>
-</tr>
-<tr class="even">
-<td>transport.vfs.CreateFolder</td>
-<td>If the directory does not exists create and write the file</td>
-<td>true | false</td>
-<td>false</td>
-</tr>
-<tr class="odd">
-<td>transport. vfs.SendFileSynchronously</td>
-<td>Whether to send files synchronously to the file host. When this parameter is set to <code>             true            </code> , files will be sent one after another to the file host. This synchronous write can be configured on a per host basis.</td>
-<td>true | false</td>
-<td>false</td>
-</tr>
-</tbody>
+   <thead>
+      <tr>
+         <th>
+            Property
+         </th>
+         <th>
+            Description
+         </th>
+      </tr>
+   </thead>
+   <tbody>
+      <tr>
+         <td>
+            <p>proxyServer</p>
+         </td>
+         <td>
+            The IP address of the proxy server. Possible value: <code>127.0.0.1</code>. This parameter is set to <code>false</code> by default.
+         </td>
+      </tr>
+      <tr>
+         <td>
+            <p>proxyPort</p>
+         </td>
+         <td>The port number on which the proxy server is listening for requests. Possible value: <code>1328</code>. This parameter is set to <code>false</code> by default.</td>
+      </tr>
+      <tr>
+         <td>proxyType</td>
+         <td>
+            The proxy server type. This can either be <code>HTTP</code> or <code>SOCKS</code>. The default is <code>SOCKS</code>.
+            <b>Note</b>: In a configuration, if the proxy server type is not specified or an unknown proxy server type is specified, the <code>proxyType</code> will be considered as <code>HTTP</code>.
+         </td>
+      </tr>
+      <tr>
+         <td>
+            <p>proxyUsername</p>
+         </td>
+         <td>The user name of the proxy server.</td>
+      </tr>
+      <tr>
+         <td>
+            proxyPassword
+         </td>
+         <td>The password of the proxy server.</td>
+      </tr>
+      <tr>
+         <td>
+           timeout
+         </td>
+         <td>The connection timeout in milliseconds. Possible value: <code>1000</code>. The default value is <code>5000</code>.</td>
+      </tr>
+      <tr>
+         <td>
+           retryCount
+         </td>
+         <td>The number of retry attempts in case of a connection timeout. Possible value: <code>3</code>. The default value is <code>5</code>.</td>
+      </tr>
+   </tbody>
 </table>
