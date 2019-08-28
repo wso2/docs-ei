@@ -1,6 +1,4 @@
----
-title: Sending a Simple Message to a Service
----
+# Sending a Simple Message to a Service
 
 Let’s try a simple scenario where a patient makes an inquiry specifying the doctor's specialization (category) to retrieve a list of doctors that match the specialization. The required information is available in a backend
 microservice written as a Ballerina service. We configure an API resource using Ballerina to receive the client request, instead of the client sending messages directly to the back-end service, thereby decoupling the client and the back-end service.
@@ -60,57 +58,33 @@ $ ballerina init
 
 We first create a listener to listen to requests to the RESTful service.
 
-```ballerina
-listener http:Listener httpListener = new(9092);
-```
+<!-- INCLUDE_CODE_SEGMENT: { file: guide/health_care_service.bal, segment: segment_1 } -->
 
 Then we add the service which listens for requests using the above listener on port 9092.
 
-```ballerina
-@http:ServiceConfig {
-    basePath: "/hospitalMgtService"
-}
-service hospitalMgtService on httpListener
-```
+<!-- INCLUDE_CODE_SEGMENT: { file: guide/health_care_service.bal, segment: segment_2 } -->
 
 #### Creating the resource to handle GET requests
 
 Now we can add resources to handle each request type to the service. In this sample, we will add a single resource to handle GET requests to the service.
 
-```ballerina
-@http:ResourceConfig {
-        methods: ["GET"],
-        path: "/getdoctor/{category}"
-    }
-    resource function getDoctorInCategory(http:Caller caller, http:Request req, string category)
-```
+<!-- INCLUDE_CODE_SEGMENT: { file: guide/health_care_service.bal, segment: segment_3 } -->
 
 #### Creating the client to connect to the backend of Health Care System
 
 Now we create an HTTP client to connect to the backend of the Health Care System.
 
-```ballerina
-http:Client healthcareEndpoint = new("http://localhost:9095/healthcare");
-```
+<!-- INCLUDE_CODE_SEGMENT: { file: guide/health_care_service.bal, segment: segment_4 } -->
 
 We can use this client to invoke the querydoctor endpoint of the backend and retrieve the list of doctors.
 
-```ballerina
-var response = healthcareEndpoint->get("/queryDoctor/" +untaint category);
-```
+<!-- INCLUDE_CODE_SEGMENT: { file: guide/health_care_service.bal, segment: segment_5 } -->
 
 #### Handling the response from the backend
 
 Once a response is received, it has to be set to the outgoing response of the service.
 
-```ballerina
-if (response is http:Response && response.getJsonPayload() is json) {
-            var result = caller->respond(response);
-            if (result is error) {
-                log:printError("Error sending response", err = result);
-            }
-        }
-```
+<!-- INCLUDE_CODE_SEGMENT: { file: guide/health_care_service.bal, segment: segment_6 } -->
 
 ### Deployment
 

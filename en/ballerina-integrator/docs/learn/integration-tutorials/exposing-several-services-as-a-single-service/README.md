@@ -1,6 +1,4 @@
----
-title: Exposing Several Services as a Single Service
----
+# Exposing Several Services as a Single Service
 
 In this tutorial, we are going to integrate many service calls and expose as a single service. This is commonly referred to as Service Chaining, where several services are integrated based on some business logic and exposed as a single, aggregated service.
 
@@ -36,51 +34,17 @@ This tutorial includes the following sections.
 
 In the previous tutorial, we called the backend service from the add appointment resource itself. Since we are chaining two services in this example, we will add a util function to handle scheduling appointments at the backend.
 
-```ballerina
-function createAppointment(http:Caller caller, json payload, string category) returns http:Response {
-    string hospitalName = payload.hospital.toString();
-    http:Request reservationRequest = new;
-    reservationRequest.setPayload(payload);
-    http:Response | error reservationResponse = new;
-    match hospitalName {
-        GRAND_OAK => {
-            reservationResponse = hospitalEP->
-            post("/grandoaks/categories/" + untaint category + "/reserve", reservationRequest);
-        }
-        CLEMENCY => {
-            reservationResponse = hospitalEP->
-            post("/clemency/categories/" + untaint category + "/reserve", reservationRequest);
-        }
-        PINE_VALLEY => {
-            reservationResponse = hospitalEP->
-            post("/pinevalley/categories/" + untaint category + "/reserve", reservationRequest);
-        }
-        _ => {
-            respondToClient(caller, createErrorResponse(500, "Unknown hospital name"));
-        }
-    }
-    return handleResponse(reservationResponse);
-}
-```
+<!-- INCLUDE_CODE_SEGMENT: { file: guide/health_care_service.bal, segment: segment_1 } -->
 
 When the client request is received, we check if the request payload is json. If so, we transform it to the format expected by the backend. Then we invoke the util function to add an appointment within the resource function.
 
-```ballerina
-http:Response reservationResponse = createAppointment(caller, untaint reservationPayload, category);
-```
+<!-- INCLUDE_CODE_SEGMENT: { file: guide/health_care_service.bal, segment: segment_2 } -->
 
 #### Adding payment for the appointment
 
 After invoking the appointment scheduling endpoint, we get the first response and check if it is an actual appointment confirmation response. If not, we simply throw an error. If it is a valid response, we call the function that invokes the payment settlement request.
 
-```ballerina
-function doPayment(json payload) returns http:Response {
-    http:Request paymentRequest = new;
-    paymentRequest.setPayload(payload);
-    http:Response | error paymentResponse = hospitalEP->post("/healthcare/payments", paymentRequest);
-    return handleResponse(paymentResponse);
-}
-```
+<!-- INCLUDE_CODE_SEGMENT: { file: guide/health_care_service.bal, segment: segment_3 } -->
 
 #### Sending response back to client
 

@@ -1,6 +1,4 @@
----
-title: Using the Analytics Dashboard
----
+# Using the Analytics Dashboard
 
 Ballerina services can be monitored with the help of tools such as Prometheus, which collect useful statistics and metrics about the request flow to the endpoints in a service.
 
@@ -42,14 +40,7 @@ This tutorial includes the following sections.
 
 We will write a set of simple functions as below, each of which will invoke an endpoint in the Health Care backend. The following function will query for a list of doctors registered for a given specialization.
 
-```ballerina
-// Get doctors in a category
-function getDoctorsInCategory(string category) {
-    log:printInfo("Querying doctors in category: " + category);
-    http:Response | error response = hospitalEP->get("/healthcare/queryDoctor/" + category);
-    handleResponse(response);
-}
-```
+<!-- INCLUDE_CODE_SEGMENT: { file: guide/health_care_service.bal, segment: segment_1 } -->
 
 We will then invoke these functions using a Ballerina service.
 

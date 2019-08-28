@@ -1,6 +1,4 @@
----
-title: Routing Requests Based on Message Content
----
+# Routing Requests Based on Message Content
 
 In the [Sending a Simple Message to a Service](../../sending-a-simple-message-to-a-service/sending-a-simple-message-to-a-service/) tutorial, we routed a simple message to a single endpoint in the backend service.
 In this tutorial, we are building a service that can route a message to the relevant endpoint in backend,
@@ -38,55 +36,13 @@ This tutorial includes the following sections.
 
 In the previous tutorial [Sending a Simple Message to a Service](../../sending-a-simple-message-to-a-service/sending-a-simple-message-to-a-service/), we implemented a Ballerina service **hospitalMgtService** with a resource to handle requests from clients to the Health Care backend. For this tutorial, we add another resource to route requests to different hospitals.
 
-```ballerina
-@http:ResourceConfig {
-        methods: ["POST"],
-        path: "/categories/{category}/reserve"
-    }
-```
+<!-- INCLUDE_CODE_SEGMENT: { file: guide/health_care_service.bal, segment: segment_1 } -->
 
 #### Routing requests to different hospitals
 
 Then, we can include the implementation for the endpoint exposed by the resource in the previous step. When a client reqeust reaches the endpoint, we will retrieve the hospital name from the payload, and send the request to the corresponding endpoint in the backend.
 
-```ballerina
-resource function scheduleAppointment(http:Caller caller, http:Request req, string category)
-    {
-        // Get data from request message payload
-        var jsonMsg = req.getJsonPayload();
-        if (jsonMsg is json) {
-            string hospitalDesc = jsonMsg["hospital"].toString();
-            string doctorName = jsonMsg["doctor"].toString();
-            string hospitalName = "";
-
-            http:Response | error clientResponse;
-            if (hospitalDesc != "") {
-                match hospitalDesc {
-                    "grand oak community hospital" =>hospitalName = "grandoaks";
-                    "clemency medical center" =>hospitalName = "clemency";
-                    "pine valley community hospital" =>hospitalName = "pinevalley";
-                    _ => respondWithError(caller, "Hospital name is invalid.", "Hospital name is invalid.");
-                }
-                string sendPath = "/" + hospitalName + "/categories/" + category + "/reserve";
-
-                // Call the backend service related to the hospital
-                clientResponse = healthcareEndpoint->post(untaint sendPath, untaint jsonMsg);
-            } else {
-                respondWithError(caller, "JSON Path $hospital cannot be empty.", "Hospital cannot be empty.");
-                return;
-            }
-            if (clientResponse is http:Response) {
-                var result = caller->respond(clientResponse);
-                handleErrorResponse(result, "Error at the backend");
-            } else {
-                respondWithError(caller, < string > clientResponse.detail().message,
-                "Backend service does not properly respond");
-            }
-        } else {
-            respondWithError(caller, untaint < string > jsonMsg.detail().message, "Request is not JSON");
-        }
-    }
-```
+<!-- INCLUDE_CODE_SEGMENT: { file: guide/health_care_service.bal, segment: segment_2 } -->
 
 ### Deploying the Service
 

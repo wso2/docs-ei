@@ -1,6 +1,4 @@
----
-title: Gmail Connector
----
+# Gmail Connector
 
 In this tutorial, we will send an email to the user, using the GMail module in Ballerina.
 
@@ -52,98 +50,23 @@ First, we need to obtain AuthTokens to access Google APIs. Follow the steps belo
 
 In the Health Care Service we created in previous tutorials, we can add an HTTP client config for Gmail as below.
 
-```ballerina
-import wso2/gmail;
-
-// Gmail client endpoint declaration with oAuth2 client configurations.
-gmail:GmailConfiguration gmailConfig = {
-    clientConfig: {
-        auth: {
-            scheme: http:OAUTH2,
-            config: {
-                grantType: http:DIRECT_TOKEN,
-                config: {
-                    accessToken: "accessToken",
-                    refreshConfig: {
-                        refreshUrl: gmail:REFRESH_URL,
-                        refreshToken: "refreshToken",
-                        clientId: "clientId",
-                        clientSecret: "clientSecret"
-                    }
-                }
-            }
-        }
-    }
-};
-```
+<!-- INCLUDE_CODE_SEGMENT: { file: guide/health_care_service.bal, segment: segment_1 } -->
 
 Then we can create the Gmail client using the above config.
 
-```ballerina
-gmail:Client gmailClient = new(gmailConfig);
-```
+<!-- INCLUDE_CODE_SEGMENT: { file: guide/health_care_service.bal, segment: segment_2 } -->
 
 #### Generating mail body
 
 We can use a util function to generate the mail body, based on the response received from the payment endpoint.
 
-```ballerina
-function generateEmail(json jsonPayload) returns string {
-    string email = "<html>";
-    email += "<h1> GRAND OAK COMMUNITY HOSPITAL </h1>";
-    email += "<h3> Patient Name : " + jsonPayload.patient.name.toString() + "</h3>";
-    email += "<p> This is a confimation for your appointment with Dr." + jsonPayload.doctor.name.toString() + "</p>";
-    email += "<p> Assigned time : " + jsonPayload.doctor.availability.toString() + "</p>";
-    email += "<p> Appointment number : " + jsonPayload.appointmentNumber.toString() + "</p>";
-    email += "<p> Appointment date : " + jsonPayload.appointmentDate.toString() + "</p>";
-    email += "<p><b> FEE : " + jsonPayload.fee.toString() + "</b></p>";
-
-    return email;
-}
-```
+<!-- INCLUDE_CODE_SEGMENT: { file: guide/health_care_service.bal, segment: segment_3 } -->
 
 #### Sending email to user
 
 Once the mail body is generated, we can send the email to the user's email address.
 
-```ballerina
-function sendEmail(string email) returns http:Response {
-    string messageBody = email;
-    http:Response response = new;
-
-    string userId = "me";
-    gmail:MessageRequest messageRequest = {
-
-    };
-    messageRequest.recipient = RECIPIENT_EMAIL;
-    messageRequest.sender = SENDER_EMAIL;
-    messageRequest.subject = "Gmail Connector test : Payment Status";
-    messageRequest.messageBody = messageBody;
-    messageRequest.contentType = gmail:TEXT_HTML;
-
-    // Send the message.
-    var sendMessageResponse = gmailClient->sendMessage(userId, messageRequest);
-
-    if (sendMessageResponse is (string, string)) {
-        // If successful, print the message ID and thread ID.
-        (string, string) (messageId, threadId) = sendMessageResponse;
-        io:println("Sent Message ID: " + messageId);
-        io:println("Sent Thread ID: " + threadId);
-
-        json payload = {
-            Message: "The email has been successfully sent",
-            Recipient: messageRequest.recipient
-        };
-        response.setJsonPayload(payload, contentType = "application/json");
-    } else {
-        // If unsuccessful, print the error returned.
-        log:printError("Failed to send the email", err = sendMessageResponse);
-        response.setPayload("Failed to send the Email");
-    }
-
-    return response;
-}
-```
+<!-- INCLUDE_CODE_SEGMENT: { file: guide/health_care_service.bal, segment: segment_4 } -->
 
 ### Testing the Implementation
 

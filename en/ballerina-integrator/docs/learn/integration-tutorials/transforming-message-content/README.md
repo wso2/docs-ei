@@ -1,6 +1,4 @@
----
-title: Transforming Message Content
----
+# Transforming Message Content
 
 When the message format sent by the client is diffrent from the format expected by the backend service, we need to transform the message into a supported format before sending the request to backend. Using Ballerina, we can easily transform messages to a desired format.
 
@@ -70,30 +68,7 @@ This tutorial includes the following sections.
 
 In the RESTful service we developed earlier, we already have a resource to schedule appointments in the Health Care System. Let's modify this resource so that it can transform messages before sending requests to the backend.
 
-```ballerina
-// Extract payload from the request
-        var requestPayload = request.getJsonPayload();
-
-        if (requestPayload is json) {
-            // Get hospital name
-            string hospitalName = requestPayload.hospital.toString();
-
-            // Transform the payload into the format which is required by the backend service
-            json modifiedPayload = {
-                "patient": {
-                    "name": requestPayload.name,
-                    "dob": requestPayload.dob,
-                    "ssn": requestPayload.ssn,
-                    "address": requestPayload.address,
-                    "phone": requestPayload.phone,
-                    "email": requestPayload.email,
-                    "cardNo": requestPayload.cardNo
-                },
-                "doctor": requestPayload.doctor,
-                "hospital": hospitalName,
-                "appointmentDate": requestPayload.appointment_date
-            };
-```
+<!-- INCLUDE_CODE_SEGMENT: { file: guide/health_care_service.bal, segment: segment_1 } -->
 
 ### Deploying the Service
 
