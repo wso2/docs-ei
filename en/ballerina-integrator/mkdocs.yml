@@ -85,9 +85,6 @@ nav:
         - 'Storing and Forwarding Messages' : 'learn/integration-tutorials/storing-and-forwarding-messages/storing-and-forwarding-messages.md'
         - 'Using the Gmail Connector' : 'learn/integration-tutorials/using-the-gmail-connector/using-the-gmail-connector.md'
         - 'Using the Analytics Dashboard' : 'learn/integration-tutorials/using-the-analytics-dashboard/using-the-analytics-dashboard.md'
-    - Setup and Install:
-      - 'Deploy on Docker': 'setup/deploy-on-docker.md'
-      - 'Deploy on Kubernetes': 'setup/deploy-on-kubernetes.md'
     - Develop:
       - 'Using Modules' : 'develop/using-modules.md'
       - 'CI/CD' : 'develop/cicd.md'
