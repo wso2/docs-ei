@@ -50,7 +50,7 @@ nav:
       - 'Introduction': 'getting-started/introduction.md'
       - 'Quick Start Guide': 'getting-started/quick-start-guide.md'
     - Learn:
-      - 'Overview': 'learn/overview.md'
+      - 'About Learn': 'learn/about-learn.md'
       - Guides:
         - Messaging:
           - 'Asynchronous Messaging' : 'learn/guides/messaging/asynchronous-messaging/asynchronous-messaging.md'
@@ -85,12 +85,14 @@ nav:
         - 'Storing and Forwarding Messages' : 'learn/integration-tutorials/storing-and-forwarding-messages/storing-and-forwarding-messages.md'
         - 'Using the Gmail Connector' : 'learn/integration-tutorials/using-the-gmail-connector/using-the-gmail-connector.md'
         - 'Using the Analytics Dashboard' : 'learn/integration-tutorials/using-the-analytics-dashboard/using-the-analytics-dashboard.md'
+    - Setup and Install:
+      - 'Setup and Install' : 'setup/setup-overview.md'
     - Develop:
       - 'Using Modules' : 'develop/using-modules.md'
       - 'CI/CD' : 'develop/cicd.md'
       - Deploying Artifacts:
-        - 'Deploy on Docker': 'setup/deploy-on-docker.md'
-        - 'Deploy on Kubernetes': 'setup/deploy-on-kubernetes.md'
+        - 'Deploy on Docker': 'develop/deploy-on-docker.md'
+        - 'Deploy on Kubernetes': 'develop/deploy-on-kubernetes.md'
     - References:
       - 'References' : 'references/references.md'
     - '': page-not-found.md
