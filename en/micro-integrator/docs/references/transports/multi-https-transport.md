@@ -1,13 +1,5 @@
 # Multi-HTTPS Transport
 
-The **Multi-HTTPS transport** is similar to the [HTTPS-NIO
-transport](_HTTPS-NIO_Transport_) , but it allows you to have different
-SSL profiles with separate truststores and keystores for different hosts
-using the same WSO2 Enterprise Integrator(WSO2 EI) server. WSO2 EI uses
-truststores and a keystores for SSL protocol implementation. WSO2 EI can
-listen to different host IPs and ports for incoming HTTPS connections,
-and each IP/Port will have a separate SSL profile configured.
-
 ## Synchronizing the profiles in a cluster
 
 If you are running in a clustered environment and want your SSL profiles

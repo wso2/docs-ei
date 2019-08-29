@@ -1,22 +1,4 @@
-# PassThrough Transport
-
-The **PassThrough** transport is a non-blocking HTTP transport
-implementation based on HTTP Core NIO, and is the default HTTP transport
-shipped with WSO2 Micro Integrator.
-Although the PassThrough transport is somewhat similar to the NHTTP
-transport, it overcomes all the limitations of the NHTTP transport and
-provides a significant performance gain. The PassThrough Transport also
-has a simpler and cleaner model for forwarding messages back and forth. 
-
-This transport receives and sends HTTPS inbound requests.
-
-`org.apache.synapse.transport.passthru.PassThroughHttpSSLListener`
-is the listener class of the PassThrough Transport.
-
-`org.apache.synapse.transport.passthru.PassThroughHttpSSLSender`
-is the sender class of the PassThrough Transport.
-
-## Verifying certificate revocation
+# Verifying certificate revocation
 
 `org.apache.synapse.transport.passthru.PassThroughHttpSSLListener`
 as well as
@@ -83,41 +65,35 @@ in-memory caches for OCSP and CRL, which are automatically managed by a
 dedicated CacheManager thread for each cache. These CacheManagers update
 expired cache entries and maintain the LRU cache replacement policy.
 
-## Connection throttling
+## HTTPS-NIO
 
-With the PassThrough transport and HTTP NIO transport, you can enable
-connection throttling to restrict the number of simultaneous open
-connections. To enable connection throttling, edit the
-`         <EI_HOME>/conf/nhttp.properties        ` (for the HTTP NIO
-transport) or `         <EI_HOME>/conf/passthru-http.properties        `
-(for the PassThrough transport), and add the following line:
+The HTTPS-NIO transport sender can verify with the certificate authority
+whether the certificate is still trusted before it completes the SSL
+connection. If the certificate authority has revoked the certificate,
+the connection will not be completed. To enable this feature, add the
+`         CertificateRevocationVerifier        ` parameter to the sender
+as follows:
 
-`         max_open_connections = 2        `
+``` java
+    <transportSender name="https" class="org.apache.synapse.transport.nhttp.HttpCoreNIOSSLSender">
+    ...
+        <parameter name="CertificateRevocationVerifier">true</parameter>
+    </transportSender>
+```
 
-This will restrict simultaneous open incoming connections to 2. To
-disable throttling, delete the `         max_open_connections        `
-setting or set it to -1.
+When this parameter is set to `         true        ` , Synapse attempts
+to use Online Certificate Status Protocol (OCSP) to perform the
+verification with the certificate authority at the handshake phase of
+SSL protocol. If OCSP is not supported by the certificate authority,
+Synapse uses Certified Revocation Lists (CRL) instead. The verification
+process checks all the certificates in the certificate chain.
 
-!!! Info
-    Connection throttling is never exact. For example, setting this property to 2 will result in roughly two simultaneous open connections at any given time.
-
-## Configuring Listeners
-
-The PassThrough transport has 4 HTTP/HTTPS listneres by default. It
-includes 2 `         PassThroughHttpListener        ` threads and 2
-`         PassThroughHttpSSLListener        ` threads.
-
-You can configure the number of listeners in the
-`         <EI_HOME>/conf/passthru-http.properties        ` file using
-the `         io_threads_per_reactor        ` property. You are able to
-define any number of listeners as there is no maximum limit defined in
-the code level.
-
-!!! Note
-    The number of listener threads is double the value of the `         io_threads_per_reactor        ` property because the same number of `         PassThroughHttpListener        ` and `         PassThroughHttpSSLListener        ` threads are created.
-
-For example, if you defined the value for the
-`         io_threads_per_reactor        ` property as 5, you have 5
-`         PassThroughHttpListener        ` threads and 5
-`         PassThroughHttpSSLListener        ` threads. Therefore, the
-total number of listeners are 10.
+The response from the certificate authority includes the verification
+and the duration for which the verification is valid. To prevent the
+performance overhead of continuous HTTP calls, this verification
+response is cached for the duration specified by the certificate
+authority so that subsequent verification calls are not needed until the
+response has expired. There are two Least Recently Used (LRU) in-memory
+caches for OCSP and CRL, which are automatically managed by a dedicated
+CacheManager thread for each cache. These CacheManagers update expired
+cache entries and maintain the LRU cache replacement policy.
