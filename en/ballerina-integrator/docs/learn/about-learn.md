@@ -1,9 +1,9 @@
-# Integration Guides and Tutorials
+# About Learn
 
 There are two types of learning materials. 
 
-1. Long form documentation called guides 
-2. Short tutorials that cover integration specifics 
+1. Long form documentation called **guides**. 
+2. Short **tutorials** that cover integration specifics.
 
 ## Guides
 
