@@ -51,7 +51,8 @@ nav:
       - 'Architecture': 'overview/architecture.md'
       - 'About this Release': 'overview/about_this_release.md'
   - 'Quick Start Guide':
-    - 'Quick Start Guide': quick-start-guide/quick-start-guide.md
+    - 'Getting Started': 'quick-start-guide/getting-started-with-si.md'
+    - 'Quick Start Guide 101': 'quick-start-guide/quick-start-guide-101.md'
   - 'Concepts':
       - 'Concepts': 'concepts.md'
   - 'Setup and Install':
