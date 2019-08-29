@@ -109,6 +109,12 @@ nav:
         - 'Customizing Error Messages': 'setup/customizing_error_pages.md'
         - 'Governing External Reference Across Environments': 'setup/govern_ext_refs_across_env.md'
         - 'Enable SSL Tunneling through Proxy Server': 'setup/enabling_SSL_tunneling_thru_proxy_server.md'
+        - Configuring Transports:
+          - 'Verifying Certificate Revocation': 'setup/transport_configurations/certificate-revocation.md'
+          - 'Configuring HTTP/HTTPS Listeners': 'setup/transport_configurations/configuring-passthru-listeners.md'
+          - 'JMS Map Messaging': 'setup/transport_configurations/connection-throttling.md'
+          - 'Configuring Connection Throttling': 'setup/transport_configurations/jms-map-message.md'
+          - 'Configuring the Multi-HTTPS Transport': 'setup/transport_configurations/multi-https-transport.md'
     - Develop:
       - 'Developing Integration Solutions': 'develop/intro-integration-development.md'
       - 'Developer Kick Start' : 'develop/integration-development-kickstart.md'
