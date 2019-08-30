@@ -6740,7 +6740,7 @@ sender.non_blocking = true
 </div>
 
 
-## HL7 Inbound Endpoint Tuning
+## SAP transport
 
 <div class="mb-config-catalog">
     <section>
@@ -6749,217 +6749,6 @@ sender.non_blocking = true
             
             <input name="27" type="checkbox" id="_tab_27">
                 <label class="tab-selector" for="_tab_27"><i class="icon fa fa-code"></i></label>
-                <div class="superfences-content">
-                    <div class="mb-config-example">
-<pre><code class="toml">[....]
-hl7_id_generator = "file"
-worker_threads_core = 100
-io_thread_count = 2
-so_timeout =  0
-connect_timeout = 0
-so_keep_alive = "true"
-so_rcvbuf = 0
-so_sndbuf = 0
-</code></pre>
-                    </div>
-                </div>
-                <div class="doc-wrapper">
-                    <div class="mb-config">
-                        <div class="config-wrap">
-                            <code>[[..]]</code>
-                            
-                            <p>
-                                This config heading groups the parameters for tuning an HL7 inbound endpoint.
-                            </p>
-                        </div>
-                        <div class="params-wrap">
-                            <div class="param">
-                                <div class="param-name">
-                                  <span class="param-name-wrap"> <code>hl7_id_generator </code> </span>
-                                </div>
-                                <div class="param-info">
-                                    <div>
-                                        <p>
-                                            <span class="param-type string"> string </span>
-                                            <span class="badge-required">Required</span>
-                                        </p>
-                                        <div class="param-default">
-                                            <span class="param-default-value">Default: <code>file</code></span>
-                                        </div>
-                                        <div class="param-possible">
-                                            <span class="param-possible-values">Possible Values: <code>&quot;file&quot;, or &quot;UUID&quot;</code></span>
-                                        </div>
-                                    </div>
-                                    <div class="param-description">
-                                        <p>By default the HAPI HL7 parsing library uses a file based ID generator to generate unique control IDs. To use a UUID based ID generator you can change this to ‘uuid’.</p>
-                                    </div>
-                                </div>
-                            </div><div class="param">
-                                <div class="param-name">
-                                  <span class="param-name-wrap"> <code>worker_threads_core</code> </span>
-                                </div>
-                                <div class="param-info">
-                                    <div>
-                                        <p>
-                                            <span class="param-type string"> integer </span>
-                                            
-                                        </p>
-                                        <div class="param-default">
-                                            <span class="param-default-value">Default: <code>100</code></span>
-                                        </div>
-                                        <div class="param-possible">
-                                            <span class="param-possible-values">Possible Values: <code>0..9</code></span>
-                                        </div>
-                                    </div>
-                                    <div class="param-description">
-                                        <p>Defines the HL7 inbound worker thread pool size.</p>
-                                    </div>
-                                </div>
-                            </div><div class="param">
-                                <div class="param-name">
-                                  <span class="param-name-wrap"> <code>io_thread_count</code> </span>
-                                </div>
-                                <div class="param-info">
-                                    <div>
-                                        <p>
-                                            <span class="param-type string"> integer </span>
-                                            
-                                        </p>
-                                        <div class="param-default">
-                                            <span class="param-default-value">Default: <code>2</code></span>
-                                        </div>
-                                        <div class="param-possible">
-                                            <span class="param-possible-values">Possible Values: <code>0..9</code></span>
-                                        </div>
-                                    </div>
-                                    <div class="param-description">
-                                        <p>Defines the number of IO threads the IO Reactor uses. It is recommended to set this to the number of cores on the machine.</p>
-                                    </div>
-                                </div>
-                            </div><div class="param">
-                                <div class="param-name">
-                                  <span class="param-name-wrap"> <code>so_timeout</code> </span>
-                                </div>
-                                <div class="param-info">
-                                    <div>
-                                        <p>
-                                            <span class="param-type string"> integer </span>
-                                            
-                                        </p>
-                                        <div class="param-default">
-                                            <span class="param-default-value">Default: <code>0</code></span>
-                                        </div>
-                                        <div class="param-possible">
-                                            <span class="param-possible-values">Possible Values: <code>0..9</code></span>
-                                        </div>
-                                    </div>
-                                    <div class="param-description">
-                                        <p>Defines TCP socket timeout.</p>
-                                    </div>
-                                </div>
-                            </div><div class="param">
-                                <div class="param-name">
-                                  <span class="param-name-wrap"> <code>connect_timeout</code> </span>
-                                </div>
-                                <div class="param-info">
-                                    <div>
-                                        <p>
-                                            <span class="param-type string"> integer </span>
-                                            
-                                        </p>
-                                        <div class="param-default">
-                                            <span class="param-default-value">Default: <code>0</code></span>
-                                        </div>
-                                        <div class="param-possible">
-                                            <span class="param-possible-values">Possible Values: <code>0..9</code></span>
-                                        </div>
-                                    </div>
-                                    <div class="param-description">
-                                        <p>Defines the TCP connect timeout.</p>
-                                    </div>
-                                </div>
-                            </div><div class="param">
-                                <div class="param-name">
-                                  <span class="param-name-wrap"> <code>so_keep_alive</code> </span>
-                                </div>
-                                <div class="param-info">
-                                    <div>
-                                        <p>
-                                            <span class="param-type string"> boolean </span>
-                                            
-                                        </p>
-                                        <div class="param-default">
-                                            <span class="param-default-value">Default: <code>true</code></span>
-                                        </div>
-                                        <div class="param-possible">
-                                            <span class="param-possible-values">Possible Values: <code>&quot;true&quot;, or &quot;false&quot;</code></span>
-                                        </div>
-                                    </div>
-                                    <div class="param-description">
-                                        <p>Defines TCP socket keep alive.</p>
-                                    </div>
-                                </div>
-                            </div><div class="param">
-                                <div class="param-name">
-                                  <span class="param-name-wrap"> <code>so_rcvbuf</code> </span>
-                                </div>
-                                <div class="param-info">
-                                    <div>
-                                        <p>
-                                            <span class="param-type string"> boolean </span>
-                                            
-                                        </p>
-                                        <div class="param-default">
-                                            <span class="param-default-value">Default: <code>0 (Uses OS default. Maximum value depends on OS settings)</code></span>
-                                        </div>
-                                        <div class="param-possible">
-                                            <span class="param-possible-values">Possible Values: <code>0..9</code></span>
-                                        </div>
-                                    </div>
-                                    <div class="param-description">
-                                        <p>Defines the TCP socket receive buffer size.</p>
-                                    </div>
-                                </div>
-                            </div><div class="param">
-                                <div class="param-name">
-                                  <span class="param-name-wrap"> <code>so_sndbuf</code> </span>
-                                </div>
-                                <div class="param-info">
-                                    <div>
-                                        <p>
-                                            <span class="param-type string"> boolean </span>
-                                            
-                                        </p>
-                                        <div class="param-default">
-                                            <span class="param-default-value">Default: <code>0 (Uses OS default. Maximum value depends on OS settings)</code></span>
-                                        </div>
-                                        <div class="param-possible">
-                                            <span class="param-possible-values">Possible Values: <code>0..9</code></span>
-                                        </div>
-                                    </div>
-                                    <div class="param-description">
-                                        <p>Defines the TCP socket send buffer size.</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-</div>
-
-
-## SAP transport
-
-<div class="mb-config-catalog">
-    <section>
-        <div class="mb-config-options">
-            <div class="superfences-tabs">
-            
-            <input name="28" type="checkbox" id="_tab_28">
-                <label class="tab-selector" for="_tab_28"><i class="icon fa fa-code"></i></label>
                 <div class="superfences-content">
                     <div class="mb-config-example">
 <pre><code class="toml">[transport.sap]
@@ -7119,8 +6908,8 @@ sender.enabled=false
         <div class="mb-config-options">
             <div class="superfences-tabs">
             
-            <input name="29" type="checkbox" id="_tab_29">
-                <label class="tab-selector" for="_tab_29"><i class="icon fa fa-code"></i></label>
+            <input name="28" type="checkbox" id="_tab_28">
+                <label class="tab-selector" for="_tab_28"><i class="icon fa fa-code"></i></label>
                 <div class="superfences-content">
                     <div class="mb-config-example">
 <pre><code class="toml">[transport.msmq]
@@ -7221,8 +7010,8 @@ sender.enable = false
         <div class="mb-config-options">
             <div class="superfences-tabs">
             
-            <input name="30" type="checkbox" id="_tab_30">
-                <label class="tab-selector" for="_tab_30"><i class="icon fa fa-code"></i></label>
+            <input name="29" type="checkbox" id="_tab_29">
+                <label class="tab-selector" for="_tab_29"><i class="icon fa fa-code"></i></label>
                 <div class="superfences-content">
                     <div class="mb-config-example">
 <pre><code class="toml">[transport.tcp]
@@ -7388,8 +7177,8 @@ sender.enable = true
         <div class="mb-config-options">
             <div class="superfences-tabs">
             
-            <input name="31" type="checkbox" id="_tab_31">
-                <label class="tab-selector" for="_tab_31"><i class="icon fa fa-code"></i></label>
+            <input name="30" type="checkbox" id="_tab_30">
+                <label class="tab-selector" for="_tab_30"><i class="icon fa fa-code"></i></label>
                 <div class="superfences-content">
                     <div class="mb-config-example">
 <pre><code class="toml">[transport.ws]
@@ -7490,8 +7279,8 @@ sender.parameter.outflow_dispatch_fault_sequence = "outflowFaultSeq"
         <div class="mb-config-options">
             <div class="superfences-tabs">
             
-            <input name="32" type="checkbox" id="_tab_32">
-                <label class="tab-selector" for="_tab_32"><i class="icon fa fa-code"></i></label>
+            <input name="31" type="checkbox" id="_tab_31">
+                <label class="tab-selector" for="_tab_31"><i class="icon fa fa-code"></i></label>
                 <div class="superfences-content">
                     <div class="mb-config-example">
 <pre><code class="toml">[transport.wss]
@@ -7636,8 +7425,8 @@ sender.truststore_password = "$ref{truststore.password}"
         <div class="mb-config-options">
             <div class="superfences-tabs">
             
-            <input name="33" type="checkbox" id="_tab_33">
-                <label class="tab-selector" for="_tab_33"><i class="icon fa fa-code"></i></label>
+            <input name="32" type="checkbox" id="_tab_32">
+                <label class="tab-selector" for="_tab_32"><i class="icon fa fa-code"></i></label>
                 <div class="superfences-content">
                     <div class="mb-config-example">
 <pre><code class="toml">[transport.udp]
@@ -7716,8 +7505,8 @@ sender.enable =false
         <div class="mb-config-options">
             <div class="superfences-tabs">
             
-            <input name="34" type="checkbox" id="_tab_34">
-                <label class="tab-selector" for="_tab_34"><i class="icon fa fa-code"></i></label>
+            <input name="33" type="checkbox" id="_tab_33">
+                <label class="tab-selector" for="_tab_33"><i class="icon fa fa-code"></i></label>
                 <div class="superfences-content">
                     <div class="mb-config-example">
 <pre><code class="toml">[[custom_transport.listener]]
@@ -8105,8 +7894,8 @@ ssl_profile.read_interval = "30s"
         <div class="mb-config-options">
             <div class="superfences-tabs">
             
-            <input name="35" type="checkbox" id="_tab_35">
-                <label class="tab-selector" for="_tab_35"><i class="icon fa fa-code"></i></label>
+            <input name="34" type="checkbox" id="_tab_34">
+                <label class="tab-selector" for="_tab_34"><i class="icon fa fa-code"></i></label>
                 <div class="superfences-content">
                     <div class="mb-config-example">
 <pre><code class="toml">[[custom_transport.sender]]
@@ -8472,8 +8261,8 @@ ssl_profile.read_interval = "30s"
         <div class="mb-config-options">
             <div class="superfences-tabs">
             
-            <input name="36" type="checkbox" id="_tab_36">
-                <label class="tab-selector" for="_tab_36"><i class="icon fa fa-code"></i></label>
+            <input name="35" type="checkbox" id="_tab_35">
+                <label class="tab-selector" for="_tab_35"><i class="icon fa fa-code"></i></label>
                 <div class="superfences-content">
                     <div class="mb-config-example">
 <pre><code class="toml">[mediation]
@@ -8537,7 +8326,7 @@ inbound.max_threads = 100
                                         </div>
                                     </div>
                                     <div class="param-description">
-                                        <p>The initial number of synapse threads in the pool. This parameter is applicable only if the Iterate or the Clone mediator is used to handle a higher load. These mediators use a thread pool to create new threads when processing messages and sending messages in parallal. You can configure the size of the thread pool by this parameter. The number of threads specified via this parameter should be increased as required to balance an increased load. Increasing the value specified for this parameter results in higher performance of the Iterate and Clone mediators.</p>
+                                        <p>The initial number of synapse threads in the pool. This parameter is applicable only if the Iterate or the Clone mediator is used to handle a higher load. The number of threads specified for this parameter should be increased as required to balance an increased load.</p>
                                     </div>
                                 </div>
                             </div><div class="param">
@@ -8579,28 +8368,7 @@ inbound.max_threads = 100
                                         </div>
                                     </div>
                                     <div class="param-description">
-                                        <p>The length of the queue that is used to hold the runnable tasks to be executed by the pool. This parameter is applicable only if the Iterate or the Clone mediator is used to handle a higher load.</br> You can specify a finite value as the queue length by giving any positive number. If this parameter is set to (-1) it means that the task queue length is infinite. If the queue length is finite there can be situations where requests are rejected when the task queue is full, and all the cores are occupied. If the queue length is infinite, and if some thread locking happens, the server can go out of memory. Therefore, you need to decide on an optimal value based on the actual load.</p>
-                                    </div>
-                                </div>
-                            </div><div class="param">
-                                <div class="param-name">
-                                  <span class="param-name-wrap"> <code>synapse.threads.keepalive</code> </span>
-                                </div>
-                                <div class="param-info">
-                                    <div>
-                                        <p>
-                                            <span class="param-type string"> integer </span>
-                                            
-                                        </p>
-                                        <div class="param-default">
-                                            <span class="param-default-value">Default: <code></code></span>
-                                        </div>
-                                        <div class="param-possible">
-                                            <span class="param-possible-values">Possible Values: <code>....</code></span>
-                                        </div>
-                                    </div>
-                                    <div class="param-description">
-                                        <p>The keep-alive time for idle threads in milliseconds. Once this time has elapsed for an idle thread, it will be destroyed. This parameter is applicable only if the Iterate or the Clone mediator is used to handle a high load.</p>
+                                        <p>The length of the queue that is used to hold the runnable tasks to be executed by the pool. This parameter is applicable only if the Iterate or the Clone mediator is used to handle a higher load.</p>
                                     </div>
                                 </div>
                             </div><div class="param">

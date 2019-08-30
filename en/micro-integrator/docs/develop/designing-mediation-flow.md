@@ -1,6 +1,8 @@
 # Designing the Mediation Flow
 
-Once you have created a proxy service file as explained above, you can update the mediation flow by adding new mediation artifacts and changing the existing artifacts (which were generated for the template you selected).
+Once you have created a proxy service file or a REST API in WSO2 Integration Studio, you can update the mediation flow by adding new mediation artifacts and changing the existing artifacts.
+
+Follow the steps given below.
 
 1.  First, open the proxy service configuration file from the project explorer.
 2.  You can use either the **design view** or the **source view** to update the mediation flow. Shown below is an example of a PassThrough proxy service:

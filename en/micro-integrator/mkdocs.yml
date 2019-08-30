@@ -85,16 +85,7 @@ nav:
         - 'Tuning JVM Performance' : 'setup/performance_tuning/tuning_jvm_performance.md'
         - 'Tuning Network and OS Performance' : 'setup/performance_tuning/network_os_performance.md'
         - 'Tuning JDBC Configurations' : 'setup/performance_tuning/jdbc_tuning.md'
-        - Tuning Use Cases:
-          - 'Tuning the Split-Aggregator Pattern' : 'setup/performance_tuning/split_aggregate_pattern_tuning.md'
-          - 'Tuning Message Transformation Scenarios' : 'setup/performance_tuning/message_transformation_tuning.md'
-          - 'Tuning JMS Scenarios' : 'setup/performance_tuning/jms_scenarios.md'
-          - 'Tuning Inbound Endpoints' : 'setup/performance_tuning/inbound_endpoint_tuning.md'
-        - Tuning Transports:
-          - 'Tuning the HTTP Transport' : 'setup/performance_tuning/http_transport_tuning.md'
-          - 'Tuning the JMS Transport' : 'setup/performance_tuning/jms_transport_tuning.md'
-          - 'Tuning the VFS Transport' : 'setup/performance_tuning/vfs_transport_tuning.md'
-          - 'Tuning the RabbitMQ Transport' : 'setup/performance_tuning/rabbitmq_transport_tuning.md'
+        - 'Tuning the JMS Transport' : 'setup/performance_tuning/jms_transport_tuning.md'
       - Feature-Specific Configurations:
         - 'Configuring the Task Scheduling Component': 'setup/configuring_task_scheduling_comp.md'
         - 'Enabling CORS for Data Services': 'setup/enabling_CORS_for_data_services.md'
@@ -109,12 +100,11 @@ nav:
         - 'Customizing Error Messages': 'setup/customizing_error_pages.md'
         - 'Governing External Reference Across Environments': 'setup/govern_ext_refs_across_env.md'
         - 'Enable SSL Tunneling through Proxy Server': 'setup/enabling_SSL_tunneling_thru_proxy_server.md'
-        - Configuring Transports:
-          - 'Verifying Certificate Revocation': 'setup/transport_configurations/certificate-revocation.md'
-          - 'Configuring HTTP/HTTPS Listeners': 'setup/transport_configurations/configuring-passthru-listeners.md'
-          - 'JMS Map Messaging': 'setup/transport_configurations/connection-throttling.md'
-          - 'Configuring Connection Throttling': 'setup/transport_configurations/jms-map-message.md'
-          - 'Configuring the Multi-HTTPS Transport': 'setup/transport_configurations/multi-https-transport.md'
+        - 'Verifying Certificate Revocation': 'setup/transport_configurations/certificate-revocation.md'
+        - 'Configuring HTTP/HTTPS Listeners': 'setup/transport_configurations/configuring-passthru-listeners.md'
+        - 'JMS Map Messaging': 'setup/transport_configurations/connection-throttling.md'
+        - 'Configuring Connection Throttling': 'setup/transport_configurations/jms-map-message.md'
+        - 'Configuring the Multi-HTTPS Transport': 'setup/transport_configurations/multi-https-transport.md'
     - Develop:
       - 'Developing Integration Solutions': 'develop/intro-integration-development.md'
       - 'Developer Kick Start' : 'develop/integration-development-kickstart.md'
@@ -228,6 +218,9 @@ nav:
             - 'Configuring HornetQ' : 'use-cases/examples/jms_examples/brokers/configure-with-HornetQ.md'
             - 'Configuring Multiple Brokers' : 'use-cases/examples/jms_examples/brokers/configure-with-multiple-brokers.md'
         - 'JSON Examples' : 'use-cases/examples/json_examples/json-examples.md'
+        - 'Split Aggregator Pattern': 'use-cases/examples/split_aggregate_pattern.md'
+        - 'Optimized Message Transformation': 'use-cases/examples/message_transformation_example.md'
+        - 'VFS Streaming': 'use-cases/examples/vfs_transport_streaming.md'
     - Administration:
       - 'Monitoring Message Round Trip' : 'administer-and-observe/observability.md'
       - 'JMX Monitoring' : 'administer-and-observe/jmx_monitoring.md'
