@@ -23,7 +23,7 @@ It’s powered by [Siddhi.io](https://siddhi.io/), a well known cloud native ope
 - Deriving **insights** by identifying interesting patterns and sequences of events in data streams.
 - **Summarizing** data as and when it is generated using temporal windows and incremental time series aggregations.
  
- ![Streaming Integrator/ Workflow](docs/images/streaming-integrator.png)
+ ![Streaming Integrator/ Workflow](../images/overview/streaming-integrator.png)
 
 WSO2 SI allows you to connect to any data source with any destination regardless of the different protocols and data formats used by the different endpoints. WSO2 SI has 60+ prebuilt and well tested collection of connectors that can be used to connect to various sources and destinations. The SI Store API can expose aggregated and collected data streams to in-memory and persistence storages via a REST API. With store, you can fetch row data as well execute queries and generate summarized information on demand via ad-hoc queries.
 
