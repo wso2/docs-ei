@@ -2,23 +2,12 @@
 
 Follow the instructions given below to create a new Endpoint Template in WSO2 Integration Studio.
 
-!!! tip
-    **Importing an Endpoint Template?**
-
-    If you already have an Endpoint Template created, you have the option of importing the XML configuration. Select **Import Artifact** and follow the instructions on the UI.
-
 ## Instructions
 
 Follow these steps to create a new scheduled task.
 
-1.  Right click the project and go to **New → Template** to open the
-    **New Template Artifact** dialog.
-2.  Type a unique name for the template and specify the type of template
-    you are creating.
-
-    Currently the following three types are supported (See their
-    description following the appropriate links):
-
+1.  Right click the project and go to **New → Template** to open the **New Template Artifact** dialog.
+2.  Type a unique name for the template and specify the type of template you are creating.
     <table>
         <tr>
             <th>Template Type</th>
@@ -80,14 +69,11 @@ Follow these steps to create a new scheduled task.
         </tr>
     </table>
 
-6.  If you specified an address or WSDL endpoint as the template type,
-    enter the URL for the address or the WSDL URI and connection
-    information in the **Advanced Configuration** fields.
-7.  Click **Finish** . The template is created in the
-    `          src/main/synapse-config/templates         ` folder under
-    the ESB Config project you specified. When prompted, you can open
-    the file in the editor, or you can right-click the template in the
-    project explorer and click **Open With \> ESB Editor**.
+3.  Do one of the following:  
+    -   To save the endpoint in an existing ESB Config project in your workspace, click **Browse** and select that project.
+    -   To save the endpoint in a new ESB Config project, click **Create new Project** and create the new project.
+4.  Click **Finish** . The template is created in the `src/main/synapse-config/templates` folder under the ESB Config project you specified.
+5.  Open the new artifact from the project explorer, and update any [optional endpoint template properties](../../creating-projects/#esb-config-project).
 
 ## Examples
 ..
