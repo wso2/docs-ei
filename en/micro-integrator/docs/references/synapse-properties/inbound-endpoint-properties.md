@@ -285,6 +285,12 @@ By default inbound endpoints share the PassThrough transport worker pool to hand
     </td>
   </tr>
   <tr>
+    <td>inbound.thread.id</td>
+    <td>
+      Unique Identifier of the thread group. The default value is the PassThrough inbound worker thread.
+    </td>
+  </tr>
+  <tr>
     <td>dispatch.filter.pattern</td>
     <td>
       The regular expression that defines the proxy services and API's to expose via the inbound endpoint. Provide the .* expression to expose all proxy services and API's or provide an expression similar to <code>^(/foo|/bar|/services/MyProxy)$</code> to define a set of services to expose via the inbound endpoint. If you do not provide an expression only the defined sequence of the inbound endpoint will be accessible.
@@ -982,7 +988,7 @@ Listed below are the Kafka inbound endpoint properties for a high-level configur
          <td>
            sequential
          </td>
-         <td>The behaviour when executing the given sequence.</br></br> The property is set to <code>true</code> by default.</td>
+         <td>The behaviour when executing the given sequence.</br></br> The property is set to <code>true</code> by default. Set this property to <code>false</code> to use the Kafka inbound in a non-sequential mode as it allows better performance than the sequential mode.</td>
       </tr>
       <tr>
          <td>
@@ -1256,6 +1262,17 @@ Following is a sample low-level Kafka configuration that can be used to consume
       </tr>
    </tbody>
 </table>
+
+### Improving Kafka Performance (Server-Level)
+
+Open the ei.toml file, and change the inbound thread pool size based on your use case. Recommended values are specified below.
+
+```toml
+[[mediation]]
+inbound.threads.core = 200 
+inbound.threads.max = 1000   
+```
+See the [descriptions of the parameters](../../../references/config-catalog/#mediation-process).
 
 ## Event-based Inbound Endpoint Properties
 

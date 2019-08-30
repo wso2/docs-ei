@@ -12,7 +12,8 @@ If you have an already created composite appliction project, do the following t
 2.  In the **Dependencies** section, select the artifacts from each of
     the projects.
 
-    > **Note:** If you have created a custom mediator artifact, it should be packaged in the same composite application along with the other artifacts that uses the mediator.
+    !!! Note 
+        If you have created a custom mediator artifact, it should be packaged in the same composite application along with the other artifacts that uses the mediator.
     
     ![Create CAPP](../../assets/img/create_project/capp_dependencies.png)
 
@@ -25,8 +26,7 @@ If you have not previously created a composite application project, do the follo
 1.  Open the **Getting Started** view and click **Miscellaneous → Create
     New Composite Application** .  
     ![Create new CAPP](../../assets/img/create_project/create_new_capp.png) 
-2.  In the **New Composite Application Project** dialog that opens, s
-    elect the artifacts from the relevant ESB projects and click
+2.  In the **New Composite Application Project** dialog that opens, select the artifacts from the relevant ESB projects and click
     **Finish** .  
     ![Create new CAPP](../../assets/img/create_project/create_new_capp_dialog.png)
 

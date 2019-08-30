@@ -93,36 +93,13 @@ response.
 The Iterate, Clone and Aggregate mediators demonstrate high performance
 due to default threading and memory configuration. The performance of
 these mediators can be further increased by tuning the following
-parameters in the esb.toml file:
+parameters in the ei.toml file:
 
-### `         synapse.threads.core        ` and `         synapse.threads.max        `
+```toml
+[[mediation]]
+synapse.core_threads = 20
+synapse.max_threads = 100
+synapse.threads_queue_length = 10
+```
 
-Iterate and Clone mediators use a thread pool to create new threads when
-processing messages and sending messages parallelly. You can configure
-the size of the thread pool by the
-`         synapse.threads.core        ` parameter. The number of threads
-specified via this parameter should be increased as required to balance
-an increased load. Increasing the value specified for this parameter
-results in higher performance of the Iterate and Clone mediators. You
-can specify the maximum number of synapse threads in the pool by the
-`         synapse.threads.max        ` parameter.
-
-### `         synapse.threads.keepalive        `
-
-The keep-alive time for idle threads in milliseconds. Once this time has
-elapsed for an idle thread, it will be destroyed. This parameter is
-applicable only if the Iterate or the Clone mediator is used to handle a
-high load.
-
-### `         synapse.threads.qlen        `
-
-You can use this parameter to specify the length of the queue that is
-used to hold the runnable tasks to be executed by the pool. You can
-specify a finite value as the queue length by giving any positive
-number. If this parameter is set to (-1) it means that the task queue
-length is infinite.  
-If the queue length is finite there can be situations where requests are
-rejected when the task queue is full, and all the cores are occupied. If
-the queue length is infinite, and if some thread locking happens, the
-server can go out of memory. Therefore, you need to decide on an optimal
-value based on the actual load.
+See the [descriptions of these parameters](../../../references/config-catalog/#mediation-process).

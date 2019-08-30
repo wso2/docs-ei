@@ -25,7 +25,7 @@ This project directory stores the ESB artifacts that are used when defining a me
 
 <ol>
     <li>
-        Open <b>WSO2 Integration Studio</b> and click <b>Miscellaneous → Create New Config Project</b> in the <b>Getting Started</b>view as shown below.</br></br><img src="../../assets/img/create_project/new_config_project.png">
+        Open <b>WSO2 Integration Studio</b> and click <b>Miscellaneous → Create New Config Project</b> in the <b>Getting Started</b> view as shown below.</br></br><img src="../../assets/img/create_project/new_config_project.png">
     </li> 
     <li>
         In the dialog that opens, select <b>New ESB Config Project</b> and click <b>Next</b>.
@@ -46,7 +46,7 @@ Create this project directory if you want to create registry resources for your 
             
 <ol>
     <li>
-        Open <b>WSO2 Integration Studio</b> and click <b>Miscellaneous → Create New Registry Project</b> in the <b>Getting Started</b>view as shown below.</br></br><img src="../../assets/img/create_project/new_registy_project.png">
+        Open <b>WSO2 Integration Studio</b> and click <b>Miscellaneous → Create New Registry Project</b> in the <b>Getting Started</b> view as shown below.</br></br><img src="../../assets/img/create_project/new_registy_project.png">
     </li>
     <li>
         In the dialog that opens, enter a name for the registry project. 
@@ -82,7 +82,6 @@ You can now start creating [custom mediators](../develop/creating-artifacts/crea
 ## Data Services Project
 
 Create this project directory to start creating data services (.dbs files) for exposing various datasources as a service.</br></br>
-
 <ol>
     <li>
         Open <b>WSO2 Integration Studio</b> and click <b>DS Project → Create New Data Service</b> in the <b>Getting Started</b> view as shown below.
@@ -225,7 +224,7 @@ This poject directory allows you to package all the artifacts (stored in other E
 </table>
 -->
 
-## Alternative: Creating projects
+## Alternative: Creating Projects
 
 You can use the above ESB projects and other various projects as follows:
 

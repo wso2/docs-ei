@@ -6,20 +6,16 @@ Follow the instructions given below to create a new Inbound Endpoint artifact in
 
 Follow the steps below to create a new inbound endpoint.
 
-1.  If you have already created an [ESB Config project](../../creating-projects/#esb-config-project), right-click the project in the navigator and go to **New → Inbound Endpoint** to open the **New Inbound Endpoint Artifact** dialog:
-
-    ![](attachments/119130498/119130502.png)
+1.  If you have already created an [ESB Config project](../../creating-projects/#esb-config-project), right-click the project in the navigator and go to **New → Inbound Endpoint** to open the **New Inbound Endpoint Artifact**:
 
 2. Select **Create a New Inbound Endpoint** and click **Next** .
-3. Enter a unique name for the inbound endpoint, and select an **Inbound Endpoint Creation Type** from the list shown below.
-
-    ![](attachments/119130498/119130501.png)
-    
-4.  For certain protocols ( HL7, KAFKA, Custom, MQTT, RabbitMq, WSO2_MB, WS, and  WSS) the main sequence and error sequence are mandatory fields. You can select sequences that already exists in the workspace and add them to the **Sequence** and **Error sequence** fields (shown below). If you don't have any sequences incthe workspace, click **Generate Sequence and Error Sequence** to generate new sequences for the inbound endpoint.  
-    ![](attachments/119130498/119130500.png)  
-5.  Specify the **ESB Solution** project where Inbound Endpoint should be saved.
-6.  Click **Finish** to generate the inbound endpoint. The artifact will
-    now be saved in the ESB project.
+3. Enter a unique name for the inbound endpoint, and select an **Inbound Endpoint Creation Type** from the list. See the descriptions of the [required inbound endpoint properties](../../creating-projects/#esb-config-project) for each inbound endpoint type.
+4. For certain protocols ( HL7, KAFKA, Custom, MQTT, RabbitMq, WSO2_MB, WS, and  WSS) the **main sequence** and **error sequence** are mandatory fields. You can select sequences that already exist in the workspace and add them to the **Sequence** and **Error sequence** fields. If you don't have any sequences in the workspace, click **Generate Sequence and Error Sequence** to generate new sequences for the inbound endpoint.  
+5.	Do one of the following:  
+    -   To save the endpoint in an existing ESB Config project in your workspace, click **Browse** and select that project.
+    -   To save the endpoint in a new ESB Config project, click **Create new Project** and create the new project.
+5.  Click **Finish**. The inbound endpoint is created in the `src/main/synapse-config/inbound-endpoint` folder under the ESB Config project you specified.
+6.  Open the new artifact from the project explorer, and update any [optional inbound endpoint properties](../../creating-projects/#esb-config-project).
 
 !!! Note
     **Redeployment of listening inbound endpoints fail?**
