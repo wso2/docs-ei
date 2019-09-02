@@ -2,13 +2,6 @@
 
 See the topics given below for details.
 
-## Sample Message Processor Syntax
-
-```
-<messageProcessor class="classname" name="unique string" messageStore="associated message store name">
-   <parameter name="string">"string"</parameter>
-</messageProcessor>
-```
 ## Required Properties
 
 Following are the required parameters you can set when adding a Scheduled Message Forwarding Processor:
@@ -44,7 +37,7 @@ Following are the required parameters you can set when adding a Scheduled Messag
      </tr>
 </table>
 
-## Optional Properties: Message Sampling Processor
+## Message Sampling Processor (Optional Properties)
 
 Following are the additional parameters you can set when adding a message sampling processor:
 
@@ -62,12 +55,10 @@ Following are the additional parameters you can set when adding a message sampli
    <tbody>
       <tr>
          <td>
-            <p>Quartz Configuration File Path ( <code>              quartz.conf             </code> )</p>
+            <p>Quartz Configuration File Path ( <code>quartz.conf             </code> )</p>
          </td>
          <td>
-            <p>Quartz configuration file path. This properties file contains the Quartz configuration<br />
-               parameters for fine tuning the Quartz engine. More details of the configuration can be<br />
-               found at <a href="http://quartz-scheduler.org/documentation/quartz-2.x/configuration/ConfigMain">http://quartz-scheduler.org/documentation/quartz-2.x/configuration/ConfigMain</a> .
+            <p>Quartz configuration file path. This properties file contains the Quartz configuration parameters for fine tuning the Quartz engine. More details of the configuration can be found at <a href="http://quartz-scheduler.org/documentation/quartz-2.x/configuration/ConfigMain">http://quartz-scheduler.org/documentation/quartz-2.x/configuration/ConfigMain</a> .
             </p>
          </td>
       </tr>
@@ -82,7 +73,7 @@ Following are the additional parameters you can set when adding a message sampli
    </tbody>
 </table>
 
-## Optional Properties: Scheduled Failover Message Forwarding Processor
+## Scheduled Failover Message Forwarding Processor (Optional Properties)
 
 Following are the additional parameters you can set when adding a Scheduled Failover Message Forwarding Processor:
 
@@ -176,7 +167,7 @@ Following are the additional parameters you can set when adding a Scheduled Fail
    </tbody>
 </table>
 
-## Optional Properties: Scheduled Message Forwarding Processor
+## Scheduled Message Forwarding Processor (Optional Properties)
 
 Following are the optional parameters you can set when adding a Scheduled Message Forwarding Processor:
 
@@ -286,11 +277,8 @@ Following are the optional parameters you can set when adding a Scheduled Messag
             <p>Fail messages store ( <code>              message.processor.failMessagesStore             </code> )</p>
          </td>
          <td>
-            <div class="content-wrapper">
-               <p>The name of a backup message store to forward messages that fail to reach the backend. Specifying a backup message store allows the message processor to continue processing the next message instead of deactivating in case a message fails to be delivered to the backend. If a backup message store is not specified and a message fails to reach the backend, the message processor will attempt to redeliver the message based on the value of the <strong>Maximum redelivery attempts</strong> , before deactivating.</p></br></br>
-              <b>Note</b>
-               <p>Specifying a backup message store while the <strong>Drop message after maximum delivery attempts</strong> ( <code>               max.delivery.drop              </code> ) parameter is <code>               Enabled              </code> results in messages that are not delivered being dropped from the message store and allows the message processor to continue processing the next message.</p>
-            </div>
+            The name of a backup message store to forward messages that fail to reach the backend. Specifying a backup message store allows the message processor to continue processing the next message instead of deactivating in case a message fails to be delivered to the backend. If a backup message store is not specified and a message fails to reach the backend, the message processor will attempt to redeliver the message based on the value of the <strong>Maximum redelivery attempts</strong> , before deactivating.</p></br></br>
+            <b>Note</b>: Specifying a backup message store while the <strong>Drop message after maximum delivery attempts</strong> ( <code>               max.delivery.drop</code> ) parameter is <code>               Enabled              </code> results in messages that are not delivered being dropped from the message store and allows the message processor to continue processing the next message.
          </td>
       </tr>
       <tr>
@@ -298,9 +286,7 @@ Following are the optional parameters you can set when adding a Scheduled Messag
             <p>Quartz configuration file path ( <code>              quartz.conf             </code> )</p>
          </td>
          <td>
-            <p>The Quartz configuration file path. This properties file contains the Quartz configuration<br />
-               parameters for fine tuning the Quartz engine. More details of the configuration can be<br />
-               found at <a href="http://quartz-scheduler.org/documentation/quartz-2.x/configuration/ConfigMain">http://quartz-scheduler.org/documentation/quartz-2.x/configuration/ConfigMain</a> .
+            The Quartz configuration file path. This properties file contains the Quartz configuration parameters for fine tuning the Quartz engine. More details of the configuration can be found at <a href="http://quartz-scheduler.org/documentation/quartz-2.x/configuration/ConfigMain">http://quartz-scheduler.org/documentation/quartz-2.x/configuration/ConfigMain</a>.
             </p>
          </td>
       </tr>
@@ -316,7 +302,6 @@ Following are the optional parameters you can set when adding a Scheduled Messag
       <tr>
          <td>
             Task Count ( <code>             member.count            </code> )
-            <p><br /></p>
          </td>
          <td>
             <p>The number of tasks that need to be created for this message processor.</p>

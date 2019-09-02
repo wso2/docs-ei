@@ -97,6 +97,7 @@ The application you created needs to be tested before he uses it to process the 
 To simulate events for the Siddhi application, you can use the event simulator available with in the Streaming Integration Tooling as explained in the procedure below.
 
 1. In the Streaming Integrator Tooling, click the following icon for event simulation on the side panel.
+
     ![Event Simulator icon](../images/quick-start-guide-101/event-simulation-icon.png)
     
    The Simulation panel opens as shown below.
@@ -195,13 +196,33 @@ To debug your Siddhi application, you need to mark debug points, and then simula
 
 ## Deploying Siddhi applications
 
-After creating and testing the `TemperatureApp` Siddhi application, you need to deploy it in the server so that you can use it to process actual data. To do this, follow the procedure below:
+After creating and testing the `TemperatureApp` Siddhi application, you need to deploy it in the Streaming Integrator server, export it as a Docker image, or deploy in Kubernetes.
+
+### Deploying in Streaming Integrator server
+
+To deploy your Siddhi application in the Streaming Integrator server, follow the procedure below:
 
 1. Open the `TemperatureApp` Siddhi application.
 2. Click **Deploy** and then click **Deploy to Server**.
     ![Deploy to Server](../images/quick-start-guide-101/Deploy-to Server.png)
 
 As a result, the `TemperatureApp` Siddhi application is saved in the `<SI_HOME>/deployment/siddhi-files` directory.
+
+### Deploying in Docker
+
+To export the  `TemperatureApp` Siddhi application as a Docker artifact, follow the procedure below.
+
+1. Open the Streaming Integrator Tooling.
+
+2. In the **File** menu, click **Export as Docker**.
+    ![Export Siddhi Application as Docker](../images/quick-start-guide-101/export-as-docker.png)
+
+   As a result, the **Export as Docker** dialog box opens as follows.
+    ![Export as Docker dialog box](../images/quick-start-guide-101/export-as-docker-dialog-box.png)
+
+3. Select the **TemperatureApp.Siddhi** check box and click **Export**. The Siddhi application is exported as a Docker artifact in a zip file to the default location in your machine, based on your operating system and browser settings.
+
+
 
 
 ## Advanced streaming integrations
@@ -345,3 +366,4 @@ In this scenario, let's assume that the laboratories require the siddhi-executio
 4. To download the extension, click **Download Extension**. Then enter your email address in the dialog box that appears, and click **Submit**. As a result, a JAR fil is downloaded into a location in your machine (the location depends on your browser settings).
 
 5. To install the siddhi-execution-extrema extension in your Streaming Integrator, place the JAR file you downloaded in the `<SI_HOME>/lib directory`.
+

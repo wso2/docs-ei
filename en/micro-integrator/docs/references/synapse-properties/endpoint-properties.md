@@ -2,6 +2,8 @@
 
 See the topics given below for details.
 
+<!--
+
 ## Sample Endpoint Syntax
 
 ``` java tab='Address Endpoint'
@@ -105,6 +107,7 @@ See the topics given below for details.
     </membershipHandler>
 </dynamicLoadbalance>
 ```
+-->
 
 ## Basic Properties
 

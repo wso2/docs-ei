@@ -1,132 +1,120 @@
-# Installing Stream Processor Using Kubernetes
+# Installing Streaming Integrator Using Kubernetes
+WSO2 Streaming Integrator can be deployed natively on kubernetes using Siddhi Kubernetes Operator.
 
-To install WSO2 Stream Processor using Kubernetes, follow the steps
+Streaming Integrator can be configured in SiddhiProcess yaml and passed to the CRD(Custom Resource Definition) for deployment.
+Siddhi logic can be directly written inline in SiddhiProcess yaml or passed as .siddhi files via config maps.
+
+To install WSO2 Streaming Integrator using Kubernetes, follow the steps
 below:
 
-1.  Install
-    [Git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
-    and [Kubernetes
-    client](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
-    (tested with v1.10). As a result, an already setup [Kubernetes
-    cluster](https://kubernetes.io/docs/setup/pick-right-solution/) with
-    [NGINX Ingress
-    Controller](https://kubernetes.io/docs/setup/pick-right-solution/)
-    is enabled.
-2.  A pre-configured Network File System (NFS) is used as the persistent
-    volume for artifact sharing and persistence.  
-    In the NFS server instance, create a Linux system user account named
-    `           wso2carbon          ` with `           802          ` as
-    the user ID, and a system group named `           wso2          `
-    with `           802          ` as the group ID. Add the
-    `           wso2carbon          ` user to the
-    `           wso2          ` group.
+### Prerequisites
 
-    ``` text
-        groupadd --system -g 802 wso2
-        useradd --system -g 802 -u 802 wso2carbon
-    ```
+* A Kubernetes cluster v1.10.11 or higher.
+    * [Minikube](https://github.com/kubernetes/minikube#installation)
+    * [Google Kubernetes Engine(GKE) Cluster](https://console.cloud.google.com/)
+    * [Docker for Mac](https://docs.docker.com/docker-for-mac/install/)
+    * Or any other Kubernetes cluster.
+* Admin privilages to install Siddhi operator.
 
-## Fully distributed deployment of WSO2 Stream Processor
+#### Minikube
 
-To set up a fully distributed deployment of WSO2 Stream Processor with
-Kubernetes, follow the steps below:
+Siddhi operator automatically creates NGINX ingress. Therefore it to work we can either enable ingress on Minikube using the following command.
+```
+minikube addons enable ingress
+```
+or disable Siddhi operator's [automatically ingress creation](https://siddhi.io/en/v5.0/docs/siddhi-as-a-kubernetes-microservice/#deploy-siddhi-apps-without-ingress-creation).
 
-Clone the Kubernetes resources for [WSO2 Stream Processor Git
-repository](https://github.com/wso2/kubernetes-sp) .
+#### Google Kubernetes Engine Cluster
 
-!!! info
+To install Siddhi operator, you have to give cluster admin permission to your account. In order to do that execute the following command (by replacing "your-address@email.com" with your account email address).
 
-The local copy of the Git repository is referred to as
-`           <KUBERNETES_HOME>          ` from here onwards.
-
-
-``` text
-    git clone https://github.com/wso2/kubernetes-sp.git
+```
+kubectl create clusterrolebinding user-cluster-admin-binding --clusterrole=cluster-admin --user=your-address@email.com
 ```
 
-Setup a Network File System (NFS) to be used for persistent storage as
-follows.  
 
-1.  Create and export unique directories within the NFS server instance
-    for each Kubernetes Persistent Volume resource defined in the
-    `             <KUBERNETES_HOME>/pattern-distributed/volumes/persistent-volumes.yaml            `
-    file.
+#### Docker For Mac
 
-    ``` text
-            sudo chown -R wso2carbon:wso2 <directory_name>
-    ```
+Siddhi operator automatically creates NGINX ingress. Therefore it to work we can either enable ingress on Docker for mac following the official [documentation](https://kubernetes.github.io/ingress-nginx/deploy/#docker-for-mac) or disable Siddhi operator's [automatically ingress creation](https://siddhi.io/en/v5.0/docs/siddhi-as-a-kubernetes-microservice/#deploy-siddhi-apps-without-ingress-creation).
 
-2.  Grant ownership to the `             wso2carbon            ` user
-    and `             wso2            ` group, for each of the
-    previously created directories by issuing the following command.
 
-    ``` text
-            chmod -R 700 <directory_name>
-    ```
+## Install Siddhi Operator for Streaming Integrator
 
-3.  Then, update each Kubernetes Persistent Volume resource with the
-    corresponding NFS server IP (NFS\_SERVER\_IP), and the NFS server
-    directory path (NFS\_LOCATION\_PATH) of the directory you exported.
+To install the Siddhi Kubernetes operator for streaming integrator run the following commands.
 
-Setup product database(s) using MySQL in Kubernetes. Here, a NFS is
-needed for persisting MySQL DB data.
+```
+kubectl apply -f https://github.com/wso2/streaming-integrator/releases/download/v1.0.0-m1/00-prereqs.yaml
+kubectl apply -f https://github.com/wso2/streaming-integrator/releases/download/v1.0.0-m1/01-siddhi-operator.yaml
+```
 
-Create and export a directory within the NFS server instance.
+You can verify the installation by making sure the following deployments are running in your Kubernetes cluster.
+```
+$ kubectl get deployment
 
-Provide read-write-execute permissions to other users for the created
-folder.
+NAME                 DESIRED   CURRENT   UP-TO-DATE   AVAILABLE   AGE
+streaming-integrator   1         1         1            1           1m
+siddhi-parser          1         1         1            1           1m
+```
 
-Then, update the Kubernetes Persistent Volume resource with the
-corresponding NFS server IP (NFS\_SERVER\_IP) and exported, NFS server
-directory path (NFS\_LOCATION\_PATH) in
-`           <KUBERNETES_HOME>/pattern-distributed/extras/rdbms/volumes/persistent-volumes.yaml          `
-.
+## Deploy Streaming Integrator
 
-For a serious deployment (e.g. production grade setup), it is
-recommended to connect product instances to a user owned and managed
-RDBMS instance.
+Siddhi app which consists the streaming integration logic can be deployed on kuberbetes using the siddhi operator.
 
-Navigate to the
-`           <KUBERNETES_HOME>/pattern-distributed/scripts          `
-directory as follows.
+Here we will creating a very simple Siddhi stream processing application that consumes events via HTTP, filers the input events on the type 'monitored' and logs the output on the console. This can be created using a SiddhiProcess yaml file as given below.
 
-    cd <KUBERNETES_HOME>/pattern-distributed/scripts
+<script src="https://gist.github.com/AnuGayan/f11e235ee0dbc3df94126820f7bad282.js"></script>
 
-  
-Deploy the Kubernetes resources by executing the
-`           <KUBERNETES_HOME>/pattern-distributed/scripts/deploy.sh          `
-script as follows.
+To change the default configurations in streaming integrator you can provide the configuration that needed to overide through SiddhiProcess yaml
 
-    ./deploy.sh --wso2-username=<WSO2_USERNAME> --wso2-password=<WSO2_PASSWORD> --cluster-admin-password=<K8S_CLUSTER_ADMIN_PASSWORD>WSO2_USERNAME: Your WSO2 username 
+Here we have updated the above SiddhiProcess yaml to have the modified configuration for auth.configs in order to change the default configurations in streaming integrator.
 
-  
+!!! info 
+    we can overide the default deployment.yaml file by using this appoach
 
--   `            WSO2_USERNAME           ` : Your WSO2 username
+<script src="https://gist.github.com/AnuGayan/249a3363a8aa47c6ae2d760d19ee5cad.js"></script>
 
--   `            WSO2_PASSWORD           ` : Your WSO2 password
 
--   `            K8S_CLUSTER_ADMIN_PASSWORD           ` : Kubernetes
-    cluster admin password
+### Invoke Siddhi Applications
 
-      
+To invoke the Siddhi Apps, first obtain the external IP of the ingress load balancer using `kubectl get ingress` command as follows and then, add the host siddhi and related external IP (ADDRESS) to the /etc/hosts file in your machine.
 
-Access product management consoles.  
-  
-Obtain the external IP (EXTERNAL-IP) of the Ingress resources by listing
-down the Kubernetes Ingresses.  
-kubectl get ing  
-  
-The external IP can be found under the ADDRESS column of the output.  
-  
-Add the above host as an entry in the `           /etc/hosts          `
-file as shown below:  
-  
-\<EXTERNAL-IP\> wso2sp-dashboard
+```
+$ kubectl get ingress
+NAME      HOSTS     ADDRESS     PORTS     AGE
+siddhi    siddhi    10.0.2.15    80       14d
+```
 
-    <EXTERNAL-IP> wso2sp-manager-1
-    <EXTERNAL-IP> wso2sp-manager-2
+!!! info "Minikube"
+    For Minikube, you have to use Minikube IP as the external IP. Hence, run minikube ip command to get the IP of the Minikube cluster.
 
-  
+Use the following CURL command to send events to monitor-app deployed in Kubernetes.
 
-Try navigating to <https://wso2sp-dashboard/monitoring> from your
-favorite browser.
+```
+curl -X POST \
+  http://siddhi/streaming-integrator-0/8080/checkPower \
+    -H 'Accept: */*' \
+    -H 'Content-Type: application/json' \
+    -H 'Host: siddhi' \
+    -d '{
+        "deviceType": "dryer",
+        "power": 600
+        }'
+```    
+To monitor the associated logs for the above siddhi app, list down the available pods by executing the following commond.
+
+```
+$ kubectl get pods
+
+NAME                                        READY    STATUS    RESTARTS    AGE
+streaming-integrator-app-0-b4dcf85-npgj7     1/1     Running      0        165m
+streaming-integrator-5f9fcb7679-n4zpj        1/1     Running      0        173m
+```
+
+and then execute the following command in order to monitor the logs of the relevent pod.
+
+```
+ kubectl logs -f streaming-integrator-app-0-b4dcf85-npgj7
+```
+
+!!! info 
+    For more details regarding the Siddhi Operator, Please refer to the following [document](https://siddhi.io/en/v5.0/docs/siddhi-as-a-kubernetes-microservice/#!).
