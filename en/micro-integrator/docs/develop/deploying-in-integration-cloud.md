@@ -1,6 +1,6 @@
 # Deploying in WSO2 Integration Cloud
 
-Once you have developed an EI solution, you can host it on the
+Once you have developed an integration solution, you can host it on the
 Integration Cloud to make it available for multiple users. To understand
 how to host a solution on Integration Cloud, follow the steps below:
 
@@ -9,10 +9,10 @@ how to host a solution on Integration Cloud, follow the steps below:
 > - [Register as a user of the Integration Cloud](https://wso2.com/integration/cloud/).
 > - [Download WSO2 Integration Studio](https://wso2.com/integration/tooling/).
 
-1.  Create an EI application as follows:
+1.  Create an integration application as follows:
     1.  Open **WSO2 Integration Studio**. In the **Getting Started** page,
         click the **Hello World Service** template to start creating a
-        new EI application based on this template.  
+        new application based on this template.  
         ![Cloud](../../assets/img/create_project/integration_cloud/1.hello_world_service.png)
     2.  In the **Create Project Using Hello World Service Template**
         dialog box, enter a name for the application. In this example,
@@ -22,8 +22,8 @@ how to host a solution on Integration Cloud, follow the steps below:
 2.  The project currently has the configurations derived from the
     template. Let's modify them as follows:
 
-     > The purpose of this step is to change the default values. You can
-        skip it if required.
+     !!! Info
+         The purpose of this step is to change the default values. You can skip it if required.
 
     1.  In the left navigator, open the
         `            HelloWorldApplication/src/main/synapse-config/proxy-services/HelloWorld.xml           `
@@ -36,16 +36,17 @@ how to host a solution on Integration Cloud, follow the steps below:
         `            {“data”: “HelloWorld”}           ` .
 
 3.  Before deploying the composite application, you need to know the key
-    of the organization to which you are deploying it. To get the
+    of the organization to which you are deploying. To get the
     organization ID, sign in to the Integration Cloud and access your
     organization as follows:
 
-    > If you already know the key of the organization to which the application needs to be deployed, you can skip this step.
+    !!! Info
+        If you already know the key of the organization to which the application needs to be deployed, you can skip this step.
     
     1.  Sign in to the [Integration
         Cloud](https://wso2.com/integration/cloud/) with your
         credentials.
-    2.  Click on the following icon tray in the right end of the top
+    2.  Click the following icon tray in the right end of the top
         bar.  
         ![Cloud](../../assets/img/create_project/integration_cloud/4.Icon_Tray.png)  
         Then click **Organizations** to open the **Manage
@@ -57,14 +58,14 @@ how to host a solution on Integration Cloud, follow the steps below:
 
 4.  Deploy the `Hello World Application` that you
     created as follows:
-    1.  In the WSO2 Integration Studio, open your workbench. Then
+    1.  In WSO2 Integration Studio, open your workbench. Then
         right-click on **HelloWorldAppsCompositeApplication** , and then
         click **Deploy to Integration Cloud** . The **WSO2 Integration
         Cloud - Authentication** wizard opens as follows.    
         ![Cloud](../../assets/img/create_project/integration_cloud/7.WSO2-Integration-Cloud-Wizard.png)
     2.  Enter the following information in the wizard:  
         -   **Organization Key** : The key of the organization to which
-            you want to deploy the EI application. The required
+            you want to deploy the application. The required
             organization key needs to be already registered under your
             Integration Cloud account.
         -   **Email** : The email address with which you are registered
