@@ -58,27 +58,6 @@ Create this project directory if you want to create registry resources for your 
 
 See the instructions on <a href="../../use-cases/examples/registry_examples/working-with-registry-artifacts">creating and using registry artifacts</a>.
 
-## Mediator Project
-
-Create this project directory to start creating custom mediator artifacts. You can use these customer mediators when you define the mediation flow in your ESB config project.
-
-<ol>
-    <li>
-        Open <b>WSO2 Integration Studio</b> and click <b>Miscellaneous → Create Mediator Project</b> in the <b>Getting Started</b> view as shown below.</br></br><img src="../../assets/img/create_project/new_mediator_project.png">
-    </li>
-    <li>
-        In the dialog that opens, select <b>Create New Mediator</b> and click <b>Next</b>.  
-    </li>
-    <li>
-        Enter a project name, package name, and class name.</br></br><img src="../../assets/img/create_project/new_mediator_artifact_dialog.png">
-    </li>
-    <li>
-        Click <b>Finish</b> and see that the project is now listed in the project explorer.
-    </li>
-</ol>
-
-You can now start creating [custom mediators](../develop/creating-artifacts/creating-custom-mediators.md).
-
 ## Data Services Project
 
 Create this project directory to start creating data services (.dbs files) for exposing various datasources as a service.</br></br>

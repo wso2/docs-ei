@@ -2,9 +2,9 @@
 
 See the topics given below for details.
 
-## Properties: In Memory Message Store 
+## In Memory Message Store Properties 
 
-Listed below are the properties that can be configured for the In-Memory Message Store.
+Listed below are the properties that can be configured when [creating an In-Memory Message Store](../../develop/creating-artifacts/creating-a-message-store.md).
 
 <table>
   <tr>
@@ -23,33 +23,11 @@ Listed below are the properties that can be configured for the In-Memory Message
   </tr>
 </table>
 
-## Properties: JMS Message Store
-
-Following are two sample JMS message store configurations that uses two different brokers (WSO2 MB and ActiveMQ:
-
-``` java tab='WSO2 MB'
-    <messageStore name="JMSMS" class="org.apache.synapse.message.store.impl.jms.JmsStore" xmlns="http://ws.apache.org/ns/synapse">
-       <parameter name="java.naming.factory.initial">org.wso2.andes.jndi.PropertiesFileInitialContextFactory</parameter>
-       <parameter name="java.naming.provider.url">/conf/jndi.properties</parameter>
-       <parameter name="store.jms.destination">ordersQueue</parameter>
-       <parameter name="store.jms.connection.factory">QueueConnectionFactory</parameter>
-       <parameter name="store.jms.JMSSpecVersion">1.1</parameter>
-    </messageStore>
-```
-
-``` java tab='ActiveMQ'
-    <messageStore name="JMSMS" class="org.apache.synapse.message.store.impl.jms.JmsStore" xmlns="http://ws.apache.org/ns/synapse">
-       <parameter name="java.naming.factory.initial">org.apache.activemq.jndi.ActiveMQInitialContextFactory</parameter>
-       <parameter name="java.naming.provider.url">tcp://localhost:61616</parameter>
-       <parameter name="store.jms.destination">ordersQueue</parameter>
-       <parameter name="store.jms.connection.factory">QueueConnectionFactory</parameter>
-       <parameter name="store.jms.JMSSpecVersion">1.1</parameter>
-    </messageStore>
-```
+## JMS Message Store Properties
 
 ### Required Properties
 
-Listed below are the properties that are required for the JMS Message Store.
+The following properties are required when [creating a JMS Message Store](../../develop/creating-artifacts/creating-a-message-store.md).
 
 <table>
   <tr>
@@ -78,9 +56,9 @@ Listed below are the properties that are required for the JMS Message Store.
   </tr>
 </table>
 
-### Optional Properties
+### Required Properties
 
-Listed below are the additional properties that can be configured for the JMS Message Store.
+The following optional properties can be configured when [creating a JMS Message Store](../../develop/creating-artifacts/creating-a-message-store.md).
 
 <table>
   <tr>
@@ -143,44 +121,11 @@ Listed below are the additional properties that can be configured for the JMS Me
   </tr>
 </table>
 
-## Properties: RabbitMQ Message Store
-
-Following is a basic sample RabbitMQ message store configuration:
-
-``` java tab='Basic RabbitMQ'
-    <messageStore class="org.apache.synapse.message.store.impl.rabbitMQ.RabbitMQStore" name="RabbitMS" xmlns="http://ws.apache.org/ns/synapse">
-      <parameter name="store.rabbitmq.host.name">localhost</parameter>
-      <parameter name="store.rabbitmq.queue.name">EIStore</parameter>
-      <parameter name="store.rabbitmq.host.port">5672</parameter>
-      <parameter name="store.rabbitmq.username">guest</parameter>
-      <parameter name="store.rabbitmq.password">guest</parameter>
-      <parameter name="store.rabbitmq.exchange.name">exchange</parameter>
-    </messageStore>   
-```
-
-``` java tab='SSL-Enabled RabbitMQ'
-    <messageStore xmlns="http://ws.apache.org/ns/synapse"
-                  class="org.apache.synapse.message.store.impl.rabbitmq.RabbitMQStore"
-                  name="store1">
-       <parameter name="store.producer.guaranteed.delivery.enable">false</parameter>
-       <parameter name="store.failover.message.store.name">store1</parameter>
-       <parameter name="store.rabbitmq.host.name">localhost</parameter>
-       <parameter name="store.rabbitmq.queue.name">WithoutClientCertQueue</parameter>
-       <parameter name="store.rabbitmq.host.port">5671</parameter>
-       <parameter name="rabbitmq.connection.ssl.enabled">true</parameter>
-       <parameter name="rabbitmq.connection.ssl.truststore.location">path/to/truststore</parameter>
-       <parameter name="rabbitmq.connection.ssl.truststore.type">JKS</parameter>
-       <parameter name="rabbitmq.connection.ssl.truststore.password">truststorepassword</parameter>
-       <parameter name="rabbitmq.connection.ssl.keystore.location">path/to/keystore</parameter>     
-       <parameter name="rabbitmq.connection.ssl.keystore.type">PKCS12</parameter>
-       <parameter name="rabbitmq.connection.ssl.keystore.password">keystorepassword</parameter>   
-       <parameter name="rabbitmq.connection.ssl.version">SSL</parameter>   
-    </messageStore>
-```
+## RabbitMQ Message Store Properties
 
 ###  Required Properties
 
-Listed below are the properties that are required for the RabbitMQ Message Store.
+The following optional properties can be configured when [creating a RabbitMQ Message Store](../../develop/creating-artifacts/creating-a-message-store.md).
 
 <table>
   <tr>
@@ -209,7 +154,7 @@ Listed below are the properties that are required for the RabbitMQ Message Store
 
 ### Optional Properties
 
-Listed below are the optional properties for the RabbitMQ Message Store.
+The following optional properties can be configured when [creating a RabbitMQ Message Store](../../develop/creating-artifacts/creating-a-message-store.md).
 
 <table>
   <tr>
@@ -268,8 +213,6 @@ Listed below are the optional properties for the RabbitMQ Message Store.
 
 ### SSL Properties
 
-Listed below are the SSL properties that are required for the RabbitMQ Message Store.
-
 !!! Note
     Configuring parameters that provide information related to keystores and truststores can be optional based on your broker configuration. For example, if `         fail_if_no_peer_cert        ` is set to `         false        ` in the RabbitMQ broker configuration, then you only need to specify `         <parameter name="rabbitmq.connection.ssl.enabled" locked="false">true</parameter>        `. Additionally, you can also set `         <parameter name="rabbitmq.connection.ssl.version" locked="false">true</parameter>        ` parameter to specify the SSL version. If `         fail_if_no_peer_cert        ` is set to `         true        ` , you need to provide keystore and truststore information.
 
@@ -320,30 +263,11 @@ Listed below are the SSL properties that are required for the RabbitMQ Message S
   </tr>
 </table>
 
-## Properties: JDBC Message Store
-
-The syntax of the JDBC message store can be different depending on whether you connect to the database using a connection pool, or using a datasource.
-
-``` java tab="Connection Pool"
-<messageStore class="org.apache.synapse.message.store.jdbc.JDBCMessageStore" name="MyStore" xmlns="http://ws.apache.org/ns/synapse">  
-    <parameter name="store.jdbc.driver">Driver</parameter>
-    <parameter name="store.jdbc.connection.url">ConnectionURL</parameter>
-    <parameter name="store.jdbc.username">Username</parameter>
-    <parameter name="store.jdbc.password">Password</parameter>
-    <parameter name="store.jdbc.table">jdbcTable</parameter>  
-</messageStore>
-```
-
-``` java tab="External Datasource"
-<messageStore class="org.apache.synapse.message.store.jdbc.JDBCMessageStore" name="MyStore" xmlns="http://ws.apache.org/ns/synapse">
-    <parameter name="store.jdbc.dsName">dsName</parameter>
-    <parameter name="store.jdbc.table">jdbcTable</parameter>
-</messageStore>
-```
+## JDBC Message Store Properties
 
 ### Required Properties
 
-Listed below are the properties that are required for the JDBC Message Store.
+The following properties are required when [creating a JDBC Message Store](../../develop/creating-artifacts/creating-a-message-store.md).
 
 <table>
   <tr>
@@ -390,8 +314,7 @@ Listed below are the properties that are required for the JDBC Message Store.
 
 ### Connection Pool Properties
 
-Following are the properties that should be specified and the
-description for each:
+The syntax of the JDBC message store can be different depending on whether you connect to the database using a connection pool, or using a datasource. Given below are the connection pool properties:
 
 <table>
   <tr>
@@ -432,7 +355,7 @@ description for each:
 
 ### External Datasource Properties
 
-Following are the parameters that should be specified and the description for each:
+The syntax of the JDBC message store can be different depending on whether you connect to the database using a connection pool, or using a datasource. Given below are the external datasource properties:
 
 <table>
   <tr>
@@ -480,31 +403,11 @@ To make sure that the datasource appears in the **Datasource Name** list, you ne
   </tr>
 </table>
 
-## Properties: Resequence Message Store
+## Resequence Message Store Properties
 
-The following is a sample synapse configuration of the Resequence Message Store.
-
-```
-<?xml version="1.0" encoding="UTF-8"?>
-    <messageStore xmlns="http://ws.apache.org/ns/synapse"
-                  class="org.apache.synapse.message.store.impl.resequencer.ResequenceMessageStore"
-                  name="RStore">
-       <parameter name="store.resequence.timeout">-1</parameter>
-       <parameter name="store.producer.guaranteed.delivery.enable">false</parameter>
-       <parameter name="store.failover.message.store.name">RStore</parameter>
-       <parameter xmlns:m0="http://services.samples"
-                  name="store.resequence.id.path"
-                  expression="substring-after(//m0:placeOrder/m0:order/m0:symbol,'-')"/>
-       <parameter name="store.jdbc.password">root</parameter>
-       <parameter name="store.jdbc.driver">com.mysql.jdbc.Driver</parameter>
-       <parameter name="store.jdbc.username">root</parameter>
-       <parameter name="store.jdbc.connection.url">jdbc:mysql://localhost:3306/resequenceDB</parameter>
-       <parameter name="store.jdbc.table">tbl_resequence</parameter>
-</messageStore>
-```
 ### Required Properties
 
-Listed below are the properties that are required for the Resequence Message Store.
+The following properties are required when [creating a Resequencer Message Store](../../develop/creating-artifacts/creating-a-message-store.md).
 
 <table>
   <tr>
@@ -559,7 +462,7 @@ Listed below are the properties that are required for the Resequence Message Sto
 
 ### Optional Properties
 
-The following are the additional properties related to the Resequence Message Store.
+The following optional properties can be configured when [creating a Resequencer Message Store](../../develop/creating-artifacts/creating-a-message-store.md).
 
 <table>
    <thead>
@@ -618,7 +521,7 @@ The following are the additional properties related to the Resequence Message St
 
 ## Properties: Custom Message Store
 
-Listed below are the properties that are required for the Custom Message Store.
+The following properties can be configured when [creating a Custom Message Store](../../develop/creating-artifacts/creating-a-message-store.md).
 
 <table>
   <tr>
@@ -637,9 +540,9 @@ Listed below are the properties that are required for the Custom Message Store.
   </tr>
 </table>
 
-## Properties: WSO2 MB Message Store
+## WSO2 MB Message Store Properties
 
-Listed below are the **required** parameters for configuring the WSO2 MB Message Store.
+The following properties can be configured when [creating a WSO2 MB Message Store](../../develop/creating-artifacts/creating-a-message-store.md).
 
 <table>
    <thead>

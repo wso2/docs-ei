@@ -1,66 +1,44 @@
 # Creating a Custom Mediator
 
-If you need to create a custom mediator that performs some logic on a message, you can either create a new mediator project , or import an existing mediator project using WSO2 Integration Studio.
+If you need to create a custom mediator that performs some logic on a message, you can either create a new mediator project, or import an existing mediator project using WSO2 Integration Studio.
 
-!!! Tip
-    You need to have WSO2 Integration Studio installed to create a new message store or to import an existing message store. For instructions, see [Installing WSO2 Integration Studio](https://docs.wso2.com/display/EI650/Installing+WSO2+Integration+Studio).
-
-Once a mediator project is finalised, you can export it as a deployable artifact by right-clicking on the project and selecting **Export Project as Deployable Archive** . This creates a JAR file that you can deploy to the EI. Alternatively, you can group the mediator project as a Composite Application Project, create a Composite Application Archive (CAR), and deploy it to the EI.
+Once a mediator project is finalised, you can export it as a deployable artifact by right-clicking on the project and selecting **Export Project as Deployable Archive** . This creates a JAR file that you can deploy. Alternatively, you can group the mediator project as a Composite Application Project, create a Composite Application Archive (CAR), and deploy it to the Micro Integrator.
 
 !!! Info
     A URL classloader is used to load classes in the mediator (class mediators are not deployed as OSGi bundles). Therefore, it is only possible to refer to the class mediator from artifacts packed in the same CAR file in which the class mediator is packed. Accessing the class mediator from an artifact packed in another CAR file is not possible. However, it is possible to refer to the class mediator from a sequence packed in the same CAR file and call that sequence from any other artifact packed in other CAR files.
 
-## Creating a mediator project
+## Instructions
 
-Follow these steps to create a new mediator.
+### Creating a Mediator Project
 
-1.  Open **WSO2 Integration Studio** , click ****Miscellaneous → Create
-    New Mediator Project **** in the ****Getting Started**** tab as
-    shown below.
-2.  Leave the first option selected and click **Next** . The New
-    Mediator Creation Wizard appears. 
+Create this project directory to start creating custom mediator artifacts. You can use these customer mediators when you define the mediation flow in your ESB config project.
 
-    ![](attachments/119131468/119131473.png)  
+1. Open <b>WSO2 Integration Studio</b> and click <b>Miscellaneous → Create Mediator Project</b> in the <b>Getting Started</b> view as shown below.
+   ![new mediator project](../../../assets/img/create_project/new_mediator_project.png)
+2. In the dialog that opens, select <b>Create New Mediator</b> and click <b>Next</b>.
+3. Enter a project name, package name, and class name.
+   ![new mediator dialog](../../../assets/img/create_project/new_mediator_artifact_dialog.png)
+4. Click <b>Finish</b> and see that the project is now listed in the project explorer.
 
-    Do the following:  
+The mediator project is created in the workspace location you specified with a new mediator class that extends `org.apache.synapse.mediators.AbstractMediator`.
 
-    1.  Type a unique name for the project.
-    2.  Specify the package and class names you are creating.
-    3.  Optionally specify the location where you want to save the project (or leave the default location specified).
-    4.  Optionally specify the working set, if any, that you want to include in this project.
-
-3.  A Maven POM file will be generated automatically for this project.
-    If you want to include parent POM information in the file from
-    another project in this workspace, click **Next** , click the
-    **Specify Parent from Workspace** check box, and then select the
-    parent project.
-4.  Click **Finish** .
-
-The mediator project is created in the workspace location you specified
-with a new mediator class that extends `org.apache.synapse.mediators.AbstractMediator ` .
-
-## Importing a Java Mediator Project
+### Importing a Java Mediator Project
 
 Follow the steps below to import a Java mediator project (that includes a Java class, which extends the `         org.apache.synapse.mediators.AbstractMediator        ` class) to WSO2 Integration Studio.
 
-1.  Open **WSO2 Integration Studio** , click ****Miscellaneous → Create
-    New Mediator Project **** in the ****Getting Started**** tab as
-    shown below.
-2.  Select **Import From Workspace** and click **Next** .
-3.  Specify the mediator project in this workspace that you want to
-    import. Only projects with source files that extend
-    `          org.apache.synapse.mediators.AbstractMediator         `
-    are listed. Optionally, you can change the location where the
-    mediator project will be created and add it to working sets.
-4.  Click **Finish** .
+1.  Open <b>WSO2 Integration Studio</b> and click <b>Miscellaneous → Create Mediator Project</b> in the <b>Getting Started</b> view as shown below.
+2.  In the dialog that opens, select **Import From Workspace** and click **Next**.
+3.  Specify the mediator project in this workspace that you want to import. Only projects with source files that extend `org.apache.synapse.mediators.AbstractMediator` are listed. Optionally, you can change the location where the mediator project will be created and add it to working sets.
+4.  Click **Finish**.
 
-The mediator project you selected is created in the location you
-specified.
+The mediator project you selected is created in the location you specified.
 
 !!! Info
-    The mediator projects you create using WOS2 Integration Studio are of the `         org.wso2.developerstudio.eclipse.artifact.mediator.project.nature        ` nature by default. Follow the steps below to view this nature added to the `         <PROJECT_NAME>/target/.project        ` file of the Java mediator project you imported.
+    The mediator projects you create using WOS2 Integration Studio are of the `org.wso2.developerstudio.eclipse.artifact.mediator.project.nature` nature by default. Follow the steps below to view this nature added to the `<PROJECT_NAME>/target/.project` file of the Java mediator project you imported.
 
--   Click the **View Menu** icon, and click **Filters and
-    Customization**.  
-    ![](attachments/119131468/119131471.png){width="613" height="294"}
--   Deselect **.\*resources** , and click **OK** .
+    1. Click the **View Menu** icon, and click **Filters and Customization**.  
+    2. Deselect **.\*resources** , and click **OK** .
+
+## Examples
+
+## Guides
