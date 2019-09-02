@@ -196,13 +196,33 @@ To debug your Siddhi application, you need to mark debug points, and then simula
 
 ## Deploying Siddhi applications
 
-After creating and testing the `TemperatureApp` Siddhi application, you need to deploy it in the server so that you can use it to process actual data. To do this, follow the procedure below:
+After creating and testing the `TemperatureApp` Siddhi application, you need to deploy it in the Streaming Integrator server, export it as a Docker image, or deploy in Kubernetes.
+
+### Deploying in Streaming Integrator server
+
+To deploy your Siddhi application in the Streaming Integrator server, follow the procedure below:
 
 1. Open the `TemperatureApp` Siddhi application.
 2. Click **Deploy** and then click **Deploy to Server**.
     ![Deploy to Server](../images/quick-start-guide-101/Deploy-to Server.png)
 
 As a result, the `TemperatureApp` Siddhi application is saved in the `<SI_HOME>/deployment/siddhi-files` directory.
+
+### Deploying in Docker
+
+To export the  `TemperatureApp` Siddhi application as a Docker artifact, follow the procedure below.
+
+1. Open the Streaming Integrator Tooling.
+
+2. In the **File** menu, click **Export as Docker**.
+    ![Export Siddhi Application as Docker](../images/quick-start-guide-101/export-as-docker.png)
+
+   As a result, the **Export as Docker** dialog box opens as follows.
+    ![Export as Docker dialog box](../images/quick-start-guide-101/export-as-docker-dialog-box.png)
+
+3. Select the **TemperatureApp.Siddhi** check box and click **Export**. The Siddhi application is exported as a Docker artifact in a zip file to the default location in your machine, based on your operating system and browser settings.
+
+
 
 
 ## Advanced streaming integrations
