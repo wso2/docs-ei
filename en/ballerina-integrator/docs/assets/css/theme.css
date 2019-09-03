@@ -864,3 +864,10 @@ html .md-footer-meta.md-typeset a,
         width: calc(100% - 445px)
     }
 }
+
+.md-typeset h4, h3, h2, h1 {
+    display: block;
+    margin-top: -6rem !important;
+    padding-top: 6rem !important;
+    content: "";
+}
