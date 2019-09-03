@@ -1,5 +1,19 @@
 # Using Kafka Inbound Endpoints
 
+In order to use the kafka inbound endpoint, you need to download and install [Apache Kafka](http://kafka.apache.org/downloads.html) . The recommended version is `         kafka_2.9.2-0.8.1.1        ` .
+      To configure the kafka inbound endpoint, copy the following client libraries from the `<KAFKA_HOME>/libs        ` directory to the `<EI_HOME>/lib` directory.
+      -   `          kafka_2.9.2-0.8.1.1.jar         `
+      -   `           scala-library-2.9.2.jar          `
+      -   `           zkclient-0.3.jar          `
+      -   `           zookeeper-3.3.4.jar          `
+      -   `           metrics-core-2.2.0.jar          `
+      **Note**:    
+      -   If you are using `          kafka_2.x.x-0.8.2.0         ` or later, you also need to add the `          kafka-clients-0.8.x.x.jar         ` file to the `          <EI_HOME>/lib         ` directory.
+        -   If you are using a newer version of ZooKeeper, follow the steps below:
+            1.  Create a directory named `             conf            ` inside the `             <EI_HOME>/repository            ` directory.
+            2.  Create a directory named identity inside the `             <EI_HOME>/repository/conf            ` directory.
+            3.  Add the [jaas.conf](attachments/119130492/119130493.conf) file to the `             <EI_HOME>/repository/conf/identity            ` directory. This is required because Kerberos authentication is enforced on newer versions of ZooKeeper.
+            
 ## High-level Kafka Configuration
 
 Following are two high-level Kafka configurations that can be used to consume messages in two ways: Using **specific topics** or using a **topic filter**.

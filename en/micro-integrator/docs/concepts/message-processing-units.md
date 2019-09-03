@@ -1,100 +1,46 @@
 # Message processing units
 
-### Mediators
+## Mediators
 
-Mediators are individual processing units that perform a specific
-function, such as sending, transforming, or filtering messages. WSO2
-Enterprise Integrator includes a comprehensive mediator library that
-provides functionality for implementing widely used [Enterprise
-Integration Patterns
-(EIPs)](https://docs.wso2.com/display/EI650/Enterprise+Integration+Patterns)
-. You can also easily write a custom mediator to provide additional
-functionality using various technologies such as Java, scripting, and
-Spring.
+Mediators are individual processing units that perform a specific function, such as sending, transforming, or filtering messages. WSO2 Micro Integrator includes a comprehensive libaray of mediators that provide functionality for implementing widely used **Enterprise Integration Patterns** (EIPs). You can also easily write a custom mediator to provide additional functionality using various technologies such as Java, scripting, and Spring.
 
-### Sequences
+## Mediation Sequences
 
-A sequence is a set of mediators organized into a logical flow, allowing
-you to implement pipes and filter patterns. You can add sequences to
-proxy services and REST APIs.
+A mediation sequence is a set of mediators organized into a logical flow, allowing you to implement pipes and filter patterns. The mediators in the sequence will perform the necessary message processing and route it to the required destination. There are several types of mediation sequences.
 
-A **mediation sequence** , commonly called a **sequence** , is a tree of
-[mediators](_ESB_Mediators_) that you can use in your mediation
-workflow. When a message is delivered to a sequence, the sequence sends
-it through all its mediators.
+### IN/OUT Sequences
 
-![](attachments/30540641/30705246.png)
+Once a request message is received by the proxy service, REST API, or the inbound endpoint, it is injected to the IN sequence of the service. The proxy service, and REST API will also contain an OUT sequence in which the response message will be processed before returning the response message.
 
-When you want to work with mediation sequences, you can use the EI
-tooling plug-in to create a new sequence as well as to import an
-existing sequence, or you can add, edit, and delete sequences via the
-Management Console.
+### Main Sequence
 
-#### Main and Fault Sequences
+All messages that are not destined for **proxy services** are sent through the main sequence. By default, the main sequence simply
+sends a message without mediation. Therefore, to add message mediation, you can add mediators and/or named sequences to the main sequence.
 
-A mediation configuration holds two special sequences named **main** and
-**fault** . All messages that are not destined for [proxy
-services](https://docs.wso2.com/display/EI650/Working+with+Proxy+Services)
-are sent through the main sequence. By default, the main sequence simply
-sends a message without mediation, so to add message mediation, you add
-mediators and/or named sequences in the main sequence.
+### Fault Sequences
 
-By default, the fault sequence will log the message, the payload, and
-any error/exception encountered, and the [drop
-mediator](_Drop_Mediator_) stops further processing. You should
-configure the fault sequence with the correct error handling instead of
-simply dropping messages. For more information, see [Error
-Handling](https://docs.wso2.com/display/EI650/Error+Handling) .
+By default, the fault sequence will log the message, the payload, and any error/exception encountered, and the **Drop** mediator stops further processing. You should configure the fault sequence with the correct **error handling** parameters instead of simply dropping messages.
 
+### Named Sequences
 
-You can create a sequence in your ESB Config project or in the registry
-and then add it right to that project's mediation workflow, or you can
-refer to it from a sequence mediator in the same ESB Config project or
-another project in this Eclipse workspace.
+A named sequence is a custom, reusable sequence artifact that holds a specific mediation logic. You can create named sequences and reuse them within your project.
 
-This section describes how to [create a new
-sequence](#WorkingwithSequencesviaTooling-create) or [import an existing
-sequence](#WorkingwithSequencesviaTooling-import) from an XML file (such
-as a Synapse Configuration file), and how to [use the
-sequence](#WorkingwithSequencesviaTooling-use) in your mediation flow.
+### Dynamic Sequences
 
-#### Dynamic sequences
+When you create a named sequence, you can save it as a dynamic sequence in the product's **registry** as a **registry resource**. This sequence can then be reused in the mediation flow.
 
-WSO2 Integration Studio allows you to create a Registry Resource
-project, which can be used to store Resources and Collections you want
-to deploy to the registry of a Carbon Server through a Composite
-Application (C-App) project. When you create a sequence, you can save it
-as a dynamic sequence in the Registry Resource project and refer to that
-sequence from the mediation flow. At runtime, when you deploy the CAR
-file with both the Registry Resource project and mediation flow, the ESB
-profile looks up and uses the sequence from the registry.
+## Message Stores and Processors
 
-### Message stores and processors
+A **Message Store** is used to temporarily store messages before they are delivered to their destination. This approach is useful for serving traffic to back-end services that can only accept messages at a given rate, whereas incoming traffic arrives at different rates. 
 
-A **message store** is used to temporarily store messages before they
-are delivered to their destination by a **message
-processor**. This approach is useful for serving
-traffic to back-end services that can only accept messages at a given
-rate, whereas incoming traffic to the Micro Integrator arrives at different
-rates. You must have added a message store before you can add a message processor.
+The **Store Mediator** in a mediation sequence is used to store incoming messages in the message store. The **Message Processor** retrieves the messages from the message store and delivers them to the back-end service at a given rate. Message stores and message processors allows you to implement different messaging and integration patterns.
 
-To store incoming traffic in a message store, use the Store mediator, and then use a message processor to deliver messages to the back-end service at a
-given rate. Using message processors and message stores allows you to
-implement different messaging and integration patterns.
-
-Multiple message processors can use the same message store. For example,
-in a clustered environment, each of the nodes would have an instance of
-the same message processor, each of which would connect to the same
-message store and evenly consume messages. The message store
-acts as a manager of these consumers and their connections and ensures
-that messages are processed by only one message processor, preventing
-message duplication. You can further control which nodes a message
-processor runs on by specifying pinned servers.
+Multiple message processors can use the same message store. For example, in a clustered environment, each of the nodes would have an instance of the same message processor, each of which would connect to the same message store and evenly consume messages. The message store acts as a manager of these consumers and their connections and ensures that messages are processed by only one message processor, preventing message duplication. You can further control which nodes a message processor runs on by specifying pinned servers.
 
 !!! Info
     You can increase performance of message processors either by **increasing the member count** or by having multiple message processors. If you increase the member count, it will create multiple child processors of the message processor.
 
-**Message Stores**
+### Message Stores
 
 <table>
 	<tr>
@@ -173,7 +119,7 @@ processor runs on by specifying pinned servers.
 	</tr>
 </table>
 
-**Message Processors**
+### Message Processors
 
 <table>
 	<tr>
@@ -212,7 +158,7 @@ processor runs on by specifying pinned servers.
 	</tr>
 </table>
 
-### Templates
+## Templates
 
 The synapse configuration language is a very powerful and robust way of driving enterprise data/messages through the Micro Integrator mediation engine. However, a large number of configuration files in the form of **sequences**, **endpoints**, **proxy services**, and transformations can be required to satisfy all the mediation requirements of your system. To keep your configurations manageable, it's important to avoid scattering configuration files across different locations and to avoid duplicating redundant configurations.
 
@@ -236,7 +182,7 @@ or
 Using function scope or "?func?" in the XPath expression allows us to refer to a particular parameter value passed externally by an invoker
 such as the Call Template mediator.
 
-### Connectors
+## Connectors
 
 Connectos allow your message flows to connect to and interact with services such as Twitter and Salesforce. A connector is a collection of **templates** that define specific operations. Typically, connectors are used to wrap the API of an external service such as Twitter or a Google Spreadsheet. Each connector provides operations that perform different actions in that service. For example, the Twitter connector has operations for creating a tweet, getting a user's followers, and more.
 
