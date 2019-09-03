@@ -7,7 +7,10 @@ a VM.
 
 Follow the steps below:
 
-1.  Go to the WSO2 Micro Integrator [product page](https://wso2.com/integration/micro-integrator/) and click **Download** to get the **.pkg** file. Alternatively, go to **Other Installation Options** and click **Binary** to download the product distribution as a ZIP file.
+1.  Go to the WSO2 Micro Integrator [product page](https://wso2.com/integration/micro-integrator/) and click **Download** to get the **product installer**. The installer that is compatible with you operating system will be downloaded.
+    
+    !!! Info
+        Alternatively, go to **Other Installation Options** and click **Binary** to download the product distribution as a ZIP file.
 
 2.  If you used the installer, double-click to open the installation
     wizard, which will guide you through the installation. When you
@@ -51,6 +54,7 @@ a place specific to your OS as shown below:
       </tr>
    </tbody>
 </table>
+
 ### Uninstalling the product
 
 If you used the **installer** to install the product, you can uninstall

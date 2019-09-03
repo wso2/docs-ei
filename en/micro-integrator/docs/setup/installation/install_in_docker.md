@@ -9,6 +9,10 @@ the immutable images on Docker or Kubernetes. One advantage of having an
 immutable docker image is that you can easily implement a CI/CD pipeline
 to systematically test the solution before deploying in production.
 
+## Docker Images (WSO2 Micro Integrator)
+
+Two docker images are available for the Micro Integrator:
+
 -   The Micro Integrator Docker image (with the latest products) is
     available in the [WSO2 Docker Registry](https://docker.wso2.com/) .
     **Note** that you need a valid WSO2 subscription to use the Docker
@@ -38,10 +42,12 @@ to systematically test the solution before deploying in production.
     wso2/micro-integrator:1.0.0
     ```
 
+## Build and Run on Docker
+
 Given below are the basic steps you need to follow to run the Micro
 Integrator on Docker:
 
-1.  [Export the integration artifacts](../../../develop/working-with-WSO2-Integration-Studio/#exporting-the-esb-artifacts)
+1.  [Export the integration artifacts](../../develop/exporting-artifacts.md)
     into a CAR file.
 2.  **Create the Dockerfile** as shown below. This file contains
     instructions to download the base Docker image of WSO2 Micro
