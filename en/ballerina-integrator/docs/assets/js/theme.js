@@ -210,6 +210,86 @@ if (distributionDropdown){
  */
 hljs.initHighlightingOnLoad();
 
+
+/*
+ * Register ballerina language for highlightJS
+ * Grammer: https://github.com/ballerina-platform/ballerina-lang/blob/master/compiler/ballerina-lang/src/main/resources/grammar/BallerinaLexer.g4
+ */
+if (typeof hljs === 'object') {
+    hljs.configure({ languages: [] });
+    hljs.registerLanguage('ballerina', function() {
+        return {
+            "k": "if else iterator try catch finally fork join all some while foreach in throw return " +
+                "returns break timeout transaction aborted abort committed failed retries next bind with " +
+                "lengthof typeof enum import version public private attach as native documentation lock " +
+                "from on select group by having order where followed insert into update delete set for " +
+                "window query annotation package type typedesc connector function resource service action " +
+                "worker struct transformer endpoint object const true false reply create parameter match but",
+            "i": {},
+            "c": [{
+                "cN": "ballerinadoc",
+                "b": "/\\*\\*",
+                "e": "\\*/",
+                "r": 0,
+                "c": [{
+                    "cN": "ballerinadoctag",
+                    "b": "(^|\\s)@[A-Za-z]+"
+                }]
+            }, {
+                "cN": "comment",
+                "b": "//",
+                "e": "$",
+                "c": [{
+                    "b": {}
+                }, {
+                    "cN": "label",
+                    "b": "XXX",
+                    "e": "$",
+                    "eW": true,
+                    "r": 0
+                }]
+            }, {
+                "cN": "comment",
+                "b": "/\\*",
+                "e": "\\*/",
+                "c": [{
+                    "b": {}
+                }, {
+                    "cN": "label",
+                    "b": "XXX",
+                    "e": "$",
+                    "eW": true,
+                    "r": 0
+                }, "self"]
+            }, {
+                "cN": "string",
+                "b": "\"",
+                "e": "\"",
+                "i": "\\n",
+                "c": [{
+                    "b": "\\\\[\\s\\S]",
+                    "r": 0
+                }, {
+                    "cN": "constant",
+                    "b": "\\\\[abfnrtv]\\|\\\\x[0-9a-fA-F]*\\\\\\|%[-+# *.0-9]*[dioxXucsfeEgGp]",
+                    "r": 0
+                }]
+            }, {
+                "cN": "number",
+                "b": "(\\b(0b[01_]+)|\\b0[xX][a-fA-F0-9_]+|(\\b[\\d_]+(\\.[\\d_]*)?|\\.[\\d_]+)([eE][-+]?\\d+)?)[lLfF]?",
+                "r": 0
+            }, {
+                "cN": "annotation",
+                "b": "@[A-Za-z]+"
+            }, {
+                "cN": "type",
+                "b": "\\b(boolean|int|float|string|var|any|datatable|table|blob|map|exception|json|xml|xmlns|error|stream|streamlet|aggregation)\\b",
+                "r": 0
+            }]
+        };
+    });
+
+
 /*
  * Handle TOC toggle
  */
