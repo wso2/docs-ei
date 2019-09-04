@@ -16,13 +16,9 @@ products under a single domain and assign proxy paths for each product
 separately.
 
 !!! Note
-    Once you have configured your products with a proxy server, it will
-    no longer be possible to access the product behind the proxy. See
-    the section given below on [configuring products to use the proxy server](#AddingaCustomProxyPath-Step2) for more information.
+    Once you have configured your products with a proxy server, it will no longer be possible to access the product behind the proxy.
 
-
-In the above example, "apimanager", "micro-integrator" and "iam" are the "proxy
-context paths" of the respective products, which are configured for each product:
+In the above example, "apimanager", "micro-integrator", and "iam" are the "proxy context paths" of the respective products:
 
 ```toml
 [Config_Heading]

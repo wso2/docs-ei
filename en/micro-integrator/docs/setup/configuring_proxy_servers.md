@@ -19,35 +19,11 @@ To configure the Micro Integrator to route messages through a proxy server
 values. This configuration ensures that all HTTP requests pass through
 the configured proxy server.
 
-``` java
-[config_section]
-non-blocking=true
-http.proxyHost=""
-http.proxyPort=""
+```toml
+[transport.http]
+sender.proxyHost= "$ref{server.hostname}"
+sender.proxyPort= 3128
 ```
-
-The parameters are described below.
-
-<table>
-<colgroup>
-<col style="width: 14%" />
-<col style="width: 85%" />
-</colgroup>
-<tbody>
-<tr class="odd">
-<td><pre><code>non-blocking</code></pre></td>
-<td>Specifies whether or not 'non-blocking' mode is enabled for the transport sender. Be sure that this parameter is set to <code>             true            </code> .</td>
-</tr>
-<tr class="even">
-<td><pre><code>http.proxyHost</code></pre></td>
-<td>The host name of the proxy server.</td>
-</tr>
-<tr class="odd">
-<td><pre><code>http.proxyPort</code></pre></td>
-<td>The port (number) in the proxy server.</td>
-</tr>
-</tbody>
-</table>
 
 ### For blocking service calls
 
@@ -56,40 +32,11 @@ To configure the Micro Integrator to route messages through a proxy server
 values. This configuration ensures that all HTTP requests pass through
 the configured proxy server.
 
-``` java
-[config_heading]
-ProxyHost=""
-ProxyPort=""
-ProxyUser=""
-ProxyPassword=""
+```toml
+[transport.http]
+sender.proxyHost= "$ref{server.hostname}"
+sender.proxyPort= 3128
 ```
-
-The parameters are described below.
-
-<table>
-<colgroup>
-<col style="width: 15%" />
-<col style="width: 84%" />
-</colgroup>
-<tbody>
-<tr class="odd">
-<td><pre><code>ProxyHost</code></pre></td>
-<td>The host name of the proxy server.</td>
-</tr>
-<tr class="even">
-<td><pre><code>ProxyPort</code></pre></td>
-<td>The port (number) in the proxy server.</td>
-</tr>
-<tr class="odd">
-<td><pre><code>ProxyUser</code></pre></td>
-<td>The user name for connecting to the proxy server.</td>
-</tr>
-<tr class="even">
-<td><pre><code>ProxyPassword</code></pre></td>
-<td>The password for connecting to the proxy server.</td>
-</tr>
-</tbody>
-</table>
 
 !!! Info
     **Bypass the proxy server for blocking calls?**  
@@ -112,38 +59,23 @@ The parameters are described below.
 
 ## Configuring proxy profiles in WSO2 Micro Integrator
 
-When using the Micro Integrator, there can be scenarios where you need to
-configure multiple proxy servers to route messages to different
-endpoints.
+When using the Micro Integrator, there can be scenarios where you need tovconfigure multiple proxy servers to route messages to different
+endpoints. When you need to route messages to different endpoints through multiple proxy servers, you can configure proxy profiles.
 
-When you need to route messages to different endpoints through multiple proxy servers, you can configure proxy profiles.
+To configure proxy profiles in WSO2 Micro Integrator, open the ei.toml file and define multiple profiles based on the number of proxy servers you need to have:
 
-To configure proxy profiles in the Micro Integrator open the ei.toml file and define multiple profiles based on the number of proxy servers you need to have.
+```toml
+[[transport.http.proxy_profile]]
+target_hosts = [""]
+proxy_host = ""
+proxy_port = ""
+proxy_username = ""
+proxy_password = ""
+bypass_hosts = [""]
+```
 
 !!! Tip
-    When you define a profile, it is mandatory to specify the `targetHosts`, `proxyHost` and `proxyPort` parameters for each profile.   
-
-The following is a sample proxy profile configuration that you can have in the `         <transportSender>        ` configuration of the HTTP transport:
-
-``` Java
-[config_heading]
-targetHosts=example.com, .*.sample.com
-proxyHost=localhost
-proxyPort=3128
-proxyUserName=squidUser
-proxyPassword=password
-bypass=xxx.sample.com
-
-targetHosts=localhost
-proxyHost=localhost
-proxyPort=7443
-
-targetHosts="*"
-proxyHost=localhost
-proxyPort="7443"
-bypass="test.com, direct.com"
-
-```
+    When you define a profile, it is mandatory to specify the `target_hosts`, `proxy_host` and `proxy_port` parameters for each profile. 
 
 When you configure a proxy profile, following are details of the parameters that you need to define in a `<profile>` :
 
