@@ -138,7 +138,7 @@ This command executes the following tasks:
 
 #### Run Docker container
 
-From the **MI_QSG_HOME>** directory, execute the following command to start a Docker container for the Micro Integrator.
+From the **<MI_QSG_HOME>** directory, execute the following command to start a Docker container for the Micro Integrator.
 
 ``` java
 docker run -d -p 8290:8290 hello_world_docker_image
@@ -207,7 +207,7 @@ docker build -t wso2-mi-hello-world .
 Follow the steps given below to start a Docker container for Docker
 image on Minikube.
 
-1.  Navigate to the **MI_QSG_HOME>** directory
+1.  Navigate to the **<MI_QSG_HOME>** directory
     (which stores the `k8s-deployment.yaml` file),
     and execute the following command:
 
