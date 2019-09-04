@@ -59,8 +59,8 @@ transport receiver and sender.
     and add the `           dynamicSSLProfilesConfig          `
     parameter as follows to the multi-https transport listener:
 
-    ``` xml
-            <transportReceiver name="multi-https" class="org.apache.synapse.transport.nhttp.HttpCoreNIOMultiSSLListener">
+    ```
+    <transportReceiver name="multi-https" class="org.apache.synapse.transport.nhttp.HttpCoreNIOMultiSSLListener">
                 <parameter name="port">8343</parameter>
                 <parameter name="non-blocking">true</parameter>
                 ..........
@@ -69,24 +69,20 @@ transport receiver and sender.
                     <fileReadInterval>3600000</fileReadInterval>        
                 </parameter>
                 .........
-            </transportReceiver>
+    </transportReceiver>
     ```
 
 -   Create the `           listenerprofiles.xml          ` file with the
     following configuration in the
     `           <EI_HOME>/conf/sslprofiles          ` directory:
 
-        !!! info
-    
-        Note:
-    
+    !!! Info
         You can configure the file path for the
         `           listenerprofiles.xml          ` file as required.
     
-
     **Configuration for listenerprofiles.xml**
 
-    ``` xml
+    ```
         <parameter name="SSLProfiles">
         <profile>
                 <bindAddress>192.168.0.123</bindAddress>
@@ -116,7 +112,7 @@ transport receiver and sender.
     and add the `           dynamicSSLProfilesConfig          `
     parameter as follows:
 
-    ``` xml
+    ```
             <transportSender name="https" class="org.apache.synapse.transport.nhttp.HttpCoreNIOSSLSender">
                 .......  
                 <parameter name="dynamicSSLProfilesConfig">
@@ -131,17 +127,14 @@ transport receiver and sender.
     following configuration in the
     `           <EI_HOME>/conf/sslprofiles          ` directory:
 
-        !!! info
-    
-        Note:
-    
+    !!! Info
         You can configure the file path for the
         `           senderprofiles.xml          ` file as required.
     
 
     **Configuration for senderprofiles.xml**
 
-    ``` xml
+    ```
         <parameter name="customSSLProfiles">
             <profile>
                 <servers>localhost:8244,192.168.1.234:8245</servers>

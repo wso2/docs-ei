@@ -29,13 +29,10 @@ Integration developers will follow the workflow illustrated by the following dia
 					<a href="../../use-cases/guides/using-templates">Guides</a> will walk you through the process of developing the most common integration use cases.
 				</li>
 				<li>
-					<a href="../../use-cases/examples/configuring-endpoints-using-apis">Examples</a> will provide a quick demo that will help you understand the synapse configurations for implementing specific functions.
+					<a href="../../use-cases/examples/using-scheduled-tasks">Examples</a> will provide a quick demo that will help you understand the synapse configurations for implementing specific functions.
 				</li>
 				<li>
-					<a href="../../use-cases/tasks/working-with-mediators">Tasks</a> will provide indepth information on developing all the integration artifacts and configurations.
-				</li>
-				<li>
-					See the <a href="../../develop/working-with-WSO2-Integration-Studio">WSO2 Integration Studio documentation</a> for indepth information on the development tool.
+					See the <a href="../../develop/WSO2-Integration-Studio">WSO2 Integration Studio documentation</a> for indepth information on the development tool.
 				</li>
 			</ul>
 		</td>
@@ -44,12 +41,11 @@ Integration developers will follow the workflow illustrated by the following dia
 		<td><b>Step 3: Build and Run the integration</b></td>
 		<td>
 			You can easily test your integration flow, either in a container environment, or a VM.</br></br>
-			<b>Using a VM</b>: If you want to test the integration flow as a VM deployment, you can instantly deploy the synapse artifacts in the Micro Integrator that is embedded in WSO2 Integration Studio. </br>
-			See <a href="../../develop/working-with-WSO2-Integration-Studio/#testing-build-and-run-the-integration"></a>testing the integration solution for instructions.</br></br>
+			<b>Using a VM</b>: If you want to test the integration flow as a VM deployment, you can instantly deploy the synapse artifacts in the Micro Integrator that is embedded in WSO2 Integration Studio.</br></br>
 			<b>Using Docker</b>: If you want to test the integration flow in a container environment:
 			<ol>
 				<li>Be sure that Docker is installed in your machine.</li>
-				<li><a href="../../develop/working-with-WSO2-Integration-Studio/#generating-docker-images">Export a Docker Image</a> of your integration artifacts.</li>
+				<li><a href="../../develop/generate-docker-image">Export a Docker Image</a> of your integration artifacts.</li>
 				<li>Build and run the Docker image.</li>
 			</ol>
 		</td>
@@ -60,11 +56,11 @@ Integration developers will follow the workflow illustrated by the following dia
 			As you build and run the integration flow, you may identify errors that need to be fixed, and changes that need to be done to the synapse artifacts.
 			<ul>
 				<li>
-					<a href="../../use-cases/tasks/sequences/debugging-mediation">Debug the mediation flow</a> to find potential errors.
+					<a href="../../develop/debugging-mediation">Debug the mediation flow</a> to find potential errors.
 				</li>
 				<li>
-					<a href="../../develop/working-with-WSO2-Integration-Studio/#addredeploy-synapse-artifacts">Redeploy the synapse artifacts</a> after applying changes. </br></br>
-					<b>Note</b>: If you are testing on a VM, the artifacts will be instantly deployed. If you are running in a container, you need to <a href="../../develop/working-with-WSO2-Integration-Studio/#generating-docker-images">rebuild the Docker image</a> and deploy it in Docker.
+					<a href="../../develop/deploy-and-run">Redeploy the synapse artifacts</a> after applying changes. </br></br>
+					<b>Note</b>: If you are testing on a VM, the artifacts will be instantly deployed. If you are running in a container, you need to <a href="../../develop/generate-docker-image">rebuild the Docker image</a> and deploy it in Docker.
 				</li>
 			</ul>
 		</td>
@@ -72,7 +68,7 @@ Integration developers will follow the workflow illustrated by the following dia
 	<tr>
 		<td><b>Step 5: Deploy in production</b></td>
 		<td>
-			To deploy your tested integration solution in your production environment, you can use a <a href="../../develop/using-cicd-pipeline">CICD pipeline</a>. Alternatively, you can <a href="../../develop/working-with-WSO2-Integration-Studio/#packaging-synapse-artifacts">package the integration artifacts</a> and <a href="../../develop/working-with-WSO2-Integration-Studio/#deploying-in-wso2-micro-integrator">deploy the CAR file</a> in the Micro Integrator that is running in production.
+			To deploy your tested integration solution in your production environment, you can use a <a href="../../develop/using-cicd-pipeline">CICD pipeline</a>. Alternatively, you can <a href="../../develop/packaging-artifacts">package the integration artifacts</a> and <a href="../../develop/deploy-and-run/#using-a-remote-micro-integrator">deploy the CAR file</a> in the Micro Integrator that is running in production.
 		</td>
 	</tr>
 </table>
@@ -136,7 +132,7 @@ To deploy your tested integration solution in your production environment, you c
 			Publish your tested integration solution into production using a CI/CD pipeline.
 		</td>
 		<td>
-			<b><a href="../../develop/working-with-WSO2-Integration-Studio">Using WSO2 Integration Studio</a></b></br></br>
+			<b><a href="../../develop/WSO2-Integration-Studio">Using WSO2 Integration Studio</a></b></br></br>
 			Get familiar with the developer tool for creating your integration solutions.
 		</td>
 	</tr>
