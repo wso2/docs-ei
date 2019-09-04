@@ -288,7 +288,7 @@ if (typeof hljs === 'object') {
             }]
         };
     });
-}
+
 
 /*
  * Handle TOC toggle
