@@ -53,6 +53,9 @@ nav:
   - 'Quick Start Guide':
     - 'Getting Started': 'quick-start-guide/getting-started-with-si.md'
     - 'Quick Start Guide 101': 'quick-start-guide/quick-start-guide-101.md'
+    - 'Getting SI Running with MI in 5 Minutes': 'quick-start-guide/hello-world-with-mi.md'
+    - 'Getting SI Running with Docker in 5 Minutes': 'quick-start-guide/hello-world-with-docker.md'
+    - 'Getting SI Running with Kubernetes in 5 Minutes': 'quick-start-guide/hello-world-with-kubernetes.md'
   - 'Concepts':
       - 'Concepts': 'concepts.md'
   - 'Setup and Install':
@@ -106,7 +109,7 @@ nav:
       - 'Downloading and Installing Siddhi Connectors': 'admin/downloading-and-Installing-Siddhi-Extensions.md'
       - 'Writing Custom Siddhi Extensions': 'admin/writing-Custom-Siddhi-Extensions.md'
       - 'Configuring System Parameters for Siddhi Extensions': 'admin/configuring-System-Parameters-for-Siddhi-Extensions.md'
-    - 'Creating Business Rules Templates': 'admin/creating-business-rules-templates.md'
+    - 'Working with Business Rules': 'admin/creating-business-rules-templates.md'
     - 'Monitoring the Streaming Integrator': 'admin/monitoring-the streaming-integrator'
     - 'General Data Protection Regulations': 'admin/general-data-protection-regulations.md'
     - 'Supporting Different Transports': 'admin/supporting-Different-Transports.md'
