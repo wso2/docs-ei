@@ -125,7 +125,7 @@ Listed below are the common guidelines for making a WSO2 product ready for produ
                      <strong>Related links</strong>
                   </div>
                   <div class="panelContent">
-                     <p>See <a href="https://docs.wso2.com/display/ADMIN44x/JMX-Based+Monitoring">JMX-Based Monitoring</a> for information on monitoring WSO2 products using JMX.</p>
+                     <p>See <a href="../../../../administer-and-observe/jmx_monitoring">JMX-Based Monitoring</a> for information on monitoring WSO2 products using JMX.</p>
                   </div>
                </div>
             </div>
@@ -176,16 +176,11 @@ Listed below are the common guidelines for making a WSO2 product ready for produ
                      </div>
                   </div>
                </div>
-               <p>Alternatively, this can be done by adding the following configurations in the <code>               &lt;PRODUCT_HOME&gt;/repository/conf/axis2/axis2.xml              </code> file.</p>
+               <p>Alternatively, this can be done by adding the following configurations in the ei.toml file.</p>
                <div class="code panel pdl" style="border-width: 1px;">
                   <div class="codeContent panelContent pdl">
                      <div class="sourceCode" id="cb5" data-syntaxhighlighter-params="brush: xml; gutter: false; theme: Confluence" data-theme="Confluence" style="brush: xml; gutter: false; theme: Confluence">
-                        <pre class="sourceCode xml"><code class="sourceCode xml"><span id="cb5-1"><a href="#cb5-1"></a><span class="kw">&lt;parameter</span><span class="ot"> name=</span><span class="st">&quot;Proxy&quot;</span><span class="kw">&gt;</span></span>
-<span id="cb5-2"><a href="#cb5-2"></a>    <span class="kw">&lt;Configuration&gt;</span></span>
-<span id="cb5-3"><a href="#cb5-3"></a>    <span class="kw">&lt;proxyhost&gt;</span>you.proxy.host<span class="kw">&lt;/proxyhost&gt;</span></span>
-<span id="cb5-4"><a href="#cb5-4"></a>    <span class="kw">&lt;proxyport&gt;</span>your.proxy.port<span class="kw">&lt;/proxyport&gt;</span></span>
-<span id="cb5-5"><a href="#cb5-5"></a>    <span class="kw">&lt;/configuration&gt;</span></span>
-<span id="cb5-6"><a href="#cb5-6"></a><span class="kw">&lt;/parameter&gt;</span></span></code></pre>
+                        <pre class="sourceCode xml"><code class="sourceCode xml"><span id="cb5-1"><a href="#cb5-1"></a><span class="kw">[transport.http]</br>sender.proxy_host = "$ref{server.hostname}"</br>sender.proxy_port = 3128</span></span></code></pre>
                      </div>
                   </div>
                </div>
@@ -276,7 +271,7 @@ Given below are the common security guidelines for deploying a WSO2 product in a
          <td>Encrypt passwords in configuration files</td>
          <td>
             <p>WSO2 products use a tool called <strong>Secure Vault</strong> to encrypt the plain-text passwords in configuration files.</p>
-            <p>See <a href="../setup/security/encrypting_plain_text">Securing Passwords in Configuration Files</a> for instructions.</p>
+            <p>See <a href="../../../setup/security/encrypting_plain_text">Securing Passwords in Configuration Files</a> for instructions.</p>
          </td>
       </tr>
       <tr class="even">
@@ -285,8 +280,8 @@ Given below are the common security guidelines for deploying a WSO2 product in a
             <p><br /></p>
          </td>
          <td>
-            <p>All the default ports used by WSO2 products are listed in <a href="https://docs.wso2.com/display/ADMIN44x/Default+Ports+of+WSO2+Products">Default Ports of WSO2 Products</a> . For example, the default HTTPS port is 9443 and the HTTP port is 9763. Also, Axis2 services are exposed over the following ports: 8243 and 8280.</p>
-            <p>To change a default port, update the <code>              &lt;Offset&gt;             </code> element in the <code>              carbon.             </code> xml file as explained in <a href="https://docs.wso2.com/display/ADMIN44x/Changing+the+Default+Ports">Changing the Default Ports</a> .</p>
+            <p>All the default ports used by WSO2 products are listed in <a href="../../../setup/changing_default_ports">here</a>. For example, the default HTTPS port is 9443 and the HTTP port is 9763. Also, Axis2 services are exposed over the following ports: 8243 and 8280.</p>
+            <p>To change a default port, update the <code>              &lt;Offset&gt;             </code> element in the ei.toml file as explained in <a href="../../../setup/changing_default_ports">Changing the Default Ports</a> .</p>
          </td>
       </tr>
       <!--
@@ -667,7 +662,7 @@ This section provides the list of security guidelines for configuring the netwo
          </td>
          <td>
             <p>Periodically check for open ports using port scanning tools and make sure that only the necessary ports are open to both internal and external networks. Be sure that only the ports relevant to your WSO2 products are open for communication. If there are other ports started, be sure to monitor them.</p>
-            <p>See <a href="https://docs.wso2.com/display/ADMIN44x/Default+Ports+of+WSO2+Products">Default Ports of WSO2 Products</a> for the full list of ports in all WSO2 products.</p>
+            <p>See the <a href="../../../setup/changing_default_ports">default ports</a> for more information.</p>
          </td>
       </tr>
       <tr class="even">
