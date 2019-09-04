@@ -206,17 +206,13 @@ As a result, another message appears to inform you that the rule is successfully
 
 ## Creating a Business Rules Template
 
-To create a business template using the Business Template editor, follow
-the procedure below:
+To create a business template using the Business Template editor, follow the procedure below:
 
-1.  Go to `          <SI_TOOLING_HOME>         ` from the terminal and start
-    the Streaming Integrator Tooling as mentioned below.
-    -   On Windows: `            tooling.bat --run           `
-    -   On Linux/Mac OS:  ./ `             tooling.sh            `
+1. If you have not already started the Streaming Integrator tooling, navigate to the `<SI_TOOLING_HOME>/bin` directory from the terminal and start the Streaming Integrator Tooling as mentioned below.
+    - On Windows: `tooling.bat --run`
+    - On Linux/Mac OS: `./ tooling.sh`
 
-2.  Access the Business Rules Template Editor via the
-    `           http://<HOST_NAME>:<PORT>/template-editor          `
-    URL.
+2. Access the Business Rules Template Editor via the `http://<HOST_NAME>:<PORT>/template-editor` URL.
 
         !!! info
 

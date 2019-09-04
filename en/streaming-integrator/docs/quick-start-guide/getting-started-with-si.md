@@ -1,4 +1,4 @@
-# Getting Started with Streaming Integrator in 5 mins
+# Getting Started with Streaming Integrator in Five Minutes
 
 ## Introduction
 
