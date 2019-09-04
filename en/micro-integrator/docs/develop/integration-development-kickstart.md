@@ -51,7 +51,7 @@ the Micro Integrator on Docker, on Kubernetes, or on a VM.
 ### Step 2: Develop the integration artifacts
 
 We use **WSO2 Integration Studio** to develop the integration artifacts. To run this use case, you need two REST API artifacts for the frontend service ( **integration** service) and a backend service (**order-processing** service) respectively. The synapse artifacts of these two services are given below. To run this tutorial, let's import
-the pre-built artifacts of the two services to WSO2 Integration Studio, and proceed from there. If you want to build the artifacts from scratch, see the instruction in [Using WSO2 Integration Studio](../develop/working-with-WSO2-Integration-Studio.md).
+the pre-built artifacts of the two services to WSO2 Integration Studio, and proceed from there. If you want to build the artifacts from scratch, see the instruction in [Using WSO2 Integration Studio](../develop/creating-artifacts/creating-an-api.md).
 
 ``` java tab="Integration Service"
 <?xml version="1.0" encoding="UTF-8"?>
@@ -98,8 +98,8 @@ the pre-built artifacts of the two services to WSO2 Integration Studio, and proc
 
 To import the pre-built artifacts:
 
-1.  Download the <a href="../assets/attach/tutorial/MI_Tutorial.zip">project file</a> with the integration artifacts.
-2.  Open WSO2 Integration Studio, and [import the project files](../working-with-WSO2-Integration-Studio/#importing-projects-to-workspace).
+1.  Download the <a href="../../assets/attach/tutorial/MI_Tutorial.zip">project file</a> with the integration artifacts.
+2.  Open WSO2 Integration Studio, and [import the project files](../../develop/importing-artifacts).
 3.  The project files of the frontend (integration service) and the backend (order-processing-be service) are listed in the project explorer:
 
     ![project explorer](../../assets/img/developer-kickstart-proj-explorer.png)
@@ -145,9 +145,7 @@ You can now build and run the artifacts in your local environment.
 
 To Build the backend (Docker image):
     
-1. Right-click the **BackendServiceCompositeApplication** (application
-    project of the Backend service) in the project explorer, and click
-    **Generate Docker Image**.
+1. Right-click the **BackendServiceCompositeApplication** (application project of the Backend service) in the project explorer, and click **Generate Docker Image**.
 
 2.  In the dialog that opens, enter the following details, and click **Next**.
 
@@ -171,7 +169,7 @@ To build the integration service (Docker image):
     (application project of the integration service) in the project
     explorer, and click **Generate Docker Image** .
 2.  In the dialog that opens, enter the following details, and click
-    **Next** .
+    **Next**.
 
     |         Parameter           |                     Description                                                                                                                                              |
     |-----------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -189,7 +187,7 @@ To build the integration service (Docker image):
 
 To compose and run the Docker images:
 
-1.  Download the <a href="../assets/attach/tutorial/docker-compose.yml">docker-compose.yml</a> file
+1.  Download the <a href="../../assets/attach/tutorial/docker-compose.yml">docker-compose.yml</a> file
     (shown below) and save it to a known directory. According to the
     contents of this file, the Docker container with the backend service
     will start on port **8291** and the Docker container with the
@@ -223,8 +221,7 @@ To compose and run the Docker images:
     docker-compose up -d
     ```
 
-The two Docker containers are now running. You can now [test the
-integration flow](#DevelopingCloudNativeIntegration-testing) .
+The two Docker containers are now running. You can now [test the integration flow](#step-4-test-the-integration-flow) .
 
 #### Using Kubernetes
 
@@ -244,17 +241,17 @@ To **build the backend (Docker image)** :
     | Docker Image Tag            | Enter **latest** as the tag for the Docker image to be used for reference.                                                                                                   |
     | Export Destination          | The .tar file of the Docker image will be saved to this location.                                                                                                            |
 
-3.  Select the integration artifacts in the **BackendService** project
-    folder, and click **Finish** .
+3.  Select the integration artifacts in the **BackendService** project folder, and click **Finish** .
 
 To **build the integration service (Docker image)**:
 
-> Before you build the integration service, be sure that you have changed the endpoint URL of your integration service to the following:
-``` java
-<endpoint>
-    <address uri="http://order-process-be-service:8290/order"/>
-</endpoint>
-```
+!!! Info
+    Before you build the integration service, be sure that you have changed the endpoint URL of your integration service to the following:
+    ``` java
+    <endpoint>
+        <address uri="http://order-process-be-service:8290/order"/>
+    </endpoint>
+    ```
 
 1.  Right-click the **IntegrationServiceCompositeApplication** (application project of the integration service) in the project explorer, and click **Generate Docker Image** .
 2.  In the dialog that opens, enter the following details, and click **Next**.
@@ -313,9 +310,7 @@ directory paths to the .tar files of your Docker images.
     docker load --input <file_path-tar_file_of_integration_service>
     ```
 
-    Verify (by running the '
-    `               docker image ls              ` ' command) that the
-    docker image has been loaded to Minikube without a tag .
+    Verify (by running the '`docker image ls`' command) that the docker image has been loaded to Minikube without a tag.
 
     ![tag docker image](../assets/img/tag-docker-img.png) 
 
@@ -327,23 +322,20 @@ directory paths to the .tar files of your Docker images.
 
 To **compose and run the Docker images** on Minikube:
 
-1.  Download the <a href="../assets/attach/tutorial/docker-compose.yml">k8-deployment.yaml</a> file and save it to a know location.
-2.  Navigate to the location of the k8-deployment.yaml file , and
-    execute the following command:
+1.  Download the <a href="../../assets/attach/tutorial/docker-compose.yml">k8-deployment.yaml</a> file and save it to a know location.
+2.  Navigate to the location of the k8-deployment.yaml file, and execute the following command:
 
     ``` java
     kubectl create -f k8s-deployment.yaml
     ```
 
-3.  Check whether all the Kubernetes artifacts are deployed successfully
-    by executing the following command:
+3.  Check whether all the Kubernetes artifacts are deployed successfully by executing the following command:
 
     ``` java
     kubectl get all
     ```
 
-    You will get a result similar to the following. Be sure that the
-    deployment is in 'Running' state.
+    You will get a result similar to the following. Be sure that the deployment is in 'Running' state.
 
     ``` java
     NAME                                            READY   STATUS    RESTARTS   AGE
@@ -399,8 +391,8 @@ The two Docker containers are now running. You can now [test the integration flo
 
 **Build and run the integration service**
 
-> Before you build the integration service, be sure that you have changed
-the endpoint URL of your integration service to the following:
+!!! Info
+    Before you build the integration service, be sure that you have changed the endpoint URL of your integration service to the following:
 
 ``` java
 <endpoint>

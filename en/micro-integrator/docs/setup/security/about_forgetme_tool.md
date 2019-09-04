@@ -41,7 +41,7 @@ run the tool in standalone mode to successfully remove references to a deleted u
     <tr class="odd">
     <td><code>               config.json              </code></td>
     <td>This is the master configuration file.<br />
-    You can configure this file depending on the metadata database tables, access logs, audit logs, or any other log files on which you want the Identity Anonymization tool to run. For information on how to configure this file, see <a href="#RemovingReferencestoDeletedUserIdentitiesinWSO2Products-MasterConfig">Configuring the master configuration file</a> .</td>
+    You can configure this file depending on the metadata database tables, access logs, audit logs, or any other log files on which you want the Identity Anonymization tool to run. For information on how to configure this file, see <a href="#configuring-the-master-configuration-file">Configuring the master configuration file</a> .</td>
     </tr>
     <tr class="even">
     <td><code>               datasources              </code></td>

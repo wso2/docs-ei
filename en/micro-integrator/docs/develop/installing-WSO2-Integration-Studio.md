@@ -40,7 +40,6 @@ MacOS security settings as described below.
 
 ## What's next?
 
--   Start [using WSO2 Integration Studio](../develop/working-with-WSO2-Integration-Studio.md).
 -   Take a [quick tour](../develop/WSO2-Integration-Studio.md) of the WSO2 Integration Studio interface.
 -   [Build a simple integration use case](../develop/integration-development-kickstart.md) to get familiar with the development workflow. 
 -   Build [integration use cases](../use-cases/integration-use-cases.md) with WSO2 Integration Studio.

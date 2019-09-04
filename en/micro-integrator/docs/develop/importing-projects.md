@@ -9,6 +9,7 @@ your WSO2 Integration Studio workspace.
     **root directory**:  
     ![Import ESB project](../../assets/img/create_project/import_proj_select_folders.png)
 
-    > Select **Copy projects into workspace** check box if you want to save the project in the workspace.
+    !!! Info
+    	Select **Copy projects into workspace** check box if you want to save the project in the workspace.
     
 3.  Click **Finish** , and see that the project files are imported in the project explorer.  

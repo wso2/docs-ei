@@ -5,7 +5,7 @@ Use one of the following methods:
 
 ## Using an existing composite application
 
-If you have an already created composite appliction project, do the following to package the [Synapse artifacts](creating-artifacts/creating-an-api.md) into the composite application:
+If you have an already created composite appliction project, do the following to package the Synapse artifacts into the composite application:
 
 1.  Select the `pom.xml` file that is under the composite application project in the project explorer.  
     ![Create CAPP](../../assets/img/create_project/capp_proj_explorer.png)
