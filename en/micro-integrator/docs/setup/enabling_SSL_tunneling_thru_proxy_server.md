@@ -43,8 +43,15 @@ Follow the steps below to set up Squid:
 
 To configure SSL tunneling through the proxy server, open the ei.toml file and update the following parameters for the HTTP transport listener and sender:
 
-```toml
-[config_heading]
+```toml tab='Passthrough HTTP'
+[transport.http]
+http.proxyHost=false                           
+hostName=
+portNumber=
+```
+
+```toml tab='Passthrough HTTPS'
+[transport.http]
 http.proxyHost=false                           
 hostName=
 portNumber=               

@@ -20,7 +20,7 @@ To enable this feature for the HTTP passthrough, add the following parameters fo
 
 ```toml tab='Passthrough Listener'
 [[transport.http]]
-listener.verify_client=""
+listener.CertificateRevocationVerifier=""
 listener.CacheSize=1024
 listenerCacheDelay=1000
 
@@ -28,7 +28,7 @@ listenerCacheDelay=1000
 
 ```toml tab='Passthrough Sender'
 [[transport.http]]
-sender.verify_client=""
+sender.CertificateRevocationVerifier=""
 sender.CacheSize=1024
 sender.CacheDelay=1000
 
@@ -41,11 +41,11 @@ To enable this feature for the HTTPS NIO transport, add the following parameters
 ```toml tab='Passthrough Listener'
 [[[custom_transport.listener]]]
 class="org.apache.synapse.transport.nhttp.HttpCoreNIOSSLListener"
-listener.verify_client=""
+listener.CertificateRevocationVerifier=""
 ``` 
 
 ```toml tab='Passthrough Sender'
 [[[custom_transport.sender]]]
-sender.verify_client="org.apache.synapse.transport.nhttp.HttpCoreNIOSSLSender"
-sender.verify_client=""
+sender.CertificateRevocationVerifier="org.apache.synapse.transport.nhttp.HttpCoreNIOSSLSender"
+sender.CertificateRevocationVerifier=""
 ```
