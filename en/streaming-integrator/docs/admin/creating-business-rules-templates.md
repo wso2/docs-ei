@@ -134,98 +134,75 @@ To create a business rule from scratch, follow the procedure below:
 
 ## Managing Business Rules
 
-Once a business rule is created, you can perform the following operations for it.
+Once you have created one or more business rules, you can manage them by viewing, editing, deploying, undeploying, and deleting them as required.
 
 ### Viewing business rules
 
-Once you start and access the Business Rules Manager, the available
-business rules are displayed as shown in the example below.
+Once you start and access the Business Rules Manager, the available business rules are displayed as shown in the example below.
 
-![](attachments/112390751/112390758.png){width="900"}
+![View Business Rules](../images/working-with-business-rules/view-business-rule.png)
 
-To view a business rule, click the icon for viewing (marked in the above
-image) for the relevant row. This opens the rule as shown in the example
-below.
+To view a business rule, click the icon for viewing (marked in the above image) for the relevant row. This opens the rule as shown in the example below.
 
-![](attachments/112390751/112390754.png){width="675" height="557"}
+![Business Rules Information](../images/working-with-business-rules/business-rule-view.png)
+
 
 ### Editing business rules
 
-Once you start and access the Business Rules Manager, the available
-business rules are displayed as shown in the example below.
+Once you start and access the Business Rules Manager, the available business rules are displayed as shown in the example below.
 
-![](attachments/112390751/112390757.png){width="900"}
+![Edit Business Rule](../images/working-with-business-rules/edit-business-rule.png)
 
-To edit a business rule, click the icon for editing (marked in the above
-image) for the relevant row. This opens the rule as shown in the example
-below.
+To edit a business rule, click the icon for editing (marked in the above image) for the relevant row. This opens the rule as shown in the example below.
 
-![](attachments/112390751/112390755.png){width="675" height="614"}
+![Edit Business Rule Details](../images/working-with-business-rules/business-rule-edit.png)
 
-Modify values for the parameters displayed as required and click
-**Save** .
+Modify values for the parameters displayed as required and click **Save**.
 
 ### Deploying business rules
 
-To deploy a saved business rule in a worker node, follow the steps
-below:
+!!!tip"Before you begin:"
+    Start the Streaming Integrator server by issuing one of the following commands:
+    - On Windows: `server.bat --run`
+    - On Linux/Mac OS:  `./server.sh`
 
-1.  Start the worker node by issuing one of the following commands:
-    -   On Windows: `            worker.bat --run           `
-    -   On Linux/Mac OS: `             ./worker.sh            `
-
-2.  Start the dashboard server and access the Business Rules Manager.
-3.  Click the icon for deploying (marked in the image below) for the
-    relevant row. As a result, a message appears to inform you that the
-    rule is successfully deployed.
-    ![](attachments/112390751/112390760.png){width="900"}
-
+To deploy a business rule that you have previously saved, click the icon for deploying (marked in the image below) for the relevant row. As a result, a message appears to inform you that the rule is successfully deployed.
+![Deploy Business Rule](../images/working-with-business-rules/deploy-business-rule.png)
 
 
 ### Undeploying business rules
 
-To undeploy a business rule, click the icon for undeploying (marked in
-the image below) for the relevant row. As a result, a message appears to
-inform you that the rule is successfully undeployed.
+To undeploy a business rule, click the icon for undeploying (marked in the image below) for the relevant row. As a result, a message appears to inform you that the rule is successfully undeployed.
 
-![](attachments/112390751/112390759.png){width="900"}
+![Undeploy Business Rule](../images/working-with-business-rules/undeploy-business-rule.png)
 
 ### Viewing deployment information
 
-If you want to view information relating to the deployment of a business
-rule, click the icon for viewing deployment information (marked in the
-image below) for the relevant row.
+If you want to view information relating to the deployment of a business rule, click the icon for viewing deployment information (marked in the image below) for the relevant row.
 
-![](attachments/112390751/112390753.png){width="900" height="223"}
+![View Deployment Information](../images/working-with-business-rules/view-deployment-information.png)
 
-As a result, the deployment information including the host and port of
-the nodes in which the rule is deployed and the deployment status are
-displayed as shown in the image below.
-![](attachments/112390751/112390752.png){width="343" height="250"}
+As a result, the deployment information including the host and port of the nodes in which the rule is deployed and the deployment status are displayed as shown in the image below.
+![Deployment Information](../images/working-with-business-rules/deployment-information.png)
 
 Possible deployment statuses are as follows:
 
--   **Saved** : The business rule is created, but not yet deployed in
-    any SP node.
--   **Deployed** : The business rule is created and deployed in all the
-    nodes of the current SP setup.
--   **Partially Deployed:** The business rule is created and deployed
-    only in some of the nodes in the SP cluster. This status is also
-    assigned when you click **Save and Deploy** instead of **Save** at
-    the time you [create the business rule](_Creating_Business_Rules_) .
--   **Partially Undeployed:** The business rule has been previously
-    deployed and then undeployed only in some of the nodes in the SP
-    cluster.
+- **Saved**: The business rule is created, but not yet deployed in any Streaming Integrator node.
+
+- **Deployed**: The business rule is created and deployed in all the nodes of the current Streaming Integrator setup.
+
+- **Partially Deployed:** The business rule is created and deployed only in some of the nodes in the Streaming Integrator cluster. This status is also assigned when you click **Save and Deploy** instead of **Save** at the time you [create the business rule](_Creating_Business_Rules).
+
+- **Partially Undeployed:** The business rule has been previously deployed and then undeployed only in some of the nodes in the Streaming Integrator cluster.
+
 
 ### Deleting business rules
 
-To delete a business rule, click the icon for deleting (marked in the
-image below) for the relevant row. A message appears to confirm whether
-you want to proceed with the deletion. Click **Delete** in the message.
-As a result, another message appears to inform you that the rule is
-successfully deleted.
+To delete a business rule, click the icon for deleting (marked in the image below) for the relevant row. A message appears to confirm whether you want to proceed with the deletion. Click **Delete** in the message.
+As a result, another message appears to inform you that the rule is successfully deleted.
 
-![](attachments/112390751/112390756.png){width="900"}
+![Delete Business Rules](../images/working-with-business-rules/delete-business-rule.png)
+
 
 ## Creating a Business Rules Template
 
