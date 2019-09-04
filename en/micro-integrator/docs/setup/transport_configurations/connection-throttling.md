@@ -1,16 +1,23 @@
 # Connection throttling
 
-With the PassThrough transport and HTTP NIO transport, you can enable
-connection throttling to restrict the number of simultaneous open
-connections. To enable connection throttling, edit the
-`         <EI_HOME>/conf/nhttp.properties        ` (for the HTTP NIO
-transport) or `         <EI_HOME>/conf/passthru-http.properties        `
-(for the PassThrough transport), and add the following line:
+With the default HTTP transport (PassThrough transport) and the HTTP NIO transport, you can enable connection throttling to restrict the number of simultaneous open connections. 
 
-`         max_open_connections = 2        `
+To enable connection throttling, update the following property in the ei.toml file:
 
-This will restrict simultaneous open incoming connections to 2. To
-disable throttling, delete the `         max_open_connections        `
+```toml tab='HTTP Passthrough'
+[[transport.http]]
+max_open_connections = 2
+```
+
+```toml tab='HTTP-NIO'
+[[[custom_transport.listener]]]
+max_open_connections=2
+
+[[[custom_transport.sender]]]
+max_open_connections=2
+```
+
+This will restrict simultaneous open incoming connections to 2. To disable throttling, delete the `         max_open_connections        `
 setting or set it to -1.
 
 !!! Info

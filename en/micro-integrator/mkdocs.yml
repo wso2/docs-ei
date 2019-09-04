@@ -110,8 +110,7 @@ nav:
         - 'Enable SSL Tunneling through Proxy Server': 'setup/enabling_SSL_tunneling_thru_proxy_server.md'
         - 'Verifying Certificate Revocation': 'setup/transport_configurations/certificate-revocation.md'
         - 'Configuring HTTP/HTTPS Listeners': 'setup/transport_configurations/configuring-passthru-listeners.md'
-        - 'JMS Map Messaging': 'setup/transport_configurations/connection-throttling.md'
-        - 'Configuring Connection Throttling': 'setup/transport_configurations/jms-map-message.md'
+        - 'Configuring Connection Throttling': 'setup/transport_configurations/connection-throttling.md'
         - 'Configuring the Multi-HTTPS Transport': 'setup/transport_configurations/multi-https-transport.md'
     - Develop:
       - 'Developing Integration Solutions': 'develop/intro-integration-development.md'
@@ -214,6 +213,7 @@ nav:
           - 'Shared Topic Subscription' : 'use-cases/examples/jms_examples/shared-topic-subscription.md'
           - 'Detecting Repeatedly Redelivered Messages' : 'use-cases/examples/jms_examples/detecting-repeatedly-redelivered-messages.md'
           - 'Specifying Delivery Delay on Messages' : 'use-cases/examples/jms_examples/specifying-a-delivery-delay-on-messages.md'
+          - 'JMS Map Messaging': 'use-cases/examples/jms_examples/jms-map-message.md'
           - 'RabbitMQ Use Cases' : 'use-cases/examples/rabbitmq-use-cases.md'
           - 'Working with Transactions' : 'use-cases/examples/working-with-transactions.md'
           - Configuring Brokers:
