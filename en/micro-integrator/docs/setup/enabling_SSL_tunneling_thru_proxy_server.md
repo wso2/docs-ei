@@ -1,17 +1,9 @@
 # Enabling SSL Tunneling through a Proxy Server
 
-If your proxy service connects to a back-end server through a proxy
-server, you can enable secure socket layer (SSL) tunneling through the
-proxy server to prevent any intermediate proxy services from interfering
-with the communication. SSL tunneling is available when your proxy
-service uses either the [HTTP PassThrough
-transport](https://docs.wso2.com/display/EI650/PassThrough+Transport) or
-the [HTTP-NIO
-transport](https://docs.wso2.com/display/EI650/HTTP-NIO+Transport).
+If your proxy service connects to a back-end server through a proxy server, you can enable secure socket layer (SSL) tunneling through the proxy server to prevent any intermediate proxy services from interfering
+with the communication. SSL tunneling is available when your proxy service uses either the **HTTP PassThrough** transport or the **HTTP-NIO** transport.
 
-The following section walks you through the steps to enable SSL
-tunneling through a proxy server. Here we will use
-[Squid](http://www.squid-cache.org/) as the caching and forwarding HTTP
+The following section walks you through the steps to enable SSL tunneling through a proxy server. Here we will use [Squid](http://www.squid-cache.org/) as the caching and forwarding HTTP
 web proxy.
 
 ## Setting up Squid
@@ -49,55 +41,12 @@ Follow the steps below to set up Squid:
 
 ## Configuring SSL tunneling
 
-To configure SSL tunneling through the proxy server, open the esb.toml file and update the following parameters:
+To configure SSL tunneling through the proxy server, open the ei.toml file and update the following parameters for the HTTP transport listener and sender:
 
-```java
+```toml
 [config_heading]
 http.proxyHost=false                           
 hostName=
 portNumber=               
 HostnameVerifier=AllowAll
-
 ```
-
-For example, if the host name and port number of proxy server is
-`         localhost:8080        ` , your
-`         transportSender        ` configurations for
-`         PassThroughHttPSender        ` and
-`         PassThroughHttpSSLSender        ` would be as follows:
-
-  **PassThroughHTTPSender**
-
-   ``` xml
-    <transportSender name="http" class="org.apache.synapse.transport.passthru.PassThroughHttpSender">
-            <parameter name="non-blocking" locked="false">true</parameter>
-            <parameter name="http.proxyHost" locked="false">localhost</parameter>
-            <parameter name="http.proxyPort" locked="false">8080</parameter>
-    </transportSender>
-   ```
-
-  **PassThroughHttpSSLSender**
-
-   ```xml
-    <transportSender name="https" class="org.apache.synapse.transport.passthru.PassThroughHttpSSLSender">
-            <parameter name="non-blocking" locked="false">true</parameter>
-            <parameter name="keystore" locked="false">
-                <KeyStore>
-                    <Location>repository/resources/security/wso2carbon.jks</Location>
-                    <Type>JKS</Type>
-                    <Password>wso2carbon</Password>
-                    <KeyPassword>wso2carbon</KeyPassword>
-                </KeyStore>
-            </parameter>
-            <parameter name="truststore" locked="false">
-                <TrustStore>
-                    <Location>repository/resources/security/client-truststore.jks</Location>
-                    <Type>JKS</Type>
-                    <Password>wso2carbon</Password>
-                </TrustStore>
-            </parameter>
-            <parameter name="http.proxyHost" locked="false">localhost</parameter>
-            <parameter name="http.proxyPort" locked="false">8080</parameter>
-            <parameter name="HostnameVerifier">AllowAll</parameter>
-    </transportSender>
-   ```
