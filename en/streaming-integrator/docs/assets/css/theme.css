@@ -259,6 +259,36 @@ html .md-typeset .superfences-tabs > label:hover {
 
 .mb-config-catalog {
     display: table;
+    width: 100%;
+}
+
+.mb-config-catalog .superfences-tabs {
+    flex-direction: column;
+}
+
+.mb-config-catalog .superfences-tabs .tab-selector {
+    text-align: right;
+}
+
+.mb-config-catalog .superfences-tabs .tab-selector > .icon {
+    margin-right: 5px;
+}
+
+.mb-config-catalog .superfences-content {
+    order: 0;
+}
+
+.mb-config-catalog .superfences-tabs > input + label:after {
+    content: "View Example";
+}
+
+.mb-config-catalog .superfences-tabs > input:checked + label:after {
+    content: "Hide Example";
+    font-weight: 500;
+}
+
+.mb-config-catalog .superfences-tabs .doc-wrapper {
+    padding: .525rem;
 }
 
 .mb-config-catalog > section {
@@ -290,7 +320,6 @@ html .md-typeset .superfences-tabs > label:hover {
 
 .mb-config-catalog .mb-config-example code,
 .mb-config-catalog .mb-config-example pre {
-    background-color: transparent;
     margin: 0;
 }
 
@@ -423,10 +452,6 @@ html .md-typeset .superfences-tabs > label:hover {
 
 .mb-config-catalog .mb-config .param-default {
     font-size: .95em;
-}
-
-.mb-config-catalog .mb-config .param-default::before {
-    content: 'Default: ';
 }
 
 .mb-config-catalog .mb-config .param-type {
@@ -837,5 +862,51 @@ html .md-footer-meta.md-typeset a,
 @media (min-width: 1100px) and (max-width: 1199px) {
     .md-header__distribution-select {
         width: calc(100% - 445px)
+    }
+}
+
+.md-typeset h4, h3, h2, h1 {
+    display: block;
+    margin-top: -6rem !important;
+    padding-top: 6rem !important;
+    content: "";
+}
+
+.integratorDescription {
+    width:28%;
+    flex-grow: 0;
+    display:inline-block;
+    background: #f2f2f2;
+    padding: 10px 20px;
+    padding-bottom: 20px;
+    margin: 10px 2%;
+    text-align: justify;
+}
+
+.integratorDescription p {
+    opacity: 0.6;
+}
+
+.integratorDescription a {
+    background-color: rgb(88, 83, 84);  
+    border-radius: 5px;
+    color: white !important;
+    padding: .5em;
+    text-decoration: none;
+    margin: auto;
+    display: table;
+}
+
+.integratorDescription a:hover {
+    background-color: #ff6542;  
+    color: white !important;
+    padding: .5em;
+    text-decoration: none;
+}
+
+@media (max-width: 1000px) {
+    .integratorDescription {
+        display: block;
+        width: 96%;
     }
 }

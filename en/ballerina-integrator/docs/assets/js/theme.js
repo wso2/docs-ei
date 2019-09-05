@@ -189,18 +189,20 @@ request.send();
 var distributionDropdown =  document.getElementById('distribution-select-dropdown');
 
 const distributionURLList = [ 'ballerina-integrator','micro-integrator','streaming-integrator' ];
+const introductionURL = ['/overview/introduction','/getting-started/introduction','/overview/overview'];
 
 if (distributionDropdown){
+    let count = 0;
     distributionURLList.forEach(function(key){
         var liElem = document.createElement('li');
         var target = '_self';
         var version = window.location.pathname.split('/')[2] + '/';
-        var url = docSetUrl + version + key;
+        var url = docSetUrl + version + key + introductionURL[count];
 
         liElem.className = 'md-tabs__item mb-tabs__dropdown';
         liElem.innerHTML =  '<a href="' + url + '" target="' +
             target + '">' + key.replace(/-/g, " ") + '</a>';
-
+        count++;
         distributionDropdown.insertBefore(liElem, distributionDropdown.lastChild);
     });
 }
