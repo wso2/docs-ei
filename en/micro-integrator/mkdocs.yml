@@ -55,10 +55,10 @@ nav:
       - 'Message Exit Points': 'concepts/message-exit-points.md'
       - 'Messaging Transports': 'concepts/messaging-transports.md'
       - 'Debugging Integrations': 'concepts/debugging-concepts.md'
+      - 'Message Tracing': 'concepts/message-tracing.md'
       - 'Data Services': 'concepts/data-services.md'
       - 'Message Builders and Formatters': 'concepts/message-builders-formatters.md'
       - 'Enterprise Integation Patterns': 'concepts/enterprise-Integration-Patterns.md'
-      - 'Other Concepts': 'concepts/other-concepts.md'
     - Setup and Install:
       - Installation Guide:
         - 'Install in a VM': 'setup/installation/install_in_vm.md'

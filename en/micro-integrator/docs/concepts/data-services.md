@@ -1,46 +1,20 @@
 # Data Services
 
-The data in your organization can be a complex pool of information that
-is stored in heterogeneous systems, ranging from RDBMSs to Excel files,
-and Google spreadsheets, etc. Data services are created for the purpose
-of decoupling the data from its infrastructure. In other words, when you
-create a data service in WSO2 EI, the data that is stored in a storage
-system (such as an RDBMS) can be exposed in the form of a service. This
-allows users (that may be any application or system) to access the data
-without interacting with the original source of the data. Data services
-are, thereby, a convenient interface for interacting with the database
-layer in your organization.
+The data in your organization can be a complex pool of information that is stored in heterogeneous systems, ranging from RDBMSs to Excel files, and Google spreadsheets, etc. Data services are created for the purpose of decoupling the data from its infrastructure. In other words, when you create a data service in WSO2 Micro Integrator, the data that is stored in a storage system (such as an RDBMS) can be exposed in the form of a service. This allows users (that may be any application or system) to access the data without interacting with the original source of the data. Data services are, thereby, a convenient interface for interacting with the database layer in your organization.
 
-A data service in WSO2 EI is a SOAP-based web service, by default.
-However, you also have the option of creating REST resources. Therefore,
-the applications and systems consuming the data service can have both
-SOAP-based, and RESTful access to your data.
+A data service in WSO2 Micro Integrator is a SOAP-based web service by default. However, you also have the option of creating REST resources, which allows applications and systems consuming the data service to have both SOAP-based, and RESTful access to your data.
 
-### Datasources
+## Datasources
 
-Your organization's data can be stored in various data storage systems,
-which are thedatasources. Data services in WSO2 EI support the
-followingdatasources: Relational databases, CSV files, Microsoft Excel
-Sheets, Google Spreadsheets, RDF, MongoDB, Cassandra, and Web Resources.
-Additionally, you can also useJNDIdatasources, and create
-customdatasources. Read about using variousdatasourceswith data services
-defined in WSO2 EI.
+Your organization's data can be stored in various data storage systems, which are the datasources. The following datasources are supported: Relational databases, CSV files, Microsoft Excel Sheets, Google Spreadsheets, RDF, MongoDB, Cassandra, and Web Resources. Additionally, you can also useJNDIdatasources, and create custom datasources.
 
-### RESTful data services
+## RESTful Data Services
 
-A data service exposes your data (stored in various data stores) as a
-service. You can enable RESTful access to your data, by defining RESTful
-resources, for the relevant data, in your data service. REST resources
-in WSO2 EI support both JSON and XML media types out of the box.
-Therefore, a resource can receive requests, and send responses in either
-medium. Secure resources with HTTP(S) Basic Auth integrated to
-enterprise identity systems (via [WSO2 Identity
-Server](http://wso2.com/products/identity-server/) ).
+You can enable RESTful access to your data by defining RESTful resources for the relevant data in your data service. REST resources in the Micro Integrator support both JSON and XML media types out of the box. Therefore, a resource can receive requests and send responses in either medium. You can secure your resources with HTTP(S) Basic Auth via [WSO2 Identity Server](http://wso2.com/products/identity-server/).
 
-### OData services
+## OData Services
 
-RESTful data services in WSO2 EI supports OData (
-[OData](http://www.odata.org/) protocol version 4 - OASIS standards) ,
+RESTful data services in WSO2 Micro Integrator supports OData ([OData](http://www.odata.org/) protocol version 4 - OASIS standards),
 which makes RESTful data access easier. In a normal data service, you
 will write SQL queries for CRUD operations that will be performed on the
 data. In other words, to be able to GET, UPDATE, POST, or DELETE data in
@@ -49,44 +23,31 @@ for each purpose. However, when you enable OData for your RESTful data
 service, these CRUD operations will be enabled automatically, which
 allows RESTful data access using CRUD operations out of the box.
 
-Currently, OData support is only available for RDBMS datasources and
-Cassandra datasources. Odata services will now be accessible from the
-following endpoints:
+Currently, OData support is only available for RDBMS datasources and Cassandra datasources using the following endpoint: `http://localhost:9763/odata/t/{tenantId}/{dataserviceName}/{datasourceId}/`
 
--   For super tenant:
-    http://localhost:9763/odata/{dataserviceName}/{datasourceId}/
--   For normal tenants:
-    http://localhost:9763/odata/t/{tenantId}/{dataserviceName}/{datasourceId}/
+## Data Federation
 
-### Data Federation
-
-A data service defined in WSO2 EI has the ability to aggregate the data
-that is stored in various, disparate datasources, and present the
-aggregated data as a single output. For example, the data of employees
-in a company may be stored in various data stores (details of employment
-history, details of the physical office, contact information, etc.).
-Data federation allows users to consume all this data through a single
+A data service defined in WSO2 Micro Integrator has the ability to aggregate the data that is stored in various, disparate datasources and present the data as a single output. For example, the data of employees in a company may be stored in various data stores (details of employment history, details of the physical office, contact information, etc.). Data federation allows users to consume all this data through a single
 request to the data service. The data service will aggregate the
-relevant data from each of the disparate datasourcesand present it as
-one response to the request. Data federation can be achieved in two
-ways:
+relevant data from each of the disparate datasources and present it as
+one response to the request. Data federation can be achieved in two ways:
 
 -   Expose multiple datasources using a single data service.
 -   Use Nested Queries in your data service. This will allow you to feed
     the result you get from one query as input to another query. That
     is, data can be combined into a single response or resource.
 
-### Distributed transactions
+## Distributed Transactions
 
 A distributed transaction is a set of operations that should be
-performed on two or more, distributed RDBMS data stores. If the
+performed on two or more distributed RDBMS data stores. If the
 operation on one data store (node) fails, the entire set of operations
 will fail in all the data stores. In other words, a distributed
 transaction is an example of a batch process, where multiple requests
 are grouped into one server call and processed as one unit by the data
 service.
 
-Data services in WSO2 EI support distributed transactions, which allows
+Data services in WSO2 Micro Integrator supports distributed transactions, which allows
 data consumers to perform such transactions easily by using one data
 service as the interface. Note that distributed transactions can only be
 performed for IN-ONLY operations that will insert, update, or delete
@@ -94,12 +55,12 @@ data in the data stores. These are not applicable to operations for
 retrieving data.
 
 A transaction manager is set up in the middle of these transactions for
-effective coordination and management. This feature uses Java
+effective coordination and management. This feature uses the Java
 Transaction API (JTA), which allows distributed transactions to be
 carried out across multiple XA resources in a Java environment. You can
 also override this transaction manager.
 
-### Batch processing
+## Batch processing
 
 A data service is an interface that receives requests from data
 consumers and performs the requested tasks in the relevant data stores.
@@ -108,8 +69,7 @@ batch and process it as a single request. Batch processing can only be
 used for IN-ONLY operations that will insert, update, or delete data in
 the data stores, and not for operations that retrieve data.
 
-Data services in WSO2 EI support two scenarios of batch requesting:
-Client-side batch requests, and server-side batch requests.
+Data services in WSO2 Micro Integrator support two scenarios of batch requesting: Client-side batch requests and server-side batch requests.
 
 For example, consider the task of entering details of new employees into
 a database table. Typically, the client consuming the data can do this
@@ -124,63 +84,39 @@ to insert multiple records. This is client-side batch requesting.
 
 Consider another example, where the client needs to enter the employee’s
 bank details along with the personal details, but the bank details
-should be insertedtoa different data store. In this example, the data
+should be inserted to a different data store. In this example, the data
 service will have two separate operations for inserting data into two
-separate data stores, and the client is invoking both operations, using
+separate data stores, and the client is invoking both operations using
 a single request (also called a request box). This is server-side batch
 requesting.
 
-Note that batch requests are transactional if the data store is
-anRDBMS, or another system that supports transactions. Transactional
-requests succeed or fail as a batch. That is, if one individual request
+Note that batch requests are transactional if the data store is an RDBMS or another system that supports transactions. Transactional requests succeed or fail as a batch. That is, if one individual request
 fails, all the requests in the batch will fail to make sure that the
 data is synchronized. Server-side batch requests work for local
-transactions (performed on one node of the data store), as well as
-distributed transactions (performed on multiple nodes of the data
-store).
+transactions (performed on one node of the data store), as well as distributed transactions (performed on multiple nodes of the data store).
 
-### Data transformation
+## Data Transformation
 
-XSLT transformation is used in data services to transform the result of
-an already defined operation into a different result. The user can
-define the transformation xslt and provide the url of the transformation
-file in the result element.
+XSLT transformation is used in data services to transform the result of an already defined operation into a different result. The user can define the transformation xslt and provide the url of the transformation file in the result element.
 
-### Managed data access
+## Managed Data Access
 
-Most businesses require secure and managed data access across these
-federated data stores .
+Most businesses require secure and managed data access across these federated data stores.
 
-### Streaming
+## Streaming
 
 Data service streaming helps manage large data chunks sent back to the
 client by the data service as the response to a request. When streaming
-is enabled, the data is sent to the client as it is generated, without
+is enabled, the data is sent to the client as it is generated without
 memory building up in the server. By default, streaming is enabled in
 data services.
 
-### Namespaces
+## Namespaces
 
-The service namespace uniquely identifies a Web service and is specified
-by the `         <targetNamespace>        ` element in the WSDL that
+The service namespace uniquely identifies a Web service and is specified by the `<targetNamespace>` element in the WSDL that
 represents the service. A data service is simply a Web service with
 specialized functionality. When developing a data service, you get to
 apply namespaces at various levels. As a data service implementation is
 based on XML, namespace handling is useful for making sure that there
 are no conflicting element names in the XML. Although namespaces are
-optional for data services, in some scenarios they are necessary. For
-more information, see Defining Namespaces .
-
-### Error Handling
-
-The main role of WSO2 Enterprise Integrator (WSO2 EI) is to act as the
-backbone of an organization’s service-oriented architecture. It is the
-spine through which all the systems and applications within the
-enterprise (and external applications that integrate with the
-enterprise) communicate with each other. For example, an ESB (which is
-contained in WSO2 EI) often has to deal with many wire-level protocols,
-messaging standards, and remote APIs. But applications and networks can
-be full of errors. Applications crash. Network routers and links get
-into states where they cannot pass messages through with the expected
-efficiency. These error conditions are very likely to cause a fault or
-trigger a runtime exception in the ESB.
+optional for data services, in some scenarios they are necessary.

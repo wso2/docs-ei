@@ -1,13 +1,6 @@
 # Transport Protocols
 
-A transport is responsible for carrying messages that are in a specific
-format. The Enterprise Integrator supports all the widely used
-transports including HTTP/s, JMS, VFS and domain-specific transports
-like FIX. You can easily add a new transport using the Axis2 transport
-framework and plug it into the Enterprise Integrator. Each transport
-provides a receiver, which the Enterprise Integrator uses to receive
-messages, and a sender, which it uses to send messages. The transport
-receivers and senders are independent of the Enterprise Integrator core.
+A transport protocol is responsible for carrying messages that are in a specific format. WSO2 Micro Integrator supports all the widely used transports including HTTP/S, JMS, VFS, as well as domain-specific transports like FIX. Each transport provides a receiver implementation for receiving messages, and a sender implementation for sending messages.
 
 <table>
 	<tr>
@@ -15,13 +8,13 @@ receivers and senders are independent of the Enterprise Integrator core.
 		<th>Description</th>
 	</tr>
 	<tr>
-		<td>PassThrough</td>
+		<td>HTTP/S PassThrough</td>
 		<td>
 			This is a non-blocking HTTP transport implementation based on HTTP Core NIO, and is the default HTTP transport shipped with WSO2 Micro Integrator. Although the PassThrough transport is somewhat similar to the NHTTP transport, it overcomes all the limitations of the NHTTP transport and provides a significant performance gain. The PassThrough Transport also has a simpler and cleaner model for forwarding messages back and forth.
 		</td>
 	</tr>
 	<tr>
-		<td>HTTP-NIO</td>
+		<td>HTTP/S NIO</td>
 		<td>
 			This is a module of the Apache Synapse project. The transport implementation is based on Apache HTTP Core - NIO and uses a configurable pool of non-blocking worker threads to grab incoming HTTP messages off the wire.
 		</td>
@@ -32,6 +25,7 @@ receivers and senders are independent of the Enterprise Integrator core.
 			HTTPS-NIO transport This is also a module that comes from the Apache Synapse code base. This transport simply extend the <b>HTTP-NIO</b> implementation by adding SSL support. Therefore, they support all the configuration parameters supported by the HTTP-NIO receiver and sender plus the parameters in the following table. The sender can also <b>verify certification revocation</b>.
 		</td>
 	</tr>
+	<!--
 	<tr>
 		<td>HTTP Servlet</td>
 		<td>
@@ -44,6 +38,7 @@ receivers and senders are independent of the Enterprise Integrator core.
 			</ul>
 		</td>
 	</tr>
+-->
 	<tr>
 		<td>
 			The Virtual File System (VFS) 
@@ -53,12 +48,14 @@ receivers and senders are independent of the Enterprise Integrator core.
 			<b>Note</b>: When you transfer a file to a remote FTP location via VFS, the integrator tries to detect the FTP location by navigating from the root folder first. If the integrator does not have <b>at least list permission</b> to the root (/), the file transfer fails.
 		</td>
 	</tr>
+	<!--
 	<tr>
 		<td>HTTPS Servlet</td>
 		<td>
 			Similar to the HTTP transport, the HTTPS transport consists of a receiver implementation which comes from the Carbon core component and a sender implementation which comes from the Apache Axis2 transport module. In fact, this transport uses exactly the same transport sender implementation as the HTTP transport. This is also a blocking transport implementation.
 		</td>
 	</tr>
+-->
 	<tr>
 		<td>RabbitMQ AMQP</td>
 		<td>
@@ -164,7 +161,7 @@ receivers and senders are independent of the Enterprise Integrator core.
 	<tr>
 		<td>Multi-HTTPS</td>
 		<td>
-			This transport is similar to the HTTPS-NIO transport, but it allows you to have different SSL profiles with separate truststores and keystores for different hosts using the same WSO2 Micro Integrator. The Micro Integrator uses truststores and a keystores for SSL protocol implementation. It can listen to different host IPs and ports for incoming HTTPS connections, and each IP/Port will have a separate SSL profile configured.
+			This transport is similar to the HTTPS-NIO transport, but it allows you to have different SSL profiles with separate truststores and keystores for different hosts using the same WSO2 Micro Integrator. It can listen to different host IPs and ports for incoming HTTPS connections, and each IP/Port will have a separate SSL profile configured.
 		</td>
 	</tr>
 </table>
