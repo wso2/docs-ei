@@ -60,7 +60,7 @@ See the instructions on <a href="../../use-cases/examples/registry_examples/work
 
 ## Data Services Project
 
-Create this project directory to start creating data services (.dbs files) for exposing various datasources as a service.</br></br>
+Create this project directory to start creating data services (.dbs files) for exposing various datasources as a service.</br>
 <ol>
     <li>
         Open <b>WSO2 Integration Studio</b> and click <b>DS Project → Create New Data Service</b> in the <b>Getting Started</b> view as shown below.
@@ -223,6 +223,7 @@ your WSO2 Integration Studio workspace.
     **root directory**:  
     ![Import ESB project](../../assets/img/create_project/import_proj_select_folders.png)
 
-    > Select **Copy projects into workspace** check box if you want to save the project in the workspace.
+    !!! Info
+        Select **Copy projects into workspace** check box if you want to save the project in the workspace.
     
 3.  Click **Finish** , and see that the project files are imported in the project explorer.  

@@ -4,10 +4,12 @@ Once you have developed an integration solution, you can host it on the
 Integration Cloud to make it available for multiple users. To understand
 how to host a solution on Integration Cloud, follow the steps below:
 
-> **Before you begin:**
+## Before you begin
 
-> - [Register as a user of the Integration Cloud](https://wso2.com/integration/cloud/).
-> - [Download WSO2 Integration Studio](https://wso2.com/integration/tooling/).
+- [Register as a user of the Integration Cloud](https://wso2.com/integration/cloud/).
+- [Download WSO2 Integration Studio](https://wso2.com/integration/tooling/).
+
+## Step 1: Create an Application
 
 1.  Create an integration application as follows:
     1.  Open **WSO2 Integration Studio**. In the **Getting Started** page,
@@ -19,44 +21,37 @@ how to host a solution on Integration Cloud, follow the steps below:
         let's enter **HelloWorldApps** as the name.  
         ![Cloud](../../assets/img/create_project/integration_cloud/2.Specify-Application-Name.png)  
     3.  Click **Finish** to add the project for the application.
+
 2.  The project currently has the configurations derived from the
     template. Let's modify them as follows:
 
-     !!! Info
-         The purpose of this step is to change the default values. You can skip it if required.
+    !!! Info
+        The purpose of this step is to change the default values. You can skip it if required.
 
-    1.  In the left navigator, open the
-        `            HelloWorldApplication/src/main/synapse-config/proxy-services/HelloWorld.xml           `
-        file. Then click on the **PayloadFactory** icon to open the
-        **Payload Factory Mediator** configuration in the **Properties**
-        tab.  
+    1.  In the left navigator, open the `HelloWorldApplication/src/main/synapse-config/proxy-services/HelloWorld.xml` file. Then click on the **PayloadFactory** icon to open the **Payload Factory Mediator** configuration in the **Properties** tab.  
         ![Cloud](../../assets/img/create_project/integration_cloud/3.open_properties.png)
 
-    2.  In the **Payload** field, replace the existing value  with
-        `            {“data”: “HelloWorld”}           ` .
+    2.  In the **Payload** field, replace the existing value  with `{“data”: “HelloWorld”}`.
 
-3.  Before deploying the composite application, you need to know the key
-    of the organization to which you are deploying. To get the
-    organization ID, sign in to the Integration Cloud and access your
-    organization as follows:
+## Step 2: Deploy in WSO2 Integration Cloud
+
+1.  Before deploying the composite application, you need to know the key of the organization to which you are deploying. To get the
+    organization ID, sign in to the Integration Cloud and access your organization as follows:
 
     !!! Info
         If you already know the key of the organization to which the application needs to be deployed, you can skip this step.
     
-    1.  Sign in to the [Integration
-        Cloud](https://wso2.com/integration/cloud/) with your
-        credentials.
+    1.  Sign in to the [Integration Cloud](https://wso2.com/integration/cloud/) with your credentials.
     2.  Click the following icon tray in the right end of the top
         bar.  
         ![Cloud](../../assets/img/create_project/integration_cloud/4.Icon_Tray.png)  
         Then click **Organizations** to open the **Manage
         Organizations** page.  
         ![Cloud](../../assets/img/create_project/integration_cloud/5.Access_Organization.png)  
-        The keys of the available organizations are displayed as shown
-        below.  
+        The keys of the available organizations are displayed as shown below.  
         ![Cloud](../../assets/img/create_project/integration_cloud/6.Manage_Organizations.png)
 
-4.  Deploy the `Hello World Application` that you
+2.  Deploy the `Hello World Application` that you
     created as follows:
     1.  In WSO2 Integration Studio, open your workbench. Then
         right-click on **HelloWorldAppsCompositeApplication** , and then
@@ -81,11 +76,11 @@ how to host a solution on Integration Cloud, follow the steps below:
         cloud. Once the deployment is complete, the following message
         appears.  
         ![Cloud](../../assets/img/create_project/integration_cloud/9.Deployment-Status.png)
-5.  Access your organization on Integration Cloud as you did in step 3.
+3.  Access your organization on Integration Cloud as you did in step 1.
     The **HelloWorldAppsComposite Application** you deployed is
     displayed as follows.  
     ![Cloud](../../assets/img/create_project/integration_cloud/10.Deployed-Application.png)
-6.  To create a new version, repeat step 4, sub steps a-c. Then follow
+4.  To create a new version, repeat step 2, sub steps a-c. Then follow
     the steps below to create a new version.
     1.  In the page where you select deployable artifacts, select
         **HelloWorldApps** and click **Next**.
