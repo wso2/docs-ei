@@ -47,7 +47,7 @@ theme:
 nav:
     - 'Home': index.md
     - Getting Started:
-      - 'Overview': 'overview/introduction.md'
+      - 'Introduction to WSO2 Micro Integrator': 'overview/introduction.md'
       - 'Quick Start Guide': 'quick-start-guide/quick-start-guide.md'
     - Key Concepts:
       - 'Message Entry Points': 'concepts/message-entry-points.md'
