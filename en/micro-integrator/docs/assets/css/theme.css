@@ -910,3 +910,11 @@ html .md-footer-meta.md-typeset a,
         width: 96%;
     }
 }
+
+.md-header__distribution-select>.version-select {
+    float: right;
+}
+
+.md-header__version-select>.version-select {
+    float: right;
+}

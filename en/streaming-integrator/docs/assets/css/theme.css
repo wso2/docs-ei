@@ -873,14 +873,18 @@ html .md-footer-meta.md-typeset a,
 }
 
 .integratorDescription {
-    width:33%;
+    width:28%;
     flex-grow: 0;
     display:inline-block;
     background: #f2f2f2;
-    text-align: center;
-    padding: 10px;
+    padding: 10px 20px;
     padding-bottom: 20px;
-    margin-top: 10px;
+    margin: 10px 2%;
+    text-align: justify;
+}
+
+.integratorDescription p {
+    opacity: 0.6;
 }
 
 .integratorDescription a {
@@ -889,6 +893,8 @@ html .md-footer-meta.md-typeset a,
     color: white !important;
     padding: .5em;
     text-decoration: none;
+    margin: auto;
+    display: table;
 }
 
 .integratorDescription a:hover {
@@ -898,9 +904,17 @@ html .md-footer-meta.md-typeset a,
     text-decoration: none;
 }
 
-@media (max-width: 800px) {
+@media (max-width: 1000px) {
     .integratorDescription {
         display: block;
-        width: 100%;
+        width: 96%;
     }
+}
+
+.md-header__distribution-select>.version-select {
+    float: right;
+}
+
+.md-header__version-select>.version-select {
+    float: right;
 }
