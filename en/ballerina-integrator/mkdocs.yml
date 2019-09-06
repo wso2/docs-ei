@@ -50,15 +50,7 @@ nav:
       - 'Introduction': 'getting-started/introduction.md'
       - 'Quick Start Guide': 'getting-started/quick-start-guide.md'
     - Learn:
-      - Tutorials:
-        - 'Sending a Simple Message to a Service' : 'learn/integration-tutorials/sending-a-simple-message-to-a-service/sending-a-simple-message-to-a-service.md'
-        - 'Sending a Simple Message to a Datasource' : 'learn/integration-tutorials/sending-a-simple-message-to-a-datasource/sending-a-simple-message-to-a-datasource.md'
-        - 'Routing Requests Based on Message Content' : 'learn/integration-tutorials/routing-requests-based-on-message-content/routing-requests-based-on-message-content.md'
-        - 'Transforming Message Content' : 'learn/integration-tutorials/transforming-message-content/transforming-message-content.md'
-        - 'Exposing Several Services as a Single Service' : 'learn/integration-tutorials/exposing-several-services-as-a-single-service/exposing-several-services-as-a-single-service.md'
-        - 'Storing and Forwarding Messages' : 'learn/integration-tutorials/storing-and-forwarding-messages/storing-and-forwarding-messages.md'
-        - 'Using the Gmail Connector' : 'learn/integration-tutorials/using-the-gmail-connector/using-the-gmail-connector.md'
-        - 'Using the Analytics Dashboard' : 'learn/integration-tutorials/using-the-analytics-dashboard/using-the-analytics-dashboard.md'
+      - 'About Learn': 'learn/about-learn.md'
       - Guides:
         - Messaging:
           - 'Asynchronous Messaging' : 'learn/guides/messaging/asynchronous-messaging/asynchronous-messaging.md'
@@ -84,12 +76,25 @@ nav:
           - 'Data-backed Service' : 'learn/guides/database-integrations/data-backed-service/data-backed-service.md'
           - 'Managing Database Transactions' : 'learn/guides/database-integrations/managing-database-transactions/managing-database-transactions.md'
           - 'Integration with MongoDB' : 'learn/guides/database-integrations/mongo/mongo.md'
-    - Setup:
-      - 'Deploy on Docker': 'setup/deploy-on-docker.md'
-      - 'Deploy on Kubernetes': 'setup/deploy-on-kubernetes.md'
+      - Tutorials:
+        - 'Sending a Simple Message to a Service' : 'learn/integration-tutorials/sending-a-simple-message-to-a-service/sending-a-simple-message-to-a-service.md'
+        - 'Sending a Simple Message to a Datasource' : 'learn/integration-tutorials/sending-a-simple-message-to-a-datasource/sending-a-simple-message-to-a-datasource.md'
+        - 'Routing Requests Based on Message Content' : 'learn/integration-tutorials/routing-requests-based-on-message-content/routing-requests-based-on-message-content.md'
+        - 'Transforming Message Content' : 'learn/integration-tutorials/transforming-message-content/transforming-message-content.md'
+        - 'Exposing Several Services as a Single Service' : 'learn/integration-tutorials/exposing-several-services-as-a-single-service/exposing-several-services-as-a-single-service.md'
+        - 'Storing and Forwarding Messages' : 'learn/integration-tutorials/storing-and-forwarding-messages/storing-and-forwarding-messages.md'
+        - 'Using the Gmail Connector' : 'learn/integration-tutorials/using-the-gmail-connector/using-the-gmail-connector.md'
+        - 'Using the Analytics Dashboard' : 'learn/integration-tutorials/using-the-analytics-dashboard/using-the-analytics-dashboard.md'
+    - Setup and Install:
+      - 'Setup and Install' : 'setup/setup-overview.md'
     - Develop:
       - 'Using Modules' : 'develop/using-modules.md'
       - 'CI/CD' : 'develop/cicd.md'
+      - Deploying Artifacts:
+        - 'Deploy on Docker': 'develop/deploy-on-docker.md'
+        - 'Deploy on Kubernetes': 'develop/deploy-on-kubernetes.md'
+    - References:
+      - 'References' : 'references/references.md'
     - '': page-not-found.md
      
 # Extensions
