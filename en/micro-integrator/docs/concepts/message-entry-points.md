@@ -13,7 +13,7 @@ and can be accessed using a URL similar to a normal web service address.
 ## REST APIs
 
 A REST API in WSO2 Micro Integrator is analogous to a web application
-deployed in the integration server. Each API is anchored at a
+deployed in the web container. Each API is anchored at a
 user-defined URL context, much like how a web application deployed in a
 servlet container is anchored at a fixed URL context. An API will only
 process requests that fall under its URL context. 
@@ -36,7 +36,8 @@ Integrator using REST.
 
 ## Inbound endpoints
 
-An inbound endpoint is a message entry point that can inject messages directly from the transport layer to the mediation layer, without going through the Axis2 engine. One of the advantages of using Inbound Endpoints is in its ability to create inbound messaging channels dynamically. There are three types of inbound endpoints:
+An inbound endpoint is a message entry point that can inject messages directly from the transport
+ layer to the mediation layer, without going through the Axis2 engine. One of the advantages of using Inbound Endpoints is in its ability to create inbound messaging channels dynamically. There are three types of inbound endpoints:
 
 ### Listening Inbound Endpoints
 
