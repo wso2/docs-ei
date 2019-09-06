@@ -24,9 +24,9 @@ of a range of rooms in a building via a sensor and needs to use the temperature 
 
 Create a basic Siddhi application for a simple use case.
 
-1. Extract the Streaming Integrator Tooling pack to a preferred location. Hereafter, the extracted location is referred to as `<SI_HOME>`.
+1. Extract the Streaming Integrator Tooling pack to a preferred location. Hereafter, the extracted location is referred to as `<SI_TOOLING_HOME>`.
 
-2. Navigate to the `<SI_HOME>/bin` directory and issue the following command to start the Streaming Integration tooling.
+2. Navigate to the `<SI_TOOLING_HOME>/bin` directory and issue the following command to start the Streaming Integration tooling.
     -   For Windows: `tooling.bat`
     -   For Linux: `./tooling.sh`
     
@@ -217,7 +217,8 @@ To export the  `TemperatureApp` Siddhi application as a Docker artifact, follow 
 1. Open the Streaming Integrator Tooling.
 
 2. In the **File** menu, click **Export as Docker**.
-    ![Export Siddhi Application as Docker](../images/quick-start-guide-101/export-as-docker.png)
+
+   ![Export Siddhi Application as Docker](../images/quick-start-guide-101/export-as-docker.png)
 
    As a result, the **Export as Docker** dialog box opens as follows.
     ![Export as Docker dialog box](../images/quick-start-guide-101/export-as-docker-dialog-box.png)
