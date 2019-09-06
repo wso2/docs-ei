@@ -39,7 +39,7 @@ You see a response confirming that your project is created.
 Navigate into the project directory you created and run the following command. This command enables you to create a module using a predefined template. In this case, we use the `content_based_routing` template.
 
 ```bash
-$ ballerina add -t wso2/content_based_routing MyModule
+$ ballerina add -t wso2/xml_to_json_transformation MyModule
 ```
 
 This automatically creates a content-based routing service for you inside an `src` directory. A Ballerina service represents a collection of network accessible entry points in Ballerina. A resource within a service represents one such entry point. The generated sample service exposes a network entry point on port 9090.
@@ -53,7 +53,18 @@ $ ballerina build MyModule
 You get the following output.
 
 ```bash
-[ballerina/http] started HTTP/WS listener 0.0.0.0:9090
+Compiling source
+	qsg/MyModule:0.1.0
+
+Creating balos
+	target/balo/MyModule-2019r3-any-0.1.0.balo
+
+Running tests
+    qsg/MyModule:0.1.0
+	No tests found
+
+Generating executables
+	target/bin/MyModule-executable.jar
 ```
 
 Run the following Java command to run the executable .jar file that is created once you build your module.

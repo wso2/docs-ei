@@ -1,4 +1,4 @@
-# Transport Catalog
+# Transport Parameters
 
 Given below is the list of transport parameters that can be configured for services.
 
@@ -660,7 +660,8 @@ Following are the URL parameters you can set:
          <td>rabbitmq.queue.auto.ack</td>
          <td>
             Defines how the message processor sends the acknowledgement when consuming messages recived from the RabbitMQ message store. If you set this to true, the message processor automatically sends the acknowledgement to the messages store as soon as it receives messages from it. This is called an auto acknowledgement.
-            If you set it to <code>false</code>, the message processor waits until it receives the response from the backend to send the acknowledgement to the mssage store. This is called a client acknowledgement.
+            If you set it to <code>false</code>, the message processor waits until it receives the response from the backend to send the acknowledgement to the mssage store. This is called a client acknowledgement.</br>
+            However, you can increase performance of message processors either by increasing the member count or by having multiple message processors. If you increase the member count, it will create multiple child processors of the message processor.
          </td>
       </tr>
       <tr>
@@ -715,6 +716,12 @@ Following are the URL parameters you can set:
          <td>rabbitmq.message.content.type</td>
          <td>
             The content type of the consumer. <b>Note</b>: If the content type is specified in the message, this parameter does not override the specified content type. The default value is <code>text/xml</code>.
+         </td>
+      </tr>
+      <tr>
+         <td>rabbitmq.connection.pool.size</td>
+         <td>
+            You can increase the connection pool size to improve the performance of the RabbitMQ sender and listener. The default connection pool size is 20.
          </td>
       </tr>
    </tbody>
@@ -818,6 +825,12 @@ Following are the URL parameters you can set:
         <td>
            This parameter increases the performance and provides higher throughput in message delivery.
         </td>
+      </tr>
+      <tr>
+         <td>rabbitmq.connection.pool.size</td>
+         <td>
+            You can increase the connection pool size to improve the performance of the RabbitMQ sender and listener. The default connection pool size is 20.
+         </td>
       </tr>
    </tbody>
 </table>

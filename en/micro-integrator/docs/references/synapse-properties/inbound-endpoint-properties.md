@@ -23,13 +23,15 @@ The following parameters are common to all inbound endpoints:
          </td>
       </tr>
       <tr>
-         <td>suspend</td>
-         <td>When set to <code>true</code>, this makes the inbound endpoint inactive. The default setting is <code>false</code>.</td>
+        <td>Suspend</td>
+        <td>
+          If the inbound listener should pause when accepting incoming requests, set this to <code>true</code>. If the inbound listener should not pause when accepting incoming requests, set this to <code>false</code>.
+        </td>
       </tr>
    </tbody>
 </table>
 
-## Properties: Listening Inbound 
+## Listening Inbound Endpoint Properties
 
 ``` java tab='HTTP Listener'
 <inboundEndpoint name="HttpListenerEP" protocol="http" suspend="false" sequence="TestIn" onError="fault" >
@@ -135,7 +137,9 @@ The following parameters are common to all inbound endpoints:
     </inboundEndpoint>
 ```
 
-### HTTP Inbound Endpoint Properties (Required)
+### HTTP/HTTPS Inbound (Required Properties)
+
+Listed below are the required properties when [creating an HTTP/HTTPS inbound endpiont](../../develop/creating-artifacts/creating-an-inbound-endpoint.md).
 
 <table>
   <tr>
@@ -150,30 +154,10 @@ The following parameters are common to all inbound endpoints:
   </tr>
 </table>
 
-### HTTPS Inbount Endpoint (Required Properties)
+### HTTPS Inbount (Optional Properties)
 
-<table>
-  <tr>
-    <th>Property Name</th>
-    <th>Description</th>
-  </tr>
-  <tr>
-    <td>
-            inbound.http.port
-    </td>
-    <td>
-            <p>The port on which the e ndpoint listener should be started .</p>
-    </td>
-    </tr>
-   <tr>
-         <td>
-            keystore
-         </td>
-         <td>The KeyStore location where keys are stored.</td>
-  </tr>
-</table>
+Listed below are the optional properties you can configure when [creating an HTTP/HTTPS inbound endpiont](../../develop/creating-artifacts/creating-an-inbound-endpoint.md).
 
-### HTTPS Inbount Endpoint (Optional Properties)
 <table>
    <thead>
       <tr>
@@ -186,6 +170,12 @@ The following parameters are common to all inbound endpoints:
       </tr>
    </thead>
    <tbody>
+      <tr>
+         <td>
+            keystore
+         </td>
+         <td>The KeyStore location where keys are stored.</td>
+      </tr>
       <tr>
          <td>
             truststore
@@ -230,24 +220,7 @@ The following parameters are common to all inbound endpoints:
 
 ### HTTP/HTTPS Worker Pool Configuration Properties
 
-Following is a sample configuration for an inbound endpoint with a separate worker pool:
-
-```
-<inboundEndpoint name="HttpListenerEP" protocol="http" suspend="false" sequence="TestIn" onError="fault" >
-        <p:parameters xmlns:p="http://ws.apache.org/ns/synapse">
-            <p:parameter  name="inbound.http.port">8081</p:parameter>
-            <p:parameter  name="api.dispatching.enabled">false</p:parameter> 
-            <p:parameter name="inbound.thread.group.id">Pass_Through Inbound worker Pool</p:parameter>
-            <p:parameter name="inbound.worker.pool.size.max">500</p:parameter>
-            <p:parameter name="inbound.thread.id">PassThroughInboundWorkerPool</p:parameter>
-            <p:parameter name="inbound.worker.pool.queue.length">-1</p:parameter>
-            <p:parameter name="inbound.worker.pool.size.core">400</p:parameter>
-            <p:parameter name="inbound.worker.thread.keep.alive.sec">60</p:parameter>
-        </p:parameters>
-</inboundEndpoint>
-```
-
-By default inbound endpoints share the PassThrough transport worker pool to handle incoming requests. If you need a separate worker pool for the inbound endpoint, you need to configure the following parameters:
+By default inbound endpoints share the PassThrough transport worker pool to handle incoming requests. If you need a separate worker pool for the inbound endpoint, you need to configure the following properties when [creating an HTTP/HTTPS inbound endpiont](../../develop/creating-artifacts/creating-an-inbound-endpoint.md).
 
 <table>
   <tr>
@@ -285,6 +258,12 @@ By default inbound endpoints share the PassThrough transport worker pool to hand
     </td>
   </tr>
   <tr>
+    <td>inbound.thread.id</td>
+    <td>
+      Unique Identifier of the thread group. The default value is the PassThrough inbound worker thread.
+    </td>
+  </tr>
+  <tr>
     <td>dispatch.filter.pattern</td>
     <td>
       The regular expression that defines the proxy services and API's to expose via the inbound endpoint. Provide the .* expression to expose all proxy services and API's or provide an expression similar to <code>^(/foo|/bar|/services/MyProxy)$</code> to define a set of services to expose via the inbound endpoint. If you do not provide an expression only the defined sequence of the inbound endpoint will be accessible.
@@ -292,70 +271,14 @@ By default inbound endpoints share the PassThrough transport worker pool to hand
   </tr>
 </table>
 
-**Inbound endpoint properties for proxy services**
+### CXF WS-RM Inbound Properties
 
-Following is a sample proxy configuration:
-
-```
-<proxy xmlns="http://ws.apache.org/ns/synapse" name="InboundProxy" transports="https,http" statistics="disable" trace="disable" startOnLoad="true">
-        <target>
-            <outSequence>
-                <send/>
-            </outSequence>
-            <endpoint>
-                <address uri="http://localhost:9773/services/HelloService/"/>
-            </endpoint>
-        </target>
-        <parameter name="inbound.only">true</parameter>
-</proxy>
-```
-
-If a proxy service is to be exposed only via inbound endpoints, the following service parameter has to be set in the proxy configuration.
-
-<table>
-   <thead>
-      <tr>
-         <th>Service Parameter</th>
-         <th>Description</th>
-      </tr>
-   </thead>
-   <tbody>
-      <tr>
-         <td>inbound.only</td>
-         <td>
-            <p>Whether the proxy service needs to be exposed only via inbound endpoints.</p>
-            <p>If set to <code>true</code> all requests that the proxy service receives via normal transport will be rejected. The proxy service will process only the requests that are received via inbound endpoints.</br></br> The default setting is <code>false</code>.</p>
-         </td>
-      </tr>
-   </tbody>
-</table>
-
-### CXF WS-RM Inbound Endpoint Properties
-
-The CXF WS-RM Inbound endpoint can be configured by specifying the following parameters:
+The following properties can be configured when [creating a CXF WS-RM inbound endpiont](../../develop/creating-artifacts/creating-an-inbound-endpoint.md).
 
 <table>
   <tr>
     <th>Property Name</th>
     <th>Description</th>
-  </tr>
-  <tr>
-    <td>Sequence</td>
-    <td>
-      The sequence to which the message will be injected.
-    </td>
-  </tr>
-  <tr>
-    <td>Error sequence</td>
-    <td>
-      The sequence to be called if a fault occurs.
-    </td>
-  </tr>
-  <tr>
-    <td>Suspend</td>
-    <td>
-      If the inbound listener should pause when accepting incoming requests, set this to <code>true</code>. If the inbound listener should not pause when accepting incoming requests, set this to <code>false</code>.
-    </td>
   </tr>
   <tr>
     <td>inbound.cxf.rm.host</td>
@@ -384,17 +307,15 @@ The CXF WS-RM Inbound endpoint can be configured by specifying the following par
   </tr>
 </table>
 
-### HL7 Inbound Endpoint
+### HL7 Inbound Properties
 
-#### HL7 Endpoint Properties
-
-The following table provides information on the HL7 inbound endpoint parameters you can set:
+The following properties can be configured when [creating a HL7 inbound endpiont](../../develop/creating-artifacts/creating-an-inbound-endpoint.md).
 
 <table>
    <thead>
       <tr>
-         <th><strong>Property</strong></th>
-         <th><strong>Description</strong></th>
+         <th>Property</th>
+         <th>Description</th>
       </tr>
    </thead>
    <tbody>
@@ -437,7 +358,7 @@ The following table provides information on the HL7 inbound endpoint parameters
    </tbody>
 </table>
 
-#### HL7 Mediation-Level Properties
+**HL7 Mediation-Level Properties**
 
 Following are the mediation level properties that you can set in the HL7 inbound endpoint:
 
@@ -446,13 +367,13 @@ Following are the mediation level properties that you can set in the HL7 inbou
 
 | **Property**                                                                                            | **Description**                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
 |---------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `                         `          | This is use to define the type of HL7 acknowledgement to be sent. If the `             inbound.hl7.AutoAck            ` parameter is set to `             true            ` this property has no effect.                                                                                                                                                                                                                                                                                                             |
+| `<property name="HL7_RESULT_MODE" value="ACK|NACK" scope="default"/>`          | This is use to define the type of HL7 acknowledgement to be sent. If the `             inbound.hl7.AutoAck            ` parameter is set to `             true            ` this property has no effect.                                                                                                                                                                                                                                                                                                             |
 | `             <property name="HL7_NACK_MESSAGE" value="<ERROR MESSAGE>" scope="default" />            ` | This is used to define a custom error message to be sent if you have set the property `             HL7_RESULT_MODE            ` as `             NACK            ` .                                                                                                                                                                                                                                                                                                                                                |
 | `             <property name="HL7_APPLICATION_ACK" value="true" scope="default"/>            `          | If the `             inbound.hl7.AutoAck            ` parameter is set to `             false            ` and no immediate auto generated ACK is sent back to the client, this property defines whether we should automatically generate the ACK for the request once the mediation flow is complete. If both the `             inbound.hl7.AutoAck            ` parameter and this property are set to `             false            `, you need to generate an ACK message in the correct format as a response. |
 
-### WebSocket Inbound Endpoint Properties
+### Common WebSocket Inbound (Required Properties)
 
-#### Required Properties
+The following properties are required when [creating a Websocket inbound endpiont](../../develop/creating-artifacts/creating-an-inbound-endpoint.md).
 
 <table>
   <tr>
@@ -481,54 +402,9 @@ Following are the mediation level properties that you can set in the HL7 inbou
   </tr>
 </table>
 
-#### Optional Properties
+### Secured WebSocket Inbound (Required Properties)
 
-<table>
-   <thead>
-      <tr>
-         <th>Property</th>
-         <th>Description</th>
-      </tr>
-   </thead>
-   <tbody>
-      <tr>
-         <td>ws.boss.thread.pool.size</td>
-         <td>The size of the netty boss pool.</td>
-      </tr>
-      <tr>
-         <td>ws.worker.thread.pool.size</td>
-         <td>The size of the worker thread pool.</td>
-      </tr>
-      <tr>
-         <td>ws.subprotocol.handler.class</td>
-         <td>Specify one or more custom subprotocol handler classes that are required. Separate each custom subprotocol handler class using a semicolon.</td>
-      </tr>
-      <tr>
-         <td>ws.default.content.type</td>
-         <td>
-            Specifies the content type of the Web Socket frames that are received from the inbound endpoint.
-         </td>
-      </tr>
-      <tr>
-         <td>ws.shutdown.status.code</td>
-         <td>Specifies the status code of the closed web socket frame sent when the inbound endpoint is closed.</td>
-      </tr>
-      <tr>
-         <td>ws.shutdown.status.message</td>
-         <td>Specifies the status message of the closed web socket frame when the inbound endpoint is closed.</td>
-      </tr>
-      <tr>
-         <td>ws.pipeline.handler.class</td>
-         <td>
-           The fully qualified class name of a pipeline handler class that you implemented.
-         </td>
-      </tr>
-   </tbody>
-</table>
-
-### Secured WebSocket Inbound Endpoint Properties
-
-#### Required Properties
+In addition to the [common websocket inbound properties](#common-websocket-inbound-required-properties) listed above, the following properties are required when [creating a **secured** Websocket inbound endpiont](../../develop/creating-artifacts/creating-an-inbound-endpoint.md).
 
 <table>
   <tr>
@@ -577,7 +453,9 @@ Following are the mediation level properties that you can set in the HL7 inbou
   </tr>
 </table>
 
-#### Optional Properties
+### Common Websocket Inbound (Optional Properties)
+
+The following optional properties can be configured when [creating a Websocket inbound endpiont](../../develop/creating-artifacts/creating-an-inbound-endpoint.md).
 
 <table>
    <thead>
@@ -618,6 +496,22 @@ Following are the mediation level properties that you can set in the HL7 inbou
          <td>The fully qualified class name of a pipeline handler class that you implemented.</td>
       </tr>
       <tr>
+        <td>Ws Use Port Offset</td>
+        <td></td>
+      </tr>
+   </tbody>
+</table>
+
+### Secured Websocket Inbound (Optional Properties)
+
+The following optional properties can be configured when [creating a **Secured** Websocket inbound endpiont](../../develop/creating-artifacts/creating-an-inbound-endpoint.md).
+
+<table>
+  <tr>
+    <th>Property</th>
+    <th>Description</th>
+  </tr>
+  <tr>
          <td>wss.ssl.protocols</td>
          <td>Enables the SSL protocol for the particular WebSocket inbound endpoint. Default value is "TLS". You can change it to a TLS version(s), which is/are enabled with the SSL protocol (i.e., TLSv1,TLSv1.1,TLSv1.2). For example, <code>parameter name="wss.ssl.protocols"TLSv1.1,TLSv1.2/parameter</code></td>
       </tr>
@@ -643,7 +537,6 @@ Following are the mediation level properties that you can set in the HL7 inbou
             </div>
          </td>
       </tr>
-   </tbody>
 </table>
 
 ## Polling Inbound Endpoint Properties
@@ -669,35 +562,17 @@ The following parameters are common to all polling inbound endpoints:
       This optional property is only applicable in a cluster environment. In a clustered environment, an inbound endpoint will only be executed in worker nodes. If set to <code>true</code> in a cluster setup, this will run the inbound only in a single worker node. Once the running worker is down, the inbound starts on another available worker in the cluster. By default, coordniation is enabled.
     </td>
   </tr>
+  <tr>
+    <td>
+       sequential
+     </td>
+     <td>Whether the messages need to be polled and injected sequentially or not.</td>
+  </tr>
 </table>
 
-### JMS Inbound Endpoint Properties
+### JMS Inbound (Required Properties)
 
-Following is a sample JMS inbound endpoint configuration:
-
-```
-<inboundEndpoint xmlns="http://ws.apache.org/ns/synapse" 
-                     name="jms" sequence="request" 
-                     onError="fault" 
-                     protocol="jms" 
-                     suspend="false">
-          <parameters>
-             <parameter name="interval">1000</parameter>
-             <parameter name="coordination">true</parameter> 
-             <parameter name="transport.jms.Destination">ordersQueue</parameter>
-             <parameter name="transport.jms.CacheLevel">3</parameter>
-             <parameter name="transport.jms.ConnectionFactoryJNDIName">QueueConnectionFactory</parameter>
-             <parameter name="sequential">true</parameter>
-             <parameter name="java.naming.factory.initial">org.apache.activemq.jndi.ActiveMQInitialContextFactory</parameter>
-             <parameter name="java.naming.provider.url">tcp://localhost:61616</parameter>
-             <parameter name="transport.jms.SessionAcknowledgement">AUTO_ACKNOWLEDGE</parameter>
-             <parameter name="transport.jms.ConnectionFactoryType">queue</parameter>
-          </parameters>
-</inboundEndpoint>
-```
-#### Required Properties
-
-Listed below are the required properties when defining a JMS Inbound Endpint:
+The following properties are required when [creating a JMS inbound endpiont](../../develop/creating-artifacts/creating-an-inbound-endpoint.md).
 
 <table>
   <tr>
@@ -728,17 +603,11 @@ Listed below are the required properties when defining a JMS Inbound Endpint:
       <p>The JNDI name of the connection factory.</p>
     </td>
   </tr>
-  <tr>
-    <td>
-       sequential
-     </td>
-     <td>Whether the messages need to be polled and injected sequentially or not.</td>
-  </tr>
 </table>
 
-#### Optional Properties
+### JMS Inbound (Optional Properties)
 
-Listed below are the optional properties when defining a JMS Inbound Endpint:
+The following optional properties can be configured when [creating a JMS inbound endpiont](../../develop/creating-artifacts/creating-an-inbound-endpoint.md).
 
 <table>
    <thead>
@@ -900,54 +769,9 @@ Listed below are the optional properties when defining a JMS Inbound Endpint:
    </tbody>
 </table>
 
-### Kafka Inbound Endpoint Properties
+### Kafka Inbound (Required Properties)
 
-Following are two high-level Kafka configurations that can be used to consume messages in two ways: Using **specific topics** or using a **topic filter**.
-
-``` java tab='Using Specific Topics'
-<inboundEndpoint xmlns="http://ws.apache.org/ns/synapse"
-                     name="KakfaListenerEP"
-                     sequence="requestHandlerSeq"
-                     onError="inFaulte"
-                     protocol="kafka"
-                     suspend="false">
-       <parameters>
-          <parameter name="interval">100</parameter> 
-          <parameter name="coordination">true</parameter>
-          <parameter name="sequential">true</parameter>
-          <parameter name="zookeeper.connect">localhost:2181</parameter>
-          <parameter name="consumer.type">highlevel</parameter>
-          <parameter name="content.type">application/xml</parameter>
-          <parameter name="topics">test,sampletest</parameter>
-          <parameter name="group.id">test-group</parameter>
-       </parameters>
-</inboundEndpoint>
-```
-
-``` java tab='Using a Topic Filter'
-<inboundEndpoint xmlns="http://ws.apache.org/ns/synapse"
-                     name="KakfaListenerEP"
-                     sequence="requestHandlerSeq"
-                     onError="inFaulte"
-                     protocol="kafka"
-                     suspend="false">
-       <parameters>
-          <parameter name="interval">100</parameter> 
-          <parameter name="coordination">true</parameter>
-          <parameter name="sequential">true</parameter>
-          <parameter name="zookeeper.connect">localhost:2181</parameter>
-          <parameter name="consumer.type">highlevel</parameter>
-          <parameter name="content.type">application/xml</parameter>
-          <parameter name="topic.filter">test</parameter>
-          <parameter name="filter.from.whitelist">true</parameter>
-          <parameter name="group.id">test-group</parameter>      
-       </parameters>
-</inboundEndpoint>
-```
-
-Listed below are the Kafka inbound endpoint properties for a high-level configuration.
-
-#### High-level Kafka Configuration (Required Properties)
+The following properties are required when [creating a Kafka inbound endpiont](../../develop/creating-artifacts/creating-an-inbound-endpoint.md).
 
 <table>
   <tr>
@@ -982,7 +806,7 @@ Listed below are the Kafka inbound endpoint properties for a high-level configur
          <td>
            sequential
          </td>
-         <td>The behaviour when executing the given sequence.</br></br> The property is set to <code>true</code> by default.</td>
+         <td>The behaviour when executing the given sequence.</br></br> The property is set to <code>true</code> by default. Set this property to <code>false</code> to use the Kafka inbound in a non-sequential mode as it allows better performance than the sequential mode.</td>
       </tr>
       <tr>
          <td>
@@ -1004,9 +828,25 @@ Listed below are the Kafka inbound endpoint properties for a high-level configur
             <p>If all the consumer instances have the same consumer group, this works as a traditional queue balancing the load over the consumers.</p>
          </td>
       </tr>
+      <tr>
+         <td>
+            topic.filter
+         </td>
+         <td>The name of the topic filter.</td>
+      </tr>
+      <tr>
+         <td>
+            filter.from.whitelist
+         </td>
+         <td>If this is set to <code>true</code>, messages are consumed from the whitelist(include).<br />
+            If this is set to <code>false</code>, messages are consumed from the blacklist(exclude).
+         </td>
+      </tr>
 </table>
 
-#### High-level Kafka Configuration (Optional Properties)
+### Kafka Inbound (Optional Properties)
+
+The following optional properties can be configured when [creating a Kafka inbound endpiont](../../develop/creating-artifacts/creating-an-inbound-endpoint.md).
 
 <table>
    <thead>
@@ -1142,86 +982,6 @@ Listed below are the Kafka inbound endpoint properties for a high-level configur
          <td>dual.commit.enabled</td>
          <td>If <code>offsets.storage</code> is set to <code>kafka</code>, the commit offsets can be dual to ZooKeeper. Set this to <code>true</code> if you need to perform migration from zookeeper-based offset storage to kafka-based offset storage. The default value is <code>true</code>.</td>
       </tr>
-   </tbody>
-</table>
-
-Following are descriptions of the parameters set to consume topic filters in a kafka configuration:
-
-!!! Info
-    In high-level kafka configurations, the follwing parameters are used instead of the `topics` paramater.
-    <parameter name="topic.filter">test</parameter>
-    <parameter name="filter.from.whitelist">true</parameter>
-
-<table>
-   <thead>
-      <tr>
-         <th>
-            <p>Parameter</p>
-         </th>
-         <th>
-            <p>Description</p>
-         </th>
-      </tr>
-   </thead>
-   <tbody>
-      <tr>
-         <td>
-            topic.filter
-         </td>
-         <td>The name of the topic filter.</td>
-      </tr>
-      <tr>
-         <td>
-            filter.from.whitelist
-         </td>
-         <td>If this is set to <code>true</code>, messages are consumed from the whitelist(include).<br />
-            If this is set to <code>false</code>, messages are consumed from the blacklist(exclude).
-         </td>
-      </tr>
-   </tbody>
-</table>
-
-#### Low-Level Kafka Inbound Endpoint Properties
-
-Kafka inbound endpoint parameters for a low-level configuration:
-
-Following is a sample low-level Kafka configuration that can be used to consume messages from a specific server in a specific partition, so that the messages are limited:
-
-```
-<inboundEndpoint xmlns="http://ws.apache.org/ns/synapse"
-                     name="KakfaListenerEP"
-                     sequence="requestHandlerSeq"
-                     onError="inFaulte"
-                     protocol="kafka"
-                     interval="1000"
-                     suspend="false">
-       <parameters>     
-          <parameter name="zookeeper.connect">localhost:2181</parameter>
-          <parameter name="group.id">test-group</parameter>  
-          <parameter name="content.type">application/xml</parameter>
-          <parameter name="consumer.type">simple</parameter>
-          <parameter name="simple.max.messages.to.read">5</parameter>
-          <parameter name="simple.topic">test</parameter>
-          <parameter name="simple.brokers">localhost</parameter>
-          <parameter name="simple.port">9092</parameter>
-          <parameter name="simple.partition">1</parameter>
-          <parameter name="interval">1000</parameter>
-       </parameters>
-</inboundEndpoint>
-```
-
-<table>
-   <thead>
-      <tr>
-         <th>
-            <p>Property</p>
-         </th>
-         <th>
-            <p>Description</p>
-         </th>
-      </tr>
-   </thead>
-   <tbody>
       <tr>
          <td>
             simple.topic
@@ -1256,6 +1016,17 @@ Following is a sample low-level Kafka configuration that can be used to consume
       </tr>
    </tbody>
 </table>
+
+### Improving Kafka Performance (Server-Level)
+
+Open the ei.toml file, and change the inbound thread pool size based on your use case. Recommended values are specified below.
+
+```toml
+[[mediation]]
+inbound.threads.core = 200 
+inbound.threads.max = 1000   
+```
+See the [descriptions of the parameters](../../../references/config-catalog/#mediation-process).
 
 ## Event-based Inbound Endpoint Properties
 
@@ -1318,38 +1089,24 @@ The following parameter is common to all event-based inbound endpoints:
             In a cluster environment an inbound endpoint will only be executed in worker nodes. If this parameter is set to <code>true</code> in a clustered environment, the inbound will only be executed in a single worker node. Once the running worker node is down, the inbound will start on another available worker node in the cluster. By default, this setting is <code>true</code>.
          </td>
       </tr>
-   </tbody>
+      <tr>
+      <td>
+         sequential
+      </td>
+      <td>The behaviour when executing the given sequence.</td>
+   </tr>
+ </tbody>
 </table>
 
-### MQTT Inbound Protocol Properties
+### MQTT Inbound (Required Properties)
 
-#### Required Properties
-
-Listed below are the required properties when you define an MQTT Inbound Endpoint:
+The following properties are required when [creating a MQTT inbound endpiont](../../develop/creating-artifacts/creating-an-inbound-endpoint.md).
 
 <table>
   <tr>
     <th>Property</th>
     <th>Description</th>
   </tr>
-  <tr>
-      <td>
-         sequential
-      </td>
-      <td>The behaviour when executing the given sequence.</td>
-   </tr>
-   <tr>
-      <td>
-         coordination
-      </td>
-      <td>In a clustered setup, if set to <code>true</code>, the inbound endpoint will run only in a single worker node. If set to false, it will run on all worker nodes.</td>
-   </tr>
-   <tr>
-      <td>
-         suspend
-      </td>
-      <td>If set to <code>true</code>, the inbound listener will not accept incoming requests from clients and will not inject messages to the synapse message mediation. If set to <code>false</code>, incoming messages will be accepted.</td>
-   </tr>
    <tr>
       <td>
          mqtt.connection.factory
@@ -1384,9 +1141,9 @@ Listed below are the required properties when you define an MQTT Inbound Endpoin
    </tr>
 </table>
 
-#### Optional Properties
+### MQTT Inbound (Optional Properties)
 
-Listed below are the optional properties when you define an MQTT Inbound Endpoint:
+The following optional properties can be configured when [creating an MQTT inbound endpiont](../../develop/creating-artifacts/creating-an-inbound-endpoint.md).
 
 <table>
 <thead>
@@ -1463,11 +1220,9 @@ Listed below are the optional properties when you define an MQTT Inbound Endpoin
 </tbody>
 </table>
 
-### RabbitMQ Inbound Protocol Properties
+### RabbitMQ Inbound (Required Properties)
 
-#### Required Properties
-
-Listed below are the required properties when you define a RabbitMQ Inbound Endpoint:
+The following properties are required when [creating a RabbitMQ inbound endpiont](../../develop/creating-artifacts/creating-an-inbound-endpoint.md).
 
 <table>
   <tr>
@@ -1526,9 +1281,9 @@ Listed below are the required properties when you define a RabbitMQ Inbound Endp
       </tr>
 </table>
 
-#### Optional Properties
+### RabbitMQ Inbound (Optional Properties)
 
-Listed below are the optional properties when you define a RabbitMQ Inbound Endpoint:
+The following optional properties can be configured when [creating an RabbitMQ inbound endpiont](../../develop/creating-artifacts/creating-an-inbound-endpoint.md).
 
 <table>
    <thead>
@@ -1739,7 +1494,7 @@ Given below are the properties that should be configured when you define a custo
    <thead>
       <tr>
          <th>
-            <p>Parameter Name</p>
+            <p>Property Name</p>
          </th>
          <th>
             <p>Description</p>
@@ -1772,7 +1527,7 @@ Given below are the properties that should be configured when you define a custo
           inbound.behavior
          </td>
          <td>
-          The behaviour of the inbound endpoint. Specify <code>listening</code>.
+          The behaviour of the inbound endpoint. Specify <code>listening</code>, <code>polling</code>, or <code>event-based</code>.
          </td>
       </tr>
    </tbody>

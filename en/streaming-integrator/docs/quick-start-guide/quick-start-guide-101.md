@@ -7,6 +7,8 @@ cloud-based applications, streaming applications, and databases, and processes t
 applications to access streaming data by publishing information in a streaming manner. It can analyze streaming data,
 identify trends and patterns, and trigger integration flows.
 
+The purpose of this guide if for you to understand the basic functions of the Streaming Integrator in 30 minutes.
+
 To learn how to use the key functions of the Streaming Integrator, consider a laboratory that is observing the temperature
 of a range of rooms in a building via a sensor and needs to use the temperature readings as the input to derive other information.
 
@@ -22,9 +24,9 @@ of a range of rooms in a building via a sensor and needs to use the temperature 
 
 Create a basic Siddhi application for a simple use case.
 
-1. Extract the Streaming Integrator Tooling pack to a preferred location. Hereafter, the extracted location is referred to as `<SI_HOME>`.
+1. Extract the Streaming Integrator Tooling pack to a preferred location. Hereafter, the extracted location is referred to as `<SI_TOOLING_HOME>`.
 
-2. Navigate to the `<SI_HOME>/bin` directory and issue the following command to start the Streaming Integration tooling.
+2. Navigate to the `<SI_TOOLING_HOME>/bin` directory and issue the following command to start the Streaming Integration tooling.
     -   For Windows: `tooling.bat`
     -   For Linux: `./tooling.sh`
     
@@ -97,6 +99,7 @@ The application you created needs to be tested before he uses it to process the 
 To simulate events for the Siddhi application, you can use the event simulator available with in the Streaming Integration Tooling as explained in the procedure below.
 
 1. In the Streaming Integrator Tooling, click the following icon for event simulation on the side panel.
+
     ![Event Simulator icon](../images/quick-start-guide-101/event-simulation-icon.png)
     
    The Simulation panel opens as shown below.
@@ -195,7 +198,11 @@ To debug your Siddhi application, you need to mark debug points, and then simula
 
 ## Deploying Siddhi applications
 
-After creating and testing the `TemperatureApp` Siddhi application, you need to deploy it in the server so that you can use it to process actual data. To do this, follow the procedure below:
+After creating and testing the `TemperatureApp` Siddhi application, you need to deploy it in the Streaming Integrator server, export it as a Docker image, or deploy in Kubernetes.
+
+### Deploying in Streaming Integrator server
+
+To deploy your Siddhi application in the Streaming Integrator server, follow the procedure below:
 
 1. Open the `TemperatureApp` Siddhi application.
 2. Click **Deploy** and then click **Deploy to Server**.
@@ -203,128 +210,20 @@ After creating and testing the `TemperatureApp` Siddhi application, you need to 
 
 As a result, the `TemperatureApp` Siddhi application is saved in the `<SI_HOME>/deployment/siddhi-files` directory.
 
+### Deploying in Docker
 
-## Advanced streaming integrations
+To export the  `TemperatureApp` Siddhi application as a Docker artifact, follow the procedure below.
 
-Now, let's assume that the technicians require more advanced processing carried out for the temperature readings which are as follows:
+1. Open the Streaming Integrator Tooling.
 
-- Instead of calculating the average temperature based on all the readings done up to the given point, it is required to calculate the average temperature per hour.
-- The technicians also need to identify the temperature peaks within each hour.
-- The average temperature needs to be monitored only for the rooms in a specific wing.
+2. In the **File** menu, click **Export as Docker**.
 
-To address the above requirements, let's update the `TemperatureApp` Siddhi application as follows:
+   ![Export Siddhi Application as Docker](../images/quick-start-guide-101/export-as-docker.png)
 
-1. You need to consider a time window of one hour when reporting the average temperature per hour as well as when reporting the temperature peaks per hour. Therefore, let's add a window definition that you can use in multiple queries.
-    `define window OneHourTempWindow(roomNo string, deviceID long, temp double) time(1 min);`
+   As a result, the **Export as Docker** dialog box opens as follows.
+    ![Export as Docker dialog box](../images/quick-start-guide-101/export-as-docker-dialog-box.png)
 
-    !!!info
-        For the complete list of windows supported by Siddhi, see [Siddhi Extensions - siddhi-execution-unique](https://siddhi-io.github.io/siddhi-execution-unique/).
-
-2. Now lets write a query to insert all the events in the `TempStream` into the `OneHourTempWindow` you defined above.
-    1. Name the new query `AddEventsToTimeWindow`.
-        `@info(name = 'AddEventsToTimeWindow')`
-
-    2. Add the `from` clause as follows to specify that the events are taken from the `TempStream` stream.
-        `from TempStream`
-
-    3. Select all the events in the stream by adding the `select` clause as follows.
-        `select *`
-
-    4. Add the `insert into` clause as follows to insert all the events into the `AddEventsToTimeWindow` window.
-        `insert into OneHourTempWindow;`
-
-The completed query is as follows.
-```
-@info(name = 'AddEventsToTimeWindow')
-from TempStream
-select *
-insert into OneHourTempWindow;
-```
-
-3. Update the `CalculateAvgTemp` query to address the requirements relating to the presentation of average temperature.
-    1. To apply the time window to the `CalculateAvgTemp` query, update its `from` clause as follows.
-        `from OneHourTempWindow`
-
-    2. You also need to select temperature readings for a specific wing. Let's assume than this wing is identified when the first three characters of the room number is `NOR`. Based on this, add the `select` statement as follows.
-        `select regex.matches(NOR*) as roomNo, deviceID, avg(temp) as avgTemp`
-
-       Here, you are applying the `find()` function of the `Regex` Siddhi extension to the `roomID` attribute in order to find and select the room IDs that have `NOR` as the first three characters.
-
-    Now the complete `CalculateAvgTemp` query is as follows.
-
-    ```
-    @info(name = 'CalculateAvgTemp')
-    from OneHourTempWindow
-    select regex.matches(NOR*) as roomNo, deviceID, avg(temp) as avgTemp
-    insert into AverageTempStream;
-    ```
-
-
-4. To produce the identified temperature peaks as an output, follow the sub steps below.
-    1. To report the temperature peaks identified as logs, define an output stream with a `log` sink as follows.
-        ```
-        @sink(type='log', prefix='TemperaturePeak]:')
-        define stream PeakTempStream(initialTemp double, peakTemp double);
-        ```
-        Here, you are specifying the initial temperature and the peak temperature to be logged in the console with the `TemperaturePeak` prefix.
-
-    2. Create a separate query for this purpose. You can name it `IdentifyPeaks`.
-
-        1. From the input stream, you need to get temperature readings with peak temperatures. A peak temperature can be identified when the temperature reported via the previous reading and well as the next reading are lower. Based on this, add the `from` clause as follows:
-            `from every e1=OneHourTempWindow, e2=OneHourTempWindow[e1.temp <= temp]+, e3=OneHourTempWindow[e2[last].temp > temp]`
-
-           Here, you are using the Siddhi construct known as the Sequence. `e1`, `e2`, and `e3` are references for three
-           events arriving in the given sequential order. `e2` is identified as a matching event that reports a peak temperature if the temperature reported by both `e1` and `e3` are lower.
-
-
-        2. To derive the initial temperature and the peak temperature, add the `select` clause as follows.
-            `select e1.temp as initialTemp, e2[last].temp as peakTemp`
-
-        3. To insert the derived values into the `PeakTempStream` stream, add the `insert into` clause as follows.
-            `insert into PeakTempStream;`
-
-    The complete `IdentifyPeaks` query is as follows.
-    ```
-    @info(name = 'IdentifyPeaks')
-    from every e1=OneHourTempWindow, e2=OneHourTempWindow[e1.temp <= temp]+, e3=OneHourTempWindow[e2[last].temp > temp]
-    select e1.temp as initialTemp, e2[last].temp as peakTemp
-    insert into PeakTempStream;
-    ```
-
-The completed Siddhi application is as follows:
-
-```
-@App:name('TemperatureApp')
-@App:description('This application captures the room temperature and analyzes it, and presents the results as logs in the output console.')
-
-define stream TempStream (roomNo string, deviceID long, temp double);
-
-define window OneHourTempWindow(roomNo string, deviceID long, temp double) time(1 min);
-
-@sink(type = 'log',
-	@map(type = 'passThrough'))
-define stream AverageTempStream (roomNo string, deviceID long, avgTemp double);
-
-@sink(type='log', prefix='TemperaturePeak]:')
-define stream PeakTempStream(initialTemp double, peakTemp double);
-
-@info(name = 'AddEventsToTimeWindow')
-from TempStream
-select *
-insert into OneHourTempWindow;
-
-@info(name = 'CalculateAvgTemp')
-from OneHourTempWindow
-select regex.matches(NOR*) as roomNo, deviceID, avg(temp) as avgTemp
-insert into AverageTempStream;
-
-
-@info(name = 'IdentifyPeaks')
-from every e1=OneHourTempWindow, e2=OneHourTempWindow[e1.temp <= temp]+, e3=OneHourTempWindow[e2[last].temp > temp]
-select e1.temp as initialTemp, e2[last].temp as peakTemp
-insert into PeakTempStream;
-```
-If you click **Design View**, this Siddhi application is displayed as follows.
+3. Select the **TemperatureApp.Siddhi** check box and click **Export**. The Siddhi application is exported as a Docker artifact in a zip file to the default location in your machine, based on your operating system and browser settings.
 
 
 ##Extending the Streaming Integrator
@@ -345,3 +244,11 @@ In this scenario, let's assume that the laboratories require the siddhi-executio
 4. To download the extension, click **Download Extension**. Then enter your email address in the dialog box that appears, and click **Submit**. As a result, a JAR fil is downloaded into a location in your machine (the location depends on your browser settings).
 
 5. To install the siddhi-execution-extrema extension in your Streaming Integrator, place the JAR file you downloaded in the `<SI_HOME>/lib directory`.
+
+
+## Further references
+
+- For a quicker demonstration of the Streaming Integrator, see [Getting Started with the Streaming Integrator in Five Minutes](getting-started-with-si.md).
+- For a quick guide on how the Streaming Integrator works with the Micro Integrator to trigger integration flows, see [Getting SI Running with MI in 5 Minutes].
+- To get the Streaming Integrator running with Docker in five minutes, see [Getting SI Running with Docker in 5 Minutes](hello-world-with-docker.md).
+- To get the Streaming Integrator running in a Kubernetes cluster in five minutes, see [Getting SI Running with Kubernetes in 5 Minutes](hello-world-with-kubernetes.md).

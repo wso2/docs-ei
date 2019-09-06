@@ -7,5 +7,5 @@ Follow the instructions given below to import a integration artifact into WSO2 I
 3.  Specify the location to save the artifact.
 4.  Click **Finish**. 
 
-The message store is created in the `          src/main/synapse-config/message-stores         ` folder under the EI Config project you specified and appears in the editor. 
+The artifacts are created in the `src/main/synapse-config/<artifact_type>` folder under the ESB Config project you specified. 
 

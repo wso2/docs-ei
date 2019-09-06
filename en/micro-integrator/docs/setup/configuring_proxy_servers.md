@@ -1,10 +1,10 @@
 # Working with Proxy Servers
 
-When using the ESB profile of WSO2 Enterprise Integrator (WSO2 EI),
-there can be scenarios where you need to configure the ESB to route
-messages through a proxy server. For example, if the ESB is behind a
+When using WSO2 Micro Integrator,
+there can be scenarios where you need to configure the Micro Integrator to route
+messages through a proxy server. For example, if the Micro Integrator is behind a
 firewall, your proxy service might need to talk to a server through a
-proxy server as illustrated in the following diagram:
+proxy server.
 
 ![](attachments/119130243/119130245.png)
 
@@ -14,147 +14,70 @@ See the instructions given below.
 
 ### For non-blocking service calls
 
-To configure the ESB to route messages through a proxy server
-(for non-blocking service calls), add the parameters given below to the esb.toml file and update the
+To configure the Micro Integrator to route messages through a proxy server
+(for non-blocking service calls), add the parameters given below to the ei.toml file and update the
 values. This configuration ensures that all HTTP requests pass through
 the configured proxy server.
 
-``` java
-[config_section]
-non-blocking=true
-http.proxyHost=""
-http.proxyPort=""
+```toml
+[transport.http]
+sender.proxyHost= "$ref{server.hostname}"
+sender.proxyPort= 3128
 ```
-
-The parameters are described below.
-
-<table>
-<colgroup>
-<col style="width: 14%" />
-<col style="width: 85%" />
-</colgroup>
-<tbody>
-<tr class="odd">
-<td><pre><code>non-blocking</code></pre></td>
-<td>Specifies whether or not 'non-blocking' mode is enabled for the transport sender. Be sure that this parameter is set to <code>             true            </code> .</td>
-</tr>
-<tr class="even">
-<td><pre><code>http.proxyHost</code></pre></td>
-<td>The host name of the proxy server.</td>
-</tr>
-<tr class="odd">
-<td><pre><code>http.proxyPort</code></pre></td>
-<td>The port (number) in the proxy server.</td>
-</tr>
-</tbody>
-</table>
 
 ### For blocking service calls
 
-To configure the ESB profile to route messages through a proxy server
-(for blocking service calls), add the parameters given below to the esb.toml file, and update the
+To configure the Micro Integrator to route messages through a proxy server
+(for blocking service calls), add the parameters given below to the ei.toml file and update the
 values. This configuration ensures that all HTTP requests pass through
 the configured proxy server.
 
-``` java
-[config_heading]
-ProxyHost=""
-ProxyPort=""
-ProxyUser=""
-ProxyPassword=""
+```toml
+[transport.http]
+sender.proxyHost= "$ref{server.hostname}"
+sender.proxyPort= 3128
 ```
 
-The parameters are described below.
-
-<table>
-<colgroup>
-<col style="width: 15%" />
-<col style="width: 84%" />
-</colgroup>
-<tbody>
-<tr class="odd">
-<td><pre><code>ProxyHost</code></pre></td>
-<td>The host name of the proxy server.</td>
-</tr>
-<tr class="even">
-<td><pre><code>ProxyPort</code></pre></td>
-<td>The port (number) in the proxy server.</td>
-</tr>
-<tr class="odd">
-<td><pre><code>ProxyUser</code></pre></td>
-<td>The user name for connecting to the proxy server.</td>
-</tr>
-<tr class="even">
-<td><pre><code>ProxyPassword</code></pre></td>
-<td>The password for connecting to the proxy server.</td>
-</tr>
-</tbody>
-</table>
-
->**Bypass the proxy server for blocking calls?**
-
-> In the case of blocking service calls, you can apply a system property
-in the ESB profile to bypass the proxy server and route messages
-directly to the hosts that should receive the messages. Explained below
-are two methods of applying the system property:
-> - Set the system property in the product startup script that is
-    located in the `           <PRODUCT_HOME>/bin/          ` directory
+!!! Info
+    **Bypass the proxy server for blocking calls?**  
+    In the case of blocking service calls, you can apply a system property in the Micro Integrator to bypass the proxy server and route messages directly to the hosts that should receive the messages. Explained below are two methods of applying the system property:
+    - Set the system property in the product startup script that is
+    located in the `MI_HOME/bin/          ` directory
     as shown below. Note that the list of host names are separated by
     the pipe symbol ('\|').
     ``` java
-        -Dhttp.nonProxyHosts =10.|localhost|127.0.0.1|.\.domain.com \
+    -Dhttp.nonProxyHosts =10.|localhost|127.0.0.1|.\.domain.com \
     ```
-> -   Pass the system property when you start the server as shown below.
+    -   Pass the system property when you start the server as shown below.
     ``` java
-            ./integrator.sh -Dhttp.nonProxyHosts =10.|localhost|127.0.0.1|.\.domain.com
+    ./micro-integrator.sh -Dhttp.nonProxyHosts =10.|localhost|127.0.0.1|.\.domain.com
     ```
         
-> A proxy server might require HTTP basic authentication before it handles
-communication from the ESB profile.
+!!! Note
+    A proxy server might require HTTP basic authentication before it handles communication from the Micro Integrator.
 
 
-## Configuring proxy profiles in the ESB profile
+## Configuring proxy profiles in WSO2 Micro Integrator
 
-When using the ESB profile, there can be scenarios where you need to
-configure multiple proxy servers to route messages to different
-endpoints as illustrated in the following diagram.
+When using the Micro Integrator, there can be scenarios where you need tovconfigure multiple proxy servers to route messages to different
+endpoints. When you need to route messages to different endpoints through multiple proxy servers, you can configure proxy profiles.
 
-![proxy profile](attachments/119130243/119130244.png "proxy profile")
+To configure proxy profiles in WSO2 Micro Integrator, open the ei.toml file and define multiple profiles based on the number of proxy servers you need to have:
 
-When you need to route messages to different endpoints through multiple
-proxy servers, you can configure proxy profiles.
-
-To configure proxy profiles in the ESB, open the esb.toml file and define multiple profiles based on the number of
-    proxy servers you need to have.
-
-> When you define a profile, it is mandatory to specify the `targetHosts`, `proxyHost` and `proxyPort` parameters for each profile.   
-
-The following is a sample proxy profile configuration that you can have
-in the `         <transportSender>        ` configuration of the HTTP
-transport:
-
-``` Java
-[config_heading]
-targetHosts=example.com, .*.sample.com
-proxyHost=localhost
-proxyPort=3128
-proxyUserName=squidUser
-proxyPassword=password
-bypass=xxx.sample.com
-
-targetHosts=localhost
-proxyHost=localhost
-proxyPort=7443
-
-targetHosts="*"
-proxyHost=localhost
-proxyPort="7443"
-bypass="test.com, direct.com"
-
+```toml
+[[transport.http.proxy_profile]]
+target_hosts = [""]
+proxy_host = ""
+proxy_port = ""
+proxy_username = ""
+proxy_password = ""
+bypass_hosts = [""]
 ```
 
-When you configure a proxy profile, following are details of the
-parameters that you need to define in a `         <profile>        ` :
+!!! Tip
+    When you define a profile, it is mandatory to specify the `target_hosts`, `proxy_host` and `proxy_port` parameters for each profile. 
+
+When you configure a proxy profile, following are details of the parameters that you need to define in a `<profile>` :
 
 <table>
 <thead>

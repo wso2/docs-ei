@@ -1,6 +1,6 @@
 # Tuning JDBC Pool Configurations
 
-Within the WSO2 platform, we use Tomcat JDBC pooling as the default pooling framework due to its production-ready stability and high performance. The goal of tuning the pool properties is to maintain a pool that is large enough to handle peak load without unnecessarily utilizing resources. These pooling configurations can be tuned for your production server in general in the <PRODUCT_HOME>/repository/conf/datasources/master-datasources.xml file.
+We use Tomcat JDBC pooling as the default pooling framework due to its production-ready stability and high performance. The goal of tuning the pool properties is to maintain a pool that is large enough to handle peak load without unnecessarily utilizing resources. These pooling configurations can be tuned for your production server in general in the ei.toml file.
 
 The following parameters should be considered when tuning the connection pool:
 

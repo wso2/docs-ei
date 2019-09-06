@@ -1,26 +1,18 @@
 # Creating a Proxy Service
 
-Follow the instructions given below to create a new proxy service artifact in WSO2 Integration Studio.
+Follow the instructions given below to create a new Proxy Service artifact in WSO2 Integration Studio.
 
 ## Instructions
 
-1.  If you have already created an [ESB Config project](../../creating-projects/#esb-config-project), right-click the SampleServices project in the navigator and go to **New → Proxy Service** to open the **New Proxy Service** dialog. 
+1.  If you have already created an [ESB Config project](../../creating-projects/#esb-config-project), right-click the project in the navigator and go to **New → Proxy Service** to open the **New Proxy Service** dialog. 
 2.  Select **Create New Proxy Service** and click **Next**.
-3.  Type a unique name for the proxy service, and select a proxy service template from the list shown below. These templates will automatically generate the mediation flow that is required for each use case.
-
-    The use cases covered by each template are explained below.
+3.  Type a unique name for the proxy service and select a proxy service template from the list shown below. These templates will automatically generate the mediation flow that is required for each use case.
 
     <table>
-    <colgroup>
-    <col style="width: 12%" />
-    <col style="width: 87%" />
-    </colgroup>
-    <thead>
     <tr class="header">
     <th>Template Type</th>
     <th>Description</th>
     </tr>
-    </thead>
     <tbody>
     <tr class="odd">
     <td>Pass-Through proxy</td>
@@ -48,13 +40,15 @@ Follow the instructions given below to create a new proxy service artifact in WS
     </tr>
     </tbody>
     </table>
-    
-6.  Click **Finish** . The proxy service is created in the
-    src/main/synapse-config/proxy-services folder under the project you
-    specified, and the proxy service appears in the editor. 
 
-## Properties
-...
+4. Do one of the following:  
+    -   To save the endpoint in an existing ESB Config project in your workspace, click **Browse** and select that project.
+    -   To save the endpoint in a new ESB Config project, click **Create new Project** and create the new project.  
+5. Click **Finish**. The proxy service is created in the `src/main/synapse-config/proxy-services` folder under the project you specified.
+6. To update the properties of the proxy service:
+    1. Open the proxy service artifact from the project explorer and go to the **Design View** of the artifact.
+    2. Click the proxy service artifact on the canvas to enable the **Properties** tab.
+    3. You can now update the [service-level properties and parameters](../../references/synapse-properties/proxy-service-properties.md).
 
 ## Examples
 ..

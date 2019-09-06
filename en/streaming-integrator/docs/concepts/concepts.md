@@ -61,7 +61,7 @@ Event-based messaging is carried out when the all the messages transferred are e
 
 The Streaming Integration profile allows WSO2 EI to carry out event-driven integration via event based messaging.
 
-The stream processing capabilities of the Streaming integratiion profile allows you to detect simple occurrences 
+The stream processing capabilities of the Streaming integration profile allows you to detect simple occurrences
 (e.g.,The number of requests for a specific service exceeding the target), as well as complex events such as a sequence
  of related events or patterns. Once an occurence, sequence, or pattern is detected, it often requires a response. This
   response can be a simple response such as the genration of an alert, or the initiation of a complex integration flow.

@@ -1,7 +1,7 @@
 # Enabling CORS for Data Services
 
 You can enable Cross Origin Resource Sharing for data services deployed
-in the ESB of WSO2 EI. As explained below, you have the option of
+in WSO2 Micro Integrator. As explained below, you have the option of
 enabling CORS for selected data services or for all the data services.
 
 To enable CORS:
@@ -11,9 +11,9 @@ To enable CORS:
     " and "
     [java-property-utils-1.9.1.jar](https://docs.wso2.com/search.maven.org/remotecontent?filepath=com/thetransactioncompany/java-property-utils/1.9.1/java-property-utils-1.9.1.jar)
     ".
-2.  Copy the JARs to the `          <EI_HOME>/lib/         ` directory.
+2.  Copy the JARs to the `MI_HOME/lib/         ` directory.
 3.  Add the following configurations to the
-    `           <EI_HOME>/conf/tomcat/web.xml          ` file.
+    `MI_HOME/conf/tomcat/web.xml          ` file.
 
     ``` java
         <filter>  

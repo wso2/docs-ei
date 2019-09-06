@@ -93,11 +93,11 @@ Studio are:
 ## Template guide
 
 The template guide includes a list of sample projects that represent
-integration scenarios. You can use these to explore WSO2 EI and see a
+integration scenarios. You can use these to explore WSO2 Micro Integrator and see a
 sample of how it addresses common integration problems.
 
-**What's next**
+## What's Next?
 
 -   See [Installing WSO2 Integration Studio](../develop/installing-WSO2-Integration-Studio.md) for installation instructions.
--   See [Working with WSO2 Integration Studio](../develop/working-with-WSO2-Integration-Studio.md) for more information on how to setup and use tooling.
+-   See [Working with WSO2 Integration Studio](../develop/installing-WSO2-Integration-Studio.md) for more information on how to setup and use tooling.
 -   See [Troubleshooting WSO2 Integration Studio](../develop/troubleshooting-WSO2-Integration-Studio.md) for information on troubleshooting errors you may run into while using EI Tooling.
