@@ -2,6 +2,20 @@
 
 See the examples given below.
 
+!!! Info
+    The **Call Template** mediator allows you to construct a sequence by passing values into a **sequence template**. This is currently only supported for special types of mediators such as the **Iterator** and **Aggregate Mediators**, where actual XPath operations are performed on a different SOAP message, and not on the message coming into the mediator.
+
+Sequence template parameters can be referenced using an XPath expression defined inside the in-line sequence. For example, the parameter named "foo" can be referenced by the Property mediator (defined inside the in-line sequence of the template) in the following ways:
+
+`<property name=”fooValue” expression=”$func:foo” />`
+
+or
+
+`<property name=”fooValue” expression=”get-property('foo','func')” />`
+
+Using function scope or "?func?" in the XPath expression allows us to refer to a particular parameter value passed externally by an invoker
+such as the Call Template mediator.
+
 ## Example 1
 Let's illustrate the sequence template with a simple example. Suppose we have a sequence that logs the text "hello world" in four different languages.
 

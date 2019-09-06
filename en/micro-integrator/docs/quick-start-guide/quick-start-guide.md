@@ -47,10 +47,11 @@ the **HelloWorld** service will return the following response: `{"Hello":"World"
             <summary>hello-world-config-projectCompositeApplication</summary>
             This is the Composite Application Project folder, which contains the packaged CAR file of the HelloWorld service.
         </details>
+
         <details>
             <summary>Dockerfile</summary>
             This Docker configuration file is configured to build a Docker image for WSO2 Micro Integrator with the HelloWorld service.
-    
+
             ```
             FROM wso2/micro-integrator:1.0.0
             COPY hello-world-config-projectCompositeApplication/target/hello-world-config-projectCompositeApplication_1.0.0.car /home/wso2carbon/wso2mi/repository/deployment/server/carbonapps

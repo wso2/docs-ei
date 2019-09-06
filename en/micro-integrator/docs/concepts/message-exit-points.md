@@ -1,51 +1,41 @@
 # Message exit points
 
-A message exit point or an endpoint defines an external destination for a message. Typically, this is the address of a proxy service, which acts as the front end to the actual service. An endpoint can connect to any external service after
-configuring it with any attributes or semantics needed for communicating with that service. For example, an endpoint could represent a URL,a mailbox, a JMS queue, or a TCP socket, along with the settings needed to connect to it.
+A message exit point or an endpoint defines an external destination for a message. Typically, this is the address of a proxy service, which acts as the front end to the actual service.
 
-An endpoint is defined independently of transports, allowing you to use the same endpoint with multiple transports. When you configure a message mediation sequence or a proxy service to handle the incoming message, you specify which transport to use and the endpoint where the message will be sent.
+You can configure the endpoint artifacts with any attributes or semantics needed for communicating with that service. An endpoint could represent a URL,a mailbox, a JMS queue, or a TCP socket, etc. along with the settings needed to connect to it. For example, the endpoint for the simple stock quote sample is `http://localhost:9000/services/SimpleStockQuoteService`.
 
-You can specify an endpoint as an [address
-endpoint](https://docs.wso2.com/display/EI650/Address+Endpoint) , [WSDL
-endpoint](https://docs.wso2.com/display/EI650/WSDL+Endpoint) , a load
-balancing endpoint and more. 
+An endpoint is defined independently of transports, allowing you to use the same endpoint with multiple transports. When you configure a message mediation sequence or a proxy service to handle the incoming message, you can specify which transport to use and the endpoint to which the message will be sent. 
 
-### Endpoints
+Endpoints can be used in the following ways:
 
- For example, the endpoint for the simple stock quote sample is `http://localhost:9000/services/SimpleStockQuoteService`.
+<table>
+	<tr>
+		<td>Named Endpoints</td>
+		<td>
+			When you create an Endpoint with a name (named endpoint), you can reuse it by referencing it in another endpoint. For example, if there is an endpoint named <code>foo</code>, you can reference the <code>foo</code> endpoint in any other endpoint using the <code>key</code> attribute: <b><endpoint key="foo"/></b>
+		</td>
+	</tr>
+	<tr>
+		<td>Indirect Endpoints</td>
+		<td>
+			Uses the <code>key</code> attribute to call another endpoint at runtime and delegates the message sending to the called endpoint.</br> Indirect and resolving endpoints are useful when the actual endpoints are stored in the registry.
+		</td>
+	</tr>
+	<tr>
+		<td>Resolving Endpoint</td>
+		<td>
+			Uses an XPath expression to dynamically call another endpoint at runtime. The XPath is evaluated against the current message and the key-expression is calculated at runtime. The resolving endpoint then fetches the actual endpoint using the calculated key and delegates the message sending to the actual endpoint.</br> Indirect and resolving endpoints are useful when the actual endpoints are stored in the registry.
+		</td>
+	</tr>
+	<tr>
+		<td>Load-balanced Group</td>
+		<td>
+			Distributes the messages (load) among a set of listed endpoints or static members by evaluating the load balancing policy and other relevant parameters.
+		</td>
+	</tr>
+</table>
 
-**Named endpoints**: You can use the `name` attribute to create a named endpoint. You can reuse a named endpoint by referencing it in another endpoint using the `key` attribute. For example, if there is an endpoint named *foo* , you can reference the *foo* endpoint in any other endpoint where you want to use *foo*: `<endpoint key="foo"/>`. This approach allows you to reuse existing endpoints in multiple places.
-
-Indirect and Resolving endpoints are endpoint configurations with a key
-which refers to an existing endpoint.
-
-**Indirect Endpoints**: The **Indirect Endpoint** refers to an actual
-[endpoint](_Working_with_Endpoints_) by a key. This endpoint fetches the
-actual endpoint at runtime. Then it delegates the message sending to the
-actual endpoint. When endpoints are stored in the
-[registry](https://docs.wso2.com/display/ADMIN44x/Working+with+the+Registry)
-and referred, this endpoint can be used. The `         key        ` is a
-static value for this endpoint.
-
-**Resolving Endpoint**: The **Resolving Endpoint** refers to an actual endpoint using a dynamic key. The key is an XPath expression.
-
-1. The XPath is evaluated against the current message and key is
-calculated at run time.  
-2. Resolving endpoint fetches the actual endpoint using the calculated
-key.  
-3. Resolving endpoint delegates the message sending it to the actual
-endpoint.
-
-When endpoints are stored in the registry and referred, this endpoint
-can be used.
-
-!!! Info
-	The XPath expression specified in a Resolving endpoint configuration derives an existing [endpoint](_Working_with_Endpoints_) rather than the URL of the endpoint to which the message is sent. To derive the endpoint URL to which the message is sent via an XPath expression, use the [Header Mediator](https://docs.wso2.com/display/EI650/Header+Mediator#HeaderMediator-ToHeader).
-
-**Load-balanced Group**: The **Load-balanced Group** distributes the messages (load) arriving at
-it among a set of listed [endpoints](_Working_with_Endpoints_) or static
-members by evaluating the load balancing policy and other relevant
-parameters.
+You can configure the following endpoint types.
 
 <table>
 	<tr>
@@ -55,7 +45,7 @@ parameters.
 	<tr>
 		<td>Address Endpoint</td>
 		<td>
-			Defined by specifying the EPR (Endpoint Reference) and other attributes of the configuration.
+			Specifies the address URL or EPR (Endpoint Reference) and other attributes of the configuration.
 		</td>
 	</tr>
 	<tr>
@@ -67,22 +57,22 @@ parameters.
 	<tr>
 		<td>HTTP Endpoint</td>
 		<td>
-			Allows you to define REST endpoints using <b>URI templates</b> similar to the REST API. The URI templates allow a RESTful URI to contain variables that can be populated during mediation runtime using property values whose names have the <code>uri.var.</code> prefix. An HTTP endpoint can also define the particular HTTP method to use in the RESTful invocation. You can create HTTP endpoints by specifying values for the parameters given below. Alternatively, you can specify one parameter as the HTTP endpoint by using multiple other parameters, and then pass that to define the HTTP endpoint.
+			Allows you to define REST endpoints using <b>URI templates</b> similar to the REST API. The URI templates allow a RESTful URI to contain variables that can be populated during mediation runtime using property values with the <code>uri.var.</code> prefix. An HTTP endpoint can also define the particular HTTP method to use in the RESTful invocation.
 		</td>
 	</tr>
 	<tr>
 		<td>Failover Endpoint</td>
 		<td>
-			With leaf endpoints, if an error occurs during message transmission, the message will be lost. The failed message will not be retried again. These errors occur very rarely, but still message failures can occur. With some applications, these message losses are acceptable, but if even rare message failures are not acceptable, use the **Failover** endpoint.</br>
-			A **Failover Group** is a list of leaf endpoints grouped together for the purpose of passing an incoming message from one endpoint to another if a failover occurs. The first endpoint in failover group is considered the primary endpoint. An incoming message is first directed to the primary endpoint, and all other endpoints in the group serve as back-ups.</br>
-			If the primary endpoint fails, the next active endpoint is selected as the primary endpoint, and the failed endpoint is marked as inactive. Thus, failover group ensures that a message is delivered as long as there is at least one active endpoint among the listed endpoints. The Micro Integrator switches back to the primary endpoint as soon as it becomes available. This behaviour is known as dynamic failover.
+			If an error occurs in an endpoint during message transmission, the message will be lost. The failed message will not be retried again. With some applications, these message losses are acceptable. However, if even rare message failures are not acceptable, use the <b>Failover</b> endpoint.</br></br>
+			A <b>Failover Group</b> is a list of leaf endpoints grouped together for the purpose of passing an incoming message from one to another when a failover occurs. The first endpoint in the failover group is considered the primary endpoint. An incoming message is first directed to the primary endpoint, and all other endpoints in the group serve as backups.</br></br>
+			If the primary endpoint fails, the next active endpoint is selected as the primary endpoint, and the failed endpoint is marked as inactive. Thus, failover group ensures that a message is delivered as long as there is at least one active endpoint among the listed endpoints. The Micro Integrator switches back to the primary endpoint as soon as it becomes available. This behaviour is known as dynamic failover.</br></br>
 			<b>Note</b>: An endpoint failure occurs when an endpoint is unable to invoke a service. An endpoint, which responds with an error is not considered a failed endpoint.
 		</td>
 	</tr>
 	<tr>
 		<td>Dynamic Load-Balance Endpoint</td>
 		<td>
-			This endpoint distributes its messages (load) among application members by evaluating the load-balancing policy and any other relevant parameters. These application members will be discovered using the <b>membershipHandler</b> class, which generally uses a group communication mechanism to discover the application members. The <b>class</b> attribute of the <b>membershipHandler</b> element should be an implementation of <b>org.apache.synapse.core.LoadBalanceMembershipHandler</b>. You can specify <b>membershipHandler</b> properties using the <b>property</b> elements. The <b>policy </b> attribute of the <b>dynamicLoadbalance</b> element specifies the load-balancing policy (algorithm) to be used for selecting the next member that will receive the message.</br></br>
+			This endpoint distributes its messages (load) among application members by evaluating the load-balancing policy and any other relevant parameters.</br></br> These application members will be discovered using the <b>membershipHandler</b> class, which generally uses a group communication mechanism to discover the application members. The <b>class</b> attribute of the <b>membershipHandler</b> element should be an implementation of <b>org.apache.synapse.core.LoadBalanceMembershipHandler</b>. You can specify <b>membershipHandler</b> properties using the <b>property</b> elements. The <b>policy </b> attribute of the <b>dynamicLoadbalance</b> element specifies the load-balancing policy (algorithm) to be used for selecting the next member that will receive the message.</br></br>
 			<b>Note</b>: Currently only the <b>roundRobin</b> policy is supported. The <b>failover</b> attribute determines if the next member should be selected once the currently selected member has failed and defaults to true.
 		</td>
 	</tr>
@@ -105,12 +95,12 @@ parameters.
 	<tr>
 		<td>Recepient List Endpoint</td>
 		<td>
-			A Recipient List endpoint can contain multiple child endpoints or member elements. It routes cloned copies of messages to each child recipient. This will assume that all immediate child endpoints are identical in state (state is replicated) or state is not maintained at those endpoints.
+			This endpoint contains multiple child endpoints or member elements. It routes cloned copies of messages to each child recipient. This will assume that all immediate child endpoints are identical in state (state is replicated) or state is not maintained at those endpoints.
 		</td>
 	</tr>
 </table>
 
-#### Endpoint states
+## Endpoint states
 
 At any given time, the state of the endpoint can be one of the following:
 
