@@ -39,6 +39,23 @@
 var dropdowns = document.getElementsByClassName('md-tabs__dropdown-link');
 var dropdownItems = document.getElementsByClassName('mb-tabs__dropdown-item');
 
+window.onclick = function(evt) {
+    var openedDropDowns = document.getElementsByClassName('open');
+
+    if(evt.target.className === 'md-tabs__link md-tabs__dropdown-link localLink') {
+        return;
+    } else {
+        for (let i = 0; i < openedDropDowns.length; i++) {
+            let elem = openedDropDowns[i];
+            let classes = elem.className.split(' ');
+            let index = classes.indexOf('open');
+
+            classes.splice(index, 1);
+            elem.className = classes.join(' ');
+        }
+    }
+}
+
 function indexInParent(node) {
     var children = node.parentNode.childNodes;
     var num = 0;
@@ -401,3 +418,5 @@ window.addEventListener('scroll', function() {
         editIcon.classList.remove('active');
     }
 });
+
+}
