@@ -30,6 +30,7 @@ To create a business rule from a template, follow the procedure below:
    | HTTPS    | `https://<SI_HOST>:<HTTPS_PORT>/business-rules` | `https://0.0.0.0:9443/business-rules` |
 
     This opens the following:
+
     ![No Business Rule Exists](../images/working-with-business-rules/no-business-rules-found.png)
 
 3. Click **Create** to open the following page.
@@ -213,47 +214,27 @@ To create a business template using the Business Template editor, follow the pro
     - On Linux/Mac OS: `./ tooling.sh`
 
 2. Access the Business Rules Template Editor via the `http://<HOST_NAME>:<PORT>/template-editor` URL.
-
-        !!! info
-
-        The default URL is
-        `                       http://localhost:9390/template-editor                     `
+    !!! info
+        The default URL is `http://localhost:9390/template-editor`.
 
 
-3.  The Template Editor opens as shown below. There are two views from
-    which you can interact and create a template group. **Design view**
-    allows you to visualize a template group and interact with it.
-    **Code view** allows you to interact with a template group by typing
-    content. (For more information about template group structure, see
-    [Business Rules Templates](_Business_Rules_Templates_) .)
+3. The Template Editor opens as shown below. There are two views from which you can interact and create a template group. **Design view** allows you to visualize a template group and interact with it. **Code view** allows you to interact with a template group by typing content. (For more information about template group structure, see
+    [Business Rules Templates](business-rules-templates).)
 
-        !!! warning
-
-        Do not template sensitive information such as passwords in a Siddhi
-        application or expose them directly in a Siddhi application. For
-        detailed instructions to protect sensitive data by obfuscating them,
-        see [Protecting Sensitive Data via the Secure
-        Vault](https://docs.wso2.com/display/SP440/Protecting+Sensitive+Data+via+the+Secure+Vault)
-        .
+    !!!warning
+        Do not template sensitive information such as passwords in a Siddhi application or expose them directly in a Siddhi application. For detailed instructions to protect sensitive data by obfuscating them, see [Protecting Sensitive Data via the Secure Vault](protecting-sensitive-data-via-the secure-vault.md).
 
 
-    ![](attachments/112390768/112390789.png){width="1000"}
+   ![Business Rules Editor](../images/working-with-business-rules/business-rules-template-editor.png)
 
-    The following sections explain the two methods of creating a
-    template group.  to create a template group.
+   You can create a template group using the design view or the code view as explained in the following sections.
 
-    -   [Create from Design
-        View](#CreatingaBusinessRuleTemplate-CreatefromDesignView)
-    -   [Create from code
-        view](#CreatingaBusinessRuleTemplate-Createfromcodeview)
 
-## Create from Design View
+### Create from Design View
 
-To create a business rules template group from the design view, follow
-the procedure below:
+To create a business rules template group from the design view, follow the procedure below:
 
-1.  Enter a UUID (Universally Unique Identifier), name and a description
-    for the template group as follows.
+1. Enter a UUID (Universally Unique Identifier), name and a description for the template group as follows.
 
     | Field       | Name                             |
     |-------------|----------------------------------|
@@ -262,14 +243,11 @@ the procedure below:
     | Description | Analyzes Sweet Factory scenarios |
 
 
-    ![](attachments/112390768/112390788.png){width="571"}
+    ![Template Group Basic Details](../images/working-with-business-rules/template-group-basic-information.png)
 
 
-2.  Expand the first rule template that exists by default, and enter the
-    following details. (Note that, you need to configure the deployment
-    nodes as explained in [Prerequisites for Business
-    Rules](Creating-Business-Rules_112390732.html#CreatingBusinessRules-Prerequisites)
-    )
+2. Expand the first rule template that exists by default, and enter the following details.
+
 
     | Field Name     | Value                                                                                               |
     |----------------|-----------------------------------------------------------------------------------------------------|
@@ -280,14 +258,12 @@ the procedure below:
     | Instance Count | One                                                                                                 |
 
 
-    ![](attachments/112390768/112390771.png){width="593" height="612"}
+    ![Rule Template Details](../images/working-with-business-rules/rule-template-details.png)
 
 
-3.  To include a Siddhi application template, expand the first template
-    that is displayed by default, and enter the following Siddhi
-    application template.
+3. To include a Siddhi application template, expand the first template that is displayed by default, and enter the following Siddhi application template.
 
-    ![](attachments/112390768/112390786.png){height="400"}
+   ![Siddhi Application Template](../images/working-with-business-rules/siddhi-application-template.png)
 
     ``` java
         @App:name('SweetFactory-TrendAnalysis')
@@ -315,38 +291,22 @@ the procedure below:
         end;
     ```
 
-4.  To add variable attributes to the script, click **Add Variables** .
+4. To add variable attributes to the script, click **Add Variables**.
+    !!! info
+        A script is a javascript that can be applied when the inputs provided by the business user who uses the template need to be processed before replacing the values for the template variables.
+        e.g., If the average value is not provided, a function within the script can derive it by calculating it from the minimum value and the maximum value provided by the business user.
 
-        !!! info
+    ![Add Variables](../images/working-with-business-rules/add-variables.png)
 
-        A script is a javascript that can be applied when the inputs
-        provided by the business user who uses the template need to be
-        processed before replacing the values for the template variables.
-        e.g., If the average value is not provided, a function within the
-        script can derive it by calculating it from the minimum value and
-        the maximum value provided by the business user.
+5. To specify the attributes that need to be considered as variables, select the relevant check boxes under **Select templated elements**. In this example, you can select the **username** and **timeRange** check boxes to to select the attributes with those names as the variables.
 
+   ![Select Templated Elements](../images/working-with-business-rules/select-templated-elements.png)
 
+   Then click **Add Script** to update the script with the selected variables with auto-generated function bodies as shown below.
+   ![Add Script](../images/working-with-business-rules/add-script.png)
 
-    ![](attachments/112390768/112390781.png){width="400"}
-
-
-5.  To specify the attributes that need to be considered as variables,
-    select the relevant check boxes under **Select templated elements**
-    . In this example, you can select the **username** and **timeRange**
-    check boxes to to select the attributes with those names as the
-    variables
-    ![](attachments/112390768/112390784.png){height="250"}
-    Then click **Add Script** to update the script with the selected
-    variuables with auto-generated function bodies as shown below.
-    ![](attachments/112390768/112390783.png){width="616" height="619"}
-
-6.  Edit the script to add the required functions. In this example,
-    let's rename `           myFunction1(input)          ` to
-    `           getUsername(email)          ` , and
-    `           myFunction2(input          ` ) to
-    `           validateTimeRange(number)          ` .
-    ![](attachments/112390768/112390782.png){height="400"}
+6. Edit the script to add the required functions. In this example, let's rename `myFunction1(input)` to `getUsername(email)`, and `myFunction2(input)` to `validateTimeRange(number)`.
+   ![Edit Script](../images/working-with-business-rules/edit-script.png)
 
     ``` js
         var username = getUsername('${userInputForusername}');
@@ -381,126 +341,91 @@ the procedure below:
         }
     ```
 
-7.  To generate properties, click **Generate** against **Properties**
-    .
-    ![](attachments/112390768/112390780.png){width="185"}
-    This expands the **Properties** section as follows.
-    ![](attachments/112390768/112390770.png){width="473" height="250"}
-8.  Enter values for the available properties as follows. For this
-    example, let's enter values as shown in the following table.
+7. To generate properties, click **Generate** against **Properties**.
 
-        !!! info
+   ![Generate Properties](../images/working-with-business-rules/generate-properties.png)
 
-        A property is defined for each templated attribute (defined in the
-        `           ${templatedElement          ` } format) so that it is
-        self descriptive for the business user who uses the template. The
-        values configured for each property is as follows:
+   This expands the **Properties** section as follows.
 
-        -   **Field Name** : The name with which the templated attribute is
-            displayed to the business user.
+   ![Template Rule Properties](../images/working-with-business-rules/template-properties.png)
 
-        -   **Field Description** : A description of the property for the
-            business user to understand its purpose.
+8. Enter values for the available properties as follows. For this example, let's enter values as shown in the following table.
+    !!! info
+        A property is defined for each templated attribute (defined in the `${templatedElement`} format) so that it is self descriptive for the business user who uses the template. The values configured for each property are as follows:
 
-        -   **Default Value** : The value assigned to the property by
-            default. The business user can change this value if required.
+        - **Field Name**: The name with which the templated attribute is displayed to the business user.
 
-        -   **Options** : this is an optional configuration that allows you
-            to define a set of values for a property so that the business
-            user can select the required value from a list. This is useful
-            when the the possible value for the property is a limited set
-            options.
+        - **Field Description**: A description of the property for the business user to understand its purpose.
 
+        - **Default Value**: The value assigned to the property by default. The business user can change this value if required.
 
-    | Property                                             | Field Name                                                  | Field Description                                                                              | Default Value                                    |
-    |------------------------------------------------------|-------------------------------------------------------------|------------------------------------------------------------------------------------------------|--------------------------------------------------|
-    | `               timeInterval              `          | `               Time interval (in seconds)              `   | `               Production amounts are considered per time interval              `             | `               6              `                 |
-    | `               userInputForusername              `  | `               Manager Email ID              `             | `               Email address to show in greeting              `                               | `               example@email.com              ` |
-    | `               userInputFortimeRange              ` | `               Time Range (in milliseconds)              ` | `               Time period in which, product amounts are analyzed for decrease              ` | `               5              `                 |
+        - **Options**: this is an optional configuration that allows you to define a set of values for a property so that the business user can select the required value from a list. This is useful when the the possible value for the property is a limited set options.
 
+    | Property                             | Field Name                                  | Field Description                                                              | Default Value                                    |
+    |--------------------------------------|---------------------------------------------|--------------------------------------------------------------------------------|--------------------------------------------------|
+    | `timeInterval`          | `Time interval (in seconds)`   | `Production amounts are considered per time interval`             | `6`                 |
+    | `userInputForusername`  | `Manager Email ID`             | `Email address to show in greeting`                               | `example@email.com` |
+    | `userInputFortimeRange` | `Time Range (in milliseconds)` | `Time period in which, product amounts are analyzed for decrease` | `5`                 |
 
-    ![](attachments/112390768/112390779.png){height="400"}
-
-
+    ![Configure Properties](../images/working-with-business-rules/edit-properties.png)
 
 9.  To save the template, click the save icon at the top of the page.
-    ![](attachments/112390768/112390769.png)
+    ![Save Template](../images/working-with-business-rules/save-template.png)
 
 
 
-## Create from code view
+### Create from code view
 
-When you use the code view, the same parameters for which you enter
-values in the design view are represented as JSON keys. For each
-parameter, you can specify a value against the relevant JSON key as
-shown in the extract below.
+When you use the code view, the same parameters for which you enter values in the design view are represented as JSON keys. For each parameter, you can specify a value against the relevant JSON key as shown in the extract below.
 
-![](attachments/112390768/112390775.png){height="250"}
+![Source View Extract](../images/working-with-business-rules/business-template-source-view-extract.png)
 
-When you update the code view with a valid template group definition,
-the design view is updated simultaneously as shown below.
+When you update the code view with a valid template group definition, the design view is updated simultaneously as shown below.
 
-![](attachments/112390768/112390773.png){width="885" height="400"}
+![Side-by-side View](../images/working-with-business-rules/design-view-and-source-view.png)
 
-However, if the content you enter in the code view is an invalid
-template group, the design view is not updated, and an error is
-displayed as follows.
+However, if the content you enter in the code view is an invalid template group, the design view is not updated, and an error is displayed as follows.
 
-![](attachments/112390768/112390774.png){height="250"}
+![Error Code](../images/working-with-business-rules/error-code.png)
 
+When an error is detected in the entered template group structure, the **Recover** button is displayed with the error message.
 
+![Error Code with Recover Button](../images/working-with-business-rules/error-code-with-recover-button.png)
 
-
-When an error is detected in the entered template group structure, the
-**Recover** button is displayed with the error message.
-
-![](attachments/112390768/112390772.png){width="602"}
-
-When you click **Recover** , the code view is receted to the latest
-detected valid template group definition. At any given time, the design
-view displays information based on the latest detected valid template
-group definition.
+When you click **Recover**, the code view is reset to the latest detected valid template group definition. At any given time, the design view displays information based on the latest detected valid template group definition.
 
 !!! info
-
-It is not recommended to add Siddhi application templates and scripts
-using the code view because they need to be provided as a single line,
-and the possible escape characters should be handled carefully.
-
-### Editing a Business Rules Template
-
-WSO2 SI allows you to make edits to a business template that you have
-already created and saved. To edit a template via the Template Editor
-tool, follow the steps below.
-
-1.  Start the WSO2 SI Tooling profile by issuing one of the following
-    commands.
-    -   For Windows: `            tooling.bat           `
-    -   For Linux: ./ `            tooling.sh           `
-2.  Access the Template Editor via the URL that appears for it in the
-    start up logs as shown in the example below.
-    ![](attachments/112390790/112390794.png)
-
-        !!! info
-
-        The default URL is
-        `           http://localhost:9390/template-editor          ` .
+    It is not recommended to add Siddhi application templates and scripts using the code view because they need to be provided as a single line, and the possible escape characters should be handled carefully.
 
 
-3.  The Template Editor opens as follows.
-    ![](attachments/112390790/112390793.png){width="854"}
-    To open an existing template, click the **Open** icon in the top
-    panel (marked in the image above). In the **Open Template File**
-    dialog box, click **Choose File** and browse for the required
-    template. Once you have selected the template, click **Load** to
-    open it in the Template Editor.
-    ![](attachments/112390790/112390792.png){width="547" height="143"}
-4.  Edit the template as required. You can update it in the Design View
-    or the Source View as you prefer. For more information, see
-    [Creating a Business Rule
-    Template](_Creating_a_Business_Rule_Template_) .
-5.  Save your edits by clicking the **Save** icon in the top panel.
-    ![](attachments/112390790/112390791.png)
+## Editing a Business Rules Template
+
+WSO2 SI allows you to make edits to a business template that you have already created and saved. To edit a template via the Template Editor tool, follow the steps below.
+
+1. Start the WSO2 SI Tooling profile by issuing one of the following commands.
+    - For Windows: `tooling.bat`
+    - For Linux: ./ `tooling.sh`
+
+2. Access the Template Editor via the URL that appears for it in the start up logs as shown in the example below.
+
+   ![Template Editor URL](../images/working-with-business-rules/template-editor-url.png)
+
+    !!! info
+        The default URL is `http://localhost:9390/template-editor` .
+
+3. The Template Editor opens as follows.
+
+   ![Business Rules Template Editor](../images/working-with-business-rules/business-rules-template-editor.png)
+
+   To open an existing template, click the **Open** icon in the top panel (marked in the image above). In the **Open Template File** dialog box, click **Choose File** and browse for the required template. Once you have selected the template, click **Load** to open it in the Template Editor.
+
+   ![Choose File](../images/working-with-business-rules/choose-file.png)
+
+4. Edit the template as required. You can update it in the Design View or the Source View as you prefer. For more information, see [Creating a Business Rule Template](creating-a-business-rule-template).
+
+5. Save your edits by clicking the **Save** icon in the top panel.
+
+   ![Save Business Rule](../images/working-with-business-rules/save-business-template.png)
 
 ## Business Rules Templates
 
