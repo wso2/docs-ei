@@ -163,7 +163,7 @@ Modify values for the parameters displayed as required and click **Save**.
 ### Deploying business rules
 
 !!!tip"Before you begin:"
-    Start the Streaming Integrator server by issuing one of the following commands:
+    Start the Streaming Integrator server by navigating to the `<SI_HOME>/bin` directory from the CLI, and issuing one of the following commands:
     - On Windows: `server.bat --run`
     - On Linux/Mac OS:  `./server.sh`
 
