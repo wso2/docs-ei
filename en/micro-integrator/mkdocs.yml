@@ -157,16 +157,13 @@ nav:
       - 'Integration Use Cases': 'use-cases/integration-use-cases.md'
       - Tutorials:
         - 'Sending a Simple Message to a Service' : 'use-cases/guides/integration/sending-a-simple-message-to-a-service.md'
-        - 'Sending a Simple Message to a Datasource' : 'use-cases/guides/integration/sending-a-simple-message-to-a-datasource.md'
         - 'Routing Requests based on Message Content' : 'use-cases/guides/integration/routing-requests-based-on-message-content.md'
         - 'Transforming Message Content' : 'use-cases/guides/integration/transforming-message-content.md'
         - 'Exposing Several Services as a Single Service' : 'use-cases/guides/integration/exposing-several-services-as-a-single-service.md'
         - 'Storing and Forwarding Messages' : 'use-cases/guides/integration/storing-and-forwarding-messages.md'
-        - 'Using the Gmail Connector' : 'use-cases/guides/integration/using-the-gmail-connector.md'
-        - 'Managing a Business Process' : 'use-cases/guides/integration/managing-a-business-process.md'
-        - 'Using the Analytics Dashboard' : 'use-cases/guides/integration/using-the-analytics-dashboard.md'
+        - 'Connecting to Third-Party Systems' : 'use-cases/guides/integration/using-the-gmail-connector.md'
         - 'Using Inbound Endpoints' : 'use-cases/guides/using-inbound-endpoints.md'
-        - 'Using Templates' : 'use-cases/guides/using-templates.md'
+        - 'Reusing Mediation Sequences' : 'use-cases/guides/using-templates.md'
         - 'Guaranteed Delivery with Failover' : 'use-cases/guides/guaranteed-delivery-with-failover.md'
         - 'Integrating with SAP' : 'use-cases/guides/sap-integration.md'
       - Examples:

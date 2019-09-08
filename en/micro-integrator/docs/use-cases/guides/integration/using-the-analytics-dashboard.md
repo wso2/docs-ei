@@ -162,7 +162,7 @@ REST API:
     The **Deployed APIs** screen appears, and you will see the
     `           HealthcareAPI          ` listed as follows:  
     ![Enable statistics for the REST
-    API](attachments/119132315/119132337.png "Enable statistics for the REST API"){width="869"
+    API](/assets/img/tutorials/119132315/119132337.png "Enable statistics for the REST API"){width="869"
     height="250"}
 -   To enable the collection of mediation statistics for the REST API,
     click **Enable Statistics** .
@@ -186,7 +186,7 @@ Follow the steps below to enable statistics for the endpoints:
 -   To enable the collection of mediation statistics for the endpoints,
     click **Enable Statistics** for each endpoint.  
     ![Enable statistics for the endpoint
-    artifacts](attachments/119132315/119132336.png "Enable statistics for the endpoint artifacts"){width="800"
+    artifacts](/assets/img/tutorials/119132315/119132336.png "Enable statistics for the endpoint artifacts"){width="800"
     height="378"}
 
 ### Sending a message
@@ -274,34 +274,34 @@ Now, let's analyze the statistics generated from the message mediation:
 3.  Click the **Enterprise Integrator Analytics** icon shown below to
     open the dashboard.  
     ![Opening the Analytics dashboard for WSO2
-    EI](attachments/119132315/119132335.png "Opening the Analytics dashboard for WSO2 EI")  
+    EI](/assets/img/tutorials/119132315/119132335.png "Opening the Analytics dashboard for WSO2 EI")  
       
 4.  View the statistics overview for all the ESB artifacts that have
     published statistics:  
     ![ESB total request
-    count](attachments/119132315/119132316.png "ESB total request count"){height="250"}
+    count](/assets/img/tutorials/119132315/119132316.png "ESB total request count"){height="250"}
 
 5.  The number of transactions handled by the ESB per second is mapped
     on a graph as follows.
 
     ![ESB overall
-    TPS](attachments/119132315/119132326.png "ESB overall TPS"){height="250"}  
+    TPS](/assets/img/tutorials/119132315/119132326.png "ESB overall TPS"){height="250"}  
 
 6.  The success rate and the failure rate of the messages received by
     the ESB profile during the last hour are mapped in a graph as
     follows.  
     ![ESB overall message
-    count](attachments/119132315/119132325.png "ESB overall message count"){height="250"}
+    count](/assets/img/tutorials/119132315/119132325.png "ESB overall message count"){height="250"}
 
 7.  The `            HealthcareAPI           ` REST API is displayed
     under **TOP APIS BY REQUEST COUNT** as follows.  
     ![Top APIs by request
-    count](attachments/119132315/119132324.png "Top APIs by request count"){height="250"}
+    count](/assets/img/tutorials/119132315/119132324.png "Top APIs by request count"){height="250"}
 
 8.  The three endpoints used for the message mediation are displayed
     under **Top Endpoints by Request Count** as shown below.  
     ![Top endpoints by request
-    count](attachments/119132315/119132318.png "Top endpoints by request count"){width="500"}
+    count](/assets/img/tutorials/119132315/119132318.png "Top endpoints by request count"){width="500"}
 9.  In the Top APIS BY Request COUNT gadget, click
     `           HealthcareAPI          ` to open the
     **OVERVIEW/API/HealthcareAPI** page. The following is displayed.
@@ -309,30 +309,30 @@ Now, let's analyze the statistics generated from the message mediation:
         requests handled by the `             StockQuoteAPI            `
         REST API during the last hour:  
         ![Total request per
-        API](attachments/119132315/119132323.png "Total request per API"){height="250"}
+        API](/assets/img/tutorials/119132315/119132323.png "Total request per API"){height="250"}
     2.  The **API** **Message Count** gadget maps the number of
         successful messages as well as failed messages at different
         times within the last hour in a graph as shown below.  
         ![API message
-        count](attachments/119132315/119132322.png "API message count"){height="250"}  
+        count](/assets/img/tutorials/119132315/119132322.png "API message count"){height="250"}  
     3.  The **API** **Message Latency** gadget shows the speed with
         which the messages are processed by mapping the amount of time
         taken per message at different times within the last hour as
         shown below.  
         ![API message
-        latency](attachments/119132315/119132321.png "API message latency"){height="250"}  
+        latency](/assets/img/tutorials/119132315/119132321.png "API message latency"){height="250"}  
     4.  The **Messages** gadget lists all the the messages handled by
         the `             StockQuoteAPI            ` REST API during the
         last hour with the following property details as follows.  
         ![Message per
-        API](attachments/119132315/119132320.png "Message per API"){height="250"}  
+        API](/assets/img/tutorials/119132315/119132320.png "Message per API"){height="250"}  
     5.  The **Message Flow** gadget illustrates the order in which the
         messages handled by the `             StockQuoteAPI            `
         REST API within the last hour passed through all the mediation
         sequences, mediators and endpoints that were included in the
         message flow as shown below.  
         ![Message flow per
-        API](attachments/119132315/119132319.png "Message flow per API"){width="1000"}  
+        API](/assets/img/tutorials/119132315/119132319.png "Message flow per API"){width="1000"}  
 10. In the **Top Endpoints by Request Count** gadget, click one of the
     endpoints to view simillar statistics per endpoint.
 
@@ -346,4 +346,4 @@ Now, let's analyze the statistics generated from the message mediation:
     specific endpoint, click **Endpoint** and search for the required
     endpoint.  
     ![Dashboard navigation
-    menu](attachments/119132315/119132317.png "Dashboard navigation menu"){width="1000"}
+    menu](/assets/img/tutorials/119132315/119132317.png "Dashboard navigation menu"){width="1000"}
