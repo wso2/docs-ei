@@ -144,33 +144,33 @@ Let's get started!
 
 1.  Open **WSO2 Integration Studio** .
 2.  Go to **BP Project → **BPMN**** .  
-    ![](attachments/119132344/119132346.png){width="800" height="311"}
+    ![](/assets/img/tutorials/119132344/119132346.png){width="800" height="311"}
 3.  Create a new project named **AppointmentCancellation** .  
-    ![](attachments/119132344/119132398.png){width="500"}
+    ![](/assets/img/tutorials/119132344/119132398.png){width="500"}
 4.  Click **Finish.**
 5.  Right click the project in the navigator and go to **New → Other**
     and select **BPMN diagram** .  
-    ![](attachments/119132344/119132345.png){width="500" height="392"}
+    ![](/assets/img/tutorials/119132344/119132345.png){width="500" height="392"}
 6.  Select the
     `          AppointmentCancellation/src/main/resources/diagrams         `
     directory as the **parent folder** , and enter
     `          AppointmentCancellation.bpmn         ` for the **File
     name** .  
-    ![](attachments/119132344/119132375.png){width="524" height="535"}
+    ![](/assets/img/tutorials/119132344/119132375.png){width="524" height="535"}
 7.  Click **Next,** select the option to create an empty diagram as
     shown below, and click **Finish** .  
-    ![](attachments/119132344/119132396.png){width="500" height="508"}
+    ![](/assets/img/tutorials/119132344/119132396.png){width="500" height="508"}
 8.  Let's start drawing the BPMN process diagram for the appointment
     cancellation process. The **AppointmentCancellation** canvas. The
     **Palette** on the right side of the **AppointmentCancellation**
     canvas contains all the activity symbols that will be used for
     drawing the process as shown below.  
-    ![](attachments/119132344/119132395.png){width="600" height="324"}  
+    ![](/assets/img/tutorials/119132344/119132395.png){width="600" height="324"}  
     Let's get started. You can easily drag and drop the activities from
     the **Palette** the canvas, and then update the properties and
     configurations of each activity as explained below.
     1.  Add a **StartEvent** from the **Start Event** palette.  
-        ![](attachments/119132344/119132394.png)
+        ![](/assets/img/tutorials/119132344/119132394.png)
     2.  Select the **Properties** tab, click **Form** , click **New** ,
         update the following and click **OK.**
 
@@ -181,7 +181,7 @@ Let's get started!
         | Type     | string              |
         | Required | True                |
 
-        ![](attachments/119132344/119132371.png)
+        ![](/assets/img/tutorials/119132344/119132371.png)
 
     3.  Repeat clicking **New** and adding the following to add the
         other form properties one by one.
@@ -193,10 +193,10 @@ Let's get started!
         | `                 reason                `        | Reason for cancellation | string | True     |
         | `                 email                `         | Email Address           | string | True     |
 
-        ![](attachments/119132344/119132370.png){height="250"}
+        ![](/assets/img/tutorials/119132344/119132370.png){height="250"}
 
     4.  Add a **REST Task** from the **WSO2 Tasks** palette.  
-        ![](attachments/119132344/119132392.png)  
+        ![](/assets/img/tutorials/119132344/119132392.png)  
         Select the **Properties** tab, click **General** and give the
         **Name** as `             Get Appointment            ` , then
         click **Main config** and update the following:
@@ -209,16 +209,16 @@ Let's get started!
         | Output Variable Mappings | `                 noOfDays:$.status                `                                                        |
 
           
-        ![](attachments/119132344/119132380.png){width="700"}
+        ![](/assets/img/tutorials/119132344/119132380.png){width="700"}
 
     5.  Add an **Exclusive Gateway** from the **Gateway** palette.  
-        ![](attachments/119132344/119132369.png)
+        ![](/assets/img/tutorials/119132344/119132369.png)
     6.  Add a **User Task** from the **Task** palette and name it
         `            Appointment Control Task           ` .  
-        ![](attachments/119132344/119132368.png)
+        ![](/assets/img/tutorials/119132344/119132368.png)
     7.  Click **Properties** , click **Main config** and give
         `            admin           ` as the **Assignee** .  
-        ![](attachments/119132344/119132354.png)  
+        ![](/assets/img/tutorials/119132344/119132354.png)  
     8.  In the **Properties** tab click **Form** , click **New** and add
         the following.
 
@@ -253,7 +253,7 @@ Let's get started!
         | approve | Approve |
         | reject  | Reject  |
 
-        ![](attachments/119132344/119132352.png){width="600"
+        ![](/assets/img/tutorials/119132344/119132352.png){width="600"
         height="507"}
 
     9.  Repeat clicking **New** and adding the following to add the
@@ -265,14 +265,14 @@ Let's get started!
         | `                 cancellationReason                ` | Reason For The Cancellation | string | reason        | True     | False    | True     |
         | `                 doctorName                `         | Name of the Doctor          | string | doctor        | True     | False    | True     |
 
-        ![](attachments/119132344/119132351.png){width="1010"
+        ![](/assets/img/tutorials/119132344/119132351.png){width="1010"
         height="250"}
 
     10. Add another **Exclusive Gateway** from the ****Gateway****
         palette.  
-        ![](attachments/119132344/119132367.png)
+        ![](/assets/img/tutorials/119132344/119132367.png)
     11. Add a **REST Task** from the ******WSO2 Tasks****** palette.  
-        ![](attachments/119132344/119132366.png)  
+        ![](/assets/img/tutorials/119132344/119132366.png)  
 
         Select the **Properties** tab and click **Main config** and
         update the following: `                         `
@@ -283,12 +283,12 @@ Let's get started!
         | HTTP method          | DELETE                                                                                                     |
         | Output Variable name | status                                                                                                     |
 
-        ![](attachments/119132344/119132355.png)
+        ![](/assets/img/tutorials/119132344/119132355.png)
 
     12. Add a **MailTask** from the **Task** palette below the second
         Parallel Gateway and name it
         `             Reject cancellation Task            ` .  
-        ![](attachments/119132344/119132365.png)  
+        ![](/assets/img/tutorials/119132344/119132365.png)  
         Select the **Properties** tab and click **Main config** and
         update the following:
 
@@ -314,11 +314,11 @@ Let's get started!
         </tbody>
         </table>
 
-        ![](attachments/119132344/119132382.png){width="600"}
+        ![](/assets/img/tutorials/119132344/119132382.png){width="600"}
 
     13. Add another MailTask above the second Parallel Gateway and name
         it `             Approve Cancellation Task            ` .  
-        ![](attachments/119132344/119132364.png){height="250"}  
+        ![](/assets/img/tutorials/119132344/119132364.png){height="250"}  
           
         Select the **Properties** tab and click **Main config** and
         update the following:
@@ -345,57 +345,57 @@ Let's get started!
         </tbody>
         </table>
 
-        ![](attachments/119132344/119132383.png){width="600"}
+        ![](/assets/img/tutorials/119132344/119132383.png){width="600"}
 
     14. Link each activity by hovering over the element, selecting the
         arrow sign and dragging it to the connecting element as shown
         below.  
-        ![](attachments/119132344/119132363.png){height="250"}
+        ![](/assets/img/tutorials/119132344/119132363.png){height="250"}
 
 9.  Click on the arrow leading from the first **Exclusive Gateway** to
     the `          Approve Cancellation Task         ` , and in the
     **Main config** section of the **Properties** tab add the
     `          ${noOfDays >2}         ` condition.  
-    ![](attachments/119132344/119132362.png)
+    ![](/assets/img/tutorials/119132344/119132362.png)
 10. Click on the arrow leading from the first **Exclusive Gateway** to
     the `          Reject Cancellation Task         ` , and in the
     **Main config** section of the **Properties** tab add the
     `          ${noOfDays<2}         ` condition.  
-    ![](attachments/119132344/119132361.png)
+    ![](/assets/img/tutorials/119132344/119132361.png)
 11. Click on the arrow leading from the second **Exclusive Gateway** to
     the `          Rest Task         ` , and in the **Main config**
     section of the **Properties** tab add the
     `          ${approveCancellation == 'approve'}         `
     condition.  
-    ![](attachments/119132344/119132360.png)
+    ![](/assets/img/tutorials/119132344/119132360.png)
 12. Click on the arrow leading from the second **Exclusive Gateway** to
     the `          Reject Cancellation Task         ` , and in the
     **Main config** section of the **Properties** tab add the
     `          ${approveCancellation == 'reject'}         ` condition.  
-    ![](attachments/119132344/119132359.png)
+    ![](/assets/img/tutorials/119132344/119132359.png)
 13. Click the arrow leading to the **Appointment Control Task** , open
     the **General** tab that is under properties and note the **Id** .  
     Example:  
-    ![](attachments/119132344/119132349.png){width="800" height="439"}
+    ![](/assets/img/tutorials/119132344/119132349.png){width="800" height="439"}
 14. Click the first exclusive gateway, open the **General** tab that is
     under properties, and select the ID you noted in the above steps as
     the value for **Default flow.  
-    ![](attachments/119132344/119132348.png){width="800"}  
+    ![](/assets/img/tutorials/119132344/119132348.png){width="800"}  
     **
 15. Save all the changes you have made.
 16. Click **Window** **-\>** **Show View** **-\>** **Other** in the top
     menu of WSO2 Integration Studio.  
-    ![](attachments/119132344/119132374.png){width="900"}
+    ![](/assets/img/tutorials/119132344/119132374.png){width="900"}
 17. Type `          Package Explorer         ` in the search bar, select
     it and click **Open** .  
-    ![](attachments/119132344/119132350.png){width="300"}
+    ![](/assets/img/tutorials/119132344/119132350.png){width="300"}
 18. In the **Package Explorer** , right-click the
     `          AppointmentCancellation         ` project and select
     **Create deployment artifacts** .  
-    ![](attachments/119132344/119132373.png){width="900"}  
+    ![](/assets/img/tutorials/119132344/119132373.png){width="900"}  
     This will create a `          AppointmentCancellation.bar         `
     file in the `          deployment         ` folder:  
-    ![](attachments/119132344/119132372.png)
+    ![](/assets/img/tutorials/119132344/119132372.png)
 
 ### Deploying the BPMN process in the Business Process profile
 
@@ -465,7 +465,7 @@ management console of the business process profile in WSO2 EI.
     `          AppointmentCancellation.bar         ` file by browsing in
     the workspace directory of your WSO2 Integration Studio instance as
     shown below.  
-    ![](attachments/119132344/119132377.png)
+    ![](/assets/img/tutorials/119132344/119132377.png)
 
 ### Starting the Message Broker profile
 
@@ -519,7 +519,7 @@ on the **Servers** tab, expand the WSO2 Carbon server, right-click
 Console window of the ESB profile will indicate that the CApp has been
 deployed successfully.
 
-![](attachments/119132344/119132347.png){width="533" height="250"}
+![](/assets/img/tutorials/119132344/119132347.png){width="533" height="250"}
 
 !!! info
 
@@ -636,15 +636,15 @@ in each mail.
 
 1.  Click the cancellation link in one of the mails, which will take you
     to the **BPMN explorer** .  
-    ![](attachments/119132344/119132402.png){width="500"}
+    ![](/assets/img/tutorials/119132344/119132402.png){width="500"}
 2.  Log in to the BPMN explorer using admin as the username and
     password.
 3.  Click **Processes** and see that an appointment cancellation process
     is listed as shown below.  
-    ![](attachments/119132344/119132401.png){height="250"}
+    ![](/assets/img/tutorials/119132344/119132401.png){height="250"}
 4.  Click **Start** to begin the cancellation process and the **Start
     Process** form will open as shown below.  
-    ![](attachments/119132344/119132400.png){width="601"}
+    ![](/assets/img/tutorials/119132344/119132400.png){width="601"}
 5.  Let's cancel the appointment that was confirmed.  
     1.  Enter the appointment details of the appointment that was
         emailed to you and click **Start** . Be sure to enter the
@@ -666,7 +666,7 @@ in each mail.
 
 1.  1.  Click **TASKS** on the menu bar and see that a manual task has
         been created for the appointment cancellation.  
-        ![](attachments/119132344/119132378.png){width="800"}
+        ![](/assets/img/tutorials/119132344/119132378.png){width="800"}
     2.  You can now assume the role of an administrator in the hospital
         service and determine if the appointment cancellation should be
         approved or rejected.
