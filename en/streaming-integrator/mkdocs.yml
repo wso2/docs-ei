@@ -47,7 +47,7 @@ theme:
 nav:
   - 'Home': index.md
   - 'Overview':
-      - 'Overview': 'overview/overview.md'
+      - 'Introduction': 'overview/overview.md'
       - 'Architecture': 'overview/architecture.md'
       - 'About this Release': 'overview/about_this_release.md'
   - 'Quick Start Guide':
@@ -113,7 +113,7 @@ nav:
     - 'Monitoring the Streaming Integrator': 'admin/monitoring-the streaming-integrator'
     - 'General Data Protection Regulations': 'admin/general-data-protection-regulations.md'
     - 'Supporting Different Transports': 'admin/supporting-Different-Transports.md'
-    - 'User Management': 'admin/user-Management.md'
+    - 'User Management': 'admin/user-management.md'
     - 'Protecting Sensitive Data via the Secure Vault': 'admin/protecting-sensitive-data-via-the-secure-vault.md'
     - 'Adding Third Party Non OSGi Library': 'admin/adding-Third-Party-Non-OSGi-Libraries.md'
   - 'Reference Guide':
