@@ -23,10 +23,11 @@ To create a business rule from a template, follow the procedure below:
     - On Linux/Mac OS:  `./server.sh`
 
 2. Access the Business Rule Manager via one of the following URLs.
-        | Protocol | URL Format                                                                   | Example                                                            |
-        |----------|------------------------------------------------------------------------------|--------------------------------------------------------------------|
-        | HTTP     | `http://<SI_HOST>:<HTTP_PORT>/business-rules`   | `http://0.0.0.0:9090/business-rules`  |
-        | HTTPS    | `https://<SI_HOST>:<HTTPS_PORT>/business-rules` | `https://0.0.0.0:9443/business-rules` |
+
+    | Protocol | URL Format                                      | Example                               |
+    |----------|-------------------------------------------------|---------------------------------------|
+    | HTTP     | `http://<SI_HOST>:<HTTP_PORT>/business-rules`   | `http://0.0.0.0:9090/business-rules`  |
+    | HTTPS    | `https://<SI_HOST>:<HTTPS_PORT>/business-rules` | `https://0.0.0.0:9443/business-rules` |
 
     This opens the following:
 
@@ -34,13 +35,13 @@ To create a business rule from a template, follow the procedure below:
 
 3. Click **Create** to open the following page.
 
-   ![Select business rule creation method](../images/working-with-business-rules/select-business-rule-creation-method.png)
+    ![Select business rule creation method](../images/working-with-business-rules/select-business-rule-creation-method.png)
 
 4. Then click **From Template** to open the **Select a Template Group** page where the available templates are displayed.
 
 5. Click on the template group that contains the required template to create a rule from it. In this example, the rule is created based on a template in the `Sweet Factory` template group that is packed with the Streaming Integrator by default. Therefore, click **Sweet Factory** to open this template group.
 
-   ![Select template group](../images/working-with-business-rules/select-template-group.png)
+    ![Select template group](../images/working-with-business-rules/select-template-group.png)
 
 6. In the template group, expand the **Rule Template** list as shown below, and click on the required template. For this example, click **Identify Continuous Production Decrease**.
 
@@ -75,28 +76,28 @@ To create a business rule from scratch, follow the procedure below:
 
 2. Access the Business Rule Manager via one of the following URLs.
 
-   | Protocol | URL Format                                                                   | Example                                                            |
-   |----------|------------------------------------------------------------------------------|--------------------------------------------------------------------|
-   | HTTP     | `http://<SI_HOST>:<HTTP_PORT>/business-rules`   | `http://0.0.0.0:9090/business-rules`  |
-   | HTTPS    | `https://<SI_HOST>:<HTTPS_PORT>/business-rules` | `https://0.0.0.0:9443/business-rules` |
+    | Protocol | URL Format                                      | Example                               |
+    |----------|-------------------------------------------------|---------------------------------------|
+    | HTTP     | `http://<SI_HOST>:<HTTP_PORT>/business-rules`   | `http://0.0.0.0:9090/business-rules`  |
+    | HTTPS    | `https://<SI_HOST>:<HTTPS_PORT>/business-rules` | `https://0.0.0.0:9443/business-rules` |
 
-   This opens the following:
+    This opens the following:
 
-    ![No Business Rule Exists](../images/working-with-business-rules/no-business-rules-found.png)
+    ![No Business Rule Exists](../images/working-with-business-rules/no-business-rules-exist.png)
 
 3. Click **Create** to open the following page, and then click **From Scratch**.
 
     ![Select business rule creation method](../images/working-with-business-rules/select-business-rule-creation-method.png)
 
-4. This opens the **Select a Template Group** page where the available template groups are displayed as shown in the example below.
+    This opens the **Select a Template Group** page where the available template groups are displayed as shown in the example below.
 
     ![Select a template group](../images/working-with-business-rules/select-a-template-group-.png)
 
-5. Click on the template group from which you want to select the required sources and sinks for your business rule. For this example, click **Stock Exchange** to open that template group as shown below.
+4. Click on the template group from which you want to select the required sources and sinks for your business rule. For this example, click **Stock Exchange** to open that template group as shown below.
 
     ![Template Groups](../images/working-with-business-rules/template-group.png)
 
-6. Click **Input** to expand the **Input** section. Then select the rule template from which the source and input configurations for the business rule must be selected.
+5. Click **Input** to expand the **Input** section. Then select the rule template from which the source and input configurations for the business rule must be selected.
 
     ![Input Section](../images/working-with-business-rules/Select-Input.png)
 
@@ -104,19 +105,19 @@ To create a business rule from scratch, follow the procedure below:
 
     ![Input Details](../images/working-with-business-rules/input-details.png)
 
-7. Click **Filters** to expand the **Filters** section, and click **+** to add a new filter. A table is displayed as shown below.
+6. Click **Filters** to expand the **Filters** section, and click **+** to add a new filter. A table is displayed as shown below.
 
     ![Filter Details](../images/working-with-business-rules/filter-details.png)
 
-8. To define a filter, follow the steps below:
+7. To define a filter, follow the steps below:
     1. In the **Attribute** field, select the attribute based on which you want to define the filter condition.
     2. In the **Operator** field, select an operator.
     3. In the **Value/Attribute** field, enter the value or the attribute based on which the operator is applied to the attribute you selected in step **a**.
 
     e.g., If you want to filter events where the price is less than 100, select values for the fields as follows:
 
-    | Field               | Value                                |
-    |---------------------|--------------------------------------|
+    | Field               | Value   |
+    |---------------------|---------|
     | **Attribute**       | `price` |
     | **Operator**        | `<`     |
     | **Value/Attribute** | `100`   |
@@ -130,7 +131,7 @@ To create a business rule from scratch, follow the procedure below:
     | `AND` | `1 AND 2` returns events that match both filters 1 and 2. |
     | `NOT` | `NOT 1` returns events that do not match filter 1.|
 
-10. Click **Output** to expand the **Output** section. Then select the rule template from which the sink and output configurations for the business rule must be selected.
+8. Click **Output** to expand the **Output** section. Then select the rule template from which the sink and output configurations for the business rule must be selected.
 
     ![Select Output](../images/working-with-business-rules/select-output.png)
 
@@ -138,12 +139,12 @@ To create a business rule from scratch, follow the procedure below:
 
     ![Output Details](../images/working-with-business-rules/output-details.png)
 
-11. Select the relevant attribute names for the **Input** column. When publishing the events to which the rule is applied via the selected predefined sink, each input event you select is published with the corresponding name in the **Output** column.
+9. Select the relevant attribute names for the **Input** column. When publishing the events to which the rule is applied via the selected predefined sink, each input event you select is published with the corresponding name in the **Output** column.
 
     !!! info
         The output mappings displayed differ based on the output rule template you select.
 
-12. If you want to save the rule and deploy it later, click **Save**. If you want to deploy the rule immediately, click **Save and Deploy**.
+10. If you want to save the rule and deploy it later, click **Save**. If you want to deploy the rule immediately, click **Save and Deploy**.
 
 
 ## Managing Business Rules
@@ -277,7 +278,7 @@ To create a business rules template group from the design view, follow the proce
 
 3. To include a Siddhi application template, expand the first template that is displayed by default, and enter the following Siddhi application template.
 
-   ![Siddhi Application Template](../images/working-with-business-rules/siddhi-application-template.png)
+    ![Siddhi Application Template](../images/working-with-business-rules/siddhi-application-template.png)
 
     ``` java
         @App:name('SweetFactory-TrendAnalysis')
@@ -315,13 +316,14 @@ To create a business rules template group from the design view, follow the proce
 
 5. To specify the attributes that need to be considered as variables, select the relevant check boxes under **Select templated elements**. In this example, you can select the **username** and **timeRange** check boxes to to select the attributes with those names as the variables.
 
-   ![Select Templated Elements](../images/working-with-business-rules/select-templated-elements.png)
+    ![Select Templated Elements](../images/working-with-business-rules/select-templated-elements.png)
 
-   Then click **Add Script** to update the script with the selected variables with auto-generated function bodies as shown below.
-   ![Add Script](../images/working-with-business-rules/add-script.png)
+    Then click **Add Script** to update the script with the selected variables with auto-generated function bodies as shown below.
+    ![Add Script](../images/working-with-business-rules/add-script.png)
 
 6. Edit the script to add the required functions. In this example, let's rename `myFunction1(input)` to `getUsername(email)`, and `myFunction2(input)` to `validateTimeRange(number)`.
-   ![Edit Script](../images/working-with-business-rules/edit-script.png)
+
+    ![Edit Script](../images/working-with-business-rules/edit-script.png)
 
     ``` js
         var username = getUsername('${userInputForusername}');
@@ -358,11 +360,11 @@ To create a business rules template group from the design view, follow the proce
 
 7. To generate properties, click **Generate** against **Properties**.
 
-   ![Generate Properties](../images/working-with-business-rules/generate-properties.png)
+    ![Generate Properties](../images/working-with-business-rules/generate-properties.png)
 
-   This expands the **Properties** section as follows.
+    This expands the **Properties** section as follows.
 
-   ![Template Rule Properties](../images/working-with-business-rules/template-properties.png)
+    ![Template Rule Properties](../images/working-with-business-rules/template-properties.png)
 
 8. Enter values for the available properties as follows. For this example, let's enter values as shown in the following table.
 
@@ -386,6 +388,7 @@ To create a business rules template group from the design view, follow the proce
     ![Configure Properties](../images/working-with-business-rules/edit-properties.png)
 
 9.  To save the template, click the save icon at the top of the page.
+
     ![Save Template](../images/working-with-business-rules/save-template.png)
 
 
@@ -424,24 +427,24 @@ WSO2 SI allows you to make edits to a business template that you have already cr
 
 2. Access the Template Editor via the URL that appears for it in the start up logs as shown in the example below.
 
-   ![Template Editor URL](../images/working-with-business-rules/template-editor-url.png)
+    ![Template Editor URL](../images/working-with-business-rules/template-editor-url.png)
 
-    !!! info
+    !!!info
         The default URL is `http://localhost:9390/template-editor` .
 
 3. The Template Editor opens as follows.
 
-   ![Business Rules Template Editor](../images/working-with-business-rules/business-rules-template-editor.png)
+    ![Business Rules Template Editor](../images/working-with-business-rules/business-rules-template-editor.png)
 
-   To open an existing template, click the **Open** icon in the top panel (marked in the image above). In the **Open Template File** dialog box, click **Choose File** and browse for the required template. Once you have selected the template, click **Load** to open it in the Template Editor.
+    To open an existing template, click the **Open** icon in the top panel (marked in the image above). In the **Open Template File** dialog box, click **Choose File** and browse for the required template. Once you have selected the template, click **Load** to open it in the Template Editor.
 
-   ![Choose File](../images/working-with-business-rules/choose-file.png)
+    ![Choose File](../images/working-with-business-rules/choose-file.png)
 
 4. Edit the template as required. You can update it in the Design View or the Source View as you prefer. For more information, see [Creating a Business Rule Template](creating-a-business-rule-template).
 
 5. Save your edits by clicking the **Save** icon in the top panel.
 
-   ![Save Business Rule](../images/working-with-business-rules/save-business-template.png)
+    ![Save Business Rule](../images/working-with-business-rules/save-business-template.png)
 
 ## Business Rules Templates
 

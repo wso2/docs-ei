@@ -47,7 +47,7 @@ theme:
 nav:
   - 'Home': index.md
   - 'Overview':
-      - 'Overview': 'overview/overview.md'
+      - 'Introduction': 'overview/overview.md'
       - 'Architecture': 'overview/architecture.md'
       - 'About this Release': 'overview/about_this_release.md'
   - 'Quick Start Guide':
