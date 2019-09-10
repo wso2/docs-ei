@@ -1,5 +1,7 @@
 # Using Scheduled Tasks
 
+## Example 1
+
 The sections below demonstrate an example of scheduling a task using the default
 implementation, to inject an XML message and to print it in the logs of
 the server.
@@ -40,7 +42,7 @@ the server.
 The below is the complete source configuration of the Scheduled Task
     (i.e., the `             InjectXMLTask.xml            ` file).
 
-    ``` xml
+    ```
         <?xml version="1.0" encoding="UTF-8"?>
         <task class="com.example.post.scheduleTask1.ESBTask" group="synapse.simple.quartz" name="PrintParameterTask" xmlns="http://ws.apache.org/ns/synapse">
             <trigger interval="5" />
@@ -125,3 +127,41 @@ You view the XML message you injected (i.e.,
 ) getting printed in the logs of the ESB Profile every 5 seconds.
 
 ![](attachments/119130430/119130443.png)
+
+## Introduction to Tasks with a Simple Trigger
+
+This sample introduces the concept of tasks and demonstrates how a simple trigger works. Here the MessageInjector class is used, which injects a specified message to the ESB environment. You can write your own task class implementing the org.apache.synapse.startup.Task interface and implement the execute method to run the task.
+
+```
+<definitions xmlns="http://ws.apache.org/ns/synapse">
+    <task xmlns="http://ws.apache.org/ns/synapse" class="org.apache.synapse.startup.tasks.MessageInjector" group="synapse.simple.quartz" name="CheckPrice">
+        <property name="to" value="http://localhost:9000/services/SimpleStockQuoteService"/>
+        <property name="soapAction" value="urn:getQuote"/>
+        <property name="message">
+            <m0:getQuote xmlns:m0="http://services.samples" xmlns="http://ws.apache.org/ns/synapse">
+                <m0:request>
+                    <m0:symbol>IBM</m0:symbol>
+                </m0:request>
+            </m0:getQuote>
+        </property>
+        <trigger interval="5"/>
+    </task>
+    <sequence xmlns="http://ws.apache.org/ns/synapse" name="main">
+        <in>
+            <send/>
+        </in>
+        <out>
+            <log level="custom">
+                <property name="Stock_Quote_on" expression="//ns:return/ax21:lastTradeTimestamp/child::text()"
+                          xmlns:ax21="http://services.samples/xsd" xmlns:ns="http://services.samples"/>
+                <property name="For_the_organization" expression="//ns:return/ax21:name/child::text()"
+                          xmlns:ax21="http://services.samples/xsd" xmlns:ns="http://services.samples"/>
+                <property name="Last_Value" expression="//ns:return/ax21:last/child::text()"
+                          xmlns:ax21="http://services.samples/xsd" xmlns:ns="http://services.samples"/>
+            </log>
+        </out>
+    </sequence>
+</definitions>
+```
+
+When invoked, you will see that the Axis2 server generates a quote every 5 seconds and that the ESB receives the stock quote response. This is because the injected message is sent to the sample Axis2 server, which sends back a response to the ESB. 

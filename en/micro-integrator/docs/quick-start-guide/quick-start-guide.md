@@ -47,10 +47,11 @@ the **HelloWorld** service will return the following response: `{"Hello":"World"
             <summary>hello-world-config-projectCompositeApplication</summary>
             This is the Composite Application Project folder, which contains the packaged CAR file of the HelloWorld service.
         </details>
+
         <details>
             <summary>Dockerfile</summary>
             This Docker configuration file is configured to build a Docker image for WSO2 Micro Integrator with the HelloWorld service.
-    
+
             ```
             FROM wso2/micro-integrator:1.0.0
             COPY hello-world-config-projectCompositeApplication/target/hello-world-config-projectCompositeApplication_1.0.0.car /home/wso2carbon/wso2mi/repository/deployment/server/carbonapps
@@ -138,7 +139,7 @@ This command executes the following tasks:
 
 #### Run Docker container
 
-From the **MI_QSG_HOME>** directory, execute the following command to start a Docker container for the Micro Integrator.
+From the **<MI_QSG_HOME>** directory, execute the following command to start a Docker container for the Micro Integrator.
 
 ``` java
 docker run -d -p 8290:8290 hello_world_docker_image
@@ -207,7 +208,7 @@ docker build -t wso2-mi-hello-world .
 Follow the steps given below to start a Docker container for Docker
 image on Minikube.
 
-1.  Navigate to the **MI_QSG_HOME>** directory
+1.  Navigate to the **<MI_QSG_HOME>** directory
     (which stores the `k8s-deployment.yaml` file),
     and execute the following command:
 

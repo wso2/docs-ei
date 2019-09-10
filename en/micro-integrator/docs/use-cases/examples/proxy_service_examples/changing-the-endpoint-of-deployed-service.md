@@ -12,24 +12,8 @@ hosted in the Dev and QA environments respectively are as follows:
 -   QA environment:
     [http://localhost:8281/services/echo](https://www.google.com/url?q=http://localhost:8280/services/echo&sa=D&source=hangouts&ust=1533987796246000&usg=AFQjCNHGkW_-21LrrGTq7bZTCOqRn_23uw)
 
-See the topics given below for instructions.
 
--   [Creating the endpoint reference
-    projects](#ChangingtheEndpointofaDeployedProxyService-Creatingtheendpointreferenceprojects)
--   [Creating the proxy
-    service](#ChangingtheEndpointofaDeployedProxyService-Creatingtheproxyservice)
--   [Creating the composite application
-    project](#ChangingtheEndpointofaDeployedProxyService-Creatingthecompositeapplicationproject)
--   [Deploying the Dev composite
-    application](#ChangingtheEndpointofaDeployedProxyService-DeployingtheDevcompositeapplication)
--   [Testing the Dev
-    environment](#ChangingtheEndpointofaDeployedProxyService-TestingtheDevenvironment)
--   [Changing the endpoint
-    reference](#ChangingtheEndpointofaDeployedProxyService-Changingtheendpointreference)
--   [Testing the QA
-    environment](#ChangingtheEndpointofaDeployedProxyService-TestingtheQAenvironment)
-
-### **Creating the endpoint reference projects**
+## Creating the endpoint reference projects
 
 Follow the steps below to create two ESB Config Projects containing the
 two endpoint values for the Dev and QA environments.
@@ -62,7 +46,7 @@ two endpoint values for the Dev and QA environments.
     endpoint address:  
     [http://localhost:8280/services/echo](https://www.google.com/url?q=http://localhost:8280/services/echo&sa=D&source=hangouts&ust=1533987796246000&usg=AFQjCNHGkW_-21LrrGTq7bZTCOqRn_23uw)
 
-### Creating the proxy service
+## Creating the proxy service
 
 In this section, you will create an ESB Solutions Project containing the
 Proxy Service configuration.
@@ -93,7 +77,7 @@ for each of the Composite Applications you want to generate. The ESB
 proxy service and the Dev endpoint must go in its own CApp, and you
 create a separate CApp for the ESB proxy service and the QA endpoint.
 
-### **Creating the composite application project**
+## Creating the composite application project
 
 1.  Right-click the **Project Exporer** and go to **File -\> New -\>
     Composite Application Project** .
@@ -106,13 +90,13 @@ create a separate CApp for the ESB proxy service and the QA endpoint.
 
 Your CApp projects are now ready to be deployed to your ESB servers.
 
-### Deploying the Dev composite application
+## Deploying the Dev composite application
 
 See [Running the ESB profile via WSO2 Integration
 Studio](https://docs.wso2.com/display/EI650/Running+the+Product#RunningtheProduct-RunningtheESBprofileviaTooling)
 for instructions on deploying the applications and starting the server.
 
-### Testing the Dev environment
+## Testing the Dev environment
 
 1.  Log in to the management console using admin as the username and
     password.
@@ -137,7 +121,7 @@ for instructions on deploying the applications and starting the server.
     hosted in WSO2 EI as seen in the image below.  
     ![](attachments/119130841/119130849.png)
 
-### Changing the endpoint reference
+## Changing the endpoint reference
 
 Follow the steps below to change the endpoint reference of the
 **HelloWorldProxy** you deployed, to point it to the QA environment,
@@ -162,7 +146,7 @@ without changing its configuration.
     .  
     ![](attachments/119130841/119130846.png)
 
-### Testing the QA environment
+## Testing the QA environment
 
 1.  Log in to the Management Console using admin as the username and
     password.
@@ -176,8 +160,6 @@ without changing its configuration.
         list, you view that the port offset has been applied and the
         endpoint URL has been changed to point to the QA environment.
     
-
-      
     ![](attachments/119130841/119130851.png)
 
 3.  Use the following request to invoke the service:
@@ -198,13 +180,13 @@ without changing its configuration.
 
     ![](attachments/119130841/119130845.png)
 
-### Changing an endpoint reference
+## Changing an endpoint reference
 
 Once the endpoint has been created, you can update it using any one of
 the options listed below. The options below describe how you can update
 the endpoint value for QA environment.
 
-#### Option 1: Using WSO2 Integration Studio
+### Option 1: Using WSO2 Integration Studio
 
 1.  Open the `          HelloWorldEP.xml         ` file under
     **HelloWorldQAResources** project and replace the URL with the QA
@@ -217,7 +199,7 @@ Integration
 Studio](https://docs.wso2.com/display/EI650/Running+the+Product#RunningtheProduct-RunningtheESBprofileviaWSO2IntegrationStudio)
 .
 
-#### Option 2: From Command Line
+### Option 2: From Command Line
 
 1.  Open a Terminal window and navigate to
     `          <ESB_TOOLING_WORKSPACE>/HelloWorldQAResources/src/main/synapse_configendpoints/HelloWorldEP.xml         `
@@ -253,16 +235,11 @@ Studio](https://docs.wso2.com/display/EI650/Running+the+Product#RunningtheProduc
     Studio](https://docs.wso2.com/display/EI650/Running+the+Product#RunningtheProduct-RunningtheESBprofileviaWSO2IntegrationStudio)
     .
 
-!!! note
+!!! Note
+    -   To build the projects using the above commands, you need an active network connection.
+    -   Creating a Maven Multi Module project that contains the above projects, allows you to projects in one go by simply building the parent Maven Multi Module project.
 
--   To build the projects using the above commands, you need an active
-    network connection.
--   Creating a Maven Multi Module project that contains the above
-    projects, allows you to projects in one go by simply building the
-    parent Maven Multi Module project.
-
-
-#### Option 3: Using a Script
+### Option 3: Using a Script
 
 Alternatively you can have a CAR file with dummy values for the endpoint
 URLs and use a customized shell script or batch script. The script

@@ -1,4 +1,4 @@
-# Introduction
+# Introduction to WSO2 Micro Integrator
 
 WSO2 Micro Integrator is an opensource integration server, which enables you to connect all the different data stores, events, APIs, and legacy systems that make up your enterprise and build an organization that performs as one seamless digital enterprise. WSO2 Micro Integrator is configuration-based and allows you to graphically design and build your integations. 
 

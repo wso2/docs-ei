@@ -47,7 +47,7 @@ theme:
 nav:
   - 'Home': index.md
   - 'Overview':
-      - 'Overview': 'overview/overview.md'
+      - 'Introduction': 'overview/overview.md'
       - 'Architecture': 'overview/architecture.md'
       - 'About this Release': 'overview/about_this_release.md'
   - 'Quick Start Guide':
@@ -104,7 +104,6 @@ nav:
       - 'Summarizing and Aggregating Data in Real Time': 'examples/summarizing-and-aggregating-data.md'
 
   - 'Administration':
-    - 'Configuring the Streaming Integration Profile': 'admin/configure-si-profile.md'
     - 'Working with Siddhi Connectors':
       - 'Downloading and Installing Siddhi Connectors': 'admin/downloading-and-Installing-Siddhi-Extensions.md'
       - 'Writing Custom Siddhi Extensions': 'admin/writing-Custom-Siddhi-Extensions.md'
@@ -113,7 +112,7 @@ nav:
     - 'Monitoring the Streaming Integrator': 'admin/monitoring-the streaming-integrator'
     - 'General Data Protection Regulations': 'admin/general-data-protection-regulations.md'
     - 'Supporting Different Transports': 'admin/supporting-Different-Transports.md'
-    - 'User Management': 'admin/user-Management.md'
+    - 'User Management': 'admin/user-management.md'
     - 'Protecting Sensitive Data via the Secure Vault': 'admin/protecting-sensitive-data-via-the-secure-vault.md'
     - 'Adding Third Party Non OSGi Library': 'admin/adding-Third-Party-Non-OSGi-Libraries.md'
   - 'Reference Guide':
