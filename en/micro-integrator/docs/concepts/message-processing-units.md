@@ -19,6 +19,27 @@ sends a message without mediation. Therefore, to add message mediation, you can 
 
 ### Fault Sequences
 
+WSO2 Micro Integrator provides fault sequences for dealing with errors. A fault
+sequence is a collection of mediators just like any other sequence, and
+it can be associated with another sequence or a proxy service. When the
+sequence or the proxy service encounters an error during mediation or
+while forwarding a message, the message that triggered the error is
+delegated to the specified fault sequence. Using the available mediators
+it is possible to log the erroneous message, forward it to a special
+error-tracking service, and send a SOAP fault back to the client
+indicating the error or even send an email to the system admin.
+
+It is not mandatory to associate each sequence and proxy service with a
+fault sequence. In situations where a fault sequence is not specified
+explicitly, a default fault sequence will be used to handle errors. Whenever an error occurs, the mediation engine attempts to
+provide as much information as possible on the error to the user by
+initializing the following properties on the erroneous message:
+
+-   ERROR_CODE
+-   ERROR_MESSAGE
+-   ERROR_DETAIL
+-   ERROR_EXCEPTION
+
 By default, the fault sequence will log the message, the payload, and any error/exception encountered, and the **Drop** mediator stops further processing. You should configure the fault sequence with the correct **error handling** parameters instead of simply dropping messages.
 
 ### Named Sequences

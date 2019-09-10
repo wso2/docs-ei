@@ -1,8 +1,10 @@
 # Proxy Service Properties
 
+See the topics given below for the list of properties that can be configured for a Proxy Service artifact.
+
 ## General Properties
 
-The following properties are required for a proxy service:
+The following properties are required when [creating a proxy service](../../develop/creating-artifacts/creating-a-proxy-service.md):
 
 <table>
   <tr>
@@ -35,70 +37,136 @@ The following properties are required for a proxy service:
 
 ## Logging Properties
 
+The following properties are required when [creating a logging proxy service](../../develop/creating-artifacts/creating-a-proxy-service.md):
+
 <table>
   <tr>
     <th>Property</th>
     <th>Description</th>
   </tr>
   <tr>
+    <td>Target Endpoint</td>
+    <td>
+      See the descriptions of <a href="#general-properties">general properties</a>
+    </td>
+  </tr>
+  <tr>
+    <td>Transports</td>
+    <td>
+      See the descriptions of <a href="#general-properties">general properties</a>
+    </td>
+  </tr>
+  <tr>
     <td>Request Log Level</td>
-    <td></td>
+    <td>
+      This is the log level used for logging the the request message.
+      <ul>
+        <li>
+          <strong>Simple</strong> logs <code>               To              </code> , <code>               From              </code> , <code>               WSAction              </code> , <code>               SOAPAction              </code> , <code>               ReplyTo              </code> , <code>               MessageID              </code> , and any properties.
+        </li>
+        <li>
+          <strong>Full</strong> logs all attributes of the message plus the SOAP envelope information.
+        </li>
+      </ul>
+    </td>
   </tr>
   <tr>
     <td>Response Log Level</td>
-    <td></td>
+    <td>
+      This is the log level used for logging the response message.
+      <ul>
+        <li>
+          <strong>Simple</strong> logs <code>               To              </code> , <code>               From              </code> , <code>               WSAction              </code> , <code>               SOAPAction              </code> , <code>               ReplyTo              </code> , <code>               MessageID              </code> , and any properties.
+        </li>
+        <li>
+          <strong>Full</strong> logs all attributes of the message plus the SOAP envelope information.
+        </li>
+      </ul>
+    </td>
   </tr>
 </table>
 
 ## WSDL-Based Properties
 
+The following properties are required when [creating a WSDL-based proxy service](../../develop/creating-artifacts/creating-a-proxy-service.md):
+
 <table>
   <tr>
     <th>Property</th>
     <th>Description</th>
   </tr>
   <tr>
+    <td>Transports</td>
+    <td>
+      See the descriptions of <a href="#general-properties">general properties</a>
+    </td>
+  </tr>
+  <tr>
     <td>WSDL URI</td>
-    <td></td>
+    <td>
+      The URL and the URN of the WSDL. The URL defines the host address of the network resource (can be omitted if resources are not network homed), and the URN defines the resource name in local namespaces. For example, if the URL is <code>ftp://ftp.dlink.ru</code> and the URN is <code>/pub/ADSL/</code> , you would enter <code>ftp://ftp.dlink.ru/pub/ADSL/</code> for the URI.
+    </td>
   </tr>
   <tr>
     <td>WSDL Service</td>
-    <td></td>
+    <td>
+      The WSDL service name.
+    </td>
   </tr>
   <tr>
     <td>WSDL Port</td>
-    <td></td>
+    <td>
+      The port of the WSDL.
+    </td>
   </tr>
   <tr>
     <td>Publish Same Service Contract</td>
-    <td></td>
+    <td>
+      Select this option if you want to publish this WSDL.
+    </td>
   </tr>
 </table>
 
 ## Transformer Proxy Properties
 
+The following properties are required when [creating a transformer proxy service](../../develop/creating-artifacts/creating-a-proxy-service.md):
+
 <table>
   <tr>
     <th>Property</th>
     <th>Description</th>
   </tr>
   <tr>
+    <td>Transports</td>
+    <td>
+      See the descriptions of <a href="#general-properties">general properties</a>
+    </td>
+  </tr>
+  <tr>
+    <td>Target Endpoint</td>
+    <td>
+      See the descriptions of <a href="#general-properties">general properties</a>
+    </td>
+  </tr>
+  <tr>
     <td>Request XSLT</td>
-    <td></td>
+    <td>Specify the location of the XSLT you want to use for transformining incoming request messages.</td>
   </tr>
   <tr>
     <td>Transform Responses</td>
-    <td></td>
+    <td>Select this option if you want the Micro Integrator to transform response messages that are sent back to the client.</td>
   </tr>
   <tr>
     <td>Response XSLT</td>
-    <td></td>
+    <td>
+      Specify the location of the XSLT you want to use for transformining response messages.
+    </td>
   </tr>
 </table>
 
 ## Service Parameters
 
-Inbound endpoint parameters for proxy services:
+See the list of [Transport Parameters](transport-parameters.md) you can configure at service level for a proxy service. You can also configure the following service-level property to expose an **Inbound Endpoint** through a proxy service:
 
 <table>
    <tr>

@@ -1,7 +1,10 @@
 # Scheduled Task Properties
 
+See the topics given below for the list of properties that can be configured when you [create a Scheduled Task](../../develop/creating-artifacts/scheduling-esb-tasks.md).
 
 ## Required Properties
+
+The following properties are required when [creating a scheduled task](../../develop/creating-artifacts/scheduling-esb-tasks.md).
 
 <table>
    <thead>
@@ -21,8 +24,8 @@
       </tr>
       <tr class="odd">
          <td>Task Implementation</td>
-         <td>The default task implementation class ( <code>                 org.apache.synapse.startup.tasks.MessageInjector                </code> ) of the ESB will be selected by default. This class simply injects a specified message into the Synapse environment of the ESB when the server starts.<br />
-            If you are want to use a custom task implementation, see the instructions in <a href="#SchedulingaTaskUsingtheDefaultImplementation-custom">Writing Tasks</a> .
+         <td>The default task implementation class ( <code>                 org.apache.synapse.startup.tasks.MessageInjector                </code> ) of the Micro Integrator will be selected by default. This class simply injects a specified message into the Synapse environment when the server starts.<br />
+            If you are want to use a custom task implementation, see the instructions on <a href="../../../develop/customizations/creating-custom-task-scheduling">writing tasks</a> .
          </td>
       </tr>
       <tr class="even">
@@ -32,17 +35,11 @@
                <p>The trigger type determines the task execution schedule.</p>
                <ul>
                   <li>
-                     <p><strong>Simple Trigger:</strong> Schedules the task to run a specified number of times at specified intervals. In the <strong>Count</strong> field, enter the number of time the task should be executed, and in the <strong>Interval</strong> field, enter the time interval (in seconds) between consecutive executions of the task.</p>
-                     <p>See the following examples for simple triggers:</p>
+                     <p><strong>Simple Trigger:</strong> Schedules the task to run a specified number of times at specified intervals. In the <strong>Count</strong> field, enter the number of time the task should be executed, and in the <strong>Interval</strong> field, enter the time interval (in seconds) between consecutive executions of the task. See the following examples for simple triggers:</p></br>
                      <div class="localtabs-macro">
                         <div class="aui-tabs horizontal-tabs" data-aui-responsive="true" role="application">
-                           <ul>
-                              <li><a href="#4703a6be07a54b79af66ebe01fab2cb9"><strong>Only once</strong></a></li>
-                              <li><a href="#0ef990d2713b4ec2bc9faffda54498ab"><strong>Every 5 seconds continuously</strong></a></li>
-                              <li><a href="#1aec3cd57f7044aa97b4bd094760ac79"><strong>Every 5 seconds 10 times</strong></a></li>
-                           </ul>
                            <div id="4703a6be07a54b79af66ebe01fab2cb9" class="tabs-pane active-pane" name="Only once">
-                              <p>To run only once after WSO2 EI starts:</p>
+                              <p>To run only once after the Micro Integrator starts:</p>
                               <div class="code panel pdl" style="border-width: 1px;">
                                  <div class="codeContent panelContent pdl">
                                     <div class="sourceCode" id="cb1" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence" style="brush: java; gutter: false; theme: Confluence">
@@ -100,9 +97,9 @@
          <td>Pinned Servers</td>
          <td>
             <div class="content-wrapper">
-               <p>The list of ESB server nodes that will run the task. You can specify the IP addresses of the required nodes.</p>
-               !!! info
-               <p>This setting can be used if you want the task to run on a selected set of nodes in an ESB cluster. Note that the task will only run on one of the nodes at a time. It will fail over to another node, only if the first node fails. Pinned servers will override the default task handling behavior defined at server-level (for this particular task). However, if <strong>rule-based</strong> task handling is specified at server-level, you need to ensure that the same server nodes you specify as pinned servers for the task are also specified for the task handling rule at server-level.</p>
+               <p>The list of Micro Integrator server nodes that will run the task. You can specify the IP addresses of the required nodes.</p>
+               <b>Note</b>:
+               <p>This setting can be used if you want the task to run on a selected set of nodes in a product cluster. Note that the task will only run on one of the nodes at a time. It will fail over to another node, only if the first node fails. Pinned servers will override the default task handling behavior defined at server-level (for this particular task). However, if <strong>rule-based</strong> task handling is specified at server-level, you need to ensure that the same server nodes you specify as pinned servers for the task are also specified for the task handling rule at server-level.</p>
             </div>
          </td>
       </tr>
@@ -110,6 +107,8 @@
 </table>
 
 ## Task Implementation Properties
+
+Listed below are the optional task implementation properties you can use when [creating a scheduled task](../../develop/creating-artifacts/scheduling-esb-tasks.md).
 
 <table>
    <thead>
@@ -124,7 +123,7 @@
          <td>
             <div class="content-wrapper">
                <p>Specify the body of the request that should be sent when the task is executed.</p>
-               !!! tip
+               <b>Note</b>:
                <p>It is mandatory to provide a value for the message property. Therefore, even If you do not want to send a message body, you have to provide an empty payload as the value to avoid an exception being thrown.</p>
             </div>
          </td>

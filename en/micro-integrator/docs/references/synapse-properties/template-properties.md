@@ -1,8 +1,10 @@
 # Template Properties
 
+See the topics given below for the list of properties that can be configured when you create an artifact template.
+
 ## Sequence Template Properties
 
-The parameters available to configure the Sequence Template are as follows.
+The parameters available to [configure the Sequence Template](../../develop/creating-artifacts/creating-sequence-templates.md) are as follows.
 
 | Parameter Name      | Description                                                       |
 |---------------------|-------------------------------------------------------------------|
@@ -15,7 +17,7 @@ The parameters available to configure the Sequence Template are as follows.
 
 ## Endpoint Template Properties
 
-The basic parameters available to configure the Endpoint template are as follows.
+The basic parameters available to [configure the Endpoint template](../../develop/creating-artifacts/creating-endpoint-templates.md) are as follows.
 
 <table>
   <tr>
