@@ -95,6 +95,8 @@ nav:
       - 'Running as a Java Program': 'deploy/running-as-a-java-program.md'
       - 'CI/CD' : 'deploy/cicd.md'
     - Observe:
+      - 'Observing a Service with Prometheus' : 'observe/observing-a-service.md'
+      - 'Logging using logstash and Kibana' : 'observe/logstash-kibana.md'
     
     - References:
       - 'References' : 'references/references.md'
