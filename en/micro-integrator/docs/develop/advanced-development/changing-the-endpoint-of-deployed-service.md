@@ -13,88 +13,115 @@ hosted in the Dev and QA environments respectively are as follows:
     [http://localhost:8281/services/echo](https://www.google.com/url?q=http://localhost:8280/services/echo&sa=D&source=hangouts&ust=1533987796246000&usg=AFQjCNHGkW_-21LrrGTq7bZTCOqRn_23uw)
 
 
-## Creating the endpoint reference projects
+## Creating the Endpoints
 
-Follow the steps below to create two ESB Config Projects containing the
-two endpoint values for the Dev and QA environments.
+You need to create two Endpoint artifacts to represent the Dev and QA environments respectively. Follow the steps given below.
 
-1.  Open **WSO2 Integration Studio** and click **Miscelleneous → Create
-    New Config **Project**** in the **Getting Started** tab.  
-    ![](attachments/119130841/119133600.png){width="800" height="397"}
+1.  Create two ESB config projects as given below.
+    <table>
+        <tr>
+            <th>Project Name</th>
+            <th>Description</th>
+        </tr>
+        <tr>
+            <td>HelloWorldDevResources</td>
+            <td>The ESB config project will store the Endpoint artifact for the <b>Dev</b> environment.</td>
+        </tr>
+        <tr>
+            <td>HelloWorldQAResources</td>
+            <td>The ESB config project will store the Endpoint artifact for the <b>QA</b> environment.</td>
+        </tr>
+    </table>
+2.  Create two Endpoint artifacts in two projects with the following configurations:
 
-2.  In the **New ESB Project** dialog that opens, select **New ESB
-    Config Project** and click **Next** .
+    -   HelloWorldDevResources project
+        <table>
+            <tr>
+                <th>Endpoint Parameter</th>
+                <th>Value</th>
+            </tr>
+            <tr>
+                <td>Endpoint Name</td>
+                <td>HelloWorldEP</td>
+            </tr>
+            <tr>
+                <td>Endpoint Type</td>
+                <td>Address Endpoint</td>
+            </tr>
+            <tr>
+                <td>Address URL</td>
+                <td>http://localhost:8280/services/ech</td>
+            </tr>
+        </table>
 
-3.  Enter **HelloWorldDevResources** as the project name and click
-    **Finish** .
+    -   HelloWorldQAResources project
+        <table>
+            <tr>
+                <th>Endpoint Parameter</th>
+                <th>Value</th>
+            </tr>
+            <tr>
+                <td>Endpoint Name</td>
+                <td>HelloWorldEP</td>
+            </tr>
+            <tr>
+                <td>Endpoint Type</td>
+                <td>Address Endpoint</td>
+            </tr>
+            <tr>
+                <td>Address URL</td>
+                <td>http://localhost:8281/services/ech0</td>
+            </tr>
+        </table>
 
-4.  Right-click the **HelloWorldResources** project in the **Project
-    Explorer** and go to **New -\> Endpoint** .
-5.  Select **Create a New Endpoint** and click **Next** .
+## Creating the Proxy Service
 
-6.  Fill in the information as in the table below and click **Finish** .
+1.  Create an ESB Config project named **HelloWorldServices**.
+2.  Create a proxy service in the HelloWorldServices project with the following configurations
 
-    | Field         | Value                                                                                                                                                                                    |
-    |---------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-    | Endpoint Name | HelloWorldEP                                                                                                                                                                             |
-    | Endpoint Type | Address Endpoint                                                                                                                                                                         |
-    | Address       | [http://localhost:8280/services/echo](https://www.google.com/url?q=http://localhost:8280/services/echo&sa=D&source=hangouts&ust=1533987796246000&usg=AFQjCNHGkW_-21LrrGTq7bZTCOqRn_23uw) |
-
-7.  Similarly, to create resources for the QA environment, create
-    another ESB Config project named **HelloWorldQAResources** and
-    create an endpoint named **HelloWorldEP** . Provide the following
-    endpoint address:  
-    [http://localhost:8280/services/echo](https://www.google.com/url?q=http://localhost:8280/services/echo&sa=D&source=hangouts&ust=1533987796246000&usg=AFQjCNHGkW_-21LrrGTq7bZTCOqRn_23uw)
-
-## Creating the proxy service
-
-In this section, you will create an ESB Solutions Project containing the
-Proxy Service configuration.
-
-1.  Open **WSO2 Integration Studio** and click **ESB Project → Create
-    New ** in the **Getting Started** tab as shown below.
-
-    ![](attachments/119130841/119130843.png){width="640" height="250"}
-
-2.  In the **New ESB Solution Project** dialog that opens, enter
-    **HelloWorldServices** as the project name and click **Finish** .
-
-3.  Right-click the **HelloWorldServices** project in the **Project
-    Explorer** and go to **New -\> Proxy Service.**
-
-4.  In the **New Proxy Service** dialog that opens, select **Create a
-    New Proxy Service** and click **Next** . Fill in the details as
-    specified in the table below:
-
-    | Field              | Value                                                                                              |
+    | Parameter             | Value                                                                                              |
     |--------------------|----------------------------------------------------------------------------------------------------|
     | Proxy Service Name | HelloWorldProxy                                                                                    |
     | Proxy Service Type | Select Pass Through Proxy                                                                          |
     | Endpoint           | Select HelloWorldEP (You need to select **Predefined Endpoint** from the endpoint options listed.) |
 
-The projects setup is now complete. You now need to create CApp projects
-for each of the Composite Applications you want to generate. The ESB
-proxy service and the Dev endpoint must go in its own CApp, and you
-create a separate CApp for the ESB proxy service and the QA endpoint.
+The projects setup is now complete. 
 
 ## Creating the composite application project
 
-1.  Right-click the **Project Exporer** and go to **File -\> New -\>
-    Composite Application Project** .
-2.  Name the project **HelloWorldDevCApp** .
-3.  Select the **HelloWorldServices** and **HelloWorldDevResources**
-    projects from the list of dependancies, and click **Finish** .  
-    ![](attachments/119130841/119130852.png)
-4.  Similarly, create **HelloWorldQACApp** containing the projects
-    **HelloWorldServices** and **HelloWorldQAResources** .
+Create two composite application projects to package the QA artifacts and Dev artifacts separately. The proxy service and the Dev endpoint must go in its own CApp, and the proxy service and the QA endpoint should be in another CApp as shown below.
 
-Your CApp projects are now ready to be deployed to your ESB servers.
+See the instructions on packaging artifacts into CApps.
+
+<table>
+        <tr>
+            <th>Environment</th>
+            <th>CApp Name</th>
+            <th>Artifacts Included</th>
+        </tr>
+        <tr>
+            <td>Dev</td>
+            <td>HelloWorldDevCApp</td>
+            <td>
+                HelloWorldServices project and the
+                HelloWorldDevResources project.
+            </td>
+        </tr>
+        <tr>
+            <td>QA</td>
+            <td>HelloWorldQACApp</td>
+            <td>
+                HelloWorldServices project and the
+                HelloWorldQAResources project.
+            </td>
+        </tr>
+</table>
+
+Your CApp projects are now ready to be deployed to the Micro Integrator.
 
 ## Deploying the Dev composite application
 
-See [Running the ESB profile via WSO2 Integration
-Studio](https://docs.wso2.com/display/EI650/Running+the+Product#RunningtheProduct-RunningtheESBprofileviaTooling)
-for instructions on deploying the applications and starting the server.
+If you have an instance of WSO2 Micro Integrator setup as your Dev environment, deploy the <b>HelloWorldDevCApp</b> CApp in the server. See the instructions on deploying artifacts in the Micro Integrator.
 
 ## Testing the Dev environment
 
@@ -103,23 +130,23 @@ for instructions on deploying the applications and starting the server.
 2.  Click **Services \> List** , and click on the **Try This Service**
     link for the **HelloWorldProxy** , which you just deployed using the
     CApp.  
-    ![](attachments/119130841/119130851.png)
+    ![](/assets/img/apply-security/119130841/119130851.png)
 3.  Use the following request to invoke the service:
 
-    ``` xml
-        <body>
-          <p:echoInt xmlns:p="http://echo.services.core.carbon.wso2.org">
-             <!--0 to 1 occurrence-->
-             <in>50</in>
-          </p:echoInt>
-        </body>
+    ``` 
+    <body>
+        <p:echoInt xmlns:p="http://echo.services.core.carbon.wso2.org">
+            <!--0 to 1 occurrence-->
+            <in>50</in>
+        </p:echoInt>
+    </body>
     ```
 
-    ![](attachments/119130841/119130850.png)
+    ![](/assets/img/apply-security/119130841/119130850.png)
 
 4.  Click **Send** . You view the response from the **HelloWorldProxy**
     hosted in WSO2 EI as seen in the image below.  
-    ![](attachments/119130841/119130849.png)
+    ![](/assets/img/apply-security/119130841/119130849.png)
 
 ## Changing the endpoint reference
 
@@ -144,7 +171,7 @@ without changing its configuration.
     [Running the ESB profile via WSO2 Integration
     Studio](https://docs.wso2.com/display/EI650/Running+the+Product#RunningtheProduct-RunningtheESBprofileviaTooling)
     .  
-    ![](attachments/119130841/119130846.png)
+    ![](/assets/img/apply-security/119130841/119130846.png)
 
 ## Testing the QA environment
 
@@ -160,7 +187,7 @@ without changing its configuration.
         list, you view that the port offset has been applied and the
         endpoint URL has been changed to point to the QA environment.
     
-    ![](attachments/119130841/119130851.png)
+    ![](/assets/img/apply-security/119130841/119130851.png)
 
 3.  Use the following request to invoke the service:
 
@@ -173,12 +200,12 @@ without changing its configuration.
         </body>
     ```
 
-    ![](attachments/119130841/119130847.png)
+    ![](/assets/img/apply-security/119130841/119130847.png)
 
 4.  Click **Send** . You view the response from the **HelloWorldProxy**
     hosted in WSO2 EI as seen in the image below.
 
-    ![](attachments/119130841/119130845.png)
+    ![](/assets/img/apply-security/119130841/119130845.png)
 
 ## Changing an endpoint reference
 
