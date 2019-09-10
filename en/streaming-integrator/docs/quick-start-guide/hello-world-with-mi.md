@@ -2,7 +2,19 @@
 
 This quick start guide explains how to trigger an integration flow using a message received by the Streaming Integrator.
 
-In this example, the same message we send to the micro integrator will go through the “inSeq” defined and use the “respond” mediator (to be changed with a grpcResponseMediator) to send back the response to the streaming interagor.
+In this example, the same message you send to the Micro Integrator goes through the `inSeq` defined, and uses the `respond` mediator (to be changed with a `grpcResponseMediator`) to send back the response to the Streaming integrator.
+
+!!!tip "Before you begin:"
+    - Download and install both the Streaming Integrator and the Sttreaming Integrator Tooling from [here](Link).
+
+    - Start the Streaming Integrator Tooling by issuing one of the following commands from the `<SI_HOME>/bin` directory:
+        -   For Windows: `server.bat`
+        -   For Linux: `./server.sh`
+
+    - Start the Streaming Integrator by issuing one of the following commands from the `<SI_TOOLING_HOME>/bin` directory:
+        - For Windows: `tooling.bat`
+        - For Linux: `./tooling.sh`
+
 
 Navigate to <SteamingIntegratorHome>/wso2/server/deployment/siddhi-apps and deploy the following siddhi application in streaming integrator. This siddhi application will receive an HTTP message and trigger a sequence in the micro integrator and log the received response.
 
