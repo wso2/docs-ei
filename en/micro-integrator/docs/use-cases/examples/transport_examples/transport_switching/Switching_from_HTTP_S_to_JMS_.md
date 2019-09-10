@@ -1,27 +1,8 @@
-# Sample 251 - Switching from HTTP(S) to JMS
+# Switching from HTTP(S) to JMS
 
-!!! warning
+Demonstrate switching from HTTP to JMS.
 
-Note that WSO2 EI is shipped with the following changes to what is
-mentioned in this documentation :
-
--   `           <PRODUCT_HOME>/          `
-    `           repository/samples/          ` directory that includes
-    all Integration profile samples is changed to
-    `           <EI_HOME>/          `
-    `           samples/service-bus/          ` .
-    `                     `
--   `           <PRODUCT_HOME>/          `
-    `           repository/samples/resources/          ` directory that
-    includes all artifacts related to the Integration profile samples is
-    changed to `           <EI_HOME>/          `
-    `           samples/service-bus/resources/          ` .
-
-TEST  
-
-**Objective** : Demonstrate switching from HTTP to JMS.
-
-###### **Prerequisites**
+###### Prerequisites
 
 -   Download, install and start a JMS server.
 -   Configure sample Axis2 server for JMS.
@@ -29,7 +10,7 @@ TEST
     `          SimpleStockQuoteService         ` .
 -   Configure the Synase JMS transport.
 
-``` html/xml
+```
 <definitions xmlns="http://ws.apache.org/ns/synapse">
     <proxy name="StockQuoteProxy" transports="http">
         <target>

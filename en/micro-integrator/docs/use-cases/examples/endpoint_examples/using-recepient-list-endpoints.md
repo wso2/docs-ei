@@ -1,33 +1,15 @@
 # Using Recipient List Endpoints
 
-## Sample 60: Routing a Message to a Static List of Recipients
+## Routing a Message to a Static List of Recipients
 
-!!! warning
-
-Note that WSO2 EI is shipped with the following changes to what is
-mentioned in this documentation :
-
--   `           <PRODUCT_HOME>/          `
-    `           repository/samples/          ` directory that includes
-    all Integration profile samples is changed to
-    `           <EI_HOME>/          `
-    `           samples/service-bus/          ` .
-    `                     `
--   `           <PRODUCT_HOME>/          `
-    `           repository/samples/resources/          ` directory that
-    includes all artifacts related to the Integration profile samples is
-    changed to `           <EI_HOME>/          `
-    `           samples/service-bus/resources/          ` .
-
-
-**Objective** : Demonstrate message routing to a set of static
+Demonstrate message routing to a set of static
 endpoints.
 
 **Prerequisites**
 
 Start ESB with the following sample configuration:
 
-``` html/xml
+``` 
     <?xml version="1.0" encoding="UTF-8"?>
     <definitions xmlns="http://ws.apache.org/ns/synapse">
         <sequence name="main" onError="errorHandler">
@@ -93,31 +75,6 @@ requests are still processed by MyServer2 and MyServer3.
 
 ## Routing a Message to a Dynamic List of Recipients
 
-!!! warning
-
-Note that WSO2 EI is shipped with the following changes to what is
-mentioned in this documentation :
-
--   `           <PRODUCT_HOME>/          `
-    `           repository/samples/          ` directory that includes
-    all Integration profile samples is changed to
-    `           <EI_HOME>/          `
-    `           samples/service-bus/          ` .
-    `                     `
--   `           <PRODUCT_HOME>/          `
-    `           repository/samples/resources/          ` directory that
-    includes all artifacts related to the Integration profile samples is
-    changed to `           <EI_HOME>/          `
-    `           samples/service-bus/resources/          ` .
-
-
--   [Introduction](#Sample61:RoutingaMessagetoaDynamicListofRecipients-Introduction)
--   [Prerequisites](#Sample61:RoutingaMessagetoaDynamicListofRecipients-Prerequisites)
--   [Building the
-    sample](#Sample61:RoutingaMessagetoaDynamicListofRecipients-Buildingthesample)
--   [Executing the
-    sample](#Sample61:RoutingaMessagetoaDynamicListofRecipients-Executingthesample)
-
 ### Introduction
 
 This sample demonstrates message routing to a set of dynamic endpoints.
@@ -132,7 +89,7 @@ Samples](https://docs.wso2.com/display/EI650/Setting+Up+the+ESB+Samples#SettingU
 
 The XML configuration for this sample is as follows:
 
-``` html/xml
+``` 
     <definitions xmlns="http://ws.apache.org/ns/synapse">
        <sequence name="errorHandler">
           <makefault response="true">
@@ -205,33 +162,6 @@ Client](https://docs.wso2.com/display/EI650/Using+the+Sample+Clients#UsingtheSam
 
 ## Routing a Message to a Dynamic List of Recipients and Aggregating Responses
 
-!!! warning
-
-Note that WSO2 EI is shipped with the following changes to what is
-mentioned in this documentation :
-
--   `           <PRODUCT_HOME>/          `
-    `           repository/samples/          ` directory that includes
-    all Integration profile samples is changed to
-    `           <EI_HOME>/          `
-    `           samples/service-bus/          ` .
-    `                     `
--   `           <PRODUCT_HOME>/          `
-    `           repository/samples/resources/          ` directory that
-    includes all artifacts related to the Integration profile samples is
-    changed to `           <EI_HOME>/          `
-    `           samples/service-bus/resources/          ` .
-
-
--   [Introduction](#Sample62:RoutingaMessagetoaDynamicListofRecipientsandAggregatingResponses-Introduction)
--   [Prerequisites](#Sample62:RoutingaMessagetoaDynamicListofRecipientsandAggregatingResponses-Prerequisites)
--   [Building the
-    sample](#Sample62:RoutingaMessagetoaDynamicListofRecipientsandAggregatingResponses-Buildingthesample)
--   [Executing the
-    sample](#Sample62:RoutingaMessagetoaDynamicListofRecipientsandAggregatingResponses-Executingthesample)
--   [Analyzing the
-    output](#Sample62:RoutingaMessagetoaDynamicListofRecipientsandAggregatingResponses-Analyzingtheoutput)
-
 ### Introduction
 
 This sample demonstrates message routing to a set of dynamic endpoints
@@ -247,7 +177,7 @@ Samples](https://docs.wso2.com/display/EI650/Setting+Up+the+ESB+Samples#SettingU
 
 The XML configuration for this sample is as follows:
 
-``` html/xml
+```
     <definitions xmlns="http://ws.apache.org/ns/synapse">
        <sequence name="errorHandler">
           <makefault response="true">
@@ -337,4 +267,3 @@ which will be sent back to the client.
 If you sent the client request through a TCP based conversation
 monitoring tool such as TCPMon, you will see the structure of the
 aggregated response message.
-

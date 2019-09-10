@@ -1,31 +1,4 @@
-# Sample 7: Using Schema Validation and the Usage of Local Registry for Storing Configuration Metadata
-
-!!! warning
-
-Note that WSO2 EI is shipped with the following changes to what is
-mentioned in this documentation :
-
--   `           <PRODUCT_HOME>/          `
-    `           repository/samples/          ` directory that includes
-    all Integration profile samples is changed to
-    `           <EI_HOME>/          `
-    `           samples/service-bus/          ` .
-    `                     `
--   `           <PRODUCT_HOME>/          `
-    `           repository/samples/resources/          ` directory that
-    includes all artifacts related to the Integration profile samples is
-    changed to `           <EI_HOME>/          `
-    `           samples/service-bus/resources/          ` .
-
-
--   [Introduction](#Sample7:UsingSchemaValidationandtheUsageofLocalRegistryforStoringConfigurationMetadata-Introduction)
--   [Prerequisites](#Sample7:UsingSchemaValidationandtheUsageofLocalRegistryforStoringConfigurationMetadata-Prerequisites)
--   [Building the
-    sample](#Sample7:UsingSchemaValidationandtheUsageofLocalRegistryforStoringConfigurationMetadata-Buildingthesample)
--   [Executing the
-    sample](#Sample7:UsingSchemaValidationandtheUsageofLocalRegistryforStoringConfigurationMetadata-Executingthesample)
--   [Analyzing the
-    output](#Sample7:UsingSchemaValidationandtheUsageofLocalRegistryforStoringConfigurationMetadata-Analyzingtheoutput)
+# Using Schema Validation and the Usage of Local Registry for Storing Configuration Metadata
 
 ### Introduction
 
@@ -49,7 +22,7 @@ Samples](https://docs.wso2.com/display/EI650/Setting+Up+the+ESB+Samples#SettingU
 
 The XML configuration for this sample is as follows:
 
-``` html/xml
+``` 
     <definitions xmlns="http://ws.apache.org/ns/synapse">
         <localEntry key="validate_schema">
             <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://services.samples"

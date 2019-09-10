@@ -1,38 +1,4 @@
-# Sample 11: Using a Full Registry-Based Configuration and Sharing a Configuration Between Multiple Instances
-
-!!! info
-
-**This page is restricted to confluence users!**
-
-
-  
-
-!!! warning
-
-Note that WSO2 EI is shipped with the following changes to what is
-mentioned in this documentation :
-
--   `           <PRODUCT_HOME>/          `
-    `           repository/samples/          ` directory that includes
-    all Integration profile samples is changed to
-    `           <EI_HOME>/          `
-    `           samples/service-bus/          ` .
-    `                     `
--   `           <PRODUCT_HOME>/          `
-    `           repository/samples/resources/          ` directory that
-    includes all artifacts related to the Integration profile samples is
-    changed to `           <EI_HOME>/          `
-    `           samples/service-bus/resources/          ` .
-
-
--   [Introduction](#Sample11:UsingaFullRegistry-BasedConfigurationandSharingaConfigurationBetweenMultipleInstances-Introduction)
--   [Prerequisites](#Sample11:UsingaFullRegistry-BasedConfigurationandSharingaConfigurationBetweenMultipleInstances-Prerequisites)
--   [Building the
-    sample](#Sample11:UsingaFullRegistry-BasedConfigurationandSharingaConfigurationBetweenMultipleInstances-Buildingthesample)
--   [Executing the
-    sample](#Sample11:UsingaFullRegistry-BasedConfigurationandSharingaConfigurationBetweenMultipleInstances-Executingthesample)
--   [Analyzing the
-    output](#Sample11:UsingaFullRegistry-BasedConfigurationandSharingaConfigurationBetweenMultipleInstances-Analyzingtheoutput)
+# Using a Full Registry-Based Configuration and Sharing a Configuration Between Multiple Instances
 
 ### Introduction
 
@@ -43,9 +9,8 @@ a given node hosting the ESB simply points to the registry and looks up
 the actual configuration by requesting the key
 `         synapse.xml        ` .
 
-!!! info
-
-Full registry-based configuration is not dynamic at the moment; it is
+!!! Info
+    Full registry-based configuration is not dynamic at the moment; it is
 not reloading itself.
 
 
@@ -59,7 +24,7 @@ Samples](https://docs.wso2.com/display/EI650/Setting+Up+the+ESB+Samples#SettingU
 
 The XML configuration for this sample is as follows:
 
-``` html/xml
+```
     <definitions xmlns="http://ws.apache.org/ns/synapse">
         <registry provider="org.wso2.carbon.mediation.registry.ESBRegistry">
             <parameter name="root">file:./repository/samples/resources/</parameter>
@@ -118,7 +83,7 @@ client is executed, you will see the following:
 The actual `         synapse.xml        ` that is loaded when the sample
 is run is:
 
-``` html/xml
+```
     <!-- a registry based Synapse configuration -->
     <definitions xmlns="http://ws.apache.org/ns/synapse">
         <sequence name="main">

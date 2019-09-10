@@ -1,27 +1,8 @@
-# Sample 258: Switching from HTTP to FIX
+# Switching from HTTP to FIX
 
-!!! warning
+Demonstrate switching from HTTP to FIX.
 
-Note that WSO2 EI is shipped with the following changes to what is
-mentioned in this documentation :
-
--   `           <PRODUCT_HOME>/          `
-    `           repository/samples/          ` directory that includes
-    all Integration profile samples is changed to
-    `           <EI_HOME>/          `
-    `           samples/service-bus/          ` .
-    `                     `
--   `           <PRODUCT_HOME>/          `
-    `           repository/samples/resources/          ` directory that
-    includes all artifacts related to the Integration profile samples is
-    changed to `           <EI_HOME>/          `
-    `           samples/service-bus/resources/          ` .
-
-TEST  
-
-**Objective** : Demonstrate switching from HTTP to FIX.
-
-###### **Prerequisites**
+###### Prerequisites
 
 -   You will need the Executor sample application that comes with
     Quickfix/J. Configure the Executor to establish a session with
@@ -52,7 +33,7 @@ over HTTP. Executor generally sends two responses for each incoming
 order request. But since the response has to be forwarded over HTTP,
 only one can be sent back to the client.
 
-``` html/xml
+```
 <definitions xmlns="http://ws.apache.org/ns/synapse">
     <proxy name="FIXProxy">
         <parameter name="transport.fix.InitiatorConfigURL">file:/home/synapse_user/fix-config/synapse-sender.cfg</parameter>

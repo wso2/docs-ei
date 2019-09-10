@@ -1,34 +1,15 @@
-# Sample 252: Pure Text (Binary) and POX Message Support with JMS
+# Pure Text (Binary) and POX Message Support with JMS
 
-!!! warning
+Pure POX/Text and Binary JMS Proxy services, including MTOM.
 
-Note that WSO2 EI is shipped with the following changes to what is
-mentioned in this documentation :
-
--   `           <PRODUCT_HOME>/          `
-    `           repository/samples/          ` directory that includes
-    all Integration profile samples is changed to
-    `           <EI_HOME>/          `
-    `           samples/service-bus/          ` .
-    `                     `
--   `           <PRODUCT_HOME>/          `
-    `           repository/samples/resources/          ` directory that
-    includes all artifacts related to the Integration profile samples is
-    changed to `           <EI_HOME>/          `
-    `           samples/service-bus/resources/          ` .
-
-TEST  
-
-Objective: Pure POX/Text and Binary JMS Proxy services, including MTOM.
-
-###### **Prerequisites**
+###### Prerequisites
 
 -   Configure JMS for ESB.
 -   Start the Axis2 server and deploy the
     `          SimpleStockQuoteService         ` and the
     `          MTOMSwASampleService         ` if not already done.
 
-``` html/xml
+```
 <definitions xmlns="http://ws.apache.org/ns/synapse">
     <sequence name="text_proxy">
         <header name="Action" value="urn:placeOrder"/>
@@ -114,14 +95,8 @@ ant jmsclient -Djms_type=text -Djms_payload="12.33 1000 ACP" -Djms_dest=dynamicQ
 Following the debug logs, you could notice that ESB received the JMS
 text message and transformed it into a SOAP payload as follows.
 
-!!! info
-
-Note
-
-The wrapper element "( \[http://services.samples/xsd\] )text" has been
-used to hold the text message content.
-
-TEST  
+!!! Note
+    The wrapper element "( \[http://services.samples/xsd\] )text" has been used to hold the text message content.
 
 ``` java
 INFO - To: , WSAction: urn:mediate, SOAPAction: urn:mediate, MessageID: ID:orxus.vedehen.org-50631-1225235276233-1:0:1:1:1, Direction: request,

@@ -11,45 +11,6 @@ integrity such that any partial updates are rolled back automatically.
 Transactions have many different forms, such as financial transactions,
 database transactions etc.
 
-From the ESB profile point of view, there are two types of transactions:
-
--   [Distributed
-    transactions](#WorkingwithTransactions-Distributedtransactions)
--   [Java Message Service (JMS)
-    transactions](#WorkingwithTransactions-JavaMessageService(JMS)transactionsJavaMessageService(JMS)Transactions)
-    -   [JMS consumer
-        transactions](#WorkingwithTransactions-JMSconsumertransactions)
-        -   [JMS local
-            transactions](#WorkingwithTransactions-JMSlocaltransactionsLocal)
-            -   [Sample
-                scenario](#WorkingwithTransactions-Samplescenario)
-            -   [Prerequisites](#WorkingwithTransactions-Prerequisites)
-            -   [Configuring the sample
-                scenario](#WorkingwithTransactions-Configuringthesamplescenario)
-            -   [Executing the sample
-                scenario](#WorkingwithTransactions-ExecuteJMSClientExecutingthesamplescenario)
-            -   [Testing the sample
-                scenario](#WorkingwithTransactions-Testingthesamplescenario)
-        -   [JMS distributed
-            transactions](#WorkingwithTransactions-JMSdistributedtransactionsDistributed)
-            -   [XA two-phase commit
-                process](#WorkingwithTransactions-XAtwo-phasecommitprocess)
-            -   [Sample
-                Scenario](#WorkingwithTransactions-SampleScenario)
-            -   [Prerequisites](#WorkingwithTransactions-Prerequisites.1)
-            -   [Configuring the sample
-                scenario](#WorkingwithTransactions-Configuringthesamplescenario.1)
-    -   [JMS publisher
-        transactions](#WorkingwithTransactions-JMSpublishertransactions)
-        -   [Sample scenario](#WorkingwithTransactions-Samplescenario.1)
-        -   [Prerequisites](#WorkingwithTransactions-Prerequisites.2)
-        -   [Configuring the sample
-            scenario](#WorkingwithTransactions-Configuringthesamplescenario.2)
-        -   [Executing the sample
-            scenario](#WorkingwithTransactions-Executingthesamplescenario)
-        -   [Testing the sample
-            scenario](#WorkingwithTransactions-Testingthesamplescenario.1)
-
 ### Distributed transactions
 
 A **distributed transaction** is a transaction that updates data on two
@@ -76,13 +37,8 @@ In addition to the [transaction
 mediator](https://docs.wso2.com/display/EI650/Transaction+Mediator) ,
 WSO2 Enterprise Integrator (WSO2 EI) also supports JMS transactions.
 
-!!! note
-
-Note
-
-In WSO2 EI, JMS transactions only work with either the Callout mediator
-or the Call mediator in blocking mode.
-
+!!! Note
+    In WSO2 EI, JMS transactions only work with either the Callout mediator or the Call mediator in blocking mode.
 
 The [JMS transport](https://docs.wso2.com/display/EI650/JMS+Transport)
 shipped with WSO2 EI supports both local and distributed JMS
@@ -90,19 +46,9 @@ transactions. You can use local transactions to group messages
 received in a JMS queue. Local transactions are not supported for
 messages sent to a JMS queue.
 
-This section describes:
-
--   [JMS consumer
-    transactions](#WorkingwithTransactions-JMSconsumertransactions)
--   [JMS publisher
-    transactions](#WorkingwithTransactions-JMSpublishertransactions)
-
 #### JMS consumer transactions
 
 Following sections describe the JMS consumer transactions.
-
--   [JMS Local Transactions](#WorkingwithTransactions-Local)
--   [JMS Distributed Transactions](#WorkingwithTransactions-Distributed)
 
 ##### JMS local transactions
 
@@ -127,7 +73,7 @@ receives a fault. This cause the JMS transaction to roll back.
 
 The sample scenario can be depicted as follows:
 
-![](attachments/119131477/119131479.png){height="250"}
+![](attachments/119131477/119131479.png)
 
 ###### Prerequisites
 
@@ -148,14 +94,14 @@ The sample scenario can be depicted as follows:
     default the session is not transacted. In order to make it
     transacted, set the parameter to **true** .
 
-    ``` html/xml
+    ```
         <parameter name="transport.jms.SessionTransacted">true</parameter>
     ```
 
     Once done, the JMS listener configuration for WSO2 MB in the
     axis2.xml file should be as follows:
 
-    ``` html/xml
+    ```
             <transportReceiver name="jms" class="org.apache.axis2.transport.jms.JMSListener">
                    <parameter name="myTopicConnectionFactory" locked="false">
                         <parameter name="java.naming.factory.initial" locked="false">org.wso2.andes.jndi.PropertiesFileInitialContextFactory</parameter>
@@ -188,7 +134,7 @@ The sample scenario can be depicted as follows:
     `           EI_HOME>/repository/deployment/server/synapse-configs/<node>/synapse.xml          `
     .
 
-    ``` html/xml
+    ```
             <definitions xmlns="http://ws.apache.org/ns/synapse">
                <proxy name="StockQuoteProxy" transports="jms" startOnLoad="true">
                   <target>
@@ -241,19 +187,15 @@ The sample scenario can be depicted as follows:
     **true** in the fault handler, in order to roll back the transaction
     when a failure occurs.
 
-    ``` html/xml
+    ```
             <property name="SET_ROLLBACK_ONLY" value="true" scope="axis2"/>
     ```
 
-        !!! tip
-    
+    !!! Tip
         If you are using a JMS Inbound endpoint for the transaction, set the
         scope of the `           SET_ROLLBACK_ONLY          ` property to
-        `           default          ` as follows:
+        `           default          ` as follows: <property name="SET_ROLLBACK_ONLY" scope="default" type="STRING" value="true"/>
     
-            <property name="SET_ROLLBACK_ONLY" scope="default" type="STRING" value="true"/>
-    
-
 3.  Deploy the back-end service
     `          SimpleStockQuoteService         ` . For instructions on
     deploying sample back-end services, see [Deploying sample back-end
@@ -268,23 +210,20 @@ The sample scenario can be depicted as follows:
     sample back-end service to simulate the sample scenario. Now let's
     execute the JMS client.
 
-        !!! info
-    
+    !!! Info
         Due to the asynchronous behavior of the [Send
         Mediator](https://docs.wso2.com/display/EI650/Send+Mediator) , you
         cannot you use it with a http/https endpoint, but you can use it in
         asynchronous use cases, for example with another JMS as endpoint.
     
-
-###### **** Executing the sample scenario
+###### Executing the sample scenario
 
 ** To execute the JMS client**
 
 -   Run the following command from the
     `           <EI_HOME>/samples/axis2Client          ` directory.
 
-        !!! warning
-    
+    !!! Warning
         Currently, it is a [known
         issue](https://github.com/wso2/product-ei/issues/766) that this
         client does not work with the Broker profile of WSO2 EI. This will
@@ -329,26 +268,14 @@ by the
 enabled transaction manager in the Java 2 Platform, Enterprise Edition
 (J2EE) application server.
 
-!!! info
-
-You will need to check if your message broker supports [XA
-transactions](index) prior to implementing distributed JMS transactions.
-
+!!! Info
+    You will need to check if your message broker supports [XA transactions](index) prior to implementing distributed JMS transactions.
 
 ###### XA two-phase commit process
 
 XA is a two-phase commit specification that is used in distributed
 transaction processing. Let's look at a sample scenario for JMS
 distributed transactions.
-
-\[ [Distributed
-transactions](#WorkingwithTransactions-Distributedtransactions) \] \[
-[Java Message Service (JMS)
-transactions](#WorkingwithTransactions-JavaMessageService(JMS)transactionsJavaMessageService(JMS)Transactions)
-\] \[ [JMS consumer
-transactions](#WorkingwithTransactions-JMSconsumertransactions) \] \[
-[JMS publisher
-transactions](#WorkingwithTransactions-JMSpublishertransactions) \]
 
 ###### Sample Scenario
 
@@ -374,7 +301,7 @@ entire transaction should be rolled back.
 1.  Create the `             JMSListenerProxy            ` proxy service
     in WSO2 EI with the following configuration:
 
-    ``` xml
+    ```
         <proxy xmlns="http://ws.apache.org/ns/synapse"
                name="JMSListenerProxy"
                transports="https http jms"
@@ -456,7 +383,7 @@ entire transaction should be rolled back.
     execute the following command from
     `             <EI_HOME>/samples/axis2Client            ` directory:
 
-    ``` xml
+    ```
             ant stockquote -Dmode=placeorder -Dtrpurl="jms:/MyJMSQueue?transport.jms.ConnectionFactoryJNDIName=QueueConnectionFactory&java.naming.factory.initial=org.apache.activemq.jndi.ActiveMQInitialContextFactory&java.naming.provider.url=tcp://localhost:61616&transport.jms.ContentTypeProperty=Content-Type&transport.jms.DestinationType=queue"
     ```
 
@@ -508,14 +435,12 @@ depicted as follows.
     `             <EI_HOME>/conf/axis2/             axis2_blocking_client.xml            `
     file as follows:
 
-        !!! info
-    
+    !!! Info
         By default, the session is not transacted. Set the value of the
         `             sessionTransacted            ` property to true, to
         make it transacted to publish transactions successfully.
     
-
-    ``` html/xml
+    ```
         <transportSender name="jms" class="org.apache.axis2.transport.jms.JMSSender">
             <parameter name="commonJmsSenderConnectionFactory" locked="false">
                 <parameter locked="false" name="java.naming.factory.initial">org.wso2.andes.jndi.PropertiesFileInitialContextFactory</parameter>
@@ -540,7 +465,7 @@ depicted as follows.
     `             EI_HOME>/repository/deployment/server/synapse-configs/default/proxy-services/            `
     directory.
 
-    ``` xml
+    ```
             <proxy name="SampleProxy" transports="http" startOnLoad="true" xmlns="http://ws.apache.org/ns/synapse">
                <description/>
                <target>

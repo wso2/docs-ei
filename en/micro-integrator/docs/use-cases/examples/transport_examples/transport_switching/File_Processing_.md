@@ -1,47 +1,4 @@
-# Sample 271: File Processing
-
-!!! warning
-
-Note that WSO2 EI is shipped with the following changes to what is
-mentioned in this documentation :
-
--   `           <PRODUCT_HOME>/          `
-    `           repository/samples/          ` directory that includes
-    all Integration profile samples is changed to
-    `           <EI_HOME>/          `
-    `           samples/service-bus/          ` .
-    `                     `
--   `           <PRODUCT_HOME>/          `
-    `           repository/samples/resources/          ` directory that
-    includes all artifacts related to the Integration profile samples is
-    changed to `           <EI_HOME>/          `
-    `           samples/service-bus/resources/          ` .
-
-TEST  
-
--   [Introduction](#Sample271:FileProcessing-Introduction)
--   [Building the sample](#Sample271:FileProcessing-Buildingthesample)
-    -   [Set up the
-        database](#Sample271:FileProcessing-Setupthedatabase)
-    -   [Create the main and fault
-        sequences](#Sample271:FileProcessing-Createthemainandfaultsequences)
-    -   [Configure the ESB](#Sample271:FileProcessing-ConfiguretheESB)
-    -   [Add database
-        drivers](#Sample271:FileProcessing-Adddatabasedrivers)
-    -   [Add smooks
-        libraries](#Sample271:FileProcessing-Addsmookslibraries)
-    -   [Create and configure
-        FileProxy](#Sample271:FileProcessing-CreateandconfigureFileProxy)
-    -   [Create and configure
-        databaseSequence](#Sample271:FileProcessing-CreateandconfiguredatabaseSequence)
-    -   [Create and Configure
-        fileWriteSequence](#Sample271:FileProcessing-CreateandConfigurefileWriteSequence)
-    -   [Create and configure
-        sendMailSequence](#Sample271:FileProcessing-CreateandconfiguresendMailSequence)
-    -   [Create the input
-        file](#Sample271:FileProcessing-Createtheinputfile)
--   [Executing the sample](#Sample271:FileProcessing-Executingthesample)
--   [Analyzing the output](#Sample271:FileProcessing-Analyzingtheoutput)
+# File Processing
 
 ### Introduction
 
@@ -55,15 +12,8 @@ The following diagram displays the entities involved in this example.
 
 ![](attachments/119129588/119129597.png)
 
-!!! info
-
-Note
-
-This example works with the MySQL database.
-
-TEST  
-
-------------------------------------------------------------------------
+!!! Note
+    This example works with the MySQL database.
 
 ### Building the sample
 
@@ -102,8 +52,6 @@ there is no data in the table.
   
 ![](attachments/119129588/119129591.png)
 
-------------------------------------------------------------------------
-
 #### Create the main and fault sequences
 
 1.  Find the `          main.xml         ` and
@@ -116,17 +64,8 @@ there is no data in the table.
     `           <ESB_HOME>/repository/deployment/server/synapse-configs/default/sequences          `
     folder.
 
-    !!! info
-
-    Note
-
-    The `           main          ` and `           fault          `
-    sequences are created and preconfigured automatically when you
-    install WSO2 ESB.
-
-    TEST  
-
-------------------------------------------------------------------------
+    !!! Note
+        The `           main          ` and `           fault          ` sequences are created and preconfigured automatically when you install WSO2 ESB.
 
 #### Configure the ESB
 
@@ -142,7 +81,7 @@ formatter as specified.
     file and configure the mailto transport sender as follows to use a
     mailbox for sending the messages:
 
-    ``` html/xml
+    ```
     <transportSender name="mailto" class="org.apache.axis2.transport.mail.MailTransportSender">
        <parameter name="mail.smtp.host">smtp.gmail.com</parameter>
        <parameter name="mail.smtp.port">587</parameter>
@@ -153,28 +92,17 @@ formatter as specified.
        <parameter name="mail.smtp.from">username@gmail.com</parameter>
     </transportSender>
     ```
-
       
-    !!! info
-
-    Note
-
-    In this sample, you will not retrieve mails from a mailbox.
-    Therefore, you do not need to enable the mailto transport receiver.
-
-    TEST  
-
-<!-- -->
+    !!! Note
+        In this sample, you will not retrieve mails from a mailbox. Therefore, you do not need to enable the mailto transport receiver.
 
 -   Add the following message formatter in the
     `           <ESB_HOME>/repository/conf/Axis2/axis2.xml          `
     file under the `           Message Formatters          ` section:
 
-    ``` html/xml
+    ```
     <messageFormatter contentType="text/html" class="org.apache.axis2.transport.http.ApplicationXMLFormatter"/>
     ```
-
-------------------------------------------------------------------------
 
 #### Add database drivers
 
@@ -186,8 +114,6 @@ formatter as specified.
 2.  Copy the driver to the
     `          <WSO2ESB_HOME>/repository/components/lib         `
     directory.
-
-------------------------------------------------------------------------
 
 #### Add smooks libraries
 
@@ -201,14 +127,8 @@ This example uses a CSV smooks library.
     `           <WSO2ESB_HOME>/repository/components/lib          `
     directory.
 
-    !!! note
-
-    Note
-
-    These configuration changes make system-wide changes to the ESB and
-    the ESB has to be restarted for these changes to take effect.
-
-    TEST  
+    !!! Note
+        These configuration changes make system-wide changes to the ESB and the ESB has to be restarted for these changes to take effect.
 
 3.  Configure a local entry as follows. For information on how to add a
     local entry, see [this
@@ -218,11 +138,9 @@ This example uses a CSV smooks library.
     `           <SAMPLE_HOME>/resources/smooks-config.xml          `
     file.
 
-    ``` xml
+    ```
     <localEntry key="smooks" src="file:resources/smooks-config.xml"/>
     ```
-
-------------------------------------------------------------------------
 
 #### Create and configure `         FileProxy        `
 
@@ -234,7 +152,7 @@ This example uses a CSV smooks library.
       
     The XML code of the sequence is as follows:
 
-    ``` html/xml
+    ```
     <proxy xmlns="http://ws.apache.org/ns/synapse" name="FileProxy" transports="vfs" startOnLoad="true" trace="disable">
         <target>
             <inSequence>
@@ -260,29 +178,27 @@ This example uses a CSV smooks library.
 2.  Edit the FileProxy.xml file, and define the directory to which the
     original file should be moved after processing.
 
-    ``` html/xml
+    ```
     <parameter name="transport.vfs.MoveAfterProcess">[file:///home/]<username>/test/original</parameter>
     ```
 
 3.  Edit the FileProxy.xml file, and define where the input file should
     be placed.
 
-    ``` html/xml
+    ```
     <parameter name="transport.vfs.FileURI">[file:///home/]<username>/test/in</parameter>
     ```
 
 4.  Edit the FileProxy.xml file, and define the directory to which the
     file should be moved if an error occurs.
 
-    ``` html/xml
+    ```
     <parameter name="transport.vfs.MoveAfterFailure">[file:///home/]<username>/test/failure</parameter>
     ```
 
 5.  Save the FileProxy.xml file to the
     `          <ESB_HOME>/repository/deployment/server/synapse-configs/default/proxy-services         `
     directory.
-
-------------------------------------------------------------------------
 
 #### Create and configure `         databaseSequence        `
 
@@ -342,7 +258,6 @@ connect to the database to insert the data.
     `          <ESB_HOME>/repository/deployment/server/synapse-configs/default/sequences         `
     directory.
 
-------------------------------------------------------------------------
 
 #### Create and Configure fileWriteSequence
 
@@ -354,7 +269,7 @@ connect to the database to insert the data.
       
     The XML code of the sequence is as follows:
 
-    ``` html/xml
+    ```
     <sequence xmlns="http://ws.apache.org/ns/synapse" name="fileWriteSequence">
         <log level="custom">
             <property name="sequence" value="fileWriteSequence"/>
@@ -376,8 +291,6 @@ connect to the database to insert the data.
     `          <ESB_HOME>/repository/deployment/server/synapse-configs/default/sequences         `
     directory.
 
-------------------------------------------------------------------------
-
 #### Create and configure `         sendMailSequence        `
 
 1.  You can find the `           sendMailSequence.xml          ` file in
@@ -388,7 +301,7 @@ connect to the database to insert the data.
       
     The XML code of the sequence is as follows:
 
-    ``` html/xml
+    ```
     <sequence xmlns="http://ws.apache.org/ns/synapse" name="sendMailSequence">
         <log level="custom">
             <property name="sequence" value="sendMailSequence"/>
@@ -411,8 +324,6 @@ connect to the database to insert the data.
     `          <ESB_HOME>/repository/deployment/server/synapse-configs/default/sequences         `
     directory.
 
-------------------------------------------------------------------------
-
 #### Create the input file
 
 -   Create a text file in the following format.
@@ -424,16 +335,12 @@ connect to the database to insert the data.
 
     ![](attachments/119129588/119129595.png)
 
-------------------------------------------------------------------------
-
 ### Executing the sample
 
 -   Save the file in the `          .txt         ` format to the
     `          in         ` directory that you specified in [step
     3](#Sample271:FileProcessing-FileProxyStep) , under the create and
     configure `          FileProxy         ` section.
-
-------------------------------------------------------------------------
 
 ### Analyzing the output
 

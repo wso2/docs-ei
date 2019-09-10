@@ -1,29 +1,10 @@
-# Sample 263: Transport Switching - JMS to http/s Using JBoss Messaging(JBM)
+# Transport Switching - JMS to http/s Using JBoss Messaging(JBM)
 
-!!! warning
-
-Note that WSO2 EI is shipped with the following changes to what is
-mentioned in this documentation :
-
--   `           <PRODUCT_HOME>/          `
-    `           repository/samples/          ` directory that includes
-    all Integration profile samples is changed to
-    `           <EI_HOME>/          `
-    `           samples/service-bus/          ` .
-    `                     `
--   `           <PRODUCT_HOME>/          `
-    `           repository/samples/resources/          ` directory that
-    includes all artifacts related to the Integration profile samples is
-    changed to `           <EI_HOME>/          `
-    `           samples/service-bus/resources/          ` .
-
-TEST  
-
-**Objective:** Introduction to switching transports with proxy services.
+Introduction to switching transports with proxy services.
 The JMS provider will be JBoss Messaging(JBM) (
 http://www.jboss.org/jbossmessaging/ ).
 
-``` html/xml
+```
 <definitions xmlns="http://ws.apache.org/ns/synapse">
     <proxy name="StockQuoteProxy" transports="jms">
         <target>
@@ -59,7 +40,7 @@ http://www.jboss.org/jbossmessaging/ ).
 Configure the required queues in JBM. Add the following entry to JBM jms
 configuration inside file-config/stand-alone/non-clustered/jbm-jms.xml.
 
-``` html/xml
+```
 <queue name="StockQuoteProxy">
     <entry name="StockQuoteProxy"/>
 </queue>
@@ -82,7 +63,7 @@ $ESB\_HOME/repository/components/lib directory. This was tested with JBM
 You need to add the following configuration for Axis2 JMS transport
 listener in axis2.xml found at repository/conf/axis2.xml.
 
-``` html/xml
+```
 <transportReceiver name="jms" class="org.apache.axis2.transport.jms.JMSListener">
     <parameter name="default" locked="false">
         <parameter name="java.naming.factory.initial">org.jnp.interfaces.NamingContextFactory</parameter>
@@ -92,7 +73,6 @@ listener in axis2.xml found at repository/conf/axis2.xml.
     </parameter>
 </transportReceiver>
 ```
-
 Once you start ESB configuration 263 and request for the WSDL of the
 proxy service ( <http://localhost:8280/services/StockQuoteProxy?wsdl> )
 you will notice that its exposed only on the JMS transport. This is
@@ -102,7 +82,7 @@ service definition.
 Before running the JMS client you need to open the build.xml ant script
 and uncomment the following block under the jmsclient target.
 
-``` html/xml
+```
 <!--<sysproperty key="java.naming.provider.url" value="${java.naming.provider.url}"/> <sysproperty key="java.naming.factory.initial" value="${java.naming.factory.initial}"/> <sysproperty key="java.naming.factory.url.pkg" value="${java.naming.factory.url.pkg}"/>-->
 ```
 
@@ -142,15 +122,9 @@ back to 'application/xml' (i.e. POX) if this property is not set. Note
 that the JMS client used in this example doesn't send any content type
 information.
 
-!!! info
-
-Note
-
-It is possible to instruct a JMS proxy service to listen to an already
+!!! Note
+    It is possible to instruct a JMS proxy service to listen to an already
 existing destination without creating a new one. To do this, use the
 parameter elements on the proxy service definition to specify the
 destination and connection factory etc. For example:
-
-    <parameter name="transport.jms.Destination">dynamicTopics/something.TestTopic</parameter>
-
-TEST  
+    <parameter name="transport.jms.Destination">dynamicTopics/something.TestTopic</parameter> 

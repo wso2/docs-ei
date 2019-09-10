@@ -32,8 +32,6 @@ processing and schedule a move task to move that file.
     </inboundEndpoint>
 ```
 
-
-
 ## Configuring File Inbound Protocol for FTP, SFTP and FILE Connections
 
 The following section describes how to configure the file inbound
@@ -43,7 +41,7 @@ protocol for FTP, SFTP and FILE connections.
     should specify the URL as
     `           ftp://{username}:{password}@{hostname/ip_address}/{source_filepath}                     `
 
-    ``` html/xml
+    ``` 
         ftp://admin:pass@localhost/orders
     ```
 
@@ -51,21 +49,18 @@ protocol for FTP, SFTP and FILE connections.
     should specify the URL as
     `           sftp://{username}:{password}@{hostname/ip_address}/{source_filepath}                     `
 
-    ``` html/xml
+    ``` 
             sftp://admin:pass@localhost/orders
     ```
 
-!!! tip
-
-If the password contains special characters, these characters will need
+!!! Tip
+  If the password contains special characters, these characters will need
 to be replaced with their hexadecimal representation.
-
-
--   To configure the file inbound protocol for FILE connections, you
+  - To configure the file inbound protocol for FILE connections, you
     should specify the URL as
     `           file://{local_file_system_path}                     `
 
-    ``` html/xml
+    ```
         file:///home/user/test/in
     ```
 

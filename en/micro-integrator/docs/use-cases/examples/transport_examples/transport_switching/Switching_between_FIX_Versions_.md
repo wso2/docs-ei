@@ -1,32 +1,4 @@
-# Sample 261: Switching between FIX Versions
-
-!!! warning
-
-Note that WSO2 EI is shipped with the following changes to what is
-mentioned in this documentation :
-
--   `           <PRODUCT_HOME>/          `
-    `           repository/samples/          ` directory that includes
-    all Integration profile samples is changed to
-    `           <EI_HOME>/          `
-    `           samples/service-bus/          ` .
-    `                     `
--   `           <PRODUCT_HOME>/          `
-    `           repository/samples/resources/          ` directory that
-    includes all artifacts related to the Integration profile samples is
-    changed to `           <EI_HOME>/          `
-    `           samples/service-bus/resources/          ` .
-
-TEST  
-
--   [Introduction](#Sample261:SwitchingbetweenFIXVersions-Introduction)
--   [Prerequisites](#Sample261:SwitchingbetweenFIXVersions-Prerequisites)
--   [Building the
-    sample](#Sample261:SwitchingbetweenFIXVersions-Buildingthesample)
--   [Executing the
-    sample](#Sample261:SwitchingbetweenFIXVersions-Executingthesample)
--   [Analyzing the
-    output](#Sample261:SwitchingbetweenFIXVersions-Analyzingtheoutput)
+# Switching between FIX Versions
 
 ### Introduction
 
@@ -57,20 +29,8 @@ endpoint.
     DataDictionary=~/etc/spec/FIX40-synapse.xml
     ```
 
-    !!! info
-
-    Note
-
-    The `           FIX40-synapse.xml          ` file can be found in
-    the
-    `           <ESB_HOME>/repository/samples/resources/fix          `
-    directory. This is a custom FIX data dictionary file that adds the
-    tag 150 and 151 to the execution message(35=8) of FIX4.0. Make sure
-    the `           DataDictionary          ` property in the
-    `           banzai.cfg          ` file points to this data
-    dictionary file.
-
-    TEST  
+    !!! Note
+        The `           FIX40-synapse.xml          ` file can be found in the `           <ESB_HOME>/repository/samples/resources/fix          ` directory. This is a custom FIX data dictionary file that adds the tag 150 and 151 to the execution message(35=8) of FIX4.0. Make sure the `           DataDictionary          ` property in the `           banzai.cfg          ` file points to this data dictionary file.
 
 -   Add the following lines to `           executor.cfg          ` ,
     which is the *Executor* configuration file:
@@ -103,19 +63,14 @@ endpoint.
     the `           transport.fix.InitiatorConfigURL          ` property
     points to the `           synapse-sender-m.cfg          ` file.
 
-    !!! info
-
-    Note
-
-    The ESB creates a new FIX session with *Banzai* at this point.
-
-    TEST  
+    !!! Note
+        The ESB creates a new FIX session with *Banzai* at this point.
 
 ### Building the sample
 
 The XML configuration for this sample is as follows:
 
-``` html/xml
+```
 <definitions xmlns="http://ws.apache.org/ns/synapse">
      <proxy name="OrderProcesserProxy41" transports="fix">
         <target>

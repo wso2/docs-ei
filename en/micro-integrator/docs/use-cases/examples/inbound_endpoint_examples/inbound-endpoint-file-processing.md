@@ -1,38 +1,11 @@
-# Sample 900: Inbound Endpoint File Protocol Sample (VFS)
+# Inbound Endpoint File Protocol Sample (VFS)
 
-!!! warning
-
-Note that WSO2 EI is shipped with the following changes to what is
-mentioned in this documentation :
-
--   `           <PRODUCT_HOME>/          `
-    `           repository/samples/          ` directory that includes
-    all Integration profile samples is changed to
-    `           <EI_HOME>/          `
-    `           samples/service-bus/          ` .
-    `                     `
--   `           <PRODUCT_HOME>/          `
-    `           repository/samples/resources/          ` directory that
-    includes all artifacts related to the Integration profile samples is
-    changed to `           <EI_HOME>/          `
-    `           samples/service-bus/resources/          ` .
-
-
--   [Introduction](#Sample900:InboundEndpointFileProtocolSample(VFS)-Introduction)
--   [Prerequisites](#Sample900:InboundEndpointFileProtocolSample(VFS)-Prerequisites)
--   [Building the
-    sample](#Sample900:InboundEndpointFileProtocolSample(VFS)-Buildingthesample)
--   [Executing the
-    sample](#Sample900:InboundEndpointFileProtocolSample(VFS)-Executingthesample)
--   [Analyzing the
-    output](#Sample900:InboundEndpointFileProtocolSample(VFS)-Analyzingtheoutput)
-
-### Introduction
+## Introduction
 
 This sample demonstrates how to use the file system as an input medium
 via the inbound file listener.
 
-### Prerequisites
+## Prerequisites
 
 -   Create 3 new directories named `          in         ` ,
     `          out         ` and `          original         ` in a test
@@ -46,11 +19,11 @@ via the inbound file listener.
     to the **in** , **out** ,and **original** directory locations
     respectively.
 
-### Building the sample
+## Building the sample
 
 The XML configuration for this sample is as follows:
 
-``` html/xml
+``` 
     <definitions xmlns="http://ws.apache.org/ns/synapse">
        <registry provider="org.wso2.carbon.mediation.registry.WSO2Registry">
           <parameter name="cachableDuration">15000</parameter>
@@ -112,7 +85,7 @@ directory.
     services](https://docs.wso2.com/enterprise-service-bus/Setting+Up+the+ESB+Samples#SettingUptheESBSamples-Backend)
     .
 
-### Executing the sample
+## Executing the sample
 
 **To execute the sample client**
 
@@ -125,7 +98,7 @@ directory.
     The `           test.xml          ` file contains a simple stock
     quote request and is as follows:
 
-    ``` html/xml
+    ```
             <?xml version='1.0' encoding='UTF-8'?>
             <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:wsa="http://www.w3.org/2005/08/addressing">
                 <soapenv:Body>

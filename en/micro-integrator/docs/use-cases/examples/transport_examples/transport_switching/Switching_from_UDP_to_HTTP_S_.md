@@ -1,28 +1,9 @@
-# Sample 267: Switching from UDP to HTTP/S
+# Switching from UDP to HTTP/S
 
-!!! warning
-
-Note that WSO2 EI is shipped with the following changes to what is
-mentioned in this documentation :
-
--   `           <PRODUCT_HOME>/          `
-    `           repository/samples/          ` directory that includes
-    all Integration profile samples is changed to
-    `           <EI_HOME>/          `
-    `           samples/service-bus/          ` .
-    `                     `
--   `           <PRODUCT_HOME>/          `
-    `           repository/samples/resources/          ` directory that
-    includes all artifacts related to the Integration profile samples is
-    changed to `           <EI_HOME>/          `
-    `           samples/service-bus/resources/          ` .
-
-TEST  
-
-**Objective:** Demonstrate receiving SOAP messages over UDP and
+Demonstrate receiving SOAP messages over UDP and
 forwarding them over HTTP
 
-``` html/xml
+``` 
 <definitions xmlns="http://ws.apache.org/ns/synapse"
              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
              xsi:schemaLocation="http://ws.apache.org/ns/synapse http://synapse.apache.org/ns/2010/04/configuration/synapse_config.xsd">

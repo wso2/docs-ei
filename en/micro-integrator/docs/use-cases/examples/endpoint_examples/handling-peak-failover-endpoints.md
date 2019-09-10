@@ -1,31 +1,4 @@
-# Sample 53: Using Failover Endpoints to Handle Peak Loads
-
-!!! warning
-
-Note that WSO2 EI is shipped with the following changes to what is
-mentioned in this documentation :
-
--   `           <PRODUCT_HOME>/          `
-    `           repository/samples/          ` directory that includes
-    all Integration profile samples is changed to
-    `           <EI_HOME>/          `
-    `           samples/service-bus/          ` .
-    `                     `
--   `           <PRODUCT_HOME>/          `
-    `           repository/samples/resources/          ` directory that
-    includes all artifacts related to the Integration profile samples is
-    changed to `           <EI_HOME>/          `
-    `           samples/service-bus/resources/          ` .
-
-
--   [Introduction](#Sample53:UsingFailoverEndpointstoHandlePeakLoads-Introduction)
--   [Prerequisites](#Sample53:UsingFailoverEndpointstoHandlePeakLoads-Prerequisites)
--   [Building the
-    sample](#Sample53:UsingFailoverEndpointstoHandlePeakLoads-Buildingthesample)
--   [Executing the
-    sample](#Sample53:UsingFailoverEndpointstoHandlePeakLoads-Executingthesample)
--   [Analyzing the
-    output](#Sample53:UsingFailoverEndpointstoHandlePeakLoads-Analyzingtheoutput)
+# Using Failover Endpoints to Handle Peak Loads
 
 ### Introduction
 
@@ -43,7 +16,7 @@ Samples](https://docs.wso2.com/display/EI650/Setting+Up+the+ESB+Samples#SettingU
 
 The XML configuration for this sample is as follows:
 
-``` html/xml
+``` 
     <definitions xmlns="http://ws.apache.org/ns/synapse">
         <sequence name="main" onError="errorHandler">
             <in>
@@ -190,5 +163,3 @@ again to the active servers list after 60 seconds. This is because
 configuration file. Therefore, if you have restarted any of the stopped
 servers and have stopped all other servers, messages will be directed to
 the server that is restarted.
-
-  

@@ -1,25 +1,6 @@
-# Sample 264: Sending Two-Way Messages Using JMS transport
+# Sending Two-Way Messages Using JMS transport
 
-!!! warning
-
-Note that WSO2 EI is shipped with the following changes to what is
-mentioned in this documentation :
-
--   `           <PRODUCT_HOME>/          `
-    `           repository/samples/          ` directory that includes
-    all Integration profile samples is changed to
-    `           <EI_HOME>/          `
-    `           samples/service-bus/          ` .
-    `                     `
--   `           <PRODUCT_HOME>/          `
-    `           repository/samples/resources/          ` directory that
-    includes all artifacts related to the Integration profile samples is
-    changed to `           <EI_HOME>/          `
-    `           samples/service-bus/resources/          ` .
-
-TEST  
-
-**Objective** : Demonstrate sending request response scenario with JMS
+Demonstrate sending request response scenario with JMS
 transport.
 
 ``` html/xml
@@ -58,7 +39,7 @@ the response message. If this property is not set JMS transport treats
 the incoming message as plain text.
 
 In the out path we remove the message context property
-**TRANSPORT\_HEADERS** . If this property is not removed JMS headers
+**TRANSPORT_HEADERS** . If this property is not removed JMS headers
 will be passed to the client.
 
 Start Axis2 server with SimpleStockService deployed.

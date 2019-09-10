@@ -1,28 +1,10 @@
-# Sample 703: Adding Security to Message Forwarding Processor
+# Adding Security to Message Forwarding Processor
 
-!!! warning
-
-Note that WSO2 EI is shipped with the following changes to what is
-mentioned in this documentation :
-
--   `           <PRODUCT_HOME>/          `
-    `           repository/samples/          ` directory that includes
-    all Integration profile samples is changed to
-    `           <EI_HOME>/          `
-    `           samples/service-bus/          ` .
-    `                     `
--   `           <PRODUCT_HOME>/          `
-    `           repository/samples/resources/          ` directory that
-    includes all artifacts related to the Integration profile samples is
-    changed to `           <EI_HOME>/          `
-    `           samples/service-bus/resources/          ` .
-
-
-**Objective** : Add security policies to the [Message Forwarding
+Add security policies to the [Message Forwarding
 Processor](https://docs.wso2.com/display/EI650/Scheduled+Message+Forwarding+Processor)
 .
 
-``` html/xml
+``` 
     <definitions xmlns="http://ws.apache.org/ns/synapse">
        <registry provider="org.wso2.carbon.mediation.registry.WSO2Registry">
           <parameter name="cachableDuration">15000</parameter>

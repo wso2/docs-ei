@@ -1,31 +1,4 @@
-# Sample 3: Local Registry Entry Definitions, Reusable Endpoints and Sequences
-
-!!! warning
-
-Note that WSO2 EI is shipped with the following changes to what is
-mentioned in this documentation :
-
--   `           <PRODUCT_HOME>/          `
-    `           repository/samples/          ` directory that includes
-    all Integration profile samples is changed to
-    `           <EI_HOME>/          `
-    `           samples/service-bus/          ` .
-    `                     `
--   `           <PRODUCT_HOME>/          `
-    `           repository/samples/resources/          ` directory that
-    includes all artifacts related to the Integration profile samples is
-    changed to `           <EI_HOME>/          `
-    `           samples/service-bus/resources/          ` .
-
-
--   [Introduction](#Sample3:LocalRegistryEntryDefinitions,ReusableEndpointsandSequences-Introduction)
--   [Prerequisites](#Sample3:LocalRegistryEntryDefinitions,ReusableEndpointsandSequences-Prerequisites)
--   [Building the
-    sample](#Sample3:LocalRegistryEntryDefinitions,ReusableEndpointsandSequences-Buildingthesample)
--   [Executing the
-    sample](#Sample3:LocalRegistryEntryDefinitions,ReusableEndpointsandSequences-Executingthesample)
--   [Analyzing the
-    output](#Sample3:LocalRegistryEntryDefinitions,ReusableEndpointsandSequences-Analyzingtheoutput)
+# Local Registry Entry Definitions, Reusable Endpoints and Sequences
 
 ### Introduction
 
@@ -42,7 +15,7 @@ samples](https://docs.wso2.com/display/EI650/Setting+Up+the+ESB+Samples#SettingU
 
 The XML configuration for this sample is as follows:
 
-``` html/xml
+``` 
     <definitions xmlns="http://ws.apache.org/ns/synapse">
         <!-- define a string resource entry to the local registry -->
         <localEntry key="version">0.1</localEntry>

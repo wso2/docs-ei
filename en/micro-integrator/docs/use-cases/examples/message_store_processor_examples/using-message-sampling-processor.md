@@ -1,26 +1,8 @@
-# Sample 701: Introduction to Message Sampling Processor
+# Introduction to Message Sampling Processor
 
-!!! warning
+Introduction to Message Sampling Processor.
 
-Note that WSO2 EI is shipped with the following changes to what is
-mentioned in this documentation :
-
--   `           <PRODUCT_HOME>/          `
-    `           repository/samples/          ` directory that includes
-    all Integration profile samples is changed to
-    `           <EI_HOME>/          `
-    `           samples/service-bus/          ` .
-    `                     `
--   `           <PRODUCT_HOME>/          `
-    `           repository/samples/resources/          ` directory that
-    includes all artifacts related to the Integration profile samples is
-    changed to `           <EI_HOME>/          `
-    `           samples/service-bus/resources/          ` .
-
-
-**Objective:** Introduction to Message Sampling Processor.
-
-``` html/xml
+```
                 <!-- Introduction to  Message Sampling Processor -->
     
                 <definitions xmlns="http://ws.apache.org/ns/synapse">

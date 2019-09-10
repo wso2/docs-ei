@@ -1,33 +1,6 @@
-# Sample 705: Load Balancing with Message Forwarding Processor
+# Load Balancing with Message Forwarding Processor
 
-!!! warning
-
-Note that WSO2 EI is shipped with the following changes to what is
-mentioned in this documentation :
-
--   `           <PRODUCT_HOME>/          `
-    `           repository/samples/          ` directory that includes
-    all Integration profile samples is changed to
-    `           <EI_HOME>/          `
-    `           samples/service-bus/          ` .
-    `                     `
--   `           <PRODUCT_HOME>/          `
-    `           repository/samples/resources/          ` directory that
-    includes all artifacts related to the Integration profile samples is
-    changed to `           <EI_HOME>/          `
-    `           samples/service-bus/resources/          ` .
-
-
--   [Introduction](#Sample705:LoadBalancingwithMessageForwardingProcessor-Introduction)
--   [Prerequisites](#Sample705:LoadBalancingwithMessageForwardingProcessor-Prerequisites)
--   [Building the
-    sample](#Sample705:LoadBalancingwithMessageForwardingProcessor-Buildingthesample)
--   [Executing the
-    sample](#Sample705:LoadBalancingwithMessageForwardingProcessor-Executingthesample)
--   [Analyzing the
-    output](#Sample705:LoadBalancingwithMessageForwardingProcessor-Analyzingtheoutput)
-
-### Introduction
+## Introduction
 
 This sample demonstrates how you can load balance messages using the
 [message store](https://docs.wso2.com/display/EI650/Message+Stores) and
@@ -35,7 +8,7 @@ This sample demonstrates how you can load balance messages using the
 processor](https://docs.wso2.com/display/EI650/Scheduled+Message+Forwarding+Processor)
 .
 
-### Prerequisites
+## Prerequisites
 
 -   Install [ActiveMQ](http://activemq.apache.org) and copy the ActiveMQ
     client JARs `           activemq-core-5.2.0.jar          ` and
@@ -48,11 +21,11 @@ processor](https://docs.wso2.com/display/EI650/Scheduled+Message+Forwarding+Proc
     ESB
     samples](https://docs.wso2.com/display/EI650/Setting+Up+the+ESB+Samples#SettingUptheESBSamples-ESBSamplePrerequisites)
 
-### Building the sample
+## Building the sample
 
 The XML configuration for this sample is as follows:
 
-``` html/xml
+```
     <definitions xmlns="http://ws.apache.org/ns/synapse">
        <registry provider="org.wso2.carbon.mediation.registry.WSO2Registry">
           <parameter name="cachableDuration">15000</parameter>
@@ -168,7 +141,7 @@ directory.
     In the next section, we will send a message to the back-end service
     through the EI using a sample client.
 
-### Executing the sample
+## Executing the sample
 
 The sample client used here is the **Stock Quote Client** , which can
 operate in several modes. For further details on this sample client and
@@ -185,7 +158,7 @@ Client](https://docs.wso2.com/display/EI650/Using+the+Sample+Clients#UsingtheSam
             ant stockquote -Daddurl=http://localhost:8280/services/StockQuoteProxy -Dmode=placeorder -Dsymbol=WSO2
     ```
 
-### Analyzing the output
+## Analyzing the output
 
 You can analyze the message sent by the EI to the secure service using
 TCPMon.

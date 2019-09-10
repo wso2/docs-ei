@@ -1,25 +1,6 @@
-# Sample 255: Switching from FTP Transport Listener to Mail Transport Sender
+# Switching from FTP Transport Listener to Mail Transport Sender
 
-!!! warning
-
-Note that WSO2 EI is shipped with the following changes to what is
-mentioned in this documentation :
-
--   `           <PRODUCT_HOME>/          `
-    `           repository/samples/          ` directory that includes
-    all Integration profile samples is changed to
-    `           <EI_HOME>/          `
-    `           samples/service-bus/          ` .
-    `                     `
--   `           <PRODUCT_HOME>/          `
-    `           repository/samples/resources/          ` directory that
-    includes all artifacts related to the Integration profile samples is
-    changed to `           <EI_HOME>/          `
-    `           samples/service-bus/resources/          ` .
-
-TEST  
-
-**Objective** : Switching from FTP transport listener to mail transport
+Switching from FTP transport listener to mail transport
 sender.
 
 ###### **Prerequisites**
@@ -42,7 +23,7 @@ sender.
     to the ftp directory given in
     `          transport.vfs.FileURI         ` below.
 
-``` html/xml
+```
 <definitions xmlns="http://ws.apache.org/ns/synapse">
     <proxy name="StockQuoteProxy" transports="vfs">
         <parameter name="transport.vfs.FileURI">vfs:ftp://guest:guest@localhost/test?vfs.passive=true</parameter> <!--CHANGE-->
@@ -82,7 +63,7 @@ the mail transport sender configuration in the
 transport sender sample configuration and make sure it points to a valid
 SMTP configuration for any actual scenarios.
 
-``` html/xml
+```
 <transportSender name="mailto" class="org.apache.synapse.transport.mail.MailTransportSender">
     <parameter name="mail.smtp.host">smtp.gmail.com</parameter>
     <parameter name="mail.smtp.port">587</parameter>

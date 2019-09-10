@@ -1,30 +1,4 @@
-# Sample 51: MTOM and SwA Optimizations and Request/Response Correlation
-
-!!! warning
-
-Note that WSO2 EI is shipped with the following changes to what is
-mentioned in this documentation :
-
--   `           <PRODUCT_HOME>/          `
-    `           repository/samples/          ` directory that includes
-    all Integration profile samples is changed to
-    `           <EI_HOME>/          `
-    `           samples/service-bus/          ` .
-    `                     `
--   `           <PRODUCT_HOME>/          `
-    `           repository/samples/resources/          ` directory that
-    includes all artifacts related to the Integration profile samples is
-    changed to `           <EI_HOME>/          `
-    `           samples/service-bus/resources/          ` .
-
-
--   [Introduction](#Sample51:MTOMandSwAOptimizationsandRequest/ResponseCorrelation-Introduction)
--   [Building the
-    sample](#Sample51:MTOMandSwAOptimizationsandRequest/ResponseCorrelation-Buildingthesample)
--   [Executing the
-    sample](#Sample51:MTOMandSwAOptimizationsandRequest/ResponseCorrelation-Executingthesample)
--   [Analyzing the
-    output](#Sample51:MTOMandSwAOptimizationsandRequest/ResponseCorrelation-Analyzingtheoutput)
+# MTOM and SwA Optimizations and Request/Response Correlation
 
 ### Introduction
 
@@ -47,7 +21,7 @@ Samples](https://docs.wso2.com/display/EI650/Setting+Up+the+ESB+Samples#SettingU
 
 The XML configuration for this sample is as follows:
 
-``` html/xml
+```
     <definitions xmlns="http://ws.apache.org/ns/synapse">
         <sequence name="main">
             <in>
@@ -85,26 +59,18 @@ This configuration file `         synapse_sample_51.xml        ` is
 available in the `         <ESB_HOME>/repository/samples        `
 directory.
 
-!!! info
-
--   `          <property name="enableMTOM" value="true" scope="axis2"/>         `  
+!!! Info
+    -   `          <property name="enableMTOM" value="true" scope="axis2"/>         `  
     When this is enabled, all outgoing messages will be serialized and
     sent as MTOM optimized MIME messages.You can override this
     configuration per service in the `          services.xml         `
     configuration file.
-
-<!-- -->
-
--   `          <property name="enableSwA" value="true" scope="axis2"/>         `  
+    -   `          <property name="enableSwA" value="true" scope="axis2"/>         `  
     When this is enabled, incoming SwA messages are automatically
-    identified by axis2.  
-      
+    identified by axis2.   
     The above properties can also be defined in
     `           <ESB_HOME>/repository/conf/axis2/axis2.xml          `
     file.
-
-
-  
 
 **To build the sample**
 
@@ -174,8 +140,6 @@ If you use TCPMon and send the message through it, you will see that the
 requests and responses sent are MTOM optimized or sent as http
 attachments as follows:
 
-  
-
 **MTOM**
 
 ``` java
@@ -212,19 +176,13 @@ attachments as follows:
              <1.urn:uuid:78F94BC50B68D76FB41177413845003@apache.org>22800GIF89a... << binary content >>
 ```
 
-  
-
 When you analyze the log once the client is run specifying SwA
 optimization, you will see an output as follows:
-
-  
 
 ``` java
     [java] Sending file : ./../../repository/samples/resources/mtom/asf-logo.gif as SwA
     [java] Saved response to file : ./../../work/temp/sampleClient/swa-47549.gif
 ```
-
-  
 
 If you use TCPMon and send the message through it, you will see that the
 requests and responses sent are SwA optimized or sent as http

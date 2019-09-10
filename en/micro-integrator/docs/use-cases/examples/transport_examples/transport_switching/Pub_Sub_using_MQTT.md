@@ -1,32 +1,4 @@
-# Sample 272: Publishing and Subscribing using WSO2 ESB's MQ Telemetry Transport
-
-!!! warning
-
-Note that WSO2 EI is shipped with the following changes to what is
-mentioned in this documentation :
-
--   `           <PRODUCT_HOME>/          `
-    `           repository/samples/          ` directory that includes
-    all Integration profile samples is changed to
-    `           <EI_HOME>/          `
-    `           samples/service-bus/          ` .
-    `                     `
--   `           <PRODUCT_HOME>/          `
-    `           repository/samples/resources/          ` directory that
-    includes all artifacts related to the Integration profile samples is
-    changed to `           <EI_HOME>/          `
-    `           samples/service-bus/resources/          ` .
-
-TEST  
-
--   [Introduction](#Sample272:PublishingandSubscribingusingWSO2ESB'sMQTelemetryTransport-Introduction)
--   [Prerequisites](#Sample272:PublishingandSubscribingusingWSO2ESB'sMQTelemetryTransport-Prerequisites)
--   [Building the
-    sample](#Sample272:PublishingandSubscribingusingWSO2ESB'sMQTelemetryTransport-buildingBuildingthesample)
--   [Executing the
-    sample](#Sample272:PublishingandSubscribingusingWSO2ESB'sMQTelemetryTransport-Executingthesample)
--   [Analyzing the
-    output](#Sample272:PublishingandSubscribingusingWSO2ESB'sMQTelemetryTransport-Analyzingtheoutput)
+# Publishing and Subscribing using WSO2 ESB's MQ Telemetry Transport
 
 ### Introduction
 
@@ -56,7 +28,7 @@ Telemetry Transport (MQTT) sender publishes messages to a MQTT topic.
     file and change the MQTT sender and listener configuration to be as
     follows:
 
-    ``` xml
+    ```
     <transportReceiver class="org.apache.axis2.transport.mqtt.MqttListener" name="mqtt">
             <parameter locked="false" name="mqttConFactory">
                     <parameter locked="false" name="mqtt.server.host.name">localhost</parameter>
@@ -76,7 +48,7 @@ Telemetry Transport (MQTT) sender publishes messages to a MQTT topic.
     `           <ESB_HOME>/repository/conf/carbon.xml          ` file
     and set the offset to 1 as follows:
 
-    ``` xml
+    ```
     <Offset>1</Offset>
     ```
 
@@ -89,7 +61,7 @@ Telemetry Transport (MQTT) sender publishes messages to a MQTT topic.
     named *esb.test2* .
 5.  The XML configuration for this sample is as follows:
 
-    ``` xml
+    ```
     <definitions xmlns="http://ws.apache.org/ns/synapse">
         <proxy xmlns="http://ws.apache.org/ns/synapse" name="SampleProxy" transports="mqtt" startOnLoad="true" trace="disable">
             <description/>

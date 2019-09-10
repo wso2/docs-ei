@@ -1,28 +1,9 @@
-# Sample 259: Switch from FIX to HTTP
+# Switch from FIX to HTTP
 
-!!! warning
-
-Note that WSO2 EI is shipped with the following changes to what is
-mentioned in this documentation :
-
--   `           <PRODUCT_HOME>/          `
-    `           repository/samples/          ` directory that includes
-    all Integration profile samples is changed to
-    `           <EI_HOME>/          `
-    `           samples/service-bus/          ` .
-    `                     `
--   `           <PRODUCT_HOME>/          `
-    `           repository/samples/resources/          ` directory that
-    includes all artifacts related to the Integration profile samples is
-    changed to `           <EI_HOME>/          `
-    `           samples/service-bus/resources/          ` .
-
-TEST  
-
-**Objective** : Demonstrate the capability of switching form FIX to
+Demonstrate the capability of switching form FIX to
 HTTP.
 
-###### **Prerequisites**
+###### Prerequisites
 
 -   You will need the sample FIX blotter that come with Quickfix/J
     (Banzai). Configure the blotter to establish sessions with Synapse.
@@ -39,13 +20,8 @@ HTTP.
     points to the `           fix-synapse.cfg          ` file you
     created.
 
-    !!! info
-
-    Note
-
-    Synapse creates a new FIX session with Banzai at this point.
-
-    TEST  
+    !!! Note
+        Synapse creates a new FIX session with Banzai at this point.
 
 -   Send an order request from Banzai to Synapse. For example, Buy DELL
     1000 @ 100. User has to send a "Limit" Order because price is a
@@ -56,7 +32,7 @@ ESB will forward the order request to one-way
 `         SimpleStockQuoteService        ` . ESB uses a simple XSLT
 Mediator to transform the incoming FIX to a SOAP message.
 
-``` html/xml
+```
 <xsl:stylesheet version="2.0"
         xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
         xmlns:fn="http://www.w3.org/2005/02/xpath-functions">
@@ -76,7 +52,7 @@ Mediator to transform the incoming FIX to a SOAP message.
 To get an idea about the various transport parameters being used in this
 sample, see FIX Transport .
 
-``` html/xml
+``` 
 <definitions xmlns="http://ws.apache.org/ns/synapse">
     <localEntry key="xslt-key-req" src="file:repository/samples/resources/transform/transform_fix_to_http.xslt" />
     <proxy name="FIXProxy" transports="fix">

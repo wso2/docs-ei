@@ -1,32 +1,4 @@
-# Sample 253: Bridging from JMS to HTTP and Replying with a 202 Accepted Response
-
-!!! warning
-
-Note that WSO2 EI is shipped with the following changes to what is
-mentioned in this documentation :
-
--   `           <PRODUCT_HOME>/          `
-    `           repository/samples/          ` directory that includes
-    all Integration profile samples is changed to
-    `           <EI_HOME>/          `
-    `           samples/service-bus/          ` .
-    `                     `
--   `           <PRODUCT_HOME>/          `
-    `           repository/samples/resources/          ` directory that
-    includes all artifacts related to the Integration profile samples is
-    changed to `           <EI_HOME>/          `
-    `           samples/service-bus/resources/          ` .
-
-TEST  
-
--   [Introduction](#Sample253:BridgingfromJMStoHTTPandReplyingwitha202AcceptedResponse-Introduction)
--   [Prerequisites](#Sample253:BridgingfromJMStoHTTPandReplyingwitha202AcceptedResponse-Prerequisites)
--   [Building the
-    sample](#Sample253:BridgingfromJMStoHTTPandReplyingwitha202AcceptedResponse-Buildingthesample)
--   [Executing the
-    sample](#Sample253:BridgingfromJMStoHTTPandReplyingwitha202AcceptedResponse-Executingthesample)
--   [Analyzing the
-    output](#Sample253:BridgingfromJMStoHTTPandReplyingwitha202AcceptedResponse-Analyzingtheoutput)
+# Bridging from JMS to HTTP and Replying with a 202 Accepted Response
 
 ### Introduction
 
@@ -39,31 +11,19 @@ HTTP proxy.
 -   Configure WSO2 ESB's JMS transport with ActiveMQ and enable the JMS
     transport listener. For information on how to configure WSO2 ESB's
     JMS transport with ActiveMQ, see [Configure with
-    ActiveMQ](https://docs.wso2.com/display/EI650/Configure+with+ActiveMQ)
-    .
+    ActiveMQ](https://docs.wso2.com/display/EI650/Configure+with+ActiveMQ).
 
-    !!! note
-
-    Note
-
-    If you are using ActiveMQ version 5.8.0 or above, you need to copy
-    the
-    [hawtbuf-1.2.jar](http://repo1.maven.org/maven2/org/fusesource/hawtbuf/hawtbuf/1.2/hawtbuf-1.2.jar)
-    file from the `           <ActiveMQ>/lib          ` directory to the
-    `           <ESB_HOME>/repository/components/lib          `
-    directory.
-
-    TEST  
+    !!! Note
+        If you are using ActiveMQ version 5.8.0 or above, you need to copy the [hawtbuf-1.2.jar](http://repo1.maven.org/maven2/org/fusesource/hawtbuf/hawtbuf/1.2/hawtbuf-1.2.jar) file from the `           <ActiveMQ>/lib          ` directory to the `           <ESB_HOME>/repository/components/lib          ` directory.
 
 -   For a list of prerequisites, see [Prerequisites to Start the ESB
-    Samples](https://docs.wso2.com/display/EI650/Setting+Up+the+ESB+Samples#SettingUptheESBSamples-ESBSamplePrerequisites)
-    .
+    Samples](https://docs.wso2.com/display/EI650/Setting+Up+the+ESB+Samples#SettingUptheESBSamples-ESBSamplePrerequisites).
 
 ### Building the sample
 
 The XML configuration for this sample is as follows:
 
-``` html/xml
+```
 <definitions xmlns="http://ws.apache.org/ns/synapse">
     <proxy name="JMStoHTTPStockQuoteProxy" transports="jms">
         <target>
@@ -96,8 +56,7 @@ The XML configuration for this sample is as follows:
 </definitions>
 ```
 
-This configuration file `         synapse_sample_253.xml        ` is
-available in the `         <ESB_HOME>/repository/samples        `
+This configuration file `         synapse_sample_253.xml        ` is available in the `         <ESB_HOME>/repository/samples        `
 directory.
 
 **To build the sample**
@@ -106,13 +65,11 @@ directory.
     server, see [Starting the Axis2
     server](https://docs.wso2.com/display/EI650/Setting+Up+the+ESB+Samples#SettingUptheESBSamples-Axis2server)
     .
-
 2.  Deploy the back-end service **SimpleStockQuoteService** . For
     instructions on deploying sample back-end services, see [Deploying
     sample back-end
     services](https://docs.wso2.com/display/EI650/Setting+Up+the+ESB+Samples#SettingUptheESBSamples-Backend)
     .
-
     Now you have a running ESB instance and a back-end service deployed.
     In the next section, we will send a message to the back-end service
     through the ESB using a sample client.

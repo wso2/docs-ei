@@ -1,27 +1,9 @@
-# Sample 59: Weighted load balancing between 3 endpoints
+# Weighted load balancing between 3 endpoints
 
-!!! warning
-
-Note that WSO2 EI is shipped with the following changes to what is
-mentioned in this documentation :
-
--   `           <PRODUCT_HOME>/          `
-    `           repository/samples/          ` directory that includes
-    all Integration profile samples is changed to
-    `           <EI_HOME>/          `
-    `           samples/service-bus/          ` .
-    `                     `
--   `           <PRODUCT_HOME>/          `
-    `           repository/samples/resources/          ` directory that
-    includes all artifacts related to the Integration profile samples is
-    changed to `           <EI_HOME>/          `
-    `           samples/service-bus/resources/          ` .
-
-
-**Objective:** Demonstrate the weighted load balancing among a set of
+Demonstrate the weighted load balancing among a set of
 endpoints.
 
-``` html/xml
+``` 
     <definitions xmlns="http://ws.apache.org/ns/synapse">
         <sequence name="main" onError="errorHandler">
             <in>
@@ -121,16 +103,4 @@ that requests are processed by three servers as follows:
 
 As logs you see something similar to
 `         endpoint with weight 1 received 1 request and endpoint with weight 2 received 2 requests,        `
-etc. in a cycle
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
+etc. in a cycle.

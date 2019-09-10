@@ -1,31 +1,4 @@
-# Sample 14: Using Sequences and Endpoints as Local Registry Items
-
-!!! warning
-
-Note that WSO2 EI is shipped with the following changes to what is
-mentioned in this documentation :
-
--   `           <PRODUCT_HOME>/          `
-    `           repository/samples/          ` directory that includes
-    all Integration profile samples is changed to
-    `           <EI_HOME>/          `
-    `           samples/service-bus/          ` .
-    `                     `
--   `           <PRODUCT_HOME>/          `
-    `           repository/samples/resources/          ` directory that
-    includes all artifacts related to the Integration profile samples is
-    changed to `           <EI_HOME>/          `
-    `           samples/service-bus/resources/          ` .
-
-
--   [Introduction](#Sample14:UsingSequencesandEndpointsasLocalRegistryItems-Introduction)
--   [Prerequisites](#Sample14:UsingSequencesandEndpointsasLocalRegistryItems-Prerequisites)
--   [Building the
-    sample](#Sample14:UsingSequencesandEndpointsasLocalRegistryItems-Buildingthesample)
--   [Executing the
-    sample](#Sample14:UsingSequencesandEndpointsasLocalRegistryItems-Executingthesample)
--   [Analyzing the
-    output](#Sample14:UsingSequencesandEndpointsasLocalRegistryItems-Analyzingtheoutput)
+# Using Sequences and Endpoints as Local Registry Items
 
 ### Introduction
 
@@ -43,7 +16,7 @@ Samples](https://docs.wso2.com/display/EI650/Setting+Up+the+ESB+Samples#SettingU
 
 The XML configuration for this sample is as follows:
 
-``` html/xml
+``` 
     <definitions xmlns="http://ws.apache.org/ns/synapse"
                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                  xsi:schemaLocation="http://ws.apache.org/ns/synapse http://synapse.apache.org/ns/2010/04/configuration/synapse_config.xsd">
@@ -115,5 +88,3 @@ When you analyze the debug log output, you will see that the log
 statement for the fetched sequence of the local entry and the endpoint
 is fetched from the specified file at runtime and is cached in the
 system.
-
-  

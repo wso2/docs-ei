@@ -59,7 +59,7 @@ below:
 Following is a sample configuration that uses the VFS transport to
 handle large files:
 
-``` xml
+```
     <definitions xmlns="http://ws.apache.org/ns/synapse">
         <proxy name="StockQuoteProxy" transports="vfs">
             <parameter name="transport.vfs.FileURI">smb://host/test/in</parameter>        

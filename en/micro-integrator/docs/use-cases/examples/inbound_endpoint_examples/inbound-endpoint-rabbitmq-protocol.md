@@ -1,31 +1,4 @@
-# Sample 907: Inbound Endpoint RabbitMQ Protocol Sample
-
-!!! warning
-
-Note that WSO2 EI is shipped with the following changes to what is
-mentioned in this documentation :
-
--   `           <PRODUCT_HOME>/          `
-    `           repository/samples/          ` directory that includes
-    all Integration profile samples is changed to
-    `           <EI_HOME>/          `
-    `           samples/service-bus/          ` .
-    `                     `
--   `           <PRODUCT_HOME>/          `
-    `           repository/samples/resources/          ` directory that
-    includes all artifacts related to the Integration profile samples is
-    changed to `           <EI_HOME>/          `
-    `           samples/service-bus/resources/          ` .
-
-
--   [Introduction](#Sample907:InboundEndpointRabbitMQProtocolSample-Introduction)
--   [Prerequisites](#Sample907:InboundEndpointRabbitMQProtocolSample-Prerequisites)
--   [Building the
-    sample](#Sample907:InboundEndpointRabbitMQProtocolSample-Buildingthesample)
--   [Executing the
-    sample](#Sample907:InboundEndpointRabbitMQProtocolSample-Executingthesample)
--   [Analyzing the
-    output](#Sample907:InboundEndpointRabbitMQProtocolSample-Analyzingtheoutput)
+# Inbound Endpoint RabbitMQ Protocol Sample
 
 ### Introduction
 
@@ -43,7 +16,7 @@ HTTP can be done using the inbound RabbitMQ endpoint.
 
 The XML configuration for this sample is as follows:
 
-``` html/xml
+```
     <?xml version="1.0" encoding="UTF-8"?>
     <definitions xmlns="http://ws.apache.org/ns/synapse">
         <taskManager provider="org.wso2.carbon.mediation.ntask.NTaskTaskManager"/>
@@ -124,13 +97,9 @@ directory.
 
 You will see the following Message content:
 
-``` html/xml
+``` 
     <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"><soapenv:Body><m:placeOrder xmlns:m="http://services.samples"><m:order><m:price>100</m:price><m:quantity>20</m:quantity><m:symbol>RMQ</m:symbol></m:order></m:placeOrder></soapenv:Body></soapenv:Envelope>
 ```
 
 The RabbitMQ inbound endpoint gets the messages from the RabbitMQ broker
 and logs the messages in the ESB.
-
-  
-
-  

@@ -1,57 +1,30 @@
 # Sample 262: CBR of FIX Messages
 
-!!! warning
+Demonstrate the capability of CBR FIX messages.
 
-Note that WSO2 EI is shipped with the following changes to what is
-mentioned in this documentation :
-
--   `           <PRODUCT_HOME>/          `
-    `           repository/samples/          ` directory that includes
-    all Integration profile samples is changed to
-    `           <EI_HOME>/          `
-    `           samples/service-bus/          ` .
-    `                     `
--   `           <PRODUCT_HOME>/          `
-    `           repository/samples/resources/          ` directory that
-    includes all artifacts related to the Integration profile samples is
-    changed to `           <EI_HOME>/          `
-    `           samples/service-bus/resources/          ` .
-
-TEST  
-
-**Objective** : Demonstrate the capability of CBR FIX messages.
-
-###### **Prerequisites**
+## Prerequisites
 
 -   You will need the two sample FIX applications that come with
     Quickfix/J (Banzai and Executor). Configure the two applications to
     establish sessions with Synapse.
 -   Add the following lines to `          banzai.cfg         ` .
+    ``` java
+    DataDictionary=~/etc/spec/FIX40-synapse.xml
+    ```
 
-``` java
-DataDictionary=~/etc/spec/FIX40-synapse.xml
-```
-
-!!! info
-
-Note
-
-`         FIX40-synapse.xml        ` can be found at \<
-`         EI_HOME>/samples/service-bus/resources/fix        ` . This is
-a custom FIX data dictionary file that has added tag 150,151 to the
-execution messages (35=8) of FIX4.0. Make sure the
-`         DataDictionary        ` property of the
-`         banzai.cfg        ` points to this data dictionary file.
-
-TEST  
-
+    !!! Note
+        `         FIX40-synapse.xml        ` can be found at \<
+        `         EI_HOME>/samples/service-bus/resources/fix        ` . This is a custom FIX data dictionary file that has added tag 150,151 to the execution messages (35=8) of FIX4.0. Make sure the
+        `         DataDictionary        ` property of the
+        `         banzai.cfg        ` points to this data dictionary file.
+ 
 -   Add the following lines to `          executor.cfg         ` .
 
-``` java
-[session]
-BeginString=FIX.4.1
-SocketAcceptPort=19877
-```
+    ``` java
+    [session]
+    BeginString=FIX.4.1
+    SocketAcceptPort=19877
+    ```
 
 -   Start Banzai and Executor using the custom config files.
 -   Enable FIX transport in the Synapse `          axis2.xml         ` .
@@ -64,13 +37,8 @@ SocketAcceptPort=19877
     `          transport.fix.InitiatorConfigURL         ` points to the
     `          synapse-sender.cfg         ` file you created.
 
-!!! info
-
-Note
-
-Synapse creates a new FIX session with Banzai at this point.
-
-TEST  
+!!! Note
+    Synapse creates a new FIX session with Banzai at this point.  
 
 -   Send an order request from Banzai to Synapse. For example, Buy GOOG
     1000 @ MKT, Buy MSFT 3000 @ MKT, Buy SUNW 500 @ 100.20.
@@ -81,7 +49,7 @@ TEST
 -   Synapse will not forward the orders with other symbols to any
     endpoint (default case has kept blank in the configuration).
 
-``` html/xml
+```
 <definitions xmlns="http://ws.apache.org/ns/synapse">
     <sequence name="CBR_SEQ">
         <in>

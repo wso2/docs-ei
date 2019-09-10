@@ -1,56 +1,31 @@
-# Sample 265: Accessing a Windows Share Using the VFS Transport
-
-!!! warning
-
-Note that WSO2 EI is shipped with the following changes to what is
-mentioned in this documentation :
-
--   `           <PRODUCT_HOME>/          `
-    `           repository/samples/          ` directory that includes
-    all Integration profile samples is changed to
-    `           <EI_HOME>/          `
-    `           samples/service-bus/          ` .
-    `                     `
--   `           <PRODUCT_HOME>/          `
-    `           repository/samples/resources/          ` directory that
-    includes all artifacts related to the Integration profile samples is
-    changed to `           <EI_HOME>/          `
-    `           samples/service-bus/resources/          ` .
-
-TEST  
-
--   [Introduction](#Sample265:AccessingaWindowsShareUsingtheVFSTransport-Introduction)
--   [Prerequisites](#Sample265:AccessingaWindowsShareUsingtheVFSTransport-Prerequisites)
--   [Building the
-    sample](#Sample265:AccessingaWindowsShareUsingtheVFSTransport-Buildingthesample)
--   [Executing the
-    sample](#Sample265:AccessingaWindowsShareUsingtheVFSTransport-Executingthesample)
--   [Analyzing the
-    output](#Sample265:AccessingaWindowsShareUsingtheVFSTransport-Analyzingtheoutput)
+# Using the File System as Transport Medium (VFS)
 
 ### Introduction
 
-This sample demonstrates how to use the [VFS
-transport](https://docs.wso2.com/display/EI650/VFS+Transport) to access
-a windows share.
+The ESB can access the local file system using the [VFS
+transport](https://docs.wso2.com/display/EI650/VFS+Transport) sender and
+receiver. This sample demonstrates the VFS transport in action, using
+the file system as a transport medium.
 
 ### Prerequisites
 
--   Create a directory named **test** on a windows machine and create
-    three sub directories named **in** , **out** and **original** within
-    the test directory.
--   Grant permission to the network users to read from and write to the
-    **test** directory and sub directories.
--   Open the ESB\_HOME/repository/samples/synapse\_sample\_265.xml
-    file in a text editor and change the
+-   Create 3 new directories (folders) named **in** , **out** and
+    **original** in a suitable location in a test directory (e.g.,
+    /home/user/test) in the local file system. Then, open the
+    `          repository/sample/synapse_sample_254.xml         ` file
+    in a text editor and change the
     `          transport.vfs.FileURI         ` ,
     `          transport.vfs.MoveAfterProcess         ` ,
     `          transport.vfs.MoveAfterFailure         ` parameter values
     to the **in** , **original** and **original** directory locations
-    respectively. You have to also change the \<outSequence\> endpoint
-    address uri to the **out** directory location. Make sure that the
-    prefix `          vfs:         ` in the endpoint address uri is not
-    removed or changed.
+    respectively. You need to set both
+    `          transport.vfs.MoveAfterProcess         ` and
+    `          transport.vfs.MoveAfterFailure         ` parameter
+    values to point to the **original** directory location.Change the
+    endpoint in the `          <outSequence>         ` to point to the
+    **out** directory location. Make sure that the prefix
+    `          vfs:         ` in the endpoint URL is not removed or
+    changed.
 -   For a list of general prerequisites, see [Prerequisites to Start the
     ESB
     Samples](https://docs.wso2.com/display/EI650/Setting+Up+the+ESB+Samples#SettingUptheESBSamples-ESBSamplePrerequisites)
@@ -61,29 +36,28 @@ a windows share.
 The XML configuration for this sample is as follows:
 
 ``` html/xml
-<!-- Using the vfs transport to access a windows share -->
 <definitions xmlns="http://ws.apache.org/ns/synapse">
-    <proxy xmlns="http://ws.apache.org/ns/synapse" name="StockQuoteProxy" transports="vfs">
-        <parameter name="transport.vfs.FileURI">smb://host/test/in</parameter> <!--CHANGE-->
+    <proxy name="StockQuoteProxy" transports="vfs">
+        <parameter name="transport.vfs.FileURI">file:///home/user/test/in</parameter>                          <!--CHANGE-->
         <parameter name="transport.vfs.ContentType">text/xml</parameter>
         <parameter name="transport.vfs.FileNamePattern">.*\.xml</parameter>
         <parameter name="transport.PollInterval">15</parameter>
-        <parameter name="transport.vfs.MoveAfterProcess">smb://host/test/original</parameter> <!--CHANGE-->
-        <parameter name="transport.vfs.MoveAfterFailure">smb://host/test/original</parameter> <!--CHANGE-->
+        <parameter name="transport.vfs.MoveAfterProcess">file:///home/user/test/original</parameter>           <!--CHANGE-->
+        <parameter name="transport.vfs.MoveAfterFailure">file:///home/user/test/original</parameter>           <!--CHANGE-->
         <parameter name="transport.vfs.ActionAfterProcess">MOVE</parameter>
         <parameter name="transport.vfs.ActionAfterFailure">MOVE</parameter>
-
         <target>
             <endpoint>
                 <address format="soap12" uri="http://localhost:9000/services/SimpleStockQuoteService"/>
             </endpoint>
             <outSequence>
                 <property name="transport.vfs.ReplyFileName"
-                          expression="fn:concat(fn:substring-after(get-property('MessageID'), 'urn:uuid:'), '.xml')" scope="transport"/>
+                          expression="fn:concat(fn:substring-after(get-property('MessageID'), 'urn:uuid:'), '.xml')"
+                          scope="transport"/>
                 <property action="set" name="OUT_ONLY" value="true"/>
                 <send>
                     <endpoint>
-                        <address uri="vfs:smb://host/test/out"/> <!--CHANGE-->
+                        <address uri="vfs:file:///home/user/test/out"/>    <!--CHANGE-->   
                     </endpoint>
                 </send>
             </outSequence>
@@ -93,7 +67,7 @@ The XML configuration for this sample is as follows:
 </definitions>
 ```
 
-This configuration file `         synapse_sample_265.xml        ` is
+This configuration file `         synapse_sample_254.xml        ` is
 available in the `         <ESB_HOME>/repository/samples        `
 directory and the values you have to change as specified in the
 prerequisites section are marked with `         <!--CHANGE-->        ` .
