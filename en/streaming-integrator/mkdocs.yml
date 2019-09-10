@@ -70,7 +70,7 @@ nav:
     - 'Setting up Databases':
       - 'Configuring Datasources': 'configuring-Datasources.md'
       - 'Setting up Physical Databases': 'setting-up-physical-databases.md'
-  - 'Developer Experience':
+  - 'Develop':
     - 'Streaming Integrator Tooling':
       - 'Streaming Integrator Tooling Overview': 'develop/streaming-integrator-studio-overview.md'
       - 'Working with the Design View': 'develop/working-with-the-Design-View.md'
@@ -115,7 +115,7 @@ nav:
     - 'User Management': 'admin/user-management.md'
     - 'Protecting Sensitive Data via the Secure Vault': 'admin/protecting-sensitive-data-via-the-secure-vault.md'
     - 'Adding Third Party Non OSGi Library': 'admin/adding-Third-Party-Non-OSGi-Libraries.md'
-  - 'Reference Guide':
+  - 'References':
     - 'Streaming Integration REST API Guide': 'ref/si-rest-api-guide.md'
     - 'Performance Analysis Results': 'ref/performance-analysis-results.md'
     - 'Configuring Default Ports': 'ref/configuring-Default-Ports.md'
