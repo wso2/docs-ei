@@ -104,7 +104,6 @@ nav:
       - 'Summarizing and Aggregating Data in Real Time': 'examples/summarizing-and-aggregating-data.md'
 
   - 'Administration':
-    - 'Configuring the Streaming Integration Profile': 'admin/configure-si-profile.md'
     - 'Working with Siddhi Connectors':
       - 'Downloading and Installing Siddhi Connectors': 'admin/downloading-and-Installing-Siddhi-Extensions.md'
       - 'Writing Custom Siddhi Extensions': 'admin/writing-Custom-Siddhi-Extensions.md'
