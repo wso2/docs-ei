@@ -9,21 +9,18 @@ This document describes all the configuration parameters that are used in WSO2 M
 # This is an example .toml file.
 
 [server]
-pattern="value"                         
-enable_port_forward=true
+hostname="localhost"
+enable_mtom=false
+userAgent = "WSO2 ${product.key} ${product.version}"
 
-[key_mgr_node]
-endpoints="value"
-
-[gateway]
-gateway_environments=["dev","test"]
-
-[[database]]
-pool_options.maxActiv=5
+[keystore.tls]
+file_name="wso2carbon.jks"
+type="JKS"
+password="wso2carbon"
+alias="wso2carbon"
+key_password="wso2carbon"
 
 ```
-
-
 
 
 ## Deployment
