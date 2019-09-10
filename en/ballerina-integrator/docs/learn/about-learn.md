@@ -1,4 +1,4 @@
-# About Learn
+# Overview
 
 There are two types of learning materials. 
 
@@ -7,13 +7,13 @@ There are two types of learning materials.
 
 ## Guides
 
-Guides showcase how to build different types of integrations using a complete development lifecycle including IDE configuration, packages, dependencies, coding, unit testing, deployment and observability.
+Guides showcase how to build different types of integrations using a complete development lifecycle including IDE configuration, packages, dependencies, coding, unit testing, deployment, and observability.
 
 ### Messaging
 
 <table>
 <tr>
-    <td><b>Asynchronous Messaging</b></br>
+    <td><b><a href="/guides/messaging//asynchronous-messaging/asynchronous-messaging/">Asynchronous Messaging</a></b></br>
     Send a message asynchronously to a service</td>
     <td><b>Message Broadcasting</b></br>
     Broadcast a message to several services</td>
