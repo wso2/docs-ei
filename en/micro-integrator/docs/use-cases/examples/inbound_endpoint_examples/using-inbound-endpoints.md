@@ -10,7 +10,7 @@ specifying a parameter value as a registry entry is that the same
 inbound endpoint configuration can be used in different environments
 simply by changing the registry entry value.
 
-``` html/xml
+```
     <inboundEndpoint xmlns="http://ws.apache.org/ns/synapse" name="file" sequence="request" onError="fault" protocol="file" suspend="false">
        <parameters>
           ...............

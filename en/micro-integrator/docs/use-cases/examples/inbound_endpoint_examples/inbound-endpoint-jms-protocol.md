@@ -1,31 +1,4 @@
-# Sample 901: Inbound Endpoint JMS Protocol Sample
-
-!!! warning
-
-Note that WSO2 EI is shipped with the following changes to what is
-mentioned in this documentation :
-
--   `           <PRODUCT_HOME>/          `
-    `           repository/samples/          ` directory that includes
-    all Integration profile samples is changed to
-    `           <EI_HOME>/          `
-    `           samples/service-bus/          ` .
-    `                     `
--   `           <PRODUCT_HOME>/          `
-    `           repository/samples/resources/          ` directory that
-    includes all artifacts related to the Integration profile samples is
-    changed to `           <EI_HOME>/          `
-    `           samples/service-bus/resources/          ` .
-
-
--   [Introduction](#Sample901:InboundEndpointJMSProtocolSample-Introduction)
--   [Prerequisites](#Sample901:InboundEndpointJMSProtocolSample-Prerequisites)
--   [Building the
-    sample](#Sample901:InboundEndpointJMSProtocolSample-Buildingthesample)
--   [Executing the
-    sample](#Sample901:InboundEndpointJMSProtocolSample-Executingthesample)
--   [Analyzing the
-    output](#Sample901:InboundEndpointJMSProtocolSample-Analyzingtheoutput)
+# Inbound Endpoint JMS Protocol Sample
 
 ### Introduction
 
@@ -61,7 +34,7 @@ can be done using the inbound JMS endpoint.
 
 The XML configuration for this sample is as follows:
 
-``` html/xml
+```
      <definitions xmlns="http://ws.apache.org/ns/synapse">
        <registry provider="org.wso2.carbon.mediation.registry.WSO2Registry">
           <parameter name="cachableDuration">15000</parameter>

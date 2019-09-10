@@ -1,41 +1,16 @@
-# Sample 257: Proxy Services with the FIX Transport
+# Proxy Services with the FIX Transport
 
-!!! warning
-
-Note that WSO2 EI is shipped with the following changes to what is
-mentioned in this documentation :
-
--   `           <PRODUCT_HOME>/          `
-    `           repository/samples/          ` directory that includes
-    all Integration profile samples is changed to
-    `           <EI_HOME>/          `
-    `           samples/service-bus/          ` .
-    `                     `
--   `           <PRODUCT_HOME>/          `
-    `           repository/samples/resources/          ` directory that
-    includes all artifacts related to the Integration profile samples is
-    changed to `           <EI_HOME>/          `
-    `           samples/service-bus/resources/          ` .
-
-TEST  
-
-**Objective** : Demonstrate the usage of the FIX (Financial Information
+Demonstrate the usage of the FIX (Financial Information
 eXchange) transport with Proxy Services .
 
-###### **Prerequisites**
+###### Prerequisites
 
 -   You will need the two sample FIX applications that come with
     Quickfix/J (Banzai and Executor). Configure the two applications to
     establish sessions with the ESB.
 
-    !!! info
-
-    For information on setting up Quickfix/J, see [Configuring WSO2
-    Enterprise Integrator to use the FIX
-    transport](https://docs.wso2.com/display/EI650/Setting+Up+the+ESB+Samples#SettingUptheESBSamples-ConfiguringWSO2EnterpriseIntegratortousetheFIXtransport)
-    .
-
-    TEST  
+    !!! Info
+        For information on setting up Quickfix/J, see [Configuring WSO2 Enterprise Integrator to use the FIX transport](https://docs.wso2.com/display/EI650/Setting+Up+the+ESB+Samples#SettingUptheESBSamples-ConfiguringWSO2EnterpriseIntegratortousetheFIXtransport).
 
 -   Start Banzai and Executor.
 -   Enable FIX transport in the Synapse `          axis2.xml         ` .
@@ -50,13 +25,8 @@ eXchange) transport with Proxy Services .
     points to the `           synapse-sender.cfg          ` file you
     created.
 
-    !!! info
-
-    Note
-
-    The ESB creates a new FIX session with Banzai at this point.
-
-    TEST  
+    !!! Note
+        The ESB creates a new FIX session with Banzai at this point.
 
 -   Send an order request from Banzai to the ESB.
 
@@ -64,7 +34,7 @@ WSO2 ESB will create a session with an Executor and forward the order
 request. The responses coming from the Executor will be sent back to
 Banzai.
 
-``` html/xml
+```
 <definitions xmlns="http://ws.apache.org/ns/synapse">
     <proxy name="FIXProxy" transports="fix">
         <parameter name="transport.fix.AcceptorConfigURL">file:/home/synapse_user/fix-config/fix-synapse.cfg</parameter>

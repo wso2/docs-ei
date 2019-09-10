@@ -117,7 +117,7 @@ The final Inbound Endpoint configuration with the re-delivery delay and number o
 
 **Inbound Endpoint configuration**
 
-``` xml
+```
 <inboundEndpoint name="MARSInboundEP" onError="MARSEPErrorSeq"
             protocol="jms" sequence="ProcessOrderSeq" suspend="false">
     <parameters>
@@ -140,7 +140,7 @@ mediator in the error sequence  as follows.
 
 **Script Mediator configuration**
 
-``` xml
+```
 <script language="js">java.lang.Thread.sleep(10000);</script> 
 ```
 
@@ -148,7 +148,7 @@ Then, the sample sequence is as follows.
 
 **Sample Sequence configuration**
 
-``` xml
+```
     <sequence name="MARSEPErrorSeq" xmlns="http://ws.apache.org/ns/synapse">
         <log level="full">
             <property expression="get-property('TxBID')" name="TxBID" xmlns:ns="http://org.apache.synapse/xsd"/>
@@ -180,7 +180,7 @@ re-delivery intervals based on the message error condition dynamically.
 
 **Switch Mediator configuration**
 
-``` xml
+```
     <switch source="">
        <case regex="string">
           <script language="js"><![CDATA[java.lang.Thread.sleep(10000);]]></script>

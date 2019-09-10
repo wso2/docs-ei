@@ -1,31 +1,4 @@
-# Sample 55: Session Affinity Load Balancing between Failover Endpoints
-
-!!! warning
-
-Note that WSO2 EI is shipped with the following changes to what is
-mentioned in this documentation :
-
--   `           <PRODUCT_HOME>/          `
-    `           repository/samples/          ` directory that includes
-    all Integration profile samples is changed to
-    `           <EI_HOME>/          `
-    `           samples/service-bus/          ` .
-    `                     `
--   `           <PRODUCT_HOME>/          `
-    `           repository/samples/resources/          ` directory that
-    includes all artifacts related to the Integration profile samples is
-    changed to `           <EI_HOME>/          `
-    `           samples/service-bus/resources/          ` .
-
-
--   [Introduction](#Sample55:SessionAffinityLoadBalancingbetweenFailoverEndpoints-Introduction)
--   [Prerequisites](#Sample55:SessionAffinityLoadBalancingbetweenFailoverEndpoints-Prerequisites)
--   [Building the
-    sample](#Sample55:SessionAffinityLoadBalancingbetweenFailoverEndpoints-Buildingthesample)
--   [Executing the
-    sample](#Sample55:SessionAffinityLoadBalancingbetweenFailoverEndpoints-Executingthesample)
--   [Analyzing the
-    output](#Sample55:SessionAffinityLoadBalancingbetweenFailoverEndpoints-Analyzingtheoutput)
+# Session Affinity Load Balancing between Failover Endpoints
 
 ### Introduction
 
@@ -52,7 +25,7 @@ Samples](https://docs.wso2.com/display/EI650/Setting+Up+the+ESB+Samples#SettingU
 
 The XML configuration for this sample is as follows:
 
-``` html/xml
+``` 
     <definitions xmlns="http://ws.apache.org/ns/synapse">
         <sequence name="main" onError="errorHandler">
             <in>
@@ -197,11 +170,4 @@ By analysing the above output, y ou will see that all requests for
 session 0 are directed to MyServer2 after the request 534. Therefore,
 you can come to the conclusion that MyServer1 was stopped after request
 534.
-
-  
-
-  
-
-  
-
   

@@ -1,28 +1,9 @@
-# Sample 260: Switch from FIX to AMQP
+# Switch from FIX to AMQP
 
-!!! warning
-
-Note that WSO2 EI is shipped with the following changes to what is
-mentioned in this documentation :
-
--   `           <PRODUCT_HOME>/          `
-    `           repository/samples/          ` directory that includes
-    all Integration profile samples is changed to
-    `           <EI_HOME>/          `
-    `           samples/service-bus/          ` .
-    `                     `
--   `           <PRODUCT_HOME>/          `
-    `           repository/samples/resources/          ` directory that
-    includes all artifacts related to the Integration profile samples is
-    changed to `           <EI_HOME>/          `
-    `           samples/service-bus/resources/          ` .
-
-TEST  
-
-**Objective** : Demonstrate the capability of switching between FIX and
+Demonstrate the capability of switching between FIX and
 AMQP protocols.
 
-###### **Prerequisites**
+###### Prerequisites
 
 -   You will need the sample FIX blotter that comes with Quickfix/J
     (Banzai). Configure the blotter to establish sessions with Synapse.
@@ -47,18 +28,13 @@ AMQP protocols.
     points to the `           fix-synapse.cfg          ` file you
     created.
 
-    !!! info
-
-    Note
-
-    Synapse creates a new FIX session with Banzai at this point.
-
-    TEST  
+    !!! Note
+        Synapse creates a new FIX session with Banzai at this point.
 
 -   Send an order request from Banzai to Synapse. For example, Buy DELL
     1000 @ MKT.
 
-``` html/xml
+``` 
 <definitions xmlns="http://ws.apache.org/ns/synapse">
     <proxy name="FIXProxy" transports="fix">
         <target>
@@ -252,15 +228,8 @@ qpid-client-1.0-incubating-M2.jar
     slf4j-log4j12-1.4.0.jar **
 ```
 
-!!! info
-
-Note
-
-To configure FIX (Quickfix/J 1.3) with AMQP (QPid-1.0-M2), copy the
-"sl4j" - libraries comes with QPid and ignore the "sl4j" - libraries
-that come with Quickfix/J.
-
-TEST  
+!!! Note
+    To configure FIX (Quickfix/J 1.3) with AMQP (QPid-1.0-M2), copy the "sl4j" - libraries comes with QPid and ignore the "sl4j" - libraries that come with Quickfix/J.
 
 To enable the AMQP over JMS transport, you need to uncomment the JMS
 transport listener configuration. To enable AMQP over JMS for ESB, the

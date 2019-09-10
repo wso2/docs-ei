@@ -16,7 +16,7 @@ your own message store implementation.
 
 In this example, the client sends requests to a **proxy service**, which stores the messages in a **JMS message store**. The **message forwarding processor** then picks the stored messages from the JMS message store and invokes the backend service.
 
-![](attachments/119130313/119130315.png){width="560"}  
+![](attachments/119130313/119130315.png)  
 
 ### Synapse configurations
 
@@ -110,7 +110,7 @@ SimpleStockQuoteService :: Accepted order for : 7482 stocks of IBM at $ 169.2720
 
 In the sample, when the message forwarding processor receives a response from the back-end service, it forwards it to a **replySequence** to process the response message.
 
-![](attachments/119130313/119130314.png){width="580"}  
+![](attachments/119130313/119130314.png)
 
 ### Synapse configurations
 

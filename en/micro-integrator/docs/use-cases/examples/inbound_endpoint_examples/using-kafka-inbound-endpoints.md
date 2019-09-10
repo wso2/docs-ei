@@ -94,33 +94,6 @@ Following is a sample low-level Kafka configuration that can be used to consume
 
 ##Inbound Endpoint Kafka Protocol Sample
 
-!!! warning
-
-Note that WSO2 EI is shipped with the following changes to what is
-mentioned in this documentation :
-
--   `           <PRODUCT_HOME>/          `
-    `           repository/samples/          ` directory that includes
-    all Integration profile samples is changed to
-    `           <EI_HOME>/          `
-    `           samples/service-bus/          ` .
-    `                     `
--   `           <PRODUCT_HOME>/          `
-    `           repository/samples/resources/          ` directory that
-    includes all artifacts related to the Integration profile samples is
-    changed to `           <EI_HOME>/          `
-    `           samples/service-bus/resources/          ` .
-
-
--   [Introduction](#Sample904:InboundEndpointKafkaProtocolSample-Introduction)
--   [Prerequisites](#Sample904:InboundEndpointKafkaProtocolSample-Prerequisites)
--   [Building the
-    sample](#Sample904:InboundEndpointKafkaProtocolSample-Buildingthesample)
--   [Executing the
-    sample](#Sample904:InboundEndpointKafkaProtocolSample-Executingthesample)
--   [Analyzing the
-    output](#Sample904:InboundEndpointKafkaProtocolSample-Analyzingtheoutput)
-
 ### Introduction
 
 This sample demonstrates how one way message bridging from Kafka to HTTP
@@ -142,17 +115,13 @@ can be done using the inbound kafka endpoint.
     -   `            zookeeper-3.3.4.jar           `
     -   `            metrics-core-2.2.0.jar           `
 
-        !!! info
-    
-        Note
-    
+    !!! Note
         -   If you are using `            kafka_2.x.x-0.8.2.0           ` or
             later, you also need to add the
             `            kafka-clients-0.8.x.x.jar           ` file to the
             `            <EI_HOME>/lib           ` directory.
         -   If you are using a newer version of ZooKeeper, follow the steps
             below:
-    
             1.  Create a directory named `               conf              `
                 inside the
                 `               <EI_HOME>/repository              `
@@ -193,7 +162,7 @@ can be done using the inbound kafka endpoint.
 
 The XML configuration for this sample is as follows:
 
-``` html/xml
+```
     <definitions xmlns="http://ws.apache.org/ns/synapse">
     <inboundEndpoint xmlns="http://ws.apache.org/ns/synapse"
      name="KAFKAListenerEP"
@@ -262,7 +231,7 @@ directory.
   
 `         You will see the following Message        ` content:
 
-``` html/xml
+```
     <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:wsa="http://www.w3.org/2005/08/addressing"><soapenv:Body><m0:getQuote xmlns:m0="http://services.samples">
     <m0:request><m0:symbol>IBM</m0:symbol></m0:request></m0:getQuote></soapenv:Body></soapenv:Envelope>
 ```

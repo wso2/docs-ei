@@ -42,7 +42,7 @@ the server.
 The below is the complete source configuration of the Scheduled Task
     (i.e., the `             InjectXMLTask.xml            ` file).
 
-    ``` xml
+    ```
         <?xml version="1.0" encoding="UTF-8"?>
         <task class="com.example.post.scheduleTask1.ESBTask" group="synapse.simple.quartz" name="PrintParameterTask" xmlns="http://ws.apache.org/ns/synapse">
             <trigger interval="5" />

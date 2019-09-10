@@ -72,7 +72,7 @@ The sample proxy below splits the message by a character. It receives a message 
 The sample proxy below splits the input message by appending a special
 character to the end of the message.
 
-``` xml
+``` 
     <proxy name="TCPProxy" 
               transports="tcp" 
               startOnLoad="true" 
@@ -121,7 +121,7 @@ character to the end of the message.
 The sample proxy below splits the input message by a sequence of
 characters.
 
-``` xml
+```
     <proxy name="TCPProxy" 
               transports="tcp" 
               startOnLoad="true" 

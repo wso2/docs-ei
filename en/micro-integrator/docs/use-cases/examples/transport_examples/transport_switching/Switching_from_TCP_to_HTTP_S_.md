@@ -1,25 +1,6 @@
-# Sample 266 - Switching from TCP to HTTP/S
+# Switching from TCP to HTTP/S
 
-!!! warning
-
-Note that WSO2 EI is shipped with the following changes to what is
-mentioned in this documentation :
-
--   `           <PRODUCT_HOME>/          `
-    `           repository/samples/          ` directory that includes
-    all Integration profile samples is changed to
-    `           <EI_HOME>/          `
-    `           samples/service-bus/          ` .
-    `                     `
--   `           <PRODUCT_HOME>/          `
-    `           repository/samples/resources/          ` directory that
-    includes all artifacts related to the Integration profile samples is
-    changed to `           <EI_HOME>/          `
-    `           samples/service-bus/resources/          ` .
-
-TEST  
-
-**Objective:** Demonstrate receiving SOAP messages over TCP and
+Demonstrate receiving SOAP messages over TCP and
 forwarding them over HTTP
 
 ``` html/xml

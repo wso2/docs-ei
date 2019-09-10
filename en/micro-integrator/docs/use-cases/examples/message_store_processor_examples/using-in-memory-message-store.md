@@ -1,48 +1,21 @@
-# Sample 700: Introduction to Message Store
+# Introduction to Message Store
 
-!!! warning
-
-Note that WSO2 EI is shipped with the following changes to what is
-mentioned in this documentation :
-
--   `           <PRODUCT_HOME>/          `
-    `           repository/samples/          ` directory that includes
-    all Integration profile samples is changed to
-    `           <EI_HOME>/          `
-    `           samples/service-bus/          ` .
-    `                     `
--   `           <PRODUCT_HOME>/          `
-    `           repository/samples/resources/          ` directory that
-    includes all artifacts related to the Integration profile samples is
-    changed to `           <EI_HOME>/          `
-    `           samples/service-bus/resources/          ` .
-
-
--   [Introduction](#Sample700:IntroductiontoMessageStore-Introduction)
--   [Prerequisites](#Sample700:IntroductiontoMessageStore-Prerequisites)
--   [Building the
-    sample](#Sample700:IntroductiontoMessageStore-Buildingthesample)
--   [Executing the
-    sample](#Sample700:IntroductiontoMessageStore-Executingthesample)
--   [Analyzing the
-    output](#Sample700:IntroductiontoMessageStore-Analyzingtheoutput)
-
-### Introduction
+## Introduction
 
 This sample demonstrates the basic functionality of a [message
 store](https://docs.wso2.com/display/EI650/Message+Stores) .
 
-### Prerequisites
+## Prerequisites
 
 For a list of prerequisites, see [Prerequisites to Start the ESB
 Samples](https://docs.wso2.com/display/EI650/Setting+Up+the+ESB+Samples#SettingUptheESBSamples-ESBSamplePrerequisites)
 .
 
-### Building the sample
+## Building the sample
 
 The XML configuration for this sample is as follows:
 
-``` html/xml
+```
     <!-- Introduction to the Synapse Message Store -->
     <definitions xmlns="http://ws.apache.org/ns/synapse">
         <sequence name="fault">
@@ -98,7 +71,7 @@ directory.
     services](https://docs.wso2.com/display/EI650/Setting+Up+the+ESB+Samples#SettingUptheESBSamples-Backend)
     .
 
-### Executing the sample
+## Executing the sample
 
 The sample client used here is the **Stock Quote Client** , which can
 operate in several modes. For further details on this sample client and
@@ -115,7 +88,7 @@ Client](https://docs.wso2.com/display/EI650/Using+the+Sample+Clients#UsingtheSam
             ant stockquote -Daddurl=http://localhost:9000/services/SimpleStockQuoteService -Dtrpurl=http://localhost:8280/ -Dmode=placeorder
     ```
 
-### Analyzing the output
+## Analyzing the output
 
 When you execute the client you will see that the message is dispatched
 to the main sequence.

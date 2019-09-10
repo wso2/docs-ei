@@ -1,31 +1,4 @@
-# Sample 54: Session Affinity Load Balancing between Three Endpoints
-
-!!! warning
-
-Note that WSO2 EI is shipped with the following changes to what is
-mentioned in this documentation :
-
--   `           <PRODUCT_HOME>/          `
-    `           repository/samples/          ` directory that includes
-    all Integration profile samples is changed to
-    `           <EI_HOME>/          `
-    `           samples/service-bus/          ` .
-    `                     `
--   `           <PRODUCT_HOME>/          `
-    `           repository/samples/resources/          ` directory that
-    includes all artifacts related to the Integration profile samples is
-    changed to `           <EI_HOME>/          `
-    `           samples/service-bus/resources/          ` .
-
-
--   [Introduction](#Sample54:SessionAffinityLoadBalancingbetweenThreeEndpoints-Introduction)
--   [Prerequisites](#Sample54:SessionAffinityLoadBalancingbetweenThreeEndpoints-Prerequisites)
--   [Building the
-    sample](#Sample54:SessionAffinityLoadBalancingbetweenThreeEndpoints-Buildingthesample)
--   [Executing the
-    sample](#Sample54:SessionAffinityLoadBalancingbetweenThreeEndpoints-Executingthesample)
--   [Analyzing the
-    output](#Sample54:SessionAffinityLoadBalancingbetweenThreeEndpoints-Analyzingtheoutput)
+# Session Affinity Load Balancing between Three Endpoints
 
 ### Introduction
 
@@ -50,7 +23,7 @@ Samples](https://docs.wso2.com/display/EI650/Setting+Up+the+ESB+Samples#SettingU
 
 The XML configuration for this sample is as follows:
 
-``` html/xml
+``` 
     <definitions xmlns="http://ws.apache.org/ns/synapse">
         <sequence name="main" onError="errorHandler">
             <in>
@@ -161,5 +134,3 @@ session number 0 is bound to MyServer1. Similarly, session 1 s always
 directed to MyServer3 and session 2 is always directed to MyServer2.
 This means that session 1 and 2 are bound to MyServer3 and MyServer2
 respectively.
-
-  

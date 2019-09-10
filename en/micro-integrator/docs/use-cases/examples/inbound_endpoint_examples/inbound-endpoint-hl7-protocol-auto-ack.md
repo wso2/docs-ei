@@ -1,31 +1,4 @@
-# Sample 905: Inbound HL7 with Automatic Acknowledgement
-
-!!! warning
-
-Note that WSO2 EI is shipped with the following changes to what is
-mentioned in this documentation :
-
--   `           <PRODUCT_HOME>/          `
-    `           repository/samples/          ` directory that includes
-    all Integration profile samples is changed to
-    `           <EI_HOME>/          `
-    `           samples/service-bus/          ` .
-    `                     `
--   `           <PRODUCT_HOME>/          `
-    `           repository/samples/resources/          ` directory that
-    includes all artifacts related to the Integration profile samples is
-    changed to `           <EI_HOME>/          `
-    `           samples/service-bus/resources/          ` .
-
-
--   [Introduction](#Sample905:InboundHL7withAutomaticAcknowledgement-Introduction)
--   [Prerequisites](#Sample905:InboundHL7withAutomaticAcknowledgement-Prerequisites)
--   [Building the
-    sample](#Sample905:InboundHL7withAutomaticAcknowledgement-Buildingthesample)
--   [Executing the
-    sample](#Sample905:InboundHL7withAutomaticAcknowledgement-Executingthesample)
--   [Analyzing the
-    output](#Sample905:InboundHL7withAutomaticAcknowledgement-Analyzingtheoutput)
+# Inbound HL7 with Automatic Acknowledgement
 
 ### Introduction
 
@@ -45,7 +18,7 @@ The XML configuration for this sample is as follows:
 
 **Inbound HL7 Automatic Acknowledgement**
 
-``` xml
+```
     <definitions xmlns="http://ws.apache.org/ns/synapse">
     <inboundEndpoint xmlns="http://ws.apache.org/ns/synapse"
                      name="Sample1"

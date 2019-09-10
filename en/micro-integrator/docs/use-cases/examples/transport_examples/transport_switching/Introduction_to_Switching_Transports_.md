@@ -1,32 +1,4 @@
-# Sample 250: Introduction to Switching Transports
-
-!!! warning
-
-Note that WSO2 EI is shipped with the following changes to what is
-mentioned in this documentation :
-
--   `           <PRODUCT_HOME>/          `
-    `           repository/samples/          ` directory that includes
-    all Integration profile samples is changed to
-    `           <EI_HOME>/          `
-    `           samples/service-bus/          ` .
-    `                     `
--   `           <PRODUCT_HOME>/          `
-    `           repository/samples/resources/          ` directory that
-    includes all artifacts related to the Integration profile samples is
-    changed to `           <EI_HOME>/          `
-    `           samples/service-bus/resources/          ` .
-
-TEST  
-
--   [Introduction](#Sample250:IntroductiontoSwitchingTransports-Introduction)
--   [Prerequisites](#Sample250:IntroductiontoSwitchingTransports-Prerequisites)
--   [Building the
-    sample](#Sample250:IntroductiontoSwitchingTransports-Buildingthesample)
--   [Executing the
-    sample](#Sample250:IntroductiontoSwitchingTransports-Executingthesample)
--   [Analyzing the
-    output](#Sample250:IntroductiontoSwitchingTransports-Analyzingtheoutput)
+# Introduction to Switching Transports
 
 ### Introduction
 
@@ -46,28 +18,17 @@ the client through a JMS temporary queue.
     ActiveMQ](https://docs.wso2.com/display/EI650/Configure+with+ActiveMQ)
     .
 
-    !!! note
-
-    Note
-
-    If you are using ActiveMQ version 5.8.0 or above, you need to copy
-    the
-    [hawtbuf-1.2.jar](http://repo1.maven.org/maven2/org/fusesource/hawtbuf/hawtbuf/1.2/hawtbuf-1.2.jar)
-    file from the `           <ActiveMQ>/lib          ` directory to the
-    `           <ESB_HOME>/repository/components/lib          `
-    directory.
-
-    TEST  
+    !!! Note
+        If you are using ActiveMQ version 5.8.0 or above, you need to copy the [hawtbuf-1.2.jar](http://repo1.maven.org/maven2/org/fusesource/hawtbuf/hawtbuf/1.2/hawtbuf-1.2.jar) file from the `           <ActiveMQ>/lib          ` directory to the `           <ESB_HOME>/repository/components/lib          `directory.
 
 -   For a list of prerequisites, see [Prerequisites to Start the ESB
-    Samples](https://docs.wso2.com/display/EI650/Setting+Up+the+ESB+Samples#SettingUptheESBSamples-ESBSamplePrerequisites)
-    .
+    Samples](https://docs.wso2.com/display/EI650/Setting+Up+the+ESB+Samples#SettingUptheESBSamples-ESBSamplePrerequisites).
 
 ### Building the sample
 
 The XML configuration for this sample is as follows:
 
-``` html/xml
+```
 <definitions xmlns="http://ws.apache.org/ns/synapse">
     <proxy name="StockQuoteProxy" transports="jms">
         <target>
@@ -149,11 +110,8 @@ has accepted an order:
 Accepted order for : 16517 stocks of MSFT at $ 169.14622538721846
 ```
 
-!!! info
-
-Note
-
-It is possible to instruct a JMS proxy service to listen to an already
+!!! Note
+    It is possible to instruct a JMS proxy service to listen to an already
 existing destination without creating a new one. To do this, use the
 property elements on the proxy service definition to specify the
 destination and connection factory.
@@ -161,5 +119,3 @@ destination and connection factory.
 ``` java
 <property name="transport.jms.Destination" value="dynamicTopics/something.TestTopic"/>
 ```
-
-TEST  

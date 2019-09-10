@@ -19,17 +19,6 @@ ESB Profile supports the following Synapse subprotocols by default:
 Now let's look at a sample scenario that demonstrates WebSocket to
 WebSocket integration using subprotocols to support content handling.
 
-This scenario includes the following sections:
-
--   [Introduction](#WebSockettoWebSocketIntegrationusingSubprotocols-Introduction)
--   [Prerequisites](#WebSockettoWebSocketIntegrationusingSubprotocols-Prerequisites)
--   [Configuring the sample
-    scenario](#WebSockettoWebSocketIntegrationusingSubprotocols-Configuringthesamplescenario)
--   [Executing the sample
-    scenario](#WebSockettoWebSocketIntegrationusingSubprotocols-Executingthesamplescenario)
--   [Analyzing the
-    output](#WebSockettoWebSocketIntegrationusingSubprotocols-Analyzingtheoutput)
-
 ### Introduction
 
 Let's say you need to send messages between two WebSocket based systems
@@ -55,15 +44,8 @@ The following should take place in this scenario:
 -   The ESB Profile of WSO2 EI sends the transformed message in the form
     of WebSocket frames.
 
-!!! tip
-
-If necessary, you can use the [data
-mapper](https://docs.wso2.com/display/ESB500/Data+Mapper+Mediator) to
-perform data transformation inside the ESB message flow. For example,
-you can perform JSON to JSON transformation. To do this, you have to
-explicitly apply the required data mapping logic for all WebSocket
-frames.
-
+!!! Tip
+    If necessary, you can use the [data mapper](https://docs.wso2.com/display/ESB500/Data+Mapper+Mediator) to perform data transformation inside the ESB message flow. For example, you can perform JSON to JSON transformation. To do this, you have to explicitly apply the required data mapping logic for all WebSocket frames.
 
 ### Prerequisites
 
@@ -85,7 +67,7 @@ frames.
 
 -   Create the sequence for client to back-end mediation as follows:
 
-    ``` xml
+    ```
             <sequence name="dispatchSeq" xmlns="http://ws.apache.org/ns/synapse">
                 <property name="OUT_ONLY" value="true"/>
                 <property name="websocket.accept.contenType" scope="axis2" value="application/json"/>
@@ -100,20 +82,16 @@ frames.
             </sequence>
     ```
 
-        !!! tip
-    
+    !!! Tip
         Specify the `           websocket.accept.contenType          `
         property to inform the WebSocket sender to build the frames with the
         specified content type, and to include the same subprotocol header
         that was used to determine the content of the WebSocket frames. In
         this case it is JSON.
     
-
-<!-- -->
-
 -   Create the sequence for back-end to client mediation as follows:
 
-    ``` xml
+    ```
         <sequence name="outDispatchSeq" trace="enable" xmlns="http://ws.apache.org/ns/synapse">
             <log level="full"/>
             <respond/>
@@ -123,7 +101,7 @@ frames.
 -   Configure the WebSocket inbound endpoint in the ESB Profile of WSO2
     EI as follows to use the created sequences and listen on port 9091:
 
-    ``` xml
+    ```
             <inboundEndpoint name="test" onError="fault" protocol="ws"
                 sequence="dispatchSeq" suspend="false">
                 <parameters>

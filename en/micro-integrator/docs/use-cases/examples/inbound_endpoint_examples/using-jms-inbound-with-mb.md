@@ -16,7 +16,7 @@ the Broker profile of WSO2 Enterprise Integrator (WSO2 EI).
 3.  Configure the JMS inbound listener. Following is a sample JMS
     inbound listener configuration:
 
-    ``` html/xml
+    ``` 
         <inboundEndpoint xmlns="http://ws.apache.org/ns/synapse"
                          name="jms_inbound"
                          sequence="request"

@@ -1,28 +1,9 @@
-# Sample 268: Proxy Services with the Local Transport
+# Proxy Services with the Local Transport
 
-!!! warning
-
-Note that WSO2 EI is shipped with the following changes to what is
-mentioned in this documentation :
-
--   `           <PRODUCT_HOME>/          `
-    `           repository/samples/          ` directory that includes
-    all Integration profile samples is changed to
-    `           <EI_HOME>/          `
-    `           samples/service-bus/          ` .
-    `                     `
--   `           <PRODUCT_HOME>/          `
-    `           repository/samples/resources/          ` directory that
-    includes all artifacts related to the Integration profile samples is
-    changed to `           <EI_HOME>/          `
-    `           samples/service-bus/resources/          ` .
-
-TEST  
-
-**Objective:** Proxy services with the [Local
+Proxy services with the [Local
 transport](https://docs.wso2.com/display/EI650/Local+Transport) .
 
-``` html/xml
+``` 
 <definitions xmlns="http://ws.apache.org/ns/synapse">
     <proxy xmlns="http://ws.apache.org/ns/synapse" name="LocalTransportProxy"
            transports="https http" startOnLoad="true" trace="disable">

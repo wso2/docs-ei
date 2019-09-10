@@ -1,31 +1,4 @@
-# Sample 56: Using a WSDL Endpoint as the Target Endpoint
-
-!!! warning
-
-Note that WSO2 EI is shipped with the following changes to what is
-mentioned in this documentation :
-
--   `           <PRODUCT_HOME>/          `
-    `           repository/samples/          ` directory that includes
-    all Integration profile samples is changed to
-    `           <EI_HOME>/          `
-    `           samples/service-bus/          ` .
-    `                     `
--   `           <PRODUCT_HOME>/          `
-    `           repository/samples/resources/          ` directory that
-    includes all artifacts related to the Integration profile samples is
-    changed to `           <EI_HOME>/          `
-    `           samples/service-bus/resources/          ` .
-
-
--   [Introduction](#Sample56:UsingaWSDLEndpointastheTargetEndpoint-Introduction)
--   [Prerequisites](#Sample56:UsingaWSDLEndpointastheTargetEndpoint-Prerequisites)
--   [Building the
-    sample](#Sample56:UsingaWSDLEndpointastheTargetEndpoint-Buildingthesample)
--   [Executing the
-    sample](#Sample56:UsingaWSDLEndpointastheTargetEndpoint-Executingthesample)
--   [Analyzing the
-    output](#Sample56:UsingaWSDLEndpointastheTargetEndpoint-Analyzingtheoutput)
+# Using a WSDL Endpoint as the Target Endpoint
 
 ### Introduction
 
@@ -45,7 +18,7 @@ Samples](https://docs.wso2.com/display/EI650/Setting+Up+the+ESB+Samples#SettingU
 
 The XML configuration for this sample is as follows:
 
-``` html/xml
+```
     <definitions xmlns="http://ws.apache.org/ns/synapse">
         <sequence name="main">
             <in>
@@ -118,7 +91,7 @@ in the configuration. An excerpt taken from
 `         sample_proxy_1.wsdl        ` , which is the WSDL document used
 in `         synapse_sample_56.xml        ` is given below.
 
-``` html/xml
+```
     <wsdl:service name="SimpleStockQuoteService">
        <wsdl:port name="SimpleStockQuoteServiceHttpSoap11Endpoint" binding="ns:SimpleStockQuoteServiceSoap11Binding">
                 <soap:address location="http://localhost:9000/services/SimpleStockQuoteService.SimpleStockQuoteServiceHttpSoap11Endpoint"/>
