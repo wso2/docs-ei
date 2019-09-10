@@ -3,9 +3,9 @@
 When you create a proxy service, a default WSDL is automatically
 generated. You can access this WSDL by suffixing the service URL
 with ?wsdl. See the example given below, where the proxy service name is
-'sample\_service' and IP is localhost:
+'sample_service' and IP is localhost:
 
-[http://localhost:8280/services/sample\_service?wsdl](http://localhost:8280/services/Logging?wsdl)
+[http://localhost:8280/services/sample_service?wsdl](http://localhost:8280/services/Logging?wsdl)
 
 However, this default WSDL only shows the `         mediate        `
 operation. This can be a limitation because your proxy service may be
@@ -18,24 +18,12 @@ you want the proxy service to inject the permission level as it
 processes the message, you could publish a WSDL that includes just the
 name and department without the permission level parameter.
 
-See the following topics try a custom WSDL for a proxy service:
-
--   [Prerequisites](#PublishingaCustomWSDL-Prerequisites)
--   [Adding a custom WSDL to the proxy
-    service](#PublishingaCustomWSDL-AddingacustomWSDLtotheproxyservice)
--   [Testing the custom
-    WSDL](#PublishingaCustomWSDL-TestingthecustomWSDL)
-
 ### Prerequisites
 
 Let's set up a sample proxy service in WSO2 Integration Studio.
 
--   Install WSO2 Integration Studio. For instructions, see [Installing
-    WSO2 Integration
-    Studio](https://docs.wso2.com/display/EI650/Installing+WSO2+Integration+Studio)
-    .
--   Click [this
-    link](https://docs.wso2.com/download/attachments/85371060/StockQuoteProxy.xml?version=2&modificationDate=1526364863000&api=v2)
+-   Install WSO2 Integration Studio. For instructions, see [Installing WSO2 Integration Studio](https://docs.wso2.com/display/EI650/Installing+WSO2+Integration+Studio).
+-   Click [this link](https://docs.wso2.com/download/attachments/85371060/StockQuoteProxy.xml?version=2&modificationDate=1526364863000&api=v2)
     to download the sample proxy service ( **StockQuoteProxy.xml** ).
 
 ### Adding a custom WSDL to the proxy service
@@ -45,7 +33,7 @@ Follow the steps given below to add a custom WSDL to your proxy service.
 1.  Open the proxy service from your tooling project.
 2.  In the **Properties** tab, the WSDL type is set to **NONE** by
     default.  
-    ![](attachments/119130987/119130990.png){width="750"}
+    ![](attachments/119130987/119130990.png)
 3.  To publish a custom WSDL for this proxy service, select one of the
     WSDL types.
 
@@ -87,13 +75,12 @@ Follow the steps given below to add a custom WSDL to your proxy service.
     can find registry key corresponding to the location from the
     registry.
 
-    ![](attachments/119130987/119130989.png){width="800" height="510"}
-
+    ![](attachments/119130987/119130989.png)
     In the following example, the WSDL imports a metadata schema from
     the metadata.xsd file. Therefore, the location is metadata.xsd.
 
     ``` java
-        <xsd:import namespace=http://www.wso2.org/test/10 schemaLocation="metadata.xsd" />
+    <xsd:import namespace=http://www.wso2.org/test/10 schemaLocation="metadata.xsd" />
     ```
 
     In the following example, the WSDL is retrieved from the registry
@@ -103,15 +90,14 @@ Follow the steps given below to add a custom WSDL to your proxy service.
     . This dependent WSDL is retrieved from the registry using the
     `           standard.wsdl          ` registry key.
 
-    ``` java
-            <publishWSDL key="my.wsdl">
-               <resource location="http://www.standards.org/standard.wsdl" key="standard.wsdl"/>
-             </publishWSDL>
+    ``` 
+    <publishWSDL key="my.wsdl">
+        <resource location="http://www.standards.org/standard.wsdl" key="standard.wsdl"/>
+    </publishWSDL>
     ```
 
-5.  Go to the **Service Parameters** section in the **Properties**
-    tab.  
-    ![](attachments/119130987/119130988.png?effects=drop-shadow){width="700"}
+5.  Go to the **Service Parameters** section in the **Properties** tab.  
+    ![](attachments/119130987/119130988.png?effects=drop-shadow)
 
     Following are additional service parameters you can use to configure
     the service WSDL.

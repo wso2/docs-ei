@@ -1,6 +1,6 @@
 # Endpoint Properties
 
-See the topics given below for details.
+See the topics given below for the list of properties that can be configured for an Endpoint artifact.
 
 <!--
 
@@ -111,7 +111,7 @@ See the topics given below for details.
 
 ## Basic Properties
 
-Listed below are the basic properties that used to define an endpoint aritfact.
+Listed below are the basic properties that used to [define an endpoint aritfact](../../develop/creating-artifacts/creating-endpoints.md).
 
 <table>
     <tr>

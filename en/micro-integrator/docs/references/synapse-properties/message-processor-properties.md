@@ -1,10 +1,10 @@
 # Message Processor Properties
 
-See the topics given below for details.
+See the topics given below for the list of properties that can be configured for a Message Processor artifact.
 
 ## Required Properties
 
-Following are the required parameters you can set when adding a Scheduled Message Forwarding Processor:
+Following are the required parameters you can set when [adding a Scheduled Message Forwarding Processor](../../develop/creating-artifacts/creating-a-message-processor.md):
 
 <table>
 	<tr>
@@ -39,7 +39,7 @@ Following are the required parameters you can set when adding a Scheduled Messag
 
 ## Message Sampling Processor (Optional Properties)
 
-Following are the additional parameters you can set when adding a message sampling processor:
+Following are the additional parameters you can set when [adding a message sampling processor](../../develop/creating-artifacts/creating-a-message-processor.md):
 
 <table>
    <thead>
@@ -75,7 +75,7 @@ Following are the additional parameters you can set when adding a message sampli
 
 ## Scheduled Failover Message Forwarding Processor (Optional Properties)
 
-Following are the additional parameters you can set when adding a Scheduled Failover Message Forwarding Processor:
+Following are the additional parameters you can set when [adding a Scheduled Failover Message Forwarding Processor](../../develop/creating-artifacts/creating-a-message-processor.md):
 
 <table>
    <thead>
@@ -168,8 +168,7 @@ Following are the additional parameters you can set when adding a Scheduled Fail
 </table>
 
 ## Scheduled Message Forwarding Processor (Optional Properties)
-
-Following are the optional parameters you can set when adding a Scheduled Message Forwarding Processor:
+Following are the optional parameters you can set when [adding a Scheduled Message Forwarding Processor](../../develop/creating-artifacts/creating-a-message-processor.md):
 
 <table>
    <thead>
