@@ -77,7 +77,7 @@ You need to create two Endpoint artifacts to represent the Dev and QA environmen
 ## Creating the Proxy Service
 
 1.  Create an ESB Config project named **HelloWorldServices**.
-2.  Create a proxy service in the HelloWorldServices project with the following configurations
+2.  Create a proxy service in the HelloWorldServices project with the following configurations:
 
     | Parameter             | Value                                                                                              |
     |--------------------|----------------------------------------------------------------------------------------------------|
@@ -87,7 +87,7 @@ You need to create two Endpoint artifacts to represent the Dev and QA environmen
 
 The projects setup is now complete. 
 
-## Creating the composite application project
+## Creating the composite application projects
 
 Create two composite application projects to package the QA artifacts and Dev artifacts separately. The proxy service and the Dev endpoint must go in its own CApp, and the proxy service and the QA endpoint should be in another CApp as shown below.
 
@@ -121,97 +121,52 @@ Your CApp projects are now ready to be deployed to the Micro Integrator.
 
 ## Deploying the Dev composite application
 
-If you have an instance of WSO2 Micro Integrator setup as your Dev environment, deploy the <b>HelloWorldDevCApp</b> CApp in the server. See the instructions on deploying artifacts in the Micro Integrator.
+If you have an instance of WSO2 Micro Integrator setup as your Dev environment, deploy the <b>HelloWorldDevCApp</b> CApp in the server.
 
 ## Testing the Dev environment
 
-1.  Log in to the management console using admin as the username and
-    password.
-2.  Click **Services \> List** , and click on the **Try This Service**
-    link for the **HelloWorldProxy** , which you just deployed using the
-    CApp.  
-    ![](/assets/img/apply-security/119130841/119130851.png)
-3.  Use the following request to invoke the service:
+Use the following request to invoke the service:
 
-    ``` 
-    <body>
+``` 
+<body>
         <p:echoInt xmlns:p="http://echo.services.core.carbon.wso2.org">
             <!--0 to 1 occurrence-->
             <in>50</in>
         </p:echoInt>
-    </body>
-    ```
+</body>
+```
 
-    ![](/assets/img/apply-security/119130841/119130850.png)
-
-4.  Click **Send** . You view the response from the **HelloWorldProxy**
-    hosted in WSO2 EI as seen in the image below.  
-    ![](/assets/img/apply-security/119130841/119130849.png)
+You view the response from the **HelloWorldProxy**.
 
 ## Changing the endpoint reference
 
-Follow the steps below to change the endpoint reference of the
-**HelloWorldProxy** you deployed, to point it to the QA environment,
-without changing its configuration.
+Follow the steps below to change the endpoint reference of the **HelloWorldProxy** you deployed, to point it to the QA environment, without changing its configuration.
 
-1.  Set a port offset by changing the following configuration in the
-    `           <EI_HOME>/conf/carbon.xml          ` file.
+1.  Set a port offset by changing the following configuration in the `ei.toml         ` file.
 
-    ``` xml
-             <Ports>
-                    <Offset>1</Offset>
-            ........
-        
-        
-            </Ports>
+    ```toml
+    offset=2
     ```
-
-2.  Undeploy the **HelloWorldDevCApp,** deploy the **HelloWorldQACApp**
-    and re-start the ESB Profile of WSO2 EI. For instructions, see
-    [Running the ESB profile via WSO2 Integration
-    Studio](https://docs.wso2.com/display/EI650/Running+the+Product#RunningtheProduct-RunningtheESBprofileviaTooling)
-    .  
-    ![](/assets/img/apply-security/119130841/119130846.png)
+2.  Undeploy the **HelloWorldDevCApp,** deploy the **HelloWorldQACApp** and re-start the Micro Integrator.
 
 ## Testing the QA environment
 
-1.  Log in to the Management Console using admin as the username and
-    password.
-2.  Click **Services \> List** , and click on the **Try This Service**
-    link for the **HelloWorldProxy** , which you just deployed using the
-    CApp.
+Use the following request to invoke the service:
 
-        !!! info
-    
-        If you click on the **HelloWorldProxy** in the **Deployed Services**
-        list, you view that the port offset has been applied and the
-        endpoint URL has been changed to point to the QA environment.
-    
-    ![](/assets/img/apply-security/119130841/119130851.png)
+``` 
+<body>
+    <p:echoInt xmlns:p="http://echo.services.core.carbon.wso2.org">
+        <!--0 to 1 occurrence-->
+        <in>100</in>
+    </p:echoInt>
+</body>
+```
 
-3.  Use the following request to invoke the service:
-
-    ``` xml
-        <body>
-          <p:echoInt xmlns:p="http://echo.services.core.carbon.wso2.org">
-             <!--0 to 1 occurrence-->
-             <in>100</in>
-          </p:echoInt>
-        </body>
-    ```
-
-    ![](/assets/img/apply-security/119130841/119130847.png)
-
-4.  Click **Send** . You view the response from the **HelloWorldProxy**
-    hosted in WSO2 EI as seen in the image below.
-
-    ![](/assets/img/apply-security/119130841/119130845.png)
+You view the response from the **HelloWorldProxy** as seen in the image below.
 
 ## Changing an endpoint reference
 
-Once the endpoint has been created, you can update it using any one of
-the options listed below. The options below describe how you can update
-the endpoint value for QA environment.
+Once the endpoint has been created, you can update it using any one of the options listed below. The options below describe how you can update the endpoint value for QA environment.
 
 ### Option 1: Using WSO2 Integration Studio
 
@@ -220,40 +175,34 @@ the endpoint value for QA environment.
     URL.
 2.  Save all changes.
 
-Your CApp can be deployed to your QA EI server. For details on how to
-deploy the CApp project, see [Running the ESB profile via WSO2
-Integration
-Studio](https://docs.wso2.com/display/EI650/Running+the+Product#RunningtheProduct-RunningtheESBprofileviaWSO2IntegrationStudio)
-.
+Your CApp can be deployed to your QA Micro Integrator.
 
 ### Option 2: From Command Line
 
 1.  Open a Terminal window and navigate to
-    `          <ESB_TOOLING_WORKSPACE>/HelloWorldQAResources/src/main/synapse_configendpoints/HelloWorldEP.xml         `
+    `          <WORKSPACE>/HelloWorldQAResources/src/main/synapse_configendpoints/HelloWorldEP.xml         `
     file.
 2.  Edit the HelloWorldEP.xml (e.g. using gedit or vi) under
     HelloWorldResources/QA and replace the URL with the QA one.
 
-    ``` xml
-            ...
-            <address uri="http://192.168.1.110:9773/services/HelloService/"/>
-            ...
+    ``` 
+    ...
+    <address uri="http://192.168.1.110:9773/services/HelloService/"/>
+    ...
     ```
 
-3.  Navigate to
-    `           <ESB_TOOLING_WORKSPACE>/HelloWorldQAResources          `
-    and build the ESB Config project using the following command:
+3.  Navigate to `<Workspace>/HelloWorldQAResources          ` and build the ESB Config project using the following command:
 
-    ``` xml
-            mvn clean install
+    ``` 
+    mvn clean install
     ```
 
 4.  Navigate to
     `           <ESB_TOOLING_WORKSPACE>/HelloWorldQACApp          ` and
     build the CApp project using the following command:
 
-    ``` xml
-            mvn clean install
+    ```
+    mvn clean install
     ```
 
 5.  The resulting CAR file can be deployed directly to the QA ESB
@@ -268,8 +217,7 @@ Studio](https://docs.wso2.com/display/EI650/Running+the+Product#RunningtheProduc
 
 ### Option 3: Using a Script
 
-Alternatively you can have a CAR file with dummy values for the endpoint
-URLs and use a customized shell script or batch script. The script
+Alternatively you can have a CAR file with dummy values for the endpoint URLs and use a customized shell script or batch script. The script
 created would need to do the following:
 
 1.  Extract the CAR file.
@@ -277,7 +225,3 @@ created would need to do the following:
 3.  Re-create the CAR file with new values.
 
 The resulting CAR file can be deployed directly to the QA ESB server.
-For details, see [Running the ESB profile via WSO2 Integration
-Studio](https://docs.wso2.com/display/EI650/Running+the+Product#RunningtheProduct-RunningtheESBprofileviaWSO2IntegrationStudio)
-.
-
