@@ -345,7 +345,6 @@ var homeUrlArr = [
     window.location.host,
     window.location.pathname.split('/')[1],
     window.location.pathname.split('/')[2],
-    'home-page'
 ]
 
 if (document.getElementsByClassName('md-tabs__item home_icon').length>0) {
