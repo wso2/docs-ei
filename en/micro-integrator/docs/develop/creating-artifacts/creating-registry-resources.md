@@ -1,11 +1,11 @@
 # Creating Registry Resources
 
-Initially, your registry resources project will contain only a `         pom        ` file. You can create any number of registry resources inside that project. To create a registry resource:
+Initially, your registry resources project will contain only a `pom` file. You can create any number of registry resources inside that project. To create a registry resource:
 
 1.  If you have already created an [Registry Resource project](../../creating-projects/#registry-resource-project), right-click the project in the left navigation panel, click **New** , and then click **Registry Resource**. This will open the **New Registry Resource** window.
-2.  Select the **From existing template** option as shown below and click **Next**.
+2.  Select the **From existing template** option and click **Next**.
 
-#### From existing template
+## From existing template
 
 Use the **From existing template** option if you want to select a template from which to create a registry resource.
 
@@ -18,7 +18,7 @@ Use the **From existing template** option if you want to select a template from 
 7.  Now you will see the `          WSDL         ` file generated with
     the specified name and opened in the embedded WSDL editor.
 
-#### Import from file system
+## Import from file system
 
 Use the **Import from file system** option to import a file or a folder
 containing registry resources. This helps you import a resource and
@@ -41,7 +41,7 @@ instance.
     Alternatively, you can create a new Registry Resource project.
 6.  Click **Finish** .  
     
-#### Import Registry dump file from file system
+## Import Registry dump file from file system
 
 Use this option to browse to a Registry Dump file which you can use to
 sync a registry.
@@ -56,7 +56,7 @@ sync a registry.
     Alternatively, you can create a new Registry Resource project.
 5.  Click **Finish** .  
 
-#### Check-out from registry
+## Check-out from registry
 
 1.  Click **Check-out from registry** and click **Next**.
 2.  Specify the path and artifact name.
@@ -67,7 +67,7 @@ sync a registry.
     Alternatively, you can create a new Registry Resource project.
 5.  Click **Finish** .
 
-### Editing a registry resource
+## Editing a registry resource
 
 You may need to change the details you entered for a registry resource, for example, the registry path. You can edit such information using the Registry Resource Editor. To open the Registry Resource Editor, right-click on the Registry Resources project and click **Registry Resource Editor**.
 

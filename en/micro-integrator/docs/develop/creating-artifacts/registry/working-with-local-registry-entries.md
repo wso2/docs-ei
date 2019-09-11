@@ -1,20 +1,13 @@
-# Working with Local Registry Entries
+# Creating Local Registry Entries
 
 The **local registry** acts as a memory registry where you can store
 static content as a key-value pair, where the value could be a static
 entry such as a text string, XML code, or a URL. This is useful for the
 type of static content often found in XSLT files, WSDL files, URLs, etc.
-Local entries can be referenced from mediators in the ESB
-profile mediation flows and resolved at runtime.
-
-When you want to work with local registry entries, you can
-use the plug-in (for WSO2 Integration Studio) to create a new local
-entry as well as to import an existing local entry, or you
-can add, edit, and delete local registry entries via the Management
-Console.
+Local entries can be referenced from mediators in the Micro Integrator mediation flows and resolved at runtime.
 
 The `         <localEntry>        ` element is used to declare registry
-entries that are local to the the ESB profile instance as shown below:
+entries that are local to the Micro Integrator instance as shown below:
 
 ```
 <localEntry key="string" src="url">text | xml</localEntry>
@@ -49,40 +42,23 @@ registry.
 
 ## Creating a new local entry
 
-Follow these steps to create a new local entry. Alternatively, you can [import an existing localentry](#WorkingwithLocalRegistryEntries-import) .
+Follow these steps to create a new local entry.
 
-1.  Open **WSO2 Integration Studio** and click **ESB Project → Create
-    New ** in the **Getting Started** tab as shown below.
-
-    ![](/assets/img/registry/119131678/119133615.png)
-
-2.  Enter a project name and click **Finish**.
-3.  Right-click the project in the navigator and go to **New → Local Entry** to open the **New Local Entry** dialog.
+1.  If you have already created an [ESB Config project](../../creating-projects/#esb-config-project), right-click the project in the navigator and go to **New → Local Entry** to open the **New Local Entry** dialog.
 4.  Select **Create a New Local Entry** and click **Next**.
-5.  Type a unique name for the local entry, specify one of the following types of local entries, and then fill in the advanced configuration as described below:  
-    -   In-Line Text Entry: Type the text you want to store
-    -   In-Line XML Entry: Type the XML code you want to store
-    -   Source URL Entry: Type or browse to the URL you want to store
+5.  Type a unique name for the local entry, specify one of the following types of local entries and specify the details
+    -   **In-Line Text Entry**: Type the text you want to store
+    -   **In-Line XML Entry**: Type the XML code you want to store
+    -   **Source URL Entry**: Type or browse to the URL you want to store
 6.  Do one of the following:  
-    -   To save the local entry in an existing EI Config project in your
+    -   To save the local entry in an existing ESB Config project in your
         workspace, click **Browse** and select that project.
-    -   To save the local entry in a new EI Config project, click
+    -   To save the local entry in a new ESB Config project, click
         **Create new Project** and create the new project.
 7.  Click **Finish** . The local entry is created in the local-entries
-    folder under the EI Config project you specified, and the local
+    folder under the ESB config project you specified, and the local
     entry appears in the editor. Click its icon in the editor to view
     its properties.
-
-## Importing a local entry
-
-Follow these steps to import an existing local entry from an XML file (such as a Synapse configuration file) into an EI Config project. Alternatively, you can [create a new local entry](https://docs.wso2.com/display/ESB500/Creating+ESB+Artifacts#CreatingESBArtifacts-Creatinganewlocalentry).
-
-1.  Right-click the project in the navigator and go to **New → Local Entry** to open the **New Local Entry** dialog.
-2.  Select **Import Local Entry** and click **Next** .
-3.  Specify the local entry file by typing its full path name or clicking **Browse** and navigating to the file.
-4.  In the **Save Local Entry In** field, specify an existing EI Config project in your workspace where you want to save the local entry, or click **Create new Project** to create a new EI Config project and save the local entry there.
-5.  In the **Advanced Configuration** section, select the local entries you want to import.
-6.  Click **Finish** . The local entries you selected are created in the `          local-entries         ` folder under the EI Config project you specified, and the first local entry appears in the editor.
 
 ## Using a local entry
 
@@ -92,7 +68,7 @@ XSLT code, you can add an XSLT mediator to the workflow and then
 reference the local entry as follows:
 
 1.  Click the XSLT mediator to view its properties, click the **XSLT
-    Static Schema Key** property, and then click the browse \[...\]
+    Static Schema Key** property, and then click the browse [...]
     button on the far right of the property's value.
 2.  Click the **Workspace** link, and then navigate to and select the
     local entry that contains the XSLT code.

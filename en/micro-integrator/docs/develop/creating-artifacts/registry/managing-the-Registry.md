@@ -2,7 +2,7 @@
 
 The following sections explain how you can manage the Registry using WSO2 Integration Studio.
 
-### Adding different remote registry instances
+## Adding different remote registry instances
 
 1.  To open the WSO2 registry perspective, click **Window -> Open
     Perspective -> Other -> WSO2 Registry** . In this perspective, you
@@ -19,10 +19,8 @@ The following sections explain how you can manage the Registry using WSO2 Integr
     
     In the dialog box that appears, fill in the necessary information.
     The default information for the Registry has been automatically
-    filled in. You can either specify root ( `           /          ` )
-    or any other valid registry path for a collection (eg:
-    `           /_system/local          ` ,
-    `           /_system          ` etc). Elements down the given path
+    filled in. You can either specify root ( `/` )
+    or any other valid registry path for a collection (eg: `/_system/local/_system` etc). Elements down the given path
     will be loaded in the Registry Browser view.
 
     ![](/assets/img/registry/119131680/119131694.png)
@@ -37,7 +35,7 @@ The following sections explain how you can manage the Registry using WSO2 Integr
 
     ![](/assets/img/registry/119131680/119131782.png)
 
-### Adding collections and resources
+## Adding collections and resources
 
 !!! Info
     Do not set the media type for WSDLs and WSDL resources (it is then automatically set to `         application/xml        ` ). This is done to ensure that the WSDL handler does not intercept the Registry `         PUT        ` operation.
@@ -62,9 +60,7 @@ The following sections explain how you can manage the Registry using WSO2 Integr
 
     ![](/assets/img/registry/119131680/119131728.png)
 
-2.  Add a new resource. Select a collection, right-click on it and click
-    **Add a new resource** . You will get the same editor as you got for
-    the collection. You can add a resource in the following ways:
+2.  Add a new resource. Select a collection, right-click on it and click **Add a new resource** . You will get the same editor as you got for the collection. You can add a resource in the following ways: 
 
     -   Upload content from file
 
@@ -89,99 +85,77 @@ After adding a resource to your G-Reg project, the resource editor appears. If y
 
 ![](/assets/img/registry/119131680/119131689.png)
 
-It is also possible to edit the information later. To edit media type or
-resource description, right-click on the resource and click
-**Information** . You can delete the collection or resource you added by
-right-clicking on the resource or collection and clicking **Delete** .
+It is also possible to edit the information later. To edit media type or resource description, right-click on the resource and click **Information**. You can delete the collection or resource you added by right-clicking on the resource or collection and clicking **Delete**.
 
-### Adding properties, associations, dependencies, comments and tags for a resource or collection
+## Adding metadata and community features
 
-For a collection or resource, there are two main fields of properties
-you can add.
+You can add properties, associations, dependencies, comments, and tags for a resource or collection. There are two main fields of properties you can add.
 
 1.  Metadata
 2.  Community Features
 
-In the **Metadata** category, you can add properties, associations and
-dependencies. In the **Community Features** category, you can add
-comments and tags.
+In the **Metadata** category, you can add properties, associations and dependencies. In the **Community Features** category, you can add comments and tags.
 
-#### Add metadata
+### Add metadata
 
 ![](/assets/img/registry/119131680/119131704.png)  
 
-1.  Add a property. Right-click on the collection or resource to
-        which you want to add a property and click **Metadata \>** **Add
-        a Property** . On the editor that appears, you can add, edit and
-        delete properties.
+1.  Add a property. Right-click on the collection or resource to which you want to add a property and click **Metadata ->Add a Property**. On the editor that appears, you can add, edit, and delete properties.
 
-          
     ![](/assets/img/registry/119131680/119131726.png)
 
-        To delete a property, select the property and click **Delete
-        Property** . You can undo the action by clicking **Undelete
-        Property** . If not, the property will be removed when you save
-        the editor.
+    To delete a property, select the property and click **Delete Property**. You can undo the action by clicking **Undelete Property**. If not, the property will be removed when you save the editor.
 
-2.  Add a dependency. Right-click on the collection or resource to
-        which you want to add a dependency and click **Metadata \>**
-        **Add a Dependency** . On the editor that appears, add the
-        dependencies you need.
+2.  Add a dependency. Right-click on the collection or resource to which you want to add a dependency and click **Metadata -> Add a Dependency**. On the editor that appears, add the dependencies you need.
 
     ![](/assets/img/registry/119131680/119131787.png)
 
-        Note that the path should be valid registry paths. If not, an
-        error message appears when you click **Save** .  
+    Note that the path should be valid registry paths. If not, an error message appears when you click **Save**.  
 
     ![](/assets/img/registry/119131680/119131777.png)
 
 3.  Add an association. Right click on the collection or resource to
-        which you want to add an association and click **Metadata \>**
-        **Add an Association** .
+        which you want to add an association and click **Metadata -> Add an Association**.
 
-        On the editor that appears, add the associations necessary. Note
+    On the editor that appears, add the associations necessary. Note
         that the path should be valid registry paths. If not, an error
         message appears when you click **Save** . You can edit the
         values, delete associations, and undo delete as required.  
           
     ![](/assets/img/registry/119131680/119131745.png)
 
-#### Add community features
+### Add community features
 
 ![](/assets/img/registry/119131680/119131746.png)
 
 1.  Add comment. Right click on the collection or resource to which
-        you want to add a comment and click **Community \>** **Add
-        Comment** . On the editor that appears, you can add, edit and
+        you want to add a comment and click **Community ->Add Comment**. On the editor that appears, you can add, edit and
         delete comments. To delete a comment, select the comment and
         click **Delete Comment** .
 
     ![](/assets/img/registry/119131680/119131791.png)
 
-        You can undo the action by clicking **Undelete Comment** . If
+    You can undo the action by clicking **Undelete Comment**. If
         not, the comment will be removed when you save the editor.
 
 2.  Add a tag. Right click on the collection or resource to which
-        you want to add a tag and click **Community \>** **Add a Tag** .
+        you want to add a tag and click **Community ->Add a Tag**.
         On the editor that appears, you can add, edit and delete (or
         undelete) tags. You can give any string value as a tag.
 
     ![](/assets/img/registry/119131680/119131732.png)
 
-        You can not have two tags with the same name.
+    You can not have two tags with the same name.
 
     ![](/assets/img/registry/119131680/119131783.png)
 
-### Linking with the editor
+## Linking with the editor
 
-This is similar to a feature that is available in Eclipse IDE. If you
-click on the **Link with Editor** option, the mouse pointer will focus
-on the path of the active editor of the **WSO2 Registry Browser** .
+If you click on the **Link with Editor** option, the mouse pointer will focus on the path of the active editor of the **WSO2 Registry Browser**.
 
-**Link With Editor** option is available only in the
-`         Repository        ` level, since it is a global function. To
-activate the **Link With Editor** option, right-click on **Repository**
-and click **Link With Editor** . The same functionality is available in
+**Link With Editor** option is available only in the `         Repository        ` level, since it is a global function. To
+activate the **Link With Editor** option, right-click **Repository**
+and click **Link With Editor**. The same functionality is available in
 the toolbar of the **WSO2 Registry Browser** view as well.
 
 ![](/assets/img/registry/119131680/119131750.png)
@@ -191,21 +165,19 @@ clicking on the resource. You can swap among different editors. You will
 see the correct path related to the selected resource focused in the
 WSO2 Registry Browser view.
 
-### Adding multiple files and folders from file system
+## Adding multiple files and folders from file system
 
 You can add multiple folders and files from the local file system. This
 option is availabe for a collection. Right-click on the collection to
-which you want to add multiple files and folders, and click **Add local
-resources** and choose the option you want.
+which you want to add multiple files and folders, click **Add local
+resources**, and choose the option you want.
 
 1.  Multiple files
 2.  Folder
 
-Select multiple files or folders that you want to add and click **OK**
-. Click **OK** on the confirmation message.  The selected multiple
-resources will be added under the collection.
+Select multiple files or folders that you want to add and click **OK**. Click **OK** on the confirmation message. The selected multiple resources will be added under the collection.
 
-### Importing/exporting resources and collections
+## Importing/exporting resources and collections
 
 With this functionality, you can import a resource and collection from
 the same registry instance or a different registry instance that you
@@ -214,7 +186,7 @@ same registry instance or a different registry instance. **Import From**
 is only applicable for a collection since you cannot import a collection
 or resource under a resource.
 
-##### Import From
+### Import From
 
 Go to the collection to which you want to import resources,
     right-click and click **Import From** . On the dialog box that
@@ -225,17 +197,17 @@ Go to the collection to which you want to import resources,
 Click OK on the confirmation message that appears. The imported
     resource will be added under the selected collection.
 
-##### Export To
+### Export To
 
 Go to the collection or resource you want to export to another
-    location. Right-click and click **Export To** . On the dialog box
+    location. Right-click and click **Export To**. On the dialog box
     that appears, choose the location to which you want to export the
     resource. Browse the registry, select the path and click **OK** .
 
 Click **OK** on the confirmation message that appears. Now you will
     see the selected resource has been exported to the given location.
 
-### Drag and drop resources and collections
+## Drag and drop resources and collections
 
 With this functionality, you can drag any resource or collection and
 drop it to a location of the same registry instance or different
@@ -244,34 +216,34 @@ registry instance that is available.
 Before dropping the resource, you will get a confirmation message. After
 confirming, the resource will be added to the dropped location.
 
-### Modifying permission for a resource or collection
+## Modifying permission
 
 You can modify the permission of a resource or collection by
 right-clicking on the resource or collection and clicking **Modify
 Permissions** .
 
 In the dialog box that appears, you will see available roles and their
-permissions. You can define the permissions and click **OK** .
+permissions. You can define the permissions and click **OK**.
 
 ![](/assets/img/registry/119131680/119131752.png)
 
-### Refreshing the registry
+## Refreshing the registry
 
 You can refresh the registry instance which will enable a sync with the
 latest updates. This option is available in all stages. You can select
 **Refresh** by right-clicking as well as from the toolbar of the **WSO2
 Registry Browser** view.
 
-### Viewing information per resource and collection
+## Viewing information per resource and collection
 
 You can view information related to a resource or collection by
-right-clicking and clicking **Information** .
+right-clicking and clicking **Information**.
 
 It is a multi-tab editor which includes general information, properties,
 associations, dependencies, tags and comments. You have the ability to
 edit them at the same time.
 
-### Checking-out a collection to a local project
+## Checking-out a collection to a local project
 
 You can check-out a resource or a collection to a local project in the
 workspace. Right-click on the resource or collection and click
@@ -305,7 +277,7 @@ will have a star icon.
 
 ![](/assets/img/registry/119131680/119131717.png)
 
-### Updating the registry
+## Updating the registry
 
 The changes you did in the checked-out folder can be checked-in to the
 registry. When you check-in, you can not check-in resource wise. You
@@ -325,7 +297,7 @@ successful.
 After committing the changes, the folder will be changed to the **Sync**
 stage again where the folder icon will be **green** again.
 
-### Viewing and restoring versions
+## Viewing and restoring versions
 
 Go back to the **WSO2 Registry** perspective. Resources have different
 versions. If there are versions available for the resource, it will be
@@ -338,12 +310,7 @@ You can either view or restore a version. When you click **View** , the
 content of the version is displayed. The **Restore** option will reset
 the selected version to the previous version.
 
-### Opening the resource in the relevant editor of Eclipse
-
-By double clcking on a resource, you can view it in the supported
-editor.
-
-### Changing role permissions of resources
+## Changing role permissions of resources
 
 You can change resources and set permissions to those resources of the
 given role. This feature is availble for non-admin roles. Go to a
