@@ -1,22 +1,8 @@
 # Customizing Task Scheduling
 
-When you create a task using the default task implementation,
-the task can inject messages to a proxy service, or to a sequence. If
-you have a specific task-handling requirement, you can write your own
-task-handling implementation by creating a custom Java Class that
-implements the `         org.apache.synapse.startup.Task        `
-interface.
+When you create a task using the default task implementation, the task can inject messages to a proxy service, or to a sequence. If you have a specific task-handling requirement, you can write your own task-handling implementation by creating a custom Java Class that implements the `org.apache.synapse.startup.Task` interface.
 
-For example, the below sections demonstrate how you can create and
-schedule a task to receive stock quotes by invoking a back-end service,
-which exposes stock quotes. The scheduled task will read stock order
-information from a text file, and print the stock quotes.
-
-## Starting the Back End Service
-
-Follow the steps below to start the backend service.
-
-Download the backend service from [GitHub](https://github.com/wso2-docs/WSO2_EI/blob/master/Back-End-Service/stockquote-deployable-jar-2.2.2.jar) and run it.
+For example, the below sections demonstrate how you can create and schedule a task to receive stock quotes by invoking a back-end service, which exposes stock quotes. The scheduled task will read stock order information from a text file, and print the stock quotes.
 
 ## Creating the custom Task implementation
 
@@ -24,7 +10,7 @@ Follow the steps below to create the implementation of the custom Task.
 
 ### Creating the Maven Project
 
-Create a Maven Project using the following information. For instructions, see [Creating the Maven project](#SchedulingaTaskUsingaCustomImplementation-CreatingtheMavenproject).
+Create a Maven Project using the following information.
 
 !!! Tip
     You can skip step 5 since you do not need to add external JAR files in this example.
@@ -33,20 +19,15 @@ Create a Maven Project using the following information. For instructions, see [C
 
 ### Creating the Java Package
 
-Create a Java Package inside the Maven Project using the following information. For instructions, see [Creating the Java Package for the Maven Project](https://docs.wso2.com/display/EI650/Working+with+Service+Tasks#WorkingwithServiceTasks-CreatingtheJavaPackagefortheMavenProject).
--   **Name:** `             org.wso2.task.stockquote.v1            `
+Create a Java Package inside the Maven Project using the following name: `             org.wso2.task.stockquote.v1            `
 
-![](attachments/119130458/119130467.png)
+![](/assets/img/custom-task-scheduling/119130458/119130467.png)
 
 ### Creating the Java Class
 
-1.  Create a Java Class inside the Maven Project using the following
-    information. For instructions, see [Creating the Java Class for the Maven Project](https://docs.wso2.com/display/EI650/Working+with+Service+Tasks#WorkingwithServiceTasks-CreatingtheJavaClassfortheMavenProject).  
-    -   **Name**: `StockQuoteTaskV1`
+1.  Create a Java Class inside the Maven Project using the following name: `StockQuoteTaskV1`
 
-2.  In the **Project Explorer** , double-click on the
-    **StockQuoteTaskV1.java** file and replace its source with the below
-    content.  
+2.  In the **Project Explorer**, double-click on the **StockQuoteTaskV1.java** file and replace its source with the below content.  
 
     ```
     package org.wso2.task.stockquote.v1;
@@ -184,10 +165,9 @@ Create a Java Package inside the Maven Project using the following information.
         }
     ```
 
-    ![](attachments/119130458/119130464.png)
+    ![](/assets/img/custom-task-scheduling/119130458/119130464.png)
 
-3.  In the **Project Explorer** , double-click on the **pom.xml** file
-    and replace its source with the below content.
+3.  In the **Project Explorer**, double-click on the **pom.xml** file and replace its source with the below content.
 
     ```
     <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
@@ -217,11 +197,11 @@ Create a Java Package inside the Maven Project using the following information.
     </project>
     ```
 
-    ![](attachments/119130458/119130465.png)  
+    ![](/assets/img/custom-task-scheduling/119130458/119130465.png)  
 
-Writing the custom Task:
+### Writing the custom Task
 
-##### Step 1: Writing the Task Class
+#### Step 1: Writing the Task Class
 
 You can create a custom task class, which implements the
     `             org.apache.synapse.startup.Task            ` interface
@@ -235,12 +215,8 @@ The `             execute()            ` method contains the
 1.  Check whether the file exists at the desired location.
 2.  If it does, then read the file line by line composing place
         order messages for each line in the text file.
-3.  Individual messages are then injected to the synapse environment
-        with the given `              To             `
-        [endpoint](https://docs.wso2.com/display/EI6xx/Working+with+Endpoints)
-        reference.
-4.  Set each message as `              OUT_ONLY             `
-        since it is not expected any response for messages.
+3.  Individual messages are then injected to the synapse environment with the given `              To             ` endpoint reference.
+4.  Set each message as `              OUT_ONLY             ` since it is not expected any response for messages.
 
 In addition to the `             execute()            ` method, it
     is also possible to make the class implement a
@@ -295,7 +271,7 @@ The `             PlaceStockOrderTask            ` stores the
     `             SynapseEnvironment            ` is needed for
     injecting messages into the ESB.
 
-##### Step 2: Customizing the Task
+#### Step 2: Customizing the Task
 
 It is possible to pass values to a task at runtime using property
     elements. In this example, the location of the stock order file and
@@ -314,12 +290,12 @@ When creating a `             Task            ` object, the ESB will
     file.
 
 ``` java
-        public String getStockFile() {
-        return stockFile;
-        }
-        public void setStockFile(String stockFile) {
-        this.stockFile = stockFile;
-        }
+public String getStockFile() {
+return stockFile;
+}
+public void setStockFile(String stockFile) {
+this.stockFile = stockFile;
+}
 ```
 
 For example, the following properties in the
@@ -330,13 +306,7 @@ For example, the following properties in the
 <syn:property xmlns="http://ws.apache.org/ns/synapse" name="stockFile"value="/home/upul/test/stock.txt"/>
 ```
 
-For those properties given as XML elements, properties need to be
-    defined within the `             Task            ` class using the
-    format given below. OMElement comes from [Apache
-    AXIOM](http://ws.apache.org/commons/axiom/) , which is used by the
-    ESB profile. AXIOM is an object model similar to DOM. To learn more
-    about AXIOM, see the tutorial in the [AXIOM user
-    guide](http://ws.apache.org/axiom/userguide/userguide.html) .
+For those properties given as XML elements, properties need to be defined within the `             Task            ` class using the format given below. OMElement comes from [Apache AXIOM](http://ws.apache.org/commons/axiom/), which is used by the Micro Integrator. AXIOM is an object model similar to DOM. To learn more about AXIOM, see the tutorial in the [AXIOM user guide](http://ws.apache.org/axiom/userguide/userguide.html) .
 
 ``` java
 public void setMessage(OMElement elem) {
@@ -357,67 +327,62 @@ It can be initialized with an XML element as follows:
 
 ### Deploying the custom Task implementation
 
-For instructions on deploying the custom Task implementation, see [Deploying artifacts of the Maven
-Project](https://docs.wso2.com/display/EI650/Working+with+Service+Tasks#WorkingwithServiceTasks-DeployingartifactsoftheMavenProject).
-
-!!! Tip
-    You can skip step 1 since you already added the dependencies above.
+Deploy the custom Task implementation.
 
 ## Creating the Task
 
 Follow the steps below to create the task and schedule it.
 
-### Creating the ESB Project
+1.  [Create a ESB Config project](../../../develop/creating-projects/#esb-config-project) named `            PrintStockQuote           `.
+2.  [Create a Sequence](../creating-artifacts/creating-reusable-sequences.md) using the following information named `PrintStockQuoteSequence`. 
+3.  Add a **Log Mediator** and a **Drop Mediator** to the sequence and configure them.
 
-Create a ESB Solution Project using the following information. For instructions, see [Creating the ESB Project](Scheduling-a-Task-Using-the-Default-Implementation119130430.html#SchedulingaTaskUsingtheDefaultImplementation-CreatingtheESBProject).
+    ![](/assets/img/custom-task-scheduling/119130458/119130461.png)
 
--   **Name:** `            PrintStockQuote           `
+    The below is the complete source configuration of the Sequence (i.e., the `PrintStockQuoteSequence.xml` file):
+    ```
+    <?xml version="1.0" encoding="UTF-8"?>
+    <sequence name="PrintStockQuoteSequence" trace="disable" xmlns="http://ws.apache.org/ns/synapse">
+        <log level="custom"/>
+        <drop/>
+    </sequence>
+    ```
+    
+4.  [Create a Scheduled Task](../creating-artifacts/scheduling-esb-tasks.md) using the following information:
+    <table>
+        <tr>
+            <th>Task Property</th>
+            <th>Description</th>
+        </tr>
+        <tr>
+            <td>Task Name</td>
+            <td><code>PrintStockQuoteScheduledTask </code></td>
+        </tr>
+        <tr>
+            <td>Count</td>
+            <td>1</td>
+        </tr>
+        <tr>
+            <td>Interval (in seconds)</td>
+            <td>5</td>
+        </tr>
+    </table>
 
-### Creating the Sequence
+    ![](/assets/img/custom-task-scheduling/119130458/119130460.png)
 
-1.  Create a Sequence using the following information. For instructions, see [Creating the Sequence](Scheduling-a-Task-Using-the-Default-Implementation_119130430.html#SchedulingaTaskUsingtheDefaultImplementation-CreatingtheSequence).
+5.  Defining the properties of the Task: In the **Project Explorer** , double-click the **Print StockQuoteScheduledTask.xml** file and replace its source with the below content.
 
-    -   **Name:** `PrintStockQuoteSequence`  
-
-2.  Add a **Log Mediator** and a **Drop Mediator** to the sequence and configure them. For instructions, see [Creating the  Sequence](Scheduling-a-Task-Using-the-Default-Implementation_119130430.html#SchedulingaTaskUsingtheDefaultImplementation-CreatingtheSequence).  
-    ![](attachments/119130458/119130461.png)
-
-The below is the complete source configuration of the Sequence (i.e., the `             PrintStockQuoteSequence.xml            ` file).
-
-``` xml
-<?xml version="1.0" encoding="UTF-8"?>
-<sequence name="PrintStockQuoteSequence" trace="disable" xmlns="http://ws.apache.org/ns/synapse">
-    <log level="custom"/>
-    <drop/>
-</sequence>
-```
-
-### Creating the Scheduled Task
-
-Create a Scheduled Task using the following information. For instructions, see [Creating the Scheduled Task](Scheduling-a-Task-Using-the-Default-Implementation_119130430.html#SchedulingaTaskUsingtheDefaultImplementation-CreatingtheScheduledTask).
-
--   **Task Name:** `            PrintStockQuoteScheduledTask           `
--   **Count:** `            1           `
--   **Interval (in seconds):** 5  
-
-![](attachments/119130458/119130460.png)
-
-### Defining the properties of the Task
-
-In the **Project Explorer** , double-click on the **Print StockQuoteScheduledTask.xml** file and replace its source with the below content.
-
-``` xml
-<task class="org.apache.synapse.startup.tasks.MessageInjector" group="synapse.simple.quartz" name="PrintStockQuoteScheduledTask" xmlns="http://ws.apache.org/ns/synapse">
+    ```
+    <task class="org.apache.synapse.startup.tasks.MessageInjector" group="synapse.simple.quartz" name="PrintStockQuoteScheduledTask" xmlns="http://ws.apache.org/ns/synapse">
                 <trigger count="1" interval="5" />
                 <property name="to" value="http://localhost:9000/soap/SimpleStockQuoteService" xmlns:task="http://www.wso2.org/products/wso2commons/tasks" />
                 <property name="stockFile" value="/Users/praneesha/Desktop/stockfile.txt" xmlns:task="http://www.wso2.org/products/wso2commons/tasks" />
                 <property name="synapseEnvironment" value="" xmlns:task="http://www.wso2.org/products/wso2commons/tasks" />
-</task>
-```
+    </task>
+    ```
+    The task properties will change according to the custom implementation. Therefore, you need to enter values for your custom properties. This sets the below properties.
 
-The task properties will change according to the custom implementation. Therefore, you need to enter values for your custom properties. This sets the below properties.
-
-<table>
+    <table>
     <thead>
     <tr class="header">
     <th>Parameter Name</th>
@@ -438,12 +403,12 @@ The task properties will change according to the custom implementation. Therefor
     <td>Do not enter a value. This will be used during runtime.</td>
     </tr>
     </tbody>
-</table>
+    </table>
 
-!!! Note
-    Currently, you cannot set properties of a custom task using the **Design View** due to a [known issue](https://github.com/wso2/product-ei/issues/2551), which will be fixed in the future WSO2 EI versions.
+    !!! Note
+        Currently, you cannot set properties of a custom task using the **Design View** due to a [known issue](https://github.com/wso2/product-ei/issues/2551), which will be fixed in the future WSO2 EI versions.
 
-The below is the complete source configuration of the Sequence (i.e., the `PrintStockQuoteScheduledTask.xml` file).
+The below is the complete source configuration of the Task (i.e., the `PrintStockQuoteScheduledTask.xml` file).
 
 ```
 <?xml version="1.0" encoding="UTF-8"?>
@@ -456,9 +421,15 @@ The below is the complete source configuration of the Sequence (i.e., the `Print
 
 ## Deploying the Task
 
-For instructions on deploying the Task, see [Deploying the Task](Scheduling-a-Task-Using-the-Default-Implementation_119130430.html#SchedulingaTaskUsingtheDefaultImplementation-DeployingtheTask).
+Deploy the Task.
 
-## Creating the text file
+## Testing the Custom Task
+
+### Starting the back-end service
+
+Download the backend service from [GitHub](https://github.com/wso2-docs/WSO2_EI/blob/master/Back-End-Service/stockquote-deployable-jar-2.2.2.jar) and run it.
+
+### Creating the text file
 
 Create a text file named `         stockfile.txt        ` with the
 following content and save it to a preferred location on your
@@ -485,7 +456,7 @@ be sent to the back-end service. The text file will then be tagged as
 processed to include a system time stamp. The task will be scheduled to
 run every 15 seconds.
 
-## Viewing the output
+### Viewing the output
 
 You will view the stock quotes sent by the backend service printed every 3 seconds by the scheduled task in the below format.
 
@@ -493,4 +464,4 @@ You will view the stock quotes sent by the backend service printed every 3 secon
 INFO - StockQuoteTask placed order symbol:IBM quantity:100 price:120.50
 ```
 
-![](attachments/119130458/119130459.png)
+![](/assets/img/custom-task-scheduling/119130458/119130459.png)
