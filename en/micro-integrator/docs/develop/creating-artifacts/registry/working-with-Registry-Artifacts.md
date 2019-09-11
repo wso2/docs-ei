@@ -3,23 +3,6 @@
 This page describes how to create artifacts for Registry. It contains
 the following sections:
 
--   [Creating a Registry Resource
-    project](#WorkingwithRegistryArtifacts-CreatingaRegistryResourceproject)
--   [Creating registry
-    resources](#WorkingwithRegistryArtifacts-Creatingregistryresources)
-    -   [From existing
-        template](#WorkingwithRegistryArtifacts-Fromexistingtemplate)
-    -   [Import from file
-        system](#WorkingwithRegistryArtifacts-Importfromfilesystem)
-    -   [Import Registry dump file from file
-        system](#WorkingwithRegistryArtifacts-ImportRegistrydumpfilefromfilesystem)
-    -   [Check-out from
-        registry](#WorkingwithRegistryArtifacts-Check-outfromregistry)
--   [Editing a registry
-    resource](#WorkingwithRegistryArtifacts-Editingaregistryresource)
--   [Creating a Smooks configuration
-    artifact](#WorkingwithRegistryArtifacts-SmooksConfigArtifactCreatingaSmooksconfigurationartifact)
-
 ### Creating a Registry Resource project
 
 !!! warning Note that registry resources created in WSO2 Integration
