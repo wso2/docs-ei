@@ -96,27 +96,27 @@ Guides showcase how to build different types of integrations using a complete de
 
 <table>
   <tr>
-    <td><b><a href="../integration-tutorials/sending-a-simple-message-to-a-service/README/">Sending a Simple Message to a Service</a></b></td>
+    <td><b><a href="../integration-tutorials/sending-a-simple-message-to-a-service/">Sending a Simple Message to a Service</a></b></td>
   </tr>
   <tr>
-    <td><b><a href="../integration-tutorials/sending-a-simple-message-to-a-datasource/README/">Sending a Simple Message to a Datasource</a></b></td>
+    <td><b><a href="../integration-tutorials/sending-a-simple-message-to-a-datasource/">Sending a Simple Message to a Datasource</a></b></td>
   </tr>
   <tr>
-    <td><b><a href="../integration-tutorials/routing-requests-based-on-message-content/README/">Routing Requests Based on Message Content</a></b></td>
+    <td><b><a href="../integration-tutorials/routing-requests-based-on-message-content/">Routing Requests Based on Message Content</a></b></td>
   </tr>
   <tr>
-    <td><b><a href="../integration-tutorials/transforming-message-content/README/">Transforming Message Content</a></b></td>
+    <td><b><a href="../integration-tutorials/transforming-message-content/">Transforming Message Content</a></b></td>
   </tr>
   <tr>
-    <td><b><a href="../integration-tutorials/exposing-several-services-as-a-single-service/README/">Exposing Several Services as a Single Service</a></b></td>
+    <td><b><a href="../integration-tutorials/exposing-several-services-as-a-single-service/">Exposing Several Services as a Single Service</a></b></td>
   </tr>
   <tr>
-    <td><b><a href="../integration-tutorials/storing-and-forwarding-messages/README/">Storing and Forwarding Messages</a></b></td>
+    <td><b><a href="../integration-tutorials/storing-and-forwarding-messages/">Storing and Forwarding Messages</a></b></td>
   </tr>
   <tr>
-    <td><b><a href="../integration-tutorials/using-the-gmail-connector/README/">Using the Gmail Connector</a></b></td>
+    <td><b><a href="../integration-tutorials/using-the-gmail-connector/">Using the Gmail Connector</a></b></td>
   </tr>
   <tr>
-    <td><b><a href="../integration-tutorials/using-the-analytics-dashboard/README/">Using the Analytics Dashboard</a></b></td>
+    <td><b><a href="../integration-tutorials/using-the-analytics-dashboard/">Using the Analytics Dashboard</a></b></td>
   </tr>
 </table>
