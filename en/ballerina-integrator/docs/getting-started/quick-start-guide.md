@@ -122,7 +122,7 @@ You just started Ballerina, created a project, started a service, invoked the se
 
 To have a look at the code, navigate to the `main.bal` file found inside your module.
 
-```ballerina
+```
 // Copyright (c) 2019 WSO2 Inc. (http://www.wso2.org) All Rights Reserved.
 //
 // WSO2 Inc. licenses this file to you under the Apache License,
