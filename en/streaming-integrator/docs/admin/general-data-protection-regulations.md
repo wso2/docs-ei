@@ -231,9 +231,9 @@ To change the default configurations location for the embedded tool, do the foll
 
 All configurations related to this tool can be found inside the `<SI_HOME>/wso2/tools/identity-anonymization-tool/conf` directory. The default configurations are set up as follows:
 
-- **Read Logs**: `<SI_HOME>/wso2/<PROFILE>/logs`
+- **Read Logs**: `<SI_HOME>/wso2/server/logs`, `<SI_TOOLING_HOME>/wso2/server/logs`
 
-- **Read Datasource**: `<SI_HOME>/conf/<PROFILE>deployment.yaml` file
+- **Read Datasource**: `<SI_HOME>/conf/server/deployment.yaml` file, `<SI_TOOLING_HOME>/conf/server/deployment.yaml` file
 
 - **Default datasources**: `WSO2_CARBON_DB, WSO2_METRICS_DB`, `WSO2_PERMISSIONS_DB`, `WSO2_DASHBOARD_DB`, `BUSINESS_RULES_DB`, `SAMPLE_DB`, `WSO2_STATUS_DASHBOARD_DB`
 
