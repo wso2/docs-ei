@@ -206,7 +206,7 @@ request.send();
 var distributionDropdown =  document.getElementById('distribution-select-dropdown');
 
 const distributionURLList = [ 'ballerina-integrator','micro-integrator','streaming-integrator' ];
-const introductionURL = ['/overview/introduction','/getting-started/introduction','/overview/overview'];
+const introductionURL = ['/getting-started/introduction','/overview/introduction','/overview/overview'];
 
 if (distributionDropdown){
     let count = 0;
