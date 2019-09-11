@@ -1,6 +1,6 @@
 # Inbound Endpoint Properties
 
-See the topics given below for details.
+See the topics given below for the list of properties that can be configured for an Inbound Endpoint artifact.
 
 ## Common Inbound Endpoint Properties
 

@@ -20,15 +20,16 @@ Follow the instructions given below to create a new Proxy Service artifact in WS
     </tr>
     <tr class="even">
     <td>Transformer proxy</td>
-    <td>This template creates a proxy service that transforms all the incoming requests using XSLT and then forwards them to a given endpoint. It can also transform responses from the backend service. You need to simply specify the location of the XSLT you want to use.</td>
+    <td>This template creates a proxy service that transforms all the incoming requests using XSLT and then forwards them to a given endpoint. It can also transform responses from the backend service.</td>
     </tr>
     <tr class="odd">
     <td>Log Forward proxy</td>
-    <td>This template creates a proxy service that first logs all the incoming requests and passes them to a given endpoint. It can also log responses from the backend service before routing them to the client. You can specify the log level for requests and responses, where <strong>Simple</strong> logs <code>               To              </code> , <code>               From              </code> , <code>               WSAction              </code> , <code>               SOAPAction              </code> , <code>               ReplyTo              </code> , <code>               MessageID              </code> , and any properties, and <strong>Full</strong> logs all attributes of the message plus the SOAP envelope information.</td>
+    <td>This template creates a proxy service that first logs all the incoming requests and passes them to a given endpoint. It can also log responses from the backend service before routing them to the client. You can specify the log level for requests and responses.</td>
     </tr>
     <tr class="even">
     <td>WSDL-Based proxy</td>
-    <td>This template generates a proxy service from the remotely hosted WSDL of an existing web service. The endpoint information is extracted from the WSDL. In the <strong>URI</strong> field, enter the URL and URN of the WSDL. The URL defines the host address of the network resource (can be omitted if resources are not network homed), and the URN defines the resource name in local namespaces. For example, if the URL is <code>                                                ftp://ftp.dlink.ru                                             </code> and the URN is <code>               /pub/ADSL/              </code> , you would enter <code>                                                ftp://ftp.dlink.ru/pub/ADSL/                                             </code> for the URI. To ensure that the URI is valid, click <strong>Test URI</strong> . You then enter the service name and port of the WSDL. Lastly, if you want to publish this WSDL, click <strong>Publish Same Service Contract</strong> .</td>
+    <td>This template generates a proxy service from the remotely hosted WSDL of an existing web service. The endpoint information is extracted from the WSDL. 
+    </td>
     </tr>
     <tr class="odd">
     <td>Secure proxy</td>

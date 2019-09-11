@@ -28,7 +28,7 @@ responses are aggregated and sent back to the client at the OutSequence.
 
 Following is the proxy service used in this scenario:
 
-``` xml
+``` 
     <?xml version="1.0" encoding="UTF-8"?>
     <proxy xmlns="http://ws.apache.org/ns/synapse" name="SplitAggregateProxy" startOnLoad="true">
        <target>
@@ -66,7 +66,7 @@ request is split into 4 messages and sent to the
 mediator aggregates the responses and sends back the aggregated
 response.
 
-``` xml
+```
     <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="http://services.samples" xmlns:xsd="http://services.samples/xsd">
        <soapenv:Header/>
        <soapenv:Body>
