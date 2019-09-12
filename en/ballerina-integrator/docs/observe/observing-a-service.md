@@ -86,6 +86,3 @@ This dashboard consists of service and client invocation level metrics in near r
 ## Visualizing metrics on Grafana
 
 Ballerina HTTP Service Metrics Dashboard Panel will be as below.
-![Ballerina Service Metrics](images/grafana-ballerina-metrics-1.png "Ballerina Sample Service Metrics Dashboard")
-
-
