@@ -1,8 +1,4 @@
-# Using Inbound Endpoints
-
-See the examples given below.
-
-## Example 1: Specifying inbound endpoint parameters as registry values
+# Specifying inbound endpoint parameters as registry values
 
 Other than specifying parameter values inline, you can also
 specify parameter values as registry entries. The advantage of
@@ -19,15 +15,3 @@ simply by changing the registry entry value.
        </parameters>
     </inboundEndpoint>
 ```
-
-## Example 2: Using secure vault aliases in your inbound endpoint configuration
-
-To use secure vault support in your inbound configuration, you can add
-`         {wso2:vault-lookup('xx')}        ` as inbound parameters,
-where `         xx        ` is the alias.
-
-You can encrypt and store the password using the alias
-`         my.password        ` , and retrieve this password  by adding
-the following parameter in your inbound endpoint configuration:
-
-`         <parameter name="transport.jms.Password">{wso2:vault-lookup('my.password')}</parameter>        `
