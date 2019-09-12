@@ -24,9 +24,9 @@ of a range of rooms in a building via a sensor and needs to use the temperature 
 
 Create a basic Siddhi application for a simple use case.
 
-1. Extract the Streaming Integrator Tooling pack to a preferred location. Hereafter, the extracted location is referred to as `<SI_HOME>`.
+1. Extract the Streaming Integrator Tooling pack to a preferred location. Hereafter, the extracted location is referred to as `<SI_TOOLING_HOME>`.
 
-2. Navigate to the `<SI_HOME>/bin` directory and issue the following command to start the Streaming Integration tooling.
+2. Navigate to the `<SI_TOOLING_HOME>/bin` directory and issue the following command to start the Streaming Integration tooling.
     -   For Windows: `tooling.bat`
     -   For Linux: `./tooling.sh`
     
@@ -204,11 +204,44 @@ After creating and testing the `TemperatureApp` Siddhi application, you need to 
 
 To deploy your Siddhi application in the Streaming Integrator server, follow the procedure below:
 
-1. Open the `TemperatureApp` Siddhi application.
-2. Click **Deploy** and then click **Deploy to Server**.
+!!!info
+    To deploy the Siddhi application, you need to run both the Streaming Integrator server and Streaming Integrator Tooling. The home directories of the Streaming Integrator server is referred to as `<SI_HOME>` and the home directory of Streaming Integrator Tooling is referred to as `<SI_TOOLING_HOME>`.
+
+1. Start the Streaming Integrator server by navigating to the `<SI_HOME>/bin` directory from the CLI, and issuing one of the following commands:
+   - On Windows: `server.bat --run`
+   - On Linux/Mac OS:  `./server.sh`
+
+2. In the Streaming Integrator Tooling, click **Deploy** and then click **Deploy to Server**.
+
+    ![Deploy to Server Menu Option](../images/quick-start-guide-101/deploy-to-server-menu.png)
+
+   The **Deploy Siddhi Apps to Server** dialog box opens as follows.
+
+   ![Deploy Siddhi Apps to Server](../images/quick-start-guide-101/deploy-to-server-dialog-box.png)
+
+3. In the **Add New Server** section, enter information as follows:
+
+   | Field           | Value                            |
+   |-----------------|----------------------------------|
+   | **Host**        | Your host                        |
+   | **Port**        | `9443`                           |
+   | **User Name**   | `admin`                          |
+   | **Password**    | `admin`                          |
+
     ![Deploy to Server](../images/quick-start-guide-101/Deploy-to Server.png)
 
-As a result, the `TemperatureApp` Siddhi application is saved in the `<SI_HOME>/deployment/siddhi-files` directory.
+   Then click **Add**.
+
+4. Select the check boxes for the **TemperatureApp.siddhi** Siddhi application and the server you added as shown below.
+
+   ![Deploy Siddhi Apps to Server](../images/quick-start-guide-101/select-siddhi-app-and-server.png)
+
+5. Click **Deploy**.
+
+   As a result, the `TemperatureApp` Siddhi application is saved in the `<SI_HOME>/deployment/siddhi-files` directory, and the following is message displayed in the dialog box.
+
+   ![Siddhi App successfully deployed](../images/quick-start-guide-101/siddhi-app-successfully-deployed.png)
+
 
 ### Deploying in Docker
 
@@ -217,7 +250,8 @@ To export the  `TemperatureApp` Siddhi application as a Docker artifact, follow 
 1. Open the Streaming Integrator Tooling.
 
 2. In the **File** menu, click **Export as Docker**.
-    ![Export Siddhi Application as Docker](../images/quick-start-guide-101/export-as-docker.png)
+
+   ![Export Siddhi Application as Docker](../images/quick-start-guide-101/export-as-docker.png)
 
    As a result, the **Export as Docker** dialog box opens as follows.
     ![Export as Docker dialog box](../images/quick-start-guide-101/export-as-docker-dialog-box.png)

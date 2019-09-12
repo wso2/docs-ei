@@ -338,3 +338,15 @@ window.addEventListener('scroll', function() {
         editIcon.classList.remove('active');
     }
 });
+
+// change homepage url
+var homeUrlArr = [
+    window.location.protocol+'/',
+    window.location.host,
+    window.location.pathname.split('/')[1],
+    window.location.pathname.split('/')[2],
+]
+
+if (document.getElementsByClassName('md-tabs__item home_icon').length>0) {
+    document.getElementsByClassName('md-tabs__item home_icon')[0].firstElementChild.setAttribute('href', homeUrlArr.join('/'));
+}

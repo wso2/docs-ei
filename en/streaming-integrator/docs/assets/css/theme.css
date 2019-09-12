@@ -872,15 +872,22 @@ html .md-footer-meta.md-typeset a,
     content: "";
 }
 
-.integratorDescription {
-    width:28%;
+integratorDescription {
+    width: 28%;
     flex-grow: 0;
-    display:inline-block;
+    display: table-cell;
+    position: relative;
     background: #f2f2f2;
     padding: 10px 20px;
     padding-bottom: 20px;
     margin: 10px 2%;
     text-align: justify;
+    border-left-width: 1.5rem;
+    border-right-width: 1.5rem;
+    border-style: solid;
+    border-color: white;
+    min-height: 200px;
+    height: 300px;
 }
 
 .integratorDescription p {
@@ -895,6 +902,10 @@ html .md-footer-meta.md-typeset a,
     text-decoration: none;
     margin: auto;
     display: table;
+    position: absolute;
+    bottom: 10px;
+    align-content: center;
+    left: 26%;
 }
 
 .integratorDescription a:hover {
@@ -908,5 +919,13 @@ html .md-footer-meta.md-typeset a,
     .integratorDescription {
         display: block;
         width: 96%;
+        height: auto;
+        min-height: initial;
+        
+    }
+
+    .integratorDescription a {
+        position: relative;
+        left: 0;
     }
 }
