@@ -78,7 +78,7 @@ For more information refer [Grafana in Docker Hub](https://hub.docker.com/r/graf
 
 **Step 4:** Add Prometheus as datasource with `Browser` access configuration as provided below.
 
-![Grafana Prometheus Datasource](images/grafana-prometheus-datasource.png "Grafana Prometheus Datasource")
+![alt text](../../assets/img/grafana-prometheus-datasource.png)
 
 **Step 5:** Import the Grafana dashboard designed to visualize Ballerina metrics from [https://grafana.com/dashboards/5841](https://grafana.com/dashboards/5841).
 This dashboard consists of service and client invocation level metrics in near real-time view. 
