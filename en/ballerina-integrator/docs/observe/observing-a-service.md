@@ -8,16 +8,7 @@ To understand how you can observe Ballerina services, let’s consider a service
 
 As inferred by the above image, we will be getting metrics using Prometheus and displaying it using Grafana.
 
-You can add the following configurations for metrics.
-
-```
-   [b7a.observability.metrics]
-   enabled=true
-   reporter="prometheus"
-
-```
-
-## Create the project structure
+## Set up the project 
 
 1. Open VS Code.
    > **Tip**: Download and install [VS Code](https://code.visualstudio.com/Download) if you do not have it already. Find the extension for Ballerina in the VS Code marketplace if you do not have it. For instructions on installing and using it, see [The Visual Studio Code Extension](https://ballerina.io/learn/tools-ides/vscode-plugin/).
@@ -27,6 +18,15 @@ You can add the following configurations for metrics.
 ![alt text](../../assets/img/vs-code-landing.png)
 
 Select the template to transform XML messages to JSON and your project will load.
+
+Add the following configurations for metrics in the `ballerina.conf` file.
+
+```
+   [b7a.observability.metrics]
+   enabled=true
+   reporter="prometheus"
+
+```
 
 ## Set up Prometheus
 
@@ -86,3 +86,5 @@ This dashboard consists of service and client invocation level metrics in near r
 ## Visualizing metrics on Grafana
 
 Ballerina HTTP Service Metrics Dashboard Panel will be as below.
+
+![alt text](../../assets/img/prometheus-grafana-metrics.png)
