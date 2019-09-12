@@ -6,7 +6,7 @@
 
 ### Triggering integration via Streaming Integrator as fire and forget manner
 
-gRPC sink uses to send messages in a fire and forget manner from SI to MI and trigger a sequence.
+gRPC sink is used to send messages in a fire and forget manner from SI to MI and trigger a sequence.
 
 Following is a sample siddhi application which contains gRPC sink which triggers the “inSeq” in the micro integrator. This 
 ```siddhi
@@ -63,7 +63,7 @@ The following sample `inSeq` sequence should be added to <MIHome>/repository/dep
 
 `gRPC-call` sink uses to send messages from SI to MI and trigger a sequence and get a response back from MI. When using this particular sink, `grpc-call-response` source should be defined to get the corresponding response from the MI.
 
-Following is a sample siddhi application which contains gRPC-call sink which triggers the “inSeq” in the micro integrator and processes the response received by the MI using the grpc-call-response source
+Shown below is a sample siddhi application which contains gRPC-call sink which triggers the “inSeq” in the micro integrator and processes the response received by the MI using the grpc-call-response source
 ```siddhi
 @App:name("grpc-call-response")
 @App:description("Description of the plan")
@@ -249,10 +249,10 @@ This sequence is defined as "inSeq" because the "grpc-call" sink's "publisher.ur
 ```
 ##### Executing and getting results
 * Send event to defined "http" source hosted in "http://localhost:8006/productionStream". 
-* Sample cURL is as follows.
+* Sample cURL command is as follows.
 `curl -X POST -d "{\"event\":{\"symbol\":\"soap\",\"amount\":110.23}}" http://localhost:8006/productionStream --header "Content-Type:application/json"`
-* Execute the above command or command similar to the above where an average value for "amount" attribute is larger than 100.
-* After 1 minute's time, if the average amount is larger than 100.00 for a particular symbol, the streaming integrator will trigger an integration flow in the micro integrator, which will then send a response back after executing the deployed integration flows. This response will be printed on the carbon console of the streaming integrator.
+* Execute the above command or a command similar to the above where an average value for "amount" attribute is larger than 100 within a minute.
+* After a minute, if the average amount is larger than 100.00 for a particular symbol, the streaming integrator will trigger an integration flow in the micro integrater, which will send a response back after executing the integration flows. This response will be printed on the carbon console of the streaming integrator.
 
 
 ## Triggering integration flows through micro integrator
