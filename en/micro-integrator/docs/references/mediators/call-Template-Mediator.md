@@ -1,54 +1,38 @@
 # Call Template Mediator
 
-The Call Template mediator allows you to construct a sequence by passing
-values into a [sequence
-template](https://docs.wso2.com/display/EI650/Sequence+Template) .
+The Call Template mediator allows you to construct a sequence by passing values into a **sequence template**.
 
-!!! info
-    This is currently only supported for special types of mediators such as the [Iterator](_Iterate_Mediator_) and [Aggregate
-Mediators](_Aggregate_Mediator_) , where actual XPath operations are performed on a different SOAP message, and not on the message coming into the mediator.
+!!! Info
+    This is currently only supported for special types of mediators such as the [Iterator](iterate-Mediator.md) and [Aggregate Mediators](aggregate-Mediator.md), where actual XPath operations are performed on a different SOAP message, and not on the message coming into the mediator.
 
-
-### Syntax
+## Syntax
 
 ``` java
-    <call-template target="string">
-       <!-- parameter values will be passed on to a sequence template -->
-       (
-        <!--passing plain static values -->
-       <with-param name="string" value="string" /> |
-        <!--passing xpath expressions -->
-       <with-param name="string" value="{string}" /> |
-        <!--passing dynamic xpath expressions where values will be compiled
-    dynamically-->
-       <with-param name="string" value="{{string}}" /> |
-       ) *
-       <!--this is the in-line sequence of the template    -->
-     </call-template>
+<call-template target="string">
+   <!-- parameter values will be passed on to a sequence template -->
+   (
+    <!--passing plain static values -->
+   <with-param name="string" value="string" /> |
+    <!--passing xpath expressions -->
+   <with-param name="string" value="{string}" /> |
+    <!--passing dynamic xpath expressions where values will be compiled dynamically-->
+   <with-param name="string" value="{{string}}" /> |
+   ) *
+   <!--this is the in-line sequence of the template    -->
+ </call-template>
 ```
 
-You use the `         target        ` attribute to specify the sequence
-template you want to use. The `         <with-param>        ` element is
-used to parse parameter values to the target sequence template. The
-parameter names should be the same as the names specified in target
-template. The parameter value can contain a string, an XPath expression
-(passed in with curly braces { }), or a dynamic XPath expression (passed
-in with double curly braces) of which the values are compiled
-dynamically.
+You use the `target` attribute to specify the sequence template you want to use. The `<with-param>` element is used to parse parameter values to the target sequence template. The parameter names should be the same as the names specified in target template. The parameter value can contain a string, an XPath expression (passed in with curly braces { }), or a dynamic XPath expression (passed in with double curly braces) of which the values are compiled dynamically.
 
-### Configuration
+## Configuration
 
-The parameters available to configure the Call-Template mediator are as
-follows.
+The parameters available to configure the Call-Template mediator are as follows.
 
 | Parameter Name      | Description                                                                                                             |
 |---------------------|-------------------------------------------------------------------------------------------------------------------------|
 | **Target Template** | The sequence template to which values should be passed. You can select a template from the **Available Templates** list |
 
-When a target template is selected, the parameter section will be
-displayed as shown below if the sequence template selected has any
-parameters. This enables parameter values to be parsed into the sequence
-template selected.
+When a target template is selected, the parameter section will be displayed as shown below if the sequence template selected has any parameters. This enables parameter values to be parsed into the sequence template selected.
 
 <table>
 <thead>
@@ -66,8 +50,8 @@ template selected.
 <td><strong>Parameter Type</strong></td>
 <td><p>The type of the parameter. Possible values are as follows.</p>
 <ul>
-<li><strong>Value</strong> : Select this to define the parameter value as a static value. This value should be entered in the <strong>Value / Expression</strong> parameter.</li>
-<li><strong>Expression</strong> : Select this to define the parameter value as a dynamic value. The XPath expression to calculate the parameter value should be entered in the <strong>Value / Expression</strong> parameter.</li>
+<li><strong>Value</strong>: Select this to define the parameter value as a static value. This value should be entered in the <strong>Value/ Expression</strong> parameter.</li>
+<li><strong>Expression</strong>: Select this to define the parameter value as a dynamic value. The XPath expression to calculate the parameter value should be entered in the <strong>Value/Expression</strong> parameter.</li>
 </ul></td>
 </tr>
 <tr class="odd">
@@ -81,39 +65,38 @@ template selected.
 </tbody>
 </table>
 
-### Examples
+## Examples
 
-Following examples demonstrate different usecases of the Call Template
-mediator.
+Following examples demonstrate different usecases of the Call Template mediator.
 
-#### Example one
+### Example 1
 
 The following four Call Template mediator configurations populate a
-sequence template named HelloWorld\_Logger with the "hello world" text
+sequence template named HelloWorld_Logger with the "hello world" text
 in four different languages.
 
 ``` xml
-    <call-template target="HelloWorld_Logger">
-        <with-param name="message" value="HELLO WORLD!!!!!!" />
-    </call-template>
+<call-template target="HelloWorld_Logger">
+    <with-param name="message" value="HELLO WORLD!!!!!!" />
+</call-template>
 ```
 
 ``` xml
-    <call-template target="HelloWorld_Logger">
-        <with-param name="message" value="Bonjour tout le monde!!!!!!" />
-    </call-template>
+<call-template target="HelloWorld_Logger">
+    <with-param name="message" value="Bonjour tout le monde!!!!!!" />
+</call-template>
 ```
 
 ``` xml
-    <call-template target="HelloWorld_Logger">
-        <with-param name="message" value="Ciao a tutti!!!!!!!" />
-    </call-template>
+<call-template target="HelloWorld_Logger">
+    <with-param name="message" value="Ciao a tutti!!!!!!!" />
+</call-template>
 ```
 
 ``` xml
-    <call-template target="HelloWorld_Logger">
-        <with-param name="message" value="???????!!!!!!!" />
-    </call-template>
+<call-template target="HelloWorld_Logger">
+    <with-param name="message" value="???????!!!!!!!" />
+</call-template>
 ```
 
 The sequence template can be configured as follows to log any greetings
@@ -123,47 +106,42 @@ the message entered in all four languages included in the sequence
 template configuration itself.
 
 ``` java
-    <template name="HelloWorld_Logger">
-       <parameter name="message"/>
-       <sequence>
-            <log level="custom">
-                  <property expression="$func:message" name="GREETING_MESSAGE"/>
-        </log>
-       </sequence>
-    </template>
+<template name="HelloWorld_Logger">
+   <parameter name="message"/>
+   <sequence>
+        <log level="custom">
+              <property expression="$func:message" name="GREETING_MESSAGE"/>
+    </log>
+   </sequence>
+</template>
 ```
 
-See [Sequence Template](../references/templates/synapse_templates.md) for a more information about this scenario.
+### Example 2
 
-#### Example two
-
-The following Call Template mediator configuration populates a sequence
-template named `         Testtemp        ` with a dynamic XPath
-expression.
+The following Call Template mediator configuration populates a sequence template named `Testtemp` with a dynamic XPath expression.
 
 ``` xml
-    <call-template target="Testtemp">
-        <with-param name="message_store" value="<MESSAGE_STORE_NAME>" />
-    </call-template>
+<call-template target="Testtemp">
+    <with-param name="message_store" value="<MESSAGE_STORE_NAME>" />
+</call-template>
 ```
 
-The following `         Testtemp        ` template includes a dynamic
-XPath expression to save messages in a Message Store, which is
+The following `Testtemp` template includes a dynamic XPath expression to save messages in a message store, which is
 dynamically set via the message context.
 
 ``` java
-    <template name="Testtemp">
-            <parameter name="message_store"/>
-            <sequence>
-                <log level="custom">
-                    <property expression="$func:message_store"
-                        name="STORENAME"
-                        xmlns:ns="http://org.apache.synapse/xsd"
-                        xmlns:ns2="http://org.apache.synapse/xsd" xmlns:soapenv="http://www.w3.org/2003/05/soap-envelope"/>
-                </log>
-                <store messageStore="{$func:message_store}"
+<template name="Testtemp">
+        <parameter name="message_store"/>
+        <sequence>
+            <log level="custom">
+                <property expression="$func:message_store"
+                    name="STORENAME"
                     xmlns:ns="http://org.apache.synapse/xsd"
                     xmlns:ns2="http://org.apache.synapse/xsd" xmlns:soapenv="http://www.w3.org/2003/05/soap-envelope"/>
-            </sequence>
-        </template>
+            </log>
+            <store messageStore="{$func:message_store}"
+                xmlns:ns="http://org.apache.synapse/xsd"
+                xmlns:ns2="http://org.apache.synapse/xsd" xmlns:soapenv="http://www.w3.org/2003/05/soap-envelope"/>
+        </sequence>
+    </template>
 ```

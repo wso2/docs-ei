@@ -6,29 +6,15 @@ Filter mediator executes the other mediators enclosed in the sequence.
 
 The Filter Mediator closely resembles the "If-else" control structure.
 
-!!! info
+!!! Info
+    The Filter mediator is a [conditionally](ESB-Mediators_119131045.html#ESBMediators-Content-awareness) [content aware](ESB-Mediators_119131045.html#ESBMediators-Content-awareness) mediator.
 
-The Filter mediator is a
-[conditionally](ESB-Mediators_119131045.html#ESBMediators-Content-awareness)
-[content
-aware](ESB-Mediators_119131045.html#ESBMediators-Content-awareness)
-mediator.
-
-
-------------------------------------------------------------------------
-
-[Syntax](#FilterMediator-Syntax) \|
-[Configuration](#FilterMediator-Configuration) \|
-[Examples](#FilterMediator-Examples)
-
-------------------------------------------------------------------------
-
-### Syntax
+## Syntax
 
 ``` java
-    <filter (source="[XPath|json-eval(JSONPath)]" regex="string") | xpath="[XPath|json-eval(JSONPath)]">
-       mediator+
-    </filter>
+<filter (source="[XPath|json-eval(JSONPath)]" regex="string") | xpath="[XPath|json-eval(JSONPath)]">
+   mediator+
+</filter>
 ```
 
 This mediator could also be used to handle a scenario where two
@@ -36,14 +22,14 @@ different sequences are applied to messages that meet the filter
 criteria and messages that do not meet the filter criteria.
 
 ``` java
-    <filter (source="[XPath|json-eval(JSONPath)]" regex="string") | xpath="[XPath|json-eval(JSONPath)]">
-       <then [sequence="string"]>
-         mediator+
-       </then>
-       <else [sequence="string"]>
-         mediator+
-       </else>
-    </filter>
+<filter (source="[XPath|json-eval(JSONPath)]" regex="string") | xpath="[XPath|json-eval(JSONPath)]">
+   <then [sequence="string"]>
+     mediator+
+   </then>
+   <else [sequence="string"]>
+     mediator+
+   </else>
+</filter>
 ```
 
 In this case, the Filter condition remains the same. The messages that
@@ -52,9 +38,7 @@ enclosed in the `         then        ` element. The messages that do
 not match the filter criteria will be mediated using the set of
 mediators enclosed in the `         else        ` element.
 
-------------------------------------------------------------------------
-
-### Configuration
+## Configuration
 
 The parameters available for configuring the Filter mediator are as
 follows:
@@ -71,7 +55,7 @@ follows:
 <td><strong>Specify As</strong></td>
 <td><p>This is used to specify whether you want to specify the filter criteria via an XPath expression or a regular expression.</p>
 <ul>
-<li><strong>XPath</strong> : If this option is selected, the Filter mediator tests the given XPath/JSONPath expression as a Boolean expression. When specifying a JSONPath, use the format <code>               json-eval(&lt;JSON_PATH&gt;)              </code> , such as <code>               json-eval(getQuote.request.symbol)              </code> . For more information on using JSON with the ESB profile , see <a href="https://docs.wso2.com/display/EI650/Working+with+JSON+Message+Payloads">Working with JSON Message Payloads</a> .</li>
+<li><strong>XPath</strong> : If this option is selected, the Filter mediator tests the given XPath/JSONPath expression as a Boolean expression. When specifying a JSONPath, use the format <code>               json-eval(&lt;JSON_PATH&gt;)              </code> , such as <code>               json-eval(getQuote.request.symbol)              </code>.</li>
 <li><strong>Source and Regular Expression</strong> : If this option is selected, the Filter mediator matches the evaluation result of a source XPath/JSONPath expression as a string against the given regular expression.</li>
 </ul></td>
 </tr>
@@ -79,7 +63,6 @@ follows:
 <td><strong>Source</strong></td>
 <td><div class="content-wrapper">
 <p>The expression to locate the value that matches the regular expression that you can define in the <strong>Regex</strong> parameter.</p>
-!!! info
 <p>Tip</p>
 <p>You can click <strong>NameSpaces</strong> to add namespaces if you are providing an expression. Then the <strong>Namespace Editor</strong> panel would appear where you can provide any number of namespace prefixes and URLs used in the XPath expression.</p>
 
@@ -92,9 +75,9 @@ follows:
 </tbody>
 </table>
 
-###  Examples
+##  Examples
 
-#### Example 1: Sending only messages matching the filter criteria
+### Sending only messages matching the filter criteria
 
 In this example, the Filter will get the `         To        ` header
 value and match it against the given regular expression. If this
@@ -103,35 +86,35 @@ If the evaluation returns `         false        ` , it will drop the
 message.
 
 ``` java
-    <filter source="get-property('To')" regex=".*/StockQuote.*">
-          <then>
-              <send/>
-          </then>
-          <else>
-              <drop/>
-          </else>
-    </filter>
+<filter source="get-property('To')" regex=".*/StockQuote.*">
+      <then>
+          <send/>
+      </then>
+      <else>
+          <drop/>
+      </else>
+</filter>
 ```
 
-#### Example 2: Applying separate sequences
+### Applying separate sequences
 
-In this example, the [Log mediator](_Log_Mediator_) is used to log
+In this example, the [Log mediator](log-Mediator.md) is used to log
 information from a service named Bus Services via a property when the
 request matches the filter criteria. When the request does not match the
 filter criteria, another log mediator configuration is used log
 information from a service named Train Service in a similar way.
 
-``` xml
-    <filter source="get-property('Action')" regex=".*getBusNo"> 
-       <then> 
-          <log level="custom"> 
-             <property name="service" value="Bus Services is called"/> 
-          </log> 
-       </then> 
-       <else> 
-          <log level="custom"> 
-             <property name="service" value="Train Service is called"/> 
-          </log> 
-       </else> 
-    </filter>
+```
+<filter source="get-property('Action')" regex=".*getBusNo"> 
+   <then> 
+      <log level="custom"> 
+         <property name="service" value="Bus Services is called"/> 
+      </log> 
+   </then> 
+   <else> 
+      <log level="custom"> 
+         <property name="service" value="Train Service is called"/> 
+      </log> 
+   </else> 
+</filter>
 ```

@@ -5,7 +5,7 @@ Mapping configuration](_Data_Mapper_Mediator_) as shown in the example
 below.
 
 ![example mapping
-configuration](attachments/119131355/119131378.png "example mapping configuration")  
+configuration](/assets/img/mediators/119131355/119131378.png "example mapping configuration")  
 
 Therefore, you can use the WSO2 Data Mapper Diagram Editor to create a
 JSON Schema manually by adding elements to the Data Mapper tree view as
@@ -40,7 +40,7 @@ element can be either an object or an array. Right-click on the
 shown below, to add the root element.
 
 ![select add new root element
-option](attachments/119131355/119131377.png "select add new root element option")
+option](/assets/img/mediators/119131355/119131377.png "select add new root element option")
 
 Add the following details to create the root element.
 
@@ -55,11 +55,11 @@ Add the following details to create the root element.
 -   **Schema Value:** custom URI of the Schema
 
 ![enter details of the root
-element](attachments/119131355/119131359.png "enter details of the root element"){width="600"}
+element](/assets/img/mediators/119131355/119131359.png "enter details of the root element"){width="600"}
 
 You view the root element added to the **Input** box as shown below.
 
-![](attachments/119131355/119131366.png)  
+![](/assets/img/mediators/119131355/119131366.png)  
 
 ### Adding a child element
 
@@ -79,7 +79,7 @@ Right-click on the parent element and click **Add new Object** , to add
 an Object as shown below.
 
 ![add an object as a child
-element](attachments/119131355/119131373.png "add an object as a child element")
+element](/assets/img/mediators/119131355/119131373.png "add an object as a child element")
 
 Add the following details to create an Object as a child element.
 
@@ -108,7 +108,7 @@ Add the following details to create an Object as a child element.
     
 
 ![details to add an object child
-element](attachments/119131355/119131357.png "details to add an object child element")
+element](/assets/img/mediators/119131355/119131357.png "details to add an object child element")
 
 You view the child Object element added to the root element as shown
 below.
@@ -121,13 +121,13 @@ The element identifier is added as an attribute to the element.
   
 
 ![child element added to Input
-box](attachments/119131355/119131367.png "child element added to Input box")
+box](/assets/img/mediators/119131355/119131367.png "child element added to Input box")
 
 Right-click on the parent element and click **Add new Array** , to add
 an Array as shown below.
 
 ![adding an array as a child
-element](attachments/119131355/119131375.png "adding an array as a child element")
+element](/assets/img/mediators/119131355/119131375.png "adding an array as a child element")
 
 You need to add the following details to create an Array as a child
 element.
@@ -157,7 +157,7 @@ element.
     
 
 ![entering details to add the Array child
-element](attachments/119131355/119131356.png "entering details to add the Array child element"){width="600"}
+element](/assets/img/mediators/119131355/119131356.png "entering details to add the Array child element"){width="600"}
 
 You view the child Array element added to the root element as shown
 below.
@@ -167,13 +167,13 @@ below.
 The element identifier is added as an attribute to the element.
 
 
-![](attachments/119131355/119131368.png)
+![](/assets/img/mediators/119131355/119131368.png)
 
 Right-click on the parent element and click **Add new Field** , to add a
 Field as shown below.
 
 ![add Field child
-element](attachments/119131355/119131372.png "add Field child element")
+element](/assets/img/mediators/119131355/119131372.png "add Field child element")
 
 You need to add the following details to create a Field as a child
 element.
@@ -189,19 +189,19 @@ element.
 -   **Schema Value:** custom URI of the Schema
 
 ![entering details to add field child
-element](attachments/119131355/119131365.png "entering details to add field child element"){width="600"}
+element](/assets/img/mediators/119131355/119131365.png "entering details to add field child element"){width="600"}
 
 You view the child Field element added to the root element as shown
 below.
 
 ![added field
-element](attachments/119131355/119131364.png "added field element")
+element](/assets/img/mediators/119131355/119131364.png "added field element")
 
 Right-click on the parent element and click **Add new Attribute** , to
 add an attribute as shown below.
 
 ![add Attribute child
-element](attachments/119131355/119131371.png "add Attribute child element")
+element](/assets/img/mediators/119131355/119131371.png "add Attribute child element")
 
 You need to add the following details to create an Attribute as a child
 element.
@@ -217,13 +217,13 @@ element.
 -   **Schema Value:** custom URI of the Schema
 
 ![entering details to add attribute child
-element](attachments/119131355/119131363.png "entering details to add attribute child element"){width="600"}
+element](/assets/img/mediators/119131355/119131363.png "entering details to add attribute child element"){width="600"}
 
 You view the child Attribute element added to the root element as shown
 below.
 
 ![attribute added to root
-element](attachments/119131355/119131362.png "attribute added to root element")
+element](/assets/img/mediators/119131355/119131362.png "attribute added to root element")
 
 ### Setting a nullable element
 
@@ -233,13 +233,13 @@ and click **Enable Nullable** , to enable an element to make it
 nullable as shown below.
 
 ![enable nullable
-element](attachments/119131355/119131361.png "enable nullable element")
+element](/assets/img/mediators/119131355/119131361.png "enable nullable element")
 
 Right-click on the parent element and click **Disable Nullable** , to
 make it required in the payload as shown below.
 
 ![disable the element being
-nullable](attachments/119131355/119131358.png "disable the element being nullable")
+nullable](/assets/img/mediators/119131355/119131358.png "disable the element being nullable")
 
 ### Editing an element
 
@@ -247,7 +247,7 @@ Right-click on any element and click **Edit Object** , to edit and
 update the field values as required as shown below.
 
 ![edit an
-element](attachments/119131355/119131369.png "edit an element")
+element](/assets/img/mediators/119131355/119131369.png "edit an element")
 
 ### Deleting an element
 
@@ -260,4 +260,4 @@ This deletes the element with its child nodes.
 
 
 ![deleting an
-element](attachments/119131355/119131360.png "deleting an element")
+element](/assets/img/mediators/119131355/119131360.png "deleting an element")

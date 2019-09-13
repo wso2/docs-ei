@@ -1,48 +1,30 @@
 # Aggregate Mediator
 
-The **Aggregate mediator** implements the [Aggregator enterprise
-integration pattern](https://docs.wso2.com/display/EIP/Aggregator) . It
-combines (aggregates) the **response messages** of messages that were
-split by the split by the [Clone](_Clone_Mediator_) or
-[Iterate](_Iterate_Mediator_) mediator. Note that the responses are not
-necessarily aggregated in the same order that the requests were sent,
-even if you set the `         sequential        ` attribute to
-`         true        ` on the Iterate mediator.
+The **Aggregate mediator** implements the [Aggregator enterprise integration pattern](https://docs.wso2.com/display/EIP/Aggregator). It
+combines (aggregates) the **response messages** of messages that were split by the split by the [Clone](clone-Mediator.md) or
+[Iterate](iterate-Mediator.md) mediator. Note that the responses are not necessarily aggregated in the same order that the requests were sent,
+even if you set the `         sequential        ` attribute to `         true        ` on the Iterate mediator.
 
-!!! info
+!!! Info
     The Aggregate mediator is a [content-aware](ESB-Mediators_119131045.html#ESBMediators-Content-awareness) mediator.
 
-
-  
-
-------------------------------------------------------------------------
-
-[Syntax](#AggregateMediator-Syntax) \|
-[Configuration](#AggregateMediator-Configuration) \|
-[Examples](#AggregateMediator-Examples)
-
-------------------------------------------------------------------------
-
-### Syntax
+## Syntax
 
 ``` java
-    <aggregate>
-       <correlateOn expression="xpath | json-eval(JSON-Path)"/>?
-       <completeCondition [timeout="time-in-seconds"]>
-         <messageCount min="int-min" max="int-max"/>?
-       </completeCondition>?
-       <onComplete expression="xpath |  json-eval(JSON-Path)" [sequence="sequence-ref"]>
-         (mediator +)?
-       </onComplete>
-    </aggregate>
+<aggregate>
+   <correlateOn expression="xpath | json-eval(JSON-Path)"/>?
+   <completeCondition [timeout="time-in-seconds"]>
+     <messageCount min="int-min" max="int-max"/>?
+   </completeCondition>?
+   <onComplete expression="xpath |  json-eval(JSON-Path)" [sequence="sequence-ref"]>
+     (mediator +)?
+   </onComplete>
+</aggregate>
 ```
 
-------------------------------------------------------------------------
+## Configuration
 
-### Configuration
-
-The parameters available for configuring the Aggregate mediator are as
-follows.
+The parameters available for configuring the Aggregate mediator are as follows.
 
 <table>
 <thead>
@@ -70,15 +52,13 @@ follows.
 </tr>
 <tr class="odd">
 <td><strong>Completion Min-messages</strong></td>
-<td>Minimum number of messages required for the aggregation to complete. When the time duration entered in the <strong>Completion Timeout</strong> field is elapsed, the aggregation will be completed even if the number of minimum response messages specified has not been received. If no value is entered in the <strong>Completion Timeout</strong> <strong></strong> field, the aggregation will not be completed until the number of response messages entered in the <strong>Completion Min-messages</strong> field is received.</td>
+<td>Minimum number of messages required for the aggregation to complete. When the time duration entered in the <strong>Completion Timeout</strong> field is elapsed, the aggregation will be completed even if the number of minimum response messages specified has not been received. If no value is entered in the <strong>Completion Timeout</strong> field, the aggregation will not be completed until the number of response messages entered in the <strong>Completion Min-messages</strong> field is received.</td>
 </tr>
 <tr class="even">
 <td><strong>Correlation Expression</strong></td>
 <td><div class="content-wrapper">
 <p>This is an XPath expression which provides the basis on which response messages should be selected for aggregation. This is done by specifying a set of elements for which the messages selected should have matching values. A specific aggregation condition is set via the <strong>Aggregation Expression</strong> field.</p>
-!!! tip
     <p>You can click <strong>NameSpaces</strong> to add namespaces if you are providing an expression. Then the <strong>Namespace Editor</strong> panel would appear where you can provide any number of namespace prefixes and URLs used in the XPath expression.</p>
-
 </div></td>
 </tr>
 <tr class="odd">
@@ -89,64 +69,52 @@ follows.
 <td><strong>On Complete</strong></td>
 <td><p>The sequence to run when the aggregation is complete. You can select one of the following options:</p>
 <ul>
-<li><strong>Anonymous</strong> : Select this value if you want to specify the sequence to run by adding child mediators to the Aggregate mediator instead of selecting an existing sequence. For example, if you want to send the aggregated message via the <a href="_Send_Mediator_">Send mediator</a> , you can add the Send mediator as a child mediator.</li>
-<li><strong>Pick from Registry</strong> : Select this option if you want to specify a sequence which is already defined and saved in the registry. You can select the sequence from the Configuration Registry or Governance Registry.</li>
+<li><strong>Anonymous</strong>: Select this value if you want to specify the sequence to run by adding child mediators to the Aggregate mediator instead of selecting an existing sequence. For example, if you want to send the aggregated message via the <a href="../../mediators/send-Mediator">Send mediator</a>, you can add the Send mediator as a child mediator.</li>
+<li><strong>Pick from Registry</strong>: Select this option if you want to specify a sequence which is already defined and saved in the registry. You can select the sequence from the Configuration Registry or Governance Registry.</li>
 </ul></td>
 </tr>
 </tbody>
 </table>
 
-  
+## Examples
 
-------------------------------------------------------------------------
-
-### Examples
-
--   [Example 1 - Sending aggregated messages through the send
-    mediator](#AggregateMediator-Example1-Sendingaggregatedmessagesthroughthesendmediator)
--   [Example 2 - Sending aggregated messages with the enclosing
-    element](#AggregateMediator-Example2-Sendingaggregatedmessageswiththeenclosingelement)
--   [Samples](#AggregateMediator-Samples)
-
-#### Example 1 - Sending aggregated messages through the send mediator
+### Example 1 - Sending aggregated messages through the send mediator
 
 ``` java
-    <outSequence>
-        <aggregate>
-            <onComplete expression="//m0:getQuoteResponse"
-                    xmlns:m0="http://services.samples">
-                <send/>
-            </onComplete>
-        </aggregate>
-    </outSequence>
+<outSequence>
+    <aggregate>
+        <onComplete expression="//m0:getQuoteResponse"
+                xmlns:m0="http://services.samples">
+            <send/>
+        </onComplete>
+    </aggregate>
+</outSequence>
 ```
 
-In this example, the mediator aggregates the responses coming into the
-ESB profile , and on completion it sends the aggregated message through
+In this example, the mediator aggregates the responses coming into the Micro Integrator, and on completion it sends the aggregated message through
 the Send mediator.
 
-#### Example 2 - Sending aggregated messages with the enclosing element
+### Example 2 - Sending aggregated messages with the enclosing element
 
 The following example shows how to configure the Aggregate mediator to
 annotate the responses sent from multiple backends before forwarding
 them to the client.
 
 ``` xml
-    <outSequence>
-       <property name="info" scope="default">
-          <ns:Information xmlns:ns="www.asankatechtalks.com" />
-       </property>
-       <aggregate id="sa">
-          <completeCondition />
-          <onComplete expression="$body/*[1]" enclosingElementProperty="info">
-             <send />
-          </onComplete>
-       </aggregate>
-    </outSequence>
+<outSequence>
+   <property name="info" scope="default">
+      <ns:Information xmlns:ns="www.asankatechtalks.com" />
+   </property>
+   <aggregate id="sa">
+      <completeCondition />
+      <onComplete expression="$body/*[1]" enclosingElementProperty="info">
+         <send />
+      </onComplete>
+   </aggregate>
+</outSequence>
 ```
 
 The above configuration includes the following:
-
 <table>
 <thead>
 <tr class="header">

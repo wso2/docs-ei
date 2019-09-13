@@ -1,34 +1,16 @@
 # DB Report Mediator
 
-The **DB Report Mediator** is similar to the [DBLookup
-Mediator](_DBLookup_Mediator_). The difference between the two
-mediators is that the DB Report mediator writes information to a
-database using the specified insert SQL statement.
+The **DB Report Mediator** is similar to the [DBLookup Mediator](dBLookup-Mediator.md). The difference between the two mediators is that the DB Report mediator writes information to a database using the specified insert SQL statement.
 
-!!! info
+!!! Info
     The DB Report mediator is a [content-aware](ESB-Mediators_119131045.html#ESBMediators-Content-awareness) mediator.
 
+## Syntax
 
-------------------------------------------------------------------------
+The syntax of the DB Report mediator changes depending on whether you connect to the database using a connection pool, or using a data source.
 
-[Syntax](#DBReportMediator-Syntax) \|
-[Configuration](#DBReportMediator-Configuration) \|
-[Examples](#DBReportMediator-Examples)
-
-------------------------------------------------------------------------
-
-### Syntax
-
-The syntax of the DB Report mediator changes depending on whether you
-connect to the database using a connection pool, or using a data source.
-Click on the relevant tab to view the required syntax.
-
-  
-
--   [**Connection Pool**](#f6c5661f175041249b8a8f490f1dda62)
--   [**Data source**](#83a79d7208aa49cabe1b83f074a5edfa)
-
-``` java
+-   **Connection Pool**
+    ``` java
     <dbreport>
        <connection>
          <pool>
@@ -37,7 +19,7 @@ Click on the relevant tab to view the required syntax.
             <url/>
             <user/>
             <password/>
-    
+
             <dsName/>
             <icClass/>
             <url/>
@@ -52,17 +34,12 @@ Click on the relevant tab to view the required syntax.
           <parameter [value="" | expression=""] type="CHAR|VARCHAR|LONGVARCHAR|NUMERIC|DECIMAL|BIT|TINYINT|SMALLINT|INTEGER|BIGINT|REAL|FLOAT|DOUBLE|DATE|TIME|TIMESTAMP"/>*
        </statement>+
     </dbreport>
-```
+    ```
 
-The syntax of the DBLookup mediator further differs based on whether the
-connection to the database is made using an external datasource or a
-Carbon datasource. Click on the relevant tab to view the required
-syntax.
+-   **Data source**
+    The syntax of the DBLookup mediator further differs based on whether the connection to the database is made using an external datasource or a Carbon datasource. Click on the relevant tab to view the required syntax.
 
--   [**External Datasource**](#b8df92b7e65c4405b12a6d0248009db7)
--   [**Carbon Datasource**](#1b84426af66d45db9ee2b98bdac504b9)
-
-``` java
+    ``` java tab='External Datasource'
     <dbreport>
        <connection>
           <pool>
@@ -79,9 +56,9 @@ syntax.
           <parameter [value="" | expression=""] type="CHAR|VARCHAR|LONGVARCHAR|NUMERIC|DECIMAL|BIT|TINYINT|SMALLINT|INTEGER|BIGINT|REAL|FLOAT|DOUBLE|DATE|TIME|TIMESTAMP"/>*
        </statement>+
     </dbreport>
-```
+    ```
 
-``` java
+    ``` java tab='Carbon Datasource'
     <dbreport>
        <connection>
           <pool>
@@ -93,32 +70,20 @@ syntax.
           <parameter [value="" | expression=""] type="CHAR|VARCHAR|LONGVARCHAR|NUMERIC|DECIMAL|BIT|TINYINT|SMALLINT|INTEGER|BIGINT|REAL|FLOAT|DOUBLE|DATE|TIME|TIMESTAMP"/>*
        </statement>+
     </dbreport>
-```
+    ```
 
-  
+## Configurations
 
-------------------------------------------------------------------------
+The configuration of the DBQuery mediator changes depending on whether you connect to the database using a connection pool, or using a data
+source.
 
-### Configuration
+### Connection Pool configurations
 
-The configuration of the DBQuery mediator changes depending on whether
-you connect to the database using a connection pool, or using a data
-source. Click on the relevant tab to view the required UI.
+The parameters available to configure the DB Report mediator are as follows.
 
--   [**Pool**](#63d61313919a470ba470c7558864896b)
--   [**Data Source**](#8afd6c544e344231be649b5edaab0b67)
-
-The following UI is displayed when you select the **Pool** option for
-the **Connection Information** parameter, indicating that you want the
-connection to be made via a connection pool.
-
-The parameters available to configure the DB Report mediator are as
-follows.
-
-!!! info
-    When specifying the DB connection using a connection pool, other thanspecifying parameter values inline, you can also specify followingparameter values of the connection information (i.e. Driver, URL, User and password) as registry entries. The advantage of specifying a parameter value as a registry entry is that the same connection information configurations can be used in different environments simply by changing the registry entry value. To do this, give the registry path within the `            key           ` attribute as shown in the example below.
-
-``` xml
+!!! Info
+    When specifying the DB connection using a connection pool, other than specifying parameter values inline, you can also specify following parameter values of the connection information (i.e. Driver, URL, User and password) as registry entries. The advantage of specifying a parameter value as a registry entry is that the same connection information configurations can be used in different environments simply by changing the registry entry value. To do this, give the registry path within the `key` attribute as shown in the example below.
+    ```
     <dblookup xmlns="http://ws.apache.org/ns/synapse">
     <connection>
         <pool>
@@ -129,12 +94,7 @@ follows.
         </pool>
     </connection>
     </dblookup>
-```
-    
-    If you need to provide the registry entry value via the Management
-    Console, specify the registry path using the
-    `            $registry           ` prefix.
-    
+  ```
 
 <table>
 <thead>
@@ -148,23 +108,20 @@ follows.
 <td><strong>Use Transaction</strong></td>
 <td><div class="content-wrapper">
 <p>This parameter specifies whether the database operation should be performed within a transaction or not. Click <strong>Yes</strong> or <strong>No</strong> as relevant.</p>
-!!! info
 <p>To include multiple database reports within the same database transaction i nside a particular message flow, set the value of this <strong>Use Transaction</strong> property to <strong>Yes</strong> .<br />
 </p>
 <p>However, when you have more reports it takes more time to complete a transaction and when multiple messages flow in, then multiple transactions can become active at the same time.</p>
-<p>By default, the maximum number of active transactions is 50 as imposed by the Atomikos JTA implementation . To override this, create a file named <code>                  transaction.properties                 </code> by including the following property and add it to the <code>                  &lt;EI_HOME&gt;/lib                 </code> directory:</p>
+<p>By default, the maximum number of active transactions is 50 as imposed by the Atomikos JTA implementation. To override this, create a file named <code>                  transaction.properties                 </code> by including the following property and add it to the <code>                  &lt;EI_HOME&gt;/lib                 </code> directory:</p>
 <pre><code>com.atomikos.icatch.max_actives=1000</code></pre>
 <div>
 Specifying the value as -1 allows unlimited transactions. Change the value accordingly to limit the number of active transactions based on your environment and the concurrency level of the service.
 </div>
-!!! note
 <p>If you click <strong>Yes</strong> to perform the database operation within a transaction, you need to ensure the following:</p>
 <ul>
 <li>The DBReport mediator configuration must be preceded by a Transaction Mediator configuration with <code>                   new                  </code> as the transaction action.</li>
-<li>The DBReport mediator configuration must be followed by a Transaction Mediator configuration with <code>                   commit                  </code> as the transaction action.</li>
+<li>The DBReport mediator configuration must be followed by a Transaction Mediator configuration with <code>commit</code> as the transaction action.</li>
 </ul>
-<p>For detailed information about configuring Transaction mediators, see <a href="_Transaction_Mediator_">Transaction Mediator</a> .</p>
-
+<p>For detailed information about configuring Transaction mediators, see <a href="../../mediators/transaction-Mediator">Transaction Mediator</a> .</p>
 </div></td>
 </tr>
 <tr class="even">
@@ -178,7 +135,7 @@ Specifying the value as -1 allows unlimited transactions. Change the value accor
 </tr>
 <tr class="even">
 <td><strong>User</strong></td>
-<td>The user name used to connect to the database.</td>
+<td>The user name for connecting to the database.</td>
 </tr>
 <tr class="odd">
 <td><strong>Password</strong></td>
@@ -187,12 +144,7 @@ Specifying the value as -1 allows unlimited transactions. Change the value accor
 </tbody>
 </table>
 
-##### Adding properties to the DB Report mediator
-
-If you click **Add Property** , the page will expand to display the
-following parameters.
-
-The parameters available to manage properties are as follows.
+To add properties to the DBReport mediator, start with the following parameters:
 
 | Parameter Name | Description                                      |
 |----------------|--------------------------------------------------|
@@ -200,7 +152,7 @@ The parameters available to manage properties are as follows.
 | **Value**      | The value of the property.                       |
 | **Action**     | This parameter enables a property to be deleted. |
 
-The available properties are as follows.
+Once you have defined the above parameters, enter the following properties:
 
 <table>
 <thead>
@@ -254,7 +206,7 @@ The available properties are as follows.
 <tr class="odd">
 <td><p>poolstatements</p></td>
 <td><p>true/ false</p></td>
-<td>If the value is <code>                true               </code> , statement pooling is enabled for the pool.</td>
+<td>If the value is <code>true</code>, statement pooling is enabled for the pool.</td>
 </tr>
 <tr class="even">
 <td><p>testonborrow</p></td>
@@ -275,20 +227,12 @@ The available properties are as follows.
 </tbody>
 </table>
 
-The UI configuration of the DBLookup mediator further differs based on
-whether the connection to the database is made using an external
-datasource or a Carbon datasource. Click on the relevant tab to view the
-required UI configuration.
+### Datasource configurations
 
--   [**External**](#1de61418b7854e0fb441f299f1d89b35)
--   [**Carbon Datasource**](#0d98fd1622154d9a888233f7c7d55583)
+The configuration of the DBLookup mediator further differs based on whether the connection to the database is made using an external datasource or a Carbon datasource. 
 
-The following UI is displayed if you select the **External** option for
-the **Datasource Type** parameter, indicating that you want the
-connection to the database to be made using an external datasource.
-
-The parameters available to configure the DB Report mediator are as
-follows.
+#### External Datasource
+The parameters available to configure the DB Report mediator as an external datasource are as follows.
 
 | Parameter Name      | Description                                                                                                                                                                                   |
 |---------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -299,14 +243,7 @@ follows.
 | **User**            | The user name used to connect to the database.                                                                                                                                                |
 | **Password**        | The password used to connect to the database.                                                                                                                                                 |
 
-  
-
-##### Adding properties to the DB Report mediator
-
-If you click **Add Property** , the page will expand to display the
-following parameters.
-
-The parameters available to manage properties are as follows.
+To add properties to the DBReport mediator, start with the following parameters:
 
 | Parameter Name | Description                                      |
 |----------------|--------------------------------------------------|
@@ -314,9 +251,8 @@ The parameters available to manage properties are as follows.
 | **Value**      | The value of the property.                       |
 | **Action**     | This parameter enables a property to be deleted. |
 
-  
 
-The available properties are as follows.
+Once you have defined the above parameters, enter the following properties:
 
 | Name              | Value                                                                                                                                                                                                | Description                                                                                                                                                                                                                                                             |
 |-------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -333,21 +269,14 @@ The available properties are as follows.
 | testwhileidle     | true/ false                                                                                                                                                                                          | If the value is `                   true                  ` , the objects in the pool will be validated using an idle object evictor (if any exists). Any object which fails this validation test would be dropped from the pool.                                       |
 | validationquery   | String                                                                                                                                                                                               | The SQL query that will be used to validate connections from this pool before returning them to the caller.                                                                                                                                                             |
 
-The following UI is displayed if you select the **Carbon Datasource**
-option for the **Datasource Type** parameter, indicating that you want
-the connection to the database to be made using an Carbon datasource.
-
-  
+#### Carbon Datasource
 
 | Parameter Name      | Description                                                                                                                                                                                |
 |---------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Use Transaction** | This parameter specifies whether the database operation should be performed within a transaction or not. Click **Yes** or **No** as relevant.                                              |
 | **Datasource**      | This parameter is used to selected a specific Carbon datasource you want to use to make the connection. All the Carbon datasources which are currently available are included in the list. |
 
-**Adding SQL statements to the DB Report Mediator**
-
-If you click **Add Statement** , the page will be expanded to display
-the following parameters.
+### SQL statements
 
 <table>
 <thead>
@@ -399,7 +328,6 @@ the following parameters.
 <td><strong>Value/Expression</strong></td>
 <td><div class="content-wrapper">
 <p>This parameter is used to enter the static value or the XPath expression used to determine the property value based on the option you selected for the <strong>Property Type</strong> parameter.</p>
-!!! tip
 <p>You can click <strong>NameSpaces</strong> to add namespaces if you are providing an expression. Then the <strong>Namespace Editor</strong> panel would appear where you can provide any number of namespace prefixes and URLs used in the XPath expression.</p>
 
 </div></td>
@@ -411,120 +339,108 @@ the following parameters.
 </tbody>
 </table>
 
-  
+## Examples
 
-  
+### Simple database write operation
 
-------------------------------------------------------------------------
-
-### Examples
-
-#### Simple database write operation
-
-This example demonstrates simple database write operations. The DB
-Report mediator writes to a table using the details of the message. It
-updates the stock price of the company using the last quote value, which
-is calculated by evaluating an XPath expression against the response
-message.
+This example demonstrates simple database write operations. The DB Report mediator writes to a table using the details of the message. It updates the stock price of the company using the last quote value, which is calculated by evaluating an XPath expression against the response message.
 
 ``` java
-    <dbreport xmlns="http://ws.apache.org/ns/synapse">
-        <connection>
-            <pool>
-                <driver>org.apache.derby.jdbc.ClientDriver</driver>
-                <url>jdbc:derby://localhost:1527/esbdb;create=false</url>
-                <user>esb</user>
-                <password>esb</password>
-            </pool>
-        </connection>
-        <statement>
-            <sql><![CDATA[update company set price=? where name =?]]></sql>
-            <parameter expression="//m0:return/m1:last/child::text()" type="DOUBLE" xmlns:m0="http://services.samples" xmlns:m1="http://services.samples/xsd"/>
-            <parameter expression="//m0:return/m1:symbol/child::text()" type="VARCHAR" xmlns:m0="http://services.samples" xmlns:m1="http://services.samples/xsd"/>
-        </statement>
-    </dbreport>
+<dbreport xmlns="http://ws.apache.org/ns/synapse">
+    <connection>
+        <pool>
+            <driver>org.apache.derby.jdbc.ClientDriver</driver>
+            <url>jdbc:derby://localhost:1527/esbdb;create=false</url>
+            <user>esb</user>
+            <password>esb</password>
+        </pool>
+    </connection>
+    <statement>
+        <sql><![CDATA[update company set price=? where name =?]]></sql>
+        <parameter expression="//m0:return/m1:last/child::text()" type="DOUBLE" xmlns:m0="http://services.samples" xmlns:m1="http://services.samples/xsd"/>
+        <parameter expression="//m0:return/m1:symbol/child::text()" type="VARCHAR" xmlns:m0="http://services.samples" xmlns:m1="http://services.samples/xsd"/>
+    </statement>
+</dbreport>
 ```
 
-#### Performing a database write operation within a transaction
+### Database write operation within a transaction
 
-In this example, `         <transaction action="new"/>        ` is a
-Transaction Mediator configuration that starts a new transaction. The
-DBReport mediator configuration performs a few write operations incuding
-deleting records when the name matches a specific value derived via an
+In this example, `         <transaction action="new"/>        ` is a Transaction Mediator configuration that starts a new transaction. The DBReport mediator configuration performs a few write operations incuding deleting records when the name matches a specific value derived via an
 expression as well as a few insertions. Once the database operations are
 complete, they are committed via
 `         <transaction action="commit"/>        ` , which is another
 Transaction Mediator configuration.
 
 ``` java
-    <definitions xmlns="http://ws.apache.org/ns/synapse">
-       <sequence name="myFaultHandler">
+<definitions xmlns="http://ws.apache.org/ns/synapse">
+   <sequence name="myFaultHandler">
+        <log level="custom">
+            <property name="text" value="** Rollback Transaction**"/>
+        </log>
+        <transaction action="rollback"/>
+        <send/>
+    </sequence>
+    <sequence name="main" onError="myFaultHandler">
+        <in>
+            <send>
+                <endpoint>
+                    <address uri="http://localhost:9000/services/SimpleStockQuoteService"/>
+                </endpoint>
+            </send>
+        </in>
+         <out>
+            <transaction action="new"/>
             <log level="custom">
-                <property name="text" value="** Rollback Transaction**"/>
+                <property name="text" value="** Reporting to the Database EIdb**"/>
             </log>
-            <transaction action="rollback"/>
+            <dbreport useTransaction="true" xmlns="http://ws.apache.org/ns/synapse">
+                <connection>
+                    <pool>
+                        <dsName>java:jdbc/XADerbyDS</dsName>
+                        <icClass>org.jnp.interfaces.NamingContextFactory</icClass>
+                        <url>localhost:1099</url>
+                        <user>EI</user>
+                        <password>EI</password>
+                    </pool>
+                </connection>
+                <statement>
+                     <sql>delete from company where name =?</sql>
+                     <parameter expression="//m0:return/m1:symbol/child::text()"
+                       xmlns:m0="http://services.samples" xmlns:m1="http://services.samples/xsd"
+                                 type="VARCHAR"/>
+                </statement>
+            </dbreport>
+            <log level="custom">
+                <property name="text" value="** Reporting to the Database EIdb1**"/>
+            </log>
+            <dbreport useTransaction="true" xmlns="http://ws.apache.org/ns/synapse">
+                <connection>
+                    <pool>
+                        <dsName>java:jdbc/XADerbyDS1</dsName>
+                        <icClass>org.jnp.interfaces.NamingContextFactory</icClass>
+                        <url>localhost:1099</url>
+                        <user>EI</user>
+                        <password>EI</password>
+                    </pool>
+                </connection>
+                <statement>
+                    <sql>INSERT into company values (?,'c4',?)</sql>
+                    <parameter expression="//m0:return/m1:symbol/child::text()"
+         xmlns:m1="http://services.samples/xsd" xmlns:m0="http://services.samples"
+                               type="VARCHAR"/>
+                    <parameter expression="//m0:return/m1:last/child::text()"
+         xmlns:m1="http://services.samples/xsd" xmlns:m0="http://services.samples"
+                               type="DOUBLE"/>
+                </statement>
+            </dbreport>
+            <transaction action="commit"/>
             <send/>
-        </sequence>
-        <sequence name="main" onError="myFaultHandler">
-            <in>
-                <send>
-                    <endpoint>
-                        <address uri="http://localhost:9000/services/SimpleStockQuoteService"/>
-                    </endpoint>
-                </send>
-            </in>
-             <out>
-                <transaction action="new"/>
-                <log level="custom">
-                    <property name="text" value="** Reporting to the Database EIdb**"/>
-                </log>
-                <dbreport useTransaction="true" xmlns="http://ws.apache.org/ns/synapse">
-                    <connection>
-                        <pool>
-                            <dsName>java:jdbc/XADerbyDS</dsName>
-                            <icClass>org.jnp.interfaces.NamingContextFactory</icClass>
-                            <url>localhost:1099</url>
-                            <user>EI</user>
-                            <password>EI</password>
-                        </pool>
-                    </connection>
-                    <statement>
-                         <sql>delete from company where name =?</sql>
-                         <parameter expression="//m0:return/m1:symbol/child::text()"
-                           xmlns:m0="http://services.samples" xmlns:m1="http://services.samples/xsd"
-                                     type="VARCHAR"/>
-                    </statement>
-                </dbreport>
-                <log level="custom">
-                    <property name="text" value="** Reporting to the Database EIdb1**"/>
-                </log>
-                <dbreport useTransaction="true" xmlns="http://ws.apache.org/ns/synapse">
-                    <connection>
-                        <pool>
-                            <dsName>java:jdbc/XADerbyDS1</dsName>
-                            <icClass>org.jnp.interfaces.NamingContextFactory</icClass>
-                            <url>localhost:1099</url>
-                            <user>EI</user>
-                            <password>EI</password>
-                        </pool>
-                    </connection>
-                    <statement>
-                        <sql>INSERT into company values (?,'c4',?)</sql>
-                        <parameter expression="//m0:return/m1:symbol/child::text()"
-             xmlns:m1="http://services.samples/xsd" xmlns:m0="http://services.samples"
-                                   type="VARCHAR"/>
-                        <parameter expression="//m0:return/m1:last/child::text()"
-             xmlns:m1="http://services.samples/xsd" xmlns:m0="http://services.samples"
-                                   type="DOUBLE"/>
-                    </statement>
-                </dbreport>
-                <transaction action="commit"/>
-                <send/>
-            </out>
-        </sequence>
-    </definitions>
+        </out>
+    </sequence>
+</definitions>
 ```
 
+<!--
 #### Samples
 
 For more examples of the DB Report mediator, see:
@@ -539,3 +455,4 @@ For more examples of the DB Report mediator, see:
     Processing](https://docs.wso2.com/display/EI6xx/Sample+271%3A+File+Processing)
     (moves files into a database using the VFS transport and the DB
     Report mediator)
+-->
