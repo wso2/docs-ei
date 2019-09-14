@@ -278,7 +278,7 @@ files with the following content as shown below, to add service provider
 definitions to your Maven project.
 
 ![create the 2 text
-files](attachments/4884105/52756984.png "create the 2 text files")
+files](/assets/img/mediators/4884105/52756984.png "create the 2 text files")
 
 **Content of the org.apache.synapse.config.xml.MediatorFactory file**
 

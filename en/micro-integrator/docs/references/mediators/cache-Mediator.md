@@ -1,123 +1,39 @@
 # Cache Mediator
 
-When a message enters a message flow, the Cache mediator checks whether
-the incoming message is similar to a previous message that was received
-within a specified period of time. This is done by evaluating the hash
-value of incoming messages. If a similar message was identified before,
-the Cache mediator executes the `         onCacheHit        ` sequence
-(if specified), fetches the cached response, and prepares the ESB
-profile to send the response. The `         onCacheHit        ` sequence
-can send back the response message using the [Respond
-Mediator](_Respond_Mediator_) . If the `         onCacheHit        `
-sequence is not specified, the cached response is sent back to the
-requester and the message is not passed on. If a similar message has not
-been seen before, then the message is passed on.
+When a message enters a message flow, the Cache mediator checks whether the incoming message is similar to a previous message that was received
+within a specified period of time. This is done by evaluating the hash value of incoming messages. If a similar message was identified before, the Cache mediator executes the `         onCacheHit        ` sequence (if specified), fetches the cached response, and prepares the Micro Integrator to send the response. The `         onCacheHit        ` sequence can send back the response message using the [Respond Mediator](respond-Mediator.md). If the `         onCacheHit        ` sequence is not specified, the cached response is sent back to the requester and the message is not passed on. If a similar message has not been seen before, then the message is passed on.
 
-!!! info
-    The Cache mediator is a [content-aware](ESB-Mediators_119131045.html#ESBMediators-Content-awareness) mediator.
+!!! Info
+    - The Cache mediator is a [content-aware](ESB-Mediators_119131045.html#ESBMediators-Content-awareness) mediator.
+    - The Cache mediator supports only local caching. It does not support distributed caching.
 
-!!! tip
-    The Cache mediator supports only local caching. It does not support distributed caching.
-
-
-  
-
-------------------------------------------------------------------------
-
-[Syntax](#CacheMediator-Syntax) \|
-[Configuration](#CacheMediator-Configuration) \|
-[Samples](#CacheMediator-Samples) \| [Invalidating cached responses
-remotely](#CacheMediator-Invalidatingcachedresponsesremotely)
-
-------------------------------------------------------------------------
-
-### Syntax
+## Syntax
 
 ``` java
-    <cache [timeout="seconds"] [collector=(true | false)] [maxMessageSize="in-bytes"] >
-       <onCacheHit [sequence="key"]>
-        (mediator)+
-       </onCacheHit>?
-       <protocol type="http" >?
-         <methods>comma separated list</methods>
-         <headersToExcludeInHash>comma separated list</headersToExcludeInHash>
-         <responseCodes>regular expression</responseCodes>
-         <enableCacheControl>(true | false)</enableCacheControl>
-         <includeAgeHeader>(true | false)</includeAgeHeader>
-         <hashGenerator>class</hashGenerator>
-       </protocol>    
-       <implementation [maxSize="int"]/>
-    </cache>
+<cache [timeout="seconds"] [collector=(true | false)] [maxMessageSize="in-bytes"] >
+   <onCacheHit [sequence="key"]>
+    (mediator)+
+   </onCacheHit>?
+   <protocol type="http" >?
+     <methods>comma separated list</methods>
+     <headersToExcludeInHash>comma separated list</headersToExcludeInHash>
+     <responseCodes>regular expression</responseCodes>
+     <enableCacheControl>(true | false)</enableCacheControl>
+     <includeAgeHeader>(true | false)</includeAgeHeader>
+     <hashGenerator>class</hashGenerator>
+   </protocol>    
+   <implementation [maxSize="int"]/>
+</cache>
 ```
 
-!!! info
-    In a message flow you can use the cache mediator as a finder (in the incoming path to check the request) or as a collector (in the outgoing path to cache the response). It is not possible to have more than one cache mediator in the same message flow because mediation is terminated after the finder on a cache hit, and the response is not passed on to the next finder after a cache hit.
+!!! Info
+    In a message flow, you can use the cache mediator as a **finder** (in the incoming path to check the request) or as a **collector** (in the outgoing path to cache the response). It is not possible to have more than one cache mediator in the same message flow because mediation is terminated after the finder on a cache hit, and the response is not passed on to the next finder after a cache hit. See the [Example 1](#example-1) given below.
 
-Following is an example where the expected response from the last cache
-hit is not received because the response is sent once the request comes
-to the first finder:
+## Configuration
 
-``` java
-    <?xml version="1.0" encoding="UTF-8"?>
-    <proxy xmlns="http://ws.apache.org/ns/synapse" name="cache115" transports="http https" startOnLoad="true">
-       <description />
-       <target>
-          <inSequence>
-             <cache collector="false" timeout="60">
-                <protocol type="HTTP">
-                   <methods>POST</methods>
-                   <headersToExcludeInHash />
-                   <responseCodes>.*</responseCodes>
-                   <enableCacheControl>false</enableCacheControl>
-                   <includeAgeHeader>false</includeAgeHeader>
-                   <hashGenerator>org.wso2.carbon.mediator.cache.digest.HttpRequestHashGenerator</hashGenerator>
-                </protocol>
-             </cache>
-             <call>
-                <endpoint>
-                   <address uri="http://demo0585968.mockable.io/some" />
-                </endpoint>
-             </call>
-             <property name="RESPONSE" value="true" scope="default" type="STRING" />
-             <log level="full" />
-             <cache collector="true" />
-             <property name="RESPONSE" value="false" scope="default" type="STRING" />
-             <cache collector="false" timeout="60">
-                <protocol type="HTTP">
-                   <methods>POST</methods>
-                   <headersToExcludeInHash />
-                   <responseCodes>.*</responseCodes>
-                   <hashGenerator>org.wso2.carbon.mediator.cache.digest.HttpRequestHashGenerator</hashGenerator>
-                </protocol>
-             </cache>
-             <call>
-                <endpoint>
-                   <address uri="http://demo0585968.mockable.io/hello" />
-                </endpoint>
-             </call>
-             <property name="RESPONSE" value="true" scope="default" type="STRING" />
-             <log level="full" />
-             <cache collector="true" />
-             <respond />
-          </inSequence>
-       </target>
-    </proxy>          
-```
+### Cache Mediator as a Finder
 
-  
-
-------------------------------------------------------------------------
-
-### Configuration
-
-Click on the relevant tab to view the UI configuration depending on
-whether the cache type of the cache mediator is **Finder** or
-**Collector** .
-
--   [**Finder**](#e9cfab9cfea740c5b96c09c0d457b01c)
--   [**Collector**](#dfb6ea13e81f431c8b2daffa8a0bca41)
-
-The parameters available to configure the Cache mediator are as follows.
+The parameters available to configure the Cache mediator as a **Finder** are as follows.
 
 <table>
 <thead>
@@ -149,7 +65,7 @@ The parameters available to configure the Cache mediator are as follows.
 </tr>
 <tr class="odd">
 <td><strong>HTTP Methods</strong></td>
-<td>A comma separated list of HTTP methods that should be cached for the HTTP protocol . The default value is <code>                *               </code> , and it caches all HTTP methods.</td>
+<td>A comma separated list of HTTP methods that should be cached for the HTTP protocol. The default value is <code>*</code>, and it caches all HTTP methods.</td>
 </tr>
 <tr class="even">
 <td><strong>Headers to Exclude in Hash</strong></td>
@@ -162,9 +78,8 @@ The parameters available to configure the Cache mediator are as follows.
 <tr class="even">
 <td><strong>Hash Generator</strong></td>
 <td><div class="content-wrapper">
-<p>This parameter is used to define the logic used by the Cache mediator to evaluate the hash values of incoming messages. The value specified here should be a class that implements the <code>                  org.separated.carbon.mediator.cache.digest.DigestGenerator                 </code> class interface. The default hash generator is <code>                  org.wso2.carbon.mediator.cache.digest.HttpRequestHashGenerator                 </code> . If the generated hash value is found in the cache, then the Cache mediator executes the <code>                  onCacheHit                 </code> sequence, which can be specified inline or referenced.</p>
-!!! note
-<p>Note</p>
+<p>This parameter is used to define the logic used by the Cache mediator to evaluate the hash values of incoming messages. The value specified here should be a class that implements the <code>org.separated.carbon.mediator.cache.digest.DigestGenerator</code> class interface. The default hash generator is <code>org.wso2.carbon.mediator.cache.digest.HttpRequestHashGenerator</code>. If the generated hash value is found in the cache, then the Cache mediator executes the <code>onCacheHit</code> sequence, which can be specified inline or referenced.</p>
+<b>Note</b>:
 <p>The hash generator is specific to the HTTP protocol.</p>
 <p>If you are using any other protocol, you need to write a custom hash generator or use one of the following deprecated hash generator classes:</p>
 <ul>
@@ -192,16 +107,18 @@ The parameters available to configure the Cache mediator are as follows.
 </tr>
 <tr class="even">
 <td><strong>Anonymous</strong></td>
-<td>If this option is selected, an anonymous sequence is executed when an incoming message is identified as an equivalent to a previously received message, based on the value defined in the <strong>Hash Generator</strong> field.</td>
+<td>If this option is selected, an anonymous sequence is executed when an incoming message is identified as an equivalent to a previously received message based on the value defined in the <strong>Hash Generator</strong> field.</td>
 </tr>
 <tr class="odd">
 <td><strong>Sequence Reference</strong></td>
-<td>The reference to the <code>                onCacheHit               </code> sequence to be executed when an incoming message is identified as an equivalent to a previously received message, based on the value defined in the <strong>Hash Generator</strong> field. The sequence should be created in the registry in order to be specified in this field. You can click either <strong>Configuration</strong> <strong>Registry</strong> or <strong>Governance Registry</strong> as applicable to select the required sequence from the resource tree.</td>
+<td>The reference to the <code>onCacheHit</code> sequence to be executed when an incoming message is identified as an equivalent to a previously received message, based on the value defined in the <strong>Hash Generator</strong> field. The sequence should be created in the registry in order to be specified in this field. You can click either <strong>Configuration</strong>, <strong>Registry</strong>, or <strong>Governance Registry</strong> as applicable to select the required sequence from the resource tree.</td>
 </tr>
 </tbody>
 </table>
 
-The parameters available to configure the Cache mediator are as follows.
+### Cache Mediatior as a Collector
+
+The parameters available to configure the Cache mediator as a **Collector** are as follows.
 
 <table>
 <thead>
@@ -222,13 +139,63 @@ The parameters available to configure the Cache mediator are as follows.
 </tbody>
 </table>
 
-  
-
-Examples
+## Examples
 
 Following are examples of how you can use the Cache mediator.
 
-#### Example one
+### Example 1
+
+Following is an example where the expected response from the last cache hit is not received because the response is sent once the request comes
+to the first finder:
+
+``` java
+<?xml version="1.0" encoding="UTF-8"?>
+<proxy xmlns="http://ws.apache.org/ns/synapse" name="cache115" transports="http https" startOnLoad="true">
+   <description />
+   <target>
+      <inSequence>
+         <cache collector="false" timeout="60">
+            <protocol type="HTTP">
+               <methods>POST</methods>
+               <headersToExcludeInHash />
+               <responseCodes>.*</responseCodes>
+               <enableCacheControl>false</enableCacheControl>
+               <includeAgeHeader>false</includeAgeHeader>
+               <hashGenerator>org.wso2.carbon.mediator.cache.digest.HttpRequestHashGenerator</hashGenerator>
+            </protocol>
+         </cache>
+         <call>
+            <endpoint>
+               <address uri="http://demo0585968.mockable.io/some" />
+            </endpoint>
+         </call>
+         <property name="RESPONSE" value="true" scope="default" type="STRING" />
+         <log level="full" />
+         <cache collector="true" />
+         <property name="RESPONSE" value="false" scope="default" type="STRING" />
+         <cache collector="false" timeout="60">
+            <protocol type="HTTP">
+               <methods>POST</methods>
+               <headersToExcludeInHash />
+               <responseCodes>.*</responseCodes>
+               <hashGenerator>org.wso2.carbon.mediator.cache.digest.HttpRequestHashGenerator</hashGenerator>
+            </protocol>
+         </cache>
+         <call>
+            <endpoint>
+               <address uri="http://demo0585968.mockable.io/hello" />
+            </endpoint>
+         </call>
+         <property name="RESPONSE" value="true" scope="default" type="STRING" />
+         <log level="full" />
+         <cache collector="true" />
+         <respond />
+      </inSequence>
+   </target>
+</proxy>          
+```
+
+### Example 2
 
 According to this example configuration, when the first message is sent
 to the endpoint, the cache is not hit. The Cache mediator configured in
@@ -239,34 +206,34 @@ requester. This happens because the `         onCacheHit        `
 sequence is not defined in this configuration.
 
 ``` java
-    <?xml version="1.0" encoding="UTF-8"?>
-    <sequence name="main">
-            <in>
-                <cache collector="false" maxMessageSize="10000" timeout="20">
-                    <protocol type="HTTP">
-                        <methods>POST</methods>
-                        <headersToExcludeInHash/>
-                        <responseCodes>2[0-9][0-9]</responseCodes>
-                        <enableCacheControl>false</enableCacheControl>
-                        <includeAgeHeader>false</includeAgeHeader>
-                        <hashGenerator>org.wso2.carbon.mediator.cache.digest.HttpRequestHashGenerator</hashGenerator>
-                    </protocol>
-                    <implementation maxSize="100"/>
-                </cache>
-                <send>
-                    <endpoint name="inlined">
-                        <address uri="http://localhost:9000/services/SimpleStockQuoteService"/>
-                    </endpoint>
-                </send>
-            </in>
-            <out>
-                <cache collector="true"/>
-                <send/>
-            </out>
-        </sequence>
+<?xml version="1.0" encoding="UTF-8"?>
+<sequence name="main">
+        <in>
+            <cache collector="false" maxMessageSize="10000" timeout="20">
+                <protocol type="HTTP">
+                    <methods>POST</methods>
+                    <headersToExcludeInHash/>
+                    <responseCodes>2[0-9][0-9]</responseCodes>
+                    <enableCacheControl>false</enableCacheControl>
+                    <includeAgeHeader>false</includeAgeHeader>
+                    <hashGenerator>org.wso2.carbon.mediator.cache.digest.HttpRequestHashGenerator</hashGenerator>
+                </protocol>
+                <implementation maxSize="100"/>
+            </cache>
+            <send>
+                <endpoint name="inlined">
+                    <address uri="http://localhost:9000/services/SimpleStockQuoteService"/>
+                </endpoint>
+            </send>
+        </in>
+        <out>
+            <cache collector="true"/>
+            <send/>
+        </out>
+    </sequence>
 ```
 
-#### Example two
+### Example 3
 
 According to this example configuration, if you define a cache collector
 using the cache mediator in the in sequence, you need to add the
@@ -274,45 +241,45 @@ using the cache mediator in the in sequence, you need to add the
 response message.
 
 ``` xml
-    <?xml version="1.0" encoding="UTF-8"?>
-    <api xmlns="http://ws.apache.org/ns/synapse" name="cacheAPI" context="/cache">
-    <resource methods="POST GET" uri-template="/headerapi/*">
-        <inSequence>
-            <cache collector="false" timeout="5000">
-                <protocol type="HTTP">
-                    <methods>GET, POST</methods>
-                    <headersToExcludeInHash>*</headersToExcludeInHash>
-                    <responseCodes>.*</responseCodes>
-                    <enableCacheControl>false</enableCacheControl>
-                    <includeAgeHeader>false</includeAgeHeader>
-                    <hashGenerator>org.wso2.carbon.mediator.cache.digest.HttpRequestHashGenerator</hashGenerator>
-                </protocol>
-            </cache>
-            <call>
-                <endpoint>
-                    <address uri="http://localhost:9000/services/SimpleStockQuoteService"/>
-                </endpoint>
-            </call>
-            <property name="RESPONSE" value="true" scope="default" type="STRING"/>
-            <enrich>
-                <source type="inline" clone="true">
-                    <ax21:newvalue
-                        xmlns:ax21="http://services.samples/xsd">testsamplevalue
-                    </ax21:newvalue>
-                </source>
-                <target
-                    xmlns:ax21="http://services.samples/xsd"
-                    xmlns:ns="http://services.samples" action="sibling" xpath="//ns:getQuoteResponse/ns:return/ax21:volume"/>
-                </enrich>
-                <cache collector="true"/>
-                <respond/>
-            </inSequence>
-    </resource>
-    </api>
+<?xml version="1.0" encoding="UTF-8"?>
+<api xmlns="http://ws.apache.org/ns/synapse" name="cacheAPI" context="/cache">
+<resource methods="POST GET" uri-template="/headerapi/*">
+    <inSequence>
+        <cache collector="false" timeout="5000">
+            <protocol type="HTTP">
+                <methods>GET, POST</methods>
+                <headersToExcludeInHash>*</headersToExcludeInHash>
+                <responseCodes>.*</responseCodes>
+                <enableCacheControl>false</enableCacheControl>
+                <includeAgeHeader>false</includeAgeHeader>
+                <hashGenerator>org.wso2.carbon.mediator.cache.digest.HttpRequestHashGenerator</hashGenerator>
+            </protocol>
+        </cache>
+        <call>
+            <endpoint>
+                <address uri="http://localhost:9000/services/SimpleStockQuoteService"/>
+            </endpoint>
+        </call>
+        <property name="RESPONSE" value="true" scope="default" type="STRING"/>
+        <enrich>
+            <source type="inline" clone="true">
+                <ax21:newvalue
+                    xmlns:ax21="http://services.samples/xsd">testsamplevalue
+                </ax21:newvalue>
+            </source>
+            <target
+                xmlns:ax21="http://services.samples/xsd"
+                xmlns:ns="http://services.samples" action="sibling" xpath="//ns:getQuoteResponse/ns:return/ax21:volume"/>
+            </enrich>
+            <cache collector="true"/>
+            <respond/>
+        </inSequence>
+</resource>
+</api>
 ```
 
 ### Invalidating cached responses remotely
 
-You can invalidate all cached response remotely by using any [JMX monitoring tool such as Jconsole](../administer-and-observe/jmx_monitoring.md) via the exposed MBeans. You can use the `         invalidateTheWholeCache()        ` operation of the `         org.wso2.carbon.mediation        ` MBean for this as shown below.
+You can invalidate all cached response remotely by using any [JMX monitoring tool such as Jconsole](../../administer-and-observe/jmx_monitoring.md) via the exposed MBeans. You can use the `         invalidateTheWholeCache()        ` operation of the `         org.wso2.carbon.mediation        ` MBean for this as shown below.
 
-![](attachments/119131075/119131080.png){width="600" height="520"}
+![](../../assets/img/jmx/jmx_monitoring_cache_mediator.png)

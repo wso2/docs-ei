@@ -9,78 +9,34 @@ JMX is enabled in WSO2 products by default, which ensures that the JMX server st
 ### Configuring JMX ports for the server
 
 The default JMX ports (RMIRegistryPort and the RMIServerPort) are
-configured in the `         carbon.xml        ` file (stored in the
+configured in the `ei.toml ` file (stored in the
 `         <PRODUCT_HOME>/repository/conf        ` directory) as shown
 below. If required, you can update these default values.
 
-``` java
-    <JMX>
-         <!--The port RMI registry is exposed-->
-         <RMIRegistryPort>9999</RMIRegistryPort>
-         <!--The port RMI server should be exposed-->
-         <RMIServerPort>11111</RMIServerPort>
-    </JMX> 
+```toml
+[monitoring.jmx]
+rmi_hostname = localhost
+rmi_registry_port = 9999
+rmi_server_port = 11111
 ```
 
 ### Disabling JMX for the server
 
-The JMX configuration is available in the jmx `         .xml        `
-file (stored in the
-`         <PRODUCT_HOME>/repository/conf/etc        ` directory) as
-shown below. You can disable the JMX server for your product by setting
-the `         <StartRMIServer>        ` property to
-`         false        ` . Note that this configuration refers to the
-[JMX ports configured in the `          carbon.         ` xml
-file](#JMX-BasedMonitoring-ConfiguringJMXportsfortheserver) .  
+To disable JMX for the server, update the following configuration in the ei.toml file:
 
-``` java
-<JMX xmlns="http://wso2.org/projects/carbon/jmx.xml">
-    <StartRMIServer>true</StartRMIServer>
-    <!-- HostName, or Network interface to which this RMI server should be bound -->
-    <HostName>localhost</HostName>
-    <!--  ${Ports.JMX.RMIRegistryPort} is defined in the Ports section of the carbon.xml-->
-    <RMIRegistryPort>${Ports.JMX.RMIRegistryPort}</RMIRegistryPort>
-    <!--  ${Ports.JMX.RMIRegistryPort} is defined in the Ports section of the carbon.xml-->
-    <RMIServerPort>${Ports.JMX.RMIServerPort}</RMIServerPort>
-</JMX>
+```toml
+[monitoring.jmx]
+rmi_server_start = true
 ```
 
 ### Enabling JMX for a datasource
 
-You can enable JMX for a datasource by adding the
-`         <jmxEnabled>true</jmxEnabled>        ` element to the
-datasource configuration file. For example, to enable JMX for the
-default Carbon datasource in your product, add the following property to
-the `         master-datasources        ` `         .        ` xml file
-(stored in the
-`         <PRODUCT_HOME>/repository/conf/datasources        `
-directory).
+To enable JMX for a datasource, add the following configuration in the ei.toml file:
 
-``` java
-    <datasource>
-                <name>WSO2_CARBON_DB</name>
-                <description>The datasource used for registry and user manager</description>
-                <jndiConfig>
-                    <name>jdbc/WSO2CarbonDB</name>
-                </jndiConfig>
-                <definition type="RDBMS">
-                    <configuration>
-                        <url>jdbc:h2:./repository/database/WSO2CARBON_DB;DB_CLOSE_ON_EXIT=FALSE;LOCK_TIMEOUT=60000</url>
-                        <username>wso2carbon</username>
-                        <password>wso2carbon</password>
-                        <driverClassName>org.h2.Driver</driverClassName>
-                        <maxActive>50</maxActive>
-                        <maxWait>60000</maxWait>
-                        <testOnBorrow>true</testOnBorrow>
-                        <validationQuery>SELECT 1</validationQuery>
-                        <validationInterval>30000</validationInterval>
-                        <defaultAutoCommit>false</defaultAutoCommit>
-                        <jmxEnabled>true</jmxEnabled>
-                    </configuration>
-                </definition>
-            </datasource>
+```toml
+[database.shared_db]
+jmx_enable = true
 ```
-
 ## Monitoring with JConsole
 
 Jconsole is a JMX-compliant monitoring tool, which comes with the Java
@@ -91,7 +47,7 @@ inside your `         <JDK_HOME>/bin        ` directory.
 
 First, [start the product](../../setup/installation/install_in_vm/#running-the-micro-integrator).  
 
-!!! info
+!!! Info
     If [JMX is enabled](#configuring-jmx-in-wso2-micro-integrator), the **JMX server URL** will be published on the console when the server starts as shown below.    
     ``` java
     INFO {org.wso2.carbon.core.init.CarbonServerManager} -  JMX Service URL  : service:jmx:rmi://<your-ip>:11111/jndi/rmi://<your-ip>:9999/jmxrmi
@@ -106,16 +62,14 @@ Once the product server is started, you can start the `JConsole` tool as follows
     ![jconsole connection](../../assets/img/jmx/jconsole-new-connection.png)
 3.  Enter the connection details in the above screen as follows:
     1.  Enter the **JMX server URL** in the **Remote Process** field. This URL is published on the command prompt when you start the
-        server as explained [above](#starting-wso2-micro-integrator-with-jmx) .
-
-        !!! info
-            If you are connecting with a remote IP address instead of localhost, you need to bind the JMX service to the externally accessible IP address by adding the following system property to the product startup script stored in the `MI_HOME>/bin` directory (`wso2server.sh` for Linux and `wso2server.bat` for Windows). For more information, read [Troubleshooting Connection Problems in JConsole](https://blogs.oracle.com/jmxetc/entry troubleshooting_connection_problems_in_jconsole).
+        server as explained [above](#starting-wso2-micro-integrator-with-jmx).
+        !!! Info
+            If you are connecting with a remote IP address instead of localhost, you need to bind the JMX service to the externally accessible IP address by adding the following system property to the product startup script stored in the `MI_HOME>/bin` directory (`wso2server.sh` for Linux and `wso2server.bat` for Windows). For more information, read [Troubleshooting Connection Problems in JConsole](https://blogs.oracle.com/jmxetc/entrytroubleshooting_connection_problems_in_jconsole).
             ``` java
             -Djava.rmi.server.hostname=<IP_ADDRESS_WHICH_YOU_USE_TO_CONNECT_TO_SERVER>
             ```
             Be sure to restart the server after adding the above property.
 
-            
     2.  Enter values for the **Username** and **Password** fields to log in. If you are logging in as the administrator, you can use the. same administrator account that is used to log in to the product server: admin/admin.        
 
 4.  Click **Connect** to open the **Java Monitoring & Management Console**. See the **Oracle** documentation on [using

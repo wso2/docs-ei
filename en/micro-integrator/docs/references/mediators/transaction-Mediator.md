@@ -3,37 +3,19 @@
 A transaction is a set of operations executed as a single unit. It also
 can be defined as an agreement, which is carried out between separate
 entities or objects. The **Transaction Mediator** is used to manage
-**distributed transactions** in the ESB profile of WSO2 EI by providing
+**distributed transactions** in the Micro Integrator by providing
 transaction functionality for its child mediators.
 
-!!! info
+!!! Info
+	In addition to distributed transactions, the Micro Integrator also supports Java Message Service (JMS) transactions. For more information on transactions, see [Working with Transactions](../../use-cases/examples/working-with-transactions.md).
 
-In addition to distributed transactions, the ESB profile also supports
-Java Message Service (JMS) transactions. For more information on
-transactions, see [Working with
-Transactions](https://docs.wso2.com/display/EI650/Working+with+Transactions)
-.
-
-
-  
-
-------------------------------------------------------------------------
-
-[Syntax](#TransactionMediator-Syntax) \|
-[Configuration](#TransactionMediator-Configuration) \|
-[Examples](#TransactionMediator-Examples)
-
-------------------------------------------------------------------------
-
-### Syntax
+## Syntax
 
 ``` java
     <transaction action="commit|fault-if-no-tx|new|resume|suspend|rollback|use-existing-or-new"/>
 ```
 
-------------------------------------------------------------------------
-
-### Configuration
+## Configuration
 
 The **Action** parameter is used to select a transaction action to be
 performed. Available values are as follows.
@@ -48,13 +30,9 @@ performed. Available values are as follows.
 | **Rollback Transaction** (rollback                             | This rolls back a transaction.                                                                                                 |
 | **Use existing or Initiate Transaction** (use-existing-or new) | If a transaction already exists, this value continues it. If no transaction already exists, a new transaction will be created. |
 
-  
-
-------------------------------------------------------------------------
-
-### Examples
+<!--
+## Examples
 
 For an example of using the Transaction mediator, see [Transaction
 Mediator Example](_Transaction_Mediator_Example_) .
-
-  
+-->

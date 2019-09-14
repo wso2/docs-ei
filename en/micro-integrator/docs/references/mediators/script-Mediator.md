@@ -1,37 +1,19 @@
 # Script Mediator
 
-The **Script Mediator** is used to invoke the functions of a variety
-of scripting languages such as JavaScript, Groovy, or Ruby.
+The **Script Mediator** is used to invoke the functions of a variety of scripting languages such as JavaScript, Groovy, or Ruby.
 
-!!! note
+!!! Note
+    The Micro Integrator uses Rhino engine to execute JavaScripts. Rhino engine converts the script to a method inside a Java class. Therefore, when processing large JSON data volumes, the code length must be less than 65536 characters, since the Script mediator converts the payload into a Java object. However, you can use the following alternative options to process large JSON data volumes.
 
-The ESB profile of WSO2 EI uses Rhino engine to execute JavaScripts.
-Rhino engine converts the script to a method inside a Java class.
-Therefore, when processing large JSON data volumes, the code length must
-be less than 65536 characters, since the Script mediator converts the
-payload into a Java object. However, you can use the following
-alternative options to process large JSON data volumes.
-
--   Achieve the same functionality via a [Class
-    mediator](_Class_Mediator_) .
--   If the original message consists of repetitive sections, you can use
-    the [Iterate mediator](_Iterate_Mediator_) to generate a relatively
-    small payload using those repetitive sections. This will then allow
-    you to use the Script mediator.
--   From WSO2 EI 6.2.0 onwards, the Script Mediator supports using
-    Nashorn to execute JavaScripts, in addition to its default Rhino
-    engine. For more information, see [Script Mediator with Nashorn
-    Support](_Script_Mediator_with_Nashorn_Support_) .
-
+    -   Achieve the same functionality via a [Class mediator](class-Mediator.md) .
+    -   If the original message consists of repetitive sections, you can use the [Iterate mediator](iterate-Mediator.md) to generate a relatively
+    small payload using those repetitive sections. This will then allow you to use the Script mediator.
+    -   The Script Mediator supports using Nashorn to execute JavaScripts, in addition to its default Rhino engine. For more information, see [Script Mediator with Nashorn Support](script-Mediator-with-Nashorn-Support.md).
 
 A Script mediator can be created in one of the following methods.
 
--   With the script program statements stored in a separate file,
-    referenced via the [Local or Remote Registry
-    entry](https://docs.wso2.com/display/EI650/Working+with+Local+Registry+Entries)
-    .
--   With the script program statements embedded inline within the
-    Synapse configuration.
+-   With the script program statements stored in a separate file, referenced via the **Local or Remote Registry entry**.
+-   With the script program statements embedded inline within the Synapse configuration.
 
 Synapse uses the Apache [Bean Scripting
 Framework](http://jakarta.apache.org/bsf/) for scripting language
@@ -79,23 +61,10 @@ when using JavaScript `         getPayloadXML        ` and
 `         setPayloadXML        ` , `         E4X        ` XML objects
 and when using Ruby, REXML documents.
 
-!!! info
+!!! Info
+    The Script mediator is a [content-aware](ESB-Mediators_119131045.html#ESBMediators-Content-awareness) mediator.
 
-The Script mediator is a
-[content-aware](ESB-Mediators_119131045.html#ESBMediators-Content-awareness)
-mediator.
-
-
-------------------------------------------------------------------------
-
-[Prerequisites](#ScriptMediator-Prerequisites) \|
-[Syntax](#ScriptMediator-Syntax) \|
-[Configuration](#ScriptMediator-creating_scriptConfiguration) \|
-[Examples](#ScriptMediator-Examples)
-
-------------------------------------------------------------------------
-
-### Prerequisites
+## Prerequisites
 
 Listed below are the prerequisites for writing a Script mediator using
 JavaScript, Groovy, or Ruby.
@@ -110,11 +79,11 @@ JavaScript, Groovy, or Ruby.
 <tbody>
 <tr class="odd">
 <td>Groovy</td>
-<td>Download the groovy-all <code>             -2.4.4.jar            </code> file and copy it to the <code>                           &lt;EI_HOME&gt;/             </code> dropins directory. Note that <a href="#ScriptMediator-creating_script">when you define the script</a> , you need to start by importing Groovy.</td>
+<td>Download the groovy-all <code>             -2.4.4.jar            </code> file and copy it to the <code>                           &lt;EI_HOME&gt;/             </code> dropins directory. Note that when you define the script, you need to start by importing Groovy.</td>
 </tr>
 <tr class="even">
 <td>Ruby</td>
-<td><p>Install the JRuby engine for mediation. This is available in the WSO2 P2 repository as a feature ( <strong>WSO2 Carbon - JRuby Engine for Mediation</strong> ). See the instructions on <a href="https://docs.wso2.com/display/EI650/Product+Administration#ProductAdministration-managing_features">how to install features in WSO2 EI</a> .</p>
+<td><p>Install the JRuby engine for mediation. This is available in the WSO2 P2 repository as a feature (<strong>WSO2 Carbon - JRuby Engine for Mediation</strong>).</p>
 <p>Alternatively, you can download and install the JRuby engine manually: Download the <code>              jruby-complete-1.3.0.wso2v1.jar             </code> file from the WSO2 P2 repository and copy it to the <code>                             &lt;EI_HOME&gt;/              </code> dropins directory.</p></td>
 </tr>
 <tr class="odd">
@@ -124,233 +93,179 @@ JavaScript, Groovy, or Ruby.
 </tbody>
 </table>
 
-### Syntax
+## Syntax
 
-Click on the relevant tab to view the syntax for a script mediator using
-an Inline script, or a script mediator using a script of a registry
+Click on the relevant tab to view the syntax for a script mediator using an Inline script, or a script mediator using a script of a registry
 
--   [**Using an Inline script**](#2969856bfcaa4a8f9327808aa3d8ecd7)
--   [**Using a script of the
-    registry**](#b366531663a44eb4a1e580a1258dc450)
+- **Using an Inline script**:
+  The following syntax applies when you create a Script mediator with the script program statements embedded inline within the Synapse configuration.
+  ```
+  <script language="js"><![CDATA[...script source code...]]></script>
+  ```
+- **Using a script of the registry**:
+  The following syntax applies when you create a Script mediator with the script program statements stored in a separate file, referenced via the Local or Remote Registry entry.
 
-The following syntax applies when you create a Script mediator with the
-script program statements embedded inline within the Synapse
-configuration.
+    !!! Info
+        If you are creating the Registry Resource via Tooling, you need not specify the content/media type, because it gets automatically applied when you select the **JavaScript File Template** as shown below.
 
-``` java
-    <script language="js"><![CDATA[...script source code...]]></script>
-```
+        ![select the JavaScript File Template](/assets/img/mediators/119131139/119131140.png)
 
-The following syntax applies when you create a Script mediator with the
-script program statements stored in a separate file, referenced via the
-[Local or Remote Registry
-entry](https://docs.wso2.com/display/EI650/Working+with+Registry+Artifacts)
-.
+        ``` 
+        <script key="string" language="js" [function="script-function-name"]>
+          <include key="string"/>
+        </script>
+        ```
 
-!!! info
+## Configuration
 
-If you are creating the Registry Resource via Tooling, y ou need not
-specify the content/media type, because it gets automatically applied
-when you select the **JavaScript File Template** as shown below.
+- **Inline**: If this script type is selected, the script is specified inline. The parameters available to configure a Script mediator using an inlinem script are as follows.
+    <table>
+    <thead>
+    <tr class="header">
+    <th>Parameter Name</th>
+    <th>Description</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr class="odd">
+    <td><strong>Language</strong></td>
+    <td><p>The scripting language for the Script mediator. You can select from the following available languages.</p>
+    <ul>
+    <li>JavaScript - This is represented as <code>                  js                 </code> in the source view.</li>
+    <li>Groovy - This is represented as <code>                  groovy                 </code> in the source view.</li>
+    <li>Ruby - This is represented as <code>                  rb                 </code> in the source view.</li>
+    </ul></td>
+    </tr>
+    <tr class="even">
+    <td><strong>Source</strong></td>
+    <td><div class="content-wrapper">
+    <p>Enter the source in this parameter.</p>
+    <p><strong>Note:</strong> If you are using Groovy as the scripting language, you need to first import Groovy in your script by adding the following:</p>
+    <div class="code panel pdl" style="border-width: 1px;">
+    <div class="codeContent panelContent pdl">
+    <div class="sourceCode" id="cb1" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence" style="brush: java; gutter: false; theme: Confluence"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb1-1"><a href="#cb1-1"></a><span class="kw">import</span><span class="im"> groovy.json.*;</span></span></code></pre></div>
+    </div>
+    </div>
+    </div></td>
+    </tr>
+    </tbody>
+    </table>
 
-![select the JavaScript File
-Template](attachments/119131139/119131140.png "select the JavaScript File Template")
+- **Registry**: If this script type is selected, a script which is already saved in the registry will be referred using a key. The parameters available to configure a Script mediator using a script saved in the registry are as follows.
+    <table>
+      <tr class="header">
+         <th>Parameter Name</th>
+         <th>Description</th>
+      </tr>
+      <tr class="odd">
+         <td><strong>Language</strong></td>
+         <td>
+            <div class="content-wrapper">
+               <p>The scripting language for the Script mediator. You can select from the following available languages.</p>
+               <ul>
+                  <li>JavaScript - This is represented as <code>                   js                  </code> in the source view.</li>
+                  <li>
+                     <p>Groovy - This is represented as <code>                    groovy                   </code> in the source view. <strong>Note:</strong> Be sure that your script starts with the following, which indicates that Groovy is imported:</p>
+                     <div class="code panel pdl" style="border-width: 1px;">
+                        <div class="codeContent panelContent pdl">
+                           <div class="sourceCode" id="cb1" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence" style="brush: java; gutter: false; theme: Confluence">
+                              <pre class="sourceCode java"><code class="sourceCode java"><span id="cb1-1"><a href="#cb1-1"></a><span class="kw">import</span><span class="im"> groovy.json.*;</span></span></code></pre>
+                           </div>
+                        </div>
+                     </div>
+                  </li>
+                  <li>Ruby - This is represented as <code>                   rb                  </code> in the source view.</li>
+               </ul>
+            </div>
+         </td>
+      </tr>
+      <tr class="even">
+         <td><strong>Function</strong></td>
+         <td>The function of the selected script language to be invoked. This is an optional parameter. If no value is specified, a default function named <code>                mediate               </code> will be applied. This function considers the Synapse MessageContext as a single parameter. The function may return a boolean. If it does not, then the value <code>                true               </code> is assumed and the Script mediator returns this value.</td>
+      </tr>
+      <tr class="odd">
+         <td><strong>Key Type</strong></td>
+         <td>
+            <p>You can select one of the following options.</p>
+            <ul>
+               <li><strong>Static Key</strong> : If this is selected, an existing key can be selected from the registry for the <strong>Key</strong> parameter.</li>
+               <li><strong>Dynamic Key</strong> : If this is selected, the key can be entered dynamically in the <strong>Key</strong> parameter.</li>
+            </ul>
+         </td>
+      </tr>
+      <tr class="even">
+         <td><strong>Key</strong></td>
+         <td>The Registry location of the source. You can click either <strong>Configuration Registry</strong> or the <strong>Governance Registry</strong> to select the source from the resource tree.</td>
+      </tr>
+      <tr class="odd">
+         <td><strong>Include keys</strong></td>
+         <td>
+            <div class="content-wrapper">
+               <p>This parameter allows you to include functions defined in two or more scripts your Script mediator configuration. After pointing to one script in the <strong>Key</strong> parameter, you can click <strong>Add Include</strong> <strong>Key</strong> to add the function in another script.</p>
+               <p>When you click <strong>Add Include</strong> <strong>Key</strong> , the following parameters will be displayed. Enter the script to be included in the <strong>Key</strong> parameter by clicking either <strong>Configuration Registry</strong> or the <strong>Governance Registry</strong> <strong></strong> and then selecting the relevant script from the resource tree.</p>
+            </div>
+         </td>
+      </tr>
+    </table>
 
+## Examples
 
-``` xml
-    <script key="string" language="js" [function="script-function-name"]>
-        <include key="string"/>
-    </script>
-```
+### Using an inline script
 
-### Configuration
-
-Click on the relevant tab to view the required UI configuration
-depending on the script type you have selected. The available script
-types are as follows:
-
--   **Inline** : If this script type is selected, the script is
-    specified inline.
--   **Registry** : If this script type is selected, a script which is
-    already saved in the registry will be referred using a key.
-
--   [**Inline**](#2551d901faaa4d57aa0f7fa1e9db0ce7)
--   [**Using a script of the
-    registry**](#9cabc8b04ec04ee591f30099278ed4c0)
-
-The parameters available to configure a Script mediator using an inline
-script are as follows.
-
-<table>
-<thead>
-<tr class="header">
-<th>Parameter Name</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><strong>Language</strong></td>
-<td><p>The scripting language for the Script mediator. You can select from the following available languages.</p>
-<ul>
-<li>JavaScript - This is represented as <code>                  js                 </code> in the source view.</li>
-<li>Groovy - This is represented as <code>                  groovy                 </code> in the source view.</li>
-<li>Ruby - This is represented as <code>                  rb                 </code> in the source view.</li>
-</ul></td>
-</tr>
-<tr class="even">
-<td><strong>Source</strong></td>
-<td><div class="content-wrapper">
-<p>Enter the source in this parameter.</p>
-<p><strong>Note:</strong> If you are using Groovy as the scripting language, you need to first import Groovy in your script by adding the following:</p>
-<div class="code panel pdl" style="border-width: 1px;">
-<div class="codeContent panelContent pdl">
-<div class="sourceCode" id="cb1" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence" style="brush: java; gutter: false; theme: Confluence"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb1-1"><a href="#cb1-1"></a><span class="kw">import</span><span class="im"> groovy.json.*;</span></span></code></pre></div>
-</div>
-</div>
-</div></td>
-</tr>
-</tbody>
-</table>
-
-The parameters available to configure a Script mediator using a script
-saved in the registry are as follows.
-
-<table>
-<thead>
-<tr class="header">
-<th>Parameter Name</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><strong>Language</strong></td>
-<td><div class="content-wrapper">
-<p>The scripting language for the Script mediator. You can select from the following available languages.</p>
-<ul>
-<li>JavaScript - This is represented as <code>                   js                  </code> in the source view.</li>
-<li><p>Groovy - This is represented as <code>                    groovy                   </code> in the source view. <strong>Note:</strong> Be sure that your script starts with the following, which indicates that Groovy is imported:</p>
-<div class="code panel pdl" style="border-width: 1px;">
-<div class="codeContent panelContent pdl">
-<div class="sourceCode" id="cb1" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence" style="brush: java; gutter: false; theme: Confluence"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb1-1"><a href="#cb1-1"></a><span class="kw">import</span><span class="im"> groovy.json.*;</span></span></code></pre></div>
-</div>
-</div></li>
-<li>Ruby - This is represented as <code>                   rb                  </code> in the source view.</li>
-</ul>
-</div></td>
-</tr>
-<tr class="even">
-<td><strong>Function</strong></td>
-<td>The function of the selected script language to be invoked. This is an optional parameter. If no value is specified, a default function named <code>                mediate               </code> will be applied. This function considers the Synapse MessageContext as a single parameter. The function may return a boolean. If it does not, then the value <code>                true               </code> is assumed and the Script mediator returns this value.</td>
-</tr>
-<tr class="odd">
-<td><strong>Key Type</strong></td>
-<td><p>You can select one of the following options.</p>
-<ul>
-<li><strong>Static Key</strong> : If this is selected, an existing key can be selected from the registry for the <strong>Key</strong> parameter.</li>
-<li><strong>Dynamic Key</strong> : If this is selected, the key can be entered dynamically in the <strong>Key</strong> parameter.</li>
-</ul></td>
-</tr>
-<tr class="even">
-<td><strong>Key</strong></td>
-<td>The Registry location of the source. You can click either <strong>Configuration Registry</strong> or the <strong>Governance Registry</strong> to select the source from the resource tree.</td>
-</tr>
-<tr class="odd">
-<td><strong>Include keys</strong></td>
-<td><div class="content-wrapper">
-<p>This parameter allows you to include functions defined in two or more scripts your Script mediator configuration. After pointing to one script in the <strong>Key</strong> parameter, you can click <strong>Add Include</strong> <strong>Key</strong> to add the function in another script.</p>
-<p>When you click <strong>Add Include</strong> <strong>Key</strong> , the following parameters will be displayed. Enter the script to be included in the <strong>Key</strong> parameter by clicking either <strong>Configuration Registry</strong> or the <strong>Governance Registry</strong> <strong></strong> and then selecting the relevant script from the resource tree.</p>
-</div></td>
-</tr>
-</tbody>
-</table>
-
-  
-
-  
-
-------------------------------------------------------------------------
-
-### Examples
-
--   [Example 1 - Using an inline
-    script](#ScriptMediator-Example1-Usinganinlinescript)
--   [Example 2 - Using a script saved in the
-    registry](#ScriptMediator-Example2-Usingascriptsavedintheregistry)
--   [Example 3 - Adding an Include
-    key](#ScriptMediator-Example3-AddinganIncludekey)
--   [Example 4 - Adding a custom SOAP
-    header](#ScriptMediator-Example4-AddingacustomSOAPheader)
--   [Example per method](#ScriptMediator-Examplepermethod)
--   [Samples](#ScriptMediator-Samples)
-
-#### Example 1 - Using an inline script
-
-The following configuration is an example of an inline mediator using
-`         JavaScript/E4X        ` which returns false if the SOAP
-message body contains an element named `         symbol        ` , which
-has a value of `         IBM        ` .
+The following configuration is an example of an inline mediator using `JavaScript/E4X` which returns false if the SOAP message body contains an element named `symbol`, which has a value of `IBM`.
 
 ``` java
-    <script language="js"><![CDATA[mc.getPayloadXML()..symbol != "IBM";]]></script>
+<script language="js"><![CDATA[mc.getPayloadXML()..symbol != "IBM";]]></script>
 ```
 
-#### Example 2 - Using a script saved in the registry
+### Using a script saved in the registry
 
-In the following example, script is loaded from the registry by using
-the key
-`         repository/conf/sample/resources/script/test.js        ` .
+In the following example, script is loaded from the registry by using the key `repository/conf/sample/resources/script/test.js`.
 
 ``` java
-    <script language="js"
-        key="repository/conf/sample/resources/script/test.js"
-        function="testFunction"/>
+<script language="js"
+    key="repository/conf/sample/resources/script/test.js"
+    function="testFunction"/>
 ```
 
 `         script language="js"        ` indicates that the function
 invoked should be in the JavaScript language. The function named
-testFunction which is invoked should be saved as a resource in the
-[Registry](https://docs.wso2.com/display/EI650/Product+Administration#ProductAdministration-Configuringtheregistry)
-. The script can be as shown in the example below.
+testFunction which is invoked should be saved as a resource in the **Registry**. The script can be as shown in the example below.
 
 ``` java
-    function testFunction(mc) {
-         var symbol = mc.getPayloadXML()..*::Code.toString();
-         mc.setPayloadXML(
-            <m:getQuote xmlns:m="http://services.samples/xsd">
-               <m:request>
-                  <m:symbol>{symbol}</m:symbol>
-               </m:request>
-            </m:getQuote>);
-    }
+function testFunction(mc) {
+     var symbol = mc.getPayloadXML()..*::Code.toString();
+     mc.setPayloadXML(
+        <m:getQuote xmlns:m="http://services.samples/xsd">
+           <m:request>
+              <m:symbol>{symbol}</m:symbol>
+           </m:request>
+        </m:getQuote>);
+}
 ```
 
-#### Example 3 - Adding an Include key
+### Adding an Include key
 
 The following configuration has an `         include key        ` .
 
-``` xml
-    <script language="js" key="stockquoteScript" function="transformRequest">
-        <include key="sampleScript"/>
-    </script>
+```
+<script language="js" key="stockquoteScript" function="transformRequest">
+    <include key="sampleScript"/>
+</script>
 ```
 
-The script is written in JavaScript. The function to be executed is
-`         transformRequest        ` . This function may be as follows in
-a script saved in the
-[Registry](https://docs.wso2.com/display/EI650/Product+Administration#ProductAdministration-Configuringtheregistry)
-.
+The script is written in JavaScript. The function to be executed is `         transformRequest        ` . This function may be as follows in
+a script saved in the **Registry**.
 
 ``` js
-    // stockquoteTransform.js
-    function transformRequest(mc) {
-    transformRequestFunction(mc);
-    }
-    
-    function transformResponse(mc) {
-    transformResponseFunction(mc);
-    }
+// stockquoteTransform.js
+function transformRequest(mc) {
+transformRequestFunction(mc);
+}
+
+function transformResponse(mc) {
+transformResponseFunction(mc);
+}
 ```
 
 In addition, the function in the script named
@@ -361,67 +276,65 @@ executed in the mediation. Note that in order to do this,
 resource in the Registry . This script can be as follows.
 
 ``` js
-    // sample.js
-    function transformRequestFunction(mc) {
-    var symbol = mc.getPayloadXML()..*::Code.toString();
-    mc.setPayloadXML(
-        <m:getquote m="http://services.samples">
-            <m:request>
-                <m:symbol>{symbol}</m:symbol>
-            </m:request>
-        </m:getquote>);
-    }
-     
-    function transformResponse(mc) {
-    var symbol = mc.getPayloadXML()..*::symbol.toString();
-    var price = mc.getPayloadXML()..*::last.toString();
-    mc.setPayloadXML(
-        <m:checkpriceresponse m="http://services.samples/xsd">
-            <m:code>{symbol}</m:code>
-            <m:price>{price}</m:price>
-        </m:checkpriceresponse>);
-    }
+// sample.js
+function transformRequestFunction(mc) {
+var symbol = mc.getPayloadXML()..*::Code.toString();
+mc.setPayloadXML(
+    <m:getquote m="http://services.samples">
+        <m:request>
+            <m:symbol>{symbol}</m:symbol>
+        </m:request>
+    </m:getquote>);
+}
+ 
+function transformResponse(mc) {
+var symbol = mc.getPayloadXML()..*::symbol.toString();
+var price = mc.getPayloadXML()..*::last.toString();
+mc.setPayloadXML(
+    <m:checkpriceresponse m="http://services.samples/xsd">
+        <m:code>{symbol}</m:code>
+        <m:price>{price}</m:price>
+    </m:checkpriceresponse>);
+}
 ```
 
-#### Example 4 - Adding a custom SOAP header
+### Adding a custom SOAP header
 
 You can add custom SOAP headers to a request by using the
 `         addHeader(mustUnderstand, content)        ` of the Script
 Mediator in a proxy service as shown in the example below.
 
-``` xml
-    <proxy xmlns="http://ws.apache.org/ns/synapse"
-           name="CustomSOAPHeaderProxy"
-           startOnLoad="true"
-           statistics="disable"
-           trace="disable"
-           transports="http,https">
-       <target>
-          <inSequence>
-             <log level="full">
-                <property name="Message" value="IncomingRequest"/>
-             </log>
-             <script language="js">mc.addHeader(false, &lt;ns:sampleCustomHeader xmlns:ns="gsb:http://wso2.org/sample"&gt;&lt;ns:customInfo&gt;CustomHeader&lt;/ns:customInfo&gt;&lt;/ns:sampleCustomHeader&gt;);</script>
-             <log level="full">
-                <property name="Message" value="UpdatedMessage"/>
-             </log>
-             <drop/>
-          </inSequence>
-       </target>
-       <description/>
-    </proxy>
+```
+<proxy xmlns="http://ws.apache.org/ns/synapse"
+       name="CustomSOAPHeaderProxy"
+       startOnLoad="true"
+       statistics="disable"
+       trace="disable"
+       transports="http,https">
+   <target>
+      <inSequence>
+         <log level="full">
+            <property name="Message" value="IncomingRequest"/>
+         </log>
+         <script language="js">mc.addHeader(false, &lt;ns:sampleCustomHeader xmlns:ns="gsb:http://wso2.org/sample"&gt;&lt;ns:customInfo&gt;CustomHeader&lt;/ns:customInfo&gt;&lt;/ns:sampleCustomHeader&gt;);</script>
+         <log level="full">
+            <property name="Message" value="UpdatedMessage"/>
+         </log>
+         <drop/>
+      </inSequence>
+   </target>
+   <description/>
+</proxy>
 ```
 
-#### Example per method
+### Example per method
 
-The following table contains examples of how some of the commonly used
-methods can be included in the script invoked by the following sample
-Script mediator configuration.
+The following table contains examples of how some of the commonly used methods can be included in the script invoked by the following sample Script mediator configuration.
 
-``` xml
-      <script language="js"
-                     key="conf:/repository/EI/transform.js"
-                     function="transform"/>
+```
+<script language="js"
+             key="conf:/repository/EI/transform.js"
+             function="transform"/>
 ```
 
 <table>
@@ -574,7 +487,6 @@ Script mediator configuration.
 <span id="cb7-7"><a href="#cb7-7"></a><span class="kw">&lt;/script&gt;</span></span></code></pre></div>
 </div>
 </div>
-
 <p><br />
 </p>
 </div></td>
@@ -582,7 +494,8 @@ Script mediator configuration.
 </tbody>
 </table>
 
-#### Samples
+<!--
+## Samples
 
 The following samples demonstrate how to use the Script mediator.
 
@@ -599,3 +512,4 @@ The following samples demonstrate how to use the Script mediator.
 
 See also [Sample 441: Converting JSON to XML Using
 JavaScript](https://docs.wso2.com/display/EI6xx/Sample+441%3A+Converting+JSON+to+XML+Using+JavaScript)
+-->
