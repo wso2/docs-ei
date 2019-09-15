@@ -1,5 +1,15 @@
 # Introduction to REST APIs
 
+In addition to exposing RESTful interfaces and mediating RESTful
+invocations by mapping REST concepts to SOAP via [proxy
+services](https://docs.wso2.com/display/EI650/Using+REST+with+a+Proxy+Service)
+, you can use the WSO2 Enterprise Integrator REST API to configure REST
+endpoints in the Enterprise Integrator by directly specifying HTTP
+verbs, URL patterns, URI templates, HTTP media types, and other related
+headers. You can define REST APIs and associated resources in the
+Enterprise Integrator by combining REST APIs with mediation features
+provided by the underlying messaging framework.
+
 ```
 <definitions xmlns="http://ws.apache.org/ns/synapse">
     <!-- You can add any flat sequences, endpoints, etc.. to this synapse.xml file if you do *not* want to keep the artifacts in several files -->
