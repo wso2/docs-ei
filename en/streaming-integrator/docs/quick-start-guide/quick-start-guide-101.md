@@ -103,8 +103,8 @@ To simulate events for the Siddhi application, you can use the event simulator a
     ![Event Simulator icon](../images/quick-start-guide-101/event-simulation-icon.png)
     
    The Simulation panel opens as shown below.
-   
-    ![Simulation Panel](../images/quick-start-guide-101/Simulation-Panel.png)
+
+   ![Simulation Panel](../images/quick-start-guide-101/simulation-panel.png)
     
 2. In the **Single Simulation** tab of the simulation panel, select **TemperatureApp** from the list for the **Siddhi App Name** field.
 
@@ -215,32 +215,32 @@ To deploy your Siddhi application in the Streaming Integrator server, follow the
 
     ![Deploy to Server Menu Option](../images/quick-start-guide-101/deploy-to-server-menu.png)
 
-   The **Deploy Siddhi Apps to Server** dialog box opens as follows.
+    The **Deploy Siddhi Apps to Server** dialog box opens as follows.
 
-   ![Deploy Siddhi Apps to Server](../images/quick-start-guide-101/deploy-to-server-dialog-box.png)
+    ![Deploy Siddhi Apps to Server](../images/quick-start-guide-101/deploy-to-server-dialog-box.png)
 
 3. In the **Add New Server** section, enter information as follows:
 
-   | Field           | Value                            |
-   |-----------------|----------------------------------|
-   | **Host**        | Your host                        |
-   | **Port**        | `9443`                           |
-   | **User Name**   | `admin`                          |
-   | **Password**    | `admin`                          |
+    | Field           | Value                            |
+    |-----------------|----------------------------------|
+    | **Host**        | Your host                        |
+    | **Port**        | `9443`                           |
+    | **User Name**   | `admin`                          |
+    | **Password**    | `admin`                          |
 
-    ![Deploy to Server](../images/quick-start-guide-101/Deploy-to Server.png)
+    ![Add Server](../images/quick-start-guide-101/add-server.png)
 
-   Then click **Add**.
+    Then click **Add**.
 
 4. Select the check boxes for the **TemperatureApp.siddhi** Siddhi application and the server you added as shown below.
 
-   ![Deploy Siddhi Apps to Server](../images/quick-start-guide-101/select-siddhi-app-and-server.png)
+    ![Deploy Siddhi Apps to Server](../images/quick-start-guide-101/select-siddhi-app-and-server.png)
 
 5. Click **Deploy**.
 
-   As a result, the `TemperatureApp` Siddhi application is saved in the `<SI_HOME>/deployment/siddhi-files` directory, and the following is message displayed in the dialog box.
+    As a result, the `TemperatureApp` Siddhi application is saved in the `<SI_HOME>/deployment/siddhi-files` directory, and the following is message displayed in the dialog box.
 
-   ![Siddhi App successfully deployed](../images/quick-start-guide-101/siddhi-app-successfully-deployed.png)
+    ![Siddhi App successfully deployed](../images/quick-start-guide-101/siddhi-app-successfully-deployed.png)
 
 
 ### Deploying in Docker
@@ -251,9 +251,9 @@ To export the  `TemperatureApp` Siddhi application as a Docker artifact, follow 
 
 2. In the **File** menu, click **Export as Docker**.
 
-   ![Export Siddhi Application as Docker](../images/quick-start-guide-101/export-as-docker.png)
+    ![Export Siddhi Application as Docker](../images/quick-start-guide-101/export-as-docker.png)
 
-   As a result, the **Export as Docker** dialog box opens as follows.
+    As a result, the **Export as Docker** dialog box opens as follows.
     ![Export as Docker dialog box](../images/quick-start-guide-101/export-as-docker-dialog-box.png)
 
 3. Select the **TemperatureApp.Siddhi** check box and click **Export**. The Siddhi application is exported as a Docker artifact in a zip file to the default location in your machine, based on your operating system and browser settings.
