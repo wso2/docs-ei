@@ -23,13 +23,14 @@ the temperature of a room every second are transformed to indicate the average t
    
 3. Let's define the input stream to define the schema based on which data is selected to the streaming integration flow.
 
-    1. In this example, let's assume that each event indicates the device ID, the room ID, and the temperature. Therefore, let's define an input stream as follows:
-       ```
-       define stream TempStream (deviceID long, roomNo int, temp double);
-       ```
+    In this example, let's assume that each event indicates the device ID, the room ID, and the temperature. Therefore, let's define an input stream as follows:
+
+    ```
+    define stream TempStream (deviceID long, roomNo int, temp double);
+    ```
        
-       !!!info
-           For more information about defining input streams to receive events, see the [Consuming Data guide](consuming-messages.md).
+    !!!info
+        For more information about defining input streams to receive events, see the [Consuming Data guide](consuming-messages.md).
            
           
 4. To do the required transformation, let's add the query as follows:
@@ -86,49 +87,25 @@ Give an example and point to existing inline math and logical operators.
 The Streaming Integrator offers a variety of options to carry out data transformations via in-built extensions. The 
 following table describes the complete list of extensions that provide data transformation functionality.
 
-<table class="tg">
-  <tr>
-    <th class="tg-0pky">Extension</th>
-    <th class="tg-0pky">Description</th>
-  </tr>
-  <tr>
-    <td class="tg-0pky"><a href="https://siddhi-io.github.io/siddhi-execution-math/api/latest/#log-function">Siddhi-execution-math</a></td>
-    <td class="tg-0pky">Transforms data by performing mathematical operations.</td>
-  </tr>
-  <tr>
-    <td class="tg-0pky"><a href="https://siddhi-io.github.io/siddhi-execution-unitconversion/">Siddhi-execution-unitconversion</a></td>
-    <td class="tg-0pky">Performs unit conversions ranging from length, weight, volume, etc.</td>
-  </tr>
-  <tr>
-    <td class="tg-0pky"><a href="https://siddhi-io.github.io/siddhi-execution-string/">Siddhi-execution-string</a></td>
-    <td class="tg-0pky">Performs string manipulations.</td>
-  </tr>
-  <tr>
-    <td class="tg-0pky"><a href="https://siddhi-io.github.io/siddhi-execution-time/">Siddhi-execution-time</a></td>
-    <td class="tg-0pky">Performs time-based transformations such as converting time zones.</td>
-  </tr>
-  <tr>
-    <td class="tg-0pky"><a href="https://siddhi-io.github.io/siddhi-execution-map/">Siddhi-execution-map</a></td>
-    <td class="tg-0pky">Converts events into maps and performs transformations such as concatenating and removing attributes.</td>
-  </tr>
-  <tr>
-    <td class="tg-0pky"><a href="https://siddhi-io.github.io/siddhi-execution-reorder/">Siddhi-execution-reorder</a></td>
-    <td class="tg-0pky">Rearranges the order of the incoming event flow.</td>
-  </tr>
-  <tr>
-    <td class="tg-0pky"><a href="https://siddhi-io.github.io/siddhi-execution-json/">Siddhi-execution-json</a></td>
-    <td class="tg-0pky">Performs manipulations to JSON strings.</td>
-  </tr>
-</table>
+|Extension|Description|
+|--- |--- |
+|Siddhi-execution-math|Transforms data by performing mathematical operations.|
+|Siddhi-execution-unitconversion|Performs unit conversions ranging from length, weight, volume, etc.|
+|Siddhi-execution-string|Performs string manipulations.|
+|Siddhi-execution-time|Performs time-based transformations such as converting time zones.|
+|Siddhi-execution-map|Converts events into maps and performs transformations such as concatenating and removing attributes.|
+|Siddhi-execution-reorder|Rearranges the order of the incoming event flow.|
+|Siddhi-execution-json|Performs manipulations to JSON strings.|
+
 
 These extensions are shipped with the Streaming Integrator by default. If you want to use a Siddhi extension that is not shipped by default, see [Downloading and Installing Siddhi Extensions](../admin/downloading-and-Installing-Siddhi-Extensions.md)
 
 ## Transform data using custom function calls
+
 To write custom function calls with Siddhi-script-js, follow the procedure below:
 
-!!!
-    In this section, you can reuse the `TemperatureApp` Siddhi application that you previously created. For this section,
-     assume that you need to derive a unique ID for each temperature reading by combining the room number and the device ID.
+!!!info "Note"
+    In this section, you can reuse the `TemperatureApp` Siddhi application that you previously created. For this section, assume that you need to derive a unique ID for each temperature reading by combining the room number and the device ID.
     
 1. In the `TemperatureApp` Siddhi application, add a script definition as follows.
 
@@ -151,6 +128,7 @@ To write custom function calls with Siddhi-script-js, follow the procedure below
     ```
 
 2. Add another Siddhi query to apply the script you wrote to the relevant attributes of the input stream definition.
+
     ```
     from TempStream
     select concatFn(roomNo,'-',deviceID) as id, temp 
