@@ -5,7 +5,7 @@ A **mediation sequence** , commonly called a **sequence** , is a tree of
 workflow. When a message is delivered to a sequence, the sequence sends
 it through all its mediators.
 
-![](attachments/30540641/30705246.png)
+![](/assets/img/mediators/30540641/30705246.png)
 
 When you want to work with mediation sequences, you can use the EI
 tooling plug-in to create a new sequence as well as to import an
