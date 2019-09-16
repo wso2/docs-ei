@@ -1,5 +1,12 @@
 # Using fault sequences 
 
+WSO2 Micro Integrator provides fault sequences for dealing with errors. Whenever an error occurs, the mediation engine attempts to provide as much information as possible on the error to the user by initializing the following properties on the erroneous message:
+
+-	ERROR_CODE
+-   ERROR_MESSAGE
+-   ERROR_DETAIL
+-   ERROR_EXCEPTION
+
 Within the fault sequence, you can access these property values using
 the `         get-property        ` XPath function. Sample 4 uses the
 log mediator as follows to log the actual error message:

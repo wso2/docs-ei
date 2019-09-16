@@ -58,8 +58,7 @@ Therefore, Error code = 101504 + 3 = 101507
 
 ## Endpoint Error Codes
 
-This section describes the error codes for endpoint failures. For more
-information on handling endpoint errors, see [Endpoint Error Handling](endpoints/endpoint-error-handling.md) .
+This section describes the error codes for endpoint failures. For more information on handling endpoint errors, see [Endpoint Error Handling](../../references/synapse-properties/endpoint-properties/#endpoint-error-handling-properties).
 
 ### General errors
 
