@@ -6,9 +6,15 @@ You can configure the endpoint artifacts with any attributes or semantics needed
 
 An endpoint is defined independently of transports, allowing you to use the same endpoint with multiple transports. When you configure a message mediation sequence or a proxy service to handle the incoming message, you can specify which transport to use and the endpoint to which the message will be sent. 
 
+## Classification of Endpoints
+
 Endpoints can be used in the following ways:
 
 <table>
+	<tr>
+		<th>Classification</th>
+		<th>Description</th>
+	</tr>
 	<tr>
 		<td>Named Endpoints</td>
 		<td>
@@ -34,6 +40,8 @@ Endpoints can be used in the following ways:
 		</td>
 	</tr>
 </table>
+
+## List of Endpoints
 
 You can configure the following endpoint types.
 

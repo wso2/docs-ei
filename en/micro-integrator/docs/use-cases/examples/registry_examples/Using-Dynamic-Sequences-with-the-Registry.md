@@ -1,32 +1,5 @@
 # Sample 9: Introduction to Dynamic Sequences with the Registry
 
-!!! warning
-
-Note that WSO2 EI is shipped with the following changes to what is
-mentioned in this documentation :
-
--   `           <PRODUCT_HOME>/          `
-    `           repository/samples/          ` directory that includes
-    all Integration profile samples is changed to
-    `           <EI_HOME>/          `
-    `           samples/service-bus/          ` .
-    `                     `
--   `           <PRODUCT_HOME>/          `
-    `           repository/samples/resources/          ` directory that
-    includes all artifacts related to the Integration profile samples is
-    changed to `           <EI_HOME>/          `
-    `           samples/service-bus/resources/          ` .
-
-
--   [Introduction](#Sample9:IntroductiontoDynamicSequenceswiththeRegistry-Introduction)
--   [Prerequisites](#Sample9:IntroductiontoDynamicSequenceswiththeRegistry-Prerequisites)
--   [Building the
-    sample](#Sample9:IntroductiontoDynamicSequenceswiththeRegistry-Buildingthesample)
--   [Executing the
-    sample](#Sample9:IntroductiontoDynamicSequenceswiththeRegistry-Executingthesample)
--   [Analyzing the
-    output](#Sample9:IntroductiontoDynamicSequenceswiththeRegistry-Analyzingtheoutput)
-
 ### Introduction
 
 This sample demonstrates how you can achieve dynamic behavior of the
@@ -51,7 +24,7 @@ Samples](https://docs.wso2.com/display/EI650/Setting+Up+the+ESB+Samples#SettingU
 
 The XML configuration for this sample is as follows:
 
-``` html/xml
+```
     <definitions xmlns="http://ws.apache.org/ns/synapse">
         <registry provider="org.wso2.carbon.mediation.registry.ESBRegistry">
             <parameter name="root">file:./repository/samples/resources/</parameter>
