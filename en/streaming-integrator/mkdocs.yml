@@ -111,16 +111,15 @@ nav:
     - 'Working with Business Rules': 'admin/creating-business-rules-templates.md'
     - 'Monitoring the Streaming Integrator': 'admin/monitoring-the streaming-integrator'
     - 'General Data Protection Regulations': 'admin/general-data-protection-regulations.md'
-    - 'Supporting Different Transports': 'admin/supporting-Different-Transports.md'
+    - 'Supporting Different Transports': 'admin/supporting-different-transports.md'
     - 'User Management': 'admin/user-management.md'
     - 'Protecting Sensitive Data via the Secure Vault': 'admin/protecting-sensitive-data-via-the-secure-vault.md'
-    - 'Adding Third Party Non OSGi Library': 'admin/adding-Third-Party-Non-OSGi-Libraries.md'
+    - 'Adding Third Party Non OSGi Library': 'admin/adding-third-party-non-osgi-libraries.md'
   - 'References':
     - 'Streaming Integration REST API Guide': 'ref/si-rest-api-guide.md'
     - 'Performance Analysis Results': 'ref/performance-analysis-results.md'
-    - 'Configuring Default Ports': 'ref/configuring-Default-Ports.md'
+    - 'Configuring Default Ports': 'ref/configuring-default-ports.md'
     - 'Working with Data Providers': 'ref/working-with-Data-Providers.md'
-    - 'Streaming Integration Profiles': 'ref/wSO2-Stream-Processor-Profiles.md'
   - 'FAQ':
     - 'FAQ': faq/fAQ.md
   - '': page-not-found.md

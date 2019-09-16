@@ -1,9 +1,8 @@
 # Configuring Datasources
 
-In WSO2 SP, there are datasources specific to each runtime (i.e.,
-worker, editor, manager, and dashboard runtimes). The datasources of
+In the Streaming Integrator, there are datasources specific to both the Streaming Integrator server and Streaming Integrator Tooling. The data sources of
 each runtime are defined in the
-`         <SP_HOME>/conf/<runtime>/deployment.yaml        ` file. e.g.,
+`         <SI_HOME>/conf/server/deployment.yaml        ` file. e.g.,
 To configure a datasource in the worker runtime, the relevant
 configurations need to be added in the
 `         <SP_Home>/conf/worker/deployment.yaml        ` file.
