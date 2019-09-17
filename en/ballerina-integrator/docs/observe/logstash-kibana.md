@@ -22,7 +22,7 @@ Select the template to transform XML messages to JSON and your project will load
 1. Navigate to the .bal file in the template project and start the Ballerina service with the following command.
 
    ```
-   $ nohup ballerina run stock_quote_summary_service/ &>> ballerina.log&
+   $ nohup ballerina run main.bal/ &>> ballerina.log&
    ```
    > **NOTE**: This will write the console log to the `ballerina.log` file in the `asynchronous-invocation/guide` directory
 
@@ -44,67 +44,68 @@ Select the template to transform XML messages to JSON and your project will load
 
 ## Set up logstash
 
-- Configure logstash to format the Ballerina logs
+Configure logstash to format the Ballerina logs
 
-i) Create a file named `logstash.conf` with the following content
-```
-input {  
- beats{ 
-     port => 5044 
- }  
-}
+1. Create a file named `logstash.conf` with the following content
+   ```
+   input {  
+    beats{ 
+        port => 5044 
+    }  
+   }
+   
+   filter {  
+    grok{  
+        match => { 
+	    "message" => "%{TIMESTAMP_ISO8601:date}%{SPACE}%{WORD:logLevel}%{SPACE}
+	    \[%{GREEDYDATA:package}\]%{SPACE}\-%{SPACE}%{GREEDYDATA:logMessage}"
+        }  
+    }  
+   }   
+   
+   output {  
+    elasticsearch{  
+        hosts => "elasticsearch:9200"  
+        index => "store"  
+        document_type => "store_logs"  
+    }  
+   }  
+   ```
 
-filter {  
- grok{  
-     match => { 
-	 "message" => "%{TIMESTAMP_ISO8601:date}%{SPACE}%{WORD:logLevel}%{SPACE}
-	 \[%{GREEDYDATA:package}\]%{SPACE}\-%{SPACE}%{GREEDYDATA:logMessage}"
-     }  
- }  
-}   
-
-output {  
- elasticsearch{  
-     hosts => "elasticsearch:9200"  
-     index => "store"  
-     document_type => "store_logs"  
- }  
-}  
-```
-
-ii) Save the above `logstash.conf` inside a directory named as `{SAMPLE_ROOT}\pipeline`
+2. Save the above `logstash.conf` inside a directory named as `{SAMPLE_ROOT}\pipeline`
      
-iii) Start the logstash container, replace the {SAMPLE_ROOT} with your directory name
+3. Start the logstash container, replace the {SAMPLE_ROOT} with your directory name
      
-```
-$ docker run -h logstash --name logstash --link elasticsearch:elasticsearch \
--it --rm -v ~/{SAMPLE_ROOT}/pipeline:/usr/share/logstash/pipeline/ \
--p 5044:5044 docker.elastic.co/logstash/logstash:6.5.1
-```
+   ```
+   $ docker run -h logstash --name logstash --link elasticsearch:elasticsearch \
+   -it --rm -v ~/{SAMPLE_ROOT}/pipeline:/usr/share/logstash/pipeline/ \
+   -p 5044:5044 docker.elastic.co/logstash/logstash:6.5.1
+   ```
   
 ## Configure filebeat to ship the Ballerina logs
     
-i) Create a file named `filebeat.yml` with the following content
+1. Create a file named `filebeat.yml` with the following content
 
-```
-filebeat.prospectors:
-- type: log
-  paths:
-    - /usr/share/filebeat/ballerina.log
-output.logstash:
-  hosts: ["logstash:5044"]  
-```
-> **NOTE**: Modify the ownership of filebeat.yml file using `$chmod go-w filebeat.yml` 
+   ```
+   filebeat.prospectors:
+   - type: log
+     paths:
+       - /usr/share/filebeat/ballerina.log
+   output.logstash:
+     hosts: ["logstash:5044"]  
+   ```
+   
+   > **NOTE**: Modify the ownership of filebeat.yml file using `$chmod go-w filebeat.yml` 
 
-ii) Save the above `filebeat.yml` inside a directory named as `{SAMPLE_ROOT}\filebeat`   
+2. Save the above `filebeat.yml` inside a directory named as `{SAMPLE_ROOT}\filebeat`   
         
-iii) Start the logstash container, replace the {SAMPLE_ROOT} with your directory name
+3. Start the logstash container, replace the {SAMPLE_ROOT} with your directory name
      
-```
-$ docker run -v {SAMPLE_ROOT}/filebeat/filebeat.yml:/usr/share/filebeat/filebeat.yml \
--v {SAMPLE_ROOT}/guide/stock_quote_summary_service/ballerina.log:/usr/share\
-/filebeat/ballerina.log --link logstash:logstash docker.elastic.co/beats/filebeat:6.5.1
-```
+   ```
+   $ docker run -v {SAMPLE_ROOT}/filebeat/filebeat.yml:/usr/share/filebeat/filebeat.yml \
+   -v {SAMPLE_ROOT}/guide/stock_quote_summary_service/ballerina.log:/usr/share\
+   /filebeat/ballerina.log --link logstash:logstash docker.elastic.co/beats/filebeat:6.5.1
+   ```
 
 ## Visualizing logs on Kibana
 
