@@ -23,7 +23,7 @@ site_url: https://wso2.com/integration/
 # Repository
 repo_name: wso2/docs-ei
 repo_url: https://github.com/wso2/docs-ei
-edit_uri: https://github.com/wso2/docs-ei/edit/master/en/micro-integrator/docs/
+edit_uri: https://github.com/wso2/docs-ei/edit/7.0.0/en/micro-integrator/docs/
 
 # Copyright
 copyright: WSO2 Enterprise Integrator - Documentation
