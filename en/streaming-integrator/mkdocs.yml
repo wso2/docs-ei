@@ -63,12 +63,12 @@ nav:
       - 'Install in a VM': 'setup/installing-si-in-vm.md'
       - 'Installing in Docker': 'setup/installing-si-using-docker.md'
       - 'Installing in Kubernetes': 'setup/installing-si-using-kubernetes.md'
-    - 'Deploying Streaming Integrator Profile':
+    - 'Deploying Streaming Integrator':
       - 'Single Deployment': 'setup/deploying-si-as-a-single-deployment.md'
       - 'Minimum HA Cluster': 'setup/deploying-si-as-minimum-ha-cluster.md'
       - 'Scalable Cluster': 'setup/deploying-si-as-a-scalable-cluster.md'
     - 'Setting up Databases':
-      - 'Configuring Datasources': 'configuring-Datasources.md'
+      - 'Configuring Datasources': 'setup/configuring-data-sources.md'
       - 'Setting up Physical Databases': 'setting-up-physical-databases.md'
   - 'Develop':
     - 'Streaming Integrator Tooling':
