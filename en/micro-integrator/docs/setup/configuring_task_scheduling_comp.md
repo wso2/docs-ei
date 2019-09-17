@@ -24,7 +24,7 @@ Given below are the possible values:
 
 ## Step 2: Configuring a cluster of task servers
 
-If you have enabled the CLUSTERED task server mode in [step 1](#ConfiguringtheTaskSchedulingComponent-Step1), you can update the following:
+If you have enabled the CLUSTERED task server mode in [step 1](#step-1-setting-the-task-server-mode), you can update the following:
 
 ```toml
 [tasks]
