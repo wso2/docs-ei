@@ -54,6 +54,7 @@ nav:
       - 'Message Processing Units': 'concepts/message-processing-units.md'
       - 'Message Exit Points': 'concepts/message-exit-points.md'
       - 'Messaging Transports': 'concepts/messaging-transports.md'
+      - 'Registry' : 'concepts/registry-concepts.md'
       - 'Mediation Debugging': 'concepts/debugging-concepts.md'
       - 'Error Handling': 'concepts/error-handling-concepts.md'
       - 'Message Tracing': 'concepts/message-tracing.md'
@@ -161,6 +162,7 @@ nav:
           - 'Applying Security to a REST API': 'develop/advanced-development/applying-security-to-an-api.md'
           - 'Applying Security to a Proxy Service': 'develop/advanced-development/applying-security-to-a-proxy-service.md'
           - 'Changing the Endpoint of a Deployed Service': 'develop/advanced-development/changing-the-endpoint-of-deployed-service.md'
+          - 'Generating Swagger Documents for APIs': 'develop/advanced-development/generating-swagger-for-apis.md'
       #- 'Using a CI/CD Pipeline' : 'develop/using-cicd-pipeline.md'
     - Use Cases:
       - 'Integration Use Cases': 'use-cases/integration-use-cases.md'

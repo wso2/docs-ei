@@ -7,7 +7,7 @@ Filter mediator executes the other mediators enclosed in the sequence.
 The Filter Mediator closely resembles the "If-else" control structure.
 
 !!! Info
-    The Filter mediator is a [conditionally](ESB-Mediators_119131045.html#ESBMediators-Content-awareness) [content aware](ESB-Mediators_119131045.html#ESBMediators-Content-awareness) mediator.
+    The Filter mediator is a [conditionally](../../../concepts/message-processing-units/#classification-of-mediators) [content aware](../../../concepts/message-processing-units/#classification-of-mediators) mediator.
 
 ## Syntax
 

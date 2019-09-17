@@ -94,11 +94,11 @@ If a fault sequence is not specified explicitly, the default fault sequence of t
 
 A named sequence is a custom, reusable sequence artifact that holds a specific mediation logic. You can create named sequences and reuse them within your project. A [fault sequence](#fault-sequences) is an example of a named sequence that can be used to replace the default fault sequence of a proxy service, or REST API. While the [main sequence](#main-sequence), proxy services, and REST APIs contain [IN and OUT](#inout-sequences) sequences to define a specific in flow and out flow of mediators, a named sequence is simply a combination of mediators that can be reused within an [IN](#inout-sequences) sequence or [Out](#inout-sequences) sequence.
 
-To reuse a named sequence in multiple integration projects, you need to save it as a [dynamic sequence](#dynamic-sequence).
+To reuse a named sequence in multiple integration projects, you need to save it as a [dynamic sequence](#dynamic-sequences).
 
 ### Dynamic Sequences
 
-When you create a [named sequence](#named-sequence), you can save it as a dynamic sequence in the product's **registry** (as a **registry resource**). This sequence can then be reused in the mediation flow of any of your integration projects.
+When you create a [named sequence](#named-sequences), you can save it as a dynamic sequence in the product's **registry** (as a **registry resource**). This sequence can then be reused in the mediation flow of any of your integration projects.
 
 ### Main Sequence
 

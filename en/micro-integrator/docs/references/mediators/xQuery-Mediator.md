@@ -3,7 +3,7 @@
 The **XQuery Mediator** performs an XQuery transformation on messages.
 
 !!! Info
-    The XQuery mediator is a [content aware](ESB-Mediators_119131045.html#ESBMediators-Content-awareness) mediator.
+    The XQuery mediator is a [content aware](../../../concepts/message-processing-units/#classification-of-mediators) mediator.
 
 ## Syntax
 
