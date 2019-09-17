@@ -62,7 +62,7 @@ Ballerina metrics should appear in Prometheus graph's metrics list when Ballerin
 
 ## Set up Grafana
 
-Let’s use [Grafana] to visualize metrics in a dashboard. For this, we need to install Grafana, and configure
+Let’s use Grafana to visualize metrics in a dashboard. For this, we need to install Grafana, and configure
 Prometheus as a datasource. Follow the below provided steps and configure Grafana.
 
 **Step 1:** Start Grafana as Docker container with below command.
