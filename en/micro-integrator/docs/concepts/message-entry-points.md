@@ -134,9 +134,9 @@ WSO2 Micro Integrator can be configured to execute tasks periodically. According
 You can schedule a task to run after a time interval of 't' for an 'n' number of times, or you can schedule the task to run once when the server starts. Alternatively, you can use cron expressions to have more control over how the task should be scheduled. For example, you can use a Cron expression to schedule the task to run at 10 pm on the 20th day of every month.
 
 !!! Info
-    In a clustered environment, tasks are distributed among server nodes according to the round-robin method, by default. If required, you can change this default task handling behaviour so that tasks are distributed randomly, or according to a specific rule. This is a server-level setting that is configured in the tasks-config.xml file.
+    In a clustered environment, tasks are distributed among server nodes according to the round-robin method, by default. If required, you can change this default task handling behaviour so that tasks are distributed randomly, or according to a specific rule. 
     
-    -   See Configuring the Task Scheduling Component for instructions on configuring the task handling behaviour at server-level.
-    -   You can also configure the task handling behaviour at task-level, by specifying the Pinned Servers for a task. Note that this setting overrides the server-level configuration.
+    -   See the instructions on how to [configure task scheduling](../setup/configuring_task_scheduling_comp.md) for the Micro Integrator.
+    -   You can also configure the task handling behaviour at task-level, by [specifying the Pinned Servers](../use-cases/examples/proxy_service_examples/using-pinned-servers.md) for a task. Note that this setting overrides the server-level configuration.
 
     Also, note that a scheduled task will only run on one of the nodes (at a given time) in a clustered environment. The task will fail over to another node only if the first node fails.
