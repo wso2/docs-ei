@@ -1,13 +1,20 @@
 # Generic Properties
 
+!!! Info
+	The following are generic properties that can be used with the [Property mediator](../../../references/mediators/property-Mediator.md) and the [Property Group mediator](../../../references/mediators/property-Group-Mediator.md).
+
 Generic properties allow you to configure messages as they're processed
-by the ESB profile, such as marking a message as out-only (no response
+by the Micro Integrator, such as marking a message as out-only (no response
 message will be expected), adding a custom error message or code to the
 message, and disabling WS-Addressing headers.
 
-#### PRESERVE\_WS\_ADDRESSING
+## PRESERVE_WS_ADDRESSING
 
 <table>
+	<tr>
+		<th>Parameter</th>
+		<th>Description</th>
+	</tr>
 <tbody>
 <tr class="odd">
 <td><p><strong>Name</strong></p></td>
@@ -27,7 +34,7 @@ message, and disabling WS-Addressing headers.
 </tr>
 <tr class="odd">
 <td><p><strong>Description</strong></p></td>
-<td><p>By default, the ESB profile adds a new set of WS-Addressing headers to the messages forwarded from the ESB profile. If this property is set to " <code>              true             </code> " on a message, the ESB profile will forward it without altering its existing WS-Addressing headers.</p></td>
+<td><p>By default, the Micro Integrator adds a new set of WS-Addressing headers to the messages forwarded from the Micro Integrator. If this property is set to " <code>              true             </code> " on a message, the Micro Integrator will forward it without altering its existing WS-Addressing headers.</p></td>
 </tr>
 <tr class="even">
 <td><p><strong>Example</strong></p></td>
@@ -42,9 +49,13 @@ message, and disabling WS-Addressing headers.
 </tbody>
 </table>
 
-#### RESPONSE
+## RESPONSE
 
 <table>
+	<tr>
+		<th>Parameter</th>
+		<th>Description</th>
+	</tr>
 <tbody>
 <tr class="odd">
 <td><p><strong>Name</strong></p></td>
@@ -64,7 +75,7 @@ message, and disabling WS-Addressing headers.
 </tr>
 <tr class="odd">
 <td><p><strong>Description</strong></p></td>
-<td><p>Once this property is set to 'true' on a message, the ESB profile will start treating it as a response message. It is generally used to route a request message back to its source as the response.</p></td>
+<td><p>Once this property is set to 'true' on a message, the Micro Integrator will start treating it as a response message. It is generally used to route a request message back to its source as the response.</p></td>
 </tr>
 <tr class="even">
 <td><p><strong>Example</strong></p></td>
@@ -79,9 +90,13 @@ message, and disabling WS-Addressing headers.
 </tbody>
 </table>
 
-#### OUT\_ONLY
+## OUT_ONLY
 
 <table>
+	<tr>
+		<th>Parameter</th>
+		<th>Description</th>
+	</tr>
 <tbody>
 <tr class="odd">
 <td><p><strong>Name</strong></p></td>
@@ -101,13 +116,13 @@ message, and disabling WS-Addressing headers.
 </tr>
 <tr class="odd">
 <td><p><strong>Description</strong></p></td>
-<td><p>Set this property to "true" on a message to indicate that no response message is expected for it once it is forwarded from the ESB profile. In other words, the ESB profile will do an out-only invocation with such messages. It is very important to set this property on messages that are involved in out-only invocations to prevent the ESB profile from registering unnecessary callbacks for response handling and eventually running out of memory.</p></td>
+<td><p>Set this property to "true" on a message to indicate that no response message is expected for it once it is forwarded from the Micro Integrator. In other words, the Micro Integrator will do an out-only invocation with such messages. It is very important to set this property on messages that are involved in out-only invocations to prevent the Micro Integrator from registering unnecessary callbacks for response handling and eventually running out of memory.</p></td>
 </tr>
 <tr class="even">
 <td><p><strong>Description for value="true"<br />
 </strong></p></td>
 <td><div class="content-wrapper">
-<p>Set this property to "true" on a message to indicate that no response message is expected for it once it is forwarded from the ESB profile. In other words, the ESB profile will do an out-only invocation with such messages. It is very important to set this property on messages that are involved in out-only invocations to prevent the ESB profile from registering unnecessary callbacks for response handling and eventually running out of memory.</p>
+<p>Set this property to "true" on a message to indicate that no response message is expected for it once it is forwarded from the Micro Integrator. In other words, the Micro Integrator will do an out-only invocation with such messages. It is very important to set this property on messages that are involved in out-only invocations to prevent the Micro Integrator from registering unnecessary callbacks for response handling and eventually running out of memory.</p>
 <div class="code panel pdl" style="border-width: 1px;">
 <div class="codeContent panelContent pdl">
 <div class="sourceCode" id="cb1" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence" style="brush: java; gutter: false; theme: Confluence"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb1-1"><a href="#cb1-1"></a>&lt;property name=<span class="st">&quot;OUT_ONLY&quot;</span> value=<span class="st">&quot;true&quot;</span>/&gt;</span></code></pre></div>
@@ -119,7 +134,7 @@ message, and disabling WS-Addressing headers.
 <td><p><strong>Description for value="false"<br />
 </strong></p></td>
 <td><div class="content-wrapper">
-<p>Set this property to "false" to call the endpoint and get a response once it is forwarded from the ESB.</p>
+<p>Set this property to "false" to call the endpoint and get a response once it is forwarded from the Micro Integrator.</p>
 <div class="code panel pdl" style="border-width: 1px;">
 <div class="codeContent panelContent pdl">
 <div class="sourceCode" id="cb2" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence" style="brush: java; gutter: false; theme: Confluence"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb2-1"><a href="#cb2-1"></a>&lt;property name=<span class="st">&quot;OUT_ONLY&quot;</span> value=<span class="st">&quot;false&quot;</span>/&gt;</span></code></pre></div>
@@ -130,9 +145,13 @@ message, and disabling WS-Addressing headers.
 </tbody>
 </table>
 
-#### ERROR\_CODE
+## ERROR_CODE
 
 <table>
+	<tr>
+		<th>Parameter</th>
+		<th>Description</th>
+	</tr>
 <tbody>
 <tr class="odd">
 <td><p><strong>Name</strong></p></td>
@@ -167,9 +186,13 @@ message, and disabling WS-Addressing headers.
 </tbody>
 </table>
 
-#### ERROR\_MESSAGE
+## ERROR_MESSAGE
 
 <table>
+	<tr>
+		<th>Parameter</th>
+		<th>Description</th>
+	</tr>
 <colgroup>
 <col style="width: 50%" />
 <col style="width: 50%" />
@@ -210,9 +233,13 @@ message, and disabling WS-Addressing headers.
 </tbody>
 </table>
 
-#### ERROR\_DETAIL
+## ERROR_DETAIL
 
 <table>
+	<tr>
+		<th>Parameter</th>
+		<th>Description</th>
+	</tr>
 <tbody>
 <tr class="odd">
 <td><p><strong>Name</strong></p></td>
@@ -232,7 +259,7 @@ message, and disabling WS-Addressing headers.
 </tr>
 <tr class="odd">
 <td><p><strong>Description</strong></p></td>
-<td><p>Use this property to set the exception stacktrace in case of an error. If the ESB profile encounters an error during mediation or routing, this property will be automatically populated.</p></td>
+<td><p>Use this property to set the exception stacktrace in case of an error. If the Micro Integrator encounters an error during mediation or routing, this property will be automatically populated.</p></td>
 </tr>
 <tr class="even">
 <td><p><strong>Example</strong></p></td>
@@ -249,9 +276,9 @@ message, and disabling WS-Addressing headers.
 </tbody>
 </table>
 
-#### ERROR\_EXCEPTION
+## ERROR_EXCEPTION
 
-|                      |                                                                  |
+| Parameter            |       Description                                                |
 |----------------------|------------------------------------------------------------------|
 | **Name**             | ERROR\_EXCEPTION                                                 |
 | **Possible Values**  | java.lang.Exception                                              |
@@ -259,9 +286,13 @@ message, and disabling WS-Addressing headers.
 | **Scope**            | synapse                                                          |
 | **Description**      | Contains the actual exception thrown in case of a runtime error. |
 
-#### TRANSPORT\_HEADERS
+## TRANSPORT_HEADERS
 
 <table>
+	<tr>
+		<th>Parameter</th>
+		<th>Description</th>
+	</tr>
 <tbody>
 <tr class="odd">
 <td><p><strong>Name</strong></p></td>
@@ -296,9 +327,13 @@ message, and disabling WS-Addressing headers.
 </tbody>
 </table>
 
-#### messageType
+## messageType
 
 <table>
+	<tr>
+		<th>Parameter</th>
+		<th>Description</th>
+	</tr>
 <tbody>
 <tr class="odd">
 <td><p><strong>Name</strong></p></td>
@@ -333,9 +368,13 @@ message, and disabling WS-Addressing headers.
 </tbody>
 </table>
 
-#### ContentType
+## ContentType
 
 <table>
+	<tr>
+		<th>Parameter</th>
+		<th>Description</th>
+	</tr>
 <colgroup>
 <col style="width: 50%" />
 <col style="width: 50%" />
@@ -374,9 +413,13 @@ message, and disabling WS-Addressing headers.
 </tbody>
 </table>
 
-#### disableAddressingForOutMessages
+## disableAddressingForOutMessages
 
 <table>
+	<tr>
+		<th>Parameter</th>
+		<th>Description</th>
+	</tr>
 <tbody>
 <tr class="odd">
 <td><p><strong>Name</strong></p></td>
@@ -396,7 +439,7 @@ message, and disabling WS-Addressing headers.
 </tr>
 <tr class="odd">
 <td><p><strong>Description</strong></p></td>
-<td><p>Set this property to "true" if you do not want the ESB profile to add WS-Addressing headers to outgoing messages. This property can affect messages sent to backend services as well as the responses routed back to clients.</p></td>
+<td><p>Set this property to "true" if you do not want the Micro Integrator to add WS-Addressing headers to outgoing messages. This property can affect messages sent to backend services as well as the responses routed back to clients.</p></td>
 </tr>
 <tr class="even">
 <td><p><strong>Example</strong></p></td>
@@ -411,9 +454,13 @@ message, and disabling WS-Addressing headers.
 </tbody>
 </table>
 
-#### DISABLE\_SMOOKS\_RESULT\_PAYLOAD
+## DISABLE_SMOOKS_RESULT_PAYLOAD
 
 <table>
+	<tr>
+		<th>Parameter</th>
+		<th>Description</th>
+	</tr>
 <tbody>
 <tr class="odd">
 <td><p><strong>Name</strong></p></td>
@@ -448,9 +495,13 @@ message, and disabling WS-Addressing headers.
 </tbody>
 </table>
 
-#### ClientApiNonBlocking
+## ClientApiNonBlocking
 
 <table>
+	<tr>
+		<th>Parameter</th>
+		<th>Description</th>
+	</tr>
 <tbody>
 <tr class="odd">
 <td><p><strong>Name</strong></p></td>
@@ -485,9 +536,13 @@ message, and disabling WS-Addressing headers.
 </tbody>
 </table>
 
-#### transportNonBlocking
+## transportNonBlocking
 
 <table>
+	<tr>
+		<th>Parameter</th>
+		<th>Description</th>
+	</tr>
 <tbody>
 <tr class="odd">
 <td><p><strong>Name</strong></p></td>
@@ -522,9 +577,13 @@ message, and disabling WS-Addressing headers.
 </tbody>
 </table>
 
-#### TRANSPORT\_IN\_NAME
+## TRANSPORT_IN_NAME
 
 <table>
+	<tr>
+		<th>Parameter</th>
+		<th>Description</th>
+	</tr>
 <tbody>
 <tr class="odd">
 <td><p><strong>Name</strong></p></td>
@@ -553,9 +612,13 @@ message, and disabling WS-Addressing headers.
 </tbody>
 </table>
 
-#### preserveProcessedHeaders
+## preserveProcessedHeaders
 
 <table>
+	<tr>
+		<th>Parameter</th>
+		<th>Description</th>
+	</tr>
 <colgroup>
 <col style="width: 50%" />
 <col style="width: 50%" />
@@ -595,9 +658,13 @@ message, and disabling WS-Addressing headers.
 </tbody>
 </table>
 
-#### SERVER\_IP
+## SERVER_IP
 
 <table>
+	<tr>
+		<th>Parameter</th>
+		<th>Description</th>
+	</tr>
 <tbody>
 <tr class="odd">
 <td><p><strong>Name</strong></p></td>
@@ -605,7 +672,7 @@ message, and disabling WS-Addressing headers.
 </tr>
 <tr class="even">
 <td><p><strong><strong>Possible Values</strong></strong></p></td>
-<td><p>IP address or hostname of the ESB profile host</p></td>
+<td><p>IP address or hostname of the Micro Integrator host</p></td>
 </tr>
 <tr class="odd">
 <td><p><strong>Default Behavior<br />
@@ -619,9 +686,13 @@ message, and disabling WS-Addressing headers.
 </tbody>
 </table>
 
-#### FORCE\_ERROR\_ON\_SOAP\_FAULT
+## FORCE_ERROR_ON_SOAP_FAULT
 
 <table>
+	<tr>
+		<th>Parameter</th>
+		<th>Description</th>
+	</tr>
 <tbody>
 <tr class="odd">
 <td><p><strong>Name</strong></p></td>
@@ -657,9 +728,13 @@ message, and disabling WS-Addressing headers.
 </tbody>
 </table>
 
-#### QUOTE\_STRING\_IN\_PAYLOAD\_FACTORY\_JSON
+## QUOTE_STRING_IN_PAYLOAD_FACTORY_JSON
 
 <table>
+	<tr>
+		<th>Parameter</th>
+		<th>Description</th>
+	</tr>
 <tbody>
 <tr class="odd">
 <td><p><strong>Name</strong></p></td>
@@ -682,8 +757,7 @@ message, and disabling WS-Addressing headers.
 <td><p><strong>Description</strong></p></td>
 <td><div class="content-wrapper">
 <p>When you create a JSON payload using the PayloadFactory mediator, a string value evaluated from an argument is replaced as it is. If you want to force double quotes to be added to a string value evaluated from an argument, set this property to <code>               true              </code> .</p>
-!!! info
-<p>Note</p>
+<p><b>Note</b></p>
 <p>Double quotes are added only if the value evaluated from an argument is string. If the value is a valid JSON number, boolean value or null, double quotes are not added.</p>
 
 </div></td>
