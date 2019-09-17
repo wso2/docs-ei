@@ -3,7 +3,7 @@
 The **Log mediator** is used to log mediated messages. For more information on logging, see [Monitoring Logs](../../administer-and-observe/logs/monitoring_logs.md).
 
 !!! Info
-	The Log mediator is a [conditionally](ESB-Mediators_119131045.html#ESBMediators-Content-awareness) [content aware](ESB-Mediators_119131045.html#ESBMediators-Content-awareness) mediator.
+	The Log mediator is a [conditionally](../../../concepts/message-processing-units/#classification-of-mediators) [content aware](../../../concepts/message-processing-units/#classification-of-mediators) mediator.
 
 ## Syntax
 
