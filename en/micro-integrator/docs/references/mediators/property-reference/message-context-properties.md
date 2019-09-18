@@ -36,11 +36,8 @@ format, and the message operation. You can use the
 <tr class="odd">
 <td><p><strong>Description</strong></p></td>
 <td><p>Returns the current date as a String.</p>
-<p>Optionally, a date format as per the standard date format may be supplied by entering the following in the Namespaced Property Editor: <code>                  get-property("SYSTEM_DATE", "yyyy-MM-dd'T'HH:mm:ss.SSSXXX")</code></td>
-</tr>
-</tbody>
-</table>
-</div></td>
+Optionally, a date format as per the standard date format may be supplied by entering the following in the Namespaced Property Editor: <code>                  get-property("SYSTEM_DATE", "yyyy-MM-dd'T'HH:mm:ss.SSSXXX")</code>
+</td>
 </tr>
 </tbody>
 </table>

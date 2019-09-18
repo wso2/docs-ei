@@ -3,10 +3,7 @@
 !!! Info
 	The following are generic properties that can be used with the [Property mediator](../../../references/mediators/property-Mediator.md) and the [Property Group mediator](../../../references/mediators/property-Group-Mediator.md).
 
-Generic properties allow you to configure messages as they're processed
-by the Micro Integrator, such as marking a message as out-only (no response
-message will be expected), adding a custom error message or code to the
-message, and disabling WS-Addressing headers.
+Generic properties allow you to configure messages as they're processed by the Micro Integrator, such as marking a message as out-only (no response message will be expected), adding a custom error message or code to the message, and disabling WS-Addressing headers.
 
 ## PRESERVE_WS_ADDRESSING
 
@@ -280,7 +277,7 @@ message, and disabling WS-Addressing headers.
 
 | Parameter            |       Description                                                |
 |----------------------|------------------------------------------------------------------|
-| **Name**             | ERROR\_EXCEPTION                                                 |
+| **Name**             | ERROR_EXCEPTION                                                 |
 | **Possible Values**  | java.lang.Exception                                              |
 | **Default Behavior** | none                                                             |
 | **Scope**            | synapse                                                          |
@@ -480,7 +477,7 @@ message, and disabling WS-Addressing headers.
 </tr>
 <tr class="odd">
 <td><p><strong>Description</strong></p></td>
-<td><p>If this property is set to <code>              true             </code> , the result of file content processing carried out by the <a href="_Smooks_Mediator_">Smooks Mediator</a> will not be loaded into the message context. This is useful in situations where you want to avoid large memory growth/out of heap space issue that may occur when large files processed by the Smooks mediator are reprocessed. See <a href="https://docs.wso2.com/display/EI650/VFS+Transport#VFSTransport-Smooks">VFS Transport</a> for a proxy service configuration where this property is used.</p></td>
+<td><p>If this property is set to <code>              true             </code> , the result of file content processing carried out by the <a href="../../../../references/mediators/smooks-Mediator">Smooks Mediator</a> will not be loaded into the message context. This is useful in situations where you want to avoid large memory growth/out of heap space issue that may occur when large files processed by the Smooks mediator are reprocessed. See <a href="../../../../concepts/messaging-transports/#virtual-file-system-vfs">VFS Transport</a> for a proxy service configuration where this property is used.</p></td>
 </tr>
 <tr class="even">
 <td><p><strong>Example</strong></p></td>
@@ -562,7 +559,7 @@ message, and disabling WS-Addressing headers.
 </tr>
 <tr class="odd">
 <td><p><strong>Description</strong></p></td>
-<td><p>This property works the same way as <code>              ClientApiNonBlocking             </code> . It is recommended to use <code>              ClientApiNonBlocking             </code> for this purpose instead of <code>              transportNonBlocking             </code> since the former uses the latest axis2 translations.</p></td>
+<td><p>This property works the same way as <code>              ClientApiNonBlocking             </code>. It is recommended to use <code>              ClientApiNonBlocking             </code> for this purpose instead of <code>              transportNonBlocking             </code> since the former uses the latest axis2 translations.</p></td>
 </tr>
 <tr class="even">
 <td><p><strong>Example</strong></p></td>
@@ -713,7 +710,7 @@ message, and disabling WS-Addressing headers.
 </tr>
 <tr class="odd">
 <td><p><strong>Description</strong></p></td>
-<td><p>When a SOAP error occurs in a response, the SOAPFault sent from the back end is received by the out sequence as a usual response by default. If this property is set to <code>              true             </code> , the SOAPFault is redirected to a fault sequence. Note that when this property is <code>              true             </code> , only properties in the 'operation' scope will be passed to the error handler, and other properties in the axis2 or default scopes will not be passed to the error handler.</p></td>
+<td><p>When a SOAP error occurs in a response, the SOAPFault sent from the back end is received by the out sequence as a usual response by default. If this property is set to <code>true</code>, the SOAPFault is redirected to a fault sequence. Note that when this property is <code>true</code> , only properties in the 'operation' scope will be passed to the error handler, and other properties in the axis2 or default scopes will not be passed to the error handler.</p></td>
 </tr>
 <tr class="even">
 <td><p><strong>Example</strong></p></td>
