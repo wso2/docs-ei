@@ -10,7 +10,7 @@
 
 
 WSO2 provides open source Docker images to run WSO2 Streaming Integrator in
-Docker Hub. You can view these images [here](https://hub.docker.com/u/wso2/).
+Docker Hub. You can view these images [In Docker Hub - WSO2](https://hub.docker.com/u/wso2/).
 
 ## Downloading and installing WSO2 Streaming Integrator
 
