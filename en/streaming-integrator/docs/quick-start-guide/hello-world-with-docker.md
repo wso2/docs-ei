@@ -22,6 +22,7 @@ WSO2 provides open source Docker images to run WSO2 Streaming Integrator in Dock
 To run the Streaming Integrator in the  open source image that is available for it
 
 1. To pull the required WSO2 Streaming Integrator distribution with updates from the Docker image, issue the following command.
+
     `docker run -it wso2/streaming-integrator`
 
 2. Expose the required ports via docker when running the docker container. In this scenario, you need to expose the following ports:
@@ -29,6 +30,7 @@ To run the Streaming Integrator in the  open source image that is available for 
     - The 8006 HTTP port from which Siddhi application you are deploying in this scenario receives messages.
 
     To expose these ports, issue the following command.
+
     `docker run -p 9443:9443 -p 8006:8006 wso2/streaming-integrator`
 
 
@@ -92,22 +94,24 @@ Let's create a simple Siddhi application that receives an HTTP message, does a s
           | **Password**    | `admin`                          |
 
 
-       ![Add New Server](../images/getting-si-run-with-mi/add-new-server.png)
+        ![Add New Server](../images/getting-si-run-with-mi/add-new-server.png)
 
-       Then click **Add**.
+        Then click **Add**.
 
     2. Select the check boxes for the **MySimpleApp** Siddhi application and the server you added as shown below.
 
-       ![Deploy Siddhi Apps to Server](../images/getting-si-run-with-mi/select-siddhi-app-and-server.png)
+        ![Deploy Siddhi Apps to Server](../images/getting-si-run-with-mi/select-siddhi-app-and-server.png)
 
     3. Click **Deploy**.
 
-       When the Siddhi application is successfully deployed, the following message appears in the **Deploy Siddhi Apps to Server** dialog box.
+        When the Siddhi application is successfully deployed, the following message appears in the **Deploy Siddhi Apps to Server** dialog box.
 
-       ![Deployment Status](../images/getting-si-run-with-mi/siddhi-application-deployment-status.png)
+        ![Deployment Status](../images/getting-si-run-with-mi/siddhi-application-deployment-status.png)
 
 
-      The following is logged in the console in which you started the Streaming Integrator in Docker.
+        The following is logged in the console in which you started the Streaming Integrator in Docker.
+
+        ![Deployment Status](../images/hello-world-with-docker/siddhi-app-deployed-in-docker-log.png)
 
 
 
@@ -121,4 +125,5 @@ curl -X POST -d "{\"event\": {\"name\":\"sugar\",\"amount\": 20.5}}"  http://0.0
 
 The following output appears in the console in which you started the Streaming Integrator in Docker.
 
+![HTTP Response](../images/hello-world-with-docker/http-response.png)
 
