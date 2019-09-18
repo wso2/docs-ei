@@ -4,7 +4,7 @@ Ballerina has a log module for logging to the console. You can import the `balle
 
 To understand how you can track logging for Ballerina services, let’s consider a service that converts JSON to XML.
 
-![alt text](../../assets/img/prometheus-grafana.png)
+![alt text](../../assets/img/logstash-kibana.png)
 
 ## Set up the project 
 
@@ -24,7 +24,7 @@ Select the template to transform XML messages to JSON and your project will load
    ```
    $ nohup ballerina run main.bal/ &>> ballerina.log&
    ```
-   > **NOTE**: This will write the console log to the `ballerina.log` file in the `asynchronous-invocation/guide` directory
+   > **NOTE**: This will write the console log to the `ballerina.log` file in the same directory
 
 2. Start Elasticsearch using the following command.
 
