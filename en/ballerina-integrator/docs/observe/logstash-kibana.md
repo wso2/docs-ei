@@ -72,13 +72,25 @@ $ sudo sysctl -w vm.max_map_count=262144
 
 Exit by pressing Control+A and Control+\.
 
+### Increasing performance of Docker for Windows
+
+The vm.max_map_count setting must be set via docker-machine:
+
+```
+docker-machine ssh
+sudo sysctl -w vm.max_map_count=262144
+
+```
+
 ## Set up Kibana
 
 1. Navigate to the .bal file in the template project and start the Ballerina service with the following command.
 
    ```
-   $ nohup ballerina run main.bal/ &>> ballerina.log&
+   $ nohup ballerina run main.bal &> ballerina.log&
+
    ```
+
    > **NOTE**: This will write the console log to the `ballerina.log` file in the same directory
 
 2. Start Elasticsearch using the following command.
@@ -158,7 +170,7 @@ Configure logstash to format the Ballerina logs
      
    ```
    $ docker run -v {SAMPLE_ROOT}/filebeat/filebeat.yml:/usr/share/filebeat/filebeat.yml \
-   -v {SAMPLE_ROOT}/guide/stock_quote_summary_service/ballerina.log:/usr/share\
+   -v /Users/sam/Documents/ballerina-integrator/qsg/MyProject3/src/MyModule/ballerina.log:/usr/share\
    /filebeat/ballerina.log --link logstash:logstash docker.elastic.co/beats/filebeat:6.5.1
    ```
 
