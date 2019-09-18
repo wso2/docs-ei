@@ -1,76 +1,80 @@
 # SOAP Headers
 
+!!! Info
+	The following properties are SOAP headers that can be used with the [Property mediator](../../../references/mediators/property-Mediator.md) and the [Property Group mediator](../../../references/mediators/property-Group-Mediator.md).
+
 SOAP headers provide information about the message, such as the To and
 From values. You can use the `         get-property()        ` function
-in the [Property mediator](_Property_Mediator_) to retrieve these
+in the [Property mediator](../../../references/mediators/property-Mediator.md) to retrieve these
 headers. You can also add Custom SOAP headers using either the
-[PayloadFactory
-mediator](https://docs.wso2.com/display/EI6xx/PayloadFactory+Mediator#PayloadFactoryMediator-Example8:AddingacustomSOAPheader)
-or the [Script
-mediator](https://docs.wso2.com/display/EI6xx/Script+Mediator#ScriptMediator-Example4-AddingacustomSOAPheader)
-.
+[PayloadFactory mediator](../../../references/mediators/payloadFactory-Mediator.md)
+or the [Script mediator](../../../references/mediators/script-Mediator.md).
 
-#### To
+## To
 
-|                     |                               |
+|     Parameter       |           Value               |
 |---------------------|-------------------------------|
 | **Header Name**     | To                            |
 | **Possible Values** | Any URI                       |
 | **Description**     | The To header of the message. |
 | **Example**         | get-property("To")            |
 
-#### From
+## From
 
-|                     |                                 |
+|     Parameter       |           Value               |
 |---------------------|---------------------------------|
 | **Header Name**     | From                            |
 | **Possible Values** | Any URI                         |
 | **Description**     | The From header of the message. |
 | **Example**         | get-property("From")            |
 
-#### Action
+## Action
 
-|                     |                                       |
+|     Parameter       |           Value               |
 |---------------------|---------------------------------------|
 | **Header Name**     | Action                                |
 | **Possible Values** | Any URI                               |
 | **Description**     | The SOAPAction header of the message. |
 | **Example**         | get-property("Action")                |
 
-#### ReplyTo
+## ReplyTo
 
-|                     |                                            |
+|     Parameter       |           Value               |
 |---------------------|--------------------------------------------|
 | **Header Name**     | ReplyTo                                    |
 | **Possible Values** | Any URI                                    |
 | **Description**     | The ReplyTo header of the message.         |
 | **Example**         | \<header name="ReplyTo" action="remove"/\> |
 
-#### MessageID
+## MessageID
 
-|                     |                                                                                                                |
+|     Parameter       |           Value               |
 |---------------------|----------------------------------------------------------------------------------------------------------------|
 | **Header Name**     | MessageID                                                                                                      |
 | **Possible Values** | UUID                                                                                                           |
 | **Description**     | The unique message ID of the message. It is not recommended to make alterations to this property of a message. |
 | **Example**         | get-property("MessageID")                                                                                      |
 
-#### RelatesTo
+## RelatesTo
 
-|                     |                                                                                                              |
+|     Parameter       |           Value               |
 |---------------------|--------------------------------------------------------------------------------------------------------------|
 | **Header Name**     | RelatesTo                                                                                                    |
 | **Possible Values** | UUID                                                                                                         |
 | **Description**     | The unique ID of the request to which the current message is related. It is not recommended to make changes. |
 | **Example**         | get-property("RelatesTo")                                                                                    |
 
-#### FaultTo
+## FaultTo
 
 <table>
 <colgroup>
 <col style="width: 50%" />
 <col style="width: 50%" />
 </colgroup>
+<tr>
+	<th>Parameter</th>
+	<th>Value</th>
+</tr>
 <tbody>
 <tr class="odd">
 <td><p><strong>Header Name</strong></p></td>
