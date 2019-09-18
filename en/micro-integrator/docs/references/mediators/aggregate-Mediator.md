@@ -6,7 +6,7 @@ combines (aggregates) the **response messages** of messages that were split by 
 even if you set the `         sequential        ` attribute to `         true        ` on the Iterate mediator.
 
 !!! Info
-    The Aggregate mediator is a [content-aware](ESB-Mediators_119131045.html#ESBMediators-Content-awareness) mediator.
+    The Aggregate mediator is a [content-aware](../../../concepts/message-processing-units/#classification-of-mediators) mediator.
 
 ## Syntax
 

@@ -8,7 +8,7 @@ SOAP message. You can configure the format of the request or response
 and map it to the arguments provided.
 
 !!! Info
-    The PayloadFactory mediator is a [content aware](ESB-Mediators_119131045.html#ESBMediators-Content-awareness) mediator.
+    The PayloadFactory mediator is a [content aware](../../../concepts/message-processing-units/#classification-of-mediators) mediator.
 
 ## Syntax
 

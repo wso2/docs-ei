@@ -2,66 +2,120 @@
 
 ## Mediators
 
-Mediators are individual processing units that perform a specific function, such as sending, transforming, or filtering messages. WSO2 Micro Integrator includes a comprehensive libaray of mediators that provide functionality for implementing widely used **Enterprise Integration Patterns** (EIPs). You can also easily write a custom mediator to provide additional functionality using various technologies such as Java, scripting, and Spring.
+Mediators are individual processing units that perform a specific function on messages that pass through the Micro Integrator. The mediator takes the message received by the proxy service or REST API, carries out some predefined actions on it (such as transforming, enriching, filtering), and outputs the modified message. 
+
+For example, the [Clone](../references/mediators/clone-Mediator.md) mediator splits a message into several clones, the [Send](../references/mediators/send-Mediator.md) mediator sends the messages, and the [Aggregate](../references/mediators/aggregate-Mediator.md) mediator collects and merges the responses before sending them back to the client. 
+
+Mediators also include functionality to match incompatible protocols, data formats, and interaction patterns across different resources. [XQuery](../references/mediators/xQuery-Mediator.md) and [XSLT](../references/mediators/xSLT-Mediator.md) mediators allow rich transformations on the messages. The [Rule](../references/mediators/rule-Mediator.md) mediator allows users to cope with the uncertainty of business logic through rule-based message mediation. Content-based routing using XPath filtering is supported in different flavors, allowing users to get the most convenient configuration experience. Built-in capability to handle transactions allow message mediation to be done transactionally inside the Micro Integrator.
+
+Mediators are always defined within a [mediation sequence](#mediation-sequences).
+
+### Classification of Mediators
+
+Mediators are classified as follows based on whether or not they access the message's content: 
+
+<table>
+	<col width="140">
+	<tr>
+		<th>Classification</th>
+		<th>Description</th>
+	</tr>
+	<tr>
+		<td><b>Content-Aware</b> mediators</td>
+		<td>
+			These mediators always access the message content when mediating messages (e.g., <a href="../../references/mediators/enrich-Mediator">Enrich</a> mediator).
+		</td>
+	</tr>
+	<tr>
+		<td><b>Content-Unaware</b> mediators</td>
+		<td>
+			These mediators never access the message content when mediating messages (e.g., <a href="../../references/mediators/send-Mediator">Send</a> mediator).
+		</td>
+	</tr>
+	<tr>
+		<td><b>Conditionally Content-Aware</b> mediators</td>
+		<td>
+			These mediators could be either content-aware or content-unaware depending on their exact instance configuration. For example, a simple <a href="../../references/mediators/log-Mediator"></a> mediator instance (i.e. configured as <log/>) is content-unaware. However a log mediator configured as <log level=”full”/> would be content-aware since it is expected to log the message payload.
+		</td>
+	</tr>
+</table>
+
+### List of Mediators
+
+WSO2 Micro Integrator includes a comprehensive library of mediators that provide functionality for implementing widely used **Enterprise Integration Patterns** (EIPs). You can also easily write a custom mediator to provide additional functionality using various technologies such as Java, scripting, and Spring.
+
+**Core Mediators**
+
+[Call](../references/mediators/call-Mediator.md) | [Send](../references/mediators/send-Mediator.md) | [Loopback](../references/mediators/loopback-Mediator.md) | [Sequence](../references/mediators/sequence-Mediator.md) | [Respond](../references/mediators/respond-Mediator.md) | [Drop](../references/mediators/drop-Mediator.md) | [Call Template](../references/mediators/call-Template-Mediator.md) | [Enrich](../references/mediators/enrich-Mediator.md) | [Property](../references/mediators/property-Mediator.md) | [Property Group](../references/mediators/property-Group-Mediator.md) | [Log](../references/mediators/log-Mediator.md) | 
+
+**Filter Mediators**
+
+[Filter](../references/mediators/filter-Mediator.md) | [Validate](../references/mediators/validate-Mediator.md) | [Switch](../references/mediators/switch-Mediator.md) | 
+
+**Transform Mediators**
+
+[XSLT](../references/mediators/xSLT-Mediator.md) | [FastXSLT](../references/mediators/fastXSLT-Mediator.md) | [URLRewrite](../references/mediators/uRLRewrite-Mediator.md) | [XQuery](../references/mediators/xQuery-Mediator.md) | [Header](../references/mediators/header-Mediator.md) | [Fault](../references/mediators/fault-Mediator.md) | [PayloadFactory](../references/mediators/payloadFactory-Mediator.md) | 
+
+**Advanced Mediators**
+
+[Cache](../references/mediators/cache-Mediator.md) | [ForEach](../references/mediators/forEach-Mediator.md) | [Clone](../references/mediators/clone-Mediator.md) | [Store](../references/mediators/store-Mediator.md) | [Iterate](../references/mediators/iterate-Mediator.md) | [Aggregate](../references/mediators/aggregate-Mediator.md) | [Callout](../references/mediators/callout-Mediator.md) | [Transaction](../references/mediators/transaction-Mediator.md) | [Throttle](../references/mediators/throttle-Mediator.md) | [DBReport](../references/mediators/db-Report-Mediator.md) | [DBLookup](../references/mediators/dbLookup-Mediator.md) | [EJB](../references/mediators/ejb-Mediator.md) | [Rule](../references/mediators/rule-Mediator.md) | [Binder](../references/mediators/call-Mediator.md) | [Entitlement](../references/mediators/call-Mediator.md) | [OAuth](../references/mediators/call-Mediator.md) | [Smooks](../references/mediators/binder-Mediator.md) | [Data Mapper](../references/mediators/data-Mapper-Mediator.md) | 
+
+**Extension Mediators**
+
+[Class](../references/mediators/class-Mediator.md) | [Script](../references/mediators/script-Mediator.md) |
+
+**Agent Mediators**
+
+[Publish Event](../references/mediators/publish-Event-Mediator.md)
 
 ## Mediation Sequences
 
-A mediation sequence is a set of mediators organized into a logical flow, allowing you to implement pipes and filter patterns. The mediators in the sequence will perform the necessary message processing and route it to the required destination. There are several types of mediation sequences.
+A mediation sequence is a set of [mediators](#mediators) organized into a logical flow, allowing you to implement pipes and filter patterns. The mediators in the sequence will perform the necessary message processing and route the message to the required destination. 
+
+Typically, the required mediation sequences are defined within the proxy service or the REST API. This includes an [In](#inout-sequences) sequence, an [Out](#inout-sequences) sequence, and a [default fault](#fault-sequences) sequence. 
+
+All messages that are not destined for a proxy service or REST API are sent through the [main sequence](#main-sequence). Some other sequences ([named sequences](#named-sequences)) are defined independant of the proxy service, or REST API, and then reused in one or several proxy services, REST APIs for efficiency.
+
+![mediation sequence](../../assets/img/concepts/sequence.png)
 
 ### IN/OUT Sequences
 
-Once a request message is received by the proxy service, REST API, or the inbound endpoint, it is injected to the IN sequence of the service. The proxy service, and REST API will also contain an OUT sequence in which the response message will be processed before returning the response message.
-
-### Main Sequence
-
-All messages that are not destined for **proxy services** are sent through the main sequence. By default, the main sequence simply
-sends a message without mediation. Therefore, to add message mediation, you can add mediators and/or named sequences to the main sequence.
+Once a request message is received by the [proxy service](../../concepts/message-entry-points/#proxy-services), [REST API](../../concepts/message-entry-points/#rest-apis), [inbound endpoint](../../concepts/message-entry-points/#inbound-endpoints), or even the [main sequence](#main-sequence), the message is injected to the **IN** sequence. The **OUT** sequence defines the mediation logic that processes the response message before sending the response back to the client.
 
 ### Fault Sequences
 
-WSO2 Micro Integrator provides fault sequences for dealing with errors. A fault
-sequence is a collection of mediators just like any other sequence, and
-it can be associated with another sequence or a proxy service. When the
-sequence or the proxy service encounters an error during mediation or
-while forwarding a message, the message that triggered the error is
-delegated to the specified fault sequence. Using the available mediators
-it is possible to log the erroneous message, forward it to a special
-error-tracking service, and send a SOAP fault back to the client
-indicating the error or even send an email to the system admin.
+Fault sequences are used for [error handling](error-handling-concepts.md) in message mediation. A fault sequence is a collection of [mediators](#mediators) just like any other [sequence](#mediation-sequences), and it can be associated with another [sequence](#mediation-sequences), [proxy service](../../concepts/message-entry-points/#proxy-services), or [REST API](../../concepts/message-entry-points/#rest-apis). When an error occurs in the mediation logic, the message that triggered the error is delegated to the specified fault sequence. The mediators in the fault sequence can then log the erroneous message, forward it to a special error-tracking service, and send a SOAP fault back to the client indicating the error or even send an email to the system admin.
 
-It is not mandatory to associate each sequence and proxy service with a
-fault sequence. In situations where a fault sequence is not specified
-explicitly, a default fault sequence will be used to handle errors. Whenever an error occurs, the mediation engine attempts to
-provide as much information as possible on the error to the user by
-initializing the following properties on the erroneous message:
+![fault sequence](../../assets/img/concepts/fault-sequence.png)
 
--   ERROR_CODE
--   ERROR_MESSAGE
--   ERROR_DETAIL
--   ERROR_EXCEPTION
-
-By default, the fault sequence will log the message, the payload, and any error/exception encountered, and the **Drop** mediator stops further processing. You should configure the fault sequence with the correct **error handling** parameters instead of simply dropping messages.
+If a fault sequence is not specified explicitly, the **default** fault sequence of the proxy service or REST API will be used to handle errors. The default fault sequence will log the message, the payload, and any error/exception encountered before the [Drop](../references/mediators/drop-Mediator.md) mediator stops further processing. You should configure the fault sequence for [error handling](error-handling-concepts.md) instead of simply dropping messages.
 
 ### Named Sequences
 
-A named sequence is a custom, reusable sequence artifact that holds a specific mediation logic. You can create named sequences and reuse them within your project.
+A named sequence is a custom, reusable sequence that holds a specific mediation logic. You can create named sequences and reuse them within your project. A [fault sequence](#fault-sequences) is an example of a named sequence that can be used to replace the default fault sequence of a proxy service, or REST API. While the [main sequence](#main-sequence), [proxy service](../../concepts/message-entry-points/#proxy-services), and [REST API](../../concepts/message-entry-points/#rest-apis) contain [IN and OUT](#inout-sequences) sequences to define a specific in flow and out flow of messages, a named sequence is simply a combination of mediators that can be reused within an [IN](#inout-sequences) sequence or [Out](#inout-sequences) sequence.
+
+To reuse a named sequence in multiple integration projects, you need to save it as a [dynamic sequence](#dynamic-sequences).
 
 ### Dynamic Sequences
 
-When you create a named sequence, you can save it as a dynamic sequence in the product's **registry** as a **registry resource**. This sequence can then be reused in the mediation flow.
+When you create a [named sequence](#named-sequences), you can save it as a [registry resource](registry-concepts.md) in the product's [registry](registry-concepts.md). This sequence can then be dynamically reused in the mediation flow of any of your integration projects by specifying the registry path.
+
+### Main Sequence
+
+All messages that are not destined for a [proxy service](../../concepts/message-entry-points/#proxy-services), [REST API](../../concepts/message-entry-points/#rest-apis), or [inbound endpoint](../../concepts/message-entry-points/#inbound-endpoints) are sent through the main sequence. A sequence functions as the main sequence when it is named '<b>main</b>'. By default, the main sequence simply sends a message without mediation. Therefore, to add message mediation, you can add mediators and/or [named sequences](#named-sequences) to the main sequence.
 
 ## Message Stores and Processors
 
-A **Message Store** is used to temporarily store messages before they are delivered to their destination. This approach is useful for serving traffic to back-end services that can only accept messages at a given rate, whereas incoming traffic arrives at different rates. 
+A **Message Store** is used by a [mediation sequence](#mediation-sequences) to temporarily store messages before they are delivered to their destination. This approach is useful for serving traffic to back-end services that can only accept messages at a given rate, whereas incoming traffic arrives at different rates. 
 
-The **Store Mediator** in a mediation sequence is used to store incoming messages in the message store. The **Message Processor** retrieves the messages from the message store and delivers them to the back-end service at a given rate. Message stores and message processors allows you to implement different messaging and integration patterns.
+The [Store Mediator](../references/mediators/store-Mediator.md) in a mediation sequence is used to store incoming messages in the message store. The **Message Processor** retrieves the messages from the message store and delivers them to the back-end service at a given rate.
 
 Multiple message processors can use the same message store. For example, in a clustered environment, each of the nodes would have an instance of the same message processor, each of which would connect to the same message store and evenly consume messages. The message store acts as a manager of these consumers and their connections and ensures that messages are processed by only one message processor, preventing message duplication. You can further control which nodes a message processor runs on by specifying pinned servers.
 
 !!! Info
     You can increase performance of message processors either by **increasing the member count** or by having multiple message processors. If you increase the member count, it will create multiple child processors of the message processor.
 
-### Message Stores
+### List of Message Stores
 
 <table>
 	<tr>
@@ -73,7 +127,7 @@ Multiple message processors can use the same message store. For example, in a cl
 			JDBC Message Store
 		</td>
 		<td>
-			Used for storing and retrieving messages more efficiently in comparison with other message stores. The JDBC message store implementation is a variation of the already existing synapse message store implementation and is designed in a manner similar to the message store. The JDBC message store uses a JDBC connector to connect to external relational databases.</br></br>
+			Used for storing and retrieving messages more efficiently in comparison with other message stores. This is a variation of the already existing synapse message store implementation and is designed in a manner similar to the same message store. The JDBC message store uses a JDBC connector to connect to external relational databases.</br></br>
 			The advantages of using a JDBC message store instead of any other message store are as follows:
 			<ul>
 				<li>
@@ -93,7 +147,7 @@ Multiple message processors can use the same message store. For example, in a cl
 			JMS Message Store
 		</td>
 		<td>
-			Persists messages in a JMS queue inside a JMS Broker. Since messages are persisted in an orderly manner, JMS message stores implement the Store-and-Forward integration pattern. This message store can be configured by specifying the class as  <code>org.apache.synapse.message.store.impl.jms.JmsStore</code>.
+			Persists messages in a JMS queue inside a JMS Broker. Since messages are persisted in an orderly manner, JMS message stores implement the <b>Store and Forward</b> integration pattern. This message store can be configured by specifying the class as <code>org.apache.synapse.message.store.impl.jms.JmsStore</code>.
 		</td>
 	</tr>
 	<tr>
@@ -109,7 +163,7 @@ Multiple message processors can use the same message store. For example, in a cl
 			Resequence Message Store
 		</td>
 		<td>
-			Used for storing a stream of related, but out-of-sequence, messages in order to put them back into the correct order. It collects and re-orders the stored messages based on a defined sequence number derived from some part of the message. The messages are then published to the output channel in a specific order. This helps when the order of message delivery is important. For example, it avoids some messages arriving earlier than others.</br>
+			Used for storing a stream of related but out-of-sequence messages so that they can be put back into the correct order. It collects and reorders the stored messages based on a defined sequence number derived from some part of the message. The messages are then published to the output channel in a specific order. This helps when the order of message delivery is important. For example, it avoids some messages arriving earlier than others.</br>
 			The resequencing store is an extension of the existing JDBC-based message store. Hence, it inherits most of its properties from the <b>JDBC message store</b>.
 		</td>
 	</tr>
@@ -126,7 +180,7 @@ Multiple message processors can use the same message store. For example, in a cl
 			In-Memory Message Store
 		</td>
 		<td>
-			This is a basic <b>message store</b> that stores messages in an in-memory queue. This means that all the stored messages will be lost when the server restarts. The in memory message store is a lot faster than a persistent message store. Therefore, it can be used to temporarily store messages for high-speed store and forward integrations where message persistence is not a requirement.</br></br>
+			This is a basic <b>message store</b> that stores messages in an in-memory queue. This means that all the stored messages will be lost when the server restarts. The in memory message store is a lot faster than a persistent message store. Therefore, it can be used to temporarily store messages for high-speed <b>store and forward</b> integrations where message persistence is not a requirement.</br></br>
 			<b>Note</b>: In memory message stores are not recommended for use in production as well as in scenarios where large scale message storing is required. You can use an external message store (e.g., <b>JMS message store</b>) for such scenarios.
 		</td>
 	</tr>
@@ -138,7 +192,7 @@ Multiple message processors can use the same message store. For example, in a cl
 	</tr>
 </table>
 
-### Message Processors
+### List of Message Processors
 
 <table>
 	<tr>
@@ -165,7 +219,7 @@ Multiple message processors can use the same message store. For example, in a cl
 	<tr>
 		<td>Scheduled Message Forwarding Processor</td>
 		<td>
-			The scheduled message forwarding processor consumes messages in a message store and sends them to an <b>endpoint</b>. If a message is successfully delivered to the endpoint, the processor deletes the message from the message store. In case of a failure, it will retry after a specified interval.
+			The scheduled message forwarding processor consumes messages in a message store and sends them to an <a href="../../concepts/message-exit-points.md">endpoint</a>. If a message is successfully delivered to the endpoint, the processor deletes the message from the message store. In case of a failure, it will retry after a specified interval.
 		</td>
 	</tr>
 	<tr>
@@ -179,7 +233,7 @@ Multiple message processors can use the same message store. For example, in a cl
 
 ## Templates
 
-A template is a collection of mediation artifacts. It is a way to prototype mediation message flows, which can be reused in multiple projects without having to create duplicates. For example, you can template the artifacts (**proxy services**, **sequences**, **endpoints**, etc.) that implement common **enterprise integration patterns**. Therefore, templates helps you develop integrations faster, while making your configurations manageable, and readable.
+A template is a collection of mediation artifacts. It is a way to prototype mediation message flows, which can be reused in multiple projects without having to create duplicates. For example, you can template the artifacts ([proxy services](../../concepts/message-entry-points/#proxy-services), [sequences](#mediation-sequences), [endpoints](message-exit-points.md), etc.) that implement common **enterprise integration patterns**. Therefore, templates help you develop integrations faster, while making your configurations manageable, and readable.
 
 <table>
 	<tr>

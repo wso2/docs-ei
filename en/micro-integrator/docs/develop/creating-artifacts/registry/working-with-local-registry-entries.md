@@ -1,47 +1,5 @@
 # Creating Local Registry Entries
 
-The **local registry** acts as a memory registry where you can store
-static content as a key-value pair, where the value could be a static
-entry such as a text string, XML code, or a URL. This is useful for the
-type of static content often found in XSLT files, WSDL files, URLs, etc.
-Local entries can be referenced from mediators in the Micro Integrator mediation flows and resolved at runtime.
-
-The `         <localEntry>        ` element is used to declare registry
-entries that are local to the Micro Integrator instance as shown below:
-
-```
-<localEntry key="string" src="url">text | xml</localEntry>
-```
-
-These entries are top-level entries and are globally visible within the
-entire system. Values of these entries can be retrieved via the
-extension XPath function `         synapse:get-property(prop-name)        ` , and the keys of
-these entries could be specified wherever a registry key is expected
-within the configuration.
-
-An entry can be static text specified as inline text or static XML
-specified as an inline XML fragment, or it can be specified as a URL
-(using the `         src        ` attribute). A local entry shadows any
-entry with the same name from a remote Registry.
-
-``` java
-<localEntry key="version">0.1</localEntry>
-<localEntry key="validate_schema">
-    <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" ...
-    </xs:schema>
-</localEntry>
-<localEntry key="xslt-key-req" src="file:repository/samples/resources/transform/transform.xslt"/>
-```
-
-If you want to add local entries before deploying the server, you can
-add them to the top-level bootstrap file `         synapse.xml        `
-, or to separate XML files in the `         local-entries        `
-directory, which are located in under
-`MI_HOME\repository\deployment\server\synapse-configs\default        `. When the server is started, these configurations will be added to the
-registry.
-
-## Creating a new local entry
-
 Follow these steps to create a new local entry.
 
 1.  If you have already created an [ESB Config project](../../creating-projects/#esb-config-project), right-click the project in the navigator and go to **New → Local Entry** to open the **New Local Entry** dialog.
@@ -73,3 +31,6 @@ reference the local entry as follows:
 2.  Click the **Workspace** link, and then navigate to and select the
     local entry that contains the XSLT code.
 3.  Click **OK** .
+
+!!! Info
+    If you want to add local entries before deploying the server, you can add them to the top-level bootstrap file `         synapse.xml        `, or to separate XML files in the `         local-entries        ` directory, which are located in under `MI_HOME\repository\deployment\server\synapse-configs\default        `. When the server is started, these configurations will be added to the registry.

@@ -3,7 +3,7 @@
 The **EJB mediator** calls an external Enterprise JavaBean(EJB) and stores the result in the message payload or in a message context property. Currently, this mediator supports EJB3 Stateless Session Beans and Stateful Session Beans.
 
 !!! Info
-    The EJB mediator is a [content-aware](ESB-Mediators_119131045.html#ESBMediators-Content-awareness) mediator.
+    The EJB mediator is a [content-aware](../../../concepts/message-processing-units/#classification-of-mediators) mediator.
 
 ## Syntax
 

@@ -28,7 +28,7 @@ In summary, following are the key differences between the XSLT and FastXSLT medi
     ```
     
 !!! Info
-    The FastXSLT mediator is a [conditionally content-aware](ESB-Mediators_119131045.html#ESBMediators-Content-awareness) mediator.
+    The FastXSLT mediator is a [conditionally content-aware](../../../concepts/message-processing-units/#classification-of-mediators) mediator.
 
 ## Syntax
 
