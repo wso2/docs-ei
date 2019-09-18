@@ -15,7 +15,62 @@ To understand how you can track logging for Ballerina services, let’s consider
 
 ![alt text](../../assets/img/vs-code-landing.png)
 
-Select the template to transform XML messages to JSON and your project will load.
+3. Select the template to transform XML messages to JSON and your project will load.
+
+## Set up your environment
+
+### Increasing performance for Docker for Linux
+
+If you run on Linux you may have to increase the `vm.max_map_count` for the Elasticsearch container to start. Execute the following command to do that.
+
+```
+$ sudo sysctl -w vm.max_map_count=262144
+
+```
+
+### Increasing performance for latest Docker For Mac:
+
+If you are on a more recent OSX version, do the following.
+
+```
+$ screen ~/Library/Containers/com.docker.docker/Data/vms/0/tty
+
+```
+
+On the blank screen, press RETURN.
+
+Then configure the sysctl setting as you would for Linux:
+
+```
+sysctl -w vm.max_map_count=262144
+
+```
+
+Exit by pressing Control+A and Control+\.
+
+### Increasing performance for older versions of Docker for Mac
+
+If you are on an older OSX version, do the following.
+
+The `vm_max_map_count` setting must be set within the xhyve virtual machine:
+
+```
+$ screen ~/Library/Containers/com.docker.docker/Data/com.docker.driver.amd64-linux/tty
+
+```
+
+If it asks you for a username and password, log in with root and no password.
+
+If it just has a blank screen, press RETURN.
+
+Then configure the sysctl setting as you would for Linux:
+
+```
+$ sudo sysctl -w vm.max_map_count=262144
+
+```
+
+Exit by pressing Control+A and Control+\.
 
 ## Set up Kibana
 
@@ -114,3 +169,4 @@ Access Kibana to visualize the logs using following URL.
 ```
    http://localhost:5601 
 ```
+![alt text](../../assets/img/logstash-kibana-visual.png)
