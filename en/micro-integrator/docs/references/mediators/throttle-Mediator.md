@@ -13,7 +13,7 @@ mediator defines a throttle group which includes the following.
 -   A mediation sequence to handle requests that were rejected based on the throttle policy.
 
 !!! Info
-    The Throttle mediator is a [content unaware](ESB-Mediators_119131045.html#ESBMediators-Content-awareness) mediator.
+    The Throttle mediator is a [content unaware](../../../concepts/message-processing-units/#classification-of-mediators) mediator.
 
 ## Syntax
 

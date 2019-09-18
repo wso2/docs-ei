@@ -16,7 +16,7 @@ Follow these steps to create a new, reusable sequence that you can add to your m
 4.  Do one of the following:  
     -   To save the sequence in an existing ESB Config project in your workspace, click **Browse** and select that project.
     -   To save the sequence in a new ESB Config project, click **Create new Project** and create the new project.
-    -   To save the sequence as a **Dynamic Dequence** in a [registry resource project](../../creating-projects/#registry-resource-project), click **Make this as Dynamic Sequence**, specify the registry space (Governance or Configuration), click **Browse** at the top of the dialog next to **Save Sequence in** and select the registry resource project, and then type the sequence name as the **Registry Path**.
+    -   To save the sequence as a **Dynamic Sequence** in a [registry resource project](../../creating-projects/#registry-resource-project), click **Make this as Dynamic Sequence**, specify the registry space (Governance or Configuration), click **Browse** at the top of the dialog next to **Save Sequence in** and select the registry resource project, and then type the sequence name as the **Registry Path**.
 5.  Click **Finish**. The sequence is created in the `src/main/synapse-config/sequences` folder under the ESB Config or [registry resource project](../../creating-projects/#registry-resource-project) you specified.
 6.  Add the endpoints and other sequences you want in this sequence and then click **File > Save**.
 

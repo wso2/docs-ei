@@ -4,7 +4,7 @@ The **Property Mediator** has no direct impact on the message, but rather on the
 the properties set on a message later through the Synapse XPath Variables or the `         get-property()        ` extension function. A property can have a defined scope for which it is valid. If a property has no defined scope, it defaults to the Synapse message context scope. Using the property element with the **action** specified as `remove,` you can remove any existing message context properties.
 
 !!! Info
-    The Property mediator is a [conditionally content aware](ESB-Mediators_119131045.html#ESBMediators-Content-awareness) mediator.
+    The Property mediator is a [conditionally content aware](../../../concepts/message-processing-units/#classification-of-mediators) mediator.
 
 ## Syntax
 

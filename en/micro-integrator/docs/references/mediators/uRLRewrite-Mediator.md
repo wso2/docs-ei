@@ -6,7 +6,7 @@ action for each fragment of a selected property value. Alternatively,
 you can rewrite the entire URL string at once.
 
 !!! info
-    The URLRewrite mediator is a [content aware](ESB-Mediators_119131045.html#ESBMediators-Content-awareness) mediator.
+    The URLRewrite mediator is a [content aware](../../../concepts/message-processing-units/#classification-of-mediators) mediator.
 
 ## Syntax
 

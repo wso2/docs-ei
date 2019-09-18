@@ -4,7 +4,7 @@ When a message enters a message flow, the Cache mediator checks whether the inco
 within a specified period of time. This is done by evaluating the hash value of incoming messages. If a similar message was identified before, the Cache mediator executes the `         onCacheHit        ` sequence (if specified), fetches the cached response, and prepares the Micro Integrator to send the response. The `         onCacheHit        ` sequence can send back the response message using the [Respond Mediator](respond-Mediator.md). If the `         onCacheHit        ` sequence is not specified, the cached response is sent back to the requester and the message is not passed on. If a similar message has not been seen before, then the message is passed on.
 
 !!! Info
-    - The Cache mediator is a [content-aware](ESB-Mediators_119131045.html#ESBMediators-Content-awareness) mediator.
+    - The Cache mediator is a [content-aware](../../../concepts/message-processing-units/#classification-of-mediators) mediator.
     - The Cache mediator supports only local caching. It does not support distributed caching.
 
 ## Syntax

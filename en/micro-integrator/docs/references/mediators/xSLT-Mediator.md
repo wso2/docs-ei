@@ -10,7 +10,7 @@ selected element of the current message payload. In addition, you can:
     mediator by adding them as resources.
 
 !!! Info
-    The XSLT mediator is a [content aware](ESB-Mediators_119131045.html#ESBMediators-Content-awareness) mediator.
+    The XSLT mediator is a [content aware](../../../concepts/message-processing-units/#classification-of-mediators) mediator.
 
 ## Syntax
 
