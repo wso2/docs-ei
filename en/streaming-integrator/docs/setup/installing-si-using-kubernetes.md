@@ -58,7 +58,7 @@ siddhi-parser          1         1         1            1           1m
 
 ## Deploy Streaming Integrator
 
-Siddhi app which consists the streaming integration logic can be deployed on kuberbetes using the siddhi operator.
+Siddhi app which consists the streaming integration logic can be deployed on kubernetes using the siddhi operator.
 
 Here we will creating a very simple Siddhi stream processing application that consumes events via HTTP, filers the input events on the type 'monitored' and logs the output on the console. This can be created using a SiddhiProcess yaml file as given below.
 
@@ -100,7 +100,7 @@ curl -X POST \
         "power": 600
         }'
 ```    
-To monitor the associated logs for the above siddhi app, list down the available pods by executing the following commond.
+To monitor the associated logs for the above siddhi app, list down the available pods by executing the following command.
 
 ```
 $ kubectl get pods
@@ -110,7 +110,7 @@ streaming-integrator-app-0-b4dcf85-npgj7     1/1     Running      0        165m
 streaming-integrator-5f9fcb7679-n4zpj        1/1     Running      0        173m
 ```
 
-and then execute the following command in order to monitor the logs of the relevent pod.
+and then execute the following command in order to monitor the logs of the relevant pod.
 
 ```
  kubectl logs -f streaming-integrator-app-0-b4dcf85-npgj7
