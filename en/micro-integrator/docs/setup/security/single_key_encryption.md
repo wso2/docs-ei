@@ -4,14 +4,14 @@ WSO2 Micro Integrator uses [asymmetric encryption](../security/configuring_keyst
 
 ## Enable single key encryption
 
-To enable symmetric encryption, open the ei.toml file and add the following configurations:
+To enable symmetric encryption, open the deployment.toml file and add the following configurations:
 
-``` toml
+```toml
 [encryption]
 key = "value"
 ```
 
 ## Encrypt the symmetric key
 
-For better security, the symmetric key in the ei.toml file should be encrypted.
+For better security, the symmetric key in the deployment.toml file should be encrypted.
 See [Encrypting Passwords](../security/encrypting_plain_text.md) to replace this key with an encrypted value.

@@ -16,26 +16,26 @@ that executes the request in flow, request out flow, response in flow and respon
 -   **Request in flow**
     This executes when the request reaches the synapse engine.
 
-    ``` java
+    ```java
     public boolean handleRequestInFlow(MessageContext synCtx);
     ```
 
 -   **Request out flow**
     This executes when the request goes out of the synapse engine.
-    ``` java
+    ```java
     public boolean handleRequestOutFlow(MessageContext synCtx);
     ```
 
 -   **Response in flow**
     This executes when the response reaches the synapse engine.
-    ``` java
+    ```java
     public boolean handleResponseInFlow(MessageContext synCtx);
     ```
 
 -   **Response out flow**
     This executes when the response goes out of the synapse engine.
 
-    ``` java
+    ```java
     public boolean handleResponseOutFlow(MessageContext synCtx);
     ```
 
@@ -51,7 +51,7 @@ The easiest way to write a concrete Synapse handler is to extend the `org.apach
 
 Following is an example Synapse handler implementation that extends the `org.apache.synapse.AbstractSynapseHandler` class:
 
-```
+```java
 public class TestHandler extends AbstractSynapseHandler {
     
     private static final Log log = LogFactory.getLog(TestHandler.class);
@@ -90,7 +90,7 @@ To deploy your custom synapse handler in WSO2 Micro Integrator, bundle the artif
 
 To engage the deployed Synapse handler, you need to add the following configuration to the `MI_HOME/conf/synapse-handlers.xml` file.
 
-```
+```xml
 <handlers>
   <handler name="TestHandler" class="package.TestHandler"/>
 </handlers>

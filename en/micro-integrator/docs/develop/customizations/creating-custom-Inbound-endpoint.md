@@ -6,7 +6,7 @@ To support such scenarios, you can write your own custom inbound endpoint by ext
 
 ## Instructions
 
-### Step 1: Developing a Custom Inbound Endpoint
+### Step 1: Developing the custom Inbound Endpoint
 
 - To create a **custom listening inbound endpoint**, download the maven artifact used in the [sample custom listening inbound endpoint configuration](https://github.com/wso2-docs/ESB/tree/master/ESB-Artifacts/inbound/custom_inbound_listening) configuration.
 
@@ -18,7 +18,7 @@ To support such scenarios, you can write your own custom inbound endpoint by ext
 
 You need to copy the built jar file to the `MI_HOME/lib` directory and restart the Micro Integrator to load the class.
 
-### Step 3: Create the Custom Inbound Endpoint
+### Step 3: Adding the custom Inbound Endpoint
 
 1. If you have already created an [ESB Config project](../../creating-projects/#esb-config-project), right-click the project and go to **New → Inbound Endpoint** to open the **New Inbound Endpoint Artifact**.
 2. Select **Create a New Inbound Endpoint** and click **Next**.
