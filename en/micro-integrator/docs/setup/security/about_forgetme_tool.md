@@ -9,8 +9,8 @@ The following topics will guide you to use the Identity Anonymization tool in **
 The following topics walk you through the process of building the **Forget Me** tool so that you can
 run the tool in standalone mode to successfully remove references to a deleted user's identity from one or more WSO2 products.
 
-> **Prerequisites:**
-  [Download](https://maven.apache.org/download.cgi) and install Apache Maven.
+!!! Tip
+    **Before you begin** [download](https://maven.apache.org/download.cgi) and install Apache Maven.
 
 1.  Clone the <https://github.com/wso2/identity-anonymization-tool>
     repository to a required location.
@@ -65,36 +65,36 @@ The master configuration file of the Identity Anonymization tool is the
 `         config.json        ` file. Following is a sample config.json
 file:
 
-``` java
+```json
+{
+  "processors" : [
+    "log-file", "rdbms"
+  ],
+  "directories": [
     {
-      "processors" : [
-        "log-file", "rdbms"
-      ],
-      "directories": [
-        {
-          "dir": "log-config",
-          "type": "log-file",
-          "processor" : "log-file",
-          "log-file-path" : "logs",
-          "log-file-name-regex" : "wso2carbon.log"
-        },
-        {
-          "dir": "sql",
-          "type": "rdbms",
-          "processor" : "rdbms"
-        }
-      ],
-      "extensions": [
-        {
-          "dir": "datasources",
-          "type": "datasource",
-          "processor" : "rdbms",
-          "properties" : [
-            {"identity": "WSO2_CARBON_DB"}
-          ]
-        }
+      "dir": "log-config",
+      "type": "log-file",
+      "processor" : "log-file",
+      "log-file-path" : "logs",
+      "log-file-name-regex" : "wso2carbon.log"
+    },
+    {
+      "dir": "sql",
+      "type": "rdbms",
+      "processor" : "rdbms"
+    }
+  ],
+  "extensions": [
+    {
+      "dir": "datasources",
+      "type": "datasource",
+      "processor" : "rdbms",
+      "properties" : [
+        {"identity": "WSO2_CARBON_DB"}
       ]
     }
+  ]
+}
 ```
 
 You can configure the following in the `         config.json        `
@@ -222,7 +222,4 @@ use when you run the tool:
    </tbody>
 </table>
 
-When you specify the required command line options and run the tool, it
-generates relevant execution reports with the
-`         Report-<PROCESSOR>-<TIMESTAMP>.txt        ` naming convention
-in your current working directory.
+When you specify the required command line options and run the tool, it generates relevant execution reports with the `Report-<PROCESSOR>-<TIMESTAMP>.txt` naming convention in your current working directory.

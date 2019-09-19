@@ -25,7 +25,7 @@ Follow the instructions given below to create a new Inbound Endpoint artifact in
     
     By default, the system will wait for 10 seconds for the previously opened port to close down. If you want to increase this waiting time beyond 10 seconds, be sure to add the following system property in the `         carbon.properties        ` file, which is stored in the `MI_HOME/conf/        ` directory and restart the server before redeploying the artifacts.
 
-    ``` java
+    ```xml
     -Dsynapse.transport.portCloseVerifyTimeout=20
     ```
 

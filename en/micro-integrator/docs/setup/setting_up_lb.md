@@ -28,40 +28,41 @@ community](http://nginx.org/) version 1.9.2 as the load balancer.
     Micro Integrator nodes (xxx.xxx.xxx.xx1 and xxx.xxx.xxx.xx2) via the HTTP 80 port using
     the http://ei.wso2.com/ URL. If you are setting up NGINX on a Mac OS, you will not have the conf.d directory. 
     
-    > Follow the steps given below to add the VHost files mentioned in this step and the preceding steps: 
-    > 1. Create a directory named conf in the nginx directory, and create the ei.http.conf file in it. 
-    > 2. Open the nginx/nginx.conf file and add the following entry before the final }. This includes all the files in the conf directory into the NGINX server: `include conf/*.conf;`
+    !!! Note
+    	Follow the steps given below to add the VHost files mentioned in this step and the preceding steps: 
+    	1. Create a directory named conf in the nginx directory, and create the ei.http.conf file in it. 
+    	2. Open the nginx/nginx.conf file and add the following entry before the final. This includes all the files in the conf directory into the NGINX server: `include conf/*.conf;`
 
-	```
-	upstream ssl.wso2.ei.com {
-	server xxx.xxx.xxx.xx1:8243;
-	server xxx.xxx.xxx.xx2:8243;
-	ip_hash;
-	}  
-	server {
-		listen 443;
-		server_name ei.wso2.com;
-		ssl on;
-		ssl_certificate /etc/nginx/ssl/server.crt;
-		ssl_certificate_key /etc/nginx/ssl/server.key;
-		location / {
-			proxy_set_header X-Forwarded-Host $host;
-			proxy_set_header X-Forwarded-Server $host;
-			proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-			proxy_set_header Host $http_host;
-			proxy_read_timeout 5m;
-			proxy_send_timeout 5m;
-			proxy_pass https://ssl.wso2.ei.com;  
-			proxy_http_version 1.1;
-			proxy_set_header Upgrade $http_upgrade;
-			proxy_set_header Connection "upgrade";
-					}
-	}
-	```
+		```java
+		upstream ssl.wso2.ei.com {
+		server xxx.xxx.xxx.xx1:8243;
+		server xxx.xxx.xxx.xx2:8243;
+		ip_hash;
+		}  
+		server {
+			listen 443;
+			server_name ei.wso2.com;
+			ssl on;
+			ssl_certificate /etc/nginx/ssl/server.crt;
+			ssl_certificate_key /etc/nginx/ssl/server.key;
+			location / {
+				proxy_set_header X-Forwarded-Host $host;
+				proxy_set_header X-Forwarded-Server $host;
+				proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+				proxy_set_header Host $http_host;
+				proxy_read_timeout 5m;
+				proxy_send_timeout 5m;
+				proxy_pass https://ssl.wso2.ei.com;  
+				proxy_http_version 1.1;
+				proxy_set_header Upgrade $http_upgrade;
+				proxy_set_header Connection "upgrade";
+						}
+		}
+		```
 
 3. Create a VHost file (ei.https.conf) in the nginx/conf.d directory or in the nginx/conf directory if you are on a Mac OS and add the following configurations. This configures NGINX Plus to direct the HTTPS requests to the two ESB nodes (xxx.xxx.xxx.xx1 and xxx.xxx.xxx.xx2) via the HTTPS 443 port using the https://ei.wso2.com/ URL.
 	* NGINX Community version
-		```
+		```java
 		upstream ssl.wso2.ei.com {
 		server xxx.xxx.xxx.xx1:8243;
 		server xxx.xxx.xxx.xx2:8243;
@@ -86,9 +87,9 @@ community](http://nginx.org/) version 1.9.2 as the load balancer.
 				proxy_set_header Connection "upgrade";
 					}
 				}
-		```
+			```
 	* NGINX Plus
-		```
+		```java
 		upstream ssl.wso2.ei.com {
     		server xxx.xxx.xxx.xx1:8243;
     		server xxx.xxx.xxx.xx2:8243;
@@ -120,24 +121,24 @@ community](http://nginx.org/) version 1.9.2 as the load balancer.
 5. Follow the instructions below to create SSL certificates for both Micro Integrator nodes.
 
 	1. Execute the following command to create the Server Key:
-	   ```
+	   ```bash
 	   sudo openssl genrsa -des3 -out server.key 1024
 	   ```
 	2. Execute the following command to request to sign the certificate:
-	   ```
+	   ```bash
 	   sudo openssl req -new -key server.key -out server.csr
 	   ```
 	3. Execute the following commands to remove the passwords:
-	   ```
+	   ```bash
 	   sudo cp server.key server.key.org
 	   sudo openssl rsa -in server.key.org -out server.key
 	   ```
 	4. Execute the following command to sign your SSL Certificate:
-	   ```
+	   ```bash
 	   sudo openssl x509 -req -days 365 -in server.csr -signkey server.key -out server.crt
 	   ```
 	5. Execute the following command to add the certificate to the MI_HOME/repository/resources/security/client-truststore.jks file:
-	   ```
+	   ```bash
 	   keytool -import -trustcacerts -alias server -file server.crt -keystore client-truststore.jks
 	   ```
 
@@ -145,19 +146,20 @@ community](http://nginx.org/) version 1.9.2 as the load balancer.
 
 	* NGINX Community
 
-	  	```
+	  	```bash
 	  	sudo nginx -s stop
 	  	sudo nginx
 	  	```
 
 	* NGINX Plus
 
-	  	```
+	  	```bash
 	  	sudo service  nginx  restart
 	  	```
 
-	> Execute the following command if you do not need to restart the server when you are simply making a modification to the VHost file:
-		```
+	!!! Note
+		Execute the following command if you do not need to restart the server when you are simply making a modification to the VHost file:
+		```bash
 		sudo service nginx reload
 		```
 

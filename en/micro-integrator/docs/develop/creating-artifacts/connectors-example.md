@@ -4,14 +4,14 @@ You can develop configurations with connectors, and deploy the configurations an
 
 !!! Info
     In addition to the below methods, you can enable a connector by creating a configuration file in the `MI_HOME/repository/deployment/server/synapse-configs/default/imports` directory with the following configurations.Replace the value of the `name` property with the name of your connector, and name the configuration file `{org.wso2.carbon.connector}<CONNECTOR_NAME>.xml` (e.g., `{org.wso2.carbon.connector}salesforce.xml`).
-    ```
+    ```xml
     <import xmlns="http://ws.apache.org/ns/synapse"
             name="salesforce"
             package="org.wso2.carbon.connector"
             status="enabled"/>
     ```
 
-## Importing connectors
+## Importing Connectors
 
 Follow the steps below to import connectors into WSO2 Integration
 Studio:
@@ -29,7 +29,7 @@ Studio:
     connector operations are available in the tool palette. You can drag
     and drop connector operations into your sequences and proxy
     services.  
-    ![](attachments/119131934/119131943.png){width="800" height="328"}
+    ![](attachments/119131934/119131943.png)
 
 For complete information on each of the predefined connectors, see the [ESB connectors](https://docs.wso2.com/display/ESBCONNECTORS/WSO2+ESB+Connectors+Documentation).
 
@@ -61,7 +61,7 @@ file containing the connectors:
     Application Project** to create a CAR file out of that project.  
     ![](attachments/119131934/119131936.png)
 
-## Removing connectors
+## Removing Connectors
 
 Follow the steps below to remove connectors from WSO2 Integration
 Studio:
@@ -71,7 +71,7 @@ Studio:
 2.  On the wizard that appears, select **Remove Connector** and click
     **Next** .
 3.  Select the connectors you want to remove and click **Finish** .  
-    ![](attachments/119131934/119131935.png){width="400" height="439"}
+    ![](attachments/119131934/119131935.png)
 
 ## Example
 
@@ -86,7 +86,7 @@ For example, if the JIRA connector is enabled in your WSO2 EI instance,
 and you want to use it in a sequence, you would add the following entry
 to your sequence configuration to connect to JIRA:
 
-```
+```xml
 <jira.init>
    <username>myname@mycompany.com</username>
    <password>{wso2:vault-lookup('xxxx.email.login')}</password>
@@ -97,7 +97,7 @@ to your sequence configuration to connect to JIRA:
 Then, if you want to get an issue, you can use the JIRA connector's `getIssue` operation and pass in the issue ID as
 follows:
 
-```
+```xml
 <jira.getIssue [configKey="Ref Local Entry"]>
     <issueIdOrKey>EIJAVA-2095</issueIdOrKey>
 </jira.getIssue>

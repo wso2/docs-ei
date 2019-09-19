@@ -22,7 +22,7 @@ following.
     that takes up the highest CPU usage by examining the
     **thread-usage.txt** file.
 
-    ``` java
+    ```bash
     %CPU CPU  NI S     TIME   PID   TID
     .......... 
     0.0   -   0 S 00:00:00  1519  1602
@@ -48,7 +48,7 @@ following.
     to find the issue. In this example, the stack trace of the thread
     that spins is as follows.
 
-    ``` java
+    ```bash
     "HTTPS-Sender I/O dispatcher-1" prio=10 tid=0x00007fb54c010000 nid=0x644 runnable [0x00007fb534e20000]
      java.lang.Thread.State: RUNNABLE
      at org.apache.http.impl.nio.reactor.IOSessionImpl.getEventMask(IOSessionImpl.java:139)
@@ -94,7 +94,7 @@ product instance and the `MI_HOME` location,
 which is where your unzipped Micro Integrator distribution files reside. The
 command takes the following format:
 
-``` java
+```bash
 sh carbondump.sh [-carbonHome path] [-pid of the carbon instance]
 ```
 

@@ -1019,7 +1019,7 @@ The following optional properties can be configured when [creating a Kafka inbou
 
 ### Improving Kafka Performance (Server-Level)
 
-Open the ei.toml file, and change the inbound thread pool size based on your use case. Recommended values are specified below.
+Open the deployment.toml file, and change the inbound thread pool size based on your use case. Recommended values are specified below.
 
 ```toml
 [[mediation]]

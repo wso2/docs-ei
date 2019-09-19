@@ -37,7 +37,7 @@ Follow the steps given below:
 
 The encrypted password is stored in the `secure-vault.properties` file as shown below. This file is stored in the `<MI_HOME>/registry/config/repository/components/secure-vault/` directory.
 
-```
+```bash
 #Secure Vault keys for micro integrator
 #Thu Sep 27 14:38:33 IST 2018
 ProductAlias=hMH3b4S2AhG6l0699uhUVD9O38G04NRygA6TW46/OFMkdNO/0Ucj1ql/x9gCRKrR2TVLFYaM7Sx7E14dJ4IoOaIX9zql9ZxG9bF6ktG2rrktRGoB39BuaLIJ/wPYLoNT26bKr7QXj+NR16eQWlckn1f40Ru2zvE/2wG2smuQL7g67Ptw4DL800IaNYWW8vnhHfaeK+E5CgOKQnTDnwuDDodjiXsJh+2mu2l0KdgDPdxcSjb8uPVC1OubRymygqOJpzKg6Md1R42fGgKGBG9CP9pRj7hW95dVy9h23tHx22ejCrSoxIiEoQjAIIu2wVCBI7fY2HUKBUQOHhb+kenawA\=\=
@@ -64,6 +64,6 @@ The default expression used for password validation is `^[\\S]{5,30}$`. This al
 
 If you want to change the expression that is used to validate the password, you need to add the `org.wso2.SecureVaultPasswordRegEx` system property to the `<MI_HOME>/conf/carbon.properties` file. Example:
 
-``` java
+```xml
 org.wso2.SecureVaultPasswordRegEx=^[\\S]{5,60}$
 ```

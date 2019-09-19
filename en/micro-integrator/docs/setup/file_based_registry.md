@@ -8,7 +8,7 @@ WSO2 Micro Integrator is shipped with a file-system-based registry. Thus, by def
 
 If you want to change the default locations of the registry directories, uncomment and change the following configuration in the `MI_HOME/repository/deployment/server/synapse-config/default/directoryregistry.xml` file.
 
-```
+```xml
 <registry xmlns="http://ws.apache.org/ns/synapse" provider="org.wso2.carbon.mediation.registry.MicroIntegratorRegistry">
     <parameter name="cachableDuration">15000</parameter>
     <!--

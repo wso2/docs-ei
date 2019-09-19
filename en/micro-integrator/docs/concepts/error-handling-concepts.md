@@ -4,21 +4,21 @@ The main role of WSO2 Micro Integrator is to act as the backbone of an organizat
 
 For example, the Micro Integrator often has to deal with many wire-level protocols, messaging standards, and remote APIs. But applications and networks can be full of errors. Applications crash. Network routers and links get into states where they cannot pass messages through with the expected efficiency. These error conditions are very likely to cause a fault or trigger a runtime exception in the Micro Integrator server.
 
-## Handling Mediation Errors
+## Handling mediation errors
 
 When you define a mediation sequence, [Fault Sequences](../../concepts/message-processing-units/#fault-sequences) are used to handle messages that are affected by mediation errors. 
 
-## Handling Endpoint Errors
+## Handling endpoint errors
 
-Errors that can occur at [endpoints](../../concepts/message-exit-points.md) can be specifically configured using the [endpoint error handling properties](../../references/synapse-properties/endpoint-properties/#endpoint-error-handling-properties).
+Errors that can occur at [endpoints](message-exit-points.md) can be specifically configured using the [endpoint error handling properties](../../references/synapse-properties/endpoint-properties/#endpoint-error-handling-properties).
 
-The last step of a message processing inside WSO2 Micro Integrator is to send the message to a service provider by sending the message to a listening service endpoint. During this process, transport errors can occur. For example, the connection might time out, or it might be closed by the actual service. Therefore, endpoint error handling is a key part of any successful Micro Integrator deployment.
+The last step of **message mediation** is to send the message to a service provider through a listening service [endpoint](message-exit-points.md). During this process, transport errors can occur. For example, the connection might time out, or it might be closed by the actual service. Therefore, endpoint error handling is a key part of any successful Micro Integrator deployment.
 
-Messages can fail or be lost due to various reasons in a real TCP network. When an error occurs, if the Micro Integrator is not configured to accept the error, it will mark the endpoint as failed, which leads to a message failure. By default, the endpoint is marked as failed for quite a long time, and due to this error, subsequent messages can get lost.
+Messages can fail or be lost due to various reasons in a real TCP network. When an endpoint error occurs, if the Micro Integrator is not configured to accept the error, it will mark the endpoint as failed, which leads to a message failure. By default, the endpoint is marked as failed for quite a long time, which can result in severe message loss.
 
-To avoid lost messages, you configure error handling at the endpoint level. You should also run a few long-running load tests to discover errors and fine-tune the endpoint configurations for errors that can occur intermittently due to various reasons.
+To avoid message loss, you configure error handling at the [endpoint](message-exit-points.md) level. You should also run a few long-running load tests to discover errors and fine-tune the endpoint configurations for errors that can occur intermittently due to various reasons.
 
-At any given time, the state of the endpoint can be one of the following:
+At any given time, the state of the endpoint can be one of the following. During an endpoint error, the endpoint will transition between these states and, if required, will initiate a [fault sequence](../../concepts/message-processing-units/#fault-sequences).
 
 <table>
 	<tr>
@@ -30,7 +30,7 @@ At any given time, the state of the endpoint can be one of the following:
 		<td>
 			Endpoint is running and handling requests.</br></br>
 			When the Micro Integrator starts, endpoints are in "Active" state until the user sets it to <a href="#off_state">OFF</a> state, or until an error occurs.</br></br>
-			The endpoint can be configured to stay in the <a href="#active_state">Active</a> state or to go to <a href="#timeout_state">Timeout</a> or <a href="#suspended_state">Suspended</a> based on the error codes you configure for those states. When an error occurs, the endpoint checks to see whether it is a "Timeout" error first, and if not, it checks to see whether it is a "Suspended" error. If the error is not defined for either "Timeout" or "Suspended," the error will be ignored and the endpoint will remain active.
+			In the endpoint error handling configuration, error codes are allocated to a particular endpoint state. Therefore, when the error occurs, the endpoint will either remain in <a href="#active_state">Active</a> state or change to <a href="#timeout_state">Timeout</a> or <a href="#suspended_state">Suspended</a> depending on the error code. The endpoint first checks whether the error is a <a href="#timeout_state">Timeout</a> error, and if not, it checks whether it is a <a href="#suspended_state">suspended</a> error. If the error is not defined for either "Timeout" or "Suspended," the error will be ignored and the endpoint will remain active.
 		</td>
 	</tr>
 	<tr>
@@ -38,7 +38,7 @@ At any given time, the state of the endpoint can be one of the following:
 		<td>
 			Endpoint encountered an error but can still send and receive messages. If it continues to encounter errors, it will be <a href="#suspended_state">suspended</a>.</br></br>
 			When an endpoint is in the <a href="#timeout_state">Timeout</a> state, it will continue to attempt to receive messages until one message succeeds or the maximum retry setting has been reached. If the maximum is reached at which point, the endpoint is marked as <a href="#suspended_state">Suspended</a>. If one message succeeds, the endpoint is marked as <a href="#active_state">Active</a>.</br></br>
-			For example, let's assume the number of retries is set to 3. When an error occurs and the endpoint is set to the "Timeout" state, the Micro Integrator can try to send up to three more messages to the endpoint. If the next three messages sent to this endpoint result in an error, the endpoint is put in the <a href="#suspended_state">Suspended</a> state. If one of the messages succeeds before the retry maximum is met, the endpoint will be marked as <a href="#active_state">Active.</a>
+			For example, let's assume the number of retries is set to 3. When an error occurs and the endpoint is set to the "Timeout" state, the Micro Integrator can try to send up to three more messages to the endpoint. If the next three messages sent to this endpoint result in an error, the endpoint is put in the <a href="#suspended_state">Suspended</a> state. If one of the messages succeeds before the retry maximum is met, the endpoint will be marked as <a href="#active_state">Active</a>.
 		</td>
 	</tr>
 	<tr>

@@ -29,7 +29,8 @@ When you created the API, an API resource is created by default. If you want to 
         dispatched to the default resource as none of the other resources in
         API\_3 are configured to handle DELETE requests. If you go to the
         Source view, the default resource will be as follows: 
-    ``` java
+
+    ```xml
     <api context="/healthcare" name="HealthcareAPI" xmlns="http://ws.apache.org/ns/synapse">
         <resource methods="GET">
             <inSequence/>

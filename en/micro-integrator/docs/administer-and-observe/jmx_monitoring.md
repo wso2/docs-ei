@@ -9,7 +9,7 @@ JMX is enabled in WSO2 products by default, which ensures that the JMX server st
 ### Configuring JMX ports for the server
 
 The default JMX ports (RMIRegistryPort and the RMIServerPort) are
-configured in the `ei.toml ` file (stored in the
+configured in the `deployment.toml ` file (stored in the
 `         <PRODUCT_HOME>/repository/conf        ` directory) as shown
 below. If required, you can update these default values.
 
@@ -22,7 +22,7 @@ rmi_server_port = 11111
 
 ### Disabling JMX for the server
 
-To disable JMX for the server, update the following configuration in the ei.toml file:
+To disable JMX for the server, update the following configuration in the deployment.toml file:
 
 ```toml
 [monitoring.jmx]
@@ -31,7 +31,7 @@ rmi_server_start = true
 
 ### Enabling JMX for a datasource
 
-To enable JMX for a datasource, add the following configuration in the ei.toml file:
+To enable JMX for a datasource, add the following configuration in the deployment.toml file:
 
 ```toml
 [database.shared_db]
@@ -114,7 +114,6 @@ Following are a few examples.
 -   Reading Heap Memory:
     <http://localhost:9763/jolokia/read/java.lang:type=Memory/HeapMemoryUsage>
 
-
 ## MBeans for WSO2 Micro Integrator
 
 When JMX is enabled, WSO2 Micro Integrator exposes a number of management resources as
@@ -142,9 +141,9 @@ instance. There are several server attributes such as "ServerStatus",
 any of the following values:
 
 -   RUNNING
--   SHUTTING\_DOWN
+-   SHUTTING_DOWN
 -   RESTARTING
--   IN\_MAINTENANCE
+-   IN_MAINTENANCE
 
 ![server admin attributes](../../assets/img/jmx/server-admin-attributes.png)
 
@@ -220,8 +219,7 @@ Operations available in the **Statistics** MBean:
 
 ### DataSource MBean
 
-If you have [JMX enabled for a datasource connected to the
-product](#enabling-jmx-for-a-datasource), you can
+If you have [JMX enabled for a datasource connected to the product](#enabling-jmx-for-a-datasource), you can
 monitor the performance of the datasource using this MBean. The
 **DataSource** MBean will be listed as shown below.  
 
@@ -381,12 +379,12 @@ WSO2 Micro Integrator has enabled thread dumping by default. Therefore, to avoid
 dumping all the threads
 [here](https://github.com/wso2/wso2-synapse/blob/master/modules/commons/src/main/java/org/apache/synapse/commons/jmx/ThreadingView.java#L268), you can configure the property given below.
 
-!!! info
+!!! Info
     It is recommended not to dump the thread especially when you have enabled analytics in a production environment.
 
-1.  Open the `MI_HOME/ei.toml` file.
+1.  Open the `MI_HOME/deployment.toml` file.
 2.  Add the following property to the file and save the file.
-    ``` toml
+    ```toml
     [jmx_thread_view]
     synapse.jmx.thread.view.enabled=false
     ```
