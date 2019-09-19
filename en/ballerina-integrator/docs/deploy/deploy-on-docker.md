@@ -23,9 +23,7 @@ You can run the service that you developed above as a Docker container. The Ball
 
 To run a service as a Docker container, add the corresponding Docker annotations to your service code.
 
-See the following example on how you can add Docker support in the code.
-
-To add Docker support, add the following code to the service you created above.
+To add Docker support, add the following code to the .bal file of the service you created above.
 
 ```ballerina
 import ballerina/docker;  
@@ -91,9 +89,11 @@ $ docker ps
 
 ```
 
+This results in the following output.
+
 ```
 CONTAINER ID        IMAGE                    COMMAND                  CREATED             STATUS              PORTS                    NAMES
-8f1a10c89700        helloworld-push:v2.0.0   "/bin/sh -c 'java ..."   44 minutes ago      Up 15 minutes       0.0.0.0:9191->9191/tcp   cranky_kowalevski
+8f1a10c89700        sciencelab:v2.0.0   "/bin/sh -c 'java ..."   44 minutes ago      Up 15 minutes       0.0.0.0:9191->9191/tcp   cranky_kowalevski
 ```
 
 Invoke the service with a cURL command:
