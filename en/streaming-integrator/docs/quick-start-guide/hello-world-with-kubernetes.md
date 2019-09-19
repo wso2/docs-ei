@@ -18,7 +18,7 @@ This quick start guide gets you to start and run the Streaming Integrator in a K
 
 ## Installing the Siddhi Operator for the Streaming Integrator
 
-To install the Siddhi Operator, follow the
+To install the Siddhi Operator, follow the procedure below:
 
 1. To install the Siddhi Kubernetes operator for streaming integrator issue the following commands:
 
