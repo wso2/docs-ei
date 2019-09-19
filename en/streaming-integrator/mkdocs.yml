@@ -23,7 +23,7 @@ site_url: https://wso2.com/integration/
 # Repository
 repo_name: wso2/docs-ei
 repo_url: https://github.com/wso2/docs-ei
-edit_uri: https://github.com/wso2/docs-ei/edit/master/en/streaming-integrator/docs/
+edit_uri: https://github.com/wso2/docs-ei/edit/7.0.0/en/streaming-integrator/docs/
 
 # Copyright
 copyright: WSO2 Enterprise Integrator - Documentation
@@ -63,12 +63,12 @@ nav:
       - 'Install in a VM': 'setup/installing-si-in-vm.md'
       - 'Installing in Docker': 'setup/installing-si-using-docker.md'
       - 'Installing in Kubernetes': 'setup/installing-si-using-kubernetes.md'
-    - 'Deploying Streaming Integrator Profile':
+    - 'Deploying Streaming Integrator':
       - 'Single Deployment': 'setup/deploying-si-as-a-single-deployment.md'
       - 'Minimum HA Cluster': 'setup/deploying-si-as-minimum-ha-cluster.md'
       - 'Scalable Cluster': 'setup/deploying-si-as-a-scalable-cluster.md'
     - 'Setting up Databases':
-      - 'Configuring Datasources': 'configuring-Datasources.md'
+      - 'Configuring Datasources': 'setup/configuring-data-sources.md'
       - 'Setting up Physical Databases': 'setting-up-physical-databases.md'
   - 'Develop':
     - 'Streaming Integrator Tooling':
@@ -118,9 +118,8 @@ nav:
   - 'References':
     - 'Streaming Integration REST API Guide': 'ref/si-rest-api-guide.md'
     - 'Performance Analysis Results': 'ref/performance-analysis-results.md'
-    - 'Configuring Default Ports': 'ref/configuring-Default-Ports.md'
+    - 'Configuring Default Ports': 'ref/configuring-default-ports.md'
     - 'Working with Data Providers': 'ref/working-with-Data-Providers.md'
-    - 'Streaming Integration Profiles': 'ref/wSO2-Stream-Processor-Profiles.md'
   - 'FAQ':
     - 'FAQ': faq/fAQ.md
   - '': page-not-found.md

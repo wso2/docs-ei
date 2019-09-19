@@ -1,17 +1,13 @@
 # Accessing Properties with XPath
 
-The ESB profile of WSO2 Enterprise Integrator(WSO2 EI) supports standard
-XPath functions and variables through its underlying XPath engine.
-The ESB profile also provides custom XPath functions and variables for
-accessing message properties.
+The WSO2 Micro Integrator supports standard XPath functions and variables through its underlying XPath engine. The Micro Integrator also provides custom XPath functions and variables for accessing message properties.
 
-### XPath Extension Functions
+## XPath Extension Functions
 
-In addition to standard XPath functions, the ESB profile of WSO2
-Enterprise Integrator supports the following custom functions for
+In addition to standard XPath functions, the Micro Integrator supports the following custom functions for
 working with XPath expressions:
 
-#### base64Encode() function
+### base64Encode() function
 
 The base64Encode function returns the base64-encoded value of the
 specified string.
@@ -22,7 +18,7 @@ Syntax:
 -   `           base64Encode(string value, string charset)          `
     `                     `
 
-#### base64Decode() function
+### base64Decode() function
 
 The base64Decode function returns the original value of the specified
 base64-encoded value.
@@ -33,13 +29,9 @@ Syntax:
 -   `           base64Decode(string           encodedValue           , string charset)          `
     `                     `
 
-#### get-property() function
+### get-property() function
 
-The `                   get-property()                 ` function allows
-any XPath expression used in a configuration to look up information from
-the current message context. Using the [Property
-mediator](https://docs.wso2.com/display/ESB500/Property+Mediator) , you
-can retrieve properties from the message context and header.
+The `get-property()` function allows any XPath expression used in a configuration to look up information from the current message context. Using the [Property mediator](../../../references/mediators/property-Mediator.md), you can retrieve properties from the message context and header.
 
 The syntax of the function takes the following format.
 
@@ -56,35 +48,34 @@ If you provide only the property name without the scope, the default s
     When the result of an XPath evaluation results in a single XML node, the
     evaluator will return the text content of this node by default
     (equivalent of doing /root/body/node/text()). If you want to retrieve
-    the node itself, you can configure the [Enrich
-    mediator](https://docs.wso2.com/display/ESB500/Enrich+Mediator) as shown
+    the node itself, you can configure the [Enrich mediator](../../../references/mediators/enrich-Mediator.md) as shown
     in the following example.
     ``` xml
-        <inSequence>
-        <log level="custom">
-        <property name="WHERE" value="before doing stuff"/>
-        </log>
-        <enrich>
-        <source type="body" clone="true"/>
-        <target type="property" property="ENRICH_PROPERTY"/>
-        </enrich>
-        <property name="PROPERTY_PROPERTY"
-        expression="$body/child::node()"
-        scope="default"/>
-        <log level="custom">
-        <property name="WHERE" value="before doing stuff"/>
-        <property name="ENRICH_PROPERTY" expression="get-property('ENRICH_PROPERTY')"/>
-        <property name="PROPERTY_PROPERTY" expression="get-property('PROPERTY_PROPERTY')"/>
-        </log>
-        <enrich>
-        <source type="property" clone="true" property="ENRICH_PROPERTY"/>
-        <target type="body" action="sibling"/>
-        </enrich>
-        <log level="full"/>
-        </inSequence>
+    <inSequence>
+    <log level="custom">
+    <property name="WHERE" value="before doing stuff"/>
+    </log>
+    <enrich>
+    <source type="body" clone="true"/>
+    <target type="property" property="ENRICH_PROPERTY"/>
+    </enrich>
+    <property name="PROPERTY_PROPERTY"
+    expression="$body/child::node()"
+    scope="default"/>
+    <log level="custom">
+    <property name="WHERE" value="before doing stuff"/>
+    <property name="ENRICH_PROPERTY" expression="get-property('ENRICH_PROPERTY')"/>
+    <property name="PROPERTY_PROPERTY" expression="get-property('PROPERTY_PROPERTY')"/>
+    </log>
+    <enrich>
+    <source type="property" clone="true" property="ENRICH_PROPERTY"/>
+    <target type="body" action="sibling"/>
+    </enrich>
+    <log level="full"/>
+    </inSequence>
     ```
     
-##### Synapse scope
+#### Synapse scope
 
 When the scope of a property mediator is `         synapse        ` ,
 its value is available throughout both the in sequence and the out
@@ -102,25 +93,22 @@ scope.
 | ReplyTo         | ReplyTo header value as a String, or empty string («») if a ReplyTo address is not defined.                                                                       |
 | MessageID       | A unique identifier (UUID) for the message as a String, or empty string («») if a MessageID is not defined. This ID is guaranteed to be unique.                   |
 | FAULT           | TRUE if the message has a fault, or empty string if the message does not have a fault.                                                                            |
-| MESSAGE\_FORMAT | Returns pox, get, soap11, or soap12 depending on the message. If a message type is unknown this returns soap12                                                    |
+| MESSAGE_FORMAT | Returns pox, get, soap11, or soap12 depending on the message. If a message type is unknown this returns soap12                                                    |
 | OperationName   | Operation name corresponding to the message. A proxy service with a WSDL can have different operations. If the WSDL is not defined, ESB defines fixed operations. |
 
   
-To access a property with the `         synapses        ` cope inside
-the `         mediate()        ` method of a mediator, you can include
-the following configuration in a custom mediator created using the
-[Class mediator](https://docs.wso2.com/display/ESB500/Class+Mediator) :
+To access a property with the `         synapses        ` cope inside the `         mediate()        ` method of a mediator, you can include the following configuration in a custom mediator created using the [Class mediator](../../../references/mediators/class-Mediator.md):
 
 ``` java
-    public boolean mediate(org.apache.synapse.MessageContext mc) {  
-    // Available in both in-sequence and out-sequenc  
-    String propValue = (String) mc.getProperty("PropName");  
-    System.out.println("SCOPE_SYNAPSE : " + propValue);  
-    return true;  
-    }
+public boolean mediate(org.apache.synapse.MessageContext mc) {  
+// Available in both in-sequence and out-sequenc  
+String propValue = (String) mc.getProperty("PropName");  
+System.out.println("SCOPE_SYNAPSE : " + propValue);  
+return true;  
+}
 ```
 
-##### axis2 scope
+#### axis2 scope
 
 When the scope of a property mediator is `         axis2        ` , its
 value is available only throughout the sequence for which the property
@@ -132,10 +120,7 @@ using the following syntax.
 Syntax:  
 `         get-property('axis2', String propertyName)        `
 
-To access a property with the `         axis2        ` scope inside the
-`         mediate()        ` method of a mediator, you can include the
-following configuration in a custom mediator created using the [Class
-mediator](https://docs.wso2.com/display/ESB500/Class+Mediator) :
+To access a property with the `axis2` scope inside the `mediate()` method of a mediator, you can include the following configuration in a custom mediator created using the [Class mediator](../../../references/mediators/class-Mediator.md):
 
 ``` java
 public boolean mediate(org.apache.synapse.MessageContext mc) {  
@@ -149,13 +134,13 @@ return true;
 } 
 ```
 
-##### axis2-client
+#### axis2-client
 
 This is similar to the `         synapse                          `
 scope. The difference is that it can be accessed inside the
 `         mediate()        ` method of a mediator by including one of
 the following configurations in a custom mediator, created using the
-[Class mediator](https://docs.wso2.com/display/ESB500/Class+Mediator) :
+[Class mediator](../../../references/mediators/class-Mediator.md) :
 
 ``` java
 public boolean mediate(org.apache.synapse.MessageContext mc) {  
@@ -174,7 +159,7 @@ return true;
 }  
 ```
 
-##### transport scope
+#### transport scope
 
 When the scope of a property mediator is `         transport        ` ,
 it will be added to the transport header of the outgoing message from
@@ -182,25 +167,24 @@ the ESB profile. You can retrieve message context properties within the
 `         transport        ` scope using the following syntax.  
   
 Syntax:  
-`         get-property('transport', String propertyName)        `
+`get-property('transport', String propertyName)        `
 
-##### registry scope
+#### registry scope
 
-You can retrieve properties within the registry using the following
-syntax.  
+You can retrieve properties within the registry using the following syntax.  
   
 Syntax:  
-`         get-property('registry', String registryPath@propertyName)        `  
-`         get-property('registry', String registryPath)        `
+`get-property('registry', String registryPath@propertyName)`  
+`get-property('registry', String registryPath)`
 
-##### system scope
+#### system scope
 
-You can retrieve Java System properties using the following syntax .
+You can retrieve Java System properties using the following syntax.
 
 Syntax:  
-`         get-property('system', String propertyName)        `
+`get-property('system', String propertyName)`
 
-##### operation scope
+#### operation scope
 
 You can retrieve a property in the operation context level from the
 `         operation        ` scope. The properties within
@@ -211,15 +195,12 @@ given property with the `         operation        ` scope only exists
 in a single request and can be accessed by a single resource. The
 properties in this scope are passed to the error handler when the
 `         FORCE_ERROR_ON_SOAP_FAULT        ` property is set to
-`         true        ` . See FORCE\_ERROR\_ON\_SOAP\_FAULT section in
-[Generic
-Properties](https://docs.wso2.com/display/ESB500/Generic+Properties#GenericProperties-SOAPfault)
-for more information.
+`         true        ` . See `FORCE_ERROR_ON_SOAP_FAULT` section in [Generic Properties](generic-Properties.md) for more information.
 
 Syntax:  
 `         get-property('operation', String propertyName)        `
 
-#### url-encode() function
+### url-encode() function
 
 The url-encode function returns the URL-encoded value of the specified
 string.
@@ -229,32 +210,22 @@ Syntax:
 -   url-encode(string value)
 -   url-encode(string value, string charset)
 
-### Synapse XPath Variables 
+## Synapse XPath Variables 
 
 There is a set of predefined XPath variables that you can directly use
 to write XPaths in the Synapse configuration, instead of using the
 synapse:get-property() function . These XPath variables get properties
 of various scopes as follows:
 
-#### $body
+### $body
 
-The SOAP 1.1 or 1.2 body element. For example, the expression
-**$body//getQuote** refers to the first **getQuote** element in a SOAP
-body, regardless of whether the message is SOAP-11 or SOAP-12. We have
-discussed an example below.
+The SOAP 1.1 or 1.2 body element. For example, the expression **$body//getQuote** refers to the first **getQuote** element in a SOAP body, regardless of whether the message is SOAP-11 or SOAP-12. We have discussed an example below.
 
-**Example of $body usage** :
+**Example of $body usage**:
 
-1.  Deploy the following proxy service using instructions in [Creating a
-    Proxy
-    Service](https://docs.wso2.com/display/EI650/Creating+a+Proxy+Service)
-    .  
+1.  Deploy the following proxy service using instructions in [Creating a Proxy Service](../../../develop/creating-artifacts/creating-a-proxy-service.md).  
       
-    Note the property,
-    `           <property xmlns:m0="                                                  http://services.samples                                               " name="stockprop" expression="$body//m0:getQuote"/>          `
-    in the configuration. It is used to log the first
-    `           <m0:getQuote>          ` element of the request SOAP
-    body.
+    Note the property, `           <property xmlns:m0="                                                  http://services.samples                                               " name="stockprop" expression="$body//m0:getQuote"/>          ` in the configuration. It is used to log the first `           <m0:getQuote>          ` element of the request SOAP body.
 
     ```
     <proxy xmlns="http://ws.apache.org/ns/synapse" name="StockQuoteProxy" transports="https,http" statistics="disable" trace="disable" startOnLoad="true">
@@ -277,11 +248,7 @@ discussed an example below.
     </proxy> 
     ```
 
-2.  Send the following StockQuote request using the sample StockQuote
-    client. For information on working with the sample client, see
-    [Using the Sample
-    Clients](https://docs.wso2.com/display/EI650/Using+the+Sample+Clients)
-    .
+2.  Send the following StockQuote request:
 
     ``` xml
     ant stockquote -Daddurl=http://localhost:8280/services/StockQuoteProxy
@@ -290,10 +257,10 @@ discussed an example below.
 3.  Note the following message in the log.
 
     ``` java
-            [2013-03-18 14:04:41,019] INFO - LogMediator To: /services/StockQuoteProxy, WSAction: urn:getQuote, SOAPAction: urn:getQuote, ReplyTo: http://www.w3.org/2005/08/addressing/anonymous, MessageID: urn:uuid:930f68f5-199a-4eff-90d2-ea679c2362ab, Direction: request, stockprop = <m0:getQuotexmlns:m0="http://services.samples"><m0:request><m0:symbol>IBM</m0:symbol></m0:request></m0:getQuote>
+    [2013-03-18 14:04:41,019] INFO - LogMediator To: /services/StockQuoteProxy, WSAction: urn:getQuote, SOAPAction: urn:getQuote, ReplyTo: http://www.w3.org/2005/08/addressing/anonymous, MessageID: urn:uuid:930f68f5-199a-4eff-90d2-ea679c2362ab, Direction: request, stockprop = <m0:getQuotexmlns:m0="http://services.samples"><m0:request><m0:symbol>IBM</m0:symbol></m0:request></m0:getQuote>
     ```
 
-#### $header
+### $header
 
 The SOAP 1.1 or 1.2 header element. For example, the expression
 **$header/wsa:To** refers to the addressing **To** header regardless of
@@ -302,14 +269,9 @@ below.
 
 **Example of $header usage** :
 
-1.  Deploy the following proxy service using instructions in [Creating a
-    Proxy
-    Service](https://docs.wso2.com/display/EI650/Creating+a+Proxy+Service)
-    .  
+1.  Deploy the following proxy service using instructions in [Creating a Proxy Service](../../../develop/creating-artifacts/creating-a-proxy-service.md).  
       
-    Note the property,
-    `           <property xmlns:wsa="                                                  http://www.w3.org/2005/08/addressing                                               " name="stockprop" expression="$header/wsa:To"/>          `
-    in the configuration. It is used to log the value of **wsa:To**
+    Note the property, `           <property xmlns:wsa="                                                  http://www.w3.org/2005/08/addressing                                               " name="stockprop" expression="$header/wsa:To"/>          ` in the configuration. It is used to log the value of **wsa:To**
     header of the SOAP request.
 
     ```
@@ -333,11 +295,7 @@ below.
     </proxy> 
     ```
 
-2.  Send the following StockQuote request using the sample StockQuote
-    client. For information on working with the sample client, see
-    [Using the Sample
-    Clients](https://docs.wso2.com/display/EI650/Using+the+Sample+Clients)
-    .
+2.  Send the following StockQuote request:
 
     ``` xml
     ant stockquote -Daddurl=http://localhost:8280/services/StockQuoteProxy
@@ -350,24 +308,19 @@ below.
     stockprop = http://localhost:9000/services/SimpleStockQuoteService
     ```
 
-#### $axis2
+### $axis2
 
 Prefix for Axis2 MessageContext properties. This is used to get the
 property value at the axis2 scope. For example, to get the value of
-Axis2 message context property with name REST\_URL\_POSTFIX, use the
-XPath expression **$axis2:REST\_URL\_POSTFIX** . We have discussed an
+Axis2 message context property with name REST_URL_POSTFIX, use the
+XPath expression **$axis2:REST_URL_POSTFIX**. We have discussed an
 example below.
 
 **Example of $axis2 usage** :
 
-1.  Deploy the following proxy service. For instructions, see [Creating
-    a Proxy
-    Service](https://docs.wso2.com/display/EI650/Creating+a+Proxy+Service)
-    .  
+1.  Deploy the following proxy service. For instructions, see [Creating a Proxy Service](../../../develop/creating-artifacts/creating-a-proxy-service.md).  
       
-    Note the property,
-    `           <property name="stockprop" expression="$axis2:REST_URL_POSTFIX"/>          `
-    in the configuration which is used to log the REST\_URL\_POSTFIX
+    Note the property, `           <property name="stockprop" expression="$axis2:REST_URL_POSTFIX"/>          ` in the configuration which is used to log the REST_URL_POSTFIX
     value of the request message.
 
     ```
@@ -391,11 +344,7 @@ example below.
     </proxy>
     ```
 
-2.  Send the following StockQuote request using the sample StockQuote
-    client. For information on working with the sample client, see
-    [Using the Sample
-    Clients](https://docs.wso2.com/display/EI650/Using+the+Sample+Clients)
-    .
+2.  Send the following StockQuote request:
 
     ``` xml
     ant stockquote -Daddurl=http://localhost:8280/services/StockQuoteProxy/test/prefix
@@ -412,30 +361,21 @@ In this example, the property definition,
 is equivalent to
 `         <property name="stockprop" expression="get-property('axis2','REST_URL_POSTFIX')"/>        `
 
-Similarly, you can use $axis2 prefix with [HTTP Transport
-Properties](_HTTP_Transport_Properties_) .
+Similarly, you can use $axis2 prefix with [HTTP Transport Properties](http-transport-properties.md).
 
-#### $ctx
+### $ctx
 
-Prefix for Synapse MessageContext properties and gets a property at the
-default scope. For example, to get the value of Synapse message context
-property with name ERROR\_MESSAGE, use the XPath expression
-**$ctx:ERROR\_MESSAGE** . We have discussed an example below.
+Prefix for Synapse MessageContext properties and gets a property at the default scope. For example, to get the value of Synapse message context property with name ERROR_MESSAGE, use the XPath expression **$ctx:ERROR_MESSAGE**. We have discussed an example below.
 
-**Example of $ctx usage** :
+**Example of $ctx usage**:
 
 This example sends a request to a sample proxy service, and sets the
 target endpoint to a non-existent endpoint reference key. It causes a
 mediation fault, which triggers the fault sequence.
 
-1.  Deploy the following proxy service. For instructions, see [Creating
-    a Proxy
-    Service](https://docs.wso2.com/display/EI650/Creating+a+Proxy+Service).  
+1.  Deploy the following proxy service. For instructions, see [Creating a Proxy Service](../../../develop/creating-artifacts/creating-a-proxy-service.md).  
       
-    Note the property, \<property name="stockerrorprop"
-    expression="$ctx:ERROR\_MESSAGE"/\> in the fault sequence
-    configuration. It is used to log the error message that occurs due
-    to a  mediation fault.
+    Note the property, `<property name="stockerrorprop" expression="$ctx:ERROR\_MESSAGE"/\>` in the fault sequence configuration. It is used to log the error message that occurs due to a  mediation fault.
 
     ```
     <proxy xmlns="http://ws.apache.org/ns/synapse" name="StockQuoteProxy" transports="https,http" statistics="disable" trace="disable" startOnLoad="true">
@@ -459,11 +399,7 @@ mediation fault, which triggers the fault sequence.
     </proxy> 
     ```
 
-2.  Send the following StockQuote request using the sample StockQuote
-    client. For information on working with the sample client, see
-    [Using the Sample
-    Clients](https://docs.wso2.com/display/EI650/Using+the+Sample+Clients)
-    .
+2.  Send the following StockQuote request:
 
     ```
     ant stockquote -Dtrpurl=http://localhost:8280/services/StockQuoteProxy
@@ -480,9 +416,9 @@ name="stockerrorprop" expression="$ctx:ERROR\_MESSAGE"/\> is equivalent
 to \<property name="stockerrorprop"
 expression="get-property('ERROR\_MESSAGE')"/\>.  
   
-Similarly, you can use $ctx prefix with [Generic Properties](_Generic_Properties_) .
+Similarly, you can use $ctx prefix with [Generic Properties](generic-Properties.md) .
 
-#### $trp
+### $trp
 
 Prefix used to get the transport headers. For example, to get the
 transport header named Content-Type of the current message, use the
@@ -492,10 +428,7 @@ regarded as the same. We have discussed an example below.
 
 **Example of $trp usage:**
 
-1.  Deploy the following proxy service. For instructions, see [Creating
-    a Proxy
-    Service](https://docs.wso2.com/display/EI650/Creating+a+Proxy+Service)
-    .  
+1.  Deploy the following proxy service. For instructions, see [Creating a Proxy Service](../../../develop/creating-artifacts/creating-a-proxy-service.md).  
       
     Note the property, \<property name="stockprop"
     expression="$trp:Content-Type"/\> in the configuration, which is
@@ -522,11 +455,7 @@ regarded as the same. We have discussed an example below.
     </proxy> 
     ```
 
-2.  Send the following StockQuote request using the sample StockQuote
-    client. For information on working with the sample client, see
-    [Using the Sample
-    Clients](https://docs.wso2.com/display/EI650/Using+the+Sample+Clients)
-    .  
+2.  Send the following StockQuote request:
 
     ```
     ant stockquote -Daddurl=http://localhost:8280/services/StockQuoteProxy
@@ -545,15 +474,13 @@ expression="get-property('transport','Content-Type')"/\>. Similarly, you
 can use $trp prefix with [HTTP Transport
 Properties](_HTTP_Transport_Properties_) .
 
-#### $url
+### $url
 
 The prefix used to get the URI element of a request URL.
 
 **Example of $url usage:**
 
-1.  Create a REST API with the following configuration using
-    instructions given in page [Working with
-    APIs](https://docs.wso2.com/display/EI650/Working+with+APIs) .
+1.  Create a REST API with the following configuration using instructions given in page [Working with APIs](../../../develop/creating-artifacts/creating-an-api.md).
 
     ``` xml
     <api xmlns="http://ws.apache.org/ns/synapse" name="Editing" context="/editing">
@@ -582,7 +509,7 @@ The prefix used to get the URI element of a request URL.
     LogMediator To: /editing/edit?a=wso2&b=2.4, MessageID: urn:uuid:36cb5ad7-f150-490d-897a-ee7b86a9307d, Direction: request, SYMBOL = wso2, VALUE = 2.4, Envelope: <?xml version="1.0" encoding="utf-8"?><soapenv:Envelope xmlns:soapenv="http://www.w3.org/2003/05/soap-envelope"><soapenv:Body></soapenv:Body></soapenv:Envelope>
     ```
 
-#### $func
+### $func
 
 The prefix used to refer to a particular parameter value passed
 externally by an invoker such as the [Call Template
@@ -590,10 +517,7 @@ Mediator](_Call_Template_Mediator_) .
 
 **Example of $func usage:**
 
-1.  Add a sequence template with the following configuration. See
-    [Adding a New Sequence
-    Template](https://docs.wso2.com/display/EI650/Working+with+Templates+via+Tooling)
-    for detailed instructions.
+1.  Add a sequence template with the following configuration. See [Adding a New Sequence Template](../../../develop/creating-artifacts/creating-reusable-sequences.md) for detailed instructions.
 
     ``` xml
     <template xmlns="http://ws.apache.org/ns/synapse" name="HelloWordLogger">
@@ -605,10 +529,7 @@ Mediator](_Call_Template_Mediator_) .
     </template>
     ```
 
-2.  Deploy the following proxy service. For instructions, see [Creating
-    a Proxy
-    Service](https://docs.wso2.com/display/EI650/Creating+a+Proxy+Service)
-    .
+2.  Deploy the following proxy service. For instructions, see [Creating a Proxy Service](../../../develop/creating-artifacts/creating-a-proxy-service.md).
 
     ``` xml
     <proxy xmlns="http://ws.apache.org/ns/synapse"
@@ -635,11 +556,7 @@ Mediator](_Call_Template_Mediator_) .
     </proxy>
     ```
 
-3.  Send the following StockQuote request using the sample StockQuote
-    client. For information on working with the sample client, see
-    [Using the Sample
-    Clients](https://docs.wso2.com/display/EI650/Using+the+Sample+Clients)
-    .
+3.  Send the following StockQuote request:
 
     ``` xml
     ant stockquote -Daddurl=http://localhost:8280/services/StockQuoteProxy
@@ -651,17 +568,13 @@ Mediator](_Call_Template_Mediator_) .
     LogMediator To: http://localhost:8280/services/StockQuoteProxy, WSAction: urn:getQuote, SOAPAction: urn:getQuote, ReplyTo: http://www.w3.org/2005/08/addressing/anonymous, MessageID: urn:uuid:8d90e21b-b5cc-4a02-98e2-24b324fa704c, Direction: request, message = HelloWorld
     ```
 
-#### $env
+### $env
 
-Prefix used to get a SOAP 1.1 or 1.2 envelope level element. For
-example, to get the body element from the SOAP envelope, use the
-expression **$env/\*\[local-name()='Body'\]** .
+Prefix used to get a SOAP 1.1 or 1.2 envelope level element. For example, to get the body element from the SOAP envelope, use the expression **$env/\*\[local-name()='Body'\]** .
 
 **Example of $env usage:**
 
-1.  Create an API with the following configuration. For information on
-    how to create an API, see [Working with
-    APIs](https://docs.wso2.com/display/EI650/Working+with+APIs) .
+1.  Create an API with the following configuration. For information on how to create an API, see [Working with APIs](../../../develop/creating-artifacts/creating-an-api.md).
 
     ``` xml
     <api context="/soapEnvelopeTest" name="SoapEnvelopeTest">
@@ -687,9 +600,7 @@ expression **$env/\*\[local-name()='Body'\]** .
     </api>
     ```
 
-2.  Send a post request to the API you created (i.e.,
-    <http://localhost:8280/soapEnvelopeTest)> , with the following json
-    payload using a rest client.
+2.  Send a post request to the API you created (i.e., <http://localhost:8280/soapEnvelopeTest)>, with the following json payload using a rest client.
 
     ``` xml
     {"content":{ "paramA": "ValueA", "paramB": "valueB" }}

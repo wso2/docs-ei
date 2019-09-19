@@ -206,7 +206,7 @@ Multiple message processors can use the same message store. For example, in a cl
 			Message Sampling Processor
 		</td>
 		<td>
-			The message sampling processor consumes messages in a <b>message store</b> and sends them to a configured <b>sequence</b>. This process happens at a preconfigured interval. This message processor does not ensure reliable messaging.
+			The message sampling processor consumes messages in a <a href="#list-of-message-stores">message store</a> and sends them to a configured <a href="#mediation-sequences">sequence</a>. This process happens at a preconfigured interval. This message processor does not ensure reliable messaging.
 		</td>
 	</tr>
 	<tr>
@@ -219,7 +219,7 @@ Multiple message processors can use the same message store. For example, in a cl
 	<tr>
 		<td>Scheduled Message Forwarding Processor</td>
 		<td>
-			The scheduled message forwarding processor consumes messages in a message store and sends them to an <a href="../../concepts/message-exit-points.md">endpoint</a>. If a message is successfully delivered to the endpoint, the processor deletes the message from the message store. In case of a failure, it will retry after a specified interval.
+			The scheduled message forwarding processor consumes messages in a message store and sends them to an <a href="../../concepts/message-exit-points">endpoint</a>. If a message is successfully delivered to the endpoint, the processor deletes the message from the message store. In case of a failure, it will retry after a specified interval.
 		</td>
 	</tr>
 	<tr>
@@ -233,7 +233,9 @@ Multiple message processors can use the same message store. For example, in a cl
 
 ## Templates
 
-A template is a collection of mediation artifacts. It is a way to prototype mediation message flows, which can be reused in multiple projects without having to create duplicates. For example, you can template the artifacts ([proxy services](../../concepts/message-entry-points/#proxy-services), [sequences](#mediation-sequences), [endpoints](message-exit-points.md), etc.) that implement common **enterprise integration patterns**. Therefore, templates help you develop integrations faster, while making your configurations manageable, and readable.
+A large number of configuration files in the form of [sequences](#mediation-sequences), [endpoints](message-exit-points.md), [proxy services](../../concepts/message-entry-points/#proxy-services), and transformations can be required to satisfy all the mediation requirements of your system. To keep your configurations manageable, it's important to avoid scattering configuration files across different locations and to avoid duplicating redundant configurations.
+
+Templates help minimize this redundancy by creating prototypes that users can use and reuse when needed. This is very much analogous to classes and instances of classes: a template is a class that can be used to wield instance objects such as [sequences](#mediation-sequences) and [endpoints](message-exit-points.md). Thus, templates are an ideal way to improve reusability and readability of configurations/XMLs. Additionally, users can use predefined templates that reflect common enterprise integration patterns for rapid development of message/mediation flows.
 
 <table>
 	<tr>
@@ -243,19 +245,20 @@ A template is a collection of mediation artifacts. It is a way to prototype medi
 	<tr>
 		<td>Endpoint Template</td>
 		<td>
-			Used for parameterizing a list endpoint configurations. This allows a mediation flow to use the template parameters to select specific endpoint configurations (defined in the template) and apply them to the mediation flow.
+			Endpoint template is a generalized form of endpoint configurations. It parameterizes a list of endpoint configurations. This allows a mediation flow to use the template parameters to select specific endpoint configurations (defined in the template) and apply them to the mediation flow.</br></br>
+			Unlike <a href="#sequence_template">sequence templates</a>, endpoint templates are always parametrized using <code>$</code> prefixed values (not XPath expressions). Once an endpoint template is created, it can be referred in a mediation flow through a Template Endpoint. Therefore, the template endpoint is the artifact that translates this template into a concrete endpoint. This is semantically similar to the relationship between a <a href="#sequence_template">sequence template</a> and the Call Template Mediator.
 		</td>
 	</tr>
 	<tr>
-		<td>Sequence Template</td>
+		<td id='sequence_template'	>Sequence Template</td>
 		<td>
-			This is a parametrized <b>sequence</b> providing an abstract or generic form of a sequence defined in the Micro Integrator. Parameters of a template are defined in the form of XPath statement/s. Callers can invoke the template by populating the parameters with static values/XPath expressions using the <b>Call Template</b> mediator, which makes a sequence template into a concrete sequence.
+			This is a parametrized <b>sequence</b> providing an abstract or generic form of a sequence defined in the Micro Integrator. Parameters of a template are defined in the form of XPath statements. Callers can invoke the template by populating the parameters with static values/XPath expressions using the <b>Call Template</b> mediator, which makes a sequence template into a concrete sequence.
 		</td>
 	</tr>
 </table>
 
 ## Connectors
 
-Connectors allow your mediation flows to connect and interact with external services such as Twitter and Salesforce. Typically, connectors are used to wrap the API of an external service. It is also a collection of mediation **templates** that define specific operations that should be performed on the service. Each connector provides operations that perform different actions in that service. For example, the Twitter connector has operations for creating a tweet, getting a user's followers, and more.
+Connectors allow your mediation flows to connect and interact with external services such as Twitter and Salesforce. Typically, connectors are used to wrap the API of an external service. It is also a collection of [mediation templates](#templates) that define specific operations that should be performed on the service. Each connector provides operations that perform different actions in that service. For example, the Twitter connector has operations for creating a tweet, getting a user's followers, and more.
 
 To download a required connector, go to the [WSO2 Connector Store](https://store.wso2.com/store).
