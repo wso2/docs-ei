@@ -30,7 +30,6 @@ the **HelloWorld** service will return the following response:
         <details>
             <summary>hello-world-config-project</summary>
             This is the ESB Config Project folder with the integration artifacts (synapse artifacts) for the HelloWorld service (HelloWorld.xml). This service consists of the following REST API:
-    
             ```xml
             <api context="/hello-world" name="HelloWorld" xmlns="http://ws.apache.org/ns/synapse">
                 <resource methods="GET">
@@ -51,23 +50,18 @@ the **HelloWorld** service will return the following response:
             <summary>hello-world-config-projectCompositeApplication</summary>
             This is the Composite Application Project folder, which contains the packaged CAR file of the HelloWorld service.
         </details>
-
         <details>
             <summary>Dockerfile</summary>
             This Docker configuration file is configured to build a Docker image for WSO2 Micro Integrator with the HelloWorld service.
-
             ```
             FROM wso2/micro-integrator:1.0.0
             COPY hello-world-config-projectCompositeApplication/target/hello-world-config-projectCompositeApplication_1.0.0.car /home/wso2carbon/wso2mi/repository/deployment/server/carbonapps
-
             ```
-            
            **Note** that this file is configured to use the community version of the WSO2 Micro Integrator base Docker image (from DockerHub ). If you want to use the Micro Integrator that includes the latest product updates, you can update the image name in this Docker file as explained here .
         </details>
         <details>
             <summary>k8s-deployment.yaml</summary>
             This is sample Kubernetes configuration file that is configured to deploy WSO2 Micro Integrator in a Kubernetes cluster.
-    
             ```toml
             apiVersion: apps/v1
             kind: Deployment
