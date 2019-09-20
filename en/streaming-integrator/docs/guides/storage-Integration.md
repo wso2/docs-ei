@@ -21,18 +21,25 @@ material supplies to be stored in order to able to check the availability of mat
 
 To understand how to store data in existing data sources, follow the procedure below:
 
-!!!info"Before you begin:"
-    You need to create a database and a table, and then connect it to the Streaming Integrator via a data source. For this 
-    example, you can create a database named `FactoryMaterialDB` as follows:<br/>
+!!!info
+    You need to create a database and a table, and then connect it to the Streaming Integrator via a data source. For this example, you can create a database named `FactoryMaterialDB` as follows:
+
     1. Download and install [MySQL Server](https://dev.mysql.com/downloads/).
-    2. Download the [MySQL JDBC driver](https://dev.mysql.com/downloads/connector/j/).    
-    3. Unzip the downloaded MySQL driver zipped archive, and copy the MySQL JDBC driver JAR (mysql-connector-java-x.x.xx-bin.jar) into the <SI_HOME>/lib directory.    
+
+    2. Download the [MySQL JDBC driver](https://dev.mysql.com/downloads/connector/j/).
+
+    3. Unzip the downloaded MySQL driver zipped archive, and copy the MySQL JDBC driver JAR (mysql-connector-java-x.x.xx-bin.jar) into the <SI_HOME>/lib directory.
+
     4. Enter the following command in a terminal/command window, where username is the username you want to use to access the databases.
+
         `mysql -u username -p`
+
     5. When prompted, specify the password you are using to access the databases with the username you specified.
+
     6. Add the following configuration under the `Data Sources Configuration` section of the `<SI_HOME>/conf/server/deployment.yaml` file.
+
         !!!info
-            You need to change the values for the username and password parameters to the username and password that you are using to access the MySQL database. 
+            You need to change the values for the username and password parameters to the username and password that you are using to access the MySQL database.
             ```
             - name: FactoryMaterialDB
               description: Datasource used for Factory Supply Records
@@ -52,6 +59,7 @@ To understand how to store data in existing data sources, follow the procedure b
                   validationTimeout: 30000
                   isAutoCommit: false
             ```
+
     7. To create a database table named `FactoryMaterialDB`, issue the following commands from the terminal.
         `mysql> create database FactoryMaterialDB;`<br/>
         `mysql> use FactoryMaterialDB;`<br/>
@@ -97,17 +105,25 @@ To understand how to store data in existing data sources, follow the procedure b
 
 To understand how to refer to am externally defined store, follow the procedure below:
 
-!!!info"Before you begin:"
-    You need to create a database and a table, and then define an external store referring to it as follows.    
-     1. Download and install [MySQL Server](https://dev.mysql.com/downloads/).
-     2. Download the [MySQL JDBC driver](https://dev.mysql.com/downloads/connector/j/).    
-     3. Unzip the downloaded MySQL driver zipped archive, and copy the MySQL JDBC driver JAR (mysql-connector-java-x.x.xx-bin.jar) into the <SI_HOME>/lib directory.    
-     4. Enter the following command in a terminal/command window, where username is the username you want to use to access the databases.
+!!!info "Before you begin:"
+    You need to create a database and a table, and then define an external store referring to it as follows.
+
+    1. Download and install [MySQL Server](https://dev.mysql.com/downloads/).
+
+    2. Download the [MySQL JDBC driver](https://dev.mysql.com/downloads/connector/j/).
+
+    3. Unzip the downloaded MySQL driver zipped archive, and copy the MySQL JDBC driver JAR (mysql-connector-java-x.x.xx-bin.jar) into the `<SI_HOME>/lib` directory.
+
+    4. Enter the following command in a terminal/command window, where username is the username you want to use to access the databases.
+
         `mysql -u username -p`
-     5. When prompted, specify the password you are using to access the databases with the username you specified.
-     6. In the `<SI_HOME>/conf/server/deployment.yaml` file, add a subsection for refs and connect to the database you created as shown below.
+
+    5. When prompted, specify the password you are using to access the databases with the username you specified.
+
+    6. In the `<SI_HOME>/conf/server/deployment.yaml` file, add a subsection for refs and connect to the database you created as shown below.
+
         ```
-        siddhi:  
+        siddhi:
           refs:
             -
                ref:
@@ -120,11 +136,12 @@ To understand how to refer to am externally defined store, follow the procedure 
                    field.length='currentTime:100'
                    jdbc.driver.name: 'com.mysql.jdbc.Driver'
         ```
-     7. To create a database table named `FactoryMaterialDB`, issue the following commands from the terminal.
-            `mysql> create database FactoryMaterialDB;`<br/>
-            `mysql> use FactoryMaterialDB;`<br/>
-            `mysql> source <SI_HOME>/wso2/editor/dbscripts/metrics/mysql.sql;`<br/>
-            `mysql> grant all on FactoryMaterialDB.* TO username@localhost identified by "password";`
+
+    7. To create a database table named `FactoryMaterialDB`, issue the following commands from the terminal.
+        `mysql> create database FactoryMaterialDB;`<br/>
+        `mysql> use FactoryMaterialDB;`<br/>
+        `mysql> source <SI_HOME>/wso2/editor/dbscripts/metrics/mysql.sql;`<br/>
+        `mysql> grant all on FactoryMaterialDB.* TO username@localhost identified by "password";`
             
             
 1. Start creating a new Siddhi application. You can name it `ShipmentHistoryApp` For instructions, see [Creating a Siddhi Application](../develop/creating-a-Siddhi-Application.md).
@@ -169,14 +186,21 @@ To understand how to refer to am externally defined store, follow the procedure 
 ###Configuring data stores inline
 To understand how to define a store inline, follow the procedure below:
 
-!!!info"Before you begin"
-    You need to create a database and a table, and then define an external store referring to it as follows.    
+!!!info "Before you begin"
+    You need to create a database and a table, and then define an external store referring to it as follows.
+
      1. Download and install [MySQL Server](https://dev.mysql.com/downloads/).
-     2. Download the [MySQL JDBC driver](https://dev.mysql.com/downloads/connector/j/).    
+
+     2. Download the [MySQL JDBC driver](https://dev.mysql.com/downloads/connector/j/).
+
      3. Unzip the downloaded MySQL driver zipped archive, and copy the MySQL JDBC driver JAR (mysql-connector-java-x.x.xx-bin.jar) into the <SI_HOME>/lib directory.    
+
      4. Enter the following command in a terminal/command window, where username is the username you want to use to access the databases.
+
         `mysql -u username -p`
+
      5. When prompted, specify the password you are using to access the databases with the username you specified.
+
      6. To create a database table named `FactoryMaterialDB`, issue the following commands from the terminal.
         `mysql> create database FactoryMaterialDB;`<br/>
         `mysql> use FactoryMaterialDB;`<br/>
@@ -258,8 +282,9 @@ this section, you can try more CRUD operations via streams as follows:
 
 This section explains how to use REST API to perform the same CRUD operations that you previously performed via streams.
 
-!!!info"Before you begin:"
-    The Siddhi store query endpoint can be configured as follows:    
+!!!info "Before you begin:"
+    The Siddhi store query endpoint can be configured as follows:
+
     1. In the siddhi.stores.query.api: section of the `<SI_HOME>/conf/server/deployment.yaml` file, configure the following properties. The following is a sample configuration with default values.
         ```
         siddhi.stores.query.api:

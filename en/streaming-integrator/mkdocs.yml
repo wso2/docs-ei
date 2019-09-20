@@ -86,7 +86,7 @@ nav:
       - 'Cleansing Data': 'guides/cleansing-data.md'
       - 'Correlating Data': 'guides/correlating-events.md'
       - 'Summarizing Data': 'guides/summarizing-data.md'
-      - 'Integrating Stores': 'guides/storage-integration.md'
+      - 'Integrating Stores': 'guides/storage-Integration.md'
       - 'Publishing Data': 'guides/publishing-data.md'
       - 'Triggering Integration Flows': 'guides/triggering-integration-flows.md'
     - 'Tutorials':
@@ -103,7 +103,7 @@ nav:
       - 'Writing Custom Siddhi Extensions': 'admin/writing-Custom-Siddhi-Extensions.md'
       - 'Configuring System Parameters for Siddhi Extensions': 'admin/configuring-System-Parameters-for-Siddhi-Extensions.md'
     - 'Working with Business Rules': 'admin/creating-business-rules-templates.md'
-    - 'Monitoring the Streaming Integrator': 'admin/monitoring-the streaming-integrator'
+    - 'Monitoring the Streaming Integrator': 'admin/monitoring-the-streaming-integrator'
     - 'General Data Protection Regulations': 'admin/general-data-protection-regulations.md'
     - 'Supporting Different Transports': 'admin/supporting-different-transports.md'
     - 'User Management': 'admin/user-management.md'

@@ -38,8 +38,9 @@ to be notified via a mail. To do this, create a Siddhi application as follows.
 products where the treshold for such occurrences is reached, create a query as follows.
 
     1. To specify the input streams from which the input events to be analyzed for pattern detection are taken, add a `from` clause as follows.
+
         `from every (e1=PurchasesStream) -> e2=RepairsStream[e1.productName==e2.productName and e1.custID==e2.custID]<5:> within 2 months`
-        
+
         !!!info
             Note the following about the above `from` clause:
             - The input is derived from two streams. Therefore, first, both streams considered are specified and a unique reference is assigned to each stream. The `PurchasesStream` is referred to as `e1` and the `RepairsStream` is referred to as `e2`.
@@ -47,7 +48,7 @@ products where the treshold for such occurrences is reached, create a query as f
             - The event in the `PurchasesStream` stream need to arrive before the matching event in the `RepairsStream` stream.
             - The matching event in the `RepairsStream` stream should arrive within two months after the arrival of the event in the `PurchasesStream` stream.
             - `<5:>` indicates that an output is generated only when the matching condition is met five times.
-            - A time window of `2 months` is added to consider only a period of two months in a sliding manner when counting the number of times the matching condition for the pattern is met. For more information about time windows, see the [Siddhi Query Guide - Calculate and store clock time-based aggregate values](https://ei.docs.wso2.com/en/next/streaming-integrator/guides/summarizing-data/#calculate-and-store-clock-time-based-aggregate-values).
+            - A time window of `2 months` is added to consider only a period of two months in a sliding manner when counting the number of times the matching condition for the pattern is met. For more information about time windows, see [Summarizing Data - Calculate and store clock-time based aggregate values](summarizing-data.md#calculate-and-store-clock-time-based-aggregate-values)
        
     2. To specify how the value for each attribute in the `DefectiveProductsStream` output stream is defined, add the `select` clause as follows.
         `select e1.productName`
@@ -101,18 +102,19 @@ maximum threshold which requires him to take action. To do this, you can create 
     from every (e1=ProductionStream) -> e2=ProductionStream[e1.productName == e2.productName and e1.productionAmount - e2.productionAmount > 10]
          within 10 min
     ```
+
     !!!info
-        Observe the following about the `from`clause:<br/>
-        
+        Note the following about the `from`clause:<br/>
+
         - Here, two events from the same stream are compared to identify whether the production has decreased. The unique reference for the first event is `e1`, and the unique reference for the second event is `e2`.<br/>
-        
+
         - `e2` arrives after `e1`, but it is not necessarily the event that arrives immediately after `e1`.<br/>
-        
-        - The condition that should be met for `e1` and `e2` to be compared is `e1.productName == e2.productName and e1.productionAmount - e2.productionAmount > 10`. 
-        This means, both the events should report the production of the same product, and there should be a decrease in 
+
+        - The condition that should be met for `e1` and `e2` to be compared is `e1.productName == e2.productName and e1.productionAmount - e2.productionAmount > 10`.
+        This means, both the events should report the production of the same product, and there should be a decrease in
         production that is greater than 10 between the `e1` and `e2` events.<br/>
-        
-        - A `10 min` time window is included to indicate that an output event is generated only if the decrease in production by 10 or more units takes place every ten minutes in a sliding manner. For more information about time windows, see the [Siddhi Query Guide - Calculate and store clock time-based aggregate values](https://ei.docs.wso2.com/en/next/streaming-integrator/guides/summarizing-data/#calculate-and-store-clock-time-based-aggregate-values).
+
+        - A `10 min` time window is included to indicate that an output event is generated only if the decrease in production by 10 or more units takes place every ten minutes in a sliding manner. For more information about time windows, see [Calculate and store clock time-based aggregate values](summarizing-data.md#calculate-and-store-clock-time-based-aggregate-values).
 
 5. To present the required output by deriving values for the attributes of the `ProductionDecreaseAlertStream` output stream you created, add the `select` clause as follows.
     `select e1.productName, e1.productionAmount as originalAmount, e2.productionAmount as laterAmount, e1.factoryBranch`
@@ -322,7 +324,7 @@ insert into StateNotificationStream;
 
 ##Correlating two streams of data and unify
 
-For a detailed explanation, see [Enriching Data - Enrich data by connecting with another stream of data](enriching-data/#enrich-data-by-connecting-with-another-stream-of-data)
+For a detailed explanation, see [Enriching Data - Enrich data by connecting with another stream of data](enriching-data.md#enrich-data-by-connecting-with-another-stream-of-data)
 
 ## Correlate a stream and a static datasource to enrich
-For a detailed explanation, see[Enriching Data - Enrich data by connecting with a data store](enriching-data/#enrich-data-by-connecting-with-a-data-store)
+For a detailed explanation, see [Enriching Data - Enrich data by connecting with a data store](enriching-data.md#enrich-data-by-connecting-with-a-data-store)
