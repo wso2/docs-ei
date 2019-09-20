@@ -1,23 +1,22 @@
 # Monitoring Stream Processor
 
-The Status Dashboard of WSO2 SP allows you to monitor the metrics of a
-stand-alone WSO2 SP instance or a WSO2 SP cluster. This involves
-monitoring whether all processes of the WSO2 SP setup are working in a
-healthy manner, monitoring the current status of a SP node, and viewing
-metrics relating to the history of a node or the cluster.  Both JVM
-level metrics or Siddhi application level metrics can be viewed from the
-monitoring dashboard.
+The Status Dashboard allows you to monitor the metrics of a  stand-alone Streaming Integrator instance or a Streaming Integrator cluster. This involves
+monitoring whether all processes of the Streaming Integrator setup are working in a healthy manner, monitoring the current status of a Streaming Integrator node, and viewing
+metrics relating to the history of a node or the cluster.  Both JVM level metrics or Siddhi application level metrics can be viewed from the Status Dashboard.
 
 The following sections cover how to configure the Status Dashboard and
 analyze statistics relating to your WSO2 SP deployment in it.
 
--   [Configuring the Status
-    Dashboard](_Configuring_the_Status_Dashboard_)
--   [Viewing Statistics](_Viewing_Statistics_)
+## Downloading and accessing the Status Dashboard
+
+To download and access the Status Dashboard, follow the procedure below:
+
+
+
 
 ## App Overview
 
-When you open the WSO2 SP Status Dashboard, the [Node
+When you open the Status Dashboard, the [Node
 Overview](_Node_Overview_) page is displayed by default. If you want to
 view all the Siddhi applications deployed in your WSO2 SP setup, click
 on the **App View** tab (marked in the image below). The **App
