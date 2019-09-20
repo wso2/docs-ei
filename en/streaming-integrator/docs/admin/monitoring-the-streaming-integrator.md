@@ -87,22 +87,18 @@ this section, a MySQL database is created as an example.
             mysql> grant all on WSO2_STATUS_DASHBOARD_DB.* TO username@localhost identified by "password";
     ```
 
-7.  Create two datasources named `           WSO2_METRICS_DB          `
-    and `           WSO2_STATUS_DASHBOARD_DB          ` by adding the
-    following datasource configurations under the
-    `           wso2.datasources:          ` section of the
-    `           <SI_HOME>/conf/server/deployment.yaml          ` file.
+7. Create two datasources named `WSO2_METRICS_DB` and `WSO2_STATUS_DASHBOARD_DB` by adding the following datasource configurations under the `wso2.datasources:` section of the `<SI_HOME>/conf/server/deployment.yaml` file.
 
-        !!! info
-            The names of the datasources must be thesame as the names of the
-            database tables you created for metrics and statistics.
-            You need to change the values for the
-            `           username          ` and `           password          `
-            parameters to the username and password that you are using to access
-            the MySQL database.
+    !!! info
+        The names of the datasources must be thesame as the names of the
+        database tables you created for metrics and statistics.
+        You need to change the values for the
+        `           username          ` and `           password          `
+        parameters to the username and password that you are using to access
+        the MySQL database.
 
-            For detailed information about datasources, see
-            [carbon-datasources](https://github.com/wso2/carbon-datasources/).
+        For detailed information about datasources, see
+        [carbon-datasources](https://github.com/wso2/carbon-datasources/).
 
 
 
@@ -563,12 +559,10 @@ password, you can encrypt them via WSO2 Secure Vault.
                 password: 'admin'
     ```
 
-2.  To encrypt the user name and the password you defined, define
-    aliases for them as described in[Protecting Sensitive Data via the Secure Vault](protecting-sensitive-data-via-the-secure-vault.md).
+2. To encrypt the user name and the password you defined, define aliases for them as described in [Protecting Sensitive Data via the Secure Vault](protecting-sensitive-data-via-the-secure-vault.md).
 
-        !!! info
-            This functionality is currently supported only for single tenant
-            environments.
+    !!! info
+        This functionality is currently supported only for single tenant environments.
 
 
 **Configuring permissions**
@@ -665,18 +659,20 @@ to the Status Dashboard are displayed as shown in the following example:
 If no nodes are displayed, you can add the nodes for which you want to
 view the status by following the procedure below:
 
-1.  Click **ADD NEW NODE**.
-    ![](attachments/112391028/112391047.png)
+1. Click **ADD NEW NODE**.
+
+    ![Add New Node](../images/monitoring-the-streaming-integrator/add-new-node-button.png)
+
     This opens the following dialog box.
 
-    ![](attachments/112391028/112391046.png){height="250"}
-2.  Enter the following information in the dialog box and click **ADD
-    NODE** to add a gadget for the required node in the
-    **Node Overview** page.
-    1.  In the **Host** parameter, enter the host ID of the node you
-        want to add.
-    2.  In the **Port** parameter, enter the port number of the node you
-        want to add.
+    ![Add New Node dialog box](../images/monitoring-the-streaming-integrator/add-new-node.png)
+
+2. Enter the following information in the dialog box and click **ADD  NODE** to add a gadget for the required node in the **Node Overview** page.
+
+    1. In the **Host** parameter, enter the host ID of the node you want to add.
+
+    2. In the **Port** parameter, enter the port number of the node you want to add.
+    
 3.  If the node you added is currently unreachable, the following dialog
     box is displayed.
     ![](attachments/112391028/112391037.png)
