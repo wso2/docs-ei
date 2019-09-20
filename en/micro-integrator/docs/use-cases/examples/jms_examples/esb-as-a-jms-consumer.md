@@ -191,35 +191,3 @@ The Synapse artifacts used are explained below.
         </td>
     </tr>
 </table>
-
-## Performance Tuning
-
-You can improve the performance of this scenario by following the steps
-below.
-
--   If the queue gets filled up at a high rate, and the queue is long,
-    you can improve the performance by increasing the number of
-    concurrent consumers. Add the following parameters to the JMS
-    listener configuration of the esb.toml file to increasing the number of concurrent consumers:  
-
-    ``` java
-    [mediation]
-    transport.jms.ConcurrentConsumers=50
-    transport.jms.MaxConcurrentConsumers=50
-    ```
-
--   Add the following parameter to the JMS listener configuration to enable
-    JMS listener caching:  
-
-    ```java
-    [mediation]
-     transport.jms.CacheLevel=consumer
-    ```
-
-    The possible values for the cache level are
-    `           none          ` , `           auto          ` ,
-    `           connection          ` , `           session          `
-    and `           consumer          ` . Out of the possible values,
-    `           consumer          ` is the highest level that provides
-    maximum performance.
-

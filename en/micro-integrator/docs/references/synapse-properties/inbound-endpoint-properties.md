@@ -1017,17 +1017,6 @@ The following optional properties can be configured when [creating a Kafka inbou
    </tbody>
 </table>
 
-### Improving Kafka Performance (Server-Level)
-
-Open the deployment.toml file, and change the inbound thread pool size based on your use case. Recommended values are specified below.
-
-```toml
-[[mediation]]
-inbound.threads.core = 200 
-inbound.threads.max = 1000   
-```
-See the [descriptions of the parameters](../../../references/config-catalog/#mediation-process).
-
 ## Event-based Inbound Endpoint Properties
 
 ``` java tab='MQTT Inbound Protocol'
