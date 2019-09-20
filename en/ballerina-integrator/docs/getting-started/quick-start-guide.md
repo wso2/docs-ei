@@ -1,6 +1,6 @@
 # Quick Start Guide
 
-This section helps you to quickly set up and run Ballerina so that you can use it for various solutions. Here we 
+This section helps you to quickly set up and run Ballerina Integrator so that you can use it for various integration solutions.
 
 ## Install Ballerina
 
@@ -9,11 +9,9 @@ This section helps you to quickly set up and run Ballerina so that you can use i
 
 > **Note**: Throughout this documentation, `<ballerina_home>` refers to the directory in which you just installed Ballerina.
 
-## Set up the Editor
+## Set up the IDE
 
-Let's try this on VS Code.
-
-> **Tip:** You can use your [favorite editor to work on Ballerina code](https://ballerina.io/learn/tools-ides/), however, we recommend you use VS Code as we have made some improvements to it for use in integration scenarios.
+Let's try this on VS Code, which is the recommended IDE to use in Ballerina Integrator integration scenarios.
 
 1. Open VS Code.
    > **Tip**: Download and install [VS Code](https://code.visualstudio.com/Download) if you do not have it already.
