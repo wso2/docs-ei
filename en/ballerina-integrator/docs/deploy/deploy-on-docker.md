@@ -23,7 +23,7 @@ Select the template to transform XML messages to JSON and your project will load
 
 You can run the service that you developed in the Quick Start Guide as a Docker container. The Ballerina language includes a [Ballerina_Docker_Extension](https://github.com/ballerinax/docker) that offers native support to run Ballerina programs on containers.
 
-To run a service as a Docker container, add the corresponding Docker annotations to your service code. To add Docker support, add the following code to the .bal file of the service you created above.
+To run your service as a Docker container, add the corresponding Docker annotations to your service code. To add Docker support, add the following code to the .bal file of the service you created above.
 
 ```ballerina
 import ballerina/docker;  
@@ -70,7 +70,7 @@ Generating docker artifacts...
 	
 ```
 
-Use the following command to view the Docker images that are running
+Use the following command to view the Docker images that are running.
 
 ```bash
 $ docker images  
@@ -91,6 +91,8 @@ You can run a Docker container by copying and pasting the Docker `run` command t
 $ docker run -d -p 9191:9191 sciencelab:v2.0.0
 
 ```
+
+The following command allows you to view the active containers that are running. This allows you to test if your service is running.
 
 ```bash
 $ docker ps  
