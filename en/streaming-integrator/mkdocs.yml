@@ -113,7 +113,6 @@ nav:
     - 'Streaming Integration REST API Guide': 'ref/si-rest-api-guide.md'
     - 'Performance Analysis Results': 'ref/performance-analysis-results.md'
     - 'Configuring Default Ports': 'ref/configuring-default-ports.md'
-    - 'Working with Data Providers': 'ref/working-with-Data-Providers.md'
   - 'FAQ':
     - 'FAQ': faq/fAQ.md
   - '': page-not-found.md
