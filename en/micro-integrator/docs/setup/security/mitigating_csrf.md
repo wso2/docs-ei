@@ -54,7 +54,7 @@ contains a CSRF token.
 
 ## Configuring the Micro Integrator to mitigate CSRF attacks
 
-Open the ei.toml file and add the following configurations: 
+Open the deployment.toml file and add the following configurations: 
 
 - To specify the patterns that should be excluded from CSRF protection:
   ```toml
@@ -86,7 +86,7 @@ Follow the steps below to secure web applications.
 1.  Add the following configurations in the
     `web.xml` file of your application.
 
-    ``` xml
+    ```xml
     <!-- OWASP CSRFGuard context listener used to read CSRF configuration -->
     <listener>
         <listener-class>org.owasp.csrfguard.CsrfGuardServletContextListener</listener-class>
@@ -125,7 +125,7 @@ Follow the steps below to secure web applications.
     inclusion of the `<head>` element in the HTML
     template of all pages of the application that you need to protect.
 
-    ``` java
+    ```xml
     …
     <html>
         <head>
@@ -149,7 +149,7 @@ Follow the steps below to secure Jaggery applications.
 1.  Add the following configurations in the
     `jaggery.conf` file of your application.
 
-    ``` java
+    ```java
     "listeners" : [
     {
         "class" : "org.owasp.csrfguard.CsrfGuardServletContextListener"
@@ -181,7 +181,7 @@ Follow the steps below to secure Jaggery applications.
 2.  Include the following JavaScriptServlet as the first JavaScript inclusion of the `<head>` element in the HTML
     template of all pages of the application that you need to protect.
 
-    ``` js
+    ```xml
     <html>
         <head>
             …

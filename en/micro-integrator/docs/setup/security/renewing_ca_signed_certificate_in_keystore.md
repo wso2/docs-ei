@@ -2,7 +2,8 @@
 
 The [digital certificates](../../references/using_keystores.md) that are used for SSL handshaking has a validity period. Once a certificate expires, it can cause the client-server communication to fail at the SSL handshake level. 
 
-> **Note** that it is required to renew the certificates before the expiration date.
+!!! Note
+    It is required to renew the certificates before the expiration date.
 
 ## Before you begin
 
@@ -17,12 +18,11 @@ Note the following:
     you will get the following error when you try to import the
     CA-signed certificate to the keystore:
 
-    ``` java
+    ```bsh
     keytool error: java.lang.Exception: Failed to establish chain from reply
     ```
     
     To overcome the above error, be sure to first import the CA-signed certificate as well as the intermediate certificates to the keystore in the correct order.
-
 
 Now let's take a look at each high level step in detail .
 
@@ -38,7 +38,7 @@ certificate:
 2. If you have a java keystore, execute the following keytool command
     to view the certificate information:
 
-    ``` java
+    ```bash
     keytool -list -keystore <keystore_name.jks> -alias <cert_alias> -v
     ```
 
@@ -46,28 +46,26 @@ certificate:
     password, you can view the certificate information in a human
     readable format where the validity period is displayed as follows:
 
-    ``` java
+    ```bash
     Valid from: Sun Jun 18 19:26:25 IST 2017 until: Sat Jun 19 19:26:25 IST 2027
     ```
 
 3. If you have the certificate file, execute the following openssl
     command:
 
-    ``` java
+    ```bash
     x509 -in <certname.cer> -text -noout
     ```
 
     This displays the validity as follows:
 
-    ``` java
+    ```bash
     Validity
       Not Before: Jun 18 13:56:25 2017 GMT
       Not After : Jun 19 13:56:25 2027 GMT
     ```
 
-4. If it is a website, you can view the certificate information via the
-    browser. All major browsers provide the capability to view
-    certificate information.
+4. If it is a website, you can view the certificate information via the browser. All major browsers provide the capability to view certificate information.
 
 Once you view the validity period of a certificate and if it says that
 the certificate is about to expire or has already expired, the next step
@@ -81,20 +79,21 @@ below to generate a CSR:
 
 1. If you have a java keystore, execute the following command:
 
-    ``` java
+    ```bash
     keytool -certreq -alias <cert_alias> -file <CSR.csr> -keystore <keystore_name.jks>
     ```
-    > If you want generate a CSR with a subject alternative name (SAN), be sure to use the -ext attribute in the keytool command to specify required SAN.
+    !!! Note
+        If you want generate a CSR with a subject alternative name (SAN), be sure to use the -ext attribute in the keytool command to specify required SAN.
 
     Following is a sample keytool command that includes a SAN:
 
-    ``` java
+    ```bash
     keytool -certreq -alias test -file test.csr -keystore test.jks -ext SAN=dns:test.example.com
     ```
 
 2. If you have the private key and public key, execute the following command:
 
-    ``` java
+    ```bash
     openssl x509 -x509toreq -in <cert_name.crt> -out <CSR.csr> -signkey <private_key.key>
     ```
 
@@ -106,12 +105,13 @@ After you obtain a new certificate, you have to import the new certificate to a
 
 Execute the following command to import a new certificate to a keystore:
 
-``` java
+```bash
 keytool -import -v -trustcacerts -alias <current_alias> -file <ca_signed_cert.cer> -keystore <keystore_name.jks>
 ```
 
-> If you want to view information related to the renewed certificate,execute the following keytool command:
+!!! Note
+    If you want to view information related to the renewed certificate,execute the following keytool command:
 
-``` java
+```bash
 keytool -list -keystore <keystore_name.jks> -alias <cert_alias> -v
 ```

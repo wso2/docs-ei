@@ -16,7 +16,7 @@ to a port:
 -   Pass the port offset to the server during startup. The following
     command starts the server with the default port incremented by 3
     `          :./micro-integrator.sh -DportOffset=3         `
--   Set the Ports section the ei.toml file as follows:
+-   Set the Ports section the deployment.toml file as follows:
 
     ```toml
     [server]

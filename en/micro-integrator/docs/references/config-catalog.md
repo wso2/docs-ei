@@ -1,4 +1,4 @@
-# Configuration Catalog
+# Product Configurations
 This document describes all the configuration parameters that are used in WSO2 Micro Integrator. 
 
 ## Instructions for use

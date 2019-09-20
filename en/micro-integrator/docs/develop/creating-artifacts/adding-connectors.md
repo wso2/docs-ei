@@ -4,7 +4,7 @@ You can develop configurations with connectors, and deploy the configurations an
 
 !!! Info
     In addition to the below methods, you can enable a connector by creating a configuration file in the `MI_HOME/repository/deployment/server/synapse-configs/default/imports` directory with the following configurations.Replace the value of the `name` property with the name of your connector, and name the configuration file `{org.wso2.carbon.connector}<CONNECTOR_NAME>.xml` (e.g., `{org.wso2.carbon.connector}salesforce.xml`).
-    ```
+    ```xml
     <import xmlns="http://ws.apache.org/ns/synapse"
             name="salesforce"
             package="org.wso2.carbon.connector"
@@ -29,25 +29,17 @@ Follow the steps below to import connectors into WSO2 Integration Studio:
 
 Follow the steps below to create a composite application archive (CAR) file containing the connectors:
 
-1.  Click **File > New > Other** and select **Connector Exporter
-    Project** under **WSO2 > Extensions > Project Types** and click
-    **Next**. 
+1.  Click **File > New > Other** and select **Connector Exporter Project** under **WSO2 > Extensions > Project Types** and click **Next**. 
 2.  Enter a project name and click **Finish**.  
-3.  Right-click on the created connector exporter project, point to
-    **New** and then click **Add/Remove Connectors**.
-4.  Click **Add Connector** and then select **Workspace** . This will
-    list down the connectors that have been imported into WSO2
-    Integration Studio.
+3.  Right-click on the created connector exporter project, point to **New** and then click **Add/Remove Connectors**.
+4.  Click **Add Connector** and then select **Workspace**. This will list down the connectors that have been imported into WSO2 Integration Studio.
 5.  Select the connector and click **OK**.
-6.  Create a Composite Application (C-App) project including the
-    required artifacts.
-7.  Right-click on the C-App project and click **Export Composite
-    Application Project** to create a CAR file out of that project.
+6.  Create a Composite Application (C-App) project including the required artifacts.
+7.  Right-click on the C-App project and click **Export Composite Application Project** to create a CAR file out of that project.
 
 ### Removing Connectors
 
-Follow the steps below to remove connectors from WSO2 Integration
-Studio:
+Follow the steps below to remove connectors from WSO2 Integration Studio:
 
 1.  Right-click on the relevant ESB Config project and click **Add or Remove Connector**.
 2.  On the wizard that appears, select **Remove Connector** and click **Next**.

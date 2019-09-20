@@ -71,7 +71,7 @@ One of the following options can be used:
     
     Before you enable this location resolver, you need to first comment
     out the default location resolver that is already enabled in the
-    esb.toml file. You can then uncomment
+    deployment.toml file. You can then uncomment
     the following code block, and update the property values as
     required.
 

@@ -1,10 +1,10 @@
 # Registry
 
-WSO2 Micro Integrator uses a registry to store various configurations and artifacts such as [sequences](../../concepts/message-processing-units/#mediation-sequences) and [endpoints](message-exit-points.md). A registry is simply a content store and a metadata repository. Various SOA artifacts such as services, WSDLs, and configuration files can be stored in a registry and referred to by a key, which is a path similar to a UNIX file path. The WSO2 Micro Integrator uses two types of registries.
+WSO2 Micro Integrator uses a registry to store various configurations and artifacts such as [sequences](../../concepts/message-processing-units/#mediation-sequences) and [endpoints](message-exit-points.md). A registry is simply a content store and a metadata repository. Various SOA artifacts such as services, WSDLs, and configuration files can be stored in a registry and referred to by a key, which is a path similar to a UNIX file path. The WSO2 Micro Integrator uses a [file-based registry](#file-based-registry), and a [local registry](#local-registry)
 
 ## File-based Registry
 
-WSO2 Micro Integrator is shipped with a file-system-based registry. Thus, by default, the `MI_HOME/registry/` directory will act as the registry to store registry artifacts etc. This main registry directory will consist of the following sub registry directories.
+The file-based registry of WSO2 Micro Integrator is the `MI_HOME/registry/` directory. This main registry directory will consist of the following sub registry directories.
 
 * **Local**: To store local artifacts of the product server that are not shared with the other products in the deployment.
 * **Config**: To store all product-specific artifacts that are shared between similar product instances.
@@ -12,7 +12,7 @@ WSO2 Micro Integrator is shipped with a file-system-based registry. Thus, by def
 
 ## Local Registry
 
-The **local registry** acts as a memory registry where you can store static content as a key-value pair, where the value could be a static entry such as a static text specified as **inline text** or static XML specified as an **inline XML** fragment, or a URL (using the `src` attribute). 
+The **local registry** acts as a memory registry where you can store static content as a key-value pair. This could be a static text specified as **inline text**, static XML specified as an **inline XML** fragment, or a URL (using the `src` attribute). 
 
 ``` java tab='Inline text'
 <localEntry key="version">0.1</localEntry>

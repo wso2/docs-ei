@@ -2,7 +2,7 @@
 
 The default HTTP transport (PassThrough transport) of WSO2 Micro Integrator has 4 HTTP/HTTPS listneres configured. This includes 2 `         PassThroughHttpListener        ` threads and 2 `         PassThroughHttpSSLListener        ` threads.
 
-You can configure the number of listeners for the HTTP transport in the ei.toml file:
+You can configure the number of listeners for the HTTP transport in the deployment.toml file:
 
 ```toml
 [[transport.http]]

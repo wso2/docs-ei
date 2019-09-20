@@ -28,36 +28,36 @@ responses are aggregated and sent back to the client at the OutSequence.
 
 Following is the proxy service used in this scenario:
 
-``` 
-    <?xml version="1.0" encoding="UTF-8"?>
-    <proxy xmlns="http://ws.apache.org/ns/synapse" name="SplitAggregateProxy" startOnLoad="true">
-       <target>
-          <inSequence>
-             <iterate xmlns:m0="http://services.samples" preservePayload="true"
-                      attachPath="//m0:getQuote" expression="//m0:getQuote/m0:request">
-                <target>
-                   <sequence>
-                      <send>
-                         <endpoint>
-                            <address uri="http://localhost:9000/services/SimpleStockQuoteService"/>
-                         </endpoint>
-                      </send>
-                   </sequence>
-                </target>
-             </iterate>
-          </inSequence>
-          <outSequence>
-             <aggregate>
-                <completeCondition>
-                   <messageCount/>
-                </completeCondition>
-                <onComplete xmlns:m0="http://services.samples" expression="//m0:getQuoteResponse">
-                   <send/>
-                </onComplete>
-             </aggregate>
-          </outSequence>
-       </target>
-    </proxy>
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<proxy xmlns="http://ws.apache.org/ns/synapse" name="SplitAggregateProxy" startOnLoad="true">
+   <target>
+      <inSequence>
+         <iterate xmlns:m0="http://services.samples" preservePayload="true"
+                  attachPath="//m0:getQuote" expression="//m0:getQuote/m0:request">
+            <target>
+               <sequence>
+                  <send>
+                     <endpoint>
+                        <address uri="http://localhost:9000/services/SimpleStockQuoteService"/>
+                     </endpoint>
+                  </send>
+               </sequence>
+            </target>
+         </iterate>
+      </inSequence>
+      <outSequence>
+         <aggregate>
+            <completeCondition>
+               <messageCount/>
+            </completeCondition>
+            <onComplete xmlns:m0="http://services.samples" expression="//m0:getQuoteResponse">
+               <send/>
+            </onComplete>
+         </aggregate>
+      </outSequence>
+   </target>
+</proxy>
 ```
 
 The sample request sent to the proxy service is given below. This
@@ -66,26 +66,26 @@ request is split into 4 messages and sent to the
 mediator aggregates the responses and sends back the aggregated
 response.
 
-```
-    <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="http://services.samples" xmlns:xsd="http://services.samples/xsd">
-       <soapenv:Header/>
-       <soapenv:Body>
-          <ser:getQuote>
-              <ser:request>
-                <xsd:symbol>ABC</xsd:symbol>
-             </ser:request> 
-             <ser:request>
-                <xsd:symbol>WSO2</xsd:symbol>
-             </ser:request>
-              <ser:request>
-                <xsd:symbol>AAA</xsd:symbol>
-             </ser:request>  
-              <ser:request>
-                <xsd:symbol>BBB</xsd:symbol>
-             </ser:request>
-          </ser:getQuote>    
-       </soapenv:Body>
-    </soapenv:Envelope>
+```xml
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="http://services.samples" xmlns:xsd="http://services.samples/xsd">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ser:getQuote>
+          <ser:request>
+            <xsd:symbol>ABC</xsd:symbol>
+         </ser:request> 
+         <ser:request>
+            <xsd:symbol>WSO2</xsd:symbol>
+         </ser:request>
+          <ser:request>
+            <xsd:symbol>AAA</xsd:symbol>
+         </ser:request>  
+          <ser:request>
+            <xsd:symbol>BBB</xsd:symbol>
+         </ser:request>
+      </ser:getQuote>    
+   </soapenv:Body>
+</soapenv:Envelope>
 ```
 
 ## Tuning the performance
@@ -93,7 +93,7 @@ response.
 The Iterate, Clone and Aggregate mediators demonstrate high performance
 due to default threading and memory configuration. The performance of
 these mediators can be further increased by tuning the following
-parameters in the ei.toml file:
+parameters in the deployment.toml file:
 
 ```toml
 [[mediation]]

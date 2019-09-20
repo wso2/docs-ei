@@ -214,8 +214,7 @@ You can use the above ESB projects and other various projects as follows:
 
 ## Importing projects to workspace
 
-If you have an already created ESB project file, you can import it to
-your WSO2 Integration Studio workspace.
+If you have an already created ESB project file, you can import it to your WSO2 Integration Studio workspace.
 
 1.  Open WSO2 Integration Studio, navigate to **File -> Import**, select **Existing WSO2 Projects into workspace,** and click **Next**:  
     ![Import ESB project](../../assets/img/create_project/import_proj_dialog.png)

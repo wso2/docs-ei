@@ -13,7 +13,7 @@ how to enable logs for a sample proxy service deployed in WSO2 Micro Integrator.
 2.  Configure `          log4j         ` to log the service specific logs to a file called `          stock-quote-proxy-service.log         ` in the logs directory of the product installation directory.
     1.  Open up the `             log4j.properties            ` file found in the `             conf            ` directory of the product installation directory using your favorite text editor and add the following section to the end of the file starting in a new line.
 
-        ``` java
+        ```bash
         log4j.category.SERVICE_LOGGER.StockQuoteProxy=DEBUG, SQ_PROXY_APPENDER
         log4j.additivity.SERVICE_LOGGER.StockQuoteProxy=false
         log4j.appender.SQ_PROXY_APPENDER=org.apache.log4j.DailyRollingFileAppender

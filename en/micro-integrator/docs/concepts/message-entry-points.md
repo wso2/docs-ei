@@ -1,6 +1,6 @@
 # Message entry points
 
-## Proxy services
+## Proxy Services
 
 Proxy services are virtual services that receive messages and optionally process them before forwarding them to a service at a given endpoint. This approach allows you to perform necessary transformations and introduce additional functionality without changing your existing service. 
 
@@ -20,7 +20,7 @@ We can create an API resource to process defined HTTP request methods. Furthermo
 Example: You can define a URL mapping to a set of operations as shown in the API_1 definition, or you can define separate mappings for separate operations as shown in API_2. Also note the last resource definition in API_3, which does not specify a URL mapping nor a URI template. This is called the default resource of the API. Each API can have at most one default resource. Any request received by the API that does not match any of the enclosed resource definitions will be dispatched to the default resource of the API. In the case of API_3, a DELETE request on the URL “/payments” will be dispatched to the default resource as none of the other resources in API_3 are configured to handle DELETE requests.
 -->
 
-## Inbound endpoints
+## Inbound Endpoints
 
 An inbound endpoint is a message entry point that can inject messages directly from the transport layer to the mediation layer without going through the Axis2 engine. One of the advantages of using Inbound Endpoints is in its ability to create inbound messaging channels dynamically. There are three types of inbound endpoints:
 
@@ -100,7 +100,7 @@ A polling inbound endpoint polls periodically for data and, when data is availab
     </tr>
 </table>
 
-### Event-Based Inbound Endpoints
+### Event-based Inbound Endpoints
 
 An event-based inbound endpoint polls only once to establish a connection with the remote server and then consumes events.
 

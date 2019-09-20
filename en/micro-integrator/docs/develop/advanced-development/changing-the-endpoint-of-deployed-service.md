@@ -142,7 +142,7 @@ You view the response from the **HelloWorldProxy**.
 
 Follow the steps below to change the endpoint reference of the **HelloWorldProxy** you deployed, to point it to the QA environment, without changing its configuration.
 
-1.  Set a port offset by changing the following configuration in the `ei.toml         ` file.
+1.  Set a port offset by changing the following configuration in the `deployment.toml         ` file.
 
     ```toml
     offset=2

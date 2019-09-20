@@ -8,9 +8,8 @@ how to set up Single Sign-On between different WSO2 products.
 
 ## Step 1 - Installing the SAML2 relying party (SAML2 SSO Authenticator) feature in WSO2 Micro Integrator
 
->You only need to do this step if "SAML2 based Single Sign-On
-authenticator" is not installed in your WSO2 product.
-
+!!! Info
+    You only need to do this step if "SAML2 based Single Sign-On authenticator" is not installed in your WSO2 product.
 
 SAML2 relying party components are not shipped with the default Carbon
 distribution. However, these bundles are packages that can be installed
@@ -37,7 +36,7 @@ setup.
 
 To update this configuration, open the esb.toml file and update the following:
 
-``` java
+```toml
 [config_heading]
 Priority=10
 LoginPage=/carbon/admin/login.jsp
@@ -87,8 +86,7 @@ configuration for registering a Carbon server as a service provider.
 
 1.  Sign in. Enter your username and password to log on to the
     [Management
-    Console](https://docs.wso2.com/display/IS510/Getting+Started+with+the+Management+Console)
-    .
+    Console](https://docs.wso2.com/display/IS510/Getting+Started+with+the+Management+Console).
 2.  Navigate to the **Main** menu to access the **Identity** menu. Click
     **Add** under **Service Providers** .
 3.  Fill in the **Service Provider Name** and provide a brief

@@ -4,17 +4,21 @@ A transport protocol is responsible for carrying messages that are in a specific
 
 ## HTTP/S PassThrough
 
-This is a non-blocking HTTP transport implementation based on HTTP Core NIO, and is the default HTTP transport shipped with WSO2 Micro Integrator. Although the PassThrough transport is somewhat similar to the NHTTP transport, it overcomes all the limitations of the NHTTP transport and provides a significant performance gain. The PassThrough Transport also has a simpler and cleaner model for forwarding messages back and forth.
+This is a non-blocking HTTP transport implementation based on HTTP Core NIO, and is the default HTTP transport shipped with WSO2 Micro Integrator. Although the PassThrough transport is similar to the NHTTP transport, it overcomes all the limitations of the NHTTP transport and provides a significant performance gain. The PassThrough Transport also has a simpler and cleaner model for forwarding messages back and forth.
 
+The HTTPS passthrough transport support all the configuration parameters supported by the HTTP passthrough receiver and sender as well as additional SSL parameters. The sender of the HTTPS transport can also [verify certification revocation](../setup/transport_configurations/certificate-revocation.md).
+
+<!--
 ## HTTP/S NIO
 
 This is a module of the Apache Synapse project. The transport implementation is based on Apache HTTP Core - NIO and uses a configurable pool of non-blocking worker threads to grab incoming HTTP messages off the wire.
 
-The HTTPS-NIO transport support all the configuration parameters supported by the HTTP-NIO receiver and sender including additional SSL parameters. The sender of the HTTPS-NIO transport can also <b>verify certification revocation</b>.
+The HTTPS-NIO transport support all the configuration parameters supported by the HTTP-NIO receiver and sender including additional SSL parameters. The sender of the HTTPS-NIO transport can also [verify certification revocation](../setup/transport_configurations/certificate-revocation.md).
+-->
 
 ## Virtual File System (VFS) 
 
-This transport is used to process files in the specified source directory. After processing the files, it moves them to a specified location or deletes them. Note that files cannot remain in the source directory after processing or they will be processed again, so if you need to maintain these files or keep track of which files have been processed, specify the option to move them instead of deleting them after processing. If you want to move files into a database, use the VFS transport and the <b>DBReport Mediator</b>.
+This transport is used to process files in the specified source directory. After processing the files, it moves them to a specified location or deletes them. Note that files cannot remain in the source directory after processing because they will be processed again. Therefore, if you need to maintain these files or keep track of which files have been processed, specify the option to move them instead of deleting them after processing. If you want to move files into a database, use the VFS transport and the [DBReport Mediator](../references/mediators/dB-Report-Mediator.md).
 
 !!! Note
 	When you transfer a file to a remote FTP location via VFS, the integrator tries to detect the FTP location by navigating from the root folder first. If the integrator does not have <b>at least list permission</b> to the root (/), the file transfer fails.
@@ -29,7 +33,7 @@ The TCP transport allows you to send and receive SOAP messages over the Transmis
 
 ## MSMQ
 
-The <b>msmq:</b> component is a transport for working with Microsoft Message Queuing . This component natively sends and receives direct allocated ByteBuffer instances. This allows you to access the JNI layer without expensive memory copying. In fact, using ByteBuffer created with the method allocateDirect can be passed to the JNI layer, and the native code is able to directly access the memory. The URI format: <code>msmq:msmqQueueName</code>.
+The <b>msmq:</b> component is a transport for working with Microsoft Message Queuing. This component natively sends and receives directly allocated ByteBuffer instances. This allows you to access the JNI layer without expensive memory copying. In fact, using ByteBuffer created with the method allocateDirect can be passed to the JNI layer, and the native code is able to directly access the memory. The URI format: <code>msmq:msmqQueueName</code>.
 
 !!! Note
 	<ul>

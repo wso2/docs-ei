@@ -56,7 +56,7 @@ Follow the steps given below.
 2.  Install the nginx server in your deployment server by executing the
     following command:
 
-    ``` java
+    ```bash
     sudo apt-get install nginx
     ```
 
@@ -64,7 +64,7 @@ Follow the steps given below.
     certificates inside this folder by executing the following
     commands:  
 
-    ``` java
+    ```bash
     sudo mkdir /etc/nginx/ssl
     cd /etc/nginx/ssl
     ```
@@ -73,13 +73,13 @@ Follow the steps given below.
     create the private key as shown below. Note that a pass phrase is
     prompted when creating the private key.  
 
-    ``` java
+    ```bash
     sudo openssl genrsa -des3 -out server.key 1024
     ```
 
 5.  Next, create the certificate signing request as shown below.
 
-    ``` java
+    ```bash
     sudo openssl req -new -key server.key -out server.csr
     ```
 
@@ -90,7 +90,7 @@ Follow the steps given below.
 6.  Next step is to sign the SSL certificate using the following
     command:  
 
-    ``` java
+    ```bash
     sudo openssl x509 -req -days 365 -in server.csr -signkey server.key -out server.crt
     ```
 
@@ -100,14 +100,14 @@ Follow the steps given below.
     certificate. Create a copy of the default, " sites-enabled"
     configuration using the following command:  
 
-    ``` java
+    ```bash
     sudo cp /etc/nginx/sites-available/default /etc/nginx/sites-available/wso2
     ```
 
 8.  Now, create a symbolic between the " sites-enabled" directory and
     the "sites-available" directory using the following command:  
 
-    ``` java
+    ```bash
     sudo ln -s /etc/nginx/sites-available/wso2 /etc/nginx/sites-enabled/wso2
     ```
 
@@ -116,58 +116,58 @@ Follow the steps given below.
 9.  Open the `           /etc/nginx/sites-enabled/wso2          ` file
     and enter the following configurations.
 
-    ``` java
-                #Configurations for listener 8243.
-                server {
-                    listen 8243;
-                    server_name wso2test.com;
-                    client_max_body_size 100M;
+    ```bash
+    #Configurations for listener 8243.
+    server {
+        listen 8243;
+        server_name wso2test.com;
+        client_max_body_size 100M;
 
-                    root /usr/share/nginx/www;
-                    index index.html index.htm;
+        root /usr/share/nginx/www;
+        index index.html index.htm;
 
-                    ssl on;
-                    ssl_certificate /etc/nginx/ssl/server.crt;
-                    ssl_certificate_key /etc/nginx/ssl/server.key;
+        ssl on;
+        ssl_certificate /etc/nginx/ssl/server.crt;
+        ssl_certificate_key /etc/nginx/ssl/server.key;
 
-                    #with portOffset 0 running AS
-                    location /appserver/ {
-                        proxy_pass https://wso2test.com:9443/;
-                        proxy_redirect https://wso2test.com:8243/ https://wso2test.com:8243/appserver/;
-                        proxy_cookie_path / /appserver;
-                    }
+        #with portOffset 0 running AS
+        location /appserver/ {
+            proxy_pass https://wso2test.com:9443/;
+            proxy_redirect https://wso2test.com:8243/ https://wso2test.com:8243/appserver/;
+            proxy_cookie_path / /appserver;
+        }
 
-                    #with portOffset 10 running ESB
-                    location /esb/ {
-                        proxy_pass https://wso2test.com:9453/;
-                        proxy_redirect https://wso2test.com:8243/ https://wso2test.com:8243/esb/;
-                        proxy_cookie_path / /esb;
-                    }
-                }
+        #with portOffset 10 running ESB
+        location /esb/ {
+            proxy_pass https://wso2test.com:9453/;
+            proxy_redirect https://wso2test.com:8243/ https://wso2test.com:8243/esb/;
+            proxy_cookie_path / /esb;
+        }
+    }
 
-                #Configurations for listener 8280.
-                server {
-                    listen 8280;
-                    server_name wso2test.com;
-                    client_max_body_size 100M;
+    #Configurations for listener 8280.
+    server {
+        listen 8280;
+        server_name wso2test.com;
+        client_max_body_size 100M;
 
-                    root /usr/share/nginx/www;
-                    index index.html index.htm;
+        root /usr/share/nginx/www;
+        index index.html index.htm;
 
-                    #with portOffset 0 running AS
-                    location /appserver/ {
-                        proxy_pass http://wso2test.com:9763/;
-                        proxy_redirect http://wso2test.com:8280/ http://wso2test.com:8280/appserver/;
-                        proxy_cookie_path / /appserver;
-                    }
+        #with portOffset 0 running AS
+        location /appserver/ {
+            proxy_pass http://wso2test.com:9763/;
+            proxy_redirect http://wso2test.com:8280/ http://wso2test.com:8280/appserver/;
+            proxy_cookie_path / /appserver;
+        }
 
-                    #with portOffset 10 running ESB
-                    location /esb/ {
-                        proxy_pass http://wso2test.com:9773/;
-                        proxy_redirect http://wso2test.com:8280/ http://wso2test.com:8280/esb/;
-                        proxy_cookie_path / /esb;
-                    }
-                }
+        #with portOffset 10 running ESB
+        location /esb/ {
+            proxy_pass http://wso2test.com:9773/;
+            proxy_redirect http://wso2test.com:8280/ http://wso2test.com:8280/esb/;
+            proxy_cookie_path / /esb;
+        }
+    }
     ```
 
     !!! Info
@@ -176,7 +176,7 @@ Follow the steps given below.
 10. Save the file and restart the nginx server using the following
     command to complete the nginx configuration:  
 
-    ``` java
+    ```bash
     sudo service nginx restart
     ```
 
@@ -187,7 +187,7 @@ Follow the steps given below.
     `           as.wso2.com          ` to the
     `           /etc/hosts          ` file as shown below.  
 
-    ``` java
+    ```bash
     127.0.0.1  wso2test.com
     127.0.0.1  as.wso2test.com
     127.0.0.1  esb.wso2test.com
@@ -202,15 +202,15 @@ Follow the steps given below.
     set the HostName to what you defined in the nginx configuration as
     shown below (for both products):
 
-    ``` java
-            <HostName>wso2test.com</HostName>
+    ```bash
+    <HostName>wso2test.com</HostName>
     ```
 
 3.  Now, set the MgtHostName as shown below.
 
     -   For Application Server:  
 
-        ``` java
+        ```xml
                     <MgtHostName>as.wso2test.com</MgtHostName>
         ```
 
