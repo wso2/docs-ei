@@ -21,7 +21,7 @@ Select the template to transform XML messages to JSON and your project will load
 
 ## Deploying your service on Docker
 
-You can run the service that you developed above as a Docker container. The Ballerina language includes a [Ballerina_Docker_Extension](https://github.com/ballerinax/docker) that offers native support to run Ballerina programs on containers.
+You can run the service that you developed in the Quick Start Guide as a Docker container. The Ballerina language includes a [Ballerina_Docker_Extension](https://github.com/ballerinax/docker) that offers native support to run Ballerina programs on containers.
 
 To run a service as a Docker container, add the corresponding Docker annotations to your service code. To add Docker support, add the following code to the .bal file of the service you created above.
 
