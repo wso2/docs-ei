@@ -40,10 +40,10 @@ import ballerina/docker;
 }
 ```
 
-Now your code is ready to generate deployment artifacts. In this case it is a Docker image.
+Now your code is ready to generate deployment artifacts. In this case it is a Docker image. Navigate to the directory of your porject and run the following command to build the module and generate the Docker artifacts.
   
 ```bash
-$ ballerina build main.bal  
+$ ballerina build MyModule  
 
 ```
 
@@ -51,20 +51,28 @@ You get the following output.
 
 ```
 Compiling source
-	main.bal
+	sam/MyModule:0.1.0
+
+Creating balos
+	target/balo/MyModule-2019r3-any-0.1.0.balo
+
+Running tests
+    sam/MyModule:0.1.0
+	No tests found
+
 
 Generating executables
-	main.jar
+	target/bin/MyModule.jar
 
 Generating docker artifacts...
 	@docker 		 - complete 2/2 
 
 	Run the following command to start a Docker container:
-	docker run -d -p 9191:9191 sciencelab:v2.0.0```
-
+	docker run -d -p 9191:9191 sciencelab:v2.0.0
+	
 ```
 
-Use the following command to view the docker images that are running
+Use the following command to view the Docker images that are running
 
 ```bash
 $ docker images  
