@@ -2,7 +2,7 @@
 
 Deploying your Ballerina code is easier than ever with the growth of containers and container platforms such as Kubernetes.
 
-Deploying a Ballerina program or service is the process of creating assets that ready the program and service(s) for activation in another runtime, such as Docker Engine, Moby, Kubernetes, or Cloud Foundry. The Ballerina compiler is able to generate the necessary artifacts for different deployment annotations based on annotations that decorate the source code, which provide compiler instructions for artifact generation.
+Deploying a Ballerina integration service is the process of creating assets that ready the program and service(s) for activation in another runtime, such as Docker Engine, Moby, Kubernetes, or Cloud Foundry. The Ballerina compiler is able to generate the necessary artifacts for different deployment annotations based on annotations that decorate the source code, which provide compiler instructions for artifact generation.
 
 This topic provides instructions on how to deploy your project on [Docker](https://www.docker.com/). The project in this case, is the same one you used in the [Quick Start Guide](../../getting-started/quick-start-guide/).
 
@@ -23,9 +23,7 @@ Select the template to transform XML messages to JSON and your project will load
 
 You can run the service that you developed above as a Docker container. The Ballerina language includes a [Ballerina_Docker_Extension](https://github.com/ballerinax/docker) that offers native support to run Ballerina programs on containers.
 
-To run a service as a Docker container, add the corresponding Docker annotations to your service code.
-
-To add Docker support, add the following code to the .bal file of the service you created above.
+To run a service as a Docker container, add the corresponding Docker annotations to your service code. To add Docker support, add the following code to the .bal file of the service you created above.
 
 ```ballerina
 import ballerina/docker;  
