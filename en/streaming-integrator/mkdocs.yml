@@ -93,15 +93,9 @@ nav:
       - 'Performing Real-time ETL with MySQL': 'examples/performing-real-time-etl-with-mysql.md'
       - 'Performing Real-time ETL with Files': 'examples/performing-real-time-etl-with-files.md'
       - 'Working with Kafka': 'examples/working-with-kafka.md'
-      - 'Working with NATS': 'examples/working-with-nats.md'
-      - 'Transforming JSON Messages': 'examples/transforming-json-messages.md'
       - 'Transforming XML Messages': 'examples/transforming-xml-messages.md'
-      - 'Integrating Databases to Data Flows': 'examples/integrating-databases-to-data-flows.md'
       - 'Exposing Processed Data as API': 'examples/exposing-processed-data-as-api.md'
       - 'Triggering Integrations via Micro Integrator': 'examples/triggering-integrations-via-micro-integrator.md'
-      - 'Analyzing Data and Deriving Insights': 'examples/analyzing-data-and-deriving-insights.md'
-      - 'Performing Reliable Data Integration (Error Streams)': 'examples/reliable-data-integration.md'
-      - 'Summarizing and Aggregating Data in Real Time': 'examples/summarizing-and-aggregating-data.md'
 
   - 'Administration':
     - 'Working with Siddhi Connectors':
