@@ -89,39 +89,3 @@ The Synapse artifacts used are explained below.
 
     !!! Info
         You can view the ActiveMQ queue by accessing the ActiveMQ management console using the URL `http://0.0.0.0:8161/admin`and using `admin` as both the username and password.
-    
-## Performance Tuning
-
-You can improve the performance of this scenario by following the steps
-given below.
-
--   Add the following parameter to the JMS sender configuration of the
-    esb.toml file to enable JMS sender caching:  
-
-    ``` java
-    [mediation]
-    transport.jms.CacheLevel=producer
-    ```
-
-    The possible values for the cache level are
-    `           none          ` , `           auto          ` ,
-    `           connection          ` , `           session          `
-    and `           producer          ` . Out of the possible values,
-    `           producer          ` is the highest level that provides
-    maximum performance.
-
--   Add the following parameter to the configuration to remove
-    `           ClientApiNonBlocking          ` when sending messages
-    via JMS:
-
-    ```java
-    [mediation]
-     ClientApiNonBlocking="remove"
-    ```
-
-      
-    > By default, Axis2 spawns a new thread to handle each outgoing
-        message. To change this behavior, you need to remove the
-        `           ClientApiNonBlocking          ` property from the
-        message. Removal of this property is vital when queuing transports
-        like JMS are involved.

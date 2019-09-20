@@ -96,6 +96,8 @@ nav:
         - 'Tuning Network and OS Performance' : 'setup/performance_tuning/network_os_performance.md'
         - 'Tuning JDBC Configurations' : 'setup/performance_tuning/jdbc_tuning.md'
         - 'Tuning the JMS Transport' : 'setup/performance_tuning/jms_transport_tuning.md'
+        - 'Tuning VFS Transport' : 'setup/performance_tuning/tuning-the-VFS-Transport.md'
+        - 'Tuning the Inbound Endpoints' : 'setup/performance_tuning/tuning-inbound-endpoints.md'
       - Feature-Specific Configurations:
         - 'Configuring the Task Scheduling Component': 'setup/configuring_task_scheduling_comp.md'
         - 'Enabling CORS for Data Services': 'setup/enabling_CORS_for_data_services.md'
@@ -300,11 +302,9 @@ nav:
         - Message Mediation Basics:
           - 'Split Aggregator Pattern': 'use-cases/examples/split_aggregate_pattern.md'
           - 'Optimized Message Transformation': 'use-cases/examples/message_transformation_example.md'
-          - 'VFS Streaming': 'use-cases/examples/vfs_transport_streaming.md'
         - Message Mediation Advanced:
           - 'Split Aggregator Pattern': 'use-cases/examples/split_aggregate_pattern.md'
           - 'Optimized Message Transformation': 'use-cases/examples/message_transformation_example.md'
-          - 'VFS Streaming': 'use-cases/examples/vfs_transport_streaming.md'
         - JMS Examples:
           - 'ESB as a JMS Consumer': 'use-cases/examples/jms_examples/esb-as-a-jms-consumer.md'
           - 'ESB as a JMS Producer': 'use-cases/examples/jms_examples/esb-as-a-jms-producer.md'
@@ -415,6 +415,7 @@ nav:
         - 'Customizing Secure Vault' : 'references/security/customizing-secure-vault.md'
         - 'Using Keystores' : 'references/security/using_keystores.md'
       - 'Best Practices' : 'references/best-Practices.md'
+      - 'Troubleshooting JMS' : 'references/troubleshooting-jms.md'
       - 'Error Codes' : 'references/error_handling.md'
     - '': page-not-found.md
      
