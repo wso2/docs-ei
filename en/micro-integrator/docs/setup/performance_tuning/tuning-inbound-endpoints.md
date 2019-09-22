@@ -1,5 +1,7 @@
 # Tuning Inbound Endpoints
 
+See the following topics to tune the HTTP and Kafka inbound endpoints.
+
 ## Tuning the HTTP Inbound
 
 By default inbound endpoints share the PassThrough transport worker pool to handle incoming requests. If you need a separate worker pool for the inbound endpoint to increase the performance, you need to configure the [HTTP worker pool parameters](../../../references/synapse-properties/inbound-endpoint-properties/#httphttps-worker-pool-configuration-properties).

@@ -1,10 +1,8 @@
 # Enabling SSL Tunneling through a Proxy Server
 
-If your proxy service connects to a back-end server through a proxy server, you can enable secure socket layer (SSL) tunneling through the proxy server to prevent any intermediate proxy services from interfering
-with the communication. SSL tunneling is available when your proxy service uses either the **HTTP PassThrough** transport or the **HTTP-NIO** transport.
+If your proxy service connects to a back-end server through a proxy server, you can enable secure socket layer (SSL) tunneling through the proxy server to prevent any intermediate proxy services from interfering with the communication. SSL tunneling is available when your proxy service uses either the **HTTP PassThrough** transport.
 
-The following section walks you through the steps to enable SSL tunneling through a proxy server. Here we will use [Squid](http://www.squid-cache.org/) as the caching and forwarding HTTP
-web proxy.
+The following section walks you through the steps to enable SSL tunneling through a proxy server. Here we will use [Squid](http://www.squid-cache.org/) as the caching and forwarding HTTP web proxy.
 
 ## Setting up Squid
 

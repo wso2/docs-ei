@@ -8,7 +8,7 @@ Micro Integrator does not need to work on the full message but can work on [mess
 like request URLs or transport headers instead. With Message Relay, the
 Micro Integrator can achieve a very high throughput.
 
-See also [PassThrough Transport](../../concepts/messaging-transport.md).
+See also [PassThrough Transport](../../concepts/messaging-transports.md).
 
 ## Configuring Message Relay
 

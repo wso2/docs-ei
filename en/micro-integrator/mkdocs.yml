@@ -49,6 +49,7 @@ nav:
     - Getting Started:
       - 'Introduction': 'overview/introduction.md'
       - 'Quick Start Guide': 'quick-start-guide/quick-start-guide.md'
+      - 'Developing your First Integration Solution': 'develop/integration-development-kickstart.md'
     - Key Concepts:
       - 'Message Entry Points': 'concepts/message-entry-points.md'
       - 'Message Processing Units': 'concepts/message-processing-units.md'
@@ -95,8 +96,10 @@ nav:
         - 'Tuning JVM Performance' : 'setup/performance_tuning/tuning_jvm_performance.md'
         - 'Tuning Network and OS Performance' : 'setup/performance_tuning/network_os_performance.md'
         - 'Tuning JDBC Configurations' : 'setup/performance_tuning/jdbc_tuning.md'
+        - 'Tuning the HTTP Transport' : 'setup/performance_tuning/http_transport_tuning.md'
         - 'Tuning the JMS Transport' : 'setup/performance_tuning/jms_transport_tuning.md'
-        - 'Tuning VFS Transport' : 'setup/performance_tuning/tuning-the-VFS-Transport.md'
+        - 'Tuning the VFS Transport' : 'setup/performance_tuning/tuning-the-VFS-Transport.md'
+        - 'Tuning the RabbitMQ Transport' : 'setup/performance_tuning/rabbitmq_transport_tuning.md'
         - 'Tuning the Inbound Endpoints' : 'setup/performance_tuning/tuning-inbound-endpoints.md'
       - Feature-Specific Configurations:
         - 'Configuring the Task Scheduling Component': 'setup/configuring_task_scheduling_comp.md'
@@ -118,7 +121,6 @@ nav:
         - 'Configuring the Multi-HTTPS Transport': 'setup/transport_configurations/multi-https-transport.md'
     - Develop:
       - 'Developing Integration Solutions': 'develop/intro-integration-development.md'
-      - 'Developer Kick Start' : 'develop/integration-development-kickstart.md'
       - Using WSO2 Integration Studio:
         - 'Quick Tour - WSO2 Integration Studio' : 'develop/WSO2-Integration-Studio.md'
         - 'Installing WSO2 Integration Studio' : 'develop/installing-WSO2-Integration-Studio.md'
@@ -404,13 +406,33 @@ nav:
           - 'Accessing Properties with XPath' : 'references/mediators/property-reference/accessing-properties-with-xpath.md'
         - 'REST API Configs': 'references/synapse-properties/rest-api-properties.md'
         - 'Proxy Service Configs': 'references/synapse-properties/proxy-service-properties.md'
-        - 'Inbound Endpoint Configs': 'references/synapse-properties/inbound-endpoint-properties.md'
+        - Inbound Endpoint Configs:
+          - 'Listening Inbound Properties': 'references/synapse-properties/inbound-endpoints/listening-inbound-endpoint-properties.md'
+          - 'Polling Inbound Properties': 'references/synapse-properties/inbound-endpoints/polling-inbound-endpoint-properties.md'
+          - 'Event-based Inbound Properties': 'references/synapse-properties/inbound-endpoints/event-based-inbound-endpoint-properties.md'
+          - 'Custom Inbound Properties': 'references/synapse-properties/inbound-endpoints/custom-inbound-endpoint-properties.md'
         - 'Scheduled Task Configs': 'references/synapse-properties/scheduled-task-properties.md'
-        - 'Message Store Configs': 'references/synapse-properties/message-store-properties.md'
-        - 'Message Processor Configs': 'references/synapse-properties/message-processor-properties.md'
+        - Message Store Configs: 
+          - 'JMS Message Store Properties': 'references/synapse-properties/message-stores/jms-msg-store-properties.md'
+          - 'JDBC Message Store Properties': 'references/synapse-properties/message-stores/jdbc-msg-store-properties.md'
+          - 'RabbitMQ Message Store Properties': 'references/synapse-properties/message-stores/rabbitmq-msg-store-properties.md'
+          - 'Resequence Message Store Properties': 'references/synapse-properties/message-stores/resequence-msg-store-properties.md'
+          - 'WSO2 MB Message Store Properties': 'references/synapse-properties/message-stores/wso2mb-msg-store-properties.md'
+          - 'In Memory Message Store Properties': 'references/synapse-properties/message-stores/in-memory-msg-store-properties.md'
+          - 'Custom Message Store Properties': 'references/synapse-properties/message-stores/custom-msg-store-properties.md'
+        - Message Processor Configs:
+          - 'Message Sampling Processor Properties': 'references/synapse-properties/message-processors/msg-sampling-processor-properties.md'
+          - 'Scheduled Message Forwarding Processor Properties': 'references/synapse-properties/message-processors/msg-sched-forwarding-processor-properties.md'
+          - 'Scheduled Failover Message Forwarding Processor Properties': 'references/synapse-properties/message-processors/msg-sched-failover-forwarding-processor-properties.md'
         - 'Template Configs': 'references/synapse-properties/template-properties.md'
         - 'Endpoint Configs': 'references/synapse-properties/endpoint-properties.md'
-        - 'Transport Configs': 'references/synapse-properties/transport-parameters.md'
+        - Transport Configs:
+          - 'VFS Parameters': 'references/synapse-properties/transport-parameters/vfs-transport-parameters.md'
+          - 'JMS Parameters': 'references/synapse-properties/transport-parameters/jms-transport-parameters.md'
+          - 'RabbitMQ Parameters': 'references/synapse-properties/transport-parameters/rabbitmq-transport-parameters.md'
+          - 'FIX Parameters': 'references/synapse-properties/transport-parameters/vfs-transport-parameters.md'
+          - 'MailTo Parameters': 'references/synapse-properties/transport-parameters/mailto-transport-parameters.md'
+          - 'MQTT Parameters': 'references/synapse-properties/transport-parameters/mqtt-transport-parameters.md'
       - Security Topics:
         - 'Customizing Secure Vault' : 'references/security/customizing-secure-vault.md'
         - 'Using Keystores' : 'references/security/using_keystores.md'

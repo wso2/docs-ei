@@ -20,12 +20,11 @@ messageType property before your mediators in the configuration:
     <property name="messageType" value="application/xml" scope="axis2"/>
 ```
 
-## Configuring message builders and formatters
+## Default message builders and formatters
 
-Listed below are the default message builders and formattters that are enabled in the deployment.toml file of WSO2 Micro Integrator by default:
+Listed below are the default message builders and formattters that are enabled for WSO2 Micro Integrator by default:
 
 ```toml tab='Default Message Builders'
-[message_builders]
 application_xml = "org.apache.axis2.builder.ApplicationXMLBuilder"
 form_urlencoded = "org.apache.synapse.commons.builders.XFormURLEncodedBuilder"
 multipart_form_data = "org.apache.axis2.builder.MultipartFormDataBuilder"
@@ -39,7 +38,6 @@ application_binary = "org.apache.axis2.format.BinaryBuilder"
 ```
 
 ```toml tab='Default Message Formatters'
-[message_formatters]
 form_urlencoded = "org.apache.synapse.commons.formatters.XFormURLEncodedFormatter"
 multipart_form_data = "org.apache.axis2.transport.http.MultipartFormDataFormatter"
 application_xml = "org.apache.axis2.transport.http.ApplicationXMLFormatter"
@@ -54,9 +52,11 @@ edi_hl7 = "org.wso2.carbon.business.messaging.hl7.message.HL7MessageFormatter"
 application_binary = "org.apache.axis2.format.BinaryFormatter"
 ```
 
-## Using message relay
+## Configuring message builders/formatters
 
-If you want to enable message relay, so that messages of a specific content type are not built or formatted but simply pass through the Micro Integrator, you can specify the message relay builder (for the content type) in the deployment.toml file as shown below.
+### Handling message relay
+
+If you want to enable message relay, so that messages of a specific content type are not built or formatted but simply pass through the Micro Integrator, you can specify the message relay builder (for the required content types) in the deployment.toml file (stored in the `MI_HOME/conf` directory) as shown below.
 
 ```toml
 [[custom_message_formatters]]
@@ -72,7 +72,7 @@ See [Configuring Message Relay](message-relay.md).
 
 ## Handling messages with no content type
 
-To ensure that messages with no content type are handled gracefully, add the following to the deployment.toml file:
+To ensure that messages with no content type are handled gracefully, add the following to the deployment.toml file (stored in the `MI_HOME/conf` directory).
 
 ```toml
 [[custom_message_builders]]
@@ -92,7 +92,9 @@ There is no default builder or formatter for messages with the text/csv
 content type. If you just want to pass these messages through the Micro Integrator,
 you can configure the message relay builder and formatter. If you want
 to process these messages, you can access the content inside the
-request/response payload of CSV by configuring the
+request/response payload of CSV.
+
+Add the following to the deployment.toml file (stored in the `MI_HOME/conf` directory).
 
 ```toml
 [message_builders]
@@ -131,13 +133,13 @@ value) to replace illegal characters in payloads.
 com.ctc.wstx.outputInvalidCharHandler.char=\u0020
 ```
 
-## JSON message builders and formatters
+### JSON message builders and formatters
 
 The Micro Integratorr provides the following message builders and formatters
 for JSON. Both types of JSON builders use [StAXON](https://github.com/beckchr/staxon) as the
 underlying JSON processor.
 
-### Default message builder and formatter
+**Default message builder and formatter**
 
 The default message builder and formatter of WSO2 Micro Integrator
 are as follows:
@@ -153,7 +155,7 @@ and convert the payload to XML at any point in the mediation flow.
 The default message builder and formatter can also be used by default
 for JSON mapping when you expose datasources as data services via the Micro Integrator.
 
-### Other message builders and formatters
+**Other message builders and formatters**
 
 Other message builders and formatters can be enabled by adding the
 required parameters to the deployment.toml file as
