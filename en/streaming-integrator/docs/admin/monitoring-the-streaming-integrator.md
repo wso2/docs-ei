@@ -673,14 +673,13 @@ view the status by following the procedure below:
 
     2. In the **Port** parameter, enter the port number of the node you want to add.
     
-3.  If the node you added is currently unreachable, the following dialog
-    box is displayed.
-    ![](attachments/112391028/112391037.png)
-    Click either **WORKER** or **MANAGER.** If you click **WORKER** ,
-    the node is displayed under **Never Reached** . If you click
-    **Manager** , the node is displayed under **Distributed
-    Deployments** as shown below.
-    ![](attachments/112391028/112391042.png)
+3. If the node you added is currently unreachable, the following dialog box is displayed.
+
+    ![Unreachable Node](../images/monitoring-the-streaming-integrator/unreachable-node.png)
+
+    Click either **WORKER** or **MANAGER.** If you click **WORKER**, the node is displayed under **Never Reached**. If you click **Manager** , the node is displayed under **Distributed Deployments** as shown below.
+
+    ![Unreachable nodes](../images/monitoring-the-streaming-integrator/distributed-deployment-with-unreachable-manager.png)
 
 !!! info
     The following basic details are displayed for each node.
@@ -707,7 +706,7 @@ page to provide information relating to the status of the nodes.
 <tr class="odd">
 <td>View (Example)</td>
 <td><div class="content-wrapper">
-<p><img src="attachments/112391028/112391041.png" width="900" /></p>
+<p><img src="../../images/monitoring-the-streaming-integrator/distributed-deployment-overview.png" /></p>
 </div></td>
 </tr>
 <tr class="even">
@@ -716,7 +715,7 @@ page to provide information relating to the status of the nodes.
 <p>The nodes that are connected in the distributed deployment are displayed under the relevant group ID in the status dashboard (e.g., <code>               sp              </code> in the above example). Both managers and workers are displayed under separate labels.</p>
 <p><strong>Managers</strong> : The active manager node in the cluster is indicated by a green dot that is displayed with the host name and the port of the node. Similarly, a grey dot is displayed for passive manager nodes in the cluster.</p>
 <p><strong>Workers</strong> : When you add an active manager node, it automatically retrieves the worker node details that are connected with that particular deployment. If the worker node is already registered in the Status Dashboard, you can view the metrics of that node as follows:<br />
-<img src="attachments/112391028/112391035.png" /></p>
+<img src="../../images/monitoring-the-streaming-integrator/worker-metrics.png" /></p>
 </div></td>
 </tr>
 <tr class="odd">
@@ -746,7 +745,7 @@ page to provide information relating to the status of the nodes.
 <tr class="odd">
 <td>View (Example)</td>
 <td><div class="content-wrapper">
-<p><img src="attachments/112391028/112391033.png" width="900" /></p>
+<p><img src="../../images/monitoring-the-streaming-integrator/ha-active-passive-nodes.png" /></p>
 </div></td>
 </tr>
 <tr class="even">
@@ -778,7 +777,7 @@ page to provide information relating to the status of the nodes.
 <tr class="odd">
 <td>View (Example)</td>
 <td><div class="content-wrapper">
-<p><img src="attachments/112391028/112391030.png" width="900" /></p>
+<p><img src="../../images/monitoring-the-streaming-integrator/single-nodes.png" /></p>
 </div></td>
 </tr>
 <tr class="even">
@@ -808,7 +807,7 @@ page to provide information relating to the status of the nodes.
 <tr class="odd">
 <td>View (Example)</td>
 <td><div class="content-wrapper">
-<p><img src="attachments/112391028/112391029.png" /></p>
+<p><img src="../../images/monitoring-the-streaming-integrator/unreachable-nodes.png" /></p>
 </div></td>
 </tr>
 <tr class="even">
@@ -838,7 +837,7 @@ page to provide information relating to the status of the nodes.
 <tr class="odd">
 <td>View (Example)</td>
 <td><div class="content-wrapper">
-<p><img src="attachments/112391028/112391034.png" width="900" /></p>
+<p><img src="../../images/monitoring-the-streaming-integrator/currently-unreachable-nodes.png" /></p>
 </div></td>
 </tr>
 <tr class="even">
@@ -868,7 +867,7 @@ page to provide information relating to the status of the nodes.
 <tr class="odd">
 <td>View (Example)</td>
 <td><div class="content-wrapper">
-<p><img src="attachments/112391028/112391031.png" width="900" /></p>
+<p><img src="../../images/monitoring-the-streaming-integrator/nodes-with-metrics-disabled.png" /></p>
 </div></td>
 </tr>
 <tr class="even">
@@ -895,7 +894,7 @@ page to provide information relating to the status of the nodes.
 <tr class="odd">
 <td>View (Example)</td>
 <td><div class="content-wrapper">
-<p><img src="attachments/112391028/112391032.png" /></p>
+<p><img src="../../images/monitoring-the-streaming-integrator/jmx-reporter-disabled.png" /></p>
 </div></td>
 </tr>
 <tr class="even">
@@ -922,7 +921,7 @@ page to provide information relating to the status of the nodes.
 <tr class="odd">
 <td>View (Example)</td>
 <td><div class="content-wrapper">
-<p><img src="attachments/112391028/112391036.png" /></p>
+<p><img src="../../images/monitoring-the-streaming-integrator/statistics-trends.png" /></p>
 </div></td>
 </tr>
 <tr class="even">
@@ -943,13 +942,10 @@ page to provide information relating to the status of the nodes.
 
 ### Viewing node-specific pages
 
-When you open the Status Dashboard, the [Node
-Overview](_Node_Overview_) page is displayed by default. To view
-information specific to a selected worker node, click on the relevant
-widget. This opens a separate page for the worker node as shown in the
-example below.
+When you open the Status Dashboard, the [Node Overview](#node-overview) page is displayed by default. To view information specific to a selected worker node, click on the relevant
+widget. This opens a separate page for the worker node as shown in the example below.
 
-![](attachments/112391048/112391055.png)
+![Worker-specific Details](../../images/monitoring-the-streaming-integrator/worker-specific-details.png)
 
 #### Status indicators
 
@@ -962,7 +958,7 @@ Thw following gadgets can be viewed for the selected worker.
 <tr class="odd">
 <td>View (Example)</td>
 <td><div class="content-wrapper">
-<p><img src="attachments/112391048/112391054.png" /></p>
+<p><img src="../../images/monitoring-the-streaming-integrator/server-general-details.png" /></p>
 </div></td>
 </tr>
 <tr class="even">
@@ -989,7 +985,7 @@ Thw following gadgets can be viewed for the selected worker.
 <tr class="odd">
 <td>View (Example)</td>
 <td><div class="content-wrapper">
-<p><img src="attachments/112391048/112391053.png" height="250" /></p>
+<p><img src="../../images/monitoring-the-streaming-integrator/cpu-usage.png" /></p>
 <p><br />
 </p>
 </div></td>
@@ -1023,7 +1019,7 @@ Thw following gadgets can be viewed for the selected worker.
 <td><div class="content-wrapper">
 <p><br />
 </p>
-<p><img src="attachments/112391048/112391052.png" height="250" /></p>
+<p><img src="../../images/monitoring-the-streaming-integrator/memory-used.png" /></p>
 </div></td>
 </tr>
 <tr class="even">
@@ -1053,7 +1049,7 @@ Thw following gadgets can be viewed for the selected worker.
 <td><div class="content-wrapper">
 <p><br />
 </p>
-<p><img src="attachments/112391048/112391049.png" height="250" /></p>
+<p><img src="../../images/monitoring-the-streaming-integrator/system-load-average.png" /></p>
 </div></td>
 </tr>
 <tr class="even">
@@ -1080,7 +1076,7 @@ Thw following gadgets can be viewed for the selected worker.
 <td><div class="content-wrapper">
 <p><br />
 </p>
-<p><img src="attachments/112391048/112391051.png" height="250" /></p>
+<p><img src="../../images/monitoring-the-streaming-integrator/overall-throughput.png" /></p>
 </div></td>
 </tr>
 <tr class="even">
@@ -1110,7 +1106,7 @@ Thw following gadgets can be viewed for the selected worker.
 <td><div class="content-wrapper">
 <p><br />
 </p>
-<p><img src="attachments/112391048/112391050.png" height="250" /></p>
+<p><img src="../../images/monitoring-the-streaming-integrator/siddhi-applications.png" /></p>
 </div></td>
 </tr>
 <tr class="even">
@@ -1140,59 +1136,56 @@ Thw following gadgets can be viewed for the selected worker.
 
 ### Viewing worker history
 
-This section explains how to view statistics relating to the performance
-of a selected node for a specific time interval.
+This section explains how to view statistics relating to the performance of a selected node for a specific time interval.
 
-1.  Log in to the Status Dashboard. For detailed instructions, see
-    [Monitoring the Stream Processor - Viewing the Status
-    Dashboard.](Monitoring-Stream-Processor_112391023.html#MonitoringStreamProcessor-View)
-    When you login, the [Node Overview](_Node_Overview_) page is
-    displayed by default.
-2.  Click on the required node to view information specific to that
-    node.
-3.  In the page displayed with node-specific information, click one of
-    the following gadgets to open the **Metrics** page.
+1. Log in to the Status Dashboard.
+
+2. In the **Node Overview** page, click on the required node to view information specific to that node.
+
+3. In the page displayed with node-specific information, click one of the following gadgets to open the **Metrics** page.
+
     -   **CPU Usage**
+
     -   **Memory Used**
+
     -   **System Load Average**
+
     -   **Overall Throughput**
-4.  In the **Metrics** page, click the required time interval. Then the
-    page displays statistics relating to the performance of the selected
-    node applicable to that time period.
-    ![](attachments/112391056/112391063.png)
-5.  If you want to view more details, click **More Details** .
-    ![](attachments/112391056/112391062.png)
 
-As a result, the following additional information is displayed for the
-node for the selected time period.
+4. In the **Metrics** page, click the required time interval. Then the page displays statistics relating to the performance of the selected node applicable to that time period.
 
-1.  -   ****CPU Usage
-        ![](attachments/112391056/112391061.png){height="250"}
-        ****
+    ![Select Time Interval](../../images/monitoring-the-streaming-integrator/select-time-interval.png)
 
+5. If you want to view more details, click **More Details**.
 
+    ![More Details About Node Performance](../../images/monitoring-the-streaming-integrator/more-details-node-performance.png)
 
-    -   ****JVM OS as CPU
-        ![](attachments/112391056/112391060.png){height="250"}****
+    As a result, the following additional information is displayed for the node for the selected time period.
 
+    - **CPU Usage**
 
+        ![CPU Usage](../../images/monitoring-the-streaming-integrator/worker-cpu-usage.png)
 
-    -   ****JVM Physical Memory
-        ![](attachments/112391056/112391059.png){height="250"}****
+    - **JVM OS as CPU**
 
-    -   ****JVM Threads
-        ![](attachments/112391056/112391057.png){height="250"}****
+        ![JVM OS as CPU](../../images/monitoring-the-streaming-integrator/jvm-os-cpu.png)
 
+    - **JVM Physical Memory**
 
+        ![JVM Physical Memory](../../images/monitoring-the-streaming-integrator/jvm-physical-memory.png)
 
-    -   **JVM Swap Space
-        ![](attachments/112391056/112391058.png){height="250"}
-        **
+    - **JVM Threads**
+
+        ![JVM Threads](../../images/monitoring-the-streaming-integrator/jvm-threads.png)
+
+    - **JVM Swap Space**
+
+        ![JVM Swap Space](../../images/monitoring-the-streaming-integrator/jvm-swap-space.png)
+
 
 ### Viewing statistics for Siddhi applications
 
-When you open the WSO2 Status Dashboard, the [Node
-Overview](_Node_Overview_) page is displayed by default.
+When you open the WSO2 Status Dashboard, the [Node Overview](#node-overview) page is displayed by default.
 
 1.  To view information specific to a selected worker node, click on the
     relevant gadget. This opens the [page specific to the
