@@ -1,4 +1,4 @@
-# Integration Development Kick Start
+# Developing Your First Integration Solution
 
 Integration developers need efficient tools to build and test all the
 integration use cases required by the enterprise before pushing them

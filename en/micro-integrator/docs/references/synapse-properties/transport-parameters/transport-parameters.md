@@ -924,11 +924,6 @@ To enable SSL support in RabbitMQ, you need to configure the following paramet
   </tr>
 </table>
 
-## HTTP/HTTPS Servlet Parameters
-
-Similar to the servlet HTTP transport, this transport is also based on Apache Tomcat's connector implementation. Please refer Tomcat *connector
-configuration reference* for a complete list of supported parameters.
-
 ## JMS Parameters
 
 ### JMS connection factory parameters

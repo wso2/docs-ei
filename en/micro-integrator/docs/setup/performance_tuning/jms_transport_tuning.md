@@ -5,7 +5,7 @@ The Java Message Service (JMS) transport of the WSO2 Micro Integrator allows you
 !!! Info
     See the [JMS troubleshooting guide](../../references/troubleshooting-jms.md) for more topics related to tuning JMS use cases.
 
-## Increasing the maximum number of JMS proxies
+## Increasing the maximum JMS proxies
 
 If you create several JMS proxy services in the Micro Integrator, you will see a message similar to the following:
 
