@@ -1,14 +1,27 @@
 # Tuning the HTTP Transport
 
-## Improving the non-blocking invocation performance
+See the following topics to tune the HTTP passthrough transport:
 
-You can improve the non-blocking invocation performance by either
-configuring properties related to the HTTP Pass Through transport or
-by configuring the properties related to the NHTTP transport, based on
-which transport you are using as the default WSO2 EI transport in your
-production environment.
+## Tuning non-blocking invocations
 
-### Configuring passthru-http.properties
+You can improve performance of your non-blocking invocations by configuring the following parameters related to the HTTP Pass Through transport in the deployment.toml file (stored in the `MI_HOME/conf` directory):
+
+```toml
+[transport.http]
+socket_timeout = "3m"
+core_worker_pool_size = 400
+max_worker_pool_size = 400
+worker_pool_queue_length = -1
+io_buffer_size = 16384
+max_http_connection_per_host_port = 32767
+preserve_http_user_agent = false
+preserve_http_headers = ["Content-Type"]
+```
+See the [descriptions](../../../references/config-catalog/#http-transport) of these parameters.
+
+<!--
+
+## Configuring passthru-http.properties
 
 You can configure the following properties as required in the `         <EI_Home>/conf/passthru-http.properties        ` file:
 
@@ -102,108 +115,12 @@ The main difference between using this property and using the <a href="https://d
 </tr>
 </tbody>
 </table>
+-->
 
-#####  Configuring nhttp.properties
+## Tuning blocking invocations
 
-You can configure the NHTTP properties as required in the
-`         <EI_Home>/conf/nhttp.properties        ` file:
-
--   Following are the properties used by the non-blocking HTTP
-    transport:  
-
-    <table>
-    <colgroup>
-    <col style="width: 33%" />
-    <col style="width: 33%" />
-    <col style="width: 33%" />
-    </colgroup>
-    <thead>
-    <tr class="header">
-    <th>Property</th>
-    <th>Description</th>
-    <th>Default Value</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr class="odd">
-    <td><p><code>                http.socket.timeout.receiver               </code></p></td>
-    <td>This is the maximum period of inactivity between two consecutive data packets on the transport listener side. This is the socket timeout value for connection between the client and the WSO2 EI server.</td>
-    <td>60000</td>
-    </tr>
-    <tr class="even">
-    <td><p><code>                http.socket.timeout.sender               </code></p></td>
-    <td>This is the maximum period of inactivity between two consecutive data packets for the transport sender side. This is the socket timeout value for connection between the WSO2 EI server and the backend server.</td>
-    <td>60000</td>
-    </tr>
-    <tr class="odd">
-    <td><p><code>                nhttp_buffer_size               </code></p></td>
-    <td>This is the size of the buffer through which data passes when receiving/transmitting NHTTP requests.</td>
-    <td>8192</td>
-    </tr>
-    <tr class="even">
-    <td><p><code>                http.tcp.nodelay               </code></p></td>
-    <td>This determines whether Nagle's algorithm (for improving the efficiency of TCP/IP by reducing the number of packets sent over the network) is used. Use the value 0 to enable this algorithm and the value 1 to disable it. The algorithm should be enabled if you need to reduce bandwidth consumption.</td>
-    <td>1</td>
-    </tr>
-    <tr class="odd">
-    <td><p><code>                http.connection.stalecheck               </code></p></td>
-    <td>This determines whether stale connection check is used. Use the value 0 to enable stale connection check and the value 1 to disable it. When this parameter is enabled, connections that are no longer used are identified and disabled before each request execution. Stale connection check should be disabled when performing critical operations.</td>
-    <td>0</td>
-    </tr>
-    <tr class="even">
-    <td><p><code>                http.block_service_list               </code></p></td>
-    <td>If this parameter is set to <code>               true              </code> , all services deployed to WSO2 EI cannot be viewed via the http <code>               :&lt;EI&gt;:8240/services/              </code> and <code>               https:&lt;EI&gt;:8243/services/              </code> URls.</td>
-    <td><code>               false              </code></td>
-    </tr>
-    <tr class="odd">
-    <td><code>               http.headers.preserve              </code></td>
-    <td>This parameter allows you to specify the header field/s of messages passing through WSO2 EI that need to be preserved and printed in the outgoing message (e.g., <code>               http.headers.preserve = Location, Date, Server              </code> ). Supported header fields are: <code>               Date, Server              </code> and <code>               User-Agent.              </code></td>
-    <td><br />
-    </td>
-    </tr>
-    </tbody>
-    </table>
-
--   Following are the HTTP sender thread pool properties:
-
-    | Parameter Name                                | Description                                                                                                                                                                                                                                                                                                                                                                                 |  Default Value|
-    |-----------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|--------------:|
-    | `               snd_t_core              `     | Transport listener worker pool's initial thread count.                                                                                                                                                                                                                                                                                                                                      |             20|
-    | `               snd_t_max              `      | Transport listener worker pool's maximum thread count. Once this limit is reached and all the threads in the pool are busy, they will be in a `               BLOCKED              ` state. In such situations an increase in the number of messages would fire the error `               SYSTEM ALERT - HttpServerWorker threads were in BLOCKED state during last minute              ` . |            100|
-    | `               snd_alive_sec              `  | Listener-side keep-alive seconds.                                                                                                                                                                                                                                                                                                                                                           |              5|
-    | `               snd_qlen              `       | The listener queue length.                                                                                                                                                                                                                                                                                                                                                                  |             -1|
-    | `               snd_io_threads              ` | Listener-side IO workers.                                                                                                                                                                                                                                                                                                                                                                   |              2|
-
-    When there is an increased load, it is recommended to increase the
-    number of threads mentioned in the properties above to balance it.  
-
-
--   Following are the HTTP listener thread pool properties:
-
-    > Listener-side properties generally have the same values as the
-        sender-side properties .
-
-
-    | Property                                                 | Description                                                                                                                                                                                                                                                                                                                                                                               |  Default Value|
-    |----------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|--------------:|
-    | `               lst_t_core                             ` | Transport sender worker pool's initial thread count.                                                                                                                                                                                                                                                                                                                                      |             20|
-    | `               lst_t_max              `                 | Transport sender worker pool's maximum thread count. Once this limit is reached and all the threads in the pool are busy, they will be in a `               BLOCKED              ` state. In such situations an increase in the number of messages would fire the error `               SYSTEM ALERT - HttpServerWorker threads were in BLOCKED state during last minute              ` . |            100|
-    | `               lst_alive_sec              `             | Sender-side keep-alive seconds.                                                                                                                                                                                                                                                                                                                                                           |              5|
-    | `               lst_qlen              `                  | The sender queue length.                                                                                                                                                                                                                                                                                                                                                                  |             -1|
-    | `               lst_io_threads              `            | Sender-side IO workers.                                                                                                                                                                                                                                                                                                                                                                   |              2|
-
--   Following is a property for AIX-based deployment:
-
-    | Property                                                      | Description                                                                | Default Value                       |
-    |---------------------------------------------------------------|----------------------------------------------------------------------------|-------------------------------------|
-    | `               http.nio.interest-ops-queueing              ` | Determines whether interestOps() queueing is enabled for the I/O reactors. | `               true              ` |
-
-### Improving the blocking invocation performance
-
-The [Callout
-mediator](https://docs.wso2.com/display/EI650/Callout+Mediator) as well
-as the [Call
-mediator](https://docs.wso2.com/display/EI650/Call+Mediator) in blocking
+The [Callout mediator](../.././references/mediators/callout-Mediator.md) as well
+as the [Call mediator](../.././references/mediators/call-Mediator.md) in blocking
 mode uses the axis2 `         CommonsHTTPTransportSender        `
 internally to invoke services. It uses the
 `         MultiThreadedHttpConnectionManager        ` to handle
@@ -211,19 +128,18 @@ connections, but by default it only allows two simultaneous connections
 per host. So if there are more than two requests per host, the requests
 have to wait until a connection is available. Therefore if the backend
 service is slow, many requests have to wait until a connection is
-available from the `         MultiThreadedHttpConnectionManager        `
-.This can lead to a significant degrade in the performance of WSO2 EI.
+available from the `         MultiThreadedHttpConnectionManager        `. This can lead to a significant degrade in the performance of WSO2 Micro Integrator.
 
-In order to overcome this issue, you can edit
-the CommonsHTTPTransportSender configuration in the
-`         <EI_HOME>/conf/axis2/axis2_blocking_client.xml        `
-file, and increase the value of the
-`         defaultMaxConnectionsPerHost        ` parameter.
+In order to overcome this issue, setting the `defaultMaxConnectionsPerHost` parameter to `100` in the deployment.toml file (stored in the `MI_HOME/conf` directory).
 
-For example, if you need to set 100 simultaneous connections per second,
-you can set the value of the
-`         defaultMaxConnectionsPerHost        ` parameter as follows:
+```toml
+[transport.http]
+blocking_sender.enable_client_caching = true
+blocking_sender.transfer_encoding = "chunked"
+blocking_sender.default_connections_per_host = 100
+```
 
+<!--
 ``` xml
     <transportsender class="org.apache.axis2.transport.http.CommonsHTTPTransportSender" name="http">
             <parameter name="PROTOCOL">HTTP/1.1</parameter>
@@ -232,3 +148,6 @@ you can set the value of the
             <parameter name="defaultMaxConnectionsPerHost">100</parameter>
     </transportsender>
 ```
+-->
+
+See the [descriptions](../../../references/config-catalog/#http-transport) of these parameters.

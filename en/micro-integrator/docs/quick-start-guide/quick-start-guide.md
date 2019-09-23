@@ -5,11 +5,7 @@ case on your local environment. In this example, we use a REST API to
 simulate a simple HTTP service ( **HelloWorld** service) deployed in an
 instance of WSO2 Micro Integrator. You can deploy this HelloWorld
 service on a **Docker** container, on **Kubernetes**, or on a **VM**. When invoked,
-the **HelloWorld** service will return the following response:
- 
-```bash
-{"Hello":"World"}
-```
+the **HelloWorld** service will return the following response: `{"Hello":"World"}`
 
 ![Micro Integrator Deployment Pattern](../assets/img/micro-integrator-01.png)
 
@@ -154,9 +150,7 @@ curl http://localhost:8290/hello-world
 
 Upon invocation, you should be able to observe the following response:
 
-```bash
-{"Hello":"World"}
-```
+`{"Hello":"World"}`
 
 ### Run on Kubernetes
 
@@ -249,9 +243,7 @@ curl http://MINIKUBE_IP:32100/hello-world
 
 Upon invocation, you should be able to observe the following response:
 
-```bash
-{"Hello":"World"}
-```
+`{"Hello":"World"}`
 
 ## Run on a Virtual Machine
 
@@ -316,6 +308,4 @@ curl http://localhost:8290/hello-world
 
 Upon invocation, you should be able to observe the following response:
 
-```bash
-{"Hello":"World"}
-```
+`{"Hello":"World"}`
