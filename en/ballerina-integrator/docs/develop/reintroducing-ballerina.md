@@ -1,14 +1,108 @@
-# A Re-introduction to Ballerina Programming Language
+# Re-introducing Ballerina Programming Language
 
-Why does the Ballerina programming language need a re-introduction? When Ballerina version 1.0 was released, it was clear that this was a platform geared towards cloud-era application programmers to easily write software that just works. The Ballerina Integrator uses the power of the language to drive a multitude of integration scenarios and empower developers to make integration simple.
+Why does the Ballerina programming language need a re-introduction? When Ballerina version 1.0 was released, it was clear that this was a platform geared towards cloud-era application programmers to easily write software that just works. The Ballerina Integrator uses the power of the language to drive a multitude of integration scenarios and empower developers to make integration simple. This page provides an overview of the language that makes it easier for developers to write their code for integration scenarios.
 
-WSO2 is the first Ballerina community member to use the new Ballerina programming language in a commercial product, Enterprise Integrator 7.0. In this product, the Ballerina Integrator is leveraged as a powerful code-first approach to programming network-distributed integrations and applications. 
+Ballerina includes an [extensive standard library](https://v1-0.ballerina.io/learn/api-docs/ballerina/index.html), which includes not only the usual low-level, general-purpose functionality, but also support for a wide variety of network protocols, interface standards, data formats and authentication/authorization standards, which make writing secure, resilient distributed applications significantly easier than with other languages. 
 
-Ballerina was initially developed by WSO2 as an open source, community-driven specification for a full programming language used for network-distributed applications. More information can be found at [http://ballerina.io](http://ballerina.io).
+Ballerina programs operate on a rich universe of values. Values are of three kinds:
 
-Ballerina incorporates fundamental concepts of distributed system integration into the language and offers a type-safe, concurrent environment to implement microservices with distributed transactions, reliable messaging, stream processing, and workflows.
+- **Simple values**, like booleans and floating point numbers, which are not constructed from other values;
+- **Structured values**, like mappings and lists, which create structures from other values;
+- **Behavioral values**, like functions, which allow parts of Ballerina programs to be handled in a uniform way with other values
 
-Based around the interactions of sequence diagrams, Ballerina has built-in support for common integration patterns and connectors, including distributed transactions, compensation and circuit breakers. With first-class support for JSON and XML, Ballerina makes it simple and effective to build robust integration across network endpoints.
+The following are the values we want to focus on in this document:
 
-With the Ballerina Integrator, developers can directly program integration projects, helping merge siloed coding and waterfall-based integration teams. Low-code alternatives force integration teams to be separate from development teams.
+- [Some value 1](#Some-value-1)
+- [Some value 2](#Some-value-2)
+- [Some value 3](#Some-value-3)
+- [Some value 4](#Some-value-4)
 
+---
+
+## Some value 1
+
+Some value 1 is used in the abc scenario.
+
+The following is an example of you would use Some value 1:
+
+```ballerina
+Sample code here
+
+```
+
+In integration scenario x, we can use Some value 1 to do y. 
+
+The following is an example of how Some value 1 is used to achieve y.
+
+```ballerina
+Sample code here
+
+```
+
+---
+
+## Some value 2
+
+Some value 1 is used in the abc scenario.
+
+The following is an example of you would use Some value 1:
+
+```ballerina
+Sample code here
+
+```
+
+In integration scenario x, we can use Some value 1 to do y. 
+
+The following is an example of how Some value 1 is used to achieve y.
+
+```ballerina
+Sample code here
+
+```
+
+---
+
+## Some value 3
+
+Some value 1 is used in the abc scenario.
+
+The following is an example of you would use Some value 1:
+
+```ballerina
+Sample code here
+
+```
+
+In integration scenario x, we can use Some value 1 to do y. 
+
+The following is an example of how Some value 1 is used to achieve y.
+
+```ballerina
+Sample code here
+
+```
+
+---
+
+## Some value 4
+
+Some value 1 is used in the abc scenario.
+
+The following is an example of you would use Some value 1:
+
+```ballerina
+Sample code here
+
+```
+
+In integration scenario x, we can use Some value 1 to do y. 
+
+The following is an example of how Some value 1 is used to achieve y.
+
+```ballerina
+Sample code here
+
+```
+
+---
