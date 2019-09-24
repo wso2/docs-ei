@@ -38,40 +38,27 @@ in the extract below.
 
 ### Setting up the database
 
-To monitor statistics in the Status Dashboard, you need a shared metrics
-database that stores the metrics of all the nodes.
+To monitor statistics in the Status Dashboard, you need a shared metrics database that stores the metrics of all the nodes.
 
-Set up a database of the required type by following the steps below. In
-this section, a MySQL database is created as an example.
+Set up a database of the required type by following the steps below. In this section, a MySQL database is created as an example.
 
 !!! info
-    The Status Dashboard is only supported with H2, MySQL, MSSQL and Oracle
-    database types. It is configured with the H2 database type by default.
-    If you want to continue to use H2, skip this step.
+    The Status Dashboard is only supported with H2, MySQL, MSSQL and Oracle database types. It is configured with the H2 database type by default. If you want to continue to use H2, skip this step.
 
 
-1.  Download and install the required database type. For this example,
-    let's download and install [MySQL
-    Server](http://dev.mysql.com/downloads/) .
-2.  Download the required database driver. For this example, download
-    the [MySQL JDBC driver](http://dev.mysql.com/downloads/connector/j/).
+1. Download and install the required database type. For this example, let's download and install [MySQL Server](http://dev.mysql.com/downloads/).
 
-3.  Unzip the database driver you downloaded, copy its JAR file (
-    `           mysql-connector-java-x.x.xx-bin.jar          ` in this
-    example), and place it in the `           <DASHBOARD_HOME>/lib          `
-    directory.
+2. Download the required database driver. For this example, download the [MySQL JDBC driver](http://dev.mysql.com/downloads/connector/j/).
 
-4.  Enter the following command in a terminal/command window, where
-    `          username         ` is the username you want to use to
-    access the databases.
-    `          mysql -u username -p         `
-5.  When prompted, specify the password you are using to access the
-    databases with the username you specified.
-6.  Create two databases named `           WSO2_METRICS_DB          `
-    (to store metrics data) and
-    `           WSO2_STATUS_DASHBOARD_DB          ` (to store
-    statistics) with tables. To create MySQL databases and tables for
-    this example, run the following commands.
+3. Unzip the database driver you downloaded, copy its JAR file (`mysql-connector-java-x.x.xx-bin.jar` in this example), and place it in the `<DASHBOARD_HOME>/lib` directory.
+
+4. Enter the following command in a terminal/command window, where `username` is the username you want to use to access the databases.
+
+    `mysql -u username -p`
+
+5. When prompted, specify the password you are using to access the databases with the username you specified.
+
+6. Create two databases named `WSO2_METRICS_DB` (to store metrics data) and `WSO2_STATUS_DASHBOARD_DB` (to store statistics) with tables. To create MySQL databases and tables for this example, run the following commands.
 
     ``` java
         mysql> create database WSO2_METRICS_DB;
@@ -90,20 +77,12 @@ this section, a MySQL database is created as an example.
 7. Create two datasources named `WSO2_METRICS_DB` and `WSO2_STATUS_DASHBOARD_DB` by adding the following datasource configurations under the `wso2.datasources:` section of the `<SI_HOME>/conf/server/deployment.yaml` file.
 
     !!! info
-        The names of the datasources must be thesame as the names of the
-        database tables you created for metrics and statistics.
-        You need to change the values for the
-        `           username          ` and `           password          `
-        parameters to the username and password that you are using to access
-        the MySQL database.
+        The names of the data sources must be the same as the names of the database tables you created for metrics and statistics. You need to change the values for the `username` and `password` parameters to the username and password that you are using to access the MySQL database.
 
-        For detailed information about datasources, see
-        [carbon-datasources](https://github.com/wso2/carbon-datasources/).
+        For detailed information about datasources, see [carbon-datasources](https://github.com/wso2/carbon-datasources/).
 
 
-
-
-    -   `                           WSO2_METRICS_DB             `
+    - `WSO2_METRICS_DB`
 
         ``` xml
                    - name: WSO2_METRICS_DB
@@ -124,7 +103,7 @@ this section, a MySQL database is created as an example.
                           isAutoCommit: false
         ```
 
-    -   `                           WSO2_STATUS_DASHBOARD_DB                           `
+    - `WSO2_STATUS_DASHBOARD_DB`
 
         ``` xml
                         - name: WSO2_STATUS_DASHBOARD_DB
@@ -146,14 +125,11 @@ this section, a MySQL database is created as an example.
                               isAutoCommit: false
         ```
 
-        `                                        `
 
-        The following are sample configurations for database tables when
-        you use other database types supported.
 
-        ![](images/icons/grey_arrow_down.png){.expand-control-image}
-        Click here to view the sample datasource configurations
+    The following are sample configurations for database tables when you use other database types supported.
 
+    ???info "Click here to view the sample data source configurations."
         <table>
         <thead>
         <tr class="header">
@@ -288,8 +264,7 @@ this section, a MySQL database is created as an example.
 
 ### Configuring metrics
 
-This section explains how to configure metrics for your status
-dashboard.
+This section explains how to configure metrics for your status dashboard.
 
 **Configuring worker metrics**
 
@@ -428,48 +403,44 @@ required nodes.
                      jvm.memory: INFO
     ```
 
-    ![](images/icons/grey_arrow_down.png){.expand-control-image} Click
-    here to view the default metric levels supported...
+    ???info "Click here to view the default metric levels supported..."
+        - **Class loading**
 
+            Property
 
+        - **Garbage collector**
 
-    -   **Class loading**
+            Property
 
-        Property
+        - **Memory**
 
-    -   **Garbage collector**
+            Property
 
-        Property
+        - **Operating system load**
 
-    -   **Memory**
+            Property
 
-        Property
+        - **Threads**
 
-    -   **Operating system load**
+            | Property                                                               | Default Level                                | Description                                                                                                                                                                                                     |
+            |------------------------------------------------------------------------|----------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+            | `                   jvm.threads.count                  `               | `                   Debug                  ` | The gauge for showing the number of active and idle threads currently available in the JVM thread pool.                                                                                                         |
+            | `                   jvm.threads.daemon.count                  `        | `                   Debug                  ` | The gauge for showing the number of active daemon threads currently available in the JVM thread pool.                                                                                                           |
+            | `                   jvm.threads.blocked.count                  `       | `                   OFF                  `   | The gauge for showing the number of threads that are currently blocked in the JVM thread pool.                                                                                                                  |
+            | `                   jvm.threads.deadlock.count                  `      | `                   OFF                  `   | The gauge for showing the number of threads that are currently deadlocked in the JVM thread pool.                                                                                                               |
+            | `                   jvm.threads.new.count                  `           | `                   OFF                  `   | The gauge for showing the number of new threads generated in the JVM thread pool.                                                                                                                               |
+            | `                   jvm.threads.runnable.count                  `      | `                   OFF                  `   | The gauge for showing the number of runnable threads currently available in the JVM thread pool.                                                                                                                |
+            | `                   jvm.threads.terminated.count                  `    | `                   OFF                  `   | The gauge for showing the number of threads terminated from the JVM thread pool since user started running the WSO2 API Manager instance.                                                                       |
+            | `                   jvm.threads.timed_waiting.count                  ` | `                   OFF                  `   | The gauge for showing the number of threads in the Timed\_Waiting state.                                                                                                                                        |
+            | `                   jvm.threads.waiting.count                  `       | `                   OFF                  `   | The gauge for showing the number of threads in the Waiting state in the JVM thread pool. One or more other threads are required to perform certain actions before these threads can proceed with their actions. |
 
-        Property
+        - **File descriptor details**
 
-    -   **Threads**
+            Property
 
-        | Property                                                               | Default Level                                | Description                                                                                                                                                                                                     |
-        |------------------------------------------------------------------------|----------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-        | `                   jvm.threads.count                  `               | `                   Debug                  ` | The gauge for showing the number of active and idle threads currently available in the JVM thread pool.                                                                                                         |
-        | `                   jvm.threads.daemon.count                  `        | `                   Debug                  ` | The gauge for showing the number of active daemon threads currently available in the JVM thread pool.                                                                                                           |
-        | `                   jvm.threads.blocked.count                  `       | `                   OFF                  `   | The gauge for showing the number of threads that are currently blocked in the JVM thread pool.                                                                                                                  |
-        | `                   jvm.threads.deadlock.count                  `      | `                   OFF                  `   | The gauge for showing the number of threads that are currently deadlocked in the JVM thread pool.                                                                                                               |
-        | `                   jvm.threads.new.count                  `           | `                   OFF                  `   | The gauge for showing the number of new threads generated in the JVM thread pool.                                                                                                                               |
-        | `                   jvm.threads.runnable.count                  `      | `                   OFF                  `   | The gauge for showing the number of runnable threads currently available in the JVM thread pool.                                                                                                                |
-        | `                   jvm.threads.terminated.count                  `    | `                   OFF                  `   | The gauge for showing the number of threads terminated from the JVM thread pool since user started running the WSO2 API Manager instance.                                                                       |
-        | `                   jvm.threads.timed_waiting.count                  ` | `                   OFF                  `   | The gauge for showing the number of threads in the Timed\_Waiting state.                                                                                                                                        |
-        | `                   jvm.threads.waiting.count                  `       | `                   OFF                  `   | The gauge for showing the number of threads in the Waiting state in the JVM thread pool. One or more other threads are required to perform certain actions before these threads can proceed with their actions. |
+        - **Swap space**
 
-    -   **File descriptor details**
-
-        Property
-
-    -   **Swap space**
-
-        Property
+            Property
 
 **Configuring Siddhi application metrics**
 
@@ -565,7 +536,7 @@ password, you can encrypt them via WSO2 Secure Vault.
         This functionality is currently supported only for single tenant environments.
 
 
-**Configuring permissions**
+### Configuring permissions
 
 The following are the three levels of permissions that can be granted
 for the users of the Status Dashboard.
@@ -649,12 +620,12 @@ After login this opens  the Status Dashboard with the nodes that you have alread
 
 If no nodes are displayed, add the nodes for which you wnt to view statistics by following the steps in [Adding a node to the dashboard](#adding-a-node-to-the-dashboard).
 
-### Node overview
+## Node overview
 
 Once you login to the status dashboard, the nodes that are already added
 to the Status Dashboard are displayed as shown in the following example:
 
-#### Adding a node to the dashboard
+### Adding a node to the dashboard
 
 If no nodes are displayed, you can add the nodes for which you want to
 view the status by following the procedure below:
@@ -694,12 +665,12 @@ view the status by following the procedure below:
         in the node.
 
 
-#### Viewing status details
+### Viewing status details
 
 The following is a list of sections displayed in the **Node Overview**
 page to provide information relating to the status of the nodes.
 
-##### Distributed Deployments
+**Distributed Deployments**
 
 <table>
 <tbody>
@@ -738,7 +709,7 @@ page to provide information relating to the status of the nodes.
 
 
 
-##### Clustered nodes
+**Clustered nodes**
 
 <table>
 <tbody>
@@ -770,7 +741,7 @@ page to provide information relating to the status of the nodes.
 </tbody>
 </table>
 
-##### Single nodes
+**Single nodes**
 
 <table>
 <tbody>
@@ -800,7 +771,7 @@ page to provide information relating to the status of the nodes.
 
 
 
-##### Nodes that cannot be reached
+**Nodes that cannot be reached**
 
 <table>
 <tbody>
@@ -830,7 +801,7 @@ page to provide information relating to the status of the nodes.
 
 
 
-##### Nodes that are currently unavailable
+**Nodes that are currently unavailable**
 
 <table>
 <tbody>
@@ -860,7 +831,7 @@ page to provide information relating to the status of the nodes.
 
 
 
-##### Nodes for which metrics is disabled
+**Nodes for which metrics is disabled**
 
 <table>
 <tbody>
@@ -887,7 +858,7 @@ page to provide information relating to the status of the nodes.
 
 
 
-##### Nodes with JMX reporting disabled
+**Nodes with JMX reporting disabled**
 
 <table>
 <tbody>
@@ -914,7 +885,7 @@ page to provide information relating to the status of the nodes.
 
 
 
-##### Statistics trends
+**Statistics trends**
 
 <table>
 <tbody>
@@ -940,18 +911,18 @@ page to provide information relating to the status of the nodes.
 </table>
 
 
-### Viewing node-specific pages
+## Viewing node-specific pages
 
 When you open the Status Dashboard, the [Node Overview](#node-overview) page is displayed by default. To view information specific to a selected worker node, click on the relevant
 widget. This opens a separate page for the worker node as shown in the example below.
 
 ![Worker-specific Details](../../images/monitoring-the-streaming-integrator/worker-specific-details.png)
 
-#### Status indicators
+### Status indicators
 
-Thw following gadgets can be viewed for the selected worker.
+The following gadgets can be viewed for the selected worker.
 
-##### Server General Details
+**Server General Details**
 
 <table>
 <tbody>
@@ -977,8 +948,7 @@ Thw following gadgets can be viewed for the selected worker.
 </table>
 
 
-
-##### CPU Usage
+**CPU Usage**
 
 <table>
 <tbody>
@@ -1009,8 +979,7 @@ Thw following gadgets can be viewed for the selected worker.
 </table>
 
 
-
-##### Memory Used
+**Memory Used**
 
 <table>
 <tbody>
@@ -1040,7 +1009,8 @@ Thw following gadgets can be viewed for the selected worker.
 </tbody>
 </table>
 
-##### System Load Average
+
+**System Load Average**
 
 <table>
 <tbody>
@@ -1067,7 +1037,7 @@ Thw following gadgets can be viewed for the selected worker.
 </tbody>
 </table>
 
-##### Overall Throughput
+**Overall Throughput**
 
 <table>
 <tbody>
@@ -1097,7 +1067,8 @@ Thw following gadgets can be viewed for the selected worker.
 </tbody>
 </table>
 
-##### Siddhi Applications
+
+**Siddhi Applications**
 
 <table>
 <tbody>
@@ -1134,7 +1105,7 @@ Thw following gadgets can be viewed for the selected worker.
 </table>
 
 
-### Viewing worker history
+## Viewing worker history
 
 This section explains how to view statistics relating to the performance of a selected node for a specific time interval.
 
@@ -1183,30 +1154,26 @@ This section explains how to view statistics relating to the performance of a se
         ![JVM Swap Space](../../images/monitoring-the-streaming-integrator/jvm-swap-space.png)
 
 
-### Viewing statistics for Siddhi applications
+## Viewing statistics for Siddhi applications
 
 When you open the WSO2 Status Dashboard, the [Node Overview](#node-overview) page is displayed by default.
 
-1.  To view information specific to a selected worker node, click on the
-    relevant gadget. This opens the [page specific to the
-    worker](_Viewing_Node-specific_Pages_) .
-2.  To view information specific to a Siddhi application deployed in the
-    Siddhi node, click on the relevant Siddhi application in the Siddhi
-    Applications table. This opens a page with information specific to
-    the selected Siddhi application as shown in the example below.
-    ![](attachments/112391064/112391065.png){width="900"}
+1. To view information specific to a selected worker node, click on the relevant gadget. This opens the [page specific to the worker](#viewing-node-specific-pages).
 
-The following statistics can be viewed for an individual Siddhi
-Application.
+2. To view information specific to a Siddhi application deployed in the Siddhi node, click on the relevant Siddhi application in the Siddhi Applications table. This opens a page with information specific to the selected Siddhi application as shown in the example below.
 
-#### Latency
+    ![Siddhi Application Statistics](../../images/monitoring-the-streaming-integrator/siddhi-application-statistics.png)
+
+The following statistics can be viewed for an individual Siddhi Application.
+
+**Latency**
 
 <table>
 <tbody>
 <tr class="odd">
 <td>View (Example)</td>
 <td><div class="content-wrapper">
-<p><img src="attachments/112391064/112391068.png" /></p>
+<p><img src="../../images/monitoring-the-streaming-integrator/latency.png" /></p>
 </div></td>
 </tr>
 <tr class="even">
@@ -1226,14 +1193,14 @@ Application.
 
 
 
-#### Overall Throughput
+**Overall Throughput**
 
 <table>
 <tbody>
 <tr class="odd">
 <td>View (Example)</td>
 <td><div class="content-wrapper">
-<p><img src="attachments/112391064/112391067.png" /></p>
+<p><img src="../../images/monitoring-the-streaming-integrator/siddhi-application-overall-throughput.png" /></p>
 </div></td>
 </tr>
 <tr class="even">
@@ -1254,14 +1221,14 @@ Application.
 </tbody>
 </table>
 
-#### Memory Used
+**Memory Used**
 
 <table>
 <tbody>
 <tr class="odd">
 <td>View (Example)</td>
 <td><div class="content-wrapper">
-<p><img src="attachments/112391064/112391066.png" /></p>
+<p><img src="../../images/monitoring-the-streaming-integrator/siddhi-application-memory-used.png" /></p>
 </div></td>
 </tr>
 <tr class="even">
@@ -1279,14 +1246,14 @@ Application.
 </tbody>
 </table>
 
-#### Code View
+**Code View**
 
 <table>
 <tbody>
 <tr class="odd">
 <td>View (Example)</td>
 <td><div class="content-wrapper">
-<p><img src="attachments/112391064/112391071.png" height="250" /></p>
+<p><img src="../../images/monitoring-the-streaming-integrator/siddhi-application-code-view.png" /></p>
 </div></td>
 </tr>
 <tr class="even">
@@ -1300,22 +1267,22 @@ Application.
 <tr class="even">
 <td>Recommended Action</td>
 <td><p>Edit the Siddhi file if any changes that can improve the performance of the Siddhi application are identified.<br />
-For detailed instructions to write a Siddhi application, see <a href="https://docs.wso2.com/display/SP440/Creating+a+Siddhi+Application">Creating a Siddhi Application</a> . |<br />
-For detailed information about the Siddhi logic, see the <a href="https://siddhi-io.github.io/siddhi/documentation/siddhi-4.x/query-guide-4.x/">Siddhi Query Guide</a> .</p>
+For detailed instructions to write a Siddhi application, see <a href="../develop/creating-a-Siddhi-Application.md">Creating a Siddhi Application</a>.<br />
+For detailed information about the Siddhi logic, see the <a href="https://siddhi-io.github.io/siddhi/documentation/siddhi-4.x/query-guide-4.x/">Siddhi Query Guide</a>.</p>
 <p><br />
 </p></td>
 </tr>
 </tbody>
 </table>
 
-#### Design View
+**Design View**
 
 <table>
 <tbody>
 <tr class="odd">
 <td>View (Example)</td>
 <td><div class="content-wrapper">
-<p><img src="attachments/112391064/112391069.png" width="900" /></p>
+<p><img src="../../images/monitoring-the-streaming-integrator/design-view.png" /></p>
 </div></td>
 </tr>
 <tr class="even">
@@ -1335,14 +1302,14 @@ For detailed information about the Siddhi logic, see the <a href="https://siddhi
 
 
 
-#### Siddhi App Component Statistics
+**Siddhi App Component Statistics**
 
 <table>
 <tbody>
 <tr class="odd">
 <td>View (Example)</td>
 <td><div class="content-wrapper">
-<p><img src="attachments/112391064/112391070.png" height="250" /></p>
+<p><img src="../../images/monitoring-the-streaming-integrator/siddhi-application-component-statistics.png" /></p>
 </div></td>
 </tr>
 <tr class="even">
@@ -1368,22 +1335,13 @@ For detailed information about the Siddhi logic, see the <a href="https://siddhi
 </table>
 
 
-### Viewing statistics for parent Siddhi applications
+## Viewing statistics for parent Siddhi applications
 
-When you open the WSO2 Status Dashboard, the [Node
-Overview](_Node_Overview_) page is displayed by default. To view
-information specific to an active manager, click on the required active
-manager node in the **Distributed Deployments** section. This opens a
-page with parent Siddhi applications deployed in that manager node as
-shown in the example below.
+When you open the WSO2 Status Dashboard, the [Node Overview](#node-overview) page is displayed by default. To view information specific to an active manager, click on the required active manager node in the **Distributed Deployments** section. This opens a page with parent Siddhi applications deployed in that manager node as shown in the example below.
 
-![](attachments/112391075/112391076.png){width="900"}
+![Parent Siddhi Applications](../../images/monitoring-the-streaming-integrator/parent-siddhi-applications.png)
 
-This page provides a summary of information relating to each parent
-Siddhi application as described in the table below. If a parent Siddhi
-application is active, it is indicated with a green dot that appears
-before the name of the Siddhi application. Similarly, an orange dot is
-displayed for inactive parent Siddhi applications.
+This page provides a summary of information relating to each parent Siddhi application as described in the table below. If a parent Siddhi application is active, it is indicated with a green dot that appears before the name of the Siddhi application. Similarly, an orange dot is displayed for inactive parent Siddhi applications.
 
 <table>
 <thead>
@@ -1412,18 +1370,18 @@ displayed for inactive parent Siddhi applications.
 If you click on a parent Siddhi application, detailed information is
 displayed as shown below.
 
-![](attachments/112391075/112391080.png){width="900"}
+![Parent Siddhi Application Details](../../images/monitoring-the-streaming-integrator/parent-siddhi-application-details.png)
 
 The following are the widgets displayed.
 
-#### Code View
+**Code View**
 
 <table>
 <tbody>
 <tr class="odd">
 <td>View (Example)</td>
 <td><div class="content-wrapper">
-<p><img src="attachments/112391075/112391078.png" width="900" /></p>
+<p><img src="../../images/monitoring-the-streaming-integrator/parent-application-code-view.png" /></p>
 </div></td>
 </tr>
 <tr class="even">
@@ -1446,19 +1404,19 @@ For detailed information about the Siddhi logic, see the <a href="https://siddhi
 </tbody>
 </table>
 
-#### Distributed Siddhi App Deployment
+**Distributed Siddhi App Deployment**
 
 <table>
 <tbody>
 <tr class="odd">
 <td>View (Example)</td>
 <td><div class="content-wrapper">
-<p><img src="attachments/112391075/112391079.png" width="900" /></p>
+<p><img src="../../images/monitoring-the-streaming-integrator/distributed-siddhi-application-deployment.png" /></p>
 </div></td>
 </tr>
 <tr class="even">
 <td>Description</td>
-<td>This is a graphical representation of how Kafka topics are connected to the child Siddhi applications of the selected parent Siddhi application . Kafka topics are represented by boxes with red margins, and the child applications are represented by boxes with blue margins.</td>
+<td>This is a graphical representation of how Kafka topics are connected to the child Siddhi applications of the selected parent Siddhi application. Kafka topics are represented by boxes with red margins, and the child applications are represented by boxes with blue margins.</td>
 </tr>
 <tr class="odd">
 <td>Purpose</td>
@@ -1467,14 +1425,14 @@ For detailed information about the Siddhi logic, see the <a href="https://siddhi
 </tbody>
 </table>
 
-#### Child App Details
+**Child App Details**
 
 <table>
 <tbody>
 <tr class="odd">
 <td>View (Example)</td>
 <td><div class="content-wrapper">
-<p><img src="attachments/112391075/112391077.png" width="900" /></p>
+<p><img src="../../images/monitoring-the-streaming-integrator/child-application-details.png" /></p>
 </div></td>
 </tr>
 <tr class="even">
@@ -1493,58 +1451,36 @@ For detailed information about the Siddhi logic, see the <a href="https://siddhi
 </tbody>
 </table>
 
-### Application overview
+## Application overview
 
-When you open the WSO2 Status Dashboard, the [Node
-Overview](_Node_Overview_) page is displayed by default. If you want to
-view all the Siddhi applications deployed in your Streaming Integrator setup, click
-on the **App View** tab (marked in the image below). The **App
-Overview** tab opens and all the Siddhi applications that are currently
-deployed are displayed as shown in the image below.
+When you open the WSO2 Status Dashboard, the [Node Overview](#node-overview) page is displayed by default. If you want to view all the Siddhi applications deployed in your Streaming Integrator setup, click on the **App View** tab (marked in the image below). The **App Overview** tab opens and all the Siddhi applications that are currently deployed are displayed as shown in the image below.
 
-![](attachments/112391082/112391084.png)
+![Application Overview](../../images/monitoring-the-streaming-integrator/app-overview.png)
 
-The status is displayed in green for active Siddhi applications, and in
-red for inactive Siddhi applications.
+The status is displayed in green for active Siddhi applications, and in red for inactive Siddhi applications.
 
-If no Siddhi applications are deployed in your Streaming Integrator setup, the
-following message is displayed.
+If no Siddhi applications are deployed in your Streaming Integrator setup, the following message is displayed.
 
-![](attachments/112391082/112391083.png)
+![No Siddhi Applications Deployed](../../images/monitoring-the-streaming-integrator/no-siddhi-applications-deployed.png)
 
 
-
-The Siddhi applications are listed under the deployment mode in which
-they are deployed (i.e., **Single Node Deployment**, **HA Deployment**
-, and **Distributed Deployment** ).
-
-!!! info
-    If your Streaming Integrator setup is a distributed deployment, only the parent Siddhi applications are displayed in this tab.
-
+The Siddhi applications are listed under the deployment mode in which they are deployed (i.e., **Single Node Deployment**, **HA Deployment**, and **Scalable Deployment**).
 
 The following information is displayed for each Siddhi application.
 
--   **Siddhi Application** : The name of the Siddhi application.
--   **Status** : This indicates whether the Siddhi application is
-    currently active or inactive.
--   **Deployed Time** : The time duration that has elapsed since the
-    Siddhi application was deployed in the Streaming Integrator setup.
--   **Deployed Node** : The host and the port of the Streaming Integrator node in which
-    the Siddhi application is displayed.
+- **Siddhi Application**: The name of the Siddhi application.
 
-The purpose of this tab is to check the status of all the Siddhi
-applications that are currently deployed in the Streaming Integrator setup.
+- **Status**: This indicates whether the Siddhi application is currently active or inactive.
 
-If you click on a Siddhi Application under **Single Node Deployment** or
-**HA Deployment**, information specific to that Siddhi application is
-displayed as explained in [Viewing Statistics for Siddhi
-Applications](_Viewing_Statistics_for_Siddhi_Applications).
+- **Deployed Time**: The time duration that has elapsed since the Siddhi application was deployed in the Streaming Integrator setup.
 
-If you click on the parent Siddhi application under **Distributed
-Deployment**, information specific to that parent Siddhi application is
-displayed as explained in [Viewing Statistics for Parent Siddhi
-Applications](_Viewing_Statistics_for_Parent_Siddhi_Applications).
+- **Deployed Node**: The host and the port of the Streaming Integrator node in which the Siddhi application is displayed.
 
-If you click on a deployed node, information specific to that node is
-displayed as explained in [Viewing Node-specific
-Pages](_Viewing_Node-specific_Pages).
+The purpose of this tab is to check the status of all the Siddhi applications that are currently deployed in the Streaming Integrator setup.
+
+If you click on a Siddhi Application under **Single Node Deployment** or **HA Deployment**, information specific to that Siddhi application is displayed as explained in [Viewing Statistics for Siddhi Applications](#viewing-statistics-for-siddhi-applications).
+
+If you click on the parent Siddhi application under **Distributed Deployment**, information specific to that parent Siddhi application is
+displayed as explained in [Viewing Statistics for Parent Siddhi Applications](#viewing-statistics-for-parent-siddhi-applications).
+
+If you click on a deployed node, information specific to that node is displayed as explained in [Viewing Node-specific Pages](#viewing-node-specific-pages).
