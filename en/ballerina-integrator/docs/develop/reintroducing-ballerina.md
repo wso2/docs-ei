@@ -23,6 +23,8 @@ The following are the values we want to focus on in this document:
 
 Some value 1 is used in the abc scenario.
 
+> **Tip**: Use a blockquote like this to add some tips about Some value 1.
+
 The following is an example of you would use Some value 1:
 
 ```ballerina
@@ -43,18 +45,20 @@ Sample code here
 
 ## Some value 2
 
-Some value 1 is used in the abc scenario.
+Some value 2 is used in the abc scenario.
 
-The following is an example of you would use Some value 1:
+> **Tip**: Use a blockquote like this to add some tips about Some value 2.
+
+The following is an example of you would use Some value 2:
 
 ```ballerina
 Sample code here
 
 ```
 
-In integration scenario x, we can use Some value 1 to do y. 
+In integration scenario x, we can use Some value 2 to do y. 
 
-The following is an example of how Some value 1 is used to achieve y.
+The following is an example of how Some value 2 is used to achieve y.
 
 ```ballerina
 Sample code here
@@ -65,18 +69,20 @@ Sample code here
 
 ## Some value 3
 
-Some value 1 is used in the abc scenario.
+Some value 3 is used in the abc scenario.
 
-The following is an example of you would use Some value 1:
+> **Tip**: Use a blockquote like this to add some tips about Some value 3.
+
+The following is an example of you would use Some value 3:
 
 ```ballerina
 Sample code here
 
 ```
 
-In integration scenario x, we can use Some value 1 to do y. 
+In integration scenario x, we can use Some value 3 to do y. 
 
-The following is an example of how Some value 1 is used to achieve y.
+The following is an example of how Some value 3 is used to achieve y.
 
 ```ballerina
 Sample code here
@@ -87,18 +93,20 @@ Sample code here
 
 ## Some value 4
 
-Some value 1 is used in the abc scenario.
+Some value 4 is used in the abc scenario.
 
-The following is an example of you would use Some value 1:
+> **Tip**: Use a blockquote like this to add some tips about Some value 4.
+
+The following is an example of you would use Some value 4:
 
 ```ballerina
 Sample code here
 
 ```
 
-In integration scenario x, we can use Some value 1 to do y. 
+In integration scenario x, we can use Some value 4 to do y. 
 
-The following is an example of how Some value 1 is used to achieve y.
+The following is an example of how Some value 4 is used to achieve y.
 
 ```ballerina
 Sample code here
