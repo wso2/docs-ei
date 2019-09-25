@@ -22,7 +22,7 @@ Note that you can customize the default secure vault configurations in the produ
     log4j.appender.LOGEVENT.password = "password_6"
     ```
 
-    See the complete list of [configuration parameters](../../references/ei_config_catalog.md).
+    See the complete list of [configuration parameters](../../references/config-catalog.md).
 
 2. Open a terminal, navigate to the MI_HOME/bin/ directory, and execute the following command (You must first enable the Cipher tool for the product by executing the `-Dconfigure` command with the cipher tool script as shown below).
     * On Linux: `./ciphertool.sh -Dconfigure`
@@ -37,7 +37,7 @@ Note that you can customize the default secure vault configurations in the produ
     truststrore_password = "encrypted_pass_5"
     ```
 
-    See the complete list of [configuration parameters](../../references/ei_config_catalog.md).
+    See the complete list of [configuration parameters](../../references/config-catalog.md).
 
 ## Using encrypted passwords
 When you have [encrypted passwords](#encrypting-passwords), you can refer them from the relevant configuration files: The deployment.toml file or LOG4j properties.
@@ -63,7 +63,7 @@ key_password = "$ref{key_password }"
 password = "$ref{keystore_password}" 
 ```
 
-See the complete list of [configuration parameters](../../references/ei_config_catalog.md).
+See the complete list of [configuration parameters](../../references/config-catalog.md).
 
 ### Passwords in LOG4j properties
 For example, consider the 'log4j.appender.LOGEVENT.password' in the log4j.properties file. You can refer the [encrypted password](#encrypting-passwords) form the log4j.properties file as shown below.

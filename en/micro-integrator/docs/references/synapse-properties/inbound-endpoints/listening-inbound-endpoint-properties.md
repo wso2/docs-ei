@@ -108,11 +108,11 @@ See the topics given below for the list of properties that can be configured for
 
 ## HTTP/HTTPS Inbound Endpoint
 
-Listed below are the properties used for [creating an HTTP/HTTPS inbound endpiont](../../develop/creating-artifacts/creating-an-inbound-endpoint.md).
+Listed below are the properties used for [creating an HTTP/HTTPS inbound endpiont](../../../develop/creating-artifacts/creating-an-inbound-endpoint.md).
 
 ### Required Properties
 
-Listed below are the required properties when [creating an HTTP/HTTPS inbound endpiont](../../develop/creating-artifacts/creating-an-inbound-endpoint.md).
+Listed below are the required properties when [creating an HTTP/HTTPS inbound endpiont](../../../develop/creating-artifacts/creating-an-inbound-endpoint.md).
 
 <table>
       <tr>
@@ -151,7 +151,7 @@ Listed below are the required properties when [creating an HTTP/HTTPS inbound en
 
 ### Optional Properties
 
-Listed below are the optional properties you can configure when [creating an HTTP/HTTPS inbound endpiont](../../develop/creating-artifacts/creating-an-inbound-endpoint.md).
+Listed below are the optional properties you can configure when [creating an HTTP/HTTPS inbound endpiont](../../../develop/creating-artifacts/creating-an-inbound-endpoint.md).
 
 <table>
    <thead>
@@ -215,7 +215,7 @@ Listed below are the optional properties you can configure when [creating an HTT
 
 ### Worker Pool Configuration Properties
 
-By default inbound endpoints share the PassThrough transport worker pool to handle incoming requests. If you need a separate worker pool for the inbound endpoint, you need to configure the following properties when [creating an HTTP/HTTPS inbound endpiont](../../develop/creating-artifacts/creating-an-inbound-endpoint.md).
+By default inbound endpoints share the PassThrough transport worker pool to handle incoming requests. If you need a separate worker pool for the inbound endpoint, you need to configure the following properties when [creating an HTTP/HTTPS inbound endpiont](../../../develop/creating-artifacts/creating-an-inbound-endpoint.md).
 
 <table>
   <tr>
@@ -268,7 +268,7 @@ By default inbound endpoints share the PassThrough transport worker pool to hand
 
 ## CXF WS-RM Inbound Properties
 
-The following properties can be configured when [creating a CXF WS-RM inbound endpiont](../../develop/creating-artifacts/creating-an-inbound-endpoint.md).
+The following properties can be configured when [creating a CXF WS-RM inbound endpiont](../../../develop/creating-artifacts/creating-an-inbound-endpoint.md).
 
 <table>
   <tr>
@@ -316,11 +316,11 @@ The following properties can be configured when [creating a CXF WS-RM inbound en
 
 ## HL7 Inbound Properties
 
-Listed below are the properties used for [creating a HL7 inbound endpiont](../../develop/creating-artifacts/creating-an-inbound-endpoint.md).
+Listed below are the properties used for [creating a HL7 inbound endpiont](../../../develop/creating-artifacts/creating-an-inbound-endpoint.md).
 
 ### Optional Properties
 
-The following properties can be configured when [creating a HL7 inbound endpiont](../../develop/creating-artifacts/creating-an-inbound-endpoint.md).
+The following properties can be configured when [creating a HL7 inbound endpiont](../../../develop/creating-artifacts/creating-an-inbound-endpoint.md).
 
 <table>
    <thead>
@@ -396,11 +396,11 @@ Following are the mediation level properties that you can set in the HL7 inbou
 
 ## Websocket Inbound Endpoint Properties
 
-Listed below are the properties used for [creating a Websocket inbound endpiont](../../develop/creating-artifacts/creating-an-inbound-endpoint.md).
+Listed below are the properties used for [creating a Websocket inbound endpiont](../../../develop/creating-artifacts/creating-an-inbound-endpoint.md).
 
 ### Required Properties
 
-The following properties are required when [creating a Websocket inbound endpiont](../../develop/creating-artifacts/creating-an-inbound-endpoint.md).
+The following properties are required when [creating a Websocket inbound endpiont](../../../develop/creating-artifacts/creating-an-inbound-endpoint.md).
 
 <table>
   <tr>
@@ -443,7 +443,7 @@ The following properties are required when [creating a Websocket inbound endpion
 
 ### Required Properties (for Secured Websocket)
 
-In addition to the [common websocket inbound properties](#common-websocket-inbound-required-properties) listed above, the following properties are required when [creating a **secured** Websocket inbound endpiont](../../develop/creating-artifacts/creating-an-inbound-endpoint.md).
+In addition to the [common websocket inbound properties](#common-websocket-inbound-required-properties) listed above, the following properties are required when [creating a **secured** Websocket inbound endpiont](../../../develop/creating-artifacts/creating-an-inbound-endpoint.md).
 
 <table>
   <tr>
@@ -494,7 +494,7 @@ In addition to the [common websocket inbound properties](#common-websocket-inbou
 
 ### Optional Properties
 
-The following optional properties can be configured when [creating a Websocket inbound endpiont](../../develop/creating-artifacts/creating-an-inbound-endpoint.md).
+The following optional properties can be configured when [creating a Websocket inbound endpiont](../../../develop/creating-artifacts/creating-an-inbound-endpoint.md).
 
 <table>
    <thead>
@@ -543,7 +543,7 @@ The following optional properties can be configured when [creating a Websocket i
 
 ### Optional Properties (for Secured Websocket)
 
-The following optional properties can be configured when [creating a **Secured** Websocket inbound endpiont](../../develop/creating-artifacts/creating-an-inbound-endpoint.md).
+The following optional properties can be configured when [creating a **Secured** Websocket inbound endpiont](../../../develop/creating-artifacts/creating-an-inbound-endpoint.md).
 
 <table>
   <tr>

@@ -51,6 +51,7 @@ nav:
       - 'Quick Start Guide': 'quick-start-guide/quick-start-guide.md'
       - 'Developing your First Integration Solution': 'develop/integration-development-kickstart.md'
     - Key Concepts:
+      - 'Key Concepts Overview': 'concepts/concepts-overview.md'
       - 'Message Entry Points': 'concepts/message-entry-points.md'
       - 'Message Processing Units': 'concepts/message-processing-units.md'
       - 'Message Exit Points': 'concepts/message-exit-points.md'
@@ -107,6 +108,20 @@ nav:
         - 'Configuring Time Stamp Conversion for RDBMS': 'setup/configuring_timestamp_conversion_for_rdbms.md'
         - 'Configuring Message Builders and Formatters' : 'setup/message_builders_formatters/message-builders-and-formatters.md'
         - 'Configuring Message Relay': 'setup/message_builders_formatters/message-relay.md'
+        - 'Configuring Transports': 'setup/transport_configurations/configuring-transports.md'
+        - Configuring Brokers:
+          - 'Connecting to ActiveMQ': 'setup/brokers/configure-with-ActiveMQ.md'
+          - 'Connecting to Apache Artemis': 'setup/brokers/configure-with-Apache-Artemis.md'
+          - 'Connecting to HornetQ': 'setup/brokers/configure-with-HornetQ.md'
+          - 'Connecting to IBM Websphere App Server': 'setup/brokers/configure-with-IBM-websphere-app-server.md'
+          - 'Connecting to IBM WebSphere MQ': 'setup/brokers/configure-with-IBM-websphereMQ.md'
+          - 'Connecting to JBoss MQ': 'setup/brokers/configure-with-JBossMQ.md'
+          - 'Connecting to MSMQ': 'setup/brokers/configure-with-MSMQ.md'
+          - 'Connecting to Swift MQ': 'setup/brokers/configure-with-SwiftMQ.md'
+          - 'Connecting to TIBCO EMS': 'setup/brokers/configure-with-Tibco-EMS.md'
+          - 'Connecting to Weblogic': 'setup/brokers/configure-with-WebLogic.md'
+          - 'Connecting to WSO2 MB': 'setup/brokers/configure-with-WSO2-MB.md'
+          - 'Connecting to Multiple Brokers': 'setup/brokers/configure-with-multiple-brokers.md'
       - Additional Configurations:
         - 'Optional: Mounting a Registry': 'setup/registry_mounting.md'
         - 'Adding a Custom Proxy Path': 'setup/adding_a_custom_proxy__path.md'

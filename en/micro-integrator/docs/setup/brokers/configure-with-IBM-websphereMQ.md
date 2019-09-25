@@ -3,95 +3,38 @@
 The WSO2 JMS transport can be configured with IBM® WebSphere® MQ. The
 following topics cover the configuration steps.
 
--   [Prerequisites](#ConfigurewithIBMWebSphereMQ-Prerequisites)
--   [Creating queue manager, queue and channel in IBM WebSphere
-    MQ](#ConfigurewithIBMWebSphereMQ-Creatingqueuemanager,queueandchannelinIBMWebSphereMQ)
--   [Generating the .bindings
-    file](#ConfigurewithIBMWebSphereMQ-generateGeneratingthe.bindingsfile)
--   [Configuring the ESB JMS
-    transport](#ConfigurewithIBMWebSphereMQ-ConfiguringtheESBJMStransport)
--   [Copying IBM Websphere MQ
-    libraries](#ConfigurewithIBMWebSphereMQ-CopyingIBMWebsphereMQlibraries)
--   [Deploying JMS listener proxy
-    service](#ConfigurewithIBMWebSphereMQ-DeployingJMSlistenerproxyservice)
--   [Testing the proxy
-    service](#ConfigurewithIBMWebSphereMQ-Testingtheproxyservice)
--   [Sample Scenarios](#ConfigurewithIBMWebSphereMQ-SampleScenarios)
+!!! Info 
+    The configuration steps below are for a Windows environment.
 
-!!! note
+## Prerequisites
 
-From the below configurations, do the ones in the **axis2.xml** file
-based on the profile you use as follows:
-
--   To enable the JMS transport in the Integration profile, edit the
-    `          <EI_HOME>/conf/axis2/axis2.xml         ` file.
--   To enable the JMS transport in other profiles, edit the
-    `          <EI_HOME>/wso2/<PROFILE_HOME>/conf/axis2/axis2.xml         `
-    file. `          <PROFILE_HOME>         ` refers to the main
-    directory of the profile inside the WSO2 EI distribution. For
-    example, to enable the JMS transport in the Business Process
-    profile, edit the
-    `          <EI_HOME>/wso2/business-process/conf/axis2/axis2.xml         `
-    file
-
-!!! info The configuration steps below are for a Windows environment.
-
-### Prerequisites
-
--   WSO2 Enterprise Interator (WSO2 EI) is installed. To test the
-    samples, you must also have Apache Ant installed. For details, see
-    [Installation
-    Prerequisites](https://docs.wso2.com/display/EI650/Installation+Prerequisites)
-    .
--   WebSphere MQ is installed and the latest fix pack applied (see the
-    [IBM
-    documentation](http://publib.boulder.ibm.com/infocenter/sametime/v8r0/index.jsp?topic=/com.ibm.help.sametime.advanced.doc/stv_inst_mq_appl_win_t.html)
-    ). The fix pack can be obtained from
-    <http://www-01.ibm.com/software/integration/wmq> . ( These
-    instructions are tested on [IBM WebSphere MQ version
-    8.0.0.4](http://www-01.ibm.com/support/docview.wss?uid=swg24040022)
-    .)
+-   Download and install WSO2 Micro Integratot. 
+-   To test the samples, you must also have Apache Ant installed.
+-   WebSphere MQ is installed and the latest fix pack applied (see the [IBM documentation](http://publib.boulder.ibm.com/infocenter/sametime/v8r0/index.jsp?topic=/com.ibm.help.sametime.advanced.doc/stv_inst_mq_appl_win_t.html). The fix pack can be obtained from <http://www-01.ibm.com/software/integration/wmq>). These instructions are tested on [IBM WebSphere MQ version 8.0.0.4](http://www-01.ibm.com/support/docview.wss?uid=swg24040022).
 
 ### Creating queue manager, queue and channel in IBM WebSphere MQ
 
-1.  Start IBM WebSphere MQ Explorer as an administrator. If you are not
-    running on an administrator account, right-click on the IBM
-    WebSphere MQ icon/menu item and then click **Run as Administrator**
-    .
-2.  Right-click on **Queue Managers** , move the cursor to **New** and
-    then click **Queue Manager** to open the **Create Queue Manager**
-    wizard. Enter ESBQManager as the queue manager name. Make sure you
-    select **make this the default queue manager** check box. Leave the
-    default values unchanged in the other fields. Click **Next** to move
-    to the next page.
-3.  Click **Next** in the page for entering data and log values without
-    changing any default values.
-4.  In the page for entering configuration options, select the
-    following. Then click **Next** .
+1.  Start IBM WebSphere MQ Explorer as an administrator. If you are not running on an administrator account, right-click the IBM WebSphere MQ icon/menu item and then click **Run as Administrator**.
+2.  Right-click on **Queue Managers**, move the cursor to **New**, and then click **Queue Manager** to open the **Create Queue Manager** wizard. Enter ESBQManager as the queue manager name. Make sure you select **make this the default queue manager** check box. Leave the default values unchanged in the other fields. Click **Next** to move to the next page.
+3.  Click **Next** in the page for entering data and log values without changing any default values.
+4.  In the page for entering configuration options, select the following. Then click **Next**.
 
-    | Field Name                                                  | Value                                                                                       |
-    |-------------------------------------------------------------|---------------------------------------------------------------------------------------------|
+    | Field Name                                                  | Value                                                                  |
+    |-------------------------------------------------------------|------------------------------------------------------------------------|
     | **Start queue manager after it has been created** check box | If this is selected, the queue manager will start running immediately after it is created.  |
     | **Automatic** field                                         | If this is selected, the queue manager is automatically started when the machine starts up. |
 
 5.  Configure the following in the page for entering listener options.
 
-    | Field Name                                          | Value                                                                                                           |
-    |-----------------------------------------------------|-----------------------------------------------------------------------------------------------------------------|
-    | **Create listener configured for TCP/IP** check box | Select this check box to create the listener.                                                                   |
-    | **Listen on port number** field                     | Enter the number of the port where you want to set the listener. In this example, the port number will be 1414. |
+    | Field Name                                          | Value                                                                   |
+    |-----------------------------------------------------|-------------------------------------------------------------------------|
+    | **Create listener configured for TCP/IP** check box | Select this check box to create the listener.                           |
+    | **Listen on port number** field | Enter the number of the port where you want to set the listener. In this example, the port number will be 1414.|
 
-6.  Click **Next** and then click **Finish** to save the configuration.
-    The queue manager will be created as shown below.  
+6.  Click **Next** and then click **Finish** to save the configuration. The queue manager will be created as shown below.  
     ![](attachments/119130332/119130334.png)
-7.  Expand the navigation tree of the ESBQManager queue manager in the
-    navigation tree. Right-click on **Queues** , move the cursor to
-    **New** and then click **Local** **Queue** to open the **Create a
-    Local Queue** wizard. Enter the local queue name as
-    `          LocalQueue1         ` and complete running the wizard.
-    Leave the default values of all other fields unchanged, and click
-    **Finish** to save the local queue.  
-8.  Right-click on **Channels** , move the cursor to **New** , and then
+7.  Expand the navigation tree of the ESBQManager queue manager in the navigation tree. Right-click **Queues**, move the cursor to **New**, and then click **Local Queue** to open the **Create a Local Queue** wizard. Enter the local queue name as `LocalQueue1` and complete running the wizard. Leave the default values of all other fields unchanged, and click **Finish** to save the local queue.  
+8.  Right-click **Channels** , move the cursor to **New** , and then
     click **Server-connection Channel** to open the **Create a
     Server-connection Channel** wizard. Enter **myChannel** as the
     channel name and click **Next** . Make sure that the value for the
