@@ -105,6 +105,7 @@ nav:
     - 'Working with Business Rules': 'admin/creating-business-rules-templates.md'
     - 'Monitoring the Streaming Integrator': 'admin/monitoring-the-streaming-integrator'
     - 'General Data Protection Regulations': 'admin/general-data-protection-regulations.md'
+    - 'Working with Keystores': 'admin/working-with-keystores.md'
     - 'Supporting Different Transports': 'admin/supporting-different-transports.md'
     - 'User Management': 'admin/user-management.md'
     - 'Protecting Sensitive Data via the Secure Vault': 'admin/protecting-sensitive-data-via-the-secure-vault.md'
