@@ -1,10 +1,10 @@
 # Proxy Service Properties
 
-See the topics given below for the list of properties that can be configured for a Proxy Service artifact.
+See the topics given below for the list of properties that can be configured when [creating a proxy service](../../develop/creating-artifacts/creating-a-proxy-service.md).
 
 ## General Properties
 
-The following properties are required when [creating a proxy service](../../develop/creating-artifacts/creating-a-proxy-service.md):
+Listed below are the main properties that are required when [creating a proxy service](../../develop/creating-artifacts/creating-a-proxy-service.md) of any type.
 
 <table>
   <tr>
@@ -27,10 +27,10 @@ The following properties are required when [creating a proxy service](../../deve
       The proxy service uses an <b>Endpoint</b> artifact inline to define the location to which messages should be routed. You can choose one of the following options to specify the endpoint.
       <ul>
         <li>Enter the URL of the endpoint.</li>
-        <li>If you have a predefined <b>Endpoint</b> artifact in WSO2 Integration Studio, provide the name of the artifact.</li>
-        <li>If you hae a predefined <b>Endpoint</b> artifact that is saved in the registry, provide the link to the artifact.</li>
+        <li>If you have a <a href="../../../develop/creating-artifacts/creating-endpoints">predefined <b>Endpoint</b></a> artifact in WSO2 Integration Studio, provide the name of the artifact.</li>
+        <li>If you have a predefined <b>Endpoint</b> artifact that is saved in the <a href="../../../concepts/registry-concepts">registry</a>, provide the link to the artifact.</li>
       </ul>
-      See <a href="endpoint-properties">Endpoint Properties</a> for the complete list of properties you can define for the Endpoint artifact.
+      See <a href="../../../../references/synapse-properties/endpoint-properties">Endpoint Properties</a> for the complete list of properties you can define for the Endpoint artifact.
     </td>
   </tr>
 </table>
@@ -59,7 +59,7 @@ The following properties are required when [creating a logging proxy service](..
   <tr>
     <td>Request Log Level</td>
     <td>
-      This is the log level used for logging the the request message.
+      This is the log level used for logging the request message.
       <ul>
         <li>
           <strong>Simple</strong> logs <code>               To              </code> , <code>               From              </code> , <code>               WSAction              </code> , <code>               SOAPAction              </code> , <code>               ReplyTo              </code> , <code>               MessageID              </code> , and any properties.
@@ -86,7 +86,7 @@ The following properties are required when [creating a logging proxy service](..
   </tr>
 </table>
 
-## WSDL-Based Properties
+## WSDL Properties
 
 The following properties are required when [creating a WSDL-based proxy service](../../develop/creating-artifacts/creating-a-proxy-service.md):
 
@@ -104,7 +104,7 @@ The following properties are required when [creating a WSDL-based proxy service]
   <tr>
     <td>WSDL URI</td>
     <td>
-      The URL and the URN of the WSDL. The URL defines the host address of the network resource (can be omitted if resources are not network homed), and the URN defines the resource name in local namespaces. For example, if the URL is <code>ftp://ftp.dlink.ru</code> and the URN is <code>/pub/ADSL/</code> , you would enter <code>ftp://ftp.dlink.ru/pub/ADSL/</code> for the URI.
+      The URL and the URN of the WSDL. The URL defines the host address of the network resource (can be omitted if resources are not network homed), and the URN defines the resource name in local namespaces. For example, if the URL is <code>ftp://ftp.dlink.ru</code> and the URN is <code>/pub/ADSL/</code>, you would enter <code>ftp://ftp.dlink.ru/pub/ADSL/</code> for the URI.
     </td>
   </tr>
   <tr>
@@ -166,17 +166,17 @@ The following properties are required when [creating a transformer proxy service
 
 ## Service Parameters
 
-See the list of [Transport Parameters](transport-parameters.md) you can configure at service level for a proxy service. You can also configure the following service-level property to expose an **Inbound Endpoint** through a proxy service:
-
-<table>
-   <tr>
-      <th>Service Parameter</th>
-      <th>Description</th>
-   </tr>
-   <tr>
-      <td>inbound.only</td>
-      <td>
-            Whether the proxy service needs to be exposed only via inbound endpoints. If set to <code>true</code> all requests that the proxy service receives via normal transport will be rejected. The proxy service will process only the requests that are received via inbound endpoints.</br></br> The default setting is <code>false</code>.
-      </td>
-   </tr>
-</table>
+- See the list of [Transport Parameters](transport-parameters.md) you can configure at service level for a proxy service.
+- You can also configure the following service-level property to expose an [Inbound Endpoint](../../concepts/message-entry-points/#inbound-endpoints) through a proxy service:
+  <table>
+     <tr>
+        <th>Service Parameter</th>
+        <th>Description</th>
+     </tr>
+     <tr>
+        <td>inbound.only</td>
+        <td>
+              Whether the proxy service needs to be exposed only via inbound endpoints. If set to <code>true</code> all requests that the proxy service receives via normal transport will be rejected. The proxy service will process only the requests that are received via inbound endpoints.</br></br> The default setting is <code>false</code>.
+        </td>
+     </tr>
+  </table>

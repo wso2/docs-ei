@@ -1,6 +1,6 @@
 # Quick Start Guide
 
-This section helps you to quickly set up and run Ballerina so that you can use it for various solutions. Here we 
+This section helps you to quickly set up and run Ballerina Integrator so that you can use it for various integration solutions.
 
 ## Install Ballerina
 
@@ -9,11 +9,9 @@ This section helps you to quickly set up and run Ballerina so that you can use i
 
 > **Note**: Throughout this documentation, `<ballerina_home>` refers to the directory in which you just installed Ballerina.
 
-## Set up the Editor
+## Set up the IDE
 
-Let's try this on VS Code.
-
-> **Tip:** You can use your [favorite editor to work on Ballerina code](https://ballerina.io/learn/tools-ides/), however, we recommend you use VS Code as we have made some improvements to it for use in integration scenarios.
+Let's try this on VS Code, which is the recommended IDE to use in Ballerina Integrator integration scenarios.
 
 1. Open VS Code.
    > **Tip**: Download and install [VS Code](https://code.visualstudio.com/Download) if you do not have it already.
@@ -142,101 +140,54 @@ To have a look at the code, navigate to the `main.bal` file found inside your mo
 import ballerina/config;
 import ballerina/http;
 import ballerina/log;
+import ballerina/jsonutils;
+import ballerina/xmlutils;
 
-// Endpoint for the backend service.
+// This is the endpoint of the backend service that is being called.
 http:Client healthcareEndpoint = new("https://reqres.in");
-// Constants for request paths.
+// "/api/users" is a constant for the request path of the backend service.
 const BACKEND_EP_PATH = "/api/users";
 
+// This is the base path of the service you are creating.
 @http:ServiceConfig {
     basePath: "/laboratory"
 }
 service scienceLabService on new http:Listener(config:getAsInt("LISTENER_PORT")) {
-    // Schedule an appointment.
+    // Schedule an appointment. "/user" is the resource path of your service.
     @http:ResourceConfig {
         methods: ["POST"],
         path: "/user"
     }
-    resource function addUser(http:Caller caller, http:Request request) {
-        // Extract payload from the request.
-        xml|error requestPayload = request.getXmlPayload();
-
-        if (requestPayload is xml) {
-            // Transform the payload into the json which is required by the backend service.
-            json|error modifiedPayload = {
-                "name": requestPayload.name.getTextValue(),
-                "job": requestPayload.job.getTextValue()
-            };
-
-            if (modifiedPayload is json) {
-                // Create new request to call the back-end service with the modified payload.
-                http:Request backendRequest = new();
-                backendRequest.setPayload(<@untainted> modifiedPayload);
-                // Define new response
-                http:Response|error backendResponse = new();
-                backendResponse = healthcareEndpoint->post(BACKEND_EP_PATH, backendRequest);
-
-                if (backendResponse is http:Response) {
-                    // Get json payload from the backend response.
-                    json|error resJson = backendResponse.getJsonPayload();
-
-                    if (resJson is json) {
-                        // Convert the json payload to xml.
-                        string id = resJson.id.toString();
-                        string name = resJson.name.toString();
-                        string job = resJson.job.toString();
-                        string created = resJson.createdAt.toString();
-
-                        xml|error resXml = xml `<response>
-                            <status>successful</status>
-                            <id>${id}</id>
-                            <name>${name}</name>
-                            <job>${job}</job>
-                            <createdAt>${created}</createdAt>
-                        </response>`;
-
-                        if (resXml is xml) {
-                            respondAndHandleError(caller, http:STATUS_OK, <@untainted> resXml);
-                        } else {
-                            logAndRespondError(caller, "Converting backend json response to xml failed.", resXml,
-                                http:STATUS_INTERNAL_SERVER_ERROR);
-                        }
-
-                    } else {
-                        logAndRespondError(caller, "Invalid response from backend service.", resJson,
-                            http:STATUS_INTERNAL_SERVER_ERROR);
-                    }
-
-                } else {
-                    logAndRespondError(caller, "Error in sending request to backend service.", backendResponse, 
-                        http:STATUS_INTERNAL_SERVER_ERROR);
-                }
-
-            } else {
-                logAndRespondError(caller, "Transforming xml to json failed.", modifiedPayload, 
-                    http:STATUS_INTERNAL_SERVER_ERROR);
-            }
-
+    resource function addUser(http:Caller caller, http:Request request) returns error? {
+        json user = {};
+        // Extract user from the request and convert it from XML to JSON. 
+        // If malformed, respond back with HTTP 400 error.
+        xml|error req = request.getXmlPayload();
+        if (req is xml) {
+            user = check jsonutils:fromXML(req);
         } else {
-            logAndRespondError(caller, "Invalid request payload.", requestPayload, http:STATUS_BAD_REQUEST);
+            http:Response res = new();
+            res.statusCode = http:STATUS_BAD_REQUEST;
+            var result = caller->respond(res);
+            if (result is error) {
+                log:printError("Error occurred while responding", err = result);
+            }
+        }
+        // Create request and send to the backend
+        http:Request backendReq = new();
+        backendReq.setPayload(user);
+        http:Response backendRes = check healthcareEndpoint->post(BACKEND_EP_PATH, backendReq);
+        // Get the JSON payload, convert it back to XML, and respond back to the client
+        var result = caller->respond(check xmlutils:fromJSON(check backendRes.getJsonPayload()));
+        if (result is error) {
+            log:printError("Error occurred while responding", err = result);
         }
     }
 }
 
-// Log and respond error.
-function logAndRespondError(http:Caller caller, string errMsg, error err, int statusCode) {
-    log:printError(errMsg, err = err);
-    respondAndHandleError(caller, statusCode, errMsg);
-}
-
-// Send the response back to the client and handle responding errors.
-function respondAndHandleError(http:Caller caller, int resCode, json|xml|string payload) {
-    http:Response res = new;
-    res.statusCode = resCode;
-    res.setPayload(payload);
-    var respond = caller->respond(res);
-    if (respond is error) {
-        log:printError("Error occurred while responding", err = respond);
+function handleResult(error? result) {
+    if (result is error) {
+        log:printError("Error occurred while responding", err = result);
     }
 }
 ```

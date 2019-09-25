@@ -1,6 +1,6 @@
 # Verifying certificate revocation
 
-The default HTTPS transport listener (Secured Passthrough) and transport sender, as well as the HTTP NIO transport listener and sender can verify with the certificate authority whether a certificate is still trusted before it completes an SSL connection. If the certificate authority has revoked the certificate, a connection will not be completed. 
+The default HTTPS transport listener (Secured Passthrough) and transport sender can verify with the certificate authority whether a certificate is still trusted before it completes an SSL connection. If the certificate authority has revoked the certificate, a connection will not be completed. 
 
 When this feature is enabled, the transport listener verifies client
 certificates when a client tries to make an HTTPS connection with the
@@ -14,9 +14,7 @@ certificate authority at the handshake phase of the SSL protocol. If the
 OCSP is not supported by the certificate authority, the Micro Integrator uses Certified Revocation Lists (CRL) instead. The verification
 process checks all the certificates in a certificate chain.
 
-## Enabling Certificate Revocation (Passthrough Transport)
-
-To enable this feature for the HTTP passthrough, add the following parameters for the HTTP transport receiver and sender in the ei.toml file:
+To enable this feature for the HTTP passthrough, add the following parameters for the HTTP transport receiver and sender in the deployment.toml file:
 
 ```toml tab='Passthrough Listener'
 [[transport.http]]
@@ -34,6 +32,8 @@ sender.CacheDelay=1000
 
 ``` 
 
+<!--
+
 ## Enabling Certificate Revocation (HTTPS-NIO Transport)
 
 To enable this feature for the HTTPS NIO transport, add the following parameters for the transport receiver and sender in the ei.toml file:
@@ -49,3 +49,4 @@ listener.CertificateRevocationVerifier=""
 sender.CertificateRevocationVerifier="org.apache.synapse.transport.nhttp.HttpCoreNIOSSLSender"
 sender.CertificateRevocationVerifier=""
 ```
+-->

@@ -36,8 +36,8 @@ The mediator project you selected is created in the location you specified.
 !!! Info
     The mediator projects you create using WOS2 Integration Studio are of the `org.wso2.developerstudio.eclipse.artifact.mediator.project.nature` nature by default. Follow the steps below to view this nature added to the `<PROJECT_NAME>/target/.project` file of the Java mediator project you imported.
 
-    1. Click the **View Menu** icon, and click **Filters and Customization**.  
-    2. Deselect **.\*resources** , and click **OK** .
+    1. Click **View Menu**, and click **Filters -> Customization**.  
+    2. Deselect **.\resources**, and click **OK**.
 
 ## Examples
 

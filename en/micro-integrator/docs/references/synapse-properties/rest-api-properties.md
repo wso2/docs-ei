@@ -1,6 +1,6 @@
-# REST API Properties
+# REST API Configurations
 
-See the topics given below for the list of properties that can be configured for a REST API artifact.
+See the topics given below for the list of properties that can be configured when [creating a REST API artifact](../../develop/creating-artifacts/creating-an-api.md).
 
 ## REST API Properties (Required)
 
@@ -13,7 +13,7 @@ The following properties are required in order to [create the REST API artifact]
     </tr>
     <tr>
          <td>Name</td>
-         <td>Enter a unique name for the new API.</td>
+         <td>A unique name for the new API.</td>
       </tr>
       <tr>
          <td>Context URL</td>
@@ -38,7 +38,7 @@ The following properties are optional properties you can configure when [creatin
       </tr>
       <tr>
          <td>Port</td>
-         <td>The Port of the REST API. If you do notenter a value, <code>8280</code> is considered the default hostname. If required, you can bind a given API to a user-defined port number.</td>
+         <td>The Port of the REST API. If you do not enter a value, <code>8280</code> is considered the default hostname. If required, you can bind a given API to a user-defined port number.</td>
       </tr>
       <tr>
          <td>Version</td>
@@ -47,6 +47,8 @@ The following properties are optional properties you can configure when [creatin
 </table>
 
 ## REST API Resource Properties
+
+When you [creating a REST API artifact](../../develop/creating-artifacts/creating-an-api.md), you need to configure the API resource. Listed below are the properties you can configure when [defining an API resource](../../../develop/creating-artifacts/creating-an-api/#step-3-update-api-resource-properties).
 
 <table>
     <tr>

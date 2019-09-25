@@ -42,17 +42,17 @@ To calculate and store time-based aggregation values for the scenario explained 
         (reflecting the Unix timestamp in milliseconds), or a string value adhering to one of the following formats.
         
         - **`<YYYY>-<MM>-<dd> <HH>:<mm>:<ss> <Z>`**: This format can be used if the timezone needs to be specified explicitly. Here the ISO 8601 UTC offset must be provided for <Z> . e.g., +05:30 reflects the India Time Zone. If time is not in GMT, this value must be provided.)
-        - **`<yyyy>-<MM>-<dd> <HH>:<mm>:<ss> '**: This format can be used if the timezone is in GMT.
+        - **`<yyyy>-<MM>-<dd> <HH>:<mm>:<ss>`**: This format can be used if the timezone is in GMT.
    
 
 3. To persist the aggregates that are calculated via your Siddhi application, include a store definition as follows. if not the data is stored in-memory and lost when Siddhi app is stopped.
 
-    `
+    ```
     define stream TradeStream (symbol string, price double, quantity long, timestamp long);
     
     @store(type='rdbms', jdbc.url="jdbc:mysql://localhost:3306/TestDB", username="root", password="root" , jdbc.driver.name="com.mysql.jdbc.Driver")
 
-    `
+    ```
 
     !!!info
         If the store definition is not provided, the data is stored in-memory, and then there is a risk of it being lost when the Siddhi application is stopped.
@@ -149,7 +149,7 @@ insert into TradeSummaryStream;
 
 ## Summarizing data based on built in windowing criterias
 
-This section explains how to apply Siddhi logic to process a subset of events received to a stream based on time or the number of events. This is achieved via [Siddi Windows](<br/>)
+This section explains how to apply Siddhi logic to process a subset of events received to a stream based on time or the number of events. This is achieved via [Siddi Windows](https://siddhi-io.github.io/siddhi-execution-unique/).<br/>
 The window can apply to a batch of events or in a sliding manner. This is further explained in the following sections.
 
 ### Performing a time-based summarization in a sliding manner
@@ -169,6 +169,7 @@ To demonstrate this, consider a factory manager who wants to be able to check th
     @sink(type='log', prefix='Production totals over the past hour:')
     define stream PastHourProductionStream (name string, pastHourTotal long);
     `
+
     !!!info
         A sink annotation is connected to the output stream to log the output events. For more information about adding sinks to publish events, see the [Publishing Data guide](publishing-data.md).
             
@@ -223,6 +224,7 @@ To demonstrate this, assume that a factory manager wants to track the maximum pr
     @sink(type='log', prefix='Maximum production in last 10 runs')
     define stream DetectedMaximumProductionStream (name string, maximumValue long);
     `
+
     !!!info
         A sink annotation is connected to the output stream to log the output events. For more information about adding sinks to publish events, see the [Publishing Data guide](publishing-data.md).
         

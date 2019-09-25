@@ -262,52 +262,39 @@ A checked-out resource can have several states.
 4.  Added
 5.  Resolved
 
-When you check-out, it is at the **sync** state so the folder will have
-a **green** icon.
+When you check-out, it is at the **sync** state so the folder will have a **green** icon.
 
 ![](/assets/img/registry/119131680/119131769.png)
 
-If you double click a resource, edit and then save, the state will
-change to **Updated** and the folder icon will be **yellow** .
+If you double click a resource, edit and then save, the state will change to **Updated** and the folder icon will be **yellow** .
 
 ![](/assets/img/registry/119131680/119131774.png)
 
-If you add a new file, the state will change to **Added** and the folder
-will have a star icon.
+If you add a new file, the state will change to **Added** and the folder will have a star icon.
 
 ![](/assets/img/registry/119131680/119131717.png)
 
 ## Updating the registry
 
-The changes you did in the checked-out folder can be checked-in to the
-registry. When you check-in, you can not check-in resource wise. You
+The changes you did in the checked-out folder can be checked-in to the registry. When you check-in, you can not check-in resource wise. You
 have to check-in the whole folder.
 
-To check-in, right-click the folder that has been updated, which will
-have an icon in **yellow** , and click **WSO2 Registry \> Commit changes
-as user** .
+To check-in, right-click the folder that has been updated, which will have an icon in **yellow** , and click **WSO2 Registry -> Commit changes as user**.
 
 ![](/assets/img/registry/119131680/119131800.png)
 
-If you have several registry instances with different users, you can
-choose as to what user you want to commit the folder. Give the correct
-credentials and you will get a message confirming that the commit was
-successful.
+If you have several registry instances with different users, you can choose as to what user you want to commit the folder. Give the correct credentials and you will get a message confirming that the commit was successful.
 
-After committing the changes, the folder will be changed to the **Sync**
-stage again where the folder icon will be **green** again.
+After committing the changes, the folder will be changed to the **Sync** stage again where the folder icon will be **green** again.
 
 ## Viewing and restoring versions
 
-Go back to the **WSO2 Registry** perspective. Resources have different
-versions. If there are versions available for the resource, it will be
-displayed in the right-click menu of the resource. The five latest
-versions are displayed.
+Go back to the **WSO2 Registry** perspective. Resources have different versions. If there are versions available for the resource, it will be
+displayed in the right-click menu of the resource. The five latest versions are displayed.
 
 ![](/assets/img/registry/119131680/119131809.png)
 
-You can either view or restore a version. When you click **View** , the
-content of the version is displayed. The **Restore** option will reset
+You can either view or restore a version. When you click **View** , the content of the version is displayed. The **Restore** option will reset
 the selected version to the previous version.
 
 ## Changing role permissions of resources

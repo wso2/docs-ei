@@ -12,7 +12,7 @@ API specific logs to a file. You can configure the logger for either [INFO level
 
 Add the following section to the end of the file to configure the logger for log messages where the **Log Category** is **INFO**.
 
-```
+```bash
 log4j.category.API_LOGGER=INFO, API_APPENDER
 log4j.additivity.API_LOGGER=false
 log4j.appender.API_APPENDER=org.apache.log4j.RollingFileAppender
@@ -30,7 +30,7 @@ log4j.appender.API_APPENDER.layout.ConversionPattern=%d{ISO8601} [%X{ip}-%X{host
 
 Add the following section to the end of the file to configure the logger for log messages where the **Log Category** is **DEBUG**.
 
-``` java
+```xml
 log4j.additivity.API_LOGGER.TestAPI=false
 ```
     

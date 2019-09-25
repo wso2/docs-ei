@@ -29,7 +29,7 @@ Create a Java Package inside the Maven Project using the following name: `     
 
 2.  In the **Project Explorer**, double-click on the **StockQuoteTaskV1.java** file and replace its source with the below content.  
 
-    ```
+    ```java
     package org.wso2.task.stockquote.v1;
     
     import java.io.BufferedReader;
@@ -169,7 +169,7 @@ Create a Java Package inside the Maven Project using the following name: `     
 
 3.  In the **Project Explorer**, double-click on the **pom.xml** file and replace its source with the below content.
 
-    ```
+    ```xml
     <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
                 <modelVersion>4.0.0</modelVersion>
                 <groupId>org.wso2.task</groupId>
@@ -227,7 +227,7 @@ In addition to the `             execute()            ` method, it
         of the message flow contains **Publish Event** mediators, set the
         following property in the Synapse message context:
     
-``` java
+```xml
 mc.setProperty("CURRENT_TASK_EXECUTING_TENANT_IDENTIFIER",PrivilegedCarbonContext.getThreadLocalCarbonContext().getTenantId());
 ```
         
@@ -241,7 +241,7 @@ Also, add the following dependency to the POM file of the custom
         of the message flow contains **Publish Event** mediators, set the
         following property in the Synapse message context:
     
-``` java
+```xml
 mc.setProperty("CURRENT_TASK_EXECUTING_TENANT_IDENTIFIER",PrivilegedCarbonContext.getThreadLocalCarbonContext().getTenantId());
 ```
 
@@ -252,13 +252,13 @@ This is a bean implementing two properties: To and StockFile. These are used
 **Implementing `              ManagedLifecycle             ` for Initialization and Clean-up**
 
 Since a task implements `             ManagedLifecyle            `
-    interface, the ESB profile will call the
+    interface, the Micro Integrator will call the
     `             init()            ` method at the initialization of a
     `             Task            ` object and
     `             destroy()            ` method when a
     `             Task            ` object is destroyed:
 
-``` java
+```java
 public interface ManagedLifecycle {
 public void init(SynapseEnvironment se);
 public void destroy();
@@ -289,7 +289,7 @@ When creating a `             Task            ` object, the ESB will
     initialize the properties with the given values in the configuration
     file.
 
-``` java
+```java
 public String getStockFile() {
 return stockFile;
 }
@@ -302,20 +302,20 @@ For example, the following properties in the
     `             Task            ` class are initialized with the given
     values within the property element of the task in the configuration.
 
-``` java
+```xml
 <syn:property xmlns="http://ws.apache.org/ns/synapse" name="stockFile"value="/home/upul/test/stock.txt"/>
 ```
 
 For those properties given as XML elements, properties need to be defined within the `             Task            ` class using the format given below. OMElement comes from [Apache AXIOM](http://ws.apache.org/commons/axiom/), which is used by the Micro Integrator. AXIOM is an object model similar to DOM. To learn more about AXIOM, see the tutorial in the [AXIOM user guide](http://ws.apache.org/axiom/userguide/userguide.html) .
 
-``` java
+```java
 public void setMessage(OMElement elem) {
             message = elem;}
 ```
 
 It can be initialized with an XML element as follows:
 
-``` java
+```xml
 <property name="message">
     <m0:getQuote xmlns:m0="http://services.samples/xsd">
     <m0:request>
@@ -340,7 +340,8 @@ Follow the steps below to create the task and schedule it.
     ![](/assets/img/custom-task-scheduling/119130458/119130461.png)
 
     The below is the complete source configuration of the Sequence (i.e., the `PrintStockQuoteSequence.xml` file):
-    ```
+
+    ```xml
     <?xml version="1.0" encoding="UTF-8"?>
     <sequence name="PrintStockQuoteSequence" trace="disable" xmlns="http://ws.apache.org/ns/synapse">
         <log level="custom"/>
@@ -372,7 +373,7 @@ Follow the steps below to create the task and schedule it.
 
 5.  Defining the properties of the Task: In the **Project Explorer** , double-click the **Print StockQuoteScheduledTask.xml** file and replace its source with the below content.
 
-    ```
+    ```xml
     <task class="org.apache.synapse.startup.tasks.MessageInjector" group="synapse.simple.quartz" name="PrintStockQuoteScheduledTask" xmlns="http://ws.apache.org/ns/synapse">
                 <trigger count="1" interval="5" />
                 <property name="to" value="http://localhost:9000/soap/SimpleStockQuoteService" xmlns:task="http://www.wso2.org/products/wso2commons/tasks" />
@@ -410,7 +411,7 @@ Follow the steps below to create the task and schedule it.
 
 The below is the complete source configuration of the Task (i.e., the `PrintStockQuoteScheduledTask.xml` file).
 
-```
+```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <task class="org.apache.synapse.startup.tasks.MessageInjector" group="synapse.simple.quartz" name="PrintStockQuoteScheduledTask" xmlns="http://ws.apache.org/ns/synapse">
         <trigger interval="3" />
@@ -431,17 +432,15 @@ Download the backend service from [GitHub](https://github.com/wso2-docs/WSO2_EI/
 
 ### Creating the text file
 
-Create a text file named `         stockfile.txt        ` with the
-following content and save it to a preferred location on your
-machine. This will include the information to be read by the scheduled
-task to pass to the backend service.
+Create a text file named `         stockfile.txt        ` with the following content and save it to a preferred location on your
+machine. This will include the information to be read by the scheduled task to pass to the backend service.
 
 **stockfile.txt**
 
-``` java
-    IBM,100,120.50
-    MSFT,200,70.25
-    SUN,400,60.758
+```xml
+IBM,100,120.50
+MSFT,200,70.25
+SUN,400,60.758
 ```
 
 !!! Info
@@ -460,7 +459,7 @@ run every 15 seconds.
 
 You will view the stock quotes sent by the backend service printed every 3 seconds by the scheduled task in the below format.
 
-```
+```bash
 INFO - StockQuoteTask placed order symbol:IBM quantity:100 price:120.50
 ```
 

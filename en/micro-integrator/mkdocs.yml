@@ -23,7 +23,7 @@ site_url: https://wso2.com/integration/
 # Repository
 repo_name: wso2/docs-ei
 repo_url: https://github.com/wso2/docs-ei
-edit_uri: https://github.com/wso2/docs-ei/edit/master/en/micro-integrator/docs/
+edit_uri: https://github.com/wso2/docs-ei/edit/7.0.0/en/micro-integrator/docs/
 
 # Copyright
 copyright: WSO2 Enterprise Integrator - Documentation
@@ -47,14 +47,17 @@ theme:
 nav:
     - 'Home': index.md
     - Getting Started:
-      - 'Introduction to WSO2 Micro Integrator': 'overview/introduction.md'
+      - 'Introduction': 'overview/introduction.md'
       - 'Quick Start Guide': 'quick-start-guide/quick-start-guide.md'
+      - 'Developing your First Integration Solution': 'develop/integration-development-kickstart.md'
     - Key Concepts:
       - 'Message Entry Points': 'concepts/message-entry-points.md'
       - 'Message Processing Units': 'concepts/message-processing-units.md'
       - 'Message Exit Points': 'concepts/message-exit-points.md'
       - 'Messaging Transports': 'concepts/messaging-transports.md'
-      - 'Debugging Integrations': 'concepts/debugging-concepts.md'
+      - 'Registry' : 'concepts/registry-concepts.md'
+      - 'Mediation Debugging': 'concepts/debugging-concepts.md'
+      - 'Error Handling': 'concepts/error-handling-concepts.md'
       - 'Message Tracing': 'concepts/message-tracing.md'
       - 'Data Services': 'concepts/data-services.md'
       - 'Message Builders and Formatters': 'concepts/message-builders-formatters.md'
@@ -93,7 +96,11 @@ nav:
         - 'Tuning JVM Performance' : 'setup/performance_tuning/tuning_jvm_performance.md'
         - 'Tuning Network and OS Performance' : 'setup/performance_tuning/network_os_performance.md'
         - 'Tuning JDBC Configurations' : 'setup/performance_tuning/jdbc_tuning.md'
+        - 'Tuning the HTTP Transport' : 'setup/performance_tuning/http_transport_tuning.md'
         - 'Tuning the JMS Transport' : 'setup/performance_tuning/jms_transport_tuning.md'
+        - 'Tuning the VFS Transport' : 'setup/performance_tuning/tuning-the-VFS-Transport.md'
+        - 'Tuning the RabbitMQ Transport' : 'setup/performance_tuning/rabbitmq_transport_tuning.md'
+        - 'Tuning the Inbound Endpoints' : 'setup/performance_tuning/tuning-inbound-endpoints.md'
       - Feature-Specific Configurations:
         - 'Configuring the Task Scheduling Component': 'setup/configuring_task_scheduling_comp.md'
         - 'Enabling CORS for Data Services': 'setup/enabling_CORS_for_data_services.md'
@@ -114,7 +121,6 @@ nav:
         - 'Configuring the Multi-HTTPS Transport': 'setup/transport_configurations/multi-https-transport.md'
     - Develop:
       - 'Developing Integration Solutions': 'develop/intro-integration-development.md'
-      - 'Developer Kick Start' : 'develop/integration-development-kickstart.md'
       - Using WSO2 Integration Studio:
         - 'Quick Tour - WSO2 Integration Studio' : 'develop/WSO2-Integration-Studio.md'
         - 'Installing WSO2 Integration Studio' : 'develop/installing-WSO2-Integration-Studio.md'
@@ -160,6 +166,7 @@ nav:
           - 'Applying Security to a REST API': 'develop/advanced-development/applying-security-to-an-api.md'
           - 'Applying Security to a Proxy Service': 'develop/advanced-development/applying-security-to-a-proxy-service.md'
           - 'Changing the Endpoint of a Deployed Service': 'develop/advanced-development/changing-the-endpoint-of-deployed-service.md'
+          - 'Generating Swagger Documents for APIs': 'develop/advanced-development/generating-swagger-for-apis.md'
       #- 'Using a CI/CD Pipeline' : 'develop/using-cicd-pipeline.md'
     - Use Cases:
       - 'Integration Use Cases': 'use-cases/integration-use-cases.md'
@@ -297,11 +304,9 @@ nav:
         - Message Mediation Basics:
           - 'Split Aggregator Pattern': 'use-cases/examples/split_aggregate_pattern.md'
           - 'Optimized Message Transformation': 'use-cases/examples/message_transformation_example.md'
-          - 'VFS Streaming': 'use-cases/examples/vfs_transport_streaming.md'
         - Message Mediation Advanced:
           - 'Split Aggregator Pattern': 'use-cases/examples/split_aggregate_pattern.md'
           - 'Optimized Message Transformation': 'use-cases/examples/message_transformation_example.md'
-          - 'VFS Streaming': 'use-cases/examples/vfs_transport_streaming.md'
         - JMS Examples:
           - 'ESB as a JMS Consumer': 'use-cases/examples/jms_examples/esb-as-a-jms-consumer.md'
           - 'ESB as a JMS Producer': 'use-cases/examples/jms_examples/esb-as-a-jms-producer.md'
@@ -347,11 +352,7 @@ nav:
     - References:
       - 'Product Configurations' : 'references/config-catalog.md'
       - Synapse Configurations:
-        - 'REST API Properties': 'references/synapse-properties/rest-api-properties.md'
-        - 'Proxy Service Properties': 'references/synapse-properties/proxy-service-properties.md'
-        - 'Inbound Endpoint Properties': 'references/synapse-properties/inbound-endpoint-properties.md'
-        - 'Scheduled Task Properties': 'references/synapse-properties/scheduled-task-properties.md'
-        - Mediator Properties: 
+        - Mediator Catalog: 
           - 'Aggregate Mediators' : 'references/mediators/aggregate-Mediator.md'
           - 'Builder Mediator' : 'references/mediators/builder-Mediator.md'
           - 'Cache Mediator' : 'references/mediators/cache-Mediator.md'
@@ -381,13 +382,6 @@ nav:
           - 'PayloadFactory Mediator' : 'references/mediators/payloadFactory-Mediator.md'
           - 'Property Mediator' : 'references/mediators/property-Mediator.md'
           - 'Property Group Mediator' : 'references/mediators/property-Group-Mediator.md'
-          - Property References:
-            - 'Generic Properties' : 'references/mediators/property-reference/generic-Properties.md'
-            - 'HTTP Transport Properties' : 'references/mediators/property-reference/http-transport-properties.md'
-            - 'SOAP Headers' : 'references/mediators/property-reference/soap-headers.md'
-            - 'Axis2 Properties' : 'references/mediators/property-reference/axis2-properties.md'
-            - 'Synapse Message Context Properties' : 'references/mediators/property-reference/message-context-properties.md'
-            - 'Accessing Properties with XPath' : 'references/mediators/property-reference/accessing-properties-with-xpath.md'
           - 'Publish Event Mediator' : 'references/mediators/publish-Event-Mediator.md'
           - 'Respond Mediator' : 'references/mediators/respond-Mediator.md'
           - 'Rule Mediator' : 'references/mediators/rule-Mediator.md'
@@ -403,15 +397,47 @@ nav:
           - 'Validate Mediator' : 'references/mediators/validate-Mediator.md'
           - 'XQuery Mediator' : 'references/mediators/xQuery-Mediator.md'
           - 'XSLT Mediator' : 'references/mediators/xSLT-Mediator.md'
-        - 'Message Store Properties': 'references/synapse-properties/message-store-properties.md'
-        - 'Message Processor Properties': 'references/synapse-properties/message-processor-properties.md'
-        - 'Template Properties': 'references/synapse-properties/template-properties.md'
-        - 'Endpoint Properties': 'references/synapse-properties/endpoint-properties.md'
-        - 'Transport Parameters': 'references/synapse-properties/transport-parameters.md'
+        - Property Catalog:
+          - 'Generic Properties' : 'references/mediators/property-reference/generic-Properties.md'
+          - 'HTTP Transport Properties' : 'references/mediators/property-reference/http-transport-properties.md'
+          - 'SOAP Headers' : 'references/mediators/property-reference/soap-headers.md'
+          - 'Axis2 Properties' : 'references/mediators/property-reference/axis2-properties.md'
+          - 'Synapse Message Context Properties' : 'references/mediators/property-reference/message-context-properties.md'
+          - 'Accessing Properties with XPath' : 'references/mediators/property-reference/accessing-properties-with-xpath.md'
+        - 'REST API Configs': 'references/synapse-properties/rest-api-properties.md'
+        - 'Proxy Service Configs': 'references/synapse-properties/proxy-service-properties.md'
+        - Inbound Endpoint Configs:
+          - 'Listening Inbound Properties': 'references/synapse-properties/inbound-endpoints/listening-inbound-endpoint-properties.md'
+          - 'Polling Inbound Properties': 'references/synapse-properties/inbound-endpoints/polling-inbound-endpoint-properties.md'
+          - 'Event-based Inbound Properties': 'references/synapse-properties/inbound-endpoints/event-based-inbound-endpoint-properties.md'
+          - 'Custom Inbound Properties': 'references/synapse-properties/inbound-endpoints/custom-inbound-endpoint-properties.md'
+        - 'Scheduled Task Configs': 'references/synapse-properties/scheduled-task-properties.md'
+        - Message Store Configs: 
+          - 'JMS Message Store Properties': 'references/synapse-properties/message-stores/jms-msg-store-properties.md'
+          - 'JDBC Message Store Properties': 'references/synapse-properties/message-stores/jdbc-msg-store-properties.md'
+          - 'RabbitMQ Message Store Properties': 'references/synapse-properties/message-stores/rabbitmq-msg-store-properties.md'
+          - 'Resequence Message Store Properties': 'references/synapse-properties/message-stores/resequence-msg-store-properties.md'
+          - 'WSO2 MB Message Store Properties': 'references/synapse-properties/message-stores/wso2mb-msg-store-properties.md'
+          - 'In Memory Message Store Properties': 'references/synapse-properties/message-stores/in-memory-msg-store-properties.md'
+          - 'Custom Message Store Properties': 'references/synapse-properties/message-stores/custom-msg-store-properties.md'
+        - Message Processor Configs:
+          - 'Message Sampling Processor Properties': 'references/synapse-properties/message-processors/msg-sampling-processor-properties.md'
+          - 'Scheduled Message Forwarding Processor Properties': 'references/synapse-properties/message-processors/msg-sched-forwarding-processor-properties.md'
+          - 'Scheduled Failover Message Forwarding Processor Properties': 'references/synapse-properties/message-processors/msg-sched-failover-forwarding-processor-properties.md'
+        - 'Template Configs': 'references/synapse-properties/template-properties.md'
+        - 'Endpoint Configs': 'references/synapse-properties/endpoint-properties.md'
+        - Transport Configs:
+          - 'VFS Parameters': 'references/synapse-properties/transport-parameters/vfs-transport-parameters.md'
+          - 'JMS Parameters': 'references/synapse-properties/transport-parameters/jms-transport-parameters.md'
+          - 'RabbitMQ Parameters': 'references/synapse-properties/transport-parameters/rabbitmq-transport-parameters.md'
+          - 'FIX Parameters': 'references/synapse-properties/transport-parameters/vfs-transport-parameters.md'
+          - 'MailTo Parameters': 'references/synapse-properties/transport-parameters/mailto-transport-parameters.md'
+          - 'MQTT Parameters': 'references/synapse-properties/transport-parameters/mqtt-transport-parameters.md'
       - Security Topics:
         - 'Customizing Secure Vault' : 'references/security/customizing-secure-vault.md'
         - 'Using Keystores' : 'references/security/using_keystores.md'
       - 'Best Practices' : 'references/best-Practices.md'
+      - 'Troubleshooting JMS' : 'references/troubleshooting-jms.md'
       - 'Error Codes' : 'references/error_handling.md'
     - '': page-not-found.md
      

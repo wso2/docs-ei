@@ -124,7 +124,7 @@ To deploy your tested integration solution in your production environment, you c
 <table>
 	<tr>
 		<td>
-			<b><a href="../../develop/integration-development-kickstart">Developer Kick Start</a></b></br></br>
+			Develop your <b><a href="../../develop/integration-development-kickstart">first integration solution</a></b>.</br></br>
 			You can try the development workflow end-to-end by running a simple use case.
 		</td>
 		<td>

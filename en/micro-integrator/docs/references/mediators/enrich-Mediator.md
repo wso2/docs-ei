@@ -3,7 +3,7 @@
 The **Enrich Mediator** can process a message based on a given source configuration and then perform the specified action on the message by using the target configuration. It gets an `         OMElement        ` using the configuration specified in the source and then modifies the message by putting it on the current message using the configuration in the target.
 
 !!! Info
-    The Enrich mediator is a [content-aware](ESB-Mediators_119131045.html#ESBMediators-Content-awareness) mediator.
+    The Enrich mediator is a [content-aware](../../../concepts/message-processing-units/#classification-of-mediators) mediator.
 
 ## Syntax
 
