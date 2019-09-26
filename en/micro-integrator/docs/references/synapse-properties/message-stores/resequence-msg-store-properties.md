@@ -1,8 +1,14 @@
-# Resequence Message Store Properties
+# Resequence Message Store
+## Introduction
+Used for storing a stream of related but out-of-sequence messages so that they can be put back into the correct order. It collects and reorders the stored messages based on a defined sequence number derived from some part of the message. The messages are then published to the output channel in a specific order. This helps when the order of message delivery is important. For example, it avoids some messages arriving earlier than others.</br>
+
+The resequencing store is an extension of the existing JDBC-based message store. Hence, it inherits most of its properties from the <b>JDBC message store</b>.
+
+## Properties
 
 Listed below are the properties used for [creating a Resequence Message Store](../../../develop/creating-artifacts/creating-a-message-store.md).
 
-## Required Properties
+### Required Properties
 
 The following properties are required when [creating a Resequence Message Store](../../../develop/creating-artifacts/creating-a-message-store.md).
 
@@ -57,7 +63,7 @@ The following properties are required when [creating a Resequence Message Store]
   </tr>
 </table>
 
-## Optional Properties
+### Optional Properties
 
 The following optional properties can be configured when [creating a Resequencer Message Store](../../../develop/creating-artifacts/creating-a-message-store.md).
 

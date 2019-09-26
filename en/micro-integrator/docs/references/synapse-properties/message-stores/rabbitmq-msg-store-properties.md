@@ -1,8 +1,12 @@
-# RabbitMQ Message Store Properties
+# RabbitMQ Message Store
+## Introduction
+Persists messages in a RabbitMQ queue inside a RabbitMQ broker. The RabbitMQ message store can be configured by specifying the class as <code>org.apache.synapse.message.store.impl.rabbitmq.RabbitmqStore</code>.
+
+## Properties
 
 Listed below are the properties used for [creating a RabbitMQ Message Store](../../../develop/creating-artifacts/creating-a-message-store.md).
 
-##  Required Properties
+###  Required Properties
 
 The following optional properties can be configured when [creating a RabbitMQ Message Store](../../../develop/creating-artifacts/creating-a-message-store.md).
 
@@ -31,7 +35,7 @@ The following optional properties can be configured when [creating a RabbitMQ Me
   </tr>
 </table>
 
-## Optional Properties
+### Optional Properties
 
 The following optional properties can be configured when [creating a RabbitMQ Message Store](../../../develop/creating-artifacts/creating-a-message-store.md).
 
@@ -90,7 +94,7 @@ The following optional properties can be configured when [creating a RabbitMQ Me
   </tr>
 </table>
 
-## SSL Properties
+### SSL Properties
 
 !!! Note
     Configuring parameters that provide information related to keystores and truststores can be optional based on your broker configuration. For example, if `         fail_if_no_peer_cert        ` is set to `         false        ` in the RabbitMQ broker configuration, then you only need to specify `         <parameter name="rabbitmq.connection.ssl.enabled" locked="false">true</parameter>        `. Additionally, you can also set `         <parameter name="rabbitmq.connection.ssl.version" locked="false">true</parameter>        ` parameter to specify the SSL version. If `         fail_if_no_peer_cert        ` is set to `         true        ` , you need to provide keystore and truststore information.
@@ -142,7 +146,7 @@ The following optional properties can be configured when [creating a RabbitMQ Me
   </tr>
 </table>
 
-## Properties: Guaranteed Delivery of Messages
+### Properties: Guaranteed Delivery of Messages
 
 If you need to ensure guaranteed delivery of your messages, specify values for the following parameters:
 

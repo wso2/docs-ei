@@ -1,4 +1,4 @@
-# Configure with HornetQ
+# Connecting to HornetQ
 
 This section describes how to configure WSO2 WSO2 Micro Integrator to connect with
 HornetQ, which is an open source project to build a multi-protocol, asynchronous messaging system.

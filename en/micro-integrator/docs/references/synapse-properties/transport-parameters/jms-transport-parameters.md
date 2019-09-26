@@ -1,8 +1,32 @@
 # JMS Transport Parameters
 
+## About the JMS transport
+
+The Java Message Service (JMS) transport in WSO2 Micro Integrator allows you to easily send and receive messages to queues and topics of any JMS service that implements the JMS specification.
+
+Java Message Service (JMS) is a widely used API in Java-based Message Oriented Middleware(MOM) applications. It facilitates loosely coupled, reliable, and asynchronous communication between different components of a distributed application. It supports two asynchronous communication models for messaging as follows:
+<ul>
+   <li><b>Point-to-point model</b>: In this model message communication happens from one JMS client to another JMS client through a dedicated queue.</li>
+   <li><b>Publish and subscribe model</b>:  In this model message communication happens from one JMS client(publisher) to many JMS clients(subscribers) through a topic.</li>
+</ul> 
+JMS supports two models for messaging as follows:
+<ul>
+   <li><b>Queues</b>: point-to-point.</li>
+   <li><b>Topics</b>: publish and subscribe.</li>
+</ul> 
+The Micro Integrator supports the following messaging features introduced with JMS 2.0:
+<ul>
+   <li>Shared Topic Subscription</li>
+   <li>JMSX Delivery Count</li>
+   <li>JMS Message Delivery Delay</li>
+</ul>
+The JMS transport implementation comes from the WS-Commons Transports project, and it makes use of JNDI to connect to various JMS brokers. As a result, WSO2 Micro Integrator can work with any JMS broker that offers JNDI support.
+
+## Parameters
+
 Given below is the list of JMS transport parameters that can be configured when you [create a proxy service](../../../develop/creating-artifacts/creating-a-proxy-service.md).
 
-## JMS connection factory parameters
+### JMS connection factory parameters
 
 Configuration parameters for the JMS receiver and the sender are XML fragments that represent JMS connection factories.
 
@@ -352,7 +376,7 @@ Configuration parameters for the JMS receiver and the sender are XML fragments t
    </tbody>
 </table>
 
-## Service-level JMS configuration parameters
+### Service-level JMS configuration parameters
 
 <table>
       <tr>
