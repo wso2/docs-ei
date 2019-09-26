@@ -1,8 +1,14 @@
-# RabbitMQ Transport Parameters
+# RabbitMQ Transport
+
+## About the RabbitMQ Transport
+
+<a href="http://en.wikipedia.org/wiki/Advanced_Message_Queuing_Protocol">AMQP</a> is a wire-level messaging protocol that describes the format of the data that is sent across the network. If a system or application can read and write AMQP, it can exchange messages with any other system or application that understands AMQP, regardless of the implementation language. The RabbitMQ AMQP transport is implemented using the <a href="http://www.rabbitmq.com/java-client.html">RabbitMQ Java Client</a>. It allows you to send or receive AMQP messages by directly calling an AMQP broker (RabbitMQ).
+
+## Parameters
 
 Given below is the list of RabbitMQ transport parameters that can be configured when you [create a proxy service](../../../develop/creating-artifacts/creating-a-proxy-service.md).
 
-## Required Parameters (Receiving Messages)
+### Required Parameters (Receiving Messages)
 
 <table>
   <tr>
@@ -25,7 +31,7 @@ Given below is the list of RabbitMQ transport parameters that can be configured 
   </tr>
 </table>
 
-## Optional Parameters (Receiving Messages)
+### Optional Parameters (Receiving Messages)
 
 <table>
    <tr>
@@ -104,7 +110,7 @@ Given below is the list of RabbitMQ transport parameters that can be configured 
    </tbody>
 </table>
 
-## Required Parameters (Sending Messages)
+### Required Parameters (Sending Messages)
 
 <table>
   <tr>
@@ -121,7 +127,7 @@ Given below is the list of RabbitMQ transport parameters that can be configured 
   </tr>
 </table>
 
-## Optional Parameters (Sending Messages)
+### Optional Parameters (Sending Messages)
 
 <table>
    <tr>
@@ -212,7 +218,7 @@ Given below is the list of RabbitMQ transport parameters that can be configured 
    </tbody>
 </table>
 
-## Optional Parameters (Connection Recovery)
+### Optional Parameters (Connection Recovery)
 
 In case of a network failure or broker shutdown, the Micro Integrator will try to recreate the connection.
 
@@ -242,7 +248,7 @@ In case of a network failure or broker shutdown, the Micro Integrator will try t
   </tr>
 </table>
 
-## Optional Parameters (SSL)
+### Optional Parameters (SSL)
 
 To enable SSL support in RabbitMQ, you need to configure the following parameters.
 
