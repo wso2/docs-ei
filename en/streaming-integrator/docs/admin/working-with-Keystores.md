@@ -242,8 +242,31 @@ Now, you have an SSL certificate stored in a Java keystore and a public key adde
 
 ## Configuring keystores
 
+Once you have created a new key store and updated the `<SI_HOME>|<SI_TOOLING_HOME>/resources/security/client-truststore.jks` file, you must update the `<SI_HOME>|<SI_TOOLING_HOME>/conf/<PROFILE/deployment.yaml` file to make that keystore work for the required functions. Keystores are used for multiple functions in the Streaming Integrator including securing the servlet transport, databridge communication, encrypting confidential information in configuration files etc.
 
+!!!tip
+    - The `wso2carbon.jks` keystore file that is shipped with the Streaming Integrator is used as the default keystore for all functions. However, in a production environment, it is recommended to create new keystores with keys and certificates because the Streaming Integrator is an open source integrator, and anyone who downloads it has access to the default keystore.
+    - To find all the functions that require a keystore, you can search for `.jks` in the deployment.yaml file.
 
+e.g., If you want to secure the listener configured for the Streaming Integrator using a keystore, you can enter details relating to the keystore as shown below. In this example, the details of the default key is used.
+
+```
+listenerConfigurations:
+-
+id: "msf4j-https"
+host: "0.0.0.0"
+port: 9743
+scheme: https
+keyStoreFile: "${carbon.home}/resources/security/wso2carbon.jks"
+keyStorePassword: wso2carbon
+certPass: wso2carbon
+```
+
+| **Parameter**         | **Description**                                                           |
+|-----------------------|---------------------------------------------------------------------------|
+|**`keyStoreFile`**     |The path to the keystore file.                                             |
+|**`keyStorePassword`** |The password with which the keystore can be accessed.                      |
+|**`certPass`**         |The alias of the public certificate issued by the certification authority. |
 
 
   
