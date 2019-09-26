@@ -3,7 +3,7 @@
 Siddhi applications are files that define the Siddhi logic to process
 the events sent to the Streaming Integrator. They are written in the [Siddhi Query
 Language](https://siddhi-io.github.io/siddhi/documentation/siddhi-4.x/query-guide-4.x/)
-using the [Streaming Integrator Studio](_Stream_Processor_Studio_Overview_).
+using the [Streaming Integrator Tooling](streaming-integrator-studio-overview.md).
 
 A Siddhi file contains the following configurations:
 
