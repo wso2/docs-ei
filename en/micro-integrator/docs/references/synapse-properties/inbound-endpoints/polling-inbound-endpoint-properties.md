@@ -4,11 +4,11 @@ See the topics given below for the list of properties that can be configured for
 
 ## JMS Inbound 
 
-Listed below are the properties used for [creating a JMS inbound endpiont](../../develop/creating-artifacts/creating-an-inbound-endpoint.md).
+Listed below are the properties used for [creating a JMS inbound endpiont](../../../develop/creating-artifacts/creating-an-inbound-endpoint.md).
 
 ### Required Properties
 
-The following properties are required when [creating a JMS inbound endpiont](../../develop/creating-artifacts/creating-an-inbound-endpoint.md).
+The following properties are required when [creating a JMS inbound endpiont](../../../develop/creating-artifacts/creating-an-inbound-endpoint.md).
 
 <table>
   <tr>
@@ -61,7 +61,7 @@ The following properties are required when [creating a JMS inbound endpiont](../
 
 ### Optional Properties
 
-The following optional properties can be configured when [creating a JMS inbound endpiont](../../develop/creating-artifacts/creating-an-inbound-endpoint.md).
+The following optional properties can be configured when [creating a JMS inbound endpiont](../../../develop/creating-artifacts/creating-an-inbound-endpoint.md).
 
 <table>
    <thead>
@@ -225,11 +225,11 @@ The following optional properties can be configured when [creating a JMS inbound
 
 ## Kafka Inbound 
 
-Listed below are the properties used for [creating an Kafka inbound endpiont](../../develop/creating-artifacts/creating-an-inbound-endpoint.md).
+Listed below are the properties used for [creating an Kafka inbound endpiont](../../../develop/creating-artifacts/creating-an-inbound-endpoint.md).
 
 ### Required Properties
 
-The following properties are required when [creating a Kafka inbound endpiont](../../develop/creating-artifacts/creating-an-inbound-endpoint.md).
+The following properties are required when [creating a Kafka inbound endpiont](../../../develop/creating-artifacts/creating-an-inbound-endpoint.md).
 
 <table>
   <tr>
@@ -316,7 +316,7 @@ The following properties are required when [creating a Kafka inbound endpiont](.
 
 ### Optional Properties
 
-The following optional properties can be configured when [creating a Kafka inbound endpiont](../../develop/creating-artifacts/creating-an-inbound-endpoint.md).
+The following optional properties can be configured when [creating a Kafka inbound endpiont](../../../develop/creating-artifacts/creating-an-inbound-endpoint.md).
 
 <table>
    <thead>

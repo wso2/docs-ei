@@ -41,11 +41,11 @@ See the topics given below for the list of properties that can be configured for
 
 ## MQTT Inbound 
 
-Listed below are the properties used for [creating an MQTT inbound endpiont](../../develop/creating-artifacts/creating-an-inbound-endpoint.md).
+Listed below are the properties used for [creating an MQTT inbound endpiont](../../../develop/creating-artifacts/creating-an-inbound-endpoint.md).
 
 ### Required Properties
 
-The following properties are required when [creating a MQTT inbound endpiont](../../develop/creating-artifacts/creating-an-inbound-endpoint.md).
+The following properties are required when [creating a MQTT inbound endpiont](../../../develop/creating-artifacts/creating-an-inbound-endpoint.md).
 
 <table>
   <tr>
@@ -112,7 +112,7 @@ The following properties are required when [creating a MQTT inbound endpiont](..
 
 ### Optional Properties
 
-The following optional properties can be configured when [creating an MQTT inbound endpiont](../../develop/creating-artifacts/creating-an-inbound-endpoint.md).
+The following optional properties can be configured when [creating an MQTT inbound endpiont](../../../develop/creating-artifacts/creating-an-inbound-endpoint.md).
 
 <table>
 <thead>
@@ -191,11 +191,11 @@ The following optional properties can be configured when [creating an MQTT inbou
 
 ## RabbitMQ Inbound 
 
-Listed below are the properties used for [creating a RabbitMQ inbound endpiont](../../develop/creating-artifacts/creating-an-inbound-endpoint.md).
+Listed below are the properties used for [creating a RabbitMQ inbound endpiont](../../../develop/creating-artifacts/creating-an-inbound-endpoint.md).
 
 ### Required Properties
 
-The following properties are required when [creating a RabbitMQ inbound endpiont](../../develop/creating-artifacts/creating-an-inbound-endpoint.md).
+The following properties are required when [creating a RabbitMQ inbound endpiont](../../../develop/creating-artifacts/creating-an-inbound-endpoint.md).
 
 <table>
   <tr>
@@ -280,7 +280,7 @@ The following properties are required when [creating a RabbitMQ inbound endpiont
 
 ### Optional Properties
 
-The following optional properties can be configured when [creating an RabbitMQ inbound endpiont](../../develop/creating-artifacts/creating-an-inbound-endpoint.md).
+The following optional properties can be configured when [creating an RabbitMQ inbound endpiont](../../../develop/creating-artifacts/creating-an-inbound-endpoint.md).
 
 <table>
    <thead>
