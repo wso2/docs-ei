@@ -69,11 +69,12 @@ nav:
       - 'Publishing Data': 'guides/publishing-data.md'
       - 'Triggering Integration Flows': 'guides/triggering-integration-flows.md'
     - 'Tutorials':
+      - 'Tutorials Overview': 'examples/tutorials-overview.md'
       - 'Performing Real-time ETL with MySQL': 'examples/performing-real-time-etl-with-mysql.md'
       - 'Performing Real-time ETL with Files': 'examples/performing-real-time-etl-with-files.md'
       - 'Working with Kafka': 'examples/working-with-kafka.md'
       - 'Exposing Processed Data as API': 'examples/exposing-processed-data-as-api.md'
-      - 'Triggering Integrations via Micro Integrator': 'examples/triggering-integrations-via-micro-integrator.md'
+      - 'Triggering Integrations via MI': 'examples/triggering-integrations-via-micro-integrator.md'
   - 'Setup and Install':
     - 'Installing the Product':
       - 'Install in a VM': 'setup/installing-si-in-vm.md'
@@ -108,12 +109,10 @@ nav:
     - 'Debugging Siddhi Applications': 'develop/debugging_siddhi_applications.md'
     - 'Exporting Siddhi Files': 'develop/exporting-Siddhi-Files.md'
   - 'Administration':
-    - 'Monitoring the Streaming Integrator': 'admin/monitoring-the-streaming-integrator'
+    - 'Monitoring the Streaming Integrator': 'admin/monitoring-the-streaming-integrator.md'
   - 'References':
     - 'Streaming Integration REST API Guide': 'ref/si-rest-api-guide.md'
     - 'Performance Analysis Results': 'ref/performance-analysis-results.md'
-  - 'FAQ':
-    - 'FAQ': faq/fAQ.md
   - '': page-not-found.md
 
 # Extensions
