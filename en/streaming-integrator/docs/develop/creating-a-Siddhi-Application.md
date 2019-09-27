@@ -40,20 +40,26 @@ A Siddhi file contains the following configurations:
 </table>
 
 A Siddhi application can be created from the source view or the design
-view of the Streaming Integrator Studio.
+view of the Streaming Integrator Tooling.
 
 ### Creating a Siddhi application in the source view
 
-To create a Siddhi application via the source view of the Streaming Integrator Studio, follow the steps below:
+To create a Siddhi application via the source view of the Streaming Integrator Tooling, follow the steps below:
 
-1.  Start the Streaming Integrator Studio by navigating to the `<SI_TOOLING_HOME>/bin` directory and issue one of the following commands:
+1. Start the Streaming Integrator Tooling by navigating to the `<SI_TOOLING_HOME>/bin` directory and issue one of the following commands:
+
     - For Windows: `streaming-integrator-tooling.bat`
+
     - For Linux: `./streaming-integrator-tooling.sh`
- The Stream Processor Studio opens as shown below.  
+
+ The Streaming Integrator Tooling opens as shown below.
+
     ![Welcome Page](../images/Creating-Siddhi-Applications/Welcome-Page.png)
-2.  Click **New** to start defining a new Siddhi application. A new file
-    opens as shown below.  
+
+2. Click **New** to start defining a new Siddhi application. A new file opens as shown below.
+
     ![New Siddhi File](../images/Creating-Siddhi-Applications/New_Siddhi_File.png)
+
 3.  Add the following sample Siddhi application to the file.
 
     ``` sql
@@ -213,24 +219,23 @@ To create a Siddhi application via the source view of the Streaming Integrator S
 
 
 
-4.  To save this Siddhi application, click **File** , and then click
-    **Save** . By default siddhi applications are saved in the
-    `<SI_HOME>/wso2/editor/deployment/workspace` directory.
+4. To save this Siddhi application, click **File**, and then click **Save**. By default siddhi applications are saved in the  `<SI_HOME>/wso2/editor/deployment/workspace` directory.
 
 5.  To export the Siddhi application to your preferred location, click
-    **File** , and then click **Export File** .
+    **File**, and then click **Export File**.
+
 6.  To see a graphical view of the event flow you defined in your Siddhi
-    application, click **Design View** .  
+    application, click **Design View**.
     ![Switch to Design View](../../images/Creating-Siddhi-Applications/Design_View.png)  
     The event flow is displayed as follows.  
     ![Siddhi Application in Design View](../../images/Creating-Siddhi-Applications/Siddhi_Application_Design_View.png){width="900"}
 
 ### Creating a Siddhi application in the design view
 
-To create a Siddhi application via the design view of the WSO2 SP Stream
-Processor Studio, follow the steps below:
+To create a Siddhi application via the design view of the Streaming Integrator Tooling, follow the steps below:
 
 1.  Start the Streaming Integrator Studio by navigating to the `<SI_TOOLING_HOME>/bin` directory and issue one of the following commands:
+
     - For Windows: `streaming-integrator-tooling.bat`
     - For Linux: `./streaming-integrator-tooling.sh`
  The Stream Processor Studio opens as shown below.  

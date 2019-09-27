@@ -6,24 +6,7 @@ The Streaming Integrator (SI) allows you to perform real-time ETL with data whic
 
 This tutorial takes you through the different modes and options you could use, in order to perform real-time ETL with files, using the SI. 
 
-## Outline:
 
-- [Preparing the server](#Preparing-the-server)
-- [Extracting data from a file](#Extracting-data-from-a-file)
-    - [Tailing a text file line by line](#Tailing-a-text-file-line-by-line)
-    - [Tailing a text file using a regular expression](#Tailing-a-text-file-using-a-regular-expression)
-    - [Reading a remote text file and moving it after processing](#Reading-a-remote-text-file-and-moving-it-after-processing)
-    - [Reading a binary file and moving it after processing](#reading-a-binary-file-and-moving-it-after-processing)
-    - [Reading a file line by line and delete it after processing](#Reading-a-file-line-by-line-and-delete-it-after-processing)
-    - [Reading a file using a regular expression and deleting it after processing](#reading-a-file-using-a-regular-expression-and-deleting-it-after-processing)
-
-- [Extracting data from a folder](#Extracting-data-from-a-folder)
-    - [Processing all files in the folder](#Processing-all-files-in-the-folder)
-
-- [Loading data into a file](#Loading-data-into-a-file)
-    - [Appending or over-writing events to a file](#Appending-or-over-writing-events-to-a-file)
-    
-- [Preserving the State of the application through a system failure](#Preserving-the-State-of-the-application-through-a-system-failure)
     
 ## Preparing the server 
 Navigate to the `<SI_HOME>/bin` directory and issue the following command: `sh server.sh`
