@@ -72,7 +72,6 @@ nav:
       - 'Performing Real-time ETL with MySQL': 'examples/performing-real-time-etl-with-mysql.md'
       - 'Performing Real-time ETL with Files': 'examples/performing-real-time-etl-with-files.md'
       - 'Working with Kafka': 'examples/working-with-kafka.md'
-      - 'Transforming XML Messages': 'examples/transforming-xml-messages.md'
       - 'Exposing Processed Data as API': 'examples/exposing-processed-data-as-api.md'
       - 'Triggering Integrations via Micro Integrator': 'examples/triggering-integrations-via-micro-integrator.md'
   - 'Setup and Install':
@@ -80,6 +79,7 @@ nav:
       - 'Install in a VM': 'setup/installing-si-in-vm.md'
       - 'Installing in Docker': 'setup/installing-si-using-docker.md'
       - 'Installing in Kubernetes': 'setup/installing-si-using-kubernetes.md'
+      - 'Migrating from WSO2 SP': 'setup/migrating-from-stream-processor.md'
     - 'Deploying Streaming Integrator':
       - 'Single Deployment': 'setup/deploying-si-as-a-single-deployment.md'
       - 'Minimum HA Cluster': 'setup/deploying-si-as-minimum-ha-cluster.md'
