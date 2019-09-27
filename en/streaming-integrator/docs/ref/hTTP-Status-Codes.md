@@ -1,15 +1,9 @@
-# HTTP Status Codes
+## HTTP Status Codes
 
-When REST API requests are sent to carryout various actions, various
-HTTP status codes will be returned based on the state of the action
-(success or failure) and the HTTP method (
-`         POST, GET, PUT, DELETE        ` ) executed. The following are
-the definitions of the various HTTP status codes that are returned.
+When REST API requests are sent to carryout various actions, various HTTP status codes will be returned based on the state of the action (success or failure) and the HTTP method (`POST, GET, PUT, DELETE`) executed. The following are the definitions of the various HTTP status codes that are returned.
 
--   [Success HTTP status codes](#HTTPStatusCodes-SuccessHTTPstatuscodes)
--   [Error HTTP status codes](#HTTPStatusCodes-ErrorHTTPstatuscodes)
 
-### Success HTTP status codes
+### HTTP status codes indicating successful delivery
 
 | Code | Code Summary | Description                                                                                                                                                                                                                       |
 |------|--------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|

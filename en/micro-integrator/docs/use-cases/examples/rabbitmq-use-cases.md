@@ -597,21 +597,3 @@ The below is the fault sequence with the
         <drop/>
     </sequence>
 ```
-
-## Parameters (Higher Throughput Message Delivery)
-
-For increased performance and higher throughput in message delivery, configure the transport sender as follows:
-
-```
-<transportSender name="rabbitmq" class="org.apache.axis2.transport.rabbitmq.RabbitMQSender">
-       <parameter name="CachedRabbitMQConnectionFactory" locked="false"> 
-         <parameter name="rabbitmq.server.host.name" locked="false">localhost</parameter> 
-         <parameter name="rabbitmq.server.port" locked="false">5672</parameter> 
-         <parameter name="rabbitmq.server.user.name" locked="false">user</parameter> 
-         <parameter name="rabbitmq.server.password" locked="false">abc123</parameter> 
-       </parameter> 
-</transportSender>
-```
-
-!!! Note
-    When configuring the [proxy service](#RabbitMQAMQPTransport-proxyService), be sure to add the following connection factory parameter in the address URI: `rabbitmq.connection.factory=CachedRabbitMQConnectionFactory`

@@ -10,24 +10,26 @@ Use the following deployment synchronization recommendations based on the rate a
 
 You can use a common shared file system such as Network File System (NFS) or any other shared file system as the content synchronization mechanism. You need to mount the MI_HOME/repository/deployment/server/ directory of the Micro Integrator nodes in your deployment to the shared file system to be able to share all the artifacts between the nodes.
 
-## Using Remote Synchronization
+## Using Remote synchronization
 
 Deployment synchronization can be done using rsync, which is a file copying tool. These changes must be done in the manager node and in the same directory.
 
 1. Create a file called workers-list.txt that lists all the worker nodes in the deployment. The following is a sample of the file where there are two worker nodes.
 
-	> Different nodes are separated by new lines.
+	!!! Info
+		Different nodes are separated by new lines.
 
-	``` bash
-	ubuntu@192.168.1.1:~/setup/192.168.1.1/as/as_worker/repository/deployment/server
-	ubuntu@192.168.1.2:~/setup/192.168.1.2/as/as_worker/repository/deployment/server
-	```
+		```bash
+		ubuntu@192.168.1.1:~/setup/192.168.1.1/as/as_worker/repository/deployment/server
+		ubuntu@192.168.1.2:~/setup/192.168.1.2/as/as_worker/repository/deployment/server
+		```
 
 2.	Create a file to synchronize the MI_HOME/repository/deployment/server/ folders between the Micro Integrator nodes.
 
-	> You must create your own SSH key and define it as the pem_file. Alternatively, you can use an existing SSH key. Specify the manager_server_dir depending on the location in your local machine. Change the logs.txt file path and the lock location based on where they are located in your machine.
+	!!! Info
+		You must create your own SSH key and define it as the pem_file. Alternatively, you can use an existing SSH key. Specify the manager_server_dir depending on the location in your local machine. Change the logs.txt file path and the lock location based on where they are located in your machine.
 
-	``` bash
+	```bash
 	#!/bin/sh
 	manager_server_dir=~/wso2as-5.2.1/repository/deployment/server/
 	pem_file=~/.ssh/carbon-440-test.pem
@@ -60,10 +62,10 @@ Deployment synchronization can be done using rsync, which is a file copying tool
 	done
 	```
 
-
 3.	Create a Cron job that executes the above file every minute for deployment synchronization. Do this by running the following command in your command line.
 
-	> You can run the Cron job on one given node at a given time. If you switch it to another node, you must stop the Cron job on the existing node and start a new Cron job on the new node after updating it with the latest files so far.
+	!!! Info
+		You can run the Cron job on one given node at a given time. If you switch it to another node, you must stop the Cron job on the existing node and start a new Cron job on the new node after updating it with the latest files so far.
 
 	```
 	*   *  *   *   *     /home/ubuntu/setup/rsync-for-depsync/rsync-for-depsync.sh

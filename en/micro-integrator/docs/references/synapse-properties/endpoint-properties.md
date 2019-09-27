@@ -557,7 +557,7 @@ to a maximum duration.
     </tbody>
 </table>
 
-### WS Addressing Properties
+## WS Addressing Properties
 
 <table>
     <thead>

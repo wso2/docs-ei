@@ -22,10 +22,11 @@ If you want to change the [default primary keystore](#the-default-keystore-confi
 
 1. [Create a new keystore](../../setup/security/creating_keystores.md) and copy it to the MI_HOME/repository/security/ directory.
   
-    > Note that CA-signed certificates are recommended for this keystore because it is used for communicating with external parties.
+    !!! Note
+        CA-signed certificates are recommended for this keystore because it is used for communicating with external parties.
 
-2. Open the ei.toml file, add the following config section, and update the parameter values for the newly-created keystore.
-    ```Java
+2. Open the deployment.toml file, add the following config section, and update the parameter values for the newly-created keystore.
+    ```toml
     [keystore.tls]
     file_name="wso2carbon.jks"
     type="JKS"
@@ -40,18 +41,20 @@ If you want to change the [default primary keystore](#the-default-keystore-confi
 ## Separating the internal keystore
 By default, the [primary keystore](#the-default-keystore-configuration) is used for internal **data encryption** (encrypting data in internal data stores and configuration files) as well as for **signing messages** that are communicated with external parties.
 
-> **Why separate the internal keystore?**
-
-> It is sometimes a common requirement to have separate keystores for communicating messages with external parties (such as SAML, OIDC id_token signing) and for encrypting information in **internal data stores**. This is because, for the first scenario of signing messages, the keystore certificates need to be frequently renewed. However, for encrypting information in internal data stores, the keystore certificates should not be changed frequently because the data that is already encrypted will become unusable every time the certificate changes.
+!!! Info
+    **Why separate the internal keystore?**
+    
+    It is sometimes a common requirement to have separate keystores for communicating messages with external parties (such as SAML, OIDC id_token signing) and for encrypting information in **internal data stores**. This is because, for the first scenario of signing messages, the keystore certificates need to be frequently renewed. However, for encrypting information in internal data stores, the keystore certificates should not be changed frequently because the data that is already encrypted will become unusable every time the certificate changes.
 
 Follow the steps given below to separate the keystore that is used for encrypting data in internal data stores.
 
 1. [Create a new keystore](../../setup/security/creating_keystores.md) and copy it to the MI_HOME/repository/security/ directory.
   
-    > Note that you do not require CA-signed certificates for this keystore because it will **not** be used for communicating with external parties.
+    !!! Note
+        You do not require CA-signed certificates for this keystore because it will **not** be used for communicating with external parties.
 
-2. Open the ei.toml file, and update the parameter values for the newly-created internal keystore.
-    ```Java
+2. Open the deployment.toml file, and update the parameter values for the newly-created internal keystore.
+    ```toml
     [keystore.internal]
     file_name="wso2carbon.jks"
     type="JKS"
@@ -66,10 +69,11 @@ If you want to change the [default trust store](#the-default-keystore-configurat
 
 1. [Create a new keystore](../../setup/security/creating_keystores.md) and copy it to the MI_HOME/repository/security/ directory.
 
-    > Note that you do not require CA-signed certificates for this keystore.
+    !!! Note 
+        You do not require CA-signed certificates for this keystore.
 
-2. Open the ei.toml file, add the following config section and update the values for the newly-created trust store.
-    ```Java
+2. Open the deployment.toml file, add the following config section and update the values for the newly-created trust store.
+    ```toml
     [truststore]
     file_name="wso2carbon.jks"
     type="JKS"

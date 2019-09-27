@@ -1,13 +1,20 @@
 # HTTP Transport Properties
 
+!!! Info
+	The following are HTTP transport properties that can be used with the [Property mediator](../../../references/mediators/property-Mediator.md) and the [Property Group mediator](../../../references/mediators/property-Group-Mediator.md).
+
 HTTP transport properties allow you to configure how the HTTP transport
 processes messages, such as forcing a 202 HTTP response to the client so
 that it stops waiting for a response, setting the HTTP status code, and
 appending a context to the target URL in RESTful invocations.
 
-#### POST\_TO\_URI
+## POST_TO_URI
 
 <table>
+	<tr>
+		<th>Parameter</th>
+		<th>Description</th>
+	</tr>
 <tbody>
 <tr class="odd">
 <td><p><strong>Name</strong></p></td>
@@ -27,7 +34,7 @@ appending a context to the target URL in RESTful invocations.
 </tr>
 <tr class="odd">
 <td><p><strong>Description</strong></p></td>
-<td><p>This property makes the request URL that is sent from the ESB profile a complete URL. When set to <code>              false             </code> only the context path will be included in the request URL that is sent. It is important that this property is set to <code>              true             </code> when the ESB profile needs to communicate with the back-end service through a proxy server.</p></td>
+<td><p>This property makes the request URL that is sent from the Micro Integrator a complete URL. When set to <code>              false             </code> only the context path will be included in the request URL that is sent. It is important that this property is set to <code>              true             </code> when the Micro Integrator needs to communicate with the back-end service through a proxy server.</p></td>
 </tr>
 <tr class="even">
 <td><p><strong>Example</strong></p></td>
@@ -42,9 +49,13 @@ appending a context to the target URL in RESTful invocations.
 </tbody>
 </table>
 
-#### FORCE\_SC\_ACCEPTED
+## FORCE_SC_ACCEPTED
 
 <table>
+	<tr>
+		<th>Parameter</th>
+		<th>Description</th>
+	</tr>
 <tbody>
 <tr class="odd">
 <td><p><strong>Name</strong></p></td>
@@ -64,7 +75,7 @@ appending a context to the target URL in RESTful invocations.
 </tr>
 <tr class="odd">
 <td><p><strong>Description</strong></p></td>
-<td><p>When set to true, this property forces a 202 HTTP response to the client immediately after the ESB profile receives the message so that the client stops waiting for a response.</p></td>
+<td><p>When set to true, this property forces a 202 HTTP response to the client immediately after the Micro Integrator receives the message so that the client stops waiting for a response.</p></td>
 </tr>
 <tr class="even">
 <td><p><strong>Example</strong></p></td>
@@ -79,9 +90,13 @@ appending a context to the target URL in RESTful invocations.
 </tbody>
 </table>
 
-#### DISABLE\_CHUNKING
+## DISABLE_CHUNKING
 
 <table>
+	<tr>
+		<th>Parameter</th>
+		<th>Description</th>
+	</tr>
 <tbody>
 <tr class="odd">
 <td><p><strong>Name</strong></p></td>
@@ -102,11 +117,10 @@ appending a context to the target URL in RESTful invocations.
 <tr class="odd">
 <td><p><strong>Description</strong></p></td>
 <td><div class="content-wrapper">
-<p>If you set this to true, it disables HTTP chunking for outgoing messages. Instead, the ESB profile builds the message to calculate the content length and then sends the particular message to the backend with the content length (e.g., <code>               Content-Length: 25              </code> ).</p>
-<p>You can use this parameter if the client sends the request with HTTP chunking (i.e., with <code>               Transfer Encoding:chunked              </code> ) although you need to send the message without HTTP chunking to the backend, or if you need to modify the message payload, which the client receives before sending it to the backend.</p>
-!!! warning
-<p>This property might decrease performance since the messages get built per each invocation. Also, this property does not affect Callout mediators, whose chunking must be <a href="https://docs.wso2.com/display/EI620/Callout+Mediator#CalloutMediator-disabling">disabled separately</a> .</p>
-
+<p>If you set this to true, it disables HTTP chunking for outgoing messages. Instead, the Micro Integrator builds the message to calculate the content length and then sends the particular message to the backend with the content length (e.g., <code>               Content-Length: 25              </code> ).</p>
+<p>You can use this parameter if the client sends the request with HTTP chunking (i.e., with <code>               Transfer Encoding:chunked              </code> ) although you need to send the message without HTTP chunking to the backend, or if you need to modify the message payload, which the client receives before sending it to the backend.</p></br>
+<b>Note</b>:
+<p>This property might decrease performance since the messages get built per each invocation. Also, this property does not affect Callout mediators, whose chunking must be <a href="../../../../references/mediators/callout-Mediator/#disabling-chunking">disabled separately</a>.</p>
 </div></td>
 </tr>
 <tr class="even">
@@ -122,9 +136,13 @@ appending a context to the target URL in RESTful invocations.
 </tbody>
 </table>
 
-#### NO\_ENTITY\_BODY
+## NO_ENTITY_BODY
 
 <table>
+	<tr>
+		<th>Parameter</th>
+		<th>Description</th>
+	</tr>
 <tbody>
 <tr class="odd">
 <td><p><strong>Name</strong></p></td>
@@ -147,12 +165,11 @@ appending a context to the target URL in RESTful invocations.
 <td><div class="content-wrapper">
 <p>Set this property if you want to do the following:</p>
 <ul>
-<li>check if an incoming request to the ESB mediation flow has an entity body or not</li>
-<li>check if an outgoing request/response generated from the ESB mediation flow has an entity body or not</li>
+<li>check if an incoming request to the mediation flow has an entity body or not</li>
+<li>check if an outgoing request/response generated from the mediation flow has an entity body or not</li>
 </ul>
-!!! info
-<p>If using the <a href="_PayloadFactory_Mediator_">PayloadFactory mediator</a> , this property does not need to be manually set since it is done automatically by the mediator.</p>
-
+<b>Note</b>:
+<p>If using the <a href="../../../../references/mediators/payloadFactory-Mediator">PayloadFactory mediator</a>, this property does not need to be manually set since it is done automatically by the mediator.</p>
 </div></td>
 </tr>
 <tr class="even">
@@ -168,9 +185,13 @@ appending a context to the target URL in RESTful invocations.
 </tbody>
 </table>
 
-#### FORCE\_HTTP\_1.0
+## FORCE_HTTP_1.0
 
 <table>
+	<tr>
+		<th>Parameter</th>
+		<th>Description</th>
+	</tr>
 <colgroup>
 <col style="width: 50%" />
 <col style="width: 50%" />
@@ -209,9 +230,13 @@ appending a context to the target URL in RESTful invocations.
 </tbody>
 </table>
 
-#### HTTP\_SC
+## HTTP_SC
 
 <table>
+	<tr>
+		<th>Parameter</th>
+		<th>Description</th>
+	</tr>
 <tbody>
 <tr class="odd">
 <td><p><strong>Name</strong></p></td>
@@ -246,9 +271,13 @@ appending a context to the target URL in RESTful invocations.
 </tbody>
 </table>
 
-#### HTTP\_SC\_DESC
+## HTTP_SC_DESC
 
 <table>
+	<tr>
+		<th>Parameter</th>
+		<th>Description</th>
+	</tr>
 <tbody>
 <tr class="odd">
 <td><p><strong>Name</strong></p></td>
@@ -270,7 +299,7 @@ HTTP response's Reason- Phrase that is sent by the backend. For example, if the
 </tr>
 <tr class="odd">
 <td><p><strong>Description</strong></p></td>
-<td><p>Set the HTTP status message ( Reason-Phrase ).</p></td>
+<td><p>Set the HTTP status message (Reason-Phrase).</p></td>
 </tr>
 <tr class="even">
 <td><p><strong>Example</strong></p></td>
@@ -285,9 +314,13 @@ HTTP response's Reason- Phrase that is sent by the backend. For example, if the
 </tbody>
 </table>
 
-#### FAULTS\_AS\_HTTP\_200
+## FAULTS_AS_HTTP_200
 
 <table>
+	<tr>
+		<th>Parameter</th>
+		<th>Description</th>
+	</tr>
 <tbody>
 <tr class="odd">
 <td><p><strong>Name</strong></p></td>
@@ -307,7 +340,7 @@ HTTP response's Reason- Phrase that is sent by the backend. For example, if the
 </tr>
 <tr class="odd">
 <td><p><strong>Description</strong></p></td>
-<td><p>When WSO2 EI receives a soap fault as a HTTP 500 message, the ESB profile will forward this fault to client with status code 200.</p></td>
+<td><p>When the Micro Integrator receives a soap fault as a HTTP 500 message, the Micro Integrator will forward this fault to client with status code 200.</p></td>
 </tr>
 <tr class="even">
 <td><p><strong>Example</strong></p></td>
@@ -322,9 +355,13 @@ HTTP response's Reason- Phrase that is sent by the backend. For example, if the
 </tbody>
 </table>
 
-#### NO\_KEEPALIVE
+## NO_KEEPALIVE
 
 <table>
+	<tr>
+		<th>Parameter</th>
+		<th>Description</th>
+	</tr>
 <tbody>
 <tr class="odd">
 <td><p><strong>Name</strong></p></td>
@@ -359,9 +396,13 @@ HTTP response's Reason- Phrase that is sent by the backend. For example, if the
 </tbody>
 </table>
 
-#### REST\_URL\_POSTFIX
+## REST_URL_POSTFIX
 
 <table>
+	<tr>
+		<th>Parameter</th>
+		<th>Description</th>
+	</tr>
 <tbody>
 <tr class="odd">
 <td><p><strong>Name</strong></p></td>
@@ -396,9 +437,13 @@ HTTP response's Reason- Phrase that is sent by the backend. For example, if the
 </tbody>
 </table>
 
-#### REQUEST\_HOST\_HEADER
+## REQUEST_HOST_HEADER
 
 <table>
+	<tr>
+		<th>Parameter</th>
+		<th>Description</th>
+	</tr>
 <tbody>
 <tr class="odd">
 <td><p><strong>Name</strong></p></td>
@@ -410,7 +455,7 @@ HTTP response's Reason- Phrase that is sent by the backend. For example, if the
 </tr>
 <tr class="odd">
 <td><p><strong>Default Behavior</strong></p></td>
-<td><p>The ESB profile will set hostname of target endpoint and port as the HTTP host header</p></td>
+<td><p>The Micro Integrator will set hostname of target endpoint and port as the HTTP host header</p></td>
 </tr>
 <tr class="even">
 <td><p><strong>Scope</strong></p></td>
@@ -433,11 +478,13 @@ HTTP response's Reason- Phrase that is sent by the backend. For example, if the
 </tbody>
 </table>
 
-  
-
-#### FORCE\_POST\_PUT\_NOBODY
+## FORCE_POST_PUT_NOBODY
 
 <table>
+	<tr>
+		<th>Parameter</th>
+		<th>Description</th>
+	</tr>
 <tbody>
 <tr class="odd">
 <td><p><strong>Name</strong></p></td>
@@ -473,11 +520,13 @@ HTTP response's Reason- Phrase that is sent by the backend. For example, if the
 </tbody>
 </table>
 
-  
-
-#### FORCE\_HTTP\_CONTENT\_LENGTH
+## FORCE_HTTP_CONTENT_LENGTH
 
 <table>
+	<tr>
+		<th>Parameter</th>
+		<th>Description</th>
+	</tr>
 <tbody>
 <tr class="odd">
 <td><p><strong>Name</strong></p></td>
@@ -498,12 +547,11 @@ HTTP response's Reason- Phrase that is sent by the backend. For example, if the
 <tr class="odd">
 <td><p><strong>Description</strong></p></td>
 <td><div class="content-wrapper">
-<p>If the request sent by the client contains the ‘Content-Length’ header, this property allows the ESB profile to send the request with the content length (without HTTP chunking) to the back end server.</p>
-<p>You should set this to true in scenarios where the backend server is not able to accept chunked content. For example, in a scenario where a pass-through proxy is defined and the backend does not accept chunked content, this property should be used together with the <a href="#HTTPTransportProperties-CopyContentLength">COPY_CONTENT_LENGTH_FROM_INCOMING</a> property, to simply add the content length without chunking.</p>
+<p>If the request sent by the client contains the ‘Content-Length’ header, this property allows the Micro Integrator to send the request with the content length (without HTTP chunking) to the back end server.</p>
+<p>You should set this to true in scenarios where the backend server is not able to accept chunked content. For example, in a scenario where a pass-through proxy is defined and the backend does not accept chunked content, this property should be used together with the <a href="../../../../references/mediators/property-reference/http-transport-properties/#copy_content_length_from_incoming">COPY_CONTENT_LENGTH_FROM_INCOMING</a> property, to simply add the content length without chunking.</p>
 <p>When HTTP 1.1 is used, this property disables chunking and sends the content length. When HTTP 1.0 is used, the property only sends the content length.</p>
-!!! warning
-<p>This property can cause performance degradation, and thereby, you should only use it with message relay. If you set this to true, the ESB profile forwards the content length coming from the client request to the backend without building the message and calculating the content length. Since the message doesn’t get build, using these properties will perform better than using <a href="#HTTPTransportProperties-DISABLE_CHUNKING">DISABLE_CHUNKING</a> . However, if you change the receiving payload before sending it to the backend, then having this property will result in an error due to a content length mismatch.</p>
-
+<b>Note</b>:
+<p>This property can cause performance degradation, and thereby, you should only use it with message relay. If you set this to true, the Micro Integrator forwards the content length coming from the client request to the backend without building the message and calculating the content length. Since the message doesn’t get build, using these properties will perform better than using <a href="../../../../references/mediators/property-reference/http-transport-properties/#disable_chunking">DISABLE_CHUNKING</a> . However, if you change the receiving payload before sending it to the backend, then having this property will result in an error due to a content length mismatch.</p>
 </div></td>
 </tr>
 <tr class="even">
@@ -519,11 +567,13 @@ HTTP response's Reason- Phrase that is sent by the backend. For example, if the
 </tbody>
 </table>
 
-  
-
-#### COPY\_CONTENT\_LENGTH\_FROM\_INCOMING
+## COPY_CONTENT_LENGTH_FROM_INCOMING
 
 <table>
+	<tr>
+		<th>Parameter</th>
+		<th>Description</th>
+	</tr>
 <tbody>
 <tr class="odd">
 <td><p><strong>Name</strong></p></td>

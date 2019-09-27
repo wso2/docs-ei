@@ -86,12 +86,13 @@ nav:
         - 'Using the Gmail Connector' : 'learn/integration-tutorials/using-the-gmail-connector/README.md'
         - 'Using the Analytics Dashboard' : 'learn/integration-tutorials/using-the-analytics-dashboard/README.md'
     - Develop:
-      - 'Setup the Developer Environment' : 'develop/setup-dev.md'
+      - 'Re-introducing Ballerina Programming Language' : 'develop/reintroducing-ballerina.md'
+      - 'Setting up the Developer Environment' : 'develop/setup-dev.md'
       - 'Creating a Project' : 'develop/using-modules.md'
       - 'Working with VS Code' : 'develop/working-with-vscode.md'
     - Deploy:
-      - 'Deploy on Docker': 'deploy/deploy-on-docker.md'
-      - 'Deploy on Kubernetes': 'deploy/deploy-on-kubernetes.md'
+      - 'Deploying on Docker': 'deploy/deploy-on-docker.md'
+      - 'Deploying on Kubernetes': 'deploy/deploy-on-kubernetes.md'
       - 'Running as a Java Program': 'deploy/running-as-a-java-program.md'
       - 'CI/CD' : 'deploy/cicd.md'
     - Observe:

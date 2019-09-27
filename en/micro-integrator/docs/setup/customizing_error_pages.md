@@ -35,7 +35,7 @@ given below.
     
 4.  Create a new HTML error page (e.g. `new_error_404.html` file) as shown below. This contains the customized error page.
 
-    ``` 
+    ```xml
     <html>
         <head>
             <meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">
@@ -57,7 +57,7 @@ given below.
     `           <plugins>          ` element in the
     `           MI_HOME/pom.          ` xml file.
 
-    ``` 
+    ```xml 
     <plugin>
         <groupId>org.apache.felix</groupId>
         <artifactId>maven-bundle-plugin</artifactId>
@@ -67,12 +67,12 @@ given below.
                     <Bundle-SymbolicName>${project.artifactId}</Bundle-SymbolicName>
                     <Bundle-Name>${project.artifactId}</Bundle-Name>
                     <Import-Package>
-                                                        org.osgi.framework,
-                                                        org.osgi.service.http,
-                                                        org.wso2.carbon.ui,
-                                                        javax.servlet.*;version="2.4.0",
-                                                        *;resolution:=optional
-                            </Import-Package>
+                        org.osgi.framework,
+                        org.osgi.service.http,
+                        org.wso2.carbon.ui,
+                        javax.servlet.*;version="2.4.0",
+                        *;resolution:=optional
+                    </Import-Package>
                     <Fragment-Host>org.wso2.carbon.ui</Fragment-Host>
                     <Carbon-Component>UIBundle</Carbon-Component>
                 </instructions>
@@ -84,7 +84,7 @@ given below.
     `           <dependencies>          ` element in the
     `           MI_HOME/pom.          ` xml file:
 
-    ``` 
+    ```xml 
     <dependency>
         <groupId>org.apache.felix</groupId>
         <artifactId>org.apache.felix.framework</artifactId>
@@ -92,8 +92,7 @@ given below.
     </dependency>
     ```
 
-9.  Build the Maven project by executing the following command: mvn
-    `           clean install          `
+9.  Build the Maven project by executing the following command: `mvn clean install          `
 
 10. Once the project is built, copy the JAR file (from the
     `          MI_HOME/target/         ` directory) to the
@@ -103,22 +102,16 @@ given below.
     `           MI_HOME/repository/conf/tomcat/carbon/WEB-INF/web.xml          `
     file.
 
-    ``` 
+    ```xml
     <error-page>
-                <error-code>404</error-code>
-                <location>/carbon/new_error_404.html</location>
+        <error-code>404</error-code>
+        <location>/carbon/new_error_404.html</location>
     </error-page>
     ```
 
     !!! Tip
-        You need to replicate this configuration, and change the values of
-        the `           <error-code>          ` and
-        `           <location>          ` elements accordingly for each new
-        HTML error page you add.
+        You need to replicate this configuration, and change the values of the `           <error-code>          ` and `<location>` elements accordingly for each new HTML error page you add.
     
-
 12. Restart the product server.
-13. Access the following URL again, to test the error page you
-    customized: https://10.100.5.72:9443/abc.  
-    You will view the new error page with the following content: "
-    `           Sorry, this resource is not found.          ` "
+13. Access the following URL again, to test the error page you customized: https://10.100.5.72:9443/abc.  
+    You will view the new error page with the following content: "`Sorry, this resource is not found.` "

@@ -1,32 +1,5 @@
 # Sample 10: Introduction to Dynamic Endpoints with the Registry
 
-!!! warning
-
-Note that WSO2 EI is shipped with the following changes to what is
-mentioned in this documentation :
-
--   `           <PRODUCT_HOME>/          `
-    `           repository/samples/          ` directory that includes
-    all Integration profile samples is changed to
-    `           <EI_HOME>/          `
-    `           samples/service-bus/          ` .
-    `                     `
--   `           <PRODUCT_HOME>/          `
-    `           repository/samples/resources/          ` directory that
-    includes all artifacts related to the Integration profile samples is
-    changed to `           <EI_HOME>/          `
-    `           samples/service-bus/resources/          ` .
-
-
--   [Introduction](#Sample10:IntroductiontoDynamicEndpointswiththeRegistry-Introduction)
--   [Prerequisites](#Sample10:IntroductiontoDynamicEndpointswiththeRegistry-Prerequisites)
--   [Building the
-    sample](#Sample10:IntroductiontoDynamicEndpointswiththeRegistry-Buildingthesample)
--   [Executing the
-    sample](#Sample10:IntroductiontoDynamicEndpointswiththeRegistry-Executingthesample)
--   [Analyzing the
-    output](#Sample10:IntroductiontoDynamicEndpointswiththeRegistry-Analyzingtheoutput)
-
 ### Introduction
 
 This sample demonstrates the functionality of dynamic endpoints.
@@ -42,7 +15,7 @@ Samples](https://docs.wso2.com/display/EI650/Setting+Up+the+ESB+Samples#SettingU
 
 The XML configuration for this sample is as follows:
 
-``` html/xml
+```
     <definitions xmlns="http://ws.apache.org/ns/synapse">
         <registry provider="org.wso2.carbon.mediation.registry.ESBRegistry">
             <parameter name="root">file:repository/samples/resources/</parameter>

@@ -28,38 +28,39 @@ Follow the instructions on [configuring the file-based registry](../../setup/fil
 
 Follow the steps given below to configure the two nodes in the Micro Integrator deployment.
 
-1. Open the esb.toml file of both the nodes. This file is located in the MI_HOME/conf/ directory.
+1. Open the deployment.toml file of both the nodes. This file is located in the MI_HOME/conf/ directory.
 2. To specify the default settings that should be applicable to the nodes, update the following toml parameters with the required values.
 
     ```toml
-    // The config section that groups the parameters that identify the server.
+    # The config section that groups the parameters that identify the server.
     [server]
 
-    // The hostname of the server.
+    # The hostname of the server.
     hostname = "localhost"
 
-    // If you are running both product nodes (of your cluster) on the same VM, set a port offset for on the servers.
+    # If you are running both product nodes (of your cluster) on the same VM, set a port offset for on the servers.
     offset = 0
     ```
    Find more [parameters](../../../references/ei_config_catalog/#configuring-the-default-deployment-settings) for deployment settings.
 
-3. To define the clustering configurations that specify how the two nodes communicate with one another, add the following to the esb.toml file and update the values.
-    ``` toml
-    // The config section that groups the parameters that define cluster coordination.
+3. To define the clustering configurations that specify how the two nodes communicate with one another, add the following to the deployment.toml file and update the values.
+
+    ```toml
+    # The config section that groups the parameters that define cluster coordination.
     [clustering]
 
-    // Specify the port on which the current server node is running.
+    # Specify the port on which the current server node is running.
     local_member_port = 4000
 
-    // Specify the hostname of the current server node.
+    # Specify the hostname of the current server node.
     local_member_host = "10.100.5.86"
 
-    // Specify the IP address:port of each of the nodes in the cluster as shown below. Be sure to use the same port number and hostname you specified above.
+    # Specify the IP address:port of each of the nodes in the cluster as shown below. Be sure to use the same port number and hostname you specified above.
     members = ["10.100.5.86:4000","10.100.5.86:4001"]
     ```
     Find more [parameters](../../../references/ei_config_catalog/#configuring-the-cluster-settings) to define clustering.
 
-4. If you have [separated the internal keystore](../../setup/deployment/deploying_wso2_ei.md#updating-keystores) of your product, update the `[keystore.internal]` section in the esb.toml file.
+4. If you have [separated the internal keystore](../../setup/deployment/deploying_wso2_ei.md#updating-keystores) of your product, update the `[keystore.internal]` section in the deployment.toml file.
    
     See [Configuring Keystores](../../setup/security/configuring_keystores.md) for instructions.
     

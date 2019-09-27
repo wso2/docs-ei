@@ -3,7 +3,7 @@
 The **Loopback Mediator** moves messages from the in flow (request path) to the out flow (response path). All the configuration included in the in sequence that appears after the Loopback mediator is skipped.
 
 !!! Info
-    - The Loopback mediator is a [content-unaware](ESB-Mediators_119131045.html#ESBMediators-Content-awareness) mediator.
+    - The Loopback mediator is a [content-unaware](../../../concepts/message-processing-units/#classification-of-mediators) mediator.
     - The messages that have already been passed from the In sequence to the Out sequence cannot be moved to the Out sequence again via the Loopback mediator. 
 
 ## Syntax

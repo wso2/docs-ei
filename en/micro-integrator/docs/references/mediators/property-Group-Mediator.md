@@ -9,7 +9,7 @@ Mediator configuration instead of multiple Property Mediator
 configurations.
 
 !!! Info
-    The Property Group mediator is a [conditionally content aware](ESB-Mediators_119131045.html#ESBMediators-Content-awareness) mediator.
+    The Property Group mediator is a [conditionally content aware](../../../concepts/message-processing-units/#classification-of-mediators) mediator.
 
 ## Syntax
 

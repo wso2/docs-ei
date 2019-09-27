@@ -23,29 +23,28 @@ Personally Identifiable Information (PII) of individuals who live in
 Europe, to be compliant with the regulations. Organizations that fail to
 demonstrate GDPR compliance are subjected to financial penalties.
 
-> **Do you want to learn more about GDPR?**
+!!! Info
+    **Do you want to learn more about GDPR?**
 
-> If you are new to GDPR, we recommend that you take a look at our
-tutorial series on ***Creating a Winning GDPR Strategy.***
+    If you are new to GDPR, we recommend that you take a look at our tutorial series on ***Creating a Winning GDPR Strategy.***
 
--   Part 1 - [Introduction to
-    GDPR](https://wso2.com/library/article/2017/12/introduction-to-gdpr/)
+    -   Part 1 - [Introduction to
+        GDPR](https://wso2.com/library/article/2017/12/introduction-to-gdpr/)
 
--   Part 2 - [7 Steps for GDPR
-    Compliance](https://wso2.com/library/article/2017/12/7-steps-for-gdpr-compliance/)
+    -   Part 2 - [7 Steps for GDPR
+        Compliance](https://wso2.com/library/article/2017/12/7-steps-for-gdpr-compliance/)
 
--   Part 3 - [Identity and Access Management to the
-    Rescue](https://wso2.com/library/article/2018/2/identity-and-access-management-to-the-rescue/)
+    -   Part 3 - [Identity and Access Management to the
+        Rescue](https://wso2.com/library/article/2018/2/identity-and-access-management-to-the-rescue/)
 
--   Part 4 - [GDPR Compliant Consent
-    Design](https://wso2.com/library/articles/2018/03/creating-a-winning-gdpr-strategypart-4-gdpr-compliant-consent-design/)
+    -   Part 4 - [GDPR Compliant Consent
+        Design](https://wso2.com/library/articles/2018/03/creating-a-winning-gdpr-strategypart-4-gdpr-compliant-consent-design/)
 
 For more resources on GDPR, see the white papers, case studies, solution
 briefs, webinars, and talks published on our [WSO2 GDPR
 homepage](https://wso2.com/solutions/regulatory-compliance/gdpr/) . You
 can also find the original GDPR legal text
-[here](http://eur-lex.europa.eu/legal-content/en/TXT/?uri=CELEX%3A32016R0679)
-.
+[here](http://eur-lex.europa.eu/legal-content/en/TXT/?uri=CELEX%3A32016R0679).
 
 ## How the WSO2 Micro Integrator persists PII
 
@@ -68,7 +67,8 @@ The following tools are shipped with the Micro Integrator:
     the tool will create a new set of log files with anonymized PII
     values. The organization can then remove the original log files.
 
-    > If you want to use the Forget-Me tool to remove PII in multiple WSO2 products at the same time, you can use the standalone version of the tool. Find more information on how to [build and run the Forget-Me tool in standalone mode](../security/about_forgetme_tool.md).
+    !!! Note
+        If you want to use the Forget-Me tool to remove PII in multiple WSO2 products at the same time, you can use the standalone version of the tool. Find more information on how to [build and run the Forget-Me tool in standalone mode](../security/about_forgetme_tool.md).
 
 
 ## Prerequisites for removing PII
@@ -106,7 +106,7 @@ Micro Integrator. For example, consider a proxy service that logs the
 username that is sent through a payload. A Log mediator can be used for
 this as shown below.
 
-``` java
+```xml
 <log level="custom">
     <property expression="//Authentication/username" name="USER_NAME"/>
 </log>
@@ -117,7 +117,7 @@ the following log files: wso2carbon.log file, audit.log file, warn.log,
 and the [service-specific log file](../../use-cases/tasks/proxy_service_tasks/enabling-logs-for-services.md)
 that is enabled for the proxy service.
 
-``` java
+```xml
 [EI-Core]  INFO - LogMediator USER_NAME = Sam
 ```
 
@@ -134,7 +134,7 @@ Let's look at how to anonymize the username value in log files.
     `           MI_HOME/wso2/tools/forget-me/conf/log-config/          `
     directory).
 
-    ``` java
+    ```xml
     <pattern key="pattern3">
         <detectPattern>(.)*(USER_NAME)(.)*${username}(.)*</detectPattern>
         <replacePattern>${username}</replacePattern>
@@ -148,7 +148,7 @@ Let's look at how to anonymize the username value in log files.
     enabled a service-specific log file, you need to add that file name
     (see the element descriptions given below).
 
-    ``` java
+    ```json
     {
         "processors" : [
         "log-file"
@@ -180,13 +180,12 @@ Let's look at how to anonymize the username value in log files.
         the `             MI_HOME/repository/logs/            `
         directory.
 
-        > Be sure to replace the "log-file-path" value with the correct
+        !!! Note
+            Be sure to replace the "log-file-path" value with the correct
                 absolute path to the location where the log files are stored. If
                 you are **on Windows** , be sure to use the forward slash ("/")
                 instead of the back slash ("\\"). For example:
-                `             C:/Users/Administrator/Desktop/wso2ei-6.2.0/repository/log            `
-                .
-
+                `             C:/Users/Administrator/Desktop/wso2ei-6.2.0/repository/log            `.
 
     -   **"log-file-name-regex"** : This gives the list of log files
         (stored in the log-file-path) that will persist the user's PII.
@@ -194,40 +193,37 @@ Let's look at how to anonymize the username value in log files.
         warn.log, and wso2carbon.log files, **as well as** the archived
         files of the same logs. If you have enabled a [service-specific log file](../../use-cases/tasks/proxy_service_tasks/enabling-logs-for-services.md), **be sure to add** the file name to this list.
 
-3.  Open a command prompt and navigate to the
-    `           MI_HOME/bin          ` directory.
-
+3.  Open a command prompt and navigate to the `           MI_HOME/bin          ` directory.
 4.  Execute the following command to anonymize the user information that
     was added to the ei-patterns.xml file.  
 
     -   On Linux:
 
-        ``` java
+        ```bash
         ./forgetme.sh -U Sam
         ```
 
     -   On Windows:
 
-        ``` java
+        ```bash
         forgetme.bat -U
         ```
 
     This will result in the following:
 
-    1.  Copies will be created of all the log files specified in the
-        config.json file. The following is the format of the log copy :
-        `             anon-<time_stamp>-<original_log_name>.log            `
-        . For example ,
+    1.  Copies will be created of all the log files specified in the config.json file. The following is the format of the log copy :
+        `             anon-<time_stamp>-<original_log_name>.log            `. For example ,
         `             anon-1520946791793-warn.log            ` .
 
     2.  The PII will be anonymized in the copies. The log files will
         display the user information as a pseudonym.
 
-        ``` java
+        ```bash
         [EI-Core]  INFO - LogMediator USER_NAME = 86c3bfd9-f97c-4b08-9f15-772dcb0c1c
         ```
 
-        > For the list of commands you can run using the Forget-Me tool, see this [link](../security/about_forgetme_tool.md).
+        !!! Info
+            For the list of commands you can run using the Forget-Me tool, see this [link](../security/about_forgetme_tool.md).
 
 ## Deleting original (archived) log files
 

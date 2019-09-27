@@ -22,33 +22,30 @@ Two docker images are available for the Micro Integrator:
 
     **Micro Integrator Docker image (with updates)**
 
-    ``` java
+    ```bash
     docker.wso2.com/micro-integrator:1.0.0
     ```
 
     **Log in to WSO2 Docker Registry**
 
-    ``` java
+    ```bash
     docker login docker.wso2.com
     ```
 
 -   The community version of Micro Integrator's base Docker image is
-    available on
-    [DockerHub](https://hub.docker.com/r/wso2/micro-integrator) .
+    available on [DockerHub](https://hub.docker.com/r/wso2/micro-integrator).
 
     **Base Docker Image and Tag (community version)**
 
-    ``` java
+    ```bash
     wso2/micro-integrator:1.0.0
     ```
 
-## Build and Run on Docker
+## Build and run on Docker
 
-Given below are the basic steps you need to follow to run the Micro
-Integrator on Docker:
+Given below are the basic steps you need to follow to run the Micro Integrator on Docker:
 
-1.  [Export the integration artifacts](../../develop/exporting-artifacts.md)
-    into a CAR file.
+1.  [Export the integration artifacts](../../develop/exporting-artifacts.md) into a CAR file.
 2.  **Create the Dockerfile** as shown below. This file contains
     instructions to download the base Docker image of WSO2 Micro
     Integrator from DockerHub (community version) or the WSO2 Docker
@@ -118,17 +115,14 @@ Integrator on Docker:
     </tbody>
     </table>
 
-3.  **Create an immutable Docker image** for your integration artifacts
-    on WSO2 Micro Integrator by executing the following command from the
-    location of your Dockerfile.
+3.  **Create an immutable Docker image** for your integration artifacts on WSO2 Micro Integrator by executing the following command from the location of your Dockerfile.
 
-    ``` java
+    ```bash
     docker build -t sample_docker_image .
     ```
 
-4.  **Start a Docker container** by running the Docker image as shown
-    below.
+4.  **Start a Docker container** by running the Docker image as shown below.
 
-    ``` java
+    ```bash
     docker run -d -p 8290:8290 sample_docker_image
     ```

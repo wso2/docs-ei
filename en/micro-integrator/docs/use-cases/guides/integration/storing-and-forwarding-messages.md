@@ -258,7 +258,7 @@ Let's send a request to the API resource.
 
 1.  Create a JSON file names `request.json` with the following request payload.
 
-    ```
+    ```json
     {
     "name": "John Doe",
     "dob": "1940-03-19",
@@ -271,7 +271,6 @@ Let's send a request to the API resource.
     "cardNo": "7844481124110331"
     }
     ```
-
 2.  Open a command line terminal and execute the following command from the location where `request.json` file you created is saved:
 
     ```

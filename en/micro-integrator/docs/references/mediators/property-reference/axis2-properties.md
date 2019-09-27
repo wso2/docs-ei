@@ -1,16 +1,17 @@
 # Axis2 Properties
 
-Axis2 properties allow you to configure the web services engine in
-the ESB profile, such as specifying how to cache JMS objects, setting
-the minimum and maximum threads for consuming messages, and forcing
-outgoing HTTP/S messages to use HTTP 1.0. You can access some of these
-properties through the [Property mediator](_Property_Mediator_) with the
-scope set to `         axis2        ` or `         axis2-client        `
-as shown below.
+!!! Info
+	The following are Axis2 properties that can be used with the [Property mediator](../../../references/mediators/property-Mediator.md) and the [Property Group mediator](../../../references/mediators/property-Group-Mediator.md).
 
-#### CacheLevel
+Axis2 properties allow you to configure the web services engine in WSO2 Micro Integrator, such as specifying how to cache JMS objects, setting the minimum and maximum threads for consuming messages, and forcing outgoing HTTP/S messages to use HTTP 1.0. You can access some of these properties through the [Property mediator](../../../references/mediators/property-Mediator.md) with the scope set to `axis2` or `axis2-client` as shown below.
+
+## CacheLevel
 
 <table>
+	<tr>
+		<th>Parameter</th>
+		<th>Description</th>
+	</tr>
 <tbody>
 <tr class="odd">
 <td><p><strong>Name</strong></p></td>
@@ -43,9 +44,13 @@ as shown below.
 </tbody>
 </table>
 
-#### ConcurrentConsumers
+## ConcurrentConsumers
 
 <table>
+	<tr>
+		<th>Parameter</th>
+		<th>Description</th>
+	</tr>
 <tbody>
 <tr class="odd">
 <td><p><strong>Name</strong></p></td>
@@ -74,9 +79,13 @@ as shown below.
 </tbody>
 </table>
 
-#### HTTP_ETAG
+## HTTP_ETAG
 
 <table>
+	<tr>
+		<th>Parameter</th>
+		<th>Description</th>
+	</tr>
 <tbody>
 <tr class="odd">
 <td>Name</td>
@@ -94,9 +103,8 @@ as shown below.
 <td>Description</td>
 <td><div class="content-wrapper">
 <p>This property determines whether the HTTP Etag should be enabled for the request or not.</p>
-!!! info
+<b>Note</b>:
 <p><a href="https://en.wikipedia.org/wiki/HTTP_ETag">HTTP Etag</a> is a mechanism provided by HTTP for Web cache validation.</p>
-
 </div></td>
 </tr>
 <tr class="odd">
@@ -112,9 +120,13 @@ as shown below.
 </tbody>
 </table>
 
-#### JMS\_COORELATION\_ID
+## JMS_COORELATION_ID
 
 <table>
+	<tr>
+		<th>Parameter</th>
+		<th>Description</th>
+	</tr>
 <tbody>
 <tr class="odd">
 <td><p><strong>Name</strong></p></td>
@@ -145,9 +157,13 @@ as shown below.
 </tbody>
 </table>
 
-#### MaxConcurrentConsumers
+## MaxConcurrentConsumers
 
 <table>
+	<tr>
+		<th>Parameter</th>
+		<th>Description</th>
+	</tr>
 <tbody>
 <tr class="odd">
 <td><p><strong>Name</strong></p></td>
@@ -161,7 +177,7 @@ as shown below.
 </tr>
 <tr class="odd">
 <td><p><strong>Description</strong></p></td>
-<td><p>The maximum number of threads that can be added for message consuming. See <a href="#Axis2Properties-Concurrent">ConcurrentConsumers</a> .</p></td>
+<td><p>The maximum number of threads that can be added for message consuming. See <a href="../../../../references/mediators/property-reference/axis2-properties/#concurrentconsumers">ConcurrentConsumers</a> .</p></td>
 </tr>
 <tr class="even">
 <td><p><strong>Example</strong></p></td>
@@ -176,47 +192,47 @@ as shown below.
 </tbody>
 </table>
 
-#### MercurySequenceKey
+## MercurySequenceKey
 
-|                     |                                                                  |
+|     Parameter       |           Value               |
 |---------------------|------------------------------------------------------------------|
 | **Name**            | MercurySequenceKey                                               |
 | **Possible Values** | integer                                                          |
 | **Description**     | Can be an identifier specifying a Mercury internal sequence key. |
 
-#### MercuryLastMessage
+## MercuryLastMessage
 
-|                     |                                                                                    |
+|     Parameter       |           Value               |
 |---------------------|------------------------------------------------------------------------------------|
 | **Name**            | MercuryLastMessage                                                                 |
 | **Possible Values** | true/false                                                                         |
 | **Description**     | When set to "true", it will make this the last message and terminate the sequence. |
 
-#### FORCE\_HTTP\_1.0
+## FORCE_HTTP_1.0
 
-|                     |                                                                               |
+|     Parameter       |           Value               |
 |---------------------|-------------------------------------------------------------------------------|
-| **Name**            | FORCE\_HTTP\_1.0                                                              |
+| **Name**            | FORCE_HTTP_1.0                                                              |
 | **Possible Values** | true/false                                                                    |
 | **Scope**           | axis2-client                                                                  |
 | **Description**     | Forces outgoing http/s messages to use HTTP 1.0 (instead of the default 1.1). |
 
-#### setCharacterEncoding
+## setCharacterEncoding
 
-|                      |                                                                                                                                                             |
-|----------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------|
+|     Parameter       |           Value               |
+|---------------------|-------------------------------------------------------------------------------|
 | **Name**             | setCharacterEncoding                                                                                                                                        |
 | **Possible Values**  | false                                                                                                                                                       |
-| **Default Behavior** | By default character encoding is enabled in the ESB profile.                                                                                                |
+| **Default Behavior** | By default character encoding is enabled in the Micro Integrator.                                                                                                |
 | **Scope**            | axis2                                                                                                                                                       |
-| **Description**      | This property can be used to remove character encode. Note that if this property is set to 'false', the 'CHARACTER\_SET\_ENCODING' property cannot be used. |
+| **Description**      | This property can be used to remove character encode. Note that if this property is set to 'false', the 'CHARACTER_SET_ENCODING' property cannot be used. |
 | **Example**          | `             <property name="             setCharacterEncoding             " value="false" scope="axis2" type="STRING"/>            `                      |
 
-#### CHARACTER\_SET\_ENCODING
+## CHARACTER_SET_ENCODING
 
-|                      |                                                                                                                                                                                            |
-|----------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Name**             | CHARACTER\_SET\_ENCODING                                                                                                                                                                   |
+|     Parameter       |           Value               |
+|---------------------|-------------------------------------------------------------------------------|
+| **Name**             | CHARACTER_SET_ENCODING                                                                                                                                                                   |
 | **Possible Values**  | Any valid encoding standard (E.g., UTF-8, UTF-16 etc.)                                                                                                                                     |
 | **Default Behavior** | N/A                                                                                                                                                                                        |
 | **Scope**            | axis2                                                                                                                                                                                      |

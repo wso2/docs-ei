@@ -2,104 +2,113 @@
 
 Deploying your Ballerina code is easier than ever with the growth of containers and container platforms such as Kubernetes.
 
-Deploying a Ballerina program or service is the process of creating assets that ready the program and service(s) for activation in another runtime, such as Docker Engine, Moby, Kubernetes, or Cloud Foundry. The Ballerina compiler is able to generate the necessary artifacts for different deployment annotations based on annotations that decorate the source code, which provide compiler instructions for artifact generation.
+Deploying a Ballerina integration service is the process of creating assets that ready the program and service(s) for activation in another runtime, such as Docker Engine, Moby, Kubernetes, or Cloud Foundry. The Ballerina compiler is able to generate the necessary artifacts for different deployment annotations based on annotations that decorate the source code, which provide compiler instructions for artifact generation.
+
+This topic provides instructions on how to deploy your project on [Docker](https://www.docker.com/). The project in this case, is the same one you used in the [Quick Start Guide](../../getting-started/quick-start-guide/).
 
 > **Tip**: The `docker` command line tool needs to be installed and working. Try: `docker ps` to verify this. Go to the [install page](#https://get.docker.io/) if you need to install Docker.
 
-## Creating a simple service
+## Set up the project 
 
-The following is a simple service that gets information from an endpoint.
+1. Open VS Code.
+   > **Tip**: Download and install [VS Code](https://code.visualstudio.com/Download) if you do not have it already. Find the extension for Ballerina in the VS Code marketplace if you do not have it. For instructions on installing and using it, see [The Visual Studio Code Extension](https://ballerina.io/learn/tools-ides/vscode-plugin/).
 
-```ballerina
-import ballerina/http;
-import ballerina/io;
+2. Press `Command + Shift + P` in Mac or `Ctrl + Shift + P` in Linux and the following page appears.
 
-// Creates a new client with the backend URL.
-http:Client clientEndpoint = new("https://postman-echo.com");
+![alt text](../../assets/img/vs-code-landing.png)
 
-public function main() {
-    io:println("GET request:");
-    // Sends a `GET` request to the specified endpoint.
-    var response = clientEndpoint->get("/get?test=123");
-    // Handles the response.
-    handleResponse(response);
-
-}
-```
+Select the template to transform XML messages to JSON and your project will load.
 
 ## Deploying your service on Docker
 
-You can run the service that you developed above as a Docker container. The Ballerina language includes a [Ballerina_Docker_Extension](#https://github.com/ballerinax/docker) that offers native support to run Ballerina programs on containers.
+You can run the service that you developed in the Quick Start Guide as a Docker container. The Ballerina language includes a [Ballerina_Docker_Extension](https://github.com/ballerinax/docker) that offers native support to run Ballerina programs on containers.
 
-To run a service as a Docker container, add the corresponding Docker annotations to your service code.
-
-See the following example on how you can add Docker support in the code.
-
-To add Docker support, add the following code to the service you created above.
+To run your service as a Docker container, add the corresponding Docker annotations to your service code. To add Docker support, add the following code to the .bal file of the service you created above.
 
 ```ballerina
-import ballerina/http;  
-import ballerinax/docker;  
+import ballerina/docker;  
   
-@http:ServiceConfig {  
-    basePath:"/helloWorld"  
-}  
 @docker:Config {
-    registry:"docker.abc.com",
-    name:"helloworld",
-    tag:"v1.0"
-}
-service helloWorld on new http:Listener(9090) {
-    resource function sayHello (http:Caller caller, http:Request request) {
-        http:Response response = new;
-        response.setTextPayload("Hello, World! \n");
-        _ = caller -> respond(response);
-    }
+    push: true,
+    registry: "index.docker.io/$env{DOCKER_USERNAME}",
+    name: "sciencelab",
+    tag: "v2.0.0",
+    username: "$env{DOCKER_USERNAME}",
+    password: "$env{DOCKER_PASSWORD}"
 }
 ```
 
-Now your code is ready to generate deployment artifacts. In this case it is a Docker image.
+Now your code is ready to generate deployment artifacts. In this case it is a Docker image. Navigate to the directory of your porject and run the following command to build the module and generate the Docker artifacts.
   
 ```bash
-$ ballerina build hello_world_docker.bal  
-Compiling source
-    hello_world_docker.bal
+$ ballerina build MyModule  
 
-Generating executable
-    ./target/hello_world_docker.balx
-	@docker 		 - complete 3/3
+```
+
+You get the following output.
+
+```
+Compiling source
+	sam/MyModule:0.1.0
+
+Creating balos
+	target/balo/MyModule-2019r3-any-0.1.0.balo
+
+Running tests
+    sam/MyModule:0.1.0
+	No tests found
+
+
+Generating executables
+	target/bin/MyModule.jar
+
+Generating docker artifacts...
+	@docker 		 - complete 2/2 
 
 	Run the following command to start a Docker container:
-	docker run -d -p 9090:9090 docker.abc.com/helloworld:v1.0
+	docker run -d -p 9191:9191 sciencelab:v2.0.0
+	
 ```
-  
-```bash
-$ tree  
-.
-├── hello_world_docker.bal
-├── hello_world_docker.balx
-└── docker
-    └── Dockerfile
-```
+
+Use the following command to view the Docker images that are running.
+
 ```bash
 $ docker images  
-REPOSITORY                TAG IMAGE ID       CREATED             SIZE  
-docker.abc.com/helloworld  v1 df83ae43f69b   2 minutes ago       102MB
+
+```
+
+You see something similar to the following output.
+
+```
+REPOSITORY               TAG                 IMAGE ID            CREATED             SIZE
+sciencelab             v2.0.0              d43ff0513901        34 minutes ago      109 MB
+
 ```
   
 You can run a Docker container by copying and pasting the Docker `run` command that displays as output of the Ballerina `build` command.
+
 ```bash
-$ docker run -d -p 9090:9090 docker.abc.com/helloworld:v1.0  
-130ded2ae413d0c37021f2026f3a36ed92e993c39c260815e3aa5993d947dd00
+$ docker run -d -p 9191:9191 sciencelab:v2.0.0
+
 ```
+
+The following command allows you to view the active containers that are running. This allows you to test if your service is running.
 
 ```bash
 $ docker ps  
-CONTAINER ID  IMAGE                          COMMAND                CREATED                STATUS       PORTS                  NAMES  
-130ded2ae413  docker.abc.com/helloworld:v1.0 "/bin/sh -c 'balleri…" Less than a second ago Up 3 seconds 0.0.0.0:9090->9090/tcp thirsty_hopper
+
 ```
-Invoke the hello world service with a cURL command:
+
+This results in the following output.
+
+```
+CONTAINER ID        IMAGE                    COMMAND                  CREATED             STATUS              PORTS                    NAMES
+8f1a10c89700        sciencelab:v2.0.0   "/bin/sh -c 'java ..."   44 minutes ago      Up 15 minutes       0.0.0.0:9191->9191/tcp   cranky_kowalevski
+```
+
+Invoke the service with a cURL command:
+
 ```bash 
-$ curl http://localhost:9090/helloWorld/sayHello  
-Hello, World!
+$ curl -X POST -d @request.xml  http://localhost:9092/laboratory/user  -H "Content-Type: text/xml"  
+
 ```

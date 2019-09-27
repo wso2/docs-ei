@@ -6,7 +6,7 @@ then dropped by the Micro Integrator. If you have any mediators defined after th
 When the Drop mediator is within the `         In        ` sequence, it sends an HTTP 202 Accepted response to the client when it stops the message flow. When the Drop mediator is within the `         Out        ` sequence before the Send mediator, no response is sent to the client.
 
 !!! Info
-    The Drop mediator is a [content-unaware](ESB-Mediators_119131045.html#ESBMediators-Content-awareness) mediator.
+    The Drop mediator is a [content-unaware](../../../concepts/message-processing-units/#classification-of-mediators) mediator.
 
 ## Syntax
 
