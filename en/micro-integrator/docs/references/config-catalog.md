@@ -407,12 +407,12 @@ key_password = "$ref{keystore.tls.key_password}"
                                             
                                         </p>
                                         <div class="param-default">
-                                            <span class="param-default-value">Default: <code></code></span>
+                                            <span class="param-default-value">Default: <code>wso2carbon</code></span>
                                         </div>
                                         
                                     </div>
                                     <div class="param-description">
-                                        <p>The name of the keystore file that is used for data encryption/decryption in internal data stores. By default, the keystore file of the <a href="https://ei.docs.wso2.com/en/latest/micro-integrator/references/config-catalog/#primary-keystore">primary keystore</a> is enabled for this purpose.</p>
+                                        <p>The name of the keystore file that is used for data encryption/decryption in internal data stores. By default, the keystore file of the <a href="#primary-keystore">primary keystore</a> is enabled for this purpose.</p>
                                     </div>
                                 </div>
                             </div><div class="param">
@@ -426,14 +426,14 @@ key_password = "$ref{keystore.tls.key_password}"
                                             
                                         </p>
                                         <div class="param-default">
-                                            <span class="param-default-value">Default: <code></code></span>
+                                            <span class="param-default-value">Default: <code>JKS</code></span>
                                         </div>
                                         <div class="param-possible">
                                             <span class="param-possible-values">Possible Values: <code>&quot;JKS&quot;,&quot;PKCS12&quot;</code></span>
                                         </div>
                                     </div>
                                     <div class="param-description">
-                                        <p>The type of the keystore file. By default, the keystore type of the <a href="https://ei.docs.wso2.com/en/latest/micro-integrator/references/config-catalog/#primary-keystore">primary keystore</a> is enabled for this purpose.</p>
+                                        <p>The type of the keystore file. By default, the keystore type of the <a href="#primary-keystore">primary keystore</a> is enabled for this purpose.</p>
                                     </div>
                                 </div>
                             </div><div class="param">
@@ -447,12 +447,12 @@ key_password = "$ref{keystore.tls.key_password}"
                                             
                                         </p>
                                         <div class="param-default">
-                                            <span class="param-default-value">Default: <code></code></span>
+                                            <span class="param-default-value">Default: <code>wso2carbon</code></span>
                                         </div>
                                         
                                     </div>
                                     <div class="param-description">
-                                        <p>The password of the keystore file that is used for data encryption/decryption in internal data stores. This keystore password is used when accessing the keys in the keystore. By default, the keystore password of the <a href="https://ei.docs.wso2.com/en/latest/micro-integrator/references/config-catalog/#primary-keystore">primary keystore</a> is enabled for this purpose.</p>
+                                        <p>The password of the keystore file that is used for data encryption/decryption in internal data stores. This keystore password is used when accessing the keys in the keystore. By default, the keystore password of the <a href="#primary-keystore">primary keystore</a> is enabled for this purpose.</p>
                                     </div>
                                 </div>
                             </div><div class="param">
@@ -466,12 +466,12 @@ key_password = "$ref{keystore.tls.key_password}"
                                             
                                         </p>
                                         <div class="param-default">
-                                            <span class="param-default-value">Default: <code></code></span>
+                                            <span class="param-default-value">Default: <code>wso2carbon</code></span>
                                         </div>
                                         
                                     </div>
                                     <div class="param-description">
-                                        <p>The alias of the public key corresponding to the private key that is included in the keystore. The public key is used for encrypting data in the Micro Integrator server, which only the corresponding private key can decrypt. The public key is embedded in a digital certificate, and this certificate can be shared over the internet by storing it in a separate trust store file. By default, the alias of the <a href="https://ei.docs.wso2.com/en/latest/micro-integrator/references/config-catalog/#primary-keystore">primary keystore</a> is enabled for this purpose.</p>
+                                        <p>The alias of the public key corresponding to the private key that is included in the keystore. The public key is used for encrypting data in the Micro Integrator server, which only the corresponding private key can decrypt. The public key is embedded in a digital certificate, and this certificate can be shared over the internet by storing it in a separate trust store file. By default, the alias of the <a href="#primary-keystore">primary keystore</a> is enabled for this purpose.</p>
                                     </div>
                                 </div>
                             </div><div class="param">
@@ -485,12 +485,12 @@ key_password = "$ref{keystore.tls.key_password}"
                                             
                                         </p>
                                         <div class="param-default">
-                                            <span class="param-default-value">Default: <code>$ref{keystore.tls.key_password}</code></span>
+                                            <span class="param-default-value">Default: <code>wso2carbon</code></span>
                                         </div>
                                         
                                     </div>
                                     <div class="param-description">
-                                        <p>The password of the private key that is included in the keystore. The private key is used to decrypt the data that has been encrypted using the keystore's public key. By default, the public key password of the <a href="https://ei.docs.wso2.com/en/latest/micro-integrator/references/config-catalog/#primary-keystore">primary keystore</a> is enabled for this purpose.</p>
+                                        <p>The password of the private key that is included in the keystore. The private key is used to decrypt the data that has been encrypted using the keystore's public key. By default, the public key password of the <a href="#primary-keystore">primary keystore</a> is enabled for this purpose.</p>
                                     </div>
                                 </div>
                             </div>
@@ -529,7 +529,7 @@ algorithm=""
                             <code>[truststore]</code>
                             <span class="badge-required">Required</span>
                             <p>
-                                This configuration heading groups the parameters that connect the server to the keystore file (trust store) that is used to store the digital certificates that the server trusts for SSL communication. Read more about <a href="../../setup/security/configuring_keystores/#optional-changing-the-default-truststore">configuring the truststore</a>.
+                                This configuration heading groups the parameters that connect the server to the keystore file (trust store) that is used to store the digital certificates that the server trusts for SSL communication. Read more about <a href="#primary-keystore">configuring the truststore</a>.
                             </p>
                         </div>
                         <div class="params-wrap">
@@ -2945,7 +2945,9 @@ blocking_sender.so_timeout = "1m"
                                         <div class="param-default">
                                             <span class="param-default-value">Default: <code>$ref{server.hostname}</code></span>
                                         </div>
-                                        
+                                        <div class="param-possible">
+                                            <span class="param-possible-values">Possible Values: <code>....</code></span>
+                                        </div>
                                     </div>
                                     <div class="param-description">
                                         <p>The....</p>
@@ -2964,9 +2966,7 @@ blocking_sender.so_timeout = "1m"
                                         <div class="param-default">
                                             <span class="param-default-value">Default: <code>8243</code></span>
                                         </div>
-                                        <div class="param-possible">
-                                            <span class="param-possible-values">Possible Values: <code>....</code></span>
-                                        </div>
+                                        
                                     </div>
                                     <div class="param-description">
                                         <p>The secured port on which this transport receiver should listen for incoming messages.</p>
@@ -3645,12 +3645,12 @@ blocking_sender.so_timeout = "1m"
                 <div class="superfences-content">
                     <div class="mb-config-example">
 <pre><code class="toml">[[transport.http.proxy_profile]]
-target_hosts = [""]
-proxy_host = ""
-proxy_port = ""
-proxy_username = ""
-proxy_password = ""
-bypass_hosts = [""]
+target_hosts = ["example.com", ".*.sample.com"]
+proxy_host = "localhost"
+proxy_port = "3128"
+proxy_username = "squidUser"
+proxy_password = "password"
+bypass_hosts = ["xxx.sample.com"]
 </code></pre>
                     </div>
                 </div>
@@ -3658,9 +3658,9 @@ bypass_hosts = [""]
                     <div class="mb-config">
                         <div class="config-wrap">
                             <code>[[transport.http.proxy_profile]]</code>
-                            <span class="badge-required">Required</span>
+                            
                             <p>
-                                The....
+                                This configuration header is used to group the <a href='../../setup/configuring_proxy_servers/#configuring-proxy-profiles-in-wso2-micro-integrator'>HTTP proxy profiles</a> when you use multiple proxy servers to route messages to different endpoints.
                             </p>
                         </div>
                         <div class="params-wrap">
@@ -3672,38 +3672,36 @@ bypass_hosts = [""]
                                     <div>
                                         <p>
                                             <span class="param-type string"> string </span>
-                                            <span class="badge-required">Required</span>
+                                            
                                         </p>
                                         <div class="param-default">
-                                            <span class="param-default-value">Default: <code>&quot;true&quot; or &quot;false&quot;</code></span>
+                                            <span class="param-default-value">Default: <code></code></span>
                                         </div>
                                         <div class="param-possible">
-                                            <span class="param-possible-values">Possible Values: <code>127.0.0.1&quot;,&quot;localhost&quot;,&quot;&lt;any-ip-address&gt;</code></span>
+                                            <span class="param-possible-values">Possible Values: <code>*&quot;,&quot;example.com&quot;,&quot;&lt;any-ip-address&gt;</code></span>
                                         </div>
                                     </div>
                                     <div class="param-description">
-                                        <p>The hostname of the WSO2 Micro Integrator instance.</p>
+                                        <p>A host name or a comma-separated list of host names for a target endpoint. Host names can be specified as regular expressions that match a pattern. When asterisks (*) is specified as the target hostname, it will match all the hosts in the profile.</p>
                                     </div>
                                 </div>
                             </div><div class="param">
                                 <div class="param-name">
-                                  <span class="param-name-wrap"> <code>proxy_hosts</code> </span>
+                                  <span class="param-name-wrap"> <code>proxy_host</code> </span>
                                 </div>
                                 <div class="param-info">
                                     <div>
                                         <p>
                                             <span class="param-type string"> string </span>
-                                            <span class="badge-required">Required</span>
+                                            
                                         </p>
                                         <div class="param-default">
                                             <span class="param-default-value">Default: <code>localhost</code></span>
                                         </div>
-                                        <div class="param-possible">
-                                            <span class="param-possible-values">Possible Values: <code>...</code></span>
-                                        </div>
+                                        
                                     </div>
                                     <div class="param-description">
-                                        <p>The......</p>
+                                        <p>The host name of the proxy server.</p>
                                     </div>
                                 </div>
                             </div><div class="param">
@@ -3714,17 +3712,15 @@ bypass_hosts = [""]
                                     <div>
                                         <p>
                                             <span class="param-type string"> integer </span>
-                                            <span class="badge-required">Required</span>
+                                            
                                         </p>
                                         <div class="param-default">
-                                            <span class="param-default-value">Default: <code>3128</code></span>
+                                            <span class="param-default-value">Default: <code></code></span>
                                         </div>
-                                        <div class="param-possible">
-                                            <span class="param-possible-values">Possible Values: <code>...</code></span>
-                                        </div>
+                                        
                                     </div>
                                     <div class="param-description">
-                                        <p>The......</p>
+                                        <p>The port number of the proxy server.</p>
                                     </div>
                                 </div>
                             </div><div class="param">
@@ -3735,17 +3731,15 @@ bypass_hosts = [""]
                                     <div>
                                         <p>
                                             <span class="param-type string"> string </span>
-                                            <span class="badge-required">Required</span>
+                                            
                                         </p>
                                         <div class="param-default">
-                                            <span class="param-default-value">Default: <code>squidUser</code></span>
+                                            <span class="param-default-value">Default: <code></code></span>
                                         </div>
-                                        <div class="param-possible">
-                                            <span class="param-possible-values">Possible Values: <code>...</code></span>
-                                        </div>
+                                        
                                     </div>
                                     <div class="param-description">
-                                        <p>The......</p>
+                                        <p>The user name for the authenticating the proxy server.</p>
                                     </div>
                                 </div>
                             </div><div class="param">
@@ -3756,17 +3750,15 @@ bypass_hosts = [""]
                                     <div>
                                         <p>
                                             <span class="param-type string"> string </span>
-                                            <span class="badge-required">Required</span>
+                                            
                                         </p>
                                         <div class="param-default">
-                                            <span class="param-default-value">Default: <code>password</code></span>
+                                            <span class="param-default-value">Default: <code></code></span>
                                         </div>
-                                        <div class="param-possible">
-                                            <span class="param-possible-values">Possible Values: <code>...</code></span>
-                                        </div>
+                                        
                                     </div>
                                     <div class="param-description">
-                                        <p>The......</p>
+                                        <p>The password for authenticating the proxy server.</p>
                                     </div>
                                 </div>
                             </div><div class="param">
@@ -3777,17 +3769,15 @@ bypass_hosts = [""]
                                     <div>
                                         <p>
                                             <span class="param-type string"> string </span>
-                                            <span class="badge-required">Required</span>
+                                            
                                         </p>
                                         <div class="param-default">
-                                            <span class="param-default-value">Default: <code>xxx.sample.com</code></span>
+                                            <span class="param-default-value">Default: <code></code></span>
                                         </div>
-                                        <div class="param-possible">
-                                            <span class="param-possible-values">Possible Values: <code>...</code></span>
-                                        </div>
+                                        
                                     </div>
                                     <div class="param-description">
-                                        <p>The......</p>
+                                        <p>A host name or a comma-separated list of host names that should <b>not</b> be sent via the proxy server.</br> For example, if you want all requests sent to <code>*.sample.com</code> to be sent via a proxy server, while you need to directly send requests to <code>hello.sample.com</code> (without going through the proxy server), you can add <code>hello.sample.com</code> as a bypass host name.</p>
                                     </div>
                                 </div>
                             </div>
@@ -3811,23 +3801,23 @@ bypass_hosts = [""]
                 <label class="tab-selector" for="_tab_23"><i class="icon fa fa-code"></i></label>
                 <div class="superfences-content">
                     <div class="mb-config-example">
-<pre><code class="toml">[[transport.http.proxy_profile]]
-target_hosts = [""]
-proxy_host = ""
-proxy_port = ""
-proxy_username = ""
-proxy_password = ""
-bypass_hosts = [""]
+<pre><code class="toml">[[transport.http.secured_proxy_profile]]
+target_hosts = ["example.com", ".*.sample.com"]
+proxy_host = "localhost"
+proxy_port = "3128"
+proxy_username = "squidUser"
+proxy_password = "password"
+bypass_hosts = ["xxx.sample.com"]
 </code></pre>
                     </div>
                 </div>
                 <div class="doc-wrapper">
                     <div class="mb-config">
                         <div class="config-wrap">
-                            <code>[[transport.http.secured_proxy_profile]]</code>
-                            <span class="badge-required">Required</span>
+                            <code>[[transport.http.proxy_profile]]</code>
+                            
                             <p>
-                                The....
+                                This configuration header is used to group the <a href='../../setup/configuring_proxy_servers/#configuring-proxy-profiles-in-wso2-micro-integrator'>secured HTTP proxy profiles</a> when you use multiple (secured) proxy servers to route messages to different endpoints.
                             </p>
                         </div>
                         <div class="params-wrap">
@@ -3839,36 +3829,36 @@ bypass_hosts = [""]
                                     <div>
                                         <p>
                                             <span class="param-type string"> string </span>
-                                            <span class="badge-required">Required</span>
+                                            
                                         </p>
                                         <div class="param-default">
-                                            <span class="param-default-value">Default: <code>example.com,.*.sample.com</code></span>
+                                            <span class="param-default-value">Default: <code></code></span>
                                         </div>
-                                        
+                                        <div class="param-possible">
+                                            <span class="param-possible-values">Possible Values: <code>*&quot;,&quot;example.com&quot;,&quot;&lt;any-ip-address&gt;</code></span>
+                                        </div>
                                     </div>
                                     <div class="param-description">
-                                        <p>The....</p>
+                                        <p>A host name or a comma-separated list of host names for a target endpoint. Host names can be specified as regular expressions that match a pattern. When asterisks (*) is specified as the target hostname, it will match all the hosts in the profile.</p>
                                     </div>
                                 </div>
                             </div><div class="param">
                                 <div class="param-name">
-                                  <span class="param-name-wrap"> <code>proxy_hosts</code> </span>
+                                  <span class="param-name-wrap"> <code>proxy_host</code> </span>
                                 </div>
                                 <div class="param-info">
                                     <div>
                                         <p>
                                             <span class="param-type string"> string </span>
-                                            <span class="badge-required">Required</span>
+                                            
                                         </p>
                                         <div class="param-default">
                                             <span class="param-default-value">Default: <code>localhost</code></span>
                                         </div>
-                                        <div class="param-possible">
-                                            <span class="param-possible-values">Possible Values: <code>...</code></span>
-                                        </div>
+                                        
                                     </div>
                                     <div class="param-description">
-                                        <p>The......</p>
+                                        <p>The host name of the proxy server.</p>
                                     </div>
                                 </div>
                             </div><div class="param">
@@ -3879,17 +3869,15 @@ bypass_hosts = [""]
                                     <div>
                                         <p>
                                             <span class="param-type string"> integer </span>
-                                            <span class="badge-required">Required</span>
+                                            
                                         </p>
                                         <div class="param-default">
-                                            <span class="param-default-value">Default: <code>3128</code></span>
+                                            <span class="param-default-value">Default: <code></code></span>
                                         </div>
-                                        <div class="param-possible">
-                                            <span class="param-possible-values">Possible Values: <code>...</code></span>
-                                        </div>
+                                        
                                     </div>
                                     <div class="param-description">
-                                        <p>The......</p>
+                                        <p>The port number of the proxy server.</p>
                                     </div>
                                 </div>
                             </div><div class="param">
@@ -3900,17 +3888,15 @@ bypass_hosts = [""]
                                     <div>
                                         <p>
                                             <span class="param-type string"> string </span>
-                                            <span class="badge-required">Required</span>
+                                            
                                         </p>
                                         <div class="param-default">
-                                            <span class="param-default-value">Default: <code>squidUser</code></span>
+                                            <span class="param-default-value">Default: <code></code></span>
                                         </div>
-                                        <div class="param-possible">
-                                            <span class="param-possible-values">Possible Values: <code>...</code></span>
-                                        </div>
+                                        
                                     </div>
                                     <div class="param-description">
-                                        <p>The......</p>
+                                        <p>The user name for the authenticating the proxy server.</p>
                                     </div>
                                 </div>
                             </div><div class="param">
@@ -3921,17 +3907,15 @@ bypass_hosts = [""]
                                     <div>
                                         <p>
                                             <span class="param-type string"> string </span>
-                                            <span class="badge-required">Required</span>
+                                            
                                         </p>
                                         <div class="param-default">
-                                            <span class="param-default-value">Default: <code>password</code></span>
+                                            <span class="param-default-value">Default: <code></code></span>
                                         </div>
-                                        <div class="param-possible">
-                                            <span class="param-possible-values">Possible Values: <code>...</code></span>
-                                        </div>
+                                        
                                     </div>
                                     <div class="param-description">
-                                        <p>The......</p>
+                                        <p>The password for authenticating the proxy server.</p>
                                     </div>
                                 </div>
                             </div><div class="param">
@@ -3942,17 +3926,15 @@ bypass_hosts = [""]
                                     <div>
                                         <p>
                                             <span class="param-type string"> string </span>
-                                            <span class="badge-required">Required</span>
+                                            
                                         </p>
                                         <div class="param-default">
-                                            <span class="param-default-value">Default: <code>xxx.sample.com</code></span>
+                                            <span class="param-default-value">Default: <code></code></span>
                                         </div>
-                                        <div class="param-possible">
-                                            <span class="param-possible-values">Possible Values: <code>...</code></span>
-                                        </div>
+                                        
                                     </div>
                                     <div class="param-description">
-                                        <p>The......</p>
+                                        <p>A host name or a comma-separated list of host names that should <b>not</b> be sent via the proxy server.</br> For example, if you want all requests sent to <code>*.sample.com</code> to be sent via a proxy server, while you need to directly send requests to <code>hello.sample.com</code> (without going through the proxy server), you can add <code>hello.sample.com</code> as a bypass host name.</p>
                                     </div>
                                 </div>
                             </div>
@@ -4051,7 +4033,7 @@ sender.enable = true
                             <code>[transport.vfs]</code>
                             <span class="badge-required">Required</span>
                             <p>
-                                Add this config heading to the ei.toml file to group the parameters that configure the ESB server to communicate through the VFS transport. Read more about file transfering in the ESB.
+                                This configuration header groups the parameters that are used to configure how the Micro Integrator communicates through the VFS transport.
                             </p>
                         </div>
                         <div class="params-wrap">
@@ -4084,17 +4066,15 @@ sender.enable = true
                                     <div>
                                         <p>
                                             <span class="param-type string"> string </span>
-                                            <span class="badge-required">Required</span>
+                                            
                                         </p>
                                         <div class="param-default">
-                                            <span class="param-default-value">Default: <code>$ref{keystore.tls.file_name}</code></span>
+                                            <span class="param-default-value">Default: <code>wso2carbon</code></span>
                                         </div>
-                                        <div class="param-possible">
-                                            <span class="param-possible-values">Possible Values: <code>...</code></span>
-                                        </div>
+                                        
                                     </div>
                                     <div class="param-description">
-                                        <p>The.....</p>
+                                        <p>The name of the keystore file that is used for securing a VFS connection. By default, the keystore file of the <a href="#primary-keystore">primary keystore</a> is enabled for this purpose.</p>
                                     </div>
                                 </div>
                             </div><div class="param">
@@ -4105,17 +4085,17 @@ sender.enable = true
                                     <div>
                                         <p>
                                             <span class="param-type string"> string </span>
-                                            <span class="badge-required">Required</span>
+                                            
                                         </p>
                                         <div class="param-default">
-                                            <span class="param-default-value">Default: <code>$ref{keystore.tls.type}</code></span>
+                                            <span class="param-default-value">Default: <code>JKS</code></span>
                                         </div>
                                         <div class="param-possible">
-                                            <span class="param-possible-values">Possible Values: <code>...</code></span>
+                                            <span class="param-possible-values">Possible Values: <code>&quot;JKS&quot;,&quot;PKCS12&quot;</code></span>
                                         </div>
                                     </div>
                                     <div class="param-description">
-                                        <p>The.....</p>
+                                        <p>The type of the keystore file. By default, the keystore type of the <a href="#primary-keystore">primary keystore</a> is enabled for this purpose.</p>
                                     </div>
                                 </div>
                             </div><div class="param">
@@ -4126,38 +4106,15 @@ sender.enable = true
                                     <div>
                                         <p>
                                             <span class="param-type string"> string </span>
-                                            <span class="badge-required">Required</span>
+                                            
                                         </p>
                                         <div class="param-default">
-                                            <span class="param-default-value">Default: <code>$ref{keystore.tls.password}</code></span>
+                                            <span class="param-default-value">Default: <code>wso2carbon</code></span>
                                         </div>
-                                        <div class="param-possible">
-                                            <span class="param-possible-values">Possible Values: <code>...</code></span>
-                                        </div>
+                                        
                                     </div>
                                     <div class="param-description">
-                                        <p>The.....</p>
-                                    </div>
-                                </div>
-                            </div><div class="param">
-                                <div class="param-name">
-                                  <span class="param-name-wrap"> <code>listener.keystore.key_password</code> </span>
-                                </div>
-                                <div class="param-info">
-                                    <div>
-                                        <p>
-                                            <span class="param-type string"> string </span>
-                                            <span class="badge-required">Required</span>
-                                        </p>
-                                        <div class="param-default">
-                                            <span class="param-default-value">Default: <code>$ref{keystore.tls.key_password}</code></span>
-                                        </div>
-                                        <div class="param-possible">
-                                            <span class="param-possible-values">Possible Values: <code>...</code></span>
-                                        </div>
-                                    </div>
-                                    <div class="param-description">
-                                        <p>The.....</p>
+                                        <p>The password of the keystore file that is used for securing a VFS connection. This keystore password is used when accessing the keys in the keystore. By default, the keystore password of the <a href="#primary-keystore">primary keystore</a> is enabled for this purpose.</p>
                                     </div>
                                 </div>
                             </div><div class="param">
@@ -4168,17 +4125,34 @@ sender.enable = true
                                     <div>
                                         <p>
                                             <span class="param-type string"> string </span>
-                                            <span class="badge-required">Required</span>
+                                            
                                         </p>
                                         <div class="param-default">
-                                            <span class="param-default-value">Default: <code>$ref{keystore.tls.alias}</code></span>
+                                            <span class="param-default-value">Default: <code>wso2carbon</code></span>
                                         </div>
-                                        <div class="param-possible">
-                                            <span class="param-possible-values">Possible Values: <code>...</code></span>
-                                        </div>
+                                        
                                     </div>
                                     <div class="param-description">
-                                        <p>The.....</p>
+                                        <p>The alias of the public key corresponding to the private key that is included in the keystore. The public key is used for encrypting data in the Micro Integrator server, which only the corresponding private key can decrypt. The public key is embedded in a digital certificate, and this certificate can be shared over the internet by storing it in a separate trust store file. By default, the alias of the <a href="#primary-keystore">primary keystore</a> is enabled for this purpose.</p>
+                                    </div>
+                                </div>
+                            </div><div class="param">
+                                <div class="param-name">
+                                  <span class="param-name-wrap"> <code>listener.keystore.key_password</code> </span>
+                                </div>
+                                <div class="param-info">
+                                    <div>
+                                        <p>
+                                            <span class="param-type string"> string </span>
+                                            
+                                        </p>
+                                        <div class="param-default">
+                                            <span class="param-default-value">Default: <code>wso2carbon</code></span>
+                                        </div>
+                                        
+                                    </div>
+                                    <div class="param-description">
+                                        <p>The password of the private key that is included in the keystore. The private key is used to decrypt the data that has been encrypted using the keystore's public key. By default, the public key password of the <a href="#primary-keystore">primary keystore</a> is enabled for this purpose.</p>
                                     </div>
                                 </div>
                             </div><div class="param">
@@ -4233,9 +4207,9 @@ name = "mailto"
                     <div class="mb-config">
                         <div class="config-wrap">
                             <code>[transport.mail.listener]</code>
-                            <span class="badge-required">Required</span>
+                            
                             <p>
-                                Add this config heading to the ei.toml file to group the parameters that configure the ESB server to communicate through the MAIL transport. Read more about using the MAIL transport.
+                                This configuration header groups the parameters that are used to configure 'MailTo' transport listener implementation in the Micro Integrator.
                             </p>
                         </div>
                         <div class="params-wrap">
@@ -4246,18 +4220,18 @@ name = "mailto"
                                 <div class="param-info">
                                     <div>
                                         <p>
-                                            <span class="param-type string"> string </span>
-                                            <span class="badge-required">Required</span>
+                                            <span class="param-type string"> boolean </span>
+                                            
                                         </p>
                                         <div class="param-default">
-                                            <span class="param-default-value">Default: <code>true</code></span>
+                                            <span class="param-default-value">Default: <code>false</code></span>
                                         </div>
                                         <div class="param-possible">
                                             <span class="param-possible-values">Possible Values: <code>&quot;true&quot;,or &quot;false&quot;</code></span>
                                         </div>
                                     </div>
                                     <div class="param-description">
-                                        <p>The parameter for enabling the MAIL transport listener in the ESB.</p>
+                                        <p>The parameter for enabling the MAIL transport listener in the Micro Integrator.</p>
                                     </div>
                                 </div>
                             </div><div class="param">
@@ -4268,17 +4242,15 @@ name = "mailto"
                                     <div>
                                         <p>
                                             <span class="param-type string"> string </span>
-                                            <span class="badge-required">Required</span>
+                                            
                                         </p>
                                         <div class="param-default">
-                                            <span class="param-default-value">Default: <code>mailto</code></span>
+                                            <span class="param-default-value">Default: <code></code></span>
                                         </div>
-                                        <div class="param-possible">
-                                            <span class="param-possible-values">Possible Values: <code>...</code></span>
-                                        </div>
+                                        
                                     </div>
                                     <div class="param-description">
-                                        <p>The parameter for enabling the MAIL transport listener in the ESB.</p>
+                                        <p>The name of the transport receiver.</p>
                                     </div>
                                 </div>
                             </div>
@@ -4318,9 +4290,9 @@ parameter.from = "demo_user@wso2.com"
                     <div class="mb-config">
                         <div class="config-wrap">
                             <code>[transport.mail.sender]</code>
-                            <span class="badge-required">Required</span>
+                            
                             <p>
-                                Add this config heading to the ei.toml file to group the parameters that configure the ESB server to communicate through the MAIL transport. Read more about using the MAIL transport.
+                                This configuration header groups the parameters that are used to configure 'MailTo' transport sender implementation in the Micro Integrator.
                             </p>
                         </div>
                         <div class="params-wrap">
@@ -4332,7 +4304,7 @@ parameter.from = "demo_user@wso2.com"
                                     <div>
                                         <p>
                                             <span class="param-type string"> string </span>
-                                            <span class="badge-required">Required</span>
+                                            
                                         </p>
                                         <div class="param-default">
                                             <span class="param-default-value">Default: <code>mailto</code></span>
@@ -4342,7 +4314,7 @@ parameter.from = "demo_user@wso2.com"
                                         </div>
                                     </div>
                                     <div class="param-description">
-                                        <p>The parameter for enabling the MAIL transport sender in the ESB.</p>
+                                        <p>The parameter for enabling the MAIL transport sender in the Micro Integrator.</p>
                                     </div>
                                 </div>
                             </div><div class="param">
@@ -4353,17 +4325,15 @@ parameter.from = "demo_user@wso2.com"
                                     <div>
                                         <p>
                                             <span class="param-type string"> string </span>
-                                            <span class="badge-required">Required</span>
+                                            
                                         </p>
                                         <div class="param-default">
                                             <span class="param-default-value">Default: <code>smtp.gmail.com</code></span>
                                         </div>
-                                        <div class="param-possible">
-                                            <span class="param-possible-values">Possible Values: <code>....</code></span>
-                                        </div>
+                                        
                                     </div>
                                     <div class="param-description">
-                                        <p>The.....</p>
+                                        <p>The mail server that serves outgoing mails from the Micro Integrator.</p>
                                     </div>
                                 </div>
                             </div><div class="param">
@@ -4374,17 +4344,15 @@ parameter.from = "demo_user@wso2.com"
                                     <div>
                                         <p>
                                             <span class="param-type string"> integer </span>
-                                            <span class="badge-required">Required</span>
+                                            
                                         </p>
                                         <div class="param-default">
                                             <span class="param-default-value">Default: <code>587</code></span>
                                         </div>
-                                        <div class="param-possible">
-                                            <span class="param-possible-values">Possible Values: <code>....</code></span>
-                                        </div>
+                                        
                                     </div>
                                     <div class="param-description">
-                                        <p>The.....</p>
+                                        <p>The port of the mail server.</p>
                                     </div>
                                 </div>
                             </div><div class="param">
@@ -4395,17 +4363,17 @@ parameter.from = "demo_user@wso2.com"
                                     <div>
                                         <p>
                                             <span class="param-type string"> boolean </span>
-                                            <span class="badge-required">Required</span>
+                                            
                                         </p>
                                         <div class="param-default">
-                                            <span class="param-default-value">Default: <code>true</code></span>
+                                            <span class="param-default-value">Default: <code>false</code></span>
                                         </div>
                                         <div class="param-possible">
                                             <span class="param-possible-values">Possible Values: <code>&quot;true&quot;,or &quot;false&quot;</code></span>
                                         </div>
                                     </div>
                                     <div class="param-description">
-                                        <p>The.....</p>
+                                        <p>This parameter specifies whether TLS is enabled for the MailTo transport.</p>
                                     </div>
                                 </div>
                             </div><div class="param">
@@ -4416,10 +4384,10 @@ parameter.from = "demo_user@wso2.com"
                                     <div>
                                         <p>
                                             <span class="param-type string"> boolean </span>
-                                            <span class="badge-required">Required</span>
+                                            
                                         </p>
                                         <div class="param-default">
-                                            <span class="param-default-value">Default: <code>true</code></span>
+                                            <span class="param-default-value">Default: <code>false</code></span>
                                         </div>
                                         <div class="param-possible">
                                             <span class="param-possible-values">Possible Values: <code>&quot;true&quot;,or &quot;false&quot;</code></span>
@@ -4437,17 +4405,15 @@ parameter.from = "demo_user@wso2.com"
                                     <div>
                                         <p>
                                             <span class="param-type string"> string </span>
-                                            <span class="badge-required">Required</span>
+                                            
                                         </p>
                                         <div class="param-default">
                                             <span class="param-default-value">Default: <code>demo_user</code></span>
                                         </div>
-                                        <div class="param-possible">
-                                            <span class="param-possible-values">Possible Values: <code>.....</code></span>
-                                        </div>
+                                        
                                     </div>
                                     <div class="param-description">
-                                        <p>The.....</p>
+                                        <p>The user name of the email account (mail sender). Note that in some email service providers, the user name is the same as the email address specified for 'parameter.from'.</p>
                                     </div>
                                 </div>
                             </div><div class="param">
@@ -4458,17 +4424,15 @@ parameter.from = "demo_user@wso2.com"
                                     <div>
                                         <p>
                                             <span class="param-type string"> string </span>
-                                            <span class="badge-required">Required</span>
+                                            
                                         </p>
                                         <div class="param-default">
                                             <span class="param-default-value">Default: <code>mailpassword</code></span>
                                         </div>
-                                        <div class="param-possible">
-                                            <span class="param-possible-values">Possible Values: <code>.....</code></span>
-                                        </div>
+                                        
                                     </div>
                                     <div class="param-description">
-                                        <p>The.....</p>
+                                        <p>The password of the email account (mail sender).</p>
                                     </div>
                                 </div>
                             </div><div class="param">
@@ -4484,12 +4448,10 @@ parameter.from = "demo_user@wso2.com"
                                         <div class="param-default">
                                             <span class="param-default-value">Default: <code>demo_user@wso2.com</code></span>
                                         </div>
-                                        <div class="param-possible">
-                                            <span class="param-possible-values">Possible Values: <code>.....</code></span>
-                                        </div>
+                                        
                                     </div>
                                     <div class="param-description">
-                                        <p>The.....</p>
+                                        <p>The email address from which mails will be sent.</p>
                                     </div>
                                 </div>
                             </div>
@@ -4561,7 +4523,7 @@ parameter.consume_error_progression = "2.0"
                 <div class="doc-wrapper">
                     <div class="mb-config">
                         <div class="config-wrap">
-                            <code>[transport.jms.listener]</code>
+                            <code>[[transport.jms.listener]]</code>
                             
                             <p>
                                 Add this config heading to the ei.toml file to group the parameters that configure the ESB server to communicate through the JMS transport. Read more about using the JMS transport.
@@ -4576,17 +4538,15 @@ parameter.consume_error_progression = "2.0"
                                     <div>
                                         <p>
                                             <span class="param-type string"> string </span>
-                                            <span class="badge-required">Required</span>
+                                            
                                         </p>
                                         <div class="param-default">
                                             <span class="param-default-value">Default: <code></code></span>
                                         </div>
-                                        <div class="param-possible">
-                                            <span class="param-possible-values">Possible Values: <code>....</code></span>
-                                        </div>
+                                        
                                     </div>
                                     <div class="param-description">
-                                        <p>The......</p>
+                                        <p>The user-defined name of the JMS listener.</p>
                                     </div>
                                 </div>
                             </div><div class="param">
@@ -4597,17 +4557,15 @@ parameter.consume_error_progression = "2.0"
                                     <div>
                                         <p>
                                             <span class="param-type string"> string </span>
-                                            <span class="badge-required">Required</span>
+                                            
                                         </p>
                                         <div class="param-default">
                                             <span class="param-default-value">Default: <code></code></span>
                                         </div>
-                                        <div class="param-possible">
-                                            <span class="param-possible-values">Possible Values: <code>....</code></span>
-                                        </div>
+                                        
                                     </div>
                                     <div class="param-description">
-                                        <p>The.....</p>
+                                        <p>JNDI initial context factory class. The class must implement the <code>java.naming.spi.InitialContextFactory</code> interface.</p>
                                     </div>
                                 </div>
                             </div><div class="param">
@@ -4618,7 +4576,7 @@ parameter.consume_error_progression = "2.0"
                                     <div>
                                         <p>
                                             <span class="param-type string"> string </span>
-                                            <span class="badge-required">Required</span>
+                                            
                                         </p>
                                         <div class="param-default">
                                             <span class="param-default-value">Default: <code></code></span>
@@ -4628,7 +4586,7 @@ parameter.consume_error_progression = "2.0"
                                         </div>
                                     </div>
                                     <div class="param-description">
-                                        <p>The.....</p>
+                                        <p>The name of the JMS broker.</p>
                                     </div>
                                 </div>
                             </div><div class="param">
@@ -4639,7 +4597,7 @@ parameter.consume_error_progression = "2.0"
                                     <div>
                                         <p>
                                             <span class="param-type string"> string </span>
-                                            <span class="badge-required">Required</span>
+                                            
                                         </p>
                                         <div class="param-default">
                                             <span class="param-default-value">Default: <code></code></span>
@@ -4649,7 +4607,7 @@ parameter.consume_error_progression = "2.0"
                                         </div>
                                     </div>
                                     <div class="param-description">
-                                        <p>The.....</p>
+                                        <p>URL of the JNDI provider.</p>
                                     </div>
                                 </div>
                             </div><div class="param">
@@ -4660,7 +4618,7 @@ parameter.consume_error_progression = "2.0"
                                     <div>
                                         <p>
                                             <span class="param-type string"> string </span>
-                                            <span class="badge-required">Required</span>
+                                            
                                         </p>
                                         <div class="param-default">
                                             <span class="param-default-value">Default: <code></code></span>
@@ -4670,7 +4628,7 @@ parameter.consume_error_progression = "2.0"
                                         </div>
                                     </div>
                                     <div class="param-description">
-                                        <p>The.....</p>
+                                        <p></p>
                                     </div>
                                 </div>
                             </div><div class="param">
@@ -4681,15 +4639,17 @@ parameter.consume_error_progression = "2.0"
                                     <div>
                                         <p>
                                             <span class="param-type string"> string </span>
-                                            <span class="badge-required">Required</span>
+                                            
                                         </p>
                                         <div class="param-default">
-                                            <span class="param-default-value">Default: <code>consumer</code></span>
+                                            <span class="param-default-value">Default: <code>producer</code></span>
                                         </div>
-                                        
+                                        <div class="param-possible">
+                                            <span class="param-possible-values">Possible Values: <code>producer</code></span>
+                                        </div>
                                     </div>
                                     <div class="param-description">
-                                        <p>The.....</p>
+                                        <p>The cache level that should apply when JMS objects startup. When the Micro Integrator produces JMS messages, you need to specify this cache level in the deployment.toml file. If the Micro Integrator works as JMS listener, you need to specify the JMS cache level in the proxy service. See the list of <a href='../../references/synapse-properties/transport-parameters/jms-transport-parameters'>service-level JMS parameters<a>.</p>
                                     </div>
                                 </div>
                             </div><div class="param">
@@ -4700,17 +4660,17 @@ parameter.consume_error_progression = "2.0"
                                     <div>
                                         <p>
                                             <span class="param-type string"> string </span>
-                                            <span class="badge-required">Required</span>
+                                            
                                         </p>
                                         <div class="param-default">
-                                            <span class="param-default-value">Default: <code>....</code></span>
+                                            <span class="param-default-value">Default: <code></code></span>
                                         </div>
                                         <div class="param-possible">
                                             <span class="param-possible-values">Possible Values: <code>....</code></span>
                                         </div>
                                     </div>
                                     <div class="param-description">
-                                        <p>The.....</p>
+                                        <p>The JNDI Username.</p>
                                     </div>
                                 </div>
                             </div><div class="param">
@@ -4721,17 +4681,17 @@ parameter.consume_error_progression = "2.0"
                                     <div>
                                         <p>
                                             <span class="param-type string"> string </span>
-                                            <span class="badge-required">Required</span>
+                                            
                                         </p>
                                         <div class="param-default">
-                                            <span class="param-default-value">Default: <code>....</code></span>
+                                            <span class="param-default-value">Default: <code></code></span>
                                         </div>
                                         <div class="param-possible">
                                             <span class="param-possible-values">Possible Values: <code>....</code></span>
                                         </div>
                                     </div>
                                     <div class="param-description">
-                                        <p>The.....</p>
+                                        <p>The JNDI password.</p>
                                     </div>
                                 </div>
                             </div><div class="param">
@@ -4742,17 +4702,17 @@ parameter.consume_error_progression = "2.0"
                                     <div>
                                         <p>
                                             <span class="param-type string"> string </span>
-                                            <span class="badge-required">Required</span>
+                                            
                                         </p>
                                         <div class="param-default">
-                                            <span class="param-default-value">Default: <code>....</code></span>
+                                            <span class="param-default-value">Default: <code></code></span>
                                         </div>
                                         <div class="param-possible">
                                             <span class="param-possible-values">Possible Values: <code>....</code></span>
                                         </div>
                                     </div>
                                     <div class="param-description">
-                                        <p>The.....</p>
+                                        <p>Preferred mode of transactionality. <b>Note</b> that JMS transactions only works with either the <a href='../../references/mediators/callout-Mediator'>Callout mediator</a> or the <a href='../../references/mediators/call-Mediator'>Call mediator</a> in blocking mode.</p>
                                     </div>
                                 </div>
                             </div><div class="param">
@@ -4763,7 +4723,7 @@ parameter.consume_error_progression = "2.0"
                                     <div>
                                         <p>
                                             <span class="param-type string"> string </span>
-                                            <span class="badge-required">Required</span>
+                                            
                                         </p>
                                         <div class="param-default">
                                             <span class="param-default-value">Default: <code>....</code></span>
@@ -4773,7 +4733,7 @@ parameter.consume_error_progression = "2.0"
                                         </div>
                                     </div>
                                     <div class="param-description">
-                                        <p>The.....</p>
+                                        <p>...</p>
                                     </div>
                                 </div>
                             </div><div class="param">
@@ -4784,17 +4744,17 @@ parameter.consume_error_progression = "2.0"
                                     <div>
                                         <p>
                                             <span class="param-type string"> boolean </span>
-                                            <span class="badge-required">Required</span>
+                                            
                                         </p>
                                         <div class="param-default">
-                                            <span class="param-default-value">Default: <code>true</code></span>
+                                            <span class="param-default-value">Default: <code>false</code></span>
                                         </div>
                                         <div class="param-possible">
                                             <span class="param-possible-values">Possible Values: <code>&quot;true&quot;,or &quot;false&quot;</code></span>
                                         </div>
                                     </div>
                                     <div class="param-description">
-                                        <p>The.....</p>
+                                        <p>Specifies whether or not caching should be enabled for user transactions.</p>
                                     </div>
                                 </div>
                             </div><div class="param">
@@ -4805,17 +4765,17 @@ parameter.consume_error_progression = "2.0"
                                     <div>
                                         <p>
                                             <span class="param-type string"> boolean </span>
-                                            <span class="badge-required">Required</span>
+                                            
                                         </p>
                                         <div class="param-default">
-                                            <span class="param-default-value">Default: <code>true</code></span>
+                                            <span class="param-default-value">Default: <code>false</code></span>
                                         </div>
                                         <div class="param-possible">
                                             <span class="param-possible-values">Possible Values: <code>&quot;true&quot;,or &quot;false&quot;</code></span>
                                         </div>
                                     </div>
                                     <div class="param-description">
-                                        <p>The.....</p>
+                                        <p>Specifies whether or not the JMS session should be transacted.</p>
                                     </div>
                                 </div>
                             </div><div class="param">
@@ -4826,7 +4786,7 @@ parameter.consume_error_progression = "2.0"
                                     <div>
                                         <p>
                                             <span class="param-type string"> string </span>
-                                            <span class="badge-required">Required</span>
+                                            
                                         </p>
                                         <div class="param-default">
                                             <span class="param-default-value">Default: <code>AUTO_ACKNOWLEDGE</code></span>
@@ -4836,7 +4796,7 @@ parameter.consume_error_progression = "2.0"
                                         </div>
                                     </div>
                                     <div class="param-description">
-                                        <p>The.....</p>
+                                        <p>JMS session acknowledgment mode.</p>
                                     </div>
                                 </div>
                             </div><div class="param">
@@ -4847,7 +4807,7 @@ parameter.consume_error_progression = "2.0"
                                     <div>
                                         <p>
                                             <span class="param-type string"> string </span>
-                                            <span class="badge-required">Required</span>
+                                            
                                         </p>
                                         <div class="param-default">
                                             <span class="param-default-value">Default: <code>1.1</code></span>
@@ -4857,7 +4817,7 @@ parameter.consume_error_progression = "2.0"
                                         </div>
                                     </div>
                                     <div class="param-description">
-                                        <p>The.....</p>
+                                        <p>JMS API version.</p>
                                     </div>
                                 </div>
                             </div><div class="param">
@@ -4868,17 +4828,15 @@ parameter.consume_error_progression = "2.0"
                                     <div>
                                         <p>
                                             <span class="param-type string"> string </span>
-                                            <span class="badge-required">Required</span>
+                                            
                                         </p>
                                         <div class="param-default">
-                                            <span class="param-default-value">Default: <code>...</code></span>
+                                            <span class="param-default-value">Default: <code></code></span>
                                         </div>
-                                        <div class="param-possible">
-                                            <span class="param-possible-values">Possible Values: <code>....</code></span>
-                                        </div>
+                                        
                                     </div>
                                     <div class="param-description">
-                                        <p>The.....</p>
+                                        <p>The JMS connection username.</p>
                                     </div>
                                 </div>
                             </div><div class="param">
@@ -4889,17 +4847,15 @@ parameter.consume_error_progression = "2.0"
                                     <div>
                                         <p>
                                             <span class="param-type string"> string </span>
-                                            <span class="badge-required">Required</span>
+                                            
                                         </p>
                                         <div class="param-default">
-                                            <span class="param-default-value">Default: <code>...</code></span>
+                                            <span class="param-default-value">Default: <code></code></span>
                                         </div>
-                                        <div class="param-possible">
-                                            <span class="param-possible-values">Possible Values: <code>....</code></span>
-                                        </div>
+                                        
                                     </div>
                                     <div class="param-description">
-                                        <p>The.....</p>
+                                        <p>The JMS connection password.</p>
                                     </div>
                                 </div>
                             </div><div class="param">
@@ -4910,17 +4866,15 @@ parameter.consume_error_progression = "2.0"
                                     <div>
                                         <p>
                                             <span class="param-type string"> string </span>
-                                            <span class="badge-required">Required</span>
+                                            
                                         </p>
                                         <div class="param-default">
-                                            <span class="param-default-value">Default: <code>...</code></span>
+                                            <span class="param-default-value">Default: <code></code></span>
                                         </div>
-                                        <div class="param-possible">
-                                            <span class="param-possible-values">Possible Values: <code>....</code></span>
-                                        </div>
+                                        
                                     </div>
                                     <div class="param-description">
-                                        <p>The.....</p>
+                                        <p>The JNDI name of the destination.</p>
                                     </div>
                                 </div>
                             </div><div class="param">
@@ -4931,17 +4885,17 @@ parameter.consume_error_progression = "2.0"
                                     <div>
                                         <p>
                                             <span class="param-type string"> string </span>
-                                            <span class="badge-required">Required</span>
+                                            
                                         </p>
                                         <div class="param-default">
-                                            <span class="param-default-value">Default: <code>queue</code></span>
+                                            <span class="param-default-value">Default: <code></code></span>
                                         </div>
                                         <div class="param-possible">
-                                            <span class="param-possible-values">Possible Values: <code>....</code></span>
+                                            <span class="param-possible-values">Possible Values: <code>&#39;queue&#39; or &#39;topic&#39;</code></span>
                                         </div>
                                     </div>
                                     <div class="param-description">
-                                        <p>The.....</p>
+                                        <p>The type of the destination.</p>
                                     </div>
                                 </div>
                             </div><div class="param">
@@ -4952,17 +4906,17 @@ parameter.consume_error_progression = "2.0"
                                     <div>
                                         <p>
                                             <span class="param-type string"> string </span>
-                                            <span class="badge-required">Required</span>
+                                            
                                         </p>
                                         <div class="param-default">
-                                            <span class="param-default-value">Default: <code>...</code></span>
+                                            <span class="param-default-value">Default: <code></code></span>
                                         </div>
                                         <div class="param-possible">
                                             <span class="param-possible-values">Possible Values: <code>....</code></span>
                                         </div>
                                     </div>
                                     <div class="param-description">
-                                        <p>The.....</p>
+                                        <p>The JNDI name of the default reply destination.</p>
                                     </div>
                                 </div>
                             </div><div class="param">
@@ -4973,7 +4927,7 @@ parameter.consume_error_progression = "2.0"
                                     <div>
                                         <p>
                                             <span class="param-type string"> string </span>
-                                            <span class="badge-required">Required</span>
+                                            
                                         </p>
                                         <div class="param-default">
                                             <span class="param-default-value">Default: <code>queue</code></span>
@@ -4983,7 +4937,7 @@ parameter.consume_error_progression = "2.0"
                                         </div>
                                     </div>
                                     <div class="param-description">
-                                        <p>The.....</p>
+                                        <p>The type of the reply destination.</p>
                                     </div>
                                 </div>
                             </div><div class="param">
@@ -4994,17 +4948,17 @@ parameter.consume_error_progression = "2.0"
                                     <div>
                                         <p>
                                             <span class="param-type string"> string </span>
-                                            <span class="badge-required">Required</span>
+                                            
                                         </p>
                                         <div class="param-default">
-                                            <span class="param-default-value">Default: <code>.....</code></span>
+                                            <span class="param-default-value">Default: <code></code></span>
                                         </div>
                                         <div class="param-possible">
                                             <span class="param-possible-values">Possible Values: <code>....</code></span>
                                         </div>
                                     </div>
                                     <div class="param-description">
-                                        <p>The.....</p>
+                                        <p>The message selector implementation.</p>
                                     </div>
                                 </div>
                             </div><div class="param">
@@ -5015,17 +4969,17 @@ parameter.consume_error_progression = "2.0"
                                     <div>
                                         <p>
                                             <span class="param-type string"> boolean </span>
-                                            <span class="badge-required">Required</span>
+                                            
                                         </p>
                                         <div class="param-default">
-                                            <span class="param-default-value">Default: <code>.....</code></span>
+                                            <span class="param-default-value">Default: <code>false</code></span>
                                         </div>
                                         <div class="param-possible">
                                             <span class="param-possible-values">Possible Values: <code>&quot;true&quot;,or &quot;false&quot;</code></span>
                                         </div>
                                     </div>
                                     <div class="param-description">
-                                        <p>The.....</p>
+                                        <p>Specifies whether or not the connection factory is subscription durable.</p>
                                     </div>
                                 </div>
                             </div><div class="param">
@@ -5036,17 +4990,15 @@ parameter.consume_error_progression = "2.0"
                                     <div>
                                         <p>
                                             <span class="param-type string"> string </span>
-                                            <span class="badge-required">Required</span>
+                                            
                                         </p>
                                         <div class="param-default">
-                                            <span class="param-default-value">Default: <code>.....</code></span>
+                                            <span class="param-default-value">Default: <code></code></span>
                                         </div>
-                                        <div class="param-possible">
-                                            <span class="param-possible-values">Possible Values: <code>....</code></span>
-                                        </div>
+                                        
                                     </div>
                                     <div class="param-description">
-                                        <p>The.....</p>
+                                        <p>The ClientId parameter when using durable subscriptions.</p>
                                     </div>
                                 </div>
                             </div><div class="param">
@@ -5060,14 +5012,12 @@ parameter.consume_error_progression = "2.0"
                                             <span class="badge-required">Required</span>
                                         </p>
                                         <div class="param-default">
-                                            <span class="param-default-value">Default: <code>.....</code></span>
+                                            <span class="param-default-value">Default: <code></code></span>
                                         </div>
-                                        <div class="param-possible">
-                                            <span class="param-possible-values">Possible Values: <code>....</code></span>
-                                        </div>
+                                        
                                     </div>
                                     <div class="param-description">
-                                        <p>The.....</p>
+                                        <p>The name of the durable subscriber.</p>
                                     </div>
                                 </div>
                             </div><div class="param">
@@ -5078,7 +5028,7 @@ parameter.consume_error_progression = "2.0"
                                     <div>
                                         <p>
                                             <span class="param-type string"> boolean </span>
-                                            <span class="badge-required">Required</span>
+                                            
                                         </p>
                                         <div class="param-default">
                                             <span class="param-default-value">Default: <code>false</code></span>
@@ -5088,7 +5038,7 @@ parameter.consume_error_progression = "2.0"
                                         </div>
                                     </div>
                                     <div class="param-description">
-                                        <p>The.....</p>
+                                        <p>Specifies whether or not the messages should should be published by the same connection in which the messages were received.</p>
                                     </div>
                                 </div>
                             </div><div class="param">
@@ -5099,17 +5049,15 @@ parameter.consume_error_progression = "2.0"
                                     <div>
                                         <p>
                                             <span class="param-type string"> integer </span>
-                                            <span class="badge-required">Required</span>
+                                            
                                         </p>
                                         <div class="param-default">
                                             <span class="param-default-value">Default: <code>1000</code></span>
                                         </div>
-                                        <div class="param-possible">
-                                            <span class="param-possible-values">Possible Values: <code>.....</code></span>
-                                        </div>
+                                        
                                     </div>
                                     <div class="param-description">
-                                        <p>The.....</p>
+                                        <p>Time to wait for a JMS message during polling. Set this parameter value to a negative integer to wait indefinitely. Set to zero to prevent waiting.</p>
                                     </div>
                                 </div>
                             </div><div class="param">
@@ -5120,17 +5068,15 @@ parameter.consume_error_progression = "2.0"
                                     <div>
                                         <p>
                                             <span class="param-type string"> integer </span>
-                                            <span class="badge-required">Required</span>
+                                            
                                         </p>
                                         <div class="param-default">
                                             <span class="param-default-value">Default: <code>1</code></span>
                                         </div>
-                                        <div class="param-possible">
-                                            <span class="param-possible-values">Possible Values: <code>.....</code></span>
-                                        </div>
+                                        
                                     </div>
                                     <div class="param-description">
-                                        <p>The.....</p>
+                                        <p>The number of concurrent threads to be started to consume messages when polling.</p>
                                     </div>
                                 </div>
                             </div><div class="param">
@@ -5141,17 +5087,15 @@ parameter.consume_error_progression = "2.0"
                                     <div>
                                         <p>
                                             <span class="param-type string"> integer </span>
-                                            <span class="badge-required">Required</span>
+                                            
                                         </p>
                                         <div class="param-default">
                                             <span class="param-default-value">Default: <code>1</code></span>
                                         </div>
-                                        <div class="param-possible">
-                                            <span class="param-possible-values">Possible Values: <code>.....</code></span>
-                                        </div>
+                                        
                                     </div>
                                     <div class="param-description">
-                                        <p>The.....</p>
+                                        <p>The maximum number of concurrent threads to use during polling.</p>
                                     </div>
                                 </div>
                             </div><div class="param">
@@ -5162,17 +5106,15 @@ parameter.consume_error_progression = "2.0"
                                     <div>
                                         <p>
                                             <span class="param-type string"> integer </span>
-                                            <span class="badge-required">Required</span>
+                                            
                                         </p>
                                         <div class="param-default">
                                             <span class="param-default-value">Default: <code>10</code></span>
                                         </div>
-                                        <div class="param-possible">
-                                            <span class="param-possible-values">Possible Values: <code>.....</code></span>
-                                        </div>
+                                        
                                     </div>
                                     <div class="param-description">
-                                        <p>The.....</p>
+                                        <p>The number of idle runs per thread before it dies out.</p>
                                     </div>
                                 </div>
                             </div><div class="param">
@@ -5183,17 +5125,15 @@ parameter.consume_error_progression = "2.0"
                                     <div>
                                         <p>
                                             <span class="param-type string"> integer </span>
-                                            <span class="badge-required">Required</span>
+                                            
                                         </p>
                                         <div class="param-default">
                                             <span class="param-default-value">Default: <code>-1</code></span>
                                         </div>
-                                        <div class="param-possible">
-                                            <span class="param-possible-values">Possible Values: <code>.....</code></span>
-                                        </div>
+                                        
                                     </div>
                                     <div class="param-description">
-                                        <p>The.....</p>
+                                        <p>The maximum number of successful message receipts per thread.</p>
                                     </div>
                                 </div>
                             </div><div class="param">
@@ -5204,17 +5144,15 @@ parameter.consume_error_progression = "2.0"
                                     <div>
                                         <p>
                                             <span class="param-type string"> string </span>
-                                            <span class="badge-required">Required</span>
+                                            
                                         </p>
                                         <div class="param-default">
                                             <span class="param-default-value">Default: <code>10000</code></span>
                                         </div>
-                                        <div class="param-possible">
-                                            <span class="param-possible-values">Possible Values: <code>.....</code></span>
-                                        </div>
+                                        
                                     </div>
                                     <div class="param-description">
-                                        <p>The.....</p>
+                                        <p>The initial reconnection attempts duration in milliseconds.</p>
                                     </div>
                                 </div>
                             </div><div class="param">
@@ -5225,17 +5163,15 @@ parameter.consume_error_progression = "2.0"
                                     <div>
                                         <p>
                                             <span class="param-type string"> integer </span>
-                                            <span class="badge-required">Required</span>
+                                            
                                         </p>
                                         <div class="param-default">
                                             <span class="param-default-value">Default: <code>2</code></span>
                                         </div>
-                                        <div class="param-possible">
-                                            <span class="param-possible-values">Possible Values: <code>.....</code></span>
-                                        </div>
+                                        
                                     </div>
                                     <div class="param-description">
-                                        <p>The.....</p>
+                                        <p>The factor by which the reconnection duration will be increased.</p>
                                     </div>
                                 </div>
                             </div><div class="param">
@@ -5246,17 +5182,15 @@ parameter.consume_error_progression = "2.0"
                                     <div>
                                         <p>
                                             <span class="param-type string"> integer </span>
-                                            <span class="badge-required">Required</span>
+                                            
                                         </p>
                                         <div class="param-default">
                                             <span class="param-default-value">Default: <code>3600000</code></span>
                                         </div>
-                                        <div class="param-possible">
-                                            <span class="param-possible-values">Possible Values: <code>.....</code></span>
-                                        </div>
+                                        
                                     </div>
                                     <div class="param-description">
-                                        <p>The.....</p>
+                                        <p>The maximum reconnection duration in milliseconds.</p>
                                     </div>
                                 </div>
                             </div><div class="param">
@@ -5267,17 +5201,15 @@ parameter.consume_error_progression = "2.0"
                                     <div>
                                         <p>
                                             <span class="param-type string"> integer </span>
-                                            <span class="badge-required">Required</span>
+                                            
                                         </p>
                                         <div class="param-default">
                                             <span class="param-default-value">Default: <code>3600000</code></span>
                                         </div>
-                                        <div class="param-possible">
-                                            <span class="param-possible-values">Possible Values: <code>.....</code></span>
-                                        </div>
+                                        
                                     </div>
                                     <div class="param-description">
-                                        <p>The.....</p>
+                                        <p>The reconnection interval in milliseconds.</p>
                                     </div>
                                 </div>
                             </div><div class="param">
@@ -5288,17 +5220,15 @@ parameter.consume_error_progression = "2.0"
                                     <div>
                                         <p>
                                             <span class="param-type string"> integer </span>
-                                            <span class="badge-required">Required</span>
+                                            
                                         </p>
                                         <div class="param-default">
                                             <span class="param-default-value">Default: <code>10</code></span>
                                         </div>
-                                        <div class="param-possible">
-                                            <span class="param-possible-values">Possible Values: <code>.....</code></span>
-                                        </div>
+                                        
                                     </div>
                                     <div class="param-description">
-                                        <p>The.....</p>
+                                        <p>The maximum cached JMS connections in the producer level.</p>
                                     </div>
                                 </div>
                             </div><div class="param">
@@ -5309,17 +5239,15 @@ parameter.consume_error_progression = "2.0"
                                     <div>
                                         <p>
                                             <span class="param-type string"> integer </span>
-                                            <span class="badge-required">Required</span>
+                                            
                                         </p>
                                         <div class="param-default">
                                             <span class="param-default-value">Default: <code>20</code></span>
                                         </div>
-                                        <div class="param-possible">
-                                            <span class="param-possible-values">Possible Values: <code>.....</code></span>
-                                        </div>
+                                        
                                     </div>
                                     <div class="param-description">
-                                        <p>The.....</p>
+                                        <p>The number of retries on consume errors before sleep delay becomes effective.</p>
                                     </div>
                                 </div>
                             </div><div class="param">
@@ -5330,17 +5258,15 @@ parameter.consume_error_progression = "2.0"
                                     <div>
                                         <p>
                                             <span class="param-type string"> string </span>
-                                            <span class="badge-required">Required</span>
+                                            
                                         </p>
                                         <div class="param-default">
                                             <span class="param-default-value">Default: <code>100</code></span>
                                         </div>
-                                        <div class="param-possible">
-                                            <span class="param-possible-values">Possible Values: <code>.....</code></span>
-                                        </div>
+                                        
                                     </div>
                                     <div class="param-description">
-                                        <p>The.....</p>
+                                        <p>The sleep delay when a consume error is encountered (in milliseconds).</p>
                                     </div>
                                 </div>
                             </div><div class="param">
@@ -5351,7 +5277,7 @@ parameter.consume_error_progression = "2.0"
                                     <div>
                                         <p>
                                             <span class="param-type string"> integer </span>
-                                            <span class="badge-required">Required</span>
+                                            
                                         </p>
                                         <div class="param-default">
                                             <span class="param-default-value">Default: <code>2.0</code></span>
@@ -5361,7 +5287,7 @@ parameter.consume_error_progression = "2.0"
                                         </div>
                                     </div>
                                     <div class="param-description">
-                                        <p>The.....</p>
+                                        <p>The factor by which the consume error retry sleep will be increased.</p>
                                     </div>
                                 </div>
                             </div>
@@ -6311,9 +6237,9 @@ TopicConnectionFactory = "amqp://admin:admin@clientID/carbon?brokerlist='tcp://l
                     <div class="mb-config">
                         <div class="config-wrap">
                             <code>[transport.jndi.connection_factories]</code>
-                            <span class="badge-required">Required</span>
+                            
                             <p>
-                                The......
+                                This configuration header groups the parameters used for specifying the JNDI connection factory classes.
                             </p>
                         </div>
                         <div class="params-wrap">
@@ -6325,38 +6251,38 @@ TopicConnectionFactory = "amqp://admin:admin@clientID/carbon?brokerlist='tcp://l
                                     <div>
                                         <p>
                                             <span class="param-type string"> string </span>
-                                            <span class="badge-required">Required</span>
+                                            
                                         </p>
                                         <div class="param-default">
                                             <span class="param-default-value">Default: <code></code></span>
                                         </div>
                                         <div class="param-possible">
-                                            <span class="param-possible-values">Possible Values: <code>....</code></span>
+                                            <span class="param-possible-values">Possible Values: <code>amqp://admin:admin@clientID/carbon?brokerlist=&#39;tcp://localhost:5675&#39;</code></span>
                                         </div>
                                     </div>
                                     <div class="param-description">
-                                        <p>The....</p>
+                                        <p>The connection factory URL for connecting to a JMS queue.</p>
                                     </div>
                                 </div>
                             </div><div class="param">
                                 <div class="param-name">
-                                  <span class="param-name-wrap"> <code>TopicConnectionFactory</code> </span>
+                                  <span class="param-name-wrap"> <code>QueueConnectionFactory</code> </span>
                                 </div>
                                 <div class="param-info">
                                     <div>
                                         <p>
                                             <span class="param-type string"> string </span>
-                                            <span class="badge-required">Required</span>
+                                            
                                         </p>
                                         <div class="param-default">
                                             <span class="param-default-value">Default: <code></code></span>
                                         </div>
                                         <div class="param-possible">
-                                            <span class="param-possible-values">Possible Values: <code>....</code></span>
+                                            <span class="param-possible-values">Possible Values: <code>amqp://admin:admin@clientID/carbon?brokerlist=&#39;tcp://localhost:5675&#39;</code></span>
                                         </div>
                                     </div>
                                     <div class="param-description">
-                                        <p>The......</p>
+                                        <p>The connection factory URL for connecting to a JMS topic.</p>
                                     </div>
                                 </div>
                             </div>
@@ -6390,31 +6316,31 @@ StockQuotesQueue = "StockQuotesQueue"
                     <div class="mb-config">
                         <div class="config-wrap">
                             <code>[transport.jndi.queue]</code>
-                            <span class="badge-required">Required</span>
+                            
                             <p>
-                                ......
+                                This configuration header is used to specify the list of queues that are defined your JMS broker. The JNDI name of the queue, and the actual queue name should be specifed as a key-value pair as follows: <code>jndi_name</code> = <code>queue_name</code>.
                             </p>
                         </div>
                         <div class="params-wrap">
                             <div class="param">
                                 <div class="param-name">
-                                  <span class="param-name-wrap"> <code></code> </span>
+                                  <span class="param-name-wrap"> <code>&lt;jndi_queue_name&gt;</code> </span>
                                 </div>
                                 <div class="param-info">
                                     <div>
                                         <p>
                                             <span class="param-type string"> string </span>
-                                            <span class="badge-required">Required</span>
+                                            
                                         </p>
                                         <div class="param-default">
                                             <span class="param-default-value">Default: <code></code></span>
                                         </div>
                                         <div class="param-possible">
-                                            <span class="param-possible-values">Possible Values: <code>.....</code></span>
+                                            <span class="param-possible-values">Possible Values: <code>&lt;queue_name&gt;</code></span>
                                         </div>
                                     </div>
                                     <div class="param-description">
-                                        <p>The.....</p>
+                                        <p>The jndi queue name and the actual queue name as a key-value pair.</p>
                                     </div>
                                 </div>
                             </div>
@@ -6447,31 +6373,31 @@ MyTopic = "example.MyTopic"
                     <div class="mb-config">
                         <div class="config-wrap">
                             <code>[transport.jndi.topic]</code>
-                            <span class="badge-required">Required</span>
+                            
                             <p>
-                                This.......
+                                This configuration header is used to specify the list of topics that are defined your JMS broker. The JNDI name of the topic, and the actual topic name should be specifed as a key-value pair as follows: <code>jndi_name</code> = <code>topic_name</code>.
                             </p>
                         </div>
                         <div class="params-wrap">
                             <div class="param">
                                 <div class="param-name">
-                                  <span class="param-name-wrap"> <code></code> </span>
+                                  <span class="param-name-wrap"> <code>&lt;jndi_topic_name&gt;</code> </span>
                                 </div>
                                 <div class="param-info">
                                     <div>
                                         <p>
                                             <span class="param-type string"> string </span>
-                                            <span class="badge-required">Required</span>
+                                            
                                         </p>
                                         <div class="param-default">
                                             <span class="param-default-value">Default: <code></code></span>
                                         </div>
                                         <div class="param-possible">
-                                            <span class="param-possible-values">Possible Values: <code>.....</code></span>
+                                            <span class="param-possible-values">Possible Values: <code>&lt;topic_name&gt;</code></span>
                                         </div>
                                     </div>
                                     <div class="param-description">
-                                        <p>The......</p>
+                                        <p>The jndi queue name and the actual topic name as a key-value pair.</p>
                                     </div>
                                 </div>
                             </div>
@@ -7723,7 +7649,7 @@ sender.enabled=false
                             <code>[transport.fix]</code>
                             <span class="badge-required">Required</span>
                             <p>
-                                Add this config heading to the ei.toml to group the parameters that configure the ESB server to communicate through the FIX transport. Read more about how the ESB uses FIX communication.
+                                This configuration header groups the parameters that configure the Micro Integrator to communicate through the FIX transport.
                             </p>
                         </div>
                         <div class="params-wrap">
@@ -7818,9 +7744,9 @@ sender.enable = false
                     <div class="mb-config">
                         <div class="config-wrap">
                             <code>[transport.mqtt]</code>
-                            <span class="badge-required">Required</span>
+                            
                             <p>
-                                The.....
+                                This configuration header groups the parameters that configure the Micro Integrator to communicate through the MQTT transport.
                             </p>
                         </div>
                         <div class="params-wrap">
@@ -7832,7 +7758,7 @@ sender.enable = false
                                     <div>
                                         <p>
                                             <span class="param-type string"> boolean </span>
-                                            <span class="badge-required">Required</span>
+                                            
                                         </p>
                                         <div class="param-default">
                                             <span class="param-default-value">Default: <code>false</code></span>
@@ -7853,17 +7779,15 @@ sender.enable = false
                                     <div>
                                         <p>
                                             <span class="param-type string"> string </span>
-                                            <span class="badge-required">Required</span>
+                                            
                                         </p>
                                         <div class="param-default">
                                             <span class="param-default-value">Default: <code>$ref{server.hostname}</code></span>
                                         </div>
-                                        <div class="param-possible">
-                                            <span class="param-possible-values">Possible Values: <code>...</code></span>
-                                        </div>
+                                        
                                     </div>
                                     <div class="param-description">
-                                        <p>The......</p>
+                                        <p>The name of the host. By default, the hostname of the Micro Integrator server is used.</p>
                                     </div>
                                 </div>
                             </div><div class="param">
@@ -7874,17 +7798,15 @@ sender.enable = false
                                     <div>
                                         <p>
                                             <span class="param-type string"> string </span>
-                                            <span class="badge-required">Required</span>
+                                            
                                         </p>
                                         <div class="param-default">
                                             <span class="param-default-value">Default: <code></code></span>
                                         </div>
-                                        <div class="param-possible">
-                                            <span class="param-possible-values">Possible Values: <code>...</code></span>
-                                        </div>
+                                        
                                     </div>
                                     <div class="param-description">
-                                        <p>The......</p>
+                                        <p>The connection factory URL for connecting to a JMS topic.</p>
                                     </div>
                                 </div>
                             </div><div class="param">
@@ -7895,17 +7817,17 @@ sender.enable = false
                                     <div>
                                         <p>
                                             <span class="param-type string"> integer </span>
-                                            <span class="badge-required">Required</span>
+                                            
                                         </p>
                                         <div class="param-default">
-                                            <span class="param-default-value">Default: <code>1883</code></span>
+                                            <span class="param-default-value">Default: <code></code></span>
                                         </div>
                                         <div class="param-possible">
-                                            <span class="param-possible-values">Possible Values: <code>...</code></span>
+                                            <span class="param-possible-values">Possible Values: <code>&#39;1883&#39;, or &#39;1885&#39;</code></span>
                                         </div>
                                     </div>
                                     <div class="param-description">
-                                        <p>The......</p>
+                                        <p>The port ID.</p>
                                     </div>
                                 </div>
                             </div><div class="param">
@@ -7916,17 +7838,15 @@ sender.enable = false
                                     <div>
                                         <p>
                                             <span class="param-type string"> string </span>
-                                            <span class="badge-required">Required</span>
+                                            
                                         </p>
                                         <div class="param-default">
-                                            <span class="param-default-value">Default: <code>client-id-1234</code></span>
+                                            <span class="param-default-value">Default: <code></code></span>
                                         </div>
-                                        <div class="param-possible">
-                                            <span class="param-possible-values">Possible Values: <code>...</code></span>
-                                        </div>
+                                        
                                     </div>
                                     <div class="param-description">
-                                        <p>The......</p>
+                                        <p>The client ID.</p>
                                     </div>
                                 </div>
                             </div><div class="param">
@@ -7937,17 +7857,15 @@ sender.enable = false
                                     <div>
                                         <p>
                                             <span class="param-type string"> string </span>
-                                            <span class="badge-required">Required</span>
+                                            
                                         </p>
                                         <div class="param-default">
                                             <span class="param-default-value">Default: <code></code></span>
                                         </div>
-                                        <div class="param-possible">
-                                            <span class="param-possible-values">Possible Values: <code>...</code></span>
-                                        </div>
+                                        
                                     </div>
                                     <div class="param-description">
-                                        <p>The......</p>
+                                        <p>The name of the topic.</p>
                                     </div>
                                 </div>
                             </div><div class="param">
@@ -7964,11 +7882,11 @@ sender.enable = false
                                             <span class="param-default-value">Default: <code>0</code></span>
                                         </div>
                                         <div class="param-possible">
-                                            <span class="param-possible-values">Possible Values: <code>...</code></span>
+                                            <span class="param-possible-values">Possible Values: <code>0, 1, or 2</code></span>
                                         </div>
                                     </div>
                                     <div class="param-description">
-                                        <p>The......</p>
+                                        <p>The QoS value.</p>
                                     </div>
                                 </div>
                             </div><div class="param">
@@ -7989,7 +7907,7 @@ sender.enable = false
                                         </div>
                                     </div>
                                     <div class="param-description">
-                                        <p>The......</p>
+                                        <p>Specifies whether or not session clean should be enabled.</p>
                                     </div>
                                 </div>
                             </div><div class="param">
@@ -8010,7 +7928,7 @@ sender.enable = false
                                         </div>
                                     </div>
                                     <div class="param-description">
-                                        <p>The......</p>
+                                        <p>Specifies whether or not SSL should be enabled.</p>
                                     </div>
                                 </div>
                             </div><div class="param">
@@ -8024,14 +7942,12 @@ sender.enable = false
                                             
                                         </p>
                                         <div class="param-default">
-                                            <span class="param-default-value">Default: <code>...</code></span>
+                                            <span class="param-default-value">Default: <code></code></span>
                                         </div>
-                                        <div class="param-possible">
-                                            <span class="param-possible-values">Possible Values: <code>....</code></span>
-                                        </div>
+                                        
                                     </div>
                                     <div class="param-description">
-                                        <p>The......</p>
+                                        <p>The username for the subscription.</p>
                                     </div>
                                 </div>
                             </div><div class="param">
@@ -8045,14 +7961,12 @@ sender.enable = false
                                             
                                         </p>
                                         <div class="param-default">
-                                            <span class="param-default-value">Default: <code>...</code></span>
+                                            <span class="param-default-value">Default: <code></code></span>
                                         </div>
-                                        <div class="param-possible">
-                                            <span class="param-possible-values">Possible Values: <code>....</code></span>
-                                        </div>
+                                        
                                     </div>
                                     <div class="param-description">
-                                        <p>The......</p>
+                                        <p>The password for the subscription.</p>
                                     </div>
                                 </div>
                             </div><div class="param">
@@ -8063,17 +7977,15 @@ sender.enable = false
                                     <div>
                                         <p>
                                             <span class="param-type string"> string </span>
-                                            <span class="badge-required">Required</span>
+                                            
                                         </p>
                                         <div class="param-default">
-                                            <span class="param-default-value">Default: <code>...</code></span>
+                                            <span class="param-default-value">Default: <code></code></span>
                                         </div>
-                                        <div class="param-possible">
-                                            <span class="param-possible-values">Possible Values: <code>....</code></span>
-                                        </div>
+                                        
                                     </div>
                                     <div class="param-description">
-                                        <p>The......</p>
+                                        <p>The path of the directory to be used as the persistent data store for quality of service purposes. The default value is the Micro Integrator temp path.</p>
                                     </div>
                                 </div>
                             </div><div class="param">
@@ -8084,7 +7996,7 @@ sender.enable = false
                                     <div>
                                         <p>
                                             <span class="param-type string"> boolean </span>
-                                            <span class="badge-required">Required</span>
+                                            
                                         </p>
                                         <div class="param-default">
                                             <span class="param-default-value">Default: <code>false</code></span>
@@ -8094,7 +8006,7 @@ sender.enable = false
                                         </div>
                                     </div>
                                     <div class="param-description">
-                                        <p>The......</p>
+                                        <p>Specifies whether or not the blocking sender should be enabled.</p>
                                     </div>
                                 </div>
                             </div><div class="param">
@@ -8105,17 +8017,15 @@ sender.enable = false
                                     <div>
                                         <p>
                                             <span class="param-type string"> string </span>
-                                            <span class="badge-required">Required</span>
+                                            
                                         </p>
                                         <div class="param-default">
                                             <span class="param-default-value">Default: <code>text/plain</code></span>
                                         </div>
-                                        <div class="param-possible">
-                                            <span class="param-possible-values">Possible Values: <code>....</code></span>
-                                        </div>
+                                        
                                     </div>
                                     <div class="param-description">
-                                        <p>The......</p>
+                                        <p>The content type.</p>
                                     </div>
                                 </div>
                             </div><div class="param">
@@ -8126,7 +8036,7 @@ sender.enable = false
                                     <div>
                                         <p>
                                             <span class="param-type string"> boolean </span>
-                                            <span class="badge-required">Required</span>
+                                            
                                         </p>
                                         <div class="param-default">
                                             <span class="param-default-value">Default: <code>false</code></span>
@@ -8136,7 +8046,7 @@ sender.enable = false
                                         </div>
                                     </div>
                                     <div class="param-description">
-                                        <p>The......</p>
+                                        <p>Specifies whether or not the messaging engine should retain a published message. This parameter can be used only in the transport sender.</p>
                                     </div>
                                 </div>
                             </div><div class="param">
@@ -8157,343 +8067,7 @@ sender.enable = false
                                         </div>
                                     </div>
                                     <div class="param-description">
-                                        <p>The......</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-</div>
-
-
-## HL7 transport
-
-<div class="mb-config-catalog">
-    <section>
-        <div class="mb-config-options">
-            <div class="superfences-tabs">
-            
-            <input name="37" type="checkbox" id="_tab_37">
-                <label class="tab-selector" for="_tab_37"><i class="icon fa fa-code"></i></label>
-                <div class="superfences-content">
-                    <div class="mb-config-example">
-<pre><code class="toml">[transport.hl7]
-
-listener.enable = false
-listener.port = 9292
-
-sender.enable = false
-sender.non_blocking = true
-</code></pre>
-                    </div>
-                </div>
-                <div class="doc-wrapper">
-                    <div class="mb-config">
-                        <div class="config-wrap">
-                            <code>[transport.hl7]</code>
-                            <span class="badge-required">Required</span>
-                            <p>
-                                Add this config heading to group the parameters that configure the ESB server communicate through the HL7 transport. Read more about HL7 communication in the ESB.
-                            </p>
-                        </div>
-                        <div class="params-wrap">
-                            <div class="param">
-                                <div class="param-name">
-                                  <span class="param-name-wrap"> <code>listener.enabled</code> </span>
-                                </div>
-                                <div class="param-info">
-                                    <div>
-                                        <p>
-                                            <span class="param-type string"> boolean </span>
-                                            
-                                        </p>
-                                        <div class="param-default">
-                                            <span class="param-default-value">Default: <code>false</code></span>
-                                        </div>
-                                        <div class="param-possible">
-                                            <span class="param-possible-values">Possible Values: <code>&quot;true&quot;, or &quot;false&quot;</code></span>
-                                        </div>
-                                    </div>
-                                    <div class="param-description">
-                                        <p>The parameter for enabling the HL7 transport listener.</p>
-                                    </div>
-                                </div>
-                            </div><div class="param">
-                                <div class="param-name">
-                                  <span class="param-name-wrap"> <code>listener.port</code> </span>
-                                </div>
-                                <div class="param-info">
-                                    <div>
-                                        <p>
-                                            <span class="param-type string"> integer </span>
-                                            
-                                        </p>
-                                        <div class="param-default">
-                                            <span class="param-default-value">Default: <code>9292</code></span>
-                                        </div>
-                                        <div class="param-possible">
-                                            <span class="param-possible-values">Possible Values: <code>...</code></span>
-                                        </div>
-                                    </div>
-                                    <div class="param-description">
-                                        <p>The port of the HL7 transport listener.</p>
-                                    </div>
-                                </div>
-                            </div><div class="param">
-                                <div class="param-name">
-                                  <span class="param-name-wrap"> <code>sender.enabled</code> </span>
-                                </div>
-                                <div class="param-info">
-                                    <div>
-                                        <p>
-                                            <span class="param-type string"> boolean </span>
-                                            
-                                        </p>
-                                        <div class="param-default">
-                                            <span class="param-default-value">Default: <code>false</code></span>
-                                        </div>
-                                        <div class="param-possible">
-                                            <span class="param-possible-values">Possible Values: <code>&quot;true&quot;, or &quot;false&quot;</code></span>
-                                        </div>
-                                    </div>
-                                    <div class="param-description">
-                                        <p>The parameter for enabling the HL7 transport sender.</p>
-                                    </div>
-                                </div>
-                            </div><div class="param">
-                                <div class="param-name">
-                                  <span class="param-name-wrap"> <code>sender.non_blocking</code> </span>
-                                </div>
-                                <div class="param-info">
-                                    <div>
-                                        <p>
-                                            <span class="param-type string"> boolean </span>
-                                            
-                                        </p>
-                                        <div class="param-default">
-                                            <span class="param-default-value">Default: <code>true</code></span>
-                                        </div>
-                                        <div class="param-possible">
-                                            <span class="param-possible-values">Possible Values: <code>&quot;true&quot;, or &quot;false&quot;</code></span>
-                                        </div>
-                                    </div>
-                                    <div class="param-description">
-                                        <p>The......</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-</div>
-
-
-## HL7 Inbound Endpoint Tuning
-
-<div class="mb-config-catalog">
-    <section>
-        <div class="mb-config-options">
-            <div class="superfences-tabs">
-            
-            <input name="38" type="checkbox" id="_tab_38">
-                <label class="tab-selector" for="_tab_38"><i class="icon fa fa-code"></i></label>
-                <div class="superfences-content">
-                    <div class="mb-config-example">
-<pre><code class="toml">[....]
-hl7_id_generator = "file"
-worker_threads_core = 100
-io_thread_count = 2
-so_timeout =  0
-connect_timeout = 0
-so_keep_alive = "true"
-so_rcvbuf = 0
-so_sndbuf = 0
-</code></pre>
-                    </div>
-                </div>
-                <div class="doc-wrapper">
-                    <div class="mb-config">
-                        <div class="config-wrap">
-                            <code>[..]</code>
-                            
-                            <p>
-                                This config heading groups the parameters for tuning an HL7 inbound endpoint.
-                            </p>
-                        </div>
-                        <div class="params-wrap">
-                            <div class="param">
-                                <div class="param-name">
-                                  <span class="param-name-wrap"> <code>hl7_id_generator </code> </span>
-                                </div>
-                                <div class="param-info">
-                                    <div>
-                                        <p>
-                                            <span class="param-type string"> string </span>
-                                            <span class="badge-required">Required</span>
-                                        </p>
-                                        <div class="param-default">
-                                            <span class="param-default-value">Default: <code>file</code></span>
-                                        </div>
-                                        <div class="param-possible">
-                                            <span class="param-possible-values">Possible Values: <code>&quot;file&quot;, or &quot;UUID&quot;</code></span>
-                                        </div>
-                                    </div>
-                                    <div class="param-description">
-                                        <p>By default the HAPI HL7 parsing library uses a file based ID generator to generate unique control IDs. To use a UUID based ID generator you can change this to ‘uuid’.</p>
-                                    </div>
-                                </div>
-                            </div><div class="param">
-                                <div class="param-name">
-                                  <span class="param-name-wrap"> <code>worker_threads_core</code> </span>
-                                </div>
-                                <div class="param-info">
-                                    <div>
-                                        <p>
-                                            <span class="param-type string"> integer </span>
-                                            
-                                        </p>
-                                        <div class="param-default">
-                                            <span class="param-default-value">Default: <code>100</code></span>
-                                        </div>
-                                        <div class="param-possible">
-                                            <span class="param-possible-values">Possible Values: <code>0..9</code></span>
-                                        </div>
-                                    </div>
-                                    <div class="param-description">
-                                        <p>Defines the HL7 inbound worker thread pool size.</p>
-                                    </div>
-                                </div>
-                            </div><div class="param">
-                                <div class="param-name">
-                                  <span class="param-name-wrap"> <code>io_thread_count</code> </span>
-                                </div>
-                                <div class="param-info">
-                                    <div>
-                                        <p>
-                                            <span class="param-type string"> integer </span>
-                                            
-                                        </p>
-                                        <div class="param-default">
-                                            <span class="param-default-value">Default: <code>2</code></span>
-                                        </div>
-                                        <div class="param-possible">
-                                            <span class="param-possible-values">Possible Values: <code>0..9</code></span>
-                                        </div>
-                                    </div>
-                                    <div class="param-description">
-                                        <p>Defines the number of IO threads the IO Reactor uses. It is recommended to set this to the number of cores on the machine.</p>
-                                    </div>
-                                </div>
-                            </div><div class="param">
-                                <div class="param-name">
-                                  <span class="param-name-wrap"> <code>so_timeout</code> </span>
-                                </div>
-                                <div class="param-info">
-                                    <div>
-                                        <p>
-                                            <span class="param-type string"> integer </span>
-                                            
-                                        </p>
-                                        <div class="param-default">
-                                            <span class="param-default-value">Default: <code>0</code></span>
-                                        </div>
-                                        <div class="param-possible">
-                                            <span class="param-possible-values">Possible Values: <code>0..9</code></span>
-                                        </div>
-                                    </div>
-                                    <div class="param-description">
-                                        <p>Defines TCP socket timeout.</p>
-                                    </div>
-                                </div>
-                            </div><div class="param">
-                                <div class="param-name">
-                                  <span class="param-name-wrap"> <code>connect_timeout</code> </span>
-                                </div>
-                                <div class="param-info">
-                                    <div>
-                                        <p>
-                                            <span class="param-type string"> integer </span>
-                                            
-                                        </p>
-                                        <div class="param-default">
-                                            <span class="param-default-value">Default: <code>0</code></span>
-                                        </div>
-                                        <div class="param-possible">
-                                            <span class="param-possible-values">Possible Values: <code>0..9</code></span>
-                                        </div>
-                                    </div>
-                                    <div class="param-description">
-                                        <p>Defines the TCP connect timeout.</p>
-                                    </div>
-                                </div>
-                            </div><div class="param">
-                                <div class="param-name">
-                                  <span class="param-name-wrap"> <code>so_keep_alive</code> </span>
-                                </div>
-                                <div class="param-info">
-                                    <div>
-                                        <p>
-                                            <span class="param-type string"> boolean </span>
-                                            
-                                        </p>
-                                        <div class="param-default">
-                                            <span class="param-default-value">Default: <code>true</code></span>
-                                        </div>
-                                        <div class="param-possible">
-                                            <span class="param-possible-values">Possible Values: <code>&quot;true&quot;, or &quot;false&quot;</code></span>
-                                        </div>
-                                    </div>
-                                    <div class="param-description">
-                                        <p>Defines TCP socket keep alive.</p>
-                                    </div>
-                                </div>
-                            </div><div class="param">
-                                <div class="param-name">
-                                  <span class="param-name-wrap"> <code>so_rcvbuf</code> </span>
-                                </div>
-                                <div class="param-info">
-                                    <div>
-                                        <p>
-                                            <span class="param-type string"> boolean </span>
-                                            
-                                        </p>
-                                        <div class="param-default">
-                                            <span class="param-default-value">Default: <code>0 (Uses OS default. Maximum value depends on OS settings)</code></span>
-                                        </div>
-                                        <div class="param-possible">
-                                            <span class="param-possible-values">Possible Values: <code>0..9</code></span>
-                                        </div>
-                                    </div>
-                                    <div class="param-description">
-                                        <p>Defines the TCP socket receive buffer size.</p>
-                                    </div>
-                                </div>
-                            </div><div class="param">
-                                <div class="param-name">
-                                  <span class="param-name-wrap"> <code>so_sndbuf</code> </span>
-                                </div>
-                                <div class="param-info">
-                                    <div>
-                                        <p>
-                                            <span class="param-type string"> boolean </span>
-                                            
-                                        </p>
-                                        <div class="param-default">
-                                            <span class="param-default-value">Default: <code>0 (Uses OS default. Maximum value depends on OS settings)</code></span>
-                                        </div>
-                                        <div class="param-possible">
-                                            <span class="param-possible-values">Possible Values: <code>0..9</code></span>
-                                        </div>
-                                    </div>
-                                    <div class="param-description">
-                                        <p>Defines the TCP socket send buffer size.</p>
+                                        <p>The parameter for enabling the MQTT transport sender.</p>
                                     </div>
                                 </div>
                             </div>
@@ -8513,8 +8087,8 @@ so_sndbuf = 0
         <div class="mb-config-options">
             <div class="superfences-tabs">
             
-            <input name="39" type="checkbox" id="_tab_39">
-                <label class="tab-selector" for="_tab_39"><i class="icon fa fa-code"></i></label>
+            <input name="37" type="checkbox" id="_tab_37">
+                <label class="tab-selector" for="_tab_37"><i class="icon fa fa-code"></i></label>
                 <div class="superfences-content">
                     <div class="mb-config-example">
 <pre><code class="toml">[transport.sap]
@@ -8527,9 +8101,9 @@ sender.enabled=false
                     <div class="mb-config">
                         <div class="config-wrap">
                             <code>[transport.sap]</code>
-                            <span class="badge-required">Required</span>
+                            
                             <p>
-                                Add this config heading to the ei.toml file to group the parameters that configure the ESB to communicate with a SAP system. Read more about SAP integration of the ESB.
+                                This configuration header groups the parameters that configure the Micro Integrator to communicate with SAP.
                             </p>
                         </div>
                         <div class="params-wrap">
@@ -8541,7 +8115,7 @@ sender.enabled=false
                                     <div>
                                         <p>
                                             <span class="param-type string"> boolean </span>
-                                            <span class="badge-required">Required</span>
+                                            
                                         </p>
                                         <div class="param-default">
                                             <span class="param-default-value">Default: <code>false</code></span>
@@ -8562,7 +8136,7 @@ sender.enabled=false
                                     <div>
                                         <p>
                                             <span class="param-type string"> string </span>
-                                            <span class="badge-required">Required</span>
+                                            
                                         </p>
                                         <div class="param-default">
                                             <span class="param-default-value">Default: <code>org.wso2.carbon.transports.sap.SAPTransportListener</code></span>
@@ -8570,7 +8144,7 @@ sender.enabled=false
                                         
                                     </div>
                                     <div class="param-description">
-                                        <p>The......</p>
+                                        <p>The class that implements the SAP transport listener for the Sap IDoc libary.</p>
                                     </div>
                                 </div>
                             </div><div class="param">
@@ -8581,17 +8155,15 @@ sender.enabled=false
                                     <div>
                                         <p>
                                             <span class="param-type string"> string </span>
-                                            <span class="badge-required">Required</span>
+                                            
                                         </p>
                                         <div class="param-default">
                                             <span class="param-default-value">Default: <code>org.wso2.carbon.transports.sap.SAPTransportListener</code></span>
                                         </div>
-                                        <div class="param-possible">
-                                            <span class="param-possible-values">Possible Values: <code>...</code></span>
-                                        </div>
+                                        
                                     </div>
                                     <div class="param-description">
-                                        <p>The......</p>
+                                        <p>The class that implements the SAP transport listener for the SAP BAPI library.</p>
                                     </div>
                                 </div>
                             </div><div class="param">
@@ -8602,7 +8174,7 @@ sender.enabled=false
                                     <div>
                                         <p>
                                             <span class="param-type string"> boolean </span>
-                                            <span class="badge-required">Required</span>
+                                            
                                         </p>
                                         <div class="param-default">
                                             <span class="param-default-value">Default: <code>false</code></span>
@@ -8623,17 +8195,15 @@ sender.enabled=false
                                     <div>
                                         <p>
                                             <span class="param-type string"> string </span>
-                                            <span class="badge-required">Required</span>
+                                            
                                         </p>
                                         <div class="param-default">
                                             <span class="param-default-value">Default: <code>org.wso2.carbon.transports.sap.SAPTransportSender</code></span>
                                         </div>
-                                        <div class="param-possible">
-                                            <span class="param-possible-values">Possible Values: <code>....</code></span>
-                                        </div>
+                                        
                                     </div>
                                     <div class="param-description">
-                                        <p>The ......</p>
+                                        <p>The class that implements the SAP transport sender for the Sap IDoc library.</p>
                                     </div>
                                 </div>
                             </div><div class="param">
@@ -8644,17 +8214,15 @@ sender.enabled=false
                                     <div>
                                         <p>
                                             <span class="param-type string"> string </span>
-                                            <span class="badge-required">Required</span>
+                                            
                                         </p>
                                         <div class="param-default">
                                             <span class="param-default-value">Default: <code>org.wso2.carbon.transports.sap.SAPTransportSender</code></span>
                                         </div>
-                                        <div class="param-possible">
-                                            <span class="param-possible-values">Possible Values: <code>....</code></span>
-                                        </div>
+                                        
                                     </div>
                                     <div class="param-description">
-                                        <p>The ......</p>
+                                        <p>The class that implements the SAP transport listener for the Sap BAPI library.</p>
                                     </div>
                                 </div>
                             </div>
@@ -8674,8 +8242,8 @@ sender.enabled=false
         <div class="mb-config-options">
             <div class="superfences-tabs">
             
-            <input name="40" type="checkbox" id="_tab_40">
-                <label class="tab-selector" for="_tab_40"><i class="icon fa fa-code"></i></label>
+            <input name="38" type="checkbox" id="_tab_38">
+                <label class="tab-selector" for="_tab_38"><i class="icon fa fa-code"></i></label>
                 <div class="superfences-content">
                     <div class="mb-config-example">
 <pre><code class="toml">[transport.msmq]
@@ -8692,7 +8260,7 @@ sender.enable = false
                             <code>[transport.msmq]</code>
                             <span class="badge-required">Required</span>
                             <p>
-                                The.....
+                                This configuration header groups the parameters that configure the Micro Integrator to communicate through the MSMQ transport.
                             </p>
                         </div>
                         <div class="params-wrap">
@@ -8735,7 +8303,7 @@ sender.enable = false
                                         </div>
                                     </div>
                                     <div class="param-description">
-                                        <p>The......</p>
+                                        <p>The parameter for enabling MSMQ transport sender.</p>
                                     </div>
                                 </div>
                             </div><div class="param">
@@ -8756,7 +8324,7 @@ sender.enable = false
                                         </div>
                                     </div>
                                     <div class="param-description">
-                                        <p>The......</p>
+                                        <p>The hostname.</p>
                                     </div>
                                 </div>
                             </div>
@@ -8776,8 +8344,8 @@ sender.enable = false
         <div class="mb-config-options">
             <div class="superfences-tabs">
             
-            <input name="41" type="checkbox" id="_tab_41">
-                <label class="tab-selector" for="_tab_41"><i class="icon fa fa-code"></i></label>
+            <input name="39" type="checkbox" id="_tab_39">
+                <label class="tab-selector" for="_tab_39"><i class="icon fa fa-code"></i></label>
                 <div class="superfences-content">
                     <div class="mb-config-example">
 <pre><code class="toml">[transport.tcp]
@@ -8794,9 +8362,9 @@ sender.enable = true
                     <div class="mb-config">
                         <div class="config-wrap">
                             <code>[transport.tcp]</code>
-                            <span class="badge-required">Required</span>
+                            
                             <p>
-                                The..
+                                This configuration header groups the parameters that configure the Micro Integrator to communicate through the TCP transport.
                             </p>
                         </div>
                         <div class="params-wrap">
@@ -8808,7 +8376,7 @@ sender.enable = true
                                     <div>
                                         <p>
                                             <span class="param-type string"> boolean </span>
-                                            <span class="badge-required">Required</span>
+                                            
                                         </p>
                                         <div class="param-default">
                                             <span class="param-default-value">Default: <code>false</code></span>
@@ -8829,17 +8397,17 @@ sender.enable = true
                                     <div>
                                         <p>
                                             <span class="param-type string"> integer </span>
-                                            <span class="badge-required">Required</span>
+                                            
                                         </p>
                                         <div class="param-default">
                                             <span class="param-default-value">Default: <code>8000</code></span>
                                         </div>
                                         <div class="param-possible">
-                                            <span class="param-possible-values">Possible Values: <code>..</code></span>
+                                            <span class="param-possible-values">Possible Values: <code>A positive integer less than 65535.</code></span>
                                         </div>
                                     </div>
                                     <div class="param-description">
-                                        <p>The.....</p>
+                                        <p>The port on which the TCP server should listen for incoming messages.</p>
                                     </div>
                                 </div>
                             </div><div class="param">
@@ -8850,17 +8418,15 @@ sender.enable = true
                                     <div>
                                         <p>
                                             <span class="param-type string"> string </span>
-                                            <span class="badge-required">Required</span>
+                                            
                                         </p>
                                         <div class="param-default">
                                             <span class="param-default-value">Default: <code>$ref{server.hostname}</code></span>
                                         </div>
-                                        <div class="param-possible">
-                                            <span class="param-possible-values">Possible Values: <code>..</code></span>
-                                        </div>
+                                        
                                     </div>
                                     <div class="param-description">
-                                        <p>The.....</p>
+                                        <p>The host name of the server to be displayed in WSDLs, etc.</p>
                                     </div>
                                 </div>
                             </div><div class="param">
@@ -8871,17 +8437,17 @@ sender.enable = true
                                     <div>
                                         <p>
                                             <span class="param-type string"> string </span>
-                                            <span class="badge-required">Required</span>
+                                            
                                         </p>
                                         <div class="param-default">
-                                            <span class="param-default-value">Default: <code>application/xml</code></span>
+                                            <span class="param-default-value">Default: <code></code></span>
                                         </div>
                                         <div class="param-possible">
-                                            <span class="param-possible-values">Possible Values: <code>..</code></span>
+                                            <span class="param-possible-values">Possible Values: <code>&#39;application/xml&#39;, &#39;application/json&#39;, or &#39;text/html&#39;</code></span>
                                         </div>
                                     </div>
                                     <div class="param-description">
-                                        <p>The.....</p>
+                                        <p>The content type of the input message.</p>
                                     </div>
                                 </div>
                             </div><div class="param">
@@ -8892,7 +8458,7 @@ sender.enable = true
                                     <div>
                                         <p>
                                             <span class="param-type string"> boolean </span>
-                                            <span class="badge-required">Required</span>
+                                            
                                         </p>
                                         <div class="param-default">
                                             <span class="param-default-value">Default: <code>true</code></span>
@@ -8902,7 +8468,7 @@ sender.enable = true
                                         </div>
                                     </div>
                                     <div class="param-description">
-                                        <p>The.....</p>
+                                        <p>Whether or not the client needs to get the response.</p>
                                     </div>
                                 </div>
                             </div><div class="param">
@@ -8913,7 +8479,7 @@ sender.enable = true
                                     <div>
                                         <p>
                                             <span class="param-type string"> boolean </span>
-                                            <span class="badge-required">Required</span>
+                                            
                                         </p>
                                         <div class="param-default">
                                             <span class="param-default-value">Default: <code>true</code></span>
@@ -8943,8 +8509,8 @@ sender.enable = true
         <div class="mb-config-options">
             <div class="superfences-tabs">
             
-            <input name="42" type="checkbox" id="_tab_42">
-                <label class="tab-selector" for="_tab_42"><i class="icon fa fa-code"></i></label>
+            <input name="40" type="checkbox" id="_tab_40">
+                <label class="tab-selector" for="_tab_40"><i class="icon fa fa-code"></i></label>
                 <div class="superfences-content">
                     <div class="mb-config-example">
 <pre><code class="toml">[transport.ws]
@@ -8961,7 +8527,7 @@ sender.parameter.outflow_dispatch_fault_sequence = "outflowFaultSeq"
                             <code>[transport.ws]</code>
                             <span class="badge-required">Required</span>
                             <p>
-                                The....
+                                This configuration header groups the parameters that configure the Micro Integrator to communicate through the Websocket transport.
                             </p>
                         </div>
                         <div class="params-wrap">
@@ -8994,17 +8560,15 @@ sender.parameter.outflow_dispatch_fault_sequence = "outflowFaultSeq"
                                     <div>
                                         <p>
                                             <span class="param-type string"> string </span>
-                                            <span class="badge-required">Required</span>
+                                            
                                         </p>
                                         <div class="param-default">
                                             <span class="param-default-value">Default: <code></code></span>
                                         </div>
-                                        <div class="param-possible">
-                                            <span class="param-possible-values">Possible Values: <code>...</code></span>
-                                        </div>
+                                        
                                     </div>
                                     <div class="param-description">
-                                        <p>The.....</p>
+                                        <p>The sequence for the back-end to client mediation.</p>
                                     </div>
                                 </div>
                             </div><div class="param">
@@ -9015,17 +8579,15 @@ sender.parameter.outflow_dispatch_fault_sequence = "outflowFaultSeq"
                                     <div>
                                         <p>
                                             <span class="param-type string"> string </span>
-                                            <span class="badge-required">Required</span>
+                                            
                                         </p>
                                         <div class="param-default">
                                             <span class="param-default-value">Default: <code></code></span>
                                         </div>
-                                        <div class="param-possible">
-                                            <span class="param-possible-values">Possible Values: <code>...</code></span>
-                                        </div>
+                                        
                                     </div>
                                     <div class="param-description">
-                                        <p>The.....</p>
+                                        <p>The fault sequence for the back-end to client mediation path.</p>
                                     </div>
                                 </div>
                             </div>
@@ -9045,8 +8607,8 @@ sender.parameter.outflow_dispatch_fault_sequence = "outflowFaultSeq"
         <div class="mb-config-options">
             <div class="superfences-tabs">
             
-            <input name="43" type="checkbox" id="_tab_43">
-                <label class="tab-selector" for="_tab_43"><i class="icon fa fa-code"></i></label>
+            <input name="41" type="checkbox" id="_tab_41">
+                <label class="tab-selector" for="_tab_41"><i class="icon fa fa-code"></i></label>
                 <div class="superfences-content">
                     <div class="mb-config-example">
 <pre><code class="toml">[transport.wss]
@@ -9063,9 +8625,9 @@ sender.truststore_password = "$ref{truststore.password}"
                     <div class="mb-config">
                         <div class="config-wrap">
                             <code>[transport.wss]</code>
-                            <span class="badge-required">Required</span>
+                            
                             <p>
-                                The...
+                                This configuration header groups the parameters that configure the Micro Integrator to communicate through the secured Websocket transport.
                             </p>
                         </div>
                         <div class="params-wrap">
@@ -9077,7 +8639,7 @@ sender.truststore_password = "$ref{truststore.password}"
                                     <div>
                                         <p>
                                             <span class="param-type string"> boolean </span>
-                                            <span class="badge-required">Required</span>
+                                            
                                         </p>
                                         <div class="param-default">
                                             <span class="param-default-value">Default: <code>false</code></span>
@@ -9098,17 +8660,15 @@ sender.truststore_password = "$ref{truststore.password}"
                                     <div>
                                         <p>
                                             <span class="param-type string"> string </span>
-                                            <span class="badge-required">Required</span>
+                                            
                                         </p>
                                         <div class="param-default">
                                             <span class="param-default-value">Default: <code></code></span>
                                         </div>
-                                        <div class="param-possible">
-                                            <span class="param-possible-values">Possible Values: <code>..</code></span>
-                                        </div>
+                                        
                                     </div>
                                     <div class="param-description">
-                                        <p>The....</p>
+                                        <p>The sequence for the back-end to client mediation.</p>
                                     </div>
                                 </div>
                             </div><div class="param">
@@ -9119,17 +8679,15 @@ sender.truststore_password = "$ref{truststore.password}"
                                     <div>
                                         <p>
                                             <span class="param-type string"> string </span>
-                                            <span class="badge-required">Required</span>
+                                            
                                         </p>
                                         <div class="param-default">
                                             <span class="param-default-value">Default: <code></code></span>
                                         </div>
-                                        <div class="param-possible">
-                                            <span class="param-possible-values">Possible Values: <code>..</code></span>
-                                        </div>
+                                        
                                     </div>
                                     <div class="param-description">
-                                        <p>The....</p>
+                                        <p>The fault sequence for the back-end to client mediation path.</p>
                                     </div>
                                 </div>
                             </div><div class="param">
@@ -9140,17 +8698,15 @@ sender.truststore_password = "$ref{truststore.password}"
                                     <div>
                                         <p>
                                             <span class="param-type string"> string </span>
-                                            <span class="badge-required">Required</span>
+                                            
                                         </p>
                                         <div class="param-default">
                                             <span class="param-default-value">Default: <code>$ref{truststore.file_name}</code></span>
                                         </div>
-                                        <div class="param-possible">
-                                            <span class="param-possible-values">Possible Values: <code>..</code></span>
-                                        </div>
+                                        
                                     </div>
                                     <div class="param-description">
-                                        <p>The....</p>
+                                        <p>The file path to the truststore that stores the trusted digital certificates for websocket use cases. By default, the product's <a href='#trust-store'>trust store</a> is configured for this purpose.</p>
                                     </div>
                                 </div>
                             </div><div class="param">
@@ -9161,7 +8717,7 @@ sender.truststore_password = "$ref{truststore.password}"
                                     <div>
                                         <p>
                                             <span class="param-type string"> string </span>
-                                            <span class="badge-required">Required</span>
+                                            
                                         </p>
                                         <div class="param-default">
                                             <span class="param-default-value">Default: <code>$ref{truststore.password}</code></span>
@@ -9191,8 +8747,8 @@ sender.truststore_password = "$ref{truststore.password}"
         <div class="mb-config-options">
             <div class="superfences-tabs">
             
-            <input name="44" type="checkbox" id="_tab_44">
-                <label class="tab-selector" for="_tab_44"><i class="icon fa fa-code"></i></label>
+            <input name="42" type="checkbox" id="_tab_42">
+                <label class="tab-selector" for="_tab_42"><i class="icon fa fa-code"></i></label>
                 <div class="superfences-content">
                     <div class="mb-config-example">
 <pre><code class="toml">[transport.udp]
@@ -9206,7 +8762,7 @@ sender.enable =false
                     <div class="mb-config">
                         <div class="config-wrap">
                             <code>[transport.udp]</code>
-                            <span class="badge-required">Required</span>
+                            
                             <p>
                                 The...
                             </p>
@@ -9220,7 +8776,7 @@ sender.enable =false
                                     <div>
                                         <p>
                                             <span class="param-type string"> boolean </span>
-                                            <span class="badge-required">Required</span>
+                                            
                                         </p>
                                         <div class="param-default">
                                             <span class="param-default-value">Default: <code>false</code></span>
@@ -9241,7 +8797,7 @@ sender.enable =false
                                     <div>
                                         <p>
                                             <span class="param-type string"> boolean </span>
-                                            <span class="badge-required">Required</span>
+                                            
                                         </p>
                                         <div class="param-default">
                                             <span class="param-default-value">Default: <code>false</code></span>
@@ -9271,8 +8827,8 @@ sender.enable =false
         <div class="mb-config-options">
             <div class="superfences-tabs">
             
-            <input name="45" type="checkbox" id="_tab_45">
-                <label class="tab-selector" for="_tab_45"><i class="icon fa fa-code"></i></label>
+            <input name="43" type="checkbox" id="_tab_43">
+                <label class="tab-selector" for="_tab_43"><i class="icon fa fa-code"></i></label>
                 <div class="superfences-content">
                     <div class="mb-config-example">
 <pre><code class="toml">[[custom_transport.listener]]
@@ -9301,7 +8857,7 @@ ssl_profile.read_interval = "30s"
                     <div class="mb-config">
                         <div class="config-wrap">
                             <code>[[custom_transport.listener]]</code>
-                            <span class="badge-required">Required</span>
+                            
                             <p>
                                 This config heading is used to group the parameters for a custom transport implementation that you want to use in your product.
                             </p>
@@ -9336,7 +8892,7 @@ ssl_profile.read_interval = "30s"
                                     <div>
                                         <p>
                                             <span class="param-type string"> string </span>
-                                            <span class="badge-required">Required</span>
+                                            
                                         </p>
                                         <div class="param-default">
                                             <span class="param-default-value">Default: <code>ISO8583</code></span>
@@ -9357,7 +8913,7 @@ ssl_profile.read_interval = "30s"
                                     <div>
                                         <p>
                                             <span class="param-type string"> integer </span>
-                                            <span class="badge-required">Required</span>
+                                            
                                         </p>
                                         <div class="param-default">
                                             <span class="param-default-value">Default: <code>8081</code></span>
@@ -9378,7 +8934,7 @@ ssl_profile.read_interval = "30s"
                                     <div>
                                         <p>
                                             <span class="param-type string"> string </span>
-                                            <span class="badge-required">Required</span>
+                                            
                                         </p>
                                         <div class="param-default">
                                             <span class="param-default-value">Default: <code>$ref{server.node_ip}</code></span>
@@ -9399,7 +8955,7 @@ ssl_profile.read_interval = "30s"
                                     <div>
                                         <p>
                                             <span class="param-type string"> boolean </span>
-                                            <span class="badge-required">Required</span>
+                                            
                                         </p>
                                         <div class="param-default">
                                             <span class="param-default-value">Default: <code>false</code></span>
@@ -9420,7 +8976,7 @@ ssl_profile.read_interval = "30s"
                                     <div>
                                         <p>
                                             <span class="param-type string"> string </span>
-                                            <span class="badge-required">Required</span>
+                                            
                                         </p>
                                         <div class="param-default">
                                             <span class="param-default-value">Default: <code>$ref{server.hostname}</code></span>
@@ -9441,7 +8997,7 @@ ssl_profile.read_interval = "30s"
                                     <div>
                                         <p>
                                             <span class="param-type string"> string </span>
-                                            <span class="badge-required">Required</span>
+                                            
                                         </p>
                                         <div class="param-default">
                                             <span class="param-default-value">Default: <code>$ref{server.hostname}</code></span>
@@ -9462,7 +9018,7 @@ ssl_profile.read_interval = "30s"
                                     <div>
                                         <p>
                                             <span class="param-type string"> string </span>
-                                            <span class="badge-required">Required</span>
+                                            
                                         </p>
                                         <div class="param-default">
                                             <span class="param-default-value">Default: <code>$ref{keystore.tls.file_name}</code></span>
@@ -9483,7 +9039,7 @@ ssl_profile.read_interval = "30s"
                                     <div>
                                         <p>
                                             <span class="param-type string"> string </span>
-                                            <span class="badge-required">Required</span>
+                                            
                                         </p>
                                         <div class="param-default">
                                             <span class="param-default-value">Default: <code>$ref{keystore.tls.type}</code></span>
@@ -9504,7 +9060,7 @@ ssl_profile.read_interval = "30s"
                                     <div>
                                         <p>
                                             <span class="param-type string"> string </span>
-                                            <span class="badge-required">Required</span>
+                                            
                                         </p>
                                         <div class="param-default">
                                             <span class="param-default-value">Default: <code>$ref{keystore.tls.password}</code></span>
@@ -9525,7 +9081,7 @@ ssl_profile.read_interval = "30s"
                                     <div>
                                         <p>
                                             <span class="param-type string"> string </span>
-                                            <span class="badge-required">Required</span>
+                                            
                                         </p>
                                         <div class="param-default">
                                             <span class="param-default-value">Default: <code>$ref{keystore.tls.key_password}</code></span>
@@ -9546,7 +9102,7 @@ ssl_profile.read_interval = "30s"
                                     <div>
                                         <p>
                                             <span class="param-type string"> string </span>
-                                            <span class="badge-required">Required</span>
+                                            
                                         </p>
                                         <div class="param-default">
                                             <span class="param-default-value">Default: <code>$ref{truststore.file_name}</code></span>
@@ -9567,7 +9123,7 @@ ssl_profile.read_interval = "30s"
                                     <div>
                                         <p>
                                             <span class="param-type string"> string </span>
-                                            <span class="badge-required">Required</span>
+                                            
                                         </p>
                                         <div class="param-default">
                                             <span class="param-default-value">Default: <code>$ref{truststore.type}</code></span>
@@ -9588,7 +9144,7 @@ ssl_profile.read_interval = "30s"
                                     <div>
                                         <p>
                                             <span class="param-type string"> string </span>
-                                            <span class="badge-required">Required</span>
+                                            
                                         </p>
                                         <div class="param-default">
                                             <span class="param-default-value">Default: <code>$ref{truststore.password}</code></span>
@@ -9609,7 +9165,7 @@ ssl_profile.read_interval = "30s"
                                     <div>
                                         <p>
                                             <span class="param-type string"> string </span>
-                                            <span class="badge-required">Required</span>
+                                            
                                         </p>
                                         <div class="param-default">
                                             <span class="param-default-value">Default: <code>conf/sslprofiles/listenerprofiles.xml</code></span>
@@ -9630,7 +9186,7 @@ ssl_profile.read_interval = "30s"
                                     <div>
                                         <p>
                                             <span class="param-type string"> string </span>
-                                            <span class="badge-required">Required</span>
+                                            
                                         </p>
                                         <div class="param-default">
                                             <span class="param-default-value">Default: <code>30s</code></span>
@@ -9660,8 +9216,8 @@ ssl_profile.read_interval = "30s"
         <div class="mb-config-options">
             <div class="superfences-tabs">
             
-            <input name="46" type="checkbox" id="_tab_46">
-                <label class="tab-selector" for="_tab_46"><i class="icon fa fa-code"></i></label>
+            <input name="44" type="checkbox" id="_tab_44">
+                <label class="tab-selector" for="_tab_44"><i class="icon fa fa-code"></i></label>
                 <div class="superfences-content">
                     <div class="mb-config-example">
 <pre><code class="toml">[[custom_transport.sender]]
@@ -10027,8 +9583,8 @@ ssl_profile.read_interval = "30s"
         <div class="mb-config-options">
             <div class="superfences-tabs">
             
-            <input name="47" type="checkbox" id="_tab_47">
-                <label class="tab-selector" for="_tab_47"><i class="icon fa fa-code"></i></label>
+            <input name="45" type="checkbox" id="_tab_45">
+                <label class="tab-selector" for="_tab_45"><i class="icon fa fa-code"></i></label>
                 <div class="superfences-content">
                     <div class="mb-config-example">
 <pre><code class="toml">[mediation]
