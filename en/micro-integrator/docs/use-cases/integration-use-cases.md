@@ -2,7 +2,7 @@
 
 WSO2 Micro Integrator helps you build and execute the following use cases.
 
-## Integrating systems that communicate in heterogeneous message formats
+## Message transformation
 
 The integration of systems that communicate in various message formats is a common business case in enterprise integration. WSO2 Micro Integrator facilitates this use case as the intermediary system bridging the communication gap among the systems.
 
@@ -10,7 +10,7 @@ The integration of systems that communicate in various message formats is a comm
 
 For example, consider a service that returns data in XML format and a mobile client that accepts messages only in JSON format. To allow these two systems to communicate, the intermediary system needs to convert message formats during the communication. This allows the systems to communicate with each other without depending on the message formats supported by each system.
 
-## Bridging systems that communicate in different protocols
+## Protocol switching
 
 The Micro Integrator offers a wide range of integration capabilities from simple message routing to complicated systems that use integrated solutions. Different applications typically use different protocols for communication. Therefore, for two systems to successfully communicate, it is necessary to switch the protocol (that passes from one system) to the protocol compatible with the receiving application.
 
@@ -18,12 +18,14 @@ The Micro Integrator offers a wide range of integration capabilities from simple
 
 For example, messages that are received via HTTP may need to be sent to a JMS queue. Further, you can couple the protocol switching feature with the message transformation feature to handle use cases where the content of messages received via one protocol (such as HTTP) are first processed, and then sent out in a completely different message format and protocol.
 
-## Connecting Web APIs/Cloud Services
+## Connecting Web APIs/Cloud services
 
 One of the most expected features from an integration solution is 'Hybrid-Cloud Integration', i.e., the ability to connect with third-party applications via public APIs that are exposed by various application developers. These external applications could either be in the cloud (SaaS) or on-premise. WSO2 Micro Integrator enables this capability by means of its wide range of connectors.
 
+<!--
 A connector is a collection of templates that define operations that can be called from a mediation flow. This allows you to define a mediation flow that can easily access a specific message processing logic contained in a connector. Generally, a connector wraps the API of an external service and provides a more convenient interface for the integration developer to work with.
- 
+-->
+
 WSO2 Micro Integrator supports more than 150 connectors, where Salesforce, Gmail, Amazon S3, are among the most popular. Connectors can be downloaded from the WSO2 connector store. It is also possible to write your own custom connector to integrate WSO2 Micro Integrator with a new system.
 
 ## Gateway
@@ -32,7 +34,7 @@ The Gateway pattern is used for securely exposing APIs (representing business fu
 
 You can implement the Gateway pattern by deploying WSO2 Micro Integrator in a “DMZ” (demilitarized zone) and thereby exposing the services to external service consumers. The DMZ pre-processes service requests coming from the public and routes only valid and authorized messages to the actual service platforms. Pre-processing typically consist of message validation, filtering, and transformation, orchestration, etc.
 
-## Route messages between systems
+## Message routing
 
 Message routing is one of the most fundamental requirements when integrating systems/services. It considers addressability, static/deterministic routing, content-based routing, header-based routing, rules-based routing, and policy-based routing as ways of routing a message. WSO2 Micro Integrator enables these routing capabilities using the concepts of mediators and endpoints.
 
@@ -55,11 +57,11 @@ In both the above orchestration approaches, the WSO2 Micro Integrator can intera
 
 Multiple services that need to be orchestrated are invoked one after the other in a synchronous manner. The input to one service is dependant on the output of another service. Invocation of services and input-output mapping is handled by the service orchestration layer (which is the WSO2 Micro Integrator). 
 
-### Parallel or Sequential invocation of multiple independent services
+### Parallel or Sequential service invocations
 
 Multiple services are invoked simultaneously without any blocking until a response is received from another service.
 
-## Data Integration
+## Data integration
 
 Data integration is an important part of an integration process. For example, consider a typical integration process that is managed using the Micro Integrator: Data stored in various, disparate datasources are required in order to complete the integration use case. 
 
