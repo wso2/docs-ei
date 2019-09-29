@@ -1,4 +1,5 @@
 # Publishing a Custom WSDL
+## Example use case
 
 When you create a proxy service, a default WSDL is automatically
 generated. You can access this WSDL by suffixing the service URL
@@ -7,7 +8,7 @@ with ?wsdl. See the example given below, where the proxy service name is
 
 [http://localhost:8280/services/sample_service?wsdl](http://localhost:8280/services/Logging?wsdl)
 
-However, this default WSDL only shows the `         mediate        `
+However, this default WSDL only shows the `mediate`
 operation. This can be a limitation because your proxy service may be
 exposing a back-end service that expects additional information such as
 the message format. Therefore, the proxy service should be able to
@@ -18,15 +19,7 @@ you want the proxy service to inject the permission level as it
 processes the message, you could publish a WSDL that includes just the
 name and department without the permission level parameter.
 
-### Prerequisites
-
-Let's set up a sample proxy service in WSO2 Integration Studio.
-
--   Install WSO2 Integration Studio. For instructions, see [Installing WSO2 Integration Studio](https://docs.wso2.com/display/EI650/Installing+WSO2+Integration+Studio).
--   Click [this link](https://docs.wso2.com/download/attachments/85371060/StockQuoteProxy.xml?version=2&modificationDate=1526364863000&api=v2)
-    to download the sample proxy service ( **StockQuoteProxy.xml** ).
-
-### Adding a custom WSDL to the proxy service
+## Synapse configuration
 
 Follow the steps given below to add a custom WSDL to your proxy service.
 
