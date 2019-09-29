@@ -64,12 +64,26 @@ nav:
         - 'Reusing Mediation Sequences': 'use-cases/tutorials/using-templates.md'
         - 'Integrating with SAP': 'use-cases/tutorials/sap-integration.md'
       - Examples:
-        - Message Mediation Basics:
-          - 'Split Aggregator Pattern': 'use-cases/examples/split_aggregate_pattern.md'
-          - 'Optimized Message Transformation': 'use-cases/examples/message_transformation_example.md'
-        - Message Mediation Advanced:
-          - 'Split Aggregator Pattern': 'use-cases/examples/split_aggregate_pattern.md'
-          - 'Optimized Message Transformation': 'use-cases/examples/message_transformation_example.md'
+        #- Message Mediation Basics:
+          #- 'Split Aggregator Pattern': 'use-cases/examples/split_aggregate_pattern.md'
+          #- 'Optimized Message Transformation': 'use-cases/examples/message_transformation_example.md'
+        #- Message Mediation Advanced:
+          #- 'Split Aggregator Pattern': 'use-cases/examples/split_aggregate_pattern.md'
+          #- 'Optimized Message Transformation': 'use-cases/examples/message_transformation_example.md'
+        - Message Routing:
+          - 'Routing based on Message Header': 'use-cases/examples/message-routing/header-based-routing.md'
+          - 'Routing based on Message Payload': 'use-cases/examples/message-routing/payload-based-routing.md'
+          - 'Splitting and aggregating response messages': 'use-cases/examples/message-routing/header-based-routing.md'
+        #- Gateway:
+          #- 'Expose HTTP-based Applications as a SOAP Service': 'use-cases/examples/gateway/http-as-soap-service.md'
+          #- 'Expose HTTP-based Applications as a REST Api': 'use-cases/examples/gateway/http-as-rest-api.md'
+          #- 'Expose File-based Systems over HTTP': 'use-cases/examples/gateway/http-as-rest-api.md'
+          #- 'Expose Services on Proprietary Protocols over Standard Protocols': 'use-cases/examples/gateway/http-as-rest-api.md'
+        #- Security Gateway:
+          #- 'Expose HTTP-based Applications as a SOAP Service': 'use-cases/examples/gateway/http-as-soap-service.md'
+          #- 'Expose HTTP-based Applications as a REST Api': 'use-cases/examples/gateway/http-as-rest-api.md'
+          #- 'Expose File-based Systems over HTTP': 'use-cases/examples/gateway/http-as-rest-api.md'
+          #- 'Expose Services on Proprietary Protocols over Standard Protocols': 'use-cases/examples/gateway/http-as-rest-api.md'
         - Examples of Components:
           - REST APIs:
             - 'Using a Simple REST API': 'use-cases/examples/rest_api_examples/introduction-rest-api.md'

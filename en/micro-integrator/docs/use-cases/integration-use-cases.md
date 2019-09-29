@@ -5,22 +5,78 @@ WSO2 Micro Integrator helps you build and execute the following use cases.
 ## Message routing
 
 Message routing is one of the most fundamental requirements when integrating systems/services. It considers addressability, static/deterministic routing, content-based routing, header-based routing, rules-based routing, and policy-based routing as ways of routing a message. WSO2 Micro Integrator enables these routing capabilities using the concepts of mediators and endpoints.
-
+<!--
 ![message routing](../assets/img/use-cases-overview/message-routing-new.png)
+-->
+
+<table>
+	<tr>
+		<td>
+			<b>Tutorials</b></br>
+			<ul>
+				<li>
+					Try the end-to-end use case on <a href="../../../use-cases/tutorials/integration/routing-requests-based-on-message-content">message routing</a>
+				</li>
+			</ul>
+		</td>
+		<td>
+			<b>Examples</b>
+			<ul>
+				<li>
+					Routing based on message header
+				</li>
+				<li>
+					Routing based on message payload
+				</li>
+				<li>
+					Splitting and aggregating response messages
+				</li>
+			</ul>
+		</td>
+	</tr>
+</table>
 
 ## Message transformation
 
 The integration of systems that communicate in various message formats is a common business case in enterprise integration. WSO2 Micro Integrator facilitates this use case as the intermediary system bridging the communication gap among the systems.
-
+<!--
 ![message transformation](../assets/img/use-cases-overview/message-transformation-new.png) 
+-->
+<table>
+	<tr>
+		<td>
+			<b>Tutorials</b></br>
+			<ul>
+				<li>
+					Try the end-to-end use case on <a href="../../../use-cases/tutorials/integration/transforming-message-content">message transformation</a>
+				</li>
+			</ul>
+		</td>
+		<td>
+			<b>Examples</b>
+			<ul>
+				<li>
+					Routing based on message header
+				</li>
+				<li>
+					Routing based on message payload
+				</li>
+				<li>
+					Splitting and aggregating response messages
+				</li>
+			</ul>
+		</td>
+	</tr>
+</table>
 
 For example, consider a service that returns data in XML format and a mobile client that accepts messages only in JSON format. To allow these two systems to communicate, the intermediary system needs to convert message formats during the communication. This allows the systems to communicate with each other without depending on the message formats supported by each system.
 
 ## Service orchestration
 
 Service Orchestration is the process of exposing multiple fine-grained services using a single coarse-grained service. The service client will only have access to a single coarse-grained service, which encapsulates the multiple fine-grained services that are invoked in the process flow.
-
+<!--
 ![service chaining](../assets/img/use-cases-overview/service-chaining-new.png)
+-->
 
 There are two distinct types of service orchestration:
 
@@ -36,6 +92,33 @@ Multiple services that need to be orchestrated are invoked one after the other i
 **Parallel or Sequential service invocations**
 
 Multiple services are invoked simultaneously without any blocking until a response is received from another service.
+
+<table>
+	<tr>
+		<td>
+			<b>Tutorials</b></br>
+			<ul>
+				<li>
+					Try the end-to-end use case on <a href="../../../use-cases/tutorials/integration/exposing-several-services-as-a-single-service">service orchestration</a>
+				</li>
+			</ul>
+		</td>
+		<td>
+			<b>Examples</b>
+			<ul>
+				<li>
+					Routing based on message header
+				</li>
+				<li>
+					Routing based on message payload
+				</li>
+				<li>
+					Splitting and aggregating response messages
+				</li>
+			</ul>
+		</td>
+	</tr>
+</table>
 
 ## Asynchronous message processing
 
@@ -53,6 +136,33 @@ Note the following about asynchronous message processing:
 
 Disadvantages of asynchronous messaging includes the additional component of a message broker or transfer agent to ensure the message is received. This may affect both performance and reliability. There are various levels of message delivery reliability grantees from publisher to broker and from broker to subscriber. Wire level protocols like AMQP and MQTT can provide those.
 
+<table>
+	<tr>
+		<td>
+			<b>Tutorials</b></br>
+			<ul>
+				<li>
+					Try the end-to-end use case on <a href="../../../use-cases/tutorials/integration/storing-and-forwarding-messages">asynchronous messaging</a>
+				</li>
+			</ul>
+		</td>
+		<td>
+			<b>Examples</b>
+			<ul>
+				<li>
+					Routing based on message header
+				</li>
+				<li>
+					Routing based on message payload
+				</li>
+				<li>
+					Splitting and aggregating response messages
+				</li>
+			</ul>
+		</td>
+	</tr>
+</table>
+
 ## Connecting Web APIs/Cloud services
 
 One of the most expected features from an integration solution is 'Hybrid-Cloud Integration', i.e., the ability to connect with third-party applications via public APIs that are exposed by various application developers. These external applications could either be in the cloud (SaaS) or on-premise. WSO2 Micro Integrator enables this capability by means of its wide range of connectors.
@@ -63,25 +173,134 @@ A connector is a collection of templates that define operations that can be call
 
 WSO2 Micro Integrator supports more than 150 connectors, where Salesforce, Gmail, Amazon S3, are among the most popular. Connectors can be downloaded from the WSO2 connector store. It is also possible to write your own custom connector to integrate WSO2 Micro Integrator with a new system.
 
+<table>
+	<tr>
+		<td>
+			<b>Tutorials</b></br>
+			<ul>
+				<li>
+					Try the end-to-end use case on <a href="../../../use-cases/tutorials/integration/storing-and-forwarding-messages">connecting web Apis and cloud services</a>
+				</li>
+			</ul>
+		</td>
+		<td>
+			<b>Examples</b>
+			<ul>
+				<li>
+					Routing based on message header
+				</li>
+				<li>
+					Routing based on message payload
+				</li>
+				<li>
+					Splitting and aggregating response messages
+				</li>
+			</ul>
+		</td>
+	</tr>
+</table>
+
 ## Data integration
 
 Data integration is an important part of an integration process. For example, consider a typical integration process that is managed using the Micro Integrator: Data stored in various, disparate datasources are required in order to complete the integration use case. 
 
 The data services functionality that is embedded in the Micro Integrator can decouple the data from the datasource layer and exposing them as data services. The main integration flow defined in the Integrator will then have the capability of managing the data through the data service. Once the data service is defined, you can manipulate the data stored in the datasources by invoking the relevant operation defined in the data service. For example, you can perform the basic CRUD operations as well as other advanced operations.
 
+<table>
+	<tr>
+		<td>
+			<b>Tutorials</b></br>
+			<ul>
+				<li>
+					Try the end-to-end use case on <a href="../../../use-cases/tutorials/integration/data-integration-tutorial">data integration</a>
+				</li>
+			</ul>
+		</td>
+		<td>
+			<b>Examples</b>
+			<ul>
+				<li>
+					Routing based on message header
+				</li>
+				<li>
+					Routing based on message payload
+				</li>
+				<li>
+					Splitting and aggregating response messages
+				</li>
+			</ul>
+		</td>
+	</tr>
+</table>
+
 ## Protocol switching
 
 The Micro Integrator offers a wide range of integration capabilities from simple message routing to complicated systems that use integrated solutions. Different applications typically use different protocols for communication. Therefore, for two systems to successfully communicate, it is necessary to switch the protocol (that passes from one system) to the protocol compatible with the receiving application.
-
+<!--
 ![protocol switching](../assets/img/use-cases-overview/protocol-switching-new.png)
+-->
 
 For example, messages that are received via HTTP may need to be sent to a JMS queue. Further, you can couple the protocol switching feature with the message transformation feature to handle use cases where the content of messages received via one protocol (such as HTTP) are first processed, and then sent out in a completely different message format and protocol.
+
+<table>
+	<tr>
+		<td>
+			<b>Tutorials</b></br>
+			<ul>
+				<li>
+					Try the end-to-end use case on <a href="../../../use-cases/tutorials/integration/protocol-switching-tutorial">protocol switching</a>
+				</li>
+			</ul>
+		</td>
+		<td>
+			<b>Examples</b>
+			<ul>
+				<li>
+					Routing based on message header
+				</li>
+				<li>
+					Routing based on message payload
+				</li>
+				<li>
+					Splitting and aggregating response messages
+				</li>
+			</ul>
+		</td>
+	</tr>
+</table>
 
 ## Gateway
 
 The Gateway pattern is used for securely exposing APIs (representing business functionalities) to external and internal consumers. In technical terms, APIs provide an abstract layer for the internal business services, which allows you to meet consumer demand. APIs and proxy services in WSO2 Micro Integrator aggregates the back-end services/micro services into a unified services layer and the security policies for authentication and autharization are applied at the services layer. This ensures that only authorized consumers have access to the services and that the back-end is simplified.
 
 You can implement the Gateway pattern by deploying WSO2 Micro Integrator in a “DMZ” (demilitarized zone) and thereby exposing the services to external service consumers. The DMZ pre-processes service requests coming from the public and routes only valid and authorized messages to the actual service platforms. Pre-processing typically consist of message validation, filtering, and transformation, orchestration, etc.
+
+<table>
+	<tr>
+		<td>
+			<b>Tutorials</b></br>
+			<ul>
+				<li>
+					Try the end-to-end use case on <a href="../../../use-cases/tutorials/integration/service-gateway-tutorial">using the Micro Integrator as a service gateway</a>
+				</li>
+			</ul>
+		</td>
+		<td>
+			<b>Examples</b>
+			<ul>
+				<li>
+					Routing based on message header
+				</li>
+				<li>
+					Routing based on message payload
+				</li>
+				<li>
+					Splitting and aggregating response messages
+				</li>
+			</ul>
+		</td>
+	</tr>
+</table>
 
 ## File processing
 
@@ -98,6 +317,33 @@ In many business domains, there are different use cases related to managing file
 - Execute some business logic
 
   	The system should be capable of performing actions that are required to construct a business use case. It should be capable of taking decisions and sending processed information to other systems over different communication protocols.
+
+ <table>
+	<tr>
+		<td>
+			<b>Tutorials</b></br>
+			<ul>
+				<li>
+					Try the end-to-end use case on <a href="../../../use-cases/tutorials/integration/file-processing-tutorial">file processing</a>
+				</li>
+			</ul>
+		</td>
+		<td>
+			<b>Examples</b>
+			<ul>
+				<li>
+					Routing based on message header
+				</li>
+				<li>
+					Routing based on message payload
+				</li>
+				<li>
+					Splitting and aggregating response messages
+				</li>
+			</ul>
+		</td>
+	</tr>
+</table>
 
 ## Periodic execution of integration processes
 
