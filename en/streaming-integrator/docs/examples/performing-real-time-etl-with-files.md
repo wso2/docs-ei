@@ -41,7 +41,7 @@ In this section of the tutorial, you are exploring the different ways in which y
 
 In this scenario, you are tailing a text file, line by line, in order to extract data from it. Each line is extracted as an event which goes through a simple transformation thereafter. Let's write a simple Siddhi application to do this.
 
-1. Download `productions.csv` file from [here](todo) and save it in a location of your choice. 
+1. Download `productions.csv` file from [here](https://github.com/wso2/docs-ei/tree/master/en/streaming-integrator/docs/examples/resources/productions.csv) and save it in a location of your choice. 
 
 2. Open a text file and copy-paste following Siddhi application to it.
     ```
@@ -97,7 +97,7 @@ In this scenario, you are tailing a text file, line by line, in order to extract
 
 In this scenario, you are using a regular expression to extract data from the file. After data has being extracted, a simple transformation if performed on them. Finally, the transformed event is logged on the SI console. Let's write a simple Siddhi application to do this.
 
-1. Download `noisy_data.txt` file from [here](todo) and save it in a location of your choice. 
+1. Download `noisy_data.txt` file from [here](https://github.com/wso2/docs-ei/tree/master/en/streaming-integrator/docs/examples/resources/noisy_data.txt) and save it in a location of your choice. 
 
 2. Open a text file and copy-paste following Siddhi application to it.
     ```
@@ -156,7 +156,7 @@ In the previous scenarios, you tailed a file and each file generated multiple ev
 
 Furthermore, to try out the capability of processing remote files, you will process a remote file here, instead of a file located in the local file system. 
 
-1. Download `portfolio.txt` file from [here](todo) and upload it into an FTP server.
+1. Download `portfolio.txt` file from [here](https://github.com/wso2/docs-ei/tree/master/en/streaming-integrator/docs/examples/resources/portfolio.txt) and upload it into an FTP server.
 
 2. Create a directory on the FTP server.  The `portfolio.txt` file will be moved in to this folder after the processing is done.
  
@@ -208,7 +208,7 @@ Furthermore, to try out the capability of processing remote files, you will proc
 
 In the previous scenarios, you processed text files, in order to extract data. In this scenario, you are reading a binary file. The content of the file generates a single event.
 
-1. Download `google.bin` file from [here](todo) and save it in a location of your choice.
+1. Download `wso2.bin` file from [here](https://github.com/wso2/docs-ei/tree/master/en/streaming-integrator/docs/examples/resources/wso2.bin) and save it in a location of your choice.
 
 2. Open a text file and copy-paste following Siddhi application to it.
     ```
@@ -217,7 +217,7 @@ In the previous scenarios, you processed text files, in order to extract data. I
     @App:description('Reads a binary file and moves it after processing.')
     
     @source(type='file', mode='TEXT.FULL',
-        file.uri='file:/Users/foo/google.bin',
+        file.uri='file:/Users/foo/wso2.bin',
         action.after.process='MOVE', move.after.process='file:/Users/foo/move.after.process', 
         @map(type='json', enclosing.element="$.portfolio", @attributes(symbol = "stock.company.symbol", price = "stock.price", volume = "stock.volume")))
     define stream StockStream (symbol string, price float, volume long);
@@ -230,18 +230,18 @@ In the previous scenarios, you processed text files, in order to extract data. I
     insert into LogStream;
     ```
  
-    Change the `file.uri` parameter above, to the file path to which you downloaded `google.bin` file in step 1.
+    Change the `file.uri` parameter above, to the file path to which you downloaded `wso2.bin` file in step 1.
 
 3. Save this file as `BinaryFullFileProcessing.siddhi` in the `<SI_HOME>/wso2/server/deployment/siddhi-files` directory.
 
     !!!info
-        This Siddhi application reads the file `google.bin` fully to create a `StockStream` event. After that, a simple transformation is done on the `StockStream`. That is the `symbol` attribute from the event is converted into upper case. Finally, the output is logged on the SI console.
+        This Siddhi application reads the file `wso2.bin` fully to create a `StockStream` event. After that, a simple transformation is done on the `StockStream`. That is the `symbol` attribute from the event is converted into upper case. Finally, the output is logged on the SI console.
         
     Upon successful deployment, following log appears on the SI console:
     ```
     INFO {org.wso2.carbon.streaming.integrator.core.internal.StreamProcessorService} - Siddhi App BinaryFullFileProcessing deployed successfully
     ```
-4. Now the Siddhi application starts to process the `google.bin` file. 
+4. Now the Siddhi application starts to process the `wso2.bin` file. 
     
     As a result, the following log appears in the SI console:
     ```
@@ -252,7 +252,7 @@ In the previous scenarios, you processed text files, in order to extract data. I
 
 In this scenario, you are reading a text file completely, and deleting it after  processing. In other words, the file is not tailed. You read the file line by line where each line generates an event. 
 
-1. Download `productions.csv` file from [here](todo) and save it in a location of your choice. 
+1. Download `productions.csv` file from [here](https://github.com/wso2/docs-ei/tree/master/en/streaming-integrator/docs/examples/resources/productions.csv) and save it in a location of your choice. 
 
 2. Open a text file and copy-paste following Siddhi application to it.
     ```
@@ -296,7 +296,7 @@ In this scenario, you are reading a text file completely, and deleting it after 
     ``` 
 5. Notice that `productions.csv` file is not present in the `file.uri` location. 
 
-6. Next you will create a new `productions.csv` file on the `file.uri` location which includes the latest set of productions. Download `productions.csv` file from [here](todo) and save it in `file.uri` location.  
+6. Next you will create a new `productions.csv` file on the `file.uri` location which includes the latest set of productions. Download `productions.csv` file from [here](https://github.com/wso2/docs-ei/tree/master/en/streaming-integrator/docs/examples/resources/productions.csv) and save it in `file.uri` location.  
 
 7. Now the Siddhi application starts to process the new set of productions in the `productions.csv` file. The file has below two entries:
     ```
@@ -313,7 +313,7 @@ In this scenario, you are reading a text file completely, and deleting it after 
 
 In this scenario, you are using a regular expression to extract data from the content of the file. Here, you do not tail the file, rather read the full content of the file and generate a single event. After this is done, the file is deleted. To generate an event stream, you can keep re-creating the file with new data. 
 
-1. Download `noisy_data.txt` file from [here](todo) and save it in a location of your choice. 
+1. Download `noisy_data.txt` file from [here](https://github.com/wso2/docs-ei/tree/master/en/streaming-integrator/docs/examples/resources/noisy_data.txt) and save it in a location of your choice. 
 
 2. Open a text file and copy-paste following Siddhi application to it.
     ```
@@ -356,7 +356,7 @@ In this scenario, you are using a regular expression to extract data from the co
 
 5. Notice that `noisy_data.txt` file is not present in the `file.uri` location. 
 
-6. Next you will create a new `noisy_data.txt` file on the `file.uri` location which includes the latest set of productions. Download `noisy_data.txt` file from [here](todo) and save it in `file.uri` location.  
+6. Next you will create a new `noisy_data.txt` file on the `file.uri` location which includes the latest set of productions. Download `noisy_data.txt` file from [here](https://github.com/wso2/docs-ei/tree/master/en/streaming-integrator/docs/examples/resources/noisy_data.txt) and save it in `file.uri` location.  
 
 7. Now the Siddhi application starts to process the new content in the `noisy_data.txt` file. The file has below content:
     ```
@@ -376,7 +376,7 @@ In this scenario, you are using a regular expression to extract data from the co
 
 In this scenario, you extract data from a specific folder. All of the files are processed sequentially, where each file generates a single event.
 
-1. Download `productions.zip` file from [here](todo) and extract it. Now you have `productions` folder. Place it in a location of your choice.
+1. Download `productions.zip` file from [here](https://github.com/wso2/docs-ei/tree/master/en/streaming-integrator/docs/examples/resources/productions.zip) and extract it. Now you have `productions` folder. Place it in a location of your choice.
 
 2. Open a text file and copy-paste following Siddhi application to it.
     ```
@@ -519,7 +519,7 @@ The production data is updated in a file and therefore you have to keep tailing 
 
 3. Restart the Streaming Integrator server for above change to be effective.
 
-4. Download `productions.csv` file from [here](todo) and save it in a location of your choice. 
+4. Download `productions.csv` file from [here](https://github.com/wso2/docs-ei/tree/master/en/streaming-integrator/docs/examples/resources/productions.csv) and save it in a location of your choice. 
 
 5. Open a text file and copy-paste following Siddhi application to it.
     ```
