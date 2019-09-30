@@ -54,7 +54,7 @@ If for some (unlikely) reason at any time CLA changes, you will get presented wi
     ```bash
     $ pip install pymdown-extensions
     ```
-#### Generate website content
+#### Generating website content
 
 Navigate to `docs` directory and run the following command.
 
