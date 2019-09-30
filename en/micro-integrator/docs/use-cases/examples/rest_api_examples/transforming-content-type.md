@@ -1,22 +1,17 @@
 # Transforming the content type
-    
+## Example use case  
 This section describes how you can transform the content type of a message using an API. In this scenario, the API exposes a REST back-end service that accepts and returns XML and JSON messages for HTTP methods as follows:
     
 -   GET - response is in JSON format
 -   POST - accepts XML request and returns response in JSON format
 -   PUT - accepts JSON request and returns response in JSON format
--   DELETE - empty request body should be sent
-       
-### Setting up the back end
+-   DELETE - empty request body should be sent  
     
-To deploy the REST back-end, download the StarbucksService.war from <https://svn.wso2.org/repos/wso2/people/charitham/REST-API/> and deploy it in the Micro Integrator:
-    
-    
-### Configuring the API
+## Synapse configuration
     
 Create an API using the following configuration:
     
-```
+```xml
 <api xmlns="http://ws.apache.org/ns/synapse" name="StarbucksService" context="/Starbucks_Service">
     <resource methods="POST" url-mapping="/orders/add">
         <inSequence>
@@ -68,7 +63,7 @@ Create an API using the following configuration:
 </api>
 ```
     
-### Executing the sample
+## Build and run
     
 The context of the API is ‘/Starbucks_Service’. For every HTTP method, a url-mapping or uri-template is defined, and the URL to call the methods differ with the defined mapping or template.
     

@@ -8,30 +8,32 @@ When message failure is not tolerable even though there is only one
 service endpoint, then failovers are possible with a single endpoint as
 shown in the below configuration.
 
-```
+### Synapse configuration
+
+```xml
 <endpoint name="SampleFailover">
-        <failover>
-            <endpoint name="Sample_First" statistics="enable" >
-                <address uri="http://localhost/myendpoint" statistics="enable" trace="disable">
-                    <timeout>
-                        <duration>60000</duration>
-                    </timeout>
-    
-                    <markForSuspension>
-                        <errorCodes>101504, 101505, 101500</errorCodes>
-                        <retriesBeforeSuspension>3</retriesBeforeSuspension>
-                        <retryDelay>10</retryDelay>
-                    </markForSuspension>
-    
-                    <suspendOnFailure>
-                        <initialDuration>1000</initialDuration>
-                        <progressionFactor>2</progressionFactor>
-                        <maximumDuration>64000</maximumDuration>
-                    </suspendOnFailure>
-    
-                </address>
-            </endpoint>
-        </failover>
+    <failover>
+        <endpoint name="Sample_First" statistics="enable" >
+            <address uri="http://localhost/myendpoint" statistics="enable" trace="disable">
+                <timeout>
+                    <duration>60000</duration>
+                </timeout>
+
+                <markForSuspension>
+                    <errorCodes>101504, 101505, 101500</errorCodes>
+                    <retriesBeforeSuspension>3</retriesBeforeSuspension>
+                    <retryDelay>10</retryDelay>
+                </markForSuspension>
+
+                <suspendOnFailure>
+                    <initialDuration>1000</initialDuration>
+                    <progressionFactor>2</progressionFactor>
+                    <maximumDuration>64000</maximumDuration>
+                </suspendOnFailure>
+
+            </address>
+        </endpoint>
+    </failover>
 </endpoint>
 ```
 
@@ -60,6 +62,21 @@ happen once in a while, it is okay to retry again. If they happen
 frequently and continuously, it means that it requires immediate
 attention to get it back to normal state.
 
+### Build and run
+
+Create the artifacts:
+
+1. Set up WSO2 Integration Studio.
+2. Create an ESB Config project
+3. Create the following artifacts.
+4. Deploy the artifacts in your Micro Integrator.
+
+Configure the ActiveMQ broker.
+
+Set up the back-end service.
+
+Invoking the service.
+
 ## Example 2: Failover with multiple address endpoints
 
 When a message reaches a failover endpoint with multiple address
@@ -83,10 +100,12 @@ will try again on the first endpoint, even though the second endpoint is
 still active. For more information about these states and properties,
 see [Endpoint Error Handling](_Endpoint_Error_Handling_) .
 
+### Synapse configuration
+
 The following is an example failover endpoint configuration with
 multiple address endpoints.
 
-``` java
+```xml
 <endpoint>
         <failover>
             <endpoint name="fooEP">
@@ -125,12 +144,27 @@ multiple address endpoints.
 ```
 
 !!! Note
-    The `         <retryConfig>        ` property configures the last child endpoint to stop retying by ending the loop (i.e. to make the endpoint respond back to the service), after attempting to send requests to all the child endpoints and when all the attempts fail.
+    The `<retryConfig>` property configures the last child endpoint to stop retying by ending the loop (i.e. to make the endpoint respond back to the service), after attempting to send requests to all the child endpoints and when all the attempts fail.
 
-    ```
+    ```xml
     <retryConfig>
             <disabledErrorCodes>101507,101504</disabledErrorCodes>
     </retryConfig>
     ```
 
     Thus, in the above configuration, erros of the codes `101504` and `101507` stop retrying and put the endpoint to the `Timeout` state.
+
+### Build and run
+
+Create the artifacts:
+
+1. Set up WSO2 Integration Studio.
+2. Create an ESB Config project
+3. Create the following artifacts.
+4. Deploy the artifacts in your Micro Integrator.
+
+Configure the ActiveMQ broker.
+
+Set up the back-end service.
+
+Invoking the service.

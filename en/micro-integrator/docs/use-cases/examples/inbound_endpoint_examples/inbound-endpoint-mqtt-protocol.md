@@ -1,31 +1,10 @@
 # Inbound Endpoint MQTT Protocol Sample
-
-
-### Introduction
+## Example use case
 
 This sample demonstrates how the MQTT connector publishes a message on a
 particular topic and how a MQTT client that is subscribed to that topic
 receives it. You can try this sample using the following message
 brokers:
-
--   [Using Mosquitto as the Message
-    Broker](#Sample906:InboundEndpointMQTTProtocolSample-UsingMosquittoastheMessageBroker)
-    -   [Prerequisites](#Sample906:InboundEndpointMQTTProtocolSample-Prerequisites)
-    -   [Building the
-        sample](#Sample906:InboundEndpointMQTTProtocolSample-Buildingthesample)
-    -   [Executing the
-        sample](#Sample906:InboundEndpointMQTTProtocolSample-Executingthesample)
-    -   [Analyzing the
-        output](#Sample906:InboundEndpointMQTTProtocolSample-Analyzingtheoutput)
--   [Using Broker Profile as the Message
-    Broker](#Sample906:InboundEndpointMQTTProtocolSample-UsingBrokerProfileastheMessageBroker)
-    -   [Prerequisites](#Sample906:InboundEndpointMQTTProtocolSample-Prerequisites.1)
-    -   [Building the
-        sample](#Sample906:InboundEndpointMQTTProtocolSample-Buildingthesample.1)
-    -   [Executing the
-        sample](#Sample906:InboundEndpointMQTTProtocolSample-Executingthesample.1)
-    -   [Analyzing the
-        output](#Sample906:InboundEndpointMQTTProtocolSample-Analyzingtheoutput.1)
 
 ### Using Mosquitto as the Message Broker
 
