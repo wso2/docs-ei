@@ -245,11 +245,11 @@ Upon invocation, you should be able to observe the following response:
 
 `{"Hello":"World"}`
 
-## Run on a Virtual Machine
+### Run on a Virtual Machine
 
 Follow the steps given below to run the HelloWorld service on a Micro Integrator instance that is installed on a VM.
 
-### Download and install the Micro Integrator
+##### Download and install the Micro Integrator
 
 1. Go to the WSO2 Micro Integrator [product page](https://wso2.com/integration/micro-integrator/) and click **Download** to download the product installer (**.pkg** file).
 2. Double-click the installer to open the installation wizard, which will guide you through the installation. The installation location (**MI_HOME**) will depend on your OS:
@@ -284,11 +284,11 @@ Follow the steps given below to run the HelloWorld service on a Micro Integrator
     </tbody>
     </table>
 
-### Deploy the HelloWorld service
+#### Deploy the HelloWorld service
 
 Copy the CAR file of the HelloWorld service (**hello-world-config-projectCompositeApplication_1.0.0.car**), from the MI_QSG_HOME/hello-world-config-projectCompositeApplication/target/ directory to the MI_HOME/repository/deployment/server/carbonapps directory.
 
-### Start the Micro Integrator
+#### Start the Micro Integrator
 
 Follow the steps relevant to your OS:
 
@@ -298,7 +298,7 @@ Follow the steps relevant to your OS:
   ```
 - On **Windows**, go to **Start Menu -> Programs -> WSO2 -> Micro Integrator**. This will open a terminal and start the relevant profile.
 
-### Invoke the HelloWorld service
+#### Invoke the HelloWorld service
 
 Open a terminal and execute the following curl command to invoke the service:
 
