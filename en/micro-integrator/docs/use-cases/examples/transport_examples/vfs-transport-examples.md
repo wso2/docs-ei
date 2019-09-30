@@ -1,98 +1,86 @@
 # VFS Transport
+## Example use case
 
-## Security
+The Micro Integrator can access the local file system using the [VFS transport](../../setup/transport_configurations/configuring-transports/configuring-the-vfs-transport) sender and
+receiver. This sample demonstrates the VFS transport in action, using the file system as a transport medium.
 
-The VFS transport supports the **SFTP protocol** with **Secure Sockets Layer (SSL)**. The configuration is identical to other protocols with the only difference being the URL prefixes and parameters. For more information, see [VFS URL parameters](#VFSTransport-URLparams) below.
+## Synapse configuration
 
-### Securing VFS password in a proxy service
+The XML configuration for this sample is as follows:
 
-The following instructions describe how to secure the VFS password in a
-proxy service configuration.
-
-1.  Provide configuration for the password decryption by adding the following lines in `<EI_HOME>/conf/axis2/axis2.xml` file:
-
-    ```
-    <transportReceiver class="org.apache.synapse.transport.vfs.VFSTransportListener" name="vfs">
-            <parameter locked="false" name="keystore.identity.location">repository/resources/security/wso2carbon.jks</parameter>
-            <parameter locked="false" name="keystore.identity.type">JKS</parameter>
-            <parameter locked="false" name="keystore.identity.store.password">wso2carbon</parameter>
-            <parameter locked="false" name="keystore.identity.key.password">wso2carbon</parameter>
-            <parameter locked="false" name="keystore.identity.alias">wso2carbon</parameter>
-    </transportReceiver>
-    ```
-
-    !!! Info
-        If you need to secure the passwords provided in the above configuration, you can do so using [secure vault](https://docs.wso2.com/display/ADMIN44x/Carbon+Secure+Vault+Implementation) The secured configuration would look like this:
-    
-    ``` java
-    <transportReceiver class="org.apache.synapse.transport.vfs.VFSTransportListener" name="vfs">
-            <parameter locked="false" name="keystore.identity.location">repository/resources/security/wso2carbon.jks</parameter>
-            <parameter locked="false" name="keystore.identity.type">JKS</parameter>
-            <parameter locked="false" name="keystore.identity.store.password" svns:secretAlias="vfs.transport.keystore.password">password</parameter>
-            <parameter locked="false" name="keystore.identity.key.password" svns:secretAlias="vfs.transport.key.password">password</parameter>
-            <parameter locked="false" name="keystore.identity.alias">wso2carbon</parameter>
-    </transportReceiver>
-    ```
-        
-2.  Manually encrypt the password using Cipher Tool. See, [Encrypting
-    Passwords in Cipher
-    Tool](https://docs.wso2.com/display/ADMIN44x/Encrypting+Passwords+with+Cipher+Tool#EncryptingPasswordswithCipherTool-Encryptingpasswordsmanually)
-    in the administration guide.
-3.  Provide the encrypted password value in your proxy configuration by
-    adding the following parameter:
-
-    ``` java
-    <parameter name="transport.vfs.FileURI">smb://{wso2:vault-decrypt('encryptedValue')}</parameter>
-    ```
-
-## Failure tracking
-
-To track failures in file processing, which can occur when a resource becomes unavailable, the VFS transport creates and maintains a failed records file. This text file contains a list of files that failed to be processed. When a failure occurs, an entry with the failed file name and the timestamp is logged in the text file. When the next polling iteration occurs, the VFS transport checks each file against the failed records file, and if a file is listed as a failed record, it will skip processing and schedule a move task to move that file.
-
-## Transferring large files
-
-If you need to transfer large files using the VFS transport, you can
-avoid out-of-memory failures by taking the following steps:
-
-1.  In `           <EI_HOME>/conf/axis2/axis2.xml          ` , in the `           messageBuilders          ` section, add the binary message builder as follows:
-
-    ```
-    <messageBuilder contentType="application/binary" class="org.apache.axis2.format.BinaryBuilder"/>
-    ```
-
-    and in the `           messageFormatters          ` section, add the
-    binary message formatter as follows:
-
-    ```
-    <messageFormatter contentType="application/binary" class="org.apache.axis2.format.BinaryFormatter"/>
-    ```
-
-2.  In the proxy service where you use the VFS transport, add the
-    following parameter to enable streaming (see [VFS service-level
-    parameters](#VFSTransport-parameters) below for more information):
-
-    ```
-    <parameter name="transport.vfs.Streaming">true</parameter>
-    ```
-
-3.  In the same proxy service, before the Send mediator, add the
-    following property:
-
-    !!! Info
-        You also need to add the following property if you want to use the VFS transport to transfer files from VFS to VFS.
-
-    ```
-    <property name="ClientApiNonBlocking" value="true" scope="axis2" action="remove"/>
-    ```
-
-    For more information, see Example 3 of the [Send Mediator](https://docs.wso2.com/display/EI650/Send+Mediator#SendMediator-blocking).
-
-## Configuring the Endpoint
-
-To configure a VFS endpoint, use the `         vfs:file        ` prefix in the URI. For example:
-
+```xml
+<definitions xmlns="http://ws.apache.org/ns/synapse">
+    <proxy name="StockQuoteProxy" transports="vfs">
+        <parameter name="transport.vfs.FileURI">file:///home/user/test/in</parameter>  
+        <parameter name="transport.vfs.ContentType">text/xml</parameter>
+        <parameter name="transport.vfs.FileNamePattern">.*\.xml</parameter>
+        <parameter name="transport.PollInterval">15</parameter>
+        <parameter name="transport.vfs.MoveAfterProcess">file:///home/user/test/original</parameter> 
+        <parameter name="transport.vfs.MoveAfterFailure">file:///home/user/test/original</parameter>
+        <parameter name="transport.vfs.ActionAfterProcess">MOVE</parameter>
+        <parameter name="transport.vfs.ActionAfterFailure">MOVE</parameter>
+        <target>
+            <endpoint>
+                <address format="soap12" uri="http://localhost:9000/services/SimpleStockQuoteService"/>
+            </endpoint>
+            <outSequence>
+                <property name="transport.vfs.ReplyFileName"
+                          expression="fn:concat(fn:substring-after(get-property('MessageID'), 'urn:uuid:'), '.xml')"
+                          scope="transport"/>
+                <property action="set" name="OUT_ONLY" value="true"/>
+                <send>
+                    <endpoint>
+                        <address uri="vfs:file:///home/user/test/out"/> 
+                    </endpoint>
+                </send>
+            </outSequence>
+        </target>
+        <publishWSDL uri="file:repository/samples/resources/proxy/sample_proxy_1.wsdl"/>
+    </proxy>
+</definitions>
 ```
+
+To configure a VFS endpoint, use the `vfs:file` prefix in the URI. For example:
+
+```xml
 <endpoint>
     <address uri="vfs:file:///home/user/test/out"/>
 </endpoint>
 ```
+
+## Build and run
+
+1.  Create the file directories:
+
+    -   Create 3 new directories (folders) named **in** , **out** and
+        **original** in a suitable location in a test directory (e.g.,
+        /home/user/test) in the local file system. 
+    -   Be sure to update the **in**, **original**, and **original** directory locations with the values given as the 
+        `          transport.vfs.FileURI         ` ,
+        `          transport.vfs.MoveAfterProcess         ` ,
+        `          transport.vfs.MoveAfterFailure         ` parameter values in your synapse configuration. 
+    -   You need to set both
+        `          transport.vfs.MoveAfterProcess         ` and
+        `          transport.vfs.MoveAfterFailure         ` parameter
+        values to point to the **original** directory location.
+    -   Be sure that the endpoint in the `<outSequence>` points to the **out** directory location. Make sure that the prefix
+        `          vfs:         ` in the endpoint URL is not removed or changed.
+
+2.  Create the `test.xml` file shown below and copy it to the location specified in `transport.vfs.FileURI` in the configuration (i.e., the **in** directory). This contains a simple stock quote request in XML/SOAP format.
+
+    ```xml
+    <?xml version='1.0' encoding='UTF-8'?>
+    <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:wsa="http://www.w3.org/2005/08/addressing">
+        <soapenv:Body>
+            <m0:getQuote xmlns:m0="http://services.samples">
+                <m0:request>
+                    <m0:symbol>IBM</m0:symbol>
+                </m0:request>
+            </m0:getQuote>
+        </soapenv:Body>
+    </soapenv:Envelope>
+    ```
+
+3. Analyzing the output
+
+    You will see that the VFS transport listener picks the file from the **in** directory and sends it to the Axis2 service over HTTP. Then you will see that the request XML file is moved to the **original** directory and that the response from the Axis2 server is saved to the **out** directory.

@@ -1,68 +1,36 @@
 # Switch from FIX to AMQP
 
-Demonstrate the capability of switching between FIX and
-AMQP protocols.
+Demonstrate the capability of switching between FIX and AMQP protocols.
 
-###### Prerequisites
+## Synapse configuration
 
--   You will need the sample FIX blotter that comes with Quickfix/J
-    (Banzai). Configure the blotter to establish sessions with Synapse.
--   Configure the AMQP transport for WSO2 ESB.
--   Start the AMQP consumer, by switching to
-    `           samples/axis2Client          ` directory and running the
-    consumer using the following command. Consumer will listen to the
-    queue `           QpidStockQuoteService          ` , accept the
-    orders and reply to the queue `           replyQueue          ` .
-
-    ``` java
-    ant amqpconsumer \-Dpropfile=$ESB_HOME/repository/samples/resources/fix/direct.properties
-    ```
-
--   Start Banzai.
--   Enable FIX transport in the Synapse `          axis2.xml         ` .
--   Configure Synapse for FIX samples.
--   Open up the
-    `           ESB_HOME/repository/samples/synapse_sample_260.xml          `
-    file and make sure that the
-    `           transport.fix.AcceptorConfigURL          ` property
-    points to the `           fix-synapse.cfg          ` file you
-    created.
-
-    !!! Note
-        Synapse creates a new FIX session with Banzai at this point.
-
--   Send an order request from Banzai to Synapse. For example, Buy DELL
-    1000 @ MKT.
-
-``` 
-<definitions xmlns="http://ws.apache.org/ns/synapse">
-    <proxy name="FIXProxy" transports="fix">
-        <target>
-            <endpoint>
-                <address uri="jms:/QpidStockQuoteService?transport.jms.ConnectionFactoryJNDIName=qpidConnectionfactory&amp;java.naming.factory.initial=org.apache.qpid.jndi.PropertiesFileInitialContextFactory&amp;java.naming.provider.url=repository/samples/resources/fix/con.properties&amp;transport.jms.ReplyDestination=replyQueue"/>
-            </endpoint>
-            <inSequence>
-                <log level="full" />
-            </inSequence>
-            <outSequence>
-                <property name="transport.fix.ServiceName" value="FIXProxy" scope="axis2-client" />
-                <log level="full" />
-                <send />
-            </outSequence>
-        </target>
-        <parameter name="transport.fix.AcceptorConfigURL">
-            file:repository/samples/resources/fix/fix-synapse.cfg
-        </parameter>
-        <parameter name="transport.fix.AcceptorMessageStore">file</parameter>
-    </proxy>
-</definitions>
+```xml 
+<proxy name="FIXProxy" transports="fix">
+    <target>
+        <endpoint>
+            <address uri="jms:/QpidStockQuoteService?transport.jms.ConnectionFactoryJNDIName=qpidConnectionfactory&amp;java.naming.factory.initial=org.apache.qpid.jndi.PropertiesFileInitialContextFactory&amp;java.naming.provider.url=repository/samples/resources/fix/con.properties&amp;transport.jms.ReplyDestination=replyQueue"/>
+        </endpoint>
+        <inSequence>
+            <log level="full" />
+        </inSequence>
+        <outSequence>
+            <property name="transport.fix.ServiceName" value="FIXProxy" scope="axis2-client" />
+            <log level="full" />
+            <send />
+        </outSequence>
+    </target>
+    <parameter name="transport.fix.AcceptorConfigURL">
+        file:repository/samples/resources/fix/fix-synapse.cfg
+    </parameter>
+    <parameter name="transport.fix.AcceptorMessageStore">file</parameter>
+</proxy>
 ```
 
 Synapse will forward the order request by binding it to a JMS message
 payload and sending it to the AMQP consumer. AMQP consumer will send a
 execution back to Banzai.
 
-### Configuring Sample FIX Applications
+## Configuring Sample FIX Applications
 
 If you use a binary distribution of Quickfix/J, the two samples and
 their configuration files are all packed to a single JAR file called
@@ -82,7 +50,7 @@ applications from `         $QFJ_HOME/bin        ` ,
 Locate and edit the FIX configuration file of Executor to be as follows.
 This file is usually named `         executor.cfg        ` .
 
-``` java
+```java
 [default]
     FileStorePath=examples/target/data/executor
     ConnectionType=acceptor
@@ -103,7 +71,7 @@ This file is usually named `         executor.cfg        ` .
 Locate and edit the FIX configuration file of Banzai to be as follows.
 This file is usually named `         banzai.cfg        ` .
 
-``` java
+```java
 [default]
     FileStorePath=examples/target/data/banzai
     ConnectionType=initiator
@@ -120,60 +88,16 @@ This file is usually named `         banzai.cfg        ` .
     SocketConnectPort=9876
 ```
 
-The `         FileStorePath        ` property in the above two files
-should point to two directories in your local file system. The launcher
-scripts for the sample application can be found in the bin directory of
-Quickfix/J distribution.
+The `FileStorePath` property in the above two files should point to two directories in your local file system. The launcher
+scripts for the sample application can be found in the bin directory of Quickfix/J distribution.
 
-### Setting up FIX Transport
+## Configuring WSO2 Micro Integrator for FIX Samples
 
-To run the FIX samples used in this guide, you need a local Quickfix/J (
-http://www.quickfixj.org ) installation. Download Quickfix/J from:
-http://www.quickfixj.org/downloads .
+Create the FIX configuration files as specified below. You can find the config files from "$MI_HOME/repository/samples/resources/fix" folder.
 
-To enable the FIX transport for samples, first you must deploy the
-Quickfix/J libraries into the
-`         repository/components/lib        ` directory of the ESB.
-Generally, the following libraries should be deployed into the ESB.
+The `FileStorePath` property in the following two files should point to two directories in your local file system. Once the samples are executed, Synapse will create FIX message stores in these two directories.
 
--   **quickfixj-core-1.4.0.jar**
--   **quickfixj-msg-fix40-1.4.0.jar**
--   **quickfixj-msg-fix42-1.4.0.jar**
--   **quickfixj-msg-fix41-1.4.0.jar**
--   **quickfixj-msg-fix43-1.4.0.jar**
--   **quickfixj-msg-fix44-1.4.0.jar**
--   **quickfixj-msg-fix50-1.4.0.jar**
--   **mina-core-1.1.0.jar**
--   **slf4j-jdk14-1.5.3.jar**
--   **slf4j-api-1.5.3.jar**
-
-Then uncomment the FIX transport sender and FIX transport receiver
-configurations in the `         repository/conf/axis2.xml        ` .
-Simply locate and uncomment the `         FIXTransportSender        `
-and `         FIXTransportListener        ` sample configurations.
-Alternatively if the FIX transport management bundle is in use, you can
-enable the FIX transport listener and the sender from the WSO2 ESB
-management console. Login to the console and navigate to " Transports "
-on management menu. Scroll down to locate the sections related to the
-FIX transport. Simply click on the "Enable" links to enable the FIX
-listener and the sender.
-
-### Configuring WSO2 ESB for FIX Samples
-
-In order to configure WSO2 ESB to run the FIX samples given in this
-guide, you will need to create some FIX configuration files as specified
-below (You can find the config files from
-"$ESB\_HOME/repository/samples/resources/fix folder.")
-
-The `         FileStorePath        ` property in the following two files
-should point to two directories in your local file system. Once the
-samples are executed, Synapse will create FIX message stores in these
-two directories.
-
-Put the following entries in a file called
-`         fix-synapse.cfg        ` .
-
-``` java
+```java tab='fix-synapse.cfg'
 [default]
     FileStorePath=repository/logs/fix/data
     ConnectionType=acceptor
@@ -191,10 +115,7 @@ Put the following entries in a file called
     SocketAcceptPort=9876
 ```
 
-Put the following entries in a file called
-`         synapse-sender.cfg        ` .
-
-``` java
+```java tab='synapse-sender.cfg'
 [default]
     FileStorePath=repository/logs/fix/data
     SocketConnectHost=localhost
@@ -211,7 +132,7 @@ Put the following entries in a file called
     SocketConnectPort=19876
 ```
 
-### Configure ESB for AMQP Transport
+## Configure ESB for AMQP Transport
 
 The samples used in this guide assumes the existence of a local QPid
 (1.0-M2 or higher) installation properly installed and started up. You
@@ -220,7 +141,7 @@ also need to copy the following client JAR files into the
 These files are found in the `         lib        ` directory of the
 QPid installation.
 
-``` java
+```java
 qpid-client-1.0-incubating-M2.jar
     qpid-common-1.0-incubating-M2.jar
     geronimo-jms_1.1_spec-1.0.jar
@@ -238,7 +159,7 @@ enable JMS support for the sample Axis2 server the
 `         samples/axis2Server/repository/conf/axis2.xml        ` file
 must be updated.
 
-``` java
+```java
 <!--Uncomment this and configure as appropriate for JMS transport support, after setting up your JMS environment -->
 <transportReceiver name="jms" class="org.apache.synapse.transport.jms.JMSListener">
 </transportReceiver>
@@ -247,12 +168,9 @@ must be updated.
 </transportReceiver>
 ```
 
-Locate and edit the AMQP connection settings file for the message
-consumer, this file is usually named
-`         direct.properties        ` and can be found in the
-`         repository/samples/resources/fix        ` directory.
+Locate and edit the AMQP connection settings file for the message consumer, this file is usually named `direct.properties` and can be found in the `repository/samples/resources/fix` directory.
 
-``` java
+```java
 java.naming.factory.initial = org.apache.qpid.jndi.PropertiesFileInitialContextFactory
 # register some connection factories
 # connectionfactory.[jndiname] = [ConnectionURL]
@@ -267,7 +185,7 @@ Locate and edit the AMQP connection settings file for WSO2 ESB, this
 file is usually named `         con.properties        ` and can be found
 in the `         repository/samples/resources/fix        ` directory.
 
-``` java
+```java
 #initial context factory
 #java.naming.factory.initial =org.apache.qpid.jndi.PropertiesFileInitialContextFactory
 # register some connection factories
@@ -277,3 +195,33 @@ connectionfactory.qpidConnectionfactory=amqp://guest:guest@clientid/test?brokerl
 # destination.[jndiName] = [BindingURL]
 destination.directQueue=direct://amq.direct//QpidStockQuoteService
 ```
+## Build and run
+
+-   You will need the sample FIX blotter that comes with Quickfix/J
+    (Banzai). Configure the blotter to establish sessions with Synapse.
+-   Configure the AMQP transport for WSO2 ESB.
+-   Start the AMQP consumer, by switching to
+    `           samples/axis2Client          ` directory and running the
+    consumer using the following command. Consumer will listen to the
+    queue `           QpidStockQuoteService          ` , accept the
+    orders and reply to the queue `           replyQueue          ` .
+
+    ```bash
+    ant amqpconsumer \-Dpropfile=$ESB_HOME/repository/samples/resources/fix/direct.properties
+    ```
+
+-   Start Banzai.
+-   Enable FIX transport in the Synapse `          axis2.xml         ` .
+-   Configure Synapse for FIX samples.
+-   Open up the
+    `           ESB_HOME/repository/samples/synapse_sample_260.xml          `
+    file and make sure that the
+    `           transport.fix.AcceptorConfigURL          ` property
+    points to the `           fix-synapse.cfg          ` file you
+    created.
+
+    !!! Note
+        Synapse creates a new FIX session with Banzai at this point.
+
+-   Send an order request from Banzai to Synapse. For example, Buy DELL
+    1000 @ MKT.

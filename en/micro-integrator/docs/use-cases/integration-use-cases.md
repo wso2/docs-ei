@@ -23,13 +23,13 @@ Message routing is one of the most fundamental requirements when integrating sys
 			<b>Examples</b>
 			<ul>
 				<li>
-					Routing based on message header
+					<a href="../../use-cases/examples/message-routing/header-based-routing">Routing based on message header</a>
 				</li>
 				<li>
-					Routing based on message payload
+					<a href="../../use-cases/examples/message-routing/payload-based-routing">Routing based on message payload</a>
 				</li>
 				<li>
-					Splitting and aggregating response messages
+					<a href="../../use-cases/examples/message-routing/split-and-aggregate-responses">Splitting and aggregating response messages</a>
 				</li>
 			</ul>
 		</td>
@@ -56,13 +56,19 @@ The integration of systems that communicate in various message formats is a comm
 			<b>Examples</b>
 			<ul>
 				<li>
-					Routing based on message header
+					<a href="../../use-cases/examples/message-transformations/soap-to-json-conversion">Converting SOAP Messages to JSON</a>
 				</li>
 				<li>
-					Routing based on message payload
+					<a href="../../use-cases/examples/message-transformations/pox-to-json-conversion">Converting POX Messages to JSON</a>
 				</li>
 				<li>
-					Splitting and aggregating response messages
+					<a href="../../use-cases/examples/message-transformations/json-to-soap-conversion">Converting JSON Messages to SOAP</a>
+				</li>
+				<li>
+					<a href="../../use-cases/examples/message-transformations/csv-to-other-formats-conversion">Converting CSV Messages to Other Formats</a>
+				</li>
+				<li>
+					<a href="../../use-cases/examples/message-transformations/csv-conversion">Converting to CSV Message Formats</a>
 				</li>
 			</ul>
 		</td>
@@ -105,17 +111,6 @@ Multiple services are invoked simultaneously without any blocking until a respon
 		</td>
 		<td>
 			<b>Examples</b>
-			<ul>
-				<li>
-					Routing based on message header
-				</li>
-				<li>
-					Routing based on message payload
-				</li>
-				<li>
-					Splitting and aggregating response messages
-				</li>
-			</ul>
 		</td>
 	</tr>
 </table>
@@ -150,13 +145,40 @@ Disadvantages of asynchronous messaging includes the additional component of a m
 			<b>Examples</b>
 			<ul>
 				<li>
-					Routing based on message header
+					<a href="../../use-cases/examples/jms_examples/consuming-jms">Consuming JMS Messages</a>
 				</li>
 				<li>
-					Routing based on message payload
+					<a href="../../use-cases/examples/jms_examples/producing-jms">Producing JMS Messages</a>
 				</li>
 				<li>
-					Splitting and aggregating response messages
+					<a href="../../use-cases/examples/jms_examples/consume-produce-jms">Consumining and Producing JMS Messages</a>
+				</li>
+				<li>
+					<a href="../../use-cases/examples/jms_examples/dual-channel-http-to-jms">Dual Channel HTTP to JMS</a>
+				</li>
+				<li>
+					<a href="../../use-cases/examples/jms_examples/quad-channel-jms-to-jms">Quad Channel JMS to JMS</a>
+				</li>
+				<li>
+					<a href="../../use-cases/examples/jms_examples/guaranteed-delivery-with-failover">Guaranteed Delivery with Failover</a>
+				</li>
+				<li>
+					<a href="../../use-cases/examples/jms_examples/publish-subscribe-with-jms">Publish and Subscribe with JMS</a>
+				</li>
+				<li>
+					<a href="../../use-cases/examples/jms_examples/shared-topic-subscription">Shared Topic Subscriptions</a>
+				</li>
+				<li>
+					<a href="../../use-cases/examples/jms_examples/detecting-repeatedly-redelivered-messages">Detecting Repeatedly Redilivered Messages</a>
+				</li>
+				<li>
+					<a href="../../use-cases/examples/jms_examples/jms-map-message">JMS Map Messaging</a>
+				</li>
+				<li>
+					<a href="../../use-cases/examples/jms_examples/specifying-a-delivery-delay-on-messages">Delivery Delay on Messages</a>
+				</li>
+				<li>
+					<a href="../../use-cases/examples/jms_examples/rabbitmq-examples">RabbitMQ Examples</a>
 				</li>
 			</ul>
 		</td>
@@ -185,17 +207,6 @@ WSO2 Micro Integrator supports more than 150 connectors, where Salesforce, Gmail
 		</td>
 		<td>
 			<b>Examples</b>
-			<ul>
-				<li>
-					Routing based on message header
-				</li>
-				<li>
-					Routing based on message payload
-				</li>
-				<li>
-					Splitting and aggregating response messages
-				</li>
-			</ul>
 		</td>
 	</tr>
 </table>
@@ -218,17 +229,6 @@ The data services functionality that is embedded in the Micro Integrator can dec
 		</td>
 		<td>
 			<b>Examples</b>
-			<ul>
-				<li>
-					Routing based on message header
-				</li>
-				<li>
-					Routing based on message payload
-				</li>
-				<li>
-					Splitting and aggregating response messages
-				</li>
-			</ul>
 		</td>
 	</tr>
 </table>
@@ -256,13 +256,34 @@ For example, messages that are received via HTTP may need to be sent to a JMS qu
 			<b>Examples</b>
 			<ul>
 				<li>
-					Routing based on message header
+					<a href="../../use-cases/examples/protocol-switching/Introduction_to_Switching_Transports_">Introduction to Transport Switching</a>
 				</li>
 				<li>
-					Routing based on message payload
+					<a href="../../use-cases/examples/protocol-switching/Switch_from_FTP_Listener_to_Mail__Sender">Switching from FTP Listener to Mail Sender</a>
 				</li>
 				<li>
-					Splitting and aggregating response messages
+					<a href="../../use-cases/examples/protocol-switching/Switching_from_HTTP_to_FIX_">Switching from HTTP to FIX</a>
+				</li>
+				<li>
+					<a href="../../use-cases/examples/protocol-switching/Switch_from_FIX_to_HTTP_">Switching from FIX to HTTP</a>
+				</li>
+				<li>
+					<a href="../../use-cases/examples/protocol-switching/Switch_from_FIX_to_AMQP_">Switching from FIX to AMQP</a>
+				</li>
+				<li>
+					<a href="../../use-cases/examples/protocol-switching/Switching_between_FIX_Versions_">Switching between FIX Versions</a>
+				</li>
+				<li>
+					<a href="../../use-cases/examples/protocol-switching/Switching_from_TCP_to_HTTP_S_">Switching from TCP to HTTP/S</a>
+				</li>
+				<li>
+					<a href="../../use-cases/examples/protocol-switching/Switching_from_UDP_to_HTTP_S_">Switching from UDP to HTTP/S</a>
+				</li>
+				<li>
+					<a href="../../use-cases/examples/protocol-switching/HTTP_to_MSMQ_and_MSMQ_to_HTTP_">Switching between HTTP to MSMQ</a>
+				</li>
+				<li>
+					<a href="../../use-cases/examples/protocol-switching/Switching_from_HTTP_S_to_JMS_">Switching from HTTP/S to JMS</a>
 				</li>
 			</ul>
 		</td>
@@ -289,13 +310,16 @@ You can implement the Gateway pattern by deploying WSO2 Micro Integrator in a â€
 			<b>Examples</b>
 			<ul>
 				<li>
-					Routing based on message header
+					<a href="../../use-cases/examples/protocol-switching/Introduction_to_Switching_Transports_">Expose HTTP-based Applications as a SOAP Service</a>
 				</li>
 				<li>
-					Routing based on message payload
+					<a href="../../use-cases/examples/protocol-switching/Switch_from_FTP_Listener_to_Mail__Sender">Expose HTTP-based Applications as a REST Api</a>
 				</li>
 				<li>
-					Splitting and aggregating response messages
+					<a href="../../use-cases/examples/protocol-switching/Switching_from_HTTP_to_FIX_">Expose File-based Systems over HTTP</a>
+				</li>
+				<li>
+					<a href="../../use-cases/examples/protocol-switching/Switching_from_HTTP_to_FIX_">Expose Services on Proprietary Protocols over Standard Protocols</a>
 				</li>
 			</ul>
 		</td>
@@ -344,6 +368,10 @@ In many business domains, there are different use cases related to managing file
 		</td>
 	</tr>
 </table>
+
+**Failure tracking**
+
+To track failures in file processing, which can occur when a resource becomes unavailable, the VFS transport creates and maintains a failed records file. This text file contains a list of files that failed to be processed. When a failure occurs, an entry with the failed file name and the timestamp is logged in the text file. When the next polling iteration occurs, the VFS transport checks each file against the failed records file, and if a file is listed as a failed record, it will skip processing and schedule a move task to move that file.
 
 ## Periodic execution of integration processes
 
