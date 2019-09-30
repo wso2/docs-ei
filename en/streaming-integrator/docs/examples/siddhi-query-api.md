@@ -18,7 +18,7 @@ Using simple examples, this tutorial demonstrates how you can use the Siddhi que
 ## Tutorial Outline 
 
 - [Preparing the server](#preparing-the-server)
-- [Creating a Siddhi application](#Creating-a-Siddhi-application)
+- [Creating a Siddhi application using the API](#Creating-a-Siddhi-application-using-the-api)
 - [Running a Siddhi Store API query](#Running-a-Siddhi-Store-API-query)
 - [Fetching the status of a Siddhi Application](#Fetching-the-status-of-a-Siddhi-Application)
 - [Taking a snapshot of a Siddhi Application](#Taking-a-snapshot-of-a-Siddhi-Application) 
@@ -51,7 +51,7 @@ Using simple examples, this tutorial demonstrates how you can use the Siddhi que
     CREATE TABLE SweetProductionTable (name VARCHAR(20),amount double(10,2));
     ```
 
-## Creating a Siddhi application
+## Creating a Siddhi application using the API
 
 1. Open a text file and copy-paste following application into it.
 
