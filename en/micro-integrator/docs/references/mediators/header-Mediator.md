@@ -2,39 +2,22 @@
 
 The **Header Mediator** allows you to manipulate SOAP and HTTP headers.
 
-!!! info
+!!! Info
+    The Header mediator is a [conditionally](../../../concepts/message-processing-units/#classification-of-mediators) [content aware](../../../concepts/message-processing-units/#classification-of-mediators) mediator.
 
-The Header mediator is a
-[conditionally](ESB-Mediators_119131045.html#ESBMediators-Content-awareness)
-[content
-aware](ESB-Mediators_119131045.html#ESBMediators-Content-awareness)
-mediator.
-
-
-------------------------------------------------------------------------
-
-[Syntax](#HeaderMediator-Syntax) \|
-[Configuration](#HeaderMediator-Configuration) \|
-[Examples](#HeaderMediator-Examples)
-
-------------------------------------------------------------------------
-
-### Syntax
+## Syntax
 
 ``` java
-    <header name=”string” (value=”string|{property}” | expression=”xpath”) [scope=default|transport] [action=set|remove]/>
+<header name=”string” (value=”string|{property}” | expression=”xpath”) [scope=default|transport] [action=set|remove]/>
 ```
 
 The optional `         action        ` attribute specifies whether the
 mediator should set or remove the header. If no value is specified, the
 header is set by default.
 
-------------------------------------------------------------------------
+## Configuration
 
-### Configuration
-
-The parameters available to configure the Header mediator are as
-follows.
+The parameters available to configure the Header mediator are as follows.
 
 <table>
 <thead>
@@ -80,134 +63,108 @@ follows.
 </tbody>
 </table>
 
-  
+## Examples
 
-------------------------------------------------------------------------
+This section covers the following scenarios in which the Header mediator can be used.
 
-### Examples
-
-This section covers the following scenarios in which the Header mediator
-can be used.
-
--   [Example 1 -  SOAP headers](#HeaderMediator-Example1-SOAPheaders)
--   [Example 2 - HTTP headers](#HeaderMediator-Example2-HTTPheaders)
--   [Example 3 - Handling headers with complex
-    XML](#HeaderMediator-Example3-HandlingheaderswithcomplexXML)
--   [Example 4 - Adding a dynamic SOAP
-    header](#HeaderMediator-Example4-AddingadynamicSOAPheader)
--   [Example 5 - Setting the endpoint URL
-    dynamically](#HeaderMediator-Example5-SettingtheendpointURLdynamicallyToHeader)
-
-#### Example 1 -  SOAP headers
+### Using SOAP headers
 
 In the following example, the value for `         P1 code        `
 should be included in the SOAP header of the message sent from the
-client to the ESB profile . To do this, the header mediator is added to
+client to the Micro Integrator. To do this, the header mediator is added to
 the in sequence of the proxy configuration as shown below.
 
 To get a response with `         Hello World        ` in the SOAP
 header, the header mediator is also added to the out sequence.
 
 ``` java
-    <inSequence>
-            <header>
-                 <p1:Code xmlns:p1="http://www.XYZ.com/XSD">XYZ</p1:Code>
-            </header>
-            <send>
-               <endpoint>
-                  <address uri="http://localhost:8899/services/SimpleStockQuoteService?wsdl"/>
-               </endpoint>
-            </send>
-         </inSequence>
-         <outSequence>
-            <header>
-               <p2:Header xmlns:p2="http://www.ABC.com/XSD">
-                  <p2:Hello>World</p2:Hello>
-               </p2:Header>
-            </header>
-            <send/>
-         </outSequence>
-                
+<inSequence>
+        <header>
+             <p1:Code xmlns:p1="http://www.XYZ.com/XSD">XYZ</p1:Code>
+        </header>
+        <send>
+           <endpoint>
+              <address uri="http://localhost:8899/services/SimpleStockQuoteService?wsdl"/>
+           </endpoint>
+        </send>
+     </inSequence>
+     <outSequence>
+        <header>
+           <p2:Header xmlns:p2="http://www.ABC.com/XSD">
+              <p2:Hello>World</p2:Hello>
+           </p2:Header>
+        </header>
+        <send/>
+</outSequence>            
 ```
 
-#### Example 2 - HTTP headers
+### Using HTTP headers
 
 The following example makes the ESB profile add the HTTP header
 `         Accept        ` with the value `         image/jpeg        `
 to the HTTP request made to the endpoint.
 
-``` html/xml
-    <inSequence>
-        <header name="Accept" value="image/jpeg" scope="transport"/>
-        <send>
-            <endpoint name="people">
-                <address uri="http://localhost:9763/people/eric+cooke" format="get"/>
-            </endpoint>
-        </send>
-    </inSequence>
-    <outSequence>
-        <send/>
-    </outSequence>
+```
+<inSequence>
+    <header name="Accept" value="image/jpeg" scope="transport"/>
+    <send>
+        <endpoint name="people">
+            <address uri="http://localhost:9763/people/eric+cooke" format="get"/>
+        </endpoint>
+    </send>
+</inSequence>
+<outSequence>
+    <send/>
+</outSequence>
 ```
 
-If you have [enabled wire
-logs](https://docs.wso2.com/display/EI620/Debugging+Mediation#DebuggingMediation-Viewingwirelogs)
-, you will view the following output.
+If you have [enabled wire logs](../../develop/using-wire-logs.md), you will view the following output.
 
 ``` text
-    << GET /people/eric+cooke HTTP/1.1
-    << Accept: image/jpeg
-    << Host: localhost:9763
-    << Connection: Keep-Alive
+<< GET /people/eric+cooke HTTP/1.1
+<< Accept: image/jpeg
+<< Host: localhost:9763
+<< Connection: Keep-Alive
 ```
 
-#### Example 3 - Handling headers with complex XML
+### Handling headers with complex XML
 
 A header can contain XML structured values by embedding XML content
 within the `         <header>        ` element as shown below.
 
-``` xml
-    <header>
-        <m:complexHeader xmlns:m="http://org.synapse.example">
-            <property key="k1" value="v1" />
-            <property key="k2" value="v2" />
-        </m:complexHeader>
-    </header>
-     
+```
+<header>
+    <m:complexHeader xmlns:m="http://org.synapse.example">
+        <property key="k1" value="v1" />
+        <property key="k2" value="v2" />
+    </m:complexHeader>
+</header>
 ```
 
-#### Example 4 - Adding a dynamic SOAP header
+### Adding a dynamic SOAP header
 
 The following configuration takes the value of an element named
 `         symbol        ` in the message body (the namespace
-`         http://services.samples/xsd        ` ), and adds it as a SOAP
+`         http://services.samples/xsd        `), and adds it as a SOAP
 header named `         header1        ` .
 
-``` xml
-     <header xmlns:m="http://org.synapse.example" xmlns:sym="http://services.samples/xsd" name="m:header1" scope="default" expression="//sym:symbol"/>
+```
+<header xmlns:m="http://org.synapse.example" xmlns:sym="http://services.samples/xsd" name="m:header1" scope="default" expression="//sym:symbol"/>
 ```
 
-#### Example 5 - Setting the endpoint URL dynamically
+### Setting the endpoint URL dynamically
 
 In this example, the Header mediator allows the endpoint URL to which
 the message is sent to be set dynamically. It specifies the default
 address to which the message is sent dynamically by deriving the To
-header of the message via an XPath expression. Then the [Send
-mediator](_Send_Mediator_) sends the message to a [Default
-Endpoint](https://docs.wso2.com/display/EI650/Default+Endpoint) . A
-[Default Endpoint](https://docs.wso2.com/display/EI650/Default+Endpoint)
-sends the message to the default address of the message (i.e. address
-specified in the To header). Therefore, in this scenario, selecting the
-[Default Endpoint](https://docs.wso2.com/display/EI650/Default+Endpoint)
-results in the message being sent to relevant URL calculated via the
-`         fn:concat('http://localhost:9764/services/Axis2SampleService_',get-property('epr'))        `
+header of the message via an XPath expression. Then the [Send mediator](send-Mediator.md) sends the message to a **Default Endpoint**. A Default Endpoint sends the message to the default address of the message (i.e. address specified in the To header). Therefore, in this scenario, selecting the Default Endpoint results in the message being sent to relevant URL calculated via the `         fn:concat('http://localhost:9764/services/Axis2SampleService_',get-property('epr'))        `
 expression.
 
-``` xml
-    <header name="To" expression="fn:concat('http://localhost:9764/services/Axis2SampleService_',get-property('epr'))"/>
-    <send>
-    <endpoint>
-    <default/>
-    </endpoint>
-    </send>
+```
+<header name="To" expression="fn:concat('http://localhost:9764/services/Axis2SampleService_',get-property('epr'))"/>
+<send>
+<endpoint>
+<default/>
+</endpoint>
+</send>
 ```

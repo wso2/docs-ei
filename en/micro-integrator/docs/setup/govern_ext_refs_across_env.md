@@ -1,8 +1,6 @@
 # Governing External References Across Environments
 
-Some artifacts must change based on the environment where the
-application is deployed. For example, when you deploy a WSO2 Enterprise
-Integrator(WSO2 EI) application to Dev, QA, and Production environments,
+Some artifacts must change based on the environment where the application is deployed. For example, when you deploy WSO2 Micro Integrator application to Dev, QA, and Production environments,
 the service endpoints are different in each of those environments, so
 you must update the proxy services accordingly with the relevant
 endpoint values.
@@ -15,24 +13,23 @@ proxy service (environment independent artifact) configuration. By doing
 this, the proxy service configuration does not need to be edited each
 time it is deployed in a different environment.
 
-## Understanding the Users
+## Understanding the users
 
 Users interacting with artifacts in each environment often have
 different roles and have access to different resources and tools. For
 example:
 
--   **Developer** : uses WSO2 Enterprise Integrator(WSO2 EI) Tooling to
+-   **Developer**: Uses WSO2 Integration Studio to
     create services and Composite Applications (Capps) and push project
     artifacts to a source code repository, such as GitHub. Typically,
     the developer has no access to QA or Production resources.
--   **DevOps or Operations team member** : uses scripts and the WSO2
-    Management Console to pull the applications created by the
-    developers from the source code repository and deploy them to the QA
+-   **DevOps or Operations team member**: Uses scripts to pull the applications created by the
+    developers from the source code repository and deploys them to the QA
     and Production environments. These users need to update the
     endpoints before they deploy in the different environments.
-    Typically, they do not have WSO2 EI Tooling.
+    Typically, they do not use tooling (WSO2 Integration Studio).
 
-## Best Practices for Migration
+## Best Practices for migration
 
 The following are the best practices that allow you to easily migrate
 applications across environments:
@@ -43,13 +40,13 @@ applications across environments:
     separately. Additionally, you need to define a Composite Application
     for the application itself, i.e., the proxy service.
 
--   Whenever you create a proxy service use the endpoint as a reference
+-   Whenever you create a proxy service, use the endpoint as a reference
     name rather than defining it inline within the proxy service. This
     approach ensures that the proxy service can be deployed from one
     environment to another without having to do any environment specific
     configuration changes.
 
--   Ensure to use the same name for the endpoint across all
+-   Be sure to use the same name for the endpoint across all
     environments.
 -   Ensure the endpoint values are present and accurate in all
     environments prior to deploying an application using those
@@ -57,7 +54,7 @@ applications across environments:
     deploying the application, or make this an automatic part of your
     deployment process.
 
-### Maven Users
+## Maven users
 
 Maven can be used to build and deploy your artifacts across
 environments. When using Maven, you are also able to define the
@@ -65,12 +62,8 @@ endpoints as variables and pass the URL value at the time of building
 the project.
 
 Details on how you can assign endpoint values at the time of building is
-available at
-<http://susinda.blogspot.ae/2017/01/wso2-esb-how-to-assign-endpoints-at.html>
-.
+available in this [blog post](http://susinda.blogspot.ae/2017/01/wso2-esb-how-to-assign-endpoints-at.html).
 
-> In WSO2 EI Tooling, a Maven Multi Module(MMM) project is used to contain
-all the project information. For more information on Maven Multi Module
-projects, see
-<http://www.sonatype.com/books/mvnex-book/reference/multimodule.html> .
-
+In WSO2 Integration Studio, a **Maven Multi Module**(MMM) project is used to contain
+all the project information. Find more information on [Maven Multi Module
+projects](http://www.sonatype.com/books/mvnex-book/reference/multimodule.html).

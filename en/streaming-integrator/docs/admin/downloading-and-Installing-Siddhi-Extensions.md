@@ -14,11 +14,14 @@ To download the Siddhii extensions, follow the steps below
 1. Open the [Siddhi Extensions page](https://store.wso2.com/store/assets/analyticsextension/list).
    The available Siddhi extensions are displayed as follows.  
    ![Siddhi Extension Home Page](../images/downloading-and-installing-siddhi-extensions/Siddhi_Extensions.png)
+
 2. Click on the required extension. In this example, let's click on the **IBM MQ** extension.  
-   ![Download Extension](../images/downloading-and-installing-siddhi-extensions/Download_Extension.png) 
+   ![Download Extension](../images/downloading-and-installing-siddhi-extensions/Download_Extension.png)
+
    In the dialog box that appears, enter your e-mail address and click **Submit**. The extension JAR is downloaded to 
    the default location in your machine (based on your settings).
-3.  If you are not using the latest version of the Streaming Integrator or WSO2 SP/CEP/DAS, and you
+
+3.  If you are not using the latest version of the Streaming Integrator, and you
     want to select the version of the extension that matches your current product version, expand **Version Support** 
     in the left navigator for the selected extension.
 
@@ -29,9 +32,11 @@ To download the Siddhii extensions, follow the steps below
 4. If you need to download an older version of an extension, follow the substeps below.
    1. Once you have clicked on the required extension, click on the **Older Versions** tab. Then click on the link 
    displayed within the tab.  
-    ![Older Versions](../images/downloading-and-installing-siddhi-extensions/Extensions_Older_Versions.png)  
+    ![Older Versions](../images/downloading-and-installing-siddhi-extensions/Extensions_Older_Versions.png)
+
     You are directed to the maven central page where all the available versions of the extension are listed.  
     ![All available versions](../images/downloading-and-installing-siddhi-extensions/Central Maven Repository.png)
+
    2. Click on the relavent version. It directs you to the download page. To download the bundle, click on it.  
     ![Download Bundle](../images/downloading-and-installing-siddhi-extensions/Maven_Bundle.png)
 

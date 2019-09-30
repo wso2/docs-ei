@@ -15,14 +15,15 @@ to a port:
 
 -   Pass the port offset to the server during startup. The following
     command starts the server with the default port incremented by 3
-    `          :./wso2server.sh -DportOffset=3         `
--   Set the Ports section of
-    `          <PRODUCT_HOME>/repository/conf/carbon.xml         ` as
-    follows: `          <Offset>3</Offset>         `
+    `          :./micro-integrator.sh -DportOffset=3         `
+-   Set the Ports section the deployment.toml file as follows:
 
-When you set the server-level port offset as shown above,
-all the ports used by the server
-will change automatically.
+    ```toml
+    [server]
+    offset=3
+    ```
+
+When you set the server-level port offset as shown above, all the ports used by the server will change automatically.
 
 ## Default Ports of WSO2 Micro Integrator
 
@@ -31,40 +32,35 @@ product when the port offset is 0.
 
 ### Servlet transport ports
 
-Listed below are the default ports that are used in WSO2 Enterprise
-Integrator (WSO2 EI) when the port offset is 0.
+Listed below are the default ports that are used in WSO2 Micro Integrator when the port offset is 0.
 
-- 8290 - HTTP servlet transport
-- 8253 - HTTPS servlet transport
+- 8290: HTTP servlet transport
+- 8253: HTTPS servlet transport
 
 ### LDAP server ports
 
-Provided by default in the WSO2 Carbon platform.
-
--   10389 - Used in WSO2 products that provide an embedded LDAP server
+-   10389: Used in WSO2 products that provide an embedded LDAP server
 
 ### KDC ports
 
--   8000 - Used to expose the Kerberos key distribution center server
+-   8000: Used to expose the Kerberos key distribution center server
 
 ### JMX monitoring ports
 
-WSO2 Carbon platform uses TCP ports to monitor a running Carbon instance
+WSO2 Micro Integrator uses TCP ports to monitor a running server instance
 using a JMX client such as JConsole. By default, JMX is enabled in all
-products. You can disable it using
-`         <PRODUCT_HOME>/repository/conf/etc/jmx.xml        ` file.
+products. You can disable it using `         <PRODUCT_HOME>/repository/conf/etc/jmx.xml        ` file.
 
--   11111 - RMIRegistry port. Used to monitor Carbon remotely
--   9999 - RMIServer port. Used along with the RMIRegistry port when
-    Carbon is monitored from a JMX client that is behind a firewall
+-   11111: RMIRegistry port. Used to monitor Carbon remotely
+-   9999: RMIServer port. Used along with the RMIRegistry port when the server is monitored from a JMX client that is behind a firewall.
 
 ### Clustering ports
 
-To cluster any running Carbon instance, either one of the following
+To cluster any running server instance, either one of the following
 ports must be opened.
 
--   45564 - Opened if the membership scheme is multicast
--   4000 - Opened if the membership scheme is wka
+-   45564: Opened if the membership scheme is multicast
+-   4000: Opened if the membership scheme is wka
 
 ### Random ports
 
@@ -80,7 +76,7 @@ every time the server is started.
 -   A random UDP port is opened at server startup due to the log4j
     appender ( `          SyslogAppender         ` ), which is
     configured in the
-    `          <PRODUCT_HOME>/repository/conf/log4j.properties         `
+    `MI_HOME/repository/conf/log4j.properties         `
     file.
 
 

@@ -1,205 +1,141 @@
-# Shared Topic Subscription with the ESB Profile of WSO2 Enterprise Integrator
+# Shared Topic Subscription
 
-With JMS 1.1, a subscription on a topic is not permitted to have more
-than one consumer at a time. That is, if multiple JMS
-consumers subscribe to a JMS topic, and if a message comes to that
-topic, multiple copies of the message is forwarded to each consumer.
-There is no way of sharing messages between consumers that come to the
-topic.
+With JMS 1.1, a subscription on a topic is not permitted to have more than one consumer at a time. That is, if multiple JMS
+consumers subscribe to a JMS topic, and if a message comes to that topic, multiple copies of the message is forwarded to each consumer. There is no way of sharing messages between consumers that come to the topic.
 
-With the shared subscription feature in JMS 2.0 you can overcome this
-restriction.  When shared subscription is used, a message that comes to
-a topic is forwarded to only one of the consumers. That is,
-if multiple JMS consumers subscribe to a JMS topic, consumers can share
-the messages that come to the topic. The advantage of shared topic
-subscription is that it allows to share the workload between consumers.
+With the shared subscription feature in JMS 2.0 you can overcome this restriction.  When shared subscription is used, a message that comes to a topic is forwarded to only one of the consumers. That is, if multiple JMS consumers subscribe to a JMS topic, consumers can share the messages that come to the topic. The advantage of shared topic subscription is that it allows to share the workload between consumers.
 
-The ESB Profile of WSO2 Enterprise Integrator (WSO2 EI) can be
-configured as a shared topic listener that can connect to a shared topic
-subscription as a message consumer (subscriber) to share workload
-between other consumers of the subscription. The following diagram
-illustrates this sample scenario:
+The ESB Profile of WSO2 Enterprise Integrator (WSO2 EI) can be configured as a shared topic listener that can connect to a shared topic subscription as a message consumer (subscriber) to share workload between other consumers of the subscription. The following diagram illustrates this sample scenario:
 
 ![](attachments/119130320/119130321.png)
 
-To demonstrate the sample scenario, let's configure the JMS inbound
-endpoint in the ESB Profile of WSO2 EI as a shared topic listener using
-HornetQ as the message broker. This sample scenario includes the
-following sections:
+To demonstrate the sample scenario, let's configure the JMS inbound endpoint in WSO2 Micro Integrator as a shared topic listener using HornetQ as the message broker.
 
--   [Prerequisites](#SharedTopicSubscriptionwiththeESBProfileofWSO2EnterpriseIntegrator-Prerequisites)
--   [Configuring and starting the HornetQ message
-    broker](#SharedTopicSubscriptionwiththeESBProfileofWSO2EnterpriseIntegrator-ConfiguringandstartingtheHornetQmessagebroker)
--   [Building the sample
-    scenario](#SharedTopicSubscriptionwiththeESBProfileofWSO2EnterpriseIntegrator-Buildingthesamplescenario)
--   [Executing the sample
-    scenario](#SharedTopicSubscriptionwiththeESBProfileofWSO2EnterpriseIntegrator-Executingthesamplescenario)
--   [Analyzing the
-    output](#SharedTopicSubscriptionwiththeESBProfileofWSO2EnterpriseIntegrator-Analyzingtheoutput)
-
-### Prerequisites
-
--   Download the
-    [hornetq-all-new.jar](https://drive.google.com/file/d/0BzqPLt3PumqXNi1vM1hodFc1NWs/view)
-    and copy it to the `          <EI_HOME>/lib/         ` directory.
--   Replace the
-    `          geronimo-jms_1.1_spec-1.1.0.wso2v1.jar         ` file
-    in the `          <EI_HOME>/wso2/lib/endorsed/         `
-    directory with
-    `                     javax.jms-api-2.0.1.jar                   `
--   Download HornetQ from <http://hornetq.jboss.org/downloads> and
-    extract the tar.gz.
-
-### Configuring and starting the HornetQ message broker
-
-1.  Open the
-    `           <HornetQ_HOME>/config/stand-alone/non-clustered/hornetq-jms.xml          `
-    file in a text editor and add the following configuration:
-
-    ``` xml
-        <connection-factory name="QueueConnectionFactory">
-              <xa>false</xa>
-              <connectors>
-                 <connector-ref connector-name="netty"/>
-              </connectors>
-              <entries>
-                 <entry name="/QueueConnectionFactory"/>
-              </entries>
-        </connection-factory>
-         
-        <connection-factory name="TopicConnectionFactory">
-              <xa>false</xa>
-              <connectors>
-                 <connector-ref connector-name="netty"/>
-              </connectors>
-              <entries>
-                 <entry name="/TopicConnectionFactory"/>
-              </entries>
-        </connection-factory>
-    
-        <queue name="wso2">
-              <entry name="/queue/mySampleQueue"/>
-        </queue>
-    
-        <topic name="sampleTopic">
-              <entry name="/topic/exampleTopic"/>
-        </topic>
-    ```
-
-2.  Start the HornetQ message broker
-    -   To start the message broker on Linux, navigate to the
-        `            <HornetQ_HOME>/bin/           ` directory and
-        execute the `            run.sh           ` command with
-        root privileges.
-
-### Building the sample scenario
+## Synapse configuration
 
 The XML configuration for this sample scenario is as follows:
 
-!!! note
-
-Make sure to configure the below properties as follows when setting up
-the inbound endpoint:
-
--   Set the value of the
-    `          transport.jms.JMSSpecVersion         ` property as
-    `          2.0         ` .
--   Set the value of the
-    `          transport.jms.SharedSubscription         ` propoerty as
-    `          true         ` .
--   Specify a subscriber name as the value of the
-    `          transport.jms.DurableSubscriberName         ` property
-    and use the same for all subscribers.
-
-
-``` xml
-    <definitions xmlns="http://ws.apache.org/ns/synapse">
-       <registry provider="org.wso2.carbon.mediation.registry.WSO2Registry">
-          <parameter name="cachableDuration">15000</parameter>
-       </registry>
-       <taskManager provider="org.wso2.carbon.mediation.ntask.NTaskTaskManager">
-          <parameter name="cachableDuration">15000</parameter>
-       </taskManager>
-       <sequence name="request" onError="fault">
-          <log level="full"/>
-          <drop/>
-       </sequence>
-       <sequence name="fault">
-          <log level="full">
-             <property name="MESSAGE" value="Executing default &#34;fault&#34; sequence"/>
-             <property name="ERROR_CODE" expression="get-property('ERROR_CODE')"/>
-             <property name="ERROR_MESSAGE" expression="get-property('ERROR_MESSAGE')"/>
-          </log>
-          <drop/>
-       </sequence>
-       <sequence name="main">
-          <log level="full"/>
-          <drop/>
-       </sequence>
-       <inboundEndpoint name="jms_inbound"
-                        sequence="request"
-                        onError="fault"
-                        protocol="jms"
-                        suspend="false">
-          <parameters>
-             <parameter name="interval">1000</parameter>
-             <parameter name="transport.jms.Destination">/topic/exampleTopic</parameter>
-             <parameter name="transport.jms.CacheLevel">3</parameter>
-             <parameter name="transport.jms.ConnectionFactoryJNDIName">TopicConnectionFactory</parameter>
-             <parameter name="sequential">true</parameter>
-             <parameter name="java.naming.factory.initial">org.jnp.interfaces.NamingContextFactory</parameter>
-             <parameter name="java.naming.provider.url">jnp://localhost:1099</parameter>
-             <parameter name="transport.jms.SessionAcknowledgement">AUTO_ACKNOWLEDGE</parameter>
-             <parameter name="transport.jms.SessionTransacted">false</parameter>
-             <parameter name="transport.jms.ConnectionFactoryType">topic</parameter>
-             <parameter name="transport.jms.JMSSpecVersion">2.0</parameter>
-             <parameter name="transport.jms.SharedSubscription">true</parameter>
-             <parameter name="transport.jms.DurableSubscriberName">mySubscription</parameter>
-          </parameters>
-       </inboundEndpoint>
-    </definitions>
+``` java tab="Registry Artifact"
+<registry provider="org.wso2.carbon.mediation.registry.WSO2Registry">
+  <parameter name="cachableDuration">15000</parameter>
+</registry>
 ```
 
-To build the sample
+``` java tab="Task Manager"
+<taskManager provider="org.wso2.carbon.mediation.ntask.NTaskTaskManager">
+  <parameter name="cachableDuration">15000</parameter>
+</taskManager>
+```
 
--   Start the ESB Profile of WSO2 EI with the sample configuration.
+``` java tab="Sequence (Request)"
+<sequence name="request" onError="fault">
+  <log level="full"/>
+  <drop/>
+</sequence>
+```
 
-### Executing the sample scenario
+``` java tab="Sequence (Fault)"
+<sequence name="fault">
+  <log level="full">
+    <property name="MESSAGE" value="Executing default &#34;fault&#34; sequence"/>
+    <property name="ERROR_CODE" expression="get-property('ERROR_CODE')"/>
+    <property name="ERROR_MESSAGE" expression="get-property('ERROR_MESSAGE')"/>
+  </log>
+  <drop/>
+</sequence>
+```
 
--   Run the following java file:
+``` java tab="Inbound Endpoint"
+<inboundEndpoint name="jms_inbound" sequence="request"onError="fault" protocol="jms" suspend="false">
+  <parameters>
+    <parameter name="interval">1000</parameter>
+    <parameter name="transport.jms.Destination">/topic/exampleTopic</parameter>
+    <parameter name="transport.jms.CacheLevel">3</parameter>
+    <parameter name="transport.jms.ConnectionFactoryJNDIName">TopicConnectionFactory</parameter>
+    <parameter name="sequential">true</parameter>
+    <parameter name="java.naming.factory.initial">org.jnp.interfaces.NamingContextFactory</parameter>
+    <parameter name="java.naming.provider.url">jnp://localhost:1099</parameter>
+    <parameter name="transport.jms.SessionAcknowledgement">AUTO_ACKNOWLEDGE</parameter>
+    <parameter name="transport.jms.SessionTransacted">false</parameter>
+    <parameter name="transport.jms.ConnectionFactoryType">topic</parameter>
+    <parameter name="transport.jms.JMSSpecVersion">2.0</parameter>
+    <parameter name="transport.jms.SharedSubscription">true</parameter>
+    <parameter name="transport.jms.DurableSubscriberName">mySubscription</parameter>
+  </parameters>
+</inboundEndpoint>
+```
 
-    **TopicConsumer.java**
+See the descriptions of the above configurations:
 
+<table>
+  <tr>
+    <th>Artifact</th>
+    <th>Description</th>
+  </tr>
+  <tr>
+    <td>Inbound Endpoint</td>
+    <td>
+      Make sure to configure the below properties as follows when setting up the inbound endpoint:
+      <ul>
+        <li>
+          Set the value of the <code>transport.jms.JMSSpecVersion </code> property as <code>2.0</code>.
+        </li>
+        <li>
+          Set the value of the <code>transport.jms.SharedSubscription</code> propoerty as <code>true</code>.
+        </li>
+        <li>
+          Specify a subscriber name as the value of the <code>transport.jms.DurableSubscriberName</code> property and use the same for all subscribers.
+        </li>
+      </ul>
+    </td>
+  </tr>
+  <tr>
+    <td>Task Manager</td>
+    <td>The task manager configuration...</td>
+  </tr>
+  <tr>
+    <td>Registry Arfiact</td>
+    <td>The registry artifact..</td>
+  </tr>
+</table>
+
+## Running the Example
+
+1. Configure the Micro Integrator (Publisher) with the broker.
+2. Start the Broker.
+3. Start WSO2 Integration Studio and create artifacts with the above configuration. You can copy the synapse configuration given above to the **Source View** of your proxy service.
+4. Create and run the following topic consumer (**TopicConsumer.java**) and run.
+    
     ``` java
-            package SharedTopicSubscribe;
+    package SharedTopicSubscribe;
         
-            import java.util.Properties;
+    import java.util.Properties;
         
-            import javax.jms.Connection;
-            import javax.jms.ConnectionFactory;
-            import javax.jms.MessageConsumer;
-            import javax.jms.Session;
-            import javax.jms.TextMessage;
-            import javax.jms.Topic;
-            import javax.naming.Context;
-            import javax.naming.InitialContext;
+    import javax.jms.Connection;
+    import javax.jms.ConnectionFactory;
+    import javax.jms.MessageConsumer;
+    import javax.jms.Session;
+    import javax.jms.TextMessage;
+    import javax.jms.Topic;
+    import javax.naming.Context;
+    import javax.naming.InitialContext;
         
-            public class TopicConsumer {
-                private static final String DEFAULT_CONNECTION_FACTORY = "TopicConnectionFactory";
-                private static final String DEFAULT_DESTINATION = "/topic/exampleTopic";
-                private static final String INITIAL_CONTEXT_FACTORY = "org.jnp.interfaces.NamingContextFactory";
-                private static final String PROVIDER_URL = "jnp://localhost:1099";
-                private static final String SUBSCRIPTION_NAME = "mySubscription";
+    public class TopicConsumer {
+      private static final String DEFAULT_CONNECTION_FACTORY = "TopicConnectionFactory";
+      private static final String DEFAULT_DESTINATION = "/topic/exampleTopic";
+      private static final String INITIAL_CONTEXT_FACTORY = "org.jnp.interfaces.NamingContextFactory";
+      private static final String PROVIDER_URL = "jnp://localhost:1099";
+      private static final String SUBSCRIPTION_NAME = "mySubscription";
         
-                public static void main(final String[] args) {
-                    try {
+      public static void main(final String[] args) {
+        try {
                         runExample();
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
-                }
+            }
         
-                public static void runExample() throws Exception {
+             public static void runExample() throws Exception {
                     Connection connection = null;
                     Context initialContext = null;
                     try {
@@ -254,28 +190,23 @@ To build the sample
             }
     ```
 
-    This acts as the shared topic subscriber.
-
--   Run the following java file to publish 5 messages to the HornetQ
-    topic:
-
-    **TopicPublisher.java**
+5.  Run the following java file (**TopicPublisher.java**) to publish 5 messages to the HornetQ topic:
 
     ``` java
-            package SharedTopicSubscribe;
+    package SharedTopicSubscribe;
         
-            import java.util.Properties;
+    import java.util.Properties;
         
-            import javax.jms.Connection;
-            import javax.jms.ConnectionFactory;
-            import javax.jms.MessageProducer;
-            import javax.jms.Session;
-            import javax.jms.TextMessage;
-            import javax.jms.Topic;
-            import javax.naming.Context;
-            import javax.naming.InitialContext;
+    import javax.jms.Connection;
+    import javax.jms.ConnectionFactory;
+    import javax.jms.MessageProducer;
+    import javax.jms.Session;
+    import javax.jms.TextMessage;
+    import javax.jms.Topic;
+    import javax.naming.Context;
+    import javax.naming.InitialContext;
         
-            public class TopicPublisher {
+    public class TopicPublisher {
                 private static final String DEFAULT_CONNECTION_FACTORY = "TopicConnectionFactory";
                 private static final String DEFAULT_DESTINATION = "/topic/exampleTopic";
                 private static final String INITIAL_CONTEXT_FACTORY = "org.jnp.interfaces.NamingContextFactory";
@@ -359,15 +290,6 @@ To build the sample
             }
     ```
 
-### Analyzing the output
+You will see that the 5 messages are shared between the inbound listener and `         TopicConsumer.java        ` . This is because both the inbound listener and `         TopicConsumer.java        ` are configured as shared subscribers.
 
-You will see that the 5 messages are shared between the inbound listener
-and `         TopicConsumer.java        ` . This is because both the
-inbound listener and `         TopicConsumer.java        ` are
-configured as shared subscribers.
-
-The total number of consumed messages between the inbound listener and
-`         TopicConsumer.java        ` will be equal to the number
-messages published by `         TopicPublisher.java        ` .
-
-  
+The total number of consumed messages between the inbound listener and `         TopicConsumer.java        ` will be equal to the number messages published by `         TopicPublisher.java        `.

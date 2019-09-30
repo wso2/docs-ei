@@ -1,13 +1,15 @@
 # Installing WSO2 Micro Integrator on a VM
 
-Follow the steps given below to install and run WSO2 Micro Integrator on
-a VM.
+Follow the steps given below to install and run WSO2 Micro Integrator on a VM.
 
 ## Installing the WSO2 Micro Integrator
 
 Follow the steps below:
 
-1.  Go to the WSO2 Micro Integrator [product page](https://wso2.com/integration/micro-integrator/) and click **Download** to get the **.pkg** file. Alternatively, go to **Other Installation Options** and click **Binary** to download the product distribution as a ZIP file.
+1.  Go to the WSO2 Micro Integrator [product page](https://wso2.com/integration/micro-integrator/) and click **Download** to get the **product installer**. The installer that is compatible with you operating system will be downloaded.
+    
+    !!! Info
+        Alternatively, go to **Other Installation Options** and click **Binary** to download the product distribution as a ZIP file.
 
 2.  If you used the installer, double-click to open the installation
     wizard, which will guide you through the installation. When you
@@ -51,10 +53,10 @@ a place specific to your OS as shown below:
       </tr>
    </tbody>
 </table>
+
 ### Uninstalling the product
 
-If you used the **installer** to install the product, you can uninstall
-by following the steps given below:
+If you used the **installer** to install the product, you can uninstall by following the steps given below:
 
 <table>
 <thead>
@@ -106,13 +108,12 @@ by following the steps given below:
 
 ## Running the Micro Integrator
 
-Start the WSO2 Micro Integrator by following the instructions given
-below.
+Start the WSO2 Micro Integrator by following the instructions given below.
 
 ### Using the installer
 
 * On **MacOS/Linux/CentOS**, open a terminal and execute the command given below.
-  ``` java
+  ```bash
   sudo wso2mi-1.0.0
   ```
   The operation log keeps running until the profile starts, which usually
@@ -135,24 +136,25 @@ will open a terminal and start the relevant profile.
 3.  Execute the relevant command.
 
     * On **MacOS/Linux/CentOS**
-      ``` java
+      ```bash
       sh micro-integrator.sh
       ```
-          If you have **installed the product using the installer**
-          , and you want to manually run the product startup script from the
-          /bin directory, you need to use the 'sudo
-          launcher\_micro-integrator' command. This script automatically
-          assigns the JAVA HOME of your VM to the root user of your Micro
-          Integrator instance.
+      If you have **installed the product using the installer**
+      , and you want to manually run the product startup script from the
+      /bin directory, you need to use the 'sudo
+      launcher_micro-integrator' command. This script automatically
+      assigns the JAVA HOME of your VM to the root user of your Micro
+      Integrator instance.
+
     * On **Windows**
-      ``` java
+      ```bash
       micro-integrator.bat
       ```
 
 By default, the HTTP listener port is 8290 and the default HTTPS
 listener port is 8253.
 
-## Stopping the Micro In tegrator
+## Stopping the Micro Integrator
 
 To stop the Micro Integrator runtime, press Ctrl+C in the command
 window.

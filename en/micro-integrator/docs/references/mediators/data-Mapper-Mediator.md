@@ -3,61 +3,30 @@
 Data Mapper mediator is a data mapping solution that can be integrated
 into a mediation sequence. It converts and transforms one data format to
 another, or changes the structure of the data in a message. It provides
-WSO2 Integration Studio to create a graphical mapping configuration and
-generates the files required to execute this graphical mapping
-configuration by the WSO2 Data Mapper engine.
+WSO2 Integration Studio with a graphical mapping configuration and
+generates the files required for executing this graphical mapping
+configuration through the WSO2 Data Mapper engine.
 
 WSO2 Data Mapper is an independent component that does not depend on any
 other WSO2 product. However, other products can use the Data Mapper to
 achieve/offer data mapping capabilities. Data Mapper Mediator is the
-intermediate component you need for that, which gives the data mapping
-capability into the ESB profile of WSO2 EI.
+intermediate component, which gives the data mapping
+capability into WSO2 Micro Integrator.
 
-Data Mapper mediator finds the configuration files from the Registry and
-configures the Data Mapper Engine with the input message type
-(XML/JSON/CSV) and output message type (XML/JSON/CSV). Then it takes the
-request message from the ESB profile message flow and uses the
-configured Data Mapper Engine to execute the transformation and adds the
-output message to the ESB profile message flow.
+Data Mapper mediator finds the configuration files from the Registry and configures the Data Mapper Engine with the input message type (XML/JSON/CSV) and output message type (XML/JSON/CSV). Then it takes the request message from the Micro Integrator message flow and uses the configured Data Mapper Engine to execute the transformation and adds the output message to the Micro Integrator message flow.
 
-!!! info
+!!! Info
+    The Data Mapper mediator is a [content-aware](../../../concepts/message-processing-units/#classification-of-mediators) mediator.
 
-The Data Mapper mediator is a
-[content-aware](https://docs.wso2.com/display/ESB500/Mediators#Mediators-Content-awareness)
-mediator.
-
-
--   [Prerequisites](#DataMapperMediator-Prerequisites)
--   [Syntax](#DataMapperMediator-Syntax)
--   [Configuration](#DataMapperMediator-Configuration)
--   [Components of Data
-    Mapper](#DataMapperMediator-ComponentsofDataMapper)
--   [Data Mapper element and attribute
-    types](#DataMapperMediator-DataMapperelementandattributetypes)
--   [Data Mapper operations](#DataMapperMediator-DataMapperoperations)
--   [Examples](#DataMapperMediator-Examples)
-
-### Prerequisites
-
-You need to install the WSO2 Integration Studio to use the Data Mapper
-mediator. For instructions on installing this Plugin, see [Installing
-WSO2 Integration
-Studio](https://docs.wso2.com/display/EI650/WSO2+Integration+Studio) .
-
-------------------------------------------------------------------------
-
-### Syntax
+## Syntax
 
 ``` xml
-    <datamapper config="gov:datamapper/FoodMapping.dmc" inputSchema="gov:datamapper/FoodMapping_inputSchema.json" inputType="XML" outputSchema="gov:datamapper/FoodMapping_outputSchema.json" outputType="XML"/> 
+<datamapper config="gov:datamapper/FoodMapping.dmc" inputSchema="gov:datamapper/FoodMapping_inputSchema.json" inputType="XML" outputSchema="gov:datamapper/FoodMapping_outputSchema.json" outputType="XML"/> 
 ```
 
-------------------------------------------------------------------------
+## Configuration
 
-### Configuration
-
-The parameters available for configuring the Data Mapper mediator are as
-follows.
+The parameters available for configuring the Data Mapper mediator are as follows.
 
 <table>
 <thead>
@@ -69,16 +38,16 @@ follows.
 <tbody>
 <tr class="odd">
 <td><strong>Mapping Configuration</strong></td>
-<td>The file, which contains the script file that is used to execute the mapping. You need to create a mapping configuration file using the WSO2 Integration Studio plugin, and store it either in the Configuration Registry or Governance Registry, to select and upload it from here.</td>
+<td>The file, which contains the script file that is used to execute the mapping. You need to create a mapping configuration file using WSO2 Integration Studio and store it either in the <b>Configuration Registry</b> or <b>Governance Registry</b> to select and upload it from here.</td>
 </tr>
 <tr class="even">
 <td><strong>Input Schema</strong></td>
-<td>JSON schema, which represents the input message format. You need to create an input schema file using the WSO2 Integration Studio plugin, and store it either in the Configuration Registry or Governance Registry to select and upload it from here.<br />
+<td>JSON schema, which represents the input message format. You need to create an input schema file using WSO2 Integration Studio and store it either in the <b>Configuration Registry</b> or <b>Governance Registry</b> to select and upload it from here.<br />
 </td>
 </tr>
 <tr class="odd">
 <td><strong>Output Schema</strong></td>
-<td>JSON schema, which represents the output message format. You need to create an output schema file using the WSO2 Integration Studio plugin, and store it either in the Configuration Registry or Governance Registry to select and upload it from here.</td>
+<td>JSON schema, which represents the output message format. You need to create an output schema file using the WSO2 Integration Studio plugin, and store it either in the <b>Configuration Registry</b> or <b>Governance Registry</b> to select and upload it from here.</td>
 </tr>
 <tr class="even">
 <td><strong>Input Type</strong></td>
@@ -91,109 +60,75 @@ follows.
 </tbody>
 </table>
 
-  
+## Components of Data Mapper
 
-------------------------------------------------------------------------
+WSO2 Data Mapper consists of two components. They are <b>Data Mapper Tooling</b> and <b>Data Mapper Engine</b>.
 
-### Components of Data Mapper
+### Data Mapper Tooling
 
-WSO2 Data Mapper consists of two components. They are Data Mapper
-Tooling and Data Mapper Engine.
-
-#### Data Mapper Tooling
-
-Data Mapper Tooling component is the interface used to create
-configuration files that are required by the Data Mapper Engine to
-execute the mapping. Following three configuration files are needed by
-the Data Mapper engine.
+The Data Mapper Tooling component is the interface used to create configuration files that are required by the Data Mapper Engine to execute the mapping. Following three configuration files are needed by the Data Mapper engine.
 
 -   Input schema file
 -   Output schema file
 -   Mapping configuration file
 
-These three files are generated by the Data Mapper Tool and saved in a
-Registry Resource project, which you deploy in a WSO2 server as shown in
+These three files are generated by the Data Mapper Tool and saved in a Registry Resource project, which you deploy in WSO2 Micro Integrator as shown in
 the example below.
 
-![generated configuration
-files](attachments/119131284/119131287.png "generated configuration files"){width="542"
-height="229"}
+![generated configuration files](/assets/img/mediators/119131284/119131287.png)
 
-!!! info
+!!! Info
+    The `         .datamapper        ` and `         .datamapper_diagram        ` files as shown in the example above contain meta data related to the Data Mapper diagram. They are ignored when you deploy the project to a server to be used by the Data Mapper Engine. Only the two schema files and the `         .dmc        ` (Data Mapper Configuration) get deployed.
 
-The `         .datamapper        ` and
-`         .datamapper_diagram        ` files as shown in the example
-above contain meta data related to the Data Mapper diagram. They are
-ignored when you deploy the project to a server to be used by the Data
-Mapper Engine. Only the two schema files and the `         .dmc        `
-(Data Mapper Configuration) get deployed.
-
-
-##### Input and output schema files
+#### Input and output schema files
 
 Input and output schema files are custom-defined JSON schemas that
 define the input/output format of input/output messages. T he Data
 Mapper tool generates them when loading the input and output files as
 shown below.
 
-!!! info
+!!! Info
+    You can also create the input and output JSON Schemas manually using the Data Mapper Diagram Editor. For instructions, see [Creating a JSON Schema Manually](Data-Mapper-JSON-Schema-Specification.m).
 
-You can also create the input and output JSON Schemas manually using the
-Data Mapper Diagram Editor. For instructions, see [Creating a JSON
-Schema
-Manually](https://docs.wso2.com/display/ESB500/Creating+a+JSON+Schema+Manually)
-.
-
-
-![](attachments/119131284/119134796.png){width="900" height="192"}  
-
-![](attachments/119131284/119131291.png){width="567" height="250"}
+![](/assets/img/mediators/119131284/119134796.png) 
+![](/assets/img/mediators/119131284/119131291.png)
 
 You can load the following input/output message formats:
 
-!!! info
+!!! Info
+    When loading a sample input XML file, you cannot have the default namespace (i.e. without a prefix in the namespace element). Also, you need to use the same prefix in all occurrences that refer to the same namespace within one XML file. For example, see the use of the prefix `         axis2ns11        ` in the example below.
 
-When loading a sample input XML file, you cannot have the default
-namespace (i.e. without a prefix in the namespace element). Also, you
-need to use the same prefix in all occurrences that refer to the same
-namespace within one XML file. For example, see the use of the prefix
-`         axis2ns11        ` in the example below.
-
-  
-
-![](images/icons/grey_arrow_down.png){.expand-control-image} Sample
+![](images/icons/grey_arrow_down.png) Sample
 input XML file
 
 ``` xml
-    <?xml version="1.0" encoding="utf-8"?>
-    <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
-    <soapenv:Header>
-        <axis2ns11:LimitInfoHeader xmlns:axis2ns11="urn:partner.soap.sforce.com">
-            <axis2ns11:limitInfo>
-                <axis2ns11:current>42336</axis2ns11:current>
-                <axis2ns11:limit>83000</axis2ns11:limit>
-                <axis2ns11:type>API REQUESTS</axis2ns11:type>
-            </axis2ns11:limitInfo>
-        </axis2ns11:LimitInfoHeader>
-    </soapenv:Header>
-    <soapenv:Body>
-        <axis2ns11:records xmlns:axis2ns11="urn:partner.soap.sforce.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="sf:sObject">
-        <sf:type xmlns:sf="urn:sobject.partner.soap.sforce.com">Account</sf:type>
-        <sf:Id xmlns:sf="urn:sobject.partner.soap.sforce.com">001E0000002SFO2IAO</sf:Id>
-        <sf:CreatedDate xmlns:sf="urn:sobject.partner.soap.sforce.com">2011-03-15T00:15:00.000Z</sf:CreatedDate>
-        <sf:Id xmlns:sf="urn:sobject.partner.soap.sforce.com">001E0000002SFO2IAO</sf:Id>
-        <sf:Name xmlns:sf="urn:sobject.partner.soap.sforce.com">WSO2</sf:Name>
-    </axis2ns11:records>
-    </soapenv:Body>
-    </soapenv:Envelope>
+<?xml version="1.0" encoding="utf-8"?>
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+<soapenv:Header>
+    <axis2ns11:LimitInfoHeader xmlns:axis2ns11="urn:partner.soap.sforce.com">
+        <axis2ns11:limitInfo>
+            <axis2ns11:current>42336</axis2ns11:current>
+            <axis2ns11:limit>83000</axis2ns11:limit>
+            <axis2ns11:type>API REQUESTS</axis2ns11:type>
+        </axis2ns11:limitInfo>
+    </axis2ns11:LimitInfoHeader>
+</soapenv:Header>
+<soapenv:Body>
+    <axis2ns11:records xmlns:axis2ns11="urn:partner.soap.sforce.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="sf:sObject">
+    <sf:type xmlns:sf="urn:sobject.partner.soap.sforce.com">Account</sf:type>
+    <sf:Id xmlns:sf="urn:sobject.partner.soap.sforce.com">001E0000002SFO2IAO</sf:Id>
+    <sf:CreatedDate xmlns:sf="urn:sobject.partner.soap.sforce.com">2011-03-15T00:15:00.000Z</sf:CreatedDate>
+    <sf:Id xmlns:sf="urn:sobject.partner.soap.sforce.com">001E0000002SFO2IAO</sf:Id>
+    <sf:Name xmlns:sf="urn:sobject.partner.soap.sforce.com">WSO2</sf:Name>
+</axis2ns11:records>
+</soapenv:Body>
+</soapenv:Envelope>
 ```
-    
 
 -   **XML:** to load a sample XML file
 -   **JSON:** to load a sample JSON file
 -   **CSV:** to load a sample CSV file with column names as the first
     record
-
 -   **JSONSCHEMA:** to load a WSO2 Data Mapper JSON schema
 -   **CONNECTOR:** to use Data Mapper with WSO2 EI Connectors.
     Connectors will contain JSON schemas for each operation that defines
@@ -204,14 +139,14 @@ input XML file
     that the related JSON schema will be loaded for the Data Mapper by
     the tool.
 
-##### Mapping configuration file
+#### Mapping configuration file
 
 This is a JavaScript file generated by looking at the diagram you draw
 in the Data Mapper Diagram Editor by connecting input elements to output
 elements. Every operation you define in the diagram gets converted to
 a JavaScript operation.
 
-#### Data Mapper Engine
+### Data Mapper Engine
 
 You need the following information to configure the Data Mapper Engine:
 
@@ -235,7 +170,7 @@ functions like `         startsWith()        ` and
 limitations in executing those when using custom functions
 and operators.
 
-##### Using product-specific runtime variables
+#### Using product-specific runtime variables
 
 Also, the Data Mapper engine allows you to use runtime product-specific
 variables in the mapping. The intermediate component should construct a
@@ -251,8 +186,6 @@ the Data Mapper mediator will identify the required properties to
 execute the mapping and populate a map with the required properties and
 will send it to the Data Mapper Engine.
 
-------------------------------------------------------------------------
-
 ### Data Mapper element and attribute types
 
 Following are the element and attribute types that are supported by the
@@ -263,15 +196,13 @@ Data Mapper.
 -   \<\> - represents primitive field values
 -   A - represents XML attribute values
 
-------------------------------------------------------------------------
-
 ### Data Mapper operations
 
 The operations palette placed in the left-hand side of the WSO2 Data
 Mapping Diagram Editor displays t he operations that the Data Mapper
 supports as shown below .
 
-![](attachments/119131284/119131286.png){width="900" height="349"}
+![](/assets/img/mediators/119131284/119131286.png)
 
 You can drag and drop these operations to the Editor area. There are six
 categories of operations as follows:
@@ -286,132 +217,132 @@ categories of operations as follows:
 
 #### Links
 
-![](attachments/119131284/119134807.png){width="24"} **Data Mapping
+![](/assets/img/mediators/119131284/119134807.png) 
+
+**Data Mapping
 Link:** maps elements with other operators and elements.
 
 #### Common
 
-![](attachments/119131284/119134806.png){width="24"} **Constant:**
+![](/assets/img/mediators/119131284/119134806.png) **Constant:**
 defines String, number or boolean constant values.
 
-![](attachments/119131284/119134805.png){width="24"} **Custom
+![](/assets/img/mediators/119131284/119134805.png) **Custom
 Function:** defines custom functions to use in the mapping.
 
-![](attachments/119131284/119134804.png){width="24"} **Properties:**
+![](/assets/img/mediators/119131284/119134804.png) **Properties:**
 uses product-specific runtime variables.
 
-![](attachments/119131284/119134802.png){width="24"} **Global
+![](/assets/img/mediators/119131284/119134802.png) **Global
 Variable:** instantiates global variables that you can access from
 anywhere.
 
-![](attachments/119131284/119134803.png){width="24"} **Compare:**
+![](/assets/img/mediators/119131284/119134803.png) **Compare:**
 compares two inputs in the mapping.
 
 #### Arithmetic
 
-![](attachments/119131284/119134936.png){width="24"} **Add:** adds two
+![](/assets/img/mediators/119131284/119134936.png) **Add:** adds two
 numbers.
 
-![](attachments/119131284/119134935.png){width="24"} **Subtract:**
+![](/assets/img/mediators/119131284/119134935.png) **Subtract:**
 subtracts two or more numbers.
 
-![](attachments/119131284/119134934.png){width="24"} **Multiply:**
+![](/assets/img/mediators/119131284/119134934.png) **Multiply:**
 multiplies two or more numbers.
 
-![](attachments/119131284/119134933.png){width="24"} **Divide:** divides
+![](/assets/img/mediators/119131284/119134933.png) **Divide:** divides
 two numbers.
 
-![](attachments/119131284/119134932.png){width="24"} **Ceiling:**
+![](/assets/img/mediators/119131284/119134932.png) **Ceiling:**
 derives the ceiling value of a number (closest larger integer value).
 
-![](attachments/119131284/119134931.png){width="24"} **Floor:** derives
+![](/assets/img/mediators/119131284/119134931.png)**Floor:** derives
 the floor value of a number (closest lower integer value).
 
-![](attachments/119131284/119134930.png){width="24"} **Round:** derives
+![](/assets/img/mediators/119131284/119134930.png) **Round:** derives
 the nearest integer value.
 
-![](attachments/119131284/119134929.png){width="24"} **Set Precision:**
+![](/assets/img/mediators/119131284/119134929.png) **Set Precision:**
 formats a number into a specified length.
 
-![](attachments/119131284/119134928.png){width="24"} **Absolute Value:**
+![](/assets/img/mediators/119131284/119134928.png) **Absolute Value:**
 derives the absolute value of a rational number.
 
-![](attachments/119131284/119134927.png){width="24"} **Min:** derives
+![](/assets/img/mediators/119131284/119134927.png) **Min:** derives
 the minimum number from given inputs
 
-![](attachments/119131284/119134926.png){width="24"} **Max:** derives
+![](/assets/img/mediators/119131284/119134926.png) **Max:** derives
 the maximum number from given inputs
 
 #### Conditional
 
-![](attachments/119131284/119134949.png){width="24"} **IfElse:** uses a
+![](/assets/img/mediators/119131284/119134949.png) **IfElse:** uses a
 condition and selects one input from given two.
 
 #### Boolean
 
-![](attachments/119131284/119134954.png){width="24"} **AND:** performs
+![](/assets/img/mediators/119131284/119134954.png) **AND:** performs
 the boolean AND operation on inputs.
 
-![](attachments/119131284/119134953.png){width="24"} **OR:** performs
+![](/assets/img/mediators/119131284/119134953.png) **OR:** performs
 the boolean OR operation on inputs.
 
-![](attachments/119131284/119134952.png){width="24"} **NOT:** performs
+![](/assets/img/mediators/119131284/119134952.png) **NOT:** performs
 the boolean NOT operation on inputs.
 
 #### Type conversion
 
-![](attachments/119131284/119134964.png){width="24"} **StringToNumber:**
-converts a String value to number (“0” -\> 0).
+![](/assets/img/mediators/119131284/119134964.png) **StringToNumber:**
+converts a String value to number (“0” -> 0).
 
-![](attachments/119131284/119134963.png){width="24"}
-**StringToBoolean:** converts a String value to boolean (“true” -\>
+![](/assets/img/mediators/119131284/119134963.png)
+**StringToBoolean:** converts a String value to boolean (“true” ->
 true).
 
-![](attachments/119131284/119134962.png){width="24"} **ToString:**
+![](/assets/img/mediators/119131284/119134962.png) **ToString:**
 converts a number or a boolean value to String.
 
 #### String
 
-![](attachments/119131284/119134978.png){width="24"} **Concat:**
+![](/assets/img/mediators/119131284/119134978.png) **Concat:**
 concatenates two or more Strings.
 
-![](attachments/119131284/119134977.png){width="24"} **Split:** splits a
+![](/assets/img/mediators/119131284/119134977.png) **Split:** splits a
 String by a matching String value.
 
-![](attachments/119131284/119134975.png){width="24"} **Uppercase:**
+![](/assets/img/mediators/119131284/119134975.png) **Uppercase:**
 converts a String to uppercase letters.
 
-![](attachments/119131284/119134976.png){width="24"} **Lowercase:**
+![](/assets/img/mediators/119131284/119134976.png) **Lowercase:**
 converts a String to lowercase letters.
 
-![](attachments/119131284/119134974.png){width="24"} **String Length:**
+![](/assets/img/mediators/119131284/119134974.png) **String Length:**
 gets the length of the String.
 
-![](attachments/119131284/119134973.png){width="24"} **StartsWith:**
+![](/assets/img/mediators/119131284/119134973.png)**StartsWith:**
 checks whether a String starts with a specific value. (This is not
 supported in Java 7.)
 
-![](attachments/119131284/119134972.png){width="24"} **EndsWith:**
+![](/assets/img/mediators/119131284/119134972.png) **EndsWith:**
 checks whether String ends with a specific value. (This is not supported
 in Java 7.)
 
-![](attachments/119131284/119134971.png){width="24"} **Substring:**
+![](/assets/img/mediators/119131284/119134971.png) **Substring:**
 extracts a part of the String value.
 
-![](attachments/119131284/119134970.png){width="24"} **Trim:** removes
+![](/assets/img/mediators/119131284/119134970.png) **Trim:** removes
 white spaces from the beginning and end of a String.
 
-![](attachments/119131284/119134969.png){width="24"} **Replace:**
+![](/assets/img/mediators/119131284/119134969.png) **Replace:**
 replaces the first occurrence of a target String with another.
 
-![](attachments/119131284/119134968.png){width="24"} **Match** – check
+![](/assets/img/mediators/119131284/119134968.png) **Match** – check
 whether the input match with a (JS) Regular Expression
 
-------------------------------------------------------------------------
+## Examples
 
-### Examples
-
-#### Example 1 - Creating a SOAP payload with namespaces
+### Example 1 - Creating a SOAP payload with namespaces
 
 This example creates a Salesforce login SOAP payload using a JSON
 payload. The login payload consists of XML namespaces. Even though the
@@ -419,271 +350,264 @@ JSON payload does not contain any namespace information, the output JSON
 schema will be generated with XML namespace information using the
 provided SOAP payload.
 
-![example one Data mapper
-diagram](attachments/119131284/119131296.png "example one Data mapper diagram"){width="900"
-height="196"}
+![example one Data mapper diagram](/assets/img/mediators/119131284/119131296.png)
 
 The sample input JSON payload is as follows.
 
 ``` js
-     {  
-       "name":"Watson",
-       "password":"watson@123"
-    }
+{  
+   "name":"Watson",
+   "password":"watson@123"
+}
 ```
 
 The sample output XML is as follows.
 
 ``` xml
-    <soapenv:Envelope xmlns:urn="urn:enterprise.soap.sforce.com" xmlns:soapenv="http://www.w3.org/2003/05/soap-envelope/">
-      <soapenv:Body>
-        <urn:login>
-          <urn:username><b>user@domain.com</b></urn:username>
-          <urn:password><b>secret</b></urn:password>
-        </urn:login>
-      </soapenv:Body>
-    </soapenv:Envelope>
+<soapenv:Envelope xmlns:urn="urn:enterprise.soap.sforce.com" xmlns:soapenv="http://www.w3.org/2003/05/soap-envelope/">
+  <soapenv:Body>
+    <urn:login>
+      <urn:username><b>user@domain.com</b></urn:username>
+      <urn:password><b>secret</b></urn:password>
+    </urn:login>
+  </soapenv:Body>
+</soapenv:Envelope>
 ```
 
-#### Example 2 - M apping SOAP header elements
+### Example 2 - Mapping SOAP header elements
 
 This example demonstrates how to map SOAP header elements along with
 SOAP body elements to create a certain SOAP payload, by creating a
 Salesforce convertLead SOAP payload using a JSON payload. The Convert
 Lead SOAP payload needs mapping SOAP header information.  
-E.g.
-`         <urn:sessionId>QwWsHJyTPW.1pd0_jXlNKOSU</urn:sessionId>        `
+E.g. `         <urn:sessionId>QwWsHJyTPW.1pd0_jXlNKOSU</urn:sessionId>        `
 
-![](attachments/119131284/119131295.png){width="900" height="400"}
+![](/assets/img/mediators/119131284/119131295.png)
 
 The sample input JSON payload is as follows.
 
 ``` js
-    {  
-       "owner":{  
-          "ID":"005D0000000nVYVIA2",
-          "name":"Smith",
-          "city":"CA",
-          "code":"94041",
-          "country":"US"
-       },
-       "lead":{  
-          "ID":"00QD000000FP14JMAT",
-          "name":"Carl",
-          "city":"NC",
-          "code":"97788",
-          "country":"US"
-       },
-       "sendNotificationEmail":"true",
-       "convertedStatus":"Qualified",
-       "doNotCreateOpportunity":"true",
-       "opportunityName":"Partner Opportunity",
-       "overwriteLeadSource":"true",
-       "sessionId":"QwWsHJyTPW.1pd0_jXlNKOSU"
-    }
+{  
+   "owner":{  
+      "ID":"005D0000000nVYVIA2",
+      "name":"Smith",
+      "city":"CA",
+      "code":"94041",
+      "country":"US"
+   },
+   "lead":{  
+      "ID":"00QD000000FP14JMAT",
+      "name":"Carl",
+      "city":"NC",
+      "code":"97788",
+      "country":"US"
+   },
+   "sendNotificationEmail":"true",
+   "convertedStatus":"Qualified",
+   "doNotCreateOpportunity":"true",
+   "opportunityName":"Partner Opportunity",
+   "overwriteLeadSource":"true",
+   "sessionId":"QwWsHJyTPW.1pd0_jXlNKOSU"
+}
 ```
 
 The sample o utput XML is as follows.
 
 ``` xml
-    <?xml version="1.0" encoding="utf-8"?>  
-    <soapenv:Envelope xmlns:urn="urn:enterprise.soap.sforce.com" xmlns:soapenv="http://www.w3.org/2003/05/soap-envelope/">
-      <soapenv:Header>
-         <urn:SessionHeader>
-            <urn:sessionId>QwWsHJyTPW.1pd0_jXlNKOSU</urn:sessionId>
-         </urn:SessionHeader>
-         </soapenv:Header>
-         <soapenv:Body>
-         <urn:convertLead >
-            <urn:leadConverts> <!-- Zero or more repetitions -->
-               <urn:convertedStatus>Qualified</urn:convertedStatus>
-               <urn:doNotCreateOpportunity>false</urn:doNotCreateOpportunity>
-               <urn:leadId>00QD000000FP14JMAT</urn:leadId>
-               <urn:opportunityName>Partner Opportunity</urn:opportunityName>
-               <urn:overwriteLeadSource>true</urn:overwriteLeadSource>
-               <urn:ownerId>005D0000000nVYVIA2</urn:ownerId>
-               <urn:sendNotificationEmail>true</urn:sendNotificationEmail>
-            </urn:leadConverts>
-         </urn:convertLead>
-    </soapenv:Body>
-    </soapenv:Envelope>
+<?xml version="1.0" encoding="utf-8"?>  
+<soapenv:Envelope xmlns:urn="urn:enterprise.soap.sforce.com" xmlns:soapenv="http://www.w3.org/2003/05/soap-envelope/">
+  <soapenv:Header>
+     <urn:SessionHeader>
+        <urn:sessionId>QwWsHJyTPW.1pd0_jXlNKOSU</urn:sessionId>
+     </urn:SessionHeader>
+     </soapenv:Header>
+     <soapenv:Body>
+     <urn:convertLead >
+        <urn:leadConverts> <!-- Zero or more repetitions -->
+           <urn:convertedStatus>Qualified</urn:convertedStatus>
+           <urn:doNotCreateOpportunity>false</urn:doNotCreateOpportunity>
+           <urn:leadId>00QD000000FP14JMAT</urn:leadId>
+           <urn:opportunityName>Partner Opportunity</urn:opportunityName>
+           <urn:overwriteLeadSource>true</urn:overwriteLeadSource>
+           <urn:ownerId>005D0000000nVYVIA2</urn:ownerId>
+           <urn:sendNotificationEmail>true</urn:sendNotificationEmail>
+        </urn:leadConverts>
+     </urn:convertLead>
+</soapenv:Body>
+</soapenv:Envelope>
 ```
 
-#### Example 3 - Mapping primitive types
+### Example 3 - Mapping primitive types
 
 This example demonstrates how you can map an XML payload with integer,
 boolean etc. values, into a JSON payload with required primitive types,
 by specifying the required primitive type in the JSON schema.
 
-![](attachments/119131284/119131294.png){width="900"}  
+![](/assets/img/mediators/119131284/119131294.png) 
 
 The sample input XML payload is as follows.
 
 ``` xml
-    <?xml version="1.0" encoding="UTF-8" ?>
-        <name>app_name</name>
-        <version>version</version>
-        <manifest_version>2</manifest_version>
-        <description>description_text</description>
-        <container>GOOGLE_DRIVE</container>
-        <api_console_project_id>YOUR_APP_ID</api_console_project_id>
-        <gdrive_mime_types>
-            <http://drive.google.com/intents/opendrivedoc>
-                <type>image/png</type>
-                <type>image/jpeg</type>
-                <type>image/gif</type>
-                <type>application/vnd.google.drive.ext-type.png</type>
-                <type>application/vnd.google.drive.ext-type.jpg</type>
-                <type>application/vnd.google.drive.ext-type.gif</type>
-                <href>http://your_web_url/</href>
-                <title>Open</title>
-                <disposition>window</disposition>
-            </http://drive.google.com/intents/opendrivedoc>
-        </gdrive_mime_types>
-        <icons>
-            <128>icon_128.png</128>
-        </icons>
-        <app>
-            <launch>
-                <web_url>http://yoursite.com</web_url>
-            </launch>
-        </app>
+<?xml version="1.0" encoding="UTF-8" ?>
+    <name>app_name</name>
+    <version>version</version>
+    <manifest_version>2</manifest_version>
+    <description>description_text</description>
+    <container>GOOGLE_DRIVE</container>
+    <api_console_project_id>YOUR_APP_ID</api_console_project_id>
+    <gdrive_mime_types>
+        <http://drive.google.com/intents/opendrivedoc>
+            <type>image/png</type>
+            <type>image/jpeg</type>
+            <type>image/gif</type>
+            <type>application/vnd.google.drive.ext-type.png</type>
+            <type>application/vnd.google.drive.ext-type.jpg</type>
+            <type>application/vnd.google.drive.ext-type.gif</type>
+            <href>http://your_web_url/</href>
+            <title>Open</title>
+            <disposition>window</disposition>
+        </http://drive.google.com/intents/opendrivedoc>
+    </gdrive_mime_types>
+    <icons>
+        <128>icon_128.png</128>
+    </icons>
+    <app>
+        <launch>
+            <web_url>http://yoursite.com</web_url>
+        </launch>
+    </app>
 ```
 
-The sample o utput JSON is as follows.
+The sample output JSON is as follows.
 
 ``` js
-     {
-        "name" : "app_name",
-        "version" : "version",
-        "manifest_version" : 2,
-        "description" : "description_text",
-        "container" : "GOOGLE_DRIVE",
-        "api_console_project_id" : "YOUR_APP_ID",
-        "gdrive_mime_types": {
-          "http://drive.google.com/intents/opendrivedoc": [
-            {
-              "type": ["image/png", "image/jpeg", "image/gif", "application/vnd.google.drive.ext-type.png",
-              "application/vnd.google.drive.ext-type.jpg","application/vnd.google.drive.ext-type.gif"],
-              "href": "http://your_web_url/",
-              "title" : "Open",
-              "disposition" : "window"
-            }
-          ]
-        },
-        "icons": {
-          "128": "icon_128.png"
-        },
-        "app" : {
-          "launch" : {
-          "web_url" : "http://yoursite.com"
-          }
-        }
-      }
+{
+"name" : "app_name",
+"version" : "version",
+"manifest_version" : 2,
+"description" : "description_text",
+"container" : "GOOGLE_DRIVE",
+"api_console_project_id" : "YOUR_APP_ID",
+"gdrive_mime_types": {
+  "http://drive.google.com/intents/opendrivedoc": [
+    {
+      "type": ["image/png", "image/jpeg", "image/gif", "application/vnd.google.drive.ext-type.png",
+      "application/vnd.google.drive.ext-type.jpg","application/vnd.google.drive.ext-type.gif"],
+      "href": "http://your_web_url/",
+      "title" : "Open",
+      "disposition" : "window"
+    }
+  ]
+},
+"icons": {
+  "128": "icon_128.png"
+},
+"app" : {
+  "launch" : {
+  "web_url" : "http://yoursite.com"
+  }
+}
+}
 ```
 
-#### Example 4 - Mapping XML to CSV
+### Example 4 - Mapping XML to CSV
 
 This example demonstrates how you can map an XML payload to CSV format.
 
-!!! info
-
-If you specify special characters (e.g., `         &        ` ,
-`         &amp;         )        ` within the `         <text>        `
-tag w hen converting from CSV to CSV , they will be displayed as follows
-by default.
-
--   `          & -> &amp;                   `
--   `          &amp; -> &amp;amp;                   `
--   `          < -> &lt;                   `
--   `          &lt; -> &lt;lt;         `
+!!! Info
+    If you specify special characters (e.g., `         &        ` ,
+    `         &amp;         )        ` within the `         <text>        `
+    tag w hen converting from CSV to CSV , they will be displayed as follows
+    by default.
+    -   `          & -> &amp;                   `
+    -   `          &amp; -> &amp;amp;                   `
+    -   `          < -> &lt;                   `
+    -   `          &lt; -> &lt;lt;         `
 
 To avoid this and to display the exact special characters as text in the
 returned output, add the following properties in the Synapse
 configuration.
 
 ``` xml
-    <property name="messageType" value="text/plain" scope="axis2"/>
-    <property name="ContentType" value="text/plain" scope="axis2"/>
+<property name="messageType" value="text/plain" scope="axis2"/>
+<property name="ContentType" value="text/plain" scope="axis2"/>
 ```
     
-
-![](attachments/119131284/119131293.png){width="900" height="217"}
+![](/assets/img/mediators/119131284/119131293.png)
 
 The sample in put XML payload is as follows.
 
 ``` xml
-    <?xml version="1.0"?>
-    <PurchaseOrder PurchaseOrderNumber="001">
-    <Address>
-        <Name>James Yee</Name>
-        <Street>Downtown Bartow</Street>
-        <City>Old Town</City>
-        <State>PA</State>
-        <Zip>95819</Zip>
-        <Country>USA</Country>
-    </Address>
-    <Address>
-        <Name>Elen Smith</Name>
-        <Street>123 Maple Street</Street>
-        <City>Mill Valley</City>
-        <State>CA</State>
-        <Zip>10999</Zip>
-        <Country>USA</Country>
-    </Address>
-     <DeliveryNotes>Please leave packages in shed by driveway.</DeliveryNotes>
-    </PurchaseOrder>
+<?xml version="1.0"?>
+<PurchaseOrder PurchaseOrderNumber="001">
+<Address>
+    <Name>James Yee</Name>
+    <Street>Downtown Bartow</Street>
+    <City>Old Town</City>
+    <State>PA</State>
+    <Zip>95819</Zip>
+    <Country>USA</Country>
+</Address>
+<Address>
+    <Name>Elen Smith</Name>
+    <Street>123 Maple Street</Street>
+    <City>Mill Valley</City>
+    <State>CA</State>
+    <Zip>10999</Zip>
+    <Country>USA</Country>
+</Address>
+ <DeliveryNotes>Please leave packages in shed by driveway.</DeliveryNotes>
+</PurchaseOrder>
 ```
 
 The sample out put CSV is as follows.
 
 ``` text
-    Name,Street,City,State,Zip,Country
-    James Yee,Downtown Bartow,Old Town,PA,95819,USA
-    Ellen Smith,123 Maple Street,Mill Valley,CA,10999,USA
+Name,Street,City,State,Zip,Country
+James Yee,Downtown Bartow,Old Town,PA,95819,USA
+Ellen Smith,123 Maple Street,Mill Valley,CA,10999,USA
 ```
 
-#### Example 5 - Mapping XSD to JSON
+### Example 5 - Mapping XSD to JSON
 
 This example demonstrates how you can map an XSD payload to JSON format.
 
-![example 5
-mapping](attachments/119131284/119131293.png "example 5 mapping"){width="900"}
+![example 5 mapping](/assets/img/mediators/119131284/119131293.png)
 
 The sample in put XSD payload is as follows.
 
 ``` xml
-    <xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
-      <xs:element name="books">
-        <xs:complexType>
-          <xs:sequence>
-            <xs:element name="book">
-              <xs:complexType>
-                <xs:sequence>
-                  <xs:element type="xs:string" name="id"/>
-                  <xs:element type="xs:string" name="author"/>
-                  <xs:element type="xs:string" name="title"/>
-                  <xs:element type="xs:float" name="price"/>
-                </xs:sequence>
-              </xs:complexType>
-            </xs:element>
-          </xs:sequence>
-        </xs:complexType>
-      </xs:element>
-    </xs:schema>
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="books">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="book">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element type="xs:string" name="id"/>
+              <xs:element type="xs:string" name="author"/>
+              <xs:element type="xs:string" name="title"/>
+              <xs:element type="xs:float" name="price"/>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
 ```
 
 The sample out put JSON is as follows.
 
 ``` java
-    {
-      "books": {
-        "book": {
-          "id": "001",
-          "author": "Writer",
-          "title": "Great book on nature",
-          "price": "44.95"
-        }
-      }
+{
+  "books": {
+    "book": {
+      "id": "001",
+      "author": "Writer",
+      "title": "Great book on nature",
+      "price": "44.95"
     }
+  }
+}
 ```

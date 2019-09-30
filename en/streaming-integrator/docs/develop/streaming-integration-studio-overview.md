@@ -1,1 +1,0 @@
-#Streaming Integration Studio Overview

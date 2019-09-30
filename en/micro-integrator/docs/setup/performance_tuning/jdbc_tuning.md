@@ -1,6 +1,6 @@
 # Tuning JDBC Pool Configurations
 
-Within the WSO2 platform, we use Tomcat JDBC pooling as the default pooling framework due to its production-ready stability and high performance. The goal of tuning the pool properties is to maintain a pool that is large enough to handle peak load without unnecessarily utilizing resources. These pooling configurations can be tuned for your production server in general in the <PRODUCT_HOME>/repository/conf/datasources/master-datasources.xml file.
+We use Tomcat JDBC pooling as the default pooling framework due to its production-ready stability and high performance. The goal of tuning the pool properties is to maintain a pool that is large enough to handle peak load without unnecessarily utilizing resources. These pooling configurations can be tuned for your production server in general in the deployment.toml file.
 
 The following parameters should be considered when tuning the connection pool:
 
@@ -99,6 +99,6 @@ The table below indicates some recommendations on how to configure the JDBC pool
     </tr>
 </table>
 
-!!! info
+!!! Info
     -   When it comes to web applications, users are free to experiment and package their own pooling framework such BoneCP.
     -   If you are using an Oracle database, you may sometimes come across an error (ORA-04031) indicating that you have not allocated enough memory for the shared pool of connections. To overcome this, you can allocate more memory to the shared pool by adjusting the following parameters in the <ORACLE_HOME>/dbs/init<SID>.ora file of your Oracle database: SHARED_POOL_RESERVED_SIZE, SHARED_POOL_SIZE and LARGE_POOL_SIZE.

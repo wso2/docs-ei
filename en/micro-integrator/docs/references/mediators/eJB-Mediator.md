@@ -1,39 +1,22 @@
 # EJB Mediator
 
-The **EJB mediator** calls an external Enterprise JavaBean(EJB) and
-stores the result in the message payload or in a message context
-property. Currently, this mediator supports EJB3 Stateless Session Beans
-and Stateful Session Beans.
+The **EJB mediator** calls an external Enterprise JavaBean(EJB) and stores the result in the message payload or in a message context property. Currently, this mediator supports EJB3 Stateless Session Beans and Stateful Session Beans.
 
-!!! info
+!!! Info
+    The EJB mediator is a [content-aware](../../../concepts/message-processing-units/#classification-of-mediators) mediator.
 
-The EJB mediator is a
-[content-aware](ESB-Mediators_119131045.html#ESBMediators-Content-awareness)
-mediator.
-
-
-------------------------------------------------------------------------
-
-[Syntax](#EJBMediator-Syntax) \|
-[Configuration](#EJBMediator-Configuration) \|
-[Example](#EJBMediator-Example)
-
-------------------------------------------------------------------------
-
-### Syntax
+## Syntax
 
 ``` java
-    <ejb beanstalk="string" class="string" [sessionId="string"] [remove="true | false"] 
-      [method="string"] [target="string | {xpath}"] [jndiName="string"] /> 
-        <args> 
-          <arg (value="string | {xpath}")/>* 
-        </args> 
-    </ejb>
+<ejb beanstalk="string" class="string" [sessionId="string"] [remove="true | false"] 
+  [method="string"] [target="string | {xpath}"] [jndiName="string"] /> 
+    <args> 
+      <arg (value="string | {xpath}")/>* 
+    </args> 
+</ejb>
 ```
 
-------------------------------------------------------------------------
-
-### Configuration
+## Configuration
 
 <table>
 <thead>
@@ -55,8 +38,8 @@ mediator.
 <td>Session ID</td>
 <td><p>When the EJB context is invoked in the form state-full bean then the related ejb session status specified will be stored in here. Possible values are as follows.</p>
 <ul>
-<li><strong>Value</strong> : If this is selected, the session ID can be entered as a static value.</li>
-<li><strong>Expression</strong> : If this is selected, an XPath expression can be entered to evaluate the session ID.</li>
+<li><strong>Value</strong>: If this is selected, the session ID can be entered as a static value.</li>
+<li><strong>Expression</strong>: If this is selected, an XPath expression can be entered to evaluate the session ID.</li>
 </ul></td>
 </tr>
 <tr class="even">
@@ -78,35 +61,17 @@ mediator.
 </tbody>
 </table>
 
-!!! info
+!!! Info
+    You can click the "Namespaces" link to add namespaces if you are providing an expression. You will be provided another panel named "Namespace Editor" where you can provide any number of namespace prefixes and the URL used in the XPath expression.
 
-Tip
-
-You can click the "Namespaces" link to add namespaces if you are
-providing an expression. You will be provided another panel named
-"Namespace Editor" where you can provide any number of namespace
-prefixes and the URL used in the XPath expression.
-
-
-  
-
-------------------------------------------------------------------------
-
-### Example
+## Example
 
 ``` java
-    <ejb beanstalk="jack" class="org.ejb.wso2.test.StoreRegister" method="getStoreById" target="store" jndiName="ejb:/EJBDemo/StoreRegsiterBean!org.ejb.wso2.test.StoreRegister">
-       <args>
-         <arg xmlns:ns="http://org.apache.synapse/xsd" xmlns:ns3="http://org.apache.synapse/xsd" value="{get-property('loc_id')}"/>
-       </args>
-    </ejb>
+<ejb beanstalk="jack" class="org.ejb.wso2.test.StoreRegister" method="getStoreById" target="store" jndiName="ejb:/EJBDemo/StoreRegsiterBean!org.ejb.wso2.test.StoreRegister">
+   <args>
+     <arg xmlns:ns="http://org.apache.synapse/xsd" xmlns:ns3="http://org.apache.synapse/xsd" value="{get-property('loc_id')}"/>
+   </args>
+</ejb>
 ```
 
-In this example, the EJB Mediator does the EJB service invocation by
-calling **getStoreById** pubished at the application server and exposed
-via
-`         ejb:/EJBDemo/StoreRegsiterBean!org.ejb.wso2.test.StoreRegister        `
-,
-
-then response will be assigned to the **target** specified
-(variable/expression).
+In this example, the EJB Mediator does the EJB service invocation by calling **getStoreById** pubished at the application server and exposed via `         ejb:/EJBDemo/StoreRegsiterBean!org.ejb.wso2.test.StoreRegister`. The response will then be assigned to the **target** specified (variable/expression).

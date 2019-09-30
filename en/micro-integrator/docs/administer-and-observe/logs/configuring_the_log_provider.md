@@ -5,22 +5,7 @@ stored in a file system, an SQL server such as MySQL, a no-SQL server
 such as Cassandra, etc. According to the default configurations in WSO2 Micro Integrator, the logs are stored in the
 `MI_HOME/repository/logs/        ` directory as `         .log        ` files.
 
-To [view and download the logs](_View_and_Download_Logs_) using the
-management console, the following configurations are required: the
-[Logging Management](_Monitoring_Logs_using_Management_Console_) feature
-should be installed, [the log4j properties should be
-configured](_Configuring_Log4j_Properties_) and the LogProvider and
-LogFileProvider interfaces should be implemented and configured for the
-server as described below.
-
--   [Implementing the LogProvider
-    interface](#ConfiguringtheLogProvider-ImplementingtheLogProviderinterface)
--   [Implementing the LogFileProvider
-    interface](#ConfiguringtheLogProvider-ImplementingtheLogFileProviderinterface)
--   [Configuring Carbon to plug the log
-    provider](#ConfiguringtheLogProvider-ConfiguringCarbontoplugthelogprovider)
-
-### Implementing the LogProvider interface
+## Implementing the LogProvider interface
 
 This
 `         org.wso2.carbon.logging.service.provider.api.LogProvider        `
@@ -57,7 +42,7 @@ The `         LogProvider        ` interface has the following methods:
 -   clearLogs() - Clear operation. For example, if it is an "in memory"
     log provider, this method can be used to clear the memory.
 
-### Implementing the LogFileProvider interface
+## Implementing the LogFileProvider interface
 
 The
 `         org.wso2.carbon.logging.service.provider.api.LogFileProvider        `
@@ -81,102 +66,72 @@ methods:
 -   downloadLogFile(String logFile, String tenantDomain, String
     serviceName) - Download the file.
 
-!!! info
+!!! Info
+    Default log provider in Carbon products. A default "in memory" log provider, which implements the `         LogProvider        ` interface has been created both as a sample and as the default log provider option in carbon. Main task of this class is to read the carbon logs available in the `MI_HOME/repository/logs/` directory to a buffer stored in memory.
 
-Default log provider in Carbon products
+A default log file provider that implements the `         LogFileProvider        ` interface has also been implemented as a sample and as the default log file provider option in carbon. The main task of this class is to read the log file names (including the size and date of these files) from the `MI_HOME/repository/logs/` directory and to enable the download of these logs.
 
-A default "in memory" log provider, which implements the
-`         LogProvider        ` interface has been created both as a
-sample and as the default log provider option in carbon. Main task of
-this class is to read the carbon logs available in the
-`         <PRODUCT_HOME>/repository/logs/        ` directory to a buffer
-stored in memory and enable the LogViewer to fetch and view these logs
-in the management console.
+## Configuring Carbon to plug the log provider
 
-A default log file provider that implements the
-`         LogFileProvider        ` interface has also been implemented
-as a sample and as the default log file provider option in carbon. The
-main task of this class is to read the log file names (including the
-size and date of these files) from the
-`         <PRODUCT_HOME>/repository/logs/        ` directory and to
-enable the download of these logs.
-
-
-### Configuring Carbon to plug the log provider
-
-After implementing the above interfaces, update the
-`         logging-config.xml        ` file stored in the
-`         <PRODUCT_HOME>/repository/conf/etc/        ` directory.
+After implementing the above interfaces, update the `logging-config.xml` file stored in the `MI_HOME/repository/conf/etc/` directory.
 
 -   Shown below is the configuration for the the default log provider
     and the default log file provider of a Carbon product:  
 
-    ``` java
-        <loggingConfig xmlns="http://wso2.org/projects/carbon/carbon.xml">
+    ```
+    <loggingConfig xmlns="http://wso2.org/projects/carbon/carbon.xml">
     
-            <!-- Default log provider -->
-            <logProviderConfig class="org.wso2.carbon.logging.service.provider.InMemoryLogProvider">
-                <properties/>
-            </logProviderConfig>
+    <!-- Default log provider -->
+        <logProviderConfig class="org.wso2.carbon.logging.service.provider.InMemoryLogProvider">
+            <properties/>
+        </logProviderConfig>
     
-            <!-- Default log file provider -->
-            <logFileProviderConfig class="org.wso2.carbon.logging.service.provider.FileLogProvider">
-                <properties/>
-            </logFileProviderConfig>
-        </loggingConfig>
+    <!-- Default log file provider -->
+        <logFileProviderConfig class="org.wso2.carbon.logging.service.provider.FileLogProvider">
+            <properties/>
+        </logFileProviderConfig>
+    </loggingConfig>
     ```
 
-        !!! note
-    
+    !!! Note
         The default "InMemoryLogProvider" uses the CarbonMemoryAppender.
-        Therefore the log4j.properties file stored in
-        \<PRODUCT\_HOME\>/repository/conf/ directory should be updated with
-        the following log4j.appender.CARBON\_MEMORY property:  
+        Therefore the log4j.properties file stored in MI_HOME/repository/conf/ directory should be updated with
+        the following log4j.appender.CARBON_MEMORY property:  
     
     ``` java
-            log4j.appender.CARBON_MEMORY=org.wso2.carbon.logging.service.appender.CarbonMemoryAppender]
+    log4j.appender.CARBON_MEMORY=org.wso2.carbon.logging.service.appender.CarbonMemoryAppender]
     ```
-        
 
-    If the implemented class requires additional properties to
-    initialise the class, the `           <properties>          `
-    element in the `           logging-config.xml          ` file can be
-    used. For example, a cassandra based log provider may need
-    information on keyspace, column family, etc. You can configure these
-    details in the `           logging-config.xml          ` file and
-    access them at runtime using the
-    `           LoggingConfig          ` class, which contains all
-    configuration parameters. For a Cassandra based log provider, the
-    following properties can be defined in the
-    `           logging-config.xml          ` file and later used in the
-    implementation using the `           LoggingConfig          ` class,
-    which is assigned when initializing the class.  
+    If the implemented class requires additional properties to initialise the class, the `           <properties>          `
+    element in the `           logging-config.xml          ` file can be used. For example, a cassandra based log provider may need
+    information on keyspace, column family, etc. You can configure these details in the `           logging-config.xml          ` file and
+    access them at runtime using the `           LoggingConfig          ` class, which contains all configuration parameters. For a Cassandra based log provider, the following properties can be defined in the `           logging-config.xml          ` file and later used in the
+    implementation using the `           LoggingConfig          ` class, which is assigned when initializing the class.  
 
--   The following properties can be configured in the
-    `           logging-config.xml          ` file for a Cassandra based
+-   The following properties can be configured in the `           logging-config.xml          ` file for a Cassandra based
     log provider:  
 
     ``` java
-        <logProviderConfig xmlns="http://wso2.org/projects/carbon/carbon.xml" class="org.wso2.carbon.logging.service.provider.CassandraLogProvider">
-                <properties>
-                    <property name="userName" value="admin"/>
-                    <property name="password" value="admin"/>
-                    <property name="archivedHost" value="http://127.0.0.1/logs/stratos/0/WSO2%20Stratos%20Manager/"/>
-                    <property name="archivedHDFSPath" value="/stratos/logs"/>
-                    <property name="archivedUser" value="admin"/>
-                    <property name="archivedPassword" value="admin"/>
-                    <property name="archivedPort" value="80"/>
-                    <property name="archivedRealm" value="Stratos"/>
-                    <property name="cassandraHost" value="localhost:9160"/>
-                    <property name="isDataFromCassandra" value="false"/>
-                    <property name="cassandraConsistencyLevel" value="ONE"/>
-                    <property name="cassandraAutoDiscovery.enable" value="false"/>
-                    <property name="cassandraAutoDiscovery.delay" value="1000"/>
-                    <property name="retryDownedHosts.enable" value="true"/>
-                    <property name="retryDownedHosts.queueSize" value="10"/>
-                    <property name="columnFamily" value="log"/>
-                    <property name="cluster" value="admin"/>
-                    <property name="keyspace" value="EVENT_KS"/>
-                </properties>
-        </logProviderConfig>
+    <logProviderConfig xmlns="http://wso2.org/projects/carbon/carbon.xml" class="org.wso2.carbon.logging.service.provider.CassandraLogProvider">
+        <properties>
+            <property name="userName" value="admin"/>
+            <property name="password" value="admin"/>
+            <property name="archivedHost" value="http://127.0.0.1/logs/stratos/0/WSO2%20Stratos%20Manager/"/>
+            <property name="archivedHDFSPath" value="/stratos/logs"/>
+            <property name="archivedUser" value="admin"/>
+            <property name="archivedPassword" value="admin"/>
+            <property name="archivedPort" value="80"/>
+            <property name="archivedRealm" value="Stratos"/>
+            <property name="cassandraHost" value="localhost:9160"/>
+            <property name="isDataFromCassandra" value="false"/>
+            <property name="cassandraConsistencyLevel" value="ONE"/>
+            <property name="cassandraAutoDiscovery.enable" value="false"/>
+            <property name="cassandraAutoDiscovery.delay" value="1000"/>
+            <property name="retryDownedHosts.enable" value="true"/>
+            <property name="retryDownedHosts.queueSize" value="10"/>
+            <property name="columnFamily" value="log"/>
+            <property name="cluster" value="admin"/>
+            <property name="keyspace" value="EVENT_KS"/>
+        </properties>
+    </logProviderConfig>
     ```

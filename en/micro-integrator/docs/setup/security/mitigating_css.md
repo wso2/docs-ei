@@ -27,8 +27,8 @@ validation on the URL patterns.
 
 To configure the XSS valve:
 
-1.  Open the esb.toml file and add the following configurations:
-    ```java
+1.  Open the deployment.toml file and add the following configurations:
+    ```toml
     [xss_prevention]
 
     enabled=true

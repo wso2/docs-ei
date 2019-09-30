@@ -17,7 +17,7 @@ the **HelloWorld** service will return the following response: `{"Hello":"World"
 -   To set up the integration workspace for this quick guide, we will
     use an integration project that was built using [WSO2 Integration
     Studio](../develop/working-with-WSO2-Integration-Studio.md) :
-    1.  Download the <a href="../assets/attach/MI_QSG_HOME.zip">project file</a>
+    1.  Download the <a href="../../assets/attach/MI_QSG_HOME.zip">project file</a>
         for this guide, and extract it to a known location. Let's call
         this **MI_QSG_HOME**.
     2.  Go to the **MI_GS_HOME** directory.
@@ -26,8 +26,7 @@ the **HelloWorld** service will return the following response: `{"Hello":"World"
         <details>
             <summary>hello-world-config-project</summary>
             This is the ESB Config Project folder with the integration artifacts (synapse artifacts) for the HelloWorld service (HelloWorld.xml). This service consists of the following REST API:
-    
-            ```
+            ```xml
             <api context="/hello-world" name="HelloWorld" xmlns="http://ws.apache.org/ns/synapse">
                 <resource methods="GET">
                     <inSequence>
@@ -50,20 +49,16 @@ the **HelloWorld** service will return the following response: `{"Hello":"World"
         <details>
             <summary>Dockerfile</summary>
             This Docker configuration file is configured to build a Docker image for WSO2 Micro Integrator with the HelloWorld service.
-    
             ```
             FROM wso2/micro-integrator:1.0.0
             COPY hello-world-config-projectCompositeApplication/target/hello-world-config-projectCompositeApplication_1.0.0.car /home/wso2carbon/wso2mi/repository/deployment/server/carbonapps
-
             ```
-            
            **Note** that this file is configured to use the community version of the WSO2 Micro Integrator base Docker image (from DockerHub ). If you want to use the Micro Integrator that includes the latest product updates, you can update the image name in this Docker file as explained here .
         </details>
         <details>
             <summary>k8s-deployment.yaml</summary>
             This is sample Kubernetes configuration file that is configured to deploy WSO2 Micro Integrator in a Kubernetes cluster.
-    
-            ```
+            ```toml
             apiVersion: apps/v1
             kind: Deployment
             metadata:
@@ -114,9 +109,7 @@ the **HelloWorld** service will return the following response: `{"Hello":"World"
 
 ### Run on Docker
 
-Once you have [set up your
-workspace](#set-up-the-workspace), you
-can run the HelloWorld service on Docker:
+Once you have [set up your workspace](#set-up-the-workspace), you can run the HelloWorld service on Docker:
 
 #### Build a Docker image
 
@@ -124,7 +117,7 @@ Open a terminal, navigate to the **MI_QSG_HOME** directory (which stores the Doc
 command to build a Docker image with WSO2 Micro Integrator and the
 integration artifacts.
 
-``` java
+```bash
 docker build -t hello_world_docker_image .
 ```
 
@@ -138,9 +131,9 @@ This command executes the following tasks:
 
 #### Run Docker container
 
-From the **MI_QSG_HOME>** directory, execute the following command to start a Docker container for the Micro Integrator.
+From the **<MI_QSG_HOME>** directory, execute the following command to start a Docker container for the Micro Integrator.
 
-``` java
+```bash
 docker run -d -p 8290:8290 hello_world_docker_image
 ```
 
@@ -151,15 +144,13 @@ The Docker container with the Micro Integrator is started.
 Open a terminal, and execute the following command to invoke the
 HelloWorld service:  
 
-``` java
+```bash
 curl http://localhost:8290/hello-world
 ```
 
 Upon invocation, you should be able to observe the following response:
 
-``` java
-{"Hello":"World"}
-```
+`{"Hello":"World"}`
 
 ### Run on Kubernetes
 
@@ -176,7 +167,7 @@ Kubernetes cluster for this example.
     configured to use Minikube from your terminal.
 2.  Start Minikube from your terminal:
 
-    ``` java
+    ```bash
     minikube start
     ```
 
@@ -184,7 +175,7 @@ Kubernetes cluster for this example.
     Docker daemon. You need this Docker daemon to be able to create
     Docker images for the Minikube environment.
 
-    ``` java
+    ```bash
     eval $(minikube docker-env)
     ```
 
@@ -198,7 +189,7 @@ directory (which stores the Dockerfile), and execute the following
 command to build a Docker image (with WSO2 Micro Integrator and the
 integration artifacts) **in the Minikube environment** .
 
-``` java
+```bash
 docker build -t wso2-mi-hello-world .
 ```
 
@@ -207,25 +198,25 @@ docker build -t wso2-mi-hello-world .
 Follow the steps given below to start a Docker container for Docker
 image on Minikube.
 
-1.  Navigate to the **MI_QSG_HOME>** directory
+1.  Navigate to the **<MI_QSG_HOME>** directory
     (which stores the `k8s-deployment.yaml` file),
     and execute the following command:
 
-    ``` java
+    ```bash
     kubectl create -f k8s-deployment.yaml
     ```
 
 2.  Check whether all the Kubernetes artifacts are deployed successfully
     by executing the following command:  
 
-    ``` java
+    ```bash
     kubectl get all
     ```
 
     You will get a result similar to the following. Be sure that the
     deployment is in 'Running' state.
 
-    ``` java
+    ```bash
     NAME                                            READY   STATUS    RESTARTS   AGE
     pod/mi-helloworld-deployment-56f58c9676-djbwh   1/1     Running   0          14m
     pod/mi-helloworld-deployment-56f58c9676-xj4fq   1/1     Running   0          14m
@@ -246,15 +237,13 @@ Open a terminal, and execute the command given below to invoke the
 HelloWorld service. Be sure to replace MINIKUBE\_IP with the IP of your
 Minikube installation.
 
-``` java
+```bash
 curl http://MINIKUBE_IP:32100/hello-world
 ```
 
 Upon invocation, you should be able to observe the following response:
 
-``` java
-{"Hello":"World"}
-```
+`{"Hello":"World"}`
 
 ## Run on a Virtual Machine
 
@@ -304,7 +293,7 @@ Copy the CAR file of the HelloWorld service (**hello-world-config-projectComposi
 Follow the steps relevant to your OS:
 
 - On **MacOS/Linux/CentOS**, open a terminal and execute the following commands:
-  ```
+  ```bash
   sudo wso2mi-1.0.0
   ```
 - On **Windows**, go to **Start Menu -> Programs -> WSO2 -> Micro Integrator**. This will open a terminal and start the relevant profile.
@@ -313,12 +302,10 @@ Follow the steps relevant to your OS:
 
 Open a terminal and execute the following curl command to invoke the service:
 
-```
+```bash
 curl http://localhost:8290/hello-world
 ```
 
 Upon invocation, you should be able to observe the following response:
 
-``` java
-{"Hello":"World"}
-```
+`{"Hello":"World"}`

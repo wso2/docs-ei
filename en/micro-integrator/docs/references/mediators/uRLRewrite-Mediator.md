@@ -6,39 +6,23 @@ action for each fragment of a selected property value. Alternatively,
 you can rewrite the entire URL string at once.
 
 !!! info
+    The URLRewrite mediator is a [content aware](../../../concepts/message-processing-units/#classification-of-mediators) mediator.
 
-The URLRewrite mediator is a [content
-aware](ESB-Mediators_119131045.html#ESBMediators-Content-awareness)
-mediator.
-
-
-------------------------------------------------------------------------
-
-[Syntax](#URLRewriteMediator-Syntax) \|
-[Configuration](#URLRewriteMediator-Configuration) \|
-[Example](#URLRewriteMediator-Example)
-
-------------------------------------------------------------------------
-
-### Syntax
+## Syntax
 
 ``` xml
-    <rewrite [inProperty="string"] [outProperty="string"]>
-        <rewriterule>
-            <condition>
-            ...
-            </condition>?
-            <action [type="append|prepend|replace|remove|set"] [value="string"]
-              [xpath="xpath"] [fragment="protocol|host|port|path|query|ref|user|full"] [regex="regex"]>+
-        </rewriterule>+
-    </rewrite>
+<rewrite [inProperty="string"] [outProperty="string"]>
+    <rewriterule>
+        <condition>
+        ...
+        </condition>?
+        <action [type="append|prepend|replace|remove|set"] [value="string"]
+          [xpath="xpath"] [fragment="protocol|host|port|path|query|ref|user|full"] [regex="regex"]>+
+    </rewriterule>+
+</rewrite>
 ```
 
-  
-
-------------------------------------------------------------------------
-
-### Configuration
+## Configuration
 
 The parameters available to configure the URL Rewrite mediator are as
 follows.
@@ -76,10 +60,7 @@ A rule can consist of one or more rewrite actions and an optional
 condition. The **Condition** parameter is used to enter the optional
 condition. If a condition is specified, it will be evaluated before the
 rewrite actions, and the rewrite actions will be executed only if the
-condition evaluates to `         true        ` .
-
-A rewrite action is added by clicking **Add Action** which would display
-a row.
+condition evaluates to `         true        `.
 
 The parameters available to configure a rewrite action are as follows.
 
@@ -95,17 +76,17 @@ The parameters available to configure a rewrite action are as follows.
 <td><strong>Action</strong></td>
 <td><p>This parameter is used to specify the action to be performed by the rewrite action. Each rewrite action is performed on a fragment entered in the <strong>Fragment</strong> parameter. Possible values are as follows.</p>
 <ul>
-<li><strong>Replace</strong> : If this is selected, the existing <a href="#URLRewriteMediator-In">in property</a> value fragment will be replaced by the result value.</li>
-<li><strong>Remove</strong> : If this is selected, the result value will be removed from the <a href="#URLRewriteMediator-In">in property</a> value fragment.</li>
-<li><strong>Append</strong> : If this is selected, the result value will be added to the end of the <a href="#URLRewriteMediator-In">in property</a> value fragment.</li>
-<li><strong>Prepend</strong> : If this is selected, the result value will be added to the beginning of the <a href="#URLRewriteMediator-In">in property</a> value fragment.</li>
-<li><strong>Set</strong> : If this is selected, the result value will be set as the <a href="#URLRewriteMediator-In">in property</a> value fragment.</li>
+<li><strong>Replace</strong>: If this is selected, the existing <b>in property</b> value fragment will be replaced by the result value.</li>
+<li><strong>Remove</strong>: If this is selected, the result value will be removed from the <b>in property</b> value fragment.</li>
+<li><strong>Append</strong>: If this is selected, the result value will be added to the end of the <b>in property</b> value fragment.</li>
+<li><strong>Prepend</strong>: If this is selected, the result value will be added to the beginning of the <b>in property</b> value fragment.</li>
+<li><strong>Set</strong>: If this is selected, the result value will be set as the <b>in property</b> value fragment.</li>
 </ul></td>
 </tr>
 <tr class="even">
 <td><strong>Fragment</strong></td>
 <td><div class="content-wrapper">
-<p>The fragment of the <a href="#URLRewriteMediator-In">in property</a> (i.e. input URL) for which the rewrite action should be performed. The available fragments are as follows.</p>
+<p>The fragment of the <b>in property</b> (i.e. input URL) for which the rewrite action should be performed. The available fragments are as follows.</p>
 <ul>
 <li><strong>Protocol</strong> :</li>
 <li><strong>Host</strong></li>
@@ -115,10 +96,7 @@ The parameters available to configure a rewrite action are as follows.
 <li><strong>Ref</strong></li>
 <li><strong>User</strong></li>
 <li><strong>Full</strong></li>
-</ul>
-!!! info
-<p>Note that this breakdown is inline with the URI specification (RFC2396). URL rewrite mediator enables rewriting each of the above segments separately and finally combining them to get the final URL value. It also supports rewriting the entire URL string at once.</p>
-
+</ul><b>Note</b> that this breakdown is inline with the URI specification (RFC2396). URL rewrite mediator enables rewriting each of the above segments separately and finally combining them to get the final URL value. It also supports rewriting the entire URL string at once.
 </div></td>
 </tr>
 <tr class="odd">
@@ -139,7 +117,7 @@ The parameters available to configure a rewrite action are as follows.
 </tr>
 <tr class="even">
 <td><strong>Regex</strong></td>
-<td>This parameter is used to specify which part of the <a href="#URLRewriteMediator-In">in property</a> value fragment should be replaced by the result value if you selected <code>             Replace            </code> for the <strong>Action</strong> parameter.</td>
+<td>This parameter is used to specify which part of the <b>in property</b> value fragment should be replaced by the result value if you selected <code>Replace</code> for the <strong>Action</strong> parameter.</td>
 </tr>
 <tr class="odd">
 <td><strong>Delete</strong></td>
@@ -148,11 +126,9 @@ The parameters available to configure a rewrite action are as follows.
 </tbody>
 </table>
 
-### Example
+## Example
 
-In this example, the URLRewrite mediator has a rewrite action which
-replaces the value `         soap        ` with value
-`         services        ` in the fragment `         path        ` of
+In this example, the URLRewrite mediator has a rewrite action, which replaces the value `         soap        ` with value `         services        ` in the fragment `         path        ` of
 the input URL. Since no in property or an out  property is specified,
 the `         To        ` header of the  request is both the input  to
 which the rewrite rule is applied and the target where the result URL is
@@ -167,14 +143,15 @@ is rewritten as
 are successfully delivered to the server.
 
 ``` java
-    <rewrite>
-        <rewriterule>
-            <action type="replace" regex="soap" value="services" fragment="path" />
-        </rewriterule>
-    </rewrite>
+<rewrite>
+    <rewriterule>
+        <action type="replace" regex="soap" value="services" fragment="path" />
+    </rewriterule>
+</rewrite>
 ```
 
-#### Samples
+<!--
+### Samples
 
 For more examples, see:
 
@@ -184,3 +161,5 @@ For more examples, see:
     Rewriting](https://docs.wso2.com/display/EI6xx/Sample+451%3A+Conditional+URL+Rewriting)
 -   [Sample 452; Conditional URL Rewriting with Multiple
     Rules](https://docs.wso2.com/display/EI6xx/Sample+452%3A+Conditional+URL+Rewriting+with+Multiple+Rules)
+
+-->

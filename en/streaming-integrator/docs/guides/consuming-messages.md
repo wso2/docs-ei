@@ -1,4 +1,4 @@
-#Consuming Messages
+#Consuming Data
 
 ## Introduction
 
@@ -26,6 +26,7 @@ For the Streaming Integrator to consume events, the following is required.
 To create a Siddhi application with the source configuration defined inline, follow the steps below.
 
 1. Open the Streaming Integrator Studio and start creating a new Siddhi application. For more information, see [Creating a Siddhi Application](../develop/creating-a-Siddhi-Application.md).
+
 2. Enter a name for the Siddhi application as shown below.<br/>
    `@App:name("<Siddhi_Application_Name>)`<br/>e.g., `@App:name("SalesTotalsApp")`<br/>
    
@@ -45,6 +46,7 @@ To create a Siddhi application with the source configuration defined inline, fol
     @source(type='<http>')
     define stream ConsumeSalesTotalsStream (transNo int, product string, price int, quantity int, salesValue long);
     ```
+    
 5. Configure parameters for the source you added.
    e.g., You can specify an HTTP URL for the `http` source in the example used.
    
@@ -52,6 +54,7 @@ To create a Siddhi application with the source configuration defined inline, fol
        @source(type='http', receiver.url='http://localhost:5005/SalesTotalsEP')
        define stream ConsumeSalesTotalsStream (transNo int, product string, price int, quantity int, salesValue long);
        ```
+       
 6. Add an `@map` annotation to the source configuration as shown below.
     ```
     @source(type='<SOURCE_TYPE>', <PARAMETER1_NAME>='<PARAMETER1_VALUE>', @map(type='<MAP_TYPE>'))
@@ -62,47 +65,40 @@ To create a Siddhi application with the source configuration defined inline, fol
     @source(type='http', receiver.url='http://localhost:5005/SalesTotalsEP', @map(type='json'))
     define stream ConsumerSalesTotalsStream(transNo int, product string, price int, quantity int, salesValue long);
     ```
+    
     !!!info
         Mapping is explained in detail in the [Consuming a message in default format](/#consuming-a-message-in-default-format) and [Consuming a message in custom format](#consuming-a-message-in-custom-format)sections.
         However, note that you need to add a mapping type to complete a source configuration. If no mapping type is specified, an error is indicated.
-7. Complete the Siddhi application by adding the rest of the required Siddhi constructs as follows.<br/>
-     
-    1. To publish the output, define an output stream and connect a sink to it as follows.<br/>
         
-        !!!info
-                Publishing the output is explained in detail in the [Publishing Data guide](publishing-data.md).
-        
-        ```
-        @sink(type='<SINK_TYPE>')
-        define stream <Stream_Name>(attribute1_name attribute1_type, attribute2_name attribute2_type, ...);
-        ```<br/>
-        
-        e.g., Assuming that you are publishing the events with the existing values as logs in the output console without any further processing, you can add an output stream connected to a sink as follows.
-            
-            ```
-            @sink(type='log', prefix='Sales Totals:')
-            define stream PublishSalesTotalsStream (transNo int, product string, price int, quantity int, salesValue long);
-            ```
-            
-      
-    2. Add a Siddhi query to specify how the output is derived.
-        ```
-        from <INPUT_STREAM_NAME>
-        select <ATTRIBUTE1_Name>, <ATTRIBUTE2_NAME>, ... 
-        group by <ATTRIBUTE_NAME>
-        insert into <OUTPUT_STREAM_NAME>;
-        ```
-
+7.  Add a Siddhi query to specify how the output is derived and the name of an output stream to which this output is directed.
+    ```
+    from <INPUT_STREAM_NAME>
+    select <ATTRIBUTE1_Name>, <ATTRIBUTE2_NAME>, ... 
+    group by <ATTRIBUTE_NAME>
+    insert into <OUTPUT_STREAM_NAME>;
+    ```
+    
     e.g., Assuming that you are publishing the events with the existing values as logs in the output console without any further processing, you can define the query as follows.
     
-        ```jql
-        from ConsumerSalesTotalsStream
-        select transNo, product, price, quantity, salesValue
-        group by product
-        insert into PublishSalesTotalsStream;
+    ```
+    from ConsumerSalesTotalsStream
+    select *
+    group by product
+    insert into PublishSalesTotalsStream;
+    ```
+    
+8. Complete the Siddhi application by defining an output stream with a connected sink configuration.
+
+    !!!tip
+        In the example used, you can define the `PublishSalesTotals` stream that you already specified as the output stream in the query, and connect a `log` sink to it as follows. Publishing the output is explained in detail in the [Publishing Data guide](publishing-data.md).
+        
+        ```
+        @sink(type='log', prefix='Sales Totals:')
+        define stream PublishSalesTotalsStream (transNo int, product string, price int, quantity int, salesValue long);
         ```
         
-8. Save the Siddhi Application. The completed application is as follows:
+        
+9. Save the Siddhi Application. The completed application is as follows:
     ```
     @App:name("SalesTotalsApp")
     @App:description("Description of the plan")
@@ -114,7 +110,7 @@ To create a Siddhi application with the source configuration defined inline, fol
     define stream PublishSalesTotalsStream (transNo int, product string, price int, quantity int, salesValue long);
     
     from ConsumerSalesTotalsStream
-    select transNo, product, price, quantity, salesValue
+    select *
     group by product
     insert into PublishSalesTotalsStream;
     ```
@@ -129,12 +125,15 @@ follow the procedure below.
 
 
 1. Open the `<SI_HOME>/conf/server/deployment.yaml` file.
+
 2. Add a section named `siddi`, and then add a subsection named `refs:` as shown below.
-    ```jql    
+
+    ```    
     siddhi:  
      refs:
       -
     ```
+    
 3. In the `refs` subsection, enter a parameter named `name` and enter a name for the source.
     ```    
     siddhi:  
@@ -151,6 +150,7 @@ follow the procedure below.
        name:'<SOURCE_NAME>'
        type: '<SOURCE_TYPE>'
     ```
+    
 5. To configure other parameters for the source (based on the source type), add a subsection named `properties` as shown below.
     ```
     siddhi:  
@@ -182,12 +182,14 @@ The source configuration you added can be referred to in a Siddhi application as
 @source(ref='SOURCE_NAME')
 define stream ConsumeSalesTotalsStream (transNo int, product string, price int, quantity int, salesValue long);
 ```
+
 e.g., The HTTP source that you previously created can be referred to as follows.
 
 ```
 @source(ref='HTTP')
 define stream ConsumeSalesTotalsStream (transNo int, product string, price int, quantity int, salesValue long);
 ```
+
 ### Supported event source types
 <source categories table here> 
 
@@ -200,19 +202,24 @@ schema before it processes the message. To understand how messages are consumed 
 
 
 1. Create a Siddhi application with a source configuration following the instructions in the [Defining event source inline in Siddhi Application](#defining-event-source-inline-in-the-siddhi-application) subsection.
+
 2. In the source configuration, make sure that an `@map` annotation is included with the mapping type as shown below.
     ```
     @source(type='<SOURCE_TYPE>', <PARAMETER1_NAME>='<PARAMETER1_VALUE>', @map(type='<MAP_TYPE>'))
     define stream <Stream_Name>(attribute1_name attribute1_type, attribute2_name attribute2_type, ...);
     ```
+    
     The map type specifies the format in which the messages are received.
     e.g., In the example used, you can specify `JSON` as the map type as follows:
+    
     ```
     @source(type='http', receiver.url='http://localhost:5005/SalesTotalsEP', @map(type='json'))
     define stream ConsumerSalesTotalsStream(transNo int, product string, price int, quantity int, salesValue long);
     ```
+    
 3. Save the Siddhi application. If you save the Siddhi application that was created using the example configurations, the completed Siddhi application is as follows.
-    ```jql
+
+    ```
     @App:name("SalesTotalsApp")
     @App:description("Description of the plan")
     
@@ -223,10 +230,11 @@ schema before it processes the message. To understand how messages are consumed 
     define stream PublishSalesTotalsStream (transNo int, product string, price int, quantity int, salesValue long);
     
     from ConsumerSalesTotalsStream
-    select transNo, product, price, quantity, salesValue
+    select *
     group by product
     insert into PublishSalesTotalsStream;
     ```
+    
 4. To check whether the above Siddhi application works as expected, generate some messages.
 
     e.g., In the example used, the source type is HTTP. Therefore, you can issue a few curl commands similar to the following:
@@ -255,35 +263,41 @@ schema before it processes the message. To understand how messages are consumed 
     For this section, you can edit the same Siddhi application that you saved in the [Consuming a message in default format](#consuming-a-message-in-default-format)subsection.
     
 1. Open your Siddhi application with a source configuration.
+
 2. In the @map annotation within the source configuration, add the `@attributes` annotation with mappings for different attributes. This can be done in two ways as shown below.
+
     - Defining attributes as keys and mapping content as values in the following format.
-        ```
-        @source(type='<SOURCE_TYPE>', <PARAMETER1_NAME>='<PARAMETER1_VALUE>', @map(type='<MAP_TYPE>', @attributes( attributeN='mapping_N', attribute1='mapping_1')))
-        define stream <Stream_Name>(attribute1_name attribute1_type, attribute2_name attribute2_type, ...);
-        ``` 
+
+       ```
+       @source(type='<SOURCE_TYPE>', <PARAMETER1_NAME>='<PARAMETER1_VALUE>', @map(type='<MAP_TYPE>', @attributes( attributeN='mapping_N', attribute1='mapping_1')))
+       define stream <Stream_Name>(attribute1_name attribute1_type, attribute2_name attribute2_type, ...);
+       ```
+        
        e.g., In the Siddhi application used as an example in the previous section, assume that when receiving events, the `transNo` attribute is received as `transaction` and the `salesValue` attribute is received as `sales`.  The mapping type is JSON. therefore, you can  add the mappings as JSONPath expressions.
-       
-          |**Stream Attribute Name**|**JSON Event Attribute Name**|**JSONPath Expression**|
-          |----------------|----------------|----------------|
-          |`transNo`|`transaction`|`$.transaction`|
-          |`salesValue`| `sales` | `$.sales`|
+
+       | **Stream Attribute Name** | **JSON Event Attribute Name** | **JSONPath Expression** |
+       |---------------------------|-------------------------------|-------------------------|
+       | `transNo`                 | `transaction`                 | `$.transaction`         |
+       | `salesValue`              | `sales`                       | `$.sales`               |
        
          The mapping can be defined as follows.
       
-         ```
-         @source(type='http', receiver.url='http://localhost:5005/SalesTotalsEP', @map(type='json', @attributes(transNo = '$.transaction', salesValue = '$.sales')))
-         define stream ConsumerSalesTotalsStream(transNo int, product string, price int, quantity int, salesValue long);
-         ```
+       ```
+       @source(type='http', receiver.url='http://localhost:5005/SalesTotalsEP', @map(type='json', @attributes(transNo = '$.transaction', salesValue = '$.sales')))
+       define stream ConsumerSalesTotalsStream(transNo int, product string, price int, quantity int, salesValue long);
+       ```
         
-    - Defining the mapping content of all attributes in the same order as how the attributes are defined in stream definition.        
+    - Defining the mapping content of all attributes in the same order as how the attributes are defined in stream definition.
+
         ```
         @source(type='<SOURCE_TYPE>', <PARAMETER1_NAME>='<PARAMETER1_VALUE>', @map(type='<MAP_TYPE>', @attributes( 'mapping_1', 'mapping_N')))
         define stream <Stream_Name>(attribute1_name attribute1_type, attributeN_name attributeN_type, ...);
         ``` 
+        
     e.g., If you consider the same example, mapping can be defined as follows.
               
-        ```
-        @source(type='http', receiver.url='http://localhost:5005/SalesTotalsEP', @map(type='json', @attributes(transNo = '$.transaction', product = product, quantity = quantity, salesValue = '$.sales')))
-        define stream ConsumerSalesTotalsStream(transNo int, product string, price int, quantity int, salesValue long);
-        ```
+    ```
+    @source(type='http', receiver.url='http://localhost:5005/SalesTotalsEP', @map(type='json', @attributes(transNo = '$.transaction', product = product, quantity = quantity, salesValue = '$.sales')))
+    define stream ConsumerSalesTotalsStream(transNo int, product string, price int, quantity int, salesValue long);
+    ```
    

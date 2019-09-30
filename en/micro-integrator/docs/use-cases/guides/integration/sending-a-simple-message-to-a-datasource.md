@@ -1,5 +1,7 @@
 # Sending a Simple Message to a Datasource
 
+## What you'll build
+
 Let’s try a simple scenario where a patient makes an inquiry specifying
 the doctor's specialization (category) to retrieve a list of doctors
 that match the specialization. The required information is stored in an
@@ -10,15 +12,13 @@ the client and the database layer in the back end. The client will then
 communicate with the data service hosted in WSO2 EI to get the required
 information instead of communicating directly with the back end.
 
-  
-
 **In this tutorial** , we will define a data service in the ESB profile
 of WSO2 EI to expose the back-end database. A client can then invoke the
 data service to send messages to the database. If you want to use a
 back-end service instead of a database, see the tutorial on [sending a
 simple message to a service](_Sending_a_Simple_Message_to_a_Service_) .
 
-![](attachments/119132403/119132408.png)
+![](/assets/img/tutorials/119132403/119132408.png)
 
 Let's get started!
 
@@ -63,8 +63,7 @@ for this purpose.
     `           <Dataservice_Home>          ` directory and execute the
     following command:
 
-        !!! tip
-    
+    !!! Tip
         When executing the below command, replace the
         `           <PATH_TO_EI_HOME>          ` with the folder path of
         your WSO2 EI distribution. For example, if your WSO2 EI distribution
@@ -76,10 +75,9 @@ for this purpose.
         Also, you need to install [Apache Ant](https://ant.apache.org/) to
         execute this command.
     
-
-    ``` java
+        ``` java
         ant -Ddshome=<PATH_TO_EI_HOME>
-    ```
+        ```
 
 The database is now updated with information on all available doctors in
 the healthcare service.
@@ -186,7 +184,7 @@ Now, let's start creating the data service using the management console.
         | **Row name**           | `                 DOCTOR                `            |
 
         The output mapping will be as shown below.  
-        ![](attachments/119132403/119132405.png){width="800"
+        ![](/assets/img/tutorials/119132403/119132405.png){width="800"
         height="338"}
 
                 !!! info
@@ -237,7 +235,7 @@ Now, let's start creating the data service using the management console.
     4.  Edit the record and change the **Mapping Name** to SPECIALITY,
         and click **Save** . You will now have the following input
         mapping:  
-        ![](attachments/119132403/119132406.png){width="842"
+        ![](/assets/img/tutorials/119132403/119132406.png){width="842"
         height="109"}
 
                 !!! info
@@ -264,7 +262,7 @@ Now, let's start creating the data service using the management console.
         | **Row name**           | `                 DOCTOR                `     |
 
         The output mapping will be as shown below.  
-        ![](attachments/119132403/119132407.png){width="800"
+        ![](/assets/img/tutorials/119132403/119132407.png){width="800"
         height="363"}  
 
                 !!! info
@@ -311,7 +309,7 @@ Now, let's start creating the data service using the management console.
     **Deployed Services** screen, which shows all the data services
     deployed on the server including the one you created.  
     ![created new data service
-    group](attachments/119132403/119132404.png "created new data service group"){width="1149"
+    group](/assets/img/tutorials/119132403/119132404.png "created new data service group"){width="1149"
     height="411"}  
 
 ### Sending requests to the ESB

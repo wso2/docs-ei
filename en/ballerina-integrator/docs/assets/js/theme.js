@@ -39,6 +39,23 @@
 var dropdowns = document.getElementsByClassName('md-tabs__dropdown-link');
 var dropdownItems = document.getElementsByClassName('mb-tabs__dropdown-item');
 
+window.onclick = function(evt) {
+    var openedDropDowns = document.getElementsByClassName('open');
+
+    if(evt.target.className === 'md-tabs__link md-tabs__dropdown-link localLink') {
+        return;
+    } else {
+        for (let i = 0; i < openedDropDowns.length; i++) {
+            let elem = openedDropDowns[i];
+            let classes = elem.className.split(' ');
+            let index = classes.indexOf('open');
+
+            classes.splice(index, 1);
+            elem.className = classes.join(' ');
+        }
+    }
+}
+
 function indexInParent(node) {
     var children = node.parentNode.childNodes;
     var num = 0;
@@ -168,7 +185,7 @@ request.onload = function() {
 
           // Pre-release version update
           document.getElementById('pre-release-version-documentation-link')
-              .setAttribute('href', docSetUrl + 'next/ballerina-integrator');
+              .setAttribute('href', docSetUrl + 'next/micro-integrator');
       }
 
   } else {
@@ -189,18 +206,20 @@ request.send();
 var distributionDropdown =  document.getElementById('distribution-select-dropdown');
 
 const distributionURLList = [ 'ballerina-integrator','micro-integrator','streaming-integrator' ];
+const introductionURL = ['/getting-started/introduction','/overview/introduction','/overview/overview'];
 
 if (distributionDropdown){
+    let count = 0;
     distributionURLList.forEach(function(key){
         var liElem = document.createElement('li');
         var target = '_self';
         var version = window.location.pathname.split('/')[2] + '/';
-        var url = docSetUrl + version + key;
+        var url = docSetUrl + version + key + introductionURL[count];
 
         liElem.className = 'md-tabs__item mb-tabs__dropdown';
         liElem.innerHTML =  '<a href="' + url + '" target="' +
             target + '">' + key.replace(/-/g, " ") + '</a>';
-
+        count++;
         distributionDropdown.insertBefore(liElem, distributionDropdown.lastChild);
     });
 }
@@ -209,6 +228,86 @@ if (distributionDropdown){
  * Initialize highlightjs
  */
 hljs.initHighlightingOnLoad();
+
+
+/*
+ * Register ballerina language for highlightJS
+ * Grammer: https://github.com/ballerina-platform/ballerina-lang/blob/master/compiler/ballerina-lang/src/main/resources/grammar/BallerinaLexer.g4
+ */
+if (typeof hljs === 'object') {
+    hljs.configure({ languages: [] });
+    hljs.registerLanguage('ballerina', function() {
+        return {
+            "k": "if else iterator try catch finally fork join all some while foreach in throw return " +
+                "returns break timeout transaction aborted abort committed failed retries next bind with " +
+                "lengthof typeof enum import version public private attach as native documentation lock " +
+                "from on select group by having order where followed insert into update delete set for " +
+                "window query annotation package type typedesc connector function resource service action " +
+                "worker struct transformer endpoint object const true false reply create parameter match but",
+            "i": {},
+            "c": [{
+                "cN": "ballerinadoc",
+                "b": "/\\*\\*",
+                "e": "\\*/",
+                "r": 0,
+                "c": [{
+                    "cN": "ballerinadoctag",
+                    "b": "(^|\\s)@[A-Za-z]+"
+                }]
+            }, {
+                "cN": "comment",
+                "b": "//",
+                "e": "$",
+                "c": [{
+                    "b": {}
+                }, {
+                    "cN": "label",
+                    "b": "XXX",
+                    "e": "$",
+                    "eW": true,
+                    "r": 0
+                }]
+            }, {
+                "cN": "comment",
+                "b": "/\\*",
+                "e": "\\*/",
+                "c": [{
+                    "b": {}
+                }, {
+                    "cN": "label",
+                    "b": "XXX",
+                    "e": "$",
+                    "eW": true,
+                    "r": 0
+                }, "self"]
+            }, {
+                "cN": "string",
+                "b": "\"",
+                "e": "\"",
+                "i": "\\n",
+                "c": [{
+                    "b": "\\\\[\\s\\S]",
+                    "r": 0
+                }, {
+                    "cN": "constant",
+                    "b": "\\\\[abfnrtv]\\|\\\\x[0-9a-fA-F]*\\\\\\|%[-+# *.0-9]*[dioxXucsfeEgGp]",
+                    "r": 0
+                }]
+            }, {
+                "cN": "number",
+                "b": "(\\b(0b[01_]+)|\\b0[xX][a-fA-F0-9_]+|(\\b[\\d_]+(\\.[\\d_]*)?|\\.[\\d_]+)([eE][-+]?\\d+)?)[lLfF]?",
+                "r": 0
+            }, {
+                "cN": "annotation",
+                "b": "@[A-Za-z]+"
+            }, {
+                "cN": "type",
+                "b": "\\b(boolean|int|float|string|var|any|datatable|table|blob|map|exception|json|xml|xmlns|error|stream|streamlet|aggregation)\\b",
+                "r": 0
+            }]
+        };
+    });
+
 
 /*
  * Handle TOC toggle
@@ -319,3 +418,17 @@ window.addEventListener('scroll', function() {
         editIcon.classList.remove('active');
     }
 });
+
+}
+
+// change homepage url
+var homeUrlArr = [
+    window.location.protocol+'/',
+    window.location.host,
+    window.location.pathname.split('/')[1],
+    window.location.pathname.split('/')[2],
+]
+
+if (document.getElementsByClassName('md-tabs__item home_icon').length>0) {
+    document.getElementsByClassName('md-tabs__item home_icon')[0].firstElementChild.setAttribute('href', homeUrlArr.join('/'));
+}

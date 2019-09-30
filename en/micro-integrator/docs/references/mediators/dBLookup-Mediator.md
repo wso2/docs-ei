@@ -5,42 +5,16 @@ and then set a resulting values as a local message property in the
 message context. The DB connection used may be looked up from an
 external data source or specified inline.
 
-!!! info
+!!! Info
+    - The DBLookup mediator is a [content-aware](../../../concepts/message-processing-units/#classification-of-mediators) mediator.
+    - The DBLookup mediator can set a property from one row in a result set. It cannot return multiple rows. If you need to get multiple records, or if you have a table with multiple parameters (such as URLs), you can create a data service and invoke that service from the Micro Integrator using the [Callout mediator](callout-Mediator.md) instead.
 
-The DBLookup mediator can set a property from one row in a result set.
-It cannot return multiple rows. If you need to get multiple records, or
-if you have a table with multiple parameters (such as URLs), you can use
-the [WSO2 Data Services
-Server](http://wso2.com/products/data-services-server/) to create a data
-service and invoke that service from the ESB using the [Callout
-mediator](_Callout_Mediator_) instead.
+## Syntax
 
-!!! info
+The syntax of the DBLookup mediator changes depending on whether you connect to the database using a connection pool, or using a data source. Click on the relevant tab to view the required syntax.
 
-The DBLookup mediator is a
-[content-aware](ESB-Mediators_119131045.html#ESBMediators-Content-awareness)
-mediator.
-
-
-------------------------------------------------------------------------
-
-[Syntax](#DBLookupMediator-Syntax) \|
-[Configuration](#DBLookupMediator-Configuration) \|
-[Examples](#DBLookupMediator-Examples) \|
-[Samples](#DBLookupMediator-Samples)
-
-------------------------------------------------------------------------
-
-### Syntax
-
-The syntax of the DBLookup mediator changes depending on whether you
-connect to the database using a connection pool, or using a data source.
-Click on the relevant tab to view the required syntax.
-
--   [**Connection Pool**](#3357b8c4e7924ea3850f633dcd7f210d)
--   [**Data source**](#fd9a59679e884fc48af19cb0bc23825a)
-
-``` java
+-   **Connection Pool**
+    ``` java
     <dblookup>
        <connection>
           <pool>
@@ -57,17 +31,12 @@ Click on the relevant tab to view the required syntax.
           <result name="string" column="int|string"/>*
        </statement>+
     </dblookup>
-```
+    ```
 
-The syntax of the DBLookup mediator further differs based on whether the
-connection to the database is made using an external datasource or a
-Carbon datasource. Click on the relevant tab to view the required
-syntax.
+-   **Data source**
+    The syntax of the DBLookup mediator further differs based on whether the connection to the database is made using an external datasource or a Carbon datasource.
 
--   [**External Datasource**](#737f40d969e44836afdba092302152cf)
--   [**Carbon Datasource**](#1eab9d6fc3104de7a9ed271e75caac6f)
-
-``` java
+    ``` java tab='External Datasource'
     <dblookup>
        <connection>
           <pool>
@@ -85,9 +54,9 @@ syntax.
           <result name="string" column="int|string"/>*
        </statement>+
     </dblookup>
-```
+    ```
 
-``` java
+    ``` java tab='Carbon Datasource'
     <dblookup>
        <connection>
           <pool>
@@ -100,52 +69,33 @@ syntax.
           <result name="string" column="int|string"/>*
        </statement>+
     </dblookup>
-```
+    ```
 
-------------------------------------------------------------------------
+## Configurations
 
-### Configuration
+The configuration of the DBLookup mediator changes depending on whether you connect to the database using a connection pool, or using a data source.
 
-The configuration of the DBLookup mediator changes depending on whether
-you connect to the database using a connection pool, or using a data
-source. Click on the relevant tab to view the required UI configuration.
-
--   [**Connection Pool**](#0624ca99be064911b7def6cb01946167)
--   [**Data source**](#82dd7fc04192434d8c42109483031391)
+### Connection Pool configurations
 
 The parameters available to configure the DBLookup mediator are as
 follows:
 
-!!! info
+!!! Info
+    When specifying the DB connection using a connection pool, other than specifying parameter values inline, you can also specify following parameter values of the connection information (i.e. Driver, URL, User and password) as registry entries. The advantage of specifying a parameter value as a registry entry is that the same connection information configurations can be used in different environments simply by changing the registry entry value. To do this, give the registry path within the `key` attribute as shown in the example below.
 
-When specifying the DB connection using a connection pool, other than
-specifying parameter values inline, you can also specify following
-parameter values of the connection information (i.e. Driver, URL, User
-and password) as registry entries. The advantage of specifying a
-parameter value as a registry entry is that the same connection
-information configurations can be used in different environments simply
-by changing the registry entry value. To do this, give the registry path
-within the `            key           ` attribute as shown in the
-example below.
-
-``` xml
-    <dblookup xmlns="http://ws.apache.org/ns/synapse">
-    <connection>
-        <pool>
-            <password key="conf:/repository/esb/password"/>
-            <driver key="conf:/repository/esb/driver"/>
-            <url key="conf:/repository/esb/url"/>
-            <user key="conf:/repository/esb/username"/>
-        </pool>
-    </connection>
-    </dblookup>
+```
+<dblookup xmlns="http://ws.apache.org/ns/synapse">
+<connection>
+    <pool>
+        <password key="conf:/repository/esb/password"/>
+        <driver key="conf:/repository/esb/driver"/>
+        <url key="conf:/repository/esb/url"/>
+        <user key="conf:/repository/esb/username"/>
+    </pool>
+</connection>
+</dblookup>
 ```
     
-    If you need to provide the registry entry value via the Management
-    Console, specify the registry path using the
-    `            $registry           ` prefix.
-    
-
 | Parameter Name             | Description                                                                                                      |
 |----------------------------|------------------------------------------------------------------------------------------------------------------|
 | **Connection Information** | This parameter is used to specify whether the connection should be taken from a connection pool or a datasource. |
@@ -154,12 +104,8 @@ example below.
 | **User**                   | Username used to connect to the database.                                                                        |
 | **Password**               | Password used to connect to the database.                                                                        |
 
-##### Adding properties to the DBLookup mediator
 
-If you click **Add Property** , the page will expand to display the
-following parameters.
-
-The parameters available to manage properties are as follows.
+To add properties to the DBLookup mediator, start with the following parameters:
 
 | Parameter Name | Description                                      |
 |----------------|--------------------------------------------------|
@@ -167,8 +113,7 @@ The parameters available to manage properties are as follows.
 | **Value**      | The value of the property.                       |
 | **Action**     | This parameter enables a property to be deleted. |
 
-  
-The available properties are as follows.
+Once you have defined the above parameters, enter the following properties:
 
 <table>
 <thead>
@@ -204,9 +149,7 @@ The available properties are as follows.
 <td><p>int</p></td>
 <td><div class="content-wrapper">
 <p>The maximum number of idle connections allowed in the connection pool at a given time. The value should be less than the <code style="color: rgb(0,0,0);line-height: 1.42857;">                  maxActive                 </code> value. For high performance, tune <code style="color: rgb(0,0,0);line-height: 1.42857;">                  maxIdle                 </code> to match the number of average, concurrent requests to the pool. If this value is set to a large value, the pool will contain unnecessary idle connections.</p>
-!!! info
-<p>The enabled idle connections are checked periodically whenever a new connection is requested, and connections that are being idle for longer than <code>                  minEvictableIdleTimeMillis                 </code> are released , since it takes time to create a new connection.</p>
-
+<p>The enabled idle connections are checked periodically whenever a new connection is requested, and connections that are being idle for longer than <code>                  minEvictableIdleTimeMillis                 </code> are released, since it takes time to create a new connection.</p>
 <p><br />
 </p>
 </div></td>
@@ -225,10 +168,8 @@ The available properties are as follows.
 <td><p>minidle</p></td>
 <td><p>int</p></td>
 <td><div class="content-wrapper">
-<p>The minimum number of idle connections allowed in the connection pool at a given time, without extra ones being created . Default value is 0, and is derived from <code>                  initialSize                 </code> . The connection pool can shrink below this number if validation queries fail.</p>
-!!! info
+<p>The minimum number of idle connections allowed in the connection pool at a given time, without extra ones being created . Default value is 0, and is derived from <code>                  initialSize                 </code>. The connection pool can shrink below this number if validation queries fail.</p>
 <p>This value should be similar or near to the average number of requests that will be received by the server at the same time. With this setting, you can avoid having to open and close new connections every time a request is received by the server.</p>
-
 <p><br />
 </p>
 </div></td>
@@ -236,17 +177,17 @@ The available properties are as follows.
 <tr class="odd">
 <td><p>poolstatements</p></td>
 <td><p>true/ false</p></td>
-<td>If the value is <code>                true               </code> , statement pooling is enabled for the pool.</td>
+<td>If the value is <code>true</code>, statement pooling is enabled for the pool.</td>
 </tr>
 <tr class="even">
 <td><p>testonborrow</p></td>
 <td><p>true/ false</p></td>
-<td>If the value is <code>                true               </code> , objects are validated before they are borrowed from the pool. An object which fails the validation test will be dropped from the pool and another object in the pool will be picked instead.</td>
+<td>If the value is <code>true</code>, objects are validated before they are borrowed from the pool. An object which fails the validation test will be dropped from the pool and another object in the pool will be picked instead.</td>
 </tr>
 <tr class="odd">
 <td><p>testwhileidle</p></td>
 <td><p>true/ false</p></td>
-<td>If the value is <code>                true               </code> , the objects in the pool will be validated using an idle object evictor (if any exists). Any object which fails this validation test would be dropped from the pool.</td>
+<td>If the value is <code>                true               </code>, the objects in the pool will be validated using an idle object evictor (if any exists). Any object which fails this validation test would be dropped from the pool.</td>
 </tr>
 <tr class="even">
 <td><p>validationquery</p></td>
@@ -256,15 +197,11 @@ The available properties are as follows.
 </tbody>
 </table>
 
-The UI configuration of the DBLookup mediator further differs based on
-whether the connection to the database is made using an external
-datasource or a Carbon datasource. Click on the relevant tab to view the
-required UI configuration.
+### Datasource configurations
 
--   [**Carbon Datasource**](#0d58d2d3548647828531bd7bab7011bc)
+The configuration of the DBLookup mediator further differs based on whether the connection to the database is made using an external datasource or a Carbon datasource.
 
-The parameters available to configure the DBLookup mediator are as
-follows.
+The parameters available to configure the DBLookup mediator are as follows.
 
 | Parameter Name             | Description                                                                                                                                  |
 |----------------------------|----------------------------------------------------------------------------------------------------------------------------------------------|
@@ -272,13 +209,7 @@ follows.
 | **Datasource Type**        | This parameter is used to specify whether the connection to the database should be made using an external datasource or a Carbon datasource. |
 | **JNDI Name**              | The JNDI used to look up data.                                                                                                               |
 
-  
-
-**  
-Adding SQL statements to the DBLookup Mediator**
-
-If you click **Add Statement** , the page will be expanded to display
-the following parameters.
+### SQL statements
 
 <table>
 <thead>
@@ -330,9 +261,7 @@ the following parameters.
 <td><strong>Value/Expression</strong></td>
 <td><div class="content-wrapper">
 <p>This parameter is used to enter the static value or the XPath expression used to determine the property value based on the option you selected for the <strong>Property Type</strong> parameter.</p>
-!!! tip
 <p>You can click <strong>NameSpaces</strong> to add namespaces if you are providing an expression. Then the <strong>Namespace Editor</strong> panel would appear where you can provide any number of namespace prefixes and URLs used in the XPath expression.</p>
-
 </div></td>
 </tr>
 <tr class="even">
@@ -351,38 +280,29 @@ the following parameters.
 </tbody>
 </table>
 
-  
-
-------------------------------------------------------------------------
-
-### Examples
+## Example
 
 ``` java
-    <dblookup xmlns="http://ws.apache.org/ns/synapse">
-        <connection>
-            <pool>
-                <driver>org.apache.derby.jdbc.ClientDriver</driver>
-                <url>jdbc:derby://localhost:1527/esbdb;create=false</url>
-                <user>esb</user>
-                <password>esb</password>
-            </pool>
-        </connection>
-        <statement>
-            <sql><![CDATA[select * from company where name =?]]></sql>
-            <parameter expression="//m0:getQuote/m0:request/m0:symbol" type="VARCHAR" xmlns:m0="http://services.samples/xsd"/>
-            <result column="id" name="company_id"/>
-        </statement>
-    </dblookup>
+<dblookup xmlns="http://ws.apache.org/ns/synapse">
+    <connection>
+        <pool>
+            <driver>org.apache.derby.jdbc.ClientDriver</driver>
+            <url>jdbc:derby://localhost:1527/esbdb;create=false</url>
+            <user>esb</user>
+            <password>esb</password>
+        </pool>
+    </connection>
+    <statement>
+        <sql><![CDATA[select * from company where name =?]]></sql>
+        <parameter expression="//m0:getQuote/m0:request/m0:symbol" type="VARCHAR" xmlns:m0="http://services.samples/xsd"/>
+        <result column="id" name="company_id"/>
+    </statement>
+</dblookup>
 ```
 
-In this example, when a message is received by a proxy service with a
-DBLookup mediator configuration, it opens a connection to the database
-and executes the SQL query. The SQL query uses **?** character for
-attributes that will be filled at runtime. The parameters define how to
-calculate the value of those attributes at runtime. In this sample, the
-DBLookup Mediator has been used to extract  the `         id        ` of
-the company from the company database using the symbol which is
-evaluated using an XPath against the SOAP envelope.
+In this example, when a message is received by a proxy service with a DBLookup mediator configuration, it opens a connection to the database and executes the SQL query. The SQL query uses **?** character for attributes that will be filled at runtime. The parameters define how to calculate the value of those attributes at runtime. In this sample, the DBLookup Mediator has been used to extract  the `         id        ` of the company from the company database using the symbol which is evaluated using an XPath against the SOAP envelope.
+
+<!--
 
 ### Samples
 
@@ -392,3 +312,4 @@ evaluated using an XPath against the SOAP envelope.
     Together](https://docs.wso2.com/display/EI6xx/Sample+362%3A+DBReport+and+DBLookup+Mediators+Together)
 -   [Sample 363: Reusable Database Connection
     Pools](https://docs.wso2.com/display/EI6xx/Sample+363%3A+Reusable+Database+Connection+Pools)
+-->

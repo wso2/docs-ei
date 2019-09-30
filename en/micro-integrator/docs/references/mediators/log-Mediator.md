@@ -1,41 +1,22 @@
 # Log Mediator
 
-The **Log mediator** is used to log mediated messages. For more
-information on logging, see [Monitoring
-Logs](https://docs.wso2.com/display/ADMIN44x/Monitoring+Logs) in WSO2
-Administration Guide.
+The **Log mediator** is used to log mediated messages. For more information on logging, see [Monitoring Logs](../../administer-and-observe/logs/monitoring_logs.md).
 
-!!! info
+!!! Info
+	The Log mediator is a [conditionally](../../../concepts/message-processing-units/#classification-of-mediators) [content aware](../../../concepts/message-processing-units/#classification-of-mediators) mediator.
 
-The Log mediator is a
-[conditionally](ESB-Mediators_119131045.html#ESBMediators-Content-awareness)
-[content
-aware](ESB-Mediators_119131045.html#ESBMediators-Content-awareness)
-mediator.
-
-
-------------------------------------------------------------------------
-
-[Syntax](#LogMediator-Syntax) \|
-[Configuration](#LogMediator-Configuration) \|
-[Examples](#LogMediator-Examples)
-
-------------------------------------------------------------------------
-
-### Syntax
+## Syntax
 
 The log token refers to a `         <log>        ` element, which may be
 used to log messages being mediated.
 
 ``` java
-    <log [level="string"] [separator="string"]>
-       <property name="string" (value="literal" | expression="[XPath|json-eval(JSON Path)]")/>*
-    </log>
+<log [level="string"] [separator="string"]>
+   <property name="string" (value="literal" | expression="[XPath|json-eval(JSON Path)]")/>*
+</log>
 ```
 
-------------------------------------------------------------------------
-
-### Configuration
+## Configuration
 
 The general parameters available to configure the Log mediator are as
 follows.
@@ -72,26 +53,20 @@ follows.
 <li><strong>Headers</strong> : If this is selected, all the SOAP header blocks are logged.</li>
 <li><strong>Custom</strong> : If this is selected, only the properties added to the Log mediator configuration will be logged.</li>
 </ul>
-!!! info
-<p>The <a href="_Properties_Reference_">properties</a> included in the Log mediator configuration will be logged regardless of the log level selected.</p>
-
+<p>The properties included in the Log mediator configuration will be logged regardless of the log level selected.</p>
 </div></td>
 </tr>
 <tr class="odd">
 <td><strong>Log Separator</strong></td>
 <td><div class="content-wrapper">
 <p>This parameter is used to specify a value to be used in the log to separate attributes. The <code>               ,              </code> comma is default.</p>
-!!! note
 <p>Use only the <strong>Source View</strong> to add a tab (i.e., by defining the <code>               separator="&amp;#x9;"              </code> parameter in the syntax) or a new line (i.e., by defining the <code>               separator="&amp;#xA;"              </code> parameter in the syntax ) as the <strong>Log Separator</strong> , since the <strong>Design View</strong> does not support this.</p>
-
 </div></td>
 </tr>
 </tbody>
 </table>
 
-Properties to be logged by the Log mediator can be added by clicking
-**Add Property** . The parameters available to configure a property are
-as follows.
+The parameters available to configure a property are as follows:
 
 <table>
 <thead>
@@ -109,17 +84,14 @@ as follows.
 <td><strong>Property Value</strong></td>
 <td><p>The possible values for this parameter are as follows:</p>
 <ul>
-<li><strong>Value</strong> : If this is selected, a static value would be considered as the property value and this value should be entered in the <strong>Value/Expression</strong> parameter.</li>
-<li><p><strong>Expression</strong> : If this is selected, the property value will be determined during mediation by evaluating an expression. This expression should be entered in the <strong>Value/</strong> <strong>Expression</strong> parameter.</p></li>
+<li><strong>Value</strong>: If this is selected, a static value would be considered as the property value and this value should be entered in the <strong>Value/Expression</strong> parameter.</li>
+<li><p><strong>Expression</strong>: If this is selected, the property value will be determined during mediation by evaluating an expression. This expression should be entered in the <strong>Value/Expression</strong> parameter.</p></li>
 </ul></td>
 </tr>
 <tr class="odd">
 <td><strong>Value/Expression</strong></td>
 <td><div class="content-wrapper">
-<p>This parameter is used to enter a status value as the property value, or to enter an expression to evaluate the property value based on the what you entered for the <strong>Property Value</strong> parameter. When specifying a JSONPath, use the format <code>               json-eval(&lt;JSON_PATH&gt;)              </code> , such as <code>               json-eval(getQuote.request.symbol)              </code> . For more information on using JSON with the the ESB profile , see <a href="https://docs.wso2.com/display/EI650/Working+with+JSON+Message+Payloads">Working with JSON Message Payloads</a> .</p>
-!!! tip
-<p>You can click <strong>NameSpaces</strong> to add namespaces if you are providing an expression. Then the <strong>Namespace Editor</strong> panel would appear where you can provide any number of namespace prefixes and URLs used in the XPath expression.</p>
-
+<p>This parameter is used to enter a status value as the property value, or to enter an expression to evaluate the property value based on the what you entered for the <strong>Property Value</strong> parameter. When specifying a JSONPath, use the format <code>json-eval(&lt;JSON_PATH&gt;)</code> , such as <code>json-eval(getQuote.request.symbol)</code>.</p>
 </div></td>
 </tr>
 <tr class="even">
@@ -129,29 +101,27 @@ as follows.
 </tbody>
 </table>
 
-  
+## Examples
 
-### Examples
-
-#### Example 1 - Full log
+### Using Full log
 
 In this example, everything is logged including the complete SOAP
 message.
 
 ``` java
-    <log level="full" xmlns="http://ws.apache.org/ns/synapse"/>
+<log level="full" xmlns="http://ws.apache.org/ns/synapse"/>
 ```
 
-#### Example 2 - Custom logs
+### Using Custom logs
 
 In this example, the log level is `         custom        ` . A property
 with an XPath expression which is used to get a stock price from a
-message is included. This results in logging the stock price which is a
+message is included. This results in logging the stock, price which is a
 dynamic value.
 
-``` html/xml
-    <log level="custom" xmlns="http://ws.apache.org/ns/synapse">
-        <property name="text"
-                  expression="fn:concat('Stock price - ',get-property('stock_price'))"/>
-    </log>
+``` 
+<log level="custom" xmlns="http://ws.apache.org/ns/synapse">
+    <property name="text"
+              expression="fn:concat('Stock price - ',get-property('stock_price'))"/>
+</log>
 ```

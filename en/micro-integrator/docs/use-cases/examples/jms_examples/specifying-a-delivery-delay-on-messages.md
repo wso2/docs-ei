@@ -1,137 +1,30 @@
-# Using the ESB Profile of WSO2 Enterprise Integrator as a JMS Producer and Specifying a Delivery Delay on Messages
+# Delivery Delay on Messages for JMS Producer
 
-In a normal message flow, JMS messages that are sent by the JMS producer
-to the JMS broker are forwarded to the respective JMS consumer without
-any delay.
+In a normal message flow, JMS messages that are sent by the JMS producer to the JMS broker are forwarded to the respective JMS consumer without any delay.
 
-With the delivery delay messaging feature introduced with JMS 2.0, you
-can specify a delivery delay time value in each JMS message so that the
-JMS broker will not deliver the message until after the specified
-delivery delay has elapsed. Specifying a delivery delay is useful if
-there is a scenario where you do not want a message consumer to receive
-a message that is sent until a specified time duration has elapsed. To
-implement this, you need to add a delivery delay to the JMS producer so
-that the publisher does not deliver a message until the specified
-delivery delay time interval is elapsed.
+With the delivery delay messaging feature introduced with JMS 2.0, you can specify a delivery delay time value in each JMS message so that the JMS broker will not deliver the message until after the specified delivery delay has elapsed. Specifying a delivery delay is useful if there is a scenario where you do not want a message consumer to receive a message that is sent until a specified time duration has elapsed. To implement this, you need to add a delivery delay to the JMS producer so
+that the publisher does not deliver a message until the specified delivery delay time interval is elapsed.
 
-The following diagram illustrates how you can use the ESB Profile of
-WSO2 Enterprise Integrator (WSO2 EI) as a JMS producer and specify a
-delivery delay on messages when you do not want the message consumer to
-receive a message until a specified time duration has elapsed.
+The following diagram illustrates how you can use WSO2 Micro Integrator as a JMS producer and specify a delivery delay on messages when you do not want the message consumer to receive a message until a specified time duration has elapsed.
 
 ![](attachments/119130324/119130325.png)
 
-To demonstrate the scenario illustrated above, let's configure the JMS
-transport sender in the ESB Profile of WSO2 EI using HornetQ as the
-message broker. This sample scenario includes the following sections:
+## Synapse configuration
 
--   [Prerequisites](#UsingtheESBProfileofWSO2EnterpriseIntegratorasaJMSProducerandSpecifyingaDeliveryDelayonMessages-Prerequisites)
--   [Configuring and starting the HornetQ message
-    broker](#UsingtheESBProfileofWSO2EnterpriseIntegratorasaJMSProducerandSpecifyingaDeliveryDelayonMessages-ConfiguringandstartingtheHornetQmessagebroker)
--   [Configuring the JMS transport sender in the ESB Profile of WSO2
-    EI](#UsingtheESBProfileofWSO2EnterpriseIntegratorasaJMSProducerandSpecifyingaDeliveryDelayonMessages-ConfiguringtheJMStransportsenderintheESBProfileofWSO2EI)
--   [Building the sample
-    scenario](#UsingtheESBProfileofWSO2EnterpriseIntegratorasaJMSProducerandSpecifyingaDeliveryDelayonMessages-Buildingthesamplescenario)
--   [Executing the sample
-    scenario](#UsingtheESBProfileofWSO2EnterpriseIntegratorasaJMSProducerandSpecifyingaDeliveryDelayonMessages-Executingthesamplescenario)
--   [Analyzing the
-    output](#UsingtheESBProfileofWSO2EnterpriseIntegratorasaJMSProducerandSpecifyingaDeliveryDelayonMessages-Analyzingtheoutput)
+The synapse configuration for this sample scenario is as follows:
 
-### Prerequisites
+``` java tab="Registry Artifact"
+<registry provider="org.wso2.carbon.mediation.registry.WSO2Registry">
+   <parameter name="cachableDuration">15000</parameter>
+</registry>
+```
 
--   Download the
-    [hornetq-all-new.jar](https://drive.google.com/file/d/0BzqPLt3PumqXNi1vM1hodFc1NWs/view)
-    and copy it to the `          <EI_HOME>/lib         ` directory.
--   Replace the
-    `          geronimo-jms_1.1_spec-1.1.0.wso2v1.jar         ` file
-    in the `          <EI_HOME>/wso2/lib/endorsed/         `
-    directory with
-    `                     javax.jms-api-2.0.1.jar                   `
--   Download HornetQ from <http://hornetq.jboss.org/downloads> and
-    extract the tar.gz.
+``` java tab="Task Manager"
+<taskManager provider="org.wso2.carbon.mediation.ntask.NTaskTaskManager"/>
+```
 
-### Configuring and starting the HornetQ message broker
-
-1.  Open the
-    `           <HornetQ_HOME>/config/stand-alone/non-clustered/hornetq-jms.xml          `
-    file in a text editor and add the following configuration:
-
-    ``` xml
-        <connection-factory name="QueueConnectionFactory">
-              <xa>false</xa>
-              <connectors>
-                 <connector-ref connector-name="netty"/>
-              </connectors>
-              <entries>
-                 <entry name="/QueueConnectionFactory"/>
-              </entries>
-        </connection-factory>
-         
-        <connection-factory name="TopicConnectionFactory">
-              <xa>false</xa>
-              <connectors>
-                 <connector-ref connector-name="netty"/>
-              </connectors>
-              <entries>
-                 <entry name="/TopicConnectionFactory"/>
-              </entries>
-        </connection-factory>
-    
-        <queue name="wso2">
-              <entry name="/queue/mySampleQueue"/>
-        </queue>
-    
-        <topic name="sampleTopic">
-              <entry name="/topic/exampleTopic"/>
-        </topic>
-    ```
-
-2.  Start the HornetQ message broker
-    -   To start the message broker on Linux, navigate to the
-        `            <HornetQ_HOME>/bin/           ` directory and
-        execute the `            run.sh           ` command with
-        root privileges.
-
-### Configuring the JMS transport sender in the ESB Profile of WSO2 EI
-
--   To enable the JMS transport sender, un-comment the JMS transport
-    sender configuration in the
-    `           <EI_HOME>/conf/axis2/axis2.xml          ` file and
-    update the sender configuration so that it is as follows:
-
-    ``` xml
-            <transportSender name="jms" class="org.apache.axis2.transport.jms.JMSSender">
-                <parameter name="myQueueConnectionFactory" locked="false">
-                      <parameter name="java.naming.factory.initial" locked = "false">org.jnp.interfaces.NamingContextFactory</parameter>
-                      <parameter name="java.naming.provider.url" locked="false">jnp://localhost:1099</parameter>
-                      <parameter name="transport.jms.ConnectionFactoryJNDIName" locked="false">QueueConnectionFactory</parameter>
-                      <parameter name="transport.jms.ConnectionFactoryType" locked="false">queue</parameter>
-                      <parameter name="transport.jms.Destination">queue/mySampleQueue</parameter>
-                      <parameter name="transport.jms.JMSSpecVersion">2.0</parameter>
-                </parameter>
-        
-                <parameter name="default" locked="false">
-                      <parameter name="java.naming.factory.initial" locked = "false">org.jnp.interfaces.NamingContextFactory</parameter>
-                      <parameter name="java.naming.provider.url" locked="false">jnp://localhost:1099</parameter>
-                      <parameter name="transport.jms.ConnectionFactoryJNDIName" locked="false">QueueConnectionFactory</parameter>
-                      <parameter name="transport.jms.ConnectionFactoryType" locked="false">queue</parameter>
-                      <parameter name="transport.jms.Destination">queue/mySampleQueue</parameter>
-                      <parameter name="transport.jms.JMSSpecVersion">2.0</parameter>
-                </parameter>
-            </transportSender>
-    ```
-
-### Building the sample scenario
-
-The XML configuration for this sample scenario is as follows:
-
-``` xml
-    <definitions xmlns="http://ws.apache.org/ns/synapse">
-        <registry provider="org.wso2.carbon.mediation.registry.WSO2Registry">
-            <parameter name="cachableDuration">15000</parameter>
-        </registry>
-        <taskManager provider="org.wso2.carbon.mediation.ntask.NTaskTaskManager"/>
-        <proxy name="JMSDelivery" startOnLoad="true" trace="disable" transports="https http">
+``` java tab="Proxy Service 1"
+<proxy name="JMSDelivery" startOnLoad="true" trace="disable" transports="https http">
             <description/>
             <target>
                 <inSequence>
@@ -156,8 +49,11 @@ The XML configuration for this sample scenario is as follows:
                 </outSequence>
             </target>
             <publishWSDL uri="file:repository/samples/resources/proxy/sample_proxy_1.wsdl"/>
-        </proxy>
-        <proxy name="JMSDeliveryDelayed" startOnLoad="true" trace="disable" transports="https http">
+</proxy>
+```
+
+``` java tab="Proxy Service 2"
+<proxy name="JMSDeliveryDelayed" startOnLoad="true" trace="disable" transports="https http">
             <description/>
             <target>
                 <inSequence>
@@ -183,71 +79,94 @@ The XML configuration for this sample scenario is as follows:
                 </outSequence>
             </target>
             <publishWSDL uri="file:repository/samples/resources/proxy/sample_proxy_1.wsdl"/>
-        </proxy>
-        <sequence name="fault">
-            <!-- Log the message at the full log level with the ERROR_MESSAGE and the ERROR_CODE-->
-            <log level="full">
-                <property name="MESSAGE" value="Executing default 'fault' sequence"/>
-                <property expression="get-property('ERROR_CODE')" name="ERROR_CODE"/>
-                <property expression="get-property('ERROR_MESSAGE')" name="ERROR_MESSAGE"/>
-            </log>
-            <!-- Drops the messages by default if there is a fault -->
-            <drop/>
-        </sequence>
-        <sequence name="main">
-            <in>
-                <!-- Log all messages passing through -->
-                <log level="full"/>
-                <!-- ensure that the default configuration only sends if it is one of samples -->
-                <!-- Otherwise Synapse would be an open proxy by default (BAD!)               -->
-                <filter regex="http://localhost:9000.*" source="get-property('To')">
-                    <!-- Send the messages where they have been sent (i.e. implicit "To" EPR) -->
-                    <send/>
-                </filter>
-            </in>
-            <out>
-                <send/>
-            </out>
-            <description>The main sequence for the message mediation</description>
-        </sequence>
-        <!-- You can add any flat sequences, endpoints, etc.. to this synapse.xml file if you do
-        *not* want to keep the artifacts in several files -->
-    </definitions>
+</proxy>
 ```
 
-This configuration creates two proxy services
-`         JMSDeliveryDelayed        ` and `         JMSDelivery        `
-. The `         JMSDeliveryDelayed        ` proxy service sets a
-delivery delay of 10 seconds on the message that it forwards, whereas
-the `         JMSDelivery        ` proxy service does not set a delivery
-delay on the message.
+``` java tab="Main Sequence"
+<sequence name="main">
+    <in>
+        <!-- Log all messages passing through -->
+       <log level="full"/>
+        <!-- ensure that the default configuration only sends if it is one of samples -->
+        <!-- Otherwise Synapse would be an open proxy by default (BAD!)               -->
+        <filter regex="http://localhost:9000.*" source="get-property('To')">
+        <!-- Send the messages where they have been sent (i.e. implicit "To" EPR) -->
+        <send/>
+        </filter>
+   </in>
+   <out>
+        <send/>
+   </out>
+   <description>The main sequence for the message mediation</description>
+</sequence>
+```
 
-To build the sample
+``` java tab="Fault Sequence"
+<sequence name="fault">
+    <!-- Log the message at the full log level with the ERROR_MESSAGE and the ERROR_CODE-->
+    <log level="full">
+        <property name="MESSAGE" value="Executing default 'fault' sequence"/>
+        <property expression="get-property('ERROR_CODE')" name="ERROR_CODE"/>
+        <property expression="get-property('ERROR_MESSAGE')" name="ERROR_MESSAGE"/>
+     </log>
+     <!-- Drops the messages by default if there is a fault -->
+    <drop/>
+</sequence>
+```
 
--   Start the ESB Profile of WSO2 EI with the sample configuration.
+See the descriptions of the above configurations:
 
-### Executing the sample scenario
+<table>
+    <tr>
+        <th>Artifact</th>
+        <th>Description</th>
+    </tr>
+    <tr>
+        <td>Proxy Service 1</td>
+        <td>
+            The <code>JMSDeliveryDelayed</code> proxy service sets a delivery delay of 10 seconds on the message that it forwards
+        </td>
+    </tr>
+    <tr>
+        <td>Proxy Service 2</td>
+        <td>The <code>JMSDelivery</code> proxy service does not set a delivery delay on the message.</td>
+    </tr>
+    <tr>
+        <td>Main Sequence</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>Task Manager</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>Registry Artifact</td>
+        <td></td>
+    </tr>
+</table>
 
--   Run the following java file, which acts as the JMS consumer that
-    consumes messages from the queue:
+## Running the Example
 
-    **QueueConsumer.java**
+1. Configure the Micro Integrator (Publisher) with Apache ActiveMQ.
+2. Start the Broker.
+3. Start WSO2 Integration Studio and create artifacts with the above configuration. You can copy the synapse configuration given above to the **Source View** of your proxy service.
+4. Run the following java file (**QueueConsumer.java**), which acts as the JMS consumer that consumes messages from the queue:
 
     ``` java
-            package DeliveryDelay;
+    package DeliveryDelay;
         
-            import java.sql.Timestamp;
-            import java.util.Date;
-            import java.util.Properties;
+    import java.sql.Timestamp;
+    import java.util.Date;
+    import java.util.Properties;
         
-            import javax.jms.Connection;
-            import javax.jms.ConnectionFactory;
-            import javax.jms.MessageConsumer;
-            import javax.jms.Session;
-            import javax.jms.TextMessage;
-            import javax.jms.Queue;
-            import javax.naming.Context;
-            import javax.naming.InitialContext;
+    import javax.jms.Connection;
+    import javax.jms.ConnectionFactory;
+    import javax.jms.MessageConsumer;
+    import javax.jms.Session;
+    import javax.jms.TextMessage;
+    import javax.jms.Queue;
+    import javax.naming.Context;
+    import javax.naming.InitialContext;
         
             /**
              * Sample consumer to demonstrate JMS 2.0 feature :
@@ -336,22 +255,13 @@ To build the sample
             }
     ```
 
--   Run the following command from
-    `           <EI_HOME>/sample/axis2Client          ` to invoke the
-    two proxy services:
+5. Run the following command from `MI_HOME/sample/axis2Client` to invoke the two proxy services:
 
     ``` java
-            ant stockquote -Daddurl=http://localhost:8280/services/JMSDelivery -Dmode=placeorder -Dsymbol=MSFT && ant stockquote -Daddurl=http://localhost:8280/services/JMSDeliveryDelayed -Dmode=placeorder -Dsymbol=MSFT
+    ant stockquote -Daddurl=http://localhost:8280/services/JMSDelivery -Dmode=placeorder -Dsymbol=MSFT && ant stockquote -Daddurl=http://localhost:8280/services/JMSDeliveryDelayed -Dmode=placeorder -Dsymbol=MSFT
     ```
 
-### Analyzing the output
+You will see that two messages are received by the Java consumer with a time difference of more than 10 seconds.
 
-You will see that two messages are received by the Java consumer with a
-time difference of more than 10 seconds.
-
-This is because the `         JMSDeliveryDelayed        ` proxy service
-sets a delivery delay of 10 seconds on the message that it forwards,
-whereas the `         JMSDelivery        ` proxy service does not set a
+This is because the `         JMSDeliveryDelayed        ` proxy service sets a delivery delay of 10 seconds on the message that it forwards, whereas the `         JMSDelivery        ` proxy service does not set a
 delivery delay on the message.
-
-  

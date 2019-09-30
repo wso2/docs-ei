@@ -5,19 +5,7 @@ integration scenarios and develop them. This can be used to develop
 services, features and artifacts as well as manage their links and
 dependencies through a simplified graphical editor.
 
-------------------------------------------------------------------------
-
-[Workbench](#workbench) |
-[Editor](#editor) | 
-[Project explorer](#project-explorer) |
-[Outline](#outline) |
-[Properties](#properties)|
-[Console](#console)| 
-[Template guide](#template-guide)
-
-------------------------------------------------------------------------
-
-### Workbench
+## Workbench
 
 When you start using WSO2 Integration Studio, one of the first decisions
 you have to make is where to store your projects and files. This
@@ -29,7 +17,7 @@ simultaneously for an enhanced and fine-tuned developer experience.
 
 ![workbench](../../assets/img/workbench/workbench-integration-studio.png)  
 
-### Editor
+## Editor
 
 You can associate different editors with different types of files. For
 example, when you open a file for editing by double-clicking it in one
@@ -60,14 +48,14 @@ view of a .pom file.
 
 ![editor](../../assets/img/workbench/workbench-editor.png)
 
-### Project explorer
+## Project explorer
 
 The Project Explorer provides a view of all the files and folder
 structure within a project.
 
 ![project explorer](../../assets/img/workbench/workbench-project-explorer.png)
 
-### Outline
+## Outline
 
 The Outline view displays an outline of a structured file that is
 currently open in the editor area, and lists structural elements. It
@@ -79,7 +67,7 @@ of the toolbar are also editor specific.
 
 ![outline](../../assets/img/workbench/workbench-outline.png)
 
-### Properties
+## Properties
 
 The properties view displays property names and values for a selected
 item such as a resource. Toolbar buttons allow you to toggle to display
@@ -89,7 +77,7 @@ value.
 
 ![properties](../../assets/img/workbench/workbench-properties.png)
 
-### Console
+## Console
 
 The Consol e View displays a variety of consol e types depending on the
 type of development and the current set of user settings.
@@ -102,16 +90,14 @@ Studio are:
     hyperlinks to specific source code locations
 -   **CVS Console** - Displays output from CVS operations
 
-### Template guide
+## Template guide
 
 The template guide includes a list of sample projects that represent
-integration scenarios. You can use these to explore WSO2 EI and see a
+integration scenarios. You can use these to explore WSO2 Micro Integrator and see a
 sample of how it addresses common integration problems.
 
-------------------------------------------------------------------------
-
-**What's next**
+## What's Next?
 
 -   See [Installing WSO2 Integration Studio](../develop/installing-WSO2-Integration-Studio.md) for installation instructions.
--   See [Working with WSO2 Integration Studio](../develop/working-with-WSO2-Integration-Studio.md) for more information on how to setup and use tooling.
+-   See [Working with WSO2 Integration Studio](../develop/installing-WSO2-Integration-Studio.md) for more information on how to setup and use tooling.
 -   See [Troubleshooting WSO2 Integration Studio](../develop/troubleshooting-WSO2-Integration-Studio.md) for information on troubleshooting errors you may run into while using EI Tooling.

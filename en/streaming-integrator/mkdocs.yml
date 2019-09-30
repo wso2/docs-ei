@@ -23,7 +23,7 @@ site_url: https://wso2.com/integration/
 # Repository
 repo_name: wso2/docs-ei
 repo_url: https://github.com/wso2/docs-ei
-edit_uri: https://github.com/wso2/docs-is/edit/master/en/streaming-integrator/docs/
+edit_uri: https://github.com/wso2/docs-ei/edit/7.0.0/en/streaming-integrator/docs/
 
 # Copyright
 copyright: WSO2 Enterprise Integrator - Documentation
@@ -46,54 +46,18 @@ theme:
 # Navigation
 nav:
   - 'Home': index.md
-  - 'Overview':
-      - 'Overview': 'overview/overview.md'
-      - 'Architecture': 'overview/architecture.md'
-      - 'About this Release': 'overview/about_this_release.md'
-  - 'Quick Start Guide':
-    - 'Quick Start Guide': quick-start-guide/quick-start-guide.md
-  - 'Concepts':
-      - 'Concepts': 'concepts.md'
-  - 'Installation Guide':
-    - 'Installing the Product':
-      - 'Installing the Streaming Integrator Using Docker': 'setup/installing-si-using-docker.md'
-      - 'Installing the Streaming Integrator Using Docker Compose': 'setup/installing-si-using-docker-compose.md'
-      - 'Installing the Streaming Integrator Using Ansible': 'setup/installing-si-using-ansible.md'
-      - 'Installing the Streaming Integrator Using Kubernetes': 'setup/installing-si-using-kubernetes.md'
-      - 'Installing the Streaming Integrator Using Vagrant': 'setup/installing-si-using-vagrant.md'
-      - 'Installing the Streaming Integrator Using Puppet': 'setup/installing-si-using-puppet.md'
-      - 'Installing the Streaming Integrator Using Helm': 'setup/installing-si-using-helm.md'
-      - 'Installing the Streaming Integrator Using AWS Cloud Formation': 'setup/installing-si-using-aws-cloud-formation.md'
-      - 'Installing the Streaming Integrator Using Apt': 'setup/installing-si-using-apt.md'
-      - 'Installing the Streaming Integrator Using Yum': 'setup/installing-si-using-yum.md'
-      - 'Installing the Streaming Integrator Using Brew': 'setup/installing-si-using-brew.md'
-    - 'Deploying Streaming Integrator Profile':
-      - 'Deploying the Streaming Integrator Profile as a Minimum HA cluster': 'setup/deploying-si-as-minimum-ha-cluster.md'
-    - 'Setting up Databases':
-      - 'Configuring Datasources': 'configuring-Datasources.md'
-      - 'Setting up Physical Databases': 'setting-up-physical-databases.md'
-  - 'Developer Experience':
-    - 'Streaming Integrator Tooling':
-      - 'Streaming Integrator Tooling Overview': 'develop/streaming-integrator-studio-overview.md'
-      - 'Working with the Design View': 'develop/working-with-the-Design-View.md'
-    - 'Creating Siddhi Applications': 'develop/creating-a-Siddhi-Application.md'
-    - 'Testing a Siddhi Application': 'develop/testing-a-Siddhi-Application.md'
-    - 'Debugging Siddhi Applications': 'develop/debugging_siddhi_applications.md'
-    - 'Exporting Siddhi Files': 'develop/exporting-Siddhi-Files.md'
-  - 'Use Cases':
-    - 'Examples':
-      - 'Performing Real-time ETL with MySQL': 'examples/performing-real-time-etl-with-mysql.md'
-      - 'Performing Real-time ETL with Files': 'examples/performing-real-time-etl-with-files.md'
-      - 'Working with Kafka': 'examples/working-with-kafka.md'
-      - 'Working with NATS': 'examples/working-with-nats.md'
-      - 'Transforming JSON Messages': 'examples/transforming-json-messages.md'
-      - 'Transforming XML Messages': 'examples/transforming-xml-messages.md'
-      - 'Integrating Databases to Data Flows': 'examples/integrating-databases-to-data-flows.md'
-      - 'Exposing Processed Data as API': 'examples/exposing-processed-data-as-api.md'
-      - 'Triggering Integrations via Micro Integrator': 'examples/triggering-integrations-via-micro-integrator.md'
-      - 'Analyzing Data and Deriving Insights': 'examples/analyzing-data-and-deriving-insights.md'
-      - 'Performing Reliable Data Integration (Error Streams)': 'examples/reliable-data-integration.md'
-      - 'Summarizing and Aggregating Data in Real Time': 'examples/summarizing-and-aggregating-data.md'
+  - 'Getting Started':
+    - 'Introduction': 'overview/overview.md'
+    - 'Architecture': 'overview/architecture.md'
+    - 'About this Release': 'overview/about_this_release.md'
+    - 'Quick Start Guide': 'quick-start-guide/getting-started-with-si.md'
+    - 'Streaming Integrator 101': 'quick-start-guide/quick-start-guide-101.md'
+    - 'Other Quick Start Guides':
+      - 'Running the Streaming Integrator with Micro Integrator': 'quick-start-guide/hello-world-with-mi.md'
+      - 'Running the Streaming Integrator with Docker': 'quick-start-guide/hello-world-with-docker.md'
+      - 'Running the Streaming Integrator with Kubernetes': 'quick-start-guide/hello-world-with-kubernetes.md'
+    - 'Concepts': 'concepts/concepts.md'
+  - 'Learn':
     - 'Guides':
       - 'Consuming Data': 'guides/consuming-messages.md'
       - 'Transforming Data': 'guides/transforming-data.md'
@@ -101,27 +65,53 @@ nav:
       - 'Cleansing Data': 'guides/cleansing-data.md'
       - 'Correlating Data': 'guides/correlating-events.md'
       - 'Summarizing Data': 'guides/summarizing-data.md'
+      - 'Integrating Stores': 'guides/storage-Integration.md'
       - 'Publishing Data': 'guides/publishing-data.md'
       - 'Triggering Integration Flows': 'guides/triggering-integration-flows.md'
-  - 'Admin Guide':
-    - 'Configuring the Streaming Integration Profile': 'admin/configure-si-profile.md'
+    - 'Tutorials':
+      - 'Performing Real-time ETL with MySQL': 'examples/performing-real-time-etl-with-mysql.md'
+      - 'Performing Real-time ETL with Files': 'examples/performing-real-time-etl-with-files.md'
+      - 'Working with Kafka': 'examples/working-with-kafka.md'
+      - 'Transforming XML Messages': 'examples/transforming-xml-messages.md'
+      - 'Exposing Processed Data as API': 'examples/exposing-processed-data-as-api.md'
+      - 'Triggering Integrations via Micro Integrator': 'examples/triggering-integrations-via-micro-integrator.md'
+  - 'Setup and Install':
+    - 'Installing the Product':
+      - 'Install in a VM': 'setup/installing-si-in-vm.md'
+      - 'Installing in Docker': 'setup/installing-si-using-docker.md'
+      - 'Installing in Kubernetes': 'setup/installing-si-using-kubernetes.md'
+    - 'Deploying Streaming Integrator':
+      - 'Single Deployment': 'setup/deploying-si-as-a-single-deployment.md'
+      - 'Minimum HA Cluster': 'setup/deploying-si-as-minimum-ha-cluster.md'
+      - 'Scalable Cluster': 'setup/deploying-si-as-a-scalable-cluster.md'
+    - 'Setting up Databases':
+      - 'Configuring Datasources': 'setup/configuring-data-sources.md'
+      - 'Setting up Physical Databases': 'setting-up-physical-databases.md'
     - 'Working with Siddhi Connectors':
       - 'Downloading and Installing Siddhi Connectors': 'admin/downloading-and-Installing-Siddhi-Extensions.md'
       - 'Writing Custom Siddhi Extensions': 'admin/writing-Custom-Siddhi-Extensions.md'
       - 'Configuring System Parameters for Siddhi Extensions': 'admin/configuring-System-Parameters-for-Siddhi-Extensions.md'
-    - 'Creating Business Rules Templates': 'admin/creating-business-rules-templates.md'
-    - 'Monitoring the Streaming Integrator': 'admin/monitoring-the streaming-integrator'
+    - 'Working with Business Rules': 'admin/creating-business-rules-templates.md'
     - 'General Data Protection Regulations': 'admin/general-data-protection-regulations.md'
-    - 'Supporting Different Transports': 'admin/supporting-Different-Transports.md'
-    - 'User Management': 'admin/user-Management.md'
+    - 'Working with Keystores': 'admin/working-with-keystores.md'
+    - 'Supporting Different Transports': 'admin/supporting-different-transports.md'
+    - 'User Management': 'admin/user-management.md'
     - 'Protecting Sensitive Data via the Secure Vault': 'admin/protecting-sensitive-data-via-the-secure-vault.md'
-    - 'Adding Third Party Non OSGi Library': 'admin/adding-Third-Party-Non-OSGi-Libraries.md'
-  - 'Reference Guide':
+    - 'Adding Third Party Non OSGi Library': 'admin/adding-third-party-non-osgi-libraries.md'
+    - 'Configuring Default Ports': 'ref/configuring-default-ports.md'
+  - 'Develop':
+    - 'Streaming Integrator Tooling':
+      - 'Streaming Integrator Tooling Overview': 'develop/streaming-integrator-studio-overview.md'
+      - 'Working with the Design View': 'develop/working-with-the-Design-View.md'
+    - 'Creating Siddhi Applications': 'develop/creating-a-Siddhi-Application.md'
+    - 'Testing a Siddhi Application': 'develop/testing-a-Siddhi-Application.md'
+    - 'Debugging Siddhi Applications': 'develop/debugging_siddhi_applications.md'
+    - 'Exporting Siddhi Files': 'develop/exporting-Siddhi-Files.md'
+  - 'Administration':
+    - 'Monitoring the Streaming Integrator': 'admin/monitoring-the-streaming-integrator'
+  - 'References':
     - 'Streaming Integration REST API Guide': 'ref/si-rest-api-guide.md'
     - 'Performance Analysis Results': 'ref/performance-analysis-results.md'
-    - 'Configuring Default Ports': 'ref/configuring-Default-Ports.md'
-    - 'Working with Data Providers': 'ref/working-with-Data-Providers.md'
-    - 'Streaming Integration Profiles': 'ref/wSO2-Stream-Processor-Profiles.md'
   - 'FAQ':
     - 'FAQ': faq/fAQ.md
   - '': page-not-found.md

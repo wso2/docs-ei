@@ -9,20 +9,10 @@ selected element of the current message payload. In addition, you can:
 -   Import external XSLT scripts to the main XSLT script of the XSLT
     mediator by adding them as resources.
 
-!!! info
+!!! Info
+    The XSLT mediator is a [content aware](../../../concepts/message-processing-units/#classification-of-mediators) mediator.
 
-The XSLT mediator is a [content
-aware](ESB-Mediators_119131045.html#ESBMediators-Content-awareness)
-mediator.
-
-
-[Syntax](#XSLTMediator-Syntax) \|
-[Configuration](#XSLTMediator-Configuration) \|
-[Examples](#XSLTMediator-Examples) \| [Samples](#XSLTMediator-Samples)
-
-------------------------------------------------------------------------
-
-### Syntax
+## Syntax
 
 ``` java
     <xslt key="string" [source="xpath"]>
@@ -32,10 +22,9 @@ mediator.
     </xslt>
 ```
 
-### Configuration
+## Configuration
 
-The parameters available for configuring the XSLT mediator are as
-follows.
+The parameters available for configuring the XSLT mediator are as follows.
 
 <table>
 <thead>
@@ -61,10 +50,8 @@ follows.
 <td><strong>Source</strong></td>
 <td><div class="content-wrapper">
 <p>This determines the element to which the given XSLT transformation should be applied via an XPath expression. If the source element is not specified, the XSLT transformation is applied to the first child of the SOAP body.</p>
-!!! info
 <p>Tip</p>
 <p>You can click <strong>NameSpaces</strong> to add namespaces if you are providing an expression. Then the <strong>Namespace Editor</strong> panel would appear where you can provide any number of namespace prefixes and URLs used in the XPath expression.</p>
-
 </div></td>
 </tr>
 <tr class="even">
@@ -78,9 +65,7 @@ follows.
 <li><strong>Value/Expression</strong> - This defines the static value or the XPath expression.</li>
 <li><strong>Action</strong> - This parameter allows the property to be removed from the XSLT script if required.</li>
 </ul>
-!!! info
 <p>For example, define the <code>               transform.xslt.result.disableBuild              </code> property as shown below, to escape building the message at the XSLT transformation. It avoids replacing encoded values with real characters. E.g., If you do not add this property, " <code>               &amp;#10;              </code> " in your XML content will be replaced by a new line, when the XML content is built at the XSLT mediator.</p>
-
 </div></td>
 </tr>
 <tr class="odd">
@@ -107,19 +92,8 @@ follows.
 </tbody>
 </table>
 
-### Examples
 
--   [Example 1 - Applying a XSLT transformation to a element selected
-    based on an XPath
-    expression](#XSLTMediator-Example1-ApplyingaXSLTtransformationtoaelementselectedbasedonanXPathexpression)
--   [Example 2 -  Adding properties as XSLT
-    parameters](#XSLTMediator-Example2-AddingpropertiesasXSLTparameters)
--   [Example 3 - Adding XSLT imports as
-    resources](#XSLTMediator-Example3-AddingXSLTimportsasresources)
--   [Example 4 - Adding CDATA to be displayed in the
-    output](#XSLTMediator-Example4-AddingCDATAtobedisplayedintheoutput)
-
-#### Example 1 - Applying a XSLT transformation to a element selected based on an XPath expression
+## Example 1 - Applying an XSLT transformation to a element selected based on an XPath expression
 
 In this example, the XSLT can be picked by the key
 `         transform/example.xslt        ` and the XSLT would be applied
@@ -131,7 +105,7 @@ message.
     <xslt xmlns="http://ws.apache.org/ns/synapse" key="transform/example.xslt" source="s11:Body/child" />
 ```
 
-#### Example 2 -  Adding properties as XSLT parameters
+## Example 2 -  Adding properties as XSLT parameters
 
 In this example, a property named `         PARAM_NAME        ` is added
 to the XSLT script as an XSLT parameter. A XPath expression is used to
@@ -160,7 +134,7 @@ would look as follows.
     </xsl:stylesheet>
 ```
 
-#### Example 3 - Adding XSLT imports as resources
+## Example 3 - Adding XSLT imports as resources
 
 In this example, two XSLT files saved in the registry under
 `         conf:/        ` as resources are imported to the main XSLT
@@ -244,7 +218,7 @@ of the XSLT mediator included in a proxy configuration.
     </soapenv:Header></soapenv:Envelope>
 ```
 
-#### Example 4 - Adding CDATA to be displayed in the output
+## Example 4 - Adding CDATA to be displayed in the output
 
 Follow the steps below to add CDATA to display them in the output
 without processing them via the XSLT transformation.
@@ -322,8 +296,7 @@ stylesheet is defined as a local entry named `         XSLTTest        `
     </localEntry>
 ```
 
-For example, pass the following payload to the
-`         XSLTProxy        ` proxy service of the above configuration.
+For example, pass the following payload to the `         XSLTProxy        ` proxy service of the above configuration.
 
 ``` xml
     <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
@@ -345,6 +318,7 @@ logs of the WSO2 EI server.
     </soapenv:Body></soapenv:Envelope>
 ```
 
+<!--
 ### Samples
 
 [Sample 440: Converting JSON to XML Using
@@ -353,3 +327,4 @@ XSLT](https://docs.wso2.com/display/EI6xx/Sample+440%3A+Converting+JSON+to+XML+U
 [Sample 8: Introduction to Static and Dynamic Registry Resources and
 Using XSLT
 Transformations](https://docs.wso2.com/display/EI6xx/Sample+8%3A+Introduction+to+Static+and+Dynamic+Registry+Resources+and+Using+XSLT+Transformations)
+-->

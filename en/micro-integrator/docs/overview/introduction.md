@@ -1,40 +1,22 @@
-# Introduction
+# Introduction to WSO2 Micro Integrator
 
-Integration is at the heart of any digital transformation. By connecting different systems that make up your enterprise, you can build an organization that acts as one seamless digital system.
+WSO2 Micro Integrator is an opensource integration server, which enables you to connect all the different data stores, events, APIs, and legacy systems that make up your enterprise and build an organization that performs as one seamless digital enterprise. WSO2 Micro Integrator is configuration-based and allows you to graphically design and build your integations. 
 
-WSO2 Enterprise Integrator (EI) is an open source product that enables comprehensive integration for cloud native and container-native projects. WSO2 EI enables you to do the following:
+## Building Centralized, Monolithic integrations
 
-- Optimize systems and resources
-- Leverage the cloud
-- Reuse legacy systems
-- Create a connected ecosystem for both your customers and partners.
-- Connect enterprise systems to one another
-- Make data accessible accross the enterprise
-- Provide intuitive and visual development tools for continous integration and continous development
-- Help integration developers to create new services and assets
+The heart of WSO2 Micro Integrator is an event-driven, standards-based messaging engine (the **Bus**), which supports message routing, message transformations, and other types of messaging use cases. If your organization uses an API-driven, centralized, integration architecture, WSO2 Micro Integrator can be used as the central integration layer that implements the message mediation logic connecting all the systems, data, events, APIs, etc. in your integration ecosystem.
 
-WSO2 EI comprises of profiles that offer different integration capabilities.
 
-The **ESB profile** in WSO2 EI provides its fundamental services through an event-driven and standards-based messaging engine (the bus), which allows integration architects to exploit the value of messaging without writing code. This ESB profile is a step ahead of the previous releases of WSO2 Enterprise Service Bus, as it provides data integration capabilities within the same runtime. This eliminates the need to use a separate data services server for your integration processes.
+![Centralized Integration](../assets/img/intro/centralized-integration.png)
 
-The following diagram illustrates the message-flow architecture in the ESB profile of WSO2 EI, which is used for implementing integration flows.
+## Building Decentralized, Cloud-Native integrations
 
-![alt text](../images/ESB_architecture1.png "ESB architecture")
+WSO2 Micro Integrator is also light-weight and container friendly. This allows you to leverage the comprehensive enterprise messaging capabilities of WSO2 Micro Integrator in your decentralized, cloud-native integrations. 
 
-This shows how a request propagates to its actual endpoint through the ESB profile. Response handling is the reverse of this operation. Note that the components of the pipes are not in a specific order.
+![Centralized Integration](../assets/img/intro/cloud-native-microservices.png)
 
-1. An application (client) sends a message to the ESB profile of WSO2 EI.
+As shown above, if your organization is running on a decentralized, cloud-native, integration architecture where micro services are used for integrating the various APIs, events, and systems, WSO2 Micro Integrator can easily function as your **Integration** (micro) services and **API** (micro) services.
 
-2. The message is picked up by a transport.
+## Graphical integration desigining
 
-3. The transport sends the message through a message pipe, which handles quality of service aspects such as security. Internally, this pipe is the in-flow and out-flow of the Axis2 engine. The ESB profile can operate in two modes:
-   * Mediating Messages - A single pipe is used.
-   * Proxy Services - Separate pipes connecting the transport to different proxy services are used.
-
-4. Both message transformation and routing can be considered as a single unit. As the diagram specifies, there is no clear separation between message transformation components and routing components. In the ESB profile of WSO2 EI, this is known as the mediation framework. Some transformations take place before the routing decision has been made while others take place after the routing decision. This is part of the Synapse implementation.
-
-5. The message is injected to the separate pipes depending on the destinations. Here again, quality of service aspects of the messages are determined.
-
-6. The transport layer takes care of the transport protocol transformations that are required before sending the message to the receiver application.
-
-7. The message is sent to the receiver application.
+WSO2 Micro Integrator is coupled with WSO2 Integration Studio, which is a comprehensive graphical data flow designer for designing and implementing integration use cases. While **WSO2 Ballerina Integrator** provides a code-driven integration experience for integrating systems, the Micro Integrator allows developers to build integrations graphically.
