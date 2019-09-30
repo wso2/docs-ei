@@ -46,7 +46,7 @@ theme:
 # Navigation
 nav:
   - 'Home': index.md
-  - 'Getting Started':
+  - 'Get Started':
     - 'Introduction': 'overview/overview.md'
     - 'Architecture': 'overview/architecture.md'
     - 'About this Release': 'overview/about_this_release.md'
@@ -58,7 +58,7 @@ nav:
       - 'Running the Streaming Integrator with Kubernetes': 'quick-start-guide/hello-world-with-kubernetes.md'
     - 'Concepts': 'concepts/concepts.md'
   - 'Learn':
-    - 'Guides':
+    - 'Use Cases':
       - 'Consuming Data': 'guides/consuming-messages.md'
       - 'Transforming Data': 'guides/transforming-data.md'
       - 'Enriching Data': 'guides/enriching-data.md'
@@ -108,7 +108,7 @@ nav:
     - 'Testing a Siddhi Application': 'develop/testing-a-Siddhi-Application.md'
     - 'Debugging Siddhi Applications': 'develop/debugging_siddhi_applications.md'
     - 'Exporting Siddhi Files': 'develop/exporting-Siddhi-Files.md'
-  - 'Administration':
+  - 'Observability':
     - 'Monitoring the Streaming Integrator': 'admin/monitoring-the-streaming-integrator.md'
   - 'References':
     - 'Streaming Integration REST API Guide': 'ref/si-rest-api-guide.md'
