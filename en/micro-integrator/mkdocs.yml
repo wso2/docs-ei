@@ -60,6 +60,7 @@ nav:
         - 'Service Orchestration': 'use-cases/tutorials/integration/exposing-several-services-as-a-single-service.md'
         - 'Asynchronous Messaging': 'use-cases/tutorials/integration/storing-and-forwarding-messages.md'
         - 'Connecting Web APIs/Cloud Services': 'use-cases/tutorials/integration/using-the-gmail-connector.md'
+        - 'File Processing': 'use-cases/tutorials/file-processing.md'
         - 'Using Inbound Endpoints': 'use-cases/tutorials/using-inbound-endpoints.md'
         - 'Reusing Mediation Sequences': 'use-cases/tutorials/using-templates.md'
         - 'Integrating with SAP': 'use-cases/tutorials/sap-integration.md'
@@ -107,7 +108,10 @@ nav:
           - 'Switching from UDP to HTTP/S': 'use-cases/examples/protocol-switching/Switching_from_UDP_to_HTTP_S_.md'
           - 'Switching between HTTP to MSMQ': 'use-cases/examples/protocol-switching/HTTP_to_MSMQ_and_MSMQ_to_HTTP_.md'
           - 'Switching from HTTP/S to JMS': 'use-cases/examples/protocol-switching/Switching_from_HTTP_S_to_JMS_.md'
-        - 'File Processing': 'use-cases/examples/file-processing/file-processing.md'
+        - File Processing:
+          - 'Using the VFS Transport': 'use-cases/examples/file-processing/vfs-transport-examples.md'
+          - 'Accessing a Windows Share Using VFS': 'use-cases/examples/file-processing/Accessing_Windows_Share_Using_VFS_Transport.md'
+          - 'Using the MailTo Transport': 'use-cases/examples/file-processing/mailto-transport-examples.md'
         - Gateway:
           - 'Expose HTTP-based Applications as a SOAP Service': 'use-cases/examples/gateway/http-as-soap-service.md'
           - 'Expose HTTP-based Applications as a REST Api': 'use-cases/examples/gateway/http-as-rest-api.md'
@@ -117,7 +121,7 @@ nav:
           - 'Expose HTTP-based Applications as a SOAP Service': 'use-cases/examples/gateway/http-as-soap-service.md'
           - 'Expose HTTP-based Applications as a REST Api': 'use-cases/examples/gateway/http-as-rest-api.md'
           - 'Expose File-based Systems over HTTP': 'use-cases/examples/gateway/http-as-rest-api.md'
-          - 'Expose Services on Proprietary Protocols over Standard Protocols': 'use-cases/examples/gateway/http-as-rest-api.md'
+          - 'Expose Services on Proprietary Protocols over Standard Protocols': 'use-cases/examples/gateway/securing-backend-with-request-throttling.md'
         - Examples of Components:
           - REST APIs:
             - 'Using a Simple REST API': 'use-cases/examples/rest_api_examples/introduction-rest-api.md'
@@ -221,10 +225,7 @@ nav:
           #- 'Using the HL7 Transport': 'use-cases/examples/transport_examples/hl7-transport-examples.md'
           #- 'Using the Local Transport': 'use-cases/examples/transport_examples/local-transport-examples.md'
           #- 'Proxy Services with the Local Transport': 'use-cases/examples/transport_examples/transport_switching/Proxy_Services_with_the_FIX_Transport_.md'
-          - 'Using the MailTo Transport': 'use-cases/examples/transport_examples/mailto-transport-examples.md'
           - 'Using the TCP Transport': 'use-cases/examples/transport_examples/tcp-transport-examples.md'
-          - 'Using the VFS Transport': 'use-cases/examples/transport_examples/vfs-transport-examples.md'
-          - 'Accessing a Windows Share Using VFS': 'use-cases/examples/transport_examples/Accessing_Windows_Share_Using_VFS_Transport.md'
           #- 'JMS to http/s Using JBoss Messaging(JBM)': 'use-cases/examples/transport_examples/transport_switching/JMS_to_http_s_Using_JBoss_Messaging_JBM_.md'
           #- 'Sending Two-Way Messages Using JMS transport': 'use-cases/examples/transport_examples/transport_switching/Sending_Two-Way_Messages_Using_JMS_transport_.md'
           #- 'Pure Text (Binary) and POX Message Support with JMS': 'use-cases/examples/transport_examples/transport_switching/Pure_Text_Binary_and_POX_Message_Support_with_JMS_.md'

@@ -310,16 +310,19 @@ You can implement the Gateway pattern by deploying WSO2 Micro Integrator in a â€
 			<b>Examples</b>
 			<ul>
 				<li>
-					<a href="../../use-cases/examples/protocol-switching/Introduction_to_Switching_Transports_">Expose HTTP-based Applications as a SOAP Service</a>
+					<a href="../../use-cases/examples/gateway/expose-http-app-as-soap">Expose HTTP-based Applications as a SOAP Service</a>
 				</li>
 				<li>
-					<a href="../../use-cases/examples/protocol-switching/Switch_from_FTP_Listener_to_Mail__Sender">Expose HTTP-based Applications as a REST Api</a>
+					<a href="../../use-cases/examples/gateway/expose-http-app-as-rest-api">Expose HTTP-based Applications as a REST Api</a>
 				</li>
 				<li>
-					<a href="../../use-cases/examples/protocol-switching/Switching_from_HTTP_to_FIX_">Expose File-based Systems over HTTP</a>
+					<a href="../../use-cases/examples/gateway/expose-file-based-system-over-http">Expose File-based Systems over HTTP</a>
 				</li>
 				<li>
-					<a href="../../use-cases/examples/protocol-switching/Switching_from_HTTP_to_FIX_">Expose Services on Proprietary Protocols over Standard Protocols</a>
+					<a href="../../use-cases/examples/gateway/expose-proprietary-prot-over-stand-protocols">Expose Services on Proprietary Protocols over Standard Protocols</a>
+				</li>
+				<li>
+					<a href="../../use-cases/examples/gateway/securing-backend-with-request-throttling">Securing Backend with Request Throttling</a>
 				</li>
 			</ul>
 		</td>
@@ -348,7 +351,7 @@ In many business domains, there are different use cases related to managing file
 			<b>Tutorials</b></br>
 			<ul>
 				<li>
-					Try the end-to-end use case on <a href="../../../use-cases/tutorials/integration/file-processing-tutorial">file processing</a>
+					Try the end-to-end use case on <a href="../../../use-cases/tutorials/file-processing">file processing</a>
 				</li>
 			</ul>
 		</td>
@@ -356,13 +359,13 @@ In many business domains, there are different use cases related to managing file
 			<b>Examples</b>
 			<ul>
 				<li>
-					Routing based on message header
+					<a href="../../use-cases/examples/file-processing/vfs-transport-examples">VFS Transport
 				</li>
 				<li>
-					Routing based on message payload
+					<a href="../../use-cases/examples/file-processing/Accessing_Windows_Share_Using_VFS_Transport">Accessing a Windows Share using VFS</a>
 				</li>
 				<li>
-					Splitting and aggregating response messages
+					<a href="../../use-cases/examples/file-processing/mailto-transport-examples">Using the MailTo Transport</a>
 				</li>
 			</ul>
 		</td>
