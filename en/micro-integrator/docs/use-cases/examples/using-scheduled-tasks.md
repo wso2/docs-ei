@@ -96,49 +96,43 @@ Select **XML** as the **Parameter Type** of the **message** parameter, and enter
 In order to use the Message Injector to inject a message to a RESTful endpint, we can specify the injector with the required payload and inject the message to sequence or proxy service as defined above. The sample below shows a RESTful message injection through a proxy service.
 
 ```java tab='Task Configuration'
-<task name="SampleInjectToProxyTask" class="org.apache.synapse.startup.tasks.MessageInjector" group="synapse.simple.quartz">
-      <trigger count="2" interval="5"/>
-      <property xmlns:task="http://www.wso2.org/products/wso2commons/tasks"
-                name="injectTo"
-                value="proxy"/>
-      <property xmlns:task="http://www.wso2.org/products/wso2commons/tasks" name="message">
-         <request xmlns="">
+<task class="org.apache.synapse.startup.tasks.MessageInjector" group="synapse.simple.quartz" name="SampleInjectToProxyTask" xmlns="http://ws.apache.org/ns/synapse">
+    <trigger count="2" interval="5"/>
+    <property name="injectTo" value="proxy" xmlns:task="http://www.wso2.org/products/wso2commons/tasks"/>
+    <property name="message" xmlns:task="http://www.wso2.org/products/wso2commons/tasks">
+        <request xmlns="">
             <location>
-               <city>London</city>
-               <country>UK</country>
+                <city>London</city>
+                <country>UK</country>
             </location>
-         </request>
-      </property>
-      <property xmlns:task="http://www.wso2.org/products/wso2commons/tasks" name="proxyName" value="SampleProxy"/>
+        </request>
+    </property>
+    <property name="proxyName" value="SampleProxy" xmlns:task="http://www.wso2.org/products/wso2commons/tasks"/>
 </task>
 ```
         
 ``` java tab='Proxy Configuration'
-<proxy name="SampleProxy"
-                      transports="https http"
-                      startOnLoad="true"
-                      trace="disable">
-                  <description/>
-   <target>
-      <inSequence>
-         <property name="uri.var.city" expression="//request/location/city"/>
-         <property name="uri.var.cc" expression="//request/location/country"/>
-         <log>
-            <property name="Which city?" expression="get-property('uri.var.city')"/>
-            <property name="Which country?" expression="get-property('uri.var.cc')"/>
-         </log>
-         <send>
-            <endpoint name="EP">
-               <http method="get"
-                     uri-template="http://api.openweathermap.org/data/2.5/weather?q={uri.var.city},{uri.var.cc}&amp;APPID=ae2a70399cf2c35940a6538f38fee3d3"/>
-            </endpoint>
-         </send>
-      </inSequence>
-      <outSequence>
-         <log level="full"/>
-         <drop/>
-      </outSequence>
-   </target>
+<?xml version="1.0" encoding="UTF-8"?>
+<proxy name="SampleProxy" startOnLoad="true" transports="http https" xmlns="http://ws.apache.org/ns/synapse">
+    <target>
+        <inSequence>
+            <property expression="//request/location/city" name="uri.var.city" scope="default" type="STRING"/>
+            <property expression="//request/location/country" name="uri.var.cc" scope="default" type="STRING"/>
+            <log>
+                <property expression="get-property('uri.var.city')" name="Which city?"/>
+                <property expression="get-property('uri.var.cc')" name="Which country?"/>
+            </log>
+            <send>
+                <endpoint name="EP">
+                    <http method="get" uri-template="http://api.openweathermap.org/data/2.5/weather?q={uri.var.city},{uri.var.cc}&amp;APPID=ae2a70399cf2c35940a6538f38fee3d3"/>
+                </endpoint>
+            </send>
+        </inSequence>
+        <outSequence>
+            <log level="full"/>
+        </outSequence>
+        <faultSequence/>
+    </target>
 </proxy>
 ```
 
@@ -154,20 +148,21 @@ This sample introduces the concept of tasks and demonstrates how a simple trigge
 
 If the task should send the message directly to the endpoint through the main sequence, the endpoint address should be specified. For example, if the address of the endpoint is `http://localhost:9000/services/SimpleStockQuoteService`, the Synapse configuration of the scheduled task will be as follows:
 
-```xml tab='Scheduled Task`
+
+```xml tab='Scheduled Task'
 <?xml version="1.0" encoding="UTF-8"?>
-<task xmlns="http://ws.apache.org/ns/synapse" class="org.apache.synapse.startup.tasks.MessageInjector" group="synapse.simple.quartz" name="CheckPrice">
-        <property name="to" value="http://localhost:9000/services/SimpleStockQuoteService"/>
-        <property name="soapAction" value="urn:getQuote"/>
-        <property name="message">
-            <m0:getQuote xmlns:m0="http://services.samples" xmlns="http://ws.apache.org/ns/synapse">
-                <m0:request>
-                    <m0:symbol>IBM</m0:symbol>
-                </m0:request>
-            </m0:getQuote>
-        </property>
-        <trigger interval="5"/>
-    </task>
+<task class="org.apache.synapse.startup.tasks.MessageInjector" group="synapse.simple.quartz" name="CheckPrice" xmlns="http://ws.apache.org/ns/synapse">
+    <trigger interval="5"/>
+    <property name="soapAction" value="urn:getQuote" xmlns:task="http://www.wso2.org/products/wso2commons/tasks"/>
+    <property name="to" value="http://localhost:9000/services/SimpleStockQuoteService" xmlns:task="http://www.wso2.org/products/wso2commons/tasks"/>
+    <property name="message" xmlns:task="http://www.wso2.org/products/wso2commons/tasks">
+        <m0:getQuote xmlns:m0="http://services.samples">
+            <m0:request>
+                <m0:symbol>IBM</m0:symbol>
+            </m0:request>
+        </m0:getQuote>
+    </property>
+</task>
 ```
 
 ```xml tab='Main Sequence'
