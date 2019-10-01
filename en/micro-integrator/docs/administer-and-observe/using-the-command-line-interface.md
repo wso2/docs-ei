@@ -7,23 +7,21 @@ tool, which can be used as the management console.
 
 To use the CLI tool, you need to enable the management API when you
 start the WSO2 Micro Integrator instance. This can be done by passing
-the `         -DenableManagementApi        ` system property when you
+the `-DenableManagementApi` system property when you
 start the Micro Integrator. Note that the default address is
 **https://localhost** and the port is **9164** .
 
 -   When you run the Micro Integrator on Docker, start your Docker
-    container by passing the '
-    `           enableManagementApi          ` ' system property:
+    container by passing the `enableManagementApi` system property:
 
-    ``` java
+    ```bash
     docker run -p 8290:8290 -p 9164:9164 -e JAVA_OPTS="-DenableManagementApi=true" <Docker_Image_Name>
     ```
 
 -   When you run the Micro Integrator on a VM, use the following command
-    to enable the ' `           enableManagementApi          ` ' system
-    property:
+    to enable the `enableManagementApi` system property:
 
-    ``` java
+    ```bash
     sh micro-integrator.sh -DenableManagementApi
     ```
 
@@ -36,12 +34,12 @@ start the Micro Integrator. Note that the default address is
     `$ export PATH=/path/to/mi/cli/directory/bin:$PATH`
 3.  Execute the following command:
 
-    ``` java
+    ```bash
     ./mi
     ```
 4.  The available commands are listed as follows:
 
-    ``` java
+    ```bash
     mi is a Command Line Tool for Management of WSO2 Micro Integrator
 
     Usage:
@@ -49,20 +47,20 @@ start the Micro Integrator. Note that the default address is
 
     Available Commands:
     api              Manage deployed Apis
-    compositeapp     Manage deployed Composite Apps
+    compositeapp     Manage deployed composite apps
     connector        Manage connectors
     dataservice      Manage deployed data services
-    endpoint         Manage deployed Endpoints
+    endpoint         Manage deployed endpoints
     help             Help about any command
-    inboundendpoint  Manage deployed Inbound Endpoints
-    localentry       Manage localentries
+    inboundendpoint  Manage deployed inbound endpoints
+    localentry       Manage local entries
     log-level        Manage log4j properties
-    messageprocessor Manage messageprocessors
-    messagestore     Manage messagestores
-    proxyservice     Manage deployed Proxy Services
-    remote           Add, remove, update or select Micro Integrator
-    sequence         Manage deployed Seqeunces
-    task             Manage deployed Tasks
+    messageprocessor Manage message processors
+    messagestore     Manage message stores
+    proxyservice     Manage deployed proxy services
+    remote           Add, remove, update, or select Micro Integrator
+    sequence         Manage deployed seqeunces
+    task             Manage deployed tasks
     template         Manage templates
     version          Version of the CLI
 
@@ -80,31 +78,31 @@ start the Micro Integrator. Note that the default address is
 
 By default the Management API is disabled. To use the Management API you must use the system property `-DenableManagementApi` when starting the micro integrator
 
-**NOTE: These APIs are not protected using an authorization mechanism. Therefore take extra measures to secure this port if you are enabling this in production.**
+!!! Note
+    These APIs are not protected using an authorization mechanism. Therefore, take extra measures to secure this port if you are enabling this in production.
 
 ### Changing Management API Address and Port
 
-To configure the address and the port of the Management Api in the CLI use the [**remote**](#remote) command. If no configuration is done, the address and the port will have the default values
+To configure the address and the port of the Management API in the CLI, use the [**remote**](#remote) command. If no configuration is done, the address and the port will have the default values.
 
-NOTE: The default hostname is localhost and the port is 9164.
-
+!!! Note
+    The default hostname is localhost and the port is 9164.
 
 ## Step 3: Login using CLI
 
-To login using CLI use the following command. This will ask for the username and password. Default username is "admin" and
-default password is "admin". 
+To login using CLI, use the following command. This will ask for the username and password. The default username is "admin" and the default password is "admin". 
 
 ```bash
 mi remote login
 ```
 
-**Note** If you want to login using one line command, use below
+If you want to login using one line command, use the following command:
 
 ```bash
 mi remote login [username] [password]
 ```
 
-To logout from CLI, please use blow command. 
+To logout from the CLI, please use the following command: 
 
 ```bash
 mi remote logout
@@ -113,262 +111,267 @@ mi remote logout
 ## Step 4: Using the CLI 
 
 ### Usage
+
 ```bash
-     mi [command]
+mi [command]
 ```
 
-* ### version
+### version
+
 ```bash
-        mi version 
+mi version 
 ```
 
 ### Global Flags
+
 ```bash
-    --verbose
-        Enable verbose logs (Provides more information on execution)
-    --help, -h
-        Display information and example usage of a command
+--verbose
+    Enable verbose logs (Provides more information on execution)
+--help, -h
+    Display information and example usage of a command
 ```
 
 ### Commands
-   * #### remote
-```bash
-        Usage:
-            mi remote [command] [arguments]
-                       
-        Available Commands:
-            add [nick-name] [host] [port]        Add a Micro Integrator
-            remove [nick-name]                   Remove a Micro Integrator
-            update [nick-name] [host] [port]     Update a Micro Integrator
-            select [nick-name]                   Select a Micro Integrator on which commands are executed
-            show                                 Show available Micro Integrators
 
-        Examples:
-            # To add a Micro Integrator
-            mi remote add TestServer 192.168.1.15 9164
-            
-            # To remove a Micro Integrator
-            mi remote remove TestServer
-            
-            # To update a Micro Integrator
-            mi remote update TestServer 192.168.1.17 9164
-            
-            # To select a Micro Integrator
-            mi remote select TestServer
-            
-            # To show available Micro Integrators
-            mi remote show
-```
-   * #### log-level
-```bash
-        Usage:
-            mi log-level [command] [arguments]
+-   **remote**
+    ```bash
+    Usage:
+        mi remote [command] [arguments]
 
-        Available Commands:
-            show [logger-name]                   Show information about a logger
-            update [logger-name] [log-level]     Update the log level of a logger
+    Available Commands:
+        add [nick-name] [host] [port]        Add a Micro Integrator
+        remove [nick-name]                   Remove a Micro Integrator
+        update [nick-name] [host] [port]     Update a Micro Integrator
+        select [nick-name]                   Select a Micro Integrator on which commands are executed
+        show                                 Show available Micro Integrators
 
-        Examples:
-            # Show information about a logger
-            mi log-level show org.apache.coyote
+    Examples:
+        # To add a Micro Integrator
+        mi remote add TestServer 192.168.1.15 9164
 
-            # Update the log level of a logger
-            mi log-level update org.apache.coyote DEBUG
-```
-   * #### api
-```bash
-        Usage:
-            mi api [command] [argument]
+        # To remove a Micro Integrator
+        mi remote remove TestServer
 
-        Available Commands:
-            show [api-name]                      Get information about one or more Apis
+        # To update a Micro Integrator
+        mi remote update TestServer 192.168.1.17 9164
 
-        Examples:
-            # To List all the apis
-            mi api show
+        # To select a Micro Integrator
+        mi remote select TestServer
 
-            # To get details about a specific api
-            mi api show sampleApi
-```
-   * #### compositeapp
-```bash
-        Usage:
-            mi compositeapp [command] [argument]
+        # To show available Micro Integrators
+        mi remote show
+    ```
+ -  **log-level**
+     ```bash
+     Usage:
+        mi log-level [command] [arguments]
 
-        Available Commands:
-            show [app-name]                      Get information about one or more Composite apps
+     Available Commands:
+        show [logger-name]                   Show information about a logger
+        update [logger-name] [log-level]     Update the log level of a logger
 
-        Examples:
-            # To List all the composite apps
-            mi compositeapp show
+     Examples:
+        # Show information about a logger
+        mi log-level show org.apache.coyote
 
-            # To get details about a specific composite app
-            mi compositeapp show sampleApp
-```
-   * #### endpoint
-```bash
-        Usage:
-            mi endpoint [command] [argument]
+        # Update the log level of a logger
+        mi log-level update org.apache.coyote DEBUG
+     ```
+ -  **api**
+    ```bash
+    Usage:
+        mi api [command] [argument]
 
-        Available Commands:
-            show [endpoint-name]                 Get information about one or more Endpoints
+    Available Commands:
+        show [api-name]                      Get information about one or more Apis
 
-        Examples:
-            # To List all the endpoints
-            mi endpoint show
+    Examples:
+        # To List all the apis
+        mi api show
 
-            # To get details about a specific endpoint
-            mi endpoint show sampleEndpoint
-```
-   * #### inboundendpoint
-```bash
-        Usage:
-            mi inboundendpoint [command] [argument]
+        # To get details about a specific api
+        mi api show sampleApi
+    ```
+-   **compositeapp**
+    ```bash
+    Usage:
+        mi compositeapp [command] [argument]
 
-        Available Commands:
-            show [inboundendpoint-name]          Get information about one or more Inbounds
+    Available Commands:
+        show [app-name]                      Get information about one or more Composite apps
 
-        Examples:
-            # To List all the inbound endpoints
-            mi inboundendpoint show
+    Examples:
+        # To List all the composite apps
+        mi compositeapp show
 
-            # To get details about a specific inbound endpoint
-            mi inboundendpoint show sampleEndpoint
-```
-   * #### proxyservice
-```bash
-        Usage:
-            mi proxyservice [command] [argument]
+        # To get details about a specific composite app
+        mi compositeapp show sampleApp
+    ```
+-   **endpoint**
+    ```bash
+    Usage:
+        mi endpoint [command] [argument]
 
-        Available Commands:
-            show [proxyservice-name]             Get information about one or more Proxies
+    Available Commands:
+        show [endpoint-name]                 Get information about one or more Endpoints
 
-        Examples:
-            # To List all the proxy services
-            mi proxyservice show
+    Examples:
+        # To List all the endpoints
+        mi endpoint show
 
-            # To get details about a specific proxy service
-            mi proxyservice show sampleProxy
-```
-   * #### sequence
-```bash
-        Usage:
-            mi sequence [command] [argument]
+        # To get details about a specific endpoint
+        mi endpoint show sampleEndpoint
+    ```
+-   **inboundendpoint**
+    ```bash
+    Usage:
+        mi inboundendpoint [command] [argument]
 
-        Available Commands:
-            show [sequence-name]                 Get information about one or more Sequences
+    Available Commands:
+        show [inboundendpoint-name]          Get information about one or more Inbounds
 
-        Examples:
-            # To List all the sequences
-            mi sequence show
+    Examples:
+        # To List all the inbound endpoints
+        mi inboundendpoint show
 
-            # To get details about a specific sequence
-            mi sequence show sampleProxy
-```
-   * #### task
-```bash
-        Usage:
-            mi task [command] [argument]
+        # To get details about a specific inbound endpoint
+        mi inboundendpoint show sampleEndpoint
+    ```
+-   **proxyservice**
 
-        Available Commands:
-            show [task-name]                     Get information about one or more Tasks
+    ```bash
+    Usage:
+        mi proxyservice [command] [argument]
 
-        Examples:
-            # To List all the tasks
-            mi task show
+    Available Commands:
+        show [proxyservice-name]             Get information about one or more Proxies
 
-            # To get details about a specific task
-            mi task show sampleProxy
-```
-   * #### dataservice
-```bash
-        Usage:
-            mi dataservice [command] [argument]
+    Examples:
+        # To List all the proxy services
+        mi proxyservice show
 
-        Available Commands:
-            show [data-service-name]             Get information about one or more Dataservices
+        # To get details about a specific proxy service
+        mi proxyservice show sampleProxy
+    ```
+-   **sequence**
+    ```bash
+    Usage:
+        mi sequence [command] [argument]
 
-        Examples:
-            # To List all the dataservices
-            mi dataservice show
+    Available Commands:
+        show [sequence-name]                 Get information about one or more Sequences
 
-            # To get details about a specific task
-            mi dataservice show SampleDataService
-```
+    Examples:
+        # To List all the sequences
+        mi sequence show
 
-   * #### connectors
- ```bash
-         Usage:
-             mi connector [command]
- 
-         Available Commands:
-             show             Get information about the connectors
- 
-         Examples:
-             # To List all the connectors
-             mi connector show
- ```
-   * #### templates
- ```bash
-         Usage:
-             mi template [command] [template-type] [template-name]
- 
-         Available Commands:
-             show  [template-type]                  Get information about the given template type
-             show  [template-type] [template-name]  Get information about the specific template
- 
-         Examples:
-             # To List all the templates
-             mi template show
+        # To get details about a specific sequence
+        mi sequence show sampleProxy
+    ```
+-   **task**
+    ```bash
+    Usage:
+        mi task [command] [argument]
 
-             # To List all the templates of given template type
-             mi template show endpoint
+    Available Commands:
+        show [task-name]                     Get information about one or more Tasks
 
-             # To get details about a specific template
-             mi template show endpoint sampleTemplate
- ```
-   * #### messageprocessor
- ```bash
-         Usage:
-             mi messageprocessor [command] [messageprocessor-name]
- 
-         Available Commands:
-             show  [messageprocessor-name]  Get information about one or more Message Processor
- 
-         Examples:
-             # To List all the message processor
-             mi messageprocessor show
+    Examples:
+        # To List all the tasks
+        mi task show
 
-             # To get details about a specific message processor
-             mi messageprocessor show  sampleMessageProcessor
- ```
-   * #### messagestore
- ```bash
-         Usage:
-             mi messagestore [command] [messagestore-name]
- 
-         Available Commands:
-             show  [messagestore-name]  Get information about one or more Message Store
- 
-         Examples:
-             # To List all the message store
-             mi messagestore show
+        # To get details about a specific task
+        mi task show sampleProxy
+    ```
+-   **dataservice**
+    ```bash
+    Usage:
+        mi dataservice [command] [argument]
 
-             # To get details about a specific message store
-             mi messagestore show  sampleMessageStore
- ```
-   * #### localentry
- ```bash
-         Usage:
-             mi localentry [command] [localentry-name]
- 
-         Available Commands:
-             show  [localentry-name]  Get information about one or more Local Entries
- 
-         Examples:
-             # To List all the local entries
-             mi localentry show
+    Available Commands:
+        show [data-service-name]             Get information about one or more Dataservices
 
-             # To get details about a specific local entry
-             mi localentry show  sampleLocalEntry
- ```
+    Examples:
+        # To List all the dataservices
+        mi dataservice show
+
+        # To get details about a specific task
+        mi dataservice show SampleDataService
+    ```
+
+-   **connectors**
+    ```bash
+     Usage:
+         mi connector [command]
+
+     Available Commands:
+         show             Get information about the connectors
+
+     Examples:
+         # To List all the connectors
+         mi connector show
+    ```
+-   **templates**   
+    ```bash
+     Usage:
+         mi template [command] [template-type] [template-name]
+
+     Available Commands:
+         show  [template-type]                  Get information about the given template type
+         show  [template-type] [template-name]  Get information about the specific template
+
+     Examples:
+         # To List all the templates
+         mi template show
+
+         # To List all the templates of given template type
+         mi template show endpoint
+
+         # To get details about a specific template
+         mi template show endpoint sampleTemplate
+    ```
+-   **messageprocessor**
+    ```bash
+     Usage:
+         mi messageprocessor [command] [messageprocessor-name]
+
+     Available Commands:
+         show  [messageprocessor-name]  Get information about one or more Message Processor
+
+     Examples:
+         # To List all the message processor
+         mi messageprocessor show
+
+         # To get details about a specific message processor
+         mi messageprocessor show  sampleMessageProcessor
+    ```
+-   **messagestore**
+    ```bash
+     Usage:
+         mi messagestore [command] [messagestore-name]
+
+     Available Commands:
+         show  [messagestore-name]  Get information about one or more Message Store
+
+     Examples:
+         # To List all the message store
+         mi messagestore show
+
+         # To get details about a specific message store
+         mi messagestore show  sampleMessageStore
+    ```
+-   **localentry**
+    ```bash
+     Usage:
+         mi localentry [command] [localentry-name]
+
+     Available Commands:
+         show  [localentry-name]  Get information about one or more Local Entries
+
+     Examples:
+         # To List all the local entries
+         mi localentry show
+
+         # To get details about a specific local entry
+         mi localentry show  sampleLocalEntry
+    ```
