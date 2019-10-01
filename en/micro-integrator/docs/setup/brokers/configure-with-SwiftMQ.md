@@ -1,4 +1,4 @@
-# Configure with SwiftMQ
+# Connecting to SwiftMQ
 
 This section describes how to configure WSO2 Micro Integrator to connect with SwiftMQ.
 

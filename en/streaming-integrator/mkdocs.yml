@@ -46,19 +46,20 @@ theme:
 # Navigation
 nav:
   - 'Home': index.md
-  - 'Getting Started':
+  - 'Get Started':
     - 'Introduction': 'overview/overview.md'
     - 'Architecture': 'overview/architecture.md'
     - 'About this Release': 'overview/about_this_release.md'
     - 'Quick Start Guide': 'quick-start-guide/getting-started-with-si.md'
     - 'Streaming Integrator 101': 'quick-start-guide/quick-start-guide-101.md'
+    - 'Samples': 'samples/sample.md'
     - 'Other Quick Start Guides':
       - 'Running the Streaming Integrator with Micro Integrator': 'quick-start-guide/hello-world-with-mi.md'
       - 'Running the Streaming Integrator with Docker': 'quick-start-guide/hello-world-with-docker.md'
       - 'Running the Streaming Integrator with Kubernetes': 'quick-start-guide/hello-world-with-kubernetes.md'
     - 'Concepts': 'concepts/concepts.md'
   - 'Learn':
-    - 'Guides':
+    - 'Use Cases':
       - 'Consuming Data': 'guides/consuming-messages.md'
       - 'Transforming Data': 'guides/transforming-data.md'
       - 'Enriching Data': 'guides/enriching-data.md'
@@ -69,17 +70,18 @@ nav:
       - 'Publishing Data': 'guides/publishing-data.md'
       - 'Triggering Integration Flows': 'guides/triggering-integration-flows.md'
     - 'Tutorials':
+      - 'Tutorials Overview': 'examples/tutorials-overview.md'
       - 'Performing Real-time ETL with MySQL': 'examples/performing-real-time-etl-with-mysql.md'
       - 'Performing Real-time ETL with Files': 'examples/performing-real-time-etl-with-files.md'
       - 'Working with Kafka': 'examples/working-with-kafka.md'
-      - 'Transforming XML Messages': 'examples/transforming-xml-messages.md'
       - 'Exposing Processed Data as API': 'examples/exposing-processed-data-as-api.md'
-      - 'Triggering Integrations via Micro Integrator': 'examples/triggering-integrations-via-micro-integrator.md'
+      - 'Triggering Integrations via MI': 'examples/triggering-integrations-via-micro-integrator.md'
   - 'Setup and Install':
     - 'Installing the Product':
       - 'Install in a VM': 'setup/installing-si-in-vm.md'
       - 'Installing in Docker': 'setup/installing-si-using-docker.md'
       - 'Installing in Kubernetes': 'setup/installing-si-using-kubernetes.md'
+      - 'Migrating from WSO2 SP': 'setup/migrating-from-stream-processor.md'
     - 'Deploying Streaming Integrator':
       - 'Single Deployment': 'setup/deploying-si-as-a-single-deployment.md'
       - 'Minimum HA Cluster': 'setup/deploying-si-as-minimum-ha-cluster.md'
@@ -107,13 +109,11 @@ nav:
     - 'Testing a Siddhi Application': 'develop/testing-a-Siddhi-Application.md'
     - 'Debugging Siddhi Applications': 'develop/debugging_siddhi_applications.md'
     - 'Exporting Siddhi Files': 'develop/exporting-Siddhi-Files.md'
-  - 'Administration':
-    - 'Monitoring the Streaming Integrator': 'admin/monitoring-the-streaming-integrator'
+  - 'Observability':
+    - 'Monitoring the Streaming Integrator': 'admin/monitoring-the-streaming-integrator.md'
   - 'References':
     - 'Streaming Integration REST API Guide': 'ref/si-rest-api-guide.md'
     - 'Performance Analysis Results': 'ref/performance-analysis-results.md'
-  - 'FAQ':
-    - 'FAQ': faq/fAQ.md
   - '': page-not-found.md
 
 # Extensions

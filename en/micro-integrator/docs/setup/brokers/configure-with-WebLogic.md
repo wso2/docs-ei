@@ -1,4 +1,4 @@
-# Configure with WebLogic
+# Connecting to Oracle WebLogic
 
 This section describes how to configure WSO2 Micro Integrator to connect with Oracle WebLogic 10.3.4.0.
 

@@ -1,4 +1,10 @@
-# FIX Transport Parameters
+# FIX Transport
+
+## About the FIX transport
+
+This transport implementation is a module developed under the Apache Synapse project. This transport is mainly used in conjunction with proxy services. This transport supports JMX. FIX transport does not support any global parameters. All the FIX configuration parameters should be specified at service level. QuickFix 4J configuration parameters can be found <a href="http://www.quickfixengine.org/quickfix/doc/html/configuration.html">here</a>.
+
+## Parameters
 
 Given below is the list of transport parameters that can be configured when you [create a proxy service](../../../develop/creating-artifacts/creating-a-proxy-service.md).
 

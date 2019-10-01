@@ -1,12 +1,12 @@
 # Using a JDBC Message Store
-
+## Example use case
 In this sample, the client sends requests to a proxy service. The proxy service stores the messages in a JDBC message store. The back-end service is invoked by a message forwarding processor, which picks the messages stored in the JDBC message store.
 
-### Synapse configuration
+## Synapse configuration
 
 Sample configuration that uses a MySQL database named sampleDB and the database table **jdbc_message_store**
 
-``` java tab="Proxy Service"
+```xml tab="Proxy Service"
 <proxy xmlns="http://ws.apache.org/ns/synapse"
               name="MessageStoreProxy"
               transports="https http"
@@ -25,7 +25,7 @@ Sample configuration that uses a MySQL database named sampleDB and the database 
 </proxy>
 ```
 
-``` java tab="Message Store"
+```xml tab="Message Store"
 <messageStore xmlns="http://ws.apache.org/ns/synapse"
                      class="org.apache.synapse.message.store.impl.jdbc.JDBCMessageStore"
                      name="SampleStore">
@@ -37,7 +37,7 @@ Sample configuration that uses a MySQL database named sampleDB and the database 
 </messageStore>
 ```
 
-``` java tab="Message Processor"
+```xml tab="Message Processor"
 <messageProcessor xmlns="http://ws.apache.org/ns/synapse"
                          class="org.apache.synapse.message.processor.impl.forwarder.ScheduledMessageForwardingProcessor"
                          name="ScheduledProcessor"
@@ -48,49 +48,41 @@ Sample configuration that uses a MySQL database named sampleDB and the database 
 </messageProcessor>
 ```
 
-### Run the Example
+## Build and run
 
-1.  Setup the database. Use one of the following DB scripts depending on which database type you want to use. 
+Create the artifacts:
 
-    ``` java tab="MySQL"
-    CREATE TABLE jdbc_message_store(
+1. Set up WSO2 Integration Studio.
+2. Create an ESB Config project
+3. Create a REST Api artifact with the above configuration.
+4. Deploy the artifacts in your Micro Integrator.
+
+Set up the back-end service:
+
+........
+
+Setup the database. Use one of the following DB scripts depending on which database type you want to use. 
+
+```java tab="MySQL"
+CREATE TABLE jdbc_message_store(
+            indexId BIGINT( 20 ) NOT NULL AUTO_INCREMENT ,
+            msg_id VARCHAR( 200 ) NOT NULL ,
+            message BLOB NOT NULL ,
+            PRIMARY KEY ( indexId )
+            )
+```
+
+```java tab="H2"
+CREATE TABLE jdbc_message_store(
                 indexId BIGINT( 20 ) NOT NULL AUTO_INCREMENT ,
                 msg_id VARCHAR( 200 ) NOT NULL ,
                 message BLOB NOT NULL ,
                 PRIMARY KEY ( indexId )
                 )
-    ```
+```
 
-    ``` java tab="H2"
-    CREATE TABLE jdbc_message_store(
-                    indexId BIGINT( 20 ) NOT NULL AUTO_INCREMENT ,
-                    msg_id VARCHAR( 200 ) NOT NULL ,
-                    message BLOB NOT NULL ,
-                    PRIMARY KEY ( indexId )
-                    )
-    ```
+Invoke the sample Api:
 
-2.  Add the relevant database driver into the `           MI_HOME/lib          ` folder.
-
-3.  Create the synapse artifacts given above.
-
-4.  Deploy the **SimpleStockQuoteService** client by navigating to
-    MI_HOME/samples/axis2Server/src/SimpleStockQuoteService, and
-    running the **ant** command in the command prompt or shell script.
-    This will build the sample and deploy the service for you.
-
-5.  The ESB profile of WSO2 EI comes with a default Axis2 server, which
-    you can use as the back-end service for this sample. To start the
-    Axis2 server, navigate to
-    `           <EI_HOME>/samples/axis2server          ` , and run
-    `           axis2Server.sh          ` on Linux or
-    `           axis2Server.bat          ` on Windows.
-
-6.  Go to <http://localhost:9000/services/SimpleStockQuoteService?wsdl>
-    and verify that the service is running.
-    
-7. To invoke the proxy service, navigate to `MI_HOME/repository/samples/axis2client         ` , and execute the following command:
-
-    ``` java
-    ant stockquote -Daddurl=http://localhost:8280/services/MessageStoreProxy
-    ```
+```java
+ant stockquote -Daddurl=http://localhost:8280/services/MessageStoreProxy
+```

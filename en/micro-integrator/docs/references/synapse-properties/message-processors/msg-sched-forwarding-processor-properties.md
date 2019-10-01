@@ -1,8 +1,12 @@
 # Scheduled Message Forwarding Processor 
+## Introduction
+The scheduled message forwarding processor consumes messages in a message store and sends them to an <a href="../../../../references/synapse-properties/endpoint-properties">endpoint</a>. If a message is successfully delivered to the endpoint, the processor deletes the message from the message store. In case of a failure, it will retry after a specified interval.
+
+## Properties
 
 See the topics given below for the list of properties that can be configured for a Scheduled Message Forwarding Processor.
 
-## Required Properties
+### Required Properties
 
 Following are the required parameters you can set when [adding a Scheduled Message Forwarding Processor](../../../develop/creating-artifacts/creating-a-message-processor.md):
 
@@ -37,7 +41,7 @@ Following are the required parameters you can set when [adding a Scheduled Messa
      </tr>
 </table>
 
-## Optional Properties
+### Optional Properties
 
 Following are the optional parameters you can set when [adding a Scheduled Message Forwarding Processor](../../../develop/creating-artifacts/creating-a-message-processor.md):
 

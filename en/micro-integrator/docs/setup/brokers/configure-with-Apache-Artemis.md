@@ -1,4 +1,4 @@
-# Configure with Apache Artemis
+# Connecting to Apache Artemis
 
 This section describes how to configure WSO2 Micro Integrator to connect with Apache Artemis (version 2.6.1).
 

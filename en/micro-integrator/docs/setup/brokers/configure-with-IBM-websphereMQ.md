@@ -1,4 +1,4 @@
-# Configure with IBM WebSphere MQ
+# Connecting to IBM WebSphere MQ
 
 The WSO2 JMS transport can be configured with IBM® WebSphere® MQ. The
 following topics cover the configuration steps.

@@ -1,8 +1,8 @@
 # ForEach Mediator
 
-The ForEach mediator requires an XPath expression and a sequence (inline or referred). It splits the message into a number of different messages
+The ForEach mediator requires an XPath/JSONPath expression and a sequence (inline or referred). It splits the message into a number of different messages
 derived from the original message by finding matching elements for the
-XPath expression specified. Based on the matching elements, new messages
+XPath/JSONPath expression specified. Based on the matching elements, new messages
 are created for each iteration and processed sequentially. The
 processing is carried out based on a specified sequence. The behaviour
 of ForEach mediator is similar to a generic loop. After mediation, the
@@ -51,7 +51,7 @@ split-aggregate pattern, you still need to use Iterate mediator.
 ## Syntax
 
 ```
-<foreach expression="xpath" [sequence="sequence_ref"] [id="foreach_id"] >
+<foreach expression="xpath|jsonpath" [sequence="sequence_ref"] [id="foreach_id"] >
     <sequence>
       (mediator)+
     </sequence>?
@@ -77,7 +77,7 @@ The parameters available to configure the ForEach mediator are as follows.
 <tr class="even">
 <td><strong>Expression</strong></td>
 <td><div class="content-wrapper">
-<p>The XPath expression with which different messages are derived by splitting the parent message. This expression should have matching elements based on which the splitting is carried out.</p>
+<p>The XPath/JSONPath expression with which different messages are derived by splitting the parent message. This expression should have matching elements based on which the splitting is carried out.</p>
 <p>You can click <strong>NameSpaces</strong> to add namespaces when you are providing an expression. Then the <strong>Namespace Editor</strong> panel would appear where you can provide any number of namespace prefixes and URLs used in the XPath expression.</p>
 </div></td>
 </tr>
@@ -95,14 +95,22 @@ The parameters available to configure the ForEach mediator are as follows.
 
 ## Examples
 
-In this configuration, the `         //m0:getQuote/m0:request"        `
-XPath expression evaluates the split messages to be derived from the
+In this configuration, the `         "//m0:getQuote/m0:request"        `
+XPath and `         "json-eval($.getQuote.request)"        ` JSONPath expression evaluates the split messages to be derived from the
 parent message. Then the split messages pass through a sequence which
 includes a [Log mediator](log-Mediator.md) with the log level set to
 `         full        ` .
 
-```
+``` java tab='Using a XPath expression'
 <foreach id="foreach_1" expression="//m0:getQuote/m0:request" xmlns:m0="http://services.samples">
+        <sequence>
+             <log level="full"/>
+        </sequence>
+</foreach>
+```
+
+``` java tab='Using a JSONPath expression'
+<foreach id="foreach_1" expression="json-eval($.getQuote.request)">
         <sequence>
              <log level="full"/>
         </sequence>

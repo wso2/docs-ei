@@ -1,16 +1,13 @@
 # Handling non-matching resources
+## Example use case
     
-In this scenario, we are defining a sequence to be invoked if the the ESB profile is unable to find a matching resource definition for a specific API invocation. This sequence generates a response indicating an error when no matching resource definition is found.
+In this scenario, we are defining a sequence to be invoked if the the Micro Integrator is unable to find a matching resource definition for a specific API invocation. This sequence generates a response indicating an error when no matching resource definition is found.
     
-### Setting up the back end
+## Synapse configurations
     
-For the back-end service, we are using the StockQuote Service that is shipped with the ESB profile. Configure and start the back-end service as described in [Starting Sample Back-End Services](https://docs.wso2.com/display/EI650/Setting+Up+the+ESB+Samples). We will use [cURL](http://curl.haxx.se/) as the REST client to invoke the the ESB profile API.
+Following is a sample REST Api configuration and mediation Sequence that we can used to implement this scenario.
     
-### Configuring the API
-    
-Create an API using the following configuration:
-    
-```
+```xml tab='REST Api'
 <api xmlns="http://ws.apache.org/ns/synapse" name="jaxrs" context="/jaxrs">
    <resource methods="GET" uri-template="/customers/{id}">
       <inSequence>
@@ -27,11 +24,7 @@ Create an API using the following configuration:
 </api> 
 ```
     
-### Creating the sequence
-    
-Create a new sequence with the following configuration:
-    
-```
+```xml tab='Sequence'
  <sequence xmlns="http://ws.apache.org/ns/synapse" name="_resource_mismatch_handler_">
    <payloadFactory>
       <format>
@@ -54,17 +47,29 @@ Create a new sequence with the following configuration:
    <drop/>
 </sequence>
 ```
-### Executing the sample
-    
+## Build and run
+
+Create the artifacts:
+
+1. Set up WSO2 Integration Studio.
+2. Create an ESB Config project
+3. Create a REST Api artifact with the above configuration.
+4. Create a mediation sequence with the above configuration.
+5. Deploy the artifacts in your Micro Integrator.
+
+Set up the back-end service:
+
+........
+
 Send an invalid request to the back end as follows:
     
-```
+```bash
 curl -X GET http://localhost:8280/jaxrs/customers-wrong/123
 ```
     
 You will get the following response:
     
-```
+```bash
 <tp:fault xmlns:tp="http://test.com">
 <tp:code>404</tp:code>
 <tp:type>Status report</tp:type>
@@ -73,4 +78,4 @@ You will get the following response:
 </tp:fault>
 ```
 
-Notice that we have specified the REST\_URL\_POSTFIX property with the value set to "remove". When invoking this API, even if the request contains a trailing slash after the context (e.g., `POST http://127.0.0.1:8287/orderdelayAPI/` instead of `POST  http://127.0.0.1:8287/orderdelayAPI`, the endpoint will be called correctly.
+Notice that we have specified the REST_URL_POSTFIX property with the value set to "remove". When invoking this API, even if the request contains a trailing slash after the context (e.g., `POST http://127.0.0.1:8287/orderdelayAPI/` instead of `POST  http://127.0.0.1:8287/orderdelayAPI`, the endpoint will be called correctly.
