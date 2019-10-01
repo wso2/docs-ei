@@ -1,4 +1,4 @@
-# Configure with IBM WebSphere Application Server
+# Connecting to IBM WebSphere App Server
 
 This page describes how to configure the WSO2 Micro Integrator with IBM WebSphere Application Server.
 

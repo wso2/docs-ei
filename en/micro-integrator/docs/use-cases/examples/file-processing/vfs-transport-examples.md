@@ -1,0 +1,86 @@
+# VFS Transport
+## Example use case
+
+The Micro Integrator can access the local file system using the [VFS transport](../../setup/transport_configurations/configuring-transports/configuring-the-vfs-transport) sender and
+receiver. This sample demonstrates the VFS transport in action, using the file system as a transport medium.
+
+## Synapse configuration
+
+The XML configuration for this sample is as follows:
+
+```xml
+<definitions xmlns="http://ws.apache.org/ns/synapse">
+    <proxy name="StockQuoteProxy" transports="vfs">
+        <parameter name="transport.vfs.FileURI">file:///home/user/test/in</parameter>  
+        <parameter name="transport.vfs.ContentType">text/xml</parameter>
+        <parameter name="transport.vfs.FileNamePattern">.*\.xml</parameter>
+        <parameter name="transport.PollInterval">15</parameter>
+        <parameter name="transport.vfs.MoveAfterProcess">file:///home/user/test/original</parameter> 
+        <parameter name="transport.vfs.MoveAfterFailure">file:///home/user/test/original</parameter>
+        <parameter name="transport.vfs.ActionAfterProcess">MOVE</parameter>
+        <parameter name="transport.vfs.ActionAfterFailure">MOVE</parameter>
+        <target>
+            <endpoint>
+                <address format="soap12" uri="http://localhost:9000/services/SimpleStockQuoteService"/>
+            </endpoint>
+            <outSequence>
+                <property name="transport.vfs.ReplyFileName"
+                          expression="fn:concat(fn:substring-after(get-property('MessageID'), 'urn:uuid:'), '.xml')"
+                          scope="transport"/>
+                <property action="set" name="OUT_ONLY" value="true"/>
+                <send>
+                    <endpoint>
+                        <address uri="vfs:file:///home/user/test/out"/> 
+                    </endpoint>
+                </send>
+            </outSequence>
+        </target>
+        <publishWSDL uri="file:repository/samples/resources/proxy/sample_proxy_1.wsdl"/>
+    </proxy>
+</definitions>
+```
+
+To configure a VFS endpoint, use the `vfs:file` prefix in the URI. For example:
+
+```xml
+<endpoint>
+    <address uri="vfs:file:///home/user/test/out"/>
+</endpoint>
+```
+
+## Build and run
+
+1.  Create the file directories:
+
+    -   Create 3 new directories (folders) named **in** , **out** and
+        **original** in a suitable location in a test directory (e.g.,
+        /home/user/test) in the local file system. 
+    -   Be sure to update the **in**, **original**, and **original** directory locations with the values given as the 
+        `          transport.vfs.FileURI         ` ,
+        `          transport.vfs.MoveAfterProcess         ` ,
+        `          transport.vfs.MoveAfterFailure         ` parameter values in your synapse configuration. 
+    -   You need to set both
+        `          transport.vfs.MoveAfterProcess         ` and
+        `          transport.vfs.MoveAfterFailure         ` parameter
+        values to point to the **original** directory location.
+    -   Be sure that the endpoint in the `<outSequence>` points to the **out** directory location. Make sure that the prefix
+        `          vfs:         ` in the endpoint URL is not removed or changed.
+
+2.  Create the `test.xml` file shown below and copy it to the location specified in `transport.vfs.FileURI` in the configuration (i.e., the **in** directory). This contains a simple stock quote request in XML/SOAP format.
+
+    ```xml
+    <?xml version='1.0' encoding='UTF-8'?>
+    <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:wsa="http://www.w3.org/2005/08/addressing">
+        <soapenv:Body>
+            <m0:getQuote xmlns:m0="http://services.samples">
+                <m0:request>
+                    <m0:symbol>IBM</m0:symbol>
+                </m0:request>
+            </m0:getQuote>
+        </soapenv:Body>
+    </soapenv:Envelope>
+    ```
+
+3. Analyzing the output
+
+    You will see that the VFS transport listener picks the file from the **in** directory and sends it to the Axis2 service over HTTP. Then you will see that the request XML file is moved to the **original** directory and that the response from the Axis2 server is saved to the **out** directory.

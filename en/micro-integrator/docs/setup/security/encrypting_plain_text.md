@@ -22,13 +22,14 @@ Note that you can customize the default secure vault configurations in the produ
     log4j.appender.LOGEVENT.password = "password_6"
     ```
 
-    See the complete list of [configuration parameters](../../references/config-catalog.md).
+    See the complete list of [configuration parameters](../../references/config-catalog/#secret-passwords).
 
 2. Open a terminal, navigate to the MI_HOME/bin/ directory, and execute the following command (You must first enable the Cipher tool for the product by executing the `-Dconfigure` command with the cipher tool script as shown below).
     * On Linux: `./ciphertool.sh -Dconfigure`
     * On Windows: `./ciphertool.bat -Dconfigure`
 
 3. Go back to the deployment.toml file and see that the alias passwords are encrypted.
+
     ```toml
     [secrets]
     admin_password = "encrypted_pass_2"
@@ -37,14 +38,14 @@ Note that you can customize the default secure vault configurations in the produ
     truststrore_password = "encrypted_pass_5"
     ```
 
-    See the complete list of [configuration parameters](../../references/config-catalog.md).
+    See the complete list of [configuration parameters](../../references/config-catalog/#secret-passwords).
 
 ## Using encrypted passwords
 When you have [encrypted passwords](#encrypting-passwords), you can refer them from the relevant configuration files: The deployment.toml file or LOG4j properties.
 
 ### Passwords in the deployment.toml
 
-You can add the encrypted password to the relevant sections in the deployment.toml file by using a place holder: `$ref{alias}`. 
+You can add the encrypted password to the relevant sections in the deployment.toml file by using a place holder: `$secret`. 
 
 !!! Note
     You can also replace your passwords by refering values passed by environment variables and system properties. See [Set Passwords using Environment Variables/System Properties](../../setup/security/replace_passwords_env_variables_sys_properties.md)
@@ -52,15 +53,15 @@ You can add the encrypted password to the relevant sections in the deployment.to
 ```toml
 [super_admin]
 username="admin"
-password="$ref{admin_password}"
+password="$secret{admin_password}"
 
 [keystore.tls]
-password = "$ref{keystore_password}" 
-alias = "$ref{keystore_password}" 
-key_password = "$ref{key_password }"  
+password = "$secret{keystore_password}" 
+alias = "$secret{keystore_password}" 
+key_password = "$secret{key_password }"  
 
 [truststore]                  
-password = "$ref{keystore_password}" 
+password = "$secret{keystore_password}" 
 ```
 
 See the complete list of [configuration parameters](../../references/config-catalog.md).

@@ -26,10 +26,10 @@ Integration developers will follow the workflow illustrated by the following dia
 			Before you start developing your artifacts, design the synapse configurations that suite your requirement. Use the following resources:
 			<ul>
 				<li>
-					<a href="../../use-cases/guides/using-templates">Guides</a> will walk you through the process of developing the most common integration use cases.
+					<a href="../../use-cases/integration-use-cases">Tutorials</a> will walk you through the process of developing the most common integration use cases.
 				</li>
 				<li>
-					<a href="../../use-cases/examples/using-scheduled-tasks">Examples</a> will provide a quick demo that will help you understand the synapse configurations for implementing specific functions.
+					<a href="../../use-cases/integration-use-cases">Examples</a> will provide a quick demo that will help you understand the synapse configurations for implementing specific functions.
 				</li>
 				<li>
 					See the <a href="../../develop/WSO2-Integration-Studio">WSO2 Integration Studio documentation</a> for indepth information on the development tool.

@@ -1,4 +1,4 @@
-# Configure with Tibco EMS
+# Connecting to Tibco EMS
 
 This section describes how to configure WSO2 Micro Integrator to connect with Tibco EMS.
 

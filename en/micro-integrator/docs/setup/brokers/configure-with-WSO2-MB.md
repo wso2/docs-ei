@@ -1,4 +1,4 @@
-# Configure with the Broker Profile
+# Connecting to WSO2 MB
 
 This section describes how to configure WSO2 Micro Integrator to connect with WSO2 Message Broker.
 

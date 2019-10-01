@@ -1,4 +1,10 @@
-# MailTo Transport Parameters
+# MailTo Transport
+
+## About the MailTO transport
+
+When you use the Micro Integrator to mediate messages, the mediation sequence can be configured to send emails (over SMTP) or receive emails (Over POP3 or IMAP) by using the MailTo transport protocol.
+
+## Parameters
 
 Given below is the list of MailTO transport parameters that can be configured when you [create a proxy service](../../../develop/creating-artifacts/creating-a-proxy-service.md).
 

@@ -9,7 +9,8 @@ The **default keystore** is used for the following requirements:
 
 * **Encrypting/decrypting passwords** and other confidential information, which are maintained in various configuration files as well as internal data stores.
 
-    > Note that it is recommended to separate the [keystore for encrypting information in internal data stores](#separating-the-internal-keystore).
+    !!! Note 
+        It is recommended to separate the [keystore for encrypting information in internal data stores](#separating-the-internal-keystore).
 
 * **Signing messages** when the WSO2 product communicates with external parties (such as SAML, OIDC id_token signing).
 
@@ -34,7 +35,7 @@ If you want to change the [default primary keystore](#the-default-keystore-confi
     alias="wso2carbon"
     key_password="wso2carbon"
     ```
-    Find more details about [keystore parameters](../../../references/ei_config_catalog/#configuring-the-tls-keystore).
+    Find more details about [keystore parameters](../../../references/config-catalog/#primary-keystore).
 
 3. [Import the required CA-signed certificates](../../setup/security/importing_ssl_certificate.md) to the key store.
 
@@ -62,7 +63,7 @@ Follow the steps given below to separate the keystore that is used for encryptin
     alias="wso2carbon"
     key_password="wso2carbon"
     ```
-    Find more details about [internal keystore parameters](../../../references/ei_config_catalog/#configuring-the-internal-keystore).
+    Find more details about [internal keystore parameters](../../../references/config-catalog/#internal-keystore).
 
 ## Optional: Changing the default truststore
 If you want to change the [default trust store](#the-default-keystore-configuration) that is shipped with the product, follow the steps given below.

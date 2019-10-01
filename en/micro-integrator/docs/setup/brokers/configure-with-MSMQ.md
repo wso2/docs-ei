@@ -1,4 +1,4 @@
-# Configure with MSMQ
+# Connecting to MSMQ
 
 This section describes how to configure WSO2 Micro Integrator to connect with Microsoft Message Queuing (MSMQ).
 
