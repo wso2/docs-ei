@@ -28,7 +28,7 @@ To set up the tools:
 To set up the previous artifacts:
 
 1.  If you did not try the [Exposing Several Services as a Single Service](exposing-several-services-as-a-single-service.md) tutorial yet, open WSO2 Integration Studio, click **File** , and then click **Import** . Next, select **Existing WSO2 Projects into workspace** under the **WSO2** category, click **Next** and upload the [pre-packaged project](https://github.com/wso2-docs/WSO2_EI/blob/master/Integration-Tutorial-Artifacts/ExposingSeveralServicesTutorial.zip).
-2.  Download the JAR file of the back-end service from [here](https://github.com/wso2-docs/WSO2_EI/blob/master/Back-End-Service/Hospital-Service-2.0.0.jar).
+2.  Download the JAR file of the back-end service from [here](https://github.com/wso2-docs/WSO2_EI/blob/master/Back-End-Service/Hospital-Service-2.0.0-EI7.jar).
 
 ### Step 2: Develop the integration artifacts
 
@@ -212,7 +212,12 @@ Let's test the use case by sending a simple client request that invokes the serv
 
 #### Start the backend service
 
-First, start the back-end service.
+1. Open a terminal, navigate to the location where your saved the [back-end service](#step-1-set-up-the-workspace).
+2. Execute the following command to start the service:
+
+    ```
+    java -jar Hospital-Service-2.0.0-EI7.jar
+    ```
 
 #### Start the Message Broker runtime
 

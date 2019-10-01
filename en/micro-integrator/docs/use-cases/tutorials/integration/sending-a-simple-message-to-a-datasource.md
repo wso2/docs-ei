@@ -1,108 +1,348 @@
-# Sending a Simple Message to a Datasource
+# Data Integration
+
+## What you'll build
+
+A **data service** provides a Web service interface to access data that is stored in relational databases, CSV files, Microsoft Excel sheets,
+Google spreadsheets, and more. The following sections describe how you can use WSO2 Integration Studio to work with data services' artifacts. 
+
+## Let's get started!
+
+### Step 1: Set up the workspace
+
+To set up the tools:
+
+-  Go to the [product page](https://wso2.com/integration/) of **WSO2 Micro Integrator**, download the **product installer** and run it to set up the product.
+-  Select the relevant [WSO2 Integration Studio](https://wso2.com/integration/tooling/) based on your operating system and extract the ZIP file.  The path to the extracted folder is referred to as `MI_TOOLING_HOME` throughout this tutorial.
+-  Download the CLI Tool for monitoring artifact deployments.
+
+To demonstrate how data services work, we will use a MySQL database as the datasource. Follow the steps given below to set up a MySQL database:
+
+1.  Install the MySQL server.
+2.  Download the JDBC driver for MySQL from [here](http://dev.mysql.com/downloads/connector/j/) and copy it to your `MI_TOOLING_HOME/Eclipse/runtime/microesb/lib` directory. 
+
+    !!! Note
+        If the driver class does not exist in the relevant folders when you create the datasource, you will get an exception such as `Cannot load JDBC driver class com.mysql.jdbc.Driver`.
+    
+3.  Create a database named `Employees`.
+
+    ```bash
+    CREATE DATABASE Employees;
+    ```
+
+4.  Create the Employee table inside the Employees database:
+
+    ```bash
+    USE Employees;
+    CREATE TABLE Employees (EmployeeNumber int(11) NOT NULL, FirstName varchar(255) NOT NULL, LastName varchar(255) DEFAULT NULL, Email varchar(255) DEFAULT NULL, Salary varchar(255));
+    ```
+
+### Step 2: Creating a data service
+
+Follow the steps given below to create a new data service.
+
+#### Creating a data service project
+
+All the data services' artifacts that you create should be stored in a
+Data Service project. Follow the steps given below to create a project:
+
+1.  Open **WSO2 Integration Studio,** and click **DS Project → Create
+    New** in the **Getting Started** tab as shown below.  
+    ![](/assets/img/tutorials/data_services/119130577/119135178.png)
+
+2.  In the **New Data Service Project** dialog that opens, give a name
+    for the project and click **Next**.
+3.  If required, change the Maven information about the project.
+4.  Click **Finish**. The new project will be listed in the project
+    explorer.
+
+#### Creating the datasource connection
+
+Follow the steps given below to create the data service file:
+
+1.  Select the already created **Data Service Project** in the project
+    navigator, right click and go to **New -> Data Service**.  
+    The **New Data Service** window will open as shown below.  
+    ![](/assets/img/tutorials/data_services/119130577/119130578.png)
+2.  To start creating a data service from scratch, select **Create New
+    Data Service** and click **Next**.
+
+3.  Enter a name for the data service:
+
+    <table>
+        <tr>
+            <th>Property</th>
+            <th>Description</th>
+        </tr>
+    <tbody>
+    <tr class="odd">
+    <td>Data Service Name</td>
+    <td>RDBMSDataService</td>
+    </tr>
+    </tbody>
+    </table>
+
+4.  Click **Next** and start adding the datasource connection details
+    given below.
+
+    |       Property                     |       Description                     |
+    |------------------------------------|---------------------------------------|
+    | Datasource ID                      | Datasource                            |
+    | Datasource Type                    | RDBMS                                 |
+    | Datasource Type (Default/External) | Leave **Default** selected.           |
+    | Database Engine                    | MySQL                                 |
+    | Driver Class                       | com.mysql.jdbc.Driver                 |
+    | URL                                | jdbc:mysql://localhost:3306/Employees |
+    | User Name                          | root                                  |
+
+5.  Save the data service.
+
+A data service file (DBS file) will now be created in your data service
+project. Shown below is the project directory.
+
+![](/assets/img/tutorials/data_services/119130577/119130593.png)
+
+#### Creating a query
+
+Let's write an SQL query to GET data from the MySQL datasource that you
+configured in the previous step:
+
+1.  Select the data service you created in the previous step.
+2.  Right-click and click **Add Query** .  
+    ![](/assets/img/tutorials/data_services/119130577/119130591.png)
+3.  Enter the following query details:
+
+    | Parameter  |  Description       |
+    |------------|--------------------|
+    | Query ID   | GetEmployeeDetails |
+    | Datasource | Datasource         |
+
+4.  Save the query. The query element is now added to the data
+    service:  
+    ![](/assets/img/tutorials/data_services/119130577/119130590.png)
+5.  Right-click the **GetEmployeeDetails** query and click **Add SQL**
+    to add the following SQL statement:
+
+    ```bash
+    select EmployeeNumber, FirstName, LastName, Email from Employees where EmployeeNumber=:EmployeeNumber
+    ```
+
+6.  Save the SQL statement.
+7.  Right-click the query again and click **Add Input Mapping** .
+
+8.  Enter the following input mapping details:
+
+    | Property       | Description    |
+    |----------------|----------------|
+    | Mapping Name   | EmployeeNumber |
+    | Parameter Type | SCALAR         |
+    | SQL Type       | STRING         |
+
+9.  Save the input mapping.
+10. Right-click the query again and click **Add Output Mapping**.
+11. Enter the following value to group the output mapping:
+
+    <table>
+        <tr>
+            <th>Property</th>
+            <th>Description</th>
+        </tr>
+    <tr class="odd">
+    <td>Grouped by Element</td>
+    <td>Employees</td>
+    </tr>
+    </table>
+
+12. Save the output mapping.
+
+13. Right-click the output mapping and go to **Add Output Mapping → Add
+    Element** to create an element.
+
+14. Enter the following element details.
+
+    <table>
+    <tr>
+            <th>Property</th>
+            <th>Description</th>
+        </tr>
+    <tbody>
+    <tr class="odd">
+    <td>Datasource Type</td>
+    <td>column</td>
+    </tr>
+    <tr class="even">
+    <td>Output Field Name</td>
+    <td>EmployeeNumber</td>
+    </tr>
+    <tr class="odd">
+    <td>Datasource Column Name</td>
+    <td>EmployeeNumber</td>
+    </tr>
+    <tr class="even">
+    <td>Schema Type</td>
+    <td>String</td>
+    </tr>
+    </tbody>
+    </table>
+
+15. Save the element.
+16. Follow the same steps to create the following output elements:
+
+    | Datasource Type | Output Field Name | Datasource Column Name | Schema Type |
+    |-----------------|-------------------|------------------------|-------------|
+    | column          | FirstName         | FirstName              | string      |
+    | column          | LastName          | LastName               | string      |
+    | column          | Email             | Email                  | string      |
+
+17. Save the output elements.
+
+The data service should now have the query element added as shown below.
+
+![](/assets/img/tutorials/data_services/119130577/119130589.png)
+
+#### Creating a resource to invoke the query
+
+Now, let's create a REST resource that can be used to invoke the query.
+
+1.  Right-click the data service and click **Add Resource**. Add the following resource details.
+
+    <table>
+    <tr>
+            <th>Property</th>
+            <th>Description</th>
+        </tr>
+    <tbody>
+    <tr class="odd">
+    <td>Resource Method</td>
+    <td>GET</td>
+    </tr>
+    <tr class="even">
+    <td>Resource Path</td>
+    <td>Employee/{EmployeeNumber}</td>
+    </tr>
+    </tbody>
+    </table>
+
+2.  Expand the GET resource, and click the **GetEmployeeDetails (call-query)**. Connect the query to the resource by adding the following:
+
+    <table>
+    <tr>
+            <th>Property</th>
+            <th>Description</th>
+        </tr>
+    <tbody>
+    <tr class="odd">
+    <td>Query ID</td>
+    <td>GetEmployeeDetails</td>
+    </tr>
+    </tbody>
+    </table>
+
+3.  Save the resource.
+
+The data service should now have the resource added as shown below.
+
+![](/assets/img/tutorials/data_services/119130577/119130588.png)
+
+### Step 3: Package the artifacts
+
+Create a new composite application project:
+
+1.  Open the **Getting Started** view and click **Miscellaneous → Create New Composite Application**.  
+    ![Create new CAPP](../../../assets/img/create_project/create_new_capp.png) 
+2.  In the **New Composite Application Project** dialog that opens, select the data service file, and click **Finish**.  
+    ![Create new CAPP](../../../assets/img/create_project/create_new_capp_dialog.png)
+
+Package the artifacts in your composite application project to be able to deploy the artifacts in the server.
+
+1.  Open the `pom.xml` file in the composite application project POM editor.
+2.  Ensure that your data service file is selected in the POM file.
+3.  Save the project.
+
+### Step 4: Build and run the artifacts
+
+To test the artifacts, deploy the [packaged artifacts](#step-3-package-the-artifacts) in the embedded Micro Integrator:
+
+1.  Right-click the composite application project and click **Export Project Artifacts and Run**.
+2.  In the dialog that opens, select the composite application project that you want to deploy.  
+4.  Click **Finish**. The artifacts will be deployed in the embedded Micro Integrator and the server will start. See the startup log in the **Console** tab. 
+
+### Step 5: Testing the data service
+
+Send a GET request to invoke the service. You can use **curl** as shown below.
+
+```bash
+curl -X GET http://localhost:8280/services/RDBMSDataService.HTTPEndpoint/Employee/3
+```
+
+You will receive the employee's details in the response.
+
+
+<!--
 
 ## What you'll build
 
 Let’s try a simple scenario where a patient makes an inquiry specifying
 the doctor's specialization (category) to retrieve a list of doctors
 that match the specialization. The required information is stored in an
-H2 database that is shipped with this product. We will create a data
-service in the ESB profile of WSO2 Enterprise Integrator (WSO2 EI),
+H2 database. We will create a data service in WSO2 Micro Integrator,
 which will expose the information in the database, thereby decoupling
 the client and the database layer in the back end. The client will then
-communicate with the data service hosted in WSO2 EI to get the required
+communicate with the data service hosted in the Micro Integrator to get the required
 information instead of communicating directly with the back end.
 
-**In this tutorial** , we will define a data service in the ESB profile
-of WSO2 EI to expose the back-end database. A client can then invoke the
+**In this tutorial** , we will define a data service in the Micro Integrator to expose the back-end database. A client can then invoke the
 data service to send messages to the database. If you want to use a
-back-end service instead of a database, see the tutorial on [sending a
-simple message to a service](_Sending_a_Simple_Message_to_a_Service_) .
+back-end service instead of a database, see the tutorial on [sending a simple message to a service](sending-a-simple-message-to-a-service) .
 
 ![](/assets/img/tutorials/119132403/119132408.png)
 
-Let's get started!
+## Let's get started!
 
-This tutorial includes the following sections:
+### Step 1: Set up the workspace
 
--   [Downloading and set up WSO2
-    EI](#SendingaSimpleMessagetoaDatasource-DownloadingandsetupWSO2EI)
--   [Starting WSO2
-    EI](#SendingaSimpleMessagetoaDatasource-StartingWSO2EI)
--   [Exposing a datasource through a data
-    service](#SendingaSimpleMessagetoaDatasource-Exposingadatasourcethroughadataservice)
--   [Sending requests to the
-    ESB](#SendingaSimpleMessagetoaDatasource-SendingrequeststotheESB)
+To set up the tools:
 
-### Downloading and set up WSO2 EI
+1.  Go to the product page of WSO2 Micro Integrator, download the product installer and run it to set up the product.
+2.  Select the relevant WSO2 Integration Studio based on your operating system and extract the ZIP file. The path to this folder is referred to as `MI_TOOLING_HOME` throughout this tutorial.
+3.  Download the CLI Tool for monitoring artifact deployments.
 
-!!! tip
+To create the H2 database instance:
 
-Before you begin
+Let's set up a back-end database for the healthcare service. We will create a database named `DATA_SERV_QSG` in the
+`MI_HOME/samples/data-services/database` directory for this purpose.
 
-1.  Install Oracle Java SE Development Kit (JDK) version 1.8.\* and set
-    the JAVA\_HOME environment variable.
-2.  Go to the [product page](https://wso2.com/integration/) of **WSO2
-    Enterprise Integrator** , select **Other Installation Options** ,
-    and download the **Binary** distribution. Extract the ZIP file of
-    the binary. This will be your `          <EI_HOME>         `
-    directory.
-
-
-Let's set up a back-end database for the healthcare service. We will
-create a database named `         DATA_SERV_QSG        ` in the
-`         <EI_HOME>/samples/data-services/database        ` directory
-for this purpose.
-
-1.  Download the
-    `                     dataServiceSample.zip                   `
-    file and extract it to a location on your computer. Let's call
-    this location `          <Dataservice_Home>         ` . This
-    contains a DB script for updating the back-end database with
-    the channeling information of the healthcare service.
-2.  Open a terminal, navigate to the
-    `           <Dataservice_Home>          ` directory and execute the
-    following command:
+1.  Download the `dataServiceSample.zip` file and extract it to a location on your computer. Let's call this location `<Dataservice_Home>` . This
+    contains a DB script for updating the back-end database with the channeling information of the healthcare service.
+2.  Open a terminal, navigate to the `<Dataservice_Home>` directory and execute the following command:
 
     !!! Tip
-        When executing the below command, replace the
-        `           <PATH_TO_EI_HOME>          ` with the folder path of
-        your WSO2 EI distribution. For example, if your WSO2 EI distribution
-        (i.e., `           <EI_HOME>          ` ) is located in the
-        `           /Users/Documents/          ` directory, execute the
+        When executing the below command, replace the `<PATH_TO_EI_HOME>` with the folder path of your WSO2 Micro Integrator distribution. For example, if your Micro Integrator distribution
+        (i.e., `MI_HOME` ) is located in the `/Users/Documents/` directory, execute the
         following command:
-        `           ant -Ddshome=           /Users/Documents/           wso2ei-6.x.x          `
+        `ant -Ddshome=/Users/Documents/wso2ei-6.x.x`
     
         Also, you need to install [Apache Ant](https://ant.apache.org/) to
         execute this command.
     
-        ``` java
-        ant -Ddshome=<PATH_TO_EI_HOME>
+        ```java
+        ant -Ddshome=<PATH_TO_MI_HOME>
         ```
 
-The database is now updated with information on all available doctors in
-the healthcare service.
+The database is now updated with information on all available doctors in the healthcare service.
 
-### Starting WSO2 EI
+### Step 2: Develop the integration artifacts
 
-Follow the steps given below to start the ESB runtime of WSO2 EI and
-create the data service"
+Follow the steps given below to start the Micro Integrator and create the data service.
 
-1.  To start the ESB profile, open a terminal, navigate to the
-    `           <EI_HOME>/bin/          ` directory, and execute one of
-    the following commands:
+1.  To start the Micro Integrator, open a terminal, navigate to the `MI_HOME/bin/` directory, and execute one of the following commands:
 
-    -   [**On MacOS/Linux/CentOS**](#814b503621224e8fbafe827578efbe7f)
-    -   [**On Windows**](#5ca44b960199460c91cc7c659dc4de0c)
-
-    ``` java
-            sh integrator.sh
+    ```bash tab='On Linux/MacOS/CentOS'
+    sh micro-integrator.sh
     ```
 
-    ``` java
-            integrator.bat
+    ```bash tab='On Windows'
+    micro-integrator.bat
     ```
-
-<!-- -->
 
 1.  In your Web browser, navigate to the ESB profile's management
     console using the following URL:
@@ -365,3 +605,5 @@ ESB profile of WSO2 EI. You will need a REST client like curl for this.
         </DOCTOR>
         </DOCTORSLIST>
     ```
+
+-->

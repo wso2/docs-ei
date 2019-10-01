@@ -14,6 +14,7 @@ To implement this use case, you will create a REST API resource and other artifa
 
 -  Go to the [product page](https://wso2.com/integration/) of **WSO2 Micro Integrator**, download the **product installer** and run it to set up the product.
 -  Select the relevant [WSO2 Integration Studio](https://wso2.com/integration/tooling/) based on your operating system and extract the ZIP file.  The path to the extracted folder is referred to as `MI_TOOLING_HOME` throughout this tutorial.
+-  Download the JAR file of the back-end service from [here](https://github.com/wso2-docs/WSO2_EI/blob/master/Back-End-Service/Hospital-Service-2.0.0-EI7.jar).
 -  Download the CLI Tool for monitoring artifact deployments.
 
 ### Step 2: Develop the integration artifacts
@@ -353,9 +354,14 @@ To test the artifacts, deploy the [packaged artifacts](#step-3-package-the-artif
 
 Let's test the use case by sending a simple client request that invokes the service.
 
-#### Start the backend service
+#### Start the back-end service
 
-First, start the back-end service.
+1. Open a terminal, navigate to the location where your saved the [back-end service](#step-1-set-up-the-workspace).
+2. Execute the following command to start the service:
+
+    ```
+    java -jar Hospital-Service-2.0.0-EI7.jar
+    ```
 
 #### Send the client request
 

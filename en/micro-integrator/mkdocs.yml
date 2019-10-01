@@ -60,6 +60,7 @@ nav:
         - 'Service Orchestration': 'use-cases/tutorials/integration/exposing-several-services-as-a-single-service.md'
         - 'Asynchronous Messaging': 'use-cases/tutorials/integration/storing-and-forwarding-messages.md'
         - 'Connecting Web APIs/Cloud Services': 'use-cases/tutorials/integration/using-the-gmail-connector.md'
+        - 'Data Integration': 'use-cases/tutorials/integration/sending-a-simple-message-to-a-datasource.md'
         - 'File Processing': 'use-cases/tutorials/file-processing.md'
         - 'Using Inbound Endpoints': 'use-cases/tutorials/using-inbound-endpoints.md'
         - 'Reusing Mediation Sequences': 'use-cases/tutorials/using-templates.md'
