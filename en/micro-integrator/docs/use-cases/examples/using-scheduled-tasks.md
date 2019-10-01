@@ -23,6 +23,7 @@ the server.
     the following details.  
     -   **Log Category:** `            INFO           `
     -   **Log Level:** `            CUSTOM           `
+    - Add a property Name: City Value Type: EXPRESSION Expression: //city
 
     ![](images/icons/grey_arrow_down.png){.expand-control-image}
     Configuration of the Sequence
@@ -32,9 +33,11 @@ the server.
 
     ``` xml
         <?xml version="1.0" encoding="UTF-8"?>
-        <sequence name="ScheduleCustomSequence" trace="disable" xmlns="http://ws.apache.org/ns/synapse">
-            <log level="custom" />
-            <drop />
+        <sequence name="InjectXMLSequence" trace="disable" xmlns="http://ws.apache.org/ns/synapse">
+            <log level="custom">
+                <property expression="//city" name="City"/>
+            </log>
+            <drop/>
         </sequence>
     ```
 ### Create the Scheduled Task
@@ -42,17 +45,38 @@ the server.
 The below is the complete source configuration of the Scheduled Task
     (i.e., the `             InjectXMLTask.xml            ` file).
 
-    ```
-        <?xml version="1.0" encoding="UTF-8"?>
-        <task class="com.example.post.scheduleTask1.ESBTask" group="synapse.simple.quartz" name="PrintParameterTask" xmlns="http://ws.apache.org/ns/synapse">
-            <trigger interval="5" />
-            <property name="parameter" value="<abc>This is a scheduled task of the default implementation.</abc>" xmlns:task="http://www.wso2.org/products/wso2commons/tasks"/>
-        </task>
-    ```
+   ``` xml
+           <?xml version="1.0" encoding="UTF-8"?>
+           <task class="org.apache.synapse.startup.tasks.MessageInjector" group="synapse.simple.quartz" name="InjectXMLTask" xmlns="http://ws.apache.org/ns/synapse">
+               <trigger interval="5"/>
+               <property name="injectTo" value="sequence" xmlns:task="http://www.wso2.org/products/wso2commons/tasks"/>
+               <property name="sequenceName" value="InjectXMLSequence" xmlns:task="http://www.wso2.org/products/wso2commons/tasks"/>
+               <property name="message" xmlns:task="http://www.wso2.org/products/wso2commons/tasks">
+                   <request xmlns="">
+                       <location>
+                           <city>London</city>
+                           <country>UK</country>
+                       </location>
+                   </request>
+               </property>
+           </task>
 
+   ``` 
+    
 -   **Task Name:** `InjectXMLTask`
 -   **Count:** `-1`
 -   **Interval (in seconds):** 5
+-   **injectTo:** `InjectXMLTask`
+-   **sequenceName:** `InjectXMLSequence`
+-   **message:** 
+    ```
+    <request xmlns="">
+        <location>
+            <city>London</city>
+            <country>UK</country>
+        </location>
+    </request>
+    ```
 
 In the **Form View** of the `          InjectXMLTask.xml         `
     file, click the **Task Implementation Properties** button.  
@@ -60,7 +84,14 @@ In the **Form View** of the `          InjectXMLTask.xml         `
 
 Select **XML** as the **Parameter Type** of the **message**
     parameter, enter
-    `           <abc>This is a scheduled task of the default implementation.</abc>          `
+    `           ```
+                    <request xmlns="">
+                        <location>
+                            <city>London</city>
+                            <country>UK</country>
+                        </location>
+                    </request>
+                    ```
     as the XML message in the **Value/Expression** field and click
     **OK** .  
     ![](attachments/119130430/119130451.png)
@@ -108,7 +139,7 @@ In order to use the Message Injector to inject a message to a RESTful endpint, w
                         <send>
                            <endpoint name="EP">
                               <http method="get"
-                                    uri-template="http://api.openweathermap.org/data/2.5/weather?q={uri.var.city},{uri.var.cc}"/>
+                                    uri-template="http://api.openweathermap.org/data/2.5/weather?q={uri.var.city},{uri.var.cc}&amp;APPID=ae2a70399cf2c35940a6538f38fee3d3"/>
                            </endpoint>
                         </send>
                      </inSequence>
@@ -132,9 +163,13 @@ You view the XML message you injected (i.e.,
 
 This sample introduces the concept of tasks and demonstrates how a simple trigger works. Here the MessageInjector class is used, which injects a specified message to the ESB environment. You can write your own task class implementing the org.apache.synapse.startup.Task interface and implement the execute method to run the task.
 
+If the task should send the message directly to the endpoint through the main sequence, the endpoint address should be specified. For example, if the address of the endpoint is http://localhost:9000/services/SimpleStockQuoteService, the Synapse configuration of the scheduled task will be as follows:
+
+- Task Sample
+
 ```
-<definitions xmlns="http://ws.apache.org/ns/synapse">
-    <task xmlns="http://ws.apache.org/ns/synapse" class="org.apache.synapse.startup.tasks.MessageInjector" group="synapse.simple.quartz" name="CheckPrice">
+<?xml version="1.0" encoding="UTF-8"?>
+<task xmlns="http://ws.apache.org/ns/synapse" class="org.apache.synapse.startup.tasks.MessageInjector" group="synapse.simple.quartz" name="CheckPrice">
         <property name="to" value="http://localhost:9000/services/SimpleStockQuoteService"/>
         <property name="soapAction" value="urn:getQuote"/>
         <property name="message">
@@ -146,8 +181,13 @@ This sample introduces the concept of tasks and demonstrates how a simple trigge
         </property>
         <trigger interval="5"/>
     </task>
-    <sequence xmlns="http://ws.apache.org/ns/synapse" name="main">
-        <in>
+```
+- Main Sequence
+
+```
+<?xml version="1.0" encoding="UTF-8"?>
+<sequence name="main" xmlns="http://ws.apache.org/ns/synapse">
+    <in>
             <send/>
         </in>
         <out>
@@ -159,9 +199,10 @@ This sample introduces the concept of tasks and demonstrates how a simple trigge
                 <property name="Last_Value" expression="//ns:return/ax21:last/child::text()"
                           xmlns:ax21="http://services.samples/xsd" xmlns:ns="http://services.samples"/>
             </log>
+            <drop/>
         </out>
-    </sequence>
-</definitions>
+</sequence>
+
 ```
 
 When invoked, you will see that the Axis2 server generates a quote every 5 seconds and that the ESB receives the stock quote response. This is because the injected message is sent to the sample Axis2 server, which sends back a response to the ESB. 
