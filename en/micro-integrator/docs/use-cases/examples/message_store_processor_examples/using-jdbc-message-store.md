@@ -7,14 +7,10 @@ In this sample, the client sends requests to a proxy service. The proxy service 
 Sample configuration that uses a MySQL database named sampleDB and the database table **jdbc_message_store**
 
 ```xml tab="Proxy Service"
-<proxy xmlns="http://ws.apache.org/ns/synapse"
-              name="MessageStoreProxy"
-              transports="https http"
-              startOnLoad="true"
-              trace="disable">
-          <description/>
+<?xml version="1.0" encoding="UTF-8"?>
+<proxy name="MessageStoreProxy" startOnLoad="true" transports="http https" xmlns="http://ws.apache.org/ns/synapse">
     <target>
-      <inSequence>
+        <inSequence>
           <property name="FORCE_SC_ACCEPTED" value="true" scope="axis2"/>
           <property name="OUT_ONLY" value="true"/>
           <property name="target.endpoint" value="StockQuoteServiceEp"/>
@@ -26,25 +22,28 @@ Sample configuration that uses a MySQL database named sampleDB and the database 
 ```
 
 ```xml tab="Message Store"
-<messageStore xmlns="http://ws.apache.org/ns/synapse"
-                     class="org.apache.synapse.message.store.impl.jdbc.JDBCMessageStore"
-                     name="SampleStore">
-  <parameter name="store.jdbc.password"/>
-  <parameter name="store.jdbc.username">root</parameter>
-  <parameter name="store.jdbc.driver">com.mysql.jdbc.Driver</parameter>
-  <parameter name="store.jdbc.table">jdbc_message_store</parameter>
-  <parameter name="store.jdbc.connection.url">jdbc:mysql://localhost:3306/sampleDB</parameter>
+<?xml version="1.0" encoding="UTF-8"?>
+<messageStore class="org.apache.synapse.message.store.impl.jdbc.JDBCMessageStore" name="SampleStore" xmlns="http://ws.apache.org/ns/synapse">
+    <parameter name="store.jdbc.driver">com.mysql.jdbc.Driver</parameter>
+    <parameter name="store.producer.guaranteed.delivery.enable">false</parameter>
+    <parameter name="store.jdbc.username">root</parameter>
+    <parameter name="store.jdbc.connection.url">jdbc:mysql://localhost:3306/sampleDB</parameter>
+    <parameter name="store.jdbc.password">********</parameter>
+    <parameter name="store.jdbc.table">jdbc_message_store</parameter>
 </messageStore>
 ```
 
 ```xml tab="Message Processor"
-<messageProcessor xmlns="http://ws.apache.org/ns/synapse"
-                         class="org.apache.synapse.message.processor.impl.forwarder.ScheduledMessageForwardingProcessor"
-                         name="ScheduledProcessor"
-                         messageStore="SampleStore">
-  <parameter name="max.delivery.attempts">5</parameter>
-  <parameter name="interval">10</parameter>
-  <parameter name="is.active">true</parameter>
+<?xml version="1.0" encoding="UTF-8"?>
+<messageProcessor class="org.apache.synapse.message.processor.impl.forwarder.ScheduledMessageForwardingProcessor" messageStore="SampleStore" name="ScheduledProcessor" targetEndpoint="StockQuoteServiceEp" xmlns="http://ws.apache.org/ns/synapse">
+    <parameter name="client.retry.interval">1000</parameter>
+    <parameter name="max.delivery.attempts">5</parameter>
+    <parameter name="member.count">1</parameter>
+    <parameter name="store.connection.retry.interval">1000</parameter>
+    <parameter name="max.store.connection.attempts">-1</parameter>
+    <parameter name="max.delivery.drop">Disabled</parameter>
+    <parameter name="interval">10000</parameter>
+    <parameter name="is.active">true</parameter>
 </messageProcessor>
 ```
 
@@ -84,5 +83,5 @@ CREATE TABLE jdbc_message_store(
 Invoke the sample Api:
 
 ```java
-ant stockquote -Daddurl=http://localhost:8280/services/MessageStoreProxy
+ant stockquote -Daddurl=http://localhost:8290/services/MessageStoreProxy
 ```
