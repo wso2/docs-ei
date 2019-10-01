@@ -1,8 +1,25 @@
-# JDBC Message Store Properties
+# JDBC Message Store
+## Introduction
+Used for storing and retrieving messages more efficiently in comparison with other message stores. This is a variation of the already existing synapse message store implementation and is designed in a manner similar to the same message store. The JDBC message store uses a JDBC connector to connect to external relational databases.</br></br>
+
+The advantages of using a JDBC message store instead of any other message store are as follows:
+<ul>
+  <li>
+    <b>Easy to connect</b>: You only need to have a JDBC connector to connect to an external relational database.
+  </li>
+  <li>
+    <b>Quick transactions</b>: JDBC message stores are capable of handling a large number of transactions per second.
+  </li>
+  <li>
+    <b>Ability to work with a high capacity for a long period of time</b>: Since JDBC stores use databases as the medium to store data, it can store a large volume of data and is capable of handling data for a longer period of time.
+  </li>
+</ul>
+
+## Properties
 
 Listed below are the properties used for [creating a JDBC Message Store](../../../develop/creating-artifacts/creating-a-message-store.md).
 
-## Required Properties
+### Required Properties
 
 The following properties are required when [creating a JDBC Message Store](../../../develop/creating-artifacts/creating-a-message-store.md).
 
@@ -49,7 +66,7 @@ The following properties are required when [creating a JDBC Message Store](../..
   </tr>
 </table>
 
-## Connection Pool Properties
+### Connection Pool Properties
 
 The syntax of the JDBC message store can be different depending on whether you connect to the database using a connection pool, or using a datasource. Given below are the connection pool properties:
 
@@ -90,7 +107,7 @@ The syntax of the JDBC message store can be different depending on whether you c
   </tr>
 </table>
 
-## External Datasource Properties
+### External Datasource Properties
 
 The syntax of the JDBC message store can be different depending on whether you connect to the database using a connection pool, or using a datasource. Given below are the external datasource properties:
 
@@ -113,7 +130,7 @@ The syntax of the JDBC message store can be different depending on whether you c
   </tr>
 </table>
 
-## Internal Datasource Properties
+### Internal Datasource Properties
 
 To make sure that the datasource appears in the **Datasource Name** list, you need to expose it as a JNDI datasource.
 

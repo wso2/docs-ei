@@ -13,17 +13,17 @@ The following diagram illustrates how you can use WSO2 Micro Integrator as a JM
 
 The synapse configuration for this sample scenario is as follows:
 
-``` java tab="Registry Artifact"
+```java tab="Registry Artifact"
 <registry provider="org.wso2.carbon.mediation.registry.WSO2Registry">
    <parameter name="cachableDuration">15000</parameter>
 </registry>
 ```
 
-``` java tab="Task Manager"
+```java tab="Task Manager"
 <taskManager provider="org.wso2.carbon.mediation.ntask.NTaskTaskManager"/>
 ```
 
-``` java tab="Proxy Service 1"
+```java tab="Proxy Service 1"
 <proxy name="JMSDelivery" startOnLoad="true" trace="disable" transports="https http">
             <description/>
             <target>
@@ -52,7 +52,7 @@ The synapse configuration for this sample scenario is as follows:
 </proxy>
 ```
 
-``` java tab="Proxy Service 2"
+```java tab="Proxy Service 2"
 <proxy name="JMSDeliveryDelayed" startOnLoad="true" trace="disable" transports="https http">
             <description/>
             <target>
@@ -82,7 +82,7 @@ The synapse configuration for this sample scenario is as follows:
 </proxy>
 ```
 
-``` java tab="Main Sequence"
+```java tab="Main Sequence"
 <sequence name="main">
     <in>
         <!-- Log all messages passing through -->
@@ -101,7 +101,7 @@ The synapse configuration for this sample scenario is as follows:
 </sequence>
 ```
 
-``` java tab="Fault Sequence"
+```java tab="Fault Sequence"
 <sequence name="fault">
     <!-- Log the message at the full log level with the ERROR_MESSAGE and the ERROR_CODE-->
     <log level="full">
@@ -152,7 +152,7 @@ See the descriptions of the above configurations:
 3. Start WSO2 Integration Studio and create artifacts with the above configuration. You can copy the synapse configuration given above to the **Source View** of your proxy service.
 4. Run the following java file (**QueueConsumer.java**), which acts as the JMS consumer that consumes messages from the queue:
 
-    ``` java
+    ```java
     package DeliveryDelay;
         
     import java.sql.Timestamp;

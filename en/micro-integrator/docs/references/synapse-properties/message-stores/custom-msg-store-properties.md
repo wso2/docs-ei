@@ -1,4 +1,8 @@
-# Custom Message Store Properties
+# Custom Message Store
+## Introduction
+Users can create a message store with their own message store implementation. Custom message stores are configured by giving the fully qualified class name of the message store implementation as the class value. Any configuration parameter that is needed by the message store implementation class can be passed.
+
+## Properties
 
 The following properties can be configured when [creating a Custom Message Store](../../../develop/creating-artifacts/creating-a-message-store.md).
 
