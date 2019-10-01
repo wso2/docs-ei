@@ -7,7 +7,7 @@ The Streaming Integrator (SI) allows you to capture changes to a database table,
 This tutorial takes you through the different modes and  options you could use to perform Change Data Capturing (CDC) using the SI. In this tutorial, you are using a MySQL datasource.
 
 !!!info
-    To use a different database other than MySQL, refer [dependencies for CDC](https://github.com/siddhi-io/siddhi-io-cdc#dependencies) and add the corresponding driver jar. In addition to that, modify the JDBC URL accordingly, in `url` parameter in all Siddhi applications given in this tutorial.
+    To use a different database other than MySQL, see [dependencies for CDC](https://github.com/siddhi-io/siddhi-io-cdc#dependencies) and add the corresponding driver jar. In addition to that, modify the JDBC URL accordingly, in `url` parameter in all Siddhi applications given in this tutorial.
 
 **Listening mode and Polling mode**
 
@@ -83,6 +83,7 @@ Now you can write a simple Siddhi application to monitor the `SweetProductionTab
         This Siddhi application captures all the inserts made to the `SweetProductionTable` database table and logs them.
 
 3. Now let's perform an insert operation on the MySQL table by executing the following MySQL query on the database:
+
     ```
     insert into SweetProductionTable values('chocolate',100.0);
     ```
@@ -96,6 +97,7 @@ Now you can write a simple Siddhi application to monitor the `SweetProductionTab
 Now you can write a Siddhi application to monitor the `SweetProductionTable` for update operations.
 
 1. Open a text file and copy-paste following application into it.
+
     ```
     @App:name('CDCListenForUpdates')
 
@@ -113,6 +115,7 @@ Now you can write a Siddhi application to monitor the `SweetProductionTable` for
     select *
     insert into LogStream;
     ```
+
 2. Save this file as `CDCListenForUpdates.siddhi` in the `<SI_HOME>/wso2/server/deployment/siddhi-files` directory.
 
     !!!info
@@ -120,10 +123,13 @@ Now you can write a Siddhi application to monitor the `SweetProductionTable` for
 
 
 3. Now let's perform an update operation on the MySQL table. For this, execute following MySQL query on the database:
+
     ```
     update SweetProductionTable SET name = 'Almond cookie' where name = 'chocolate';
     ```
+
    As a result, you can see the following log in the SI console.
+
     ```
     INFO {org.wso2.siddhi.core.stream.output.sink.LogSink} - CDCWithListeningMode : updateSweetProductionStream : Event{timestamp=1563201040953, data=[chocolate, Almond cookie, 100.0, 100.0], isExpired=false}
     ```
@@ -136,6 +142,7 @@ Now you can write a Siddhi application to monitor the `SweetProductionTable` for
 Now you can write a Siddhi application to monitor the `SweetProductionTable` for delete operations.
 
 1. Open a text file and copy-paste following application into it.
+
     ```
     @App:name('CDCListenForDeletes')
 
@@ -153,16 +160,20 @@ Now you can write a Siddhi application to monitor the `SweetProductionTable` for
     select *
     insert into LogStream;
     ```
+
 2. Save this file as `CDCListenForDeletes.siddhi` in the `<SI_HOME>/wso2/server/deployment/siddhi-files` directory.
 
     !!!info
         This Siddhi application captures all the delete operations carried out for the `SweetProductionTable` database table and logs them.
 
 3. Now let's perform a delete operation for the MySQL table. To do this, execute following MySQL query on the database:
+
     ```
     delete from SweetProductionTable where name = 'Almond cookie';
     ```
+
     The following log appears in the SI console:
+
     ```
     INFO {org.wso2.siddhi.core.stream.output.sink.LogSink} - CDCWithListeningMode : DeleteSweetProductionStream : Event{timestamp=1563367367098, data=[Almond cookie, 100.0], isExpired=false}
     ```
@@ -190,21 +201,27 @@ Let's try out a scenario in which you are going to deploy a Siddhi application t
       config:
         location: siddhi-app-persistence
     ```
+
     Set `enabled` parameter to `true` and save the file.
 
 2. Enable state persistence debug logs as follows. Open the `<SI_HOME>/conf/server/log4j2.xml` file on a text editor and locate following line in it.
+
     ```
      <Logger name="com.zaxxer.hikari" level="error"/>
     ```
+
     Add following `<Logger>` element below that.
+
     ```
     <Logger name="org.wso2.carbon.streaming.integrator.core.persistence" level="debug"/>
     ```
+
     Save the file.
 
 3. Restart the Streaming Integrator server for above change to be effective.
 
 4. Open a text file and copy-paste following Siddhi application to it.
+
     ```
     @App:name('CountProductions')
 
@@ -225,41 +242,53 @@ Let's try out a scenario in which you are going to deploy a Siddhi application t
 
 5. Save this file as `CountProductions.siddhi` in the `<SI_HOME>/wso2/server/deployment/siddhi-files` directory. When the
    Siddhi application is successfully deployed, the following `INFO` log appears in the Streaming Integrator console.
+
     ```
     INFO {org.wso2.carbon.stream.processor.core.internal.StreamProcessorService} - Siddhi App CountProductions deployed successfully
     ```
+
 6. Now let's perform a few insert operations on the MySQL table. Execute following MySQL queries on the database:
+
     ```
     insert into SweetProductionTable values('Almond cookie',100.0);
     ```
+
     ```
     insert into SweetProductionTable values('Baked alaska',20.0);
     ```
+
     Now you can see following logs on the SI console.
+
     ```
     INFO {io.siddhi.core.stream.output.sink.LogSink} - CountProductions : LogStream : Event{timestamp=1564151034866, data=[100.0], isExpired=false}
     INFO {io.siddhi.core.stream.output.sink.LogSink} - CountProductions : LogStream : Event{timestamp=1564151037870, data=[120.0], isExpired=false}
     ```
-    These logs print the sweet production count. Notice that the current count of sweet productions is being printed as `120` in the second log. This is because we have so far produced `120` sweets: `100` Almond cookies and `20` Baked alaskas.
+
+    These logs print the sweet production count. Note that the current count of sweet productions is being printed as `120` in the second log. This is because we have so far produced `120` sweets: `100` Almond cookies and `20` Baked alaskas.
 
 7. Now wait for following log to appear on the SI console
+
     ```
     DEBUG {org.wso2.carbon.streaming.integrator.core.persistence.FileSystemPersistenceStore} - Periodic persistence of CountProductions persisted successfully
     ```
-    This log indicates that the current state of the Siddhi application is successfully persisted. Siddhi application state is persisted every minute, hence you can notice this log appearing every minute.
 
-    Next, you are going to insert two sweet productions into the `SweetProductionTable` and shutdown the SI server before the state persistence happens (in other words, before above log appears).
+    This log indicates that the current state of the Siddhi application is successfully persisted. Siddhi application state is persisted every minute. Therefore, you can see this log appearing every minute.
+
+    Next, let's insert two sweet productions into the `SweetProductionTable` and shutdown the SI server before the state persistence happens (in other words, before the above log appears).
 
     !!!Tip
-        It is better to start inserting records immediately after the state persistence log appears, so that you have plenty of time to push messages and shutdown the server, until next log appears.
+        It is better to start inserting records immediately after the state persistence log appears, so that you have plenty of time to push messages and shutdown the server before next log appears.
 
 8. Now insert following sweets into the `SweetProductionTable` by executing following queries on the database :
+
     ```
     insert into SweetProductionTable values('Croissant',100.0);
     ```
+
     ```
     insert into SweetProductionTable values('Croutons',100.0);
     ```
+
 9. Shutdown SI server. Here we deliberately create a scenario where the server crashes before the SI server could persist the latest production count.
 
     !!!Info
@@ -268,11 +297,13 @@ Let's try out a scenario in which you are going to deploy a Siddhi application t
 10. Restart the SI server and wait for about one minute.
 
 11. The following log appears in the SI console:
+
     ```
     INFO {io.siddhi.core.stream.output.sink.LogSink} - CountProductions : LogStream : Event{timestamp=1564151078607, data=[220.0], isExpired=false}
     INFO {io.siddhi.core.stream.output.sink.LogSink} - CountProductions : LogStream : Event{timestamp=1564151078612, data=[320.0], isExpired=false}
     ```
-Notice that the `CDC source` has replayed the last two messages. As a result, the sweet productions count has being correctly restored.
+
+Note that the `CDC source` has replayed the last two messages. As a result, the sweet production runs count has being correctly restored.
 
 ### Polling mode
 
@@ -324,6 +355,7 @@ Now you can write a simple Siddhi application to monitor the `SweetProductionTab
     select *
     insert into LogStream;
     ```
+
     Here the `url` parameter currently specifies the URL `jdbc:mysql://localhost:3306/production_pol`. Change it to point to your MySQL server.
 
 2. Save this file as `CDCPolling.siddhi` in the `<SI_HOME>/wso2/server/deployment/siddhi-files` directory.
@@ -364,7 +396,7 @@ INFO {org.wso2.siddhi.core.stream.output.sink.LogSink} - CDCWithPollingMode : lo
 
 **Preserving State of the application through a system failure**
 
-Let's try out a scenario in which you are going to deploy a Siddhi app to count the total number of productions.
+Let's try out a scenario in which you deploy a Siddhi application to count the total number of production runs.
 
 !!!info
     In this scenario, the SI server is required to *remember* the current count through system failures so that when the system is restored, the count is not reset to zero.
@@ -453,7 +485,7 @@ Let's try out a scenario in which you are going to deploy a Siddhi app to count 
     INFO {io.siddhi.core.stream.output.sink.LogSink} - CountProductions_pol : LogStream : Event{timestamp=1564386011344, data=[120.0], isExpired=false}
     ```
 
-    These logs print the sweet production count. Note that the current count of sweet productions is being printed as `120` in the second log. This is because we have so far produced `120` sweets: `100` Almond cookies and `20` Baked alaskas.
+    These logs print the sweet production count. Note that the current count of sweet production runs is being printed as `120` in the second log. This is because we have so far produced `120` sweets: `100` Almond cookies and `20` Baked alaskas.
 
 7. Now wait for following log to appear on the SI console.
 
@@ -463,7 +495,7 @@ Let's try out a scenario in which you are going to deploy a Siddhi app to count 
 
     This log indicates that the current state of the Siddhi application is successfully persisted. Siddhi application state is persisted every minute, therefore you can see this log appearing every minute.
 
-    Next, you are going to insert two sweet productions into the `SweetProductionTable` and shutdown the SI server before state persistence happens (in other words, before above log appears).
+    Next, you are going to insert two sweet production runs into the `SweetProductionTable` and shutdown the SI server before state persistence happens (in other words, before above log appears).
 
     !!!tip
         It is better to start pushing messages immediately after the state persistence log appears, so that you have plenty of time to push messages and shutdown the server, until next log appears.
@@ -481,7 +513,7 @@ Let's try out a scenario in which you are going to deploy a Siddhi app to count 
 9. Shutdown SI server. Here we deliberately create a scenario where the server crashes before the SI server could persist the latest production count.
 
     !!!info
-        Here, the SI server crashes before the state is persisted. Therefore, the SI server cannot persist the latest count (which should include the last two productions `100` Croissants and `100` Croutons). The good news is, thr `CDC source` replays the last two messages, allowing the Streaming Integrator to successfully recover from the server crash.
+        Here, the SI server crashes before the state is persisted. Therefore, the SI server cannot persist the latest count (which should include the last two production runs `100` Croissants and `100` Croutons). The good news is, thr `CDC source` replays the last two messages, allowing the Streaming Integrator to successfully recover from the server crash.
 
 10. Restart the SI server and wait for about one minute.
 
@@ -492,4 +524,4 @@ Let's try out a scenario in which you are going to deploy a Siddhi app to count 
     INFO {io.siddhi.core.stream.output.sink.LogSink} - CountProductions_pol : LogStream : Event{timestamp=1564386180004, data=[320.0], isExpired=false}
     ```
 
-Note that the `CDC source` has replayed the last two messages. This indicates that the sweet productions count has been correctly restored.
+Note that the `CDC source` has replayed the last two messages. This indicates that the sweet production run count is correctly restored.
