@@ -10,7 +10,9 @@ See the [complete list of HTTP/HTTPS parameters](../../../references/config-cata
 
 ## Configuring the VFS transport
 
-The VFS transport is enabled by defualt in the Micro Integrator. 
+The VFS transport is enabled by defualt in the Micro Integrator. The VFS transport supports the **SFTP protocol** with **Secure Sockets Layer (SSL)**. The configuration is identical to other protocols with the only difference being the URL prefixes and parameters. 
+
+For more information, see [VFS URL parameters](../../references/synapse-properties/vfs-transport-parameters).
 
 See the [complete list of VFS parameters](../../../references/config-catalog/#vfs-transport).
 
@@ -131,24 +133,42 @@ sender.enable =false
 ```
 ## Configuring the MailTo transport 
 
-To enable the MSMQ transport listener and sender, set the following parameters to `true` in the deployment.toml file (stored in the `MI_HOME/conf` directory).
+To enable the MailTo transport listener and sender, set the following parameters to `true` in the deployment.toml file (stored in the `MI_HOME/conf` directory).
 
-```toml tab='MailTo listener'
-[transport.mail.listener]
-enable = true
-```
+-	Enabling the MailTo listener
 
-```toml tab='MailTo sender'
-[[transport.mail.sender]]
-name = "mailto"
-parameter.hostname = "smtp.gmail.com"
-parameter.port = "587"
-parameter.enable_tls = true
-parameter.auth = true
-parameter.username = "demo_user"
-parameter.password = "mailpassword"
-parameter.from = "demo_user@wso2.com"
-```
+	```toml
+	[transport.mail.listener]
+	enable = true
+	```
+
+-	Configuring the MailTo sender
+
+	```toml
+	[[transport.mail.sender]]
+	name = "mailto"
+	parameter.hostname = "smtp.gmail.com"
+	parameter.port = "587"
+	parameter.enable_tls = true
+	parameter.auth = true
+	parameter.username = "demo_user"
+	parameter.password = "mailpassword"
+	parameter.from = "demo_user@wso2.com"
+	```
+
+	!!! Note
+		In addition to enabling the MailTO transport, the following parameters are used in the above configuration to set a default email account as the mail sender. You can override this default mail sender by specifying an email sender account within your mediation sequence.
+
+		-	`mail.smtp.from` : The email address from which mails will be sent.
+		-	`mail.smtp.user` : The user name of the email account (mail sender). Note that in some email service providers, the user name is the same as the email address specified for the 'From' parameter.
+		-	`mail.smtp.password` : The password of the email account (mail sender).
+
+	If you want to use multiple mail boxes to send emails, make a copy of the default MailTo sender configuration in the `MI_HOME/conf/deployment.toml` file and change the transport sender name. For example, add `mailtoWSO2` as the name.
+
+	For a list of parameters supported by the MailTo transport sender, see [SMTP Package Summary](https://javaee.github.io/javamail/docs/api/com/sun/mail/smtp/package-summary.html). In addition to the parameters described there, the MailTo transport sender supports the following parameters.
+
+	-	`transport.mail.SMTPBccAddresses` : If one or more e-mail addresses need to be specified as BCC addresses for outgoing mails, this parameter can be used. You can enter a comma-separated list of e-mail addresses.
+	-	`transport.mail.Format` : Format of the outgoing mail. Possible values are <b>Text</b> and <b>Multipart</b>.
 
 ## Configuring the JMS transport
 

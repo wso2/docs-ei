@@ -1,34 +1,26 @@
-# File Processing
+# File processing
 
-### Introduction
+## Example use case
 
-This sample demonstrates how to pick a file from a directory and process
-it within the ESB. In this sample scenario you pick a file from the
-local directory, insert the records in the file to a database, send an
-email with the file content, trace and write the log and finally move
-the file to another directory.
+This sample demonstrates how to pick a file from a directory and process it within the Micro Integrator. In this sample scenario you pick a file from the local directory, insert the records in the file to a database, send an email with the file content, trace and write the log and finally move the file to another directory.
 
-The following diagram displays the entities involved in this example.
-
-![](attachments/119129588/119129597.png)
 
 !!! Note
     This example works with the MySQL database.
 
-### Building the sample
+## Building the sample
 
-All files required for this sample are in
-[sample.zip](attachments/119129588/119129589.zip) .
+All files required for this sample are in [sample.zip](attachments/119129588/119129589.zip) .
 
 Follow the steps given below to build this sample.
 
-#### Set up the database
+### Set up the database
 
 1.  Manually set up the database.
 2.  Create a table named `           info          ` in your schema. You
     can run the following commands to do this.
 
-    ``` java
+    ```java
     delimiter $$
 
     CREATE TABLE `info` (
@@ -38,42 +30,27 @@ Follow the steps given below to build this sample.
     ) ENGINE=InnoDB DEFAULT CHARSET=utf8$$
     ```
 
-3.  Make sure the `           info          ` table is created and that
-    it contains the following columns:
+3.  Make sure the `info` table is created and that it contains the following columns:
 
     -   **name**
     -   **surname**
     -   **phone**
 
-The result of the query should be as follows when you query to view the
-records in the `         test.info        ` table. You will see that
-there is no data in the table.
-
+The result of the query should be as follows when you query to view the records in the `test.info` table. You will see that there is no data in the table.
   
 ![](attachments/119129588/119129591.png)
 
 #### Create the main and fault sequences
 
-1.  Find the `          main.xml         ` and
-    `          fault.xml         ` files in the attached
-    `          sample.zip         ` archive. You can find the files in
-    the
-    `          <SAMPLE_HOME>          /conf/synapse-config/sequences         `
-    directory.
-2.  Copy the files to
-    `           <ESB_HOME>/repository/deployment/server/synapse-configs/default/sequences          `
-    folder.
+1.  Find the `main.xml` and `fault.xml` files in the attached `sample.zip` archive. You can find the files in the `<SAMPLE_HOME>/conf/synapse-config/sequences` directory.
+2.  Copy the files to `<ESB_HOME>/repository/deployment/server/synapse-configs/default/sequences` folder.
 
     !!! Note
-        The `           main          ` and `           fault          ` sequences are created and preconfigured automatically when you install WSO2 ESB.
+        The `main` and `fault` sequences are created and preconfigured automatically when you install WSO2 ESB.
 
 #### Configure the ESB
 
-You need to configure the ESB to use the [VFS
-transport](https://docs.wso2.com/display/EI650/VFS+Transport) for
-processing the files, and the [MailTo
-transport](https://docs.wso2.com/display/EI650/MailTo+Transport) for
-sending the email message. You also need to configure the message
+You need to configure the ESB to use the [VFS transport](https://docs.wso2.com/display/EI650/VFS+Transport) for processing the files, and the [MailTo transport](https://docs.wso2.com/display/EI650/MailTo+Transport) for sending the email message. You also need to configure the message
 formatter as specified.
 
 -   Edit the
@@ -152,7 +129,7 @@ This example uses a CSV smooks library.
       
     The XML code of the sequence is as follows:
 
-    ```
+    ```xml
     <proxy xmlns="http://ws.apache.org/ns/synapse" name="FileProxy" transports="vfs" startOnLoad="true" trace="disable">
         <target>
             <inSequence>
@@ -200,19 +177,16 @@ This example uses a CSV smooks library.
     `          <ESB_HOME>/repository/deployment/server/synapse-configs/default/proxy-services         `
     directory.
 
-#### Create and configure `         databaseSequence        `
+## Create and configure `         databaseSequence        `
 
 Follow the instructions below to create a sequence that can be used to
 connect to the database to insert the data.
 
-1.  You can find the `           databaseSequence.xml          ` file in
-    the attached `           sample.zip          ` archive. It is
-    located in the
-    `           <SAMPLE_HOME>/conf/synapse-config/sequences          `
-    directory.  
+1.  You can find the `databaseSequence.xml` file in the attached `sample.zip` archive. It is located in the `<SAMPLE_HOME>/conf/synapse-config/sequences` directory.  
+
     The XML code of the database sequence is as follows.
 
-    ``` java
+    ```xml
     <sequence xmlns="http://ws.apache.org/ns/synapse" name="databaseSequence">
         <log level="full">
             <property name="sequence" value="before-smooks"/>
@@ -269,7 +243,7 @@ connect to the database to insert the data.
       
     The XML code of the sequence is as follows:
 
-    ```
+    ```xml
     <sequence xmlns="http://ws.apache.org/ns/synapse" name="fileWriteSequence">
         <log level="custom">
             <property name="sequence" value="fileWriteSequence"/>
@@ -291,7 +265,7 @@ connect to the database to insert the data.
     `          <ESB_HOME>/repository/deployment/server/synapse-configs/default/sequences         `
     directory.
 
-#### Create and configure `         sendMailSequence        `
+### Create and configure `         sendMailSequence        `
 
 1.  You can find the `           sendMailSequence.xml          ` file in
     the attached `           sample.zip          ` archive. It is

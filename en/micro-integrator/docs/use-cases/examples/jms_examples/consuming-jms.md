@@ -1,4 +1,4 @@
-# Micro Integrator as a JMS Consumer
+# Consuming JMS Messages
 This section describes how to configure WSO2 Micro Integrator to listen to a JMS Queue.
 
 ## Example 1: One-way messaging
