@@ -83,9 +83,9 @@ nav:
           - 'Converting to CSV Message Format': 'use-cases/examples/message-transformations/csv-conversion.md'
         #- Service Orchestration:
         - Asynchronous Messaging:
-            - 'Consuming JMS Messages': 'use-cases/examples/jms_examples/esb-as-a-jms-consumer.md'
-            - 'Producing JMS Messages': 'use-cases/examples/jms_examples/esb-as-a-jms-producer.md'
-            - 'Consuming and Producing JMS Messages': 'use-cases/examples/jms_examples/esb-as-jms-consumer-and-producer.md'
+            - 'Consuming JMS Messages': 'use-cases/examples/jms_examples/consuming-jms.md'
+            - 'Producing JMS Messages': 'use-cases/examples/jms_examples/producing-jms.md'
+            - 'Consuming and Producing JMS Messages': 'use-cases/examples/jms_examples/consume-produce-jms.md'
             - 'Dual Channel HTTP-to-JMS': 'use-cases/examples/jms_examples/dual-channel-http-to-jms.md'
             - 'Quad Channel JMS-to-JMS': 'use-cases/examples/jms_examples/quad-channel-jms-to-jms.md'
             - 'Guaranteed Delivery with Failover': 'use-cases/examples/jms_examples/guaranteed-delivery-with-failover.md'
