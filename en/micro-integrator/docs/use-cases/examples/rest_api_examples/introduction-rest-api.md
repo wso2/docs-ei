@@ -13,7 +13,7 @@ Following is a sample REST Api configuration that we can used to implement this 
 This is a REST api with two api resources. The GET calls are handled by the first resource (StockQuoteAPI). These REST calls will get converted into SOAP calls and sent to the back-end service. The response will be sent to the client in POX format.
 
 ```xml
-<api name="StockQuoteAPI" context="/stockquote">
+<api name="StockQuoteAPI" context="/stockquote" xmlns="http://ws.apache.org/ns/synapse">
    <resource uri-template="/view/{symbol}" methods="GET">
       <inSequence>
          <payloadFactory>
