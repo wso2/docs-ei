@@ -344,6 +344,7 @@ nav:
         - 'Generating Docker Images': 'develop/generate-docker-image.md'
         - 'Deploy and Run Artifacts': 'develop/deploy-and-run.md'
         - 'Creating a Unit Test Suite': 'develop/creating-unit-test-suite.md'
+        - 'Injecting Parameters through Environment Variables': 'develop/injecting-parameters.md'
         - Debugging Integrations:
           - 'Mediation Debugging': 'develop/debugging-mediation.md'
           - 'Using Wire Logs': 'develop/using-wire-logs.md'
@@ -351,7 +352,7 @@ nav:
           - 'Monitoring REST API Access Logs': 'develop/enabling-logs-for-api.md'
           - 'Endpoint Tracing' : 'develop/endpoint-trace-logs.md'
         - 'Running on WSO2 Integration Cloud': 'develop/deploying-in-integration-cloud.md'
-        - 'Troubleshooting WSO2 Integration Studio' : 'develop/troubleshooting-WSO2-Integration-Studio.md'
+        - 'Troubleshooting WSO2 Integration Studio': 'develop/troubleshooting-WSO2-Integration-Studio.md'
         - Advanced Development Tasks:
           - 'Applying Security to a REST API': 'develop/advanced-development/applying-security-to-an-api.md'
           - 'Applying Security to a Proxy Service': 'develop/advanced-development/applying-security-to-a-proxy-service.md'
