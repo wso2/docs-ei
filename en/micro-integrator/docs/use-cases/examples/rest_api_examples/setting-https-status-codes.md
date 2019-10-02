@@ -8,13 +8,31 @@ To achieve this, set the status code parameter within the out sequence of the AP
 
 ```xml
 <api xmlns="http://ws.apache.org/ns/synapse" name="StockQuoteAPI" context="/stockquote">`
-   ...
-   <outSequence>
-    
-    **<property name="HTTP_SC" value="201" scope="axis2" />`**
-    
-    **` </outSequence> `**
-    
+    <resource uri-template="/view/{symbol}" methods="GET">
+         <inSequence>
+              <payloadFactory>
+                  <format>
+                     <m0:getQuote xmlns:m0="http://services.samples">
+                        <m0:request>
+                           <m0:symbol>$1</m0:symbol>
+                        </m0:request>
+                     </m0:getQuote>
+                   </format>
+                   <args>
+                    <arg expression="get-property('uri.var.symbol')"/>
+                   </args>
+              </payloadFactory>
+              <header name="Action" value="urn:getQuote"/>
+              <send>
+                  <endpoint>
+                    <address uri="http://localhost:9000/services/SimpleStockQuoteService" format="soap11"/>
+                  </endpoint>
+              </send>
+        </inSequence>
+        <outSequence>
+            <property name="HTTP_SC" value="201" scope="axis2" />
+            <send/>
+        </outSequence>  
     </resource>
  </api>
 ```  
@@ -35,7 +53,7 @@ Set up the back-end service:
 Send the following request to the Micro Integrator:
     
 ```bash
-curl -v http://127.0.0.1:8280/stockquote/view/IBM
+curl -v http://127.0.0.1:8290/stockquote/view/IBM
 ```
 
 The response message will contain the following response code (201) as configured above.  

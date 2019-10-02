@@ -136,7 +136,6 @@ nav:
             - 'Manipulating Content Types': 'use-cases/examples/rest_api_examples/transforming-content-type.md'
             - 'Securing REST APIs' : 'use-cases/examples/rest_api_examples/securing-rest-apis.md'
             - Handling Special Cases:
-              - 'Using DELETE with a Body': 'use-cases/examples/rest_api_examples/using-delete-with-a-body.md'
               - 'Using GET with a Body': 'use-cases/examples/rest_api_examples/using-get-with-a-body.md'
               - 'Using POST with Empty Message Body': 'use-cases/examples/rest_api_examples/using-post-with-no-body.md'
               - 'Using POST with Query Parameters': 'use-cases/examples/rest_api_examples/using-post-with-query-param.md'
