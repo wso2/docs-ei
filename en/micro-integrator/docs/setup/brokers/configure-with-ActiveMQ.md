@@ -7,7 +7,8 @@ This section describes how to configure WSO2 Micro Integrator to connect with Ac
 Follow the instructions below to set up and configure.
 
 1.  Download [Apache ActiveMQ](http://activemq.apache.org/).
-2.  Copy the following client libraries from the `ACTIVEMQ_HOME/lib` directory to the `MI_HOME/lib` directory.
+2.  Download and install WSO2 Micro Integrator.
+3.  Copy the following client libraries from the `ACTIVEMQ_HOME/lib` directory to the `MI_HOME/lib` directory.
 
     **ActiveMQ 5.8.0 and above**
 
@@ -27,7 +28,7 @@ Follow the instructions below to set up and configure.
     -   geronimo-j2ee-management_1.0_spec-1.0.jar
     -   geronimo-jms_1.1_spec-1.1.1.jar
 
-3.  If you want the Micro Integrator to receive messages from an ActiveMQ instance, or to send messages to an ActiveMQ instance, you need to update the deployment.toml file with the relevant connection parameters.
+4.  If you want the Micro Integrator to receive messages from an ActiveMQ instance, or to send messages to an ActiveMQ instance, you need to update the deployment.toml file with the relevant connection parameters.
 
     - Add the following configurations to enable the JMS listener with ActiveMQ connection parameters.
         ```toml
@@ -62,7 +63,7 @@ Follow the instructions below to set up and configure.
           For example, if the ActiveMQ goes down and becomes active again after a while, the Micro Integrator will not reconnect to ActiveMQ. Instead, an error will be thrown until the Micro Integrator is restarted.</br>
           To avoid this problem, you need to add the following value as the `parameter.provider_url`: `failover:tcp://localhost:61616`. This simply makes sure that reconnection takes place. The `failover` prefix is associated with the [Failover transport of ActiveMQ](http://activemq.apache.org/failover-transport-reference.html).
     
-4.  Start ActiveMQ by navigating to the `ACTIVEMQ_HOME/bin` directory and executing `./activemq console` (on Linux/OSX) or `activemq start ` (on Windows).
+5.  Start ActiveMQ by navigating to the `ACTIVEMQ_HOME/bin` directory and executing `./activemq console` (on Linux/OSX) or `activemq start ` (on Windows).
 
 ## Configuring redelivery in ActiveMQ queues
 
