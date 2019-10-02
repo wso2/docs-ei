@@ -15,16 +15,12 @@ To implement this use case, you will add a new REST resource to the existing RES
 
 To set up the tools:
 
--   Go to the [product page](https://wso2.com/integration/) of **WSO2 Micro Integrator**, download the product installer and run it to set up the product.
 -   Select the relevant [WSO2 Integration Studio](https://wso2.com/integration/tooling/) based on your operating system and extract the
     ZIP file.  The path to this folder is referred to as `MI_TOOLING_HOME` throughout this tutorial.
--   Download the CLI Tool for monitoring artifact deployments.
+-  Download the [CLI Tool](https://wso2.com/integration/micro-integrator/install/) for monitoring artifact deployments.
 
-To set up the previous artifacts:
-
-1.  If you did not try the [Sending a Simple Message to a Service](sending-a-simple-message-to-a-service.md) tutorial yet, open WSO2 Integration Studio, click **File**, and click **Import**. Next, expand the **WSO2** category and select **Existing WSO2 Projects into workspace**, click **Next** and upload the [pre-packaged
+If you did not try the [Sending a Simple Message to a Service](sending-a-simple-message-to-a-service.md) tutorial yet, open WSO2 Integration Studio, click **File**, and click **Import**. Next, expand the **WSO2** category and select **Existing WSO2 Projects into workspace**, click **Next** and upload the [pre-packaged
 project](https://github.com/wso2-docs/WSO2_EI/blob/master/Integration-Tutorial-Artifacts/SimpleMessageToServiceTutorial.zip). 
-2.  Download the JAR file of the back-end service from [here](https://github.com/wso2-docs/WSO2_EI/blob/master/Back-End-Service/Hospital-Service-2.0.0.jar).
 
 ### Step 2: Develop the integration artifacts
 
@@ -371,15 +367,21 @@ To test the artifacts, deploy the [packaged artifacts](#step-3-package-the-artif
 
 Let's test the use case by sending a simple client request that invokes the service.
 
-#### Start the backend service
+#### Start the back-end service
 
-First, start the back-end service.
+1. Download the JAR file of the back-end service from [here](https://github.com/wso2-docs/WSO2_EI/blob/master/Back-End-Service/Hospital-Service-2.0.0-EI7.jar).
+2. Open a terminal, navigate to the location where your saved the [back-end service](#step-1-set-up-the-workspace).
+3. Execute the following command to start the service:
+
+    ```
+    java -jar Hospital-Service-2.0.0-EI7.jar
+    ```
 
 #### Send the client request
 
 Let's use the **CLI Tool** to find the URL of the REST API that is deployed in the Micro Integrator:
 
-1.  Open a terminal and navigate to the `CLI_HOME` directory.
+1.  Open a terminal and navigate to the `CLI_HOME/bin` directory.
 2.  Execute the following command to start the tool:
     `./mi`
 3.  Execute the following command to find the APIs deployed in the server:
@@ -431,7 +433,7 @@ Let's send a request to the API resource to make a reservation.
 2.  Open a terminal, navigate to the directory where you have saved the `           request.json          ` file and execute the following command.
 
     ```
-    curl -v -X POST --data @request.json http://localhost:8280/healthcare/categories/surgery/reserve --header "Content-Type:application/json"
+    curl -v -X POST --data @request.json http://localhost:8290/healthcare/categories/surgery/reserve --header "Content-Type:application/json"
     ```
 
     !!! Info

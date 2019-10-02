@@ -5,12 +5,33 @@ requests to a datasource using a single operation (batch operation).
 Follow the steps given below to define a data service that can invoke
 batch requests:
 
--   [Setting up
-    a datasource](#InvokinganOperationwithMultipleRecords-Settingupadatasource)
--   [Define a data service to insert records in
-    batches](#InvokinganOperationwithMultipleRecords-Defineadataservicetoinsertrecordsinbatches)
--   [Invoking the data
-    service](#InvokinganOperationwithMultipleRecords-Invokingthedataservice)
+```xml
+<data name="batch_requesting_sample" transports="http https local">
+   <config enableOData="false" id="Datasource">
+      <property name="driverClassName">com.mysql.jdbc.Driver</property>
+      <property name="url">jdbc:mysql://localhost:3306/Company</property>
+   </config>
+   <query id="addEmployeeQuery" useConfig="Datasource">
+      <sql>insert into Employees (EmployeeNumber, FirstName, LastName, Email, JobTitle, OfficeCode) values(:EmployeeNumber,:FirstName,:LastName,:Email,:JobTitle,:Officecode)</sql>
+      <param name="EmployeeNumber" sqlType="STRING"/>
+      <param name="FirstName" sqlType="STRING"/>
+      <param name="LastName" sqlType="STRING"/>
+      <param name="Email" sqlType="STRING"/>
+      <param name="JobTitle" sqlType="STRING"/>
+      <param name="Officecode" sqlType="STRING"/>
+   </query>
+   <operation name="addEmployeeOp">
+      <call-query href="addEmployeeQuery">
+         <with-param name="EmployeeNumber" query-param="EmployeeNumber"/>
+         <with-param name="FirstName" query-param="FirstName"/>
+         <with-param name="LastName" query-param="LastName"/>
+         <with-param name="Email" query-param="Email"/>
+         <with-param name="JobTitle" query-param="JobTitle"/>
+         <with-param name="Officecode" query-param="Officecode"/>
+      </call-query>
+   </operation>
+</data>
+```
 
 ------------------------------------------------------------------------
 
