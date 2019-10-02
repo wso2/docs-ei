@@ -263,8 +263,6 @@ nav:
           - 'Using Symmetric Encryption' : 'setup/security/single_key_encryption.md'
           - 'Set Passwords using Environment Variables/System Properties' : 'setup/security/replace_passwords_env_variables_sys_properties.md'
         - 'Mitigating Cross Site Request Forgery Attacks' : 'setup/security/mitigating_csrf.md'
-        - 'Mitigating Cross Site Scripting' : 'setup/security/mitigating_css.md'
-        - 'Configuring SAML2 SSO Across Products' : 'setup/security/configuring_SAML2_SSO_across_prods.md'
         - 'Securing Carbon Applications' : 'setup/security/securing_carbon_applications.md'
       - Performance Tuning:
         - 'Tuning JVM Performance' : 'setup/performance_tuning/tuning_jvm_performance.md'
@@ -282,6 +280,7 @@ nav:
         - 'Configuring Message Builders and Formatters' : 'setup/message_builders_formatters/message-builders-and-formatters.md'
         - 'Configuring Message Relay': 'setup/message_builders_formatters/message-relay.md'
         - 'Configuring Transports': 'setup/transport_configurations/configuring-transports.md'
+        - 'Configuring Multi-HTTPS': 'setup/transport_configurations/multi-https-transport.md'
         - 'Configuring Kafka' : 'setup/configuring-kafka.md'
         - Configuring Brokers:
           - 'Connecting to ActiveMQ': 'setup/brokers/configure-with-ActiveMQ.md'
@@ -298,17 +297,12 @@ nav:
           - 'Connecting to WSO2 MB': 'setup/brokers/configure-with-WSO2-MB.md'
           - 'Connecting to Multiple Brokers': 'setup/brokers/configure-with-multiple-brokers.md'
       - Additional Configurations:
-        - 'Optional: Mounting a Registry': 'setup/registry_mounting.md'
         - 'Adding a Custom Proxy Path': 'setup/adding_a_custom_proxy__path.md'
         - 'Configuring a Proxy Server': 'setup/configuring_proxy_servers.md'
         - 'Changing Default Ports': 'setup/changing_default_ports.md'
         - 'Customizing Error Messages': 'setup/customizing_error_pages.md'
         - 'Governing External Reference Across Environments': 'setup/govern_ext_refs_across_env.md'
         - 'Enable SSL Tunneling through Proxy Server': 'setup/enabling_SSL_tunneling_thru_proxy_server.md'
-        - 'Verifying Certificate Revocation': 'setup/transport_configurations/certificate-revocation.md'
-        - 'Configuring HTTP/HTTPS Listeners': 'setup/transport_configurations/configuring-passthru-listeners.md'
-        - 'Configuring Connection Throttling': 'setup/transport_configurations/connection-throttling.md'
-        - 'Configuring the Multi-HTTPS Transport': 'setup/transport_configurations/multi-https-transport.md'
     - Develop:
       - 'Developing Integration Solutions': 'develop/intro-integration-development.md'
       - WSO2 Integration Studio:
