@@ -22,13 +22,13 @@ This app will demonstrate how to use the extension siddhi-gpl-execution-geo to c
 5) Click on the start button (Arrow symbol) next to the newly created simulator
 6) Provide attribute values
     - latitude : 8.116553
-- longitude : 77.523679
-- prevLatitude : 9.850047
-- prevLongitude : 98.597177
+    - longitude : 77.523679
+    - prevLatitude : 9.850047
+    - prevLongitude : 98.597177
 7) Send event
 
 ## Viewing the Results:
-After clicking the start button see the output on the console as below.
+After clicking the start button see the output on the console as below.\
 INFO {io.siddhi.core.query.processor.stream.LogStreamProcessor} - GeoDistanceCalculation: Event :, StreamEvent{ timestamp=1513616078228, beforeWindowData=null, onAfterWindowData=null, outputData=[2322119.848252557], type=CURRENT, next=null}
 
 

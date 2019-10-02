@@ -1,29 +1,29 @@
 
 
 ## Purpose:
-	This function creates a map and added values and checks whether values are available
+This function creates a map and added values and checks whether values are available
 
 ## Prerequisites:
 * Save this sample. If there is no syntax error, the following messages would be shown on the console
-	     * - Siddhi App MapExtensionSample successfully deployed.
+    - Siddhi App MapExtensionSample successfully deployed.
 
 ## Executing the Sample:
-	1) Start the Siddhi application by clicking on 'Run'
-	2) If the Siddhi application starts successfully, the following messages would be shown on the console
-* MapExtensionSample.siddhi - Started Successfully!
+1) Start the Siddhi application by clicking on 'Run'
+2) If the Siddhi application starts successfully, the following messages would be shown on the console
+    * MapExtensionSample.siddhi - Started Successfully!
 
 ## Testing the Sample:
 You can publish data event to the file, through event simulator
 a) Open event simulator by clicking on the second icon or press Ctrl+Shift+I.
-	b) In the Single Simulation tab of the panel, select values as follows:
-* Siddhi App Name  : MapExtensionSample
-* Stream Name     : SweetProductionStream
+b) In the Single Simulation tab of the panel, select values as follows:
+    * Siddhi App Name  : MapExtensionSample
+    * Stream Name     : SweetProductionStream
 c) Enter following values in the fields and send
-## name: chocolate cake
-## amount: 50.50
+    * name: chocolate cake
+    * amount: 50.50
 
 ## Viewing the Results:
-Messages similar to the following would be shown on the console.
+Messages similar to the following would be shown on the console.\
 INFO {io.siddhi.core.query.processor.stream.LogStreamProcessor} - MapExtensionSample: Event: , StreamEvent{ timestamp=1513384974698, beforeWindowData=null, onAfterWindowData=null, outputData=[true, false], type=CURRENT, next=null}
 
 
