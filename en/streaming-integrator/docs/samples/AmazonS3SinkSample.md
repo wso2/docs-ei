@@ -1,12 +1,11 @@
-*
+
 ## Purpose:
 This app demonstrates how to publish aggregated events to Amazon AWS S3 bucket using siddhi-io-s3 sink
 extension. In this sample the events received by the StockQuoteStream will be aggregated by the
 StockQuoteWindow and they will be published to Amazon S3 bucket specified in bucket.name parameter.
 
 ## Prerequisites:
-1. Create a AWS account and set the credentials as mentioned in
-## https://docs.aws.amazon.com/sdk-for-java/v1/developer-guide/credentials.html.
+1. Create a AWS account and set the credentials as mentioned in `https://docs.aws.amazon.com/sdk-for-java/v1/developer-guide/credentials.html`
 
 ## Executing the Sample:
 1. Set the credential.provider class name. If the class is not given, default credential provider chain

@@ -9,7 +9,7 @@ This application demonstrates how to calculate the number of distinct events bas
 ## Executing the Sample:
 1) Start the Siddhi application by clicking on 'Run'
 2) If the Siddhi application starts successfully, the following messages would be shown on the console
-* approximate-distinctCountEver-sample.siddhi - Started Successfully!.
+    * approximate-distinctCountEver-sample.siddhi - Started Successfully!.
 
 ## Testing the Sample:
 1) Click on 'Event Simulator' (double arrows on left tab)
