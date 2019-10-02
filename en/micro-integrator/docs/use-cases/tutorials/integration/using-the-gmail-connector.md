@@ -12,10 +12,9 @@ When you integrate the systems in your organizaion, it is also necessary to inte
 
 To set up the tools:
 
--   Go to the [product page](https://wso2.com/integration/) of **WSO2 Micro Integrator**, download the product installer and run it to set up the product.
 -   Select the relevant [WSO2 Integration Studio](https://wso2.com/integration/tooling/) based on your operating system and extract the
     ZIP file.  The path to this folder is referred to as `MI_TOOLING_HOME` throughout this tutorial.
--   Download the CLI Tool for monitoring artifact deployments.
+-   Download the [CLI Tool](https://wso2.com/integration/micro-integrator/install/) for monitoring artifact deployments.
 -   Download and setup WSO2 Message Broker:
 
     1. Download WSO2 Message Broker.
@@ -212,8 +211,9 @@ Let's test the use case by sending a simple client request that invokes the serv
 
 #### Start the backend service
 
-1. Open a terminal, navigate to the location where your saved the [back-end service](#step-1-set-up-the-workspace).
-2. Execute the following command to start the service:
+1. Download the JAR file of the back-end service from [here](https://github.com/wso2-docs/WSO2_EI/blob/master/Back-End-Service/Hospital-Service-2.0.0-EI7.jar).
+2. Open a terminal, navigate to the location where your saved the [back-end service](#step-1-set-up-the-workspace).
+3. Execute the following command to start the service:
 
     ```
     java -jar Hospital-Service-2.0.0-EI7.jar
@@ -231,7 +231,7 @@ Start the Micro Integrator on WSO2 Integration Studio.
 
 Let's use the **CLI Tool** to find the URL of the REST API that is deployed in the Micro Integrator:
 
-1.  Open a terminal and navigate to the `CLI_HOME` directory.
+1.  Open a terminal and navigate to the `CLI_HOME/bin` directory.
 2.  Execute the following command to start the tool:
     `./mi`
 3.  Execute the following command to find the APIs deployed in the server:

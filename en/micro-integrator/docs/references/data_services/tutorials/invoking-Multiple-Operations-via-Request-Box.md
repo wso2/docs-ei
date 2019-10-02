@@ -5,13 +5,48 @@ box operations. The **request box** feature allows you to invoke
 multiple operations (consecutively) to a datasource using a single
 operation.
 
--   [Setting up
-    a datasource](#InvokingMultipleOperationsviaRequestBox-Settingupadatasource)
--   [Define a data service to invoke request
-    box operations](#InvokingMultipleOperationsviaRequestBox-Defineadataservicetoinvokerequestboxoperations)
--   [Invoking the data
-    service](#InvokingMultipleOperationsviaRequestBox-Invokingthedataservice)
+```xml
+<data disableLegacyBoxcarringMode="true" enableBoxcarring="true" name="request_box_example" transports="http https local">
+   <config enableOData="false" id="Datasource">
+      <property name="driverClassName">com.mysql.jdbc.Driver</property>
+      <property name="url">jdbc:mysql://localhost:3306/Company</property>
+   </config>
+   <query id="addEmployeeQuery" useConfig="Datasource">
+      <sql>insert into Employees (EmployeeNumber, FirstName, LastName, Email,OfficeCode) values(:EmployeeNumber,:FirstName,:LastName,:Email,:OfficeCode)</sql>
+      <param name="EmployeeNumber" sqlType="STRING"/>
+      <param name="FirstName" sqlType="STRING"/>
+      <param name="LastName" sqlType="STRING"/>
+      <param name="Email" sqlType="STRING"/>
+      <param name="OfficeCode" sqlType="STRING"/>
+   </query>
+   <query id="selectEmployeebyIDQuery" useConfig="Datasource">
+      <sql>select EmployeeNumber, FirstName, LastName, Email, OfficeCode from Employees where EmployeeNumber=:EmployeeNumber</sql>
+      <result element="Entries" rowName="Entry">
+         <element column="EmployeeNumber" name="EmployeeNumber" xsdType="string"/>
+         <element column="FirstName" name="FirstName" xsdType="string"/>
+         <element column="LastName" name="LastName" xsdType="string"/>
+         <element column="Email" name="Email" xsdType="string"/>
+         <element column="OfficeCode" name="OfficeCode" xsdType="string"/>
+      </result>
+      <param name="EmployeeNumber" sqlType="STRING"/>
+   </query>
+   <operation name="addEmployeeOp">
+      <call-query href="addEmployeeQuery">
+         <with-param name="EmployeeNumber" query-param="EmployeeNumber"/>
+         <with-param name="FirstName" query-param="FirstName"/>
+         <with-param name="LastName" query-param="LastName"/>
+         <with-param name="Email" query-param="Email"/>
+         <with-param name="OfficeCode" query-param="OfficeCode"/>
+      </call-query>
+   </operation>
+   <operation name="selectEmployeeOp">
+      <call-query href="selectEmployeebyIDQuery">
+         <with-param name="EmployeeNumber" query-param="EmployeeNumber"/>
+      </call-query>
+   </operation>
+</data>
 
+```
 ------------------------------------------------------------------------
 
 ### Setting up a datasource

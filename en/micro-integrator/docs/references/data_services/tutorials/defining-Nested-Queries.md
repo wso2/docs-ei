@@ -5,26 +5,52 @@ parameter of another, and the queries executed in a nested query works
 in a transactional manner. Follow the steps given below to add a nested
 query to a data service.
 
--   [Setting up
-    a datasource](#DefiningNestedQueries-Settingupadatasource)
--   [Creating the data
-    service](#DefiningNestedQueries-Creatingthedataservice)
-    -   [Connecting to the
-        datasource](#DefiningNestedQueries-Connectingtothedatasource)
-    -   [Creating a query to GET employee details by
-        the office](#DefiningNestedQueries-CreatingaquerytoGETemployeedetailsbytheoffice)
-    -   [Creating a nested query to GET office
-        details](#DefiningNestedQueries-CreatinganestedquerytoGETofficedetails)
-    -   [Creating a SOAP operation to invoke the
-        query](#DefiningNestedQueries-CreatingaSOAPoperationtoinvokethequery)
-    -   [Creating a REST resource to invoke the
-        query](#DefiningNestedQueries-CreatingaRESTresourcetoinvokethequery)
-    -   [Finish creating the data
-        service](#DefiningNestedQueries-Finishcreatingthedataservice)
--   [Invoking the data service using
-    SOAP](#DefiningNestedQueries-InvokingthedataserviceusingSOAP)
--   [Invoking the data service using
-    REST](#DefiningNestedQueries-InvokingthedataserviceusingREST)
+```xml
+<data name="nested_queries" transports="http https local">
+   <config enableOData="false" id="Datasource">
+      <property name="driverClassName">com.mysql.jdbc.Driver</property>
+      <property name="url">jdbc:mysql://localhost:3306/Company</property>
+   </config>
+   <query id="EmployeeOfficeSQL" useConfig="Datasource">
+      <sql>select EmployeeNumber, FirstName, LastName, Email, JobTitle, OfficeCode from EMPLOYEES where OfficeCode=:OfficeCode</sql>
+      <result element="Entries" rowName="Entry">
+         <element column="EmployeeNumber" name="EmployeeNumber" xsdType="string"/>
+         <element column="FirstName" name="FirstName" xsdType="string"/>
+         <element column="LastName" name="LastName" xsdType="string"/>
+         <element column="Email" name="Email" xsdType="string"/>
+         <element column="JobTitle" name="JobTitle" xsdType="string"/>
+         <element column="OfficeCode" name="OfficeCode" xsdType="string"/>
+      </result>
+      <param name="OfficeCode" sqlType="STRING"/>
+   </query>
+   <query id="listOfficeSQL" useConfig="Datasource">
+      <sql>select OfficeCode, AddressLine1, AddressLine2, City, State, Country, Phone from OFFICES where OfficeCode=:OfficeCode</sql>
+      <result element="Entries" rowName="Entry">
+         <element column="OfficeCode" name="OfficeCode" xsdType="string"/>
+         <element column="AddressLine1" name="AddressLine1" xsdType="string"/>
+         <element column="AddressLine2" name="AddressLine2" xsdType="string"/>
+         <element column="City" name="City" xsdType="string"/>
+         <element column="State" name="State" xsdType="string"/>
+         <element column="Country" name="Country" xsdType="string"/>
+         <element column="Phone" name="Phone" xsdType="string"/>
+         <call-query href="EmployeeOfficeSQL" requiredRoles="">
+            <with-param column="OfficeCode" name="OfficeCode"/>
+         </call-query>
+      </result>
+      <param name="OfficeCode" sqlType="STRING"/>
+   </query>
+   <operation name="listOfficeSQLOP">
+      <call-query href="listOfficeSQL">
+         <with-param name="OfficeCode" query-param="OfficeCode"/>
+      </call-query>
+   </operation>
+   <resource method="GET" path="offices/{OfficeCode}">
+      <call-query href="listOfficeSQL">
+         <with-param name="OfficeCode" query-param="OfficeCode"/>
+      </call-query>
+   </resource>
+</data>
+```
 
 ------------------------------------------------------------------------
 

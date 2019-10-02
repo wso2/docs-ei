@@ -2,16 +2,32 @@
 
 You can create an event trigger from a query as explained below.
 
--   [Introduction](#ReceivingNotificationsfromDataServices-Introduction)
-    -   [Input event
-        trigger](#ReceivingNotificationsfromDataServices-Inputeventtrigger)
-    -   [Output event
-        trigger](#ReceivingNotificationsfromDataServices-Outputeventtrigger)
--   [Get started!](#ReceivingNotificationsfromDataServices-Getstarted!)
-    -   [Enabling notifications for a query in a data
-        service](#ReceivingNotificationsfromDataServices-Enablingnotificationsforaqueryinadataservice)
-    -   [Invoking the data
-        service](#ReceivingNotificationsfromDataServices-Invokingthedataservice)
+```xml
+<data name="receiving_notifications" transports="http https local">
+   <config enableOData="false" id="Datasource">
+      <property name="driverClassName">com.mysql.jdbc.Driver</property>
+      <property name="url">jdbc:mysql://localhost:3306/Company</property>
+   </config>
+   <query id="UpdateAccBalance" input-event-trigger="account_balance_low_trigger" useConfig="Datasource">
+      <sql>UPDATE ACCOUNT SET Balance=:Balance WHERE AccountID=:AccountID</sql>
+      <param name="Balance" sqlType="STRING"/>
+      <param name="AccountID" sqlType="STRING"/>
+   </query>
+   <event-trigger id="account_balance_low_trigger">
+      <expression>/UpdateAccBalance/Balance&lt;200</expression>
+      <target-topic>product_stock_low_topic</target-topic>
+      <subscriptions>
+         <subscription>mailto:name@email.com</subscription>
+      </subscriptions>
+   </event-trigger>
+   <operation name="UpdateAccBalanceOp">
+      <call-query href="UpdateAccBalance">
+         <with-param name="Balance" query-param="Balance"/>
+         <with-param name="AccountID" query-param="AccountID"/>
+      </call-query>
+   </operation>
+</data>
+```
 
 ### Introduction
 

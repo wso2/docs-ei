@@ -11,9 +11,8 @@ Google spreadsheets, and more. The following sections describe how you can use W
 
 To set up the tools:
 
--  Go to the [product page](https://wso2.com/integration/) of **WSO2 Micro Integrator**, download the **product installer** and run it to set up the product.
 -  Select the relevant [WSO2 Integration Studio](https://wso2.com/integration/tooling/) based on your operating system and extract the ZIP file.  The path to the extracted folder is referred to as `MI_TOOLING_HOME` throughout this tutorial.
--  Download the CLI Tool for monitoring artifact deployments.
+-  Download the [CLI Tool](https://wso2.com/integration/micro-integrator/install/) for monitoring artifact deployments.
 
 To demonstrate how data services work, we will use a MySQL database as the datasource. Follow the steps given below to set up a MySQL database:
 
@@ -268,7 +267,15 @@ To test the artifacts, deploy the [packaged artifacts](#step-3-package-the-artif
 
 ### Step 5: Testing the data service
 
-Send a GET request to invoke the service. You can use **curl** as shown below.
+Let's use the **CLI Tool** to find the URL of the data service that is deployed in the Micro Integrator:
+
+1.  Open a terminal and navigate to the `CLI_HOME/bin` directory.
+2.  Execute the following command to start the tool:
+    `./mi`
+3.  Execute the following command to find the data services deployed in the server:
+    `mi show proxyservice`
+
+Now, open a command line terminal and enter the following request:
 
 ```bash
 curl -X GET http://localhost:8280/services/RDBMSDataService.HTTPEndpoint/Employee/3
