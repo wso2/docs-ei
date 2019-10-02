@@ -7,29 +7,38 @@ This application demonstrates how to configure WSO2 Streaming Integrator Tooling
 
 ## Executing the Sample:
 1) Start the Siddhi application by clicking on 'Run'.
-2) If the Siddhi application starts successfully, the following messages would be shown on the console.
-* Tcp Server started in 0.0.0.0:9892
-* TextMappingWithInmemoryTransport.siddhi - Started Successfully!
+2) If the Siddhi application starts successfully, the following messages would be shown on the console. <br /><br />
+
+    ```
+    * Tcp Server started in 0.0.0.0:9892
+    * TextMappingWithInmemoryTransport.siddhi - Started Successfully!
+    ```
 
 ## Testing the Sample:
 In order to publish events with TCP client,
-1) Go to {WSO2SIHome}/samples/sample-clients/tcp-client/ directory.
+1) Go to `{WSO2SIHome}/samples/sample-clients/tcp-client/` directory.
 2) Run ant commant as following.
-ant -Dtype=binary
+    ```bash
+    ant -Dtype=binary
+    ```
 
-If you want to publish custom number of events, you need to run "ant" command as follows
+If you want to publish custom number of events, you need to run "ant" command as follows.
+```bash
 ant -Dtype=binary -DnoOfEventsToSend=5
+```
 
 ## Viewing the Results:
+```
 INFO {io.siddhi.core.stream.output.sink.LogSink} - Custom Mapper : Event{timestamp=1513599736271, data=[Jelly Bean, 9.0], isExpired=false}
 INFO {io.siddhi.core.stream.output.sink.LogSink} - Default Mapper : Event{timestamp=1513599737255, data=[Froyo, 1534.87], isExpired=false}
 INFO {io.siddhi.core.stream.output.sink.LogSink} - Custom Mapper : Event{timestamp=1513599737255, data=[Froyo, 1.0], isExpired=false}
 INFO {io.siddhi.core.stream.output.sink.LogSink} - Default Mapper : Event{timestamp=1513599738255, data=[Jelly Bean, 3030.71], isExpired=false}
 INFO {io.siddhi.core.stream.output.sink.LogSink} - Custom Mapper : Event{timestamp=1513599738256, data=[Jelly Bean, 3.0], isExpired=false}
 INFO {io.siddhi.core.stream.output.sink.LogSink} - Default Mapper : Event{timestamp=1513599739256, data=[Cupcake, 3212.83], isExpired=false}
+```
 
 ## Notes:
-If the message "Tcp Server started in 0.0.0.0:9892" does not appear,it could be due to port 9892, defined in the Siddhi application is already being used by a different program. To resolve this issue, please do the following,
+If the message "Tcp Server started in 0.0.0.0:9892" does not appear, it could be due to port 9892, defined in the Siddhi application is already being used by a different program. To resolve this issue, please do the following,
 * Stop this Siddhi application (Click 'Run' on menu bar -> 'Stop')
 * Change the port 9892 to an unused port, in this Siddhi application's source configuration.
 * Start the application and check whether the specified messages appear on the console

@@ -1,4 +1,0 @@
----
-title: Intgrating with MongoDB
----
-

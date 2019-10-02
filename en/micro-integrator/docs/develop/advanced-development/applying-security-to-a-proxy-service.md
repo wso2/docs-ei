@@ -22,9 +22,7 @@ Follow the instructions given below to create a **WS-Policy** resource in your r
 5.  Double-click the policy file to open the file. Note that you get a
     **Design View** and **Source View** of the policy.
 
-6.  Let's use the **Design View** to enable the required security
-    scenario. For example, enable the **Sign and Encyrpt** security
-    scenario as shown below.
+6.  Let's use the **Design View** to enable the required security scenario. For example, enable the **Sign and Encyrpt** security scenario as shown below.
 
     !!! Tip
         Click the icon next to the scenario to get details of the scenario.
@@ -58,6 +56,7 @@ Either define the user roles inline or retrieve the user roles from the server.
 
 !!! Info
     By default, the role names are not case sensitive. If you want to make them case sensitive, add the following property under the `<AuthorizationManager>` configuration in the `user-mgt.xml` file:
+        
     ```
     <Property name= "CaseSensitiveAuthorizationRules"> true </Property>
     ```
@@ -66,7 +65,7 @@ Either define the user roles inline or retrieve the user roles from the server.
 
 Follow the steps given below.
 
-1.  You can either [create a new proxy service](../../develop/creating-artifacts/creating-a-proxy-service.md), or [import an existing proxy service](../../develop/importing-artifacts.md) to your workspace.
+1.  You can either [create a new proxy service](../../develop/creating-artifacts/creating-a-proxy-service), or [import an existing proxy service](../../develop/importing-artifacts) to your workspace.
 2.  Double-click the proxy service on the project explorer to open the
     file and click on the service on design view.
 3.  In the **Properties** tab shown below and tick on **Security
@@ -83,7 +82,7 @@ Follow the steps given below.
 
 5.  Click **workspace**, to add the security policy from the current
     workspace. You can select the path to the
-    `          sample_policy.         ` xml file that you created in the
+    `sample_policy.xml` file that you created in the
     previous steps.  
 
     ![](/assets/img/apply-security/119130870/119130876.png)
@@ -92,11 +91,11 @@ Follow the steps given below.
 
 ## Step 3: Package the artifacts
 
-See the instructions on [packaging the artifacts](../../develop/packaging-artifacts.md) into a composite application project.
+See the instructions on [packaging the artifacts](../../develop/packaging-artifacts) into a composite application project.
 
 ## Step 4: Build and run the artifacts
 
-See the instructions [deploying the artifacts](../../develop/deploy-and-run.md).
+See the instructions [deploying the artifacts](../../develop/deploy-and-run).
 
 ## Step 5: Testing the service
 

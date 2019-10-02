@@ -19,7 +19,7 @@ Integration is at the heart of any digital transformation. By connecting differe
 <div class="integratorDescription">
     <h3>Ballerina Integrator</h3>
     <p>Ballerina is a revolutionary new code-driven language for programming network-distributed applications. For developers, Ballerina simplifies integration by natively offering high-level abstractions to represent services, endpoints, and network data types. The Ballerina Integrator empowers developers to easily integrate multiple third-party applications, data stores, and a variety of endpoints using simple code and a rich collection of connectors.</p>
-    <a href="ballerina-integrator/getting-started/introduction">View Documentation</a>
+    <a href="ballerina-integrator/get-started/introduction">View Documentation</a>
 </div>
 <div class="integratorDescription">
     <h3>Streaming Integrator</h3>

@@ -4,7 +4,7 @@ WSO2 Micro Integrator helps you build and execute the following use cases.
 
 ## Message routing
 
-Message routing is one of the most fundamental requirements when integrating systems/services. It considers addressability, static/deterministic routing, content-based routing, header-based routing, rules-based routing, and policy-based routing as ways of routing a message. WSO2 Micro Integrator enables these routing capabilities using the concepts of mediators and endpoints.
+Message routing is one of the most fundamental requirements when integrating systems/services. It considers content-based routing, header-based routing, rules-based routing, and policy-based routing as ways of routing a message. WSO2 Micro Integrator enables these routing capabilities using the concepts of mediators and endpoints.
 <!--
 ![message routing](../assets/img/use-cases-overview/message-routing-new.png)
 -->
@@ -95,7 +95,7 @@ In both the above orchestration approaches, the WSO2 Micro Integrator can intera
 
 Multiple services that need to be orchestrated are invoked one after the other in a synchronous manner. The input to one service is dependant on the output of another service. Invocation of services and input-output mapping is handled by the service orchestration layer (which is the WSO2 Micro Integrator). 
 
-**Parallel or Sequential service invocations**
+**Parallel service invocations**
 
 Multiple services are invoked simultaneously without any blocking until a response is received from another service.
 
@@ -223,7 +223,7 @@ The data services functionality that is embedded in the Micro Integrator can dec
 			<b>Tutorials</b></br>
 			<ul>
 				<li>
-					Try the end-to-end use case on <a href="../../../use-cases/tutorials/integration/data-integration-tutorial">data integration</a>
+					Try the end-to-end use case on <a href="../../../use-cases/tutorials/integration/sending-a-simple-message-to-a-datasource">data integration</a>
 				</li>
 			</ul>
 		</td>
@@ -372,11 +372,12 @@ In many business domains, there are different use cases related to managing file
 	</tr>
 </table>
 
-**Failure tracking**
-
-To track failures in file processing, which can occur when a resource becomes unavailable, the VFS transport creates and maintains a failed records file. This text file contains a list of files that failed to be processed. When a failure occurs, an entry with the failed file name and the timestamp is logged in the text file. When the next polling iteration occurs, the VFS transport checks each file against the failed records file, and if a file is listed as a failed record, it will skip processing and schedule a move task to move that file.
-
 ## Periodic execution of integration processes
 
-Task execution can be automated to run periodically. You can schedule a task to run in the time interval of 't' for 'n' number of times or to run once the
-Micro Integrator starts. Furthermore, you can use cron expressions for more advanced executing time configuration.
+Executing an integration process at a specified time is another common requirement in enterprise integration.
+For example, in an organization, there can be a need for running an integration process to synchronize two systems 
+every day at the day end.  
+In Micro Integrator, execution of a message mediation process can be automated to run periodically by using 
+a 'Scheduled task'. You can schedule a task to run in the time interval of 't' for 'n' number of times or to run once 
+the Micro Integrator starts. 
+Furthermore, you can use cron expressions for more advanced executing time configuration.
