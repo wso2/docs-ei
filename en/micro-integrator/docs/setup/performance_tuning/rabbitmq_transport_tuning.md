@@ -6,9 +6,6 @@ See the following topics to tune the rabbitMQ transport:
 
 You can increase the connection pool size to improve the performance of the RabbitMQ sender and listener. The default connection pool size is 20. To change this, specify a required value for the following parameter in the RabbitMQ transport sender and listener configurations in the deployment.toml file (stored in the `MI_HOME/conf` directory).
 
-```toml
-<parameter name="rabbitmq.connection.pool.size" locked="false">25</parameter>
-```
 Sample configurations:
 
 ```toml tab='Sample Receiver'
@@ -21,8 +18,7 @@ parameter.username = "guest"
 parameter.password = "guest"
 parameter.retry_interval = "10s"
 parameter.retry_count = 5
-
-<parameter name="rabbitmq.connection.pool.size" locked="false">20</parameter>
+parameter.connection_pool_size = 25
 ```
 
 ```toml tab='Sample Sender'
@@ -35,8 +31,7 @@ parameter.username = "guest"
 parameter.password = "guest"
 parameter.retry_interval = "10s"
 parameter.retry_count = 5
-
-<parameter name="rabbitmq.connection.pool.size" locked="false">20</parameter>
+parameter.connection_pool_size = 25
 ```
 
 ## Increase the member count

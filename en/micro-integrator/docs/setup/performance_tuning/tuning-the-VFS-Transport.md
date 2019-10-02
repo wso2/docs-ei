@@ -6,7 +6,9 @@ passed and therefore memory consumption is less.
 !!! Tip
     When you transfer a file to a remote FTP location via VFS, the Micro Integrator tries to detect the FTP location by navigating from the root folder first. If the Micro Integrator does not have **at least list permission** to the root (/), the file transfer fails.
 
-To use the streaming mode with the VFS transport, follow the steps below:
+To use the streaming mode with the VFS transport, see the following instructions:
+
+## Update server-level configurations
 
 1. Open the deployment.toml file from the `MI_HOME/conf` directory.
 2. Add the `binary` message builder and formatter configurations:
@@ -23,13 +25,17 @@ To use the streaming mode with the VFS transport, follow the steps below:
 
     See the complete list of [parameters](../../../references/config-catalog) for configuring message builders and formatters.
 
-2.  In the proxy service where you use the VFS transport, add the following parameter to enable streaming:
+## Update service-level configurations
+
+Apply the following configurations when you create a proxy service.
+
+1.  In the proxy service where you use the VFS transport, add the following parameter to enable streaming:
 
     ```xml
     <parameter name="transport.vfs.Streaming">true</parameter>
     ```
 
-3.  In the same proxy service, add the following property before the Send mediator:
+2.  In the same proxy service, add the following property before the Send mediator:
 
     !!! Info
         You also need to add the following property if you want to use the VFS transport to transfer files from VFS to VFS.
