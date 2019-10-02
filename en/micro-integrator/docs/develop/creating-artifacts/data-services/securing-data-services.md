@@ -55,34 +55,31 @@ project:
     2.  You can also provide encryption properties, signature
         properties, and advanced rampart configurations as shown below.
 
-        -   [**Encryption/Signature
-            Properties**](#264fd3cfb5784aec8eeedfa715ebbe1b)
-        -   [**Rampart Properties**](#aa02a1b5372144a78b4d30cb68dceac9)
+        -   **Encryption/Signature Properties**
 
-        ![](attachments/119130577/119130620.png)
+            ![](attachments/119130577/119130620.png)
 
-        ![](attachments/119130577/119130621.png)
+        -   **Rampart Properties**
 
-            !!! Info
-                Using role-based permissions?
+            ![](attachments/119130577/119130621.png)
+
+        !!! Info
+            **Using role-based permissions?**
         
-                For certain scenarios, you can specify user roles. After you
-                select the scenario, scroll to the right to see the **User
-                Roles** button.  
-                ![](attachments/119130577/119130622.png){width="650"
-                height="415"}
+            For certain scenarios, you can specify user roles. After you select the scenario, scroll to the right to see the **User Roles** button.  
+
+            ![](attachments/119130577/119130622.png)
         
-                Either define the user roles inline or retrieve the user roles
-                from the server.
+            Either define the user roles inline or retrieve the user roles from the server.
         
-                -   [**Define Inline**](#079371f083fd4a6f9a14e555e1e23e2a)
-                -   [**Get from the server**](#1b700b3bca434259a9ad3d9e90dccbb3)
-        
+            -  **Define Inline**
+
                 ![](attachments/119130577/119130605.png)
+
+            -  **Get from the server**
         
                 ![](attachments/119130577/119130606.png)
         
-
 5.  Save the policy file.
 
 ### Step 3: Adding the security policy to the data service
@@ -114,33 +111,6 @@ policy to the data service as explained below.
     ![](attachments/119130577/119130579.png)
 5.  Save the data service.
 
-### Step 4: Testing the data service with the security policy
-
-Follow the steps given below.
-
-1.  Package the data service file (.dbs file) and the security policy
-    file into a **Composite Application (CApp)** . See the instructions
-    in [Packaging Artifacts into Composite
-    Applications](https://docs.wso2.com/display/ADMIN44x/Packaging+Artifacts+into+Composite+Applications)
-    .
-
-    !!! Warning
-        Once you create the CApp project, note that the information about
-        each of the projects and artifacts that you packaged into the CApp
-        will be listed (under **Dependencies** in the **Composite
-        Application Project POM Editor** ).
-    
-        **Be sure** to set the server role to **Enterprise Service Bus** for
-        the security policy file as shown below
-    
-        ![](attachments/119130577/119130610.png)
-    
-
-2.  Add your WSO2 EI product instance to WSO2 Integration Studio, and deploy the CApp in the server. See the instructions in [Deploying
-    Composite Applications in the Server](https://docs.wso2.com/display/ADMIN44x/Deploying+Composite+Applications+in+the+Server).
-3.  Start the ESB profile. The data service and the security policy is
-    now deployed in WSO2 EI.
-
 ## Using an encrypted datasource password
 
 When you create a data service for an RDBMS datasource, you have the
@@ -155,18 +125,16 @@ shipped with your WSO2 product. This tool uses the secure vault
 implementation in the product to perform the encryption.
 
 1.  Start by initiating the Cipher Tool. Execute the following command
-    from the `          <EI_HOME>/bin         ` directory.  
-    -   Linux: `            sh           ` ciphertool
-        `            .sh -           ` Dconfigure
-    -   Windows: ciphertool.bat -Dconfigure
+    from the `MI_HOME/bin         ` directory.  
+    -   Linux: `sh ciphertool.sh -Dconfigure`
+    -   Windows: `ciphertool.bat -Dconfigure`
 2.  To encrypt your password, execute the same command without
     -Dconfigure as shown below.  
-    -   Linux: sh ciphertool.sh
-    -   Windows: ciphertool.bat
+    -   Linux: `sh ciphertool.sh`
+    -   Windows: `ciphertool.bat`
 
-    This command will prompt you to enter the KeyStore Password of the
-    running Carbon instance. The default is
-    `          wso2carbon         ` .
+    This command will prompt you to enter the KeyStore Password of the running Carbon instance. The default is
+    `wso2carbon         ` .
 3.  Specify the plain text password that is used to log in to your
     database and execute the command. The encrypted password will be
     returned.
@@ -175,10 +143,9 @@ implementation in the product to perform the encryption.
         Be sure to use the password to the RDBMS that is used in your data
         service.
     
-
 4.  Add the encrypted password and an alias to the
     `           cipher-text.properties          ` file (stored in the
-    `           <PRODUCT_HOME>/repository/conf/security/          `
+    `MI_HOME/repository/conf/security/          `
     directory) as shown below. Note that you can use a name of your
     preference for the password alias. In this example, we have used
     `DB_Password_Alias` .
@@ -199,14 +166,8 @@ service as explained below.
     service in text form.
 
     !!! Tip
-        If you don't have an already created data service in WSO2
-        Integration Studio, you can [create a new data
-        service](#ManagingDataIntegrationArtifactsviaTooling-Creatingadataservice)
-        or [import an existing data
-        service](#ManagingDataIntegrationArtifactsviaTooling-Importingadataservice)
-        file.
+        If you don't have an already created data service in WSO2 Integration Studio, you can [create a new data service](#ManagingDataIntegrationArtifactsviaTooling-Creatingadataservice) or [import an existing data service](#ManagingDataIntegrationArtifactsviaTooling-Importingadataservice) file.
     
-
 2.  Update the datasource configuration by adding the secret alias of
     the password. See the example given below.
 
@@ -246,4 +207,4 @@ below.
     Composite Applications in the
     Server](https://docs.wso2.com/display/ADMIN44x/Deploying+Composite+Applications+in+the+Server)
     .
-3.  Start the ESB profile. The data service is now deployed in WSO2 EI.
+3.  Start the Micro Integrator. The data service is now deployed in Micro Integrator.
