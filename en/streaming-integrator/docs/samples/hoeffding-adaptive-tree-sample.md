@@ -3,6 +3,7 @@
 This application demonstrates how to train a Hoeffding Classifier and to predict the sweet category from the sweet production stream in streaming manner.
 
 ## Prerequisites:
+
 1) Download `siddhi-gpl-execution-streamingml-x.x.x.jar` from the following http://maven.wso2.org/nexus/content/repositories/wso2gpl/org/wso2/extension/siddhi/gpl/execution/streamingml/siddhi-gpl-execution-streamingml/ and copy the jar to `{WSO2SIHome}/lib`.
 2) Save this sample.
 3) If there is no syntax error, the following message is shown on the console:
@@ -13,6 +14,7 @@ This application demonstrates how to train a Hoeffding Classifier and to predict
 ## Executing the Sample:
 1) Start the Siddhi application by clicking on 'Run'.
 2) If the Siddhi application starts successfully, the following messages would be shown on the console.
+
 	```
 	* streaming-hoeffding-classifier-sample.siddhi - Started Successfully!
 	```

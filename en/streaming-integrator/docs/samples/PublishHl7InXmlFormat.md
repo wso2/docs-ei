@@ -5,21 +5,21 @@ This application demonstrates how to configure WSO2 Streaming Integrator Tooling
 ## Prerequisites:
 1) Install the HAPI testpanel. (Reference: https://hapifhir.github.io/hapi-hl7v2/hapi-testpanel/install.html)
 2) Save this sample. If there is no syntax error, the following message is shown on the console:
-* - Siddhi App PublishHl7InXmlFormat successfully deployed.
+    - Siddhi App PublishHl7InXmlFormat successfully deployed.
 
 ## Executing the Sample:
 1) In the HAPI testpanel create a receiving connection with port that provided in the siddhi app.
 2) Start the listener.
 3) Start the Siddhi application by clicking on 'Run'.
 4) If the Siddhi application starts successfully, the following messages are shown on the console:
-* PublishHl7InXmlFormat.siddhi - Started Successfully!
-* 'Hl7' sink at 'hl7Stream' stream successfully connected to 'localhost:4000'.
+    * PublishHl7InXmlFormat.siddhi - Started Successfully!
+    * 'Hl7' sink at 'hl7Stream' stream successfully connected to 'localhost:4000'.
 
 ## Testing the Sample:
 1) Open the event simulator by clicking on the second icon or pressing Ctrl+Shift+I.
 2) In the Single Simulation tab of the panel, specifiy the values as follows:
-* Siddhi App Name   :   PublishHl7InXmlFormat
-* Stream Name   :   xmlStream
+    * Siddhi App Name   :   PublishHl7InXmlFormat
+    * Stream Name   :   xmlStream
 3) In the MSH1, MSH2, MSH3HD1,MSH4HD1, MSH5HD1, MSH6HD1, MSH7, MSH8, CM_MSG1, CM_MSG2, MSH10, MSH11, MSH12 fields enter '|', '^~\&amp;', 'sendingSystemA', 'senderFacilityA', 'receivingSystemB' , 'receivingFacilityB', '20080925161613', ' ', 'ADT', 'A01', 'S123456789', 'P', '2.3' respectively and then click Send to send the event.
 4) Send more events as desired.
 

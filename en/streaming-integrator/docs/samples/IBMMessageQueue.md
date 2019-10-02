@@ -10,7 +10,7 @@ This application demonstrates how to consume events from IBM Message Queue and p
 ## Executing the Sample:
 1) Start the Siddhi application by clicking on 'Run'
 2) If the Siddhi application starts successfully, the following messages would be shown on the console
-* IBMMessageQueueSample.siddhi - Started Successfully!
+    * IBMMessageQueueSample.siddhi - Started Successfully!
 
 ## Testing the Sample:
 1) Simulate single events. For this, click on 'Event Simulator' (double arrows on left tab) -> 'Single Simulation' -> Select 'IBMMessageQueueSample' as 'Siddhi App Name' -> Select 'SweetProductionSinkStream' as 'Stream Name' -> Provide attribute values -> Send

@@ -5,12 +5,12 @@ This application demonstrates how to retrieve the longitude and latitude for the
 ## Prerequisites:
 1) Save this sample.
 2) If there is no syntax error, the following message is shown on the console:
-	       * - Siddhi App execution-geo-sample successfully deployed.
+    - Siddhi App execution-geo-sample successfully deployed.
 
 ## Executing the Sample:
 1) Start the Siddhi application by clicking on 'Run'.
 2) If the Siddhi application starts successfully, the following messages would be shown on the console.
-* execution-geo-sample.siddhi - Started Successfully!
+    * execution-geo-sample.siddhi - Started Successfully!
 
 ## Testing the Sample:
 1) Click on 'Event Simulator' (double arrows on left tab)
@@ -19,13 +19,13 @@ This application demonstrates how to retrieve the longitude and latitude for the
 4) Select geocodeStream as 'StreamName'
 5) Click on the start button (Arrow symbol) next to the newly created simulator
 6) Provide attribute values
-- location: 5 Avenue Anatole France
-- level: 75007 Paris
-- time: France
+    - location: 5 Avenue Anatole France
+    - level: 75007 Paris
+    - time: France
 7) Send event
 
 ## Viewing the Results:
-See the prediction as output on the in the console.
+See the prediction as output on the in the console.\
 INFO {io.siddhi.core.query.processor.stream.LogStreamProcessor} - sentimentExtensionSample: Event :, StreamEvent{ timestamp=1513623526790, beforeWindowData=null, onAfterWindowData=null, outputData=[48.8583698, 2.2944833, Tour Eiffel, 5 Avenue Anatole France, 75007 Paris, France], type=CURRENT, next=null}
 
 ```sql

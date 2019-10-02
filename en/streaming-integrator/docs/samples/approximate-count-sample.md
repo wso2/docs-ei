@@ -10,7 +10,7 @@ This application demonstrates how to calculate the approximate count(frequency) 
 1) Save this sample. Provide name as 'approximate-count-sample'.
 2) Start the Siddhi application by clicking on 'Run'
 3) If the Siddhi application starts successfully, the following messages would be shown on the console
-* approximate-count-sample.siddhi - Started Successfully!.
+    * approximate-count-sample.siddhi - Started Successfully!.
 
 ## Testing the Sample:
 1) Click on 'Event Simulator' (double arrows on left tab)

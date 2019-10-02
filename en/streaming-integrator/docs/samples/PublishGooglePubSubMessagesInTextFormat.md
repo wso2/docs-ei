@@ -10,33 +10,31 @@ This application demonstrates how to configure WSO2 Streaming Integrator Tooling
 4.Place your json file in any system property.
 5.Save the sample.
 6.If there is no syntax error, the following message is shown on the console:
-	        * -Siddhi App SendGooglePubSubMessage successfully deployed.
+    - Siddhi App SendGooglePubSubMessage successfully deployed.
 
 
 ## Executing the Sample:
-	1) Start the Siddhi application by clicking on 'Run'.
-
-	* If the Siddhi application starts successfully, the following messages are shown on the console:
+1) Start the Siddhi application by clicking on 'Run'. If the Siddhi application starts successfully, the following messages are shown on the console:
 	- SendGooglePubSubMessage.siddhi - Started Successfully!
 
 ## Testing the Sample:
 1) Send events through one or more of the following methods.
 
-You may send events to googlepubsub sink, via event simulator
-a) Open the event simulator by clicking on the second icon or pressing Ctrl+Shift+I.
-b) In the Single Simulation tab of the panel, specify the values as follows:
-* Siddhi App Name  : SendGooglePubSubMessage
-* Stream Name      : FooStream
-c) In the message field, enter the following and then click Send to send the event.
-## message: Hello
-d) Send some more events.
+    * You may send events to googlepubsub sink, via event simulator
+        1) Open the event simulator by clicking on the second icon or pressing Ctrl+Shift+I.
+        2) In the Single Simulation tab of the panel, specify the values as follows:
+            * Siddhi App Name  : SendGooglePubSubMessage
+            * Stream Name      : FooStream
+        3) In the message field, enter the following and then click Send to send the event.
+            * message: Hello
+        4) Send some more events.
 
 ## Viewing the Results:
-## See the output on the terminal:
+* See the output on the terminal:\
 2019-03-14_12-50-21_966] INFO {io.siddhi.core.stream.output.sink.LogSink} - SendEvent : BarStream : Event{timestamp=1552548021825, data=[Hello], isExpired=false}
 
 ## Notes:
-	Make sure the the credential file is correct and user have write access to make api calls.
+Make sure the the credential file is correct and user have write access to make api calls.\
 Stop this Siddhi application.
 
 ```sql
