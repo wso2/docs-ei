@@ -5,7 +5,7 @@
 
 ## Prerequisites:
 1. Download siddhi-gpl-execution-nlp-x.x.x.jar from the following link and copy the jar to  {WSO2SIHome}/lib
-## http://maven.wso2.org/nexus/content/repositories/wso2gpl/org/wso2/extension/siddhi/gpl/execution/nlp/siddhi-gpl-execution-nlp/
+http://maven.wso2.org/nexus/content/repositories/wso2gpl/org/wso2/extension/siddhi/gpl/execution/nlp/siddhi-gpl-execution-nlp/
 2. Save this sample. If there is no syntax error, the following messages would be shown on the console
 	     * - Siddhi App GplNLPFindNameEntityType.siddhi successfully deployed.
 
@@ -23,7 +23,6 @@ a) Open event simulator by clicking on the second icon or press Ctrl+Shift+I.
 c) Enter following string in the message and send
 ABC factory produces 20 donuts per day.
 
-## Viewing the Results:
 ## Viewing the Results:
 Messages similar to the following would be shown on the console.
 INFO {io.siddhi.core.query.processor.stream.LogStreamProcessor} - GplNLPFindNameEntityType: StreamEvent{ timestamp=1513573692406, beforeWindowData=null, onAfterWindowData=null, outputData=[ABC factory produces 20 donuts per day., ABC], type=CURRENT, next=null}
