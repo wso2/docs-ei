@@ -206,7 +206,7 @@ Possible deployment statuses are as follows:
 
 - **Deployed**: The business rule is created and deployed in all the nodes of the current Streaming Integrator setup.
 
-- **Partially Deployed:** The business rule is created and deployed only in some of the nodes in the Streaming Integrator cluster. This status is also assigned when you click **Save and Deploy** instead of **Save** at the time you [create the business rule](_Creating_Business_Rules).
+- **Partially Deployed:** The business rule is created and deployed only in some of the nodes in the Streaming Integrator cluster. This status is also assigned when you click **Save and Deploy** instead of **Save** at the time you [create the business rule](#creating-business-rules).
 
 - **Partially Undeployed:** The business rule has been previously deployed and then undeployed only in some of the nodes in the Streaming Integrator cluster.
 
