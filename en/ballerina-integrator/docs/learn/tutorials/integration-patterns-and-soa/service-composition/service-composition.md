@@ -1,32 +1,42 @@
 ---
 title: Service Composition
-commitHash: a76e9f433c9db062427fd53e641e158cc9223de9
+commitHash: 9be2bde276ae340075a85d504719e5f8831bfe6b
 note: This is an auto-generated file do not edit this, You can edit content in "ballerina-integrator" repo
 ---
 
-A service composition is an aggregate of services collectively composed to automate a particular task or business process. 
-
-> This guide walks you through the process of implementing a service composition using Ballerina language. 
-
 The following are the sections available in this guide.
 
+- [About](#about)
 - [What you'll build](#what-youll-build)
 - [Prerequisites](#prerequisites)
+- [Get the code](#get-the-code)
 - [Implementation](#implementation)
 - [Testing](#testing)
-- [Deployment](#deployment)
+
+## About
+
+Ballerina is an open-source programming language that empowers developers to integrate their system easily with the support of connectors. In this guide, we are focusing on aggregating services collectively composed to automate a particular task or business process. You can find other integration modules from the [wso2-ballerina](https://github.com/wso2-ballerina) GitHub repository.
+
+This guide walks you through the process of implementing a service composition using Ballerina language.
 
 ## What you’ll build
 To understand how you can build a service composition using Ballerina, let's consider a real-world use case of a Travel agency that arranges complete tours for users. A tour package includes airline ticket reservation and hotel room reservation. Therefore, the Travel agency service requires communicating with other necessary back-ends. The following diagram illustrates this use case clearly.
 
-![alt text](../../../../../assets/img/service-composition.svg)
+![alt text](/docs/content/resources/service-composition.svg)
 
-Travel agency is the service that acts as the composition initiator. The other three services are external services that the travel agency service calls to do airline ticket booking and hotel reservation. These are not necessarily Ballerina services and can theoretically be third-party services that the travel agency service calls to get things done. However, for the purposes of setting up this scenario and illustrating it in this guide, these third-party services are also written in Ballerina.
+Travel agency is the service that acts as the composition initiator. The other two services are external services that the travel agency service calls to do airline ticket booking and hotel reservation. These are not necessarily Ballerina services and can theoretically be third-party services that the travel agency service calls to get things done. However, for the purposes of setting up this scenario and illustrating it in this guide, these third-party services are also written in Ballerina.
 
 ## Prerequisites
 - [Ballerina Distribution](https://ballerina.io/learn/getting-started/)
 - A Text Editor or an IDE 
 > **Tip**: For a better development experience, install one of the following Ballerina IDE plugins: [VSCode](https://marketplace.visualstudio.com/items?itemName=ballerina.ballerina), [IntelliJ IDEA](https://plugins.jetbrains.com/plugin/9520-ballerina)
+- Link to download Ballerina Integrator
+
+## Get the code
+
+Download the ZIP file and extract the contents to get the code.
+
+<a href="https://github.com/wso2/docs-ei/blob/master/en/ballerina-integrator/docs/learn/guides/"><img src="../../../../../assets/img/download-zip.png" width="200" alt="Download ZIP"></a>
 
 ## Implementation
 
@@ -91,6 +101,7 @@ If all services work successfully, the travel agency service confirms and arrang
 **travel_agency_service.bal**
 ```ballerina
 import ballerina/http;
+import ballerina/log;
 
 // Service endpoint
 listener http:Listener travelAgencyEP = new(9090);
@@ -101,6 +112,10 @@ http:Client airlineReservationEP = new("http://localhost:9091/airline");
 // Client endpoint to communicate with Hotel reservation service
 http:Client hotelReservationEP = new("http://localhost:9092/hotel");
 
+http:Response outResponse = new;
+
+http:Caller requestCaller = new;
+
 // Travel agency service to arrange a complete tour for a user
 @http:ServiceConfig {basePath:"/travel"}
 service travelAgencyService on travelAgencyEP {
@@ -108,153 +123,150 @@ service travelAgencyService on travelAgencyEP {
     // Resource to arrange a tour
     @http:ResourceConfig {methods:["POST"], consumes:["application/json"], produces:["application/json"]}
     resource function arrangeTour(http:Caller caller, http:Request inRequest) returns error? {
-        http:Response outResponse = new;
-        json inReqPayload = {};
+        requestCaller = <@untainted>caller;
 
-        // CODE-SEGMENT-BEGIN: segment_1
         // Try parsing the JSON payload from the user request
-        var payload = inRequest.getJsonPayload();
+        json|error payload = inRequest.getJsonPayload();
+        check self.validateRequest(payload);
+        check self.reserveAirline(payload);
+        check self.reserveHotel(payload);
+
+        // If all three services response positive status, send a successful message to the user
+        outResponse.setJsonPayload({"Message":"Congratulations! Your journey is ready!!"});
+        var result = caller->respond(outResponse);
+        handleError(result);
+        return;
+    }
+
+    // CODE-SEGMENT-BEGIN: segment_1
+    function validateRequest(json|error payload) returns error? {
         if (payload is json) {
-            // Valid JSON payload
-            inReqPayload = payload;
+            // Valid JSON payload for all JSON parameters
+            if (payload.Name == () || payload.ArrivalDate == () || payload.DepartureDate == () ||
+                payload.Preference.Airline == () || payload.Preference.Accommodation == ()) {
+                outResponse.statusCode = 400;
+                outResponse.setJsonPayload({"Message":"Bad Request - Invalid Payload"});
+                var result = requestCaller->respond(outResponse);
+                handleError(result);
+                if (result is error) {
+                    return result;
+                }
+            }
         } else {
             // NOT a valid JSON payload
             outResponse.statusCode = 400;
             outResponse.setJsonPayload({"Message":"Invalid payload - Not a valid JSON payload"});
-            var result = caller->respond(outResponse);
+            var result = requestCaller->respond(outResponse);
             handleError(result);
-            return;
+            if (result is error) {
+                return result;
+            }
         }
+    }
+    // CODE-SEGMENT-END: segment_1
 
-        // Json payload format for an http out request
-        json outReqPayload = {
-            Name: check inReqPayload.Name,
-            ArrivalDate: check inReqPayload.ArrivalDate,
-            DepartureDate: check inReqPayload.DepartureDate,
-            Preference:""
-        };
-
-        json airlinePreference = check inReqPayload.Preference.Airline;
-        json hotelPreference = check inReqPayload.Preference.Accommodation;
-        json carPreference = check inReqPayload.Preference.Car;
-
-        // If payload parsing fails, send a "Bad Request" message as the response
-        if (outReqPayload.Name == () || outReqPayload.ArrivalDate == () || outReqPayload.DepartureDate == () ||
-            airlinePreference == () || hotelPreference == () || carPreference == ()) {
-            outResponse.statusCode = 400;
-            outResponse.setJsonPayload({"Message":"Bad Request - Invalid Payload"});
-            var result = caller->respond(outResponse);
-            handleError(result);
-            return;
-        }
-        // CODE-SEGMENT-END: segment_1
-
-        // CODE-SEGMENT-BEGIN: segment_2
+    // CODE-SEGMENT-BEGIN: segment_2
+    function reserveAirline(json|error payload) returns error? {
         // Reserve airline ticket for the user by calling Airline reservation service
         // construct the payload
+        json jsonPayload = check payload;
         json outReqJsonPayloadAirline = {
-            Name: check outReqPayload.Name,
-            ArrivalDate: check outReqPayload.ArrivalDate,
-            DepartureDate: check outReqPayload.DepartureDate,
-            Preference: airlinePreference
+            Name: check jsonPayload.Name,
+            ArrivalDate: check jsonPayload.ArrivalDate,
+            DepartureDate: check jsonPayload.DepartureDate,
+            Preference: check jsonPayload.Preference.Airline
         };
 
         http:Request outReqPayloadAirline = new;
         outReqPayloadAirline.setJsonPayload(<@untainted>outReqJsonPayloadAirline);
 
         // Send a post request to airlineReservationService with appropriate payload and get response
-        http:Response inResAirline = check airlineReservationEP->post("/reserve", outReqPayloadAirline);
+        http:Response inResponseAirline = check airlineReservationEP->post("/reserve", outReqPayloadAirline);
 
         // Get the reservation status
-        var airlineResPayload = check inResAirline.getJsonPayload();
-        string airlineStatus = airlineResPayload.Status.toString();
+        var airlineResponsePayload = check inResponseAirline.getJsonPayload();
+        string airlineStatus = airlineResponsePayload.Status.toString();
         // If reservation status is negative, send a failure response to user
-        if (equalIgnoreCase(airlineStatus, "Failed")) {
+        if (!equalIgnoreCase(airlineStatus, "Success")) {
             outResponse.setJsonPayload({"Message":"Failed to reserve airline! " +
                     "Provide a valid 'Preference' for 'Airline' and try again"});
-            var result = caller->respond(outResponse);
+            var result = requestCaller->respond(outResponse);
             handleError(result);
-            return;
+            if (result is error) {
+                return result;
+            }
         }
-        // CODE-SEGMENT-END: segment_2
+    }
+    // CODE-SEGMENT-END: segment_2
 
-        // CODE-SEGMENT-BEGIN: segment_3
-        // Reserve hotel room for the user by calling Hotel reservation service
-        // construct the payload
-        json outReqJsonPayloadHotel = {
-            Name: check outReqPayload.Name,
-            ArrivalDate: check outReqPayload.ArrivalDate,
-            DepartureDate: check outReqPayload.DepartureDate,
-            Preference: hotelPreference
+    // CODE-SEGMENT-BEGIN: segment_3
+    function reserveHotel(json|error payload) returns error? {
+        json jsonPayload = check payload;
+        json outRequestJsonPayloadHotel = {
+            Name: check jsonPayload.Name,
+            ArrivalDate: check jsonPayload.ArrivalDate,
+            DepartureDate: check jsonPayload.DepartureDate,
+            Preference: check jsonPayload.Preference.Accommodation
         };
 
-        http:Request outReqPayloadHotel = new;
-        outReqPayloadHotel.setJsonPayload(<@untainted>outReqJsonPayloadHotel);
+        http:Request outRequestPayloadHotel = new;
+        outRequestPayloadHotel.setJsonPayload(<@untainted>outRequestJsonPayloadHotel);
 
         // Send a post request to hotelReservationService with appropriate payload and get response
-        http:Response inResHotel = check hotelReservationEP->post("/reserve", outReqPayloadHotel);
+        http:Response inResponseHotel = check hotelReservationEP->post("/reserve", outRequestPayloadHotel);
 
         // Get the reservation status
-        var hotelResPayload = check inResHotel.getJsonPayload();
-        string hotelStatus = hotelResPayload.Status.toString();
+        var hotelResponsePayload = check inResponseHotel.getJsonPayload();
+        string hotelStatus = hotelResponsePayload.Status.toString();
         // If reservation status is negative, send a failure response to user
-        if (equalIgnoreCase(hotelStatus, "Failed")) {
+        if (!equalIgnoreCase(hotelStatus, "Success")) {
             outResponse.setJsonPayload({"Message":"Failed to reserve hotel! " +
                     "Provide a valid 'Preference' for 'Accommodation' and try again"});
-            var result = caller->respond(outResponse);
+            var result = requestCaller->respond(outResponse);
             handleError(result);
-            return;
+            if (result is error) {
+                return result;
+            }
         }
-        // CODE-SEGMENT-END: segment_3
-
-        // If all three services response positive status, send a successful message to the user
-        outResponse.setJsonPayload({"Message":"Congratulations! Your journey is ready!!"});
-        var result = caller->respond(outResponse);
-        handleError(result);
-        return ();
     }
+    // CODE-SEGMENT-END: segment_3
 
+}
+
+function handleError(error? result) {
+    if (result is error) {
+        log:printError(result.reason(), err = result);
+    }
 }
 ```
 
-Let's now look at the code segment that is responsible for parsing the JSON payload from the user request.
+Let's now look at the code segment that is responsible for validating the JSON payload from the user request.
 
 ```ballerina
-// Try parsing the JSON payload from the user request
-        var payload = inRequest.getJsonPayload();
+function validateRequest(json|error payload) returns error? {
         if (payload is json) {
-            // Valid JSON payload
-            inReqPayload = payload;
+            // Valid JSON payload for all JSON parameters
+            if (payload.Name == () || payload.ArrivalDate == () || payload.DepartureDate == () ||
+                payload.Preference.Airline == () || payload.Preference.Accommodation == ()) {
+                outResponse.statusCode = 400;
+                outResponse.setJsonPayload({"Message":"Bad Request - Invalid Payload"});
+                var result = requestCaller->respond(outResponse);
+                handleError(result);
+                if (result is error) {
+                    return result;
+                }
+            }
         } else {
             // NOT a valid JSON payload
             outResponse.statusCode = 400;
             outResponse.setJsonPayload({"Message":"Invalid payload - Not a valid JSON payload"});
-            var result = caller->respond(outResponse);
+            var result = requestCaller->respond(outResponse);
             handleError(result);
-            return;
+            if (result is error) {
+                return result;
+            }
         }
-
-        // Json payload format for an http out request
-        json outReqPayload = {
-            Name: check inReqPayload.Name,
-            ArrivalDate: check inReqPayload.ArrivalDate,
-            DepartureDate: check inReqPayload.DepartureDate,
-            Preference:""
-        };
-
-        json airlinePreference = check inReqPayload.Preference.Airline;
-        json hotelPreference = check inReqPayload.Preference.Accommodation;
-        json carPreference = check inReqPayload.Preference.Car;
-
-        // If payload parsing fails, send a "Bad Request" message as the response
-        if (outReqPayload.Name == () || outReqPayload.ArrivalDate == () || outReqPayload.DepartureDate == () ||
-            airlinePreference == () || hotelPreference == () || carPreference == ()) {
-            outResponse.statusCode = 400;
-            outResponse.setJsonPayload({"Message":"Bad Request - Invalid Payload"});
-            var result = caller->respond(outResponse);
-            handleError(result);
-            return;
-        }
+    }
 ```
 
 The above code shows how the request JSON payload is parsed to create JSON literals required for further processing.
@@ -262,32 +274,37 @@ The above code shows how the request JSON payload is parsed to create JSON liter
 Let's now look at the code segment that is responsible for communicating with the airline reservation service.
 
 ```ballerina
-// Reserve airline ticket for the user by calling Airline reservation service
+function reserveAirline(json|error payload) returns error? {
+        // Reserve airline ticket for the user by calling Airline reservation service
         // construct the payload
+        json jsonPayload = check payload;
         json outReqJsonPayloadAirline = {
-            Name: check outReqPayload.Name,
-            ArrivalDate: check outReqPayload.ArrivalDate,
-            DepartureDate: check outReqPayload.DepartureDate,
-            Preference: airlinePreference
+            Name: check jsonPayload.Name,
+            ArrivalDate: check jsonPayload.ArrivalDate,
+            DepartureDate: check jsonPayload.DepartureDate,
+            Preference: check jsonPayload.Preference.Airline
         };
 
         http:Request outReqPayloadAirline = new;
         outReqPayloadAirline.setJsonPayload(<@untainted>outReqJsonPayloadAirline);
 
         // Send a post request to airlineReservationService with appropriate payload and get response
-        http:Response inResAirline = check airlineReservationEP->post("/reserve", outReqPayloadAirline);
+        http:Response inResponseAirline = check airlineReservationEP->post("/reserve", outReqPayloadAirline);
 
         // Get the reservation status
-        var airlineResPayload = check inResAirline.getJsonPayload();
-        string airlineStatus = airlineResPayload.Status.toString();
+        var airlineResponsePayload = check inResponseAirline.getJsonPayload();
+        string airlineStatus = airlineResponsePayload.Status.toString();
         // If reservation status is negative, send a failure response to user
-        if (equalIgnoreCase(airlineStatus, "Failed")) {
+        if (!equalIgnoreCase(airlineStatus, "Success")) {
             outResponse.setJsonPayload({"Message":"Failed to reserve airline! " +
                     "Provide a valid 'Preference' for 'Airline' and try again"});
-            var result = caller->respond(outResponse);
+            var result = requestCaller->respond(outResponse);
             handleError(result);
-            return;
+            if (result is error) {
+                return result;
+            }
         }
+    }
 ```
 
 The above code shows how the travel agency service initiates a request to the airline reservation service to book a flight ticket. `airlineReservationEP` is the client endpoint you defined through which the Ballerina service communicates with the external airline reservation service.
@@ -295,32 +312,35 @@ The above code shows how the travel agency service initiates a request to the ai
 Let's now look at the code segment that is responsible for communicating with the hotel reservation service.
 
 ```ballerina
-// Reserve hotel room for the user by calling Hotel reservation service
-        // construct the payload
-        json outReqJsonPayloadHotel = {
-            Name: check outReqPayload.Name,
-            ArrivalDate: check outReqPayload.ArrivalDate,
-            DepartureDate: check outReqPayload.DepartureDate,
-            Preference: hotelPreference
+function reserveHotel(json|error payload) returns error? {
+        json jsonPayload = check payload;
+        json outRequestJsonPayloadHotel = {
+            Name: check jsonPayload.Name,
+            ArrivalDate: check jsonPayload.ArrivalDate,
+            DepartureDate: check jsonPayload.DepartureDate,
+            Preference: check jsonPayload.Preference.Accommodation
         };
 
-        http:Request outReqPayloadHotel = new;
-        outReqPayloadHotel.setJsonPayload(<@untainted>outReqJsonPayloadHotel);
+        http:Request outRequestPayloadHotel = new;
+        outRequestPayloadHotel.setJsonPayload(<@untainted>outRequestJsonPayloadHotel);
 
         // Send a post request to hotelReservationService with appropriate payload and get response
-        http:Response inResHotel = check hotelReservationEP->post("/reserve", outReqPayloadHotel);
+        http:Response inResponseHotel = check hotelReservationEP->post("/reserve", outRequestPayloadHotel);
 
         // Get the reservation status
-        var hotelResPayload = check inResHotel.getJsonPayload();
-        string hotelStatus = hotelResPayload.Status.toString();
+        var hotelResponsePayload = check inResponseHotel.getJsonPayload();
+        string hotelStatus = hotelResponsePayload.Status.toString();
         // If reservation status is negative, send a failure response to user
-        if (equalIgnoreCase(hotelStatus, "Failed")) {
+        if (!equalIgnoreCase(hotelStatus, "Success")) {
             outResponse.setJsonPayload({"Message":"Failed to reserve hotel! " +
                     "Provide a valid 'Preference' for 'Accommodation' and try again"});
-            var result = caller->respond(outResponse);
+            var result = requestCaller->respond(outResponse);
             handleError(result);
-            return;
+            if (result is error) {
+                return result;
+            }
         }
+    }
 ```
 
 The travel agency service communicates with the hotel reservation service to book a room for the client as shown above. The client endpoint defined for this external service call is `hotelReservationEP`.
@@ -328,35 +348,9 @@ The travel agency service communicates with the hotel reservation service to boo
 
 ## Testing 
 
-### Invoking the service
+### Starting the service
 
-- Navigate to `service-composition` and run the following command to start all three HTTP services. This starts the `Airline Reservation`, `Hotel Reservation` and `Travel Agency` services on ports 9091, 9092 and 9090 respectively.
-
-```bash
-   $ ballerina run guide
-```
-   
-- Invoke the travel agency service by sending a POST request to arrange a tour.
-
-```bash
-   curl -v -X POST -d '{"Name":"Bob", "ArrivalDate":"12-03-2020",
-   "DepartureDate":"13-04-2022", "Preference":{"Airline":"Business",
-   "Accommodation":"Air Conditioned", "Car":"Air Conditioned"}}' \
-   "http://localhost:9090/travel/arrangeTour" -H "Content-Type:application/json"
-```
-
-  Travel agency service sends a response similar to the following:
-    
-```bash
-   < HTTP/1.1 200 OK
-   {"Message":"Congratulations! Your journey is ready!!"}
-``` 
-
-## Deployment
-
-Once you are done with the development, you can deploy the services using any of the methods that are listed below. 
-
-### Deploying locally
+Once you are done with the development, you can start the services as follows.
 
 - To deploy locally, navigate to `service-composition` directory, and execute the following command.
 ```bash
@@ -373,4 +367,23 @@ Once you are done with the development, you can deploy the services using any of
    [ballerina/http] started HTTP/WS listener 0.0.0.0:9091
    [ballerina/http] started HTTP/WS listener 0.0.0.0:9092
    [ballerina/http] started HTTP/WS listener 0.0.0.0:9090
+```
+This starts the `Airline Reservation`, `Hotel Reservation`, and `Travel Agency` services on ports 9091, 9092, and 9090 respectively.
+
+### Invoking the service
+
+Invoke the travel agency service by sending a POST request to arrange a tour.
+
+```bash
+   curl -v -X POST -d '{"Name":"Bob", "ArrivalDate":"12-03-2020",
+   "DepartureDate":"13-04-2022", "Preference":{"Airline":"Business",
+   "Accommodation":"Air Conditioned"}}' \
+   "http://localhost:9090/travel/arrangeTour" -H "Content-Type:application/json"
+```
+
+Travel agency service sends a response similar to the following:
+
+```bash
+   < HTTP/1.1 200 OK
+   {"Message":"Congratulations! Your journey is ready!!"}
 ```

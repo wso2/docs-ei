@@ -1,6 +1,6 @@
 ---
 title: Service Orchestration
-commitHash: a76e9f433c9db062427fd53e641e158cc9223de9
+commitHash: 9be2bde276ae340075a85d504719e5f8831bfe6b
 note: This is an auto-generated file do not edit this, You can edit content in "ballerina-integrator" repo
 ---
 
@@ -12,7 +12,7 @@ Service orchestration is a common integration scenario where, upon a request fro
 
 We will build a service called `doctorAppointment` that accepts a client's request for a doctor’s appointment. The service calls the reservation service with the request payload sent by the client to reserve the appointment, gets the response, checks if the appointment is confirmed, and if confirmed, calls the payment endpoint to settle the fee of the appointment. Finally, if the payment is successful, it will merge both the responses from the appointment service and the payment service and respond back to the client. If the appointment reservation is not successful, it sends back a payload saying the appointment failed.
 
-![service-orchestration](../../../../../assets/img/service_orchestration.png)
+![service-orchestration](../../../../../assets/img/service_orchestration.jpg)
 
 ## Prerequisites
 

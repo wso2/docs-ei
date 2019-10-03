@@ -1,65 +1,95 @@
 ---
-title: Gmail Connector
-commitHash: a76e9f433c9db062427fd53e641e158cc9223de9
+title: Using the Gmail Connector
+commitHash: 9be2bde276ae340075a85d504719e5f8831bfe6b
 note: This is an auto-generated file do not edit this, You can edit content in "ballerina-integrator" repo
 ---
 
-In this tutorial, we will send an email to the user, using the GMail module in Ballerina.
+## About
+Ballerina is an open-source programming language that empowers developers to integrate their system easily with the support of connectors. In this guide, we are mainly focusing on how the Ballerina Gmail connector could be used for handling emails.
 
-#### What you will build
+The Ballerina Gmail connector allows you to send, read, and delete emails through the Gmail REST API. It also provides the ability to read, trash, untrash, and delete threads, get the Gmail profile, and access the mailbox history as well, while handling OAuth 2.0 authentication. More details on this module can be found in the [Gmail Module](https://github.com/wso2-ballerina/module-gmail/blob/master/Readme.md) repository.
 
-In the previous tutorial [Exposing Several Services as a Single Service](../../exposing-several-services-as-a-single-service/exposing-several-services-as-a-single-service/), we added the capability to schedule an appointment in the Health Care System and add the payment for it. In this tutorial, we will send a mail to the user to confirm their payment made when scheduling the appointment. This is done with the help of Ballerina Gmail module.
+You can find other integration modules from the [wso2-ballerina](https://github.com/wso2-ballerina) GitHub repository.
 
-The Gmail module allows you to send, read and delete emails through the Gmail REST API. It handles OAuth 2.0 authentication. It also provides the ability to read, trash, untrash, delete threads, get the Gmail profile and access the mailbox history as well. More details on this module can be found in the [Gmail Module](https://github.com/wso2-ballerina/module-gmail/blob/master/Readme.md) repository.
+## What you'll build
+This tutorial demonstrates a scenario where a customer feedback Gmail account of a company can be easily managed using the Ballerina Gmail Connector. This application contains a service that can be invoked through an HTTP GET request. Once the service is invoked, it returns the contents of unread emails in the `Inbox`, while sending an automated response to the customer, thanking them for their feedback. The number of emails that can be handled in a single invocation is specified in the application.
 
-This example requires the Hospital Service to be running in the background, as the Gmail Connector service makes an appointment request call to the backend, which generates the appointment confirmation response. Using this response, we generate an email to be sent to the intended recipient.
-
-#### Prerequisites
-
-- Download and install the [Ballerina Distribution](https://ballerina.io/learn/getting-started/) relevant to your OS.
+## Prerequisites
+- [Java](https://www.oracle.com/technetwork/java/index.html)
+- Ballerina Integrator
 - A Text Editor or an IDE
-  > **Tip**: For a better development experience, install one of the following Ballerina IDE plugins: [VSCode](https://marketplace.visualstudio.com/items?itemName=ballerina.ballerina), [IntelliJ IDEA](https://plugins.jetbrains.com/plugin/9520-ballerina)
-- [cURL](https://curl.haxx.se) or any other REST client
-- Download the backend for Health Care System from [here](#).
-- If you did not try the [Exposing Several Services as a Single Service](../../exposing-several-services-as-a-single-service/exposing-several-services-as-a-single-service/) tutorial yet, you can clone the project from GitHub and follow the steps as mentioned below.
+> **Tip**: For a better development experience, install the `Ballerina Integrator` extension in [VS Code](https://code.visualstudio.com/).
 
-### Let's Get Started!
+## Implementation
 
-This tutorial includes the following sections.
+#### 1. Obtaining auth tokens to access Google APIs
 
-- [Implementation](#implementation)
-  - [Obtaining auth tokens to access Google APIs](#obtaining-auth-tokens-to-access-google-apis)
-  - [Adding Gmail configuration](#adding-gmail-configuration)
-  - [Generating mail body](#generating-mail-body)
-  - [Sending email to user](#sending-email-to-user)
-- [Testing the Implementation](#testing-the-implementation)
+> If you want to skip the basics, you can download the git repo and directly move to the `Testing` section by skipping the `Implementation` section.
 
-### Implementation
-
-#### Obtaining auth tokens to access Google APIs
-
-First, we need to obtain AuthTokens to access Google APIs. Follow the steps below to setup a project for our Health Care System, and get the access keys from Google API Console.
+First, we need to obtain AuthTokens to access Google APIs. Follow the steps below to get the access keys from Google API Console.
 
 1. Visit [Google API Console](https://console.developers.google.com), click **Create Project**, and follow the wizard to create a new project.
-2. Go to **Credentials -> OAuth consent screen**, enter a product name to be shown to users, and click **Save**.
-3. On the **Credentials** tab, click **Create credentials** and select **OAuth client ID**.
+2. Go to **Credentials -> OAuth Consent Screen**, enter a product name to be shown to users and click **Save**.
+3. On the **Credentials** tab, click **Create Credentials** and select **OAuth Client ID**.
 4. Select an application type, enter a name for the application, and specify a redirect URI (enter https://developers.google.com/oauthplayground, if you want to use [OAuth 2.0 playground](https://developers.google.com/oauthplayground) to receive the authorization code and obtain the access token and refresh token).
 5. Click **Create**. Your client ID and client secret will appear.
-6. In a separate browser window or tab, visit [OAuth 2.0 playground](https://developers.google.com/oauthplayground). Click on the _OAuth 2.0 configuration_ icon in the top right corner and click on **Use your own OAuth credentials** and provide your _OAuth Client ID_ and _OAuth Client secret_.
+6. In a separate browser window or tab, visit [OAuth 2.0 playground](https://developers.google.com/oauthplayground). Click on the _OAuth 2.0 configuration_ icon in the top right corner and click on **Use your OAuth credentials** and provide your _OAuth Client ID_ and _OAuth Client secret_.
 7. Select the required Gmail API scopes from the list of APIs, and then click **Authorize APIs**.
 8. When you receive your authorization code, click **Exchange authorization code for tokens** to obtain the refresh token and access token.
 9. You can enter the credentials in the HTTP client config when defining the service.
 
-#### Adding Gmail configuration
+#### 2. Creating the project structure
 
-In the Health Care Service we created in previous tutorials, we can add an HTTP client config for Gmail as below.
+Create a project.
+```bash
+ballerina new using-the-gmail-connector
+```
+Navigate to the project directory and add a module using the following command.
+```bash
+ballerina add gmail_client_application
+```
+Project structure is created as indicated below.
+```
+using-the-gmail-connector
+├── Ballerina.toml
+└── src
+    └── gmail_client_application
+        ├── Module.md
+        ├── gmail_client.bal
+        ├── resources
+        └── tests
+            └── resources
+```
 
+#### 3. Add project configurations file
+
+Add the project configuration file by creating a `ballerina.conf` file under the root path of the project structure.
+Update the `ballerina.conf` file with the token configuration required for accessing the Gmail account.
+```
+ACCESS_TOKEN = ""
+CLIENT_ID = ""
+CLIENT_SECRET = ""
+REFRESH_TOKEN = ""
+```
+
+#### 4. Write the integration
+
+You can open the project with VS Code. The integration implementation is written in the `gmail_client.bal` file.
+
+**gmail_client.bal**
 ```ballerina
-// Gmail client endpoint declaration with oAuth2 client configurations.
+import ballerina/config;
+import ballerina/http;
+import ballerina/lang.'array as arrays;
+import ballerina/lang.'string as strings;
+import ballerina/log;
+import wso2/gmail;
+
+// Gmail client endpoint declaration with OAuth2 client configurations.
 gmail:GmailConfiguration gmailConfig = {
-    clientConfig:{
+    oauthClientConfig: {
         accessToken: config:getAsString("ACCESS_TOKEN"),
-         refreshConfig: {
+        refreshConfig: {
             refreshUrl: gmail:REFRESH_URL,
             refreshToken: config:getAsString("REFRESH_TOKEN"),
             clientId: config:getAsString("CLIENT_ID"),
@@ -67,141 +97,112 @@ gmail:GmailConfiguration gmailConfig = {
         }
     }
 };
-```
 
-Then we can create the Gmail client using the above config.
+// Creating a new Gmail client.
+gmail:Client gmailClient = new (gmailConfig);
 
-```ballerina
-gmail:Client gmailClient = new(gmailConfig);
-```
-
-#### Generating mail body
-
-We can use a util function to generate the mail body, based on the response received from the payment endpoint.
-
-```ballerina
-function generateEmail(json jsonPayload) returns string {
-    string email = "<html>";
-    email += "<h1> GRAND OAK COMMUNITY HOSPITAL </h1>";
-    email += "<h3> Patient Name : " + jsonPayload.patient.name.toString() + "</h3>";
-    email += "<p> This is a confimation for your appointment with Dr." + jsonPayload.doctor.name.toString() + "</p>";
-    email += "<p> Assigned time : " + jsonPayload.doctor.availability.toString() + "</p>";
-    email += "<p> Appointment number : " + jsonPayload.appointmentNumber.toString() + "</p>";
-    email += "<p> Appointment date : " + jsonPayload.appointmentDate.toString() + "</p>";
-    email += "<p><b> FEE : " + jsonPayload.fee.toString() + "</b></p>";
-
-    return email;
+// Assume a Gmail account created for obtaining customer reviews.
+// This service would allow the manager of the Gmail account to retrieve the content of
+// unread emails in the Gmail `Inbox` through an HTTP GET request. The customer will be sent a reply.
+@http:ServiceConfig {
+    basePath: "/gmail"
 }
-```
-
-#### Sending email to user
-
-Once the mail body is generated, we can send the email to the user's email address.
-
-```ballerina
-function sendEmail(string email) returns http:Response {
-    string messageBody = email;
-    http:Response response = new;
-
-    string userId = "me";
-    gmail:MessageRequest messageRequest = {
-
-    };
-    messageRequest.recipient = RECIPIENT_EMAIL;
-    messageRequest.sender = SENDER_EMAIL;
-    messageRequest.subject = "Gmail Connector test : Payment Status";
-    messageRequest.messageBody = messageBody;
-    messageRequest.contentType = gmail:TEXT_HTML;
-
-    // Send the message.
-    var sendMessageResponse = gmailClient->sendMessage(userId, messageRequest);
-
-    if (sendMessageResponse is [string, string]) {
-        // If successful, print the message ID and thread ID.
-        [string, string] [messageId, threadId] = sendMessageResponse;
-        io:println("Sent Message ID: " + messageId);
-        io:println("Sent Thread ID: " + threadId);
-
-        json payload = {
-            Message: "The email has been successfully sent",
-            Recipient: messageRequest.recipient
-        };
-        response.setJsonPayload(payload, contentType = "application/json");
-    } else {
-        // If unsuccessful, print the error returned.
-        log:printError("Failed to send the email", err = sendMessageResponse);
-        response.setPayload("Failed to send the Email");
+service gmailService on new http:Listener(9090) {
+    // `reviews` resource allows the gmail account manager to send an automated reply and return
+    // the content of unread emails in the Gmail `Inbox`.
+    @http:ResourceConfig {
+        methods: ["GET"],
+        path: "/reviews"
     }
+    resource function getReviews(http:Caller caller, http:Request request) returns error? {
 
-    return response;
+        // The accounts's email address. Special value **me** can be used to indicate the authenticated user.
+        string userId = "me";
+        string inboxLabel = "INBOX";
+
+        // A search filter is used to to filter out emails inside the "Inbox".
+        gmail:MsgSearchFilter searchFilter = {includeSpamTrash: false, labelIds: [inboxLabel]};
+        // Obtains the list of emails that satisfy the above search filter.
+        gmail:MessageListPage mailList = check gmailClient->listMessages(userId, searchFilter);
+
+        string attachmentPath = "src/gmail_client_application/resources/email.png";
+        string attachmentType = "image/jpeg";
+        string sender = "sender@gmail.com";
+        string response = "";
+        int i = 1;
+
+        // Iterating through each email in the list retrieved.
+        foreach json email in mailList.messages {
+            string messageId = <@untainted><string>email.messageId;
+            string threadId = <@untainted><string>email.threadId;
+
+            // Reads the email using its message id.
+            gmail:Message message = check gmailClient->readMessage(userId, messageId);
+
+            string recipient = <@untainted>message.headerFrom;
+            string subject = <@untainted>message.headerSubject;
+
+            // Creating the message request for the reponse email.
+            gmail:MessageRequest messageRequest = {};
+            messageRequest.subject = subject;
+            messageRequest.recipient = recipient;
+            messageRequest.sender = sender;
+            messageRequest.messageBody = "Thank you for your valuable feedback!";
+            messageRequest.contentType = gmail:TEXT_PLAIN;
+            gmail:AttachmentPath[] attachments = [{attachmentPath: attachmentPath, mimeType: attachmentType}];
+            messageRequest.attachmentPaths = attachments;
+
+            // Sending the response mail.
+            var sendMessageResponse = gmailClient->sendMessage(userId, messageRequest, threadId);
+            if (sendMessageResponse is [string, string]) {
+                log:printInfo("Email sent successfully to " + recipient);
+            } else {
+                log:printError("Unable to send the email to " + recipient);
+            }
+
+            // Retrieve the body of the email.
+            json jsonMessage = check json.constructFrom(message);
+            json jsonMessageBody = check jsonMessage.plainTextBodyPart.body;
+            byte[] | error body = arrays:fromBase64(jsonMessageBody.toString());
+            if (body is byte[]) {
+                string finalString = check strings:fromBytes(body);
+                // Append the body to the HTTP response.
+                response = response + "Email " + i.toString() + ": " + finalString + "\n\n";
+            }
+            i = i + 1;
+
+            // Remove the email from Gmail `Inbox` by removing the tag. The email would move to `All Mails` section.
+            gmail:Message modifiedMessage = check gmailClient->modifyMessage(userId, messageId, [], [inboxLabel]);
+
+            // Control the amount of emails processed in a single HTTP client request.
+            if (i > 5) {
+                // Send the response back to the caller.
+                var result = caller->respond(<@untainted>response);
+                if (result is error) {
+                    log:printError(result.detail()?.message.toString());
+                }
+                return;
+            }
+        }
+    }
 }
 ```
 
-### Testing the Implementation
+## Testing
 
-Let's start the service by navigating to the folder *src/tutorial/health_care_service.bal* file is and executing the following command.
+Let’s build the module. Navigate to the project directory and execute the following command.
 
-```
-$ ballerina run health_care_service.bal
-```
-
-The 'healthCareService' service will start on port 9092. Now we can send an HTTP request to this service.
-
-Let's create a file called _request.json_ and add the following content.
-
-```json
-{
-  "patient": {
-    "name": "John Doe",
-    "dob": "1940-03-19",
-    "ssn": "234-23-525",
-    "address": "California",
-    "phone": "8770586755",
-    "email": "johndoe@gmail.com"
-  },
-  "doctor": "thomas collins",
-  "hospital": "grand oak community hospital",
-  "appointment_date": "2025-04-02"
-}
+```bash
+$ ballerina build gmail_client_application
 ```
 
-Navigate to _using-the-gmail-connector/src/tutorial_ and send the request message to the service using cURL.
+The build command creates an executable .jar file. Now run the .jar file created in the above step.
 
+```bash
+$ java -jar target/bin/gmail_client_application.jar
 ```
-$ curl -v -X POST --data @request.json http://localhost:9092/hospitalMgtService/surgery/reserve --header "Content-Type:application/json"
+Now we can see that the service has started on port 9090. Let’s invoke this service by executing the following cURL command.
 ```
-
-A request is made to the _healthCareService_ which returns a JSON payload with the confirmation details such as the appointment number and fees.
-
-```json
-{
-  "appointmentNumber": 1,
-  "doctor": {
-    "name": "thomas collins",
-    "hospital": "grand oak community hospital",
-    "category": "surgery",
-    "availability": "9.00 a.m - 11.00 a.m",
-    "fee": 7000
-  },
-  "patient": {
-    "name": "John Doe",
-    "dob": "1940-03-19",
-    "ssn": "234-23-525",
-    "address": "California",
-    "phone": "8770586755",
-    "email": "johndoe@gmail.com"
-  },
-  "fee": 7000,
-  "confirmed": false,
-  "appointmentDate": "2025-04-02"
-}
+curl -X GET http://localhost:9090/gmail/reviews
 ```
-
-This payload is used to extract necessary details for the email message using the _generateEmail_ function. With the necessary _MessageRequest_ details specified, the email can be sent to its intended recipient and a response is sent back to the caller confirming the receipt of the email.
-
-```json
-{
-  "Message": "The email has been successfully sent",
-  "Recipient": "someone@gmail.com"
-}
-```
+You will see the list of email body contents during a successful invocation.

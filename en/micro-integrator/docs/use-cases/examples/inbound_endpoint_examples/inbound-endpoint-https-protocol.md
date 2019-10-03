@@ -13,6 +13,7 @@ for mediation.The response also behaves in the same way.
 Following are the integration artifacts that we can used to implement this scenario.
 
 ```xml tab='Inbound Endpoint'
+<?xml version="1.0" encoding="UTF-8"?>
 <inboundEndpoint name="HttpsListenerEP"
                  protocol="https"
                  suspend="false" sequence="TestIn" onError="fault" >
@@ -38,6 +39,7 @@ Following are the integration artifacts that we can used to implement this scena
 ```
 
 ```xml tab='Sequence 1'
+<?xml version="1.0" encoding="UTF-8"?>
 <sequence xmlns="http://ws.apache.org/ns/synapse" name="TestIn">
     <send receive="reciveSeq">
         <endpoint>
@@ -48,6 +50,7 @@ Following are the integration artifacts that we can used to implement this scena
 ```
 
 ```xml tab='Sequence 2'
+<?xml version="1.0" encoding="UTF-8"?>
 <sequence xmlns="http://ws.apache.org/ns/synapse" name="reciveSeq">
     <send/>
 </sequence>
@@ -58,26 +61,17 @@ Following are the integration artifacts that we can used to implement this scena
 Create the artifacts:
 
 1. Set up WSO2 Integration Studio.
-2. Create an ESB Config project
+2. Create an ESB Solution project
 3. Create the following artifacts: Inbound endpoint, Sequence.
 4. Deploy the artifacts in your Micro Integrator.
 
-Configure the ActiveMQ broker.
-
 Set up the back-end service.
 
-Invoke the proxy service:
+Invoke the inbound endpoint:
 
-Analyze the output debug messages for the actions in the d umb client
+Analyze the output debug messages for the actions in the dumb client
 mode.
 
 You will see that the Micro Integrator receives a message when the Micro Integrator Inbound is set
 as the ultimate receiver. You will also see the response from the back
 end in the client.
-
-Analyze the output debug messages for the actions in the Dumb Client
-Mode.
-
-You will see the ESB receiving a message for which the ESB Inbound is
-set as the ultimate receiver. You will also see the response from the
-back end in the Client.
