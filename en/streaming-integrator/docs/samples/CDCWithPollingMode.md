@@ -8,12 +8,12 @@ By changing the database type, following databases wil also be supported.
 * MS SQL Server
 * Postgresql
 
-Pre-requisites:
+## Pre-requisites:
 1) Ensure that MySQL is installed on your computer.
-2) Add the MySQL JDBC driver into {WSO2_SI_HOME}/lib as follows:
-2.1) Download the JDBC driver from: https://dev.mysql.com/get/Downloads/Connector-J/mysql-connector-java-5.1.45.tar.gz
-2.2) Unzip the archive.
-2.3) Copy mysql-connector-java-5.1.45-bin.jar to {WSO2_SI_Home}/lib directory.
+2) Add the MySQL JDBC driver into {WSO2_SI_HOME}/lib as follows:\
+    1) Download the JDBC driver from: https://dev.mysql.com/get/Downloads/Connector-J/mysql-connector-java-5.1.45.tar.gz\
+    2) Unzip the archive.\
+    3) Copy mysql-connector-java-5.1.45-bin.jar to {WSO2_SI_Home}/lib directory.
 3) Create a database "production".
 >> CREATE SCHEMA production;
 4) Change the database.
@@ -22,16 +22,16 @@ Pre-requisites:
 >> CREATE TABLE SweetProductionTable (last_update TIMESTAMP, name VARCHAR(20),amount double(10,2));
 6) Save this sample.
 
-Optional pre-requisites:
+## Optional pre-requisites:
 1) Enable state persistence in siddhi apps.
 This will enable the cdc polling mode capturing changes from the last point it stopped.
-If not enabled, polling mode will only capture changes after start of the app.
-1.1) Change state.persistence enabled=true in deployment.yaml file.
+If not enabled, polling mode will only capture changes after start of the app.\
+    1) Change state.persistence enabled=true in deployment.yaml file.
 
 ## Executing the Sample:
 1) Start the Siddhi application by clicking on 'Run'.
 2) If the Siddhi application starts successfully, the following message is shown on the console
-* CDCWithPollingMode.siddhi - Started Successfully!
+    * CDCWithPollingMode.siddhi - Started Successfully!
 
 ## Note:
 If you want to edit this application while it's running, stop the application, make your edits and save the application, and then start it again.
@@ -40,11 +40,14 @@ If you want to edit this application while it's running, stop the application, m
 Insert data to the created table.
 >> insert into SweetProductionTable(name,amount) values('chocolate',100.0);
 Observe the inserted data is logged on the console.
-## CDCWithPollingMode : logStream : Event{timestamp=1543830365138, data=[chocolate, 100.0], isExpired=false}
 
-## Optional: Update existing row and obverse the change data events
+CDCWithPollingMode : logStream : Event{timestamp=1543830365138, data=[chocolate, 100.0], isExpired=false}
 
-## Note: For updates, the previous values of the row are not returned with the event. Use listening mode to obtain such details.
+## Optional:
+Update existing row and obverse the change data events
+
+## Note:
+For updates, the previous values of the row are not returned with the event. Use listening mode to obtain such details.
 Polling mode is can also be used with Oracle, MS-SQL server, Postgres, H2.
 
 

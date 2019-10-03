@@ -8,6 +8,71 @@ The HTTP and HTTPS passthrough transports are enabled by defualt in the Micro In
 
 See the [complete list of HTTP/HTTPS parameters](../../../references/config-catalog/#http-transport).
 
+### Number of HTTP Listeners
+
+The default HTTP transport (PassThrough transport) of WSO2 Micro Integrator has 4 HTTP/HTTPS listneres configured. This includes 2 `         PassThroughHttpListener        ` threads and 2 `         PassThroughHttpSSLListener        ` threads.
+
+You can configure the number of listeners for the HTTP transport in the deployment.toml file:
+
+```toml
+[[transport.http]]
+io_thread_count=2
+```
+You are able to define any number of listeners (by updating the `io_thread_count` value) as there is no maximum limit defined in the code level.
+
+!!! Note
+    The number of listener threads is double the value of the `io_threads_per_reactor` property because the same number of `PassThroughHttpListener` and `PassThroughHttpSSLListener` threads are created. For example, if you defined the value for the `io_threads_per_reactor` property as 5, you have 5 `PassThroughHttpListener` threads and 5 `PassThroughHttpSSLListener` threads. Therefore, the total number of listeners are 10.
+
+### Connection Throttling
+
+With the default HTTP transport (PassThrough transport) you can enable connection throttling to restrict the number of simultaneous open connections. 
+
+To enable connection throttling, update the following property in the deployment.toml file:
+
+```toml
+[[transport.http]]
+max_open_connections = 2
+```
+
+This will restrict simultaneous open incoming connections to 2. To disable throttling, delete the `max_open_connections` setting or set it to -1.
+
+!!! Info
+    Connection throttling is never exact. For example, setting this property to 2 will result in roughly two simultaneous open connections at any given time.
+
+### Verifying certificate revocation
+
+The default HTTPS transport listener (Secured Passthrough) and transport sender can verify with the certificate authority whether a certificate is still trusted before it completes an SSL connection. If the certificate authority has revoked the certificate, a connection will not be completed. 
+
+When this feature is enabled, the transport listener verifies client
+certificates when a client tries to make an HTTPS connection with the
+Micro Integrator. The transport sender verifies server
+certificates when the Micro Integrator tries to make an HTTPS
+connection with a backend server. 
+
+When this feature is enabled, the Micro Integrator attempts to
+use the Online Certificate Status Protocol (OCSP) to verify with the
+certificate authority at the handshake phase of the SSL protocol. If the
+OCSP is not supported by the certificate authority, the Micro Integrator uses Certified Revocation Lists (CRL) instead. The verification
+process checks all the certificates in a certificate chain.
+
+To enable this feature for the HTTP passthrough, add the following parameters for the HTTP transport receiver and sender in the deployment.toml file:
+
+```toml tab='Passthrough Listener'
+[[transport.http]]
+listener.CertificateRevocationVerifier=""
+listener.CacheSize=1024
+listenerCacheDelay=1000
+
+``` 
+
+```toml tab='Passthrough Sender'
+[[transport.http]]
+sender.CertificateRevocationVerifier=""
+sender.CacheSize=1024
+sender.CacheDelay=1000
+
+``` 
+
 ## Configuring the VFS transport
 
 The VFS transport is enabled by defualt in the Micro Integrator. The VFS transport supports the **SFTP protocol** with **Secure Sockets Layer (SSL)**. The configuration is identical to other protocols with the only difference being the URL prefixes and parameters. 
@@ -16,11 +81,13 @@ For more information, see [VFS URL parameters](../../references/synapse-properti
 
 See the [complete list of VFS parameters](../../../references/config-catalog/#vfs-transport).
 
+<!--
 ## Connecting to the Local transport
 
 The local transport is enabled by defualt in the Micro Integrator. 
 
 See the [complete list of local parameters](../../../references/config-catalog/#local-transport).
+-->
 
 ## Configuring the TCP transport
 
@@ -51,6 +118,8 @@ sender.enable = false
     </li>
 </ul>
 
+<!--
+
 ## Configuring the HL7 transport
 
 To enable the HL7 transport listener and sender, set the following parameters to `true` in the deployment.toml file (stored in the `MI_HOME/conf` directory).
@@ -74,6 +143,7 @@ class="org.wso2.carbon.business.messaging.hl7.message.HL7MessageBuilder"
 content_type = "application/edi-hl7"
 class="org.wso2.carbon.business.messaging.hl7.message.HL7MessageFormatter"
 ```
+-->
 
 ## Configuring the FIX transport
 

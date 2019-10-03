@@ -1,86 +1,112 @@
 
 ## Purpose:
-	This application demonstrates how to configure WSO2 Streaming Integrator Tooling to perform binary classification using a streaming Perceptron.
+This application demonstrates how to configure WSO2 Streaming Integrator Tooling to perform binary classification using a streaming Perceptron.
 
 ## Prerequisites:
-	1) Save this sample.
-	2) If there is no syntax error, the following message is shown on the console:
-	       * - Siddhi App streaming-perceptron-sample successfully deployed.
+1) Save this sample.
+2) If there is no syntax error, the following message is shown on the console.
+	```
+	* Siddhi App streaming-perceptron-sample successfully deployed.
+	```
 
 ## Executing the Sample:
-	1) Start the Siddhi application by clicking on 'Run'.
-	2) If the Siddhi application starts successfully, the following messages are shown on the console:
-	  * streaming-perceptron-sample.siddhi - Started Successfully!
+1) Start the Siddhi application by clicking on 'Run'.
+2) If the Siddhi application starts successfully, the following messages are shown on the console.
+	```
+	* streaming-perceptron-sample.siddhi - Started Successfully!
+	```
 
 ## Testing the Sample:
 
-## Note: The Streaming Perceptron for streaming machine learning needs to be trained prior to perform prediction.
+**Note: The Streaming Perceptron for streaming machine learning needs to be trained prior to perform prediction.**
 
-1) Training phase
+#### Training phase
 Send events through one or more of the following methods.
 
-* You may send events to ProductionTrainStream, via event simulator
-a) Open the event simulator by clicking on the second icon or pressing Ctrl+Shift+I.
-b) In the Single Simulation tab of the panel, specify the values as follows:
-* Siddhi App Name  : streaming-perceptron-sample
-* Stream Name      : ProductionTrainStream
-c) In the name and amount fields, enter the following and then click Send to send the event.
-## density: 50.4
-## emperature: 30.03
-qualityCheck_pass: true
+##### Send events to ProductionTrainStream, via event simulator.
+1) Open the event simulator by clicking on the second icon or pressing Ctrl+Shift+I.
+2) In the Single Simulation tab of the panel, specify the values as follows:
+	* Siddhi App Name: streaming-perceptron-sample
+	* Stream Name: ProductionTrainStream
+3) In the name and amount fields, enter the following and then click Send to send the event.
+	```
+	density: 50.4
+	emperature: 30.03
+	```
 
-d) Send some more events.
+4) Send some more events.
 
-* Send events to the simulator http endpoint through the curl command:
-a) Open a new terminal and issue the following command:
-* curl -X POST -d '{"streamName": "ProductionTrainStream", "siddhiAppName": "streaming-perceptron-sample","data": [50.4, 30.03, true]}' http://localhost:9390/simulation/single -H 'content-type: text/plain'
-b) If there is no error, the following messages are shown on the terminal:
-*  {"status":"OK","message":"Single Event simulation started successfully"}
+##### Send events to the simulator http endpoint through the curl command:
+1) Open a new terminal and issue the following command:
+```bash
+curl -X POST -d '{"streamName": "ProductionTrainStream", "siddhiAppName": "streaming-perceptron-sample","data": [50.4, 30.03, true]}' http://localhost:9390/simulation/single -H 'content-type: text/plain'
+```
+2) If there is no error, the following messages are shown on the terminal:
+```json
+{"status":"OK","message":"Single Event simulation started successfully"}
+```
 
-* Publish events with Postman:
-a) Install 'Postman' application from Chrome web store.
-b) Launch the application.
-c) Make a 'Post' request to the 'http://localhost:9390/simulation/single' endpoint. Set the Content-Type to 'text/plain' and set the request body in text as follows:
+##### Publish events with Postman:
+1) Install 'Postman' application from Chrome web store.
+2) Launch the application.
+3) Make a 'Post' request to the 'http://localhost:9390/simulation/single' endpoint. Set the Content-Type to 'text/plain' and set the request body in text as follows:
+	```json
 	{"streamName": "ProductionTrainStream", "siddhiAppName": "streaming-perceptron-sample","data": [50.4, 30.03, true]}
-d) Click 'send'. If there is no error, the following messages are shown on the console:
-*  "status": "OK",
-*  "message": "Single Event simulation started successfully"
-2) Testing phase
+	```
+4) Click 'send'. If there is no error, the following messages are shown on the console:
+	```
+	"status": "OK",
+	"message": "Single Event simulation started successfully"
+	```
+
+#### Testing phase
 Send events through one or more of the following methods.
 
-* You may send events to ProductionInputStream, via event simulator
-a) Open the event simulator by clicking on the second icon or pressing Ctrl+Shift+I.
-b) In the Single Simulation tab of the panel, specify the values as follows:
-* Siddhi App Name  : streaming-perceptron-sample
-* Stream Name      : ProductionInputStream
-c) In the name and amount fields, enter the following and then click Send to send the event.
-## density: 30.4
-## emperature: 20.5
+##### Send events to ProductionInputStream, via event simulator
+1) Open the event simulator by clicking on the second icon or pressing Ctrl+Shift+I.
+2) In the Single Simulation tab of the panel, specify the values as follows:
+	* Siddhi App Name: streaming-perceptron-sample
+	* Stream Name: ProductionInputStream
+3) In the name and amount fields, enter the following and then click Send to send the event.
+	```
+	density: 30.4
+	emperature: 20.5
+	```
+4) Send some more events.
 
-d) Send some more events.
+##### Send events to the simulator http endpoint through the curl command:
+1) Open a new terminal and issue the following command:
+	```bash
+	curl -X POST -d '{"streamName": "ProductionInputStream", "siddhiAppName": "streaming-perceptron-sample","data": [30.4, 20.5]}' http://localhost:9390/simulation/single -H 'content-type: text/plain'
+	```
+2) If there is no error, the following messages are shown on the terminal:
+	```json
+	{"status":"OK","message":"Single Event simulation started successfully"}
+	```
 
-* Send events to the simulator http endpoint through the curl command:
-a) Open a new terminal and issue the following command:
-* curl -X POST -d '{"streamName": "ProductionInputStream", "siddhiAppName": "streaming-perceptron-sample","data": [30.4, 20.5]}' http://localhost:9390/simulation/single -H 'content-type: text/plain'
-b) If there is no error, the following messages are shown on the terminal:
-*  {"status":"OK","message":"Single Event simulation started successfully"}
-
-* Publish events with Postman:
-a) Install 'Postman' application from Chrome web store.
-b) Launch the application.
-c) Make a 'Post' request to the 'http://localhost:9390/simulation/single' endpoint. Set the Content-Type to 'text/plain' and set the request body in text as follows:
+##### Publish events with Postman:
+1) Install 'Postman' application from Chrome web store.
+2) Launch the application.
+3) Make a 'Post' request to the 'http://localhost:9390/simulation/single' endpoint. Set the Content-Type to 'text/plain' and set the request body in text as follows:
+	```json
 	{"streamName": "ProductionInputStream", "siddhiAppName": "streaming-perceptron-sample","data": [30.4, 20.5]}
-d) Click 'send'. If there is no error, the following messages are shown on the console:
-*  "status": "OK",
-*  "message": "Single Event simulation started successfully"
+	```
+4) Click 'send'. If there is no error, the following messages are shown on the console:
+	```
+	"status": "OK",
+	"message": "Single Event simulation started successfully"
+	```
 
 ## Viewing the Results:
-## See the output on the terminal:
+See the output on the terminal:
+```
 INFO {io.siddhi.core.query.processor.stream.LogStreamProcessor} - streaming-perceptron-sample: LOGGER, StreamEvent{ timestamp=1513596699142, beforeWindowData=null, onAfterWindowData=null, outputData=[34.0, 12.0, false, 0.0], type=CURRENT, next=null}
+```
 
 ```sql
 @App:name("streaming-perceptron-sample")
 @App:description('Train a streaming Perceptron model to predict whether an item passes quality check.')
+
 
 define stream ProductionTrainStream (density double, temperature double, qualityCheck_pass bool );
 

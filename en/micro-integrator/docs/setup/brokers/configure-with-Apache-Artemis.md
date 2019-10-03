@@ -5,7 +5,7 @@ This section describes how to configure WSO2 Micro Integrator to connect with Ap
 Follow the instructions below to set up and configure.
 
 1.  Download and setup [Apache Artemis](https://activemq.apache.org/artemis/).
-2.  Download and install WSO2 Micro Integrators.
+2.  Download and install WSO2 Micro Integrator.
 3.  If you want the Micro Integrator to receive messages from an Artemis instance, or to send messages to an Artemis instance, you need to update the deployment.toml file with the relevant connection parameters.
 
     - Add the following configurations to enable the JMS listener with ActiveMQ connection parameters.
@@ -29,14 +29,14 @@ Follow the instructions below to set up and configure.
         parameter.connection_factory_name = "TopicConnectionFactory"
         parameter.connection_factory_type = "topic"
         ```
-5.  Remove any existing Apache ActiveMQ client JAR files from the `MI_HOME/dropins/` and `MI_HOME/lib/` directories.  
-6.  Download the [artemis-jms-client-all-2.6.1.jar](attachments/119130330/119130331.jar) file and copy it to the `MI_HOME/lib/` directory.  
-7.  Remove the below line from the `MI_HOME/conf/etc/launch.ini` file.  
+4.  Remove any existing Apache ActiveMQ client JAR files from the `MI_HOME/dropins/` and `MI_HOME/lib/` directories.  
+5.  Download the [artemis-jms-client-all-2.6.1.jar](attachments/119130330/119130331.jar) file and copy it to the `MI_HOME/lib/` directory.  
+6.  Remove the below line from the `MI_HOME/conf/etc/launch.ini` file.  
 
     ```text
     javax.jms,\
     ```
-8.  Start Apache Artemis. For instructions, see the [Apache Artemis Documentation](https://activemq.apache.org/artemis/docs.html) .
-9.  Start the Micro Integrator.
+7.  Start Apache Artemis. For instructions, see the [Apache Artemis Documentation](https://activemq.apache.org/artemis/docs.html).
+8.  Start the Micro Integrator.
 
 Now you have configured instances of Apache Artemis and WSO2 Micro Integrator.

@@ -1,37 +1,47 @@
-purpose
-This application demonstrates how to configure WSO2 Streaming Integrator to receive events to the SweetProductionStream via HTTP transport in XML custom format and log the  events in LowProductionAlertStream to the output console.
+## Purpose
+This application demonstrates how to configure WSO2 Streaming Integrator to receive events to the `SweetProductionStream` via HTTP transport in XML custom format and log the  events in `LowProductionAlertStream` to the output console.
 
 ## Prerequisites:
-1) Save this sample
+Save this sample.
 
 ## Executing the Sample:
-
 1) Start the Siddhi application by clicking on 'Run'.
 2) If the Siddhi application starts successfully, the following messages would be shown on the console.
-* Source Listener has created for url http://localhost:8006/productionStream
-* ReceiveHTTPInXMLFormatWithCustomMapping.siddhi - Started Successfully!
+	```
+	* Source Listener has created for url http://localhost:8006/productionStream
+	* ReceiveHTTPInXMLFormatWithCustomMapping.siddhi - Started Successfully!
+	```
 
 ## Testing the Sample:
-Option1: Publish events with http sample client:
-1) Navigate to {WSO2SIHome}/samples/sample-clients/http-client and run "ant" command as follows:
-Run "ant" command in the terminal  as follows:
+##### Option 1: Publish events with http sample client:
+Navigate to `{WSO2SIHome}/samples/sample-clients/http-client` and run `ant` command as follows:
+
+Run `ant` command in the terminal  as follows:
+```bash
 ant -Dtype=xml -DcustomMapping=true
-If you want to publish custom number of events, you need to run "ant" command as follows
+```
+If you want to publish custom number of events, you need to run "ant" command as follows:
+```bash
 ant -Dtype=xml -DcustomMapping=true -DnoOfEventsToSend=5
+```
 
-Option2: Publish events with curl command:
+##### Option 2: Publish events with curl command:
+```bash
 curl -X POST -d '<events><item><id>sugar</id><amount>300</amount></item></events>' http://localhost:8006/productionStream --header "Content-Type:application/xml"
+```
 
-Option3: Publish events with Postman:
+##### Option 3: Publish events with Postman:
 a) Install 'Postman' application from Chrome web store.
 b) Launch the application.
-c) Make a 'Post' request to 'http://localhost:8006/productionStream' endpoint. Set the Content-Type to 'application/xml' and set the request body in xml format as follows,
+c) Make a 'Post' request to 'http://localhost:8006/productionStream' endpoint. Set the Content-Type to 'application/xml' and set the request body in xml format as follows.
+```xml
 <events>
-	            <item>
-		            <id>sugar</id>
-		            <amount>200</amount>
-	            </item>
+	<item>
+		<id>sugar</id>
+		<amount>200</amount>
+	</item>
 </events>
+```
 
 ## Notes:
 If you edit this application while it's running, stop the application -> Save -> Start.
@@ -42,8 +52,9 @@ If the message "Source Listener has created for url http://localhost:8006/produc
 
 ## Viewing the Results:
 See the output. Following message would be shown on the console.
-## ReceiveHTTPinXMLFormatWithCustomMapping : LowProducitonAlertStream : Event{timestamp=1511939868628, data=[sugar, 300.0], isExpired=false}
-
+```
+ReceiveHTTPinXMLFormatWithCustomMapping : LowProducitonAlertStream : Event{timestamp=1511939868628, data=[sugar, 300.0], isExpired=false}
+```
 
 ```sql
 @App:name("ReceiveHTTPinXMLFormatWithCustomMapping")

@@ -63,6 +63,10 @@ Add the following parameters to the deployment.toml file (stored in the `MI_HOME
 
 ```toml
 [[transport.rabbitmq.sender]]
-<parameter name="CachedRabbitMQConnectionFactory" locked="false">
+name = "CachedRabbitMQConnectionFactory"
+parameter.hostname = "localhost"
+parameter.port = 5672
+parameter.username = "guest"
+parameter.password = "guest"
 ```
 When configuring the proxy service, be sure to add the following connection factory parameter in the address URI: `rabbitmq.connection.factory=CachedRabbitMQConnectionFactory`.
