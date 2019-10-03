@@ -88,6 +88,7 @@ To create a Siddhi application with the source configuration defined inline, fol
     ```
     
 8. Complete the Siddhi application by defining an output stream with a connected sink configuration.
+
     !!!tip
         In the example used, you can define the `PublishSalesTotals` stream that you already specified as the output stream in the query, and connect a `log` sink to it as follows. Publishing the output is explained in detail in the [Publishing Data guide](publishing-data.md).
         
@@ -126,6 +127,7 @@ follow the procedure below.
 1. Open the `<SI_HOME>/conf/server/deployment.yaml` file.
 
 2. Add a section named `siddi`, and then add a subsection named `refs:` as shown below.
+
     ```    
     siddhi:  
      refs:
@@ -216,6 +218,7 @@ schema before it processes the message. To understand how messages are consumed 
     ```
     
 3. Save the Siddhi application. If you save the Siddhi application that was created using the example configurations, the completed Siddhi application is as follows.
+
     ```
     @App:name("SalesTotalsApp")
     @App:description("Description of the plan")
@@ -264,26 +267,28 @@ schema before it processes the message. To understand how messages are consumed 
 2. In the @map annotation within the source configuration, add the `@attributes` annotation with mappings for different attributes. This can be done in two ways as shown below.
 
     - Defining attributes as keys and mapping content as values in the following format.
-        ```
-        @source(type='<SOURCE_TYPE>', <PARAMETER1_NAME>='<PARAMETER1_VALUE>', @map(type='<MAP_TYPE>', @attributes( attributeN='mapping_N', attribute1='mapping_1')))
-        define stream <Stream_Name>(attribute1_name attribute1_type, attribute2_name attribute2_type, ...);
-        ``` 
+
+       ```
+       @source(type='<SOURCE_TYPE>', <PARAMETER1_NAME>='<PARAMETER1_VALUE>', @map(type='<MAP_TYPE>', @attributes( attributeN='mapping_N', attribute1='mapping_1')))
+       define stream <Stream_Name>(attribute1_name attribute1_type, attribute2_name attribute2_type, ...);
+       ```
         
        e.g., In the Siddhi application used as an example in the previous section, assume that when receiving events, the `transNo` attribute is received as `transaction` and the `salesValue` attribute is received as `sales`.  The mapping type is JSON. therefore, you can  add the mappings as JSONPath expressions.
-       
-          |**Stream Attribute Name**|**JSON Event Attribute Name**|**JSONPath Expression**|
-          |----------------|----------------|----------------|
-          |`transNo`|`transaction`|`$.transaction`|
-          |`salesValue`| `sales` | `$.sales`|
+
+       | **Stream Attribute Name** | **JSON Event Attribute Name** | **JSONPath Expression** |
+       |---------------------------|-------------------------------|-------------------------|
+       | `transNo`                 | `transaction`                 | `$.transaction`         |
+       | `salesValue`              | `sales`                       | `$.sales`               |
        
          The mapping can be defined as follows.
       
-         ```
-         @source(type='http', receiver.url='http://localhost:5005/SalesTotalsEP', @map(type='json', @attributes(transNo = '$.transaction', salesValue = '$.sales')))
-         define stream ConsumerSalesTotalsStream(transNo int, product string, price int, quantity int, salesValue long);
-         ```
+       ```
+       @source(type='http', receiver.url='http://localhost:5005/SalesTotalsEP', @map(type='json', @attributes(transNo = '$.transaction', salesValue = '$.sales')))
+       define stream ConsumerSalesTotalsStream(transNo int, product string, price int, quantity int, salesValue long);
+       ```
         
-    - Defining the mapping content of all attributes in the same order as how the attributes are defined in stream definition.        
+    - Defining the mapping content of all attributes in the same order as how the attributes are defined in stream definition.
+
         ```
         @source(type='<SOURCE_TYPE>', <PARAMETER1_NAME>='<PARAMETER1_VALUE>', @map(type='<MAP_TYPE>', @attributes( 'mapping_1', 'mapping_N')))
         define stream <Stream_Name>(attribute1_name attribute1_type, attributeN_name attributeN_type, ...);
@@ -291,8 +296,8 @@ schema before it processes the message. To understand how messages are consumed 
         
     e.g., If you consider the same example, mapping can be defined as follows.
               
-        ```
-        @source(type='http', receiver.url='http://localhost:5005/SalesTotalsEP', @map(type='json', @attributes(transNo = '$.transaction', product = product, quantity = quantity, salesValue = '$.sales')))
-        define stream ConsumerSalesTotalsStream(transNo int, product string, price int, quantity int, salesValue long);
-        ```
+    ```
+    @source(type='http', receiver.url='http://localhost:5005/SalesTotalsEP', @map(type='json', @attributes(transNo = '$.transaction', product = product, quantity = quantity, salesValue = '$.sales')))
+    define stream ConsumerSalesTotalsStream(transNo int, product string, price int, quantity int, salesValue long);
+    ```
    

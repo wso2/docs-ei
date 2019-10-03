@@ -206,7 +206,7 @@ request.send();
 var distributionDropdown =  document.getElementById('distribution-select-dropdown');
 
 const distributionURLList = [ 'ballerina-integrator','micro-integrator','streaming-integrator' ];
-const introductionURL = ['/overview/introduction','/getting-started/introduction','/overview/overview'];
+const introductionURL = ['/getting-started/introduction','/overview/introduction','/overview/overview'];
 
 if (distributionDropdown){
     let count = 0;
@@ -223,12 +223,6 @@ if (distributionDropdown){
         distributionDropdown.insertBefore(liElem, distributionDropdown.lastChild);
     });
 }
-
-/*
- * Initialize highlightjs
- */
-hljs.initHighlightingOnLoad();
-
 
 /*
  * Register ballerina language for highlightJS
@@ -308,10 +302,15 @@ if (typeof hljs === 'object') {
         };
     });
 
-
 /*
- * Handle TOC toggle
- */
+* Initialize highlightjs
+*/
+hljs.initHighlightingOnLoad();
+
+
+    /*
+     * Handle TOC toggle
+     */
 var tocBtn = document.querySelector('.md-sidebar.md-sidebar--secondary #tocToggleBtn');
 var tocClass = document.getElementsByTagName('main')[0];
 

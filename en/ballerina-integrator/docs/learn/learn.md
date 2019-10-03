@@ -1,4 +1,0 @@
----
-title: Ballerina Integration Examples
----
-

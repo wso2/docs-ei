@@ -15,7 +15,8 @@ a scenario where you receive sales records generated from multiple locations as 
     In this scenario, you need to enrich the sales information you receive based on the records in a database table. You 
     can download and install MySQL, and create this table before you carry out the procedure in this subsection.<br/>
     For detailed instructions to create a database table, expand the following section. <br/>
-    ???tip"Create Table"
+
+    ???tip "Create Table"
         1. Download and install the [MySQL Server](https://dev.mysql.com/downloads/).
         2. Download the [MySQL JDBC driver](https://dev.mysql.com/downloads/connector/j/).
         3. Unzip the downloaded MySQL driver zipped archive, and copy the MySQL JDBC driver JAR (`mysql-connector-java-x.x.xx-bin.jar`) into the `<SI_HOME>/lib` directory.
@@ -42,6 +43,7 @@ a scenario where you receive sales records generated from multiple locations as 
                   validationTimeout: 30000
                   isAutoCommit: false
           ```
+
         7. To create a database named `UserDataDB` with a table named `UserTable` issue the following commands from the terminal:
            - To create the `UserDataDB` table:
              ```
@@ -71,27 +73,31 @@ a scenario where you receive sales records generated from multiple locations as 
         
 3. Then define the Siddhi query to join the stream and the table, and handle the result as required.
     1. Add the `from` clause as follows with the `join` key word to join the table and the stream.
-       ```
-       from TransactionStream as t join UserTable as u on t.userId == u.userId       
-       ```
-       !!!info
-           Note the following about the `from` clause:
-           - In this example, the input data is taken from both a stream and a table. You need to assign a unique reference
-            for each of them to allow the query to differentiate between the common attributes. In this example, `TransactionStream` 
+
+        ```
+        from TransactionStream as t join UserTable as u on t.userId == u.userId
+        ```
+
+        !!!info
+            Note the following about the `from` clause:
+            - In this example, the input data is taken from both a stream and a table. You need to assign a unique reference
+            for each of them to allow the query to differentiate between the common attributes. In this example, `TransactionStream`
             stream is referred to as `t`, and the `UserTable` table is referred to as `u`.
-           - The `join ` keyword joins the stream and the table together while specifying the unique references.
-           - The condition for the stream and the table to be joined is `t.userId == u.userId `, which means that for an 
-           event to be taken from the `TransactionStream` for the join, one or more events that have the same value for 
-           the `userId` must exist in the `UserTable` table and vice versa.
+            - The `join ` keyword joins the stream and the table together while specifying the unique references.
+            - The condition for the stream and the table to be joined is `t.userId == u.userId `, which means that for an
+            event to be taken from the `TransactionStream` for the join, one or more events that have the same value for
+            the `userId` must exist in the `UserTable` table and vice versa.
                   
     2. To specify how the value for each attribute in the output stream is derived, add a `select` clause as follows.
-       ```
+
+        ```
         select t.userId, str:concat( u.firstName, " ", u.lastName) as userName, transactionAmount, location
-       ```
-       !!!info
-           Note the following in the `select` statement:
-           - The `userId` attribute name is common to both the stream and the table. Therefore, you need to specify from where this attribute needs gto be taken. Here, you can also specify `u.userId` instead of `t.userId`.
-           - You are specifying the output generated to include an attribute named `userName`. The value for that is derived
+        ```
+
+        !!!info
+            Note the following in the `select` statement:
+            - The `userId` attribute name is common to both the stream and the table. Therefore, you need to specify from where this attribute needs gto be taken. Here, you can also specify `u.userId` instead of `t.userId`.
+            - You are specifying the output generated to include an attribute named `userName`. The value for that is derived
             by concatenating the values of two attributes in the `UserTable` table (i.e., `firstName` and `lastName` attributes)
              by applying the `str:concat()` function. Similarly, you can apply any of the range of Siddhi functions available to further enrich the joined output. For more information, see [Siddhi Extensions](https://siddhi.io/en/v4.x/docs/extensions/#extensions-released-under-apache-20-license).
              
@@ -99,6 +105,7 @@ a scenario where you receive sales records generated from multiple locations as 
        `insert into EnrichedTrasanctionStream;`
        
 The completed Siddhi application is as follows.
+
 ```sql
 @App:name("EnrichingTransactionsApp")
 
@@ -131,22 +138,26 @@ procedure below.
         `define stream CashDepositsStream(branchID string, amount long);`
         
 3. Now let's define an output stream to which the combined information from both the input streams need to be directed 
-   after the join. 
+   after the join.
+
     ```
     @sink(type='log', prefix='Cash withdrawals that go beyond sustainability threshold:')
     define stream CashFlowStream(branchID string, withdrawalAmount long, depositAmount long);
     ```
+
     !!!info
         A sink annotation is connected to the output stream to log the output events. For more information about adding sinks to publish events, see the [Publishing Data guide](publishing-data.md).
         
 4. To specify how the join is performed, and how to use the combined information, write a Siddhi query as follows.
 
     1. To perform the join, add the `from` clause as follows.
+
         ```sql
         from CashWithdrawalStream as w
             join CashDepositStream as d
             on w.branchID == d.branchID
         ```
+
         !!!info
             Observe the following about the above `from` clause:
             - Both the input streams have attributes of the same name. To identify each name, you must specify a reference
@@ -155,15 +166,18 @@ procedure below.
               where branch IDs are matched. An event in the `CashWithdrawalStream` stream is directed to the `CashFlowStream` if there are events with the same branch ID in the `CashDepositStream` and vice versa.
               
     2. To specify how the value for each attribute is derived, add a `select` statement as follows.
+
         `select w.branchID as branchID, w.amount as withdrawals, d.amount as deposits`
         
         !!!info
             The `branchID` attribute name is common to both input streams. Therefore, you can also specify `d.branchID as branchID` instead of `w.branchId as branchId`.
             
-    3. To filter only events where total cash withdrawals are greater than 95% of the cash deposits, add a `having` clause as follows.    
+    3. To filter only events where total cash withdrawals are greater than 95% of the cash deposits, add a `having` clause as follows.
+
         `having w.amount > d.amount * 0.95 `
         
     4. To insert the results into the `CashFlowStream` output stream, add the `insert into` clause as follows.
+
         `insert into CashFlowStream;`
         
 The completed Siddhi application is as follows:
@@ -184,6 +198,7 @@ from CashWithdrawalStream as w
 select w.branchID as branchID, w.amount as withdrawals, d.amount as deposits
 having w.amount > d.amount * 0.95
 ```
+
 For the different types of joins you can perform via Siddhi logic, see [Siddhi Query Guide - Join](https://siddhi.io/en/v4.x/docs/query-guide/#join-stream)
 
 ## Enrich data by connecting with external services 
@@ -195,11 +210,11 @@ To understand how this is done, consider an example where you have some credit c
  external service to identify the credit card companies that issued them, and then save that information in a database. 
  To do this, follow the procedure below.
 
-!!!tip"Before you begin:"
+!!!tip "Before you begin:"
     - To save the enriched information in a database table, install and set up MySQL, and create a database. Then create a table in that database named `CCInfoTable`. For detailed instructions, see the [Enrich data by connecting with a data store section](https://ei.docs.wso2.com/en/next/streaming-integrator/guides/enriching-data/#enrich-data-by-connecting-with-a-data-store).
     - If you want to try out this guide, you can access the external service used in the example [here](https://secure.ftipgw.com/ArgoFire/validate.asmx?op=GetCardType). This service returns the credit card type when a credit card number is submitted.
     
-        ???info"Click here for an example"
+        ???info "Click here for an example"
         
         - **Request Details**
         ```
@@ -223,9 +238,11 @@ To understand how this is done, consider an example where you have some credit c
 1. Start creating a new Siddhi application. You can name it `CCTypeIdentificationApp` For instructions, see [Creating a Siddhi Application](../develop/creating-a-Siddhi-Application.md).
 
 2. Define the input stream from which the input data (i.e., the credit card no in this example) must be taken.
+
    `define stream CreditCardStream (creditCardNo string);`
    
 3. To publish the input data to the external application, connect a sink to the stream you created as shown below. For more information about publishing information, see the [Publishing Data guide](publishing-data.md).
+
     ```
     @sink(type='http-request',publisher.url='https://secure.ftipgw.com/ArgoFire/validate.asmx/GetCardType',method='POST', headers="'Content-Type:application/x-www-form-urlencoded'",
     
@@ -242,27 +259,33 @@ To understand how this is done, consider an example where you have some credit c
         - For more information about the HTTP transport, see [Siddhi Extensions - Siddhi IO HTTP](https://siddhi-io.github.io/siddhi-io-http/).
         
 4. To capture the response of the external application once it returns the credit card type, define a stream as follows. For more information about consuming data, see the [Consuming Data guide](consuming-messages.md).
+
     `define stream EnrichedCreditCardStream (creditCardNo string,creditCardType string);`
     
 5. Assuming that the external application sends its output via the HTTP transport, connect a source of the `http`type to the `EnrichedCreditCardStream` stream as follows. For more information about consuming events published to SI, see the [Consuming Data guide](consuming-messages.md).
+
     ```
     @source(type='http-response' ,sink.id='cardTypeSink',    
     @map(type='xml', namespaces = "xmlns=http://localhost/SmartPayments/",    
     @attributes(creditCardNo = 'trp:creditCardNo',creditCardType = ".")))        
     define stream EnrichedCreditCardInfoStream (creditCardNo string,creditCardType string);
     ```
+
     !!!info
         It is assumed that the external application sends requests in HTTP. Therefore, the source type is `http-request`. For more information about the HTTP transport, see [Siddhi Extensions - Siddhi IO HTTP](https://siddhi-io.github.io/siddhi-io-http/).
         
 6. To save the response of the external application, define a table named `CCInfoTable`.
+
     `define table CCInfoTable (cardNo long, cardType string);`
     
 7. To save the data enriched by integrating the information received from the external service, add a Siddhi query as follows.
+
     ```
     from EnrichedCreditCardInfoStream
     select *
     update or insert into CCInfoTable;
     ```
+
     The above query selects all the attributes in the `EnrichedCreditCardInfoStream` and inserts them into the `CCInfoTable` 
     table. If a specific record already exists,the query updates it by replacing the attribute values with the latest values
      taken from the `EnrichedCreditCardInfoStream`. 

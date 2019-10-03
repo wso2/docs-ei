@@ -15,14 +15,6 @@ For a comprehensive reference on the Siddhi query API, see [Streaming Integratio
 
 This tutorial demonstrates how you can use the Siddhi query API to perform essential operations that you would need to perform using the SI using simple examples.
 
-## Tutorial Outline
-
-- [Preparing the server](#preparing-the-server)
-- [Creating a Siddhi application](#Creating-a-Siddhi-application)
-- [Running a Siddhi Store API query](#Running-a-Siddhi-Store-API-query)
-- [Fetching the status of a Siddhi Application](#Fetching-the-status-of-a-Siddhi-Application)
-- [Taking a snapshot of a Siddhi Application](#Taking-a-snapshot-of-a-Siddhi-Application) 
-- [Restoring a Siddhi Application via a snapshot](#Restoring-a-Siddhi-Application-via-a-snapshot)
 
 ## Preparing the server
 
