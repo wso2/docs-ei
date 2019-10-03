@@ -373,7 +373,7 @@ nav:
         - 'JMX Monitoring': 'administer-and-observe/jmx_monitoring.md'
         - 'SNMP Monitoring': 'administer-and-observe/snmp_monitoring.md'
         - 'Prometheus for Monitoring': 'administer-and-observe/monitoring_with_prometheus.md'
-      - Monitoring TCP Messages:
+      - TCP Messages:
         - 'Starting TCPMon' : 'administer-and-observe/tcp/starting_tcp_mon.md'
         - 'Message Monitoring with TCPMon' : 'administer-and-observe/tcp/message_monitoring_with_tcpmon.md'
         - 'Other Usages of TCPMon' : 'administer-and-observe/tcp/other_usages_of_tcpmon.md'
