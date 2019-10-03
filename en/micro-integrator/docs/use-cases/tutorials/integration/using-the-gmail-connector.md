@@ -15,19 +15,8 @@ To set up the tools:
 -   Select the relevant [WSO2 Integration Studio](https://wso2.com/integration/tooling/) based on your operating system and extract the
     ZIP file.  The path to this folder is referred to as `MI_TOOLING_HOME` throughout this tutorial.
 -   Download the [CLI Tool](https://wso2.com/integration/micro-integrator/install/) for monitoring artifact deployments.
--   Download and setup WSO2 Message Broker:
 
-    1. Download WSO2 Message Broker.
-    2. Open the `MB_HOME/conf/jndi.properties` file and add the following line after the `queue.MyQueue = example.MyQueue` line:
-        ```
-        queue.PaymentRequestJMSMessageStore=PaymentRequestJMSMessageStore
-        ```
-    This configuration is required for enabling the broker to store messages.
-
-To set up the previous artifacts:
-
-1.  If you did not try the [Exposing Several Services as a Single Service](exposing-several-services-as-a-single-service.md) tutorial yet, open WSO2 Integration Studio, click **File** , and then click **Import** . Next, select **Existing WSO2 Projects into workspace** under the **WSO2** category, click **Next** and upload the [pre-packaged project](https://github.com/wso2-docs/WSO2_EI/blob/master/Integration-Tutorial-Artifacts/ExposingSeveralServicesTutorial.zip).
-2.  Download the JAR file of the back-end service from [here](https://github.com/wso2-docs/WSO2_EI/blob/master/Back-End-Service/Hospital-Service-2.0.0-EI7.jar).
+If you did not try the [Exposing Several Services as a Single Service](exposing-several-services-as-a-single-service.md) tutorial yet, open WSO2 Integration Studio, click **File** , and then click **Import** . Next, select **Existing WSO2 Projects into workspace** under the **WSO2** category, click **Next** and upload the [pre-packaged project](https://github.com/wso2-docs/WSO2_EI/blob/master/Integration-Tutorial-Artifacts/ExposingSeveralServicesTutorial.zip).
 
 ### Step 2: Develop the integration artifacts
 
@@ -215,13 +204,67 @@ Let's test the use case by sending a simple client request that invokes the serv
 2. Open a terminal, navigate to the location where your saved the [back-end service](#step-1-set-up-the-workspace).
 3. Execute the following command to start the service:
 
-    ```
+    ```bash
     java -jar Hospital-Service-2.0.0-EI7.jar
     ```
 
 #### Start the Message Broker runtime
 
-Start WSO2 Micro Integrator
+To set up WSO2 Message Broker:
+
+1. Download WSO2 Message Broker. The path to this folder is referred to as `MB_HOME` throughout this tutorial.
+2. Add the following JAR files from the `MB_HOME/wso2/broker/client-lib/` directory to the `MI_TOOLING_HOME/Contents/Eclipse/runtime/microesb/lib/` directory.
+3. Open the `deployment.toml` file from `MI_TOOLING_HOME/Contents/Eclipse/runtime/microesb/conf/` directory and add the configurations given below. This is required for enabling the broker to store messages.
+
+    ```toml
+    [[transport.jms.listener]]
+    name = "myQueueListener"
+    parameter.initial_naming_factory = "org.wso2.andes.jndi.PropertiesFileInitialContextFactory"
+    parameter.broker_name = "wso2mb"
+    parameter.provider_url = "conf/jndi.properties"
+    parameter.connection_factory_name = "QueueConnectionFactory"
+    parameter.connection_factory_type = "queue"
+    parameter.cache_level = "consumer"
+
+    [[transport.jms.sender]]
+    name = "myQueueSender"
+    parameter.initial_naming_factory = "org.wso2.andes.jndi.PropertiesFileInitialContextFactory"
+    parameter.broker_name = "wso2mb"
+    parameter.provider_url = "conf/jndi.properties"
+    parameter.connection_factory_name = "QueueConnectionFactory"
+    parameter.connection_factory_type = "queue"
+    parameter.cache_level = "producer"
+
+    [truststore]
+    file_name = "client-truststore.jks"
+    password = "wso2carbon"
+    alias = "symmetric.key.value"
+    algorithm = "AES"
+
+    [transport.jndi.connection_factories]
+    QueueConnectionFactory = "amqp://admin:admin@clientID/carbon?brokerlist='tcp://localhost:5675'"
+
+    [transport.jndi.queue]
+    PaymentRequestJMSMessageStore="PaymentRequestJMSMessageStore"
+    ```
+To start WSO2 Message Broker:
+
+1.  Open a terminal and navigate to the `MI_HOME/wso2/broker/bin` directory.
+2.  Execute the following command to run the in message broker. 
+    
+    -   On **MacOS/Linux/CentOS**:
+
+        ```bash
+        sh wso2server.sh
+        ```
+
+    -   On **Windows**:
+
+        ```bash
+        wso2server.bat
+        ```
+
+    See the [WSO2 EI 6.5.0 documentation](https://docs.wso2.com/display/EI650/Running+the+Product) for more information on how to run the WSO2 MB.
 
 #### Restart the Micro Integrator
 
@@ -241,7 +284,7 @@ Let's send a request to the API resource.
 
 1.  Create a JSON file names `request.json` with the following request payload. Make sure you provide a valid email address so that you can test the email being sent to the patient.
 
-    ``` 
+    ```json
     {
     "name": "John Doe",
     "dob": "1940-03-19",
@@ -258,7 +301,7 @@ Let's send a request to the API resource.
 
 2.  Open a command line terminal and execute the following command from the location where `           request.json          ` file you created is saved:
 
-    ```
+    ```bash
     curl -v -X POST --data @request.json http://localhost:8280/healthcare/categories/surgery/reserve --header "Content-Type:application/json"
     ```
 
@@ -275,7 +318,7 @@ You will see the response as follows:
 
 An email will be sent to the provided patient email address with the following details:
 
-```
+```bash
 Subject: Payment Status
              
 Message:

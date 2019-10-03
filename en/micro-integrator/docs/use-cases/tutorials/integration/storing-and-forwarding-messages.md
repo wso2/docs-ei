@@ -16,20 +16,6 @@ To set up the tools:
 -   Select the relevant [WSO2 Integration Studio](https://wso2.com/integration/tooling/) based on your operating system and extract the
     ZIP file.  The path to this folder is referred to as `MI_TOOLING_HOME` throughout this tutorial.
 -  Download the [CLI Tool](https://wso2.com/integration/micro-integrator/install/) for monitoring artifact deployments.
--   Download and setup WSO2 Message Broker:
-
-    1. Download WSO2 Message Broker.
-    2. Open the `MI_TOOLING_HOME/Contents/Eclipse/runtime/microesb/conf/deployment.toml` file and add the following line:
-
-        ```toml
-        [transport.jndi.connection_factories]
-        QueueConnectionFactory = "amqp://admin:admin@clientID/carbon?brokerlist='tcp://localhost:5675'"
-
-        [transport.jndi.queue]
-        PaymentRequestJMSMessageStore="PaymentRequestJMSMessageStore"
-        ```
-
-       This configuration is required for enabling the broker to store messages.
 
 To set up the previous artifacts:
 
@@ -249,7 +235,44 @@ Let's test the use case by sending a simple client request that invokes the serv
 
 #### Start the Message Broker runtime
 
-Start WSO2 Message Broker:
+To set up WSO2 Message Broker:
+
+1. Download WSO2 Message Broker. The path to this folder is referred to as `MB_HOME` throughout this tutorial.
+2. Add the following JAR files from the `MB_HOME/wso2/broker/client-lib/` directory to the `MI_TOOLING_HOME/Contents/Eclipse/runtime/microesb/lib/` directory.
+3. Open the `deployment.toml` file from `MI_TOOLING_HOME/Contents/Eclipse/runtime/microesb/conf/` directory and add the configurations given below. This is required for enabling the broker to store messages.
+
+    ```toml
+    [[transport.jms.listener]]
+    name = "myQueueListener"
+    parameter.initial_naming_factory = "org.wso2.andes.jndi.PropertiesFileInitialContextFactory"
+    parameter.broker_name = "wso2mb"
+    parameter.provider_url = "conf/jndi.properties"
+    parameter.connection_factory_name = "QueueConnectionFactory"
+    parameter.connection_factory_type = "queue"
+    parameter.cache_level = "consumer"
+
+    [[transport.jms.sender]]
+    name = "myQueueSender"
+    parameter.initial_naming_factory = "org.wso2.andes.jndi.PropertiesFileInitialContextFactory"
+    parameter.broker_name = "wso2mb"
+    parameter.provider_url = "conf/jndi.properties"
+    parameter.connection_factory_name = "QueueConnectionFactory"
+    parameter.connection_factory_type = "queue"
+    parameter.cache_level = "producer"
+
+    [truststore]
+    file_name = "client-truststore.jks"
+    password = "wso2carbon"
+    alias = "symmetric.key.value"
+    algorithm = "AES"
+
+    [transport.jndi.connection_factories]
+    QueueConnectionFactory = "amqp://admin:admin@clientID/carbon?brokerlist='tcp://localhost:5675'"
+
+    [transport.jndi.queue]
+    PaymentRequestJMSMessageStore="PaymentRequestJMSMessageStore"
+    ```
+To start WSO2 Message Broker:
 
 1.  Open a terminal and navigate to the `MI_HOME/wso2/broker/bin` directory.
 2.  Execute the following command to run the in message broker. 
