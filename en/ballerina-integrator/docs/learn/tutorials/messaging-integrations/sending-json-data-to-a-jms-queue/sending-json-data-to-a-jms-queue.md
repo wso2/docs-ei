@@ -1,6 +1,6 @@
 ---
 title: Sending JSON data to ActiveMQ queue
-commitHash: a76e9f433c9db062427fd53e641e158cc9223de9
+commitHash: 9be2bde276ae340075a85d504719e5f8831bfe6b
 note: This is an auto-generated file do not edit this, You can edit content in "ballerina-integrator" repo
 ---
 
@@ -23,7 +23,7 @@ Ballerina has first-class support for HTTP and implementing an HTTP service is s
 
 Download the ZIP file and extract the contents to get the code.
 
-<a href="https://github.com/wso2/ballerina-integrator/blob/master/docs/content/src/assets/img/JSON-to-ActiveMQ-Queue.jpg" download><img src="../../../../../assets/img/download-zip.png" width="200" alt="Download ZIP"></a>
+<a href="https://github.com/wso2/docs-ei/blob/master/en/ballerina-integrator/docs/learn/guides/messaging/sending-json-data-to-a-jms-queue/sending-json-data-to-a-jms-queue.zip"><img src="../../../../../assets/img/download-zip.png" width="200" alt="Download ZIP"></a>
 
 ## Implementation
 The Ballerina project is created for the integration use case explained above. Please follow the steps given below. You can learn about the Ballerina project and module in this link.
