@@ -12,7 +12,7 @@ Integration is at the heart of any digital transformation. By connecting differe
 
 <div class="integratorDescription">
     <h3>Micro Integrator</h3>
-    <p>Micro Integrator enables you to build integrations using a configuration-driven or graphical approach using an integration artifact development tool called WSO2 Integration Studio. The Micro Integrator enables developers to do integrations that a typical ESB can handle, accelerate the development lifecycle, and has the adaptability required for a microservice ecosystem with cloud native deployment.</p>
+    <p>Micro Integrator enables you to build integrations using a configuration-driven or graphical approach using an integration artifact development tool called WSO2 Integration Studio. The Micro Integrator enables developers to do integrations that a typical ESB can handle, to accelerate the development lifecycle, and it also has the adaptability required for a microservice ecosystem with cloud-native deployment.</p>
     <a href="micro-integrator/overview/introduction">View Documentation</a>
 </div>
 
