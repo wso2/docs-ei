@@ -7,26 +7,23 @@ This sample demonstrates how one way message bridging from RabbitMQ to HTTP can 
 
 Following are the integration artifacts that we can used to implement this scenario.
 
-```xml tab='Scheduled Task'
-<taskManager provider="org.wso2.carbon.mediation.ntask.NTaskTaskManager"/>
-```
-
 ```xml tab='Sequence'
-<sequence name="TestIn">
+<?xml version="1.0" encoding="UTF-8"?>
+<sequence name="TestIn" trace="disable" xmlns="http://ws.apache.org/ns/synapse">
     <log level="full"/>
     <drop/>
-</sequence> 
+</sequence>
 ```
 
 ```xml tab='Inbound Endpoint'
-<inboundEndpoint name="test" onError="fault" protocol="rabbitmq"
-            sequence="TestIn" suspend="false">
+<?xml version="1.0" encoding="UTF-8"?>
+<inboundEndpoint name="test" onError="fault" protocol="rabbitmq" sequence="TestIn" suspend="false" xmlns="http://ws.apache.org/ns/synapse">
     <parameters>
         <parameter name="sequential">true</parameter>
         <parameter name="coordination">true</parameter>
+        <parameter name="rabbitmq.connection.factory">AMQPConnectionFactory</parameter>
         <parameter name="rabbitmq.server.host.name">localhost</parameter>
         <parameter name="rabbitmq.server.port">5672</parameter>
-        <parameter name="rabbitmq.connection.factory">AMQPConnectionFactory</parameter>
         <parameter name="rabbitmq.server.user.name">guest</parameter>
         <parameter name="rabbitmq.server.password">guest</parameter>
         <parameter name="rabbitmq.queue.name">queue</parameter>
@@ -40,13 +37,11 @@ Following are the integration artifacts that we can used to implement this scena
 Create the artifacts:
 
 1. Set up WSO2 Integration Studio.
-2. Create an ESB Config project
+2. Create an ESB Solution project
 3. Create the following artifacts: Inbound endpoint, Sequence.
 4. Deploy the artifacts in your Micro Integrator.
 
-Configure the ActiveMQ broker.
-
-Set up the back-end service.
+Configure the RabbitMQ broker.
 
 Executing the sample:
 

@@ -15,6 +15,7 @@ processing and schedule a move task to move that file.
 ### Synapse configuration
 
 ```xml
+<?xml version="1.0" encoding="UTF-8"?>
 <inboundEndpoint xmlns="http://ws.apache.org/ns/synapse" 
                  name="file" sequence="request" 
                  onError="fault" 
@@ -35,12 +36,27 @@ processing and schedule a move task to move that file.
 </inboundEndpoint>
 ```
 
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<sequence xmlns="http://ws.apache.org/ns/synapse" name="request">
+    <send/>
+</sequence>
+```
+
+## Build and run
+
+Create the artifacts:
+
+1. Set up WSO2 Integration Studio.
+2. Create an ESB Solution project
+3. Create the following artifacts: Inbound endpoint, Sequence.
+4. Deploy the artifacts in your Micro Integrator.
+
+Set up the back-end service.
+
+Invoke the inbound endpoint.
+
 ## Configuring FTP, SFTP, and FILE Connections
-### Example use case
-
-### Synapse configuration
-
-### Build and run
 
 The following section describes how to configure the file inbound protocol for FTP, SFTP, and FILE connections.
 
@@ -58,7 +74,8 @@ The following section describes how to configure the file inbound protocol for 
 
 !!! Tip
     If the password contains special characters, these characters will need to be replaced with their hexadecimal representation.
-    - To configure the file inbound protocol for FILE connections, you should specify the URL as `file://{local_file_system_path}`:
+    
+-   To configure the file inbound protocol for FILE connections, you should specify the URL as `file://{local_file_system_path}`:
 
     ```bash
     file:///home/user/test/in

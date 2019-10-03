@@ -37,7 +37,7 @@ The parameters used above are explained below.
 
 ### server_count
 
-Use the parameter shown below to specify the number of servers (in the cluster) that can handle tasks. The task server count is set to "1" by default, which indicates that at least one node in the cluster is required for task handling. Note that a product cluster begins the process of scheduling tasks only after the given number of servers are activated. For example, consider a situation where ten tasks are saved and scheduled in your product and there are five task-handling servers. As the individual servers become active, we do not want the first active server to schedule all the tasks. Instead, all five servers should become active and share the ten tasks between them.
+Use this parameter to specify the number of servers (in the cluster) that can handle tasks. The task server count is set to "1" by default, which indicates that at least one node in the cluster is required for task handling. Note that a product cluster begins the process of scheduling tasks only after the given number of servers are activated. For example, consider a situation where ten tasks are saved and scheduled in your product and there are five task-handling servers. As the individual servers become active, we do not want the first active server to schedule all the tasks. Instead, all five servers should become active and share the ten tasks between them.
 
 ### resolver_type
 

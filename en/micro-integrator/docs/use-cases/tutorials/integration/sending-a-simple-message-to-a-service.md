@@ -6,15 +6,12 @@ Let’s try a simple scenario where a patient makes an inquiry specifying the do
 
 To implement this use case, you will create a REST API resource and other artifacts using WSO2 Integration Studio, and then deploy them in the embedded WSO2 Micro Integrator instance. The default API resource will be configured to receive the client request in place of the back-end service, thereby decoupling the client and the back-end service. The response message with the requested doctor details will be routed back to the client through the same API resource.
 
-![sending a simple message](/assets/img/tutorials/119132413/119132450.png)
-
 ## Let's get started!
 
 ### Step 1: Set up the workspace
 
--  Go to the [product page](https://wso2.com/integration/) of **WSO2 Micro Integrator**, download the **product installer** and run it to set up the product.
 -  Select the relevant [WSO2 Integration Studio](https://wso2.com/integration/tooling/) based on your operating system and extract the ZIP file.  The path to the extracted folder is referred to as `MI_TOOLING_HOME` throughout this tutorial.
--  Download the CLI Tool for monitoring artifact deployments.
+-  Download the [CLI Tool](https://wso2.com/integration/micro-integrator/install/) for monitoring artifact deployments.
 
 ### Step 2: Develop the integration artifacts
 
@@ -171,7 +168,7 @@ You can now start configuring the API resource.
       <tr>
         <td>URI-Template</td>
         <td>
-          Enter <code>/querydoctor/{category}</code> . This defines the request URL format. In this case, the full request URL format is <code>http://<host>:<port>/querydoctor/{category}</code> where <code>{category}</code> is a variable.
+          Enter <code>/querydoctor/{category}</code> . This defines the request URL format. In this case, the full request URL format is <code>http://host:port/querydoctor/{category}</code> where <code>{category}</code> is a variable.
         </td>
       </tr>
       <tr>
@@ -221,20 +218,14 @@ You can now start configuring the API resource.
          </td>
          <td>
             <div class="content-wrapper">
-               <p>Follow the steps given below to extract the stock symbol from the request and print a welcome message in the log</p>
-               <ol>
-                  <li>Click the <strong>Value</strong> field of the <strong>Properties</strong> property, and then click the <strong>browse (...)</strong> icon that appears.</li>
-                  <li>
-                     In the Log Mediator Configuration dialog, click <strong>New</strong>, and then add a property called "message" as follows:<br />
-                     <ul>
-                        <li><strong>Name</strong>: <code>message</code></li>
-                        <li><strong>Type</strong>: <code>LITERAL</code><br />
-                           (We select LITERAL because the required log message is a static value.)
-                        </li>
-                        <li><strong>Value/Expression</strong> : <code>"Welcome to HealthcareService"</code></li>
-                     </ul>
+               To extract the stock symbol from the request and print a welcome message in the log, click the '+' icon in the <strong>Properties</strong> section, and then add the following values:<br />
+               <ul>
+                  <li><strong>Name</strong>: <code>message</code></li>
+                  <li><strong>Type</strong>: <code>LITERAL</code><br />
+                     (We select LITERAL because the required log message is a static value.)
                   </li>
-               </ol>
+                  <li><strong>Value/Expression</strong> : <code>"Welcome to HealthcareService"</code></li>
+               </ul>
                <p><img src="/assets/img/tutorials/119132413/119132423.png" width="546" height="369" /></p>
             </div>
          </td>
@@ -347,28 +338,34 @@ To test the artifacts, deploy the [packaged artifacts](#step-3-package-the-artif
 
 1.  Right-click the composite application project and click **Export Project Artifacts and Run**.
 2.  In the dialog that opens, select the composite application project that you want to deploy.  
-4.  Click **Finish**. The artifacts will be deployed in the embedded Micro Integrator and the server will start. See the startup log in the **Console** tab.  
+4.  Click **Finish**. The artifacts will be deployed in the embedded Micro Integrator and the server will start. See the startup log in the **Console** tab.
 
 ### Step 5: Test the use case
 
 Let's test the use case by sending a simple client request that invokes the service.
 
-#### Start the backend service
+#### Start the back-end service
 
-First, start the back-end service.
+1. Download the JAR file of the back-end service from [here](https://github.com/wso2-docs/WSO2_EI/blob/master/Back-End-Service/Hospital-Service-2.0.0-EI7.jar).
+2. Open a terminal, navigate to the location where your saved the [back-end service](#step-1-set-up-the-workspace).
+3. Execute the following command to start the service:
+
+    ```
+    java -jar Hospital-Service-2.0.0-EI7.jar
+    ```
 
 #### Send the client request
 
 Let's use the **CLI Tool** to find the URL of the REST API that is deployed in the Micro Integrator:
 
-1.  Open a terminal and navigate to the `CLI_HOME` directory.
+1.  Open a terminal and navigate to the `CLI_HOME/bin` directory.
 2.  Execute the following command to start the tool:
     `./mi`
 3.  Execute the following command to find the APIs deployed in the server:
     `mi show api`
 
 Now, open a command line terminal and enter the following request: 
-`curl -v http://localhost:8280/healthcare/querydoctor/surgery `
+`curl -v http://localhost:8290/healthcare/querydoctor/surgery `
 
 !!! Info
     - The above request is formed as per the **URI-Template** (`http://:/healthcare/{uri.var.category}`) defined when creating the endpoint. 

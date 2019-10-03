@@ -70,31 +70,29 @@ content_type = "application/json/badgerfish"
 
 See [Configuring Message Relay](message-relay.md).
 
-## Handling messages with no content type
+### Handling messages with no content type
 
 To ensure that messages with no content type are handled gracefully, add the following to the deployment.toml file (stored in the `MI_HOME/conf` directory).
 
 ```toml
 [[custom_message_builders]]
-content_type = "application/json/badgerfish"
+content_type = "empty/content"
 class="org.wso2.carbon.relay.BinaryRelayBuilder"
 
 [[custom_message_formatters]]
 content_type = "empty/content"
 class="org.wso2.carbon.relay.ExpandingMessageFormatter"
+
+[transport]
+default_content_type = "empty/content"
 ```
 
--   In the parameters section: `<parameter name="defaultContentType" locked="false">"empty/content"</parameter>`
+### Handling text/csv messages
 
-## Handling text/csv messages
+There is no default builder or formatter for messages with the text/csv content type. If you just want to pass these messages through the Micro Integrator,
+you can configure the message [relay builder and formatter](#handling-message-relay). 
 
-There is no default builder or formatter for messages with the text/csv
-content type. If you just want to pass these messages through the Micro Integrator,
-you can configure the message relay builder and formatter. If you want
-to process these messages, you can access the content inside the
-request/response payload of CSV.
-
-Add the following to the deployment.toml file (stored in the `MI_HOME/conf` directory).
+The following default message builder configurations allow you to access the content inside the request/response payload when the content type is CSV.
 
 ```toml
 [message_builders]
@@ -108,11 +106,11 @@ When a text/csv message comes into the Micro Integrator, the log will include an
 entry similar to the following, and you can observe that the CSV data is
 placed inside the payload:
 
-``` java
+```bash
 [2013-05-09 13:59:03,478] INFO - LogMediator To: , WSAction: urn:mediate, SOAPAction: urn:mediate, MessageID: urn:uuid:5B9A211341DCC368241368088143463, Direction: request, Envelope: <?xml version='1.0' encoding='utf-8'?><soapenv:envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"><soapenv:body><text xmlns="http://ws.apache.org/commons/ns/payload">charitha,wso2,colombo chamara,wso2G,galle </text></soapenv:body></soapenv:envelope>
 ```
 
-## Handling illegal XML characters in plain text payloads
+### Handling illegal XML characters in plain text payloads
 
 Plain text payloads that contain illegal XML characters (such as
 unicodes) will not be successfully processed by the Micro Integrator. Therefore, you
@@ -129,104 +127,13 @@ by the unicode value that you specify for the parameter. The below
 example uses whitespaces (represented by by the ' \\u0020' unicode
 value) to replace illegal characters in payloads.
 
-``` java
+```bash
 com.ctc.wstx.outputInvalidCharHandler.char=\u0020
 ```
 
-### JSON message builders and formatters
-
-The Micro Integratorr provides the following message builders and formatters
-for JSON. Both types of JSON builders use [StAXON](https://github.com/beckchr/staxon) as the
-underlying JSON processor.
-
-**Default message builder and formatter**
-
-The default message builder and formatter of WSO2 Micro Integrator
-are as follows:
-
--   `          org.wso2.carbon.integrator.core.json.JsonStreamBuilder         `
--   `          org.wso2.carbon.integrator.core.json.JsonStreamFormatter         `
-
-The default message builder and formatter maintain the JSON
-representation intact without converting it to XML during message
-mediation. You can access the payload content using JSON Path or XPath
-and convert the payload to XML at any point in the mediation flow.
-
-The default message builder and formatter can also be used by default
-for JSON mapping when you expose datasources as data services via the Micro Integrator.
-
-**Other message builders and formatters**
-
-Other message builders and formatters can be enabled by adding the
-required parameters to the deployment.toml file as
-explained below.
-
-If you want to convert the JSON representation to XML before the
-mediation flow begins, you need to add the message builder and formatter
-shown below. Note that some data loss can occur during the JSON to XML
-to JSON conversion process.
-
-- `<parameter name="passthruJsonBuilder">org.apache.synapse.commons.json.JsonBuilder<parameter>`
-- `<parameter name="passthruJsonFormatter">org.apache.synapse.commons.json.JsonFormatter<parameter>`
-
-You can enable the following builders and formatters for JSON mapping in
-data services.
-
--  `\<parameter name="dsJsonBuilder"\>org.apache.axis2.json.gson.JsonBuilder\</parameter\>`
--  `\<parameter name="dsJsonFormatter"\>org.apache.axis2.json.JSONMessageFormatter\</parameter\>`
-
-You can also enable the following builders and formatters if necessary.
-Note that this is necessary for compatibility with WSO2 Micro Integrator:
-
-
-```toml
-[message_builders]
-text_javascript = "org.apache.axis2.json.JSONBuilder"
-json_badgerfish = "org.apache.axis2.json.JSONBadgerfishOMBuilder"
-
-[message_formatters]
-text_javascript = "org.apache.axis2.json.JSONMessageFormatter"
-json_badgerfish = "org.apache.axis2.json.JSONBadgerfishMessageFormatter
-```
-
-    `                   `
--   `          <parameter name="passthruJSONBuilder">org.apache.axis2.json.JSONStreamBuilder</parameter>         `
-    `                   `
--   `           <parameter name="passthruJSONFormatter">org.apache.axis2.json.JSONStreamFormatter</parameter>          `
-
-> Always use the same type of builder and formatter combination. Mixing
-different builders and formatters will cause errors at runtime.
-
-> If you want the Micro Integrator to handle JSON payloads that are
-sent using a media type other than `         application/json        ` ,
-you must register the JSON builder and formatter for that media type in
-the following two files at minimum (for best results, register them in
-all Axis2 configuration files found in the
-`         <EI_HOME>/conf/axis2        ` directory):
-
--   `         <EI_HOME>/conf/axis2/axis2.xml         `
--   `          <EI_HOME>/conf/axis2/axis2_blocking_client.xml         `
-
-For example, if the media type is `         text/javascript        ` ,
-register the message builder and formatter as follows:
-
-```java
-<messageBuilder contentType="text/javascript"
-                   class="org.apache.synapse.commons.json.JsonStreamBuilder"/>
-
-<messageFormatter contentType="text/javascript"
-                    class="org.apache.synapse.commons.json.JsonStreamFormatter"/>
-```
-
-> When you modify the builders/formatters in Axis2 configuration, make
-sure that you have enabled only one correct message builder/formatter
-pair for a given media type.
-
 ### Validating JSON messages
 
-If you want the  JSON builder to validate JSON messages that are
-received by the Micro Integrator, the following property should be added to the deployment.toml file. This
-validation ensures that erroneous JSON messages are rejected by the Micro Integrator.
+If you want the JSON builder to validate JSON messages that are received by the Micro Integrator, the following property should be added to the deployment.toml file. This validation ensures that erroneous JSON messages are rejected by the Micro Integrator.
 
 ```toml
 [[transport.http]]
@@ -245,15 +152,10 @@ sample, you retrieve the text content from the payload and then Base64
 encode the text. This is then converted to SOAP, and the content is then
 processed in the WSO2 Micro Integrator mediation flow.
 
-1.  You will first need to write a class implementing the
-    `org.apache.axis2.builder.Builder` interface in
-    the Axis2 Kernel module and then override the
-    `processDocument` method. Within the
-    `processDocument` method, you can define your
-    specific logic to process the payload content as required and then
-    convert it to SOAP format.
+1.  You will first need to write a class implementing the `org.apache.axis2.builder.Builder` interface in the Axis2 Kernel module and then override the
+    `processDocument` method. Within the `processDocument` method, you can define your specific logic to process the payload content as required and then convert it to SOAP format.
 
-    ``` xml
+    ```java
     package org.test.builder;
 
     import org.apache.axiom.om.OMAbstractFactory;
@@ -313,7 +215,7 @@ processed in the WSO2 Micro Integrator mediation flow.
     ```
 
 2.  Create a JAR file of this class and add it into the classpath of the
-    Axis2 installation, i.e., the `          <EI_HOME>/lib         `
+    Axis2 installation, i.e., the `MI_HOME/lib`
     folder.
 3.  To enable your custom message builder for content type text/xml, add
     the following line in the deployment.toml file:
@@ -327,13 +229,9 @@ processed in the WSO2 Micro Integrator mediation flow.
 ### Custom message formatter
 
 Similarly, you can write your own message formatter to manipulate the
-outgoing payload from the WSO2 EI.
+outgoing payload from the WSO2 Micro Integrator.
 
-When creating a custom message formatter, you will need to create a
-class implementing the
-`         org.apache.axis2.transport.MessageFormatter        ` interface
-and then override the `         writeTo        ` method. You can
-implement your logic within the `         writeTo        ` method.
+When creating a custom message formatter, you will need to create a class implementing the `org.apache.axis2.transport.MessageFormatter` interface and then override the `writeTo` method. You can implement your logic within the `writeTo` method.
 
 To enable your custom message formatter for content type text/xml, add the following line in the deployment.toml file:
 
