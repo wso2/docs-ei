@@ -19,11 +19,17 @@ To set up the tools:
 -   Download and setup WSO2 Message Broker:
 
     1. Download WSO2 Message Broker.
-    2. Open the `MB_HOME/conf/jndi.properties` file and add the following line after the `queue.MyQueue = example.MyQueue` line:
+    2. Open the `MI_TOOLING_HOME/Contents/Eclipse/runtime/microesb/conf/deployment.toml` file and add the following line:
+
+        ```toml
+        [transport.jndi.connection_factories]
+        QueueConnectionFactory = "amqp://admin:admin@clientID/carbon?brokerlist='tcp://localhost:5675'"
+
+        [transport.jndi.queue]
+        PaymentRequestJMSMessageStore="PaymentRequestJMSMessageStore"
         ```
-        queue.PaymentRequestJMSMessageStore=PaymentRequestJMSMessageStore
-        ```
-        This configuration is required for enabling the broker to store messages.
+
+       This configuration is required for enabling the broker to store messages.
 
 To set up the previous artifacts:
 
@@ -237,13 +243,30 @@ Let's test the use case by sending a simple client request that invokes the serv
 2. Open a terminal, navigate to the location where your saved the [back-end service](#step-1-set-up-the-workspace).
 3. Execute the following command to start the service:
 
-    ```
+    ```bash
     java -jar Hospital-Service-2.0.0-EI7.jar
     ```
 
 #### Start the Message Broker runtime
 
-Start WSO2 Micro Integrator
+Start WSO2 Message Broker:
+
+1.  Open a terminal and navigate to the `MI_HOME/wso2/broker/bin` directory.
+2.  Execute the following command to run the in message broker. 
+    
+    -   On **MacOS/Linux/CentOS**:
+
+        ```bash
+        sh wso2server.sh
+        ```
+
+    -   On **Windows**:
+
+        ```bash
+        wso2server.bat
+        ```
+
+    See the [WSO2 EI 6.5.0 documentation](https://docs.wso2.com/display/EI650/Running+the+Product) for more information on how to run the WSO2 MB.
 
 #### Restart the Micro Integrator
 
