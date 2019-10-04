@@ -74,53 +74,51 @@ This example demonstrates how to get running statistics using Siddhi. The sample
 
         - **amount**: `150`
 
-3.
+3. In the **StreamName** field, select **TriggerStream***. In the **triggerId** field, enter `1` as the trigger ID, and then click **Send**.
 
-13) Select 'TriggerStream' as StreamName
 
-14) Provide attribute values
-
-    - triggerId: 1
-
-15) Send event
 
 ## Viewing the Results:
-See the input and respective output on the console similar to the following (timestamp will be different).
-    
-   
-   * INFO {io.siddhi.core.stream.output.sink.LogSink} - AggregateDataIncrementally : RawMaterialStatStream : [Event{timestamp=1513612116450, data=[1537862400000, chocolate ice cream, 100.0], isExpired=false}, Event{timestamp=1513612116450, data=[chocolate cake, 150.0], isExpired=false}]
-   * [INFO {io.siddhi.core.stream.output.sink.LogSink} - AggregateDataIncrementally : RawMaterialStatStream : [Event{timestamp=1513612116450, data=[1537862400000, chocolate ice cream, 100.0], isExpired=false}, Event{timestamp=1513612116450, data=[chocolate cake, 150.0], isExpired=false}]
-    
 
+The input and the corresponding output is displayed in the console as follows.
 
-```sql
-@App:name("AggregateDataIncrementally")
+!!!info
+   The timestamp displayed is different because it is derived based on the time at which you send the events.
 
-@App:description('Aggregates values every second until year and gets statistics')
-
-
-define stream RawMaterialStream (name string, amount double);
-
-@sink(type ='log')
-define stream RawMaterialStatStream (AGG_TIMESTAMP long, name string, avgAmount double);
-
-@store( type="rdbms",
-        jdbc.url="jdbc:mysql://localhost:3306/sweetFactoryDB",
-        username="root",
-        password="root",
-        jdbc.driver.name="com.mysql.jdbc.Driver")
-define aggregation stockAggregation
-from RawMaterialStream
-select name, avg(amount) as avgAmount, sum(amount) as totalAmount
-group by name
-aggregate every sec...year;
-
-define stream TriggerStream (triggerId string);
-
-@info(name = 'query1')
-from TriggerStream as f join stockAggregation as s
-within "2016-06-06 12:00:00 +05:30", "2020-06-06 12:00:00 +05:30"
-per 'hours'
-select AGG_TIMESTAMP, s.name, avgAmount
-insert into RawMaterialStatStream;
 ```
+    INFO {io.siddhi.core.stream.output.sink.LogSink} - AggregateDataIncrementally : RawMaterialStatStream : [Event{timestamp=1513612116450, data=[1537862400000, chocolate ice cream, 100.0], isExpired=false}, Event{timestamp=1513612116450, data=[chocolate cake, 150.0], isExpired=false}]
+    [INFO {io.siddhi.core.stream.output.sink.LogSink} - AggregateDataIncrementally : RawMaterialStatStream : [Event{timestamp=1513612116450, data=[1537862400000, chocolate ice cream, 100.0], isExpired=false}, Event{timestamp=1513612116450, data=[chocolate cake, 150.0], isExpired=false}]
+```
+    
+???info "Click here to view the complete sample Siddhi application"
+    ```sql
+    @App:name("AggregateDataIncrementally")
+
+    @App:description('Aggregates values every second until year and gets statistics')
+
+
+    define stream RawMaterialStream (name string, amount double);
+
+    @sink(type ='log')
+    define stream RawMaterialStatStream (AGG_TIMESTAMP long, name string, avgAmount double);
+
+    @store( type="rdbms",
+            jdbc.url="jdbc:mysql://localhost:3306/sweetFactoryDB",
+            username="root",
+            password="root",
+            jdbc.driver.name="com.mysql.jdbc.Driver")
+    define aggregation stockAggregation
+    from RawMaterialStream
+    select name, avg(amount) as avgAmount, sum(amount) as totalAmount
+    group by name
+    aggregate every sec...year;
+
+    define stream TriggerStream (triggerId string);
+
+    @info(name = 'query1')
+    from TriggerStream as f join stockAggregation as s
+    within "2016-06-06 12:00:00 +05:30", "2020-06-06 12:00:00 +05:30"
+    per 'hours'
+    select AGG_TIMESTAMP, s.name, avgAmount
+    insert into RawMaterialStatStream;
+    ```
