@@ -22,7 +22,8 @@ Follow the steps below before starting the MQTT sample configurations.
     `<EI_HOME>/lib/` directory.
 
 ### Synapse configuration
-```<?xml version="1.0" encoding="UTF-8"?>
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
 <inboundEndpoint name="SampleInbound" onError="fault" protocol="mqtt" sequence="TestIn" statistics="enable" suspend="false" trace="enable" xmlns="http://ws.apache.org/ns/synapse">
     <parameters>
         <parameter name="sequential">true</parameter>
@@ -38,11 +39,12 @@ Follow the steps below before starting the MQTT sample configurations.
     </parameters>
 </inboundEndpoint>
 ```
-```<?xml version="1.0" encoding="UTF-8"?>
-   <sequence name="TestIn" trace="disable" xmlns="http://ws.apache.org/ns/synapse">
-       <log level="full"/>
-       <drop/>
-   </sequence>
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<sequence name="TestIn" trace="disable" xmlns="http://ws.apache.org/ns/synapse">
+   <log level="full"/>
+   <drop/>
+</sequence>
 
 ```
 
