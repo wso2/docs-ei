@@ -5,7 +5,7 @@ This sample demonstrates how one way message bridging from JMS to HTTP can be do
 
 ## Synapse configuration
 
-Following are the integration artifacts that we can used to implement this scenario.
+Following are the integration artifacts that we can used to implement this scenario. See the instructions on how to [build and run](#build-and-run) this example.
 
 ```xml tab='Inbound Endpoint'
  <?xml version="1.0" encoding="UTF-8"?>
@@ -67,4 +67,3 @@ Invoke the inbound endpoint:
     ```
 
 You will see that the JMS endpoint gets the message from the queue and sends it to the stock quote service.
-

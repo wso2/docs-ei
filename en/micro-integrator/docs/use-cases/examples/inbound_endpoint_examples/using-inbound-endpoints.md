@@ -1,10 +1,13 @@
 # Specifying inbound endpoint parameters as registry values
+## Example use case
 
 Other than specifying parameter values inline, you can also
 specify parameter values as registry entries. The advantage of
 specifying a parameter value as a registry entry is that the same
 inbound endpoint configuration can be used in different environments
 simply by changing the registry entry value.
+
+<!--
 
 ```
     <?xml version="1.0" encoding="UTF-8"?>
@@ -16,8 +19,13 @@ simply by changing the registry entry value.
        </parameters>
     </inboundEndpoint>
 ```
+-->
+
+## Synapse configuration
+
+Following are the integration artifacts that we can used to implement this scenario. See the instructions on how to [build and run](#build-and-run) this example.
  
-```
+```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <inboundEndpoint xmlns="http://ws.apache.org/ns/synapse" 
                  name="file1" sequence="request" 
@@ -38,3 +46,12 @@ simply by changing the registry entry value.
    </parameters>
 </inboundEndpoint>
 ```
+
+## Build and run
+
+Create the artifacts:
+
+1. [Set up WSO2 Integration Studio](../../../../develop/installing-WSO2-Integration-Studio).
+2. [Create an ESB Solution project](../../../../develop/creating-projects/#esb-config-project)
+3. See the instructions on [creating an inbound endpoint](../../../../develop/creating-artifacts/creating-an-inbound-endpoint) to define the inbound endpoint given above.
+4. [Deploy the artifacts](../../../../develop/deploy-and-run) in your Micro Integrator.

@@ -1,7 +1,5 @@
 # Using the Secure Websocket Inbound
 
-**WebSocket to WebSocket Integration using Subprotocols** 
-
 If you need to read and transform the content of WebSocket frames, the
 information in incoming WebSocket frames is not sufficient because the
 WebSocket protocol does not specify any information about the
@@ -9,8 +7,7 @@ content-type of frames that flow through WebSocket channels. Hence, the
 Micro Integrator supports a WebSocket
 subprotocol extension to determine the content type of WebSocket frames.
 
-The [WebSocket inbound endpoint](_WebSocket_Inbound_Protocol_) of the
-ESB Profile supports the following Synapse subprotocols by default:
+The **WebSocket inbound endpoint** of the Micro Integrator supports the following Synapse subprotocols by default:
 
 -   `          synapse(contentType='application/json')         `
 -   `          synapse(contentType='application/xml')         `
@@ -41,6 +38,8 @@ The following should take place in this scenario:
     If necessary, you can use the [data mapper](../../references/mediators/data-Mapper-Mediator) to perform data transformation inside the Micro Integrator message flow. For example, you can perform JSON to JSON transformation. To do this, you have to explicitly apply the required data mapping logic for all WebSocket frames.
 
 ## Synapse configuration
+
+Following are the integration artifacts that we can used to implement this scenario. See the instructions on how to [build and run](#build-and-run) this example.
 
 Specify the `websocket.accept.contenType` property to inform the WebSocket sender to build the frames with the specified content type, and to include the same subprotocol header that was used to determine the content of the WebSocket frames. In this case it is JSON.
 
@@ -91,37 +90,33 @@ Specify the `websocket.accept.contenType` property to inform the WebSocket sende
        </parameters>
     </inboundEndpoint>
     ```
-    
-## Enabling the Websocket sender
-The Websocket sender functionality of the Micro Integrator is disabled by default. Enable it as follows. 
-1. Navigate to 
-`<MI-HOME>/conf/` and open the`deployment.toml` in a text editor.
-2. Add the below lines at the end of the file, save and exit.
-```toml
-   [transport.ws]
-   
-   sender.enable = true
-   sender.outflow_dispatch_sequence = "outflowDispatchSeq" # inferred
-   sender.outflow_dispatch_fault_sequence = "outflowFaultSeq" # inferred
-```
 
 ## Build and run
 
 Create the artifacts:
 
-1. Set up WSO2 Integration Studio.
-2. Create an ESB Solution project
-3. Create the integration artifacts given above.
-4. Deploy the artifacts in your Micro Integrator.
+1. [Set up WSO2 Integration Studio](../../../../develop/installing-WSO2-Integration-Studio).
+
+    !!! Note
+        The Websocket sender functionality of the Micro Integrator is disabled by default. To enable the transport, open the `deployment.toml` file from the `MI_TOOLING_HOME/Contents/Eclipse/runtime/microesb/conf/` directory and add the following: 
+
+        ```toml
+        [transport.ws]
+        sender.enable = true
+        ```
+        
+2. [Create an ESB Solution project](../../../../develop/creating-projects/#esb-config-project)
+3. Create the [mediation sequences](../../../../develop/creating-artifacts/creating-reusable-sequences) and [inbound endpoint](../../../../develop/creating-an-inbound-endpoint) with the configurations given above.
+4. [Deploy the artifacts](../../../../develop/deploy-and-run) in your Micro Integrator.
 
 Starting the Websocket client:
--   Download the netty artifacts zip file from [here](https://github.com/wso2-docs/ESB) and extract it. The extracted folder will be shown as `ESB-master`
--   Open a terminal, navigate to `ESB-master/ESB-Artifacts/Netty_artifacts_for_WebSocket_samples` and execute the following command to start the WebSocket server on port 8082:
+
+-  Download the netty artifacts zip file from [here](https://github.com/wso2-docs/ESB) and extract it. The extracted folder will be shown as `ESB-master`
+-  Open a terminal, navigate to `ESB-master/ESB-Artifacts/Netty_artifacts_for_WebSocket_samples` and execute the following command to start the WebSocket server on port 8082:
     ```bash
     java -cp netty-example-4.0.30.Final.jar:lib/*:. io.netty.example.http.websocketx.server.WebSocketServer
     ```
--   Open a terminal, navigate to `ESB-master/ESB-Artifacts/Netty_artifacts_for_WebSocket_samples` and execute the following command to start the WebSocket
-    client:
+-   Open a terminal, navigate to `ESB-master/ESB-Artifacts/Netty_artifacts_for_WebSocket_samples` and execute the following command to start the WebSocket client:
 
     ```bash
     java -DsubProtocol="synapse(contentType='application/json')" -DclientPort=9092 -cp netty-example-4.0.30.Final.jar:lib/*:. io.netty.example.http.websocketx.client.WebSocketClient
@@ -138,14 +133,8 @@ Starting the Websocket client:
     ```json
     {"sample message":"test"}
     ```
+When you send a sample JSON payload from the client, you will see that a connection from the WebSocket client to the Micro Integrator is established, and that the Micro Integrator receives the message.
 
-When you send a sample JSON payload from the client, you will see that a
-connection from the WebSocket client to the Micro Integrator is
-established, and that the Micro Integrator receives the message.
+This shows that the sequences are executed by the WebSocket inbound endpoint.
 
-This shows that the sequences are executed by the WebSocket inbound
-endpoint.
-
-You will also see that the message sent to the WebSocket server is
-transformed, and that the response injected to the out sequence is also
-transformed.
+You will also see that the message sent to the WebSocket server is transformed, and that the response injected to the out sequence is also transformed.
