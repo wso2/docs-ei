@@ -5,12 +5,15 @@ as an OData service. When OData is enabled for a datasource, you do not
 need to manually define CRUD operations. They are automatically
 created.  
 
--   [Setting up an
-    RDBMS](#ExposingDataasanODataService-SettingupanRDBMS)
--   [Expose the RDBMS as an OData
-    service](#ExposingDataasanODataService-ExposetheRDBMSasanODataservice)
--   [Access the data service using CRUD
-    operations](#ExposingDataasanODataService-AccessthedataserviceusingCRUDoperations)
+```toml
+<data name="odata_service" transports="http https local">
+   <config enableOData="true" id="Datasource">
+      <property name="driverClassName">com.mysql.jdbc.Driver</property>
+      <property name="url">jdbc:mysql://localhost:3306/Company</property>
+      <property name="username">root</property>
+   </config>
+</data>
+```
 
 !!! note
 

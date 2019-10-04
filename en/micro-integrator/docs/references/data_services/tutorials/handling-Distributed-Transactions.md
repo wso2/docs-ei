@@ -11,14 +11,52 @@ Let's consider a scenario where you have two MySQL databases. You can
 define a single data service for these databases and insert data into
 both as explained below.
 
--   [Setting up distributed MySQL
-    databases](#HandlingDistributedTransactions-SettingupdistributedMySQLdatabases)
--   [Adding the datasources to a data
-    service](#HandlingDistributedTransactions-Addingthedatasourcestoadataservice)
--   [Defining queries for the
-    datasources](#HandlingDistributedTransactions-Definingqueriesforthedatasources)
--   [Inserting data into the distributed
-    RDBMSs](#HandlingDistributedTransactions-InsertingdataintothedistributedRDBMSs)
+```xml
+<data name="distributed_transactions" transports="http https local">
+   <config enableOData="false" id="XAoffices">
+      <property name="dataSourceClassName">com.mysql.jdbc.jdbc2.optional.MysqlXADataSource</property>
+      <property name="dataSourceProps">
+         <property name="url">jdbc:mysql://localhost:3306/OfficeDetails</property>
+         <property name="user">root</property>
+         <property name="password">root</property>
+      </property>
+   </config>
+   <config enableOData="false" id="XAemployees">
+      <property name="dataSourceClassName">com.mysql.jdbc.jdbc2.optional.MysqlXADataSource</property>
+      <property name="dataSourceProps">
+         <property name="url">jdbc:mysql://localhost:3306/EmployeeDetails</property>
+         <property name="user">root</property>
+         <property name="password">root</property>
+      </property>
+   </config>
+   <query id="InsertOfficeQuery" useConfig="XAoffices">
+      <sql>insert into Offices (OfficeCode,AddressLine1,AddressLine2,City,State,Country,Phone) values(:OfficeCode,:AddressLine1,'test','test','test','USA','test')</sql>
+      <param name="OfficeCode" sqlType="STRING"/>
+      <param name="AddressLine1" sqlType="STRING"/>
+   </query>
+   <query id="InsertEmployeeQuery" useConfig="XAemployees">
+      <sql>insert into Employees (EmployeeNumber,FirstName,LastName,Email,JobTitle,OfficeCode) values(:EmployeeNumber,:FirstName,:LastName,'test','test',:OfficeCode)</sql>
+      <param name="EmployeeNumber" sqlType="STRING"/>
+      <param name="FirstName" sqlType="STRING"/>
+      <param name="LastName" sqlType="STRING"/>
+      <param name="OfficeCode" sqlType="STRING"/>
+   </query>
+   <operation name="InsertOfficeOp">
+      <call-query href="InsertOfficeQuery">
+         <with-param name="OfficeCode" query-param="OfficeCode"/>
+         <with-param name="AddressLine1" query-param="AddressLine1"/>
+      </call-query>
+   </operation>
+   <operation name="InsertEmployeeOp">
+      <call-query href="InsertEmployeeQuery">
+         <with-param name="EmployeeNumber" query-param="EmployeeNumber"/>
+         <with-param name="FirstName" query-param="FirstName"/>
+         <with-param name="LastName" query-param="LastName"/>
+         <with-param name="OfficeCode" query-param="OfficeCode"/>
+      </call-query>
+   </operation>
+</data>
+```
 
 ------------------------------------------------------------------------
 

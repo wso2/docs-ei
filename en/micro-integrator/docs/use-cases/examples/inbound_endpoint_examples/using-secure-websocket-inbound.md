@@ -47,6 +47,7 @@ Specify the `websocket.accept.contenType` property to inform the WebSocket sende
 -   Create the sequence for client to back-end mediation as follows:
 
     ```xml
+    <?xml version="1.0" encoding="UTF-8"?>
     <sequence name="dispatchSeq" xmlns="http://ws.apache.org/ns/synapse">
         <property name="OUT_ONLY" value="true"/>
         <property name="websocket.accept.contenType" scope="axis2" value="application/json"/>
@@ -64,47 +65,66 @@ Specify the `websocket.accept.contenType` property to inform the WebSocket sende
 -   Create the sequence for back-end to client mediation as follows:
 
     ```xml
+    <?xml version="1.0" encoding="UTF-8"?>
     <sequence name="outDispatchSeq" trace="enable" xmlns="http://ws.apache.org/ns/synapse">
         <log level="full"/>
         <respond/>
     </sequence>
     ```
 
--   Configure the WebSocket inbound endpoint as follows to use the created sequences and listen on port 9091:
+-   Configure the WebSocket inbound endpoint as follows to use the created sequences and listen on port 9092:
 
     ```xml
-    <inboundEndpoint name="test" onError="fault" protocol="ws"
-        sequence="dispatchSeq" suspend="false">
-        <parameters>
-            <parameter name="inbound.ws.port">9091</parameter>
-            <parameter name="ws.outflow.dispatch.sequence">outDispatchSeq</parameter>
-            <parameter name="ws.client.side.broadcast.level">0</parameter>
-            <parameter name="ws.outflow.dispatch.fault.sequence">fault</parameter>
-        </parameters>
+    <?xml version="1.0" encoding="UTF-8"?>
+    <inboundEndpoint xmlns="http://ws.apache.org/ns/synapse"
+                     name="websocket"
+                     sequence="dispatchSeq"
+                     onError="fault"
+                     protocol="ws"
+                     suspend="false">
+       <parameters>
+          <parameter name="inbound.ws.port">9092</parameter>
+          <parameter name="ws.client.side.broadcast.level">0</parameter>
+          <parameter name="ws.outflow.dispatch.sequence">outDispatchSeq</parameter>
+          <parameter name="ws.outflow.dispatch.fault.sequence">fault</parameter>
+          <parameter name="ws.use.port.offset">false</parameter>
+       </parameters>
     </inboundEndpoint>
     ```
+    
+## Enabling the Websocket sender
+The Websocket sender functionality of the Micro Integrator is disabled by default. Enable it as follows. 
+1. Navigate to 
+`<MI-HOME>/conf/` and open the`deployment.toml` in a text editor.
+2. Add the below lines at the end of the file, save and exit.
+```toml
+   [transport.ws]
+   
+   sender.enable = true
+   sender.outflow_dispatch_sequence = "outflowDispatchSeq" # inferred
+   sender.outflow_dispatch_fault_sequence = "outflowFaultSeq" # inferred
+```
 
 ## Build and run
 
 Create the artifacts:
 
 1. Set up WSO2 Integration Studio.
-2. Create an ESB Config project
+2. Create an ESB Solution project
 3. Create the integration artifacts given above.
 4. Deploy the artifacts in your Micro Integrator.
 
 Starting the Websocket client:
-
--   Open a terminal, navigate to the location where you saved the netty artifacts, and execute the following command to start the WebSocket server on port 8082:
+-   Download the netty artifacts zip file from [here](https://github.com/wso2-docs/ESB) and extract it. The extracted folder will be shown as `ESB-master`
+-   Open a terminal, navigate to `ESB-master/ESB-Artifacts/Netty_artifacts_for_WebSocket_samples` and execute the following command to start the WebSocket server on port 8082:
     ```bash
     java -cp netty-example-4.0.30.Final.jar:lib/*:. io.netty.example.http.websocketx.server.WebSocketServer
     ```
--   Open a terminal, navigate to the location where you saved the netty
-    artifacts, and execute the following command to start the WebSocket
+-   Open a terminal, navigate to `ESB-master/ESB-Artifacts/Netty_artifacts_for_WebSocket_samples` and execute the following command to start the WebSocket
     client:
 
     ```bash
-    java -DsubProtocol="synapse(contentType='application/json') -DclientPort=9091 -cp netty-example-4.0.30.Final.jar:lib/*:.io.netty.example.http.websocketx.client.WebSocketClient
+    java -DsubProtocol="synapse(contentType='application/json')" -DclientPort=9092 -cp netty-example-4.0.30.Final.jar:lib/*:. io.netty.example.http.websocketx.client.WebSocketClient
     ```
 
     You will see the following message on the client terminal:
@@ -115,8 +135,8 @@ Starting the Websocket client:
 
 -   Send the following sample JSON payload from the client terminal:
 
-    ```bash
-    ("sample message":"test"}
+    ```json
+    {"sample message":"test"}
     ```
 
 When you send a sample JSON payload from the client, you will see that a
