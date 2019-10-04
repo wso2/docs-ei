@@ -83,5 +83,5 @@ Invoke the sample Api:
 2.  The following command posts a simple XML request to the Micro Integrator. Execute the command that is used to invoke a SOAP service. The Micro Integrator returns the 202 response back to the client.
 
     ```bash
-    curl -v -d @placeorder.xml -H "Content-type: application/xml" http://127.0.0.1:8280/stockquote/order/
+    curl -v -d @placeorder.xml -H "Content-type: application/xml" http://127.0.0.1:8290/stockquote/order/
     ```
