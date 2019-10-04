@@ -385,7 +385,7 @@ In this scenario, you extract data from a specific folder. All of the files are 
     @App:description('Process all files in the folder and delete files after processing.')
             
     @source(type='file', mode='text.full',
-        dir.uri='file:/Users/foo/stocks',  
+        dir.uri='file:/Users/foo/productions',  
         @map(type='json', enclosing.element="$.portfolio", @attributes(symbol = "stock.company.symbol", price = "stock.price", volume = "stock.volume")))
     define stream StockStream (symbol string, price float, volume long);
     
