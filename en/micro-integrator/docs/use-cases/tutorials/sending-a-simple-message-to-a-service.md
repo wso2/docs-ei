@@ -98,7 +98,7 @@ An Endpoint artifact is required for the purpose of exposing the URL that connec
 
 #### Create a REST API
 
-A REST API is required for receving the client response. The REST resource within the API will define the mediation logic that send requests to the Healthcare back-end service and retrieve the available doctor information.
+A REST API is required for receving the client response and the REST resource within the API will define the mediation logic that will send requests to the Healthcare back-end service and retrieve the available doctor information.
 
 1.  In the Project Explorer, right-click **SampleServices** and navigate to **New -> REST API**.
 2.  Ensure **Create A New API Artifact** is selected and click **Next**.
@@ -145,7 +145,7 @@ Once the API resource is created, the design view of the `           HealthcareA
 !!! Note
     - The top part of the canvas is the **In sequence**, which controls how incoming messages are mediated.
     - The middle part of the canvas is the **Out sequence**, which controls how responses are handled. In this case, a **Send** mediator is already in place to send responses back to the requesting client.
-    - The bottom part of the canvas is the **Fault sequence**, which allows you to configure how to handle messages when an error occurs (for more information, see [Error Handling](../../../overview/key-concepts/#error-handling).
+    - The bottom part of the canvas is the **Fault sequence**, which allows you to configure how to handle messages when an error occurs (for more information, see [Error Handling](../../../references/error_handling.md)).
 
 ![](/assets/img/tutorials/119132413/119132425.png)
 
@@ -220,8 +220,8 @@ You can now start configuring the API resource.
             <div class="content-wrapper">
                To extract the stock symbol from the request and print a welcome message in the log, click the '+' icon in the <strong>Properties</strong> section, and then add the following values:<br />
                <ul>
-                  <li><strong>Property Name</strong>: <code>message</code></li>
-                  <li><strong>Property Value Type</strong>: <code>LITERAL</code><br />
+                  <li><strong>Name</strong>: <code>message</code></li>
+                  <li><strong>Type</strong>: <code>LITERAL</code><br />
                      (We select LITERAL because the required log message is a static value.)
                   </li>
                   <li><strong>Value/Expression</strong> : <code>"Welcome to HealthcareService"</code></li>
@@ -249,7 +249,7 @@ You can now start configuring the API resource.
 
 4.  Configure the Out sequence to send the response from the Healthcare service back to the client. 
 
-    We will use a **Send** mediator with no output endpoint defined, which defaults to sending the response back to the requesting client. From the **Mediators** palette, click and drag a **Send** mediator to the Out Sequence (the bottom part of the canvas).  
+    For this, we use a **Send** mediator with no output endpoint defined, which defaults to sending the response back to the requesting client. From the **Mediators** palette, click and drag a **Send** mediator to the Out Sequence (the bottom part of the canvas).  
 
     ![](/assets/img/tutorials/119132413/119132420.png)
 

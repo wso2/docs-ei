@@ -54,13 +54,13 @@ nav:
     - Learn:
       - 'Integration Use Cases': 'use-cases/integration-use-cases.md'
       - Tutorials:
-        - 'Sending a Simple Message to a Service': 'use-cases/tutorials/integration/sending-a-simple-message-to-a-service.md'
-        - 'Message Routing': 'use-cases/tutorials/integration/routing-requests-based-on-message-content.md'
-        - 'Message Transformation': 'use-cases/tutorials/integration/transforming-message-content.md'
-        - 'Service Orchestration': 'use-cases/tutorials/integration/exposing-several-services-as-a-single-service.md'
-        - 'Asynchronous Messaging': 'use-cases/tutorials/integration/storing-and-forwarding-messages.md'
-        - 'Connecting Web APIs/Cloud Services': 'use-cases/tutorials/integration/using-the-gmail-connector.md'
-        - 'Data Integration': 'use-cases/tutorials/integration/sending-a-simple-message-to-a-datasource.md'
+        - 'Sending a Simple Message to a Service': 'use-cases/tutorials/sending-a-simple-message-to-a-service.md'
+        - 'Message Routing': 'use-cases/tutorials/routing-requests-based-on-message-content.md'
+        - 'Message Transformation': 'use-cases/tutorials/transforming-message-content.md'
+        - 'Service Orchestration': 'use-cases/tutorials/exposing-several-services-as-a-single-service.md'
+        - 'Asynchronous Messaging': 'use-cases/tutorials/storing-and-forwarding-messages.md'
+        - 'Connecting Web APIs/Cloud Services': 'use-cases/tutorials/using-the-gmail-connector.md'
+        - 'Data Integration': 'use-cases/tutorials/sending-a-simple-message-to-a-datasource.md'
         - 'File Processing': 'use-cases/tutorials/file-processing.md'
         - 'Using Inbound Endpoints': 'use-cases/tutorials/using-inbound-endpoints.md'
         - 'Reusing Mediation Sequences': 'use-cases/tutorials/using-templates.md'
@@ -167,7 +167,6 @@ nav:
             - 'Kafka Inbound Endpoint': 'use-cases/examples/inbound_endpoint_examples/using-kafka-inbound-endpoints.md'
             - 'WebSocket Endpoint': 'use-cases/examples/inbound_endpoint_examples/using-secure-websocket-inbound.md'
             - 'Using Inbound Endpoints with Registry': 'use-cases/examples/inbound_endpoint_examples/using-inbound-endpoints.md'
-            - 'Securing Inbound Endpoint Parameters': 'use-cases/examples/inbound_endpoint_examples/using-inbound-endpoints.md'
           - 'Using Scheduled Tasks': 'use-cases/examples/using-scheduled-tasks.md'
           - Working with the Registry:
             - 'Local Registry Entry Definitions, Reusable Endpoints and Sequences': 'use-cases/examples/registry_examples/Local-Registry-Entry-Definitions-Reusable-Endpoints-and-Sequences.md'
