@@ -44,12 +44,15 @@ Create the artifacts:
 3. Create the following artifacts: Inbound endpoint, Sequence.
 4. Deploy the artifacts in your Micro Integrator.
 
-Configure the ActiveMQ broker.
-
 Set up the back-end service.
+
+Apache Kafka inbound endpoint should be configured before using it. The recommended version for the customized kafka 
+inbound endpoint is `kafka_2.9.2-0.8.1.1`.Go to [Configuring Kafka](../../../setup) for more information. 
 
 Invoke the service:
 
+Run the following commands in the {KAFKA_HOME} directory.
+    
 -   Run the following on the Kafka command line to create a topic named `test` with a single partition and only one
     replica:
 
@@ -63,9 +66,7 @@ Invoke the service:
     bin/kafka-console-producer.sh --broker-list localhost:9092 --topic test
     ```
 
-    ![](attachments/119129714/119129717.png)
-
-You will see the following Message content:
+You will see the following Message content in the Micro Integrator:
 
 ```bash
 <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:wsa="http://www.w3.org/2005/08/addressing"><soapenv:Body><m0:getQuote xmlns:m0="http://services.samples">
