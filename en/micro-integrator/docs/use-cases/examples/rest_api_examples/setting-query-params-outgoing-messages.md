@@ -10,7 +10,7 @@ take a sample request that is sent to the
 , and see how these parameters can be set in the outgoing message.
 
 ```bash
-curl -v -X GET "http://localhost:8280/stockquote/view/IBM?param1=value1&param2=value2"
+curl -v -X GET "http://localhost:8290/stockquote/view/IBM?param1=value1&param2=value2"
 ```
 
 ## Synapse configuration
@@ -67,5 +67,5 @@ Set up the back-end service:
 Invoke the sample Api by executing the following command:
 
 ```bash
-curl -v -X GET "http://localhost:8280/stockquote/view/IBM?param1=value1&param2=value2"
+curl -v -X GET "http://localhost:8290/stockquote/view/IBM?param1=value1&param2=value2"
 ```

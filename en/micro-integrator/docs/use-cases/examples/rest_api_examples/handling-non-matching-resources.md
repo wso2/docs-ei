@@ -13,7 +13,7 @@ Following is a sample REST Api configuration and mediation Sequence that we can 
       <inSequence>
          <send>
             <endpoint>
-               <address uri="http://localhost:8280/jaxrs_basic/services/customers/customerservice"/>
+               <address uri="http://localhost:8290/jaxrs_basic/services/customers/customerservice"/>
             </endpoint>
          </send>
       </inSequence>
@@ -44,7 +44,6 @@ Following is a sample REST Api configuration and mediation Sequence that we can 
    <property name="HTTP_SC" value="404" scope="axis2"/>
    <header name="To" action="remove"/>
    <send/>
-   <drop/>
 </sequence>
 ```
 ## Build and run
@@ -64,7 +63,7 @@ Set up the back-end service:
 Send an invalid request to the back end as follows:
     
 ```bash
-curl -X GET http://localhost:8280/jaxrs/customers-wrong/123
+curl -X GET http://localhost:8290/jaxrs/customers-wrong/123
 ```
     
 You will get the following response:
@@ -78,4 +77,4 @@ You will get the following response:
 </tp:fault>
 ```
 
-Notice that we have specified the REST_URL_POSTFIX property with the value set to "remove". When invoking this API, even if the request contains a trailing slash after the context (e.g., `POST http://127.0.0.1:8287/orderdelayAPI/` instead of `POST  http://127.0.0.1:8287/orderdelayAPI`, the endpoint will be called correctly.
+Notice that we have specified the REST_URL_POSTFIX property with the value set to "remove". When invoking this API, even if the request contains a trailing slash after the context (e.g., `POST http://127.0.0.1:8290/orderdelayAPI/` instead of `POST  http://127.0.0.1:8290/orderdelayAPI`, the endpoint will be called correctly.
