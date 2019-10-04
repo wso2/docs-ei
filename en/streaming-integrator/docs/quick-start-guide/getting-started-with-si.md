@@ -4,6 +4,7 @@
 
 This quick start guide gets you started with the Streaming Integrator (SI), in just 5 minutes.
 
+
 In this guide, you will download the SI distribution, start it and then try out a simple Siddhi application.
 
 ## Tutorial Outline
@@ -63,4 +64,7 @@ However, the output you observe in the SI console is similar to following.
 INFO {io.siddhi.core.stream.output.sink.LogSink} - MySimpleApp : TransformedProductionStream : Event{timestamp=1563539561686, data=[SUGAR, 20.5], isExpired=false}
 ```
 Notice that the output message has an uppercase name: `SUGAR`. This is because of the simple message transformation carried out by the Siddhi application.
- 
+
+## What's next?
+
+The Streaming Integrator works seamlessly with the Micro Integrator to trigger integration flows based on the output it generates for streaming data. To try out a scenario where you process streaming data and trigger an integration flow via the Micro Integrator in five minutes, see [Getting SI Running with MI in Five Minutes](hello-world-with-mi.md).

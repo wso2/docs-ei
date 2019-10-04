@@ -237,7 +237,7 @@ To create a business template using the Business Template editor, follow the pro
     [Business Rules Templates](business-rules-templates).)
 
     !!!warning
-        Do not template sensitive information such as passwords in a Siddhi application or expose them directly in a Siddhi application. For detailed instructions to protect sensitive data by obfuscating them, see [Protecting Sensitive Data via the Secure Vault](protecting-sensitive-data-via-the secure-vault.md).
+        Do not template sensitive information such as passwords in a Siddhi application or expose them directly in a Siddhi application. For detailed instructions to protect sensitive data by obfuscating them, see [Protecting Sensitive Data via the Secure Vault](protecting-sensitive-data-via-the-secure-vault.md).
 
 
    ![Business Rules Editor](../images/working-with-business-rules/business-rules-template-editor.png)
