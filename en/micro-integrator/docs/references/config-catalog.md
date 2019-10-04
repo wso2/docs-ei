@@ -1,22 +1,16 @@
-# Configuration Catalog
+# Product Configurations
 This document describes all the configuration parameters that are used in WSO2 Micro Integrator. 
 
 ## Instructions for use
 
-> Select the configuration sections, parameters, and values that are required for your use and add them to the .toml file. See the example .toml file given below.
+> Select the configuration sections, parameters, and values that are required for your use and add them to the deployment.toml file. See the example .toml file given below.
 
 ```toml
-# This is an example .toml file.
+# This is an example deployment.toml file.
 
 [server]
-pattern="value"                         
-enable_port_forward=true
-
-[key_mgr_node]
-endpoints="value"
-
-[gateway]
-gateway_environments=["dev","test"]
+hostname="localhost"
+node_ip = "10.100.1.80"
 
 [[database]]
 pool_options.maxActiv=5

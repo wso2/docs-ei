@@ -19,6 +19,7 @@ Message routing is one of the most fundamental requirements when integrating sys
 				</li>
 			</ul>
 		</td>
+		<!--
 		<td>
 			<b>Examples</b>
 			<ul>
@@ -33,6 +34,7 @@ Message routing is one of the most fundamental requirements when integrating sys
 				</li>
 			</ul>
 		</td>
+	-->
 	</tr>
 </table>
 
@@ -52,6 +54,7 @@ The integration of systems that communicate in various message formats is a comm
 				</li>
 			</ul>
 		</td>
+		<!--
 		<td>
 			<b>Examples</b>
 			<ul>
@@ -72,6 +75,7 @@ The integration of systems that communicate in various message formats is a comm
 				</li>
 			</ul>
 		</td>
+	-->
 	</tr>
 </table>
 
@@ -108,9 +112,6 @@ Multiple services are invoked simultaneously without any blocking until a respon
 					Try the end-to-end use case on <a href="../../../use-cases/tutorials/integration/exposing-several-services-as-a-single-service">service orchestration</a>
 				</li>
 			</ul>
-		</td>
-		<td>
-			<b>Examples</b>
 		</td>
 	</tr>
 </table>
@@ -205,9 +206,6 @@ WSO2 Micro Integrator supports more than 150 connectors, where Salesforce, Gmail
 				</li>
 			</ul>
 		</td>
-		<td>
-			<b>Examples</b>
-		</td>
 	</tr>
 </table>
 
@@ -226,9 +224,6 @@ The data services functionality that is embedded in the Micro Integrator can dec
 					Try the end-to-end use case on <a href="../../../use-cases/tutorials/integration/sending-a-simple-message-to-a-datasource">data integration</a>
 				</li>
 			</ul>
-		</td>
-		<td>
-			<b>Examples</b>
 		</td>
 	</tr>
 </table>
@@ -296,6 +291,7 @@ The Gateway pattern is used for securely exposing APIs (representing business fu
 
 You can implement the Gateway pattern by deploying WSO2 Micro Integrator in a “DMZ” (demilitarized zone) and thereby exposing the services to external service consumers. The DMZ pre-processes service requests coming from the public and routes only valid and authorized messages to the actual service platforms. Pre-processing typically consist of message validation, filtering, and transformation, orchestration, etc.
 
+<!--
 <table>
 	<tr>
 		<td>
@@ -328,6 +324,7 @@ You can implement the Gateway pattern by deploying WSO2 Micro Integrator in a �
 		</td>
 	</tr>
 </table>
+-->
 
 ## File processing
 

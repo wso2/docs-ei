@@ -72,16 +72,16 @@ nav:
         #- Message Mediation Advanced:
           #- 'Split Aggregator Pattern': 'use-cases/examples/split_aggregate_pattern.md'
           #- 'Optimized Message Transformation': 'use-cases/examples/message_transformation_example.md'
-        - Message Routing:
-          - 'Routing based on Message Header': 'use-cases/examples/message-routing/header-based-routing.md'
-          - 'Routing based on Message Payload': 'use-cases/examples/message-routing/payload-based-routing.md'
-          - 'Splitting and Aggregating Response Messages': 'use-cases/examples/message-routing/split-and-aggregate-responses.md'
-        - Message Transformation:
-          - 'Converting SOAP Message to JSON': 'use-cases/examples/message-transformations/soap-to-json-conversion.md'
-          - 'Converting POX Message to JSON': 'use-cases/examples/message-transformations/pox-to-json-conversion.md'
-          - 'Converting JSON Message to SOAP': 'use-cases/examples/message-transformations/json-to-soap-conversion.md'
-          - 'Converting CSV Message to Other Formats': 'use-cases/examples/message-transformations/csv-to-other-formats-conversion.md'
-          - 'Converting to CSV Message Format': 'use-cases/examples/message-transformations/csv-conversion.md'
+        #- Message Routing:
+          #- 'Routing based on Message Header': 'use-cases/examples/message-routing/header-based-routing.md'
+          #- 'Routing based on Message Payload': 'use-cases/examples/message-routing/payload-based-routing.md'
+          #- 'Splitting and Aggregating Response Messages': 'use-cases/examples/message-routing/split-and-aggregate-responses.md'
+        #- Message Transformation:
+          #- 'Converting SOAP Message to JSON': 'use-cases/examples/message-transformations/soap-to-json-conversion.md'
+          #- 'Converting POX Message to JSON': 'use-cases/examples/message-transformations/pox-to-json-conversion.md'
+          #- 'Converting JSON Message to SOAP': 'use-cases/examples/message-transformations/json-to-soap-conversion.md'
+          #- 'Converting CSV Message to Other Formats': 'use-cases/examples/message-transformations/csv-to-other-formats-conversion.md'
+          #- 'Converting to CSV Message Format': 'use-cases/examples/message-transformations/csv-conversion.md'
         #- Service Orchestration:
         - Asynchronous Messaging:
             - 'Consuming JMS Messages': 'use-cases/examples/jms_examples/consuming-jms.md'
@@ -110,19 +110,19 @@ nav:
           - 'Switching between HTTP to MSMQ': 'use-cases/examples/protocol-switching/HTTP_to_MSMQ_and_MSMQ_to_HTTP_.md'
           - 'Switching from HTTP/S to JMS': 'use-cases/examples/protocol-switching/Switching_from_HTTP_S_to_JMS_.md'
         - File Processing:
-          - 'Using the VFS Transport': 'use-cases/examples/file-processing/vfs-transport-examples.md'
+          - 'Using VFS for File Transferring': 'use-cases/examples/file-processing/vfs-transport-examples.md'
           - 'Accessing a Windows Share Using VFS': 'use-cases/examples/file-processing/Accessing_Windows_Share_Using_VFS_Transport.md'
-          - 'Using the MailTo Transport': 'use-cases/examples/file-processing/mailto-transport-examples.md'
-        - Gateway:
-          - 'Expose HTTP-based Applications as a SOAP Service': 'use-cases/examples/gateway/http-as-soap-service.md'
-          - 'Expose HTTP-based Applications as a REST Api': 'use-cases/examples/gateway/http-as-rest-api.md'
-          - 'Expose File-based Systems over HTTP': 'use-cases/examples/gateway/http-as-rest-api.md'
-          - 'Expose Services on Proprietary Protocols over Standard Protocols': 'use-cases/examples/gateway/http-as-rest-api.md'
-        - Security Gateway:
-          - 'Expose HTTP-based Applications as a SOAP Service': 'use-cases/examples/gateway/http-as-soap-service.md'
-          - 'Expose HTTP-based Applications as a REST Api': 'use-cases/examples/gateway/http-as-rest-api.md'
-          - 'Expose File-based Systems over HTTP': 'use-cases/examples/gateway/http-as-rest-api.md'
-          - 'Expose Services on Proprietary Protocols over Standard Protocols': 'use-cases/examples/gateway/securing-backend-with-request-throttling.md'
+          - 'Sending and Receiving Emails': 'use-cases/examples/file-processing/mailto-transport-examples.md'
+        #- Gateway:
+          #- 'Expose HTTP-based Applications as a SOAP Service': 'use-cases/examples/gateway/http-as-soap-service.md'
+          #- 'Expose HTTP-based Applications as a REST Api': 'use-cases/examples/gateway/http-as-rest-api.md'
+          #- 'Expose File-based Systems over HTTP': 'use-cases/examples/gateway/http-as-rest-api.md'
+          #- 'Expose Services on Proprietary Protocols over Standard Protocols': 'use-cases/examples/gateway/http-as-rest-api.md'
+        #- Security Gateway:
+          #- 'Expose HTTP-based Applications as a SOAP Service': 'use-cases/examples/gateway/http-as-soap-service.md'
+          #- 'Expose HTTP-based Applications as a REST Api': 'use-cases/examples/gateway/http-as-rest-api.md'
+          #- 'Expose File-based Systems over HTTP': 'use-cases/examples/gateway/http-as-rest-api.md'
+          #- 'Expose Services on Proprietary Protocols over Standard Protocols': 'use-cases/examples/gateway/securing-backend-with-request-throttling.md'
         - Examples of Components:
           - REST APIs:
             - 'Using a Simple REST API': 'use-cases/examples/rest_api_examples/introduction-rest-api.md'
@@ -355,6 +355,7 @@ nav:
         - 'Monitoring REST API Access Logs': 'develop/enabling-logs-for-api.md'
         - 'Endpoint Tracing' : 'develop/endpoint-trace-logs.md'
         - 'Running on WSO2 Integration Cloud': 'develop/deploying-in-integration-cloud.md'
+      - 'Creating Docker/Kubernetes Projects': 'develop/create-docker-kubernetes-projects.md'
       - Advanced Development Tasks:
         - 'Injecting Parameters through Environment Variables': 'develop/injecting-parameters.md'
         - 'Changing the Endpoint of a Deployed Service': 'develop/advanced-development/changing-the-endpoint-of-deployed-service.md'

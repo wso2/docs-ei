@@ -275,7 +275,8 @@ You will see the response as follows:
        "phone":"8770586755",
        "email":"johndoe@gmail.com"},
   "fee":7000.0,
-  "confirmed":false
+  "confirmed":false,
+  "appointmentDate":"2025-04-02"
 }
 ```
 

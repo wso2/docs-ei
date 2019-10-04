@@ -68,7 +68,7 @@ Integration developers will follow the workflow illustrated by the following dia
 	<tr>
 		<td><b>Step 5: Deploy in production</b></td>
 		<td>
-			To deploy your tested integration solution in your production environment, you can use a <a href="../../develop/using-cicd-pipeline">CICD pipeline</a>. Alternatively, you can <a href="../../develop/packaging-artifacts">package the integration artifacts</a> and <a href="../../develop/deploy-and-run/#using-a-remote-micro-integrator">deploy the CAR file</a> in the Micro Integrator that is running in production.
+			To deploy your tested integration solution in your production environment, you can use a <b>CICD pipeline</b>. Alternatively, you can <a href="../../develop/packaging-artifacts">package the integration artifacts</a> and <a href="../../develop/deploy-and-run/#using-a-remote-micro-integrator">deploy the CAR file</a> in the Micro Integrator that is running in production.
 		</td>
 	</tr>
 </table>
@@ -127,10 +127,12 @@ To deploy your tested integration solution in your production environment, you c
 			Develop your <b><a href="../../develop/integration-development-kickstart">first integration solution</a></b>.</br></br>
 			You can try the development workflow end-to-end by running a simple use case.
 		</td>
+		<!--
 		<td>
 			<b><a href="../../develop/using-cicd-pipeline">Using a CI/CD Pipeline</a></b></br></br>
 			Publish your tested integration solution into production using a CI/CD pipeline.
 		</td>
+	-->
 		<td>
 			<b><a href="../../develop/WSO2-Integration-Studio">Using WSO2 Integration Studio</a></b></br></br>
 			Get familiar with the developer tool for creating your integration solutions.

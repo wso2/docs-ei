@@ -459,7 +459,8 @@ You get the following response:
                "phone":"8770586755",
                "email":"johndoe@gmail.com"},
           "fee":7000.0,
-      "confirmed":false}
+      "confirmed":false,
+      "appointmentDate":"2025-04-02"}
 ```
 
 Now check the **Console** tab of WSO2 Integration Studio and you will see the following message: `INFO - LogMediator message = Routing to grand oak community hospital`
