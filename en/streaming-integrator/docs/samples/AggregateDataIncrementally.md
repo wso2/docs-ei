@@ -1,7 +1,13 @@
+# Aggregating Data Incrementally
+
 
 ## Purpose:
-This application demonstrates how to get running statistics using siddhi.
-The sample depicts a scenario in a sweet production factory.
+This example demonstrates how to get running statistics using Siddhi. The sample Siddhi application aggregates the data relating to the raw material purchases of a sweet production factory.
+
+!!!info "Before you begin:"
+    1. Install MySQL.<br/>
+    2. Add the MySQL JDBC driver to your Streaming Integrator library as follows:<br/>
+        1. Download the JDBC driver from the [MySQL site]()
 
 ## Prerequisites:
 1) Ensure that MySql is installed on your machine.

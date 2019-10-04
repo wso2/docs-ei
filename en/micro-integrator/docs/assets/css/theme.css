@@ -288,6 +288,11 @@ html .md-typeset .superfences-tabs > label:hover {
     font-weight: 500;
 }
 
+.mb-config-catalog .superfences-tabs > label:after {
+    content: "Show Example";
+    font-weight: 500;
+}
+
 .mb-config-catalog .superfences-tabs .doc-wrapper {
     padding: .525rem;
 }

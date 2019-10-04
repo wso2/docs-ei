@@ -346,9 +346,44 @@ This section explains how to use REST API to perform the same CRUD operations th
         
 
 
-## Change Data Capture
-
 ## Manupulating data in multiple tables
 
+The Streaming Integrator allows you to perform CRUD operations (i.e., inserting updating and deleting data) and retrieval queries for multiple normalized tables within a single data store. This is supported via the [siddhi-store-rdbms extension](https://wso2-extensions.github.io/siddhi-store-rdbms/).
 
+**Performing CRUD operations for multiple tables**
 
+In order to perform CRUD operations, the system parameter named `perform.CRUD.operations` needs to be set to `true` in the `deployment.yaml` file.
+
+The syntax for a Siddhi query to perform a CRUD operation in multiple tables is as follows.
+
+```sql
+    from TriggerStream#rdbms:cud(<STRING> datasource.name, <STRING> query)
+    select numRecords
+    insert into OutputStream;
+```
+
+e.g., If you need to change the details of a customer in customer details table connected to a data source named, `SAMPLE_DB` a Siddhi query can be written as follows.
+
+```
+    from Trigger Stream#rdbms:cud('SAMPLE_DB', 'UPDATE Customers ON CUSTOMERS SET ContactName='Alfred Schmidt', City='Frankfurt' WHERE CustomerID=1;')
+    select numRecords
+    insert into OutputStream
+```
+
+**Retrieving data from multiple tables**
+
+In order to retrieve information from multiple tables in a data store, the syntax is as follows:
+
+```
+    from TriggerStream#rdbms:query(<STRING> dataource.name, <STRING> query, <STRING> stream definition)
+    select <attributes>
+    insert into OutputStream
+```
+
+e.g., If you need to find matching records in both customer and orders table based on `orderId` and `customerId` in the `SAMPLE_DB` database, a Siddhi query can be written as follows.
+
+```
+    from TriggerStream#rdbms:query('SAMPLE_DB', 'SELECT Orders.OrderID, Customers.CustomerName, Orders.OrderDate FROM Orders INNER JOIN Customers ON Orders.CustomerID=Customers.CustomerID', 'orderId string, customerName string, orderDate string')
+    select orderId, customerName, orderData
+    insert into OutputStream;
+```

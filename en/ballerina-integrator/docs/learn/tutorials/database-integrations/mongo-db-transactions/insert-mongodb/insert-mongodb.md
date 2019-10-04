@@ -1,6 +1,6 @@
 ---
 title: Importing CSV Data to Mongo DB
-commitHash: a76e9f433c9db062427fd53e641e158cc9223de9
+commitHash: 9be2bde276ae340075a85d504719e5f8831bfe6b
 note: This is an auto-generated file do not edit this, You can edit content in "ballerina-integrator" repo
 ---
 
@@ -121,8 +121,15 @@ You can open the project with VS Code. The implementation will be written in the
     ftp:Client ftp = new (ftpConfig);
     mongodb:Client mongoClient = check new (mongoConfig);
     
+    type Employee record {
+        string firstName;
+        string surname;
+        string phone;
+        string email;
+    };
+    
     service ftpServerConnector on ftpListener {
-        resource function onFileChange(ftp:WatchEvent fileEvent) returns error? {
+        resource function fileResource(ftp:WatchEvent m) returns error? {
             foreach ftp:FileInfo v1 in m.addedFiles {
                 log:printInfo("Added file path  " + v1.path + " to FTP location");
     
@@ -131,39 +138,39 @@ You can open the project with VS Code. The implementation will be written in the
         }
     }
     
-    function readFile(string sourcePath) returns @untainted json[] | error {
-        io:ReadableByteChannel getResult = check ftp->get(sourcePath);
+    function readFile(string sourcePath) returns @untainted json[]|error{
+        io:ReadableByteChannel getResult =  check ftp->get(sourcePath);
     
-        io:ReadableCharacterChannel readableCharChannel = new io:ReadableCharacterChannel(getResult, "UTF-8");
+        io:ReadableCharacterChannel readableCharChannel =  new io:ReadableCharacterChannel(getResult, "UTF-8");
         io:ReadableCSVChannel csvChannel = new io:ReadableCSVChannel(readableCharChannel);
-        json[] j2 = [];
+        json[] j2 = [] ;
         int i = 0;
-        while (csvChannel.hasNext()) {
+        while(csvChannel.hasNext()){
             var records = check csvChannel.getNext();
-            json j1 = {x: records};
+            json j1 = {x:records};
             j2[i] = j1;
     
-            i = i + 1;
-        }
+            i=i+1;
+    }
         var result = csvChannel.close();
-        return j2;
+        return  j2 ;
     }
     
-    function insertToMongo(string path) returns error? {
-        json[] | error data = readFile(path);
+    function insertToMongo(string path) returns error?  {
+        json[]|error data =  readFile(path);
     
-        if (data is json) {
-            foreach json doc in data {
-                var insertResult = mongoClient->insert("projects", doc);
-            }
-        } else {
-            log:printError("Error occured in reading the file");
-        }
+       if(data is json){
+        foreach json doc in data {
+             var insertResult = mongoClient->insert("projects", doc);
+         }
+       } else {
+           log:printError("Error occured in reading the file");
+       }
     
-        handleInsert(data);
+       handleInsert(data);
     }
     
-    function handleInsert(json | error returned) {
+    function handleInsert(json|error returned) {
         if (returned is json) {
             log:printInfo("Successfully inserted data to mongo db");
         } else {

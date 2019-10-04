@@ -1,6 +1,6 @@
 ---
 title: Content-Based Routing
-commitHash: a76e9f433c9db062427fd53e641e158cc9223de9
+commitHash: 9be2bde276ae340075a85d504719e5f8831bfe6b
 note: This is an auto-generated file do not edit this, You can edit content in "ballerina-integrator" repo
 ---
 
@@ -12,7 +12,7 @@ Content-based routing is an integration pattern where the message received from 
 
 We create a service called `stockQuote` that accepts an HTTP request from a client. The client appends as a query parameter in the request; i.e., the company name of which he wants to know the price of the stock. The `stockQuote` service identifies the company, routes the request to the relevant company’s stock quote service, obtains the response from the company’s service and returns the response to the client. If the company name is not available in the request, the service will simply respond with a 400 - Bad Request.
 
-![cbr](../../../../../assets/img/content-based-routing.png)
+![cbr](../../../../../assets/img/content_based_routing.jpg)
 
 ## Prerequisites
 
