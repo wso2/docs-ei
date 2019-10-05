@@ -366,6 +366,7 @@ nav:
     - Observability:
       - 'Monitoring Message Round Trip': 'administer-and-observe/observability.md'
       - 'CLI for Monitoring': 'administer-and-observe/using-the-command-line-interface.md'
+      - 'Monitoring Dashboard': 'administer-and-observe/working-with-monitoring-dashboard.md'
       - Logging:
         - 'Logs in WSO2 Micro Integrator' : 'administer-and-observe/logs/monitoring_logs.md'
         - 'Configuring Log4j Properties' : 'administer-and-observe/logs/configuring_log4j_properties.md'
