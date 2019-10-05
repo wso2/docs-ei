@@ -144,6 +144,8 @@ mi version
         update [nick-name] [host] [port]     Update a Micro Integrator
         select [nick-name]                   Select a Micro Integrator on which commands are executed
         show                                 Show available Micro Integrators
+        login                                Login to use the Management API (will be prompted for username and password)
+        login [username] [password]          Login (inline username and password)
 
     Examples:
         # To add a Micro Integrator
@@ -160,6 +162,12 @@ mi version
 
         # To show available Micro Integrators
         mi remote show
+        
+        # login to the current (selected)  Micro Integrator instance
+        mi remote login     # will be prompted for username and password
+            
+        # login (with inline username and password)
+        mi remote login admin admin
     ```
  -  **log-level**
      ```bash
