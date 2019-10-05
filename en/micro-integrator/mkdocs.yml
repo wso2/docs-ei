@@ -54,14 +54,15 @@ nav:
     - Learn:
       - 'Integration Use Cases': 'use-cases/integration-use-cases.md'
       - Tutorials:
-        - 'Sending a Simple Message to a Service': 'use-cases/tutorials/integration/sending-a-simple-message-to-a-service.md'
-        - 'Message Routing': 'use-cases/tutorials/integration/routing-requests-based-on-message-content.md'
-        - 'Message Transformation': 'use-cases/tutorials/integration/transforming-message-content.md'
-        - 'Service Orchestration': 'use-cases/tutorials/integration/exposing-several-services-as-a-single-service.md'
-        - 'Asynchronous Messaging': 'use-cases/tutorials/integration/storing-and-forwarding-messages.md'
-        - 'Connecting Web APIs/Cloud Services': 'use-cases/tutorials/integration/using-the-gmail-connector.md'
-        - 'Data Integration': 'use-cases/tutorials/integration/sending-a-simple-message-to-a-datasource.md'
+        - 'Sending a Simple Message to a Service': 'use-cases/tutorials/sending-a-simple-message-to-a-service.md'
+        - 'Message Routing': 'use-cases/tutorials/routing-requests-based-on-message-content.md'
+        - 'Message Transformation': 'use-cases/tutorials/transforming-message-content.md'
+        - 'Service Orchestration': 'use-cases/tutorials/exposing-several-services-as-a-single-service.md'
+        - 'Asynchronous Messaging': 'use-cases/tutorials/storing-and-forwarding-messages.md'
+        - 'Connecting Web APIs/Cloud Services': 'use-cases/tutorials/using-the-gmail-connector.md'
+        - 'Data Integration': 'use-cases/tutorials/sending-a-simple-message-to-a-datasource.md'
         - 'File Processing': 'use-cases/tutorials/file-processing.md'
+        - 'Periodic Execution of Integration Process': 'use-cases/tutorials/using-scheduled-tasks.md'
         - 'Using Inbound Endpoints': 'use-cases/tutorials/using-inbound-endpoints.md'
         - 'Reusing Mediation Sequences': 'use-cases/tutorials/using-templates.md'
         - 'Integrating with SAP': 'use-cases/tutorials/sap-integration.md'
@@ -135,7 +136,7 @@ nav:
             #- 'Retrieving Metadata from the Head Request': 'use-cases/examples/rest_api_examples/retrieving-meta-data-from-head-request.md'
             - 'Handling HTTP Status Codes': 'use-cases/examples/rest_api_examples/setting-https-status-codes.md'
             - 'Manipulating Content Types': 'use-cases/examples/rest_api_examples/transforming-content-type.md'
-            - 'Securing REST APIs' : 'use-cases/examples/rest_api_examples/securing-rest-apis.md'
+            - 'Securing a REST API': 'use-cases/examples/rest_api_examples/securing-rest-apis.md'
             - Handling Special Cases:
               - 'Using GET with a Body': 'use-cases/examples/rest_api_examples/using-get-with-a-body.md'
               - 'Using POST with Empty Message Body': 'use-cases/examples/rest_api_examples/using-post-with-no-body.md'
@@ -166,10 +167,11 @@ nav:
             - 'Kafka Inbound Endpoint': 'use-cases/examples/inbound_endpoint_examples/using-kafka-inbound-endpoints.md'
             - 'WebSocket Endpoint': 'use-cases/examples/inbound_endpoint_examples/using-secure-websocket-inbound.md'
             - 'Using Inbound Endpoints with Registry': 'use-cases/examples/inbound_endpoint_examples/using-inbound-endpoints.md'
-            - 'Securing Inbound Endpoint Parameters': 'use-cases/examples/inbound_endpoint_examples/using-inbound-endpoints.md'
-          - 'Using Scheduled Tasks': 'use-cases/examples/using-scheduled-tasks.md'
+          - Scheduled Tasks: 
+            - 'Task Scheduling using a Simple Trigger': 'use-cases/examples/scheduled-tasks/task-scheduling-simple-trigger.md'
+            - 'Injecting Messages to a RESTful Endpoint': 'use-cases/examples/scheduled-tasks/injecting-messages-to-rest-endpoint.md'
           - Working with the Registry:
-            - 'Local Registry Entry Definitions, Reusable Endpoints and Sequences': 'use-cases/examples/registry_examples/Local-Registry-Entry-Definitions-Reusable-Endpoints-and-Sequences.md'
+            - 'Sequences and Endpoints as Local Registry Entries': 'use-cases/examples/registry_examples/local-registry-entries.md'
             #- 'Using Dynamic and Static Registry Keys': 'use-cases/examples/registry_examples/Introduction-to-Dynamic-and-Static-Registry-Keys.md'
             #- 'Using Sequences and Endpoints as Local Registry Items': 'use-cases/examples/registry_examples/Using-Sequences-and-Endpoints-as-Local-Registry-Items.md'
             #- 'Using the Registry to Share Configurations Between Multiple Instances': 'use-cases/examples/registry_examples/Using-a-Full-Registry-Based-Configuration-and-Sharing-a-Configuration-Between-Multiple-Instances.md'
@@ -317,7 +319,7 @@ nav:
         - 'Creating a REST API': 'develop/creating-artifacts/creating-an-api.md'
         - 'Creating a Proxy Service': 'develop/creating-artifacts/creating-a-proxy-service.md'
         - 'Creating an Inbound Endpoint': 'develop/creating-artifacts/creating-an-inbound-endpoint.md'
-        - 'Creating Scheduled Tasks' : 'develop/creating-artifacts/scheduling-esb-tasks.md'
+        - 'Creating Scheduled Tasks' : 'develop/creating-artifacts/creating-scheduled-task.md'
         - 'Creating a Message Store': 'develop/creating-artifacts/creating-a-message-store.md'
         - 'Creating a Message Processor': 'develop/creating-artifacts/creating-a-message-processor.md'
         - 'Creating an Endpoint': 'develop/creating-artifacts/creating-endpoints.md'
@@ -364,6 +366,7 @@ nav:
     - Observability:
       - 'Monitoring Message Round Trip': 'administer-and-observe/observability.md'
       - 'CLI for Monitoring': 'administer-and-observe/using-the-command-line-interface.md'
+      - 'Monitoring Dashboard': 'administer-and-observe/working-with-monitoring-dashboard.md'
       - Logging:
         - 'Logs in WSO2 Micro Integrator' : 'administer-and-observe/logs/monitoring_logs.md'
         - 'Configuring Log4j Properties' : 'administer-and-observe/logs/configuring_log4j_properties.md'

@@ -28,7 +28,7 @@ Follow the instructions given in this section to create and configure the requir
 
 #### Create Endpoints
 
-In this tutorial we have three hospital backend services hosted as the backend:
+In this tutorial we have three hospital services hosted as the backend:
 
 -   Grand Oak Community Hospital: `http://localhost:9090/grandoaks/`
 -   Clemency Medical Center: `http://localhost:9090/clemency/`

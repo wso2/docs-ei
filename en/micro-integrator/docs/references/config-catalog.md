@@ -6,15 +6,20 @@ This document describes all the configuration parameters that are used in WSO2 M
 > Select the configuration sections, parameters, and values that are required for your use and add them to the deployment.toml file. See the example .toml file given below.
 
 ```toml
-# This is an example deployment.toml file.
+# This is an example .toml file.
 
 [server]
 hostname="localhost"
 node_ip = "10.100.1.80"
 
+[key_mgr_node]
+endpoints="value"
+
+[gateway]
+gateway_environments=["dev","test"]
+
 [[database]]
 pool_options.maxActiv=5
-
 ```
 
 
@@ -2005,7 +2010,7 @@ rules = ["HIVE_TASK,HTTP_SCRIPT.*,192.168.1.*","HIVE_TASK,.*,192.168.2.*"]
                             <code>[tasks]</code>
                             <span class="badge-required">Required</span>
                             <p>
-                                The...
+                                This configuration header groups the parameters that are used for configuring the task handling component of WSO2 Micro Integrator.
                             </p>
                         </div>
                         <div class="params-wrap">
@@ -2023,11 +2028,11 @@ rules = ["HIVE_TASK,HTTP_SCRIPT.*,192.168.1.*","HIVE_TASK,.*,192.168.2.*"]
                                             <span class="param-default-value">Default: <code>AUTO</code></span>
                                         </div>
                                         <div class="param-possible">
-                                            <span class="param-possible-values">Possible Values: <code>&quot;STANDALONE&quot;, &quot;&quot;CLUSTERED&quot;, or &quot;REMOTE&quot;</code></span>
+                                            <span class="param-possible-values">Possible Values: <code>&quot;STANDALONE&quot;, &quot;CLUSTERED&quot;, or &quot;REMOTE&quot;</code></span>
                                         </div>
                                     </div>
                                     <div class="param-description">
-                                        <p>The...</p>
+                                        <p>The task handling mode.</p>
                                     </div>
                                 </div>
                             </div><div class="param">
@@ -2177,7 +2182,7 @@ rules = ["HIVE_TASK,HTTP_SCRIPT.*,192.168.1.*","HIVE_TASK,.*,192.168.2.*"]
 </div>
 
 
-## OWASP CSRF Guard
+## Server request processor
 
 <div class="mb-config-catalog">
     <section>
@@ -2186,267 +2191,6 @@ rules = ["HIVE_TASK,HTTP_SCRIPT.*,192.168.1.*","HIVE_TASK,.*,192.168.2.*"]
             
             <input name="17" type="checkbox" id="_tab_17">
                 <label class="tab-selector" for="_tab_17"><i class="icon fa fa-code"></i></label>
-                <div class="superfences-content">
-                    <div class="mb-config-example">
-<pre><code class="toml">[[owasp.csrfguard.unprotected.service]]
- name = "oauthiwa"
- service = "%servletContext%/commonauth/iwa/*"
-
-[owasp.csrfguard]
-create_token_per_page=false
-token_length=32
-random_number_generator_algo="SHA1PRNG"
-
-[owasp.csrfguard.js_servlet]
-x_request_with_header = "WSO2 CSRF Protection"
-</code></pre>
-                    </div>
-                </div>
-                <div class="doc-wrapper">
-                    <div class="mb-config">
-                        <div class="config-wrap">
-                            <code>[owasp.csrfguard]</code>
-                            <span class="badge-required">Required</span>
-                            <p>
-                                The .......
-                            </p>
-                        </div>
-                        <div class="params-wrap">
-                            <div class="param">
-                                <div class="param-name">
-                                  <span class="param-name-wrap"> <code>create_token_per_page</code> </span>
-                                </div>
-                                <div class="param-info">
-                                    <div>
-                                        <p>
-                                            <span class="param-type string"> boolean </span>
-                                            <span class="badge-required">Required</span>
-                                        </p>
-                                        <div class="param-default">
-                                            <span class="param-default-value">Default: <code>false</code></span>
-                                        </div>
-                                        <div class="param-possible">
-                                            <span class="param-possible-values">Possible Values: <code>&quot;true&quot;,&quot;false&quot;</code></span>
-                                        </div>
-                                    </div>
-                                    <div class="param-description">
-                                        <p>The.....</p>
-                                    </div>
-                                </div>
-                            </div><div class="param">
-                                <div class="param-name">
-                                  <span class="param-name-wrap"> <code>token_length</code> </span>
-                                </div>
-                                <div class="param-info">
-                                    <div>
-                                        <p>
-                                            <span class="param-type string"> integer </span>
-                                            
-                                        </p>
-                                        <div class="param-default">
-                                            <span class="param-default-value">Default: <code>32</code></span>
-                                        </div>
-                                        <div class="param-possible">
-                                            <span class="param-possible-values">Possible Values: <code>...</code></span>
-                                        </div>
-                                    </div>
-                                    <div class="param-description">
-                                        <p>The....</p>
-                                    </div>
-                                </div>
-                            </div><div class="param">
-                                <div class="param-name">
-                                  <span class="param-name-wrap"> <code>random_number_generator_algo</code> </span>
-                                </div>
-                                <div class="param-info">
-                                    <div>
-                                        <p>
-                                            <span class="param-type string"> string </span>
-                                            
-                                        </p>
-                                        <div class="param-default">
-                                            <span class="param-default-value">Default: <code>SHA1PRNG</code></span>
-                                        </div>
-                                        <div class="param-possible">
-                                            <span class="param-possible-values">Possible Values: <code>...</code></span>
-                                        </div>
-                                    </div>
-                                    <div class="param-description">
-                                        <p>The....</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-</div>
-
-
-## OWASP CSRF Unprotected Service
-
-<div class="mb-config-catalog">
-    <section>
-        <div class="mb-config-options">
-            <div class="superfences-tabs">
-            
-            <input name="18" type="checkbox" id="_tab_18">
-                <label class="tab-selector" for="_tab_18"><i class="icon fa fa-code"></i></label>
-                <div class="superfences-content">
-                    <div class="mb-config-example">
-<pre><code class="toml">[[owasp.csrfguard.unprotected.service]]
- name = "oauthiwa"
- service = "%servletContext%/commonauth/iwa/*"
-
-[owasp.csrfguard]
-create_token_per_page=false
-token_length=32
-random_number_generator_algo="SHA1PRNG"
-
-[owasp.csrfguard.js_servlet]
-x_request_with_header = "WSO2 CSRF Protection"
-</code></pre>
-                    </div>
-                </div>
-                <div class="doc-wrapper">
-                    <div class="mb-config">
-                        <div class="config-wrap">
-                            <code>[[owasp.csrfguard.unprotected.service]]</code>
-                            <span class="badge-required">Required</span>
-                            <p>
-                                The .......
-                            </p>
-                        </div>
-                        <div class="params-wrap">
-                            <div class="param">
-                                <div class="param-name">
-                                  <span class="param-name-wrap"> <code>name</code> </span>
-                                </div>
-                                <div class="param-info">
-                                    <div>
-                                        <p>
-                                            <span class="param-type string"> string </span>
-                                            <span class="badge-required">Required</span>
-                                        </p>
-                                        <div class="param-default">
-                                            <span class="param-default-value">Default: <code>oauthiwa</code></span>
-                                        </div>
-                                        <div class="param-possible">
-                                            <span class="param-possible-values">Possible Values: <code>.....</code></span>
-                                        </div>
-                                    </div>
-                                    <div class="param-description">
-                                        <p>The.....</p>
-                                    </div>
-                                </div>
-                            </div><div class="param">
-                                <div class="param-name">
-                                  <span class="param-name-wrap"> <code>service</code> </span>
-                                </div>
-                                <div class="param-info">
-                                    <div>
-                                        <p>
-                                            <span class="param-type string"> string </span>
-                                            
-                                        </p>
-                                        <div class="param-default">
-                                            <span class="param-default-value">Default: <code>%servletContext%/commonauth/iwa/*</code></span>
-                                        </div>
-                                        <div class="param-possible">
-                                            <span class="param-possible-values">Possible Values: <code>...</code></span>
-                                        </div>
-                                    </div>
-                                    <div class="param-description">
-                                        <p>The....</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-</div>
-
-
-## OWASP CSRF JS Servlet
-
-<div class="mb-config-catalog">
-    <section>
-        <div class="mb-config-options">
-            <div class="superfences-tabs">
-            
-            <input name="19" type="checkbox" id="_tab_19">
-                <label class="tab-selector" for="_tab_19"><i class="icon fa fa-code"></i></label>
-                <div class="superfences-content">
-                    <div class="mb-config-example">
-<pre><code class="toml">[[owasp.csrfguard.unprotected.service]]
- name = "oauthiwa"
- service = "%servletContext%/commonauth/iwa/*"
-
-[owasp.csrfguard]
-create_token_per_page=false
-token_length=32
-random_number_generator_algo="SHA1PRNG"
-
-[owasp.csrfguard.js_servlet]
-x_request_with_header = "WSO2 CSRF Protection"
-</code></pre>
-                    </div>
-                </div>
-                <div class="doc-wrapper">
-                    <div class="mb-config">
-                        <div class="config-wrap">
-                            <code>[owasp.csrfguard.js_servlet]</code>
-                            <span class="badge-required">Required</span>
-                            <p>
-                                The .......
-                            </p>
-                        </div>
-                        <div class="params-wrap">
-                            <div class="param">
-                                <div class="param-name">
-                                  <span class="param-name-wrap"> <code>x_request_with_header</code> </span>
-                                </div>
-                                <div class="param-info">
-                                    <div>
-                                        <p>
-                                            <span class="param-type string"> string </span>
-                                            <span class="badge-required">Required</span>
-                                        </p>
-                                        <div class="param-default">
-                                            <span class="param-default-value">Default: <code>WSO2 CSRF Protection</code></span>
-                                        </div>
-                                        <div class="param-possible">
-                                            <span class="param-possible-values">Possible Values: <code>.....</code></span>
-                                        </div>
-                                    </div>
-                                    <div class="param-description">
-                                        <p>The.....</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-</div>
-
-
-## Server request processor
-
-<div class="mb-config-catalog">
-    <section>
-        <div class="mb-config-options">
-            <div class="superfences-tabs">
-            
-            <input name="20" type="checkbox" id="_tab_20">
-                <label class="tab-selector" for="_tab_20"><i class="icon fa fa-code"></i></label>
                 <div class="superfences-content">
                     <div class="mb-config-example">
 <pre><code class="toml">[[server.get_request_processor]]
@@ -2524,8 +2268,8 @@ class = "org.wso2.micro.integrator.transport.handlers.requestprocessors.swagger.
         <div class="mb-config-options">
             <div class="superfences-tabs">
             
-            <input name="21" type="checkbox" id="_tab_21">
-                <label class="tab-selector" for="_tab_21"><i class="icon fa fa-code"></i></label>
+            <input name="18" type="checkbox" id="_tab_18">
+                <label class="tab-selector" for="_tab_18"><i class="icon fa fa-code"></i></label>
                 <div class="superfences-content">
                     <div class="mb-config-example">
 <pre><code class="toml">[transport.http]
@@ -3634,8 +3378,8 @@ blocking_sender.so_timeout = "1m"
         <div class="mb-config-options">
             <div class="superfences-tabs">
             
-            <input name="22" type="checkbox" id="_tab_22">
-                <label class="tab-selector" for="_tab_22"><i class="icon fa fa-code"></i></label>
+            <input name="19" type="checkbox" id="_tab_19">
+                <label class="tab-selector" for="_tab_19"><i class="icon fa fa-code"></i></label>
                 <div class="superfences-content">
                     <div class="mb-config-example">
 <pre><code class="toml">[[transport.http.proxy_profile]]
@@ -3791,8 +3535,8 @@ bypass_hosts = ["xxx.sample.com"]
         <div class="mb-config-options">
             <div class="superfences-tabs">
             
-            <input name="23" type="checkbox" id="_tab_23">
-                <label class="tab-selector" for="_tab_23"><i class="icon fa fa-code"></i></label>
+            <input name="20" type="checkbox" id="_tab_20">
+                <label class="tab-selector" for="_tab_20"><i class="icon fa fa-code"></i></label>
                 <div class="superfences-content">
                     <div class="mb-config-example">
 <pre><code class="toml">[[transport.http.secured_proxy_profile]]
@@ -3941,64 +3685,6 @@ bypass_hosts = ["xxx.sample.com"]
 </div>
 
 
-## Local transport
-
-<div class="mb-config-catalog">
-    <section>
-        <div class="mb-config-options">
-            <div class="superfences-tabs">
-            
-            <input name="24" type="checkbox" id="_tab_24">
-                <label class="tab-selector" for="_tab_24"><i class="icon fa fa-code"></i></label>
-                <div class="superfences-content">
-                    <div class="mb-config-example">
-<pre><code class="toml">[transport.local]
-listener.enabled=false
-sender.enabled=false
-</code></pre>
-                    </div>
-                </div>
-                <div class="doc-wrapper">
-                    <div class="mb-config">
-                        <div class="config-wrap">
-                            <code>[transport.local]</code>
-                            <span class="badge-required">Required</span>
-                            <p>
-                                This parameter is used to enable the local sender that used when the server communicates through the local transport.
-                            </p>
-                        </div>
-                        <div class="params-wrap">
-                            <div class="param">
-                                <div class="param-name">
-                                  <span class="param-name-wrap"> <code>sender.nonblocking.enable</code> </span>
-                                </div>
-                                <div class="param-info">
-                                    <div>
-                                        <p>
-                                            <span class="param-type string"> boolean </span>
-                                            <span class="badge-required">Required</span>
-                                        </p>
-                                        <div class="param-default">
-                                            <span class="param-default-value">Default: <code>false</code></span>
-                                        </div>
-                                        <div class="param-possible">
-                                            <span class="param-possible-values">Possible Values: <code>&quot;true&quot;,or &quot;false&quot;</code></span>
-                                        </div>
-                                    </div>
-                                    <div class="param-description">
-                                        <p>The.....</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-</div>
-
-
 ## VFS transport
 
 <div class="mb-config-catalog">
@@ -4006,8 +3692,8 @@ sender.enabled=false
         <div class="mb-config-options">
             <div class="superfences-tabs">
             
-            <input name="25" type="checkbox" id="_tab_25">
-                <label class="tab-selector" for="_tab_25"><i class="icon fa fa-code"></i></label>
+            <input name="21" type="checkbox" id="_tab_21">
+                <label class="tab-selector" for="_tab_21"><i class="icon fa fa-code"></i></label>
                 <div class="superfences-content">
                     <div class="mb-config-example">
 <pre><code class="toml">[transport.vfs]
@@ -4143,7 +3829,9 @@ sender.enable = true
                                         <div class="param-default">
                                             <span class="param-default-value">Default: <code>wso2carbon</code></span>
                                         </div>
-                                        
+                                        <div class="param-possible">
+                                            <span class="param-possible-values">Possible Values: <code>wso2carbon</code></span>
+                                        </div>
                                     </div>
                                     <div class="param-description">
                                         <p>The password of the private key that is included in the keystore. The private key is used to decrypt the data that has been encrypted using the keystore's public key. By default, the public key password of the <a href="#primary-keystore">primary keystore</a> is enabled for this purpose.</p>
@@ -4160,14 +3848,14 @@ sender.enable = true
                                             <span class="badge-required">Required</span>
                                         </p>
                                         <div class="param-default">
-                                            <span class="param-default-value">Default: <code>false</code></span>
+                                            <span class="param-default-value">Default: <code>true</code></span>
                                         </div>
                                         <div class="param-possible">
                                             <span class="param-possible-values">Possible Values: <code>&quot;true&quot;,or &quot;false&quot;</code></span>
                                         </div>
                                     </div>
                                     <div class="param-description">
-                                        <p>The.....</p>
+                                        <p>The parameter for enabling the VFS transport sender.</p>
                                     </div>
                                 </div>
                             </div>
@@ -4187,8 +3875,8 @@ sender.enable = true
         <div class="mb-config-options">
             <div class="superfences-tabs">
             
-            <input name="26" type="checkbox" id="_tab_26">
-                <label class="tab-selector" for="_tab_26"><i class="icon fa fa-code"></i></label>
+            <input name="22" type="checkbox" id="_tab_22">
+                <label class="tab-selector" for="_tab_22"><i class="icon fa fa-code"></i></label>
                 <div class="superfences-content">
                     <div class="mb-config-example">
 <pre><code class="toml">[transport.mail.listener]
@@ -4264,8 +3952,8 @@ name = "mailto"
         <div class="mb-config-options">
             <div class="superfences-tabs">
             
-            <input name="27" type="checkbox" id="_tab_27">
-                <label class="tab-selector" for="_tab_27"><i class="icon fa fa-code"></i></label>
+            <input name="23" type="checkbox" id="_tab_23">
+                <label class="tab-selector" for="_tab_23"><i class="icon fa fa-code"></i></label>
                 <div class="superfences-content">
                     <div class="mb-config-example">
 <pre><code class="toml">[[transport.mail.sender]]
@@ -4465,8 +4153,8 @@ parameter.from = "demo_user@wso2.com"
         <div class="mb-config-options">
             <div class="superfences-tabs">
             
-            <input name="28" type="checkbox" id="_tab_28">
-                <label class="tab-selector" for="_tab_28"><i class="icon fa fa-code"></i></label>
+            <input name="24" type="checkbox" id="_tab_24">
+                <label class="tab-selector" for="_tab_24"><i class="icon fa fa-code"></i></label>
                 <div class="superfences-content">
                     <div class="mb-config-example">
 <pre><code class="toml">[[transport.jms.listener]]
@@ -4575,9 +4263,7 @@ parameter.consume_error_progression = "2.0"
                                         <div class="param-default">
                                             <span class="param-default-value">Default: <code></code></span>
                                         </div>
-                                        <div class="param-possible">
-                                            <span class="param-possible-values">Possible Values: <code>....</code></span>
-                                        </div>
+                                        
                                     </div>
                                     <div class="param-description">
                                         <p>The name of the JMS broker.</p>
@@ -4596,9 +4282,7 @@ parameter.consume_error_progression = "2.0"
                                         <div class="param-default">
                                             <span class="param-default-value">Default: <code></code></span>
                                         </div>
-                                        <div class="param-possible">
-                                            <span class="param-possible-values">Possible Values: <code>....</code></span>
-                                        </div>
+                                        
                                     </div>
                                     <div class="param-description">
                                         <p>URL of the JNDI provider.</p>
@@ -4617,12 +4301,10 @@ parameter.consume_error_progression = "2.0"
                                         <div class="param-default">
                                             <span class="param-default-value">Default: <code></code></span>
                                         </div>
-                                        <div class="param-possible">
-                                            <span class="param-possible-values">Possible Values: <code>....</code></span>
-                                        </div>
+                                        
                                     </div>
                                     <div class="param-description">
-                                        <p></p>
+                                        <p>The JNDI name of the connection factory.</p>
                                     </div>
                                 </div>
                             </div><div class="param">
@@ -4636,14 +4318,14 @@ parameter.consume_error_progression = "2.0"
                                             
                                         </p>
                                         <div class="param-default">
-                                            <span class="param-default-value">Default: <code>producer</code></span>
+                                            <span class="param-default-value">Default: <code>consumer</code></span>
                                         </div>
                                         <div class="param-possible">
-                                            <span class="param-possible-values">Possible Values: <code>producer</code></span>
+                                            <span class="param-possible-values">Possible Values: <code>consumer</code></span>
                                         </div>
                                     </div>
                                     <div class="param-description">
-                                        <p>The cache level that should apply when JMS objects startup. When the Micro Integrator produces JMS messages, you need to specify this cache level in the deployment.toml file. If the Micro Integrator works as JMS listener, you need to specify the JMS cache level in the proxy service. See the list of <a href='../../references/synapse-properties/transport-parameters/jms-transport-parameters'>service-level JMS parameters<a>.</p>
+                                        <p>The cache level that should apply when JMS objects startup. When the Micro Integrator produces JMS messages, you need to specify this cache level in the deployment.toml file. If the Micro Integrator works as JMS listener, you need to specify the JMS cache level in the proxy service. See the list of <a href='../../references/synapse-properties/transport-parameters/jms-transport-parameters'/>service-level JMS parameters</a>.</p>
                                     </div>
                                 </div>
                             </div><div class="param">
@@ -4659,9 +4341,7 @@ parameter.consume_error_progression = "2.0"
                                         <div class="param-default">
                                             <span class="param-default-value">Default: <code></code></span>
                                         </div>
-                                        <div class="param-possible">
-                                            <span class="param-possible-values">Possible Values: <code>....</code></span>
-                                        </div>
+                                        
                                     </div>
                                     <div class="param-description">
                                         <p>The JNDI Username.</p>
@@ -4680,9 +4360,7 @@ parameter.consume_error_progression = "2.0"
                                         <div class="param-default">
                                             <span class="param-default-value">Default: <code></code></span>
                                         </div>
-                                        <div class="param-possible">
-                                            <span class="param-possible-values">Possible Values: <code>....</code></span>
-                                        </div>
+                                        
                                     </div>
                                     <div class="param-description">
                                         <p>The JNDI password.</p>
@@ -4701,9 +4379,7 @@ parameter.consume_error_progression = "2.0"
                                         <div class="param-default">
                                             <span class="param-default-value">Default: <code></code></span>
                                         </div>
-                                        <div class="param-possible">
-                                            <span class="param-possible-values">Possible Values: <code>....</code></span>
-                                        </div>
+                                        
                                     </div>
                                     <div class="param-description">
                                         <p>Preferred mode of transactionality. <b>Note</b> that JMS transactions only works with either the <a href='../../references/mediators/callout-Mediator'>Callout mediator</a> or the <a href='../../references/mediators/call-Mediator'>Call mediator</a> in blocking mode.</p>
@@ -4720,14 +4396,12 @@ parameter.consume_error_progression = "2.0"
                                             
                                         </p>
                                         <div class="param-default">
-                                            <span class="param-default-value">Default: <code>....</code></span>
+                                            <span class="param-default-value">Default: <code></code></span>
                                         </div>
-                                        <div class="param-possible">
-                                            <span class="param-possible-values">Possible Values: <code>....</code></span>
-                                        </div>
+                                        
                                     </div>
                                     <div class="param-description">
-                                        <p>...</p>
+                                        <p>JNDI name to be used to require user transaction.</p>
                                     </div>
                                 </div>
                             </div><div class="param">
@@ -4785,9 +4459,7 @@ parameter.consume_error_progression = "2.0"
                                         <div class="param-default">
                                             <span class="param-default-value">Default: <code>AUTO_ACKNOWLEDGE</code></span>
                                         </div>
-                                        <div class="param-possible">
-                                            <span class="param-possible-values">Possible Values: <code>....</code></span>
-                                        </div>
+                                        
                                     </div>
                                     <div class="param-description">
                                         <p>JMS session acknowledgment mode.</p>
@@ -4806,9 +4478,7 @@ parameter.consume_error_progression = "2.0"
                                         <div class="param-default">
                                             <span class="param-default-value">Default: <code>1.1</code></span>
                                         </div>
-                                        <div class="param-possible">
-                                            <span class="param-possible-values">Possible Values: <code>....</code></span>
-                                        </div>
+                                        
                                     </div>
                                     <div class="param-description">
                                         <p>JMS API version.</p>
@@ -4905,9 +4575,7 @@ parameter.consume_error_progression = "2.0"
                                         <div class="param-default">
                                             <span class="param-default-value">Default: <code></code></span>
                                         </div>
-                                        <div class="param-possible">
-                                            <span class="param-possible-values">Possible Values: <code>....</code></span>
-                                        </div>
+                                        
                                     </div>
                                     <div class="param-description">
                                         <p>The JNDI name of the default reply destination.</p>
@@ -4947,9 +4615,7 @@ parameter.consume_error_progression = "2.0"
                                         <div class="param-default">
                                             <span class="param-default-value">Default: <code></code></span>
                                         </div>
-                                        <div class="param-possible">
-                                            <span class="param-possible-values">Possible Values: <code>....</code></span>
-                                        </div>
+                                        
                                     </div>
                                     <div class="param-description">
                                         <p>The message selector implementation.</p>
@@ -5276,9 +4942,7 @@ parameter.consume_error_progression = "2.0"
                                         <div class="param-default">
                                             <span class="param-default-value">Default: <code>2.0</code></span>
                                         </div>
-                                        <div class="param-possible">
-                                            <span class="param-possible-values">Possible Values: <code>.....</code></span>
-                                        </div>
+                                        
                                     </div>
                                     <div class="param-description">
                                         <p>The factor by which the consume error retry sleep will be increased.</p>
@@ -5301,8 +4965,8 @@ parameter.consume_error_progression = "2.0"
         <div class="mb-config-options">
             <div class="superfences-tabs">
             
-            <input name="29" type="checkbox" id="_tab_29">
-                <label class="tab-selector" for="_tab_29"><i class="icon fa fa-code"></i></label>
+            <input name="25" type="checkbox" id="_tab_25">
+                <label class="tab-selector" for="_tab_25"><i class="icon fa fa-code"></i></label>
                 <div class="superfences-content">
                     <div class="mb-config-example">
 <pre><code class="toml">[[transport.jms.sender]]
@@ -5370,17 +5034,15 @@ parameter.vender_class_loader = false
                                     <div>
                                         <p>
                                             <span class="param-type string"> string </span>
-                                            <span class="badge-required">Required</span>
+                                            
                                         </p>
                                         <div class="param-default">
                                             <span class="param-default-value">Default: <code></code></span>
                                         </div>
-                                        <div class="param-possible">
-                                            <span class="param-possible-values">Possible Values: <code>....</code></span>
-                                        </div>
+                                        
                                     </div>
                                     <div class="param-description">
-                                        <p>The....</p>
+                                        <p>The user-defined name of the JMS sender.</p>
                                     </div>
                                 </div>
                             </div><div class="param">
@@ -5396,12 +5058,10 @@ parameter.vender_class_loader = false
                                         <div class="param-default">
                                             <span class="param-default-value">Default: <code></code></span>
                                         </div>
-                                        <div class="param-possible">
-                                            <span class="param-possible-values">Possible Values: <code>....</code></span>
-                                        </div>
+                                        
                                     </div>
                                     <div class="param-description">
-                                        <p>The.....</p>
+                                        <p>JNDI initial context factory class. The class must implement the <code>java.naming.spi.InitialContextFactory</code> interface.</p>
                                     </div>
                                 </div>
                             </div><div class="param">
@@ -5417,12 +5077,10 @@ parameter.vender_class_loader = false
                                         <div class="param-default">
                                             <span class="param-default-value">Default: <code></code></span>
                                         </div>
-                                        <div class="param-possible">
-                                            <span class="param-possible-values">Possible Values: <code>....</code></span>
-                                        </div>
+                                        
                                     </div>
                                     <div class="param-description">
-                                        <p>The.....</p>
+                                        <p>The name of the JMS broker.</p>
                                     </div>
                                 </div>
                             </div><div class="param">
@@ -5438,12 +5096,10 @@ parameter.vender_class_loader = false
                                         <div class="param-default">
                                             <span class="param-default-value">Default: <code></code></span>
                                         </div>
-                                        <div class="param-possible">
-                                            <span class="param-possible-values">Possible Values: <code>....</code></span>
-                                        </div>
+                                        
                                     </div>
                                     <div class="param-description">
-                                        <p>The.....</p>
+                                        <p>URL of the JNDI provider.</p>
                                     </div>
                                 </div>
                             </div><div class="param">
@@ -5459,12 +5115,10 @@ parameter.vender_class_loader = false
                                         <div class="param-default">
                                             <span class="param-default-value">Default: <code></code></span>
                                         </div>
-                                        <div class="param-possible">
-                                            <span class="param-possible-values">Possible Values: <code>....</code></span>
-                                        </div>
+                                        
                                     </div>
                                     <div class="param-description">
-                                        <p>The.....</p>
+                                        <p>The JNDI name of the connection factory.</p>
                                     </div>
                                 </div>
                             </div><div class="param">
@@ -5501,10 +5155,12 @@ parameter.vender_class_loader = false
                                         <div class="param-default">
                                             <span class="param-default-value">Default: <code>producer</code></span>
                                         </div>
-                                        
+                                        <div class="param-possible">
+                                            <span class="param-possible-values">Possible Values: <code>producer</code></span>
+                                        </div>
                                     </div>
                                     <div class="param-description">
-                                        <p>The.....</p>
+                                        <p>The cache level that should apply when JMS objects startup. When the Micro Integrator produces JMS messages, you need to specify this cache level in the deployment.toml file. If the Micro Integrator works as JMS listener, you need to specify the JMS cache level in the proxy service. See the list of <a href='../../references/synapse-properties/transport-parameters/jms-transport-parameters'/>service-level JMS parameters</a>.</p>
                                     </div>
                                 </div>
                             </div><div class="param">
@@ -5518,14 +5174,12 @@ parameter.vender_class_loader = false
                                             <span class="badge-required">Required</span>
                                         </p>
                                         <div class="param-default">
-                                            <span class="param-default-value">Default: <code>....</code></span>
+                                            <span class="param-default-value">Default: <code></code></span>
                                         </div>
-                                        <div class="param-possible">
-                                            <span class="param-possible-values">Possible Values: <code>....</code></span>
-                                        </div>
+                                        
                                     </div>
                                     <div class="param-description">
-                                        <p>The.....</p>
+                                        <p>The JNDI Username.</p>
                                     </div>
                                 </div>
                             </div><div class="param">
@@ -5536,17 +5190,15 @@ parameter.vender_class_loader = false
                                     <div>
                                         <p>
                                             <span class="param-type string"> string </span>
-                                            <span class="badge-required">Required</span>
+                                            
                                         </p>
                                         <div class="param-default">
-                                            <span class="param-default-value">Default: <code>....</code></span>
+                                            <span class="param-default-value">Default: <code></code></span>
                                         </div>
-                                        <div class="param-possible">
-                                            <span class="param-possible-values">Possible Values: <code>....</code></span>
-                                        </div>
+                                        
                                     </div>
                                     <div class="param-description">
-                                        <p>The.....</p>
+                                        <p>The JNDI password.</p>
                                     </div>
                                 </div>
                             </div><div class="param">
@@ -5557,17 +5209,15 @@ parameter.vender_class_loader = false
                                     <div>
                                         <p>
                                             <span class="param-type string"> string </span>
-                                            <span class="badge-required">Required</span>
+                                            
                                         </p>
                                         <div class="param-default">
-                                            <span class="param-default-value">Default: <code>....</code></span>
+                                            <span class="param-default-value">Default: <code></code></span>
                                         </div>
-                                        <div class="param-possible">
-                                            <span class="param-possible-values">Possible Values: <code>....</code></span>
-                                        </div>
+                                        
                                     </div>
                                     <div class="param-description">
-                                        <p>The.....</p>
+                                        <p>Preferred mode of transactionality. <b>Note</b> that JMS transactions only works with either the <a href='../../references/mediators/callout-Mediator'>Callout mediator</a> or the <a href='../../references/mediators/call-Mediator'>Call mediator</a> in blocking mode.</p>
                                     </div>
                                 </div>
                             </div><div class="param">
@@ -6217,8 +5867,8 @@ parameter.vender_class_loader = false
         <div class="mb-config-options">
             <div class="superfences-tabs">
             
-            <input name="30" type="checkbox" id="_tab_30">
-                <label class="tab-selector" for="_tab_30"><i class="icon fa fa-code"></i></label>
+            <input name="26" type="checkbox" id="_tab_26">
+                <label class="tab-selector" for="_tab_26"><i class="icon fa fa-code"></i></label>
                 <div class="superfences-content">
                     <div class="mb-config-example">
 <pre><code class="toml">[transport.jndi.connection_factories]
@@ -6296,8 +5946,8 @@ TopicConnectionFactory = "amqp://admin:admin@clientID/carbon?brokerlist='tcp://l
         <div class="mb-config-options">
             <div class="superfences-tabs">
             
-            <input name="31" type="checkbox" id="_tab_31">
-                <label class="tab-selector" for="_tab_31"><i class="icon fa fa-code"></i></label>
+            <input name="27" type="checkbox" id="_tab_27">
+                <label class="tab-selector" for="_tab_27"><i class="icon fa fa-code"></i></label>
                 <div class="superfences-content">
                     <div class="mb-config-example">
 <pre><code class="toml">[transport.jndi.queue]
@@ -6354,8 +6004,8 @@ StockQuotesQueue = "StockQuotesQueue"
         <div class="mb-config-options">
             <div class="superfences-tabs">
             
-            <input name="32" type="checkbox" id="_tab_32">
-                <label class="tab-selector" for="_tab_32"><i class="icon fa fa-code"></i></label>
+            <input name="28" type="checkbox" id="_tab_28">
+                <label class="tab-selector" for="_tab_28"><i class="icon fa fa-code"></i></label>
                 <div class="superfences-content">
                     <div class="mb-config-example">
 <pre><code class="toml">[transport.jndi.topic]
@@ -6411,8 +6061,8 @@ MyTopic = "example.MyTopic"
         <div class="mb-config-options">
             <div class="superfences-tabs">
             
-            <input name="33" type="checkbox" id="_tab_33">
-                <label class="tab-selector" for="_tab_33"><i class="icon fa fa-code"></i></label>
+            <input name="29" type="checkbox" id="_tab_29">
+                <label class="tab-selector" for="_tab_29"><i class="icon fa fa-code"></i></label>
                 <div class="superfences-content">
                     <div class="mb-config-example">
 <pre><code class="toml">[[transport.rabbitmq.listener]]
@@ -7131,8 +6781,8 @@ parameter.truststore_password = "$ref{truststore.password}"
         <div class="mb-config-options">
             <div class="superfences-tabs">
             
-            <input name="34" type="checkbox" id="_tab_34">
-                <label class="tab-selector" for="_tab_34"><i class="icon fa fa-code"></i></label>
+            <input name="30" type="checkbox" id="_tab_30">
+                <label class="tab-selector" for="_tab_30"><i class="icon fa fa-code"></i></label>
                 <div class="superfences-content">
                     <div class="mb-config-example">
 <pre><code class="toml">[[transport.rabbitmq.sender]]
@@ -7625,8 +7275,8 @@ parameter.exchange_auto_declare = ""
         <div class="mb-config-options">
             <div class="superfences-tabs">
             
-            <input name="35" type="checkbox" id="_tab_35">
-                <label class="tab-selector" for="_tab_35"><i class="icon fa fa-code"></i></label>
+            <input name="31" type="checkbox" id="_tab_31">
+                <label class="tab-selector" for="_tab_31"><i class="icon fa fa-code"></i></label>
                 <div class="superfences-content">
                     <div class="mb-config-example">
 <pre><code class="toml">[transport.ws]
@@ -7706,8 +7356,8 @@ sender.enabled=false
         <div class="mb-config-options">
             <div class="superfences-tabs">
             
-            <input name="36" type="checkbox" id="_tab_36">
-                <label class="tab-selector" for="_tab_36"><i class="icon fa fa-code"></i></label>
+            <input name="32" type="checkbox" id="_tab_32">
+                <label class="tab-selector" for="_tab_32"><i class="icon fa fa-code"></i></label>
                 <div class="superfences-content">
                     <div class="mb-config-example">
 <pre><code class="toml">[transport.mqtt]
@@ -7767,7 +7417,7 @@ sender.enable = false
                                 </div>
                             </div><div class="param">
                                 <div class="param-name">
-                                  <span class="param-name-wrap"> <code>listener.parameter.hostname</code> </span>
+                                  <span class="param-name-wrap"> <code>listener.hostname</code> </span>
                                 </div>
                                 <div class="param-info">
                                     <div>
@@ -7786,7 +7436,7 @@ sender.enable = false
                                 </div>
                             </div><div class="param">
                                 <div class="param-name">
-                                  <span class="param-name-wrap"> <code>listener.parameter.connection_factory</code> </span>
+                                  <span class="param-name-wrap"> <code>listener.connection_factory</code> </span>
                                 </div>
                                 <div class="param-info">
                                     <div>
@@ -7805,7 +7455,7 @@ sender.enable = false
                                 </div>
                             </div><div class="param">
                                 <div class="param-name">
-                                  <span class="param-name-wrap"> <code>listener.parameter.server_port</code> </span>
+                                  <span class="param-name-wrap"> <code>listener.server_port</code> </span>
                                 </div>
                                 <div class="param-info">
                                     <div>
@@ -7826,7 +7476,7 @@ sender.enable = false
                                 </div>
                             </div><div class="param">
                                 <div class="param-name">
-                                  <span class="param-name-wrap"> <code>listener.parameter.client_id</code> </span>
+                                  <span class="param-name-wrap"> <code>listener.client_id</code> </span>
                                 </div>
                                 <div class="param-info">
                                     <div>
@@ -7845,7 +7495,7 @@ sender.enable = false
                                 </div>
                             </div><div class="param">
                                 <div class="param-name">
-                                  <span class="param-name-wrap"> <code>listener.parameter.topic_name</code> </span>
+                                  <span class="param-name-wrap"> <code>listener.topic_name</code> </span>
                                 </div>
                                 <div class="param-info">
                                     <div>
@@ -7864,70 +7514,7 @@ sender.enable = false
                                 </div>
                             </div><div class="param">
                                 <div class="param-name">
-                                  <span class="param-name-wrap"> <code>listener.parameter.subscription_qos</code> </span>
-                                </div>
-                                <div class="param-info">
-                                    <div>
-                                        <p>
-                                            <span class="param-type string"> string </span>
-                                            
-                                        </p>
-                                        <div class="param-default">
-                                            <span class="param-default-value">Default: <code>0</code></span>
-                                        </div>
-                                        <div class="param-possible">
-                                            <span class="param-possible-values">Possible Values: <code>0, 1, or 2</code></span>
-                                        </div>
-                                    </div>
-                                    <div class="param-description">
-                                        <p>The QoS value.</p>
-                                    </div>
-                                </div>
-                            </div><div class="param">
-                                <div class="param-name">
-                                  <span class="param-name-wrap"> <code>listener.parameter.session_clean</code> </span>
-                                </div>
-                                <div class="param-info">
-                                    <div>
-                                        <p>
-                                            <span class="param-type string"> boolean </span>
-                                            
-                                        </p>
-                                        <div class="param-default">
-                                            <span class="param-default-value">Default: <code>false</code></span>
-                                        </div>
-                                        <div class="param-possible">
-                                            <span class="param-possible-values">Possible Values: <code>&quot;true&quot;, or &quot;false&quot;</code></span>
-                                        </div>
-                                    </div>
-                                    <div class="param-description">
-                                        <p>Specifies whether or not session clean should be enabled.</p>
-                                    </div>
-                                </div>
-                            </div><div class="param">
-                                <div class="param-name">
-                                  <span class="param-name-wrap"> <code>listener.parameter.enable_ssl</code> </span>
-                                </div>
-                                <div class="param-info">
-                                    <div>
-                                        <p>
-                                            <span class="param-type string"> boolean </span>
-                                            
-                                        </p>
-                                        <div class="param-default">
-                                            <span class="param-default-value">Default: <code>false</code></span>
-                                        </div>
-                                        <div class="param-possible">
-                                            <span class="param-possible-values">Possible Values: <code>&quot;true&quot;, or &quot;false&quot;</code></span>
-                                        </div>
-                                    </div>
-                                    <div class="param-description">
-                                        <p>Specifies whether or not SSL should be enabled.</p>
-                                    </div>
-                                </div>
-                            </div><div class="param">
-                                <div class="param-name">
-                                  <span class="param-name-wrap"> <code>listener.parameter.subscription_username</code> </span>
+                                  <span class="param-name-wrap"> <code>listener.parameter.customParameter</code> </span>
                                 </div>
                                 <div class="param-info">
                                     <div>
@@ -7941,106 +7528,7 @@ sender.enable = false
                                         
                                     </div>
                                     <div class="param-description">
-                                        <p>The username for the subscription.</p>
-                                    </div>
-                                </div>
-                            </div><div class="param">
-                                <div class="param-name">
-                                  <span class="param-name-wrap"> <code>listener.parameter.subscription_password</code> </span>
-                                </div>
-                                <div class="param-info">
-                                    <div>
-                                        <p>
-                                            <span class="param-type string"> string </span>
-                                            
-                                        </p>
-                                        <div class="param-default">
-                                            <span class="param-default-value">Default: <code></code></span>
-                                        </div>
-                                        
-                                    </div>
-                                    <div class="param-description">
-                                        <p>The password for the subscription.</p>
-                                    </div>
-                                </div>
-                            </div><div class="param">
-                                <div class="param-name">
-                                  <span class="param-name-wrap"> <code>listener.parameter.temporary_store_directory</code> </span>
-                                </div>
-                                <div class="param-info">
-                                    <div>
-                                        <p>
-                                            <span class="param-type string"> string </span>
-                                            
-                                        </p>
-                                        <div class="param-default">
-                                            <span class="param-default-value">Default: <code></code></span>
-                                        </div>
-                                        
-                                    </div>
-                                    <div class="param-description">
-                                        <p>The path of the directory to be used as the persistent data store for quality of service purposes. The default value is the Micro Integrator temp path.</p>
-                                    </div>
-                                </div>
-                            </div><div class="param">
-                                <div class="param-name">
-                                  <span class="param-name-wrap"> <code>listener.parameter.blocking_sender</code> </span>
-                                </div>
-                                <div class="param-info">
-                                    <div>
-                                        <p>
-                                            <span class="param-type string"> boolean </span>
-                                            
-                                        </p>
-                                        <div class="param-default">
-                                            <span class="param-default-value">Default: <code>false</code></span>
-                                        </div>
-                                        <div class="param-possible">
-                                            <span class="param-possible-values">Possible Values: <code>&quot;true&quot;, or &quot;false&quot;</code></span>
-                                        </div>
-                                    </div>
-                                    <div class="param-description">
-                                        <p>Specifies whether or not the blocking sender should be enabled.</p>
-                                    </div>
-                                </div>
-                            </div><div class="param">
-                                <div class="param-name">
-                                  <span class="param-name-wrap"> <code>listener.parameter.connect_type</code> </span>
-                                </div>
-                                <div class="param-info">
-                                    <div>
-                                        <p>
-                                            <span class="param-type string"> string </span>
-                                            
-                                        </p>
-                                        <div class="param-default">
-                                            <span class="param-default-value">Default: <code>text/plain</code></span>
-                                        </div>
-                                        
-                                    </div>
-                                    <div class="param-description">
-                                        <p>The content type.</p>
-                                    </div>
-                                </div>
-                            </div><div class="param">
-                                <div class="param-name">
-                                  <span class="param-name-wrap"> <code>listener.parameter.message_retained</code> </span>
-                                </div>
-                                <div class="param-info">
-                                    <div>
-                                        <p>
-                                            <span class="param-type string"> boolean </span>
-                                            
-                                        </p>
-                                        <div class="param-default">
-                                            <span class="param-default-value">Default: <code>false</code></span>
-                                        </div>
-                                        <div class="param-possible">
-                                            <span class="param-possible-values">Possible Values: <code>&quot;true&quot;, or &quot;false&quot;</code></span>
-                                        </div>
-                                    </div>
-                                    <div class="param-description">
-                                        <p>Specifies whether or not the messaging engine should retain a published message. This parameter can be used only in the transport sender.</p>
+                                        <p>Replace 'customParameter' with a required parameter name.</p>
                                     </div>
                                 </div>
                             </div><div class="param">
@@ -8064,6 +7552,25 @@ sender.enable = false
                                         <p>The parameter for enabling the MQTT transport sender.</p>
                                     </div>
                                 </div>
+                            </div><div class="param">
+                                <div class="param-name">
+                                  <span class="param-name-wrap"> <code>sender.parameter.customParameter</code> </span>
+                                </div>
+                                <div class="param-info">
+                                    <div>
+                                        <p>
+                                            <span class="param-type string"> string </span>
+                                            
+                                        </p>
+                                        <div class="param-default">
+                                            <span class="param-default-value">Default: <code>false</code></span>
+                                        </div>
+                                        
+                                    </div>
+                                    <div class="param-description">
+                                        <p>Replace 'customParameter' with a required parameter name.</p>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -8081,8 +7588,8 @@ sender.enable = false
         <div class="mb-config-options">
             <div class="superfences-tabs">
             
-            <input name="37" type="checkbox" id="_tab_37">
-                <label class="tab-selector" for="_tab_37"><i class="icon fa fa-code"></i></label>
+            <input name="33" type="checkbox" id="_tab_33">
+                <label class="tab-selector" for="_tab_33"><i class="icon fa fa-code"></i></label>
                 <div class="superfences-content">
                     <div class="mb-config-example">
 <pre><code class="toml">[transport.sap]
@@ -8236,8 +7743,8 @@ sender.enabled=false
         <div class="mb-config-options">
             <div class="superfences-tabs">
             
-            <input name="38" type="checkbox" id="_tab_38">
-                <label class="tab-selector" for="_tab_38"><i class="icon fa fa-code"></i></label>
+            <input name="34" type="checkbox" id="_tab_34">
+                <label class="tab-selector" for="_tab_34"><i class="icon fa fa-code"></i></label>
                 <div class="superfences-content">
                     <div class="mb-config-example">
 <pre><code class="toml">[transport.msmq]
@@ -8338,8 +7845,8 @@ sender.enable = false
         <div class="mb-config-options">
             <div class="superfences-tabs">
             
-            <input name="39" type="checkbox" id="_tab_39">
-                <label class="tab-selector" for="_tab_39"><i class="icon fa fa-code"></i></label>
+            <input name="35" type="checkbox" id="_tab_35">
+                <label class="tab-selector" for="_tab_35"><i class="icon fa fa-code"></i></label>
                 <div class="superfences-content">
                     <div class="mb-config-example">
 <pre><code class="toml">[transport.tcp]
@@ -8503,8 +8010,8 @@ sender.enable = true
         <div class="mb-config-options">
             <div class="superfences-tabs">
             
-            <input name="40" type="checkbox" id="_tab_40">
-                <label class="tab-selector" for="_tab_40"><i class="icon fa fa-code"></i></label>
+            <input name="36" type="checkbox" id="_tab_36">
+                <label class="tab-selector" for="_tab_36"><i class="icon fa fa-code"></i></label>
                 <div class="superfences-content">
                     <div class="mb-config-example">
 <pre><code class="toml">[transport.ws]
@@ -8548,7 +8055,7 @@ sender.parameter.outflow_dispatch_fault_sequence = "outflowFaultSeq"
                                 </div>
                             </div><div class="param">
                                 <div class="param-name">
-                                  <span class="param-name-wrap"> <code>sender.parameter.outflow_dispatch_sequence</code> </span>
+                                  <span class="param-name-wrap"> <code>sender.outflow_dispatch_sequence</code> </span>
                                 </div>
                                 <div class="param-info">
                                     <div>
@@ -8557,7 +8064,7 @@ sender.parameter.outflow_dispatch_fault_sequence = "outflowFaultSeq"
                                             
                                         </p>
                                         <div class="param-default">
-                                            <span class="param-default-value">Default: <code></code></span>
+                                            <span class="param-default-value">Default: <code>outflowDispatchSeq</code></span>
                                         </div>
                                         
                                     </div>
@@ -8567,7 +8074,26 @@ sender.parameter.outflow_dispatch_fault_sequence = "outflowFaultSeq"
                                 </div>
                             </div><div class="param">
                                 <div class="param-name">
-                                  <span class="param-name-wrap"> <code>sender.parameter.outflow_dispatch_fault_sequence</code> </span>
+                                  <span class="param-name-wrap"> <code>sender.outflow_dispatch_fault_sequence</code> </span>
+                                </div>
+                                <div class="param-info">
+                                    <div>
+                                        <p>
+                                            <span class="param-type string"> string </span>
+                                            
+                                        </p>
+                                        <div class="param-default">
+                                            <span class="param-default-value">Default: <code>outflowFaultSeq</code></span>
+                                        </div>
+                                        
+                                    </div>
+                                    <div class="param-description">
+                                        <p>The fault sequence for the back-end to client mediation path.</p>
+                                    </div>
+                                </div>
+                            </div><div class="param">
+                                <div class="param-name">
+                                  <span class="param-name-wrap"> <code>sender.parameter.customParameter</code> </span>
                                 </div>
                                 <div class="param-info">
                                     <div>
@@ -8581,7 +8107,7 @@ sender.parameter.outflow_dispatch_fault_sequence = "outflowFaultSeq"
                                         
                                     </div>
                                     <div class="param-description">
-                                        <p>The fault sequence for the back-end to client mediation path.</p>
+                                        <p>Replave 'customParameter' with required parameter name.</p>
                                     </div>
                                 </div>
                             </div>
@@ -8601,8 +8127,8 @@ sender.parameter.outflow_dispatch_fault_sequence = "outflowFaultSeq"
         <div class="mb-config-options">
             <div class="superfences-tabs">
             
-            <input name="41" type="checkbox" id="_tab_41">
-                <label class="tab-selector" for="_tab_41"><i class="icon fa fa-code"></i></label>
+            <input name="37" type="checkbox" id="_tab_37">
+                <label class="tab-selector" for="_tab_37"><i class="icon fa fa-code"></i></label>
                 <div class="superfences-content">
                     <div class="mb-config-example">
 <pre><code class="toml">[transport.wss]
@@ -8648,7 +8174,7 @@ sender.truststore_password = "$ref{truststore.password}"
                                 </div>
                             </div><div class="param">
                                 <div class="param-name">
-                                  <span class="param-name-wrap"> <code>sender.parameter.outflow_dispatch_sequence</code> </span>
+                                  <span class="param-name-wrap"> <code>sender.outflow_dispatch_sequence</code> </span>
                                 </div>
                                 <div class="param-info">
                                     <div>
@@ -8657,7 +8183,7 @@ sender.truststore_password = "$ref{truststore.password}"
                                             
                                         </p>
                                         <div class="param-default">
-                                            <span class="param-default-value">Default: <code></code></span>
+                                            <span class="param-default-value">Default: <code>outflowDispatchSeq</code></span>
                                         </div>
                                         
                                     </div>
@@ -8667,7 +8193,7 @@ sender.truststore_password = "$ref{truststore.password}"
                                 </div>
                             </div><div class="param">
                                 <div class="param-name">
-                                  <span class="param-name-wrap"> <code>sender.parameter.outflow_dispatch_fault_sequence</code> </span>
+                                  <span class="param-name-wrap"> <code>sender.outflow_dispatch_fault_sequence</code> </span>
                                 </div>
                                 <div class="param-info">
                                     <div>
@@ -8676,7 +8202,7 @@ sender.truststore_password = "$ref{truststore.password}"
                                             
                                         </p>
                                         <div class="param-default">
-                                            <span class="param-default-value">Default: <code></code></span>
+                                            <span class="param-default-value">Default: <code>outflowFaultSeq</code></span>
                                         </div>
                                         
                                     </div>
@@ -8724,6 +8250,25 @@ sender.truststore_password = "$ref{truststore.password}"
                                         <p>The....</p>
                                     </div>
                                 </div>
+                            </div><div class="param">
+                                <div class="param-name">
+                                  <span class="param-name-wrap"> <code>sender.parameter.customParameter</code> </span>
+                                </div>
+                                <div class="param-info">
+                                    <div>
+                                        <p>
+                                            <span class="param-type string"> string </span>
+                                            
+                                        </p>
+                                        <div class="param-default">
+                                            <span class="param-default-value">Default: <code></code></span>
+                                        </div>
+                                        
+                                    </div>
+                                    <div class="param-description">
+                                        <p>Replave 'customParameter' with required parameter name.</p>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -8741,8 +8286,8 @@ sender.truststore_password = "$ref{truststore.password}"
         <div class="mb-config-options">
             <div class="superfences-tabs">
             
-            <input name="42" type="checkbox" id="_tab_42">
-                <label class="tab-selector" for="_tab_42"><i class="icon fa fa-code"></i></label>
+            <input name="38" type="checkbox" id="_tab_38">
+                <label class="tab-selector" for="_tab_38"><i class="icon fa fa-code"></i></label>
                 <div class="superfences-content">
                     <div class="mb-config-example">
 <pre><code class="toml">[transport.udp]
@@ -8821,8 +8366,8 @@ sender.enable =false
         <div class="mb-config-options">
             <div class="superfences-tabs">
             
-            <input name="43" type="checkbox" id="_tab_43">
-                <label class="tab-selector" for="_tab_43"><i class="icon fa fa-code"></i></label>
+            <input name="39" type="checkbox" id="_tab_39">
+                <label class="tab-selector" for="_tab_39"><i class="icon fa fa-code"></i></label>
                 <div class="superfences-content">
                     <div class="mb-config-example">
 <pre><code class="toml">[[custom_transport.listener]]
@@ -9210,8 +8755,8 @@ ssl_profile.read_interval = "30s"
         <div class="mb-config-options">
             <div class="superfences-tabs">
             
-            <input name="44" type="checkbox" id="_tab_44">
-                <label class="tab-selector" for="_tab_44"><i class="icon fa fa-code"></i></label>
+            <input name="40" type="checkbox" id="_tab_40">
+                <label class="tab-selector" for="_tab_40"><i class="icon fa fa-code"></i></label>
                 <div class="superfences-content">
                     <div class="mb-config-example">
 <pre><code class="toml">[[custom_transport.sender]]
@@ -9577,8 +9122,8 @@ ssl_profile.read_interval = "30s"
         <div class="mb-config-options">
             <div class="superfences-tabs">
             
-            <input name="45" type="checkbox" id="_tab_45">
-                <label class="tab-selector" for="_tab_45"><i class="icon fa fa-code"></i></label>
+            <input name="41" type="checkbox" id="_tab_41">
+                <label class="tab-selector" for="_tab_41"><i class="icon fa fa-code"></i></label>
                 <div class="superfences-content">
                     <div class="mb-config-example">
 <pre><code class="toml">[mediation]

@@ -28,10 +28,10 @@ Following is a sample REST Api configuration that we can used to implement this 
 
 Create the artifacts:
 
-1. Set up WSO2 Integration Studio.
-2. Create an ESB Config project
-3. Create a REST Api artifact with the above configuration.
-4. Deploy the artifacts in your Micro Integrator.
+1. [Set up WSO2 Integration Studio](../../../../develop/installing-WSO2-Integration-Studio).
+2. [Create an ESB Solution project](../../../../develop/creating-projects/#esb-config-project).
+3. [Create the rest api](../../../../develop/creating-artifacts/creating-an-api) with the configurations given above.
+4. [Deploy the artifacts](../../../../develop/deploy-and-run) in your Micro Integrator.
 
 Set up the back-end service:
 
@@ -40,7 +40,7 @@ Set up the back-end service:
 Add some query parameters to the URL and execute the following command:
 
 ```bash
-     curl -v -H "Content-Type: application/json" -d @request.json http://localhost:8290/healthcare/reserve?param1=value1&param2=value2 -X POST
+curl -v -H "Content-Type: application/json" -d @request.json http://localhost:8290/healthcare/reserve?param1=value1&param2=value2 -X POST
 ```
 
 When you execute this command, you can see the following output in tcpmon:

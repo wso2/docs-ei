@@ -4,9 +4,9 @@
 
 This sample demonstrates how one way message bridging from Kafka to HTTP can be done using the inbound kafka endpoint.
 
-## Synapse configuration
+### Synapse configuration
 
-The XML configuration for this sample is as follows:
+Following are the integration artifacts that we can used to implement this scenario. See the instructions on how to [build and run](#build-and-run) this example.
 
 ```xml tab='Inbound Endpoint'
 <inboundEndpoint xmlns="http://ws.apache.org/ns/synapse"
@@ -35,23 +35,21 @@ The XML configuration for this sample is as follows:
 </sequence>
 ```
 
-## Build and run
+### Build and run
 
 Create the artifacts:
 
-1. Set up WSO2 Integration Studio.
-2. Create an ESB Config project
-3. Create the following artifacts: Inbound endpoint, Sequence.
-4. Deploy the artifacts in your Micro Integrator.
+1. [Set up WSO2 Integration Studio](../../../../develop/installing-WSO2-Integration-Studio).
+2. [Create an ESB Solution project](../../../../develop/creating-projects/#esb-config-project)
+3. Create a [mediation sequence](../../../../develop/creating-artifacts/creating-reusable-sequences) and [inbound endpoint](../../../../develop/creating-an-inbound-endpoint) with configurations given in the above example.
+4. [Deploy the artifacts](../../../../develop/deploy-and-run) in your Micro Integrator.
 
 Set up the back-end service.
 
-Apache Kafka inbound endpoint should be configured before using it. The recommended version for the customized kafka 
-inbound endpoint is `kafka_2.9.2-0.8.1.1`.Go to [Configuring Kafka](../../../setup) for more information. 
+Apache Kafka inbound endpoint should be configured. The recommended version for the customized kafka 
+inbound endpoint is `kafka_2.9.2-0.8.1.1`. See [Configuring Kafka](../../../../setup/configuring-kafka) for more information. 
 
-Invoke the service:
-
-Run the following commands in the {KAFKA_HOME} directory.
+Run the following commands in the {KAFKA_HOME} directory to invoke the service.
     
 -   Run the following on the Kafka command line to create a topic named `test` with a single partition and only one
     replica:
