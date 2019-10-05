@@ -59,16 +59,24 @@ Create an API using the following configuration:
 ```
     
 ## Build and run
-    
-The context of the API is ‘/healthcare’. For every HTTP method, a url-mapping or uri-template is defined, and the URL to call the methods differ with the defined mapping or template.
-    
+
+Create the artifacts:
+
+1. [Set up WSO2 Integration Studio](../../../../develop/installing-WSO2-Integration-Studio).
+2. [Create an ESB Solution project](../../../../develop/creating-projects/#esb-config-project)
+3. [Create the rest api](../../../../develop/creating-artifacts/creating-an-api) with the configurations given above.
+4. [Deploy the artifacts](../../../../develop/deploy-and-run) in your Micro Integrator.
+
+Set up the back-end service.
+  
 Following is the cURL command to send an HTTP POST request to the API:
+
+!!! Tip
+    The context of the API is ‘/healthcare’. For every HTTP method, a url-mapping or uri-template is defined, and the URL to call the methods differ with the defined mapping or template.
     
-`         curl -v -H "Content-Type: application/json" -X POST -d @request.json                              http://localhost:8290/healthcare/appointment/reserve                           `
+`curl -v -H "Content-Type: application/json" -X POST -d @request.json http://localhost:8290/healthcare/appointment/reserve`where `request.json` has the following content on the appointment:
     
-where `        request.json        ` has the following content on the appointment:
-    
-```
+```json
 {
     "patient": {
     "name": "John Doe",
@@ -83,8 +91,9 @@ where `        request.json        ` has the following content on the appointmen
     "appointment_date": "2025-04-02"
 }
 ```
-The response from backend to ESB profile will be:
-```
+The response from backend to Micro Integrator will be:
+
+```json
 {
    "appointmentNumber": 1,
    "doctor": {
@@ -108,8 +117,9 @@ The response from backend to ESB profile will be:
 }
 ```
 
-The ESB profile transform the response to XML and send it back to client as:
-```
+The Micro Integrator transform the response to XML and send it back to client as:
+
+```xml
 <jsonObject>
    <appointmentNumber>1</appointmentNumber>
    <doctor>
@@ -139,7 +149,7 @@ Following is the CURL command to send a GET request to the API:
     
 The response for the request will be:
     
-```
+```json
 {
    "appointmentNumber": 1,
    "doctor": {
@@ -165,17 +175,18 @@ The response for the request will be:
 
 Following is the cURL command for sending an HTTP DELETE request:
     
-`         curl -v -X DELETE                              http://localhost:8290/healthcare/appointments/1                            `
+`curl -v -X DELETE http://localhost:8290/healthcare/appointments/1                            `
     
 This request will be sent to the back end, and the order with the specified ID will be deleted.
 
-The response to ESB profile from backend will be,
+The response to the Micro Integrator from backend will be,
 
-```
+```json
 {"status":"Appointment is successfully removed"}
 ```
 
-The ESB profile transform the response to XML and send it back to client as:
-```
+The Micro Integrator transform the response to XML and sends it back to client as:
+
+```xml
 <jsonObject><status>Appointment is successfully removed</status></jsonObject>
 ```

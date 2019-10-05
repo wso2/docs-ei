@@ -50,15 +50,12 @@ Following is a sample REST Api configuration and mediation Sequence that we can 
 
 Create the artifacts:
 
-1. Set up WSO2 Integration Studio.
-2. Create an ESB Config project
-3. Create a REST Api artifact with the above configuration.
-4. Create a mediation sequence with the above configuration.
-5. Deploy the artifacts in your Micro Integrator.
+1. [Set up WSO2 Integration Studio](../../../../develop/installing-WSO2-Integration-Studio).
+2. [Create an ESB Solution project](../../../../develop/creating-projects/#esb-config-project).
+3. Create the [rest api](../../../../develop/creating-artifacts/creating-an-api) and [mediation sequence](../../../../develop/creating-artifacts/creating-reusable-sequences) with the configurations given above.
+4. [Deploy the artifacts](../../../../develop/deploy-and-run) in your Micro Integrator.
 
-Set up the back-end service:
-
-........
+Set up the back-end service.
 
 Send an invalid request to the back end as follows:
     

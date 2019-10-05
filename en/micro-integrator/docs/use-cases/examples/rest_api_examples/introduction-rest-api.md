@@ -2,9 +2,7 @@
 
 ## Example use case
 
-<!--
-In addition to exposing RESTful interfaces and mediating RESTful invocations by mapping REST concepts to SOAP via [proxy services](https://docs.wso2.com/display/EI650/Using+REST+with+a+Proxy+Service), you can configure REST endpoints in the Micro Integrator by directly specifying HTTP verbs, URL patterns, URI templates, HTTP media types, and other related headers. You can define REST APIs and the associated resources by combining REST APIs with mediation features provided by the underlying messaging framework.
--->
+You can configure REST endpoints in the Micro Integrator by directly specifying HTTP verbs, URL patterns, URI templates, HTTP media types, and other related headers. You can define REST APIs and the associated resources by combining REST APIs with mediation features provided by the underlying messaging framework.
 
 ## Synapse configuration
 
@@ -57,14 +55,12 @@ This is a REST api with two api resources. The GET calls are handled by the firs
 
 Create the artifacts:
 
-1. Set up WSO2 Integration Studio.
-2. Create an ESB Config project
-3. Create a REST Api artifact with the above configuration.
-4. Deploy the artifacts in your Micro Integrator.
+1. [Set up WSO2 Integration Studio](../../../../develop/installing-WSO2-Integration-Studio).
+2. [Create an ESB Solution project](../../../../develop/creating-projects/#esb-config-project)
+3. [Create the rest api](../../../../develop/creating-artifacts/creating-an-api) with the configurations given above.
+4. [Deploy the artifacts](../../../../develop/deploy-and-run) in your Micro Integrator.
 
-Set up the back-end service:
-
-........
+Set up the back-end service.
 
 Invoke the sample Api:
 
