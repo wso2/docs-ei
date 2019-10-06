@@ -220,7 +220,7 @@ You can now start configuring the API resource.
             <div class="content-wrapper">
                To extract the stock symbol from the request and print a welcome message in the log, click the '+' icon in the <strong>Properties</strong> section, and then add the following values:<br />
                <ul>
-                  <li><strong>Name</strong>: <code>message</code></li>
+                  <li><strong>Name</strong>: <code>Log Property message</code></li>
                   <li><strong>Type</strong>: <code>LITERAL</code><br />
                      (We select LITERAL because the required log message is a static value.)
                   </li>

@@ -1,8 +1,8 @@
-# Creating projects
+# Creating ESB Projects
 
 Create the project directories that are required for storing the various synapse artifacts that build your integration use case.
 
-## ESB Solution project
+## ESB Solution Project
 
 An ESB solution consists of one or several project directories. These directories store the various ESB artifacts that you create for your integration sequence.
 
