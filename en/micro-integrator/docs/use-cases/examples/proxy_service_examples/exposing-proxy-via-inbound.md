@@ -22,13 +22,11 @@ If a proxy service is to be exposed only via inbound endpoints, the following se
 
 Create the artifacts:
 
-1. Set up WSO2 Integration Studio.
-2. Create an ESB Config project.
-3. Create a proxy service artifact with the above configuration.
-5. Deploy the artifacts in your Micro Integrator.
+1. [Set up WSO2 Integration Studio](../../../../develop/installing-WSO2-Integration-Studio).
+2. [Create an ESB Solution project](../../../../develop/creating-projects/#esb-config-project)
+3. Create the [proxy service](../../../../develop/creating-artifacts/creating-a-proxy-service) and [security policy](../../../../develop/creating-artifacts/registry/creating-local-registry-entries) with the configurations given above.
+4. [Deploy the artifacts](../../../../develop/deploy-and-run) in your Micro Integrator.
 
-Set up the back-end service:
+Set up the back-end service.
 
-........
-
-Send the following request to the Micro Integrator:
+Send the following request to the Micro Integrator.

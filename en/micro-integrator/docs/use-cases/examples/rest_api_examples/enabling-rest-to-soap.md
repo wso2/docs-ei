@@ -1,16 +1,13 @@
 # Enabling REST to SOAP
+## Example use case
     
 In this scenario, you expose a SOAP service over REST using an API in the ESB profile.
-    
-## Setting up the back end
-    
-For the SOAP back-end service, we are using the StockQuote Service that is shipped with the ESB profile. Configure and start the back-end service as described in [Starting Sample Back-End Services](https://docs.wso2.com/display/EI650/Setting+Up+the+ESB+Samples). We will use [cURL](http://curl.haxx.se/) as the REST client to invoke the API in the ESB profile.
     
 ## Synapse configuration
     
 Following is a sample REST Api configuration that we can used to implement this scenario.
 
-In this API configuration we have defined two resources. One is for the HTTP method GET and the other one is for POST. In the first resource, we have defined the uri-template as /view/{symbol} so that request will be dispatched to this resource when you invoke the API using the following URI: `http://127.0.0.1:8280/stockquote/view/IBM`
+In this API configuration we have defined two resources. One is for the HTTP method GET and the other one is for POST. In the first resource, we have defined the uri-template as /view/{symbol} so that request will be dispatched to this resource when you invoke the API using the following URI: `http://127.0.0.1:8290/stockquote/view/IBM`
     
 The context of this REST Api is `stockquote`. The SOAP payload required for the SOAP back-end service is constructed using the payload factory mediator defined in the inSequence. The value for the \<m0:symbol\> element is extracted using the following expression:
     
@@ -68,21 +65,19 @@ In the second resource, we have defined the URL mapping as "/order/\*". Since th
 
 Create the artifacts:
 
-1. Set up WSO2 Integration Studio.
-2. Create an ESB Config project
-3. Create a REST Api artifact with the above configuration.
-4. Deploy the artifacts in your Micro Integrator.
+1. [Set up WSO2 Integration Studio](../../../../develop/installing-WSO2-Integration-Studio).
+2. [Create an ESB Solution project](../../../../develop/creating-projects/#esb-config-project).
+3. [Create the rest api](../../../../develop/creating-artifacts/creating-an-api) with the configurations given above.
+4. [Deploy the artifacts](../../../../develop/deploy-and-run) in your Micro Integrator.
 
-Set up the back-end service:
-
-........
+Set up the back-end service.
 
 Invoke the sample Api by executing the following command:
 
 ```bash
-curl -v -X GET "http://localhost:8280/stockquote/view/IBM?param1=value1&param2=value2"
+curl -v -X GET "http://localhost:8290/stockquote/view/IBM?param1=value1&param2=value2"
 ```
-## Executing the sample
+To execute the sample:
 
 1.  Save the following sample place order request as `placeorder.xml` in your local file system and execute the command. This payload is used to invoke a SOAP service.
     
@@ -98,11 +93,11 @@ curl -v -X GET "http://localhost:8280/stockquote/view/IBM?param1=value1&param2=v
     
 2.  Following is the cURL command to execute the first resource:
     
-    `curl -v http://127.0.0.1:8280/stockquote/view/IBM                           `
+    `curl -v http://127.0.0.1:8290/stockquote/view/IBM`
     
 3.  Following is a sample cURL command to invoke the second resource:
     
-    `curl -v -d @placeorder.xml -H "Content-type: application/xml" http://127.0.0.1:8280/stockquote/order/`
+    `curl -v -d @placeorder.xml -H "Content-type: application/xml" http://127.0.0.1:8290/stockquote/order/`
  
 You will see something similar to following line printed in the sample axis2 server (back-end server) console.
     

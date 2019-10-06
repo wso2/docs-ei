@@ -3,22 +3,21 @@
 This section describes how you can transform the content type of a message using an API. In this scenario, the API exposes a REST back-end service that accepts and returns XML and JSON messages for HTTP methods as follows:
     
 -   GET - response is in JSON format
--   POST - accepts XML request and returns response in JSON format
--   PUT - accepts JSON request and returns response in JSON format
--   DELETE - empty request body should be sent  
+-   POST - accepts JSON request and returns response in XML format
+-   DELETE - empty request body should be sent and returns response in XML format 
     
 ## Synapse configuration
     
 Create an API using the following configuration:
     
 ```xml
-<api xmlns="http://ws.apache.org/ns/synapse" name="StarbucksService" context="/Starbucks_Service">
-    <resource methods="POST" url-mapping="/orders/add">
+<api xmlns="http://ws.apache.org/ns/synapse" name="HealthcareService" context="/healthcare">
+    <resource methods="POST" url-mapping="/appointment/reserve">
         <inSequence>
             <property name="REST_URL_POSTFIX" scope="axis2" action="remove"/>
             <send>
                 <endpoint>
-                    <address uri="http://localhost:8280/StarbucksService/services/Starbucks_Outlet_Service/orders/"/>
+                    <address uri="http://localhost:9090/grandoaks/categories/surgery/reserve"/>
                 </endpoint>
             </send>
         </inSequence>
@@ -28,29 +27,25 @@ Create an API using the following configuration:
             <send/>
         </outSequence>
     </resource>
-    <resource methods="PUT" url-mapping="/orders/edit">
+    <resource methods="GET" uri-template="/appointments/{appointmentNo}">
         <inSequence>
+            <send>
+                <endpoint>
+                    <address uri="http://localhost:9090/healthcare"/>
+                </endpoint>
+            </send>
+        </inSequence>
+        <outSequence>
             <log level="full"/>
-            <property name="REST_URL_POSTFIX" scope="axis2" action="remove"/>
             <property name="messageType" value="application/json" scope="axis2"/>
-            <property name="ContentType" value="application/json" scope="axis2"/>
-            <send>
-                <endpoint>
-                    <address uri="http://localhost:8280/StarbucksService/services/Starbucks_Outlet_Service/orders/" format="rest"/>
-                </endpoint>
-            </send>
-        </inSequence>
-        <outSequence>
-            <log level="full"/>
-            <property name="messageType" value="application/xml" scope="axis2"/>
             <send/>
         </outSequence>
     </resource>
-    <resource methods="DELETE GET" uri-template="/orders/{id}">
+    <resource methods="DELETE" uri-template="/appointments/{appointmentNo}">
         <inSequence>
             <send>
                 <endpoint>
-                    <address uri="http://localhost:8280/StarbucksService/services/Starbucks_Outlet_Service/"/>
+                    <address uri="http://localhost:9090/healthcare"/>
                 </endpoint>
             </send>
         </inSequence>
@@ -64,84 +59,134 @@ Create an API using the following configuration:
 ```
     
 ## Build and run
+
+Create the artifacts:
+
+1. [Set up WSO2 Integration Studio](../../../../develop/installing-WSO2-Integration-Studio).
+2. [Create an ESB Solution project](../../../../develop/creating-projects/#esb-config-project)
+3. [Create the rest api](../../../../develop/creating-artifacts/creating-an-api) with the configurations given above.
+4. [Deploy the artifacts](../../../../develop/deploy-and-run) in your Micro Integrator.
+
+Set up the back-end service.
+  
+Following is the cURL command to send an HTTP POST request to the API:
+
+!!! Tip
+    The context of the API is ‘/healthcare’. For every HTTP method, a url-mapping or uri-template is defined, and the URL to call the methods differ with the defined mapping or template.
     
-The context of the API is ‘/Starbucks_Service’. For every HTTP method, a url-mapping or uri-template is defined, and the URL to call the methods differ with the defined mapping or template.
+`curl -v -H "Content-Type: application/json" -X POST -d @request.json http://localhost:8290/healthcare/appointment/reserve`where `request.json` has the following content on the appointment:
     
+```json
+{
+    "patient": {
+    "name": "John Doe",
+    "dob": "1940-03-19",
+    "ssn": "234-23-525",
+    "address": "California",
+    "phone": "8770586755",
+    "email": "johndoe@gmail.com"
+    },
+    "doctor": "thomas collins",
+    "hospital": "grand oak community hospital",
+    "appointment_date": "2025-04-02"
+}
+```
+The response from backend to Micro Integrator will be:
+
+```json
+{
+   "appointmentNumber": 1,
+   "doctor": {
+      "name": "thomas collins",
+      "hospital": "grand oak community hospital",
+      "category": "surgery",
+      "availability": "9.00 a.m - 11.00 a.m",
+      "fee": 7000
+   },
+   "patient": {
+      "name": "John Doe",
+      "dob": "1940-03-19",
+      "ssn": "234-23-525",
+      "address": "California",
+      "phone": "8770586755",
+      "email": "johndoe@gmail.com"
+   },
+   "fee": 7000,
+   "confirmed": false,
+   "appointmentDate": "2025-04-02"
+}
+```
+
+The Micro Integrator transform the response to XML and send it back to client as:
+
+```xml
+<jsonObject>
+   <appointmentNumber>1</appointmentNumber>
+   <doctor>
+      <name>thomas collins</name>
+      <hospital>grand oak community hospital</hospital>
+      <category>surgery</category>
+      <availability>9.00 a.m - 11.00 a.m</availability>
+      <fee>7000.0</fee>
+   </doctor>
+   <patient>
+      <name>John Doe</name>
+      <dob>1940-03-19</dob>
+      <ssn>234-23-525</ssn>
+      <address>California</address>
+      <phone>8770586755</phone>
+      <email>johndoe@gmail.com</email>
+   </patient>
+   <fee>7000.0</fee>
+   <confirmed>false</confirmed>
+   <appointmentDate>2025-04-02</appointmentDate>
+</jsonObject>
+```
+
 Following is the CURL command to send a GET request to the API:
     
-` curl -v -X GET http://localhost:8280/Starbucks_Service/orders/123                           `
+` curl -v -X GET http://localhost:8290/healthcare/appointments/1                        `
     
-The response from the back end to the ESB profile will be:
+The response for the request will be:
     
-`         {"Order":{"additions":"Milk","drinkName":"Vanilla Flavored Coffee","locked":false,"orderId":123}}        `
-    
-The ESB profile transforms this response to XML and send it back as:
-    
-```
-<Order>
-    <additions>Milk</additions>
-    <drinkName>Vanilla Flavored Coffee</drinkName>
-    <locked>false</locked>
-    <orderId>123</orderId>
-</Order>
-```
-    
-Following is the cURL command to send an HTTP POST request to the API:
-    
-`         curl -v -H "Content-Type: application/xml" -X POST -d @placeOrder.xml                              http://localhost:8280/Starbucks_Service/orders/add                           `
-    
-where `         placeOrder.xml        ` has the following content on the order:
-    
-```
-<Order>
-    <drinkName>Mocha Flavored Coffee</drinkName>
-    <additions>Caramel</additions>
-</Order>
-```
-    
-This XML request will be sent to the back end, which will send back a JSON response to the ESB profile:
-    
-`         {"Order":{"additions":"Caramel","drinkName":"Mocha Flavored Coffee","locked":false,"orderId":"d088a289-1be3-453b-ab37-7609828d2197"}}        `
-    
-The ESB profile converts this response to XML and sends it back to the client:
-    
-```
-<Order>
-    <additions>Caramel</additions>
-    <drinkName>Mocha Flavored Coffee</drinkName>
-    <locked>false</locked>
-    <orderId>d088a289-1be3-453b-ab37-7609828d2197</orderId>
-</Order>
-```
-    
-Following is the cURL command for sending an HTTP PUT request:
-    
-`         curl -v -H "Content-Type: application/xml" -X PUT -d @editOrder.xml                              http://localhost:8280/Starbucks_Service/orders/edit                           ` where `         editOrder.xml        ` has the following syntax:
-    
-```
-<Order>
-    <orderId>d088a289-1be3-453b-ab37-7609828d2197</orderId>
-    <additions>Chocolate Chip Cookies</additions>
-</Order>
-```
-    
-The ESB profile will convert this request to JSON and send it to the back end. The response will be in JSON format:
-    
-`         {"Order":{"additions":"Chocolate Chip Cookies","drinkName":"Mocha Flavored Coffee","locked":false,"orderId":"d088a289-1be3-453b-ab37-7609828d2197"}}`
-    
-The ESB profile converts this response to XML and sends it back to the client:
-    
-```
-<Order>
-    <additions>Chocolate Chip Cookies</additions>
-    <drinkName>Mocha Flavored Coffee</drinkName>
-    <locked>false</locked>
-    <orderId>d088a289-1be3-453b-ab37-7609828d2197</orderId>
-</Order>
+```json
+{
+   "appointmentNumber": 1,
+   "doctor": {
+      "name": "thomas collins",
+      "hospital": "grand oak community hospital",
+      "category": "surgery",
+      "availability": "9.00 a.m - 11.00 a.m",
+      "fee": 7000
+   },
+   "patient": {
+      "name": "John Doe",
+      "dob": "1940-03-19",
+      "ssn": "234-23-525",
+      "address": "California",
+      "phone": "8770586755",
+      "email": "johndoe@gmail.com"
+   },
+   "fee": 7000,
+   "confirmed": false,
+   "appointmentDate": "2025-04-02"
+}
 ```
 
 Following is the cURL command for sending an HTTP DELETE request:
     
-`         curl -v -X DELETE                              http://localhost:8280/Starbucks_Service/orders/d088a289-1be3-453b-ab37-7609828d2197                           `
+`curl -v -X DELETE http://localhost:8290/healthcare/appointments/1                            `
     
 This request will be sent to the back end, and the order with the specified ID will be deleted.
+
+The response to the Micro Integrator from backend will be,
+
+```json
+{"status":"Appointment is successfully removed"}
+```
+
+The Micro Integrator transform the response to XML and sends it back to client as:
+
+```xml
+<jsonObject><status>Appointment is successfully removed</status></jsonObject>
+```
