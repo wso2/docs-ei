@@ -297,7 +297,6 @@ nav:
         - 'Monitoring REST API Access Logs': 'develop/enabling-logs-for-api.md'
         - 'Endpoint Tracing' : 'develop/endpoint-trace-logs.md'
         - 'Running on WSO2 Integration Cloud': 'develop/deploying-in-integration-cloud.md'
-      - 'Creating Docker/Kubernetes Projects': 'develop/create-docker-kubernetes-projects.md'
       - Advanced Development Tasks:
         - 'Injecting Parameters as Environment Variables': 'develop/injecting-parameters.md'
         - 'Changing the Endpoint of a Deployed Service': 'develop/advanced-development/changing-the-endpoint-of-deployed-service.md'
