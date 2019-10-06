@@ -8,7 +8,7 @@ The **Header Mediator** allows you to manipulate SOAP and HTTP headers.
 ## Syntax
 
 ``` java
-<header name=”string” (value=”string|{property}” | expression=”xpath”) [scope=default|transport] [action=set|remove]/>
+<header name=”string” (value=”string|{property}” | expression=”xpath|jsonpath”) [scope=default|transport] [action=set|remove]/>
 ```
 
 The optional `         action        ` attribute specifies whether the
@@ -37,7 +37,7 @@ The parameters available to configure the Header mediator are as follows.
 </tr>
 <tr class="odd">
 <td><strong>Value/Expression</strong></td>
-<td>A static value or an XPath expression that will be executed on the message to set the header value.</td>
+<td>A static value or an XPath/JSONPath expression that will be executed on the message to set the header value.</td>
 </tr>
 <tr class="even">
 <td><strong>Inline XML Header</strong></td>
@@ -167,4 +167,10 @@ expression.
 <default/>
 </endpoint>
 </send>
+```
+
+### Setting the header with a value in the JSON body
+
+```
+<header name="header-symbol" expression="json-eval($.symbol)"/>
 ```
