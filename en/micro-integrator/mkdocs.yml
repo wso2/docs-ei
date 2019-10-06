@@ -251,8 +251,10 @@ nav:
         - 'Designing Message Flow': 'develop/designing-mediation-flow.md'
         - 'Troubleshooting WSO2 Integration Studio': 'develop/troubleshooting-WSO2-Integration-Studio.md'
       - Creating Projects:
-        - 'Creating Projects': 'develop/creating-projects.md'
-        - 'Importing Projects': 'develop/importing-projects.md'
+        - 'Creating ESB Projects': 'develop/creating-projects.md'
+        - 'Importing ESB Projects': 'develop/importing-projects.md'
+        - 'Creating Docker Project': 'develop/create-docker-project.md'
+        - 'Creating Kubernetes Project': 'develop/create-kubernetes-project.md'
       - Creating New Artifacts:
         - 'Importing Artifacts': 'develop/importing-artifacts.md'
         - 'Creating a REST API': 'develop/creating-artifacts/creating-an-api.md'
@@ -303,9 +305,9 @@ nav:
       - 'Managing the Registry': 'develop/creating-artifacts/registry/managing-the-Registry.md'
       #- 'Using a CI/CD Pipeline' : 'develop/using-cicd-pipeline.md'
     - Observability:
+      - 'Micro Integrator Dashboard': 'administer-and-observe/working-with-monitoring-dashboard.md'
+      - 'Micro Integrator CLI': 'administer-and-observe/using-the-command-line-interface.md'
       - 'Monitoring Message Round Trip': 'administer-and-observe/observability.md'
-      - 'CLI for Monitoring': 'administer-and-observe/using-the-command-line-interface.md'
-      - 'Monitoring Dashboard': 'administer-and-observe/working-with-monitoring-dashboard.md'
       - Logging:
         - 'Logs in WSO2 Micro Integrator' : 'administer-and-observe/logs/monitoring_logs.md'
         - 'Configuring Log4j Properties' : 'administer-and-observe/logs/configuring_log4j_properties.md'
