@@ -169,7 +169,7 @@ expression.
 </send>
 ```
 
-### Setting an header with a value in the JSON body
+### Setting the header with a value in the JSON body
 
 ```
 <header name="header-symbol" expression="json-eval($.symbol)"/>
