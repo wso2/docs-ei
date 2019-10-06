@@ -59,7 +59,7 @@ Now, let's create a Message Store artifact to represent the broker.
     </tr>
     </table>
 
-    ![](/assets/img/tutorials/119132268/119132276.png)
+    ![](../../assets/img/tutorials/119132268/119132276.png)
 
 3.  Click **Finish**.
 
@@ -70,13 +70,13 @@ Let's create a Sequence that uses the message in the message store to send the r
 1.  Right click the **SampleServices** project in the Project Explorer and navigate to **New -> Sequence**. 
 2.  Select **Create New Sequence** and provide the name **PaymentRequestProcessingSequence**.
 
-    ![](/assets/img/tutorials/119132268/119132273.png)  
+    ![](../../assets/img/tutorials/119132268/119132273.png)  
 
 3.  Click **Finish**.
 
 4.  Drag and drop a Call mediator from the **Mediators** palette and add SettlePaymentEP from **Defined Endpoints** palette to the empty box adjoining the Call mediator. This sends the request message from the store to SettlePaymentEP.
 
-    ![](/assets/img/tutorials/119132268/119132272.png)
+    ![](../../assets/img/tutorials/119132268/119132272.png)
 
 4.  Drag and drop a Log mediator from the **Mediators** palette to log the response from SettlePaymentEP. Access the **Property** tab and specify the following details:
 
@@ -87,7 +87,7 @@ Let's create a Sequence that uses the message in the message store to send the r
 
 4.  Add a Drop mediator from the **Mediators** palette. You should now have a completed sequence configuration that looks like this:
 
-    ![](/assets/img/tutorials/119132268/119132271.png)
+    ![](../../assets/img/tutorials/119132268/119132271.png)
 
 5.  Save the updated REST API configuration.
 
@@ -101,47 +101,47 @@ Let's create a **Message Sampling Processor** to dispatch the request message fr
 
 1.  Right-click the **SampleServices** project in the Project Explorer and navigate to **New -> Message Processor**. Select **create a new message-processor artifact** and specify the details shown below:
     <table>
-<tr class="header">
-<th>Property</th>
-<th>Value</th>
-<th>Description</th>
-</tr>
-<tr class="odd">
-<td>Message Processor Type</td>
-<td>Message Sampling Processor</td>
-<td><p>This processor takes the message from the store and puts it into a sequence.</p></td>
-</tr>
-<tr class="even">
-<td>Message Processor Name</td>
-<td>PaymentRequestProcessor</td>
-<td>The name of the scheduled message forwarding processor.</td>
-</tr>
-<tr class="odd">
-<td>Message Store</td>
-<td>PaymentRequestMessageStore</td>
-<td>The message store from which the scheduled message forwarding processor consumes messages.</td>
-</tr>
-<tr class="even">
-<td>Processor State</td>
-<td>Activate</td>
-<td>Whether the processor needs to be activated or deactivated.</td>
-</tr>
-<tr class="odd">
-<td>Sequence</td>
-<td><div class="content-wrapper">
-<p>Follow the steps given below:</p>
-<ol>
-<li>Click <strong>Browse.</strong></li>
-<li>Click the <strong>workspace</strong> link.</li>
-<li>Click <strong>Carbon Application Sequences &gt; SampleServices</strong> .</li>
-<li>Select <strong>PaymentRequestProcessingSequence</strong> and click <strong>OK</strong>.</li>
-</ol>
-</div></td>
-<td>The name of the sequence to which the message from the store needs to be sent.</td>
-</tr>
+        <tr class="header">
+        <th>Property</th>
+        <th>Value</th>
+        <th>Description</th>
+        </tr>
+        <tr class="odd">
+        <td>Message Processor Type</td>
+        <td>Message Sampling Processor</td>
+        <td><p>This processor takes the message from the store and puts it into a sequence.</p></td>
+        </tr>
+        <tr class="even">
+        <td>Message Processor Name</td>
+        <td>PaymentRequestProcessor</td>
+        <td>The name of the scheduled message forwarding processor.</td>
+        </tr>
+        <tr class="odd">
+        <td>Message Store</td>
+        <td>PaymentRequestMessageStore</td>
+        <td>The message store from which the scheduled message forwarding processor consumes messages.</td>
+        </tr>
+        <tr class="even">
+        <td>Processor State</td>
+        <td>Activate</td>
+        <td>Whether the processor needs to be activated or deactivated.</td>
+        </tr>
+        <tr class="odd">
+        <td>Sequence</td>
+        <td><div class="content-wrapper">
+        <p>Follow the steps given below:</p>
+        <ol>
+        <li>Click <strong>Browse.</strong></li>
+        <li>Click the <strong>workspace</strong> link.</li>
+        <li>Click <strong>Carbon Application Sequences &gt; SampleServices</strong> .</li>
+        <li>Select <strong>PaymentRequestProcessingSequence</strong> and click <strong>OK</strong>.</li>
+        </ol>
+        </div></td>
+        <td>The name of the sequence to which the message from the store needs to be sent.</td>
+        </tr>
     </table>
 
-    ![](/assets/img/tutorials/119132268/119132269.png)
+    ![](../../assets/img/tutorials/119132268/119132269.png)
 
 2.  Click **Finish**.
 
@@ -151,7 +151,7 @@ Let's update the REST API so that the messages sent to SettlePaymentEP is forwar
 
 1.  Drag and add a **Store** mediator from the mediators palette just after the PayloadFactory mediator.
 
-    ![](/assets/img/tutorials/119132268/119132275.png)
+    ![](../../assets/img/tutorials/119132268/119132275.png)
 
 2.  With the Store mediator selected, access the **Property** tab and specify the following details:
 
@@ -180,7 +180,7 @@ Let's update the REST API so that the messages sent to SettlePaymentEP is forwar
     
 You should now have a completed configuration that looks like this:  
 
-![](/assets/img/tutorials/119132268/119132274.png)
+![](../../assets/img/tutorials/119132268/119132274.png)
 
 We have now finished creating all the required artifacts.
 

@@ -1,12 +1,12 @@
 # Switching from HTTP to FIX
 
-Demonstrate switching from HTTP to FIX.
+This example demonstrates how WSO2 Micro Integrator receives messages in HTTP and forwards them through FIX.
+
+Synapse will create a session with Executor and forward the order request. The first response coming from the Executor will be sent back over HTTP. Executor generally sends two responses for each incoming order request. But since the response has to be forwarded over HTTP, only one can be sent back to the client.
 
 ## Synapse configuration
 
-Synapse will create a session with Executor and forward the order request. The first response coming from the Executor will be sent back
-over HTTP. Executor generally sends two responses for each incoming order request. But since the response has to be forwarded over HTTP,
-only one can be sent back to the client.
+Following are the integration artifacts (proxy service) that we can used to implement this scenario.
 
 ```xml
 <proxy name="FIXProxy">
@@ -144,16 +144,4 @@ Put the following entries in a file called
     [session]
     BeginString=FIX.4.0
     SocketConnectPort=19876
-```
-
-## Build and run
-
--   You will need the Executor sample application that comes with Quickfix/J. Configure the Executor to establish a session with Synapse. Configuring Sample FIX Applications.
--   Start the Executor.
--   Configure Synapse for FIX samples. See Configuring WSO2 ESB for FIX Samples. There is no need to create the `fix-synapse.cfg` file for this sample. Having only the `synapse-sender.cfg` file is sufficient.
--   Go to the `MI_HOME/repository/samples/synapse_sample_258.xml` file and make sure that `transport.fix.InitiatorConfigURL` property points to the `synapse-sender.cfg` file you created.
--   Invoke the FIX Client as follows. This command sends a FIX message embedded in a SOAP message over HTTP.
-
-```bash
-ant fixclient -Dsymbol=IBM -Dqty=5 -Dmode=buy -Daddurl=http://localhost:8280/services/FIXProxy
 ```

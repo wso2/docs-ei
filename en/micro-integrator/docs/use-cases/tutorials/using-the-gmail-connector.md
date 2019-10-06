@@ -55,11 +55,11 @@ Follow these steps to automatically refresh the expired token when connecting to
 2. Select **Add Connector** and click **Next**.
 3. Select **Connector Store location** and click **Connect** to connect to [WSO2 Connector store](https://store.wso2.com).
 4. Scroll down and select **Gmail** from the list of connectors.  
-    ![](/assets/img/tutorials/119132294/import-gmail-connector.png)
+    ![](../../assets/img/tutorials/119132294/import-gmail-connector.png)
 
 5. Click **Finish**.
    The connector is now downloaded into your WSO2 Integration Studio and the connector operations will be available in the Gmail Connector palette.  
-    ![](/assets/img/tutorials/119132294/select-connector-dialog.png)
+    ![](../../assets/img/tutorials/119132294/select-connector-dialog.png)
 
 Let's use these connector operations in the configuration.
 
@@ -69,7 +69,7 @@ The connector operations are used in the **PaymentRequestProcessingSequence**. S
 
 1.  Add a Property Mediator just before the Call mediator to retrieve and store the patient's email address.
 
-    ![](/assets/img/tutorials/119132294/119132299.png)  
+    ![](../../assets/img/tutorials/119132294/119132299.png)  
 
 2.  With the Property mediator selected, access the **Property** tab of the mediator and fill in the information in the following table:
 
@@ -84,7 +84,7 @@ The connector operations are used in the **PaymentRequestProcessingSequence**. S
 
 3.  Add another Property mediator just after the Log mediator to retrieve and store the response sent from SettlePaymentEP. This will be used within the body of the email.
 
-    ![](/assets/img/tutorials/119132294/119132298.png)
+    ![](../../assets/img/tutorials/119132294/119132298.png)
 
 4.  With the Property mediator selected, access the **Property** tab and specify the details given below.
 
@@ -99,7 +99,7 @@ The connector operations are used in the **PaymentRequestProcessingSequence**. S
 
 5.  Drag and drop the init method from the **Gmail Connector** palette adjoining the Property mediator you added in the previous step.
 
-    ![](/assets/img/tutorials/119132294/119132297.png)
+    ![](../../assets/img/tutorials/119132294/119132297.png)
 
 6.  With the init method selected, access the Property tab and specify the details given below.
 
@@ -150,14 +150,14 @@ The connector operations are used in the **PaymentRequestProcessingSequence**. S
 
     The updated **PaymentRequestProcessingSequence** should now look like this:  
 
-    ![](/assets/img/tutorials/119132294/119132296.png)
+    ![](../../assets/img/tutorials/119132294/119132296.png)
 
 8.  Save the updated sequence configuration.
 9.  Right click on **SampleServicesConnectorExporter** and navigate to **New →  Other → Add/Remove Connectors** and select **Add connector** and click on **Next** . Select **Workspace** to list down the connectors that were added.  
 
-    ![](/assets/img/tutorials/119132294/add-remove-connectors.png)
+    ![](../../assets/img/tutorials/119132294/add-remove-connectors.png)
 
-    ![](/assets/img/tutorials/119132294/connector-select-dialog.png)
+    ![](../../assets/img/tutorials/119132294/connector-select-dialog.png)
 
 10. Select the Gmail connector from the list and click **OK** and then **Finish**.
 

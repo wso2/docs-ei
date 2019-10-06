@@ -46,7 +46,7 @@ Data Service project. Follow the steps given below to create a project:
 
 1.  Open **WSO2 Integration Studio,** and click **DS Project → Create
     New** in the **Getting Started** tab as shown below.  
-    ![](/assets/img/tutorials/data_services/119130577/119135178.png)
+    ![](../../assets/img/tutorials/data_services/119130577/119135178.png)
 
 2.  In the **New Data Service Project** dialog that opens, give a name
     for the project and click **Next**.
@@ -61,7 +61,7 @@ Follow the steps given below to create the data service file:
 1.  Select the already created **Data Service Project** in the project
     navigator, right click and go to **New -> Data Service**.  
     The **New Data Service** window will open as shown below.  
-    ![](/assets/img/tutorials/data_services/119130577/119130578.png)
+    ![](../../assets/img/tutorials/data_services/119130577/119130578.png)
 2.  To start creating a data service from scratch, select **Create New
     Data Service** and click **Next**.
 
@@ -98,7 +98,7 @@ Follow the steps given below to create the data service file:
 A data service file (DBS file) will now be created in your data service
 project. Shown below is the project directory.
 
-![](/assets/img/tutorials/data_services/119130577/119130593.png)
+![](../../assets/img/tutorials/data_services/119130577/119130593.png)
 
 #### Creating a query
 
@@ -107,7 +107,7 @@ configured in the previous step:
 
 1.  Select the data service you created in the previous step.
 2.  Right-click and click **Add Query** .  
-    ![](/assets/img/tutorials/data_services/119130577/119130591.png)
+    ![](../../assets/img/tutorials/data_services/119130577/119130591.png)
 3.  Enter the following query details:
 
     | Parameter  |  Description       |
@@ -117,7 +117,7 @@ configured in the previous step:
 
 4.  Save the query. The query element is now added to the data
     service:  
-    ![](/assets/img/tutorials/data_services/119130577/119130590.png)
+    ![](../../assets/img/tutorials/data_services/119130577/119130590.png)
 5.  Right-click the **GetEmployeeDetails** query and click **Add SQL**
     to add the following SQL statement:
 
@@ -196,7 +196,7 @@ configured in the previous step:
 
 The data service should now have the query element added as shown below.
 
-![](/assets/img/tutorials/data_services/119130577/119130589.png)
+![](../../assets/img/tutorials/data_services/119130577/119130589.png)
 
 #### Creating a resource to invoke the query
 
@@ -240,16 +240,16 @@ Now, let's create a REST resource that can be used to invoke the query.
 
 The data service should now have the resource added as shown below.
 
-![](/assets/img/tutorials/data_services/119130577/119130588.png)
+![](../../assets/img/tutorials/data_services/119130577/119130588.png)
 
 ### Step 3: Package the artifacts
 
 Create a new composite application project:
 
 1.  Open the **Getting Started** view and click **Miscellaneous → Create New Composite Application**.  
-    ![Create new CAPP](../../../assets/img/create_project/create_new_capp.png) 
+    ![Create new CAPP](../../assets/img/create_project/create_new_capp.png) 
 2.  In the **New Composite Application Project** dialog that opens, select the data service file, and click **Finish**.  
-    ![Create new CAPP](../../../assets/img/create_project/create_new_capp_dialog.png)
+    ![Create new CAPP](../../assets/img/create_project/create_new_capp_dialog.png)
 
 Package the artifacts in your composite application project to be able to deploy the artifacts in the server.
 
@@ -283,9 +283,7 @@ curl -X GET http://localhost:8280/services/RDBMSDataService.HTTPEndpoint/Employe
 
 You will receive the employee's details in the response.
 
-
 <!--
-
 ## What you'll build
 
 Let’s try a simple scenario where a patient makes an inquiry specifying
