@@ -27,7 +27,7 @@ project](https://github.com/wso2-docs/WSO2_EI/blob/master/Integration-Tutorial-A
     project directory will appear with the artifacts as shown below.
     Note the 'HealthcareAPI' that is already included.
 
-    ![](/assets/img/tutorials/inbound-project-explorer.png)
+    ![](../../assets/img/tutorials/inbound-project-explorer.png)
 
 2.  Right-click on **SampleServices** and navigate to **New -> Inbound
     Endpoint**. Select **Create A New Inbound Endpoint** and click
@@ -130,7 +130,7 @@ Let's send a message to the **healthcare** REST API on the 8285 port.
 
 2.  You will get the response shown below. The inbound endpoint has successfully invoked the REST API, and further, the response received by the REST API has been routed back to client through the inbound endpoint.
 
-    ``` 
+    ```json
     [{"name":"thomas collins","hospital":"grand oak community 
     hospital","category":"surgery","availability":"9.00 a.m - 11.00 a.m","fee":7000.0},
     {"name":"anne clement","hospital":"clemency medical center","category":"surgery","availability":"8.00 a.m - 10.00 A.m","fee":12000.0},

@@ -78,10 +78,11 @@ nav:
             - 'Shared Topic Subscription': 'use-cases/examples/jms_examples/shared-topic-subscription.md'
             - 'Detecting Repeatedly Redelivered Messages': 'use-cases/examples/jms_examples/detecting-repeatedly-redelivered-messages.md'
             - 'Specifying Delivery Delay on Messages': 'use-cases/examples/jms_examples/specifying-a-delivery-delay-on-messages.md'
-            - 'JMS Map Messaging': 'use-cases/examples/jms_examples/jms-map-message.md'
+            #- 'JMS Map Messaging': 'use-cases/examples/jms_examples/jms-map-message.md'
             - 'RabbitMQ Examples': 'use-cases/examples/jms_examples/rabbitmq-examples.md'
         - Protocol Switching:
-          - 'Introduction to Switching Transports': 'use-cases/examples/protocol-switching/intro_to_switching_transports.md'
+          - 'Switching from JMS to HTTP/S': 'use-cases/examples/protocol-switching/switching_from_JMS_to_HTTP.md'
+          - 'Switching from HTTP/S to JMS': 'use-cases/examples/protocol-switching/switching_from_HTTPS_to_JMS.md'
           - 'Switching from FTP Listener to Mail Sender': 'use-cases/examples/protocol-switching/switching_from_FTP_listener_to_mail_sender.md'   
           - 'Switching from HTTP to FIX': 'use-cases/examples/protocol-switching/switching_from_HTTP_to_FIX.md'
           - 'Switch from FIX to HTTP': 'use-cases/examples/protocol-switching/switching_from_FIX_to_HTTP.md'
@@ -90,7 +91,6 @@ nav:
           - 'Switching from TCP to HTTP/S': 'use-cases/examples/protocol-switching/switching_from_TCP_to_HTTPS.md'
           - 'Switching from UDP to HTTP/S': 'use-cases/examples/protocol-switching/switching_from_UDP_to_HTTPS.md'
           - 'Switching between HTTP to MSMQ': 'use-cases/examples/protocol-switching/switching_between_HTTP_and_MSMQ.md'
-          - 'Switching from HTTP/S to JMS': 'use-cases/examples/protocol-switching/switching_from_HTTPS_to_JMS.md'
         - File Processing:
           - 'Using VFS for File Transferring': 'use-cases/examples/file-processing/vfs-transport-examples.md'
           - 'Accessing a Windows Share Using VFS': 'use-cases/examples/file-processing/Accessing_Windows_Share_Using_VFS_Transport.md'

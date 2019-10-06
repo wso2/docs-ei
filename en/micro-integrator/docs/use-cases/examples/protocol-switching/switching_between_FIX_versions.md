@@ -1,12 +1,10 @@
 # Switching between FIX Versions
 
-## Example use case
-
 This sample demonstrates how you can use WSO2 Micro Integrator to accept FIX input via the FIX transport layer and dispatch to another FIX acceptor that accept messages in a different FIX version. Here you will see how the Micro Integrator receives FIX 4.0 messages and simply forwards it to the FIX 4.1 endpoint.
 
 ## Synapse configuration
 
-The XML configuration for this sample is as follows:
+Following are the integration artifacts (proxy service) that we can used to implement this scenario.
 
 ```xml
  <proxy name="OrderProcesserProxy41" transports="fix">

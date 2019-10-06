@@ -1,6 +1,8 @@
 # Switching from FTP Listener to Mail Sender
 
-Switching from FTP transport listener to mail transport sender.
+This example demonstrates how WSO2 Micro Integrator receives messages through the FTP transport listener and forwards the messages through the mail transport sender.
+
+VFS transport listener will pick the file from the directory in the FTP server. The file in the FTP directory will be deleted. The response will be sent to the given e-mail address.
 
 ## Synapse configuration
 
@@ -29,17 +31,3 @@ Switching from FTP transport listener to mail transport sender.
     <publishWSDL uri="file:repository/samples/resources/proxy/sample_proxy_1.wsdl"/>
 </proxy>
 ```
-
-VFS transport listener will pick the file from the directory in the FTP server and send it to the Axis2 service. The file in the FTP directory will be deleted. The response will be sent to the given e-mail address.
-
-## Build and run
-
-1. Open WSO2 Integration Studio.
-2. Create and ESB config project.
-3. Create the proxy service configuration given above.
-
-Start the ActiveMQ broker.
-
-Deploy the integration artifacts in the Micro Integrator and start the server.
-
-Execute the following command:

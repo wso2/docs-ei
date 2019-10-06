@@ -21,7 +21,7 @@ To create an ESB solution consisting of an **ESB config** project and a **Compos
 
 1.  Open **WSO2 Integration Studio**.
 2.  Go to **ESB Project** and click **Create New**.
-    ![](/assets/img/tutorials/119132413/119132414.png)
+    ![](../../assets/img/tutorials/119132413/119132414.png)
 
 3.  Enter `SampleServices` as the project name. Be sure to select the following check boxes so that the relevant
     projects will be created.
@@ -29,22 +29,22 @@ To create an ESB solution consisting of an **ESB config** project and a **Compos
     -   **Create Composite Application Project**
     -   **Create Connector Exported Project**
 
-    ![](/assets/img/tutorials/119132413/esb-solution-dialog.png)
+    ![](../../assets/img/tutorials/119132413/esb-solution-dialog.png)
 
 4.  Click **Finish**.  
     The created projects are saved in the **Project Explorer** as shown below:
 
-    ![](/assets/img/tutorials/119132413/project-explorer-simple-service.png)
+    ![](../../assets/img/tutorials/119132413/project-explorer-simple-service.png)
 
 #### Creating the Sequence
 
 1.  In the **Project Explorer**, right click the **ScheduleDefaultTask** project, and click **New** → **Sequence**.  
-    ![](/assets/img/tutorials/scheduled-tasks/119130430/119130439.png)
+    ![](../../assets/img/tutorials/scheduled-tasks/119130430/119130439.png)
 2.  Click **Create New Sequence** and click **Next**.
 3.  Enter **InjectXMLSequence** as the sequence name and click **Finish**.  
-    ![](/assets/img/tutorials/scheduled-tasks/119130430/119130438.png)  
+    ![](../../assets/img/tutorials/scheduled-tasks/119130430/119130438.png)  
 4.  Drag and drop a **Log** mediator and a **Drop** mediator from the **Mediators** Palette.  
-    ![](/assets/img/tutorials/scheduled-tasks/119130430/119130437.png) 
+    ![](../../assets/img/tutorials/scheduled-tasks/119130430/119130437.png) 
 5.  Click the **Log** mediator and enter the following details in the **Properties** section.  
     -  **Log Category**: `INFO`
     -  **Log Level**: `CUSTOM`
@@ -110,7 +110,7 @@ The following parameters values are used:
 
 In the **Form View** of the `InjectXMLTask.xml` file, click **Task Implementation Properties**.  
     
-![](/assets/img/tutorials/scheduled-tasks/119130430/119130433.png)
+![](../../assets/img/tutorials/scheduled-tasks/119130430/119130433.png)
 
 Select **XML** as the **Parameter Type** of the **message** parameter, and enter the following as the XML message in the **Value/Expression** field and click **OK**. 
 
@@ -123,7 +123,7 @@ Select **XML** as the **Parameter Type** of the **message** parameter, and enter
 </request>
 ``` 
 
-![](/assets/img/tutorials/scheduled-tasks/119130430/119130451.png)
+![](../../assets/img/tutorials/scheduled-tasks/119130430/119130451.png)
 
 ### Step 3: Package the artifacts
 
@@ -145,4 +145,4 @@ To test the artifacts, deploy the [packaged artifacts](#step-3-package-the-artif
 
 You view the XML message you injected (i.e., `<abc>This is a scheduled task of the default implementation.</abc>`) getting printed in the logs of the Micro Integrator every 5 seconds.
 
-![](/assets/img/tutorials/scheduled-tasks/119130430/119130443.png)
+![](../../assets/img/tutorials/scheduled-tasks/119130430/119130443.png)

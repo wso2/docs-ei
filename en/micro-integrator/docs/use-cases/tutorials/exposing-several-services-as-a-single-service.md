@@ -82,7 +82,7 @@ Let's create new HTTP endpoints to represent the back-end services that are requ
 
 3.  Click **Finish**.
 
-    ![](/assets/img/tutorials/119132228/119132240.png)
+    ![](../../assets/img/tutorials/119132228/119132240.png)
 
 4.  Create another endpoint for the Settle Payment back-end service and specify the details given below:
     <table>
@@ -138,7 +138,7 @@ Let's create new HTTP endpoints to represent the back-end services that are requ
 
 5.  Click **Finish**.
 
-    ![](/assets/img/tutorials/119132228/119132239.png)
+    ![](../../assets/img/tutorials/119132228/119132239.png)
 
 You have now created the additional endpoints that are required for this tutorial.
 
@@ -148,7 +148,7 @@ You can now start updating the API resource with the mediation flow.
 
 1.  Add a new **Property** mediator just after the **Get Hospital** Property mediator in the In Sequence of the API resource to retrieve and store the card number that is sent in the request payload.
 
-    ![](/assets/img/tutorials/119132228/119132238.png?effects=drop-shadow)  
+    ![](../../assets/img/tutorials/119132228/119132238.png?effects=drop-shadow)  
 
 2.  With the Property mediator selected, access the Properties tab and specify the following details:
     <table>
@@ -186,7 +186,7 @@ You can now start updating the API resource with the mediation flow.
 
 2.  Go to the first case box of the Switch mediator. Add a Property mediator just after the Log mediator to store the value for `          uri.var.hospital         ` variable that will be used when sending requests to **ChannelingFeeEP** service. 
 
-    ![](/assets/img/tutorials/119132228/119132237.png)
+    ![](../../assets/img/tutorials/119132228/119132237.png)
 
 3.  With the Property mediator selected, access the Properties tab and specify the following details:
     <table>
@@ -230,12 +230,12 @@ You can now start updating the API resource with the mediation flow.
     -   Case 2: `            clemency           `
     -   Case 3: `            pinevalley           `  
 
-    ![](/assets/img/tutorials/119132228/119132236.png)
+    ![](../../assets/img/tutorials/119132228/119132236.png)
 
 4.  Delete the Send mediator by right clicking on the mediator and selecting **Delete from Model**. Replace this with a Call mediator from the **Mediators** palette and add GrandOakEP from the **Defined Endpoints** palette to the empty box adjoining the Call mediator.  
       
 5.  Replace the Send mediators in the following two case boxes as well and add ClemencyEP and PineValleyEP to the respective boxesadjoining the Call mediators.  
-    ![](/assets/img/tutorials/119132228/119132235.png)
+    ![](../../assets/img/tutorials/119132228/119132235.png)
 
     !!! Info
         Replacing with a Call mediator allows us to define other service invocations following this mediator.
@@ -244,7 +244,7 @@ You can now start updating the API resource with the mediation flow.
 
 6.  Next to the Switch mediator, add a Property mediator to retrieve and store the value sent as `           appointmentNumber          ` .
 
-    ![](/assets/img/tutorials/119132228/119132234.png) 
+    ![](../../assets/img/tutorials/119132228/119132234.png) 
 
 7.  With the Property mediator selected, access the Properties tab and specify the following details:
 
@@ -286,7 +286,7 @@ You can now start updating the API resource with the mediation flow.
 
     !!! Note
         You derive the **Value Expression** in the above table from the following response that is received from GrandOakEP, ClemencyEP, or PineValleyEP:
-        ```
+        ```json
         {"appointmentNumber":1,   "doctor":
             {"name":"thomas collins",
                      "hospital":"grand oak community hospital",
@@ -370,7 +370,7 @@ You can now start updating the API resource with the mediation flow.
     </tbody>
     </table>
 
-    ![](/assets/img/tutorials/119132228/119132233.png)
+    ![](../../assets/img/tutorials/119132228/119132233.png)
 
 7.  Add a Call mediator and add ChannelingFeeEP from **Defined Endpoints** palette to the empty box adjoining the Call mediator.
 8.  Add a Property mediator adjoining the Call mediator box to retrieve and store the value sent as `           actualFee          `. 
@@ -385,7 +385,7 @@ You can now start updating the API resource with the mediation flow.
     | Value Expression  | `               json-eval($.actualFee)              `                                                                                            |
     | Description       | Get Actual Fee                                                                                                                                   |
 
-    ![](/assets/img/tutorials/119132228/119132232.png)
+    ![](../../assets/img/tutorials/119132228/119132232.png)
 
     !!! Note
         You derive the Value Expression in the above table from the following response that is received from ChannelingFeeEP:
@@ -397,7 +397,7 @@ You can now start updating the API resource with the mediation flow.
 
 10. Let's use the **PayloadFactory** mediator to construct the following message payload for the request sent to SettlePaymentEP.
 
-    ``` 
+    ```json
     {"appointmentNumber":2,
             "doctor":{
                 "name":"thomas collins",
@@ -422,7 +422,7 @@ You can now start updating the API resource with the mediation flow.
 
 11.  Add a PayloadFactory mediator next to the Property mediator, from the **mediators** palette to construct the above message payload.
 
-    ![](/assets/img/tutorials/119132228/119132229.png) 
+    ![](../../assets/img/tutorials/119132228/119132229.png) 
 
 12. With the Payloadfactory mediator selected, access the properties tab of the mediator and specify the following details:
 
@@ -487,14 +487,14 @@ You can now start updating the API resource with the mediation flow.
     -   `           $ctx:actual_fee          `  
     -   `           $ctx:card_number          `  
 
-    ![](/assets/img/tutorials/119132228/119132231.png)
+    ![](../../assets/img/tutorials/119132228/119132231.png)
 
 12. Add a Call mediator and add SettlePaymentEP from Defined Endpoints palette to the empty box adjoining the Call mediator.
 13. Add a **Respond** mediator to send the response to the client. 
 
 You should now have a completed configuration that looks like this: 
 
-![](/assets/img/tutorials/119132228/119132230.png)
+![](../../assets/img/tutorials/119132228/119132230.png)
 
 ### Step 3: Package the artifacts
 
@@ -532,7 +532,7 @@ Let's test the use case by sending a simple client request that invokes the serv
 2. Open a terminal, navigate to the location where your saved the [back-end service](#step-1-set-up-the-workspace).
 3. Execute the following command to start the service:
 
-    ```
+    ```bash
     java -jar Hospital-Service-2.0.0-EI7.jar
     ```
 
@@ -550,7 +550,7 @@ Let's send a request to the API resource.
 
 1.  Create a JSON file named `           request.json          ` with the following request payload.
 
-    ``` 
+    ```json
     {
      "name": "John Doe",
      "dob": "1940-03-19",
@@ -568,7 +568,7 @@ Let's send a request to the API resource.
 2.  Open a command line terminal and execute the following command from the location where the `           request.json          ` file is
     saved:
 
-    ```
+    ```bash
     curl -v -X POST --data @request.json  http://localhost:8290/healthcare/categories/surgery/reserve  --header "Content-Type:application/json"
     ```
 
@@ -579,7 +579,7 @@ Let's send a request to the API resource.
 
 You will see the response as follows:
 
-```
+```json
 {  
 "appointmentNo":1,
 "doctorName":"thomas collins",

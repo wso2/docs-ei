@@ -23,7 +23,7 @@ To create an ESB solution consisting of an **ESB config** project and a **Compos
 
 1.  Open **WSO2 Integration Studio**.
 2.  Go to **ESB Project** and click **Create New**.
-    ![](/assets/img/tutorials/119132413/119132414.png)
+    ![](../../assets/img/tutorials/119132413/119132414.png)
 
 3.  Enter `SampleServices` as the project name. Be sure to select the following check boxes so that the relevant
     projects will be created.
@@ -31,12 +31,12 @@ To create an ESB solution consisting of an **ESB config** project and a **Compos
     -   **Create Composite Application Project**
     -   **Create Connector Exported Project**
 
-    ![](/assets/img/tutorials/119132413/esb-solution-dialog.png)
+    ![](../../assets/img/tutorials/119132413/esb-solution-dialog.png)
 
 4.  Click **Finish**.  
     The created projects are saved in the **Project Explorer** as shown below:
 
-    ![](/assets/img/tutorials/119132413/project-explorer-simple-service.png)
+    ![](../../assets/img/tutorials/119132413/project-explorer-simple-service.png)
 
 #### Create an Endpoint
 
@@ -90,11 +90,11 @@ An Endpoint artifact is required for the purpose of exposing the URL that connec
      </tbody>
     </table>
 
-    ![](/assets/img/tutorials/119132413/create-endpoint-artifact.png)
+    ![](../../assets/img/tutorials/119132413/create-endpoint-artifact.png)
 
 4.  Click **Finish**.  
     The **QueryDoctorEP** endpoint is saved in the `           endpoints          ` folder within the ESB Config project you created.  
-    ![](/assets/img/tutorials/119132413/endpoint-project-explorer.png)
+    ![](../../assets/img/tutorials/119132413/endpoint-project-explorer.png)
 
 #### Create a REST API
 
@@ -134,7 +134,7 @@ A REST API is required for receving the client response and the REST resource wi
       </tr>
     </table>
                                                                                                                                                                                                                        |
-    ![](/assets/img/tutorials/119132413/create-rest-api.png)
+    ![](../../assets/img/tutorials/119132413/create-rest-api.png)
 
 4.  Click **Finish**.
 
@@ -145,9 +145,9 @@ Once the API resource is created, the design view of the `           HealthcareA
 !!! Note
     - The top part of the canvas is the **In sequence**, which controls how incoming messages are mediated.
     - The middle part of the canvas is the **Out sequence**, which controls how responses are handled. In this case, a **Send** mediator is already in place to send responses back to the requesting client.
-    - The bottom part of the canvas is the **Fault sequence**, which allows you to configure how to handle messages when an error occurs (for more information, see [Error Handling](../../../references/error_handling.md)).
+    - The bottom part of the canvas is the **Fault sequence**, which allows you to configure how to handle messages when an error occurs (for more information, see [Error Handling](../../../references/error_handling)).
 
-![](/assets/img/tutorials/119132413/119132425.png)
+![](../../assets/img/tutorials/119132413/119132425.png)
 
 You can now start configuring the API resource.
 
@@ -179,7 +179,7 @@ You can now start configuring the API resource.
       </tr>
     </table>
 
-    ![](/assets/img/tutorials/119132413/119132424.png)
+    ![](../../assets/img/tutorials/119132413/119132424.png)
 
 3.  You can now configure the In sequence to handle requests from the client:
 
@@ -238,20 +238,20 @@ You can now start configuring the API resource.
         </tbody>
         </table>
 
-        ![](/assets/img/tutorials/119132413/119132422.png)
+        ![](../../assets/img/tutorials/119132413/119132422.png)
 
     3.  Click **OK** to save the Log mediator configuration.
     4.  Configure the **Send** mediator to send the request message to the `HealthcareService` endpoint.
         1. From the **Mediators** palette, click and drag a **Send** mediator to the In sequence adjoining the Log mediator you added above.
         2. From the **Defined EndPoints** palette, click and drag the **QueryDoctorEP** endpoint, which we created, right next to the empty space of the **Send** mediator.
 
-        ![](/assets/img/tutorials/119132413/119132421.png)
+        ![](../../assets/img/tutorials/119132413/119132421.png)
 
 4.  Configure the Out sequence to send the response from the Healthcare service back to the client. 
 
     For this, we use a **Send** mediator with no output endpoint defined, which defaults to sending the response back to the requesting client. From the **Mediators** palette, click and drag a **Send** mediator to the Out Sequence (the bottom part of the canvas).  
 
-    ![](/assets/img/tutorials/119132413/119132420.png)
+    ![](../../assets/img/tutorials/119132413/119132420.png)
 
 You have successfully created all the artifacts that are required for sending a request through the Micro Integrator to the back-end service. 
 
@@ -259,11 +259,11 @@ You have successfully created all the artifacts that are required for sending a 
 
 Package the artifacts in your composite application project (SampleServicesCompositeApplication project) to be able to deploy the artifacts in the server.
 
-1.  Open the `          pom.xml         ` file in the composite application project POM editor.
+1.  Open the `pom.xml` file in the composite application project POM editor.
 2.  Ensure that the following artifacts are selected in the POM file.
 
-    -   `            HealthcareAPI           `
-    -   `            QueryDoctorEP            `
+    -   `HealthcareAPI`
+    -   `QueryDoctorEP`
 
 3.  Save the project.
 
@@ -350,7 +350,7 @@ Let's test the use case by sending a simple client request that invokes the serv
 2. Open a terminal, navigate to the location where your saved the [back-end service](#step-1-set-up-the-workspace).
 3. Execute the following command to start the service:
 
-    ```
+    ```bash
     java -jar Hospital-Service-2.0.0-EI7.jar
     ```
 
@@ -366,7 +366,7 @@ Let's use the **CLI Tool** to find the URL of the REST API that is deployed in t
 
 Now, open a command line terminal and enter the following request: 
 
-```
+```bash
 curl -v http://localhost:8290/healthcare/querydoctor/surgery
 ```
 
@@ -379,7 +379,7 @@ curl -v http://localhost:8290/healthcare/querydoctor/surgery
 
 You will see the response message from the HealthcareService with a list of available doctors and the relevant details.
 
-```
+```json
 [
   {"name":"thomas collins",
   "hospital":"grand oak community hospital",

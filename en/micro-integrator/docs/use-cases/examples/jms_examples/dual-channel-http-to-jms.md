@@ -1,14 +1,13 @@
-# JMS Synchronous Invocations : Dual Channel HTTP-to-JMS
-A JMS synchronous invocation takes place when a JMS producer receives a response to a JMS request produced by it when invoked. The WSO2 Micro Integrator uses an internal **JMS correlation ID** to correlate the request and the response. See [JMSRequest/ReplyExample](http://www.eaipatterns.com/RequestReplyJmsExample.html) for more information. JMS synchronous invocations are further explained in the following use case.
+# JMS Synchronous Invocations: Dual Channel HTTP-to-JMS
 
-![](attachments/119130318/119130319.png)
+A JMS synchronous invocation takes place when a JMS producer receives a response to a JMS request produced by it when invoked. The WSO2 Micro Integrator uses an internal **JMS correlation ID** to correlate the request and the response. See [JMSRequest/ReplyExample](http://www.eaipatterns.com/RequestReplyJmsExample.html) for more information. JMS synchronous invocations are further explained in the following use case.
 
 When the proxy service named `         SMSSenderProxy        ` receives an HTTP request, it publishes that request in a JMS queue named `         SMSStore        ` . Another proxy service named `         SMSForwardProxy        ` subscribes to messages published in this queue and forwards them to a back-end service named `         SimpleStockQuoteService        ` . When this back-end service returns an HTTP response, internal ESB logic is used to save that
 message as a JMS message in a JMS queue named `         SMSReceiveNotification        `. The `         SMSSenderProxy        ` proxy service picks the response from the `         SMSReceiveNotification        ` queue and delivers it to the client as an HTTP message using internal ESB logic.
 
 **Note** that the `         SMSSenderProxy        ` proxy service is able to pick up the message from the `         SMSReceiveNotification        ` queue because the `         transport.jms.ReplyDestination        ` parameter of the `         SMSSenderProxy        ` proxy service is set to the same `         SMSReceiveNotification        ` queue.
 
-!!! info
+!!! Info
     The correlation between request and response:
     
     Note that the message that is passed to the back-end service contains the JMS message ID. However, the back-end service is required to return the response using the JMS correlation ID. Therefore, the back-end service should be configured to copy the message ID from the request (the value of the **JMSMessageID** header) to the correlation ID of the response (using the **JMSCorrelationID** header).
@@ -21,7 +20,7 @@ Create two proxy services with the JMS publisher configuration and JMS consumer 
 
 Shown below is the `         SMSSenderProxy        ` proxy service.
 
-```
+```xml
 <proxy xmlns="http://ws.apache.org/ns/synapse"
            name="SMSSenderProxy"
            transports="https,http"
@@ -153,7 +152,7 @@ The value specified here should be the same as that specified in <code>         
 
 Create a proxy service named `         SMSForwardProxy        ` with the configuration given below. This proxy service will consume messages from the `         SMSStore        ` queue of the Message Broker Profile, and forward the messages to the back-end service.
 
-```
+```xml
 <proxy xmlns="http://ws.apache.org/ns/synapse"
            name="SMSForwardProxy"
            transports="jms"
@@ -189,31 +188,3 @@ The `         transport.jms.ConnectionFactory        ` , `         transport.jms
 `         transport.jms.Destination properties        ` parameter map the proxy service to the `         SMSStore        ` queue.
 
 The `         SimpleStockQuoteService        ` sample shipped with WSO2 Micro Integrator is used as the back-end service in this example. To invoke this service, the address URI of this proxy service is defined as `         http://localhost:9000/services/SimpleStockQuoteServic        `.
-
-## Run the Example
-
-1. Configure the Micro Integrator with Apache ActiveMQ and set up the JMS Sender.
-2. Start WSO2 Integration Studio and create a proxy service with the above configuration. You can copy the synapse configuration given above to the **Source View** of your proxy service.
-3. To test this scenario you need an HTTP back-end service. Deploy the SimpleStockQuoteService and start the Axis2 server.
-3. Send a message to the Micro Integrator by executing the following command from the `MI_HOME/samples/axis2Client` folder.
-
-    ```
-    ant stockquote -Daddurl=http://localhost:8280/services/SMSSenderProxy -Dsymbol=IBM
-    ```
-
-    !!! Info
-        You can view the ActiveMQ queue by accessing the ActiveMQ management console using the URL `http://0.0.0.0:8161/admi`and using `admin` as both the username and password.
-
-Analyze the output on the Axis2 server console as well as the output on the client console to understand how a JMS producer can receive a response to a JMS request produced by it.
-
-You will see the following on the Axis2 server console:
-
-``` java
-Fri Dec 08 11:19:29 IST 2017 samples.services.SimpleStockQuoteService :: Generating quote for : IBM
-```
-
-You will see the following response on the client console:
-
-``` java
-Standard :: Stock price = $162.04696182786148
-```
