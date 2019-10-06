@@ -44,10 +44,10 @@ Let’s implement a simple integration solution that can be used to query for av
 
 1. [Download Micro Integrator](https://www.wso2.com/integration/micro-integrator) for your Operating System.
    <table>
-    <th>
-    <td>Operating System</td>
-    <td>Location</td>
-    </th>
+    <tr>
+    <th>Operating System</th>
+    <th>Location</th>
+    </tr>
     
     <tr>
     <td>Mac OSX</td>
