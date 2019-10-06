@@ -36,8 +36,8 @@ Follow the steps given below,
     ![Kubernetes Project Structure](../../assets/img/create_project/docker_k8s_project/k8s-project.png)
     
     1.  **CompositeApps**:  Directory to store the composite apps which are selected by the user. During the build time these composite apps will copy to the image.
-    2.  **Conf**:   Directory to store configuration files. During the build time these configuration files inside the Conf will copy to the image.   
-    3.  **Libs**:   Directory to store libraries. During the build time these libraries inside the Libs will copy to the image.
+    2.  **Conf**: Directory to store configuration files. During the build time these configuration files inside the Conf will copy to the image.   
+    3.  **Libs**: Directory to store libraries. During the build time these libraries inside the Libs will copy to the image.
     4.  **Dockerfile**: Dockerfile which contains build details.
     5.  **kubernetes_cr.yaml**: Kubernetes configuration file generated based on the user inputs.
     6.  **pom.xml**:    File for select multiple composite apps and build & push Docker images to the Docker registries.
@@ -48,7 +48,7 @@ Follow the steps given below,
 
 1.  Open the **pom.xml** file inside the Kubernetes project.
 
-    ![Kubernetes pom View](../../assets/img/create_project/docker_k8s_project/k8s-pom.png)
+    ![Kubernetes pom view](../../assets/img/create_project/docker_k8s_project/k8s-pom.png)
     
 2.  Select multiple composite applications which wants to pack inside the Docker image under the Dependencies section, and save the file.
 3.  Click **Build & Push**, to start the Docker image build and push process.

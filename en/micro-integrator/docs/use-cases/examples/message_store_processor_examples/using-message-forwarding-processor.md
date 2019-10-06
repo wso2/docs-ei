@@ -1,4 +1,4 @@
-# Introduction to Message Forwarding Processor
+# Using the Message Forwarding Processor
 ## Example use case
 
 ## Synapse configuration

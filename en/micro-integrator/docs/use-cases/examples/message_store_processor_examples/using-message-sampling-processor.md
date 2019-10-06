@@ -1,4 +1,4 @@
-# Introduction to Message Sampling Processor
+# Using the Message Sampling Processor
 ## Example use case
 
 ## Synapse configuration
