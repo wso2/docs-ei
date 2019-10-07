@@ -1,6 +1,8 @@
 # Introduction
 
-The **Micro Integrator** of WSO2 Enterprise Integrator 7.0.0 is a powerful configuration-driven approach to integration, which supports graphically integration designing using a simple drag-and-drop functionality.
+The **Micro Integrator** of [WSO2 Enterprise Integrator 7.0.0](https://ei.docs.wso2.com/en/latest/) is a powerful configuration-driven approach to integration, which allows developers to build integrations graphically. 
+
+This is an alternative to the code-driven integration approach that is offered by the [Ballerina Integrator](https://ei.docs.wso2.com/en/latest/ballerina-integrator/get-started/introduction/).
 
 ## Building Centralized, Monolithic integrations
 
@@ -18,4 +20,4 @@ As shown above, if your organization is running on a decentralized, cloud-native
 
 ## Graphical integration desigining
 
-WSO2 Micro Integrator is coupled with [WSO2 Integration Studio](../../develop/WSO2-Integration-Studio), which is a comprehensive graphical integration flow designer for building integration use cases. While [WSO2 Ballerina Integrator](https://ei.docs.wso2.com/en/latest/ballerina-integrator/get-started/introduction/) provides a code-driven integration experience, the Micro Integrator allows developers to build integrations graphically.
+WSO2 Micro Integrator is coupled with [WSO2 Integration Studio](../../develop/WSO2-Integration-Studio); a comprehensive graphical integration flow designer for building integrations using a simple drag-and-drop functionality.
