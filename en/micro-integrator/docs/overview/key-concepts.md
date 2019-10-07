@@ -1,4 +1,4 @@
-# Key Concepts of WSO2 Micro Integrator
+# Key Concepts
 
 Listed below are the key concepts of WSO2 Micro Integrator.
 
@@ -59,14 +59,22 @@ Connectors allow your mediation flows to connect and interact with external serv
 To download a required connector, go to the [WSO2 Connector Store](https://store.wso2.com/store).
 
 ---
+## Other concepts
+
+### Transports
+
+A transport protocol is responsible for carrying messages that are in a specific format. WSO2 Micro Integrator supports all the widely used transports including HTTP/S, JMS, VFS, as well as domain-specific transports like FIX. Each transport provides a receiver implementation for receiving messages, and a sender implementation for sending messages.
 
 ### Registry
 
 WSO2 Micro Integrator uses a registry to store various configurations and artifacts such as [sequences](#mediation-sequences) and [endpoints](#endpoints). A registry is simply a content store and a metadata repository. Various SOA artifacts such as services, WSDLs, and configuration files can be stored in a registry and referred to by a key, which is a path similar to a UNIX file path. The WSO2 Micro Integrator uses a [file-based registry](../../setup/file_based_registry) that is configured by default. When you develop your integration artifacts, you can also define and use a [local registry](../../develop/creating-artifacts/registry/creating-local-registry-entries).
 
-### Transports
+### Message Builders and Formatters
 
-A transport protocol is responsible for carrying messages that are in a specific format. WSO2 Micro Integrator supports all the widely used transports including HTTP/S, JMS, VFS, as well as domain-specific transports like FIX. Each transport provides a receiver implementation for receiving messages, and a sender implementation for sending messages.
+When a message comes in to WSO2 Micro Integrator, the receiving transport selects a **message builder** based on the message's content type. It uses that builder to process the message's raw payload data and converts it to common XML, which the mediation engine of WSO2 Micro Integrator can then read and understand. WSO2 Micro Integrator includes
+message builders for text-based and binary content.
+
+Conversely, before a transport sends a message out from WSO2 Micro Integrator, a **message formatter** is used to build the outgoing stream from the message back into its original format. As with message builders, the message formatter is selected based on the message's content type. You can implement new message builders and formatters for custom requirements.
 
 ---
 
@@ -83,13 +91,6 @@ When you define a mediation sequence, [Fault Sequences](../../references/synapse
 Message mediation is one of the operational modes of WSO2 Micro Integrator where it receives messages, performs various operations (such as message filterring, message transforming, etc.) according to given parameters, and forwards the message to the intended recepient. The Micro Integrator performs message mediation through various synapse artifacts such as [mediators](#mediators), [sequences](#mediation-sequences), [endpoints](#mediators), etc.
 
 **Mediation Debugging** is the process of analysing whether the synapse artifacts in your message flow are operating as intended, and/or whether a combination of these artifacts (taken as a whole) are operating as intended. The development tool of WSO2 Micro Integrator (**WSO2 Integration Studio**) is shipped with the [mediation debugging tool](../../develop/debugging-mediation) for this purpose. You can also use other methods such as [wire logs](../develop/using-wire-logs.md), [service logs](../../develop/enabling-logs-for-services), and [REST API logs](../../develop/enabling-logs-for-api) to debug message mediation.
-
-### Message Builders and Formatters
-
-When a message comes in to WSO2 Micro Integrator, the receiving transport selects a **message builder** based on the message's content type. It uses that builder to process the message's raw payload data and converts it to common XML, which the mediation engine of WSO2 Micro Integrator can then read and understand. WSO2 Micro Integrator includes
-message builders for text-based and binary content.
-
-Conversely, before a transport sends a message out from WSO2 Micro Integrator, a **message formatter** is used to build the outgoing stream from the message back into its original format. As with message builders, the message formatter is selected based on the message's content type. You can implement new message builders and formatters for custom requirements.
 
 ### Message Tracing 
 
