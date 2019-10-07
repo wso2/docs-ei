@@ -1,6 +1,6 @@
 # Developing Integration Solutions
 
-The contents on this page will walk you through the topics related to developing integration solutions for the WSO2 Micro Integrator.
+The contents on this page will walk you through the topics related to developing integration solutions for WSO2 Micro Integrator.
 
 ## Development workflow
 
@@ -57,15 +57,15 @@ Integration developers will follow the workflow illustrated by the following dia
 		<td><b>Step 4: Iterate and improve</b></td>
 		<td>
 			As you build and run the integration flow, you may identify errors that need to be fixed, and changes that need to be done to the synapse artifacts.
-			<ul>
+			<ol>
 				<li>
 					<a href="../../develop/debugging-mediation">Debug the mediation flow</a> to find potential errors.
 				</li>
 				<li>
 					Redeploy the integration artifacts after applying changes.</br></br>
-					<b>Note</b>: If you are testing on a VM, the artifacts will be instantly deployed when you <a href="../../develop/deploy-and-run">Redeploy the synapse artifacts</a>. If you are running in a container, you need to rebuild the <a href="../../develop/create-docker-project">Docker images</a> or <a href="../../develop/create-kubernetes-project">Kubernetes artifacts</a>.
+					<b>Note</b>: If you are testing on a VM, the artifacts will be instantly deployed when you <a href="../../develop/deploy-and-run">Redeploy the synapse artifacts</a>. If you are testing on containers, you need to rebuild the <a href="../../develop/create-docker-project">Docker images</a> or <a href="../../develop/create-kubernetes-project">Kubernetes artifacts</a>.
 				</li>
-			</ul>
+			</ol>
 		</td>
 	</tr>
 	<tr>
