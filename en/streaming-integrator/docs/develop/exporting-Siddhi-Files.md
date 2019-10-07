@@ -1,134 +1,131 @@
-# Exporting Siddhi Files
-The Siddhi files you create in the Stream Processor Studio are saved in the `<SI_HOME>/wso2/editor/deployment/workspace` 
-directory by default. If you want to save a Siddhi file in a different location, you can export it to the required 
-location. You can also enable Siddhi applications to be run in a Docker environment by exporting them as Docker 
-artifacts.
+# Exporting Siddhi Apps
 
-## Exporting a single Siddhi file
-If you want to copy a specific Siddhi application to multiple Streaming Integrator instances, you can export it as follows:
+The Streaming Integrator Tooling allows you to export one or more siddhi files as a Docker or Kubernetes artifact, to make it possible to run those Siddhi applications within a Docker or Kubernetes environment.
 
-1. Start Streaming Integrator Tooling by issuing one of the following commands from the `<SI_HOME>/bin` directory.
-    - For Windows: `streaming-integrator-tooling.bat`
-    - For Linux: `./streaming-integrator-tooling.sh` <br/>
-    
+To export Siddhi files as Docker or Kubernetes artifacts, follow the steps given below.
+
+## Exporting Siddhi Apps for Docker Image
+
+1. Start the Streaming Integrator Tooling buy issueing one of the following commands from the `<SI_HOME>/bin` directory.
+    - For Windows: `tooling.bat`
+    - For Linux: `./tooling.sh`
     The Streaming Integrator Tooling opens as shown below.
-
     ![Streaming Integrator Welcome Page](../images/exporting-Siddhi-Applications/SI-Welcome_Page.png)
 
-2. Open the Siddhi application you want to export. You can click **Open** and select a Siddhi application that is 
-    already saved in the `<SI_HOME>/wso2/server/deployment/workspace` directory.
+2. Create required Siddhi files. The rest of the documentation assumes that you have set of Siddhi apps to be exported as a Docker image.
 
-3. Click **File** => **Export File**.
+3. From the **Export** menu, select **For Docker**. The following wizard will be popped up.
 
-    ![Exporting Siddhi File](../images/exporting-Siddhi-Applications/Export_Siddhi_File.png)
+![Export as Docker/Kubernetes Menu](../images/exporting-Siddhi-Applications/Export_Docker_k8s_Menu.png)
 
-    As a result, the Siddhi application is downloaded as a `.siddhi` file to the default location of your machine.
+![Export Siddhi App for Docker image dialog](../images/exporting-Siddhi-Applications/Export_Docker_1.png)
+
+4. From the **Step 1: Select Siddhi Apps** select a set of Siddhi apps to be included in the docker image. You can select one or more Siddhi apps.
+
+5. Click **Next**.
+
+6. From the **Step 2: Template Siddhi Apps**, you can template the Siddhi app. You can use `${...}` pattern to define a template within the Siddhi app. (eg. `${http.port}`).
+
+    Example:
+    ```
+    @source(type='http', receiver.url='http://localhost:${http.port}/${http.context}',
+        @map(type = 'json'))
+    define stream StockQuoteStream(symbol string, price double, volume int);
+    ```
+
+7. Once templates are defined, click **Next**.
+
+8. From **Step 3: Update Streaming Integrator configurations**, you can update the configuration file (`deployment.yaml`) of the Streaming Integration specific to the Docker image. Similar to the previous step, you can template the configurations as well. Use the similar notation i.e. `${...}` to specify a template within the configuration file.
+
+9. Once the configuration is complete, click **Next**.
+
+10. The next step, **Step 4: Populate arguments template** is to define the values for the template fields defined in Step 2 and Step 3. This step will list down all the template fields, therefore you can set the relevant values for each field.
+
+11. Once the template values are set, click **Next**.
+
+12. The last step **Step 5: Bundle additional dependencies** allows you to select additional JARs to be shipped within the Docker image.
+
+13. Once the everything is complete, click **Export** to export a ZIP file with the following directory structure.
+
+    ```
+    .
+    ├── Dockerfile
+    ├── configurations.yaml
+    └── siddhi-files
+        ├── <SIDDHI_FILE>.siddhi
+        ├── ...
+        └── <SIDDHI_FILE>.siddhi
+    ```
+
+    For more information on Siddhi Docker artifacts, please refer [Siddhi 5.1 as a Docker Microservice](https://siddhi.io/en/v5.1/docs/siddhi-as-a-docker-microservice/) documentation.<br /><br />
 
     !!! info
         This functionality differs based on the web browser you are using and its settings. e.g., if you have set a default
         download location and disabled the **Ask where to save each file before downloading** feature as shown below, the
         file is downloaded to the default location without prompting you for any further input.<br/>
         ![Download Settings](../images/exporting-Siddhi-Applications/Download_Settings.png)
-    
-## Exporting Siddhi Files as Docker Artifacts
-The Streaming Integrator Tooling allows you to export one or more selected Siddhi files as Docker artifacts in order to
- make it possible to run those Siddhi applications in a Docker environment.
 
-To export  Siddhi files as Docker artifacts, follow the steps below:
+## Exporting Siddhi Apps for Kubernetes
 
-!!! tip
-    The exported Docker artifacts use docker-compose for this purpose. Therefore to run the artifacts, you need to 
-    install the following in the running environment.
-    - [Docker](https://www.docker.com/)
-    - [Docker Compose](https://docs.docker.com/compose/)
+1. Start the Streaming Integrator Tooling buy issueing one of the following commands from the `<SI_HOME>/bin` directory.
+    - For Windows: `tooling.bat`
+    - For Linux: `./tooling.sh`
+    The Streaming Integrator Tooling opens as shown below.
+    ![Streaming Integrator Welcome Page](../images/exporting-Siddhi-Applications/SI-Welcome_Page.png)
 
+2. Create required Siddhi files. The rest of the documentation assumes that you have set of Siddhi apps to be exported as a Kubernetes artifacts.
 
-### Configuring Docker in Streaming Integrator
+3. From the **Export** menu, select **For Kubenetes**. The following wizard will be popped up.
 
-By default, the Streaming Integrator uses the latest docker image hosted in [wso2.docker.com](http://wso2.docker.com/).
- If you want to use the different version of an image, follow the steps below:
+![Export as Docker/Kubernetes Menu](../images/exporting-Siddhi-Applications/Export_Docker_k8s_Menu.png)
 
-1.  Update the `Configurations for Docker export` section of the `<SI_HOME>/conf/editor/deployment.yaml` file as
-    follows.
+![Export Siddhi App for Docker image dialog](../images/exporting-Siddhi-Applications/Export_k8s_1.png)
 
-    ``` xml
-        # Configurations for Docker export feature
-        docker.configs:
-          productVersion: <PREFERED_PRODUCT_VERSION>
+4. From the **Step 1: Select Siddhi Apps** select a set of Siddhi apps to be included in the docker image. You can select one or more Siddhi apps.
+
+5. Click **Next**.
+
+6. From the **Step 2: Template Siddhi Apps**, you can template the Siddhi app. You can use `${...}` pattern to define a template within the Siddhi app. (eg. `${http.port}`).
+
+    Example:
+    ```
+    @source(type='http', receiver.url='http://localhost:${http.port}/${http.context}',
+        @map(type = 'json'))
+    define stream StockQuoteStream(symbol string, price double, volume int);
     ```
 
-    You need to replace the `<PREFERED_PRODUCT_VERSION>` with your preferred image version e.g., 4.3.0.
+7. Once templates are defined, click **Next**.
 
-2.  Restart the Streaming Integrator server.
+8. From **Step 3: Update Streaming Integrator configurations**, you can update the configuration file (`deployment.yaml`) of the Streaming Integration specific to the Docker image. Similar to the previous step, you can template the configurations as well. Use the similar notation i.e. `${...}` to specify a template within the configuration file.
+
+9. Once the configuration is complete, click **Next**.
+
+10. The next step, **Step 4: Populate arguments template** is to define the values for the template fields defined in Step 2 and Step 3. This step will list down all the template fields, therefore you can set the relevant values for each field.
+
+11. Once the template values are set, click **Next**.
+
+12. The next step **Step 5: Bundle additional dependencies** allows you to select additional JARs to be shipped within the Docker image.
+
+13. Once the JARs are selected, click **Next**.
+
+14. In the last step **Step 7: Add Kubernetes config**, click **Export**. This will download the ZIP file with following directory structure.
+
+    ```
+    ├── Dockerfile
+    ├── configurations.yaml
+    ├── siddhi-files
+    │   ├── <SIDDHI_FILE>.siddhi
+    │   ├── ...
+    │   └── <SIDDHI_FILE>.siddhi
+    └── siddhi-process.yaml
+    ```
+
+15. Once the ZIP is downloaded, you can extract and open the `<ZIP_HOME>/siddhi-process.yaml` via a text editor to modify the SiddhiProcess configuration.<br /><br />
+
+    For more information on **SiddhiProcess** Kubernetes configuration, please refer [Siddhi 5.1 as a Kubernetes Microservice](https://siddhi.io/en/v5.1/docs/siddhi-as-a-docker-microservice/) documentation.<br /><br />
 
     !!! info
-        This feature also uses the following configuration files with the content as shown below:
-
-    -   `docker-compose.editor.yaml`
-
-        ``` xml
-            version: '2.3'
-            services:
-              editor:
-                image: docker.wso2.com/wso2sp-editor:{{PRODUCT_VERSION}}
-                container_name: wso2sp-editor
-                ports:
-                  - "9390:9390"
-                healthcheck:
-                  test: ["CMD", "nc", "-z","localhost", "9390"]
-                  interval: 10s
-                  timeout: 120s
-                  retries: 5
-                volumes:
-                  - ./siddhi-files:/home/wso2carbon/wso2-artifact-volume/wso2/editor/deployment/workspace
-        ```
-    
-    -   `docker-compose.worker.yml`
-    
-        ``` xml
-                version: '2.3'
-                services:
-                  editor:
-                    image: docker.wso2.com/wso2sp-worker:{{PRODUCT_VERSION}}
-                    container_name: wso2sp-worker
-                    ports:
-                      - "9090:9090"
-                    healthcheck:
-                      test: ["CMD", "nc", "-z","localhost", "9090"]
-                      interval: 10s
-                      timeout: 120s
-                      retries: 5
-                    volumes:
-                      - ./siddhi-files:/home/wso2carbon/wso2-artifact-volume/wso2/worker/deployment/siddhi-files
-        ```
-        
-
-### Exporting Siddhi files
-
-To export multiple Siddhi files, follow the steps below:
-
-1. Start Streaming Integrator Tooling by issuing one of the following commands from the `<SI_HOME>/bin` directory.
-
-     - For Windows: `streaming-integrator-tooling.bat`
-
-     - For Linux: `./streaming-integrator-tooling.sh`
-
-2. Click **File** , and then click **Export as Docker**.  
-   ![Export Docker file menu](../images/exporting-Siddhi-Applications/File_Menu_Export_Docker.png)
-
-   As a result, the **Export as Docker** dialog box opens as follows.  
-   ![Export as Docker dialog box](../images/exporting-Siddhi-Applications/Export_As_Docker.png)
-
-3. In the **Profile** field, select either **Editor** or **Worker** depending on the profile in which the Siddhi file
-   you want to export is located.
-
-4. Under **Files to be included** , expand the **workspace** directory to view all the Siddhi applications that are 
-   available to be exported.
-
-   ![Select required Siddhi files](../images/exporting-Siddhi-Applications/Select_Siddhi_Files.png)
-
-   Select the speific Siddhi applications you want to export by selecting the relevant check boxes. If you want to 
-   select all the Siddhi applications, select the check box for the **workspace** directory.
-
-5.  Click **Export**. The Siddhi applications are exported as docker artifacts in a zip file to the default location 
-    in your machine, based on your operating system and browser settings.
+        This functionality differs based on the web browser you are using and its settings. e.g., if you have set a default
+        download location and disabled the **Ask where to save each file before downloading** feature as shown below, the
+        file is downloaded to the default location without prompting you for any further input.<br/>
+        ![Download Settings](../images/exporting-Siddhi-Applications/Download_Settings.png)

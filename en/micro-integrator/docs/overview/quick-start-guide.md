@@ -42,35 +42,9 @@ Let’s implement a simple integration solution that can be used to query for av
 
 ## Before you begin
 
-1. [Download Micro Integrator](https://www.wso2.com/integration/micro-integrator) for your Operating System.
-   <table>
-    <tr>
-    <th>Operating System</th>
-    <th>Location</th>
-    </tr>
-    
-    <tr>
-    <td>Mac OSX</td>
-    <td>/Library/WSO2/MicroIntegrator/1.0.0</td>
-    </tr>
-    
-    <tr>
-    <td>Windows</td>
-    <td>C:\Program Files\WSO2\MicroIntegrator\1.0.0</td>
-    </tr>
-    
-    <tr>
-    <td>Ubuntu</td>
-    <td>/usr/lib/wso2/MicroIntegrator/1.0.0</td>
-    </tr>
-    
-    <tr>
-    <td>CentOS</td>
-    <td>/usr/lib64/MicroIntegrator/1.0.0</td>
-    </tr>
-   </table> 
-
-2. Download the sample files from [here](https://github.com/wso2/docs-ei/tree/7.0.0/en/micro-integrator/docs/assets/attach/quick-start-guide). From this point onwards, let's refer to this folder as `<MI_QSG_HOME>`.
+1. [Download Micro Integrator](https://www.wso2.com/integration/micro-integrator) for your Operating System. For more information, see [the Installation section](../../setup/installation/install_in_vm/).
+   
+2. Download the sample files from [here](https://github.com/wso2/docs-ei/blob/7.0.0/en/micro-integrator/docs/assets/attach/quick-start-guide/MI_QSG_HOME.zip). From this point onwards, let's refer to this folder as `<MI_QSG_HOME>`.
 
 3. Download [curl](https://curl.haxx.se/) or a similar tool that can call an endpoint.
 

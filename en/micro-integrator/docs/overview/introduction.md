@@ -1,4 +1,4 @@
-# Introduction to WSO2 Micro Integrator
+# Introduction
 
 The **Micro Integrator** of WSO2 Enterprise Integrator 7.0.0 is a powerful configuration-driven approach to integration, which supports graphically integration designing using a simple drag-and-drop functionality.
 
