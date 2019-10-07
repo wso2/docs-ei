@@ -153,7 +153,7 @@ Follow the steps below to change the endpoint reference of the **HelloWorldProxy
 
 Use the following request to invoke the service:
 
-``` 
+```xml 
 <body>
     <p:echoInt xmlns:p="http://echo.services.core.carbon.wso2.org">
         <!--0 to 1 occurrence-->

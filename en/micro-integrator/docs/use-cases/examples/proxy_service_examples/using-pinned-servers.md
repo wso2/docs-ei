@@ -1,4 +1,5 @@
 # Using Pinned Servers
+## Example use case
 
 You can use the `         pinnedServers        ` attribute to specify
 the list of Synapse servers where this proxy service should be
@@ -17,3 +18,20 @@ startup script `         integrator.bat        ` or
 `         integrator.sh        ` , or by editing
 `         wrapper.conf        ` to do this where Synapse is started as a
 service.
+
+## Synapse configuration
+
+## Build and run
+
+Create the artifacts:
+
+1. Set up WSO2 Integration Studio.
+2. Create an ESB Config project.
+3. Create a proxy service artifact with the above configuration.
+4. Deploy the artifacts in your Micro Integrator.
+
+Set up the back-end service:
+
+........
+
+Invoking the service:

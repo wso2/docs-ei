@@ -114,7 +114,7 @@ To create and deploy Siddhi application that triggers an integration flow, and t
         <?xml version="1.0" encoding="UTF-8"?>
         <sequence xmlns="http://ws.apache.org/ns/synapse" name="inSeq">
            <log level="full"/>
-           <class name="org.wso2.carbon.mediator.grpcresponse.ResponseMediator"/>
+           <respond/>
         </sequence>
 
         ```

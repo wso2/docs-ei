@@ -13,44 +13,48 @@ samples](https://docs.wso2.com/display/EI650/Setting+Up+the+ESB+Samples#SettingU
 
 ### Building the sample
 
-The XML configuration for this sample is as follows:
+The following are the integration artifacts that we can use to implement this scenario
 
-``` 
-    <definitions xmlns="http://ws.apache.org/ns/synapse">
-        <!-- define a string resource entry to the local registry -->
-        <localEntry key="version">0.1</localEntry>
-        <!-- define a reuseable endpoint definition -->
-        <endpoint name="simple">
-            <address uri="http://localhost:9000/services/SimpleStockQuoteService"/>
-        </endpoint>
-        <!-- define a reusable sequence -->
-        <sequence name="stockquote">
-            <!-- log the message using the custom log level. illustrates custom properties for log -->
-            <log level="custom">
-                <property name="Text" value="Sending quote request"/>
-                <property name="version" expression="get-property('version')"/>
-                <property name="direction" expression="get-property('direction')"/>
-            </log>
-            <!-- send message to real endpoint referenced by key "simple" endpoint definition -->
-            <send>
-                <endpoint key="simple"/>
-            </send>
-        </sequence>
-        <sequence name="main">
-            <in>
-                <property name="direction" value="incoming"/>
-                <sequence key="stockquote"/>
-            </in>
-            <out>
-                <send/>
-            </out>
-        </sequence>
-    </definitions>
+**Proxy**
+```xml
+<proxy name="MainProxy" startOnLoad="true" transports="http https" xmlns="http://ws.apache.org/ns/synapse">
+    <target>
+        <inSequence>
+            <property name="direction" scope="default" type="STRING" value="incoming"/>
+            <sequence key="stockquote"/>
+        </inSequence>
+        <outSequence>
+            <send/>
+        </outSequence>
+        <faultSequence/>
+    </target>
+</proxy>
 ```
 
-This configuration file `         synapse_sample_3.xml        ` is
-available in the `         <EI_HOME>/samples/service-bus        `
-directory.
+**Sequence**
+
+```xml
+<sequence name="stockquote" trace="disable" xmlns="http://ws.apache.org/ns/synapse">
+    <!-- log the message using the custom log level. illustrates custom properties for log -->
+    <log level="custom">
+        <property name="Text" value="Sending quote request"/>
+        <property expression="get-property('version')" name="version"/>
+        <property expression="get-property('direction')" name="direction"/>
+    </log>
+    <!-- send message to real endpoint referenced by key "simple" endpoint definition -->
+    <send>
+        <endpoint key="simple"/>
+    </send>
+</sequence>
+```
+
+**Endpoint**
+
+```xml
+<endpoint name="simple" xmlns="http://ws.apache.org/ns/synapse">
+    <address uri="http://localhost:9000/services/SimpleStockQuoteService"/>
+</endpoint>
+```
 
 **To build the sample**
 
@@ -65,7 +69,7 @@ directory.
     services](https://docs.wso2.com/display/EI650/Setting+Up+the+ESB+Samples#SettingUptheESBSamples-Backend)
     .
 
-    Now you have a running WSO2 EI instance and a back-end service
+    Now you have a running WSO2 EI Instance and a back-end service
     deployed. In the next section, we will send a message to the
     back-end service through WSO2 EI using a sample client.
 
@@ -90,7 +94,7 @@ Client](https://docs.wso2.com/display/EI650/Using+the+Sample+Clients#UsingtheSam
     trigger a sample message to the back-end service.
 
     ``` bash
-            ant stockquote -Daddurl=http://localhost:9000/services/SimpleStockQuoteService -Dtrpurl=http://localhost:8280/
+            ant stockquote -Daddurl=http://localhost:9000/services/SimpleStockQuoteService -Dtrpurl=http://localhost:8290/MainProxy
     ```
 
 ### Analyzing the output

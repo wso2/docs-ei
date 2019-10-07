@@ -8,7 +8,8 @@ There are two ways to create new [keystores for the Micro Integrator](../../refe
 ## Creating a new keystore using a new certificate
 You can follow the steps in this section to create a new keystore with a private key and a new public key certificate. We will be using the keytool that is available with your JDK installation. 
 
-> **Note** that the pubic key certificate we generate for the new keystore is self-signed. If you need a public key certificate that is CA-signed, you can [generate a CA-signed certificate and import it to the keystore](../../setup/security/importing_ssl_certificate.md) later. Alternatively, you can follow the instructions to [create a new keystore using a CA-signed public certificate](#creating-a-keystore-using-an-existing-certificate).
+!!! Note
+    The pubic key certificate we generate for the new keystore is self-signed. If you need a public key certificate that is CA-signed, you can [generate a CA-signed certificate and import it to the keystore](../../setup/security/importing_ssl_certificate.md) later. Alternatively, you can follow the instructions to [create a new keystore using a CA-signed public certificate](#creating-a-keystore-using-an-existing-certificate).
 
 1. Open a command prompt and go to the MI_HOME/repository/resources/security/ directory. All keystores should be stored here.
 2. Create the keystore that includes the private key by executing the following command:

@@ -1,4 +1,4 @@
-# Configure with the Broker Profile
+# Connecting to WSO2 MB
 
 This section describes how to configure WSO2 Micro Integrator to connect with WSO2 Message Broker.
 
@@ -30,23 +30,21 @@ This section describes how to configure WSO2 Micro Integrator to connect with WS
         parameter.cache_level = "producer"
         ```
 
-3.  Open the  `MI_HOMEconf/jndi.properties` file and make a reference to the running Broker profile as specified below:
-    -   Use **carbon** as the virtual host.
-    -   Define a queue named `JMSMS`.
-    -   Comment out the topic since it is not required in this scenario. However, in order to avoid getting the `javax.naming.NameNotFoundException:TopicConnectionFactory` exception during server startup, make a reference to the Broker profile from the `TopicConnectionFactory` as well.  
-        For example:
-        ```java
-        # register some connection factories
-        # connectionfactory.[jndiname] = [ConnectionURL]
-        connectionfactory.QueueConnectionFactory = amqp://admin:admin@clientID/carbon?brokerlist='tcp://localhost:5675'
-        connectionfactory.TopicConnectionFactory = amqp://admin:admin@clientID/carbon?brokerlist='tcp://localhost:5675'
-        # register some queues in JNDI using the form
-        # queue.[jndiName] = [physicalName]
-        queue.JMSMS=JMSMS
-        queue.StockQuotesQueue = StockQuotesQueue
+    - Add the following configurations to specify the jndi connection factory details:
+        ```toml
+        [transport.jndi.connection_factories]
+        QueueConnectionFactory = "amqp://admin:admin@clientID/carbon?brokerlist='tcp://localhost:5675'"
+        TopicConnectionFactory = "amqp://admin:admin@clientID/carbon?brokerlist='tcp://localhost:5675'"
+
+        [transport.jndi.queue]
+        queue_jndi_name = "queue_name"
+
+        [transport.jndi.topic]
+        topic_jndi_name = "topic_name"
         ```
-4.  Start WSO2 Message Broker.
-5.  Start WSO2 Micro Integrator.
+
+3.  Start WSO2 Message Broker before starting the Micro Integrator.
+4.  Start WSO2 Micro Integrator.
 
 Now, you have both WSO2 Message Broker and the Micro Integrator configured and running.
 

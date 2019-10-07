@@ -1,8 +1,13 @@
 # Scheduled Failover Message Forwarding Processor
+## Introduction
+The scheduled failover message forwarding processor ensures reliable message delivery. This helps ensure guaranteed message delivery even when there is a failure in the message store.</br></br>
+The only difference between the scheduled failover message forwarding processor and the scheduled message forwarding processor is that the scheduled message forwarding processor forwards messages to a defined endpoint, whereas the scheduled failover message forwarding processor forwards messages to a target message store.
+
+## Properties
 
 See the topics given below for the list of properties that can be configured for a Scheduled Failover Message Forwarding Processor.
 
-## Required Properties
+### Required Properties
 
 Following are the required parameters you can set when [adding a Scheduled Message Forwarding Processor](../../../develop/creating-artifacts/creating-a-message-processor.md):
 
@@ -37,7 +42,7 @@ Following are the required parameters you can set when [adding a Scheduled Messa
      </tr>
 </table>
 
-## Optional Properties
+### Optional Properties
 
 Following are the additional parameters you can set when [adding a Scheduled Failover Message Forwarding Processor](../../../develop/creating-artifacts/creating-a-message-processor.md):
 

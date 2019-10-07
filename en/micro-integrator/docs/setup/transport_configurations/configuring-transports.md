@@ -8,84 +8,86 @@ The HTTP and HTTPS passthrough transports are enabled by defualt in the Micro In
 
 See the [complete list of HTTP/HTTPS parameters](../../../references/config-catalog/#http-transport).
 
+### Number of HTTP Listeners
+
+The default HTTP transport (PassThrough transport) of WSO2 Micro Integrator has 4 HTTP/HTTPS listneres configured. This includes 2 `         PassThroughHttpListener        ` threads and 2 `         PassThroughHttpSSLListener        ` threads.
+
+You can configure the number of listeners for the HTTP transport in the deployment.toml file:
+
+```toml
+[[transport.http]]
+io_thread_count=2
+```
+You are able to define any number of listeners (by updating the `io_thread_count` value) as there is no maximum limit defined in the code level.
+
+!!! Note
+    The number of listener threads is double the value of the `io_threads_per_reactor` property because the same number of `PassThroughHttpListener` and `PassThroughHttpSSLListener` threads are created. For example, if you defined the value for the `io_threads_per_reactor` property as 5, you have 5 `PassThroughHttpListener` threads and 5 `PassThroughHttpSSLListener` threads. Therefore, the total number of listeners are 10.
+
+### Connection Throttling
+
+With the default HTTP transport (PassThrough transport) you can enable connection throttling to restrict the number of simultaneous open connections. 
+
+To enable connection throttling, update the following property in the deployment.toml file:
+
+```toml
+[[transport.http]]
+max_open_connections = 2
+```
+
+This will restrict simultaneous open incoming connections to 2. To disable throttling, delete the `max_open_connections` setting or set it to -1.
+
+!!! Info
+    Connection throttling is never exact. For example, setting this property to 2 will result in roughly two simultaneous open connections at any given time.
+
+### Verifying certificate revocation
+
+The default HTTPS transport listener (Secured Passthrough) and transport sender can verify with the certificate authority whether a certificate is still trusted before it completes an SSL connection. If the certificate authority has revoked the certificate, a connection will not be completed. 
+
+When this feature is enabled, the transport listener verifies client
+certificates when a client tries to make an HTTPS connection with the
+Micro Integrator. The transport sender verifies server
+certificates when the Micro Integrator tries to make an HTTPS
+connection with a backend server. 
+
+When this feature is enabled, the Micro Integrator attempts to
+use the Online Certificate Status Protocol (OCSP) to verify with the
+certificate authority at the handshake phase of the SSL protocol. If the
+OCSP is not supported by the certificate authority, the Micro Integrator uses Certified Revocation Lists (CRL) instead. The verification
+process checks all the certificates in a certificate chain.
+
+To enable this feature for the HTTP passthrough, add the following parameters for the HTTP transport receiver and sender in the deployment.toml file:
+
+```toml tab='Passthrough Listener'
+[[transport.http]]
+listener.CertificateRevocationVerifier=""
+listener.CacheSize=1024
+listenerCacheDelay=1000
+
+``` 
+
+```toml tab='Passthrough Sender'
+[[transport.http]]
+sender.CertificateRevocationVerifier=""
+sender.CacheSize=1024
+sender.CacheDelay=1000
+
+``` 
+
 ## Configuring the VFS transport
 
-The VFS transport is enabled by defualt in the Micro Integrator. 
+The VFS transport is enabled by defualt in the Micro Integrator. The VFS transport supports the **SFTP protocol** with **Secure Sockets Layer (SSL)**. The configuration is identical to other protocols with the only difference being the URL prefixes and parameters. 
+
+For more information, see [VFS URL parameters](../../references/synapse-properties/vfs-transport-parameters).
 
 See the [complete list of VFS parameters](../../../references/config-catalog/#vfs-transport).
 
-## Configuring the Local transport
+<!--
+## Connecting to the Local transport
 
 The local transport is enabled by defualt in the Micro Integrator. 
 
 See the [complete list of local parameters](../../../references/config-catalog/#local-transport).
-
-## Configuring the RabbitMQ transport
-
-### Enabling the RabbitMQ transport 
-
-Add the following parameters to the deployment.toml file (stored in the `MI_HOME/conf` directory).
-
-```toml
-[[transport.rabbitmq.listener]]
-name = "rabbitMQListener"
-parameter.hostname = "localhost"
-parameter.port = 5672
-parameter.username = "guest"
-parameter.password = "guest"
-parameter.connection_factory = ""
-```
-
-Download the "amqp-client-5.7.0.jar" and copy it into `MI_HOME/lib` directory.
-
-### Enabling SSL
-
-Add the following parameters to the deployment.toml file (stored in the `MI_HOME/conf` directory).
-
-```toml
-[[transport.rabbitmq.listener]]
-parameter.ssl_enable = true
-parameter.ssl_version = "SSL"
-parameter.keystore_file_name ="$ref{keystore.tls.file_name}"
-parameter.keystore_type = "$ref{keystore.tls.type}"
-parameter.keystore_password = "$ref{keystore.tls.password}"
-parameter.truststore_file_name ="$ref{truststore.file_name}"
-parameter.truststore_type = "$ref{truststore.type}"
-parameter.truststore_password = "$ref{truststore.password}"
-```
-See the complete list of server-level configurations for the [RabbitMQ Listener](../../../references/config-catalog/#rabbitmq-listener) and [RabbitMQ Sender](../../../references/config-catalog/#rabbitmq-sender).
-
-### Configuring connection recovery
-
-Add the following parameters to the deployment.toml file (stored in the `MI_HOME/conf` directory).
-
-```toml
-[[transport.rabbitmq.listener]]
-parameter.retry_interval = "10"
-parameter.retry_count = 5  
-```
-
-In case of a network failure or broker shutdown, WSO2 Micro Integrator will try to recreate the connection. The following parameters need to be configured in the transport listener to enable connection recovery in RabbitMQ.
-
-If the parameters specified above are set, the Micro Integrator will retry 5 times with 10000 ms time intervals to reconnect when the connection is lost. If reconnecting also fails, the Micro Integrator will terminate the connection. If you do not specify values for the above parameters, the Micro Integrator uses 30000ms as the default retry interval and 3 as the default retry count.
-
-Optionally, you can configure the following parameter in your proxy service when you define your mediation sequence:
-
-<parameter name="rabbitmq.server.retry.interval" locked="false">10000</parameter> 
-
-The parameter specified above sets the retry interval with which the RabbitMQ client tries to reconnect. Generally having this value less than the value specified as `rabbitmq.connection.retry.interval` will help synchronize the reconnection of the Micro Integrator and the RabbitMQ client.
-
-### Configuring high throughput of message delivery
-
-For increased performance and higher throughput in message delivery, configure the transport sender as shown below.
-
-Add the following parameters to the deployment.toml file (stored in the `MI_HOME/conf` directory).
-
-```toml
-[[transport.rabbitmq.sender]]
-<parameter name="CachedRabbitMQConnectionFactory" locked="false">
-```
-When configuring the proxy service, be sure to add the following connection factory parameter in the address URI: `rabbitmq.connection.factory=CachedRabbitMQConnectionFactory`.
+-->
 
 ## Configuring the TCP transport
 
@@ -116,6 +118,8 @@ sender.enable = false
     </li>
 </ul>
 
+<!--
+
 ## Configuring the HL7 transport
 
 To enable the HL7 transport listener and sender, set the following parameters to `true` in the deployment.toml file (stored in the `MI_HOME/conf` directory).
@@ -139,6 +143,7 @@ class="org.wso2.carbon.business.messaging.hl7.message.HL7MessageBuilder"
 content_type = "application/edi-hl7"
 class="org.wso2.carbon.business.messaging.hl7.message.HL7MessageFormatter"
 ```
+-->
 
 ## Configuring the FIX transport
 
@@ -198,32 +203,62 @@ sender.enable =false
 ```
 ## Configuring the MailTo transport 
 
-To enable the MSMQ transport listener and sender, set the following parameters to `true` in the deployment.toml file (stored in the `MI_HOME/conf` directory).
+To enable the MailTo transport listener and sender, set the following parameters to `true` in the deployment.toml file (stored in the `MI_HOME/conf` directory).
 
-```toml tab='MailTo listener'
-[transport.mail.listener]
-enable = true
-```
+-	Enabling the MailTo listener
 
-```toml tab='MailTo sender'
-[[transport.mail.sender]]
-name = "mailto"
-parameter.hostname = "smtp.gmail.com"
-parameter.port = "587"
-parameter.enable_tls = true
-parameter.auth = true
-parameter.username = "demo_user"
-parameter.password = "mailpassword"
-parameter.from = "demo_user@wso2.com"
-```
+	```toml
+	[transport.mail.listener]
+	enable = true
+	```
+
+-	Configuring the MailTo sender
+
+	```toml
+	[[transport.mail.sender]]
+	name = "mailto"
+	parameter.hostname = "smtp.gmail.com"
+	parameter.port = "587"
+	parameter.enable_tls = true
+	parameter.auth = true
+	parameter.username = "demo_user"
+	parameter.password = "mailpassword"
+	parameter.from = "demo_user@wso2.com"
+	```
+
+	!!! Note
+		In addition to enabling the MailTO transport, the following parameters are used in the above configuration to set a default email account as the mail sender. You can override this default mail sender by specifying an email sender account within your mediation sequence.
+
+		-	`mail.smtp.from` : The email address from which mails will be sent.
+		-	`mail.smtp.user` : The user name of the email account (mail sender). Note that in some email service providers, the user name is the same as the email address specified for the 'From' parameter.
+		-	`mail.smtp.password` : The password of the email account (mail sender).
+
+	If you want to use multiple mail boxes to send emails, make a copy of the default MailTo sender configuration in the `MI_HOME/conf/deployment.toml` file and change the transport sender name. For example, add `mailtoWSO2` as the name.
+
+	For a list of parameters supported by the MailTo transport sender, see [SMTP Package Summary](https://javaee.github.io/javamail/docs/api/com/sun/mail/smtp/package-summary.html). In addition to the parameters described there, the MailTo transport sender supports the following parameters.
+
+	-	`transport.mail.SMTPBccAddresses` : If one or more e-mail addresses need to be specified as BCC addresses for outgoing mails, this parameter can be used. You can enter a comma-separated list of e-mail addresses.
+	-	`transport.mail.Format` : Format of the outgoing mail. Possible values are <b>Text</b> and <b>Multipart</b>.
 
 ## Configuring the JMS transport
 
 To enable the JMS transport sender and listener in the Micro Integrator, you need to update the deployment.toml file (stored in the `MI_HOME/conf` directory) with the connection parameters for your JMS broker you are using. **Be sure** to add the required libraries to the `MI_HOME/lib` directory.
 
-### ActiveMQ broker 
+See the following topics for instructions on how to configure the Micro Integrator with different types of brokers:
 
-
+-	[Connecting to ActiveMQ](../../setup/brokers/configure-with-ActiveMQ.md)
+-	[Connecting to Apache Artemis](../../setup/brokers/configure-with-Apache-Artemis.md)
+-	[Connecting to HornetQ](../../setup/brokers/configure-with-HornetQ.md)
+-	[Connecting to IBM WebSphere App Server](../../setup/brokers/configure-with-IBM-websphere-app-server.md)
+-	[Connecting to IBM WebSphere MQ](../../setup/brokers/configure-with-IBM-websphereMQ.md)
+-	[Connecting to JBossMQ](../../setup/brokers/configure-with-JBossMQ.md)
+-	[Connecting to MSMQ](../../setup/brokers/configure-with-MSMQ.md)
+-	[Connecting to RabbitMQ](../../setup/brokers/configure-with-rabbitMQ.md)
+-	[Connecting to SwiftMQ](../../setup/brokers/configure-with-SwiftMQ.md)
+-	[Connecting to Tibco EMS](../../setup/brokers/configure-with-Tibco-EMS.md)
+-	[Connecting to Oracle Weblogic](../../setup/brokers/configure-with-WebLogic.md)
+-	[Connecting to WSO2 MB](../../setup/brokers/configure-with-WSO2-MB.md)
+-	[Connecting to Multiple Brokers](../../setup/brokers/configure-with-multiple-brokers.md)
 
 ## Configuring the Multi-HTTPS transport
 

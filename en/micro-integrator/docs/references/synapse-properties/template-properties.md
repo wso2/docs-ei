@@ -1,4 +1,29 @@
 # Template Properties
+## Introduction
+
+A large number of configuration files in the form of [sequences](../../../references/synapse-properties/sequence-properties), [endpoints](../../../references/synapse-properties/endpoint-properties), [proxy services](../../../references/synapse-properties/proxy-service-properties), and transformations can be required to satisfy all the mediation requirements of your system. To keep your configurations manageable, it's important to avoid scattering configuration files across different locations and to avoid duplicating redundant configurations.
+
+Templates help minimize this redundancy by creating prototypes that users can use and reuse when needed. This is very much analogous to classes and instances of classes: a template is a class that can be used to wield instance objects such as [sequences](../../../references/synapse-properties/sequence-properties) and [endpoints](../../../references/synapse-properties/endpoint-properties). Thus, templates are an ideal way to improve reusability and readability of configurations/XMLs. Additionally, users can use predefined templates that reflect common enterprise integration patterns for rapid development of message/mediation flows.
+
+<table>
+    <tr>
+        <th>Template Type</th>
+        <th>Description</th>
+    </tr>
+    <tr>
+        <td>Endpoint Template</td>
+        <td>
+            Endpoint template is a generalized form of endpoint configurations. It parameterizes a list of endpoint configurations. This allows a mediation flow to use the template parameters to select specific endpoint configurations (defined in the template) and apply them to the mediation flow.</br></br>
+            Unlike <a href="../../../references/synapse-properties/template-properties/#sequence_template">sequence templates</a>, endpoint templates are always parametrized using <code>$</code> prefixed values (not XPath expressions). Once an endpoint template is created, it can be referred in a mediation flow through a Template Endpoint. Therefore, the template endpoint is the artifact that translates this template into a concrete endpoint. This is semantically similar to the relationship between a <a href="#sequence_template">sequence template</a> and the Call Template Mediator.
+        </td>
+    </tr>
+    <tr>
+        <td id='sequence_template'>Sequence Template</td>
+        <td>
+            This is a parametrized <b>sequence</b> providing an abstract or generic form of a sequence defined in the Micro Integrator. Parameters of a template are defined in the form of XPath statements. Callers can invoke the template by populating the parameters with static values/XPath expressions using the <b>Call Template</b> mediator, which makes a sequence template into a concrete sequence.
+        </td>
+    </tr>
+</table>
 
 See the topics given below for the list of properties that can be configured when you create an artifact template.
 

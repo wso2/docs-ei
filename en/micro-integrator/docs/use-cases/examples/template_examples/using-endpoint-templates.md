@@ -1,8 +1,10 @@
 # Using Endpoint Templates
+## Example use case
 
+## Synapse configuration
 For example, let's say we have two default endpoints with following hypothetical configurations:
 
-``` java tab='Endpoint 1'
+```xml tab='Endpoint 1'
 <endpoint  name="ep1">
   <default>
     <suspendOnFailure>
@@ -17,7 +19,7 @@ For example, let's say we have two default endpoints with following hypothetical
 </endpoint>
 ```
 
-``` java tab='Endpoint 2'
+```xml tab='Endpoint 2'
 <endpoint  name="ep2">
   <default>
     <suspendOnFailure>
@@ -75,3 +77,18 @@ Since we have a template defined, we can use template endpoints to create two co
   <parameter name="retries" value="3" />
 </endpoint>
 ```
+
+## Build and run
+
+Create the artifacts:
+
+1. Set up WSO2 Integration Studio.
+2. Create an ESB Config project
+3. Create the mediation artifacts with the above configuration.
+4. Deploy the artifacts in your Micro Integrator.
+
+Set up the back-end service:
+
+........
+
+Invoke the service:

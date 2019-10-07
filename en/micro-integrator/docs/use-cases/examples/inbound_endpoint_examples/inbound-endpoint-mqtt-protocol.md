@@ -1,229 +1,68 @@
 # Inbound Endpoint MQTT Protocol Sample
-
-
-### Introduction
+## Example use case
 
 This sample demonstrates how the MQTT connector publishes a message on a
 particular topic and how a MQTT client that is subscribed to that topic
-receives it. You can try this sample using the following message
-brokers:
-
--   [Using Mosquitto as the Message
-    Broker](#Sample906:InboundEndpointMQTTProtocolSample-UsingMosquittoastheMessageBroker)
-    -   [Prerequisites](#Sample906:InboundEndpointMQTTProtocolSample-Prerequisites)
-    -   [Building the
-        sample](#Sample906:InboundEndpointMQTTProtocolSample-Buildingthesample)
-    -   [Executing the
-        sample](#Sample906:InboundEndpointMQTTProtocolSample-Executingthesample)
-    -   [Analyzing the
-        output](#Sample906:InboundEndpointMQTTProtocolSample-Analyzingtheoutput)
--   [Using Broker Profile as the Message
-    Broker](#Sample906:InboundEndpointMQTTProtocolSample-UsingBrokerProfileastheMessageBroker)
-    -   [Prerequisites](#Sample906:InboundEndpointMQTTProtocolSample-Prerequisites.1)
-    -   [Building the
-        sample](#Sample906:InboundEndpointMQTTProtocolSample-Buildingthesample.1)
-    -   [Executing the
-        sample](#Sample906:InboundEndpointMQTTProtocolSample-Executingthesample.1)
-    -   [Analyzing the
-        output](#Sample906:InboundEndpointMQTTProtocolSample-Analyzingtheoutput.1)
-
-### Using Mosquitto as the Message Broker
-
+receives it. 
 Following sections demonstrate how you can try this sample using the
 Mosquitto server as the Message Broker.
 
-#### Prerequisites
+### Prerequisites
 
 Follow the steps below before starting the MQTT sample configurations.
 
 1.  Download and install WSO2 EI. For instructions, see [Installation
     Guide](https://docs.wso2.com/display/EI650/Installation+Guide) .
-2.  Download and install Mosquitto. (This sample is tested for
-    [Mosquitto1.4.3 version](https://mosquitto.org/download/) .)
+2.  Install Mosquitto. (This sample is tested for
+    [Mosquitto1.6.7 version](https://mosquitto.org/download/) .)
+    After installing, Mosquitto server will run automatically in the background.
 3.  Download [MQTT client
     library](http://repo.spring.io/plugins-release/org/eclipse/paho/mqtt-client/0.4.0/)
     (i.e. `          mqtt-client-0.4.0.jar         ` ) and add it to the
-    `          <EI_HOME>/lib/         ` directory.
+    `<EI_HOME>/lib/` directory.
 
-#### Building the sample
+### Synapse configuration
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<inboundEndpoint name="SampleInbound" onError="fault" protocol="mqtt" sequence="TestIn" statistics="enable" suspend="false" trace="enable" xmlns="http://ws.apache.org/ns/synapse">
+    <parameters>
+        <parameter name="sequential">true</parameter>
+        <parameter name="mqtt.connection.factory">mqttConFactory</parameter>
+        <parameter name="mqtt.server.host.name">localhost</parameter>
+        <parameter name="mqtt.server.port">1883</parameter>
+        <parameter name="mqtt.topic.name">esb.test</parameter>
+        <parameter name="content.type">application/xml</parameter>
+        <parameter name="mqtt.subscription.qos">0</parameter>
+        <parameter name="mqtt.session.clean">false</parameter>
+        <parameter name="mqtt.ssl.enable">false</parameter>
+        <parameter name="mqtt.reconnection.interval">1000</parameter>
+    </parameters>
+</inboundEndpoint>
+```
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<sequence name="TestIn" trace="disable" xmlns="http://ws.apache.org/ns/synapse">
+   <log level="full"/>
+   <drop/>
+</sequence>
 
-1.  Start the MQTT-supported server. (E.g. Mosquitto)  
-    -   Execute the following command to prepare Mosquitto server for
-        the launch:
-        `            ln -sfv /usr/local/opt/mosquitto/*.plist ~/Library/LaunchAgents           `
-    -   Execute the following command to run the Mosquitto server:
-        `            launchctl load ~/Library/LaunchAgents/homebrew.mxcl.mosquitto.plist           `
-2.  Open a new Terminal and start the ESB profile of WSO2 EI. For
-    instructions, see [Starting the ESB
-    Profile](https://docs.wso2.com/display/EI620/Running+the+Product#RunningtheProduct-StartingtheESBprofile)
-    .
-
-3.  Log in to the Management Console, and click **Main** → **Inbound
-    Endpoints** → **Add inbound Endpoint** .
-
-4.  Enter a name for the Inbound Endpoint (e.g.,
-    `           SampleInbound          ` ), select MQTT as the type, and
-    click **Next** .  
-    ![enter the inbound endpoint
-    type](attachments/119129721/119129727.png)
-
-5.  Enter the following details, and click **Save** .
-
-    -   **Sequence** : `            TestIn           `
-    -   **Error Sequence** : `            fault           `
-    -   **coordination** : `            false           `
-    -   **mqtt.connection.factory** :
-        `            mqttConFactory           `
-    -   **mqtt.server.host.name** : `            localhost           `
-    -   **mqtt.server.port** : `            1883           `
-    -   **mqtt.topic.name** : `            esb.test           `
-
-    ![inbound endpoint of Mosquitto
-    method](attachments/119129721/119129725.png "inbound endpoint of Mosquitto method")
-
-6.  Click **Main** → **Sequences** → **Add Sequence** .
-
-7.  Enter the name of the Sequence as `           TestIn          ` .
-
-8.  Construct the following sequence.
-
-    ![](images/icons/grey_arrow_down.png){.expand-control-image} Follow
-    the steps below to add the mediators to the sequence.
-
-    1.  Add a log mediator as shown below.
-
-        ![add log
-        mediator](attachments/119129721/119129722.png "add log mediator"){width="500"}
-
-    2.  Change the **Log Level** to FULL in the Log Mediator, and click
-        **Update** .
-
-        ![](attachments/119129721/119129726.png)
-
-    3.  Add a drop mediator as shown below.
-
-        ![](attachments/119129721/119129723.png){width="500"}
-
-      
-
-    ![create the sequence](attachments/119129721/119129728.png)
-
-9.  Click **Save & Close** .
-
-#### Executing the sample
-
-In a new Terminal window, execute the following command to publish a
-message using the Mosquitto publisher.
-
-``` java
-    mosquitto_pub -t esb.test  -m "<msg><a>Testing123</a></msg>"
 ```
 
-#### Analyzing the output
+### Build and run
 
-You view the ESB profile receiving the messages in the logs of it in the
-Terminal as shown below.
+Create the artifacts:
 
-![](attachments/119129721/119129736.png)
+1. Set up WSO2 Integration Studio.
+2. Create an ESB Config project
+3. Create the following artifacts: Inbound endpoint, Sequence.
+4. Deploy the artifacts in your Micro Integrator.
 
-### Using Broker Profile as the Message Broker
+### Sending a sample message 
 
-Following sections demonstrate how you can try this sample using the
-Broker profile of WSO2 EI as the Message Broker.
+Open a new terminal and enter the below command to send an MQTT message using mosquitto-pub.<br>
+Note: Enter the MQTT Topic Name you entered when creating the inbound endpoint as \<MQTT Topic Name> below.
 
-#### Prerequisites
+`mosquitto_pub -t <MQTT Topic Name>  -m "<msg><a>Testing123</a></msg>`
 
-Follow the steps below before starting this MQTT sample configurations.
-
-1.  Download and install WSO2 EI. For instructions, see [Installation
-    Guide](https://docs.wso2.com/display/EI650/Installation+Guide) .
-2.  Download [MQTT client
-    library](http://repo.spring.io/plugins-release/org/eclipse/paho/mqtt-client/0.4.0/)
-    (i.e. `          mqtt-client-0.4.0.jar         ` ) and add it to the
-    `          <EI_HOME>/lib/         ` directory.
-
-#### Building the sample
-
-1.  Start the Broker profile of WSO2 EI. For instructions, see [Starting
-    the product profiles - Broker
-    Profile](https://docs.wso2.com/display/EI650/Running+the+Product) .
-
-2.  Start the ESB profile of WSO2 EI. For instructions, see [Starting
-    the product profiles - ESB
-    Profile](https://docs.wso2.com/display/EI650/Running+the+Product) .
-
-3.  Log in to the Management Console, and click **Main** → **Inbound
-    Endpoints** → **Add inbound Endpoint** .
-
-4.  Enter a name for the Inbound Endpoint (e.g.,
-    `           SampleInbound          ` ), and click **Next** .  
-    ![enter the inbound endpoint
-    type](attachments/119129721/119129727.png)
-
-5.  Enter the following details, and click **Save** .
-
-        !!! tip
-    
-        When creating the below Inbound Endpoint, specify the value of
-        **mqtt.server.port** as 1886 because the Broker profile starts with
-        a [default port
-        offset](https://docs.wso2.com/display/EI620/Default+ports+of+WSO2+EI#DefaultportsofWSO2EI-EI-Brokerruntimeports)
-        of 3 in WSO2 EI.
-    
-
-    -   **Sequence** : `            TestIn           `
-    -   **Error Sequence** : `            fault           `
-    -   **coordination** : `            false           `
-    -   **mqtt.connection.factory** :
-        `            mqttConFactory           `
-    -   **mqtt.server.host.name** : `            localhost           `
-    -   **mqtt.server.port** : `            1883           `
-    -   **mqtt.topic.name** : `            esb.test           `
-
-    ![inbound endpoint of Broker profile
-    method](attachments/119129721/119129724.png "inbound endpoint of Broker profile method")
-
-6.  Click **Main** → **Sequences** → **Add Sequence** .
-
-7.  Enter the name of the Sequence as `           TestIn          ` .
-
-8.  Construct the following sequence.
-
-    ![](images/icons/grey_arrow_down.png){.expand-control-image} Follow
-    the steps below to add the mediators to the sequence.
-
-    1.  Add a log mediator as shown below.
-
-        ![add log
-        mediator](attachments/119129721/119129722.png "add log mediator"){width="500"}
-
-    2.  Change the **Log Level** to FULL in the Log Mediator, and click
-        **Update** .
-
-        ![](attachments/119129721/119129726.png)
-
-    3.  Add a drop mediator as shown below.
-
-        ![](attachments/119129721/119129723.png){width="500"}
-
-      
-
-    ![create the sequence](attachments/119129721/119129728.png)
-
-9.  Click **Save & Close** .
-
-#### Executing the sample
-
-In a new Terminal window, execute the following command to publish a
-message using the Mosquitto publisher.
-
-``` java
-    mosquitto_pub -t esb.test  -m "<msg><a>Testing123</a></msg>"
-```
-
-#### Analyzing the output
-
-You view the ESB profile receiving the messages in the logs of it in the
-Terminal as shown below.
-
-![](attachments/119129721/119129736.png)
+You will see that the Micro Integrator receives a message when the Micro Integrator Inbound is set
+as the ultimate receiver.

@@ -1,16 +1,5 @@
 # Store and Forward Using JMS Message Stores
-
-The Micro Integrator contains the following message store implementations: [In Memory Message
-Store](https://docs.wso2.com/display/EI611/In+Memory+Message+Store) ,
-[JMS Message
-Store](https://docs.wso2.com/display/EI611/JMS+Message+Store) ,
-[RabbitMQ Message
-Store](https://docs.wso2.com/display/EI611/RabbitMQ+Message+Store) ,
-[JDBC Message
-Store](https://docs.wso2.com/display/EI611/JDBC+Message+Store) . You
-also have the option to create a [Custom Message
-Store](https://docs.wso2.com/display/EI650/Custom+Message+Store) with
-your own message store implementation.
+See the examples given below.
 
 ## Example 1
 
@@ -22,20 +11,20 @@ In this example, the client sends requests to a **proxy service**, which stores 
 
 Shown below are the synapse artifacts that are used to define this use case.
 
-``` java tab="Message Store"
+```xml tab="Message Store"
 <messageStore xmlns="http://ws.apache.org/ns/synapse" class="org.apache.synapse.message.store.impl.jms.JmsStore" name="JMSMS">
   <parameter name="java.naming.factory.initial">org.apache.activemq.jndi.ActiveMQInitialContextFactory</parameter>
   <parameter name="java.naming.provider.url">tcp://localhost:61616</parameter>
 </messageStore>
 ```
 
-``` java tab="Endpoint"
+```xml tab="Endpoint"
 <endpoint name="SimpleStockQuoteService"> 
     <address uri="http://127.0.0.1:9000/services/SimpleStockQuoteService"/>
 </endpoint>
 ```
 
-``` java tab="Proxy Service"
+```xml tab="Proxy Service"
 <proxy name="Proxy1" transports="https http" startOnLoad="true" trace="disable">   
   <target>
     <inSequence>
@@ -48,7 +37,7 @@ Shown below are the synapse artifacts that are used to define this use case.
 </proxy>
 ```
 
-``` java tab="Message Processor"
+```xml tab="Message Processor"
 <messageProcessor class="org.apache.synapse.message.processor.impl.forwarder.ScheduledMessageForwardingProcessor" name="Processor1" targetEndpoint="SimpleStockQuoteService" messageStore="JMSMS">
        <parameter name="max.delivery.attempts">4</parameter>
        <parameter name="interval">4000</parameter>
@@ -89,18 +78,29 @@ See the descriptions of the above configurations:
   </tr>
 </table>
 
-### Run the Example
+### Build and run
 
-1. Configure the Micro Integrator with Apache ActiveMQ and set up the JMS Sender.
-2. Start WSO2 Integration Studio and create artifacts with the above configuration. You can copy the synapse configuration given above to the **Source View** of your proxy service.
-3. To test this scenario you need an HTTP back-end service. Deploy the SimpleStockQuoteService and start the Axis2 server.
-3. Send a message to the Micro Integrator by executing the following command from the `MI_HOME/samples/axis2Client` folder.
+Create the artifacts:
 
-    ```
-    ant stockquote -Daddurl=http://localhost:8280/services/Proxy1 -Dmode=placeorder
-    ```
+1. Set up WSO2 Integration Studio.
+2. Create an ESB Config project
+3. Create integration artifacts with the above configuration.
+4. Deploy the artifacts in your Micro Integrator.
 
-Note a message similar to the following example printed in the Axis2 Server console.  
+Set up the back-end service:
+
+........
+
+
+Configure the Micro Integrator with Apache ActiveMQ and set up the JMS Sender.
+
+Invoke the service:
+
+```
+ant stockquote -Daddurl=http://localhost:8280/services/Proxy1 -Dmode=placeorder
+```
+
+Note a message similar to the following example:  
 
 ``` java
 SimpleStockQuoteService :: Accepted order for : 7482 stocks of IBM at $ 169.27205579038733
@@ -116,20 +116,20 @@ In the sample, when the message forwarding processor receives a response from th
 
 Shown below are the synapse artifacts that are used to define this use case.
 
-``` java tab="Message Store"
+```xml tab="Message Store"
 <messageStore xmlns="http://ws.apache.org/ns/synapse" class="org.apache.synapse.message.store.impl.jms.JmsStore" name="JMSMS">
   <parameter name="java.naming.factory.initial">org.apache.activemq.jndi.ActiveMQInitialContextFactory</parameter>
   <parameter name="java.naming.provider.url">tcp://localhost:61616</parameter>
 </messageStore>
 ```
 
-``` java tab="Endpoint"
+```xml tab="Endpoint"
 <endpoint name="SimpleStockQuoteService">
   <address uri="http://127.0.0.1:9000/services/SimpleStockQuoteService"/>
 </endpoint>
 ```
 
-``` java tab="Proxy Service"
+```xml tab="Proxy Service"
 <proxy name="Proxy2" transports="https,http" statistics="disable" trace="disable" startOnLoad="true">
   <target>
     <inSequence>
@@ -141,7 +141,7 @@ Shown below are the synapse artifacts that are used to define this use case.
 </proxy>
 ```
 
-``` java tab="Sequence"
+```xml tab="Sequence"
 <sequence name="replySequence">
   <log level="full">
     <property name="REPLY" value="MESSAGE" />
@@ -150,7 +150,7 @@ Shown below are the synapse artifacts that are used to define this use case.
 </sequence>
 ```
 
-``` java tab="Message Processor"
+```xml tab="Message Processor"
 <messageProcessor name="Processor2" class="org.apache.synapse.message.processor.impl.forwarder.ScheduledMessageForwardingProcessor" targetEndpoint="SimpleStockQuoteService" messageStore="JMSMS" xmlns="http://ws.apache.org/ns/synapse">
   <parameter name="interval">1000</parameter>
   <parameter name="client.retry.interval">1000</parameter>
@@ -201,20 +201,31 @@ See the descriptions of the above configurations:
   </tr>
 </table>
 
-### Run the Example
+### Build and run
 
-1. Configure the Micro Integrator with Apache ActiveMQ and set up the JMS Sender.
-2. Start WSO2 Integration Studio and create artifacts with the above configuration. You can copy the synapse configuration given above to the **Source View** of your proxy service.
-3. To test this scenario you need an HTTP back-end service. Deploy the SimpleStockQuoteService and start the Axis2 server.
-3. Send a message to the Micro Integrator by executing the following command from the `MI_HOME/samples/axis2Client` folder.
+Create the artifacts:
 
-    ```
-    ant stockquote -Daddurl=http://localhost:8280/services/Proxy2
-    ```
+1. Set up WSO2 Integration Studio.
+2. Create an ESB Config project
+3. Create a REST Api artifact with the above configuration.
+4. Deploy the artifacts in your Micro Integrator.
+
+Set up the back-end service:
+
+........
+
+
+Configure the Micro Integrator with Apache ActiveMQ and set up the JMS Sender.
+
+Invoke the service:
+
+```bash
+ant stockquote -Daddurl=http://localhost:8280/services/Proxy2
+```
 
 Note a message similar to the following example printed in the Axis2 Server console.  
 
-``` java
+```bash
 INFO - LogMediator To: /services/InOutProxy, WSAction: urn:getSimpleQuote, SOAPAction: urn:getSimpleQuote, MessageID: urn:uuid:dec12d9c-5289-476c-9d9a-b7bb7ebc7be4, Direction: request, REPLY = MESSAGE, Envelope:
      <?xml version='1.0' encoding='utf-8'?>
      <soapenv:envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">

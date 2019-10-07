@@ -1,8 +1,17 @@
-# VFS Parameters
+# Virtual File Processing (VFS) Transport
+
+## About the VFS transport
+
+This transport is used to process files in the specified source directory. After processing the files, it moves them to a specified location or deletes them. Note that files cannot remain in the source directory after processing because they will be processed again. Therefore, if you need to maintain these files or keep track of which files have been processed, specify the option to move them instead of deleting them after processing. If you want to move files into a database, use the VFS transport and the [DBReport Mediator](../../../../references/mediators/dB-Report-Mediator).
+
+!!! Note
+    When you transfer a file to a remote FTP location via VFS, the integrator tries to detect the FTP location by navigating from the root folder first. If the integrator does not have <b>at least list permission</b> to the root (/), the file transfer fails.
+
+## Paramers
 
 Given below is the list of VFS transport parameters that can be configured.
 
-## VFS Service-Level Parameters
+### VFS Service-Level Parameters
 
 The VFS transport does not have any global parameters to be configured. Rather, it has a set of service-level parameters that must be specified when you [create a proxy service](../../../develop/creating-artifacts/creating-a-proxy-service.md).
 
@@ -340,7 +349,7 @@ The following service-level parameters are required for Inbound Endpoints.
    </tbody>
 </table>
 
-## VFS URL Parameters
+### VFS URL Parameters
 
 When you use the [transport.vfs.FileURI](#vfs-transport-file_url) parameter, you can set connection-specific VFS parameters as URL query parameters. For example, to use SFTP with SSL, you could specify the URL as shown below. Note that [transport.vfs.AvoidPermissionCheck](#vfs-transport-avoid_permissions) is a mandatory parameter for this URL when SFTP is used.
 
@@ -428,7 +437,7 @@ When you use the [transport.vfs.FileURI](#vfs-transport-file_url) parameter, you
    </tbody>
 </table>
 
-## Configuring a Proxy Server over FTP and SFTP
+### Configuring a Proxy Server over FTP and SFTP
 
 Proxy server specific parameters can be set as URL query parameters. For example, to use Proxy over FTP, you could specify the URL as follows:
 

@@ -1,4 +1,4 @@
-# Configure with HornetQ
+# Connecting to HornetQ
 
 This section describes how to configure WSO2 WSO2 Micro Integrator to connect with
 HornetQ, which is an open source project to build a multi-protocol, asynchronous messaging system.
@@ -11,14 +11,15 @@ Follow the instructions below to configure WSO2 Micro Integrator JMS transport w
 a standalone HornetQ server.
 
 1.  Download HornetQ from the [HornetQ Downloads](http://hornetq.jboss.org/downloads.html) site.  
-2.  Create a sample queue by editing the `HORNET_HOME/config/stand-alone/non-clustered/hornetq-jms.xml` file as follows:
+2.  Download and install WSO2 Micro Integrator.
+3.  Create a sample queue by editing the `HORNET_HOME/config/stand-alone/non-clustered/hornetq-jms.xml` file as follows:
     ```xml
     <queue name="wso2">
           <entry name="/queue/mySampleQueue"/>
     </queue>
     ```
 
-3.  Add the following two connection entries to the same file. These entries are required to enable WSO2 Micro Integrator to act as a JMS consumer.
+4.  Add the following two connection entries to the same file. These entries are required to enable WSO2 Micro Integrator to act as a JMS consumer.
     ```xml
     <connection-factory name="QueueConnectionFactory">
           <xa>false</xa>
@@ -40,14 +41,14 @@ a standalone HornetQ server.
     </connection-factory>
     ```
 
-4.  If you have not already done so, download and install WSO2 Micro Integrator.
-5.  Download the `hornet-all-new.jar` file and copy it into the `MI_HOME/lib/` directory.
+5.  If you have not already done so, download and install WSO2 Micro Integrator.
+6.  Download the `hornet-all-new.jar` file and copy it into the `MI_HOME/lib/` directory.
 
     !!! Info
         If you are packing the JARs yourself, make sure you remove the javax.jms package from the assembled JAR to avoid the carbon runtime
         from picking this implementation of JMS over the bundled-in distribution.
 
-6.  If you want the Micro Integrator to receive messages from a HornetQ instance, or to send messages to a HornetQ instance, you need to update the deployment.toml file with the relevant connection parameters.
+7.  If you want the Micro Integrator to receive messages from a HornetQ instance, or to send messages to a HornetQ instance, you need to update the deployment.toml file with the relevant connection parameters.
 
     - Add the following configurations to enable the JMS listener with HornetQ connection parameters.
         ```toml
@@ -71,7 +72,7 @@ a standalone HornetQ server.
         parameter.connection_factory_type = "queue"
         ```
 
-7.  Start HornetQ with the following command.
+8.  Start HornetQ with the following command.
     -   On Windows:
         `HORNETQ_HOME\bin\run.bat --run              `
     -   On Linux/Solaris:
@@ -193,7 +194,7 @@ To test the configuration, create a proxy service named `JMSPublisher` that will
 
 Follow the instructions below to configure WSO2 Micro Integrator JMS transport with HornetQ embedded in a JBoss EAP server.
 
-### Setting up JBoss EAP
+**Setting up JBoss EAP**
 
 Install JBoss EAP server and create a message queue within the server.
 
@@ -224,9 +225,10 @@ Install JBoss EAP server and create a message queue within the server.
 
 Now you have configured the JBoss EAP Server. The next section describes how to configure the Micro Integrator to listen and fetch messages from the queue that you created above.
 
-### Configuring WSO2 Micro Integrator
+**Configuring WSO2 Micro Integrator**
 
-1.  If you want the Micro Integrator to receive messages from an HornetQ instance, or to send messages to an HornetQ instance, you need to update the deployment.toml file with the relevant connection parameters.
+1.  Download and install WSO2 Micro Integrator.
+2.  If you want the Micro Integrator to receive messages from an HornetQ instance, or to send messages to an HornetQ instance, you need to update the deployment.toml file with the relevant connection parameters.
 
     - Add the following configurations to enable the JMS listener with ActiveMQ connection parameters.
         ```toml
