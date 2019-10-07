@@ -23,27 +23,26 @@ Integration developers will follow the workflow illustrated by the following dia
 			Before you start developing your artifacts, design the synapse configurations that suite your requirement. Use the following resources:
 			<ul>
 				<li>
-					See the <a href="../../use-cases/integration-use-cases">Use cases</a> documentation                 which contains:
+					See the <a href="../../use-cases/integration-use-cases">Use cases</a> documentation,                 which contains:
 					 <ul>
 					    <li>
-					        Tutorials that will walk you through the process of developing the most                             common integration use cases. 
+						    <b>Tutorials</b> that will walk you through the process of developing the most                             common integration use cases. 
 				        </li>
 				        <li>
-					        Examples that provide a quick demo that will help you understand the                                synapse configurations for implementing specific functions.
+						<b>Examples</b> providing a quick demo that will help you understand the                                synapse configurations for implementing specific functions.
 				        </li>
 				     </ul>
 				</li>
 				<li>
-				    See the documentation on <a href="../references/best-Practices">developing 
+				    See the documentation on <a href="../../references/best-Practices">developing 
 				    common integration patterns</a> to get an understanding on the best practices that should be 
-				    followed while developing integration solutions using WSO2 MI.
+				    followed while developing integration solutions for the Micro Integrator.
 				</li>
 				<li>
 					See the <a href="../../develop/WSO2-Integration-Studio">WSO2 Integration Studio documentation</a> for in-depth information on the development tool.
 				</li>
 				<li>
-				    See the documentation on <a href="./creating-unit-test-suite/#run-unit-test-suites">creating unit tests</a> to test the integration solution 
-				    that was developed.
+				    See the documentation on <a href="./creating-unit-test-suite/#run-unit-test-suites">creating unit tests</a> for the integration solution you developed.
 				</li>
 			</ul>
 		</td>
