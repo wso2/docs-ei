@@ -9,8 +9,8 @@ This application demonstrates how to configure WSO2 Streaming Integrator Tooling
     - CSVDefaultMapping.siddhi successfully deployed.
 
 ## Executing & testing the Sample:
-1) Start the Siddhi application by clicking on 'Run'.
-2) If the Siddhi application starts successfully, the following messages are shown on the console:
+1. Start the Siddhi application by clicking on 'Run'.
+2. If the Siddhi application starts successfully, the following messages are shown on the console:
     * CSVDefaultMapping.siddhi - Started Successfully!
 
 ## Viewing the Results:

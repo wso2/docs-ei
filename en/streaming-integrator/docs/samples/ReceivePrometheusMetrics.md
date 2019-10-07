@@ -3,33 +3,34 @@
 This application demonstrates how to use prometheus-source to retrieve Prometheus metrics that are exported at an HTTP endpoint.
 
 Pre-requisites:
-1) The following steps must be executed to enable WSO2 SP to publish and retrieve events via Prometheus.
-a) Download and copy the prometheus client jars to the {WSO2SIHome}/lib directory as follows.
-i) Download the following jars from https://mvnrepository.com/artifact/io.prometheus and copy them to {WSO2SIHome}/lib directory.
-* simpleclient_common-0.5.0.jar
-* simpleclient-0.5.0.jar
-		         * simpleclient_httpserver-0.5.0.jar
-		         * simpleclient_pushgateway-0.5.0.jar
-2) Start the editor WSO2 SP by giving this command in the terminal : sh editor.sh
-3) Save this sample
+1. The following steps must be executed to enable WSO2 SP to publish and retrieve events via Prometheus.
+    1. Download and copy the prometheus client jars to the {WSO2SIHome}/lib directory as follows.
+        1. Download the following jars from https://mvnrepository.com/artifact/io.prometheus and copy them to {WSO2SIHome}/lib directory.
+            * simpleclient_common-0.5.0.jar
+            * simpleclient-0.5.0.jar
+		    * simpleclient_httpserver-0.5.0.jar
+		    * simpleclient_pushgateway-0.5.0.jar
+2. Start the editor WSO2 SP by giving this command in the terminal : sh editor.sh
+3. Save this sample
 "Siddhi App EnergyAlertApp successfully deployed" message would be shown in the console
-4) Navigate to {WSO2SIHome}/samples/sample-clients/prometheus-client and run "ant" command as follows:
+4. Navigate to {WSO2SIHome}/samples/sample-clients/prometheus-client and run "ant" command as follows:
 ant
 
 ## Executing the Sample:
-1) Start the Siddhi application by clicking on 'Run'.
-2) If the Siddhi application starts successfully, the following message is shown on the console
-* ReceivePrometheusMetrics.siddhi - Started Successfully!
-* PowerConsumptionStream has successfully connected at http://localhost:9080
+1. Start the Siddhi application by clicking on 'Run'.
+2. If the Siddhi application starts successfully, the following message is shown on the console
+    * ReceivePrometheusMetrics.siddhi - Started Successfully!
+    * PowerConsumptionStream has successfully connected at http://localhost:9080
 
 ## Note:
 If you want to edit this application while it's running, stop the application, make your edits and save the application, and then start it again.
 
 ## Viewing the Results:
 Messages similar to the following would be shown on the console.
+```
 - INFO {io.siddhi.core.stream.output.sink.LogSink} - HIGH POWER CONSUMPTION : Event{timestamp=1*********, data=[server001, F3Room2, **, **], isExpired=false}
 - INFO {io.siddhi.core.stream.output.sink.LogSink} - HIGH POWER CONSUMPTION : Event{timestamp=1*********, data=[server002, F2Room2, **, **], isExpired=false}
-- ...
+```
 
 
 ```sql

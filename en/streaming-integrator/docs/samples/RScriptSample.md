@@ -3,17 +3,17 @@
 This application demonstrates how to configure a Siddhi app to process events with a R script.
 
 ## Prerequisites:
-1) Install R. See notes for more information see 'How to use' in https://github.com/wso2-extensions/siddhi-gpl-execution-r/blob/master/README.md.
-2) Download `siddhi-gpl-execution-r-x.x.x.jar` from http://maven.wso2.org/nexus/content/repositories/wso2gpl/org/wso2/extension/siddhi/gpl/execution/r/siddhi-gpl-execution-r/ and copy the jar to `{WSO2SIHome}/lib`.
-3) Save this sample.
-4) If there is no syntax error, the following message is shown on the console:
+1. Install R. See notes for more information see 'How to use' in https://github.com/wso2-extensions/siddhi-gpl-execution-r/blob/master/README.md.
+2. Download `siddhi-gpl-execution-r-x.x.x.jar` from http://maven.wso2.org/nexus/content/repositories/wso2gpl/org/wso2/extension/siddhi/gpl/execution/r/siddhi-gpl-execution-r/ and copy the jar to `{WSO2SIHome}/lib`.
+3. Save this sample.
+4. If there is no syntax error, the following message is shown on the console:
 	```
 	* Siddhi App RScriptSample successfully deployed.
 	```
 
 ## Executing the Sample:
-1) Start the Siddhi application by clicking on 'Run'.
-2) If the Siddhi application starts successfully, the following messages would be shown on the console.
+1. Start the Siddhi application by clicking on 'Run'.
+2. If the Siddhi application starts successfully, the following messages would be shown on the console.
 	```
 	* RScriptSample.siddhi - Started Successfully!
 	```
@@ -21,11 +21,11 @@ This application demonstrates how to configure a Siddhi app to process events wi
 ## Testing the Sample:
 You may send events to `weather` stream, via event simulator.
 
-1) Open the event simulator by clicking on the second icon or pressing Ctrl+Shift+I.
-2) In the Single Simulation tab of the panel, specify the values as follows:
+1. Open the event simulator by clicking on the second icon or pressing Ctrl+Shift+I.
+2. In the Single Simulation tab of the panel, specify the values as follows:
 	* Siddhi App Name  : RScriptSample
 	* Stream Name     : weather
-3) Use the following values in the time and temp fields and send each value pair one after the other.
+3. Use the following values in the time and temp fields and send each value pair one after the other.
 	```
 	time: 10, temp:55.6
 	time: 20, temp:65.6

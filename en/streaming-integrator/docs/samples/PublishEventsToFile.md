@@ -10,25 +10,25 @@ This application demonstrates how to configure WSO2 Streaming Integrator Tooling
     - Siddhi App PublishEventsToFile successfully deployed.
 
 ## Executing the Sample:
-1) Start the Siddhi application by clicking on 'Run'.
-2) If the Siddhi application starts successfully, the following messages are shown on the console:
+1. Start the Siddhi application by clicking on 'Run'.
+2. If the Siddhi application starts successfully, the following messages are shown on the console:
     * PublishEventsToFile.siddhi - Started Successfully!
 
 ## Testing the Sample:
 * You can publish data events to the file through the event simulator:
-    1) Click on 'Event Simulator' (double arrows on left tab)
-    2) Click 'Single Simulation' (this will be already selected)
-    3) Select PublishEventsToFile as 'Siddhi App Name'
-    4) Select SweetProductionStream as 'StreamName'
-    5) Click on the start button (Arrow symbol) next to the newly created simulator
-    6) Provide attribute values
+    1. Click on 'Event Simulator' (double arrows on left tab)
+    2. Click 'Single Simulation' (this will be already selected)
+    3. Select PublishEventsToFile as 'Siddhi App Name'
+    4. Select SweetProductionStream as 'StreamName'
+    5. Click on the start button (Arrow symbol) next to the newly created simulator
+    6. Provide attribute values
         - name: toffees
         - amount: 66.71
-    7) Send event
-    8) Provide attribute values
+    7. Send event
+    8. Provide attribute values
         - name: toffees
         - amount: 200
-    9) Send event
+    9. Send event
 
 ## Viewing the Results:
 Navigate to the path defined by file.uri ({WSO2SIHome}/samples/artifacts/0038/files/sink),

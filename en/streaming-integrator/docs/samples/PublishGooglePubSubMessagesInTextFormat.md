@@ -14,20 +14,19 @@ This application demonstrates how to configure WSO2 Streaming Integrator Tooling
 
 
 ## Executing the Sample:
-1) Start the Siddhi application by clicking on 'Run'. If the Siddhi application starts successfully, the following messages are shown on the console:
+1. Start the Siddhi application by clicking on 'Run'. If the Siddhi application starts successfully, the following messages are shown on the console:
 	- SendGooglePubSubMessage.siddhi - Started Successfully!
 
 ## Testing the Sample:
-1) Send events through one or more of the following methods.
-
+1. Send events through one or more of the following methods.
     * You may send events to googlepubsub sink, via event simulator
-        1) Open the event simulator by clicking on the second icon or pressing Ctrl+Shift+I.
-        2) In the Single Simulation tab of the panel, specify the values as follows:
+        1. Open the event simulator by clicking on the second icon or pressing Ctrl+Shift+I.
+        2. In the Single Simulation tab of the panel, specify the values as follows:
             * Siddhi App Name  : SendGooglePubSubMessage
             * Stream Name      : FooStream
-        3) In the message field, enter the following and then click Send to send the event.
+        3. In the message field, enter the following and then click Send to send the event.
             * message: Hello
-        4) Send some more events.
+        4. Send some more events.
 
 ## Viewing the Results:
 * See the output on the terminal:<br/>
