@@ -10,22 +10,22 @@ By changing the database type, following databases wil also be supported.
 
 ## Pre-requisites:
 1) Ensure that MySQL is installed on your computer.
-2) Add the MySQL JDBC driver into {WSO2_SI_HOME}/lib as follows:\
-    1) Download the JDBC driver from: https://dev.mysql.com/get/Downloads/Connector-J/mysql-connector-java-5.1.45.tar.gz\
-    2) Unzip the archive.\
+2) Add the MySQL JDBC driver into {WSO2_SI_HOME}/lib as follows:
+    1) Download the JDBC driver from: https://dev.mysql.com/get/Downloads/Connector-J/mysql-connector-java-5.1.45.tar.gz
+    2) Unzip the archive.
     3) Copy mysql-connector-java-5.1.45-bin.jar to {WSO2_SI_Home}/lib directory.
-3) Create a database "production".
->> CREATE SCHEMA production;
-4) Change the database.
->> use production;
-5) Create table "SweetProductionTable".
->> CREATE TABLE SweetProductionTable (last_update TIMESTAMP, name VARCHAR(20),amount double(10,2));
+3) Create a database "production".<br/>
+    >> CREATE SCHEMA production;
+4) Change the database.<br/>
+    >> use production;
+5) Create table "SweetProductionTable".<br/>
+    >> CREATE TABLE SweetProductionTable (last_update TIMESTAMP, name VARCHAR(20),amount double(10,2));
 6) Save this sample.
 
 ## Optional pre-requisites:
 1) Enable state persistence in siddhi apps.
 This will enable the cdc polling mode capturing changes from the last point it stopped.
-If not enabled, polling mode will only capture changes after start of the app.\
+If not enabled, polling mode will only capture changes after start of the app.
     1) Change state.persistence enabled=true in deployment.yaml file.
 
 ## Executing the Sample:
@@ -37,7 +37,7 @@ If not enabled, polling mode will only capture changes after start of the app.\
 If you want to edit this application while it's running, stop the application, make your edits and save the application, and then start it again.
 
 ## Testing the Sample:
-Insert data to the created table.
+Insert data to the created table.<br/>
 >> insert into SweetProductionTable(name,amount) values('chocolate',100.0);
 Observe the inserted data is logged on the console.
 

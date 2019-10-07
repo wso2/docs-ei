@@ -33,18 +33,12 @@ d) Enter following values in the fields and send
     * priority:  "3"
 
 ## Viewing the Results:
-Messages similar to the following would be shown on the editor console.
-
-INFO {io.siddhi.core.stream.output.sink.LogSink} - PriorityExtensionSample : PrioritizedUserWallPostStream : Event{timestamp=1513620904666, data=[Mohan, Hello World!, 1, Mohan, 1], isExpired=false}\
-
-INFO {io.siddhi.core.stream.output.sink.LogSink} - PriorityExtensionSample : PrioritizedUserWallPostStream : Event{timestamp=1513620905670, data=[Mohan, Hello World!, 1, Mohan, 0], isExpired=false}\
-
-INFO {io.siddhi.core.stream.output.sink.LogSink} - PriorityExtensionSample : PrioritizedUserWallPostStream : Event{timestamp=1513620924365, data=[Nuwan, Good Morning, 3, Nuwan, 3], isExpired=false}\
-
-INFO {io.siddhi.core.stream.output.sink.LogSink} - PriorityExtensionSample : PrioritizedUserWallPostStream : Event{timestamp=1513620925370, data=[Nuwan, Good Morning, 3, Nuwan, 2], isExpired=false}\
-
-INFO {io.siddhi.core.stream.output.sink.LogSink} - PriorityExtensionSample : PrioritizedUserWallPostStream : Event{timestamp=1513620926373, data=[Nuwan, Good Morning, 3, Nuwan, 1], isExpired=false}\
-
+Messages similar to the following would be shown on the editor console.<br/><br/>
+INFO {io.siddhi.core.stream.output.sink.LogSink} - PriorityExtensionSample : PrioritizedUserWallPostStream : Event{timestamp=1513620904666, data=[Mohan, Hello World!, 1, Mohan, 1], isExpired=false}<br/><br/>
+INFO {io.siddhi.core.stream.output.sink.LogSink} - PriorityExtensionSample : PrioritizedUserWallPostStream : Event{timestamp=1513620905670, data=[Mohan, Hello World!, 1, Mohan, 0], isExpired=false}<br/><br/>
+INFO {io.siddhi.core.stream.output.sink.LogSink} - PriorityExtensionSample : PrioritizedUserWallPostStream : Event{timestamp=1513620924365, data=[Nuwan, Good Morning, 3, Nuwan, 3], isExpired=false}<br/><br/>
+INFO {io.siddhi.core.stream.output.sink.LogSink} - PriorityExtensionSample : PrioritizedUserWallPostStream : Event{timestamp=1513620925370, data=[Nuwan, Good Morning, 3, Nuwan, 2], isExpired=false}<br/><br/>
+INFO {io.siddhi.core.stream.output.sink.LogSink} - PriorityExtensionSample : PrioritizedUserWallPostStream : Event{timestamp=1513620926373, data=[Nuwan, Good Morning, 3, Nuwan, 1], isExpired=false}<br/><br/>
 INFO {io.siddhi.core.stream.output.sink.LogSink} - PriorityExtensionSample : PrioritizedUserWallPostStream : Event{timestamp=1513620927378, data=[Nuwan, Good Morning, 3, Nuwan, 0], isExpired=false}
 
 * You will notice that every 1 sec priority of the userId "Mohan" and "Sajith" reduced by 1 and it will continue until their priority reduced to 0.

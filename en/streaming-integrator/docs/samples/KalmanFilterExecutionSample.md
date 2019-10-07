@@ -26,9 +26,9 @@ d) Enter following values in the fields and send
     * amount: 20.5
 
 ## Viewing the Results:
-Messages similar to the following would be shown on the console.\
+Messages similar to the following would be shown on the console.<br/>
 
-INFO {io.siddhi.core.query.processor.stream.LogStreamProcessor} - KalmanFilterExecutionSample: Event :, StreamEvent{ timestamp=1513378257580, beforeWindowData=null, onAfterWindowData=null, outputData=[55.6], type=CURRENT, next=null}\
+INFO {io.siddhi.core.query.processor.stream.LogStreamProcessor} - KalmanFilterExecutionSample: Event :, StreamEvent{ timestamp=1513378257580, beforeWindowData=null, onAfterWindowData=null, outputData=[55.6], type=CURRENT, next=null}<br/><br/>
 INFO {io.siddhi.core.query.processor.stream.LogStreamProcessor} - KalmanFilterExecutionSample: Event :, StreamEvent{ timestamp=1513378266843, beforeWindowData=null, onAfterWindowData=null, outputData=[38.05000877553216], type=CURRENT, next=null}
 
 

@@ -28,7 +28,7 @@ This app will demonstrate how to use the extension siddhi-gpl-execution-geo to c
 7) Send event
 
 ## Viewing the Results:
-After clicking the start button see the output on the console as below.\
+After clicking the start button see the output on the console as below.<br/><br/>
 INFO {io.siddhi.core.query.processor.stream.LogStreamProcessor} - GeoDistanceCalculation: Event :, StreamEvent{ timestamp=1513616078228, beforeWindowData=null, onAfterWindowData=null, outputData=[2322119.848252557], type=CURRENT, next=null}
 
 

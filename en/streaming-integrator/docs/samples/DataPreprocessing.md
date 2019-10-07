@@ -15,16 +15,16 @@ This application demonstrates how to receive events via TCP transport and carryo
 If you edit this application while it's running, stop the application -> Save -> Start.
 
 ## Testing the Sample:
-1) Navigate to {WSO2SIHome}/samples/sample-clients/tcp-client and run the "ant" command as follows.\
+1) Navigate to {WSO2SIHome}/samples/sample-clients/tcp-client and run the "ant" command as follows.<br/>
 `ant -Dtype=json -DfilePath={WSO2SIHome}/samples/artifacts/DataPreprocessing/data_preprocessing_events.txt
 -DeventDefinition='{"event":{"id":"{0}","value":{1},"property":{2},"plugId":{3},"householdId":{4},"houseId":{5},"currentTime":"{6}"}}' -Durl=tcp://localhost:9892/SmartHomeStream`
 
 ## Viewing the Results:
-See the output. Following messages would be shown on the console.\
-INFO {io.siddhi.core.stream.output.sink.LogSink} - DataPreprocessing : ProcessedStream : Event{timestamp=1513621173211, data=[HouseholdID:1::UniqueID:0001, 12.12, 13-08-2001 23:49:33], isExpired=false}\
-INFO {io.siddhi.core.stream.output.sink.LogSink} - DataPreprocessing : ProcessedStream : Event{timestamp=1513621174202, data=[HouseholdID:2::UniqueID:0002, 13.12, 13-08-2004 23:49:34], isExpired=false}\
-INFO {io.siddhi.core.stream.output.sink.LogSink} - DataPreprocessing : ProcessedStream : Event{timestamp=1513621175208, data=[HouseholdID:3::UniqueID:0003, 13.12, 13-08-2006 23:49:35], isExpired=false}\
-INFO {io.siddhi.core.stream.output.sink.LogSink} - DataPreprocessing : ProcessedStream : Event{timestamp=1513621176214, data=[HouseholdID:4::UniqueID:0004, 14.12, 13-08-2008 23:49:36], isExpired=false}
+See the output. Following messages would be shown on the console.<br/><br/>
+INFO {io.siddhi.core.stream.output.sink.LogSink} - DataPreprocessing : ProcessedStream : Event{timestamp=1513621173211, data=[HouseholdID:1::UniqueID:0001, 12.12, 13-08-2001 23:49:33], isExpired=false}<br/><br/>
+INFO {io.siddhi.core.stream.output.sink.LogSink} - DataPreprocessing : ProcessedStream : Event{timestamp=1513621174202, data=[HouseholdID:2::UniqueID:0002, 13.12, 13-08-2004 23:49:34], isExpired=false}<br/><br/>
+INFO {io.siddhi.core.stream.output.sink.LogSink} - DataPreprocessing : ProcessedStream : Event{timestamp=1513621175208, data=[HouseholdID:3::UniqueID:0003, 13.12, 13-08-2006 23:49:35], isExpired=false}<br/><br/>
+INFO {io.siddhi.core.stream.output.sink.LogSink} - DataPreprocessing : ProcessedStream : Event{timestamp=1513621176214, data=[HouseholdID:4::UniqueID:0004, 14.12, 13-08-2008 23:49:36], isExpired=false}<br/><br/>
 
 
 

@@ -34,7 +34,7 @@ Check the receiver gmail inbox (The gmail referred to in 'to' Sink configuration
     Content: <events><event><name>chocolate cake</name><hourlyTotal>10.1</hourlyTotal><currentHour>0.0</currentHour></event></events>
 
 ## Note: 
-current hour depends on the system's timestamp\
+current hour depends on the system's timestamp<br/>
 
 ```sql
 @App:name("PublishEmailInXmlFormat")

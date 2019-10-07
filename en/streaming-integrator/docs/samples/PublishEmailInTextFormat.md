@@ -30,10 +30,10 @@ This application demonstrates how to use siddhi-io-email for publishing events t
 ## Viewing the Results:
 Check the receiver gmail inbox (The gmail referred to in 'to' Sink configuration) to see the alert similar to the following.
 
-Subject: Test Siddhi-io-email-{{name}}\
-Content:\
-name:"chocolate cake",\
-hourlyTotal:10.1,\
+Subject: Test Siddhi-io-email-{{name}}<br/>
+Content:<br/>
+name:"chocolate cake",<br/>
+hourlyTotal:10.1,<br/>
 currentHour:<current hour of the system's timestamp>
 
 

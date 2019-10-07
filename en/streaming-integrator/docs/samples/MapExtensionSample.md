@@ -23,7 +23,7 @@ c) Enter following values in the fields and send
     * amount: 50.50
 
 ## Viewing the Results:
-Messages similar to the following would be shown on the console.\
+Messages similar to the following would be shown on the console.<br/><br/>
 INFO {io.siddhi.core.query.processor.stream.LogStreamProcessor} - MapExtensionSample: Event: , StreamEvent{ timestamp=1513384974698, beforeWindowData=null, onAfterWindowData=null, outputData=[true, false], type=CURRENT, next=null}
 
 

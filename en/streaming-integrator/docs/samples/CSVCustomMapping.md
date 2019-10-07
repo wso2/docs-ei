@@ -9,19 +9,19 @@ This application demonstrates how to configure WSO2 Streaming Integrator Tooling
     - CSVCustomMapping.siddhi successfully deployed.
 
 ## Executing & testing the Sample:
-1) Start the Siddhi application by clicking on 'Run'.
-2) If the Siddhi application starts successfully, the following messages are shown on the console:
+1. Start the Siddhi application by clicking on 'Run'.
+2. If the Siddhi application starts successfully, the following messages are shown on the console:
     * CSVCustomMapping.siddhi - Started Successfully!
 
 ## Viewing the Results:
 * Source takes input from the {WSO2SP-HOME}/samples/artifacts/CSVMappingWithFile/new/example.csv and produces the event.
-example.csv has data in below format\
-1,WSO2,23.5\
-2,IBM,2.5
+example.csv has data in below format  
+1,WSO2,23.5  
+2,IBM,2.5  
 * Sink takes input from source output and produces the output to outputOfCustom.csv.
-outputOfCustom.csv's data appear in below format\
-WSO2,1,100.0\
-IBM,2,2.5
+outputOfCustom.csv's data appear in below format  
+WSO2,1,100.0  
+IBM,2,2.5  
 
 ```sql
 @App:name("CSVCustomMapping")

@@ -15,16 +15,16 @@ http://maven.wso2.org/nexus/content/repositories/wso2gpl/org/wso2/extension/sidd
     * GplNLPFindNameEntityType.siddhi - Started Successfully!
 
 ## Testing the Sample:
-You can publish data event to the file, through event simulator\
-1) Open event simulator by clicking on the second icon or press Ctrl+Shift+I.\
+You can publish data event to the file, through event simulator<br/>
+1) Open event simulator by clicking on the second icon or press Ctrl+Shift+I.
 2) In the Single Simulation tab of the panel, select values as follows:
     * Siddhi App Name  : GplNLPFindNameEntityType
     * Stream Name     : InputStream
-3) Enter following string in the message and send\
+3) Enter following string in the message and send<br/>
 `ABC factory produces 20 donuts per day`
 
 ## Viewing the Results:
-Messages similar to the following would be shown on the console.\
+Messages similar to the following would be shown on the console.<br/><br/>
 INFO {io.siddhi.core.query.processor.stream.LogStreamProcessor} - GplNLPFindNameEntityType: StreamEvent{ timestamp=1513573692406, beforeWindowData=null, onAfterWindowData=null, outputData=[ABC factory produces 20 donuts per day., ABC], type=CURRENT, next=null}
 ABC has been recognized as an organization.
 

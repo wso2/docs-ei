@@ -3,12 +3,12 @@
 This application demonstrates how to configure WSO2 Streaming Integrator Tooling using googlepubsub source in Siddhi to consume events. Events which are in TEXT format are consumed from a googlepubsub topic.
 
 ## Prerequisites:
-1.Create a Google Cloud Platform account.
-2.Sign in to Google Account and set up a GCP Console project and enable the API.
-3.Create a service account and download a private key as JSON.
-4.Place your json file in any system folder and provide the path for the credential.path.
-5.Save the sample.
-6.If there is no syntax error, the following message is shown on the console:
+1. Create a Google Cloud Platform account.
+2. Sign in to Google Account and set up a GCP Console project and enable the API.
+3. Create a service account and download a private key as JSON.
+4. Place your json file in any system folder and provide the path for the credential.path.
+5. Save the sample.
+6. If there is no syntax error, the following message is shown on the console:
 	        * -Siddhi App ReceiveGooglePubSubMesssage successfully deployed.
 
 

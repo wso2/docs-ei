@@ -1,6 +1,5 @@
 # Aggregating Data Incrementally
 
-
 ## Purpose
 
 This example demonstrates how to get running statistics using Siddhi. The sample Siddhi application aggregates the data relating to the raw material purchases of a sweet production factory.

@@ -25,7 +25,7 @@ This application demonstrates how to retrieve the longitude and latitude for the
 7) Send event
 
 ## Viewing the Results:
-See the prediction as output on the in the console.\
+See the prediction as output on the in the console.<br/>
 INFO {io.siddhi.core.query.processor.stream.LogStreamProcessor} - sentimentExtensionSample: Event :, StreamEvent{ timestamp=1513623526790, beforeWindowData=null, onAfterWindowData=null, outputData=[48.8583698, 2.2944833, Tour Eiffel, 5 Avenue Anatole France, 75007 Paris, France], type=CURRENT, next=null}
 
 ```sql
