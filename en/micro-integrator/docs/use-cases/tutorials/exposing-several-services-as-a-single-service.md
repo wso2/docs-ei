@@ -321,6 +321,7 @@ You can now start updating the API resource with the mediation flow.
     <td>New Property Name</td>
     <td>Enter <code>               doctor_details              </code>.</td>
     </tr>
+    </tbody>
     <tr class="odd">
     <td>Property Action</td>
     <td><p>Select <strong>set</strong>.</p></td>
