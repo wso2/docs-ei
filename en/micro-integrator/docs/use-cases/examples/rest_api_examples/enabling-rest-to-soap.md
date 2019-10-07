@@ -1,7 +1,6 @@
 # Enabling REST to SOAP
-## Example use case
     
-In this scenario, you expose a SOAP service over REST using an API in the ESB profile.
+This example demonstrates how you can expose a SOAP service over REST using an API in WSO2 Micro Integrator.
     
 ## Synapse configuration
     

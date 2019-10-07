@@ -62,7 +62,7 @@ Create the artifacts:
 Configuring the user store:
 
 1.  Create your user store and host it because WSO2 Micro Integrator does not include a default user store.
-2.  Once hosted, configure the following properties in the `MI_HOME/conf/deployment.toml` file with your user store's details. For this sample, we configure a read- only LDAP user store.
+2.  Once hosted, configure the following properties in the `MI_HOME/conf/deployment.toml` file with your user store details. For this sample, we configure a read-only LDAP user store.
 
     ```toml
     [user_store]

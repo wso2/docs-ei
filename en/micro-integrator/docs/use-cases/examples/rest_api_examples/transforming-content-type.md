@@ -1,10 +1,9 @@
-# Transforming the content type
-## Example use case  
+# Transforming the Content Type
 This section describes how you can transform the content type of a message using an API. In this scenario, the API exposes a REST back-end service that accepts and returns XML and JSON messages for HTTP methods as follows:
     
--   GET - response is in JSON format
--   POST - accepts JSON request and returns response in XML format
--   DELETE - empty request body should be sent and returns response in XML format 
+-  GET - response is in JSON format
+-  POST - accepts JSON request and returns response in XML format
+-  DELETE - empty request body should be sent and returns response in XML format 
     
 ## Synapse configuration
     
@@ -145,7 +144,7 @@ The Micro Integrator transform the response to XML and send it back to client as
 
 Following is the CURL command to send a GET request to the API:
     
-` curl -v -X GET http://localhost:8290/healthcare/appointments/1                        `
+`curl -v -X GET http://localhost:8290/healthcare/appointments/1                        `
     
 The response for the request will be:
     

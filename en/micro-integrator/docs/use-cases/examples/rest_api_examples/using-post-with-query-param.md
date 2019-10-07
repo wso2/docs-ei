@@ -1,8 +1,5 @@
 # Using POST with Query Parameters
-## Example use case
-
-Sending a POST message with query parameters is an unusual scenario, but
-the Micro Integrator supports it with no additional configuration. The Micro Integrator forwards the message like any other POST message and includes the query parameters.
+Sending a POST message with query parameters is an unusual scenario, but the Micro Integrator supports it with no additional configuration. The Micro Integrator forwards the message like any other POST message and includes the query parameters.
 
 ## Synapse configuration 
 

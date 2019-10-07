@@ -1,7 +1,4 @@
 # Sequences and Endpoints as Local Registry Entries
-
-## Example use case
-
 This sample demonstrates the functionality of local registry entry definitions, reusable endpoints, and sequences. This example uses a sequence named *main* that specifies the main mediation rules to be executed. This is equivalent to directly
 specifying the mediators of the main sequence within the `\<definitions\>` tag. This sample scenario is a
 recommended approach for non-trivial configurations.

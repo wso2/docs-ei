@@ -1,6 +1,4 @@
 # Publishing a Custom WSDL
-## Example use case
-
 When you create a proxy service, a default WSDL is automatically
 generated. You can access this WSDL by suffixing the service URL
 with ?wsdl. See the example given below, where the proxy service name is
@@ -26,7 +24,6 @@ Follow the steps given below to add a custom WSDL to your proxy service.
 1.  Open the proxy service from your tooling project.
 2.  In the **Properties** tab, the WSDL type is set to **NONE** by
     default.  
-    ![](attachments/119130987/119130990.png)
 3.  To publish a custom WSDL for this proxy service, select one of the
     WSDL types.
 
@@ -68,11 +65,10 @@ Follow the steps given below to add a custom WSDL to your proxy service.
     can find registry key corresponding to the location from the
     registry.
 
-    ![](attachments/119130987/119130989.png)
     In the following example, the WSDL imports a metadata schema from
     the metadata.xsd file. Therefore, the location is metadata.xsd.
 
-    ``` java
+    ```xml
     <xsd:import namespace=http://www.wso2.org/test/10 schemaLocation="metadata.xsd" />
     ```
 
@@ -83,17 +79,13 @@ Follow the steps given below to add a custom WSDL to your proxy service.
     . This dependent WSDL is retrieved from the registry using the
     `           standard.wsdl          ` registry key.
 
-    ``` 
+    ```xml 
     <publishWSDL key="my.wsdl">
         <resource location="http://www.standards.org/standard.wsdl" key="standard.wsdl"/>
     </publishWSDL>
     ```
 
-5.  Go to the **Service Parameters** section in the **Properties** tab.  
-    ![](attachments/119130987/119130988.png?effects=drop-shadow)
-
-    Following are additional service parameters you can use to configure
-    the service WSDL.
+5.  Go to the **Service Parameters** section in the **Properties** tab. Following are additional service parameters you can use to configure the service WSDL.
 
     <table>
     <thead>
@@ -138,12 +130,15 @@ Follow the steps given below to add a custom WSDL to your proxy service.
     </tbody>
     </table>
 
-### Testing the custom WSDL
+## Build and run
 
-To test the custom WSDL:
+Create the artifacts:
 
-1.  Deploy the proxy service in the ESB profile.
-2.  Copy the URL shown below to your browser:
+1. [Set up WSO2 Integration Studio](../../../../develop/installing-WSO2-Integration-Studio).
+2. [Create an ESB Solution project](../../../../develop/creating-projects/#esb-config-project)
+3. [Create the proxy service](../../../../develop/creating-artifacts/creating-a-proxy-service) with the configurations given above.
+4. [Deploy the artifacts](../../../../develop/deploy-and-run) in your Micro Integrator.
 
-    [http://localhost:8280/services/](http://localhost:8280/services/Logging?wsdl)
-    [StockQuoteProxy?wsdl](http://wso2s-macbook-air-59.local:8280/services/StockQuoteProxy?wsdl)
+Set up the back-end service.
+
+Invoke the proxy service.

@@ -123,7 +123,7 @@ nav:
           - Proxy Services:
             - 'Using a Simple Proxy Service': 'use-cases/examples/proxy_service_examples/Introduction-to-Proxy-Services.md'
             - 'Publishing a Custom WSDL': 'use-cases/examples/proxy_service_examples/publishing-a-custom-wsdl.md'
-            - 'Configuring Pinned Servers': 'use-cases/examples/proxy_service_examples/using-pinned-servers.md'
+            #- 'Configuring Pinned Servers': 'use-cases/examples/proxy_service_examples/using-pinned-servers.md'
             - 'Exposing a Proxy Service via Inbound Endpoints': 'use-cases/examples/proxy_service_examples/exposing-proxy-via-inbound.md'
             - 'Applying WS-Security to a Proxy Service': 'use-cases/examples/proxy_service_examples/securing-proxy-services.md'
           - Inbound Endpoints:

@@ -1,8 +1,7 @@
 # Setting HTTP status codes
-## Example use case
 A REST service typically sends HTTP status codes with its response. When you configure an API that send messages to a SOAP back-end service, you can set the status code of the HTTP response within the configuration.
 
-To achieve this, set the status code parameter within the out sequence of the API definition.
+To achieve this, set the status code parameter within the **Out** sequence of the API definition.
 
 ## Synapse configuration  
 
