@@ -1,6 +1,6 @@
 ---
-title: Convert JSON to XML and upload to FTP
-commitHash: 9be2bde276ae340075a85d504719e5f8831bfe6b
+title: Convert JSON to XML and Upload to FTP
+commitHash: 1d8ae9a112965cc1b7c0409fec0adb877181bd0c
 note: This is an auto-generated file do not edit this, You can edit content in "ballerina-integrator" repo
 ---
 
@@ -15,9 +15,25 @@ Ballerina has first-class support for HTTP and implementing an HTTP service is s
 ![Transform JSON to XML and upload to FTP](../../../../../assets/img/Transform-JSON-to-XML-and-upload-to-FTP.jpg)
 
 ## Prerequisites
-- [Java](https://www.oracle.com/technetwork/java/index.html)
-- A Text Editor or an IDE
-- Link to download Ballerina Integrator
+ 
+* Ballerina Integrator
+* Oracle JDK 1.8.*
+* A Text Editor or an IDE 
+> **Tip**: For a better development experience, install the Ballerina Integrator extension in [VS Code](https://code.visualstudio.com).
+
+## Get the code
+
+Pull the module from [Ballerina Central](https://central.ballerina.io/) using the following command.
+
+```bash
+ballerina pull wso2/<<<MODULE_NAME>>>
+```
+
+Alternately, you can download the ZIP file and extract the contents to get the code.
+
+<a href="../../../../../assets/zip/converting-json-to-xml-and-upload-to-ftp.zip">
+    <img src="../../../../../assets/img/download-zip.png" width="200" alt="Download ZIP">
+</a>
 
 ## Implementation
 The Ballerina project is created for the integration use case explained above. Please follow the steps given below. You can learn about the Ballerina project and module in this link.

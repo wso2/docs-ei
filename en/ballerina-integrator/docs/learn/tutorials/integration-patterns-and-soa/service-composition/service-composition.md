@@ -1,17 +1,8 @@
 ---
 title: Service Composition
-commitHash: 9be2bde276ae340075a85d504719e5f8831bfe6b
+commitHash: 1d8ae9a112965cc1b7c0409fec0adb877181bd0c
 note: This is an auto-generated file do not edit this, You can edit content in "ballerina-integrator" repo
 ---
-
-The following are the sections available in this guide.
-
-- [About](#about)
-- [What you'll build](#what-youll-build)
-- [Prerequisites](#prerequisites)
-- [Get the code](#get-the-code)
-- [Implementation](#implementation)
-- [Testing](#testing)
 
 ## About
 
@@ -20,23 +11,33 @@ Ballerina is an open-source programming language that empowers developers to int
 This guide walks you through the process of implementing a service composition using Ballerina language.
 
 ## What you’ll build
+
 To understand how you can build a service composition using Ballerina, let's consider a real-world use case of a Travel agency that arranges complete tours for users. A tour package includes airline ticket reservation and hotel room reservation. Therefore, the Travel agency service requires communicating with other necessary back-ends. The following diagram illustrates this use case clearly.
 
-![alt text](/docs/content/resources/service-composition.svg)
+![alt text](../../../../../assets/img/service-composition.svg)
 
 Travel agency is the service that acts as the composition initiator. The other two services are external services that the travel agency service calls to do airline ticket booking and hotel reservation. These are not necessarily Ballerina services and can theoretically be third-party services that the travel agency service calls to get things done. However, for the purposes of setting up this scenario and illustrating it in this guide, these third-party services are also written in Ballerina.
 
 ## Prerequisites
-- [Ballerina Distribution](https://ballerina.io/learn/getting-started/)
-- A Text Editor or an IDE 
-> **Tip**: For a better development experience, install one of the following Ballerina IDE plugins: [VSCode](https://marketplace.visualstudio.com/items?itemName=ballerina.ballerina), [IntelliJ IDEA](https://plugins.jetbrains.com/plugin/9520-ballerina)
-- Link to download Ballerina Integrator
+ 
+* Ballerina Integrator
+* Oracle JDK 1.8.*
+* A Text Editor or an IDE 
+> **Tip**: For a better development experience, install the Ballerina Integrator extension in [VS Code](https://code.visualstudio.com).
 
 ## Get the code
 
-Download the ZIP file and extract the contents to get the code.
+Pull the module from [Ballerina Central](https://central.ballerina.io/) using the following command.
 
-<a href="https://github.com/wso2/docs-ei/blob/master/en/ballerina-integrator/docs/learn/guides/"><img src="../../../../../assets/img/download-zip.png" width="200" alt="Download ZIP"></a>
+```bash
+ballerina pull wso2/<<<MODULE_NAME>>>
+```
+
+Alternately, you can download the ZIP file and extract the contents to get the code.
+
+<a href="../../../../../assets/zip/service-composition.zip">
+    <img src="../../../../../assets/img/download-zip.png" width="200" alt="Download ZIP">
+</a>
 
 ## Implementation
 
@@ -47,13 +48,13 @@ Download the ZIP file and extract the contents to get the code.
 1. Create a new project `service-composition`.
 
     ```bash
-    $ ballerina new  service-composition
+    $ ballerina new service-composition
     ```
 
-2. Create a module named `guide` inside the project directory.
+2. Create a module named `service_composition` inside the project directory.
 
     ```bash
-    $ ballerina add guide
+    $ ballerina add service_composition
     ```
 
 Use the following module structure for this guide.
@@ -62,7 +63,7 @@ Use the following module structure for this guide.
 service-composition
 ├── Ballerina.toml
 └── src
-   └── guide
+   └── service_composition
       ├── airline_reservation_service.bal
       ├── hotel_reservation_service.bal
       ├── travel_agency_service.bal
@@ -354,12 +355,12 @@ Once you are done with the development, you can start the services as follows.
 
 - To deploy locally, navigate to `service-composition` directory, and execute the following command.
 ```bash
-   $ ballerina build guide
+   $ ballerina build service_composition
 ```
 
 - This builds a JAR file (.jar) in the target folder. You can run this by using the `java -jar` command.
 ```bash
-  $ java -jar target/bin/guide.jar
+  $ java -jar target/bin/service_composition.jar
 ```
 
 - You can see the travel agency service and related backend services are up and running. The successful startup of services will display the following output. 

@@ -1,6 +1,6 @@
 ---
 title: Content-Based Routing
-commitHash: 9be2bde276ae340075a85d504719e5f8831bfe6b
+commitHash: 1d8ae9a112965cc1b7c0409fec0adb877181bd0c
 note: This is an auto-generated file do not edit this, You can edit content in "ballerina-integrator" repo
 ---
 
@@ -15,47 +15,62 @@ We create a service called `stockQuote` that accepts an HTTP request from a clie
 ![cbr](../../../../../assets/img/content_based_routing.jpg)
 
 ## Prerequisites
+ 
+* Ballerina Integrator
+* Oracle JDK 1.8.*
+* A Text Editor or an IDE 
+> **Tip**: For a better development experience, install the Ballerina Integrator extension in [VS Code](https://code.visualstudio.com).
 
-- [Ballerina Distribution](https://ballerina.io/learn/getting-started/)
-- A Text Editor or an IDE 
-> **Tip**: For a better development experience, install the Ballerina IDE plugin for [VS Code](https://marketplace.visualstudio.com/items?itemName=ballerina.ballerina)
-	
+## Get the code
+
+Pull the module from [Ballerina Central](https://central.ballerina.io/) using the following command.
+
+```bash
+ballerina pull wso2/<<<MODULE_NAME>>>
+```
+
+Alternately, you can download the ZIP file and extract the contents to get the code.
+
+<a href="../../../../../assets/zip/content-based-routing.zip">
+    <img src="../../../../../assets/img/download-zip.png" width="200" alt="Download ZIP">
+</a>
+
 ## Implementation
 
 * Create a new Ballerina project named `content-based-routing`.
 
-    ```bash
-    $ ballerina new content-based-routing
-    ```
+```bash
+$ ballerina new content-based-routing
+```
 
 * Navigate to the content-based-routing directory.
 
-* Add a new module named `stockquote_service` to the project.
+* Add a new module named `content_based_routing` to the project.
 
-    ```bash
-    $ ballerina add stockquote_service
-    ```
+```bash
+$ ballerina add content_based_routing
+```
 
 * Open the project with VS Code. The project structure will be similar to the following.
 
-    ```shell
-    .
-    ├── Ballerina.toml
-    └── src
-        └── stockquote_service
-            ├── main.bal
-            ├── Module.md
-            ├── resources
-            └── tests
-                ├── main_test.bal
-                └── resources
-    ```
+```shell
+content-based-routing
+├── Ballerina.toml
+└── src
+    └── content_based_routing
+        ├── main.bal
+        ├── Module.md
+        ├── resources
+        └── tests
+            ├── main_test.bal
+            └── resources
+```
 
 We can remove the file `main_test.bal` for the moment, since we are not writing any tests for our service.
 
 First let's create the services that we will use as backend endpoints.
 
-* Create a new file named `abcService.bal` file under `stockquote_service` with the following content.
+* Create a new file named `abcService.bal` file under `content_based_routing` with the following content.
 
 **abcService.bal**
 
@@ -145,28 +160,28 @@ Here we are calling the two services we created earlier using the endpoints `abc
 
 In the stockQuote service, the `company` is retrieved as a query parameter. Then the value of the `company` is checked. If it is `abc`, the `abcEP` is called and its response is saved. If it is `xyz`, the `xyzEP` is called. If there is no value set, we’re simply setting a 400-Bad Request response. Finally the response is sent back to the client.
 
-## Run the Integration
+## Testing
 
 * First let’s build the module. While being in the content-based-routing directory, execute the following command.
 
-    ```bash
-    $ ballerina build stockquote_service
-    ```
+```bash
+$ ballerina build content_based_routing
+```
 
 This would create the executables.
 
 * Now run the .jar file created in the above step.
 
-    ```bash
-    $ java -jar target/bin/stockquote_service.jar
-    ```
+```bash
+$ java -jar target/bin/content_based_routing.jar
+```
 
 Now we can see that three service have started on ports 8081, 8082, and 9090. 
 
 * Let’s access the stockQuote service by executing the following curl command.
 
-    ```bash
-    $ curl http://localhost:9090/stocktrading/stockquote?company=abc
-    ```
+```bash
+$ curl http://localhost:9090/stocktrading/stockquote?company=abc
+```
 
 We will get a text value 10000.00 as the response.
