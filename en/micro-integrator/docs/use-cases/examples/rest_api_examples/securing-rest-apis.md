@@ -8,7 +8,7 @@ This validation is done using the following basic auth handler. When a REST API 
 
 ```
 <handlers>
-    <handler class="org.wso2.carbon.micro.integrator.security.handler.RESTBasicAuthHandler"/>
+    <handler class="org.wso2.micro.integrator.security.handler.RESTBasicAuthHandler"/>
 </handlers>
 ```
 
