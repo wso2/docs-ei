@@ -362,7 +362,10 @@ Let's use the **CLI Tool** to find the URL of the REST API that is deployed in t
 2.  Execute the following command to start the tool:
     `./mi`
 3.  Execute the following command to find the APIs deployed in the server:
-    `mi show api`
+    `mi api show`
+    
+    Note: Please remember to login to CLI using `mi remote login` command giving `admin` as both username and 
+    password before executing the above command.
 
 Now, open a command line terminal and enter the following request: 
 
