@@ -1,6 +1,6 @@
 # Micro Integrator CLI
 
-The Micro Integrator CLI allows you to monitor the synapse artifacts (deployed in a specified Micro Integrator server) from the command line. The CLI is an alternative to the [management dashboard](../../../administer-and-observe/working-with-monitoring-dashboard), which provides a graphical view of the deployed artifacts.
+The Micro Integrator CLI allows you to monitor the synapse artifacts (deployed in a specified Micro Integrator server) from the command line. The CLI is an alternative to the [management dashboard](../../administer-and-observe/working-with-monitoring-dashboard), which provides a graphical view of the deployed artifacts.
 
 The dashboard as well as the CLI communicates with the management API of WSO2 Micro Integrator to function. Therefore, be sure to [enable the Management API](#enable-the-management-api) in the server before using the dashboard or the CLI.
 
@@ -17,8 +17,7 @@ To use the CLI tool, you need to enable the management API by passing the `-Dena
 
     !!! Note
         -  The default address is **https://localhost** and the port is **9164**.
-        -  The management API is not protected using an authorization mechanism. Therefore, take extra measures to secure this port if you are enabling this in production.
-        -  You can change the default host and port of the dashboard by using the [remote](#remote) command.
+        -  You can change the default host and port of the dashboard by using the [remote](#commands) command.
 
 -   When you run the Micro Integrator on a VM, use the following command
     to enable the `enableManagementApi` system property:
