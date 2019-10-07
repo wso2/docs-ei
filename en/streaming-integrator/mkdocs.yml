@@ -48,12 +48,11 @@ nav:
   - 'Home': index.md
   - 'Get Started':
     - 'Introduction': 'overview/overview.md'
-    - 'Architecture': 'overview/architecture.md'
-    - 'About this Release': 'overview/about_this_release.md'
     - 'Quick Start Guide': 'quick-start-guide/getting-started-with-si.md'
     - 'Streaming Integrator 101': 'quick-start-guide/quick-start-guide-101.md'
     - 'Running the Streaming Integrator with Micro Integrator': 'quick-start-guide/hello-world-with-mi.md'
-    - 'Concepts': 'concepts/concepts.md'
+    - 'Architecture': 'overview/architecture.md'
+    - 'Key Concepts': 'concepts/concepts.md'
   - 'Learn':
     - 'Use Cases':
       - 'Consuming Data': 'guides/consuming-messages.md'
