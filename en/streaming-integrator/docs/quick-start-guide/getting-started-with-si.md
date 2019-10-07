@@ -49,8 +49,8 @@ insert into TransformedProductionStream;
 
 Save this file as `MySimpleApp.siddhi` in the `<SI_HOME>/wso2/server/deployment/siddhi-files` directory.
 
-!!info
-    Once you deploy the above Siddhi application, it creates a new `HTTP` endpoint at `http://localhost:8006/productionStream` and starts listening to the endpoint for incoming messages.
+!!!info
+    Once you deploy the above Siddhi application, it creates a new `HTTP` endpoint at `http://localhost:8006/productionStream` and starts listening to the endpoint for incoming messages.<br/>
     Therefore, the next step is to publish a message to this endpoint via a CURL command.
 
 ## Testing your Siddhi application
