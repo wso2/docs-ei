@@ -1,6 +1,6 @@
 ---
 title: Using the Gmail Connector
-commitHash: 9be2bde276ae340075a85d504719e5f8831bfe6b
+commitHash: 1d8ae9a112965cc1b7c0409fec0adb877181bd0c
 note: This is an auto-generated file do not edit this, You can edit content in "ballerina-integrator" repo
 ---
 
@@ -15,10 +15,25 @@ You can find other integration modules from the [wso2-ballerina](https://github.
 This tutorial demonstrates a scenario where a customer feedback Gmail account of a company can be easily managed using the Ballerina Gmail Connector. This application contains a service that can be invoked through an HTTP GET request. Once the service is invoked, it returns the contents of unread emails in the `Inbox`, while sending an automated response to the customer, thanking them for their feedback. The number of emails that can be handled in a single invocation is specified in the application.
 
 ## Prerequisites
-- [Java](https://www.oracle.com/technetwork/java/index.html)
-- Ballerina Integrator
-- A Text Editor or an IDE
-> **Tip**: For a better development experience, install the `Ballerina Integrator` extension in [VS Code](https://code.visualstudio.com/).
+ 
+* Ballerina Integrator
+* Oracle JDK 1.8.*
+* A Text Editor or an IDE 
+> **Tip**: For a better development experience, install the Ballerina Integrator extension in [VS Code](https://code.visualstudio.com).
+
+## Get the code
+
+Pull the module from [Ballerina Central](https://central.ballerina.io/) using the following command.
+
+```bash
+ballerina pull wso2/<<<MODULE_NAME>>>
+```
+
+Alternately, you can download the ZIP file and extract the contents to get the code.
+
+<a href="../../../../../../../../../../../assets/zip/using-the-gmail-connector.zip">
+    <img src="../../../../../../../../../../../assets/img/download-zip.png" width="200" alt="Download ZIP">
+</a>
 
 ## Implementation
 
@@ -203,6 +218,6 @@ $ java -jar target/bin/gmail_client_application.jar
 ```
 Now we can see that the service has started on port 9090. Let’s invoke this service by executing the following cURL command.
 ```
-curl -X GET http://localhost:9090/gmail/reviews
+$ curl -X GET http://localhost:9090/gmail/reviews
 ```
 You will see the list of email body contents during a successful invocation.

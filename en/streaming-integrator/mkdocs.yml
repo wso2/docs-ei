@@ -224,11 +224,13 @@ nav:
     - 'Configuring Default Ports': 'ref/configuring-default-ports.md'
   - 'Develop':
     - 'Streaming Integrator Tooling':
+      - 'Developing Streaming Integrator Solutions': 'develop/developing-streaming-integration-solutions.md'
       - 'Streaming Integrator Tooling Overview': 'develop/streaming-integrator-studio-overview.md'
       - 'Working with the Design View': 'develop/working-with-the-Design-View.md'
     - 'Creating Siddhi Applications': 'develop/creating-a-Siddhi-Application.md'
-    - 'Testing a Siddhi Application': 'develop/testing-a-Siddhi-Application.md'
+    - 'Testing Siddhi Applications': 'develop/testing-a-Siddhi-Application.md'
     - 'Debugging Siddhi Applications': 'develop/debugging_siddhi_applications.md'
+    - 'Deploying Siddhi Applications': 'develop/deploying-Streaming-Applications.md'
     - 'Exporting Siddhi Files': 'develop/exporting-Siddhi-Files.md'
   - 'Observability':
     - 'Monitoring the Streaming Integrator': 'admin/monitoring-the-streaming-integrator.md'

@@ -1,46 +1,22 @@
 ---
 title: Reliable message delivery
-commitHash: 9be2bde276ae340075a85d504719e5f8831bfe6b
+commitHash: 1d8ae9a112965cc1b7c0409fec0adb877181bd0c
 note: This is an auto-generated file do not edit this, You can edit content in "ballerina-integrator" repo
 ---
 
+## About
+
 This guide describes how to use **MessageStore** module to achieve reliable message delivery. In asynchronous messaging
-scenarios, we accept the HTTP message and store it in a remote **message broker** for later processing. When the message forwarder
-picks the message from the **message broker** and try to forward it to the intended HTTP service, that service may not be
-available at that moment, or it may respond with *500 (internal server error)*. In that case, the service should retry to deliver the message.
+scenarios, we accept the HTTP message and store it in a remote **message broker** for later processing. When the message forwarder picks the message from the **message broker** and try to forward it to the intended HTTP service, that service may not be available at that moment, or it may respond with *500 (internal server error)*. In that case, the service should retry to deliver the message.
+
 Only upon successful message delivery, the message will be removed from the queue. Otherwise, after several retries, message
 forwarder can stop or backup the message to a different store (Dead Letter Store) and continue with the next message.
 
 Above scenario is called **reliable message delivery**. There are also other use-cases you can achieve using the *MessageStore* module.
 
-1. **in-order message delivery** : If only one message processor is picking messages from the particular store,
-   in-order message delivery pattern is also achieved. Messages are delivered to the endpoint in a reliable manner keeping
-   the order of the messages they were put to the store.
+1. **in-order message delivery** : If only one message processor is picking messages from the particular store, in-order message delivery pattern is also achieved. Messages are delivered to the endpoint in a reliable manner keeping the order of the messages they were put to the store.
 
-2. **throttling** : Consider a legacy backend which can process messages only up to 100 TPS. This service is exposed to a system
-   from which it gets message bursts, sometimes exceeding its limit of 100 TPS. To regulate the load we can use message store and
-   forward pattern. System can store the message in the store in the speed it likes and message processor will forward the messages to
-   the backend in a regulated way with its defined polling interval.
-
-In this guide we focus on **reliable message delivery**.
-
-The high level sections of this guide are as follows:
-
-- [What you'll build](#what-you-ll-build)
-- [Prerequisites](#prerequisites)
-- [Implementation](#implementation)
-  - [Setting up backend service](#setting-up-backend-service)
-  - [Creating the project structure](#creating-the-project-structure)
-  - [Developing message storing service](#developing-message-storing-service)
-  - [Developing message forwarding service](#developing-message-forwarding-service)
-- [Deployment](#deployment)
-  - [Deploying locally](#deploying-locally)
-  - [Deploying on Docker](#deploying-on-docker)
-- [Testing](#testing)
-  - [Happy path scenario](#happy-path-scenario)
-  - [Backend returns an error scenario](#backend-returns-an-error-scenario)
-  - [Backend not available scenario](#backend-not-available-scenario)
-  - [Deactivate message processor on forwarding failure](#deactivate-message-processor-on-forwarding-failure)
+2. **throttling** : Consider a legacy backend which can process messages only up to 100 TPS. This service is exposed to a system from which it gets message bursts, sometimes exceeding its limit of 100 TPS. To regulate the load we can use message store and forward pattern. System can store the message in the store in the speed it likes and message processor will forward the messages to the backend in a regulated way with its defined polling interval.
 
 ## What you'll build
 
@@ -60,13 +36,28 @@ The following diagram illustrates the scenario in high level:
 ![Tutorial Image](https://github.com/wso2/ballerina-integrator/blob/d31a6b9d5579ce3bde4a90a7064eba4c8dddb6a6/examples/guides/messaging/reliable-delivery/resources/message-store-processor-guide.svg)
 
 ## Prerequisites
+ 
+* Ballerina Integrator
+* Oracle JDK 1.8.*
+* A Text Editor or an IDE 
+> **Tip**: For a better development experience, install the Ballerina Integrator extension in [VS Code](https://code.visualstudio.com).
+* [Apache ActiveMQ](http://activemq.apache.org/getting-started.html)
+  * After you install ActiveMQ, copy the .jar files from the *<AMQ_HOME>/lib* directory to the *<BALLERINA_HOME>/bre/lib* directory.
+  * If you use ActiveMQ version 5.12.0, you only have to copy *activemq-client-5.12.0.jar*, *geronimo-j2ee-management_1.1_spec-1.0.1.jar*, and *hawtbuf-1.11.jar* from the *<AMQ_HOME>/lib* directory to the *<BALLERINA_HOME>/bre/lib* directory.
+  
+## Get the code
 
-- [Ballerina Distribution](https://ballerina.io/learn/getting-started/)
-- A Text Editor or an IDE
-  > **Tip**: For a better development experience, install one of the following Ballerina IDE plugins: [VSCode](https://marketplace.visualstudio.com/items?itemName=ballerina.ballerina), [IntelliJ IDEA](https://plugins.jetbrains.com/plugin/9520-ballerina)
-- [Apache ActiveMQ](http://activemq.apache.org/getting-started.html)
-  - After you install ActiveMQ, copy the .jar files from the *<AMQ_HOME>/lib* directory to the *<BALLERINA_HOME>/bre/lib* directory.
-  - If you use ActiveMQ version 5.12.0, you only have to copy *activemq-client-5.12.0.jar*, *geronimo-j2ee-management_1.1_spec-1.0.1.jar*, and *hawtbuf-1.11.jar* from the *<AMQ_HOME>/lib* directory to the *<BALLERINA_HOME>/bre/lib* directory.
+Pull the module from [Ballerina Central](https://central.ballerina.io/) using the following command.
+
+```bash
+ballerina pull wso2/<<<MODULE_NAME>>>
+```
+
+Alternately, you can download the ZIP file and extract the contents to get the code.
+
+<a href="../../../../../assets/zip/reliable-delivery.zip">
+    <img src="../../../../../assets/img/download-zip.png" width="200" alt="Download ZIP">
+</a>
 
 ## Implementation
 
@@ -352,14 +343,6 @@ You can run them using the following command.
 ```bash
 $ ballerina run <Exec_Archive_File_Name>
 ```
-
-### Deploying on Docker
-
-If necessary, you can run the service that you developed above as a Docker container. The Ballerina language includes a *Ballerina_Docker_Extension*, which offers native support to run Ballerina programs on containers.
-
-To run a service as a Docker container, add the corresponding Docker annotations to your service code.
-
-Since ActiveMQ is a prerequisite in this guide, there are a few more steps you need to follow to run the service you developed in a Docker container. Please navigate to [ActiveMQ on Dockerhub](https://hub.docker.com/r/webcenter/activemq) and follow the instructions.
 
 ## Testing
 

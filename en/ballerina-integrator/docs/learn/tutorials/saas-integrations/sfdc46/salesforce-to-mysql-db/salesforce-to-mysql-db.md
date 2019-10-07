@@ -1,6 +1,6 @@
 ---
 title: Salesforce to MySQL Database
-commitHash: 9be2bde276ae340075a85d504719e5f8831bfe6b
+commitHash: 1d8ae9a112965cc1b7c0409fec0adb877181bd0c
 note: This is an auto-generated file do not edit this, You can edit content in "ballerina-integrator" repo
 ---
 
@@ -31,13 +31,25 @@ message is logged.
 ![sfdc to mysql database](../../../../../../assets/img/salesforce-to-mysql-database.jpg)
 
 ## Prerequisites
+ 
+* Ballerina Integrator
+* Oracle JDK 1.8.*
+* A Text Editor or an IDE 
+> **Tip**: For a better development experience, install the Ballerina Integrator extension in [VS Code](https://code.visualstudio.com).
 
-- [Java](https://www.oracle.com/technetwork/java/index.html)
-- A Text Editor or an IDE
-  > **Tip**: For a better development experience, install one of the following Ballerina IDE plugins: 
-[VSCode](https://marketplace.visualstudio.com/items?itemName=ballerina.ballerina), 
-[IntelliJ IDEA](https://plugins.jetbrains.com/plugin/9520-ballerina)
-- Link to download Ballerina Integrator.
+## Get the code
+
+Pull the module from [Ballerina Central](https://central.ballerina.io/) using the following command.
+
+```bash
+ballerina pull wso2/<<<MODULE_NAME>>>
+```
+
+Alternately, you can download the ZIP file and extract the contents to get the code.
+
+<a href="../../../../../../../../../../../assets/zip/salesforce-to-mysql-db.zip">
+    <img src="../../../../../../../../../../../assets/img/download-zip.png" width="200" alt="Download ZIP">
+</a>
 
 ## Implementation
 
@@ -54,7 +66,7 @@ $ ballerina new salesforce-to-mysql-db
 #### 2. Create a module.
 
 ```bash
-$ ballerina add guide
+$ ballerina add salesforce_to_mysql
 ```
 
 The project structure is created as indicated below.
@@ -63,7 +75,7 @@ The project structure is created as indicated below.
 salesforce-to-mysql-db
 ├── Ballerina.toml
 └── src
-    └── guide
+    └── salesforce_to_mysql
         ├── Module.md
         ├── main.bal
         ├── resources
@@ -130,7 +142,7 @@ version= "0.1.0"
 target = "java8"
 
   [[platform.libraries]]
-  module = "guide"
+  module = "salesforce_to_mysql"
   path = "./lib/mysql-connector-java.jar"
 ```
 
@@ -305,18 +317,18 @@ newly modified Salesforce contacts and update the database using them.
 First let’s build the module. Navigate to the project root directory and execute the following command.
 
 ```bash
-$ ballerina build guide
+$ ballerina build salesforce_to_mysql
 ```
 
-This creates the executables. Now run the `guide.jar` file created in the above step.
+This creates the executables. Now run the `salesforce_to_mysql.jar` file created in the above step.
 
 ```bash
-$ java -jar target/bin/guide.jar
+$ java -jar target/bin/salesforce_to_mysql.jar
 ```
 
 You will see the following log after successfully updating the database.
 
 ```
-2019-09-26 17:41:27,708 INFO  [wso2/sfdc_to_mysql_db] - service started... 
+2019-09-26 17:41:27,708 INFO  [wso2/sfdc_to_mysql_db] - service started...
 2019-09-26 17:41:32,094 INFO  [wso2/sfdc_to_mysql_db] - Batch job SFDC -> MySQL has been completed.
 ```
