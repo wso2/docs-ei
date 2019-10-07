@@ -268,7 +268,7 @@ To do that we can use the **Clone Mediator**.
 
    ![Clone Branches](../assets/img/developing-first-integration/dev-first-integration-10.png)
 
-2. Invoke GrandOak Endpoint. 
+2. Invoke GrandOak Endpoint
 
     The **Call Mediator** is used to invoke a backend service. In the ESB configuration, 
     the backend service is represented using an Endpoint. In Step 2 we have already created an Endpoint to 
@@ -280,7 +280,7 @@ To do that we can use the **Clone Mediator**.
    
     Then Drag the already defined GrandOak Endpoint available under Defined Endpoints section of the palette into 
     the Call mediator area.
-
+    
    ![Call Mediator EP](../assets/img/developing-first-integration/dev-first-integration-12.png)
    
 3. Construct message payload for PineValley Endpoint
@@ -299,7 +299,7 @@ To do that we can use the **Clone Mediator**.
     Drag the PayloadFactory mediator into the 2nd branch of the Clone Mediator. 
 
    ![PayloadFactory Mediator](../assets/img/developing-first-integration/dev-first-integration-13.png)
-
+    
     Specify values for the required PayloadFactory properties.
 
     <table>
@@ -330,7 +330,6 @@ To do that we can use the **Clone Mediator**.
         <td>Args</td>
         <td>$ctx:uri.var.doctorType</td>
       </tr>
-    
     </table>
 
     Note the $1 in the Payload format. It denotes a parameter that can get a value assigned dynamically. 
@@ -385,8 +384,8 @@ Following is what you will see in the Source View.
 <details>
         <summary>HealthcareAPI</summary>
 	    ```xml
-            <?xml version="1.0" encoding="UTF-8"?>
-            <api context="/healthcare" name="HealthcareAPI" xmlns="http://ws.apache.org/ns/synapse">
+             <?xml version="1.0" encoding="UTF-8"?>
+             <api context="/healthcare" name="HealthcareAPI" xmlns="http://ws.apache.org/ns/synapse">
                 <resource methods="GET" uri-template="/doctor/{doctorType}">
                     <inSequence>
                         <clone>
@@ -426,7 +425,7 @@ Following is what you will see in the Source View.
                     <outSequence/>
                     <faultSequence/>
                 </resource>
-            </api>
+             </api>
 	    ```    
 </details>    
     
