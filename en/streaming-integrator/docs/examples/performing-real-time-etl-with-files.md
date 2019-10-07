@@ -434,6 +434,8 @@ In this scenario, you will append a stream of events to the end of a file.
     
     @App:description('Append incoming events in to a file.')
     
+    @Source(type = 'http', receiver.url='http://localhost:8006/SweetProductionStream', basic.auth.enabled='false',
+        @map(type='json'))
     define stream SweetProductionStream (name string, amount double);
     
     @sink(type='file', @map(type='json'), file.uri='/Users/foo/low_productions.txt')
@@ -457,23 +459,23 @@ In this scenario, you will append a stream of events to the end of a file.
     ```
     INFO {org.wso2.carbon.streaming.integrator.core.internal.StreamProcessorService} - Siddhi App AppendToFile deployed successfully
     ```
-3. Now let's insert a few events into `SweetProductionStream` by executing following `CURL` commands. On the command line, run following commands:
+3. Now let's insert a few events into `SweetProductionStream` by executing following `CURL` commands. On the command line, run following commands:    
     ```
-    curl -X POST -d '{"streamName": "SweetProductionStream", "siddhiAppName": "AppendToFile","data": ["Almond cookie", 100.0]}' http://localhost:9390/simulation/single -H 'content-type: text/plain' -H 'Authorization: Basic YWRtaW46YWRtaW4='
-    ```
-    ```
-    curl -X POST -d '{"streamName": "SweetProductionStream", "siddhiAppName": "AppendToFile","data": ["Baked alaska", 20.0]}' http://localhost:9390/simulation/single -H 'content-type: text/plain' -H 'Authorization: Basic YWRtaW46YWRtaW4='
+    curl -X POST -d "{\"event\": {\"name\":\"Almond cookie\",\"amount\": 100.0}}"  http://localhost:8006/SweetProductionStream --header "Content-Type:application/json"
     ```
     ```
-    curl -X POST -d '{"streamName": "SweetProductionStream", "siddhiAppName": "AppendToFile","data": ["Cup cake", 300.0]}' http://localhost:9390/simulation/single -H 'content-type: text/plain' -H 'Authorization: Basic YWRtaW46YWRtaW4='
+    curl -X POST -d "{\"event\": {\"name\":\"Baked alaska\",\"amount\": 20.0}}"  http://localhost:8006/SweetProductionStream --header "Content-Type:application/json"
+    ```
+    ```
+    curl -X POST -d "{\"event\": {\"name\":\"Cup cake\",\"amount\": 300.0}}"  http://localhost:8006/SweetProductionStream --header "Content-Type:application/json"
     ```
 
 4. Now open the file which you specified under `file.uri` parameter. Observe that the file has following content:
-``` 
-{"event":{"name":"Almond cookie","amount":100.0}}
-{"event":{"name":"Baked alaska","amount":20.0}}
-{"event":{"name":"Cup cake","amount":300.0}}
-``` 
+    ``` 
+    {"event":{"name":"Almond cookie","amount":100.0}}
+    {"event":{"name":"Baked alaska","amount":20.0}}
+    {"event":{"name":"Cup cake","amount":300.0}}
+    ``` 
 
 !!!info
     Instead of appending each event to the end of the file, you can configure your Siddhi application to over-write the file. To do this, use configuration `append='false'` in the Siddhi application. Refer sample `file` sink configuration below:

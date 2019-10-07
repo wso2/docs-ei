@@ -309,11 +309,11 @@ Notice that the `CDC source` has replayed the last two messages. As a result, th
     ```
     CREATE TABLE SweetProductionTable (last_update TIMESTAMP, name VARCHAR(20),amount double(10,2));
     ```
-
+    
     !!!Note
         If you have already carried out the next two preparation steps (i.e., steps 3 and 4) when you tried out the [Listening Mode section](#listening-mode), you can skip them.
-
-
+        
+        
 3. Create a new user by executing the following SQL query.
     ```
     GRANT SELECT, RELOAD, SHOW DATABASES, REPLICATION SLAVE, REPLICATION CLIENT ON *.* TO 'wso2si' IDENTIFIED BY 'wso2';
