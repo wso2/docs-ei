@@ -1,11 +1,11 @@
 # Securing Proxy Services
-## Example use case
-
 This sample demonstrates how you can use WS-Security signing and encryption with proxy services through WS-Policy.
 
 In this sample the proxy service expects to receive a signed and encrypted message as specified by the security policy. To understand the format of the policy file, have a look at the Apache Rampart and Axis2 documentation. The element   engageSec  specifies that Apache Rampart should be engaged on this proxy service. Hence if Rampart rejects any request message that does not conform to the specified policy, that message will never reach the   inSequence  in order to be processed. Since the proxy service is forwarding the received request to the simple stock quote service that does not use WS-Security, you are instructing the ESB to remove the wsse:Security header from the outgoing message.
 
 ## Synapse configuration
+
+Following is a sample proxy service configuration that we can use to implement this scenario.
 
 ```xml tab='Proxy Service'
 <proxy name="StockQuoteProxy">

@@ -1,9 +1,10 @@
 # Exposing a Proxy Service via Inbound Endpoint
-## Example use case
+If a proxy service is to be exposed only via inbound endpoints, the following service parameter has to be set in the proxy configuration.
 
 ## Synapse configuration
 
-If a proxy service is to be exposed only via inbound endpoints, the following service parameter has to be set in the proxy configuration.
+Following is a proxy service configuration that we can use to implement this scenario.
+
 ```xml
 <proxy xmlns="http://ws.apache.org/ns/synapse" name="InboundProxy" transports="https,http" statistics="disable" trace="disable" startOnLoad="true">
         <target>

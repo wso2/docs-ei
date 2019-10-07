@@ -1,9 +1,5 @@
 # Using GET with a Body
-## Example use case
-
-Typically, a GET request does not contain a body, and the Micro Integrator does not support these types of requests. When it receives a GET
-request that contains a body, it drops the message body as it sends the
-message to the endpoint. 
+Typically, a GET request does not contain a body, and the Micro Integrator does not support these types of requests. When it receives a GET request that contains a body, it drops the message body as it sends the message to the endpoint. 
 
 ## Synapse configuration
 

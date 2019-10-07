@@ -1,7 +1,6 @@
 # Handling non-matching resources
-## Example use case
     
-In this scenario, we are defining a sequence to be invoked if the the Micro Integrator is unable to find a matching resource definition for a specific API invocation. This sequence generates a response indicating an error when no matching resource definition is found.
+This example demonstrates how you can define a sequence to be invoked if the the Micro Integrator is unable to find a matching resource definition for a specific API invocation. This sequence generates a response indicating an error when no matching resource definition is found.
     
 ## Synapse configurations
     

@@ -1,9 +1,7 @@
 # Using POST with No Body
-## Example use case
-
 Typically, POST is used to send a message that has data enclosed as a payload inside an HTML body. However, you can also use POST without a payload. WSO2 Micro Integrator treats it as a normal message and forwards it to the endpoint without any extra configuration.
 
-The following diagram depicts a scenario where a REST client communicates with a REST service using the ESB profile. Apache Tcpmon is used solely for monitoring the communication between the ESB profile and the back-end service and has no impact on the messages passed between the ESB profile and back-end service. For this particular scenario, the cURL client is used as the REST client, and the [basic JAX-RS sample](https://docs.wso2.com/display/EI650/JAX-RS+Basics) is used as the back-end REST service. 
+In this example, a REST client communicates with a REST service using the Micro Integrator. Apache Tcpmon is used solely for monitoring the communication between the Micro Integrator and the back-end service and has no impact on the messages passed between the Micro Integrator and back-end service.
 
 ## Synapse configuration 
 

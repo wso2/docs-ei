@@ -1,5 +1,5 @@
 # Configuring non-HTTP endpoints
-## Example use case
+This example demonstrates how the WSO2 Micro Integrator forwards messages to non-HTTP endpoints.
 
 ## Synapse configuration
 
@@ -35,8 +35,6 @@ Create the artifacts:
 3. [Create the rest api](../../../../develop/creating-artifacts/creating-an-api) with the configurations given above.
 4. [Deploy the artifacts](../../../../develop/deploy-and-run) in your Micro Integrator.
 
-Set up the back-end service:
-
-........
+Set up the back-end service.
 
 Invoke the sample Api.
