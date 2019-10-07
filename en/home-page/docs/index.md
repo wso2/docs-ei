@@ -13,17 +13,17 @@ Integration is at the heart of any digital transformation. By connecting differe
 <div class="integratorDescription">
     <h3>Micro Integrator</h3>
     <p>Micro Integrator enables you to build integrations using a configuration-driven or graphical approach using an integration artifact development tool called WSO2 Integration Studio. The Micro Integrator enables developers to do integrations that a typical ESB can handle, to accelerate the development lifecycle, and it also has the adaptability required for a microservice ecosystem with cloud-native deployment.</p>
-    <a href="micro-integrator/overview/introduction">View Documentation</a>
+    <a href="micro-integrator/overview/introduction">Get Started</a>
 </div>
 
 <div class="integratorDescription">
     <h3>Ballerina Integrator</h3>
     <p>Ballerina is a revolutionary new code-driven language for programming network-distributed applications. For developers, Ballerina simplifies integration by natively offering high-level abstractions to represent services, endpoints, and network data types. The Ballerina Integrator empowers developers to easily integrate multiple third-party applications, data stores, and a variety of endpoints using simple code and a rich collection of connectors.</p>
-    <a href="ballerina-integrator/get-started/introduction">View Documentation</a>
+    <a href="ballerina-integrator/get-started/introduction">Get Started</a>
 </div>
 <div class="integratorDescription">
     <h3>Streaming Integrator</h3>
     <p>Streaming Integrator is suitable for any integration use case that requires processing a stream of events. This lightweight stream processor understands streaming SQL queries used to capture, analyze, process, and act on events in real-time based on Siddhi.io. This also allows you to seamlessly integrate with the Micro Integrator to provide a complete analytics solution for your config-based integrations.</p>
-    <a href="streaming-integrator/overview/overview">View Documentation</a>
+    <a href="streaming-integrator/overview/overview">Get Started</a>
 </div>
 
