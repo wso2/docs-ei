@@ -34,7 +34,7 @@ Integration developers will follow the workflow illustrated by the following dia
 				     </ul>
 				</li>
 				<li>
-				    See the <a href="../references/best-Practices">documentation                     on developing 
+				    See the documentation on <a href="../references/best-Practices">developing 
 				    common integration patterns</a> to get an understanding on the best practices that should be 
 				    followed while developing integration solutions using WSO2 MI.
 				</li>
