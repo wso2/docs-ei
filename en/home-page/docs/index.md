@@ -4,7 +4,7 @@ template: templates/home-page.html
 
 # WSO2 Enterprise Integrator Documentation
 
-Integration is at the heart of any digital transformation. By connecting different systems that make up your enterprise, you can build an organization that acts as one seamless digital system. WSO2 Enterprise Integrator (EI) is an open source product that enables comprehensive integration for cloud native and container-native projects. 
+The new WSO2 Enterprise Integrator (WSO2 EI) 7.0 is the only open-source hybrid integration platform that enables API-centric integration using integration architecture styles such as microservices, cloud-native, or centralized ESB. The platform provides a choice of approaches for either code-driven or graphical, drag-and-drop/configuration-driven integration.
 
 <!--
  Adding temporary urls for navigation
@@ -17,7 +17,7 @@ Integration is at the heart of any digital transformation. By connecting differe
     </svg>
     Micro Integrator
     </h3>
-    <p>Micro Integrator enables you to build integrations using a configuration-driven or graphical approach using an integration artifact development tool called WSO2 Integration Studio. The Micro Integrator enables developers to do integrations that a typical ESB can handle, to accelerate the development lifecycle, and it also has the adaptability required for a microservice ecosystem with cloud-native deployment.</p>
+    <p>Micro Integrator is an intuitive, graphical, drag-and-drop, and configuration-driven integrator based on the cloud-native variant of the battle-tested WSO2 EI/ESB runtime.</p>
     <a href="micro-integrator/overview/introduction">Get Started</a>
 </div>
 
@@ -27,7 +27,7 @@ Integration is at the heart of any digital transformation. By connecting differe
             <path fill="#FF7300" d="M5 25.7l.1-3.8c0-.8-.6-1.6-3-1.6v-2c2.4 0 3-.8 3-1.6L5 13C5 10.6 6.2 9.8 9 9.8h1.7v1.8h-.9c-1.8 0-2.2.3-2.2 1.5v3.6c0 1.7-.5 2.3-2.1 2.6 1.6.3 2.2 1 2.2 2.6l-.1 3.6c0 1.3.4 1.6 2.2 1.6h1v1.7H9c-2.8 0-4-.8-4-3.1zM48.7 46.8h1c1.7 0 2.1-.3 2.1-1.6v-3.6c0-1.6.6-2.3 2.2-2.5V39c-1.6-.3-2.2-1-2.2-2.6v-3.6c0-1.2-.4-1.5-2.2-1.5h-.9v-1.7h1.7c2.8 0 4.1.7 4.1 3l-.2 3.9c0 .7.6 1.5 3 1.6V40c-2.4 0-3 .8-3 1.6l.2 3.8c0 2.3-1.3 3.1-4.1 3.1h-1.7v-1.7z"></path><g fill="none" stroke="#434343" stroke-miterlimit="10"><path d="M17.5 12.3h10.4M32.2 12.3h9.3"></path></g><g fill="none" stroke="#434343" stroke-miterlimit="10"><path d="M41.7 23.4h-3.3M33.5 23.4H17.3"></path></g><g fill="none" stroke="#434343" stroke-miterlimit="10"><path d="M17.3 34.4h10.3M32.4 34.4h9.3"></path></g><path fill="none" stroke="#434343" stroke-width="1.5" stroke-miterlimit="10" d="M50.7 52.1v2.7c0 1.5-1.4 2.7-3 2.7h-36a3 3 0 0 1-3-3V32.9M8.7 6.5V3.7c0-1.5 1.4-2.7 3-2.7h36a3 3 0 0 1 3 3v22.1"></path><g fill="none" stroke="#eee" stroke-miterlimit="10"><path d="M41.7 47h-3.3M33.5 47H17.3"></path></g>
         </svg>
         Ballerina Integrator</h3>
-    <p>Ballerina is a revolutionary new code-driven language for programming network-distributed applications. For developers, Ballerina simplifies integration by natively offering high-level abstractions to represent services, endpoints, and network data types. The Ballerina Integrator empowers developers to easily integrate multiple third-party applications, data stores, and a variety of endpoints using simple code and a rich collection of connectors.</p>
+    <p>Ballerina Integrator provides a powerful, simple-to-learn, code-driven approach to programming integrations based on the Ballerina programming language.</p>
     <a href="ballerina-integrator/get-started/introduction">Get Started</a>
 </div>
 <div class="integratorDescription">
@@ -36,7 +36,7 @@ Integration is at the heart of any digital transformation. By connecting differe
             <path fill="none" stroke="#434343" stroke-width="1.5" stroke-miterlimit="10" d="M50.4 52v2.6c0 1.4-1.3 2.6-3 2.6h-36a3 3 0 0 1-3-3V32.6M8.5 6.7V4c0-1.5 1.3-2.7 3-2.7h36a3 3 0 0 1 3 3v22.1"></path><path fill="none" stroke="#434343" stroke-miterlimit="10" d="M16 47.8v-5h27.3v5zM16 37.2v-4.9h27.3v5zM16 26.7v-5h27.2v5zM16 16.1v-4.9h27.3v5z"></path><path fill="#FF7300" d="M10.8 13.7L.8 9v9.6zM10.8 25.6L.8 21v9.5zM57.8 32.8l-10-4.8v9.6zM57.8 44.7l-10-4.8v9.6z"></path>
         </svg>
         Streaming Integrator</h3>
-    <p>Streaming Integrator is suitable for any integration use case that requires processing a stream of events. This lightweight stream processor understands streaming SQL queries used to capture, analyze, process, and act on events in real-time based on Siddhi.io. This also allows you to seamlessly integrate with the Micro Integrator to provide a complete analytics solution for your config-based integrations.</p>
+    <p>Streaming Integrator is a cloud-native, lightweight component that understands streaming SQL queries to capture, analyze, process, and act on events in real-time.</p>
     <a href="streaming-integrator/overview/overview">Get Started</a>
 </div>
 
