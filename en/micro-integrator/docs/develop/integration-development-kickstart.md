@@ -381,56 +381,52 @@ go to **New** → **REST API** to open the API Artifact Creation Options dialog 
     
 The final mediation configuration looks similar to the above diagram.     
 Following is what you will see in the Source View.
-    
-    
-<details>
-        <summary>HealthcareAPI</summary>
-	    ```xml
-             <?xml version="1.0" encoding="UTF-8"?>
-             <api context="/healthcare" name="HealthcareAPI" xmlns="http://ws.apache.org/ns/synapse">
-                <resource methods="GET" uri-template="/doctor/{doctorType}">
-                    <inSequence>
-                        <clone>
-                            <target>
-                                <sequence>
-                                    <call>
-                                        <endpoint key="GrandOakEndpoint"/>
-                                    </call>
-                                </sequence>
-                            </target>
-                            <target>
-                                <sequence>
-                                    <payloadFactory media-type="json">
-                                        <format>{
-                                                          "doctorType": "$1"
-                                                       }
-                                        </format>
-                                        <args>
-                                            <arg evaluator="xml" expression="$ctx:uri.var.doctorType"/>
-                                        </args>
-                                    </payloadFactory>
-                                    <call>
-                                        <endpoint key="PineValleyEndpoint"/>
-                                    </call>
-                                </sequence>
-                            </target>
-                        </clone>
-                        <aggregate>
-                            <completeCondition>
-                                <messageCount max="-1" min="-1"/>
-                            </completeCondition>
-                            <onComplete expression="json-eval($.doctors.doctor)">
-                                <respond/>
-                            </onComplete>
-                        </aggregate>
-                    </inSequence>
-                    <outSequence/>
-                    <faultSequence/>
-                </resource>
-             </api>
-	    ```    
-</details>    
-    
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<api context="/healthcare" name="HealthcareAPI" xmlns="http://ws.apache.org/ns/synapse">
+<resource methods="GET" uri-template="/doctor/{doctorType}">
+    <inSequence>
+	<clone>
+	    <target>
+		<sequence>
+		    <call>
+			<endpoint key="GrandOakEndpoint"/>
+		    </call>
+		</sequence>
+	    </target>
+	    <target>
+		<sequence>
+		    <payloadFactory media-type="json">
+			<format>{
+					  "doctorType": "$1"
+				       }
+			</format>
+			<args>
+			    <arg evaluator="xml" expression="$ctx:uri.var.doctorType"/>
+			</args>
+		    </payloadFactory>
+		    <call>
+			<endpoint key="PineValleyEndpoint"/>
+		    </call>
+		</sequence>
+	    </target>
+	</clone>
+	<aggregate>
+	    <completeCondition>
+		<messageCount max="-1" min="-1"/>
+	    </completeCondition>
+	    <onComplete expression="json-eval($.doctors.doctor)">
+		<respond/>
+	    </onComplete>
+	</aggregate>
+    </inSequence>
+    <outSequence/>
+    <faultSequence/>
+</resource>
+</api>
+```
+
 ## Test the integration scenario
 
 There are several ways that you can test the integration scenario. 
