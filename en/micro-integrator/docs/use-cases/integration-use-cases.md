@@ -1,4 +1,4 @@
-# Integration Use Cases
+# Use Cases
 
 WSO2 Micro Integrator helps you build and execute the following use cases.
 
