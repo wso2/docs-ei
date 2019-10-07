@@ -123,7 +123,7 @@ The **File** menu includes the following options.
     Select the relevant check boxes to indicate which Siddhi files you need to export. If you select the check box for
      **workspace** , all the Siddhi applications in the `workspace` directory are exported.  
       
-    For detailed information, see [Exporting Siddhi Files](exporting-Siddhi-Files.md).     
+    For detailed information, see [Exporting Siddhi Applications](exporting-Siddhi-Applications.md).     
 
 -   **Close File**
     Click this to close a currently active Siddhi application that is already open in a tab.  

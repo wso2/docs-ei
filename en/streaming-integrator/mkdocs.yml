@@ -233,7 +233,7 @@ nav:
     - 'Testing Siddhi Applications': 'develop/testing-a-Siddhi-Application.md'
     - 'Debugging Siddhi Applications': 'develop/debugging_siddhi_applications.md'
     - 'Deploying Siddhi Applications': 'develop/deploying-Streaming-Applications.md'
-    - 'Exporting Siddhi Files': 'develop/exporting-Siddhi-Files.md'
+    - 'Exporting Siddhi Applications': 'develop/exporting-Siddhi-Applications.md'
   - 'Observability':
     - 'Monitoring the Streaming Integrator': 'admin/monitoring-the-streaming-integrator.md'
   - 'References':
