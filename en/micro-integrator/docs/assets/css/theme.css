@@ -263,6 +263,12 @@ html .md-typeset .superfences-tabs > label:hover {
     min-width: 770px;
 }
 
+.hide-toc .mb-config-catalog {
+    display: table;
+    max-width: 1000px;
+    min-width: 1000px;
+}
+
 .mb-config-catalog .superfences-tabs {
     flex-direction: column;
 }
@@ -306,6 +312,13 @@ html .md-typeset .superfences-tabs > label:hover {
     display: table-cell;
     max-width: 770px;
     min-width: 770px;
+}
+
+.hide-toc .mb-config-catalog > section > .mb-config-options,
+.hide-toc .mb-config-catalog > section > .mb-config-example {
+    display: table-cell;
+    max-width: 1000px;
+    min-width: 1000px;
 }
 
 .mb-config-catalog > section:not(.title) > .mb-config-options {
@@ -936,4 +949,22 @@ html .md-footer-meta.md-typeset a,
         position: relative;
         left: 0;
     }
+}
+
+
+@media (max-width: 1366px) {
+    .mb-config-catalog {
+        display: table;
+        max-width: 700px;
+        min-width: 700px;
+    }
+
+    .mb-config-catalog > section > .mb-config-options,
+    .mb-config-catalog > section > .mb-config-example {
+        display: table-cell;
+        max-width: 770px;
+        min-width: 770px;
+    }
+
+
 }
