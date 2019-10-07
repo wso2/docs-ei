@@ -20,7 +20,7 @@ Download the Streaming Integrator distribution from TODO and extract it to a loc
 
 Navigate to the `<SI_HOME>/bin` directory in the console and issue one of the following commands: <br/>
     - For Windows: `server.bat`
-    - For Linux: `./serverg.sh`
+    - For Linux: `./server.sh`
 
 ## Deploying a simple Siddhi application
 
