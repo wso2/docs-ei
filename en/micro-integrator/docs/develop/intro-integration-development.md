@@ -1,6 +1,7 @@
 # Developing Integration Solutions
 
-The contents on this page will walk you through the topics related to developing integration solutions for WSO2 Micro Integrator.
+The contents on this page will walk you through the topics related to developing integration solutions using WSO2 Micro 
+Integrator.
 
 ## Development workflow
 
@@ -22,13 +23,27 @@ Integration developers will follow the workflow illustrated by the following dia
 			Before you start developing your artifacts, design the synapse configurations that suite your requirement. Use the following resources:
 			<ul>
 				<li>
-					<a href="../../use-cases/integration-use-cases">Tutorials</a> will walk you through the process of developing the most common integration use cases.
+					See the <a href="../../use-cases/integration-use-cases">Use cases</a> documentation                 which contains:
+					 <ul>
+					    <li>
+					        Tutorials that will walk you through the process of developing the most                             common integration use cases. 
+				        </li>
+				        <li>
+					        Examples that provide a quick demo that will help you understand the                                synapse configurations for implementing specific functions.
+				        </li>
+				     </ul>
 				</li>
 				<li>
-					<a href="../../use-cases/integration-use-cases">Examples</a> will provide a quick demo that will help you understand the synapse configurations for implementing specific functions.
+				    See the <a href="../references/best-Practices">documentation                     on developing 
+				    common integration patterns</a> to get an understanding on the best practices that should be 
+				    followed while developing integration solutions using WSO2 MI.
 				</li>
 				<li>
 					See the <a href="../../develop/WSO2-Integration-Studio">WSO2 Integration Studio documentation</a> for in-depth information on the development tool.
+				</li>
+				<li>
+				    See the documentation on <a href="./creating-unit-test-suite/#run-unit-test-suites">creating unit tests</a> to test the integration solution 
+				    that was developed.
 				</li>
 			</ul>
 		</td>
@@ -53,7 +68,8 @@ Integration developers will follow the workflow illustrated by the following dia
 			You can easily test your integration flow either in a container environment, or a VM.
 			<ul>
 				<li>
-					Use the <a href="../../develop/creating-unit-test-suite">Integration Test Suite</a> in WSO2 Integration Studio to run unit testing on your integration artifacts.
+					Use the <a href="../../develop/creating-unit-test-suite/#run-unit-test-suites">Integration Test Suite</a> in WSO2 
+					Integration Studio to run unit testing on your integration artifacts.
 				</li>
 				<li>
 					To test the integration flow in <b>Docker</b>, <a href="../../develop/create-docker-project">create a Docker project</a> and push it to your Docker environment.
@@ -81,7 +97,8 @@ Integration developers will follow the workflow illustrated by the following dia
 		<td><b>Step 5: Deploy in production</b></td>
 		<td>
 			It is recommended to use a <b>CICD pipeline</b> to deploy your tested integration solutions in the production environment.</br></br>
-			WSO2 Integration Studio handles the <b>continous integration</b> of your solutions by directly pushing the artifacts to the remote artifact repository that is used by the continous deployment process: 
+			WSO2 Integration Studio handles the <b>continous integration</b> of your solutions by generating the 
+			artifacts that need to be pushed to a remote artifact repository for the continous deployment process: 
 			<ul>
 				<li>
 					<b>Docker images</b> in the <a href="../../develop/create-docker-project">Docker project</a> and <b>Kubernetes artifacts</b> in the <a href="../../develop/create-kubernetes-project">Kubernetes project</a> can be directly pushed to the remote artifact repository.
