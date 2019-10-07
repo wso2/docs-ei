@@ -11,21 +11,24 @@ If you want to copy a specific Siddhi application to multiple Streaming Integrat
     - For Windows: `streaming-integrator-tooling.bat`
     - For Linux: `./streaming-integrator-tooling.sh` <br/>
     
-    The Streaming Integrator Tooling opens as shown below.  
+    The Streaming Integrator Tooling opens as shown below.
+
     ![Streaming Integrator Welcome Page](../images/exporting-Siddhi-Applications/SI-Welcome_Page.png)
+
 2. Open the Siddhi application you want to export. You can click **Open** and select a Siddhi application that is 
     already saved in the `<SI_HOME>/wso2/server/deployment/workspace` directory.
-3. Click **File** =\> **Export File**.  
-    ![Exporting Siddhi File](../images/exporting-Siddhi-Applications/Export_Siddhi_File.png)  
-    This opens the native file browser opens as shown below.  
-    ![Browse Export Location](../images/exporting-Siddhi-Applications/fileExport.png)
-4. Browse for the required directory path and click **Save**.
 
-!!! info
-    This functionality differs based on the web browser you are using and its settings. e.g., if you have set a default
-    download location and disabled the **Ask where to save each file before downloading** feature as shown below, the 
-    file is downloaded to the default location without prompting you for any further input.
-    ![Download Settings](../images/exporting-Siddhi-Applications/Download_Settings.png)  
+3. Click **File** => **Export File**.
+
+    ![Exporting Siddhi File](../images/exporting-Siddhi-Applications/Export_Siddhi_File.png)
+
+    As a result, the Siddhi application is downloaded as a `.siddhi` file to the default location of your machine.
+
+    !!! info
+        This functionality differs based on the web browser you are using and its settings. e.g., if you have set a default
+        download location and disabled the **Ask where to save each file before downloading** feature as shown below, the
+        file is downloaded to the default location without prompting you for any further input.<br/>
+        ![Download Settings](../images/exporting-Siddhi-Applications/Download_Settings.png)
     
 ## Exporting Siddhi Files as Docker Artifacts
 The Streaming Integrator Tooling allows you to export one or more selected Siddhi files as Docker artifacts in order to
@@ -61,7 +64,7 @@ By default, the Streaming Integrator uses the latest docker image hosted in [ws
     !!! info
         This feature also uses the following configuration files with the content as shown below:
 
-    -   `           docker-compose.editor.yaml          `
+    -   `docker-compose.editor.yaml`
 
         ``` xml
             version: '2.3'
@@ -80,7 +83,7 @@ By default, the Streaming Integrator uses the latest docker image hosted in [ws
                   - ./siddhi-files:/home/wso2carbon/wso2-artifact-volume/wso2/editor/deployment/workspace
         ```
     
-    -   `           docker-compose.worker.yml          `
+    -   `docker-compose.worker.yml`
     
         ``` xml
                 version: '2.3'
@@ -105,18 +108,27 @@ By default, the Streaming Integrator uses the latest docker image hosted in [ws
 To export multiple Siddhi files, follow the steps below:
 
 1. Start Streaming Integrator Tooling by issuing one of the following commands from the `<SI_HOME>/bin` directory.
+
      - For Windows: `streaming-integrator-tooling.bat`
-     - For Linux: `./streaming-integrator-tooling.sh` <br/>
+
+     - For Linux: `./streaming-integrator-tooling.sh`
+
 2. Click **File** , and then click **Export as Docker**.  
-   ![Export Docker file menu](../images/exporting-Siddhi-Applications/File_Menu_Export_Docker.png) 
+   ![Export Docker file menu](../images/exporting-Siddhi-Applications/File_Menu_Export_Docker.png)
+
    As a result, the **Export as Docker** dialog box opens as follows.  
    ![Export as Docker dialog box](../images/exporting-Siddhi-Applications/Export_As_Docker.png)
+
 3. In the **Profile** field, select either **Editor** or **Worker** depending on the profile in which the Siddhi file
    you want to export is located.
+
 4. Under **Files to be included** , expand the **workspace** directory to view all the Siddhi applications that are 
-   available to be exported.  
+   available to be exported.
+
    ![Select required Siddhi files](../images/exporting-Siddhi-Applications/Select_Siddhi_Files.png)
+
    Select the speific Siddhi applications you want to export by selecting the relevant check boxes. If you want to 
    select all the Siddhi applications, select the check box for the **workspace** directory.
+
 5.  Click **Export**. The Siddhi applications are exported as docker artifacts in a zip file to the default location 
     in your machine, based on your operating system and browser settings.
