@@ -35,8 +35,8 @@ Navigate to the path defined by file.uri ({WSO2SIHome}/samples/artifacts/0038/fi
 where you can see a .txt file named after the event (e.g., toffees.txt) and open it.
 
 
-* You can see the data events that you sent:
-{"event":{"name":"toffees","amount":66.71}}\
+* You can see the data events that you sent:<br/>
+{"event":{"name":"toffees","amount":66.71}}<br/>
 {"event":{"name":"toffees","amount":200.0}}
 
 ```sql
