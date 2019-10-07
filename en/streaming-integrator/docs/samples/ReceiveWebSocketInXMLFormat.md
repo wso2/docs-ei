@@ -5,7 +5,7 @@ This application demonstrates how to configure WSO2 Streaming Integrator Tooling
 Save this sample.
 
 ## Executing the Sample:
-1) Navigate to `{WSO2SIHome}/samples/sample-clients/websocket-producer` and run `ant` command as follows:
+1. Navigate to `{WSO2SIHome}/samples/sample-clients/websocket-producer` and run `ant` command as follows:
     Run `ant` command in the terminal.
     ```bash
     ant
@@ -14,8 +14,8 @@ Save this sample.
     ```bash
     ant -DnoOfEventsToSend=5
     ```
-2) Start the Siddhi application by clicking on 'Run'.
-3) If the Siddhi application starts successfully, the following messages would be shown on the console.
+2. Start the Siddhi application by clicking on 'Run'.
+3. If the Siddhi application starts successfully, the following messages would be shown on the console.
     ```
     * ReceiveWebSocketInXMLFormat.siddhi - Started Successfully!
     ```

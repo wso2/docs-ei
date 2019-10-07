@@ -1,7 +1,5 @@
 # Introduction to REST APIs
 
-## Example use case
-
 You can configure REST endpoints in the Micro Integrator by directly specifying HTTP verbs, URL patterns, URI templates, HTTP media types, and other related headers. You can define REST APIs and the associated resources by combining REST APIs with mediation features provided by the underlying messaging framework.
 
 ## Synapse configuration

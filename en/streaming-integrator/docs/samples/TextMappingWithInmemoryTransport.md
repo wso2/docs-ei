@@ -3,11 +3,11 @@
 This application demonstrates how to configure WSO2 Streaming Integrator Tooling to receive events to the SweetProductionStream via TCP transport in binary format and check the custom text mapping and the default text mapping using inMemory transport and log the events in OutputStreams accordingly to the  output  console.
 
 ## Prerequisites:
-1) Save this sample
+1. Save this sample
 
 ## Executing the Sample:
-1) Start the Siddhi application by clicking on 'Run'.
-2) If the Siddhi application starts successfully, the following messages would be shown on the console. <br /><br />
+1. Start the Siddhi application by clicking on 'Run'.
+2. If the Siddhi application starts successfully, the following messages would be shown on the console. <br /><br />
 
     ```
     * Tcp Server started in 0.0.0.0:9892
@@ -16,8 +16,8 @@ This application demonstrates how to configure WSO2 Streaming Integrator Tooling
 
 ## Testing the Sample:
 In order to publish events with TCP client,
-1) Go to `{WSO2SIHome}/samples/sample-clients/tcp-client/` directory.
-2) Run ant commant as following.
+1. Go to `{WSO2SIHome}/samples/sample-clients/tcp-client/` directory.
+2. Run ant commant as following.
     ```bash
     ant -Dtype=binary
     ```

@@ -1,4 +1,4 @@
-# Creating a Siddhi Application
+# Creating Siddhi Applications
 
 Siddhi applications are files that define the Siddhi logic to process
 the events sent to the Streaming Integrator. They are written in the [Siddhi Query

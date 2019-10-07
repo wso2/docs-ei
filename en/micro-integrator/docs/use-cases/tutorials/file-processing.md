@@ -6,8 +6,6 @@ This sample demonstrates how to pick a file from a directory and process it with
 
 The result of the query should be as follows when you query to view the records in the `test.info` table. You will see that there is no data in the table.
   
-![](attachments/119129588/119129591.png)
-
 ## Let's get started!
 
 ### Step 1: Set up the workspace
@@ -48,7 +46,7 @@ To create an ESB solution consisting of an **ESB config** project and a **Compos
 
 1.  Open **WSO2 Integration Studio**.
 2.  Go to **ESB Project** and click **Create New**.
-    ![](/assets/img/tutorials/119132413/119132414.png)
+    ![](../../assets/img/tutorials/119132413/119132414.png)
 
 3.  Enter `FileProcessingService` as the project name.
 4.  Click **Finish**. The created project is saved in the **Project Explorer**.

@@ -1,8 +1,12 @@
 # Switch from FIX to AMQP
 
-Demonstrate the capability of switching between FIX and AMQP protocols.
+This example demonstrates how WSO2 Micro Integrator receives messages through FIX and forwards them through AMQP.
+
+Synapse will forward the order request by binding it to a JMS message payload and sending it to the AMQP consumer. AMQP consumer will send a execution back to Banzai.
 
 ## Synapse configuration
+
+Following are the integration artifacts (proxy service) that we can used to implement this scenario.
 
 ```xml 
 <proxy name="FIXProxy" transports="fix">
@@ -25,10 +29,6 @@ Demonstrate the capability of switching between FIX and AMQP protocols.
     <parameter name="transport.fix.AcceptorMessageStore">file</parameter>
 </proxy>
 ```
-
-Synapse will forward the order request by binding it to a JMS message
-payload and sending it to the AMQP consumer. AMQP consumer will send a
-execution back to Banzai.
 
 ## Configuring Sample FIX Applications
 

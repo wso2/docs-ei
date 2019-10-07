@@ -8,7 +8,7 @@ Follow the steps given below.
 1.  There are two ways to create the Docker project:
 
     -   Open **WSO2 Integration Studio** and click **ESB Project → Create New** in the **Getting Started** view as shown below.
-        ![Create ESB project](/assets/img/tutorials/119132413/119132414.png)
+        ![Create ESB project](../../assets/img/tutorials/119132413/119132414.png)
 
         In the **New ESB Solution Project** dialog that opens, enter a name for the ESB config project. Select the **Create Docker/Kubernetes Exporter Project** along with **ESB Config project** and click **Next**.
         

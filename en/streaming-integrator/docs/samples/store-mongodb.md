@@ -8,15 +8,15 @@ This application demonstrates how to perform CRUD operations using Siddhi querie
 * contains - `containsSweetProductionStream` (verifies whether all the attributes that enter in the stream exists in the store).
 
 ## Prerequisites:
-1) Ensure that MongoDB is installed on your machine. (https://docs.mongodb.com/manual/administration/install-community/).
-2) If auth is not enabled in the MongoDB instance, skip steps 3 and 4.
-3) Create a data store named `production` in MongoD with relevant access privileges.
-4) Create a collection named `SweetProductionTable` and insert values into `SweetProductionTable`.
-5) Save this sample.
+1. Ensure that MongoDB is installed on your machine. (https://docs.mongodb.com/manual/administration/install-community/).
+2. If auth is not enabled in the MongoDB instance, skip steps 3 and 4.
+3. Create a data store named `production` in MongoD with relevant access privileges.
+4. Create a collection named `SweetProductionTable` and insert values into `SweetProductionTable`.
+5. Save this sample.
 
 ## Executing the Sample:
-1) Start the Siddhi application by clicking on 'Run'.
-2) If the Siddhi application starts successfully, the following message is shown on the console:
+1. Start the Siddhi application by clicking on 'Run'.
+2. If the Siddhi application starts successfully, the following message is shown on the console:
     ```
     store-mongodb.siddhi - Started Successfully!
     ```
@@ -25,12 +25,12 @@ This application demonstrates how to perform CRUD operations using Siddhi querie
 If you want to edit this application, stop the application, make your edits and save, and then start the application again.
 
 ## Testing the Sample:
-1) Simulate single events as follows:
-    1) Click on Event Simulator (double arrows on left tab) and then 'Single Simulation'.
-    2) For the Siddhi App Name, select 'store-mongodb'.
-    3) For the Stream Name, select 'searchSweetProductionStream'.
-    4) Enter attribute values and click Send.
-2) Send an event where the name matches a name value in the data you just inserted to the `SweetProductionTable`. This will satisfy the `on` condition of the join query.
+1. Simulate single events as follows:
+    1. Click on Event Simulator (double arrows on left tab) and then 'Single Simulation'.
+    2. For the Siddhi App Name, select 'store-mongodb'.
+    3. For the Stream Name, select 'searchSweetProductionStream'.
+    4. Enter attribute values and click Send.
+2. Send an event where the name matches a name value in the data you just inserted to the `SweetProductionTable`. This will satisfy the `on` condition of the join query.
 
 ## Notes:
 * You can send events to the other corresponding streams to add, delete, update, insert, and search events.

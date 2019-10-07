@@ -8,7 +8,7 @@ Message transformation is necessary when the message format sent by the client i
 
 Let’s assume this is the format of the request sent by the client:
 
-```
+```json
 {
   "name": "John Doe",
   "dob": "1940-03-19",
@@ -25,7 +25,7 @@ Let’s assume this is the format of the request sent by the client:
 
 However, the format of the message compatible with the backend service is as follows:
 
-```
+```json
 {
   "patient": {
     "name": "John Doe",
@@ -62,7 +62,7 @@ Let's update the API resource that was used in the [previous tutorial](routing-r
 1.  In WSO2 Integration Studio, add a **Data Mapper** mediator just after
     the Property mediator in the In Sequence of the API resource.
 
-    ![](/assets/img/tutorials/119132196/119132205.png)
+    ![](../../assets/img/tutorials/119132196/119132205.png)
 
 2.  Double-click the Data Mapper mediator icon and specify the following details:
     <table>
@@ -81,14 +81,14 @@ Let's update the API resource that was used in the [previous tutorial](routing-r
       </tr>
     </table>
 
-    ![](/assets/img/tutorials/119132196/119132224.png)
+    ![](../../assets/img/tutorials/119132196/119132224.png)
 
     Click **OK**. You view the data mapping editor.  
-    ![](/assets/img/tutorials/119132196/119132204.png)
+    ![](../../assets/img/tutorials/119132196/119132204.png)
 
 3.  Create a JSON file (e.g., `input.json`) by copying the following sample content of the request message sent to the API resource and save it in your local file system.
 
-    ```
+    ```json
     { "name": "John Doe",
       "dob": "1990-03-19",
       "ssn": "234-23-525",
@@ -107,19 +107,19 @@ Let's update the API resource that was used in the [previous tutorial](routing-r
 
 4.  Right-click on the top title bar of the **Input** box and click **Load Input** as shown below.
 
-    ![](/assets/img/tutorials/119132196/119132200.png)
+    ![](../../assets/img/tutorials/119132196/119132200.png)
 
 5.  Select **JSON** as the **Resource Type** as shown below.
 
-    ![](/assets/img/tutorials/119132196/119132203.png)
+    ![](../../assets/img/tutorials/119132196/119132203.png)
 
 6.  Click the **file system** link in **Select resource from**, select the JSON file (i.e., `input.json` ) you saved in your local file system, and click **Open**. You can view the input format loaded in the **Input** box of the editor as shown below.
 
-    ![the input format](/assets/img/tutorials/119132196/119132211.png)
+    ![the input format](../../assets/img/tutorials/119132196/119132211.png)
 
 7.  Create another JSON file (e.g., `output.json`) by copying the following sample content of the request message expected by the back-end service and save it in your local file system.
 
-    ```
+    ```json
     {
       "patient": {
         "name": "John Doe",
@@ -136,10 +136,10 @@ Let's update the API resource that was used in the [previous tutorial](routing-r
     ```
 
 8.  Right-click on the top title bar of the **Output** box and click **Load Output** as shown below.  
-    ![](/assets/img/tutorials/119132196/119132202.png)
+    ![](../../assets/img/tutorials/119132196/119132202.png)
 9.  Select **JSON** as the resource type.
 10. Click the **file system** link in **Select resource from**, select the JSON file you saved in your local file system, and click **Open**. You can view the input format loaded in the **Output** box in the editor as shown below.  
-    ![](/assets/img/tutorials/119132196/119132201.png)
+    ![](../../assets/img/tutorials/119132196/119132201.png)
 
     !!! Info
         Check the **Input** and **Output** boxes with the sample messages to see if the element types (i.e. Arrays, Objects and Primitive values) are correctly identified. The following symbols will help you to identify them correctly.
@@ -150,7 +150,7 @@ Let's update the API resource that was used in the [previous tutorial](routing-r
         -  A : represents XML attribute value
 
 11. Do the mapping by dragging arrows from field values in the input box to the relevant field values in the output box. The final mapping is as follows:  
-    ![](/assets/img/tutorials/119132196/119132199.png)
+    ![](../../assets/img/tutorials/119132196/119132199.png)
 12. Save and close the configuration.
 13. Go back to the **Design View** of the API Resource and select the **Data Mapper** mediator and edit the following in the **Properties** tab:
     <table>
@@ -172,11 +172,11 @@ Let's update the API resource that was used in the [previous tutorial](routing-r
       </tr>
     </table>
     
-    ![](/assets/img/tutorials/119132196/119132197.png)
+    ![](../../assets/img/tutorials/119132196/119132197.png)
 
 14. Save the REST API configuration.
 
-    ![](/assets/img/tutorials/119132196/119132198.png)
+    ![](../../assets/img/tutorials/119132196/119132198.png)
 
 You have successfully created all the artifacts that are required for this use case. 
 
@@ -232,7 +232,7 @@ Let's send a request to the API resource.
 
 1.  Create a JSON file names `           request.json          ` with the following request payload.
 
-    ```
+    ```json
     {
       "name": "John Doe",
       "dob": "1990-03-19",
@@ -247,9 +247,9 @@ Let's send a request to the API resource.
     }
     ```
 
-2.  Open a command line terminal and execute the following command from the location where `request.json` file you created is saved:  
+2.  Open a command line terminal and execute the following command from the location where `request.json` file you created is saved: 
 
-    ```
+    ```bash
     curl -v -X POST --data @request.json http://localhost:8290/healthcare/categories/surgery/reserve --header "Content-Type:application/json"
     ```
 
@@ -260,7 +260,7 @@ Let's send a request to the API resource.
 
 You will see the response as follows:
 
-```
+```json
 {"appointmentNumber":1,
     "doctor":
           {"name":"thomas collins",

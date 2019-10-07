@@ -173,9 +173,6 @@ Disadvantages of asynchronous messaging includes the additional component of a m
 					<a href="../../use-cases/examples/jms_examples/detecting-repeatedly-redelivered-messages">Detecting Repeatedly Redilivered Messages</a>
 				</li>
 				<li>
-					<a href="../../use-cases/examples/jms_examples/jms-map-message">JMS Map Messaging</a>
-				</li>
-				<li>
 					<a href="../../use-cases/examples/jms_examples/specifying-a-delivery-delay-on-messages">Delivery Delay on Messages</a>
 				</li>
 				<li>
@@ -288,7 +285,10 @@ For example, messages that are received via HTTP may need to be sent to a JMS qu
 			<b>Examples</b>
 			<ul>
 				<li>
-					<a href="../../use-cases/examples/protocol-switching/intro_to_switching_transports">Introduction to Transport Switching</a>
+					<a href="../../use-cases/examples/protocol-switching/switching_from_JMS_to_HTTP">Switching from JMS to HTTP/S</a>
+				</li>
+				<li>
+					<a href="../../use-cases/examples/protocol-switching/switching_from_HTTPS_to_JMS">Switching from HTTP/S to JMS</a>
 				</li>
 				<li>
 					<a href="../../use-cases/examples/protocol-switching/switching_from_FTP_listener_to_mail_sender">Switching from FTP Listener to Mail Sender</a>
@@ -313,9 +313,6 @@ For example, messages that are received via HTTP may need to be sent to a JMS qu
 				</li>
 				<li>
 					<a href="../../use-cases/examples/protocol-switching/switching_between_HTTP_and_MSMQ">Switching between HTTP to MSMQ</a>
-				</li>
-				<li>
-					<a href="../../use-cases/examples/protocol-switching/switching_from_HTTPS_to_JMS">Switching from HTTP/S to JMS</a>
 				</li>
 			</ul>
 		</td>

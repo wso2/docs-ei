@@ -1,30 +1,12 @@
 # Switch from FIX to HTTP
 
-Demonstrate the capability of switching form FIX to
-HTTP.
+This example demonstrates how WSO2 Micro Integrator receives messages through FIX and forwards them through HTTP.
 
-## Synapse configurations
+The Micro Integrator will forward the order request to one-way `placeOrder` operation on the `SimpleStockQuoteService`. Micro Integrator uses a simple XSLT Mediator to transform the incoming FIX to a SOAP message.
 
-Micro Integrator will forward the order request to one-way `placeOrder` operation on the `SimpleStockQuoteService`. Micro Integrator uses a simple XSLT Mediator to transform the incoming FIX to a SOAP message.
+## Synapse configuration
 
-```xml
-<xsl:stylesheet version="2.0"
-        xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-        xmlns:fn="http://www.w3.org/2005/02/xpath-functions">
-    <xsl:output method="xml" omit-xml-declaration="yes" indent="yes" />
-    <xsl:template match="/">
-        <m0:placeOrder xmlns:m0="http://services.samples">
-            <m0:order>
-                <m0:price><xsl:value-of select="//message/body/field[]"/></m0:price>
-                <m0:quantity><xsl:value-of select="//message/body/field[]"/></m0:quantity>
-                <m0:symbol><xsl:value-of select="//message/body/field[]"/></m0:symbol>
-            </m0:order>
-        </m0:placeOrder>
-    </xsl:template>
-</xsl:stylesheet>
-```
-
-To get an idea about the various transport parameters being used in this sample, see FIX Transport .
+Following are the integration artifacts (proxy service) that we can used to implement this scenario.
 
 ```xml
 <localEntry key="xslt-key-req" src="file:repository/samples/resources/transform/transform_fix_to_http.xslt" />
@@ -48,6 +30,23 @@ To get an idea about the various transport parameters being used in this sample,
 </parameter>
 <parameter name="transport.fix.AcceptorMessageStore">file</parameter>
 </proxy>
+```
+
+```xml 
+<xsl:stylesheet version="2.0"
+        xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+        xmlns:fn="http://www.w3.org/2005/02/xpath-functions">
+    <xsl:output method="xml" omit-xml-declaration="yes" indent="yes" />
+    <xsl:template match="/">
+        <m0:placeOrder xmlns:m0="http://services.samples">
+            <m0:order>
+                <m0:price><xsl:value-of select="//message/body/field[]"/></m0:price>
+                <m0:quantity><xsl:value-of select="//message/body/field[]"/></m0:quantity>
+                <m0:symbol><xsl:value-of select="//message/body/field[]"/></m0:symbol>
+            </m0:order>
+        </m0:placeOrder>
+    </xsl:template>
+</xsl:stylesheet>
 ```
 
 ## Configuring Sample FIX Applications

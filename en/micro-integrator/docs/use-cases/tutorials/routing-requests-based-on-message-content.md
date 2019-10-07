@@ -88,7 +88,7 @@ Let's create three different HTTP endpoints for the above services.
       </tr>
     </table>
 
-    ![](/assets/img/tutorials/119132155/119132166.png)
+    ![](../../assets/img/tutorials/119132155/119132166.png)
 
 4.  Click **Finish**.
 5.  Similarly, create the HTTP endpoints for the other two hospital services using the URI Templates given below:
@@ -108,7 +108,7 @@ To implement the routing scenario, let's add a new API resource to the REST API 
 
 1.  Select **API Resource** in the API palette of the REST API and drag it to the canvas just below the previous API resource that was created.  
 
-    ![](/assets/img/tutorials/119132155/119132165.png)
+    ![](../../assets/img/tutorials/119132155/119132165.png)
 
 2.  Click the new API Resource to access the **Properties** tab and enter the following details:
     <table>
@@ -136,7 +136,7 @@ To implement the routing scenario, let's add a new API resource to the REST API 
     </tr>
     </table>
 
-    ![](/assets/img/tutorials/119132155/119132164.png)
+    ![](../../assets/img/tutorials/119132155/119132164.png)
 
 #### Define the mediation flow 
 
@@ -182,11 +182,11 @@ You can now start configuring the API resource.
 3.  Add a **Switch** mediator from the **Mediator** palette just after the Property Mediator.
 4.  Right-click the Switch mediator you just added and select **Add/Remove Case** to add the number of cases you want to specify.  
 
-    ![](/assets/img/tutorials/119132155/119132163.png) 
+    ![](../../assets/img/tutorials/119132155/119132163.png) 
 
     We hae three different hospital endpoints, which corresponds to three switch cases. Enter 3 for **Number of branches** and click **OK**.  
 
-    ![](/assets/img/tutorials/119132155/switch-cases-dialog.png)
+    ![](../../assets/img/tutorials/119132155/switch-cases-dialog.png)
 
 5.  With the Switch mediator selected, go to the **Properties** tab and give the following details:
     <table>
@@ -312,7 +312,7 @@ You can now start configuring the API resource.
 
 8.  Add a **Send** mediator adjoining the Log mediator and add the **GrandOakEP endpoint** from **Defined Endpoints** palette to the empty box adjoining the Send mediator.  
 
-    ![](/assets/img/tutorials/119132155/119132159.png)
+    ![](../../assets/img/tutorials/119132155/119132159.png)
 
 9.  Add **Log mediators** in the other two **Case boxes** in the Switch mediator and then enter the same properties. Make sure to name the two Log mediators as follows:
 
@@ -337,7 +337,7 @@ You can now start configuring the API resource.
 
 The In Sequence of the API resource configuration should now look like this:  
 
-![](/assets/img/tutorials/119132155/119132158.png?effects=drop-shadow)
+![](../../assets/img/tutorials/119132155/119132158.png?effects=drop-shadow)
 
 You have successfully created all the artifacts that are required for routing messages to a back-end service depending on the content in the request payload. 
 
@@ -373,7 +373,7 @@ Let's test the use case by sending a simple client request that invokes the serv
 2. Open a terminal, navigate to the location where your saved the [back-end service](#step-1-set-up-the-workspace).
 3. Execute the following command to start the service:
 
-    ```
+    ```bash
     java -jar Hospital-Service-2.0.0-EI7.jar
     ```
 
@@ -392,7 +392,7 @@ Let's send a request to the API resource to make a reservation.
 1.  Create a JSON file names `           request.json          ` with
     the following request payload.
 
-    ```
+    ```json
     {
         "patient": {
         "name": "John Doe",
@@ -432,7 +432,7 @@ Let's send a request to the API resource to make a reservation.
 
 2.  Open a terminal, navigate to the directory where you have saved the `           request.json          ` file and execute the following command.
 
-    ```
+    ```json
     curl -v -X POST --data @request.json http://localhost:8290/healthcare/categories/surgery/reserve --header "Content-Type:application/json"
     ```
 
@@ -444,23 +444,23 @@ Let's send a request to the API resource to make a reservation.
 
 You get the following response:
 
-```
+```json
 {"appointmentNumber":1,
-          "doctor":
-               {"name":"thomas collins",
-                "hospital":"grand oak community hospital",
-                "category":"surgery","availability":"9.00 a.m - 11.00 a.m",
-                "fee":7000.0},
-          "patient":
-              {"name":"John Doe",
-               "dob":"1990-03-19",
-               "ssn":"234-23-525",
-               "address":"California",
-               "phone":"8770586755",
-               "email":"johndoe@gmail.com"},
-          "fee":7000.0,
-      "confirmed":false,
-      "appointmentDate":"2025-04-02"}
+    "doctor":
+         {"name":"thomas collins",
+          "hospital":"grand oak community hospital",
+          "category":"surgery","availability":"9.00 a.m - 11.00 a.m",
+          "fee":7000.0},
+    "patient":
+        {"name":"John Doe",
+         "dob":"1990-03-19",
+         "ssn":"234-23-525",
+         "address":"California",
+         "phone":"8770586755",
+         "email":"johndoe@gmail.com"},
+    "fee":7000.0,
+"confirmed":false,
+"appointmentDate":"2025-04-02"}
 ```
 
 Now check the **Console** tab of WSO2 Integration Studio and you will see the following message: `INFO - LogMediator message = Routing to grand oak community hospital`

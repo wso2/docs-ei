@@ -5,9 +5,9 @@ This application demonstrates how to configure WSO2 Streaming Integrator Tooling
 Save this sample.
 
 ## Executing the Sample:
-1) Start the Siddhi application by clicking on 'Run'.
+1. Start the Siddhi application by clicking on 'Run'.
 
-2) If the Siddhi application starts successfully, the following messages would be shown on the console.
+2. If the Siddhi application starts successfully, the following messages would be shown on the console.
 	```
 	* Source Listener has created for url http://localhost:8006/productionStream
 	* ReceiveAndCount.siddhi - Started Successfully!
@@ -39,9 +39,9 @@ curl -X POST -d "{\"event\":{\"name\":\"Cake\",\"amount\":20.12}}" http://localh
 ```
 
 ##### Publish events with Postman:
-1) Install 'Postman' application from Chrome web store.
-2) Launch the application.
-3) Make a 'Post' request to 'http://localhost:8006/productionStream' endpoint. Set the Content-Type to 'application/json' and set the request body in json format as follows.
+1. Install 'Postman' application from Chrome web store.
+2. Launch the application.
+3. Make a 'Post' request to 'http://localhost:8006/productionStream' endpoint. Set the Content-Type to 'application/json' and set the request body in json format as follows.
 	```json
 	{
 		"event": {

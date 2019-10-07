@@ -14,15 +14,15 @@ http://maven.wso2.org/nexus/content/repositories/wso2gpl/org/wso2/extension/sidd
     * Siddhi App ClusTreeTestApp.siddhi successfully deployed.
 
 ## Executing the Sample:
-1) Start the Siddhi application by clicking on 'Run'
-2) If the Siddhi application starts successfully, the following messages would be shown on the console
+1. Start the Siddhi application by clicking on 'Run'
+2. If the Siddhi application starts successfully, the following messages would be shown on the console
     * ClusTreeTestApp.siddhi - Started Successfully!
 
 ## Testing the Sample:
-You can publish data event to the file, through event simulator\
-a) Open event simulator by clicking on the second icon or press Ctrl+Shift+I.\
-b) In the Feed Simulation tab of the panel you can see that the clusTreeTestFeed.csv file is loaded.\
-c) Press the play button to start simulation.
+You can publish data event to the file, through event simulator<br/>
+1. Open event simulator by clicking on the second icon or press Ctrl+Shift+I.
+2. In the Feed Simulation tab of the panel you can see that the clusTreeTestFeed.csv file is loaded.
+3. Press the play button to start simulation.
 
 ## Viewing the Results:
 After clicking the play button see the output on the console, that are produced according to the simulation from csv file.

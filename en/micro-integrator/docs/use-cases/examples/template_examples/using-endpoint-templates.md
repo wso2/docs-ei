@@ -1,6 +1,4 @@
 # Using Endpoint Templates
-## Example use case
-
 ## Synapse configuration
 For example, let's say we have two default endpoints with following hypothetical configurations:
 
@@ -89,6 +87,4 @@ Create the artifacts:
 
 Set up the back-end service:
 
-........
-
-Invoke the service:
+Invoke the service.
