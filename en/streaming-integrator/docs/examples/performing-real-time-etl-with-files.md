@@ -8,9 +8,13 @@ This tutorial takes you through the different modes and options you could use, i
 
 !!!info "Before you begin:"
     Start the SI server by navigating to the `<SI_HOME>/bin` directory and issuing one of the following commands:<br/>
+    <br/>
     - For Windows: `streaming-integrator.bat`<br/>
+    <br/>
     - For Linux:  `sh server.sh`<br/>
-    The following log appears in the Streaming Integrator console one the server is successfully started. <br/>
+    <br/>
+    The following log appears in the Streaming Integrator console once the server is successfully started. <br/>
+    <br/>
     `INFO {org.wso2.carbon.kernel.internal.CarbonStartupHandler} - WSO2 Streaming Integrator started in 4.240 sec`
 
 ## Tutorial steps
@@ -46,14 +50,14 @@ In this scenario, you are tailing a text file, line by line, in order to extract
     insert into LogStream;
     ```
 
-    Change the  value of the `file.uri` parameter inn the above Siddhi application to the file path to which you downloaded `productions.csv` file in step 1.
+    Change the  value of the `file.uri` parameter in the above Siddhi application to the file path to which you downloaded `productions.csv` file in step 1.
     
 3. Save this file as `TailFileLineByLine.siddhi` in the `<SI_HOME>/wso2/server/deployment/siddhi-files` directory.   
 
     !!!info
         This Siddhi application tails the file `productions.csv` line by line. Each line is converted to an event in the `SweetProductionStream` stream. After that, a simple transformation is carried out for the sweet production runs. The transformation involves converting the value for the `name` attribute to upper case. Finally, the output is logged in the Streaming Integrator console.
         
-    Upon successful deployment, following log appears on the SI console:
+    Upon successful deployment, following log appears in the SI console:
 
     ```
     INFO {org.wso2.carbon.streaming.integrator.core.internal.StreamProcessorService} - Siddhi App TailFileLineByLine deployed successfully
@@ -113,7 +117,7 @@ In this scenario, you are using a regular expression to extract data from the fi
     insert into LogStream;
     ```
 
-    Change the  value of the `file.uri` parameter inn the above Siddhi application to the file path to which you downloaded `noisy_data.txt` file in step 1.
+    Change the  value of the `file.uri` parameter in the above Siddhi application to the file path to which you downloaded `noisy_data.txt` file in step 1.
  
 3. Save this file as `TailFileRegex.siddhi` in the `<SI_HOME>/wso2/server/deployment/siddhi-files` directory.
 
@@ -286,7 +290,7 @@ In this scenario, you are reading a text file completely, and then deleting it a
 3. Save this file as `ReadFileLineByLine.siddhi` in the `<SI_HOME>/wso2/server/deployment/siddhi-files` directory.   
 
     !!!info
-        This Siddhi application tails the `productions.csv` file line by line. Each line is converted to an event in the `SweetProductionStream` stream. After that, a simple transformation is carried out for the sweet production runs where the value for the `name` attribute from the event is converted into upper case. Finally, the output is logged on the SI console.
+        This Siddhi application tails the `productions.csv` file line by line. Each line is converted to an event in the `SweetProductionStream` stream. After that, a simple transformation is carried out for the sweet production runs where the value for the `name` attribute from the event is converted into upper case. Finally, the output is logged in the SI console.
         
     Once the Siddhi application is successfully deployed, the following log appears in the SI console:
 
@@ -422,7 +426,7 @@ In this scenario, you extract data from a specific folder. All of the files are 
     insert into LogStream;
     ```
 
-    In the above Siddhi application, change the value for the `dir.uri` parameterso that it points to the `productions` folder you created in step 1.
+    In the above Siddhi application, change the value for the `dir.uri` parameter so that it points to the `productions` folder you created in step 1.
  
 3. Save this file as `ProcessFolder.siddhi` in the `<SI_HOME>/wso2/server/deployment/siddhi-files` directory.
 
@@ -612,7 +616,7 @@ The production data is updated in a file and therefore you have to keep tailing 
     INFO {io.siddhi.core.stream.output.sink.LogSink} - CountProductions : LogStream : Event{timestamp=1565097506866, data=[120.0], isExpired=false}
     ```
 
-    These logs print the sweet production count. Note that the current count of sweet productions is being printed as `120` in the second log. This is because we have so far produced `120` sweets: `100` Almond cookies and `20` Baked alaskas.
+    These logs print the sweet production count. Note that the current count of sweet productions is being printed as `120` in the second log. This is because the factory has so far produced `120` sweets: `100` Almond cookies and `20` Baked alaskas.
     
 8. Now wait for following log to appear in the SI console.
 
@@ -634,7 +638,7 @@ The production data is updated in a file and therefore you have to keep tailing 
     Croutons,100.0
     ```   
 
-10. Shutdown SI server. Here we are deliberately creating a scenario where the server crashes before the SI server could persist the latest production count.
+10. Shutdown SI server. Here you are deliberately creating a scenario where the server crashes before the SI server could persist the latest production count.
     
     !!!Info
         Here, the SI server crashes before the state is persisted. Therefore, the Streaming Integrator server cannot persist the latest count (which includes the last two production runs that produced `100` Croissants and `100` Croutons). The good news is, the `File source` source replays the last two messages, allowing the Streaming Integrator to successfully recover from the server crash.
