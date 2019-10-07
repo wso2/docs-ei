@@ -514,9 +514,3 @@ Upon invocation, you should be able to observe the following response:
 - [Running on Docker](../page-not-found).
 - [Running on Kubernetes](../page-not-found).
 - [Writing an unit test for integration artifacts](creating-unit-test-suite).
-
-
-
-
-
-
