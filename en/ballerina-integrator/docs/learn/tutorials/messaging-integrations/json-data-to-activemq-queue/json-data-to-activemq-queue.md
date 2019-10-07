@@ -1,6 +1,6 @@
 ---
 title: Sending JSON data to ActiveMQ queue
-commitHash: 9be2bde276ae340075a85d504719e5f8831bfe6b
+commitHash: 1d8ae9a112965cc1b7c0409fec0adb877181bd0c
 note: This is an auto-generated file do not edit this, You can edit content in "ballerina-integrator" repo
 ---
 
@@ -15,36 +15,46 @@ Ballerina has first-class support for HTTP and implementing an HTTP service is s
 ![Sending JSON data to ActiveMQ queue](../../../../../assets/img/JSON-to-ActiveMQ-Queue.jpg)
 
 ## Prerequisites
-- [Java](https://www.oracle.com/technetwork/java/index.html)
-- A Text Editor or an IDE
-- Link to download Ballerina Integrator
+ 
+* Ballerina Integrator
+* Oracle JDK 1.8.*
+* A Text Editor or an IDE 
+> **Tip**: For a better development experience, install the Ballerina Integrator extension in [VS Code](https://code.visualstudio.com).
 
 ## Get the code
 
-Download the ZIP file and extract the contents to get the code.
+Pull the module from [Ballerina Central](https://central.ballerina.io/) using the following command.
 
-<a href="https://github.com/wso2/docs-ei/blob/master/en/ballerina-integrator/docs/learn/guides/messaging/sending-json-data-to-a-jms-queue/sending-json-data-to-a-jms-queue.zip"><img src="../../../../../assets/img/download-zip.png" width="200" alt="Download ZIP"></a>
+```bash
+ballerina pull wso2/<<<MODULE_NAME>>>
+```
+
+Alternately, you can download the ZIP file and extract the contents to get the code.
+
+<a href="../../../../../assets/zip/json-data-to-activemq-queue.zip">
+    <img src="../../../../../assets/img/download-zip.png" width="200" alt="Download ZIP">
+</a>
 
 ## Implementation
 The Ballerina project is created for the integration use case explained above. Please follow the steps given below. You can learn about the Ballerina project and module in this link.
 
 ####1. Create a project.
 ```bash
-$ ballerina new sending-json-data-to-a-jms-queue
+$ ballerina new json-data-to-activemq-queue
 ```
-Change directory to the sending-json-data-to-a-jms-queue.
+Change directory to `json-data-to-activemq-queue`.
 
 ####2. Add a module.
 ```bash
-$ ballerina add jsontojms
+$ ballerina add json_data_to_activemq
 ```
 
 The project structure should look like below.
 ```shell
-sending-json-data-to-a-jms-queue
+json-data-to-activemq-queue
 ├── Ballerina.toml
 └── src
-    └── jsontojms
+    └── json_data_to_activemq
         ├── main.bal
         ├── Module.md
         ├── resources
@@ -114,7 +124,7 @@ Let's create a folder called `lib` under project root path. Then copy above thre
 │   ├── geronimo-j2ee-management_1.1_spec-1.0.1.jar
 │   └── hawtbuf-1.11.jar
 └── src
-    └── jsontojms
+    └── json_data_to_activemq
         ├── main.bal
         ├── Module.md
         ├── resources
@@ -129,28 +139,28 @@ Next, open the Ballerina.toml file and add the following below `[dependencies]` 
 target = "java8"
 
   [[platform.libraries]]
-  module = "jsontojmsflow"
+  module = "json_data_to_activemq"
   path = "./lib/activemq-client-5.15.5.jar"
 
   [[platform.libraries]]
-  module = "jsontojmsflow"
+  module = "json_data_to_activemq"
   path = "./lib/geronimo-j2ee-management_1.1_spec-1.0.1.jar"
 
   [[platform.libraries]]
-  module = "jsontojmsflow"
+  module = "json_data_to_activemq"
   path = "./lib/hawtbuf-1.11.jar"
 ```
 
-Let’s build the module. While being in the sending-json-data-to-a-jms-queue directory, execute the following command.
+Let’s build the module. While being in the `json-data-to-activemq-queue` directory, execute the following command.
 
 ```bash
-$ ballerina build jsontojms
+$ ballerina build json_data_to_activemq
 ```
 
 The build command would create an executable jar file. Now run the jar file created in the above step.
 
 ```bash
-$ java -jar target/bin/jsontojms.jar
+$ java -jar target/bin/json_data_to_activemq.jar
 ```
 
 Now we can see that the service has started on port 8080. Let’s access this service by executing the following curl command. Make sure to start the ActiveMQ server before running the service. Otherwise, it will throw an error.

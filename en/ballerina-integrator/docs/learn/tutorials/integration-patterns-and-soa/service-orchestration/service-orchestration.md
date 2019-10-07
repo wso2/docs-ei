@@ -1,10 +1,12 @@
 ---
 title: Service Orchestration
-commitHash: 9be2bde276ae340075a85d504719e5f8831bfe6b
+commitHash: 1d8ae9a112965cc1b7c0409fec0adb877181bd0c
 note: This is an auto-generated file do not edit this, You can edit content in "ballerina-integrator" repo
 ---
 
 ## About
+
+Ballerina is an open-source programming language that empowers developers to integrate their system easily with the support of connectors.
 
 Service orchestration is a common integration scenario where, upon a request from a client, a service calls multiple other services/endpoints. This guide demonstrates a simple service orchestration scenario where a client makes a doctor's appointment and the service invokes the other two services to make a reservation and to do the payment for the reservation fee respectively.
 
@@ -15,10 +17,25 @@ We will build a service called `doctorAppointment` that accepts a client's reque
 ![service-orchestration](../../../../../assets/img/service_orchestration.jpg)
 
 ## Prerequisites
+ 
+* Ballerina Integrator
+* Oracle JDK 1.8.*
+* A Text Editor or an IDE 
+> **Tip**: For a better development experience, install the Ballerina Integrator extension in [VS Code](https://code.visualstudio.com).
 
-- [Ballerina Distribution](https://ballerina.io/learn/getting-started/)
-- A Text Editor or an IDE 
-> **Tip**: For a better development experience, install the Ballerina IDE plugin for [VS Code](https://marketplace.visualstudio.com/items?itemName=ballerina.ballerina)
+## Get the code
+
+Pull the module from [Ballerina Central](https://central.ballerina.io/) using the following command.
+
+```bash
+ballerina pull wso2/<<<MODULE_NAME>>>
+```
+
+Alternately, you can download the ZIP file and extract the contents to get the code.
+
+<a href="../../../../../assets/zip/service-orchestration.zip">
+    <img src="../../../../../assets/img/download-zip.png" width="200" alt="Download ZIP">
+</a>
 	
 ## Implementation
 
@@ -51,7 +68,7 @@ We will build a service called `doctorAppointment` that accepts a client's reque
                 └── resources
     ```
 
-We can remove the file `main_test.bal` for the moment, since we are not writing any tests for our service.
+    We can remove the file `main_test.bal` for the moment, since we are not writing any tests for our service.
 
 First let's create the services that we will use as backend endpoints.
 
@@ -159,7 +176,7 @@ service doctorAppoinment on new http:Listener(9090) {
 
 Here we are calling the two services we created earlier, using the endpoints ‘reservationEP’ and ‘paymentEP’.
 
-## Run the Integration
+## Testing
 
 * First let’s build the module. While being in the service-orchestration directory, execute the following command.
 
@@ -183,17 +200,17 @@ Now we can see three service have started on ports 8081, 8082, and 9090.
     $ curl -H 'Content-Type:application/json' http://localhost:9090/doctorAppoinment/reservation --data '{"name":"Thomas Colins", "doctor":"John Doe", "date":"30-09-2019", "cardNum":"1234567"}'
     ```
 
-We receive a JSON response similar to the following.
+    We receive a JSON response similar to the following.
 
-```json
-{
-            "payment_status": "settled",
-            "payment_id": "b7981676-c1ca-4380-bc31-1725eb121d1a",
-            "appointmentId": "1001",
-            "patient_name": "Thomas Colins",
-            "date": "30-09-2019",
-            "time": "3.00pm",
-            "doctor_name": "John Doe",
-            "fee": "1000.00"
- }
-```
+    ```json
+    {
+                "payment_status": "settled",
+                "payment_id": "b7981676-c1ca-4380-bc31-1725eb121d1a",
+                "appointmentId": "1001",
+                "patient_name": "Thomas Colins",
+                "date": "30-09-2019",
+                "time": "3.00pm",
+                "doctor_name": "John Doe",
+                "fee": "1000.00"
+    }
+    ```

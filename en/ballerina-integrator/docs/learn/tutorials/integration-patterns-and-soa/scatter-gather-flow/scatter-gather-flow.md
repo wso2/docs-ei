@@ -1,10 +1,12 @@
 ---
 title: Scatter-Gather Flow Control
-commitHash: 9be2bde276ae340075a85d504719e5f8831bfe6b
+commitHash: 1d8ae9a112965cc1b7c0409fec0adb877181bd0c
 note: This is an auto-generated file do not edit this, You can edit content in "ballerina-integrator" repo
 ---
 
 ## About
+
+Ballerina is an open-source programming language that empowers developers to integrate their system easily with the support of connectors.
 
 Scatter-Gather is an integration pattern where a request is sent to multiple recipients and each of the responses are aggregated and returned back to the client as a single response. This guide demonstrates a simple scatter-gather scenario where two files in an FTP location are read simultaneously, their contents aggregated and sent back to the client.
 
@@ -15,11 +17,26 @@ We create service `employeeDetails` which accepts a client request and reads two
 ![scatter-gather](../../../../../assets/img/scatter_gather.jpg)
 
 ## Prerequisites
+ 
+* Ballerina Integrator
+* Oracle JDK 1.8.*
+* A Text Editor or an IDE 
+> **Tip**: For a better development experience, install the Ballerina Integrator extension in [VS Code](https://code.visualstudio.com).
+* An FTP Server
 
-- [Ballerina Distribution](https://ballerina.io/learn/getting-started/)
-- A Text Editor or an IDE 
-> **Tip**: For a better development experience, install the Ballerina IDE plugin for [VS Code](https://marketplace.visualstudio.com/items?itemName=ballerina.ballerina)
-- An FTP Server
+## Get the code
+
+Pull the module from [Ballerina Central](https://central.ballerina.io/) using the following command.
+
+```bash
+ballerina pull wso2/<<<MODULE_NAME>>>
+```
+
+Alternately, you can download the ZIP file and extract the contents to get the code.
+
+<a href="../../../../../assets/zip/scatter-gather-flow.zip">
+    <img src="../../../../../assets/img/download-zip.png" width="200" alt="Download ZIP">
+</a>
 
 ## Implementation
 
@@ -31,19 +48,19 @@ We create service `employeeDetails` which accepts a client request and reads two
 
 * Navigate to the scatter-gather-flow directory.
 
-* Add a new module named `employee_details_service` to the project.
+* Add a new module named `scatter_gather_flow` to the project.
 
    ```bash
-   $ ballerina add employee_details_service
+   $ ballerina add scatter_gather_flow
    ```
 
 * Open the project with VS Code. The project structure will be similar to the following.
 
    ```shell
-   .
+   scatter-gather-flow
    ├── Ballerina.toml
    └── src
-      └── employee_details_service
+      └── scatter_gather_flow
          ├── main.bal
          ├── Module.md
          ├── resources
@@ -52,7 +69,7 @@ We create service `employeeDetails` which accepts a client request and reads two
                ├── main_test.bal
                └── resources
    ```
-We can remove the file `main_test.bal` for the moment, since we are not writing any tests for our service.
+   We can remove the file `main_test.bal` for the moment, since we are not writing any tests for our service.
 
 * Now let's create a file called `ballerina.conf` under the root path of the project structure. The file should have the following configurations.
 
@@ -198,22 +215,21 @@ function convertToJson(string[] empRow) returns json {
 }
 ```
 
-
-## Run the Integration
+## Testing
 
 * First let’s build the module. While being in the scatter-gather-flow directory, execute the following command.
 
-   ```bash
-   $ ballerina build employee_details_service
-   ```
+```bash
+$ ballerina build scatter_gather_flow
+```
 
 This would create the executables. 
 
 * Now run the .jar file created in the above step.
 
-   ```bash
-   $ java -jar target/bin/employee_details_service.jar
-   ```
+```bash
+$ java -jar target/bin/scatter_gather_flow.jar
+```
 You will be prompted to enter the secret you used for encrypting the FTP username and password.
 
 ```bash
@@ -227,70 +243,69 @@ Now we can see that the service has started on port 9090.
    $ curl http://localhost:9090/organization/employees
    ```
 
-We receive a JSON response similar to the following.
+   We receive a JSON response similar to the following.
 
-```json
-[
-   {
-      "empId":"100",
-      "firstName":"Lois",
-      "lastName":"Walker",
-      "joinedDate":"11/24/2003"
-   },
-   {
-      "empId":"101",
-      "firstName":"Brenda",
-      "lastName":"Robinson",
-      "joinedDate":"7/27/2008"
-   },
-   {
-      "empId":"102",
-      "firstName":"Joe",
-      "lastName":"Robinson",
-      "joinedDate":"8/3/2016"
-   },
-   {
-      "empId":"103",
-      "firstName":"Diane",
-      "lastName":"Evans",
-      "joinedDate":"4/16/1999"
-   },
-   {
-      "empId":"104",
-      "firstName":"Benjamin",
-      "lastName":"Russell",
-      "joinedDate":"7/25/2013"
-   },
-   {
-      "empId":"105",
-      "firstName":"Nancy",
-      "lastName":"Baker",
-      "joinedDate":"7/22/2005"
-   },
-   {
-      "empId":"106",
-      "firstName":"Carol",
-      "lastName":"Murphy",
-      "joinedDate":"9/14/2016"
-   },
-   {
-      "empId":"107",
-      "firstName":"Frances",
-      "lastName":"Young",
-      "joinedDate":"1/28/1983"
-   },
-   {
-      "empId":"108",
-      "firstName":"Diana",
-      "lastName":"Peterson",
-      "joinedDate":"4/27/1994"
-   },
-   {
-      "empId":"109",
-      "firstName":"Ralph",
-      "lastName":"Flores",
-      "joinedDate":"2/17/2014"
-   }
-]
-```
-
+   ```json
+   [
+      {
+         "empId":"100",
+         "firstName":"Lois",
+         "lastName":"Walker",
+         "joinedDate":"11/24/2003"
+      },
+      {
+         "empId":"101",
+         "firstName":"Brenda",
+         "lastName":"Robinson",
+         "joinedDate":"7/27/2008"
+      },
+      {
+         "empId":"102",
+         "firstName":"Joe",
+         "lastName":"Robinson",
+         "joinedDate":"8/3/2016"
+      },
+      {
+         "empId":"103",
+         "firstName":"Diane",
+         "lastName":"Evans",
+         "joinedDate":"4/16/1999"
+      },
+      {
+         "empId":"104",
+         "firstName":"Benjamin",
+         "lastName":"Russell",
+         "joinedDate":"7/25/2013"
+      },
+      {
+         "empId":"105",
+         "firstName":"Nancy",
+         "lastName":"Baker",
+         "joinedDate":"7/22/2005"
+      },
+      {
+         "empId":"106",
+         "firstName":"Carol",
+         "lastName":"Murphy",
+         "joinedDate":"9/14/2016"
+      },
+      {
+         "empId":"107",
+         "firstName":"Frances",
+         "lastName":"Young",
+         "joinedDate":"1/28/1983"
+      },
+      {
+         "empId":"108",
+         "firstName":"Diana",
+         "lastName":"Peterson",
+         "joinedDate":"4/27/1994"
+      },
+      {
+         "empId":"109",
+         "firstName":"Ralph",
+         "lastName":"Flores",
+         "joinedDate":"2/17/2014"
+      }
+   ]
+   ```
