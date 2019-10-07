@@ -98,8 +98,13 @@ mi remote login
 
 If you want to login using one line command, use the following command:
 
+!!! Note 
+
+If you are a Windows user, you needs to login as above command.
+
 ```bash
 mi remote login [username] [password]
+
 ```
 
 To logout from the CLI, please use the following command: 
