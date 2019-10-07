@@ -872,6 +872,20 @@ html .md-footer-meta.md-typeset a,
     content: "";
 }
 
+.home-title{
+    margin: 1.6rem 0 .8rem;
+    font-size: 1rem;
+    font-weight: 400;
+    letter-spacing: -.01em;
+    line-height: 1.5;
+    display: flex;
+    align-items: center;
+}
+.home-title svg{
+    padding-right: 10px;
+    width: 60px;
+}
+
 .integratorDescription {
     margin-top: 1em;
     width: 25%;
