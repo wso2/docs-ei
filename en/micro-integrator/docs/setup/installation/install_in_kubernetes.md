@@ -9,4 +9,4 @@ configurations, and third-party dependencies by using the base Docker
 image of WSO2 Micro Integrator. You can then use the immutable Docker image to create pods and to
 configure the kubernetes deployments according to your requirements.
 
-Follow the [Quick Start Guide](../../quick-start-guide/quick-start-guide.md) to run a simple use case on a Kubernetes cluster.
+Follow the [Quick Start Guide](../../overview/quick-start-guide.md) to run a simple use case on a Kubernetes cluster.

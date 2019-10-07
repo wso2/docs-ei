@@ -13,11 +13,11 @@ Follow the instructions on [downloading and installing WSO2 Micro Integrator](..
 
 ## Setting up the load balancer
 
-Follow the instructions on [setting up a load balancer](../../setup/setting_up_lb.md) for a two-node deployment of the Micro Integrator.
+Follow the instructions on [setting up a load balancer](../../setup/deployment/setting_up_lb.md) for a two-node deployment of the Micro Integrator.
 
 ## Setting up the file-based registry
 
-Follow the instructions on [configuring the file-based registry](../../setup/file_based_registry.md) for a two-node deployment of the Micro Integrator.
+Follow the instructions on [configuring the file-based registry](../../setup/deployment/file_based_registry.md) for a two-node deployment of the Micro Integrator.
 
 ## Updating keystores
 

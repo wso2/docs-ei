@@ -13,17 +13,7 @@ The following diagram illustrates how you can use WSO2 Micro Integrator as a JM
 
 The synapse configuration for this sample scenario is as follows:
 
-```java tab="Registry Artifact"
-<registry provider="org.wso2.carbon.mediation.registry.WSO2Registry">
-   <parameter name="cachableDuration">15000</parameter>
-</registry>
-```
-
-```java tab="Task Manager"
-<taskManager provider="org.wso2.carbon.mediation.ntask.NTaskTaskManager"/>
-```
-
-```java tab="Proxy Service 1"
+```xml tab="Proxy Service 1"
 <proxy name="JMSDelivery" startOnLoad="true" trace="disable" transports="https http">
             <description/>
             <target>
@@ -52,7 +42,7 @@ The synapse configuration for this sample scenario is as follows:
 </proxy>
 ```
 
-```java tab="Proxy Service 2"
+```xml tab="Proxy Service 2"
 <proxy name="JMSDeliveryDelayed" startOnLoad="true" trace="disable" transports="https http">
             <description/>
             <target>
@@ -82,7 +72,7 @@ The synapse configuration for this sample scenario is as follows:
 </proxy>
 ```
 
-```java tab="Main Sequence"
+```xml tab="Main Sequence"
 <sequence name="main">
     <in>
         <!-- Log all messages passing through -->
@@ -101,7 +91,7 @@ The synapse configuration for this sample scenario is as follows:
 </sequence>
 ```
 
-```java tab="Fault Sequence"
+```xml tab="Fault Sequence"
 <sequence name="fault">
     <!-- Log the message at the full log level with the ERROR_MESSAGE and the ERROR_CODE-->
     <log level="full">
@@ -112,6 +102,16 @@ The synapse configuration for this sample scenario is as follows:
      <!-- Drops the messages by default if there is a fault -->
     <drop/>
 </sequence>
+```
+
+```xml tab="Registry Artifact"
+<registry provider="org.wso2.carbon.mediation.registry.WSO2Registry">
+   <parameter name="cachableDuration">15000</parameter>
+</registry>
+```
+
+```xml tab="Task Manager"
+<taskManager provider="org.wso2.carbon.mediation.ntask.NTaskTaskManager"/>
 ```
 
 See the descriptions of the above configurations:
@@ -144,6 +144,8 @@ See the descriptions of the above configurations:
         <td></td>
     </tr>
 </table>
+
+<!--
 
 ## Running the Example
 
@@ -265,3 +267,4 @@ You will see that two messages are received by the Java consumer with a time dif
 
 This is because the `         JMSDeliveryDelayed        ` proxy service sets a delivery delay of 10 seconds on the message that it forwards, whereas the `         JMSDelivery        ` proxy service does not set a
 delivery delay on the message.
+-->

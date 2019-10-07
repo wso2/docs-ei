@@ -3,15 +3,13 @@ This section describes how to configure WSO2 Micro Integrator to listen to a JMS
 
 ## Example 1: One-way messaging
 
-In this example, the Micro Integrator listens to a JMS queue, consume messages, and sends them to an HTTP back-end service.
-
-![](attachments/119130303/119130304.png){width="570"}
+In this example, the Micro Integrator listens to a JMS queue, consumes messages, and sends them to an HTTP back-end service.
 
 ### Synape configuration
 
 Given below is the synapse configuration of the proxy service that mediates the above use case. Note that you need to update the JMS connection URL according to your broker as explained below.
 
-```
+```xml
 <proxy xmlns="http://ws.apache.org/ns/synapse" name="JMStoHTTPStockQuoteProxy" transports="jms">
     <target>
         <inSequence>
@@ -49,35 +47,15 @@ The Synapse artifacts used are explained below.
     </tr>
 </table>
 
-### Run the Example
-
-1.  Configure the Micro Integrator with Apache ActiveMQ and set up the JMS Sender.
-2.  Start WSO2 Integration Studio and create a proxy service with the above configuration. You can copy the synapse configuration given above to the **Source View** of your proxy service.
-3.  To test this scenario you need an HTTP back-end service. Deploy the SimpleStockQuoteService and start the Axis2 server.
-4.  Place a message in the ActiveMQ queue by executing the following command from the `MI_HOME/samples/axis2Client` folder.
-
-    ```
-    ant stockquote -Dmode=placeorder -Dtrpurl="jms:/JMStoHTTPStockQuoteProxy?transport.jms.ConnectionFactoryJNDIName=QueueConnectionFactory&java.naming.factory.initial=org.apache.activemq.jndi.ActiveMQInitialContextFactory&java.naming.provider.url=tcp://localhost:61616&transport.jms.ContentTypeProperty=Content-Type&transport.jms.DestinationType=queue"
-    ```
-
-The Micro Integrator reads the message from the ActiveMQ queue and sends it to the back-end service. You will see the following response on the Axis2 Server console:
-
-```
-Fri Dec 16 10:21:11 GST 2016 samples.services.SimpleStockQuoteService  :: Accepted order #1 for : 7424 stocks of IBM at $ 156.74347214873563
-```
-
 ## Example 2: Two-way HTTP back-end call
 
-In addition to one-way invocations, the proxy service can listen to the queue, pick up a message and do a two-way HTTP call as well. It allows the response to be delivered to a queue specified by the client. This is done by specifying a `         ReplyDestination        ` element when placing a request message to a JMS queue. The scenario is depicted in
-the diagram below.
-
-![](attachments/33136192/33348782.png){width="600"}
+In addition to one-way invocations, the proxy service can listen to the queue, pick up a message and do a two-way HTTP call as well. It allows the response to be delivered to a queue specified by the client. This is done by specifying a `ReplyDestination` element when placing a request message to a JMS queue.
 
 ### Synapse configuration
 
 We can have a proxy service similar to the following to simulate a two-way invocation:
 
-```
+```xml
 <proxy xmlns="http://ws.apache.org/ns/synapse"
            name="JMStoHTTPStockQuoteProxy1"
            transports="jms"
@@ -125,27 +103,14 @@ The Synapse artifacts used are explained below.
         </td>
     </tr>
 </table>
-
-### Run the Example
-
-1.  Configure the Micro Integrator with Apache ActiveMQ and set up the JMS Sender.
-2.  Start WSO2 Integration Studio and create a proxy service with the above configuration. You can copy the synapse configuration given above to the **Source View** of your proxy service.
-3.  To test this scenario you need an HTTP back-end service. Deploy the SimpleStockQuoteService and start the Axis2 server.
-4.  Place a message in the ActiveMQ queue by executing the following command from the `MI_HOME/samples/axis2Client` folder. Note how the `transport.jms.ReplyDestination` element is specified.
-
-    ```
-    ant stockquote -Dsymbol=WSO2 -Dtrpurl="jms:/JMStoHTTPStockQuoteProxy1?transport.jms.ConnectionFactoryJNDIName=QueueConnectionFactory&java.naming.factory.initial=org.apache.activemq.jndi.ActiveMQInitialContextFactory&java.naming.provider.url=tcp://localhost:61616&transport.jms.ContentTypeProperty=Content-Type&transport.jms.DestinationType=queue&transport.jms.ReplyDestination=ResponseQueue" 
-    ```
-    
-You can view the responses from the back-end service in the `ResponseQueue` by accessing the ActiveMQ management console using the URL <http://0.0.0.0:8161/admin> and using `admin` as both the username and password.
     
 ## Example 3: Set content type of incoming JMS messages
 
-By default, the Micro Integrator considers all messages consumed from a queue as SOAP messages. To consider messages consumed from a queue as a different format, define the **transport.jms.ContentType** parameter with the respective content type as a proxy service parameter.  
-  
-To demonstrate this, let's modify the above configuration as follows:
+By default, the Micro Integrator considers all messages consumed from a queue as SOAP messages. To consider messages consumed from a queue as a different format, define the **transport.jms.ContentType** parameter with the respective content type.
 
-```
+### Synapse configuration
+
+```xml
 <proxy xmlns="http://ws.apache.org/ns/synapse" name="JMStoHTTPStockQuoteProxy" transports="jms">
     <target>
         <inSequence>
