@@ -931,6 +931,49 @@ html .md-footer-meta.md-typeset a,
 
 }
 
+.integratorDescription:hover svg{
+    -webkit-animation: toRightFromLeft 0.3s forwards;
+    -moz-animation: toRightFromLeft 0.3s forwards;
+    animation: toRightFromLeft 0.3s forwards;
+}
+
+@-webkit-keyframes toRightFromLeft {
+    49% {
+        -webkit-transform: translate(50%);
+    }
+    50% {
+        opacity: 0;
+        -webkit-transform: translate(-50%);
+    }
+    51% {
+        opacity: 1;
+    }
+}
+@-moz-keyframes toRightFromLeft {
+    49% {
+        -moz-transform: translate(50%);
+    }
+    50% {
+        opacity: 0;
+        -moz-transform: translate(-50%);
+    }
+    51% {
+        opacity: 1;
+    }
+}
+@keyframes toRightFromLeft {
+    49% {
+        transform: translate(50%);
+    }
+    50% {
+        opacity: 0;
+        transform: translate(-50%);
+    }
+    51% {
+        opacity: 1;
+    }
+}
+
 @media (max-width: 1000px) {
     .integratorDescription {
         display: block;
