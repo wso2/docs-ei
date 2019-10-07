@@ -1,4 +1,4 @@
-# Adding Security to Message Forwarding Processor
+# Securing the Message Forwarding Processor
 ## Example use case
 
 ## Synapse configuration

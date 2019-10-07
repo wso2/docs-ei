@@ -9,7 +9,7 @@ This application demonstrates how to detect patterns with Siddhi pattern concept
 ## Executing the Sample:
 1) Start the Siddhi application by clicking on 'Run'
 2) If the Siddhi application starts successfully, the following messages would be shown on the console
-* PatternMatching.siddhi - Started Successfully!
+    * PatternMatching.siddhi - Started Successfully!
 
 ## Notes:
 If you edit this application while it's running, stop the application -> Save -> Start.

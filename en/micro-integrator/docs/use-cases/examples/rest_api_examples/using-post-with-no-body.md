@@ -1,9 +1,7 @@
 # Using POST with No Body
-## Example use case
-
 Typically, POST is used to send a message that has data enclosed as a payload inside an HTML body. However, you can also use POST without a payload. WSO2 Micro Integrator treats it as a normal message and forwards it to the endpoint without any extra configuration.
 
-The following diagram depicts a scenario where a REST client communicates with a REST service using the ESB profile. Apache Tcpmon is used solely for monitoring the communication between the ESB profile and the back-end service and has no impact on the messages passed between the ESB profile and back-end service. For this particular scenario, the cURL client is used as the REST client, and the [basic JAX-RS sample](https://docs.wso2.com/display/EI650/JAX-RS+Basics) is used as the back-end REST service. 
+In this example, a REST client communicates with a REST service using the Micro Integrator. Apache Tcpmon is used solely for monitoring the communication between the Micro Integrator and the back-end service and has no impact on the messages passed between the Micro Integrator and back-end service.
 
 ## Synapse configuration 
 
@@ -33,12 +31,12 @@ In this proxy configuration, testAPI intercepts messages that are sent to the re
 
 Create the artifacts:
 
-1. Set up WSO2 Integration Studio.
-2. Create an ESB Config project
-3. Create a REST Api artifact with the above configuration.
-4. Deploy the artifacts in your Micro Integrator.
+1. [Set up WSO2 Integration Studio](../../../../develop/installing-WSO2-Integration-Studio).
+2. [Create an ESB Solution project](../../../../develop/creating-projects/#esb-config-project)
+3. [Create the rest api](../../../../develop/creating-artifacts/creating-an-api) with the configurations given above.
+4. [Deploy the artifacts](../../../../develop/deploy-and-run) in your Micro Integrator.
 
-Set up the back-end service:
+Set up the back-end service.
 
 - Start tcpmon and make it listen to port 8292 of your local machine. It is also important to set the target host name and the port as required. In this case, the target port needs to be set to 8290 (i.e. the port where the backend service is running).  We will now test the connection by sending a POST message that includes a payload inside an HTML body.
 
@@ -51,7 +49,7 @@ Invoke the REST Api:
     ```
     where `        request.json        ` has the following content on the appointment:
         
-    ```
+    ```json
     {
         "patient": {
         "name": "John Doe",
@@ -69,7 +67,7 @@ Invoke the REST Api:
 
     The following reply message appears in the console:
 
-    ```bash
+    ```json
     {
        "appointmentNumber": 1,
        "doctor": {

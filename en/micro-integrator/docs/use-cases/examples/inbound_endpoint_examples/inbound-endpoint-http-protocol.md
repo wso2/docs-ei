@@ -9,9 +9,10 @@ for mediation.The response also behaves in the same way.
 
 ## Synapse configuration
 
-Following are the integration artifacts that we can used to implement this scenario.
+Following are the integration artifacts that we can used to implement this scenario. See the instructions on how to [build and run](#build-and-run) this example.
 
 ```xml tab='Inbound Endpoint'
+<?xml version="1.0" encoding="UTF-8"?>
 <inboundEndpoint xmlns="http://ws.apache.org/ns/synapse"
                 name="HttpListenerEP1"
                 sequence="TestIn"
@@ -25,6 +26,7 @@ Following are the integration artifacts that we can used to implement this scena
 ```
 
 ```xml tab='Sequence'
+<?xml version="1.0" encoding="UTF-8"?>
 <sequence xmlns="http://ws.apache.org/ns/synapse" name="TestIn">
     <send receive="reciveSeq">
         <endpoint>
@@ -40,20 +42,14 @@ Following are the integration artifacts that we can used to implement this scena
 
 Create the artifacts:
 
-1. Set up WSO2 Integration Studio.
-2. Create an ESB Config project
-3. Create the following artifacts: Inbound endpoint, Sequence.
-4. Deploy the artifacts in your Micro Integrator.
+1. [Set up WSO2 Integration Studio](../../../../develop/installing-WSO2-Integration-Studio).
+2. [Create an ESB Solution project](../../../../develop/creating-projects/#esb-config-project)
+3. Create a [mediation sequence](../../../../develop/creating-artifacts/creating-reusable-sequences) and [inbound endpoint](../../../../develop/creating-artifacts/creating-an-inbound-endpoint) with configurations given in the above example.
+4. [Deploy the artifacts](../../../../develop/deploy-and-run) in your Micro Integrator.
 
-Configure the ActiveMQ broker.
+Set up a back-end service for the sample.
 
-Set up the back-end service.
+Invoke the inbound endpoint.
 
-Invoke the inbound endpoint:
-
-Analyze the output debug messages for the actions in the d umb client
-mode.
-
-You will see that the Micro Integrator receives a message when the Micro Integrator Inbound is set
-as the ultimate receiver. You will also see the response from the back
+Analyze the output debug messages for the actions in the dumb client mode. You will see that the Micro Integrator receives a message when the Micro Integrator Inbound is set as the ultimate receiver. You will also see the response from the back
 end in the client.

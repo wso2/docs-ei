@@ -259,7 +259,8 @@ html .md-typeset .superfences-tabs > label:hover {
 
 .mb-config-catalog {
     display: table;
-    width: 100%;
+    max-width: 770px;
+    min-width: 770px;
 }
 
 .mb-config-catalog .superfences-tabs {
@@ -287,6 +288,11 @@ html .md-typeset .superfences-tabs > label:hover {
     font-weight: 500;
 }
 
+.mb-config-catalog .superfences-tabs > label:after {
+    content: "Show Example";
+    font-weight: 500;
+}
+
 .mb-config-catalog .superfences-tabs .doc-wrapper {
     padding: .525rem;
 }
@@ -298,6 +304,8 @@ html .md-typeset .superfences-tabs > label:hover {
 .mb-config-catalog > section > .mb-config-options,
 .mb-config-catalog > section > .mb-config-example {
     display: table-cell;
+    max-width: 770px;
+    min-width: 770px;
 }
 
 .mb-config-catalog > section:not(.title) > .mb-config-options {

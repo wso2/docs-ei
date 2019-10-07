@@ -1,60 +1,81 @@
-# Injecting parameters through environment variables 
+# Injecting Parameters as Environment Variables 
 
-We should package artifacts that need to be deployed in the micro integrator (synapse configs, APIs, proxies, 
-inbound-endpoints, etc) when we are creating a docker image.
+When deploying integration artifacts in different environments, it is necessary to change the synapse parameters used in the artifacts according to the environment. For example, the 'endpoint URL' will be different in each environment. If you define the synapse parameters in your artifacts as explained below, you can inject the required parameter values for each environment using system variables. Without this feature, you need to create and maintain separate artifacts for each environment.
 
-In the current implementation of the synapse library, we need to specify parameters that can be varied in different environments in the synapse configuration itself.
-So in order to achieve dynamic nature, we need to inject these values to the docker container in dynamic manner.
-And the solution is to injecting these values through environment variables.
-In following topics it is described what are the parameters that are supported to be inject through environment 
-variables and sample from each section.
+This feature is useful for container deployments. We need to dynamically inject the parameter values to the docker container.
 
-## End Points
+## Injecting Endpoint parameters
 
-1. Address Endpoint
-    1. URI
-2. HTTP Endpoint
-    1. URI
-3. Loadbalance Endpoint
-    1. Hostname
-    2. Port
-4. RecipientList Endpoint
-    1. Hostname
-    2. Port
-5. Template Endpoint
-   1. URI
-6. WSDL Endpoint
-   1. wsdlURI
+Configure the Endpoint parameters in your synapse configuration as shown below.
 
-### Sample
+<table>
+    <tr>
+        <th>Endpoint Type</th>
+        <th>Parameters</th>
+    </tr>
+    <tr>
+        <td>Address Endpoint</td>
+        <td><code>uri</code></td>
+    </tr>
+    <tr>
+        <td>HTTP Endpoint</td>
+        <td><code>uri</code></td>
+    </tr>
+    <tr>
+        <td>Loadbalance Endpoint</td>
+        <td>
+            <code>hostname</code> and <code>port</code>
+        </td>
+    </tr>
+    <tr>
+        <td>RecipientList Endpoint</td>
+        <td>
+            <code>hostname</code> and <code>port</code>
+        </td>
+    </tr>
+    <tr>
+        <td>Template Endpoint</td>
+        <td>
+            <code>uri</code>
+        </td>
+    </tr>
+    <tr>
+        <td>WSDL Endpoint</td>
+        <td>
+            <code>wsdlURI</code>
+        </td>
+    </tr>
+</table>
 
-If you want to define the URL with environment properties, you can define it as shown below.
+### Example
 
-```
+In the following example, the endpoint URL is configured for an environment variable.
+
+```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <endpoint xmlns="http://ws.apache.org/ns/synapse" name="JSON_EP">
   <address uri="$SYSTEM:VAR"/>
 </endpoint>
 ```
 
+-   In a **VM** deployment, you can export the variables as shown below. Here VAR is the url you need to have set as environment property.
 
-Here VAR is the url you need to have set as environment property.
+    ```bash
+    export VAR=http://localhost:61616/...
+    ```
 
-This is useful when you need to need to deploy the endpoint in a container.
+## Injecting Data service parameters
 
-In a VM var can be export as below : 
+-   `Driver`
+-   `URL`
+-   `Username`
+-   `Password`
 
-export VAR=http://localhost:61616/...
+### Example
 
-## DataService Deployment - InlineDataSource
+In the following example, the data service parameters are configured for an environment variable.
 
-1. Driver
-2. URL
-3. Username
-4. Password
-
-### Sample
-```
+```xml tab='Inline Datasource'
 <data name="DataServiceSample" serviceGroup="" serviceNamespace="">
     <description/>
     <config id="SourceSample">
@@ -72,18 +93,7 @@ export VAR=http://localhost:61616/...
 </data>
 ```
 
-
-
-
-## DataService Deployment - Separate DataSource
-
-1. Driver
-2. URL
-3. Username
-4. Password
-
-### Sample
-```
+```xml tab='External Datasource'
 <datasource>
     <name>MySQLConnection</name>
     <description>MySQL Connection</description>
@@ -98,11 +108,22 @@ export VAR=http://localhost:61616/...
 </datasource>
 ```
 
-## Tasks 
-1. Pinned Servers
+-  In a **VM** deployment, you can export the variables as shown below. Here VAR is the url you need to have set as environment property.
 
-### sample
-```
+    ```bash
+    export uname=
+    export pass=
+    export url1=
+    export driver1=
+    ```
+
+## Injecting Scheduled Task parameters
+
+The <b>pinned servers</b> parameter can be set as an environment variable for a scheduled task or proxy service. See the examples given below.
+
+### Example
+
+```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <task class="org.apache.synapse.startup.tasks.MessageInjector" group="synapse.simple.quartz" name="ProxytestInject" pinnedServers="$SYSTEM:pinned" xmlns="http://ws.apache.org/ns/synapse">
     <trigger count="5" interval="10"/>
@@ -114,46 +135,153 @@ export VAR=http://localhost:61616/...
     </property>
 </task>
 ```
+-   In a **VM** deployment, you can export the variables as shown below. Here VAR is the url you need to have set as environment property.
 
-## Proxy Services 
-1. Pinned Servers
+    ```bash
+    export pinned=
+    ```
 
-## Inbound endpoints 
+## Injecting Inbound Endpoint parameters
 
-1. HTTP/S 
-    1. inbound.http.port
-2. HL7 
-    1. inbound.hl7.Port
-3. CFX-WS-RM 
-    1. Inbound.cxf.rm.port
-    2. inbound.cxf.rm.host
-4. Websocket/Secure 
-    1.  inbound.ws.port
-5. File 
-    1. transport.vfs.FileURI
-    2. transport.vfs.MoveAfterFailure
-    3. transport.vfs.MoveAfterProcess
-    4. transport.vfs. ReplyFileURI
-6. JMS 
-    1. pinnedServers
-    2. java.naming.provider.url
-    3. transport.jms.UserName
-    4. transport.jms.Password
-7. Kafka 
-    1. zookeeper.connect
-8. MQTT 
-    1. mqtt.server.host.name
-    2. mqtt.server.port
-    3. mqtt.subscription.username
-    4. mqtt.subscription.password
-9. RabbitMQ 
-    1. rabbitmq.server.host.name
-    2. rabbitmq.server.port
-    3. rabbitmq.server.user.name
-    4. rabbitmq.server.password
-    
-### sample
-```
+See the list of properties that can be defined as environment variables:
+
+-   <a href="./../../../../references/synapse-properties/inbound-endpoints/listening-inbound-endpoints/http-inbound-endpoint-properties">HTTP/HTTPS Inbound Protocol</a>
+-   <a href="./../../../../references/synapse-properties/inbound-endpoints/listening-inbound-endpoints/hl7-inbound-endpoint-properties">HL7 Inbound Protocol</a>
+-   <a href="./../../../../references/synapse-properties/inbound-endpoints/listening-inbound-endpoints/cxf-ws-rm-inbound-endpoint-properties">CXF WS-RM Inbound Protocol</a>
+-   <a href="./../../../../references/synapse-properties/inbound-endpoints/listening-inbound-endpoints/websocket-inbound-endpoint-properties">Websocket Inbound Protocol</a>
+
+-   <a href="./../../../../references/synapse-properties/inbound-endpoints/polling-inbound-endpoints/file-inbound-endpoint-properties">File Inbound Protocol</a>
+-   <a href="./../../../../references/synapse-properties/inbound-endpoints/polling-inbound-endpoints/jms-inbound-endpoint-properties">JMS Inbound Protocol</a>
+-   <a href="./../../../../references/synapse-properties/inbound-endpoints/polling-inbound-endpoints/kafka-inbound-endpoint-properties">Kafka Inbound Protocol</a>
+
+-   <a href="./../../../../references/synapse-properties/inbound-endpoints/event-based-inbound-endpoints/mqtt-inbound-endpoint-properties">MQTT Inbound Protocol</a>
+-   <a href="./../../../../references/synapse-properties/inbound-endpoints/event-based-inbound-endpoints/rabbitmq-inbound-endpoint-properties">RabbitMQ Inbound Protocol</a>
+
+<!--
+<table>
+    <tr>
+        <th>Inbound Endpoint Type</th>
+        <th>Parameters</th>
+    </tr>
+    <tr>
+        <td>HTTP/S</td>
+        <td>
+            <code>inbound.http.port</code>
+        </td>
+    </tr>
+    <tr>
+        <td>HL7</td>
+        <td>
+            <code>inbound.hl7.Port</code>
+        </td>
+    </tr>
+    <tr>
+        <td>CFX-WS-RM</td>
+        <td>
+            <ul>
+                <li>
+                    <code>Inbound.cxf.rm.port</code>
+                </li>
+                <li>
+                    <code>inbound.cxf.rm.host</code>
+                </li>
+            </ul>
+        </td>
+    </tr>
+    <tr>
+        <td>Websocket/Secure</td>
+        <td>
+            <code>inbound.ws.port</code>
+        </td>
+    </tr>
+    <tr>
+        <td>File</td>
+        <td>
+            <ul>
+                <li>
+                    <code>transport.vfs.FileURI</code>
+                </li>
+                <li>
+                    <code>transport.vfs.MoveAfterFailure</code>
+                </li>
+                <li>
+                    <code>transport.vfs.MoveAfterProcess</code>
+                </li>
+                <li>
+                    <code>transport.vfs. ReplyFileURI</code>
+                </li>
+            </ul>
+        </td>
+    </tr>
+    <tr>
+        <td>JMS</td>
+        <td>
+            <ul>
+                <li>
+                    <code>pinnedServers</code>
+                </li>
+                <li>
+                    <code>java.naming.provider.url</code>
+                </li>
+                <li>
+                    <code>transport.jms.UserName</code>
+                </li>
+                <li>
+                    <code>transport.jms.Password</code>
+                </li>
+            </ul>
+        </td>
+    </tr>
+    <tr>
+        <td>Kafka</td>
+        <td>
+            <code>zookeeper.connect</code>
+        </td>
+    </tr>
+    <tr>
+        <td>MQTT</td>
+        <td>
+            <ul>
+                <li>
+                    <code>mqtt.server.host.name</code>
+                </li>
+                <li>
+                    <code>mqtt.server.port</code>
+                </li>
+                <li>
+                    <code>mqtt.subscription.username</code>
+                </li>
+                <li>
+                    <code>mqtt.subscription.password</code>
+                </li>
+            </ul>
+        </td>
+    </tr>
+    <tr>
+        <td>RabbitMQ</td>
+        <td>
+            <ul>
+                <li>
+                    <code>rabbitmq.server.host.name</code>
+                </li>
+                <li>
+                    <code>rabbitmq.server.port</code>
+                </li>
+                <li>
+                    <code>rabbitmq.server.user.name</code>
+                </li>
+                <li>
+                    <code>rabbitmq.server.password</code>
+                </li>
+            </ul>
+        </td>
+    </tr>
+</table>
+-->
+
+### Example
+
+```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <inboundEndpoint name="jms" onError="fault" protocol="jms" sequence="LogMsgSeq" suspend="false" xmlns="http://ws.apache.org/ns/synapse">
     <parameters>
@@ -178,10 +306,30 @@ export VAR=http://localhost:61616/...
 </inboundEndpoint>
 ```
 
-## Listener Proxy - All the Above Properties
+-   In a **VM** deployment, you can export the variables as shown below. Here VAR is the url you need to have set as environment property.
 
-### sample
-```
+    ```bash
+    export jmsconfac=
+    export jmsurl=
+    export jmsuname=
+    export jmspass=
+    export pinned=
+    ```
+
+## Injecting proxy service parameters
+    
+The <b>pinned servers</b> parameter as well as all the service-level <b>transport parameters</b>:
+
+-   [JMS parameters](../../references/synapse-properties/transport-parameters/jms-transport-parameters)
+-   [FIX parameters](../../references/synapse-properties/transport-parameters/fix-transport-parameters)
+-   [MailTo parameters](../../references/synapse-properties/transport-parameters/mailto-transport-parameters)
+-   [MQTT parameters](../../references/synapse-properties/transport-parameters/mqtt-transport-parameters)
+-   [RabbitMQ parameters](../../references/synapse-properties/transport-parameters/rabbitmq-transport-parameters)
+-   [VFS parameters](../../references/synapse-properties/transport-parameters/vfs-transport-parameters)
+
+### Example
+
+```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <proxy name="JmsListner" pinnedServers="localhost" startOnLoad="true" transports="http https jms" xmlns="http://ws.apache.org/ns/synapse">
     <target>
@@ -205,34 +353,87 @@ export VAR=http://localhost:61616/...
 </proxy>
 ```
 
-## Message Store
-1. JMS Message Store 
-    1. store.jms.username
-    2. store.jms.password
-    3. store.jms.connection.factory
+-  In a **VM** deployment, you can export the variables as shown below. Here VAR is the url you need to have set as environment property.
 
-2. RabbitMQ Message Store
-    1. store.rabbitmq.host.name
-    2. store.rabbitmq.host.port
-    3. store.rabbitmq.username
-    4. store.rabbitmq.password
+    ```bash
+    export jmsurl=
+    export jmsconfac=
+    export jmsuname=
+    export jmspass=
+    ```
 
-3. JDBC Message Store
-    1. store.jdbc.drive
-    2. store.jdbc.connection.url
-    3. store.jdbc.username
-    4. store.jdbc.password
+## Injecting Message Store parameters
 
-4. Resequence Message Store
-    1. store.jdbc.drive
-    2. store.jdbc.connection.url
-    3. store.jdbc.username
-    4. store.jdbc.password
+<table>
+    <tr>
+        <th>Message Store Type</th>
+        <th>Parameters</th>
+    </tr>
+    <tr>
+        <td>JMS Message Store</td>
+        <td rowspan="2">
+            <ul>
+                <li>
+                    <code>store.jms.username</code>
+                </li>
+                <li>
+                    <code>store.jms.password</code>
+                </li>
+                <li>
+                    <code>store.jms.connection.factory</code>
+                </li>
+            </ul>
+        </td>
+    </tr>
+    <tr>
+        <td>WSO2 MB Message Store</td>
+    </tr>
+    <tr>
+        <td>RabbitMQ Message Store</td>
+        <td>
+            <ul>
+                <li>
+                    <code>store.rabbitmq.host.name</code>
+                </li>
+                <li>
+                    <code>store.rabbitmq.host.port</code>
+                </li>
+                <li>
+                    <code>store.rabbitmq.username</code>
+                </li>
+                <li>
+                    <code>store.rabbitmq.password</code>
+                </li>
+            </ul>
+        </td>
+    </tr>
+    <tr>
+        <td>JDBC Message Store</td>
+        <td rowspan="2">
+            <ul>
+                <li>
+                    <code>store.jdbc.drive</code>
+                </li>
+                <li>
+                    <code>store.jdbc.connection.url</code>
+                </li>
+                <li>
+                    <code>store.jdbc.username</code>
+                </li>
+                <li>
+                    <code>store.jdbc.password</code>
+                </li>
+            </ul>
+        </td>
+    </tr>
+    <tr>
+        <td>Resequence Message Store</td>
+    </tr>
+</table>
 
-5. WSO2 MB Message Store - Jms Message Store Properties are supported
+### Example
 
-### sample
-```
+```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <messageStore class="org.apache.synapse.message.store.impl.rabbitmq.RabbitMQStore" name="InboundStore" xmlns="http://ws.apache.org/ns/synapse">
     <parameter name="store.rabbitmq.host.name">$SYSTEM:rabbithost</parameter>
@@ -247,3 +448,12 @@ export VAR=http://localhost:61616/...
     <parameter name="store.rabbitmq.password">$SYSTEM:rabbitpass</parameter>
 </messageStore>
 ```
+
+-  In a **VM** deployment, you can export the variables as shown below.
+
+    ```bash
+    export rabbithost=
+    export rabbitport=
+    export rabbitname=
+    export rabbitpass=
+    ```

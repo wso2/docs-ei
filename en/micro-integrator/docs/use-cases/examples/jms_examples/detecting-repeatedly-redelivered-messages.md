@@ -10,27 +10,29 @@ Being able to detect repeatedly redelivered messages is particularly useful beca
 
 The following diagram illustrates how WSO2 Micro Integrator can be used to detect repeatedly redelivered messages, and store such messages in an internal message store.
 
-![](attachments/119130322/119130323.png){width="500"}
-
 To demonstrate the scenario illustrated above, let's configure the JMS inbound endpoint in WSO2 Micro Integrator using HornetQ as the message broker.
 
 ## Synapse configuration
 
 The synapse configuration for this example scenario is as follows:
 
-``` java tab="Registry Artifact"
-<registry provider="org.wso2.carbon.mediation.registry.WSO2Registry">
-    <parameter name="cachableDuration">15000</parameter>
-</registry>
+```xml tab="Inbound Endpoint"
+<inboundEndpoint name="jms_inbound" onError="fault" protocol="jms"sequence="request" suspend="false">
+    <parameters>
+       <parameter name="interval">1000</parameter>
+       <parameter name="transport.jms.Destination">queue/mySampleQueue</parameter>
+       <parameter name="transport.jms.CacheLevel">1</parameter>
+       <parameter name="transport.jms.ConnectionFactoryJNDIName">QueueConnectionFactory</parameter>
+       <parameter name="sequential">true</parameter>
+       <parameter name="java.naming.factory.initial">org.jnp.interfaces.NamingContextFactory</parameter>
+       <parameter name="java.naming.provider.url">jnp://localhost:1099</parameter>
+       <parameter name="transport.jms.SessionAcknowledgement">AUTO_ACKNOWLEDGE</parameter>
+       <parameter name="transport.jms.SessionTransacted">false</parameter>
+    </parameters>
+</inboundEndpoint>
 ```
 
-``` java tab="Task Manager"
-<taskManager provider="org.wso2.carbon.mediation.ntask.NTaskTaskManager">
-    <parameter name="cachableDuration">15000</parameter>
-</taskManager>
-```
-
-``` java tab="Sequence (Request)"
+```xml tab="Sequence (Request)"
 <sequence name="request" onError="fault">
     <log level="full"/>
     <filter regex="1" source="get-property('default','jms.message.delivery.count')" xmlns:ns="http://org.apache.synapse/xsd">
@@ -50,14 +52,26 @@ The synapse configuration for this example scenario is as follows:
 </sequence>
 ```
 
-``` java tab="Sequence (Main)"
+```xml tab="Registry Artifact"
+<registry provider="org.wso2.carbon.mediation.registry.WSO2Registry">
+    <parameter name="cachableDuration">15000</parameter>
+</registry>
+```
+
+```xml tab="Task Manager"
+<taskManager provider="org.wso2.carbon.mediation.ntask.NTaskTaskManager">
+    <parameter name="cachableDuration">15000</parameter>
+</taskManager>
+```
+
+```xml tab="Sequence (Main)"
 <sequence name="main">
     <log level="full"/>
     <drop/>
 </sequence>
 ```
 
-``` java tab="Sequence (Fault)"
+```xml tab="Sequence (Fault)"
 <sequence name="fault">
     <log level="full">
         <property name="MESSAGE" value="Executing default &quot;fault&quot; sequence"/>
@@ -68,24 +82,8 @@ The synapse configuration for this example scenario is as follows:
 </sequence>
 ```
 
-``` java tab="Message Store"
+```xml tab="Message Store"
 <messageStore name="JMS-Redelivered-Store"/>
-```
-
-``` java tab="Inbound Endpoint"
-<inboundEndpoint name="jms_inbound" onError="fault" protocol="jms"sequence="request" suspend="false">
-    <parameters>
-       <parameter name="interval">1000</parameter>
-       <parameter name="transport.jms.Destination">queue/mySampleQueue</parameter>
-       <parameter name="transport.jms.CacheLevel">1</parameter>
-       <parameter name="transport.jms.ConnectionFactoryJNDIName">QueueConnectionFactory</parameter>
-       <parameter name="sequential">true</parameter>
-       <parameter name="java.naming.factory.initial">org.jnp.interfaces.NamingContextFactory</parameter>
-       <parameter name="java.naming.provider.url">jnp://localhost:1099</parameter>
-       <parameter name="transport.jms.SessionAcknowledgement">AUTO_ACKNOWLEDGE</parameter>
-       <parameter name="transport.jms.SessionTransacted">false</parameter>
-    </parameters>
-</inboundEndpoint>
 ```
 
 See the descriptions of the above configurations:
@@ -111,14 +109,24 @@ See the descriptions of the above configurations:
   </tr>
 </table>
 
+<!--
+
 ## Running the Example
 
-1. Configure the Micro Integrator (Publisher) with the broker.
+Create the artifacts:
+
+1. [Set up WSO2 Integration Studio](../../../../develop/installing-WSO2-Integration-Studio).
+2. [Create an ESB Solution project](../../../../develop/creating-projects/#esb-config-project)
+3. [Create integration artifacts](../../../../develop/intro-integration-development) with configurations given in the above example.
+4. Configure the 
+4. [Deploy the artifacts](../../../../develop/deploy-and-run) in your Micro Integrator.
+
+Configure the Micro Integrator (Publisher) with the broker.
 2. Start the Broker.
 3. Start WSO2 Integration Studio and create artifacts with the above configuration. You can copy the synapse configuration given above to the **Source View** of your proxy service.
 4. Run the following java file (**SOAPPublisher.java**) to publish a message to the JMS queue:
     
-    ``` java
+    ```java
     package JMSXDeliveryCount;
         
     import java.util.Properties;
@@ -221,6 +229,7 @@ See the descriptions of the above configurations:
     ```
 When you analyze the output on the console, you will see an entry similar to the following:
 
-``` java
-    INFO - LogMediator To: , MessageID: ID:60868ca5-d174-11e5-b7de-f9743c9bcc9e, Direction: request, DeliveryCounter = 1
+```bash
+INFO - LogMediator To: , MessageID: ID:60868ca5-d174-11e5-b7de-f9743c9bcc9e, Direction: request, DeliveryCounter = 1
 ```
+-->

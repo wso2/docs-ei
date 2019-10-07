@@ -1,14 +1,12 @@
 # Producing JMS Messages
 
-This section describes how to configure WSO2 Micro Integrator to send messages to a JMS Queue. In this example, the Micro Integrator accepts messages via HTTP and send them to JMS queue.
-
-![](attachments/33136193/33348785.png){width="570"}
+This section describes how to configure WSO2 Micro Integrator to send messages to a JMS Queue. In this example, the Micro Integrator accepts messages via HTTP and sends them to a JMS queue.
 
 ## Synapse configuration
 
 Given below is the synapse configuration of the proxy service that mediates the above use case. Note that you need to update the JMS connection URL according to your broker as explained below.
 
-``` java
+```xml
 <proxy xmlns="http://ws.apache.org/ns/synapse" name="StockQuoteProxy" transports="http">
         <target>
             <inSequence>
@@ -75,17 +73,3 @@ The Synapse artifacts used are explained below.
     ``` java
     com.ctc.wstx.exc.WstxUnexpectedCharException: Unexpected character '=' (code 61); expected a semi-colon after the reference for entity 'java.naming.factory.initial' at [row,col {unknown-source}
     ```  
-
-## Run the Example
-
-1.  Configure the Micro Integrator with Apache ActiveMQ and set up the JMS Sender.
-2.  Start WSO2 Integration Studio and create a proxy service with the above configuration. You can copy the synapse configuration given above to the **Source View** of your proxy service.
-3.  Send a message to the Micro Integrator by executing the following command from the `MI_HOME/samples/axis2Client          `
-    folder.
-
-    ``` java
-    ant stockquote -Daddurl=http://localhost:8280/services/StockQuoteProxy -Dmode=placeorder -Dsymbol=WSO2
-    ```
-
-    !!! Info
-        You can view the ActiveMQ queue by accessing the ActiveMQ management console using the URL `http://0.0.0.0:8161/admin`and using `admin` as both the username and password.

@@ -45,7 +45,6 @@ Follow the steps below to remove connectors from WSO2 Integration Studio:
 2.  On the wizard that appears, select **Remove Connector** and click **Next**.
 3.  Select the connectors you want to remove and click **Finish**.
 
-## Examples
-...
+## Tutorials
 
-## Guides
+-	See the tutorial on [using the GMAIL connector](../../../../use-cases/tutorials/using-the-gmail-connector).

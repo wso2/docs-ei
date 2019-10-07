@@ -1,30 +1,29 @@
 
 ## Purpose:
-	This sample demonstrates how to perform unsupervised streaming learning on a set of data points using a Clustree model.
+This sample demonstrates how to perform unsupervised streaming learning on a set of data points using a Clustree model.
 
 ## Prerequisites:
 1. Download siddhi-gpl-execution-streamingml-x.x.x.jar from the following link and copy the jar to  {WSO2SIHome}/lib
-## http://maven.wso2.org/nexus/content/repositories/wso2gpl/org/wso2/extension/siddhi/gpl/execution/streamingml/siddhi-gpl-execution-streamingml/
+http://maven.wso2.org/nexus/content/repositories/wso2gpl/org/wso2/extension/siddhi/gpl/execution/streamingml/siddhi-gpl-execution-streamingml/
 
 2. Copy {WSO2SIHome}/samples/artifacts/ClusTreeSample/clusTreeTestFeed.json to {WSO2SIHome}/wso2/server/deployment/simulation-configs
 
 3. Copy {WSO2SIHome}/samples/artifacts/ClusTreeSample/clusTreeFileTest.csv to {WSO2SIHome}/wso2/server/deployment/csv-files
 
 4. Save this sample. If there is no syntax error, the following messages would be shown on the console
-	     * - Siddhi App ClusTreeTestApp.siddhi successfully deployed.
+    * Siddhi App ClusTreeTestApp.siddhi successfully deployed.
 
 ## Executing the Sample:
-	1) Start the Siddhi application by clicking on 'Run'
-	2) If the Siddhi application starts successfully, the following messages would be shown on the console
-* ClusTreeTestApp.siddhi - Started Successfully!
+1) Start the Siddhi application by clicking on 'Run'
+2) If the Siddhi application starts successfully, the following messages would be shown on the console
+    * ClusTreeTestApp.siddhi - Started Successfully!
 
 ## Testing the Sample:
-You can publish data event to the file, through event simulator
-a) Open event simulator by clicking on the second icon or press Ctrl+Shift+I.
-	b) In the Feed Simulation tab of the panel you can see that the clusTreeTestFeed.csv file is loaded.
-c) Press the play button to start simulation.
+You can publish data event to the file, through event simulator<br/>
+1. Open event simulator by clicking on the second icon or press Ctrl+Shift+I.
+2. In the Feed Simulation tab of the panel you can see that the clusTreeTestFeed.csv file is loaded.
+3. Press the play button to start simulation.
 
-## Viewing the Results:
 ## Viewing the Results:
 After clicking the play button see the output on the console, that are produced according to the simulation from csv file.
 

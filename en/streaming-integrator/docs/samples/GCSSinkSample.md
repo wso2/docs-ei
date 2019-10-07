@@ -1,7 +1,7 @@
 *
 ## Purpose:
 This app shows how to publish events to GCS bucket using the siddhi-io-gcs sink extension. An event will be recieved
-## by the App by consuming events from the endpoint http://localhost:8006/inputStream and it will be sent to the GCS Sink
+ by the App by consuming events from the endpoint http://localhost:8006/inputStream and it will be sent to the GCS Sink
 o Aggregate and commit an object to a Google Cloud Storage bucket.
 
 ## Prerequisites:
@@ -14,8 +14,8 @@ o Aggregate and commit an object to a Google Cloud Storage bucket.
 3. Run the sample.
 
 ## Testing the Sample:
-Open a terminal and issue the following curl command
-	curl -H "Content-Type: application/json" -d '{"event":{"key":"testFile","payload":"message", "test":"wjson"}}' http://localhost:8006/inputStream
+Open a terminal and issue the following curl command<br/>
+`curl -H "Content-Type: application/json" -d '{"event":{"key":"testFile","payload":"message", "test":"wjson"}}' http://localhost:8006/inputStream`
 
 ```sql
 @App:name("GCSSinkSample")

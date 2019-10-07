@@ -1,5 +1,5 @@
 # Using the File Inbound Protocol
-## Failure tracking
+## Failure tracking using File Inbound
 
 ### Example use case
 
@@ -14,7 +14,8 @@ processing and schedule a move task to move that file.
 
 ### Synapse configuration
 
-```xml
+```xml tab='Inbound Endpoint'
+<?xml version="1.0" encoding="UTF-8"?>
 <inboundEndpoint xmlns="http://ws.apache.org/ns/synapse" 
                  name="file" sequence="request" 
                  onError="fault" 
@@ -35,12 +36,25 @@ processing and schedule a move task to move that file.
 </inboundEndpoint>
 ```
 
-## Configuring FTP, SFTP, and FILE Connections
-### Example use case
-
-### Synapse configuration
+```xml tab='Sequence'
+<?xml version="1.0" encoding="UTF-8"?>
+<sequence xmlns="http://ws.apache.org/ns/synapse" name="request">
+    <send/>
+</sequence>
+```
 
 ### Build and run
+
+Create the artifacts:
+
+1. [Set up WSO2 Integration Studio](../../../../develop/installing-WSO2-Integration-Studio).
+2. [Create an ESB Solution project](../../../../develop/creating-projects/#esb-config-project)
+3. Create a [mediation sequence](../../../../develop/creating-artifacts/creating-reusable-sequences) and [inbound endpoint](../../../../develop/creating-an-inbound-endpoint) with configurations given in the above example.
+4. [Deploy the artifacts](../../../../develop/deploy-and-run) in your Micro Integrator.
+
+Invoke the inbound endpoint:
+
+## Configuring FTP, SFTP, and FILE Connections
 
 The following section describes how to configure the file inbound protocol for FTP, SFTP, and FILE connections.
 
@@ -58,7 +72,8 @@ The following section describes how to configure the file inbound protocol for 
 
 !!! Tip
     If the password contains special characters, these characters will need to be replaced with their hexadecimal representation.
-    - To configure the file inbound protocol for FILE connections, you should specify the URL as `file://{local_file_system_path}`:
+    
+-   To configure the file inbound protocol for FILE connections, you should specify the URL as `file://{local_file_system_path}`:
 
     ```bash
     file:///home/user/test/in

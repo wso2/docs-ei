@@ -4,7 +4,7 @@ WSO2 Micro Integrator helps you build and execute the following use cases.
 
 ## Message routing
 
-Message routing is one of the most fundamental requirements when integrating systems/services. It considers addressability, static/deterministic routing, content-based routing, header-based routing, rules-based routing, and policy-based routing as ways of routing a message. WSO2 Micro Integrator enables these routing capabilities using the concepts of mediators and endpoints.
+Message routing is one of the most fundamental requirements when integrating systems/services. It considers content-based routing, header-based routing, rules-based routing, and policy-based routing as ways of routing a message. WSO2 Micro Integrator enables these routing capabilities using the concepts of mediators and endpoints.
 <!--
 ![message routing](../assets/img/use-cases-overview/message-routing-new.png)
 -->
@@ -15,10 +15,11 @@ Message routing is one of the most fundamental requirements when integrating sys
 			<b>Tutorials</b></br>
 			<ul>
 				<li>
-					Try the end-to-end use case on <a href="../../../use-cases/tutorials/integration/routing-requests-based-on-message-content">message routing</a>
+					Try the end-to-end use case on <a href="../../../use-cases/tutorials/routing-requests-based-on-message-content">message routing</a>
 				</li>
 			</ul>
 		</td>
+		<!--
 		<td>
 			<b>Examples</b>
 			<ul>
@@ -33,6 +34,7 @@ Message routing is one of the most fundamental requirements when integrating sys
 				</li>
 			</ul>
 		</td>
+	-->
 	</tr>
 </table>
 
@@ -48,10 +50,11 @@ The integration of systems that communicate in various message formats is a comm
 			<b>Tutorials</b></br>
 			<ul>
 				<li>
-					Try the end-to-end use case on <a href="../../../use-cases/tutorials/integration/transforming-message-content">message transformation</a>
+					Try the end-to-end use case on <a href="../../../use-cases/tutorials/transforming-message-content">message transformation</a>
 				</li>
 			</ul>
 		</td>
+		<!--
 		<td>
 			<b>Examples</b>
 			<ul>
@@ -72,6 +75,7 @@ The integration of systems that communicate in various message formats is a comm
 				</li>
 			</ul>
 		</td>
+	-->
 	</tr>
 </table>
 
@@ -95,7 +99,7 @@ In both the above orchestration approaches, the WSO2 Micro Integrator can intera
 
 Multiple services that need to be orchestrated are invoked one after the other in a synchronous manner. The input to one service is dependant on the output of another service. Invocation of services and input-output mapping is handled by the service orchestration layer (which is the WSO2 Micro Integrator). 
 
-**Parallel or Sequential service invocations**
+**Parallel service invocations**
 
 Multiple services are invoked simultaneously without any blocking until a response is received from another service.
 
@@ -105,12 +109,9 @@ Multiple services are invoked simultaneously without any blocking until a respon
 			<b>Tutorials</b></br>
 			<ul>
 				<li>
-					Try the end-to-end use case on <a href="../../../use-cases/tutorials/integration/exposing-several-services-as-a-single-service">service orchestration</a>
+					Try the end-to-end use case on <a href="../../../use-cases/tutorials/exposing-several-services-as-a-single-service">service orchestration</a>
 				</li>
 			</ul>
-		</td>
-		<td>
-			<b>Examples</b>
 		</td>
 	</tr>
 </table>
@@ -137,7 +138,7 @@ Disadvantages of asynchronous messaging includes the additional component of a m
 			<b>Tutorials</b></br>
 			<ul>
 				<li>
-					Try the end-to-end use case on <a href="../../../use-cases/tutorials/integration/storing-and-forwarding-messages">asynchronous messaging</a>
+					Try the end-to-end use case on <a href="../../../use-cases/tutorials/storing-and-forwarding-messages">asynchronous messaging</a>
 				</li>
 			</ul>
 		</td>
@@ -172,9 +173,6 @@ Disadvantages of asynchronous messaging includes the additional component of a m
 					<a href="../../use-cases/examples/jms_examples/detecting-repeatedly-redelivered-messages">Detecting Repeatedly Redilivered Messages</a>
 				</li>
 				<li>
-					<a href="../../use-cases/examples/jms_examples/jms-map-message">JMS Map Messaging</a>
-				</li>
-				<li>
 					<a href="../../use-cases/examples/jms_examples/specifying-a-delivery-delay-on-messages">Delivery Delay on Messages</a>
 				</li>
 				<li>
@@ -201,12 +199,9 @@ WSO2 Micro Integrator supports more than 150 connectors, where Salesforce, Gmail
 			<b>Tutorials</b></br>
 			<ul>
 				<li>
-					Try the end-to-end use case on <a href="../../../use-cases/tutorials/integration/storing-and-forwarding-messages">connecting web Apis and cloud services</a>
+					Try the end-to-end use case on <a href="../../../use-cases/tutorials/storing-and-forwarding-messages">connecting web Apis and cloud services</a>
 				</li>
 			</ul>
-		</td>
-		<td>
-			<b>Examples</b>
 		</td>
 	</tr>
 </table>
@@ -223,12 +218,46 @@ The data services functionality that is embedded in the Micro Integrator can dec
 			<b>Tutorials</b></br>
 			<ul>
 				<li>
-					Try the end-to-end use case on <a href="../../../use-cases/tutorials/integration/data-integration-tutorial">data integration</a>
+					Try the end-to-end use case on <a href="../../../use-cases/tutorials/sending-a-simple-message-to-a-datasource">data integration</a>
 				</li>
 			</ul>
 		</td>
 		<td>
-			<b>Examples</b>
+			<b>Examples</b></br>
+			<ul>
+				<li>
+					<a href="../../use-cases/examples/data_integration/rdbms-data-service">Exposing an RDBMS Datasource</a>
+				</li>
+				<li>
+					<a href="../../use-cases/examples/data_integration/json-with-data-service">Exposing Data in JSON Format</a>
+				</li>
+				<li>
+					<a href="../../use-cases/examples/data_integration/odata-service">Using and OData Service</a>
+				</li>
+				<li>
+					<a href="../../use-cases/examples/data_integration/nested-queries-in-data-service">Using Nested Data Queries</a>
+				</li>
+				<li>
+					<a href="../../use-cases/examples/data_integration/batch-requesting">Batch Requesting</a>
+				</li>
+				<li>
+					<a href="../../use-cases/examples/data_integration/request-box">Invoking Multiple Operations via Request Box</a>
+				</li>
+				<li>
+					<a href="../../use-cases/examples/data_integration/distributed-trans-data-service">Using Distributed Transactions in Data Services</a>
+				</li>
+				<li>
+					<a href="../../use-cases/examples/data_integration/data-service-notifications">Receiving Notifications from Data Services</a>
+				</li>
+				<!--
+				<li>
+					<a href="../../use-cases/examples/data_integration/data-input-validator">Validating Data Input</a>
+				</li>
+				<li>
+					<a href="../../use-cases/examples/data_integration/data-service-scheduled-task">Scheduling Tasks in Data Services</a>
+				</li>
+			-->
+			</ul>
 		</td>
 	</tr>
 </table>
@@ -248,7 +277,7 @@ For example, messages that are received via HTTP may need to be sent to a JMS qu
 			<b>Tutorials</b></br>
 			<ul>
 				<li>
-					Try the end-to-end use case on <a href="../../../use-cases/tutorials/integration/protocol-switching-tutorial">protocol switching</a>
+					Try the end-to-end use case on <a href="../../../use-cases/tutorials/protocol-switching-tutorial">protocol switching</a>
 				</li>
 			</ul>
 		</td>
@@ -256,34 +285,34 @@ For example, messages that are received via HTTP may need to be sent to a JMS qu
 			<b>Examples</b>
 			<ul>
 				<li>
-					<a href="../../use-cases/examples/protocol-switching/Introduction_to_Switching_Transports_">Introduction to Transport Switching</a>
+					<a href="../../use-cases/examples/protocol-switching/switching_from_JMS_to_HTTP">Switching from JMS to HTTP/S</a>
 				</li>
 				<li>
-					<a href="../../use-cases/examples/protocol-switching/Switch_from_FTP_Listener_to_Mail__Sender">Switching from FTP Listener to Mail Sender</a>
+					<a href="../../use-cases/examples/protocol-switching/switching_from_HTTPS_to_JMS">Switching from HTTP/S to JMS</a>
 				</li>
 				<li>
-					<a href="../../use-cases/examples/protocol-switching/Switching_from_HTTP_to_FIX_">Switching from HTTP to FIX</a>
+					<a href="../../use-cases/examples/protocol-switching/switching_from_FTP_listener_to_mail_sender">Switching from FTP Listener to Mail Sender</a>
 				</li>
 				<li>
-					<a href="../../use-cases/examples/protocol-switching/Switch_from_FIX_to_HTTP_">Switching from FIX to HTTP</a>
+					<a href="../../use-cases/examples/protocol-switching/switching_from_HTTP_to_FIX">Switching from HTTP to FIX</a>
 				</li>
 				<li>
-					<a href="../../use-cases/examples/protocol-switching/Switch_from_FIX_to_AMQP_">Switching from FIX to AMQP</a>
+					<a href="../../use-cases/examples/protocol-switching/switching_from_FIX_to_HTTP">Switching from FIX to HTTP</a>
 				</li>
 				<li>
-					<a href="../../use-cases/examples/protocol-switching/Switching_between_FIX_Versions_">Switching between FIX Versions</a>
+					<a href="../../use-cases/examples/protocol-switching/switching_from_FIX_to_AMQP">Switching from FIX to AMQP</a>
 				</li>
 				<li>
-					<a href="../../use-cases/examples/protocol-switching/Switching_from_TCP_to_HTTP_S_">Switching from TCP to HTTP/S</a>
+					<a href="../../use-cases/examples/protocol-switching/switching_between_FIX_versions">Switching between FIX Versions</a>
 				</li>
 				<li>
-					<a href="../../use-cases/examples/protocol-switching/Switching_from_UDP_to_HTTP_S_">Switching from UDP to HTTP/S</a>
+					<a href="../../use-cases/examples/protocol-switching/switching_from_TCP_to_HTTPS">Switching from TCP to HTTP/S</a>
 				</li>
 				<li>
-					<a href="../../use-cases/examples/protocol-switching/HTTP_to_MSMQ_and_MSMQ_to_HTTP_">Switching between HTTP to MSMQ</a>
+					<a href="../../use-cases/examples/protocol-switching/switching_from_UDP_to_HTTPS">Switching from UDP to HTTP/S</a>
 				</li>
 				<li>
-					<a href="../../use-cases/examples/protocol-switching/Switching_from_HTTP_S_to_JMS_">Switching from HTTP/S to JMS</a>
+					<a href="../../use-cases/examples/protocol-switching/switching_between_HTTP_and_MSMQ">Switching between HTTP to MSMQ</a>
 				</li>
 			</ul>
 		</td>
@@ -296,6 +325,7 @@ The Gateway pattern is used for securely exposing APIs (representing business fu
 
 You can implement the Gateway pattern by deploying WSO2 Micro Integrator in a “DMZ” (demilitarized zone) and thereby exposing the services to external service consumers. The DMZ pre-processes service requests coming from the public and routes only valid and authorized messages to the actual service platforms. Pre-processing typically consist of message validation, filtering, and transformation, orchestration, etc.
 
+<!--
 <table>
 	<tr>
 		<td>
@@ -328,6 +358,7 @@ You can implement the Gateway pattern by deploying WSO2 Micro Integrator in a �
 		</td>
 	</tr>
 </table>
+-->
 
 ## File processing
 
@@ -345,7 +376,7 @@ In many business domains, there are different use cases related to managing file
 
   	The system should be capable of performing actions that are required to construct a business use case. It should be capable of taking decisions and sending processed information to other systems over different communication protocols.
 
- <table>
+<table>
 	<tr>
 		<td>
 			<b>Tutorials</b></br>
@@ -372,11 +403,28 @@ In many business domains, there are different use cases related to managing file
 	</tr>
 </table>
 
-**Failure tracking**
-
-To track failures in file processing, which can occur when a resource becomes unavailable, the VFS transport creates and maintains a failed records file. This text file contains a list of files that failed to be processed. When a failure occurs, an entry with the failed file name and the timestamp is logged in the text file. When the next polling iteration occurs, the VFS transport checks each file against the failed records file, and if a file is listed as a failed record, it will skip processing and schedule a move task to move that file.
-
 ## Periodic execution of integration processes
 
-Task execution can be automated to run periodically. You can schedule a task to run in the time interval of 't' for 'n' number of times or to run once the
-Micro Integrator starts. Furthermore, you can use cron expressions for more advanced executing time configuration.
+Executing an integration process at a specified time is another common requirement in enterprise integration.
+For example, in an organization, there can be a need for running an integration process to synchronize two systems 
+every day at the day end.  
+In Micro Integrator, execution of a message mediation process can be automated to run periodically by using 
+a 'Scheduled task'. You can schedule a task to run in the time interval of 't' for 'n' number of times or to run once 
+the Micro Integrator starts. 
+Furthermore, you can use cron expressions for more advanced executing time configuration.
+
+<table>
+	<tr>
+		<td>
+			<b>Examples</b></br>
+			<ul>
+				<li>
+					<a href="../../use-cases/examples/scheduled-tasks/task-scheduling-simple-trigger">Task Scheduling using a Simple Trigger</a>
+				</li>
+				<li>
+					<a href="../../use-cases/examples/scheduled-tasks/injecting-messages-to-rest-endpoint">Injecting Message to a RESTful Endpoint</a>
+				</li>
+			</ul>
+		</td>
+	</tr>
+</table>

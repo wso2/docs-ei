@@ -1,5 +1,7 @@
 ---
 title: Ballerina Healthcare Service
+commitHash: 1d8ae9a112965cc1b7c0409fec0adb877181bd0c
+note: This is an auto-generated file do not edit this, You can edit content in "ballerina-integrator" repo
 ---
 
 ## __healthcare_service.bal__

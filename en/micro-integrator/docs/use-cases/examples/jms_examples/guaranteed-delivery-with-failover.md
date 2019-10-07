@@ -25,80 +25,96 @@ temporarily stored.
 
 ## Synapse Configuration
 
-``` java tab='Failover message store'
-<messageStore name="failover"/>  
-```
+Listed below are the synapse artifacts for this use case.
 
-``` java tab=''
-<messageStore  
-    class="org.apache.synapse.message.store.impl.jms.JmsStore" name="Orginal">  
-    <parameter name="store.failover.message.store.name">failover</parameter>  
-    <parameter name="store.producer.guaranteed.delivery.enable">true</parameter>  
-    <parameter name="java.naming.factory.initial">org.apache.activemq.jndi.ActiveMQInitialContextFactory</parameter>  
-    <parameter name="java.naming.provider.url">tcp://localhost:61616</parameter>  
-    <parameter name="store.jms.JMSSpecVersion">1.1</parameter>  
-</messageStore>
-```
+- **Messge Stores**
 
-``` java tab='Endpoint'
-<endpoint name="SimpleStockQuoteService">  
-  <address uri="http://127.0.0.1:9000/services/SimpleStockQuoteService"/>  
-</endpoint>
-```
+    ```xml tab='Failover message store'
+    <messageStore name="failover"/>  
+    ```
 
-``` java tab='Scheduled message forwarding processor'
-<messageProcessor name="ForwardMessageProcessor" class="org.apache.synapse.message.processor.impl.forwarder.ScheduledMessageForwardingProcessor" targetEndpoint="SimpleStockQuoteService" messageStore="Orginal" xmlns="http://ws.apache.org/ns/synapse">
-       <parameter name="interval">1000</parameter>
-       <parameter name="client.retry.interval">1000</parameter>
-       <parameter name="max.delivery.attempts">4</parameter>
-       <parameter name="is.active">true</parameter>
-       <parameter name="max.delivery.drop">Disabled</parameter>
-       <parameter name="member.count">1</parameter>
-</messageProcessor>
-```
+    ```xml tab='Message Store'
+    <messageStore  
+        class="org.apache.synapse.message.store.impl.jms.JmsStore" name="Orginal">  
+        <parameter name="store.failover.message.store.name">failover</parameter>  
+        <parameter name="store.producer.guaranteed.delivery.enable">true</parameter>  
+        <parameter name="java.naming.factory.initial">org.apache.activemq.jndi.ActiveMQInitialContextFactory</parameter>  
+        <parameter name="java.naming.provider.url">tcp://localhost:61616</parameter>  
+        <parameter name="store.jms.JMSSpecVersion">1.1</parameter>  
+    </messageStore>
+    ```
 
-``` java tab='Scheduled failover message forwarding processor'
-<messageProcessor name="FailoverMessageProcessor" class="org.apache.synapse.message.processor.impl.failover.FailoverScheduledMessageForwardingProcessor" messageStore="failover" xmlns="http://ws.apache.org/ns/synapse">
-       <parameter name="interval">1000</parameter>
-       <parameter name="client.retry.interval">60000</parameter>
-       <parameter name="max.delivery.attempts">1000</parameter>
-       <parameter name="is.active">true</parameter>
-       <parameter name="max.delivery.drop">Disabled</parameter>
-       <parameter name="member.count">1</parameter>
-       <parameter name="message.target.store.name">Orginal</parameter>
-</messageProcessor> 
-```
+- **Message Processors**
 
-``` java tab='Proxy Service'
-<proxy name="Proxy1" transports="https http" startOnLoad="true" trace="disable" xmlns="http://ws.apache.org/ns/synapse">    
-      <target>  
-        <inSequence>  
-         <property name="FORCE_SC_ACCEPTED" value="true" scope="axis2"/>  
-         <property name="OUT_ONLY" value="true"/>  
-         <log level="full"/>  
-         <store messageStore="Orginal"/>  
-        </inSequence>  
-      </target>  
-</proxy>   
-```
+    ```xml tab='Scheduled message forwarding processor'
+    <messageProcessor name="ForwardMessageProcessor" class="org.apache.synapse.message.processor.impl.forwarder.ScheduledMessageForwardingProcessor" targetEndpoint="SimpleStockQuoteService" messageStore="Orginal" xmlns="http://ws.apache.org/ns/synapse">
+           <parameter name="interval">1000</parameter>
+           <parameter name="client.retry.interval">1000</parameter>
+           <parameter name="max.delivery.attempts">4</parameter>
+           <parameter name="is.active">true</parameter>
+           <parameter name="max.delivery.drop">Disabled</parameter>
+           <parameter name="member.count">1</parameter>
+    </messageProcessor>
+    ```
+
+    ```xml tab='Scheduled failover message forwarding processor'
+    <messageProcessor name="FailoverMessageProcessor" class="org.apache.synapse.message.processor.impl.failover.FailoverScheduledMessageForwardingProcessor" messageStore="failover" xmlns="http://ws.apache.org/ns/synapse">
+           <parameter name="interval">1000</parameter>
+           <parameter name="client.retry.interval">60000</parameter>
+           <parameter name="max.delivery.attempts">1000</parameter>
+           <parameter name="is.active">true</parameter>
+           <parameter name="max.delivery.drop">Disabled</parameter>
+           <parameter name="member.count">1</parameter>
+           <parameter name="message.target.store.name">Orginal</parameter>
+    </messageProcessor> 
+    ```
+
+- **Proxy configurations**
+
+    ```xml tab='Proxy Service'
+    <proxy name="Proxy1" transports="https http" startOnLoad="true" trace="disable" xmlns="http://ws.apache.org/ns/synapse">    
+          <target>  
+            <inSequence>  
+             <property name="FORCE_SC_ACCEPTED" value="true" scope="axis2"/>  
+             <property name="OUT_ONLY" value="true"/>  
+             <log level="full"/>  
+             <store messageStore="Orginal"/>  
+            </inSequence>  
+          </target>  
+    </proxy>   
+    ```
+
+    ```xml tab='Endpoint'
+    <endpoint name="SimpleStockQuoteService">  
+      <address uri="http://127.0.0.1:9000/services/SimpleStockQuoteService"/>  
+    </endpoint>
+    ```
+
+The synapse configurations used above are as follows:
 
 - **Failover message store**
-  In this example an in-memory message store is used to create the failover message store. If you have a cluster setup, it will not be possible to use an in-memory message store since it is not possible tomshare in-memory stores among nodes in a cluster. This step does not involve any special configuration.
+  
+    In this example an in-memory message store is used to create the failover message store. If you have a cluster setup, it will not be possible to use an in-memory message store since it is not possible tomshare in-memory stores among nodes in a cluster. This step does not involve any special configuration.
 
 - **Original message store**
-  In this example a JMS message store is used to create the original message store.  When creating the original message store, you need to enable guaranteed delivery on the producer side. To do this, set the following parameters in the message store configuration:</br>
+  
+    In this example a JMS message store is used to create the original message store.  When creating the original message store, you need to enable guaranteed delivery on the producer side. To do this, set the following parameters in the message store configuration:</br>
   `<parameter name="store.failover.message.store.name">failover</parameter>`  
   `<parameter name="store.producer.guaranteed.delivery.enable">true</parameter>`
 
 - **Endpoint for the scheduled message forwarding processor**
-  In this example, the SimpleStockquate service is used as the back-end service. Follow the instructions below to define the address endpoint.
+
+    In this example, the SimpleStockquate service is used as the back-end service. Follow the instructions below to define the address endpoint.
 
 - **Scheduled failover message forwarding processor**
-  When creating the scheduled failover message forwarding processor, you need to specify the following two mandatory parameters that are important in the failover scenario.
-  The scheduled failover message forwarding processor sends messages from the failover store to the original store when it is available in the failover scenario. In this configuration, the source message store should be the failover message store and target message store should be the original message store.
+
+    When creating the scheduled failover message forwarding processor, you need to specify the following two mandatory parameters that are important in the failover scenario.
+
+    The scheduled failover message forwarding processor sends messages from the failover store to the original store when it is available in the failover scenario. In this configuration, the source message store should be the failover message store and target message store should be the original message store.
 
 - **Proxy service**
-  A proxy service is used to send messages to the original message store via the store mediator. Following is the proxy service used in this example:
+
+    A proxy service is used to send messages to the original message store via the store mediator. Following is the proxy service used in this example:
 
 ## Run the Example
 
@@ -113,5 +129,5 @@ If you analyze the the Console log, you will see the failover
 message processor trying to forward messages to the original message
 store periodically. Once the original message store is available, you
 will see that the scheduled failover message forwarding processor sends
-the messages to the original store and then that the scheduled message
-forwarding processor forwards the messages to the back-end service.
+the messages to the original store and that the scheduled message
+forwarding processor then forwards the messages to the back-end service.
