@@ -31,6 +31,14 @@ Follow the steps given below:
 		</tr>
 	</table>
 
+Please note that need to update the following configuration in the `securevault.bat` file before encrypting passwords in synapse configurations in secure vault implementation for windows environment.
+
+```
+set CARBON_CLASSPATH=.\conf
+    FOR %%c in ("%CARBON_HOME%\wso2\components\plugins\org.wso2.micro.integrator.security*.jar") DO (
+    set CARBON_CLASSPATH=!CARBON_CLASSPATH!;".\wso2\components\plugins\%%~nc%%~xc")
+```
+
 3.  You can then enter the secret alias (vault key) for the password that you want to encrypt. For example, enter 'PasswordAlias'.
 4.  In the next step, enter the password of the keystore that is used for secure vault in the product. If the default product keystore is used, the password is 'wso2carbon'.
 5.  Then, specify the plain text password that should be encrypted.
