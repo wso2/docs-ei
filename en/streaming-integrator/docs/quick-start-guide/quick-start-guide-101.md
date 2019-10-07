@@ -263,7 +263,7 @@ To export the  `TemperatureApp` Siddhi application as a Docker artifact, follow 
     
     ![Template Siddhi Apps dialog box](../images/quick-start-guide-101/template-siddhi-apps-dialog-box.png)
     
-    Click on **Next** without templating any value of the Siddhi App. For detailed information on templating values of a Siddhi App, refer [this guide](TODO).
+    Click on **Next** without templating any value of the Siddhi App. For detailed information on templating values of a Siddhi App, refer [Exporting Siddhi Apps for Docker Image](../develop/exporting-Siddhi-Files.md#exporting-siddhi-apps-for-docker-image).
     
 5. In **Step 3**, you can update configurations of the Streaming Integrator.
     
