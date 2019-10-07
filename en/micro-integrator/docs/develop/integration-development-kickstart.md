@@ -55,7 +55,8 @@ from all the available healthcare centers.
 In this guide, we will see how we can build integration solution using the Integration Studio and run it on a VM 
 or a local machine.
 
-1. [Download Micro Integrator](https://www.wso2.com/integration/micro-integrator) for your Operating System.
+1. [Download Micro Integrator](https://www.wso2.com/integration/micro-integrator) for your Operating System. For more information, see [the Installation section](../../setup/installation/install_in_vm/).
+
 
 2. Download [curl](https://curl.haxx.se/) or a similar tool that can call an HTTP endpoint.
 
@@ -254,19 +255,20 @@ go to **New** → **REST API** to open the API Artifact Creation Options dialog 
 ### Step 4: Build the mediation logic
 
 1. Create two parallel message flows
-In this scenario the Healthcare API receive a HTTP GET request and it is required to deliver into two different backend 
-services. So we need to clone the message into two branches and process them in parallel. 
-To do that we can use the **Clone Mediator**.
+    
+    In this scenario the Healthcare API receive a HTTP GET request and it is required to deliver into two different backend 
+    services. So we need to clone the message into two branches and process them in parallel. 
+    To do that we can use the **Clone Mediator**.
 
     Drag the **Clone Mediator** from the mediator palette and drop it into the request path (inSequence) of Resource canvas. 
 
-   ![Clone](../assets/img/developing-first-integration/dev-first-integration-9.png)
+    ![Clone](../assets/img/developing-first-integration/dev-first-integration-9.png)
 
     Right click on the Clone Mediator and select **Add/Remove Target..**. 
     In the **Add Target Branches** window, set Number of Branches to 2. 
     You will see two branches inside the Clone Mediator now.
 
-   ![Clone Branches](../assets/img/developing-first-integration/dev-first-integration-10.png)
+    ![Clone Branches](../assets/img/developing-first-integration/dev-first-integration-10.png)
 
 2. Invoke GrandOak Endpoint
 
@@ -276,12 +278,12 @@ To do that we can use the **Clone Mediator**.
 
     Drag the Call Mediator from the mediator palette, into one branch of the Clone Mediator. 
 
-   ![Call Mediator](../assets/img/developing-first-integration/dev-first-integration-11.png)
+    ![Call Mediator](../assets/img/developing-first-integration/dev-first-integration-11.png)
    
     Then Drag the already defined GrandOak Endpoint available under Defined Endpoints section of the palette into 
     the Call mediator area.
     
-   ![Call Mediator EP](../assets/img/developing-first-integration/dev-first-integration-12.png)
+    ![Call Mediator EP](../assets/img/developing-first-integration/dev-first-integration-12.png)
    
 3. Construct message payload for PineValley Endpoint
 
@@ -298,7 +300,7 @@ To do that we can use the **Clone Mediator**.
     Transformation mediators available in EI. Here we are going to use the PayloadFactory mediator.
     Drag the PayloadFactory mediator into the 2nd branch of the Clone Mediator. 
 
-   ![PayloadFactory Mediator](../assets/img/developing-first-integration/dev-first-integration-13.png)
+    ![PayloadFactory Mediator](../assets/img/developing-first-integration/dev-first-integration-13.png)
     
     Specify values for the required PayloadFactory properties.
 
@@ -344,14 +346,14 @@ To do that we can use the **Clone Mediator**.
     
 4. Invoke PineValley Endpoint
     
-     Follow the same steps mentioned in ‘Invoke GrandOak Endpoint’ section to use Call mediator to invoke the PineVallery Endpoint.
+    Follow the same steps mentioned in ‘Invoke GrandOak Endpoint’ section to use Call mediator to invoke the PineVallery Endpoint.
     
 5. Aggregating response messages
     
-     Since we are cloning the messages and delivering into two different services, we will receive two responses. 
-     So we need to aggregate those two responses and construct a single response. To do that we can use the Aggregate Mediator.
+    Since we are cloning the messages and delivering into two different services, we will receive two responses. 
+    So we need to aggregate those two responses and construct a single response. To do that we can use the Aggregate Mediator.
     
-     Drag the Aggregate Mediator and drop it over right after the Clone Mediator like follows.
+    Drag the Aggregate Mediator and drop it over right after the Clone Mediator like follows.
    
     ![Aggregate Mediator](../assets/img/developing-first-integration/dev-first-integration-15.png)
    
@@ -439,7 +441,7 @@ There are several ways that you can test the integration scenario.
 
 1. Right click on the HealthcareConfigProject goto **Run As** → **Run on Micro Integrator**.
 
-    ![Run in built-in MI](../assets/img/developing-first-integration/dev-first-integration-17.png)
+   ![Run in built-in MI](../assets/img/developing-first-integration/dev-first-integration-17.png)
 
 2. You will see the following dialog box. 
    Select the HealthcareConfigProject in the Artifact list and click **Finish**.
@@ -508,7 +510,6 @@ Upon invocation, you should be able to observe the following response:
 ```
 
 ## What's Next
-
 
 - [Running on Docker](../page-not-found).
 - [Running on Kubernetes](../page-not-found).
