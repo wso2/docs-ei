@@ -2,7 +2,7 @@
 This application demonstrates how to configure WSO2 Streaming Integrator Tooling to send sweet production events via Kafka transport in Binary format.
 
 ## Prerequisites:
-1) Setup Kafka.
+1. Setup Kafka.
 	* Kafka libs to be added and converted to OSGI from {KafkaHome}/libs are as follows.
 		* kafka_2.11-0.10.0.0.jar
 		* kafka-clients-0.10.0.0.jar
@@ -12,17 +12,17 @@ This application demonstrates how to configure WSO2 Streaming Integrator Tooling
 		* zookeeper-3.4.6.jar
 	*  Add the OSGI converted kafka libs to `{WSO2SIHome}/lib`.
 	*  Add the kafka libs to `{WSO2SIHome}/samples/sample-clients/lib`.
-2) Save this sample.
-3) If there is no syntax error, the following messages would be shown on the console.
+2. Save this sample.
+3. If there is no syntax error, the following messages would be shown on the console.
 	```
 	Siddhi App PublishKafkaInBinaryFormat successfully deployed.
 	```
 
 ## Note:
 To convert Kafka libs to OSGI,
-1) Create a folder (Eg: Kafka) and copy Kafka libs to be added from `{KafkaHome}/libs`.
-2) Create another folder(Eg: Kafka-osgi, This folder will have the libs that converted to OSGI).
-3) Navigate to `{WSO2SIHome}/bin` and issue the follwing command.
+1. Create a folder (Eg: Kafka) and copy Kafka libs to be added from `{KafkaHome}/libs`.
+2. Create another folder(Eg: Kafka-osgi, This folder will have the libs that converted to OSGI).
+3. Navigate to `{WSO2SIHome}/bin` and issue the follwing command.
 	* For Linux:
 		```bash
 		./jartobundle.sh <path/kafka> <path/kafka-osgi>
@@ -31,27 +31,27 @@ To convert Kafka libs to OSGI,
 		```bash
 		./jartobundle.bat <path/kafka> <path/kafka-osgi>
 		```
-4) If converted successfully then for each lib, following messages would be shown on the terminal.
+4. If converted successfully then for each lib, following messages would be shown on the terminal.
 	```
 	- INFO: Created the OSGi bundle <kafka-lib-name>.jar for JAR file <absolute_path>/kafka/<kafka-lib-name>.jar
 	```
-5) You can find the osgi converted libs in kafka-osgi folder. You can copy that to `{WSO2SIHome}/lib`.
+5. You can find the osgi converted libs in kafka-osgi folder. You can copy that to `{WSO2SIHome}/lib`.
 
 ## Executing the Sample:
-1) Navigate to `{KafkaHome}` and start zookeeper node using following command.
+1. Navigate to `{KafkaHome}` and start zookeeper node using following command.
 	```bash
 	bin/zookeeper-server-start.sh config/zookeeper.properties
 	```
-2) Navigate to `{KafkaHome}` and start kafka server node using following command.
+2. Navigate to `{KafkaHome}` and start kafka server node using following command.
 	```bash
 	bin/kafka-server-start.sh config/server.properties
 	```
-3) Navigate to `{WSO2SIHome}/samples/sample-clients/kafka-consumer` and run `ant` command with following arguments.
+3. Navigate to `{WSO2SIHome}/samples/sample-clients/kafka-consumer` and run `ant` command with following arguments.
 	```bash
 	ant -DisBinaryMessage=true -DtopicList=kafka_result_topic -Dtype=binary
 	```
-4) Start the Siddhi application by clicking on 'Run'.
-5) If the Siddhi application starts successfully, the following messages would be shown on the console.
+4. Start the Siddhi application by clicking on 'Run'.
+5. If the Siddhi application starts successfully, the following messages would be shown on the console.
 	```
 	- PublishKafkaInBinaryFormat.siddhi - Started Successfully!
 	- Kafka version : 0.10.0.0
@@ -67,7 +67,7 @@ To convert Kafka libs to OSGI,
 	* Siddhi App Name: PublishKafkaInBinaryFormat
 	* Stream Name: SweetProductionStream
 3. In the batchNumber field and lowTotal fields, enter '1', '85.5' respectively and then click Send to send the event.
-4/ Send some more events.
+4. Send some more events.
 
 ##### Publish events with curl command:
 Open a new terminal and issue the following command.
@@ -76,13 +76,13 @@ curl -X POST -d '{"streamName": "SweetProductionStream", "siddhiAppName": "Publi
 ```
 
 ##### Publish events with Postman:
-1) Install 'Postman' application from Chrome web store.
-2) Launch the application.
-3) Make a 'Post' request to 'http://localhost:9390/simulation/single' endpoint. Set the Content-Type to 'text/plain' and set the request body in json format as follows,
+1. Install 'Postman' application from Chrome web store.
+2. Launch the application.
+3. Make a 'Post' request to 'http://localhost:9390/simulation/single' endpoint. Set the Content-Type to 'text/plain' and set the request body in json format as follows,
 	```json
 	{"streamName": "SweetProductionStream", "siddhiAppName": "PublishKafkaInBinaryFormat","data": [1, 85.5]}
 	```
-4) Click 'send'. If there is no error, the following messages would be shown on the console.
+4. Click 'send'. If there is no error, the following messages would be shown on the console.
 	```
 	"status": "OK",
 	"message": "Single Event simulation started successfully"

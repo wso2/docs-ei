@@ -6,13 +6,13 @@ The contents on this page will walk you through the topics related to developing
 
 Integration developers will follow the workflow illustrated by the following diagram.
 
-![developer workflow](../assets/img/development_workflow.png)
+![developer workflow](../../assets/img/development_workflow.png)
 
 <table>
 	<tr>
 		<td><b>Step 1: Set up the workspace</b></td>
 		<td>
-			To start developing integration solutions, you need to first set up your workspace.
+			To start developing integration solutions, you need to first set up your workspace.</br>
 			<a href="../../develop/installing-WSO2-Integration-Studio">Install WSO2 Integration Studio</a>, which you will use to develop, build, and test your integration artifacts.
 		</td>
 	</tr>
@@ -28,7 +28,7 @@ Integration developers will follow the workflow illustrated by the following dia
 					<a href="../../use-cases/integration-use-cases">Examples</a> will provide a quick demo that will help you understand the synapse configurations for implementing specific functions.
 				</li>
 				<li>
-					See the <a href="../../develop/WSO2-Integration-Studio">WSO2 Integration Studio documentation</a> for indepth information on the development tool.
+					See the <a href="../../develop/WSO2-Integration-Studio">WSO2 Integration Studio documentation</a> for in-depth information on the development tool.
 				</li>
 			</ul>
 		</td>
@@ -36,7 +36,21 @@ Integration developers will follow the workflow illustrated by the following dia
 	<tr>
 		<td><b>Step 3: Build and Run the integration</b></td>
 		<td>
-			You can easily test your integration flow, either in a container environment, or a VM.
+			Once you have developed your integration solution,
+			<ol>
+				<li>
+					<a href="../../develop/packaging-artifacts">Package the integration artifacts</a>
+				</li>
+				<li>
+					<a href="../../develop/deploy-and-run">Build and run</a> the integration artifacts in the Micro Integrator that is embedded in WSO2 Integration Studio.
+				</li>
+			</ol>
+		</td>
+	</tr>
+	<tr>
+		<td><b>Step 4: Iterate and improve</b></td>
+		<td>
+			You can easily test your integration flow either in a container environment, or a VM.
 			<ul>
 				<li>
 					Use the <a href="../../develop/creating-unit-test-suite">Integration Test Suite</a> in WSO2 Integration Studio to run unit testing on your integration artifacts.
@@ -51,11 +65,6 @@ Integration developers will follow the workflow illustrated by the following dia
 					To test the integration flow as a <b>VM deployment</b>, you can instantly <a href="../../develop/deploy-and-run">build and run</a> the integration artifacts in the Micro Integrator that is embedded in WSO2 Integration Studio.
 				</li>
 			</ul>
-		</td>
-	</tr>
-	<tr>
-		<td><b>Step 4: Iterate and improve</b></td>
-		<td>
 			As you build and run the integration flow, you may identify errors that need to be fixed, and changes that need to be done to the synapse artifacts.
 			<ol>
 				<li>

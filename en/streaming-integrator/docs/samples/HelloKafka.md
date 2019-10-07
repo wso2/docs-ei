@@ -2,11 +2,11 @@
 This application demonstrates how to use the Kafka transport in Siddhi to receive and publish events. Events which are in JSON format are consumed from one Kafka topic and written to another Kafka topic in XML format.
 
 ## Prerequisites:
-1) The following steps must be executed to enable WSO2 SP to receive and publish events via the Kafka transport. Since you need to shut down the server to execute these steps, get a copy of these instructions prior to proceeding.
-    1) Download the Kafka broker from here: https://www.apache.org/dyn/closer.cgi?path=/kafka/0.10.2.1/kafka_2.11-0.10.2.1.tgz
+1. The following steps must be executed to enable WSO2 SP to receive and publish events via the Kafka transport. Since you need to shut down the server to execute these steps, get a copy of these instructions prior to proceeding.
+    1. Download the Kafka broker from here: https://www.apache.org/dyn/closer.cgi?path=/kafka/0.10.2.1/kafka_2.11-0.10.2.1.tgz
    
-   1) Convert and copy the Kafka client jars from the `{KafkaHome}/libs` directory to the `{WSO2SIHome}/libs` directory as follows.
-        1) Create a directory named `{Source}` in a preferred location in your machine and copy the following JARs to it from the `{KafkaHome}/libs` directory.
+    2. Convert and copy the Kafka client jars from the `{KafkaHome}/libs` directory to the `{WSO2SIHome}/libs` directory as follows.
+        1. Create a directory named `{Source}` in a preferred location in your machine and copy the following JARs to it from the `{KafkaHome}/libs` directory.
             * kafka_2.11-0.10.2.1.jar
             * kafka-clients-0.10.2.1.jar
             * metrics-core-2.2.0.jar
@@ -15,8 +15,8 @@ This application demonstrates how to use the Kafka transport in Siddhi to receiv
             * zkclient-0.10.jar
             * zookeeper-3.4.9.jar
             
-        2) Create another directory named `{Destination}` in a preferred location in your machine.
-        3) To convert all the Kafka jars you copied into the `{Source}` directory, issue the following command,
+        2. Create another directory named `{Destination}` in a preferred location in your machine.
+        3. To convert all the Kafka jars you copied into the `{Source}` directory, issue the following command,
             * For Windows:
             ```bash
             {WSO2SIHome}/bin/jartobundle.bat <{Source} Directory Path> <{Destination} Directory Path>
@@ -25,35 +25,35 @@ This application demonstrates how to use the Kafka transport in Siddhi to receiv
             ```bash
             sh {WSO2SIHome}/bin/jartobundle.sh <{Source} Directory Path> <{Destination} Directory Path>
             ```
-        4) Add the OSGI converted kafka libs from `{Destination}` directory to `{WSO2SIHome}/lib`.
-        5) Add the original Kafka libs from `{Source}` to `{WSO2SIHome}/samples/sample-clients/lib`.
-        6) Navigate to `{KafkaHome}` and start zookeeper node using following command.
+        4. Add the OSGI converted kafka libs from `{Destination}` directory to `{WSO2SIHome}/lib`.
+        5. Add the original Kafka libs from `{Source}` to `{WSO2SIHome}/samples/sample-clients/lib`.
+        6. Navigate to `{KafkaHome}` and start zookeeper node using following command.
         ```bash
         sh bin/zookeeper-server-start.sh config/zookeeper.properties
         ```
-        7) Navigate to `{KafkaHome}` and start Kafka server node using following command.
+        7. Navigate to `{KafkaHome}` and start Kafka server node using following command.
         ```bash
         sh bin/kafka-server-start.sh config/server.properties
         ```
-        8) Start the server using following command .
+        8. Start the server using following command .
         ```bash
         sh streaming-integrator-tooling.sh
         ```
-2) Save this sample.
+2. Save this sample.
 
 ## Executing the Sample:
-1) Start the Siddhi application by clicking on 'Run'
-2) If the Siddhi application starts successfully, the following messages would be shown on the console.
+1. Start the Siddhi application by clicking on 'Run'
+2. If the Siddhi application starts successfully, the following messages would be shown on the console.
     ```
     HelloKafka.siddhi - Started Successfully!
     ```
 
 ## Testing the Sample:
-1) Navigate to `{WSO2SIHome}/samples/sample-clients/kafka-consumer` and run the following command.
+1. Navigate to `{WSO2SIHome}/samples/sample-clients/kafka-consumer` and run the following command.
     ```bash
     ant -DtopicList=kafka_result_topic -Dtype=xml -DpartitionList=0
     ```
-2) Navigate to `{WSO2SIHome}/samples/sample-clients/kafka-producer` and run the following command.
+2. Navigate to `{WSO2SIHome}/samples/sample-clients/kafka-producer` and run the following command.
     ```bash
     ant -DtopicName=kafka_topic -DfilePath={WSO2SIHome}/samples/artifacts/HelloKafka/kafka_sample.txt
     ```
