@@ -3,26 +3,26 @@
 This application demonstrates how to retrieve the longitude and latitude for the provided location details.
 
 ## Prerequisites:
-1) Save this sample.
-2) If there is no syntax error, the following message is shown on the console:
+1. Save this sample.
+2. If there is no syntax error, the following message is shown on the console:
     - Siddhi App execution-geo-sample successfully deployed.
 
 ## Executing the Sample:
-1) Start the Siddhi application by clicking on 'Run'.
-2) If the Siddhi application starts successfully, the following messages would be shown on the console.
+1. Start the Siddhi application by clicking on 'Run'.
+2. If the Siddhi application starts successfully, the following messages would be shown on the console.
     * execution-geo-sample.siddhi - Started Successfully!
 
 ## Testing the Sample:
-1) Click on 'Event Simulator' (double arrows on left tab)
-2) Click 'Single Simulation' (this will be already selected)
-3) Select execution-geo-sample as 'Siddhi App Name'
-4) Select geocodeStream as 'StreamName'
-5) Click on the start button (Arrow symbol) next to the newly created simulator
-6) Provide attribute values
+1. Click on 'Event Simulator' (double arrows on left tab)
+2. Click 'Single Simulation' (this will be already selected)
+3. Select execution-geo-sample as 'Siddhi App Name'
+4. Select geocodeStream as 'StreamName'
+5. Click on the start button (Arrow symbol) next to the newly created simulator
+6. Provide attribute values
     - location: 5 Avenue Anatole France
     - level: 75007 Paris
     - time: France
-7) Send event
+7. Send event
 
 ## Viewing the Results:
 See the prediction as output on the in the console.<br/>

@@ -4,18 +4,18 @@
 This application demonstrates how to receive events via TCP transport and carryout data pre-processing with numerous Siddhi extensions (eg. string extension, time extension). For more information on Siddhi extensions please refer to "https://wso2.github.io/siddhi/extensions/". In this sample, a composite ID is obtained using string concatenation and the time format of the incoming event is altered from 'yyyy/MM/dd HH:mm:ss' to 'dd-MM-yyyy HH:mm:ss'
 
 ## Prerequisites:
-1) Save this sample
+1. Save this sample
 
 ## Executing the Sample:
-1) Start the Siddhi application by clicking on 'Run'
-2) If the Siddhi application starts successfully, the following messages would be shown on the console
+1. Start the Siddhi application by clicking on 'Run'
+2. If the Siddhi application starts successfully, the following messages would be shown on the console
     * Tcp Server started in 0.0.0.0:9892
     * DataPreprocessing.siddhi - Started Successfully!
 ## Notes:
 If you edit this application while it's running, stop the application -> Save -> Start.
 
 ## Testing the Sample:
-1) Navigate to {WSO2SIHome}/samples/sample-clients/tcp-client and run the "ant" command as follows.<br/>
+1. Navigate to {WSO2SIHome}/samples/sample-clients/tcp-client and run the "ant" command as follows.<br/>
 `ant -Dtype=json -DfilePath={WSO2SIHome}/samples/artifacts/DataPreprocessing/data_preprocessing_events.txt
 -DeventDefinition='{"event":{"id":"{0}","value":{1},"property":{2},"plugId":{3},"householdId":{4},"houseId":{5},"currentTime":"{6}"}}' -Durl=tcp://localhost:9892/SmartHomeStream`
 

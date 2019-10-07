@@ -3,8 +3,8 @@
 This application demonstrates how to use the siddhi-execution-extrema with bottomK function.
 
 ## Prerequisites:
-1) Start editor.
-2) Save this sample.
+1. Start editor.
+2. Save this sample.
 
 ## Executing the Sample:
 1) Start the Siddhi application by clicking on 'Run'
