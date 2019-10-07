@@ -4,10 +4,11 @@
 
 The Streaming Integrator can consume from a Kafka topic as well as to publish to a Kafka topic in a streaming manner.
 
-This tutorial takes you through consuming from a Kafka topic, processing the messages, and finally publishing output to a Kafka topic.
+This tutorial takes you through consuming from a Kafka topic, processing the messages, and finally, publishing output to a Kafka topic.
 
 !!!tip "Before you begin:"
     Prepare the server to consume from or to publish to Kafka, follow the steps below:<br/>
+    <br/>
         1. Download the Kafka broker from [the Apache site](https://www.apache.org/dyn/closer.cgi?path=/kafka/2.3.0/kafka_2.12-2.3.0.tgz) and extract it.
         From here onwards, this directory is referred to as `<KAFKA_HOME>`. <br/>
         <br/>
@@ -42,10 +43,12 @@ This tutorial takes you through consuming from a Kafka topic, processing the mes
 
 **Step 1: Start Kafka**
 
-1. Navigate to `<KAFKA_HOME>` and start a zookeeper node by issuing the following command.
+1. Navigate to the `<KAFKA_HOME>` directory and start a zookeeper node by issuing the following command.
+
    `sh bin/zookeeper-server-start.sh config/zookeeper.properties`
 
-2. Navigate to `<KAFKA_HOME>` and start Kafka server node by issuing the following command.
+2. Navigate to the `<KAFKA_HOME>` directory and start Kafka server node by issuing the following command.
+
    `sh bin/kafka-server-start.sh config/server.properties`
 
 

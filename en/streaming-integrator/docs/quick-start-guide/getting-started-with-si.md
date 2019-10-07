@@ -53,7 +53,9 @@ Save this file as `MySimpleApp.siddhi` in the `<SI_HOME>/wso2/server/deployment/
     Once you deploy the above Siddhi application, it creates a new `HTTP` endpoint at `http://localhost:8006/productionStream` and starts listening to the endpoint for incoming messages.
     Therefore, the next step is to publish a message to this endpoint via a CURL command.
 
-Now execute following `CURL` command on the console.
+## Testing your Siddhi application
+
+To test the `MySimpleApp` Siddhi application you created, execute following `CURL` command on the console.
 ```
 curl -X POST -d "{\"event\": {\"name\":\"sugar\",\"amount\": 20.5}}"  http://localhost:8006/productionStream --header "Content-Type:application/json"
 ```  
