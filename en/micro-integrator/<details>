@@ -1,0 +1,47 @@
+<details>
+	<summary>HealthcareAPI</summary>
+	```xml
+	<?xml version="1.0" encoding="UTF-8"?>
+	<api context="/healthcare" name="HealthcareAPI" xmlns="http://ws.apache.org/ns/synapse">
+		<resource methods="GET" uri-template="/doctor/{doctorType}">
+		    <inSequence>
+			<clone>
+			    <target>
+				<sequence>
+				    <call>
+					<endpoint key="GrandOakEndpoint"/>
+				    </call>
+				</sequence>
+			    </target>
+			    <target>
+				<sequence>
+				    <payloadFactory media-type="json">
+					<format>{
+							  "doctorType": "$1"
+						       }
+					</format>
+					<args>
+					    <arg evaluator="xml" expression="$ctx:uri.var.doctorType"/>
+					</args>
+				    </payloadFactory>
+				    <call>
+					<endpoint key="PineValleyEndpoint"/>
+				    </call>
+				</sequence>
+			    </target>
+			</clone>
+			<aggregate>
+			    <completeCondition>
+				<messageCount max="-1" min="-1"/>
+			    </completeCondition>
+			    <onComplete expression="json-eval($.doctors.doctor)">
+				<respond/>
+			    </onComplete>
+			</aggregate>
+		    </inSequence>
+		    <outSequence/>
+		    <faultSequence/>
+		</resource>
+	</api>
+	```    
+</details> 
