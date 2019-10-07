@@ -2,23 +2,23 @@
 This application demonstrates how to configure WSO2 Streaming Integrator Tooling  to receive events to the SweetProductionStream via MQTT transport in XML format and log the events in LowProductionAlertStream to the output console.
 
 ## Prerequisites:
-1) Save this sample. "`Siddhi App ReceiveMQTTInXMLFormat successfully deployed`" message would be shown in the console.
-2) Before running this MQTT sample, set up mosquitto server which supports MQTT. This can be done by the following commands:
+1. Save this sample. "`Siddhi App ReceiveMQTTInXMLFormat successfully deployed`" message would be shown in the console.
+2. Before running this MQTT sample, set up mosquitto server which supports MQTT. This can be done by the following commands:
     ```bash
     sudo apt-get update
     sudo apt-get install mosquitto
     ```
-3) Install mosquitto client packages by executing following command.
+3. Install mosquitto client packages by executing following command.
     ```bash
     sudo apt-get install mosquitto-clients
     ```
-4) After the set up ,start the mosquitto server by running the following command.
+4. After the set up ,start the mosquitto server by running the following command.
     ```bash
     sudo service mosquitto start
     ```
 
 ## Executing the Sample:
-1) Start the Siddhi application by clicking on 'Run', the following messages would be shown on the console.
+1. Start the Siddhi application by clicking on 'Run', the following messages would be shown on the console.
     ```
     ReceiveMQTTInXMLFormat.siddhi - Started Successfully!
     ```

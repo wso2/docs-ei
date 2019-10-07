@@ -21,8 +21,8 @@
     * Siddhi App PublishHttpOAuthRequest successfully deployed.
 
 ## Executing the Sample:
-1) Start the Siddhi application by clicking on 'Run'.
-2) If the Siddhi application starts successfully, the following messages are shown on the console:
+1. Start the Siddhi application by clicking on 'Run'.
+2. If the Siddhi application starts successfully, the following messages are shown on the console:
     * PublishHttpOAuthRequest.siddhi - Started Successfully!
     * 'Http' sink at LowProductionAlertStream stream successfully connected to 'https://localhost:8005/abc'.
 
@@ -64,7 +64,7 @@ INFO {org.wso2.extension.siddhi.io.http.sink.HttpSink} - Request sent successful
 
 ## Notes:
 If you get the message "Error when pushing events to Siddhi debugger engine', it could be due to time out problem,
-## do the following:
+ do the following:
 1. Stop this Siddhi application (Click 'Run' on menu bar -> 'Stop').
 2. Start the application and check whether the expected output appears on the console.
 
