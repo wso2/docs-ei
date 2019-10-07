@@ -5,8 +5,8 @@ This application demonstrates how to configure WSO2 Streaming Integrator Tooling
 Save this sample.
 
 ## Executing the Sample:
-1) Start the Siddhi application by clicking on 'Run'.
-2) If the Siddhi application starts successfully, the following messages would be shown on the console.
+1. Start the Siddhi application by clicking on 'Run'.
+2. If the Siddhi application starts successfully, the following messages would be shown on the console.
     ```
     * Tcp Server started in 0.0.0.0:9892
     * ReceiveTCPinBinaryFormat.siddhi - Started Successfully!

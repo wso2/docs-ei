@@ -249,13 +249,14 @@ The **Tools** menu provides access to the following tools that are shipped with 
 #### Deploy menu items
 
 The **Deploy** menu has the following option to select one or more Siddhi applications and deploy them to one or more 
-Streaming Integrator servers. For more information, see [Deploying Streaming Applications](https://docs.wso2.com/display/SP440/Deploying+Streaming+Applications#DeployingStreamingApplications-DeploySiddhiApplicationviaEditor)..
+Streaming Integrator servers. For more information, see [Deploying Streaming Applications](https://docs.wso2.com/display/SP440/Deploying+Streaming+Applications#DeployingStreamingApplications-DeploySiddhiApplicationviaEditor).
 
 ![Deploy menu](../images/streaming-integrator-studio-overview/Deploy_Menu.png)
 
 ## Side Panel
 
 **File Explorer**
+
 ![File Explorer menu](../images/streaming-integrator-studio-overview/File Explorer.png)
 
 This provides a view of all the files saved as shown in the example above.

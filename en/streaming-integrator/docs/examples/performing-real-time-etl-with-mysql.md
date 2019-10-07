@@ -20,8 +20,11 @@ There are two modes in which you could perform CDC using the SI: **Listening mod
 **Type of events captured**
 
 You can capture following type of changes done to a database table:
+
 - Insert operations
+
 - Update operations
+
 - Delete operations (available for Listening mode only)
 
 ## Tutorial steps
@@ -87,7 +90,9 @@ Now you can write a simple Siddhi application to monitor the `SweetProductionTab
     ```
     insert into SweetProductionTable values('chocolate',100.0);
     ```
+
     The following log appears in the SI console:
+
     ```
     INFO {org.wso2.siddhi.core.stream.output.sink.LogSink} - CDCWithListeningMode : logStream : Event{timestamp=1563200225948, data=[chocolate, 100.0], isExpired=false}
     ```
@@ -128,7 +133,7 @@ Now you can write a Siddhi application to monitor the `SweetProductionTable` for
     update SweetProductionTable SET name = 'Almond cookie' where name = 'chocolate';
     ```
 
-   As a result, you can see the following log in the SI console.
+    As a result, you can see the following log in the SI console.
 
     ```
     INFO {org.wso2.siddhi.core.stream.output.sink.LogSink} - CDCWithListeningMode : updateSweetProductionStream : Event{timestamp=1563201040953, data=[chocolate, Almond cookie, 100.0, 100.0], isExpired=false}
@@ -204,7 +209,7 @@ Let's try out a scenario in which you are going to deploy a Siddhi application t
 
     Set `enabled` parameter to `true` and save the file.
 
-2. Enable state persistence debug logs as follows. Open the `<SI_HOME>/conf/server/log4j2.xml` file on a text editor and locate following line in it.
+2. Enable state persistence debug logs as follows. Open the `<SI_HOME>/conf/server/log4j2.xml` file on a text editor and locate the following line in it.
 
     ```
      <Logger name="com.zaxxer.hikari" level="error"/>
@@ -264,7 +269,7 @@ Let's try out a scenario in which you are going to deploy a Siddhi application t
     INFO {io.siddhi.core.stream.output.sink.LogSink} - CountProductions : LogStream : Event{timestamp=1564151037870, data=[120.0], isExpired=false}
     ```
 
-    These logs print the sweet production count. Note that the current count of sweet productions is being printed as `120` in the second log. This is because we have so far produced `120` sweets: `100` Almond cookies and `20` Baked alaskas.
+    These logs print the sweet production count. Note that the current count of sweet productions is being printed as `120` in the second log. This is because the factory has so far produced `120` sweets: `100` Almond cookies and `20` Baked alaskas.
 
 7. Now wait for following log to appear on the SI console
 
@@ -289,7 +294,7 @@ Let's try out a scenario in which you are going to deploy a Siddhi application t
     insert into SweetProductionTable values('Croutons',100.0);
     ```
 
-9. Shutdown SI server. Here we deliberately create a scenario where the server crashes before the SI server could persist the latest production count.
+9. Shutdown SI server. Here you are deliberately creating a scenario where the server crashes before the SI server could persist the latest production count.
 
     !!!Info
          Here, the SI server crashes before the state is persisted. Therefore the SI server cannot persist the latest count (which should include the last two productions `100` Croissants and `100` Croutons). The good news is, `CDC source` replays the last two messages, allowing the Streaming Integrator to recover successfully from the server crash.
@@ -380,9 +385,9 @@ Now you can write a simple Siddhi application to monitor the `SweetProductionTab
 
 **Capturing Updates**
 
-For capturing updates, you can use the same Siddhi application `CDCPolling.siddhi` which you deployed in the [Capturing inserts](#capturing-inserts_1) section.
+For capturing updates, you can use the same `CDCPolling.siddhi` Siddhi application that you deployed in the [Capturing inserts](#capturing-inserts_1) section.
 
-Let's perform an update operation on the MySQL table. To do this, execute following MySQL query on the database:
+Let's perform an update operation on the MySQL table. To do this, execute the following MySQL query on the database:
 
 ```
 update SweetProductionTable SET name = 'Almond cookie' where name = 'chocolate';
@@ -417,7 +422,7 @@ Let's try out a scenario in which you deploy a Siddhi application to count the t
 
     Set `enabled` parameter to `true` and save the file.
 
-2. Enable state persistence debug logs as follows. Open the `<SI_HOME>/conf/server/log4j2.xml` file on a text editor and locate following line in it.
+2. Enable state persistence debug logs as follows. Open the `<SI_HOME>/conf/server/log4j2.xml` file on a text editor and locate the following line in it.
 
     ```
      <Logger name="com.zaxxer.hikari" level="error"/>
@@ -498,7 +503,7 @@ Let's try out a scenario in which you deploy a Siddhi application to count the t
     Next, you are going to insert two sweet production runs into the `SweetProductionTable` and shutdown the SI server before state persistence happens (in other words, before above log appears).
 
     !!!tip
-        It is better to start pushing messages immediately after the state persistence log appears, so that you have plenty of time to push messages and shutdown the server, until next log appears.
+        It is better to start pushing messages immediately after the state persistence log appears, so that you have plenty of time to push messages and shutdown the server before next log appears.
 
 8. Now insert following sweets into the `SweetProductionTable` by executing following queries on the database :
 
@@ -510,10 +515,10 @@ Let's try out a scenario in which you deploy a Siddhi application to count the t
     insert into SweetProductionTable(name,amount) values('Croutons',100.0);
     ```
 
-9. Shutdown SI server. Here we deliberately create a scenario where the server crashes before the SI server could persist the latest production count.
+9. Shutdown SI server. Here you are deliberately creating a scenario where the server crashes before the SI server could persist the latest production count.
 
     !!!info
-        Here, the SI server crashes before the state is persisted. Therefore, the SI server cannot persist the latest count (which should include the last two production runs `100` Croissants and `100` Croutons). The good news is, thr `CDC source` replays the last two messages, allowing the Streaming Integrator to successfully recover from the server crash.
+        Here, the SI server crashes before the state is persisted. Therefore, the SI server cannot persist the latest count (which should include the last two production runs `100` Croissants and `100` Croutons). The good news is, the `CDC source` replays the last two messages, allowing the Streaming Integrator to successfully recover from the server crash.
 
 10. Restart the SI server and wait for about one minute.
 

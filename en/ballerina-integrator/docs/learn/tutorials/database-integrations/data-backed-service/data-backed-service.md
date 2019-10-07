@@ -1,20 +1,14 @@
 ---
 title: Database Interaction
-commitHash: 9be2bde276ae340075a85d504719e5f8831bfe6b
+commitHash: 1d8ae9a112965cc1b7c0409fec0adb877181bd0c
 note: This is an auto-generated file do not edit this, You can edit content in "ballerina-integrator" repo
 ---
 
 ## About
+
+Ballerina is an open-source programming language that empowers developers to integrate their system easily with the support of connectors. In this guide, we are mainly focusing on building a database-backed RESTful web service with Ballerina. You can find other integration modules from the [wso2-ballerina](https://github.com/wso2-ballerina) GitHub repository.
+
 Data inside a database can be exposed to the outside world by using a database-backed RESTful web service. RESTful API calls enable you to add, view, update, and remove data stored in a database from the outside world.
-
-> This guide walks you through building a database-backed RESTful web service with Ballerina.
-
-Following are the sections available in this guide.
-
-- [What you'll build](#what-youll-build)
-- [Prerequisites](#prerequisites)
-- [Implementation](#implementation)
-- [Testing](#testing)
 
 ## What you'll build
 
@@ -27,33 +21,48 @@ You'll build an employee data management REST service that performs CRUD Operati
 
 This service will deal with a MySQL database and expose the data operations as a web service. Refer to the following diagram to understand the complete end-to-end scenario.
 
-![alt text](resources/data-backed-service.svg)
+![database-backed RESTful web service](../../../../../assets/img/data-backed-service.svg)
 
 ## Prerequisites
  
 * Ballerina Integrator
+* Oracle JDK 1.8.*
 * A Text Editor or an IDE 
 > **Tip**: For a better development experience, install the Ballerina Integrator extension in [VS Code](https://code.visualstudio.com).
 * [MySQL version 5.6 or later](https://www.mysql.com/downloads/)
 * [Official JDBC driver](https://dev.mysql.com/downloads/connector/j/) for MySQL   
 
+## Get the code
+
+Pull the module from [Ballerina Central](https://central.ballerina.io/) using the following command.
+
+```bash
+ballerina pull wso2/<<<MODULE_NAME>>>
+```
+
+Alternately, you can download the ZIP file and extract the contents to get the code.
+
+<a href="../../../../../assets/zip/data-backed-service.zip">
+    <img src="../../../../../assets/img/download-zip.png" width="200" alt="Download ZIP">
+</a>
+
 ## Implementation
 
 > If you want to skip the basics, you can download the git repo and directly move to the `Testing` section by skipping the `Implementation` section.
 
-1. Create a project.
+Create a project.
  ```bash
  $ ballerina new data-backed-service
  ```
 
- 2. Navigate into the project directory and add a new module.
+Navigate into the project directory and add a new module.
  ```bash
- $ ballerina add data_backed_service_module
+ $ ballerina add data_backed_service
  ```
 
- 3. Create a folder called `lib` under the project root path. Copy the [JDBC driver for MySQL](https://dev.mysql.com/downloads/connector/j/) into the `lib` folder.
+Create a folder called `lib` under the project root path. Copy the [JDBC driver for MySQL](https://dev.mysql.com/downloads/connector/j/) into the `lib` folder.
 
- 4. Add a ballerina.conf file and rename the .bal files with meaningful names as shown in the project structure given below.
+Add a ballerina.conf file and rename the .bal files with meaningful names as shown in the project structure given below.
  ```shell
 data-backed-service
 ├── Ballerina.toml
@@ -61,7 +70,7 @@ data-backed-service
 ├── lib
 │    └── mysql-connector-java-x.x.x.jar
 └── src
-    └── data_backed_service_module
+    └── data_backed_service
         ├── resources
         ├── Module.md
         ├── employee_db_service.bal
@@ -69,21 +78,11 @@ data-backed-service
             ├── resources
             └── employee_db_service_test.bal
 ```
-5. Open the project with VS Code and write the integration implementation and tests in the `employee_db_service.bal` and `employee_db_service_test.bal` files respectively. 
+Open the project with VS Code and write the integration implementation and tests in the `employee_db_service.bal` and `employee_db_service_test.bal` files respectively.
 
 ### Developing the SQL Data-Backed Web Service
 Ballerina language has built-in support for writing web services. The `service` keyword in Ballerina simply defines a web service. Inside the service block, we can have all the required resources. You can define a resource function inside the service. You can implement the business logic inside a resource function using Ballerina language syntax.
-We can use the following database schema to store employee data.
-```
-+------------+-------------+------+-----+---------+-------+
-| Field      | Type        | Null | Key | Default | Extra |
-+------------+-------------+------+-----+---------+-------+
-| EmployeeID | int(11)     | NO   | PRI | NULL    |       |
-| Name       | varchar(50) | YES  |     | NULL    |       |
-| Age        | int(11)     | YES  |     | NULL    |       |
-| SSN        | int(11)     | YES  |     | NULL    |       |
-+------------+-------------+------+-----+---------+-------+
-```
+
 The Ballerina code for the employee data service with resource functions to add, retrieve, update, and delete employee data can be found in the `employee_db_service.bal` file.
 
 A remote function in Ballerina indicates that it communicates with some remote service through the network. In this case, the remote service is a MySQL database. `employeeDB` is the reference name for the MySQL client object that encapsulates the aforementioned set of remote functions. The rest of the code is for preparing SQL queries and executing them by calling these remote functions of the Ballerina MySQL client.
@@ -98,9 +97,9 @@ You can implement custom functions in Ballerina that perform specific tasks. For
 ## Testing 
 
 ### Before you begin
-* Download & run the SQL script [initializeDataBase.sql](resources/initializeDataBase.sql), to initialize the database and to create the required table.
+* Download & run the SQL script `initializeDataBase.sql` provided inside the `resources` directory, to initialize the database and to create the required table.
 ```
-   $mysql -u username -p <initializeDataBase.sql 
+$ mysql -u username -p <initializeDataBase.sql 
 ``` 
 
 - Add database configurations to the `ballerina.conf` file
@@ -117,13 +116,13 @@ You can implement custom functions in Ballerina that perform specific tasks. For
 Let’s build the module. Navigate to the project directory and execute the following command.
 
 ```
-$ ballerina build data_backed_service_module
+$ ballerina build data_backed_service
 ```
 
 The build command would create an executable .jar file. Now run the .jar file created in the above step. Path to the ballerina.conf could be provided using the `--b7a.config.file` option.
 
 ```
-$ java -jar target/bin/data_backed_service_module.jar --b7a.config.file=path/to/ballerina.conf/file
+$ java -jar target/bin/data_backed_service.jar --b7a.config.file=path/to/ballerina.conf/file
 ```
 
 - Now you can test the functionality of the employee database management RESTFul service by sending HTTP requests for each database operation. For example, this guide uses the cURL commands to test each operation of the `employeeService` as follows.
@@ -159,23 +158,4 @@ curl -v -X DELETE "http://localhost:9090/records/employee/1"
 
 Output: 
 {"Status":"Data Deleted Successfully"}
-```
-
-### Writing unit tests 
-
-In Ballerina, the unit test cases should be in the same module inside the folder named as `tests`.  When writing the test functions the below convention should be followed.
-- Test functions should be annotated with `@test:Config {}`. See the below example.
-```ballerina
-   @test:Config {}
-   function testAddEmployeeResource() {
-   
-   }
-```
-You can refer the [employee_db_service_test.bal](src/data_backed_service_module/tests/employee_db_service_test.bal) sample, which contains unit test cases to test the resources available in the `employee data service` we implemented above.
-
-To run the unit tests, go to the project directory and run the following command.
-> **Note**: The `--b7a.config.file=path/to/ballerina.conf/file` option is required to read configurations from a Ballerina configuration file.
-
-```bash
-$ ballerina test --b7a.config.file=path/to/ballerina.conf/file
 ```

@@ -1,311 +1,193 @@
-# Quick Start with WSO2 Micro Integrator
+# Quick Start Guide
 
-Let's get started with WSO2 Micro Integrator by running a simple use
-case on your local environment. In this example, we use a REST API to
-simulate a simple HTTP service ( **HelloWorld** service) deployed in an
-instance of WSO2 Micro Integrator. You can deploy this HelloWorld
-service on a **Docker** container, on **Kubernetes**, or on a **VM**. When invoked,
-the **HelloWorld** service will return the following response: `{"Hello":"World"}`
+Let's get started with WSO2 Micro Integrator by running a simple use case in your local environment. This is a simple service orchestration scenario. The scenario is about a basic health care system where Micro Integrator is used to integrate two backend hospital services to provide information to the client.
 
-![Micro Integrator Deployment Pattern](../assets/img/micro-integrator-01.png)
+Most healthcare centers have a system that is used to make doctor appointments. To check the availability of the doctors for a particular time, users need to visit the hospitals or use each and every online system that is dedicated for a particular healthcare center. Here we are making it easier for patients by orchestrating those isolated systems for each healthcare provider and exposing a single interface to the users.
 
-### Set up the workspace
+![alt text](../../assets/img/quick-start-guide/MI-quick-start-guide.png)
 
--   Install [Docker](https://www.docker.com/) (version 17.09.0-ce or
-    higher).
--   Install [Curl](https://curl.haxx.se/) .
--   To set up the integration workspace for this quick guide, we will
-    use an integration project that was built using [WSO2 Integration
-    Studio](../develop/working-with-WSO2-Integration-Studio.md) :
-    1.  Download the <a href="../../assets/attach/MI_QSG_HOME.zip">project file</a>
-        for this guide, and extract it to a known location. Let's call
-        this **MI_QSG_HOME**.
-    2.  Go to the **MI_GS_HOME** directory.
-        The following project files, and Docker/Kubernetes configuration
-        files are available.
-        <details>
-            <summary>hello-world-config-project</summary>
-            This is the ESB Config Project folder with the integration artifacts (synapse artifacts) for the HelloWorld service (HelloWorld.xml). This service consists of the following REST API:
-            ```xml
-            <api context="/hello-world" name="HelloWorld" xmlns="http://ws.apache.org/ns/synapse">
-                <resource methods="GET">
+In the above scenario, the following takes place:
+
+1. The client makes a call to the Healthcare API created using Micro Integrator.
+
+2. The Healthcare API calls the Pine Valley Hospital backend service and gets the queried information.
+
+3. The Healthcare API calls the Grand Oak Hospital backend service and gets the queried information.
+
+4. The response is returned to the client with the required information.
+
+Both Grand Oak Hospital and Pine Valley Hospital have services exposed over HTTP protocol.
+
+Pine Valley Hospital service accepts a GET request in following service endpoint URL.
+
+```bash
+http://<HOST_NAME>:<PORT>/pineValley/doctors
+```
+
+Grand Oak Hospital service accepts a GET request in following service endpoint URL.
+
+```bash
+http://<HOST_NAME>:<PORT>/grandOak/doctors/<DOCTOR_TYPE>
+```
+
+The expected payload should be in the following JSON format.
+
+```bash
+{
+        "doctorType": "<DOCTOR_TYPE>"
+}
+```
+
+Let’s implement a simple integration solution that can be used to query for availability of doctors for a particular category from all the available healthcare centers.
+
+## Before you begin
+
+1. [Download Micro Integrator](https://www.wso2.com/integration/micro-integrator) for your Operating System. For more information, see [the Installation section](../../setup/installation/install_in_vm/).
+   
+2. Download the sample files from [here](https://github.com/wso2/docs-ei/blob/7.0.0/en/micro-integrator/docs/assets/attach/quick-start-guide/MI_QSG_HOME.zip). From this point onwards, let's refer to this folder as `<MI_QSG_HOME>`.
+
+3. Download [curl](https://curl.haxx.se/) or a similar tool that can call an endpoint.
+
+## Set up the workspace
+
+To set up the integration workspace for this quick start guide, we will use an integration project that was built using WSO2 Integration Studio:
+
+Go to the `<MI_QSG_HOME>` directory. The following project files and executable backend services files are available.
+
+- **HealthcareConfigProject**: This is the ESB Config Project folder with the integration artifacts for the Healthcare service. This service consists of the following REST API:
+  ![alt text](../../assets/img/quick-start-guide/qsg-api.png)
+  <details>
+            <summary>HealthcareAPI.xml</summary>
+	    ```xml
+            <?xml version="1.0" encoding="UTF-8"?>
+            <api context="/healthcare" name="HealthcareAPI" xmlns="http://ws.apache.org/ns/synapse">
+                <resource methods="GET" uri-template="/doctor/{doctorType}">
                     <inSequence>
-                        <payloadFactory media-type="json">
-                            <format>{"Hello":"World"}</format>
-                            <args/>
-                        </payloadFactory>
-                         <respond/>
+                        <!-- Invoke Grand Oak service with a GET request -->
+                        <!-- Construct the payload required for Pine Valley service -->
+                        <clone>
+                            <target>
+                                <sequence>
+                                    <call>
+                                        <endpoint>
+                                            <http method="get" uri-template="http://localhost:9090/grandOak/doctors/{uri.var.doctorType}"/>
+                                         </endpoint>
+                                    </call>
+                                </sequence>
+                            </target>
+                            <target>
+                                <sequence>
+                                    <payloadFactory media-type="json">
+                                        <format>{
+                                                  "doctorType": "$1"
+                                                }
+                                        </format>
+                                        <args>
+                                            <arg evaluator="xml" expression="$ctx:uri.var.doctorType"/>
+                                        </args>
+                                    </payloadFactory>
+                                    <!--  Invoke the Pine Valley service with a POST request -->
+                                    <call>
+                                        <endpoint>
+                                            <http method="post" uri-template="http://localhost:9091/pineValley/doctors"/>
+                                        </endpoint>
+                                    </call>
+                                </sequence>
+                            </target>
+                        </clone>
+                        <aggregate>
+                            <onComplete expression="json-eval($.doctors.doctor)">
+                                <respond/>
+                            </onComplete>
+                        </aggregate>
                     </inSequence>
-                    <outSequence/>
-                    <faultSequence/>
-                </resource>
+                 </resource>
             </api>
-            ```
-        </details>
-        <details>
-            <summary>hello-world-config-projectCompositeApplication</summary>
-            This is the Composite Application Project folder, which contains the packaged CAR file of the HelloWorld service.
-        </details>
-        <details>
-            <summary>Dockerfile</summary>
-            This Docker configuration file is configured to build a Docker image for WSO2 Micro Integrator with the HelloWorld service.
-            ```
-            FROM wso2/micro-integrator:1.0.0
-            COPY hello-world-config-projectCompositeApplication/target/hello-world-config-projectCompositeApplication_1.0.0.car /home/wso2carbon/wso2mi/repository/deployment/server/carbonapps
-            ```
-           **Note** that this file is configured to use the community version of the WSO2 Micro Integrator base Docker image (from DockerHub ). If you want to use the Micro Integrator that includes the latest product updates, you can update the image name in this Docker file as explained here .
-        </details>
-        <details>
-            <summary>k8s-deployment.yaml</summary>
-            This is sample Kubernetes configuration file that is configured to deploy WSO2 Micro Integrator in a Kubernetes cluster.
-            ```toml
-            apiVersion: apps/v1
-            kind: Deployment
-            metadata:
-            name: mi-helloworld-deployment
-            labels:
-                event: mi-helloworld
-            spec:
-                strategy:
-                type: Recreate
-                replicas: 2
-            selector:
-                matchLabels:
-                event: mi-helloworld
-            template:
-                metadata:
-                labels:
-                event: mi-helloworld
-            spec:
-            containers:
-            -     
-                image: wso2-mi-hello-world
-                name: helloworld
-                imagePullPolicy: IfNotPresent
-                ports:
-            -
-                name: web
-                containerPort: 8290 
-            ---
-            apiVersion: v1
-            kind: Service
-            metadata:
-                name: mi-helloworld-service
-                labels:
-                    event: mi-helloworld
-            spec:
-                type: NodePort
-            ports:
-            -
-                name: web
-                port: 8290
-                targetPort: 8290 
-                nodePort: 32100
-            selector:
-                event: mi-helloworld
+	    ```    
+  </details>
+  > **Note**: Here endpoints are defined inline in the API configuration for better clarity in reading the configuration. However, the best practice is to define them as named endpoint configurations so that they can be externalized to an environment specific entity.
 
-            ```
-        </details>
+- **HealthcareConfigProjectCompositeApplication**: This is the Composite Application Project folder, which contains the packaged CAR file of the Healthcare service.
 
-### Run on Docker
+- **BackendService**: This contains a executable .jar file that contains mock backend service implementation for Pine Valley Hospital and Grand Oak Hospital.
 
-Once you have [set up your workspace](#set-up-the-workspace), you can run the HelloWorld service on Docker:
+## Running the integration artifacts
 
-#### Build a Docker image
+Follow the steps given below to run the integration artifacts we developed on a Micro Integrator instance that is installed on a VM.
 
-Open a terminal, navigate to the **MI_QSG_HOME** directory (which stores the Dockerfile), and execute the following
-command to build a Docker image with WSO2 Micro Integrator and the
-integration artifacts.
+#### Start backend mock services
 
-```bash
-docker build -t hello_world_docker_image .
+Two mock hospital information services are available in the `DoctorInfo.jar` file located at `<MI_QSG_HOME>/BackendService/` directory. 
+
+Open a terminal window and use the following command to start the services.
+
+```java
+java -jar DoctorInfo.jar
 ```
 
-This command executes the following tasks:
-
-1.  The base Docker image of WSO2 Micro Integrator is downloaded from
-    **DockerHub** and a custom, deployable Docker image of the Micro
-    Integrator is created in a Docker container.
-2.  The CAR file with the integration artifacts that define the
-    HelloWorld service is deployed.
-
-#### Run Docker container
-
-From the **<MI_QSG_HOME>** directory, execute the following command to start a Docker container for the Micro Integrator.
+You will see following get printed in the terminal
 
 ```bash
-docker run -d -p 8290:8290 hello_world_docker_image
+[ballerina/http] started HTTP/WS listener 0.0.0.0:9090
+[ballerina/http] started HTTP/WS listener 0.0.0.0:9091
 ```
 
-The Docker container with the Micro Integrator is started.
+#### Deploy the Healthcare service
 
-#### Invoke the Micro Integrator (on Docker)
-
-Open a terminal, and execute the following command to invoke the
-HelloWorld service:  
-
-```bash
-curl http://localhost:8290/hello-world
-```
-
-Upon invocation, you should be able to observe the following response:
-
-`{"Hello":"World"}`
-
-### Run on Kubernetes
-
-Once you have [set up your workspace](#set-up-the-workspace), you can run the HelloWorld service on Kubernetes:
-
-#### Install Minikube
-
-Let's use [Minikube](https://github.com/kubernetes/minikube) to run a
-Kubernetes cluster for this example.
-
-1.  [Install
-    Minikube](https://kubernetes.io/docs/tasks/tools/install-minikube/)
-    . Once you have completed this step, you should have **kubectl**
-    configured to use Minikube from your terminal.
-2.  Start Minikube from your terminal:
-
-    ```bash
-    minikube start
-    ```
-
-3.  Execute the command given below to start using Minikube's built-in
-    Docker daemon. You need this Docker daemon to be able to create
-    Docker images for the Minikube environment.
-
-    ```bash
-    eval $(minikube docker-env)
-    ```
-
-Now you can build a Docker image for your HelloWorld service in Minikube
-as explained below.
-
-#### Build a Docker image
-
-Open a terminal, navigate to the **<MI_QSG_HOME>**
-directory (which stores the Dockerfile), and execute the following
-command to build a Docker image (with WSO2 Micro Integrator and the
-integration artifacts) **in the Minikube environment** .
-
-```bash
-docker build -t wso2-mi-hello-world .
-```
-
-#### Run container (on Minikube)
-
-Follow the steps given below to start a Docker container for Docker
-image on Minikube.
-
-1.  Navigate to the **<MI_QSG_HOME>** directory
-    (which stores the `k8s-deployment.yaml` file),
-    and execute the following command:
-
-    ```bash
-    kubectl create -f k8s-deployment.yaml
-    ```
-
-2.  Check whether all the Kubernetes artifacts are deployed successfully
-    by executing the following command:  
-
-    ```bash
-    kubectl get all
-    ```
-
-    You will get a result similar to the following. Be sure that the
-    deployment is in 'Running' state.
-
-    ```bash
-    NAME                                            READY   STATUS    RESTARTS   AGE
-    pod/mi-helloworld-deployment-56f58c9676-djbwh   1/1     Running   0          14m
-    pod/mi-helloworld-deployment-56f58c9676-xj4fq   1/1     Running   0          14m
-        
-    NAME                            TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)          AGE
-    service/kubernetes              ClusterIP   10.96.0.1       <none>        443/TCP          25m
-    service/mi-helloworld-service   NodePort    10.110.50.146   <none>        8290:32100/TCP   14m
-    NAME                                       READY   UP-TO-DATE   AVAILABLE   AGE
-    deployment.apps/mi-helloworld-deployment   2/2     2            2           14m
-        
-    NAME                                                  DESIRED   CURRENT   READY   AGE
-    replicaset.apps/mi-helloworld-deployment-56f58c9676   2         2         2       14m
-    ```
-
-#### Invoke the Micro Integrator (on Minikube)
-
-Open a terminal, and execute the command given below to invoke the
-HelloWorld service. Be sure to replace MINIKUBE\_IP with the IP of your
-Minikube installation.
-
-```bash
-curl http://MINIKUBE_IP:32100/hello-world
-```
-
-Upon invocation, you should be able to observe the following response:
-
-`{"Hello":"World"}`
-
-### Run on a Virtual Machine
-
-Follow the steps given below to run the HelloWorld service on a Micro Integrator instance that is installed on a VM.
-
-##### Download and install the Micro Integrator
-
-1. Go to the WSO2 Micro Integrator [product page](https://wso2.com/integration/micro-integrator/) and click **Download** to download the product installer (**.pkg** file).
-2. Double-click the installer to open the installation wizard, which will guide you through the installation. The installation location (**MI_HOME**) will depend on your OS:
-    <table style="width:100%;">
-    <colgroup>
-      <col style="width: 9%" />
-      <col style="width: 90%" />
-    </colgroup>
-    <thead>
-      <tr class="header">
-         <th>OS</th>
-         <th>Home directory</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr class="odd">
-         <td>Mac OS</td>
-         <td><code>/Library/WSO2/MicroIntegrator/1.0.0</code></td>
-      </tr>
-      <tr class="even">
-         <td>Windows</td>
-         <td><code>C:\Program Files\WSO2\MicroIntegrator\1.0.0</code></td>
-      </tr>
-      <tr class="odd">
-         <td>Ubuntu</td>
-         <td><code>/usr/lib/wso2/MicroIntegrator/1.0.0</code></td>
-      </tr>
-      <tr class="even">
-         <td>CentOS</td>
-         <td><code>/usr/lib64/MicroIntegrator/1.0.0</code></td>
-      </tr>
-    </tbody>
-    </table>
-
-#### Deploy the HelloWorld service
-
-Copy the CAR file of the HelloWorld service (**hello-world-config-projectCompositeApplication_1.0.0.car**), from the MI_QSG_HOME/hello-world-config-projectCompositeApplication/target/ directory to the MI_HOME/repository/deployment/server/carbonapps directory.
+Copy the CAR file of the Healthcare service (HealthcareConfigProjectCompositeApplication_1.0.0.car), from the `<MI_QSG_HOME>/HealthcareConfigProjectCompositeApplication/target/` directory to the `<MI_HOME>/repository/deployment/server/carbonapps` directory.
 
 #### Start the Micro Integrator
 
 Follow the steps relevant to your OS:
 
-- On **MacOS/Linux/CentOS**, open a terminal and execute the following commands:
-  ```bash
-  sudo wso2mi-1.0.0
-  ```
-- On **Windows**, go to **Start Menu -> Programs -> WSO2 -> Micro Integrator**. This will open a terminal and start the relevant profile.
+On MacOS/Linux/CentOS, open a terminal and execute the following commands:
 
-#### Invoke the HelloWorld service
+```bash
+sudo wso2mi-1.0.0
+```
+
+On Windows, go to Start Menu -> Programs -> WSO2 -> Micro Integrator. This will open a terminal and start the relevant profile.
+
+#### Invoke the Healthcare service
 
 Open a terminal and execute the following curl command to invoke the service:
 
 ```bash
-curl http://localhost:8290/hello-world
+curl -v http://localhost:8290/healthcare/doctor/Ophthalmologist
 ```
 
 Upon invocation, you should be able to observe the following response:
 
-`{"Hello":"World"}`
+```bash
+[
+    [
+        {
+            "name": "Geln Ivan",
+            "time": "05:30 PM",
+            "hospital": "pineValley"
+        },
+        {
+            "name": "Daniel Lewis",
+            "time": "05:30 PM",
+            "hospital": "pineValley"
+        }
+    ],
+    [
+        {
+            "name": "Shane Martin",
+            "time": "07:30 AM",
+            "hospital": "Grand Oak"
+        },
+        {
+            "name": "Geln Ivan",
+            "time": "08:30 AM",
+            "hospital": "Grand Oak"
+        }
+    ]
+]
+```
+
+## What's Next
+
+- [Develop your first integration solution](../../develop/integration-development-kickstart/).
+- Try out the tutorials and examples available in the [Learn section of our documentation](../../use-cases/integration-use-cases/).

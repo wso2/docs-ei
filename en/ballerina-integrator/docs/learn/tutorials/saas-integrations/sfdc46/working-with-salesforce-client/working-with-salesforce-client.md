@@ -1,6 +1,6 @@
 ---
 title: Working with Salesforce client
-commitHash: 9be2bde276ae340075a85d504719e5f8831bfe6b
+commitHash: 1d8ae9a112965cc1b7c0409fec0adb877181bd0c
 note: This is an auto-generated file do not edit this, You can edit content in "ballerina-integrator" repo
 ---
 
@@ -25,13 +25,25 @@ following operations:
 * Execute a SOQL query
 
 ## Prerequisites
+ 
+* Ballerina Integrator
+* Oracle JDK 1.8.*
+* A Text Editor or an IDE 
+> **Tip**: For a better development experience, install the Ballerina Integrator extension in [VS Code](https://code.visualstudio.com).
 
-- [Java](https://www.oracle.com/technetwork/java/index.html)
-- A Text Editor or an IDE
-  > **Tip**: For a better development experience, install one of the following Ballerina IDE plugins: 
-[VSCode](https://marketplace.visualstudio.com/items?itemName=ballerina.ballerina), 
-[IntelliJ IDEA](https://plugins.jetbrains.com/plugin/9520-ballerina)
-- Link to download Ballerina Integrator.
+## Get the code
+
+Pull the module from [Ballerina Central](https://central.ballerina.io/) using the following command.
+
+```bash
+ballerina pull wso2/<<<MODULE_NAME>>>
+```
+
+Alternately, you can download the ZIP file and extract the contents to get the code.
+
+<a href="../../../../../../../../../../../assets/zip/working-with-salesforce-client.zip">
+    <img src="../../../../../../../../../../../assets/img/download-zip.png" width="200" alt="Download ZIP">
+</a>
 
 ### Implementation
 

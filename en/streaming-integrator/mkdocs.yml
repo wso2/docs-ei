@@ -48,12 +48,11 @@ nav:
   - 'Home': index.md
   - 'Get Started':
     - 'Introduction': 'overview/overview.md'
-    - 'Architecture': 'overview/architecture.md'
-    - 'About this Release': 'overview/about_this_release.md'
     - 'Quick Start Guide': 'quick-start-guide/getting-started-with-si.md'
     - 'Streaming Integrator 101': 'quick-start-guide/quick-start-guide-101.md'
     - 'Running the Streaming Integrator with Micro Integrator': 'quick-start-guide/hello-world-with-mi.md'
-    - 'Concepts': 'concepts/concepts.md'
+    - 'Architecture': 'overview/architecture.md'
+    - 'Key Concepts': 'concepts/concepts.md'
   - 'Learn':
     - 'Use Cases':
       - 'Consuming Data': 'guides/consuming-messages.md'
@@ -225,11 +224,13 @@ nav:
     - 'Configuring Default Ports': 'ref/configuring-default-ports.md'
   - 'Develop':
     - 'Streaming Integrator Tooling':
+      - 'Developing Streaming Integrator Solutions': 'develop/developing-streaming-integration-solutions.md'
       - 'Streaming Integrator Tooling Overview': 'develop/streaming-integrator-studio-overview.md'
       - 'Working with the Design View': 'develop/working-with-the-Design-View.md'
     - 'Creating Siddhi Applications': 'develop/creating-a-Siddhi-Application.md'
-    - 'Testing a Siddhi Application': 'develop/testing-a-Siddhi-Application.md'
+    - 'Testing Siddhi Applications': 'develop/testing-a-Siddhi-Application.md'
     - 'Debugging Siddhi Applications': 'develop/debugging_siddhi_applications.md'
+    - 'Deploying Siddhi Applications': 'develop/deploying-Streaming-Applications.md'
     - 'Exporting Siddhi Files': 'develop/exporting-Siddhi-Files.md'
   - 'Observability':
     - 'Monitoring the Streaming Integrator': 'admin/monitoring-the-streaming-integrator.md'
