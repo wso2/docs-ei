@@ -43,22 +43,55 @@ The result of the query should be as follows when you query to view the records
 #### Create the main and fault sequences
 
 1.  Find the `main.xml` and `fault.xml` files in the attached `sample.zip` archive. You can find the files in the `<SAMPLE_HOME>/conf/synapse-config/sequences` directory.
-2.  Copy the files to `<ESB_HOME>/repository/deployment/server/synapse-configs/default/sequences` folder.
+
+**main.xml**
+
+```xml
+<sequence name="main" xmlns="http://ws.apache.org/ns/synapse">
+    <in>
+        <log level="full"/>
+        <filter regex="http://localhost:9000.*" source="get-property('To')">
+            <then>
+                <send/>
+            </then>
+            <else/>
+        </filter>
+    </in>
+    <out>
+        <send/>
+    </out>
+</sequence>
+```
+
+**fault.xml**
+
+```xml
+<sequence name="fault" trace="disable" xmlns="http://ws.apache.org/ns/synapse">
+    <log level="full">
+        <property name="MESSAGE" value="Executing default 'fault' sequence"/>
+        <property expression="get-property('ERROR_CODE')" name="ERROR_CODE"/>
+        <property expression="get-property('ERROR_MESSAGE')" name="ERROR_MESSAGE"/>
+    </log>
+    <drop/>
+</sequence>
+```
+
+2.  Copy the files to `<MI_HOME>/repository/deployment/server/synapse-configs/default/sequences` folder.
 
     !!! Note
-        The `main` and `fault` sequences are created and preconfigured automatically when you install WSO2 ESB.
+        The `main` and `fault` sequences are created and preconfigured automatically when you install WSO2 MI.
 
-#### Configure the ESB
+#### Configure the MI
 
-You need to configure the ESB to use the [VFS transport](https://docs.wso2.com/display/EI650/VFS+Transport) for processing the files, and the [MailTo transport](https://docs.wso2.com/display/EI650/MailTo+Transport) for sending the email message. You also need to configure the message
+You need to configure the MI to use the [VFS transport](https://docs.wso2.com/display/EI650/VFS+Transport) for processing the files, and the [MailTo transport](https://docs.wso2.com/display/EI650/MailTo+Transport) for sending the email message. You also need to configure the message
 formatter as specified.
 
 -   Edit the
-    `           <ESB_HOME>/repository/conf/axis2/axis2.xml          `
+    `           <MI_HOME>/repository/conf/axis2/axis2.xml          `
     file and configure the mailto transport sender as follows to use a
     mailbox for sending the messages:
 
-    ```
+    ```xml
     <transportSender name="mailto" class="org.apache.axis2.transport.mail.MailTransportSender">
        <parameter name="mail.smtp.host">smtp.gmail.com</parameter>
        <parameter name="mail.smtp.port">587</parameter>
@@ -74,7 +107,7 @@ formatter as specified.
         In this sample, you will not retrieve mails from a mailbox. Therefore, you do not need to enable the mailto transport receiver.
 
 -   Add the following message formatter in the
-    `           <ESB_HOME>/repository/conf/Axis2/axis2.xml          `
+    `           <MI_HOME>/conf/axis2/axis2.xml          `
     file under the `           Message Formatters          ` section:
 
     ```
@@ -89,7 +122,7 @@ formatter as specified.
     file in the `          <SAMPLE_HOME>          /lib         `
     directory.
 2.  Copy the driver to the
-    `          <WSO2ESB_HOME>/repository/components/lib         `
+    `          <MI_HOME>lib         `
     directory.
 
 #### Add smooks libraries
@@ -97,15 +130,16 @@ formatter as specified.
 This example uses a CSV smooks library.
 
 1.  You can find the CSV smooks library
-    `          milyn-smooks-csv-1.2.4.jar         ` in the attached
+    `          milyn-smooks-csv-1.2.4.jar         ` and the 
+    `          groovy-all-1.1-rc-1.jar             ` in the attached
     `          sample.zip         ` archive. You can find the file in
     the `          <SAMPLE_HOME>/lib         ` directory.
 2.  Copy the library to the
-    `           <WSO2ESB_HOME>/repository/components/lib          `
+    `           <MI_HOME>/lib          `
     directory.
 
     !!! Note
-        These configuration changes make system-wide changes to the ESB and the ESB has to be restarted for these changes to take effect.
+        These configuration changes make system-wide changes to the MI and the MI has to be restarted for these changes to take effect.
 
 3.  Configure a local entry as follows. For information on how to add a
     local entry, see [this
@@ -115,7 +149,7 @@ This example uses a CSV smooks library.
     `           <SAMPLE_HOME>/resources/smooks-config.xml          `
     file.
 
-    ```
+    ```xml
     <localEntry key="smooks" src="file:resources/smooks-config.xml"/>
     ```
 
@@ -174,7 +208,7 @@ This example uses a CSV smooks library.
     ```
 
 5.  Save the FileProxy.xml file to the
-    `          <ESB_HOME>/repository/deployment/server/synapse-configs/default/proxy-services         `
+    `          <MI_HOME>/repository/deployment/server/synapse-configs/default/proxy-services         `
     directory.
 
 ## Create and configure `         databaseSequence        `
@@ -193,15 +227,12 @@ connect to the database to insert the data.
         </log>
         <smooks config-key="smooks">
             <input type="text"/>
-            <output type="xml"/>    
+            <output type="xml"/>
         </smooks>
         <log level="full">
             <property name="sequence" value="after-smooks"/>
         </log>
-        <iterate xmlns:ns2="http://org.apache.synapse/xsd"
-                 xmlns:ns="http://org.apache.synapse/xsd"
-                 xmlns:sec="http://secservice.samples.esb.wso2.org"
-                 expression="//csv-records/csv-record">
+        <iterate expression="//csv-records/csv-record">
           <target>
            <sequence>
             <dbreport>
@@ -214,7 +245,7 @@ connect to the database to insert the data.
                </pool>
               </connection>
                <statement>
-                <sql>insert into info values (?, ?, ?)</sql>
+                <sql><![CDATA[insert into INFO values (?, ?, ?)]]></sql>
                   <parameter expression="//csv-record/name/text()" type="VARCHAR"/>
                   <parameter expression="//csv-record/surname/text()" type="VARCHAR"/>
                   <parameter expression="//csv-record/phone/text()" type="VARCHAR"/>
@@ -229,7 +260,7 @@ connect to the database to insert the data.
 2.  Specify your database username, password, and URL in the
     `          <pool>         ` section of the sequence.
 3.  Save the `          databaseSequence.xml         ` file to the
-    `          <ESB_HOME>/repository/deployment/server/synapse-configs/default/sequences         `
+    `          <Mi_HOME>/repository/deployment/server/synapse-configs/default/sequences         `
     directory.
 
 
@@ -262,7 +293,7 @@ connect to the database to insert the data.
     define the directory to which the file should be moved.
 
 3.  Save the `          fileWriteSequence.xml         ` file to the
-    `          <ESB_HOME>/repository/deployment/server/synapse-configs/default/sequences         `
+    `          <MI_HOME>/repository/deployment/server/synapse-configs/default/sequences         `
     directory.
 
 ### Create and configure `         sendMailSequence        `
@@ -275,7 +306,7 @@ connect to the database to insert the data.
       
     The XML code of the sequence is as follows:
 
-    ```
+    ```xml
     <sequence xmlns="http://ws.apache.org/ns/synapse" name="sendMailSequence">
         <log level="custom">
             <property name="sequence" value="sendMailSequence"/>
@@ -295,7 +326,7 @@ connect to the database to insert the data.
 2.  Edit the `          sendMailSequence.xml         ` file, and define
     the e-mail address to which the notification should be sent.
 3.  Save the `          sendMailSequence.xml         ` file to the
-    `          <ESB_HOME>/repository/deployment/server/synapse-configs/default/sequences         `
+    `          <MI_HOME>/repository/deployment/server/synapse-configs/default/sequences         `
     directory.
 
 #### Create the input file
@@ -318,13 +349,13 @@ connect to the database to insert the data.
 
 ### Analyzing the output
 
-In this sample, the ESB listens on a local file system directory. When a
-file is dropped into the `         in        ` directory, the ESB picks
+In this sample, the MI listens on a local file system directory. When a
+file is dropped into the `         in        ` directory, the MI picks
 this file.
 
 1.  Make sure the file appears in the `          out         `
     directory.
-2.  The ESB inserts the records from the text file to the database. Make
+2.  The MI inserts the records from the text file to the database. Make
     sure the data is in the info table. The following screenshot
     displays the content of the `          test.info         ` table
     with the data from the file.  
