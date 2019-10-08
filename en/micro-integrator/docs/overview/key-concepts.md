@@ -2,10 +2,7 @@
 
 Listed below are the key concepts of WSO2 Micro Integrator.
 
----
-
 ![Key Concepts](../../assets/img/key-concepts/key-concepts.png)
-
 
 ## Message entry points
 
