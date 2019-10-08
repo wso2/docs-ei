@@ -1,11 +1,15 @@
 # Kubernetes Deployment
 
-See the topics given below.
+### k8s-ei-operator - Native support for Kubernetes Ecosystem with WSO2 Micro Integrator.
+The k8s-ei-operator allows you to deploy your integration solutions as an **Integration** kind into the Kubernetes environment build on top of WSO2 Enterprise Integrator Tooling. 
 
 ## Prerequisite
+The k8s-ei-operator built with operator-sdk v0.7.0 and supported in the following environment.
+>   [Kubernetes](https://kubernetes.io/docs/setup/) cluster and client v1.11+
+
+## Install k8s-ei-operator
 Please do the following one time requirement steps to configure the Kubernetes environment in your server/machine.
 
-1.  Install Kubernetes from the [Kubernetes Site](https://kubernetes.io/docs/setup/).
 2.  Clone the **k8s-ei-operator** GitHub repository.
     ```
     git clone https://github.com/wso2/k8s-ei-operator.git
