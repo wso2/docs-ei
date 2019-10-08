@@ -1,4 +1,4 @@
-# Exposing Several Services as a Single Service
+# Service Orchestration
 
 ## What you'll build
 
