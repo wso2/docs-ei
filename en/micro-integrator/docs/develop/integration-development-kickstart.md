@@ -501,6 +501,6 @@ Upon invocation, you should be able to observe the following response:
 
 ## What's Next
 
-- [Running on Docker](../setup/installation/run_in_docker/).
-- [Running on Kubernetes](../setup/installation/run_in_kubernetes.md/).
-- [Writing a unit test for integration artifacts](./creating-unit-test-suite/).
+- [Running on Docker](../../setup/installation/run_in_docker/).
+- [Running on Kubernetes](../../setup/installation/run_in_kubernetes/).
+- [Writing a unit test for integration artifacts](../creating-unit-test-suite/).
