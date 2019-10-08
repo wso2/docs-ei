@@ -181,8 +181,8 @@ nav:
     - Setup and Install:
       - Installation Guide:
         - 'Install in a VM': 'setup/installation/install_in_vm.md'
-        - 'Install in Docker': 'setup/installation/install_in_docker.md'
-        - 'Run in Kubernetes': 'setup/installation/install_in_kubernetes.md'
+        - 'Run in Docker': 'setup/installation/run_in_docker.md'
+        - 'Run in Kubernetes': 'setup/installation/run_in_kubernetes.md'
       - Product Deployment:
         - 'Deploying WSO2 Micro Integrator' : 'setup/deployment/deploying_wso2_ei.md'
         #- 'Upgrading from a Previous Release' : 'setup/deployment/upgrading.md'

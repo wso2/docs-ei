@@ -40,6 +40,79 @@ Two docker images are available for the Micro Integrator:
     ```bash
     wso2/micro-integrator:1.0.0
     ```
+    
+## Build and run on Docker using Integration Studio
+
+Let’s create a simple proxy service using Integration studio and deploy it in a Docker container. 
+
+For this we can use following synapse configuration
+
+```
+<?xml version="1.0" encoding="UTF-8"?>
+<proxy name="HelloWorld" startOnLoad="true" transports="http https" xmlns="http://ws.apache.org/ns/synapse">
+    <target>
+        <inSequence>
+            <payloadFactory media-type="json">
+                <format>{"Hello":"World"}</format>
+                <args/>
+            </payloadFactory>
+            <respond/>
+        </inSequence>
+        <outSequence/>
+        <faultSequence/>
+    </target>
+</proxy>
+```
+
+To create a Docker image with the Synapse configuration you added, follow the procedure given in below doc:
+
+
+[Create Docker Project](../../develop/create-docker-project.md)
+
+If you put the 
+
+Target Repository : sampleproxy
+Target Tag : 1.0.0
+
+Once you issue the **docker image ls** command, the list of currently available Docker images are displayed in the terminal similar to 
+the example given below. The Docker image you created is included in this list."
+
+
+```
+REPOSITORY              TAG                 IMAGE ID            CREATED             SIZE
+sampleproxy             1.0.0               49092809b36a        10 minutes ago      315MB
+wso2/micro-integrator   1.1.0               088477c689f6        2 days ago          315MB
+```
+
+
+Now you can up the container with following command
+
+```
+docker run -d -p 8290:8290 sampleproxy:1.0.0
+```
+
+Here if you invoke proxy as follows
+
+```
+curl http://localhost:8290/services/HelloWorld -XGET
+```
+
+ you will be able to get the response
+ 
+```
+{"Hello":"World"}
+```
+
+If you want to use the dashboard please use following docker command
+
+```
+docker run -p 8290:8290 -p 9743:9743 -p 9164:9164 -e   JAVA_OPTS="-DenableManagementApi=true" sampleproxy:1.0.0
+```
+
+To see the detailed explanation please follow 
+
+[Monitoring Dashboard](../../administer-and-observe/working-with-monitoring-dashboard.md)
+
 
 ## Build and run on Docker
 
