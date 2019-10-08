@@ -30,7 +30,7 @@ To use the CLI tool, you need to enable the management API by passing the `-Dena
 
 ## Install and run the CLI
 
-1.  To download the CLI, go the **WSO2 Micro Integrator** website → [Additional Resources](https://wso2.com/integration/micro-integrator/install/), click **CLI Tooling** , and download the tool.
+1.  Download the CLI from [here](https://wso2.com/integration/micro-integrator/tooling/).
 2.  If you are using a UNIX-based operating system (Linux, Solaris, and Mac OS X), be sure to set the `MI_CLI_HOME/bin` folder path as the PATH:
 
     ```bash
