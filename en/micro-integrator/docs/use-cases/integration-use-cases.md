@@ -245,14 +245,6 @@ For example, messages that are received via HTTP may need to be sent to a JMS qu
 <table>
 	<tr>
 		<td>
-			<b>Tutorials</b></br>
-			<ul>
-				<li>
-					Try the end-to-end use case on <a href="../../../use-cases/tutorials/integration/protocol-switching-tutorial">protocol switching</a>
-				</li>
-			</ul>
-		</td>
-		<td>
 			<b>Examples</b>
 			<ul>
 				<li>
