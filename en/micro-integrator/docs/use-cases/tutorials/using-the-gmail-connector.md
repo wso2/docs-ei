@@ -1,4 +1,4 @@
-# Using the Gmail Connector
+# Connecting Web APIs/Cloud Services
 
 ## What you'll build
 
