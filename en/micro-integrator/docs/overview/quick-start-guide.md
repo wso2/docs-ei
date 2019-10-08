@@ -143,7 +143,7 @@ Follow the steps relevant to your OS:
 On MacOS/Linux/CentOS, open a terminal and execute the following commands:
 
 ```bash
-sudo wso2mi-1.0.0
+sudo wso2mi-service start
 ```
 
 On Windows, go to Start Menu -> Programs -> WSO2 -> Micro Integrator. This will open a terminal and start the relevant profile.
