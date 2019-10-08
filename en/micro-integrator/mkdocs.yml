@@ -18,7 +18,7 @@
 site_name: WSO2 Enterprise Integrator Documentation
 site_description: Documentation for WSO2 Enterprise Integrator
 site_author: WSO2
-site_url: https://wso2.com/integration/
+site_url: https://ei.docs.wso2.com/en/latest/
 
 # Repository
 repo_name: wso2/docs-ei
@@ -180,11 +180,20 @@ nav:
         - 'JSON Examples': 'use-cases/examples/json_examples/json-examples.md'
     - Setup and Install:
       - Installation Guide:
-        - 'Install in a VM': 'setup/installation/install_in_vm.md'
-        - 'Run in Docker': 'setup/installation/run_in_docker.md'
-        - 'Run in Kubernetes': 'setup/installation/run_in_kubernetes.md'
+        - 'Install on a VM': 'setup/installation/install_in_vm.md'
+        - 'Run on Docker': 'setup/installation/run_in_docker.md'
+        - 'Run on Kubernetes': 'setup/installation/run_in_kubernetes.md'
       - Product Deployment:
-        - 'Deploying WSO2 Micro Integrator' : 'setup/deployment/deploying_wso2_ei.md'
+        - Kubernetes Deployment:
+          - 'Deploy on Kubernetes': 'setup/deployment/kubernetes_deployment.md' 
+          - K8s Deployment Samples: 
+            - 'Sample 1: Hello World': 'setup/deployment/k8s-samples/hello-world.md' 
+            - 'Sample 2: Message Routing': 'setup/deployment/k8s-samples/content-based-routing.md' 
+        - 'Deploy on a VM': 'setup/deployment/deploying_wso2_ei.md'
+          - 'Configuring the K8s Operator': 'setup/deployment/kubernetes_deployment.md' 
+          - K8s Deployment Samples: 
+            - 'Sample 1: Hello World': 'setup/deployment/k8s-samples/hello-world.md' 
+            - 'Sample 2: Message Routing': 'setup/deployment/k8s-samples/content-based-routing.md' 
         #- 'Upgrading from a Previous Release' : 'setup/deployment/upgrading.md'
         - 'Setting up a Load Balancer': 'setup/deployment/setting_up_lb.md'
         - 'Troubleshooting Production Deployment' : 'setup/deployment/troubleshooting_deployment.md'

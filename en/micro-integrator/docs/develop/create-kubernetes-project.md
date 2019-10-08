@@ -5,19 +5,11 @@ Create a Kubernetes project directory if you want to deploy your integration sol
 ## Create Kubernetes project
 Follow the steps given below,
 
-1.  There are two ways to create the Kubernetes project:
+1.  Open **WSO2 Integration Studio** and click **ESB Project → Create New** in the **Getting Started** view as shown below.
+    ![Create ESB project](../../assets/img/tutorials/119132413/119132414.png)
 
-    -   Open **WSO2 Integration Studio** and click **ESB Project → Create New** in the **Getting Started** view as shown below.
-        ![Create ESB project](../../assets/img/tutorials/119132413/119132414.png)
-
-        In the **New ESB Solution Project** dialog that opens, enter a name for the ESB config project. Select the **Create Docker/Kubernetes Exporter Project** along with **ESB Config project** and click **Next**.
-        ![Create Container Project](../../assets/img/create_project/docker_k8s_project/create-container-project.png)
-
-    -   If you already have an ESB Config project with the integration artifacts, click **Miscellaneous → Create New Docker/Kubernetes Project** in the **Getting Started** view as shown below.
-        ![Create kubernetes/docker project](../../assets/img/create_project/docker_k8s_project/kubernetes-docker-project.png)
-
-        In the **New Docker/Kubernetes Project** dialog that opens, select **New Kubernetes Project** and click **Next**.
-        ![Create Kubernetes Project](../../assets/img/create_project/docker_k8s_project/new_k8_project.png)
+    In the **New ESB Solution Project** dialog that opens, enter a name for the ESB config project. Select the **Create Docker/Kubernetes Exporter Project** along with **ESB Config project** and click **Next**.
+    ![Create Container Project](../../assets/img/create_project/docker_k8s_project/create-container-project.png)
 
 3.  Enter information in the **Docker/Kubernetes Project Information** page as follows:
 
@@ -45,6 +37,13 @@ Follow the steps given below,
     -   **Dockerfile**: Dockerfile which contains build details.
     -   **kubernetes_cr.yaml**: Kubernetes configuration file generated based on the user inputs.
     -   **pom.xml**: File for select multiple composite apps and build and push Docker images to the Docker registries.
+
+!!! Info
+    If you already have an ESB Config project with the integration artifacts, click **Miscellaneous → Create New Docker/Kubernetes Project** in the **Getting Started** view as shown below.
+    ![Create kubernetes/docker project](../../assets/img/create_project/docker_k8s_project/kubernetes-docker-project.png)
+
+    In the **New Docker/Kubernetes Project** dialog that opens, select **New Kubernetes Project** and follow the instructions.
+    ![Create Kubernetes Project](../../assets/img/create_project/docker_k8s_project/new_k8_project.png)
        
 ## Build and Push Docker images
 

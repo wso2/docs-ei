@@ -48,79 +48,74 @@ environment.
 
 Let’s create a simple proxy service using Integration studio and deploy it in a Docker container. 
 
-For this we can use following synapse configuration
+1.  Create the following synapse configuration:
 
-- XML 
+    - Synapse configuration
 
-```
-<?xml version="1.0" encoding="UTF-8"?>
-<proxy name="HelloWorld" startOnLoad="true" transports="http https" xmlns="http://ws.apache.org/ns/synapse">
-    <target>
-        <inSequence>
-            <payloadFactory media-type="json">
-                <format>{"Hello":"World"}</format>
-                <args/>
-            </payloadFactory>
-            <respond/>
-        </inSequence>
-        <outSequence/>
-        <faultSequence/>
-    </target>
-</proxy>
-```
-- Graphical View
+        ```
+        <?xml version="1.0" encoding="UTF-8"?>
+        <proxy name="HelloWorld" startOnLoad="true" transports="http https" xmlns="http://ws.apache.org/ns/synapse">
+            <target>
+                <inSequence>
+                    <payloadFactory media-type="json">
+                        <format>{"Hello":"World"}</format>
+                        <args/>
+                    </payloadFactory>
+                    <respond/>
+                </inSequence>
+                <outSequence/>
+                <faultSequence/>
+            </target>
+        </proxy>
+        ```
+    - Graphical View
 
-![Sample Proxy Service](../../assets/img/sample-proxy-service.png)
+       ![Sample Proxy Service](../../assets/img/sample-proxy-service.png)
 
-Now we can [Create Docker Project](../../develop/create-docker-project.md) with the Synapse configuration given above.
+2.  Now we can [Create Docker Project](../../develop/create-docker-project.md) with the Synapse configuration given above.
+3.  Use the following details:
 
+    ```bash
+    Target Repository : sampleproxy
+    Target Tag : 1.0.0
+    ```
 
-If you put the 
+4.  Execute the following command:
+    ```bash
+    docker image ls
+    ``` 
 
-```
-Target Repository : sampleproxy
-Target Tag : 1.0.0
-```
+    The list of currently available Docker images are displayed in the terminal similar to the example given below. The Docker image you created is included in this list as shown below.
 
-Once you issue the 
-```
-docker image ls
-``` 
-command, the list of currently available Docker images are displayed in the terminal similar to 
-the example given below. The Docker image you created is included in this list as shown below.
+    ```bash
+    REPOSITORY              TAG                 IMAGE ID            CREATED             SIZE
+    sampleproxy             1.0.0               49092809b36a        10 minutes ago      315MB
+    wso2/micro-integrator   1.1.0               088477c689f6        2 days ago          315MB
+    ```
 
+5.  Now you can up the container with following command:
 
-```
-REPOSITORY              TAG                 IMAGE ID            CREATED             SIZE
-sampleproxy             1.0.0               49092809b36a        10 minutes ago      315MB
-wso2/micro-integrator   1.1.0               088477c689f6        2 days ago          315MB
-```
+    ```bash
+    docker run -d -p 8290:8290 sampleproxy:1.0.0
+    ```
 
+    For example, invoke proxy as follows:
 
-Now you can up the container with following command
+    ```bash
+    curl http://localhost:8290/services/HelloWorld -XGET
+    ```
 
-```
-docker run -d -p 8290:8290 sampleproxy:1.0.0
-```
+    You will be able to get the response:
+     
+    ```bash
+    {"Hello":"World"}
+    ```
+    
+    If you want to use the [Monitoring Dashboard](../../administer-and-observe/working-with-monitoring-dashboard.md) please use following docker command
 
-Here if you invoke proxy as follows
-
-```
-curl http://localhost:8290/services/HelloWorld -XGET
-```
-
- you will be able to get the response
- 
-```
-{"Hello":"World"}
-```
-
-If you want to use the [Monitoring Dashboard](../../administer-and-observe/working-with-monitoring-dashboard.md) please use following docker command
-
-```
-docker run -p 8290:8290 -p 9743:9743 -p 9164:9164 -e   JAVA_OPTS="-DenableManagementApi=true" sampleproxy:1.0.0
-```
-
+    ```bash
+    docker run -p 8290:8290 -p 9164:9164 -e   JAVA_OPTS="-DenableManagementApi=true" sampleproxy:1.0.0
+    ```
 
 ## Build and run on Docker
 
