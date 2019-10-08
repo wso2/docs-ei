@@ -1,5 +1,5 @@
 
-# Installing WSO2 Micro Integrator on Docker
+# Run WSO2 Micro Integrator on Docker
 
 To run your Micro Integrator solutions on Docker or Kubernetes, you need
 to first create an **immutable** docker image with the required synapse
