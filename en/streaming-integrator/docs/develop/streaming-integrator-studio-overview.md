@@ -239,7 +239,7 @@ The **Tools** menu provides access to the following tools that are shipped with 
     manipulate the store in which that Siddhi Application saves data.
     You can enter queries that can update record, insert/update records,
     retrieve records and delete records. For more information about
-    actions you can carry out for stores, see [Managing Stored Data via REST APIs](https://docs.wso2.com/display/SP440/Managing+Stored+Data+via+REST+APIs).  
+    actions you can carry out for stores, see [Storage Integration - Performing CRUD operations via REST API](../guides/storage-Integration.md#performing-crud-operations-via-rest-api).
       
 -   **Tour Guide**
     This opens a dialog box named **Welcome to the Streaming Integrator
@@ -249,9 +249,19 @@ The **Tools** menu provides access to the following tools that are shipped with 
 #### Deploy menu items
 
 The **Deploy** menu has the following option to select one or more Siddhi applications and deploy them to one or more 
-Streaming Integrator servers. For more information, see [Deploying Streaming Applications](https://docs.wso2.com/display/SP440/Deploying+Streaming+Applications#DeployingStreamingApplications-DeploySiddhiApplicationviaEditor).
+Streaming Integrator servers. For more information, see [Deploying Siddhi Applications](deploying-StreamingApplications.md).
 
 ![Deploy menu](../images/streaming-integrator-studio-overview/Deploy_Menu.png)
+
+#### Export menu items
+
+The **Export** menu has the following options that allow you to export Siddhi applications in a format that can be deployed in a containerized environment.
+
+- **For Docker**
+    This opens the **Export Siddhi Apps for Docker image** wizard. For more information, see [Exporting Siddhi Applications - Exporting Siddhi applications as a Docker Image](exporting-Siddhi-Files.md#exporting-siddhi-applications-as-a-docker-image).
+
+- **For Kubernetes**
+    This opens the **Export Siddhi Apps For Kubernetes CRD** wizard. For more information, see [Exporting Siddhi Applications - Exporting Siddhi Applications for Kubernetes](exporting-Siddhi-Files.md#exporting-siddhi-applications-for-kubernetes).
 
 ## Side Panel
 
