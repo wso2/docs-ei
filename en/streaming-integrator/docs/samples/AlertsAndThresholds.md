@@ -4,13 +4,13 @@
 This application demonstrates how to send a single event via Single Simulation and to generate alerts using filters, when the threshold value is exceeded. Furthermore, it shows how to configure WSO2 Streaming Integrator Tooling to publish an alerts via e-mail. An alert is generated when a large valued transaction (The threshold for transaction value is 5000) is occurred and the relevant alert is sent as an e-mail.
 
 ## Prerequisites:
-1) Replace the Sink configuration values for following options.
+1. Replace the Sink configuration values for following options.
     - username: business.rules.manager (senders username)
     - password: business-rules (senders password)
     - address: business.rules.manager@wso2.com (senders address)
     - to: template-manager@wso2.com (receivers address)
     - subject: subject of the email
-2) you need to enable access to "less  secure apps" in the gmail account via "https://myaccount.google.com/lesssecureapps" link
+2. you need to enable access to "less  secure apps" in the gmail account via "https://myaccount.google.com/lesssecureapps" link
 3) Save this sample
 
 ## Executing the Sample:

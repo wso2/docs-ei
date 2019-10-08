@@ -273,12 +273,15 @@ Let's use the **CLI Tool** to find the URL of the data service that is deployed 
 2.  Execute the following command to start the tool:
     `./mi`
 3.  Execute the following command to find the data services deployed in the server:
-    `mi show proxyservice`
+    `./mi proxyservice show`
+    
+    Note: Please remember to login to CLI using `./mi remote login` command giving `admin` as both username and 
+    password before executing the above command.
 
 Now, open a command line terminal and enter the following request:
 
 ```bash
-curl -X GET http://localhost:8280/services/RDBMSDataService.HTTPEndpoint/Employee/3
+curl -X GET http://localhost:8290/services/RDBMSDataService.HTTPEndpoint/Employee/3
 ```
 
 You will receive the employee's details in the response.

@@ -14,8 +14,8 @@ http://maven.wso2.org/nexus/content/repositories/wso2gpl/org/wso2/extension/sidd
     * Siddhi App ClusTreeTestApp.siddhi successfully deployed.
 
 ## Executing the Sample:
-1) Start the Siddhi application by clicking on 'Run'
-2) If the Siddhi application starts successfully, the following messages would be shown on the console
+1. Start the Siddhi application by clicking on 'Run'
+2. If the Siddhi application starts successfully, the following messages would be shown on the console
     * ClusTreeTestApp.siddhi - Started Successfully!
 
 ## Testing the Sample:

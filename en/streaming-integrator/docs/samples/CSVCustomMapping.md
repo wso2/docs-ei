@@ -15,13 +15,13 @@ This application demonstrates how to configure WSO2 Streaming Integrator Tooling
 
 ## Viewing the Results:
 * Source takes input from the {WSO2SP-HOME}/samples/artifacts/CSVMappingWithFile/new/example.csv and produces the event.
-example.csv has data in below format  
-1,WSO2,23.5  
-2,IBM,2.5  
+example.csv has data in below format<br/>
+1,WSO2,23.5<br/>
+2,IBM,2.5<br/>
 * Sink takes input from source output and produces the output to outputOfCustom.csv.
-outputOfCustom.csv's data appear in below format  
-WSO2,1,100.0  
-IBM,2,2.5  
+outputOfCustom.csv's data appear in below format<br/>
+WSO2,1,100.0<br/>
+IBM,2,2.5<br/>
 
 ```sql
 @App:name("CSVCustomMapping")

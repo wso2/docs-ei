@@ -6,20 +6,20 @@ This application demonstrates state transition based on an existing Markov matri
 ## Prerequisites:
 Please find the below resource files in {WSO2_SI_Home}/samples/artifacts/MarkovChainSample directory.
 
-1) Copy MarkovChainSimulator.json file to {WSO2_SI_Home}/wso2/server/deployment/simulation-configs
-2) Copy MarkovChainTest.csv file to {WSO2_SI_Home}/wso2/server/deployment/csv-files
-3) Copy MarkovChainMatrix.csv file to {WSO2_SI_Home}/wso2/server/deployment/csv-files
-4) Copy MarkovChainSample.siddhi file to {WSO2_SI_Home}/wso2/server/deployment/siddhi-files/ and replace the absolute file path for MarkovChainMatrix.csv in 'MarkovChainSample' Siddhi App.
-5) Start editor runtime.
+1. Copy MarkovChainSimulator.json file to {WSO2_SI_Home}/wso2/server/deployment/simulation-configs
+2. Copy MarkovChainTest.csv file to {WSO2_SI_Home}/wso2/server/deployment/csv-files
+3. Copy MarkovChainMatrix.csv file to {WSO2_SI_Home}/wso2/server/deployment/csv-files
+4. Copy MarkovChainSample.siddhi file to {WSO2_SI_Home}/wso2/server/deployment/siddhi-files/ and replace the absolute file path for MarkovChainMatrix.csv in 'MarkovChainSample' Siddhi App.
+5. Start editor runtime.
 
 ## Executing the Sample:
-1) Start the Siddhi application by clicking on 'Run'
-2) If the Siddhi application starts successfully, the following messages would be shown on the console
+1. Start the Siddhi application by clicking on 'Run'
+2. If the Siddhi application starts successfully, the following messages would be shown on the console
     * MarkovChainSample.siddhi - Started Successfully!.
 
 ## Testing the Sample:
-1) Click 'Feed Simulation'
-2) Run by click on the play button in the 'MarkovChainSimulator'
+1. Click 'Feed Simulation'
+2. Run by click on the play button in the 'MarkovChainSimulator'
 
 ## Viewing the Results:
 Messages similar to the following would be shown on the editor console.<br/><br/>

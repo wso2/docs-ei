@@ -4,26 +4,26 @@ This application demonstrates how to use `siddhi-io-email` for receiving events 
 
 ## Prerequisites:
 
-1) Add relevant `siddhi-io-email` and `siddhi-map-xml` jars to the `{WSO2Home}/lib` folder if not exist.
+1. Add relevant `siddhi-io-email` and `siddhi-map-xml` jars to the `{WSO2Home}/lib` folder if not exist.
 
-2) Make sure you have provide less secure access to the sender's email account.
+2. Make sure you have provide less secure access to the sender's email account.
 eg: For gmail this can be done by visiting https://myaccount.google.com/lesssecureapps.
 
-3) Edit the siddhi app by providing following details.
+3. Edit the siddhi app by providing following details.
     * `receiver_email_username`
     * `receiver_email_password`
 
-4) Give the subject of the email to <subject_of_mail>. For further information search.terms refer https://wso2-extensions.github.io/siddhi-io-email/api/1.0.9/.
+4. Give the subject of the email to <subject_of_mail>. For further information search.terms refer https://wso2-extensions.github.io/siddhi-io-email/api/1.0.9/.
 
-5) Save this sample.
+5. Save this sample.
 
 ## Executing the Sample:
-1) Start the Siddhi application by clicking on 'Run'.
-2) If the Siddhi application starts successfully, the following messages would be shown on the console.
+1. Start the Siddhi application by clicking on 'Run'.
+2. If the Siddhi application starts successfully, the following messages would be shown on the console.
     ```
     ReceiveEmailInXmlFormat.siddhi - Started Successfully!
     ```
-3) Send an email with the body in following format to receiver's email address.
+3. Send an email with the body in following format to receiver's email address.
     ```xml
     <events>
         <event>
@@ -32,7 +32,7 @@ eg: For gmail this can be done by visiting https://myaccount.google.com/lesssecu
         </event>
     </events>
     ```
-4) The message should be logged in the console.
+4. The message should be logged in the console.
 
 ```sql
 @App:name("ReceiveEmailInXmlFormat")

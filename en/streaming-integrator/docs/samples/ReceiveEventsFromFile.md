@@ -3,17 +3,17 @@
 This application demonstrates how to use `siddhi-io-file` for receiving.
 
 ## Prerequisites:
-1) Edit this sample file by replacing `{WSO2SIHome}` with the absolute path of your WSO2SI home directory.
-2) Save this sample.
+1. Edit this sample file by replacing `{WSO2SIHome}` with the absolute path of your WSO2SI home directory.
+2. Save this sample.
 
 ## Executing the Sample:
-1) Start the Siddhi application by clicking on 'Run'.
-2) If the Siddhi application starts successfully, the following messages would be shown on the console.
+1. Start the Siddhi application by clicking on 'Run'.
+2. If the Siddhi application starts successfully, the following messages would be shown on the console.
     ```
     ReceiveEventsFromFile.siddhi - Started Successfully!
     ```
-3) Check the directories `{WSO2SIHome}/samples/artifacts/ReceiveEventsFromFile/files/consumed` and `new`.
-4) All the files which were in the directory `new` should have been moved to `consumed` directory.
+3. Check the directories `{WSO2SIHome}/samples/artifacts/ReceiveEventsFromFile/files/consumed` and `new`.
+4. All the files which were in the directory `new` should have been moved to `consumed` directory.
 
 ## Note:
 If the sample is not running and producing output, do the following first.

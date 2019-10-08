@@ -3,12 +3,12 @@
 This application demonstrates how to use the siddhi-execution-timeseries with regress function which allows user to specify the batch size that defines the number of events to be considered for the calculation of regression.
 
 ## Prerequisites:
-1) Start editor.
-2) Save this sample.
+1. Start editor.
+2. Save this sample.
 
 ## Executing the Sample:
-1) Start the Siddhi application by clicking on 'Run'.
-2) If the Siddhi application starts successfully, the following messages would be shown on the console. <br/><br/>
+1. Start the Siddhi application by clicking on 'Run'.
+2. If the Siddhi application starts successfully, the following messages would be shown on the console. <br/><br/>
     ```
     * TimeSeriesExtensionSample.siddhi - Started Successfully!
     ```

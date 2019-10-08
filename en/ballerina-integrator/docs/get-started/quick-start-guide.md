@@ -34,7 +34,7 @@ The expected payload should be in the following JSON format.
 
 ```bash
 {
-        "doctorType": "<DOCTOR_TYPE>"
+    "doctorType": "<DOCTOR_TYPE>"
 }
 ```
 
@@ -81,7 +81,7 @@ You will see following printed in the command line.
 Create a new project by navigating to a directory of your choice and running the following command. 
 
 ```bash
-$ ballerina new healthcare-service
+$ ballerina new quick-start-guide
 ```
 
 You see a response confirming that your project is created.
@@ -95,7 +95,7 @@ $ ballerina pull wso2/healthcare_service
 Now navigate into the above module directory you created. The following command enables you to apply a predefined template you pulled.
 
 ```bash
-$ ballerina add -t wso2/healthcare_service doctors
+$ ballerina add -t wso2/healthcare_service healthcare_service
 ```
 
 This automatically creates a healthcare service for you inside an `src` directory. A Ballerina service represents a collection of network accessible entry points in Ballerina. A resource within a service represents one such entry point. The generated sample service exposes a network entry point on port 9090.
@@ -103,31 +103,31 @@ This automatically creates a healthcare service for you inside an `src` director
 Build the service using the `ballerina build` command.
 
 ```bash
-$ ballerina build doctors
+$ ballerina build healthcare_service
 ```
 
 You get the following output.
 
 ```bash
 Compiling source
-	wso2/doctors:0.1.0
+	wso2/healthcare_service:0.1.0
 
 Creating balos
-	target/balo/doctors-2019r3-any-0.1.0.balo
+	target/balo/healthcare_service-2019r3-any-0.1.0.balo
 
 Running tests
-    wso2/doctors:0.1.0
+    wso2/healthcare_service:0.1.0
 	No tests found
 
 
 Generating executables
-	target/bin/doctors.jar
+	target/bin/healthcare_service.jar
 ```
 
 Run the following Java command to run the executable .jar file that is created once you build your module.
 
 ```bash
-$ java -jar target/bin/doctors.jar
+$ java -jar target/bin/healthcare_service.jar
 ```
 
 Your service is now up and running. You can invoke the service using an HTTP client. In this case, we use cURL.
@@ -169,73 +169,74 @@ You just started Ballerina Integrator, created a project, started a service, inv
 
 To have a look at the code, navigate to the `hospital_service.bal` file found inside your module.
 <details>
-            <summary>Ballerina code</summary>
-	    ```ballerina
-            import ballerina/http;
-            import ballerina/log;
+    <summary>Ballerina code</summary>
 
-            http:Client grandOakHospital = new("http://localhost:9091/grandOak");
-            http:Client pineValleyHospital = new("http://localhost:9092/pineValley");
+```ballerina
+import ballerina/http;
+import ballerina/log;
 
-            @http:ServiceConfig {
-                basePath: "/healthcare"
+http:Client grandOakHospital = new("http://localhost:9091/grandOak");
+http:Client pineValleyHospital = new("http://localhost:9092/pineValley");
+
+@http:ServiceConfig {
+    basePath: "/healthcare"
+}
+service healthcare on new http:Listener(9090) {
+
+    @http:ResourceConfig {
+        path: "/doctor/{doctorType}"
+    }
+    resource function getDoctors(http:Caller caller, http:Request request, string doctorType) returns error? {
+        json grandOakDoctors = {};
+        json pineValleyDoctors = {};
+        var grandOakResponse = grandOakHospital->get("/doctors/" + doctorType);
+        var pineValleyResponse = pineValleyHospital->post("/doctors", {doctorType: doctorType});
+        // Extract doctors array from grand oak hospital response
+        if (grandOakResponse is http:Response) {
+            json result = check grandOakResponse.getJsonPayload();
+            grandOakDoctors = check result.doctors.doctor;
+        } else {
+            handleError(caller, <@untained> grandOakResponse.reason());
+        }
+        // Extract doctors array from pine valley hospital response
+        if (pineValleyResponse is http:Response) {
+            json result = check pineValleyResponse.getJsonPayload();
+            pineValleyDoctors = check result.doctors.doctor;
+        } else {
+            handleError(caller, <@untained> pineValleyResponse.reason());
+        }
+        // Aggregate grand oak hospital's doctors with pine valley hospital's doctors
+        if (grandOakDoctors is json[] && pineValleyDoctors is json[]) {
+            foreach var item in pineValleyDoctors {
+                grandOakDoctors.push(item);
             }
-            service healthcare on new http:Listener(9090) {
+        }
+        // Respond back to the caller with aggregated json response
+        http:Response response = new();
+        response.setJsonPayload(<@untained> grandOakDoctors);
+        var result = caller->respond(response);
 
-                @http:ResourceConfig {
-                    path: "/doctor/{doctorType}"
-                }
-                resource function getDoctors(http:Caller caller, http:Request request, string doctorType) returns error? {
-                    json grandOakDoctors = {};
-                    json pineValleyDoctors = {};
-                    var grandOakResponse = grandOakHospital->get("/doctors/" + doctorType);
-                    var pineValleyResponse = pineValleyHospital->post("/doctors", {doctorType: doctorType});
-                    // Extract doctors array from grand oak hospital response
-                    if (grandOakResponse is http:Response) {
-                        json result = check grandOakResponse.getJsonPayload();
-                        grandOakDoctors = check result.doctors.doctor;
-                    } else {
-                        handleError(caller, <@untained> grandOakResponse.reason());
-                    }
-                    // Extract doctors array from pine valley hospital response
-                    if (pineValleyResponse is http:Response) {
-                        json result = check pineValleyResponse.getJsonPayload();
-                        pineValleyDoctors = check result.doctors.doctor;
-                    } else {
-                        handleError(caller, <@untained> pineValleyResponse.reason());
-                    }
-                    // Aggregate grand oak hospital's doctors with pine valley hospital's doctors
-                    if (grandOakDoctors is json[] && pineValleyDoctors is json[]) {
-                        foreach var item in pineValleyDoctors {
-                            grandOakDoctors.push(item);
-                        }
-                    }
-                    // Respond back to the caller with aggregated json response
-                    http:Response response = new();
-                    response.setJsonPayload(<@untained> grandOakDoctors);
-                    var result = caller->respond(response);
+        if (result is error) {
+            log:printError("Error sending response", err = result);
+        }
+    }
+}
 
-                    if (result is error) {
-                        log:printError("Error sending response", err = result);
-                    }
-                }
-            }
+function handleError(http:Caller caller, string errorMsg) {
+    http:Response response = new;
 
-            function handleError(http:Caller caller, string errorMsg) {
-                http:Response response = new;
-
-                json responsePayload = {
-                    "error": {
-                        "message": errorMsg
-                    }
-                };
-                response.setJsonPayload(responsePayload, "application/json");
-                var result = caller->respond(response);
-                if (result is error) {
-                    log:printError("Error sending response", err = result);
-                }
-            }
-            ```
+    json responsePayload = {
+        "error": {
+            "message": errorMsg
+        }
+    };
+    response.setJsonPayload(responsePayload, "application/json");
+    var result = caller->respond(response);
+    if (result is error) {
+        log:printError("Error sending response", err = result);
+    }
+}
+```
 </details>
 
 ## What's Next

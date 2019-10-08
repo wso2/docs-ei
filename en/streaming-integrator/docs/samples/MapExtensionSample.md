@@ -8,17 +8,17 @@ This function creates a map and added values and checks whether values are avail
     - Siddhi App MapExtensionSample successfully deployed.
 
 ## Executing the Sample:
-1) Start the Siddhi application by clicking on 'Run'
-2) If the Siddhi application starts successfully, the following messages would be shown on the console
+1. Start the Siddhi application by clicking on 'Run'
+2. If the Siddhi application starts successfully, the following messages would be shown on the console
     * MapExtensionSample.siddhi - Started Successfully!
 
 ## Testing the Sample:
 You can publish data event to the file, through event simulator
-a) Open event simulator by clicking on the second icon or press Ctrl+Shift+I.
-b) In the Single Simulation tab of the panel, select values as follows:
+1. Open event simulator by clicking on the second icon or press Ctrl+Shift+I.
+2. In the Single Simulation tab of the panel, select values as follows:
     * Siddhi App Name  : MapExtensionSample
     * Stream Name     : SweetProductionStream
-c) Enter following values in the fields and send
+3. Enter following values in the fields and send
     * name: chocolate cake
     * amount: 50.50
 

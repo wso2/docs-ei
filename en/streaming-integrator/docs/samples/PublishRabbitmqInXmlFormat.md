@@ -2,11 +2,11 @@
 This application demonstrates how to configure WSO2 Streaming Integrator Tooling to send sweet production events via RabbitMQ transport in XML format, and view the output on the rabbitmq-consumer.
 
 ## Prerequisites:
-1) Save this sample. The following message appears on the console.
+1. Save this sample. The following message appears on the console.
     ```
     Siddhi App PublishRabbitmqInXmlFormat successfully deployed.
     ```
-2) Setting up RabbitMQ broker in Ubuntu Linux.
+2. Setting up RabbitMQ broker in Ubuntu Linux.
     1. To download and install RabbitMQ, run the following commands:
         ```bash
         sudo apt-get update
@@ -26,26 +26,26 @@ This application demonstrates how to configure WSO2 Streaming Integrator Tooling
         ```
 
 ## Executing the Sample:
-1) Open a terminal and navigate to the `{WSO2SIHome}/samples/sample-clients/rabbitmq-consumer` directory and run the `ant` command.
+1. Open a terminal and navigate to the `{WSO2SIHome}/samples/sample-clients/rabbitmq-consumer` directory and run the `ant` command.
     * If you use the default exchange `RABBITMQSAMPLE` and URI `amqp://guest:guest@localhost:5672` in your program use `ant` command without any arguments.
     * However, if you use different exchange names or URIs, run the `ant` command with appropriate arguments.
     e.g., `ant -Dexchange=rabbitMqtest`
-2) Start the Siddhi application by clicking 'Run'.
-3) If the Siddhi application starts successfully, the following messages appear on the console.
+2. Start the Siddhi application by clicking 'Run'.
+3. If the Siddhi application starts successfully, the following messages appear on the console.
 ```
 PublishRabbitmqInXmlFormat.siddhi - Started Successfully!
 ```
 
 ## Testing the Sample:
-1) Open the event simulator by clicking the second icon or pressing Ctrl+Shift+I.
-2) In the Single Simulation tab of the panel, select values as follows:
+1. Open the event simulator by clicking the second icon or pressing Ctrl+Shift+I.
+2. In the Single Simulation tab of the panel, select values as follows:
     * Siddhi App Name: PublishRabbitmqInXmlFormat
     * Stream Name: SweetProductiontream
-3) In the name field and amount fields, enter 'toffee' and '45.24' respectively and then click Send to send the event.
-4) Send some more events.
+3. In the name field and amount fields, enter 'toffee' and '45.24' respectively and then click Send to send the event.
+4. Send some more events.
 
 ## Viewing the Results:
-*See the output in the terminal of `{WSO2SIHome}/samples/sample-clients/rabbitmq-consumer`. You will get the output as follows (sample output for 4 events):
+* See the output in the terminal of `{WSO2SIHome}/samples/sample-clients/rabbitmq-consumer`. You will get the output as follows (sample output for 4 events):
 ```
 [java] [org.apache.axiom.om.util.StAXUtils] : XMLStreamReader is org.apache.axiom.util.stax.dialect.SJSXPStreamReaderWrapper
 [java] [io.siddhi.core.stream.output.sink.LogSink] : PublishRabbitmqInXmlFormatTest : logStream : Event{timestamp=1512448790922, data=[toffee, 9.78], isExpired=false}

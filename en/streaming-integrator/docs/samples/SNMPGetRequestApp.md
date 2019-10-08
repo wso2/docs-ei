@@ -4,24 +4,25 @@
 This application demonstrates how to configure WSO2 Streaming Integrator Tooling to resive snmp source via SNMP in keyvalue using custom mapping.
 
 ## Prerequisites:
-	1) Save this sample.
-	2) Install snmp agent on your network node.
-		* for linux can install snmpd / for windows it can be configured by 'windows features'.
-		* configure snmp agent ex:- community string, port, user access.
-	3) If there is no syntax error, the following message is shown on the console:
-	       * - SNMP-get-request-app successfully deployed.
+1. Save this sample.
+2. Install snmp agent on your network node.
+    * for linux can install snmpd / for windows it can be configured by 'windows features'.
+    * configure snmp agent ex:- community string, port, user access.
+3. If there is no syntax error, the following message is shown on the console:
+       * - SNMP-get-request-app successfully deployed.
 
 ## Executing the Sample:
-	1) Start the Siddhi application by clicking on 'Run'.
-	2) If the Siddhi application starts successfully, the following messages are shown on the console:
-	  * SNMP-set-request-app - Started Successfully!
+1. Start the Siddhi application by clicking on 'Run'.
+2. If the Siddhi application starts successfully, the following messages are shown on the console:
+    * SNMP-set-request-app - Started Successfully!
 
 
 ## Viewing the Results:
 See the output. Following message would be shown on the console.
+```
 INFO {io.siddhi.core.stream.output.sink.LogSink} - SNMP-get-request-app : logStream : Event{timestamp=1************, data=[1:28:33.05, mail@wso2.com], isExpired=false}
 INFO {io.siddhi.core.stream.output.sink.LogSink} - SNMP-get-request-app : logStream : Event{timestamp=1************, data=[1:28:38.05, mail@wso2.com], isExpired=false}
-
+```
 
 
 ```sql
