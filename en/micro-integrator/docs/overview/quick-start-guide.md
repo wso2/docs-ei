@@ -4,7 +4,7 @@ Let's get started with WSO2 Micro Integrator by running a simple use case in you
 
 Most healthcare centers have a system that is used to make doctor appointments. To check the availability of the doctors for a particular time, users need to visit the hospitals or use each and every online system that is dedicated for a particular healthcare center. Here we are making it easier for patients by orchestrating those isolated systems for each healthcare provider and exposing a single interface to the users.
 
-![alt text](../../assets/img/quick-start-guide/MI-quick-start-guide.png)
+![Scenario](../../assets/img/quick-start-guide/MI-quick-start-guide.png)
 
 In the above scenario, the following takes place:
 
@@ -55,7 +55,7 @@ To set up the integration workspace for this quick start guide, we will use an i
 Go to the `<MI_QSG_HOME>` directory. The following project files and executable backend services files are available.
 
 - **HealthcareConfigProject**: This is the ESB Config Project folder with the integration artifacts for the Healthcare service. This service consists of the following REST API:
-  ![alt text](../../assets/img/quick-start-guide/qsg-api.png)
+  ![Scenario API](../../assets/img/quick-start-guide/qsg-api.png)
   <details>
             <summary>HealthcareAPI.xml</summary>
 	    ```xml
@@ -143,7 +143,7 @@ Follow the steps relevant to your OS:
 On MacOS/Linux/CentOS, open a terminal and execute the following commands:
 
 ```bash
-sudo wso2mi-1.0.0
+sudo wso2mi-service start
 ```
 
 On Windows, go to Start Menu -> Programs -> WSO2 -> Micro Integrator. This will open a terminal and start the relevant profile.

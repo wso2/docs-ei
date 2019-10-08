@@ -11,13 +11,13 @@ start your WSO2 Micro Integrator instance. This can be done by passing
 the `-DenableManagementApi` system property when you
 start the Micro Integrator. 
 
-Note that the default address is **https://localhost** and the port is **9743**.
+Note that the default address is **https://localhost** and the port is **9164**.
 
 -   When you run the Micro Integrator on Docker, start your Docker
     container by passing the `enableManagementApi` system property:
 
     ```bash
-    docker run -p 8290:8290 -p 9743:9743 -e JAVA_OPTS="-DenableManagementApi=true" <Docker_Image_Name>
+    docker run -p 8290:8290 -p 9164:9164 -e JAVA_OPTS="-DenableManagementApi=true" <Docker_Image_Name>
     ```
 
 -   When you run the Micro Integrator on a VM, use the following command

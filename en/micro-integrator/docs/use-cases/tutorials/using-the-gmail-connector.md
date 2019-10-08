@@ -26,14 +26,14 @@ Follow the steps below if you want to use your own email address for sending the
 
 1.  As the email sender, navigate to the [URL](https://console.developers.google.com/projectselector/apis/credentials) and log in to your google account.
 2.  If you do not already have a project, create a new project.
-3.  Click **Google APIs -> Credentials -> Create Credential -> OAuth client ID**.
+3.  Now, navigate again to the [URL](https://console.developers.google.com/projectselector/apis/credentials) and click
+ **Google APIs -> Credentials -> Create Credential -> OAuth client ID**.
 
     !!! Note
         At this point, if the consent screen name is not provided, you will be prompted to do so.
 
 4.  Select **Web Application** and create a client.
-5.  Provide <https://developers.google.com/oauthplayground> as the redirect URL under **Authorized redirect URIs** and click **Create**. The client ID and client secret will then be displayed.  
-
+5.  Provide <https://developers.google.com/oauthplayground> as the redirect URL under **Authorized redirect URIs** and click **Create**. The client ID and client secret will then be displayed.
     !!! Info
         See [Gmail API documentation](https://developers.google.com/gmail/api/auth/web-server) for details on creating the Client ID and Client Secret.
     
@@ -45,10 +45,16 @@ Follow the steps below if you want to use your own email address for sending the
 Follow these steps to automatically refresh the expired token when connecting to Google API:
 
 1. Navigate to the <https://developers.google.com/oauthplayground> URL, click ![](/assets/img/tutorials/119132294/oauth-credential-icon.png) at the top right corner of the screen and select **Use your own OAuth credentials**.
+
+    ![](../../assets/img/tutorials/using-the-gmail-connector/OAuth2.0Configuration.png)
+    
 2. Provide the client ID and client secret you [previously created](#creating-a-client-id-and-client-secret) and click **Close**.
 3. Now under Step 1, select **Gmail API v1** from the list of APIs, select all the scopes listed under it, and click **Authorize APIs**.
+
+  ![](../../assets/img/tutorials/using-the-gmail-connector/GmailApiV1.png)
+   
 4. You will then be prompted to allow permission, click **Allow**.
-5. Under Step 2, click **Exchange authorization code for tokens** to generate and display the access token and refresh token.
+5. Now , click **Exchange authorization code for tokens** to generate and display the access token and refresh token.
 
 #### Importing the Gmail Connector into WSO2 Integration Studio
 
@@ -210,7 +216,9 @@ To set up WSO2 Message Broker:
 
 1. Download WSO2 Message Broker. The path to this folder is referred to as `MB_HOME` throughout this tutorial.
 2. Add the following JAR files from the `MB_HOME/wso2/broker/client-lib/` directory to the `MI_TOOLING_HOME/Contents/Eclipse/runtime/microesb/lib/` directory.
-3. Open the `deployment.toml` file from `MI_TOOLING_HOME/Contents/Eclipse/runtime/microesb/conf/` directory and add the configurations given below. This is required for enabling the broker to store messages.
+3. Open the `deployment.toml` file from `MI_TOOLING_HOME/Contents/Eclipse/runtime/microesb/conf/` or 
+`MI_TOOLING_HOME/runtime/microesb/conf/` ( for linux ) directory and add 
+the configurations given below. This is required for enabling the broker to store messages.
 
     ```toml
     [[transport.jms.listener]]
@@ -269,7 +277,10 @@ Let's use the **CLI Tool** to find the URL of the REST API that is deployed in t
 2.  Execute the following command to start the tool:
     `./mi`
 3.  Execute the following command to find the APIs deployed in the server:
-    `mi show api`
+    `mi api show`
+    
+    Note: Please remember to login to CLI using `mi remote login` command giving `admin` as both username and 
+        password before executing the above command.
 
 Let's send a request to the API resource.
 
@@ -293,7 +304,8 @@ Let's send a request to the API resource.
 2.  Open a command line terminal and execute the following command from the location where `           request.json          ` file you created is saved:
 
     ```bash
-    curl -v -X POST --data @request.json http://localhost:8280/healthcare/categories/surgery/reserve --header "Content-Type:application/json"
+    curl -v -X POST --data @request.json http://localhost:8290/healthcare/categories/surgery/reserve --header 
+    "Content-Type:application/json"
     ```
 
     !!! Info
@@ -308,6 +320,10 @@ You will see the response as follows:
 ```
 
 An email will be sent to the provided patient email address with the following details:
+
+Note: If you haven't received the mail yet, there are possibilities that your access token might have expired.
+Follow the steps in [obtaining-the-access-token-and-refresh-token](#obtaining-the-access-token-and-refresh-token) to 
+obtain a new access token and update the gmail init operation.
 
 ```bash
 Subject: Payment Status
