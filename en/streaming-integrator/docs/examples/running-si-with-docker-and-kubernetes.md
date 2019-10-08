@@ -1,4 +1,4 @@
-# Running the Streaming Integrator with Docker and Kubernetes
+# Running the Streaming Integrator in Containerized Environments
 
 
 ## Running the Streaming Integrator with Docker
