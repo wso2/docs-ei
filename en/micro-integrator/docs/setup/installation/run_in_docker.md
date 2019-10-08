@@ -11,7 +11,7 @@ to systematically test the solution before deploying in production.
 
 ## Docker Images (WSO2 Micro Integrator)
 
-Two docker images are available for the Micro Integrator:
+Two type of docker images are available for the Micro Integrator:
 
 -   The Micro Integrator Docker image (with the latest products) is
     available in the [WSO2 Docker Registry](https://docker.wso2.com/) .
@@ -41,11 +41,16 @@ Two docker images are available for the Micro Integrator:
     wso2/micro-integrator:1.0.0
     ```
     
-## Build and run on Docker using Integration Studio
+## Build and run an App on Docker using Integration Studio
+
+In this section we are going to create a Docker project to deploy our integration solutions inside a Docker 
+environment.
 
 Let’s create a simple proxy service using Integration studio and deploy it in a Docker container. 
 
 For this we can use following synapse configuration
+
+- XML 
 
 ```
 <?xml version="1.0" encoding="UTF-8"?>
@@ -63,19 +68,26 @@ For this we can use following synapse configuration
     </target>
 </proxy>
 ```
+- Graphical View
 
-To create a Docker image with the Synapse configuration you added, follow the procedure given in below doc:
+![Sample Proxy Service](../../assets/img/sample-proxy-service.png)
 
+Now we can [Create Docker Project](../../develop/create-docker-project.md) with the Synapse configuration given above.
 
-[Create Docker Project](../../develop/create-docker-project.md)
 
 If you put the 
 
+```
 Target Repository : sampleproxy
 Target Tag : 1.0.0
+```
 
-Once you issue the **docker image ls** command, the list of currently available Docker images are displayed in the terminal similar to 
-the example given below. The Docker image you created is included in this list."
+Once you issue the 
+```
+docker image ls
+``` 
+command, the list of currently available Docker images are displayed in the terminal similar to 
+the example given below. The Docker image you created is included in this list as shown below.
 
 
 ```
@@ -103,15 +115,11 @@ curl http://localhost:8290/services/HelloWorld -XGET
 {"Hello":"World"}
 ```
 
-If you want to use the dashboard please use following docker command
+If you want to use the [Monitoring Dashboard](../../administer-and-observe/working-with-monitoring-dashboard.md) please use following docker command
 
 ```
 docker run -p 8290:8290 -p 9743:9743 -p 9164:9164 -e   JAVA_OPTS="-DenableManagementApi=true" sampleproxy:1.0.0
 ```
-
-To see the detailed explanation please follow 
-
-[Monitoring Dashboard](../../administer-and-observe/working-with-monitoring-dashboard.md)
 
 
 ## Build and run on Docker

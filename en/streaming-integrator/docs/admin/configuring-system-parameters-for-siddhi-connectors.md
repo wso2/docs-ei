@@ -1,1 +1,0 @@
-#Configuring System Parameters for Siddhi Connectors

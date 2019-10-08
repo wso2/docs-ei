@@ -23,7 +23,7 @@ This tutorial takes you through the different modes and options you could use, i
 
 In this section of the tutorial, you are exploring the different ways in which you could extract data from a specific file.
 
-**Tailing a text file line by line**
+#### Tailing a text file line by line
 
 In this scenario, you are tailing a text file, line by line, in order to extract data from it. Each line is extracted as an event that undergoes a simple transformation thereafter. Let's write a simple Siddhi application to do this.
 
@@ -89,7 +89,7 @@ In this scenario, you are tailing a text file, line by line, in order to extract
     INFO {io.siddhi.core.stream.output.sink.LogSink} - ReceiveEventsFromFile : LogStream : Event{timestamp=1564490869579, data=[CUP CAKE, 300.0], isExpired=false}
     ```
     
-**Tailing a text file using a regular expression**
+#### Tailing a text file using a regular expression
 
 In this scenario, you are using a regular expression to extract data from the file. After data is extracted, a simple transformation is performed on them. Finally, the transformed event is logged in the SI console. Let's write a simple Siddhi application to do this.
 
@@ -153,7 +153,7 @@ In this scenario, you are using a regular expression to extract data from the fi
     INFO {io.siddhi.core.stream.output.sink.LogSink} - TailFileRegex : LogStream : Event{timestamp=1564588585214, data=[IBM, 88.0, 150], isExpired=false}
     ```
 
-**Reading a remote text file and moving it after processing**
+#### Reading a remote text file and moving it after processing
 
 In the previous scenarios, you tailed a file and each file generated multiple events. In this scenario, you are reading the complete file to build a single event.
 
@@ -210,7 +210,7 @@ Furthermore, to try out the capability of processing remote files, you are proce
 !!!info
     In this scenario, you moved the file after processing. To delete a file after processing, remove the `action.after.process` and `move.after.process` parameters from the Siddhi application. For other configuration options, see [Siddhi File Source documentation](https://siddhi-io.github.io/siddhi-io-file/api/latest/#file-source).
 
-**Reading a binary file and moving it after processing**
+#### Reading a binary file and moving it after processing
 
 In the previous scenarios, you processed text files in order to extract data. In this scenario, you are reading a binary file. The content of the file generates a single event.
 
@@ -258,7 +258,7 @@ In the previous scenarios, you processed text files in order to extract data. In
     INFO {io.siddhi.core.stream.output.sink.LogSink} - BinaryFullFileProcessing :  LogStream : Event{timestamp=1564660553623, data=[WSO2, 55.6, 100], isExpired=false} 
     ```
 
-**Reading a file line by line and delete it after processing**
+#### Reading a file line by line and delete it after processing
 
 In this scenario, you are reading a text file completely, and then deleting it after  processing. In other words, the file is not tailed. You read the file line by line where each line generates an event.
 
@@ -330,7 +330,7 @@ In this scenario, you are reading a text file completely, and then deleting it a
     INFO {io.siddhi.core.stream.output.sink.LogSink} - ReadFileLineByLine : LogStream : Event{timestamp=1564902130543, data=[DOUGHNUT, 500.0], isExpired=false}
     ```
 
-**Reading a file using a regular expression and deleting it after processing**
+#### Reading a file using a regular expression and deleting it after processing
 
 In this scenario, you are using a regular expression to extract data from the content of the file. Here, you do not tail the file.  Instead, you read the full content of the file and generate a single event. After this is done, the file is deleted. To generate an event stream, you can keep re-creating the file with new data.
 
@@ -400,7 +400,7 @@ In this scenario, you are using a regular expression to extract data from the co
 
 ### Extracting data from a folder
 
-**Processing all files in the folder**
+#### Processing all files in the folder
 
 In this scenario, you extract data from a specific folder. All of the files are processed sequentially, where each file generates a single event.
 
@@ -455,7 +455,7 @@ In this scenario, you extract data from a specific folder. All of the files are 
 
 In this section of the tutorial, you are exploring the different ways in which you could load data into a file.  
 
-**Appending or over-writing events to a file**
+#### Appending or over-writing events to a file
 
 In this scenario, you are appending a stream of events to the end of a file.
 
@@ -523,7 +523,7 @@ In this scenario, you are appending a stream of events to the end of a file.
 
     For other configuration options, see [Siddhi File Sink documentation](https://siddhi-io.github.io/siddhi-io-file/api/latest/#file-sink).
     
-**Preserving the state of the application through a system failure**
+#### Preserving the state of the application through a system failure
 
 Let's try out a scenario where you deploy a Siddhi application to count the total number of production runs of a sweet factory.
 

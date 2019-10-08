@@ -107,7 +107,6 @@ A data service in WSO2 Micro Integrator is a SOAP-based web service by default.
 However, you also have the option of creating REST resources, which allows applications and systems consuming the 
 data service to have both SOAP-based, and RESTful access to your data.
 
-
 ---
 ## Other concepts
 
