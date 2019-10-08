@@ -57,7 +57,6 @@ or a local machine.
 
 1. [Download Micro Integrator](https://www.wso2.com/integration/micro-integrator) for your Operating System. For more information, see [the Installation section](../../setup/installation/install_in_vm/).
 
-
 2. Download [curl](https://curl.haxx.se/) or a similar tool that can call an HTTP endpoint.
 
 
@@ -436,23 +435,18 @@ There are several ways that you can test the integration scenario.
 #### Option1: Run from the Integration Studio
 
 1. Right click on the HealthcareConfigProject goto **Run As** → **Run on Micro Integrator**.
-
    ![Run in built-in MI](../assets/img/developing-first-integration/dev-first-integration-17.png)
 
-2. You will see the following dialog box. 
-   Select the HealthcareConfigProject in the Artifact list and click **Finish**.
-
+2. You will see the following dialog box. Select the HealthcareConfigProject in the Artifact list and click **Finish**.
    ![Run in built-in MI 2](../assets/img/developing-first-integration/dev-first-integration-18.png)
 
     You will see the MicroIntegrator get started and several logs get printed in the Integration Studio console.
   
 #### Option 2: Export artifacts, deploy and run the Micro Integrator
 
-##### Export artifacts
-To export the artifacts as a deployable CAR file, Right click on the the 
-HealthcareConfigProjectProjectCompositeApplication and select Export Composite Application Project.
+1.  To export the artifacts as a deployable CAR file, right-click on the the HealthcareConfigProjectProjectCompositeApplication and select Export Composite Application Project.
 
-   ![Export CAR](../assets/img/developing-first-integration/dev-first-integration-19.png)
+    ![Export CAR](../assets/img/developing-first-integration/dev-first-integration-19.png)
    
 #### Deploy the Healthcare service
 
@@ -461,10 +455,10 @@ Copy the above exported CAR file of the Healthcare service to the MI_HOME/reposi
 #### Start the Micro Integrator
 Follow the steps relevant to your OS:
 
-On MacOS/Linux/CentOS, open a terminal and execute the following commands:
+- On MacOS/Linux/CentOS, open a terminal and execute the following commands:
 sudo wso2mi-1.1.0
 
-On Windows, go to Start Menu -> Programs -> WSO2 -> Micro Integrator. 
+- On Windows, go to Start Menu -> Programs -> WSO2 -> Micro Integrator. 
 This will open a terminal and start the relevant profile.
    
 ### Invoke the Healthcare service
@@ -509,4 +503,4 @@ Upon invocation, you should be able to observe the following response:
 
 - [Running on Docker](../page-not-found).
 - [Running on Kubernetes](../page-not-found).
-- [Writing an unit test for integration artifacts](creating-unit-test-suite).
+- [Writing a unit test for integration artifacts](creating-unit-test-suite).
