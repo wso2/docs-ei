@@ -8,6 +8,8 @@ The dashboard as well as the CLI communicates with the management API of WSO2 Mi
 
 To use the CLI tool, you need to enable the management API by passing the `-DenableManagementApi` system property when you start your Micro Integrator instance. 
 
+Please note that in order to use the CLI tool you need to use JWT based authentication handler in `internal-apis.xml` file.
+
 -   When you run the Micro Integrator on Docker, start your Docker
     container by passing the `enableManagementApi` system property:
 
