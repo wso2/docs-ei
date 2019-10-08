@@ -1,4 +1,4 @@
-# Designing the Mediation Flow
+# Working with WSO2 Integration Studio
 
 Once you have created a [REST API](../develop/creating-artifacts/creating-an-api.md) or a [Proxy Service](../develop/creating-artifacts/creating-a-proxy-service.md) in WSO2 Integration Studio, you can update the mediation flow by adding new mediation artifacts and changing the existing artifacts.
 

@@ -55,7 +55,7 @@ from all the available healthcare centers.
 In this guide, we will see how we can build integration solution using the Integration Studio and run it on a VM 
 or a local machine.
 
-1. [Download Micro Integrator](https://www.wso2.com/integration/micro-integrator) for your Operating System.
+1. [Download Micro Integrator](https://www.wso2.com/integration/micro-integrator) for your Operating System. For more information, see [the Installation section](../../setup/installation/install_in_vm/).
 
 2. Download [curl](https://curl.haxx.se/) or a similar tool that can call an HTTP endpoint.
 
@@ -254,21 +254,22 @@ go to **New** → **REST API** to open the API Artifact Creation Options dialog 
 ### Step 4: Build the mediation logic
 
 1. Create two parallel message flows
-In this scenario the Healthcare API receive a HTTP GET request and it is required to deliver into two different backend 
-services. So we need to clone the message into two branches and process them in parallel. 
-To do that we can use the **Clone Mediator**.
+    
+    In this scenario the Healthcare API receive a HTTP GET request and it is required to deliver into two different backend 
+    services. So we need to clone the message into two branches and process them in parallel. 
+    To do that we can use the **Clone Mediator**.
 
     Drag the **Clone Mediator** from the mediator palette and drop it into the request path (inSequence) of Resource canvas. 
 
-   ![Clone](../assets/img/developing-first-integration/dev-first-integration-9.png)
+    ![Clone](../assets/img/developing-first-integration/dev-first-integration-9.png)
 
     Right click on the Clone Mediator and select **Add/Remove Target..**. 
     In the **Add Target Branches** window, set Number of Branches to 2. 
     You will see two branches inside the Clone Mediator now.
 
-   ![Clone Branches](../assets/img/developing-first-integration/dev-first-integration-10.png)
+    ![Clone Branches](../assets/img/developing-first-integration/dev-first-integration-10.png)
 
-2. Invoke GrandOak Endpoint. 
+2. Invoke GrandOak Endpoint
 
     The **Call Mediator** is used to invoke a backend service. In the ESB configuration, 
     the backend service is represented using an Endpoint. In Step 2 we have already created an Endpoint to 
@@ -276,12 +277,12 @@ To do that we can use the **Clone Mediator**.
 
     Drag the Call Mediator from the mediator palette, into one branch of the Clone Mediator. 
 
-   ![Call Mediator](../assets/img/developing-first-integration/dev-first-integration-11.png)
+    ![Call Mediator](../assets/img/developing-first-integration/dev-first-integration-11.png)
    
     Then Drag the already defined GrandOak Endpoint available under Defined Endpoints section of the palette into 
     the Call mediator area.
-
-   ![Call Mediator EP](../assets/img/developing-first-integration/dev-first-integration-12.png)
+    
+    ![Call Mediator EP](../assets/img/developing-first-integration/dev-first-integration-12.png)
    
 3. Construct message payload for PineValley Endpoint
 
@@ -298,8 +299,8 @@ To do that we can use the **Clone Mediator**.
     Transformation mediators available in EI. Here we are going to use the PayloadFactory mediator.
     Drag the PayloadFactory mediator into the 2nd branch of the Clone Mediator. 
 
-   ![PayloadFactory Mediator](../assets/img/developing-first-integration/dev-first-integration-13.png)
-
+    ![PayloadFactory Mediator](../assets/img/developing-first-integration/dev-first-integration-13.png)
+    
     Specify values for the required PayloadFactory properties.
 
     <table>
@@ -330,7 +331,6 @@ To do that we can use the **Clone Mediator**.
         <td>Args</td>
         <td>$ctx:uri.var.doctorType</td>
       </tr>
-    
     </table>
 
     Note the $1 in the Payload format. It denotes a parameter that can get a value assigned dynamically. 
@@ -345,14 +345,14 @@ To do that we can use the **Clone Mediator**.
     
 4. Invoke PineValley Endpoint
     
-     Follow the same steps mentioned in ‘Invoke GrandOak Endpoint’ section to use Call mediator to invoke the PineVallery Endpoint.
+    Follow the same steps mentioned in ‘Invoke GrandOak Endpoint’ section to use Call mediator to invoke the PineVallery Endpoint.
     
 5. Aggregating response messages
     
-     Since we are cloning the messages and delivering into two different services, we will receive two responses. 
-     So we need to aggregate those two responses and construct a single response. To do that we can use the Aggregate Mediator.
+    Since we are cloning the messages and delivering into two different services, we will receive two responses. 
+    So we need to aggregate those two responses and construct a single response. To do that we can use the Aggregate Mediator.
     
-     Drag the Aggregate Mediator and drop it over right after the Clone Mediator like follows.
+    Drag the Aggregate Mediator and drop it over right after the Clone Mediator like follows.
    
     ![Aggregate Mediator](../assets/img/developing-first-integration/dev-first-integration-15.png)
    
@@ -380,56 +380,52 @@ To do that we can use the **Clone Mediator**.
     
 The final mediation configuration looks similar to the above diagram.     
 Following is what you will see in the Source View.
-    
-    
-<details>
-        <summary>HealthcareAPI</summary>
-	    ```xml
-            <?xml version="1.0" encoding="UTF-8"?>
-            <api context="/healthcare" name="HealthcareAPI" xmlns="http://ws.apache.org/ns/synapse">
-                <resource methods="GET" uri-template="/doctor/{doctorType}">
-                    <inSequence>
-                        <clone>
-                            <target>
-                                <sequence>
-                                    <call>
-                                        <endpoint key="GrandOakEndpoint"/>
-                                    </call>
-                                </sequence>
-                            </target>
-                            <target>
-                                <sequence>
-                                    <payloadFactory media-type="json">
-                                        <format>{
-                                                          "doctorType": "$1"
-                                                       }
-                                        </format>
-                                        <args>
-                                            <arg evaluator="xml" expression="$ctx:uri.var.doctorType"/>
-                                        </args>
-                                    </payloadFactory>
-                                    <call>
-                                        <endpoint key="PineValleyEndpoint"/>
-                                    </call>
-                                </sequence>
-                            </target>
-                        </clone>
-                        <aggregate>
-                            <completeCondition>
-                                <messageCount max="-1" min="-1"/>
-                            </completeCondition>
-                            <onComplete expression="json-eval($.doctors.doctor)">
-                                <respond/>
-                            </onComplete>
-                        </aggregate>
-                    </inSequence>
-                    <outSequence/>
-                    <faultSequence/>
-                </resource>
-            </api>
-	    ```    
-</details>    
-    
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<api context="/healthcare" name="HealthcareAPI" xmlns="http://ws.apache.org/ns/synapse">
+<resource methods="GET" uri-template="/doctor/{doctorType}">
+    <inSequence>
+	<clone>
+	    <target>
+		<sequence>
+		    <call>
+			<endpoint key="GrandOakEndpoint"/>
+		    </call>
+		</sequence>
+	    </target>
+	    <target>
+		<sequence>
+		    <payloadFactory media-type="json">
+			<format>{
+					  "doctorType": "$1"
+				       }
+			</format>
+			<args>
+			    <arg evaluator="xml" expression="$ctx:uri.var.doctorType"/>
+			</args>
+		    </payloadFactory>
+		    <call>
+			<endpoint key="PineValleyEndpoint"/>
+		    </call>
+		</sequence>
+	    </target>
+	</clone>
+	<aggregate>
+	    <completeCondition>
+		<messageCount max="-1" min="-1"/>
+	    </completeCondition>
+	    <onComplete expression="json-eval($.doctors.doctor)">
+		<respond/>
+	    </onComplete>
+	</aggregate>
+    </inSequence>
+    <outSequence/>
+    <faultSequence/>
+</resource>
+</api>
+```
+
 ## Test the integration scenario
 
 There are several ways that you can test the integration scenario. 
@@ -439,23 +435,18 @@ There are several ways that you can test the integration scenario.
 #### Option1: Run from the Integration Studio
 
 1. Right click on the HealthcareConfigProject goto **Run As** → **Run on Micro Integrator**.
+   ![Run in built-in MI](../assets/img/developing-first-integration/dev-first-integration-17.png)
 
-    ![Run in built-in MI](../assets/img/developing-first-integration/dev-first-integration-17.png)
-
-2. You will see the following dialog box. 
-   Select the HealthcareConfigProject in the Artifact list and click **Finish**.
-
+2. You will see the following dialog box. Select the HealthcareConfigProject in the Artifact list and click **Finish**.
    ![Run in built-in MI 2](../assets/img/developing-first-integration/dev-first-integration-18.png)
 
     You will see the MicroIntegrator get started and several logs get printed in the Integration Studio console.
   
 #### Option 2: Export artifacts, deploy and run the Micro Integrator
 
-##### Export artifacts
-To export the artifacts as a deployable CAR file, Right click on the the 
-HealthcareConfigProjectProjectCompositeApplication and select Export Composite Application Project.
+1.  To export the artifacts as a deployable CAR file, right-click on the the HealthcareConfigProjectProjectCompositeApplication and select Export Composite Application Project.
 
-   ![Export CAR](../assets/img/developing-first-integration/dev-first-integration-19.png)
+    ![Export CAR](../assets/img/developing-first-integration/dev-first-integration-19.png)
    
 #### Deploy the Healthcare service
 
@@ -464,10 +455,10 @@ Copy the above exported CAR file of the Healthcare service to the MI_HOME/reposi
 #### Start the Micro Integrator
 Follow the steps relevant to your OS:
 
-On MacOS/Linux/CentOS, open a terminal and execute the following commands:
+- On MacOS/Linux/CentOS, open a terminal and execute the following commands:
 sudo wso2mi-1.1.0
 
-On Windows, go to Start Menu -> Programs -> WSO2 -> Micro Integrator. 
+- On Windows, go to Start Menu -> Programs -> WSO2 -> Micro Integrator. 
 This will open a terminal and start the relevant profile.
    
 ### Invoke the Healthcare service
@@ -510,7 +501,6 @@ Upon invocation, you should be able to observe the following response:
 
 ## What's Next
 
-
 - [Running on Docker](../page-not-found).
 - [Running on Kubernetes](../page-not-found).
-- [Writing an unit test for integration artifacts](creating-unit-test-suite).
+- [Writing a unit test for integration artifacts](creating-unit-test-suite).
