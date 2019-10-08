@@ -1,4 +1,4 @@
-#k8s-ei-operator Scenarios
+# K8s-ei-operator Example 2
 
 ## Content Based Routing Scenario
 
@@ -107,13 +107,19 @@ Follow the below steps to deploy and run the integration solution on the Kuberne
 6.  Starts the Docker daemon in the host machine.
 
 7.  Navigate to the Maven multi module project and run the following command to build the project. It will create a docker image with provided target repository and tag once it build successfully.
+    ```bash
+    mvn clean install -Dmaven.test.skip=true
     ```
-    mvn clean install -Dmave.test.skip=true
+8.  Run the `docker image ls` command to verify whether docker image has been built or not. 
+
+9.  Navigate to the Kubernetes project inside the MavenParentProject and run maven push command to the push docker image to the remote docker registry.
+    ```bash
+    mvn clean install -Dmaven.test.skip=true
     ```
 8.  Run the ```docker image ls``` command to verify whether docker image has been built or not. 
 
 9.  Navigate to the Kubernetes project inside the MavenParentProject and run maven push command to the push docker image to the remote docker registry.
-    ```
+    ```bash
     cd k8s-hello-world
     mvn dockerfile:push -Ddockerfile.username={username} -Ddockerfile.password={password}
     ``` 
@@ -122,9 +128,7 @@ Follow the below steps to deploy and run the integration solution on the Kuberne
     
 10. Follow the **[Kubernetes Deployment using k8s-ei-operator](https://ei.docs.wso2.com/en/latest/micro-integrator/develop/kubernetes_deployment/)** documentation to deploy and run the integration solution inside the Kubernetes environment.
 
-11. Invoke the service as follows
-
-    Create a ```request.xml``` file as follows
+11. Create a ```request.xml``` file as follows
     ```xml
     <ArithmaticOperation>
       <Operation>Add</Operation>
@@ -140,7 +144,8 @@ Follow the below steps to deploy and run the integration solution on the Kuberne
       <Arg2>5</Arg2>
     </ArithmaticOperation>
     ```
-    ```
+12. Execute the following command:
+    ```bash
     curl -X POST -d @request.xml http://localhost:8290/services/ArithmaticOperationService -H "Content-Type: text/xml"
     ```  
     
