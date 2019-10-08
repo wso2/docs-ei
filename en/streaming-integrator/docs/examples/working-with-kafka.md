@@ -38,9 +38,7 @@ This tutorial takes you through consuming from a Kafka topic, processing the mes
 
 ## Tutorial steps
 
-### Consuming data with Kafka
-
-**Step 1: Start Kafka**
+### Start Kafka
 
 1. Navigate to `<KAFKA_HOME>` and start a zookeeper node by issuing the following command.
    `sh bin/zookeeper-server-start.sh config/zookeeper.properties`
@@ -49,7 +47,7 @@ This tutorial takes you through consuming from a Kafka topic, processing the mes
    `sh bin/kafka-server-start.sh config/server.properties`
 
 
-**Step 2: Start the Streaming Integrator**
+### Start the Streaming Integrator
 
 Navigate to the `<SI_HOME>/bin` directory and issue the following command. 
 `sh server.sh`
@@ -60,7 +58,7 @@ The following log appears on the SI console when the server is started successfu
 INFO {org.wso2.carbon.kernel.internal.CarbonStartupHandler} - WSO2 Streaming Integrator started in 4.240 sec
 ```
 
-**Step 3: Consume from a Kafka topic**
+### Consume from a Kafka topic
 
 Let's create a basic Siddhi application to consume messages from a Kafka topic.
 
@@ -100,7 +98,7 @@ Let's create a basic Siddhi application to consume messages from a Kafka topic.
     You just created a Siddhi application that listens to a Kafka topic named `productions` and logs any incoming messages. When logging, the name attribute of the message is converted to upper case. However, you have still not created this Kafka topic or published any messages to it. To do this, proceed to the next section.
 
 
-**Step 4: Generate Kafka messages**
+#### Generate Kafka messages
 
 Now let's generate some Kafka messages that the Streaming Integrator can receive. 
 
@@ -129,67 +127,7 @@ Now let's generate some Kafka messages that the Streaming Integrator can receive
     ```
 
 You may notice that the output message has an uppercase name: `ALMOND COOKIE`. This is because of the simple message transformation done in the Siddhi application.   
-
-**Step 5: Publish to a Kafka topic**
- 
-Now let's create a new Siddhi application to consume from the `productions` topic, filter the incoming messages based on a condition, and then publish those filtered messages to another Kafka topic.
-
-1. First, let's create a new topic named `bulk-orders` in the Kafka server.
-
-2. To publish the filtered messages to the `bulk-orders` Kafka topic you created, issue the following command.
-
-    ```
-    bin/kafka-topics.sh --create --bootstrap-server localhost:9092 --replication-factor 1 --partitions 1 --topic bulk-orders
-    ```
-
-3. Next, let's create the Siddhi application. Open a text file, and copy-paste following Siddhi application into it.
-
-    ```
-        @App:name("PublishToKafka")
-
-        @App:description('Consume events from a Kafka Topic, do basic filtering and publish filtered messages to a Kafka topic.')
-
-        @source(type='kafka',
-                topic.list='productions',
-                threading.option='single.thread',
-                group.id="group2",
-                bootstrap.servers='localhost:9092',
-                @map(type='json'))
-        define stream SweetProductionStream (name string, amount double);
-
-        @sink(type='kafka',
-              topic='bulk-orders',
-              bootstrap.servers='localhost:9092',
-              partition.no='0',
-              @map(type='json'))
-        define stream BulkOrdersStream (name string, amount double);
-
-        from SweetProductionStream[amount > 50]
-        select *
-        insert into BulkOrdersStream;
-    ```
-
-4. Save this file as `PublishToKafka.siddhi` in the `<SI_HOME>/wso2/server/deployment/siddhi-files` directory. When the 
-   Siddhi application is successfully deployed, the following `INFO` log appears in the Streaming Integrator console.
-
-    ```
-    INFO {org.wso2.carbon.streaming.integrator.core.internal.StreamProcessorService} - Siddhi App PublishToKafka deployed successfully
-    ```
-
-    !!!info
-        The `PublishToKafka` Siddhi application consumes all the messages from the `productions` topic and populates the `SweetProductionStream` stream. All the sweet production runs where the amount is greater than 100 are inserted into the `BulkOrdersStream` stream. These events are pushed to the `bulk-orders` Kafka topic.
-    
-
-5. To observe the messages in the `bulk-orders` topic, run a Kafka Console Consumer. Then navigate to the `<KAFKA_HOME>` directory and issue the following command.
-    ```
-    bin/kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic bulk-orders --from-beginning
-    ```
-   You can see the following message in the Kafka Consumer log. These indicate the production runs of which the amount is greater than 50.
-
-    ```
-    {"event":{ "name":"Almond cookie", "amount":100.0}}
-    ``` 
-   
+  
 ### Consuming with an offset
 
 Previously, you consumed messages from the `productions` topic *without specifying an offset*. In other words, the Kafka offset was zero. In this section, instead of consuming with a zero offset, you specify an offset value and consume messages from that offset onwards.
@@ -416,142 +354,201 @@ Let's alter your topic to have three partitions. After that, you can assign two 
     ```
 
    You can observe a pattern where the load is distributed among `consumer-1` and `consumer-2` in the 2:1 ratio. This is because you assigned two partitions to `consumer-1` and assigned only one partition to `consumer-2`.
+    
+### Publish to a Kafka topic
+ 
+Now let's create a new Siddhi application to consume from the `productions` topic, filter the incoming messages based on a condition, and then publish those filtered messages to another Kafka topic.
 
-### Preserving the state of the application through a system failure
+1. First, let's create a new topic named `bulk-orders` in the Kafka server.
 
-Let's try out a scenario in which you deploy a Siddhi application to count the total number of productions.
-
-!!!info
-    In this scenario, the SI server is required to *remember* the current count through system failures so that when the system is restored, the count is not reset to zero.
-
-    To achieve this, you can use the state persistence capability in the Streaming Integrator.
-
-1. Enable state persistence feature in SI server as follows. Open the `<SI_HOME>/conf/server/deployment.yaml` file on a text editor and locate the `state.persistence` section.  
-
-    ``` 
-      # Periodic Persistence Configuration
-    state.persistence:
-      enabled: true
-      intervalInMin: 1
-      revisionsToKeep: 2
-      persistenceStore: org.wso2.carbon.streaming.integrator.core.persistence.FileSystemPersistenceStore
-      config:
-        location: siddhi-app-persistence
-    ```
-
-    Set `enabled` parameter to `true` and save the file. 
-
-2. Enable state persistence debug logs as follows. Open the `<SI_HOME>/conf/server/log4j2.xml` file on a text editor and locate following line in it.
+2. To publish the filtered messages to the `bulk-orders` Kafka topic you created, issue the following command.
 
     ```
-     <Logger name="com.zaxxer.hikari" level="error"/>
+    bin/kafka-topics.sh --create --bootstrap-server localhost:9092 --replication-factor 1 --partitions 1 --topic bulk-orders
     ```
 
-    Add following `<Logger>` element below that.
+3. Next, let's create the Siddhi application. Open a text file, and copy-paste following Siddhi application into it.
 
     ```
-    <Logger name="org.wso2.carbon.streaming.integrator.core.persistence" level="debug"/>
-    ```
+        @App:name("PublishToKafka")
 
-    Save the file.
-
-3. Restart the Streaming Integrator server for above change to be effective.
-
-4. Let's create a new topic named `sandwich_productions` in the Kafka server. To do this, navigate to `<KAFKA_HOME>` and run following command:
-
-    ```
-    bin/kafka-topics.sh --create --bootstrap-server localhost:9092 --replication-factor 1 --partitions 1 --topic sandwich_productions
-    ```
-
-5. Open a text file and copy-paste following Siddhi application to it.
-
-    ```
-        @App:name("CountProductions")
-
-        @App:description('Siddhi application to count the total number of orders.')
+        @App:description('Consume events from a Kafka Topic, do basic filtering and publish filtered messages to a Kafka topic.')
 
         @source(type='kafka',
-                topic.list='sandwich_productions',
+                topic.list='productions',
                 threading.option='single.thread',
-                group.id="group3",
+                group.id="group2",
                 bootstrap.servers='localhost:9092',
-                partition.no.list='0',
                 @map(type='json'))
-        define stream SandwichProductionStream (name string, amount double);
+        define stream SweetProductionStream (name string, amount double);
 
-        @sink(type='log')
-        define stream OutputStream (totalProductions double);
+        @sink(type='kafka',
+              topic='bulk-orders',
+              bootstrap.servers='localhost:9092',
+              partition.no='0',
+              @map(type='json'))
+        define stream BulkOrdersStream (name string, amount double);
 
-        from SandwichProductionStream
-        select sum(amount) as totalProductions
-        insert into OutputStream;
+        from SweetProductionStream[amount > 50]
+        select *
+        insert into BulkOrdersStream;
     ```
 
-6. Save this file as `CountProductions.siddhi` in the `<SI_HOME>/wso2/server/deployment/siddhi-files` directory. When the Siddhi application is successfully deployed, the following `INFO` log appears in the Streaming Integrator console.
+4. Save this file as `PublishToKafka.siddhi` in the `<SI_HOME>/wso2/server/deployment/siddhi-files` directory. When the 
+   Siddhi application is successfully deployed, the following `INFO` log appears in the Streaming Integrator console.
 
     ```
-    INFO {org.wso2.carbon.stream.processor.core.internal.StreamProcessorService} - Siddhi App CountProductions deployed successfully
+    INFO {org.wso2.carbon.streaming.integrator.core.internal.StreamProcessorService} - Siddhi App PublishToKafka deployed successfully
     ```
 
-7. Now let's run the Kafka command line client to push a few messages to the Kafka server. Navigate to `<KAFKA_HOME>` and run following command:
-
-    ```
-    bin/kafka-console-producer.sh --broker-list localhost:9092 --topic sandwich_productions
-    ```
-
-8. Now you are prompted to type the messages in the console. Type following in the command prompt:
-
-    ```
-    {"event":{ "name":"Bagel", "amount":100.0}}
-    ```
-
-    ```    
-    {"event":{ "name":"Buterbrod", "amount":100.0}} 
-    ```
-
-    Now the following logs appear on the SI console.
-
-    ```
-    INFO {io.siddhi.core.stream.output.sink.LogSink} - CountProductions : OutputStream : Event{timestamp=1563903034768, data=[100.0], isExpired=false}
-    INFO {io.siddhi.core.stream.output.sink.LogSink} - CountProductions : OutputStream : Event{timestamp=1563903034768, data=[200.0], isExpired=false}
-    ```
-
-    These logs print the sandwich production count. Note that the current count of sandwich productions is being printed as `200` in the second log. This is because the production count up to now is `200` sandwiches: `100` bagels and `100` buterbrods.
-
-9. Now wait for following log to appear on the SI console
-    ```
-    DEBUG {org.wso2.carbon.streaming.integrator.core.persistence.FileSystemPersistenceStore} - Periodic persistence of CountProductions persisted successfully
-    ```
-
-    This log indicates that the current state of the Siddhi application is successfully persisted. Siddhi application state is persisted every minute. Therefore, you can notice this log appearing every minute.
-    
-    Next, let's push two sandwich production messages to the Kafka server and shutdown the SI server before state persistence happens (i.e., before the above log appears).
-    
-    !!!Tip
-        It is better to start pushing messages immediately after the state persistence log appears, so that you have plenty of time to push messages and shutdown the server, until next log appears.
-        
-10. Now push following messages to the Kafka server using the Kafka Console Producer:
-
-    ```
-    {"event":{ "name":"Croissant", "amount":100.0}}
-    ```
-
-    ```    
-    {"event":{ "name":"Croutons", "amount":100.0}} 
-    ```
-
-11. Shutdown SI server. Here you are deliberately creating a scenario where the server crashes before the SI server could persist the latest production count.
-    
     !!!info
-        Here the SI server crashes before the state is persisted. Therefore the SI server cannot persist the latest count (which should include the last two productions `100` Croissants and `100` Croutons). The good news is, the Kafka source replays the last two messages, thereby allowing the Streaming Integrator to successfully recover from the server crash.
+        The `PublishToKafka` Siddhi application consumes all the messages from the `productions` topic and populates the `SweetProductionStream` stream. All the sweet production runs where the amount is greater than 100 are inserted into the `BulkOrdersStream` stream. These events are pushed to the `bulk-orders` Kafka topic.
     
-12. Restart the SI server and wait for about one minute to observe the following logs.
+
+5. To observe the messages in the `bulk-orders` topic, run a Kafka Console Consumer. Then navigate to the `<KAFKA_HOME>` directory and issue the following command.
+    ```
+    bin/kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic bulk-orders --from-beginning
+    ```
+   You can see the following message in the Kafka Consumer log. These indicate the production runs of which the amount is greater than 50.
 
     ```
-    INFO {io.siddhi.core.stream.output.sink.LogSink} - CountProductions : OutputStream : Event{timestamp=1563904912073, data=[300.0], isExpired=false}
-    INFO {io.siddhi.core.stream.output.sink.LogSink} - CountProductions : OutputStream : Event{timestamp=1563904912076, data=[400.0], isExpired=false}
-    ```     
-
-Note that the Kafka source has replayed the last two messages. As a result, the sandwich productions count is correctly restored.
+    {"event":{ "name":"Almond cookie", "amount":100.0}}
+    ``` 
     
+ ### Preserving the state of the application through a system failure
+ 
+ Let's try out a scenario in which you deploy a Siddhi application to count the total number of productions.
+ 
+ !!!info
+     In this scenario, the SI server is required to *remember* the current count through system failures so that when the system is restored, the count is not reset to zero.
+ 
+     To achieve this, you can use the state persistence capability in the Streaming Integrator.
+ 
+ 1. Enable state persistence feature in SI server as follows. Open the `<SI_HOME>/conf/server/deployment.yaml` file on a text editor and locate the `state.persistence` section.  
+ 
+     ``` 
+       # Periodic Persistence Configuration
+     state.persistence:
+       enabled: true
+       intervalInMin: 1
+       revisionsToKeep: 2
+       persistenceStore: org.wso2.carbon.streaming.integrator.core.persistence.FileSystemPersistenceStore
+       config:
+         location: siddhi-app-persistence
+     ```
+ 
+     Set `enabled` parameter to `true` and save the file. 
+ 
+ 2. Enable state persistence debug logs as follows. Open the `<SI_HOME>/conf/server/log4j2.xml` file on a text editor and locate following line in it.
+ 
+     ```
+      <Logger name="com.zaxxer.hikari" level="error"/>
+     ```
+ 
+     Add following `<Logger>` element below that.
+ 
+     ```
+     <Logger name="org.wso2.carbon.streaming.integrator.core.persistence" level="debug"/>
+     ```
+ 
+     Save the file.
+ 
+ 3. Restart the Streaming Integrator server for above change to be effective.
+ 
+ 4. Let's create a new topic named `sandwich_productions` in the Kafka server. To do this, navigate to `<KAFKA_HOME>` and run following command:
+ 
+     ```
+     bin/kafka-topics.sh --create --bootstrap-server localhost:9092 --replication-factor 1 --partitions 1 --topic sandwich_productions
+     ```
+ 
+ 5. Open a text file and copy-paste following Siddhi application to it.
+ 
+     ```
+         @App:name("CountProductions")
+ 
+         @App:description('Siddhi application to count the total number of orders.')
+ 
+         @source(type='kafka',
+                 topic.list='sandwich_productions',
+                 threading.option='single.thread',
+                 group.id="group3",
+                 bootstrap.servers='localhost:9092',
+                 partition.no.list='0',
+                 @map(type='json'))
+         define stream SandwichProductionStream (name string, amount double);
+ 
+         @sink(type='log')
+         define stream OutputStream (totalProductions double);
+ 
+         from SandwichProductionStream
+         select sum(amount) as totalProductions
+         insert into OutputStream;
+     ```
+ 
+ 6. Save this file as `CountProductions.siddhi` in the `<SI_HOME>/wso2/server/deployment/siddhi-files` directory. When the Siddhi application is successfully deployed, the following `INFO` log appears in the Streaming Integrator console.
+ 
+     ```
+     INFO {org.wso2.carbon.stream.processor.core.internal.StreamProcessorService} - Siddhi App CountProductions deployed successfully
+     ```
+ 
+ 7. Now let's run the Kafka command line client to push a few messages to the Kafka server. Navigate to `<KAFKA_HOME>` and run following command:
+ 
+     ```
+     bin/kafka-console-producer.sh --broker-list localhost:9092 --topic sandwich_productions
+     ```
+ 
+ 8. Now you are prompted to type the messages in the console. Type following in the command prompt:
+ 
+     ```
+     {"event":{ "name":"Bagel", "amount":100.0}}
+     ```
+ 
+     ```    
+     {"event":{ "name":"Buterbrod", "amount":100.0}} 
+     ```
+ 
+     Now the following logs appear on the SI console.
+ 
+     ```
+     INFO {io.siddhi.core.stream.output.sink.LogSink} - CountProductions : OutputStream : Event{timestamp=1563903034768, data=[100.0], isExpired=false}
+     INFO {io.siddhi.core.stream.output.sink.LogSink} - CountProductions : OutputStream : Event{timestamp=1563903034768, data=[200.0], isExpired=false}
+     ```
+ 
+     These logs print the sandwich production count. Note that the current count of sandwich productions is being printed as `200` in the second log. This is because the production count up to now is `200` sandwiches: `100` bagels and `100` buterbrods.
+ 
+ 9. Now wait for following log to appear on the SI console
+     ```
+     DEBUG {org.wso2.carbon.streaming.integrator.core.persistence.FileSystemPersistenceStore} - Periodic persistence of CountProductions persisted successfully
+     ```
+ 
+     This log indicates that the current state of the Siddhi application is successfully persisted. Siddhi application state is persisted every minute. Therefore, you can notice this log appearing every minute.
+     
+     Next, let's push two sandwich production messages to the Kafka server and shutdown the SI server before state persistence happens (i.e., before the above log appears).
+     
+     !!!Tip
+         It is better to start pushing messages immediately after the state persistence log appears, so that you have plenty of time to push messages and shutdown the server, until next log appears.
+         
+ 10. Now push following messages to the Kafka server using the Kafka Console Producer:
+ 
+     ```
+     {"event":{ "name":"Croissant", "amount":100.0}}
+     ```
+ 
+     ```    
+     {"event":{ "name":"Croutons", "amount":100.0}} 
+     ```
+ 
+ 11. Shutdown SI server. Here you are deliberately creating a scenario where the server crashes before the SI server could persist the latest production count.
+     
+     !!!info
+         Here the SI server crashes before the state is persisted. Therefore the SI server cannot persist the latest count (which should include the last two productions `100` Croissants and `100` Croutons). The good news is, the Kafka source replays the last two messages, thereby allowing the Streaming Integrator to successfully recover from the server crash.
+     
+ 12. Restart the SI server and wait for about one minute to observe the following logs.
+ 
+     ```
+     INFO {io.siddhi.core.stream.output.sink.LogSink} - CountProductions : OutputStream : Event{timestamp=1563904912073, data=[300.0], isExpired=false}
+     INFO {io.siddhi.core.stream.output.sink.LogSink} - CountProductions : OutputStream : Event{timestamp=1563904912076, data=[400.0], isExpired=false}
+     ```     
+ 
+ Note that the Kafka source has replayed the last two messages. As a result, the sandwich productions count is correctly restored.
 
