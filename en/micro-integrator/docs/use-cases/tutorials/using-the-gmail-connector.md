@@ -16,7 +16,7 @@ To set up the tools:
     ZIP file.  The path to this folder is referred to as `MI_TOOLING_HOME` throughout this tutorial.
 -   Download the [CLI Tool](https://wso2.com/integration/micro-integrator/install/) for monitoring artifact deployments.
 
-If you did not try the [Exposing Several Services as a Single Service](exposing-several-services-as-a-single-service.md) tutorial yet, open WSO2 Integration Studio, click **File** , and then click **Import** . Next, select **Existing WSO2 Projects into workspace** under the **WSO2** category, click **Next** and upload the [pre-packaged project](https://github.com/wso2-docs/WSO2_EI/blob/master/Integration-Tutorial-Artifacts/StoreAndForwardTutorial.zip).
+If you did not try the [asynchronous messaging](storing-and-forwarding-messages.md) tutorial yet, open WSO2 Integration Studio, click **File** , and then click **Import** . Next, select **Existing WSO2 Projects into workspace** under the **WSO2** category, click **Next** and upload the [pre-packaged project](https://github.com/wso2-docs/WSO2_EI/blob/master/Integration-Tutorial-Artifacts/StoreAndForwardTutorial.zip).
 
 ### Step 2: Develop the integration artifacts
 
@@ -33,8 +33,7 @@ Follow the steps below if you want to use your own email address for sending the
         At this point, if the consent screen name is not provided, you will be prompted to do so.
 
 4.  Select **Web Application** and create a client.
-5.  Provide <https://developers.google.com/oauthplayground> as the redirect URL under **Authorized redirect URIs** and click **Create**. The client ID and client secret will then be displayed.  
-    
+5.  Provide <https://developers.google.com/oauthplayground> as the redirect URL under **Authorized redirect URIs** and click **Create**. The client ID and client secret will then be displayed.
     !!! Info
         See [Gmail API documentation](https://developers.google.com/gmail/api/auth/web-server) for details on creating the Client ID and Client Secret.
     
@@ -124,36 +123,31 @@ The connector operations are used in the **PaymentRequestProcessingSequence**. S
 7.  Add the sendMail method from the Gmail Connector palette and access the **Property** tab and specify the following details;
 
     <table>
-    <thead>
-    <tr class="header">
-    <th>Property</th>
-    <th>Value/Expression</th>
-    <th>Description</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr class="odd">
-    <td>Parameter Editor Type</td>
-    <td>Select <strong>inline</strong></td>
-    <td><br />
-    </td>
-    </tr>
-    <tr class="even">
-    <td>to</td>
-    <td><code>               {$ctx:email_id}              </code></td>
-    <td>Retrieves the patient email address that was stored in the relevant Property mediator.</td>
-    </tr>
-    <tr class="odd">
-    <td>subject</td>
-    <td>Payment Status</td>
-    <td>The subject line in the email that is sent out.</td>
-    </tr>
-    <tr class="even">
-    <td>messageBody</td>
-    <td><code>               {$ctx:payment_response}              </code></td>
-    <td>Retrieves the payment response that was stored in the relevant Property mediator.</td>
-    </tr>
-    </tbody>
+      <tr>
+         <th>Property</th>
+         <th>Value/Expression</th>
+         <th>Description</th>
+      </tr>
+      <tr>
+         <td>Parameter Editor Type</td>
+         <td>Select <strong>inline</strong></td>
+         <td>.</td>
+      </tr>
+      <tr>
+         <td>to</td>
+         <td><code>               {$ctx:email_id}              </code></td>
+         <td>Retrieves the patient email address that was stored in the relevant Property mediator.</td>
+      </tr>
+      <tr>
+         <td>subject</td>
+         <td>Payment Status</td>
+         <td>The subject line in the email that is sent out.</td>
+      </tr>
+      <tr>
+         <td>messageBody</td>
+         <td><code>               {$ctx:payment_response}              </code></td>
+         <td>Retrieves the payment response that was stored in the relevant Property mediator.</td>
+      </tr>
     </table>
 
     The updated **PaymentRequestProcessingSequence** should now look like this:  
@@ -251,6 +245,7 @@ the configurations given below. This is required for enabling the broker to stor
     [transport.jndi.queue]
     PaymentRequestJMSMessageStore="PaymentRequestJMSMessageStore"
     ```
+
 To start WSO2 Message Broker:
 
 1.  Open a terminal and navigate to the `MI_HOME/wso2/broker/bin` directory.
