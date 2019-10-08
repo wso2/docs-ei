@@ -54,7 +54,7 @@ To create an ESB solution consisting of an **ESB config** project and a **Compos
 #### Create the Main and Fault sequences
 
 1.  Find the `main.xml` and `fault.xml` files in the attached `sample.zip` archive. You can find the files in the `<SAMPLE_HOME>/conf/synapse-config/sequences` directory.
-2.  Copy the files to `<ESB_HOME>/repository/deployment/server/synapse-configs/default/sequences` folder.
+2.  Copy the files to `MI_HOME/repository/deployment/server/synapse-configs/default/sequences` folder.
 
     !!! Note
         The `main` and `fault` sequences are created and preconfigured automatically when you install WSO2 ESB.
@@ -107,7 +107,7 @@ To create an ESB solution consisting of an **ESB config** project and a **Compos
     <parameter name="transport.vfs.MoveAfterFailure">[file:///home/]<username>/test/failure</parameter>
     ```
 
-5.  Save the FileProxy.xml file to the `<ESB_HOME>/repository/deployment/server/synapse-configs/default/proxy-services`
+5.  Save the FileProxy.xml file to the `MI_HOME/repository/deployment/server/synapse-configs/default/proxy-services`
     directory.
 
 #### Create the `databaseSequence`
@@ -162,7 +162,7 @@ connect to the database to insert the data.
 2.  Specify your database username, password, and URL in the
     `          <pool>         ` section of the sequence.
 3.  Save the `          databaseSequence.xml         ` file to the
-    `          <ESB_HOME>/repository/deployment/server/synapse-configs/default/sequences         `
+    `          MI_HOME/repository/deployment/server/synapse-configs/default/sequences         `
     directory.
 
 
