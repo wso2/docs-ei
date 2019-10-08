@@ -184,10 +184,11 @@ nav:
         - 'Run on Docker': 'setup/installation/run_in_docker.md'
         - 'Run on Kubernetes': 'setup/installation/run_in_kubernetes.md'
       - Product Deployment:
-        - 'Configuring the K8s Operator': 'develop/kubernetes_deployment.md' 
-        - K8s Deployment Samples: 
-          - 'K8 Deployment Sample 1': 'develop/k8s-samples/hello-world.md' 
-          - 'K8 Deployment Sample 2': 'develop/k8s-samples/content-based-routing.md' 
+        - Kubernetes Deployment:
+          - 'Configuring the K8s Operator': 'setup/deployment/kubernetes_deployment.md' 
+          - K8s Deployment Samples: 
+            - 'Sample 1: Hello World': 'setup/deployment/k8s-samples/hello-world.md' 
+            - 'Sample 2: Message Routing': 'setup/deployment/k8s-samples/content-based-routing.md' 
         - 'VM Deployment': 'setup/deployment/deploying_wso2_ei.md'
         #- 'Upgrading from a Previous Release' : 'setup/deployment/upgrading.md'
         - 'Setting up a Load Balancer': 'setup/deployment/setting_up_lb.md'

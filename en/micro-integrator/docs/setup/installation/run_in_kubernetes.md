@@ -32,5 +32,5 @@ Let’s look at the steps to create a simple proxy service using Integration stu
 
 2. Now, we can [create a kubernetes project](../../develop/create-kubernetes-project.md) for your solution. The Docker image is now pushed to the docker repository. 
 
-3. Now, we can deploy the created kubernetes project to a kubernetes cluster you have created. You can follow the guide on [kubernetes deployment](../../develop/kubernetes_deployment.md).
+3. Now, we can deploy the created kubernetes project to a kubernetes cluster you have created. You can follow the guide on [kubernetes deployment](../../setup/deployment/kubernetes_deployment.md).
 
