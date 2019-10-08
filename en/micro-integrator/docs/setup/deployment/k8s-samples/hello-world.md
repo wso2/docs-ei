@@ -57,6 +57,12 @@ Follow the below steps to deploy and run the integration solution on the Kuberne
 
 9.  Navigate to the Kubernetes project inside the MavenParentProject and run maven push command to the push docker image to the remote docker registry.
     ```bash
+    mvn clean install -Dmave.test.skip=true
+    ```
+8.  Run the ```docker image ls``` command to verify whether docker image has been built or not. 
+
+9.  Navigate to the Kubernetes project inside the MavenParentProject and run maven push command to the push docker image to the remote docker registry.
+    ```bash
     cd k8s-hello-world
     mvn dockerfile:push -Ddockerfile.username={username} -Ddockerfile.password={password}
     ``` 
@@ -66,6 +72,7 @@ Follow the below steps to deploy and run the integration solution on the Kuberne
 10. Follow the **[Kubernetes Deployment using k8s-ei-operator](https://ei.docs.wso2.com/en/latest/micro-integrator/develop/kubernetes_deployment/)** documentation to deploy and run the integration solution inside the Kubernetes environment.
 
 11. Invoke the service as follows
+
     ```bash
     curl http://localhost:8290/services/HelloWorld
     ```  
