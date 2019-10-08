@@ -43,12 +43,11 @@ Two type of docker images are available for the Micro Integrator:
     
 ## Build and run an App on Docker using Integration Studio
 
-In this section we are going to create a Docker project to deploy our integration solutions inside a Docker 
-environment.
+In this section we are going to create a Docker project to deploy our integration solution inside a Docker environment.
 
 Let’s create a simple proxy service using Integration studio and deploy it in a Docker container. 
 
-For this we can use following synapse configuration
+We can use following synapse configuration to  build our sample proxy service.
 
 - XML 
 
@@ -75,19 +74,18 @@ For this we can use following synapse configuration
 Now we can [Create Docker Project](../../develop/create-docker-project.md) with the Synapse configuration given above.
 
 
-If you put the 
+In the docker project creation dialog box, provide Target Repository as "sampleproxy" and Target Tag as 1.0.0.
 
 ```
 Target Repository : sampleproxy
 Target Tag : 1.0.0
 ```
 
-Once you issue the 
+Now, you can use the following command to get  the list of currently available Docker images are displayed in the terminal similar to the example given below.
 ```
 docker image ls
 ``` 
-command, the list of currently available Docker images are displayed in the terminal similar to 
-the example given below. The Docker image you created is included in this list as shown below.
+The Docker image you created should be in the list of docker images in the repository.
 
 
 ```
@@ -97,7 +95,7 @@ wso2/micro-integrator   1.1.0               088477c689f6        2 days ago      
 ```
 
 
-Now you can up the container with following command
+Now you can start the container with following command
 
 ```
 docker run -d -p 8290:8290 sampleproxy:1.0.0
