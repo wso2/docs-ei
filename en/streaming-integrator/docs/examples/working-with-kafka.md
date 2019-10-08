@@ -39,7 +39,7 @@ This tutorial takes you through consuming from a Kafka topic, processing the mes
 
 ## Tutorial steps
 
-### Consuming data with Kafka
+### Consuming data from Kafka
 
 **Step 1: Start Kafka**
 
