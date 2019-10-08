@@ -85,6 +85,10 @@ mi remote login
 
 If you want to login using one line command, use the following command:
 
+!!! Note 
+
+If you are a Windows user, you needs to login as below command.
+
 ```bash
 mi remote login [username] [password]
 ```
