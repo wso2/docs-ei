@@ -410,7 +410,7 @@ In this scenario, you extract data from a specific folder. All of the files are 
     @App:description('Process all files in the folder and delete files after processing.')
             
     @source(type='file', mode='text.full',
-        dir.uri='file:/Users/foo/stocks',  
+        dir.uri='file:/Users/foo/productions',  
         @map(type='json', enclosing.element="$.portfolio", @attributes(symbol = "stock.company.symbol", price = "stock.price", volume = "stock.volume")))
     define stream StockStream (symbol string, price float, volume long);
     
@@ -462,6 +462,8 @@ In this scenario, you are appending a stream of events to the end of a file.
     
     @App:description('Append incoming events in to a file.')
     
+    @Source(type = 'http', receiver.url='http://localhost:8006/SweetProductionStream', basic.auth.enabled='false',
+            @map(type='json'))
     define stream SweetProductionStream (name string, amount double);
     
     @sink(type='file', @map(type='json'), file.uri='/Users/foo/low_productions.txt')
@@ -490,15 +492,15 @@ In this scenario, you are appending a stream of events to the end of a file.
 3. To insert a few events into `SweetProductionStream`,  let's issue the following `CURL` commands:
 
     ```
-    curl -X POST -d '{"streamName": "SweetProductionStream", "siddhiAppName": "AppendToFile","data": ["Almond cookie", 100.0]}' http://localhost:9390/simulation/single -H 'content-type: text/plain' -H 'Authorization: Basic YWRtaW46YWRtaW4='
+    curl -X POST -d "{\"event\": {\"name\":\"Almond cookie\",\"amount\": 100.0}}"  http://localhost:8006/SweetProductionStream --header "Content-Type:application/json"
     ```
 
     ```
-    curl -X POST -d '{"streamName": "SweetProductionStream", "siddhiAppName": "AppendToFile","data": ["Baked alaska", 20.0]}' http://localhost:9390/simulation/single -H 'content-type: text/plain' -H 'Authorization: Basic YWRtaW46YWRtaW4='
+    curl -X POST -d "{\"event\": {\"name\":\"Baked alaska\",\"amount\": 20.0}}"  http://localhost:8006/SweetProductionStream --header "Content-Type:application/json"
     ```
 
     ```
-    curl -X POST -d '{"streamName": "SweetProductionStream", "siddhiAppName": "AppendToFile","data": ["Cup cake", 300.0]}' http://localhost:9390/simulation/single -H 'content-type: text/plain' -H 'Authorization: Basic YWRtaW46YWRtaW4='
+    curl -X POST -d "{\"event\": {\"name\":\"Cup cake\",\"amount\": 300.0}}"  http://localhost:8006/SweetProductionStream --header "Content-Type:application/json"
     ```
 
 4. Now open the file that you specified via the `file.uri` parameter. Note that the file has following content.
