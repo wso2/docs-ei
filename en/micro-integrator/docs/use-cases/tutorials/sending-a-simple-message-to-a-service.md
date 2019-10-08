@@ -226,7 +226,7 @@ You can now start configuring the API resource.
                   </li>
                   <li><strong>Value/Expression</strong> : <code>"Welcome to HealthcareService"</code></li>
                </ul>
-               <p><img src="../../assets/img/tutorials/119132413/119132423.png" width="546" height="369" /></p>
+               <p><img src="../../../assets/img/tutorials/119132413/119132423.png"/></p>
             </div>
          </td>
       </tr>
