@@ -81,7 +81,7 @@ nav:
           - 'JSON to XML and Upload to FTP' : 'learn/tutorials/integration-patterns-and-soa/converting-json-to-xml-and-upload-to-ftp/1.md'
       - 'Examples': 'learn/examples.md'
     - Develop:
-      - 'Re-introducing Ballerina Programming Language' : 'develop/reintroducing-ballerina.md'
+      - 'Developing Integration Solutions' : 'develop/developing-integration-solution.md'
       - 'Setting up the Developer Environment' : 'develop/setup-dev.md'
       - 'Managing Ballerina Code' : 'develop/managing-ballerina-code.md'
       - 'Deploying on Docker': 'develop/deploy-on-docker.md'
