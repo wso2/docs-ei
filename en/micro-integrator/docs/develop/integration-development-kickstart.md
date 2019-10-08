@@ -62,7 +62,7 @@ or a local machine.
 
 ## Start backend mock services
 
-Two mock hospital information services are available in the DoctorInfo.jar file located here. 
+Two mock hospital information services are available in the DoctorInfo.jar file downloadable from [here](../assets/attach/developing-first-integration/DoctorInfo.jar). 
 
 Open a terminal window and use the following command to start the services.
 
@@ -501,6 +501,6 @@ Upon invocation, you should be able to observe the following response:
 
 ## What's Next
 
-- [Running on Docker](../page-not-found).
-- [Running on Kubernetes](../page-not-found).
-- [Writing a unit test for integration artifacts](creating-unit-test-suite).
+- [Running on Docker](../setup/installation/run_in_docker/).
+- [Running on Kubernetes](../setup/installation/run_in_kubernetes.md/).
+- [Writing a unit test for integration artifacts](./creating-unit-test-suite/).
