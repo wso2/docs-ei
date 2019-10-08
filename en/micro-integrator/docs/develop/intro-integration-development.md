@@ -42,7 +42,7 @@ Integration developers will follow the workflow illustrated by the following dia
 					See the <a href="../../develop/WSO2-Integration-Studio">WSO2 Integration Studio documentation</a> for in-depth information on the development tool.
 				</li>
 				<li>
-				    See the documentation on <a href="./creating-unit-test-suite/#run-unit-test-suites">creating unit tests</a> for the integration solution you developed.
+				    See the documentation on <a href="../../develop/creating-unit-test-suite">creating unit tests</a> for the integration solution you developed.
 				</li>
 			</ul>
 		</td>
