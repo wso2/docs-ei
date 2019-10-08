@@ -108,13 +108,13 @@ Follow the below steps to deploy and run the integration solution on the Kuberne
 
 7.  Navigate to the Maven multi module project and run the following command to build the project. It will create a docker image with provided target repository and tag once it build successfully.
     ```bash
-    mvn clean install -Dmave.test.skip=true
+    mvn clean install -Dmaven.test.skip=true
     ```
 8.  Run the `docker image ls` command to verify whether docker image has been built or not. 
 
 9.  Navigate to the Kubernetes project inside the MavenParentProject and run maven push command to the push docker image to the remote docker registry.
     ```bash
-    mvn clean install -Dmave.test.skip=true
+    mvn clean install -Dmaven.test.skip=true
     ```
 8.  Run the ```docker image ls``` command to verify whether docker image has been built or not. 
 
