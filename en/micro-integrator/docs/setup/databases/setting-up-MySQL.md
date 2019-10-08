@@ -54,7 +54,7 @@ mysql> grant all on REGISTRY_LOCAL2.* TO regadmin@"carbondb.mysql-wso2.com" iden
 
 ## Connecting the database to the server
 
-To enable the two nodes to access the shared database, update the following parameters in the esb.toml file.
+To enable the two nodes to access the shared database, update the following parameters in the deployment.toml file.
 
 ``` Java
 // The config section that groups the parameters for the primary database that will be shared by both product nodes in the cluster.
@@ -63,8 +63,8 @@ To enable the two nodes to access the shared database, update the following para
 // Specify the type of database.
 type = "mysql"
 
-// Specify the connection URL of your database. The following default URL connects to the H2 database that is shipped with the product.
-url="jdbc:h2:./repository/database/WSO2SHARED_DB;DB_CLOSE_ON_EXIT=FALSE;LOCK_TIMEOUT=60000"
+// Specify the connection URL of your database. The following is a sample MySQL connection URL.
+url="jdbc:mysql://<IP>>:3306/gregdb"
 
 // The username for connecting to the database. By default, 'root' is the MySQL username.
 username = "root"
