@@ -11,6 +11,8 @@ the `-DenableManagementApi` system property when you
 start the Micro Integrator. Note that the default address is
 **https://localhost** and the port is **9164** .
 
+Please note that in order to use the CLI tool you need to use JWT based authentication handler in `internal-apis.xml` file.
+
 -   When you run the Micro Integrator on Docker, start your Docker
     container by passing the `enableManagementApi` system property:
 

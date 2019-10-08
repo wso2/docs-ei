@@ -57,6 +57,7 @@ Example:
 If required, you can remove the wild card and add a specific origin for this configuration for security requirements.  
 
 As management dashboard is utilizing the management api, the user store is bound to the said api. Therefore, if you want to add a new user to view the management dashboard, you have to add a new user to the userstore defined in the internal-apis.xml.
+Please note that in order to use the management dashboard you need to use JWT based authentication handler in `internal-apis.xml` file.
 
 Example:
 ```
@@ -69,3 +70,4 @@ Example:
     </users>
 </UserStore>
  ```
+If the ` <UserStore>` element is not defined in `internal-apis.xml` user store will default to the carbon user store defined in user-mgt.xml.
