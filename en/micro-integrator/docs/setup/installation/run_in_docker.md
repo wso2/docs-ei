@@ -118,7 +118,7 @@ curl http://localhost:8290/services/HelloWorld -XGET
 If you want to use the [Monitoring Dashboard](../../administer-and-observe/working-with-monitoring-dashboard.md) please use following docker command
 
 ```
-docker run -p 8290:8290 -p 9743:9743 -p 9164:9164 -e   JAVA_OPTS="-DenableManagementApi=true" sampleproxy:1.0.0
+docker run -p 8290:8290 -p 9164:9164 -e   JAVA_OPTS="-DenableManagementApi=true" sampleproxy:1.0.0
 ```
 
 
