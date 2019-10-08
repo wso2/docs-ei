@@ -200,7 +200,7 @@ After doing the required configurations in the Streaming Integrator, let's confi
 
    - Logs the response.
 
-   - Sends the reponse back to the gRPC client.
+   - Sends the response back to the gRPC client.
 
 
 ## Executing and getting results
