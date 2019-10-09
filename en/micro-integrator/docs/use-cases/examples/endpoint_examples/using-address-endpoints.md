@@ -7,28 +7,31 @@ This sample demonstrates how you can convert a POX message to a SOAP request.
 
 The XML configuration for this sample is as follows:
 
-```xml 
+```
 <?xml version="1.0" encoding="UTF-8"?>
-<proxy name="SimpleStockQuoteProxy" startOnLoad="true" transports="http https" xmlns="http://ws.apache.org/ns/synapse">
-    <target>
-        <inSequence>
-			<!-- filtering of messages with XPath and regex matches -->
-			<filter source="get-property('To')" regex=".*/StockQuote.*">
-				<header name="Action" value="urn:getQuote" />
-				<send>
-					<endpoint>
-						<address
-							uri="http://localhost:9000/services/SimpleStockQuoteService"
-							format="soap11" />
-					</endpoint>
-				</send>
-			</filter>
-		</inSequence>
-		<outSequence>
-			<send />
-		</outSequence>
-    </target>
-</proxy>
+   <proxy name="SimpleStockQuoteProxy" startOnLoad="true" transports="http https" xmlns="http://ws.apache.org/ns/synapse">
+       <target>
+           <inSequence>
+               <!-- filtering of messages with XPath and regex matches -->
+               <filter regex=".*/StockQuote.*" source="get-property('To')">
+                   <then>
+                       <header name="Action" scope="default" value="urn:getQuote"/>
+                       <call>
+                           <endpoint>
+                               <address format="soap11" uri="http://localhost:9000/services/SimpleStockQuoteService"/>
+                           </endpoint>
+                       </call>
+                   </then>
+                   <else/>
+               </filter>
+           </inSequence>
+           <outSequence>
+               <call/>a
+           </outSequence>
+           <faultSequence/>
+       </target>
+   </proxy>
+
 ```
 
 ## Build and run
@@ -39,8 +42,6 @@ Create the artifacts:
 2. Create an ESB Config project
 3. Create the following artifacts.
 4. Deploy the artifacts in your Micro Integrator.
-
-Configure the ActiveMQ broker.
 
 Set up the back-end service.
 
