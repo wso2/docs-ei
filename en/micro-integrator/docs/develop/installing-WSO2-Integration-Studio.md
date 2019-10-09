@@ -7,11 +7,15 @@ WSO2 Integration Studio provides a comprehensive development experience for buil
 <table>
     <tr>
         <td><b>Processor</b></td>
-        <td>2 GHz Core 2 Duo (Minimum)</td>
+        <td>Intel Core i5 or equivalent </td>
+    </tr>
+    <tr>
+        <td><b>RAM</b></td>
+        <td>4 GB minimum, 8 GB recommended </td>
     </tr>
     <tr>
         <td><b>Disk Space</b></td>
-        <td>Approximately 1 GB </td>
+        <td>Approximately 4 GB </td>
     </tr>
 </table>
 
