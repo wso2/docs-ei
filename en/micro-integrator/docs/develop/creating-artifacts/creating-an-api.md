@@ -10,8 +10,8 @@ Follow the instructions given below to create a new REST API artifact in WSO2 In
 2.  Select the **Create A New API Artifact** and click **Next**.
 3.  Specify values for the [required REST API properties](../../../references/synapse-properties/rest-api-properties/#rest-api-properties-required): **API name**, and **Context**.
 4. Do one of the following:  
-    - To save the endpoint in an existing ESB Config project in your workspace, click **Browse** and select that project.
-    - To save the endpoint in a new ESB Config project, click **Create new Project** and create the new project.
+    - To save the API in an existing ESB Config project in your workspace, click **Browse** and select that project.
+    - To save the API in a new ESB Config project, click **Create new Project** and create the new project.
 5.  Click **Finish**. The REST API is created inside the `src/main/synapse-config/api` folder under the ESB Config project you specified.
 6. Open the new artifact from the project explorer, go to the <b>Properties</b> tab and update any [optional REST API properties](../../../references/synapse-properties/rest-api-properties/#rest-api-properties-optional).
 
@@ -48,4 +48,8 @@ You can now update the [API Resource properties](../../../references/synapse-pro
 
 ## Examples
 
+Find more examples of REST APIs, [here](../../../use-cases/examples/rest_api_examples/introduction-rest-api/#synapse-configuration).
+
 ## Guides
+
+Follow the [steps at the example](../../../use-cases/examples/rest_api_examples/introduction-rest-api/#build-and-run) to build and run the API.
