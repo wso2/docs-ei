@@ -41,6 +41,16 @@ Follow the instructions below to set up and configure.
         parameter.connection_factory_type = "topic"
         parameter.cache_level = "consumer"
         ```
+        ```toml
+        [[transport.jms.listener]]
+        name = "myQueueListener"
+        parameter.initial_naming_factory = "org.apache.activemq.artemis.jndi.ActiveMQInitialContextFactory"
+        parameter.broker_name = "activemq" 
+        parameter.provider_url = "tcp://localhost:61616"
+        parameter.connection_factory_name = "QueueConnectionFactory"
+        parameter.connection_factory_type = "queue"
+        parameter.cache_level = "consumer"
+        ```        
 
     - Add the following configurations to enable the JMS sender with ActiveMQ connection parameters.
         ```toml
@@ -53,7 +63,17 @@ Follow the instructions below to set up and configure.
         parameter.connection_factory_type = "topic"
         parameter.cache_level = "producer"
         ```
-
+        ```toml
+        [[transport.jms.sender]]
+        name = "myQueueSender"
+        parameter.initial_naming_factory = "org.apache.activemq.artemis.jndi.ActiveMQInitialContextFactory"
+        parameter.broker_name = "activemq"
+        parameter.provider_url = "tcp://localhost:61616"
+        parameter.connection_factory_name = "QueueConnectionFactory"
+        parameter.connection_factory_type = "queue"
+        parameter.cache_level = "producer"
+        ```
+        
     !!! Note
         - When configuring the JMS transport with ActiveMQ, you can append [ActiveMQ-specific properties](http://activemq.apache.org/connection-configuration-uri.html) to the value of the `parameter.provider_url` property. For example, you can set the `redeliveryDelay` and `initialRedeliveryDelay` properties when configuring a JMS inbound endpoint as follows:
           ```toml

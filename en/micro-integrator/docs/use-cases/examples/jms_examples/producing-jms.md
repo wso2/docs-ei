@@ -1,6 +1,11 @@
 # Producing JMS Messages
 
-This section describes how to configure WSO2 Micro Integrator to send messages to a JMS Queue. In this example, the Micro Integrator accepts messages via HTTP and sends them to a JMS queue.
+This section describes how to configure WSO2 Micro Integrator to send messages to a JMS Queue. In this example, the Micro Integrator accepts messages via HTTP and sends them to a JMS queue. First we need to configure JMS transport in micro integrator.
+
+## Configuring the JMS transport
+
+To enable the JMS transport listener and sender, you need to [configure JMS Transport](../../../setup/transport_configurations/configuring-transports.md#configuring-the-jms-transport) respective to the message broker you are using.
+
 
 ## Synapse configuration
 
@@ -62,11 +67,15 @@ The Synapse artifacts used are explained below.
                     <code>jms:transport.jms.ConnectionFactory=QueueConnectionFactory</code></br></br>
                     <b>When the broker is WSO2 Message Broker</b></br>
                     <code>jms:/StockQuotesQueue?transport.jms.ConnectionFactory=QueueConnectionFactory</code>
-               </li>
+               </li>    
            </ul>
         </td>
     </tr>
 </table>
+
+!!! Info
+    To refer details on JMS transport parameters, you can follow [JMS transport parameters](../../../references/synapse-properties/transport-parameters/jms-transport-parameters.md) used in micro integrator.
+
       
 !!! Note
     Be sure to replace the ' `& ` ' character in the endpoint URL with '`&amp;`' to avoid the following exception:
