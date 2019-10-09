@@ -4,14 +4,7 @@
 
 This quick start guide gets you started with the Streaming Integrator (SI), in just 5 minutes.
 
-
 In this guide, you will download the SI distribution, start it and then try out a simple Siddhi application.
-
-## Tutorial Outline
-
-- [Downloading Streaming Integrator](#downloading-streaming-integrator)
-- [Starting the server](#starting-the-server)
-- [Deploying a simple Siddhi app](#deploying-a-simple-siddhi-app)
 
 ## Downloading Streaming Integrator
 
