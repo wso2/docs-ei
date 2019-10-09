@@ -23,7 +23,7 @@ Two docker images are available for the Micro Integrator:
     **Micro Integrator Docker image (with updates)**
 
     ```bash
-    docker.wso2.com/micro-integrator:1.0.0
+    docker.wso2.com/micro-integrator:1.1.0
     ```
 
     **Log in to WSO2 Docker Registry**
@@ -38,7 +38,7 @@ Two docker images are available for the Micro Integrator:
     **Base Docker Image and Tag (community version)**
 
     ```bash
-    wso2/micro-integrator:1.0.0
+    wso2/micro-integrator:1.1.0
     ```
 
 ## Build and run on Docker
@@ -55,8 +55,8 @@ Given below are the basic steps you need to follow to run the Micro Integrator o
     The **Dockerfile**:
 
     ```java
-    FROM <docker_image_name>:1.0.0
-    COPY <directoy_path>/<capp_name> /home/wso2ei/wso2mi/repository/deployment/server/carbonapps
+    FROM <docker_image_name>:1.1.0
+    COPY <directoy_path>/<capp_name> /home/wso2mi/repository/deployment/server/carbonapps
     ```
     The information specified in the Docker file is as follows:
 
@@ -69,7 +69,7 @@ Given below are the basic steps you need to follow to run the Micro Integrator o
     <tr class="odd">
     <td>FROM</td>
     <td><div class="content-wrapper">
-    <p>The 'FROM' tag in the docker file specifies the WSO2 Micro Integrator version that should be downloaded. You can use the updated Docker image or the community version as shown below. The version is 1.0.0 of the WSO2 Micro Integrator. If required, you can use an earlier version by replacing 'latest' with the version number.</p>
+    <p>The 'FROM' tag in the docker file specifies the WSO2 Micro Integrator version that should be downloaded. You can use the updated Docker image or the community version as shown below. The version is 1.1.0 of the WSO2 Micro Integrator. If required, you can use an earlier version by replacing 'latest' with the version number.</p>
     <div class="code panel pdl" style="border-width: 1px;">
     <div class="codeHeader panelHeader pdl" style="border-bottom-width: 1px;">
     <strong>Example 1: Docker image with updates</strong>
@@ -97,7 +97,7 @@ Given below are the basic steps you need to follow to run the Micro Integrator o
     <strong>Example 1</strong>
     </div>
     <div class="codeContent panelContent pdl">
-    <div class="sourceCode" id="cb3" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence" style="brush: java; gutter: false; theme: Confluence"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb3-1"><a href="#cb3-1"></a>COPY carbonapps /home/wso2ei/wso2mi/repository/deployment/server/carbonapps</span></code></pre></div>
+    <div class="sourceCode" id="cb3" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence" style="brush: java; gutter: false; theme: Confluence"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb3-1"><a href="#cb3-1"></a>COPY carbonapps /home/wso2mi/repository/deployment/server/carbonapps</span></code></pre></div>
     </div>
     </div>
     <p>If you have multiple composite application that you want to deploy in Docker using a single Docker image, add another entry to the Dockerfile. For example:</p>
@@ -106,8 +106,8 @@ Given below are the basic steps you need to follow to run the Micro Integrator o
     <strong>Example 2</strong>
     </div>
     <div class="codeContent panelContent pdl">
-    <div class="sourceCode" id="cb4" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence" style="brush: java; gutter: false; theme: Confluence"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb4-1"><a href="#cb4-1"></a>COPY carbonapps /home/wso2ei/wso2mi/repository/deployment/server/carbonapps</span>
-    <span id="cb4-2"><a href="#cb4-2"></a>COPY &lt;sample_carbon_app&gt; /home/wso2ei/wso2mi/repository/deployment/server/carbonapps</span></code></pre></div>
+    <div class="sourceCode" id="cb4" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence" style="brush: java; gutter: false; theme: Confluence"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb4-1"><a href="#cb4-1"></a>COPY carbonapps /home/wso2mi/repository/deployment/server/carbonapps</span>
+    <span id="cb4-2"><a href="#cb4-2"></a>COPY &lt;sample_carbon_app&gt; /home/wso2mi/repository/deployment/server/carbonapps</span></code></pre></div>
     </div>
     </div>
     </div></td>
