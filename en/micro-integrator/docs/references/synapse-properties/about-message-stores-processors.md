@@ -11,13 +11,13 @@ Multiple message processors can use the same message store. For example, in a cl
 
 ## List of Message Stores
 
-- <a href="../../../../references/synapse-properties/message-stores/jms-msg-store-properties">JMS Message Store</a>
-- <a href="../../../../references/synapse-properties/message-stores/jdbc-msg-store-properties">JDBC Message Store</a>
-- <a href="../../../../references/synapse-properties/message-stores/rabbitmq-msg-store-properties">RabbitMQ Message Store</a>
-- <a href="../../../../references/synapse-properties/message-stores/resequence-msg-store-properties">Resequence Message Store</a>
-- <a href="../../../../references/synapse-properties/message-stores/wso2mb-msg-store-properties">WSO2 MB Message Store</a>
-- <a href="../../../../references/synapse-properties/message-stores/in-memory-msg-store-properties">In-Memory Message Store</a>
-- <a href="../../../../references/synapse-properties/message-stores/custom-msg-store-properties">Custom Message Store</a>
+- <a href="../../../references/synapse-properties/message-stores/jms-msg-store-properties">JMS Message Store</a>
+- <a href="../../../references/synapse-properties/message-stores/jdbc-msg-store-properties">JDBC Message Store</a>
+- <a href="../../../references/synapse-properties/message-stores/rabbitmq-msg-store-properties">RabbitMQ Message Store</a>
+- <a href="../../../references/synapse-properties/message-stores/resequence-msg-store-properties">Resequence Message Store</a>
+- <a href="../../../references/synapse-properties/message-stores/wso2mb-msg-store-properties">WSO2 MB Message Store</a>
+- <a href="../../../references/synapse-properties/message-stores/in-memory-msg-store-properties">In-Memory Message Store</a>
+- <a href="../../../references/synapse-properties/message-stores/custom-msg-store-properties">Custom Message Store</a>
 
 <!--
 
@@ -99,9 +99,9 @@ Multiple message processors can use the same message store. For example, in a cl
 
 ## List of Message Processors
 
-- <a href="../../../../references/synapse-properties/message-processors/msg-sampling-processor-properties">Message Sampling Processor</a>
-- <a href="../../../../references/synapse-properties/message-processors/msg-sched-forwarding-processor-properties">Scheduled Message Forwarding Processor</a>
-- <a href="../../../../references/synapse-properties/message-processors/msg-sched-failover-forwarding-processor-properties">Scheduled Failover Message Forwarding Processor</a>
+- <a href="../../../references/synapse-properties/message-processors/msg-sampling-processor-properties">Message Sampling Processor</a>
+- <a href="../../../references/synapse-properties/message-processors/msg-sched-forwarding-processor-properties">Scheduled Message Forwarding Processor</a>
+- <a href="../../../references/synapse-properties/message-processors/msg-sched-failover-forwarding-processor-properties">Scheduled Failover Message Forwarding Processor</a>
 
 <!--
 <table>
