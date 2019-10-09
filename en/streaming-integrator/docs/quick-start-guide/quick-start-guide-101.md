@@ -12,11 +12,11 @@ The purpose of this guide if for you to understand the basic functions of the St
 To learn how to use the key functions of the Streaming Integrator, consider a laboratory that is observing the temperature
 of a range of rooms in a building via a sensor and needs to use the temperature readings as the input to derive other information.
 
-!!!info"Before you begin:
-    - Install [Oracle Java SE Development Kit (JDK) version 1.8](https://www.oracle.com/technetwork/java/javase/downloads/index.html).
-    - [Set the Java home](https://docs.oracle.com/cd/E19182-01/820-7851/inst_cli_jdk_javahome_t/) environment variable.
-    - Download and install the following components of the Streaming Integrator:
-        - Streaming Integrator Tooling 
+!!!info "Before you begin:"
+    - Install [Oracle Java SE Development Kit (JDK) version 1.8](https://www.oracle.com/technetwork/java/javase/downloads/index.html).<br/>
+    - [Set the Java home](https://docs.oracle.com/cd/E19182-01/820-7851/inst_cli_jdk_javahome_t/) environment variable.<br/>
+    - Download and install the following components of the Streaming Integrator:<br/>
+        - Streaming Integrator Tooling<br/>
         - Streaming Integrator runtime
 
 
@@ -30,11 +30,13 @@ Create a basic Siddhi application for a simple use case.
     -   For Windows: `tooling.bat`
     -   For Linux: `./tooling.sh`
     
-3. Access the Streaming Integration Tooling via the `http://<HOST_NAME>:<TOOLING_PORT>/editor` URL. 
+3. Access the Streaming Integration Tooling via the `http://<HOST_NAME>:<TOOLING_PORT>/editor` URL.
+
     !!!info
         The default URL is `http://<localhost:9390/editor`.
         
    The Streaming Integration Tooling opens as shown below.
+
    ![Streaming Integrator Tooling Welcome Page](../images/quick-start-guide-101/Welcome-Page.png)
         
 4. Open a new Siddhi file by clicking **New**.
@@ -249,14 +251,40 @@ To export the  `TemperatureApp` Siddhi application as a Docker artifact, follow 
 
 1. Open the Streaming Integrator Tooling.
 
-2. In the **File** menu, click **Export as Docker**.
+2. In the **Export** menu, click **For Docker**.
 
     ![Export Siddhi Application as Docker](../images/quick-start-guide-101/export-as-docker.png)
 
-    As a result, the **Export as Docker** dialog box opens as follows.
+3.  As a result, **Step 1** of the **Export Siddhi Apps for Docker image** wizard opens as follows.
+    
     ![Export as Docker dialog box](../images/quick-start-guide-101/export-as-docker-dialog-box.png)
-
-3. Select the **TemperatureApp.Siddhi** check box and click **Export**. The Siddhi application is exported as a Docker artifact in a zip file to the default location in your machine, based on your operating system and browser settings.
+    
+    Select the **TemperatureApp.siddhi** check box and click **Next**.
+    
+4. In **Step 2**, you can template values of the Siddhi App.
+    
+    ![Template Siddhi Apps dialog box](../images/quick-start-guide-101/template-siddhi-apps-dialog-box.png)
+    
+    Click on **Next** without templating any value of the Siddhi App. For detailed information on templating values of a Siddhi App, refer [Exporting Siddhi Apps for Docker Image](../develop/exporting-Siddhi-Files.md#exporting-siddhi-apps-for-docker-image).
+    
+5. In **Step 3**, you can update configurations of the Streaming Integrator.
+    
+    ![Update Streaming Integrator Configurations dialog box](../images/quick-start-guide-101/update-streaming-integrator-configurations-dialog-box.png)
+    
+    Leave the default configurations, and click on **Next**.
+    
+6. In **Step 4**, you can provide arguments for the values that were templated in **Step 2**.
+    
+    ![Populate Arguments Template dialog box](../images/quick-start-guide-101/populate-arguments-template-dialog-box.png)
+    
+    Since there are no templated values, there won't be values to be filled. click on **Next**.
+    
+7. In **Step 5**, you can choose additional dependencies to be bundled. This is applicable when Sources, Sinks and etc. with additional dependencies are used in the Siddhi Application (eg: a Kafka Source/Sink, or a MongoDB Store).
+    Since there are no such dependencies, nothing will be shown as additional JARs.
+    
+    ![Bundle Additional Dependencies dialog box](../images/quick-start-guide-101/bundle-additional-dependencies-dialog-box.png)
+    
+    Click on **Export**. The Siddhi application will be exported as a Docker artifact in a zip file to the default location in your machine, based on your operating system and browser settings.
 
 
 ##Extending the Streaming Integrator

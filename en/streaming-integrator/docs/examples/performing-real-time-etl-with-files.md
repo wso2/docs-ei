@@ -8,9 +8,13 @@ This tutorial takes you through the different modes and options you could use, i
 
 !!!info "Before you begin:"
     Start the SI server by navigating to the `<SI_HOME>/bin` directory and issuing one of the following commands:<br/>
+    <br/>
     - For Windows: `streaming-integrator.bat`<br/>
+    <br/>
     - For Linux:  `sh server.sh`<br/>
-    The following log appears in the Streaming Integrator console one the server is successfully started. <br/>
+    <br/>
+    The following log appears in the Streaming Integrator console once the server is successfully started. <br/>
+    <br/>
     `INFO {org.wso2.carbon.kernel.internal.CarbonStartupHandler} - WSO2 Streaming Integrator started in 4.240 sec`
 
 ## Tutorial steps
@@ -19,7 +23,7 @@ This tutorial takes you through the different modes and options you could use, i
 
 In this section of the tutorial, you are exploring the different ways in which you could extract data from a specific file.
 
-**Tailing a text file line by line**
+#### Tailing a text file line by line
 
 In this scenario, you are tailing a text file, line by line, in order to extract data from it. Each line is extracted as an event that undergoes a simple transformation thereafter. Let's write a simple Siddhi application to do this.
 
@@ -46,14 +50,14 @@ In this scenario, you are tailing a text file, line by line, in order to extract
     insert into LogStream;
     ```
 
-    Change the  value of the `file.uri` parameter inn the above Siddhi application to the file path to which you downloaded `productions.csv` file in step 1.
+    Change the  value of the `file.uri` parameter in the above Siddhi application to the file path to which you downloaded `productions.csv` file in step 1.
     
 3. Save this file as `TailFileLineByLine.siddhi` in the `<SI_HOME>/wso2/server/deployment/siddhi-files` directory.   
 
     !!!info
         This Siddhi application tails the file `productions.csv` line by line. Each line is converted to an event in the `SweetProductionStream` stream. After that, a simple transformation is carried out for the sweet production runs. The transformation involves converting the value for the `name` attribute to upper case. Finally, the output is logged in the Streaming Integrator console.
         
-    Upon successful deployment, following log appears on the SI console:
+    Upon successful deployment, following log appears in the SI console:
 
     ```
     INFO {org.wso2.carbon.streaming.integrator.core.internal.StreamProcessorService} - Siddhi App TailFileLineByLine deployed successfully
@@ -85,7 +89,7 @@ In this scenario, you are tailing a text file, line by line, in order to extract
     INFO {io.siddhi.core.stream.output.sink.LogSink} - ReceiveEventsFromFile : LogStream : Event{timestamp=1564490869579, data=[CUP CAKE, 300.0], isExpired=false}
     ```
     
-**Tailing a text file using a regular expression**
+#### Tailing a text file using a regular expression
 
 In this scenario, you are using a regular expression to extract data from the file. After data is extracted, a simple transformation is performed on them. Finally, the transformed event is logged in the SI console. Let's write a simple Siddhi application to do this.
 
@@ -113,7 +117,7 @@ In this scenario, you are using a regular expression to extract data from the fi
     insert into LogStream;
     ```
 
-    Change the  value of the `file.uri` parameter inn the above Siddhi application to the file path to which you downloaded `noisy_data.txt` file in step 1.
+    Change the  value of the `file.uri` parameter in the above Siddhi application to the file path to which you downloaded `noisy_data.txt` file in step 1.
  
 3. Save this file as `TailFileRegex.siddhi` in the `<SI_HOME>/wso2/server/deployment/siddhi-files` directory.
 
@@ -149,7 +153,7 @@ In this scenario, you are using a regular expression to extract data from the fi
     INFO {io.siddhi.core.stream.output.sink.LogSink} - TailFileRegex : LogStream : Event{timestamp=1564588585214, data=[IBM, 88.0, 150], isExpired=false}
     ```
 
-**Reading a remote text file and moving it after processing**
+#### Reading a remote text file and moving it after processing
 
 In the previous scenarios, you tailed a file and each file generated multiple events. In this scenario, you are reading the complete file to build a single event.
 
@@ -206,7 +210,7 @@ Furthermore, to try out the capability of processing remote files, you are proce
 !!!info
     In this scenario, you moved the file after processing. To delete a file after processing, remove the `action.after.process` and `move.after.process` parameters from the Siddhi application. For other configuration options, see [Siddhi File Source documentation](https://siddhi-io.github.io/siddhi-io-file/api/latest/#file-source).
 
-**Reading a binary file and moving it after processing**
+#### Reading a binary file and moving it after processing
 
 In the previous scenarios, you processed text files in order to extract data. In this scenario, you are reading a binary file. The content of the file generates a single event.
 
@@ -254,7 +258,7 @@ In the previous scenarios, you processed text files in order to extract data. In
     INFO {io.siddhi.core.stream.output.sink.LogSink} - BinaryFullFileProcessing :  LogStream : Event{timestamp=1564660553623, data=[WSO2, 55.6, 100], isExpired=false} 
     ```
 
-**Reading a file line by line and delete it after processing**
+#### Reading a file line by line and delete it after processing
 
 In this scenario, you are reading a text file completely, and then deleting it after  processing. In other words, the file is not tailed. You read the file line by line where each line generates an event.
 
@@ -286,7 +290,7 @@ In this scenario, you are reading a text file completely, and then deleting it a
 3. Save this file as `ReadFileLineByLine.siddhi` in the `<SI_HOME>/wso2/server/deployment/siddhi-files` directory.   
 
     !!!info
-        This Siddhi application tails the `productions.csv` file line by line. Each line is converted to an event in the `SweetProductionStream` stream. After that, a simple transformation is carried out for the sweet production runs where the value for the `name` attribute from the event is converted into upper case. Finally, the output is logged on the SI console.
+        This Siddhi application tails the `productions.csv` file line by line. Each line is converted to an event in the `SweetProductionStream` stream. After that, a simple transformation is carried out for the sweet production runs where the value for the `name` attribute from the event is converted into upper case. Finally, the output is logged in the SI console.
         
     Once the Siddhi application is successfully deployed, the following log appears in the SI console:
 
@@ -326,7 +330,7 @@ In this scenario, you are reading a text file completely, and then deleting it a
     INFO {io.siddhi.core.stream.output.sink.LogSink} - ReadFileLineByLine : LogStream : Event{timestamp=1564902130543, data=[DOUGHNUT, 500.0], isExpired=false}
     ```
 
-**Reading a file using a regular expression and deleting it after processing**
+#### Reading a file using a regular expression and deleting it after processing
 
 In this scenario, you are using a regular expression to extract data from the content of the file. Here, you do not tail the file.  Instead, you read the full content of the file and generate a single event. After this is done, the file is deleted. To generate an event stream, you can keep re-creating the file with new data.
 
@@ -396,7 +400,7 @@ In this scenario, you are using a regular expression to extract data from the co
 
 ### Extracting data from a folder
 
-**Processing all files in the folder**
+#### Processing all files in the folder
 
 In this scenario, you extract data from a specific folder. All of the files are processed sequentially, where each file generates a single event.
 
@@ -410,7 +414,7 @@ In this scenario, you extract data from a specific folder. All of the files are 
     @App:description('Process all files in the folder and delete files after processing.')
             
     @source(type='file', mode='text.full',
-        dir.uri='file:/Users/foo/productions',  
+        dir.uri='file:/Users/foo/stocks',  
         @map(type='json', enclosing.element="$.portfolio", @attributes(symbol = "stock.company.symbol", price = "stock.price", volume = "stock.volume")))
     define stream StockStream (symbol string, price float, volume long);
     
@@ -422,7 +426,7 @@ In this scenario, you extract data from a specific folder. All of the files are 
     insert into LogStream;
     ```
 
-    In the above Siddhi application, change the value for the `dir.uri` parameterso that it points to the `productions` folder you created in step 1.
+    In the above Siddhi application, change the value for the `dir.uri` parameter so that it points to the `productions` folder you created in step 1.
  
 3. Save this file as `ProcessFolder.siddhi` in the `<SI_HOME>/wso2/server/deployment/siddhi-files` directory.
 
@@ -451,7 +455,7 @@ In this scenario, you extract data from a specific folder. All of the files are 
 
 In this section of the tutorial, you are exploring the different ways in which you could load data into a file.  
 
-**Appending or over-writing events to a file**
+#### Appending or over-writing events to a file
 
 In this scenario, you are appending a stream of events to the end of a file.
 
@@ -462,8 +466,6 @@ In this scenario, you are appending a stream of events to the end of a file.
     
     @App:description('Append incoming events in to a file.')
     
-    @Source(type = 'http', receiver.url='http://localhost:8006/SweetProductionStream', basic.auth.enabled='false',
-            @map(type='json'))
     define stream SweetProductionStream (name string, amount double);
     
     @sink(type='file', @map(type='json'), file.uri='/Users/foo/low_productions.txt')
@@ -492,15 +494,15 @@ In this scenario, you are appending a stream of events to the end of a file.
 3. To insert a few events into `SweetProductionStream`,  let's issue the following `CURL` commands:
 
     ```
-    curl -X POST -d "{\"event\": {\"name\":\"Almond cookie\",\"amount\": 100.0}}"  http://localhost:8006/SweetProductionStream --header "Content-Type:application/json"
+    curl -X POST -d '{"streamName": "SweetProductionStream", "siddhiAppName": "AppendToFile","data": ["Almond cookie", 100.0]}' http://localhost:9390/simulation/single -H 'content-type: text/plain' -H 'Authorization: Basic YWRtaW46YWRtaW4='
     ```
 
     ```
-    curl -X POST -d "{\"event\": {\"name\":\"Baked alaska\",\"amount\": 20.0}}"  http://localhost:8006/SweetProductionStream --header "Content-Type:application/json"
+    curl -X POST -d '{"streamName": "SweetProductionStream", "siddhiAppName": "AppendToFile","data": ["Baked alaska", 20.0]}' http://localhost:9390/simulation/single -H 'content-type: text/plain' -H 'Authorization: Basic YWRtaW46YWRtaW4='
     ```
 
     ```
-    curl -X POST -d "{\"event\": {\"name\":\"Cup cake\",\"amount\": 300.0}}"  http://localhost:8006/SweetProductionStream --header "Content-Type:application/json"
+    curl -X POST -d '{"streamName": "SweetProductionStream", "siddhiAppName": "AppendToFile","data": ["Cup cake", 300.0]}' http://localhost:9390/simulation/single -H 'content-type: text/plain' -H 'Authorization: Basic YWRtaW46YWRtaW4='
     ```
 
 4. Now open the file that you specified via the `file.uri` parameter. Note that the file has following content.
@@ -521,7 +523,7 @@ In this scenario, you are appending a stream of events to the end of a file.
 
     For other configuration options, see [Siddhi File Sink documentation](https://siddhi-io.github.io/siddhi-io-file/api/latest/#file-sink).
     
-**Preserving the state of the application through a system failure**
+#### Preserving the state of the application through a system failure
 
 Let's try out a scenario where you deploy a Siddhi application to count the total number of production runs of a sweet factory.
 
@@ -614,7 +616,7 @@ The production data is updated in a file and therefore you have to keep tailing 
     INFO {io.siddhi.core.stream.output.sink.LogSink} - CountProductions : LogStream : Event{timestamp=1565097506866, data=[120.0], isExpired=false}
     ```
 
-    These logs print the sweet production count. Note that the current count of sweet productions is being printed as `120` in the second log. This is because we have so far produced `120` sweets: `100` Almond cookies and `20` Baked alaskas.
+    These logs print the sweet production count. Note that the current count of sweet productions is being printed as `120` in the second log. This is because the factory has so far produced `120` sweets: `100` Almond cookies and `20` Baked alaskas.
     
 8. Now wait for following log to appear in the SI console.
 
@@ -636,7 +638,7 @@ The production data is updated in a file and therefore you have to keep tailing 
     Croutons,100.0
     ```   
 
-10. Shutdown SI server. Here we are deliberately creating a scenario where the server crashes before the SI server could persist the latest production count.
+10. Shutdown SI server. Here you are deliberately creating a scenario where the server crashes before the SI server could persist the latest production count.
     
     !!!Info
         Here, the SI server crashes before the state is persisted. Therefore, the Streaming Integrator server cannot persist the latest count (which includes the last two production runs that produced `100` Croissants and `100` Croutons). The good news is, the `File source` source replays the last two messages, allowing the Streaming Integrator to successfully recover from the server crash.
