@@ -4,7 +4,7 @@ template: templates/home-page.html
 
 # WSO2 Enterprise Integrator Documentation
 
-Integration is at the heart of any digital transformation. By connecting different systems that make up your enterprise, you can build an organization that acts as one seamless digital system. WSO2 Enterprise Integrator (EI) is an open source product that enables comprehensive integration for cloud native and container-native projects. 
+The new WSO2 Enterprise Integrator (WSO2 EI) 7.0 is the only open-source hybrid integration platform that enables API-centric integration using integration architecture styles such as microservices, cloud-native, or centralized ESB. The platform provides a choice of approaches for either code-driven or graphical, drag-and-drop/configuration-driven integration.
 
 <!--
  Adding temporary urls for navigation
@@ -15,7 +15,6 @@ Integration is at the heart of any digital transformation. By connecting differe
     <p>Build integrations using a configuration-driven, graphical approach for API-centered, centralized enterprise architectures as well as cloud-native, decentralized enterprise architectures.</p>
     <a href="../micro-integrator/overview/introduction">View Documentation</a>
 </div>
-
 <div class="integratorDescription">
     <h3>Ballerina Integrator</h3>
     <p>Build code-driven integrations for cloud-native, agile enterprise architectures.</p>
