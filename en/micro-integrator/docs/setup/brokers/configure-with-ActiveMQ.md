@@ -8,7 +8,7 @@ Follow the instructions below to set up and configure.
 
 1.  Download [Apache ActiveMQ](http://activemq.apache.org/).
 2.  Download and install WSO2 Micro Integrator.
-3.  Copy the following client libraries from the `ACTIVEMQ_HOME/lib` directory to the `MI_HOME/lib` directory.
+3.  Copy the following client libraries from the `ACTIVEMQ_HOME/lib` directory to the `MI_HOME/wso2/lib` directory.
 
     **ActiveMQ 5.8.0 and above**
 

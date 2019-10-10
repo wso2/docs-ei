@@ -38,7 +38,7 @@ To create an ESB solution consisting of an **ESB config** project and a **Compos
 
 #### Creating the Sequence
 
-1.  In the **Project Explorer**, right click the **ScheduleDefaultTask** project, and click **New** → **Sequence**.  
+1.  In the **Project Explorer**, right click the **SampleServices** project, and click **New** → **Sequence**.  
     ![](../../assets/img/tutorials/scheduled-tasks/119130430/119130439.png)
 2.  Click **Create New Sequence** and click **Next**.
 3.  Enter **InjectXMLSequence** as the sequence name and click **Finish**.  
