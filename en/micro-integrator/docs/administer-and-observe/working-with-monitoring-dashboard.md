@@ -8,8 +8,12 @@ The dashboard as well as the CLI communicates with the management API of WSO2 Mi
 
 To use the management dashboard, you need to enable the management API when you
 start your WSO2 Micro Integrator instance. This can be done by passing
-the `-DenableManagementApi` system property when you
-start the Micro Integrator. 
+the following system property when you
+start the Micro Integrator:
+
+```bash
+-DenableManagementApi
+```
 
 Note that the default address is **https://localhost** and the port is **9164**.
 
@@ -31,7 +35,10 @@ Note that the default address is **https://localhost** and the port is **9164**.
 
 ## Install and run the dashboard
 
-1.  To download the dashboard, go to [**WSO2 Micro Integrator** website](https://wso2.com/integration/micro-integrator/#) -> **Download** → **Other Resources**, and click **Monitoring Dashboard**.
+!!! Warning
+    In a non-production environment (with the self signed certificate), you have to add the certificate of the micro integrator instance to the browser as a trusted source. For example, direct the browser to `https://localhost:9164/magagement` and add the site as trusted. This step will not be required with a custom production certificate.
+
+1.  To download the dashboard, go to [**WSO2 Micro Integrator** website](https://wso2.com/integration/micro-integrator/#) -> **Download** -> **Other Resources**, and click **Monitoring Dashboard**.
 2.  Execute the following command to start the dashboard server:
 
     ```bash
@@ -42,9 +49,6 @@ Note that the default address is **https://localhost** and the port is **9164**.
     ```bash
     Web app 'dashboard' is available at 'https://127.0.0.1:9743/dashboard
     ```
-
-    !!! Note
-        In a non-production environment (with the self signed certificate), you have to add the certificate of the micro integrator instance to the browser as a trusted source. For example, direct the browser to  https://localhost:9164/magagement and add the site as trusted. This step will not be required with a custom production certificate.
   
 3.  Log in to the dashboard using the following: 
 

@@ -6,7 +6,13 @@ The dashboard as well as the CLI communicates with the management API of WSO2 Mi
 
 ## Enable the Management API
 
-To use the CLI tool, you need to enable the management API by passing the `-DenableManagementApi` system property when you start your Micro Integrator instance. 
+To use the CLI tool, you need to enable the management API when you start your Micro Integrator instance. This can be done by passing
+the following system property when you
+start the Micro Integrator:
+
+```bash
+-DenableManagementApi
+```
 
 -   When you run the Micro Integrator on Docker, start your Docker
     container by passing the `enableManagementApi` system property:
@@ -30,7 +36,7 @@ To use the CLI tool, you need to enable the management API by passing the `-Dena
 
 ## Install and run the CLI
 
-1.  Download the CLI from [here](https://wso2.com/integration/micro-integrator/tooling/).
+1.  To download the dashboard, go to [**WSO2 Micro Integrator** website](https://wso2.com/integration/micro-integrator/#) -> **Download** -> **Other Resources**, and click **CLI Tooling**.
 2.  If you are using a UNIX-based operating system (Linux, Solaris, and Mac OS X), be sure to set the `MI_CLI_HOME/bin` folder path as the PATH:
 
     ```bash
