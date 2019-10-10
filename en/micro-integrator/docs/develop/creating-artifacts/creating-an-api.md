@@ -48,8 +48,14 @@ You can now update the [API Resource properties](../../../references/synapse-pro
 
 ## Examples
 
-Find more examples of REST APIs, [here](../../../use-cases/examples/rest_api_examples/introduction-rest-api/#synapse-configuration).
-
-## Guides
-
-Follow the [steps at the example](../../../use-cases/examples/rest_api_examples/introduction-rest-api/#build-and-run) to build and run the API.
+-   [Using a Simple Rest API](../../../use-cases/examples/rest_api_examples/introduction-rest-api)
+-   [Working with Query Parameters](../../../use-cases/examples/rest_api_examples/setting-query-params-outgoing-messages)
+-   [Exposing a SOAP Endpoint as a RESTful API](../../../use-cases/examples/rest_api_examples/enabling-rest-to-soap)
+-   [Exposing Non-HTTP Services as RESTful APIs](../../../use-cases/examples/rest_api_examples/configuring-non-http-endpoints)
+-   [Handling Non Matching Resources](../../../use-cases/examples/rest_api_examples/handling-non-matching-resources)
+-   [Handling HTTP Status Codes](../../../use-cases/examples/rest_api_examples/setting-https-status-codes)
+-   [Manipulating Content Types](../../../use-cases/examples/rest_api_examples/transforming-content-type)
+-   [Securing a REST API](../../../use-cases/examples/rest_api_examples/securing-rest-apis)
+-   [Using GET with a Message Body](../../../use-cases/examples/rest_api_examples/using-get-with-a-body)
+-   [Using POST with Empty Message Body](../../../use-cases/examples/rest_api_examples/using-post-with-no-body)
+-   [Using POST with Query Parameters](../../../use-cases/examples/rest_api_examples/using-post-with-query-param)
