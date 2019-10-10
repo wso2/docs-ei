@@ -16,7 +16,7 @@ The new WSO2 Enterprise Integrator (WSO2 EI) 7.0 is the only open-source hybrid 
         </svg>
         Ballerina Integrator</h3>
     <p>Ballerina Integrator provides a powerful, simple-to-learn, code-driven approach to programming integrations based on the Ballerina programming language.</p>
-    <a href="ballerina-integrator/get-started/introduction">Get Started</a>
+    <a href="../ballerina-integrator/get-started/introduction">Get Started</a>
 </div>
 <div class="integratorDescription">
     <h3 class="home-title">
@@ -26,7 +26,7 @@ The new WSO2 Enterprise Integrator (WSO2 EI) 7.0 is the only open-source hybrid 
     Micro Integrator
     </h3>
     <p>Micro Integrator is an intuitive, graphical, drag-and-drop, and configuration-driven integrator based on the cloud-native variant of the battle-tested WSO2 EI/ESB runtime.</p>
-    <a href="micro-integrator/overview/introduction">Get Started</a>
+    <a href="../micro-integrator/overview/introduction">Get Started</a>
 </div>
 <div class="integratorDescription">
     <h3 class="home-title">
@@ -35,6 +35,6 @@ The new WSO2 Enterprise Integrator (WSO2 EI) 7.0 is the only open-source hybrid 
         </svg>
         Streaming Integrator</h3>
     <p>Streaming Integrator is a cloud-native, lightweight component that understands streaming SQL queries to capture, analyze, process, and act on events in real-time.</p>
-    <a href="streaming-integrator/overview/overview">Get Started</a>
+    <a href="../streaming-integrator/overview/overview">Get Started</a>
 </div>
 
