@@ -53,8 +53,7 @@ Follow the instructions given below to create a new Proxy Service artifact in WS
 
 ## Examples
 
-Find more examples of proxy services, [here](../../../use-cases/examples/proxy_service_examples/Introduction-to-Proxy-Services/#synapse-configuration).
-
-## Guides
-
-Follow the [steps at the example](../../../use-cases/examples/proxy_service_examples/Introduction-to-Proxy-Services/#build-and-run) to build and run the proxy service.
+-   [Using a Simple Proxy Service](../../../use-cases/examples/proxy_service_examples/Introduction-to-Proxy-Services)
+-   [Publishing a Custom WSDL](../../../use-cases/examples/proxy_service_examples/publishing-a-custom-wsdl)
+-   [Exposing a Proxy Service via Inbound Endpoint](../../../use-cases/examples/proxy_service_examples/exposing-proxy-via-inbound)
+-   [Securing Proxy Services](../../../use-cases/examples/proxy_service_examples/securing-proxy-services)
