@@ -12,11 +12,11 @@ The purpose of this guide if for you to understand the basic functions of the St
 To learn how to use the key functions of the Streaming Integrator, consider a laboratory that is observing the temperature
 of a range of rooms in a building via a sensor and needs to use the temperature readings as the input to derive other information.
 
-!!!info"Before you begin:
-    - Install [Oracle Java SE Development Kit (JDK) version 1.8](https://www.oracle.com/technetwork/java/javase/downloads/index.html).
-    - [Set the Java home](https://docs.oracle.com/cd/E19182-01/820-7851/inst_cli_jdk_javahome_t/) environment variable.
-    - Download and install the following components of the Streaming Integrator:
-        - Streaming Integrator Tooling 
+!!!info "Before you begin:"
+    - Install [Oracle Java SE Development Kit (JDK) version 1.8](https://www.oracle.com/technetwork/java/javase/downloads/index.html).<br/>
+    - [Set the Java home](https://docs.oracle.com/cd/E19182-01/820-7851/inst_cli_jdk_javahome_t/) environment variable.<br/>
+    - Download and install the following components of the Streaming Integrator:<br/>
+        - Streaming Integrator Tooling<br/>
         - Streaming Integrator runtime
 
 
@@ -30,11 +30,13 @@ Create a basic Siddhi application for a simple use case.
     -   For Windows: `tooling.bat`
     -   For Linux: `./tooling.sh`
     
-3. Access the Streaming Integration Tooling via the `http://<HOST_NAME>:<TOOLING_PORT>/editor` URL. 
+3. Access the Streaming Integration Tooling via the `http://<HOST_NAME>:<TOOLING_PORT>/editor` URL.
+
     !!!info
         The default URL is `http://<localhost:9390/editor`.
         
    The Streaming Integration Tooling opens as shown below.
+
    ![Streaming Integrator Tooling Welcome Page](../images/quick-start-guide-101/Welcome-Page.png)
         
 4. Open a new Siddhi file by clicking **New**.
