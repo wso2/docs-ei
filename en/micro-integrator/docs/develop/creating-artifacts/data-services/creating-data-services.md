@@ -67,6 +67,45 @@ The data service should now have the resource added as shown below.
 
 ![](/assets/img/tutorials/data_services/119130577/119130588.png)
 
-## Guides
-
 ## Examples
+
+<ul>
+	<li>
+		<a href="../../../../use-cases/examples/data_integration/rdbms-data-service">Exposing an RDBMS Datasource</a>
+	</li>
+	<li>
+		<a href="../../../../use-cases/examples/data_integration/json-with-data-service">Exposing Data in JSON Format</a>
+	</li>
+	<li>
+		<a href="../../../../use-cases/examples/data_integration/odata-service">Using and OData Service</a>
+	</li>
+	<li>
+		<a href="../../../../use-cases/examples/data_integration/nested-queries-in-data-service">Using Nested Data Queries</a>
+	</li>
+	<li>
+		<a href="../../../../use-cases/examples/data_integration/batch-requesting">Batch Requesting</a>
+	</li>
+	<li>
+		<a href="../../../../use-cases/examples/data_integration/request-box">Invoking Multiple Operations via Request Box</a>
+	</li>
+	<li>
+		<a href="../../../../use-cases/examples/data_integration/distributed-trans-data-service">Using Distributed Transactions in Data Services</a>
+	</li>
+	<li>
+		<a href="../../../../use-cases/examples/data_integration/data-service-notifications">Receiving Notifications from Data Services</a>
+	</li>
+	<!--
+	<li>
+		<a href="../../use-cases/examples/data_integration/data-input-validator">Validating Data Input</a>
+	</li>
+	<li>
+		<a href="../../use-cases/examples/data_integration/data-service-scheduled-task">Scheduling Tasks in Data Services</a>
+	</li>
+-->
+</ul>
+
+## Tutorials
+
+<li>
+	See the tutorial on <a href="../../../../use-cases/tutorials/sending-a-simple-message-to-a-datasource">data integration</a>
+</li>
