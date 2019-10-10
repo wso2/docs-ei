@@ -151,7 +151,7 @@ Given below are the basic steps you need to follow to run the Micro Integrator o
     <strong>Example 1: Docker image with updates</strong>
     </div>
     <div class="codeContent panelContent pdl">
-    <div class="sourceCode" id="cb1" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence" style="brush: java; gutter: false; theme: Confluence"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb1-1"><a href="#cb1-1"></a>FROM docker.<span class="fu">wso2</span>.<span class="fu">com</span>/micro-integrator:<span class="fl">1.0.</span><span class="dv">0</span></span></code></pre></div>
+    <div class="sourceCode" id="cb1" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence" style="brush: java; gutter: false; theme: Confluence"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb1-1"><a href="#cb1-1"></a>FROM docker.<span class="fu">wso2</span>.<span class="fu">com</span>/micro-integrator:<span class="fl">1.1.</span><span class="dv">0</span></span></code></pre></div>
     </div>
     </div>
     <div class="code panel pdl" style="border-width: 1px;">
@@ -159,7 +159,7 @@ Given below are the basic steps you need to follow to run the Micro Integrator o
     <strong>Example 2: Docker image without updates (community version)</strong>
     </div>
     <div class="codeContent panelContent pdl">
-    <div class="sourceCode" id="cb2" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence" style="brush: java; gutter: false; theme: Confluence"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb2-1"><a href="#cb2-1"></a>FROM wso2/micro-integrator:<span class="fl">1.0.</span><span class="dv">0</span></span></code></pre></div>
+    <div class="sourceCode" id="cb2" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence" style="brush: java; gutter: false; theme: Confluence"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb2-1"><a href="#cb2-1"></a>FROM wso2/micro-integrator:<span class="fl">1.1.</span><span class="dv">0</span></span></code></pre></div>
     </div>
     </div>
     </div></td>
