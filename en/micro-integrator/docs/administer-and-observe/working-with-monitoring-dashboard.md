@@ -7,9 +7,7 @@ The dashboard as well as the CLI communicates with the management API of WSO2 Mi
 ## Enable the Management API
 
 To use the management dashboard, you need to enable the management API when you
-start your WSO2 Micro Integrator instance. This can be done by passing
-the following system property when you
-start the Micro Integrator:
+start your WSO2 Micro Integrator instance. Pass the following system property:
 
 ```bash
 -DenableManagementApi
@@ -31,7 +29,7 @@ Note that the default address is **https://localhost** and the port is **9164**.
     sh micro-integrator.sh -DenableManagementApi
     ```
 
--   The CLI tool is enabled for the embedded Micro Integrator in WSO2 Integration Studio by default.
+-   The Management API is enabled for the embedded Micro Integrator in WSO2 Integration Studio by default.
 
 ## Install and run the dashboard
 
