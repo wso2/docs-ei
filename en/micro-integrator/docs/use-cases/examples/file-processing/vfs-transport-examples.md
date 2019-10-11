@@ -1,6 +1,6 @@
 # VFS Transport
 
-The Micro Integrator can access the local file system using the [VFS transport](../../setup/transport_configurations/configuring-transports/configuring-the-vfs-transport) sender and
+The Micro Integrator can access the local file system using the [VFS transport](../../../../references/synapse-properties/transport-parameters/vfs-transport-parameters.md) sender and
 receiver. This example demonstrates the VFS transport by using the file system as a transport medium.
 
 ## Synapse configuration
