@@ -10,39 +10,37 @@ The WSO2 SAP adapter is shipped with the Micro Integrator and is implemented 
 
 Follow the instructions below to install and set up the SAP adapter.
 
-1.  Download WSO2 Micro Integrator.
+1.  Download [WSO2 Micro Integrator](https://wso2.com/integration/).
 2.  Download the `           sapidoc3.jar          ` and
     `           sapjco3.jar          ` middleware libraries from the SAP
     support portal and copy those libraries to the
     `MI_HOME/lib          ` directory.
 
     !!! Info
-        You need to have SAP login credentials to access the SAP support
-        portal.
+        You need to have SAP login credentials to access the SAP support portal.
     
-
 3.  Download the native SAP JCo library and copy it to the system path.
     You need to select the system path applicable to your operating
     system as described below.
 
-    |              |                                                                                                                                                                                     |
-    |--------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+    |          OS |                          System Path  |
+    |--------------|-----------------------------------------------------------------------------------------------|
     | Linux 32-bit | Copy the Linux native SAP jcolibrary `                               libsapjco3.so                             ` to `               <JDK_HOME>/jre/lib/i386/server              ` . |
     | Linux 64-bit | Copy the Linux native SAP jcolibrary `                               libsapjco3.so                             ` to `               <JDK_HOME>/jre/lib/amd64              ` .       |
     | Windows      | Copy the Windows native SAP jcolibrary `               sapjco3.dll              ` to `               <WINDOWS_HOME>/system32              ` .                                       |
 
-4.  Create a directory named `           conf          ` in the
-    `MI_HOME/conf/          ` directory.
+4.  Create a directory named `conf` in the
+    `MI_HOME/conf/` directory.
 
-5.  Create a directory named `           sap          ` within the
-    `           conf          ` directory that you created and provide
+5.  Create a directory named `sap` within the
+    `conf` directory that you created and provide
     access rights to read the properties files you will save in it
     later.
 
 6.  Copy the following SAP endpoint properties files to the
     `MI_HOME/conf/sap/          ` directory. You need to
     have two properties files, one at the server-end and the other at
-    the client-end to communicate with an external SAP endpoint using
+    the client end to communicate with an external SAP endpoint using
     IDoc or BAPI.
 
     -   `                         *.dest                       ` : This
@@ -57,13 +55,13 @@ Follow the instructions below to install and set up the SAP adapter.
 7.  Start the Micro Integrator using the
     `           -Djava.library.path          ` switch to specify the
     location of your SAP jco library.  
-    For example, you can execute the following command to start the Micro Integrator:
+    For example, you can execute the following command to start the Micro Integrator from the `MI_HOME` directory:
 
     ```bash
     ./micro-integrator.sh -Djava.library.path=/usr/lib/jvm/jre1.7.0/lib/i386/server/
     ```
 
-### Setting up the Client Configuration File
+### Setting up the Client Configuration file
 
 To setup the Micro Integrator as a client to a SAP system you need to create
 the `         *.dest        ` properties file and define the relevant
@@ -119,8 +117,8 @@ of each property that should be specified in the
     You can obtain the values for these properties from your SAP system administrator.
 
 The `*.dest` properties file should be named
-`<SAP-GWHOST>.dest` . For example, if the name of your
-SAP gateway is `SAPSYS` , the name of the file should
+`<SAP-GWHOST>.dest`. For example, if the name of your
+SAP gateway is `SAPSYS`, the name of the file should
 be `SAPSYS.dest.`.
 
 Following is a sample configuration for the `         *.dest        ` properties file:
@@ -163,13 +161,13 @@ description of each property that should be specified in the
 | **`               jco.server.profile_name              `**                    | Name of the profile file used during start-up                                                                                                                                                                |
 | **`               jco.server.unicode              `**                         | Determines whether or not you connect in unicodemode (1=true, 0=false)                                                                                                                                       |
 | **`               jco.server.max_startup_delay              `**               | Maximum server start-up delay time in seconds                                                                                                                                                                |
-| **`              jco.server.connection_count             `**                  | Number of SAP to the ESB connections                                                                                                                                                                         |
+| **`              jco.server.connection_count             `**                  | Number of SAP to Micro Integrator connections                                                                                                                                                                         |
 | **`                             jco.server.name                           `** | Name of the server configuration. This needs to be the same name provided in the SAP configuration.                                                                                                          |
 
 !!! Info
     You can obtain the values for these properties from your SAP system administrator.
 
-This file should be named `         <SAP-GWHOST>.server        ` . For
+This file should be named `         <SAP-GWHOST>.server        `. For
 example, if the name of your SAP gateway is `         SAPSYS        ` ,
 the name of the file should be `         SAPSYS.server.        `
 
@@ -187,8 +185,7 @@ jco.server.unicode=1
 
 ### Configuring WSO2 SAP Adapter
 
-Go to the required tab for detailed steps based on how you need to
-configure WSO2 SAP Adapter.
+Go to the required tab for detailed steps based on how you need to configure WSO2 SAP Adapter.
 
 WSO2 SAP adapter can be used with IDoc, which is a synchronous interface
 used when exchanging data with the SAP system. WSO2 Micro Integrator can be configured
@@ -257,8 +254,7 @@ client using the SAP adapter.
 
 #### Receiving IDocs
 
-Follow the instructions below to configure the ESB Profile as an IDoc
-server using the SAP adapter.
+Follow the instructions below to configure the Micro Integrator as an IDoc server using the SAP adapter.
 
 1.  Uncomment the following line in the
     `MI_HOME/conf/deployment.toml` file to
@@ -273,17 +269,15 @@ server using the SAP adapter.
 2.  Ensure the server configuration file
     `             SAPSYS.server            ` is available in
     `MI_HOME/conf/sap            ` folder.
-3.  Start the ESB Profile of WSO2 EI using the
+3.  Start the Micro Integrator using the
     `              -Djava.library.path             ` switch to specify
     the location of your SAP jco library.  
-    For example, you can execute the following command to start the ESB
-    Profile:
+    For example, you can execute the following command to start the Micro Integrator from the `MI_HOME` directory:
 
     ```bash
     ./micro-integrator.sh -Djava.library.path=/usr/lib/jvm/jre1.7.0/lib/i386/server/
     ```
-4.  Create the `              IDocReceiver             ` proxy service
-    with the following configuration:
+4.  Create the `IDocReceiver` proxy service with the following configuration:
 
     ```xml
     <proxy xmlns=http://ws.apache.org/ns/synapse 
@@ -310,11 +304,9 @@ server using the SAP adapter.
 
     !!! Info
         -   The SAP endpoint server properties file
-            `               SAPSYS.server              ` should be in the
-            `MI_HOME/conf/sap              ` folder.
-        -   Additional proxy level listener parameters that can be defined
-            in the proxy configuration are listed in [Proxy Service Listener
-            Parameters](#SAPIntegration-ListenerParameters) .
+            `SAPSYS.server` should be in the
+            `MI_HOME/conf/sap` folder.
+        -   Additional proxy level listener parameters that can be defined in the proxy configuration are listed in [Proxy Service Listener Parameters](#proxy-service-listener-parameters).
 
     Once the proxy service configuration is saved, WSO2 SAP adapter is
     now ready to receive IDoc messages.
@@ -340,17 +332,16 @@ client using the SAP adapter.
     ```
 
 2.  Start the Micro Integrator using the
-    `              -Djava.library.path             ` switch to specify
+    `-Djava.library.path` switch to specify
     the location of your SAP jco library.  
 
-    For example, you can execute the following command to start the ESB
-    Profile:
+    For example, you can execute the following command to start the Micro Integrator from the `MI_HOME` directory:
 
     ```bash
     ./micro-integrator.sh -Djava.library.path=/usr/lib/jvm/jre1.7.0/lib/i386/server/
     ```
 
-3.  Create the `               BAPISender              ` proxy service
+3.  Create the `BAPISender` proxy service
     with the following configuration:
 
     ```xml
@@ -383,7 +374,6 @@ client using the SAP adapter.
             sequence. Without this property, the business-level errors from
             SAP can get detected as faulty messages and passed to the Fault
             sequence.
-
             ```xml
             <property name="sap.escape.error.handling" scope="axis2" value="true"/>
             ```
@@ -408,8 +398,7 @@ Follow the instructions below to configure the Micro Integrator as a BAPI server
 2.  Start the Micro Integrator using the
     `               -Djava.library.path              ` switch to specify
     the location of your SAP jco library.  
-    For example, you can execute the following command to start the ESB
-    Profile:
+    For example, you can execute the following command to start the Micro Integrator from the `MI_HOME` directory:
 
     ```bash
     ./micro-integrator.sh -Djava.library.path=/usr/lib/jvm/jre1.7.0/lib/i386/server/
@@ -448,12 +437,12 @@ Follow the instructions below to configure the Micro Integrator as a BAPI server
         -   Additional proxy level listener parameters that can be defined
             in the proxy configuration are listed in [Proxy Service Listener Parameters](#proxy-service-listener-parameters).
     
-### Additional Configuration Parameter
+### Additional configuration parameters
 
 This section describes additional parameters that can be used when
 configuring WSO2 SAP adapter.
 
-#### SAP Transport Sender Parameters
+#### SAP transport sender parameters
 
 Following are descriptions of the SAP client properties that can be
 defined in the message context with axis2-client scope when using the
@@ -499,7 +488,7 @@ Following is a transport sender property that can be defined in the
     qualified class names for custom mappers that are implementing
     `          org.wso2.carbon.transports.sap.idoc.IDocXMLMapper         `.
 
-#### Proxy Service Listener Parameters
+#### Proxy service listener parameters
 
 Following are descriptions of the proxy level listener parameters that
 can be defined in a proxy configuration when using the Micro Integrator as a SAP server:
