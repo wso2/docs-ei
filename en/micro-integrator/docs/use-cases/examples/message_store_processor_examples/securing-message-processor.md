@@ -1,6 +1,4 @@
 # Securing the Message Forwarding Processor
-## Example use case
-
 ## Synapse configuration
 Add security policies to the [Message Forwarding Processor](https://docs.wso2.com/display/EI650/Scheduled+Message+Forwarding+Processor).
 
@@ -53,14 +51,10 @@ Add security policies to the [Message Forwarding Processor](https://docs.wso2.co
 
 Create the artifacts:
 
-1. Set up WSO2 Integration Studio.
-2. Create an ESB Config project
-3. Create a REST Api artifact with the above configuration.
-4. Deploy the artifacts in your Micro Integrator.
-
-Set up the back-end service:
-
-........
+1. [Set up WSO2 Integration Studio](../../../../develop/installing-WSO2-Integration-Studio).
+2. [Create an ESB Solution project](../../../../develop/creating-projects/#esb-config-project).
+3. Create the [proxy service](../../../../develop/creating-artifacts/creating-a-proxy-service), [registry resource](../../../../develop/creating-artifacts/creating-registry-resources), [local entry](../../../../develop/creating-artifacts/registry/creating-local-registry-entries), [message store](../../../../develop/creating-artifacts/creating-a-message-store) and [message processor](../../../../develop/creating-artifacts/creating-a-message-processor) with the configurations given above.
+4. [Deploy the artifacts](../../../../develop/deploy-and-run) in your Micro Integrator.
 
 Use the stockquote client to send a request without WS-Security. The Micro Integrator is
 configured to enable WS-Security as per the policy specified by
