@@ -1,4 +1,4 @@
-
+# Aggregating Data Over Time
 
 ## Purpose:
 This application demonstrates how to send a single event via Single Simulation and to generate alerts using filters, when the threshold value is exceeded. Furthermore, it shows how to configure WSO2 Streaming Integrator Tooling to publish an alerts via e-mail. An alert is generated when a large valued transaction (The threshold for transaction value is 5000) is occurred and the relevant alert is sent as an e-mail.

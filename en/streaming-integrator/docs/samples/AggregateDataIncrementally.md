@@ -18,7 +18,32 @@ This example demonstrates how to get running statistics using Siddhi. The sample
         - `jdbc.url` - `jdbc:mysql://localhost:3306/sweetFactoryDB`<br/>
         - `username` - `root`<br/>
         - `password` - `root`<br/>
-    5. Save the sample Siddhi application.
+    5. Save the sample Siddhi application.<br/>
+
+            ```sql
+            @App:name("AggregateDataIncrementally")
+            @App:description('Aggregates values every second until year and gets statistics')
+            define stream RawMaterialStream (name string, amount double);
+            @sink(type ='log')
+            define stream RawMaterialStatStream (AGG_TIMESTAMP long, name string, avgAmount double);
+            @store( type="rdbms",
+                    jdbc.url="jdbc:mysql://localhost:3306/sweetFactoryDB",
+                    username="root",
+                    password="root",
+                    jdbc.driver.name="com.mysql.jdbc.Driver")
+            define aggregation stockAggregation
+            from RawMaterialStream
+            select name, avg(amount) as avgAmount, sum(amount) as totalAmount
+            group by name
+            aggregate every sec...year;
+            define stream TriggerStream (triggerId string);
+            @info(name = 'query1')
+            from TriggerStream as f join stockAggregation as s
+            within "2016-06-06 12:00:00 +05:30", "2020-06-06 12:00:00 +05:30"
+            per 'hours'
+            select AGG_TIMESTAMP, s.name, avgAmount
+            insert into RawMaterialStatStream;
+            ```
 
 
 ## Executing the Sample
@@ -33,7 +58,7 @@ This example demonstrates how to get running statistics using Siddhi. The sample
 
 1. To open the Event Simulator, click the **Event Simulator** icon.
 
-   ![Event Simulator Icon](../../images/Testing-Siddhi-Applications/Event_Simulation_Icon.png)
+    ![Event Simulator Icon](../../images/Testing-Siddhi-Applications/Event_Simulation_Icon.png)
 
 2. To simulate events for the `RawMaterialStream` stream of the `AggregateDataIncrementally`  enter information in the **Single Simulation** tab as follows.
 
@@ -82,42 +107,10 @@ This example demonstrates how to get running statistics using Siddhi. The sample
 The input and the corresponding output is displayed in the console as follows.
 
 !!!info
-   The timestamp displayed is different because it is derived based on the time at which you send the events.
+    The timestamp displayed is different because it is derived based on the time at which you send the events.
 
 ```
     INFO {io.siddhi.core.stream.output.sink.LogSink} - AggregateDataIncrementally : RawMaterialStatStream : [Event{timestamp=1513612116450, data=[1537862400000, chocolate ice cream, 100.0], isExpired=false}, Event{timestamp=1513612116450, data=[chocolate cake, 150.0], isExpired=false}]
     [INFO {io.siddhi.core.stream.output.sink.LogSink} - AggregateDataIncrementally : RawMaterialStatStream : [Event{timestamp=1513612116450, data=[1537862400000, chocolate ice cream, 100.0], isExpired=false}, Event{timestamp=1513612116450, data=[chocolate cake, 150.0], isExpired=false}]
 ```
     
-???info "Click here to view the complete sample Siddhi application"
-    ```sql
-    @App:name("AggregateDataIncrementally")
-
-    @App:description('Aggregates values every second until year and gets statistics')
-
-
-    define stream RawMaterialStream (name string, amount double);
-
-    @sink(type ='log')
-    define stream RawMaterialStatStream (AGG_TIMESTAMP long, name string, avgAmount double);
-
-    @store( type="rdbms",
-            jdbc.url="jdbc:mysql://localhost:3306/sweetFactoryDB",
-            username="root",
-            password="root",
-            jdbc.driver.name="com.mysql.jdbc.Driver")
-    define aggregation stockAggregation
-    from RawMaterialStream
-    select name, avg(amount) as avgAmount, sum(amount) as totalAmount
-    group by name
-    aggregate every sec...year;
-
-    define stream TriggerStream (triggerId string);
-
-    @info(name = 'query1')
-    from TriggerStream as f join stockAggregation as s
-    within "2016-06-06 12:00:00 +05:30", "2020-06-06 12:00:00 +05:30"
-    per 'hours'
-    select AGG_TIMESTAMP, s.name, avgAmount
-    insert into RawMaterialStatStream;
-    ```
