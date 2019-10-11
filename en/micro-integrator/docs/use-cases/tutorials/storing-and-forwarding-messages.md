@@ -239,15 +239,11 @@ To set up WSO2 Message Broker:
 1. Download WSO2 Message Broker. The path to this folder is referred to as `MB_HOME` throughout this tutorial.
 
 2. Add the following JAR files from the `MB_HOME/wso2/broker/client-lib/` directory to the 
-`MI_TOOLING_HOME/Contents/Eclipse/runtime/microesb/lib/` or 
-`MI_TOOLING_HOME/runtime/microesb/lib` ( in linux ) directory.
-
-   andes-client-*.jar
-    
-   geronimo-jms_1.1_spec-*.jar
-    
-   org.wso2.securevault-*.jar
-   
+`MI_TOOLING_HOME/Contents/Eclipse/runtime/microesb/lib/` (in Windows) or 
+`MI_TOOLING_HOME/runtime/microesb/lib` (in MacOS/Linux/CentOS ) directory.
+    -   andes-client-*.jar
+    -   geronimo-jms_1.1_spec-*.jar
+    -   org.wso2.securevault-*.jar
 3. Open the `deployment.toml` file from `MI_TOOLING_HOME/Contents/Eclipse/runtime/microesb/conf/` or 
  `MI_TOOLING_HOME/runtime/microesb/lib` ( in linux ) directory and add the configurations given below. This is required for enabling the broker to store messages.
 
