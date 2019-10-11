@@ -1,4 +1,4 @@
-# Validating Input Values in a Data Request
+# Validating Input Data in a Data Request
 
 Validators are added to individual input mappings in a query. Input
 validation allows data services to validate the input parameters in a

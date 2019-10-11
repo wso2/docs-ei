@@ -30,6 +30,7 @@ Following are the integration artifacts (proxy service) that we can used to impl
 </proxy>
 ```
 
+<!--
 ## Configuring Sample FIX Applications
 
 If you use a binary distribution of Quickfix/J, the two samples and
@@ -159,15 +160,6 @@ enable JMS support for the sample Axis2 server the
 `         samples/axis2Server/repository/conf/axis2.xml        ` file
 must be updated.
 
-```java
-<!--Uncomment this and configure as appropriate for JMS transport support, after setting up your JMS environment -->
-<transportReceiver name="jms" class="org.apache.synapse.transport.jms.JMSListener">
-</transportReceiver>
-
-<transportSender name="jms" class="org.apache.synapse.transport.jms.JMSSender">
-</transportReceiver>
-```
-
 Locate and edit the AMQP connection settings file for the message consumer, this file is usually named `direct.properties` and can be found in the `repository/samples/resources/fix` directory.
 
 ```java
@@ -225,3 +217,4 @@ destination.directQueue=direct://amq.direct//QpidStockQuoteService
 
 -   Send an order request from Banzai to Synapse. For example, Buy DELL
     1000 @ MKT.
+-->

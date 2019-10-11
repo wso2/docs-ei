@@ -1,4 +1,4 @@
-# Scheduling Tasks
+# Schedule Tasks in Data Services
 
 Task scheduling is used to invoke a data service operation periodically
 or for a specified number of times. You cannot insert data into the
@@ -6,8 +6,7 @@ database using scheduling tasks. But you can use schedule tasks to
 update operations, such as the SQL update and delete operations.
 
 The scheduling functionality is useful when a specific data service
-operation is associated with an [input or output
-event-trigger](Receiving-Notifications-from-Data-Services_119133285.html#ReceivingNotificationsfromDataServices-Inputeventtrigger)
+operation is associated with an [input or output event-trigger](data-service-scheduled-task)
 . When a scheduled task that is associated with an event-trigger is run,
 the event is automatically fired by evaluating the event trigger
 criteria. For example, we can schedule a task on the
