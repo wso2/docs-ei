@@ -28,7 +28,7 @@ Let's create new HTTP endpoints to represent the back-end services that are requ
 
 1.  Right click **SampleServices** in the Project Explorer and navigate to **New -> Endpoint**. 
 2.  Ensure **Create a New Endpoint** is selected and click **Next.**
-2.  Enter the details given below:
+3.  Enter the details given below:
     <table>
         <tr>
             <th>Property</th>
@@ -80,11 +80,11 @@ Let's create new HTTP endpoints to represent the back-end services that are requ
       </tr>
     </table>
 
-3.  Click **Finish**.
+4.  Click **Finish**.
 
     ![](../../assets/img/tutorials/119132228/119132240.png)
 
-4.  Create another endpoint for the Settle Payment back-end service and specify the details given below:
+5.  Create another endpoint for the Settle Payment back-end service and specify the details given below:
     <table>
         <tr>
             <th>Property</th>
@@ -131,12 +131,12 @@ Let's create new HTTP endpoints to represent the back-end services that are requ
       </tr>
       <tr>
          <td>Save Endpoint in</td>
-         <td><code>               SampleServices              </code></td>
+         <td><code>SampleServices</code></td>
          <td>This is the ESB Config project we created in the last section</td>
       </tr>
     </table>
 
-5.  Click **Finish**.
+6.  Click **Finish**.
 
     ![](../../assets/img/tutorials/119132228/119132239.png)
 
@@ -184,11 +184,11 @@ You can now start updating the API resource with the mediation flow.
       </tr>
     </table>
 
-2.  Go to the first case box of the Switch mediator. Add a Property mediator just after the Log mediator to store the value for `          uri.var.hospital         ` variable that will be used when sending requests to **ChannelingFeeEP** service. 
+3.  Go to the first case box of the Switch mediator. Add a Property mediator just after the Log mediator to store the value for `          uri.var.hospital         ` variable that will be used when sending requests to **ChannelingFeeEP** service. 
 
     ![](../../assets/img/tutorials/119132228/119132237.png)
 
-3.  With the Property mediator selected, access the Properties tab and specify the following details:
+4.  With the Property mediator selected, access the Properties tab and specify the following details:
     <table>
         <tr>
             <th>Property</th>
@@ -226,15 +226,15 @@ You can now start updating the API resource with the mediation flow.
       </tr>
     </table>
 
-3.  Similarly, add property mediators in the other two case boxes in the Switch mediator. Change only the **Value** field as follows:
+5.  Similarly, add property mediators in the other two case boxes in the Switch mediator. Change only the **Value** field as follows:
     -   Case 2: `            clemency           `
     -   Case 3: `            pinevalley           `  
 
     ![](../../assets/img/tutorials/119132228/119132236.png)
 
-4.  Delete the Send mediator by right clicking on the mediator and selecting **Delete from Model**. Replace this with a Call mediator from the **Mediators** palette and add GrandOakEP from the **Defined Endpoints** palette to the empty box adjoining the Call mediator.  
+6.  Delete the Send mediator by right clicking on the mediator and selecting **Delete from Model**. Replace this with a Call mediator from the **Mediators** palette and add GrandOakEP from the **Defined Endpoints** palette to the empty box adjoining the Call mediator.  
       
-5.  Replace the Send mediators in the following two case boxes as well and add ClemencyEP and PineValleyEP to the respective boxesadjoining the Call mediators.  
+7.  Replace the Send mediators in the following two case boxes as well and add ClemencyEP and PineValleyEP to the respective boxesadjoining the Call mediators.  
     ![](../../assets/img/tutorials/119132228/119132235.png)
 
     !!! Info
@@ -242,11 +242,11 @@ You can now start updating the API resource with the mediation flow.
     
     Let's use Property mediators to retrieve and store the values that you get from the response you receive from GrandOakEP, ClemencyEP, or PineValleyEP.
 
-6.  Next to the Switch mediator, add a Property mediator to retrieve and store the value sent as `           appointmentNumber          ` .
+8.  Next to the Switch mediator, add a Property mediator to retrieve and store the value sent as `           appointmentNumber          ` .
 
     ![](../../assets/img/tutorials/119132228/119132234.png) 
 
-7.  With the Property mediator selected, access the Properties tab and specify the following details:
+9.  With the Property mediator selected, access the Properties tab and specify the following details:
 
     <table>
     <thead>
@@ -303,79 +303,95 @@ You can now start updating the API resource with the mediation flow.
                "confirmed":false}
         ```
 
-6.  Similarly, add two more Property mediators. They retrieve and store the `           doctor          ` details and `           patient          ` details respectively from the response that is received from GrandOakEP, ClemencyEP, or PineValleyEP.
+10.  Similarly, add two more Property mediators. They retrieve and store the `           doctor          ` details and `           patient          ` details respectively from the response that is received from GrandOakEP, ClemencyEP, or PineValleyEP.
 
-    <table>
-    <thead>
-    <tr class="header">
-    <th>Property</th>
-    <th>Description</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr class="odd">
-    <td>Property Name</td>
-    <td>Select <strong>New Property</strong>.</td>
-    </tr>
-    <tr class="even">
-    <td>New Property Name</td>
-    <td>Enter <code>               doctor_details              </code>.</td>
-    </tr>
-    </tbody>
-    <tr class="odd">
-    <td>Property Action</td>
-    <td><p>Select <strong>set</strong>.</p></td>
-    </tr>
-    <tr class="even">
-    <td>Value Type</td>
-    <td>Select <strong>EXPRESSION</strong>.</td>
-    </tr>
-    <tr class="odd">
-    <td>Value Expression</td>
-    <td>Enter <code>               json-eval($.doctor)              </code>.</td>
-    </tr>
-    <tr class="even">
-    <td>Description</td>
-    <td>Get Doctor Details</td>
-    </tr>
-    <tr class="odd">
-    <td><br />
-    </td>
-    <td><br />
-    </td>
-    </tr>
-    <tr class="even">
-    <td>Property Name</td>
-    <td>Select <strong>New Property</strong>.</td>
-    </tr>
-    <tr class="odd">
-    <td>New Property Name</td>
-    <td>Enter <code>               patient_details              </code>.</td>
-    </tr>
-    <tr class="even">
-    <td>Property Action</td>
-    <td>Select <strong>set</strong>.</td>
-    </tr>
-    <tr class="odd">
-    <td>Value Type</td>
-    <td>Select <strong>EXPRESSION</strong>.</td>
-    </tr>
-    <tr class="even">
-    <td>Value Expression</td>
-    <td>Enter <code>               json-eval($.patient)              </code>.</td>
-    </tr>
-    <tr class="odd">
-    <td>Description</td>
-    <td>Get Patient Details</td>
-    </tr>
-    </tbody>
-    </table>
+      - To store `doctor` details:
+
+          <table>
+            <tr>
+              <th>Property</th>
+              <th>Description</th>
+            </tr>
+            <tr>
+              <td>Property Name</td>
+              <td>
+                  Select <strong>New Property</strong>.
+              </td>
+            </tr>
+            <tr>
+              <td>New Property Name</td>
+              <td>
+                 Enter <code>doctor_details</code>.
+              </td>
+            </tr>
+            <tr>
+              <td>Property Action</td>
+              <td>
+                Select <strong>set</strong>.
+              </td>
+            </tr>
+            <tr>
+              <td>Value Type</td>
+              <td>
+                Select <strong>EXPRESSION</strong>.
+              </td>
+            </tr>
+            <tr>
+              <td>Value Expression</td>
+              <td>
+                Enter <code>json-eval($.doctor)</code>.
+              </td>
+            </tr>
+            <tr>
+              <td>Description</td>
+              <td>
+                 Get Doctor Details
+              </td>
+            </tr>
+          </table>
+
+      - To store `patient` details:
+
+          <table>
+            <tr>
+              <th>Property</th>
+              <th>Description</th>
+            </tr>
+            <tr>
+              <td>Property Name</td>
+              <td>Select <strong>New Property</strong></td>
+            </tr>
+            <tr>
+              <td>New Property Name</td>
+              <td>
+                Enter <code>patient_details</code>
+              </td>
+            </tr>
+            <tr>
+              <td>Property Action</td>
+              <td>
+                Select <strong>set</strong>
+              </td>
+            </tr>
+            <tr>
+              <td>Value Type</td>
+              <td>
+                Select <strong>EXPRESSION</strong>
+              </td>
+            </tr>
+            <tr>
+              <td>Value Expression</td>
+              <td>
+                Enter <code>json-eval($.patient)</code>
+              </td>
+            </tr>
+          </table>
 
     ![](../../assets/img/tutorials/119132228/119132233.png)
 
-7.  Add a Call mediator and add ChannelingFeeEP from **Defined Endpoints** palette to the empty box adjoining the Call mediator.
-8.  Add a Property mediator adjoining the Call mediator box to retrieve and store the value sent as `           actualFee          `. 
-9.  Access the Property tab of the mediator and specify the following details:
+11.  Add a Call mediator and add ChannelingFeeEP from **Defined Endpoints** palette to the empty box adjoining the Call mediator.
+12.  Add a Property mediator adjoining the Call mediator box to retrieve and store the value sent as `           actualFee          `. 
+13.  Access the Property tab of the mediator and specify the following details:
 
     | Property            | Description                                                                                                                                    |
     |-------------------|--------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -396,7 +412,7 @@ You can now start updating the API resource with the mediation flow.
         "actualFee":"7000.0"}
         ```     
 
-10. Let's use the **PayloadFactory** mediator to construct the following message payload for the request sent to SettlePaymentEP.
+14. Let's use the **PayloadFactory** mediator to construct the following message payload for the request sent to SettlePaymentEP.
 
     ```json
     {"appointmentNumber":2,
@@ -421,53 +437,19 @@ You can now start updating the API resource with the mediation flow.
     }
     ```
 
-11.  Add a PayloadFactory mediator next to the Property mediator, from the **mediators** palette to construct the above message payload.
+15.  Add a PayloadFactory mediator next to the Property mediator, from the **mediators** palette to construct the above message payload.
 
     ![](../../assets/img/tutorials/119132228/119132229.png) 
 
-12. With the Payloadfactory mediator selected, access the properties tab of the mediator and specify the following details:
+16. With the Payloadfactory mediator selected, access the properties tab of the mediator and specify the following details:
 
-    <table>
-    <thead>
-    <tr class="header">
-    <th>Property</th>
-    <th>Value</th>
-    <th>Description</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr class="odd">
-    <td><strong>Payload Format</strong></td>
-    <td>Select <strong>Inline</strong></td>
-    <td>-</td>
-    </tr>
-    <tr class="even">
-    <td><strong>Media Type</strong></td>
-    <td><p>Select <strong>json</strong></p></td>
-    <td>-</td>
-    </tr>
-    <tr class="odd">
-    <td><strong>Payload</strong></td>
-    <td><div class="content-wrapper">
-    <div class="code panel pdl" style="border-width: 1px;">
-    <div class="codeContent panelContent pdl">
-    <div class="sourceCode" id="cb1" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence" style="brush: java; gutter: false; theme: Confluence"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb1-1"><a href="#cb1-1"></a>{</span>
-    <span id="cb1-2"><a href="#cb1-2"></a><span class="st">&quot;appointmentNumber&quot;</span>:$<span class="dv">1</span>,</span>
-    <span id="cb1-3"><a href="#cb1-3"></a><span class="st">&quot;doctor&quot;</span>:$<span class="dv">2</span>,</span>
-    <span id="cb1-4"><a href="#cb1-4"></a><span class="st">&quot;patient&quot;</span>:$<span class="dv">3</span>,</span>
-    <span id="cb1-5"><a href="#cb1-5"></a><span class="st">&quot;fee&quot;</span>:$<span class="dv">4</span>,</span>
-    <span id="cb1-6"><a href="#cb1-6"></a><span class="st">&quot;confirmed&quot;</span>:<span class="st">&quot;false&quot;</span>,</span>
-    <span id="cb1-7"><a href="#cb1-7"></a><span class="st">&quot;card_number&quot;</span>:<span class="st">&quot;$5&quot;</span></span>
-    <span id="cb1-8"><a href="#cb1-8"></a>}</span></code></pre></div>
-    </div>
-    </div>
-    </div></td>
-    <td>The message payload to send with the request to SettlePaymentEP. In this payload, <code>               $1              </code> , <code>               $2              </code> , <code>               $3              </code> , <code>               $4              </code> , and <code>               $5              </code> indicate variables.</td>
-    </tr>
-    </tbody>
-    </table>
+    | Property       |Descripttion                                                                                            |
+    |----------------|--------------------------------------------------------------------------------------------------------|
+    | Payload Format | Select <strong>Inline</strong>                                                                         |
+    | Media Type     | Select <strong>json</strong>                                                                           |
+    | Payload        | `{"appointmentNumber":$1, "doctor":$2, "patient":$3, "fee":$4, "confirmed":"false", "card_number":"$5"}`</br></br> This is the message payload to send with the request to SettlePaymentEP. In this payload, $1, $2, $3, $4, and $5 indicate variables. |
     
-10. To add the **Args** field for the PayloadFactory mediator, click the **Add (+)** icon in the **Args** field and enter the following information as in the table below. It provides the argument that defines the actual value of the first variable used in the format definition in the previous step.
+17. To add the **Args** field for the PayloadFactory mediator, click the **Add (+)** icon in the **Args** field and enter the following information as in the table below. It provides the argument that defines the actual value of the first variable used in the format definition in the previous step.
 
     !!! Tip
         To avoid getting an error message, first select the **Media Type** before providing the **Payload.**
@@ -481,7 +463,7 @@ You can now start updating the API resource with the mediation flow.
     !!! Info
         The `           $ctx          ` method is similar to using the `           get-property          ` method. This method checks in the message context.
     
-11. Similarly, click **Add** and add more arguments to define the other variables that are used in the message payload format definition. Use the following as the **Value** for each of them:
+18. Similarly, click **Add** and add more arguments to define the other variables that are used in the message payload format definition. Use the following as the **Value** for each of them:
 
     -   `$ctx:doctor_details`  
     -   `           $ctx:patient_details          `  
@@ -490,8 +472,8 @@ You can now start updating the API resource with the mediation flow.
 
     ![](../../assets/img/tutorials/119132228/119132231.png)
 
-12. Add a Call mediator and add SettlePaymentEP from Defined Endpoints palette to the empty box adjoining the Call mediator.
-13. Add a **Respond** mediator to send the response to the client. 
+19. Add a Call mediator and add SettlePaymentEP from Defined Endpoints palette to the empty box adjoining the Call mediator.
+20. Add a **Respond** mediator to send the response to the client. 
 
 You should now have a completed configuration that looks like this: 
 
@@ -521,7 +503,7 @@ To test the artifacts, deploy the [packaged artifacts](#step-3-package-the-artif
 
 1.  Right-click the composite application project and click **Export Project Artifacts and Run**.
 2.  In the dialog that opens, select the composite application project that you want to deploy.  
-4.  Click **Finish**. The artifacts will be deployed in the embedded Micro Integrator and the server will start. See the startup log in the **Console** tab. 
+3.  Click **Finish**. The artifacts will be deployed in the embedded Micro Integrator and the server will start. See the startup log in the **Console** tab. 
 
 ### Step 5: Test the use case
 
