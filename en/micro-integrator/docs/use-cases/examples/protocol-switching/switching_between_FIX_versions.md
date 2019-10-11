@@ -27,6 +27,7 @@ Following are the integration artifacts (proxy service) that we can used to impl
  </proxy>
 ```
 
+<!--
 ## Build and run
 
 -   To configure the Micro Integrator to use the FIX transport, see [Configure the ESB to use the FIX transport](https://docs.wso2.com/display/EI650/Setting+Up+the+ESB+Samples#SettingUptheESBSamples-FIX).
@@ -77,3 +78,4 @@ Following are the integration artifacts (proxy service) that we can used to impl
 Send an order request from *Banzai* to the Micro Integrator. For example, Buy DELL 1000 @ MKT.
 
 You will see that the Micro Integrator forwards the FIX4.0 order request to the *Executor* that accepts FIX4.1 messages, and that the *Executor* processes the request and sends a response back to *Banzai*.
+-->

@@ -185,12 +185,8 @@ Create the artifacts:
 3. Create the mediation artifacts with the above configuration.
 4. Deploy the artifacts in your Micro Integrator.
 
-Set up the back-end service:
-
-........
-
 Send a request to invoke the service:
-```$xml
+```xml
 POST http://localhost:8290/services/SequenceBreakdownSampleProxy.SequenceBreakdownSampleProxyHttpSoap11Endpoint HTTP/1.1
 Accept-Encoding: gzip,deflate
 Content-Type: text/xml;charset=UTF-8
@@ -217,7 +213,8 @@ User-Agent: Apache-HttpClient/4.1.1 (java 1.5)
 ```
 
 A sample response would be:
-```$xml
+
+```xml
 HTTP/1.1 200 OK
 SOAPAction: "urn:mediate"
 Host: Chanikas-MacBook-Pro.local:8290

@@ -89,9 +89,7 @@ Create the artifacts:
 3. Create the mediation artifacts with the above configuration.
 4. Deploy the artifacts in your Micro Integrator.
 
-Set up the back-end service:
-
-........
+Set up the back-end service.
 
 Invoke the sample Proxy Service:
 ```xml
@@ -120,6 +118,6 @@ User-Agent: Apache-HttpClient/4.1.1 (java 1.5)
 ```
 
 The following line is getting logged:
-```
+```bash
 INFO {org.apache.synapse.mediators.builtin.LogMediator} - text = An unexpected error occured for stock SUN, message = Couldn't find the endpoint with the key : sunPort
 ```
