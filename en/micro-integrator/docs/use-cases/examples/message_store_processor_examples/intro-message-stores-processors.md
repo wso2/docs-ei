@@ -1,9 +1,5 @@
 # Introduction to Message Store
-
-## Example use case
-
-This sample demonstrates the basic functionality of a [message
-store](https://ei.docs.wso2.com/en/latest/micro-integrator/references/synapse-properties/about-message-stores-processors/) .
+This sample demonstrates the basic functionality of a [message store](../../../../references/synapse-properties/about-message-stores-processors).
 
 ## Synapse configuration
 
@@ -19,6 +15,7 @@ The XML configuration for this sample is as follows:
     <description>The main sequence for the message mediation</description>
 </sequence>
 ```
+
 ```xml tab='On Store Sequence'
 <sequence name="onStoreSequence">
     <log>
@@ -26,6 +23,7 @@ The XML configuration for this sample is as follows:
     </log>
 </sequence>
 ```
+
 ```xml tab='Fault Sequence'
 <sequence name="fault">
     <log level="full">
@@ -38,6 +36,13 @@ The XML configuration for this sample is as follows:
 ```
 
 ## Build and run
+
+Create the artifacts:
+
+1. [Set up WSO2 Integration Studio](../../../../develop/installing-WSO2-Integration-Studio).
+2. [Create an ESB Solution project](../../../../develop/creating-projects/#esb-config-project).
+3. Create the [mediation sequences](../../../../develop/creating-artifacts/creating-reusable-sequences) with the configurations given above.
+4. [Deploy the artifacts](../../../../develop/deploy-and-run) in your Micro Integrator.
 
 When you execute the client you will see that the message is dispatched
 to the main sequence.
