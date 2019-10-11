@@ -3,30 +3,11 @@
 ## Example use case
 
 This sample demonstrates the basic functionality of a [message
-store](https://docs.wso2.com/display/EI650/Message+Stores) .
+store](https://ei.docs.wso2.com/en/latest/micro-integrator/references/synapse-properties/about-message-stores-processors/) .
 
 ## Synapse configuration
 
 The XML configuration for this sample is as follows:
-
-```xml tab='Fault Sequence'
-<sequence name="fault">
-    <log level="full">
-        <property name="MESSAGE" value="Executing default 'fault' sequence"/>
-        <property name="ERROR_CODE" expression="get-property('ERROR_CODE')"/>
-        <property name="ERROR_MESSAGE" expression="get-property('ERROR_MESSAGE')"/>
-    </log>
-    <drop/>
-</sequence>
-```
-
-```xml tab='On Store Sequence'
-<sequence name="onStoreSequence">
-    <log>
-        <property name="On-Store" value="Storing message"/>
-    </log>
-</sequence>
-```
 
 ```xml tab='Main Sequence'
 <sequence name="main">
@@ -36,6 +17,23 @@ The XML configuration for this sample is as follows:
         <store messageStore="MyStore" sequence="onStoreSequence"/>
     </in>
     <description>The main sequence for the message mediation</description>
+</sequence>
+```
+```xml tab='On Store Sequence'
+<sequence name="onStoreSequence">
+    <log>
+        <property name="On-Store" value="Storing message"/>
+    </log>
+</sequence>
+```
+```xml tab='Fault Sequence'
+<sequence name="fault">
+    <log level="full">
+        <property name="MESSAGE" value="Executing default 'fault' sequence"/>
+        <property name="ERROR_CODE" expression="get-property('ERROR_CODE')"/>
+        <property name="ERROR_MESSAGE" expression="get-property('ERROR_MESSAGE')"/>
+    </log>
+    <drop/>
 </sequence>
 ```
 
