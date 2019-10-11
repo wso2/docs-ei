@@ -145,7 +145,8 @@ Create the following mediation sequences:
 ```
 
 As the backend create the following API which calls the stockquote backend service.
-```$xml
+
+```xml
 <api xmlns="http://ws.apache.org/ns/synapse" name="StockQuoteAPI" context="/stockquote">
        <resource methods="GET" uri-template="/view/{symbol}">
           <inSequence>
