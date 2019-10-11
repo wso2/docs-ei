@@ -208,7 +208,7 @@ You can now start configuring the API resource.
                   </strong>
                </li>
             </ol>
-            <p><strong><img src="/assets/img/tutorials/119132155/119132162.png" width="450" /><br />
+            <p><strong><img src="../../../../assets/img/tutorials/119132155/119132162.png" width="450" /><br />
                </strong>
             </p>
          </div>
@@ -229,7 +229,7 @@ You can now start configuring the API resource.
                      <li>Case 2:  clemency medical center</li>
                      <li>Case 3:  pine valley community hospital</li>
                   </ul>
-                  <img src="/assets/img/tutorials/119132155/119132161.png" width="900" />
+                  <img src="../../../../assets/img/tutorials/119132155/119132161.png" width="900" />
                </li>
                <li>Click <strong>OK</strong> .</li>
             </ol>
@@ -288,19 +288,18 @@ You can now start configuring the API resource.
                         **Name** : `                    message                   `
                         </li>
                         <li> 
-                            **Type** : `                    EXPRESSION                   `. (We select `                    EXPRESSION                   `
+                            **Type** : `EXPRESSION`. (We select `EXPRESSION`
         because the required properties for the log message must be
         extracted from the request, which we can do using an XPath
         expression.)    </li>
                         <li>
             **Value/Expression** : Click the **browse (...)** icon in the
         **Value/Expression** field and enter
-        `                     fn:concat('Routing to ', get-property('Hospital'))                    `
-        .
+        `fn:concat('Routing to ', get-property('Hospital'))`.
                         </li>
                     </ol>
                 <b>Note</b>: This XPath expression value gets the value stored in the Property mediator and concatenates the two strings to display the log message `Routing to <hospital name>`.
-        <img src="/assets/img/tutorials/119132155/119132160.png">
+        <img src="../../../../assets/img/tutorials/119132155/119132160.png">
                 </li>
                 <li>
                     Click OK.

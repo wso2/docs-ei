@@ -45,7 +45,7 @@ Please do the following steps (one time) to configure the Kubernetes environment
     kubectl apply -f path/to/kubernetes_cr.yaml
     ```
     
-### Run the Solution
+## Run the Solution
 
 -   Port forward to expose the cluster port:
     ```bash

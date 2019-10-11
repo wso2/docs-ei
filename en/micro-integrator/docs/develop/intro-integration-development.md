@@ -18,7 +18,7 @@ Integration developers will follow the workflow illustrated by the following dia
 		</td>
 	</tr>
 	<tr>
-		<td><b>Step 2: Develop the artifacts</b></td>
+		<td id='develop_artifacts'><b>Step 2: Develop the artifacts</b></td>
 		<td>
 			Before you start developing your artifacts, design the synapse configurations that suite your requirement. Use the following resources:
 			<ul>

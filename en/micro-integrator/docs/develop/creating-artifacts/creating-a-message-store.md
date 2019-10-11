@@ -22,7 +22,12 @@ Follow the instructions given below to create a new Message Store artifact in WS
         See the list of configurable properties for a [JMS](../../references/synapse-properties/message-stores/jms-msg-store-properties.md), [JDBC](../../references/synapse-properties/message-stores/jdbc-msg-store-properties.md), [RabbitMQ](../../references/synapse-properties/message-stores/rabbitmq-msg-store-properties.md), [Resequence](../../references/synapse-properties/message-stores/resequence-msg-store-properties.md), [WSO2 MB](../../references/synapse-properties/message-stores/wso2mb-msg-store-properties.md), [In-Memory](../../references/synapse-properties/message-stores/in-memory-msg-store-properties.md), or [Custom](../../references/synapse-properties/message-stores/custom-msg-store-properties.md) message store.
 
 ## Examples
-..
 
-## Guides
-..
+-   [Introduction to Message Stores and Processors](../../../use-cases/examples/message_store_processor_examples/intro-message-stores-processors)
+-   [JDBC Message Store](../../../use-cases/examples/message_store_processor_examples/using-jdbc-message-store)
+-   [JMS Message Store](../../../use-cases/examples/message_store_processor_examples/using-jms-message-stores)
+-   [RabbitMQ Message Store](../../../use-cases/examples/message_store_processor_examples/using-rabbitmq-message-stores)
+
+## Tutorials
+
+-	See the tutorial on [using message stores and processors](../../../../use-cases/tutorials/storing-and-forwarding-messages)
