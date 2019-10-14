@@ -25,7 +25,7 @@ The XML configuration for this sample is as follows:
                 <send>
                     <!-- get epr from the given wsdl -->
                     <endpoint>
-                        <wsdl uri="file:samples/service-bus/resources/proxy/sample_proxy_1.wsdl"
+                        <wsdl uri="file:samples/sample_proxy_1.wsdl"
                               service="SimpleStockQuoteService" port="SimpleStockQuoteServiceHttpSoap11Endpoint"/>
                     </endpoint>
                 </send>
@@ -37,9 +37,8 @@ The XML configuration for this sample is as follows:
     </definitions>
 ```
 
-This configuration file `         synapse_sample_56.xml        ` is
-available in the `         <ESB_HOME>/repository/samples        `
-directory.
+The wsdl file `sample_proxy_1.wsdl` can be downloaded from [here](). 
+The wsdl uri of the endpoint needs to be updated with the path to the sample_proxy_1.wsdl file
 
 **To build the sample**
 
