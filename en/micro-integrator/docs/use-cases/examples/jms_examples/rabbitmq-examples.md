@@ -2,6 +2,8 @@
 
 The following are some of the main RabbitMQ use cases of WSO2 Micro Integrator.
 
+Before executing the use cases need to [connect WSO2 Micro Integrator with RabbitMQ](https://ei.docs.wso2.com/en/latest/micro-integrator/setup/brokers/configure-with-rabbitMQ/).
+                                        
 ## Micro Integrator as a RabbitMQ Message Consumer
 
 This section describes how the Micro Integrator can be configured as a RabbitMQ message consumer.
