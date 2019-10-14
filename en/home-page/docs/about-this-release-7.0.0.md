@@ -1,3 +1,5 @@
+# About this Release (EI 7.0.0)
+
 WSO2 Enterprise Integrator (EI) 7.0.0 is the only open-source, API-centric, and cloud-native integration platform to connect APIs, data, streams, SaaS, and legacy apps using microservices or ESB style architecture.  
 
 WSO2 Enterprise Integrator 7.0.0 consists of three integrators providing a comprehensive set of functionalities and features required to fulfill any enterprise-grade integration requirement. WSO2 Enterprise Integrator 7.0.0 also offers sophisticated tooling for each integrator providing a rich developer experience. Following are the key features of each runtime and tooling.
