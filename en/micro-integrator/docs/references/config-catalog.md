@@ -16,6 +16,7 @@ node_ip = "10.100.1.80"
 pool_options.maxActiv=5
 ```
 
+
 ## Deployment
 
 <div class="mb-config-catalog">
@@ -1590,7 +1591,7 @@ class = "org.apache.axis2.json.JSONBadgerfishOMBuilder"
                                     <div>
                                         <p>
                                             <span class="param-type string"> string </span>
-                                            
+                                            <span class="badge-required">Required</span>
                                         </p>
                                         <div class="param-default">
                                             <span class="param-default-value">Default: <code></code></span>
@@ -1609,7 +1610,7 @@ class = "org.apache.axis2.json.JSONBadgerfishOMBuilder"
                                     <div>
                                         <p>
                                             <span class="param-type string"> string </span>
-                                            
+                                            <span class="badge-required">Required</span>
                                         </p>
                                         <div class="param-default">
                                             <span class="param-default-value">Default: <code></code></span>
@@ -1665,7 +1666,7 @@ class = "org.apache.axis2.json.JSONBadgerfishMessageFormatter"
                                     <div>
                                         <p>
                                             <span class="param-type string"> string </span>
-                                            
+                                            <span class="badge-required">Required</span>
                                         </p>
                                         <div class="param-default">
                                             <span class="param-default-value">Default: <code></code></span>
@@ -1684,7 +1685,7 @@ class = "org.apache.axis2.json.JSONBadgerfishMessageFormatter"
                                     <div>
                                         <p>
                                             <span class="param-type string"> string </span>
-                                            
+                                            <span class="badge-required">Required</span>
                                         </p>
                                         <div class="param-default">
                                             <span class="param-default-value">Default: <code></code></span>
@@ -2102,7 +2103,7 @@ blocking_sender.so_timeout = "1m"
                                     <div>
                                         <p>
                                             <span class="param-type string"> string </span>
-                                            
+                                            <span class="badge-required">Required</span>
                                         </p>
                                         <div class="param-default">
                                             <span class="param-default-value">Default: <code>wso2carbon</code></span>
@@ -2121,7 +2122,7 @@ blocking_sender.so_timeout = "1m"
                                     <div>
                                         <p>
                                             <span class="param-type string"> string </span>
-                                            
+                                            <span class="badge-required">Required</span>
                                         </p>
                                         <div class="param-default">
                                             <span class="param-default-value">Default: <code>JKS</code></span>
@@ -2142,7 +2143,7 @@ blocking_sender.so_timeout = "1m"
                                     <div>
                                         <p>
                                             <span class="param-type string"> string </span>
-                                            
+                                            <span class="badge-required">Required</span>
                                         </p>
                                         <div class="param-default">
                                             <span class="param-default-value">Default: <code>wso2carbon</code></span>
@@ -2161,7 +2162,7 @@ blocking_sender.so_timeout = "1m"
                                     <div>
                                         <p>
                                             <span class="param-type string"> string </span>
-                                            
+                                            <span class="badge-required">Required</span>
                                         </p>
                                         <div class="param-default">
                                             <span class="param-default-value">Default: <code>wso2carbon</code></span>
@@ -2338,7 +2339,7 @@ blocking_sender.so_timeout = "1m"
                                     <div>
                                         <p>
                                             <span class="param-type string"> string </span>
-                                            
+                                            <span class="badge-required">Required</span>
                                         </p>
                                         <div class="param-default">
                                             <span class="param-default-value">Default: <code>wso2carbon</code></span>
@@ -2357,7 +2358,7 @@ blocking_sender.so_timeout = "1m"
                                     <div>
                                         <p>
                                             <span class="param-type string"> string </span>
-                                            
+                                            <span class="badge-required">Required</span>
                                         </p>
                                         <div class="param-default">
                                             <span class="param-default-value">Default: <code>JKS</code></span>
@@ -2378,7 +2379,7 @@ blocking_sender.so_timeout = "1m"
                                     <div>
                                         <p>
                                             <span class="param-type string"> string </span>
-                                            
+                                            <span class="badge-required">Required</span>
                                         </p>
                                         <div class="param-default">
                                             <span class="param-default-value">Default: <code>wso2carbon</code></span>
@@ -2397,7 +2398,7 @@ blocking_sender.so_timeout = "1m"
                                     <div>
                                         <p>
                                             <span class="param-type string"> string </span>
-                                            
+                                            <span class="badge-required">Required</span>
                                         </p>
                                         <div class="param-default">
                                             <span class="param-default-value">Default: <code>wso2carbon</code></span>
@@ -2642,7 +2643,7 @@ bypass_hosts = ["xxx.sample.com"]
                                     <div>
                                         <p>
                                             <span class="param-type string"> string </span>
-                                            
+                                            <span class="badge-required">Required</span>
                                         </p>
                                         <div class="param-default">
                                             <span class="param-default-value">Default: <code>localhost</code></span>
@@ -2661,7 +2662,7 @@ bypass_hosts = ["xxx.sample.com"]
                                     <div>
                                         <p>
                                             <span class="param-type string"> integer </span>
-                                            
+                                            <span class="badge-required">Required</span>
                                         </p>
                                         <div class="param-default">
                                             <span class="param-default-value">Default: <code></code></span>
@@ -2680,7 +2681,7 @@ bypass_hosts = ["xxx.sample.com"]
                                     <div>
                                         <p>
                                             <span class="param-type string"> string </span>
-                                            
+                                            <span class="badge-required">Required</span>
                                         </p>
                                         <div class="param-default">
                                             <span class="param-default-value">Default: <code></code></span>
@@ -2699,7 +2700,7 @@ bypass_hosts = ["xxx.sample.com"]
                                     <div>
                                         <p>
                                             <span class="param-type string"> string </span>
-                                            
+                                            <span class="badge-required">Required</span>
                                         </p>
                                         <div class="param-default">
                                             <span class="param-default-value">Default: <code></code></span>
@@ -2778,7 +2779,7 @@ bypass_hosts = ["xxx.sample.com"]
                                     <div>
                                         <p>
                                             <span class="param-type string"> string </span>
-                                            
+                                            <span class="badge-required">Required</span>
                                         </p>
                                         <div class="param-default">
                                             <span class="param-default-value">Default: <code></code></span>
@@ -2799,7 +2800,7 @@ bypass_hosts = ["xxx.sample.com"]
                                     <div>
                                         <p>
                                             <span class="param-type string"> string </span>
-                                            
+                                            <span class="badge-required">Required</span>
                                         </p>
                                         <div class="param-default">
                                             <span class="param-default-value">Default: <code>localhost</code></span>
@@ -2818,7 +2819,7 @@ bypass_hosts = ["xxx.sample.com"]
                                     <div>
                                         <p>
                                             <span class="param-type string"> integer </span>
-                                            
+                                            <span class="badge-required">Required</span>
                                         </p>
                                         <div class="param-default">
                                             <span class="param-default-value">Default: <code></code></span>
@@ -2856,7 +2857,7 @@ bypass_hosts = ["xxx.sample.com"]
                                     <div>
                                         <p>
                                             <span class="param-type string"> string </span>
-                                            
+                                            <span class="badge-required">Required</span>
                                         </p>
                                         <div class="param-default">
                                             <span class="param-default-value">Default: <code></code></span>
@@ -3114,7 +3115,7 @@ name = "mailto"
                                     <div>
                                         <p>
                                             <span class="param-type string"> boolean </span>
-                                            
+                                            <span class="badge-required">Required</span>
                                         </p>
                                         <div class="param-default">
                                             <span class="param-default-value">Default: <code>false</code></span>
@@ -3135,7 +3136,7 @@ name = "mailto"
                                     <div>
                                         <p>
                                             <span class="param-type string"> string </span>
-                                            
+                                            <span class="badge-required">Required</span>
                                         </p>
                                         <div class="param-default">
                                             <span class="param-default-value">Default: <code></code></span>
@@ -3183,7 +3184,7 @@ parameter.from = "demo_user@wso2.com"
                     <div class="mb-config">
                         <div class="config-wrap">
                             <code>[transport.mail.sender]</code>
-                            
+                            <span class="badge-required">Required</span>
                             <p>
                                 This configuration header groups the parameters that are used to configure 'MailTo' transport sender implementation in the Micro Integrator.
                             </p>
@@ -3197,14 +3198,12 @@ parameter.from = "demo_user@wso2.com"
                                     <div>
                                         <p>
                                             <span class="param-type string"> string </span>
-                                            
+                                            <span class="badge-required">Required</span>
                                         </p>
                                         <div class="param-default">
                                             <span class="param-default-value">Default: <code>mailto</code></span>
                                         </div>
-                                        <div class="param-possible">
-                                            <span class="param-possible-values">Possible Values: <code>....</code></span>
-                                        </div>
+                                        
                                     </div>
                                     <div class="param-description">
                                         <p>The parameter for enabling the MAIL transport sender in the Micro Integrator.</p>
@@ -3218,7 +3217,7 @@ parameter.from = "demo_user@wso2.com"
                                     <div>
                                         <p>
                                             <span class="param-type string"> string </span>
-                                            
+                                            <span class="badge-required">Required</span>
                                         </p>
                                         <div class="param-default">
                                             <span class="param-default-value">Default: <code>smtp.gmail.com</code></span>
@@ -3237,7 +3236,7 @@ parameter.from = "demo_user@wso2.com"
                                     <div>
                                         <p>
                                             <span class="param-type string"> integer </span>
-                                            
+                                            <span class="badge-required">Required</span>
                                         </p>
                                         <div class="param-default">
                                             <span class="param-default-value">Default: <code>587</code></span>
@@ -3256,7 +3255,7 @@ parameter.from = "demo_user@wso2.com"
                                     <div>
                                         <p>
                                             <span class="param-type string"> boolean </span>
-                                            
+                                            <span class="badge-required">Required</span>
                                         </p>
                                         <div class="param-default">
                                             <span class="param-default-value">Default: <code>false</code></span>
@@ -3277,7 +3276,7 @@ parameter.from = "demo_user@wso2.com"
                                     <div>
                                         <p>
                                             <span class="param-type string"> string </span>
-                                            
+                                            <span class="badge-required">Required</span>
                                         </p>
                                         <div class="param-default">
                                             <span class="param-default-value">Default: <code>demo_user</code></span>
@@ -3296,7 +3295,7 @@ parameter.from = "demo_user@wso2.com"
                                     <div>
                                         <p>
                                             <span class="param-type string"> string </span>
-                                            
+                                            <span class="badge-required">Required</span>
                                         </p>
                                         <div class="param-default">
                                             <span class="param-default-value">Default: <code>mailpassword</code></span>
@@ -3396,7 +3395,7 @@ parameter.consume_error_progression = "2.0"
                     <div class="mb-config">
                         <div class="config-wrap">
                             <code>[[transport.jms.listener]]</code>
-                            
+                            <span class="badge-required">Required</span>
                             <p>
                                 Add this config heading to the ei.toml file to group the parameters that configure the ESB server to communicate through the JMS transport. Read more about using the JMS transport.
                             </p>
@@ -3410,7 +3409,7 @@ parameter.consume_error_progression = "2.0"
                                     <div>
                                         <p>
                                             <span class="param-type string"> string </span>
-                                            
+                                            <span class="badge-required">Required</span>
                                         </p>
                                         <div class="param-default">
                                             <span class="param-default-value">Default: <code></code></span>
@@ -3429,7 +3428,7 @@ parameter.consume_error_progression = "2.0"
                                     <div>
                                         <p>
                                             <span class="param-type string"> string </span>
-                                            
+                                            <span class="badge-required">Required</span>
                                         </p>
                                         <div class="param-default">
                                             <span class="param-default-value">Default: <code></code></span>
@@ -3442,32 +3441,13 @@ parameter.consume_error_progression = "2.0"
                                 </div>
                             </div><div class="param">
                                 <div class="param-name">
-                                  <span class="param-name-wrap"> <code>parameter.broker_name</code> </span>
-                                </div>
-                                <div class="param-info">
-                                    <div>
-                                        <p>
-                                            <span class="param-type string"> string </span>
-                                            
-                                        </p>
-                                        <div class="param-default">
-                                            <span class="param-default-value">Default: <code></code></span>
-                                        </div>
-                                        
-                                    </div>
-                                    <div class="param-description">
-                                        <p>The name of the JMS broker.</p>
-                                    </div>
-                                </div>
-                            </div><div class="param">
-                                <div class="param-name">
                                   <span class="param-name-wrap"> <code>parameter.provider_url</code> </span>
                                 </div>
                                 <div class="param-info">
                                     <div>
                                         <p>
                                             <span class="param-type string"> string </span>
-                                            
+                                            <span class="badge-required">Required</span>
                                         </p>
                                         <div class="param-default">
                                             <span class="param-default-value">Default: <code></code></span>
@@ -3486,7 +3466,7 @@ parameter.consume_error_progression = "2.0"
                                     <div>
                                         <p>
                                             <span class="param-type string"> string </span>
-                                            
+                                            <span class="badge-required">Required</span>
                                         </p>
                                         <div class="param-default">
                                             <span class="param-default-value">Default: <code></code></span>
@@ -3682,7 +3662,7 @@ parameter.consume_error_progression = "2.0"
                                     <div>
                                         <p>
                                             <span class="param-type string"> string </span>
-                                            
+                                            <span class="badge-required">Required</span>
                                         </p>
                                         <div class="param-default">
                                             <span class="param-default-value">Default: <code></code></span>
@@ -3701,7 +3681,7 @@ parameter.consume_error_progression = "2.0"
                                     <div>
                                         <p>
                                             <span class="param-type string"> string </span>
-                                            
+                                            <span class="badge-required">Required</span>
                                         </p>
                                         <div class="param-default">
                                             <span class="param-default-value">Default: <code></code></span>
@@ -4210,7 +4190,7 @@ parameter.vender_class_loader = false
                     <div class="mb-config">
                         <div class="config-wrap">
                             <code>[[transport.jms.sender]]</code>
-                            
+                            <span class="badge-required">Required</span>
                             <p>
                                 Add this config heading to the ei.toml file to group the parameters that configure the ESB server to communicate through the JMS transport. Read more about using the JMS transport.
                             </p>
@@ -4224,7 +4204,7 @@ parameter.vender_class_loader = false
                                     <div>
                                         <p>
                                             <span class="param-type string"> string </span>
-                                            
+                                            <span class="badge-required">Required</span>
                                         </p>
                                         <div class="param-default">
                                             <span class="param-default-value">Default: <code></code></span>
@@ -4397,7 +4377,7 @@ parameter.vender_class_loader = false
                                     <div>
                                         <p>
                                             <span class="param-type string"> string </span>
-                                            
+                                            <span class="badge-required">Required</span>
                                         </p>
                                         <div class="param-default">
                                             <span class="param-default-value">Default: <code></code></span>
@@ -4447,7 +4427,7 @@ parameter.vender_class_loader = false
                                         </div>
                                     </div>
                                     <div class="param-description">
-                                        <p>The.....</p>
+                                        <p>Specifies whether or not the JMS session should be transacted.</p>
                                     </div>
                                 </div>
                             </div><div class="param">
@@ -4496,7 +4476,7 @@ parameter.vender_class_loader = false
                                     <div>
                                         <p>
                                             <span class="param-type string"> string </span>
-                                            
+                                            <span class="badge-required">Required</span>
                                         </p>
                                         <div class="param-default">
                                             <span class="param-default-value">Default: <code></code></span>
@@ -4515,7 +4495,7 @@ parameter.vender_class_loader = false
                                     <div>
                                         <p>
                                             <span class="param-type string"> string </span>
-                                            
+                                            <span class="badge-required">Required</span>
                                         </p>
                                         <div class="param-default">
                                             <span class="param-default-value">Default: <code></code></span>
@@ -4983,7 +4963,7 @@ TopicConnectionFactory = "amqp://admin:admin@clientID/carbon?brokerlist='tcp://l
                     <div class="mb-config">
                         <div class="config-wrap">
                             <code>[transport.jndi.connection_factories]</code>
-                            
+                            <span class="badge-required">Required</span>
                             <p>
                                 This configuration header groups the parameters used for specifying the JNDI connection factory classes.
                             </p>
@@ -5062,7 +5042,7 @@ StockQuotesQueue = "StockQuotesQueue"
                     <div class="mb-config">
                         <div class="config-wrap">
                             <code>[transport.jndi.queue]</code>
-                            
+                            <span class="badge-required">Required</span>
                             <p>
                                 This configuration header is used to specify the list of queues that are defined your JMS broker. The JNDI name of the queue, and the actual queue name should be specifed as a key-value pair as follows: <code>jndi_name</code> = <code>queue_name</code>.
                             </p>
@@ -5119,7 +5099,7 @@ MyTopic = "example.MyTopic"
                     <div class="mb-config">
                         <div class="config-wrap">
                             <code>[transport.jndi.topic]</code>
-                            
+                            <span class="badge-required">Required</span>
                             <p>
                                 This configuration header is used to specify the list of topics that are defined your JMS broker. The JNDI name of the topic, and the actual topic name should be specifed as a key-value pair as follows: <code>jndi_name</code> = <code>topic_name</code>.
                             </p>
@@ -5706,7 +5686,7 @@ parameter.truststore_password = "$ref{truststore.password}"
                                     <div>
                                         <p>
                                             <span class="param-type string"> string </span>
-                                            
+                                            <span class="badge-required">Required</span>
                                         </p>
                                         <div class="param-default">
                                             <span class="param-default-value">Default: <code>wso2carbon</code></span>
@@ -5725,7 +5705,7 @@ parameter.truststore_password = "$ref{truststore.password}"
                                     <div>
                                         <p>
                                             <span class="param-type string"> string </span>
-                                            
+                                            <span class="badge-required">Required</span>
                                         </p>
                                         <div class="param-default">
                                             <span class="param-default-value">Default: <code>JKS</code></span>
@@ -5746,7 +5726,7 @@ parameter.truststore_password = "$ref{truststore.password}"
                                     <div>
                                         <p>
                                             <span class="param-type string"> string </span>
-                                            
+                                            <span class="badge-required">Required</span>
                                         </p>
                                         <div class="param-default">
                                             <span class="param-default-value">Default: <code>wso2carbon</code></span>
@@ -6287,7 +6267,7 @@ sender.enabled=false
                                     <div>
                                         <p>
                                             <span class="param-type string"> boolean </span>
-                                            
+                                            <span class="badge-required">Required</span>
                                         </p>
                                         <div class="param-default">
                                             <span class="param-default-value">Default: <code>false</code></span>
@@ -6349,7 +6329,7 @@ sender.enable = false
                     <div class="mb-config">
                         <div class="config-wrap">
                             <code>[transport.mqtt]</code>
-                            
+                            <span class="badge-required">Required</span>
                             <p>
                                 This configuration header groups the parameters that configure the Micro Integrator to communicate through the MQTT transport.
                             </p>
@@ -6384,7 +6364,7 @@ sender.enable = false
                                     <div>
                                         <p>
                                             <span class="param-type string"> string </span>
-                                            
+                                            <span class="badge-required">Required</span>
                                         </p>
                                         <div class="param-default">
                                             <span class="param-default-value">Default: <code>$ref{server.hostname}</code></span>
@@ -6403,7 +6383,7 @@ sender.enable = false
                                     <div>
                                         <p>
                                             <span class="param-type string"> string </span>
-                                            
+                                            <span class="badge-required">Required</span>
                                         </p>
                                         <div class="param-default">
                                             <span class="param-default-value">Default: <code></code></span>
@@ -6422,7 +6402,7 @@ sender.enable = false
                                     <div>
                                         <p>
                                             <span class="param-type string"> integer </span>
-                                            
+                                            <span class="badge-required">Required</span>
                                         </p>
                                         <div class="param-default">
                                             <span class="param-default-value">Default: <code></code></span>
@@ -6577,7 +6557,7 @@ sender.enabled=false
                                     <div>
                                         <p>
                                             <span class="param-type string"> boolean </span>
-                                            
+                                            <span class="badge-required">Required</span>
                                         </p>
                                         <div class="param-default">
                                             <span class="param-default-value">Default: <code>false</code></span>
@@ -6598,7 +6578,7 @@ sender.enabled=false
                                     <div>
                                         <p>
                                             <span class="param-type string"> string </span>
-                                            
+                                            <span class="badge-required">Required</span>
                                         </p>
                                         <div class="param-default">
                                             <span class="param-default-value">Default: <code>org.wso2.carbon.transports.sap.SAPTransportListener</code></span>
@@ -6617,7 +6597,7 @@ sender.enabled=false
                                     <div>
                                         <p>
                                             <span class="param-type string"> string </span>
-                                            
+                                            <span class="badge-required">Required</span>
                                         </p>
                                         <div class="param-default">
                                             <span class="param-default-value">Default: <code>org.wso2.carbon.transports.sap.SAPTransportListener</code></span>
@@ -6636,7 +6616,7 @@ sender.enabled=false
                                     <div>
                                         <p>
                                             <span class="param-type string"> boolean </span>
-                                            
+                                            <span class="badge-required">Required</span>
                                         </p>
                                         <div class="param-default">
                                             <span class="param-default-value">Default: <code>false</code></span>
@@ -6657,7 +6637,7 @@ sender.enabled=false
                                     <div>
                                         <p>
                                             <span class="param-type string"> string </span>
-                                            
+                                            <span class="badge-required">Required</span>
                                         </p>
                                         <div class="param-default">
                                             <span class="param-default-value">Default: <code>org.wso2.carbon.transports.sap.SAPTransportSender</code></span>
@@ -6676,7 +6656,7 @@ sender.enabled=false
                                     <div>
                                         <p>
                                             <span class="param-type string"> string </span>
-                                            
+                                            <span class="badge-required">Required</span>
                                         </p>
                                         <div class="param-default">
                                             <span class="param-default-value">Default: <code>org.wso2.carbon.transports.sap.SAPTransportSender</code></span>
@@ -6824,7 +6804,7 @@ sender.enable = true
                     <div class="mb-config">
                         <div class="config-wrap">
                             <code>[transport.tcp]</code>
-                            
+                            <span class="badge-required">Required</span>
                             <p>
                                 This configuration header groups the parameters that configure the Micro Integrator to communicate through the TCP transport.
                             </p>
@@ -6838,7 +6818,7 @@ sender.enable = true
                                     <div>
                                         <p>
                                             <span class="param-type string"> boolean </span>
-                                            
+                                            <span class="badge-required">Required</span>
                                         </p>
                                         <div class="param-default">
                                             <span class="param-default-value">Default: <code>false</code></span>
@@ -6859,7 +6839,7 @@ sender.enable = true
                                     <div>
                                         <p>
                                             <span class="param-type string"> integer </span>
-                                            
+                                            <span class="badge-required">Required</span>
                                         </p>
                                         <div class="param-default">
                                             <span class="param-default-value">Default: <code>8000</code></span>
@@ -6880,7 +6860,7 @@ sender.enable = true
                                     <div>
                                         <p>
                                             <span class="param-type string"> string </span>
-                                            
+                                            <span class="badge-required">Required</span>
                                         </p>
                                         <div class="param-default">
                                             <span class="param-default-value">Default: <code>$ref{server.hostname}</code></span>
@@ -6899,7 +6879,7 @@ sender.enable = true
                                     <div>
                                         <p>
                                             <span class="param-type string"> string </span>
-                                            
+                                            <span class="badge-required">Required</span>
                                         </p>
                                         <div class="param-default">
                                             <span class="param-default-value">Default: <code></code></span>
@@ -6941,7 +6921,7 @@ sender.enable = true
                                     <div>
                                         <p>
                                             <span class="param-type string"> boolean </span>
-                                            
+                                            <span class="badge-required">Required</span>
                                         </p>
                                         <div class="param-default">
                                             <span class="param-default-value">Default: <code>true</code></span>
@@ -7106,7 +7086,7 @@ sender.truststore_password = "$ref{truststore.password}"
                     <div class="mb-config">
                         <div class="config-wrap">
                             <code>[transport.wss]</code>
-                            
+                            <span class="badge-required">Required</span>
                             <p>
                                 This configuration header groups the parameters that configure the Micro Integrator to communicate through the secured Websocket transport.
                             </p>
@@ -7120,7 +7100,7 @@ sender.truststore_password = "$ref{truststore.password}"
                                     <div>
                                         <p>
                                             <span class="param-type string"> boolean </span>
-                                            
+                                            <span class="badge-required">Required</span>
                                         </p>
                                         <div class="param-default">
                                             <span class="param-default-value">Default: <code>false</code></span>
@@ -7179,7 +7159,7 @@ sender.truststore_password = "$ref{truststore.password}"
                                     <div>
                                         <p>
                                             <span class="param-type string"> string </span>
-                                            
+                                            <span class="badge-required">Required</span>
                                         </p>
                                         <div class="param-default">
                                             <span class="param-default-value">Default: <code>$ref{truststore.file_name}</code></span>
@@ -7198,7 +7178,7 @@ sender.truststore_password = "$ref{truststore.password}"
                                     <div>
                                         <p>
                                             <span class="param-type string"> string </span>
-                                            
+                                            <span class="badge-required">Required</span>
                                         </p>
                                         <div class="param-default">
                                             <span class="param-default-value">Default: <code>$ref{truststore.password}</code></span>
@@ -7219,7 +7199,7 @@ sender.truststore_password = "$ref{truststore.password}"
                                     <div>
                                         <p>
                                             <span class="param-type string"> string </span>
-                                            
+                                            <span class="badge-required">Required</span>
                                         </p>
                                         <div class="param-default">
                                             <span class="param-default-value">Default: <code></code></span>
@@ -7262,9 +7242,9 @@ sender.enable =false
                     <div class="mb-config">
                         <div class="config-wrap">
                             <code>[transport.udp]</code>
-                            
+                            <span class="badge-required">Required</span>
                             <p>
-                                The...
+                                This configuration header groups the parameters that configure the Micro Integrator to communicate through the UDP transport.
                             </p>
                         </div>
                         <div class="params-wrap">
@@ -7276,7 +7256,7 @@ sender.enable =false
                                     <div>
                                         <p>
                                             <span class="param-type string"> boolean </span>
-                                            
+                                            <span class="badge-required">Required</span>
                                         </p>
                                         <div class="param-default">
                                             <span class="param-default-value">Default: <code>false</code></span>
@@ -7297,7 +7277,7 @@ sender.enable =false
                                     <div>
                                         <p>
                                             <span class="param-type string"> boolean </span>
-                                            
+                                            <span class="badge-required">Required</span>
                                         </p>
                                         <div class="param-default">
                                             <span class="param-default-value">Default: <code>false</code></span>
