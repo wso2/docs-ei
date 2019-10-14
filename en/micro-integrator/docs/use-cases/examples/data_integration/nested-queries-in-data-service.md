@@ -130,14 +130,14 @@ It gets the details of the office that has the office code 1, and all
 the employees that belong to office code 1.
 
 ```bash
-curl -X GET http://localhost:8280/services/EmployeesDataService.HTTPEndpoint/offices/1
+curl -X GET http://localhost:8290/services/EmployeesDataService.HTTPEndpoint/offices/1
 ```
 
 !!! Tip
     If you configured the [output mapping of the `listOfficeSQL` query to be in the JSON format](#DefiningNestedQueries-JSON) , you need to add the header `-H 'Accept: application/json'` to your curl command to get the output in the JSON format.
 
 ```bash
-curl -H 'Accept: application/json' -X GET http://localhost:8280/services/EmployeesDataService.HTTPEndpoint/offices/1
+curl -H 'Accept: application/json' -X GET http://localhost:8290/services/EmployeesDataService.HTTPEndpoint/offices/1
 ```
 
 You will now see the following result:
