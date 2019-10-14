@@ -11,18 +11,17 @@ Note that you can customize the default secure vault configurations in the produ
 
 ## Encrypting passwords
 
-1. Open the deployment.toml file and add the `[secrets]` configuration section as shown below. Give an alias for the password type followed by the actual password. The following example lists the most common passwords in configuration files.
+1. Open the deployment.toml file located in MI_HOME/conf/ directory and add the `[secrets]` configuration section as shown below. Give an alias for the password type followed by the actual password. The following example lists the most common passwords in configuration files.
 
     ```toml
     [secrets]
-    admin_password = "password_2"
-    keystore_password = "password_3"
-    key_password = "password_4"
-    truststrore_password = "password_5"
-    log4j.appender.LOGEVENT.password = "password_6"
+    admin_password = "[password_2]"
+    keystore_password = "[password_3]"
+    key_password = "[password_4]"
+    truststrore_password = "[password_5]"
     ```
 
-    See the complete list of [configuration parameters](../../references/config-catalog/#secret-passwords).
+    See the complete list of [configuration parameters](../../references/config-catalog.md#secret-passwords).
 
 2. Open a terminal, navigate to the MI_HOME/bin/ directory, and execute the following command (You must first enable the Cipher tool for the product by executing the `-Dconfigure` command with the cipher tool script as shown below).
     * On Linux: `./ciphertool.sh -Dconfigure`
@@ -38,17 +37,17 @@ Note that you can customize the default secure vault configurations in the produ
     truststrore_password = "encrypted_pass_5"
     ```
 
-    See the complete list of [configuration parameters](../../references/config-catalog/#secret-passwords).
+    See the complete list of [configuration parameters](../../references/config-catalog.md#secret-passwords).
 
 ## Using encrypted passwords
-When you have [encrypted passwords](#encrypting-passwords), you can refer them from the relevant configuration files: The deployment.toml file or LOG4j properties.
+When you have [encrypted passwords](#encrypting-passwords), you can refer them from the relevant configuration files.
 
 ### Passwords in the deployment.toml
 
 You can add the encrypted password to the relevant sections in the deployment.toml file by using a place holder: `$secret`. 
 
 !!! Note
-    You can also replace your passwords by refering values passed by environment variables and system properties. See [Set Passwords using Environment Variables/System Properties](../../setup/security/replace_passwords_env_variables_sys_properties.md)
+    You can also replace your passwords by refering values passed by environment variables and system properties. See [Set Passwords using Environment Variables/System Properties](../../setup/security/replace_passwords_with_sys_properties.md)
 
 ```toml
 [super_admin]
@@ -66,13 +65,6 @@ password = "$secret{keystore_password}"
 
 See the complete list of [configuration parameters](../../references/config-catalog.md).
 
-### Passwords in LOG4j properties
-For example, consider the 'log4j.appender.LOGEVENT.password' in the log4j.properties file. You can refer the [encrypted password](#encrypting-passwords) form the log4j.properties file as shown below.
-
-```bash
-log4j.appender.LOGEVENT.password=secretAlias:log4j.appender.LOGEVENT.password
-```
-
 ## Changing encrypted passwords
 
 To change any password which we have encrypted already, follow the below steps:
@@ -80,8 +72,8 @@ To change any password which we have encrypted already, follow the below steps:
 1. Be sure to shut down the server.
 2. Open a command prompt and go to the MI_HOME/bin/ directory, where the cipher tool scripts (for Windows and Linux) are stored.
 3. Execute the following command for your OS:
-    * On Linux: `./ciphertool.sh -Dconfigure`
-    * On Windows: `./ciphertool.bat -Dconfigure`
+    * On Linux: `./ciphertool.sh -Dchange`
+    * On Windows: `./ciphertool.bat -Dchange`
 4. It will prompt for the primary keystore password. Enter the keystore password (which is "wso2carbon" for the default keystore).
 5. The alias values of all the passwords that you encrypted will now be shown in a numbered list.
 6. The system will then prompt you to select the alias of the password which you want to change. Enter the list number of the password alias.
@@ -110,13 +102,17 @@ If you start the Micro Integrator as a background job, you will not be able to p
     * For Linux: The file name should be `password-tmp`.
     * For Windows: The file name should be `password-tmp.txt`.
 
+    !!! Note
+        When you start the server (see step 3 below), the keystore password will be picked from this new file. Note that this file is automatically deleted from the file system after the server starts. Therefore, the admin has to create a new text file every time the server starts.
+
+        Alternatively, if you want to retain the password file after the server starts, the file should be named as follows:
+
+        * For Linux: The file name should be `password-persist`
+        * For Windows: The file name should be `password-persist.txt`
+
 2. Add the primary keystore password (which is "wso2carbon" by default) to the new file and save. By default, the password provider assumes that both private key and keystore passwords are the same. If not, the private key password must be entered in the second line of the file.
 
 3. Now, start the server as a background process by running the following command.
    ```bash
    ./micro-integrator.sh start
-   ```
-4. Start the server by running the product start-up script from the MI_HOME/bin directory by executing the following command:
-   ```bash
-   daemon. sh micro-integrator.sh -start
    ```
