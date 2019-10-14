@@ -88,7 +88,10 @@ To login using the CLI, use the following command. This will ask for the usernam
 mi remote login
 ```
 
-If you want to login using one line command, use the following command:
+If you want to login using a one line command, use the following command:
+
+!!! Note 
+    If you are on **Windows**, you must always login with the following command.
 
 ```bash
 mi remote login [username] [password]

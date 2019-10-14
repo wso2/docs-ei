@@ -1,4 +1,4 @@
-# Using JSON with Data Services
+# Exposing Data in JSON Format
 
 You can send and receive JSON messages by default via WSO2 Micro Integrator. See the topics given below to
 understand how data can be exposed in the JSON format, and how data can be changed by sending JSON payloads. In this example, you will use a data service that exposes RDBMS data.

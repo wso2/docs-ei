@@ -32,6 +32,8 @@ Following are the integration artifacts (proxy service) that we can used to impl
 </proxy>
 ```
 
+Sample XSLT:
+
 ```xml 
 <xsl:stylesheet version="2.0"
         xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
@@ -48,6 +50,8 @@ Following are the integration artifacts (proxy service) that we can used to impl
     </xsl:template>
 </xsl:stylesheet>
 ```
+
+<!--
 
 ## Configuring Sample FIX Applications
 
@@ -169,3 +173,4 @@ two directories.
 -   Send an order request from Banzai to Synapse. For example, Buy DELL
     1000 @ 100. User has to send a "Limit" Order because price is a
     mandatory field for `          placeOrder         ` operation.
+-->
