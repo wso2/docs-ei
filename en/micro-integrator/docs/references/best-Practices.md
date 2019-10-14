@@ -56,7 +56,7 @@ constructs of WSO2 Micro Integrator.
     design principle and split lengthy logic into separate mediation
     components.
 -   When you have a common set of code, implement it in a sequence or a
-    template that can be reused. For more information, see [Sequence Template](../../concepts/message-processing-units/#templates).
+    template that can be reused. For more information, see [Sequence Template](../../develop/creating-artifacts/creating-sequence-templates).
 -   Externalize endpoint and policy references using the Registry. For
     more information, see [Managing ESB projects across environments](../../setup/govern_ext_refs_across_env)
     .
@@ -184,7 +184,7 @@ Listed below are the best practices for working with the source code:
     WSO2 Micro Integrator. Following this practice avoids
     maintenance overhead. If you want to see detailed information on the
     functionality of each built-in mediator of WSO2 Micro
-    Integrator, see the [Mediator catalog](../../concepts/message-processing-units/#mediators).
+    Integrator, see the [Mediator catalog](../../references/mediators/about-mediators).
 
 -   If you are writing a Class mediator, ensure that you have a good
     understanding of the performance impact and possible memory leaks so
@@ -209,15 +209,15 @@ Listed below are the best practices for working with the source code:
     the mediation flow.
 -   The use of Call mediator is recommended for service chaining
     scenarios.
--   Both the Send mediator and Call mediator use the [non blocking transport](../../concepts/messaging-transports)
+-   Both the Send mediator and Call mediator use the [non blocking transport](../../setup/transport_configurations/configuring-transports)
     . Therefore, there is no difference between the performance of the
     Send and Call mediators.
 -   Behaviour of the Callout mediator is similar to the Call mediator,
-    but it uses the [blocking transport](../../concepts/messaging-transports)
+    but it uses the [blocking transport](../../setup/transport_configurations/configuring-transports)
     to send the message out. Therefore , in terms of performance,
     Callout mediator is not as good as the Call mediator or Send
     mediator. If there are scenarios where blocking behaviour is
-    required, you can use the Callout mediator. For example, see [JMS Transactions](../../concepts/messaging-transports/#jms)
+    required, you can use the Callout mediator. For example, see [JMS Transactions](../../setup/transport_configurations/configuring-transports/#jms)
     .
 
     !!! Info
@@ -405,8 +405,8 @@ message transformation:
     [Sequence mediator](../../references/mediators/sequence-Mediator)
     or can be selected as the `           InSequence          ` ,
     `           OutSequence          ` , or
-    `           FaultSequence          ` when you define a [proxy service](../../concepts/message-entry-points/#proxy-services)
-    or a [REST API](../../concepts/message-entry-points/#restt-apis).
+    `           FaultSequence          ` when you define a [proxy service](../../references/synapse-properties/proxy-service-properties)
+    or a [REST API](../../references/synapse-properties/rest-api-properties).
 
     The following diagram illustrates how a saved sequence can be called
     using the Sequence mediator:
@@ -439,11 +439,11 @@ added after one of the following mediators will not be applied.
         The Loopback mediator prevents the execution of subsequent mediators in the `In` Sequence.
     
 -   Use the [Store mediator](../../references/mediators/store-Mediator)
-    as the last mediator if you want to enqueue messages to a [message store](../../concepts/message-entry-points/#message-stores-and-processors).
+    as the last mediator if you want to enqueue messages to a [message store](../../develop/creating-artifacts/creating-a-message-store).
 
 ### Working with proxy services
 
-Use [REST APIs](../../concepts/message-entry-points/#rest-apis)
+Use [REST APIs](../../references/synapse-properties/rest-api-properties)
 instead of proxy services for RESTful service development.
 
 Configure `                   FaultSequences                 `
@@ -491,7 +491,7 @@ to keep in mind when designing your APIs for use with REST.
 
 ### Working with endpoints
 
--   Do not use anonymous endpoints. Always use [named endpoints](../../concepts/message-exit-points). As anynymous endpoints have auto-generated names in the synapse
+-   Do not use anonymous endpoints. Always use [named endpoints](../../references/synapse-properties/endpoint-properties). As anynymous endpoints have auto-generated names in the synapse
     configuration, it is difficult to identify which endpoint is causing
     the error in case of an error.
 
@@ -520,9 +520,10 @@ to keep in mind when designing your APIs for use with REST.
     </thead>
     <tbody>
     <tr class="odd">
-    <td><code>               http.socket.timeout              </code></td>
-    <td>The socket timeout of the <a href="../../concepts/messaging-transports">Passthrough</a> http/https transport sender and listener. You can find the <a href="../../concepts/messaging-transports">passthru-http.properties</a> file in the <code>               &lt;EI_HOME&gt;/conf              </code> directory.</td>
-    <td><code>               passthru-http.properties              </code></td>
+    <td><code>               [transport.http] 
+                             socket_timeout = 180000                </code></td>
+    <td>The socket timeout of the <a href="../../setup/transport_configurations/configuring-transports">Passthrough</a> http/https transport sender and listener. You can find the <a href="../../setup/transport_configurations/configuring-transports">passthru-http.properties</a> file in the <code>               &lt;EI_HOME&gt;/conf              </code> directory.</td>
+    <td><code>              deployment.toml             </code></td>
     <td>180000</td>
     <td>180000</td>
     </tr>
@@ -551,24 +552,26 @@ to keep in mind when designing your APIs for use with REST.
     <td>Depends on the use case, Typically 120000</td>
     </tr>
     <tr class="odd">
-    <td><code>               synapse.global_timeout_interval              </code></td>
+    <td><code>               [mediation]
+                  synapse.global_timeout_interval = "120000" </code></td>
     <td><div class="content-wrapper">
     <p>Global timeout value for endpoints. Can be overwritten by individual endpoint timeout values.</p>
     <p>Synapse, which is the underlying mediation engine of WSO2 Micro Integrator, is a complete asynchronous messaging engine that does not block its worker threads on network I/O. Instead, it registers a call-back for a particular request and returns the threads without waiting for a response. When a response is available, the registered call-back is used to correlate it with the relevant request so that further processing can be done.<br />
     If the backend server does not respond, it is required to clear the registered call-backs after a particular <em>duration</em> to prevent possible memory leaks. This <em>duration</em> is set via a timer task called <code>                 TimeoutHandler                </code> . The <code>                 synapse.global_timeout_interval                </code> parameter represents the <em>duration</em> that a call-back should be kept in the call-back store.</p>
         <p>If you have configured a timeout value at the endpoint level, the global timeout value is not taken into consideration for that endpoint. For all the other endpoints that do not have a timeout value configured, the global value is considered as the timeout value.</p>
 
-    <p>You can configure the <code>                 synapse.global_timeout_interval                </code> parameter in the <code>                 &lt;EI_HOME&gt;/conf/synapse.properties                </code> file. The default value is 120 seconds. If you want to support endpoint timeout values that are greater than 120 seconds, set the <code>                 synapse.global_timeout_interval                </code> to a value more than 120 seconds. However, the need to set such large timeout values for endpoints is extremely unlikely.</p>
+    <p>You can configure the <code>                 synapse.global_timeout_interval                </code> parameter in the <code>                 &lt;MI_HOME&gt;/conf/deployment.toml                </code> file. The default value is 120 seconds. If you want to support endpoint timeout values that are greater than 120 seconds, set the <code>                 synapse.global_timeout_interval                </code> to a value more than 120 seconds. However, the need to set such large timeout values for endpoints is extremely unlikely.</p>
     </div></td>
-    <td><code>               synapse.properties              </code></td>
+    <td><code>               deployment.toml              </code></td>
     <td>120000</td>
     <td>120000</td>
     </tr>
     <tr class="even">
-    <td><code>               synapse.timeout_handler_interval              </code></td>
+    <td><code>               [synapse_properties]
+                             synapse.timeout_handler_interval = "15000"              </code></td>
     <td>Duration between two <code>               TimeoutHandler              </code> executions.The <code>               TimeoutHandler              </code> is executed every 15 seconds by default. Therefore, the time that call-backs get cleared can deviate up to 15 seconds from the configured value.<br />
-    You can configure the <code>               TimeoutHandler              </code> execution interval by specifying a required value for <code>               synapse.timeout_handler_interval              </code> in the <code>               &lt;EI_HOME&gt;/conf/synapse.properties              </code> file.</td>
-    <td><code>               synapse.properties              </code></td>
+    You can configure the <code>               TimeoutHandler              </code> execution interval by specifying a required value for <code>               synapse.timeout_handler_interval              </code> in the <code>               &lt;MI_HOME&gt;/conf/deployment.toml             </code> file.</td>
+    <td><code>               deployment.toml              </code></td>
     <td>15000</td>
     <td>15000</td>
     </tr>
@@ -592,16 +595,16 @@ to keep in mind when designing your APIs for use with REST.
     immediately and subsequent messages to that endpoint get rejected
     without being sent to the backend service. This might not be the
     expected behaviour in every use case. Therefore, it is important to
-    perform [endpoint error handling](../../concepts/error-handling-concepts)
+    perform [endpoint error handling](../../references/synapse-properties/endpoint-properties/#endpoint-error-handling-properties)
     based on the use case.
 
--   Use the [HTTP endpoint](../../concepts/messaging-transports)
+-   Use the [HTTP endpoint](../../setup/transport_configurations/configuring-transports)
     for RESTful service invocations. The HTTP endpoint is especially
     designed to make RESTful service integration easy. For example, it
     supports `           url-templates          ` , which is an option
     to set the http method.
 
--   For RESTful service integration, use either [REST APIs](../../concepts/message-entry-points/#rest-apis)
+-   For RESTful service integration, use either [REST APIs](../../references/synapse-properties/rest-api-properties)
     or HTTP endpoints. You can use REST APIs to expose an integration
     solution as a RESTful service, and use HTTP endpoints to logically
     represent a RESTful backend service.
@@ -611,10 +614,10 @@ to keep in mind when designing your APIs for use with REST.
 #### Behaviour of the `         FaultSequence        `
 
 -   If a sequence explicitly defines a fault handler using the **onError** attribute, WSO2 Micro Integrator invokes that specific onError
-    sequence whenever an error occurs in the sequence. This is true even if the sequence is invoked by a [proxy service](../../concepts/message-entry-points/#proxy-services) or in an [API](../../concepts/message-entry-points/#rest-apis).  
+    sequence whenever an error occurs in the sequence. This is true even if the sequence is invoked by a [proxy service](../../references/synapse-properties/proxy-service-properties) or in an [API](../../references/synapse-properties/rest-api-properties).  
       
     ![](/assets/img/best-practices/119133370/119133380.png)
--   If a request arrives via the [main sequence](../../concepts/message-processing-units/#main-sequence)
+-   If a request arrives via the [main sequence](../../references/synapse-properties/sequence-properties)
     and fails within a sequence that does not explicitly define a fault
     handler, the default
     `                     FaultSequence                   ` is
@@ -659,7 +662,7 @@ to keep in mind when designing your APIs for use with REST.
 -   Whenever an error occurs in WSO2 Micro Integrator, the
     mediation engine attempts to provide as much information as possible
     about the
-    [error](../../concepts/error-handling-concepts). This is done by initializing a set of property values on the
+    [error](../../references/synapse-properties/endpoint-properties/#endpoint-error-handling-properties). This is done by initializing a set of property values on the
     erroneous message. Following are the properties:
     -   ERROR_CODE
     -   ERROR_MESSAGE
@@ -876,63 +879,3 @@ troubleshooting with tooling, see [Troubleshooting WSO2 Integration Studio](../.
     using WSO2 Integration, and then [deploy the C-App in the new environment](../../develop/deploy-and-run).
 -   It is not recommended to run more than one server instance inside a
     docker container.
-
-!!! Note
-    You can implement high availability in your deployment via strategies
-like Blue-Green, Canary, or Rolling deployments. Select one of those
-strategies based on your requirements. This enables you to perform load
-balancing to maintain availability of services for consumers while they
-are being undeployed.
-
-
-### Recommended deployment patterns
-
-**Push model**
-
--   All WSO2 Micro Integrator artifacts reside in a version control
-    system such as SVN or Git.
--   The CI/CD server checks out the artifacts, builds and pushes the
-    artifacts to individual Micro Integrator nodes.
-
-![](/assets/img/best-practices/119133370/119133381.png)
-
-**Sync model**
-
-Uses a file share or rsync to keep deployment artifacts in-sync across a
-set of nodes.
-
--   Linux file mount
-    -   All WSO2 Micro Integrator nodes mount the same remote file
-        system as \<
-        `            EI_HOME>/repository/deployment/server           `
-        directory.
-    -   If one node makes a change to that location by updating an
-        artifact, the rest of the nodes see the change through remote
-        mount and update the runtime.
-
-![](/assets/img/best-practices/119133370/119133383.png)
-
--   rsync
-    -   One node acts as a master.
-    -   Artifact modification should be done only in the master node.
-    -   The master node runs rsync on a schedule(cron job) to copy \<
-        `            EI_HOME>/repository/deployment/server           `
-        to remote nodes.
-
-![](/assets/img/best-practices/119133370/119133382.png)
-
--   Hazelcast clustering
-    -   If a WSO2 Micro Integrator deployment requires task
-        coordination/inbound endpoint coordination, hazelcast clustering
-        should be enabled.
-
-        !!! Note
-            Hazelcast is known to be unstable when the network is unreliable. Therefore, do not enable Hazelcast clustering unless coordination is required.
-        
-    -   Hazelcast clustering can be enabled with any of the above
-        deployment patterns.
-    -   When you use Hazelcast, it can result in cluster-wide failure if
-        the inter-node communication is interrupted. To recover from
-        such an issue, you have to restart the entire cluster at
-        once. Round robin restart does not work in this situation. Be
-        sure to keep customers informed of this limitation.
