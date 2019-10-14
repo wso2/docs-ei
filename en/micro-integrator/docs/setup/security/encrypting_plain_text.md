@@ -102,13 +102,13 @@ If you start the Micro Integrator as a background job, you will not be able to p
     * For Linux: The file name should be `password-tmp`.
     * For Windows: The file name should be `password-tmp.txt`.
 
-!!! Note
-    When you start the server (see step 3 below), the keystore password will be picked from this new file. Note that this file is automatically deleted from the file system after the server starts. Therefore, the admin has to create a new text file every time the server starts.
+    !!! Note
+        When you start the server (see step 3 below), the keystore password will be picked from this new file. Note that this file is automatically deleted from the file system after the server starts. Therefore, the admin has to create a new text file every time the server starts.
 
-Alternatively, if you want to retain the password file after the server starts, the file should be named as follows:
+        Alternatively, if you want to retain the password file after the server starts, the file should be named as follows:
 
-    * For Linux: The file name should be `password-persist`.
-    * For Windows: The file name should be `password-persist.txt`.
+        * For Linux: The file name should be `password-persist`
+        * For Windows: The file name should be `password-persist.txt`
 
 2. Add the primary keystore password (which is "wso2carbon" by default) to the new file and save. By default, the password provider assumes that both private key and keystore passwords are the same. If not, the private key password must be entered in the second line of the file.
 
