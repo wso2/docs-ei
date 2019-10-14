@@ -228,12 +228,12 @@ Listed below are the best practices for working with the source code:
 
     The following diagram illustrates a proxy/REST API with a Send mediator:
 
-![](/assets/img/best-practices/119133370/119133372.png)  
+![](../../assets/img/best-practices/119133370/119133372.png)  
 
 The following diagram illustrates a proxy/REST API with a Call/Callout
 mediator:  
 
-![](/assets/img/best-practices/119133370/119133371.png)
+![](../../assets/img/best-practices/119133370/119133371.png)
 
 #### Using the [ForEach](../../references/mediators/forEach-Mediator) mediator
 
@@ -287,7 +287,7 @@ Do not include the Loopback mediator in the `         OutSequence        ` .
 
 The following diagram illustrates a proxy/REST API with a Loopback mediator:
 
-![](/assets/img/best-practices/119133370/119133377.png)
+![](../../assets/img/best-practices/119133370/119133377.png)
 
 #### Using the [Send](../../references/mediators/send-Mediator) mediator
 
@@ -306,13 +306,13 @@ The following diagram illustrates a proxy/REST API with a Loopback mediator:
     The following diagram illustrates an incorrect use of the Send
     mediator:  
       
-    ![](/assets/img/best-practices/119133370/119133374.png)
+    ![](../../assets/img/best-practices/119133370/119133374.png)
       
 
     The following diagram illustrates the correct use of the Send
     mediator:
 
-    ![](/assets/img/best-practices/119133370/119133375.png)
+    ![](../../assets/img/best-practices/119133370/119133375.png)
 
 #### Mediators for message transformation
 
@@ -411,7 +411,7 @@ message transformation:
     The following diagram illustrates how a saved sequence can be called
     using the Sequence mediator:
 
-![](/assets/img/best-practices/119133370/119133373.png)
+![](../../assets/img/best-practices/119133370/119133373.png)
 
 When you are adding the last mediator in a sequence, make sure to use
 one of the following mediators depending on the scenario. Any mediator
@@ -504,7 +504,7 @@ to keep in mind when designing your APIs for use with REST.
     `           Proxy to Backend connection          ` *, a* re two
     separate connections that do not depend on each other. Even if one
     connections times out, the other is unaffected.  
-    ![](/assets/img/best-practices/119133370/119133384.png)  
+    ![](../../assets/img/best-practices/119133370/119133384.png)  
     Here are the important timeout parameters you should configure
     before going into production:
 
@@ -613,20 +613,20 @@ to keep in mind when designing your APIs for use with REST.
 -   If a sequence explicitly defines a fault handler using the **onError** attribute, WSO2 Micro Integrator invokes that specific onError
     sequence whenever an error occurs in the sequence. This is true even if the sequence is invoked by a [proxy service](../../concepts/message-entry-points/#proxy-services) or in an [API](../../concepts/message-entry-points/#rest-apis).  
       
-    ![](/assets/img/best-practices/119133370/119133380.png)
+    ![](../../assets/img/best-practices/119133370/119133380.png)
 -   If a request arrives via the [main sequence](../../concepts/message-processing-units/#main-sequence)
     and fails within a sequence that does not explicitly define a fault
     handler, the default
     `                     FaultSequence                   ` is
     invoked.  
       
-    ![](/assets/img/best-practices/119133370/119133378.png)
+    ![](../../assets/img/best-practices/119133370/119133378.png)
 -   If a request arrives via a proxy service or an API, and fails within
     a sequence that does not explicitly define a fault handler, the
     `          FaultSequence         ` of the proxy service is
     invoked.  
       
-    ![](/assets/img/best-practices/119133370/119133379.png)
+    ![](../../assets/img/best-practices/119133370/119133379.png)
 -   If the proxy service does not have a
     `           FaultSequence          ` defined, the default fault
     handler sequence is invoked.
@@ -634,8 +634,8 @@ to keep in mind when designing your APIs for use with REST.
     !!! Tip
         This is only applicable to WSO2 ESB 4.9.0 and above.
 
-    ![](/assets/img/best-practices/119133370/119133376.png)  
-    ![](/assets/img/best-practices/119133370/119133385.png)
+    ![](../../assets/img/best-practices/119133370/119133376.png)  
+    ![](../../assets/img/best-practices/119133370/119133385.png)
 
 -   If there is a `           FaultSequence          ` defined at the
     proxy service-level, and the onError sequence is referenced in the
@@ -894,7 +894,7 @@ are being undeployed.
 -   The CI/CD server checks out the artifacts, builds and pushes the
     artifacts to individual Micro Integrator nodes.
 
-![](/assets/img/best-practices/119133370/119133381.png)
+![](../../assets/img/best-practices/119133370/119133381.png)
 
 **Sync model**
 
@@ -910,7 +910,7 @@ set of nodes.
         artifact, the rest of the nodes see the change through remote
         mount and update the runtime.
 
-![](/assets/img/best-practices/119133370/119133383.png)
+![](../../assets/img/best-practices/119133370/119133383.png)
 
 -   rsync
     -   One node acts as a master.
@@ -919,7 +919,7 @@ set of nodes.
         `            EI_HOME>/repository/deployment/server           `
         to remote nodes.
 
-![](/assets/img/best-practices/119133370/119133382.png)
+![](../../assets/img/best-practices/119133370/119133382.png)
 
 -   Hazelcast clustering
     -   If a WSO2 Micro Integrator deployment requires task
