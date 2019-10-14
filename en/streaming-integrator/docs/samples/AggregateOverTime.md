@@ -26,6 +26,8 @@ This application demonstrates how to simulate random events via Feed Simulation 
 
 ## Executing the Sample:
 
+To execute the sample:
+
 1. Start the Siddhi application by clicking **Run** => **Run**.
 
 2. If the Siddhi application starts successfully, the following message appears in the console.

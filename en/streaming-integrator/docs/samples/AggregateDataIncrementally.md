@@ -48,6 +48,8 @@ This example demonstrates how to get running statistics using Siddhi. The sample
 
 ## Executing the Sample
 
+To execute the sample:
+
 1. Start the Siddhi application by clicking **Run** => **Run**.
 
 2. If the Siddhi application starts successfully, the following message appears in the console.
@@ -56,11 +58,15 @@ This example demonstrates how to get running statistics using Siddhi. The sample
 
 ## Testing the Sample
 
+To simulate events as single events,
+
 1. To open the Event Simulator, click the **Event Simulator** icon.
 
     ![Event Simulator Icon](../../images/Testing-Siddhi-Applications/Event_Simulation_Icon.png)
 
-2. To simulate events for the `RawMaterialStream` stream of the `AggregateDataIncrementally`  enter information in the **Single Simulation** tab as follows.
+    This opens the event simulation panel.
+
+2. To simulate events for the `RawMaterialStream` stream of the `AggregateDataIncrementally`  Siddhi application, enter information in the **Single Simulation** tab of the event simulation panel as follows.
 
     | **Field**                   | **Value**                              |
     |-----------------------------|----------------------------------------|
