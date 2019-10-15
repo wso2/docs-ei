@@ -1,30 +1,25 @@
-# Configuration Catalog
-This document describes all the configuration parameters that are used in WSO2 Micro Integrator. 
+# Product Configurations
+This document describes all the product configuration parameters that are used in WSO2 Micro Integrator. 
 
 ## Instructions for use
 
-> Select the configuration sections, parameters, and values that are required for your use and add them to the .toml file. See the example .toml file given below.
+To update the product configurations:
+
+1. Open the `deployment.toml` file (stored in the `MI_HOME/conf` directory).
+2. Select the required configuration headers and parameters from the list given below and apply them to the `deployment.toml` file.
+
+See the example deployment.toml file given below.
 
 ```toml
-# This is an example .toml file.
+# This is an example deployment.toml file.
 
 [server]
-pattern="value"                         
-enable_port_forward=true
-
-[key_mgr_node]
-endpoints="value"
-
-[gateway]
-gateway_environments=["dev","test"]
+hostname="localhost"
 
 [[database]]
 pool_options.maxActiv=5
 
 ```
-
-
-
 
 ## Deployment
 
@@ -1269,7 +1264,7 @@ class = "org.apache.axis2.json.JSONBadgerfishOMBuilder"
                 <label class="tab-selector" for="_tab_11"><i class="icon fa fa-code"></i></label>
                 <div class="superfences-content">
                     <div class="mb-config-example">
-<pre><code class="toml">[[custom_message_builders.blocking]]
+<pre><code class="toml">[[custom_message_builders]]
 content_type = "application/json/badgerfish"
 class = "org.apache.axis2.json.JSONBadgerfishOMBuilder"
 </code></pre>
@@ -1381,7 +1376,7 @@ class = "org.apache.axis2.json.JSONBadgerfishMessageFormatter"
                 <label class="tab-selector" for="_tab_13"><i class="icon fa fa-code"></i></label>
                 <div class="superfences-content">
                     <div class="mb-config-example">
-<pre><code class="toml">[[custom_message_formatters.blocking]]
+<pre><code class="toml">[[custom_message_formatters]]
 content_type = "application/json/badgerfish"
 class = "org.apache.axis2.json.JSONBadgerfishMessageFormatter"
 </code></pre>
@@ -2866,18 +2861,13 @@ bypass_hosts = ["xxx.sample.com"]
                 <div class="superfences-content">
                     <div class="mb-config-example">
 <pre><code class="toml">[transport.vfs]
-
 listener.enable = true
-listener.keystore.file_name = "$ref{keystore.tls.file_name}" 
+listener.keystore.file_name = "$ref{keystore.tls.file_name}"
 listener.keystore.type = "$ref{keystore.tls.type}"
 listener.keystore.password = "$ref{keystore.tls.password}"
 listener.keystore.key_password = "$ref{keystore.tls.key_password}"
 listener.keystore.alias = "$ref{keystore.tls.alias}"
-
-listener.parameter.customParameter = ""
-
 sender.enable = true
-sender.parameter.customParameter = ""
 </code></pre>
                     </div>
                 </div>
@@ -3054,9 +3044,8 @@ sender.parameter.customParameter = ""
                 <div class="superfences-content">
                     <div class="mb-config-example">
 <pre><code class="toml">[transport.mail.listener]
-enable = true   
+enable = true
 name = "mailto"
-parameter.customParameter = ""
 </code></pre>
                     </div>
                 </div>
@@ -3131,10 +3120,9 @@ parameter.customParameter = ""
                 <label class="tab-selector" for="_tab_21"><i class="icon fa fa-code"></i></label>
                 <div class="superfences-content">
                     <div class="mb-config-example">
-<pre><code class="toml">[transport.blocking.mail.listener]
+<pre><code class="toml">[transport.blocking.mail.listener] 
 enable = true
 name = "mailto"
-parameter.customParameter = "value"
 </code></pre>
                     </div>
                 </div>
@@ -3348,7 +3336,6 @@ parameter.from = "demo_user@wso2.com"
                 <div class="superfences-content">
                     <div class="mb-config-example">
 <pre><code class="toml">[[transport.blocking.mail.sender]]
-
 name = "mailto"
 parameter.hostname = "smtp.gmail.com"
 parameter.port = "587"
@@ -4184,10 +4171,11 @@ parameter.consume_error_progression = "2.0"
                 <label class="tab-selector" for="_tab_25"><i class="icon fa fa-code"></i></label>
                 <div class="superfences-content">
                     <div class="mb-config-example">
-<pre><code class="toml">[[transport.blocking.jms.listener]]
+<pre><code class="toml">[[transport.jms.listener]]
 
 name = "myTopicListener"
 parameter.initial_naming_factory = "org.apache.activemq.artemis.jndi.ActiveMQInitialContextFactory"
+parameter.broker_name = "artemis"
 parameter.provider_url = "tcp://localhost:61616"
 parameter.connection_factory_name = "TopicConnectionFactory"
 parameter.connection_factory_type = "topic"
@@ -4223,7 +4211,7 @@ parameter.max_reconnect_duration = "3600000"
 parameter.reconnect_interval = "3600000"
 parameter.max_jsm_connection = 10
 parameter.max_consumer_error_retrieve_before_delay = 20
-parameter.consume_error_delay = "100"        
+parameter.consume_error_delay = "100"         
 parameter.consume_error_progression = "2.0"
 </code></pre>
                     </div>
@@ -5073,10 +5061,11 @@ parameter.vender_class_loader = false
                 <label class="tab-selector" for="_tab_27"><i class="icon fa fa-code"></i></label>
                 <div class="superfences-content">
                     <div class="mb-config-example">
-<pre><code class="toml">[[transport.blocking.jms.sender]]
+<pre><code class="toml">[[transport.jms.sender]]
 
 name = "myTopicSender"
 parameter.initial_naming_factory = "org.apache.activemq.artemis.jndi.ActiveMQInitialContextFactory"
+parameter.broker_name = "artemis"
 parameter.provider_url = "tcp://localhost:61616"
 parameter.connection_factory_name = "TopicConnectionFactory"
 parameter.connection_factory_type = "topic"
@@ -5114,6 +5103,7 @@ parameter.max_jsm_connection = 10
 parameter.max_consumer_error_retrieve_before_delay = 20
 parameter.consume_error_delay = "100"
 parameter.consume_error_progression = "2.0"
+
 parameter.vender_class_loader = false
 </code></pre>
                     </div>
@@ -5369,7 +5359,6 @@ parameter.message_content_type = ""
 
 parameter.retry_interval = "10s"
 parameter.retry_count = 5
-parameter.connection_pool_size = 25
 
 parameter.ssl_enable = true
 parameter.ssl_version = "SSL"
@@ -6033,7 +6022,6 @@ parameter.queue_auto_delete = false
 parameter.exchange_durable = ""
 parameter.queue_auto_declare = ""
 parameter.exchange_auto_declare = ""
-parameter.connection_pool_size = 10
 </code></pre>
                     </div>
                 </div>
@@ -6418,12 +6406,11 @@ parameter.connection_pool_size = 10
                 <label class="tab-selector" for="_tab_33"><i class="icon fa fa-code"></i></label>
                 <div class="superfences-content">
                     <div class="mb-config-example">
-<pre><code class="toml">[transport.fix]
+<pre><code class="toml">[transport.ws]
 
-listener.enable = false
-listener.parameter.customParameter = ""
-sender.enable = false
-sender.parameter.customParameter = ""
+[transport.fix]
+listener.enabled=false
+sender.enabled=false
 </code></pre>
                     </div>
                 </div>
@@ -6503,27 +6490,24 @@ sender.parameter.customParameter = ""
 <pre><code class="toml">[transport.mqtt]
 
 listener.enable = false
-listener.hostname = "$ref{server.hostname}"
-listener.connection_factory = "mqttConFactory"
-listener.server_port = 1883
-listener.client_id = "client-id-1234"
-listener.topic_name = "esb.test"
+listener.parameter.hostname = "$ref{server.hostname}"
+listener.parameter.connection_factory = "mqttConFactory"
+listener.parameter.server_port = 1883
+listener.parameter.client_id = "client-id-1234"
+listener.parameter.topic_name = "esb.test"
 
 # not reqired parameter list
-listener.subscription_qos = 0
-listener.session_clean = false
-listener.enable_ssl = false
-listener.subscription_username = ""
-listener.subscription_password = ""
-listener.temporary_store_directory = ""
-listener.blocking_sender = false
-listener.connect_type = "text/plain"
-listener.message_retained = false
-
-listener.parameter.customParameter = ""
+listener.parameter.subscription_qos = 0
+listener.parameter.session_clean = false
+listener.parameter.enable_ssl = false
+listener.parameter.subscription_username = ""
+listener.parameter.subscription_password = ""
+listener.parameter.temporary_store_directory = ""
+listener.parameter.blocking_sender = false
+listener.parameter.connect_type = "text/plain"
+listener.parameter.message_retained = false
 
 sender.enable = false
-sender.parameter.customParameter = ""
 </code></pre>
                     </div>
                 </div>
@@ -6736,17 +6720,8 @@ sender.parameter.customParameter = ""
                 <div class="superfences-content">
                     <div class="mb-config-example">
 <pre><code class="toml">[transport.sap]
-
-listener.enable = true
-listener.idoc.class = "org.wso2.carbon.transports.sap.SAPTransportListener"
-listener.idoc.parameter.customParameter = ""
-listener.bapi.class = "org.wso2.carbon.transports.sap.SAPTransportListener"
-listener.bapi.parameter.customParameter = ""
-sender.enable = true
-sender.idoc.class = "org.wso2.carbon.transports.sap.SAPTransportSender"
-sender.idoc.parameter.customParameter = ""
-sender.bapi.class = "org.wso2.carbon.transports.sap.SAPTransportSender"
-sender.bapi.parameter.customParameter = ""
+listener.enabled=false
+sender.enabled=false
 </code></pre>
                     </div>
                 </div>
@@ -6903,10 +6878,7 @@ sender.bapi.parameter.customParameter = ""
 
 listener.enable = false
 listener.hostname = "$ref{server.hostname}"
-listener.parameter.customParameter = ""
-
 sender.enable = false
-sender.parameter.customParameter = ""
 </code></pre>
                     </div>
                 </div>
@@ -7005,16 +6977,12 @@ sender.parameter.customParameter = ""
                 <div class="superfences-content">
                     <div class="mb-config-example">
 <pre><code class="toml">[transport.tcp]
-
 listener.enable = false
 listener.port = 8000
 listener.hostname = "$ref{server.hostname}"
 listener.content_type = ["application/xml"]
 listener.response_client = true
-listener.parameter.customParameter = ""
-
 sender.enable = true
-sender.parameter.customParameter = ""
 </code></pre>
                     </div>
                 </div>
@@ -7173,17 +7141,13 @@ sender.parameter.customParameter = ""
                 <label class="tab-selector" for="_tab_38"><i class="icon fa fa-code"></i></label>
                 <div class="superfences-content">
                     <div class="mb-config-example">
-<pre><code class="toml">[transport.blocking.tcp]
-
+<pre><code class="toml">[transport.tcp]
 listener.enable = false
 listener.port = 8000
 listener.hostname = "$ref{server.hostname}"
 listener.content_type = ["application/xml"]
 listener.response_client = true
-listener.parameter.customParameter = ""
-
-sender.enable = false
-sender.parameter.customParameter = ""
+sender.enable = true
 </code></pre>
                     </div>
                 </div>
@@ -7221,9 +7185,8 @@ sender.parameter.customParameter = ""
 <pre><code class="toml">[transport.ws]
 
 sender.enable = false
-sender.outflow_dispatch_sequence = "outflowDispatchSeq"
-sender.outflow_dispatch_fault_sequence = "outflowFaultSeq"      
-sender.parameter.customParameter = ""
+sender.parameter.outflow_dispatch_sequence = "outflowDispatchSeq"
+sender.parameter.outflow_dispatch_fault_sequence = "outflowFaultSeq"
 </code></pre>
                     </div>
                 </div>
@@ -7339,10 +7302,8 @@ sender.parameter.customParameter = ""
 <pre><code class="toml">[transport.wss]
 
 sender.enable = false
-sender.outflow_dispatch_sequence = "outflowDispatchSeq"
-sender.outflow_dispatch_fault_sequence = "outflowFaultSeq"
-sender.parameter.customParameter = ""
-
+sender.parameter.outflow_dispatch_sequence = "outflowDispatchSeq"
+sender.parameter.outflow_dispatch_fault_sequence = "outflowFaultSeq"
 sender.truststore_location = "$ref{truststore.file_name}"
 sender.truststore_password = "$ref{truststore.password}"
 </code></pre>
@@ -7500,10 +7461,7 @@ sender.truststore_password = "$ref{truststore.password}"
 <pre><code class="toml">[transport.udp]
 
 listener.enable = false
-listener.parameter.customParameter = ""
-
-sender.enable =false               
-sender.parameter.customParameter = ""
+sender.enable =false
 </code></pre>
                     </div>
                 </div>
@@ -7580,13 +7538,10 @@ sender.parameter.customParameter = ""
                 <label class="tab-selector" for="_tab_42"><i class="icon fa fa-code"></i></label>
                 <div class="superfences-content">
                     <div class="mb-config-example">
-<pre><code class="toml">[transport.blocking.udp]
+<pre><code class="toml">[transport.udp]
 
 listener.enable = false
-listener.parameter.customParameter = ""
-
-sender.enable = false        
-sender.parameter.customParameter = ""
+sender.enable =false
 </code></pre>
                     </div>
                 </div>
