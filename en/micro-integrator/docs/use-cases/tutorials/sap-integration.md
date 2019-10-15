@@ -1,121 +1,69 @@
 # SAP Integration
 
-**Systems, Applications, and Products (SAP)** for data processing is an
-industry leading enterprise software solution that is widely used in
-product and process oriented enterprises for finance, operations, HR and
-many other aspects of a business. SAP ERP solutions provide reliable and
-efficient platforms to build and integrate enterprise or business-wide
-data and information systems with ease.
+**Systems**, **Applications**, and **Products** **(SAP)** for data processing is an industry leading enterprise software solution that is widely used in product and process oriented enterprises for finance, operations, HR, and many other aspects of a business. 
 
-The ESB profile of WSO2 Enterprise Integrator (WSO2 EI) leverages the
-best of both worlds by providing the integration layer so that an
-existing SAP R/3 based solutions of an enterprise can be integrated with
-other data/business oriented systems so that you can mix-and-match
-requirements with minimal effort. As a result, enterprises can keep
-parts of their systems independent of SAP and extensible for many other
-systems, solutions and middleware.
+WSO2 Micro Integrator leverages the best of both worlds by providing the integration layer that can be used to integrate an existing SAP R/3-based solution of an enterprise with other data/business oriented systems so that you can mix-and-match requirements with minimal effort. As a result, enterprises can keep parts of their systems independent of SAP and extensible for many other systems, solutions, and middleware.
 
-The WSO2 SAP adapter is shipped with the ESB profile and is implemented
-as a transport for the ESB profile. This is provided in the
-`         <EI_HOME>/wso2/components/plugins        ` directory
-as org.wso2.carbon.transports.sap-VERSION.jar (e.g. org.wso2.carbon.transports.sap\_1.0.0.jar).
-
-The WSO2 SAP adapter has full IDoc and experimental BAPI support. It
-uses the SAP JCO library as the underlying framework to communicate with
-SAP.  This section describes how to set up the ESB profile in a SAP
-environment, how to install the SAP JCo middleware library, SAP
-Intermediate Document (IDoc) and Business Application Programming
-Interface (BAPI) adapters.
-
-------------------------------------------------------------------------
-
-[Installing the SAP Adapter](#SAPIntegration-InstallingtheSAPAdapter) \|
-[Setting up the Client Configuration
-File](#SAPIntegration-SettinguptheClientConfigurationFile) \| \|
-[Setting up the Server Configuration
-File](#SAPIntegration-SettinguptheServerConfigurationFile) \|
-[Configuring WSO2 SAP
-Adapter](#SAPIntegration-ConfiguringWSO2SAPAdapter) \| [Additional
-Configuration
-Parameter](#SAPIntegration-AdditionalConfigurationParameter) \|
-[Troubleshooting](#SAPIntegration-Troubleshooting)
-
-------------------------------------------------------------------------
+The WSO2 SAP adapter is shipped with the Micro Integrator and is implemented as a transport. The WSO2 SAP adapter has full IDoc and experimental BAPI support. It uses the SAP JCO library as the underlying framework to communicate with SAP. This section describes how to set up the Micro Integrator in a SAP environment and install the following: SAP JCo middleware library, SAP Intermediate Document (IDoc), and Business Application Programming Interface (BAPI) adapters.
 
 ### Installing the SAP Adapter
 
 Follow the instructions below to install and set up the SAP adapter.
 
-1.  Download WSO2 EI and install the ESB Profile by following the
-    instruction in the [Installation
-    Guide](https://docs.wso2.com/display/EI650/Installation+Guide) .
+1.  Download [WSO2 Micro Integrator](https://wso2.com/integration/).
 2.  Download the `           sapidoc3.jar          ` and
     `           sapjco3.jar          ` middleware libraries from the SAP
     support portal and copy those libraries to the
-    `           <EI_HOME>/lib          ` directory.
+    `MI_HOME/lib          ` directory.
 
-        !!! info
+    !!! Info
+        You need to have SAP login credentials to access the SAP support portal.
     
-        Note
-    
-        You need to have SAP login credentials to access the SAP support
-        portal.
-    
-
 3.  Download the native SAP JCo library and copy it to the system path.
     You need to select the system path applicable to your operating
     system as described below.
 
-    |              |                                                                                                                                                                                     |
-    |--------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+    |          OS |                          System Path  |
+    |--------------|-----------------------------------------------------------------------------------------------|
     | Linux 32-bit | Copy the Linux native SAP jcolibrary `                               libsapjco3.so                             ` to `               <JDK_HOME>/jre/lib/i386/server              ` . |
     | Linux 64-bit | Copy the Linux native SAP jcolibrary `                               libsapjco3.so                             ` to `               <JDK_HOME>/jre/lib/amd64              ` .       |
     | Windows      | Copy the Windows native SAP jcolibrary `               sapjco3.dll              ` to `               <WINDOWS_HOME>/system32              ` .                                       |
 
-4.  Create a directory named `           conf          ` in the
-    `           <EI_HOME>/conf/          ` directory.
+4.  Create a directory named `conf` in the
+    `MI_HOME/conf/` directory.
 
-5.  Create a directory named `           sap          ` within the
-    `           conf          ` directory that you created and provide
+5.  Create a directory named `sap` within the
+    `conf` directory that you created and provide
     access rights to read the properties files you will save in it
     later.
 
 6.  Copy the following SAP endpoint properties files to the
-    `           <EI_HOME>/conf/sap/          ` directory. You need to
+    `MI_HOME/conf/sap/          ` directory. You need to
     have two properties files, one at the server-end and the other at
-    the client-end to communicate with an external SAP endpoint using
+    the client end to communicate with an external SAP endpoint using
     IDoc or BAPI.
 
     -   `                         *.dest                       ` : This
-        is where we store SAP endpoint parameters when the ESB Profile
-        of WSO2 EI is configured as a client to an external SAP
+        is where we store SAP endpoint parameters when the Micro Integrator is configured as a client to an external SAP
         endpoint.
     -   `                         *.server                       ` :
-        This is where we store SAP endpoint parameters when the ESB
-        Profile of WSO2 EI is configured as a server to an external SAP
+        This is where we store SAP endpoint parameters when the Micro Integrator is configured as a server to an external SAP
         endpoint.
 
-    For details on creating the properties files and defining the
-    relevant properties, see [Setting up the Client Configuration
-    File](#SAPIntegration-SetupClientPropertyFiles) and [Setting up the
-    Server Configuration File](#SAPIntegration-SetupServerPropertyFiles)
-    .
+    For details on creating the properties files and defining the relevant properties, see [Setting up the Client Configuration File](#setting-up-the-client-configuration-file) and [Setting up the Server Configuration File](#setting-up-the-server-configuration-file).
 
-7.  Start the ESB profile of WSO2 EI using the
+7.  Start the Micro Integrator using the
     `           -Djava.library.path          ` switch to specify the
     location of your SAP jco library.  
-    For example, you can execute the following command to start the ESB
-    Profile:
+    For example, you can execute the following command to start the Micro Integrator from the `MI_HOME` directory:
 
-    ``` java
-        ./integrator.sh -Djava.library.path=/usr/lib/jvm/jre1.7.0/lib/i386/server/
+    ```bash
+    ./micro-integrator.sh -Djava.library.path=/usr/lib/jvm/jre1.7.0/lib/i386/server/
     ```
 
-------------------------------------------------------------------------
+### Setting up the Client Configuration file
 
-### Setting up the Client Configuration File
-
-To setup the ESB profile as a client to a SAP system you need to create
+To setup the Micro Integrator as a client to a SAP system you need to create
 the `         *.dest        ` properties file and define the relevant
 properties. The following table lists the properties and the description
 of each property that should be specified in the
@@ -165,41 +113,35 @@ of each property that should be specified in the
 | **`               jco.client.getsso2              `**       | Get or do not get a SSO ticket after logon (1 or 0)                |
 | **`               jco.client.toupper              `**       | Enable or disable uppercase character conversions for logon        |
 
-!!! info
+!!! Info
+    You can obtain the values for these properties from your SAP system administrator.
 
-Note
+The `*.dest` properties file should be named
+`<SAP-GWHOST>.dest`. For example, if the name of your
+SAP gateway is `SAPSYS`, the name of the file should
+be `SAPSYS.dest.`.
 
-You can obtain the values for these properties from your SAP system
-administrator.
+Following is a sample configuration for the `         *.dest        ` properties file:
 
-
-The `         *.dest        ` properties file should be named
-`         <SAP-GWHOST>.dest        ` . For example, if the name of your
-SAP gateway is `         SAPSYS        ` , the name of the file should
-be `         SAPSYS.dest.        `
-
-Following is a sample configuration for the `         *.dest        `
-properties file:
-
-``` java
-    jco.client.client=800
-    jco.client.user=wso2_user
-    jco.client.passwd=wso2pass14
-    jco.client.lang=en
-    jco.client.ashost=/H/217.116.29.154/S/3299/H/10.100.5.120/S/3200
-    jco.client.gwserv=3300
-    jco.client.sysnr=00
-    jco.client.idle_timeout=300
-    jco.client.logon=0
-    jco.client.msserv=3600
-    jco.client.trace=0
-    jco.client.getsso2=0
-    jco.client.r3name=CPT
+```bash
+jco.client.client=800
+jco.client.user=wso2_user
+jco.client.passwd=wso2pass14
+jco.client.lang=en
+jco.client.ashost=/H/217.116.29.154/S/3299/H/10.100.5.120/S/3200
+jco.client.gwserv=3300
+jco.client.sysnr=00
+jco.client.idle_timeout=300
+jco.client.logon=0
+jco.client.msserv=3600
+jco.client.trace=0
+jco.client.getsso2=0
+jco.client.r3name=CPT
 ```
 
 ### Setting up the Server Configuration File
 
-To setup the ESB Profile of WSO2 EI as an IDoc server, you need to
+To setup the Micro Integrator as an IDoc server, you need to
 create the `         *.server        ` properties file and define the
 relevant properties. The following table lists the properties and the
 description of each property that should be specified in the
@@ -219,87 +161,78 @@ description of each property that should be specified in the
 | **`               jco.server.profile_name              `**                    | Name of the profile file used during start-up                                                                                                                                                                |
 | **`               jco.server.unicode              `**                         | Determines whether or not you connect in unicodemode (1=true, 0=false)                                                                                                                                       |
 | **`               jco.server.max_startup_delay              `**               | Maximum server start-up delay time in seconds                                                                                                                                                                |
-| **`              jco.server.connection_count             `**                  | Number of SAP to the ESB connections                                                                                                                                                                         |
+| **`              jco.server.connection_count             `**                  | Number of SAP to Micro Integrator connections                                                                                                                                                                         |
 | **`                             jco.server.name                           `** | Name of the server configuration. This needs to be the same name provided in the SAP configuration.                                                                                                          |
 
-!!! info
+!!! Info
+    You can obtain the values for these properties from your SAP system administrator.
 
-Note
-
-You can obtain the values for these properties from your SAP system
-administrator.
-
-
-This file should be named `         <SAP-GWHOST>.server        ` . For
+This file should be named `         <SAP-GWHOST>.server        `. For
 example, if the name of your SAP gateway is `         SAPSYS        ` ,
 the name of the file should be `         SAPSYS.server.        `
 
 Following is a sample configuration for the `         *.server        `
 properties file:
 
-``` java
-    jco.server.gwhost=/H/217.116.29.154/S/3299/H/10.100.5.120/S/3200
-    jco.server.gwserv=3300
-    jco.server.progid=IGS.CPT
-    jco.server.repository_destination=IGS.CPT
-    jco.server.name=IGS.CPT
-    jco.server.unicode=1
+```java
+jco.server.gwhost=/H/217.116.29.154/S/3299/H/10.100.5.120/S/3200
+jco.server.gwserv=3300
+jco.server.progid=IGS.CPT
+jco.server.repository_destination=IGS.CPT
+jco.server.name=IGS.CPT
+jco.server.unicode=1
 ```
 
 ### Configuring WSO2 SAP Adapter
 
-Go to the required tab for detailed steps based on how you need to
-configure WSO2 SAP Adapter.
-
--   [**Configure with IDoc adapter**](#a7885a2cc75a4aed8df01f1412360011)
--   [**Configure with BAPI adapter**](#fc931f5e130e4b17b48fd8ab87ea0e27)
+Go to the required tab for detailed steps based on how you need to configure WSO2 SAP Adapter.
 
 WSO2 SAP adapter can be used with IDoc, which is a synchronous interface
-used when exchanging data with the SAP system. WSO2 EI can be configured
-for [Sending IDocs](#SAPIntegration-SendingIDocs) or [Receiving
-IDocs](#SAPIntegration-ReceivingIDocs) when using the SAP adapter.
+used when exchanging data with the SAP system. WSO2 Micro Integrator can be configured
+for [Sending IDocs](#sending-idocs) or [Receiving IDocs](#receiving-idocs) when using the SAP adapter.
 
-##### Sending IDocs
+#### Sending IDocs
 
-Follow the instructions below to configure the ESB Profile as an IDoc
+Follow the instructions below to configure the Micro Integrator as an IDoc
 client using the SAP adapter.
 
 1.  Uncomment the following line in
-    `              <EI_HOME>/conf/axis2/axis2.xml             ` file to
-    enable the IDoc transport sender on axis2 core.
+    `MI_HOME/conf/deployment.toml` file to
+    enable the IDoc transport sender.
 
-    ``` xml
-            <transportSender name=”idoc” class="org.wso2.carbon.transports.sap.SAPTransportSender"/>
+    ```toml
+    [transport.sap]
+    sender.enabled=true
+    sender.idoc.class="org.wso2.carbon.transports.sap.SAPTransportSender"
     ```
 
 2.  Create `              IDocSender             ` proxy service with
     the following configuration:
 
-    ``` xml
-            <proxy xmlns=http://ws.apache.org/ns/synapse 
-                   name="IDocSender"
-                   transports="http" 
-                   startOnLoad="true" 
-                   trace="enable" 
-                   statistics="enable">
-                <target>
-                  <inSequence>
-                     <log level="full"/>
-                     <send>
-                     <endpoint name="sapidocendpoint">
-                         <address uri="idoc:/SAPSYS"/>
-                     </endpoint>
-                     </send>
-                  </inSequence>
-                  <outSequence/>
-               </target>
-               <parameter name="serviceType">proxy</parameter>
-               <description/>
-            </proxy>
+    ```xml
+    <proxy xmlns=http://ws.apache.org/ns/synapse 
+           name="IDocSender"
+           transports="http" 
+           startOnLoad="true" 
+           trace="enable" 
+           statistics="enable">
+        <target>
+          <inSequence>
+             <log level="full"/>
+             <send>
+             <endpoint name="sapidocendpoint">
+                 <address uri="idoc:/SAPSYS"/>
+             </endpoint>
+             </send>
+          </inSequence>
+          <outSequence/>
+       </target>
+       <parameter name="serviceType">proxy</parameter>
+       <description/>
+    </proxy>
     ```
 
-        !!! info
-    
+    !!! Info
         -   If you set the property shown below (use the **Property**
             mediator before the **Send** mediator in the above sequence),
             any business-level error messages that are sent back from the
@@ -307,145 +240,133 @@ client using the SAP adapter.
             sequence. Without this property, the business-level errors from
             SAP can get detected as faulty messages and passed to the Fault
             sequence.
-    
-        ``` java
-                <property name="sap.escape.error.handling" scope="axis2" value="true"/>
-        ```
+            ```xml
+            <property name="sap.escape.error.handling" scope="axis2" value="true"/>
+            ```
         
-            -   The SAP endpoint client properties file
-                `               SAPSYS.dest              ` should be in
-                `               <EI_HOME>/conf/sap              ` folder .
-            -   Additional axis2 level sender parameters that can be defined in
-                the axis2 core are listed in [SAP Transport Sender
-                Parameters](#SAPIntegration-SenderParameters) .
+        -   The SAP endpoint client properties file
+            `               SAPSYS.dest              ` should be in
+            `Mi_HOME/conf/sap              ` folder .
+        -   Additional axis2 level sender parameters that can be defined in
+            the axis2 core are listed in [SAP Transport Sender Parameters](#sap-transport-sender-parameters).
         
-
     You can now send IDocs using the configured WSO2 SAP adapter.
 
-##### Receiving IDocs
+#### Receiving IDocs
 
-Follow the instructions below to configure the ESB Profile as an IDoc
-server using the SAP adapter.
+Follow the instructions below to configure the Micro Integrator as an IDoc server using the SAP adapter.
 
-1.  Uncomment the following line in
-    `              <EI_HOME>/conf/axis2/axis2.xml             ` file to
-    enable IDoc transport receiver in axis2 core.
+1.  Uncomment the following line in the
+    `MI_HOME/conf/deployment.toml` file to
+    enable IDoc transport receiver.
 
-    ``` xml
-        <transportReceiver name=”idoc” class="org.wso2.carbon.transports.sap.SAPTransportListener"/>
+    ```toml
+    [transport.sap]
+    listener.enabled=true
+    listener.idoc.class="org.wso2.carbon.transports.sap.SAPTransportListener"
     ```
 
 2.  Ensure the server configuration file
     `             SAPSYS.server            ` is available in
-    `             <EI_HOME>/conf/sap            ` folder.
-3.  Start the ESB Profile of WSO2 EI using the
+    `MI_HOME/conf/sap            ` folder.
+3.  Start the Micro Integrator using the
     `              -Djava.library.path             ` switch to specify
     the location of your SAP jco library.  
-    For example, you can execute the following command to start the ESB
-    Profile:
+    For example, you can execute the following command to start the Micro Integrator from the `MI_HOME` directory:
 
-    ``` java
-            ./integrator.sh -Djava.library.path=/usr/lib/jvm/jre1.7.0/lib/i386/server/
+    ```bash
+    ./micro-integrator.sh -Djava.library.path=/usr/lib/jvm/jre1.7.0/lib/i386/server/
+    ```
+4.  Create the `IDocReceiver` proxy service with the following configuration:
+
+    ```xml
+    <proxy xmlns=http://ws.apache.org/ns/synapse 
+           name="IDocReceiver"
+           transports="idoc" 
+           statistics="enable" 
+           trace="enable" 
+           startOnLoad="true">
+       <target>
+         <inSequence>
+             <log level="full"/>
+             <drop/>
+        </inSequence>
+        <outSequence>
+            <log level="full"/>
+            <send/>
+        </outSequence>
+      </target>
+      <parameter name="transport.sap.enableTIDHandler">enabled</parameter>
+      <parameter name="transport.sap.serverName">SAPSYS</parameter>
+      <description/>
+    </proxy>
     ```
 
-    `                           `
-
-4.  Create the `              IDocReceiver             ` proxy service
-    with the following configuration:
-
-    ``` xml
-            <proxy xmlns=http://ws.apache.org/ns/synapse 
-                   name="IDocReceiver"
-                   transports="idoc" 
-                   statistics="enable" 
-                   trace="enable" 
-                   startOnLoad="true">
-               <target>
-                 <inSequence>
-                     <log level="full"/>
-                     <drop/>
-                </inSequence>
-                <outSequence>
-                    <log level="full"/>
-                    <send/>
-                </outSequence>
-              </target>
-              <parameter name="transport.sap.enableTIDHandler">enabled</parameter>
-              <parameter name="transport.sap.serverName">SAPSYS</parameter>
-              <description/>
-            </proxy>
-    ```
-
-        !!! info
-    
+    !!! Info
         -   The SAP endpoint server properties file
-            `               SAPSYS.server              ` should be in the
-            `               <EI_HOME>/conf/sap              ` folder.
-        -   Additional proxy level listener parameters that can be defined
-            in the proxy configuration are listed in [Proxy Service Listener
-            Parameters](#SAPIntegration-ListenerParameters) .
-    
+            `SAPSYS.server` should be in the
+            `MI_HOME/conf/sap` folder.
+        -   Additional proxy level listener parameters that can be defined in the proxy configuration are listed in [Proxy Service Listener Parameters](#proxy-service-listener-parameters).
 
     Once the proxy service configuration is saved, WSO2 SAP adapter is
     now ready to receive IDoc messages.
 
-WSO2 SAP adapter so that it can be used with BAPI, which is a
+WSO2 SAP adapter can be used with BAPI, which is a
 synchronous interface used when exchanging data with the SAP system. The
-ESB Profile of WSO2 EI can be configured for [Sending
-BAPIs](#SAPIntegration-SendingBAPI) or [Receiving
-BAPIs](#SAPIntegration-ReceivingBAPI) when using the SAP adapter.
+Micro Integrator can be configured for [Sending BAPIs](#sending-bapis) or 
+[Receiving BAPIs](#receiving-bapis) when using the SAP adapter.
 
-##### Sending BAPIs
+#### Sending BAPIs
 
-Follow the instructions below to configure the ESB profile as a BAPI
+Follow the instructions below to configure the Micro Integrator as a BAPI
 client using the SAP adapter.
 
 1.  Uncomment the following line in
-    `               <EI_HOME>/conf/axis2/axis2.xml              ` file
-    to enable the BAPI transport sender in axis2 core.
+    `MI_HOME/conf/deployment.toml` file to
+    enable the BAPI transport sender.
 
-    ``` xml
-        <transportSender name="bapi" class="org.wso2.carbon.transports.sap.SAPTransportSender"/>
+    ```toml
+    [transport.sap]
+    sender.enabled=true
+    sender.bapi.class="org.wso2.carbon.transports.sap.SAPTransportSender"
     ```
 
-2.  Start the ESB Profile of WSO2 EI using the
-    `              -Djava.library.path             ` switch to specify
+2.  Start the Micro Integrator using the
+    `-Djava.library.path` switch to specify
     the location of your SAP jco library.  
 
-    For example, you can execute the following command to start the ESB
-    Profile:
+    For example, you can execute the following command to start the Micro Integrator from the `MI_HOME` directory:
 
-    ``` java
-            ./integrator.sh -Djava.library.path=/usr/lib/jvm/jre1.7.0/lib/i386/server/
+    ```bash
+    ./micro-integrator.sh -Djava.library.path=/usr/lib/jvm/jre1.7.0/lib/i386/server/
     ```
 
-3.  Create the `               BAPISender              ` proxy service
+3.  Create the `BAPISender` proxy service
     with the following configuration:
 
-    ``` xml
-            <proxy xmlns="http://ws.apache.org/ns/synapse" 
-                   name="BAPISender" 
-                   transports="https,http" 
-                   startOnLoad="true" 
-                   trace="disable">
-                <target>
-                    <inSequence>
-                        <send>
-                            <endpoint name="sap_bapi_endpoint">
-                                <address uri="bapi:/SAPSYS"/>
-                            </endpoint>
-                        </send>
-                    </inSequence>
-                    <outSequence>
-                        <log level="full"/>
-                        <send/>
-                    </outSequence>
-                </target>
-            </proxy>
+    ```xml
+    <proxy xmlns="http://ws.apache.org/ns/synapse" 
+           name="BAPISender" 
+           transports="https,http" 
+           startOnLoad="true" 
+           trace="disable">
+        <target>
+            <inSequence>
+                <send>
+                    <endpoint name="sap_bapi_endpoint">
+                        <address uri="bapi:/SAPSYS"/>
+                    </endpoint>
+                </send>
+            </inSequence>
+            <outSequence>
+                <log level="full"/>
+                <send/>
+            </outSequence>
+        </target>
+    </proxy>
     ```
 
-        !!! info
-    
+    !!! Info
         -   If you set the property shown below (use the **Property**
             mediator before the **Send** mediator in the above sequence),
             any business-level error messages that are sent back from the
@@ -453,90 +374,81 @@ client using the SAP adapter.
             sequence. Without this property, the business-level errors from
             SAP can get detected as faulty messages and passed to the Fault
             sequence.
-    
-        ``` java
-                <property name="sap.escape.error.handling" scope="axis2" value="true"/>
-        ```
+            ```xml
+            <property name="sap.escape.error.handling" scope="axis2" value="true"/>
+            ```
         
-            -   The SAP endpoint client properties file
-                `                SAPSYS.dest               ` should be in the
-                `                <EI_HOME>/conf/sap               ` folder .
-            -   Additional axis2-level sender parameters that can be defined in
-                the axis2 core are listed in [SAP Transport Sender
-                Parameters](#SAPIntegration-SenderParameters) .
+        -   The SAP endpoint client properties file `SAPSYS.dest` should be in the `MI_HOME/conf/sap` folder .
+        -   Additional axis2-level sender parameters that can be defined in the axis2 core are listed in [SAP Transport Sender Parameters](#sap-transport-sender-parameters).
         
+#### Receiving BAPIs
 
-##### Receiving BAPIs
+Follow the instructions below to configure the Micro Integrator as a BAPI server using the SAP adapter.
 
-Follow the instructions below to configure the ESB Profile as a BAPI
-server using the SAP adapter.
+1.  Uncomment the following line in the
+    `MI_HOME/conf/deployment.toml` file to
+    enable BAPI transport receiver.
 
-1.  Uncomment the following line in
-    `               <EI_HOME>/conf/axis2/axis2.xml              ` file
-    to enable the BAPI transport listener in axis2 core.
-
-    ``` xml
-        <transportReceiver name="bapi" class="org.wso2.carbon.transports.sap.SAPTransportListener"/>
+    ```toml
+    [transport.sap]
+    listener.enabled=true
+    listener.bapi.class="org.wso2.carbon.transports.sap.SAPTransportListener"
     ```
 
-2.  Start the ESB Profile of WSO2 EI using the
+2.  Start the Micro Integrator using the
     `               -Djava.library.path              ` switch to specify
     the location of your SAP jco library.  
-    For example, you can execute the following command to start the ESB
-    Profile:
+    For example, you can execute the following command to start the Micro Integrator from the `MI_HOME` directory:
 
-    ``` java
-            ./integrator.sh -Djava.library.path=/usr/lib/jvm/jre1.7.0/lib/i386/server/
+    ```bash
+    ./micro-integrator.sh -Djava.library.path=/usr/lib/jvm/jre1.7.0/lib/i386/server/
     ```
 
 3.  Create the `               BAPIReceiver              ` proxy service
     with the following configuration:
 
-    ``` xml
-            <proxy xmlns=http://ws.apache.org/ns/synapse 
-                   name="BAPIReceiver"
-                   transports="bapi" 
-                   statistics="enable" 
-                   trace="enable" 
-                   startOnLoad="true">
-               <target>
-                 <inSequence>
-                     <log level="full"/>
-                     <drop/>
-                </inSequence>
-                <outSequence>
-                    <log level="full"/>
-                    <send/>
-                </outSequence>
-              </target>
-              <parameter name="transport.sap.enableTIDHandler">enabled</parameter>
-              <parameter name="transport.sap.serverName">SAPSYS</parameter>
-              <description/>
-            </proxy>
+    ```xml
+    <proxy xmlns=http://ws.apache.org/ns/synapse 
+           name="BAPIReceiver"
+           transports="bapi" 
+           statistics="enable" 
+           trace="enable" 
+           startOnLoad="true">
+       <target>
+         <inSequence>
+             <log level="full"/>
+             <drop/>
+        </inSequence>
+        <outSequence>
+            <log level="full"/>
+            <send/>
+        </outSequence>
+      </target>
+      <parameter name="transport.sap.enableTIDHandler">enabled</parameter>
+      <parameter name="transport.sap.serverName">SAPSYS</parameter>
+      <description/>
+    </proxy>
     ```
 
-        !!! info
-    
+    !!! Info
         -   The SAP endpoint server properties file
-            `                SAPSYS.server               ` should be in the
-            `                <EI_HOME>/conf/sap               ` folder .
+            `SAPSYS.server` should be in the
+            `MI_HOME/conf/sap` folder .
         -   Additional proxy level listener parameters that can be defined
-            in the proxy configuration are listed in [Proxy Service Listener
-            Parameters](#SAPIntegration-ListenerParameters) .
+            in the proxy configuration are listed in [Proxy Service Listener Parameters](#proxy-service-listener-parameters).
     
-
-### Additional Configuration Parameter
+### Additional configuration parameters
 
 This section describes additional parameters that can be used when
 configuring WSO2 SAP adapter.
 
-##### SAP Transport Sender Parameters
+#### SAP transport sender parameters
 
 Following are descriptions of the SAP client properties that can be
 defined in the message context with axis2-client scope when using the
-ESB Profile of WSO2 EI as a SAP client to send messages. These
+Micro Integrator as a SAP client to send messages. These
 properties can be added in
-`         <EI_HOME>/conf/axis2/axis-client.        ` xml file:
+`         <EI_HOME>/conf/axis2/axis-client.xml` file:
 
 <table>
 <thead>
@@ -568,20 +480,18 @@ PARSE_WITHOUT_FIELD_DATATYPE_CHECKING 8</p></td>
 </tbody>
 </table>
 
-Following is an Axis2 transport sender property that can be defined in
-`         <EI_HOME>/conf/axis2/axis2.xml        ` file:
+Following is a transport sender property that can be defined in the
+`MI_HOME/conf/deployment.toml` file:
 
 -   **`           transport.sap.customXMLMappers          `** : The
     key/value list of custom mappers, where the values are fully
     qualified class names for custom mappers that are implementing
-    `          org.wso2.carbon.transports.sap.idoc.IDocXMLMapper         `
-    .
+    `          org.wso2.carbon.transports.sap.idoc.IDocXMLMapper         `.
 
-##### Proxy Service Listener Parameters
+#### Proxy service listener parameters
 
 Following are descriptions of the proxy level listener parameters that
-can be defined in a proxy configuration when using the ESB Profile of
-WSO2 EI as a SAP server:
+can be defined in a proxy configuration when using the Micro Integrator as a SAP server:
 
 | Parameter                                                                                            | Description                                                                                                                                                                                                                                                                       |
 |------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -593,112 +503,98 @@ WSO2 EI as a SAP server:
 | **`              transport.sap.              customErrorListener             `**                     | The fully qualified class name for the custom error listener implementing `             JCoServerErrorListener            ` .                                                                                                                                                     |
 | **`              transport.sap.             ` `              customExceptionListener             `** | The fully qualified class name for the custom exception listener implementing `             JCoServerExceptionListener            ` .                                                                                                                                             |
 
-  
-
-------------------------------------------------------------------------
-
 ### Troubleshooting
 
 Given below are general troubleshooting guidelines.
 
--   ##### How to handle the **Server unknown** error
+#### How to handle the **Server unknown** error
 
-    An example of this error message is as follows:
+An example of this error message is as follows:
 
-    ``` java
-        [2010-10-25 19:53:00,405] ERROR - DefaultErrorListener Exception occured on :
-        JCOSERVER01 and connection : null
-        com.sap.conn.jco.JCoException: (129) JCO_ERROR_SERVER_STARTUP: Server startup
-        failed at Mon Oct 25 19:53:00 IST 2010.
-        This is caused by either a) erroneous server settings, b) the backend system has been shutdown,
-        c) network problems. Will try next startup in 1 seconds.
-        Could not start server: Connect to SAP gateway failed
-        Connect parameters: TPNAME=JCOSERVER01 GWHOST=cynthia GWSERV=sapgw00
-        ERROR service 'sapgw00' unknown
-        TIME Mon Oct 25 19:53:00 2010
-        RELEASE 720
-        COMPONENT NI (network interface)
-        VERSION 40
-        RC -3
-        MODULE nixxsl.cpp
-        LINE 184
-        DETAIL NiSrvLGetServNo: service name cached as unknown
-        COUNTER 2
-        at com.sap.conn.jco.rt.DefaultServer.openConnection(DefaultServer.java:1168)
-        at com.sap.conn.jco.rt.DefaultServer.openConnections(DefaultServer.java:1057)
-        at com.sap.conn.jco.rt.DefaultServer.adjustConnectionCount(DefaultServer.java:1004)
-        at
-        com.sap.conn.jco.rt.DefaultServerManager$DispatcherWorker.run(DefaultServerManager.java:
-        299)
-        at java.lang.Thread.run(Thread.java:619)
-        Caused by: com.sap.conn.jco.JCoException: (129) JCO_ERROR_SERVER_STARTUP: Could
-        not start server: Connect to SAP gateway failed
-        Connect parameters: TPNAME=JCOSERVER01 GWHOST=cynthia GWSERV=sapgw00
-        ERROR service 'sapgw00' unknown
-        TIME Mon Oct 25 19:53:00 2010
-        RELEASE 720
-        COMPONENT NI (network interface)
-        VERSION 40
-        RC -3
-        MODULE nixxsl.cpp
-        LINE 184
-        DETAIL NiSrvLGetServNo: service name cached as unknown
-        COUNTER 2
-        at
-        com.sap.conn.jco.rt.MiddlewareJavaRfc$JavaRfcServer.accept(MiddlewareJavaRfc.java:2135)
-        at com.sap.conn.jco.rt.ServerConnection.accept(ServerConnection.java:380)
-        at com.sap.conn.jco.rt.DefaultServer.openConnection(DefaultServer.java:1149)
-        © 2012 WSO2
-        .. 4 more
-        Caused by: RfcException: [null]
-        message: Connect to SAP gateway failed
-        Connect parameters: TPNAME=JCOSERVER01 GWHOST=cynthia GWSERV=sapgw00
-        ERROR service 'sapgw00' unknown
-        TIME Mon Oct 25 19:53:00 2010
-        RELEASE 720
-        COMPONENT NI (network interface)
-        VERSION 40
-        RC -3
-        MODULE nixxsl.cpp
-        LINE 184
-        DETAIL NiSrvLGetServNo: service name cached as unknown
-        COUNTER 2
-        Return code: RFC_FAILURE(1)
-        error group: 102
-        key: RFC_ERROR_COMMUNICATION
-        at com.sap.conn.rfc.engine.RfcIoControl.error_end(RfcIoControl.java:255)
-        at com.sap.conn.rfc.engine.RfcIoControl.ab_rfcaccept(RfcIoControl.java:43)
-        at com.sap.conn.rfc.api.RfcApi.RfcAccept(RfcApi.java:41)
-        at
-        com.sap.conn.jco.rt.MiddlewareJavaRfc$JavaRfcServer.accept(MiddlewareJavaRfc.java:2121)
-        ... 6 more
-    ```
+```java
+[2010-10-25 19:53:00,405] ERROR - DefaultErrorListener Exception occured on :
+JCOSERVER01 and connection : null
+com.sap.conn.jco.JCoException: (129) JCO_ERROR_SERVER_STARTUP: Server startup
+failed at Mon Oct 25 19:53:00 IST 2010.
+This is caused by either a) erroneous server settings, b) the backend system has been shutdown,
+c) network problems. Will try next startup in 1 seconds.
+Could not start server: Connect to SAP gateway failed
+Connect parameters: TPNAME=JCOSERVER01 GWHOST=cynthia GWSERV=sapgw00
+ERROR service 'sapgw00' unknown
+TIME Mon Oct 25 19:53:00 2010
+RELEASE 720
+COMPONENT NI (network interface)
+VERSION 40
+RC -3
+MODULE nixxsl.cpp
+LINE 184
+DETAIL NiSrvLGetServNo: service name cached as unknown
+COUNTER 2
+at com.sap.conn.jco.rt.DefaultServer.openConnection(DefaultServer.java:1168)
+at com.sap.conn.jco.rt.DefaultServer.openConnections(DefaultServer.java:1057)
+at com.sap.conn.jco.rt.DefaultServer.adjustConnectionCount(DefaultServer.java:1004)
+at
+com.sap.conn.jco.rt.DefaultServerManager$DispatcherWorker.run(DefaultServerManager.java:
+299)
+at java.lang.Thread.run(Thread.java:619)
+Caused by: com.sap.conn.jco.JCoException: (129) JCO_ERROR_SERVER_STARTUP: Could
+not start server: Connect to SAP gateway failed
+Connect parameters: TPNAME=JCOSERVER01 GWHOST=cynthia GWSERV=sapgw00
+ERROR service 'sapgw00' unknown
+TIME Mon Oct 25 19:53:00 2010
+RELEASE 720
+COMPONENT NI (network interface)
+VERSION 40
+RC -3
+MODULE nixxsl.cpp
+LINE 184
+DETAIL NiSrvLGetServNo: service name cached as unknown
+COUNTER 2
+at
+com.sap.conn.jco.rt.MiddlewareJavaRfc$JavaRfcServer.accept(MiddlewareJavaRfc.java:2135)
+at com.sap.conn.jco.rt.ServerConnection.accept(ServerConnection.java:380)
+at com.sap.conn.jco.rt.DefaultServer.openConnection(DefaultServer.java:1149)
+© 2012 WSO2
+.. 4 more
+Caused by: RfcException: [null]
+message: Connect to SAP gateway failed
+Connect parameters: TPNAME=JCOSERVER01 GWHOST=cynthia GWSERV=sapgw00
+ERROR service 'sapgw00' unknown
+TIME Mon Oct 25 19:53:00 2010
+RELEASE 720
+COMPONENT NI (network interface)
+VERSION 40
+RC -3
+MODULE nixxsl.cpp
+LINE 184
+DETAIL NiSrvLGetServNo: service name cached as unknown
+COUNTER 2
+Return code: RFC_FAILURE(1)
+error group: 102
+key: RFC_ERROR_COMMUNICATION
+at com.sap.conn.rfc.engine.RfcIoControl.error_end(RfcIoControl.java:255)
+at com.sap.conn.rfc.engine.RfcIoControl.ab_rfcaccept(RfcIoControl.java:43)
+at com.sap.conn.rfc.api.RfcApi.RfcAccept(RfcApi.java:41)
+at
+com.sap.conn.jco.rt.MiddlewareJavaRfc$JavaRfcServer.accept(MiddlewareJavaRfc.java:2121)
+... 6 more
+```
 
-    The solution to overcome this is to add your SAP server names to the
-    `           /etc/services          ` file with the relevant ports.
-    For example, the following lines can be added if we consider the
-    example error given above.
+The solution to overcome this is to add your SAP server names to the `/etc/services` file with the relevant ports. For example, the following lines can be added if we consider the example error given above.
 
-    ``` java
-            sapgw00 3300/tcp
-            sapgw01 3301/tcp
-    ```
+```java
+sapgw00 3300/tcp
+sapgw01 3301/tcp
+```
 
--   **How to handle connection to message server host failed error**
-    **  
-    ** An example of this error message is as follows:
+#### How to handle connection to message server host failed error
 
-    ``` xml
-            Connection parameters: TYPE=B DEST=SAPSYS01 MSHOST=SAPSYS01 MSSERV=3600 R3NAME=ERD GROUP=PUBLIC PCS=1
-        
-            ERROR Group PUBLIC not found
-        
-            TIME Fri Jan 24 15:48:53 2014
-    ```
+An example of this error message is as follows:
 
-    This indicates that that the username (i.e. wso2-user) used in the
-    above configuration is not assigned to the 'public' user group.  
-    The solution to overcome this is to add wso2-user to the user group
-    named public in your SAP system. If such a group does not exist, a
-    user group named 'public' needs be created and the above user needs
-    to be added to that group.
+```xml
+Connection parameters: TYPE=B DEST=SAPSYS01 MSHOST=SAPSYS01 MSSERV=3600 R3NAME=ERD GROUP=PUBLIC PCS=1
+ERROR Group PUBLIC not found
+TIME Fri Jan 24 15:48:53 2014
+```
+
+This indicates that that the username (i.e. wso2-user) used in the above configuration is not assigned to the 'public' user group. The solution to overcome this is to add wso2-user to the user group named public in your SAP system. If such a group does not exist, a user group named 'public' needs be created and the above user needs to be added to that group.

@@ -2,7 +2,7 @@
 This application demonstrates how to configure WSO2 Streaming Integrator to receive events to the `SweetProductionStream` via Kafka transport in Text format using custom mapping and log the events in `LowProductionAlertStream` to the output console.
 
 ## Prerequisites:
-1) Setup Kafka.
+1. Setup Kafka.
 	* Kafka libs to be added and converted to OSGI from `{KafkaHome}/libs` are as follows.
 		* kafka_2.11-0.10.0.0.jar
 		* kafka-clients-0.10.0.0.jar
@@ -12,17 +12,17 @@ This application demonstrates how to configure WSO2 Streaming Integrator to rece
 		* zookeeper-3.4.6.jar
 	*  Add the OSGI converted kafka libs to `{WSO2SIHome}/lib`.
 	*  Add the kafka libs to `{WSO2SIHome}/samples/sample-clients/lib`.
-2) Save this sample.
-3) If there is no syntax error, the following message is shown on the console:
+2. Save this sample.
+3. If there is no syntax error, the following message is shown on the console:
 	```
 	* Siddhi App PublishKafkaInJsonFormat successfully deployed.
 	```
 
 ## Note:
 To convert Kafka libs to OSGI,
-1) Create a folder (eg: kafka) and copy Kafka libs to be added from `{KafkaHome}/libs`.
-2) Create another folder (eg: kafka-osgi, This folder will have the libs that converted to OSGI).
-3) Navigate to `{WSO2SIHome}/bin` and issue the following command.
+1. Create a folder (eg: kafka) and copy Kafka libs to be added from `{KafkaHome}/libs`.
+2. Create another folder (eg: kafka-osgi, This folder will have the libs that converted to OSGI).
+3. Navigate to `{WSO2SIHome}/bin` and issue the following command.
 	- For Linux:
 		```bash
 		./jartobundle.sh <path/kafka> <path/kafka-osgi>
@@ -31,17 +31,17 @@ To convert Kafka libs to OSGI,
 		```bash
 		./jartobundle.bat <path/kafka> <path/kafka-osgi>
 		```
-	4) If converted successfully then for each lib, following messages would be shown on the terminal.
-		```
-	   	- INFO: Created the OSGi bundle <kafka-lib-name>.jar for JAR file <absolute_path>/kafka/<kafka-lib-name>.jar
-		```
-	5) You can find the osgi converted libs in kafka-osgi folder. You can copy that to `{WSO2SIHome}/lib`.
+4. If converted successfully then for each lib, following messages would be shown on the terminal.
+    ```
+    - INFO: Created the OSGi bundle <kafka-lib-name>.jar for JAR file <absolute_path>/kafka/<kafka-lib-name>.jar
+    ```
+5. You can find the osgi converted libs in kafka-osgi folder. You can copy that to `{WSO2SIHome}/lib`.
 
 ## Executing the Sample:
-1) Navigate to `{KafkaHome}` and start zookeeper node using `bin/zookeeper-server-start.sh config/zookeeper.properties`.
-2) Navigate to `{KafkaHome}` and start kafka server node using `bin/kafka-server-start.sh config/server.properties`.
-3) Start the Siddhi application by clicking on 'Run'.
-4) If the Siddhi application starts successfully, the following messages are shown on the console:
+1. Navigate to `{KafkaHome}` and start zookeeper node using `bin/zookeeper-server-start.sh config/zookeeper.properties`.
+2. Navigate to `{KafkaHome}` and start kafka server node using `bin/kafka-server-start.sh config/server.properties`.
+3. Start the Siddhi application by clicking on 'Run'.
+4. If the Siddhi application starts successfully, the following messages are shown on the console:
 	```
 	- ReceiveKafkaInTextFormatWithCustomMapping.siddhi - Started Successfully!
 	- Kafka version : 0.10.0.0

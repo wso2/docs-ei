@@ -1,5 +1,5 @@
 # Using the File Inbound Protocol
-## Failure tracking
+## Failure tracking using File Inbound
 
 ### Example use case
 
@@ -14,7 +14,7 @@ processing and schedule a move task to move that file.
 
 ### Synapse configuration
 
-```xml
+```xml tab='Inbound Endpoint'
 <?xml version="1.0" encoding="UTF-8"?>
 <inboundEndpoint xmlns="http://ws.apache.org/ns/synapse" 
                  name="file" sequence="request" 
@@ -36,25 +36,23 @@ processing and schedule a move task to move that file.
 </inboundEndpoint>
 ```
 
-```xml
+```xml tab='Sequence'
 <?xml version="1.0" encoding="UTF-8"?>
 <sequence xmlns="http://ws.apache.org/ns/synapse" name="request">
     <send/>
 </sequence>
 ```
 
-## Build and run
+### Build and run
 
 Create the artifacts:
 
-1. Set up WSO2 Integration Studio.
-2. Create an ESB Solution project
-3. Create the following artifacts: Inbound endpoint, Sequence.
-4. Deploy the artifacts in your Micro Integrator.
+1. [Set up WSO2 Integration Studio](../../../../develop/installing-WSO2-Integration-Studio).
+2. [Create an ESB Solution project](../../../../develop/creating-projects/#esb-config-project)
+3. Create a [mediation sequence](../../../../develop/creating-artifacts/creating-reusable-sequences) and [inbound endpoint](../../../../develop/creating-an-inbound-endpoint) with configurations given in the above example.
+4. [Deploy the artifacts](../../../../develop/deploy-and-run) in your Micro Integrator.
 
-Set up the back-end service.
-
-Invoke the inbound endpoint.
+Invoke the inbound endpoint:
 
 ## Configuring FTP, SFTP, and FILE Connections
 

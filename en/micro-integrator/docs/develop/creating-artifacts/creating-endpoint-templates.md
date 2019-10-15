@@ -14,8 +14,3 @@ Follow these steps to create a new scheduled task.
     -   To save the endpoint in a new ESB Config project, click **Create new Project** and create the new project.
 6.  Click **Finish** . The template is created in the `src/main/synapse-config/templates` folder under the ESB Config project you specified.
 7.  Open the new artifact from the project explorer, and update any [optional endpoint template properties](../../../references/synapse-properties/template-properties/#endpoint-template-properties).
-
-## Examples
-..
-
-## Guides

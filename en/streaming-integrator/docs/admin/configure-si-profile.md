@@ -1,1 +1,0 @@
-#Configuring the Streaming Integration Profile

@@ -1,14 +1,12 @@
 # JMS Synchronous Invocations : Quad Channel JMS-to-JMS
 
-The following diagram depicts quad-channel JMS synchronous invocations of the WSO2 Micro Integrator.
-
-![](attachments/119130326/119130327.png)
+The example demonstrates quad-channel JMS synchronous invocations of the WSO2 Micro Integrator.
 
 ## Synapse configuration 
 
 The proxy service configuration.
 
-```
+```xml
 <proxy name="QuadJMS" transports="jms" xmlns="http://ws.apache.org/ns/synapse">
           <target>
               <inSequence>
@@ -89,17 +87,3 @@ The Synapse artifacts used are explained below.
     ``` java
     com.ctc.wstx.exc.WstxUnexpectedCharException: Unexpected character '=' (code 61); expected a semi-colon after the reference for entity 'java.naming.factory.initial' at [row,col {unknown-source}
     ``` 
-
-## Run the Example
-
-1.  Configure the Micro Integrator with Apache ActiveMQ and set up the JMS Sender.
-2.  Start WSO2 Integration Studio and create a proxy service with the above configuration. You can copy the synapse configuration given above to the **Source View** of your proxy service.
-3.  Send a message to the Micro Integrator by executing the following command from the `MI_HOME/samples/axis2Client          `
-    folder.
-
-    ``` java
-    .....
-    ```
-
-    !!! Info
-        You can view the ActiveMQ queue by accessing the ActiveMQ management console using the URL `http://0.0.0.0:8161/admin`and using `admin` as both the username and password.

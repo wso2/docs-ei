@@ -23,4 +23,21 @@ Follow the instructions given below to create a new Message Processor artifact i
 
 ## Examples
 
-## Guides
+<ul>
+	<li>
+		<a href="../../../../use-cases/examples/message_store_processor_examples/using-message-forwarding-processor">Using the Message Forwarding Processor</a>
+	</li>
+	<li>
+		<a href="../../../../use-cases/examples/message_store_processor_examples/using-message-sampling-processor">Using the Message Sampling Processor</a>
+	</li>
+	<li>
+		<a href="../../../../use-cases/examples/message_store_processor_examples/securing-message-processor">Securing the Message Forwarding Processor</a>
+	</li>
+	<li>
+		<a href="../../../../use-cases/examples/message_store_processor_examples/loadbalancing-with-message-processor">Load Balancing with Message Forwarding Processor</a>
+	</li>
+</ul>
+
+## Tutorials
+
+-	See the tutorial on [using message stores and processors](../../../../use-cases/tutorials/storing-and-forwarding-messages)

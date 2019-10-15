@@ -1,12 +1,11 @@
 # VFS Transport
-## Example use case
 
-The Micro Integrator can access the local file system using the [VFS transport](../../setup/transport_configurations/configuring-transports/configuring-the-vfs-transport) sender and
-receiver. This sample demonstrates the VFS transport in action, using the file system as a transport medium.
+The Micro Integrator can access the local file system using the [VFS transport](../../../../references/synapse-properties/transport-parameters/vfs-transport-parameters.md) sender and
+receiver. This example demonstrates the VFS transport by using the file system as a transport medium.
 
 ## Synapse configuration
 
-The XML configuration for this sample is as follows:
+Following are the integration artifacts (proxy service) that we can used to implement this scenario.
 
 ```xml
 <definitions xmlns="http://ws.apache.org/ns/synapse">
@@ -50,15 +49,16 @@ To configure a VFS endpoint, use the `vfs:file` prefix in the URI. For example:
 
 ## Build and run
 
-1.  Create the file directories:
+To test this sample, the following files and directories should be created:
 
-    -   Create 3 new directories (folders) named **in** , **out** and
-        **original** in a suitable location in a test directory (e.g.,
+-   Create the file directories:
+
+    -   Create 3 new directories (folders) named **in** , **out**, and **original** in a suitable location in a test directory (e.g.,
         /home/user/test) in the local file system. 
-    -   Be sure to update the **in**, **original**, and **original** directory locations with the values given as the 
-        `          transport.vfs.FileURI         ` ,
-        `          transport.vfs.MoveAfterProcess         ` ,
-        `          transport.vfs.MoveAfterFailure         ` parameter values in your synapse configuration. 
+    -   Be sure to update the **in**, **out**, and **original** directory locations with the values given as the 
+        `transport.vfs.FileURI`,
+        `transport.vfs.MoveAfterProcess`,
+        `transport.vfs.MoveAfterFailure` parameter values in your synapse configuration. 
     -   You need to set both
         `          transport.vfs.MoveAfterProcess         ` and
         `          transport.vfs.MoveAfterFailure         ` parameter
@@ -66,7 +66,7 @@ To configure a VFS endpoint, use the `vfs:file` prefix in the URI. For example:
     -   Be sure that the endpoint in the `<outSequence>` points to the **out** directory location. Make sure that the prefix
         `          vfs:         ` in the endpoint URL is not removed or changed.
 
-2.  Create the `test.xml` file shown below and copy it to the location specified in `transport.vfs.FileURI` in the configuration (i.e., the **in** directory). This contains a simple stock quote request in XML/SOAP format.
+-   Create the `test.xml` file shown below and copy it to the location specified by the `transport.vfs.FileURI` property in the configuration (i.e., the **in** directory). This contains a simple stock quote request in XML/SOAP format.
 
     ```xml
     <?xml version='1.0' encoding='UTF-8'?>
@@ -81,6 +81,4 @@ To configure a VFS endpoint, use the `vfs:file` prefix in the URI. For example:
     </soapenv:Envelope>
     ```
 
-3. Analyzing the output
-
-    You will see that the VFS transport listener picks the file from the **in** directory and sends it to the Axis2 service over HTTP. Then you will see that the request XML file is moved to the **original** directory and that the response from the Axis2 server is saved to the **out** directory.
+When the sample is executed, the VFS transport listener picks the file from the **in** directory and sends it to the back service over HTTP. Then the request XML file is moved to the **original** directory and the response is saved to the **out** directory.

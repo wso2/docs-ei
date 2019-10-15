@@ -27,7 +27,7 @@ server.
 
 1.  Add the following parameters to the `log4j.properties` file (stored in the `MI_HOME/conf/` directory):
 
-    ``` java
+    ```xml
     # correlation logs
     log4j.logger.correlation=INFO, CORRELATION
     log4j.additivity.correlation=false
@@ -48,12 +48,12 @@ server.
 3.  **If required** , you can change the default HTTP header (which is
     'activity_id') that is used to carry the correlation ID by adding
     the following property to the
-    `ei.toml` file (stored in the `MI_HOME/conf/` directory). Replace
+    `deployment.toml` file (stored in the `MI_HOME/conf/` directory). Replace
     `<correlation_id>` with a value of your choice.
 
-    ``` toml
-    [correlation_header]
-    correlation_header_name=<correlation_id>
+    ```toml
+    [passthru_properties]
+    correlation_header_name="<correlation_id>"
     ```
 
 Once the logs are configured, correlation logging should be enabled in
@@ -68,7 +68,7 @@ You can enable correlation logging by passing a system property.
     script (stored in the `MI_HOME/bin/          `
     directory) and set it to `           true          ` .
 
-    ``` java
+    ```bash
     -DenableCorrelationLogs=true \
     ```
 
@@ -112,14 +112,14 @@ analyze, you can isolate the relevant logs as explained below.
 2.  Execute the following command with the required correlation ID.
     Replace `<correlation_ID>` with the required value.
 
-    ``` java
+    ```bash
     cat correlation.log | grep "<correlation_ID>"
     ```
 
 Shown below is an example of correlation log entries corresponding to
 the round trip of a single HTTP request.
 
-``` java
+```xml
 2018-11-30 15:27:27,262|correlationID|HTTP-Listener I/O dispatcher-5|0|HTTP State Transition|http-incoming-17|POST|/healthcare/categories/surgery/reserve|REQUEST_HEAD
 2018-11-30 15:27:27,262|correlationID|HTTP-Listener I/O dispatcher-5|0|HTTP State Transition|http-incoming-17|POST|/healthcare/categories/surgery/reserve|REQUEST_BODY
 2018-11-30 15:27:27,263|correlationID|HTTP-Listener I/O dispatcher-5|1|HTTP State Transition|http-incoming-17|POST|/healthcare/categories/surgery/reserve|REQUEST_DONE
@@ -140,11 +140,11 @@ the round trip of a single HTTP request.
 The pattern/format of a correlation log is shown below along with an
 example log entry.
 
-``` bash tab="Log Pattern"
+```bash tab="Log Pattern"
 Time Stamp|Correlation ID|Thread name|Duration|Call type|Connection name|Method type|Connection URL|HTTP state
 ```
 
-``` bash tab="Example Log"
+```bash tab="Example Log"
 2018-10-26 17:34:40,464|de461a83-fc74-4660-93ed-1b609ecfac23|HTTP-Listener I/O dispatcher-3|535|HTTP|http-incoming-3|GET|/api/querydoctor/surgery|ROUND-TRIP LATENCY
 ```
 
@@ -288,4 +288,3 @@ The detail recorded in a log entry is described below.
 </tr>
 </tbody>
 </table>
-

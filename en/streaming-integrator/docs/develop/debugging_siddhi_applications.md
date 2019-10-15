@@ -1,4 +1,4 @@
-# Debugging a Siddhi Application
+# Debugging Siddhi Applications
 
 WSO2 Streaming Integrator Studio allows debugging tasks to be carried out to
 ensure that the Siddhi applications you create and deploy are validated
