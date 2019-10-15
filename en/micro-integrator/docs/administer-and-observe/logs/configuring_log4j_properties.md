@@ -1,19 +1,17 @@
 # Configuring Log4j Properties
 
-All WSO2 products are shipped with the log4j logging capabilities , which generates administrative activities and server side logs. The log4j.properties file, which governs how logging is performed by the server can be found in the MI_HOME/conf directory.
+All WSO2 products are shipped with the log4j logging capabilities , which generates administrative activities and server side logs. The log4j2.properties file, which governs how logging is performed by the server can be found in the MI_HOME/conf directory.
 
 There are three main components when configuring log4j: **Loggers**, **Appenders**, and **Layouts**. 
 
-First, the server stores new values in the database and then changes the appropriate components in the logging framework, enabling the logging properties to be updated immediately.
-
 ## Setting the log level
 
-The log level can be set specifically for each appender in the `         log4j.properties        ` file by setting the threshold value. If a log level is not specifically given for an appender as explained below, the root log level (INFO) will apply to all appenders by default.
+The log level can be set specifically for each appender in the `         log4j2.properties        ` file by setting the threshold value. If a log level is not specifically given for an appender as explained below, the root log level (INFO) will apply to all appenders by default.
 
 For example, shown below is how the log level is set to DEBUG for the `CARBON_LOGFILE` appender:
 
 ``` java
-log4j.appender.CARBON_LOGFILE.threshold=DEBUG
+appender.CARBON_LOGFILE.filter.threshold.level = DEBUG
 ```
 
 Listed below are the log levels that can be configured:
@@ -33,13 +31,7 @@ Listed below are the log levels that can be configured:
 The log pattern defines the output format of the log file. This is the layout pattern that describes the log message format.
 
 **Identifying forged messages**: 
-The conversion character 'K' can be used in the pattern layout to log a UUID. For example, the log pattern can be [%K] [%T] [%S] [%d] %P%5p {%c} - %x %m {%c}%n, where [%K] is the UUID. 
-
-The UUID can be used for identifying forged messages in the log. By default, the UUID will be generated every time the server starts. If required, you can configure the UUID regeneration period by manually adding the following property to the `log4j.properties` file (stored in the `MI_HOME/conf` directory):
-
-``` java
-log4j.appender.CARBON_LOGFILE.layout.LogUUIDUpdateInterval=<number_of_hours>
-```
+The conversion character 'u' can be used in the pattern layout to log a UUID. For example, the log pattern can be  [%u] [%d] %5p {%c} - %m%ex%n, where [%u] is the UUID. 
 
 ## Setting the Sys Log Host
 
@@ -68,11 +60,28 @@ This section allows you to configure appenders individually. Log4j allows loggin
 
 ## Configuring Log4j Loggers
 
-A Logger is an object used to log messages for a specific system or application component. Loggers are normally named using a hierarchical dot-separated namespace and have a 'child-parent' relationship. For example, the logger named 'root.sv' is a parent of the logger named 'root.sv.sf' and a child of 'root'.
+A Logger is an object used to log messages for a specific system or application component. 
 
-When the server starts for the first time, all the loggers initially listed in the log4j.properties file appear on the logger name list. This section allows you to browse through all these loggers, define a log level and switch on/off additivity to any of them. After editing, the logging properties are read only from the database.
+The logger element must have a name attribute specified, will usually have a level attribute specified and may also have an additivity attribute specified. The level may be configured with one of TRACE, DEBUG, INFO, WARN, ERROR, ALL or OFF. 
 
--   **Logger**: The name of a logger.
--   **Parent Logger**: The name of a parent logger.
--   **Level**: Allows to select level (threshold) from the drop-down menu. After you specify the level for a certain logger, a log request for that logger will only be enabled if its level is equal or higher to the logger’s level. If a given logger is not assigned a level, then it inherits one from its closest ancestor with an assigned level. Refer to the hierarchy of levels given above. See descriptions of the available log levels .
+-   **Name**: The name of a logger.
+-   **Level**: Allows to configure level (threshold). After you specify the level for a certain logger, a log request for that logger will only be enabled if its level is equal or higher to the logger’s level. If a given logger is not assigned a level, then it inherits one from its closest ancestor with an assigned level. Refer to the hierarchy of levels given above. See descriptions of the available log levels .
 -   **Additivity**: Allows to inherit all the appenders of the parent Logger if set as 'True'.
+
+Add logger in the log4j2.properties file:
+```
+logger.<Logger_Name>.name = <Component_name>
+logger.<Logger_Name>.type = INFO
+```
+
+For an example:
+```xml
+logger.VFSTransportSender.name = org.apache.synapse.transport.vfs.VFSTransportSender
+logger.VFSTransportSender.level = WARN
+```
+
+Then add the logger to the loggers list by referring to the logger name
+
+```xml
+loggers = AUDIT_LOG, SERVICE_LOGGER, VFSTransportSender, 
+```

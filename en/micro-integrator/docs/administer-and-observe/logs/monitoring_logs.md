@@ -26,43 +26,55 @@ Listed below are the various log types used in WSO2 Micro Integrator.
 
 ## Carbon logs
 
-The Carbon log file (`wso2carbon.log`) covers all the management features of a product. Carbon logs are configured in the `log4j.properties` file (stored in the `MI_HOME/conf` directory).
+The Carbon log file (`wso2carbon.log`) covers all the management features of a product. Carbon logs are configured in the `log4j2.properties` file (stored in the `MI_HOME/conf` directory).
 
 The Carbon log file is enabled in the product by default as shown below. You can configure the details that is captured in this log file by [configuring the log4j properties](../logs/configuring_log4j_properties.md).
 
 ```
 # CARBON_LOGFILE is set to be a DailyRollingFileAppender using a PatternLayout.
-log4j.appender.CARBON_LOGFILE=org.wso2.carbon.utils.logging.appenders.CarbonDailyRollingFileAppender
+appender.CARBON_LOGFILE.type = RollingFile
+appender.CARBON_LOGFILE.name = CARBON_LOGFILE
+appender.CARBON_LOGFILE.fileName = ${sys:carbon.home}/repository/logs/wso2carbon.log
+appender.CARBON_LOGFILE.filePattern = ${sys:carbon.home}/repository/logs/wso2carbon-%d{MM-dd-yyyy}.log
+appender.CARBON_LOGFILE.layout.type = PatternLayout
+appender.CARBON_LOGFILE.layout.pattern = [%d] %5p {%c} - %m%ex%n
+appender.CARBON_LOGFILE.policies.type = Policies
+appender.CARBON_LOGFILE.policies.time.type = TimeBasedTriggeringPolicy
+appender.CARBON_LOGFILE.policies.time.interval = 1
+appender.CARBON_LOGFILE.policies.time.modulate = true
+appender.CARBON_LOGFILE.policies.size.type = SizeBasedTriggeringPolicy
+appender.CARBON_LOGFILE.policies.size.size=10MB
+appender.CARBON_LOGFILE.strategy.type = DefaultRolloverStrategy
+appender.CARBON_LOGFILE.strategy.max = 20
+appender.CARBON_LOGFILE.filter.threshold.type = ThresholdFilter
+appender.CARBON_LOGFILE.filter.threshold.level = DEBUG
 
-# Log file will be overridden by the configuration setting in the DB. This path should be relative to WSO2 Carbon Home
-log4j.appender.CARBON_LOGFILE.File=${carbon.home}/repository/logs/${instance.log}/wso2carbon${instance.log}.log
-log4j.appender.CARBON_LOGFILE.Append=true
-log4j.appender.CARBON_LOGFILE.layout=org.wso2.carbon.utils.logging.TenantAwarePatternLayout
-
-# ConversionPattern will be overridden by the configuration setting in the DB
-log4j.appender.CARBON_LOGFILE.layout.ConversionPattern=[%d] [%T] [%S] [%t] %P%5p {%c} - %x %m%n
-log4j.appender.CARBON_LOGFILE.layout.TenantPattern=%U%@%D [%T] [%S]
-log4j.appender.CARBON_LOGFILE.threshold=DEBUG
 ```
 
 ## Audit logs
 
-Audit logs are used for tracking the sequence of actions that affect a particular task carried out on the server. These are also configured in the `log4j.properties` file (stored in the `MI_HOME/conf` directory).
+Audit logs are used for tracking the sequence of actions that affect a particular task carried out on the server. These are also configured in the `log4j2.properties` file (stored in the `MI_HOME/conf` directory).
 
 Audit logs are enabled in the product by default as shown below. You can configure the details that are captured in this log file by [configuring the log4j properties](../logs/configuring_log4j_properties.md).
 
 ```
-log4j.logger.AUDIT_LOG=INFO, AUDIT_LOGFILE
-         
 # Appender config to AUDIT_LOGFILE
-log4j.appender.AUDIT_LOGFILE=org.wso2.carbon.utils.logging.appenders.CarbonDailyRollingFileAppender
-log4j.appender.AUDIT_LOGFILE.File=${carbon.home}/repository/logs/audit.log
-log4j.appender.AUDIT_LOGFILE.Append=true
-log4j.appender.AUDIT_LOGFILE.layout=org.wso2.carbon.utils.logging.TenantAwarePatternLayout
-log4j.appender.AUDIT_LOGFILE.layout.ConversionPattern=[%d] %P%5p {%c}- %x %m %n
-log4j.appender.AUDIT_LOGFILE.layout.TenantPattern=%U%@%D [%T] [%S]
-log4j.appender.AUDIT_LOGFILE.threshold=INFO
-log4j.additivity.AUDIT_LOG=false
+appender.AUDIT_LOGFILE.type = RollingFile
+appender.AUDIT_LOGFILE.name = AUDIT_LOGFILE
+appender.AUDIT_LOGFILE.fileName = ${sys:carbon.home}/repository/logs/audit.log
+appender.AUDIT_LOGFILE.filePattern = ${sys:carbon.home}/repository/logs/audit-%d{MM-dd-yyyy}.log
+appender.AUDIT_LOGFILE.layout.type = PatternLayout
+appender.AUDIT_LOGFILE.layout.pattern = TID: [%d] %5p {%c} - %m%ex%n
+appender.AUDIT_LOGFILE.policies.type = Policies
+appender.AUDIT_LOGFILE.policies.time.type = TimeBasedTriggeringPolicy
+appender.AUDIT_LOGFILE.policies.time.interval = 1
+appender.AUDIT_LOGFILE.policies.time.modulate = true
+appender.AUDIT_LOGFILE.policies.size.type = SizeBasedTriggeringPolicy
+appender.AUDIT_LOGFILE.policies.size.size=10MB
+appender.AUDIT_LOGFILE.strategy.type = DefaultRolloverStrategy
+appender.AUDIT_LOGFILE.strategy.max = 20
+appender.AUDIT_LOGFILE.filter.threshold.type = ThresholdFilter
+appender.AUDIT_LOGFILE.filter.threshold.level = INFO
 ```
 
 ## Patch logs 
@@ -93,22 +105,46 @@ There are two incoming messages and two outgoing messages in the above log. The 
 Enable wire logs by setting by uncommenting the following parameter and [updating the log level](../configuring_log4j_properties/#setting-the-log-level) (which is DEBUG by default).
 
 ``` java
-log4j.logger.org.apache.synapse.transport.http.wire=DEBUG
+logger.synapse-transport-http-wire.name=org.apache.synapse.transport.http.wire
+logger.synapse-transport-http-wire.level=DEBUG
+```
+
+Then add to the loggers list by comma-separate
+```xml
+loggers = synapse-transport-http-wire, AUDIT_LOG, SERVICE_LOGGER, trace-messages,
 ```
 
 ## Service/Event Tracing logs 
 
-These are logs that are enabled in some WSO2 Micro Integrator for tracing services and events using a separate log file (`wso2-<product>-trace.log`). If server/event tracing logs are used in your product, you can configure them in the `log4j.properties` file (stored in the `MI_HOME/conf` directory).
+These are logs that are enabled in some WSO2 Micro Integrator for tracing services and events using a separate log file (`wso2carbon-trace-messages.log`). If server/event tracing logs are used in your product, you can configure them in the `log4j2.properties` file (stored in the `MI_HOME/conf` directory).
 
-A separate log file for tracing services/events are enabled for certain WSO2 products in the `           log4j.properties          `file using a specific appender. These logs are published to a file named `           wso2-<product>-trace.log          ` . 
+A separate log file for tracing services/events are enabled for certain WSO2 products in the `           log4j2.properties          `file using a specific appender. These logs are published to a file named `           wso2carbon-trace-messages.log          ` .
 
-See instructions on [configuring the log4j properties](../logs/configuring_log4j_properties.md).
+```xml
+# Appender config to CARBON_TRACE_LOGFILE
+appender.CARBON_TRACE_LOGFILE.type = RollingFile
+appender.CARBON_TRACE_LOGFILE.name = CARBON_TRACE_LOGFILE
+appender.CARBON_TRACE_LOGFILE.fileName = ${sys:carbon.home}/repository/logs/wso2carbon-trace-messages.log
+appender.CARBON_TRACE_LOGFILE.filePattern = ${sys:carbon.home}/repository/logs/wso2carbon-trace-messages-%d{MM-dd-yyyy}.log
+appender.CARBON_TRACE_LOGFILE.layout.type = PatternLayout
+appender.CARBON_TRACE_LOGFILE.layout.pattern = [%d] %5p {%c} - %m%ex%n
+appender.CARBON_TRACE_LOGFILE.policies.type = Policies
+appender.CARBON_TRACE_LOGFILE.policies.time.type = TimeBasedTriggeringPolicy
+appender.CARBON_TRACE_LOGFILE.policies.time.interval = 1
+appender.CARBON_TRACE_LOGFILE.policies.time.modulate = true
+appender.CARBON_TRACE_LOGFILE.policies.size.type = SizeBasedTriggeringPolicy
+appender.CARBON_TRACE_LOGFILE.policies.size.size=10MB
+appender.CARBON_TRACE_LOGFILE.strategy.type = DefaultRolloverStrategy
+appender.CARBON_TRACE_LOGFILE.strategy.max = 20
+```
+
+See instructions on [configuring the log4j2 properties](../logs/configuring_log4j_properties.md).
 
 ## HTTP Access logs
 
 HTTP requests/responses are logged to monitor the activities related to an application's usage. HTTP access logs help you monitor information such as the persons who access the product, how many hits are received, what the errors are, etc. This information is useful for troubleshooting errors.
 
-In the Micro Integrator, access logs can be generated for the PassThrough and NIO transports. The PassThrough/NIO transports works on 8280/8243 ports and is used for API/Service invocations. By default, the access logs from both the servlet transport and the PassThrough/NIO transports are written to a common access log file located in the `MI_HOME/repository/logs/` directory.
+In the Micro Integrator, access logs can be generated for the PassThrough and transport. The PassThrough transport works on 8280/8243 ports and is used for API/Service invocations. By default, the access logs from PassThrough transport are written to a common access log file located in the `MI_HOME/repository/logs/` directory.
 
 <!--
 ### Configuring access logs for the HTTP servlet transport
@@ -199,18 +235,24 @@ below to configure access logs for the HTTP servlet transport:
     is rotated on a daily basis.
 -->
 
-### Configuring access logs for the PassThrough and NIO transports (Service/API invocation)
+### Configuring access logs for the PassThrough transport (Service/API invocation)
 
 !!! note
-    Access logs for the PassThrough/NIO transports log the request and the response on **two** separate log lines.
+    Access logs for the PassThrough transport log the request and the response on **two** separate log lines.
 
-By default, access logs related to service/API invocation are disabled for performance reasons in the above products. You should enable these access log only for troubleshooting errors. Follow the steps given below to enable access logs for the PassThrough transport:
+By default, access logs related to service/API invocation are enabled. You can disable these access log. Follow the steps given below to enable access logs for the PassThrough transport:
 
-1.  Change the log level from `           WARN          ` to `           INFO          ` for the following entry in the
-    `           MI_HOME/conf/log4j.properties          ` configuration file.
+1.  Change the log level to `           WARN          ` for the following entry in the
+    `           MI_HOME/conf/log4j2.properties          ` configuration file.
 
     ``` xml
-    log4j.logger.org.apache.synapse.transport.http.access=INFO
+    logger.PassThroughAccess.name = org.apache.synapse.transport.http.access
+    logger.PassThroughAccess.level = INFO
+    ```
+    
+    Then add to the loggers list by comma-separate
+    ```xml
+    loggers = PassThroughAccess, AUDIT_LOG, SERVICE_LOGGER, trace-messages,
     ```
 
 2.  You can customize the format of this access log by changing the following property values in the `MI_HOME/conf/access-log.properties` configuration file. If this file does not exist in the product by default, you can create a new file with the following parameters.
@@ -324,7 +366,7 @@ By default, access logs related to service/API invocation are disabled for per
         Note that there will be delay in printing the logs to the log file.
     
 
-### Supported log pattern formats for the PassThrough and NIO transports
+### Supported log pattern formats for the PassThrough transport
 
 <table>
 <thead>
