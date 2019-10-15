@@ -1,4 +1,7 @@
-# References
+---
+title: References
+note: This is an auto-generated file do not edit this, You can edit content in "ballerina-integrator" repo
+---
 
 ## Ballerina Central
 [Ballerina Central](https://central.ballerina.io/) is a publicly accessible directory that can be used to share your local modules with a wider community.

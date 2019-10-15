@@ -71,7 +71,7 @@ Invoke the Micro Integrator:
 ant stockquote -Dtrpurl=http://localhost:8280/
 ```
 
-When you have a look at the `         synapse_sample_62.xml        `
+When you have a look at the above
 configuration,  you will see that it routes a cloned copy of a message
 to each recipient defined within the dynamic recipient list , and that
 each recipient responds back with a stock quote. When all the responses

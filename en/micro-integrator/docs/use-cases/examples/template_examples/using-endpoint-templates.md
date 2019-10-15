@@ -84,7 +84,3 @@ Create the artifacts:
 2. Create an ESB Config project
 3. Create the mediation artifacts with the above configuration.
 4. Deploy the artifacts in your Micro Integrator.
-
-Set up the back-end service:
-
-Invoke the service.

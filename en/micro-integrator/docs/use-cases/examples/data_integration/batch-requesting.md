@@ -1,4 +1,4 @@
-# Invoking an Operation with Multiple Records
+# Batch Requesting
 
 The batch requests feature allows you to send multiple (IN-Only)
 requests to a datasource using a single operation (batch operation).

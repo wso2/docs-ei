@@ -38,7 +38,18 @@ Follow the instructions given below to create a new Inbound Endpoint artifact in
     Note that this setting may be required in Windows environments as the process of closing a port can sometimes take longer than 10 seconds.xss
 
 ## Examples
-..
 
-## Guides
-...
+-   [JMS Inbound Endpoint example](../../../use-cases/examples/inbound_endpoint_examples/inbound-endpoint-jms-protocol)
+-   [File Inbound Endpoint example](../../../use-cases/examples/inbound_endpoint_examples/file-inbound-endpoint)
+-   [HTTP Inbound Endpoint example](../../../use-cases/examples/inbound_endpoint_examples/inbound-endpoint-http-protocol)
+-   [HTTPS Inbound Endpoint example](../../../use-cases/examples/inbound_endpoint_examples/inbound-endpoint-https-protocol)
+-   [HL7 Inbound Endpoint example](../../../use-cases/examples/inbound_endpoint_examples/inbound-endpoint-hl7-protocol-auto-ack)
+-   [MQTT Inbound Endpoint example](../../../use-cases/examples/inbound_endpoint_examples/inbound-endpoint-mqtt-protocol)
+-   [RabbitMQ Inbound Endpoint example](../../../use-cases/examples/inbound_endpoint_examples/inbound-endpoint-rabbitmq-protocol)
+-   [Kafka Inbound Endpoint example](../../../use-cases/examples/inbound_endpoint_examples/inbound-endpoint-kafka)
+-   [Websocket Inbound Endpoint example](../../../use-cases/examples/inbound_endpoint_examples/inbound-endpoint-secured-websocket)
+-   [Using Inbound Endpoints with Registry](../../../use-cases/examples/inbound_endpoint_examples/inbound-endpoint-with-registry)
+
+## Tutorial
+
+-   See the tutorial on [using inbound endpoints](../../../use-cases/tutorials/using-inbound-endpoints)

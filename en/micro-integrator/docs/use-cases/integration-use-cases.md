@@ -15,7 +15,7 @@ Message routing is one of the most fundamental requirements when integrating sys
 			<b>Tutorials</b></br>
 			<ul>
 				<li>
-					Try the end-to-end use case on <a href="../../../use-cases/tutorials/routing-requests-based-on-message-content">message routing</a>
+					Try the end-to-end use case on <a href="../../use-cases/tutorials/routing-requests-based-on-message-content">message routing</a>
 				</li>
 			</ul>
 		</td>
@@ -50,7 +50,7 @@ The integration of systems that communicate in various message formats is a comm
 			<b>Tutorials</b></br>
 			<ul>
 				<li>
-					Try the end-to-end use case on <a href="../../../use-cases/tutorials/transforming-message-content">message transformation</a>
+					Try the end-to-end use case on <a href="../../use-cases/tutorials/transforming-message-content">message transformation</a>
 				</li>
 			</ul>
 		</td>
@@ -109,7 +109,7 @@ Multiple services are invoked simultaneously without any blocking until a respon
 			<b>Tutorials</b></br>
 			<ul>
 				<li>
-					Try the end-to-end use case on <a href="../../../use-cases/tutorials/exposing-several-services-as-a-single-service">service orchestration</a>
+					Try the end-to-end use case on <a href="../../use-cases/tutorials/exposing-several-services-as-a-single-service">service orchestration</a>
 				</li>
 			</ul>
 		</td>
@@ -138,7 +138,7 @@ Disadvantages of asynchronous messaging includes the additional component of a m
 			<b>Tutorials</b></br>
 			<ul>
 				<li>
-					Try the end-to-end use case on <a href="../../../use-cases/tutorials/storing-and-forwarding-messages">asynchronous messaging</a>
+					Try the end-to-end use case on <a href="../../use-cases/tutorials/storing-and-forwarding-messages">asynchronous messaging</a>
 				</li>
 			</ul>
 		</td>
@@ -199,7 +199,7 @@ WSO2 Micro Integrator supports more than 150 connectors, where Salesforce, Gmail
 			<b>Tutorials</b></br>
 			<ul>
 				<li>
-					Try the end-to-end use case on <a href="../../../use-cases/tutorials/storing-and-forwarding-messages">connecting web Apis and cloud services</a>
+					Try the end-to-end use case on <a href="../../use-cases/tutorials/storing-and-forwarding-messages">connecting web Apis and cloud services</a>
 				</li>
 			</ul>
 		</td>
@@ -218,7 +218,7 @@ The data services functionality that is embedded in the Micro Integrator can dec
 			<b>Tutorials</b></br>
 			<ul>
 				<li>
-					Try the end-to-end use case on <a href="../../../use-cases/tutorials/sending-a-simple-message-to-a-datasource">data integration</a>
+					Try the end-to-end use case on <a href="../../use-cases/tutorials/sending-a-simple-message-to-a-datasource">data integration</a>
 				</li>
 			</ul>
 		</td>
@@ -273,14 +273,6 @@ For example, messages that are received via HTTP may need to be sent to a JMS qu
 
 <table>
 	<tr>
-		<td>
-			<b>Tutorials</b></br>
-			<ul>
-				<li>
-					Try the end-to-end use case on <a href="../../../use-cases/tutorials/protocol-switching-tutorial">protocol switching</a>
-				</li>
-			</ul>
-		</td>
 		<td>
 			<b>Examples</b>
 			<ul>
@@ -382,7 +374,7 @@ In many business domains, there are different use cases related to managing file
 			<b>Tutorials</b></br>
 			<ul>
 				<li>
-					Try the end-to-end use case on <a href="../../../use-cases/tutorials/file-processing">file processing</a>
+					Try the end-to-end use case on <a href="../../use-cases/tutorials/file-processing">file processing</a>
 				</li>
 			</ul>
 		</td>

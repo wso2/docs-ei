@@ -40,4 +40,4 @@ Follow the instructions given below to create a new Message Processor artifact i
 
 ## Tutorials
 
--	See the tutorial on [using a message processor](../../../../use-cases/tutorials/storing-and-forwarding-messages).
+-	See the tutorial on [using message stores and processors](../../../../use-cases/tutorials/storing-and-forwarding-messages)

@@ -1,4 +1,4 @@
-# Exposing Data as an OData Service
+# Using an OData Service
 
 This example demonstrates how an RDBMS can be exposed as an OData service. When OData is enabled, you do not need to manually define CRUD operations. Therefore, OData services are an easy way to enable CRUD operations for a data service.
 
@@ -69,17 +69,17 @@ Open a command prompt execute the following CURL commands using CRUD operations:
 -   To get the service document:
 
     ```bash
-    curl -X GET -H 'Accept: application/json' http://localhost:8280/odata/ExposeDatabaseService/Datasource
+    curl -X GET -H 'Accept: application/json' http://localhost:8290/odata/ExposeDatabaseService/Datasource
     ```
 
 -   To get the metadata of the service:
 
     ```bash
-    curl -X GET -H 'Accept: application/xml' http://localhost:8280/odata/ExposeDatabaseService/Datasource/$metadata
+    curl -X GET -H 'Accept: application/xml' http://localhost:8290/odata/ExposeDatabaseService/Datasource/$metadata
     ```
 
 -   To read details from the ACCOUNT table:
 
     ```bash
-    curl -X GET -H 'Accept: application/xml' http://localhost:8280/odata/ExposeDatabaseService/Datasource/ACCOUNT
+    curl -X GET -H 'Accept: application/xml' http://localhost:8290/odata/ExposeDatabaseService/Datasource/ACCOUNT
     ```

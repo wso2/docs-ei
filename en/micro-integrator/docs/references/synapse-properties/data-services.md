@@ -23,7 +23,7 @@ for each purpose. However, when you enable OData for your RESTful data
 service, these CRUD operations will be enabled automatically, which
 allows RESTful data access using CRUD operations out of the box.
 
-Currently, OData support is only available for RDBMS datasources and Cassandra datasources using the following endpoint: `http://localhost:9763/odata/t/{tenantId}/{dataserviceName}/{datasourceId}/`
+Currently, OData support is only available for RDBMS datasources, MongoDB datasources and Cassandra datasources using the following endpoint: `http://localhost:9763/odata/{dataserviceName}/{datasourceId}/`
 
 ### Data Federation
 
