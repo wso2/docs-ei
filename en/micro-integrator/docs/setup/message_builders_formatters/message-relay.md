@@ -8,7 +8,7 @@ Micro Integrator does not need to work on the full message but can work on [mess
 like request URLs or transport headers instead. With Message Relay, the
 Micro Integrator can achieve a very high throughput.
 
-See also [PassThrough Transport](../transport_configurations/configuring-transports.md).
+See also [PassThrough Transport](../../transport_configurations/configuring-transports/#configuring-the-httphttps-transport).
 
 ## Configuring Message Relay
 
@@ -71,7 +71,7 @@ content_type = "image/png"
 
 Syntax of Relay Module Policy.
 
-```
+```xml
 <wsp:Policy wsu:Id="MessageRelayPolicy" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy"
                     xmlns:wsmr="http://www.wso2.org/ns/2010/01/carbon/message-relay"
                     xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd">
