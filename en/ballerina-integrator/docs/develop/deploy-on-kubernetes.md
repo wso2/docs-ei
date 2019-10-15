@@ -1,4 +1,7 @@
-#### Kubernetes-Based Deployment
+---
+title: Kubernetes-Based Deployment
+note: This is an auto-generated file do not edit this, You can edit content in "ballerina-integrator" repo
+---
 
 The Kubernetes builder extension offers native support for running Ballerina programs on Kubernetes with the use of annotations that you can include as part of your service code. Also, it will take care of the creation of the Docker images, so you don't need to explicitly create Docker images prior to deployment on Kubernetes.
 
