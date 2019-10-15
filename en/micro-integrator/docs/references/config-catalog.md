@@ -11,15 +11,15 @@ To update the product configurations:
 See the example `deployment.toml` file given below.
 
 ```toml
-# This is an example deployment.toml file.
+# This is an example .toml file.
 
 [server]
 hostname="localhost"
 
 [[database]]
 pool_options.maxActiv=5
-
 ```
+
 
 
 ## Deployment

@@ -47,7 +47,7 @@ When you have [encrypted passwords](#encrypting-passwords), you can refer them f
 You can add the encrypted password to the relevant sections in the deployment.toml file by using a place holder: `$secret`. 
 
 !!! Note
-    You can also replace your passwords by refering values passed by environment variables and system properties. See [Set Passwords using Environment Variables/System Properties](../../setup/security/replace_passwords_with_sys_properties.md)
+    You can also replace your passwords by refering values passed by environment variables and system properties. See the instructions on [setting passwords using environment variables/system properties](../../setup/security/replace_passwords_with_sys_properties.md)
 
 ```toml
 [super_admin]
@@ -103,7 +103,7 @@ If you start the Micro Integrator as a background job, you will not be able to p
     * For Windows: The file name should be `password-tmp.txt`.
 
     !!! Note
-        When you start the server (see step 3 below), the keystore password will be picked from this new file. Note that this file is automatically deleted from the file system after the server starts. Therefore, the admin has to create a new text file every time the server starts.
+        When you start the server, the keystore password will be picked from this new file. Note that this file is automatically deleted from the file system after the server starts. Therefore, the admin has to create a new text file every time the server starts.
 
         Alternatively, if you want to retain the password file after the server starts, the file should be named as follows:
 
