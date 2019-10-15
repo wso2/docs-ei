@@ -427,6 +427,7 @@ nav:
       - 'Best Practices' : 'references/best-Practices.md'
       - 'Troubleshooting JMS' : 'references/troubleshooting-jms.md'
       - 'Error Codes' : 'references/error_handling.md'
+      - 'WSO2 Micro Integrator vs WSO2 ESB' : 'references/comparisong-mi7-ei6xx.md'
     - '': page-not-found.md
      
 # Extensions
