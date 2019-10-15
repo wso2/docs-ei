@@ -41,7 +41,7 @@ Two types of base Docker images are available for the Micro Integrator:
     ```bash
     wso2/micro-integrator:1.1.0
     ```
-    
+
 ## Run on Docker using WSO2 Integration Studio
 
 Let's create a Docker project for an integration solution and run it on a Docker container. You will use [WSO2 Integration Studio](../../../develop/WSO2-Integration-Studio) and the [base Docker image](#base-docker-images-wso2-micro-integrator) of the Micro Integrator for this process.
@@ -89,7 +89,7 @@ Let's create a Docker project for an integration solution and run it on a Docker
     sampleproxy             1.0.0               49092809b36a        10 minutes ago      315MB
     wso2/micro-integrator   1.1.0               088477c689f6        2 days ago          315MB
     ```
-
+    
 5.  Start the container with the following command:
 
     ```bash
