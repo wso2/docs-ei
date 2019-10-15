@@ -140,13 +140,13 @@ REST-style via [curl](http://curl.haxx.se/) .
 Shown below is the curl command to invoke the GET resource:
 
 ```bash
-curl -X GET -H "Accept: application/json" http://localhost:8280/services/RDBMSDataService/Employee/{EmployeeNumber}
+curl -X GET -H "Accept: application/json" http://localhost:8290/services/RDBMSDataService/Employee/{EmployeeNumber}
 ```
 
 Example:
 
 ```bash
-curl -X GET -H "Accept: application/json" http://localhost:8280/services/RDBMSDataService/Employee/1
+curl -X GET -H "Accept: application/json" http://localhost:8290/services/RDBMSDataService/Employee/1
 ```
 
 As a result, you receive the response in JSON format as shown below.
@@ -207,7 +207,7 @@ the POST method.
     and execute the following HTTP request:
 
     ```bash
-    curl -X POST -H 'Accept: application/json'  -H 'Content-Type: application/json' --data "@employee-payload.json" -k -v http://localhost:8280/services/RDBMSDataService/Employee
+    curl -X POST -H 'Accept: application/json'  -H 'Content-Type: application/json' --data "@employee-payload.json" -k -v http://localhost:8290/services/RDBMSDataService/Employee
     ```
 
 #### Post data in batches
@@ -251,7 +251,7 @@ You are able to post JSON data in batches using the
     stored, and execute the following HTTP request:
 
     ```bash
-    curl -X POST -H 'Accept: application/json'  -H 'Content-Type: application/json' --data "@employee-batch-payload.json" -k -v http://localhost:8280/services/RDBMSDataService/Employee_batch_req
+    curl -X POST -H 'Accept: application/json'  -H 'Content-Type: application/json' --data "@employee-batch-payload.json" -k -v http://localhost:8290/services/RDBMSDataService/Employee_batch_req
     ```
 
 #### Update data
@@ -283,7 +283,7 @@ with the PUT method.
     stored, and execute the following HTTP request:
 
     ```bash
-    curl -X PUT -H 'Accept: application/json'  -H 'Content-Type: application/json' --data "@employee-upload-update.json" -k -v http://localhost:8280/services/RDBMSDataService/Employee
+    curl -X PUT -H 'Accept: application/json'  -H 'Content-Type: application/json' --data "@employee-upload-update.json" -k -v http://localhost:8290/services/RDBMSDataService/Employee
     ```
 
 #### Post data using Request Box
@@ -329,7 +329,7 @@ below.
     is stored, and execute the following HTTP request:
 
     ```bash
-    curl -X POST -H 'Accept: application/json'  -H 'Content-Type: application/json' --data "@employee-request-box-payload.json" http://localhost:8280/services/RDBMSDataService/request_box
+    curl -X POST -H 'Accept: application/json'  -H 'Content-Type: application/json' --data "@employee-request-box-payload.json" http://localhost:8290/services/RDBMSDataService/request_box
     ```
 
 !!! Tip

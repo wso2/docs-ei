@@ -127,7 +127,7 @@ requests for each of the resources:
     `           employee-payload.xml          ` file is stored:
 
     ```bash
-    curl -X POST -H 'Accept: application/xml'  -H 'Content-Type: application/xml' --data "@employee-payload.xml" http://localhost:8280/services/RDBMSDataService/employee
+    curl -X POST -H 'Accept: application/xml'  -H 'Content-Type: application/xml' --data "@employee-payload.xml" http://localhost:8290/services/RDBMSDataService/employee
     ```
 
 #### Get data
@@ -137,7 +137,7 @@ The service can be invoked in REST-style via curl (
 command to invoke the GET resource:
 
 ```bash
-curl -X GET http://localhost:8280/services/RDBMSDataService.HTTPEndpoint/Employee/3
+curl -X GET http://localhost:8290/services/RDBMSDataService.HTTPEndpoint/Employee/3
 ```
 
 This generates a response as follows.
@@ -167,5 +167,5 @@ This generates a response as follows.
     `           employee-update-payload.xml          ` file is stored:
 
     ```bash
-    curl -X PUT -H 'Accept: application/xml'  -H 'Content-Type: application/xml' --data "@employee-update-payload.xml" http://localhost:8280/services/RDBMSDataService/employee
+    curl -X PUT -H 'Accept: application/xml'  -H 'Content-Type: application/xml' --data "@employee-update-payload.xml" http://localhost:8290/services/RDBMSDataService/employee
     ```
