@@ -1,4 +1,7 @@
-# Introduction
+---
+title: Introduction
+note: This is an auto-generated file do not edit this, You can edit content in "ballerina-integrator" repo
+---
 
 WSO2 Enterprise Integrator (EI) 7.0 includes a Ballerina Integrator, which is a powerful code-based approach to integration. 
 

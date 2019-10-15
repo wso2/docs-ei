@@ -1,4 +1,7 @@
-# Re-introducing Ballerina Programming Language
+---
+title: Re-introducing Ballerina Programming Language
+note: This is an auto-generated file do not edit this, You can edit content in "ballerina-integrator" repo
+---
 
 Why does the Ballerina programming language need a re-introduction? You might be a total stranger to 
 the Ballerina programming language, or you have tried it in the past and now you want to try out the latest 
