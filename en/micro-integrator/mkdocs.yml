@@ -249,7 +249,7 @@ nav:
       - WSO2 Integration Studio:
         - 'Quick Tour - WSO2 Integration Studio' : 'develop/WSO2-Integration-Studio.md'
         - 'Installing WSO2 Integration Studio' : 'develop/installing-WSO2-Integration-Studio.md'
-        - 'Designing Message Flow': 'develop/working-with-wso2-integration-studio.md'
+        - 'Working with WSO2 Integration Studio': 'develop/working-with-wso2-integration-studio.md'
         - 'Troubleshooting WSO2 Integration Studio': 'develop/troubleshooting-WSO2-Integration-Studio.md'
       - Creating Projects:
         - 'Creating ESB Projects': 'develop/creating-projects.md'
