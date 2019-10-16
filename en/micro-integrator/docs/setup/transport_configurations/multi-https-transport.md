@@ -40,10 +40,9 @@ JConsole. For more information, see [JMX-based
 Monitoring](https://docs.wso2.com/display/ADMIN44x/JMX-Based+Monitoring).
 -->
 
-In addition to updating `deployment.toml` with the SSL
-profile configurations, you can dynamically load the SSL profiles at
-runtime using a periodic schedule or JMX invocation. Now instead of
-reloading the entire `deployment.toml` at runtime, you can
+You can [enable dynamic SSL profiles](#enabling-dynamic-ssl-profiles) for the Micro Integrator by updating the `deployment.toml` file with the required SSL
+profile configurations. Also, you can [dynamically load the SSL profiles](#loading-ssl-profiles-at-runtime) at
+runtime using a periodic schedule or JMX invocation. That is, instead of reloading the entire `deployment.toml` at runtime, you can
 reload the new configuration files that contain only the custom profile
 information for the sender and receiver.
 
@@ -58,8 +57,8 @@ Dynamic SSL profiles for the Multi-HTTPS **transport listener**:
 
     ```toml
     [transport.http]
-    sender.ssl_profile.file_path = "conf/sslprofiles/listenerprofiles.xml"
-    sender.ssl_profile.read_interval = 600000
+    listener.ssl_profile.file_path = "conf/sslprofiles/listenerprofiles.xml"
+    listener.ssl_profile.read_interval = 600000
     ```
 
 2.   Create the `listenerprofiles.xml` file with the following configuration in the
