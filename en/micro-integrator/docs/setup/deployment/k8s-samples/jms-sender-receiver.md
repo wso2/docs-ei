@@ -1,6 +1,6 @@
 #K8s-ei-operator Example 3
 
-## JMS Sender and Receiver Scenario
+## JMS Sender/Receiver Scenario
 
 Let's define a JMS (sender and receiver) scenario using WSO2 Micro Integrator and deploy it on your Kubernetes environment.
 
@@ -15,7 +15,7 @@ Follow the steps given below to deploy and run the integration solution on Kuber
     
     ![Create ESB Config Project](../../../assets/img/create_project/docker_k8s_project/esb-config.png) 
     
-3.  Add the following proxy service configuration in your ESB Config Project. This service listens to messages from ActiveMQ and publishes to another queue in ActiveMQ.
+3.  Add the following proxy service configuration to your ESB Config Project. This service listens to messages from ActiveMQ and publishes to another queue in ActiveMQ.
 
     ```xml
     <?xml version="1.0" encoding="UTF-8"?>
@@ -140,7 +140,7 @@ Follow the steps given below to deploy and run the integration solution on Kuber
      mvn dockerfile:push -Ddockerfile.username={username} -Ddockerfile.password={password}
      ``` 
 
-     Else, you can use Kubernetes [Build and Push Docker Images](../../../develop/create-kubernetes-project/#build-and-push-docker-images) section to build and push docker images to the remote registries.
+     Else, you can use Kubernetes [Build and Push Docker Images](../../../../develop/create-kubernetes-project/#build-and-push-docker-images) section to build and push docker images to the remote registries.
 
 15.  Open the **kubernetes_cr.yaml** file and verify that the following content is available.
      ```yaml 
@@ -176,7 +176,7 @@ Follow the steps given below to deploy and run the integration solution on Kuber
         ```
      -  Alternative, you can deploy an ActiveMQ pod inside the Kubernetes cluster.
 
-17.  Follow the **[Kubernetes Deployment using k8s-ei-operator](../../../setup/deployment/kubernetes_deployment)** documentation to deploy and run the integration solution inside the Kubernetes environment.
+17.  Follow the **[Kubernetes Deployment using k8s-ei-operator](../../../../setup/deployment/kubernetes_deployment)** documentation to deploy and run the integration solution inside the Kubernetes environment.
      This will create a new queue called **firstQueue** in ActiveMQ. 
      
 Send a message to this queue. The proxy service you added in **step 3** above will listen to this message and send that message to a new queue called **secondQueue**.
