@@ -129,7 +129,7 @@ Given below is a comparision between the Micro Integrator of WSO2 EI 7.0.0 and t
 			RDBMS-based Registry
 		</td>
 		<td>
-			File system as Registry
+			File system based Registry
 		</td>
 	</tr>
 	<tr>
@@ -236,7 +236,7 @@ The following features, which are not needed for MSA-based deployments or not us
 			-
 		</td>
 		<td>
-			File system as Registry
+			File system based Registry
 		</td>
 	</tr>
 </table>
