@@ -143,7 +143,7 @@ See instructions on [configuring the log4j2 properties](../logs/configuring_log4
 
 HTTP requests/responses are logged to monitor the activities related to an application's usage. HTTP access logs help you monitor information such as the persons who access the product, how many hits are received, what the errors are, etc. This information is useful for troubleshooting errors.
 
-In the Micro Integrator, access logs can be generated for the PassThrough transport. The PassThrough transport works on 8290/8243 ports and is used for API/Service invocations. By default, the access logs from the PassThrough transport are written to a common access log file located in the `MI_HOME/repository/logs/` directory.
+In the Micro Integrator, access logs can be generated for the PassThrough transport. The PassThrough transport works on 8290/8253 ports and is used for API/Service invocations. By default, the access logs from the PassThrough transport are written to a common access log file located in the `MI_HOME/repository/logs/` directory.
 
 ### Configuring access logs for the PassThrough transport (Service/API invocation)
 
