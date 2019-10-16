@@ -1,4 +1,4 @@
-# WSO2 Micro Integrator vs WSO2 ESB
+# WSO2 Micro Integrator vs WSO2 EI 6.x.x Family (ESB Profile)
 
 [WSO2 Enterprise Integrator](https://wso2.com/integration/micro-integrator/) consists of two product families:
 
@@ -9,7 +9,7 @@
 
 The new [WSO2 Enterprise Integrator (WSO2 EI 7.0.0)](https://ei.docs.wso2.com/en/latest/) is a hybrid platform that enables API-centric integration supporting various integration architecture styles: MSAs, cloud-native architectures, or a centralized ESB architecture.  This integration platform offers the choice between code-driven and graphical/configuration-driven approaches to integration development. 
 
-The **[Micro Integrator](../../overview/introduction)** is exclusively the configuration-driven approach to integration development in the EI 7.0.0 family.
+The **[Micro Integrator](../../overview/introduction)** is exclusively the configuration-driven/graphical-tooling approach to integration development in the EI 7.0.0 family.
 
 ## Advantages of using the Micro Integrator
 
@@ -40,7 +40,7 @@ Given below is a comparision between the Micro Integrator of WSO2 EI 7.0.0 and t
 			40s
 		</td>
 		<td>
-			3s
+			4s
 		</td>
 	</tr>
 	<tr>
@@ -129,7 +129,7 @@ Given below is a comparision between the Micro Integrator of WSO2 EI 7.0.0 and t
 			RDBMS-based Registry
 		</td>
 		<td>
-			File system
+			File system as Registry
 		</td>
 	</tr>
 	<tr>
@@ -230,13 +230,13 @@ The following features, which are not needed for MSA-based deployments or not us
 	</tr>
 	<tr>
 		<td>
-			Database-based registry
+			Database-based Registry
 		</td>
 		<td>
 			-
 		</td>
 		<td>
-			File system registry
+			File system as Registry
 		</td>
 	</tr>
 </table>
