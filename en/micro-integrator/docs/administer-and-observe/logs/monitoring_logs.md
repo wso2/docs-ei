@@ -4,7 +4,7 @@ Logging is one of the most important aspects of a production-grade
 server. A properly configured logging system is vital for identifying
 errors, security threats, and usage patterns.
 
-!!! info
+!!! Info
     **Java logging and Log4j integration:** I n addition to the logs from libraries that use Log4j, all logs from libraries (such as, Tomcat, Hazelcast and more) that use Java logging framework are also
         visible in the same log files. That is, when Java logging is enabled
         in Carbon, only the Log4j appenders will write to the log files. If
@@ -30,7 +30,7 @@ The Carbon log file (`wso2carbon.log`) covers all the management features of a p
 
 The Carbon log file is enabled in the product by default as shown below. You can configure the details that is captured in this log file by [configuring the log4j properties](../logs/configuring_log4j_properties.md).
 
-```
+```xml
 # CARBON_LOGFILE is set to be a DailyRollingFileAppender using a PatternLayout.
 appender.CARBON_LOGFILE.type = RollingFile
 appender.CARBON_LOGFILE.name = CARBON_LOGFILE
@@ -57,7 +57,7 @@ Audit logs are used for tracking the sequence of actions that affect a particula
 
 Audit logs are enabled in the product by default as shown below. You can configure the details that are captured in this log file by [configuring the log4j properties](../logs/configuring_log4j_properties.md).
 
-```
+```xml
 # Appender config to AUDIT_LOGFILE
 appender.AUDIT_LOGFILE.type = RollingFile
 appender.AUDIT_LOGFILE.name = AUDIT_LOGFILE
@@ -102,23 +102,23 @@ In order to read the wire logs, you must first identify message direction.
 
 There are two incoming messages and two outgoing messages in the above log. The first part of the message log contains the HTTP headers and is followed by the message payload. As shown in this example, wire logs are very useful for troubleshooting unexpected issues that occur while integrating systems. You can verify whether a message payload is correctly going out from the Micro Integrator, whether HTTP headers such as Content-Type is properly set in the outgoing message, etc. by looking at the wire logs.
 
-Enable wire logs by setting by uncommenting the following parameter and [updating the log level](../configuring_log4j_properties/#setting-the-log-level) (which is DEBUG by default).
+Enable wire logs by uncommenting the following parameter and [updating the log level](../configuring_log4j_properties/#setting-the-log-level) (which is DEBUG by default).
 
-``` java
+```xml
 logger.synapse-transport-http-wire.name=org.apache.synapse.transport.http.wire
 logger.synapse-transport-http-wire.level=DEBUG
 ```
 
-Then add to the loggers list by comma-separate
+Then, add to the loggers as a comma-separated list:
 ```xml
 loggers = synapse-transport-http-wire, AUDIT_LOG, SERVICE_LOGGER, trace-messages,
 ```
 
 ## Service/Event Tracing logs 
 
-These are logs that are enabled in some WSO2 Micro Integrator for tracing services and events using a separate log file (`wso2carbon-trace-messages.log`). If server/event tracing logs are used in your product, you can configure them in the `log4j2.properties` file (stored in the `MI_HOME/conf` directory).
+These are logs that are enabled in WSO2 Micro Integrator for tracing services and events using a separate log file (`wso2carbon-trace-messages.log`). If server/event tracing logs are used in your product, you can configure them in the `log4j2.properties` file (stored in the `MI_HOME/conf` directory).
 
-A separate log file for tracing services/events are enabled for certain WSO2 products in the `           log4j2.properties          `file using a specific appender. These logs are published to a file named `           wso2carbon-trace-messages.log          ` .
+A separate log file for tracing services/events are enabled for certain WSO2 products in the `log4j2.properties` file using a specific appender. These logs are published to a file named `wso2carbon-trace-messages.log`.
 
 ```xml
 # Appender config to CARBON_TRACE_LOGFILE
@@ -237,7 +237,7 @@ below to configure access logs for the HTTP servlet transport:
 
 ### Configuring access logs for the PassThrough transport (Service/API invocation)
 
-!!! note
+!!! Note
     Access logs for the PassThrough transport log the request and the response on **two** separate log lines.
 
 By default, access logs related to service/API invocation are enabled. You can disable these access log. Follow the steps given below to enable access logs for the PassThrough transport:
