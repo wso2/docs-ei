@@ -9,9 +9,9 @@ configurations, and third-party dependencies by using the base Docker
 image of WSO2 Micro Integrator. You can then use the immutable Docker image to create pods and to
 configure the kubernetes deployments according to your requirements.
 
-Let’s look at the steps to create a simple proxy service using Integration studio and deploy it in kubernetes cluster. 
+Let's create a **Kubernetes project** for an integration solution and run it on a Kubernetes cluster. You will use [WSO2 Integration Studio](../../../develop/WSO2-Integration-Studio) and the [base Docker image](../../../setup/installation/run_in_docker/#base-docker-images) of the Micro Integrator for this process.
 
-1. First, we can use following proxy config and create a composite application.
+1. [Create a proxy service](../../../develop/creating-artifacts/creating-a-proxy-service) with the following configuration, and package it in a [composite application](../../../develop/packaging-artifacts).
 
     ```xml
     <?xml version="1.0" encoding="UTF-8"?>
