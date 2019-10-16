@@ -39,15 +39,17 @@ This application demonstrates how to send a single event via Single Simulation, 
 
 ## Executing the Sample
 
-1. Start the Siddhi application by clicking **Run** => **Run**.
+To execute the sample open the saved Siddhi application in Streaming Integrator Tooling, and start it by clicking the **Start** button (shown below) or by clicking **Run** => **Run**.
 
-2. If the Siddhi application starts successfully, the following message appears in the console.
+![Start button](../../images/amazon-s3-sink-sample/start.png)
 
-    `AlertsAndThresholds.siddhi - Started Successfully!.`
+If the Siddhi application starts successfully, the following message appears in the console.
+
+`AlertsAndThresholds.siddhi - Started Successfully!.`
 
 ## Testing the Sample
 
-To send a single event, follow the procedure below:
+To test the sample Siddhi application, simulate a single event for it via the Streaming Integrator Tooling as follows:
 
 1. To open the Event Simulator, click the **Event Simulator** icon.
 
