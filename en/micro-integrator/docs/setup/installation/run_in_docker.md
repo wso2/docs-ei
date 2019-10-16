@@ -13,7 +13,7 @@ to systematically test the solution before deploying in production.
 
 Two types of base Docker images are available for the Micro Integrator:
 
--   The Micro Integrator Docker image (with the latest products) is
+-   The Micro Integrator Docker image (with the latest updates) is
     available in the [WSO2 Docker Registry](https://docker.wso2.com/).
     
     **Note** that you need a valid WSO2 subscription to use the Docker

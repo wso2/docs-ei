@@ -103,9 +103,7 @@ nav:
           - 'Batch Requesting': 'use-cases/examples/data_integration/batch-requesting.md'
           - 'Invoking Multiple Operations as a Request Box': 'use-cases/examples/data_integration/request-box.md'
           - 'Using Distributed Transactions in Data Services': 'use-cases/examples/data_integration/distributed-trans-data-service.md'
-          - 'Receiving Notifications in Data Services': 'use-cases/examples/data_integration/data-service-notifications.md'
           - 'Validating Data Input': 'use-cases/examples/data_integration/data-input-validator.md'
-          - 'Schedule Tasks in Data Services': 'use-cases/examples/data_integration/data-service-scheduled-task.md'
         - Examples of Components:
           - REST APIs:
             - 'Using a Simple REST API': 'use-cases/examples/rest_api_examples/introduction-rest-api.md'
@@ -219,8 +217,6 @@ nav:
         - 'Tuning the RabbitMQ Transport' : 'setup/performance_tuning/rabbitmq_transport_tuning.md'
         - 'Tuning the Inbound Endpoints' : 'setup/performance_tuning/tuning-inbound-endpoints.md'
       - Feature-Specific Configurations:
-        - 'Configuring the Task Scheduling Component': 'setup/feature_configs/configuring_task_scheduling_comp.md'
-        - 'Enabling CORS for Data Services': 'setup/feature_configs/enabling_CORS_for_data_services.md'
         - 'Configuring Time Stamp Conversion for RDBMS': 'setup/feature_configs/configuring_timestamp_conversion_for_rdbms.md'
         - 'Configuring Message Builders and Formatters' : 'setup/message_builders_formatters/message-builders-and-formatters.md'
         - 'Configuring Message Relay': 'setup/message_builders_formatters/message-relay.md'
@@ -427,6 +423,7 @@ nav:
       - 'Best Practices' : 'references/best-Practices.md'
       - 'Troubleshooting JMS' : 'references/troubleshooting-jms.md'
       - 'Error Codes' : 'references/error_handling.md'
+      - 'WSO2 Micro Integrator vs WSO2 EI 6.x.x Family (ESB Profile)' : 'references/comparisong-mi7-ei6xx.md'
     - '': page-not-found.md
      
 # Extensions
