@@ -22,7 +22,7 @@ Compared to the ESB profile of WSO2 Enterprise Integrator 6.x.x, the Micro Integ
 -	Native Kubernetes support with the integration operator. 
 -	Lightweight, container-native, and supports distributed deployments. 
 
-## Comparison: Micro Integrator vs WSO2 ESB
+## Comparison: Micro Integrator vs ESB Profile (WSO2 EI 6.x.x Family)
 
 Given below is a comparision between the Micro Integrator of WSO2 EI 7.0.0 and the ESB profile of WSO2 EI 6.x.x.
 
@@ -81,7 +81,7 @@ Given below is a comparision between the Micro Integrator of WSO2 EI 7.0.0 and t
 			Clustering
 		</td>
 		<td>
-			Build-in
+			Built-in
 		</td>
 		<td>
 			Using container orchestration
@@ -129,7 +129,7 @@ Given below is a comparision between the Micro Integrator of WSO2 EI 7.0.0 and t
 			RDBMS-based Registry
 		</td>
 		<td>
-			File system as Registry
+			File system based Registry
 		</td>
 	</tr>
 	<tr>
@@ -208,7 +208,7 @@ The following features, which are not needed for MSA-based deployments or not us
 	</tr>
 	<tr>
 		<td>
-			Built-in, Hazelcast-based clustering
+			Built-in Hazelcast-based clustering
 		</td>
 		<td>
 			The microservices world typically handles clustering using a container orchestration systems like Kubernetes.</br></br>However, built-in clustering support will be added to the Micro Intgrator in a future version to support standard, centralized deployment architectures.
@@ -219,10 +219,10 @@ The following features, which are not needed for MSA-based deployments or not us
 	</tr>
 	<tr>
 		<td>
-			Task Coordination
+			Built-in node coordination feature
 		</td>
 		<td>
-			This is not a requirement in the microservices world.</br></br> However, coordination support will be added to the Micro Integrator in a future version to support standard, centralized deployment architectures.
+			Coordination support for message processors, inbound endpoints, and tasks, which is built into the ESB profile, is removed from the Micro Integrator. This feature is not a requirement in the microservices world.</br></br> However, coordination support will be added to the Micro Integrator in a future version to support standard, centralized deployment architectures.
 		</td>
 		<td>
 			-
@@ -236,7 +236,7 @@ The following features, which are not needed for MSA-based deployments or not us
 			-
 		</td>
 		<td>
-			File system as Registry
+			File system based Registry
 		</td>
 	</tr>
 </table>
