@@ -44,9 +44,9 @@ Two types of base Docker images are available for the Micro Integrator:
 
 ## Run on Docker using WSO2 Integration Studio
 
-Let's create a Docker project for an integration solution and run it on a Docker container. You will use [WSO2 Integration Studio](../../../develop/WSO2-Integration-Studio) and the [base Docker image](#base-docker-images-wso2-micro-integrator) of the Micro Integrator for this process.
+Let's create a **Docker project** for an integration solution and run it on a Docker container. You will use [WSO2 Integration Studio](../../../develop/WSO2-Integration-Studio) and the [base Docker image](#base-docker-images) of the Micro Integrator for this process.
 
-1.  [Create the proxy service](../../../develop/creating-artifacts/creating-a-proxy-service) with the following configuration:
+1.  [Create a proxy service](../../../develop/creating-artifacts/creating-a-proxy-service) with the following configuration:
 
     - Synapse configuration
 
