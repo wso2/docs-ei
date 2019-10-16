@@ -2,20 +2,21 @@
 
 ## JMS Sender and Receiver Scenario
 
-This scenario demonstrates the JMS sender receiver example we can create using WSO2 Enterprise Integrator and how to deploy this integration in Kubernetes environment.
+Let's define a JMS (sender and receiver) scenario using WSO2 Micro Integrator and deploy it on your Kubernetes environment.
 
-Follow the below steps to deploy and run the integration solution on the Kubernetes environment,
+Follow the steps given below to deploy and run the integration solution on Kubernetes.
 
-1.  Create a Maven Multi Module Project using the Integration Studio.
+1.  Create a Maven Multi Module Project using WSO2 Integration Studio.
 
     ![Create Maven Multi Module Project](../../../assets/img/create_project/docker_k8s_project/create-maven-project.png) 
     
-2.  Create a **ESB Config Project** inside the Maven Multi Module Project.
+2.  Create an **ESB Config Project** inside the Maven Multi Module Project.
     **New → Project → ESB Config Project**
     
     ![Create ESB Config Project](../../../assets/img/create_project/docker_k8s_project/esb-config.png) 
     
-3.  Add the following proxy-service configuration inside the above created ESB Config Project which listen messages from ActiveMQ and publish to another queue in ActiveMQ.
+3.  Add the following proxy service configuration in your ESB Config Project. This service listens to messages from ActiveMQ and publishes to another queue in ActiveMQ.
+
     ```xml
     <?xml version="1.0" encoding="UTF-8"?>
     <?xml version="1.0" encoding="UTF-8"?>
@@ -51,30 +52,30 @@ Follow the below steps to deploy and run the integration solution on the Kuberne
         <parameter name="transport.jms.Password">$SYSTEM:jmspass</parameter>
     </proxy>
     ```
-    **Note**- Update above **tcp://localhost:61616** URL with the actual/connecting URL which will reachable from the Kubernetes pod.
+    **Note**: Update the **tcp://localhost:61616** URL given above with the actual/connecting URL that will be reachable from the Kubernetes pod.
     
-4.  Create a **Composite Application Project** inside the Maven Multi Module Project selecting the above configuration(s) under Dependencies.
+4.  Create a **Composite Application Project** inside the Maven Multi Module Project. Be sure to select the above configuration(s) under Dependencies.
     **New → Project → Composite Application Project**
     
     ![Create Composite Application Project](../../../assets/img/create_project/docker_k8s_project/composite-proj.png)    
 
 5.  Create a **Docker/Kubernetes Project** inside the Maven Multi Module Project.
-    **New → Project → Docker/Kubernetes Project** and select **New Kubernetes Project** option. 
+    **New → Project → Docker/Kubernetes Project** and select the **New Kubernetes Project** option. 
     
     ![Create Docker/Kubernetes Project](../../../assets/img/create_project/docker_k8s_project/k8s-proj.png)    
 
-6.  Navigate to the Kubernetes project and open the **pom.xml** file. Select the multiple composite applications you want to add to the docker image under **Dependencies** section.
+6.  Navigate to the Kubernetes project and open the **pom.xml** file. Select the multiple composite applications you want to add to the docker image under **Dependencies**.
 
     ![Select composite projects](../../../assets/img/create_project/docker_k8s_project/select-dependency.png) 
      
 7.  Uncomment the following two commands in the Dockerfile inside the Kubernetes project.
-    ```
+    ```bash
     COPY Libs/*.jar /home/wso2carbon/wso2mi/lib/
     COPY Conf/* /home/wso2carbon/wso2mi/conf/
     ```
 8.  Download [Apache ActiveMQ](http://activemq.apache.org/).
 
-9. Copy the following client libraries from the <ACTIVEMQ_HOME>/lib directory to the <MAVEN_MULTI_MODULE>/<KUBERNETES_PROJECT>/Lib directory.
+9. Copy the following client libraries from the `<ACTIVEMQ_HOME>/lib` directory to the `<MAVEN_MULTI_MODULE>/<KUBERNETES_PROJECT>/Lib` directory.
 
     **ActiveMQ 5.8.0 and above** 
     -   activemq-broker-5.8.0.jar
@@ -92,7 +93,7 @@ Follow the below steps to deploy and run the integration solution on the Kuberne
     -   geronimo-j2ee-management_1.0_spec-1.0.jar    
     -   geronimo-jms_1.1_spec-1.1.1.jar
     
-10. Create a file called `deployment.toml` inside the <MAVEN_MULTI_MODULE>/<KUBERNETES_PROJECT>/Conf and add the following content to it.
+10. Create a file named `deployment.toml` inside the` <MAVEN_MULTI_MODULE>/<KUBERNETES_PROJECT>/Conf` directory and add the following content:
     ```toml
     [server]
     hostname = "localhost"
@@ -120,53 +121,62 @@ Follow the below steps to deploy and run the integration solution on the Kuberne
     protocol = "jms"
     class="org.apache.axis2.transport.jms.JMSSender"
     ```   
-    **Note**- Update above **tcp://localhost:61616** URL with the actual/connecting URL which will reachable from the Kubernetes pod.
+    **Note**: Update the **tcp://localhost:61616** URL in the above configuration with the actual/connecting URL that will be reachable from the Kubernetes pod.
     
-11.  Starts the Docker daemon in the host machine.
+11.  Start the Docker daemon in the host machine.
 
 12.  Navigate to the Maven multi module project and run the following command to build the project. It will create a docker image with provided target repository and tag once it build successfully.
-    ```
+    ```bash
     mvn clean install -Dmave.test.skip=true
     ```
     
-13.  Run the ```docker image ls``` command to verify whether docker image has been built or not. 
-
-14.  Navigate to the Kubernetes project inside the MavenParentProject and the following command to the push docker image to the remote docker registry.
+13.  Run the following command to verify whether or not the docker image has been built.
+     ```bash
+     docker image ls
      ```
+
+14.  Navigate to the Kubernetes project inside `MavenParentProject` and the following command to the push docker image to the remote docker registry.
+     ```bash
      mvn dockerfile:push -Ddockerfile.username={username} -Ddockerfile.password={password}
      ``` 
 
-     Else, you can use Kubernetes [Build and Push Docker Images](https://ei.docs.wso2.com/en/latest/micro-integrator/develop/create-kubernetes-project/#build-and-push-docker-images) section to build and push docker images to the remote registries.
+     Else, you can use Kubernetes [Build and Push Docker Images](../../../develop/create-kubernetes-project/#build-and-push-docker-images) section to build and push docker images to the remote registries.
 
-15.  Open the **kubernetes_cr.yaml** file and update/verify the content is as follows.
+15.  Open the **kubernetes_cr.yaml** file and verify that the following content is available.
      ```yaml 
-         ---
-         apiVersion: "integration.wso2.com/v1alpha1"
-         kind: "Integration"
-         metadata:
-           name: "jms"
-         spec:
-           replicas: 1
-           image: "Docker/image/path/to/the/JMSSenderListner"
-           port: 8290
-           env:
-           - name: "jmsconfac"
-             value: "TopicConnectionFactory"
-           - name: "jmsuname"
-             value: "admin"
-           - name: "destination"
-             value: "queue"
-           - name: "jmsurl"
-             value: "tcp://localhost:61616"
-           - name: "jmspass"
-             value: "admin"
-           - name: "contenttype"
-             value: "application/xml"
+     ---
+     apiVersion: "integration.wso2.com/v1alpha1"
+     kind: "Integration"
+     metadata:
+       name: "jms"
+     spec:
+       replicas: 1
+       image: "Docker/image/path/to/the/JMSSenderListner"
+       port: 8290
+       env:
+       - name: "jmsconfac"
+         value: "TopicConnectionFactory"
+       - name: "jmsuname"
+         value: "admin"
+       - name: "destination"
+         value: "queue"
+       - name: "jmsurl"
+         value: "tcp://localhost:61616"
+       - name: "jmspass"
+         value: "admin"
+       - name: "contenttype"
+         value: "application/xml"
      ```
-     **Note**- Update above **tcp://localhost:61616** URL with the actual/connecting URL which will reachable from the Kubernetes pod.
+     **Note**: Update the **tcp://localhost:61616** URL shown in the above configuration with the actual/connecting URL that will be reachable from the Kubernetes pod.
      
-16.  Start ActiveMQ by navigating to the <ACTIVEMQ_HOME>/bin directory and executing `./activemq console` in Kubernetes cluster. Else, you can deploy a ActiveMQ pod inside the Kubernetes Cluster.
+16.  Start ActiveMQ:
+     -  Navigating to the `<ACTIVEMQ_HOME>/bin` directory and execute the following command: 
+        ```bash
+        ./activemq console
+        ```
+     -  Alternative, you can deploy an ActiveMQ pod inside the Kubernetes cluster.
 
-17.  Follow the **[Kubernetes Deployment using k8s-ei-operator](https://ei.docs.wso2.com/en/latest/micro-integrator/develop/kubernetes_deployment/)** documentation to deploy and run the integration solution inside the Kubernetes environment.
-
-18.  It will create a new queue called **firstQueue** in ActiveMQ. Send a message to this queue. Proxy-service we have added in step 3 will listen to this message and send that message to a new queue called **secondQueue**.
+17.  Follow the **[Kubernetes Deployment using k8s-ei-operator](../../../setup/deployment/kubernetes_deployment)** documentation to deploy and run the integration solution inside the Kubernetes environment.
+     This will create a new queue called **firstQueue** in ActiveMQ. 
+     
+Send a message to this queue. The proxy service you added in **step 3** above will listen to this message and send that message to a new queue called **secondQueue**.
