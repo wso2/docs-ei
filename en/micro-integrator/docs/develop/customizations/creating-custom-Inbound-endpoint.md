@@ -44,7 +44,7 @@ You need to copy the built jar file to the `MI_HOME/lib` directory and restart t
           class
          </td>
          <td>
-          Name of the custom class you implementation in <a href="#step-1-developing-a-custom-inbound-endpoint">step 1</a>.
+          Name of the custom class you implemented in <a href="#step-1-developing-a-custom-inbound-endpoint">step 1</a>.
          </td>
       </tr>
       <tr>
