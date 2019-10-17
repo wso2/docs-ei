@@ -25,6 +25,8 @@ The following are the three approaches for doing integration with EI 7.0.0.
 
     The [Streaming Integrator](https://ei.docs.wso2.com/en/latest/streaming-integrator/overview/overview/) is a cloud-native, lightweight component that understands streaming SQL queries that capture, analyze, process, and act on events in real-time.
 
+As explained above, EI 7.0.0 addresses a wider audience that prefers different approaches to integration.
+
 ## Advantages of using the Micro Integrator in EI 7.0
 
 Compared to the ESB profile of WSO2 Enterprise Integrator 6.x, the Micro Integrator encompasses the following key attributes that are essential for a microservice-ready integration solution.
