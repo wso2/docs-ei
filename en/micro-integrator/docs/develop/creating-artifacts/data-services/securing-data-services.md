@@ -17,7 +17,7 @@ project:
     New Registry **Project**** in the **Getting Started** tab as shown
     below.
 
-    ![](attachments/119130577/119135181.png)
+    ![](../../../assets/img/tutorials/data_services/119130577/119135181.png)
 
 2.  Enter a name for the project and click **Next** .
 3.  Enter the Maven information about the project and click **Finish** .
@@ -30,7 +30,7 @@ project:
     will open the **New Registry Resource** window.
 2.  Select the **From existing template** option as shown below and
     click **Next** .  
-    ![](attachments/119130577/119130583.png)
+    ![](../../../assets/img/tutorials/data_services/119130577/119130583.png)
 3.  Enter the following details:
 
     |               |                |
@@ -50,18 +50,18 @@ project:
         !!! Tip
             Click the icon next to the scenario to get details of the scenario.
           
-        ![](attachments/119130577/119130596.png)
+        ![](../../../assets/img/tutorials/data_services/119130577/119130596.png)
 
     2.  You can also provide encryption properties, signature
         properties, and advanced rampart configurations as shown below.
 
         -   **Encryption/Signature Properties**
 
-            ![](attachments/119130577/119130620.png)
+            ![](../../../assets/img/tutorials/data_services/119130577/119130620.png)
 
         -   **Rampart Properties**
 
-            ![](attachments/119130577/119130621.png)
+            ![](../../../assets/img/tutorials/data_services/119130577/119130621.png)
 
         !!! Info
             **Using role-based permissions?**
@@ -102,16 +102,16 @@ policy to the data service as explained below.
 2.  Once you have select the data service file, click the **browse**
     icon for the **Policy** field.
 
-    ![](attachments/119130577/119130582.png)
+    ![](../../../assets/img/tutorials/data_services/119130577/119130582.png)
 
-3.  Click **workspace** , to add the security policy from the current
+3.  Click **workspace**, to add the security policy from the current
     workspace. You can select the path to the
     `          sample_policy.         ` xml file that you created in the
     previous steps.  
-    ![](attachments/119130577/119130581.png)
-4.  Click **OK** , and the security policy will be added to the data
+    ![](../../../assets/img/tutorials/data_services/119130577/119130581.png)
+4.  Click **OK**, and the security policy will be added to the data
     service.  
-    ![](attachments/119130577/119130579.png)
+    ![](../../../assets/img/tutorials/data_services/119130577/119130579.png)
 5.  Save the data service.
 
 ## Using an encrypted datasource password
@@ -165,7 +165,7 @@ Once you have encrypted the datasource password, you can update the data
 service as explained below.
 
 1.  Select the data service from the project explorer, right click and
-    go to **-\> Open With -\> Text Editor** . This will open the data
+    go to **Open With -\> Text Editor** . This will open the data
     service in text form.
 
     !!! Tip
@@ -201,7 +201,7 @@ You can test the data service artifacts by following the steps given
 below.
 
 1.  Package the data service file (.dbs file) into a **Composite
-    Application (CApp)** . See the instructions in [Packaging Artifacts
+    Application (CApp)**. See the instructions in [Packaging Artifacts
     into Composite
     Applications](https://docs.wso2.com/display/ADMIN44x/Packaging+Artifacts+into+Composite+Applications)
     .
