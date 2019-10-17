@@ -33,7 +33,7 @@ project:
     ![](../../../assets/img/tutorials/data_services/119130577/119130583.png)
 3.  Enter the following details:
 
-    |               |                |
+    | Parameter     | Value          |
     |---------------|----------------|
     | Resource Name | Sample_Policy |
     | Artifact Name | Sample_Policy |
