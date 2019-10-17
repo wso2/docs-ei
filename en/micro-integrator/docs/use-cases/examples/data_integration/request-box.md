@@ -105,3 +105,28 @@ Create the artifacts:
 3. [Create a Data Service project](../../../../develop/creating-projects/#data-services-project)
 4. [Create the data service](../../../../develop/creating-artifacts/data-services/creating-data-services) with the configurations given above.
 5. [Deploy the artifacts](../../../../develop/deploy-and-run) in your Micro Integrator.
+
+Send a request with multiple transactions as shown below. In this example, we are sending two transactions with details of two employees.
+
+```xml
+<p:request_box xmlns:p="http://ws.wso2.org/dataservice">
+  <!--Exactly 1 occurrence-->
+  <addEmployeeOp xmlns="http://ws.wso2.org/dataservice">
+     <!--Exactly 1 occurrence-->
+     <xs:EmployeeNumber xmlns:xs="http://ws.wso2.org/dataservice">1003</xs:EmployeeNumber>
+     <!--Exactly 1 occurrence-->
+     <xs:FirstName xmlns:xs="http://ws.wso2.org/dataservice">Chris</xs:FirstName>
+     <!--Exactly 1 occurrence-->
+     <xs:LastName xmlns:xs="http://ws.wso2.org/dataservice">Sam</xs:LastName>
+     <!--Exactly 1 occurrence-->
+     <xs:Email xmlns:xs="http://ws.wso2.org/dataservice">chris@sam.com</xs:Email>
+     <!--Exactly 1 occurrence-->
+     <xs:OfficeCode xmlns:xs="http://ws.wso2.org/dataservice">1</xs:OfficeCode>
+  </addEmployeeOp>
+  <!--Exactly 1 occurrence-->
+  <selectEmployeeOp xmlns="http://ws.wso2.org/dataservice">
+     <!--Exactly 1 occurrence-->
+     <xs:EmployeeNumber xmlns:xs="http://ws.wso2.org/dataservice">1003</xs:EmployeeNumber>
+  </selectEmployeeOp>
+</p:request_box>
+```

@@ -1,11 +1,15 @@
 # Consuming JMS Messages
-This section describes how to configure WSO2 Micro Integrator to listen to a JMS Queue.
+This section describes how to configure WSO2 Micro Integrator to listen to a JMS Queue. First we need to configure JMS transport in micro integrator.
+
+## Configuring the JMS transport
+
+To enable the JMS transport listener and sender, you need to [configure JMS Transport](../../../setup/transport_configurations/configuring-transports.md#configuring-the-jms-transport) respective to the message broker you are using.
 
 ## Example 1: One-way messaging
 
 In this example, the Micro Integrator listens to a JMS queue, consumes messages, and sends them to an HTTP back-end service.
 
-### Synape configuration
+### Synapse configuration
 
 Given below is the synapse configuration of the proxy service that mediates the above use case. Note that you need to update the JMS connection URL according to your broker as explained below.
 
@@ -35,8 +39,7 @@ The Synapse artifacts used are explained below.
             Proxy Service
         </td>
         <td>
-            A proxy service is used to receive messages and to define the message flow. You can make the proxy service a JMS listener by setting its transport as <code>jms</code>. Once the JMS transport is enabled for a proxy service, the Micro Integrator listens on a JMS queue for the same name as the proxy service.</br>
-            In the sample configuration above, the Micro Integrator listens to a JMS queue named <code>JMStoHTTPStockQuoteProxy</code>. To make the proxy service listen to a different JMS queue, define the <code>transport.jms.Destination</code> parameter with the name of the destination queue.
+            A proxy service is used to receive messages and to define the message flow. 
         </td>
     </tr>
     <tr>
@@ -46,6 +49,10 @@ The Synapse artifacts used are explained below.
         </td>
     </tr>
 </table>
+
+!!! Info
+    You can make the proxy service a JMS listener by setting its transport as <code>jms</code>. Once the JMS transport is enabled for a proxy service, the Micro Integrator listens on a JMS queue for the same name as the proxy service.</br>In the sample configuration above, the Micro Integrator listens to a JMS queue named <code>JMStoHTTPStockQuoteProxy</code>. To make the proxy service listen to a different JMS queue, define the <code>transport.jms.Destination</code> parameter with the name of the destination queue. For more information, you can refer details of the [JMS transport parameters](../../../references/synapse-properties/transport-parameters/jms-transport-parameters.md) used in micro integrator.
+
 
 ## Example 2: Two-way HTTP back-end call
 
@@ -92,8 +99,7 @@ The Synapse artifacts used are explained below.
             Proxy Service
         </td>
         <td>
-            A proxy service is used to receive messages and to define the message flow. You can make the proxy service a JMS listener by setting its transport as <code>jms</code>. Once the JMS transport is enabled for a proxy service, the Micro Integrator listens on a JMS queue for the same name as the proxy service.</br>
-            In the sample configuration above, the Micro Integrator listens to a JMS queue named <code>JMStoHTTPStockQuoteProxy1</code>. To make the proxy service listen to a different JMS queue, define the <code>transport.jms.Destination</code> parameter with the name of the destination queue.
+            A proxy service is used to receive messages and to define the message flow. 
         </td>
     </tr>
     <tr>
@@ -103,10 +109,13 @@ The Synapse artifacts used are explained below.
         </td>
     </tr>
 </table>
+
+!!! Info
+    You can make the proxy service a JMS listener by setting its transport as <code>jms</code>. Once the JMS transport is enabled for a proxy service, the Micro Integrator listens on a JMS queue for the same name as the proxy service.</br>In the sample configuration above, the Micro Integrator listens to a JMS queue named <code>JMStoHTTPStockQuoteProxy1</code>. To make the proxy service listen to a different JMS queue, define the <code>transport.jms.Destination</code> parameter with the name of the destination queue. For more information, you can refer details of the [JMS transport parameters](../../../references/synapse-properties/transport-parameters/jms-transport-parameters.md) used in micro integrator.
     
 ## Example 3: Set content type of incoming JMS messages
 
-By default, the Micro Integrator considers all messages consumed from a queue as SOAP messages. To consider messages consumed from a queue as a different format, define the **transport.jms.ContentType** parameter with the respective content type.
+By default, the Micro Integrator considers all messages consumed from a queue as SOAP messages. To consider messages consumed from a queue as a different format, define the **transport.jms.ContentType** parameter with the respective content type as a proxy service parameter.
 
 ### Synapse configuration
 
@@ -145,8 +154,7 @@ The Synapse artifacts used are explained below.
             Proxy Service
         </td>
         <td>
-            You can specify a different content type within the <code>transport.jms.ContentType</code> parameter. In the sample configuration above, the content type defined is <code>application/xml</code>.
-            If you want the proxy service to listen to a queue where the queue name is different from the proxy service name, you can specify the queue name using <code>transport.jms.Destination</code> parameter. In the sample configuration above, the Micro Integrator listens to a JMS queue named <b>MyJMSQueue</b>.
+            A proxy service is used to receive messages and to define the message flow.
         </td>
     </tr>
     <tr>
@@ -156,3 +164,6 @@ The Synapse artifacts used are explained below.
         </td>
     </tr>
 </table>
+
+!!! Info
+    You can specify a different content type within the <code>transport.jms.ContentType</code> parameter. In the sample configuration above, the content type defined is <code>application/xml</code>.If you want the proxy service to listen to a queue where the queue name is different from the proxy service name, you can specify the queue name using <code>transport.jms.Destination</code> parameter. In the sample configuration above, the Micro Integrator listens to a JMS queue named <b>MyJMSQueue</b>.For more information, you can refer details of the [JMS transport parameters](../../../references/synapse-properties/transport-parameters/jms-transport-parameters.md) used in micro integrator.

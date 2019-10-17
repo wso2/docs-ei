@@ -8,7 +8,7 @@ Micro Integrator does not need to work on the full message but can work on [mess
 like request URLs or transport headers instead. With Message Relay, the
 Micro Integrator can achieve a very high throughput.
 
-See also [PassThrough Transport](../../concepts/messaging-transports.md).
+See also [PassThrough Transport](../../transport_configurations/configuring-transports/#configuring-the-httphttps-transport).
 
 ## Configuring Message Relay
 
@@ -26,33 +26,30 @@ messages through WSO2 Micro Integrator without building them.
 ### Sample Configuration for Message Builder
 
 ```toml
-[[custom_message_builders]]
-class = "org.wso2.carbon.relay.BinaryRelayBuilder"
-content_type = "application/json/badgerfish"
+[message_builders]
+application_xml = "org.wso2.carbon.relay.BinaryRelayBuilder"
+form_urlencoded = "org.wso2.carbon.relay.BinaryRelayBuilder"
+multipart_form_data = "org.wso2.carbon.relay.BinaryRelayBuilder"
+text_plain = "org.wso2.carbon.relay.BinaryRelayBuilder"
+application_json = "org.wso2.micro.integrator.core.json.JsonStreamBuilder"
+json_badgerfish = "org.apache.axis2.json.JSONBadgerfishOMBuilder"
+text_javascript = "org.apache.axis2.json.JSONBuilder"
+octet_stream =  "org.wso2.carbon.relay.BinaryRelayBuilder"
+application_binary = "org.apache.axis2.format.BinaryBuilder"
 ```
-
-Content types:
--   application/xml
--   application/x-www-form-urlencoded
--   multipart/form-data
--   text/plain
--   text/xml
 
 ### Sample Configuration for Message Formatter
 
 ```toml
-[[custom_message_formatters]]
-class = "org.apache.axis2.json.JSONBadgerfishMessageFormatter"
-content_type = "application/json/badgerfish"
+[message_formatters]
+form_urlencoded =  "org.wso2.carbon.relay.ExpandingMessageFormatter"
+multipart_form_data =  "org.wso2.carbon.relay.ExpandingMessageFormatter"
+application_xml = "org.wso2.carbon.relay.ExpandingMessageFormatter"
+text_xml = "org.wso2.carbon.relay.ExpandingMessageFormatter"
+text_plain = "org.wso2.carbon.relay.ExpandingMessageFormatter"
+application_json =  "org.wso2.carbon.relay.ExpandingMessageFormatter"
+json_badgerfish = "org.wso2.carbon.relay.ExpandingMessageFormatter"
 ```
-
-Content types:
--   application/soap+xml
--   application/xml
--   application/x-www-form-urlencoded
--   multipart/form-data
--   text/plain
--   text/xml
 
 ## Example
 
@@ -66,7 +63,7 @@ content_type = "image/png"
 
 ```toml tab='Message Formatter'
 [[custom_message_formatters]]
-class = "org.apache.axis2.json.JSONBadgerfishMessageFormatter"
+class = "org.wso2.carbon.relay.ExpandingMessageFormatter"
 content_type = "image/png"
 ```
 
@@ -74,7 +71,7 @@ content_type = "image/png"
 
 Syntax of Relay Module Policy.
 
-```
+```xml
 <wsp:Policy wsu:Id="MessageRelayPolicy" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy"
                     xmlns:wsmr="http://www.wso2.org/ns/2010/01/carbon/message-relay"
                     xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd">
@@ -109,27 +106,3 @@ After changing the policy, the user has to restart the Micro Integrator for the 
 
 If the Message Relay is enabled for particular content type, there
 cannot be any services with security enabled for that content type.
-
-## Message Relay Module
-
-Message Relay has an `         axis2        ` module as well. This is an optional feature. This module can be used to build the actual SOAP message from the messages that went through the Message Relay. See [Working with Modules](_Working_with_Modules_) .
-
-To enable this module, the user has to enable the relay module globally in the `         axis2.xml.        `
-
-```
-<module ref="relay"/>
-```
-
-Also, the user has to put the following phase into the `InFlow` of `axis2`.
-
-```
-<phase name="BuildingPhase"/>
-```
-
-This module is designed to be used by Admin Services that runs inside the Micro Integrator. All the admin services are running with content type: `application/soap+xml`. So if a user wants to use the admin console of the Micro Integrator for receiving messages with content type `application/soap+xml`, this module should be used.
-
-Users can configure the module by going to the modules section in the admin console and then going to the relay module. The module
-configuration is specified as a module [policy](#message-relay-module-policy).
-
-After changing the policy, the user has to restart the Micro Integrator for changes
-to take effect.

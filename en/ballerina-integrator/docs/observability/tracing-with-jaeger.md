@@ -1,4 +1,7 @@
-# Distributed Tracing with Jaeger
+---
+title: Distributed Tracing with Jaeger
+note: This is an auto-generated file do not edit this, You can edit content in "ballerina-integrator" repo
+---
 
 Tracing provides information regarding the roundtrip of a service invocation based on the concept of spans, which are structured in a hierarchy based on the cause and effect concept. Tracers propagate across several services that can be deployed in several nodes, depicting a high-level view of interconnections among services as well, hence coining the term distributed tracing. Jaeger is the default tracer supported by Ballerina.
 

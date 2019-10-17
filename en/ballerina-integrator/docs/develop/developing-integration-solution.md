@@ -1,4 +1,7 @@
-# Developing Integration Solutions
+---
+title: Developing Integration Solutions
+note: This is an auto-generated file do not edit this, You can edit content in "ballerina-integrator" repo
+---
 
 The contents on this page will walk you through the topics related to developing integration micro services for the WSO2 Ballerina Integrator.
 

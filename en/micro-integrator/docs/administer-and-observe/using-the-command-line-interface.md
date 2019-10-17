@@ -6,7 +6,12 @@ The dashboard as well as the CLI communicates with the management API of WSO2 Mi
 
 ## Enable the Management API
 
-To use the CLI tool, you need to enable the management API by passing the `-DenableManagementApi` system property when you start your Micro Integrator instance. 
+To use the CLI tool, you need to enable the management API when you
+start your WSO2 Micro Integrator instance. Pass the following system property:
+
+```bash
+-DenableManagementApi
+```
 
 -   When you run the Micro Integrator on Docker, start your Docker
     container by passing the `enableManagementApi` system property:
@@ -26,11 +31,11 @@ To use the CLI tool, you need to enable the management API by passing the `-Dena
     sh micro-integrator.sh -DenableManagementApi
     ```
 
--   The CLI tool is enabled for the embedded Micro Integrator in WSO2 Integration Studio by default.
+-   The Management API is enabled for the embedded Micro Integrator in WSO2 Integration Studio by default.
 
 ## Install and run the CLI
 
-1.  To download the CLI, go the **WSO2 Micro Integrator** website → [Additional Resources](https://wso2.com/integration/micro-integrator/install/), click **CLI Tooling** , and download the tool.
+1.  To download the dashboard, go to [**WSO2 Micro Integrator** website](https://wso2.com/integration/micro-integrator/#) -> **Download** -> **Other Resources**, and click **CLI Tooling**.
 2.  If you are using a UNIX-based operating system (Linux, Solaris, and Mac OS X), be sure to set the `MI_CLI_HOME/bin` folder path as the PATH:
 
     ```bash
@@ -83,7 +88,10 @@ To login using the CLI, use the following command. This will ask for the usernam
 mi remote login
 ```
 
-If you want to login using one line command, use the following command:
+If you want to login using a one line command, use the following command:
+
+!!! Note 
+    If you are on **Windows**, you must always login with the following command.
 
 ```bash
 mi remote login [username] [password]

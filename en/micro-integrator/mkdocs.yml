@@ -18,7 +18,7 @@
 site_name: WSO2 Enterprise Integrator Documentation
 site_description: Documentation for WSO2 Enterprise Integrator
 site_author: WSO2
-site_url: https://wso2.com/integration/
+site_url: https://ei.docs.wso2.com/en/latest/micro-integrator/
 
 # Repository
 repo_name: wso2/docs-ei
@@ -103,9 +103,7 @@ nav:
           - 'Batch Requesting': 'use-cases/examples/data_integration/batch-requesting.md'
           - 'Invoking Multiple Operations as a Request Box': 'use-cases/examples/data_integration/request-box.md'
           - 'Using Distributed Transactions in Data Services': 'use-cases/examples/data_integration/distributed-trans-data-service.md'
-          - 'Receiving Notifications in Data Services': 'use-cases/examples/data_integration/data-service-notifications.md'
           - 'Validating Data Input': 'use-cases/examples/data_integration/data-input-validator.md'
-          - 'Schedule Tasks in Data Services': 'use-cases/examples/data_integration/data-service-scheduled-task.md'
         - Examples of Components:
           - REST APIs:
             - 'Using a Simple REST API': 'use-cases/examples/rest_api_examples/introduction-rest-api.md'
@@ -180,11 +178,17 @@ nav:
         - 'JSON Examples': 'use-cases/examples/json_examples/json-examples.md'
     - Setup and Install:
       - Installation Guide:
-        - 'Install in a VM': 'setup/installation/install_in_vm.md'
-        - 'Run in Docker': 'setup/installation/run_in_docker.md'
-        - 'Run in Kubernetes': 'setup/installation/run_in_kubernetes.md'
+        - 'Install on a VM': 'setup/installation/install_in_vm.md'
+        - 'Run on Docker': 'setup/installation/run_in_docker.md'
+        - 'Run on Kubernetes': 'setup/installation/run_in_kubernetes.md'
       - Product Deployment:
-        - 'Deploying WSO2 Micro Integrator' : 'setup/deployment/deploying_wso2_ei.md'
+        - Kubernetes Deployment:
+          - 'Deploy on Kubernetes': 'setup/deployment/kubernetes_deployment.md' 
+          - K8s Deployment Samples: 
+            - 'Sample 1: Hello World': 'setup/deployment/k8s-samples/hello-world.md' 
+            - 'Sample 2: Message Routing': 'setup/deployment/k8s-samples/content-based-routing.md' 
+            - 'Sample 3: JMS Sender/Receiver': 'setup/deployment/k8s-samples/jms-sender-receiver.md'
+        - 'Deploy on a VM': 'setup/deployment/deploying_wso2_ei.md' 
         #- 'Upgrading from a Previous Release' : 'setup/deployment/upgrading.md'
         - 'Setting up a Load Balancer': 'setup/deployment/setting_up_lb.md'
         - 'Troubleshooting Production Deployment' : 'setup/deployment/troubleshooting_deployment.md'
@@ -214,8 +218,6 @@ nav:
         - 'Tuning the RabbitMQ Transport' : 'setup/performance_tuning/rabbitmq_transport_tuning.md'
         - 'Tuning the Inbound Endpoints' : 'setup/performance_tuning/tuning-inbound-endpoints.md'
       - Feature-Specific Configurations:
-        - 'Configuring the Task Scheduling Component': 'setup/feature_configs/configuring_task_scheduling_comp.md'
-        - 'Enabling CORS for Data Services': 'setup/feature_configs/enabling_CORS_for_data_services.md'
         - 'Configuring Time Stamp Conversion for RDBMS': 'setup/feature_configs/configuring_timestamp_conversion_for_rdbms.md'
         - 'Configuring Message Builders and Formatters' : 'setup/message_builders_formatters/message-builders-and-formatters.md'
         - 'Configuring Message Relay': 'setup/message_builders_formatters/message-relay.md'
@@ -248,7 +250,7 @@ nav:
       - WSO2 Integration Studio:
         - 'Quick Tour - WSO2 Integration Studio' : 'develop/WSO2-Integration-Studio.md'
         - 'Installing WSO2 Integration Studio' : 'develop/installing-WSO2-Integration-Studio.md'
-        - 'Designing Message Flow': 'develop/working-with-wso2-integration-studio.md'
+        - 'Working with WSO2 Integration Studio': 'develop/working-with-wso2-integration-studio.md'
         - 'Troubleshooting WSO2 Integration Studio': 'develop/troubleshooting-WSO2-Integration-Studio.md'
       - Creating Projects:
         - 'Creating ESB Projects': 'develop/creating-projects.md'
@@ -422,6 +424,7 @@ nav:
       - 'Best Practices' : 'references/best-Practices.md'
       - 'Troubleshooting JMS' : 'references/troubleshooting-jms.md'
       - 'Error Codes' : 'references/error_handling.md'
+      - 'WSO2 Micro Integrator vs WSO2 EI 6.x.x Family (ESB Profile)' : 'references/comparisong-mi7-ei6xx.md'
     - '': page-not-found.md
      
 # Extensions

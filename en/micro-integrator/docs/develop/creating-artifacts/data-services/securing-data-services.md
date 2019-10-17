@@ -79,6 +79,9 @@ project:
             -  **Get from the server**
         
                 ![](attachments/119130577/119130606.png)
+                
+        !!! Info
+            Switch to source view of the policy file and make sure the tokenStoreClass in the policy file is 'org.wso2.micro.integrator.security.extensions.SecurityTokenStore'
         
 5.  Save the policy file.
 
@@ -187,7 +190,7 @@ service as explained below.
     configuration to the datasource as follows:
 
     ```xml
-    <data enableBatchRequests="true" name="RDBMSDataService" serviceNamespace="http://org.wso2.securevault/configuration">
+    <data enableBatchRequests="true" name="RDBMSDataService" serviceNamespace="http://ws.wso2.org/dataservice/samples/rdbms_sample" xmlns:svns="http://org.wso2.securevault/configuration">
     ```
 
 4.  Save the data service file.

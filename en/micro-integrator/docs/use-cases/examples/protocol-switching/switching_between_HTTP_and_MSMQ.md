@@ -1,8 +1,54 @@
-# Transport switching from HTTP to MSMQ and MSMQ to HTTP
+# Switching between HTTP and MSMQ
 
-Demonstrate the capability of working MSMQ transport
-messages. Introduction to switching transports with proxy
-services
+This example demonstrates how you can use the Micro Integrator to switch messages between HTTP and MSMQ during message mediation.
+
+In this example, stockquote requests are placed to the stockquote proxy service, which send the incoming request message to the MSMQ server. Another proxy service named `msmqTest` listens to the MSMQ queue and invokes the message from the MSMQ server and sends the message to the backend. 
+
+## Synapse configuration
+
+```xml tab='MSMQ Test proxy'
+<proxy xmlns="http://ws.apache.org/ns/synapse" name="msmqTest" transports="msmq" startOnLoad="true">
+    <target>
+        <inSequence>
+            <property name="OUT_ONLY" value="true"/>
+            <send>
+                <endpoint>
+                    <address uri="http://localhost:9000/services/SimpleStockQuoteService"/>
+                </endpoint>
+            </send>
+        </inSequence>
+        <outSequence>
+            <send/>
+        </outSequence>
+        <parameter name="transport.msmq.ContentType">application/xml</parameter>
+    </target>
+</proxy>
+```
+
+```xml tab='StockQuote proxy'
+<proxy xmlns="http://ws.apache.org/ns/synapse" name="StockQuoteProxy" transports="http" startOnLoad="true" trace="disable">
+     <description/>
+      <target>
+        <endpoint>
+          <address uri="msmq:DIRECT=OS:localhost\private$\msmqTest"/>
+        </endpoint>
+        <inSequence>
+           <property name="FORCE_SC_ACCEPTED"  value="true"  scope="axis2"  type="STRING"/>
+           <property name="OUT_ONLY" value="true" scope="default" type="STRING"/>
+        </inSequence>
+       <outSequence>
+          <log level="custom">
+              <property name="MESSAGE" value="OUT SEQENCE CALLED"/>
+          </log>
+           <send/>
+         </outSequence>
+      </target>
+      <publishWSDL uri="http://localhost:9000/services/SimpleStockQuoteService?wsdl"/>
+ </proxy>
+```
+
+<!--
+## Build and run
 
 **Prerequisites:**
 
@@ -29,51 +75,11 @@ For a default MSMQ v4.0 installation, you may place following in the
 Axis2 transport sender/ listener configuration at
 `         repository/conf/axis2/axis2.xml        ` as,
 
-```
+```xml
 <transportSender name="msmq"class="org.apache.axis2.transport.msmq.MSMQSender"/>
 <transportReceiver name="msmq" class="org.apache.axis2.transport.msmq.MSMQListener">    
     <parameter name="msmq.receiver.host" locked="false">localhost</parameter>
 </transportReceiver>
-```
-
-Synapse Configuration for MSMQ,
-
-```
-<proxy xmlns="http://ws.apache.org/ns/synapse" name="msmqTest" transports="msmq" startOnLoad="true">
-    <target>
-        <inSequence>
-            <property name="OUT_ONLY" value="true"/>
-            <send>
-                <endpoint>
-                    <address uri="http://localhost:9000/services/SimpleStockQuoteService"/>
-                </endpoint>
-            </send>
-        </inSequence>
-        <outSequence>
-            <send/>
-        </outSequence>
-        <parameter name="transport.msmq.ContentType">application/xml</parameter>
-    </target>
-</proxy>
-<proxy xmlns="http://ws.apache.org/ns/synapse" name="StockQuoteProxy" transports="http" startOnLoad="true" trace="disable">
-     <description/>
-      <target>
-        <endpoint>
-          <address uri="msmq:DIRECT=OS:localhost\private$\msmqTest"/>
-        </endpoint>
-        <inSequence>
-           <property name="FORCE_SC_ACCEPTED"  value="true"  scope="axis2"  type="STRING"/>
-           <property name="OUT_ONLY" value="true" scope="default" type="STRING"/>
-        </inSequence>
-       <outSequence>
-          <log level="custom">
-              <property name="MESSAGE" value="OUT SEQENCE CALLED"/>
-          </log>
-           <send/>
-         </outSequence>
-      </target>
-      <publishWSDL uri="http://localhost:9000/services/SimpleStockQuoteService?wsdl"/>
- </proxy>
 ```
 
 Invoke the sample as follows,
@@ -90,12 +96,4 @@ Accepted order for : 18406 stocks of MSFT at $ 83.58806051152119
 ```
 
 Above samples works as follows,
-
--   Sending Place stockquote request to the ESB proxy.
--   Proxy sends the incoming message to the MSMQ server.
-
-!!! Info
-    msmq:DIRECT=OS:localhost\\private$\\msmqTest  
-
--   Another proxy known as ' msmqTest' listening to the MSMQ queue,
-    invoke the message from MSMQ and send to the Aix2 back-end server.
+-->

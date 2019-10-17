@@ -71,10 +71,6 @@ The XML configuration for this sample is as follows:
     </definitions>
 ```
 
-This configuration file `         synapse_sample_54.xml        ` is
-available in the `         <ESB_HOME>/repository/samples        `
-directory.
-
 **To build the sample**
 
 1.  Start three instances of the sample Axis2 server on HTTP ports 9001,

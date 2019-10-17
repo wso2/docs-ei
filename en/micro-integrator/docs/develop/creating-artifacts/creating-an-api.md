@@ -10,8 +10,8 @@ Follow the instructions given below to create a new REST API artifact in WSO2 In
 2.  Select the **Create A New API Artifact** and click **Next**.
 3.  Specify values for the [required REST API properties](../../../references/synapse-properties/rest-api-properties/#rest-api-properties-required): **API name**, and **Context**.
 4. Do one of the following:  
-    - To save the endpoint in an existing ESB Config project in your workspace, click **Browse** and select that project.
-    - To save the endpoint in a new ESB Config project, click **Create new Project** and create the new project.
+    - To save the API in an existing ESB Config project in your workspace, click **Browse** and select that project.
+    - To save the API in a new ESB Config project, click **Create new Project** and create the new project.
 5.  Click **Finish**. The REST API is created inside the `src/main/synapse-config/api` folder under the ESB Config project you specified.
 6. Open the new artifact from the project explorer, go to the <b>Properties</b> tab and update any [optional REST API properties](../../../references/synapse-properties/rest-api-properties/#rest-api-properties-optional).
 
@@ -48,4 +48,14 @@ You can now update the [API Resource properties](../../../references/synapse-pro
 
 ## Examples
 
-## Guides
+-   [Using a Simple Rest API](../../../use-cases/examples/rest_api_examples/introduction-rest-api)
+-   [Working with Query Parameters](../../../use-cases/examples/rest_api_examples/setting-query-params-outgoing-messages)
+-   [Exposing a SOAP Endpoint as a RESTful API](../../../use-cases/examples/rest_api_examples/enabling-rest-to-soap)
+-   [Exposing Non-HTTP Services as RESTful APIs](../../../use-cases/examples/rest_api_examples/configuring-non-http-endpoints)
+-   [Handling Non Matching Resources](../../../use-cases/examples/rest_api_examples/handling-non-matching-resources)
+-   [Handling HTTP Status Codes](../../../use-cases/examples/rest_api_examples/setting-https-status-codes)
+-   [Manipulating Content Types](../../../use-cases/examples/rest_api_examples/transforming-content-type)
+-   [Securing a REST API](../../../use-cases/examples/rest_api_examples/securing-rest-apis)
+-   [Using GET with a Message Body](../../../use-cases/examples/rest_api_examples/using-get-with-a-body)
+-   [Using POST with Empty Message Body](../../../use-cases/examples/rest_api_examples/using-post-with-no-body)
+-   [Using POST with Query Parameters](../../../use-cases/examples/rest_api_examples/using-post-with-query-param)

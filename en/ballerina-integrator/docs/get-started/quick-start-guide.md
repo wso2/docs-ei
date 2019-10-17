@@ -1,4 +1,7 @@
-# Quick Start Guide
+---
+title: Quick Start Guide
+note: This is an auto-generated file do not edit this, You can edit content in "ballerina-integrator" repo
+---
 
 Let's get started with WSO2 Ballerina Integrator by running a simple use case in your local environment. This is a simple service orchestration scenario. The scenario is about a basic health care system where Ballerina Integrator is used to integrate two backend hospital services to provide information to the client.
 
@@ -18,10 +21,18 @@ In the above scenario, the following takes place:
 
 Both Grand Oak Hospital and Pine Valley Hospital have services exposed over HTTP protocol.
 
-Pine Valley Hospital service accepts a GET request in following service endpoint URL.
+Pine Valley Hospital service accepts a POST request in following service endpoint URL.
 
 ```bash
 http://<HOST_NAME>:<PORT>/pineValley/doctors
+```
+
+The expected payload should be in the following JSON format.
+
+```json
+{
+    "doctorType": "<DOCTOR_TYPE>"
+}
 ```
 
 Grand Oak Hospital service accepts a GET request in following service endpoint URL.
@@ -30,51 +41,20 @@ Grand Oak Hospital service accepts a GET request in following service endpoint U
 http://<HOST_NAME>:<PORT>/grandOak/doctors/<DOCTOR_TYPE>
 ```
 
-The expected payload should be in the following JSON format.
-
-```bash
-{
-    "doctorType": "<DOCTOR_TYPE>"
-}
-```
-
 Let’s implement a simple service that can be used to query for availability of doctors for a particular category from all the available healthcare centers.
 
+<!-- Common Prerequisites to include in markdown files --> 
 ## Before you begin
+ 
+* Download [Ballerina Integrator](https://wso2.com/integration/ballerina-integrator/) for your operating system
+* Install Oracle JDK 1.8.*
+* Install a Text Editor or an IDE 
+  > **Tip**: For a better development experience, use [VS Code](https://code.visualstudio.com/Download) (which is the recommended editor for Ballerina Integrator) and install the [Ballerina Integrator Extension](https://marketplace.visualstudio.com/items?itemName=WSO2.ballerina-integrator).
+* Download [curl](https://curl.haxx.se/) or a similar tool that can call an endpoint.
 
-1. [Download Ballerina Integrator](https://www.wso2.com/integration/ballerina-integrator) for your Operating System. 
-
-2. Download the sample files from [here](https://github.com/wso2/docs-ei/tree/7.0.0/en/micro-integrator/docs/assets/attach/quick-start-guide). From this point onwards, let's refer to this folder as `<BI_QSG_HOME>`.
-
-3. Download [curl](https://curl.haxx.se/) or a similar tool that can call an endpoint.
-
-4. Start up VS Code, which is the recommended IDE to use in Ballerina Integrator integration scenarios.
-   > **Tip**: Download and install [VS Code](https://code.visualstudio.com/Download) if you do not have it already.
-
-5. Find the extension for Ballerina in the VS Code marketplace. For instructions on installing and using it, see [The Visual Studio Code Extension](https://ballerina.io/learn/tools-ides/vscode-plugin/).
-
-Once you have installed the extension, press `Command + Shift + P` in Mac or `Ctrl + Shift + P` in Linux and the following page appears.
+Once you have installed the VS Code extension, you could press `Command + Shift + P` in Mac or `Ctrl + Shift + P` in Windows/Linux and search for the command `Ballerina Integrator: Dashboard` to find the Ballerina Integrator dashboard shown below. Please refer the extension's [home page](https://marketplace.visualstudio.com/items?itemName=WSO2.ballerina-integrator) for more details on how to use the provided features.
 
 ![alt text](../../assets/img/vs-code-landing.png)
-
-You can select one of the available templates or run it using the CLI as indicated in the following section.
-
-## Start backend mock services
-
-Two mock hospital information services are available in the `DoctorInfo.jar` file located at `<BI_QSG_HOME>/BackendService/` directory. 
-
-Open a command line window, navigate to `<BI_QSG_HOME>/BackendService/`, and use the following command to start the services.
-
-```java
-java -jar DoctorInfo.jar
-```
-
-You will see following printed in the command line.
-
-```bash
-[ballerina/http] started HTTP/WS listener 0.0.0.0:9090
-[ballerina/http] started HTTP/WS listener 0.0.0.0:9091
-```
 
 ## Create a Project, Add a Template, and Invoke the Service
 
@@ -99,6 +79,8 @@ $ ballerina add -t wso2/healthcare_service healthcare_service
 ```
 
 This automatically creates a healthcare service for you inside an `src` directory. A Ballerina service represents a collection of network accessible entry points in Ballerina. A resource within a service represents one such entry point. The generated sample service exposes a network entry point on port 9090.
+
+> **Note:** Alternatively, you could use the Ballerina Integrator VS Code extension to directly add the `healthcare_service` module to a new or an existing Ballerina project using the `Quick Start Guide` module template available in the `Ballerina Integrator: Dashboard` page.
 
 Build the service using the `ballerina build` command.
 

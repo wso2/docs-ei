@@ -1,4 +1,4 @@
-# RDBMS Data Service
+# Exposing an RDBMS Datasource
 
 This example demonstrates how RDBMS data (stored in a MySQL database) can be exposed as a data service.
 
@@ -89,6 +89,10 @@ Given below is the data service configuration you need to build. See the instruc
 </data>
 ```
 
+!!! Tip
+    If you use **External** instead of the **Default** as the datasource type, your datasource should be supported by an external provider class, such as `com.mysql.jdbc.jdbc2.optional.MysqlXADataSource`.</br></br>
+    After an external datasource is created, it can be used as another datasource in queries. See the example on [handling distributed transactions](../../../../use-cases/examples/data_integration/distributed-trans-data-service) for more information on using external datasources.
+
 ## Build and run
 
 Create the artifacts:
@@ -127,7 +131,7 @@ requests for each of the resources:
     `           employee-payload.xml          ` file is stored:
 
     ```bash
-    curl -X POST -H 'Accept: application/xml'  -H 'Content-Type: application/xml' --data "@employee-payload.xml" http://localhost:8280/services/RDBMSDataService/employee
+    curl -X POST -H 'Accept: application/xml'  -H 'Content-Type: application/xml' --data "@employee-payload.xml" http://localhost:8290/services/RDBMSDataService/employee
     ```
 
 #### Get data
@@ -137,7 +141,7 @@ The service can be invoked in REST-style via curl (
 command to invoke the GET resource:
 
 ```bash
-curl -X GET http://localhost:8280/services/RDBMSDataService.HTTPEndpoint/Employee/3
+curl -X GET http://localhost:8290/services/RDBMSDataService.HTTPEndpoint/Employee/3
 ```
 
 This generates a response as follows.
@@ -167,5 +171,5 @@ This generates a response as follows.
     `           employee-update-payload.xml          ` file is stored:
 
     ```bash
-    curl -X PUT -H 'Accept: application/xml'  -H 'Content-Type: application/xml' --data "@employee-update-payload.xml" http://localhost:8280/services/RDBMSDataService/employee
+    curl -X PUT -H 'Accept: application/xml'  -H 'Content-Type: application/xml' --data "@employee-update-payload.xml" http://localhost:8290/services/RDBMSDataService/employee
     ```
