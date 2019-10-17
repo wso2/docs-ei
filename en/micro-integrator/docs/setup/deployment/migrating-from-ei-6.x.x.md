@@ -6,10 +6,10 @@ This guide provides an overview of the recommended migration strategy for migrat
 
 See the following topics to understand the benefits of moving to EI 7.0 from EI 6.x:
 
--   [Comparison: EI 6.x vs EI 7.0](../../references/comparisong-mi7-ei6xx/#comparison-wso2-ei-6xx-vs-wso2-ei-700)
--   [Advantages of using the Micro Integrator in EI 7.0](../../references/comparisong-mi7-ei6xx/#advantages-of-using-the-micro-integrator-in-ei-70)
--   [Comparison: ESB profile of EI 6.x vs Micro Integrator of EI 7.0](../../references/comparisong-mi7-ei6xx/#comparison-esb-profile-of-ei-6x-vs-micro-integrator-of-ei-70)
--   [Features removed from the Micro Integrator of EI 7.0](../../references/comparisong-mi7-ei6xx/#features-removed-from-the-micro-integrator-of-ei-70)
+-   [Comparison: EI 6.x vs EI 7.0](../../../references/comparisong-mi7-ei6xx/#comparison-wso2-ei-6xx-vs-wso2-ei-700)
+-   [Advantages of using the Micro Integrator in EI 7.0](../../../references/comparisong-mi7-ei6xx/#advantages-of-using-the-micro-integrator-in-ei-70)
+-   [Comparison: ESB profile of EI 6.x vs Micro Integrator of EI 7.0](../../../references/comparisong-mi7-ei6xx/#comparison-esb-profile-of-ei-6x-vs-micro-integrator-of-ei-70)
+-   [Features removed from the Micro Integrator of EI 7.0](../../../references/comparisong-mi7-ei6xx/#features-removed-from-the-micro-integrator-of-ei-70)
 
 ## When should you migrate to EI 7.0?
 
@@ -24,11 +24,11 @@ The decision on migration to the new platform needs to be taken by considering s
 
 ## Migrating to the Micro Integrator 
  
-Both the ESB profile of EI 6.x and the Micro Integrator of EI 7.0 uses the same ESB runtime and the same developer tool ([WSO2 Integration Studio](../../../develop/WSO2-Integration-Studio)) for developing integrations. Most of the mediation(ESB) and data integration features available in the ESB profile of EI 6.x are available in the Micro Integrator as well. Some of the features are [removed from WSO2 Micro Integrator](/references/comparisong-mi7-ei6xx/#features-removed-from-the-micro-integrator-of-ei-70) as they are not needed for MSA-based deployments or they are not frequently used.
+Both the ESB profile of EI 6.x and the Micro Integrator of EI 7.0 uses the same ESB runtime and the same developer tool ([WSO2 Integration Studio](../../../develop/WSO2-Integration-Studio)) for developing integrations. Most of the mediation(ESB) and data integration features available in the ESB profile of EI 6.x are available in the Micro Integrator as well. Some of the features are [removed from WSO2 Micro Integrator](../../../references/comparisong-mi7-ei6xx/#features-removed-from-the-micro-integrator-of-ei-70) as they are not needed for MSA-based deployments or they are not frequently used.
 
 In summary, all the integration capabilities that you used in the ESB can be used in the Micro Integrator with minimal changes. However, EI 7.0 introduces a [Toml-based configuration strategy](../../../references/config-catalog) to replace XML configurations, which simplifies your product configurations.
  
-See the [detailed comparison of EI 6.5 and EI 7.0](/references/comparisong-mi7-ei6xx) to understand what has changed between the ESB profile of EI 6.5 and the Micro Integrator of EI 7.0.
+See the [detailed comparison of EI 6.5 and EI 7.0](../../../references/comparisong-mi7-ei6xx) to understand what has changed between the ESB profile of EI 6.5 and the Micro Integrator of EI 7.0.
 
 ## Migrating to the Ballerina Integrator
  
