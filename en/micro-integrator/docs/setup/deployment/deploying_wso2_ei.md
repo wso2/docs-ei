@@ -1,9 +1,9 @@
 # Deploying WSO2 Micro Integrator
-The following sections provide information and instructions on how to cluster the Micro Integrator with a third-party load balancer.
+The following sections provide information and instructions on how to deploy the Micro Integrator with a third-party load balancer.
 
 ## The deployment pattern
 
-This deployment scenario uses a two-node Micro Integrator cluster. That is, two Micro Integrator nodes are configured to serve requests with high availability and scalability. As depicted by the following diagram, the product nodes in the cluster are fronted by an external third-party load balancer, which routes requests to the two nodes on a round-robin basis.
+This deployment scenario uses a two-node Micro Integrator deployment. That is, two Micro Integrator nodes are configured to serve requests with high availability and scalability. As depicted by the following diagram, the product nodes in the deployment are fronted by an external third-party load balancer, which routes requests to the two nodes on a round-robin basis.
 
 ![Micro Integrator Deployment Pattern](../../assets/img/mi_deployment.png)
 
@@ -21,7 +21,7 @@ Follow the instructions on [configuring the file-based registry](../../setup/dep
 
 ## Updating keystores
 
-1. [Create a new SSL certificate](../../setup/security/importing_ssl_certificate.md) and import it to the primary keyStore and trustStore (which are located in the /repository/security/ directory). Your primary keystore can now be configured for SSL communication.
+1. [Create a new SSL certificate](../../setup/security/importing_ssl_certificate.md) and import it to the primary keyStore and trustStore (which are located in the MI_HOME/repository/resources/security/ directory). Your primary keystore can now be configured for SSL communication.
 2. [Create a new keystore](../../setup/security/creating_keystores.md) to use as the internal keystore (for the purpose of data encryption/decryption in internal data stores).
 
 ## Configuring the Micro Integrator nodes
@@ -61,5 +61,5 @@ Ensure that you have taken into account the respective security hardening factor
 
 Start the server using the following standard start-up script.
 
-* On **Linux/MacOS/CentOS** : `cd MI_HOME/bin/ sh intergrator.sh`
-* ON **Windows** : `cd MI_HOME\bin\wso2server.bat`
+* On **Linux/MacOS/CentOS** : `cd MI_HOME/bin/ sh micro-integrator.sh`
+* ON **Windows** : `cd MI_HOME\bin\ micro-integrator.bat`
