@@ -6,10 +6,10 @@ This guide provides an overview of the recommended migration strategy for migrat
 
 See the following topics to understand the benefits of moving to EI 7.0 from EI 6.x:
 
--   [Comparison: EI 6.x vs EI 7.0](/references/comparisong-mi7-ei6xx/#comparison-wso2-ei-6xx-vs-wso2-ei-700)
--   [Advantages of using the Micro Integrator in EI 7.0](/references/comparisong-mi7-ei6xx/#advantages-of-using-the-micro-integrator-in-ei-70)
--   [Comparison: ESB profile of EI 6.x vs Micro Integrator of EI 7.0](/references/comparisong-mi7-ei6xx/#comparison-esb-profile-of-ei-6x-vs-micro-integrator-of-ei-70)
--   [Features removed from the Micro Integrator of EI 7.0](/references/comparisong-mi7-ei6xx/#features-removed-from-the-micro-integrator-of-ei-70)
+-   [Comparison: EI 6.x vs EI 7.0](../../references/comparisong-mi7-ei6xx/#comparison-wso2-ei-6xx-vs-wso2-ei-700)
+-   [Advantages of using the Micro Integrator in EI 7.0](../../references/comparisong-mi7-ei6xx/#advantages-of-using-the-micro-integrator-in-ei-70)
+-   [Comparison: ESB profile of EI 6.x vs Micro Integrator of EI 7.0](../../references/comparisong-mi7-ei6xx/#comparison-esb-profile-of-ei-6x-vs-micro-integrator-of-ei-70)
+-   [Features removed from the Micro Integrator of EI 7.0](../../references/comparisong-mi7-ei6xx/#features-removed-from-the-micro-integrator-of-ei-70)
 
 ## When should you migrate to EI 7.0?
 
