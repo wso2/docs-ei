@@ -18,7 +18,7 @@
 site_name: WSO2 Enterprise Integrator Documentation
 site_description: Documentation for WSO2 Enterprise Integrator
 site_author: WSO2
-site_url: https://ei.docs.wso2.com/en/latest/ballerina-integrator/
+site_url: https://wso2.com/integration/
 
 # Repository
 repo_name: wso2/docs-ei
@@ -57,7 +57,6 @@ nav:
           - 'Notifying fire alarm using SQS': 'learn/tutorials/saas-integrations/amazonsqs/notifying-fire-alarm-using-sqs/1.md'
           - 'Working with Amazon S3 Bucket Service': 'learn/tutorials/saas-integrations/amazons3/working-with-bucket-service/1.md'
           - 'Working with Amazon S3 Object Service': 'learn/tutorials/saas-integrations/amazons3/working-with-object-service/1.md'
-          - 'Interacting with SAP': 'learn/tutorials/saas-integrations/sap/interacting-with-sap/1.md'
           - 'Working With Salesforce Client': 'learn/tutorials/saas-integrations/sfdc46/working-with-salesforce-client/1.md'
           - 'Import Contacts into Salesforce Using FTP': 'learn/tutorials/saas-integrations/sfdc46/import-contacts-into-salesforce-using-ftp/1.md'
           - 'Salesforce to MySQL Database': 'learn/tutorials/saas-integrations/sfdc46/salesforce-to-mysql-db/1.md'
@@ -78,7 +77,7 @@ nav:
           - 'Service Orchestration': 'learn/tutorials/integration-patterns-and-soa/service-orchestration/1.md'
           - 'Service Composition': 'learn/tutorials/integration-patterns-and-soa/service-composition/1.md'
           - 'Backend for Frontend' : 'learn/tutorials/integration-patterns-and-soa/backend-for-frontend/1.md'
-          - 'REST to SOAP' : 'learn/tutorials/integration-patterns-and-soa/exposing-soap-service/1.md'
+          - 'REST to SOAP' : 'learn/tutorials/integration-patterns-and-soa/rest-to-soap-service/1.md'
           - 'JSON to XML and Upload to FTP' : 'learn/tutorials/integration-patterns-and-soa/converting-json-to-xml-and-upload-to-ftp/1.md'
       - 'Examples': 'learn/examples.md'
     - Develop:

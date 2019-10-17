@@ -247,16 +247,8 @@ The data services functionality that is embedded in the Micro Integrator can dec
 					<a href="../../use-cases/examples/data_integration/distributed-trans-data-service">Using Distributed Transactions in Data Services</a>
 				</li>
 				<li>
-					<a href="../../use-cases/examples/data_integration/data-service-notifications">Receiving Notifications from Data Services</a>
-				</li>
-				<!--
-				<li>
 					<a href="../../use-cases/examples/data_integration/data-input-validator">Validating Data Input</a>
 				</li>
-				<li>
-					<a href="../../use-cases/examples/data_integration/data-service-scheduled-task">Scheduling Tasks in Data Services</a>
-				</li>
-			-->
 			</ul>
 		</td>
 	</tr>
@@ -273,14 +265,6 @@ For example, messages that are received via HTTP may need to be sent to a JMS qu
 
 <table>
 	<tr>
-		<td>
-			<b>Tutorials</b></br>
-			<ul>
-				<li>
-					Try the end-to-end use case on <a href="../../use-cases/tutorials/protocol-switching-tutorial">protocol switching</a>
-				</li>
-			</ul>
-		</td>
 		<td>
 			<b>Examples</b>
 			<ul>

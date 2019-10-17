@@ -198,6 +198,7 @@ nav:
         - 'Receiving Events via Simulator and Persisting in RDBMS Store': 'samples/Store-rdbms.md'
         - 'Receive Events via Simulator and Persist in Cassandra Store': 'samples/Store-cassandra.md'
         - 'Publishing Avro Events via Kafka': 'samples/PublishKafkaInAvroFormatUsingSchemaRegistry.md'
+        - 'Publishing Aggregated Events to the Amazon AWS S3 Bucket': 'samples/AmazonS3SinkSample.md'
   - 'Setup and Install':
     - 'Installing the Product':
       - 'Install in a VM': 'setup/installing-si-in-vm.md'
@@ -223,8 +224,8 @@ nav:
     - 'Adding Third Party Non OSGi Library': 'admin/adding-third-party-non-osgi-libraries.md'
     - 'Configuring Default Ports': 'ref/configuring-default-ports.md'
   - 'Develop':
+    - 'Developing Streaming Integrator Solutions': 'develop/developing-streaming-integration-solutions.md'
     - 'Streaming Integrator Tooling':
-      - 'Developing Streaming Integrator Solutions': 'develop/developing-streaming-integration-solutions.md'
       - 'Streaming Integrator Tooling Overview': 'develop/streaming-integrator-studio-overview.md'
       - 'Working with the Design View': 'develop/working-with-the-Design-View.md'
     - 'Creating Siddhi Applications': 'develop/creating-a-Siddhi-Application.md'
