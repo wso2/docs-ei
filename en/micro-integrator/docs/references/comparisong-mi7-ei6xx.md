@@ -1,19 +1,33 @@
-# WSO2 Micro Integrator vs WSO2 EI 6.x.x Family (ESB Profile)
+# WSO2 Micro Integrator vs WSO2 EI 6.x Family
+
+## Comparison: EI 6.x vs EI 7.0
 
 [WSO2 Enterprise Integrator](https://wso2.com/integration/micro-integrator/) consists of two product families:
 
 -	WSO2 EI 7.x.x family
 -	WSO2 EI 6.x.x family
+ 
+[WSO2 EI 6.5.0](https://docs.wso2.com/display/EI650/WSO2+Enterprise+Integrator+Documentation) is the latest release of the 6.x family, which includes the ESB profile and other supporting profiles. This WSO2 EI product family offers the conventional, centralized integration solution of the WSO2 middleware stack. The next release of the 6.x family would be EI 6.6.0 that includes support for JDK11.
+ 
+The new [WSO2 Enterprise Integrator (WSO2 EI 7.0.0)](https://ei.docs.wso2.com/en/latest/) is a hybrid platform that enables API-centric integration supporting various integration architecture styles: MSAs, cloud-native architecture, or a centralized ESB architecture. This integration platform offers the choice between code-driven and graphical/configuration-driven approaches to integration development.
+ 
+The following are the three approaches for doing integration with EI 7.0.0.
+ 
+-   **Code-driven Integration** with **Ballerina Integrator**
 
-[WSO2 EI 6.5.0](https://docs.wso2.com/display/EI650/WSO2+Enterprise+Integrator+Documentation) is the latest release of the 6.x.x family, which includes the **ESB profile** and other supporting profiles. This WSO2 EI product family offers the conventional, centralized integration solution of the WSO2 middleware stack. 
+    The [Ballerina Integrator](https://ei.docs.wso2.com/en/latest/ballerina-integrator/get-started/introduction/) provides a powerful, simple-to-learn, code-driven approach to programming integration solutions based on the Ballerina programming language. The Ballerina language offers a revolutionary approach to closing the integration gaps often left by traditional ESBs when supporting modern, cloud-native app development. The Ballerina Integrator simplifies integration by offering high-level abstractions that represent services, endpoints, and network data types, along with a sequence diagram-based visualization of interactions. 
+ 
+-   **Low-code Integration** with **Micro Integrator**
 
-The new [WSO2 Enterprise Integrator (WSO2 EI 7.0.0)](https://ei.docs.wso2.com/en/latest/) is a hybrid platform that enables API-centric integration supporting various integration architecture styles: MSAs, cloud-native architectures, or a centralized ESB architecture.  This integration platform offers the choice between code-driven and graphical/configuration-driven approaches to integration development. 
+    The [Micro Integrator](../../overview/introduction) is an intuitive, configuration-driven integrator with graphical/drag-and-drop integration designing based on the cloud-native variant of the battle-tested WSO2 EI/ESB runtime.
+ 
+-   **Streaming Integration**
 
-The **[Micro Integrator](../../overview/introduction)** is exclusively the configuration-driven/graphical-tooling approach to integration development in the EI 7.0.0 family.
+    The [Streaming Integrator](https://ei.docs.wso2.com/en/latest/streaming-integrator/overview/overview/) is a cloud-native, lightweight component that understands streaming SQL queries that capture, analyze, process, and act on events in real-time.
 
-## Advantages of using the Micro Integrator
+## Advantages of using the Micro Integrator in EI 7.0
 
-Compared to the ESB profile of WSO2 Enterprise Integrator 6.x.x, the Micro Integrator encompasses the following key attributes that are essential for a microservice-ready integration solution.
+Compared to the ESB profile of WSO2 Enterprise Integrator 6.x, the Micro Integrator encompasses the following key attributes that are essential for a microservice-ready integration solution.
 
 -	Faster startup time (<3s).
 -	Low memory footprint.
@@ -22,9 +36,9 @@ Compared to the ESB profile of WSO2 Enterprise Integrator 6.x.x, the Micro Integ
 -	Native Kubernetes support with the integration operator. 
 -	Lightweight, container-native, and supports distributed deployments. 
 
-## Comparison: Micro Integrator vs ESB Profile (WSO2 EI 6.x.x Family)
+## Comparison: ESB profile of EI 6.x vs Micro Integrator of EI 7.0
 
-Given below is a comparision between the Micro Integrator of WSO2 EI 7.0.0 and the ESB profile of WSO2 EI 6.x.x.
+Given below is a comparision between the Micro Integrator of EI 7.0 and the ESB profile of EI 6.x.
 
 <table>
 	<tr>
@@ -129,7 +143,7 @@ Given below is a comparision between the Micro Integrator of WSO2 EI 7.0.0 and t
 			RDBMS-based Registry
 		</td>
 		<td>
-			File system based Registry
+			<a href="../../setup/deployment/file_based_registry">File system based Registry</a>
 		</td>
 	</tr>
 	<tr>
@@ -146,7 +160,7 @@ Given below is a comparision between the Micro Integrator of WSO2 EI 7.0.0 and t
 	</tr>
 </table>
 
-## Features not available in WSO2 Micro Integrator
+## Features removed from the Micro Integrator of EI 7.0
 
 The following features, which are not needed for MSA-based deployments or not used frequently are removed from WSO2 Micro Integrator.
 
