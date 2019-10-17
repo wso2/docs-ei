@@ -13,7 +13,7 @@ Follow the instructions given below to create a new Inbound Endpoint artifact in
         See the list of configurable properties for [listening inbound endpoints](../../references/synapse-properties/inbound-endpoints/listening-inbound-endpoint-properties.md), [polling inbound endpoints](../../references/synapse-properties/inbound-endpoints/polling-inbound-endpoint-properties.md), [event-based inbound endpoints](../../references/synapse-properties/inbound-endpoints/event-based-inbound-endpoint-properties.md), and [custom inbound endpoints](../../references/synapse-properties/inbound-endpoints/custom-inbound-endpoint-properties.md).
 
 	!!! Note
-		For certain protocols ( HL7, KAFKA, Custom, MQTT, RabbitMq, WSO2_MB, WS, and  WSS) the **main sequence** and **error sequence** are mandatory fields. You can select sequences that already exist in the workspace and add them to the **Sequence** and **Error sequence** fields. If you don't have any sequences in the workspace, click **Generate Sequence and Error Sequence** to generate new sequences for the inbound endpoint.  
+		For certain protocols (HL7, KAFKA, Custom, MQTT, RabbitMq, WSO2_MB, WS, and  WSS) the **main sequence** and **error sequence** are mandatory fields. You can select sequences that already exist in the workspace and add them to the **Sequence** and **Error sequence** fields. If you don't have any sequences in the workspace, click **Generate Sequence and Error Sequence** to generate new sequences for the inbound endpoint.  
         
 5.	Do one of the following:  
     -   To save the endpoint in an existing ESB Config project in your workspace, click **Browse** and select that project.
@@ -35,7 +35,7 @@ Follow the instructions given below to create a new Inbound Endpoint artifact in
     -Dsynapse.transport.portCloseVerifyTimeout=20
     ```
 
-    Note that this setting may be required in Windows environments as the process of closing a port can sometimes take longer than 10 seconds.xss
+    Note that this setting may be required in Windows environments as the process of closing a port can sometimes take longer than 10 seconds.
 
 ## Examples
 
