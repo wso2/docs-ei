@@ -190,7 +190,6 @@ nav:
             - 'Sample 3: JMS Sender/Receiver': 'setup/deployment/k8s-samples/jms-sender-receiver.md'
         - 'Deploy on a VM': 'setup/deployment/deploying_wso2_ei.md' 
         - 'Migrating from WSO2 EI 6.x': 'setup/deployment/migrating-from-ei-6.x.x.md' 
-        #- 'Upgrading from a Previous Release' : 'setup/deployment/upgrading.md'
         - 'Setting up a Load Balancer': 'setup/deployment/setting_up_lb.md'
         - 'Troubleshooting Production Deployment' : 'setup/deployment/troubleshooting_deployment.md'
         - 'Product Deployment Checklist' : 'setup/deployment/deployment_checklist.md'
