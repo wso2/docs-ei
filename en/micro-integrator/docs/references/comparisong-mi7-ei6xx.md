@@ -23,7 +23,7 @@ The following are the three approaches for doing integration with EI 7.0.0.
  
 -   **Streaming Integration**
 
-    The [Streaming Integrator](https://ei.docs.wso2.com/en/latest/streaming-integrator/overview/overview/) is a cloud-native, lightweight component that understands streaming SQL queries that capture, analyze, process, and act on events in real-time.
+    The [Streaming Integrator](https://ei.docs.wso2.com/en/latest/streaming-integrator/overview/overview/) is a cloud-native, lightweight component that understands, captures, analyzes, processes, and acts upon streaming data and events in real-time. It utilizes the SQL-like query language ‘Siddhi’ to implement the solution.
 
 As explained above, EI 7.0.0 addresses a wider audience that prefers different approaches to integration.
 
