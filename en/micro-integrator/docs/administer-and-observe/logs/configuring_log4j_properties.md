@@ -1,16 +1,16 @@
 # Configuring Log4j Properties
 
-All WSO2 products are shipped with the log4j logging capabilities , which generates administrative activities and server side logs. The log4j2.properties file, which governs how logging is performed by the server can be found in the MI_HOME/conf directory.
+All WSO2 products are shipped with the log4j logging capabilities, which generates administrative activities and server side logs. The `log4j2.properties` file, which governs how logging is performed by the server can be found in the `MI_HOME/conf` directory.
 
 There are three main components when configuring log4j: **Loggers**, **Appenders**, and **Layouts**. 
 
 ## Setting the log level
 
-The log level can be set specifically for each appender in the `         log4j2.properties        ` file by setting the threshold value. If a log level is not specifically given for an appender as explained below, the root log level (INFO) will apply to all appenders by default.
+The log level can be set specifically for each appender in the `log4j2.properties        ` file by setting the threshold value. If a log level is not specifically given for an appender as explained below, the root log level (INFO) will apply to all appenders by default.
 
 For example, shown below is how the log level is set to DEBUG for the `CARBON_LOGFILE` appender:
 
-``` java
+```bash
 appender.CARBON_LOGFILE.filter.threshold.level = DEBUG
 ```
 
@@ -62,26 +62,28 @@ This section allows you to configure appenders individually. Log4j allows loggin
 
 A Logger is an object used to log messages for a specific system or application component. 
 
-The logger element must have a name attribute specified, will usually have a level attribute specified and may also have an additivity attribute specified. The level may be configured with one of TRACE, DEBUG, INFO, WARN, ERROR, ALL or OFF. 
+The logger element must have a name attribute specified. It may also have a **level** attribute and an **additivity** attribute specified. The level may be configured with one of the following values: `TRACE`, `DEBUG`, `INFO`, `WARN`, `ERROR`, `ALL` or `OFF`. 
 
 -   **Name**: The name of a logger.
 -   **Level**: Allows to configure level (threshold). After you specify the level for a certain logger, a log request for that logger will only be enabled if its level is equal or higher to the logger’s level. If a given logger is not assigned a level, then it inherits one from its closest ancestor with an assigned level. Refer to the hierarchy of levels given above. See descriptions of the available log levels .
 -   **Additivity**: Allows to inherit all the appenders of the parent Logger if set as 'True'.
 
-Add logger in the log4j2.properties file:
-```
-logger.<Logger_Name>.name = <Component_name>
-logger.<Logger_Name>.type = INFO
-```
+1.  Add the logger in the `log4j2.properties` file:
 
-For an example:
-```xml
-logger.VFSTransportSender.name = org.apache.synapse.transport.vfs.VFSTransportSender
-logger.VFSTransportSender.level = WARN
-```
+    ```xml
+    logger.<Logger_Name>.name = <Component_name>
+    logger.<Logger_Name>.type = INFO
+    ```
 
-Then add the logger to the loggers list by referring to the logger name
+    For example:
 
-```xml
-loggers = AUDIT_LOG, SERVICE_LOGGER, VFSTransportSender, 
-```
+    ```xml
+    logger.VFSTransportSender.name = org.apache.synapse.transport.vfs.VFSTransportSender
+    logger.VFSTransportSender.level = WARN
+    ```
+
+2.  Then, add the logger to the list of loggers by referring the logger name:
+
+    ```xml
+    loggers = AUDIT_LOG, SERVICE_LOGGER, VFSTransportSender, 
+    ```
