@@ -19,7 +19,7 @@ can [import an existing validator
 project](#ManagingDataIntegrationArtifactsviaTooling-Importingavalidatorproject)
 .
 
-1.  Go to **File-\> New -\> Other -\> Data Services Validator Project**
+1.  Go to **File -\> New -\> Other -\> Data Services Validator Project**
     to open the **New Data Services Validated Artifact Creation Wizard**
     .
 2.  Select **Create New Data Services Validator Project** and click

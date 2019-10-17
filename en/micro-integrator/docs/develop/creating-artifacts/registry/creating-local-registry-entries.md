@@ -47,8 +47,7 @@ XSLT code, you can add an XSLT mediator to the workflow and then
 reference the local entry as follows:
 
 1.  Click the XSLT mediator to view its properties, click the **XSLT
-    Static Schema Key** property, and then click the browse [...]
-    button on the far right of the property's value.
+    Static Schema Key** property, to get the property key wizard.
 2.  Click the **Workspace** link, and then navigate to and select the
     local entry that contains the XSLT code.
 3.  Click **OK** .
