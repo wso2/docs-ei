@@ -89,6 +89,10 @@ Given below is the data service configuration you need to build. See the instruc
 </data>
 ```
 
+!!! Tip
+    If you use **External** instead of the **Default** as the datasource type, your datasource should be supported by an external provider class, such as `com.mysql.jdbc.jdbc2.optional.MysqlXADataSource`.</br></br>
+    After an external datasource is created, it can be used as another datasource in queries. See the example on [handling distributed transactions](../../../../use-cases/examples/data_integration/distributed-trans-data-service) for more information on using external datasources.
+
 ## Build and run
 
 Create the artifacts:

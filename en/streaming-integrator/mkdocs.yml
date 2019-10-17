@@ -198,6 +198,7 @@ nav:
         - 'Receiving Events via Simulator and Persisting in RDBMS Store': 'samples/Store-rdbms.md'
         - 'Receive Events via Simulator and Persist in Cassandra Store': 'samples/Store-cassandra.md'
         - 'Publishing Avro Events via Kafka': 'samples/PublishKafkaInAvroFormatUsingSchemaRegistry.md'
+        - 'Publishing Aggregated Events to the Amazon AWS S3 Bucket': 'samples/AmazonS3SinkSample.md'
   - 'Setup and Install':
     - 'Installing the Product':
       - 'Install in a VM': 'setup/installing-si-in-vm.md'

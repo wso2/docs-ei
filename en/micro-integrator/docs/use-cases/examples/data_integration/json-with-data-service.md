@@ -108,6 +108,50 @@ Given below is the data service configuration you need to build. See the instruc
 </data>
 ```
 
+Alternatively, you can use one of the following JSON templates for the response mapping:
+
+-   Simple JSON template
+
+    ```json
+    { "Employees":
+          {"Employee":[
+            {"EmployeeNumber":"$EmployeeNumber",                       
+             "Details": {
+              "FirstName":"$FirstName",
+              "LastName":"$LastName",
+              "Email":"$Email",
+              "Salary":"$Salary"
+             }
+            }                 
+          ]
+        }           
+    }
+    ```
+
+-   Define data types
+
+    In a basic JSON output mapping, we specify the field values that we expect in the query result. You can give additional properties to this field mapping such as data type of the field, the possible content filtering user roles etc. These extended properties for the fields are given in parentheses, with a list of string tokens providing the additional properties, separated by a semicolon (";"). See the sample below.
+
+    ```json
+    <result outputType="json">
+    { "Employees":
+          {"Employee":[
+            {"EmployeeNumber":"$EmployeeNumber(type:integer)",                       
+             "Details": {
+              "FirstName":"$FirstName",
+              "LastName":"$LastName",
+              "Email":"$Email",
+              "Salary":"$Salary(requiredRoles:hr,admin)"
+             }
+            }                 
+          ]
+        }           
+    }
+    </result>
+    ```
+
+-   If you want to write a nested query using JSON, see the example on [nested queries](../../../../use-cases/examples/data_integration/nested-queries-in-data-service).
+
 ## Build and run
 
 Create the artifacts:
