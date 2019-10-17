@@ -24,16 +24,16 @@ The decision on migration to the new platform needs to be taken by considering s
 
 ## Migrating to the Micro Integrator 
  
-Both the ESB profile of EI 6.x and the Micro Integrator of EI 7.0 uses the same ESB runtime and the same developer tool ([WSO2 Integration Studio](../../develop/WSO2-Integration-Studio)) for developing integrations. Most of the mediation(ESB) and data integration features available in the ESB profile of EI 6.x are available in the Micro Integrator as well. Some of the features are [removed from WSO2 Micro Integrator](/references/comparisong-mi7-ei6xx/#features-not-available-in-wso2-micro-integrator) as they are not needed for MSA-based deployments or they are not frequently used.
+Both the ESB profile of EI 6.x and the Micro Integrator of EI 7.0 uses the same ESB runtime and the same developer tool ([WSO2 Integration Studio](../../../develop/WSO2-Integration-Studio)) for developing integrations. Most of the mediation(ESB) and data integration features available in the ESB profile of EI 6.x are available in the Micro Integrator as well. Some of the features are [removed from WSO2 Micro Integrator](/references/comparisong-mi7-ei6xx/#features-removed-from-the-micro-integrator-of-ei-70) as they are not needed for MSA-based deployments or they are not frequently used.
 
 In summary, all the integration capabilities that you used in the ESB can be used in the Micro Integrator with minimal changes. However, EI 7.0 introduces a [Toml-based configuration strategy](../../../references/config-catalog) to replace XML configurations, which simplifies your product configurations.
  
-See the [detailed comparison of EI 6.5 and EI 7.0](../../references/comparisong-mi7-ei6xx/) to understand what has changed between the ESB profile of EI 6.5 and the Micro Integrator of EI 7.0.
+See the [detailed comparison of EI 6.5 and EI 7.0](/references/comparisong-mi7-ei6xx) to understand what has changed between the ESB profile of EI 6.5 and the Micro Integrator of EI 7.0.
 
 ## Migrating to the Ballerina Integrator
  
-Integration development in EI 6.x is based on the configuration-driven/graphical tooling experience provided through [WSO2 Integration Studio](../../develop/WSO2-Integration-Studio). Integration development in the EI 7.0 Ballerina Integrator is based on a code-driven approach. 
+Integration development in EI 6.x is based on the configuration-driven/graphical tooling experience provided through [WSO2 Integration Studio](../../../develop/WSO2-Integration-Studio). Integration development in the EI 7.0 Ballerina Integrator is based on a code-driven approach. 
  
-Even though there are no tools to convert your integration configurations (developed using [WSO2 Integration Studio](../../develop/WSO2-Integration-Studio)) to Ballerina code, the intuitiveness and built-in integration concepts of the Ballerina language helps to build integration solutions very quickly. 
+Even though there are no tools to convert your integration configurations (developed using [WSO2 Integration Studio](../../../develop/WSO2-Integration-Studio)) to Ballerina code, the intuitiveness and built-in integration concepts of the Ballerina language helps to build integration solutions very quickly. 
  
 All the integration capabilities that you used in the ESB can be used in the Ballerina Integrator through the code-driven approach. See the documentation on Ballerina Integrator's [templates and tutorials](https://ei.docs.wso2.com/en/latest/ballerina-integrator/learn/use-cases/) to help you with this process.

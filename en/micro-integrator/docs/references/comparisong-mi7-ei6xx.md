@@ -2,7 +2,7 @@
 
 ## Comparison: EI 6.x vs EI 7.0
 
-[WSO2 Enterprise Integrator](https://wso2.com/integration/micro-integrator/) consists of two product families:
+[WSO2 Enterprise Integrator](https://wso2.com/platform) consists of two product families:
 
 -	WSO2 EI 7.x.x family
 -	WSO2 EI 6.x.x family
@@ -252,7 +252,7 @@ The following features, which are not needed for MSA-based deployments or not us
 			-
 		</td>
 		<td>
-			File system based Registry
+			<a href="../../setup/deployment/file_based_registry">File system based Registry</a>
 		</td>
 	</tr>
 </table>
