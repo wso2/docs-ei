@@ -15,10 +15,10 @@ The default HTTP transport (PassThrough transport) of WSO2 Micro Integrator has 
 You can configure the number of listeners for the HTTP transport in the deployment.toml file:
 
 ```toml
-[[transport.http]]
-io_thread_count=2
+[passthru_properties]
+io_threads_per_reactor=2
 ```
-You are able to define any number of listeners (by updating the `io_thread_count` value) as there is no maximum limit defined in the code level.
+You are able to define any number of listeners (by updating the `io_threads_per_reactor` value) as there is no maximum limit defined in the code level.
 
 !!! Note
     The number of listener threads is double the value of the `io_threads_per_reactor` property because the same number of `PassThroughHttpListener` and `PassThroughHttpSSLListener` threads are created. For example, if you defined the value for the `io_threads_per_reactor` property as 5, you have 5 `PassThroughHttpListener` threads and 5 `PassThroughHttpSSLListener` threads. Therefore, the total number of listeners are 10.
@@ -30,7 +30,7 @@ With the default HTTP transport (PassThrough transport) you can enable connectio
 To enable connection throttling, update the following property in the deployment.toml file:
 
 ```toml
-[[transport.http]]
+[transport.http]
 max_open_connections = 2
 ```
 
@@ -58,18 +58,18 @@ process checks all the certificates in a certificate chain.
 To enable this feature for the HTTP passthrough, add the following parameters for the HTTP transport receiver and sender in the deployment.toml file:
 
 ```toml tab='Passthrough Listener'
-[[transport.http]]
-listener.CertificateRevocationVerifier=""
-listener.CacheSize=1024
-listenerCacheDelay=1000
+[transport.http]
+listener.certificate_revocation_verifier_enable = true
+listener.certificate_revocation_cache_size = 1024
+listener.certificate_revocation_cache_delay = 1000
 
 ``` 
 
 ```toml tab='Passthrough Sender'
-[[transport.http]]
-sender.CertificateRevocationVerifier=""
-sender.CacheSize=1024
-sender.CacheDelay=1000
+[transport.http]
+sender.certificate_revocation_verifier_enable = true
+sender.certificate_revocation_cache_size = 1024
+sender.certificate_revocation_cache_delay = 1000
 
 ``` 
 
@@ -95,7 +95,7 @@ To enable the TCP transport listener and sender, set the following parameters to
 
 ```toml
 [transport.tcp]
-listener.enable = false
+listener.enable = true
 sender.enable = true
 ```
 

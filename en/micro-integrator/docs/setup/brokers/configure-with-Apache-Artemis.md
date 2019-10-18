@@ -13,7 +13,6 @@ Follow the instructions below to set up and configure.
         [[transport.jms.listener]]
         name = "myTopicListener"
         parameter.initial_naming_factory = "org.apache.activemq.artemis.jndi.ActiveMQInitialContextFactory"
-        parameter.broker_name = "artemis" 
         parameter.provider_url = "tcp://localhost:61616"
         parameter.connection_factory_name = "TopicConnectionFactory"
         parameter.connection_factory_type = "topic"
@@ -24,7 +23,6 @@ Follow the instructions below to set up and configure.
         [[transport.jms.sender]]
         name = "myTopicSender"
         parameter.initial_naming_factory = "org.apache.activemq.artemis.jndi.ActiveMQInitialContextFactory"
-        parameter.broker_name = "artemis"
         parameter.provider_url = "tcp://localhost:61616"
         parameter.connection_factory_name = "TopicConnectionFactory"
         parameter.connection_factory_type = "topic"

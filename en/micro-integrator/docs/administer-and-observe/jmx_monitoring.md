@@ -34,7 +34,7 @@ rmi_server_start = true
 To enable JMX for a datasource, add the following configuration in the deployment.toml file:
 
 ```toml
-[database.shared_db]
+[[datasource]]
 jmx_enable = true
 ```
 ## Monitoring with JConsole
@@ -385,6 +385,6 @@ dumping all the threads
 1.  Open the `MI_HOME/deployment.toml` file.
 2.  Add the following property to the file and save the file.
     ```toml
-    [jmx_thread_view]
-    synapse.jmx.thread.view.enabled=false
+    [synapse_properties]
+    'synapse.jmx.thread.view.enabled'=false
     ```
