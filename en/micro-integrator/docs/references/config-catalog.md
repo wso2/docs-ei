@@ -1,5 +1,5 @@
 # Product Configurations
-This document describes all the product configuration parameters that are used in WSO2 Micro Integrator. 
+This document describes all the product configuration parameters that are used in WSO2 Micro Integrator.
 
 ## Instructions for use
 
@@ -19,6 +19,7 @@ hostname="localhost"
 [[database]]
 pool_options.maxActiv=5
 ```
+
 
 
 
@@ -7874,7 +7875,7 @@ inbound.max_threads = 100
                                         </div>
                                     </div>
                                     <div class="param-description">
-                                        <p>Set this property to 'true' and set the <code>mediation.flow.statistics.enable</code> property also to 'true'. This will enable mediation statistics for all the integration artifacts by default. If you set this property to 'false', you need to set the <code>mediation.flow.statistics.enable</code> property to 'true' and manually enable statistics for the required integration artifact.</p>
+                                        <p>Set this property to 'true' and set the <code>flow.statistics.enable</code> property also to 'true'. This will enable mediation statistics for all the integration artifacts by default. If you set this property to 'false', you need to set the <code>flow.statistics.enable</code> property to 'true' and manually enable statistics for the required integration artifact.</p>
                                     </div>
                                 </div>
                             </div><div class="param">
@@ -7900,7 +7901,7 @@ inbound.max_threads = 100
                                 </div>
                             </div><div class="param">
                                 <div class="param-name">
-                                  <span class="param-name-wrap"> <code>flow.statistics.tracer.collect_payload</code> </span>
+                                  <span class="param-name-wrap"> <code>stat.tracer.collect_payloads</code> </span>
                                 </div>
                                 <div class="param-info">
                                     <div>
@@ -7921,7 +7922,7 @@ inbound.max_threads = 100
                                 </div>
                             </div><div class="param">
                                 <div class="param-name">
-                                  <span class="param-name-wrap"> <code>flow.statistics.tracer.collect_properties</code> </span>
+                                  <span class="param-name-wrap"> <code>stat.tracer.collect_mediation_properties</code> </span>
                                 </div>
                                 <div class="param-info">
                                     <div>
@@ -7948,4 +7949,5 @@ inbound.max_threads = 100
         </div>
     </section>
 </div>
+
 
