@@ -8,12 +8,11 @@ Add the following parameters to the deployment.toml file (stored in the `MI_HOME
 
 ```toml
 [[transport.rabbitmq.listener]]
-name = "rabbitMQListener"
+name = "AMQPConnectionFactory"
 parameter.hostname = "localhost"
 parameter.port = 5672
 parameter.username = "guest"
 parameter.password = "guest"
-parameter.connection_factory = ""
 ```
 
 Download the "amqp-client-5.7.0.jar" and copy it into `MI_HOME/lib` directory.
