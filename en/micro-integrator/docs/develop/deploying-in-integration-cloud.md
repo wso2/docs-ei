@@ -28,10 +28,10 @@ how to host a solution on Integration Cloud, follow the steps below:
     !!! Info
         The purpose of this step is to change the default values. You can skip it if required.
 
-    1.  In the left navigator, open the `HelloWorldApplication/src/main/synapse-config/proxy-services/HelloWorld.xml` file. Then click on the **PayloadFactory** icon to open the **Payload Factory Mediator** configuration in the **Properties** tab.  
+    1.  In the left navigator, open the `HelloWorldApps/src/main/synapse-config/proxy-services/HelloWorld.xml` file. Then click on the **PayloadFactory** icon to open the **Payload Factory Mediator** configuration in the **Properties** tab.
         ![Cloud](../../assets/img/create_project/integration_cloud/3.open_properties.png)
 
-    2.  In the **Payload** field, replace the existing value  with `{“data”: “HelloWorld”}`.
+    2.  In the **Payload** field, replace the existing value  with `{"data": "HelloWorld"}`.
 
 ## Step 2: Deploy in WSO2 Integration Cloud
 
