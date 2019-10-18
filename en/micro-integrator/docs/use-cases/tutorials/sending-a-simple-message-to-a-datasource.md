@@ -11,7 +11,7 @@ Google spreadsheets, and more. The following sections describe how you can use W
 
 To set up the tools:
 
--  Select the relevant [WSO2 Integration Studio](https://wso2.com/integration/tooling/) based on your operating system and extract the ZIP file.  The path to the extracted folder is referred to as `MI_TOOLING_HOME` throughout this tutorial.
+-  Download the relevant [WSO2 Integration Studio](https://wso2.com/integration/tooling/) based on your operating system.  The path to the extracted/installed folder is referred to as `MI_TOOLING_HOME` throughout this tutorial.
 -  Download the [CLI Tool](https://wso2.com/integration/micro-integrator/install/) for monitoring artifact deployments.
 
 To demonstrate how data services work, we will use a MySQL database as the datasource. Follow the steps given below to set up a MySQL database:

@@ -11,8 +11,7 @@ In this sample scenario, you will use an **Inbound Endpoint** to expose an alrea
 To set up the tools:
 
 -   Go to the [product page](https://wso2.com/integration/) of **WSO2 Micro Integrator**, download the product installer and run it to set up the product.
--   Select the relevant [WSO2 Integration Studio](https://wso2.com/integration/tooling/) based on your operating system and extract the
-    ZIP file.  The path to this folder is referred to as `MI_TOOLING_HOME` throughout this tutorial.
+-   Download the relevant [WSO2 Integration Studio](https://wso2.com/integration/tooling/) based on your operating system. The path to the extracted/installed folder is referred to as `MI_TOOLING_HOME` throughout this tutorial.
 -   Download the CLI Tool for monitoring artifact deployments.
 
 To set up the previous artifacts:
