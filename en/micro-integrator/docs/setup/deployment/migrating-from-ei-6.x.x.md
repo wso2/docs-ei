@@ -13,7 +13,7 @@ See the following topics to understand the benefits of moving to EI 7.0 from EI 
 
 ## Why migrate to EI 7.0?
 
-If you are an existing EI 6.x user, migration is recommended for the following requirements:
+If you are an EI 6.x user, migration is recommended for the following requirements:
  
 -   You need to switch to a microservices architecture from the conventional centralized architecture.
 -   You prefer the code-driven integration approach.
