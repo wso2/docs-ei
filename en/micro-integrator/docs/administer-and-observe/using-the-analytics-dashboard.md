@@ -23,7 +23,7 @@ stat.tracer.collect_mediation_properties=true
 
 ## Enabling statistics for artifacts
 
-You must enable statistics/tracing for the integration artifacts you wish to monitor.
+You must enable statistics/tracing for the integration artifacts that you wish to monitor.
 
 ### Enabling statistics for ALL artifacts
 
@@ -102,10 +102,12 @@ Once you have [started the Analytics Worker](#starting-the-analytics-worker), yo
         dashboard.bat
         ```
 
-Now, you can [invoke the integration artifacts](#invoking-the-artifacts) and view the statistics on this dashboard.
-
-3.  In a new browser window or tab, open the Analytics dashboard using the following URL: <https://localhost:9643/portal> . Use
+In a new browser window or tab, open the Analytics dashboard using the following URL: <https://localhost:9643/portal> . Use
     `           admin          ` for both the username and password.
+
+<img src="../../assets/img/ei-analytics/dashboard-login.png" width="500">
+
+Now, you can [invoke the integration artifacts](#invoking-the-artifacts) and view the statistics on this dashboard.
 
 ## Invoking the artifacts
 
@@ -114,7 +116,7 @@ Now, you can [invoke the integration artifacts](#invoking-the-artifacts) and vie
 Let's start the hospital service that serves as the backend to the [service chaining](../../use-cases/tutorials/exposing-several-services-as-a-single-service) use case: 
 
 1. Download the JAR file of the back-end service from [here](https://github.com/wso2-docs/WSO2_EI/blob/master/Back-End-Service/Hospital-Service-2.0.0-EI7.jar).
-2. Open a terminal, navigate to the location where your saved the [back-end service](#step-1-set-up-the-workspace).
+2. Open a terminal, navigate to the location where your saved the back-end service.
 3. Execute the following command to start the service:
 
     ```bash
