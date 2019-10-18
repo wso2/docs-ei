@@ -87,7 +87,7 @@ As management dashboard is utilizing the management api, the user store is bound
         </user>
     </users>
 </UserStore>
- ```
+```
  
 <!--
 If the ` <UserStore>` element is not defined in `internal-apis.xml` user store will default to the carbon user store defined in user-mgt.xml.

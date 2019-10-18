@@ -45,7 +45,7 @@ Let's use the integration artifacts from the [service chaining](../../use-cases/
 
 If you did not try the [service chaining](../../use-cases/tutorials/exposing-several-services-as-a-single-service) tutorial yet:
 
-1.  Download the [pre-packaged project](https://github.com/wso2-docs/WSO2_EI/blob/master/Integration-Tutorial-Artifacts/ExposingSeveralServicesTutorial.zip) for the **service chaining tutorial**.
+1.  Download the [pre-packaged project](https://github.com/wso2-docs/WSO2_EI/blob/master/Integration-Tutorial-Artifacts/ExposingSeveralServicesTutorial.zip) for the **service chaining** use case.
 2.  [Open WSO2 Integration Studio](../../develop/installing-WSO2-Integration-Studio) and [import the pre-packaged project](../../develop/importing-projects).
 
 Follow the steps below to enable statistics and tracing for the **REST API** artifact:
@@ -82,6 +82,11 @@ Follow the steps below to enable statistics for the **endpoint** artifacts:
         ```
 
 ## Starting the Micro Integrator
+
+!!! Warning
+    To allow the Micro Integrator server and the Analytics server to communicate using SSL, the digital certifacates should be shared by the two servers. See the instructions on [adding SSL certificates to keystores](../../security/importing_ssl_certificate).
+    
+    For testing, you can simply copy the keystore files from the `<EI_6.5.0_HOME>/wso2/analytics/resources/security` directory to the `MI_HOME/resources/security` directory.
 
 Once you have [started the Analytics Worker](#starting-the-analytics-worker), you can [start the Micro Integrator](../../develop/deploy-and-run) with your integration artifacts.
 
@@ -172,6 +177,9 @@ Let's send 8 requests to the Micro Integrator to invoke the integration artifact
 ## Analyzing statistics
 
 Go to the [Analytics Dashboard](#starting-the-analytics-dashboard) and see the statistics listed below.
+
+!!! Tip
+    See the documentation on [using the Analytics dashsboard](https://docs.wso2.com/display/EI650/Using+the+WSO2+EI+Analytics+Dashboard) for more information on dashboard function.
 
 1.  Click the **Enterprise Integrator Analytics** icon shown below to
     open the dashboard.  
