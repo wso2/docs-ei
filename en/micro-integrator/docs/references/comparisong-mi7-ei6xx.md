@@ -72,6 +72,17 @@ Given below is a comparision between the Micro Integrator of EI 7.0 and the ESB 
 	</tr>
 	<tr>
 		<td>
+			Product configuration model
+		</td>
+		<td>
+			XML-based configurations
+		</td>
+		<td>
+			<a href="../../references/config-catalog">TOML-based configurations</a>
+		</td>
+	</tr>
+	<tr>
+		<td>
 			Mediation (ESB) Features
 		</td>
 		<td>
