@@ -11,9 +11,9 @@ See the following topics to understand the benefits of moving to EI 7.0 from EI 
 -   [Comparison: ESB profile of EI 6.x vs Micro Integrator of EI 7.0](../../../references/comparisong-mi7-ei6xx/#comparison-esb-profile-of-ei-6x-vs-micro-integrator-of-ei-70)
 -   [Features removed from the Micro Integrator of EI 7.0](../../../references/comparisong-mi7-ei6xx/#features-removed-from-the-micro-integrator-of-ei-70)
 
-## When should you migrate to EI 7.0?
+## Why migrate to EI 7.0?
 
-If you are an existing EI 6.x user, migration is recommended for the following requirements:
+If you are an EI 6.x user, migration is recommended for the following requirements:
  
 -   You need to switch to a microservices architecture from the conventional centralized architecture.
 -   You prefer the code-driven integration approach.

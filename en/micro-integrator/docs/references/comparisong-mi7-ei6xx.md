@@ -11,7 +11,7 @@
  
 The new [WSO2 Enterprise Integrator (WSO2 EI 7.0.0)](https://ei.docs.wso2.com/en/latest/) is a hybrid platform that enables API-centric integration supporting various integration architecture styles: MSAs, cloud-native architecture, or a centralized ESB architecture. This integration platform offers the choice between code-driven and graphical/configuration-driven approaches to integration development.
  
-The following are the three approaches for doing integration with EI 7.0.0.
+The following are the three approaches to integration with EI 7.0.0.
  
 -   **Code-driven Integration** with **Ballerina Integrator**
 
@@ -68,6 +68,17 @@ Given below is a comparision between the Micro Integrator of EI 7.0 and the ESB 
 		</td>
 		<td>
 			~100 MB
+		</td>
+	</tr>
+	<tr>
+		<td>
+			Product configuration model
+		</td>
+		<td>
+			XML-based configurations
+		</td>
+		<td>
+			<a href="../../references/config-catalog">TOML-based configurations</a>
 		</td>
 	</tr>
 	<tr>
