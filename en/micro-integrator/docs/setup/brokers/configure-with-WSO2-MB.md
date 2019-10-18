@@ -11,7 +11,6 @@ This section describes how to configure WSO2 Micro Integrator to connect with WS
         [[transport.jms.listener]]
         name = "myQueueListener"
         parameter.initial_naming_factory = "org.wso2.andes.jndi.PropertiesFileInitialContextFactory"
-        parameter.broker_name = "wso2mb" 
         parameter.provider_url = "conf/jndi.properties"
         parameter.connection_factory_name = "QueueConnectionFactory"
         parameter.connection_factory_type = "queue"
@@ -23,7 +22,6 @@ This section describes how to configure WSO2 Micro Integrator to connect with WS
         [[transport.jms.sender]]
         name = "myQueueSender"
         parameter.initial_naming_factory = "org.wso2.andes.jndi.PropertiesFileInitialContextFactory"
-        parameter.broker_name = "wso2mb"
         parameter.provider_url = "conf/jndi.properties"
         parameter.connection_factory_name = "QueueConnectionFactory"
         parameter.connection_factory_type = "queue"

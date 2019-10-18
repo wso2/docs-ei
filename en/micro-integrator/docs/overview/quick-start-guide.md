@@ -4,7 +4,7 @@ Let's get started with WSO2 Micro Integrator by running a simple use case in you
 
 Most healthcare centers have a system that is used to make doctor appointments. To check the availability of the doctors for a particular time, users need to visit the hospitals or use each and every online system that is dedicated for a particular healthcare center. Here we are making it easier for patients by orchestrating those isolated systems for each healthcare provider and exposing a single interface to the users.
 
-![alt text](../../assets/img/quick-start-guide/MI-quick-start-guide.png)
+![Scenario](../../assets/img/quick-start-guide/MI-quick-start-guide.png)
 
 In the above scenario, the following takes place:
 
@@ -42,35 +42,9 @@ Let’s implement a simple integration solution that can be used to query for av
 
 ## Before you begin
 
-1. [Download Micro Integrator](https://www.wso2.com/integration/micro-integrator) for your Operating System.
-   <table>
-    <tr>
-    <th>Operating System</th>
-    <th>Location</th>
-    </tr>
-    
-    <tr>
-    <td>Mac OSX</td>
-    <td>/Library/WSO2/MicroIntegrator/1.0.0</td>
-    </tr>
-    
-    <tr>
-    <td>Windows</td>
-    <td>C:\Program Files\WSO2\MicroIntegrator\1.0.0</td>
-    </tr>
-    
-    <tr>
-    <td>Ubuntu</td>
-    <td>/usr/lib/wso2/MicroIntegrator/1.0.0</td>
-    </tr>
-    
-    <tr>
-    <td>CentOS</td>
-    <td>/usr/lib64/MicroIntegrator/1.0.0</td>
-    </tr>
-   </table> 
-
-2. Download the sample files from [here](https://github.com/wso2/docs-ei/tree/7.0.0/en/micro-integrator/docs/assets/attach/quick-start-guide). From this point onwards, let's refer to this folder as `<MI_QSG_HOME>`.
+1. [Download Micro Integrator](https://www.wso2.com/integration/micro-integrator) for your Operating System. For more information, see [the Installation section](../../setup/installation/install_in_vm/).
+   
+2. Download the sample files from [here](https://github.com/wso2/docs-ei/blob/7.0.0/en/micro-integrator/docs/assets/attach/quick-start-guide/MI_QSG_HOME.zip). From this point onwards, let's refer to this folder as `<MI_QSG_HOME>`.
 
 3. Download [curl](https://curl.haxx.se/) or a similar tool that can call an endpoint.
 
@@ -81,7 +55,7 @@ To set up the integration workspace for this quick start guide, we will use an i
 Go to the `<MI_QSG_HOME>` directory. The following project files and executable backend services files are available.
 
 - **HealthcareConfigProject**: This is the ESB Config Project folder with the integration artifacts for the Healthcare service. This service consists of the following REST API:
-  ![alt text](../../assets/img/quick-start-guide/qsg-api.png)
+  ![Scenario API](../../assets/img/quick-start-guide/qsg-api.png)
   <details>
             <summary>HealthcareAPI.xml</summary>
 	    ```xml
@@ -169,7 +143,7 @@ Follow the steps relevant to your OS:
 On MacOS/Linux/CentOS, open a terminal and execute the following commands:
 
 ```bash
-sudo wso2mi-1.0.0
+sudo wso2mi-service start
 ```
 
 On Windows, go to Start Menu -> Programs -> WSO2 -> Micro Integrator. This will open a terminal and start the relevant profile.

@@ -1,4 +1,4 @@
-# Storing and Forwarding Messages
+# Asynchronous Messaging
 
 ## What you'll build
 
@@ -74,7 +74,9 @@ Let's create a Sequence that uses the message in the message store to send the r
 
 3.  Click **Finish**.
 
-4.  Drag and drop a Call mediator from the **Mediators** palette and add SettlePaymentEP from **Defined Endpoints** palette to the empty box adjoining the Call mediator. This sends the request message from the store to SettlePaymentEP.
+4.  In the sequence you have created in the previous step, drag and drop a Call mediator from the **Mediators** palette 
+and add SettlePaymentEP from **Defined 
+Endpoints** palette to the empty box adjoining the Call mediator. This sends the request message from the store to SettlePaymentEP.
 
     ![](../../assets/img/tutorials/119132268/119132272.png)
 
@@ -235,8 +237,15 @@ Let's test the use case by sending a simple client request that invokes the serv
 To set up WSO2 Message Broker:
 
 1. Download WSO2 Message Broker. The path to this folder is referred to as `MB_HOME` throughout this tutorial.
-2. Add the following JAR files from the `MB_HOME/wso2/broker/client-lib/` directory to the `MI_TOOLING_HOME/Contents/Eclipse/runtime/microesb/lib/` directory.
-3. Open the `deployment.toml` file from `MI_TOOLING_HOME/Contents/Eclipse/runtime/microesb/conf/` directory and add the configurations given below. This is required for enabling the broker to store messages.
+
+2. Add the following JAR files from the `MB_HOME/wso2/broker/client-lib/` directory to the 
+`MI_TOOLING_HOME/Contents/Eclipse/runtime/microesb/lib/` (in Windows) or 
+`MI_TOOLING_HOME/runtime/microesb/lib` (in MacOS/Linux/CentOS ) directory.
+    -   andes-client-*.jar
+    -   geronimo-jms_1.1_spec-*.jar
+    -   org.wso2.securevault-*.jar
+3. Open the `deployment.toml` file from `MI_TOOLING_HOME/Contents/Eclipse/runtime/microesb/conf/` or 
+ `MI_TOOLING_HOME/runtime/microesb/lib` ( in linux ) directory and add the configurations given below. This is required for enabling the broker to store messages.
 
     ```toml
     [[transport.jms.listener]]
@@ -256,12 +265,6 @@ To set up WSO2 Message Broker:
     parameter.connection_factory_name = "QueueConnectionFactory"
     parameter.connection_factory_type = "queue"
     parameter.cache_level = "producer"
-
-    [truststore]
-    file_name = "client-truststore.jks"
-    password = "wso2carbon"
-    alias = "symmetric.key.value"
-    algorithm = "AES"
 
     [transport.jndi.connection_factories]
     QueueConnectionFactory = "amqp://admin:admin@clientID/carbon?brokerlist='tcp://localhost:5675'"
@@ -301,7 +304,7 @@ Let's use the **CLI Tool** to find the URL of the REST API that is deployed in t
 2.  Execute the following command to start the tool:
     `./mi`
 3.  Execute the following command to find the APIs deployed in the server:
-    `mi show api`
+    `mi api show`
 
 Let's send a request to the API resource.
 

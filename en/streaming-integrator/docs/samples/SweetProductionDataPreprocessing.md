@@ -4,18 +4,18 @@
 This application demonstrates how to receive events via TCP transport and carryout data pre-processing with numerous Siddhi extensions (eg. string extension, time extension). For more information on Siddhi extensions please refer to "https://wso2.github.io/siddhi/extensions/". In this sample, a composite ID is obtained using string concatenation and the time format of the incoming event
 
 ## Prerequisites:
-1) Ensure that MySQL is installed on your machine.
-2) Add the MySQL JDBC driver into `{WSO2_SI_HOME}/lib` as follows:
-a) Download the JDBC driver from: https://dev.mysql.com/get/Downloads/Connector-J/mysql-connector-java-5.1.45.tar.gz.
-b) Unzip the archive.
-c) Copy `mysql-connector-java-5.1.45-bin.jar` to `{WSO2_SI_Home}/lib` directory.
-3) Create a database named `sampleDB` in MySQL. This database is referred to with `jdbc:mysql://localhost:3306/sampleDB` url.
-4) In the store configuration of this application, replace 'username' and 'password' values with your MySQL credentials.
-5) Save this sample.
+1. Ensure that MySQL is installed on your machine.
+2. Add the MySQL JDBC driver into `{WSO2_SI_HOME}/lib` as follows:
+    1. Download the JDBC driver from: https://dev.mysql.com/get/Downloads/Connector-J/mysql-connector-java-5.1.45.tar.gz.
+    2. Unzip the archive.
+    3. Copy `mysql-connector-java-5.1.45-bin.jar` to `{WSO2_SI_Home}/lib` directory.
+3. Create a database named `sampleDB` in MySQL. This database is referred to with `jdbc:mysql://localhost:3306/sampleDB` url.
+4. In the store configuration of this application, replace 'username' and 'password' values with your MySQL credentials.
+5. Save this sample.
 
 ## Executing the Sample:
-1) Start the Siddhi application by clicking on 'Run'.
-2) If the Siddhi application starts successfully, the following messages would be shown on the console.
+1. Start the Siddhi application by clicking on 'Run'.
+2. If the Siddhi application starts successfully, the following messages would be shown on the console.
     ```
     * Tcp Server started in 0.0.0.0:9892
     * SweetProductionDataPreprocessing.siddhi - Started Successfully!

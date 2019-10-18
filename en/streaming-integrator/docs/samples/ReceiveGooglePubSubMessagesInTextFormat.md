@@ -13,17 +13,17 @@ This application demonstrates how to configure WSO2 Streaming Integrator Tooling
 
 
 ## Executing the Sample:
-1) Start the Siddhi application by clicking on 'Run'
-2) If the Siddhi application starts successfully, the following messages would be shown on the console,
+1. Start the Siddhi application by clicking on 'Run'
+2. If the Siddhi application starts successfully, the following messages would be shown on the console,
 * ReceiveGooglePubSubMesssage.siddhi - Started Successfully!
 
 ## Testing the Sample:
-1) Receive events through the following,
+1. Receive events through the following,
 You may listen to the events coming to a topic after the subscription is made.
 
 
 ## Viewing the Results:
-## See the output on the terminal:
+See the output on the terminal:  
 INFO {io.siddhi.core.stream.output.sink.LogSink} - ReceiveEvent : BarStream : Event{timestamp=1552548124599, data=[message:"Hello"], isExpired=false} (Encoded)
 
 ## Notes:

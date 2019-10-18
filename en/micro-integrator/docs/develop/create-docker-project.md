@@ -1,24 +1,16 @@
-# Docker Project
+# Creating Docker Project
 
 Create a Docker project if you want to deploy your integration solutions inside a Docker environment. This project directory allows you to package multiple integration projects (created as [ESB pojects](../../develop/creating-projects)) into a single Docker image and then build and push to the Docker registries.
     
 ## Create Docker project
 Follow the steps given below.   
 
-1.  There are two ways to create the Docker project:
+1.  Open **WSO2 Integration Studio** and click **ESB Project → Create New** in the **Getting Started** view as shown below.
+    ![Create ESB project](../../assets/img/tutorials/119132413/119132414.png)
 
-    -   Open **WSO2 Integration Studio** and click **ESB Project → Create New** in the **Getting Started** view as shown below.
-        ![Create ESB project](../../assets/img/tutorials/119132413/119132414.png)
-
-        In the **New ESB Solution Project** dialog that opens, enter a name for the ESB config project. Select the **Create Docker/Kubernetes Exporter Project** along with **ESB Config project** and click **Next**.
+    In the **New ESB Solution Project** dialog that opens, enter a name for the ESB config project. Select the **Create Docker/Kubernetes Exporter Project** along with **ESB Config project** and click **Next**.
         
-        ![Create Container Project](../../assets/img/create_project/docker_k8s_project/create-container-project.png)
-
-    -   If you already have an ESB Config project with the integration artifacts, click **Miscellaneous → Create New Docker/Kubernetes Project** in the **Getting Started** view as shown below.
-        ![Create kubernetes/docker project](../../assets/img/create_project/docker_k8s_project/kubernetes-docker-project.png)
-
-        In the **New Docker/Kubernetes Project** dialog that opens, select **New Docker Project** and click **Next**.
-        ![Create Kubernetes Project](../../assets/img/create_project/docker_k8s_project/new_docker_project.png)
+    ![Create Container Project](../../assets/img/create_project/docker_k8s_project/create-container-project.png) 
 
 2.  In the **New ESB Solution Project** dialog that opens, enter a name for the ESB config project. Select the **Create Docker/Kubernetes Exporter Project** along with **ESB Config project** and click **Next**.
 
@@ -43,7 +35,14 @@ Follow the steps given below.
     -   **Conf**: Directory to store configuration files. During the build time these configuration files inside the **Conf** directory will copy to the image.   
     -   **Libs**: Directory to store libraries. During the build time these libraries inside the **Libs** directory will copy to the image.
     -   **Dockerfile**: The Dockerfile, which contains build details.
-    -   **pom.xml**: File for select multiple composite apps and build & push Docker images to the Docker registries.   
+    -   **pom.xml**: File for select multiple composite apps and build & push Docker images to the Docker registries.  
+
+!!! Info
+    If you already have an ESB Config project with the integration artifacts, click **Miscellaneous → Create New Docker/Kubernetes Project** in the **Getting Started** view as shown below.
+    ![Create kubernetes/docker project](../../assets/img/create_project/docker_k8s_project/kubernetes-docker-project.png)
+
+    In the **New Docker/Kubernetes Project** dialog that opens, select **New Docker Project** and follow the instructions.
+    ![Create Kubernetes Project](../../assets/img/create_project/docker_k8s_project/new_docker_project.png) 
     
 ## Build Docker images
 

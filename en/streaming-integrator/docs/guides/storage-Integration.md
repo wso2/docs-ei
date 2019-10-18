@@ -183,7 +183,7 @@ To understand how to refer to am externally defined store, follow the procedure 
 
 
 
-###Configuring data stores inline
+### Configuring data stores inline
 To understand how to define a store inline, follow the procedure below:
 
 !!!info "Before you begin"
@@ -249,7 +249,7 @@ To understand how to define a store inline, follow the procedure below:
 
 ## Performing CRUD operations
 
-###Performing CRUD operations via streams
+### Performing CRUD operations via streams
 
 If you tried out the example in the previous sections of this guide, you have already performed an update or insert operation 
 via streams when you updated or inserted a record relating to the purchase records into the `ShipmentDetails` table. In 
@@ -278,7 +278,7 @@ this section, you can try more CRUD operations via streams as follows:
     ```
     
 
-###Performing CRUD operations via REST API
+### Performing CRUD operations via REST API
 
 This section explains how to use REST API to perform the same CRUD operations that you previously performed via streams.
 
@@ -344,7 +344,225 @@ This section explains how to use REST API to perform the same CRUD operations th
         ```
         The same parameter descriptions provided for the `<SI_HOME>/conf/server/deployment.yaml ` file apply to this configuration.
         
+#### Inserting records
 
+This allows you to insert a new record to the table with the attribute values you define in the `select` section.
+
+**Syntax**
+
+```
+select <attribute name>, <attribute name>, ...
+insert into <table>;
+```
+
+**Sample CURL command**
+
+The following CURL command submits a query that inserts a new record with the specified attribute values to a table named `RoomOccupancyTable`.
+
+- For Streaming Integrator server:
+
+    ```
+    curl -X POST https://localhost:7443/stores/query -H "content-type: application/json" -u "admin:admin"
+    -d '{"appName" : "RoomService", "query" : "select 10 as roomNo, 2 as people insert into RoomOccupancyTable;" }' -k
+
+    ```
+
+- For Streaming Integrator Tooling:
+
+    ```
+    curl -X POST http://localhost:7370/stores/query -H "content-type: application/json" -u "admin:admin"
+    -d '{"appName" : "RoomService", "query" : "select 10 as roomNo, 2 as people insert into RoomOccupancyTable;" }' -k
+    ```
+
+#### Retrieving records
+
+This is the store query to retrieve records from a table or a window.
+
+##### Retrieving records from tables and windows
+
+**Syntax**
+
+```
+from <table/window>
+<on condition>?
+select <attribute name>, <attribute name>, ...
+<group by>?
+<having>?
+<order by>?
+<limit>?
+```
+
+**Sample CURL command**
+
+The following CURL command submits a query that retrieves room numbers and types of the rooms starting from room no `10`, from a table named `roomTypeTable`.
+
+The `roomTypeTable table` must be defined in the `RoomService` Siddhi application.
+
+- For Streaming Integrator server:
+
+    ```
+    curl -X POST https://localhost:7443/stores/query -H "content-type: application/json" -u "admin:admin"
+    -d '{"appName" : "RoomService", "query" : "from roomTypeTable on roomNo >= 10 select roomNo, type; " }' -k
+    ```
+
+- For Streaming Integrator Tooling:
+
+    ```
+    curl -X POST http://localhost:7370/stores/query -H "content-type: application/json" -u "admin:admin"
+    -d '{"appName" : "RoomService", "query" : "from roomTypeTable on roomNo >= 10 select roomNo, type; " }' -k
+    ```
+
+**Sample response**
+
+The following is a sample response to the sample CURL command given above.
+
+```
+{"records":[
+  [10,"single"],
+  [11, "triple"],
+  [12, "double"]
+]}
+```
+
+##### Retrieving records from aggregations
+
+This is the store query to retrieve records from an aggregation.
+
+**Syntax**
+
+```
+from <aggregation>
+  <on condition>?
+  within <time range>
+  per <time granularity>
+select <attribute name>, <attribute name>, ...
+  <groupby>?
+  <having>?
+  <order by>?
+  <limit>?
+```
+
+**Sample CURL command**
+
+The following CURL command submits a query that retrieves average price of a stock.
+
+- For Streaming Integrator server:
+
+```
+curl -X POST https://localhost:7443/stores/query -H "content-type: application/json" -u "admin:admin"
+-d '{"appName" : "StockAggregationAnalysis", "query" : "from TradeAggregation on symbol=='FB' within '2018-**-** +05:00' per 'hours' select AGG_TIMESTAMP, symbol, total, avgPrice" }' -k
+```
+
+- For Streaming Integrator Tooling:
+
+```
+curl -X POST http://localhost:7370/stores/query -H "content-type: application/json" -u "admin:admin"
+-d '{"appName" : "StockAggregationAnalysis", "query" : "from TradeAggregation on symbol=='FB' within '2018-**-** +05:00' per 'hours' select AGG_TIMESTAMP, symbol, total, avgPrice" }' -k
+```
+
+**Sample response**
+
+The following is a sample response to the sample CURL command given above.
+
+```
+{"records":[
+  [1531180800, 'FB', 10000.0, 250.0],
+  [1531184400, 'FB', 11000.0, 260.0],
+  [1531188000, 'FB',  9000.0, 240.0]
+]}
+```
+
+#### Updating records
+
+This store query updates selected attributes stored in a specific table based on a given condition.
+
+**Syntax**
+
+```
+select <attribute name>, <attribute name>, ...?
+update <table>
+    set <table>.<attribute name> = (<attribute name>|<expression>)?, <table>.<attribute name> = (<attribute name>|<expression>)?, ...
+    on <condition>
+```
+
+**Sample CURL command**
+
+The following CURL command updates the room occupancy for selected records in the table named `RoomOccupancyTable`. The records that are updated are ones of which the roon number is greater than `10`. The room occupancy is updated by adding `1` to the existing value of the `people` attribute.
+
+- For Streaming Integrator server:
+
+```
+curl -X POST https://localhost:7443/stores/query -H "content-type: application/json" -u "admin:admin" -d '{"appName" : "RoomService", "query" : "select 10 as roomNumber, 1 as arrival update RoomTypeTable  set RoomTypeTable.people = RoomTypeTable.people + arrival on RoomTypeTable.roomNo == roomNumber;" }' -k
+```
+
+- For Streaming Integrator Tooling:
+
+```
+curl -X POST http://localhost:7370/stores/query -H "content-type: application/json" -u "admin:admin" -d '{"appName" : "RoomService", "query" : "select 10 as roomNumber, 1 as arrival update RoomTypeTable  set RoomTypeTable.people = RoomTypeTable.people + arrival on RoomTypeTable.roomNo == roomNumber;" }' -k
+```
+
+
+#### Deleting records
+
+This store query deletes selected records from a specified table.
+
+**Syntax**
+
+```
+<select>?
+delete <table>
+on <conditional expresssion>
+```
+
+**Sample CURL command**
+
+The following CURL command submits a query that deletes a record in the table named `RoomTypeTable` if it has value for the `roomNo` attribute that matches the value for the `roomNumber` attribute of the selection that has `10` as the actual value.
+
+- For Streaming Integrator server:
+
+```
+curl -X POST https://localhost:7443/stores/query -H "content-type: application/json" -u "admin:admin"
+-d '{"appName" : "RoomService", "query" : "select 10 as roomNumber
+delete RoomTypeTable on RoomTypeTable.roomNo == roomNumber;;" }' -k
+```
+
+- For Streaming Integrator Tooling:
+
+```
+curl -X POST http://localhost:7370/stores/query -H "content-type: application/json" -u "admin:admin"
+-d '{"appName" : "RoomService", "query" : "select 10 as roomNumber
+delete RoomTypeTable on RoomTypeTable.roomNo == roomNumber;;" }' -k
+```
+
+
+#### Inserting/updating records
+
+**Syntax**
+
+```
+select <attribute name>, <attribute name>, ...
+update or insert into <table>
+    set <table>.<attribute name> = <expression>, <table>.<attribute name> = <expression>, ...
+    on <condition>
+```
+
+**Sample CURL command**
+
+The following CURL command submits a query that attempts to update selected records in the `RoomAssigneeTable` table. The records that are selected to be updated are ones with room numbers that match the numbers specified in the `select` clause. If matching records are not found, it inserts a new record with the values provided in the `select` clause.
+
+- For Streaming Integrator server:
+
+```
+curl -X POST https://localhost:7443/stores/query -H "content-type: application/json" -u "admin:admin" -d '{"appName" : "RoomService", "query" : "select 10 as roomNo, "single" as type, "abc" as assignee update or insert into RoomAssigneeTable  set RoomAssigneeTable.assignee = assignee  on RoomAssigneeTable.roomNo == roomNo;" }' -k
+```
+
+- For Streaming Integrator Tooling:
+
+```
+curl -X POST http://localhost:7370/stores/query -H "content-type: application/json" -u "admin:admin" -d '{"appName" : "RoomService", "query" : "select 10 as roomNo, "single" as type, "abc" as assignee update or insert into RoomAssigneeTable  set RoomAssigneeTable.assignee = assignee  on RoomAssigneeTable.roomNo == roomNo;" }' -k
+```
+
+For more information, see [Siddhi Query Guide - Store Query](https://siddhi.io/en/v4.x/docs/query-guide/#store-query).
 
 ## Manupulating data in multiple tables
 

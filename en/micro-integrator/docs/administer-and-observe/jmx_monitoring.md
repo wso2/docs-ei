@@ -5,12 +5,12 @@ Java Management Extensions (JMX) is a technology that lets you implement managem
 ## Configuring JMX in WSO2 Micro Integrator
 
 JMX is enabled in WSO2 products by default, which ensures that the JMX server starts automatically when you start the product. Additionally, you can enable JMX separately for the various datasources that are used by the product. Once JMX is enabled, you can monitor your product using [**JConsole**](#monitoring-with-jconsole).
-
+<!--
 ### Configuring JMX ports for the server
 
 The default JMX ports (RMIRegistryPort and the RMIServerPort) are
 configured in the `deployment.toml ` file (stored in the
-`         <PRODUCT_HOME>/repository/conf        ` directory) as shown
+`         <MI_HOME>/conf        ` directory) as shown
 below. If required, you can update these default values.
 
 ```toml
@@ -34,9 +34,10 @@ rmi_server_start = true
 To enable JMX for a datasource, add the following configuration in the deployment.toml file:
 
 ```toml
-[database.shared_db]
+[[datasource]]
 jmx_enable = true
 ```
+-->
 ## Monitoring with JConsole
 
 Jconsole is a JMX-compliant monitoring tool, which comes with the Java
@@ -48,9 +49,9 @@ inside your `         <JDK_HOME>/bin        ` directory.
 First, [start the product](../../setup/installation/install_in_vm/#running-the-micro-integrator).  
 
 !!! Info
-    If [JMX is enabled](#configuring-jmx-in-wso2-micro-integrator), the **JMX server URL** will be published on the console when the server starts as shown below.    
+    If [JMX is enabled](#configuring-jmx-in-wso2-micro-integrator), the **JMX server URL**  would be:    
     ``` java
-    INFO {org.wso2.carbon.core.init.CarbonServerManager} -  JMX Service URL  : service:jmx:rmi://<your-ip>:11111/jndi/rmi://<your-ip>:9999/jmxrmi
+    service:jmx:rmi://<your-ip>:11111/jndi/rmi://<your-ip>:9999/jmxrmi
     ```
 ### Starting JConsole
         
@@ -64,7 +65,7 @@ Once the product server is started, you can start the `JConsole` tool as follows
     1.  Enter the **JMX server URL** in the **Remote Process** field. This URL is published on the command prompt when you start the
         server as explained [above](#starting-wso2-micro-integrator-with-jmx).
         !!! Info
-            If you are connecting with a remote IP address instead of localhost, you need to bind the JMX service to the externally accessible IP address by adding the following system property to the product startup script stored in the `MI_HOME>/bin` directory (`wso2server.sh` for Linux and `wso2server.bat` for Windows). For more information, read [Troubleshooting Connection Problems in JConsole](https://blogs.oracle.com/jmxetc/entrytroubleshooting_connection_problems_in_jconsole).
+            If you are connecting with a remote IP address instead of localhost, you need to bind the JMX service to the externally accessible IP address by adding the following system property to the product startup script stored in the `MI_HOME>/bin` directory (`micro-integrator.sh` for Linux and `micro-integrator.bat` for Windows). For more information, read [Troubleshooting Connection Problems in JConsole](https://blogs.oracle.com/jmxetc/entrytroubleshooting_connection_problems_in_jconsole).
             ``` java
             -Djava.rmi.server.hostname=<IP_ADDRESS_WHICH_YOU_USE_TO_CONNECT_TO_SERVER>
             ```
@@ -370,6 +371,7 @@ You can also view the following Transport MBeans:
 | `             pause()            `                               | Pause this transport listener/sender which has been started.                                                                                       |
 | `             maintenenceShutdown(long gracePeriod)            ` | Stop processing new messages, and wait the specified maximum time for in-flight requests to complete before a controlled shutdown for maintenence. |
 
+<!--
 ## Disabling the JMX thread view
 
 Dumping JMX threads is an expensive operation that affects the CPU
@@ -382,9 +384,10 @@ dumping all the threads
 !!! Info
     It is recommended not to dump the thread especially when you have enabled analytics in a production environment.
 
-1.  Open the `MI_HOME/deployment.toml` file.
+1.  Open the `MI_HOME/conf/deployment.toml` file.
 2.  Add the following property to the file and save the file.
     ```toml
-    [jmx_thread_view]
-    synapse.jmx.thread.view.enabled=false
+    [synapse_properties]
+    'synapse.jmx.thread.view.enabled'=false
     ```
+-->

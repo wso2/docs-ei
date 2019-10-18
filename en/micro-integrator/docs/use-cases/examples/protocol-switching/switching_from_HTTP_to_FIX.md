@@ -30,6 +30,8 @@ Following are the integration artifacts (proxy service) that we can used to impl
 </proxy>
 ```
 
+<!--
+
 ## Configuring Sample FIX Applications
 
 If you are using a binary distribution of Quickfix/J, the two samples
@@ -95,53 +97,49 @@ Quickfix/J distribution.
 
 ## Configuring Micro Integrator for FIX Samples
 
-In order to configure WSO2 ESB to run the FIX samples given in this
-guide, you will need to create some FIX configuration files as specified
-below (you can find the config files from
-`         $ESB_HOME/repository/samples/resources/fix folder        ` ).
+In order to configure WSO2 Micro Integrator to run the FIX samples given above, you will need to create some FIX configuration files as specified below (you can find the config files from `$ESB_HOME/repository/samples/resources/fix folder`).
 
-The `         FileStorePath        ` property in the following two files
-should point to two directories in your local file system. Once the
+The `FileStorePath` property in the following two files should point to two directories in your local file system. Once the
 samples are executed, Synapse will create FIX message stores in these
 two directories.
 
-Put the following entries in a file called
-`         fix-synapse.cfg        ` .
+Put the following entries in a file called `fix-synapse.cfg`.
 
 ```java
 [default]
-    FileStorePath=repository/logs/fix/data
-    ConnectionType=acceptor
-    StartTime=00:00:00
-    EndTime=00:00:00
-    HeartBtInt=30
-    ValidOrderTypes=1,2,F
-    SenderCompID=SYNAPSE
-    TargetCompID=BANZAI
-    UseDataDictionary=Y
-    DefaultMarketPrice=12.30
+FileStorePath=repository/logs/fix/data
+ConnectionType=acceptor
+StartTime=00:00:00
+EndTime=00:00:00
+HeartBtInt=30
+ValidOrderTypes=1,2,F
+SenderCompID=SYNAPSE
+TargetCompID=BANZAI
+UseDataDictionary=Y
+DefaultMarketPrice=12.30
 
-    [session]
-    BeginString=FIX.4.0
-    SocketAcceptPort=9876
+[session]
+BeginString=FIX.4.0
+SocketAcceptPort=9876
 ```
 
 Put the following entries in a file called
-`         synapse-sender.cfg        ` .
+`synapse-sender.cfg`.
 
 ```java
 [default]
-    FileStorePath=repository/logs/fix/data
-    SocketConnectHost=localhost
-    StartTime=00:00:00
-    EndTime=00:00:00
-    HeartBtInt=30
-    ReconnectInterval=5
-    SenderCompID=SYNAPSE
-    TargetCompID=EXEC
-    ConnectionType=initiator
+FileStorePath=repository/logs/fix/data
+SocketConnectHost=localhost
+StartTime=00:00:00
+EndTime=00:00:00
+HeartBtInt=30
+ReconnectInterval=5
+SenderCompID=SYNAPSE
+TargetCompID=EXEC
+ConnectionType=initiator
 
-    [session]
-    BeginString=FIX.4.0
-    SocketConnectPort=19876
+[session]
+BeginString=FIX.4.0
+SocketConnectPort=19876
 ```
+-->

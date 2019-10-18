@@ -3,20 +3,20 @@
 This application demonstrates how to calculate the approximate count(frequency) of eventS within a Siddhi window.
 
 ## Prerequisites:
-1) Copy {WSO2SIHome}/samples/artifacts/ApproximateComputingSample/Test-approximate-count.json file to {WSO2_SI_Home}/wso2/server/deployment/simulation-configs
-2) Copy {WSO2SIHome}/samples/artifacts/ApproximateComputingSample/approximate-count.csv file to {WSO2_SI_Home}/wso2/server/deployment/csv-files.
+1. Copy {WSO2SIHome}/samples/artifacts/ApproximateComputingSample/Test-approximate-count.json file to {WSO2_SI_Home}/wso2/server/deployment/simulation-configs
+2. Copy {WSO2SIHome}/samples/artifacts/ApproximateComputingSample/approximate-count.csv file to {WSO2_SI_Home}/wso2/server/deployment/csv-files.
 
 ## Executing the Sample:
-1) Save this sample. Provide name as 'approximate-count-sample'.
-2) Start the Siddhi application by clicking on 'Run'
-3) If the Siddhi application starts successfully, the following messages would be shown on the console
+1. Save this sample. Provide name as 'approximate-count-sample'.
+2. Start the Siddhi application by clicking on 'Run'
+3. If the Siddhi application starts successfully, the following messages would be shown on the console
     * approximate-count-sample.siddhi - Started Successfully!.
 
 ## Testing the Sample:
-1) Click on 'Event Simulator' (double arrows on left tab)
-2) Click 'Feed Simulation'
-3) Select Test-approximate-count under 'Active Feed Simulations'
-4) Click on the start button (Arrow symbol) next to the simulator
+1. Click on 'Event Simulator' (double arrows on left tab)
+2. Click 'Feed Simulation'
+3. Select Test-approximate-count under 'Active Feed Simulations'
+4. Click on the start button (Arrow symbol) next to the simulator
 
 ## Viewing the Results:
 See the output on the console.

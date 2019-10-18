@@ -15,5 +15,9 @@ Follow the instructions given below to create a Scheduled Task in WSO2 Integrati
 
 ## Examples
 
-## Guides
+-   [Task Scheduling using a Simple Trigger](../../../use-cases/examples/scheduled-tasks/task-scheduling-simple-trigger)
+-   [Injecting Messages to a RESTful Endpoint](../../../use-cases/examples/scheduled-tasks/injecting-messages-to-rest-endpoint)
 
+## Tutorials
+
+-   See the tutorial on [periodically executing an integration process](../../../use-cases/tutorials/using-scheduled-tasks) using a scheduled task

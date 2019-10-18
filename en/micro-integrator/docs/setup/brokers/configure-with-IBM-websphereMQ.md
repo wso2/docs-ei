@@ -137,11 +137,10 @@ The following will be displayed in the command prompt.
 
 1.  Add the following configurations to enable the two JMS listeners.
 
-    ```xml
+    ```toml
     [[transport.jms.listener]]
     name = "myTopicListener"
     parameter.initial_naming_factory = "com.sun.jndi.fscontext.RefFSContextFactory"
-    parameter.broker_name = "" 
     parameter.provider_url = "file:/G:/jndidirectory"
     parameter.connection_factory_name = "MyQueueConnectionFactory"
     parameter.connection_factory_type = "queue"
@@ -152,7 +151,6 @@ The following will be displayed in the command prompt.
     [[transport.jms.listener]]
     name = "myTopicListener"
     parameter.initial_naming_factory = "com.sun.jndi.fscontext.RefFSContextFactory"
-    parameter.broker_name = "" 
     parameter.provider_url = "file:/G:/jndidirectory"
     parameter.connection_factory_name = "MyQueueConnectionFactory"
     parameter.connection_factory_type = "queue"
@@ -163,11 +161,10 @@ The following will be displayed in the command prompt.
 
 2.  Add the following configurations to enable the two JMS senders.
 
-    ```xml
+    ```toml
     [[transport.jms.sender]]
     name = "myTopicSender"
     parameter.initial_naming_factory = "com.sun.jndi.fscontext.RefFSContextFactory"
-    parameter.broker_name = ""
     parameter.provider_url = "file:/G:/jndidirectory"
     parameter.connection_factory_name = "MyQueueConnectionFactory"
     parameter.connection_factory_type = "queue"
@@ -178,7 +175,6 @@ The following will be displayed in the command prompt.
     [[transport.jms.sender]]
     name = "myTopicSender"
     parameter.initial_naming_factory = "com.sun.jndi.fscontext.RefFSContextFactory"
-    parameter.broker_name = ""
     parameter.provider_url = "file:/G:/jndidirectory"
     parameter.connection_factory_name = "MyQueueConnectionFactory"
     parameter.connection_factory_type = "queue"
