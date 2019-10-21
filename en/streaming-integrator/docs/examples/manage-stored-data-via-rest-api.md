@@ -204,8 +204,6 @@ On successful execution of the command, you will get following response on the t
     
 ## Managing Data in a Siddhi Aggregation
 
-#### Creating a Siddhi Aggregation
-
 First let's create a Siddhi application with an Aggregation, so that we can try out search operations on it later. 
 
 1. Open a text file and copy-paste following application to it.
@@ -235,32 +233,28 @@ First let's create a Siddhi application with an Aggregation, so that we can try 
 
 2. Save this file as `AggregateDataIncrementally.siddhi` in the `<SI_HOME>/wso2/server/deployment/siddhi-files` directory.
 
-#### Inserting records
+3. Let's insert a few records into the `RawMaterialStream` so that those data will be summarized and you can query for the summary later.
 
     !!! info
         Unlike RDBMS Stores, you cannot insert records into a Aggregation table straight away. In order to put records, you need to insert data into the event stream which is associated to the Aggregation. In this example, the `RawMaterialAggregation` aggregation table is associated to the event stream 'RawMaterialStream`. Therefore, in order to insert into the aggregation table, you need to insert into the 'RawMaterialStream`.  
-
-First, let's insert a few records into the `RawMaterialStream` so that those data will be summarized and you can query for the summary later.
  
-Execute following `CURL` command on a terminal: 
-```
-curl -X POST -d "{\"event\": {\"name\":\"Almond cookie\",\"amount\": 20.5}}"  http://localhost:8006/rawMaterialStream --header "Content-Type:application/json"
-```
-```
-curl -X POST -d "{\"event\": {\"name\":\"Almond cookie\",\"amount\": 100.0}}"  http://localhost:8006/rawMaterialStream --header "Content-Type:application/json"
-```
-```
-curl -X POST -d "{\"event\": {\"name\":\"Almond cookie\",\"amount\": 30.0}}"  http://localhost:8006/rawMaterialStream --header "Content-Type:application/json"
-```
+    Execute following `CURL` command on a terminal: 
+    ```
+    curl -X POST -d "{\"event\": {\"name\":\"Almond cookie\",\"amount\": 20.5}}"  http://localhost:8006/rawMaterialStream --header "Content-Type:application/json"
+    ```
+    ```
+    curl -X POST -d "{\"event\": {\"name\":\"Almond cookie\",\"amount\": 100.0}}"  http://localhost:8006/rawMaterialStream --header "Content-Type:application/json"
+    ```
+    ```
+    curl -X POST -d "{\"event\": {\"name\":\"Almond cookie\",\"amount\": 30.0}}"  http://localhost:8006/rawMaterialStream --header "Content-Type:application/json"
+    ```
 
-### Searching records
+4. Now let's use the Store Query API, in order to find out the average and total amount of `Almond cookie` productions. 
 
-Now let's use the Store Query API, in order to find out the average and total amount of `Almond cookie` productions. 
-
-Issue following `CURL` command on the terminal:
-```
-curl -X POST https://localhost:7443/stores/query -H "content-type: application/json" -u "admin:admin" -d '{"appName" : "AggregateDataIncrementally", "query" : "from RawMaterialAggregation on name==\"Almond cookie\" within \"2019-**-** **:**:** +05:30\" per \"hours\" select AGG_TIMESTAMP, name, avgAmount, totalAmount" }' -k
-```
+    Issue following `CURL` command on the terminal:
+    ```
+    curl -X POST https://localhost:7443/stores/query -H "content-type: application/json" -u "admin:admin" -d '{"appName" : "AggregateDataIncrementally", "query" : "from RawMaterialAggregation on name==\"Almond cookie\" within \"2019-**-** **:**:** +05:30\" per \"hours\" select AGG_TIMESTAMP, name, avgAmount, totalAmount" }' -k
+    ```
     !!! info
         Above, you have executed following Store Query:
         ```
@@ -269,12 +263,12 @@ curl -X POST https://localhost:7443/stores/query -H "content-type: application/j
         per "hours" 
         select AGG_TIMESTAMP, name, avgAmount, totalAmount" 
         ```
-        This query retreives the average and total `Almond cookie` productions happened within the year `2019`. The average and total is calculated for every hour.   
+        This query retrieves the average and total `Almond cookie` productions happened within the year `2019`. The average and total is calculated for every hour.   
 
-You will get following response:
-```
-{"records":[[1571234400000,"Almond cookie",50.166666666666664,150.5]]}
-```
+5. You will get following response:
+    ```
+    {"records":[[1571234400000,"Almond cookie",50.166666666666664,150.5]]}
+    ```
     !!! info
         The value `1571234400000` indicates the Unix timestamp for which the result set belong. In this example, the result set belongs to `October 16, 2019 7:30:00 PM GMT+05:30`. 
         `50.166666666666664` is the average amount of `Almond cookie` productions happened within the hour, while `150.5` is the total amount of `Almond cookie` productions happened within the hour.  
@@ -287,29 +281,68 @@ Let's create a Siddhi application with a Window and then query the status of the
 
     ```
     @App:name("SweetProduction-Window")
-    
+
     @Source(type = 'http', receiver.url='http://localhost:8008/productionStream', basic.auth.enabled='false',
         @map(type='json'))
     define stream SweetProductionStream (name string, amount double);
-    
+
     define window LastFourProductions (name string, amount double) lengthBatch(4);
-    
+
     @sink(type='log')
-    define stream LogStream (symbol string, sumPrice double, volume int);
-    
-    from stockEventStream 
-    select name, amount  
-    insert into LastFourProductions ;
-    
+    define stream LogStream (name string, sumAmount double);
+
+    @info(name = 'query1')
+    from SweetProductionStream
+    select name, amount
+    insert into LastFourProductions;
+
+    @info(name = 'query2')
     from LastFourProductions
-    select name,sum(amount) as sumAmount 
-    insert into LogStream ;
+    select name,sum(amount) as sumAmount
+    insert into LogStream;
     ```
+    
+!!!info
+    The above Siddhi application calculates the sum of last four productions (in batches). The last four productions are retained in the `LastFourProductions` window which is a `lengthBatch` window of size four. `query1` inserts all of the incoming sweet productions into the `LastFourProductions` window. `query2` calculates the sum of the batch of four productions, within the window. 
     
 2. Save this file as `SweetProduction-Window.siddhi` in the `<SI_HOME>/wso2/server/deployment/siddhi-files` directory.
 
+3. Let's insert four events into `SweetProductionStream`. Execute following `CURL` commands on the terminal:
+    ```
+    curl -X POST -d "{\"event\": {\"name\":\"Almond cookie\",\"amount\": 100.0}}"  http://localhost:8008/productionStream --header "Content-Type:application/json"
+    ```
+    ```
+    curl -X POST -d "{\"event\": {\"name\":\"Baked alaska\",\"amount\": 20.0}}"  http://localhost:8008/productionStream --header "Content-Type:application/json"
+    ```
+    ```
+    curl -X POST -d "{\"event\": {\"name\":\"Cup cake\",\"amount\": 300.0}}"  http://localhost:8008/productionStream --header "Content-Type:application/json"
+    ```
+    ```
+    curl -X POST -d "{\"event\": {\"name\":\"Doughnut\",\"amount\": 500.0}}"  http://localhost:8008/productionStream --header "Content-Type:application/json"
+    ```
+    Once you send the fourth event, a batch of four productions completes; hence the following log appears on the SI console. The log prints the sum of amounts of the four productions.
+    ```
+    INFO {io.siddhi.core.stream.output.sink.LogSink} - SweetProduction-Window : LogStream : Event{timestamp=1571675148391, data=[Doughnut, 920.0], isExpired=false}
+    ```
+    
+4. Now, using the Store Query API, you will be querying the contents in the `LastFourProductions` window. 
 
-### Inserting records
-### Searching records
-### Updating records 
-### Deleting records    
+    Let's select all events in the window by executing following `CURL` command:
+    ```
+    curl -X POST https://localhost:7443/stores/query -H "content-type: application/json" -u "admin:admin" -d '{"appName" : "SweetProduction-Window", "query" : "from LastFourProductions select *" }' -k
+    ``` 
+    On successful execution of the command, you get following response on the terminal. The output shows the last four sweet productions. 
+    ```
+    {"records":[["Almond cookie",100.0],["Baked alaska",20.0],["Cup cake",300.0],["Doughnut",500.0]]}
+    ```     
+   
+5. Next, using the Store Query API, you will be querying for the maximum production amount, among the four productions that are in the `LastFourProductions` window.
+
+    Execute following `CURL` command on the terminal:
+    ```
+    curl -X POST https://localhost:7443/stores/query -H "content-type: application/json" -u "admin:admin" -d '{"appName" : "SweetProduction-Window", "query" : "from LastFourProductions select max(amount) as maxAmount" }' -k
+    ```
+    On successful execution of the command, you get following response on the terminal. The output shows the maximum amount of the four sweet productions. 
+    ```
+    {"records":[[500.0]]}
+    ```   
