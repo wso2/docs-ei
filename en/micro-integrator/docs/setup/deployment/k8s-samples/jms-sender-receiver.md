@@ -62,7 +62,11 @@ Follow the steps given below to deploy and run the integration solution on Kuber
 5.  Create a **Docker/Kubernetes Project** inside the Maven Multi Module Project.
     **New → Project → Docker/Kubernetes Project** and select the **New Kubernetes Project** option. 
     
-    ![Create Docker/Kubernetes Project](../../../assets/img/create_project/docker_k8s_project/k8s-proj.png)    
+    ![Create Docker/Kubernetes Project](../../../assets/img/create_project/docker_k8s_project/k8s-proj.png)  
+    
+    Finally, created Maven Multi Module Project Explorer should be as follows,
+            
+    ![JMS Project](../../../assets/img/create_project/docker_k8s_project/jms_project.png)   
 
 6.  Navigate to the Kubernetes project and open the **pom.xml** file. Select the multiple composite applications you want to add to the docker image under **Dependencies**.
 
