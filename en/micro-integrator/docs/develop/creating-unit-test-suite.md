@@ -60,7 +60,7 @@ Once you have created a Unit Test Suite in WSO2 Integration Studio, you can find
         For sequences, the test suite allows to add all type of properties with the value. For APIs and proxy services, you are only allowed to add transport properties. 
         
         !!! Note
-            For APIs, you also need to specify the **Request Path** and **Request Method** in the this section. The **Request Path** indicates the URL mapping of the API resource (if URL mapping consists some parameter(s) replace those with values) and **Request Method** indicates the REST method of the resource.   
+            For APIs, you also need to specify the **Request Path** and **Request Method** in the this section. The **Request Path** indicates the URL mapping of the API resource. If the URL mapping consists some parameter(s), replace those with values. Also the **Request Method** indicates the REST method of the resource.   
     
     3.  In the **Assertions** section, you can add multiple assertion belonging to two types: **AssertEquals** check the whether the mediated result and expected values are equeal. **AssertNotNull** checks whether the mediated result is not null.
     
