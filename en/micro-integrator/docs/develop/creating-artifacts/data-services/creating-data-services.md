@@ -92,7 +92,7 @@ The data service should now have the resource added as shown below.
 		<a href="../../../../use-cases/examples/data_integration/distributed-trans-data-service">Using Distributed Transactions in Data Services</a>
 	</li>
 	<li>
-		<a href="../../use-cases/examples/data_integration/data-input-validator">Validating Data Input</a>
+		<a href="../../../../use-cases/examples/data_integration/data-input-validator">Validating Data Input</a>
 	</li>
 </ul>
 
