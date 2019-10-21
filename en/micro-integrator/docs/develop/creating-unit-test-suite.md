@@ -55,9 +55,12 @@ Once you have created a Unit Test Suite in WSO2 Integration Studio, you can find
     2.  Update the **Input Payload and Properties** section:
 
         -  **Input Payload**: The input payload of the test case. This can be **JSON**, **XML**, or **plain text**.
-        -  **Input properties**: The input properties of the test case. There are three types of properties allowed in unit testing: **Synapse($ctx)**, **Axis2($axis2)**, and **Transport($trp)** properties. 
+        -  **Input properties**: The input properties of the test case. There are three types of properties allowed in unit testing: **Synapse($ctx), Axis2($axis2)**, and **Transport($trp)** properties. 
         
-        For sequences, the test suite allows to add all type of properties with the value. For APIs and proxy services, you are only allowed to add transport properties. For APIs, you also need to specify the **Request Path** and **Request Method** in the this section. The **Request Path** indicates the URL mapping of the API resource and **Request Method** indicates the REST method of the resource.   
+        For sequences, the test suite allows to add all type of properties with the value. For APIs and proxy services, you are only allowed to add transport properties. 
+        
+        !!! Note
+            For APIs, you also need to specify the **Request Path** and **Request Method** in the this section. The **Request Path** indicates the URL mapping of the API resource (if URL mapping consists some parameter(s) replace those with values) and **Request Method** indicates the REST method of the resource.   
     
     3.  In the **Assertions** section, you can add multiple assertion belonging to two types: **AssertEquals** check the whether the mediated result and expected values are equeal. **AssertNotNull** checks whether the mediated result is not null.
     
@@ -66,9 +69,9 @@ Once you have created a Unit Test Suite in WSO2 Integration Studio, you can find
         -   **Assertion Type**: Type of the assertion.
         -   **Actual Expression**: Expression that you want to assert.
             -   **$body**: assert the payload<br/>
-            -   **$ctx:<property_name>**: assert synapse property
-            -   **$axis2:<property_name>**: assert axis2 property
-            -   **$trp:<property_name>**: assert transport property
+            -   **$ctx:"<property_name>"**: assert synapse property
+            -   **$axis2:"<property_name>"**: assert axis2 property
+            -   **$trp:"<property_name>"**: assert transport property
                 
         -   **Expected Value**: Expected value for the actual expression. Type can be a **JSON**, **XML** or a **plain text**.  
         -   **Error Message**: Error message to print when the assertion is failed.
@@ -79,9 +82,11 @@ Once you have created a Unit Test Suite in WSO2 Integration Studio, you can find
 
 You can run the created Unit Test Suites using the unit testing server that is included in the embedded Micro Integrator of WSO2 Integration Studio. Right-click the **test** directory and click **Run Unit Test** to run all the unit test suites at once, or right-click the particular unit test suite and click **Run Unit Test** to run a selected unit test suite.
 
+![Run Unit Test Suite](../../assets/img/create_project/synapse_unit_test/run-test.png)
+
 The **Unit Test Run Configuration** wizard opens. Select one of server run configuration method you want to proceed with Unit Test.
 
-![Run Unit Test Suite](../../assets/img/create_project/synapse_unit_test/run-test.png)
+![Run Configuration](../../assets/img/create_project/synapse_unit_test/run-configuration.png)
 
 1.  **Local Server Configuration**: Run the Unit Test Suite(s) in embedded unit testing Server in Micro Integrator or local unit testing server.
     -   **Executable Path**: Path to the unit testing server.
