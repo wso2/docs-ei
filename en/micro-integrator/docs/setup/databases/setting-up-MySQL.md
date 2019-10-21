@@ -1,4 +1,4 @@
-
+tha
 # Configuration a MySQL database
 
 By default, WSO2 products use the embedded H2 database as the database for storing user management and registry data. Given below are the steps you need to follow in order to use a MySQL database for this purpose.
