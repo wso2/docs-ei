@@ -22,7 +22,7 @@ Given below is the data service configuration you need to build. See the instruc
 ```xml
 <data name="CSV" transports="http https local">
    <config enableOData="false" id="CSV">
-      <property name="csv_datasource">path/Products.csv</property>
+      <property name="csv_datasource">/path/to/csv/Products.csv</property>
       <property name="csv_columnseperator">,</property>
       <property name="csv_startingrow">2</property>
       <property name="csv_hasheader">true</property>
@@ -58,7 +58,7 @@ You can send an HTTP GET request to invoke the data service using cURL
 as shown below.
 
 ```bash
-curl -X GET http://localhost:8280/services/CSV.HTTPEndpoint/Products
+curl -X GET http://localhost:8290/services/CSV.HTTPEndpoint/Products
 ```
 
 This will return the response in XML.
