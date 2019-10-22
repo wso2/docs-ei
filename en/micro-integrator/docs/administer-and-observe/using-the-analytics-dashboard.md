@@ -1,6 +1,6 @@
 # Analyzing Statistics and Tracing
 
-The **Analytics profile** of WSO2 Enterprise Integrator (WSO2 EI) 6.5.0 is an instance of the [WSO2 Stream Processor (WSO2 SP)](https://wso2.com/analytics-and-stream-processing/) runtime. You can use the Analytics profile to analyze the statistics related to the message mediation that is
+The **Analytics profile** of [WSO2 Enterprise Integrator (WSO2 EI)](https://wso2.com/enterprise-integrator/6.5.0) 6.5.0 is an instance of the [WSO2 Stream Processor (WSO2 SP)](https://wso2.com/analytics-and-stream-processing/) runtime. You can use the Analytics profile to analyze the statistics related to the message mediation that is
 carried out in the Micro Integrator.
 
 The Analytics profile consists of two components: **Worker** and **Dashboard**. The worker is the server that processes the data streams that are sent from the Micro Integrator and publishes the statistics to a database. The dashboard reads the statistics published by the worker and displays the statistics. The worker and dashboard are connected through the database.
@@ -51,13 +51,13 @@ If you did not try the [service chaining](../../use-cases/tutorials/exposing-sev
 Follow the steps below to enable statistics and tracing for the **REST API** artifact:
 
 1.  Select `HealthcareAPI` in the canvas of WSO2 Integration Studio to open the **Properties** tab.
-2.  Select **Enable Statistics** and (if required) **Enable Tracing** as shown below.
+2.  Select **Statistics Enabled** and (if required) **Trace Enabled** as shown below.
      ![rest api properties](../../assets/img/ei-analytics/restapi-properties.png)
 
 Follow the steps below to enable statistics for the **endpoint** artifacts:
 
 1.  Select the required endpoint artifacts from the project explorer. 
-2.  Select **Enable Statistics** and (if required) **Enable Tracing** as shown below.
+2.  Select **Statistics Enabled** and (if required) **Trace Enabled** as shown below.
      ![endpoint properties](../../assets/img/ei-analytics/endpoint-properties.png)
 
 ## Starting the Analytics Worker
@@ -93,7 +93,7 @@ Once you have [started the Analytics Worker](#starting-the-analytics-worker), yo
 ## Starting the Analytics Dashboard
 
 1.  Open a terminal and navigate to the `<EI_HOME>/wso2/analytics/bin` directory.
-2.  Start the runtime by executing the Analytics startup script as shown below.
+2.  Start the Analytics Dashboard runtime by executing the following command:
 
     -   On **MacOS/Linux/CentOS**
 
@@ -231,8 +231,7 @@ Go to the [Analytics Dashboard](#starting-the-analytics-dashboard) and see the s
         sequences, mediators and endpoints that were included in the
         message flow as shown below.  
         ![Message flow per API](../../assets/img/ei-analytics/119132315/119132319.png "Message flow per API") 
-8. In the **Top Endpoints by Request Count** gadget, click one of the
-    endpoints to view simillar statistics per endpoint.
+8. In the **Top Endpoints by Request Count** gadget, click one of the endpoints to view simillar statistics per endpoint.
 
     -   `ChannelingFeeEP`
     -   `SettlePaymentEP`
@@ -243,3 +242,9 @@ Go to the [Analytics Dashboard](#starting-the-analytics-dashboard) and see the s
     specific endpoint, click **Endpoint** and search for the required
     endpoint.  
     ![Dashboard navigation menu](../../assets/img/ei-analytics/119132315/119132317.png "Dashboard navigation menu")
+
+## Message tracing
+
+When you go to the [Analytics Dashboard](#starting-the-analytics-dashboard) the message details will be logged as follows:
+
+![Message tracing per API](../../assets/img/ei-analytics/119132315/message-tracing.png "Message tracing per API") 
