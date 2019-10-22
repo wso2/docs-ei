@@ -55,7 +55,6 @@ a standalone HornetQ server.
         [[transport.jms.listener]]
         name = "myQueueListener"
         parameter.initial_naming_factory = "org.jnp.interfaces.NamingContextFactory"
-        parameter.broker_name = "activemq" 
         parameter.provider_url = "jnp://localhost:1099"
         parameter.connection_factory_name = "QueueConnectionFactory"
         parameter.connection_factory_type = "queue"
@@ -66,7 +65,6 @@ a standalone HornetQ server.
         [[transport.jms.sender]]
         name = "myQueueSender"
         parameter.initial_naming_factory = "org.jnp.interfaces.NamingContextFactory"
-        parameter.broker_name = "activemq"
         parameter.provider_url = "jnp://localhost:1099"
         parameter.connection_factory_name = "QueueConnectionFactory"
         parameter.connection_factory_type = "queue"
@@ -235,7 +233,6 @@ Now you have configured the JBoss EAP Server. The next section describes how to 
         [[transport.jms.listener]]
         name = "myQueueListener"
         parameter.initial_naming_factory = "org.jboss.naming.remote.client.InitialContextFactory"
-        parameter.broker_name = "activemq" 
         parameter.provider_url = "remote://localhost:4447"
         parameter.connection_factory_name = "jms/RemoteConnectionFactory"
         parameter.connection_factory_type = "queue"
@@ -250,7 +247,6 @@ Now you have configured the JBoss EAP Server. The next section describes how to 
         [[transport.jms.sender]]
         name = "myQueueSender"
         parameter.initial_naming_factory = "org.jboss.naming.remote.client.InitialContextFactory"
-        parameter.broker_name = "activemq"
         parameter.provider_url = "remote://localhost:4447"
         parameter.connection_factory_name = "jms/RemoteConnectionFactory"
         parameter.connection_factory_type = "queue"

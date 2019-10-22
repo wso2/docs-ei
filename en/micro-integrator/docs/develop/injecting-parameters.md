@@ -135,6 +135,7 @@ The <b>pinned servers</b> parameter can be set as an environment variable for a 
     </property>
 </task>
 ```
+
 -   In a **VM** deployment, you can export the variables as shown below. Here VAR is the url you need to have set as environment property.
 
     ```bash

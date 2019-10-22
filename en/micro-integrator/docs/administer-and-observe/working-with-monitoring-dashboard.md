@@ -34,7 +34,7 @@ Note that the default address is **https://localhost** and the port is **9164**.
 ## Install and run the dashboard
 
 !!! Warning
-    In a non-production environment (with the self signed certificate), you have to add the certificate of the micro integrator instance to the browser as a trusted source. For example, direct the browser to `https://localhost:9164/magagement` and add the site as trusted. This step will not be required with a custom production certificate.
+    In a non-production environment (with the self signed certificate), you have to add the certificate of the micro integrator instance to the browser as a trusted source. For example, direct the browser to `https://localhost:9164/management` and add the site as trusted. This step will not be required with a custom production certificate.
 
 1.  To download the dashboard, go to [**WSO2 Micro Integrator** website](https://wso2.com/integration/micro-integrator/#) -> **Download** -> **Other Resources**, and click **Monitoring Dashboard**.
 2.  Execute the following command to start the dashboard server:
@@ -76,7 +76,7 @@ By default, the management api of the Micro Integrator is shipped with a CORS co
 ```
 If required, you can remove the wild card and add a specific origin for this configuration for security requirements.  
 
-As the management dashboard is utilizing the management api, the user store is bound to the given api. Therefore, if you want to add a new user to view the management dashboard, you have to add a new user to the userstore defined in the `internal-apis.xml` as shown below.
+As management dashboard is utilizing the management api, the user store is bound to the said api. Therefore, if you want to add a new user to view the management dashboard, you have to add a new user to the userstore defined in the `internal-apis.xml` (stored in the `MI_HOME/comf` directory).
 
 ```xml
 <UserStore>
@@ -88,3 +88,7 @@ As the management dashboard is utilizing the management api, the user store is b
     </users>
 </UserStore>
 ```
+ 
+<!--
+If the ` <UserStore>` element is not defined in `internal-apis.xml` user store will default to the carbon user store defined in user-mgt.xml.
+-->

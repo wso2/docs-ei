@@ -15,9 +15,8 @@ various MBeans via SNMP.
     adding the following entry: 
     
     ```toml
-    [snpm_enabled]
-    synapse.snmp.enabled=true
-
+    [synapse_properties]
+    'synapse.snmp.enabled'=true
     ``` 
 
 WSO2 Micro Integrator can now monitor MBeans with SNMP. For example:
