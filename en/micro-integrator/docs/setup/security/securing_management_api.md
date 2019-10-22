@@ -9,7 +9,7 @@ Current available internal APIs:
 The Management API of WSO2 Micro Integrator is an internal REST API, which was introduced to substitute
 the **admin services** that were available in WSO2 EI 6.x.x. 
 
-The [Micro Integrator CLI](../../administer-and-observe/using-the-command-line-interface) and the [Micro Integrator dashboard](../../administer-and-observe/working-with-monitoring-dashboard) communicates with this service to
+The [Micro Integrator CLI](../../../administer-and-observe/using-the-command-line-interface) and the [Micro Integrator dashboard](../../../administer-and-observe/working-with-monitoring-dashboard) communicates with this service to
 obtain administrative information of the server instance. If required, you can [directly access the management API](../../../administer-and-observe/working-with-management-api) without using the dashboard or CLI.
 
 The management API of the Micro Integrator is configured using the `internal-apis.xml` file (stored in the `MI_HOME/conf/` directory).
