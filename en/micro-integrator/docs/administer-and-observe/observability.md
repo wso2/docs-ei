@@ -45,7 +45,7 @@ server.
     appender.CORRELATION.strategy.max = 20
     appender.CORRELATION.filter.threshold.type = ThresholdFilter
     appender.CORRELATION.filter.threshold.level = INFO 
-     ```
+    ```
 
 2.  Add `correlation` as a logger
 
