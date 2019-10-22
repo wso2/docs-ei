@@ -71,8 +71,16 @@ expression to logically reference the password mapping.
 
 The default expression used for password validation is `^[\\S]{5,30}$`. This allows the password to have 5 to 30 characters.
 
-If you want to change the expression that is used to validate the password, you need to add the `org.wso2.SecureVaultPasswordRegEx` system property to the `<MI_HOME>/conf/carbon.properties` file. Example:
+If you want to change the expression that is used to validate the password, you need to pass the `org.wso2.SecureVaultPasswordRegEx` system property when you start the Micro Integrator:
 
-```xml
-org.wso2.SecureVaultPasswordRegEx=^[\\S]{5,60}$
-```
+-	On **Linux/MacOS/CentOS**:
+
+	```bash
+	sh micro-integrator.sh -Dorg.wso2.SecureVaultPasswordRegEx=^[\\S]{5,30}$
+	```
+	
+-	On **Windows**:
+	
+	```bash
+	micro-integrator.bat -Dorg.wso2.SecureVaultPasswordRegEx=^[\\S]{5,30}$
+	```
