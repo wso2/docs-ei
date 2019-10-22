@@ -108,6 +108,50 @@ Given below is the data service configuration you need to build. See the instruc
 </data>
 ```
 
+Alternatively, you can use one of the following JSON templates for the response mapping:
+
+-   Simple JSON template
+
+    ```json
+    { "Employees":
+          {"Employee":[
+            {"EmployeeNumber":"$EmployeeNumber",                       
+             "Details": {
+              "FirstName":"$FirstName",
+              "LastName":"$LastName",
+              "Email":"$Email",
+              "Salary":"$Salary"
+             }
+            }                 
+          ]
+        }           
+    }
+    ```
+
+-   Define data types
+
+    In a basic JSON output mapping, we specify the field values that we expect in the query result. You can give additional properties to this field mapping such as data type of the field, the possible content filtering user roles etc. These extended properties for the fields are given in parentheses, with a list of string tokens providing the additional properties, separated by a semicolon (";"). See the sample below.
+
+    ```json
+    <result outputType="json">
+    { "Employees":
+          {"Employee":[
+            {"EmployeeNumber":"$EmployeeNumber(type:integer)",                       
+             "Details": {
+              "FirstName":"$FirstName",
+              "LastName":"$LastName",
+              "Email":"$Email",
+              "Salary":"$Salary(requiredRoles:hr,admin)"
+             }
+            }                 
+          ]
+        }           
+    }
+    </result>
+    ```
+
+-   If you want to write a nested query using JSON, see the example on [nested queries](../../../../use-cases/examples/data_integration/nested-queries-in-data-service).
+
 ## Build and run
 
 Create the artifacts:
@@ -140,13 +184,13 @@ REST-style via [curl](http://curl.haxx.se/) .
 Shown below is the curl command to invoke the GET resource:
 
 ```bash
-curl -X GET -H "Accept: application/json" http://localhost:8280/services/RDBMSDataService/Employee/{EmployeeNumber}
+curl -X GET -H "Accept: application/json" http://localhost:8290/services/RDBMSDataService/Employee/{EmployeeNumber}
 ```
 
 Example:
 
 ```bash
-curl -X GET -H "Accept: application/json" http://localhost:8280/services/RDBMSDataService/Employee/1
+curl -X GET -H "Accept: application/json" http://localhost:8290/services/RDBMSDataService/Employee/1
 ```
 
 As a result, you receive the response in JSON format as shown below.
@@ -207,7 +251,7 @@ the POST method.
     and execute the following HTTP request:
 
     ```bash
-    curl -X POST -H 'Accept: application/json'  -H 'Content-Type: application/json' --data "@employee-payload.json" -k -v http://localhost:8280/services/RDBMSDataService/Employee
+    curl -X POST -H 'Accept: application/json'  -H 'Content-Type: application/json' --data "@employee-payload.json" -k -v http://localhost:8290/services/RDBMSDataService/Employee
     ```
 
 #### Post data in batches
@@ -251,7 +295,7 @@ You are able to post JSON data in batches using the
     stored, and execute the following HTTP request:
 
     ```bash
-    curl -X POST -H 'Accept: application/json'  -H 'Content-Type: application/json' --data "@employee-batch-payload.json" -k -v http://localhost:8280/services/RDBMSDataService/Employee_batch_req
+    curl -X POST -H 'Accept: application/json'  -H 'Content-Type: application/json' --data "@employee-batch-payload.json" -k -v http://localhost:8290/services/RDBMSDataService/Employee_batch_req
     ```
 
 #### Update data
@@ -283,7 +327,7 @@ with the PUT method.
     stored, and execute the following HTTP request:
 
     ```bash
-    curl -X PUT -H 'Accept: application/json'  -H 'Content-Type: application/json' --data "@employee-upload-update.json" -k -v http://localhost:8280/services/RDBMSDataService/Employee
+    curl -X PUT -H 'Accept: application/json'  -H 'Content-Type: application/json' --data "@employee-upload-update.json" -k -v http://localhost:8290/services/RDBMSDataService/Employee
     ```
 
 #### Post data using Request Box
@@ -329,7 +373,7 @@ below.
     is stored, and execute the following HTTP request:
 
     ```bash
-    curl -X POST -H 'Accept: application/json'  -H 'Content-Type: application/json' --data "@employee-request-box-payload.json" http://localhost:8280/services/RDBMSDataService/request_box
+    curl -X POST -H 'Accept: application/json'  -H 'Content-Type: application/json' --data "@employee-request-box-payload.json" http://localhost:8290/services/RDBMSDataService/request_box
     ```
 
 !!! Tip

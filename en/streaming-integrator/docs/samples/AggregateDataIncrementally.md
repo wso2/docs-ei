@@ -48,6 +48,7 @@ This example demonstrates how to get running statistics using Siddhi. The sample
 
 ## Executing the Sample
 
+
 To execute the sample Siddhi application, open it in Streaming Integrator Tooling and click the **Start** button (shown below) or click **Run** => **Run**.
 
 ![Start button](../../images/amazon-s3-sink-sample/start.png)

@@ -39,7 +39,7 @@ extension](https://siddhi-io.github.io/siddhi-io-s3/). In this sample the events
 
 To execute the sample, follow the procedure below:
 
-1. In Streaming Integrator Tooling, click Open and then click **AmazonS3SinkSample.siddhi** in the **workspace** directory. Then update the sample Siddhi application as follows:
+1. In Streaming Integrator Tooling, click Open and then click **AmazonS3SinkSample.siddhi** in the **workspace** directory. Then update it as follows:
 
     1. Enter the credential.provider class name as the value for the `credential.provider` parameter. If the class is not specified, the default credential provider chain is used.
 

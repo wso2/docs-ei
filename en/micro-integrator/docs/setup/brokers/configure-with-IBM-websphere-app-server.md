@@ -26,7 +26,6 @@ This page describes how to configure the WSO2 Micro Integrator with IBM WebSpher
         [[transport.jms.listener]]
         name = "myTopicListener"
         parameter.initial_naming_factory = "com.ibm.websphere.naming.WsnInitialContextFactory"
-        parameter.broker_name = "activemq" 
         parameter.provider_url = "iiop://localhost:2809"
         parameter.connection_factory_name = "QueueConnectionFactory"
         parameter.connection_factory_type = "queue"
@@ -37,7 +36,6 @@ This page describes how to configure the WSO2 Micro Integrator with IBM WebSpher
         [[transport.jms.sender]]
         name = "myTopicSender"
         parameter.initial_naming_factory = "com.ibm.websphere.naming.WsnInitialContextFactory"
-        parameter.broker_name = "activemq"
         parameter.provider_url = "iiop://localhost:2809"
         parameter.connection_factory_name = "QueueConnectionFactory"
         parameter.connection_factory_type = "queue"

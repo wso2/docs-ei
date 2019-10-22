@@ -24,7 +24,7 @@ This application demonstrates how to simulate random events via Feed Simulation 
         ```
 
 
-## Executing the Sample:
+## Executing the Sample
 
 To execute the sample open the saved Siddhi application in Streaming Integrator Tooling, and start it by clicking the **Start** button (shown below) or by clicking **Run** => **Run**.
 
@@ -34,7 +34,7 @@ If the Siddhi application starts successfully, the following message appears in 
 
 `AggregateOverTime.siddhi - Started Successfully!.`
 
-## Testing the Sample:
+## Testing the Sample
 
 To test the sample Siddhi application, simulate random events for it via the Streaming Integrator Tooling as follows:
 

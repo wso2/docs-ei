@@ -13,7 +13,7 @@ to systematically test the solution before deploying in production.
 
 Two types of base Docker images are available for the Micro Integrator:
 
--   The Micro Integrator Docker image (with the latest products) is
+-   The Micro Integrator Docker image (with the latest updates) is
     available in the [WSO2 Docker Registry](https://docker.wso2.com/).
     
     **Note** that you need a valid WSO2 subscription to use the Docker
@@ -41,12 +41,12 @@ Two types of base Docker images are available for the Micro Integrator:
     ```bash
     wso2/micro-integrator:1.1.0
     ```
-    
+
 ## Run on Docker using WSO2 Integration Studio
 
-Let's create a Docker project for an integration solution and run it on a Docker container. You will use [WSO2 Integration Studio](../../../develop/WSO2-Integration-Studio) and the [base Docker image](#base-docker-images-wso2-micro-integrator) of the Micro Integrator for this process.
+Let's create a **Docker project** for an integration solution and run it on a Docker container. You will use [WSO2 Integration Studio](../../../develop/WSO2-Integration-Studio) and the [base Docker image](#base-docker-images) of the Micro Integrator for this process.
 
-1.  [Create the proxy service](../../../develop/creating-artifacts/creating-a-proxy-service) with the following configuration:
+1.  [Create a proxy service](../../../develop/creating-artifacts/creating-a-proxy-service) with the following configuration:
 
     - Synapse configuration
 
@@ -89,7 +89,7 @@ Let's create a Docker project for an integration solution and run it on a Docker
     sampleproxy             1.0.0               49092809b36a        10 minutes ago      315MB
     wso2/micro-integrator   1.1.0               088477c689f6        2 days ago          315MB
     ```
-
+    
 5.  Start the container with the following command:
 
     ```bash

@@ -20,7 +20,7 @@ to a port:
 
     ```toml
     [server]
-    offset=3
+    offset = 3
     ```
 
 When you set the server-level port offset as shown above, all the ports used by the server will change automatically.

@@ -1,4 +1,7 @@
-# Running as a Java Program
+---
+title: Running as a Java Program
+note: This is an auto-generated file do not edit this, You can edit content in "ballerina-integrator" repo
+---
 
 Running a Ballerina program or service can be done using a Java command. This is useful since a .jar file is created as part of building the project and the program can be run using a `java -jar` command.
 

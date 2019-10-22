@@ -108,6 +108,39 @@ Given below is the data service configuration you need to build. See the instruc
    </resource>
 </data>
 ```
+
+!!! Tip
+    If you want to map the query output to JSON, select `JSON` as the output type. The query result for the `listOfficeSQL` query will be as follows:
+
+    ```json
+    <query id="listOfficeSQL" useConfig="Datasource">
+        <sql>select OfficeCode, AddressLine1, AddressLine2, City, State, Country, Phone from OFFICES where OfficeCode=:OfficeCode</sql>
+        <result outputType="json">{ 
+           "Offices":{ 
+              "Office":[ 
+                 { 
+                    "OfficeCode":"$OfficeCode(type:integer)",
+                    "City":"$City",
+                    "Country":"$Country",
+                    "Phone":"$Phone",
+                    "@EmployeeOfficeSQL":"$OfficeCode->OfficeCode"
+                 }
+              ]
+           }
+        }</result>
+        <param name="OfficeCode" sqlType="STRING"/>
+    </query>
+    ```
+
+    As shown above, nested queries are mentioned in the JSON mapping by giving the query details as a JSON object attribute. That is, the name of the target query to be called and the property value (the fields in the result mapped with the target query parameters) are included in the JSON mapping as the object attribute name.
+
+    In the above example:
+    
+    - The target query name is mentioned by prefixing the query name with "@". Note "@EmployeeOfficeSQL" in the example given above.
+    - The parameter mapping is added to the query by giving the following values: The field name in the result prefixed by "$", and the name of the target query parameter.
+    - These two values in the parameter mapping are separated by "->". See "$OfficeCode->OfficeCode" in the example given above.
+    - Note that the target query name and the parameter mapping are separated by a colon as follows: "@EmployeeOfficeSQL": "$OfficeCode->OfficeCode"
+
 ## Build and run
 
 Create the artifacts:
@@ -130,14 +163,14 @@ It gets the details of the office that has the office code 1, and all
 the employees that belong to office code 1.
 
 ```bash
-curl -X GET http://localhost:8280/services/EmployeesDataService.HTTPEndpoint/offices/1
+curl -X GET http://localhost:8290/services/EmployeesDataService.HTTPEndpoint/offices/1
 ```
 
 !!! Tip
-    If you configured the [output mapping of the `listOfficeSQL` query to be in the JSON format](#DefiningNestedQueries-JSON) , you need to add the header `-H 'Accept: application/json'` to your curl command to get the output in the JSON format.
+    If you configured the output mapping of the `listOfficeSQL` query to be in the JSON format, you need to add the header `-H 'Accept: application/json'` to your curl command to get the output in the JSON format.
 
 ```bash
-curl -H 'Accept: application/json' -X GET http://localhost:8280/services/EmployeesDataService.HTTPEndpoint/offices/1
+curl -H 'Accept: application/json' -X GET http://localhost:8290/services/EmployeesDataService.HTTPEndpoint/offices/1
 ```
 
 You will now see the following result:

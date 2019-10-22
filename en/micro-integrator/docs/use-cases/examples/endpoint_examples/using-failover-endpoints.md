@@ -163,8 +163,6 @@ Create the artifacts:
 3. Create the following artifacts.
 4. Deploy the artifacts in your Micro Integrator.
 
-Configure the ActiveMQ broker.
-
 Set up the back-end service.
 
 Invoking the service.
