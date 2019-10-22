@@ -67,8 +67,7 @@ To test the sample Siddhi application, simulate a single event for it via the St
     | **StreamName**              | `TransactionStream`                    |
 
 
-
-    As a result, the attributes of the `RawMaterialStream` stream appear as marked in the image above.
+    As a result, the attributes of the `Transactiontream` stream appear as marked in the image above.
 
 3. Enter values for the attributes as follows:
 

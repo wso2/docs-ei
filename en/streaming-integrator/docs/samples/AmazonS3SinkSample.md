@@ -51,6 +51,10 @@ To execute the sample, follow the procedure below:
 
     ![Start button](../../images/amazon-s3-sink-sample/start.png)
 
+    If the Siddhi application starts successfully, the following message appears in the console.
+
+    `AmazonS3SinkSample.siddhi - Started Successfully!.`
+
 
 ## Testing the Sample
 
