@@ -309,7 +309,7 @@ nav:
       - 'Micro Integrator Dashboard': 'administer-and-observe/working-with-monitoring-dashboard.md'
       - 'Micro Integrator CLI': 'administer-and-observe/using-the-command-line-interface.md'
       - 'Monitoring Message Round Trip': 'administer-and-observe/observability.md'
-      #- 'Analyzing Statistics and Tracing': 'administer-and-observe/using-the-analytics-dashboard.md'
+      - 'Analyzing Statistics and Tracing': 'administer-and-observe/using-the-analytics-dashboard.md'
       - Logging:
         - 'Logs in WSO2 Micro Integrator' : 'administer-and-observe/logs/monitoring_logs.md'
         - 'Configuring Log4j Properties' : 'administer-and-observe/logs/configuring_log4j_properties.md'
