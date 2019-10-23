@@ -72,7 +72,6 @@ After adding concurrency consumers and cache level, your complete configuration
 [[transport.jms.listener]]
 name = "myQueueConnectionFactory"
 parameter.initial_naming_factory = "org.apache.activemq.jndi.ActiveMQInitialContextFactory"
-parameter.broker_name = "ActiveMQ"
 parameter.provider_url = "tcp://localhost:61616"
 parameter.connection_factory_name = "QueueConnectionFactory"
 parameter.connection_factory_type = "queue"

@@ -28,7 +28,7 @@ If you want to change the [default primary keystore](#the-default-keystore-confi
 
 2. Open the deployment.toml file, add the following config section, and update the parameter values for the newly-created keystore.
     ```toml
-    [keystore.tls]
+    [keystore.primary]
     file_name="wso2carbon.jks"
     type="JKS"
     password="wso2carbon"

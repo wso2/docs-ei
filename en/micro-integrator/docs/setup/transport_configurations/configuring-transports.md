@@ -15,10 +15,10 @@ The default HTTP transport (PassThrough transport) of WSO2 Micro Integrator has 
 You can configure the number of listeners for the HTTP transport in the deployment.toml file:
 
 ```toml
-[[transport.http]]
-io_thread_count=2
+[passthru_properties]
+io_threads_per_reactor=2
 ```
-You are able to define any number of listeners (by updating the `io_thread_count` value) as there is no maximum limit defined in the code level.
+You are able to define any number of listeners (by updating the `io_threads_per_reactor` value) as there is no maximum limit defined in the code level.
 
 !!! Note
     The number of listener threads is double the value of the `io_threads_per_reactor` property because the same number of `PassThroughHttpListener` and `PassThroughHttpSSLListener` threads are created. For example, if you defined the value for the `io_threads_per_reactor` property as 5, you have 5 `PassThroughHttpListener` threads and 5 `PassThroughHttpSSLListener` threads. Therefore, the total number of listeners are 10.
@@ -30,7 +30,7 @@ With the default HTTP transport (PassThrough transport) you can enable connectio
 To enable connection throttling, update the following property in the deployment.toml file:
 
 ```toml
-[[transport.http]]
+[transport.http]
 max_open_connections = 2
 ```
 
@@ -58,21 +58,51 @@ process checks all the certificates in a certificate chain.
 To enable this feature for the HTTP passthrough, add the following parameters for the HTTP transport receiver and sender in the deployment.toml file:
 
 ```toml tab='Passthrough Listener'
-[[transport.http]]
-listener.CertificateRevocationVerifier=""
-listener.CacheSize=1024
-listenerCacheDelay=1000
+[transport.http]
+listener.certificate_revocation_verifier_enable = true
+listener.certificate_revocation_cache_size = 1024
+listener.certificate_revocation_cache_delay = 1000
 
 ``` 
 
 ```toml tab='Passthrough Sender'
-[[transport.http]]
-sender.CertificateRevocationVerifier=""
-sender.CacheSize=1024
-sender.CacheDelay=1000
+[transport.http]
+sender.certificate_revocation_verifier_enable = true
+sender.certificate_revocation_cache_size = 1024
+sender.certificate_revocation_cache_delay = 1000
 
 ``` 
 
+### Configuring Transport Level Security  
+
+Micro Integrator supports both SSL and TLS protocols. But since the SSL protocol is vulnerable to Poodle attacks, it is necessary to make sure that only TLS protocol versions are enabled.
+
+!!! Note
+    It is necessary to disable SSL in Carbon servers because of a bug (Poodle Attack) in the SSL protocol that could expose critical data encrypted between clients and servers. The Poodle Attack makes the system vulnerable by telling the client that the server does not support the more secure TLS (Transport Layer Security) protocol, and thereby forces it to connect via SSL. The effect of this bug can be mitigated by disabling the SSL protocol for your server.
+
+To configure the enabled protocols, update the following property in the deployment.toml file:
+```toml
+[transport.http]
+listener.secured_protocols = "TLSv1,TLSv1.1,TLSv1.2"
+sender.secured_protocols = "TLSv1,TLSv1.1,TLSv1.2"
+```
+### Disabling weak ciphers
+
+A cipher is an algorithm for performing encryption or decryption. When you set the sslprotocol of your server to TLS, the TLS and the default ciphers get enabled without considering the strength of the ciphers. This is a security risk as weak ciphers, also known as EXPORT ciphers, can make your system vulnerable to attacks such as the Logjam attack on Diffie-Hellman key exchange. The Logjam attack is also called the Man-in-the-Middle attack. It downgrades your connection's encryption to a less-secured level (e.g., 512 bit) that can be decrypted with sufficient processing power.
+
+To prevent these types of security attacks, it is encouraged to disable the weak ciphers. You can enable only the ciphers that you want the server to support in a comma-separated list in the ciphers  attribute. 
+
+To configure the enabled ciphers, update the following property in the deployment.toml file:
+```toml
+[transport.https]
+listener.parameter.PreferredCiphers = "TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA256,TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256,TLS_DHE_RSA_WITH_AES_128_CBC_SHA256,TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA,TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA,TLS_DHE_RSA_WITH_AES_128_CBC_SHA,TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256,TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256,TLS_DHE_RSA_WITH_AES_128_GCM_SHA256"
+```
+
+!!! Note
+    To check the above configuration changes related to SSL. Download [TestSSLServer.jar](https://docs.wso2.com/download/attachments/53125465/TestSSLServer.jar?version=1&modificationDate=1471859455000&api=v2) and test with the following command.
+
+    $ java -jar TestSSLServer.jar localhost 8253
+    
 ## Configuring the VFS transport
 
 The VFS transport is enabled by defualt in the Micro Integrator. The VFS transport supports the **SFTP protocol** with **Secure Sockets Layer (SSL)**. The configuration is identical to other protocols with the only difference being the URL prefixes and parameters. 
@@ -95,7 +125,7 @@ To enable the TCP transport listener and sender, set the following parameters to
 
 ```toml
 [transport.tcp]
-listener.enable = false
+listener.enable = true
 sender.enable = true
 ```
 

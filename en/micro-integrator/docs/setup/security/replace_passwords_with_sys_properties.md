@@ -9,7 +9,7 @@ This is done using the `$env{ENV_VAR}` and the `$sys{system.property}` place hol
 username="admin"
 password="$env{ENV_VAR}"
 
-[keystore.tls]
+[keystore.primary]
 password = "$env{ENV_VAR}" 
 alias = "$env{ENV_VAR}" 
 key_password = "$$env{ENV_VAR}"  

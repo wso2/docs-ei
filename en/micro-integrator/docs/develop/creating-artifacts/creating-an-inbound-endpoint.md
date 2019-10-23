@@ -10,7 +10,7 @@ Follow the instructions given below to create a new Inbound Endpoint artifact in
 4. Specify values for the required parameter for the selected inbound endpoint type.
 
     !!! Info
-        See the list of configurable properties for [listening inbound endpoints](../../references/synapse-properties/inbound-endpoints/listening-inbound-endpoint-properties.md), [polling inbound endpoints](../../references/synapse-properties/inbound-endpoints/polling-inbound-endpoint-properties.md), [event-based inbound endpoints](../../references/synapse-properties/inbound-endpoints/event-based-inbound-endpoint-properties.md), and [custom inbound endpoints](../../references/synapse-properties/inbound-endpoints/custom-inbound-endpoint-properties.md).
+        See the list of [configurable properties](../../../references/synapse-properties/inbound-endpoints/about-inbound-endpoints) for listening inbound endpoints, polling inbound endpoints, event-based inbound endpoints, and custom inbound endpoints.
 
 	!!! Note
 		For certain protocols (HL7, KAFKA, Custom, MQTT, RabbitMq, WSO2_MB, WS, and  WSS) the **main sequence** and **error sequence** are mandatory fields. You can select sequences that already exist in the workspace and add them to the **Sequence** and **Error sequence** fields. If you don't have any sequences in the workspace, click **Generate Sequence and Error Sequence** to generate new sequences for the inbound endpoint.  
@@ -22,7 +22,7 @@ Follow the instructions given below to create a new Inbound Endpoint artifact in
 6.  Open the new artifact from the project explorer, and update any optional inbound endpoint properties.
 
     !!! Info
-        See the list of configurable properties for [listening inbound endpoints](../../references/synapse-properties/inbound-endpoints/listening-inbound-endpoint-properties.md), [polling inbound endpoints](../../references/synapse-properties/inbound-endpoints/polling-inbound-endpoint-properties.md), [event-based inbound endpoints](../../references/synapse-properties/inbound-endpoints/event-based-inbound-endpoint-properties.md), and [custom inbound endpoints](../../references/synapse-properties/inbound-endpoints/custom-inbound-endpoint-properties.md).
+        See the list of [configurable properties](../../../references/synapse-properties/inbound-endpoints/about-inbound-endpoints) for listening inbound endpoints, polling inbound endpoints, event-based inbound endpoints, and custom inbound endpoints.
 
 !!! Note
     **Redeployment of listening inbound endpoints fail?**

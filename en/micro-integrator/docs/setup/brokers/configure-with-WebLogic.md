@@ -39,7 +39,6 @@ If you want the Micro Integrator to receive messages from Weblogic instance, or 
     [[transport.jms.listener]]
     name = "myTopicListener"
     parameter.initial_naming_factory = "weblogic.jndi.WLInitialContextFactory"
-    parameter.broker_name = "activemq" 
     parameter.provider_url = "t3://localhost:7001"
     parameter.connection_factory_name = "jms/myConnectionFactory"
     parameter.connection_factory_type = "topic"
@@ -53,7 +52,6 @@ If you want the Micro Integrator to receive messages from Weblogic instance, or 
     [[transport.jms.sender]]
     name = "myTopicSender"
     parameter.initial_naming_factory = "weblogic.jndi.WLInitialContextFactory"
-    parameter.broker_name = "activemq"
     parameter.provider_url = "t3://localhost:7001"
     parameter.connection_factory_name = "jms/myConnectionFactory"
     parameter.connection_factory_type = "topic"

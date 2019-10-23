@@ -189,7 +189,7 @@ nav:
             - 'Sample 2: Message Routing': 'setup/deployment/k8s-samples/content-based-routing.md' 
             - 'Sample 3: JMS Sender/Receiver': 'setup/deployment/k8s-samples/jms-sender-receiver.md'
         - 'Deploy on a VM': 'setup/deployment/deploying_wso2_ei.md' 
-        #- 'Upgrading from a Previous Release' : 'setup/deployment/upgrading.md'
+        - 'Migrating from WSO2 EI 6.x': 'setup/deployment/migrating-from-ei-6.x.x.md' 
         - 'Setting up a Load Balancer': 'setup/deployment/setting_up_lb.md'
         - 'Troubleshooting Production Deployment' : 'setup/deployment/troubleshooting_deployment.md'
         - 'Product Deployment Checklist' : 'setup/deployment/deployment_checklist.md'
@@ -208,6 +208,7 @@ nav:
           - 'Encrypting Passwords' : 'setup/security/encrypting_plain_text.md'
           - 'Using Symmetric Encryption' : 'setup/security/single_key_encryption.md'
           - 'Set Passwords using Environment Variables/System Properties' : 'setup/security/replace_passwords_with_sys_properties.md'
+        - 'Securing the Management API' : 'setup/security/securing_management_api.md'
       - Performance Tuning:
         - 'Tuning JVM Performance' : 'setup/performance_tuning/tuning_jvm_performance.md'
         - 'Tuning Network and OS Performance' : 'setup/performance_tuning/network_os_performance.md'
@@ -309,6 +310,8 @@ nav:
       - 'Micro Integrator Dashboard': 'administer-and-observe/working-with-monitoring-dashboard.md'
       - 'Micro Integrator CLI': 'administer-and-observe/using-the-command-line-interface.md'
       - 'Monitoring Message Round Trip': 'administer-and-observe/observability.md'
+      - 'Analyzing Statistics and Tracing': 'administer-and-observe/using-the-analytics-dashboard.md'
+      - 'Using the Management API': 'administer-and-observe/working-with-management-api.md'
       - Logging:
         - 'Logs in WSO2 Micro Integrator' : 'administer-and-observe/logs/monitoring_logs.md'
         - 'Configuring Log4j Properties' : 'administer-and-observe/logs/configuring_log4j_properties.md'
@@ -424,7 +427,7 @@ nav:
       - 'Best Practices' : 'references/best-Practices.md'
       - 'Troubleshooting JMS' : 'references/troubleshooting-jms.md'
       - 'Error Codes' : 'references/error_handling.md'
-      - 'WSO2 Micro Integrator vs WSO2 EI 6.x.x Family (ESB Profile)' : 'references/comparisong-mi7-ei6xx.md'
+      - 'WSO2 Micro Integrator vs WSO2 EI 6.x Family' : 'references/comparisong-mi7-ei6xx.md'
     - '': page-not-found.md
      
 # Extensions

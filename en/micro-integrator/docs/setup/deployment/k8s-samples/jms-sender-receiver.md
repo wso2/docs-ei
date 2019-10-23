@@ -62,7 +62,11 @@ Follow the steps given below to deploy and run the integration solution on Kuber
 5.  Create a **Docker/Kubernetes Project** inside the Maven Multi Module Project.
     **New → Project → Docker/Kubernetes Project** and select the **New Kubernetes Project** option. 
     
-    ![Create Docker/Kubernetes Project](../../../assets/img/create_project/docker_k8s_project/k8s-proj.png)    
+    ![Create Docker/Kubernetes Project](../../../assets/img/create_project/docker_k8s_project/k8s-proj.png)  
+    
+    Finally, created Maven Multi Module Project Explorer should be as follows,
+            
+    ![JMS Project](../../../assets/img/create_project/docker_k8s_project/jms_project.png)   
 
 6.  Navigate to the Kubernetes project and open the **pom.xml** file. Select the multiple composite applications you want to add to the docker image under **Dependencies**.
 
@@ -77,7 +81,8 @@ Follow the steps given below to deploy and run the integration solution on Kuber
 
 9. Copy the following client libraries from the `<ACTIVEMQ_HOME>/lib` directory to the `<MAVEN_MULTI_MODULE>/<KUBERNETES_PROJECT>/Lib` directory.
 
-    **ActiveMQ 5.8.0 and above** 
+    **ActiveMQ 5.8.0 and above**
+    
     -   activemq-broker-5.8.0.jar
     -   activemq-client-5.8.0.jar
     -   activemq-kahadb-store-5.8.0.jar  
@@ -89,6 +94,7 @@ Follow the steps given below to deploy and run the integration solution on Kuber
     -   activeio-core-3.1.4.jar (available in the <ACTIVEMQ_HOME>/lib/optional directory)  
      
     **Earlier version of ActiveMQ**
+    
     -   activemq-core-5.5.1.jar
     -   geronimo-j2ee-management_1.0_spec-1.0.jar    
     -   geronimo-jms_1.1_spec-1.1.1.jar

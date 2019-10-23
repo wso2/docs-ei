@@ -46,7 +46,7 @@ Follow the steps below to set up a PostgreSQL database.
 
 ## Connecting the database to the server
 
-To enable the two nodes to access the shared database, update the following parameters in the esb.toml file.
+To enable the two nodes to access the shared database, update the following parameters in the deployment.toml file.
 
 ``` Java
 // The config section that groups the parameters for the primary database that will be shared by both product nodes in the cluster.
@@ -55,7 +55,7 @@ To enable the two nodes to access the shared database, update the following para
 // Specify the type of database.
 type = "postgre_sql"
 
-// Specify the connection URL of your database. The following default URL connects to the H2 database that is shipped with the product.
+// Specify the connection URL of your database. The following is a sample PostgreSQL connection URL.
 url="jdbc:postgresql://localhost:5432/gregdb"
 
 // The username for connecting to the database.

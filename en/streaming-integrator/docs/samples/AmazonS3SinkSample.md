@@ -8,7 +8,7 @@ extension](https://siddhi-io.github.io/siddhi-io-s3/). In this sample the events
 
 !!!info "Before you begin:"
     - Create an AWS account and set the credentials following the instructions in the [AWS Developer Guide](https://docs.aws.amazon.com/sdk-for-java/v1/developer-guide/credentials.html).<br/>
-    - Save the sample Siddhi application.<br/>
+    - Save the sample Siddhi application in Streaming Integrator Tooling.<br/>
 
         ```sql
         @App:name("AmazonS3SinkSample")
@@ -39,25 +39,36 @@ extension](https://siddhi-io.github.io/siddhi-io-s3/). In this sample the events
 
 To execute the sample, follow the procedure below:
 
-1. Update the sample Siddhi application as follows:
+1. In Streaming Integrator Tooling, click Open and then click **AmazonS3SinkSample.siddhi** in the **workspace** directory. Then update it as follows:
 
     1. Enter the credential.provider class name as the value for the `credential.provider` parameter. If the class is not specified, the default credential provider chain is used.
 
     2. For the `bucket.name` parameter, enter `AWSBUCKET` as the value.
 
-    3. Save the Siddhi application, and then start it by clicking the **Start** button (shown below) or by clicking by clicking **Run** => **Run**.
+    3. Save the Siddhi application.
 
-        ![Start button](../../images/amazon-s3-sink-sample/start.png)
+2. Start the Siddhi application by clicking the **Start** button (shown below) or by clicking by clicking **Run** => **Run**.
 
-2. To open the Event Simulator, click the **Event Simulator** icon.
+    ![Start button](../../images/amazon-s3-sink-sample/start.png)
+
+    If the Siddhi application starts successfully, the following message appears in the console.
+
+    `AmazonS3SinkSample.siddhi - Started Successfully!.`
+
+
+## Testing the Sample
+
+To test the sample Siddhi application, simulate random events for it via the Streaming Integrator Tooling as follows:
+
+1. To open the Event Simulator, click the **Event Simulator** icon.
 
        ![Event Simulator Icon](../../images/Testing-Siddhi-Applications/Event_Simulation_Icon.png)
 
-3. In the Event Simulator panel, click **Feed Simulation** -> **Create**.
+2. In the Event Simulator panel, click **Feed Simulation** -> **Create**.
 
         ![Feed Simulation tab](../../images/aggregate-over-time-sample/feed-simulation-tab.png)
 
-4. In the new panel that opens, enter information as follows.
+3. In the new panel that opens, enter information as follows.
 
     ![Feed Simulation](../../images/amazon-s3-sink-sample/AmazonS3SinkSample-feed-simulation.png)
 
@@ -82,32 +93,9 @@ To execute the sample, follow the procedure below:
 
         ![saved simulation](../../images/amazon-s3-sink-sample/simulation-list.png)
 
-5. To simulate random events, click the **Start** button next to the **AmazonS3SinkSample** simulator.
+4. To simulate random events, click the **Start** button next to the **AmazonS3SinkSample** simulator.
 
-
-## Testing the Sample
+## Viewing results
 
 Once the events are sent, check the S3 bucket. Objects are created with 3 events in each.
 
-```sql
-@App:name("AmazonS3SinkSample")
-@App:description("Publish events to Amazon AWS S3")
-
-
-define window StockQuoteWindow(symbol string, price double, quantity int) lengthBatch(3) output all events;
-
-define stream StockQuoteStream(symbol string, price double, quantity int);
-
-@sink(type='s3', bucket.name='<BUCKET_NAME>', object.path='stocks',
-      credential.provider='com.amazonaws.auth.profile.ProfileCredentialsProvider', node.id='zeus',
-    @map(type='json', enclosing.element='$.stocks',
-        @payload("""{"symbol": "{{symbol}}", "price": "{{price}}", "quantity": "{{quantity}}"}""")))
-define stream StorageOutputStream (symbol string, price double, quantity int);
-
-from StockQuoteStream
-insert into StockQuoteWindow;
-
-from StockQuoteWindow
-select *
-insert into StorageOutputStream;
-```

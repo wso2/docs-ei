@@ -69,9 +69,3 @@ You need to copy the built jar file to the `MI_HOME/lib` directory and restart t
       </tr>
    </tbody>
 </table>
-
-## Examples
-..
-
-## Guides
-..
