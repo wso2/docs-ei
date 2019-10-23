@@ -1,5 +1,5 @@
 ---
-title: Running as a Java Program
+title: Running on JVM
 note: This is an auto-generated file do not edit this, You can edit content in "ballerina-integrator" repo
 ---
 
