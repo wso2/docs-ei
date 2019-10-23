@@ -53,7 +53,7 @@ Follow the steps given below.
 
     ![Kubernetes pom view](../../assets/img/create_project/docker_k8s_project/k8s-pom.png)
     
-2.  Select multiple composite applications which wants to pack inside the Docker image under the Dependencies section, and save the file.
+2.  Select multiple composite applications which are needed to be packed inside the Docker image under the Dependencies section, and save the file.
 3.  Click **Build & Push**, to start the Docker image build and push process.
 
     ![Docker Registry Auth Details](../../assets/img/create_project/docker_k8s_project/k8s-auth.png)
@@ -70,10 +70,10 @@ Follow the steps given below.
     
 5.  Once you enter the above details, click **Push Image**.
 
-6.  First it will build the Docker image based on the Dockerfile and the Target details. Once it done it will show a popup message regarding the status of it.
+6.  First it will build the Docker image based on the Dockerfile and the Target details. Once it is done, it will show a popup message regarding the status of it.
 
     ![Docker Build Success](../../assets/img/create_project/docker_k8s_project/build.png)
 
-7.  Finally, it will start to push the built image to the given registry. Once it done it will show a popup message regarding the status of it.
+7.  Finally, it will start to push the built image to the given registry. Once it is done, it will show a popup message regarding the status of it.
 
     ![Docker Push Success](../../assets/img/create_project/docker_k8s_project/push.png)
