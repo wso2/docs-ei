@@ -43,7 +43,7 @@ Listed below are the common guidelines for making a WSO2 product ready for produ
          <td>Hostname</td>
          <td>
             <div class="content-wrapper">
-               By default, WSO2 products identify the hostname of the current machine through the Java API. However, this value sometimes yields erroneous results on some environments. Therefore, users are recommended to configure the hostname by setting the <code>               HostName              </code> parameter in the <code>ei.toml</code> file.
+               By default, WSO2 products identify the hostname of the current machine through the Java API. However, this value sometimes yields erroneous results on some environments. Therefore, users are recommended to configure the hostname by setting the <code>HostName</code> parameter in the <code>deployment.toml</code> file.
                <div class="code panel pdl" style="border-width: 1px;">
                   <div class="codeContent panelContent pdl">
                      <div class="sourceCode" id="cb1" data-syntaxhighlighter-params="brush: xml; gutter: false; theme: Confluence" data-theme="Confluence" style="brush: xml; gutter: false; theme: Confluence">
@@ -51,12 +51,12 @@ Listed below are the common guidelines for making a WSO2 product ready for produ
                      </div>
                   </div>
                </div>
-               <p>To configure hostnames for WSDLs and endpoints, users are recommended to add the following parameter for the transport listener in the ei.toml file.</p>
+               <p>To configure hostnames for WSDLs and endpoints, users are recommended to add the following parameter for the transport listener in the deployment.toml file.</p>
                <div class="code panel pdl" style="border-width: 1px;">
                   <div class="codeContent panelContent pdl">
                      <div class="sourceCode" id="cb2" data-syntaxhighlighter-params="brush: xml; gutter: false; theme: Confluence" data-theme="Confluence" style="brush: xml; gutter: false; theme: Confluence">
                         <pre class="sourceCode xml"><code class="sourceCode xml"><span id="cb2-1"><a href="#cb2-1"></a><span class="kw">
-[[transport.http]]</br>listener.wsdl_epr_prefix="$ref{server.hostname}"</span></span></code></pre>
+[transport.http]</br>listener.wsdl_epr_prefix="$ref{server.hostname}"</span></span></code></pre>
                      </div>
                   </div>
                </div>
@@ -67,18 +67,7 @@ Listed below are the common guidelines for making a WSO2 product ready for produ
          <td>Registry and governance</td>
          <td>
             <div class="content-wrapper">
-               <p>All WSO2 products make use of an instance of a registry to store configurations. The registry uses a database as the persistent storage. By default, the registry uses an embedded H2 database.</p>
-               <p>This embedded database might yield a lower performance and is less reliable compared to a standard database like MySQL when there are a large number of deployed artifacts. Hence, you should look at associated trade-offs, and we recommend that you switch to a database like Oracle, MySQL or MSSQL.</p>
-               <p>Moreover, it is worth noting that the default setup does not include database backup procedures. The production setup should obviously need to have regular database backup procedures configured.</p>
-               <p>When the registry database is pointed to a remote database, multiple running instances of the same product can boot up and run against the same configuration stored in the registry. This, in turn, helps with governance.</p>
-               <div class="panel" style="border-width: 1px;">
-                  <div class="panelHeader" style="border-bottom-width: 1px;">
-                     <strong>Related links</strong>
-                  </div>
-                  <div class="panelContent">
-                     <p>See <a href="http://wso2.org/library/tutorials/2010/04/sharing-registry-space-across-multiple-product-instances">here</a> for more information on sharing a registry space across multiple WSO2 product instances.</p>
-                  </div>
-               </div>
+               <p>The H2 database-based registry is not available in the Micro Integrator. Instead, it has a <a href="../file_based_registry">file system based registry</a>, which provides the same functionality.</p>
             </div>
          </td>
       </tr>
@@ -106,11 +95,12 @@ Listed below are the common guidelines for making a WSO2 product ready for produ
          </td>
       </tr>
    -->
+   <!--
       <tr class="odd">
          <td>Monitoring with JMX</td>
          <td>
             <div class="content-wrapper">
-               <p>WSO2 Products supportJMXformonitoring. By default, JMX uses port 9999. You can configure this to the desired port by setting the JMX port parameter in the <code>               &lt;PRODUCT_HOME&gt;/repository/conf/carbon.xml              </code> file.</p>
+               <p>WSO2 Products supportJMXformonitoring. By default, JMX uses port 9999. You can configure this to the desired port by setting the JMX port parameter in the <code>               &lt;MI_HOME&gt;/conf/carbon.xml              </code> file.</p>
                <div class="code panel pdl" style="border-width: 1px;">
                   <div class="codeContent panelContent pdl">
                      <div class="sourceCode" id="cb3" data-syntaxhighlighter-params="brush: xml; gutter: false; theme: Confluence" data-theme="Confluence" style="brush: xml; gutter: false; theme: Confluence">
@@ -131,6 +121,7 @@ Listed below are the common guidelines for making a WSO2 product ready for produ
             </div>
          </td>
       </tr>
+   -->
       <tr class="even">
          <td>Tuning WSO2 products</td>
          <td>
@@ -142,7 +133,7 @@ Listed below are the common guidelines for making a WSO2 product ready for produ
                   </div>
                   <div class="panelContent">
                      <div>
-                        Read about <a href="../../../setup/performance_tuning/tuning_jvm_performance">tuning the JVM</a> and <a href="../../../setup/performance_tuning/tuning_jvm_performance">tuning the network and OS</a>.
+                        Read about <a href="../../../setup/performance_tuning/tuning_jvm_performance">tuning the JVM</a> and <a href="../../../setup/performance_tuning/network_os_performance">tuning the network and OS</a>.
                      </div>
                   </div>
                </div>
@@ -155,10 +146,9 @@ Listed below are the common guidelines for making a WSO2 product ready for produ
             <div class="content-wrapper">
                <p>The following ports must be accessed when operating within a firewall.</p>
                <ul>
-                  <li>9763 - Used by the services that use servlet transport.</li>
                   <li>9999 - Used for JMX monitoring.</li>
-                  <li>8280 - Default HTTP port used by the Micro Integrator for proxy services.</li>
-                  <li>8243 - Default HTTPS port used by the Micro Integrator for proxy services.</li>
+                  <li>8290 - Default HTTP port used by the Micro Integrator for proxy services.</li>
+                  <li>8253 - Default HTTPS port used by the Micro Integrator for proxy services.</li>
                </ul>
             </div>
          </td>
@@ -176,7 +166,7 @@ Listed below are the common guidelines for making a WSO2 product ready for produ
                      </div>
                   </div>
                </div>
-               <p>Alternatively, this can be done by adding the following configurations in the ei.toml file.</p>
+               <p>Alternatively, this can be done by adding the following configurations in the deployment.toml file.</p>
                <div class="code panel pdl" style="border-width: 1px;">
                   <div class="codeContent panelContent pdl">
                      <div class="sourceCode" id="cb5" data-syntaxhighlighter-params="brush: xml; gutter: false; theme: Confluence" data-theme="Confluence" style="brush: xml; gutter: false; theme: Confluence">
@@ -191,18 +181,9 @@ Listed below are the common guidelines for making a WSO2 product ready for produ
          <td>High availability</td>
          <td>
             <div class="content-wrapper">
-               <p>For high availability, WSO2 products must run on a <a href="_Clustering_Overview_">cluster</a> . This enables the WSO2 products to still work in the case of failover. Databases used for the repository, user management, and business activity monitoring can also be configured in a cluster or can use replication management provided by the RDBMS.</p>
-               <div class="panel" style="border-width: 1px;">
-                  <div class="panelHeader" style="border-bottom-width: 1px;">
-                     <strong>Related links</strong>
-                  </div>
-                  <div class="panelContent">
-                     <ul>
-                        <li>See <a href="_Clustering_Overview_">Overview</a> for more details on clustering, what it is, how it helps and other related information.</li>
-                        <li>See <a href="_Separating_the_Worker_and_Manager_Nodes_">Separating the Worker and Manager Nodes</a> for information on clustering WSO2 products by separating worker and manager concerns between the nodes.</li>
-                     </ul>
-                  </div>
-               </div>
+               <p>In the cloud native deployment, high availability should be achieved via the container orchestration system ( Ex: Kubernetes ). For readiness and liveness probes, we can use <a href="https://github.com/wso2-docs/WSO2_EI/blob/master/kubernetes/HeartBeatCompositeApplication_1.0.0.car">this</a> sample carbon application which contains a health check API. We can invoke the health check API as follows</p>
+               <p><code>curl -X GET http://localhost:8290/testHealth</code></p>
+               <p>In a VM deployment, we can use a load balancer with multiple nodes as described <a href="../deploying_wso2_ei">here</a> to achieve high availability.</p>
             </div>
          </td>
       </tr>
@@ -232,17 +213,11 @@ Given below are the common security guidelines for deploying a WSO2 product in a
             <p>Apply security updates</p>
          </td>
          <td>
-            <p>Apply all the security patches relevant to your product version. If your WSO2 product version is supported by WSO2 Update Manager (WUM), you need to use WUM to get the latest fixes.</p>
+            <p>Micro Integrator security fixes can be taken from one of the following methods.</p>
             <ul>
-               <li>If your WSO2 product is listed as a WUM-supported product <a href="http://wso2.com/update/">here</a> , follow the instructions in <a href="https://docs.wso2.com/display/updates/Getting+Started">Getting Started with WUM</a> .</li>
-               <li>
-                  <p>If you are using an older WSO2 product version, which is not WUM-supported, you need to download the security patches relevant to your product from the <a href="http://wso2.com/security-patch-releases/">WSO2 Security Patch Release</a> page and apply them to your system manually. The instructions are given in <a href="https://docs.wso2.com/display/ADMIN44x/WSO2+Patch+Application+Process">WSO2 Patch Application Process</a> .</p>
-               </li>
-            </ul>
-            <p><strong>Note the following:</strong></p>
-            <ul>
-               <li>WSO2 releases security patch notifications monthly via the Support Portal and the above mentioned <a href="http://wso2.com/security-patch-releases">WSO2 Security Patch Releases</a> page. However, for highly critical issues, patches are issued immediately to customers.</li>
-               <li>The <a href="http://wso2.com/security-patch-releases">WSO2 Security Patch Release</a> page has all the security patches for the latest product versions. WSO2 does not issue patches publicly for older product versions. Community users are encouraged to use the latest product version to receive all the security fixes.</li>
+                <li>Using WUM ( WSO2 Update Manager ) to get the latest fixes. Users with a <a href="https://wso2.com/subscription">subscription</a> can take the latest security fixes via the WUM security channel.</li>
+                <li><a href="http://wso2.com/security-patch-releases">WSO2 Security Patch Release</a> page has all the security patches for the latest product versions. WSO2 does not issue patches publicly for older product versions. Community users are encouraged to use the latest product version to receive all the security fixes.
+</li>           <li><a href="https://docker.wso2.com/tags.php?repo=wso2ei-integrator">WSO2 Docker repository</a> releases docker images with security fixes. Users with a <a href="https://wso2.com/subscription">subscription</a> can fetch these docker images.</li> 
             </ul>
          </td>
       </tr>
@@ -280,7 +255,7 @@ Given below are the common security guidelines for deploying a WSO2 product in a
             <p><br /></p>
          </td>
          <td>
-            <p>All the default ports used by WSO2 products are listed in <a href="../../../setup/changing_default_ports">here</a>. For example, the default HTTPS port is 9443 and the HTTP port is 9763. Also, Axis2 services are exposed over the following ports: 8243 and 8280.</p>
+            <p>All the default ports used by WSO2 products are listed in <a href="../../../setup/changing_default_ports">here</a>. For example, Axis2 services are exposed over the following ports: 8253 and 8290.</p>
             <p>To change a default port, update the <code>              &lt;Offset&gt;             </code> element in the ei.toml file as explained in <a href="../../../setup/changing_default_ports">Changing the Default Ports</a> .</p>
          </td>
       </tr>
@@ -316,11 +291,8 @@ Given below are the common security guidelines for deploying a WSO2 product in a
             <p>Configure strong HTTP(S) security</p>
          </td>
          <td>
-            <p>To have strong transport-level security, use TLS 1.2 and disable SSL, TLS 1.0 and 1.1. The TLS protocol and strong ciphers are configured for an HTTP connector in the catalina <code>              -server.             </code> xml file (using the <code>              sslEnabledProtocols             </code> and <code>              ciphers             </code> attributes). See the following links for instructions:</p>
-            <ul>
-               <li><a href="https://docs.wso2.com/display/ADMIN44x/Configuring+Transport+Level+Security">Configuring Transport-Level Security</a></li>
-               <li><a href="https://docs.wso2.com/display/ADMIN44x/Supported+Cipher+Suites">Supported Cipher Suites</a></li>
-            </ul>
+            <p>To have strong transport-level security, use TLS 1.2 and disable SSL, TLS 1.0 and 1.1. The TLS protocol and strong ciphers are configured for the passthrough transport in the <code>deployment.toml</code> file. See the following links for instructions:</p>
+            <p><a href="../transport_configurations/configuring-transports#Configuring-Transport-Level-Security">Configuring Transport-Level Security</a></p>
             <p>Note the following:</p>
             <ul>
                <li>When deciding on the TLS protocol and the ciphers, consider the compatibility with existing client applications. Imposing maximum security might cause functional problems with client applications.</li>
@@ -344,37 +316,8 @@ Given below are the common security guidelines for deploying a WSO2 product in a
             <p>Remove weak ciphers for PassThrough transport</p>
          </td>
          <td>
-            <p>Remove any weak ciphers from the PassThrough transport and ensure that the server does not accept connections using those weak ciphers. The PassThrough transport is configured using the <code>              axis2.             </code> xml file (stored in the <code>              &lt;PRODUCT_HOME&gt;/repository/conf/axis2/             </code> directory. You need to add the <code>              PreferredCiphers             </code> parameter under the "Transport Ins (Listeners)" section along with the list of relevant cipher suites.</p>
-            <p>See <a href="https://docs.wso2.com/display/ADMIN44x/Configuring+Transport+Level+Security">Configuring the PassThrough Transport</a> for instructions.</p>
-         </td>
-      </tr>
-      <tr class="even">
-         <td>
-            <p>Update the HTTP Response header "Server" value</p>
-         </td>
-         <td>
-            <p>By default, all WSO2 products pass "WSO2 Carbon Server" as the server value in HTTP headers when sending HTTP responses. This means that information about the WSO2 product stack will be exposed through HTTP responses. It is recommended to change this by configuring the server name in the <code>              catalina             </code> <code>              -server.             </code> xml file.</p>
-            <p>See <a href="https://docs.wso2.com/display/ADMIN44x/Configuring+Transport+Level+Security">Configuring Transport Level Security</a> for instructions.</p>
-         </td>
-      </tr>
-      <tr class="odd">
-         <td>
-            <p>Enabling HTTP Strict Transport Security Headers (HSTS)</p>
-         </td>
-         <td>
-            <p>Be sure that HTTP Strict Transport Security (HSTS) is enabled for all the applications deployed in your WSO2 server. This includes the management console, and any other web applications and/or Jaggery applications.</p>
-            <p>Note that (for products based on Carbon 4.4.11 or later versions) HSTS is disabled for the applications with which the product is shipped by default. This is because HSTS validation can interrupt the development processes by validating signatures of self-signed certificates.</p>
-            <p>See the topic on <a href="../../security/securing_carbon_applications/#enabling-http-strict-transport-security-hsts-headers">Enabling HTTP Strict Transport Security Headers</a> for instructions.</p>
-         </td>
-      </tr>
-      <tr class="even">
-         <td>
-            <p>Preventing browser caching</p>
-         </td>
-         <td>
-            <p>If there are dynamic pages in your application with sensitive information, you need to prevent browser caching. This can be done by making sure that the applications deployed in your server will return the relevant HTTP response headers.</p>
-            <p>Note that cache prevention headers are enabled for the applications with which the product is shipped by default. Therefore, you need to manually enable cache prevention headers only for all the new applications that you deploy in your server.</p>
-            <p>See the topic on <a href="../../security/securing_carbon_applications/#preventing-browser-caching">Preventing browser caching</a> for instructions.</p>
+            <p>Remove any weak ciphers from the PassThrough transport and ensure that the server does not accept connections using those weak ciphers. The PassThrough transport is configured using the <code>deployement.toml</code> file.
+            <p>See <a href="../transport_configurations/configuring-transports#Disabling-weak-ciphers">Disabling weak ciphers</a> for instructions.</p>
          </td>
       </tr>
       <tr class="odd">
@@ -414,45 +357,11 @@ Given below are the common security guidelines for deploying a WSO2 product in a
             <p><br /></p>
          </td>
          <td>
-            <p>If your product is using Carbon Kernel 4.4.17 or a later version, make sure that hostname verification is enabled in the product startup script ( <code>              micro-integrator.sh             </code> in Linux and <code>              micro-integrator.bat             </code> in Windows) with the <strong>Strict</strong> mode. That is, you need to enable the following parameter:</p>
+            <p>Make sure that hostname verification is enabled in the product startup script ( <code>              micro-integrator.sh             </code> in Linux and <code>              micro-integrator.bat             </code> in Windows) with the <strong>Strict</strong> mode. That is, you need to enable the following parameter:</p>
             <div class="code panel pdl" style="border-width: 1px;">
                <div class="codeContent panelContent pdl">
                   <div class="sourceCode" id="cb3" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence" style="brush: java; gutter: false; theme: Confluence">
                      <pre class="sourceCode java"><code class="sourceCode java"><span id="cb3-1"><a href="#cb3-1"></a>-Dhttpclient.<span class="fu">hostnameVerifier</span>=Strict \</span></code></pre>
-                  </div>
-               </div>
-            </div>
-            <p>In Carbon versions prior to 4.4.17, be sure that hostname verification is enabled by setting the following property to <code>              false             </code> .</p>
-            <div class="code panel pdl" style="border-width: 1px;">
-               <div class="codeContent panelContent pdl">
-                  <div class="sourceCode" id="cb4" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence" style="brush: java; gutter: false; theme: Confluence">
-                     <pre class="sourceCode java"><code class="sourceCode java"><span id="cb4-1"><a href="#cb4-1"></a>-Dorg.<span class="fu">wso2</span>.<span class="fu">ignoreHostnameVerification</span>=<span class="kw">false</span> \</span></code></pre>
-                  </div>
-               </div>
-            </div>
-         </td>
-      </tr>
-      <tr class="even">
-         <td>
-            <p>Enable additional XSS Protection</p>
-         </td>
-         <td>
-            <p>XSS attacks are prevented on the latest WSO2 products by default. This is due to output encoding of the displaying values. However, if additional protection is required, an input validation valve can be configured.</p>
-            <p>See <a href="../../security/mitigating_css">Mitigating Cross Site Scripting Attacks</a> for instructions.</p>
-         </td>
-      </tr>
-      <tr class="odd">
-         <td>
-            <p>Increase JSESSIONID length</p>
-         </td>
-         <td>
-            <div class="content-wrapper">
-               <p>If required, increase the session ID length by changing the <code>               sessionIDLength              </code> attribute of the session manager in the <code>               context.xml              </code> file (stored in the <code>               &lt;PRODUCT_HOME&gt;/repository/conf/tomcat/context.xml              </code> directory) as shown below. The default value is 16 bytes.</p>
-               <div class="code panel pdl" style="border-width: 1px;">
-                  <div class="codeContent panelContent pdl">
-                     <div class="sourceCode" id="cb5" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence" style="brush: java; gutter: false; theme: Confluence">
-                        <pre class="sourceCode java"><code class="sourceCode java"><span id="cb5-1"><a href="#cb5-1"></a>&lt;Manager className=<span class="st">&quot;org.wso2.carbon.webapp.mgt.CarbonTomcatSessionManager&quot;</span> sessionIdLength=<span class="st">&quot;16&quot;</span>&gt;&lt;/Manager&gt;</span></code></pre>
-                     </div>
                   </div>
                </div>
             </div>
@@ -464,8 +373,18 @@ Given below are the common security guidelines for deploying a WSO2 product in a
             <p><br /></p>
          </td>
          <td>
-            <p>All WSO2 products have the Administrator account configured by default. The default user nameand password of the administrator account is "admin". To change the administrator credentials, you need to first sign in tothe management console of the product as "admin", and then use the <strong>Change Password</strong> option under <strong>Home-&gt;Configure-&gt;User Management-&gt;Users</strong> in the navigator.</p>
-            <p>See <a href="https://docs.wso2.com/display/ADMIN44x/Changing+a+Password">Changing a Password</a> for more information on how to change the password of the administrator.</p>
+            <p>Change the <code>deployment.toml</code> with following configuration to change the admin password</p>
+            <div class="code panel pdl" style="border-width: 1px;">
+             <div class="codeContent panelContent pdl">
+                <div class="sourceCode" id="cb6" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence" style="brush: java; gutter: false; theme: Confluence">
+                   <pre class="sourceCode java"><code class="sourceCode java"><span id="cb6-1"><a href="#cb6-1"></a>[super_admin]</span>
+<span id="cb6-1"><a href="#cb6-1"></a>username = "admin"</span>
+<span id="cb6-1"><a href="#cb6-1"></a>password = "admin"</span>
+<span id="cb6-1"><a href="#cb6-1"></a>admin_role = "admin"</span>
+<span id="cb6-1"><a href="#cb6-1"></a>create_admin_account = true</span></code></pre>
+                </div>
+             </div>
+            </div>                              
          </td>
       </tr>
       <tr class="even">
@@ -474,18 +393,8 @@ Given below are the common security guidelines for deploying a WSO2 product in a
             <p><br /></p>
          </td>
          <td>
-            <p>Ensure that you have a relevant log rotation scheme to manage logs. Log4J properties for WSO2 products can be configured in the <code>              &lt;PRODUCT_HOME&gt;/repository/conf/log4j.properties             </code> file. To roll the <strong>wso2carbon.log</strong> based on size, the following configurations can be used.</p>
-            <div class="code panel pdl" style="border-width: 1px;">
-               <div class="codeContent panelContent pdl">
-                  <div class="sourceCode" id="cb6" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence" style="brush: java; gutter: false; theme: Confluence">
-                     <pre class="sourceCode java"><code class="sourceCode java"><span id="cb6-1"><a href="#cb6-1"></a>log4j.<span class="fu">appender</span>.<span class="fu">CARBON_LOGFILE</span>=org.<span class="fu">apache</span>.<span class="fu">log4j</span>.<span class="fu">RollingFileAppender</span></span>
-<span id="cb6-2"><a href="#cb6-2"></a>log4j.<span class="fu">appender</span>.<span class="fu">CARBON_LOGFILE</span>=${carbon.<span class="fu">home</span>}/repository/logs/${instance.<span class="fu">log</span>}/wso2carbon${instance.<span class="fu">log</span>}.<span class="fu">log</span></span>
-<span id="cb6-3"><a href="#cb6-3"></a>log4j.<span class="fu">appender</span>.<span class="fu">CARBON_LOGFILE</span>.<span class="fu">MaxFileSize</span>=1000KB</span>
-<span id="cb6-4"><a href="#cb6-4"></a>log4j.<span class="fu">appender</span>.<span class="fu">CARBON_LOGFILE</span>.<span class="fu">MaxBackupIndex</span>=<span class="dv">10</span></span></code></pre>
-                  </div>
-               </div>
-            </div>
-            <p>See <a href="../../../../administer-and-observe/logs/monitoring_logs">Monitoring Logs</a> for details on how to configure logging details in WSO2 products.</p>
+            <p>Ensure that you have a relevant log rotation scheme to manage logs. Log4J properties for Micro Integrator can be configured in the <code>              &lt;MI_HOME&gt;/conf/log4j2.properties             </code> file. To roll the <strong>wso2carbon.log</strong> based on size, <a href="../../../administer-and-observe/logs/managing_log_growth">this</a> guide can be used.</p>
+            <p>See <a href="../../../administer-and-observe/logs/monitoring_logs">Monitoring Logs</a> for details on how to configure logging details in WSO2 products.</p>
          </td>
       </tr>
       <tr class="odd">
@@ -494,7 +403,7 @@ Given below are the common security guidelines for deploying a WSO2 product in a
          </td>
          <td>
             <p>Log forging can be prevented by appending a UUID to the log message.</p>
-            <p>Read about <a href="../../../../administer-and-observe/logs/configuring_log4j_properties">configuring the log4j.properties file</a>.</p>
+            <p>Read about <a href="../../../administer-and-observe/logs/configuring_log4j_properties">configuring the log4j.properties file</a>.</p>
          </td>
       </tr>
       <tr class="even">
@@ -503,18 +412,7 @@ Given below are the common security guidelines for deploying a WSO2 product in a
             <p><br /></p>
          </td>
          <td>
-            <p>The recommended JDK version is JDK 1.7 or 1.8. See the <a href="Production-Deployment-Guidelines_56984556.html#ProductionDeploymentGuidelines-installation_prerequisites">installation pre-requisites</a> for more information.</p>
-            <p>For JDK 1.7, set the appropriate Heap and Permgen values for the JVM based on your deployment scenario. These can be set in the <code>MI_HOME/bin/micro-integrator.sh</code> file. You do not need to set this in JDK 1.8 as the MaxPermSize value has been removed from Hotspot JVM.</p>
-            <div class="code panel pdl" style="border-width: 1px;">
-               <div class="codeHeader panelHeader pdl" style="border-bottom-width: 1px;">
-                  <strong>For example</strong>
-               </div>
-               <div class="codeContent panelContent pdl">
-                  <div class="sourceCode" id="cb7" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence" style="brush: java; gutter: false; theme: Confluence">
-                     <pre class="sourceCode java"><code class="sourceCode java"><span id="cb7-1"><a href="#cb7-1"></a>-Xms512m -Xmx2048m -XX:MaxPermSize=1024m</span></code></pre>
-                  </div>
-               </div>
-            </div>
+            <p>The recommended JDK version is JDK 1.8 or 1.11. See the <a href="../../installation/install_in_vm">installation pre-requisites</a> for more information.</p>
             <p><strong>Tip</strong>: To run the JVM with 2 GB (-Xmx2048m), you should ideally have about 4GB of memory on the physical machine.</p>
          </td>
       </tr>
@@ -547,7 +445,7 @@ This section provides the list of OS-level security guidelines for your producti
          </td>
          <td>
             <p>Make sure that you only install the software/packages that are relevant to your WSO2 product's deployment. Also, continuously monitor the software that you install.</p>
-            <p>See the <a href="Production-Deployment-Guidelines_56984556.html#ProductionDeploymentGuidelines-installation_prerequisites">Installation Prerequisites</a> to identify the minimum software your WSO2 product will need.</p>
+            <p>See the <a href="../../installation/install_in_vm">Installation Prerequisites</a> to identify the minimum software your WSO2 product will need.</p>
          </td>
       </tr>
       <tr class="odd">
@@ -557,10 +455,6 @@ This section provides the list of OS-level security guidelines for your producti
          <td>
             Enable a firewall at the OS level (for example, <a href="https://help.ubuntu.com/community/IptablesHowTo">iptables</a>). This will provide protection for inbound and outbound connections of your WSO2 product. Make sure that you only open the required outbound and inbound ports from the OS-level firewall.
          </td>
-      </tr>
-      <tr class="even">
-         <td>Restrict access to TCP ports used for clustering</td>
-         <td>Apply a firewall at host-level to disallow access to TCP ports used for clustering (port 4000, 4001, … by default) from unrecognized hosts. These ports should be accessible only from other members of the WSO2 product cluster.</td>
       </tr>
       <tr class="odd">
          <td>
@@ -641,11 +535,8 @@ This section provides the list of security guidelines for configuring the netwo
             <p><br /></p>
          </td>
          <td>
-            <p>When your WSO2 products are clustered, you need to regularly monitor the health of your server instances. For example, you need to monitor resource-level factors such as the server's resource utilization, response time anomalies, and the number of incoming network connections. Server monitoring will help you identify when additional server instances (failover instances) are required. You can also make decisions about network routing changes that you need to do in order to avoid server downtime.</p>
-            <ul>
-               <li>See <a href="_Key_Concepts_">Deployment and Clustering/Key Concepts</a> for information on configuring failover.</li>
-               <li>See <a href="https://docs.wso2.com/display/ADMIN44x/Monitoring">Monitoring WSO2 products</a> for information on the monitoring options for WSO2 products.</li>
-            </ul>
+            <p>In the cloud native deployment, high availability should be achieved via the container orchestration system ( Ex: Kubernetes )</p>
+            <p>In a VM deployment, there should be atleast two nodes with the failover configuration.</p>
          </td>
       </tr>
       <tr class="even">
@@ -684,14 +575,13 @@ This section provides the list of security guidelines for configuring the netwo
       </tr>
       <tr class="even">
          <td>
-            <p>Block the <code>              /services             </code> and <code>              /carbon             </code> contexts from the DMZ</p>
+            <p>Block the <code>/services</code> context from the DMZ</p>
          </td>
          <td>
-            <p>Access to the "/services" and "/carbon" contexts should be blocked from the DMZ level (i.e., from the proxy server, load balancer and/or firewall).</p>
+            <p>Access to the "/services" context should be blocked from the DMZ level (i.e., from the proxy server, load balancer and/or firewall).</p>
             <ul>
                <li>The "/services" context is used in WSO2 products to expose admin services. These admin services are used for performing administrative operations using SOAP requests.</li>
-               <li>The "/carbon" context is used in WSO2 products to expose the management console (administration console) of the product. The management console is a user interface for performing some of the administrative operations of a product.</li>
-               <li>In addition to the "/services" and "/carbon" contexts, be sure to expose only the required applications in your product to users beyond the DMZ level in your network.</li>
+               <li>In addition to the "/services" context, be sure to expose only the required applications in your product to users beyond the DMZ level in your network.</li>
             </ul>
             <b>Note:</b>
             <p>It is recommended to use a whitelisting approach when allowing access to resources in your product from the DMZ level.</p>
