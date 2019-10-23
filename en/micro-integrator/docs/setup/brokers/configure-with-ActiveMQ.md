@@ -34,7 +34,7 @@ Follow the instructions below to set up and configure.
         ```toml
         [[transport.jms.listener]]
         name = "myTopicListener"
-        parameter.initial_naming_factory = "org.apache.activemq.artemis.jndi.ActiveMQInitialContextFactory"
+        parameter.initial_naming_factory = "org.apache.activemq.jndi.ActiveMQInitialContextFactory"
         parameter.broker_name = "activemq" 
         parameter.provider_url = "tcp://localhost:61616"
         parameter.connection_factory_name = "TopicConnectionFactory"
@@ -46,7 +46,7 @@ Follow the instructions below to set up and configure.
         ```toml
         [[transport.jms.sender]]
         name = "myTopicSender"
-        parameter.initial_naming_factory = "org.apache.activemq.artemis.jndi.ActiveMQInitialContextFactory"
+        parameter.initial_naming_factory = "org.apache.activemq.jndi.ActiveMQInitialContextFactory"
         parameter.broker_name = "activemq"
         parameter.provider_url = "tcp://localhost:61616"
         parameter.connection_factory_name = "TopicConnectionFactory"
