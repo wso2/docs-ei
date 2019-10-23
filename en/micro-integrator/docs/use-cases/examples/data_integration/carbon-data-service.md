@@ -71,9 +71,11 @@ Create the artifacts:
     !!! Note
         If the driver class does not exist in the relevant folders when you create the datasource, you will get an exception, such as `Cannot load JDBC driver class com.mysql.jdbc.Driver`. 
         
-3. [Create a Data Service project](../../../../develop/creating-projects/#data-services-project)
-4. [Create the data service](../../../../develop/creating-artifacts/data-services/creating-data-services) with the configurations given above.
-5. [Deploy the artifacts](../../../../develop/deploy-and-run) in your Micro Integrator. 
+3. Creating a DataSource Project
+4. Creating a Datasource
+5. [Create a Data Service project](../../../../develop/creating-projects/#data-services-project)
+6. [Create the data service](../../../../develop/creating-artifacts/data-services/creating-data-services) with the configurations given above.
+7. [Deploy the artifacts](../../../../develop/deploy-and-run) in your Micro Integrator. 
 
 The service can be invoked in REST-style via curl (
 [http://curl.haxx.se](http://curl.haxx.se/) ). Shown below is the curl
