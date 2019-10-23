@@ -1,78 +1,86 @@
+# Capturing MySQL Inserts and Updates via CDC Polling Mode
 
 ## Purpose:
-This sample demonstrates how to use polling mode of cdc source.
-A MySQL table's INSERTS are captured.
-By changing the database type, following databases wil also be supported.
+
+This sample demonstrates how to use the polling mode of the CDC source. In this example, you are capturing the inserts to a MySQL table.
+
+By changing the database type, you can also try out this example for the following databases.
+
 * Oracle
+
 * H2
+
 * MS SQL Server
+
 * Postgresql
 
-## Pre-requisites:
-1. Ensure that MySQL is installed on your computer.
-2. Add the MySQL JDBC driver into {WSO2_SI_HOME}/lib as follows:
-    1. Download the JDBC driver from: https://dev.mysql.com/get/Downloads/Connector-J/mysql-connector-java-5.1.45.tar.gz
-    2. Unzip the archive.
-    3. Copy mysql-connector-java-5.1.45-bin.jar to {WSO2_SI_Home}/lib directory.
-3. Create a database "production".<br/>
-    >> CREATE SCHEMA production;
-4. Change the database.<br/>
-    >> use production;
-5. Create table "SweetProductionTable".<br/>
-    >> CREATE TABLE SweetProductionTable (last_update TIMESTAMP, name VARCHAR(20),amount double(10,2));
-6. Save this sample.
+!!!info "Before you begin:"
+    1. Ensure that MySQL is installed on your computer.<br/>
+    2. Add the MySQL JDBC driver to the `<SI_TOOLING_HOME>/lib` directory as follows:<br/>
+        1. Download the JDBC driver from the [MySQL website](https://dev.mysql.com/get/Downloads/Connector-J/mysql-connector-java-5.1.45.tar.gz).<br/>
+        2. Unzip the archive.<br/>
+        3. Copy the `mysql-connector-java-5.1.45-bin.jar` JAR and place it in the `<SI_HOME>/lib` directory.<br/>
+    3. Create a database named `production` by issuing the following command.<br/>
+        `CREATE SCHEMA production;`<br/>
+    4. Change the database by issuing the following command.<br/>
+        `use production;`<br/>
+    5. Create a table named `SweetProductionTable` by issuing the following command.<br/>
+        `CREATE TABLE SweetProductionTable (last_update TIMESTAMP, name VARCHAR(20),amount double(10,2));`<br/>
+    6. If you want to capture the changes from the last point of time the Siddhi application was stopped, enable state persistence by setting the `state.persistence enabled=true` pproperty in the `<SI_TOOLING_HOME>/conf/server/deployment.yaml` file. If you do not enable state persistence, only the changes since the Siddhi application started are captured.<br/>
+    7. Save the sample Siddhi application in Streaming Integrator Tooling.
 
-## Optional pre-requisites:
-1. Enable state persistence in siddhi apps.
-This will enable the cdc polling mode capturing changes from the last point it stopped.
-If not enabled, polling mode will only capture changes after start of the app.
-    * Change state.persistence enabled=true in deployment.yaml file.
-
-## Executing the Sample:
-1. Start the Siddhi application by clicking on 'Run'.
-2. If the Siddhi application starts successfully, the following message is shown on the console
-    * CDCWithPollingMode.siddhi - Started Successfully!
-
-## Note:
-If you want to edit this application while it's running, stop the application, make your edits and save the application, and then start it again.
-
-## Testing the Sample:
-Insert data to the created table.<br/>
->> insert into SweetProductionTable(name,amount) values('chocolate',100.0);
-Observe the inserted data is logged on the console.
-
-CDCWithPollingMode : logStream : Event{timestamp=1543830365138, data=[chocolate, 100.0], isExpired=false}
-
-## Optional:
-Update existing row and obverse the change data events
-
-## Note:
-For updates, the previous values of the row are not returned with the event. Use listening mode to obtain such details.
-Polling mode is can also be used with Oracle, MS-SQL server, Postgres, H2.
+        ```sql
+        @App:name("CDCWithPollingMode")
+        @App:description("Capture MySQL Inserts and Updates using cdc source polling mode.")
 
 
-```sql
-@App:name("CDCWithPollingMode")
-@App:description("Capture MySQL Inserts and Updates using cdc source polling mode.")
+        @source(type = 'cdc',
+        	url = 'jdbc:mysql://localhost:3306/production?useSSL=false',
+        	mode = 'polling',
+        	jdbc.driver.name = 'com.mysql.jdbc.Driver',
+        	polling.column = 'last_update',
+        	polling.interval = '1',
+        	username = '',
+        	password = '',
+        	table.name = 'SweetProductionTable',
+        	@map(type = 'keyvalue' ))
+        define stream insertSweetProductionStream (name string, amount double);
 
+        @sink(type = 'log')
+        define stream logStream (name string, amount double);
 
-@source(type = 'cdc',
-	url = 'jdbc:mysql://localhost:3306/production?useSSL=false',
-	mode = 'polling',
-	jdbc.driver.name = 'com.mysql.jdbc.Driver',
-	polling.column = 'last_update',
-	polling.interval = '1',
-	username = '',
-	password = '',
-	table.name = 'SweetProductionTable',
-	@map(type = 'keyvalue' ))
-define stream insertSweetProductionStream (name string, amount double);
+        @info(name = 'query')
+        from insertSweetProductionStream
+        select name, amount
+        insert into logStream;
+        ```
 
-@sink(type = 'log')
-define stream logStream (name string, amount double);
+## Executing the Sample
 
-@info(name = 'query')
-from insertSweetProductionStream
-select name, amount
-insert into logStream;
-```
+To execute the sample open the saved Siddhi application in Streaming Integrator Tooling, and start it by clicking the **Start** button (shown below) or by clicking **Run** => **Run**.
+
+![Start button](../../images/amazon-s3-sink-sample/start.png)
+
+If the Siddhi application starts successfully, the following message appears in the console.
+
+`CDCWithPollingMode.siddhi - Started Successfully!`
+
+!!!note
+    If you want to edit the Siddhi application after you have started it, stop it first, make your edits, save it and then start it again.
+
+## Testing the Sample
+
+To test the sample Siddhi application, insert a record to the `SweetProductionTable` table you created by issuing the following command.
+
+`insert into SweetProductionTable(name,amount) values('chocolate',100.0);`
+
+The insert operation is logged in the Streaming Integrator console as shown below.
+
+![Polling Log](../../images/cdc-with-polling-mode-sample/cdc-with-polling-mode.png)
+
+!!!info
+    You can also update the existing row and observe the change data events.
+
+!!!tip
+    For updates, the previous values of the row are not returned with the event. Use listening mode to obtain such details.
+    Polling mode can also be used with Oracle, MS-SQL server, Postgres, H2.
