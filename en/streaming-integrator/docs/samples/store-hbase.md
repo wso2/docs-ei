@@ -9,12 +9,12 @@ This application demonstrates how to perform CRUD operations in HBase stores usi
 * contains - `containsSweetProductionStream` (verifies whether all the attributes that enter in the stream exists in the store).
 
 ## Prerequisites:
-1) Ensure that HBase is installed and the server is running on your machine.
-2) Add HBase client into `{WSO2_SI_HOME}/lib` as follows:
-    1) Download the following jars:
+1. Ensure that HBase is installed and the server is running on your machine.
+2. Add HBase client into `{WSO2_SI_HOME}/lib` as follows:
+    1. Download the following jars:
         * HBase client (http://central.maven.org/maven2/org/apache/hbase/hbase-shaded-client/1.3.1/hbase-shaded-client-1.3.1.jar)
         * Apache HTrace core (http://central.maven.org/maven2/org/apache/htrace/htrace-core/3.1.0-incubating/htrace-core-3.1.0-incubating.jar)
-    2) Use the `jartobundle` tool in `{WSO2_SI_Home}/bin` to convert the above jar into a OSGi bundle.
+    2. Use the `jartobundle` tool in `{WSO2_SI_Home}/bin` to convert the above jar into a OSGi bundle.
         - For Windows:
             ```bash
             <SI_HOME>/bin/jartobundle.bat <PATH_OF_DOWNLOADED_JAR> <PATH_OF_CONVERTED_JAR>
@@ -23,23 +23,23 @@ This application demonstrates how to perform CRUD operations in HBase stores usi
             ```bash
             <SI_HOME>/bin/jartobundle.sh <PATH_OF_DOWNLOADED_JAR> <PATH_OF_CONVERTED_JAR>
             ```
-    3) Copy the converted bundles to the `{WSO2_SI_Home}/lib` directory.
-3) Save this sample.
+    3. Copy the converted bundles to the `{WSO2_SI_Home}/lib` directory.
+3. Save this sample.
 
 ## Executing the Sample:
-1) Start the Siddhi application by clicking on 'Run'.
-2) If the Siddhi application starts successfully, the following message is shown on the console:
+1. Start the Siddhi application by clicking on 'Run'.
+2. If the Siddhi application starts successfully, the following message is shown on the console:
     ```
     store-hbase.siddhi - Started Successfully!
     ```
 
 ## Testing the Sample:
-1) Simulate single events as follows:
-    1) Click on Event Simulator (double arrows on left tab) and then 'Single Simulation'.
-    2) For the Siddhi App Name, select 'store-hbase'.
-    3) For the Stream Name, select `searchSweetProductionStream`.
-    4) Enter attribute values and click Send.
-2) Send an event where the name matches a name value in the data you just inserted to the `SweetProductionTable`. This will satisfy the 'on' condition of the join query.
+1. Simulate single events as follows:
+    1. Click on Event Simulator (double arrows on left tab) and then 'Single Simulation'.
+    2. For the Siddhi App Name, select 'store-hbase'.
+    3. For the Stream Name, select `searchSweetProductionStream`.
+    4. Enter attribute values and click Send.
+2. Send an event where the name matches a name value in the data you just inserted to the `SweetProductionTable`. This will satisfy the 'on' condition of the join query.
 
 ## Notes:
 * You can send events to the other corresponding streams to add, delete, update, insert, and search events.

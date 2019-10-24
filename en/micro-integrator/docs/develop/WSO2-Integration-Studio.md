@@ -44,7 +44,7 @@ By default, editors are stacked in the editor area, but you can choose
 to tile them in order to view source files simultaneously.
 
 Here is an example of a text editor in the Workbench. This is the source
-view of a .pom file.
+view of a pom.xml file.
 
 ![editor](../../assets/img/workbench/workbench-editor.png)
 
@@ -79,10 +79,10 @@ value.
 
 ## Console
 
-The Consol e View displays a variety of consol e types depending on the
+The Console View displays a variety of console types depending on the
 type of development and the current set of user settings.
 
-The three consol e s that are provided by default with WSO2 Integration
+The three consoles that are provided by default with WSO2 Integration
 Studio are:
 
 -   **Process Console** - Shows standard output, error, and input
@@ -99,5 +99,5 @@ sample of how it addresses common integration problems.
 ## What's Next?
 
 -   See [Installing WSO2 Integration Studio](../develop/installing-WSO2-Integration-Studio.md) for installation instructions.
--   See [Working with WSO2 Integration Studio](../develop/installing-WSO2-Integration-Studio.md) for more information on how to setup and use tooling.
+-   See [Working with WSO2 Integration Studio](../develop/working-with-wso2-integration-studio.md) for more information on how to setup and use tooling.
 -   See [Troubleshooting WSO2 Integration Studio](../develop/troubleshooting-WSO2-Integration-Studio.md) for information on troubleshooting errors you may run into while using EI Tooling.

@@ -1,26 +1,28 @@
 # Consuming and Producing JMS Messages
 
-This section describes how to configure WSO2 Micro Integrator to work as a JMS-to-JMS proxy service. In this example, the Micro Integrator listen to a JMS queue and consume messages, and then send those messages to another JMS queue.
+This section describes how to configure WSO2 Micro Integrator to work as a JMS-to-JMS proxy service. In this example, the Micro Integrator listens to a JMS queue, consumes messages, and then sends those messages to another JMS queue. First we need to configure JMS transport in micro integrator.
 
-![](attachments/119130309/119130312.png){width="570"}
+## Configuring the JMS transport
+
+To enable the JMS transport listener and sender, you need to [configure JMS Transport](../../../setup/transport_configurations/configuring-transports.md#configuring-the-jms-transport) respective to the message broker you are using.
 
 ## Synapse configuration
 
 Given below is the synapse configuration of the proxy service that mediates the above use case. Note that you need to update the JMS connection URL according to your broker as explained below.
 
-``` java
-    <proxy name="StockQuoteProxy" transports="jms">
-        <target>
-            <inSequence>
-                <property action="set" name="OUT_ONLY" value="true"/>
-                <send>
-                    <endpoint>
-                        <address uri=""/> <!-- Specify the JMS connection URL here -->
-                    </endpoint>
-                </send>
-            </inSequence>
-        </target>
-    </proxy>
+```xml
+<proxy name="StockQuoteProxy" transports="jms">
+    <target>
+        <inSequence>
+            <property action="set" name="OUT_ONLY" value="true"/>
+            <send>
+                <endpoint>
+                    <address uri=""/> <!-- Specify the JMS connection URL here -->
+                </endpoint>
+            </send>
+        </inSequence>
+    </target>
+</proxy>
 ```
 
 The Synapse artifacts used are explained below.
@@ -76,27 +78,12 @@ The Synapse artifacts used are explained below.
     </tr>
 </table>
 
+!!! Info
+    To refer details on JMS transport parameters, you can follow [JMS transport parameters](../../../references/synapse-properties/transport-parameters/jms-transport-parameters.md) used in micro integrator.
+
+
 !!! Note
     Be sure to replace the ' `& ` ' character in the endpoint URL with '`&amp;`' to avoid the following exception:
     ``` java
     com.ctc.wstx.exc.WstxUnexpectedCharException: Unexpected character '=' (code 61); expected a semi-colon after the reference for entity 'java.naming.factory.initial' at [row,col {unknown-source}
     ``` 
-
-## Run the Example
-
-1.  Configure the Micro Integrator with Apache ActiveMQ and set up the JMS Sender.
-2.  Start WSO2 Integration Studio and create a proxy service with the above configuration. You can copy the synapse configuration given above to the **Source View** of your proxy service.
-3.  Send a message to the Micro Integrator by executing the following command from the `MI_HOME/samples/axis2Client`
-    folder.
-
-    ``` java
-    ant stockquote -Dmode=placeorder -Dtrpurl="jms:/StockQuoteProxy?transport.jms.ConnectionFactoryJNDIName=QueueConnectionFactory&java.naming.factory.initial=org.apache.activemq.jndi.ActiveMQInitialContextFactory&java.naming.provider.url=tcp://localhost:61616&transport.jms.ContentTypeProperty=Content-Type&transport.jms.DestinationType=queue"
-    ```
-
-    !!! Info
-        You can view the ActiveMQ queue by accessing the ActiveMQ management console using the URL `http://0.0.0.0:8161/admi`and using `admin` as both the username and password.
-
-## Related Examples
-
-Generally, JMS is used for one-way, asynchronous message exchange. However you can perform synchronous messaging also with JMS. For more information, see [JMS Synchronous Invocations : Dual Channel HTTP-to-JMS](../jms_examples/dual-channel-http-to-jms.md)
-and [JMS Synchronous Invocations : Quad Channel JMS-to-JMS](../jms_examples/quad-channel-jms-to-jms.md).

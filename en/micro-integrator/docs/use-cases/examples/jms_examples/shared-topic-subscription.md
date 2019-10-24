@@ -7,45 +7,13 @@ With the shared subscription feature in JMS 2.0 you can overcome this restricti
 
 The ESB Profile of WSO2 Enterprise Integrator (WSO2 EI) can be configured as a shared topic listener that can connect to a shared topic subscription as a message consumer (subscriber) to share workload between other consumers of the subscription. The following diagram illustrates this sample scenario:
 
-![](attachments/119130320/119130321.png)
-
 To demonstrate the sample scenario, let's configure the JMS inbound endpoint in WSO2 Micro Integrator as a shared topic listener using HornetQ as the message broker.
 
 ## Synapse configuration
 
 The XML configuration for this sample scenario is as follows:
 
-``` java tab="Registry Artifact"
-<registry provider="org.wso2.carbon.mediation.registry.WSO2Registry">
-  <parameter name="cachableDuration">15000</parameter>
-</registry>
-```
-
-``` java tab="Task Manager"
-<taskManager provider="org.wso2.carbon.mediation.ntask.NTaskTaskManager">
-  <parameter name="cachableDuration">15000</parameter>
-</taskManager>
-```
-
-``` java tab="Sequence (Request)"
-<sequence name="request" onError="fault">
-  <log level="full"/>
-  <drop/>
-</sequence>
-```
-
-``` java tab="Sequence (Fault)"
-<sequence name="fault">
-  <log level="full">
-    <property name="MESSAGE" value="Executing default &#34;fault&#34; sequence"/>
-    <property name="ERROR_CODE" expression="get-property('ERROR_CODE')"/>
-    <property name="ERROR_MESSAGE" expression="get-property('ERROR_MESSAGE')"/>
-  </log>
-  <drop/>
-</sequence>
-```
-
-``` java tab="Inbound Endpoint"
+```xml tab="Inbound Endpoint"
 <inboundEndpoint name="jms_inbound" sequence="request"onError="fault" protocol="jms" suspend="false">
   <parameters>
     <parameter name="interval">1000</parameter>
@@ -63,6 +31,36 @@ The XML configuration for this sample scenario is as follows:
     <parameter name="transport.jms.DurableSubscriberName">mySubscription</parameter>
   </parameters>
 </inboundEndpoint>
+```
+
+```xml tab="Registry Artifact"
+<registry provider="org.wso2.carbon.mediation.registry.WSO2Registry">
+  <parameter name="cachableDuration">15000</parameter>
+</registry>
+```
+
+```xml tab="Task Manager"
+<taskManager provider="org.wso2.carbon.mediation.ntask.NTaskTaskManager">
+  <parameter name="cachableDuration">15000</parameter>
+</taskManager>
+```
+
+```xml tab="Sequence (Request)"
+<sequence name="request" onError="fault">
+  <log level="full"/>
+  <drop/>
+</sequence>
+```
+
+```xml tab="Sequence (Fault)"
+<sequence name="fault">
+  <log level="full">
+    <property name="MESSAGE" value="Executing default &#34;fault&#34; sequence"/>
+    <property name="ERROR_CODE" expression="get-property('ERROR_CODE')"/>
+    <property name="ERROR_MESSAGE" expression="get-property('ERROR_MESSAGE')"/>
+  </log>
+  <drop/>
+</sequence>
 ```
 
 See the descriptions of the above configurations:
@@ -99,6 +97,8 @@ See the descriptions of the above configurations:
   </tr>
 </table>
 
+<!--
+
 ## Running the Example
 
 1. Configure the Micro Integrator (Publisher) with the broker.
@@ -106,7 +106,7 @@ See the descriptions of the above configurations:
 3. Start WSO2 Integration Studio and create artifacts with the above configuration. You can copy the synapse configuration given above to the **Source View** of your proxy service.
 4. Create and run the following topic consumer (**TopicConsumer.java**) and run.
     
-    ``` java
+    ```java
     package SharedTopicSubscribe;
         
     import java.util.Properties;
@@ -192,7 +192,7 @@ See the descriptions of the above configurations:
 
 5.  Run the following java file (**TopicPublisher.java**) to publish 5 messages to the HornetQ topic:
 
-    ``` java
+    ```java
     package SharedTopicSubscribe;
         
     import java.util.Properties;
@@ -293,3 +293,4 @@ See the descriptions of the above configurations:
 You will see that the 5 messages are shared between the inbound listener and `         TopicConsumer.java        ` . This is because both the inbound listener and `         TopicConsumer.java        ` are configured as shared subscribers.
 
 The total number of consumed messages between the inbound listener and `         TopicConsumer.java        ` will be equal to the number messages published by `         TopicPublisher.java        `.
+-->

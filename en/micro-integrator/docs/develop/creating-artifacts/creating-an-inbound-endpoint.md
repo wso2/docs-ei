@@ -10,10 +10,10 @@ Follow the instructions given below to create a new Inbound Endpoint artifact in
 4. Specify values for the required parameter for the selected inbound endpoint type.
 
     !!! Info
-        See the list of configurable properties for [listening inbound endpoints](../../references/synapse-properties/inbound-endpoints/listening-inbound-endpoint-properties.md), [polling inbound endpoints](../../references/synapse-properties/inbound-endpoints/polling-inbound-endpoint-properties.md), [event-based inbound endpoints](../../references/synapse-properties/inbound-endpoints/event-based-inbound-endpoint-properties.md), and [custom inbound endpoints](../../references/synapse-properties/inbound-endpoints/custom-inbound-endpoint-properties.md).
+        See the list of [configurable properties](../../../references/synapse-properties/inbound-endpoints/about-inbound-endpoints) for listening inbound endpoints, polling inbound endpoints, event-based inbound endpoints, and custom inbound endpoints.
 
 	!!! Note
-		For certain protocols ( HL7, KAFKA, Custom, MQTT, RabbitMq, WSO2_MB, WS, and  WSS) the **main sequence** and **error sequence** are mandatory fields. You can select sequences that already exist in the workspace and add them to the **Sequence** and **Error sequence** fields. If you don't have any sequences in the workspace, click **Generate Sequence and Error Sequence** to generate new sequences for the inbound endpoint.  
+		For certain protocols (HL7, KAFKA, Custom, MQTT, RabbitMq, WSO2_MB, WS, and  WSS) the **main sequence** and **error sequence** are mandatory fields. You can select sequences that already exist in the workspace and add them to the **Sequence** and **Error sequence** fields. If you don't have any sequences in the workspace, click **Generate Sequence and Error Sequence** to generate new sequences for the inbound endpoint.  
         
 5.	Do one of the following:  
     -   To save the endpoint in an existing ESB Config project in your workspace, click **Browse** and select that project.
@@ -22,7 +22,7 @@ Follow the instructions given below to create a new Inbound Endpoint artifact in
 6.  Open the new artifact from the project explorer, and update any optional inbound endpoint properties.
 
     !!! Info
-        See the list of configurable properties for [listening inbound endpoints](../../references/synapse-properties/inbound-endpoints/listening-inbound-endpoint-properties.md), [polling inbound endpoints](../../references/synapse-properties/inbound-endpoints/polling-inbound-endpoint-properties.md), [event-based inbound endpoints](../../references/synapse-properties/inbound-endpoints/event-based-inbound-endpoint-properties.md), and [custom inbound endpoints](../../references/synapse-properties/inbound-endpoints/custom-inbound-endpoint-properties.md).
+        See the list of [configurable properties](../../../references/synapse-properties/inbound-endpoints/about-inbound-endpoints) for listening inbound endpoints, polling inbound endpoints, event-based inbound endpoints, and custom inbound endpoints.
 
 !!! Note
     **Redeployment of listening inbound endpoints fail?**
@@ -35,10 +35,21 @@ Follow the instructions given below to create a new Inbound Endpoint artifact in
     -Dsynapse.transport.portCloseVerifyTimeout=20
     ```
 
-    Note that this setting may be required in Windows environments as the process of closing a port can sometimes take longer than 10 seconds.xss
+    Note that this setting may be required in Windows environments as the process of closing a port can sometimes take longer than 10 seconds.
 
 ## Examples
-..
 
-## Guides
-...
+-   [JMS Inbound Endpoint example](../../../use-cases/examples/inbound_endpoint_examples/inbound-endpoint-jms-protocol)
+-   [File Inbound Endpoint example](../../../use-cases/examples/inbound_endpoint_examples/file-inbound-endpoint)
+-   [HTTP Inbound Endpoint example](../../../use-cases/examples/inbound_endpoint_examples/inbound-endpoint-http-protocol)
+-   [HTTPS Inbound Endpoint example](../../../use-cases/examples/inbound_endpoint_examples/inbound-endpoint-https-protocol)
+-   [HL7 Inbound Endpoint example](../../../use-cases/examples/inbound_endpoint_examples/inbound-endpoint-hl7-protocol-auto-ack)
+-   [MQTT Inbound Endpoint example](../../../use-cases/examples/inbound_endpoint_examples/inbound-endpoint-mqtt-protocol)
+-   [RabbitMQ Inbound Endpoint example](../../../use-cases/examples/inbound_endpoint_examples/inbound-endpoint-rabbitmq-protocol)
+-   [Kafka Inbound Endpoint example](../../../use-cases/examples/inbound_endpoint_examples/inbound-endpoint-kafka)
+-   [Websocket Inbound Endpoint example](../../../use-cases/examples/inbound_endpoint_examples/inbound-endpoint-secured-websocket)
+-   [Using Inbound Endpoints with Registry](../../../use-cases/examples/inbound_endpoint_examples/inbound-endpoint-with-registry)
+
+## Tutorial
+
+-   See the tutorial on [using inbound endpoints](../../../use-cases/tutorials/using-inbound-endpoints)

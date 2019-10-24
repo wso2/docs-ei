@@ -3,15 +3,15 @@
 This application demonstrates calculating the sentiment value for a given string as per Affin word list.
 
 ## Prerequisites:
-1) Save this sample.
-2) If there is no syntax error, the following message is shown on the console.
+1. Save this sample.
+2. If there is no syntax error, the following message is shown on the console.
 	```
 	* Siddhi App sentimentExtensionSample successfully deployed.
 	```
 
 ## Executing the Sample:
-1) Start the Siddhi application by clicking on 'Run'.
-2) If the Siddhi application starts successfully, the following messages are shown on the console.
+1. Start the Siddhi application by clicking on 'Run'.
+2. If the Siddhi application starts successfully, the following messages are shown on the console.
 	```
 	* sentimentExtensionSample.siddhi - Started Successfully!
 	```

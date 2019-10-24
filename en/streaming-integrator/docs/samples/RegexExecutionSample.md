@@ -8,8 +8,8 @@ Save this sample. If there is no syntax error, the following messages would be s
 ```
 
 ## Executing the Sample:
-1) Start the Siddhi application by clicking on 'Run'.
-2) If the Siddhi application starts successfully, the following messages would be shown on the console.
+1. Start the Siddhi application by clicking on 'Run'.
+2. If the Siddhi application starts successfully, the following messages would be shown on the console.
 	```
 	* RegexExecutionSample.siddhi - Started Successfully!
 	```
@@ -17,16 +17,16 @@ Save this sample. If there is no syntax error, the following messages would be s
 ## Testing the Sample:
 You can publish data event to the file, through event simulator.
 
-1) Open event simulator by clicking on the second icon or press Ctrl+Shift+I.
-2) In the Single Simulation tab of the panel, select values as follows:
+1. Open event simulator by clicking on the second icon or press Ctrl+Shift+I.
+2. In the Single Simulation tab of the panel, select values as follows:
 	* Siddhi App Name  : RegexExecutionSample
 	* Stream Name     : SweetProductionStream
-3) Enter following values in the fields and send,
+3. Enter following values in the fields and send,
 	```
 	name: chocolate cake
 	startingIndex: 0
 	```
-4) Enter following values in the fields and send
+4. Enter following values in the fields and send
 	```
 	name: coffee cake
 	startingIndex: 0

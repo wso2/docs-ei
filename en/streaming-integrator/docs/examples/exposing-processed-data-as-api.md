@@ -13,8 +13,7 @@ Siddhi query API provides APIs related to:
 
 For a comprehensive reference on the Siddhi query API, see [Streaming Integration REST API Guide](https://ei.docs.wso2.com/en/next/streaming-integrator/ref/si-rest-api-guide/).
 
-This tutorial demonstrates how you can use the Siddhi query API to perform essential operations that you would need to perform using the SI using simple examples.
-
+This tutorial demonstrates how you can use the Siddhi query API to perform essential operations in SI, using simple examples.
 
 ## Preparing the server
 

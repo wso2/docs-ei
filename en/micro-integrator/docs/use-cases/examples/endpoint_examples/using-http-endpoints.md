@@ -5,24 +5,23 @@ See the examples given below.
 ## Example 1: Populating an HTTP endpoint during mediation
 
 ```
-<endpoint xmlns="http://ws.apache.org/ns/synapse" name="HTTPEndpoint">
-    <http uri-template="http://localhost:8080/{uri.var.servicepath}/restapi/{uri.var.servicename}/menu?category={uri.var.category}&amp;type={uri.var.pizzaType}" method="GET">
-    </http>
+<endpoint name="HTTPEndpoint" xmlns="http://ws.apache.org/ns/synapse">
+    <http method="get" uri-template="http://localhost:8080/{uri.var.servicepath}/restapi/{uri.var.servicename}/menu?category={uri.var.category}&amp;type={uri.var.pizzaType}"/>
 </endpoint>
 ```
 
 The URI template variables in this example HTTP endpoint can be populated during mediation as follows:
 
 ```
-<inSequence>           
-    <property name="uri.var.servicepath" value="PizzaShopServlet"/>
-    <property name="uri.var.servicename" value="PizzaWS"/>
-    <property name="uri.var.category" value="pizza"/>
-    <property name="uri.var.pizzaType" value="pan"/>
-     <send>
+ <inSequence>
+    <property name="uri.var.servicepath" scope="default" type="STRING" value="PizzaShopServlet"/>
+    <property name="uri.var.servicename" scope="default" type="STRING" value="PizzaWS"/>
+    <property name="uri.var.category" scope="default" type="STRING" value="pizza"/>
+    <property name="uri.var.pizzaType" scope="default" type="STRING" value="pan"/>
+    <send>
         <endpoint key="HTTPEndpoint"/>
     </send>
-</inSequence>
+ </inSequence>
 ```
 
 This configuration will cause the RESTful URL to evaluate to: `http://localhost:8080/PizzaShopServlet/restapi/PizzaWS/menu?category=pizza&type=pan`

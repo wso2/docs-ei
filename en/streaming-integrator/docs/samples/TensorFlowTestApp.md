@@ -3,17 +3,17 @@
 This application demonstrates how to import a pretrained Tensorflow model WSO2 Streaming Integrator to perform a regression task.
 
 ## Prerequisites:
-1) Replace `{SI_HOME}` with absolute path to the Streaming Integrator Tooling home directory.
-2) Save this sample.
-3) If there is no syntax error, the following message is shown on the console:
+1. Replace `{SI_HOME}` with absolute path to the Streaming Integrator Tooling home directory.
+2. Save this sample.
+3. If there is no syntax error, the following message is shown on the console:
 	```
 	* Siddhi App TensorFlowTestApp successfully deployed.
 	```
 
 
 ## Executing the Sample:
-1) Start the Siddhi application by clicking on 'Run'.
-2) If the Siddhi application starts successfully, the following messages are shown on the console:
+1. Start the Siddhi application by clicking on 'Run'.
+2. If the Siddhi application starts successfully, the following messages are shown on the console:
 	```
 	* TensorFlowTestApp.siddhi - Started Successfully!
 	```

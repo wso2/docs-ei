@@ -1,4 +1,4 @@
-#Scalable High Availability (HA) Deployment
+# Scalable Deployment
 
 Scalable high availability deployment predominantly focused on scaling the system according to the load or the TPS of
 the system. This is achieved with the help of horizontal scalability.

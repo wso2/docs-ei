@@ -6,7 +6,7 @@ The Streaming Integrator uses several artifacts for its functionality including 
 
 The Streaming Integrator offers the Cipher tool to encrypt sensitive data in deployment configurations. This tool works in conjunction with WSO2 Secure Vault to replace sensitive data that is in plain text with an alias. The actual value is then encrypted and securely stored in the SecureVault. At runtime, the actual value is retrieved from the alias and used. For more information, see [WSO2 Secure Vault](https://github.com/wso2/carbon-secvault/blob/master/README.md).
 
-1. Open the `<SI_HOME>|<SI_TOOLING_HOME>/conf/<RUNTIME>/secrets.properties` file and enter the following information:
+1. Open the `<SI_HOME>|<SI_TOOLING_HOME>/conf/server/secrets.properties` file and enter the following information:
 
     1. Enter the required sensitive data element with the value in plain text as shown in the example below.
         `wso2.sample.password1=plainText ABC@123`
@@ -64,4 +64,4 @@ Here `@Store(ref='store1')` refers to `store1` defined in the `deployment.yaml` 
 
 ### Using carbon datasources
 
-Currently, Carbon Data sources only support relational data source definitions. You can also define RDBMS Store artifacts using Carbon Data sources or JNDI instead of directly specifying the connection parameters. Then the datasource definitions defined in the `<SI_HOME>|<SI_TOOLING_HOME>/conf/<RUNTIME>/deployment.yaml` file can be secured via the process described under [Securing sensitive data in deployment configurations](#securing-sensitive-data-in-deployment-configurations).
+Currently, Carbon Data sources only support relational data source definitions. You can also define RDBMS Store artifacts using Carbon Data sources or JNDI instead of directly specifying the connection parameters. Then the datasource definitions defined in the `<SI_HOME>|<SI_TOOLING_HOME>/conf/server/deployment.yaml` file can be secured via the process described under [Securing sensitive data in deployment configurations](#securing-sensitive-data-in-deployment-configurations).

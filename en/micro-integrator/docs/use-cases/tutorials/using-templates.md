@@ -14,8 +14,7 @@ on how to work with templates using WSO2 Integration Studio.
 To set up the tools:
 
 -   Go to the [product page](https://wso2.com/integration/) of **WSO2 Micro Integrator**, download the product installer and run it to set up the product.
--   Select the relevant [WSO2 Integration Studio](https://wso2.com/integration/tooling/) based on your operating system and extract the
-    ZIP file.  The path to this folder is referred to as `MI_TOOLING_HOME` throughout this tutorial.
+-   Download the relevant [WSO2 Integration Studio](https://wso2.com/integration/tooling/) based on your operating system. The path to the extracted/installed folder is referred to as `MI_TOOLING_HOME` throughout this tutorial.
 -   Download the CLI Tool for monitoring artifact deployments.
 
 To set up the previous artifacts:
@@ -30,7 +29,7 @@ project](https://github.com/wso2-docs/WSO2_EI/blob/master/Integration-Tutorial-A
 
 1.  Once you have exported the ESB project as described above, the project directory will appear with the artifacts as shown below.
 
-    ![](/assets/img/tutorials/sequence-temp-project-explorer.png)
+    ![](../../assets/img/tutorials/sequence-temp-project-explorer.png)
 
 2.  Right-click on **SampleServices** and navigate to **New -> Template** . The **New Template Artifact** dialog will open.
 3.  Select the **Create a New Template** and click **Next**.
@@ -54,15 +53,15 @@ project](https://github.com/wso2-docs/WSO2_EI/blob/master/Integration-Tutorial-A
 
 5.  The template artifact will open in the canvas as shown below.
 
-    ![](/assets/img/tutorials/sequence-canvas-1.png)
+    ![](../../assets/img/tutorials/sequence-canvas-1.png)
 
 6.  Open the **Properties** tab of the sequence template by clicking on
     the canvas (outside the sequence box).  
 
-7.  Click the ![](/assets/img/tutorials/plus-icon.png) icon
+7.  Click the ![](../../assets/img/tutorials/plus-icon.png) icon
     to start adding parameters .
 
-    ![](/assets/img/tutorials/sequence-canvas-2.png) 
+    ![](../../assets/img/tutorials/sequence-canvas-2.png) 
 
 8.  In the **Template Parameter** dialog that opens, enter 'sethospital' as the parameter name and click **Finish** .
 
@@ -70,7 +69,7 @@ project](https://github.com/wso2-docs/WSO2_EI/blob/master/Integration-Tutorial-A
     will print a message indicating to which hospital a requested
     message is routed.
 
-    ![](/assets/img/tutorials/log-mediator-in-sequence.png) 
+    ![](../../assets/img/tutorials/log-mediator-in-sequence.png) 
 
 10. Open the **Properties** tab of the log mediator and specify the
     following:
@@ -90,7 +89,7 @@ project](https://github.com/wso2-docs/WSO2_EI/blob/master/Integration-Tutorial-A
         </tr>
     </table>
 
-11. Click the ![](/assets/img/tutorials/plus-icon.png) icon
+11. Click the ![](../../assets/img/tutorials/plus-icon.png) icon
     to start defining a property. Then add the following details for the
     property:
 
@@ -174,7 +173,7 @@ project](https://github.com/wso2-docs/WSO2_EI/blob/master/Integration-Tutorial-A
 4.  Open the **Properties** tab of the **Call Template** mediator and
     select ' HospitalRoutingSeq' from the list of available templates.
 
-5.  Click the ![](/assets/img/tutorials/plus-icon.png) icon
+5.  Click the ![](../../assets/img/tutorials/plus-icon.png) icon
     to start adding parameters. Enter the following parameter details
     and click **Finish** .
 

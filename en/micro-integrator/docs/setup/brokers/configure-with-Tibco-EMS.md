@@ -20,7 +20,6 @@ This section describes how to configure WSO2 Micro Integrator to connect with Ti
         [[transport.jms.listener]]
         name = "myTopicListener"
         parameter.initial_naming_factory = "com.tibco.tibjms.naming.TibjmsInitialContextFactory"
-        parameter.broker_name = "activemq" 
         parameter.provider_url = "tcp://127.0.0.1:37222"
         parameter.connection_factory_name = "TopicConnectionFactory"
         parameter.connection_factory_type = "topic"
@@ -32,7 +31,6 @@ This section describes how to configure WSO2 Micro Integrator to connect with Ti
         [[transport.jms.sender]]
         name = "myTopicSender"
         parameter.initial_naming_factory = "com.tibco.tibjms.naming.TibjmsInitialContextFactory"
-        parameter.broker_name = "activemq"
         parameter.provider_url = "tcp://127.0.0.1:37222"
         parameter.connection_factory_name = "TopicConnectionFactory"
         parameter.connection_factory_type = "topic"

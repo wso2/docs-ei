@@ -16,6 +16,15 @@ Follow the steps given below:
 1.  Open a command terminal and navigate to the `MI_HOME/bin/` directory.
 2.  Execute the following command to initialize secure vault:
 
+	!!! Warning
+	    If you are using **Windows**, be sure to update the `securevault.bat` file with the following configuration before  encrypting passwords.
+
+	```java
+	set CARBON_CLASSPATH=.\conf
+	    FOR %%c in ("%CARBON_HOME%\wso2\components\plugins\org.wso2.micro.integrator.security*.jar") DO (
+	    set CARBON_CLASSPATH=!CARBON_CLASSPATH!;".\wso2\components\plugins\%%~nc%%~xc")
+	```
+
 	<table>
 		<tr>
 			<th>OS</th>
@@ -30,7 +39,7 @@ Follow the steps given below:
 			<td>securevault.bat </td>
 		</tr>
 	</table>
-
+	
 3.  You can then enter the secret alias (vault key) for the password that you want to encrypt. For example, enter 'PasswordAlias'.
 4.  In the next step, enter the password of the keystore that is used for secure vault in the product. If the default product keystore is used, the password is 'wso2carbon'.
 5.  Then, specify the plain text password that should be encrypted.
@@ -62,8 +71,16 @@ expression to logically reference the password mapping.
 
 The default expression used for password validation is `^[\\S]{5,30}$`. This allows the password to have 5 to 30 characters.
 
-If you want to change the expression that is used to validate the password, you need to add the `org.wso2.SecureVaultPasswordRegEx` system property to the `<MI_HOME>/conf/carbon.properties` file. Example:
+If you want to change the expression that is used to validate the password, you need to pass the `org.wso2.SecureVaultPasswordRegEx` system property when you start the Micro Integrator:
 
-```xml
-org.wso2.SecureVaultPasswordRegEx=^[\\S]{5,60}$
-```
+-	On **Linux/MacOS/CentOS**:
+
+	```bash
+	sh micro-integrator.sh -Dorg.wso2.SecureVaultPasswordRegEx=^[\\S]{5,30}$
+	```
+	
+-	On **Windows**:
+	
+	```bash
+	micro-integrator.bat -Dorg.wso2.SecureVaultPasswordRegEx=^[\\S]{5,30}$
+	```

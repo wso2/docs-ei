@@ -14,8 +14,3 @@ Follow the instructions given below to create a new Endpoint artifact in WSO2 In
 6.  Click **Finish**. The endpoint is created in the `src/main/synapse-config/endpoints` folder under the ESB Config project or [registry resource project](../../creating-projects/#registry-resource-project) you specified.
 7.  Open the new artifact from the project explorer, and update any [optional endpoint properties](../../references/synapse-properties/endpoint-properties.md).
 
-## Examples
-..
-
-## Guides
-

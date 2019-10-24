@@ -1,11 +1,9 @@
 # Accessing a Windows Share using VFS
-## Example use case
-
-This sample demonstrates how to use the [VFS transport](../../setup/transport_configurations/configuring-transports/configuring-the-vfs-transport) to access a windows share.
+This example demonstrates how the [VFS transport](../../setup/transport_configurations/configuring-transports/configuring-the-vfs-transport) in WSO2 Micro Integrator can be used to access a windows share.
 
 ## Synapse configuration
 
-The XML configuration for this sample is as follows:
+Following are the integration artifacts (proxy service) that we can used to implement this scenario.
 
 ```xml
 <proxy xmlns="http://ws.apache.org/ns/synapse" name="StockQuoteProxy" transports="vfs">
@@ -39,6 +37,8 @@ The XML configuration for this sample is as follows:
 
 ## Build and run
 
+To test this sample, the following files and directories should be created:
+
 1.  Create the file directories:
 
     -   Create a directory named **test** on a windows machine and create
@@ -67,7 +67,4 @@ The XML configuration for this sample is as follows:
         </soapenv:Body>
     </soapenv:Envelope>
     ```
-
-3. Analyzing the output
-
-    You will see that the VFS transport listener picks the file from the **in** directory and sends it to the Axis2 service over HTTP. Then you will see that the request XML file is moved to the **original** directory and that the response from the Axis2 server is saved to the **out** directory.
+When the sample is executed, the VFS transport listener picks the file from the **in** directory and sends it to the back service over HTTP. Then the request XML file is moved to the **original** directory and the response is saved to the **out** directory.

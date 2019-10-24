@@ -21,7 +21,6 @@ both ActiveMQ and WSO2 MB messages.
     [[transport.jms.listener]]
     name = "jms1"
     parameter.initial_naming_factory = "org.apache.activemq.artemis.jndi.ActiveMQInitialContextFactory"
-    parameter.broker_name = "activemq" 
     parameter.provider_url = "tcp://localhost:61616"
     parameter.connection_factory_name = "TopicConnectionFactory"
     parameter.connection_factory_type = "topic"
@@ -31,7 +30,6 @@ both ActiveMQ and WSO2 MB messages.
     [[transport.jms.listener]]
     name = "jms2"
     parameter.initial_naming_factory = "org.wso2.andes.jndi.PropertiesFileInitialContextFactory"
-    parameter.broker_name = "wso2mb" 
     parameter.provider_url = "conf/jndi.properties"
     parameter.connection_factory_name = "TopicConnectionFactory"
     parameter.connection_factory_type = "topic"
@@ -109,7 +107,6 @@ ActiveMQ instance and port 61617 is used for another ActiveMQ instance.
 [[transport.jms.listener]]
 name = "jms1"
 parameter.initial_naming_factory = "org.apache.activemq.artemis.jndi.ActiveMQInitialContextFactory"
-parameter.broker_name = "activemq" 
 parameter.provider_url = "tcp://localhost:61616"
 parameter.connection_factory_name = "TopicConnectionFactory"
 parameter.connection_factory_type = "topic"
@@ -119,7 +116,6 @@ parameter.connection_factory_type = "topic"
 [[transport.jms.listener]]
 name = "jms2"
 parameter.initial_naming_factory = "org.apache.activemq.artemis.jndi.ActiveMQInitialContextFactory"
-parameter.broker_name = "activemq" 
 parameter.provider_url = "tcp://localhost:61617"
 parameter.connection_factory_name = "TopicConnectionFactory"
 parameter.connection_factory_type = "topic"
