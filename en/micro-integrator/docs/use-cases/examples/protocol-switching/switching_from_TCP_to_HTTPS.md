@@ -9,20 +9,67 @@ TCP is not an application layer protocol. Hence there are no application level h
 Following are the integration artifacts (proxy service) that we can used to implement this scenario.
 
 ```xml
-<definitions xmlns="http://ws.apache.org/ns/synapse"
-             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-             xsi:schemaLocation="http://ws.apache.org/ns/synapse http://synapse.apache.org/ns/2010/04/configuration/synapse_config.xsd">
-
-    <proxy xmlns="http://ws.apache.org/ns/synapse" name="StockQuoteProxy" transports="tcp">
-        <target>
-            <endpoint>
-                <address uri="http://localhost:9000/services/SimpleStockQuoteService"/>
-            </endpoint>
-            <inSequence>
-                <log level="full"/>
-                <property name="OUT_ONLY" value="true"/>
-            </inSequence>
-        </target>
-    </proxy>
-</definitions>
+<?xml version="1.0" encoding="UTF-8"?>
+<proxy xmlns="http://ws.apache.org/ns/synapse"
+       name="StockQuoteProxy"
+       transports="tcp"
+       startOnLoad="true">
+   <target>
+      <endpoint>
+         <address uri="http://localhost:9000/services/SimpleStockQuoteService"/>
+      </endpoint>
+      <inSequence>
+         <log level="full"/>
+      </inSequence>
+      <outSequence>
+         <log level="full"/>
+      </outSequence>
+   </target>
+</proxy>
 ```
+## Build and Run
+
+Create the artifacts:
+
+1. Set up WSO2 Integration Studio.
+2. Create an ESB Config project
+3. Create the integration artifacts shown above.
+4. Deploy the artifacts in your Micro Integrator.
+
+Set up the back-end service.
+
+* Download the [stockquote_service.jar](
+https://github.com/wso2-docs/WSO2_EI/blob/master/Back-End-Service/stockquote_service.jar)
+
+* Run the mock service using the following command
+```shell script
+$ java -jar stockquote_service.jar
+```
+[Enable the TCP transport](../../../setup/transport_configurations/configuring-transports/#configuring-the-tcp-transport) and start the Micro-Integrator.
+
+Send the following message via TCP to the TCP listener port.
+```xml
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+    <soapenv:Header xmlns:wsa="http://www.w3.org/2005/08/addressing">
+        <wsa:To>tcp://localhost:6060/services/StockQuoteProxy</wsa:To>
+        <wsa:ReplyTo>
+            <wsa:Address>http://www.w3.org/2005/08/addressing/none</wsa:Address>
+        </wsa:ReplyTo>
+        <wsa:MessageID>urn:uuid:464d2e2a-cd47-4c63-a7c6-550c282a1e3c</wsa:MessageID>
+        <wsa:Action>urn:placeOrder</wsa:Action>
+    </soapenv:Header>
+    <soapenv:Body>
+        <m0:placeOrder xmlns:m0="http://services.samples">
+            <m0:order>
+                <m0:price>172.23182849731984</m0:price>
+                <m0:quantity>18398</m0:quantity>
+                <m0:symbol>IBM</m0:symbol>
+            </m0:order>
+        </m0:placeOrder>
+    </soapenv:Body>
+</soapenv:Envelope>
+``` 
+In linux, we can save the above request in a <strong>request.xml</strong> file and use netcat to send the TCP request. 
+````shell script
+netcat localhost 6060 < request.xml
+````
