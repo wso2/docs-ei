@@ -122,10 +122,12 @@ See the [complete list of local parameters](../../../references/config-catalog/#
 ## Configuring the TCP transport
 
 To enable the TCP transport listener and sender, set the following parameters to `true` in the deployment.toml file (stored in the `MI_HOME/conf` directory).
+Change the listener port value as required.
 
 ```toml
 [transport.tcp]
 listener.enable = true
+listener.port = 6060
 sender.enable = true
 ```
 
