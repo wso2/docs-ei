@@ -15,7 +15,7 @@ Follow the steps given below:
 
 1.  Open a command terminal and navigate to the `MI_HOME/bin/` directory.
 2.  If you are using the Cipher tool for the first time in your environment, you must enable the Cipher tool by 
-executing the command, -Dconfigure with the Cipher tool script. Execute the following command to initialize the 
+executing the `-Dconfigure` command with the Cipher tool script. Execute the following command to initialize the 
 cipher tool:
 
 	<table>
@@ -44,12 +44,11 @@ cipher tool:
 
 	!!! Warning
 	    If you are using **Windows**, be sure to update the `securevault.bat` file with the following configuration before  encrypting passwords.
-
-	```java
-	set CARBON_CLASSPATH=.\conf
-	    FOR %%c in ("%CARBON_HOME%\wso2\components\plugins\org.wso2.micro.integrator.security*.jar") DO (
-	    set CARBON_CLASSPATH=!CARBON_CLASSPATH!;".\wso2\components\plugins\%%~nc%%~xc")
-	```
+		```java
+		set CARBON_CLASSPATH=.\conf
+		    FOR %%c in ("%CARBON_HOME%\wso2\components\plugins\org.wso2.micro.integrator.security*.jar") DO (
+		    set CARBON_CLASSPATH=!CARBON_CLASSPATH!;".\wso2\components\plugins\%%~nc%%~xc")
+		```
 
 	<table>
 		<tr>
@@ -81,7 +80,7 @@ ProductAlias=hMH3b4S2AhG6l0699uhUVD9O38G04NRygA6TW46/OFMkdNO/0Ucj1ql/x9gCRKrR2TV
 ```
 
 !!! Warning
-        If you're running securevault on a fresh Micro Integrator pack, you might have to manually create `secure-vault.properties` inside `<MI_HOME>/registry/config/repository/components/secure-vault/` directory to avoid the error mentioned in [MI-1060](https://github.com/wso2/micro-integrator/issues/1060)
+    If you're running securevault on a fresh Micro Integrator distribution, you may have to manually create the `secure-vault.properties` file inside the `<MI_HOME>/registry/config/repository/components/secure-vault/` directory to avoid the error mentioned in [MI-1060](https://github.com/wso2/micro-integrator/issues/1060)
          
 
 ## Using encrypted passwords in synapse configurations
