@@ -27,7 +27,11 @@ By changing the database type, you can also try out this example for the followi
     5. Create a table named `SweetProductionTable` by issuing the following command.<br/>
         `CREATE TABLE SweetProductionTable (last_update TIMESTAMP, name VARCHAR(20),amount double(10,2));`<br/>
     6. If you want to capture the changes from the last point of time the Siddhi application was stopped, enable state persistence by setting the `state.persistence enabled=true` pproperty in the `<SI_TOOLING_HOME>/conf/server/deployment.yaml` file. If you do not enable state persistence, only the changes since the Siddhi application started are captured.<br/>
+<<<<<<< .merge_file_zkkfYm
     7. In the sample Siddhi application, update the `username` and `password` parameters in the source configuration by adding the username and password you use to log in to MySQL as the values. Then save the sample Siddhi application in Streaming Integrator Tooling.
+=======
+    7. Save the sample Siddhi application in Streaming Integrator Tooling.
+>>>>>>> .merge_file_94cNya
 
         ```sql
         @App:name("CDCWithPollingMode")
