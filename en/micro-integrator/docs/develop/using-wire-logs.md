@@ -7,7 +7,7 @@ response of a proxy service. Also, you can view wire logs for points,
 where it goes out from the Micro Integrator. For example, you can see
 the outgoing and incoming wire logs for specific mediators (i.e. Call
 mediator, Send mediator etc.). Wire logs are useful to troubleshoot
-unexpected issues that occurr while integrating miscallaneous systems.
+unexpected issues that occur while integrating miscellaneous systems.
 You can use wire logs to verify whether the message payload is properly
 going out from the server, whether the HTTP headers such as the
 content-type is properly set in the outgoing message, etc.
@@ -17,16 +17,17 @@ content-type is properly set in the outgoing message, etc.
 
 ## Enabling wire logs
 
-The passthrough HTTP transport is the main transport, which handles HTTP/HTTPS messages in the Micro Integrator. Uncomment the following entry in the `MI_HOME/conf/log4j.properties` file to enable wire logs for the passthrough HTTP transport:
+The passthrough HTTP transport is the main transport, which handles HTTP/HTTPS messages in the Micro Integrator. Uncomment the following entry in the `MI_HOME/conf/log4j2.properties` file to enable wire logs for the passthrough HTTP transport:
 
-`log4j.logger.org.apache.synapse.transport.http.wire=DEBUG        `
+```xml
+logger.synapse-transport-http-wire.name=org.apache.synapse.transport.http.wire
+logger.synapse-transport-http-wire.level=DEBUG
+```
 
-!!! Info
-    Callout mediator uses the Axis2 `CommonsHTTPSender` to invoke services. It does not leverage the non-blocking NHTTP/passthrough transports. Therefore, you need to add the following entries to the `MI_HOME/conf/log4j.properties` file to enable wire logs for the callout mediator.  
-    ``` 
-    log4j.logger.httpclient.wire.header=DEBUG
-    log4j.logger.httpclient.wire.content=DEBUG
-    ``` 
+Then, add to the loggers as a comma-separated list:
+```xml
+loggers = synapse-transport-http-wire, AUDIT_LOG, SERVICE_LOGGER, trace-messages,
+```
 
 Following is a sample wirelog.
 

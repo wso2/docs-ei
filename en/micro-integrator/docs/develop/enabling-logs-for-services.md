@@ -2,7 +2,7 @@
 
 The advantage of having per-service log files is that it is very easy to
 analyze/monitor what went wrong in this particular service (proxy
-service, data service etc.) by looking at the service log. Enabling this feature will not terminate the `         wso2-ei.log        ` file. This
+service, data service etc.) by looking at the service log. Enabling this feature will not terminate the `         wso2carbon.log        ` file. This
 file will contain the complete log with every log statement, including the service logs that you have configured to be logged into a different
 log file. In other words, the service log is an additional log file, which will contain a copy of the logs to that particular service.
 
@@ -11,18 +11,46 @@ how to enable logs for a sample proxy service deployed in WSO2 Micro Integrator.
 
 1.  Consider a proxy service named `          StockQuoteProxy         `.
 2.  Configure `          log4j         ` to log the service specific logs to a file called `          stock-quote-proxy-service.log         ` in the logs directory of the product installation directory.
-    1.  Open up the `             log4j.properties            ` file found in the `             conf            ` directory of the product installation directory using your favorite text editor and add the following section to the end of the file starting in a new line.
+    1.  Open up the `             log4j2.properties            ` file found in the `             conf            ` directory of the product installation directory using your favorite text editor and add the following section to the end of the file starting in a new line.
 
         ```bash
-        log4j.category.SERVICE_LOGGER.StockQuoteProxy=DEBUG, SQ_PROXY_APPENDER
-        log4j.additivity.SERVICE_LOGGER.StockQuoteProxy=false
-        log4j.appender.SQ_PROXY_APPENDER=org.apache.log4j.DailyRollingFileAppender
-        log4j.appender.SQ_PROXY_APPENDER.File=logs/stock-quote-proxy-service.log
-        log4j.appender.SQ_PROXY_APPENDER.datePattern='.'yyyy-MM-dd-HH-mm
-        log4j.appender.SQ_PROXY_APPENDER.layout=org.apache.log4j.PatternLayout
-        log4j.appender.SQ_PROXY_APPENDER.layout.ConversionPattern=%d{ISO8601} \[%X{ip}-%X{host}\] \[%t\] %5p %c{1} %m%n
+        # SQ_PROXY_APPENDER is set to be a DailyRollingFileAppender using a PatternLayout.
+        appender.SQ_PROXY_APPENDER.type = RollingFile
+        appender.SQ_PROXY_APPENDER.name = SQ_PROXY_APPENDER
+        appender.SQ_PROXY_APPENDER.fileName = ${sys:carbon.home}/repository/logs/stock-quote-proxy-service.log
+        appender.SQ_PROXY_APPENDER.filePattern = ${sys:carbon.home}/repository/logs/stock-quote-proxy-service-%d{MM-dd-yyyy}.log
+        appender.SQ_PROXY_APPENDER.layout.type = PatternLayout
+        appender.SQ_PROXY_APPENDER.layout.pattern = TID: [%d] %5p {%c} [%logger] - %m%ex%n
+        appender.SQ_PROXY_APPENDER.policies.type = Policies
+        appender.SQ_PROXY_APPENDER.policies.time.type = TimeBasedTriggeringPolicy
+        appender.SQ_PROXY_APPENDER.policies.time.interval = 1
+        appender.SQ_PROXY_APPENDER.policies.time.modulate = true
+        appender.SQ_PROXY_APPENDER.policies.size.type = SizeBasedTriggeringPolicy
+        appender.SQ_PROXY_APPENDER.policies.size.size=10MB
+        appender.SQ_PROXY_APPENDER.strategy.type = DefaultRolloverStrategy
+        appender.SQ_PROXY_APPENDER.strategy.max = 20
+        appender.SQ_PROXY_APPENDER.filter.threshold.type = ThresholdFilter
+        appender.SQ_PROXY_APPENDER.filter.threshold.level = DEBUG        
         ```
-    2.  Save the file.
+        
+    2. Add `SQ_PROXY_APPENDER` as an appender
+        
+    ```xml
+    appenders = CARBON_CONSOLE, CARBON_LOGFILE, AUDIT_LOGFILE, SQ_PROXY_APPENDER, 
+    ```
+    
+    3. Add a logger to filter out `StockQuoteProxy` related logs
+    ```xml
+    logger.StockQuoteProxy.name = SERVICE_LOGGER.StockQuoteProxy
+    logger.StockQuoteProxy.level = INFO
+    logger.StockQuoteProxy.appenderRef.SQ_PROXY_APPENDER.ref = SQ_PROXY_APPENDER
+    logger.StockQuoteProxy.additivity = false
+    ```
+    4.  Add `StockQuoteProxy` as a logger
+    ```xml
+    loggers = AUDIT_LOG, StockQuoteProxy, SERVICE_LOGGER,
+    ```  
+    5.  Save the file.
 
 3.  Try it out. By default, the configuration does not do any logging at
     runtime, so configure the Proxy Service in-sequence to contain a log
