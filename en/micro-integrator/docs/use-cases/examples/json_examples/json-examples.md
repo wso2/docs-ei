@@ -134,7 +134,7 @@ Note the addition of `xml-multiple` processing instructions to the XML payloads 
 
 ## Special characters
 
-When building XML elements, the EI handles the ‘$’ character and digits in a special manner when they appear as the first character of a JSON key. Following are examples of two such occurrences. Note the addition of the `_JsonReader_PS_` and `_JsonReader_PD_` prefixes in place of the ‘$’ and digit characters, respectively.
+When building XML elements, the EI handles the `$` character and digits in a special manner when they appear as the first character of a JSON key. Following are examples of two such occurrences. Note the addition of the `_JsonReader_PS_` and `_JsonReader_PD_` prefixes in place of the `$` and digit characters, respectively.
 
 ``` javascript tab='JSON'
 {"$key":1234}
