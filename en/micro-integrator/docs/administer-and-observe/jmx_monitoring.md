@@ -5,9 +5,9 @@ Java Management Extensions (JMX) is a technology that lets you implement managem
 ## Configuring JMX in WSO2 Micro Integrator
 
 JMX is enabled in WSO2 products by default, which ensures that the JMX server starts automatically when you start the product. Additionally, you can enable JMX separately for the various datasources that are used by the product. Once JMX is enabled, you can monitor your product using [**JConsole**](#monitoring-with-jconsole).
-<!--
-### Configuring JMX ports for the server
 
+<!--
+Configuring JMX ports for the server
 The default JMX ports (RMIRegistryPort and the RMIServerPort) are
 configured in the `deployment.toml ` file (stored in the
 `         <MI_HOME>/conf        ` directory) as shown
@@ -19,25 +19,23 @@ rmi_hostname = localhost
 rmi_registry_port = 9999
 rmi_server_port = 11111
 ```
+-->
 
-### Disabling JMX for the server
-
+<!--
+Disabling JMX for the server
 To disable JMX for the server, update the following configuration in the deployment.toml file:
-
 ```toml
 [monitoring.jmx]
 rmi_server_start = true
 ```
-
-### Enabling JMX for a datasource
-
+Enabling JMX for a datasource
 To enable JMX for a datasource, add the following configuration in the deployment.toml file:
-
 ```toml
 [[datasource]]
 jmx_enable = true
 ```
 -->
+
 ## Monitoring with JConsole
 
 Jconsole is a JMX-compliant monitoring tool, which comes with the Java

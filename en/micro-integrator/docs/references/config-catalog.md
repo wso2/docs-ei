@@ -1,5 +1,8 @@
 # Product Configurations
-This document describes all the product configuration parameters that are used in WSO2 Micro Integrator.
+
+The Micro Integrator of WSO2 Enterprise Integrator 7.0 introduces TOML-based product configurations. All the server-level configurations of your Micro Integrator instance can be applied using a single configuration file, which is the `deployment.toml` file (stored in the `MI_HOME/conf` directory).
+
+The complete list of configuration parameters that you can use in the `deployment.toml` file are listed below along with descriptions. You can also see the documentation on product [installation and setup](../../setup/installation/install_in_vm) for details on applying product configurations to your Micro Integrator deployment.
 
 ## Instructions for use
 
@@ -8,16 +11,23 @@ To update the product configurations:
 1. Open the `deployment.toml` file (stored in the `MI_HOME/conf` directory).
 2. Select the required configuration headers and parameters from the list given below and apply them to the `deployment.toml` file.
 
-See the example `deployment.toml` file given below.
+The **default** `deployment.toml` file of the Micro Integrator is as follows:
 
 ```toml
-# This is an example .toml file.
-
 [server]
-hostname="localhost"
+hostname = "localhost"
 
-[[database]]
-pool_options.maxActiv=5
+[keystore.tls]
+file_name = "wso2carbon.jks"
+password = "wso2carbon"
+alias = "wso2carbon"
+key_password = "wso2carbon"
+
+[truststore]
+file_name = "client-truststore.jks"
+password = "wso2carbon"
+alias = "symmetric.key.value"
+algorithm = "AES"
 ```
 
 
@@ -68,7 +78,7 @@ proxy_context_path = ""
                                             <span class="badge-required">Required</span>
                                         </p>
                                         <div class="param-default">
-                                            <span class="param-default-value">Default: <code>&quot;localhost&quot;</code></span>
+                                            <span class="param-default-value">Default: <code>N/A</code></span>
                                         </div>
                                         <div class="param-possible">
                                             <span class="param-possible-values">Possible Values: <code>&quot;localhost&quot;
@@ -138,25 +148,6 @@ proxy_context_path = ""
                                     </div>
                                     <div class="param-description">
                                         <p>Use this paramater to enable SwA (SOAP with Attachments) for the product server. When SwA is enabled, the Micro Integrator will process the files attached to SOAP messages.</p>
-                                    </div>
-                                </div>
-                            </div><div class="param">
-                                <div class="param-name">
-                                  <span class="param-name-wrap"> <code>hide_admin_service_wsdl</code> </span>
-                                </div>
-                                <div class="param-info">
-                                    <div>
-                                        <p>
-                                            <span class="param-type string"> boolean </span>
-                                            
-                                        </p>
-                                        <div class="param-default">
-                                            <span class="param-default-value">Default: <code>true</code></span>
-                                        </div>
-                                        
-                                    </div>
-                                    <div class="param-description">
-                                        <p></p>
                                     </div>
                                 </div>
                             </div><div class="param">
@@ -249,7 +240,7 @@ key_password = "wso2carbon"
                 <div class="doc-wrapper">
                     <div class="mb-config">
                         <div class="config-wrap">
-                            <code>[keystore_tls]</code>
+                            <code>[keystore.primary]</code>
                             <span class="badge-required">Required</span>
                             <p>
                                 This configuration header is required for configuring the parameters that connect the Micro Integrator to the <a href="../../setup/security/configuring_keystores/#changing-the-default-primary-keystore">primary keystore</a>. This keystore is used for SSL handshaking (when the server communicates with another server) and for encrypting plain text information in configuration files. By default, this keystore is also used for encrypted data in internal datastores, unless you have configured a <a href="#internal-keystore">separate keystore</a> for internal data encryption.
@@ -386,7 +377,7 @@ key_password = "$ref{keystore.tls.key_password}"
                 <div class="doc-wrapper">
                     <div class="mb-config">
                         <div class="config-wrap">
-                            <code>[keystore_internal]</code>
+                            <code>[keystore.internal]</code>
                             <span class="badge-required">Required</span>
                             <p>
                                 This configuration header is required for configuring the parameters that connect the Micro Integrator to the keystore used for encrypting/decrypting data in internal data stores. You may sometimes choose to configure a separate keystore for this purpose because the primary keystore needs to renew certificates frequently. However, for encrypting information in internal data stores, the keystore certificates should not be changed frequently because the data that is already encrypted will become unusable every time the certificate changes. Read more about <a href="../../setup/security/configuring_keystores/#separating-the-internal-keystore">configuring the internal keystore</a>.
@@ -1218,7 +1209,7 @@ class = "org.apache.axis2.json.JSONBadgerfishOMBuilder"
                                             <span class="badge-required">Required</span>
                                         </p>
                                         <div class="param-default">
-                                            <span class="param-default-value">Default: <code>-</code></span>
+                                            <span class="param-default-value">Default: <code>N/A</code></span>
                                         </div>
                                         
                                     </div>
@@ -1237,7 +1228,7 @@ class = "org.apache.axis2.json.JSONBadgerfishOMBuilder"
                                             <span class="badge-required">Required</span>
                                         </p>
                                         <div class="param-default">
-                                            <span class="param-default-value">Default: <code>-</code></span>
+                                            <span class="param-default-value">Default: <code>N/A</code></span>
                                         </div>
                                         
                                     </div>
@@ -1330,7 +1321,7 @@ class = "org.apache.axis2.json.JSONBadgerfishMessageFormatter"
                                             <span class="badge-required">Required</span>
                                         </p>
                                         <div class="param-default">
-                                            <span class="param-default-value">Default: <code>-</code></span>
+                                            <span class="param-default-value">Default: <code>N/A</code></span>
                                         </div>
                                         
                                     </div>
@@ -1349,7 +1340,7 @@ class = "org.apache.axis2.json.JSONBadgerfishMessageFormatter"
                                             <span class="badge-required">Required</span>
                                         </p>
                                         <div class="param-default">
-                                            <span class="param-default-value">Default: <code>-</code></span>
+                                            <span class="param-default-value">Default: <code>N/A</code></span>
                                         </div>
                                         
                                     </div>
@@ -1566,7 +1557,7 @@ sender.ssl_profile.read_interval = "30s"
                                             <span class="badge-required">Required</span>
                                         </p>
                                         <div class="param-default">
-                                            <span class="param-default-value">Default: <code>120000</code></span>
+                                            <span class="param-default-value">Default: <code>180000</code></span>
                                         </div>
                                         
                                     </div>
@@ -1760,7 +1751,7 @@ sender.ssl_profile.read_interval = "30s"
                                             <span class="badge-required">Required</span>
                                         </p>
                                         <div class="param-default">
-                                            <span class="param-default-value">Default: <code>$ref{server.hostname}</code></span>
+                                            <span class="param-default-value">Default: <code>N/A</code></span>
                                         </div>
                                         
                                     </div>
@@ -1798,12 +1789,12 @@ sender.ssl_profile.read_interval = "30s"
                                             <span class="badge-required">Required</span>
                                         </p>
                                         <div class="param-default">
-                                            <span class="param-default-value">Default: <code>wso2carbon</code></span>
+                                            <span class="param-default-value">Default: <code>MI_HOME/repository/resources/security/wso2carbon.jks</code></span>
                                         </div>
                                         
                                     </div>
                                     <div class="param-description">
-                                        <p>The name of the keystore file that is used for securing the HTTP passthrough connection. By default, the keystore file of the <a href="#primary-keystore">primary keystore</a> is enabled for this purpose.</p>
+                                        <p>The path to the keystore file that is used for securing the HTTP passthrough connection. By default, the keystore file of the <a href="#primary-keystore">primary keystore</a> is enabled for this purpose.</p>
                                     </div>
                                 </div>
                             </div><div class="param">
@@ -1876,12 +1867,12 @@ sender.ssl_profile.read_interval = "30s"
                                             <span class="badge-required">Required</span>
                                         </p>
                                         <div class="param-default">
-                                            <span class="param-default-value">Default: <code>wso2truststore.jks</code></span>
+                                            <span class="param-default-value">Default: <code>MI_HOME/repository/resources/security/wso2truststore.jks</code></span>
                                         </div>
                                         
                                     </div>
                                     <div class="param-description">
-                                        <p>The name of the keystore file that is used for storing the trusted digital certificates. By default, the product's <a href='#trust-store'>trust store</a> is configured for this purpose.</p>
+                                        <p>The path to the keystore file that is used for storing the trusted digital certificates. By default, the product's <a href='#trust-store'>trust store</a> is configured for this purpose.</p>
                                     </div>
                                 </div>
                             </div><div class="param">
@@ -1935,7 +1926,7 @@ sender.ssl_profile.read_interval = "30s"
                                             <span class="badge-required">Required</span>
                                         </p>
                                         <div class="param-default">
-                                            <span class="param-default-value">Default: <code></code></span>
+                                            <span class="param-default-value">Default: <code>N/A</code></span>
                                         </div>
                                         
                                     </div>
@@ -1992,7 +1983,7 @@ sender.ssl_profile.read_interval = "30s"
                                             <span class="badge-required">Required</span>
                                         </p>
                                         <div class="param-default">
-                                            <span class="param-default-value">Default: <code>[&quot;$ref{server.hostname}&quot;]</code></span>
+                                            <span class="param-default-value">Default: <code>N/A</code></span>
                                         </div>
                                         
                                     </div>
@@ -2011,7 +2002,7 @@ sender.ssl_profile.read_interval = "30s"
                                             <span class="badge-required">Required</span>
                                         </p>
                                         <div class="param-default">
-                                            <span class="param-default-value">Default: <code>AllowAll</code></span>
+                                            <span class="param-default-value">Default: <code>N/A</code></span>
                                         </div>
                                         
                                     </div>
@@ -2030,12 +2021,12 @@ sender.ssl_profile.read_interval = "30s"
                                             <span class="badge-required">Required</span>
                                         </p>
                                         <div class="param-default">
-                                            <span class="param-default-value">Default: <code>wso2carbon</code></span>
+                                            <span class="param-default-value">Default: <code>MI_HOME/repository/resources/security/wso2carbon.jks</code></span>
                                         </div>
                                         
                                     </div>
                                     <div class="param-description">
-                                        <p>The name of the keystore file that is used for securing the HTTP passthrough connection. By default, the keystore file of the <a href="#primary-keystore">primary keystore</a> is enabled for this purpose.</p>
+                                        <p>The path to the keystore file that is used for securing the HTTP passthrough connection. By default, the keystore file of the <a href="#primary-keystore">primary keystore</a> is enabled for this purpose.</p>
                                     </div>
                                 </div>
                             </div><div class="param">
@@ -2108,12 +2099,12 @@ sender.ssl_profile.read_interval = "30s"
                                             <span class="badge-required">Required</span>
                                         </p>
                                         <div class="param-default">
-                                            <span class="param-default-value">Default: <code>wso2truststore.jks</code></span>
+                                            <span class="param-default-value">Default: <code>MI_HOME/repository/resources/security/wso2truststore.jks</code></span>
                                         </div>
                                         
                                     </div>
                                     <div class="param-description">
-                                        <p>The name of the keystore file that is used for storing the trusted digital certificates. By default, the product's <a href='#trust-store'>trust store</a> is configured for this purpose.</p>
+                                        <p>The path to the keystore file that is used for storing the trusted digital certificates. By default, the product's <a href='#trust-store'>trust store</a> is configured for this purpose.</p>
                                     </div>
                                 </div>
                             </div><div class="param">
@@ -2192,7 +2183,7 @@ listener.thread_keepalive_time_unit = ""
 
 sender.enable = true
 sender.enable_client_caching = true
-sender.transfer_encoding = "chunked"
+sender.transfer_encoding = ""
 sender.default_connections_per_host = 200
 sender.omit_soap12_action = true
 sender.so_timeout = 60000
@@ -2433,7 +2424,7 @@ sender.so_timeout = 60000
                                             <span class="badge-required">Required</span>
                                         </p>
                                         <div class="param-default">
-                                            <span class="param-default-value">Default: <code>true</code></span>
+                                            <span class="param-default-value">Default: <code>N/A</code></span>
                                         </div>
                                         <div class="param-possible">
                                             <span class="param-possible-values">Possible Values: <code>&quot;true&quot;,&quot;false&quot;</code></span>
@@ -2454,7 +2445,7 @@ sender.so_timeout = 60000
                                             <span class="badge-required">Required</span>
                                         </p>
                                         <div class="param-default">
-                                            <span class="param-default-value">Default: <code>chunked</code></span>
+                                            <span class="param-default-value">Default: <code>N/A</code></span>
                                         </div>
                                         <div class="param-possible">
                                             <span class="param-possible-values">Possible Values: <code>&quot;chunked&quot;,&quot;false&quot;</code></span>
@@ -2471,15 +2462,13 @@ sender.so_timeout = 60000
                                 <div class="param-info">
                                     <div>
                                         <p>
-                                            <span class="param-type string"> boolean </span>
+                                            <span class="param-type string"> integer </span>
                                             <span class="badge-required">Required</span>
                                         </p>
                                         <div class="param-default">
-                                            <span class="param-default-value">Default: <code>true</code></span>
+                                            <span class="param-default-value">Default: <code>N/A</code></span>
                                         </div>
-                                        <div class="param-possible">
-                                            <span class="param-possible-values">Possible Values: <code>&quot;true&quot; or &quot;false&quot;</code></span>
-                                        </div>
+                                        
                                     </div>
                                     <div class="param-description">
                                         <p>The maximum number of connections that will be created per host server by the client. If the backend server is slow, the connections in use at a given time will take a long time to be released and added back to the connection pool. As a result, connections may not be available for some requests. In such situations, it is recommended to increase the value for this parameter.</p>
@@ -2492,11 +2481,11 @@ sender.so_timeout = 60000
                                 <div class="param-info">
                                     <div>
                                         <p>
-                                            <span class="param-type string"> string </span>
+                                            <span class="param-type string"> boolean </span>
                                             <span class="badge-required">Required</span>
                                         </p>
                                         <div class="param-default">
-                                            <span class="param-default-value">Default: <code>true</code></span>
+                                            <span class="param-default-value">Default: <code>N/A</code></span>
                                         </div>
                                         <div class="param-possible">
                                             <span class="param-possible-values">Possible Values: <code>&quot;true&quot; or &quot;false&quot;</code></span>
@@ -2513,14 +2502,14 @@ sender.so_timeout = 60000
                                 <div class="param-info">
                                     <div>
                                         <p>
-                                            <span class="param-type string"> boolean </span>
+                                            <span class="param-type string"> integer </span>
                                             <span class="badge-required">Required</span>
                                         </p>
                                         <div class="param-default">
-                                            <span class="param-default-value">Default: <code>true</code></span>
+                                            <span class="param-default-value">Default: <code>N/A</code></span>
                                         </div>
                                         <div class="param-possible">
-                                            <span class="param-possible-values">Possible Values: <code>&quot;true&quot; or &quot;false&quot;</code></span>
+                                            <span class="param-possible-values">Possible Values: <code>60000</code></span>
                                         </div>
                                     </div>
                                     <div class="param-description">
@@ -2579,7 +2568,7 @@ bypass_hosts = ["xxx.sample.com"]
                                             
                                         </p>
                                         <div class="param-default">
-                                            <span class="param-default-value">Default: <code>-</code></span>
+                                            <span class="param-default-value">Default: <code>N/A</code></span>
                                         </div>
                                         <div class="param-possible">
                                             <span class="param-possible-values">Possible Values: <code>*&quot;,&quot;example.com&quot;,&quot;&lt;any-ip-address&gt;</code></span>
@@ -2600,7 +2589,7 @@ bypass_hosts = ["xxx.sample.com"]
                                             <span class="badge-required">Required</span>
                                         </p>
                                         <div class="param-default">
-                                            <span class="param-default-value">Default: <code>localhost</code></span>
+                                            <span class="param-default-value">Default: <code>N/A</code></span>
                                         </div>
                                         
                                     </div>
@@ -2619,7 +2608,7 @@ bypass_hosts = ["xxx.sample.com"]
                                             <span class="badge-required">Required</span>
                                         </p>
                                         <div class="param-default">
-                                            <span class="param-default-value">Default: <code></code></span>
+                                            <span class="param-default-value">Default: <code>N/A</code></span>
                                         </div>
                                         
                                     </div>
@@ -2638,7 +2627,7 @@ bypass_hosts = ["xxx.sample.com"]
                                             <span class="badge-required">Required</span>
                                         </p>
                                         <div class="param-default">
-                                            <span class="param-default-value">Default: <code>-</code></span>
+                                            <span class="param-default-value">Default: <code>N/A</code></span>
                                         </div>
                                         
                                     </div>
@@ -2657,7 +2646,7 @@ bypass_hosts = ["xxx.sample.com"]
                                             <span class="badge-required">Required</span>
                                         </p>
                                         <div class="param-default">
-                                            <span class="param-default-value">Default: <code>-</code></span>
+                                            <span class="param-default-value">Default: <code>N/A</code></span>
                                         </div>
                                         
                                     </div>
@@ -2676,7 +2665,7 @@ bypass_hosts = ["xxx.sample.com"]
                                             
                                         </p>
                                         <div class="param-default">
-                                            <span class="param-default-value">Default: <code>-</code></span>
+                                            <span class="param-default-value">Default: <code>N/A</code></span>
                                         </div>
                                         
                                     </div>
@@ -2736,7 +2725,7 @@ bypass_hosts = ["xxx.sample.com"]
                                             <span class="badge-required">Required</span>
                                         </p>
                                         <div class="param-default">
-                                            <span class="param-default-value">Default: <code></code></span>
+                                            <span class="param-default-value">Default: <code>N/A</code></span>
                                         </div>
                                         <div class="param-possible">
                                             <span class="param-possible-values">Possible Values: <code>*&quot;,&quot;example.com&quot;,&quot;&lt;any-ip-address&gt;</code></span>
@@ -2757,7 +2746,7 @@ bypass_hosts = ["xxx.sample.com"]
                                             <span class="badge-required">Required</span>
                                         </p>
                                         <div class="param-default">
-                                            <span class="param-default-value">Default: <code>localhost</code></span>
+                                            <span class="param-default-value">Default: <code>N/A</code></span>
                                         </div>
                                         
                                     </div>
@@ -2776,7 +2765,7 @@ bypass_hosts = ["xxx.sample.com"]
                                             <span class="badge-required">Required</span>
                                         </p>
                                         <div class="param-default">
-                                            <span class="param-default-value">Default: <code></code></span>
+                                            <span class="param-default-value">Default: <code>N/A</code></span>
                                         </div>
                                         
                                     </div>
@@ -2795,7 +2784,7 @@ bypass_hosts = ["xxx.sample.com"]
                                             
                                         </p>
                                         <div class="param-default">
-                                            <span class="param-default-value">Default: <code></code></span>
+                                            <span class="param-default-value">Default: <code>N/A</code></span>
                                         </div>
                                         
                                     </div>
@@ -2814,7 +2803,7 @@ bypass_hosts = ["xxx.sample.com"]
                                             <span class="badge-required">Required</span>
                                         </p>
                                         <div class="param-default">
-                                            <span class="param-default-value">Default: <code></code></span>
+                                            <span class="param-default-value">Default: <code>N/A</code></span>
                                         </div>
                                         
                                     </div>
@@ -2833,7 +2822,7 @@ bypass_hosts = ["xxx.sample.com"]
                                             
                                         </p>
                                         <div class="param-default">
-                                            <span class="param-default-value">Default: <code></code></span>
+                                            <span class="param-default-value">Default: <code>N/A</code></span>
                                         </div>
                                         
                                     </div>
@@ -2920,12 +2909,12 @@ sender.parameter.customParameter = ""
                                             
                                         </p>
                                         <div class="param-default">
-                                            <span class="param-default-value">Default: <code>wso2carbon</code></span>
+                                            <span class="param-default-value">Default: <code>MI_HOME/repository/resources/security/wso2carbon.jks</code></span>
                                         </div>
                                         
                                     </div>
                                     <div class="param-description">
-                                        <p>The name of the keystore file that is used for securing a VFS connection. By default, the keystore file of the <a href="#primary-keystore">primary keystore</a> is enabled for this purpose.</p>
+                                        <p>The path to the keystore file that is used for securing a VFS connection. By default, the keystore file of the <a href="#primary-keystore">primary keystore</a> is enabled for this purpose.</p>
                                     </div>
                                 </div>
                             </div><div class="param">
@@ -3099,7 +3088,7 @@ parameter.customParameter = ""
                                             <span class="badge-required">Required</span>
                                         </p>
                                         <div class="param-default">
-                                            <span class="param-default-value">Default: <code></code></span>
+                                            <span class="param-default-value">Default: <code>N/A</code></span>
                                         </div>
                                         
                                     </div>
@@ -3454,7 +3443,7 @@ parameter.consume_error_progression = "2.0"
                                             <span class="badge-required">Required</span>
                                         </p>
                                         <div class="param-default">
-                                            <span class="param-default-value">Default: <code></code></span>
+                                            <span class="param-default-value">Default: <code>N/A</code></span>
                                         </div>
                                         
                                     </div>
@@ -3473,7 +3462,7 @@ parameter.consume_error_progression = "2.0"
                                             <span class="badge-required">Required</span>
                                         </p>
                                         <div class="param-default">
-                                            <span class="param-default-value">Default: <code></code></span>
+                                            <span class="param-default-value">Default: <code>N/A</code></span>
                                         </div>
                                         
                                     </div>
@@ -3492,7 +3481,7 @@ parameter.consume_error_progression = "2.0"
                                             <span class="badge-required">Required</span>
                                         </p>
                                         <div class="param-default">
-                                            <span class="param-default-value">Default: <code></code></span>
+                                            <span class="param-default-value">Default: <code>N/A</code></span>
                                         </div>
                                         
                                     </div>
@@ -3511,7 +3500,7 @@ parameter.consume_error_progression = "2.0"
                                             <span class="badge-required">Required</span>
                                         </p>
                                         <div class="param-default">
-                                            <span class="param-default-value">Default: <code></code></span>
+                                            <span class="param-default-value">Default: <code>N/A</code></span>
                                         </div>
                                         
                                     </div>
@@ -3551,7 +3540,7 @@ parameter.consume_error_progression = "2.0"
                                             
                                         </p>
                                         <div class="param-default">
-                                            <span class="param-default-value">Default: <code></code></span>
+                                            <span class="param-default-value">Default: <code>N/A</code></span>
                                         </div>
                                         
                                     </div>
@@ -3570,7 +3559,7 @@ parameter.consume_error_progression = "2.0"
                                             
                                         </p>
                                         <div class="param-default">
-                                            <span class="param-default-value">Default: <code></code></span>
+                                            <span class="param-default-value">Default: <code>N/A</code></span>
                                         </div>
                                         
                                     </div>
@@ -3589,7 +3578,7 @@ parameter.consume_error_progression = "2.0"
                                             
                                         </p>
                                         <div class="param-default">
-                                            <span class="param-default-value">Default: <code></code></span>
+                                            <span class="param-default-value">Default: <code>N/A</code></span>
                                         </div>
                                         
                                     </div>
@@ -3608,7 +3597,7 @@ parameter.consume_error_progression = "2.0"
                                             
                                         </p>
                                         <div class="param-default">
-                                            <span class="param-default-value">Default: <code></code></span>
+                                            <span class="param-default-value">Default: <code>N/A</code></span>
                                         </div>
                                         
                                     </div>
@@ -3707,7 +3696,7 @@ parameter.consume_error_progression = "2.0"
                                             <span class="badge-required">Required</span>
                                         </p>
                                         <div class="param-default">
-                                            <span class="param-default-value">Default: <code></code></span>
+                                            <span class="param-default-value">Default: <code>N/A</code></span>
                                         </div>
                                         
                                     </div>
@@ -3726,7 +3715,7 @@ parameter.consume_error_progression = "2.0"
                                             <span class="badge-required">Required</span>
                                         </p>
                                         <div class="param-default">
-                                            <span class="param-default-value">Default: <code></code></span>
+                                            <span class="param-default-value">Default: <code>N/A</code></span>
                                         </div>
                                         
                                     </div>
@@ -3745,7 +3734,7 @@ parameter.consume_error_progression = "2.0"
                                             
                                         </p>
                                         <div class="param-default">
-                                            <span class="param-default-value">Default: <code></code></span>
+                                            <span class="param-default-value">Default: <code>N/A</code></span>
                                         </div>
                                         
                                     </div>
@@ -3764,7 +3753,7 @@ parameter.consume_error_progression = "2.0"
                                             
                                         </p>
                                         <div class="param-default">
-                                            <span class="param-default-value">Default: <code></code></span>
+                                            <span class="param-default-value">Default: <code>N/A</code></span>
                                         </div>
                                         <div class="param-possible">
                                             <span class="param-possible-values">Possible Values: <code>&#39;queue&#39; or &#39;topic&#39;</code></span>
@@ -3785,7 +3774,7 @@ parameter.consume_error_progression = "2.0"
                                             
                                         </p>
                                         <div class="param-default">
-                                            <span class="param-default-value">Default: <code></code></span>
+                                            <span class="param-default-value">Default: <code>N/A</code></span>
                                         </div>
                                         
                                     </div>
@@ -3825,7 +3814,7 @@ parameter.consume_error_progression = "2.0"
                                             
                                         </p>
                                         <div class="param-default">
-                                            <span class="param-default-value">Default: <code></code></span>
+                                            <span class="param-default-value">Default: <code>N/A</code></span>
                                         </div>
                                         
                                     </div>
@@ -3865,7 +3854,7 @@ parameter.consume_error_progression = "2.0"
                                             
                                         </p>
                                         <div class="param-default">
-                                            <span class="param-default-value">Default: <code></code></span>
+                                            <span class="param-default-value">Default: <code>N/A</code></span>
                                         </div>
                                         
                                     </div>
@@ -3884,7 +3873,7 @@ parameter.consume_error_progression = "2.0"
                                             <span class="badge-required">Required</span>
                                         </p>
                                         <div class="param-default">
-                                            <span class="param-default-value">Default: <code></code></span>
+                                            <span class="param-default-value">Default: <code>N/A</code></span>
                                         </div>
                                         
                                     </div>
@@ -4324,7 +4313,7 @@ parameter.vender_class_loader = false
                                             <span class="badge-required">Required</span>
                                         </p>
                                         <div class="param-default">
-                                            <span class="param-default-value">Default: <code></code></span>
+                                            <span class="param-default-value">Default: <code>N/A</code></span>
                                         </div>
                                         
                                     </div>
@@ -4343,7 +4332,7 @@ parameter.vender_class_loader = false
                                             <span class="badge-required">Required</span>
                                         </p>
                                         <div class="param-default">
-                                            <span class="param-default-value">Default: <code></code></span>
+                                            <span class="param-default-value">Default: <code>N/A</code></span>
                                         </div>
                                         
                                     </div>
@@ -4362,7 +4351,7 @@ parameter.vender_class_loader = false
                                             <span class="badge-required">Required</span>
                                         </p>
                                         <div class="param-default">
-                                            <span class="param-default-value">Default: <code></code></span>
+                                            <span class="param-default-value">Default: <code>N/A</code></span>
                                         </div>
                                         
                                     </div>
@@ -4381,7 +4370,7 @@ parameter.vender_class_loader = false
                                             <span class="badge-required">Required</span>
                                         </p>
                                         <div class="param-default">
-                                            <span class="param-default-value">Default: <code></code></span>
+                                            <span class="param-default-value">Default: <code>N/A</code></span>
                                         </div>
                                         
                                     </div>
@@ -4400,7 +4389,7 @@ parameter.vender_class_loader = false
                                             <span class="badge-required">Required</span>
                                         </p>
                                         <div class="param-default">
-                                            <span class="param-default-value">Default: <code></code></span>
+                                            <span class="param-default-value">Default: <code>N/A</code></span>
                                         </div>
                                         
                                     </div>
@@ -4440,7 +4429,7 @@ parameter.vender_class_loader = false
                                             <span class="badge-required">Required</span>
                                         </p>
                                         <div class="param-default">
-                                            <span class="param-default-value">Default: <code></code></span>
+                                            <span class="param-default-value">Default: <code>N/A</code></span>
                                         </div>
                                         
                                     </div>
@@ -4459,7 +4448,7 @@ parameter.vender_class_loader = false
                                             
                                         </p>
                                         <div class="param-default">
-                                            <span class="param-default-value">Default: <code></code></span>
+                                            <span class="param-default-value">Default: <code>N/A</code></span>
                                         </div>
                                         
                                     </div>
@@ -4478,7 +4467,7 @@ parameter.vender_class_loader = false
                                             
                                         </p>
                                         <div class="param-default">
-                                            <span class="param-default-value">Default: <code></code></span>
+                                            <span class="param-default-value">Default: <code>N/A</code></span>
                                         </div>
                                         
                                     </div>
@@ -4497,7 +4486,7 @@ parameter.vender_class_loader = false
                                             <span class="badge-required">Required</span>
                                         </p>
                                         <div class="param-default">
-                                            <span class="param-default-value">Default: <code></code></span>
+                                            <span class="param-default-value">Default: <code>N/A</code></span>
                                         </div>
                                         
                                     </div>
@@ -4596,7 +4585,7 @@ parameter.vender_class_loader = false
                                             <span class="badge-required">Required</span>
                                         </p>
                                         <div class="param-default">
-                                            <span class="param-default-value">Default: <code></code></span>
+                                            <span class="param-default-value">Default: <code>N/A</code></span>
                                         </div>
                                         
                                     </div>
@@ -4615,7 +4604,7 @@ parameter.vender_class_loader = false
                                             <span class="badge-required">Required</span>
                                         </p>
                                         <div class="param-default">
-                                            <span class="param-default-value">Default: <code></code></span>
+                                            <span class="param-default-value">Default: <code>N/A</code></span>
                                         </div>
                                         
                                     </div>
@@ -4634,7 +4623,7 @@ parameter.vender_class_loader = false
                                             
                                         </p>
                                         <div class="param-default">
-                                            <span class="param-default-value">Default: <code></code></span>
+                                            <span class="param-default-value">Default: <code>N/A</code></span>
                                         </div>
                                         
                                     </div>
@@ -4653,7 +4642,7 @@ parameter.vender_class_loader = false
                                             
                                         </p>
                                         <div class="param-default">
-                                            <span class="param-default-value">Default: <code></code></span>
+                                            <span class="param-default-value">Default: <code>N/A</code></span>
                                         </div>
                                         <div class="param-possible">
                                             <span class="param-possible-values">Possible Values: <code>&#39;queue&#39; or &#39;topic&#39;</code></span>
@@ -4674,7 +4663,7 @@ parameter.vender_class_loader = false
                                             
                                         </p>
                                         <div class="param-default">
-                                            <span class="param-default-value">Default: <code></code></span>
+                                            <span class="param-default-value">Default: <code>N/A</code></span>
                                         </div>
                                         
                                     </div>
@@ -4714,7 +4703,7 @@ parameter.vender_class_loader = false
                                             
                                         </p>
                                         <div class="param-default">
-                                            <span class="param-default-value">Default: <code></code></span>
+                                            <span class="param-default-value">Default: <code>N/A</code></span>
                                         </div>
                                         
                                     </div>
@@ -4754,7 +4743,7 @@ parameter.vender_class_loader = false
                                             
                                         </p>
                                         <div class="param-default">
-                                            <span class="param-default-value">Default: <code></code></span>
+                                            <span class="param-default-value">Default: <code>N/A</code></span>
                                         </div>
                                         
                                     </div>
@@ -4773,7 +4762,7 @@ parameter.vender_class_loader = false
                                             <span class="badge-required">Required</span>
                                         </p>
                                         <div class="param-default">
-                                            <span class="param-default-value">Default: <code></code></span>
+                                            <span class="param-default-value">Default: <code>N/A</code></span>
                                         </div>
                                         
                                     </div>
@@ -5173,7 +5162,7 @@ TopicConnectionFactory = "amqp://admin:admin@clientID/carbon?brokerlist='tcp://l
                                             
                                         </p>
                                         <div class="param-default">
-                                            <span class="param-default-value">Default: <code></code></span>
+                                            <span class="param-default-value">Default: <code>N/A</code></span>
                                         </div>
                                         <div class="param-possible">
                                             <span class="param-possible-values">Possible Values: <code>amqp://admin:admin@clientID/carbon?brokerlist=&#39;tcp://localhost:5675&#39;</code></span>
@@ -5194,7 +5183,7 @@ TopicConnectionFactory = "amqp://admin:admin@clientID/carbon?brokerlist='tcp://l
                                             
                                         </p>
                                         <div class="param-default">
-                                            <span class="param-default-value">Default: <code></code></span>
+                                            <span class="param-default-value">Default: <code>N/A</code></span>
                                         </div>
                                         <div class="param-possible">
                                             <span class="param-possible-values">Possible Values: <code>amqp://admin:admin@clientID/carbon?brokerlist=&#39;tcp://localhost:5675&#39;</code></span>
@@ -5252,7 +5241,7 @@ StockQuotesQueue = "StockQuotesQueue"
                                             
                                         </p>
                                         <div class="param-default">
-                                            <span class="param-default-value">Default: <code></code></span>
+                                            <span class="param-default-value">Default: <code>N/A</code></span>
                                         </div>
                                         <div class="param-possible">
                                             <span class="param-possible-values">Possible Values: <code>&lt;queue_name&gt;</code></span>
@@ -5309,7 +5298,7 @@ MyTopic = "example.MyTopic"
                                             
                                         </p>
                                         <div class="param-default">
-                                            <span class="param-default-value">Default: <code></code></span>
+                                            <span class="param-default-value">Default: <code>N/A</code></span>
                                         </div>
                                         <div class="param-possible">
                                             <span class="param-possible-values">Possible Values: <code>&lt;topic_name&gt;</code></span>
@@ -5497,7 +5486,7 @@ parameter.truststore_password = "$ref{truststore.password}"
                                             <span class="badge-required">Required</span>
                                         </p>
                                         <div class="param-default">
-                                            <span class="param-default-value">Default: <code></code></span>
+                                            <span class="param-default-value">Default: <code>N/A</code></span>
                                         </div>
                                         <div class="param-possible">
                                             <span class="param-possible-values">Possible Values: <code>org.apache.axis2.transport.rabbitmq.RabbitMQListener</code></span>
@@ -5577,7 +5566,7 @@ parameter.truststore_password = "$ref{truststore.password}"
                                             <span class="badge-required">Required</span>
                                         </p>
                                         <div class="param-default">
-                                            <span class="param-default-value">Default: <code></code></span>
+                                            <span class="param-default-value">Default: <code>N/A</code></span>
                                         </div>
                                         
                                     </div>
@@ -5596,7 +5585,7 @@ parameter.truststore_password = "$ref{truststore.password}"
                                             <span class="badge-required">Required</span>
                                         </p>
                                         <div class="param-default">
-                                            <span class="param-default-value">Default: <code></code></span>
+                                            <span class="param-default-value">Default: <code>N/A</code></span>
                                         </div>
                                         
                                     </div>
@@ -5615,7 +5604,7 @@ parameter.truststore_password = "$ref{truststore.password}"
                                             <span class="badge-required">Required</span>
                                         </p>
                                         <div class="param-default">
-                                            <span class="param-default-value">Default: <code></code></span>
+                                            <span class="param-default-value">Default: <code>N/A</code></span>
                                         </div>
                                         
                                     </div>
@@ -5634,7 +5623,7 @@ parameter.truststore_password = "$ref{truststore.password}"
                                             <span class="badge-required">Required</span>
                                         </p>
                                         <div class="param-default">
-                                            <span class="param-default-value">Default: <code></code></span>
+                                            <span class="param-default-value">Default: <code>N/A</code></span>
                                         </div>
                                         
                                     </div>
@@ -5653,7 +5642,7 @@ parameter.truststore_password = "$ref{truststore.password}"
                                             <span class="badge-required">Required</span>
                                         </p>
                                         <div class="param-default">
-                                            <span class="param-default-value">Default: <code></code></span>
+                                            <span class="param-default-value">Default: <code>N/A</code></span>
                                         </div>
                                         
                                     </div>
@@ -5672,7 +5661,7 @@ parameter.truststore_password = "$ref{truststore.password}"
                                             <span class="badge-required">Required</span>
                                         </p>
                                         <div class="param-default">
-                                            <span class="param-default-value">Default: <code></code></span>
+                                            <span class="param-default-value">Default: <code>N/A</code></span>
                                         </div>
                                         
                                     </div>
@@ -5691,7 +5680,7 @@ parameter.truststore_password = "$ref{truststore.password}"
                                             <span class="badge-required">Required</span>
                                         </p>
                                         <div class="param-default">
-                                            <span class="param-default-value">Default: <code></code></span>
+                                            <span class="param-default-value">Default: <code>N/A</code></span>
                                         </div>
                                         
                                     </div>
@@ -5710,7 +5699,7 @@ parameter.truststore_password = "$ref{truststore.password}"
                                             <span class="badge-required">Required</span>
                                         </p>
                                         <div class="param-default">
-                                            <span class="param-default-value">Default: <code></code></span>
+                                            <span class="param-default-value">Default: <code>N/A</code></span>
                                         </div>
                                         
                                     </div>
@@ -5729,7 +5718,7 @@ parameter.truststore_password = "$ref{truststore.password}"
                                             <span class="badge-required">Required</span>
                                         </p>
                                         <div class="param-default">
-                                            <span class="param-default-value">Default: <code></code></span>
+                                            <span class="param-default-value">Default: <code>N/A</code></span>
                                         </div>
                                         
                                     </div>
@@ -5748,7 +5737,7 @@ parameter.truststore_password = "$ref{truststore.password}"
                                             <span class="badge-required">Required</span>
                                         </p>
                                         <div class="param-default">
-                                            <span class="param-default-value">Default: <code></code></span>
+                                            <span class="param-default-value">Default: <code>N/A</code></span>
                                         </div>
                                         
                                     </div>
@@ -5767,7 +5756,7 @@ parameter.truststore_password = "$ref{truststore.password}"
                                             <span class="badge-required">Required</span>
                                         </p>
                                         <div class="param-default">
-                                            <span class="param-default-value">Default: <code></code></span>
+                                            <span class="param-default-value">Default: <code>N/A</code></span>
                                         </div>
                                         
                                     </div>
@@ -5883,12 +5872,12 @@ parameter.truststore_password = "$ref{truststore.password}"
                                             <span class="badge-required">Required</span>
                                         </p>
                                         <div class="param-default">
-                                            <span class="param-default-value">Default: <code>wso2carbon</code></span>
+                                            <span class="param-default-value">Default: <code>MI_HOME/repository/resources/security/wso2carbon.jks</code></span>
                                         </div>
                                         
                                     </div>
                                     <div class="param-description">
-                                        <p>The name of the keystore file that is used for securing a RabbitMQ connection. By default, the keystore file of the <a href="#primary-keystore">primary keystore</a> is enabled for this purpose.</p>
+                                        <p>The path to the keystore file that is used for securing a RabbitMQ connection. By default, the keystore file of the <a href="#primary-keystore">primary keystore</a> is enabled for this purpose.</p>
                                     </div>
                                 </div>
                             </div><div class="param">
@@ -5942,12 +5931,12 @@ parameter.truststore_password = "$ref{truststore.password}"
                                             <span class="badge-required">Required</span>
                                         </p>
                                         <div class="param-default">
-                                            <span class="param-default-value">Default: <code>wso2truststore.jks</code></span>
+                                            <span class="param-default-value">Default: <code>MI_HOME/repository/resources/security/wso2truststore.jks</code></span>
                                         </div>
                                         
                                     </div>
                                     <div class="param-description">
-                                        <p>The name of the keystore file that is used for storing the trusted digital certificates. By default, the product's <a href='#trust-store'>trust store</a> is configured for this purpose.</p>
+                                        <p>The path to the keystore file that is used for storing the trusted digital certificates. By default, the product's <a href='#trust-store'>trust store</a> is configured for this purpose.</p>
                                     </div>
                                 </div>
                             </div><div class="param">
@@ -6207,7 +6196,7 @@ parameter.connection_pool_size = 10
                                             <span class="badge-required">Required</span>
                                         </p>
                                         <div class="param-default">
-                                            <span class="param-default-value">Default: <code></code></span>
+                                            <span class="param-default-value">Default: <code>N/A</code></span>
                                         </div>
                                         
                                     </div>
@@ -6247,7 +6236,7 @@ parameter.connection_pool_size = 10
                                             <span class="badge-required">Required</span>
                                         </p>
                                         <div class="param-default">
-                                            <span class="param-default-value">Default: <code></code></span>
+                                            <span class="param-default-value">Default: <code>N/A</code></span>
                                         </div>
                                         
                                     </div>
@@ -6348,7 +6337,7 @@ parameter.connection_pool_size = 10
                                             <span class="badge-required">Required</span>
                                         </p>
                                         <div class="param-default">
-                                            <span class="param-default-value">Default: <code></code></span>
+                                            <span class="param-default-value">Default: <code>N/A</code></span>
                                         </div>
                                         
                                     </div>
@@ -6367,7 +6356,7 @@ parameter.connection_pool_size = 10
                                             <span class="badge-required">Required</span>
                                         </p>
                                         <div class="param-default">
-                                            <span class="param-default-value">Default: <code></code></span>
+                                            <span class="param-default-value">Default: <code>N/A</code></span>
                                         </div>
                                         
                                     </div>
@@ -6386,7 +6375,7 @@ parameter.connection_pool_size = 10
                                             <span class="badge-required">Required</span>
                                         </p>
                                         <div class="param-default">
-                                            <span class="param-default-value">Default: <code></code></span>
+                                            <span class="param-default-value">Default: <code>N/A</code></span>
                                         </div>
                                         
                                     </div>
@@ -6585,7 +6574,7 @@ sender.parameter.customParameter = ""
                                             <span class="badge-required">Required</span>
                                         </p>
                                         <div class="param-default">
-                                            <span class="param-default-value">Default: <code></code></span>
+                                            <span class="param-default-value">Default: <code>N/A</code></span>
                                         </div>
                                         
                                     </div>
@@ -6604,7 +6593,7 @@ sender.parameter.customParameter = ""
                                             <span class="badge-required">Required</span>
                                         </p>
                                         <div class="param-default">
-                                            <span class="param-default-value">Default: <code></code></span>
+                                            <span class="param-default-value">Default: <code>N/A</code></span>
                                         </div>
                                         <div class="param-possible">
                                             <span class="param-possible-values">Possible Values: <code>&#39;1883&#39;, or &#39;1885&#39;</code></span>
@@ -6625,7 +6614,7 @@ sender.parameter.customParameter = ""
                                             
                                         </p>
                                         <div class="param-default">
-                                            <span class="param-default-value">Default: <code></code></span>
+                                            <span class="param-default-value">Default: <code>N/A</code></span>
                                         </div>
                                         
                                     </div>
@@ -6644,7 +6633,7 @@ sender.parameter.customParameter = ""
                                             
                                         </p>
                                         <div class="param-default">
-                                            <span class="param-default-value">Default: <code></code></span>
+                                            <span class="param-default-value">Default: <code>N/A</code></span>
                                         </div>
                                         
                                     </div>
@@ -6663,7 +6652,7 @@ sender.parameter.customParameter = ""
                                             
                                         </p>
                                         <div class="param-default">
-                                            <span class="param-default-value">Default: <code></code></span>
+                                            <span class="param-default-value">Default: <code>N/A</code></span>
                                         </div>
                                         
                                     </div>
@@ -6734,12 +6723,14 @@ sender.parameter.customParameter = ""
                     <div class="mb-config-example">
 <pre><code class="toml">[transport.sap]
 
-listener.enable = true
+listener.idoc.enable = true
+listener.bapi.enable = true
 listener.idoc.class = "org.wso2.carbon.transports.sap.SAPTransportListener"
 listener.idoc.parameter.customParameter = ""
 listener.bapi.class = "org.wso2.carbon.transports.sap.SAPTransportListener"
 listener.bapi.parameter.customParameter = ""
-sender.enable = true
+sender.idoc.enable = true
+sender.bapi.enable = true
 sender.idoc.class = "org.wso2.carbon.transports.sap.SAPTransportSender"
 sender.idoc.parameter.customParameter = ""
 sender.bapi.class = "org.wso2.carbon.transports.sap.SAPTransportSender"
@@ -6759,7 +6750,7 @@ sender.bapi.parameter.customParameter = ""
                         <div class="params-wrap">
                             <div class="param">
                                 <div class="param-name">
-                                  <span class="param-name-wrap"> <code>listener.enabled</code> </span>
+                                  <span class="param-name-wrap"> <code>listener.idoc.enabled</code> </span>
                                 </div>
                                 <div class="param-info">
                                     <div>
@@ -6775,7 +6766,28 @@ sender.bapi.parameter.customParameter = ""
                                         </div>
                                     </div>
                                     <div class="param-description">
-                                        <p>The parameter for enabling SAP transport listener.</p>
+                                        <p>The parameter for enabling SAP idoc transport listener.</p>
+                                    </div>
+                                </div>
+                            </div><div class="param">
+                                <div class="param-name">
+                                  <span class="param-name-wrap"> <code>listener.bapi.enabled</code> </span>
+                                </div>
+                                <div class="param-info">
+                                    <div>
+                                        <p>
+                                            <span class="param-type string"> boolean </span>
+                                            <span class="badge-required">Required</span>
+                                        </p>
+                                        <div class="param-default">
+                                            <span class="param-default-value">Default: <code>false</code></span>
+                                        </div>
+                                        <div class="param-possible">
+                                            <span class="param-possible-values">Possible Values: <code>&quot;true&quot;, or &quot;false&quot;</code></span>
+                                        </div>
+                                    </div>
+                                    <div class="param-description">
+                                        <p>The parameter for enabling SAP bapi transport listener.</p>
                                     </div>
                                 </div>
                             </div><div class="param">
@@ -6818,7 +6830,7 @@ sender.bapi.parameter.customParameter = ""
                                 </div>
                             </div><div class="param">
                                 <div class="param-name">
-                                  <span class="param-name-wrap"> <code>sender.enabled</code> </span>
+                                  <span class="param-name-wrap"> <code>sender.idoc.enabled</code> </span>
                                 </div>
                                 <div class="param-info">
                                     <div>
@@ -6834,7 +6846,28 @@ sender.bapi.parameter.customParameter = ""
                                         </div>
                                     </div>
                                     <div class="param-description">
-                                        <p>The parameter for enabling the SAP transport sender.</p>
+                                        <p>The parameter for enabling the SAP idoc transport sender.</p>
+                                    </div>
+                                </div>
+                            </div><div class="param">
+                                <div class="param-name">
+                                  <span class="param-name-wrap"> <code>sender.bapi.enabled</code> </span>
+                                </div>
+                                <div class="param-info">
+                                    <div>
+                                        <p>
+                                            <span class="param-type string"> boolean </span>
+                                            <span class="badge-required">Required</span>
+                                        </p>
+                                        <div class="param-default">
+                                            <span class="param-default-value">Default: <code>false</code></span>
+                                        </div>
+                                        <div class="param-possible">
+                                            <span class="param-possible-values">Possible Values: <code>&quot;true&quot;, or &quot;false&quot;</code></span>
+                                        </div>
+                                    </div>
+                                    <div class="param-description">
+                                        <p>The parameter for enabling the SAP bapi transport sender.</p>
                                     </div>
                                 </div>
                             </div><div class="param">
@@ -7097,7 +7130,7 @@ sender.parameter.customParameter = ""
                                             <span class="badge-required">Required</span>
                                         </p>
                                         <div class="param-default">
-                                            <span class="param-default-value">Default: <code></code></span>
+                                            <span class="param-default-value">Default: <code>N/A</code></span>
                                         </div>
                                         <div class="param-possible">
                                             <span class="param-possible-values">Possible Values: <code>&#39;application/xml&#39;, &#39;application/json&#39;, or &#39;text/html&#39;</code></span>
@@ -7304,7 +7337,7 @@ sender.parameter.customParameter = ""
                                             
                                         </p>
                                         <div class="param-default">
-                                            <span class="param-default-value">Default: <code></code></span>
+                                            <span class="param-default-value">Default: <code>N/A</code></span>
                                         </div>
                                         
                                     </div>
@@ -7425,7 +7458,7 @@ sender.truststore_password = "$ref{truststore.password}"
                                             <span class="badge-required">Required</span>
                                         </p>
                                         <div class="param-default">
-                                            <span class="param-default-value">Default: <code>$ref{truststore.file_name}</code></span>
+                                            <span class="param-default-value">Default: <code>MI_HOME/repository/resources/security/wso2truststore.jks</code></span>
                                         </div>
                                         
                                     </div>
@@ -7444,14 +7477,12 @@ sender.truststore_password = "$ref{truststore.password}"
                                             <span class="badge-required">Required</span>
                                         </p>
                                         <div class="param-default">
-                                            <span class="param-default-value">Default: <code>$ref{truststore.password}</code></span>
+                                            <span class="param-default-value">Default: <code>wso2carbon</code></span>
                                         </div>
-                                        <div class="param-possible">
-                                            <span class="param-possible-values">Possible Values: <code>..</code></span>
-                                        </div>
+                                        
                                     </div>
                                     <div class="param-description">
-                                        <p>The....</p>
+                                        <p>The password of the keystore file that is used as the trust store.</p>
                                     </div>
                                 </div>
                             </div><div class="param">
@@ -7465,7 +7496,7 @@ sender.truststore_password = "$ref{truststore.password}"
                                             <span class="badge-required">Required</span>
                                         </p>
                                         <div class="param-default">
-                                            <span class="param-default-value">Default: <code></code></span>
+                                            <span class="param-default-value">Default: <code>N/A</code></span>
                                         </div>
                                         
                                     </div>
@@ -7716,25 +7747,6 @@ inbound.max_threads = 100
                                     </div>
                                     <div class="param-description">
                                         <p>The length of the queue that is used to hold the runnable tasks that are to be executed by the pool. This parameter is applicable only if the <a href='../../references/mediators/iterate-Mediator'>Iterate</a> and <a href='../../references/mediators/clone-Mediator'>Clone</a> mediators are used to handle a higher load.</br> You can specify a finite value as the queue length by giving any positive number. If this parameter is set to (-1) it means that the task queue length is infinite. If the queue length is finite, there can be situations where requests are rejected when the task queue is full and all the cores are occupied. If the queue length is infinite, and if some thread locking happens, the server can go out of memory. Therefore, you need to decide on an optimal value based on the actual load.</p>
-                                    </div>
-                                </div>
-                            </div><div class="param">
-                                <div class="param-name">
-                                  <span class="param-name-wrap"> <code>synapse.threads.keepalive</code> </span>
-                                </div>
-                                <div class="param-info">
-                                    <div>
-                                        <p>
-                                            <span class="param-type string"> integer </span>
-                                            
-                                        </p>
-                                        <div class="param-default">
-                                            <span class="param-default-value">Default: <code></code></span>
-                                        </div>
-                                        
-                                    </div>
-                                    <div class="param-description">
-                                        <p>The keep-alive time in milliseconds for idle threads. Once this time has elapsed for an idle thread, the thread will be destroyed. This parameter is applicable only if the <a href='../../references/mediators/iterate-Mediator'>Iterate</a> and <a href='../../references/mediators/clone-Mediator'>Clone</a> mediators are used to handle a high load.</p>
                                     </div>
                                 </div>
                             </div><div class="param">

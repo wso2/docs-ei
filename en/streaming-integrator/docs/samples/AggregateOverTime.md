@@ -4,43 +4,26 @@
 This application demonstrates how to simulate random events via Feed Simulation and calculate running aggregates such as `avg`, `min`, `max`, etc. The aggregation is executed on events within a time window. A sliding time window of 10 seconds is used in this sample. For more information on windows see [Siddhi Query Guide - Window](https://wso2.github.io/siddhi/documentation/siddhi-4.0/#window). The `group by` clause helps to perform aggregation on events grouped by a certain attribute. In this sample, the trading information per trader is aggregated and summarized, for a window of 10 seconds.
 
 !!!info "Before you begin:"
-    Save the sample Siddhi application.
-
-        ```sql
-        @App:name("AggregateOverTime")
-
-        @App:description('Simulate multiple random events and calculate aggregations over time with group by')
-
-        define stream TradesStream(trader string, quantity int);
-        @sink(type='log')
-        define stream SummarizedTradingInformation(trader string, noOfTrades long, totalTradingQuantity long, minTradingQuantity int, maxTradingQuantity int, avgTradingQuantity double);
-
-        --Find count, sum, min, max and avg of quantity per trader, during the last 10 seconds
-        @info(name='query1')
-        from TradesStream#window.time(10 sec)
-        select trader, count() as noOfTrades, sum(quantity) as totalTradingQuantity, min(quantity) as minTradingQuantity, max(quantity) as maxTradingQuantity, avg(quantity) as avgTradingQuantity
-        group by trader
-        insert into SummarizedTradingInformation;
-        ```
+    In the Streaming Integrator Tooling, save the sample Siddhi application.
 
 
-## Executing the Sample:
+## Executing the Sample
 
-To execute the sample:
+To execute the sample open the saved Siddhi application in Streaming Integrator Tooling, and start it by clicking the **Start** button (shown below) or by clicking **Run** => **Run**.
 
-1. Start the Siddhi application by clicking **Run** => **Run**.
+![Start button](../../images/amazon-s3-sink-sample/start.png)
 
-2. If the Siddhi application starts successfully, the following message appears in the console.
+If the Siddhi application starts successfully, the following message appears in the console.
 
-   `AggregateOverTime.siddhi - Started Successfully!.`
+`AggregateOverTime.siddhi - Started Successfully!.`
 
-## Testing the Sample:
+## Testing the Sample
 
-Configure random event simulation as follows:
+To test the sample Siddhi application, simulate random events for it via the Streaming Integrator Tooling as follows:
 
 1. To open the Event Simulator, click the **Event Simulator** icon.
 
-   ![Event Simulator Icon](../../images/Testing-Siddhi-Applications/Event_Simulation_Icon.png)
+    ![Event Simulator Icon](../../images/Testing-Siddhi-Applications/Event_Simulation_Icon.png)
 
 2. In the Event Simulator panel, click **Feed Simulation** -> **Create**.
 
@@ -84,3 +67,21 @@ Configure random event simulation as follows:
 Once you start the simulator, the output is logged in the console as shown in the sample below. The output reflects the aggregation for the events sent during the last 10 seconds.
 
 ![Sample Random Events](../../images/aggregate-over-time-sample/sample-random-events.png)
+
+???info "Click here to view the sample Siddhi application."
+    ```sql
+    @App:name("AggregateOverTime")
+
+    @App:description('Simulate multiple random events and calculate aggregations over time with group by')
+
+    define stream TradesStream(trader string, quantity int);
+    @sink(type='log')
+    define stream SummarizedTradingInformation(trader string, noOfTrades long, totalTradingQuantity long, minTradingQuantity int, maxTradingQuantity int, avgTradingQuantity double);
+
+    --Find count, sum, min, max and avg of quantity per trader, during the last 10 seconds
+    @info(name='query1')
+    from TradesStream#window.time(10 sec)
+    select trader, count() as noOfTrades, sum(quantity) as totalTradingQuantity, min(quantity) as minTradingQuantity, max(quantity) as maxTradingQuantity, avg(quantity) as avgTradingQuantity
+    group by trader
+    insert into SummarizedTradingInformation;
+    ```

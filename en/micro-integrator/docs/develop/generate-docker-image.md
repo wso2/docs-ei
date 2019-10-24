@@ -10,7 +10,7 @@ See the topics given below.
 
 ## Generate the Docker image
 
-1.  Open the WSO2 Integration Studio interface.
+1.  Open WSO2 Integration Studio.
 2.  Open an existing project. Right-click on **Composite Project** and
     then click **Generate Docker Image**.  
     ![Create docker](../../assets/img/create_project/open-docker_image_generation_wizard.png) 
@@ -32,7 +32,7 @@ See the topics given below.
             application.
         -   **Name of the Docker Image** : A name for the Docker image.
         -   **Docker Image Tag** : A tag for the Docker image to be used
-            for reference.
+            for reference. This is optional.
         -   **Export Destination** : Browse for the preferred location
             in your machine to export the Docker image.
 

@@ -8,14 +8,14 @@ The following sections explain how you can manage the Registry using WSO2 Integr
     Perspective -> Other -> WSO2 Registry** . In this perspective, you
     will get a **WSO2 Registry Browser** view.
 
-    ![](/assets/img/registry/119131680/119131681.png)
+    ![](../../../assets/img/registry/119131680/119131681.png)
 
-    ![](/assets/img/registry/119131680/119131700.png)
+    ![](../../../assets/img/registry/119131680/119131700.png)
 
 2.  Add a remote registry instance. On the WSO2 Registry Browser view,
     click the **Add Registry** icon.
 
-    ![](/assets/img/registry/119131680/119131792.png)  
+    ![](../../../assets/img/registry/119131680/119131792.png)  
     
     In the dialog box that appears, fill in the necessary information.
     The default information for the Registry has been automatically
@@ -23,17 +23,17 @@ The following sections explain how you can manage the Registry using WSO2 Integr
     or any other valid registry path for a collection (eg: `/_system/local/_system` etc). Elements down the given path
     will be loaded in the Registry Browser view.
 
-    ![](/assets/img/registry/119131680/119131694.png)
+    ![](../../../assets/img/registry/119131680/119131694.png)
 
     If you selected root ( `           /          ` ) as the path, you
     will get the following registry tree:
 
-    ![](/assets/img/registry/119131680/119131785.png)
+    ![](../../../assets/img/registry/119131680/119131785.png)
 
     If you selected `           /_system/local          ` as the path,
     you will get the following registry tree:
 
-    ![](/assets/img/registry/119131680/119131782.png)
+    ![](../../../assets/img/registry/119131680/119131782.png)
 
 ## Adding collections and resources
 
@@ -44,7 +44,7 @@ The following sections explain how you can manage the Registry using WSO2 Integr
     node, right-click on the root ( `            /           ` )
     collection and click **Add a new Collection** .
 
-    ![](/assets/img/registry/119131680/119131687.png)  
+    ![](../../../assets/img/registry/119131680/119131687.png)  
       
     An editor appears where you can enter a name, media type and
     description for the collection.
@@ -53,12 +53,12 @@ The following sections explain how you can manage the Registry using WSO2 Integr
     editor. A new collection with the given name will be added to the
     selected node.  
 
-    ![](/assets/img/registry/119131680/119131744.png)
+    ![](../../../assets/img/registry/119131680/119131744.png)
 
     In the **Media Type** combo box, you have the ability to create your
     own media type by selecting the **Other** option.  
 
-    ![](/assets/img/registry/119131680/119131728.png)
+    ![](../../../assets/img/registry/119131680/119131728.png)
 
 2.  Add a new resource. Select a collection, right-click on it and click **Add a new resource** . You will get the same editor as you got for the collection. You can add a resource in the following ways: 
 
@@ -67,23 +67,23 @@ The following sections explain how you can manage the Registry using WSO2 Integr
         This is the default method to add a resource. Browse to the file you want to add from the file system. Resource name and media type will be filled accordingly. You can change the default
         values if required.  
           
-        ![](/assets/img/registry/119131680/119131690.png)
+        ![](../../../assets/img/registry/119131680/119131690.png)
 
     -   Create custom content
 
         Use this method to create your own resource files from the editor. Give a name, mediatype, description and content for the file. You can edit content according to the specified media type.
 
-        ![](/assets/img/registry/119131680/119131781.png)
+        ![](../../../assets/img/registry/119131680/119131781.png)
 
     -   Import content from URL
 
         Using this method, you can import content from a URL. When you give the URL, make sure it does not contain characters like **\~** since it is considered as an invalid character for abdera. The name and media type will be filled according to the given URL. You can change the values if required.
 
-        ![](/assets/img/registry/119131680/119131721.png)
+        ![](../../../assets/img/registry/119131680/119131721.png)
 
 After adding a resource to your G-Reg project, the resource editor appears. If you close the editor and want to open it again at any point, simply select your registry resource project from the Project Explorer, right-click and click **Registry Resources Editor** .
 
-![](/assets/img/registry/119131680/119131689.png)
+![](../../../assets/img/registry/119131680/119131689.png)
 
 It is also possible to edit the information later. To edit media type or resource description, right-click on the resource and click **Information**. You can delete the collection or resource you added by right-clicking on the resource or collection and clicking **Delete**.
 
@@ -98,21 +98,21 @@ In the **Metadata** category, you can add properties, associations and dependenc
 
 ### Add metadata
 
-![](/assets/img/registry/119131680/119131704.png)  
+![](../../../assets/img/registry/119131680/119131704.png)  
 
 1.  Add a property. Right-click on the collection or resource to which you want to add a property and click **Metadata ->Add a Property**. On the editor that appears, you can add, edit, and delete properties.
 
-    ![](/assets/img/registry/119131680/119131726.png)
+    ![](../../../assets/img/registry/119131680/119131726.png)
 
     To delete a property, select the property and click **Delete Property**. You can undo the action by clicking **Undelete Property**. If not, the property will be removed when you save the editor.
 
 2.  Add a dependency. Right-click on the collection or resource to which you want to add a dependency and click **Metadata -> Add a Dependency**. On the editor that appears, add the dependencies you need.
 
-    ![](/assets/img/registry/119131680/119131787.png)
+    ![](../../../assets/img/registry/119131680/119131787.png)
 
     Note that the path should be valid registry paths. If not, an error message appears when you click **Save**.  
 
-    ![](/assets/img/registry/119131680/119131777.png)
+    ![](../../../assets/img/registry/119131680/119131777.png)
 
 3.  Add an association. Right click on the collection or resource to
         which you want to add an association and click **Metadata -> Add an Association**.
@@ -122,18 +122,18 @@ In the **Metadata** category, you can add properties, associations and dependenc
         message appears when you click **Save** . You can edit the
         values, delete associations, and undo delete as required.  
           
-    ![](/assets/img/registry/119131680/119131745.png)
+    ![](../../../assets/img/registry/119131680/119131745.png)
 
 ### Add community features
 
-![](/assets/img/registry/119131680/119131746.png)
+![](../../../assets/img/registry/119131680/119131746.png)
 
 1.  Add comment. Right click on the collection or resource to which
         you want to add a comment and click **Community ->Add Comment**. On the editor that appears, you can add, edit and
         delete comments. To delete a comment, select the comment and
         click **Delete Comment** .
 
-    ![](/assets/img/registry/119131680/119131791.png)
+    ![](../../../assets/img/registry/119131680/119131791.png)
 
     You can undo the action by clicking **Undelete Comment**. If
         not, the comment will be removed when you save the editor.
@@ -143,11 +143,11 @@ In the **Metadata** category, you can add properties, associations and dependenc
         On the editor that appears, you can add, edit and delete (or
         undelete) tags. You can give any string value as a tag.
 
-    ![](/assets/img/registry/119131680/119131732.png)
+    ![](../../../assets/img/registry/119131680/119131732.png)
 
     You can not have two tags with the same name.
 
-    ![](/assets/img/registry/119131680/119131783.png)
+    ![](../../../assets/img/registry/119131680/119131783.png)
 
 ## Linking with the editor
 
@@ -158,7 +158,7 @@ activate the **Link With Editor** option, right-click **Repository**
 and click **Link With Editor**. The same functionality is available in
 the toolbar of the **WSO2 Registry Browser** view as well.
 
-![](/assets/img/registry/119131680/119131750.png)
+![](../../../assets/img/registry/119131680/119131750.png)
 
 Now you can open several resources in seperate editors by double
 clicking on the resource. You can swap among different editors. You will
@@ -225,7 +225,7 @@ Permissions** .
 In the dialog box that appears, you will see available roles and their
 permissions. You can define the permissions and click **OK**.
 
-![](/assets/img/registry/119131680/119131752.png)
+![](../../../assets/img/registry/119131680/119131752.png)
 
 ## Refreshing the registry
 
@@ -264,15 +264,15 @@ A checked-out resource can have several states.
 
 When you check-out, it is at the **sync** state so the folder will have a **green** icon.
 
-![](/assets/img/registry/119131680/119131769.png)
+![](../../../assets/img/registry/119131680/119131769.png)
 
 If you double click a resource, edit and then save, the state will change to **Updated** and the folder icon will be **yellow** .
 
-![](/assets/img/registry/119131680/119131774.png)
+![](../../../assets/img/registry/119131680/119131774.png)
 
 If you add a new file, the state will change to **Added** and the folder will have a star icon.
 
-![](/assets/img/registry/119131680/119131717.png)
+![](../../../assets/img/registry/119131680/119131717.png)
 
 ## Updating the registry
 
@@ -281,7 +281,7 @@ have to check-in the whole folder.
 
 To check-in, right-click the folder that has been updated, which will have an icon in **yellow** , and click **WSO2 Registry -> Commit changes as user**.
 
-![](/assets/img/registry/119131680/119131800.png)
+![](../../../assets/img/registry/119131680/119131800.png)
 
 If you have several registry instances with different users, you can choose as to what user you want to commit the folder. Give the correct credentials and you will get a message confirming that the commit was successful.
 
@@ -292,7 +292,7 @@ After committing the changes, the folder will be changed to the **Sync** stage a
 Go back to the **WSO2 Registry** perspective. Resources have different versions. If there are versions available for the resource, it will be
 displayed in the right-click menu of the resource. The five latest versions are displayed.
 
-![](/assets/img/registry/119131680/119131809.png)
+![](../../../assets/img/registry/119131680/119131809.png)
 
 You can either view or restore a version. When you click **View** , the content of the version is displayed. The **Restore** option will reset
 the selected version to the previous version.

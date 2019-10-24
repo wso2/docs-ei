@@ -56,7 +56,7 @@ sync a registry.
     Alternatively, you can create a new Registry Resource project.
 5.  Click **Finish** .  
 
-## Check-out from registry
+## Check-out from Registry
 
 1.  Click **Check-out from registry** and click **Next**.
 2.  Specify the path and artifact name.
@@ -67,7 +67,7 @@ sync a registry.
     Alternatively, you can create a new Registry Resource project.
 5.  Click **Finish** .
 
-## Editing a registry resource
+## Editing a Registry Resource
 
 You may need to change the details you entered for a registry resource, for example, the registry path. You can edit such information using the Registry Resource Editor. To open the Registry Resource Editor, right-click on the Registry Resources project and click **Registry Resource Editor**.
 
