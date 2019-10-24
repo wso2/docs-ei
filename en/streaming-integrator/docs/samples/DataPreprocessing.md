@@ -7,7 +7,7 @@ This example demonstrates how to receive events via the TCP transport and carry 
 For more information about Siddhi extensions, see [Siddhi Extensions](https://wso2.github.io/siddhi/extensions/).
 
 !!!info "Before you begin:"
-    Save the sample Siddhi application.
+    Save the sample Siddhi application in Streaming Integrator Tooling.
 
 ## Executing the Sample
 
@@ -15,7 +15,7 @@ To execute the sample open the saved Siddhi application in Streaming Integrator 
 
 ![Start button](../../images/amazon-s3-sink-sample/start.png)
 
-If the Siddhi application starts successfully, the following message appears in the console.
+If the Siddhi application starts successfully, the following messages appear in the console.
 
 * `Tcp Server started in 0.0.0.0:9892`
 

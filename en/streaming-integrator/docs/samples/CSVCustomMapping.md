@@ -8,7 +8,7 @@ This application demonstrates how to configure WSO2 Streaming Integrator Tooling
     1. Edit the sample Siddhi application as follows:<br/>
         - In the source configuration, update the value for the `dir.uri` parameter by replacing `{WSO2SIHome}` with the absolute path of your WSO2 SI Tooling directory.<br/>
         - In the sink configuration, update the value for the `file.uri` parameter by replacing `{WSO2SIHome}` with the absolute path of your WSO2 SI Tooling directory. If required, you can provide a different path to publish the output to a location of your choice.<br/>
-    2. Save the Siddhi application.
+    2. Save the sample Siddhi application in Streaming Integrator Tooling.
 
 
 ## Executing and testing the Sample
