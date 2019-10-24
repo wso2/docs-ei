@@ -6,23 +6,6 @@ This application demonstrates how to simulate random events via Feed Simulation 
 !!!info "Before you begin:"
     In the Streaming Integrator Tooling, save the sample Siddhi application.
 
-        ```sql
-        @App:name("AggregateOverTime")
-
-        @App:description('Simulate multiple random events and calculate aggregations over time with group by')
-
-        define stream TradesStream(trader string, quantity int);
-        @sink(type='log')
-        define stream SummarizedTradingInformation(trader string, noOfTrades long, totalTradingQuantity long, minTradingQuantity int, maxTradingQuantity int, avgTradingQuantity double);
-
-        --Find count, sum, min, max and avg of quantity per trader, during the last 10 seconds
-        @info(name='query1')
-        from TradesStream#window.time(10 sec)
-        select trader, count() as noOfTrades, sum(quantity) as totalTradingQuantity, min(quantity) as minTradingQuantity, max(quantity) as maxTradingQuantity, avg(quantity) as avgTradingQuantity
-        group by trader
-        insert into SummarizedTradingInformation;
-        ```
-
 
 ## Executing the Sample
 
@@ -84,3 +67,21 @@ To test the sample Siddhi application, simulate random events for it via the Str
 Once you start the simulator, the output is logged in the console as shown in the sample below. The output reflects the aggregation for the events sent during the last 10 seconds.
 
 ![Sample Random Events](../../images/aggregate-over-time-sample/sample-random-events.png)
+
+???info "Click here to view the sample Siddhi application."
+    ```sql
+    @App:name("AggregateOverTime")
+
+    @App:description('Simulate multiple random events and calculate aggregations over time with group by')
+
+    define stream TradesStream(trader string, quantity int);
+    @sink(type='log')
+    define stream SummarizedTradingInformation(trader string, noOfTrades long, totalTradingQuantity long, minTradingQuantity int, maxTradingQuantity int, avgTradingQuantity double);
+
+    --Find count, sum, min, max and avg of quantity per trader, during the last 10 seconds
+    @info(name='query1')
+    from TradesStream#window.time(10 sec)
+    select trader, count() as noOfTrades, sum(quantity) as totalTradingQuantity, min(quantity) as minTradingQuantity, max(quantity) as maxTradingQuantity, avg(quantity) as avgTradingQuantity
+    group by trader
+    insert into SummarizedTradingInformation;
+    ```

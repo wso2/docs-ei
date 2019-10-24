@@ -12,29 +12,6 @@ This application demonstrates how to send a single event via Single Simulation, 
         - `to` -> `template-manager@wso2.com` (This is the receiver's address.)<br/>
         - `subject` -> `Alert for large value transaction: cardNo:{{creditCardNo}}` (This is the subject of the email.)<br/>
         Once you update the values for the above parameters, save the sample Siddhib application.<br/>
-        ```sql
-        @App:name("AlertsAndThresholds")
-        @App:description('Simulate a single event and receive alerts as e-mail when a predefined threshold value is exceeded')
-        define stream TransactionStream(creditCardNo string, country string, item string, quantity int, price double);
-        @sink(type='email',
-              username ='business.rules.manager',
-              address ='business.rules.manager@wso2.com',
-              password= 'business-rules',
-              subject='Alert for large value transaction: cardNo:{{creditCardNo}}',
-              to='receive.alert.account1@gmail.com, receive.alert.account2@gmail.com',
-              port = '465',
-              host = 'smtp.gmail.com',
-              ssl.enable = 'true',
-              auth = 'true',
-              @map(type='text'))
-        define stream AlertStream(creditCardNo string, country string, item string, quantity int, price double);
-        --Filter events when quantity * price > 5000 condition is satisfied
-        @info(name='query1')
-        from TransactionStream[quantity * price  > 5000]
-        select *
-        insert into AlertStream;
-        ```
-
 
 
 ## Executing the Sample
@@ -100,3 +77,30 @@ item:"mobile",
 quantity:100,
 price:5000
 ```
+
+???info "Click here to view the sample Siddhi application."
+    ```sql
+    @App:name("AlertsAndThresholds")
+    @App:description('Simulate a single event and receive alerts as e-mail when a predefined threshold value is exceeded')
+
+    define stream TransactionStream(creditCardNo string, country string, item string, quantity int, price double);
+
+    @sink(type='email',
+          username ='business.rules.manager',
+          address ='business.rules.manager@wso2.com',
+          password= 'business-rules',
+          subject='Alert for large value transaction: cardNo:{{creditCardNo}}',
+          to='receive.alert.account1@gmail.com, receive.alert.account2@gmail.com',
+          port = '465',
+          host = 'smtp.gmail.com',
+          ssl.enable = 'true',
+          auth = 'true',
+          @map(type='text'))
+    define stream AlertStream(creditCardNo string, country string, item string, quantity int, price double);
+
+    --Filter events when quantity * price > 5000 condition is satisfied
+    @info(name='query1')
+    from TransactionStream[quantity * price  > 5000]
+    select *
+    insert into AlertStream;
+    ```

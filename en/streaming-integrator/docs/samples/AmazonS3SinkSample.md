@@ -10,30 +10,6 @@ extension](https://siddhi-io.github.io/siddhi-io-s3/). In this sample the events
     - Create an AWS account and set the credentials following the instructions in the [AWS Developer Guide](https://docs.aws.amazon.com/sdk-for-java/v1/developer-guide/credentials.html).<br/>
     - Save the sample Siddhi application in Streaming Integrator Tooling.<br/>
 
-        ```sql
-        @App:name("AmazonS3SinkSample")
-        @App:description("Publish events to Amazon AWS S3")
-
-
-        define window StockQuoteWindow(symbol string, price double, quantity int) lengthBatch(3) output all events;
-
-        define stream StockQuoteStream(symbol string, price double, quantity int);
-
-        @sink(type='s3', bucket.name='<BUCKET_NAME>', object.path='stocks',
-              credential.provider='com.amazonaws.auth.profile.ProfileCredentialsProvider', node.id='zeus',
-            @map(type='json', enclosing.element='$.stocks',
-                @payload("""{"symbol": "{{symbol}}", "price": "{{price}}", "quantity": "{{quantity}}"}""")))
-        define stream StorageOutputStream (symbol string, price double, quantity int);
-
-        from StockQuoteStream
-        insert into StockQuoteWindow;
-
-        from StockQuoteWindow
-        select *
-        insert into StorageOutputStream;
-        ```
-
-
 
 ## Executing the Sample:
 
@@ -99,3 +75,26 @@ To test the sample Siddhi application, simulate random events for it via the Str
 
 Once the events are sent, check the S3 bucket. Objects are created with 3 events in each.
 
+???info "Click here to view the sample Siddhi application."
+    ```sql
+    @App:name("AmazonS3SinkSample")
+    @App:description("Publish events to Amazon AWS S3")
+
+
+    define window StockQuoteWindow(symbol string, price double, quantity int) lengthBatch(3) output all events;
+
+    define stream StockQuoteStream(symbol string, price double, quantity int);
+
+    @sink(type='s3', bucket.name='<BUCKET_NAME>', object.path='stocks',
+          credential.provider='com.amazonaws.auth.profile.ProfileCredentialsProvider', node.id='zeus',
+        @map(type='json', enclosing.element='$.stocks',
+            @payload("""{"symbol": "{{symbol}}", "price": "{{price}}", "quantity": "{{quantity}}"}""")))
+    define stream StorageOutputStream (symbol string, price double, quantity int);
+
+    from StockQuoteStream
+    insert into StockQuoteWindow;
+
+    from StockQuoteWindow
+    select *
+    insert into StorageOutputStream;
+    ```

@@ -10,21 +10,6 @@ This sample demonstrates how to perform unsupervised streaming learning on a set
     3. Copy the `<SI_TOOLING_HOME>/samples/artifacts/ClusTreeSample/clusTreeFileTest.csv` file and place it in the `<SI_TOOLING_HOME>/wso2/server/deployment/csv-files` directory.<br/>
     4. Save the sample Siddhi application.<br/>
 
-        ```sql
-        @App:name("ClusTreeTestApp")
-
-
-        define stream InputStream (x double, y double);
-
-        @sink(type='log')
-        define stream logStream (closestCentroidCoordinate1 double,closestCentroidCoordinate2 double,x double, y double);
-
-        @info(name = 'query1')
-        from InputStream#streamingml:clusTree(2, 10, 20, 5, 50, x, y)
-        select closestCentroidCoordinate1, closestCentroidCoordinate2, x, y
-        insert into logStream;
-        ```
-
 
 ## Executing the Sample
 
@@ -47,4 +32,21 @@ You can publish data event to the file, through event simulator<br/>
 
 ## Viewing the Results:
 After clicking the play button see the output on the console, that are produced according to the simulation from csv file.
+
+???info "Click here to view the sample Siddhi application."
+
+    ```sql
+    @App:name("ClusTreeTestApp")
+
+
+    define stream InputStream (x double, y double);
+
+    @sink(type='log')
+    define stream logStream (closestCentroidCoordinate1 double,closestCentroidCoordinate2 double,x double, y double);
+
+    @info(name = 'query1')
+    from InputStream#streamingml:clusTree(2, 10, 20, 5, 50, x, y)
+    select closestCentroidCoordinate1, closestCentroidCoordinate2, x, y
+    insert into logStream;
+    ```
 

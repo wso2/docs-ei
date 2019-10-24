@@ -31,32 +31,6 @@ By changing the database type, you can also try out this example for the followi
     7. In the sample Siddhi application, update the `username` and `password` parameters in the source configuration by adding the username and password you use to log in to MySQL as the values. Then save the sample Siddhi application in Streaming Integrator Tooling.
 
 
-        ```sql
-        @App:name("CDCWithPollingMode")
-        @App:description("Capture MySQL Inserts and Updates using cdc source polling mode.")
-
-
-        @source(type = 'cdc',
-        	url = 'jdbc:mysql://localhost:3306/production?useSSL=false',
-        	mode = 'polling',
-        	jdbc.driver.name = 'com.mysql.jdbc.Driver',
-        	polling.column = 'last_update',
-        	polling.interval = '1',
-        	username = '',
-        	password = '',
-        	table.name = 'SweetProductionTable',
-        	@map(type = 'keyvalue' ))
-        define stream insertSweetProductionStream (name string, amount double);
-
-        @sink(type = 'log')
-        define stream logStream (name string, amount double);
-
-        @info(name = 'query')
-        from insertSweetProductionStream
-        select name, amount
-        insert into logStream;
-        ```
-
 ## Executing the Sample
 
 To execute the sample open the saved Siddhi application in Streaming Integrator Tooling, and start it by clicking the **Start** button (shown below) or by clicking **Run** => **Run**.
@@ -76,6 +50,8 @@ To test the sample Siddhi application, insert a record to the `SweetProductionTa
 
 `insert into SweetProductionTable(name,amount) values('chocolate',100.0);`
 
+## Viewing the results
+
 The insert operation is logged in the Streaming Integrator console as shown below.
 
 ![Polling Log](../../images/cdc-with-polling-mode-sample/cdc-with-polling-mode.png)
@@ -87,4 +63,32 @@ The insert operation is logged in the Streaming Integrator console as shown belo
     For updates, the previous values of the row are not returned with the event. Use listening mode to obtain such details.
 
     The polling mode can also be used with Oracle, MS-SQL server, Postgres, H2.
+
+???info "Click here to view the sample Siddhi application."
+
+    ```sql
+    @App:name("CDCWithPollingMode")
+    @App:description("Capture MySQL Inserts and Updates using cdc source polling mode.")
+
+
+    @source(type = 'cdc',
+        url = 'jdbc:mysql://localhost:3306/production?useSSL=false',
+        mode = 'polling',
+        jdbc.driver.name = 'com.mysql.jdbc.Driver',
+        polling.column = 'last_update',
+        polling.interval = '1',
+        username = '',
+        password = '',
+        table.name = 'SweetProductionTable',
+        @map(type = 'keyvalue' ))
+    define stream insertSweetProductionStream (name string, amount double);
+
+    @sink(type = 'log')
+    define stream logStream (name string, amount double);
+
+    @info(name = 'query')
+    from insertSweetProductionStream
+    select name, amount
+    insert into logStream;
+        ```
 
