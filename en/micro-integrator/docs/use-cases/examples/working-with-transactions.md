@@ -11,10 +11,10 @@ integrity such that any partial updates are rolled back automatically.
 Transactions have many different forms, such as financial transactions,
 database transactions etc.
 
-### Distributed transactions
+## Distributed transactions
 
 A **distributed transaction** is a transaction that updates data on two
-or more networked computer systems, such as two databases or a database
+or more networked computer systems, such as two databases, or a database
 and a message queue such as JMS. Implementing robust distributed
 applications is difficult because these applications are subject to
 multiple failures, including failure of the client, the server, and the
@@ -28,8 +28,7 @@ particular transaction.
 For an example that demonstrates how the [transaction
 mediator](https://ei.docs.wso2.com/en/latest/micro-integrator/references/mediators/transaction-Mediator/) can
 be used to manage distributed transactions , see [Transaction Mediator
-Example](https://docs.wso2.com/display/EI650/Transaction+Mediator+Example)
-.
+Example](https://docs.wso2.com/display/EI650/Transaction+Mediator+Example).
 
 ### Java Message Service (JMS) transactions
 
@@ -46,11 +45,11 @@ transactions. You can use local transactions to group messages
 received in a JMS queue. Local transactions are not supported for
 messages sent to a JMS queue.
 
-#### JMS consumer transactions
+## JMS consumer transactions
 
 Following sections describe the JMS consumer transactions.
 
-##### JMS local transactions
+### JMS local transactions
 
 A **local transaction** represents a unit of work on a single connection
 to a data source managed by a resource manager. In JMS, you can use the
@@ -63,7 +62,7 @@ Let's explore a sample scenario that demonstrates how to handle a
 transaction using JMS in a situation where the back-end service is
 unreachable.
 
-###### Sample scenario
+#### Sample scenario
 
 A message is read from a JMS queue and is processed by a back-end
 service. In the successful scenario, the transaction will be committed
@@ -75,7 +74,7 @@ The sample scenario can be depicted as follows:
 
 ![](../../assets/img/jms_transaction.png)
 
-###### Prerequisites
+#### Prerequisites
 
 -   Windows, Linux or Solaris operating systems with WSO2 MI
     installed. For instructions on downloading and installing WSO2 MI,
@@ -84,7 +83,7 @@ The sample scenario can be depicted as follows:
     see [Configure with ActiveMQ](https://ei.docs.wso2.com/en/latest/micro-integrator/setup/brokers/configure-with-ActiveMQ/)
     .
 
-###### Configuring the sample scenario
+#### Configuring the sample scenario
 
 1.  Configure the JMS local transaction by defining the following
     parameter in the
@@ -92,30 +91,29 @@ The sample scenario can be depicted as follows:
     make it transacted, we set the session_transaction parameter to true .
     
     ```
-        [[transport.jms.listener]]
-        name = "myTopicConnectionFactory"
-        parameter.initial_naming_factory = "org.apache.activemq.jndi.ActiveMQInitialContextFactory"
-        parameter.provider_url = "tcp://localhost:61616"
-        parameter.connection_factory_name = "TopicConnectionFactory"
-        parameter.connection_factory_type = "topic"
-        parameter.session_transaction = true
-        
-        [[transport.jms.listener]]
-        name = "myQueueConnectionFactory"
-        parameter.initial_naming_factory = "org.apache.activemq.jndi.ActiveMQInitialContextFactory"
-        parameter.provider_url = "tcp://localhost:61616"
-        parameter.connection_factory_name = "QueueConnectionFactory"
-        parameter.connection_factory_type = "queue" # [queue, topic]
-        parameter.session_transaction = true
-        
-        [[transport.jms.listener]]
-        name = "default"
-        parameter.initial_naming_factory = "org.apache.activemq.jndi.ActiveMQInitialContextFactory"
-        parameter.provider_url = "tcp://localhost:61616"
-        parameter.connection_factory_name = "QueueConnectionFactory"
-        parameter.connection_factory_type = "queue" # [queue, topic]
-        parameter.session_transaction = true
+    [[transport.jms.listener]]
+    name = "myTopicConnectionFactory"
+    parameter.initial_naming_factory = "org.apache.activemq.jndi.ActiveMQInitialContextFactory"
+    parameter.provider_url = "tcp://localhost:61616"
+    parameter.connection_factory_name = "TopicConnectionFactory"
+    parameter.connection_factory_type = "topic"
+    parameter.session_transaction = true
 
+    [[transport.jms.listener]]
+    name = "myQueueConnectionFactory"
+    parameter.initial_naming_factory = "org.apache.activemq.jndi.ActiveMQInitialContextFactory"
+    parameter.provider_url = "tcp://localhost:61616"
+    parameter.connection_factory_name = "QueueConnectionFactory"
+    parameter.connection_factory_type = "queue" # [queue, topic]
+    parameter.session_transaction = true
+
+    [[transport.jms.listener]]
+    name = "default"
+    parameter.initial_naming_factory = "org.apache.activemq.jndi.ActiveMQInitialContextFactory"
+    parameter.provider_url = "tcp://localhost:61616"
+    parameter.connection_factory_name = "QueueConnectionFactory"
+    parameter.connection_factory_type = "queue" # [queue, topic]
+    parameter.session_transaction = true
     ```
 
 2.  Copy and paste the following configuration into the Synapse
@@ -123,47 +121,47 @@ The sample scenario can be depicted as follows:
     `           MI_HOME>/repository/deployment/server/synapse-configs/<node>/synapse.xml          `
     .
 
-    ```
-        <definitions xmlns="http://ws.apache.org/ns/synapse">
-           <proxy name="StockQuoteProxy" transports="jms" startOnLoad="true">
-              <target>
-                 <inSequence>
-                    <property name="OUT_ONLY" value="true"/>
-                    <callout serviceURL="http://localhost:9000/services/SimpleStockQuoteService">
-                       <source type="envelope"/>
-                       <target key="placeOrder"/>
-                    </callout>
-                    <log level="custom">
-                       <property name="Transaction Action" value="Committed"/>
-                    </log>
-                 </inSequence>
-                 <faultSequence>
-                    <property name="SET_ROLLBACK_ONLY" value="true" scope="axis2"/>
-                    <log level="custom">
-                       <property name="Transaction Action" value="Rollbacked"/>
-                    </log>
-                 </faultSequence>
-              </target>
-              <parameter name="transport.jms.ContentType">
-                 <rules>
-                    <jmsProperty>contentType</jmsProperty>
-                    <default>application/xml</default>
-                 </rules>
-              </parameter>
-           </proxy>
-           <sequence name="fault">
-              <log level="full">
-                 <property name="MESSAGE" value="Executing default &#34;fault&#34; sequence"/>
-                 <property name="ERROR_CODE" expression="get-property('ERROR_CODE')"/>
-                 <property name="ERROR_MESSAGE" expression="get-property('ERROR_MESSAGE')"/>
-              </log>
-              <drop/>
-           </sequence>
-           <sequence name="main">
-              <log/>
-              <drop/>
-           </sequence>
-        </definitions>
+    ```xml
+    <definitions xmlns="http://ws.apache.org/ns/synapse">
+       <proxy name="StockQuoteProxy" transports="jms" startOnLoad="true">
+          <target>
+             <inSequence>
+                <property name="OUT_ONLY" value="true"/>
+                <callout serviceURL="http://localhost:9000/services/SimpleStockQuoteService">
+                   <source type="envelope"/>
+                   <target key="placeOrder"/>
+                </callout>
+                <log level="custom">
+                   <property name="Transaction Action" value="Committed"/>
+                </log>
+             </inSequence>
+             <faultSequence>
+                <property name="SET_ROLLBACK_ONLY" value="true" scope="axis2"/>
+                <log level="custom">
+                   <property name="Transaction Action" value="Rollbacked"/>
+                </log>
+             </faultSequence>
+          </target>
+          <parameter name="transport.jms.ContentType">
+             <rules>
+                <jmsProperty>contentType</jmsProperty>
+                <default>application/xml</default>
+             </rules>
+          </parameter>
+       </proxy>
+       <sequence name="fault">
+          <log level="full">
+             <property name="MESSAGE" value="Executing default &#34;fault&#34; sequence"/>
+             <property name="ERROR_CODE" expression="get-property('ERROR_CODE')"/>
+             <property name="ERROR_MESSAGE" expression="get-property('ERROR_MESSAGE')"/>
+          </log>
+          <drop/>
+       </sequence>
+       <sequence name="main">
+          <log/>
+          <drop/>
+       </sequence>
+    </definitions>
     ```
 
     According to the above configuration, a message will be read from
@@ -175,8 +173,8 @@ The sample scenario can be depicted as follows:
     **true** in the fault handler, in order to roll back the transaction
     when a failure occurs.
 
-    ```
-            <property name="SET_ROLLBACK_ONLY" value="true" scope="axis2"/>
+    ```xml
+    <property name="SET_ROLLBACK_ONLY" value="true" scope="axis2"/>
     ```
 
     !!! Tip
@@ -184,7 +182,9 @@ The sample scenario can be depicted as follows:
         scope of the `           SET_ROLLBACK_ONLY          ` property to
         `           default          ` as follows: 
         
-    ```<property name="SET_ROLLBACK_ONLY" scope="default" type="STRING" value="true"/>```
+    ```xml
+    <property name="SET_ROLLBACK_ONLY" scope="default" type="STRING" value="true"/>
+    ```
     
 3.  Deploy the back-end service
     `          SimpleStockQuoteService         ` . 
@@ -203,12 +203,12 @@ The sample scenario can be depicted as follows:
         cannot you use it with a http/https endpoint, but you can use it in
         asynchronous use cases, for example with another JMS as endpoint.
     
-###### Executing the sample scenario
+#### Executing the sample scenario
 
    To execute the sample scenario we need to trigger a sample message to the JMS Server.
    Add a message in `StockQuoteProxy` queue with an XML payload using the [ActiveMQ Web Console](https://activemq.apache.org/web-console.html).
      
-###### Testing the sample scenario
+#### Testing the sample scenario
 
 You can test the sample scenario as follows.
 
@@ -223,7 +223,7 @@ Stop the SimpleStockQuoteService and add a message in StockQuoteProxy queue once
 simulate the failure scenario. In this scenario, the MI log will
 display an INFO message indicating that the transaction is rolled back.
 
-##### JMS distributed transactions
+### JMS distributed transactions
 
 WSO2 MI also supports distributed JMS transactions. You can use the JMS
 transport with more than one distributed resource, for example, two
@@ -241,13 +241,13 @@ enabled transaction manager in the Java 2 Platform, Enterprise Edition
 !!! Info
     You will need to check if your message broker supports [XA transactions](https://docs.oracle.com/cd/E19509-01/820-5892/ref_xatrans/index.html) prior to implementing distributed JMS transactions.
 
-###### XA two-phase commit process
+#### XA two-phase commit process
 
 XA is a two-phase commit specification that is used in distributed
 transaction processing. Let's look at a sample scenario for JMS
 distributed transactions.
 
-###### Sample Scenario
+##### Sample Scenario
 
 MI listens to the message queue and sends that message to multiple
 queues. If something goes wrong in sending the message to one of those
@@ -255,7 +255,7 @@ queues, the original message should be rolled back to the listening
 queue and none of the other queues should receive the message. Thus, the
 entire transaction should be rolled back.
 
-###### Prerequisites
+##### Prerequisites
 
 -   Windows, Linux or Solaris operating systems with WSO2 MI
     installed. For instructions on downloading and installing WSO2 MI,
@@ -266,7 +266,7 @@ entire transaction should be rolled back.
     ActiveMQ](https://ei.docs.wso2.com/en/latest/micro-integrator/setup/brokers/configure-with-ActiveMQ/)
     .
 
-###### Configuring the sample scenario
+##### Configuring the sample scenario
 
 1.  Create the `             JMSListenerProxy            ` proxy service
     in WSO2 MI with the following configuration:
@@ -374,7 +374,7 @@ transactions.
 The below is a sample scenario that demonstrates how to handle a
 publisher transaction using JMS.
 
-###### Sample scenario
+##### Sample scenario
 
 In this scenario, the client publishes JMS messages to the WSO2 MI. Then, WSO2 MI publishes those messages to the JMS
 queue, which acts as the JMS endpoint. The sample scenario can be
@@ -382,7 +382,7 @@ depicted as follows.
 
 ![](attachments/119131477/119131480.png)
 
-###### Prerequisites
+##### Prerequisites
 
 -   Install WSO2 MI. For instructions , see [Installation
     Guide](https://ei.docs.wso2.com/en/latest/micro-integrator/setup/installation/install_in_vm/) .
@@ -391,7 +391,7 @@ depicted as follows.
         ActiveMQ](https://ei.docs.wso2.com/en/latest/micro-integrator/setup/brokers/configure-with-ActiveMQ/)
     .
 
-###### Configuring the sample scenario
+##### Configuring the sample scenario
 
 1.  Configure the JMS sender for the WSO2 MI by adding the following configurations in deployment.toml file
     available in
@@ -482,12 +482,12 @@ depicted as follows.
             </proxy>
     ```
 
-###### Executing the sample scenario
+##### Executing the sample scenario
 
 Use a JMS client such as [Apache JMeter](https://jmeter.apache.org/) to
 execute this sample scenario.
 
-###### Testing the sample scenario
+##### Testing the sample scenario
 
 When a message is successfully published, it returns an HTTP 200
 response to the client (successful scenario). In a case where it fails
