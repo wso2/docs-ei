@@ -8,7 +8,7 @@ This validation is done using the following basic auth handler. When a REST API 
 
 ```
 <handlers>
-    <handler class="org.wso2.carbon.micro.integrator.security.handler.RESTBasicAuthHandler"/>
+    <handler class="org.wso2.micro.integrator.security.handler.RESTBasicAuthHandler"/>
 </handlers>
 ```
 
@@ -45,7 +45,7 @@ See the REST API given below for an example of how the default basic auth handle
           <faultSequence/>
        </resource>
        <handlers>
-        <handler class="org.wso2.carbon.micro.integrator.security.handler.RESTBasicAuthHandler"/>
+        <handler class="org.wso2.micro.integrator.security.handler.RESTBasicAuthHandler"/>
        </handlers>
 </api>
 ```
