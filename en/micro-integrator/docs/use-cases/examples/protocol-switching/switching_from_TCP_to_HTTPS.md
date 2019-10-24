@@ -31,10 +31,10 @@ Following are the integration artifacts (proxy service) that we can used to impl
 
 Create the artifacts:
 
-1. Set up WSO2 Integration Studio.
-2. Create an ESB Config project
-3. Create the integration artifacts shown above.
-4. Deploy the artifacts in your Micro Integrator.
+1. [Set up WSO2 Integration Studio](../../../../develop/installing-WSO2-Integration-Studio).
+2. [Create an ESB Solution project](../../../../develop/creating-projects/#esb-config-project).
+3. Create the [proxy service](../../../../develop/creating-artifacts/creating-a-proxy-service) with the configurations given above.
+4. [Deploy the artifacts](../../../../develop/deploy-and-run) in your Micro Integrator.
 
 Set up the back-end service.
 
@@ -42,9 +42,10 @@ Set up the back-end service.
 https://github.com/wso2-docs/WSO2_EI/blob/master/Back-End-Service/stockquote_service.jar)
 
 * Run the mock service using the following command
-```shell script
+```
 $ java -jar stockquote_service.jar
 ```
+
 [Enable the TCP transport](../../../setup/transport_configurations/configuring-transports/#configuring-the-tcp-transport) and start the Micro-Integrator.
 
 Send the following message via TCP to the TCP listener port.
@@ -70,6 +71,7 @@ Send the following message via TCP to the TCP listener port.
 </soapenv:Envelope>
 ``` 
 In linux, we can save the above request in a <strong>request.xml</strong> file and use netcat to send the TCP request. 
-````shell script
+```
 netcat localhost 6060 < request.xml
-````
+```
+
