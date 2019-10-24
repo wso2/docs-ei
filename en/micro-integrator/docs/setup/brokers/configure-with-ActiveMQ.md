@@ -34,7 +34,7 @@ Follow the instructions below to set up and configure.
         ```toml
         [[transport.jms.listener]]
         name = "myTopicListener"
-        parameter.initial_naming_factory = "org.apache.activemq.artemis.jndi.ActiveMQInitialContextFactory"
+        parameter.initial_naming_factory = "org.apache.activemq.jndi.ActiveMQInitialContextFactory"
         parameter.provider_url = "tcp://localhost:61616"
         parameter.connection_factory_name = "TopicConnectionFactory"
         parameter.connection_factory_type = "topic"
@@ -43,7 +43,7 @@ Follow the instructions below to set up and configure.
         ```toml
         [[transport.jms.listener]]
         name = "myQueueListener"
-        parameter.initial_naming_factory = "org.apache.activemq.artemis.jndi.ActiveMQInitialContextFactory"
+        parameter.initial_naming_factory = "org.apache.activemq.jndi.ActiveMQInitialContextFactory"
         parameter.provider_url = "tcp://localhost:61616"
         parameter.connection_factory_name = "QueueConnectionFactory"
         parameter.connection_factory_type = "queue"
@@ -54,7 +54,7 @@ Follow the instructions below to set up and configure.
         ```toml
         [[transport.jms.sender]]
         name = "myTopicSender"
-        parameter.initial_naming_factory = "org.apache.activemq.artemis.jndi.ActiveMQInitialContextFactory"
+        parameter.initial_naming_factory = "org.apache.activemq.jndi.ActiveMQInitialContextFactory"
         parameter.provider_url = "tcp://localhost:61616"
         parameter.connection_factory_name = "TopicConnectionFactory"
         parameter.connection_factory_type = "topic"
@@ -63,7 +63,7 @@ Follow the instructions below to set up and configure.
         ```toml
         [[transport.jms.sender]]
         name = "myQueueSender"
-        parameter.initial_naming_factory = "org.apache.activemq.artemis.jndi.ActiveMQInitialContextFactory"
+        parameter.initial_naming_factory = "org.apache.activemq.jndi.ActiveMQInitialContextFactory"
         parameter.provider_url = "tcp://localhost:61616"
         parameter.connection_factory_name = "QueueConnectionFactory"
         parameter.connection_factory_type = "queue"
