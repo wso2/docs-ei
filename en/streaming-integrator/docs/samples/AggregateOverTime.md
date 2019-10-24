@@ -40,7 +40,7 @@ To test the sample Siddhi application, simulate random events for it via the Str
 
 1. To open the Event Simulator, click the **Event Simulator** icon.
 
-   ![Event Simulator Icon](../../images/Testing-Siddhi-Applications/Event_Simulation_Icon.png)
+    ![Event Simulator Icon](../../images/Testing-Siddhi-Applications/Event_Simulation_Icon.png)
 
 2. In the Event Simulator panel, click **Feed Simulation** -> **Create**.
 
