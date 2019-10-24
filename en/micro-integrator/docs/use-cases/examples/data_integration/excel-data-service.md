@@ -24,8 +24,8 @@ Given below is the data service configuration you need to build. See the instruc
     ```xml
     <data name="Excel" transports="http https local">
        <config enableOData="false" id="Excel">
-          <property name="driverClassName">org.wso2.carbon.dataservices.sql.driver.TDriver</property>
-          <property name="url">jdbc:wso2:excel:filePath=path/Products.xls</property>
+          <property name="driverClassName">org.wso2.micro.integrator.dataservices.sql.driver.TDriver</property>
+          <property name="url">jdbc:wso2:excel:filePath=/path/to/excel/Products.xls</property>
        </config>
        <query id="GetProductbyID" useConfig="Excel">
           <sql>select ID, Model, Classification from Sheet1 where ID=:ID</sql>
@@ -74,7 +74,7 @@ Given below is the data service configuration you need to build. See the instruc
     ```xml
     <data name="Excel2" transports="http https local">
        <config enableOData="false" id="Excel">
-          <property name="excel_datasource">path/Products.xls</property>
+          <property name="excel_datasource">/path/to/excel/Products.xls</property>
        </config>
        <query id="GetProducts" useConfig="Excel">
           <excel>
@@ -116,7 +116,7 @@ command as shown below.
     Run the following curl command to get the product details:
 
     ```bash
-    curl -X GET http://localhost:8280/services/Excel.HTTPEndpoint/Products
+    curl -X GET http://localhost:8290/services/Excel2.HTTPEndpoint/Products
     ```
 
     You get an output similar to the following:
@@ -134,13 +134,13 @@ command as shown below.
     Invoke the following command to get details of a product.
 
     ```bash
-        curl -X GET http://localhost:8280/services/Excel.HTTPEndpoint/Products/{PRODUCT_ID}
+        curl -X GET http://localhost:8290/services/Excel.HTTPEndpoint/Products/{PRODUCT_ID}
     ```
 
     Example:
 
     ```bash
-        curl -X GET http://localhost:8280/services/Excel.HTTPEndpoint/Products/S10_4757
+        curl -X GET http://localhost:8290/services/Excel.HTTPEndpoint/Products/S10_4757
     ```
 
     Follow the steps given below to insert data to the excel sheet:
@@ -160,7 +160,7 @@ command as shown below.
         and run the following command to insert data to the excel sheet.
 
         ```bash
-        curl -X POST -H 'Accept: application/xml' -H 'Content-Type: application/xml' --data "@product-data.xml" -k -v http://localhost:8280/services/Excel.HTTPEndpoint/Products
+        curl -X POST -H 'Accept: application/xml' -H 'Content-Type: application/xml' --data "@product-data.xml" -k -v http://localhost:8290/services/Excel.HTTPEndpoint/Products
         ```
 
         !!! Info

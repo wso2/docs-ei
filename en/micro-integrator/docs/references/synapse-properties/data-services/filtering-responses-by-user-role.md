@@ -15,7 +15,20 @@ only accessible to a given type of users.
 Follow the steps below to filter a data service according to a specific
 user role.
 
-..........
+1. Secure the dataservice using through `         UsernameToken        ` for user authentication.
+
+2. Add `requiredRoles` attribute to the output mapping with the comma separated list of user roles.
+
+```xml
+<query id="getEmployeesQuery" useConfig="datasource">
+      <sql>select EmployeeNumber,FirstName,Email from Employees</sql>
+      <result element="Elements" rowName="Element">
+         <element column="EmployeeNumber" name="EmployeeNumber" requiredRoles="admin, role1" xsdType="string"/>
+         <element column="FirstName" name="FirstName"/>
+         <element column="Email" name="Email" requiredRoles="admin"/>
+      </result>
+   </query>
+``` 
 
 ## Extend role-based filtering via a custom authorization provider
 
@@ -30,7 +43,7 @@ authorization provider.
 
 1.  Create a Java Project and create a Java class (e.g.
     `           SampleAuthProvider          ` ), which extends the
-    `           org.wso2.carbon.dataservices.core.auth.AuthorizationProvider          `
+    `           org.wso2.micro.integrator.dataservices.core.auth.AuthorizationProvider          `
     interface and the below methods.
 
     | Method                                                                           | Description                                                                                                                                                                                                                                                                    |

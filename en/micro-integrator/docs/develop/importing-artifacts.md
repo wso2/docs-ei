@@ -1,6 +1,6 @@
 # Importing Artifacts
 
-Follow the instructions given below to import a integration artifact into WSO2 Integration Studio .
+Follow the instructions given below to import an integration artifact into WSO2 Integration Studio .
 
 1.  Right click the project and select the artifact type.
 2.  Select the **Import Artifact** option and click **Next**.

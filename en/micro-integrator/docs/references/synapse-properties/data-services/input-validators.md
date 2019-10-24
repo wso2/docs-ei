@@ -3,7 +3,7 @@
 Validators are added to individual input mappings in a query. Input
 validation allows data services to validate the input parameters in a
 request and stop the execution of the request if the input doesn’t meet
-the required criteria. The ESB profile of WSO2 EI provides a set of
+the required criteria. WSO2 MI provides a set of
 built-in validators for some of the most common use cases. It also
 provides an extension mechanism to write custom validators.
 
@@ -30,7 +30,7 @@ expression.
 ## Custom validators
 
 Used to add your own validation logic by implementing the interface
-`         org.wso2.carbon.dataservices.core.validation.Validator        `
+`         org.wso2.micro.integrator.dataservices.core.validation.Validator        `
 . The definition of the interface is as follows:
 
 ```java
@@ -56,7 +56,7 @@ parameters of the method are as follows:
 
 If you need to provide properties when initializing the custom
 validator, it is necessary to implement the
-`         org.wso2.carbon.dataservices.core.validation.ValidatorExt        `
+`        org.wso2.micro.integrator.dataservices.core.validation.ValidatorExt        `
 interface. This extends the Validator interface as shown below.
 
 ```xml

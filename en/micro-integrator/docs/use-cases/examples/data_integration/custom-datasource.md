@@ -14,27 +14,27 @@ cases as follows:
     later. A tabular datasource is typically associated with an SQL data
     services query. This is done by internally using our own SQL parser
     to execute SQL against the custom datasource. You can use the
-    `                     org.wso2.carbon.dataservices.core.custom.datasource.TabularDataBasedDS                   `
+    `                     org.wso2.micro.integrator.dataservices.core.datasource.TabularDataBasedDS                   `
     interface to implement tabular datasources. For a sample
     implementation of a tabular custom datasource, see
-    `                     org.wso2.carbon.dataservices.core.custom.datasource.InMemoryDataSource                   `
+    `                     org.wso2.micro.integrator.dataservices.core.datasource.InMemoryDataSource                   `
     . Also, this is supported in Carbon datasources with the following
     datasource reader implementation:
-    `          org.wso2.carbon.dataservices.core.custom.datasource.CustomTabularDataSourceReader         `
+    `          org.wso2.micro.integrator.dataservices.core.datasource.CustomTabularDataSourceReader         `
     .
 -   **Custom query datasources:** Used when the datasource has some form
     of query expression support. Custom query datasources are
     implemented using the
-    `                     org.wso2.carbon.dataservices.core.custom.datasource.CustomQueryBasedDS                   `
+    `                     org.wso2.micro.integrator.dataservices.core.datasource.CustomQueryBasedDS                   `
     interface. You can create any non-tabular datasource using the
     query-based approach. Even if the target datasource does not have a
     query expression format, you can create your own. For example, you
     can support any NoSQL type datasource this way. For a sample
     implementation of a query-based custom datasource, see
-    `                     org.wso2.carbon.dataservices.core.custom.datasource.EchoDataSource                   `
+    `                     org.wso2.micro.integrator.dataservices.core.datasource.EchoDataSource                   `
     . This is supported in Carbon datasources with the following
     datasource reader implementation:
-    `          org.wso2.carbon.dataservices.core.custom.datasource.CustomQueryDataSourceReader         `
+    `          org.wso2.micro.integrator.dataservices.core.datasource.CustomQueryDataSourceReader         `
     .
 
 In the `         init        ` methods of all custom datasources,
@@ -48,7 +48,7 @@ synchronisation.
 
 !!! Info
     Find the custom connectors used from the github project located at
-[https://github.com/wso2/wso2-dss-connectors.](https://github.com/wso2/wso2-dss-connectors/)
+[https://github.com/wso2-attic/wso2-dss-connectors.](https://github.com/wso2-attic/wso2-dss-connectors)
 
 ## Adding a custom tabular datasource to the data service
 
@@ -61,7 +61,7 @@ Follow the steps given below to create a custom tabular datasource.'
     ```xml
     <data name="CustomTabularDataService" transports="http https local">
        <config enableOData="false" id="CustomTabular">
-          <property name="custom_tabular_datasource_class">org.wso2.carbon.dataservices.core.custom.datasource.InMemoryDataSource</property>
+          <property name="custom_tabular_datasource_class">org.wso2.micro.integrator.dataservices.core.datasource.InMemoryDataSource</property>
           <property name="custom_datasource_props">
              <property name="inmemory_datasource_schema">{Users:[ID,Name]}</property>
              <property name="inmemory_datasource_records">{Users:[[</property>
@@ -96,7 +96,7 @@ You can send an HTTP GET request to invoke the data service using cURL
 as shown below.
 
 ```bash
-curl -X GET http://localhost:8280/services/CustomTabularDataService.HTTPEndpoint/Users
+curl -X GET http://localhost:8290/services/CustomTabularDataService.HTTPEndpoint/Users
 ```
 
 This will return the response in XML.
@@ -112,7 +112,7 @@ Follow the steps given below to create a custom query datasource.
     ```xml
     <data name="CustomQueryDataService" transports="http https local">
        <config enableOData="false" id="CustomQuery">
-          <property name="custom_query_datasource_class">org.wso2.carbon.dataservices.core.custom.datasource.EchoDataSource</property>
+          <property name="custom_query_datasource_class">org.wso2.micro.integrator.dataservices.core.datasource.EchoDataSource</property>
           <property name="custom_datasource_props">
              <property name="prop1">prop_value1</property>
              <property name="prop2">prop_value2</property>
@@ -155,7 +155,7 @@ You can send an HTTP GET request to invoke the data service using cURL
 as shown below.
 
 ```bash
-curl -X GET http://localhost:8280/services/CustomQueryDataService.HTTPEndpoint/values/1
+curl -X GET http://localhost:8290/services/CustomQueryDataService.HTTPEndpoint/values/1
 ```
 
 This will return the response in XML.

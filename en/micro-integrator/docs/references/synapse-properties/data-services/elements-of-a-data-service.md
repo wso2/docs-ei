@@ -429,6 +429,7 @@ This defines the resource identified by "new URI (/data/@baseURI,
 /data/resource/@path)" and indicates how the request is mapped to a
 query invocation.
 
+<!--
 ## Defining event trigger
 
 ```xml
@@ -451,6 +452,7 @@ query invocation.
     example, an SMTP transport can be used to send a message to a mail
     inbox, where an email address is given as the subscription. Here
     many subscriptions can be defined for the given topic.
+    -->
 
 ## Security configuration
 
@@ -513,13 +515,6 @@ Given below is a sample data service configuration with queries, resources etc. 
          <with-param name="employeeNumber" query-param="employeeNumber" />
       </call-query>
    </operation>
-   <event-trigger id="product_stock_low_trigger" language="XPath">
-      <expression>/updateProductQuantityQuery/quantityInStock&lt;10</expression>
-      <target-topic>product_stock_low_topic</target-topic>
-      <subscriptions>
-         <subscription>mailto:test@test.com</subscription>
-      </subscriptions>
-   </event-trigger>
     <resource path="product/{productCode}/{productName}/{productLine}/{quantityInStock}/{buyPrice}" method="POST">
       <call-query href="createProductQuery"          >
          <with-param name="productCode" query-param="productCode" />
