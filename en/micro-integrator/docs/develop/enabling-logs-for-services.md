@@ -35,21 +35,21 @@ how to enable logs for a sample proxy service deployed in WSO2 Micro Integrator.
         
     2. Add `SQ_PROXY_APPENDER` as an appender
         
-    ```xml
-    appenders = CARBON_CONSOLE, CARBON_LOGFILE, AUDIT_LOGFILE, SQ_PROXY_APPENDER, 
-    ```
+        ```xml
+        appenders = CARBON_CONSOLE, CARBON_LOGFILE, AUDIT_LOGFILE, SQ_PROXY_APPENDER, 
+        ```
     
     3. Add a logger to filter out `StockQuoteProxy` related logs
-    ```xml
-    logger.StockQuoteProxy.name = SERVICE_LOGGER.StockQuoteProxy
-    logger.StockQuoteProxy.level = INFO
-    logger.StockQuoteProxy.appenderRef.SQ_PROXY_APPENDER.ref = SQ_PROXY_APPENDER
-    logger.StockQuoteProxy.additivity = false
-    ```
+        ```xml
+        logger.StockQuoteProxy.name = SERVICE_LOGGER.StockQuoteProxy
+        logger.StockQuoteProxy.level = INFO
+        logger.StockQuoteProxy.appenderRef.SQ_PROXY_APPENDER.ref = SQ_PROXY_APPENDER
+        logger.StockQuoteProxy.additivity = false
+        ```
     4.  Add `StockQuoteProxy` as a logger
-    ```xml
-    loggers = AUDIT_LOG, StockQuoteProxy, SERVICE_LOGGER,
-    ```  
+        ```xml
+        loggers = AUDIT_LOG, StockQuoteProxy, SERVICE_LOGGER,
+        ```  
     5.  Save the file.
 
 3.  Try it out. By default, the configuration does not do any logging at
