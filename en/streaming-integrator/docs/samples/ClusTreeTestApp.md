@@ -25,12 +25,20 @@ If the Siddhi application starts successfully, the following message appears in 
 
 To test the sample Siddhi application, simulate multiple events via CSV file in the Streaming Integrator Tooling as follows:
 
-You can publish data event to the file, through event simulator<br/>
+1. To open the Event Simulator, click the **Event Simulator** icon.
+
+    ![Event Simulator Icon](../../images/Testing-Siddhi-Applications/Event_Simulation_Icon.png)
+
+    This opens the event simulation panel.
+
+
+
 1. Open event simulator by clicking on the second icon or press Ctrl+Shift+I.
 2. In the Feed Simulation tab of the panel you can see that the clusTreeTestFeed.csv file is loaded.
 3. Press the play button to start simulation.
 
-## Viewing the Results:
+## Viewing the Results
+
 After clicking the play button see the output on the console, that are produced according to the simulation from csv file.
 
 ???info "Click here to view the sample Siddhi application."

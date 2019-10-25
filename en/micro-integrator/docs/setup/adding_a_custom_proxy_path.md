@@ -219,13 +219,13 @@ Follow the steps given below.
 
     -   For APIM: In <APIM_HOME>/repository/conf/carbon.xml file 
 
-        ``` java
+        ```xml
         <ProxyContextPath>appserver</ProxyContextPath> 
         ```
     <!--
     -   For MI: In <MI_HOME>/conf/deployment.toml file
 
-        ``` java
+        ```xml
         <ProxyContextPath>esb</ProxyContextPath> 
         ```
     -->
@@ -236,11 +236,11 @@ Follow the steps given below.
     -   For APIM:
         `<Offset>0</Offset>            `
 
-    -   For MI: 
-    ```toml
-    [server]
-    offset  = 0     
-    ```
+    -   For MI:
+        ```toml
+        [server]
+        offset  = 0     
+        ```
 
 ### Step 3: Start the Product
 
