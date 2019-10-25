@@ -7,16 +7,15 @@ API documentation is important to guide the users on what they can do using spec
 
 ## Step 1: Configure the Micro Integrator
 
-1.  Add the following configuration under the HttpGetRequestProcessors tag of the <EI_HOME>/conf/carbon.xml file to generate the Swagger JSON or YAML files.
-    ```
-    <Processor>
-       <Item>swagger.json</Item>
-       <Class>org.wso2.carbon.mediation.transport.handlers.requestprocessors.swagger.format.SwaggerJsonProcessor</Class>
-    </Processor>
-    <Processor>
-       <Item>swagger.yaml</Item>
-       <Class>org.wso2.carbon.mediation.transport.handlers.requestprocessors.swagger.format.SwaggerYamlProcessor</Class>
-    </Processor>
+1.  Add the following configuration in MI_HOME/conf/deployment.toml file to generate the Swagger JSON or YAML files.
+    ```toml
+    [[server.get_request_processor]]
+    item = "swagger.json"
+    class = "org.wso2.micro.integrator.transport.handlers.requestprocessors.swagger.format.SwaggerJsonProcessor"
+
+    [[server.get_request_processor]]
+    item = "swagger.yaml"
+    class = "org.wso2.micro.integrator.transport.handlers.requestprocessors.swagger.format.SwaggerYamlProcessor"
     ```
 2.  Open the terminal, navigate to the <EI_HOME>/bin directory and start the WSO2 EI profile.
 

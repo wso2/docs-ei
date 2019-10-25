@@ -4,7 +4,7 @@ A transport protocol is responsible for carrying messages that are in a specific
 
 ## Configuring the HTTP/HTTPS transport
 
-The HTTP and HTTPS passthrough transports are enabled by defualt in the Micro Integrator. 
+The HTTP and HTTPS passthrough transports are enabled by default in the Micro Integrator. 
 
 See the [complete list of HTTP/HTTPS parameters](../../../references/config-catalog/#http-transport).
 
@@ -229,13 +229,15 @@ To enable the MailTo transport listener and sender, set the following parameters
 	!!! Note
 		In addition to enabling the MailTO transport, the following parameters are used in the above configuration to set a default email account as the mail sender. You can override this default mail sender by specifying an email sender account within your mediation sequence.
 
-		-	`mail.smtp.from` : The email address from which mails will be sent.
-		-	`mail.smtp.user` : The user name of the email account (mail sender). Note that in some email service providers, the user name is the same as the email address specified for the 'From' parameter.
-		-	`mail.smtp.password` : The password of the email account (mail sender).
+		-	`parameter.from` : The email address from which mails will be sent.
+		-	`parameter.username` : The user name of the email account (mail sender). Note that in some email service providers, the user name is the same as the email address specified for the 'From' parameter.
+		-	`parameter.password` : The password of the email account (mail sender).
 
 	If you want to use multiple mail boxes to send emails, make a copy of the default MailTo sender configuration in the `MI_HOME/conf/deployment.toml` file and change the transport sender name. For example, add `mailtoWSO2` as the name.
 
-	For a list of parameters supported by the MailTo transport sender, see [SMTP Package Summary](https://javaee.github.io/javamail/docs/api/com/sun/mail/smtp/package-summary.html). In addition to the parameters described there, the MailTo transport sender supports the following parameters.
+	For a list of parameters supported by the MailTo transport sender, see [SMTP Package Summary](https://javaee.github.io/javamail/docs/api/com/sun/mail/smtp/package-summary.html). You can add these parameters into the mail transport as custom parameters by appending relevant parameters surrounded by single quotes into the parameter section. For example, to add `mail.smtp.localport` parameter into the mail transport, toml configuration would be `parameter.'mail.smtp.localport'=5000`.
+	
+	In addition to the parameters described there, the MailTo transport sender supports the following custom parameters.
 
 	-	`transport.mail.SMTPBccAddresses` : If one or more e-mail addresses need to be specified as BCC addresses for outgoing mails, this parameter can be used. You can enter a comma-separated list of e-mail addresses.
 	-	`transport.mail.Format` : Format of the outgoing mail. Possible values are <b>Text</b> and <b>Multipart</b>.
