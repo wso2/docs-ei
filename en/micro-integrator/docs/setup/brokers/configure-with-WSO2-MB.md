@@ -4,7 +4,12 @@ This section describes how to configure WSO2 Micro Integrator to connect with WS
 
 ## Setting up the Micro Integrator with WSO2 MB
 
-1.  If you want the Micro Integrator to receive messages from a WSO2 MB instance, or to send messages to a WSO2 MB instance, you need to update the deployment.toml file with the relevant connection parameters.
+1.  Copy the following jars to <MI_HOME>/lib folder from <WSO2_MB>/client-lib folder.
+    - andes-client-3.2.19.jar                 
+    - org.wso2.securevault-1.0.0-wso2v2.jar
+    - geronimo-jms_1.1_spec-1.1.0.wso2v1.jar
+  
+2.  If you want the Micro Integrator to receive messages from a WSO2 MB instance, or to send messages to a WSO2 MB instance, you need to update the deployment.toml file with the relevant connection parameters.
 
     - Add the following configurations to enable the JMS listener with WSO2 MB connection parameters.
         ```toml
