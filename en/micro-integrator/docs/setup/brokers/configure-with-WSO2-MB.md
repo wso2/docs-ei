@@ -31,8 +31,8 @@ This section describes how to configure WSO2 Micro Integrator to connect with WS
     - Add the following configurations to specify the jndi connection factory details:
         ```toml
         [transport.jndi.connection_factories]
-        QueueConnectionFactory = "amqp://admin:admin@clientID/carbon?brokerlist='tcp://localhost:5675'"
-        TopicConnectionFactory = "amqp://admin:admin@clientID/carbon?brokerlist='tcp://localhost:5675'"
+        'connectionfactory.QueueConnectionFactory' = "amqp://admin:admin@clientID/carbon?brokerlist='tcp://localhost:5675'"
+        'connectionfactory.TopicConnectionFactory' = "amqp://admin:admin@clientID/carbon?brokerlist='tcp://localhost:5675'"
 
         [transport.jndi.queue]
         queue_jndi_name = "queue_name"
