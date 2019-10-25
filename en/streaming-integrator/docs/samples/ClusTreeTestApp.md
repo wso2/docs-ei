@@ -8,7 +8,7 @@ This sample demonstrates how to perform unsupervised streaming learning on a set
     1. Download `siddhi-gpl-execution-streamingml-x.x.x.jar` from [here](http://maven.wso2.org/nexus/content/repositories/wso2gpl/org/wso2/extension/siddhi/gpl/execution/streamingml/siddhi-gpl-execution-streamingml/) and place it in the `<SI_TOOLING_HOME>/lib` directory.<br/>
     2. Copy the `<SI_TOOLING_HOME>/samples/artifacts/ClusTreeSample/clusTreeTestFeed.json` file and place it in the `<SI_TOOLING_HOME>/wso2/server/deployment/simulation-configs` directory.<br/>
     3. Copy the `<SI_TOOLING_HOME>/samples/artifacts/ClusTreeSample/clusTreeFileTest.csv` file and place it in the `<SI_TOOLING_HOME>/wso2/server/deployment/csv-files` directory.<br/>
-    4. Save the sample Siddhi application.<br/>
+    4. Save the sample Siddhi application in Streaming Integrator Tooling.<br/>
 
 
 ## Executing the Sample
