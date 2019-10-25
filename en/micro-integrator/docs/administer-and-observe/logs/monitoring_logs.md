@@ -267,8 +267,7 @@ By default, access logs related to service/API invocations are enabled. You ca
     </table>
 
 3.  Restart the server.
-4.  Invoke a proxy service or REST API that is deployed in the Micro Integrator. For testing purposes, use the artifacts in the [quick start guide](../../overview/quick-start-guide). The access log file for the service/API will be created in the
-    `MI_HOME/repository/logs` directory. The default name of the log file is `http_access_.log` .
+4.  Invoke a proxy service or REST API that is deployed in the Micro Integrator. The access log file for the service/API will be created in the `MI_HOME/repository/logs` directory. The default name of the log file is `http_access_.log` .
 
     !!! Tip
         Note that there will be a delay in printing the logs to the log file.

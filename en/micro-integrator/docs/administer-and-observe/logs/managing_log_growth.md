@@ -25,16 +25,17 @@ archive the logs and get backups periodically.
 
 Configure the following two properties for `CARBON_LOGFILE` appender:
 
-    -   `appender.CARBON_LOGFILE.policies.size.size=10MB`
-    -   `appender.CARBON_LOGFILE.strategy.max = 20`
+-   `appender.CARBON_LOGFILE.policies.size.size=10MB`
+-   `appender.CARBON_LOGFILE.strategy.max = 20`
 
-        !!! Info
-            If the size of the log file is exceeding the value defined in the `appender.CARBON_LOGFILE.policies.size.size` property, the content is copied to a backup file and the logs are continued to be added to a new empty log file. The `appender.CARBON_LOGFILE.strategy.max ` property makes the Log4j maintain a maximum number of backup files for the logs.
+!!! Info
+    If the size of the log file is exceeding the value defined in the `appender.CARBON_LOGFILE.policies.size.size` property, the content is copied to a backup file and the logs are continued to be added to a new empty log file. The `appender.CARBON_LOGFILE.strategy.max` property makes the Log4j maintain a maximum number of backup files for the logs.
 
 ## Limiting the size of audit log files
 
 In WSO2 servers, audit logs are enabled by default. We can limit the audit log files with the following configuration:
 
 Add the following two properties for `AUDIT_LOGFILE`:
+
     -   `appender.AUDIT_LOGFILE.policies.size.size=10MB`
     -   `appender.AUDIT_LOGFILE.strategy.max=20`
