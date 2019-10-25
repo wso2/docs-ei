@@ -48,8 +48,8 @@ sender.proxy_port = 8080
 ```
 
 ```toml tab='Passthrough HTTPS'
-[transport.http]
-sender.proxy_host = "localhost"
-sender.proxy_port = 8080
-sender.hostname_verifier = "AllowAll"
+[transport.https]
+sender.parameter.'http.proxyHost' = "hostname"
+sender.parameter.'http.proxyPort' = "8080"
+sender.parameter.'HostnameVerifier' = "AllowAll"
 ```
