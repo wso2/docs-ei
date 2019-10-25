@@ -99,6 +99,7 @@ The input and the corresponding output is displayed in the console as follows.
 
 
 ???info "Click here to view the sample Siddhi application."
+
     ```sql
     @App:name("AggregateDataIncrementally")
     @App:description('Aggregates values every second until year and gets statistics')
