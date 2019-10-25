@@ -3,7 +3,7 @@
 Java Naming and Directory Interface (JNDI) is a Java API (application
 programming interface) providing naming and directory functionality for
 Java software clients to discover and look up data and objects via a
-name. WSO2 Enterprise Integrator (WSO2 EI) supports the JNDI
+name. WSO2 Micro Integrator (WSO2 MI) supports the JNDI
 InitialContext implementation by inheriting the JNDI implementation of
 Tomcat (
 <http://tomcat.apache.org/tomcat-7.0-doc/jndi-resources-howto.html> ).

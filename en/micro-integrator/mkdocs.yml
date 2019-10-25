@@ -208,6 +208,7 @@ nav:
           - 'Encrypting Passwords' : 'setup/security/encrypting_plain_text.md'
           - 'Using Symmetric Encryption' : 'setup/security/single_key_encryption.md'
           - 'Set Passwords using Environment Variables/System Properties' : 'setup/security/replace_passwords_with_sys_properties.md'
+        - 'Securing the Management API' : 'setup/security/securing_management_api.md'
       - Performance Tuning:
         - 'Tuning JVM Performance' : 'setup/performance_tuning/tuning_jvm_performance.md'
         - 'Tuning Network and OS Performance' : 'setup/performance_tuning/network_os_performance.md'
@@ -309,7 +310,8 @@ nav:
       - 'Micro Integrator Dashboard': 'administer-and-observe/working-with-monitoring-dashboard.md'
       - 'Micro Integrator CLI': 'administer-and-observe/using-the-command-line-interface.md'
       - 'Monitoring Message Round Trip': 'administer-and-observe/observability.md'
-      #- 'Analyzing Statistics and Tracing': 'administer-and-observe/using-the-analytics-dashboard.md'
+      - 'Analyzing Statistics and Tracing': 'administer-and-observe/using-the-analytics-dashboard.md'
+      - 'Using the Management API': 'administer-and-observe/working-with-management-api.md'
       - Logging:
         - 'Logs in WSO2 Micro Integrator' : 'administer-and-observe/logs/monitoring_logs.md'
         - 'Configuring Log4j Properties' : 'administer-and-observe/logs/configuring_log4j_properties.md'

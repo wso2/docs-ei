@@ -12,42 +12,21 @@ This application demonstrates how to send a single event via Single Simulation, 
         - `to` -> `template-manager@wso2.com` (This is the receiver's address.)<br/>
         - `subject` -> `Alert for large value transaction: cardNo:{{creditCardNo}}` (This is the subject of the email.)<br/>
         Once you update the values for the above parameters, save the sample Siddhib application.<br/>
-        ```sql
-        @App:name("AlertsAndThresholds")
-        @App:description('Simulate a single event and receive alerts as e-mail when a predefined threshold value is exceeded')
-        define stream TransactionStream(creditCardNo string, country string, item string, quantity int, price double);
-        @sink(type='email',
-              username ='business.rules.manager',
-              address ='business.rules.manager@wso2.com',
-              password= 'business-rules',
-              subject='Alert for large value transaction: cardNo:{{creditCardNo}}',
-              to='receive.alert.account1@gmail.com, receive.alert.account2@gmail.com',
-              port = '465',
-              host = 'smtp.gmail.com',
-              ssl.enable = 'true',
-              auth = 'true',
-              @map(type='text'))
-        define stream AlertStream(creditCardNo string, country string, item string, quantity int, price double);
-        --Filter events when quantity * price > 5000 condition is satisfied
-        @info(name='query1')
-        from TransactionStream[quantity * price  > 5000]
-        select *
-        insert into AlertStream;
-        ```
-
 
 
 ## Executing the Sample
 
-1. Start the Siddhi application by clicking **Run** => **Run**.
+To execute the sample open the saved Siddhi application in Streaming Integrator Tooling, and start it by clicking the **Start** button (shown below) or by clicking **Run** => **Run**.
 
-2. If the Siddhi application starts successfully, the following message appears in the console.
+![Start button](../../images/amazon-s3-sink-sample/start.png)
 
-    `AlertsAndThresholds.siddhi - Started Successfully!.`
+If the Siddhi application starts successfully, the following message appears in the console.
+
+`AlertsAndThresholds.siddhi - Started Successfully!.`
 
 ## Testing the Sample
 
-To send a single event, follow the procedure below:
+To test the sample Siddhi application, simulate a single event for it via the Streaming Integrator Tooling as follows:
 
 1. To open the Event Simulator, click the **Event Simulator** icon.
 
@@ -64,9 +43,8 @@ To send a single event, follow the procedure below:
     | **Siddhi App Name**         | `AlertsAndThresholds`                  |
     | **StreamName**              | `TransactionStream`                    |
 
+    As a result, the attributes of the `Transactiontream` stream appear as marked in the image above.
 
-
-    As a result, the attributes of the `RawMaterialStream` stream appear as marked in the image above.
 
 3. Enter values for the attributes as follows:
 
@@ -99,3 +77,30 @@ item:"mobile",
 quantity:100,
 price:5000
 ```
+
+???info "Click here to view the sample Siddhi application."
+    ```sql
+    @App:name("AlertsAndThresholds")
+    @App:description('Simulate a single event and receive alerts as e-mail when a predefined threshold value is exceeded')
+
+    define stream TransactionStream(creditCardNo string, country string, item string, quantity int, price double);
+
+    @sink(type='email',
+          username ='business.rules.manager',
+          address ='business.rules.manager@wso2.com',
+          password= 'business-rules',
+          subject='Alert for large value transaction: cardNo:{{creditCardNo}}',
+          to='receive.alert.account1@gmail.com, receive.alert.account2@gmail.com',
+          port = '465',
+          host = 'smtp.gmail.com',
+          ssl.enable = 'true',
+          auth = 'true',
+          @map(type='text'))
+    define stream AlertStream(creditCardNo string, country string, item string, quantity int, price double);
+
+    --Filter events when quantity * price > 5000 condition is satisfied
+    @info(name='query1')
+    from TransactionStream[quantity * price  > 5000]
+    select *
+    insert into AlertStream;
+    ```

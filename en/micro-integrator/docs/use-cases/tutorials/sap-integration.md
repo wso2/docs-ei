@@ -199,7 +199,7 @@ client using the SAP adapter.
 
     ```toml
     [transport.sap]
-    sender.idoc.enabled=true
+    sender.idoc.enable=true
     sender.idoc.class="org.wso2.carbon.transports.sap.SAPTransportSender"
     ```
 
@@ -207,25 +207,26 @@ client using the SAP adapter.
     the following configuration:
 
     ```xml
-    <proxy xmlns=http://ws.apache.org/ns/synapse 
-           name="IDocSender"
-           transports="http" 
-           startOnLoad="true" 
-           trace="enable" 
-           statistics="enable">
-        <target>
-          <inSequence>
-             <log level="full"/>
-             <send>
-             <endpoint name="sapidocendpoint">
-                 <address uri="idoc:/SAPSYS"/>
-             </endpoint>
-             </send>
-          </inSequence>
-          <outSequence/>
-       </target>
-       <parameter name="serviceType">proxy</parameter>
-       <description/>
+    <proxy xmlns="http://ws.apache.org/ns/synapse" 
+       name="IDocSender"
+       transports="http" 
+       startOnLoad="true" 
+       trace="enable" 
+       statistics="enable">
+    <target>
+        <inSequence>
+            <log level="full"/>
+            <property name="OUT_ONLY" value="true"/>
+            <send>
+                <endpoint name="sapidocendpoint">
+                    <address uri="idoc:/SAPSYS"/>
+                </endpoint>
+            </send>
+        </inSequence>
+        <outSequence/>
+    </target>
+    <parameter name="serviceType">proxy</parameter>
+    <description/>
     </proxy>
     ```
 
@@ -265,7 +266,7 @@ Follow the instructions below to configure the Micro Integrator as an IDoc serve
 
     ```toml
     [transport.sap]
-    listener.idoc.enabled=true
+    listener.idoc.enable=true
     listener.idoc.class="org.wso2.carbon.transports.sap.SAPTransportListener"
     ```
 
@@ -276,7 +277,7 @@ Follow the instructions below to configure the Micro Integrator as an IDoc serve
 3.  Create the `IDocReceiver` proxy service with the following configuration:
 
     ```xml
-    <proxy xmlns=http://ws.apache.org/ns/synapse 
+    <proxy xmlns="http://ws.apache.org/ns/synapse" 
            name="IDocReceiver"
            transports="idoc" 
            statistics="enable" 
@@ -328,7 +329,7 @@ client using the SAP adapter.
 
     ```toml
     [transport.sap]
-    sender.bapi.enabled=true
+    sender.bapi.enable=true
     sender.bapi.class="org.wso2.carbon.transports.sap.SAPTransportSender"
     ```
     
@@ -391,7 +392,7 @@ Follow the instructions below to configure the Micro Integrator as a BAPI server
 
     ```toml
     [transport.sap]
-    listener.bapi.enabled=true
+    listener.bapi.enable=true
     listener.bapi.class="org.wso2.carbon.transports.sap.SAPTransportListener"
     ```
     
@@ -399,7 +400,7 @@ Follow the instructions below to configure the Micro Integrator as a BAPI server
     with the following configuration:
 
     ```xml
-    <proxy xmlns=http://ws.apache.org/ns/synapse 
+    <proxy xmlns="http://ws.apache.org/ns/synapse" 
            name="BAPIReceiver"
            transports="bapi" 
            statistics="enable" 

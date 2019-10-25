@@ -121,7 +121,7 @@ follows:
 	    users-payload.xml file is stored:
 
 	    ```bash
-	    curl -X POST -H 'Accept: application/xml'  -H 'Content-Type: application/xml' --data "@users-payload.xml" http://localhost:8280/services/CassandraDataService/users
+	    curl -X POST -H 'Accept: application/xml'  -H 'Content-Type: application/xml' --data "@users-payload.xml" http://localhost:8290/services/CassandraDataService/users
 	    ```
 
 -	**Get** data
@@ -131,5 +131,5 @@ follows:
 	command to invoke the GET resource:
 
 	```bash
-	curl -X GET http://localhost:8280/services/CassandraDataService.HTTPEndpoint/users/a05cdd7a-3d6a-11e8-b467-0ed5f89f718b
+	curl -X GET http://localhost:8290/services/CassandraDataService.HTTPEndpoint/users/a05cdd7a-3d6a-11e8-b467-0ed5f89f718b
 	```

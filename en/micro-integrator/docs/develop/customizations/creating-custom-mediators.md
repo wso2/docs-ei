@@ -38,7 +38,3 @@ The mediator project you selected is created in the location you specified.
 
     1. Click **View Menu**, and click **Filters -> Customization**.  
     2. Deselect **.\resources**, and click **OK**.
-
-## Examples
-
-## Guides
