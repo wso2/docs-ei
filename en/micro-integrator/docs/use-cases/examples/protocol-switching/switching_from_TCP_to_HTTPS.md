@@ -20,10 +20,8 @@ Following are the integration artifacts (proxy service) that we can used to impl
       </endpoint>
       <inSequence>
          <log level="full"/>
+         <property name="OUT_ONLY" value="true"/>
       </inSequence>
-      <outSequence>
-         <log level="full"/>
-      </outSequence>
    </target>
 </proxy>
 ```
