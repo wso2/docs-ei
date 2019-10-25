@@ -33,9 +33,9 @@ values. This configuration ensures that all HTTP requests pass through
 the configured proxy server.
 
 ```toml
-[transport.http]
-sender.proxy_host= "$ref{server.hostname}"
-sender.proxy_port= 3128
+[transport.blocking.http]
+sender.parameter.'http.proxyHost'= "$ref{server.hostname}"
+sender.parameter.'http.proxyPort'= 3128
 ```
 
 !!! Info

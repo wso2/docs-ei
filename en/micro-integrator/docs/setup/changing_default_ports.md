@@ -10,7 +10,7 @@ the effective HTTP port will change to 9764. For each additional WSO2
 product instance, you set the port offset to a unique value.
 
 ## Setting a port offset
-The default port offset value is 0. There are two ways to set an offset
+The default port offset value is 10. There are two ways to set an offset
 to a port:
 
 -   Pass the port offset to the server during startup. The following
@@ -30,37 +30,49 @@ When you set the server-level port offset as shown above, all the ports used by 
 This page describes the default ports that are used for each WSO2
 product when the port offset is 0.
 
-### Servlet transport ports
+### Passthrough transport ports
 
-Listed below are the default ports that are used in WSO2 Micro Integrator when the port offset is 0.
+Listed below are the default ports that are used in WSO2 Micro Integrator when the port offset is 10.
 
-- 8290: HTTP servlet transport
-- 8253: HTTPS servlet transport
+- 8290: HTTP Passthrough transport
+- 8253: HTTPS Passthrough transport
 
-### LDAP server ports
+### Management API port
 
--   10389: Used in WSO2 products that provide an embedded LDAP server
+The Management API of WSO2 Micro Integrator is an internal REST API, which is used to obtain administrative information of the server instance. 
+See [Management API](../../administer-and-observe/working-with-management-api)
 
-### KDC ports
+The default port of the Management API used in WSO2 Micro Integrator when the port offset is 10:
 
--   8000: Used to expose the Kerberos key distribution center server
+9164 - HTTPS Internal API port
+
+The Management API port can be configured in the `deployment.toml ` file (stored in the
+`         <MI_HOME>/conf        ` directory) as shown below. 
+
+```toml
+[mediation]
+internal_http_api_enable = true 
+internal_https_api_port = 9154 
+```
 
 ### JMX monitoring ports
 
 WSO2 Micro Integrator uses TCP ports to monitor a running server instance
-using a JMX client such as JConsole. By default, JMX is enabled in all
-products. You can disable it using `         <PRODUCT_HOME>/repository/conf/etc/jmx.xml        ` file.
+using a JMX client such as JConsole. 
+The JMX ports (RMIRegistryPort and the RMIServerPort) can be
+configured in the `deployment.toml ` file (stored in the
+`         <MI_HOME>/conf        ` directory) as shown
+below. 
 
--   11111: RMIRegistry port. Used to monitor Carbon remotely
--   9999: RMIServer port. Used along with the RMIRegistry port when the server is monitored from a JMX client that is behind a firewall.
+```toml
+[monitoring.jmx]
+rmi_hostname = localhost
+rmi_registry_port = 9999
+rmi_server_port = 11111
+```
 
-### Clustering ports
-
-To cluster any running server instance, either one of the following
-ports must be opened.
-
--   45564: Opened if the membership scheme is multicast
--   4000: Opened if the membership scheme is wka
+-   9999: RMIRegistry port. Used to monitor Carbon remotely
+-   11111: RMIServer port. Used along with the RMIRegistry port when the server is monitored from a JMX client that is behind a firewall.
 
 ### Random ports
 
@@ -76,7 +88,7 @@ every time the server is started.
 -   A random UDP port is opened at server startup due to the log4j
     appender ( `          SyslogAppender         ` ), which is
     configured in the
-    `MI_HOME/repository/conf/log4j.properties         `
+    `MI_HOMEy/conf/log4j2.properties         `
     file.
 
 

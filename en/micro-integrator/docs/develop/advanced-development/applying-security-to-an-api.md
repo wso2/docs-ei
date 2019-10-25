@@ -586,6 +586,7 @@ Identity Server returns the access token, which you can now use when invoking th
 You can connect a REST client to a secured back-end service (such as a SOAP service) through an API that reads from a policy file.
 
 ### Prerequisites
+
 **Before you begin**, be sure to [configure a user store](../../../setup/user_stores/setting_up_ro_ldap) for the Micro Integrator and add the required users and roles.
 
 ### Creating the REST API
@@ -691,6 +692,7 @@ Observe that the REST client is getting the correct response (the `wsse:Security
 REST clients typically use Basic Auth over HTTP to authenticate the user name and password, but if the back-end service uses WS-Security, you can configure the API to transform the authentication from Basic Auth to WS-Security.
 
 ### Prerequisites
+
 **Before you begin**, be sure to [configure a user store](../../../setup/user_stores/setting_up_ro_ldap) for the Micro Integrator and add the required users and roles.
 
 ### Creating the REST API
