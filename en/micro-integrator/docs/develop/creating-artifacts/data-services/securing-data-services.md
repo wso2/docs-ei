@@ -6,14 +6,18 @@ services. To enable a security policy for a data service, you need to
 first create a security policy file, and then add it to the data
 service.
 
-### Step 1: Creating a security policy
+## Prerequisites
+
+Be sure to [configure a user store](../../../../setup/user_stores/setting_up_ro_ldap) for the Micro Integrator and add the required users and roles.
+
+## Step 1: Creating a registry project
 
 Registry artifacts (such as security policy files) should be stored in a
 **Registry Resource** project. Follow the steps given below to create a
 project:
 
 1.  Open **WSO2 Integration Studio** and click **Miscelleneous → Create
-    New Registry **Project**** in the **Getting Started** tab as shown
+    New Registry Project** in the **Getting Started** tab as shown
     below.
 
     ![](../../../assets/img/tutorials/data_services/119130577/119135181.png)
@@ -22,7 +26,7 @@ project:
 3.  Enter the Maven information about the project and click **Finish** .
 4.  The new project will be listed in the project explorer.
 
-### Step 2: Creating a security policy as a registry resource
+## Step 2: Creating a security policy as a registry resource
 
 1.  Right-click the registry resource project in the left navigation
     panel, click **New** , and then click **Registry Resource** . This
@@ -68,7 +72,7 @@ project:
         
 5.  Save the policy file.
 
-### Step 2: Adding the security policy to the data service
+## Step 2: Adding the security policy to the data service
 
 Once you have configured the policy file, you can add the security
 policy to the data service as explained below.

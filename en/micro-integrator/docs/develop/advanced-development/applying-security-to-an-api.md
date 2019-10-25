@@ -6,17 +6,21 @@ In most of the real-world use cases of REST, when a consumer attempts to access 
 
 This validation is done using the following basic auth handler. When a REST API is created, this handler should be added to the API configuration in order to enable basic auth.
 
-```
+```xml
 <handlers>
     <handler class="org.wso2.micro.integrator.security.handler.RESTBasicAuthHandler"/>
 </handlers>
 ```
 
+### Prerequisites
+
+**Before you begin**, be sure to [configure a user store](../../../../setup/user_stores/setting_up_ro_ldap) for the Micro Integrator and add the required users and roles.
+
 ### Creating the REST API
 
 See the REST API given below for an example of how the default basic auth handler is used.
 
-```
+```xml
 <api xmlns="http://ws.apache.org/ns/synapse" name="StockQuoteAPI" context="/stockquote">
        <resource methods="GET" uri-template="/view/{symbol}">
           <inSequence>
@@ -49,50 +53,6 @@ See the REST API given below for an example of how the default basic auth handle
        </handlers>
 </api>
 ```
-
-### Configuring the user store
-
-1.  Create your user store and host it because WSO2 Micro Integrator does not include a default user store.
-2.  Once hosted, configure the following properties in the `ei.toml` file with your user store's details.
-
-For this sample, we configure a read- only LDAP user store.
-
-<table>
-        <thead>
-        <tr class="header">
-        <th>Property</th>
-        <th>Description</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr class="odd">
-        <td><code>                    ConnectionURL                   </code></td>
-        <td><p>Connection URL to the user store server you hosted.</p>
-        If you are connecting over LDAPS (secured LDAP), you need to import the certificate of the user store to the <code>                     client-truststore.jks                    </code> of the WSO2 product. For information on how to add certificates to the truststore, and how keystores are configured and used in a system, see <a href="../../setup/security/creating_keystores">using keystores</a> .<br />
-        </td>
-        </tr>
-        <tr class="even">
-        <td><code>                    ConnectionName                   </code></td>
-        <td>The username used to connect to the user store and perform various operations. This user does not need to be an administrator in the user store or have an administrator role in the WSO2 product that you are using, but this user MUST have permissions to read the user list and users' attributes and to perform search operations on the user store. The value you specify is used as the DN (Distinguish Name) attribute of the user who has sufficient permissions to perform operations on users and roles in LDAP.</td>
-        </tr>
-        <tr class="odd">
-        <td><code>                    ConnectionPassword                   </code></td>
-        <td>Password for the ConnectionName user.</td>
-        </tr>
-        <tr class="even">
-        <td><code>                    UserSearchBase                   </code></td>
-        <td>Distinguish Name ( DN) of the context or object under which the user entries are stored in the user store. When the user store searches for users, it will start from this location of the directory.</td>
-        </tr>
-        <tr class="odd">
-        <td><code>                    UserNameAttribute                   </code></td>
-        <td><p>The attribute used for uniquely identifying a user entry. Users can be authenticated using their email address, UID, etc. The name of the attribute is considered as the username.</p></td>
-        </tr>
-        <tr class="even">
-        <td><code>                    GroupSearchBase                   </code></td>
-        <td>Distinguish Name ( DN) of the context or object under which the group entries are stored in the user store. When the user store searches for groups, it will start from this location of the directory.</td>
-        </tr>
-        </tbody>
-</table>
 
 ### Testing the API
 
@@ -135,81 +95,85 @@ For this sample, we configure a read- only LDAP user store.
 
 If required, you can implement a custom basic auth handler (instead of the default handler explained above). The following example of a primitive security handler serves as a template that can be used to write your own security handler to secure an API.
 
+### Prerequisites
+
+**Before you begin**, be sure to [configure a user store](../../../../setup/user_stores/setting_up_ro_ldap) for the Micro Integrator and add the required users and roles.
+
 ### Creating the custom handler
 
 The custom Basic Auth handler in this sample simply verifies whether the request uses username: admin and password: admin. Following is the code for this handler:
 
-``` java
-    package org.wso2.rest;
-    import org.apache.commons.codec.binary.Base64;
-    import org.apache.synapse.MessageContext;
-    import org.apache.synapse.core.axis2.Axis2MessageContext;
-    import org.apache.synapse.core.axis2.Axis2Sender;
-    import org.apache.synapse.rest.Handler;
-     
-    import java.util.Map;
-     
-    public class BasicAuthHandler implements Handler {
-        public void addProperty(String s, Object o) {
-            //To change body of implemented methods use File | Settings | File Templates.
-        }
-    
-        public Map getProperties() {
-            return null;  //To change body of implemented methods use File | Settings | File Templates.
-        }
-    
-        public boolean handleRequest(MessageContext messageContext) {
-    
-            org.apache.axis2.context.MessageContext axis2MessageContext
-                    = ((Axis2MessageContext) messageContext).getAxis2MessageContext();
-            Object headers = axis2MessageContext.getProperty(
-                    org.apache.axis2.context.MessageContext.TRANSPORT_HEADERS);
-    
-            if (headers != null && headers instanceof Map) {
-                Map headersMap = (Map) headers;
-                if (headersMap.get("Authorization") == null) {
+```java
+package org.wso2.rest;
+import org.apache.commons.codec.binary.Base64;
+import org.apache.synapse.MessageContext;
+import org.apache.synapse.core.axis2.Axis2MessageContext;
+import org.apache.synapse.core.axis2.Axis2Sender;
+import org.apache.synapse.rest.Handler;
+ 
+import java.util.Map;
+ 
+public class BasicAuthHandler implements Handler {
+    public void addProperty(String s, Object o) {
+        //To change body of implemented methods use File | Settings | File Templates.
+    }
+
+    public Map getProperties() {
+        return null;  //To change body of implemented methods use File | Settings | File Templates.
+    }
+
+    public boolean handleRequest(MessageContext messageContext) {
+
+        org.apache.axis2.context.MessageContext axis2MessageContext
+                = ((Axis2MessageContext) messageContext).getAxis2MessageContext();
+        Object headers = axis2MessageContext.getProperty(
+                org.apache.axis2.context.MessageContext.TRANSPORT_HEADERS);
+
+        if (headers != null && headers instanceof Map) {
+            Map headersMap = (Map) headers;
+            if (headersMap.get("Authorization") == null) {
+                headersMap.clear();
+                axis2MessageContext.setProperty("HTTP_SC", "401");
+                headersMap.put("WWW-Authenticate", "Basic realm=\"WSO2 ESB\"");
+                axis2MessageContext.setProperty("NO_ENTITY_BODY", new Boolean("true"));
+                messageContext.setProperty("RESPONSE", "true");
+                messageContext.setTo(null);
+                Axis2Sender.sendBack(messageContext);
+                return false;
+
+            } else {
+                String authHeader = (String) headersMap.get("Authorization");
+                if (processSecurity(credentials)) {
+                    return true;
+                } else {
                     headersMap.clear();
-                    axis2MessageContext.setProperty("HTTP_SC", "401");
-                    headersMap.put("WWW-Authenticate", "Basic realm=\"WSO2 ESB\"");
+                    axis2MessageContext.setProperty("HTTP_SC", "403");
                     axis2MessageContext.setProperty("NO_ENTITY_BODY", new Boolean("true"));
                     messageContext.setProperty("RESPONSE", "true");
                     messageContext.setTo(null);
                     Axis2Sender.sendBack(messageContext);
                     return false;
-    
-                } else {
-                    String authHeader = (String) headersMap.get("Authorization");
-                    if (processSecurity(credentials)) {
-                        return true;
-                    } else {
-                        headersMap.clear();
-                        axis2MessageContext.setProperty("HTTP_SC", "403");
-                        axis2MessageContext.setProperty("NO_ENTITY_BODY", new Boolean("true"));
-                        messageContext.setProperty("RESPONSE", "true");
-                        messageContext.setTo(null);
-                        Axis2Sender.sendBack(messageContext);
-                        return false;
-                    }
                 }
             }
+        }
+        return false;
+    }
+ 
+    public boolean handleResponse(MessageContext messageContext) {
+        return true;
+    }
+
+    public boolean processSecurity(String credentials) {
+        String decodedCredentials = new String(new Base64().decode(credentials.getBytes()));
+        String usernName = decodedCredentials.split(":")[0];
+        String password = decodedCredentials.split(":")[1];
+        if ("admin".equals(username) && "admin".equals(password)) {
+            return true;
+        } else {
             return false;
         }
-     
-        public boolean handleResponse(MessageContext messageContext) {
-            return true;
-        }
-    
-        public boolean processSecurity(String credentials) {
-            String decodedCredentials = new String(new Base64().decode(credentials.getBytes()));
-            String usernName = decodedCredentials.split(":")[0];
-            String password = decodedCredentials.split(":")[1];
-            if ("admin".equals(username) && "admin".equals(password)) {
-                return true;
-            } else {
-                return false;
-            }
-        }
     }
+}
 ```
 
 You can build the project (mvn clean install) for this handler by accessing its source from here: https://github.com/wso2/product-esb/tree/v5.0.0/modules/samples/integration-scenarios/starbucks_sample/BasicAuth-handler
@@ -217,7 +181,7 @@ You can build the project (mvn clean install) for this handler by accessing its
 !!! Note
     When building the sample using the source ensure you update `pom.xml` with the online repository. To do this, add the following section before `<dependencies>` tag in `pom.xml` :
 
-    ``` java
+    ```xml
     <repositories>
         <repository>
            <id>wso2-nexus</id>
@@ -252,7 +216,7 @@ and restart the Micro Integrator: https://github.com/wso2/product-esb/blob/v5.0.
 
 Add the handler to the REST API:
 
-```
+```xml
 <api xmlns="http://ws.apache.org/ns/synapse" name="StockQuoteAPI" context="/stockquote">
        <resource methods="GET" uri-template="/view/{symbol}">
           <inSequence>
@@ -290,6 +254,10 @@ You can now send a request to the secured API.
 
 ## Using Kerberos to secure the REST API
 
+### Prerequisites
+
+**Before you begin**, be sure to [configure a user store](../../../../setup/user_stores/setting_up_ro_ldap) for the Micro Integrator and add the required users and roles.
+
 ### Setting up the Kerberos server
 
 First, you need to set up the Kerberos server and create the credentials for the Micro Integrator (which holds the REST API). For example, let's set up
@@ -315,7 +283,7 @@ Active Directory as the kerberos server (KDC):
 3.  Be sure to select **Password does not expire**, and deselect **User must change password** .
 4.  Open a terminal and execute the following command to set the Service Principal Name (spn) for the ESB server:
 
-    ``` java
+    ```bash
     setspn -s HTTP/myserver esbservice
     ```
 
@@ -345,7 +313,7 @@ Active Directory as the kerberos server (KDC):
 
 Create the following REST API and add the Kerberos handler to secure it with Kerberos authentication. Be sure to replace the handler configurations as described below.
     
-```
+```xml
 <api xmlns="http://ws.apache.org/ns/synapse"
         name="HealthCheckAPI"
         context="/HealthCheck">
@@ -370,6 +338,7 @@ Create the following REST API and add the Kerberos handler to secure it with Ker
         </handlers>
 </api>
 ```
+
 Kerberos handler parameters:
     
 <table>
@@ -405,12 +374,16 @@ You can generate an OAuth base security token using WSO2 Identity Server, and th
 2.  Create an API that points to the REST endpoint and includes the custom handler.
 3.  Create an OAuth application in Identity Server and get the access token.
 4.  Invoke the API with the access token
+
+### Prerequisites
+
+**Before you begin**, be sure to [configure a user store](../../../../setup/user_stores/setting_up_ro_ldap) for the Micro Integrator and add the required users and roles.
     
 ### Creating the custom handler
     
 The custom handler must extend AbstractHandler and implement ManagedLifecycle as shown in the following example. You can download the Maven project for this example:https://github.com/wso2-docs/ESB/tree/master/ESB-Artifacts/OAuthHandler_Sample
     
-``` java
+```java
 package org.wso2.handler;
 import org.apache.axis2.AxisFault;
 import org.apache.axis2.client.Options;
@@ -561,7 +534,7 @@ You will now create an API named TestGoogle that connects to the following endpo
 
 1.  See the example REST API configuration given below:
     
-    ```
+    ```xml
     <api xmlns="http://ws.apache.org/ns/synapse"
          name="TestGoogle"
          context="/search">
@@ -603,19 +576,23 @@ You will now use Identity Server to create an OAuth application and generate the
 2.  On the **Main** tab, click **Add** under **Service Providers** , and then [add a service provider](https://docs.wso2.com/display/IS570/Adding+and+Configuring+a+Service+Provider)
 3.  Note the access token URL and embed it in a cURL request to get the token. For example, use the following command and replace the values with the actual values: 
 
-    `curl -v -k -X POST --user : -H "Content-Type: application/x-www-form-urlencoded;charset=UTF-8" -d 'grant\_type=password&username=admin&password=admin' https://localhost:9444/oauth2/token`
+    ```
+    curl -v -k -X POST --user : -H "Content-Type: application/x-www-form-urlencoded;charset=UTF-8" -d 'grant\_type=password&username=admin&password=admin' https://localhost:9444/oauth2/token
+    ```
         
 Identity Server returns the access token, which you can now use when invoking the API. For example: `curl -v -X GET -H "Authorization: Bearer ca1799fc84986bd87c120ba499838a7" http://localhost:8280/search`
-        
+
 ## Using a policy file to authenticate with a secured back-end service
-        
 You can connect a REST client to a secured back-end service (such as a SOAP service) through an API that reads from a policy file.
+
+### Prerequisites
+**Before you begin**, be sure to [configure a user store](../../../../setup/user_stores/setting_up_ro_ldap) for the Micro Integrator and add the required users and roles.
 
 ### Creating the REST API
         
 First, you configure the Micro Integrator to expose the API to the REST client.
     
-```
+```xml
 <definitions xmlns="http://ws.apache.org/ns/synapse">
    <localEntry key="sec_policy"
                src="file:repository/samples/resources/policy/policy_3.xml"/>
@@ -670,13 +647,13 @@ First, you configure the Micro Integrator to expose the API to the REST client.
  
 The policy file stores the security parameters that are going to authenticated by the back-end service. You specify the policy file with the localEntry property, which in this example we've named sec_policy:
     
-```
+```xml
 <localEntry key="sec_policy" src="file:repository/samples/resources/policy/policy_3.xml"/> 
 ```
     
 You use then reference the policy file by its localEntry name when enabling the security policy for the end point:
     
-```
+```xml
 <address uri="http://localhost:9000/services/SecureStockQuoteService"
     format="soap11">
     <enableAddressing/>
@@ -686,7 +663,7 @@ You use then reference the policy file by its localEntry name when enabling the 
     
 In the outSequence property, the security header must be removed before sending the response back to the REST client.
     
-```
+```xml
 <outSequence trace="enable">
 <header xmlns:wsse="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd" name="wsse:Security" action="remove"/>
 ```
@@ -703,17 +680,23 @@ To download and install the unlimited strength policy files:
     
 Now that you have set up the API and the secured back-end SOAP service, you are ready to test this configuration with the following curl command.
     
-`curl -v http://127.0.0.1:8280/stockquote/view/IBM`
+```bash
+curl -v http://127.0.0.1:8280/stockquote/view/IBM
+```
     
 Observe that the REST client is getting the correct response (the `wsse:Security` header is removed from the decrypted message) while going through the secured back-end service and the API implemented in the Micro Integrator. You can use a TCP monitoring tool such as [tcpmon](https://code.google.com/p/tcpmon/downloads/list) to monitor the message sent from the the Micro Integrator and the response message received by the Micro Integrator. For a tutorial on using tcpmon, see http://technonstop.com/tcpmon-tutorial.
     
 ## Transforming Basic Auth to WS-Security
     
 REST clients typically use Basic Auth over HTTP to authenticate the user name and password, but if the back-end service uses WS-Security, you can configure the API to transform the authentication from Basic Auth to WS-Security.
-        
+
+### Prerequisites
+**Before you begin**, be sure to [configure a user store](../../../../setup/user_stores/setting_up_ro_ldap) for the Micro Integrator and add the required users and roles.
+
+### Creating the REST API
 To achieve this transformation, you configure the Micro Integrator to expose the API to the REST client as shown in the previous example, but you add the HTTPS protocol and Basic Auth handler to the configuration as shown below:
     
-``` java
+```xml
 <definitions xmlns="http://ws.apache.org/ns/synapse">
   <localEntry key="sec_policy"
 src="file:repository/samples/resources/policy/policy_3.xml"/>
@@ -727,8 +710,10 @@ src="file:repository/samples/resources/policy/policy_3.xml"/>
   </api>
 </definitions>
 ```
+
+### Testing the API
 This configuration allows two-fold security: the client authenticates with the API using Basic Auth over HTTPS, and then the API sends the request to the back-end service using the security policy. You can test this configuration using the following command:
     
-``` bash
+```bash
  curl -v -k -H "Authorization: Basic YWRtaW46YWRtaW4=" https://localhost:8243/stockquote/view/IBM  
 ```
