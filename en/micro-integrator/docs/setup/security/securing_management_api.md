@@ -114,7 +114,7 @@ A file-based user store is included for the [authentication handler](#user-authe
 
 Update this configuration to add/remove users for the management API. You can [encrypt the plain text passwords](../../../setup/security/encrypting_plain_text) using **secure vault**.
 
-To **disable** the file-based user store, remove this section from the `internal-apis.xml` file. When the file-based user store is disabled, the external user store that is configured for the Micro Integrator will function as the management API's user store.
+To **disable** the file-based user store, remove this section from the `internal-apis.xml` file. When the file-based user store is disabled, the [external user store](../../../setup/user_stores/setting_up_ro_ldap) that is configured for the Micro Integrator will function as the management API's user store.
 
 ## CORS Configurations
 
