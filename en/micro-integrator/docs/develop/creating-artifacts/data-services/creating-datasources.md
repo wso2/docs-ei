@@ -40,4 +40,4 @@ Shown below is the sample configuration that is created. You can now update the 
 
 ## Examples
 
--	<a href="../../../../use-cases/examples/data_integration/carbon-data-service.md">Exposing a Cabon Datasource</a>
+-	<a href="../../../../use-cases/examples/data_integration/carbon-data-service">Exposing a Cabon Datasource</a>
