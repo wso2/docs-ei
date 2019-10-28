@@ -657,7 +657,7 @@ retry_attempts = ''
                 <div class="doc-wrapper">
                     <div class="mb-config">
                         <div class="config-wrap">
-                            <code>[[user_store]]</code>
+                            <code>[user_store]</code>
                             <span class="badge-required">Required</span>
                             <p>
                                 This configuration header is required for conencting the Micro Integrator to an <a href='../../setup/user_stores/setting_up_ro_ldap'>LDAP user store</a>.
