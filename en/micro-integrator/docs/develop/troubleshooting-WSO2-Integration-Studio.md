@@ -20,4 +20,15 @@ If you need to open a particular project view, you can get it by
 navigating to **Window -> Show View -> Other...** from the
 toolbar, and open the preferred view from the list.
 
+## Unable to drag and drop mediators into the canvas
+
+If you are using Display Scaling more than 150% in Windows or Linux, you may observe that you cannot drag and drop mediators into the canvas. In such cases, you can fix it by adding the following line(VM argument) in the IntegrationStudio.ini file under the installation directory of Integration Studio.
+
+`-Dswt.autoScale=100`
+
+Note: Add this to the last line
+
+
+
+
   
