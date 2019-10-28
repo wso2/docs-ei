@@ -21,7 +21,7 @@ Following are the integration artifacts (proxy service) that we can used to impl
       <parameter name="transport.jms.ContentType">
           <rules>
               <jmsProperty>contentType</jmsProperty>
-              <default>application/xml</default>
+              <default>text/xml</default>
           </rules>
       </parameter>
       <parameter name="transport.jms.Destination">Queue1</parameter>
@@ -38,7 +38,7 @@ Create the artifacts:
 3. Create the [proxy service](../../../../develop/creating-artifacts/creating-a-proxy-service) with the configurations given above.
 4. [Deploy the artifacts](../../../../develop/deploy-and-run) in your Micro Integrator.
 5. Start the selected message broker and create a queue with name <strong>Queue1</strong>. 
-6. [Configure MI with the selected message broker](../../../setup/brokers/configure-with-ActiveMQ) and start the Micro-Integrator.
+6. [Configure MI with the selected message broker](../../../../setup/brokers/configure-with-ActiveMQ) and start the Micro-Integrator.
 
 Set up the back-end service.
 
@@ -50,14 +50,18 @@ https://github.com/wso2-docs/WSO2_EI/blob/master/Back-End-Service/stockquote_ser
 $ java -jar stockquote_service.jar
 ```
 
-
 Publish the following XML message to the Queue1.
 ```xml
-<m0:placeOrder xmlns:m0="http://services.samples">
-    <m0:order>
-        <m0:price>172.23182849731984</m0:price>
-        <m0:quantity>18398</m0:quantity>
-        <m0:symbol>IBM</m0:symbol>
-    </m0:order>
-</m0:placeOrder>
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+   <soapenv:Header/>
+   <soapenv:Body>
+   	<m0:placeOrder xmlns:m0="http://services.samples">
+	    <m0:order>
+	        <m0:price>172.23182849731984</m0:price>
+	        <m0:quantity>18398</m0:quantity>
+	        <m0:symbol>IBM</m0:symbol>
+	    </m0:order>
+	</m0:placeOrder>
+   </soapenv:Body>
+</soapenv:Envelope>
 ```
