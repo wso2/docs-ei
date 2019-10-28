@@ -80,14 +80,15 @@ After setting up WSO2 MB with the Micro Integrator, open `MI_HOME/wso2/broker/c
 ### Authentication: Plain Text
 
 WSO2 MB requires all its incoming connections to be authenticated. The
-`MI_HOME/conf/jndi.properties        ` file contains lines
+`MI_HOME/conf/deployment.toml       ` file contains lines
 similar to the following. They contain the username and password
 credentials used to authenticate connections made to the WSO2 MB
 runtime. This is plain text authentication.  
 
-```java
-connectionfactory.TopicConnectionFactory = amqp://admin:admin@clientID/carbon?brokerlist='tcp://localhost:5675'
-connectionfactory.QueueConnectionFactory = amqp://admin:admin@clientID/carbon?brokerlist='tcp://localhost:5675' 
+```toml
+[transport.jndi.connection_factories]
+'connectionfactory.TopicConnectionFactory' = "amqp://admin:admin@clientID/carbon?brokerlist='tcp://localhost:5675'"
+'connectionfactory.QueueConnectionFactory' = "amqp://admin:admin@clientID/carbon?brokerlist='tcp://localhost:5675'"
 ```
 
 In the WSO2 Micro Integrator authentication example below, we send a request to the proxy service named **testJMSProxy**, which adds a message to the **example.MyQueue** queue.

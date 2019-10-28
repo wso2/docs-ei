@@ -1,27 +1,23 @@
 # Generating Swagger Documents for REST APIs
 
-API documentation is important to guide the users on what they can do using specific APIs. Follow the steps given below to generate Swagger documentation for the REST APIs you created in WSO2 EI.
+API documentation is important to guide the users on what they can do using specific APIs. Follow the steps given below to generate Swagger documentation for the REST APIs you created in the Micro Integrator.
 
 !!! Info
     You need to have created a REST API to view the documentation for that API.
 
 ## Step 1: Configure the Micro Integrator
 
-1.  Add the following configuration under the HttpGetRequestProcessors tag of the <EI_HOME>/conf/carbon.xml file to generate the Swagger JSON or YAML files.
-    ```
-    <Processor>
-       <Item>swagger.json</Item>
-       <Class>org.wso2.carbon.mediation.transport.handlers.requestprocessors.swagger.format.SwaggerJsonProcessor</Class>
-    </Processor>
-    <Processor>
-       <Item>swagger.yaml</Item>
-       <Class>org.wso2.carbon.mediation.transport.handlers.requestprocessors.swagger.format.SwaggerYamlProcessor</Class>
-    </Processor>
-    ```
-2.  Open the terminal, navigate to the <EI_HOME>/bin directory and start the WSO2 EI profile.
+1.  Add the following configuration in `MI_HOME/conf/deployment.toml` file to generate the Swagger JSON or YAML files.
+    ```toml
+    [[server.get_request_processor]]
+    item = "swagger.json"
+    class = "org.wso2.micro.integrator.transport.handlers.requestprocessors.swagger.format.SwaggerJsonProcessor"
 
-    - Linux/Mac ./micro-integrator.sh
-    - Windows micro-integrator.bat --run
+    [[server.get_request_processor]]
+    item = "swagger.yaml"
+    class = "org.wso2.micro.integrator.transport.handlers.requestprocessors.swagger.format.SwaggerYamlProcessor"
+    ```
+2.  Open the terminal, navigate to the `<MI_HOME>/bin` directory and start the Micro Integrator.
 
 ## Step 2: Generate the Swagger docs
 
@@ -29,47 +25,25 @@ API documentation is important to guide the users on what they can do using spec
 
 Enter the following on the browser and the JSON content will appear on the browser screen: http://<EI_HOST>:8280/<API_NAME>?swagger.json
 
-- By default, <EI_HOST> is localhost. However, if you are using a public IP, the respective IP address or domain needs to be specified.
+- By default, <MI_HOST> is `localhost`. However, if you are using a public IP, the respective IP address or domain needs to be specified.
 - Enter the APIs name for <API_NAME>.
 
 !!! Note
     The API name is case sensitive. Therefore, make sure to the enter the API name correctly. Else, the JSON file will not download.
 
-Example: http://localhost:8280/HealthcareAPI?swagger.json
-
-**Generate Swagger docs for tenants**
-
-If you want to generate the Swagger JSON file for a tenant, you need to enter the following on the browser. http://<EI_HOST>:8280/t/<TENANT_DOMAIN>/<API_NAME>?swagger.json
-
-- By default, <EI_HOST> is localhost. However, if you are using a public IP, the respective IP address or domain needs to be specified.
-- Enter the value of the tenant domain for <TENANT_DOMAIN>.
-- Enter the APIs name for <API_NAME>.
-
-Example: http://localhost:8280/t/abc.com/HealthcareAPI?swagger.json
+Example: http://localhost:8290/HealthcareAPI?swagger.json
 
 ### YAML
 
-Enter the following on the browser and the YAML file will download to your machine: http://<EI_HOST>:8280/<API_NAME>?swagger.yaml
+Enter the following on the browser and the YAML file will download to your machine: http://<MI_HOST>:8290/<API_NAME>?swagger.yaml
 
-- By default, <EI_HOST> is localhost. However, if you are using a public IP, the respective IP address or domain needs to be specified.
+- By default, <MI_HOST> is localhost. However, if you are using a public IP, the respective IP address or domain needs to be specified.
 - Enter the APIs name for <API_NAME>.
 
 !!! Note
     The API name is case sensitive. Therefore, make sure to the enter the API name correctly. Else, the YAML file will not download.
 
-Example: http://localhost:8280/HealthcareAPI?swagger.yaml
-
-**Generate Swagger docs for tenants**
-
-If you want to generate the Swagger YAML file for a tenant, you need to enter the following on the browser.
-
-http://<EI_HOST>:8280/t/<TENANT_DOMAIN>/<API_NAME>?swagger.yaml
-
-- By default, <EI_HOST> is localhost. However, if you are using a public IP, the respective IP address or domain needs to be specified.
-- Enter the value of the tenant domain for <TENANT_DOMAIN>.
-- Enter the APIs name for <API_NAME>.
-
-Example: http://localhost:8280/t/abc.com/HealthcareAPI?swagger.yaml
+Example: http://localhost:8290/HealthcareAPI?swagger.yaml
 
 ## Step 3: Copy JSON/YAML to Swagger editor
 

@@ -213,9 +213,9 @@ use when you run the tool:
          </td>
          <td>No</td>
          <td>
-            <p>On Linux/Mac OS: <code>               ./forgetme.sh -U Sam -carbon /usr/bin/wso2is/wso2is5.5.0              </code></p>
+            <p>On Linux/Mac OS: <code>               ./forgetme.sh -U Sam -carbon /usr/bin/wso2is/wso2mi-1.1.0              </code></p>
             <p><br />
-               On Windows: <code>               forgetme.bat -U Sam               -carbon /usr/bin/wso2is/wso2is5.5.0              </code>
+               On Windows: <code>               forgetme.bat -U Sam               -carbon /usr/bin/wso2is/wso2mi-1.1.0              </code>
             </p>
          </td>
       </tr>

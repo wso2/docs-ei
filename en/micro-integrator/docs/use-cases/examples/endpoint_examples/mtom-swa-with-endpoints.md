@@ -21,17 +21,24 @@ Micro Integrator can identify the past information about the current message con
 and can use this knowledge to transform the response back to the client
 in the same format as the original request.
 
--   `          <property name="enableMTOM" value="true" scope="axis2"/>         `  
+   -   `enable_mtom`
+   ```toml
+    [server]
+    enable_mtom = true
+   ```
     When this is enabled, all outgoing messages will be serialized and
     sent as MTOM optimized MIME messages.You can override this
     configuration per service in the `          services.xml         `
     configuration file.
-    -   `          <property name="enableSwA" value="true" scope="axis2"/>         `  
+   -   `enable_swa`
+   ```toml
+    [server]
+    enable_swa = true
+   ```
     When this is enabled, incoming SwA messages are automatically
     identified by axis2.   
-    The above properties can also be defined in
-    `           <ESB_HOME>/repository/conf/axis2/axis2.xml          `
-    file.
+    
+The above properties can be defined in `MI_HOME/conf/deployment.toml` file.
 
 Following are the integration artifacts that we can used to implement this scenario.
 
