@@ -6,14 +6,13 @@ This example demonstrates how data in a Google Spreadsheet can be exposed as a d
 
 A google spreadsheet can be a private spreadsheet or a publicly exposed (published to the web) spreadsheet. This example uses a public spreadsheet. 
 
-Note the following if you are using a public spreadsheet:
+Note the following before you begin:
 
--   Before you begin, the spreadsheet is required to be published to the
-    web. To publish a spreadsheet, select **File \> Publish** **to the
+-   The spreadsheet is required to be published to the
+    web. To publish a spreadsheet, select **File -> Publish** **to the
     web** from the spreadsheet's user interface. Use the spreadsheet's
     URL for the **Google Spreadsheet URL** field.
--   You cannot define SQL-like
-    queries for a public spreadsheet. This also means that you cannot
+-   You cannot define SQL-like queries for a public spreadsheet. This also means that you cannot
     add or modify the data in the spreadsheet. That is, you can only get
     data from a public spreadsheet.
 
@@ -49,7 +48,7 @@ Given below is the data service configuration you need to build. See the instruc
 !!! Info
     The above sample uses a public spreadsheet. Note the following if you are using a private spreadsheet:
     
-    -   The **Redirect URI** should contain the same hostname as the **Authorized Redirect** URl  that you provided in the previous step, as well as the host on which the server runs.
+    -   The **Redirect URI** should contain the same hostname as the **Authorized Redirect** URl, as well as the host on which the server runs.
     -   If the server is running on your machine, you can simply
         use `                 localhost                ` as the
         hostname (or the direct IP address, which is 127.0.0.1).
@@ -59,14 +58,14 @@ Given below is the data service configuration you need to build. See the instruc
         also need to ensure that the hostname you use is known
         to the browser by registering it in your
         `                 /etc/hosts                ` file.
-    -   For the purpose of this tutorial, be sure to use
+    -   For the purpose of this example, be sure to use
             `localhost` as the IP in the above URL.
 
 ## Build and run
 
 Create the artifacts:
 
-1. [Set up WSO2 Integration Studio](../../../../develop/installing-WSO2-Integration-Studio). The path to this folder is referred to as `MI_TOOLING_HOME` throughout this tutorial.      
-2. [Create a Data Service project](../../../../develop/creating-projects/#data-services-project)
+1. [Set up WSO2 Integration Studio](../../../../develop/installing-WSO2-Integration-Studio).
+2. [Create a Data Service project](../../../../develop/creating-projects/#data-services-project).
 4. [Create the data service](../../../../develop/creating-artifacts/data-services/creating-data-services) with the configurations given above.
 5. [Deploy the artifacts](../../../../develop/deploy-and-run) in your Micro Integrator. 

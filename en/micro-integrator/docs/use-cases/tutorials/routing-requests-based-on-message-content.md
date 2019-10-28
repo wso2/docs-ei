@@ -207,9 +207,6 @@ You can now start configuring the API resource.
                   </strong>
                </li>
             </ol>
-            <p><strong><img src="../../assets/img/tutorials/119132155/119132162.png" width="450" /><br />
-               </strong>
-            </p>
          </div>
       </td>
    </tr>
@@ -228,7 +225,6 @@ You can now start configuring the API resource.
                      <li>Case 2:  clemency medical center</li>
                      <li>Case 3:  pine valley community hospital</li>
                   </ul>
-                  <img src="../../assets/img/tutorials/119132155/119132161.png" width="900" />
                </li>
                <li>Click <strong>OK</strong> .</li>
             </ol>
@@ -298,7 +294,6 @@ You can now start configuring the API resource.
                         </li>
                     </ol>
                 <b>Note</b>: This XPath expression value gets the value stored in the Property mediator and concatenates the two strings to display the log message `Routing to <hospital name>`.
-        <img src="../../assets/img/tutorials/119132155/119132160.png">
                 </li>
                 <li>
                     Click OK.
