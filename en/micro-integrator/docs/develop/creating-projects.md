@@ -76,6 +76,17 @@ Create this project directory to start creating data services (.dbs files) for e
 
 You can now start <a href="../../develop/creating-artifacts/data-services/creating-data-services/">managing data service artifacts</a> using <b>WSO2 Integration Studio</b>.
 
+## Datasource Project
+
+Create this project directory to start creating datasources that you can expose through a data service.
+
+1. Open **WSO2 Integration Studio** and click **DS Project → Create New Data Source** in the **Getting Started** view as shown below.
+    <img src="../../assets/img/create_project/datasourrce-project.png">
+2. In the dialog that opens, enter a project name and click **Next**.
+    <img src="../../assets/img/create_project/datasource-project-dialog.png">
+3. Click **Finish** and see that the project is now listed in the project explorer.
+    <img src="../../assets/img/create_project/datasource-project-explorer.png" width="400">
+
 ## Connector Exporter Project
 
 Create this project directory if you have used ESB connectors in your medition sequence (defined in the ESB config project). All connector artifacts need to be stored in a connector exporter project before packaging. See the instructions on [creating and using connectors](../develop/creating-artifacts/adding-connectors.md).

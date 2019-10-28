@@ -97,6 +97,16 @@ nav:
           - 'Sending and Receiving Emails': 'use-cases/examples/file-processing/mailto-transport-examples.md'
         - Data Integration:
           - 'Exposing an RDBMS datasource': 'use-cases/examples/data_integration/rdbms-data-service.md'
+          - Exposing Other Datasources:
+            - 'Exposing a CSV datasource': 'use-cases/examples/data_integration/csv-data-service.md'
+            - 'Exposing an Excel datasource': 'use-cases/examples/data_integration/excel-data-service.md'
+            - 'Exposing a Google Spreadsheet': 'use-cases/examples/data_integration/google-spreadsheet-data-service.md'
+            - 'Exposing a Cassandra datasource': 'use-cases/examples/data_integration/cassandra-data-service.md'
+            - 'Exposing an RDF datasource': 'use-cases/examples/data_integration/rdf-data-service.md'
+            - 'Exposing a Web Resource': 'use-cases/examples/data_integration/web-resource-data-service.md'
+            - 'Exposing a Carbon datasource': 'use-cases/examples/data_integration/carbon-data-service.md'
+            - 'Exposing a Custom datasource': 'use-cases/examples/data_integration/custom-datasource.md'
+            - 'Exposing a JNDI datasource': 'use-cases/examples/data_integration/jndi-data-service.md'
           - 'Exposing Data in JSON Format': 'use-cases/examples/data_integration/json-with-data-service.md'
           - 'Using an OData Service': 'use-cases/examples/data_integration/odata-service.md'
           - 'Using Nested Data Queries': 'use-cases/examples/data_integration/nested-queries-in-data-service.md'
@@ -275,6 +285,7 @@ nav:
         - 'Creating Local Registry Entries': 'develop/creating-artifacts/registry/creating-local-registry-entries.md'
         - 'Creating a Smooks Configuration': 'develop/creating-artifacts/creating-smooks-artifacts.md'
         - 'Creating a Data Service': 'develop/creating-artifacts/data-services/creating-data-services.md'
+        - 'Creating a Datasource': 'develop/creating-artifacts/data-services/creating-datasources.md'
         - 'Creating a Data Service Input Validator': 'develop/creating-artifacts/data-services/creating-input-validators.md'
         - 'Adding Connectors': 'develop/creating-artifacts/adding-connectors.md'
       - Creating Custom Artifacts:
@@ -414,7 +425,17 @@ nav:
             - 'Scheduled Failover Message Forwarding Processor': 'references/synapse-properties/message-processors/msg-sched-failover-forwarding-processor-properties.md'
         - 'Templates': 'references/synapse-properties/template-properties.md'
         - 'Endpoints': 'references/synapse-properties/endpoint-properties.md'
-        - 'Data Services': 'references/synapse-properties/data-services.md'
+        - Data Services:
+          - 'Data Service Configurations': 'references/synapse-properties/data-services.md'
+          - 'Elements of a Data Service': 'references/synapse-properties/data-services/elements-of-a-data-service.md'
+          - 'Query Parameters': 'references/synapse-properties/data-services/query-parameters.md'
+          - 'Input Validators': 'references/synapse-properties/data-services/input-validators.md'
+          - 'Filtering Responses by User Role': 'references/synapse-properties/data-services/filtering-responses-by-user-role.md'
+          - 'Dynamic User Authentication': 'references/synapse-properties/data-services/dynamic-user-authentication.md'
+          - 'Using Namespaces': 'references/synapse-properties/data-services/using-Namespaces.md'
+          - 'SQL Dialects': 'references/synapse-properties/data-services/sql-dialects.md'
+          - 'Mapping Data Types': 'references/synapse-properties/data-services/mapping-data-types.md'
+          - 'Using Namespaces': 'references/synapse-properties/data-services/using-Namespaces.md'
         - Transport Configs:
           - 'VFS Parameters': 'references/synapse-properties/transport-parameters/vfs-transport-parameters.md'
           - 'JMS Parameters': 'references/synapse-properties/transport-parameters/jms-transport-parameters.md'
