@@ -11,16 +11,14 @@ To use the streaming mode with the VFS transport, see the following instructions
 ## Update server-level configurations
 
 1. Open the deployment.toml file from the `MI_HOME/conf` directory.
-2. Add the `binary` message builder and formatter configurations:
+2. Binary message builder and formatter are enabled by default. Make sure the following configurations are presence in deployment.toml file unless you changed the default `application/binary` message builder and formatter.
 
     ```toml
-    [[custom_message_builders]]
-    content_type = "application/binary"
-    class="org.apache.axis2.format.BinaryBuilder"
-
-    [[custom_message_formatters]]
-    content_type = "application/binary"
-    class="org.apache.axis2.format.BinaryFormatter"
+    [message_builders]
+    application_binary = "org.apache.axis2.format.BinaryBuilder"   
+ 
+    [message_formatters]
+    application_binary = "org.apache.axis2.format.BinaryFormatter"
     ```
 
     See the complete list of [parameters](../../../references/config-catalog) for configuring message builders and formatters.

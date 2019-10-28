@@ -158,8 +158,8 @@ When building XML elements, the EI handles the `$` character and digits in a spe
 
 ## Converting spaces
 
-Although you can have spaces in JSON elements, [you cannot have them when converted to XML](https://www.w3.org/TR/REC-xml/#sec-common-syn). Therefore, you can handle spaces when converting JSON message payloads to XML, by adding the following property to the `MI_HOME/conf/synapse.properties` file:
-`synapse.commons.json.buildValidNCNames`
+Although you can have spaces in JSON elements, [you cannot have them when converted to XML](https://www.w3.org/TR/REC-xml/#sec-common-syn). Therefore, you can handle spaces when converting JSON message payloads to XML, by adding the following property to the `MI_HOME/conf/deployment.toml` file `[mediation]` section:
+`synapse.build_valid_nc_name`
 
 For example, consider the following JSON message:
 
@@ -210,12 +210,14 @@ By default, empty XML elements convert to JSON as null objects as shown below.
 {"object":null}
 ```
 
-If you set the `synapse.commons.enableXmlNullForEmptyElement=false` property in the `synapse.properties` file (stored in
-the `MI_HOME/conf/` directory), the JSON representaion of empty XML elements will change as shown below.
+JSON representation of empty XML element will change as below by adding `'synapse.commons.enableXmlNullForEmptyElement' = false` under `[synapse_properties]` section in `MI_HOME/conf/deployment.toml` file.
 
 ``` javascript
 {"object":""}
 ```
+
+!!! Info
+    `'synapse.commons.enableXmlNullForEmptyElement` property surrounded with single quotation to identify it as whole string rather dot separated toml object.
 
 ### Empty XML elements with the 'nil' attribute
 
@@ -233,7 +235,7 @@ By default, the above XML element converts to JSON as shown below.
 {"object":{"@nil":"true"}}
 ```
 
-If you set the `synapse.commons.enableXmlNilReadWrite=true` property in the `synapse.properties` file (stored in the `MI_HOME/conf/` directory), XML elements where the 'nil' attribue is set to true will be represented in JSON as null objects as shown below.
+If you set the `synapse.enable_xml_nil=true` property in the `deployment.toml` file `[mediation] section (stored in the `MI_HOME/conf/` directory), XML elements where the 'nil' attribue is set to true will be represented in JSON as null objects as shown below.
 
 ``` javascript
 {"object":null}
