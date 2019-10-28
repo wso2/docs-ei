@@ -20,7 +20,6 @@ This section describes how to configure WSO2 Micro Integrator to connect with Sw
         [[transport.jms.listener]]
         name = "myTopicListener"
         parameter.initial_naming_factory = "com.swiftmq.jndi.InitialContextFactoryImpl"
-        parameter.broker_name = "activemq"
         parameter.provider_url = "smqp://localhost:4001/timeout=10000"
         parameter.connection_factory_name = "TopicConnectionFactory"
         parameter.connection_factory_type = "topic"
@@ -32,7 +31,6 @@ This section describes how to configure WSO2 Micro Integrator to connect with Sw
         [[transport.jms.sender]]
         name = "myTopicSender"
         parameter.initial_naming_factory = "com.swiftmq.jndi.InitialContextFactoryImpl"
-        parameter.broker_name = "activemq"
         parameter.provider_url = "smqp://localhost:4001/timeout=10000"
         parameter.connection_factory_name = "TopicConnectionFactory"
         parameter.connection_factory_type = "topic"

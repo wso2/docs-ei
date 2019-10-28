@@ -1,11 +1,11 @@
 # Inbound HL7 with Automatic Acknowledgement
 
 ## Example use case
-
+The HL7 inbound endpoint implementation is fully asynchronous and is based on the Minimal Lower Layer Protocol(MLLP) implemented on top of event driven I/O.
 
 ## Synapse configuration
 
-Following are the integration artifacts that we can used to implement this scenario.
+Following are the integration artifacts that we can used to implement this scenario. See the instructions on how to [build and run](#build-and-run) this example.
 
 ```xml tab='Inbound Endpoint'
 <?xml version="1.0" encoding="UTF-8"?>
@@ -46,12 +46,12 @@ Following are the integration artifacts that we can used to implement this scena
 
 Create the artifacts:
 
-1. Set up WSO2 Integration Studio.
-2. Create an ESB Solution project
-3. Create the following artifacts: Inbound endpoint, Sequence.
-4. Deploy the artifacts in your Micro Integrator.
+1. [Set up WSO2 Integration Studio](../../../../develop/installing-WSO2-Integration-Studio).
+2. [Create an ESB Solution project](../../../../develop/creating-projects/#esb-config-project)
+3. [Create two sequences](../../../../develop/creating-artifacts/creating-reusable-sequences) (Main and Fault) and an [inbound endpoint](../../../../develop/creating-an-inbound-endpoint) with the configurations given above.
+4. [Deploy the artifacts](../../../../develop/deploy-and-run) in your Micro Integrator.
 
-The sample client used here is the **HAPI HL7 TestPanel**:
+To execute the sample, use the **HAPI HL7 TestPanel**:
 
 -   Connect to the port defined in the inbound endpoint (i.e., 20000,
     which is the value of `           inbound.hl7.Port)          ` using

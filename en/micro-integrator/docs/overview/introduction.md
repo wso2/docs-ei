@@ -1,11 +1,12 @@
-# Introduction to WSO2 Micro Integrator
+# Introduction
 
-WSO2 Micro Integrator is an opensource integration server, which enables you to connect all the different data stores, events, APIs, and legacy systems that make up your enterprise and build an organization that performs as one seamless digital enterprise. WSO2 Micro Integrator is configuration-based and allows you to graphically design and build your integations. 
+The **Micro Integrator** of [WSO2 Enterprise Integrator 7.0.0](https://ei.docs.wso2.com/en/latest/) is a powerful configuration-driven approach to integration, which allows developers to build integration solutions graphically. 
+
+This is an alternative to the code-driven integration approach that is offered by the [Ballerina Integrator](https://ei.docs.wso2.com/en/latest/ballerina-integrator/get-started/introduction/).
 
 ## Building Centralized, Monolithic integrations
 
 The heart of WSO2 Micro Integrator is an event-driven, standards-based messaging engine (the **Bus**), which supports message routing, message transformations, and other types of messaging use cases. If your organization uses an API-driven, centralized, integration architecture, WSO2 Micro Integrator can be used as the central integration layer that implements the message mediation logic connecting all the systems, data, events, APIs, etc. in your integration ecosystem.
-
 
 ![Centralized Integration](../assets/img/intro/centralized-integration.png)
 
@@ -19,4 +20,4 @@ As shown above, if your organization is running on a decentralized, cloud-native
 
 ## Graphical integration desigining
 
-WSO2 Micro Integrator is coupled with WSO2 Integration Studio, which is a comprehensive graphical data flow designer for designing and implementing integration use cases. While **WSO2 Ballerina Integrator** provides a code-driven integration experience for integrating systems, the Micro Integrator allows developers to build integrations graphically.
+WSO2 Micro Integrator is coupled with [WSO2 Integration Studio](../../develop/WSO2-Integration-Studio); a comprehensive graphical integration flow designer for building integrations using a simple drag-and-drop functionality.

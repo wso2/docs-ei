@@ -18,7 +18,7 @@
 site_name: WSO2 Enterprise Integrator Documentation
 site_description: Documentation for WSO2 Enterprise Integrator
 site_author: WSO2
-site_url: https://wso2.com/integration/
+site_url: https://ei.docs.wso2.com/en/latest/micro-integrator/
 
 # Repository
 repo_name: wso2/docs-ei
@@ -48,41 +48,25 @@ nav:
     - 'Home': index.md
     - Get Started:
       - 'Introduction': 'overview/introduction.md'
-      - 'Quick Start Guide': 'quick-start-guide/quick-start-guide.md'
+      - 'Quick Start Guide': 'overview/quick-start-guide.md'
       - 'Developing your First Integration': 'develop/integration-development-kickstart.md'
       - 'Key Concepts': 'overview/key-concepts.md'
     - Learn:
       - 'Integration Use Cases': 'use-cases/integration-use-cases.md'
       - Tutorials:
-        - 'Sending a Simple Message to a Service': 'use-cases/tutorials/integration/sending-a-simple-message-to-a-service.md'
-        - 'Message Routing': 'use-cases/tutorials/integration/routing-requests-based-on-message-content.md'
-        - 'Message Transformation': 'use-cases/tutorials/integration/transforming-message-content.md'
-        - 'Service Orchestration': 'use-cases/tutorials/integration/exposing-several-services-as-a-single-service.md'
-        - 'Asynchronous Messaging': 'use-cases/tutorials/integration/storing-and-forwarding-messages.md'
-        - 'Connecting Web APIs/Cloud Services': 'use-cases/tutorials/integration/using-the-gmail-connector.md'
-        - 'Data Integration': 'use-cases/tutorials/integration/sending-a-simple-message-to-a-datasource.md'
+        - 'Sending a Simple Message to a Service': 'use-cases/tutorials/sending-a-simple-message-to-a-service.md'
+        - 'Message Routing': 'use-cases/tutorials/routing-requests-based-on-message-content.md'
+        - 'Message Transformation': 'use-cases/tutorials/transforming-message-content.md'
+        - 'Service Orchestration': 'use-cases/tutorials/exposing-several-services-as-a-single-service.md'
+        - 'Asynchronous Messaging': 'use-cases/tutorials/storing-and-forwarding-messages.md'
+        - 'Connecting Web APIs/Cloud Services': 'use-cases/tutorials/using-the-gmail-connector.md'
+        - 'Data Integration': 'use-cases/tutorials/sending-a-simple-message-to-a-datasource.md'
         - 'File Processing': 'use-cases/tutorials/file-processing.md'
+        - 'Periodic Execution of Integration Process': 'use-cases/tutorials/using-scheduled-tasks.md'
         - 'Using Inbound Endpoints': 'use-cases/tutorials/using-inbound-endpoints.md'
         - 'Reusing Mediation Sequences': 'use-cases/tutorials/using-templates.md'
         - 'Integrating with SAP': 'use-cases/tutorials/sap-integration.md'
       - Examples:
-        #- Message Mediation Basics:
-          #- 'Split Aggregator Pattern': 'use-cases/examples/split_aggregate_pattern.md'
-          #- 'Optimized Message Transformation': 'use-cases/examples/message_transformation_example.md'
-        #- Message Mediation Advanced:
-          #- 'Split Aggregator Pattern': 'use-cases/examples/split_aggregate_pattern.md'
-          #- 'Optimized Message Transformation': 'use-cases/examples/message_transformation_example.md'
-        - Message Routing:
-          - 'Routing based on Message Header': 'use-cases/examples/message-routing/header-based-routing.md'
-          - 'Routing based on Message Payload': 'use-cases/examples/message-routing/payload-based-routing.md'
-          - 'Splitting and Aggregating Response Messages': 'use-cases/examples/message-routing/split-and-aggregate-responses.md'
-        - Message Transformation:
-          - 'Converting SOAP Message to JSON': 'use-cases/examples/message-transformations/soap-to-json-conversion.md'
-          - 'Converting POX Message to JSON': 'use-cases/examples/message-transformations/pox-to-json-conversion.md'
-          - 'Converting JSON Message to SOAP': 'use-cases/examples/message-transformations/json-to-soap-conversion.md'
-          - 'Converting CSV Message to Other Formats': 'use-cases/examples/message-transformations/csv-to-other-formats-conversion.md'
-          - 'Converting to CSV Message Format': 'use-cases/examples/message-transformations/csv-conversion.md'
-        #- Service Orchestration:
         - Asynchronous Messaging:
             - 'Consuming JMS Messages': 'use-cases/examples/jms_examples/consuming-jms.md'
             - 'Producing JMS Messages': 'use-cases/examples/jms_examples/producing-jms.md'
@@ -94,68 +78,53 @@ nav:
             - 'Shared Topic Subscription': 'use-cases/examples/jms_examples/shared-topic-subscription.md'
             - 'Detecting Repeatedly Redelivered Messages': 'use-cases/examples/jms_examples/detecting-repeatedly-redelivered-messages.md'
             - 'Specifying Delivery Delay on Messages': 'use-cases/examples/jms_examples/specifying-a-delivery-delay-on-messages.md'
-            - 'JMS Map Messaging': 'use-cases/examples/jms_examples/jms-map-message.md'
+            #- 'JMS Map Messaging': 'use-cases/examples/jms_examples/jms-map-message.md'
             - 'RabbitMQ Examples': 'use-cases/examples/jms_examples/rabbitmq-examples.md'
-        #- Connecting Web Api/Cloud Services:
-        #- Data Integration:
         - Protocol Switching:
-          - 'Introduction to Switching Transports': 'use-cases/examples/protocol-switching/Introduction_to_Switching_Transports_.md'
-          - 'Switching from FTP Listener to Mail Sender': 'use-cases/examples/protocol-switching/Switch_from_FTP_Listener_to_Mail__Sender.md'   
-          - 'Switching from HTTP to FIX': 'use-cases/examples/protocol-switching/Switching_from_HTTP_to_FIX_.md'
-          - 'Switch from FIX to HTTP': 'use-cases/examples/protocol-switching/Switch_from_FIX_to_HTTP_.md'
-          - 'Switch from FIX to AMQP': 'use-cases/examples/protocol-switching/Switch_from_FIX_to_AMQP_.md'
-          - 'Switching between FIX Versions': 'use-cases/examples/protocol-switching/Switching_between_FIX_Versions_.md'
-          - 'Switching from TCP to HTTP/S': 'use-cases/examples/protocol-switching/Switching_from_TCP_to_HTTP_S_.md'
-          - 'Switching from UDP to HTTP/S': 'use-cases/examples/protocol-switching/Switching_from_UDP_to_HTTP_S_.md'
-          - 'Switching between HTTP to MSMQ': 'use-cases/examples/protocol-switching/HTTP_to_MSMQ_and_MSMQ_to_HTTP_.md'
-          - 'Switching from HTTP/S to JMS': 'use-cases/examples/protocol-switching/Switching_from_HTTP_S_to_JMS_.md'
+          - 'Switching from JMS to HTTP/S': 'use-cases/examples/protocol-switching/switching_from_JMS_to_HTTP.md'
+          - 'Switching from HTTP/S to JMS': 'use-cases/examples/protocol-switching/switching_from_HTTPS_to_JMS.md'
+          - 'Switching from FTP Listener to Mail Sender': 'use-cases/examples/protocol-switching/switching_from_FTP_listener_to_mail_sender.md'   
+          - 'Switching from HTTP to FIX': 'use-cases/examples/protocol-switching/switching_from_HTTP_to_FIX.md'
+          - 'Switch from FIX to HTTP': 'use-cases/examples/protocol-switching/switching_from_FIX_to_HTTP.md'
+          - 'Switch from FIX to AMQP': 'use-cases/examples/protocol-switching/switching_from_FIX_to_AMQP.md'
+          - 'Switching between FIX Versions': 'use-cases/examples/protocol-switching/switching_between_FIX_versions.md'
+          - 'Switching from TCP to HTTP/S': 'use-cases/examples/protocol-switching/switching_from_TCP_to_HTTPS.md'
+          - 'Switching from UDP to HTTP/S': 'use-cases/examples/protocol-switching/switching_from_UDP_to_HTTPS.md'
+          - 'Switching between HTTP to MSMQ': 'use-cases/examples/protocol-switching/switching_between_HTTP_and_MSMQ.md'
         - File Processing:
-          - 'Using the VFS Transport': 'use-cases/examples/file-processing/vfs-transport-examples.md'
+          - 'Using VFS for File Transferring': 'use-cases/examples/file-processing/vfs-transport-examples.md'
           - 'Accessing a Windows Share Using VFS': 'use-cases/examples/file-processing/Accessing_Windows_Share_Using_VFS_Transport.md'
-          - 'Using the MailTo Transport': 'use-cases/examples/file-processing/mailto-transport-examples.md'
-        - Gateway:
-          - 'Expose HTTP-based Applications as a SOAP Service': 'use-cases/examples/gateway/http-as-soap-service.md'
-          - 'Expose HTTP-based Applications as a REST Api': 'use-cases/examples/gateway/http-as-rest-api.md'
-          - 'Expose File-based Systems over HTTP': 'use-cases/examples/gateway/http-as-rest-api.md'
-          - 'Expose Services on Proprietary Protocols over Standard Protocols': 'use-cases/examples/gateway/http-as-rest-api.md'
-        - Security Gateway:
-          - 'Expose HTTP-based Applications as a SOAP Service': 'use-cases/examples/gateway/http-as-soap-service.md'
-          - 'Expose HTTP-based Applications as a REST Api': 'use-cases/examples/gateway/http-as-rest-api.md'
-          - 'Expose File-based Systems over HTTP': 'use-cases/examples/gateway/http-as-rest-api.md'
-          - 'Expose Services on Proprietary Protocols over Standard Protocols': 'use-cases/examples/gateway/securing-backend-with-request-throttling.md'
+          - 'Sending and Receiving Emails': 'use-cases/examples/file-processing/mailto-transport-examples.md'
+        - Data Integration:
+          - 'Exposing an RDBMS datasource': 'use-cases/examples/data_integration/rdbms-data-service.md'
+          - 'Exposing Data in JSON Format': 'use-cases/examples/data_integration/json-with-data-service.md'
+          - 'Using an OData Service': 'use-cases/examples/data_integration/odata-service.md'
+          - 'Using Nested Data Queries': 'use-cases/examples/data_integration/nested-queries-in-data-service.md'
+          - 'Batch Requesting': 'use-cases/examples/data_integration/batch-requesting.md'
+          - 'Invoking Multiple Operations as a Request Box': 'use-cases/examples/data_integration/request-box.md'
+          - 'Using Distributed Transactions in Data Services': 'use-cases/examples/data_integration/distributed-trans-data-service.md'
+          - 'Validating Data Input': 'use-cases/examples/data_integration/data-input-validator.md'
         - Examples of Components:
           - REST APIs:
             - 'Using a Simple REST API': 'use-cases/examples/rest_api_examples/introduction-rest-api.md'
             - 'Working with Query Parameters': 'use-cases/examples/rest_api_examples/setting-query-params-outgoing-messages.md'
-            #- 'Content Negotiation': 'use-cases/examples/rest_api_examples/content-negotiation.md'
-            #- 'Exposing non-HTTP Services as RESTful APIs': 'use-cases/examples/rest_api_examples/enabling-rest-to-jms.md'
             - 'Exposing a SOAP Endpoint as a RESTful API': 'use-cases/examples/rest_api_examples/enabling-rest-to-soap.md'
             - 'Exposing Non-HTTP Services as RESTful APIs': 'use-cases/examples/rest_api_examples/configuring-non-http-endpoints.md'
             - 'Handling Non Matching Resources': 'use-cases/examples/rest_api_examples/handling-non-matching-resources.md'
-            #- 'Retrieving Metadata from the Head Request': 'use-cases/examples/rest_api_examples/retrieving-meta-data-from-head-request.md'
             - 'Handling HTTP Status Codes': 'use-cases/examples/rest_api_examples/setting-https-status-codes.md'
             - 'Manipulating Content Types': 'use-cases/examples/rest_api_examples/transforming-content-type.md'
-            - 'Securing REST APIs' : 'use-cases/examples/rest_api_examples/securing-rest-apis.md'
+            - 'Securing a REST API': 'use-cases/examples/rest_api_examples/securing-rest-apis.md'
             - Handling Special Cases:
-              - 'Using DELETE with a Body': 'use-cases/examples/rest_api_examples/using-delete-with-a-body.md'
               - 'Using GET with a Body': 'use-cases/examples/rest_api_examples/using-get-with-a-body.md'
               - 'Using POST with Empty Message Body': 'use-cases/examples/rest_api_examples/using-post-with-no-body.md'
               - 'Using POST with Query Parameters': 'use-cases/examples/rest_api_examples/using-post-with-query-param.md'
           - Proxy Services:
             - 'Using a Simple Proxy Service': 'use-cases/examples/proxy_service_examples/Introduction-to-Proxy-Services.md'
-            #- 'Conditional Routing using Proxy Service': 'use-cases/examples/proxy_service_examples/conditional-routing.md'
-            #- 'Dual Channel Invocation with Proxy Service': 'use-cases/examples/proxy_service_examples/dual-channel-invocation-with-proxy-services.md'
-            #- 'Load Balancing with Proxy Service': 'use-cases/examples/proxy_service_examples/load-balancing-with-proxy-services.md'
-            #- 'Routing Messages without Processing Security Headers': 'use-cases/examples/proxy_service_examples/routing-messages-without-processing-security-headers.md'
-            #- 'Service Integration with Receiving Sequence': 'use-cases/examples/proxy_service_examples/service-Integration-with-receiving-sequence.md'
-            #- 'Switching Transport and Message Format': 'use-cases/examples/proxy_service_examples/switching-transports-and-message-format.md'
             - 'Publishing a Custom WSDL': 'use-cases/examples/proxy_service_examples/publishing-a-custom-wsdl.md'
-            - 'Configuring Pinned Servers': 'use-cases/examples/proxy_service_examples/using-pinned-servers.md'
-            #- 'Using REST with a Proxy Service': 'use-cases/examples/proxy_service_examples/rest-with-a-proxy-service.md'
+            #- 'Configuring Pinned Servers': 'use-cases/examples/proxy_service_examples/using-pinned-servers.md'
             - 'Exposing a Proxy Service via Inbound Endpoints': 'use-cases/examples/proxy_service_examples/exposing-proxy-via-inbound.md'
             - 'Applying WS-Security to a Proxy Service': 'use-cases/examples/proxy_service_examples/securing-proxy-services.md'
           - Inbound Endpoints:
-            #- 'Inbound Endpoint File Protocol Sample (VFS)': 'use-cases/examples/inbound_endpoint_examples/inbound-endpoint-file-processing.md'
             - 'JMS Inbound Endpoint': 'use-cases/examples/inbound_endpoint_examples/inbound-endpoint-jms-protocol.md'
             - 'File Inbound Endpoint': 'use-cases/examples/inbound_endpoint_examples/file-inbound-endpoint.md'
             - 'HTTP Inbound Endpoint': 'use-cases/examples/inbound_endpoint_examples/inbound-endpoint-http-protocol.md'
@@ -164,36 +133,24 @@ nav:
             - 'MQTT Inbound Endpoint': 'use-cases/examples/inbound_endpoint_examples/inbound-endpoint-mqtt-protocol.md'
             - 'RabbitMQ Inbound Endpoint': 'use-cases/examples/inbound_endpoint_examples/inbound-endpoint-rabbitmq-protocol.md'
             #- 'CXF WS RM Inbound Endpoint': 'use-cases/examples/inbound_endpoint_examples/using-CXF-WS-RM-Inbound.md'
-            - 'Kafka Inbound Endpoint': 'use-cases/examples/inbound_endpoint_examples/using-kafka-inbound-endpoints.md'
-            - 'WebSocket Endpoint': 'use-cases/examples/inbound_endpoint_examples/using-secure-websocket-inbound.md'
-            - 'Using Inbound Endpoints with Registry': 'use-cases/examples/inbound_endpoint_examples/using-inbound-endpoints.md'
-            - 'Securing Inbound Endpoint Parameters': 'use-cases/examples/inbound_endpoint_examples/using-inbound-endpoints.md'
-          - 'Using Scheduled Tasks': 'use-cases/examples/using-scheduled-tasks.md'
-          - Working with the Registry:
-            - 'Local Registry Entry Definitions, Reusable Endpoints and Sequences': 'use-cases/examples/registry_examples/Local-Registry-Entry-Definitions-Reusable-Endpoints-and-Sequences.md'
-            #- 'Using Dynamic and Static Registry Keys': 'use-cases/examples/registry_examples/Introduction-to-Dynamic-and-Static-Registry-Keys.md'
-            #- 'Using Sequences and Endpoints as Local Registry Items': 'use-cases/examples/registry_examples/Using-Sequences-and-Endpoints-as-Local-Registry-Items.md'
-            #- 'Using the Registry to Share Configurations Between Multiple Instances': 'use-cases/examples/registry_examples/Using-a-Full-Registry-Based-Configuration-and-Sharing-a-Configuration-Between-Multiple-Instances.md'
-            #- 'Introduction to Static and Dynamic Registry Resources and Using XSLT Transformations': 'use-cases/examples/registry_examples/Introduction-to-Static-and-Dynamic-Registry-Resources-and-Using-XSLT-Transformations.md'
-            #- 'Using Schema Validation with the Local Registry': 'use-cases/examples/registry_examples/Using-Schema-Validation-and-the-Usage-of-Local-Registry-for-Storing-Configuration-Metadata.md'
-            #- 'Using Dynamic Endpoints with the Registry': 'use-cases/examples/registry_examples/Using-Dynamic-Endpoints-with-the-Registry.md'
-            #- 'Using Dynamic Sequences with the Registry': 'use-cases/examples/registry_examples/Using-Dynamic-Sequences-with-the-Registry.md'
+            - 'Kafka Inbound Endpoint': 'use-cases/examples/inbound_endpoint_examples/inbound-endpoint-kafka.md'
+            - 'WebSocket Endpoint': 'use-cases/examples/inbound_endpoint_examples/inbound-endpoint-secured-websocket.md'
+            - 'Using Inbound Endpoints with Registry': 'use-cases/examples/inbound_endpoint_examples/inbound-endpoint-with-registry.md'
+          - Scheduled Tasks: 
+            - 'Task Scheduling using a Simple Trigger': 'use-cases/examples/scheduled-tasks/task-scheduling-simple-trigger.md'
+            - 'Injecting Messages to a RESTful Endpoint': 'use-cases/examples/scheduled-tasks/injecting-messages-to-rest-endpoint.md'
+          - 'Local Registry Entries': 'use-cases/examples/registry_examples/local-registry-entries.md'
           - Templates:
             - 'Using Sequence Templates': 'use-cases/examples/template_examples/using-sequence-templates.md'
-            #- 'Stereotyping XSLT Transformations with Templates': 'use-cases/examples/template_examples/using-sequence-templates.md'
-            #- 'Message Split Aggregate Using Templates': 'use-cases/examples/template_examples/using-sequence-templates.md'
             - 'Using Endpoint Templates': 'use-cases/examples/template_examples/using-endpoint-templates.md'
-            #- 'Load Balancing Between 3 Endpoints With Endpoint Templates': 'use-cases/examples/template_examples/using-endpoint-templates.md'
           - Message Stores & Processors:
             - 'Introduction to Message Stores and Processors': 'use-cases/examples/message_store_processor_examples/intro-message-stores-processors.md'
             - 'JDBC Message Store': 'use-cases/examples/message_store_processor_examples/using-jdbc-message-store.md'
-            #- 'Using an In Memory Message Store (Introduction to Message Store)': 'use-cases/examples/message_store_processor_examples/using-in-memory-message-store.md'
             - 'JMS Message Store': 'use-cases/examples/message_store_processor_examples/using-jms-message-stores.md'          
             - 'RabbitMQ Message Store': 'use-cases/examples/message_store_processor_examples/using-rabbitmq-message-stores.md'
             - 'Message Sampling Processor': 'use-cases/examples/message_store_processor_examples/using-message-sampling-processor.md'
             - 'Message Forwarding Processor': 'use-cases/examples/message_store_processor_examples/using-message-forwarding-processor.md'
             - 'Securing the Message Forwarding Processor': 'use-cases/examples/message_store_processor_examples/securing-message-processor.md'
-            #- 'RESTful Invocations with Message Forwarding Processor': 'use-cases/examples/message_store_processor_examples/restful-invocations-with-message-processor.md'
             - 'Load Balancing with Message Forwarding Processor': 'use-cases/examples/message_store_processor_examples/loadbalancing-with-message-processor.md'
           - Endpoints:
             - 'Address Endpoint': 'use-cases/examples/endpoint_examples/using-address-endpoints.md'
@@ -201,54 +158,43 @@ nav:
             - 'HTTP Endpoint': 'use-cases/examples/endpoint_examples/using-http-endpoints.md'
             - 'WebSocket Endpoint': 'use-cases/examples/endpoint_examples/using-websocket-endpoints.md'
             - 'WSDL Endpoint': 'use-cases/examples/endpoint_examples/using-wsdl-endpoints.md'
-            - 'Load Balance Endpoint': 'use-cases/examples/endpoint_examples/using-address-endpoints.md'
+            - 'Load Balance Endpoint': 'use-cases/examples/endpoint_examples/using-loadbalancing-endpoints.md'
             - Recipient List of Endpoints:
               - 'Static List of Recepients': 'use-cases/examples/endpoint_examples/using-static-recepient-list-endpoints.md'
               - 'Dynamic List of Recepients': 'use-cases/examples/endpoint_examples/using-dynamic-recepient-list-endpoints-1.md'
               - 'Dynamic List of Recepients with Aggregated Responses': 'use-cases/examples/endpoint_examples/using-dynamic-recepient-list-endpoints-2.md'
             - 'Reusing Endpoints': 'use-cases/examples/endpoint_examples/reusing-endpoints.md'
-            #- 'Using Indirect Endpoints' : 'use-cases/examples/endpoint_examples/using-indirect-endpoints.md'
-            #- 'Using Dynamic Endpoints' : 'use-cases/examples/endpoint_examples/using-resolving-endpoints.md'
             - 'Endpoint Error Handling': 'use-cases/examples/endpoint_examples/endpoint-error-handling.md'
-            #- 'Session Affinity Load Balancing between Failover Endpoints': 'use-cases/examples/endpoint_examples/session-affinity-with-failover-endpoints.md'
-            #- 'Session Affinity Load Balancing between Three Endpoints': 'use-cases/examples/endpoint_examples/session-affinity-with-loadbalancing-endpoints.md'
-            #- 'Failover Endpoints to Handle Peak Loads': 'use-cases/examples/endpoint_examples/handling-peak-failover-endpoints.md'
-            #- 'Load Balancing Endpoints to Handle Peak Loads': 'use-cases/examples/endpoint_examples/handling-peak-loadbalancing-endpoints.md'
-            #- 'Dynamic Load Balancing between Three Nodes': 'use-cases/examples/endpoint_examples/dynamic-loadbalancing-with-endpoints.md'
-            #- 'Static Load Balancing between Three Nodes': 'use-cases/examples/endpoint_examples/static-loadbalancing-with-endpoints.md'
-            #- 'Weighted Load Balancing between 3 endpoints': 'use-cases/examples/endpoint_examples/weighted-loadbalancing-with-endpoints.md'
             - 'MTOM and SwA Optimizations': 'use-cases/examples/endpoint_examples/mtom-swa-with-endpoints.md'
           - Sequences:
             - 'Breaking Complex Flows into Multiple Sequences': 'use-cases/examples/sequence_examples/using-multiple-sequences.md'
             - 'Using Fault Sequences': 'use-cases/examples/sequence_examples/using-fault-sequences.md'
             - 'Resusig Sequences': 'use-cases/examples/sequence_examples/custom-sequences-with-proxy-services.md'  
         - Transports:
-          #- 'Using the HL7 Transport': 'use-cases/examples/transport_examples/hl7-transport-examples.md'
-          #- 'Using the Local Transport': 'use-cases/examples/transport_examples/local-transport-examples.md'
-          #- 'Proxy Services with the Local Transport': 'use-cases/examples/transport_examples/transport_switching/Proxy_Services_with_the_FIX_Transport_.md'
           - 'Using the TCP Transport': 'use-cases/examples/transport_examples/tcp-transport-examples.md'
-          #- 'JMS to http/s Using JBoss Messaging(JBM)': 'use-cases/examples/transport_examples/transport_switching/JMS_to_http_s_Using_JBoss_Messaging_JBM_.md'
-          #- 'Sending Two-Way Messages Using JMS transport': 'use-cases/examples/transport_examples/transport_switching/Sending_Two-Way_Messages_Using_JMS_transport_.md'
-          #- 'Pure Text (Binary) and POX Message Support with JMS': 'use-cases/examples/transport_examples/transport_switching/Pure_Text_Binary_and_POX_Message_Support_with_JMS_.md'
-          #- 'Bridging from JMS to HTTP and Replying with a 202 Accepted Response': 'use-cases/examples/transport_examples/transport_switching/Bridging_JMS-HTTP_with_202_Accepted_Response.md'
           - 'Using the FIX Transport': 'use-cases/examples/transport_examples/fix-transport-examples.md'
-          #- 'CBR of FIX Messages': 'use-cases/examples/transport_examples/transport_switching/CBR_of_FIX_Messages_.md'
           - 'Using the MQTT Transport': 'use-cases/examples/transport_examples/Pub_Sub_using_MQTT.md'
         - 'Working with Transactions': 'use-cases/examples/working-with-transactions.md'
         - 'JSON Examples': 'use-cases/examples/json_examples/json-examples.md'
     - Setup and Install:
       - Installation Guide:
-        - 'Install in a VM': 'setup/installation/install_in_vm.md'
-        - 'Install in Docker': 'setup/installation/install_in_docker.md'
-        - 'Install in Kubernetes': 'setup/installation/install_in_kubernetes.md'
+        - 'Install on a VM': 'setup/installation/install_in_vm.md'
+        - 'Run on Docker': 'setup/installation/run_in_docker.md'
+        - 'Run on Kubernetes': 'setup/installation/run_in_kubernetes.md'
       - Product Deployment:
-        - 'Deploying WSO2 Micro Integrator' : 'setup/deployment/deploying_wso2_ei.md'
-        - 'Upgrading from a Previous Release' : 'setup/deployment/upgrading.md'
-        - 'Setting up a Load Balancer': 'setup/setting_up_lb.md'
+        - Kubernetes Deployment:
+          - 'Deploy on Kubernetes': 'setup/deployment/kubernetes_deployment.md' 
+          - K8s Deployment Samples: 
+            - 'Sample 1: Hello World': 'setup/deployment/k8s-samples/hello-world.md' 
+            - 'Sample 2: Message Routing': 'setup/deployment/k8s-samples/content-based-routing.md' 
+            - 'Sample 3: JMS Sender/Receiver': 'setup/deployment/k8s-samples/jms-sender-receiver.md'
+        - 'Deploy on a VM': 'setup/deployment/deploying_wso2_ei.md' 
+        - 'Migrating from WSO2 EI 6.x': 'setup/deployment/migrating-from-ei-6.x.x.md' 
+        - 'Setting up a Load Balancer': 'setup/deployment/setting_up_lb.md'
         - 'Troubleshooting Production Deployment' : 'setup/deployment/troubleshooting_deployment.md'
         - 'Product Deployment Checklist' : 'setup/deployment/deployment_checklist.md'
         - 'Backup and Recovery' : 'setup/deployment/backup_recovery.md'
-        - 'Setting up a File-Based Registry' : 'setup/file_based_registry.md'
+        - 'Setting up a File-Based Registry' : 'setup/deployment/file_based_registry.md'
       - Security Hardening :
         - Setting up Keystores:
           - 'Creating New Keystores' : 'setup/security/creating_keystores.md'
@@ -261,9 +207,9 @@ nav:
         - Working with Passwords:
           - 'Encrypting Passwords' : 'setup/security/encrypting_plain_text.md'
           - 'Using Symmetric Encryption' : 'setup/security/single_key_encryption.md'
-          - 'Set Passwords using Environment Variables/System Properties' : 'setup/security/replace_passwords_env_variables_sys_properties.md'
-        - 'Mitigating Cross Site Request Forgery Attacks' : 'setup/security/mitigating_csrf.md'
-        - 'Securing Carbon Applications' : 'setup/security/securing_carbon_applications.md'
+          - 'Set Passwords using Environment Variables/System Properties' : 'setup/security/replace_passwords_with_sys_properties.md'
+        - 'Securing the Management API' : 'setup/security/securing_management_api.md'
+        - 'Configuring a User Store' : 'setup/user_stores/setting_up_ro_ldap.md'
       - Performance Tuning:
         - 'Tuning JVM Performance' : 'setup/performance_tuning/tuning_jvm_performance.md'
         - 'Tuning Network and OS Performance' : 'setup/performance_tuning/network_os_performance.md'
@@ -274,14 +220,12 @@ nav:
         - 'Tuning the RabbitMQ Transport' : 'setup/performance_tuning/rabbitmq_transport_tuning.md'
         - 'Tuning the Inbound Endpoints' : 'setup/performance_tuning/tuning-inbound-endpoints.md'
       - Feature-Specific Configurations:
-        - 'Configuring the Task Scheduling Component': 'setup/configuring_task_scheduling_comp.md'
-        - 'Enabling CORS for Data Services': 'setup/enabling_CORS_for_data_services.md'
-        - 'Configuring Time Stamp Conversion for RDBMS': 'setup/configuring_timestamp_conversion_for_rdbms.md'
+        - 'Configuring Time Stamp Conversion for RDBMS': 'setup/feature_configs/configuring_timestamp_conversion_for_rdbms.md'
         - 'Configuring Message Builders and Formatters' : 'setup/message_builders_formatters/message-builders-and-formatters.md'
         - 'Configuring Message Relay': 'setup/message_builders_formatters/message-relay.md'
         - 'Configuring Transports': 'setup/transport_configurations/configuring-transports.md'
         - 'Configuring Multi-HTTPS': 'setup/transport_configurations/multi-https-transport.md'
-        - 'Configuring Kafka' : 'setup/configuring-kafka.md'
+        - 'Configuring Kafka' : 'setup/feature_configs/configuring-kafka.md'
         - Configuring Brokers:
           - 'Connecting to ActiveMQ': 'setup/brokers/configure-with-ActiveMQ.md'
           - 'Connecting to Apache Artemis': 'setup/brokers/configure-with-Apache-Artemis.md'
@@ -297,7 +241,7 @@ nav:
           - 'Connecting to WSO2 MB': 'setup/brokers/configure-with-WSO2-MB.md'
           - 'Connecting to Multiple Brokers': 'setup/brokers/configure-with-multiple-brokers.md'
       - Additional Configurations:
-        - 'Adding a Custom Proxy Path': 'setup/adding_a_custom_proxy__path.md'
+        - 'Adding a Custom Proxy Path': 'setup/adding_a_custom_proxy_path.md'
         - 'Configuring a Proxy Server': 'setup/configuring_proxy_servers.md'
         - 'Changing Default Ports': 'setup/changing_default_ports.md'
         - 'Customizing Error Messages': 'setup/customizing_error_pages.md'
@@ -308,17 +252,19 @@ nav:
       - WSO2 Integration Studio:
         - 'Quick Tour - WSO2 Integration Studio' : 'develop/WSO2-Integration-Studio.md'
         - 'Installing WSO2 Integration Studio' : 'develop/installing-WSO2-Integration-Studio.md'
-        - 'Designing Message Flow': 'develop/designing-mediation-flow.md'
+        - 'Working with WSO2 Integration Studio': 'develop/working-with-wso2-integration-studio.md'
         - 'Troubleshooting WSO2 Integration Studio': 'develop/troubleshooting-WSO2-Integration-Studio.md'
       - Creating Projects:
-        - 'Creating Projects': 'develop/creating-projects.md'
-        - 'Importing Projects': 'develop/importing-projects.md'
+        - 'Creating ESB Projects': 'develop/creating-projects.md'
+        - 'Importing ESB Projects': 'develop/importing-projects.md'
+        - 'Creating Docker Project': 'develop/create-docker-project.md'
+        - 'Creating Kubernetes Project': 'develop/create-kubernetes-project.md'
       - Creating New Artifacts:
         - 'Importing Artifacts': 'develop/importing-artifacts.md'
         - 'Creating a REST API': 'develop/creating-artifacts/creating-an-api.md'
         - 'Creating a Proxy Service': 'develop/creating-artifacts/creating-a-proxy-service.md'
         - 'Creating an Inbound Endpoint': 'develop/creating-artifacts/creating-an-inbound-endpoint.md'
-        - 'Creating Scheduled Tasks' : 'develop/creating-artifacts/scheduling-esb-tasks.md'
+        - 'Creating Scheduled Tasks' : 'develop/creating-artifacts/creating-scheduled-task.md'
         - 'Creating a Message Store': 'develop/creating-artifacts/creating-a-message-store.md'
         - 'Creating a Message Processor': 'develop/creating-artifacts/creating-a-message-processor.md'
         - 'Creating an Endpoint': 'develop/creating-artifacts/creating-endpoints.md'
@@ -354,25 +300,29 @@ nav:
         - 'Monitoring Proxy Service Access Logs': 'develop/enabling-logs-for-services.md'
         - 'Monitoring REST API Access Logs': 'develop/enabling-logs-for-api.md'
         - 'Endpoint Tracing' : 'develop/endpoint-trace-logs.md'
-        - 'Running on WSO2 Integration Cloud': 'develop/deploying-in-integration-cloud.md'
+      - 'Running on WSO2 Integration Cloud': 'develop/deploying-in-integration-cloud.md'
       - Advanced Development Tasks:
-        - 'Injecting Parameters through Environment Variables': 'develop/injecting-parameters.md'
+        - 'Injecting Parameters as Environment Variables': 'develop/injecting-parameters.md'
         - 'Changing the Endpoint of a Deployed Service': 'develop/advanced-development/changing-the-endpoint-of-deployed-service.md'
         - 'Generating Swagger Documents for APIs': 'develop/advanced-development/generating-swagger-for-apis.md'
       - 'Managing the Registry': 'develop/creating-artifacts/registry/managing-the-Registry.md'
       #- 'Using a CI/CD Pipeline' : 'develop/using-cicd-pipeline.md'
     - Observability:
+      - 'Micro Integrator Dashboard': 'administer-and-observe/working-with-monitoring-dashboard.md'
+      - 'Micro Integrator CLI': 'administer-and-observe/using-the-command-line-interface.md'
       - 'Monitoring Message Round Trip': 'administer-and-observe/observability.md'
-      - 'JMX Monitoring': 'administer-and-observe/jmx_monitoring.md'
-      - 'SNMP Monitoring': 'administer-and-observe/snmp_monitoring.md'
-      - 'Prometheus for Monitoring': 'administer-and-observe/monitoring_with_prometheus.md'
-      - 'CLI for Monitoring': 'administer-and-observe/using-the-command-line-interface.md'
-      - Monitoring Logs:
+      - 'Analyzing Statistics and Tracing': 'administer-and-observe/using-the-analytics-dashboard.md'
+      - 'Using the Management API': 'administer-and-observe/working-with-management-api.md'
+      - Logging:
         - 'Logs in WSO2 Micro Integrator' : 'administer-and-observe/logs/monitoring_logs.md'
         - 'Configuring Log4j Properties' : 'administer-and-observe/logs/configuring_log4j_properties.md'
         - 'Managing Log Growth' : 'administer-and-observe/logs/managing_log_growth.md'
         - 'Masking Sensitive Information in Logs' : 'administer-and-observe/logs/masking_sensitive_info_in_logs.md'
-      - Monitoring TCP Messages:
+      - Metrics:
+        - 'JMX Monitoring': 'administer-and-observe/jmx_monitoring.md'
+        - 'SNMP Monitoring': 'administer-and-observe/snmp_monitoring.md'
+        - 'Prometheus for Monitoring': 'administer-and-observe/monitoring_with_prometheus.md'
+      - TCP Messages:
         - 'Starting TCPMon' : 'administer-and-observe/tcp/starting_tcp_mon.md'
         - 'Message Monitoring with TCPMon' : 'administer-and-observe/tcp/message_monitoring_with_tcpmon.md'
         - 'Other Usages of TCPMon' : 'administer-and-observe/tcp/other_usages_of_tcpmon.md'
@@ -464,6 +414,7 @@ nav:
             - 'Scheduled Failover Message Forwarding Processor': 'references/synapse-properties/message-processors/msg-sched-failover-forwarding-processor-properties.md'
         - 'Templates': 'references/synapse-properties/template-properties.md'
         - 'Endpoints': 'references/synapse-properties/endpoint-properties.md'
+        - 'Data Services': 'references/synapse-properties/data-services.md'
         - Transport Configs:
           - 'VFS Parameters': 'references/synapse-properties/transport-parameters/vfs-transport-parameters.md'
           - 'JMS Parameters': 'references/synapse-properties/transport-parameters/jms-transport-parameters.md'
@@ -474,9 +425,11 @@ nav:
       - Security Topics:
         - 'Customizing Secure Vault' : 'references/security/customizing-secure-vault.md'
         - 'Using Keystores' : 'references/security/using_keystores.md'
+        - 'WS-Security Implementations' : 'references/security/security-implementation.md'
       - 'Best Practices' : 'references/best-Practices.md'
       - 'Troubleshooting JMS' : 'references/troubleshooting-jms.md'
       - 'Error Codes' : 'references/error_handling.md'
+      - 'WSO2 Micro Integrator vs WSO2 EI 6.x Family' : 'references/comparisong-mi7-ei6xx.md'
     - '': page-not-found.md
      
 # Extensions

@@ -32,9 +32,9 @@ curl -X POST -d '<events><event><name>sugar</name><amount>300</amount></event></
 ```
 
 ##### Option 3: Publish events with Postman:
-1) Install 'Postman' application from Chrome web store.
-2) Launch the application.
-3) Make a 'Post' request to 'http://localhost:8006/productionStream' endpoint. Set the Content-Type to 'application/xml' and set the request body in xml format as follows.
+1. Install 'Postman' application from Chrome web store.
+2. Launch the application.
+3. Make a 'Post' request to 'http://localhost:8006/productionStream' endpoint. Set the Content-Type to 'application/xml' and set the request body in xml format as follows.
 ```xml
 <events>
     <event>

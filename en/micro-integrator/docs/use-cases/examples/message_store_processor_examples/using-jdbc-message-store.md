@@ -1,5 +1,4 @@
 # Using a JDBC Message Store
-## Example use case
 In this sample, the client sends requests to a proxy service. The proxy service stores the messages in a JDBC message store. The back-end service is invoked by a message forwarding processor, which picks the messages stored in the JDBC message store.
 
 ## Synapse configuration
@@ -51,14 +50,12 @@ Sample configuration that uses a MySQL database named sampleDB and the database 
 
 Create the artifacts:
 
-1. Set up WSO2 Integration Studio.
-2. Create an ESB Config project
-3. Create a REST Api artifact with the above configuration.
-4. Deploy the artifacts in your Micro Integrator.
+1. [Set up WSO2 Integration Studio](../../../../develop/installing-WSO2-Integration-Studio).
+2. [Create an ESB Solution project](../../../../develop/creating-projects/#esb-config-project).
+3. Create the [proxy service](../../../../develop/creating-artifacts/creating-a-proxy-service), [message store](../../../../develop/creating-artifacts/creating-a-message-store), and [message processor](../../../../develop/creating-artifacts/creating-a-message-processor) with the configurations given above.
+4. [Deploy the artifacts](../../../../develop/deploy-and-run) in your Micro Integrator.
 
-Set up the back-end service:
-
-........
+Set up the back-end service.
 
 Setup the database. Use one of the following DB scripts depending on which database type you want to use. 
 

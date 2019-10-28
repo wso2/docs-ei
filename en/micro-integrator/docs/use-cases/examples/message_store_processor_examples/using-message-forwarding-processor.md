@@ -1,6 +1,4 @@
-# Introduction to Message Forwarding Processor
-## Example use case
-
+# Using the Message Forwarding Processor
 ## Synapse configuration
 Shown below are the synapse artifacts that are used to define this use case.
 
@@ -60,15 +58,12 @@ Shown below are the synapse artifacts that are used to define this use case.
 
 Create the artifacts:
 
-1. Set up WSO2 Integration Studio.
-2. Create an ESB Config project
-3. Create integration artifacts with the above configuration.
-4. Deploy the artifacts in your Micro Integrator.
+1. [Set up WSO2 Integration Studio](../../../../develop/installing-WSO2-Integration-Studio).
+2. [Create an ESB Solution project](../../../../develop/creating-projects/#esb-config-project).
+3. Create the [scheduled task](../../../../develop/creating-artifacts/creating-scheduled-task), [mediation sequences](../../../../develop/creating-artifacts/creating-reusable-sequences), [endpoint](../../../../develop/creating-artifacts/creating-endpoints), [message store](../../../../develop/creating-artifacts/creating-a-message-store) and [message processor](../../../../develop/creating-artifacts/creating-a-message-processor) with the configurations given above.
+4. [Deploy the artifacts](../../../../develop/deploy-and-run) in your Micro Integrator.
 
-Set up the back-end service:
-
-........
-
+[Configure the ActiveMQ broker](../../../../setup/brokers/configure-with-ActiveMQ).
 
 Configure the Micro Integrator with Apache ActiveMQ and set up the JMS Sender.
 

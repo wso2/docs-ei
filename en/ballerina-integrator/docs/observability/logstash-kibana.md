@@ -1,4 +1,7 @@
-# Logging using Logstash and Kibana
+---
+title: Logging using Logstash and Kibana
+note: This is an auto-generated file do not edit this, You can edit content in "ballerina-integrator" repo
+---
 
 Ballerina has a log module for logging to the console. You can import the `ballerina/log` module and start logging. The following section will describe how to search, analyze, and visualize logs in real time using [Elastic Stack](https://www.elastic.co/).
 

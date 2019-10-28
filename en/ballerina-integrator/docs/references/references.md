@@ -1,7 +1,13 @@
-# References
+---
+title: References
+note: This is an auto-generated file do not edit this, You can edit content in "ballerina-integrator" repo
+---
 
 ## Ballerina Central
 [Ballerina Central](https://central.ballerina.io/) is a publicly accessible directory that can be used to share your local modules with a wider community.
+
+## EI Connectors in Ballerina Central
+The list of EI Connectors can be found [here](ei-connectors.md).
 
 ## Ballerina by Example
 [Ballerina by Example](https://ballerina.io/learn/by-example/) teaches you the Ballerina language incrementally with commented examples that cover every nuance of the syntax.
@@ -11,4 +17,3 @@ The [API Documentation](https://v1-0.ballerina.io/learn/api-docs/ballerina/index
 
 ## Language Specification
 The [Language Specification](https://v1-0.ballerina.io/spec/) is the document that defines Ballerina programming language and will be useful to those who wish to understand, evaluate, or start using the language.
-

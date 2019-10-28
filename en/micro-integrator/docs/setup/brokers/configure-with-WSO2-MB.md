@@ -4,14 +4,18 @@ This section describes how to configure WSO2 Micro Integrator to connect with WS
 
 ## Setting up the Micro Integrator with WSO2 MB
 
-1.  If you want the Micro Integrator to receive messages from a WSO2 MB instance, or to send messages to a WSO2 MB instance, you need to update the deployment.toml file with the relevant connection parameters.
+1.  Copy the following jars to <MI_HOME>/lib folder from <WSO2_MB>/client-lib folder.
+    - andes-client-3.2.19.jar                 
+    - org.wso2.securevault-1.0.0-wso2v2.jar
+    - geronimo-jms_1.1_spec-1.1.0.wso2v1.jar
+  
+2.  If you want the Micro Integrator to receive messages from a WSO2 MB instance, or to send messages to a WSO2 MB instance, you need to update the deployment.toml file with the relevant connection parameters.
 
     - Add the following configurations to enable the JMS listener with WSO2 MB connection parameters.
         ```toml
         [[transport.jms.listener]]
         name = "myQueueListener"
         parameter.initial_naming_factory = "org.wso2.andes.jndi.PropertiesFileInitialContextFactory"
-        parameter.broker_name = "wso2mb" 
         parameter.provider_url = "conf/jndi.properties"
         parameter.connection_factory_name = "QueueConnectionFactory"
         parameter.connection_factory_type = "queue"
@@ -23,7 +27,6 @@ This section describes how to configure WSO2 Micro Integrator to connect with WS
         [[transport.jms.sender]]
         name = "myQueueSender"
         parameter.initial_naming_factory = "org.wso2.andes.jndi.PropertiesFileInitialContextFactory"
-        parameter.broker_name = "wso2mb"
         parameter.provider_url = "conf/jndi.properties"
         parameter.connection_factory_name = "QueueConnectionFactory"
         parameter.connection_factory_type = "queue"
@@ -33,8 +36,8 @@ This section describes how to configure WSO2 Micro Integrator to connect with WS
     - Add the following configurations to specify the jndi connection factory details:
         ```toml
         [transport.jndi.connection_factories]
-        QueueConnectionFactory = "amqp://admin:admin@clientID/carbon?brokerlist='tcp://localhost:5675'"
-        TopicConnectionFactory = "amqp://admin:admin@clientID/carbon?brokerlist='tcp://localhost:5675'"
+        'connectionfactory.QueueConnectionFactory' = "amqp://admin:admin@clientID/carbon?brokerlist='tcp://localhost:5675'"
+        'connectionfactory.TopicConnectionFactory' = "amqp://admin:admin@clientID/carbon?brokerlist='tcp://localhost:5675'"
 
         [transport.jndi.queue]
         queue_jndi_name = "queue_name"
@@ -77,14 +80,15 @@ After setting up WSO2 MB with the Micro Integrator, open `MI_HOME/wso2/broker/c
 ### Authentication: Plain Text
 
 WSO2 MB requires all its incoming connections to be authenticated. The
-`MI_HOME/conf/jndi.properties        ` file contains lines
+`MI_HOME/conf/deployment.toml       ` file contains lines
 similar to the following. They contain the username and password
 credentials used to authenticate connections made to the WSO2 MB
 runtime. This is plain text authentication.  
 
-```java
-connectionfactory.TopicConnectionFactory = amqp://admin:admin@clientID/carbon?brokerlist='tcp://localhost:5675'
-connectionfactory.QueueConnectionFactory = amqp://admin:admin@clientID/carbon?brokerlist='tcp://localhost:5675' 
+```toml
+[transport.jndi.connection_factories]
+'connectionfactory.TopicConnectionFactory' = "amqp://admin:admin@clientID/carbon?brokerlist='tcp://localhost:5675'"
+'connectionfactory.QueueConnectionFactory' = "amqp://admin:admin@clientID/carbon?brokerlist='tcp://localhost:5675'"
 ```
 
 In the WSO2 Micro Integrator authentication example below, we send a request to the proxy service named **testJMSProxy**, which adds a message to the **example.MyQueue** queue.

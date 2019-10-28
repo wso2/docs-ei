@@ -16,7 +16,7 @@ Within the fault sequence, you can access these property values using
 the `         get-property        ` XPath function. 
 
 ```xml tab='Fault Sequence'
-<sequence name="fault">
+<sequence xmlns="http://ws.apache.org/ns/synapse" name="fault">
     <log level="custom">
         <property name="text" value="An unexpected error occured"/>
         <property name="message" expression="get-property('ERROR_MESSAGE')"/>
@@ -26,7 +26,7 @@ the `         get-property        ` XPath function.
 ```
 
 ```xml tab='Error Handling Sequence with Logs'
-<sequence name="sunErrorHandler">
+<sequence xmlns="http://ws.apache.org/ns/synapse" name="sunErrorHandler">
     <log level="custom">
         <property name="text" value="An unexpected error occured for stock SUN"/>
         <property name="message" expression="get-property('ERROR_MESSAGE')"/>
@@ -35,34 +35,36 @@ the `         get-property        ` XPath function.
 </sequence>
 ```
 
-```xml tab='Main Sequence'
-<sequence name="main">
-    <in>
-        <switch source="//m0:getQuote/m0:request/m0:symbol" xmlns:m0="http://services.samples">
-            <case regex="IBM">
-                <send>
-                    <endpoint><address uri="http://localhost:9000/services/SimpleStockQuoteService"/></endpoint>
-                </send>
-            </case>
-            <case regex="MSFT">
-                <send>
-                    <endpoint key="bogus"/>
-                </send>
-            </case>
-            <case regex="SUN">
-                <sequence key="sunSequence"/>
-            </case>
-        </switch>
-        <drop/>
-    </in>
-    <out>
-        <send/>
-    </out>
-</sequence>
+```xml tab='Proxy Service'
+<proxy xmlns="http://ws.apache.org/ns/synapse" name="FaultTestProxy" startOnLoad="true" transports="http https">
+    <target>
+        <inSequence>
+            <switch source="//m0:getQuote/m0:request/m0:symbol" xmlns:m0="http://services.samples">
+                <case regex="IBM">
+                    <send>
+                        <endpoint><address uri="http://localhost:9000/services/SimpleStockQuoteService"/></endpoint>
+                    </send>
+                </case>
+                <case regex="MSFT">
+                    <send>
+                        <endpoint key="bogus"/>
+                    </send>
+                </case>
+                <case regex="SUN">
+                    <sequence key="sunSequence"/>
+                </case>
+            </switch>
+            <drop/>
+        </inSequence>
+        <outSequence>
+            <send/>
+        </outSequence>
+    </target>
+</proxy>
 ```
 
 ```xml tab='Error Handling Sequence'
-<sequence name="sunSequence" onError="sunErrorHandler">
+<sequence xmlns="http://ws.apache.org/ns/synapse" name="sunSequence" onError="sunErrorHandler">
     <send>
         <endpoint key="sunPort"/>
     </send>
@@ -87,8 +89,35 @@ Create the artifacts:
 3. Create the mediation artifacts with the above configuration.
 4. Deploy the artifacts in your Micro Integrator.
 
-Set up the back-end service:
+Set up the back-end service.
 
-........
+Invoke the sample Proxy Service:
+```xml
+POST http://localhost:8290/services/FaultTestProxy HTTP/1.1
+Accept-Encoding: gzip,deflate
+Content-Type: text/xml;charset=UTF-8
+SOAPAction: "urn:mediate"
+Content-Length: 263
+Host: Chanikas-MacBook-Pro.local:8290
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.1.1 (java 1.5)
 
-Invoke the sample Api by executing the following command:
+<?xml version="1.0" encoding="UTF-8"?>
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+   <soapenv:Header />
+   <soapenv:Body>
+      <placeOrder xmlns="http://org.apache.synapse/xsd">
+         <order>
+            <price>50</price>
+            <quantity>10</quantity>
+            <symbol>SUN</symbol>
+         </order>
+      </placeOrder>
+   </soapenv:Body>
+</soapenv:Envelope>
+```
+
+The following line is getting logged:
+```bash
+INFO {org.apache.synapse.mediators.builtin.LogMediator} - text = An unexpected error occured for stock SUN, message = Couldn't find the endpoint with the key : sunPort
+```

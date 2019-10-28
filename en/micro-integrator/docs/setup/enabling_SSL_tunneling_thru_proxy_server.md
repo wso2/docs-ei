@@ -43,15 +43,13 @@ To configure SSL tunneling through the proxy server, open the deployment.toml fi
 
 ```toml tab='Passthrough HTTP'
 [transport.http]
-http.proxyHost=false                           
-hostName=
-portNumber=
+sender.proxy_host = "localhost"                           
+sender.proxy_port = 8080
 ```
 
 ```toml tab='Passthrough HTTPS'
-[transport.http]
-http.proxyHost=false                           
-hostName=
-portNumber=               
-HostnameVerifier=AllowAll
+[transport.https]
+sender.parameter.'http.proxyHost' = "hostname"
+sender.parameter.'http.proxyPort' = "8080"
+sender.parameter.'HostnameVerifier' = "AllowAll"
 ```

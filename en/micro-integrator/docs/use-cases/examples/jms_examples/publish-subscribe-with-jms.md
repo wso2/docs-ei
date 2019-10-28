@@ -9,15 +9,13 @@ There are many business use cases that can be implemented using the publisher-su
 
 In this sample scenario, two proxy services in the Micro Integrator acts as the publisher and subscriber to a topic defined in the message broker. 
 
-![](attachments/119130316/119130317.png){width="380"}  
-
 When the `stockquote` client sends the message to the StockQuoteProxy service, the publisher is invoked and sends the message to the JMS topic. The topic delivers the message to all the subscribers of that topic. In this case, the subscribers are Micro Integrator proxy services.
 
 ## Synapse configurations
 
 Shown below are the synapse artifacts that are used to define this use case.
 
-``` java tab="Proxy Service (Publisher)"
+```xml tab="Proxy Service (Publisher)"
 <definitions xmlns="http://ws.apache.org/ns/synapse">
     <proxy name="StockQuoteProxy" transports="http" startOnLoad="true" trace="disable">
           <target>
@@ -35,7 +33,7 @@ Shown below are the synapse artifacts that are used to define this use case.
 </definitions>
 ```
 
-``` java tab="Proxy Service (Subscriber 1)"
+```xml tab="Proxy Service (Subscriber 1)"
 <proxy name="SimpleStockQuoteService1" transports="jms" startOnLoad="true" trace="disable">
    <description/>
       <target>
@@ -62,7 +60,7 @@ Shown below are the synapse artifacts that are used to define this use case.
 </proxy>
 ```
 
-``` java tab="Proxy Service (Subscriber 2)"
+```xml tab="Proxy Service (Subscriber 2)"
 <proxy name="SimpleStockQuoteService2" transports="jms" startOnLoad="true" trace="disable">
   <target>
     <inSequence>
@@ -122,26 +120,3 @@ See the descriptions of the above configurations:
     <td>Proxy service that consumes messages from the broker.</td>
   </tr>
 </table>
-
-## Running the Example
-
-Publishing to the topic:
-
-1. Configure the Micro Integrator (Publisher) with Apache ActiveMQ.
-2. Start the Broker.
-3. Start WSO2 Integration Studio and create artifacts with the above configuration. You can copy the synapse configuration given above to the **Source View** of your proxy service.
-4. Start WSO2 Micro Integrator. A log message similar to the following will appear:
-   ``` java
-   INFO {org.wso2.andes.server.store.CassandraMessageStore} -  Created Topic : SimpleStockQuoteService
-   INFO {org.wso2.andes.server.store.CassandraMessageStore} -  Registered Subscription tmp_127_0_0_1_44759_1 for Topic SimpleStockQuoteService
-   ```
-3.  To invoke the publisher, use the sample `stock quote` client service by navigating to the `MI_HOME/samples/axis2Client` directory and running the following command:
-
-    ``` java
-    ant stockquote -Daddurl=http://localhost:8280/services/StockQuoteProxy -Dmode=placeorder -Dsymbol=MSFT 
-    ```
-
-## Related Examples
-
-There can be many types of publishers and subscribers for a given JMS topic. The following article in the WSO2 library provides more information on different types of publishers and subscribers:
-<http://wso2.org/library/articles/2011/12/wso2-esb-example-pubsub-soa> .

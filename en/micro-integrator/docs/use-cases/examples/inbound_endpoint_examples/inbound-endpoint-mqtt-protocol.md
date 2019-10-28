@@ -3,26 +3,15 @@
 
 This sample demonstrates how the MQTT connector publishes a message on a
 particular topic and how a MQTT client that is subscribed to that topic
-receives it. 
+receives the message. 
 Following sections demonstrate how you can try this sample using the
 Mosquitto server as the Message Broker.
 
-### Prerequisites
+## Synapse configuration
 
-Follow the steps below before starting the MQTT sample configurations.
+Following are the integration artifacts that we can used to implement this scenario. See the instructions on how to [build and run](#build-and-run) this example.
 
-1.  Download and install WSO2 EI. For instructions, see [Installation
-    Guide](https://docs.wso2.com/display/EI650/Installation+Guide) .
-2.  Install Mosquitto. (This sample is tested for
-    [Mosquitto1.6.7 version](https://mosquitto.org/download/) .)
-    After installing, Mosquitto server will run automatically in the background.
-3.  Download [MQTT client
-    library](http://repo.spring.io/plugins-release/org/eclipse/paho/mqtt-client/0.4.0/)
-    (i.e. `          mqtt-client-0.4.0.jar         ` ) and add it to the
-    `<EI_HOME>/lib/` directory.
-
-### Synapse configuration
-```xml
+```xml tab='Inbound Endpoint'
 <?xml version="1.0" encoding="UTF-8"?>
 <inboundEndpoint name="SampleInbound" onError="fault" protocol="mqtt" sequence="TestIn" statistics="enable" suspend="false" trace="enable" xmlns="http://ws.apache.org/ns/synapse">
     <parameters>
@@ -39,30 +28,32 @@ Follow the steps below before starting the MQTT sample configurations.
     </parameters>
 </inboundEndpoint>
 ```
-```xml
+
+```xml tab='Sequence'
 <?xml version="1.0" encoding="UTF-8"?>
 <sequence name="TestIn" trace="disable" xmlns="http://ws.apache.org/ns/synapse">
    <log level="full"/>
    <drop/>
 </sequence>
-
 ```
 
-### Build and run
+## Build and run
 
 Create the artifacts:
 
-1. Set up WSO2 Integration Studio.
-2. Create an ESB Config project
-3. Create the following artifacts: Inbound endpoint, Sequence.
-4. Deploy the artifacts in your Micro Integrator.
+1. [Set up WSO2 Integration Studio](../../../../develop/installing-WSO2-Integration-Studio).
+2. [Create an ESB Solution project](../../../../develop/creating-projects/#esb-config-project)
+3. Create a [mediation sequence](../../../../develop/creating-artifacts/creating-reusable-sequences) and [inbound endpoint](../../../../develop/creating-an-inbound-endpoint) with configurations given in the above example.
 
-### Sending a sample message 
+Set up the MQTT server:
 
-Open a new terminal and enter the below command to send an MQTT message using mosquitto-pub.<br>
-Note: Enter the MQTT Topic Name you entered when creating the inbound endpoint as \<MQTT Topic Name> below.
+1.  Install Mosquitto. (This sample is tested for [Mosquitto1.6.7 version](https://mosquitto.org/download/)). The Mosquitto server will run automatically in the background.
+2.  Download [MQTT client library](http://repo.spring.io/plugins-release/org/eclipse/paho/mqtt-client/0.4.0/) (i.e. `          mqtt-client-0.4.0.jar         ` ) and add it to the `MI_TOOLING_HOME/Contents/Eclipse/runtime/microesb/lib/` directory.
+
+[Deploy the artifacts](../../../../develop/deploy-and-run) in your Micro Integrator.
+
+Open a new terminal and enter the below command to send an MQTT message using mosquitto-pub. Be sure to enter the MQTT Topic Name you entered when creating the inbound endpoint as shown below.
 
 `mosquitto_pub -t <MQTT Topic Name>  -m "<msg><a>Testing123</a></msg>`
 
-You will see that the Micro Integrator receives a message when the Micro Integrator Inbound is set
-as the ultimate receiver.
+You will see that the Micro Integrator receives a message when the Micro Integrator Inbound is set as the ultimate receiver.

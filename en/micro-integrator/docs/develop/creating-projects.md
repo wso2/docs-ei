@@ -1,8 +1,8 @@
-# Creating projects
+# Creating ESB Projects
 
 Create the project directories that are required for storing the various synapse artifacts that build your integration use case.
 
-## ESB Solution project
+## ESB Solution Project
 
 An ESB solution consists of one or several project directories. These directories store the various ESB artifacts that you create for your integration sequence.
 
@@ -56,7 +56,7 @@ Create this project directory if you want to create registry resources for your 
     </li>
 </ol>
 
-See the instructions on <a href="../../use-cases/examples/registry_examples/working-with-registry-artifacts">creating and using registry artifacts</a>.
+See the instructions on <a href="../../develop/creating-artifacts/creating-registry-resources/#creating-registry-resources">creating and using registry artifacts</a>.
 
 ## Data Services Project
 
@@ -74,7 +74,7 @@ Create this project directory to start creating data services (.dbs files) for e
     </li>
 </ol>
 
-You can now start <a href="../../use-cases/tasks/managing-data-services-artifacts">managing data service artifacts</a> using <b>WSO2 Integration Studio</b>.
+You can now start <a href="../../develop/creating-artifacts/data-services/creating-data-services/">managing data service artifacts</a> using <b>WSO2 Integration Studio</b>.
 
 ## Connector Exporter Project
 
@@ -207,22 +207,7 @@ This poject directory allows you to package all the artifacts (stored in other E
 
 You can use the above ESB projects and other various projects as follows:
 
-1.  Right-click the **Project Explorer** and click **New → Project** as shown below.  
+1.  Right-click on the **Project Explorer** and click **New → Project** as shown below.
     ![Create new project](../../assets/img/create_project/new_project_root.png)
 2.  In the **New Project** dialog that opens, select the required project.  
     ![Create new project dialog](../../assets/img/create_project/new_project_root_dialog.png)
-
-## Importing projects to workspace
-
-If you have an already created ESB project file, you can import it to your WSO2 Integration Studio workspace.
-
-1.  Open WSO2 Integration Studio, navigate to **File -> Import**, select **Existing WSO2 Projects into workspace,** and click **Next**:  
-    ![Import ESB project](../../assets/img/create_project/import_proj_dialog.png)
-2.  If you have a ZIP file of your project, browse for the **archive file**, or if you have an extracted project folder, browse for the
-    **root directory**:  
-    ![Import ESB project](../../assets/img/create_project/import_proj_select_folders.png)
-
-    !!! Info
-        Select **Copy projects into workspace** check box if you want to save the project in the workspace.
-    
-3.  Click **Finish** , and see that the project files are imported in the project explorer.  

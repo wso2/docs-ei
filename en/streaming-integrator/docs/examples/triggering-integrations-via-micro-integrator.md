@@ -48,7 +48,7 @@ Let's design a Siddhi application that triggers an integration flow and deploy i
     define stream FooStream (symbol string, avgAmount double);
 
     @source(type='grpc-call-response', sink.id= '1', @map(type='json'))
-    define stream BarStream (message string);
+    define stream BarStream (type string, mi_response string);
     ```
 
     Note the following in the above configuration:
@@ -57,14 +57,14 @@ Let's design a Siddhi application that triggers an integration flow and deploy i
 
     - The `grpc-call` sink connected to the `FooStream` stream gets the two attributes from the stream and generates the output events as JSON messages before they are published to the Micro Integrator.  The value for the `publisher.url` parameter in the sink configuration contains `process` and `inSeq` which means that the Streaming Integrator calls the process method of the gRPC Listener server in the Micro Integrator, and injects the message to the `inSeq` which then sends a response back to the client.
 
-    - The `grpc-call-response source` connected to the `BarStream` input stream retrieves a response from the Micro Integrator and publishes it as a JSON message in the Streaming Integrator. As specified via the schema of the `BarStream` input stream, this response comprises of a single message.
+    - The `grpc-call-response source` connected to the `BarStream` input stream retrieves a response from the Micro Integrator and publishes it as a JSON message in the Streaming Integrator. As specified via the schema of the `BarStream` input stream, this response comprises of a single JSON message.
 
 
 5. To publish the messages received from the Micro Integrator as logs in the terminal, let's define an output stream named `LogStream`, and connect a sink of the `log` type to it as shown below.
 
     ```
     @sink(type='log', prefix='response_from_mi: ')
-    define stream LogStream (message string);
+    define stream LogStream (type string, mi_response string);
     ```
 
 6. Let's define Siddhi queries to calculate the average production per minute, filter production runs where the average production per minute is greater than 100, and direct the logs to be published to the output stream.
@@ -110,39 +110,39 @@ Let's design a Siddhi application that triggers an integration flow and deploy i
     ???info "Click here to view the complete Siddhi application."
         @App:name("grpc-call-response")
         @App:description("This application triggers integration process in the micro integrator using gRPC calls")
-
+        
         @source(type = 'http',
                     receiver.url='http://localhost:8006/productionStream',
                     basic.auth.enabled='false',
                     @map(type='json'))
         define stream InputStream(symbol string, amount double);
-
+        
         @sink(
-                    type='grpc-call',
-                    publisher.url = 'grpc://localhost:8888/org.wso2.grpc.EventService/process/inSeq',
-                    sink.id= '1', headers='Content-Type:json',
-                    @map(type='json', @payload("""{"symbol":"{{symbol}}","avgAmount":{{avgAmount}}}"""))
-                )
+            type='grpc-call',
+            publisher.url = 'grpc://localhost:8888/org.wso2.grpc.EventService/process/inSeq',
+            sink.id= '1', headers='Content-Type:json',
+            @map(type='json', @payload("""{"symbol":"{{symbol}}","avgAmount":{{avgAmount}}}"""))
+        )
+        @sink(type='log')    
         define stream FooStream (symbol string, avgAmount double);
-
+        
         @source(type='grpc-call-response', sink.id= '1', @map(type='json'))
-        define stream BarStream (message string);
-
+        define stream BarStream (type string, mi_response string);
+        
         @sink(type='log', prefix='response_from_mi: ')
-        define stream LogStream (message string);
-
-
+        define stream LogStream (type string, mi_response string);
+        
         @info(name = 'CalculateAverageProductionPerMinute')
-        from InputStream#window.timeBatch(1 min)
+        from InputStream#window.timeBatch(5 sec)
         select avg(amount) as avgAmount, symbol
         group by symbol
         insert into AVGStream;
-
+        
         @info(name = 'FilterExcessProduction')
         from AVGStream[avgAmount > 100]
         select symbol, avgAmount
         insert into FooStream;
-
+        
         @info(name = 'LogResponseEvents')
         from BarStream
         select *
@@ -165,7 +165,7 @@ After doing the required configurations in the Streaming Integrator, let's confi
         <inboundEndpoint xmlns="http://ws.apache.org/ns/synapse"
                        name="GrpcInboundEndpoint"
                        sequence="inSeq"
-                       onError="errSeq"
+                       onError="fault"
                        protocol="grpc"
                        suspend="false">
          <parameters>
@@ -184,13 +184,14 @@ After doing the required configurations in the Streaming Integrator, let's confi
     ```xml
     <?xml version="1.0" encoding="UTF-8"?>
     <sequence name="inSeq" xmlns="http://ws.apache.org/ns/synapse">
-        <call>
-            <endpoint>
-                <http method="GET" uri-template="http://localhost:8080/TestService/rest/symbol/info"/>
-            </endpoint>
-        </call>
         <log level="full"/>
-        <class name="org.wso2.carbon.mediator.grpcresponse.ResponseMediator"/>
+        <script language="js">
+           mc.setProperty('CONTENT_TYPE', 'application/json');
+           var payLoad = {};
+           payLoad.type = "gRPC"; 
+           payLoad.mi_response = "ok"; 
+           mc.setPayloadJSON(payLoad);</script>
+        <respond/>
     </sequence>
     ```
 
@@ -208,4 +209,8 @@ After doing the required configurations in the Streaming Integrator, let's confi
 To send an event to the defines `http` source hosted in `http://localhost:8006/productionStream`, issue the following sample CURL command.
 
 `curl -X POST -d "{\"event\":{\"symbol\":\"soap\",\"amount\":110.23}}" http://localhost:8006/productionStream --header "Content-Type:application/json"`
+
+In the SI console an output similar to following will be printed after 1 minute (if the average of the amount is larger than 100)
+
+`INFO {io.siddhi.core.stream.output.sink.LogSink} - response_from_mi:  : Event{timestamp=1570533736910, data=[gRPC, ok], isExpired=false}`
 

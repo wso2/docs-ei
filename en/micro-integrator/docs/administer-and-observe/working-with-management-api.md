@@ -3,8 +3,8 @@
 The Management API of WSO2 Micro Integrator is an internal REST API, which was introduced to substitute
 the **admin services** that were available in WSO2 EI 6.x.x. 
 
-The [Micro Integrator CLI](../../administer-and-observe/using-the-command-line-interface) and the [Micro Integrator dashboard](../../administer-and-observe/working-with-monitoring-dashboard) directly communicates with this service to
-obtain administrative information of the server instance.
+The [Micro Integrator CLI](../../administer-and-observe/using-the-command-line-interface) and the [Micro Integrator dashboard](../../administer-and-observe/working-with-monitoring-dashboard) communicates with this service to
+obtain administrative information of the server instance. If you are not using the dashboard or the CLI, you can directly access the [resources](#accessig-api-resources) of the management API by following the instructions given below.
 
 ## Enabling the management API
 
@@ -34,28 +34,30 @@ Note that the default address is **https://localhost** and the port is **9164**.
 -   The Management API is enabled for the embedded Micro Integrator in WSO2 Integration Studio by default.
 
 ## Securely invoking the API
-The management API is secured using JWT authentication by default. Therefore, in order to access the management API, you must first acquire a JWT token with your valid username and password.
+The management API is secured using JWT authentication by default. Therefore, when you directly access the management API, you must first acquire a JWT token with your valid username and password.
 
 !!! Tip
-    See [Securing the Management API](../../setup/management-api/securing-management-api) on configuring users, JWT authentication, and other security options for the management API.
+    See [Securing the Management API](../../../setup/security/securing_management_api) for information on configuring **users**, **JWT authentication**, and other security options for the management API.
 
-To acquire the JWT token, 
+### Getting a JWT token
 
-1.	First, encode your username:password in Basic Authorization format (encoded in base64). For example, use the default `admin:admin` credentials.
-2.	Invoke the `login` resource of the API with your encoded credintials as shown below.
-	```bash
-	curl -X GET "https://localhost:9164/management/login" -H "accept: application/json" -H "Authorization: Basic YWRtaW46YWRtaW4=" -k -i
-	```
+Follow the steps given below to acquire the JWT token. 
 
-The API will validate the authorization header and provide a response with the JWT token as follows:
+1.	First, encode your username:password in Basic Auth format (encoded in base64). For example, use the default `admin:admin` credentials.
+2.	Invoke the `/login` resource of the API with your encoded credintials as shown below.
+  	```bash
+  	curl -X GET "https://localhost:9164/management/login" -H "accept: application/json" -H "Authorization: Basic YWRtaW46YWRtaW4=" -k -i
+  	```
+3.	The API will validate the authorization header and provide a response with the JWT token as follows:
+  	```json
+  	{ 
+  	   "AccessToken":"%AccessToken%"
+  	}
+  	```
 
-```json
-{ 
-   "AccessToken":"%AccessToken%"
-}
-```
+### Invoking an API resource
 
-You can now use this token in subsequent API calls as shown below. 
+You can now use this token when you invoke a [resource](#accessig-api-resources). 
 
 !!! Info
      When the default JWT security handler is engaged, all the management API resources except `/login` is protected by JWT auth. Therefore, it is necessary to send the token as a bearer token when invoking the API resources.
@@ -63,23 +65,33 @@ You can now use this token in subsequent API calls as shown below.
 ```bash
 curl -X GET "https://localhost:9164/management/inbound-endpoints" -H "accept: application/json" -H "Authorization: Bearer %AccessToken%”
 ```
-If security is not required, user could simply remove the security handler from the management api. 
 
-## Resources
+### Log out from management API
+
+Invoke the `/logout` resource to revoke the JWT token you used for [invoking the api resource](#invoking-an-api-resource).
+
+```bash
+curl -X GET "https://localhost:9164/management/logout” -H "accept: application/json" -H "Authorization: Bearer %AccessToken%”
+```
+
+## Accessig API resources
 
 The management API has multiple resources to provide information regarding the deployed artifacts as well as the server itself.
 
 ### GET PROXY SERVICES
 
--	/proxy-services
+-	**Resource**: `/proxy-services`
 
-	Retrieves a list of all deployed proxy services.
+	**Description**: Retrieves a list of all deployed proxy services.
 
-	```bash
+	**Example**:
+
+	```bash tab='Request'
 	curl -X GET "https://localhost:9164/management/proxy-services" -H "accept: application/json" -H "Authorization: Bearer TOKEN" -k -i
 	```
 
-	```json
+
+	```bash tab='Response'
 	{
 	  "count": 1,
 	  "list": [
@@ -92,23 +104,28 @@ The management API has multiple resources to provide information regarding the d
 	}
 	```
 
--	/proxy-services?proxyServiceName={proxyName}
+-	**Resource**: `/proxy-services?proxyServiceName={proxyName}`
 
-	Retrieves information related to a specified proxy.
+	**Description**: Retrieves information related to a specified proxy.
+
+	**Example**:
 	```bash
 	curl -X GET "https://localhost:9164/management/proxy-services?proxyServiceName=helloProxy" -H "accept: application/json" -H "Authorization: Bearer TOKEN" -k -i
 	```
 
 ### GET CARBON APPLICATIONS
 
--	/applications
+-	**Resource**: `/applications`
 
-	This operation provides you a list of available Applications.
-	```bash
+	**Description**: This operation provides you a list of available Applications.
+
+	**Example**:
+
+	```bash tab='Request'
 	curl -X GET "https://localhost:9164/management/applications" -H "accept: application/json" -H "Authorization: Bearer TOKEN" -k -i
 	```
 
-	```json
+	```bash tab='Response'
 	{
 	  "count": 1,
 	  "list": [
@@ -120,25 +137,28 @@ The management API has multiple resources to provide information regarding the d
 	}
 	```
 
--	/applications?carbonAppName={appname}
+-	**Resource**: `/applications?carbonAppName={appname}`
 
-	Retrieves information related to a specified carbon application.
+	**Description**: Retrieves information related to a specified carbon application.
 
+	**Example**:
 	```
 	curl -X GET "https://localhost:9164/management/applications?carbonAppName=HelloCApp" -H "accept: application/json" -H "Authorization: Bearer TOKEN" -k -i
 	```
 
 ### GET ENDPOINTS
 
--	/endpoints
+-	**Resource**: `/endpoints`
 
-	Retrieves a list of available endpoints.
+	**Description**:  Retrieves a list of available endpoints.
 
-	```bash
+	**Example**:
+
+	```bash tab='Request'
 	curl -X GET "https://localhost:9164/management/endpoints" -H "accept: application/json" -H "Authorization: Bearer TOKEN" -k -i
 	```
 
-	```json
+	```bash tab='Response'
 	{
 	    "count": 2,
 	    "list": [
@@ -154,21 +174,23 @@ The management API has multiple resources to provide information regarding the d
 	}
 	```
 
--	/endpoints?endpointName={endpointname}
+-	**Resource**: `/endpoints?endpointName={endpointname}`
 
-	Retrieves information related to a specified endpoint.
+	**Description**: Retrieves information related to a specified endpoint.
 
 ### GET APIs
 
--	/apis
+-	**Resource**: `/apis`
 
-	Retrieves a list of available apis.
+	**Description**: Retrieves a list of available apis.
 
-	```bash
+	**Example**:
+
+	```bash tab='Request'
 	curl -X GET "https://localhost:9164/management/apis" -H "accept: application/json" -H "Authorization: Bearer TOKEN" -k -i
 	```
 
-	```json
+	```bash tab='Response'
 	{
 	    "count": 2,
 	    "list": [
@@ -184,21 +206,23 @@ The management API has multiple resources to provide information regarding the d
 	}
 	```
 
--	/apis?apiName={api}
+-	**Resource**: `/apis?apiName={api}`
 
-	Retrieves information related to a specified api.
+	**Description**: Retrieves information related to a specified api.
 
 ### GET SEQUENCES
 
--	/sequences
+-	**Resource**: `/sequences`
 
-	Retrieves a list of available sequences.
+	**Description**: Retrieves a list of available sequences.
 
-	```bash
+	**Example**:
+
+	```bash tab='Request'
 	curl -X GET "https://localhost:9164/management/sequences" -H "accept: application/json" -H "Authorization: Bearer TOKEN" -k -i
 	```
 
-	```json
+	```bash tab='Response'
 	{
 	    "count": 3,
 	    "list": [
@@ -222,22 +246,24 @@ The management API has multiple resources to provide information regarding the d
 	}
 	```
 
--	/sequences?sequenceName={sequence}
+-	**Resource**: `/sequences?sequenceName={sequence}`
 
-	Retrieves information related to a specified sequence.
+	**Description**: Retrieves information related to a specified sequence.
 
 
 ### GET LOCAL ENTRIES
 
--	/local-entries
+-	**Resource**: `/local-entries`
 
-	Retrieves a list of available local entries.
+	**Description**: Retrieves a list of available local entries.
 
-	```bash
+	**Example**:
+
+	```bash tab='Request'
 	curl -X GET "https://localhost:9164/management/local-entries" -H "accept: application/json" -H "Authorization: Bearer TOKEN" -k -i
 	```
 
-	```json
+	```bash tab='Response'
 	{
 	    "count": 2,
 	    "list": [
@@ -253,21 +279,23 @@ The management API has multiple resources to provide information regarding the d
 	}
 	```
 
--	/local-entries?name={entryName}
+-	**Resource**: `/local-entries?name={entryName}`
 
-	Retrieves information related to a specified entry.
+	**Description**: Retrieves information related to a specified entry.
 
 ### GET TASKS
 
--	/tasks
+-	**Resource**: `/tasks`
 
-	Retrieves a list of available tasks.
+	**Description**: Retrieves a list of available tasks.
 
-	```bash
+	**Example**:
+
+	```bash tab='Request'
 	curl -X GET "https://localhost:9164/management/tasks" -H "accept: application/json" -H "Authorization: Bearer TOKEN" -k -i
 	```
 
-	```json
+	```bash tab='Response'
 	{
 	    "count": 1,
 	    "list": [
@@ -278,21 +306,23 @@ The management API has multiple resources to provide information regarding the d
 	}
 	```
 
--	/tasks?taskName={taskName}
+-	**Resource**: `/tasks?taskName={taskName}`
 
-	Retrieves information related to a specified task.
+	**Description**: Retrieves information related to a specified task.
 
 ### GET MESSAGE STORES
 
--	/message-stores
+-	**Resource**: `/message-stores`
 
-	Retrieves a list of available message stores.
+	**Description**: Retrieves a list of available message stores.
 
-	```bash
+	**Example**:
+
+	```bash tab='Request'
 	curl -X GET "https://localhost:9164/management/message-stores" -H "accept: application/json" -H "Authorization: Bearer TOKEN" -k -i
 	```
 
-	```json
+	```bash tab='Response'
 	{
 	    "count": 2,
 	    "list": [
@@ -310,21 +340,23 @@ The management API has multiple resources to provide information regarding the d
 	}
 	```
 
--	/message-stores?name={messageStore}
+-	**Resource**: `/message-stores?name={messageStore}`
 
-	Retrieves information related to a specified message store.
+	**Description**: Retrieves information related to a specified message store.
 
 ### GET MESSAGE PROCESSORS   
 
--	/message-processors
+-	**Resource**: `/message-processors`
 
-	Retrieves a list of available message processors.
+	**Description**: Retrieves a list of available message processors.
 
-	```bash
+	**Example**:
+
+	```bash tab='Request'
 	curl -X GET "https://localhost:9164/management/message-processors" -H "accept: application/json" -H "Authorization: Bearer TOKEN" -k -i
 	```
 
-	```json
+	```bash tab='Response'
 	{
 	    "count": 2,
 	    "list": [
@@ -342,16 +374,17 @@ The management API has multiple resources to provide information regarding the d
 	}
 	```
 
--	/message-processors?name={messageProcessors}
+-	**Resource**: `/message-processors?name={messageProcessors}`
 
-	Retrieves information related to a specified message processor.
+	**Description**: Retrieves information related to a specified message processor.
 
 ### POST MESSAGE PROCESSORS
 
--	/message-processors
+-	**Resource**: `/message-processors`
 
-	Used to activate or deactivate a specific message processor
+	**Description**: Used to activate or deactivate a specific message processor
 
+	**Example**:
 
 	```bash
 	curl -X POST \
@@ -366,15 +399,17 @@ The management API has multiple resources to provide information regarding the d
 
 ### GET INBOUND ENDPOINTS
 
--	/inbound-endpoints
+-	**Resource**: `/inbound-endpoints`
 
-	Retrieves a list of available inbound endpoints.
+	**Description**: Retrieves a list of available inbound endpoints.
 
-	```bash
+	**Example**:
+
+	```bash tab='Request'
 	curl -X GET "https://localhost:9164/management/inbound-endpoints" -H "accept: application/json" -H "Authorization: Bearer TOKEN" -k -i
 	```
 
-	```json
+	```bash tab='Response'
 	{
 	    "count": 1,
 	    "list": [
@@ -386,21 +421,23 @@ The management API has multiple resources to provide information regarding the d
 	}
 	```
 
--	/inbound-endpoints?inboundEndpointName={inboundEndpoint}
+-	**Resource**: `/inbound-endpoints?inboundEndpointName={inboundEndpoint}`
 
-	Retrieves information related to a specified inbound endpoint.
+	**Description**: Retrieves information related to a specified inbound endpoint.
 
 ### GET CONNECTORS
 
--	/connectors
+-	**Resource**: `/connectors`
 
-	Retrieves a list of available connectors.
+	**Description**: Retrieves a list of available connectors.
 
-	```bash
+	**Example**:
+
+	```bash tab='Request'
 	curl -X GET "https://localhost:9164/management/connectors" -H "accept: application/json" -H "Authorization: Bearer TOKEN" -k -i
 	```
 
-	```json
+	```bash tab='Response'
 	{
 	    "count": 2,
 	    "list": [
@@ -422,15 +459,17 @@ The management API has multiple resources to provide information regarding the d
 
 ### GET TEMPLATES
 
--	/templates
+-	**Resource**: `/templates`
 
-	Retrieves a list of available templates.
+	**Description**: Retrieves a list of available templates.
 
-	```bash
+	**Example**:
+
+	```bash tab='Request'
 	curl -X GET "https://localhost:9164/management/templates" -H "accept: application/json" -H "Authorization: Bearer TOKEN" -k -i
 	```
 
-	```json
+	```bash tab='Response'
 	{
 	    "sequenceTemplateList": [
 		{
@@ -445,17 +484,19 @@ The management API has multiple resources to provide information regarding the d
 	}
 	```
 
--	/templates?type=TYPE
+-	**Resource**: `/templates?type=TYPE`
 
-	Retrieves a list of available templates of a given type. Supported template types are as follows.
+	**Description**: Retrieves a list of available templates of a given type. Supported template types are as follows.
 	1. endpoint
 	2. sequence
 
-	```bash
+	**Example**:
+
+	```bash tab='Request'
 	curl -X GET "https://localhost:9164/management/templates?type=sequence" -H "accept: application/json" -H "Authorization: Bearer TOKEN" -k -i
 	```
 
-	```json
+	```bash tab='Response'
 	{
 	    "count": 1,
 	    "list": [
@@ -466,16 +507,18 @@ The management API has multiple resources to provide information regarding the d
 	}
 	```
 
--	/templates?type={type}&name={template}
+-	**Resource**: `/templates?type={type}&name={template}`
 
-	Retrieves information related to a specific template. However this requires the template type to be included in the 
+	**Description**: Retrieves information related to a specific template. However this requires the template type to be included in the 
 	request as a query parameter in addition to the template name.
 
-	```bash
+	**Example**:
+
+	```bash tab='Request'
 	curl -X GET "https://localhost:9164/management/templates?type=sequence&name=testSequenceTemplate" -H "accept: application/json" -H "Authorization: Bearer TOKEN" -k -i
 	```
 
-	```json
+	```bash tab='Response'
 	{
 	    "Parameters": [],
 	    "configuration": "<template xmlns=\"http://ws.apache.org/ns/synapse\" name=\"testSequenceTemplate\"><sequence/></template>",
@@ -485,15 +528,17 @@ The management API has multiple resources to provide information regarding the d
 
 ### GET SERVER INFORMATION
 
--	/server
+-	**Resource**: `/server`
 
-	Retrieves information related to the micro integrator server instance.
+	**Description**: Retrieves information related to the micro integrator server instance.
 
-	```bash
+	**Example**:
+
+	```bash tab='Request'
 	curl -X GET "https://localhost:9164/management/server" -H "accept: application/json" -H "Authorization: Bearer TOKEN" -k -i
 	```
 
-	```json
+	```bash tab='Response'
 	{
 	    "productVersion": "1.1.0",
 	    "repositoryLocation": "/Users/Sachith/IdeaProjects/micro-integrator-public/distribution/target/wso2mi-1.1.0-SNAPSHOT/repository/deployment/client/",
@@ -510,15 +555,17 @@ The management API has multiple resources to provide information regarding the d
 
 ### GET DATA SERVICES
 
--	/data-services
+-	**Resource**: `/data-services`
 
-	Retrieves a list of all data services deployed.
+	**Description**: Retrieves a list of all data services deployed.
 
-	```bash
+	**Example**:
+
+	```bash tab='Request'
 	curl -X GET "https://localhost:9164/management/data-services" -H "accept: application/json" -H "Authorization: Bearer TOKEN" -k -i
 	```
 
-	```json
+	```bash tab='Response'
 	{
 	    "count": 1,
 	    "list": [
@@ -531,65 +578,12 @@ The management API has multiple resources to provide information regarding the d
 	}
 	```
 
--	/data-services?dataServiceName={dataservice}
+-	**Resource**: `/data-services?dataServiceName={dataservice}`
 
-	Retrieves information related to a specific data service.
+	**Description**: Retrieves information related to a specific data service.
+
+	**Example**:
 
 	```bash
 	curl -X GET "https://localhost:9164/management/data-services?dataServiceName=StudentDataService" -H "accept: application/json" -H "Authorization: Bearer TOKEN" -k -i
 	```
-
-## Management API configuration file
-All configurations related to the management API can be found in `MI_HOME/conf/internal-apis.xml`.
-
-```xml
-<api class="org.wso2.micro.integrator.management.apis.ManagementInternalApi" name="ManagementApi"
-             protocol="https">
-    <handlers>
-	<handler class="org.wso2.micro.integrator.management.apis.security.handler.JWTTokenSecurityHandler"
-		 name="JWTTokenSecurityHandler">
-	    <TokenStoreConfig>
-		<MaxSize>200</MaxSize>
-		<TokenCleanupTaskInterval>600</TokenCleanupTaskInterval><!--Seconds /-->
-		<RemoveOldestTokenOnOverflow>true</RemoveOldestTokenOnOverflow>
-	    </TokenStoreConfig>
-	    <TokenConfig>
-		<expiry>3600</expiry><!--Seconds /-->
-		<size>2048</size>
-	    </TokenConfig>
-	    <UserStore>
-		<users>
-		    <user>
-			<username>admin</username>
-			<password>admin</password>
-		    </user>
-		</users>
-	    </UserStore>
-	</handler>
-	<!--handler class="org.wso2.micro.integrator.management.apis.security.handler.BasicSecurityHandler"
-		 name="BasicSecurityHandler">
-	    <UserStore>
-		<users>
-		    <user>
-			<username>admin</username>
-			<password>admin</password>
-		    </user>
-		</users>
-	    </UserStore>
-	</handler-->
-    </handlers>
-    <cors>
-	<enabled>true</enabled>
-	<allowedOrigins>*</allowedOrigins>
-	<!-- comma separated values-->
-	<allowedHeaders>Authorization</allowedHeaders>
-    </cors>
-</api>
-```
-
-## CORS Configurations
-By default the Management Api comes with CORS enabled. As shown in the above configuration, it allows all origins
-and the Authorization header. User can remove the wildcard in the origin parameter and specific origins in a comma
-separated as required.
-Authorization header has been added by default in order to cater to the functionalities of the the monitoring dashboard.
-Further values can be added in a comma separated format same as for origins. 

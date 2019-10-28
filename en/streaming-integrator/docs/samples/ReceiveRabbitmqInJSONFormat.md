@@ -3,23 +3,23 @@
 This application demonstrates how to configure WSO2 Streaming Integrator Tooling to receive events to the `SweetProductionStream` via rabbitmq broker in JSON format using default mapping and log the events in `LowProductionAlertStream` to the output console.
 
 ## Prerequisites:
-1) Save this sample.
-2) Install the rabbitmq server using the following command
+1. Save this sample.
+2. Install the rabbitmq server using the following command
     ```bash
     sudo apt-get install rabbitmq-server.
     ```
-3) To enable RabbitMQ Management Console, run the following:
+3. To enable RabbitMQ Management Console, run the following:
     ```bash
     sudo rabbitmq-plugins enable rabbitmq_management.
     ```
-4) To start the service, issue the following command:
+4. To start the service, issue the following command:
     ```bash
     invoke-rc.d rabbitmq-server start
     ```
 
 ## Executing the Sample:
-1) Start the Siddhi application by clicking on 'Run'.
-2) If the Siddhi application starts successfully, the following messages would be shown on the console.
+1. Start the Siddhi application by clicking on 'Run'.
+2. If the Siddhi application starts successfully, the following messages would be shown on the console.
     ```
     * ReceiveRabbitmqInJSONFormat.siddhi - Started Successfully!
     ```

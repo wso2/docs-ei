@@ -6,23 +6,23 @@ This application demonstrates how to configure WSO2 Streaming Integrator Tooling
 Save this sample.
 
 ## Executing the Sample:
-1) Open a terminal and navigate to the `{WSO2SIHome}/samples/sample-clients/tcp-server` directory. Run the command:
+1. Open a terminal and navigate to the `{WSO2SIHome}/samples/sample-clients/tcp-server` directory. Run the command:
     ```bash
     ant -Dcontext=LowProductionAlertStream
     ```
-2) Start the Siddhi application by clicking 'Run'.
-3) If the Siddhi application starts successfully, the following messages appear on the console.
+2. Start the Siddhi application by clicking 'Run'.
+3. If the Siddhi application starts successfully, the following messages appear on the console.
     ```
     * PublishTcpInBinaryFormat.siddhi - Started Successfully!
     * 'tcp' sink at 'LowProductionAlertStream' stream successfully connected to 'localhost:9892'.
     ```
-4) Open the event simulator by clicking on the second icon or press Ctrl+Shift+I.
-5) In the Single Simulation tab of the panel, select values as follows:
+4. Open the event simulator by clicking on the second icon or press Ctrl+Shift+I.
+5. In the Single Simulation tab of the panel, select values as follows:
     * Siddhi App Name: PublishTcpInBinaryFormat
     * Stream Name: SweetProductionStream
-6) In the 'name' and 'amount' fields, enter 'toffee' and '45.24' respectively, and then click Send to send the event.
-7) Send some more events.
-8) Check the output in the terminal of {WSO2SIHome}/samples/sample-clients/tcp-server. You will see output similar to the following:
+6. In the 'name' and 'amount' fields, enter 'toffee' and '45.24' respectively, and then click Send to send the event.
+7. Send some more events.
+8. Check the output in the terminal of {WSO2SIHome}/samples/sample-clients/tcp-server. You will see output similar to the following:
     ```
     [java] [org.wso2.si.tcp.server.TCPServer] : Event{timestamp=1512446413468, data=[toffee, 45.25], isExpired=false}
     [java] [org.wso2.si.tcp.server.TCPServer] : Event{timestamp=1512446425113, data=[coffee, 9.78], isExpired=false}

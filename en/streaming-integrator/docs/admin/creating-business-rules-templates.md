@@ -4,30 +4,30 @@ In streaming integration, there are common use cases for analyzing statistics th
 
 
 ## Creating Business Rules
-This section explains how to create a business rule. A business rule can be created from a template or from scratch.
+This section explains how to create a business rule. A business rule can be [created from a template](#creating-business-rules-from-a-template) or [from scratch](#creating-a-business-rule-from-scratch).
 
 ### Creating Business Rules from a Template
 
-Creating business rules from an existing template allows you to use sources, sinks and filters already defined and assign variable values to process events.
+Creating business rules from an existing template allows you to use sources, sinks and filters that have been already defined, and assign variable values to process events.
 
 !!!tip "Before you begin:"
-    - The business template must be already configured in the `<SI_TOOLING_HOME>/conf/server/deployment.yaml` file. For detailed instructions, see [Business Rules Templates](#business-rules-templates).
+    - The business rule template must be already configured in the `<SI_TOOLING_HOME>/conf/server/deployment.yaml` file. For detailed instructions, see [Business Rules Templates](#business-rules-templates).
     - If you want to deploy the business rule after creating it, you need to start the SI server by navigating to the `<SI_HOME>/bin` directory and issuing one of the following commands:
-        - On Windows: `tooling.bat --run`
-        - On Linux/Mac OS:  `./tooling.sh
+        - On Windows: `server.bat --run`
+        - On Linux/Mac OS:  `./server.sh`
 
 To create a business rule from a template, follow the procedure below:
 
 1. Navigate to the `<SI_TOOLING_HOME>` directory from the terminal and start the Streaming Integrator Tooling by issuing one of the following commands:
-    - On Windows: `server.bat --run`
-    - On Linux/Mac OS:  `./server.sh`
+    - On Windows: `tooling.bat --run`
+    - On Linux/Mac OS:  `./tooling.sh`
 
 2. Access the Business Rule Manager via one of the following URLs.
 
     | Protocol | URL Format                                      | Example                               |
     |----------|-------------------------------------------------|---------------------------------------|
-    | HTTP     | `http://<SI_HOST>:<HTTP_PORT>/business-rules`   | `http://0.0.0.0:9090/business-rules`  |
-    | HTTPS    | `https://<SI_HOST>:<HTTPS_PORT>/business-rules` | `https://0.0.0.0:9443/business-rules` |
+    | HTTP     | `http://<SI_TOOLING_HOST>:<HTTP_PORT>/business-rules`   | `http://0.0.0.0:9090/business-rules`  |
+    | HTTPS    | `https://<SI_TOOLING_HOST>:<HTTPS_PORT>/business-rules` | `https://0.0.0.0:9443/business-rules` |
 
     This opens the following:
 
@@ -37,9 +37,9 @@ To create a business rule from a template, follow the procedure below:
 
     ![Select business rule creation method](../images/working-with-business-rules/select-business-rule-creation-method.png)
 
-4. Then click **From Template** to open the **Select a Template Group** page where the available templates are displayed.
+4. Then click **From Template** to open the **Select a Template Group** page, where the available templates are displayed.
 
-5. Click on the template group that contains the required template to create a rule from it. In this example, the rule is created based on a template in the `Sweet Factory` template group that is packed with the Streaming Integrator by default. Therefore, click **Sweet Factory** to open this template group.
+5. Click on the template group that contains the required template to create a business rule from it. In this example, the business rule is created based on a template in the `Sweet Factory` template group that is packed with the Streaming Integrator by default. Therefore, click **Sweet Factory** to open this template group.
 
     ![Select template group](../images/working-with-business-rules/select-template-group.png)
 
@@ -47,39 +47,39 @@ To create a business rule from a template, follow the procedure below:
 
     ![View rules](../images/working-with-business-rules/view-rules.png)
 
-7. If you want to change the rule template from which you want to create the rule, select the required value for the **Rule Template** field.
+7. If you want to change the rule template from which you want to create the business rule, select the required value for the **Rule Template** field.
 
 8. Enter a name for the business rule in the **Business Rule Name** field.
 
 9. Enter values for the rest of the fields following the instructions in the UI.
 
     !!!info
-        The fields displayed for the rule differ based on the template selected.
+        The fields displayed for the business rule differ based on the selected template.
 
-10. If you want to save the rule and deploy it later, click **Save**. If you want to deploy the rule immediately, click **Save and Deploy**.
+10. If you want to save the business rule and deploy it later, click **Save**. If you want to deploy the business rule immediately, click **Save and Deploy**.
 
 
 ### Creating a business rule from scratch
 
-Creating a rule from scratch allows you to define the filter logic for the rule at the time of creating instead of using the filter logic already defined in a template. However, you can select the required source and sink configurations from an existing template.
+Creating a business rule from scratch allows you to define the filter logic for the rule at the time of creating, instead of using the filter logic that has been already defined in a template. However, you can select the required source and sink configurations from an existing template.
 
 !!!tip "Before you begin:"
     If you want to deploy the business rule after creating it, you need to start the SI server by navigating to the `<SI_HOME>/bin` directory and issuing one of the following commands:
-        - On Windows: `tooling.bat --run`
-        - On Linux/Mac OS:  `./tooling.sh
+        - On Windows: `server.bat --run`
+        - On Linux/Mac OS:  `./server.sh`
 
 To create a business rule from scratch, follow the procedure below:
 
 1. Navigate to the `<SI_TOOLING_HOME>` directory from the terminal and start the Streaming Integrator Tooling by issuing one of the following commands:
-    - On Windows: `server.bat --run`
-    - On Linux/Mac OS:  `./server.sh`
+    - On Windows: `tooling.bat --run`
+    - On Linux/Mac OS:  `./tooling.sh`
 
 2. Access the Business Rule Manager via one of the following URLs.
 
     | Protocol | URL Format                                      | Example                               |
     |----------|-------------------------------------------------|---------------------------------------|
-    | HTTP     | `http://<SI_HOST>:<HTTP_PORT>/business-rules`   | `http://0.0.0.0:9090/business-rules`  |
-    | HTTPS    | `https://<SI_HOST>:<HTTPS_PORT>/business-rules` | `https://0.0.0.0:9443/business-rules` |
+    | HTTP     | `http://<SI_TOOLING_HOST>:<HTTP_PORT>/business-rules`   | `http://0.0.0.0:9090/business-rules`  |
+    | HTTPS    | `https://<SI_TOOLING_HOST>:<HTTPS_PORT>/business-rules` | `https://0.0.0.0:9443/business-rules` |
 
     This opens the following:
 
@@ -112,17 +112,26 @@ To create a business rule from scratch, follow the procedure below:
 7. To define a filter, follow the steps below:
     1. In the **Attribute** field, select the attribute based on which you want to define the filter condition.
     2. In the **Operator** field, select an operator.
-    3. In the **Value/Attribute** field, enter the value or the attribute based on which the operator is applied to the attribute you selected in step **a**.
+    3. In the **Value/Attribute** field, enter the value or another attribute based on which, the **Operator** is applied to the **Attribute**.
 
-    e.g., If you want to filter events where the price is less than 100, select values for the fields as follows:
+    e.g.,<br />
+    If you want to filter events where the `price` is less than 100 (which is a value), select values for the fields as follows:
 
     | Field               | Value   |
     |---------------------|---------|
     | **Attribute**       | `price` |
     | **Operator**        | `<`     |
-    | **Value/Attribute** | `100`   |
-
-
+    | **Value/Attribute** (Value) | `100`   |
+    
+    If you want to filter events where the `price` is equal to the `volume` (which is another attribute), select values for the fields as follows:
+    
+    | Field               | Value   |
+    |---------------------|---------|
+    | **Attribute**       | `price` |
+    | **Operator**        | `==`     |
+    | **Value/Attribute** (Attribute) | `volume`   |
+    
+    
     Once you have defined two or more filters, enter the rule logic in the **Rule Logic** field using `OR`, `AND`, and `NOT` conditions. The examples of how you can use these keywords are explained in the table below.
 
     | Keyword                            | Example                                                                                |
@@ -204,11 +213,14 @@ Possible deployment statuses are as follows:
 
 - **Saved**: The business rule is created, but not yet deployed in any Streaming Integrator node.
 
-- **Deployed**: The business rule is created and deployed in all the nodes of the current Streaming Integrator setup.
+- **Deployed**: The business rule is created and deployed in all the required nodes in the Streaming Integrator cluster.
 
-- **Partially Deployed:** The business rule is created and deployed only in some of the nodes in the Streaming Integrator cluster. This status is also assigned when you click **Save and Deploy** instead of **Save** at the time you [create the business rule](_Creating_Business_Rules).
+- **Partially Deployed:** The business rule is created and deployed only in some of the required nodes in the Streaming Integrator cluster.
 
-- **Partially Undeployed:** The business rule has been previously deployed and then undeployed only in some of the nodes in the Streaming Integrator cluster.
+- **Partially Undeployed:** The business rule has been previously deployed, and then un-deployed only in some of the nodes in the Streaming Integrator cluster.
+
+!!!info
+    **Required nodes** are configured with respect to a rule template. For detailed instructions, see [Deploying business rules in SI server](#deploying-business-rules-in-si-server).
 
 
 ### Deleting business rules
@@ -221,13 +233,15 @@ As a result, another message appears to inform you that the rule is successfully
 
 ## Creating a Business Rules Template
 
-To create a business template using the Business Template editor, follow the procedure below:
+To create a business template using the Business Rules Template editor, follow the procedure below:
 
 1. If you have not already started the Streaming Integrator tooling, navigate to the `<SI_TOOLING_HOME>/bin` directory from the terminal and start the Streaming Integrator Tooling as mentioned below.
     - On Windows: `tooling.bat --run`
     - On Linux/Mac OS: `./ tooling.sh`
 
-2. Access the Business Rules Template Editor via the `http://<HOST_NAME>:<PORT>/template-editor` URL.
+2. Access the Business Rules Template Editor via the URL that appears for it in the start up logs as shown in the example below.
+
+    ![Template Editor URL](../images/working-with-business-rules/template-editor-url.png)
 
     !!! info
         The default URL is `http://localhost:9390/template-editor`.
@@ -237,7 +251,7 @@ To create a business template using the Business Template editor, follow the pro
     [Business Rules Templates](business-rules-templates).)
 
     !!!warning
-        Do not template sensitive information such as passwords in a Siddhi application or expose them directly in a Siddhi application. For detailed instructions to protect sensitive data by obfuscating them, see [Protecting Sensitive Data via the Secure Vault](protecting-sensitive-data-via-the secure-vault.md).
+        Do not template sensitive information such as passwords in a Siddhi application or expose them directly in a Siddhi application. For detailed instructions to protect sensitive data by obfuscating them, see [Protecting Sensitive Data via the Secure Vault](protecting-sensitive-data-via-the-secure-vault.md).
 
 
    ![Business Rules Editor](../images/working-with-business-rules/business-rules-template-editor.png)
@@ -318,7 +332,7 @@ To create a business rules template group from the design view, follow the proce
 
     ![Select Templated Elements](../images/working-with-business-rules/select-templated-elements.png)
 
-    Then click **Add Script** to update the script with the selected variables with auto-generated function bodies as shown below.
+    Then click **Add To Script** to update the script with the selected variables with auto-generated function bodies as shown below.
     ![Add Script](../images/working-with-business-rules/add-script.png)
 
 6. Edit the script to add the required functions. In this example, let's rename `myFunction1(input)` to `getUsername(email)`, and `myFunction2(input)` to `validateTimeRange(number)`.
@@ -369,7 +383,7 @@ To create a business rules template group from the design view, follow the proce
 8. Enter values for the available properties as follows. For this example, let's enter values as shown in the following table.
 
     !!! info
-        A property is defined for each templated attribute (defined in the `${templatedElement`} format) so that it is self descriptive for the business user who uses the template. The values configured for each property are as follows:
+        A property is defined for each templated attribute (defined in the `${templatedElement}` format), so that it is self descriptive for the business user who uses the template. The values configured for each property are as follows:
 
         - **Field Name**: The name with which the templated attribute is displayed to the business user.
 
@@ -377,7 +391,7 @@ To create a business rules template group from the design view, follow the proce
 
         - **Default Value**: The value assigned to the property by default. The business user can change this value if required.
 
-        - **Options**: this is an optional configuration that allows you to define a set of values for a property so that the business user can select the required value from a list. This is useful when the the possible value for the property is a limited set options.
+        - **Options**: this is an optional configuration that allows you to define a set of values for a property so that the business user can select the required value from a list. This is useful when the possible value for the property is limited to a set of options.
 
     | Property                             | Field Name                                  | Field Description                                                              | Default Value                                    |
     |--------------------------------------|---------------------------------------------|--------------------------------------------------------------------------------|--------------------------------------------------|
@@ -419,11 +433,11 @@ When you click **Recover**, the code view is reset to the latest detected valid 
 
 ## Editing a Business Rules Template
 
-WSO2 SI allows you to make edits to a business template that you have already created and saved. To edit a template via the Template Editor tool, follow the steps below.
+WSO2 SI allows you to make edits to a business rules template that you have already created and saved. To edit a template via the Template Editor tool, follow the steps below.
 
 1. Start the WSO2 SI Tooling profile by issuing one of the following commands.
     - For Windows: `tooling.bat`
-    - For Linux: ./ `tooling.sh`
+    - For Linux: `./tooling.sh`
 
 2. Access the Template Editor via the URL that appears for it in the start up logs as shown in the example below.
 
@@ -448,7 +462,7 @@ WSO2 SI allows you to make edits to a business template that you have already cr
 
 ## Business Rules Templates
 
-Rule Templates are used as specifications to gain inputs from users through dynamically generated fields for the purpose of creating business rules. A template group is a business domain level grouping. The definition of a template looks as follows.
+**Rule Templates** are used as specifications to gain inputs from users, through dynamically generated fields for the purpose of creating business rules. A **template group** is a business domain level grouping. The definition of a template looks as follows.
 
 ``` js
     {
@@ -623,7 +637,7 @@ Developers can use this script for:
 </div>
 <p><code>                             </code></p>
 <p><code>               enteredValue              </code> should be defined as a property under <code>               properties              </code> in order to be filled by the user and replaced later.</p>
-<p>The derived value stored in <code>               derivedValue              </code> is then used to replace <code>               ${derivedValue              </code> } in the SiddhiApp template.<br />
+<p>The derived value stored in <code>               derivedValue              </code> is then used to replace <code>               ${derivedValue}</code> in the SiddhiApp template.<br />
 <br />
 </p>
 </div></td>
@@ -672,7 +686,7 @@ To deploy a business rule in the Streaming Integrator server, follow the procedu
     ```
 
     !!! info
-        Specify the value for `nodeURL1` in the `IP:Port` format. If you add this configuration, the business rules template is deployed only in the specified nodes when you run the Streaming Integrator Tooling and the Streaming Integrator servers of your SI setup. If you do not specifically add business rule template IDs in the configuration, all templates in templates directory are deployed in all specified Streaming Integrator servers.
+        Specify the value for `nodeURL1` in the `IP:Port` format. If you add this configuration, a business rule which is derived from this rule template (when you run the Streaming Integrator Tooling and the Streaming Integrator servers of your SI setup) is deployed only in the nodes under which - this rule template has been specified. If you do not specifically add business rule template IDs in the configuration, business rules are deployed in all the available Streaming Integrator servers.
 
 ## Configuring Business Rules Manager Permissions
 
