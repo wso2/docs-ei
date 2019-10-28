@@ -22,11 +22,14 @@ toolbar, and open the preferred view from the list.
 
 ## Unable to drag and drop mediators into the canvas
 
-If you are using Display Scaling more than 150% in Windows or Linux, you may observe that you cannot drag and drop mediators into the canvas. In such cases, you can fix it by adding the following line(VM argument) in the IntegrationStudio.ini file under the installation directory of Integration Studio.
+When you use **display scaling** that exceed 150% (in **Windows** or **Linux** environments only), you may observe that you cannot drag and drop mediators into the canvas. To overcome this issue, add the following line (VM argument) to the `IntegrationStudio.ini` file in the installation directory of WSO2 Integration Studio.
 
-`-Dswt.autoScale=100`
+!!! Warning
+    Be sure to add this as the last line in the file.
 
-Note: Add this to the last line
+```bash
+-Dswt.autoScale=100
+```
 
 
 
