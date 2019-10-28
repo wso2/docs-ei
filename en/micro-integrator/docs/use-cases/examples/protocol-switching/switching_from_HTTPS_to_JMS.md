@@ -2,13 +2,13 @@
 
 This example demonstrates how WSO2 Micro Integrator receives messages in HTTP and passes the messages through JMS.
 
-This Micro Integrator configuration creates a Proxy Service Samples over HTTP and forwards received messages to the above EPR using JMS, and immediately responds with a 202. 
+The Micro Integrator uses a proxy service over HTTP and forwards received messages to the above EPR using JMS, and immediately responds with a 202. 
 
 If the previous example on [JMS to HTTP](../switching_from_JMS_to_HTTP) is also configured, it will pick the message from queue and send it to the stockquote proxy.
 
 ## Synapse configuration
 
-Following are the integration artifacts (proxy service) that we can used to implement this scenario.
+Following are the integration artifacts (proxy service) that we can use to implement this scenario.
 
 ```xml
 <proxy xmlns="http://ws.apache.org/ns/synapse" name="HTTPtoJMSStockQuoteProxy" transports="http">
@@ -27,8 +27,10 @@ Following are the integration artifacts (proxy service) that we can used to impl
     <publishWSDL key="conf:HTTP_JMS/sample_proxy_1.wsdl" preservePolicy="true"/>
 </proxy>
 ```
+
 Example JMS connection URL for WSO2 MB
-```
+
+```xml
 jms:/Queue1?transport.jms.ConnectionFactoryJNDIName=QueueConnectionFactory&amp;java.naming.factory.initial=org.wso2.andes.jndi.PropertiesFileInitialContextFactory&amp;java.naming.provider.url=conf/jndi.properties&amp;transport.jms.DestinationType=queue
 ```
 ## Build and Run
@@ -42,7 +44,8 @@ Create the artifacts:
 5. [Deploy the artifacts](../../../../develop/deploy-and-run) in your Micro Integrator.
 6. [Configure MI with the selected message broker](../../../../setup/brokers/configure-with-ActiveMQ) and start the Micro-Integrator.
 
-Invoke the HTTPtoJMSStockQuoteProxy with the following payload (using SOAP UI or CURL)
+Invoke the HTTPtoJMSStockQuoteProxy with the following payload (using SOAP UI or CURL):
+
 ```xml
 <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
    <soapenv:Header/>
@@ -57,8 +60,10 @@ Invoke the HTTPtoJMSStockQuoteProxy with the following payload (using SOAP UI or
    </soapenv:Body>
 </soapenv:Envelope>
 ```
-Sample CURL
-```
+
+Sample CURL:
+
+```bash
 curl -X POST \
   http://localhost:8290/services/HTTPtoJMSStockQuoteProxy.HTTPtoJMSStockQuoteProxyHttpSoap11Endpoint \
   -H 'cache-control: no-cache' \
@@ -78,4 +83,4 @@ curl -X POST \
 </soapenv:Envelope>'
 ```
 
-Now message count in the queue should be increased or if the JMS listener is also setup, it should pick the message from queue and send to the stockquote proxy.
+Now, the message count in the queue should be increased. If the JMS listener is also setup, it should pick the message from the queue and send to the stockquote proxy.
