@@ -225,7 +225,7 @@ monitor the performance of the datasource using this MBean. The
 ![datasource mbean](../../assets/img/jmx/datasource-mbeans.png)
 
 **Example:** If you have JMX enabled for the default Carbon datasource
-in the `         master-datasources.xml.        ` file, the [JDBC
+in the `         deployment.toml.        ` file, the [JDBC
 connection pool
 parameters](http://tomcat.apache.org/tomcat-7.0-doc/jdbc-pool.html) that
 are configured for the Carbon datasource will be listed as attributes as

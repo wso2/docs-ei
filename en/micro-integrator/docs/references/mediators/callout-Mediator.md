@@ -17,16 +17,16 @@ The Callout mediators default https transport sender is `org.apache.axis2.transp
 
 ## Disabling chunking
 
-The Callout mediator is not affected by the [DISABLE_CHUNKING property](property-reference/http-transport-properties.md). Instead, you can disable chunking for the Callout mediator by setting the following paramters in the `ei.toml` file:
+The Callout mediator is not affected by the [DISABLE_CHUNKING property](property-reference/http-transport-properties.md). Instead, you can disable chunking for the Callout mediator by setting the following paramters in the `MI_HOME/conf/deployment.toml` file:
 
 ```toml
-[transport.http]
-blocking_sender.transfer_encoding = "chunked"
+[transport.blocking.http]
+sender.transfer_encoding = "chunked"
 ```
 
 This will disable chunking for all Callout mediators present in the Micro Integrator.
 
-If you want to disable chunking for only a single Callout mediator instance, create a new `axis2.xml` file by copying the `         axis2_blocking_client.xml        ` file, set the `         Transfer-Encoding        ` parameter as shown, and then configure that Callout mediator to use this new `         axis2.xml        ` file as described below.
+If you want to disable chunking for only a single Callout mediator instance, create a new `axis2.xml` file by copying the `         MI_HOME/conf/axis2/axis2_blocking_client.xml        ` file, set the `         Transfer-Encoding        ` parameter as shown, and then configure that Callout mediator to use this new `         axis2.xml        ` file as described below.
 
 ## Syntax
 
@@ -81,7 +81,7 @@ The parameters available for configuring the Callout mediator are as follows.
 </tr>
 <tr class="even">
 <td><strong>Axis2 XML</strong></td>
-<td>The path to the location of the Axis2.xml configuration file. The purpose of this parameter is to make the Callout mediator initialize with the relevant Axis2 configurations.</td>
+<td>The path to the location of the axis2.xml configuration file. The purpose of this parameter is to make the Callout mediator initialize with the relevant Axis2 configurations.</td>
 </tr>
 <tr class="odd">
 <td><strong>initAxis2ClientOptions</strong></td>
