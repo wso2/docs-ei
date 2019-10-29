@@ -158,12 +158,12 @@ When building XML elements, the EI handles the `$` character and digits in a spe
 
 ## Converting spaces
 
-Although you can have spaces in JSON elements, [you cannot have them when converted to XML](https://www.w3.org/TR/REC-xml/#sec-common-syn). Therefore, you can handle spaces when converting JSON message payloads to XML, by adding the following property to the `MI_HOME/conf/deployment.toml` file `[mediation]` section:
+Although you can have spaces in JSON elements, [you cannot have them when converted to XML](https://www.w3.org/TR/REC-xml/#sec-common-syn). Therefore, you can handle spaces when converting JSON message payloads to XML, by adding the following property to the `MI_HOME/conf/deployment.toml` file in the `[mediation]` section:
 `synapse.build_valid_nc_name`
 
 For example, consider the following JSON message:
 
-```
+```json
 {
   "abc def" : "this is a sample value"
 }
@@ -171,7 +171,7 @@ For example, consider the following JSON message:
 
 The output converted to XML is as follows:
 
-```
+```xml
 <abc_jsonreader_32_def>this is a sample value</abc_jsonreader_32_def> 
 ```
 
@@ -280,7 +280,7 @@ If the request payload is as follows:
 
 Save the payload in request.xml file and use the following command to invoke this proxy service:
 
-``` bash
+```bash
 curl -v -X POST -H "Content-Type:application/xml" -d@request.xml "http://localhost:8290/services/tojson"
 ```
 
