@@ -35,7 +35,7 @@ Follow the instructions given below to create a new Inbound Endpoint artifact in
     [system.parameter]
     'synapse.transport.portCloseVerifyTimeout' = 20
     ```
-    Note that `synapse.transport.portCloseVerifyTimeout` should be surrounded with the single quotes since it contain dots. toml format detect dot as object seperator.
+    Note that `synapse.transport.portCloseVerifyTimeout` should be wrapped by single quotes since it contain dots. The TOML format detects the dot as an object seperator.
     Also note that this setting may be required in Windows environments as the process of closing a port can sometimes take longer than 10 seconds.
 
 ## Examples
