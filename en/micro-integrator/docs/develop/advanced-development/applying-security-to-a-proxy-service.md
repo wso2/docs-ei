@@ -42,6 +42,9 @@ Follow the instructions given below to create a **WS-Policy** resource in your r
     **Rampart Properties**
 
     ![](../../assets/img/apply-security/119130870/119130889.png)
+    
+    !!! Info 
+        Change the tokenStoreClass in the policy file to 'org.wso2.micro.integrator.security.extensions.SecurityTokenStore'
 
 #### Specifying role-based access?
 
@@ -59,11 +62,12 @@ Either define the user roles inline or retrieve the user roles from the server.
     ![](../../assets/img/apply-security/119130870/119130871.png)
 
 !!! Info
-    By default, the role names are not case sensitive. If you want to make them case sensitive, add the following property under the `<AuthorizationManager>` configuration in the `user-mgt.xml` file:
-        
-    ```
-    <Property name= "CaseSensitiveAuthorizationRules"> true </Property>
-    ```
+    By default, the role names are not case sensitive. If you want to make them case sensitive, add the following property in the `<MI_HOME>/conf/deployment.yaml` file:
+             
+         ```
+        [authorization_manager]
+        properties.CaseSensitiveAuthorizationRules = "true"
+         ```
 
 ## Step 2: Add the security policy to the proxy service
 
