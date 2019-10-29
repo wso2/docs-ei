@@ -17,7 +17,8 @@ To set up the tools:
 To demonstrate how data services work, we will use a MySQL database as the datasource. Follow the steps given below to set up a MySQL database:
 
 1.  Install the MySQL server.
-2.  Download the JDBC driver for MySQL from [here](http://dev.mysql.com/downloads/connector/j/) and copy it to your `MI_TOOLING_HOME/Eclipse/runtime/microesb/lib` directory. 
+2.  Download the JDBC driver for MySQL from [here](http://dev.mysql.com/downloads/connector/j/) and copy it to the `MI_TOOLING_HOME/Contents/Eclipse/runtime/microesb/lib/` (for MacOS) or 
+`MI_TOOLING_HOME/runtime/microesb/lib/` (for Windows) directory. 
 
     !!! Note
         If the driver class does not exist in the relevant folders when you create the datasource, you will get an exception such as `Cannot load JDBC driver class com.mysql.jdbc.Driver`.

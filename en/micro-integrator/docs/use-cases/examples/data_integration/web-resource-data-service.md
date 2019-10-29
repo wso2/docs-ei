@@ -30,10 +30,10 @@ Given below is the data service configuration you need to build. See the instruc
 
 Create the artifacts:
 
-1. [Set up WSO2 Integration Studio](../../../../develop/installing-WSO2-Integration-Studio). The path to this folder is referred to as `MI_TOOLING_HOME` throughout this tutorial.      
-2. [Create a Data Service project](../../../../develop/creating-projects/#data-services-project)
-4. [Create the data service](../../../../develop/creating-artifacts/data-services/creating-data-services) with the configurations given above.
-5. [Deploy the artifacts](../../../../develop/deploy-and-run) in your Micro Integrator. 
+1. [Set up WSO2 Integration Studio](../../../../develop/installing-WSO2-Integration-Studio).
+2. [Create a Data Service project](../../../../develop/creating-projects/#data-services-project).
+3. [Create the data service](../../../../develop/creating-artifacts/data-services/creating-data-services) with the configurations given above.
+4. [Deploy the artifacts](../../../../develop/deploy-and-run) in your Micro Integrator. 
 
 You can send an HTTP GET request to invoke the data service using cURL
 as shown below.
