@@ -42,7 +42,7 @@ Let’s implement a simple integration solution that can be used to query for av
 
 ## Before you begin
 
-1. [Download Micro Integrator](https://www.wso2.com/integration/micro-integrator) for your Operating System. For more information, see [the Installation section](../../setup/installation/install_in_vm/).
+1. [Download the Micro Integrator](https://www.wso2.com/integration/micro-integrator). For more information, see [the Installation section](../../setup/installation/install_in_vm/).
    
 2. Download the sample files from [here](https://github.com/wso2/docs-ei/blob/7.0.0/en/micro-integrator/docs/assets/attach/quick-start-guide/MI_QSG_HOME.zip). From this point onwards, let's refer to this folder as `<MI_QSG_HOME>`.
 
@@ -105,7 +105,9 @@ Go to the `<MI_QSG_HOME>` directory. The following project files and executable 
             </api>
 	    ```    
   </details>
-  > **Note**: Here endpoints are defined inline in the API configuration for better clarity in reading the configuration. However, the best practice is to define them as named endpoint configurations so that they can be externalized to an environment specific entity.
+
+    !!! Note
+        In this sample, endpoints are defined inline in the API configuration for better clarity in reading the configuration. However, the best practice is to define them as named endpoint configurations so that they can be externalized to an environment specific entity.
 
 - **HealthcareConfigProjectCompositeApplication**: This is the Composite Application Project folder, which contains the packaged CAR file of the Healthcare service.
 
@@ -117,15 +119,15 @@ Follow the steps given below to run the integration artifacts we developed on a 
 
 #### Start backend mock services
 
-Two mock hospital information services are available in the `DoctorInfo.jar` file located at `<MI_QSG_HOME>/BackendService/` directory. 
+Two mock hospital information services are available in the `DoctorInfo.jar` file located at `<MI_QSG_HOME>/Backend/` directory. 
 
-Open a terminal window and use the following command to start the services.
+Open a terminal window and use the following command to start the services:
 
-```java
+```bash
 java -jar DoctorInfo.jar
 ```
 
-You will see following get printed in the terminal
+You will see following get printed in the terminal:
 
 ```bash
 [ballerina/http] started HTTP/WS listener 0.0.0.0:9090
@@ -136,17 +138,22 @@ You will see following get printed in the terminal
 
 Copy the CAR file of the Healthcare service (HealthcareConfigProjectCompositeApplication_1.0.0.car), from the `<MI_QSG_HOME>/HealthcareConfigProjectCompositeApplication/target/` directory to the `<MI_HOME>/repository/deployment/server/carbonapps` directory.
 
+!!! Info
+    If you set up the product using the installer, the `<MI_HOME>` [location](../../setup/installation/install_in_vm/#accessing-the-home-directory) is specific to your OS.
+
 #### Start the Micro Integrator
 
 Follow the steps relevant to your OS:
 
-On MacOS/Linux/CentOS, open a terminal and execute the following commands:
+-   On MacOS/Linux/CentOS, open a terminal and execute the following command:
 
-```bash
-sudo wso2mi-service start
-```
+    ```bash
+    sudo wso2mi
+    ```
 
-On Windows, go to Start Menu -> Programs -> WSO2 -> Micro Integrator. This will open a terminal and start the relevant profile.
+    Find more about [stating the Micro Integrator](../../setup/installation/install_in_vm/#running-the-micro-integrator).
+
+-   On **Windows**, go to **Start Menu -> Programs -> WSO2 -> Micro Integrator**. This will open a terminal and start the Micro Integrator.
 
 #### Invoke the Healthcare service
 
@@ -159,31 +166,31 @@ curl -v http://localhost:8290/healthcare/doctor/Ophthalmologist
 Upon invocation, you should be able to observe the following response:
 
 ```bash
-[
-    [
-        {
-            "name": "Geln Ivan",
-            "time": "05:30 PM",
-            "hospital": "pineValley"
-        },
-        {
-            "name": "Daniel Lewis",
-            "time": "05:30 PM",
-            "hospital": "pineValley"
-        }
-    ],
-    [
-        {
-            "name": "Shane Martin",
-            "time": "07:30 AM",
-            "hospital": "Grand Oak"
-        },
-        {
-            "name": "Geln Ivan",
-            "time": "08:30 AM",
-            "hospital": "Grand Oak"
-        }
-    ]
+[ 
+   [ 
+      { 
+         "name":"John Mathew",
+         "time":"03:30 PM",
+         "hospital":"Grand Oak"
+      },
+      { 
+         "name":"Allan Silvester",
+         "time":"04:30 PM",
+         "hospital":"Grand Oak"
+      }
+   ],
+   [ 
+      { 
+         "name":"John Mathew",
+         "time":"07:30 AM",
+         "hospital":"pineValley"
+      },
+      { 
+         "name":"Roma Katherine",
+         "time":"04:30 PM",
+         "hospital":"pineValley"
+      }
+   ]
 ]
 ```
 
