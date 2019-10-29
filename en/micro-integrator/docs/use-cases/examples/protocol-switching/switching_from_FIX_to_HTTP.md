@@ -164,11 +164,11 @@ two directories.
 -   Start Banzai.
 -   Enable FIX transport by adding below configuration into the MI_HOME/conf/deployment.toml file.
 
-```toml
+    ```toml
     [transport.fix]
     listener.enable = true
     sender.enable = false
-```
+    ```
 
 -   Configure ESB for FIX samples.
 -   Open up the `ESB_HOME/repository/samples/synapse_sample_259.xml`
