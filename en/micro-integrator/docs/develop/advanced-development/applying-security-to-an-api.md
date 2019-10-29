@@ -56,7 +56,7 @@ See the REST API given below for an example of how the default basic auth handle
 
 ### Testing the API
 
-1.  First, invoke the service using the following service URL without providing any user credentials: `http://127.0.0.1:8280/stockquote/view/IBM`
+1.  First, invoke the service using the following service URL without providing any user credentials: `http://127.0.0.1:8290/stockquote/view/IBM`
 
     !!! Info
         You can invoke the service using Postman or Curl.
@@ -557,14 +557,20 @@ You will now create an API named TestGoogle that connects to the following endpo
     ```        
     Notice that the `           <handlers>          ` tag contains the reference to the custom handler class.
         
-2.  Open `MI_HOME/repository/axis2/axis2.xml          ` and add the following parameters:
+2.  Open `MI_HOME/conf/deployment.toml` and add the following parameters:
         
     ```
-    <!-- OAuth2 Token Validation Service -->
-    <parameter name="oauth2TokenValidationService">https://localhost:9444/services/OAuth2TokenValidationService</parameter>
-    <!-- Server credentials -->
-    <parameter name="identityServerUserName">admin</parameter>
-    <parameter name="identityServerPw">admin</parameter>
+    [[transport.parameters]]
+    name = "oauth2TokenValidationService"
+    value = "https://localhost:9444/services/OAuth2TokenValidationService"
+  
+    [[transport.parameters]]
+    name = "identityServerUserName"
+    value = "admin"
+  
+    [[transport.parameters]]
+    name = "identityServerPw"
+    value = "admin"
     ```
 3.  Restart the Micro Integrator.
         
@@ -580,7 +586,7 @@ You will now use Identity Server to create an OAuth application and generate the
     curl -v -k -X POST --user : -H "Content-Type: application/x-www-form-urlencoded;charset=UTF-8" -d 'grant\_type=password&username=admin&password=admin' https://localhost:9444/oauth2/token
     ```
         
-Identity Server returns the access token, which you can now use when invoking the API. For example: `curl -v -X GET -H "Authorization: Bearer ca1799fc84986bd87c120ba499838a7" http://localhost:8280/search`
+Identity Server returns the access token, which you can now use when invoking the API. For example: `curl -v -X GET -H "Authorization: Bearer ca1799fc84986bd87c120ba499838a7" http://localhost:8290/search`
 
 ## Using a policy file to authenticate with a secured back-end service
 You can connect a REST client to a secured back-end service (such as a SOAP service) through an API that reads from a policy file.
@@ -594,10 +600,7 @@ You can connect a REST client to a secured back-end service (such as a SOAP serv
 First, you configure the Micro Integrator to expose the API to the REST client.
     
 ```xml
-<definitions xmlns="http://ws.apache.org/ns/synapse">
-   <localEntry key="sec_policy"
-               src="file:repository/samples/resources/policy/policy_3.xml"/>
-  <api name="StockQuoteAPI" context="/stockquote">
+  <api xmlns="http://ws.apache.org/ns/synapse" name="StockQuoteAPI" context="/stockquote">
       <resource methods="GET" uri-template="/view/{symbol}">e
          <inSequence trace="enable">
             <header name="Action" value="urn:getQuote"/>
@@ -643,13 +646,12 @@ First, you configure the Micro Integrator to expose the API to the REST client.
          </inSequence>
       </resource>
    </api>
-</definitions>
 ```
  
 The policy file stores the security parameters that are going to authenticated by the back-end service. You specify the policy file with the localEntry property, which in this example we've named sec_policy:
     
 ```xml
-<localEntry key="sec_policy" src="file:repository/samples/resources/policy/policy_3.xml"/> 
+<localEntry xmlns="http://ws.apache.org/ns/synapse" key="sec_policy" src="file:repository/samples/resources/policy/policy_3.xml"/> 
 ```
     
 You use then reference the policy file by its localEntry name when enabling the security policy for the end point:
@@ -668,7 +670,8 @@ In the outSequence property, the security header must be removed before sending 
 <outSequence trace="enable">
 <header xmlns:wsse="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd" name="wsse:Security" action="remove"/>
 ```
-    
+
+<!--    
 To test this API configuration, you must run the SecureStockQuoteService, which is bundled in the samples folder, as the back-end server. This sample uses Apache Rampart as the back-end security implementation. Therefore, you need to download and install the unlimited strength policy files for your JDK before using Apache Rampart.
 
 ### Testing the API
@@ -686,7 +689,8 @@ curl -v http://127.0.0.1:8280/stockquote/view/IBM
 ```
     
 Observe that the REST client is getting the correct response (the `wsse:Security` header is removed from the decrypted message) while going through the secured back-end service and the API implemented in the Micro Integrator. You can use a TCP monitoring tool such as [tcpmon](https://code.google.com/p/tcpmon/downloads/list) to monitor the message sent from the the Micro Integrator and the response message received by the Micro Integrator. For a tutorial on using tcpmon, see http://technonstop.com/tcpmon-tutorial.
-    
+-->
+  
 ## Transforming Basic Auth to WS-Security
     
 REST clients typically use Basic Auth over HTTP to authenticate the user name and password, but if the back-end service uses WS-Security, you can configure the API to transform the authentication from Basic Auth to WS-Security.
@@ -699,10 +703,12 @@ REST clients typically use Basic Auth over HTTP to authenticate the user name an
 To achieve this transformation, you configure the Micro Integrator to expose the API to the REST client as shown in the previous example, but you add the HTTPS protocol and Basic Auth handler to the configuration as shown below:
     
 ```xml
-<definitions xmlns="http://ws.apache.org/ns/synapse">
-  <localEntry key="sec_policy"
+  <localEntry xmlns="http://ws.apache.org/ns/synapse" key="sec_policy"
 src="file:repository/samples/resources/policy/policy_3.xml"/>
-  <api name="StockQuoteAPI" context="/stockquote">
+```
+
+```xml
+  <api xmlns="http://ws.apache.org/ns/synapse" name="StockQuoteAPI" context="/stockquote">
     <resource methods="GET" uri-template="/view/{symbol}" protocol="https" >
      ...
     </resource>
@@ -710,12 +716,11 @@ src="file:repository/samples/resources/policy/policy_3.xml"/>
       <handler class="org.wso2.rest.BasicAuthHandler"/>
     </handlers>
   </api>
-</definitions>
 ```
 
 ### Testing the API
 This configuration allows two-fold security: the client authenticates with the API using Basic Auth over HTTPS, and then the API sends the request to the back-end service using the security policy. You can test this configuration using the following command:
     
 ```bash
- curl -v -k -H "Authorization: Basic YWRtaW46YWRtaW4=" https://localhost:8243/stockquote/view/IBM  
+ curl -v -k -H "Authorization: Basic YWRtaW46YWRtaW4=" https://localhost:8253/stockquote/view/IBM  
 ```
