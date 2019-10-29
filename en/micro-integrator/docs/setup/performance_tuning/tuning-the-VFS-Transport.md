@@ -10,8 +10,8 @@ To use the streaming mode with the VFS transport, see the following instructions
 
 ## Update server-level configurations
 
-1. Open the deployment.toml file from the `MI_HOME/conf` directory.
-2. Binary message builder and formatter are enabled by default. Make sure the following configurations are presence in deployment.toml file unless you changed the default `application/binary` message builder and formatter.
+1. Open the `deployment.toml` file from the `MI_HOME/conf` directory.
+2. Binary message builder and formatter are enabled by default. Be sure that the following configurations unchanged in the `deployment.toml` file.
 
     ```toml
     [message_builders]
