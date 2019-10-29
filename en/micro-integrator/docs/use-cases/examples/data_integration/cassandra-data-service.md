@@ -4,7 +4,7 @@ This example demonstrates how data stored in Cassandra can be exposed as a data 
 
 ## Prerequisites
 
-Set up the Cassandra server with a keyspace and table for this tutorial:
+Set up the Cassandra server with a keyspace and table:
 
 ### Installing and starting Cassandra
 
@@ -14,14 +14,12 @@ Documentation](http://cassandra.apache.org/download/) .
 
 !!! Info
 	-   Get familiar with the basics of Cassandra, including the
-	    prerequisites for using Cassandra, by going through the following:
+	    prerequisites for using Cassandra:
 	    <https://wiki.apache.org/cassandra/GettingStarted> .
-	-   Get familiar with using the Cassandra CLI, by going through the
-	    following: <http://wiki.apache.org/cassandra/CassandraCli> .
+	-   Get familiar with using the Cassandra CLI: <http://wiki.apache.org/cassandra/CassandraCli> .
 	-   Functionality of the underlying connector used for the Cassandra
 	    datasource:
-	    [https://www.datastax.com/documentation/developer/java-driver/2.0/index.html](index)
-	    .
+	    [https://www.datastax.com/documentation/developer/java-driver/2.0/index.html](https://www.datastax.com/documentation/developer/java-driver/2.0/index.html).
 	-   Also, note that Cassandra requires the most stable version of Java 7
 	    or 8 you can deploy; preferably the Oracle/Sun JVM.
 
@@ -94,8 +92,8 @@ Given below is the data service configuration you need to build. See the instruc
 
 Create the artifacts:
 
-1. [Set up WSO2 Integration Studio](../../../../develop/installing-WSO2-Integration-Studio). The path to this folder is referred to as `MI_TOOLING_HOME` throughout this tutorial.      
-2. [Create a Data Service project](../../../../develop/creating-projects/#data-services-project)
+1. [Set up WSO2 Integration Studio](../../../../develop/installing-WSO2-Integration-Studio).
+2. [Create a Data Service project](../../../../develop/creating-projects/#data-services-project).
 4. [Create the data service](../../../../develop/creating-artifacts/data-services/creating-data-services) with the configurations given above.
 5. [Deploy the artifacts](../../../../develop/deploy-and-run) in your Micro Integrator. 
 
@@ -104,8 +102,8 @@ follows:
 
 -	**Post** new data
 
-	1.  Create a file called users-payload.xml file, and define the XML
-	    payload for posting new data as shown below. Note that the id is a
+	1.  Create a file called `users-payload.xml` file, and define the XML
+	    payload for posting new data as shown below. Note that the ID is a
 	    UUID value.
 
 	    ```xml

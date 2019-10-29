@@ -47,50 +47,49 @@ like datasource instances communicating within a server cluster for data
 synchronisation.
 
 !!! Info
-    Find the custom connectors used from the github project located at
-[https://github.com/wso2-attic/wso2-dss-connectors.](https://github.com/wso2-attic/wso2-dss-connectors)
+    Find the custom connectors used from the github project located at [https://github.com/wso2-attic/wso2-dss-connectors](https://github.com/wso2-attic/wso2-dss-connectors).
 
 ## Adding a custom tabular datasource to the data service
 
-Follow the steps given below to create a custom tabular datasource.'
+Follow the steps given below to create a custom tabular datasource.
 
 ### Synapse configuration
+    
+Given below is the data service configuration you need to build. See the instructions on how to [build and run](#build-and-run) this example.
 
-    Given below is the data service configuration you need to build. See the instructions on how to [build and run](#build-and-run) this example.
-
-    ```xml
-    <data name="CustomTabularDataService" transports="http https local">
-       <config enableOData="false" id="CustomTabular">
-          <property name="custom_tabular_datasource_class">org.wso2.micro.integrator.dataservices.core.datasource.InMemoryDataSource</property>
-          <property name="custom_datasource_props">
-             <property name="inmemory_datasource_schema">{Users:[ID,Name]}</property>
-             <property name="inmemory_datasource_records">{Users:[[</property>
-          </property>
-       </config>
-       <query id="getAllUsers" useConfig="CustomTabular">
-          <sql>SELECT ID,Name FROM Users</sql>
-          <result element="Users" rowName="User">
-             <element column="ID" name="ID" xsdType="string"/>
-             <element column="Name" name="Name" xsdType="string"/>
-          </result>
-       </query>
-       <operation name="GetAllUsersOp">
-          <call-query href="getAllUsers"/>
-       </operation>
-       <resource method="GET" path="Users">
-          <call-query href="getAllUsers"/>
-       </resource>
-    </data>
-    ```
+```xml
+<data name="CustomTabularDataService" transports="http https local">
+   <config enableOData="false" id="CustomTabular">
+      <property name="custom_tabular_datasource_class">org.wso2.micro.integrator.dataservices.core.datasource.InMemoryDataSource</property>
+      <property name="custom_datasource_props">
+         <property name="inmemory_datasource_schema">{Users:[ID,Name]}</property>
+         <property name="inmemory_datasource_records">{Users:[[</property>
+      </property>
+   </config>
+   <query id="getAllUsers" useConfig="CustomTabular">
+      <sql>SELECT ID,Name FROM Users</sql>
+      <result element="Users" rowName="User">
+         <element column="ID" name="ID" xsdType="string"/>
+         <element column="Name" name="Name" xsdType="string"/>
+      </result>
+   </query>
+   <operation name="GetAllUsersOp">
+      <call-query href="getAllUsers"/>
+   </operation>
+   <resource method="GET" path="Users">
+      <call-query href="getAllUsers"/>
+   </resource>
+</data>
+```
 
 ### Build and run
 
 Create the artifacts:
 
-1. [Set up WSO2 Integration Studio](../../../../develop/installing-WSO2-Integration-Studio). The path to this folder is referred to as `MI_TOOLING_HOME` throughout this tutorial.      
-2. [Create a Data Service project](../../../../develop/creating-projects/#data-services-project)
-4. [Create the data service](../../../../develop/creating-artifacts/data-services/creating-data-services) with the configurations given above.
-5. [Deploy the artifacts](../../../../develop/deploy-and-run) in your Micro Integrator. 
+1. [Set up WSO2 Integration Studio](../../../../develop/installing-WSO2-Integration-Studio).
+2. [Create a Data Service project](../../../../develop/creating-projects/#data-services-project).
+3. [Create the data service](../../../../develop/creating-artifacts/data-services/creating-data-services) with the configurations given above.
+4. [Deploy the artifacts](../../../../develop/deploy-and-run) in your Micro Integrator. 
 
 You can send an HTTP GET request to invoke the data service using cURL
 as shown below.
@@ -107,49 +106,49 @@ Follow the steps given below to create a custom query datasource.
 
 ### Synapse configuration
 
-    Given below is the data service configuration you need to build. See the instructions on how to [build and run](#build-and-run) this example.
+Given below is the data service configuration you need to build. See the instructions on how to [build and run](#build-and-run) this example.
 
-    ```xml
-    <data name="CustomQueryDataService" transports="http https local">
-       <config enableOData="false" id="CustomQuery">
-          <property name="custom_query_datasource_class">org.wso2.micro.integrator.dataservices.core.datasource.EchoDataSource</property>
-          <property name="custom_datasource_props">
-             <property name="prop1">prop_value1</property>
-             <property name="prop2">prop_value2</property>
-          </property>
-       </config>
-       <query id="getValues" useConfig="CustomQuery">
-          <expression>column1,column2;R1C1 :param1,R1C2 :param2;R2C1 :param1,R2C2 :param2</expression>
-          <result element="Rows" rowName="Row">
-             <element column="column1" name="C1" xsdType="string"/>
-             <element column="C2" name="C2" xsdType="string"/>
-          </result>
-          <param name="column1" optional="false" sqlType="STRING"/>
-          <param name="column2" optional="false" sqlType="STRING"/>
-       </query>
-       <operation name="GetValuesOp">
-          <call-query href="getValues">
-             <with-param name="column1" query-param="column1"/>
-             <with-param name="column2" query-param="column2"/>
-          </call-query>
-       </operation>
-       <resource method="GET" path="Values/{column1}">
-          <call-query href="getValues">
-             <with-param name="column1" query-param="column1"/>
-             <with-param name="column2" query-param="column2"/>
-          </call-query>
-       </resource>
-    </data>
-    ```
+```xml
+<data name="CustomQueryDataService" transports="http https local">
+   <config enableOData="false" id="CustomQuery">
+      <property name="custom_query_datasource_class">org.wso2.micro.integrator.dataservices.core.datasource.EchoDataSource</property>
+      <property name="custom_datasource_props">
+         <property name="prop1">prop_value1</property>
+         <property name="prop2">prop_value2</property>
+      </property>
+   </config>
+   <query id="getValues" useConfig="CustomQuery">
+      <expression>column1,column2;R1C1 :param1,R1C2 :param2;R2C1 :param1,R2C2 :param2</expression>
+      <result element="Rows" rowName="Row">
+         <element column="column1" name="C1" xsdType="string"/>
+         <element column="C2" name="C2" xsdType="string"/>
+      </result>
+      <param name="column1" optional="false" sqlType="STRING"/>
+      <param name="column2" optional="false" sqlType="STRING"/>
+   </query>
+   <operation name="GetValuesOp">
+      <call-query href="getValues">
+         <with-param name="column1" query-param="column1"/>
+         <with-param name="column2" query-param="column2"/>
+      </call-query>
+   </operation>
+   <resource method="GET" path="Values/{column1}">
+      <call-query href="getValues">
+         <with-param name="column1" query-param="column1"/>
+         <with-param name="column2" query-param="column2"/>
+      </call-query>
+   </resource>
+</data>
+```
 
 ### Build and run
 
 Create the artifacts:
 
-1. [Set up WSO2 Integration Studio](../../../../develop/installing-WSO2-Integration-Studio). The path to this folder is referred to as `MI_TOOLING_HOME` throughout this tutorial.      
-2. [Create a Data Service project](../../../../develop/creating-projects/#data-services-project)
-4. [Create the data service](../../../../develop/creating-artifacts/data-services/creating-data-services) with the configurations given above.
-5. [Deploy the artifacts](../../../../develop/deploy-and-run) in your Micro Integrator. 
+1. [Set up WSO2 Integration Studio](../../../../develop/installing-WSO2-Integration-Studio).
+2. [Create a Data Service project](../../../../develop/creating-projects/#data-services-project).
+3. [Create the data service](../../../../develop/creating-artifacts/data-services/creating-data-services) with the configurations given above.
+4. [Deploy the artifacts](../../../../develop/deploy-and-run) in your Micro Integrator. 
 
 You can send an HTTP GET request to invoke the data service using cURL
 as shown below.

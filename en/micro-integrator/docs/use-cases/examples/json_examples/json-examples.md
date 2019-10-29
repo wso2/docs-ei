@@ -259,13 +259,6 @@ To convert an XML payload to JSON, set the `messageType` property to `applicatio
   <description/>
 </proxy>
 ```
-
-Use the following command to invoke this proxy service:
-
-``` bash
-curl -v -X POST -H "Content-Type:application/xml" -d@request1.xml "http://localhost:8280/services/tojson"
-```
-
 If the request payload is as follows:
 
 ```
@@ -281,6 +274,12 @@ If the request payload is as follows:
            <e>2.2945</e>
        </location>
 </coordinates>
+```
+
+Save the payload in request.xml file and use the following command to invoke this proxy service:
+
+``` bash
+curl -v -X POST -H "Content-Type:application/xml" -d@request.xml "http://localhost:8290/services/tojson"
 ```
 
 The response payload will look like this:
@@ -304,7 +303,7 @@ The response payload will look like this:
 }
 ```
 
-Note that we have used the [Property mediator](https://docs.wso2.com/display/EI650/Property+Mediator) to mark the outgoing payload to be formatted as JSON:
+Note that we have used the [Property mediator](../../../references/mediators/property-Mediator.md) to mark the outgoing payload to be formatted as JSON:
 
 ```
 <property name="messageType" value="application/json" scope="axis2"/>
@@ -314,9 +313,9 @@ Note that we have used the [Property mediator](https://docs.wso2.com/display/EI6
     JSON requests cannot be converted to XML if it contains invalid XML characters.
 
 !!! Info
-    If you need to convert complex XML responses (e.g., XML with with `         xsi:type        ` values), you will need to set the message type using the [Property mediator](https://docs.wso2.com/display/EI650/Property+Mediator) as follows:
+    If you need to convert complex XML responses (e.g., XML with with `         xsi:type        ` values), you will need to set the message type using the [Property mediator](../../../references/mediators/property-Mediator.md) as follows:
     `<property name="messageType" value="application/json/badgerfish" scope="axis2" type="STRING"/>`
-    You will also need to ensure you register the following message builder and formatter as specified in [Message Builders and Formatters](#WorkingwithJSONMessagePayloads-MessageBuildersandFormatters).
+    You will also need to ensure you register the following message builder and formatter as specified in [Message Builders and Formatters](https://ei.docs.wso2.com/en/latest/micro-integrator/setup/message_builders_formatters/message-builders-and-formatters/).
     ```
     <messageBuilder contentType="text/javascript" class="org.apache.axis2.json.JSONBadgerfishOMBuilder"/>
     <messageFormatter contentType="text/javascript" class="org.apache.axis2.json.JSONBadgerfishMessageFormatter"/> 
@@ -324,7 +323,7 @@ Note that we have used the [Property mediator](https://docs.wso2.com/display/EI6
     
 ### Accessing content from JSON payloads
 
-There are two ways to access the content of a JSON payload within the EI.
+There are two ways to access the content of a JSON payload within the MI.
 
 -   JSONPath expressions (with `json-eval()` method)
 -   XPath expressions
@@ -347,7 +346,7 @@ You can use JSON path expressions with following mediators:
 </thead>
 <tbody>
 <tr class="odd">
-<td><a href="https://docs.wso2.com/display/EI650/Log+Mediator">Log</a></td>
+<td><a href="https://ei.docs.wso2.com/en/latest/micro-integrator/references/mediators/log-Mediator/">Log</a></td>
 <td><div class="content-wrapper">
 <p>As a log property:</p>
 <div class="code panel pdl" style="border-width: 1px;">
@@ -361,7 +360,7 @@ You can use JSON path expressions with following mediators:
 </div></td>
 </tr>
 <tr class="even">
-<td><a href="https://docs.wso2.com/display/EI650/Property+Mediator">Property</a></td>
+<td><a href="https://ei.docs.wso2.com/en/latest/micro-integrator/references/mediators/property-Mediator/">Property</a></td>
 <td><div class="content-wrapper">
 <p>As a standalone property:</p>
 <div class="code panel pdl" style="border-width: 1px;">
@@ -373,7 +372,7 @@ You can use JSON path expressions with following mediators:
 </div></td>
 </tr>
 <tr class="odd">
-<td><a href="https://docs.wso2.com/display/EI650/PayloadFactory+Mediator">PayloadFactory</a></td>
+<td><a href="https://ei.docs.wso2.com/en/latest/micro-integrator/references/mediators/payloadFactory-Mediator/">PayloadFactory</a></td>
 <td><div class="content-wrapper">
 <p>As the payload arguments:</p>
 <div class="code panel pdl" style="border-width: 1px;">
@@ -390,7 +389,7 @@ You can use JSON path expressions with following mediators:
 </div></td>
 </tr>
 <tr class="even">
-<td><a href="https://docs.wso2.com/display/EI650/Switch+Mediator">Switch</a></td>
+<td><a href="https://ei.docs.wso2.com/en/latest/micro-integrator/references/mediators/switch-Mediator/">Switch</a></td>
 <td><div class="content-wrapper">
 <p>As the switch source:</p>
 <div class="code panel pdl" style="border-width: 1px;">
@@ -401,7 +400,7 @@ You can use JSON path expressions with following mediators:
 </div></td>
 </tr>
 <tr class="odd">
-<td><a href="https://docs.wso2.com/display/EI650/Filter+Mediator">Filter</a></td>
+<td><a href="https://ei.docs.wso2.com/en/latest/micro-integrator/references/mediators/filter-Mediator/">Filter</a></td>
 <td><div class="content-wrapper">
 <p>As the filter source:</p>
 <div class="code panel pdl" style="border-width: 1px;">
@@ -481,7 +480,7 @@ You can learn more about JSONPath syntax [here](http://goessner.net/articles/Jso
 ### Logging JSON payloads
 
 To log JSON payloads as JSON, use the [Log
-mediator](https://docs.wso2.com/display/EI650/Log+Mediator) as shown
+mediator](../../../references/mediators/log-Mediator.md) as shown
 below. The `         json-eval()        ` method returns the
 `         java.lang.String        ` representation of the existing JSON
 payload.
@@ -498,7 +497,7 @@ To log JSON payloads as XML, use the Log mediator as shown below:
 <log level="full"/>
 ```
 
-For more information on logging, see [Troubleshooting, debugging, and logging](#WorkingwithJSONMessagePayloads-troubleshooting) below.
+For more information on logging, see [Troubleshooting, debugging, and logging](https://ei.docs.wso2.com/en/latest/micro-integrator/use-cases/examples/json_examples/json-examples/#validating-json-messages) below.
 
 ### Constructing and transforming JSON payloads
 
@@ -507,7 +506,7 @@ mediator or Script mediator as described in the rest of this section.
 
 #### PayloadFactory mediator
 
-The [PayloadFactory mediator](https://docs.wso2.com/display/EI650/PayloadFactory+Mediator) provides the simplest way to work with JSON payloads. Suppose we have a service that returns the following response for a search query:
+The [PayloadFactory mediator](../../../references/mediators/payloadFactory-Mediator.md) provides the simplest way to work with JSON payloads. Suppose we have a service that returns the following response for a search query:
 
 ``` javascript
 {
@@ -554,12 +553,12 @@ We can create a proxy service that consumes the above response and creates a new
          trace="disable"
          startOnLoad="true">
          <target>
-             <outSequence>
+             <inSequence>
                  <payloadFactory media-type="json">
                      <format>{
                                  "location_response" : {
                                      "name" : "$1",
-                                     "tags" : $2
+                                     "tags" : "$2"
                              }}
                      </format>
                      <args>
@@ -567,20 +566,17 @@ We can create a proxy service that consumes the above response and creates a new
                          <arg evaluator="json" expression="$.types"/>
                      </args>
                  </payloadFactory>
-                 <send/>
-             </outSequence>
-             <endpoint>
-                 <address uri="http://localhost:8280/location"/>
-             </endpoint>
+                 <respond/>
+             </inSequence>
          </target>
      <description/>
 </proxy>
 ```
 
-Use the following command to invoke this service:
+Save the above payload in request.json file and use the following command to invoke this service:
 
 ``` bash
-curl -v -X GET "http://localhost:8280/services/singleresponse"
+curl -v POST -H "Content-Type:application/json" -d@request.json "http://localhost:8290/services/singleresponse"
 ```
 
 The response payload would look like this:
@@ -618,14 +614,14 @@ mediator.
 
 For example, suppose we have saved the following text content in the
 registry under the location
-`         conf:/repository/EI/transform        ` . (The resource name is
+`         conf:/repository/MI/transform        ` . (The resource name is
 “transform”.)
 
 ```
 {
     "location_response" : {
         "name" : "$1",
-        "tags" : $2
+        "tags" : "$2"
     }
 }
 ```
@@ -638,7 +634,7 @@ to the registry resource key):
 
 ```
 <payloadFactory media-type="json">
-  <format key="conf:/repository/EI/transform"/>
+  <format key="conf:/repository/MI/transform"/>
   ... 
 </payloadFactory>
 ```
@@ -649,7 +645,7 @@ to the registry resource key):
 #### Script mediator
 
 The [Script
-mediator](https://docs.wso2.com/display/EI650/Script+Mediator) in
+mediator](../../../references/mediators/script-Mediator.md) in
 JavaScript is useful when you need to create payloads that have
 recurring structures such as arrays of objects. The Script mediator
 defines the following important methods that can be used to manipulate
@@ -661,7 +657,7 @@ payloads in many different ways:
 -   `          setPayloadXML         `
 
 By combining any of the setters with a getter, we can handle almost any
-type of content transformation within the EI. For example, by combining
+type of content transformation within the MI. For example, by combining
 `         getPayloadXML        ` and `         setPayloadJSON        ` ,
 we can easily implement an XML to JSON transformation scenario. In
 addition, we can perform various operations (such as deleting individual
@@ -740,15 +736,12 @@ response using JavaScript with the Script mediator.
            trace="disable"
            startOnLoad="true">
        <target>
-          <outSequence>
+          <inSequence>
              <script language="js"
-                     key="conf:/repository/EI/transform.js"
+                     key="conf:/repository/MI/transform.js"
                      function="transform"/>
-             <send/>
-          </outSequence>
-          <endpoint>
-             <address uri="http://localhost:8280/locations"/>
-          </endpoint>
+             <respond/>
+          </inSequence>
        </target>
        <description/>
 </proxy>
@@ -783,10 +776,10 @@ build a new array object by using the fields of the incoming JSON
 payload and set that array object as the new payload (see the response
 payload returned by the final proxy service below.)  
   
-Use the following command to invoke the proxy service:
+Save the above payload in request.json file and use the following command to invoke the proxy service:
 
 ``` bash
-curl -v -X GET "http://ggrky:8280/services/locations"
+curl -v POST -H "Content-Type:application/json" -d@request.json "http://localhost:8290/services/locations"
 ```
 
 The response payload would look like this:
@@ -807,16 +800,16 @@ The response payload would look like this:
 ```
 
 If you want to get the response in XML instead of JSON, you would modify
-the out sequence by adding the Property mediator as follows:
+the service by adding the Property mediator as follows:
 
 ```
-<outSequence>
+<inSequence>
     <script language="js" 
-                key="conf:/repository/EI/transform.js" 
+                key="conf:/repository/MI/transform.js" 
                 function="transform"/>
     <property name="messageType" value="application/xml" scope="axis2"/>
-    <send/>
-</outSequence>
+    <respond/>
+</inSequence>
 ```
 
 The response will then look like this:
@@ -936,7 +929,7 @@ Note that the transformation (line 9 through 17) has added a new field
 `         pub        ` to the existing tags list of the payload.
 
 For additional examples that demonstrate different ways to manipulate
-JSON payloads within the EI mediation flow, see the following samples:
+JSON payloads within the MI mediation flow, see the following samples:
 
 -   [Sample 440: Converting JSON to XML Using
     XSLT](https://docs.wso2.com/display/ESB500/Sample+440%3A+Converting+JSON+to+XML+Using+XSLT)
@@ -1026,7 +1019,7 @@ descriptions:
 ### Validating JSON messages
 
 You can use the [Validate
-mediator](https://docs.wso2.com/display/EI650/Validate+Mediator#ValidateMediator-json)
+mediator](https://ei.docs.wso2.com/en/latest/micro-integrator/references/mediators/validate-Mediator/)
 to validate JSON messages against a specified JSON schema as described
 in the rest of this section.
 
@@ -1046,7 +1039,7 @@ Registry path:
 `                   conf:/schema/StockQuoteSchema                  .        `
 json. For instructions on adding the schema file to the Registry path,
 see [Adding a
-Resource](https://docs.wso2.com/display/ESB500/Adding+a+Resource) .
+Resource](../../../develop/creating-artifacts/registry/creating-local-registry-entries.md) .
 
 !!! Tip
     When adding this sample schema file to the Registry, specify the **Media Type** as application/json.
@@ -1083,7 +1076,7 @@ Resource](https://docs.wso2.com/display/ESB500/Adding+a+Resource) .
 ```
 
 In this example, the required schema for validating messages going through the Validate mediator is given as a registry key (i.e.
-`         schema\StockQuoteSchema.json        ` ). You do not have any source attributes specified. Therefore, the schema will be used to validate the complete JSON body. The mediation logic to follow if the validation fails is defined within the on-fail element. In this example, the [PayloadFactory mediator](https://docs.wso2.com/display/EI650/PayloadFactory+Mediator) creates a fault to be sent back to the party, which sends the message.
+`         schema\StockQuoteSchema.json        ` ). You do not have any source attributes specified. Therefore, the schema will be used to validate the complete JSON body. The mediation logic to follow if the validation fails is defined within the on-fail element. In this example, the [PayloadFactory mediator](https://ei.docs.wso2.com/en/latest/micro-integrator/references/mediators/payloadFactory-Mediator/) creates a fault to be sent back to the party, which sends the message.
 
 ```
 <validate>
@@ -1115,28 +1108,37 @@ An example for a valid JSON payload request is given below.
 
 ## Troubleshooting, debugging, and logging
 
-To assist with troubleshooting, you can enable debug logging at several stages of the mediation of a JSON payload by adding one or more of the following loggers to the `MI_HOME/conf/log4j.properties` file and restarting the EI.
+To assist with troubleshooting, you can enable debug logging at several stages of the mediation of a JSON payload by adding one or more of the following loggers to the `MI_HOME/conf/log4j2.properties` file and restarting the MI.
 
 !!! Info
-    Be sure to turn off these loggers when running the EI in a production environment, as logging every message will significantly reduce performance.
+    Be sure to turn off these loggers when running the MI in a production environment, as logging every message will significantly reduce performance.
 
-Following are the available loggers:
+Following are the available logger components:
 
 Message builders and formatters
 
-- `log4j.logger.org.apache.synapse.commons.json.JsonStreamBuilder=DEBUG`
-- `log4j.logger.org.apache.synapse.commons.json.JsonStreamFormatter=DEBUG`
-- `log4j.logger.org.apache.synapse.commons.json.JsonBuilder=DEBUG`
-- `log4j.logger.org.apache.synapse.commons.json.JsonFormatter=DEBUG`
+- `org.apache.synapse.commons.json.JsonStreamBuilder`
+- `org.apache.synapse.commons.json.JsonStreamFormatter`
+- `org.apache.synapse.commons.json.JsonBuilder`
+- `org.apache.synapse.commons.json.JsonFormatter`
 
 JSON utility class
 
-`log4j.logger.org.apache.synapse.commons.json.JsonUtil=DEBUG`
+`org.apache.synapse.commons.json.JsonUtil`
 
 PayloadFactory mediator
 
-`log4j.logger.org.apache.synapse.mediators.transform.PayloadFactoryMediator=DEBUG`
+`org.apache.synapse.mediators.transform.PayloadFactoryMediator`
 
 JSONPath evaluator
 
-`log4j.logger.org.apache.synapse.util.xpath.SynapseJsonPath=DEBUG`
+`org.apache.synapse.util.xpath.SynapseJsonPath`
+
+Debug logging for the mediation of a JSON payload can be enabled by adding these loggers in log4j2.properties file.
+
+For example:
+```
+ logger.JsonStreamBuilder.name = org.apache.synapse.commons.json.JsonStreamBuilder
+ logger.JsonStreamBuilder.level = DEBUG
+ ```
+For more instructions on adding loggers, see [Configuring Log4j Properties](../../../administer-and-observe/logs/configuring_log4j_properties.md).
