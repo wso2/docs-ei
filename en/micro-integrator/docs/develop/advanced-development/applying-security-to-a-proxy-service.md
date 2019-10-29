@@ -59,10 +59,11 @@ Either define the user roles inline or retrieve the user roles from the server.
     ![](../../assets/img/apply-security/119130870/119130871.png)
 
 !!! Info
-    By default, the role names are not case sensitive. If you want to make them case sensitive, add the following property under the `<AuthorizationManager>` configuration in the `user-mgt.xml` file:
+    By default, the role names are not case sensitive. If you want to make them case sensitive, add the following property under the `[authorization_manager]` configuration in the `deployment.toml` file:
         
-    ```
-    <Property name= "CaseSensitiveAuthorizationRules"> true </Property>
+    ```toml
+    [authorization_manager]
+    properties.CaseSensitiveAuthorizationRules = true
     ```
 
 ## Step 2: Add the security policy to the proxy service

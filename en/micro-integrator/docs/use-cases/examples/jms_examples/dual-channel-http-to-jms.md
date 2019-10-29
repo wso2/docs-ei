@@ -114,7 +114,7 @@ The endpoint of this proxy service uses the properties listed below to connect t
       Specify the JNDI name of the JMS queue and the connection factory parameters in the connection URL as shown in the above example.
     </li>
     <li>
-      If you have already specified the endpoint's connection factory parameters (for the JMS sender configuration) in the axis2.xml file, the connection URL in the proxy service should be as shown below. In this example, the endpoint URL of the proxy service refers the relevant connection factory in the axis2.xml file:
+      If you have already specified the endpoint's connection factory parameters (for the JMS sender configuration) in the deployment.toml file, the connection URL in the proxy service should be as shown below. In this example, the endpoint URL of the proxy service refers the relevant connection factory in the deployment.toml file:
       <code>
         jms:/SMSStore?transport.jms.ConnectionFactory=QueueConnectionFactory
       </code>
@@ -127,7 +127,7 @@ The endpoint of this proxy service uses the properties listed below to connect t
 <td><p><code>              org.wso2.andes.jndi.PropertiesFileInitialContextFactory             </code></p></td>
 <td><div class="itemizedlist">
 <p>The initial context factory to use.<br />
-The value specified here should be the same as that specified in <code>               &lt;EI_HOME&gt;/conf/axis2/axis2.xml              </code> for the JMS transport receiver.</p>
+The value specified here should be the same as that specified in <code>               &lt;EI_HOME&gt;/conf/deployment.toml              </code> `parameter.initial_naming_factory` for the JMS transport receiver (Under `[[transport.jms.listener]]` section).</p>
 </div></td>
 </tr>
 <tr class="odd">

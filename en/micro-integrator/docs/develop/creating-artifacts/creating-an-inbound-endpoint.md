@@ -29,13 +29,14 @@ Follow the instructions given below to create a new Inbound Endpoint artifact in
 
     A **listening inbound endpoint** opens the port for itself during deployment. Therefore, if you are **redeploying** a listening inbound endpoint artifact, the redeployment will not be successful until the port that was previously opened for the inbound endpoint is closed.
     
-    By default, the system will wait for 10 seconds for the previously opened port to close down. If you want to increase this waiting time beyond 10 seconds, be sure to add the following system property in the `         carbon.properties        ` file, which is stored in the `MI_HOME/conf/        ` directory and restart the server before redeploying the artifacts.
+    By default, the system will wait for 10 seconds for the previously opened port to close down. If you want to increase this waiting time beyond 10 seconds, be sure to add the following system property in the `deployment.toml` file, which is stored in the `MI_HOME/conf/        ` directory and restart the server before redeploying the artifacts.
 
-    ```xml
-    -Dsynapse.transport.portCloseVerifyTimeout=20
+    ```toml
+    [system.parameter]
+    'synapse.transport.portCloseVerifyTimeout' = 20
     ```
-
-    Note that this setting may be required in Windows environments as the process of closing a port can sometimes take longer than 10 seconds.
+    Note that `synapse.transport.portCloseVerifyTimeout` should be surrounded with the single quotes since it contain dots. toml format detect dot as object seperator.
+    Also note that this setting may be required in Windows environments as the process of closing a port can sometimes take longer than 10 seconds.
 
 ## Examples
 
