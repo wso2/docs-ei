@@ -172,27 +172,11 @@ rel=\"nofollow\"&gt;YoruFukurou&lt;/a&gt;",
 <property name="messageType" value="application/json" scope="axis2"/>
 ```
 
-!!! Note
-    By default, JSON messages are converted to XML when they are received by
-    the PayloadFactor mediator. However, if you enable the JSON stream
-    formatter and builder, incoming JSON messages are left in JSON format,
-    which improves performance. To enable them, uncomment the following
-    lines in `         <PRODUCT_HOME>/repository/conf/axis2/axis2.xml        ` :
-
-    ```
-    <!--messageFormatter contentType="application/json"
-            class="org.apache.axis2.json.JSONStreamFormatter"/-->
-           
-    <!--messageBuilder contentType="application/json"
-            class="org.apache.axis2.json.JSONStreamBuilder"/-->
-    ```
-
-When the JSON stream formatter and builder are enabled, if you specify a
-JSON expression in the PayloadFactory mediator, you must use the
-`         evaluator        ` attribute to specify that it is JSON. You
-can also use the evaluator to specify that an XPath expression is XML,
-or if you omit the evaluator attribute, XML is assumed by default. For
-example:
+If you specify a JSON expression in the PayloadFactory mediator, you 
+must use the `         evaluator        ` attribute to specify that it 
+is JSON. You can also use the evaluator to specify that an XPath 
+expression is XML, or if you omit the evaluator attribute, XML is 
+assumed by default. For example:
 
 <table>
 <colgroup>
