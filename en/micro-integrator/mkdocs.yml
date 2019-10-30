@@ -117,15 +117,15 @@ nav:
         - Examples of Components:
           - REST APIs:
             - 'Using a Simple REST API': 'use-cases/examples/rest_api_examples/introduction-rest-api.md'
-            - 'Working with Query Parameters': 'use-cases/examples/rest_api_examples/setting-query-params-outgoing-messages.md'
+            - 'Setting Query Parameters on Outgoing Messages': 'use-cases/examples/rest_api_examples/setting-query-params-outgoing-messages.md'
             - 'Exposing a SOAP Endpoint as a RESTful API': 'use-cases/examples/rest_api_examples/enabling-rest-to-soap.md'
             - 'Exposing Non-HTTP Services as RESTful APIs': 'use-cases/examples/rest_api_examples/configuring-non-http-endpoints.md'
-            - 'Handling Non Matching Resources': 'use-cases/examples/rest_api_examples/handling-non-matching-resources.md'
+            - 'Handling Non-Matching Resources': 'use-cases/examples/rest_api_examples/handling-non-matching-resources.md'
             - 'Handling HTTP Status Codes': 'use-cases/examples/rest_api_examples/setting-https-status-codes.md'
-            - 'Manipulating Content Types': 'use-cases/examples/rest_api_examples/transforming-content-type.md'
+            - 'Transforming Content Types': 'use-cases/examples/rest_api_examples/transforming-content-type.md'
             - 'Securing a REST API': 'use-cases/examples/rest_api_examples/securing-rest-apis.md'
             - Handling Special Cases:
-              - 'Using GET with a Body': 'use-cases/examples/rest_api_examples/using-get-with-a-body.md'
+              - 'Using GET with a Message Body': 'use-cases/examples/rest_api_examples/using-get-with-a-body.md'
               - 'Using POST with Empty Message Body': 'use-cases/examples/rest_api_examples/using-post-with-no-body.md'
               - 'Using POST with Query Parameters': 'use-cases/examples/rest_api_examples/using-post-with-query-param.md'
           - Proxy Services:
