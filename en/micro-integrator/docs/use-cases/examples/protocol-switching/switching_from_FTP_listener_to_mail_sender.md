@@ -46,13 +46,13 @@ Create the artifacts:
 
 Set up the back-end service.
 
-* Download the [stockquote_service.jar](
+1.	Download the [stockquote_service.jar](
 https://github.com/wso2-docs/WSO2_EI/blob/master/Back-End-Service/stockquote_service.jar)
 
-* Run the mock service using the following command
-```
-$ java -jar stockquote_service.jar
-```
+2.	Open a terminal, navigate to the location of the downloaded service, and run it using the following command:
+	```bash
+	java -jar stockquote_service.jar
+	```
 Add the following request.xml file to the sftp location and verify the content received via the mailto transport.
 
 ```xml
