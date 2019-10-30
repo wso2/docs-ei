@@ -29,30 +29,36 @@ The XML configuration for this sample is as follows:
 </sequence>
 ```
 
-```xml tab='Sequence'
-<sequence name="main" onError="errorHandler">
-  <in>
-     <property name="EP_LIST" value="http://localhost:9001/services/SimpleStockQuoteService,http://localhost:9002/services/SimpleStockQuoteService,http://localhost:9003/services/SimpleStockQuoteService"/>  
-     <send>
-        <endpoint>
-           <recipientlist>
-              <endpoints value="{get-property('EP_LIST')}" max-cache="20" />
-           </recipientlist>
-        </endpoint>
-     </send>
-     <drop/>
-  </in>
-  <out>
-    <!--Aggregate responses-->
-    <aggregate>
-       <onComplete xmlns:m0="http://services.samples"
-                      expression="//m0:getQuoteResponse">
-         <log level="full"/>
-         <send/>
-       </onComplete>
-    </aggregate>
-  </out>
-</sequence>
+```xml tab='Proxy Service'
+<proxy name="RecipientListProxy" startOnLoad="true" transports="http https" xmlns="http://ws.apache.org/ns/synapse">
+   <target>
+        <inSequence>
+            <header name="Action" value="urn:placeOrder"/>
+             <property name="EP_LIST" value="http://localhost:9001/services/SimpleStockQuoteService,http://localhost:9002/services/SimpleStockQuoteService,http://localhost:9003/services/SimpleStockQuoteService"/>  
+             <send>
+                <endpoint>
+                   <recipientlist>
+                      <endpoints value="{get-property('EP_LIST')}" max-cache="20" />
+                   </recipientlist>
+                </endpoint>
+             </send>
+             <drop/>
+         </inSequence>
+        <outSequence>
+            <!--Aggregate responses-->
+            <aggregate>
+               <onComplete xmlns:m0="http://services.samples"
+                              expression="//m0:getQuoteResponse">
+                 <log level="full"/>
+                 <send/>
+               </onComplete>
+            </aggregate>
+        </outSequence>
+        <faultSequence>
+            <sequence key="errorHandler"/>
+        </faultSequence
+    </target>
+</proxy>
 ```
 ## Build and run
 
@@ -63,6 +69,7 @@ Create the artifacts:
 3. Create the integration artifacts shown above.
 4. Deploy the artifacts in your Micro Integrator.
 
+<!--
 Set up the back-end service.
 
 Invoke the Micro Integrator:
@@ -70,6 +77,7 @@ Invoke the Micro Integrator:
 ```bash
 ant stockquote -Dtrpurl=http://localhost:8280/
 ```
+-->
 
 When you have a look at the above
 configuration,  you will see that it routes a cloned copy of a message

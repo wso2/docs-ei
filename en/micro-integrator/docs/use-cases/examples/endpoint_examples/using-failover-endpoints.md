@@ -11,30 +11,39 @@ shown in the below configuration.
 ### Synapse configuration
 
 ```xml
-<endpoint name="SampleFailover">
-    <failover>
-        <endpoint name="Sample_First" statistics="enable" >
-            <address uri="http://localhost/myendpoint" statistics="enable" trace="disable">
-                <timeout>
-                    <duration>60000</duration>
-                </timeout>
-
-                <markForSuspension>
-                    <errorCodes>101504, 101505, 101500</errorCodes>
-                    <retriesBeforeSuspension>3</retriesBeforeSuspension>
-                    <retryDelay>10</retryDelay>
-                </markForSuspension>
-
-                <suspendOnFailure>
-                    <initialDuration>1000</initialDuration>
-                    <progressionFactor>2</progressionFactor>
-                    <maximumDuration>64000</maximumDuration>
-                </suspendOnFailure>
-
-            </address>
-        </endpoint>
-    </failover>
-</endpoint>
+<api xmlns="http://ws.apache.org/ns/synapse" name="TestAPI" context="/test">
+   <resource methods="GET">
+      <inSequence>
+         <call>
+            <endpoint name="SampleFailover">
+                <failover>
+                    <endpoint name="Sample_First" statistics="enable" >
+                        <address uri="http://localhost/myendpoint" statistics="enable" trace="disable">
+                            <timeout>
+                                <duration>60000</duration>
+                            </timeout>
+            
+                            <markForSuspension>
+                                <errorCodes>101504, 101505, 101500</errorCodes>
+                                <retriesBeforeSuspension>3</retriesBeforeSuspension>
+                                <retryDelay>10</retryDelay>
+                            </markForSuspension>
+            
+                            <suspendOnFailure>
+                                <initialDuration>1000</initialDuration>
+                                <progressionFactor>2</progressionFactor>
+                                <maximumDuration>64000</maximumDuration>
+                            </suspendOnFailure>
+            
+                        </address>
+                    </endpoint>
+                </failover>
+            </endpoint>
+         </call>
+        <respond/>
+      </inSequence>
+   </resource>
+</api>
 ```
 
 In the above example, the `         Sample_First        ` endpoint is
@@ -52,7 +61,7 @@ property (i.e., `         10        ` miliseconds in the above example).
 
 For all the other errors, it will be marked as
 `         Suspended        ` . For more information about these states
-and properties, see [Endpoint Error Handling](_Endpoint_Error_Handling_).
+and properties, see [Endpoint Error Handling](../endpoint-error-handling).
 
 !!! Info
     The retry count is per endpoint, not per message. The retry happens in parallel. Since messages come to this endpoint via many threads, the same message may not be retried three times. Another message may fail and can reduce the retry count.
@@ -71,11 +80,20 @@ Create the artifacts:
 3. Create the following artifacts.
 4. Deploy the artifacts in your Micro Integrator.
 
-Configure the ActiveMQ broker.
-
-Set up the back-end service.
-
 Invoking the service.
+
+Invoke the sample API by executing the following command:
+
+```bash
+curl -v -X GET "http://localhost:8290/test"
+```
+
+The following logs are getting printed if the endpoint is unreachable:
+
+```xml
+[2019-10-29 12:10:52,557]  WARN {API_LOGGER.TestAPI} - ERROR_CODE : 101503 ERROR_MESSAGE : Error connecting to the back end
+[2019-10-29 12:10:52,558]  WARN {org.apache.synapse.endpoints.EndpointContext} - Endpoint : Sample_First with address http://localhost/myendpoint will be marked SUSPENDED as it failed
+```
 
 ## Example 2: Failover with multiple address endpoints
 
@@ -106,41 +124,51 @@ The following is an example failover endpoint configuration with
 multiple address endpoints.
 
 ```xml
-<endpoint>
-        <failover>
-            <endpoint name="fooEP">
-                <http uri-template="http://localhost:8080/foo">
-                <timeout>
-                    <duration>10000</duration>
-                    <responseAction>fault</responseAction>
-                </timeout>
-                <suspendOnFailure>
-                    <errorCodes>101503,101504,101505,101507</errorCodes>
-                    <initialDuration>100</initialDuration>
-                    <progressionFactor>1.0</progressionFactor>
-                    <maximumDuration>30000</maximumDuration>
-                </suspendOnFailure>
-            </http>
-        </endpoint>
-        <endpoint name="barEP">
-            <http uri-template="http://localhost:8080/bar">
-            <timeout>
-                <duration>10000</duration>
-                <responseAction>fault</responseAction>
-            </timeout>
-            <suspendOnFailure>
-                <errorCodes>101503,101504,101505,101507</errorCodes>
-                <initialDuration>100</initialDuration>
-                <progressionFactor>1.0</progressionFactor>
-                <maximumDuration>30000</maximumDuration>
-            </suspendOnFailure>
-            <retryConfig>
-                <disabledErrorCodes>101507,101504</disabledErrorCodes>
-            </retryConfig>
-        </http>
-    </endpoint>
-    </failover>
-</endpoint>
+<api xmlns="http://ws.apache.org/ns/synapse" name="TestAPI" context="/test">
+   <resource methods="GET">
+      <inSequence>
+         <call>
+            <endpoint>
+                <failover>
+                    <endpoint name="fooEP">
+                        <http uri-template="http://localhost:8080/foo">
+                            <timeout>
+                                <duration>10000</duration>
+                                <responseAction>fault</responseAction>
+                            </timeout>
+                            <suspendOnFailure>
+                                <errorCodes>101503,101504,101505,101507</errorCodes>
+                                <initialDuration>100</initialDuration>
+                                <progressionFactor>1.0</progressionFactor>
+                                <maximumDuration>30000</maximumDuration>
+                            </suspendOnFailure>
+                        </http>
+                    </endpoint>
+                    <endpoint name="barEP">
+                        <http uri-template="http://localhost:8080/bar">
+                            <timeout>
+                                <duration>10000</duration>
+                                <responseAction>fault</responseAction>
+                            </timeout>
+                            <suspendOnFailure>
+                                <errorCodes>101503,101504,101505,101507</errorCodes>
+                                <initialDuration>100</initialDuration>
+                                <progressionFactor>1.0</progressionFactor>
+                                <maximumDuration>30000</maximumDuration>
+                            </suspendOnFailure>
+                            <retryConfig>
+                                <disabledErrorCodes>101507,101504</disabledErrorCodes>
+                            </retryConfig>
+                        </http>
+                    </endpoint>
+                </failover>
+            </endpoint>
+         </call>
+        <respond/>
+      </inSequence>
+   </resource>
+</api>
+
 ```
 
 !!! Note
@@ -152,7 +180,7 @@ multiple address endpoints.
     </retryConfig>
     ```
 
-    Thus, in the above configuration, erros of the codes `101504` and `101507` stop retrying and put the endpoint to the `Timeout` state.
+   Thus, in the above configuration, erros of the codes `101504` and `101507` stop retrying and put the endpoint to the `Timeout` state.
 
 ### Build and run
 
@@ -163,6 +191,23 @@ Create the artifacts:
 3. Create the following artifacts.
 4. Deploy the artifacts in your Micro Integrator.
 
-Set up the back-end service.
-
 Invoking the service.
+
+Invoke the sample API by executing the following command:
+
+```bash
+curl -v -X GET "http://localhost:8290/test"
+```
+
+The following logs are getting printed if the endpoint is unreachable:
+
+```xml
+[2019-10-29 13:38:24,354]  WARN {API_LOGGER.TestAPI} - ERROR_CODE : 101503 ERROR_MESSAGE : Error connecting to the back end
+[2019-10-29 13:38:24,354]  WARN {org.apache.synapse.endpoints.EndpointContext} - Endpoint : fooEP with address http://localhost:8080/foo will be marked SUSPENDED as it failed
+[2019-10-29 13:38:24,354]  WARN {org.apache.synapse.endpoints.EndpointContext} - Suspending endpoint : fooEP with address http://localhost:8080/foo - current suspend duration is : 100ms - Next retry after : Tue Oct 29 13:38:24 IST 2019
+[2019-10-29 13:38:24,355]  WARN {org.apache.synapse.endpoints.FailoverEndpoint} - AnonymousEndpoint Detect a Failure in a child endpoint : Endpoint [fooEP]
+[2019-10-29 13:38:24,356]  WARN {org.apache.synapse.transport.passthru.ConnectCallback} - Connection refused or failed for : localhost/127.0.0.1:8080
+[2019-10-29 13:38:24,357]  WARN {API_LOGGER.TestAPI} - ERROR_CODE : 101503 ERROR_MESSAGE : Error connecting to the back end
+[2019-10-29 13:38:24,357]  WARN {org.apache.synapse.endpoints.EndpointContext} - Endpoint : barEP with address http://localhost:8080/bar will be marked SUSPENDED as it failed
+[2019-10-29 13:38:24,357]  WARN {org.apache.synapse.endpoints.EndpointContext} - Suspending endpoint : barEP with address http://localhost:8080/bar - current suspend duration is : 100ms - Next retry after : Tue Oct 29 13:38:24 IST 2019
+```

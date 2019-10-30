@@ -13,7 +13,7 @@ The XML configuration for this sample is as follows:
        <target>
            <inSequence>
                <!-- filtering of messages with XPath and regex matches -->
-               <filter regex=".*/StockQuote.*" source="get-property('To')">
+               <filter regex=".*StockQuote.*" source="get-property('To')">
                    <then>
                        <header name="Action" scope="default" value="urn:getQuote"/>
                        <call>
@@ -21,12 +21,13 @@ The XML configuration for this sample is as follows:
                                <address format="soap11" uri="http://localhost:9000/services/SimpleStockQuoteService"/>
                            </endpoint>
                        </call>
+                       <respond/>
                    </then>
                    <else/>
                </filter>
            </inSequence>
            <outSequence>
-               <call/>a
+               <call/>
            </outSequence>
            <faultSequence/>
        </target>
@@ -44,6 +45,14 @@ Create the artifacts:
 4. Deploy the artifacts in your Micro Integrator.
 
 Set up the back-end service.
+
+* Download the [stockquote_service.jar](
+https://github.com/wso2-docs/WSO2_EI/blob/master/Back-End-Service/stockquote_service.jar)
+
+* Run the mock service using the following command
+```
+$ java -jar stockquote_service.jar
+```
 
 Invoking the service.
 

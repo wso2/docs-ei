@@ -8,32 +8,37 @@ endpoints.
 
 This configuration routes a cloned copy of a message to each recipient defined within the static recipient list. The Micro Integrator will create cloned copies of the message and route to the three endpoints mentioned in the configuration. SimpleStockQuoteService prints the details of the placed order. 
 
-```xml tab='Main Sequence'
-<sequence name="main" onError="errorHandler">
-    <in>
-        <send>
-            <endpoint>
-                <!--List of Recipients (static)-->
-                <recipientlist>
-                    <endpoint>
-                        <address uri="http://localhost:9001/services/SimpleStockQuoteService"/>
-                    </endpoint>
-                    <endpoint>
-                        <address uri="http://localhost:9002/services/SimpleStockQuoteService"/>
-                    </endpoint>
-                    <endpoint>
-                        <address uri="http://localhost:9003/services/SimpleStockQuoteService"/>
-                    </endpoint>
-                </recipientlist>
-            </endpoint>
-        </send>
-        <drop/>
-    </in>
-    <out>
-        <log level="full"/>
-        <drop/>
-    </out>
-</sequence>
+```xml tab='Proxy Service'
+<proxy name="RecipientListProxy" startOnLoad="true" transports="http https" xmlns="http://ws.apache.org/ns/synapse">
+   <target>
+        <inSequence>
+            <header name="Action" value="urn:placeOrder"/>
+            <call>
+                <endpoint>
+                    <!--List of Recipients (static)-->
+                    <recipientlist>
+                        <endpoint>
+                            <address uri="http://localhost:9001/services/SimpleStockQuoteService"/>
+                        </endpoint>
+                        <endpoint>
+                            <address uri="http://localhost:9002/services/SimpleStockQuoteService"/>
+                        </endpoint>
+                        <endpoint>
+                            <address uri="http://localhost:9003/services/SimpleStockQuoteService"/>
+                        </endpoint>
+                    </recipientlist>
+                </endpoint>
+            </call>
+            <respond/>
+        </inSequence>
+        <outSequence>
+            <send/>
+        </outSequence>
+        <faultSequence>
+            <sequence key="errorHandler"/>
+        </faultSequence
+    </target>
+</proxy>
 ```
 
 ```xml tab='Error Handling Sequence'
@@ -55,6 +60,7 @@ Create the artifacts:
 3. Create the integration artifacts shown above.
 4. Deploy the artifacts in your Micro Integrator.
 
+<!--
 Set up the back-end service.
 
 Invoke the Micro Integrator:
@@ -75,3 +81,4 @@ Accepted order #1 for : 15738 stocks of IBM at $ 185.51155223506518
 ```
 
 Now shutdown MyServer1 and resend the request. You will observe that requests are still processed by MyServer2 and MyServer3.
+-->
