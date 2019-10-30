@@ -144,7 +144,7 @@ nav:
             - 'RabbitMQ Inbound Endpoint': 'use-cases/examples/inbound_endpoint_examples/inbound-endpoint-rabbitmq-protocol.md'
             #- 'CXF WS RM Inbound Endpoint': 'use-cases/examples/inbound_endpoint_examples/using-CXF-WS-RM-Inbound.md'
             - 'Kafka Inbound Endpoint': 'use-cases/examples/inbound_endpoint_examples/inbound-endpoint-kafka.md'
-            - 'WebSocket Endpoint': 'use-cases/examples/inbound_endpoint_examples/inbound-endpoint-secured-websocket.md'
+            - 'WebSocket Inbound Endpoint': 'use-cases/examples/inbound_endpoint_examples/inbound-endpoint-secured-websocket.md'
             - 'Using Inbound Endpoints with Registry': 'use-cases/examples/inbound_endpoint_examples/inbound-endpoint-with-registry.md'
           - Scheduled Tasks: 
             - 'Task Scheduling using a Simple Trigger': 'use-cases/examples/scheduled-tasks/task-scheduling-simple-trigger.md'
