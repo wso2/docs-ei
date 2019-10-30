@@ -1,23 +1,23 @@
 # Endpoint Error Handling
 
-The last step of a message processing inside WSO2 Enterprise Service Bus
+The last step of a message processing inside WSO2 Micro Integrator
 is to send the message to a service provider (see also [Working with
-Mediators](https://docs.wso2.com/display/EI650/Working+with+Mediators) )
+Mediators](../../../../references/mediators/about-mediators))
 by sending the message to a listening service
-[endpoint](_Working_with_Endpoints_) . During this process, transport
+[endpoint](../../../../references/synapse-properties/endpoint-properties) . During this process, transport
 errors can occur. For example, the connection might time out, or it
 might be closed by the actual service. Therefore, endpoint error
-handling is a key part of any successful Enterprise
+handling is a key part of any successful Micro
 Integrator deployment.
 
 Messages can fail or be lost due to various reasons in a real TCP
-network. When an error occurs, if the Enterprise Integrator is not
+network. When an error occurs, if the Micro Integrator is not
 configured to accept the error, it will mark the endpoint as failed,
 which leads to a message failure. By default, the endpoint is marked as
 failed for quite a long time, and due to this error, subsequent messages
 can get lost.
 
-To avoid lost messages, you configure error handling at the endpoint
+To avoid lost messages, you can configure error handling at the endpoint
 level. You should also run a few long-running load tests to discover
 errors and fine-tune the endpoint configurations for errors that can
 occur intermittently due to various reasons.
@@ -50,27 +50,36 @@ suspensions.
 ### Synapse configuration
 
 ```xml
-<endpoint name="Sample_First" statistics="enable" >
-        <address uri="http://localhost/myendpoint" statistics="enable" trace="disable">
-            <timeout>
-                <duration>60000</duration>
-            </timeout>
-    
-            <markForSuspension>
-                <errorCodes>101504, 101505</errorCodes>
-                <retriesBeforeSuspension>3</retriesBeforeSuspension>
-                <retryDelay>1</retryDelay>
-            </markForSuspension>
-    
-            <suspendOnFailure>
-                <errorCodes>101500, 101501, 101506, 101507, 101508</errorCodes>
-                <initialDuration>1000</initialDuration>
-                <progressionFactor>2</progressionFactor>
-                <maximumDuration>60000</maximumDuration>
-            </suspendOnFailure>
-    
-        </address>
-</endpoint>
+<api xmlns="http://ws.apache.org/ns/synapse" name="TestAPI" context="/test">
+   <resource methods="GET">
+      <inSequence>
+         <call>
+            <endpoint name="Sample_First" statistics="enable" >
+                <address uri="http://localhost/myendpoint" statistics="enable" trace="disable">
+                    <timeout>
+                        <duration>60000</duration>
+                    </timeout>
+            
+                    <markForSuspension>
+                        <errorCodes>101504, 101505</errorCodes>
+                        <retriesBeforeSuspension>3</retriesBeforeSuspension>
+                        <retryDelay>1</retryDelay>
+                    </markForSuspension>
+            
+                    <suspendOnFailure>
+                        <errorCodes>101500, 101501, 101506, 101507, 101508</errorCodes>
+                        <initialDuration>1000</initialDuration>
+                        <progressionFactor>2</progressionFactor>
+                        <maximumDuration>60000</maximumDuration>
+                    </suspendOnFailure>
+            
+                </address>
+            </endpoint>
+         </call>
+        <respond/>
+      </inSequence>
+   </resource>
+</api>
 ```
 
 ### Build and run
@@ -82,9 +91,13 @@ Create the artifacts:
 3. Create the integration artifacts shown above.
 4. Deploy the artifacts in your Micro Integrator.
 
-Set up the back-end service.
-
 Invoke the Micro Integrator:
+
+Invoke the sample API by executing the following command:
+
+```bash
+curl -v -X GET "http://localhost:8290/test"
+```
 
 ## Example 2: Configuration for Endpoint Dynamic Timeout
 
@@ -94,7 +107,7 @@ Let's look at a sample configuration where you have dynamic timeout for
 the endpoint.
 
 In this, the timeout value is defined using a [Property
-mediator](https://docs.wso2.com/display/EI650/Property+Mediator) outside
+mediator](../../../../references/mediators/property-Mediator) outside
 the endpoint configuration. The timeout parameter in the endpoint
 configuration is then evaluated against an XPATH expression that is used
 to reference and read the timeout value. Using this timeout values can
@@ -134,8 +147,6 @@ Create the artifacts:
 3. Create the integration artifacts shown above.
 4. Deploy the artifacts in your Micro Integrator.
 
-Set up the back-end service.
-
 Invoke the Micro Integrator:
 
 ## Example 3: Dynamic endpoint failover management
@@ -158,23 +169,32 @@ the steps given below to avoid suspension or to re-enable the endpoint.
 ### Synapse configuration
 
 ```xml
-<endpoint name="NoSuspendEndpoint"> 
-   <address uri="http://localhost:9000/services/SimpleStockQuoteService"> 
-       <timeout> 
-           <duration>30000</duration> 
-           <responseAction>fault</responseAction> 
-       </timeout> 
-       <suspendOnFailure> 
-           <errorCodes>-1</errorCodes> 
-           <initialDuration>0</initialDuration> 
-           <progressionFactor>1.0</progressionFactor> 
-           <maximumDuration>0</maximumDuration> 
-       </suspendOnFailure> 
-       <markForSuspension> 
-           <errorCodes>-1</errorCodes> 
-       </markForSuspension> 
-   </address> 
-</endpoint>
+<api xmlns="http://ws.apache.org/ns/synapse" name="TestAPI" context="/test">
+   <resource methods="GET">
+      <inSequence>
+         <call>
+            <endpoint name="NoSuspendEndpoint"> 
+               <address uri="http://localhost:9000/services/SimpleStockQuoteService"> 
+                   <timeout> 
+                       <duration>30000</duration> 
+                       <responseAction>fault</responseAction> 
+                   </timeout> 
+                   <suspendOnFailure> 
+                       <errorCodes>-1</errorCodes> 
+                       <initialDuration>0</initialDuration> 
+                       <progressionFactor>1.0</progressionFactor> 
+                       <maximumDuration>0</maximumDuration> 
+                   </suspendOnFailure> 
+                   <markForSuspension> 
+                       <errorCodes>-1</errorCodes> 
+                   </markForSuspension> 
+               </address> 
+            </endpoint>
+         </call>
+         <respond/>
+      </inSequence>
+   </resource>
+</api>
 ```
 
 Follow any of the options given below to re-enable an endpoint that is suspended.
@@ -192,9 +212,6 @@ Follow any of the options given below to re-enable an endpoint that is suspended
     that particular endpoint in the JConsole, which comes under
     **MBeans \> org.apache.synapse \> Endpoint** . This activates the
     endpoint again.
--   If the endpoint is defined under the endpoints list of the
-    Management Console, manually activate the endpoint by clicking
-    **Switch On** .
 
 ### Build and run
 
@@ -205,11 +222,25 @@ Create the artifacts:
 3. Create the integration artifacts shown above.
 4. Deploy the artifacts in your Micro Integrator.
 
-Configure the ActiveMQ broker.
+Set up the back-end service:
 
-Set up the back-end service.
+* Download the [stockquote_service.jar](
+https://github.com/wso2-docs/WSO2_EI/blob/master/Back-End-Service/stockquote_service.jar)
+
+* Run the mock service using the following command
+```
+$ java -jar stockquote_service.jar
+```
 
 Invoke the Micro Integrator:
+
+Invoke the sample API by executing the following command:
+
+```bash
+curl -v -X GET "http://localhost:8290/test"
+```
+
+You will not observe any endpoint suspended logs for the above API call.
 
 ## Example 6: Configuring retry
 ### Example use case
@@ -241,6 +272,7 @@ second endpoint, the endpoint is always retried if error code 101503
 occurs. You can specify enabled or disabled error codes (but not both)
 for a given endpoint.
 
+<!--
 ### Build and run
 
 Create the artifacts:
@@ -255,3 +287,4 @@ Configure the ActiveMQ broker.
 Set up the back-end service.
 
 Invoke the Micro Integrator:
+-->

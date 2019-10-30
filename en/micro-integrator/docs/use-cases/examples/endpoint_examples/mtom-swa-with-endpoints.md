@@ -26,7 +26,7 @@ in the same format as the original request.
     [server]
     enable_mtom = true
    ```
-    When this is enabled, all outgoing messages will be serialized and
+  When this is enabled, all outgoing messages will be serialized and
     sent as MTOM optimized MIME messages.You can override this
     configuration per service in the `          services.xml         `
     configuration file.
@@ -35,7 +35,7 @@ in the same format as the original request.
     [server]
     enable_swa = true
    ```
-    When this is enabled, incoming SwA messages are automatically
+  When this is enabled, incoming SwA messages are automatically
     identified by axis2.   
     
 The above properties can be defined in `MI_HOME/conf/deployment.toml` file.
@@ -74,6 +74,7 @@ Following are the integration artifacts that we can used to implement this scena
 </sequence>
 ```
 
+<!--
 ## Build and run
 
 Create the artifacts:
@@ -88,11 +89,13 @@ Configure the ActiveMQ broker.
 Set up the back-end service.
 
 Invoke the Micro Integrator:
+-->
 
 When the client executes successfully, it will upload a file containing
 the ASF logo and will receive its response back again and save it into a
 temporary file.
 
+<!--
 When you analyze the log once the client is run specifying MTOM
 optimization, you will see an output as follows:
 
@@ -100,6 +103,7 @@ optimization, you will see an output as follows:
 [java] Sending file : ./../../repository/samples/resources/mtom/asf-logo.gif as MTOM
 [java] Saved response to file : ./../../work/temp/sampleClient/mtom-49258.gif
 ```
+-->
 
 If you use TCPMon and send the message through it, you will see that the
 requests and responses sent are MTOM optimized or sent as http
@@ -140,13 +144,14 @@ Content-Transfer-Encoding: binary
 Content-ID:
          <1.urn:uuid:78F94BC50B68D76FB41177413845003@apache.org>22800GIF89a... << binary content >>
 ```
-
+<!--
 When you analyze the log once the client is run specifying SwA optimization, you will see an output as follows:
 
 ```bash
 [java] Sending file : ./../../repository/samples/resources/mtom/asf-logo.gif as SwA
 [java] Saved response to file : ./../../work/temp/sampleClient/swa-47549.gif
 ```
+-->
 
 If you use TCPMon and send the message through it, you will see that the
 requests and responses sent are SwA optimized or sent as http
