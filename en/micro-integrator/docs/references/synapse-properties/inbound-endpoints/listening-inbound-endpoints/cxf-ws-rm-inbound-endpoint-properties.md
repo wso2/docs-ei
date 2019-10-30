@@ -60,7 +60,7 @@ The following properties can be configured when [creating a CXF WS-RM inbound en
   <tr>
          <td>sequential</td>
          <td>The behavior when executing the given sequence.<br />
-            When set as <code>true</code> , mediation will happen within the same thread. When set as <code>false</code> , the mediation engine will use the inbound thread pool. The default thread pool values can be found in the <code>MI_HOME/conf/synapse.properties</code> file. The default setting is <code>true</code>.
+            When set as <code>true</code> , mediation will happen within the same thread. When set as <code>false</code> , the mediation engine will use the inbound thread pool. The default thread pool values can be found in the <code>MI_HOME/conf/deployment.toml</code> file, under the `[mediation]` section. The default setting is <code>true</code>.
          </td>
       </tr>
       <tr>
@@ -128,7 +128,7 @@ The following properties can be configured when [creating a HL7 inbound endpiont
       <tr>
          <td>sequential</td>
          <td>The behavior when executing the given sequence.<br />
-            When set as <code>true</code> , mediation will happen within the same thread. When set as <code>false</code> , the mediation engine will use the inbound thread pool. The default thread pool values can be found in the <code>MI_HOME/conf/synapse.properties</code> file. The default setting is <code>true</code>.
+            When set as <code>true</code> , mediation will happen within the same thread. When set as <code>false</code> , the mediation engine will use the inbound thread pool. The default thread pool values can be found in the <code>MI_HOME/conf/deployment.toml</code> file, under the `[mediation]` section. The default setting is <code>true</code>.
          </td>
       </tr>
       <tr>
@@ -191,7 +191,7 @@ The following properties are required when [creating a Websocket inbound endpion
   <tr>
          <td>sequential</td>
          <td>The behavior when executing the given sequence.<br />
-            When set as <code>true</code> , mediation will happen within the same thread. When set as <code>false</code> , the mediation engine will use the inbound thread pool. The default thread pool values can be found in the <code>MI_HOME/conf/synapse.properties</code> file. The default setting is <code>true</code>.
+            When set as <code>true</code> , mediation will happen within the same thread. When set as <code>false</code> , the mediation engine will use the inbound thread pool. The default thread pool values can be found in the <code>MI_HOME/conf/deployment.toml</code> file, under the `[mediation]` section. The default setting is <code>true</code>.
          </td>
       </tr>
       <tr>
