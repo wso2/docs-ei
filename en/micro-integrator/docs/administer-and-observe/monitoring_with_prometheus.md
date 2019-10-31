@@ -13,7 +13,7 @@ the statistical data.
 ## Configuring the Prometheus server
 
 1.  [Download and install](https://prometheus.io/download/) Prometheus.
-2.  Open the `           MI_HOME/prometheus.yml          `
+2.  Open the `           PROMETHEUS_HOME/prometheus.yml          `
     file. Add a **scrape config** as to this file as shown below. The
     port number and the endpoint name should be as specified below.
 
@@ -21,7 +21,7 @@ the statistical data.
     scrape_configs:
          - job_name: "esb_stats"
            static_configs:
-             - targets: ['localhost:9191']
+             - targets: ['localhost:9201']
            metrics_path: "metric-service/metrics"
     ```
 
@@ -51,12 +51,12 @@ To use Prometheus, you need to first start the WSO2 Micro Integrator instance by
 The stats can be viewed in following urls.
 
 ``` java
-http://localhost:9191/metric-service/metrics
+http://localhost:9201/metric-service/metrics
 ```
 
 You may also visit following url in Prometheus server to plot the
 graphs.
 
 ``` java
-http://localhost:9190/graph
+http://localhost:9090/graph
 ```
