@@ -133,7 +133,7 @@ nav:
             - 'Publishing a Custom WSDL': 'use-cases/examples/proxy_service_examples/publishing-a-custom-wsdl.md'
             #- 'Configuring Pinned Servers': 'use-cases/examples/proxy_service_examples/using-pinned-servers.md'
             - 'Exposing a Proxy Service via Inbound Endpoints': 'use-cases/examples/proxy_service_examples/exposing-proxy-via-inbound.md'
-            - 'Applying WS-Security to a Proxy Service': 'use-cases/examples/proxy_service_examples/securing-proxy-services.md'
+            - 'Securing a Proxy Service': 'use-cases/examples/proxy_service_examples/securing-proxy-services.md'
           - Inbound Endpoints:
             - 'JMS Inbound Endpoint': 'use-cases/examples/inbound_endpoint_examples/inbound-endpoint-jms-protocol.md'
             - 'File Inbound Endpoint': 'use-cases/examples/inbound_endpoint_examples/file-inbound-endpoint.md'
