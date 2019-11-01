@@ -1,12 +1,19 @@
 # Routing a Message to a Dynamic List of Recipients and Aggregating Responses
+This example demonstrates message routing to a set of dynamic endpoints and aggregate responses. 
 
-## Example use case
+The sample configuration routes a cloned copy of a message
+to each recipient defined within the dynamic recipient list, and
+each recipient responds with a stock quote. When all the responses
+reach the Micro Integrator, the responses are aggregated to form the final response,
+which will be sent back to the client.
 
-This sample demonstrates message routing to a set of dynamic endpoints and aggregate responses.
+If you sent the client request through a TCP-based conversation
+monitoring tool such as TCPMon, you will see the structure of the
+aggregated response message.
 
 ## Synapse configuration
 
-The XML configuration for this sample is as follows:
+Following are the integration artifacts you can use to implement this scenario.
 
 ```xml tab='Error Handling Sequence'
 <sequence name="errorHandler">
@@ -60,14 +67,6 @@ The XML configuration for this sample is as follows:
     </target>
 </proxy>
 ```
-## Build and run
-
-Create the artifacts:
-
-1. Set up WSO2 Integration Studio.
-2. Create an ESB Config project
-3. Create the integration artifacts shown above.
-4. Deploy the artifacts in your Micro Integrator.
 
 <!--
 Set up the back-end service.
@@ -78,14 +77,3 @@ Invoke the Micro Integrator:
 ant stockquote -Dtrpurl=http://localhost:8280/
 ```
 -->
-
-When you have a look at the above
-configuration,  you will see that it routes a cloned copy of a message
-to each recipient defined within the dynamic recipient list , and that
-each recipient responds back with a stock quote. When all the responses
-reach the ESB, the responses are aggregated to form the final response,
-which will be sent back to the client.
-
-If you sent the client request through a TCP based conversation
-monitoring tool such as TCPMon, you will see the structure of the
-aggregated response message.

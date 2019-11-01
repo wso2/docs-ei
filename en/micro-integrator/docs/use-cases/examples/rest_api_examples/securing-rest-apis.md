@@ -63,6 +63,15 @@ Create the artifacts:
 
 [Configure a read-only LDAP user store](../../../../setup/user_stores/setting_up_ro_ldap).
 
+Set up the back-end service:
+
+1. Download the [stockquote_service.jar](https://github.com/wso2-docs/WSO2_EI/blob/master/Back-End-Service/stockquote_service.jar).
+2. Open a terminal, navigate to the location of the downloaded service, and run it using the following command:
+
+    ```bash
+    java -jar stockquote_service.jar
+    ```
+
 Test the API:
 
 1.  First, invoke the service using the following service URL without providing any user credentials: `http://127.0.0.1:8290/stockquote/view/IBM`
