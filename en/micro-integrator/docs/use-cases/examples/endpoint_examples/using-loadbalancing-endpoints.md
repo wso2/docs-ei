@@ -1,9 +1,7 @@
 # Session Affinity Load Balancing between Three Endpoints
 
-### Introduction
-
-This sample demonstrates how the MI can handle load balancing with
-session affinity using simple client sessions . Here the
+This sample demonstrates how the Micro Integrator can handle load balancing with
+session affinity using simple client sessions. Here the
 session type is specified as `         simpleClientSession        ` .
 This is a client initiated session, which means that the client
 generates the session identifier and sends it with each request. In this
@@ -12,11 +10,11 @@ containing the identifier of the client. The MI binds this ID with a
 server on the first request and sends all successive requests containing
 that ID to the same server.
 
-### Building the sample
+## Synapse configuration
 
-The XML configuration for this sample is as follows:
+Following is a sample REST API configuration that we can used to implement this scenario.
 
-``` 
+```xml 
 <proxy name="LoadBalanceProxy" startOnLoad="true" transports="http https" xmlns="http://ws.apache.org/ns/synapse">
    <target>
        <inSequence>

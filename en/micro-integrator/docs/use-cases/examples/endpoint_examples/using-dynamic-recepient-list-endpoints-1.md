@@ -1,11 +1,9 @@
-# Routing a Message to a Dynamic List of Recipients
-## Example use case
-
-This sample demonstrates message routing to a set of dynamic endpoints.
+# Routing Messages to a Dynamic List of Recipients
+This example demonstrates message routing to a set of dynamic endpoints.
 
 ## Synapse configuration
 
-The XML configuration for this sample is as follows:
+Following are the integration artifacts you can use to implement this scenario.
 
 ```xml tab='Error Handling Sequence'
 <sequence name="errorHandler">
@@ -53,15 +51,6 @@ The XML configuration for this sample is as follows:
       </target>
   </proxy>
 ```
-
-## Build and run
-
-Create the artifacts:
-
-1. Set up WSO2 Integration Studio.
-2. Create an ESB Config project
-3. Create the integration artifacts shown above.
-4. Deploy the artifacts in your Micro Integrator.
 
 <!--
 Set up the back-end service.
