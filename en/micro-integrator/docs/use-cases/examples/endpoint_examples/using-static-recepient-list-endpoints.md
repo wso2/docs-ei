@@ -1,12 +1,8 @@
-# Routing a Message to a Static List of Recipients
-## Example use case
-
-Demonstrate message routing to a set of static
-endpoints.
+# Routing Messages to a Static List of Recipients
+This example demonstrates how messages can be routed to a list of static endpoints. This configuration routes a cloned copy of a message to each recipient defined within the static recipient list. The Micro Integrator will create cloned copies of the message and route to the three endpoints mentioned in the configuration. The back-end service prints the details of the placed order. 
 
 ## Synapse configuration
-
-This configuration routes a cloned copy of a message to each recipient defined within the static recipient list. The Micro Integrator will create cloned copies of the message and route to the three endpoints mentioned in the configuration. SimpleStockQuoteService prints the details of the placed order. 
+Following is a sample proxy service configuration and mediation sequence that we can used to implement this scenario.
 
 ```xml tab='Proxy Service'
 <proxy name="RecipientListProxy" startOnLoad="true" transports="http https" xmlns="http://ws.apache.org/ns/synapse">
@@ -50,15 +46,6 @@ This configuration routes a cloned copy of a message to each recipient defined w
     <send/>
 </sequence>
 ```
-
-## Build and run
-
-Create the artifacts:
-
-1. Set up WSO2 Integration Studio.
-2. Create an ESB Config project
-3. Create the integration artifacts shown above.
-4. Deploy the artifacts in your Micro Integrator.
 
 <!--
 Set up the back-end service.

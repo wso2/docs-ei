@@ -40,15 +40,14 @@ Create the artifacts:
 5. Start the selected message broker and create a queue with name <strong>Queue1</strong>. 
 6. [Configure MI with the selected message broker](../../../../setup/brokers/configure-with-ActiveMQ) and start the Micro-Integrator.
 
-Set up the back-end service.
+Set up the back-end service:
 
-* Download the [stockquote_service.jar](
-https://github.com/wso2-docs/WSO2_EI/blob/master/Back-End-Service/stockquote_service.jar)
+1. Download the [stockquote_service.jar](https://github.com/wso2-docs/WSO2_EI/blob/master/Back-End-Service/stockquote_service.jar)
+2. Open a terminal, navigate to the location of the downloaded service, and run it (stock quote service) using the following command:
 
-* Run the mock service using the following command
-```
-$ java -jar stockquote_service.jar
-```
+    ```bash
+    java -jar stockquote_service.jar
+    ```
 
 Publish the following XML message to the Queue1.
 ```xml

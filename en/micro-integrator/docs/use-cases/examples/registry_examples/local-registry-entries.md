@@ -49,16 +49,22 @@ Create the artifacts:
 
 1. [Set up WSO2 Integration Studio](../../../../develop/installing-WSO2-Integration-Studio).
 2. [Create an ESB Solution project](../../../../develop/creating-projects/#esb-config-project)
-3. Create the [proxy service](../../../../develop/creating-artifacts/creating-a-proxy-service), [sequence](../../../../develop/creating-artifacts/creating-reusable-sequences), and [endpoint](../../../../develop/creating-an-endpoint) with the configurations given above.
+3. Create the [proxy service](../../../../develop/creating-artifacts/creating-a-proxy-service), [sequence](../../../../develop/creating-artifacts/creating-reusable-sequences), and [endpoint](../../../../develop/creating-artifacts/creating-an-endpoint) with the configurations given above.
 4. [Deploy the artifacts](../../../../develop/deploy-and-run) in your Micro Integrator.
 
-Setup a backend server.
+Set up the back-end service:
 
-Analyze the mediation log on the Micro Integrator start-up console.
+1. Download the [stockquote_service.jar](https://github.com/wso2-docs/WSO2_EI/blob/master/Back-End-Service/stockquote_service.jar).
+2. Open a terminal, navigate to the location of the downloaded service, and run it using the following command:
+
+    ```bash
+    java -jar stockquote_service.jar
+    ```
+
+Send a message to invoke the service and analyze the mediation log on the Micro Integrator's start-up console.
 
 You will see that a sequence named *main* is executed. Then, for the
-incoming message flow, the In Mediator executes and it calls the
-sequence named *stockquote*.
+incoming message flow, the *stockquote* sequence is called.
 
 ```bash
 DEBUG SequenceMediator - Sequence mediator <main> :: mediate()
@@ -66,8 +72,7 @@ DEBUG InMediator - In mediator mediate()
 DEBUG SequenceMediator - Sequence mediator <stockquote> :: mediate()
 ```
 
-You will also see that the *stockquote* sequence is executed. and that
-the l og mediator dumps a simple *text/string* property, which is the
+The log mediator dumps a simple *text/string* property, which is the
 result of an XPath evaluation that picks up the *version* key
 and a second result of an XPath evaluation that picks up a local message
 property set previously by the property mediator. The

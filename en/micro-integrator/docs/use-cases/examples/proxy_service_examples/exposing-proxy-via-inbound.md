@@ -1,9 +1,8 @@
 # Exposing a Proxy Service via Inbound Endpoint
-If a proxy service is to be exposed only via inbound endpoints, the following service parameter has to be set in the proxy configuration.
+If a proxy service is to be exposed only via inbound endpoints, the `inbound.only` service parameter has to be set in the proxy configuration.
 
 ## Synapse configuration
-
-Following is a proxy service configuration that we can use to implement this scenario.
+Following is a sample proxy service configuration that we can used to implement this scenario. See the instructions on how to [build and run](#build-and-run) this example.
 
 ```xml tab='Proxy Service'
 <proxy xmlns="http://ws.apache.org/ns/synapse" name="InboundProxy" transports="https,http" statistics="disable" trace="disable" startOnLoad="true">
@@ -42,15 +41,14 @@ Create the artifacts:
 3. Create the [proxy service](../../../../develop/creating-artifacts/creating-a-proxy-service) and [security policy](../../../../develop/creating-artifacts/registry/creating-local-registry-entries) with the configurations given above.
 4. [Deploy the artifacts](../../../../develop/deploy-and-run) in your Micro Integrator.
 
-Set up the back-end service.
+Set up the back-end service:
 
-* Download the [stockquote_service.jar](
-https://github.com/wso2-docs/WSO2_EI/blob/master/Back-End-Service/stockquote_service.jar)
+1. Download the [stockquote_service.jar](https://github.com/wso2-docs/WSO2_EI/blob/master/Back-End-Service/stockquote_service.jar).
+2. Open a terminal, navigate to the location of the downloaded service, and run it using the following command:
 
-* Run the mock service using the following command
-```
-$ java -jar stockquote_service.jar
-```
+    ```bash
+    java -jar stockquote_service.jar
+    ```
 
 Send the following request to the Micro Integrator.
 
@@ -76,7 +74,7 @@ User-Agent: Apache-HttpClient/4.1.1 (java 1.5)
 </soapenv:Envelope>
 ```
 
-You will get a response similar to,
+You will get the following response:
 
 ```xml
 HTTP/1.1 200 OK

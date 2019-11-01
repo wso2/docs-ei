@@ -16,121 +16,9 @@ message that includes the name, department, and permission level, and
 you want the proxy service to inject the permission level as it
 processes the message, you could publish a WSDL that includes just the
 name and department without the permission level parameter.
-
-## Synapse configuration
-
-Follow the steps given below to add a custom WSDL to your proxy service.
-
-1.  Open the proxy service from your tooling project.
-2.  In the **Properties** tab, the WSDL type is set to **NONE** by
-    default.  
-3.  To publish a custom WSDL for this proxy service, select one of the
-    WSDL types.
-
-    <table>
-    <thead>
-    <tr class="header">
-    <th>WSDL Type</th>
-    <th>Description</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr class="odd">
-    <td>INLINE</td>
-    <td>Enter the WSDL definition in the <strong>WSDL XML</strong> field.</td>
-    </tr>
-    <tr class="even">
-    <td>SOURCE_URL</td>
-    <td><p>Enter the URI of the WSDL in the text box, and then click <strong>Test URI</strong> to ensure it is available. A URI consists of a URL and URN. The URL defines the host address of the network resource (can be omitted if resources are not network homed), and the URN defines the resource name in local "namespaces."</p>
-    <p>For example URI = <code>                                 ftp://ftp.dlink.ru/pub/ADSL                                , w               </code> here URL = <code>                                 ftp://ftp.dlink.ru                               </code> and URN = <code>                pub/ADSL               </code></p></td>
-    </tr>
-    <tr class="odd">
-    <td>REGISTRY_KEY</td>
-    <td><div class="content-wrapper">
-    <p>If the WSDL is saved as a registry entry, select this option and choose the reference key of that registry entry from the governance Registry or configuration Registry.</p>
-    </div></td>
-    </tr>
-    <tr class="even">
-    <td>ENDPOINT</td>
-    <td>-</td>
-    </tr>
-    </tbody>
-    </table>
-
-4.  If your WSDL has dependencies with other resources (schemas or other
-    WSDL documents), you can link them using the **Wsdl Resources**
-    property shown below. Click the **browse** icon and enter the
-    registry key and the location of the dependent resource: The
-    location is available in the WSDL. When you have the location, you
-    can find registry key corresponding to the location from the
-    registry.
-
-    In the following example, the WSDL imports a metadata schema from
-    the metadata.xsd file. Therefore, the location is metadata.xsd.
-
-    ```xml
-    <xsd:import namespace=http://www.wso2.org/test/10 schemaLocation="metadata.xsd" />
-    ```
-
-    In the following example, the WSDL is retrieved from the registry
-    using the key `           my.wsdl          ` . This WSDL imports
-    another WSDL from
-    `                                    http://www.standards.org/standard.wsdl                                 `
-    . This dependent WSDL is retrieved from the registry using the
-    `           standard.wsdl          ` registry key.
-
-    ```xml 
-    <publishWSDL key="my.wsdl">
-        <resource location="http://www.standards.org/standard.wsdl" key="standard.wsdl"/>
-    </publishWSDL>
-    ```
-
-5.  Go to the **Service Parameters** section in the **Properties** tab. Following are additional service parameters you can use to configure the service WSDL.
-
-    <table>
-    <thead>
-    <tr class="header">
-    <th><p>Parameter</p></th>
-    <th><p>Description</p></th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr class="odd">
-    <td><p>useOriginalwsdl</p></td>
-    <td><div class="content-wrapper">
-    <p>If this parameter is set to <code>                 true                </code> , the original WSDL published via the <code>                 publishWSDL                </code> parameter is used instead of the custom WSDL.</p>
-    </div></td>
-    </tr>
-    <tr class="even">
-    <td><p>modifyUserWSDLPortAddress</p></td>
-    <td><p>If true (default), the port addresses will be modified to the current host. Effective only with <code>                useOriginalwsdl=true               </code> .</p></td>
-    </tr>
-    <tr class="odd">
-    <td>ApplicationXMLBuilder.allowDTD</td>
-    <td>If this parameter is set to true, it enables data type definition processing for the proxy service.<br />
-    Data type definition processing is disabled in the Axis2 engine due to security vulnerability. This parameter enables it for individual proxy services.</td>
-    </tr>
-    <tr class="even">
-    <td><p>enablePublishWSDLSafeMode</p></td>
-    <td><div class="content-wrapper">
-    <p>If this parameter is set to <code>                 true                </code> when deploying a proxy service, even though the WSDL is not available, you can prevent the proxy service from being faulty. However, the deployed proxy service will be inaccessible since the WSDL is not available.</p>
-        !!! note
-        <p>This is only applicable when you publish the WSDL (i.e., via the <code>                 publishWSDL                </code> property) either as a URI or as an endpoint.</p>
-
-    </div></td>
-    </tr>
-    <tr class="odd">
-    <td>showAbsoluteSchemaURL</td>
-    <td>If this parameter is set to <code>               true              </code> , the absolute path of the referred schemas of the WSDL is shown instead of the relative paths.</td>
-    </tr>
-    <tr class="even">
-    <td>showProxySchemaURL</td>
-    <td>If this parameter is set to <code>               true              </code> , the full proxy URL will be set as the prefix to the schema location of the imports in proxy WSDL.</td>
-    </tr>
-    </tbody>
-    </table>
     
 ## Synapse configuration
+Following is a sample proxy service configuration that we can used to implement this scenario. See the instructions on how to [build and run](#build-and-run) this example.
 
 ```xml
 <proxy name="StockQuoteProxy" startOnLoad="true" transports="http https" xmlns="http://ws.apache.org/ns/synapse">
@@ -154,20 +42,21 @@ The wsdl uri needs to be updated with the path to the sample_proxy_1.wsdl file
 Create the artifacts:
 
 1. [Set up WSO2 Integration Studio](../../../../develop/installing-WSO2-Integration-Studio).
-2. [Create an ESB Solution project](../../../../develop/creating-projects/#esb-config-project)
+2. [Create an ESB Solution project](../../../../develop/creating-projects/#esb-config-project).
 3. [Create the proxy service](../../../../develop/creating-artifacts/creating-a-proxy-service) with the configurations given above.
 4. [Deploy the artifacts](../../../../develop/deploy-and-run) in your Micro Integrator.
 
-Set up the back-end service.
-* Download the [stockquote_service.jar](
-https://github.com/wso2-docs/WSO2_EI/blob/master/Back-End-Service/stockquote_service.jar)
+Set up the back-end service:
 
-* Run the mock service using the following command
-```
-$ java -jar stockquote_service.jar
-```
+1. Download the [stockquote_service.jar](https://github.com/wso2-docs/WSO2_EI/blob/master/Back-End-Service/stockquote_service.jar).
+2. Open a terminal, navigate to the location of the downloaded service, and run it using the following command:
 
-Invoke the proxy service.
+    ```bash
+    java -jar stockquote_service.jar
+    ```
+
+Send the following request to the service:
+
 ```xml
 POST http://localhost:8290/services/StockQuoteProxy.StockQuoteProxyHttpSoap11Endpoint HTTP/1.1
 Accept-Encoding: gzip,deflate
@@ -192,7 +81,8 @@ User-Agent: Apache-HttpClient/4.1.1 (java 1.5)
 </soapenv:Envelope>
 ```
 
-Sample response would be:
+You will receive the following response:
+
 ```xml
 HTTP/1.1 200 OK
 server: ballerina

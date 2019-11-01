@@ -1,4 +1,8 @@
 # Using Endpoint Templates
+
+!!! Warning
+    **Please note that the contents on this page are under review!**
+
 ## Synapse configuration
 For example, let's say we have two default endpoints with following hypothetical configurations:
 
@@ -75,12 +79,3 @@ Since we have a template defined, we can use template endpoints to create two co
   <parameter name="retries" value="3" />
 </endpoint>
 ```
-
-## Build and run
-
-Create the artifacts:
-
-1. Set up WSO2 Integration Studio.
-2. Create an ESB Config project
-3. Create the mediation artifacts with the above configuration.
-4. Deploy the artifacts in your Micro Integrator.
