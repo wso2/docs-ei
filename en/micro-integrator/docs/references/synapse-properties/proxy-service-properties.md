@@ -175,7 +175,15 @@ The following properties are required when [creating a transformer proxy service
 
 ### Service Parameters
 
-- See the list of [Transport Parameters](transport-parameters.md) you can configure at service level for a proxy service.
+- See the list of transport parameters you can configure at service level for a proxy service:
+
+    - [JMS properties](../transport-parameters/jms-transport-parameters)
+    - [MailTo properties](../transport-parameters/mailto-transport-parameters)
+    - [MQTT properties](../transport-parameters/mqtt-transport-parameters)
+    - [RabbitMQ properties](../transport-parameters/rabbitmq-transport-parameters)
+    - [VFS properties](../transport-parameters/vfs-transport-parameters)
+    - [Fix properties](../transport-parameters/fix-transport-parameters)
+
 - You can also configure the following service-level property to expose an [Inbound Endpoint](../../concepts/message-entry-points/#inbound-endpoints) through a proxy service:
   <table>
      <tr>

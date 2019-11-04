@@ -38,7 +38,7 @@ When WSO2 Micro Integrator attempts to forward a message over JMS, there are ins
 This problem occurs when the developer uses the property mediator to manipulate property values set on the message. Certain implementations of JMS have data type restrictions on properties. But the property mediator always sets property values as strings.
 
 The solution is to revise the mediation sequences and avoid manipulating property values containing non-string values. If you want to set a
-non-string property value, write a simple custom mediator. Instructions are given in section [Creating Custom Mediators](../../develop/customizations/creating-custom-mediators.md). For an example, to set a property named foo with integer value 12345, use the property mediator as follows and set the type attribute
+non-string property value, write a simple custom mediator. Instructions are given in section [Creating Custom Mediators](../../develop/customizations/creating-custom-mediators). For an example, to set a property named foo with integer value 12345, use the property mediator as follows and set the type attribute
 to INTEGER.  If the type attribute of the property is not specifically set, it will be assigned to String by default.
 
 ```xml
