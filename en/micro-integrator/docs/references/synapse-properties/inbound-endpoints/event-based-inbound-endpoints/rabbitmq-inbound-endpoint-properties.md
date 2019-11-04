@@ -24,11 +24,11 @@
 
 ## Properties
 
-Listed below are the properties used for [creating a RabbitMQ inbound endpiont](../../../develop/creating-artifacts/creating-an-inbound-endpoint.md).
+Listed below are the properties used for [creating a RabbitMQ inbound endpiont](../../../../../develop/creating-artifacts/creating-an-inbound-endpoint).
 
 ### Required Properties
 
-The following properties are required when [creating a RabbitMQ inbound endpiont](../../../develop/creating-artifacts/creating-an-inbound-endpoint.md).
+The following properties are required when [creating a RabbitMQ inbound endpiont](../../../../../develop/creating-artifacts/creating-an-inbound-endpoint).
 
 <table>
   <tr>
@@ -113,7 +113,7 @@ The following properties are required when [creating a RabbitMQ inbound endpiont
 
 ### Optional Properties
 
-The following optional properties can be configured when [creating an RabbitMQ inbound endpiont](../../../develop/creating-artifacts/creating-an-inbound-endpoint.md).
+The following optional properties can be configured when [creating an RabbitMQ inbound endpiont](../../../../../develop/creating-artifacts/creating-an-inbound-endpoint).
 
 <table>
    <thead>
