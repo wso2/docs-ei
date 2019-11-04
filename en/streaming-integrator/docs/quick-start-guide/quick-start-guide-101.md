@@ -226,8 +226,9 @@ To deploy your Siddhi application in the Streaming Integrator server, follow the
     To deploy the Siddhi application, you need to run both the Streaming Integrator server and Streaming Integrator Tooling. The home directories of the Streaming Integrator server is referred to as `<SI_HOME>` and the home directory of Streaming Integrator Tooling is referred to as `<SI_TOOLING_HOME>`.
 
 1. Start the Streaming Integrator server by navigating to the `<SI_HOME>/bin` directory from the CLI, and issuing one of the following commands:
-   - On Windows: `server.bat --run`
-   - On Linux/Mac OS:  `./server.sh`
+
+    * On Windows: `server.bat --run`
+    * On Linux/Mac OS:  `./server.sh`
 
 2. In the Streaming Integrator Tooling, click **Deploy** and then click **Deploy to Server**.
 
