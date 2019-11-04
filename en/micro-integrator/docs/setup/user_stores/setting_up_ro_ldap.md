@@ -70,7 +70,7 @@ Follow the steps given below to connect the Micro Integrator to the LDAP user st
 		</tr>
 		<tr>
 			<td>
-				user_search_base
+				<code>user_search_base</code>
 			</td>
 			<td>
 				The DN of the context or object under which the user entries are stored in the user store. When the user store searches for users, it will start from this location of the directory.

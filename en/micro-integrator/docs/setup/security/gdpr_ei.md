@@ -91,7 +91,7 @@ references from the archived log files.
 -   Find out about [how the Micro Integrator stores a user's
     PII](#how-the-wso2-micro-integrator-persists-pii).
 -   See the [prerequisites for removing PII from the
-    ESB](#prerequisites-for-removing-pii).
+    MI](#prerequisites-for-removing-pii).
 -   In the instructions given below, we will use a proxy service that
     logs PII to demonstrate how PII can be removed from the Micro Integrator.
     However, please note that it is **not recommended** to log PII from
@@ -114,11 +114,11 @@ this as shown below.
 
 The user name that is used when you invoke this query will be logged in
 the following log files: wso2carbon.log file, audit.log file, warn.log,
-and the [service-specific log file](../../use-cases/tasks/proxy_service_tasks/enabling-logs-for-services.md)
+and the [service-specific log file](../../develop/enabling-logs-for-services.md)
 that is enabled for the proxy service.
 
 ```xml
-[EI-Core]  INFO - LogMediator USER_NAME = Sam
+INFO - LogMediator USER_NAME = Sam
 ```
 
 Let's look at how to anonymize the username value in log files.
@@ -144,7 +144,7 @@ Let's look at how to anonymize the username value in log files.
 2.  Update the `           config.json          ` file (stored in the
     `           MI_HOME/wso2/tools/forget-me/conf/          `
     directory) as shown below. This file contains references to all the
-    log files (except any [service-specific log file](../../use-cases/tasks/proxy_service_tasks/enabling-logs-for-services.md) in the system that store the above user information. If you have
+    log files (except any [service-specific log file](../../develop/enabling-logs-for-services.md) in the system that store the above user information. If you have
     enabled a service-specific log file, you need to add that file name
     (see the element descriptions given below).
 
@@ -158,7 +158,7 @@ Let's look at how to anonymize the username value in log files.
                 "dir": "log-config",
                 "type": "log-file",
                 "processor" : "log-file",
-                "log-file-path" : "<EI_HOME>/repository/logs",
+                "log-file-path" : "<MI_HOME>/repository/logs",
                 "log-file-name-regex" : "(audit.log|warn.log|wso2carbon.log)(.)*"
             }
         ]
@@ -185,13 +185,13 @@ Let's look at how to anonymize the username value in log files.
                 absolute path to the location where the log files are stored. If
                 you are **on Windows** , be sure to use the forward slash ("/")
                 instead of the back slash ("\\"). For example:
-                `             C:/Users/Administrator/Desktop/wso2ei-6.2.0/repository/log            `.
+                `             C:/Users/Administrator/Desktop/wso2mi-1.1.0/repository/logs            `.
 
     -   **"log-file-name-regex"** : This gives the list of log files
         (stored in the log-file-path) that will persist the user's PII.
         Note that the above log-file-name-regex includes the audit.log,
         warn.log, and wso2carbon.log files, **as well as** the archived
-        files of the same logs. If you have enabled a [service-specific log file](../../use-cases/tasks/proxy_service_tasks/enabling-logs-for-services.md), **be sure to add** the file name to this list.
+        files of the same logs. If you have enabled a [service-specific log file](../../develop/enabling-logs-for-services.md), **be sure to add** the file name to this list.
 
 3.  Open a command prompt and navigate to the `           MI_HOME/bin          ` directory.
 4.  Execute the following command to anonymize the user information that
@@ -219,7 +219,7 @@ Let's look at how to anonymize the username value in log files.
         display the user information as a pseudonym.
 
         ```bash
-        [EI-Core]  INFO - LogMediator USER_NAME = 86c3bfd9-f97c-4b08-9f15-772dcb0c1c
+        INFO - LogMediator USER_NAME = 86c3bfd9-f97c-4b08-9f15-772dcb0c1c
         ```
 
         !!! Info
