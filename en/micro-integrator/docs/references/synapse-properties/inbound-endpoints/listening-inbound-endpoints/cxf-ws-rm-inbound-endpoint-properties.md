@@ -25,7 +25,7 @@ WS­ReliableMessaging allows SOAP messages to be reliably delivered between dist
 
 ## Properties
 
-The following properties can be configured when [creating a CXF WS-RM inbound endpiont](../../../develop/creating-artifacts/creating-an-inbound-endpoint.md).
+The following properties can be configured when [creating a CXF WS-RM inbound endpiont](../../../../../develop/creating-artifacts/creating-an-inbound-endpoint).
 
 <table>
   <tr>
@@ -75,11 +75,11 @@ The following properties can be configured when [creating a CXF WS-RM inbound en
 
 The HL7 inbound protocol is an alternative to the HL7 transport. The HL7 inbound endpoint implementation is fully asynchronous and is based on the <b>Minimal Lower Layer Protocol(MLLP)</b> implemented on top of event driven I/O.
 
-Listed below are the properties used for [creating a HL7 inbound endpiont](../../../develop/creating-artifacts/creating-an-inbound-endpoint.md).
+Listed below are the properties used for [creating a HL7 inbound endpiont](../../../../../develop/creating-artifacts/creating-an-inbound-endpoint).
 
 ### Optional Properties
 
-The following properties can be configured when [creating a HL7 inbound endpiont](../../../develop/creating-artifacts/creating-an-inbound-endpoint.md).
+The following properties can be configured when [creating a HL7 inbound endpiont](../../../../../develop/creating-artifacts/creating-an-inbound-endpoint).
 
 <table>
    <thead>
@@ -157,11 +157,11 @@ Following are the mediation level properties that you can set in the HL7 inbou
 
 The WebSocket Inbound protocol is based on the <a href="http://tools.ietf.org/html/rfc6455">Websocket protocol</a> and allows full-duplex message mediation.
 
-Listed below are the properties used for [creating a Websocket inbound endpiont](../../../develop/creating-artifacts/creating-an-inbound-endpoint.md).
+Listed below are the properties used for [creating a Websocket inbound endpiont](../../../../../develop/creating-artifacts/creating-an-inbound-endpoint).
 
 ### Required Properties
 
-The following properties are required when [creating a Websocket inbound endpiont](../../../develop/creating-artifacts/creating-an-inbound-endpoint.md).
+The following properties are required when [creating a Websocket inbound endpiont](../../../../../develop/creating-artifacts/creating-an-inbound-endpoint).
 
 <table>
   <tr>
