@@ -42,7 +42,7 @@ a standalone HornetQ server.
     ```
 
 5.  If you have not already done so, download and install WSO2 Micro Integrator.
-6.  Download the `hornet-all-new.jar` file and copy it into the `MI_HOME/lib/` directory.
+6.  Download the [hornet-all-new.jar](https://docs.wso2.com/download/attachments/85376778/hornetq-all-new.jar?version=1&modificationDate=1490694533000&api=v2) file and copy it into the `MI_HOME/lib/` directory.
 
     !!! Info
         If you are packing the JARs yourself, make sure you remove the javax.jms package from the assembled JAR to avoid the carbon runtime
