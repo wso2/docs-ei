@@ -1,9 +1,33 @@
-# Analyzing Statistics and Tracing
+# Monitoring Statistics and Tracing
 
-The **Analytics profile** of [WSO2 Enterprise Integrator (WSO2 EI)](https://wso2.com/enterprise-integrator/6.5.0) 6.5.0 is an instance of the [WSO2 Stream Processor (WSO2 SP)](https://wso2.com/analytics-and-stream-processing/) runtime. You can use the Analytics profile to analyze the statistics related to the message mediation that is
-carried out in the Micro Integrator.
+Monitoring the usage of the integration runtime with statistical information is a very important fact for 
+getting an understanding of the overall health of a system that runs in the production. 
+Statistical data help to do proper capacity planning, to keep the runtimes in a healthy state, 
+and for debugging and troubleshooting problems. 
+When it comes to troubleshooting, tracing of the messages passing through the mediation flows of the 
+MicroIntegrator becomes very handy. 
+For monitoring statistics and tracing, we can use the Analytics profile of the 
+[WSO2 Enterprise Integrator 6.x family (EI Analytics)](https://wso2.com/enterprise-integrator/6.5.0). 
 
-The Analytics profile consists of two components: **Worker** and **Dashboard**. The worker is the server that processes the data streams that are sent from the Micro Integrator and publishes the statistics to a database. The dashboard reads the statistics published by the worker and displays the statistics. The worker and dashboard are connected through the database.
+The following are the statistics we can monitor through the EI Analytics profile.
+
+- Request Count
+- Overall TPS
+- Overall Message Count
+- Top Proxy Services by Request Count
+- Top APIs by Request Count
+- Top Endpoints by Request Count
+- Top Inbound Endpoints by Request Count
+- Top Sequences by Request Count
+
+Please refer to [here](https://docs.wso2.com/display/EI650/Analyzing+the+ESB+Profile+Statistics+Overview) 
+for more information on what we can monitor from EI Analytics.
+
+
+The Analytics profile consists of two components: **Worker** and **Dashboard**. 
+The worker is the server that processes the data streams that are sent from the Micro Integrator and publishes 
+the statistics to a database. The dashboard reads the statistics published by the worker and displays the statistics. 
+The worker and dashboard are connected through the database.
 
 See the instructions given below on using the Analytics profile with the Micro Integrator.
 
