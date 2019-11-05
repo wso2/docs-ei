@@ -16,7 +16,7 @@ Sample configuration that uses a MySQL database named sampleDB and the database 
           <store messageStore="SampleStore"/>
       </inSequence>
     </target>
-    <publishWSDL uri="http://localhost:9000/services/SimpleStockQuoteService?wsdl"/>
+    <publishWSDL uri="file:/path/to/sample_proxy_1.wsdl"/>
 </proxy>
 ```
 
@@ -46,7 +46,15 @@ Sample configuration that uses a MySQL database named sampleDB and the database 
 </messageProcessor>
 ```
 
+```xml tab="Message Processor"
+<endpoint xmlns="http://ws.apache.org/ns/synapse" name="StockQuoteServiceEp">
+  <address uri="http://localhost:9000/services/SimpleStockQuoteService"/>
+</endpoint>
+```
 ## Build and run
+
+The wsdl file `sample_proxy_1.wsdl` can be downloaded from  [sample_proxy_1.wsdl](https://github.com/wso2-docs/WSO2_EI/blob/master/samples-protocol-switching/sample_proxy_1.wsdl). 
+The wsdl uri needs to be updated with the path to the `sample_proxy_1.wsdl` file.
 
 Create the artifacts:
 
@@ -57,6 +65,12 @@ Create the artifacts:
 
 Set up the back-end service.
 
+1. Download the [stockquote_service.jar](https://github.com/wso2-docs/WSO2_EI/blob/master/Back-End-Service/stockquote_service.jar).
+2. Open a terminal, navigate to the location of the downloaded service, and run it using the following command:
+
+    ```bash
+    java -jar stockquote_service.jar
+    ```
 Setup the database. Use one of the following DB scripts depending on which database type you want to use. 
 
 ```java tab="MySQL"
@@ -77,8 +91,31 @@ CREATE TABLE jdbc_message_store(
                 )
 ```
 
-Invoke the sample Api:
+!!!Note
+You can create a similar script based on the database you want to set up.
+
+Add the relevant database driver into the <MI_HOME>/lib folder.
+
+Invoke the sample Proxy Service:
 
 ```java
-ant stockquote -Daddurl=http://localhost:8290/services/MessageStoreProxy
+POST http://localhost:9090/services/MessageStoreProxy HTTP/1.1
+Accept-Encoding: gzip,deflate
+Content-Type: text/xml;charset=UTF-8
+SOAPAction: "urn:getQuote"
+Content-Length: 492
+Host: localhost:9090
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.1.1 (java 1.5)
+
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="http://services.samples" xmlns:xsd="http://services.samples/xsd">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ser:getQuote xmlns:ser="http://services.samples" xmlns:xsd="http://services.samples/xsd">
+         <ser:request>
+            <xsd:symbol>IBM</xsd:symbol>
+         </ser:request>
+      </ser:getQuote>
+   </soapenv:Body>
+</soapenv:Envelope>
 ```

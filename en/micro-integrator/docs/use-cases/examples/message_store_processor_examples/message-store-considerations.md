@@ -1,7 +1,7 @@
 # Using Message Stores - Special Considerations
 
 !!! Info
-    When you use the Message Broker profile as the message broker and configure a [Message Processor](_Message_Processors_) with `         max.delivery.attempts        ` , if the Message Broker profile does not get an acknowledgment from the Integration profile, it re-sends the message that results in duplicate messages being delivered. To avoid this, add the following line in the `         <EI_HOME>/bin/integrator.sh        ` file: `         -DAndesAckWaitTimeOut=3600000 \` Individual message priorities can be set using the following property on the provider. For example, the value can be 0-9 for ActiveMQ.
+    When you use the Message Broker profile as the message broker and configure a [Message Processor](_Message_Processors_) with `         max.delivery.attempts        ` , if the Message Broker profile does not get an acknowledgment from the Integration profile, it re-sends the message that results in duplicate messages being delivered. To avoid this, add the following line in the `         <MI_HOME>/bin/micro-integrator.sh        ` file: `         -DAndesAckWaitTimeOut=3600000 \` Individual message priorities can be set using the following property on the provider. For example, the value can be 0-9 for ActiveMQ.
     `<property name="JMS_PRIORITY" value="9" scope="axis2"/>        `
 
 !!! Note
