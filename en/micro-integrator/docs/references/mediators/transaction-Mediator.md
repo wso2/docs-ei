@@ -11,8 +11,8 @@ transaction functionality for its child mediators.
 
 ## Syntax
 
-``` java
-    <transaction action="commit|fault-if-no-tx|new|resume|suspend|rollback|use-existing-or-new"/>
+```xml
+<transaction action="commit|fault-if-no-tx|new|resume|suspend|rollback|use-existing-or-new"/>
 ```
 
 ## Configuration

@@ -3,7 +3,7 @@
 The **Loopback Mediator** moves messages from the in flow (request path) to the out flow (response path). All the configuration included in the in sequence that appears after the Loopback mediator is skipped.
 
 !!! Info
-    - The Loopback mediator is a [content-unaware](../../../concepts/message-processing-units/#classification-of-mediators) mediator.
+    - The Loopback mediator is a [content-unaware](../../../references/mediators/about-mediators/#classification-of-mediators) mediator.
     - The messages that have already been passed from the In sequence to the Out sequence cannot be moved to the Out sequence again via the Loopback mediator. 
 
 ## Syntax

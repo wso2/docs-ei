@@ -3,7 +3,7 @@
 The **Publish Event mediator** constructs events and publishes them to different systems such as BAM and CEP. This is done via event sinks.
 
 !!! Info
-    The Publish Event mediator is a [content-aware](../../../concepts/message-processing-units/#classification-of-mediators) mediator.
+    The Publish Event mediator is a [content-aware](../../../references/mediators/about-mediators/#classification-of-mediators) mediator.
 
 ## Syntax
 
