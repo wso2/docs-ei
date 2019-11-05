@@ -1,10 +1,10 @@
 # Monitoring Statistics and Tracing
 
 Monitoring the usage of the integration runtime using statistical information is very important for understanding the overall health of a system that runs in production. 
-Statistical data help to do proper capacity planning, to keep the runtimes in a healthy state, 
+Statistical data helps to do proper capacity planning, to keep the runtimes in a healthy state, 
 and for debugging and troubleshooting problems. 
-When it comes to troubleshooting, tracing messages that pass through the mediation flows of the 
-Micro Integrator becomes very useful. 
+When it comes to troubleshooting, the ability to trace messages that pass through the mediation flows of the 
+Micro Integrator is very useful. 
 For monitoring statistics and tracing, we can use the Analytics profile of 
 [WSO2 Enterprise Integrator 6.x family (EI Analytics)](https://wso2.com/enterprise-integrator/6.5.0). 
 
