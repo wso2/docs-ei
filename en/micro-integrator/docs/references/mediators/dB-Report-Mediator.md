@@ -3,7 +3,7 @@
 The **DB Report Mediator** is similar to the [DBLookup Mediator](dBLookup-Mediator.md). The difference between the two mediators is that the DB Report mediator writes information to a database using the specified insert SQL statement.
 
 !!! Info
-    The DB Report mediator is a [content-aware](../../../concepts/message-processing-units/#classification-of-mediators) mediator.
+    The DB Report mediator is a [content-aware](../../../references/mediators/about-mediators/#classification-of-mediators) mediator.
 
 ## Syntax
 

@@ -1,7 +1,7 @@
 # Transaction Mediator Example
 
-The [Transaction mediator](_Transaction_Mediator_) supports [distributed
-transactions](https://docs.wso2.com/display/EI650/Working+with+Transactions)
+The Transaction mediator supports [distributed
+transactions
 using the Java transaction API (JTA). When it comes to distributed
 transactions, it involves accessing and updating data on two or more
 networked computers, often using multiple databases. For example, two

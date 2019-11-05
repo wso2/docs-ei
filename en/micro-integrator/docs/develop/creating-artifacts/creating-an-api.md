@@ -1,19 +1,34 @@
 # Creating an API
 
-Follow the instructions given below to create a new REST API artifact in WSO2 Integration Studio.
+Follow the instructions given below to create a new [REST API](../../../references/synapse-properties/rest-api-properties) artifact in WSO2 Integration Studio.
 
 ## Instructions
 
 ### Step 1: Create new API
 
-1. If you have already created an [ESB Config project](../../creating-projects/#esb-config-project), right-click the project in the navigator and go to **New → REST API** to open the **API Artifact Creation Options** dialog box.
+1. Right-click the project in the navigator and go to **New → REST API** to open the **API Artifact Creation Options** dialog box.
+
+    <img src="../../../assets/img/create_artifacts/new-artifact.png">
+
 2.  Select the **Create A New API Artifact** and click **Next**.
+
+    <img src="../../../assets/img/create_artifacts/new_api/create-new-api-option.png" width="500">
+
 3.  Specify values for the [required REST API properties](../../../references/synapse-properties/rest-api-properties/#rest-api-properties-required): **API name**, and **Context**.
-4. Do one of the following:  
+
+    <img src="../../../assets/img/create_artifacts/new_api/new-api-artifact-dialog.png" width="500">
+
+4. Do one of the following to save the API:  
     - To save the API in an existing ESB Config project in your workspace, click **Browse** and select that project.
     - To save the API in a new ESB Config project, click **Create new Project** and create the new project.
 5.  Click **Finish**. The REST API is created inside the `src/main/synapse-config/api` folder under the ESB Config project you specified.
-6. Open the new artifact from the project explorer, go to the <b>Properties</b> tab and update any [optional REST API properties](../../../references/synapse-properties/rest-api-properties/#rest-api-properties-optional).
+6. Open the new artifact from the project explorer. Select the **Design View** to view the API artifact with the default **Resource**.
+
+    <img src="../../../assets/img/create_artifacts/new_api/api-artifact-design-view.png" width="500">
+
+7. Click the API to open the <b>Properties</b> tab and update any [optional REST API properties](../../../references/synapse-properties/rest-api-properties/#rest-api-properties-optional).
+
+    <img src="../../../assets/img/create_artifacts/new_api/api-properties.png" width="700">
 
 ### Step 2: Add new API Resources (Optional)
 
@@ -40,9 +55,11 @@ When you created the API, an API resource is created by default. If you want to 
     </api>
     ```    
 
-## Step 3: Update API Resource Properties
+### Step 3: Update API Resource Properties
 
 Open the REST API artifact and go to the **Design** view of the API Resource, click the **Resource** icon to enable the **Properties** tab. 
+
+<img src="../../../assets/img/create_artifacts/new_api/api-resource-properties.png" width="700">
 
 You can now update the [API Resource properties](../../../references/synapse-properties/rest-api-properties/#rest-api-resource-properties).
 

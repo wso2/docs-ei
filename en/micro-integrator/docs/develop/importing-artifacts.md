@@ -1,11 +1,21 @@
 # Importing Artifacts
 
-Follow the instructions given below to import an integration artifact into WSO2 Integration Studio .
+Follow the instructions given below to import an integration artifact into WSO2 Integration Studio.
 
-1.  Right click the project and select the artifact type.
-2.  Select the **Import Artifact** option and click **Next**.
-3.  Specify the location to save the artifact.
-4.  Click **Finish**. 
+1.  [Create an ESB project](../../develop/creating-projects).
+2.	Right-click the ESB project, click **New**, and select the type of artifact you want to import. For example, let's import a REST API artifact.
 
-The artifacts are created in the `src/main/synapse-config/<artifact_type>` folder under the ESB Config project you specified. 
+	<img src="../../assets/img/create_artifacts/new-artifact.png">
+
+3.  Select the **Import Artifact** option and click **Next**.
+
+	<img src="../../assets/img/create_artifacts/select-import-artifact-option.png" width="500">
+
+4.  Browse for the configuration file of your artifact, specify the location to save the artifact.
+
+	<img src="../../assets/img/create_artifacts/select-artifact-file.png" width="500">
+
+5.  Click **Finish**. 
+
+The artifacts are created in the `src/main/synapse-config/<artifact_type>` folder under the ESB project you specified. 
 

@@ -27,7 +27,7 @@ or Group Endpoint (i.e. Failover/Load balance/Recipient list). Group
 Endpoint is only supported in non-blocking mode.
 
 !!! Info
-    The Call mediator is a [content-unaware](../../../concepts/message-processing-units/#classification-of-mediators) mediator.
+    The Call mediator is a [content-unaware](../../../references/mediators/about-mediators/#classification-of-mediators) mediator.
 
 ## Enabling mutual SSL in the blocking mode
 

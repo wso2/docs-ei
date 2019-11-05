@@ -1,12 +1,20 @@
 # Creating a Proxy Service
 
-Follow the instructions given below to create a new Proxy Service artifact in WSO2 Integration Studio.
+Follow the instructions given below to create a new [Proxy Service](../../../references/synapse-properties/proxy-service-properties)  artifact in WSO2 Integration Studio.
 
 ## Instructions
 
-1.  If you have already created an [ESB Config project](../../creating-projects/#esb-config-project), right-click the project in the navigator and go to **New → Proxy Service** to open the **New Proxy Service** dialog. 
+1.  Right-click the project in the navigator and go to **New → Proxy Service** to open the **New Proxy Service** dialog box. 
+
+    <img src="../../../assets/img/create_artifacts/new_proxy_service/select-new-proxy.png">
+
 2.  Select **Create New Proxy Service** and click **Next**.
+
+    <img src="../../../assets/img/create_artifacts/new_proxy_service/create-new-proxy-option.png" width="500">
+
 3.  Type a unique name for the proxy service and select a proxy service template from the list shown below. These templates will automatically generate the mediation flow that is required for each use case.
+
+    <img src="../../../assets/img/create_artifacts/new_proxy_service/new-proxy-artifact-dialog.png" width="500">
 
     <table>
     <tr class="header">
@@ -42,7 +50,7 @@ Follow the instructions given below to create a new Proxy Service artifact in WS
     </tbody>
     </table>
 
-4. Do one of the following:  
+4. Do one of the following to save the proxy service:  
     -   To save the proxy service in an existing ESB Config project in your workspace, click **Browse** and select that project.
     -   To save the proxy service in a new ESB Config project, click **Create new Project** and create the new project.
 5. Click **Finish**. The proxy service is created in the `src/main/synapse-config/proxy-services` folder under the project you specified.
