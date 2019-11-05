@@ -1,15 +1,14 @@
 # Monitoring Statistics and Tracing
 
-Monitoring the usage of the integration runtime with statistical information is a very important fact for 
-getting an understanding of the overall health of a system that runs in the production. 
+Monitoring the usage of the integration runtime using statistical information is very important for understanding the overall health of a system that runs in production. 
 Statistical data help to do proper capacity planning, to keep the runtimes in a healthy state, 
 and for debugging and troubleshooting problems. 
-When it comes to troubleshooting, tracing of the messages passing through the mediation flows of the 
-MicroIntegrator becomes very handy. 
-For monitoring statistics and tracing, we can use the Analytics profile of the 
+When it comes to troubleshooting, tracing messages that pass through the mediation flows of the 
+Micro Integrator becomes very useful. 
+For monitoring statistics and tracing, we can use the Analytics profile of 
 [WSO2 Enterprise Integrator 6.x family (EI Analytics)](https://wso2.com/enterprise-integrator/6.5.0). 
 
-The following are the statistics we can monitor through the EI Analytics profile.
+You can monitor the following statistics through the EI Analytics profile:
 
 - Request Count
 - Overall TPS
@@ -20,9 +19,8 @@ The following are the statistics we can monitor through the EI Analytics profile
 - Top Inbound Endpoints by Request Count
 - Top Sequences by Request Count
 
-Please refer to [here](https://docs.wso2.com/display/EI650/Analyzing+the+ESB+Profile+Statistics+Overview) 
-for more information on what we can monitor from EI Analytics.
-
+Please see [this documentation](https://docs.wso2.com/display/EI650/Analyzing+the+ESB+Profile+Statistics+Overview) 
+for more information on what you can monitor using EI Analytics.
 
 The Analytics profile consists of two components: **Worker** and **Dashboard**. 
 The worker is the server that processes the data streams that are sent from the Micro Integrator and publishes 
