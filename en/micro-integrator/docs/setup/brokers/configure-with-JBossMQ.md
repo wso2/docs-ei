@@ -15,7 +15,6 @@ To configure the JMS transport with JBossMQ:
         [[transport.jms.listener]]
         name = "myQueueListener"
         parameter.initial_naming_factory = "org.jnp.interfaces.NamingContextFactory"
-        parameter.broker_name = "jboss" 
         parameter.provider_url = "jnp://localhost:1099"
         parameter.connection_factory_name = "QueueConnectionFactory"
         parameter.connection_factory_type = "queue/susaQueue"
@@ -27,7 +26,6 @@ To configure the JMS transport with JBossMQ:
         [[transport.jms.sender]]
         name = "myQueueSender"
         parameter.initial_naming_factory = "org.jnp.interfaces.NamingContextFactory"
-        parameter.broker_name = "jboss" 
         parameter.provider_url = "jnp://localhost:1099"
         parameter.connection_factory_name = "QueueConnectionFactory"
         parameter.connection_factory_type = "queue/susaQueue"

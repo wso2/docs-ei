@@ -1,6 +1,6 @@
 # Adding SSL Certificates to Keystores
 
-Follow the steps given below to add a new [CA-signed certificate](../../references/using_keystores.md) to your [keystores](../../references/using_keystores.md). Note that you do not need to create a new keystore everytime you need a CA-signed certificate.
+Follow the steps given below to add a new [CA-signed certificate](../../../references/security/using_keystores) to your [keystores](../../../references/security/using_keystores). Note that you do not need to create a new keystore everytime you need a CA-signed certificate.
 
 ## Generating SSL certificates for keystores
 

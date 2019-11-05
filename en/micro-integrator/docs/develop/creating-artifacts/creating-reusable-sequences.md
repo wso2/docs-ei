@@ -52,4 +52,6 @@ The sequence mediator name and static reference key are updated to point to the 
 
 ## Examples
 
-## Guides
+-   [Breaking Complex Flows into Multiple Sequences](../../../use-cases/examples/sequence_examples/using-multiple-sequences)
+-   [Using Fault Sequences](../../../use-cases/examples/sequence_examples/using-fault-sequences)
+-   [Reusing Sequences](../../../use-cases/examples/sequence_examples/custom-sequences-with-proxy-services)

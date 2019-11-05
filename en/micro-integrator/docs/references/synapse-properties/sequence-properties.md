@@ -18,7 +18,7 @@ Fault sequences are used for [error handling](../../references/synapse-propertie
 
 ![fault sequence](../../assets/img/concepts/fault-sequence.png)
 
-If a fault sequence is not specified explicitly, the **default** fault sequence of the proxy service or REST API will be used to handle errors. The default fault sequence will log the message, the payload, and any error/exception encountered before the [Drop](../../../references/mediators/drop-Mediator) mediator stops further processing. You should configure the fault sequence for [error handling](error-handling-concepts.md) instead of simply dropping messages.
+If a fault sequence is not specified explicitly, the **default** fault sequence of the proxy service or REST API will be used to handle errors. The default fault sequence will log the message, the payload, and any error/exception encountered before the [Drop](../../../references/mediators/drop-Mediator) mediator stops further processing. You should configure the fault sequence for error handling instead of simply dropping messages.
 
 ## Named Sequences
 

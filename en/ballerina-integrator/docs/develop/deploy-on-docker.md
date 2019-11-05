@@ -1,4 +1,7 @@
-# Deploying on Docker
+---
+title: Deploying on Docker
+note: This is an auto-generated file do not edit this, You can edit content in "ballerina-integrator" repo
+---
 
 Deploying your Ballerina code is easier than ever with the growth of containers and container platforms such as Kubernetes.
 

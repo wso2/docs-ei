@@ -1,4 +1,7 @@
-# Integration Use Cases
+---
+title: Integration Use Cases
+note: This is an auto-generated file do not edit this, You can edit content in "ballerina-integrator" repo
+---
 
 The Ballerina Integrator is the first code-centric approach to programming integrations directly into applications and microservices. It can be used to easily implement the use cases listed in this page and this is demonstrated using tutorials. Tutorials showcase how to build different types of integrations using a complete development lifecycle including IDE configuration, modules, dependencies, coding, and unit testing. Furthermore, each of these tutorials can be deployed as a project of its own via Docker and Kubernetes and setup for easy observability.
 
@@ -17,8 +20,8 @@ SaaS offering is a common software distribution model followed by many vendors t
   </tr>
   
   <tr>
-    <td><b><a href="../tutorials/saas-integrations/sap/interacting-with-sap/1/">Interacting with SAP</a></b></br>
-    Interact with a SAP R/3 backend using BAPI requests and IDoc messages</td>
+    <td><b><a href="../tutorials/saas-integrations/amazons3/working-with-object-service/1/">Working with Amazon S3 Object Service</a></b></br>
+    Use Amazon S3 connector to interact with Amazon S3 object service</td>
     <td><b><a href="../tutorials/saas-integrations/sfdc46/working-with-salesforce-client/1/">Working with Salesforce Client</a></b></br>
     Use Salesforce client to performa a variety of CRUD operations</td>
     <td><b><a href="../tutorials/saas-integrations/sfdc46/salesforce-to-mysql-db/1/">Salesforce to MySQL Database</a></b></br>
@@ -28,8 +31,9 @@ SaaS offering is a common software distribution model followed by many vendors t
   <tr>
     <td><b><a href="../tutorials/saas-integrations/sfdc46/import-contacts-into-salesforce-using-ftp/1/">Import Contacts into Salesforce Using FTP</a></b></br>
     Import contacts from a CSV file into Salesforce using FTP</td>
-    <td><b><a href="../tutorials/saas-integrations/amazons3/working-with-object-service/1/">Working with Amazon S3 Object Service</a></b></br>
-    Use Amazon S3 connector to interact with Amazon S3 object service</td>
+    <!--<td><b><a href="../tutorials/saas-integrations/gmail/working-with-googlespreadsheet-service/1/">Working with Google Spreadsheet Service</a></b></br>
+    Working with Google Spreadsheet Service</td> -->
+    <td></td>
     <td></td>
   </tr>
 </table>
@@ -40,13 +44,14 @@ The messaging system supports loosely coupled asynchronous data to move from one
 
 <table>
 <tr>
-    <td><b><a href="../tutorials/messaging-integrations/sending-json-data-to-a-jms-queue/1/">Sending JSON to an ActiveMQ Queue</a></b></br>
+    <td><b><a href="../tutorials/messaging-integrations/json-data-to-activemq-queue/1/">Sending JSON data to an ActiveMQ Queue</a></b></br>
     Tranform JSON message to a text message and send to an ActiveMQ queue</td>
-    <td ><b><a href="../tutorials/messaging-integrations/reliable-delivery/1/">Reliable Delivery</a></b></br>
+    <td><b><a href="../tutorials/messaging-integrations/reliable-delivery/1/">Reliable Delivery</a></b></br>
     Use store forward connector to achieve reliable message delivery</td>
+    <td><b><a href="../tutorials/messaging-integrations/messaging-with-kafka/1/">Messaging with Kafka</a></b></br>
+    Use Kafka connector to publish and consume messages to a Kafka Topic
     <td></td>
 </tr>
-
 </table>
 
 ### Database Integration
@@ -94,7 +99,7 @@ Service-oriented architecture (SOA) patterns provide structure and clarity, enab
     Implement content-based routing</td>
     <td><b><a href="../tutorials/integration-patterns-and-soa/pass-through-messaging/1/">Pass-through Messaging</a></b></br>
     Implement pass-through messaging</td>
-    <td><b><a href="../tutorials/integration-patterns-and-soa/integration-patterns-and-soa/scatter-gather-flow/1/">Scatter-Gather Flow Control</a></b></br>
+    <td><b><a href="../tutorials/integration-patterns-and-soa/scatter-gather-flow/1/">Scatter-Gather Flow Control</a></b></br>
     Implement scatter-gather flow where two files are read simultaneously and aggregated</td>
   </tr>
   
@@ -108,7 +113,7 @@ Service-oriented architecture (SOA) patterns provide structure and clarity, enab
   </tr>
 
   <tr>
-    <td><b><a href="../tutorials/integration-patterns-and-soa/exposing-soap-service/1/">REST to SOAP</a></b></br>
+    <td><b><a href="../tutorials/integration-patterns-and-soa/rest-to-soap-service/1/">REST to SOAP</a></b></br>
     Accept a REST request and convert it to a SOAP request</td>
     <td><b><a href="../tutorials/integration-patterns-and-soa/backend-for-frontend/1/">Backend for Frontend</a></b></br>
     Apply the BFF design pattern</td>

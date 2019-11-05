@@ -1,41 +1,81 @@
-# Setting up a Read-Only LDAP
+# Configuring a User Store
 
-Follow the steps given below to set up a read-only LDAP user store:
+An external user store (such as an LDAP) can be used with the Micro Integrator for the following two scenarios:
 
-## Set up a read-only LDAP
+-	When [WS-Security](../../../references/security/security-implementation) is enabled for your integration artifacts, the user store will be used for authenticating the credentials of users invoking the artifacts. 
 
-Set up your read-only LDAP.
+	See the following resources on how to enable WS security for integration artifacts:
 
-## Connect the server to the user store
+	-	[Securing a proxy service](../../../develop/advanced-development/applying-security-to-a-proxy-service)
+	-	[Securing a data service](../../../develop/creating-artifacts/data-services/securing-data-services)
+	-	[Securing a REST API](../../../develop/advanced-development/applying-security-to-an-api)
 
-Open the esb.toml file and apply  the following updates:
+-	Optionally, you can use the external user store for [securing the management API](../../../setup/security/securing_management_api). By default, the management API uses a file-based registry.
 
-```java
-[user_store]
-type = "read_only_ldap"
-connection_url = "ldap://ldap.example.com:389"
-connection_name = "uid=admin,ou=wso2is"
-connection_password = "$secret{ldap_password}"
-base_dn = "dc=example,dc=com"
+## Setting up an LDAP
 
-```
-Find more parameters to configure this user store.
+See the documentation of your LDAP provider for instructions on setting up the LDAP, and for managing users and roles.
 
-## Create admin credentials in the user store
+!!! Note
+	The current release of the Micro Integrator does not offer user management functionality. Therefore, you must manage users and roles from your LDAP and then [connect it to the Micro Integrator](#connecting-to-the-ldap).
 
-Be sure that the user administrator is updated:
+## Connecting to the LDAP 
 
-1. Get an encrypted password for the administrator.
-2. Open the esb.toml file and update the following:
-    ```java
-    [secrets]
-    ldap_password = "encrypted_value_1"
-    ```
-3. Update the administrator credentials in the esb.toml file:
-   ```java
-   [super_admin]
-   username = "admin"
-   password = "admin"
-   create_super_admin = true
+Follow the steps given below to connect the Micro Integrator to the LDAP user store.
 
-   ```
+!!! Note
+	The following configuration defines **read-only** access to the LDAP from the Micro Integrator. The Micro Integrator does not require write access since it will not manage the user data in the LDAP.
+
+1.	Open the `deployment.toml` file stored in the `<MI_HOME>/conf/` directory.
+2.	Add the following configurations and update the required values. 
+
+	```toml
+	[user_store]
+	connection_url = "ldap://localhost:10389"  
+	connection_name = "uid=admin,ou=system" 
+	connection_password = "admin"  
+	user_search_base = "ou=system"   
+	```
+
+	Parameters used above are explained below.
+	
+	<table>
+		<tr>
+			<th>Parameter</th>
+			<th>Value</th>
+		</tr>
+		<tr>
+			<td>
+				<code>connection_url</code>
+			</td>
+			<td>
+				The URL for connecting to the LDAP. If you are connecting over ldaps (secured LDAP), you need to import the certificate of the user store to the truststore (wso2truststore.jks by default). See the instructions on how to <a href="../../../setup/security/importing_ssl_certificate">add certificates to the truststore</a>.
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<code>connection_name</code>
+			</td>
+			<td>
+				The username used to connect to the user store and perform various operations. This user does not need to be an administrator in the user store. However, the user requires permission to read the user list and user attributes, and to perform search operations on the user store. The value you specify is used as the DN (Distinguish Name) attribute of the user who has sufficient permissions to perform operations on users and roles in LDAP.
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<code>connection_password</code>
+			</td>
+			<td>
+				Password for the connection user name.
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<code>user_search_base</code>
+			</td>
+			<td>
+				The DN of the context or object under which the user entries are stored in the user store. When the user store searches for users, it will start from this location of the directory.
+			</td>
+		</tr>
+	</table>
+
+See the [complete list of parameters](../../../references/config-catalog/#ldap-user-store) you can configure for the ldap user store.

@@ -8,7 +8,7 @@ You can improve performance of your non-blocking invocations by configuring the 
 
 ```toml
 [transport.http]
-socket_timeout = "3m"
+socket_timeout = 180000
 core_worker_pool_size = 400
 max_worker_pool_size = 400
 worker_pool_queue_length = -1
@@ -133,10 +133,11 @@ available from the `         MultiThreadedHttpConnectionManager        `. This c
 In order to overcome this issue, setting the `defaultMaxConnectionsPerHost` parameter to `100` in the deployment.toml file (stored in the `MI_HOME/conf` directory).
 
 ```toml
-[transport.http]
-blocking_sender.enable_client_caching = true
-blocking_sender.transfer_encoding = "chunked"
-blocking_sender.default_connections_per_host = 100
+[transport.blocking.http]
+sender.enable_client_caching = true
+sender.transfer_encoding = "chunked"
+sender.default_connections_per_host = 100
+
 ```
 
 <!--

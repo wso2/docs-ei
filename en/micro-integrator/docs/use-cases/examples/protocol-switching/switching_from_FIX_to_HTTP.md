@@ -32,6 +32,8 @@ Following are the integration artifacts (proxy service) that we can used to impl
 </proxy>
 ```
 
+Sample XSLT:
+
 ```xml 
 <xsl:stylesheet version="2.0"
         xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
@@ -48,6 +50,8 @@ Following are the integration artifacts (proxy service) that we can used to impl
     </xsl:template>
 </xsl:stylesheet>
 ```
+
+<!--
 
 ## Configuring Sample FIX Applications
 
@@ -158,7 +162,14 @@ two directories.
 -   You will need the sample FIX blotter that come with Quickfix/J (Banzai). Configure the blotter to establish sessions with Synapse.
 -   Start the Axis2 server and deploy the `SimpleStockQuoteService` if not already deployed.
 -   Start Banzai.
--   Enable FIX transport in the `Synapse axis2.xml` .
+-   Enable FIX transport by adding below configuration into the MI_HOME/conf/deployment.toml file.
+
+    ```toml
+    [transport.fix]
+    listener.enable = true
+    sender.enable = false
+    ```
+
 -   Configure ESB for FIX samples.
 -   Open up the `ESB_HOME/repository/samples/synapse_sample_259.xml`
     file and make sure that `transport.fix.AcceptorConfigURL` property points to the `fix-synapse.cfg` file you created.
@@ -169,3 +180,4 @@ two directories.
 -   Send an order request from Banzai to Synapse. For example, Buy DELL
     1000 @ 100. User has to send a "Limit" Order because price is a
     mandatory field for `          placeOrder         ` operation.
+-->

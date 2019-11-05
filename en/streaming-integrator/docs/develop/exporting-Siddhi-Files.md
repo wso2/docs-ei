@@ -88,9 +88,9 @@ To export one or more Siddhi applications for Kubernetes, follow the procedure b
 
 2. Create the required Siddhi files. The rest of the documentation assumes that you have one or more Siddhi applications to be exported as a Kubernetes artifact. For more information, see [Creating a Siddhi Application](creating-a-Siddhi-Application.md).
 
-3. Click **Export** menu option and then click **For Docker**.
+3. Click **Export** menu option and then click **For Kubernetes**.
 
-    ![Export as Docker/Kubernetes Menu](../images/exporting-Siddhi-Applications/Export_Docker_k8s_Menu.png)
+    ![Export as Docker/Kubernetes Menu](../images/exporting-Siddhi-Applications/export-kubernetes-k8s-menu.png)
 
     As a result, the following wizard opens.
 

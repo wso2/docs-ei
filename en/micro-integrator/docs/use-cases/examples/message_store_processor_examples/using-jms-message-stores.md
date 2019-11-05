@@ -19,13 +19,13 @@ Shown below are the synapse artifacts that are used to define this use case.
 ```
 
 ```xml tab="Endpoint"
-<endpoint name="SimpleStockQuoteService"> 
+<endpoint xmlns="http://ws.apache.org/ns/synapse" name="SimpleStockQuoteService"> 
     <address uri="http://127.0.0.1:9000/services/SimpleStockQuoteService"/>
 </endpoint>
 ```
 
 ```xml tab="Proxy Service"
-<proxy name="Proxy1" transports="https http" startOnLoad="true" trace="disable">   
+<proxy xmlns="http://ws.apache.org/ns/synapse" name="Proxy1" transports="https http" startOnLoad="true" trace="disable">   
   <target>
     <inSequence>
       <property name="FORCE_SC_ACCEPTED" value="true" scope="axis2"/>
@@ -38,7 +38,7 @@ Shown below are the synapse artifacts that are used to define this use case.
 ```
 
 ```xml tab="Message Processor"
-<messageProcessor class="org.apache.synapse.message.processor.impl.forwarder.ScheduledMessageForwardingProcessor" name="Processor1" targetEndpoint="SimpleStockQuoteService" messageStore="JMSMS">
+<messageProcessor xmlns="http://ws.apache.org/ns/synapse" class="org.apache.synapse.message.processor.impl.forwarder.ScheduledMessageForwardingProcessor" name="Processor1" targetEndpoint="SimpleStockQuoteService" messageStore="JMSMS">
        <parameter name="max.delivery.attempts">4</parameter>
        <parameter name="interval">4000</parameter>
        <parameter name="is.active">true</parameter>
@@ -82,27 +82,50 @@ See the descriptions of the above configurations:
 
 Create the artifacts:
 
-1. Set up WSO2 Integration Studio.
-2. Create an ESB Config project
-3. Create integration artifacts with the above configuration.
-4. Deploy the artifacts in your Micro Integrator.
+1. [Set up WSO2 Integration Studio](../../../../develop/installing-WSO2-Integration-Studio).
+2. [Create an ESB Solution project](../../../../develop/creating-projects/#esb-config-project).
+3. Create the [proxy service](../../../../develop/creating-artifacts/creating-a-proxy-service), [endpoint](../../../../develop/creating-artifacts/creating-endpoints), and [message processor](../../../../develop/creating-artifacts/creating-a-message-processor) with the configurations given above.
+4. [Deploy the artifacts](../../../../develop/deploy-and-run) in your Micro Integrator.
 
-Set up the back-end service:
+Set up the back-end service.
 
-........
+1. Download the [stockquote_service.jar](https://github.com/wso2-docs/WSO2_EI/blob/master/Back-End-Service/stockquote_service.jar).
+2. Open a terminal, navigate to the location of the downloaded service, and run it using the following command:
 
+    ```bash
+    java -jar stockquote_service.jar
+    ```
 
 Configure the Micro Integrator with Apache ActiveMQ and set up the JMS Sender.
+[Configure the ActiveMQ broker](../../../../setup/brokers/configure-with-ActiveMQ).
 
 Invoke the service:
 
-```
-ant stockquote -Daddurl=http://localhost:8280/services/Proxy1 -Dmode=placeorder
+```bash
+POST http://localhost:9090/services/Proxy1 HTTP/1.1
+Accept-Encoding: gzip,deflate
+Content-Type: text/xml;charset=UTF-8
+SOAPAction: "urn:getQuote"
+Content-Length: 492
+Host: localhost:9090
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.1.1 (java 1.5)
+
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="http://services.samples" xmlns:xsd="http://services.samples/xsd">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ser:getQuote xmlns:ser="http://services.samples" xmlns:xsd="http://services.samples/xsd">
+         <ser:request>
+            <xsd:symbol>IBM</xsd:symbol>
+         </ser:request>
+      </ser:getQuote>
+   </soapenv:Body>
+</soapenv:Envelope>
 ```
 
 Note a message similar to the following example:  
 
-``` java
+```bash
 SimpleStockQuoteService :: Accepted order for : 7482 stocks of IBM at $ 169.27205579038733
 ```
 
@@ -124,13 +147,13 @@ Shown below are the synapse artifacts that are used to define this use case.
 ```
 
 ```xml tab="Endpoint"
-<endpoint name="SimpleStockQuoteService">
+<endpoint xmlns="http://ws.apache.org/ns/synapse" name="SimpleStockQuoteService">
   <address uri="http://127.0.0.1:9000/services/SimpleStockQuoteService"/>
 </endpoint>
 ```
 
 ```xml tab="Proxy Service"
-<proxy name="Proxy2" transports="https,http" statistics="disable" trace="disable" startOnLoad="true">
+<proxy name="Proxy2" xmlns="http://ws.apache.org/ns/synapse" transports="https,http" statistics="disable" trace="disable" startOnLoad="true">
   <target>
     <inSequence>
       <property name="FORCE_SC_ACCEPTED" value="true" scope="axis2" />
@@ -142,7 +165,7 @@ Shown below are the synapse artifacts that are used to define this use case.
 ```
 
 ```xml tab="Sequence"
-<sequence name="replySequence">
+<sequence xmlns="http://ws.apache.org/ns/synapse" name="replySequence">
   <log level="full">
     <property name="REPLY" value="MESSAGE" />
   </log>
@@ -205,40 +228,22 @@ See the descriptions of the above configurations:
 
 Create the artifacts:
 
-1. Set up WSO2 Integration Studio.
-2. Create an ESB Config project
-3. Create a REST Api artifact with the above configuration.
-4. Deploy the artifacts in your Micro Integrator.
-
-Set up the back-end service:
-
-........
+1. [Set up WSO2 Integration Studio](../../../../develop/installing-WSO2-Integration-Studio).
+2. [Create an ESB Solution project](../../../../develop/creating-projects/#esb-config-project).
+3. Create the [proxy service](../../../../develop/creating-artifacts/creating-a-proxy-service), [mediation sequences](../../../../develop/creating-artifacts/creating-reusable-sequences), [endpoint](../../../../develop/creating-artifacts/creating-endpoints), [message store](../../../../develop/creating-artifacts/creating-a-message-store) and [message processor](../../../../develop/creating-artifacts/creating-a-message-processor) with the configurations given above.
+4. [Deploy the artifacts](../../../../develop/deploy-and-run) in your Micro Integrator.
 
 
-Configure the Micro Integrator with Apache ActiveMQ and set up the JMS Sender.
+1. Download the [stockquote_service.jar](https://github.com/wso2-docs/WSO2_EI/blob/master/Back-End-Service/stockquote_service.jar).
+2. Open a terminal, navigate to the location of the downloaded service, and run it using the following command:
+
+    ```bash
+    java -jar stockquote_service.jar
+    ```
+   
+[Configure the ActiveMQ broker](../../../../setup/brokers/configure-with-ActiveMQ).
 
 Invoke the service:
 
-```bash
-ant stockquote -Daddurl=http://localhost:8280/services/Proxy2
-```
+Note a message similar to the following example printed in the backend service.  
 
-Note a message similar to the following example printed in the Axis2 Server console.  
-
-```bash
-INFO - LogMediator To: /services/InOutProxy, WSAction: urn:getSimpleQuote, SOAPAction: urn:getSimpleQuote, MessageID: urn:uuid:dec12d9c-5289-476c-9d9a-b7bb7ebc7be4, Direction: request, REPLY = MESSAGE, Envelope:
-     <?xml version='1.0' encoding='utf-8'?>
-     <soapenv:envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
-     <soapenv:body><ns:getsimplequoteresponse xmlns:ns="http://services.samples">
-     <ns:return xmlns:ax21="http://services.samples/xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ax21:GetQuoteResponse">
-     <ax21:change>-2.3141856129298564</ax21:change><ax21:earnings>12.877155014054368</ax21:earnings>
-     <ax21:high>172.73334579339183</ax21:high><ax21:last>165.31090559096748</ax21:last>
-     <ax21:lasttradetimestamp>Thu Dec 29 07:48:42 IST 2011</ax21:lasttradetimestamp>
-     <ax21:low>-164.80767926468306</ax21:low><ax21:marketcap>9451314.231029626</ax21:marketcap>
-     <ax21:name>IBM Company</ax21:name><ax21:open>-161.41234152690964</ax21:open>
-     
-    <ax21:peratio>25.74977555860659</ax21:peratio><ax21:percentagechange>-1.2214036358135663</ax21:percentagechange>
-    
-    <ax21:prevclose>189.46935681818218</ax21:prevclose><ax21:symbol>IBM</ax21:symbol><ax21:volume>8611</ax21:volume>
-     </ns:return></ns:getsimplequoteresponse></soapenv:body></soapenv:envelope>
-```

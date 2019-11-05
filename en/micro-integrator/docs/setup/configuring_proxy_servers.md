@@ -21,8 +21,8 @@ the configured proxy server.
 
 ```toml
 [transport.http]
-sender.proxyHost= "$ref{server.hostname}"
-sender.proxyPort= 3128
+sender.proxy_host= "$ref{server.hostname}"
+sender.proxy_port= 3128
 ```
 
 ### For blocking service calls
@@ -33,9 +33,9 @@ values. This configuration ensures that all HTTP requests pass through
 the configured proxy server.
 
 ```toml
-[transport.http]
-sender.proxyHost= "$ref{server.hostname}"
-sender.proxyPort= 3128
+[transport.blocking.http]
+sender.parameter.'http.proxyHost'= "$ref{server.hostname}"
+sender.parameter.'http.proxyPort'= 3128
 ```
 
 !!! Info

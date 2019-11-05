@@ -1,4 +1,7 @@
-# Managing Ballerina Code
+---
+title: Managing Ballerina Code
+note: This is an auto-generated file do not edit this, You can edit content in "ballerina-integrator" repo
+---
 
 When you write large programs often you would want to organize your code into shareable units. 
 In Ballerina, you can divide your program into such units, which are called Ballerina modules. 

@@ -9,12 +9,13 @@ the immutable images on Docker or Kubernetes. One advantage of having an
 immutable docker image is that you can easily implement a CI/CD pipeline
 to systematically test the solution before deploying in production.
 
-## Docker Images (WSO2 Micro Integrator)
+## Base Docker Images
 
-Two type of docker images are available for the Micro Integrator:
+Two types of base Docker images are available for the Micro Integrator:
 
--   The Micro Integrator Docker image (with the latest products) is
-    available in the [WSO2 Docker Registry](https://docker.wso2.com/) .
+-   The Micro Integrator Docker image (with the latest updates) is
+    available in the [WSO2 Docker Registry](https://docker.wso2.com/).
+    
     **Note** that you need a valid WSO2 subscription to use the Docker
     image with updates. Therefore, you need to provide your log in
     credentials when downloading the Docker image. If you do not already
@@ -32,7 +33,7 @@ Two type of docker images are available for the Micro Integrator:
     docker login docker.wso2.com
     ```
 
--   The community version of Micro Integrator's base Docker image is
+-   The community version of WSO2 Micro Integrator's base Docker image is
     available on [DockerHub](https://hub.docker.com/r/wso2/micro-integrator).
 
     **Base Docker Image and Tag (community version)**
@@ -40,19 +41,16 @@ Two type of docker images are available for the Micro Integrator:
     ```bash
     wso2/micro-integrator:1.1.0
     ```
-    
-## Build and run an App on Docker using Integration Studio
 
-In this section we are going to create a Docker project to deploy our integration solutions inside a Docker 
-environment.
+## Run on Docker using WSO2 Integration Studio
 
-Let’s create a simple proxy service using Integration studio and deploy it in a Docker container. 
+Let's create a **Docker project** for an integration solution and run it on a Docker container. You will use [WSO2 Integration Studio](../../../develop/WSO2-Integration-Studio) and the [base Docker image](#base-docker-images) of the Micro Integrator for this process.
 
-1.  Create the following synapse configuration:
+1.  [Create a proxy service](../../../develop/creating-artifacts/creating-a-proxy-service) with the following configuration:
 
     - Synapse configuration
 
-        ```
+        ```xml
         <?xml version="1.0" encoding="UTF-8"?>
         <proxy name="HelloWorld" startOnLoad="true" transports="http https" xmlns="http://ws.apache.org/ns/synapse">
             <target>
@@ -68,13 +66,12 @@ Let’s create a simple proxy service using Integration studio and deploy it in 
             </target>
         </proxy>
         ```
-    - Graphical View
 
+    - Graphical view
        ![Sample Proxy Service](../../assets/img/sample-proxy-service.png)
 
-2.  Now we can [Create Docker Project](../../develop/create-docker-project.md) with the Synapse configuration given above.
+2.  You can now [create a Docker project](../../develop/create-docker-project.md) that includes the Synapse configuration given above.
 3.  Use the following details:
-
     ```bash
     Target Repository : sampleproxy
     Target Tag : 1.0.0
@@ -92,37 +89,39 @@ Let’s create a simple proxy service using Integration studio and deploy it in 
     sampleproxy             1.0.0               49092809b36a        10 minutes ago      315MB
     wso2/micro-integrator   1.1.0               088477c689f6        2 days ago          315MB
     ```
-
-5.  Now you can up the container with following command:
+    
+5.  Start the container with the following command:
 
     ```bash
     docker run -d -p 8290:8290 sampleproxy:1.0.0
     ```
 
-    For example, invoke proxy as follows:
-
-    ```bash
-    curl http://localhost:8290/services/HelloWorld -XGET
-    ```
-
-    You will be able to get the response:
-     
-    ```bash
-    {"Hello":"World"}
-    ```
-    
-    If you want to use the [Monitoring Dashboard](../../administer-and-observe/working-with-monitoring-dashboard.md) please use following docker command
+    If you want to use the [micro integrator dashboard](../../administer-and-observe/working-with-monitoring-dashboard.md) for monitoring, use following docker command:
 
     ```bash
     docker run -p 8290:8290 -p 9164:9164 -e   JAVA_OPTS="-DenableManagementApi=true" sampleproxy:1.0.0
     ```
 
-## Build and run on Docker
+6.  Invoke the proxy service as follows:
 
-Given below are the basic steps you need to follow to run the Micro Integrator on Docker:
+    ```bash
+    curl http://localhost:8290/services/HelloWorld -XGET
+    ```
 
-1.  [Export the integration artifacts](../../develop/exporting-artifacts.md) into a CAR file.
-2.  **Create the Dockerfile** as shown below. This file contains
+    You will see the following response:
+     
+    ```bash
+    {"Hello":"World"}
+    ```
+
+## Create Docker files manually
+
+If you already have **packaged integration artifacts** in a CAR file, you can manually create the Docker files and deploy on Docker. Follow the steps given below.
+
+!!! Tip
+    **Before you begin**: Use WSO2 Integration Studio to [create the integration artifacts](../../../develop/intro-integration-development/#develop_artifacts) and then [export the integration artifacts](../../develop/exporting-artifacts.md) into a CAR file.
+
+1.  **Create the Dockerfile** as shown below. This file contains
     instructions to download the base Docker image of WSO2 Micro
     Integrator from DockerHub (community version) or the WSO2 Docker
     Registry (includes updates), and to copy the integration artifacts
@@ -130,7 +129,7 @@ Given below are the basic steps you need to follow to run the Micro Integrator o
 
     The **Dockerfile**:
 
-    ```java
+    ```bash
     FROM <docker_image_name>:1.1.0
     COPY <directoy_path>/<capp_name> /home/wso2mi/repository/deployment/server/carbonapps
     ```
@@ -151,7 +150,7 @@ Given below are the basic steps you need to follow to run the Micro Integrator o
     <strong>Example 1: Docker image with updates</strong>
     </div>
     <div class="codeContent panelContent pdl">
-    <div class="sourceCode" id="cb1" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence" style="brush: java; gutter: false; theme: Confluence"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb1-1"><a href="#cb1-1"></a>FROM docker.<span class="fu">wso2</span>.<span class="fu">com</span>/micro-integrator:<span class="fl">1.0.</span><span class="dv">0</span></span></code></pre></div>
+    <div class="sourceCode" id="cb1" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence" style="brush: java; gutter: false; theme: Confluence"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb1-1"><a href="#cb1-1"></a>FROM docker.<span class="fu">wso2</span>.<span class="fu">com</span>/micro-integrator:<span class="fl">1.1.</span><span class="dv">0</span></span></code></pre></div>
     </div>
     </div>
     <div class="code panel pdl" style="border-width: 1px;">
@@ -159,7 +158,7 @@ Given below are the basic steps you need to follow to run the Micro Integrator o
     <strong>Example 2: Docker image without updates (community version)</strong>
     </div>
     <div class="codeContent panelContent pdl">
-    <div class="sourceCode" id="cb2" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence" style="brush: java; gutter: false; theme: Confluence"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb2-1"><a href="#cb2-1"></a>FROM wso2/micro-integrator:<span class="fl">1.0.</span><span class="dv">0</span></span></code></pre></div>
+    <div class="sourceCode" id="cb2" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence" style="brush: java; gutter: false; theme: Confluence"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb2-1"><a href="#cb2-1"></a>FROM wso2/micro-integrator:<span class="fl">1.1.</span><span class="dv">0</span></span></code></pre></div>
     </div>
     </div>
     </div></td>
@@ -191,13 +190,13 @@ Given below are the basic steps you need to follow to run the Micro Integrator o
     </tbody>
     </table>
 
-3.  **Create an immutable Docker image** for your integration artifacts on WSO2 Micro Integrator by executing the following command from the location of your Dockerfile.
+2.  **Create an immutable Docker image** for your integration artifacts on WSO2 Micro Integrator by executing the following command from the location of your Dockerfile.
 
     ```bash
     docker build -t sample_docker_image .
     ```
 
-4.  **Start a Docker container** by running the Docker image as shown below.
+3.  **Start a Docker container** by running the Docker image as shown below.
 
     ```bash
     docker run -d -p 8290:8290 sample_docker_image
