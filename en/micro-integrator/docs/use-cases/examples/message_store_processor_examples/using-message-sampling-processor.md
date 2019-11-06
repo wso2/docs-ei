@@ -1,7 +1,9 @@
 # Using the Message Sampling Processor
+This example demonstrates the usage of the message sampling processor.
+
 ## Synapse configuration
 
-Shown below are the synapse artifacts that are used to define this use case.
+Following are the artifact configurations that we can use to implement this scenario. See the instructions on how to [build and run](#build-and-run) this example.
 
 ```xml tab='Send Sequence'
 <sequence xmlns="http://ws.apache.org/ns/synapse" name="send_seq">
@@ -54,12 +56,12 @@ Create the artifacts:
 
 1. [Set up WSO2 Integration Studio](../../../../develop/installing-WSO2-Integration-Studio).
 2. [Create an ESB Solution project](../../../../develop/creating-projects/#esb-config-project).
-3. Create the [mediation sequences](../../../../develop/creating-artifacts/creating-reusable-sequences), [message store](../../../../develop/creating-artifacts/creating-a-message-store), and [message processor](../../../../develop/creating-artifacts/creating-a-message-processor) with the configurations given above.
+3. Create the [proxy service](../../../../develop/creating-artifacts/creating-a-proxy-service), [mediation sequences](../../../../develop/creating-artifacts/creating-reusable-sequences), [message store](../../../../develop/creating-artifacts/creating-a-message-store), and [message processor](../../../../develop/creating-artifacts/creating-a-message-processor) with the configurations given above.
 4. [Deploy the artifacts](../../../../develop/deploy-and-run) in your Micro Integrator.
 
-Configure the Micro Integrator with Apache ActiveMQ and set up the JMS Sender.
+[Configure the ActiveMQ broker](../../../../setup/brokers/configure-with-ActiveMQ) and set up the JMS Sender.
 
-Set up the back-end service.
+Set up the back-end service:
 
 1. Download the [stockquote_service.jar](https://github.com/wso2-docs/WSO2_EI/blob/master/Back-End-Service/stockquote_service.jar).
 2. Open a terminal, navigate to the location of the downloaded service, and run it using the following command:
@@ -68,7 +70,7 @@ Set up the back-end service.
     java -jar stockquote_service.jar
     ```
 
-Invoke the service:
+Send the following request to invoke the service:
 
 ```bash
 POST http://localhost:9090/services/StockQuoteProxy HTTP/1.1
@@ -92,4 +94,4 @@ User-Agent: Apache-HttpClient/4.1.1 (java 1.5)
 </soapenv:Envelope>
 ```
 
-When you send the request, the message will be dispatched to the proxy service. In the Proxy Service, store mediator will store the getQuote request message in the "MyStore" Message Store. Message Processor will consume the messages, and forward to the "send_seq" sequence in configured rate. You will observe that the service invocation rate is not changing when we increase the rate of proxy service invocation.
+When you send the request, the message will be dispatched to the proxy service. In the proxy service, the store mediator will store the getQuote request message in the "MyStore" message store. The message processor will consume the messages, and forward them to the "send_seq" sequence in configured rate. You will observe that the service invocation rate is not changing when we increase the rate of proxy service invocation.

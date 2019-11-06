@@ -1,17 +1,8 @@
 # Using the Message Forwarding Processor
-## Synapse configuration
-Shown below are the synapse artifacts that are used to define this use case.
+This example demonstrates the usage of the message forwarding processor.
 
-```xml tab='Endpoint'
-<endpoint xmlns="http://ws.apache.org/ns/synapse" name="StockQuoteServiceEp">
-    <address uri="http://localhost:9000/services/SimpleStockQuoteService">
-        <suspendOnFailure>
-            <errorCodes>-1</errorCodes>
-            <progressionFactor>1.0</progressionFactor>
-        </suspendOnFailure>
-    </address>
-</endpoint>
-```
+## Synapse configuration
+Following are the artifact configurations that we can use to implement this scenario. See the instructions on how to [build and run](#build-and-run) this example.
 
 ```xml tab='Proxy Service'
 <proxy xmlns="http://ws.apache.org/ns/synapse" name="StockQuoteProxy" transports="https http" startOnLoad="true" trace="disable">
@@ -44,20 +35,29 @@ Shown below are the synapse artifacts that are used to define this use case.
 </messageProcessor>
 ```
 
+```xml tab='Endpoint'
+<endpoint xmlns="http://ws.apache.org/ns/synapse" name="StockQuoteServiceEp">
+    <address uri="http://localhost:9000/services/SimpleStockQuoteService">
+        <suspendOnFailure>
+            <errorCodes>-1</errorCodes>
+            <progressionFactor>1.0</progressionFactor>
+        </suspendOnFailure>
+    </address>
+</endpoint>
+```
+
 ## Build and run
 
 Create the artifacts:
 
 1. [Set up WSO2 Integration Studio](../../../../develop/installing-WSO2-Integration-Studio).
 2. [Create an ESB Solution project](../../../../develop/creating-projects/#esb-config-project).
-3. Create the [scheduled task](../../../../develop/creating-artifacts/creating-scheduled-task), [mediation sequences](../../../../develop/creating-artifacts/creating-reusable-sequences), [endpoint](../../../../develop/creating-artifacts/creating-endpoints), [message store](../../../../develop/creating-artifacts/creating-a-message-store) and [message processor](../../../../develop/creating-artifacts/creating-a-message-processor) with the configurations given above.
+3. Create the [proxy service](../../../../develop/creating-artifacts/creating-a-proxy-service), [endpoint](../../../../develop/creating-artifacts/creating-endpoints), [message store](../../../../develop/creating-artifacts/creating-a-message-store) and [message processor](../../../../develop/creating-artifacts/creating-a-message-processor) with the configurations given above.
 4. [Deploy the artifacts](../../../../develop/deploy-and-run) in your Micro Integrator.
 
-[Configure the ActiveMQ broker](../../../../setup/brokers/configure-with-ActiveMQ).
+[Configure the ActiveMQ broker](../../../../setup/brokers/configure-with-ActiveMQ) and set up the JMS Sender.
 
-Configure the Micro Integrator with Apache ActiveMQ and set up the JMS Sender.
-
-Set up the back-end service.
+Set up the back-end service:
 
 1. Download the [stockquote_service.jar](https://github.com/wso2-docs/WSO2_EI/blob/master/Back-End-Service/stockquote_service.jar).
 2. Open a terminal, navigate to the location of the downloaded service, and run it using the following command:
@@ -66,7 +66,7 @@ Set up the back-end service.
     java -jar stockquote_service.jar
     ```
 
-Invoke the service:
+Send the following request to invoke the service:
 
 ```bash
 POST http://localhost:9090/services/StockQuoteProxy HTTP/1.1

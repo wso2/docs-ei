@@ -3,7 +3,7 @@ This sample demonstrates the basic functionality of a [message store](../../../.
 
 ## Synapse configuration
 
-The XML configuration for this sample is as follows:
+Following are the artifact configurations that we can use to implement this scenario. See the instructions on how to [build and run](#build-and-run) this example.
 
 ```xml tab='Proxy Service'
 <proxy xmlns="http://ws.apache.org/ns/synapse" name="SampleProxy" transports="http" startOnLoad="true" trace="disable">
@@ -50,12 +50,11 @@ Create the artifacts:
 
 1. [Set up WSO2 Integration Studio](../../../../develop/installing-WSO2-Integration-Studio).
 2. [Create an ESB Solution project](../../../../develop/creating-projects/#esb-config-project).
-3. Create the [mediation sequences](../../../../develop/creating-artifacts/creating-reusable-sequences) with the configurations given above.
+3. Create the [proxy service](../../../../develop/creating-artifacts/creating-a-proxy-service), [message store](../../../../develop/creating-artifacts/creating-a-message-store), and [mediation sequences](../../../../develop/creating-artifacts/creating-reusable-sequences) with the configurations given above.
 4. [Deploy the artifacts](../../../../develop/deploy-and-run) in your Micro Integrator.
 
-Invoke the service.
+Send the following request to invoke the service:
 
-Send the following request:
 ```xml
 POST http://localhost:9090/services/SampleProxy HTTP/1.1
 Accept-Encoding: gzip,deflate
@@ -86,9 +85,9 @@ the message store mediator will invoke the
 
 Analyze the logs and you will see the following log:
 
-```xml
+```bash
 INFO {org.apache.synapse.mediators.builtin.LogMediator} - To: /services/SampleProxy, WSAction: urn:getQuote, SOAPAction: urn:getQuote, MessageID: urn:uuid:ab78ee5d-f5ed-4346-a0ea-1beb2e6c0b1d, Direction: request, On-Store = Storing message
 ```
 
-You can then use the JMX view of the Synapse message store by using the
-jconsole in order to view the stored messages and delete them.
+You can then use the JMX view of the Synapse message store using
+jconsole.

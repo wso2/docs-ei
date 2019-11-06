@@ -1,7 +1,9 @@
 # Load Balancing with Message Forwarding Processor
+This example demonstrates how the message forwarding processor handles load balancing.
+
 ## Synapse configuration
 
-The XML configuration for this sample is as follows:
+Following are the artifact configurations that we can use to implement this scenario. See the instructions on how to [build and run](#build-and-run) this example.
 
 ```xml tab='Proxy Service'
 <proxy xmlns="http://ws.apache.org/ns/synapse" name="StockQuoteProxy"
@@ -87,7 +89,8 @@ Create the artifacts:
 
 1. [Set up WSO2 Integration Studio](../../../../develop/installing-WSO2-Integration-Studio).
 2. [Create an ESB Solution project](../../../../develop/creating-projects/#esb-config-project).
-3. [Deploy the artifacts](../../../../develop/deploy-and-run) in your Micro Integrator.
+3. Create the [proxy service](../../../../develop/creating-artifacts/creating-a-proxy-service), [endpoints](../../../../develop/creating-artifacts/creating-endpoints), [message stores](../../../../develop/creating-artifacts/creating-a-message-store) and [message processors](../../../../develop/creating-artifacts/creating-a-message-processor) with the configurations given above.
+4. [Deploy the artifacts](../../../../develop/deploy-and-run) in your Micro Integrator.
 
 [Configure the ActiveMQ broker](../../../../setup/brokers/configure-with-ActiveMQ).
 
