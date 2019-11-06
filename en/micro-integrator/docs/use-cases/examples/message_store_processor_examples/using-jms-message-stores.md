@@ -3,13 +3,13 @@ See the examples given below.
 
 ## Example 1
 
-In this example, the client sends requests to a **proxy service**, which stores the messages in a **JMS message store**. The **message forwarding processor** then picks the stored messages from the JMS message store and invokes the backend service.
+In this example, the client sends requests to a **proxy service**, which stores the messages in a **JMS message store**. The **message forwarding processor** then picks the stored messages from the JMS message store and invokes the back-end service.
 
 ![](attachments/119130313/119130315.png)  
 
 ### Synapse configurations
 
-Shown below are the synapse artifacts that are used to define this use case.
+Following are the artifact configurations that we can use to implement this scenario. See the instructions on how to [build and run](#build-and-run-example-1) this example.
 
 ```xml tab="Message Store"
 <messageStore xmlns="http://ws.apache.org/ns/synapse" class="org.apache.synapse.message.store.impl.jms.JmsStore" name="JMSMS">
@@ -78,7 +78,7 @@ See the descriptions of the above configurations:
   </tr>
 </table>
 
-### Build and run
+### Build and run (Example 1)
 
 Create the artifacts:
 
@@ -87,7 +87,7 @@ Create the artifacts:
 3. Create the [proxy service](../../../../develop/creating-artifacts/creating-a-proxy-service), [endpoint](../../../../develop/creating-artifacts/creating-endpoints), and [message processor](../../../../develop/creating-artifacts/creating-a-message-processor) with the configurations given above.
 4. [Deploy the artifacts](../../../../develop/deploy-and-run) in your Micro Integrator.
 
-Set up the back-end service.
+Set up the back-end service:
 
 1. Download the [stockquote_service.jar](https://github.com/wso2-docs/WSO2_EI/blob/master/Back-End-Service/stockquote_service.jar).
 2. Open a terminal, navigate to the location of the downloaded service, and run it using the following command:
@@ -96,8 +96,7 @@ Set up the back-end service.
     java -jar stockquote_service.jar
     ```
 
-Configure the Micro Integrator with Apache ActiveMQ and set up the JMS Sender.
-[Configure the ActiveMQ broker](../../../../setup/brokers/configure-with-ActiveMQ).
+[Configure the ActiveMQ broker](../../../../setup/brokers/configure-with-ActiveMQ) and set up the JMS Sender.
 
 Invoke the service:
 
@@ -137,20 +136,7 @@ In the sample, when the message forwarding processor receives a response from th
 
 ### Synapse configurations
 
-Shown below are the synapse artifacts that are used to define this use case.
-
-```xml tab="Message Store"
-<messageStore xmlns="http://ws.apache.org/ns/synapse" class="org.apache.synapse.message.store.impl.jms.JmsStore" name="JMSMS">
-  <parameter name="java.naming.factory.initial">org.apache.activemq.jndi.ActiveMQInitialContextFactory</parameter>
-  <parameter name="java.naming.provider.url">tcp://localhost:61616</parameter>
-</messageStore>
-```
-
-```xml tab="Endpoint"
-<endpoint xmlns="http://ws.apache.org/ns/synapse" name="SimpleStockQuoteService">
-  <address uri="http://127.0.0.1:9000/services/SimpleStockQuoteService"/>
-</endpoint>
-```
+Following are the artifact configurations that we can used to implement this scenario. See the instructions on how to [build and run](#build-and-run-example-2) this example.
 
 ```xml tab="Proxy Service"
 <proxy name="Proxy2" xmlns="http://ws.apache.org/ns/synapse" transports="https,http" statistics="disable" trace="disable" startOnLoad="true">
@@ -164,13 +150,11 @@ Shown below are the synapse artifacts that are used to define this use case.
 </proxy>
 ```
 
-```xml tab="Sequence"
-<sequence xmlns="http://ws.apache.org/ns/synapse" name="replySequence">
-  <log level="full">
-    <property name="REPLY" value="MESSAGE" />
-  </log>
-  <drop/>
-</sequence>
+```xml tab="Message Store"
+<messageStore xmlns="http://ws.apache.org/ns/synapse" class="org.apache.synapse.message.store.impl.jms.JmsStore" name="JMSMS">
+  <parameter name="java.naming.factory.initial">org.apache.activemq.jndi.ActiveMQInitialContextFactory</parameter>
+  <parameter name="java.naming.provider.url">tcp://localhost:61616</parameter>
+</messageStore>
 ```
 
 ```xml tab="Message Processor"
@@ -183,6 +167,21 @@ Shown below are the synapse artifacts that are used to define this use case.
   <parameter name="max.delivery.drop">Disabled</parameter>
   <parameter name="member.count">1</parameter>
 </messageProcessor>
+```
+
+```xml tab="Sequence"
+<sequence xmlns="http://ws.apache.org/ns/synapse" name="replySequence">
+  <log level="full">
+    <property name="REPLY" value="MESSAGE" />
+  </log>
+  <drop/>
+</sequence>
+```
+
+```xml tab="Endpoint"
+<endpoint xmlns="http://ws.apache.org/ns/synapse" name="SimpleStockQuoteService">
+  <address uri="http://127.0.0.1:9000/services/SimpleStockQuoteService"/>
+</endpoint>
 ```
 
 See the descriptions of the above configurations:
@@ -224,7 +223,7 @@ See the descriptions of the above configurations:
   </tr>
 </table>
 
-### Build and run
+### Build and run (Example 2)
 
 Create the artifacts:
 
@@ -233,6 +232,7 @@ Create the artifacts:
 3. Create the [proxy service](../../../../develop/creating-artifacts/creating-a-proxy-service), [mediation sequences](../../../../develop/creating-artifacts/creating-reusable-sequences), [endpoint](../../../../develop/creating-artifacts/creating-endpoints), [message store](../../../../develop/creating-artifacts/creating-a-message-store) and [message processor](../../../../develop/creating-artifacts/creating-a-message-processor) with the configurations given above.
 4. [Deploy the artifacts](../../../../develop/deploy-and-run) in your Micro Integrator.
 
+Set up the back-end service:
 
 1. Download the [stockquote_service.jar](https://github.com/wso2-docs/WSO2_EI/blob/master/Back-End-Service/stockquote_service.jar).
 2. Open a terminal, navigate to the location of the downloaded service, and run it using the following command:
@@ -243,7 +243,4 @@ Create the artifacts:
    
 [Configure the ActiveMQ broker](../../../../setup/brokers/configure-with-ActiveMQ).
 
-Invoke the service:
-
-Note a message similar to the following example printed in the backend service.  
-
+Invoke the service. Note a message similar to the following example printed in the backend service.
