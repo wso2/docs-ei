@@ -349,7 +349,7 @@ Follow the steps below to create the task and schedule it.
     </sequence>
     ```
     
-4.  [Create a Scheduled Task](../creating-artifacts/scheduling-esb-tasks.md) using the following information:
+4.  [Create a Scheduled Task](../creating-artifacts/creating-scheduled-task) using the following information:
     <table>
         <tr>
             <th>Task Property</th>

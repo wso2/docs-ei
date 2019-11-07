@@ -4,8 +4,7 @@ Follow the instructions given below to create a new [Proxy Service](../../../ref
 
 ## Instructions
 
-1.  Right-click the project in the navigator and go to **New → Proxy Service** to open the **New Proxy Service** dialog box. 
-
+1.  Right-click the project in the navigator and go to **New → Proxy Service** to open the **New Proxy Service** dialog box.     
     <img src="../../../assets/img/create_artifacts/new_proxy_service/select-new-proxy.png">
 
 2.  Select **Create New Proxy Service** and click **Next**.

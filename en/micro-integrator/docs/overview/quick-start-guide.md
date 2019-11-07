@@ -4,7 +4,7 @@ Let's get started with WSO2 Micro Integrator by running a simple use case in you
 
 Most healthcare centers have a system that is used to make doctor appointments. To check the availability of the doctors for a particular time, users typically need to visit the hospitals or use each and every online system that is dedicated for a particular healthcare center. Here, we are making it easier for patients by orchestrating those isolated systems for each healthcare provider and exposing a single interface to the users.
 
-![Scenario](../../assets/img/quick-start-guide/MI-quick-start-guide.png)
+![Scenario](../assets/img/quick-start-guide/MI-quick-start-guide.png)
 
 In the above scenario, the following takes place:
 
