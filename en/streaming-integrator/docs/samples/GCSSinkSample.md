@@ -6,7 +6,7 @@ This example shows how to publish events to a GCS bucket via the siddhi-io-gcs s
 
 !!!info "Before you begin:"
     1. Create an account in [Google Cloud](https://cloud.google.com/).
-    2. Download the credential file that is generated through the GCP console and save it in a directory of your choice.
+    2. Download the credential file that is generated through the GCP console and save it in a directory of your choice. For more information, see [Google Cloud Authentication Documentation](https://cloud.google.com/docs/authentication/?hl=en_US&_ga=2.203156947.-316765357.1568779091).
     3. Save the sample Siddhi application in Streaming Integrator Tooling.
 
 
