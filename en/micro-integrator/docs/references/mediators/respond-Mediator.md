@@ -32,7 +32,7 @@ the rest of the CRF case configuration is left intact, allowing you to
 revert to the original behavior in the future by removing the Respond
 mediator if required.
 
-``` java
+```xml
 <definitions xmlns="http://ws.apache.org/ns/synapse">
   <sequence name="main">
     <in>

@@ -1,4 +1,4 @@
-# Listening Inbound Endpoint Properties
+# HL7 Inbound Endpoint Properties
 ## Introduction
 
 The HL7 inbound protocol is an alternative to the HL7 transport. The HL7 inbound endpoint implementation is fully asynchronous and is based on the <b>Minimal Lower Layer Protocol(MLLP)</b> implemented on top of event driven I/O.
@@ -26,7 +26,7 @@ The HL7 inbound protocol is an alternative to the HL7 transport. The HL7 inbou
 
 ## Properties
 
-Listed below are the properties used for [creating a HL7 inbound endpiont](../../../../../develop/creating-artifacts/creating-an-inbound-endpoint)
+Listed below are the properties used for [creating a HL7 inbound endpiont](../../../../../develop/creating-artifacts/creating-an-inbound-endpoint).
 
 ### Optional Properties
 

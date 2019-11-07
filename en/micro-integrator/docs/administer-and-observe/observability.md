@@ -116,7 +116,7 @@ that are related to the same request.
 
 Shown below is the POST request that is sent using the CURL client. Note that the correlation ID is set in this request.
 
-``` java
+```bash
 curl -X POST --data @request.json http://localhost:8280/healthcare/categories/surgery/reserve -H "Content-Type:application/json" -H "activityid:correlationID"
 ```
 

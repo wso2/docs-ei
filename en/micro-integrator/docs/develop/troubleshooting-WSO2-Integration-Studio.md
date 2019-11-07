@@ -7,7 +7,7 @@ The following are some of the ways to troubleshoot errors that you may encounter
 Once you add an artifact, you need to refresh the `CompositeApplication.pom`
 file to reflect new changes on the Composite Application.
 
-![troubleshooting](../../assets/img/workbench/refresh-integration-studio.png)
+![troubleshooting](../assets/img/workbench/refresh-integration-studio.png)
 
 ## Restoring the project perspective
 
