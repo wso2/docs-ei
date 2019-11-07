@@ -6,8 +6,10 @@ Follow the steps given below to create the data service file:
 
 1.  Select the already created **Data Service Project** in the project
     navigator, right click and go to **New -> Data Service**.  
-    The **New Data Service** window will open as shown below.  
-    ![](../../assets/img/tutorials/data_services/119130577/119130578.png)
+    The **New Data Service** window will open as shown below. 
+
+    <img src="../../../../assets/img/tutorials/data_services/119130577/119130578.png" width="500">
+
 2.  To start creating a data service from scratch, select **Create New
     Data Service** and click **Next**.
 3.  Enter a name for the data service.
@@ -17,14 +19,14 @@ Follow the steps given below to create the data service file:
 A data service file (DBS file) will now be created in your data service
 project. Shown below is the project directory.
 
-![](../../assets/img/tutorials/data_services/119130577/119130593.png)
+![](../../../assets/img/tutorials/data_services/119130577/119130593.png)
 
 ### Creating a query
 
 1.  Select the data service you created in the previous step.
-2.  Right-click and click **Add Query** .  
+2.  Right-click and click **Add Query**.  
     ![](../../../assets/img/tutorials/data_services/119130577/119130591.png)
-3.  Enter the query details:
+3.  Enter the query details.
 4.  Save the query. The query element is now added to the data
     service:  
     ![](../../../assets/img/tutorials/data_services/119130577/119130590.png)
@@ -37,7 +39,7 @@ project. Shown below is the project directory.
 #### Add Input mapping
 
 1.  Right-click the query again and click **Add Input Mapping**.
-2.  Enter the input mapping details:
+2.  Enter the input mapping details.
 3.  Save the input mapping.
 
 #### Add Output mapping
