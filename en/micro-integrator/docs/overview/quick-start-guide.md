@@ -53,7 +53,7 @@ To set up the integration workspace for this quick start guide, we will use an i
 Go to the `<MI_QSG_HOME>` directory. The following project files and executable backend services are available.
 
 - **HealthcareConfigProject**: This is the ESB Config Project folder with the integration artifacts for the healthcare service. This service consists of the following REST API:
-  ![Scenario API](../../assets/img/quick-start-guide/qsg-api.png)
+  ![Scenario API](../assets/img/quick-start-guide/qsg-api.png)
   <details>
             <summary>HealthcareAPI.xml</summary>
 	    ```xml
