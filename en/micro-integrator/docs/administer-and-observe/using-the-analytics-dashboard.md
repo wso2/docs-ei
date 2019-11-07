@@ -74,13 +74,13 @@ Follow the steps below to enable statistics and tracing for the **REST API** ar
 
 1.  Select `HealthcareAPI` in the canvas of WSO2 Integration Studio to open the **Properties** tab.
 2.  Select **Statistics Enabled** and (if required) **Trace Enabled** as shown below.
-     ![rest api properties](../../assets/img/ei-analytics/restapi-properties.png)
+     ![rest api properties](../assets/img/ei-analytics/restapi-properties.png)
 
 Follow the steps below to enable statistics for the **endpoint** artifacts:
 
 1.  Select the required endpoint artifacts from the project explorer. 
 2.  Select **Statistics Enabled** and (if required) **Trace Enabled** as shown below.
-     ![endpoint properties](../../assets/img/ei-analytics/endpoint-properties.png)
+     ![endpoint properties](../assets/img/ei-analytics/endpoint-properties.png)
 
 ## Starting the Analytics Worker
 
@@ -205,54 +205,54 @@ Go to the [Analytics Dashboard](#starting-the-analytics-dashboard) and see the s
 
 1.  Click the **Enterprise Integrator Analytics** icon shown below to
     open the dashboard.  
-    ![Opening the Analytics dashboard for WSO2 EI](../../assets/img/ei-analytics/119132315/119132335.png "Opening the Analytics dashboard for WSO2 EI")  
+    ![Opening the Analytics dashboard for WSO2 EI](../assets/img/ei-analytics/119132315/119132335.png "Opening the Analytics dashboard for WSO2 EI")  
       
 2.  View the statistics overview for all the integration artifacts that have
     published statistics:  
-    ![ESB total request count](../../assets/img/ei-analytics/119132315/119132316.png "ESB total request count")
+    ![ESB total request count](../assets/img/ei-analytics/119132315/119132316.png "ESB total request count")
 
 3.  The number of transactions handled by the Micro Integrator per second is mapped
     on a graph as follows.
 
-    ![ESB overall TPS](../../assets/img/ei-analytics/119132315/119132326.png "ESB overall TPS")
+    ![ESB overall TPS](../assets/img/ei-analytics/119132315/119132326.png "ESB overall TPS")
 
 4.  The success rate and the failure rate of the messages received by
     the Micro Integrator during the last hour are mapped in a graph as
     follows.  
-    ![ESB overall message count](../../assets/img/ei-analytics/119132315/119132325.png "ESB overall message count")
+    ![ESB overall message count](../assets/img/ei-analytics/119132315/119132325.png "ESB overall message count")
 
 5.  The `            HealthcareAPI           ` REST API is displayed
     under **TOP APIS BY REQUEST COUNT** as follows.  
-    ![Top APIs by request count](../../assets/img/ei-analytics/119132315/119132324.png "Top APIs by request count")
+    ![Top APIs by request count](../assets/img/ei-analytics/119132315/119132324.png "Top APIs by request count")
 6.  The three endpoints used for the message mediation are displayed
     under **Top Endpoints by Request Count** as shown below.  
-    ![Top endpoints by request count](../../assets/img/ei-analytics/119132315/119132318.png "Top endpoints by request count")
+    ![Top endpoints by request count](../assets/img/ei-analytics/119132315/119132318.png "Top endpoints by request count")
 7.  In the Top APIS BY Request COUNT gadget, click
     `           HealthcareAPI          ` to open the
     **OVERVIEW/API/HealthcareAPI** page. The following is displayed.
     -   The **API Request Count** gadget shows the total number of
         requests handled by the `             StockQuoteAPI            `
         REST API during the last hour:  
-        ![Total request per API](../../assets/img/ei-analytics/119132315/119132323.png "Total request per API")
+        ![Total request per API](../assets/img/ei-analytics/119132315/119132323.png "Total request per API")
     -   The **API** **Message Count** gadget maps the number of
         successful messages as well as failed messages at different
         times within the last hour in a graph as shown below.  
-        ![API message count](../../assets/img/ei-analytics/119132315/119132322.png "API message count")  
+        ![API message count](../assets/img/ei-analytics/119132315/119132322.png "API message count")  
     -   The **API** **Message Latency** gadget shows the speed with
         which the messages are processed by mapping the amount of time
         taken per message at different times within the last hour as
         shown below.  
-        ![API message latency](../../assets/img/ei-analytics/119132315/119132321.png "API message latency")  
+        ![API message latency](../assets/img/ei-analytics/119132315/119132321.png "API message latency")  
     -   The **Messages** gadget lists all the the messages handled by
         the `             StockQuoteAPI            ` REST API during the
         last hour with the following property details as follows.  
-        ![Message per API](../../assets/img/ei-analytics/119132315/119132320.png "Message per API")
+        ![Message per API](../assets/img/ei-analytics/119132315/119132320.png "Message per API")
     -   The **Message Flow** gadget illustrates the order in which the
         messages handled by the `StockQuoteAPI`
         REST API within the last hour passed through all the mediation
         sequences, mediators and endpoints that were included in the
         message flow as shown below.  
-        ![Message flow per API](../../assets/img/ei-analytics/119132315/119132319.png "Message flow per API") 
+        ![Message flow per API](../assets/img/ei-analytics/119132315/119132319.png "Message flow per API") 
 8. In the **Top Endpoints by Request Count** gadget, click one of the endpoints to view simillar statistics per endpoint.
 
     -   `ChannelingFeeEP`
@@ -263,10 +263,10 @@ Go to the [Analytics Dashboard](#starting-the-analytics-dashboard) and see the s
     menu as shown below. For example, to view the statistics of a
     specific endpoint, click **Endpoint** and search for the required
     endpoint.  
-    ![Dashboard navigation menu](../../assets/img/ei-analytics/119132315/119132317.png "Dashboard navigation menu")
+    ![Dashboard navigation menu](../assets/img/ei-analytics/119132315/119132317.png "Dashboard navigation menu")
 
 ## Message tracing
 
 When you go to the [Analytics Dashboard](#starting-the-analytics-dashboard) the message details will be logged as follows:
 
-![Message tracing per API](../../assets/img/ei-analytics/119132315/message-tracing.png "Message tracing per API") 
+![Message tracing per API](../assets/img/ei-analytics/119132315/message-tracing.png "Message tracing per API") 

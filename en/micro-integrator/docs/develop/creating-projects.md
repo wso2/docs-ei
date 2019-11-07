@@ -219,6 +219,6 @@ This poject directory allows you to package all the artifacts (stored in other E
 You can use the above ESB projects and other various projects as follows:
 
 1.  Right-click on the **Project Explorer** and click **New → Project** as shown below.
-    ![Create new project](../../assets/img/create_project/new_project_root.png)
+    ![Create new project](../assets/img/create_project/new_project_root.png)
 2.  In the **New Project** dialog that opens, select the required project.  
-    ![Create new project dialog](../../assets/img/create_project/new_project_root_dialog.png)
+    ![Create new project dialog](../assets/img/create_project/new_project_root_dialog.png)

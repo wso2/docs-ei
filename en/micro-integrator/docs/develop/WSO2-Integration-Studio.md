@@ -15,7 +15,7 @@ your workspace. This includes, the Project Explorer, the Editor,
 Template Guide, Outline, etc. Multiple Workbench windows can be opened
 simultaneously for an enhanced and fine-tuned developer experience.
 
-![workbench](../../assets/img/workbench/workbench-integration-studio.png)  
+![workbench](../assets/img/workbench/workbench-integration-studio.png)  
 
 ## Editor
 
@@ -46,14 +46,14 @@ to tile them in order to view source files simultaneously.
 Here is an example of a text editor in the Workbench. This is the source
 view of a pom.xml file.
 
-![editor](../../assets/img/workbench/workbench-editor.png)
+![editor](../assets/img/workbench/workbench-editor.png)
 
 ## Project explorer
 
 The Project Explorer provides a view of all the files and folder
 structure within a project.
 
-![project explorer](../../assets/img/workbench/workbench-project-explorer.png)
+![project explorer](../assets/img/workbench/workbench-project-explorer.png)
 
 ## Outline
 
@@ -65,7 +65,7 @@ Outline view are editor specific. For example, in a Java source file,
 the structural elements are classes, fields, and methods. The contents
 of the toolbar are also editor specific.
 
-![outline](../../assets/img/workbench/workbench-outline.png)
+![outline](../assets/img/workbench/workbench-outline.png)
 
 ## Properties
 
@@ -75,7 +75,7 @@ properties by category or to filter advanced properties. Another toolbar
 button allows you to restore the selected property to its default
 value.  
 
-![properties](../../assets/img/workbench/workbench-properties.png)
+![properties](../assets/img/workbench/workbench-properties.png)
 
 ## Console
 

@@ -37,7 +37,7 @@ To use Prometheus, you need to first start the WSO2 Micro Integrator instance by
 
 - If your Micro Integrator is running on Docker, start your Docker container by passing the 'enablePrometheusApi' system property:
 
-    ```
+    ```bash
     docker run -p 8290:8290 -e JAVA_OPTS="-DenablePrometheusApi=true" <Docker_Image_Name>
     ```
 
@@ -50,13 +50,13 @@ To use Prometheus, you need to first start the WSO2 Micro Integrator instance by
 
 The stats can be viewed in following urls.
 
-``` java
+```bash
 http://localhost:9201/metric-service/metrics
 ```
 
 You may also visit following url in Prometheus server to plot the
 graphs.
 
-``` java
+```bash
 http://localhost:9090/graph
 ```
