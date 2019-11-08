@@ -36,26 +36,25 @@ To create and deploy Siddhi application that triggers an integration flow, and t
     @App:description("This siddhi app triggers integration flow from SI to MI")
 
 
-    @sink(type='grpc-call', publisher.url = 'grpc://localhost:8888/org.wso2.grpc.EventService/process/mySeq', sink.id= '1', headers='{{headers}}', @map(type='json'))
-    define stream FooStream (message string, headers string);
+    @source(type='http', receiver.url='http://localhost:8006/inputstream', @map(type = 'json'))
+    define stream InputStream (message String, headers string);
 
-    @sink(type='log')
-    define stream outputStream(message string);
+    @sink(type='grpc-call', publisher.url = 'grpc://localhost:8888/org.wso2.grpc.EventService/process/inSeq', sink.id= '1', headers='{{headers}}', @map(type='json'))
+    define stream FooStream (message String, headers string);
 
     @source(type='grpc-call-response', sink.id= '1', @map(type='json'))
-    define stream BarStream (message string);
+    define stream BarStream (message String, headers string);
 
-    @source(type='http', @map(type='json'))
-    define stream InputStream(message string, headers string);
+    @sink(type='log')
+    define stream OutputStream (message String, headers string);
 
     from InputStream
     select *
     insert into FooStream;
 
-    @info(name = 'query')
     from BarStream
     select *
-    insert into outputStream;
+    insert into OutputStream
     ```
 
 3. Save the Siddhi application.
