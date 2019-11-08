@@ -152,7 +152,7 @@ If you [set up the product](#before-you-begin) using the **installer**, follow t
     ```bash
     sudo wso2mi
     ```
-
+    
 -   On **Windows**, go to **Start Menu -> Programs -> WSO2 -> Micro Integrator**. This will open a terminal and start the Micro Integrator.
 
 If you [set up the product](#before-you-begin) using the **binary** file, open a terminal, navigate to the `<MI_HOME>/bin` directory, and execute the command relevant to your OS as shown below.

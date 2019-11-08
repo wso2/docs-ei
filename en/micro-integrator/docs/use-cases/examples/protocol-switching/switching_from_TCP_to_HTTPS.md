@@ -44,7 +44,7 @@ https://github.com/wso2-docs/WSO2_EI/blob/master/Back-End-Service/stockquote_ser
 $ java -jar stockquote_service.jar
 ```
 
-[Enable the TCP transport](../../../setup/transport_configurations/configuring-transports/#configuring-the-tcp-transport) and start the Micro-Integrator.
+[Enable the TCP transport](../../../../setup/transport_configurations/configuring-transports/#configuring-the-tcp-transport) and start the Micro-Integrator.
 
 Send the following message via TCP to the TCP listener port.
 ```xml

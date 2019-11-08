@@ -42,33 +42,44 @@ a standalone HornetQ server.
     ```
 
 5.  If you have not already done so, download and install WSO2 Micro Integrator.
-6.  Download the [hornet-all-new.jar](https://docs.wso2.com/download/attachments/85376778/hornetq-all-new.jar?version=1&modificationDate=1490694533000&api=v2) file and copy it into the `MI_HOME/lib/` directory.
+6.  Download the [hornet-all-new.jar](https://github.com/wso2-docs/WSO2_EI/raw/master/Broker-Setup-Artifacts/HornetQ/hornetq-all-new.jar) file and copy it into the `MI_HOME/lib/` directory.
 
     !!! Info
-        If you are packing the JARs yourself, make sure you remove the javax.jms package from the assembled JAR to avoid the carbon runtime
-        from picking this implementation of JMS over the bundled-in distribution.
+        If you are packing the JARs yourself, make sure you remove the javax.jms package from the assembled JAR to avoid the carbon runtime from picking this implementation of JMS over the bundled-in distribution.
 
 7.  If you want the Micro Integrator to receive messages from a HornetQ instance, or to send messages to a HornetQ instance, you need to update the deployment.toml file with the relevant connection parameters.
 
-    - Add the following configurations to enable the JMS listener with HornetQ connection parameters.
-        ```toml
-        [[transport.jms.listener]]
-        name = "myQueueListener"
-        parameter.initial_naming_factory = "org.jnp.interfaces.NamingContextFactory"
-        parameter.provider_url = "jnp://localhost:1099"
-        parameter.connection_factory_name = "QueueConnectionFactory"
-        parameter.connection_factory_type = "queue"
-        ```
+    Add the following configurations to `MI_HOME/conf/deployment.toml` file to enable the JMS sender and listener with HornetQ connection parameters.
+    ```toml
+    [transport.jms]
+    sender_enable = true
 
-    - Add the following configurations to enable the JMS sender with HornetQ connection parameters.
-        ```toml
-        [[transport.jms.sender]]
-        name = "myQueueSender"
-        parameter.initial_naming_factory = "org.jnp.interfaces.NamingContextFactory"
-        parameter.provider_url = "jnp://localhost:1099"
-        parameter.connection_factory_name = "QueueConnectionFactory"
-        parameter.connection_factory_type = "queue"
-        ```
+    [[transport.jms.listener]]
+    name = "myTopicConnectionFactory"
+    parameter.initial_naming_factory = "org.jnp.interfaces.NamingContextFactory"
+    parameter.provider_url = "jnp://localhost:1099"
+    parameter.connection_factory_name = "TopicConnectionFactory"
+    parameter.connection_factory_type = "topic"
+    parameter.'java.naming.factory.url.pkgs' = "org.jboss.naming:org.jnp.interfaces"
+
+    [[transport.jms.listener]]
+    name = "myQueueConnectionFactory"
+    parameter.initial_naming_factory = "org.jnp.interfaces.NamingContextFactory"
+    parameter.provider_url = "jnp://localhost:1099"
+    parameter.connection_factory_name = "QueueConnectionFactory"
+    parameter.connection_factory_type = "queue"
+    parameter.'java.naming.factory.url.pkgs' = "org.jboss.naming:org.jnp.interfaces"
+
+    [[transport.jms.listener]]
+    name = "default"
+    parameter.initial_naming_factory = "org.jnp.interfaces.NamingContextFactory"
+    parameter.provider_url = "jnp://localhost:1099"
+    parameter.connection_factory_name = "QueueConnectionFactory"
+    parameter.connection_factory_type = "queue"
+    parameter.'java.naming.factory.url.pkgs' = "org.jboss.naming:org.jnp.interfaces"
+    ```
+    !!! Info
+        For details on the JMS configuration parameters used in the code segments above, see [JMS connection factory parameters](../../references/config-catalog/#jms-transport-listener-non-blocking-mode).
 
 8.  Start HornetQ with the following command.
     -   On Windows:
@@ -211,7 +222,7 @@ Install JBoss EAP server and create a message queue within the server.
           </jms-queue>
     </jms-destinations>
     ```
-
+    
 4.  Start the JBoss EAP server by executing one of the following commands in command prompt:
     -   On Windows: `<EAP_HOME>\bin\standalone.bat -c standalone-full.xml`
     -   On Linux/Mac: `<EAP_HOME>/bin/standalone.sh -c standalone-full.xml`
@@ -228,38 +239,26 @@ Now you have configured the JBoss EAP Server. The next section describes how to 
 1.  Download and install WSO2 Micro Integrator.
 2.  If you want the Micro Integrator to receive messages from an HornetQ instance, or to send messages to an HornetQ instance, you need to update the deployment.toml file with the relevant connection parameters.
 
-    - Add the following configurations to enable the JMS listener with ActiveMQ connection parameters.
-        ```toml
-        [[transport.jms.listener]]
-        name = "myQueueListener"
-        parameter.initial_naming_factory = "org.jboss.naming.remote.client.InitialContextFactory"
-        parameter.provider_url = "remote://localhost:4447"
-        parameter.connection_factory_name = "jms/RemoteConnectionFactory"
-        parameter.connection_factory_type = "queue"
-        parameter.username = ""
-        parameter.password = ""
-        parameter.naming_security_principal = "SampleUser"
-        parameter.naming_security_credential = "SamplePwd1!"
-        ```
-
-    - Add the following configurations to enable the JMS sender with ActiveMQ connection parameters.
-        ```toml
-        [[transport.jms.sender]]
-        name = "myQueueSender"
-        parameter.initial_naming_factory = "org.jboss.naming.remote.client.InitialContextFactory"
-        parameter.provider_url = "remote://localhost:4447"
-        parameter.connection_factory_name = "jms/RemoteConnectionFactory"
-        parameter.connection_factory_type = "queue"
-        ```
-
+    Add the following configurations to enable the JMS listener with ActiveMQ connection parameters.
+    ```toml
+    [[transport.jms.listener]]
+    name = "QueueConnectionFactory"
+    parameter.initial_naming_factory = "org.jboss.naming.remote.client.InitialContextFactory"
+    parameter.provider_url = "remote://localhost:4447"
+    parameter.connection_factory_name = "jms/RemoteConnectionFactory"
+    parameter.connection_factory_type = "topic"
+    parameter.username = "SampleUser"
+    parameter.password = "SamplePwd1!"
+    parameter.naming_security_principal = "SampleUser"
+    parameter.naming_security_credential = "SamplePwd1!"
+    ```
     !!! Info
         The username and password created for the guest user in the above section are used in the configuration.
 
 3.  Copy the `jboss-client.jar` file from the `EAP_HOME/bin/client` directory to the `MI_HOME/lib` directory.
 
     !!! Note
-        After copying the `jboss-client.jar` file from the `EAP_HOME/bin/client` directory to the `MI_HOME/lib` directory, be sure to remove the
-        `javax.jms` package from the `jboss-client.jar` file.  
+        After copying the `jboss-client.jar` file from the `EAP_HOME/bin/client` directory to the `MI_HOME/lib` directory, be sure to remove the `javax.jms` package from the `jboss-client.jar` file.  
         ![](attachments/119130351/119130352.png)
 
 Now you have configured WSO2 Micro Integrator with HornetQ embedded in a JBoss EAP server.
