@@ -187,17 +187,111 @@ listener.enable = false
 sender.enable = false   
 ```
 
-Download Quickfix/J and in the distribution archive you will find all the dependencies listed below. Also please refer to [Quickfix/J](https://www.quickfixj.org/) documentation on configuring FIX acceptors and initiators. <b>Note</b> that the FIX transport does not support any global parameters. All the FIX configuration parameters should be specified at service level.
+Download Quickfix/J and in the distribution archive you will find all the dependencies listed below. Add the following jars to the MI_HOME/libs folder.
+
+Please refer to [Quickfix/J](https://www.quickfixj.org/) documentation on configuring FIX acceptors and initiators. <b>Note</b> that the FIX transport does not support any global parameters. All the FIX configuration parameters should be specified at service level.
 
 -	mina-core.jar
 -	quickfixj-core.jar
--	quickfixj-msg-fix40.jar
--	quickfixj-msg-fix41.jar
--	quickfixj-msg-fix42.jar
--	quickfixj-msg-fix43.jar
--	quickfixj-msg-fix44.jar
+-	quickfixj-messages-fix40.jar
+-	quickfixj-messages-fix41.jar
+-	quickfixj-messages-fix42.jar
+-	quickfixj-messages-fix43.jar
+-	quickfixj-messages-fix44.jar
 -	slf4j-api.jar
 -	slf4j-log4j12.jar
+
+Also [download](https://logging.apache.org/log4j/1.2/download.html) the following jar and add it to the libs folder.
+-   log4j-1.2.17.jar
+
+### Configuring Sample FIX Applications
+
+If you are using a binary distribution of Quickfix/J, the two samples (FIX messages sender/reveiver)
+and their configuration files are all packed to two JAR files called
+`quickfixj-examples-banzai-2.1.1.jar` and `quickfixj-examples-executor-2.1.1.jar`. You will have to extract the
+JAR file, modify the configuration files and pack them to a JAR file
+again under the same name.
+
+Change the banzai.cfg file in quickfixj-examples-executor-2.1.1.jar (/quickfix/examples/banzai) by changing `TargetCompID` to `SYNAPSE`
+```
+[default]
+FileStorePath=target/data/banzai
+ConnectionType=initiator
+SenderCompID=BANZAI
+TargetCompID=SYNAPSE
+SocketConnectHost=localhost
+StartTime=00:00:00
+EndTime=00:00:00
+HeartBtInt=30
+ReconnectInterval=5
+
+[session]
+BeginString=FIX.4.0
+SocketConnectPort=9876
+
+[session]
+BeginString=FIX.4.1
+SocketConnectPort=9877
+
+[session]
+BeginString=FIX.4.2
+SocketConnectPort=9878
+
+[session]
+BeginString=FIX.4.3
+SocketConnectPort=9879
+
+[session]
+BeginString=FIX.4.4
+SocketConnectPort=9880
+
+[session]
+BeginString=FIXT.1.1
+DefaultApplVerID=FIX.5.0
+SocketConnectPort=9881
+
+```
+
+Edit the executor.cfg file in quickfixj-examples-executor-2.1.1.jar (/quickfix/examples/executor) by changing `TargetCompID` to `SYNAPSE` and changing `SocketAcceptPort` to `19876`
+```
+[default]
+FileStorePath=target/data/executor
+ConnectionType=acceptor
+StartTime=00:00:00
+EndTime=00:00:00
+HeartBtInt=30
+ValidOrderTypes=1,2,F
+SenderCompID=EXEC
+TargetCompID=SYNAPSE
+UseDataDictionary=Y
+DefaultMarketPrice=12.30
+
+[session]
+BeginString=FIX.4.0
+SocketAcceptPort=19876
+
+[session]
+BeginString=FIX.4.1
+SocketAcceptPort=9877
+
+[session]
+BeginString=FIX.4.2
+SocketAcceptPort=9878
+
+[session]
+BeginString=FIX.4.3
+SocketAcceptPort=9879
+
+[session]
+BeginString=FIX.4.4
+SocketAcceptPort=9880
+
+[session]
+BeginString=FIXT.1.1
+DefaultApplVerID=FIX.5.0
+SocketAcceptPort=9881
+
+```
 
 ## Configuring the MQTT transport
 
