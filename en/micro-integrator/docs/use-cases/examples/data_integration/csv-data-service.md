@@ -1,6 +1,6 @@
-# Exposing an Excel Datasource
+# Exposing an CSV Datasource
 
-This example demonstrates how Excel data can be exposed as a data service.
+This example demonstrates how CSV data can be exposed as a data service.
 
 ## Prerequisites
 
@@ -11,8 +11,8 @@ This example demonstrates how Excel data can be exposed as a data service.
 
 This file contains data about products (cars/motorcycles) that are
 manufactured in an automobile company. The data table has the following
-columns: `         ID        ` , `         Name        ` ,
-`         Classification        ` , and `         Price        `.
+columns: `ID` , `Name` ,
+`Classification` , and `Price`.
 
 ## Synapse configuration
 Given below is the data service configuration you need to build. See the instructions on how to [build and run](#build-and-run) this example.
@@ -22,7 +22,7 @@ Given below is the data service configuration you need to build. See the instruc
 ```xml
 <data name="CSV" transports="http https local">
    <config enableOData="false" id="CSV">
-      <property name="csv_datasource">path/Products.csv</property>
+      <property name="csv_datasource">/path/to/csv/Products.csv</property>
       <property name="csv_columnseperator">,</property>
       <property name="csv_startingrow">2</property>
       <property name="csv_hasheader">true</property>
@@ -49,28 +49,74 @@ Given below is the data service configuration you need to build. See the instruc
 
 Create the artifacts:
 
-1. [Set up WSO2 Integration Studio](../../../../develop/installing-WSO2-Integration-Studio). The path to this folder is referred to as `MI_TOOLING_HOME` throughout this tutorial.      
-2. [Create a Data Service project](../../../../develop/creating-projects/#data-services-project)
+1. [Set up WSO2 Integration Studio](../../../../develop/installing-WSO2-Integration-Studio).
+2. [Create a Data Service project](../../../../develop/creating-projects/#data-services-project).
 4. [Create the data service](../../../../develop/creating-artifacts/data-services/creating-data-services) with the configurations given above.
+   **Be sure** to update the CSV datasource path.
 5. [Deploy the artifacts](../../../../develop/deploy-and-run) in your Micro Integrator. 
 
 You can send an HTTP GET request to invoke the data service using cURL
 as shown below.
 
 ```bash
-curl -X GET http://localhost:8280/services/CSV.HTTPEndpoint/Products
+curl -X GET http://localhost:8290/services/CSV.HTTPEndpoint/Products
 ```
 
 This will return the response in XML.
 
 Example:
 
-```bash
-<Products xmlns="http://ws.wso2.org/dataservice"><Product><ID>S10_1678</ID><Category>Motorcycles</Category><Price>1000</Price><Name>1969 Harley Davidson
- Ultimate Chopper</Name></Product><Product><ID>S10_1949</ID><Category>Classic Cars</Category><Price>600</Price><Name>1952 Alpine Renault 1300</Name>
-</Product><Product><ID>S10_2016</ID><Category>Motorcycles</Category><Price>456</Price><Name>1996 Moto Guzzi 1100i</Name></Product><Product><ID>S10_4698</ID>
-<Category>Motorcycles</Category><Price>345</Price><Name>2003 Harley-Davidson Eagle Drag Bike</Name></Product><Product><ID>S10_4757</ID><Category>Classic Cars
-</Category><Price>230</Price><Name>1972 Alfa Romeo GTA</Name></Product><Product><ID>S10_4962</ID><Category>Classic Cars</Category><Price>890</Price>
-<Name>1962 LanciaA Delta 16V</Name></Product><Product><ID>S12_1099</ID><Category>Classic Cars</Category><Price>560</Price><Name>1968 Ford Mustang</Name>
-</Product><Product><ID>S12_1108</ID><Category>Classic Cars</Category><Price>900</Price><Name>2001 Ferrari Enzo</Name></Product></Products>
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<Products xmlns="http://ws.wso2.org/dataservice">
+   <Product>
+      <ID>S10_1678</ID>
+      <Category>Motorcycles</Category>
+      <Price>1000</Price>
+      <Name>1969 Harley Davidson
+ Ultimate Chopper</Name>
+   </Product>
+   <Product>
+      <ID>S10_1949</ID>
+      <Category>Classic Cars</Category>
+      <Price>600</Price>
+      <Name>1952 Alpine Renault 1300</Name>
+   </Product>
+   <Product>
+      <ID>S10_2016</ID>
+      <Category>Motorcycles</Category>
+      <Price>456</Price>
+      <Name>1996 Moto Guzzi 1100i</Name>
+   </Product>
+   <Product>
+      <ID>S10_4698</ID>
+      <Category>Motorcycles</Category>
+      <Price>345</Price>
+      <Name>2003 Harley-Davidson Eagle Drag Bike</Name>
+   </Product>
+   <Product>
+      <ID>S10_4757</ID>
+      <Category>Classic Cars</Category>
+      <Price>230</Price>
+      <Name>1972 Alfa Romeo GTA</Name>
+   </Product>
+   <Product>
+      <ID>S10_4962</ID>
+      <Category>Classic Cars</Category>
+      <Price>890</Price>
+      <Name>1962 LanciaA Delta 16V</Name>
+   </Product>
+   <Product>
+      <ID>S12_1099</ID>
+      <Category>Classic Cars</Category>
+      <Price>560</Price>
+      <Name>1968 Ford Mustang</Name>
+   </Product>
+   <Product>
+      <ID>S12_1108</ID>
+      <Category>Classic Cars</Category>
+      <Price>900</Price>
+      <Name>2001 Ferrari Enzo</Name>
+   </Product>
+</Products>
 ```

@@ -8,7 +8,7 @@ can be either,
 -   Static inside the data service configuration.
 -   Provided at runtime through a Java class that implements the
     interface
-    `          org.wso2.carbon.dataservices.core.auth.DynamicUserAuthenticator.         `
+    `          org.wso2.micro.integrator.dataservices.core.auth.DynamicUserAuthenticator.         `
 
 ## Static configuration
 
@@ -50,7 +50,7 @@ Carbon user, and the username and password elements that follow
 represent the mapped database credentials.
 
 For dynamic user authentication to work, security must be enabled in the
-data service throug `         UsernameToken        ` for user
+data service through `         UsernameToken        ` for user
 authentication. If user authentication is not available when a
 `         dynamicUserAuthMapping        ` section is specified, it maps
 to the request="\*" scenario by default.
@@ -63,7 +63,7 @@ datasource configuration property
 `         dynamicUserAuthMapping        ` . The
 `         dynamicUserAuthClass        ` property's value must have the
 fully-qualified class name of a Java class that implements the interface
-`         org.wso2.carbon.dataservices.core.auth.DynamicUserAuthenticator.        `
+`         org.wso2.micro.integrator.dataservices.core.auth.DynamicUserAuthenticator.        `
 The interface is as follows:
 
 ```java

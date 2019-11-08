@@ -13,7 +13,7 @@ body of the current message.
     A [Fault mediator](fault-Mediator.md) should be added as a child to the Validate mediator in order specify the fault sequence to be followed if the validation fails.
 
 !!! Info
-    The Validate mediator is a [content aware](../../../concepts/message-processing-units/#classification-of-mediators) mediator.
+    The Validate mediator is a [content aware](../../../references/mediators/about-mediators/#classification-of-mediators) mediator.
 
 ### Syntax
 

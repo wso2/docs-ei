@@ -6,11 +6,11 @@ combines (aggregates) the **response messages** of messages that were split by 
 even if you set the `         sequential        ` attribute to `         true        ` on the Iterate mediator.
 
 !!! Info
-    The Aggregate mediator is a [content-aware](../../../concepts/message-processing-units/#classification-of-mediators) mediator.
+    The Aggregate mediator is a [content-aware](../../../references/mediators/about-mediators/#classification-of-mediators) mediator.
 
 ## Syntax
 
-``` java
+```xml
 <aggregate>
    <correlateOn expression="xpath | json-eval(JSON-Path)"/>?
    <completeCondition [timeout="time-in-seconds"]>

@@ -58,7 +58,7 @@ Once the product server is started, you can start the `JConsole` tool as follows
 1.  Open a command prompt and navigate to the `<JDK_HOME>/bin` directory.
 2.  Execute the `jconsole` command to open the log-in screen of the **Java Monitoring & Management Console** as
     shown below.  
-    ![jconsole connection](../../assets/img/jmx/jconsole-new-connection.png)
+    ![jconsole connection](../assets/img/jmx/jconsole-new-connection.png)
 3.  Enter the connection details in the above screen as follows:
     1.  Enter the **JMX server URL** in the **Remote Process** field. This URL is published on the command prompt when you start the
         server as explained [above](#starting-wso2-micro-integrator-with-jmx).
@@ -75,17 +75,17 @@ Once the product server is started, you can start the `JConsole` tool as follows
     JConsole](http://docs.oracle.com/javase/7/docs/technotes/guides/management/jconsole.html). The following tabs will be available:  
 
     -   **Overview**
-        ![jconsole overview](../../assets/img/jmx/jconsole-overview.png)
+        ![jconsole overview](../assets/img/jmx/jconsole-overview.png)
     -   **Memory**
-        ![jconsole memory](../../assets/img/jmx/jconsole-memory.png)
+        ![jconsole memory](../assets/img/jmx/jconsole-memory.png)
     -   **Threads**
-        ![jconsole threads](../../assets/img/jmx/jconsole-threads.png)
+        ![jconsole threads](../assets/img/jmx/jconsole-threads.png)
     -   **Classes**
-        ![jconsole classes](../../assets/img/jmx/jconsole-classes.png)
+        ![jconsole classes](../assets/img/jmx/jconsole-classes.png)
     -   **VM**
-        ![jconsole VM](../../assets/img/jmx/jconsole-vm-summary.png)
+        ![jconsole VM](../assets/img/jmx/jconsole-vm-summary.png)
     -   **MBeans**
-        ![jconsole MBeans](../../assets/img/jmx/jconsole-mbeans.png)
+        ![jconsole MBeans](../assets/img/jmx/jconsole-mbeans.png)
 
 See the list of [WSO2 Micro Integrator MBeans](#mbeans-for-wso2-micro-integrator) that you can monitor.
 
@@ -122,7 +122,7 @@ these MBeans from the **MBeans** tab. While some of these MBeans (
 **ServerAdmin** and **DataSource** ) are common to all WSO2 products,
 some MBeans are specific to WSO2 Micro Integrator.
 
-![micro integrator mbeans](../../assets/img/jmx/mi-mbeans.png)
+![micro integrator mbeans](../assets/img/jmx/mi-mbeans.png)
 
 The following section summarizes the common MBeans for all WSO2 products:
 
@@ -132,7 +132,7 @@ When you go to the **MBeans** tab in the JConsole, the **ServerAdmin**
 MBean will be listed under the "org.wso2.carbon" domain as shown
 below.  
 
-![jconsole MBeans](../../assets/img/jmx/server-admin-mbeans.png)
+![jconsole MBeans](../assets/img/jmx/server-admin-mbeans.png)
 
 The **ServerAdmin** MBean is used for administering the product server
 instance. There are several server attributes such as "ServerStatus",
@@ -144,7 +144,7 @@ any of the following values:
 -   RESTARTING
 -   IN_MAINTENANCE
 
-![server admin attributes](../../assets/img/jmx/server-admin-attributes.png)
+![server admin attributes](../assets/img/jmx/server-admin-attributes.png)
 
 The **ServerAdmin** MBean has the following operations:
 
@@ -157,7 +157,7 @@ The **ServerAdmin** MBean has the following operations:
 | **startMaintenance**   | Switch the server to maintenance mode. No new requests will be accepted while the server is in maintenance. |
 | **endMaintenance**     | Switch the server to normal mode if it was switched to maintenance mode earlier.                            |
   
-![server admin operations](../../assets/img/jmx/server-admin-operations.png)
+![server admin operations](../assets/img/jmx/server-admin-operations.png)
 
 ### ServiceAdmin MBean
 
@@ -170,7 +170,7 @@ Its attributes are as follows:
 | **NumberOfInactiveServices** | The number of services which have been disabled by an administrator. |
 | **NumberOfFaultyServices**   | The number of services which are faulty.                             |
 
-![service admin attributes](../../assets/img/jmx/service-admin-attributes.png)
+![service admin attributes](../assets/img/jmx/service-admin-attributes.png)
 
 The operations available in the ServiceAdmin MBean:
 
@@ -179,7 +179,7 @@ The operations available in the ServiceAdmin MBean:
 | **startService** ( [p1:string](http://p1string/) ) | The p1 parameter is the service name. You can activate a service using this operation.           |
 | **stopService** ( [p1:string](http://p1string/) )  | The p1 parameter is the service name. You can deactivate/disable a service using this operation. |
 
-![service admin operations](../../assets/img/jmx/service-admin-operations.png)
+![service admin operations](../assets/img/jmx/service-admin-operations.png)
 
 ### StatisticsAdmin MBean
 
@@ -195,7 +195,7 @@ attributes are as follows:
 | **SystemRequestCount**    | The total number of requests that has been served by the system since the server was started.                                                    |
 | **SystemResponseCount**   | The total number of response that has been sent by the system since the server was started.                                                      |
 
-![statistical admin attributes](../../assets/img/jmx/statistics-admin-attributes.png)
+![statistical admin attributes](../assets/img/jmx/statistics-admin-attributes.png)
 
 Operations available in the **Statistics** MBean:
 
@@ -214,7 +214,7 @@ Operations available in the **Statistics** MBean:
 | **getMinOperationResponseTime** ( [p1:string](http://p1string/) , [p2:string](http://p2string/) ) | The p1 parameter is the service name. The p2 parameter is the operation name. You can get the minimum response time of this operation since deployment.                                                             |
 | **getAvgOperationResponseTime** ( [p1:string](http://p1string/) , [p2:string](http://p2string/) ) | The p1 parameter is the service name. The p2 parameter is the operation name. You can get the average response time of this operation since deployment.                                                             |
 
-![statistical admin operations](../../assets/img/jmx/statistics-admin-operations.png)
+![statistical admin operations](../assets/img/jmx/statistics-admin-operations.png)
 
 ### DataSource MBean
 
@@ -222,17 +222,17 @@ If you have [JMX enabled for a datasource connected to the product](#enabling-jm
 monitor the performance of the datasource using this MBean. The
 **DataSource** MBean will be listed as shown below.  
 
-![datasource mbean](../../assets/img/jmx/datasource-mbeans.png)
+![datasource mbean](../assets/img/jmx/datasource-mbeans.png)
 
 **Example:** If you have JMX enabled for the default Carbon datasource
-in the `         master-datasources.xml.        ` file, the [JDBC
+in the `         deployment.toml.        ` file, the [JDBC
 connection pool
 parameters](http://tomcat.apache.org/tomcat-7.0-doc/jdbc-pool.html) that
 are configured for the Carbon datasource will be listed as attributes as
 shown below. See the [performance tuning guide](../setup/performance_tuning/jdbc_tuning.md) for
 instructions on how these parameters are configured for a datasource. 
 
-![datasource attribute](../../assets/img/jmx/datasource-attributes.png)
+![datasource attribute](../assets/img/jmx/datasource-attributes.png)
 
 This section summarizes the attributes and operations available for the
 following WSO2 EI specific MBeans:

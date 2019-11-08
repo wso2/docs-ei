@@ -17,7 +17,7 @@ Given below is the data service configuration you need to build. See the instruc
 ```xml
 <data name="RDF" transports="http https local">
  <config enableOData="false" id="GetMoviebyGenre">
-    <property name="rdf_datasource">path/Movies.rdf</property>
+    <property name="rdf_datasource">/path/to/rdf/Movies.rdf</property>
  </config>
  <query id="GetMoviebyGenre" useConfig="GetMoviebyGenre">
     <sparql>
@@ -49,22 +49,25 @@ Given below is the data service configuration you need to build. See the instruc
 
 Create the artifacts:
 
-1. [Set up WSO2 Integration Studio](../../../../develop/installing-WSO2-Integration-Studio). The path to this folder is referred to as `MI_TOOLING_HOME` throughout this tutorial.      
-2. [Create a Data Service project](../../../../develop/creating-projects/#data-services-project)
+1. [Set up WSO2 Integration Studio](../../../../develop/installing-WSO2-Integration-Studio).
+2. [Create a Data Service project](../../../../develop/creating-projects/#data-services-project).
 4. [Create the data service](../../../../develop/creating-artifacts/data-services/creating-data-services) with the configurations given above.
+
+    **Be sure** to update the path to the rdf datasource.
+
 5. [Deploy the artifacts](../../../../develop/deploy-and-run) in your Micro Integrator. 
 
 You can send an HTTP GET request to invoke the data service using cURL
 as shown below.
 
 ```bash
-curl -X GET http://localhost:8280/services/RDFDataService.HTTPEndpoint/Movies/Drama
+curl -X GET http://localhost:8290/services/RDF.HTTPEndpoint/Movies/Drama
 ```
 
 This will return the response in XML:
 
 ```xml
-Movies xmlns="http://ws.wso2.org/dataservice">
+<Movies xmlns="http://ws.wso2.org/dataservice">
 <Movie>
   <title>Ratatouille</title>
   <director>Jan Pinkava</director>

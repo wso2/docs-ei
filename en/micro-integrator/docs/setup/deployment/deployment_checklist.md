@@ -238,7 +238,7 @@ Given below are the common security guidelines for deploying a WSO2 product in a
                   <p>Make sure that WSO2 default certificates do not exist in any of the keystores in your production environment. For example, be sure to delete the default public certificate in the default trust store that is shipped with the product.</p>
                </li>
             </ul>
-            See <a href="../setup/security/creating_keystores">Creating New Keystores</a> for information on how to create and configure your own keys.
+            See <a href="../../setup/security/creating_keystores">Creating New Keystores</a> for information on how to create and configure your own keys.
             </p>
          </td>
       </tr>
@@ -292,7 +292,7 @@ Given below are the common security guidelines for deploying a WSO2 product in a
          </td>
          <td>
             <p>To have strong transport-level security, use TLS 1.2 and disable SSL, TLS 1.0 and 1.1. The TLS protocol and strong ciphers are configured for the passthrough transport in the <code>deployment.toml</code> file. See the following links for instructions:</p>
-            <p><a href="../transport_configurations/configuring-transports#Configuring-Transport-Level-Security">Configuring Transport-Level Security</a></p>
+            <p><a href="../../transport_configurations/configuring-transports#configuring-transport-level-security">Configuring Transport-Level Security</a></p>
             <p>Note the following:</p>
             <ul>
                <li>When deciding on the TLS protocol and the ciphers, consider the compatibility with existing client applications. Imposing maximum security might cause functional problems with client applications.</li>
@@ -317,7 +317,7 @@ Given below are the common security guidelines for deploying a WSO2 product in a
          </td>
          <td>
             <p>Remove any weak ciphers from the PassThrough transport and ensure that the server does not accept connections using those weak ciphers. The PassThrough transport is configured using the <code>deployement.toml</code> file.
-            <p>See <a href="../transport_configurations/configuring-transports#Disabling-weak-ciphers">Disabling weak ciphers</a> for instructions.</p>
+            <p>See <a href="../../transport_configurations/configuring-transports/#disabling-weak-ciphers">Disabling weak ciphers</a> for instructions.</p>
          </td>
       </tr>
       <tr class="odd">

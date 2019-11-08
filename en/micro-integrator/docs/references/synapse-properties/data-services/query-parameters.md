@@ -116,7 +116,7 @@ This is the data type of the input mapping, which determines how the input mappi
 <p>The <strong>Return Generated Keys</strong> option appears under <strong>Input Mappings</strong> on the <strong>Queries</strong> page.</p>
 <p>It inserts data to a table that has auto increment key columns. The auto incremented key value of the record is mapped to the result output mappings of the data service. For example, the sample query below is used to insert values to a table by the name <code>               wes_teams              </code> , which has an auto increment column:</p>
 <p><code>               INSERT INTO wes_teams(TEAM) VALUES(?)              </code></p>
-<p>Once the user selects <code>               Re               turn               Generate               d               Keys              </code> option, an auto increment key is added as an output mapping as follows:</p>
+<p>Once the user selects <code>               Return               Generated               Keys              </code> option, an auto increment key is added as an output mapping as follows:</p>
 </div></td>
 </tr>
 <tr class="even">

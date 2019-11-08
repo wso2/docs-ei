@@ -3,7 +3,7 @@
 Follow the instructions given below to create a new Endpoint Template in WSO2 Integration Studio.
 
 ## Instructions
-Follow these steps to create a new scheduled task.
+Follow these steps to create a new Endpoint Template.
 
 1.  If you have already created an [ESB Config project](../../creating-projects/#esb-config-project), right click the project and go to **New → Template** to open the **New Template Artifact** dialog.
 2.  Select **Create a New Template** and click **Next**.

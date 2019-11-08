@@ -33,31 +33,30 @@ When you start the WebLogic server with the above changes, you can see the follo
 
 If you want the Micro Integrator to receive messages from Weblogic instance, or to send messages to a Weblogic instance, you need to update the deployment.toml file with the relevant connection parameters.
 
-- Add the following configurations to enable the JMS listener with Weblogic connection parameters.
+Add the following configurations to enable the JMS sender and listener with Weblogic connection parameters.
+    
+```toml
+[transport.jms]
+sender_enable = true
 
-    ```toml
-    [[transport.jms.listener]]
-    name = "myTopicListener"
-    parameter.initial_naming_factory = "weblogic.jndi.WLInitialContextFactory"
-    parameter.provider_url = "t3://localhost:7001"
-    parameter.connection_factory_name = "jms/myConnectionFactory"
-    parameter.connection_factory_type = "topic"
-    parameter.username = "weblogic"
-    parameter.password = "admin123"        
-    ```
+[[transport.jms.listener]]
+name = "myQueueConnectionFactory"
+parameter.initial_naming_factory = "weblogic.jndi.WLInitialContextFactory"
+parameter.provider_url = "t3://localhost:7001"
+parameter.connection_factory_name = "jms/myConnectionFactory"
+parameter.connection_factory_type = "queue"
+parameter.username = "weblogic"
+parameter.password = "admin123"
 
-- Add the following configurations to enable the JMS sender with Weblogic connection parameters.
-
-    ```toml
-    [[transport.jms.sender]]
-    name = "myTopicSender"
-    parameter.initial_naming_factory = "weblogic.jndi.WLInitialContextFactory"
-    parameter.provider_url = "t3://localhost:7001"
-    parameter.connection_factory_name = "jms/myConnectionFactory"
-    parameter.connection_factory_type = "topic"
-    parameter.username = "weblogic"
-    parameter.password = "admin123"        
-    ```
+[[transport.jms.listener]]
+name = "default"
+parameter.initial_naming_factory = "weblogic.jndi.WLInitialContextFactory"
+parameter.provider_url = "t3://localhost:7001"
+parameter.connection_factory_name = "jms/myConnectionFactory"
+parameter.connection_factory_type = "queue"
+parameter.username = "weblogic"
+parameter.password = "admin123"
+```
 
 ## Setting up a message store
 

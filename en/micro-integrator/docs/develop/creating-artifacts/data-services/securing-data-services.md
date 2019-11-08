@@ -6,14 +6,34 @@ services. To enable a security policy for a data service, you need to
 first create a security policy file, and then add it to the data
 service.
 
-### Step 1: Creating a security policy
+## Prerequisites
 
-1.  Right-click the [registry resource project](../../../../develop/creating-projects/#registry-resource-project) in the left navigation
+Be sure to [configure a user store](../../../../setup/user_stores/setting_up_ro_ldap) for the Micro Integrator and add the required users and roles.
+
+## Step 1: Creating a registry project
+
+Registry artifacts (such as security policy files) should be stored in a
+**Registry Resource** project. Follow the steps given below to create a
+project:
+
+1.  Open **WSO2 Integration Studio** and click **Miscelleneous → Create
+    New Registry Project** in the **Getting Started** tab as shown
+    below.
+
+    ![](../../../assets/img/tutorials/data_services/119130577/119135181.png)
+
+2.  Enter a name for the project and click **Next** .
+3.  Enter the Maven information about the project and click **Finish** .
+4.  The new project will be listed in the project explorer.
+
+## Step 2: Creating a security policy as a registry resource
+
+1.  Right-click the registry resource project in the left navigation
     panel, click **New** , and then click **Registry Resource** . This
     will open the **New Registry Resource** window.
-2.  Select the **From existing template** option and
-    click **Next**.  
-    ![](attachments/119130577/119130583.png)
+2.  Select the **From existing template** option as shown below and
+    click **Next** .  
+    ![](../../../assets/img/tutorials/data_services/119130577/119130583.png)
 3.  Enter the following details:
 
     | Property      |    Value       |
@@ -33,7 +53,7 @@ service.
         !!! Tip
             Click the icon next to the scenario to get details of the scenario.
           
-        ![](attachments/119130577/119130596.png)
+        ![](../../../assets/img/tutorials/data_services/119130577/119130596.png)
 
     2.  You can also provide encryption properties, signature
         properties, and advanced rampart configurations.
@@ -52,7 +72,7 @@ service.
         
 5.  Save the policy file.
 
-### Step 2: Adding the security policy to the data service
+## Step 2: Adding the security policy to the data service
 
 Once you have configured the policy file, you can add the security
 policy to the data service as explained below.
@@ -66,16 +86,16 @@ policy to the data service as explained below.
 2.  Once you have select the data service file, click the **browse**
     icon for the **Policy** field.
 
-    ![](attachments/119130577/119130582.png)
+    ![](../../../assets/img/tutorials/data_services/119130577/119130582.png)
 
-3.  Click **workspace** , to add the security policy from the current
+3.  Click **workspace**, to add the security policy from the current
     workspace. You can select the path to the
     `          sample_policy.         ` xml file that you created in the
     previous steps.  
-    ![](attachments/119130577/119130581.png)
-4.  Click **OK** , and the security policy will be added to the data
+    ![](../../../assets/img/tutorials/data_services/119130577/119130581.png)
+4.  Click **OK**, and the security policy will be added to the data
     service.  
-    ![](attachments/119130577/119130579.png)
+    ![](../../../assets/img/tutorials/data_services/119130577/119130579.png)
 5.  Save the data service.
 
 ## Step 3: Package the artifacts

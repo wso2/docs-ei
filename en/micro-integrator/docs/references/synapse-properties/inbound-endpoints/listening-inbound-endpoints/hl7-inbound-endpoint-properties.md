@@ -1,4 +1,4 @@
-# Listening Inbound Endpoint Properties
+# HL7 Inbound Endpoint Properties
 ## Introduction
 
 The HL7 inbound protocol is an alternative to the HL7 transport. The HL7 inbound endpoint implementation is fully asynchronous and is based on the <b>Minimal Lower Layer Protocol(MLLP)</b> implemented on top of event driven I/O.
@@ -26,11 +26,11 @@ The HL7 inbound protocol is an alternative to the HL7 transport. The HL7 inbou
 
 ## Properties
 
-Listed below are the properties used for [creating a HL7 inbound endpiont](../../../develop/creating-artifacts/creating-an-inbound-endpoint.md).
+Listed below are the properties used for [creating a HL7 inbound endpiont](../../../../../develop/creating-artifacts/creating-an-inbound-endpoint).
 
 ### Optional Properties
 
-The following properties can be configured when [creating a HL7 inbound endpiont](../../../develop/creating-artifacts/creating-an-inbound-endpoint.md).
+The following properties can be configured when [creating a HL7 inbound endpiont](../../../../../develop/creating-artifacts/creating-an-inbound-endpoint).
 
 <table>
    <thead>
@@ -79,7 +79,7 @@ The following properties can be configured when [creating a HL7 inbound endpiont
       <tr>
          <td>sequential</td>
          <td>The behavior when executing the given sequence.<br />
-            When set as <code>true</code> , mediation will happen within the same thread. When set as <code>false</code> , the mediation engine will use the inbound thread pool. The default thread pool values can be found in the <code>MI_HOME/conf/synapse.properties</code> file. The default setting is <code>true</code>.
+            When set as <code>true</code> , mediation will happen within the same thread. When set as <code>false</code> , the mediation engine will use the inbound thread pool. The default thread pool values can be found in the <code>MI_HOME/conf/deployment.toml</code> file, under the `[mediation]` section. The default setting is <code>true</code>.
          </td>
       </tr>
       <tr>

@@ -19,25 +19,8 @@ This sample demonstrates how to capture change data from MySQL using Siddhi. The
         `use production;`<br/>
     8. Create a table named `SweetProductionTable`.<br/>
         `CREATE TABLE SweetProductionTable (name VARCHAR(20),amount double(10,2));`<br/>
-    9. Save the sample Siddhi application.
+    9. Save the sample Siddhi application in Streaming Integrator Tooling.
 
-        ```sql
-        @App:name('CDCWithListeningMode')
-        @App:description('Capture MySQL Inserts using cdc source listening mode.')
-
-
-        @source(type = 'cdc', url = 'jdbc:mysql://localhost:3306/production', username = 'wso2sp', password = 'wso2', table.name = 'SweetProductionTable', operation = 'insert',
-        	@map(type = 'keyvalue'))
-        define stream insertSweetProductionStream (name string, amount double);
-
-        @sink(type = 'log')
-        define stream logStream (name string, amount double);
-
-        @info(name = 'query')
-        from insertSweetProductionStream
-        select name, amount
-        insert into logStream;
-        ```
 
 ## Executing the Sample
 
@@ -59,6 +42,8 @@ To test the sample Siddhi application, insert a record to the `SweetProductionTa
 
 `insert into SweetProductionTable values('chocolate',100.0);`
 
+## Viewing the results
+
 This insert is logged in the Streaming Integrator console as follows.
 
 ![Insert Log](../../images/cdc-with-listening-mode-sample/insert-log.png)
@@ -67,3 +52,22 @@ This insert is logged in the Streaming Integrator console as follows.
     Optionally, you can use this sample to also capture `update` and `delete` operations.<br/>
     - delete operation events include `before_name` and `before amount` keys.<br/>
     - update operation events include the `before_name`, `name`, `before_amount`, `amount` keys.
+
+???info "Click here to view the sample Siddhi application."
+    ```sql
+    @App:name('CDCWithListeningMode')
+    @App:description('Capture MySQL Inserts using cdc source listening mode.')
+
+
+    @source(type = 'cdc', url = 'jdbc:mysql://localhost:3306/production', username = 'wso2sp', password = 'wso2', table.name = 'SweetProductionTable', operation = 'insert',
+        @map(type = 'keyvalue'))
+    define stream insertSweetProductionStream (name string, amount double);
+
+    @sink(type = 'log')
+    define stream logStream (name string, amount double);
+
+    @info(name = 'query')
+    from insertSweetProductionStream
+    select name, amount
+    insert into logStream;
+    ```

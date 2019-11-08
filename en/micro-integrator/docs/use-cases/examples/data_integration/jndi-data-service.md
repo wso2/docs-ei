@@ -3,7 +3,7 @@
 Java Naming and Directory Interface (JNDI) is a Java API (application
 programming interface) providing naming and directory functionality for
 Java software clients to discover and look up data and objects via a
-name. WSO2 Enterprise Integrator (WSO2 EI) supports the JNDI
+name. WSO2 Micro Integrator (WSO2 MI) supports the JNDI
 InitialContext implementation by inheriting the JNDI implementation of
 Tomcat (
 <http://tomcat.apache.org/tomcat-7.0-doc/jndi-resources-howto.html> ).
@@ -30,7 +30,7 @@ Given below is the data service configuration you need to build. See the instruc
 
 Create the artifacts:
 
-1. [Set up WSO2 Integration Studio](../../../../develop/installing-WSO2-Integration-Studio). The path to this folder is referred to as `MI_TOOLING_HOME` throughout this tutorial.      
+1. [Set up WSO2 Integration Studio](../../../../develop/installing-WSO2-Integration-Studio).
 2. [Create a Data Service project](../../../../develop/creating-projects/#data-services-project)
-4. [Create the data service](../../../../develop/creating-artifacts/data-services/creating-data-services) with the configurations given above.
-5. [Deploy the artifacts](../../../../develop/deploy-and-run) in your Micro Integrator.
+3. [Create the data service](../../../../develop/creating-artifacts/data-services/creating-data-services) with the configurations given above.
+4. [Deploy the artifacts](../../../../develop/deploy-and-run) in your Micro Integrator.
