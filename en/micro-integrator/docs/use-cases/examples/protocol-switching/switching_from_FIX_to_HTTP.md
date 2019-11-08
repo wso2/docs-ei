@@ -9,175 +9,83 @@ The Micro Integrator will forward the order request to one-way `placeOrder` oper
 Following are the integration artifacts (proxy service) that we can used to implement this scenario.
 
 ```xml
-<localEntry key="xslt-key-req" src="file:repository/samples/resources/transform/transform_fix_to_http.xslt" />
-<proxy name="FIXProxy" transports="fix">
+<?xml version="1.0" encoding="UTF-8"?>
+<proxy name="FIXToHTTPProxy" startOnLoad="true" transports="fix" xmlns="http://ws.apache.org/ns/synapse">
     <target>
-        <endpoint>
-            <address
-                uri="http://localhost:9000/services/SimpleStockQuoteService" />
-        </endpoint>
         <inSequence>
-            <log level="full" />
-            <xslt key="xslt-key-req" />
-            <log level="full" />
+            <log level="full"/>
+            <xslt key="{reg_path}/FIX_XSLT.xslt"/>
+            <log level="full"/>
+            <header name="Action" value="urn:placeOrder"/>
+            <send>
+                <endpoint>
+                    <address uri="http://localhost:9000/services/SimpleStockQuoteService">
+                    </address>
+                </endpoint>
+            </send>
         </inSequence>
         <outSequence>
-            <log level="full" />
+            <log level="full"/>
         </outSequence>
+        <faultSequence/>
     </target>
-<parameter name="transport.fix.AcceptorConfigURL">
-    file:repository/samples/resources/fix/fix-synapse.cfg
-</parameter>
-<parameter name="transport.fix.AcceptorMessageStore">file</parameter>
+    <parameter name="transport.fix.AcceptorConfigURL">file:/{file_path}/fix-synapse.cfg</parameter>
+    <parameter name="transport.fix.AcceptorMessageStore">file</parameter>
 </proxy>
+
 ```
 
-Sample XSLT:
+FIX_XSLT :
 
 ```xml 
 <xsl:stylesheet version="2.0"
-        xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-        xmlns:fn="http://www.w3.org/2005/02/xpath-functions">
-    <xsl:output method="xml" omit-xml-declaration="yes" indent="yes" />
+                xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+                xmlns:fn="http://www.w3.org/2005/02/xpath-functions">
+    <xsl:output method="xml" omit-xml-declaration="yes" indent="yes"/>
     <xsl:template match="/">
         <m0:placeOrder xmlns:m0="http://services.samples">
             <m0:order>
-                <m0:price><xsl:value-of select="//message/body/field[]"/></m0:price>
-                <m0:quantity><xsl:value-of select="//message/body/field[]"/></m0:quantity>
-                <m0:symbol><xsl:value-of select="//message/body/field[]"/></m0:symbol>
+                <m0:price>
+                    <xsl:value-of select="//message/body/field[@id='44']"/>
+                </m0:price>
+                <m0:quantity>
+                    <xsl:value-of select="//message/body/field[@id='38']"/>
+                </m0:quantity>
+                <m0:symbol>
+                    <xsl:value-of select="//message/body/field[@id='55']"/>
+                </m0:symbol>
             </m0:order>
         </m0:placeOrder>
     </xsl:template>
 </xsl:stylesheet>
+
 ```
 
-<!--
+## Build and Run
 
-## Configuring Sample FIX Applications
+Create the artifacts:
 
-If you use a binary distribution of Quickfix/J, the two samples and
-their configuration files are all packed to a single JAR file called
-`quickfixj-examples.jar` . You will have to extract the
-JAR file, modify the configuration files and pack them to a JAR file
-again under the same name.
+1. [Set up WSO2 Integration Studio](../../../../develop/installing-WSO2-Integration-Studio).
+2. [Create an ESB Solution project](../../../../develop/creating-projects/#esb-config-project).
+3. Add the above XSLT as a registry resource.
+4. Create the [proxy service](../../../../develop/creating-artifacts/creating-a-proxy-service) with the configurations given above.
+5. Download the FIX transport resources from [here](https://github.com/wso2-docs/WSO2_EI/tree/master/FIX-transport-resources) and change the `{file_path}` of the proxy with the downloaded location.
+6. Change the `{reg_path}` with the XSLT registry location. 
+6. [Deploy the artifacts](../../../../develop/deploy-and-run) in your Micro Integrator.
 
-You can pass the new configuration file as a command line parameter too,
-in that case you do not need to modify the
-`quickfixj-examples.jar` . You can copy the config
-files from `$ESB_HOME/repository/samples/resources/fix`
-folder to `$QFJ_HOME/etc folder` . Execute the sample
-applications from
-`$QFJ_HOME/bin," "./banzai.sh/bat ../etc/banzai.cfg executor.sh/bat ../etc/executor.cfg`.
+[Enable the FIX transport](../../../../setup/transport_configurations/configuring-transports/#configuring-the-fix-transport) and start the Micro-Integrator.
 
-Locate and edit the FIX configuration file of the Executor  and Banzai as follows.
+Set up the back-end service:
 
-```java tab='executor.cfg'
-[default]
-    FileStorePath=examples/target/data/executor
-    ConnectionType=acceptor
-    StartTime=00:00:00
-    EndTime=00:00:00
-    HeartBtInt=30
-    ValidOrderTypes=1,2,F
-    SenderCompID=EXEC
-    TargetCompID=SYNAPSE
-    UseDataDictionary=Y
-    DefaultMarketPrice=12.30
+1. Download the [stockquote_service.jar](https://github.com/wso2-docs/WSO2_EI/blob/master/Back-End-Service/stockquote_service.jar)
+2. Open a terminal, navigate to the location of the downloaded service, and run it (stock quote service) using the following command:
 
-    [session]
-    BeginString=FIX.4.0
-    SocketAcceptPort=19876
-```
-
-```java tab='banzai.cfg'
-[default]
-    FileStorePath=examples/target/data/banzai
-    ConnectionType=initiator
-    SenderCompID=BANZAI
-    TargetCompID=SYNAPSE
-    SocketConnectHost=localhost
-    StartTime=00:00:00
-    EndTime=00:00:00
-    HeartBtInt=30
-    ReconnectInterval=5
-
-    [session]
-    BeginString=FIX.4.0
-    SocketConnectPort=9876
-```
-
-The `FileStorePath` property in the above two files
-should point to two directories in your local file system. The launcher
-scripts for the sample application can be found in the bin directory of
-Quickfix/J distribution.
-
-## Configuring WSO2 ESB for FIX Samples
-
-In order to configure WSO2 Micro Integrator to run the FIX samples given in this
-guide, you will need to create some FIX configuration files as specified
-below (You can find the config files from `$ESB_HOME/repository/samples/resources/fix folder`).
-
-The `FileStorePath` property in the following two files
-should point to two directories in your local file system. Once the
-samples are executed, Synapse will create FIX message stores in these
-two directories.
-
-```java tab='fix-synapse.cfg'
-[default]
-    FileStorePath=repository/logs/fix/data
-    ConnectionType=acceptor
-    StartTime=00:00:00
-    EndTime=00:00:00
-    HeartBtInt=30
-    ValidOrderTypes=1,2,F
-    SenderCompID=SYNAPSE
-    TargetCompID=BANZAI
-    UseDataDictionary=Y
-    DefaultMarketPrice=12.30
-
-    [session]
-    BeginString=FIX.4.0
-    SocketAcceptPort=9876
-```
-
-```java tab='synapse-sender.cfg'
-[default]
-    FileStorePath=repository/logs/fix/data
-    SocketConnectHost=localhost
-    StartTime=00:00:00
-    EndTime=00:00:00
-    HeartBtInt=30
-    ReconnectInterval=5
-    SenderCompID=SYNAPSE
-    TargetCompID=EXEC
-    ConnectionType=initiator
-
-    [session]
-    BeginString=FIX.4.0
-    SocketConnectPort=19876
-```
-
-## Build and run
-
--   You will need the sample FIX blotter that come with Quickfix/J (Banzai). Configure the blotter to establish sessions with Synapse.
--   Start the Axis2 server and deploy the `SimpleStockQuoteService` if not already deployed.
--   Start Banzai.
--   Enable FIX transport by adding below configuration into the MI_HOME/conf/deployment.toml file.
-
-    ```toml
-    [transport.fix]
-    listener.enable = true
-    sender.enable = false
+    ```bash
+    java -jar stockquote_service.jar
     ```
 
--   Configure ESB for FIX samples.
--   Open up the `ESB_HOME/repository/samples/synapse_sample_259.xml`
-    file and make sure that `transport.fix.AcceptorConfigURL` property points to the `fix-synapse.cfg` file you created.
-
-    !!! Note
-        Synapse creates a new FIX session with Banzai at this point.
-
--   Send an order request from Banzai to Synapse. For example, Buy DELL
-    1000 @ 100. User has to send a "Limit" Order because price is a
-    mandatory field for `          placeOrder         ` operation.
--->
+Run the quickfixj **Banzai** sample application.
+```
+java -jar quickfixj-examples-banzai-2.1.1.jar
+```
+Send an order request from Banzai to Synapse. For example, Buy DELL 1000 @ 100. User has to send a "Limit" Order because price is a mandatory field for placeOrder operation.
