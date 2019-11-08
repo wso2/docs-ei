@@ -149,7 +149,7 @@ Follow the steps relevant to your OS:
     sudo wso2mi
     ```
 
-    Find more about [stating the Micro Integrator](../../setup/installation/install_in_vm/#running-the-micro-integrator).
+    Find more about [starting the Micro Integrator](../../setup/installation/install_in_vm/#running-the-micro-integrator).
 
 -   On **Windows**, go to **Start Menu -> Programs -> WSO2 -> Micro Integrator**. This will open a terminal and start the Micro Integrator.
 
