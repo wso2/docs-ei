@@ -45,8 +45,7 @@ a standalone HornetQ server.
 6.  Download the [hornet-all-new.jar](https://github.com/wso2-docs/WSO2_EI/raw/master/Broker-Setup-Artifacts/HornetQ/hornetq-all-new.jar) file and copy it into the `MI_HOME/lib/` directory.
 
     !!! Info
-        If you are packing the JARs yourself, make sure you remove the javax.jms package from the assembled JAR to avoid the carbon runtime
-        from picking this implementation of JMS over the bundled-in distribution.
+        If you are packing the JARs yourself, make sure you remove the javax.jms package from the assembled JAR to avoid the carbon runtime from picking this implementation of JMS over the bundled-in distribution.
 
 7.  If you want the Micro Integrator to receive messages from a HornetQ instance, or to send messages to a HornetQ instance, you need to update the deployment.toml file with the relevant connection parameters.
 
@@ -223,7 +222,7 @@ Install JBoss EAP server and create a message queue within the server.
           </jms-queue>
     </jms-destinations>
     ```
-
+    
 4.  Start the JBoss EAP server by executing one of the following commands in command prompt:
     -   On Windows: `<EAP_HOME>\bin\standalone.bat -c standalone-full.xml`
     -   On Linux/Mac: `<EAP_HOME>/bin/standalone.sh -c standalone-full.xml`
@@ -259,8 +258,7 @@ Now you have configured the JBoss EAP Server. The next section describes how to 
 3.  Copy the `jboss-client.jar` file from the `EAP_HOME/bin/client` directory to the `MI_HOME/lib` directory.
 
     !!! Note
-        After copying the `jboss-client.jar` file from the `EAP_HOME/bin/client` directory to the `MI_HOME/lib` directory, be sure to remove the
-        `javax.jms` package from the `jboss-client.jar` file.  
+        After copying the `jboss-client.jar` file from the `EAP_HOME/bin/client` directory to the `MI_HOME/lib` directory, be sure to remove the `javax.jms` package from the `jboss-client.jar` file.  
         ![](attachments/119130351/119130352.png)
 
 Now you have configured WSO2 Micro Integrator with HornetQ embedded in a JBoss EAP server.
