@@ -42,7 +42,11 @@ Let’s implement a simple integration solution that can be used to query the av
 
 ## Before you begin
 
-1. [Download the Micro Integrator](https://www.wso2.com/integration/micro-integrator). For more information, see the [installation instructions](../../setup/installation/install_in_vm/).
+1. Go to the [website](https://www.wso2.com/integration/micro-integrator) to download the Micro Integrator. When you click **Download**, the installation options will be listed. For this quick start, you can either download and run the **installer**, or use the **binary** file.
+
+    !!! Info
+        For more information, see the [installation instructions](../../setup/installation/install_in_vm/).
+
 2. Download the [sample files](https://github.com/wso2/docs-ei/blob/7.0.0/en/micro-integrator/docs/assets/attach/quick-start-guide/MI_QSG_HOME.zip). From this point onwards, let's refer to this folder as `<MI_QSG_HOME>`.
 3. Download [curl](https://curl.haxx.se/) or a similar tool that can call an endpoint.
 
@@ -136,22 +140,36 @@ You will see following printed in the terminal:
 
 Copy the CAR file of the healthcare service (HealthcareConfigProjectCompositeApplication_1.0.0.car) from the `<MI_QSG_HOME>/HealthcareConfigProjectCompositeApplication/target/` directory to the `<MI_HOME>/repository/deployment/server/carbonapps` directory.
 
-!!! Info
-    If you set up the product using the installer, the `<MI_HOME>` [location](../../setup/installation/install_in_vm/#accessing-the-home-directory) is specific to your OS.
+!!! Note
+    If you [set up the product](#before-you-begin) using the **installer**, the `<MI_HOME>` [location](../../setup/installation/install_in_vm/#accessing-the-home-directory) is specific to your OS.
 
 #### Start the Micro Integrator
 
-Follow the steps relevant to your OS:
+If you [set up the product](#before-you-begin) using the **installer**, follow the steps relevant to your OS as shown below.
 
 -   On **MacOS/Linux/CentOS**, open a terminal and execute the following command:
 
     ```bash
     sudo wso2mi
     ```
-
-    Find more about [stating the Micro Integrator](../../setup/installation/install_in_vm/#running-the-micro-integrator).
-
+    
 -   On **Windows**, go to **Start Menu -> Programs -> WSO2 -> Micro Integrator**. This will open a terminal and start the Micro Integrator.
+
+If you [set up the product](#before-you-begin) using the **binary** file, open a terminal, navigate to the `<MI_HOME>/bin` directory, and execute the command relevant to your OS as shown below.
+
+-   On **MacOS/Linux/CentOS**:
+
+    ```bash
+    sh micro-integrator.sh
+    ```
+
+-   On **Windows**:
+
+    ```bash
+    micro-integrator.bat
+    ```
+
+Read more about [starting the Micro Integrator](../../setup/installation/install_in_vm/#running-the-micro-integrator).
 
 #### Invoke the healthcare service
 
