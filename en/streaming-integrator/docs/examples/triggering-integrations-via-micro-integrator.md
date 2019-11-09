@@ -108,45 +108,47 @@ Let's design a Siddhi application that triggers an integration flow and deploy i
       The Siddhi application is now complete.
 
     ???info "Click here to view the complete Siddhi application."
-        @App:name("grpc-call-response")
-        @App:description("This application triggers integration process in the micro integrator using gRPC calls")
-        
-        @source(type = 'http',
-                    receiver.url='http://localhost:8006/productionStream',
-                    basic.auth.enabled='false',
-                    @map(type='json'))
-        define stream InputStream(symbol string, amount double);
-        
-        @sink(
-            type='grpc-call',
-            publisher.url = 'grpc://localhost:8888/org.wso2.grpc.EventService/process/inSeq',
-            sink.id= '1', headers='Content-Type:json',
-            @map(type='json', @payload("""{"symbol":"{{symbol}}","avgAmount":{{avgAmount}}}"""))
-        )
-        @sink(type='log')    
-        define stream FooStream (symbol string, avgAmount double);
-        
-        @source(type='grpc-call-response', sink.id= '1', @map(type='json'))
-        define stream BarStream (type string, mi_response string);
-        
-        @sink(type='log', prefix='response_from_mi: ')
-        define stream LogStream (type string, mi_response string);
-        
-        @info(name = 'CalculateAverageProductionPerMinute')
-        from InputStream#window.timeBatch(5 sec)
-        select avg(amount) as avgAmount, symbol
-        group by symbol
-        insert into AVGStream;
-        
-        @info(name = 'FilterExcessProduction')
-        from AVGStream[avgAmount > 100]
-        select symbol, avgAmount
-        insert into FooStream;
-        
-        @info(name = 'LogResponseEvents')
-        from BarStream
-        select *
-        insert into LogStream;
+        ```
+            @App:name("grpc-call-response")
+            @App:description("This application triggers integration process in the micro integrator using gRPC calls")
+
+            @source(type = 'http',
+                        receiver.url='http://localhost:8006/productionStream',
+                        basic.auth.enabled='false',
+                        @map(type='json'))
+            define stream InputStream(symbol string, amount double);
+
+            @sink(
+                type='grpc-call',
+                publisher.url = 'grpc://localhost:8888/org.wso2.grpc.EventService/process/inSeq',
+                sink.id= '1', headers='Content-Type:json',
+                @map(type='json', @payload("""{"symbol":"{{symbol}}","avgAmount":{{avgAmount}}}"""))
+            )
+            @sink(type='log')
+            define stream FooStream (symbol string, avgAmount double);
+
+            @source(type='grpc-call-response', sink.id= '1', @map(type='json'))
+            define stream BarStream (type string, mi_response string);
+
+            @sink(type='log', prefix='response_from_mi: ')
+            define stream LogStream (type string, mi_response string);
+
+            @info(name = 'CalculateAverageProductionPerMinute')
+            from InputStream#window.timeBatch(5 sec)
+            select avg(amount) as avgAmount, symbol
+            group by symbol
+            insert into AVGStream;
+
+            @info(name = 'FilterExcessProduction')
+            from AVGStream[avgAmount > 100]
+            select symbol, avgAmount
+            insert into FooStream;
+
+            @info(name = 'LogResponseEvents')
+            from BarStream
+            select *
+            insert into LogStream;
+        ```
 
 7. Save the Siddhi application. As a result, it is saved in the `<SI_TOOLING_HOME>/wso2/server/deployment/workspace` directory.
 
@@ -162,15 +164,10 @@ After doing the required configurations in the Streaming Integrator, let's confi
 
     ```xml
         <?xml version="1.0" encoding="UTF-8"?>
-        <inboundEndpoint xmlns="http://ws.apache.org/ns/synapse"
-                       name="GrpcInboundEndpoint"
-                       sequence="inSeq"
-                       onError="fault"
-                       protocol="grpc"
-                       suspend="false">
-         <parameters>
-            <parameter name="inbound.grpc.port">8888</parameter>
-         </parameters>
+        <inboundEndpoint xmlns="http://ws.apache.org/ns/synapse" name="GrpcInboundEndpoint" sequence="inSeq" onError="fault" protocol="grpc" suspend="false">
+            <parameters>
+                <parameter name="inbound.grpc.port">8888</parameter>
+            </parameters>
         </inboundEndpoint>
     ```
 
@@ -182,17 +179,11 @@ After doing the required configurations in the Streaming Integrator, let's confi
         Note that the name of the sequence is `inSeq`. This is referred to in the `gRPC` sink configuration in the `grpc-call-response` Siddhi application you previously created in the Streaming Integrator.
 
     ```xml
-    <?xml version="1.0" encoding="UTF-8"?>
-    <sequence name="inSeq" xmlns="http://ws.apache.org/ns/synapse">
-        <log level="full"/>
-        <script language="js">
-           mc.setProperty('CONTENT_TYPE', 'application/json');
-           var payLoad = {};
-           payLoad.type = "gRPC"; 
-           payLoad.mi_response = "ok"; 
-           mc.setPayloadJSON(payLoad);</script>
-        <respond/>
-    </sequence>
+        <?xml version="1.0" encoding="UTF-8"?>
+        <sequence xmlns="http://ws.apache.org/ns/synapse" name="inSeq">
+           <log level="full"/>
+           <respond/>
+        </sequence>
     ```
 
    This sequence does the following:

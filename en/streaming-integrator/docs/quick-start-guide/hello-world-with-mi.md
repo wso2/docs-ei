@@ -91,7 +91,7 @@ To create and deploy Siddhi application that triggers an integration flow, and t
 
 5. Deploy the required artifacts in the Micro Integrator as follows:
 
-    1. Save the following GRPC inbound endpoint  as `rpcInboundEndpoint.xml` in the `<MI_Home>/repository/deployment/server/synapse-configs/default/inbound-endpoints` directory. You can name the file `g`.
+    1. Save the following GRPC inbound endpoint  as `grpcInboundEndpoint.xml` in the `<MI_Home>/repository/deployment/server/synapse-configs/default/inbound-endpoints` directory.
 
         ```
             <?xml version="1.0" encoding="UTF-8"?>
