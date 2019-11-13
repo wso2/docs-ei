@@ -42,6 +42,7 @@ given in the following example:
 | serviceStatus      | An OPTIONAL string to enable WIP (specifiesweatherthe data service is deployed or work in progress) support.                           |
 | transports         | An OPTIONAL string to enable the transports required for the data service. The possible values are "http", "https", "JMS" and "local". |
 
+
 ## Configuring the datasource
 
 The following sample demonstrates the common elements used for connecting to
