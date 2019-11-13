@@ -2,7 +2,7 @@
 
 This quick start guide explains how to trigger an integration flow using a message received by the Streaming Integrator.
 
-In this example, the same message you send to the Micro Integrator goes through the `inSeq` defined, and uses the `respond` mediator (to be changed with a `grpcResponseMediator`) to send back the response to the Streaming integrator.
+In this example, the same message you send to the Micro Integrator goes through the `inSeq` defined, and uses the `respond` mediator to send back the response to the Streaming integrator.
 
 !!!tip "Before you begin:"
 
@@ -10,11 +10,11 @@ In this example, the same message you send to the Micro Integrator goes through 
 
     - Download and install both the the Micro Integrator from [here](Link).
 
-    - Start the Streaming Integrator Tooling by issuing one of the following commands from the `<SI_HOME>/bin` directory:
+    - Start the Streaming Integrator by issuing one of the following commands from the `<SI_HOME>/bin` directory:
         -   For Windows: `server.bat`
         -   For Linux: `./server.sh`
 
-    - Start the Streaming Integrator by issuing one of the following commands from the `<SI_TOOLING_HOME>/bin` directory:
+    - Start the Streaming Integrator Tooling by issuing one of the following commands from the `<SI_TOOLING_HOME>/bin` directory:
         - For Windows: `tooling.bat`
         - For Linux: `./tooling.sh`
 
@@ -93,30 +93,29 @@ To create and deploy Siddhi application that triggers an integration flow, and t
 
     1. Save the following GRPC inbound endpoint  as `grpcInboundEndpoint.xml` in the `<MI_Home>/repository/deployment/server/synapse-configs/default/inbound-endpoints` directory.
 
+        ```xml
+        <?xml version="1.0" encoding="UTF-8"?>
+        <inboundEndpoint xmlns="http://ws.apache.org/ns/synapse" name="GrpcInboundEndpoint" sequence="inSeq" onError="fault" protocol="grpc" suspend="false">
+            <parameters>
+                <parameter name="inbound.grpc.port">8888</parameter>
+            </parameters>
+        </inboundEndpoint>
         ```
-            <?xml version="1.0" encoding="UTF-8"?>
-            <inboundEndpoint xmlns="http://ws.apache.org/ns/synapse" name="GrpcInboundEndpoint" sequence="inSeq" onError="fault" protocol="grpc" suspend="false">
-                <parameters>
-                    <parameter name="inbound.grpc.port">8888</parameter>
-                </parameters>
-            </inboundEndpoint>
-         ```
 
     2. Save the following sequence that includes a `respond` mediator in the `<MI_Home>/repository/deployment/server/synapse-configs/default/sequences` directory. You can name the file `InSeq.xml`.
 
-        ```
-            <?xml version="1.0" encoding="UTF-8"?>
-            <sequence xmlns="http://ws.apache.org/ns/synapse" name="inSeq">
-               <log level="full"/>
-               <respond/>
-            </sequence>
+        ```xml
+        <?xml version="1.0" encoding="UTF-8"?>
+        <sequence xmlns="http://ws.apache.org/ns/synapse" name="inSeq">
+           <log level="full"/>
+           <respond/>
+        </sequence>
         ```
 
 
 6. Issue the following CURL command to send an event to the Streaming Integrator. This is received via the `http` source configured in the `grpc-call-response` Siddhi application, and it triggers an integration flow with the Micro Integrator.
 
-    `curl -X POST -d "{\"event\":{\"message\":\"http_curl\",\"headers\":\"'Content-Type:json'\"}}" http://localhost:8006/inputstream --header "Content-Type:application/json"
-     */`
+    `curl -X POST -d "{\"event\":{\"message\":\"http_curl\",\"headers\":\"'Content-Type:json'\"}}" http://localhost:8006/inputstream --header "Content-Type:application/json"`
 
     The following response is logged in the console in which you are running the SI server.
 

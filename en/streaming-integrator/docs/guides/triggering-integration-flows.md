@@ -23,20 +23,20 @@ The following is a sample Siddhi application with a `gRPC` sink that triggers a 
 @App:name("grpc-call")
 @App:description("This siddhi application will trigger inSeq in the MicroIntegrator")
 
-@sink(
-    type='grpc', 
-    publisher.url = 'grpc://localhost:8888/org.wso2.grpc.EventService/consume/inSeq',
-    headers='Content-Type:json', 
-    metadata='Authorization:Basic YWRtaW46YWRtaW4=',
-    @map(type='json')
-)
-define stream FooStream (message String);
-
 @Source(type = 'http',
         receiver.url='http://localhost:8006/productionStream',
         basic.auth.enabled='false',
         @map(type='json'))
 define stream InputStream(message string, headers string);
+
+@sink(
+    type='grpc',
+    publisher.url = 'grpc://localhost:8888/org.wso2.grpc.EventService/consume/inSeq',
+    headers='Content-Type:json',
+    metadata='Authorization:Basic YWRtaW46YWRtaW4=',
+    @map(type='json')
+)
+define stream FooStream (message string, headers string);
 
 from InputStream
 select *
@@ -64,7 +64,7 @@ The following artifacts need to be deployed in the Micro Integrator.
     <inboundEndpoint xmlns="http://ws.apache.org/ns/synapse"
                      name="GrpcInboundEndpoint"
                      sequence="inSeq"
-                     onError="errSeq"
+                     onError="fault"
                      protocol="grpc"
                      suspend="false">
        <parameters>
@@ -76,13 +76,13 @@ The following artifacts need to be deployed in the Micro Integrator.
 
 - Both the inbound endpoint and the `grpc-call` sink in the Siddhi application refers to a sequence (`inSeq` in this example). A sequence with the same name and the required configuration should be added to the `<MI_HOME>/repository/deployment/server/synapse-configs/default/sequences` directory. The following is a sample configuration.
 
-```xml
-<?xml version="1.0" encoding="UTF-8"?>
-<sequence xmlns="http://ws.apache.org/ns/synapse" name="inSeq">
-   <log level="full"/>
-</sequence>
-
-```
+    ```xml
+    <?xml version="1.0" encoding="UTF-8"?>
+    <sequence xmlns="http://ws.apache.org/ns/synapse" name="inSeq">
+       <log level="full"/>
+       <respond/>
+    </sequence>
+    ```
 
 ## Triggering integration via Streaming Integrator and receiving a response from MI
 
@@ -139,7 +139,7 @@ Once the Siddhib application is created and deployed, deploy the following artif
     <inboundEndpoint xmlns="http://ws.apache.org/ns/synapse"
                      name="GrpcInboundEndpoint"
                      sequence="inSeq"
-                     onError="errSeq"
+                     onError="fault"
                      protocol="grpc"
                      suspend="false">
        <parameters>
@@ -155,8 +155,8 @@ Once the Siddhib application is created and deployed, deploy the following artif
     <?xml version="1.0" encoding="UTF-8"?>
     <sequence xmlns="http://ws.apache.org/ns/synapse" name="inSeq">
        <log level="full"/>
-       <class name="org.wso2.carbon.mediator.grpcresponse.ResponseMediator"/>
+       <respond/>
     </sequence>
     ```
 
-   The  `org.wso2.carbon.mediator.grpcresponse.ResponseMediator` class sends the response back to the Streaming Integrator.
+   The respond mediator sends the response back to the Streaming Integrator.
