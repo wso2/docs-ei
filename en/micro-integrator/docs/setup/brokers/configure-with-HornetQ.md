@@ -230,7 +230,7 @@ Install JBoss EAP server and create a message queue within the server.
 5.  Acess the management console of the JBoss EAP server using the following URL: `http://127.0.0.1:9990`
 6.  Log in to the Management Console using **admin** as both the username and password. In the **Profile** menu, click **Messaging ->
     Destinations** and you will be able to see the queue you added in Step 4 in the **Queues/Topics** section.  
-    ![](attachments/119130351/119130354.png)
+    ![](../../assets/img/broker-configs/hornetq/119130354.png)
 
 Now you have configured the JBoss EAP Server. The next section describes how to configure the Micro Integrator to listen and fetch messages from the queue that you created above.
 
@@ -259,15 +259,13 @@ Now you have configured the JBoss EAP Server. The next section describes how to 
 
     !!! Note
         After copying the `jboss-client.jar` file from the `EAP_HOME/bin/client` directory to the `MI_HOME/lib` directory, be sure to remove the `javax.jms` package from the `jboss-client.jar` file.  
-        ![](attachments/119130351/119130352.png)
+        ![](../../assets/img/broker-configs/hornetq/119130352.png)
 
 Now you have configured WSO2 Micro Integrator with HornetQ embedded in a JBoss EAP server.
 
 ### Testing the configuration
 
 To test the configuration, create a proxy service named `JMSPublisher` that publishes messages from the Micro Integrator to the HornetQ sample queue, and create the `JMSListener` queue to read messages from the HornetQ sample queue.
-
-![](attachments/119130351/119130355.png)
 
 1.  Create the `JMSPublisher` proxy service with the following configuration:
     ```xml
