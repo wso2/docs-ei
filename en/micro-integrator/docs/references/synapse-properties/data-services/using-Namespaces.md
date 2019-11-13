@@ -62,7 +62,7 @@ element falls under the given namespace.
         '.
 
 Therefore, since we are using the same element wrapper for both queries,
-we need to use two separate namespaces t o identify the two conflicting
+we need to use two separate namespaces to identify the two conflicting
 elements ('salary' and 'phone') in the two queries as shown below.
 
 ```xml
