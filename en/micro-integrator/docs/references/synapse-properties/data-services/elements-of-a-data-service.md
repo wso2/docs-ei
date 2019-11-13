@@ -32,15 +32,15 @@ given in the following example:
 
 | Attribute          | Description                                                                                                                            |
 |--------------------|----------------------------------------------------------------------------------------------------------------------------------------|
-| baseURI            | a REQUIRED URI indicating the base URI for the operations and resources definedwithinthe \<data\> element.                             |
-| name               | a REQUIRED name of the data service.                                                                                                   |
-| enableBatchRequest | an OPTIONAL boolean to enable the batch request feature.                                                                               |
-| enableBoxcarring   | an OPTIONAL boolean to enable theboxcarringfeature.                                                                                    |
-| txManagerJNDIName  | an OPTIONAL JNDI name for overriding the standard JNDI location for locating the JTA transaction manager                               |
-| serviceNamespace   | an OPTIONAL URI to uniquely identify the web service.                                                                                  |
-| serviceGroup       | an OPTIONAL name that is used to categorizedata-servicesin different groups.                                                           |
-| serviceStatus      | an OPTIONAL string to enable WIP (specifiesweatherthe data service is deployed or work in progress) support.                           |
-| transports         | an OPTIONAL string to enable the transports required for the data service. The possible values are "http", "https", "JMS" and "local". |
+| baseURI            | A REQUIRED URI indicating the base URI for the operations and resources definedwithinthe \<data\> element.                             |
+| name               | A REQUIRED name of the data service.                                                                                                   |
+| enableBatchRequest | An OPTIONAL boolean to enable the batch request feature.                                                                               |
+| enableBoxcarring   | An OPTIONAL boolean to enable theboxcarringfeature.                                                                                    |
+| txManagerJNDIName  | An OPTIONAL JNDI name for overriding the standard JNDI location for locating the JTA transaction manager                               |
+| serviceNamespace   | An OPTIONAL URI to uniquely identify the web service.                                                                                  |
+| serviceGroup       | An OPTIONAL name that is used to categorizedata-servicesin different groups.                                                           |
+| serviceStatus      | An OPTIONAL string to enable WIP (specifiesweatherthe data service is deployed or work in progress) support.                           |
+| transports         | An OPTIONAL string to enable the transports required for the data service. The possible values are "http", "https", "JMS" and "local". |
 
 ## Configuring the datasource
 
@@ -53,7 +53,7 @@ a datasource:
 </config>
 ```
 
--   `config/@id`: an OPTIONAL XML ID identifying the config element. If
+-   `config/@id`: An OPTIONAL XML ID identifying the config element. If
     the configuration file has multiple \<config\> elements, then this
     attribute is required.
 
@@ -253,55 +253,55 @@ element:
 <td></td>
 <td>call-query</td>
 <td></td>
-<td>an OPTIONAL element (which may occur any number of times) which is used to execute a further query and produce an element which will be present in the parent element as a child. This is used primarily to use a value of a column as key to select data from a new table.</td>
+<td>An OPTIONAL element (which may occur any number of times) that is used to execute a further query and produce an element that will be present in the current element as a child. This is used primarily to use a value of a column as key to select data from a new table.</td>
 </tr>
 <tr class="even">
 <td></td>
 <td>element</td>
 <td></td>
-<td>an OPTIONAL element (which may occur any number of times) indicating how a specific column in the result table is to be mapped into an element</td>
+<td>An OPTIONAL element (which may occur any number of times) indicating how a specific column in the result table is to be mapped into an element</td>
 </tr>
 <tr class="odd">
 <td></td>
 <td></td>
 <td>element/@name</td>
-<td>a REQUIRED QName giving the name of the element to put the column data into</td>
+<td>A REQUIRED name specifying the name of the element into which the column data will be inserted.</td>
 </tr>
 <tr class="even">
 <td></td>
 <td></td>
 <td>element/@column</td>
-<td>an OPTIONAL string giving the name of the column whose value is to be copied into the element.</td>
+<td>An OPTIONAL string giving the name of the column of which the value is to be copied into the element.</td>
 </tr>
 <tr class="odd">
 <td></td>
 <td></td>
 <td>element/@requiredRoles</td>
-<td>an OPTIONAL string giving the names of roles that who has permission to see the result element. Bydefaultit has set to all users.</td>
+<td>An OPTIONAL string giving the names of roles that have permission to see the result element. Bydefaultit has set to all users.</td>
 </tr>
 <tr class="even">
 <td></td>
 <td></td>
 <td>element/@export</td>
-<td>an OPTIONAL name giving to the element that to be export outside of query. This feature is used withboxcarringsupport.</td>
+<td>An OPTIONAL name given to the element that is to be export. This feature is used with boxcarring support.</td>
 </tr>
 <tr class="odd">
 <td></td>
 <td></td>
 <td>element/@exportType</td>
-<td>a REQUIRED parameter when using export option. Used to give the export element type whether scalar or array.</td>
+<td>A REQUIRED parameter when using the export option. Used to give the export element type: scalar or array.</td>
 </tr>
 <tr class="even">
 <td></td>
 <td></td>
 <td>element/@xsdType</td>
-<td>an OPTIONAL indication of the XML Schema type of the element. If none is given defaults to the mapping of the SQL type of the result column named by @column to an XML Schema type as per [SQL XML Mapping]</td>
+<td>An OPTIONAL indication of the XML Schema type of the element. If none is given, the value defaults to the mapping of the SQL type of the result column named by @column to an XML Schema type as per SQL XML Mapping.</td>
 </tr>
 <tr class="odd">
 <td></td>
 <td>attribute</td>
 <td></td>
-<td>an OPTIONAL element (which may occur any number of times) indicating how a specific column in the result table is to be mapped into an attribute of the element representing the current row</td>
+<td>An OPTIONAL element (which may occur any number of times) indicating how a specific column in the result table is to be mapped into an attribute of the element representing the current row</td>
 </tr>
 <tr class="even">
 <td></td>

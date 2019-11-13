@@ -7,8 +7,7 @@ can be either,
 
 -   Static inside the data service configuration.
 -   Provided at runtime through a Java class that implements the
-    interface
-    `          org.wso2.micro.integrator.dataservices.core.auth.DynamicUserAuthenticator.         `
+    `org.wso2.micro.integrator.dataservices.core.auth.DynamicUserAuthenticator.` interface.
 
 ## Static configuration
 
@@ -126,19 +125,19 @@ follows:
 
 -   Higher precedence goes to the static mapping in initially looking up
     the credentials. The "\*" request setting is ignored in the first
-    pass
--   If a request user/database credentials mapping cannot be found, the
+    pass.
+-   If a request user/database credential mapping cannot be found, the
     secondary runtime Java class implementation is used to look up the
-    user
+    user.
 -   If the previous option also fails, the program returns for the
-    primary static mapping and processes the "\*" request mapping
+    primary static mapping and processes the "\*" request mapping.
 -   The data service request returns an error only if all of the above
-    options fail
+    options fail.
 
 ## Use of external datasources
 
-When using datasources that are not inline like Carbon, JNDI etc. the
+When using datasources that are not inline, the
 datasources must be specified in a way that its connections can be
 created for selected users. Specifically in Carbon datasources, enable
-the setting `         alternateUsernameAllowed        ` for dynamic user
+the `         alternateUsernameAllowed        ` setting for dynamic user
 authentication to function.
