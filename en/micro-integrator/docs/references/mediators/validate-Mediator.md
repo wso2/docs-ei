@@ -119,7 +119,7 @@ fails is defined within the `            on-fail           ` element. In
 this example, the [Fault Mediator](fault-Mediator.md) creates a SOAP
 fault to be sent back to the party which sent the message.
 
-``` java
+```xml
 <validate cache-schema="true">
     <schema key="schema\sample.xsd"/>
          <on-fail>
@@ -143,7 +143,7 @@ reference is made within this schema to another schema named
 `            08SOAPFaults           ` which is located in
 `            SOAPFaults.xsd           ` .
 
-```
+```xml
 <xsd:import namespace= "http://samples.synapse.com/08MockServiceSchema" schemalocation= "MockDataTypes.xsd">
     <xsd:import namespace= "http://samples.synapse.com/08SOAPFaults" schemalocation= "../Common/SOAPFaults.xsd">
 </xsd:import>
@@ -151,7 +151,7 @@ reference is made within this schema to another schema named
 
 The Validate mediator can be configured as follows.
 
-```
+```xml
 <validate cache-schema="true">
     <schema key="MockDataTypes.xsd"/>
     <resource location="../Common/SOAPFaults.xsd" key="conf:custom/schema/SOAPFaults.xsd"/>
@@ -187,7 +187,7 @@ part of the message. Otherwise, the mediator validates the complete
 content of the current message.
 
 !!! Tip
-    - The Validate mediator is a [content aware](ESB-Mediators_119131045.html#ESBMediators-Content-awareness) mediator.
+    - The Validate mediator is a [content aware](../../../references/mediators/about-mediators/#classification-of-mediators) mediator.
     - A [Fault mediator](fault-Mediator.md) or [PayloadFactory mediator](payloadFactory-Mediator.md) should be added as a child to the Validate mediator in order specify the fault sequence to be followed if the validation fails.
 
 ## Validating JSON messages

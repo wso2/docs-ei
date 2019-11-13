@@ -1,6 +1,6 @@
 # Elements of a Data Service
 
-Data services and resources provide a service-and-resource-interface to
+Data services and resources provide a service-and-resource interface to
 some data stored in a relational database. In a service interface, you
 must indicate how service requests map to queries against collections of
 tables in a relational database and how query results are mapped to
@@ -9,9 +9,9 @@ of resources map to queries and how query responses are returned as
 resource representations (or reports of resource creation or deletion,
 depending on the HTTP verb in use).
 
-The following topics describe the data services configuration language
+The following topics describe the data service configuration language
 and the key elements used when composing a data service, such as
-queries, databases, operations etc. along with example syntax.
+queries, databases, operations, etc., along with example syntax.
 
 ## Data services and resource language
 
@@ -42,9 +42,9 @@ given in the following example:
 | serviceStatus      | an OPTIONAL string to enable WIP (specifiesweatherthe data service is deployed or work in progress) support.                           |
 | transports         | an OPTIONAL string to enable the transports required for the data service. The possible values are "http", "https", "JMS" and "local". |
 
-## Configuring thedatasource
+## Configuring the datasource
 
-The following sample config gives the common elements used to connect to
+The following sample demonstrates the common elements used for connecting to
 a datasource:
 
 ```xml
@@ -66,10 +66,10 @@ XML element. It is similar to a function that maps some parameters to an
 XML element. A query definition does not indicate how the parameters are
 acquired. Instead, it just lists the parameters that are needed,
 assuming that the parameters will be provided. If the query is at a top
-level (i.e., direct child of \<data\>) then either an operation
+level (i.e., direct child of \<data\>), then either an operation
 definition or a resource definition provides the context for the
 parameters. If the query is nested within a \<result\> element, then the
-parameter names refer to column names of the result table described in
+parameter names refer to column names of the result table described by
 the \<result\> element of the XML.
 
 The following sample config shows the common attributes of a \<query\>
@@ -120,135 +120,134 @@ element:
 <td>id</td>
 <td></td>
 <td></td>
-<td>an OPTIONAL XML ID identifying the query. If &lt;query&gt; is a direct child of &lt;data&gt; then this attribute is required.</td>
+<td>An OPTIONAL XML ID identifying the query. If &lt;query&gt; is a direct child of &lt;data&gt;, then this attribute is required.</td>
 </tr>
 <tr class="even">
 <td>useConfig</td>
 <td></td>
 <td></td>
-<td>a REQUIRED reference tothedatasourcethatis to be usedforquery.</td>
+<td>A REQUIRED reference to the datasource that is to be used in the query.</td>
 </tr>
 <tr class="odd">
 <td>returnGeneratedKeys</td>
 <td></td>
 <td></td>
-<td><p>an OPTIONAL boolean parameter to enable returnGeneratedKeys.</p>
-<p>Set this attribute to true only in INSERT queries, where the query inserts to a table that has an auto incrementing key column. In such a case, an auto incremented key value is added to the results set.</p>
-Also see <a href="https://docs.wso2.com/display/EI600/Adding+Input+Mappings">Returning Generated Keys</a> .</td>
+<td><p>An OPTIONAL boolean parameter to enable returnGeneratedKeys.</p>
+<p>Set this attribute to true only in INSERT queries, where the query inserts to a table that has an auto incrementing key column. In such a case, an auto incremented key value is added to the results.</p>.</td>
 </tr>
 <tr class="even">
 <td>param</td>
 <td></td>
 <td></td>
-<td>a declaration of a parameter of the query</td>
+<td>A declaration of a parameter of the query.</td>
 </tr>
 <tr class="odd">
 <td></td>
 <td>name</td>
 <td></td>
-<td>a REQUIRED name of the parameter.</td>
+<td>A REQUIRED name of the parameter.</td>
 </tr>
 <tr class="even">
 <td></td>
 <td>sqlType</td>
 <td></td>
-<td>an OPTIONAL string containing a legal SQL type which defines the type of the parameter. If none is specified then defaults to string.</td>
+<td>An OPTIONAL string containing a legal SQL type, which defines the type of parameter. If 'none' is specified, the value defaults to STRING.</td>
 </tr>
 <tr class="odd">
 <td></td>
 <td>paramType</td>
 <td></td>
-<td>a REQUIRED parameter type. If none is specified then defaults to SCALAR.</td>
+<td>A REQUIRED parameter type. If 'none' is specified, it defaults to SCALAR.</td>
 </tr>
 <tr class="even">
 <td></td>
 <td>ordinal</td>
 <td></td>
-<td>a  REQUIRED only for stored procedures which map the parameter positions with the query.</td>
+<td>REQUIRED only for stored procedures that map the parameter positions with the query.</td>
 </tr>
 <tr class="odd">
 <td></td>
 <td>defaultValue</td>
 <td></td>
-<td>an OPTIONAL default value of the input parameter.</td>
+<td>An OPTIONAL default value of the input parameter.</td>
 </tr>
 <tr class="even">
 <td></td>
 <td>validateCustom</td>
 <td>class</td>
-<td>a REQUIRED custom validation class to validate the input parameter.</td>
+<td>A REQUIRED custom validation class to validate the input parameter.</td>
 </tr>
 <tr class="odd">
 <td></td>
 <td>validateLength</td>
 <td>minimum</td>
-<td>a REQUIRED integer when specifying the minimum length of the parameter.</td>
+<td>A REQUIRED integer when specifying the minimum length of the parameter.</td>
 </tr>
 <tr class="even">
 <td></td>
 <td></td>
 <td>maximum</td>
-<td>a REQUIRED integer when specifying the maximum length of the parameter.</td>
+<td>A REQUIRED integer when specifying the maximum length of the parameter.</td>
 </tr>
 <tr class="odd">
 <td></td>
 <td>validatePattern</td>
 <td>pattern</td>
-<td>a REQUIRED string pattern to validate the string input parameter.</td>
+<td>A REQUIRED string pattern to validate the string input parameter.</td>
 </tr>
 <tr class="even">
 <td>sql</td>
 <td></td>
 <td></td>
-<td>a REQUIRED string containing the SQL query or SQL function to execute. See <a href="https://docs.wso2.com/display/EI600/Calling+MySQL+or+Oracle+Functions+in+a+Query">Calling an SQL Function in a Query</a> .</td>
+<td>A REQUIRED string containing the SQL query or SQL function to execute.</td>
 </tr>
 <tr class="odd">
 <td></td>
 <td>dialect</td>
 <td></td>
-<td>an OPTIONAL string containingjdbcdriver prefix when need to usesql-dialects.</td>
+<td>An OPTIONAL string containing the <code>jdbcdriver</code> prefix for usesql-dialects.</td>
 </tr>
 <tr class="even">
 <td>sparql</td>
 <td></td>
 <td></td>
-<td>a REQUIRED string containing thesparqlquery to execute when using RDF asdatasource.</td>
+<td>A REQUIRED string containing the sparql query to execute when using RDF as a datasource.</td>
 </tr>
 <tr class="odd">
 <td>properties</td>
 <td></td>
 <td></td>
-<td>an OPTIONAL XML to define advanced query properties. Each property is defined as a child element of this.</td>
+<td>An OPTIONAL XML to define advanced query properties. Each property is defined as a child element of this property.</td>
 </tr>
 <tr class="even">
 <td></td>
 <td>name</td>
 <td></td>
-<td>a REQUIRED name of the property.</td>
+<td>A REQUIRED name of the property.</td>
 </tr>
 <tr class="odd">
 <td>result</td>
 <td></td>
 <td></td>
-<td>a REQUIRED elementdescriibinghow the table resulting from executing the query will be converted to an XML element. If any &lt;column&gt; or &lt;query&gt; child elements are present, then ONLY those are transferred as child elements of the result element (or elements, depending on whether result/@rowName is given or not). The order of the nested &lt;column&gt; or &lt;query&gt; elements defines the order of elements in the result element.</td>
+<td>A REQUIRED element descriibing how the table resulting from executing the query will be converted to an XML element. If any &lt;column&gt; or &lt;query&gt; child elements are present, then ONLY those are transferred as child elements of the result element (or elements, depending on whether result/@rowName is given or not). The order of the nested &lt;column&gt; or &lt;query&gt; elements defines the order of elements in the result element.</td>
 </tr>
 <tr class="even">
 <td></td>
 <td>element</td>
 <td></td>
-<td>a REQUIRED QName which is the name of the element which will hold the results.</td>
+<td>A REQUIRED name, which is the name of the element holding the results.</td>
 </tr>
 <tr class="odd">
 <td></td>
 <td>rowName</td>
 <td></td>
-<td>an OPTIONAL QName which is the name of the element wrapping each row of the result table if more than one element from the table is to be returned. If this attribute is not given, then only the first row is returned and hence no second level wrapper element is needed.</td>
+<td>An OPTIONAL name, which is the name of the element wrapping each row of the result table if more than one element from the table is to be returned. If this attribute is not given, then only the first row is returned and hence no second level wrapper element is needed.</td>
 </tr>
 <tr class="even">
 <td></td>
 <td>defaultNamespace</td>
 <td></td>
-<td>an OPTIONAL URI being the default namespace to use for the namespace name of elements and attributesthat result columnsare mapped to. Defaultsto "" (meaning no namespace).</td>
+<td>An OPTIONAL URI being the default namespace to use for the namespace name of elements and attributesthat result columnsare mapped to. Defaultsto "" (meaning no namespace).</td>
 </tr>
 <tr class="odd">
 <td></td>
@@ -384,29 +383,29 @@ follows:
 ```
 
 -   `operation/@name`: is the REQUIRED name of the operation.
--   `operation/@disableStreaming`: an OPTIONAL boolean that used to
-    disable streaming. By default streaming are enable.
+-   `operation/@disableStreaming`: an OPTIONAL boolean that is used to
+    disable streaming. By default streaming is enable.
 -   `operation/@description`: an OPTIONAL string used to
-    describeoperation.
--   `operation/call-query`:describes how a query is to be invoked with the
+    describe the operation.
+-   `operation/call-query`: describes how a query is to be invoked with the
     data received in the operation invocation.
     -   `call-query/@href`: an OPTIONAL reference to the query that is to
-        be invoked. If this is missing then a query must be nested
+        be invoked. If this is missing, then a query must be nested
         within this element.
     -   `call-query/with-param`: a description of a parameter binding for
-        the query invocation: says how a named parameter's value is
+        the query invocation. This explains how a named parameter's value is
         computed.  
         -   `with-param/@name`: a REQUIRED NMTOKEN identifying the
-            parameter whose value is being specified.
+            parameter of which the value is being specified.
         -   `with-param/@query-param`: an OPTIONAL attribute indicating
             the name of the URI query parameter (from operation/@path)
-            whose value is the value of this parameter.
+            of which the value is the value of this parameter.
         -   `with-param/@column`: an OPTIONAL attribute naming a column of
             the immediate parent \<result\> element. That is, this
-            applies onlyfornested queries and serves the purpose of
+            applies only for nested queries and serves the purpose of
             being able to use a query result as input to a nested query.
         -   `with-param/@param`: an OPTIONAL attribute naming a \<param\>
-            of the parent \<query\>. That is, this applies onlyfornested
+            of the parent \<query\>. That is, this applies only for nested
             queries and serves the purpose of being able to use a
             parameter of the parent query input to a nested query.
     -   `call-query/query`: an OPTIONAL \<query\> being the anonymous
@@ -472,7 +471,7 @@ element to ensure that Apache Rampart is engaged for the data service.
 
 ## Sample data service configuration
 
-Given below is a sample data service configuration with queries, resources etc. for your reference:
+Given below is a sample data service configuration with queries, resources, etc. for your reference:
 
 ```xml
 <data name="DSSample" enableBatchRequests="false" enableBoxcarring="true" serviceStatus="active" baseURI="http://ws.wso2.org/dataservice/samples/ds_sample" transports="http https JMS local">
