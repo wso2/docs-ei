@@ -17,7 +17,7 @@ To demonstrate the scenario illustrated above, let's configure the JMS inbound e
 The synapse configuration for this example scenario is as follows:
 
 ```xml tab="Inbound Endpoint"
-<inboundEndpoint name="jms_inbound" onError="fault" protocol="jms"sequence="request" suspend="false">
+<inboundEndpoint name="jms_inbound" onError="fault" protocol="jms" sequence="request" suspend="false">
     <parameters>
        <parameter name="interval">1000</parameter>
        <parameter name="transport.jms.Destination">queue/mySampleQueue</parameter>
@@ -53,13 +53,13 @@ The synapse configuration for this example scenario is as follows:
 ```
 
 ```xml tab="Registry Artifact"
-<registry provider="org.wso2.carbon.mediation.registry.WSO2Registry">
+<registry provider="org.wso2.micro.integrator.registry.MicroIntegratorRegistry">
     <parameter name="cachableDuration">15000</parameter>
 </registry>
 ```
 
 ```xml tab="Task Manager"
-<taskManager provider="org.wso2.carbon.mediation.ntask.NTaskTaskManager">
+<taskManager provider="org.wso2.micro.integrator.mediation.ntask.NTaskTaskManager">
     <parameter name="cachableDuration">15000</parameter>
 </taskManager>
 ```
@@ -99,31 +99,17 @@ See the descriptions of the above configurations:
       This configuration creates an inbound endpoint to the JMS broker and has a simple sequence that logs the message status using the `JMSXDeliveryCount` value.
     </td>
   </tr>
-  <tr>
-    <td>Task Manager</td>
-    <td>The task manager configuration...</td>
-  </tr>
-  <tr>
-    <td>Registry Arfiact</td>
-    <td>The registry artifact..</td>
-  </tr>
 </table>
-
-<!--
 
 ## Running the Example
 
-Create the artifacts:
-
-1. [Set up WSO2 Integration Studio](../../../../develop/installing-WSO2-Integration-Studio).
-2. [Create an ESB Solution project](../../../../develop/creating-projects/#esb-config-project)
-3. [Create integration artifacts](../../../../develop/intro-integration-development) with configurations given in the above example.
-4. Configure the 
-4. [Deploy the artifacts](../../../../develop/deploy-and-run) in your Micro Integrator.
-
-Configure the Micro Integrator (Publisher) with the broker.
-2. Start the Broker.
-3. Start WSO2 Integration Studio and create artifacts with the above configuration. You can copy the synapse configuration given above to the **Source View** of your proxy service.
+1. Configure the Micro Integrator (Publisher) with [HornetQ](../../../setup/brokers/configure-with-HornetQ.md) broker.
+2. Start HornetQ with the following command.
+                       
+       On Windows: HORNETQ_HOME\bin\run.bat --run
+       On Linux/Solaris: sh HORNETQ_HOME/bin/run.sh
+           
+3. Copy and paste the above configurations into `<MI_HOME>/repository/deployment/server/synapse-configs/<node>/synapse.xml` file.
 4. Run the following java file (**SOAPPublisher.java**) to publish a message to the JMS queue:
     
     ```java
@@ -227,9 +213,10 @@ Configure the Micro Integrator (Publisher) with the broker.
                 }
             }
     ```
-When you analyze the output on the console, you will see an entry similar to the following:
+##Analyzing the output
+When you analyze the output on the MI server console, you will see an entry similar to the following:
 
 ```bash
-INFO - LogMediator To: , MessageID: ID:60868ca5-d174-11e5-b7de-f9743c9bcc9e, Direction: request, DeliveryCounter = 1
+INFO - LogMediator To: , MessageID: ID:419a4153-01e8-11ea-b4f3-7f52bbde3597, Direction: request, DeliveryCounter = 1
 ```
--->
+

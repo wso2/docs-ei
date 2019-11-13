@@ -5,9 +5,13 @@ consumers subscribe to a JMS topic, and if a message comes to that topic, mult
 
 With the shared subscription feature in JMS 2.0 you can overcome this restriction.  When shared subscription is used, a message that comes to a topic is forwarded to only one of the consumers. That is, if multiple JMS consumers subscribe to a JMS topic, consumers can share the messages that come to the topic. The advantage of shared topic subscription is that it allows to share the workload between consumers.
 
-The ESB Profile of WSO2 Enterprise Integrator (WSO2 EI) can be configured as a shared topic listener that can connect to a shared topic subscription as a message consumer (subscriber) to share workload between other consumers of the subscription. The following diagram illustrates this sample scenario:
+The Micro Integrator can be configured as a shared topic listener that can connect to a shared topic subscription as a message consumer (subscriber) to share workload between other consumers of the subscription. The following diagram illustrates this sample scenario:
 
 To demonstrate the sample scenario, let's configure the JMS inbound endpoint in WSO2 Micro Integrator as a shared topic listener using HornetQ as the message broker.
+
+## Configuring the JMS transport
+
+To enable the JMS transport listener and sender, you need to [configure JMS Transport](../../../setup/transport_configurations/configuring-transports.md#configuring-the-jms-transport) respective to the message broker you are using.
 
 ## Synapse configuration
 
@@ -34,13 +38,13 @@ The XML configuration for this sample scenario is as follows:
 ```
 
 ```xml tab="Registry Artifact"
-<registry provider="org.wso2.carbon.mediation.registry.WSO2Registry">
+<registry provider="org.wso2.micro.integrator.registry.MicroIntegratorRegistry">
   <parameter name="cachableDuration">15000</parameter>
 </registry>
 ```
 
 ```xml tab="Task Manager"
-<taskManager provider="org.wso2.carbon.mediation.ntask.NTaskTaskManager">
+<taskManager provider="org.wso2.micro.integrator.mediation.ntask.NTaskTaskManager">
   <parameter name="cachableDuration">15000</parameter>
 </taskManager>
 ```
@@ -88,22 +92,22 @@ See the descriptions of the above configurations:
     </td>
   </tr>
   <tr>
-    <td>Task Manager</td>
-    <td>The task manager configuration...</td>
-  </tr>
-  <tr>
-    <td>Registry Arfiact</td>
-    <td>The registry artifact..</td>
-  </tr>
 </table>
-
-<!--
 
 ## Running the Example
 
-1. Configure the Micro Integrator (Publisher) with the broker.
-2. Start the Broker.
-3. Start WSO2 Integration Studio and create artifacts with the above configuration. You can copy the synapse configuration given above to the **Source View** of your proxy service.
+1. Configure the Micro Integrator (Publisher) with [HornetQ](../../../setup/brokers/configure-with-HornetQ.md) broker.
+2. Create a sample topic by editing the `HORNET_HOME/config/stand-alone/non-clustered/hornetq-jms.xml` file as follows:
+        
+       <topic name="sampleTopic">
+           <entry name="/topic/exampleTopic"/>
+       </topic>
+2. Start HornetQ with the following command.
+                    
+       On Windows: HORNETQ_HOME\bin\run.bat --run
+       On Linux/Solaris: sh HORNETQ_HOME/bin/run.sh
+        
+3. Copy and paste the above configurations into `<MI_HOME>/repository/deployment/server/synapse-configs/<node>/synapse.xml` file.
 4. Create and run the following topic consumer (**TopicConsumer.java**) and run.
     
     ```java
@@ -289,8 +293,7 @@ See the descriptions of the above configurations:
                 }
             }
     ```
-
+##Analyzing the output
 You will see that the 5 messages are shared between the inbound listener and `         TopicConsumer.java        ` . This is because both the inbound listener and `         TopicConsumer.java        ` are configured as shared subscribers.
 
 The total number of consumed messages between the inbound listener and `         TopicConsumer.java        ` will be equal to the number messages published by `         TopicPublisher.java        `.
--->

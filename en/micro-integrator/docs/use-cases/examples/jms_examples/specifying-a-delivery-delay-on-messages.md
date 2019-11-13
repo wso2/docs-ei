@@ -105,13 +105,13 @@ The synapse configuration for this sample scenario is as follows:
 ```
 
 ```xml tab="Registry Artifact"
-<registry provider="org.wso2.carbon.mediation.registry.WSO2Registry">
+<registry provider="org.wso2.micro.integrator.registry.MicroIntegratorRegistry">
    <parameter name="cachableDuration">15000</parameter>
 </registry>
 ```
 
 ```xml tab="Task Manager"
-<taskManager provider="org.wso2.carbon.mediation.ntask.NTaskTaskManager"/>
+<taskManager provider="org.wso2.micro.integrator.mediation.ntask.NTaskTaskManager"/>
 ```
 
 See the descriptions of the above configurations:
@@ -131,27 +131,18 @@ See the descriptions of the above configurations:
         <td>Proxy Service 2</td>
         <td>The <code>JMSDelivery</code> proxy service does not set a delivery delay on the message.</td>
     </tr>
-    <tr>
-        <td>Main Sequence</td>
-        <td></td>
-    </tr>
-    <tr>
-        <td>Task Manager</td>
-        <td></td>
-    </tr>
-    <tr>
-        <td>Registry Artifact</td>
-        <td></td>
-    </tr>
 </table>
 
-<!--
 
 ## Running the Example
 
-1. Configure the Micro Integrator (Publisher) with Apache ActiveMQ.
-2. Start the Broker.
-3. Start WSO2 Integration Studio and create artifacts with the above configuration. You can copy the synapse configuration given above to the **Source View** of your proxy service.
+1. Configure the Micro Integrator (Publisher) with [HornetQ](../../../setup/brokers/configure-with-HornetQ.md) broker.
+2. Start HornetQ with the following command.
+                          
+       On Windows: HORNETQ_HOME\bin\run.bat --run
+       On Linux/Solaris: sh HORNETQ_HOME/bin/run.sh
+              
+3. Copy and paste the above configurations into `<MI_HOME>/repository/deployment/server/synapse-configs/<node>/synapse.xml` file.
 4. Run the following java file (**QueueConsumer.java**), which acts as the JMS consumer that consumes messages from the queue:
 
     ```java
@@ -257,14 +248,22 @@ See the descriptions of the above configurations:
             }
     ```
 
-5. Run the following command from `MI_HOME/sample/axis2Client` to invoke the two proxy services:
+5. Invoke the two proxy services (http://localhost:8290/services/JMSDelivery, http://localhost:8290/services/JMSDeliveryDelayed) with the following payload:
 
-    ``` java
-    ant stockquote -Daddurl=http://localhost:8280/services/JMSDelivery -Dmode=placeorder -Dsymbol=MSFT && ant stockquote -Daddurl=http://localhost:8280/services/JMSDeliveryDelayed -Dmode=placeorder -Dsymbol=MSFT
+    ```
+    <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="http://services.samples" xmlns:xsd="http://services.samples/xsd">
+       <soapenv:Header/>
+       <soapenv:Body>
+          <ser:getQuote>
+             <ser:request>
+                <xsd:symbol>IBM</xsd:symbol>
+             </ser:request>
+          </ser:getQuote>
+       </soapenv:Body>
+    </soapenv:Envelope>
     ```
 
 You will see that two messages are received by the Java consumer with a time difference of more than 10 seconds.
 
 This is because the `         JMSDeliveryDelayed        ` proxy service sets a delivery delay of 10 seconds on the message that it forwards, whereas the `         JMSDelivery        ` proxy service does not set a
 delivery delay on the message.
--->

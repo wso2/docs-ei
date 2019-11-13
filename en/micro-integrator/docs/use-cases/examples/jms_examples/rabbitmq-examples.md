@@ -13,7 +13,6 @@ The following is a sample scenario that demonstrates how WSO2 Micro Integrator i
 ### Synapse configuration
 
 ```xml
-<?xml version="1.0" encoding="UTF­8"?>
 <proxy xmlns="http://ws.apache.org/ns/synapse" name="AMQPProxy" transports="rabbitmq" statistics="disable" trace="enable" startOnLoad="true">
 <target>
  <inSequence>
@@ -49,7 +48,6 @@ server (message exchange).
 ### Synapse configuration
 
 ```xml
-<?xml version="1.0" encoding="UTF­8"?>
 <proxy xmlns="http://ws.apache.org/ns/synapse" name="AMQPProducerSample" transports="http" statistics="disable" trace="disable" startOnLoad="true">
 <target>
  <inSequence>
@@ -230,7 +228,7 @@ another:
       </inSequence>
       <endpoint>
          <address
-         uri="rabbitmq:/AMQPProxy?rabbitmq.server.host.name=192.168.0.3&rabbitmq.server.port=5672&rabbitmq.server.user.name=user&rabbitmq.server.password=abc123&rabbitmq.queue.name=queue2&rabbitmq.exchange.name=exchange2"/>
+         uri="rabbitmq:/AMQPProxy?rabbitmq.server.host.name=192.168.0.3&amp;rabbitmq.server.port=5672&amp;rabbitmq.server.user.name=user&amp;rabbitmq.server.password=abc123&amp;rabbitmq.queue.name=queue2&amp;rabbitmq.exchange.name=exchange2"/>
       </endpoint>
    </target>
    <parameter name="rabbitmq.queue.name">queue1</parameter>
@@ -251,10 +249,7 @@ Note the following:
     prefix is `          rabbbitmq         ` so that the RabbitMQ AMQP
     transport will be used to publish the message. Be sure to specify
     the rest of the parameters in the URI as shown in the sample proxy
-    service above. (NOTE: if you are configuring the URI through the
-    management console instead of entering the configuration directly in
-    the configuration file, you must encode the ampersands in the URI as
-    "&amp;" instead of "&".) If you do not know which [RabbitMQ
+    service above. If you do not know which [RabbitMQ
     exchange](http://www.rabbitmq.com/tutorials/tutorial-three-python.html)
     to use, leave the value blank to use the default exchange.
 -   The `          rabbitmq.queue.name         ` parameter specifies the
@@ -286,10 +281,9 @@ Inbound Endpoint. If a failure occurs, the transaction will roll back.
 This avoids the loss of the message.
 
 !!! Tip
-    If you are using a RabbitMQ Inbound Endpoint for receiving messages, set the scope of the `SET_ROLLBACK_ONLY` property to
-`default` as follows:
-
-    <property name="SET_ROLLBACK_ONLY" scope="default" type="STRING" value="true"/>
+    If you are using a RabbitMQ Inbound Endpoint for receiving messages, set the scope of the `SET_ROLLBACK_ONLY` property to `default` as follows:
+    
+        <property name="SET_ROLLBACK_ONLY" scope="default" type="STRING" value="true"/>
 
 As shown in the below example, you need to set the
 `           SET_ROLLBACK_ONLY          ` property to **true** in the

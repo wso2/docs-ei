@@ -12,19 +12,18 @@ To enable the JMS transport listener and sender, you need to [configure JMS Tran
 Given below is the synapse configuration of the proxy service that mediates the above use case. Note that you need to update the JMS connection URL according to your broker as explained below.
 
 ```xml
-<proxy xmlns="http://ws.apache.org/ns/synapse" name="StockQuoteProxy" transports="http">
+<proxy xmlns="http://ws.apache.org/ns/synapse" name="StockQuoteProxy" transports="http" startOnLoad="true">
         <target>
             <inSequence>
                 <property action="set" name="OUT_ONLY" value="true"/>
+                <property name="FORCE_SC_ACCEPTED" value="true" scope="axis2"/>
                 <send>
                     <endpoint>
-                        <address uri=""/> <!-- Specify the JMS connection URL here -->
+                        <address uri="jms:/SimpleStockQuoteService?transport.jms.ConnectionFactoryJNDIName=QueueConnectionFactory&amp;java.naming.factory.initial=org.apache.activemq.jndi.ActiveMQInitialContextFactory&amp;java.naming.provider.url=tcp://localhost:61616&amp;transport.jms.DestinationType=queue"/>
                     </endpoint>
                 </send>
             </inSequence>
-            <outSequence/>
         </target>
-        <publishWSDL uri="file:samples/service-bus/resources/proxy/sample_proxy_1.wsdl"/>
 </proxy>
 ```
 
@@ -50,6 +49,12 @@ The Synapse artifacts used are explained below.
         </td>
     </tr>
     <tr>
+        <td>Property Mediator</td>
+        <td>
+            The <b>FORCE_SC_ACCEPTED</b> property is set to <b>true</b> , this property forces a 202 HTTP response to the client so that the client stops waiting for a response..  
+        </td>
+    </tr>
+    <tr>
         <td>Send Mediator</td>
         <td>
            To send a message to a JMS queue, you should define the JMS connection URL as the endpoint address (which should be invoked via the <b>Send</b> mediator). There are two ways to specify the endpoint URL: 
@@ -57,7 +62,7 @@ The Synapse artifacts used are explained below.
                <li>
                     Specify the JNDI name of the JMS queue and the connection factory parameters in the JMS connection URL as shown in the exampe below. Values of connection factory parameters depend on the type of the JMS broker. </br></br>
                     <b>When the broker is ActiveMQ</b></br>
-                    <code>jms:/SimpleStockQuoteService?transport.jms.ConnectionFactoryJNDIName=QueueConnectionFactory&java.naming.factory.initial=org.apache.activemq.jndi.ActiveMQInitialContextFactory&java.naming.provider.url=tcp://localhost:61616&transport.jms.DestinationType=queue</code></br></br>
+                    <code>jms:/SimpleStockQuoteService?SimpleStockQuoteService?transport.jms.ConnectionFactoryJNDIName=QueueConnectionFactory&java.naming.factory.initial=org.apache.activemq.jndi.ActiveMQInitialContextFactory&java.naming.provider.url=tcp://localhost:61616&transport.jms.DestinationType=queue</code></br></br>
                     <b>When the broker is WSO2 Message Broker</b></br>
                     <code>jms:/StockQuotesQueue?transport.jms.ConnectionFactoryJNDIName=QueueConnectionFactory&amp;java.naming.factory.initial=org.wso2.andes.jndi.PropertiesFileInitialContextFactory&amp;java.naming.provider.url=conf/jndi.properties&transport.jms.DestinationType=queue</code>
                </li></br>

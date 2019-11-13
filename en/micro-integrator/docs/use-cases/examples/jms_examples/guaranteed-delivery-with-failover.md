@@ -6,7 +6,7 @@ The following diagram illustrates a scenario where a failover message
 store and a scheduled failover message forwarding processor is used
 to ensure guaranteed delivery:
 
-![](/assets/img/tutorials/guaranteed-delivery-failover/Guaranteed_Delivery.png)
+![](../../../assets/img/tutorials/guaranteed-delivery-failover/Guaranteed_Delivery.png)
 
 In this scenario, the original message store fails due to either network
 failure, message store crash or system shutdown for maintenance, and the
@@ -23,11 +23,16 @@ the scheduled failover message forwarding processor forwards messages to
 the original message store that the message was supposed to be
 temporarily stored.
 
+!!! Warning
+    If you are using message processor with Active MQ broker add the following configuration to the startup script before starting the server as shown below,
+    
+    For Linux/Mac OS update `micro-integrator.sh` and for Windows update `micro-integrator.bat`with -Dorg.apache.activemq.SERIALIZABLE_PACKAGES="*" system property
+
 ## Synapse Configuration
 
 Listed below are the synapse artifacts for this use case.
 
-- **Messge Stores**
+- **Message Stores**
 
     ```xml tab='Failover message store'
     <messageStore name="failover"/>  
@@ -35,7 +40,7 @@ Listed below are the synapse artifacts for this use case.
 
     ```xml tab='Message Store'
     <messageStore  
-        class="org.apache.synapse.message.store.impl.jms.JmsStore" name="Orginal">  
+        class="org.apache.synapse.message.store.impl.jms.JmsStore" name="Original">  
         <parameter name="store.failover.message.store.name">failover</parameter>  
         <parameter name="store.producer.guaranteed.delivery.enable">true</parameter>  
         <parameter name="java.naming.factory.initial">org.apache.activemq.jndi.ActiveMQInitialContextFactory</parameter>  
@@ -47,7 +52,7 @@ Listed below are the synapse artifacts for this use case.
 - **Message Processors**
 
     ```xml tab='Scheduled message forwarding processor'
-    <messageProcessor name="ForwardMessageProcessor" class="org.apache.synapse.message.processor.impl.forwarder.ScheduledMessageForwardingProcessor" targetEndpoint="SimpleStockQuoteService" messageStore="Orginal" xmlns="http://ws.apache.org/ns/synapse">
+    <messageProcessor name="ForwardMessageProcessor" class="org.apache.synapse.message.processor.impl.forwarder.ScheduledMessageForwardingProcessor" targetEndpoint="SimpleStockQuoteService" messageStore="Original" xmlns="http://ws.apache.org/ns/synapse">
            <parameter name="interval">1000</parameter>
            <parameter name="client.retry.interval">1000</parameter>
            <parameter name="max.delivery.attempts">4</parameter>
@@ -65,7 +70,7 @@ Listed below are the synapse artifacts for this use case.
            <parameter name="is.active">true</parameter>
            <parameter name="max.delivery.drop">Disabled</parameter>
            <parameter name="member.count">1</parameter>
-           <parameter name="message.target.store.name">Orginal</parameter>
+           <parameter name="message.target.store.name">Original</parameter>
     </messageProcessor> 
     ```
 
@@ -75,10 +80,11 @@ Listed below are the synapse artifacts for this use case.
     <proxy name="Proxy1" transports="https http" startOnLoad="true" trace="disable" xmlns="http://ws.apache.org/ns/synapse">    
           <target>  
             <inSequence>  
+             <header name="Action" value="urn:getQuote"/>
              <property name="FORCE_SC_ACCEPTED" value="true" scope="axis2"/>  
              <property name="OUT_ONLY" value="true"/>  
              <log level="full"/>  
-             <store messageStore="Orginal"/>  
+             <store messageStore="Original"/>  
             </inSequence>  
           </target>  
     </proxy>   
@@ -94,7 +100,7 @@ The synapse configurations used above are as follows:
 
 - **Failover message store**
   
-    In this example an in-memory message store is used to create the failover message store. If you have a cluster setup, it will not be possible to use an in-memory message store since it is not possible tomshare in-memory stores among nodes in a cluster. This step does not involve any special configuration.
+    In this example an in-memory message store is used to create the failover message store. If you have a cluster setup, it will not be possible to use an in-memory message store since it is not possible to share in-memory stores among nodes in a cluster. This step does not involve any special configuration.
 
 - **Original message store**
   
@@ -104,18 +110,49 @@ The synapse configurations used above are as follows:
 
 - **Endpoint for the scheduled message forwarding processor**
 
-    In this example, the SimpleStockquate service is used as the back-end service. Follow the instructions below to define the address endpoint.
+    In this example, the SimpleStockquote service is used as the back-end service. Deploy the back-end service `SimpleStockQuoteService`.
+                                                                                       
+    * Download the JAR file of the back-end service from [here](https://github.com/wso2-docs/WSO2_EI/blob/master/Back-End-Service/stockquote_service.jar).
+    * Open a terminal, navigate to the location where your saved the back-end service.
+    * Execute the following command to start the service:
+                                                                                      
+            java -jar stockquote_service.jar
 
 - **Scheduled failover message forwarding processor**
 
     When creating the scheduled failover message forwarding processor, you need to specify the following two mandatory parameters that are important in the failover scenario.
+        
+    * <b>Source Message Store
+    * Target Message Store</b>
 
     The scheduled failover message forwarding processor sends messages from the failover store to the original store when it is available in the failover scenario. In this configuration, the source message store should be the failover message store and target message store should be the original message store.
 
 - **Proxy service**
 
-    A proxy service is used to send messages to the original message store via the store mediator. Following is the proxy service used in this example:
+    A proxy service is used to send messages to the original message store via the store mediator.
 
+####Send the request to the proxy service
+
+Invoke the proxy service (http://localhost:8290/services/Proxy1) with the following payload,
+```xml
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="http://services.samples" xmlns:xsd="http://services.samples/xsd">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ser:getQuote>
+         <ser:request>
+            <xsd:symbol>IBM</xsd:symbol>
+         </ser:request>
+      </ser:getQuote>
+   </soapenv:Body>
+</soapenv:Envelope>
+```
+You will see the following response in the back-end service console:
+
+```
+INFO  [wso2/stockquote_service] - Stock quote service invoked.
+INFO  [wso2/stockquote_service] - Generating getQuote response for IBM
+INFO  [wso2/stockquote_service] - Stock quote generated.
+```
 ## Run the Example
 
 To test the failover scenario, shut down the JMS broker(i.e., the

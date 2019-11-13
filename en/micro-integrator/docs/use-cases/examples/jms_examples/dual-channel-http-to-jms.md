@@ -38,7 +38,7 @@ Shown below is the `         SMSSenderProxy        ` proxy service.
              <send/>
           </outSequence>
           <endpoint>
-             <address uri="jms:/SMSStore?transport.jms.ConnectionFactoryJNDIName=QueueConnectionFactory&amp;java.naming.factory.initial=org.wso2.andes.jndi.PropertiesFileInitialContextFactory&amp;java.naming.provider.url=conf/jndi.properties&amp;transport.jms.DestinationType=queue&amp;transport.jms.ReplyDestination=SMSReceiveNotificationStore"/>
+             <address uri="jms:/SMSStore?transport.jms.ConnectionFactoryJNDIName=QueueConnectionFactory&amp;java.naming.factory.initial=org.apache.activemq.jndi.ActiveMQInitialContextFactory&amp;java.naming.provider.url=tcp://localhost:61616&amp;transport.jms.DestinationType=queue&amp;transport.jms.ReplyDestination=SMSReceiveNotificationStore"/>
           </endpoint>
        </target>
        <description/>
@@ -161,6 +161,7 @@ Create a proxy service named `         SMSForwardProxy        ` with the configu
            startOnLoad="true">
        <target>
           <inSequence>
+            <header name="Action" value="urn:getQuote"/>
              <send>
                 <endpoint>
                    <address uri="http://localhost:9000/services/SimpleStockQuoteService"/>
@@ -187,4 +188,25 @@ Create a proxy service named `         SMSForwardProxy        ` with the configu
 The `         transport.jms.ConnectionFactory        ` , `         transport.jms.DestinationType        ` parameter and the
 `         transport.jms.Destination properties        ` parameter map the proxy service to the `         SMSStore        ` queue.
 
-The `         SimpleStockQuoteService        ` sample shipped with WSO2 Micro Integrator is used as the back-end service in this example. To invoke this service, the address URI of this proxy service is defined as `         http://localhost:9000/services/SimpleStockQuoteServic        `.
+The `         SimpleStockQuoteService        ` sample is used as the back-end service in this example. 
+Follow the below steps to deploy the `         SimpleStockQuoteService        ` back-end service. 
+
+* Download the JAR file of the back-end service from [here](https://github.com/wso2-docs/WSO2_EI/blob/master/Back-End-Service/stockquote_service.jar).
+* Open a terminal, navigate to the location where your saved the back-end service.
+* Execute the following command to start the service:
+   
+        java -jar stockquote_service.jar
+
+To invoke this service, the address URI of this proxy service is defined as `         http://localhost:9000/services/SimpleStockQuoteService        `. Send a POST request to the above address URI with the following payload,
+```xml
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="http://services.samples" xmlns:xsd="http://services.samples/xsd">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ser:getQuote>
+         <ser:request>
+            <xsd:symbol>IBM</xsd:symbol>
+         </ser:request>
+      </ser:getQuote>
+   </soapenv:Body>
+</soapenv:Envelope>
+```
