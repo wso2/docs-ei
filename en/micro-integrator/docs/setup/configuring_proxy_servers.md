@@ -1,12 +1,9 @@
 # Working with Proxy Servers
 
-When using WSO2 Micro Integrator,
-there can be scenarios where you need to configure the Micro Integrator to route
+When using WSO2 Micro Integrator, there can be scenarios where you need to configure the Micro Integrator to route
 messages through a proxy server. For example, if the Micro Integrator is behind a
 firewall, your proxy service might need to talk to a server through a
 proxy server.
-
-![](attachments/119130243/119130245.png)
 
 ## Routing messages through a proxy server
 

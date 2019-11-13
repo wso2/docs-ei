@@ -61,11 +61,7 @@ project:
         !!! Info
             **Using role-based permissions?**
         
-            For certain scenarios, you can specify user roles. After you select the scenario, scroll to the right to see the **User Roles** button.  
-
-            ![](attachments/119130577/119130622.png)
-        
-            Either define the user roles inline or retrieve the user roles from the server.
+            For certain scenarios, you can specify user roles. After you select the scenario, scroll to the right to see the **User Roles** button. Either define the user roles inline or retrieve the user roles from the server.
                 
         !!! Info
             Switch to source view of the policy file and make sure the tokenStoreClass in the policy file is 'org.wso2.micro.integrator.security.extensions.SecurityTokenStore'

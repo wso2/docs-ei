@@ -7,8 +7,6 @@ that the publisher does not deliver a message until the specified delivery delay
 
 The following diagram illustrates how you can use WSO2 Micro Integrator as a JMS producer and specify a delivery delay on messages when you do not want the message consumer to receive a message until a specified time duration has elapsed.
 
-![](attachments/119130324/119130325.png)
-
 ## Synapse configuration
 
 The synapse configuration for this sample scenario is as follows:
