@@ -128,10 +128,10 @@ Let's design a Siddhi application that triggers an integration flow and deploy i
         define stream FooStream (symbol string, avgAmount double);
 
         @source(type='grpc-call-response', sink.id= '1', @map(type='json'))
-        define stream BarStream (symbol string, avgAmount double, type string, mi_response string);
+        define stream BarStream (type string, mi_response string);
 
         @sink(type='log', prefix='response_from_mi: ')
-        define stream LogStream (symbol string, avgAmount double, type string, mi_response string);
+        define stream LogStream (type string, mi_response string);
 
         @info(name = 'CalculateAverageProductionPerMinute')
         from InputStream#window.timeBatch(5 sec)
