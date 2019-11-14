@@ -66,7 +66,7 @@ The Synapse artifacts used are explained below.
                     If you have already specified the endpoint's connection factory parameters (for the JMS sender configuration) in the deployment.toml file, the connection URL in the proxy service should be as shown below. In this example, the endpoint URL of the proxy service refers the relevant connection factory in the deployment.toml file: </br></br>
                     <b>When the broker is ActiveMQ</b></br>
                     <code>
-                        jms:transport.jms.ConnectionFactory=QueueConnectionFactory
+                        jms:/SimpleStockQuoteService?transport.jms.ConnectionFactory=QueueConnectionFactory
                     </code></br></br>
                     <b>When the broker is WSO2 Message Broker</b></br>
                     <code>

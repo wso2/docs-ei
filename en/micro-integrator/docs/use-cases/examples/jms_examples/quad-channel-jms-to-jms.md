@@ -34,7 +34,7 @@ The proxy service configuration.
 
 The message flow of the above sample configuration is as follows:
 
-1.  The **JMSReplyTo** property of the JMS message is set to **ClientRes** . Therefore, the c lient sends a JMS message to the
+1.  The **JMSReplyTo** property of the JMS message is set to **ClientRes** . Therefore, the client sends a JMS message to the
     **ClientReq** queue.  
 2.  The **transport.jms.ReplyDestination** value is set to **BERes**. This enables the WSO2 EI proxy to pick messages from **ClientReq** queue, and send to **BEReq** queue .  
 3.  The back-end picks messages from the **BEReq** queue, processes and places response messages to **BERes** queue.  
@@ -59,7 +59,7 @@ The Synapse artifacts used are explained below.
     <tr>
         <td>Property Mediator</td>
         <td>
-            ... 
+            The JMS transport uses transport.jms.ContentTypeProperty property in the above configuration to determine the content type of the response message. If this property is not set, the JMS transport treats the incoming message as plain text. 
         </td>
     </tr>
     <tr>
@@ -73,7 +73,7 @@ The Synapse artifacts used are explained below.
                <li>
                     If you have already specified the endpoint's connection factory parameters (for the JMS sender configuration) in the deployment.toml file, the connection URL in the proxy service should be as shown below. In this example, the endpoint URL of the proxy service refers the relevant connection factory in the deployment.toml file: </br></br>
                     <b>When the broker is ActiveMQ</b></br>
-                    <code>jms:transport.jms.ConnectionFactory=QueueConnectionFactory</code></br></br>
+                    <code>jms:/BEReq?transport.jms.ConnectionFactory=QueueConnectionFactory</code></br></br>
                     <b>When the broker is WSO2 Message Broker</b></br>
                     <code>jms:/BEReq?transport.jms.ConnectionFactory=QueueConnectionFactory</code>
                </li>
