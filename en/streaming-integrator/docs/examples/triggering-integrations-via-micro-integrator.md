@@ -48,7 +48,7 @@ Let's design a Siddhi application that triggers an integration flow and deploy i
     define stream FooStream (symbol string, avgAmount double);
 
     @source(type='grpc-call-response', sink.id= '1', @map(type='json'))
-    define stream BarStream (symbol string, avgAmount double, type string, mi_response string);
+    define stream BarStream (symbol string, avgAmount double);
     ```
 
     Note the following in the above configuration:
@@ -64,7 +64,7 @@ Let's design a Siddhi application that triggers an integration flow and deploy i
 
     ```
     @sink(type='log', prefix='response_from_mi: ')
-    define stream LogStream (symbol string, avgAmount double, type string, mi_response string);
+    define stream LogStream (symbol string, avgAmount double);
     ```
 
 6. Let's define Siddhi queries to calculate the average production per minute, filter production runs where the average production per minute is greater than 100, and direct the logs to be published to the output stream.
@@ -113,7 +113,7 @@ Let's design a Siddhi application that triggers an integration flow and deploy i
         @App:description("This application triggers integration process in the micro integrator using gRPC calls")
 
         @source(type = 'http',
-                    receiver.url='http://localhost:8006/InputStream',
+                    receiver.url='http://localhost:8009/InputStream',
                     basic.auth.enabled='false',
                     @map(type='json'))
         define stream InputStream(symbol string, amount double);
@@ -128,10 +128,10 @@ Let's design a Siddhi application that triggers an integration flow and deploy i
         define stream FooStream (symbol string, avgAmount double);
 
         @source(type='grpc-call-response', sink.id= '1', @map(type='json'))
-        define stream BarStream (type string, mi_response string);
+        define stream BarStream (symbol string, avgAmount double);
 
         @sink(type='log', prefix='response_from_mi: ')
-        define stream LogStream (type string, mi_response string);
+        define stream LogStream (symbol string, avgAmount double);
 
         @info(name = 'CalculateAverageProductionPerMinute')
         from InputStream#window.timeBatch(5 sec)
@@ -160,7 +160,7 @@ Let's design a Siddhi application that triggers an integration flow and deploy i
 
 After doing the required configurations in the Streaming Integrator, let's configure the Micro Integrator to receive the excess production alert from the Streaming Integrator as a gRPC event and send back a response.
 
-1. Start the gRPC server in the Micro Integrator server to receive the Streaming Integrator event. To do this, save the following inbound endpoint configuration in an XML file in the `<MI_Home>/repository/deployment/server/synapse-configs/default/inbound-endpoints` directory.
+1. Start the gRPC server in the Micro Integrator server to receive the Streaming Integrator event. To do this, save the following inbound endpoint configuration as `grpcInboundEndpoint.xml` in the `<MI_Home>/repository/deployment/server/synapse-configs/default/inbound-endpoints` directory.
 
     ```xml
     <?xml version="1.0" encoding="UTF-8"?>
@@ -173,7 +173,7 @@ After doing the required configurations in the Streaming Integrator, let's confi
 
     This configuration has a configuration parameter to start the gRPC server, and specifies the default sequence to inject messages accordingly.
 
-2. Deploy the following sequence by saving it as an XML file in the `<MI_Home>/repository/deployment/server/synapse-configs/default/sequences` directory.
+2. Deploy the following sequence by saving it as `inSeq.xml` file in the `<MI_Home>/repository/deployment/server/synapse-configs/default/sequences` directory.
 
     !!!info
         Note that the name of the sequence is `inSeq`. This is referred to in the `gRPC` sink configuration in the `grpc-call-response` Siddhi application you previously created in the Streaming Integrator.
@@ -203,5 +203,6 @@ To send an event to the defines `http` source hosted in `http://localhost:8006/I
 
 In the SI console an output similar to following will be printed after 1 minute (if the average of the amount is larger than 100)
 
-`INFO {io.siddhi.core.stream.output.sink.LogSink} - response_from_mi:  : Event{timestamp=1570533736910, data=[gRPC, ok], isExpired=false}`
+`INFO {io.siddhi.core.stream.output.sink.LogSink} - response_from_mi:  : Event{timestamp=1573711436547, data=[soap, 110.23], isExpired=false}
+`
 
