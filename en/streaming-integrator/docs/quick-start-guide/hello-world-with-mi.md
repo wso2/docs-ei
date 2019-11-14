@@ -5,18 +5,16 @@ This quick start guide explains how to trigger an integration flow using a messa
 In this example, the same message you send to the Micro Integrator goes through the `inSeq` defined, and uses the `respond` mediator to send back the response to the Streaming integrator.
 
 !!!tip "Before you begin:"
-
-    - Download and install both the Streaming Integrator and the Streaming Integrator Tooling from [here](Link).
-
-    - Download and install both the the Micro Integrator from [here](Link).
-
-    - Start the Streaming Integrator by issuing one of the following commands from the `<SI_HOME>/bin` directory:
-        -   For Windows: `server.bat`
-        -   For Linux: `./server.sh`
-
-    - Start the Streaming Integrator Tooling by issuing one of the following commands from the `<SI_TOOLING_HOME>/bin` directory:
-        - For Windows: `tooling.bat`
-        - For Linux: `./tooling.sh`
+    - Download and install both the Streaming Integrator and the Streaming Integrator Tooling from [here](Link).<br/>
+    - Download and install both the the Micro Integrator from [here](Link).<br/>
+    - Start the Streaming Integrator via one of the following methods depending on your operating system.<br/>
+        - On MacOS/Linux/CentOS, open a terminal and issue the following command:<br/>
+            `sudo wso2si`<br/>
+        - On windows, go to **Start Menu -> Programs -> WSO2 -> Enterprise Integrator**. This opens a terminal. Start Streaming Integrator profile.<br/>
+    - Start the Streaming Integrator Tooling via one of the following methods depending on your operating system..<br/>
+        - On MacOS/Linux/CentOS, open a terminal and issue the following command:<br/>
+            `sudo wso2si-tooling-<VERSION>`<br/>
+        - On windows, go to **Start Menu -> Programs -> WSO2 -> Streaming Integrator Tooling**. A terminal opens.
 
 To create and deploy Siddhi application that triggers an integration flow, and then try it out by sending events, follow the procedure below:
 
