@@ -38,9 +38,13 @@ To run the Streaming Integrator in the  open source image that is available for 
 
 Let's create a simple Siddhi application that receives an HTTP message, does a simple transformation to the message, and then logs it in the SI console.
 
-1. Start the Streaming Integrator Tooling by navigating to the `<SI_TOOLING_HOME>/bin` directory and issuing one of the following commands:
-    -   For Windows: `tooling.bat`
-    -   For Linux: `./tooling.sh`
+1. Start the Streaming Integrator Tooling via one of the following methods depending on your operating system:
+
+    - On MacOS/Linux/CentOS, open a terminal and issue the following command:
+
+        `sudo wso2si-tooling-<VERSION>`
+
+    - On windows, go to **Start Menu -> Programs -> WSO2 -> Streaming Integrator Tooling**. A terminal opens.
 
     Then access the Streaming Integration Tooling via the `http://<HOST_NAME>:<TOOLING_PORT>/editor` URL.
 
