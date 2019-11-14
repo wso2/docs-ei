@@ -42,7 +42,7 @@ Follow the steps given below.
     ![Create kubernetes/docker project](../assets/img/create_project/docker_k8s_project/kubernetes-docker-project.png)
 
     In the **New Docker/Kubernetes Project** dialog that opens, select **New Docker Project** and follow the instructions.
-    ![Create Kubernetes Project](../../assets/img/create_project/docker_k8s_project/new_docker_project.png) 
+    ![Create Kubernetes Project](../assets/img/create_project/docker_k8s_project/new_docker_project.png) 
     
 ## Build Docker images
 

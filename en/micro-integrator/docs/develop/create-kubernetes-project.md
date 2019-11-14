@@ -9,6 +9,7 @@ Follow the steps given below,
     ![Create ESB project](../assets/img/tutorials/119132413/119132414.png)
 
     In the **New ESB Solution Project** dialog that opens, enter a name for the ESB config project. Select the **Create Docker/Kubernetes Exporter Project** along with **ESB Config project** and click **Next**.
+    
     ![Create Container Project](../assets/img/create_project/docker_k8s_project/create-container-project.png)
 
 3.  Enter information in the **Docker/Kubernetes Project Information** page as follows:
@@ -43,7 +44,7 @@ Follow the steps given below,
     ![Create kubernetes/docker project](../assets/img/create_project/docker_k8s_project/kubernetes-docker-project.png)
 
     In the **New Docker/Kubernetes Project** dialog that opens, select **New Kubernetes Project** and follow the instructions.
-    ![Create Kubernetes Project](../../assets/img/create_project/docker_k8s_project/new_k8_project.png)
+    ![Create Kubernetes Project](../assets/img/create_project/docker_k8s_project/new_k8_project.png)
        
 ## Build and Push Docker images
 

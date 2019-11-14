@@ -64,7 +64,7 @@ Once you have created a Unit Test Suite in WSO2 Integration Studio, you can find
     
     3.  In the **Assertions** section, you can add multiple assertion belonging to two types: **AssertEquals** check the whether the mediated result and expected values are equeal. **AssertNotNull** checks whether the mediated result is not null.
     
-        ![Add Assertions](../../assets/img/create_project/synapse_unit_test/add-assertion.png)
+        ![Add Assertions](../assets/img/create_project/synapse_unit_test/add-assertion.png)
     
         -   **Assertion Type**: Type of the assertion.
         -   **Actual Expression**: Expression that you want to assert.

@@ -291,7 +291,7 @@ nav:
       - Creating Custom Artifacts:
         - 'Creating a Custom Inbound Endpoint' : 'develop/customizations/creating-custom-Inbound-endpoint.md'
         - 'Creating a Custom Mediator': 'develop/customizations/creating-custom-mediators.md'
-        - 'Creating a Synapse Handlers': 'develop/customizations/creating-synapse-handlers.md'
+        - 'Creating a Synapse Handler': 'develop/customizations/creating-synapse-handlers.md'
         - 'Customizing Task Scheduling': 'develop/customizations/creating-custom-task-scheduling.md'
       - Securing Artifacts:
         - 'Encrypting Synapse Passwords' : 'develop/creating-artifacts/encrypting-synapse-passwords.md'

@@ -383,8 +383,6 @@ In this scenario, the client publishes JMS messages to the WSO2 MI. Then, WSO2 M
 queue, which acts as the JMS endpoint. The sample scenario can be
 depicted as follows.
 
-![](attachments/119131477/119131480.png)
-
 ##### Prerequisites
 
 -   Install WSO2 MI. For instructions , see [Installation
