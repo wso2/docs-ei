@@ -1,12 +1,12 @@
-# RabbitMQ Use Cases
+# RabbitMQ Examples
 
-The following are some of the main RabbitMQ use cases of WSO2 Micro Integrator.
+The following are some examples on how to use RabbitMQ with WSO2 Micro Integrator.
 
-Before executing the use cases need to [connect WSO2 Micro Integrator with RabbitMQ](https://ei.docs.wso2.com/en/latest/micro-integrator/setup/brokers/configure-with-rabbitMQ/).
+## Prerequisites
+
+Before executing the use cases, you need to [connect WSO2 Micro Integrator to RabbitMQ](https://ei.docs.wso2.com/en/latest/micro-integrator/setup/brokers/configure-with-rabbitMQ/).
                                         
 ## Micro Integrator as a RabbitMQ Message Consumer
-
-This section describes how the Micro Integrator can be configured as a RabbitMQ message consumer.
 
 The following is a sample scenario that demonstrates how WSO2 Micro Integrator is configured to listen to a rabbitMQ queue, consume messages, and send the messages to an HTTP back­-end service.
 
@@ -38,10 +38,7 @@ The following is a sample scenario that demonstrates how WSO2 Micro Integrator i
 
 ## Micro Integrator as a RabbitMQ Message Producer
 
-This section describes how WSO2 Micro Integrator can be
-used to send messages to a RabbitMQ queue.
-
-Following is a sample scenario that demonstrates how the Micro Integrator is
+The following is a sample scenario that demonstrates how the Micro Integrator is
 configured to listen to HTTP requests and publish them to a RabbitMQ
 server (message exchange).
 
@@ -72,28 +69,24 @@ server (message exchange).
 You can send request-response messages using the RabbitMQ transport by
 implementing a Remote Procedure Call(RPC) scenario with RabbitMQ.
 
-The following diagram illustrates a remote procedure call scenario with
-RabbitMQ:
-
 The remote procedure call works as follows:
 
 -   When WSO2 Micro Integrator starts up, it creates an
     anonymous, exclusive callback queue.
 -   For a remote procedure call request, the Micro Integrator sends a message with
     the following properties:
-    -   `            reply_to           ` : This is set to the callback
-        queue
-    -   `            correlation_id           ` : This is set to a
+    -   `reply_to`: This is set to the callback
+        queue.
+    -   `correlation_id`: This is set to a
         unique value for every request.
--   The request is then sent to the rpc_queue.
--   The RPC Server waits for requests on that queue. When a request
+-   The request is then sent to the `rpc_queue`.
+-   The RPC server waits for requests on that queue. When a request
     appears, it does the job and sends a message with the result back to
-    the Micro Integrator server, using the queue from the
-    `           reply_to          ` field with the same
-    `           correlation_id          ` .
-
--   WSO2 Micro Integrator waits for data on the reply_to queue. When a message
-    appears, it checks the `          correlation_id         ` property.
+    the Micro Integrator server using the queue from the
+    `reply_to` field with the same
+    `correlation_id`.
+-   WSO2 Micro Integrator waits for data on the `reply_to` queue. When a message
+    appears, it checks the `correlation_id` property.
     If it matches the value from the request, it returns the response to
     the application.
 
@@ -212,9 +205,9 @@ public class RPCServer {
 
 ## Creating the RabbitMQ proxy service
 
-Following is a sample RabbitMQ proxy service named AMQPProxy, which
+The following is a sample RabbitMQ proxy service named AMQPProxy, which
 consumes AMQP messages from one RabbitMQ broker and publishes them to
-another:
+another.
 
 ### Synapse configuration
 
@@ -252,19 +245,19 @@ Note the following:
     service above. If you do not know which [RabbitMQ
     exchange](http://www.rabbitmq.com/tutorials/tutorial-three-python.html)
     to use, leave the value blank to use the default exchange.
--   The `          rabbitmq.queue.name         ` parameter specifies the
+-   The `rabbitmq.queue.name` parameter specifies the
     queue on which the proxy service listens and consumes messages. If
     you do not specify a name for this parameter, the name of the proxy
     service will be used as the queue name.
--   The `          rabbitmq.exchange.name         ` parameter specifies
+-   The `rabbitmq.exchange.name` parameter specifies
     the RabbitMQ exchange to which the queue is bound. If you do not
     want to use a specific exchange, leave this value blank to use the
     default exchange.
--   The `          rabbitmq.connection.factory         ` parameter
+-   The `rabbitmq.connection.factory` parameter
     specifies the listener that listens on the queue and consumes
     messages. In this example, the connection factory is set to the name
     of the listener we created earlier (ie.,
-    `          AMQPConnectionFactory         ` ).
+    `AMQPConnectionFactory`).
 
 You can modify the sample proxy service above to handle scenarios where
 you only want to receive AMQP messages but need to send messages in a
@@ -274,25 +267,24 @@ work with a different transport. For example, you can create a proxy
 that uses the RabbitMQ AMQP transport to listen to messages and then
 sends them over HTTP or JMS.
 
-## Rolling failed messages back
+## Rolling back failed messages
 
 In this exmaple, messages are read from an inbound (RabbitMQ) message queue via an
 Inbound Endpoint. If a failure occurs, the transaction will roll back.
-This avoids the loss of the message.
+This avoids the loss of message.
 
 !!! Tip
     If you are using a RabbitMQ Inbound Endpoint for receiving messages, set the scope of the `SET_ROLLBACK_ONLY` property to `default` as follows:
-    
         <property name="SET_ROLLBACK_ONLY" scope="default" type="STRING" value="true"/>
 
 As shown in the below example, you need to set the
-`           SET_ROLLBACK_ONLY          ` property to **true** in the
-fault handler (e.g., the fault sequence), to roll the message back when
+`SET_ROLLBACK_ONLY` property to **true** in the
+fault handler (e.g., the fault sequence) to roll back the message when
 a failure occurs.
 
 ### Synapse configuration
 
-Given below are the synapse artifact configuration for this use case. Note that the fault sequence contains the `SET_ROLLBACK_ONLY` property set to **true**.
+Given below are the synapse artifact configurations for this use case. Note that the fault sequence contains the `SET_ROLLBACK_ONLY` property set to **true**.
 
 ```xml tab='Inbound Endpoint'
 <?xml version="1.0" encoding="UTF-8"?><inboundEndpoint xmlns="http://ws.apache.org/ns/synapse" name="rabbit-mq-dec41-inbound-endpoint" sequence="rabbit-mq-dec41-inbound-sequence" onError="rabbitmq_fault" protocol="rabbitmq" suspend="false">

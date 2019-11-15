@@ -2,7 +2,7 @@
 
 This example demonstrates how you can use the Micro Integrator to switch messages between HTTP and MSMQ during message mediation.
 
-In this example, stockquote requests are placed to the stockquote proxy service, which send the incoming request message to the MSMQ server. Another proxy service named `msmqTest` listens to the MSMQ queue and invokes the message from the MSMQ server and sends the message to the backend. 
+In this example, stockquote requests are placed to the stockquote proxy service, which sends the incoming request message to the MSMQ server. Another proxy service named `msmqTest` listens to the MSMQ queue, invokes the message from the MSMQ server, and sends the message to the backend. 
 
 ## Synapse configuration
 

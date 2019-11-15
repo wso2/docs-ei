@@ -1,4 +1,4 @@
-# Using a JDBC Message Store
+# Using the JDBC Message Store
 In this sample, the client sends requests to a proxy service. The proxy service stores the messages in a JDBC message store. The back-end service is invoked by a message forwarding processor, which picks the messages stored in the JDBC message store.
 
 ## Prerequisites

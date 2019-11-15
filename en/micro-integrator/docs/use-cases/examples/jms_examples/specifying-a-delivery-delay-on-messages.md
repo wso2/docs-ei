@@ -1,4 +1,4 @@
-# Delivery Delay on Messages for JMS Producer
+# Specifying Delivery Delay on Messages
 
 In a normal message flow, JMS messages that are sent by the JMS producer to the JMS broker are forwarded to the respective JMS consumer without any delay.
 
@@ -9,7 +9,9 @@ The following diagram illustrates how you can use WSO2 Micro Integrator as a JM
 
 ## Synapse configuration
 
-The synapse configuration for this sample scenario is as follows:
+Given below are the synapse configurations that are required for mediating the above use case.
+
+See the instructions on how to [build and run](#build-and-run) this example.
 
 ```xml tab="Proxy Service 1"
 <proxy name="JMSDelivery" startOnLoad="true" trace="disable" transports="https http">
@@ -132,16 +134,28 @@ See the descriptions of the above configurations:
 </table>
 
 
-## Running the Example
+## Build and run
 
-1. Configure the Micro Integrator (Publisher) with [HornetQ](../../../setup/brokers/configure-with-HornetQ.md) broker.
-2. Start HornetQ with the following command.
-                          
-       On Windows: HORNETQ_HOME\bin\run.bat --run
-       On Linux/Solaris: sh HORNETQ_HOME/bin/run.sh
-              
-3. Copy and paste the above configurations into `<MI_HOME>/repository/deployment/server/synapse-configs/<node>/synapse.xml` file.
-4. Run the following java file (**QueueConsumer.java**), which acts as the JMS consumer that consumes messages from the queue:
+Create the artifacts:
+
+1. [Set up WSO2 Integration Studio](../../../../develop/installing-WSO2-Integration-Studio).
+2. [Create an ESB Solution project](../../../../develop/creating-projects/#esb-config-project).
+3. Create the [proxy services](../../../../develop/creating-artifacts/creating-a-proxy-service), [registry artifact](../../../../develop/creating-artifacts/creating-registry-resources), [scheduled task](../../../../develop/creating-artifacts/creating-scheduled-task), and [sequences](../../../../develop/creating-artifacts/creating-reusable-sequences) with the configurations given above.
+4. [Deploy the artifacts](../../../../develop/deploy-and-run) in your Micro Integrator.
+
+Set up the broker:
+
+1.  [Configure a broker](../../../setup/transport_configurations/configuring-transports.md#configuring-the-jms-transport) with your Micro Integrator instance. Let's use HornetQ for this example.
+    
+    -   On **Windows**: HORNETQ_HOME\bin\run.bat --run
+    -   On **MacOS/Linux/Solaris**: sh HORNETQ_HOME/bin/run.sh
+
+2.  Start the broker.
+3.  Start the Micro Integrator.
+
+Follow the steps given below to run the example:
+
+1. Run the following java file (**QueueConsumer.java**), which acts as the JMS consumer that consumes messages from the queue:
 
     ```java
     package DeliveryDelay;
@@ -246,9 +260,9 @@ See the descriptions of the above configurations:
             }
     ```
 
-5. Invoke the two proxy services (http://localhost:8290/services/JMSDelivery, http://localhost:8290/services/JMSDeliveryDelayed) with the following payload:
+2. Invoke the two proxy services (http://localhost:8290/services/JMSDelivery, http://localhost:8290/services/JMSDeliveryDelayed) with the following payload:
 
-    ```
+    ```xml
     <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="http://services.samples" xmlns:xsd="http://services.samples/xsd">
        <soapenv:Header/>
        <soapenv:Body>
@@ -263,5 +277,4 @@ See the descriptions of the above configurations:
 
 You will see that two messages are received by the Java consumer with a time difference of more than 10 seconds.
 
-This is because the `         JMSDeliveryDelayed        ` proxy service sets a delivery delay of 10 seconds on the message that it forwards, whereas the `         JMSDelivery        ` proxy service does not set a
-delivery delay on the message.
+This is because the `         JMSDeliveryDelayed        ` proxy service sets a delivery delay of 10 seconds on the message that it forwards, whereas the `         JMSDelivery        ` proxy service does not set a delivery delay on the message.

@@ -2,13 +2,13 @@
 
 A JMS synchronous invocation takes place when a JMS producer receives a response to a JMS request produced by it when invoked. The WSO2 Micro Integrator uses an internal **JMS correlation ID** to correlate the request and the response. See [JMSRequest/ReplyExample](http://www.eaipatterns.com/RequestReplyJmsExample.html) for more information. JMS synchronous invocations are further explained in the following use case.
 
-When the proxy service named `         SMSSenderProxy        ` receives an HTTP request, it publishes that request in a JMS queue named `         SMSStore        ` . Another proxy service named `         SMSForwardProxy        ` subscribes to messages published in this queue and forwards them to a back-end service named `         SimpleStockQuoteService        ` . When this back-end service returns an HTTP response, internal ESB logic is used to save that
-message as a JMS message in a JMS queue named `         SMSReceiveNotification        `. The `         SMSSenderProxy        ` proxy service picks the response from the `         SMSReceiveNotification        ` queue and delivers it to the client as an HTTP message using internal ESB logic.
+When the proxy service named `SMSSenderProxy` receives an HTTP request, it publishes that request in a JMS queue named `SMSStore` . Another proxy service named `SMSForwardProxy` subscribes to messages published in this queue and forwards them to a back-end service named `         SimpleStockQuoteService        ` . When this back-end service returns an HTTP response, internal ESB logic is used to save that
+message as a JMS message in a JMS queue named `SMSReceiveNotification`. The `SMSSenderProxy` proxy service picks the response from the `SMSReceiveNotification` queue and delivers it to the client as an HTTP message using the internal mediation logic.
 
 **Note** that the `         SMSSenderProxy        ` proxy service is able to pick up the message from the `         SMSReceiveNotification        ` queue because the `         transport.jms.ReplyDestination        ` parameter of the `         SMSSenderProxy        ` proxy service is set to the same `         SMSReceiveNotification        ` queue.
 
 !!! Info
-    The correlation between request and response:
+    **Correlation between request and response**:
     
     Note that the message that is passed to the back-end service contains the JMS message ID. However, the back-end service is required to return the response using the JMS correlation ID. Therefore, the back-end service should be configured to copy the message ID from the request (the value of the **JMSMessageID** header) to the correlation ID of the response (using the **JMSCorrelationID** header).
 
@@ -16,9 +16,11 @@ message as a JMS message in a JMS queue named `         SMSReceiveNotification  
 
 Create two proxy services with the JMS publisher configuration and JMS consumer configuration given below and then deploy the proxy service artifacts in the Micro Integrator.
 
+See the instructions on how to [build and run](#build-and-run) this example.
+
 ### JMS publisher configuration
 
-Shown below is the `         SMSSenderProxy        ` proxy service.
+Shown below is the `SMSSenderProxy` proxy service.
 
 ```xml
 <proxy xmlns="http://ws.apache.org/ns/synapse"
@@ -188,16 +190,35 @@ Create a proxy service named `         SMSForwardProxy        ` with the configu
 The `         transport.jms.ConnectionFactory        ` , `         transport.jms.DestinationType        ` parameter and the
 `         transport.jms.Destination properties        ` parameter map the proxy service to the `         SMSStore        ` queue.
 
-The `         SimpleStockQuoteService        ` sample is used as the back-end service in this example. 
-Follow the below steps to deploy the `         SimpleStockQuoteService        ` back-end service. 
+## Build and run
 
-* Download the JAR file of the back-end service from [here](https://github.com/wso2-docs/WSO2_EI/blob/master/Back-End-Service/stockquote_service.jar).
-* Open a terminal, navigate to the location where your saved the back-end service.
-* Execute the following command to start the service:
-   
-        java -jar stockquote_service.jar
+Create the artifacts:
 
-To invoke this service, the address URI of this proxy service is defined as `         http://localhost:9000/services/SimpleStockQuoteService        `. Send a POST request to the above address URI with the following payload,
+1. [Set up WSO2 Integration Studio](../../../../develop/installing-WSO2-Integration-Studio).
+2. [Create an ESB Solution project](../../../../develop/creating-projects/#esb-config-project).
+3. Create the [proxy services](../../../../develop/creating-artifacts/creating-a-proxy-service) with the configurations given above.
+4. [Deploy the artifacts](../../../../develop/deploy-and-run) in your Micro Integrator.
+
+Set up the broker:
+
+1.  [Configure a broker](../../../setup/transport_configurations/configuring-transports.md#configuring-the-jms-transport) with your Micro Integrator instance. Let's use Active MQ for this example.
+2.  Start the broker.
+3.  Start the Micro Integrator (after starting the broker).
+
+    !!! Warning
+        If you are using message processor with Active MQ broker add the following configuration to the startup script before starting the server as shown below,
+        For Linux/Mac OS update `micro-integrator.sh` and for Windows update `micro-integrator.bat` with `-Dorg.apache.activemq.SERIALIZABLE_PACKAGES="*"` system property.
+
+Set up the back-end service:
+
+1. Download the [stockquote_service.jar](https://github.com/wso2-docs/WSO2_EI/blob/master/Back-End-Service/stockquote_service.jar).
+2. Open a terminal, navigate to the location of the downloaded service, and run it using the following command:
+    ```bash
+    java -jar stockquote_service.jar
+    ```
+
+To invoke this service, the address URI of this proxy service is defined as `         http://localhost:9000/services/SimpleStockQuoteService        `. Send a POST request to the above address URI with the following payload:
+
 ```xml
 <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="http://services.samples" xmlns:xsd="http://services.samples/xsd">
    <soapenv:Header/>

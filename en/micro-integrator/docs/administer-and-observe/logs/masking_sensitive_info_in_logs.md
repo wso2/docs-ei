@@ -9,7 +9,7 @@ To avoid this potential security pitfall, you can mask sensitive information (su
 1.  Open the `MI_HOME/conf/log4j.properties` file in a text editor.
 2.  Uncomment or add the following property under `CarbonConsoleAppender` or `CarbonDailyRollingFileAppender`.  
 
-    ``` java
+    ```xml
     log4j.appender.CARBON_CONSOLE.maskingPatternFile=path-to-masking-patterns
     ```
 
@@ -17,13 +17,13 @@ The `path-to-masking-patterns` value must be the absolute path to the [masking p
 
 The following is a sample configuration for the above property:
 
-``` java
+```xml
 log4j.appender.CARBON_CONSOLE.maskingPatternFile=/home/conf/masking-patterns.properties
 ```
 
 For the `DailyRollingFileAppender` value, the above property would be similar to the following:
 
-``` java
+```xml
 log4j.appender.CARBON_LOGFILE.maskingPatternFile=path-to-masking-patterns
 ```
 
@@ -35,7 +35,7 @@ The masking pattern file is a property file that can contain one or more
 masking patterns. The following is a sample configuration that shows
 how to mask the credit card numbers in the logs.
 
-``` java
+```xml
 masking.pattern.sample.CREDIT_CARD_VISA=4[0-9]{6,}$
 masking.pattern.sample.CREDIT_CARD_MASTER=(?:5[1-5][0-9]{2}|222[1-9]|22[3-9][0-9]|2[3-6][0-9]{2}|27[01][0-9]|2720)[0-9]{12}
 masking.pattern.sample.CREDIT_CARD_AMEX=[34|37][0-9]{14}$

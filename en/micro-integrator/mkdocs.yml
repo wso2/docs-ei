@@ -144,7 +144,7 @@ nav:
             - 'RabbitMQ Inbound Endpoint': 'use-cases/examples/inbound_endpoint_examples/inbound-endpoint-rabbitmq-protocol.md'
             #- 'CXF WS RM Inbound Endpoint': 'use-cases/examples/inbound_endpoint_examples/using-CXF-WS-RM-Inbound.md'
             - 'Kafka Inbound Endpoint': 'use-cases/examples/inbound_endpoint_examples/inbound-endpoint-kafka.md'
-            - 'WebSocket Inbound Endpoint': 'use-cases/examples/inbound_endpoint_examples/inbound-endpoint-secured-websocket.md'
+            - 'Secured WebSocket Inbound Endpoint': 'use-cases/examples/inbound_endpoint_examples/inbound-endpoint-secured-websocket.md'
             - 'Using Inbound Endpoints with Registry': 'use-cases/examples/inbound_endpoint_examples/inbound-endpoint-with-registry.md'
           - Scheduled Tasks: 
             - 'Task Scheduling using a Simple Trigger': 'use-cases/examples/scheduled-tasks/task-scheduling-simple-trigger.md'
@@ -326,7 +326,7 @@ nav:
       - 'Using the Management API': 'administer-and-observe/working-with-management-api.md'
       - Logging:
         - 'Logs in WSO2 Micro Integrator' : 'administer-and-observe/logs/monitoring_logs.md'
-        - 'Configuring Log4j Properties' : 'administer-and-observe/logs/configuring_log4j_properties.md'
+        - 'Configuring Log4j2 Properties' : 'administer-and-observe/logs/configuring_log4j_properties.md'
         - 'Managing Log Growth' : 'administer-and-observe/logs/managing_log_growth.md'
         - 'Masking Sensitive Information in Logs' : 'administer-and-observe/logs/masking_sensitive_info_in_logs.md'
       - Metrics:

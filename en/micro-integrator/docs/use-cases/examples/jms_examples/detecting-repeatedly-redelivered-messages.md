@@ -4,17 +4,15 @@ In JMS 2.0, it is mandatory for JMS providers to set the `JMSXDeliveryCount` pro
 
 If a message is being redelivered, it means that a previous attempt to deliver the message failed due to some reason. If a message is being redelivered multiple times, it can be because the message is *bad* in some way. When such a message is being redelivered over and over again, it wastes resources and prevents subsequent *good* messages from being processed.
 
-When you work with WSO2 Micro Integrator, you can detect such repeatedly redelivered messages using the `JMSXDeliveryCount` property that is set in messages.
+When you work with WSO2 Micro Integrator, you can detect such repeatedly redelivered messages using the `JMSXDeliveryCount` property that is set in messages. The ability to detect repeatedly redelivered messages is particularly useful because you can take the necessary steps to handle such messages in a proper manner. For example, you can consume such a message and send it to a separate queue.
 
-Being able to detect repeatedly redelivered messages is particularly useful because you can take necessary steps to handle such messages in a proper manner. For example, you can consume such a message and send it to a separate queue.
-
-The following diagram illustrates how WSO2 Micro Integrator can be used to detect repeatedly redelivered messages, and store such messages in an internal message store.
-
-To demonstrate the scenario illustrated above, let's configure the JMS inbound endpoint in WSO2 Micro Integrator using HornetQ as the message broker.
+To demonstrate this scenario, let's configure the JMS inbound endpoint in WSO2 Micro Integrator using HornetQ as the message broker.
 
 ## Synapse configuration
 
-The synapse configuration for this example scenario is as follows:
+Given below are the synapse configurations that are required for mediating the above use case.
+
+See the instructions on how to [build and run](#build-and-run) this example.
 
 ```xml tab="Inbound Endpoint"
 <inboundEndpoint name="jms_inbound" onError="fault" protocol="jms" sequence="request" suspend="false">
@@ -101,119 +99,128 @@ See the descriptions of the above configurations:
   </tr>
 </table>
 
-## Running the Example
+## Build and run
 
-1. Configure the Micro Integrator (Publisher) with [HornetQ](../../../setup/brokers/configure-with-HornetQ.md) broker.
-2. Start HornetQ with the following command.
-                       
-       On Windows: HORNETQ_HOME\bin\run.bat --run
-       On Linux/Solaris: sh HORNETQ_HOME/bin/run.sh
-           
-3. Copy and paste the above configurations into `<MI_HOME>/repository/deployment/server/synapse-configs/<node>/synapse.xml` file.
-4. Run the following java file (**SOAPPublisher.java**) to publish a message to the JMS queue:
+Create the artifacts:
+
+1. [Set up WSO2 Integration Studio](../../../../develop/installing-WSO2-Integration-Studio).
+2. [Create an ESB Solution project](../../../../develop/creating-projects/#esb-config-project).
+3. Create the [inbound endpoint](../../../../develop/creating-artifacts/creating-an-inbound-endpoint), [registry artifact](../../../../develop/creating-artifacts/creating-registry-resources), [scheduled task](../../../../develop/creating-artifacts/creating-scheduled-task), and [sequences](../../../../develop/creating-artifacts/creating-reusable-sequences) with the configurations given above.
+4. [Deploy the artifacts](../../../../develop/deploy-and-run) in your Micro Integrator.
+
+Set up the broker:
+
+1.  [Configure a broker](../../../setup/transport_configurations/configuring-transports.md#configuring-the-jms-transport) with your Micro Integrator instance. Let's use HornetQ for this example.
+2.  Start HornetQ with the following command:             
+    -   On **Windows**: HORNETQ_HOME\bin\run.bat --run
+    -   On **MacOS/Linux/Solaris**: sh HORNETQ_HOME/bin/run.sh
+
+3.  Start the Micro Integrator (after starting the broker). 
+
+Run the following java file (**SOAPPublisher.java**) to publish a message to the JMS queue:
     
-    ```java
-    package JMSXDeliveryCount;
-        
-    import java.util.Properties;
-    import java.util.logging.Logger;
-        
-    import javax.jms.ConnectionFactory;
-    import javax.jms.Destination;
-    import javax.jms.JMSContext;
-    import javax.naming.Context;
-    import javax.naming.InitialContext;
-    import javax.naming.NamingException;
-        
-    public class SOAPPublisher {
-                private static final Logger log = Logger.getLogger(SOAPPublisher.class.getName());
-        
-                // Set up all the default values
-                private static final String param = "IBM";
-        
-                // with header for inbounds
-                private static final String MESSAGE_WITH_HEADER =
-                        "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\">\n" +
-                                "   <soapenv:Header/>\n" +
-                                "<soapenv:Body>\n" +
-                                "<m:placeOrder xmlns:m=\"http://services.samples\">\n" +
-                                "    <m:order>\n" +
-                                "        <m:price>" +
-                                getRandom(100, 0.9, true) +
-                                "</m:price>\n" +
-                                "        <m:quantity>" +
-                                (int) getRandom(10000, 1.0, true) +
-                                "</m:quantity>\n" +
-                                "        <m:symbol>" +
-                                param +
-                                "</m:symbol>\n" +
-                                "    </m:order>\n" +
-                                "</m:placeOrder>" +
-                                "   </soapenv:Body>\n" +
-                                "</soapenv:Envelope>";
-                private static final String DEFAULT_CONNECTION_FACTORY = "QueueConnectionFactory";
-                private static final String DEFAULT_DESTINATION = "queue/mySampleQueue";
-                private static final String INITIAL_CONTEXT_FACTORY = "org.jnp.interfaces.NamingContextFactory";
-                private static final String PROVIDER_URL = "jnp://localhost:1099";
-        
-                public static void main(String[] args) {
-        
-                    Context namingContext = null;
-        
-                    try {
-        
-                        // Set up the namingContext for the JNDI lookup
-                        final Properties env = new Properties();
-                        env.put(Context.INITIAL_CONTEXT_FACTORY, INITIAL_CONTEXT_FACTORY);
-                        env.put(Context.PROVIDER_URL, System.getProperty(Context.PROVIDER_URL, PROVIDER_URL));
-                        namingContext = new InitialContext(env);
-        
-                        // Perform the JNDI lookups
-                        String connectionFactoryString =
-                                System.getProperty("connection.factory",
-                                                   DEFAULT_CONNECTION_FACTORY);
-                        log.info("Attempting to acquire connection factory \"" + connectionFactoryString + "\"");
-                        ConnectionFactory connectionFactory =
-                                (ConnectionFactory) namingContext.lookup(connectionFactoryString);
-                        log.info("Found connection factory \"" + connectionFactoryString + "\" in JNDI");
-        
-                        String destinationString = System.getProperty("destination", DEFAULT_DESTINATION);
-                        log.info("Attempting to acquire destination \"" + destinationString + "\"");
-                        Destination destination = (Destination) namingContext.lookup(destinationString);
-                        log.info("Found destination \"" + destinationString + "\" in JNDI");
-        
-                        // String content = System.getProperty("message.content",
-                        // DEFAULT_MESSAGE);
-                        String content = System.getProperty("message.content", MESSAGE_WITH_HEADER);
-        
-                        try (JMSContext context = connectionFactory.createContext()) {
-                            log.info("Sending  message");
-                            // Send the message
-                            context.createProducer().send(destination, content);
-                        }
-        
-                    } catch (NamingException e) {
-                        log.severe(e.getMessage());
-                    } finally {
-                        if (namingContext != null) {
-                            try {
-                                namingContext.close();
-                            } catch (NamingException e) {
-                                log.severe(e.getMessage());
-                            }
-                        }
-                    }
-                }
-        
-        
-                private static double getRandom(double base, double varience, boolean onlypositive) {
-                    double rand = Math.random();
-                    return (base + (rand > 0.5 ? 1 : -1) * varience * base * rand) *
-                            (onlypositive ? 1 : rand > 0.5 ? 1 : -1);
+```java
+package JMSXDeliveryCount;
+    
+import java.util.Properties;
+import java.util.logging.Logger;
+    
+import javax.jms.ConnectionFactory;
+import javax.jms.Destination;
+import javax.jms.JMSContext;
+import javax.naming.Context;
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
+    
+public class SOAPPublisher {
+    private static final Logger log = Logger.getLogger(SOAPPublisher.class.getName());
+
+    // Set up all the default values
+    private static final String param = "IBM";
+
+    // with header for inbounds
+    private static final String MESSAGE_WITH_HEADER =
+            "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\">\n" +
+                    "   <soapenv:Header/>\n" +
+                    "<soapenv:Body>\n" +
+                    "<m:placeOrder xmlns:m=\"http://services.samples\">\n" +
+                    "    <m:order>\n" +
+                    "        <m:price>" +
+                    getRandom(100, 0.9, true) +
+                    "</m:price>\n" +
+                    "        <m:quantity>" +
+                    (int) getRandom(10000, 1.0, true) +
+                    "</m:quantity>\n" +
+                    "        <m:symbol>" +
+                    param +
+                    "</m:symbol>\n" +
+                    "    </m:order>\n" +
+                    "</m:placeOrder>" +
+                    "   </soapenv:Body>\n" +
+                    "</soapenv:Envelope>";
+    private static final String DEFAULT_CONNECTION_FACTORY = "QueueConnectionFactory";
+    private static final String DEFAULT_DESTINATION = "queue/mySampleQueue";
+    private static final String INITIAL_CONTEXT_FACTORY = "org.jnp.interfaces.NamingContextFactory";
+    private static final String PROVIDER_URL = "jnp://localhost:1099";
+
+    public static void main(String[] args) {
+
+        Context namingContext = null;
+
+        try {
+
+            // Set up the namingContext for the JNDI lookup
+            final Properties env = new Properties();
+            env.put(Context.INITIAL_CONTEXT_FACTORY, INITIAL_CONTEXT_FACTORY);
+            env.put(Context.PROVIDER_URL, System.getProperty(Context.PROVIDER_URL, PROVIDER_URL));
+            namingContext = new InitialContext(env);
+
+            // Perform the JNDI lookups
+            String connectionFactoryString =
+                    System.getProperty("connection.factory",
+                                       DEFAULT_CONNECTION_FACTORY);
+            log.info("Attempting to acquire connection factory \"" + connectionFactoryString + "\"");
+            ConnectionFactory connectionFactory =
+                    (ConnectionFactory) namingContext.lookup(connectionFactoryString);
+            log.info("Found connection factory \"" + connectionFactoryString + "\" in JNDI");
+
+            String destinationString = System.getProperty("destination", DEFAULT_DESTINATION);
+            log.info("Attempting to acquire destination \"" + destinationString + "\"");
+            Destination destination = (Destination) namingContext.lookup(destinationString);
+            log.info("Found destination \"" + destinationString + "\" in JNDI");
+
+            // String content = System.getProperty("message.content",
+            // DEFAULT_MESSAGE);
+            String content = System.getProperty("message.content", MESSAGE_WITH_HEADER);
+
+            try (JMSContext context = connectionFactory.createContext()) {
+                log.info("Sending  message");
+                // Send the message
+                context.createProducer().send(destination, content);
+            }
+
+        } catch (NamingException e) {
+            log.severe(e.getMessage());
+        } finally {
+            if (namingContext != null) {
+                try {
+                    namingContext.close();
+                } catch (NamingException e) {
+                    log.severe(e.getMessage());
                 }
             }
-    ```
-##Analyzing the output
+        }
+    }
+
+
+    private static double getRandom(double base, double varience, boolean onlypositive) {
+        double rand = Math.random();
+        return (base + (rand > 0.5 ? 1 : -1) * varience * base * rand) *
+                (onlypositive ? 1 : rand > 0.5 ? 1 : -1);
+    }
+}
+```
+
 When you analyze the output on the MI server console, you will see an entry similar to the following:
 
 ```bash
