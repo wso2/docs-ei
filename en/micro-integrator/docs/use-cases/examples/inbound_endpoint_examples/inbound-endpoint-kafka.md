@@ -1,4 +1,7 @@
-# Inbound Endpoint Kafka Sample
+# Using the Kafka Inbound Endpoint
+
+!!! Warning
+    **Please note that the contents on this page are under review!**
 
 ## Example use case
 

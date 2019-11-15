@@ -1,5 +1,4 @@
 # Using the MQTT transport
-## Example use case
 This sample demonstrates how to run a Pub-Sub use case using MQTT as the broker.  the MQTT listener in the Micro Integrator consumes messages from a MQTT topic, and the MQTT sender publishes messages to a MQTT topic.
 
 ## Synapse configuration

@@ -4,7 +4,7 @@ This example demonstrates how WSO2 Micro Integrator receives SOAP messages over 
 
 ## Synapse configuration
 
-Following are the integration artifacts (proxy service) that we can used to implement this scenario.
+Following are the integration artifacts (proxy service) that we can used to implement this scenario. See the instructions on how to [build and run](#build-and-run) this example.
 
 ```xml 
 <?xml version="1.0" encoding="UTF-8"?>
@@ -34,17 +34,17 @@ Create the artifacts:
 4. Create the [proxy service](../../../../develop/creating-artifacts/creating-a-proxy-service) with the configurations given above.
 5. [Deploy the artifacts](../../../../develop/deploy-and-run) in your Micro Integrator.
 
-Set up the back-end service.
+Set up the back-end service:
 
 * Download the [stockquote_service.jar](
 https://github.com/wso2-docs/WSO2_EI/blob/master/Back-End-Service/stockquote_service.jar)
 
 * Run the mock service using the following command
-```
-$ java -jar stockquote_service.jar
-```
+    ```bash
+    java -jar stockquote_service.jar
+    ```
 
-[Enable the UDP transport](../../../setup/transport_configurations/configuring-transports/#configuring-the-udp-transport) and start the Micro-Integrator.
+[Enable the UDP transport](../../../../setup/transport_configurations/configuring-transports/#configuring-the-udp-transport) and start the Micro-Integrator.
 
 Send the following message via UDP to the UDP listener port (9999).
 ```xml
@@ -69,6 +69,7 @@ Send the following message via UDP to the UDP listener port (9999).
 </soapenv:Envelope>
 ``` 
 In linux, we can save the above request in a <strong>request.xml</strong> file and use netcat to send the UDP request. 
-```
+
+```bash
 nc -u localhost 9999 < request.xml
 ```

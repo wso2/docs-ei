@@ -1,9 +1,5 @@
 # Consuming JMS Messages
-This section describes how to configure WSO2 Micro Integrator to listen to a JMS Queue. First we need to configure JMS transport in micro integrator.
-
-## Configuring the JMS transport
-
-To enable the JMS transport listener and sender, you need to [configure JMS Transport](../../../setup/transport_configurations/configuring-transports.md#configuring-the-jms-transport) respective to the message broker you are using.
+This section describes how to configure WSO2 Micro Integrator to listen to a JMS Queue.
 
 ## Example 1: One-way messaging
 
@@ -11,7 +7,9 @@ In this example, the Micro Integrator listens to a JMS queue, consumes messages,
 
 ### Synapse configuration
 
-Given below is the synapse configuration of the proxy service that mediates the above use case. Note that you need to update the JMS connection URL according to your broker as explained below.
+Given below is the synapse configuration of the proxy service that mediates the above use case. Note that you need to update the JMS connection URL according to your broker as explained below. 
+
+See the instructions on how to [build and run](#build-and-run) this example.
 
 ```xml
 <proxy xmlns="http://ws.apache.org/ns/synapse" name="JMStoHTTPStockQuoteProxy" transports="jms" startOnLoad="true">
@@ -73,16 +71,32 @@ The Synapse artifacts used are explained below.
     </tr>
 </table>
 
-To test this you will need an HTTP back-end service. Deploy the back-end service `SimpleStockQuoteService`.
-    
-* Download the JAR file of the back-end service from [here](https://github.com/wso2-docs/WSO2_EI/blob/master/Back-End-Service/stockquote_service.jar).
-* Open a terminal, navigate to the location where your saved the back-end service.
-* Execute the following command to start the service:
-   
-        java -jar stockquote_service.jar
-            
-You now have a running WSO2 MI instance, ActiveMQ instance and a sample back-end service to simulate the sample scenario.
-Add a message in `JMStoHTTPStockQuoteProxy` queue with the following XML payload using [ActiveMQ Web Console](https://activemq.apache.org/web-console.html).
+### Build and run
+
+Create the artifacts:
+
+1. [Set up WSO2 Integration Studio](../../../../develop/installing-WSO2-Integration-Studio).
+2. [Create an ESB Solution project](../../../../develop/creating-projects/#esb-config-project).
+3. [Create the proxy service](../../../../develop/creating-artifacts/creating-a-proxy-service) with the configurations given above.
+4. [Deploy the artifacts](../../../../develop/deploy-and-run) in your Micro Integrator.
+
+Set up the broker:
+
+1.  [Configure a broker](../../../setup/transport_configurations/configuring-transports.md#configuring-the-jms-transport) with your Micro Integrator instance. Let's use Active MQ for this example.
+2.  Start the broker.
+3.  Start the Micro Integrator (after starting the broker).
+
+Set up the back-end service:
+
+1. Download the [stockquote_service.jar](
+https://github.com/wso2-docs/WSO2_EI/blob/master/Back-End-Service/stockquote_service.jar).
+2. Open a terminal, navigate to the location of the downloaded service, and run it using the following command:
+    ```bash
+    java -jar stockquote_service.jar
+    ```
+
+You now have a running WSO2 Micro Integrator instance, ActiveMQ instance, and a sample back-end service to simulate the sample scenario.
+Add a message in the `JMStoHTTPStockQuoteProxy` queue with the following XML payload using [ActiveMQ Web Console](https://activemq.apache.org/web-console.html).
 
 ```xml
 <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="http://services.samples" xmlns:xsd="http://services.samples/xsd">
@@ -96,25 +110,25 @@ Add a message in `JMStoHTTPStockQuoteProxy` queue with the following XML payload
    </soapenv:Body>
 </soapenv:Envelope>
 ```
-WSO2 MI will read the message from the ActiveMQ queue and send it to the back-end service. You will see the following response in the back-end service console:
+The Micro Integrator will read the message from the ActiveMQ queue and send it to the back-end service. You will see the following response in the back-end service console:
 
-```
+```bash
 INFO  [wso2/stockquote_service] - Stock quote service invoked.
 INFO  [wso2/stockquote_service] - Generating getQuote response for IBM
 INFO  [wso2/stockquote_service] - Stock quote generated.
 ```
 
 !!! Info
-    You can specify a different content type within the <code>transport.jms.ContentType</code> parameter. In the sample configuration above, the content type defined is text/xml. You can make the proxy service a JMS listener by setting its transport as <code>jms</code>. Once the JMS transport is enabled for a proxy service, the Micro Integrator listens on a JMS queue for the same name as the proxy service.</br>In the sample configuration above, the Micro Integrator listens to a JMS queue named <code>JMStoHTTPStockQuoteProxy</code>. To make the proxy service listen to a different JMS queue, define the <code>transport.jms.Destination</code> parameter with the name of the destination queue. For more information, you can refer details of the [JMS transport parameters](../../../references/synapse-properties/transport-parameters/jms-transport-parameters.md) used in micro integrator.
+    You can specify a different content type within the <code>transport.jms.ContentType</code> parameter. In the sample configuration above, the content type defined is `text/xml`. You can make the proxy service a JMS listener by setting its transport as <code>jms</code>. Once the JMS transport is enabled for a proxy service, the Micro Integrator listens on a JMS queue for the same name as the proxy service.</br>In the sample configuration above, the Micro Integrator listens to a JMS queue named <code>JMStoHTTPStockQuoteProxy</code>. To make the proxy service listen to a different JMS queue, define the <code>transport.jms.Destination</code> parameter with the name of the destination queue. For more information, you can refer details of the [JMS transport parameters](../../../references/synapse-properties/transport-parameters/jms-transport-parameters.md) used in the Micro Integrator.
 
 
 ## Example 2: Two-way HTTP back-end call
 
-In addition to one-way invocations, the proxy service can listen to the queue, pick up a message and do a two-way HTTP call as well. It allows the response to be delivered to a queue specified by the client. This is done by specifying a `ReplyDestination` element when placing a request message to a JMS queue.
+In addition to one-way invocations, the proxy service can listen to the queue, pick up a message, and do a two-way HTTP call as well. It allows the response to be delivered to a queue specified by the client. This is done by specifying a `ReplyDestination` element when placing a request message to a JMS queue.
 
 ### Synapse configuration
 
-We can have a proxy service similar to the following to simulate a two-way invocation:
+We can have a proxy service similar to the following to simulate a two-way invocation. See the instructions on how to [build and run](#build-and-run) this example.
 
 ```xml
 <proxy xmlns="http://ws.apache.org/ns/synapse"
@@ -176,16 +190,31 @@ The Synapse artifacts used are explained below.
     </tr>
 </table>
 
-To test this you will need an HTTP back-end service. Deploy the back-end service `SimpleStockQuoteService`.
-    
-* Download the JAR file of the back-end service from [here](https://github.com/wso2-docs/WSO2_EI/blob/master/Back-End-Service/stockquote_service.jar).
-* Open a terminal, navigate to the location where your saved the back-end service.
-* Execute the following command to start the service:
-   
-        java -jar stockquote_service.jar
+### Build and run
+
+Create the artifacts:
+
+1. [Set up WSO2 Integration Studio](../../../../develop/installing-WSO2-Integration-Studio).
+2. [Create an ESB Solution project](../../../../develop/creating-projects/#esb-config-project).
+3. [Create the proxy service](../../../../develop/creating-artifacts/creating-a-proxy-service) with the configurations given above.
+4. [Deploy the artifacts](../../../../develop/deploy-and-run) in your Micro Integrator.
+
+Set up the broker:
+
+1.  [Configure a broker](../../../setup/transport_configurations/configuring-transports.md#configuring-the-jms-transport) with your Micro Integrator instance. Let's use Active MQ for this example.
+2.  Start the broker.
+3.  Start the Micro Integrator (after starting the broker).
+
+Set up the back-end service:
+
+1. Download the [stockquote_service.jar](
+https://github.com/wso2-docs/WSO2_EI/blob/master/Back-End-Service/stockquote_service.jar).
+2. Open a terminal, navigate to the location of the downloaded service, and run it using the following command:
+    ```bash
+    java -jar stockquote_service.jar
+    ```
             
-You now have a running WSO2 MI instance, ActiveMQ instance and a sample back-end service to simulate the sample scenario.
-Add a message in `JMStoHTTPStockQuoteProxy1` queue with the following XML payload using [ActiveMQ Web Console](https://activemq.apache.org/web-console.html). You can view the responses from the back-end service in ResponseQueue. 
+You now have a running WSO2 MI instance, an ActiveMQ instance, and a sample back-end service to simulate the sample scenario. Add a message in `JMStoHTTPStockQuoteProxy1` queue with the following XML payload using the [ActiveMQ Web Console](https://activemq.apache.org/web-console.html). You can view the responses from the back-end service in the `ResponseQueue`. 
 
 ```xml
 <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="http://services.samples" xmlns:xsd="http://services.samples/xsd">
@@ -201,11 +230,11 @@ Add a message in `JMStoHTTPStockQuoteProxy1` queue with the following XML payloa
 ```
 
 !!! Info
-    You can make the proxy service a JMS listener by setting its transport as <code>jms</code>. Once the JMS transport is enabled for a proxy service, the Micro Integrator listens on a JMS queue for the same name as the proxy service.</br>In the sample configuration above, the Micro Integrator listens to a JMS queue named <code>JMStoHTTPStockQuoteProxy1</code>. To make the proxy service listen to a different JMS queue, define the <code>transport.jms.Destination</code> parameter with the name of the destination queue. For more information, you can refer details of the [JMS transport parameters](../../../references/synapse-properties/transport-parameters/jms-transport-parameters.md) used in micro integrator.
+    You can make the proxy service a JMS listener by setting its transport as <code>jms</code>. Once the JMS transport is enabled for a proxy service, the Micro Integrator listens on a JMS queue for the same name as the proxy service.</br>In the sample configuration above, the Micro Integrator listens to a JMS queue named <code>JMStoHTTPStockQuoteProxy1</code>. To make the proxy service listen to a different JMS queue, define the <code>transport.jms.Destination</code> parameter with the name of the destination queue. For more information, you can refer details of the [JMS transport parameters](../../../references/synapse-properties/transport-parameters/jms-transport-parameters.md) used in the Micro Integrator.
     
 ## Example 3: Set content type of incoming JMS messages
 
-By default, the Micro Integrator considers all messages consumed from a queue as SOAP messages. To consider messages consumed from a queue as a different format, define the **transport.jms.ContentType** parameter with the respective content type as a proxy service parameter.
+The Micro Integrator considers all messages consumed from a queue as SOAP messages by default. To consider that the messages consumed from a queue are of a different format, define the **transport.jms.ContentType** parameter with the respective content type as a proxy service parameter.
 
 ### Synapse configuration
 
@@ -265,4 +294,4 @@ The Synapse artifacts used are explained below.
 </table>
 
 !!! Info
-    You can specify a different content type within the <code>transport.jms.ContentType</code> parameter. In the sample configuration above, the content type defined is <code>application/xml</code>.If you want the proxy service to listen to a queue where the queue name is different from the proxy service name, you can specify the queue name using <code>transport.jms.Destination</code> parameter. In the sample configuration above, the Micro Integrator listens to a JMS queue named <b>MyJMSQueue</b>.For more information, you can refer details of the [JMS transport parameters](../../../references/synapse-properties/transport-parameters/jms-transport-parameters.md) used in micro integrator.
+    You can specify a different content type within the <code>transport.jms.ContentType</code> parameter. In the sample configuration above, the content type defined is <code>application/xml</code>. If you want the proxy service to listen to a queue where the queue name is different from the proxy service name, you can specify the queue name using the <code>transport.jms.Destination</code> parameter. In the sample configuration above, the Micro Integrator listens to a JMS queue named <b>MyJMSQueue</b>. For more information, you can refer details of the [JMS transport parameters](../../../references/synapse-properties/transport-parameters/jms-transport-parameters.md) used in the Micro Integrator.

@@ -6,6 +6,8 @@ VFS transport listener will pick the file from the directory in the FTP server. 
 
 ## Synapse configuration
 
+Following are the integration artifacts that we can used to implement this scenario. See the instructions on how to [build and run](#build-and-run) this example.
+
 ```xml
 <proxy name="SFTPtoMailToProxy" startOnLoad="true" transports="vfs" xmlns="http://ws.apache.org/ns/synapse">
     <parameter name="transport.vfs.FileURI">vfs:sftp://guest:guest@localhost/test?vfs.passive=true</parameter> <!--CHANGE-->
@@ -42,7 +44,6 @@ Create the artifacts:
 4. Create the proxy service with the [VFS configurations parameters given above](../../../../references/config-catalog/#vfs-transport).
 5. Configure [MailTo transport sender](../../../../setup/transport_configurations/configuring-transports/#configuring-the-mailto-transport).
 6. [Deploy the artifacts](../../../../develop/deploy-and-run) in your Micro Integrator and start the Micro Integrator.
-
 
 Set up the back-end service.
 

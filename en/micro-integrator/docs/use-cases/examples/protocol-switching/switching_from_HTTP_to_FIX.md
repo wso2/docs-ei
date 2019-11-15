@@ -2,11 +2,11 @@
 
 This example demonstrates how WSO2 Micro Integrator receives messages in HTTP and forwards them through FIX.
 
-Synapse will create a session with Executor and forward the order request. The first response coming from the Executor will be sent back over HTTP. Executor generally sends two responses for each incoming order request. But since the response has to be forwarded over HTTP, only one can be sent back to the client.
+Synapse will create a session with the **Executor** and forward the order request. The first response coming from the Executor will be sent back over HTTP. The Executor generally sends two responses for each incoming order request. But since the response has to be forwarded over HTTP, only one can be sent back to the client.
 
 ## Synapse configuration
 
-Following are the integration artifacts (proxy service) that we can used to implement this scenario.
+Following are the integration artifacts (proxy service) that we can used to implement this scenario. See the instructions on how to [build and run](#build-and-run) this example.
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
@@ -47,12 +47,14 @@ Create the artifacts:
 [Enable the FIX transport](../../../../setup/transport_configurations/configuring-transports/#configuring-the-fix-transport) and start the Micro-Integrator.
 
 Run the quickfixj **Executor** sample application.
-```
+
+```bash
 java -jar quickfixj-examples-executor-2.1.1.jar
 ```
 
 Send the following request to EI and we will receive the response from the executor application.
-```
+
+```bash
 curl -X POST \
   http://lahiru-thinkpad-x1-carbon-4th:8290/services/HTTPToFIXProxy \
   -H 'cache-control: no-cache' \

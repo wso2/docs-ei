@@ -2,11 +2,11 @@
 
 This example demonstrates how WSO2 Micro Integrator receives messages through FIX and forwards them through HTTP.
 
-The Micro Integrator will forward the order request to one-way `placeOrder` operation on the `SimpleStockQuoteService`. Micro Integrator uses a simple XSLT Mediator to transform the incoming FIX to a SOAP message.
+The Micro Integrator will forward the order request to a one-way `placeOrder` operation in the back-end service. Micro Integrator uses a simple XSLT Mediator to transform the incoming FIX to a SOAP message.
 
 ## Synapse configuration
 
-Following are the integration artifacts (proxy service) that we can used to implement this scenario.
+Following are the integration artifacts that we can used to implement this scenario. See the instructions on how to [build and run](#build-and-run) this example.
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
@@ -35,7 +35,7 @@ Following are the integration artifacts (proxy service) that we can used to impl
 
 ```
 
-FIX_XSLT :
+FIX_XSLT:
 
 ```xml 
 <xsl:stylesheet version="2.0"
@@ -85,7 +85,8 @@ Set up the back-end service:
     ```
 
 Run the quickfixj **Banzai** sample application.
-```
+
+```bash
 java -jar quickfixj-examples-banzai-2.1.1.jar
 ```
 Send an order request from Banzai to Synapse. For example, Buy DELL 1000 @ 100. User has to send a "Limit" Order because price is a mandatory field for placeOrder operation.

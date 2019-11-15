@@ -1,9 +1,8 @@
-# Sending multiple messages via the same TCP channel
-## Example use case
+# Using the TCP Transport
 
-Generally, you can send only one message via one generic TCP channel as described above. Nevertheless, the Micro Integrator also supports sending multiple messages via the same TCP channel by splitting them in different ways.
+**Sending multiple messages via the same TCP channel**
 
-Hence, the TCP transport needs to determine the end of the message that is mediated through the Micro Integrator to split it by a character, a sequence of characters, message length, and special characters in hex form. Client can select which input type to use to send the request to the TCP proxy out of the available options (i.e., binary and String). Splitting the message by a single character is the most efficient method.
+Generally, you can send only one message via one generic TCP channel. Nevertheless, the Micro Integrator also supports sending multiple messages via the same TCP channel by splitting them in different ways.  Hence, the TCP transport needs to determine the end of the message that is mediated through the Micro Integrator to split it by a character, a sequence of characters, message length, or special characters in hex form. The client can select which input type to use to send the request to the TCP proxy out of the available options (i.e., binary and String). Splitting the message by a single character is the most efficient method.
 
 You can split the following sample request input message in different ways as explained below.
 
@@ -14,10 +13,11 @@ You can split the following sample request input message in different ways as ex
 
 [Enable the TCP transport](../../../../setup/transport_configurations/configuring-transports/#configuring-the-tcp-transport). 
 
-## Synapse configurations
-### Splitting by a character
+## Example 1: Splitting by a character
 
-The sample proxy below splits the message by a character. It receives a message with an empty body, which it will forward to the HTTP endpoint after enriching the body with the symbolic value "`IBM`".
+### Synapse configurations
+
+The following proxy service splits the message by a character. It receives a message with an empty body, which it will forward to the HTTP endpoint after enriching the body with the symbolic value "`IBM`".
 
 ```xml
 <proxy xmlns="http://ws.apache.org/ns/synapse" name="TCPProxy" 
@@ -63,7 +63,7 @@ The sample proxy below splits the message by a character. It receives a message 
           <parameter name="transport.tcp.contentType">text/xml</parameter> 
 </proxy>
 ```
-Build and Run
+### Build and Run (Example 1)
 
 Create the artifacts:
 
@@ -92,7 +92,9 @@ netcat localhost 6060 < request.xml
 ```
 It can be observed that two messages are sent to the backend.
 
-### Splitting by a special character
+## Example 2: Splitting by a special character
+
+### Synapse configuration
 
 The sample proxy below splits the input message by appending a special character to the end of the message.
 
@@ -141,7 +143,7 @@ The sample proxy below splits the input message by appending a special characte
 </proxy>
 ```
 
-Build and Run
+### Build and Run (Example 2)
 
 Create the artifacts:
 
@@ -169,7 +171,9 @@ In linux, we can save the request in a <strong>request.xml</strong> file and use
 netcat localhost 6060 < request.xml
 ```
 
-### Splitting by a character sequence
+## Example 3: Splitting by a character sequence
+
+### Synapse configuration
 
 The sample proxy below splits the input message by a sequence of characters.
 
@@ -219,7 +223,7 @@ The sample proxy below splits the input message by a sequence of characters.
  </proxy>
 ```
 
-Build and Run
+### Build and Run (Example 3)
 
 Create the artifacts:
 

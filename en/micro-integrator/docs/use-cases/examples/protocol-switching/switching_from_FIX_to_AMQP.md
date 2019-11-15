@@ -2,11 +2,11 @@
 
 This example demonstrates how WSO2 Micro Integrator receives messages through FIX and forwards them through AMQP.
 
-Synapse will forward the order request by binding it to a JMS message payload and sending it to the AMQP consumer. AMQP consumer will send a execution back to Banzai.
+Synapse will forward the order request by binding it to a JMS message payload and sending it to the AMQP consumer. The AMQP consumer will send an execution back to Banzai.
 
 ## Synapse configuration
 
-Following are the integration artifacts (proxy service) that we can used to implement this scenario.
+Following are the integration artifacts (proxy service) that we can used to implement this scenario. See the instructions on how to [build and run](#build-and-run) this example.
 
 ```xml 
 <proxy name="FIXProxy" transports="fix" xmlns="http://ws.apache.org/ns/synapse">
@@ -40,7 +40,8 @@ Create the artifacts:
 [Enable the FIX transport](../../../../setup/transport_configurations/configuring-transports/#configuring-the-fix-transport) and start the Micro-Integrator.
 
 Run the quickfixj **Banzai** sample application.
-```
+
+```bash
 java -jar quickfixj-examples-banzai-2.1.1.jar
 ```
 Send a sample request from Banzai to Synapse. Then the message count of the queue should be increased.

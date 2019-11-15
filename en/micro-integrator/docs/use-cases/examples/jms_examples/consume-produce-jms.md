@@ -1,14 +1,10 @@
 # Consuming and Producing JMS Messages
 
-This section describes how to configure WSO2 Micro Integrator to work as a JMS-to-JMS proxy service. In this example, the Micro Integrator listens to a JMS queue, consumes messages, and then sends those messages to another JMS queue. First we need to configure JMS transport in micro integrator.
-
-## Configuring the JMS transport
-
-To enable the JMS transport listener and sender, you need to [configure JMS Transport](../../../setup/transport_configurations/configuring-transports.md#configuring-the-jms-transport) respective to the message broker you are using.
+This section describes how to configure WSO2 Micro Integrator to work as a JMS-to-JMS proxy service. In this example, the Micro Integrator listens to a JMS queue, consumes messages, and then sends those messages to another JMS queue.
 
 ## Synapse configuration
 
-Given below is the synapse configuration of the proxy service that mediates the above use case. Note that you need to update the JMS connection URL according to your broker as explained below.
+Given below is the synapse configuration of the proxy service that mediates the above use case. Note that you need to update the JMS connection URL according to your broker as explained below. See the instructions on how to [build and run](#build-and-run) this example.
 
 ```xml
 <proxy name="StockQuoteProxy" transports="jms">
@@ -79,11 +75,37 @@ The Synapse artifacts used are explained below.
 </table>
 
 !!! Info
-    To refer details on JMS transport parameters, you can follow [JMS transport parameters](../../../references/synapse-properties/transport-parameters/jms-transport-parameters.md) used in micro integrator.
-
+    To refer details on JMS transport parameters, you can follow [JMS transport parameters](../../../references/synapse-properties/transport-parameters/jms-transport-parameters.md) used in the Micro Integrator.
 
 !!! Note
     Be sure to replace the ' `& ` ' character in the endpoint URL with '`&amp;`' to avoid the following exception:
-    ``` java
+    ```java
     com.ctc.wstx.exc.WstxUnexpectedCharException: Unexpected character '=' (code 61); expected a semi-colon after the reference for entity 'java.naming.factory.initial' at [row,col {unknown-source}
     ``` 
+
+## Build and run
+
+Create the artifacts:
+
+1. [Set up WSO2 Integration Studio](../../../../develop/installing-WSO2-Integration-Studio).
+2. [Create an ESB Solution project](../../../../develop/creating-projects/#esb-config-project).
+3. [Create the proxy service](../../../../develop/creating-artifacts/creating-a-proxy-service) with the configurations given above.
+4. [Deploy the artifacts](../../../../develop/deploy-and-run) in your Micro Integrator.
+
+Set up the broker:
+
+1.  [Configure a broker](../../../setup/transport_configurations/configuring-transports.md#configuring-the-jms-transport) with your Micro Integrator instance. Let's use Active MQ for this example.
+2.  Start the broker.
+3.  Start the Micro Integrator (after starting the broker).
+
+Set up the back-end service:
+
+1. Download the [stockquote_service.jar](
+https://github.com/wso2-docs/WSO2_EI/blob/master/Back-End-Service/stockquote_service.jar).
+2. Open a terminal, navigate to the location of the downloaded service, and run it using the following command:
+    ```bash
+    java -jar stockquote_service.jar
+    ```
+
+You now have a running WSO2 Micro Integrator instance, ActiveMQ instance, and a sample back-end service to simulate the sample scenario.
+Add a message in the `StockQuoteProxy` queue using the [ActiveMQ Web Console](https://activemq.apache.org/web-console.html).
