@@ -94,11 +94,7 @@ runtime. This is plain text authentication.
 In the WSO2 Micro Integrator authentication example below, we send a request to the proxy service named **testJMSProxy**, which adds a message to the **example.MyQueue** queue.
 
 ```xml
-<definitions xmlns="http://ws.apache.org/ns/synapse">
-  <registry provider="org.wso2.carbon.mediation.registry.WSO2Registry">
-     <parameter name="cachableDuration">15000</parameter>
-  </registry>
-  <proxy name="testJMSProxy"
+  <proxy xmlns="http://ws.apache.org/ns/synapse" name="testJMSProxy"
          transports="https http"
          startOnLoad="true"
          trace="disable">
@@ -110,36 +106,19 @@ In the WSO2 Micro Integrator authentication example below, we send a request to 
         </inSequence>
      </target>
   </proxy>
-  <endpoint name="jmsEP">
+```
+```xml
+  <endpoint xmlns="http://ws.apache.org/ns/synapse" name="jmsEP">
      <address uri="http://localhost:9000/services/SimpleStockQuoteService"/>
   </endpoint>
-  <sequence name="fault">
-     <log level="full">
-        <property name="MESSAGE" value="Executing default 'fault' sequence"/>
-        <property name="ERROR_CODE" expression="get-property('ERROR_CODE')"/>
-        <property name="ERROR_MESSAGE" expression="get-property('ERROR_MESSAGE')"/>
-     </log>
-     <drop/>
-  </sequence>
-  <sequence name="main">
-     <in>
-        <log level="full"/>
-        <filter source="get-property('To')" regex="http://localhost:9000.*">
-           <send/>
-        </filter>
-     </in>
-     <out>
-        <send/>
-     </out>
-     <description>The main sequence for the message mediation</description>
-  </sequence>
-  <messageStore class="org.wso2.carbon.message.store.persistence.jms.JMSMessageStore"
+```
+```xml
+  <messageStore xmlns="http://ws.apache.org/ns/synapse" class="org.wso2.carbon.message.store.persistence.jms.JMSMessageStore"
                 name="testMsgStore">
      <parameter name="java.naming.factory.initial">org.wso2.andes.jndi.PropertiesFileInitialContextFactory</parameter>
      <parameter name="java.naming.provider.url">repository/conf/jndi.properties</parameter>
      <parameter name="store.jms.destination">MyQueue</parameter>
   </messageStore>
-</definitions>
 ```
 
 If you change the authentication credentials of the jndi.properties file, the connection will not be authenticated. You

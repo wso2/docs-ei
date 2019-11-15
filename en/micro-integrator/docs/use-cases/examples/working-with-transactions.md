@@ -125,8 +125,7 @@ The sample scenario can be depicted as follows:
     .
 
     ```xml
-    <definitions xmlns="http://ws.apache.org/ns/synapse">
-       <proxy name="StockQuoteProxy" transports="jms" startOnLoad="true">
+       <proxy xmlns="http://ws.apache.org/ns/synapse" name="StockQuoteProxy" transports="jms" startOnLoad="true">
           <target>
              <inSequence>
                 <property name="OUT_ONLY" value="true"/>
@@ -152,19 +151,6 @@ The sample scenario can be depicted as follows:
              </rules>
           </parameter>
        </proxy>
-       <sequence name="fault">
-          <log level="full">
-             <property name="MESSAGE" value="Executing default &#34;fault&#34; sequence"/>
-             <property name="ERROR_CODE" expression="get-property('ERROR_CODE')"/>
-             <property name="ERROR_MESSAGE" expression="get-property('ERROR_MESSAGE')"/>
-          </log>
-          <drop/>
-       </sequence>
-       <sequence name="main">
-          <log/>
-          <drop/>
-       </sequence>
-    </definitions>
     ```
 
     According to the above configuration, a message will be read from

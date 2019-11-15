@@ -372,23 +372,23 @@ complete, they are committed via
 Transaction Mediator configuration.
 
 ``` java
-<definitions xmlns="http://ws.apache.org/ns/synapse">
-   <sequence name="myFaultHandler">
-        <log level="custom">
-            <property name="text" value="** Rollback Transaction**"/>
-        </log>
-        <transaction action="rollback"/>
-        <send/>
-    </sequence>
-    <sequence name="main" onError="myFaultHandler">
-        <in>
+<sequence xmlns="http://ws.apache.org/ns/synapse" name="myFaultHandler">
+    <log level="custom">
+        <property name="text" value="** Rollback Transaction**"/>
+    </log>
+    <transaction action="rollback"/>
+    <send/>
+</sequence>
+<proxy name="SimpleProxy" transports="http https" startonload="true" trace="disable" xmlns="http://ws.apache.org/ns/synapse">
+    <target>
+         <inSequence>
             <send>
                 <endpoint>
                     <address uri="http://localhost:9000/services/SimpleStockQuoteService"/>
                 </endpoint>
             </send>
-        </in>
-         <out>
+        </inSequence>
+        <outSequence>
             <transaction action="new"/>
             <log level="custom">
                 <property name="text" value="** Reporting to the Database EIdb**"/>
@@ -435,9 +435,12 @@ Transaction Mediator configuration.
             </dbreport>
             <transaction action="commit"/>
             <send/>
-        </out>
-    </sequence>
-</definitions>
+        </outSequence>
+            <faultSequence>
+                 <sequence key="myFaultHandler"/>
+            </faultSequence>
+    </target>
+</proxy>
 ```
 
 <!--

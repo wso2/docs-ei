@@ -89,19 +89,21 @@ example just sends it back to the client because there is no Out
 endpoint specified.
 
 ``` java
-<definitions xmlns="http://ws.apache.org/ns/synapse">
-    <in>
+<proxy name="SimpleProxy" transports="http https" startonload="true" trace="disable" xmlns="http://ws.apache.org/ns/synapse">
+    <target>
+         <inSequence>
         <send>
             <endpoint>
                 <address uri="http://localhost:9000/services/SimpleStockQuoteService"/>
             </endpoint>
         </send>
         <drop/>
-    </in>
-    <out>
+    </inSequence>
+    <outSequence>
         <send/>
-    </out>
-</definitions>
+    </outSequence>
+    </target>
+</proxy>
 ```
 
 ### Specifying a response handling sequence (service chaining) 
