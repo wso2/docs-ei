@@ -3,7 +3,7 @@
 Validators are added to individual input mappings in a query. Input
 validation allows data services to validate the input parameters in a
 request and stop the execution of the request if the input doesn’t meet
-the required criteria. WSO2 MI provides a set of
+the required criteria. WSO2 Micro Integrator provides a set of
 built-in validators for some of the most common use cases. It also
 provides an extension mechanism to write custom validators.
 
@@ -29,9 +29,8 @@ expression.
 
 ## Custom validators
 
-Used to add your own validation logic by implementing the interface
-`         org.wso2.micro.integrator.dataservices.core.validation.Validator        `
-. The definition of the interface is as follows:
+Used to add your own validation logic by implementing the
+`org.wso2.micro.integrator.dataservices.core.validation.Validator` interface. The definition of the interface is as follows:
 
 ```java
 public interface Validator {
@@ -39,20 +38,20 @@ public interface Validator {
 }
 ```
 
-If the validation fails, the validate method in the interface by default
-throws an exception of type `         ValidationException        ` . The
+If the validation fails, the validate method in the interface
+throws an exception of type `ValidationException` by default. The
 parameters of the method are as follows:
 
--   **context** : Is of type `          ValidationContext         ` ,
+-   **context**: Is of type `ValidationContext`,
     which contains information about the full set of parameters passed
     into the request. When the validation logic depends on other
     parameters, the validation context can be used to check the
     names/values of the rest of the parameters.
--   **name** : A string value that represents the name of the parameter
+-   **name**: A string value that represents the name of the parameter
     to be validated.
--   **value** : Is of type `          ParamType         ` , which
+-   **value**: Is of type `ParamType` , which
     represents the value of the parameter to be validated. It is either
-    `          SCALAR         ` or `          ARRAY         ` .
+    `SCALAR` or `ARRAY`.
 
 If you need to provide properties when initializing the custom
 validator, it is necessary to implement the

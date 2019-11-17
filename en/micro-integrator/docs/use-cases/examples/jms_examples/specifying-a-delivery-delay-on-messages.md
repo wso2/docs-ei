@@ -1,4 +1,4 @@
-# Delivery Delay on Messages for JMS Producer
+# Specifying Delivery Delay on Messages
 
 In a normal message flow, JMS messages that are sent by the JMS producer to the JMS broker are forwarded to the respective JMS consumer without any delay.
 
@@ -7,11 +7,11 @@ that the publisher does not deliver a message until the specified delivery delay
 
 The following diagram illustrates how you can use WSO2 Micro Integrator as a JMS producer and specify a delivery delay on messages when you do not want the message consumer to receive a message until a specified time duration has elapsed.
 
-![](attachments/119130324/119130325.png)
-
 ## Synapse configuration
 
-The synapse configuration for this sample scenario is as follows:
+Given below are the synapse configurations that are required for mediating the above use case.
+
+See the instructions on how to [build and run](#build-and-run) this example.
 
 ```xml tab="Proxy Service 1"
 <proxy name="JMSDelivery" startOnLoad="true" trace="disable" transports="https http">
@@ -105,13 +105,13 @@ The synapse configuration for this sample scenario is as follows:
 ```
 
 ```xml tab="Registry Artifact"
-<registry provider="org.wso2.carbon.mediation.registry.WSO2Registry">
+<registry provider="org.wso2.micro.integrator.registry.MicroIntegratorRegistry">
    <parameter name="cachableDuration">15000</parameter>
 </registry>
 ```
 
 ```xml tab="Task Manager"
-<taskManager provider="org.wso2.carbon.mediation.ntask.NTaskTaskManager"/>
+<taskManager provider="org.wso2.micro.integrator.mediation.ntask.NTaskTaskManager"/>
 ```
 
 See the descriptions of the above configurations:
@@ -131,28 +131,31 @@ See the descriptions of the above configurations:
         <td>Proxy Service 2</td>
         <td>The <code>JMSDelivery</code> proxy service does not set a delivery delay on the message.</td>
     </tr>
-    <tr>
-        <td>Main Sequence</td>
-        <td></td>
-    </tr>
-    <tr>
-        <td>Task Manager</td>
-        <td></td>
-    </tr>
-    <tr>
-        <td>Registry Artifact</td>
-        <td></td>
-    </tr>
 </table>
 
-<!--
 
-## Running the Example
+## Build and run
 
-1. Configure the Micro Integrator (Publisher) with Apache ActiveMQ.
-2. Start the Broker.
-3. Start WSO2 Integration Studio and create artifacts with the above configuration. You can copy the synapse configuration given above to the **Source View** of your proxy service.
-4. Run the following java file (**QueueConsumer.java**), which acts as the JMS consumer that consumes messages from the queue:
+Create the artifacts:
+
+1. [Set up WSO2 Integration Studio](../../../../develop/installing-WSO2-Integration-Studio).
+2. [Create an ESB Solution project](../../../../develop/creating-projects/#esb-config-project).
+3. Create the [proxy services](../../../../develop/creating-artifacts/creating-a-proxy-service), [registry artifact](../../../../develop/creating-artifacts/creating-registry-resources), [scheduled task](../../../../develop/creating-artifacts/creating-scheduled-task), and [sequences](../../../../develop/creating-artifacts/creating-reusable-sequences) with the configurations given above.
+4. [Deploy the artifacts](../../../../develop/deploy-and-run) in your Micro Integrator.
+
+Set up the broker:
+
+1.  [Configure a broker](../../../setup/transport_configurations/configuring-transports.md#configuring-the-jms-transport) with your Micro Integrator instance. Let's use HornetQ for this example.
+    
+    -   On **Windows**: HORNETQ_HOME\bin\run.bat --run
+    -   On **MacOS/Linux/Solaris**: sh HORNETQ_HOME/bin/run.sh
+
+2.  Start the broker.
+3.  Start the Micro Integrator.
+
+Follow the steps given below to run the example:
+
+1. Run the following java file (**QueueConsumer.java**), which acts as the JMS consumer that consumes messages from the queue:
 
     ```java
     package DeliveryDelay;
@@ -257,14 +260,21 @@ See the descriptions of the above configurations:
             }
     ```
 
-5. Run the following command from `MI_HOME/sample/axis2Client` to invoke the two proxy services:
+2. Invoke the two proxy services (http://localhost:8290/services/JMSDelivery, http://localhost:8290/services/JMSDeliveryDelayed) with the following payload:
 
-    ``` java
-    ant stockquote -Daddurl=http://localhost:8280/services/JMSDelivery -Dmode=placeorder -Dsymbol=MSFT && ant stockquote -Daddurl=http://localhost:8280/services/JMSDeliveryDelayed -Dmode=placeorder -Dsymbol=MSFT
+    ```xml
+    <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="http://services.samples" xmlns:xsd="http://services.samples/xsd">
+       <soapenv:Header/>
+       <soapenv:Body>
+          <ser:getQuote>
+             <ser:request>
+                <xsd:symbol>IBM</xsd:symbol>
+             </ser:request>
+          </ser:getQuote>
+       </soapenv:Body>
+    </soapenv:Envelope>
     ```
 
 You will see that two messages are received by the Java consumer with a time difference of more than 10 seconds.
 
-This is because the `         JMSDeliveryDelayed        ` proxy service sets a delivery delay of 10 seconds on the message that it forwards, whereas the `         JMSDelivery        ` proxy service does not set a
-delivery delay on the message.
--->
+This is because the `         JMSDeliveryDelayed        ` proxy service sets a delivery delay of 10 seconds on the message that it forwards, whereas the `         JMSDelivery        ` proxy service does not set a delivery delay on the message.

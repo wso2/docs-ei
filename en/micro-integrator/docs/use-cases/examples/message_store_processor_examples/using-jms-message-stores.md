@@ -1,11 +1,9 @@
-# Store and Forward Using JMS Message Stores
+# Using the JMS Message Store
 See the examples given below.
 
-## Example 1
+## Example 1: Store and forward JMS messages
 
 In this example, the client sends requests to a **proxy service**, which stores the messages in a **JMS message store**. The **message forwarding processor** then picks the stored messages from the JMS message store and invokes the back-end service.
-
-![](attachments/119130313/119130315.png)  
 
 ### Synapse configurations
 
@@ -128,11 +126,9 @@ Note a message similar to the following example:
 SimpleStockQuoteService :: Accepted order for : 7482 stocks of IBM at $ 169.27205579038733
 ```
 
-## Example 2
+## Example 2: Using a reply sequence to process response
 
 In the sample, when the message forwarding processor receives a response from the back-end service, it forwards it to a **replySequence** to process the response message.
-
-![](attachments/119130313/119130314.png)
 
 ### Synapse configurations
 

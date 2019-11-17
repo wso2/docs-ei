@@ -1,6 +1,6 @@
 # Using the FIX Transport
 
-Demonstrate the usage of the FIX (Financial Information eXchange) transport with Proxy Services .
+This example demonstrates the usage of the FIX (Financial Information eXchange) transport with proxy services.
 
 ## Synapse configuration
 

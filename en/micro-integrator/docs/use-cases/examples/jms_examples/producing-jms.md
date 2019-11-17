@@ -1,30 +1,24 @@
 # Producing JMS Messages
 
-This section describes how to configure WSO2 Micro Integrator to send messages to a JMS Queue. In this example, the Micro Integrator accepts messages via HTTP and sends them to a JMS queue. First we need to configure JMS transport in micro integrator.
-
-## Configuring the JMS transport
-
-To enable the JMS transport listener and sender, you need to [configure JMS Transport](../../../setup/transport_configurations/configuring-transports.md#configuring-the-jms-transport) respective to the message broker you are using.
-
+This section describes how to configure WSO2 Micro Integrator to send messages to a JMS Queue. In this example, the Micro Integrator accepts messages via HTTP and sends them to a JMS queue.
 
 ## Synapse configuration
 
-Given below is the synapse configuration of the proxy service that mediates the above use case. Note that you need to update the JMS connection URL according to your broker as explained below.
+Given below is the synapse configuration of the proxy service that mediates the above use case. Note that you need to update the JMS connection URL according to your broker as explained below. See the instructions on how to [build and run](#build-and-run) this example.
 
 ```xml
-<proxy xmlns="http://ws.apache.org/ns/synapse" name="StockQuoteProxy" transports="http">
+<proxy xmlns="http://ws.apache.org/ns/synapse" name="StockQuoteProxy" transports="http" startOnLoad="true">
         <target>
             <inSequence>
                 <property action="set" name="OUT_ONLY" value="true"/>
+                <property name="FORCE_SC_ACCEPTED" value="true" scope="axis2"/>
                 <send>
                     <endpoint>
-                        <address uri=""/> <!-- Specify the JMS connection URL here -->
+                        <address uri="jms:/SimpleStockQuoteService?transport.jms.ConnectionFactoryJNDIName=QueueConnectionFactory&amp;java.naming.factory.initial=org.apache.activemq.jndi.ActiveMQInitialContextFactory&amp;java.naming.provider.url=tcp://localhost:61616&amp;transport.jms.DestinationType=queue"/>
                     </endpoint>
                 </send>
             </inSequence>
-            <outSequence/>
         </target>
-        <publishWSDL uri="file:samples/service-bus/resources/proxy/sample_proxy_1.wsdl"/>
 </proxy>
 ```
 
@@ -50,6 +44,12 @@ The Synapse artifacts used are explained below.
         </td>
     </tr>
     <tr>
+        <td>Property Mediator</td>
+        <td>
+            The <b>FORCE_SC_ACCEPTED</b> property is set to <b>true</b> , this property forces a 202 HTTP response to the client so that the client stops waiting for a response..  
+        </td>
+    </tr>
+    <tr>
         <td>Send Mediator</td>
         <td>
            To send a message to a JMS queue, you should define the JMS connection URL as the endpoint address (which should be invoked via the <b>Send</b> mediator). There are two ways to specify the endpoint URL: 
@@ -57,7 +57,7 @@ The Synapse artifacts used are explained below.
                <li>
                     Specify the JNDI name of the JMS queue and the connection factory parameters in the JMS connection URL as shown in the exampe below. Values of connection factory parameters depend on the type of the JMS broker. </br></br>
                     <b>When the broker is ActiveMQ</b></br>
-                    <code>jms:/SimpleStockQuoteService?transport.jms.ConnectionFactoryJNDIName=QueueConnectionFactory&java.naming.factory.initial=org.apache.activemq.jndi.ActiveMQInitialContextFactory&java.naming.provider.url=tcp://localhost:61616&transport.jms.DestinationType=queue</code></br></br>
+                    <code>jms:/SimpleStockQuoteService?SimpleStockQuoteService?transport.jms.ConnectionFactoryJNDIName=QueueConnectionFactory&java.naming.factory.initial=org.apache.activemq.jndi.ActiveMQInitialContextFactory&java.naming.provider.url=tcp://localhost:61616&transport.jms.DestinationType=queue</code></br></br>
                     <b>When the broker is WSO2 Message Broker</b></br>
                     <code>jms:/StockQuotesQueue?transport.jms.ConnectionFactoryJNDIName=QueueConnectionFactory&amp;java.naming.factory.initial=org.wso2.andes.jndi.PropertiesFileInitialContextFactory&amp;java.naming.provider.url=conf/jndi.properties&transport.jms.DestinationType=queue</code>
                </li></br>
@@ -74,7 +74,7 @@ The Synapse artifacts used are explained below.
 </table>
 
 !!! Info
-    To refer details on JMS transport parameters, you can follow [JMS transport parameters](../../../references/synapse-properties/transport-parameters/jms-transport-parameters.md) used in micro integrator.
+    To refer details on JMS transport parameters, you can follow [JMS transport parameters](../../../references/synapse-properties/transport-parameters/jms-transport-parameters.md) used in the Micro Integrator.
 
       
 !!! Note
@@ -82,3 +82,29 @@ The Synapse artifacts used are explained below.
     ``` java
     com.ctc.wstx.exc.WstxUnexpectedCharException: Unexpected character '=' (code 61); expected a semi-colon after the reference for entity 'java.naming.factory.initial' at [row,col {unknown-source}
     ```  
+
+## Build and run
+
+Create the artifacts:
+
+1. [Set up WSO2 Integration Studio](../../../../develop/installing-WSO2-Integration-Studio).
+2. [Create an ESB Solution project](../../../../develop/creating-projects/#esb-config-project).
+3. [Create the proxy service](../../../../develop/creating-artifacts/creating-a-proxy-service) with the configurations given above.
+4. [Deploy the artifacts](../../../../develop/deploy-and-run) in your Micro Integrator.
+
+Set up the broker:
+
+1.  [Configure a broker](../../../setup/transport_configurations/configuring-transports.md#configuring-the-jms-transport) with your Micro Integrator instance. Let's use Active MQ for this example.
+2.  Start the broker.
+3.  Start the Micro Integrator (after starting the broker).
+
+Set up the back-end service:
+
+1. Download the [stockquote_service.jar](
+https://github.com/wso2-docs/WSO2_EI/blob/master/Back-End-Service/stockquote_service.jar).
+2. Open a terminal, navigate to the location of the downloaded service, and run it using the following command:
+    ```bash
+    java -jar stockquote_service.jar
+    ```
+    
+Invoke the proxy service by send a simple message.

@@ -9,13 +9,9 @@ Consequently, the query connected to the operation/resource is executed
 to perform the task.
 
 !!! Info
-	REST resources and Operations are used depending on whether the
-particular task should be invoked RESTfully, or by using SOAP. Read more
-about REST resource and operations in data services.
+	REST resources and Operations are used depending on whether the particular task should be invoked RESTfully, or by using SOAP. Read more about [REST resources and operations](../../../../references/synapse-properties/data-services/elements-of-a-data-service) in data services.
 
-For most data stores, a query typically represents an SQL statement.
-However, some data stores such as Excel, and CSV, require queries to be
-specified differently.
+For most data stores, a query typically represents an SQL statement. However, some data stores such as Excel and CSV require queries to be specified differently.
 
 ## SQL/Query details
 
@@ -27,15 +23,14 @@ Spreadsheets), you need to specify the query details.
 
 If you are writing an SQL query that requires an input value, you need
 to specify the parameters that can be used to provide the input. For
-example, if the SQL statement is to get the price of a particular
+example, if the SQL statement is for getting the price of a particular
 product, it is necessary to provide the identifier of the product in the
-data store. In the Input Mapping section, you can create a parameter and
+data store. In the **Input Mapping** section, you can create a parameter and
 map it to the column name of the product identifier in the database.
 
 Input mappings allow you to add parameters to a query so that you can
 set the parameter value when executing the query. For example, when you
-define a query as
-mapping is a parameter that sets the value of ID.
+define a query, a mapping is a parameter that sets the value of ID.
 
 <table>
 <colgroup>
@@ -67,7 +62,6 @@ This is the data type of the input mapping, which determines how the input mappi
 <li>ARRAY: In the target query, the parameter will contain one or many values for a mapped parameter.<br />
 </li>
 </ul>
-!!! note
 <p>Note that ARRAY parameter type cannot be used with the QUERY_STRING data type (SQL type).</p>
 
 <p>In the context of RDBMS and SQL datasources, an ARRAY parameter mapped to an SQL query will be expanded to multiple comma separated parameters at runtime. For example, this can be used in SQL statement conditions such as SELECT ... WHERE ... IN(?).</p>
@@ -75,7 +69,7 @@ This is the data type of the input mapping, which determines how the input mappi
 </tr>
 <tr class="odd">
 <td>SQL Type</td>
-<td>The data type of the corresponding SQL parameter can be selected from this menu. Note that the QUERY_STRING data type cannot be used if the <a href="#WritingQueries-Parametertype">parameter type</a> is set to ARRAY. Find more from <a href="https://docs.wso2.com/display/EI611/Data+Types+of+Mappings">here</a> about data types.</td>
+<td>The data type of the corresponding SQL parameter can be selected from this menu. Note that the QUERY_STRING data type cannot be used if the <a href="#WritingQueries-Parametertype">parameter type</a> is set to ARRAY. Find more from <a href="../../../../references/synapse-properties/data-services/mapping-data-types">here</a> about data types.</td>
 </tr>
 <tr class="even">
 <td>Default Value</td>
@@ -98,7 +92,6 @@ This is the data type of the input mapping, which determines how the input mappi
 <span id="cb1-11"><a href="#cb1-11"></a>               If it&#39;s a SCALAR, it will only contain the first user role of the user.</span></code></pre></div>
 </div>
 </div>
-<p>For a demonstration of the usage of default values, see <a href="https://docs.wso2.com/display/EI650/Default+Values+Sample">Default Values Sample</a> .</p>
 </div></td>
 </tr>
 <tr class="odd">
@@ -138,7 +131,7 @@ the parameters that should be used to represent the data.
 
 | Parameter   | Description                                                                                                                |
 |-------------|----------------------------------------------------------------------------------------------------------------------------|
-| Output Type | The output type determines the format in which the query output will be presented. You can select either XML, RDF or JSON. |
+| Output Type | The output type determines the format in which the query output will be presented. You can select either XML, RDF, or JSON. |
 
 The following parameters are configurable for XML/RDF output types.
 
@@ -157,10 +150,8 @@ The following parameters are configurable for XML/RDF output types.
 <tr class="odd">
 <td>Generate Output Mapping</td>
 <td><div class="content-wrapper">
-!!! note
 <p>Note that this option is only available for <code>               SELECT              </code> statements excluding <code>               SELECT *              </code> , and for datasources such as RDBMS.</p>
-
-<p>If you have defined an SQL query, you can generate output mappings corresponding to the fields specified in the query by clicking <strong>Generate Response</strong> . In the example shown below, there is an SQL query that needs to output values for the <code>               customernumber              </code> and <code>               customername              </code> fields in the <code>               customers              </code> table.</p>
+<p>If you have defined an SQL query, you can generate output mappings corresponding to the fields specified in the query by clicking <strong>Generate Response</strong>. In the example shown below, there is an SQL query that needs to output values for the <code>customernumber</code> and <code>customername</code> fields in the <code>customers</code> table.</p>
 <p><br />
 </p>
 </div></td>
@@ -168,16 +159,16 @@ The following parameters are configurable for XML/RDF output types.
 <tr class="even">
 <td>Use column numbers</td>
 <td><div class="content-wrapper">
-<p>If this option is selected the mapping will be done by the column number basis instead of the column name. The following screenshot provides an example for using column numbers</p>
+<p>If this option is selected, the mapping will be done by the column number basis instead of the column name.</p>
 </div></td>
 </tr>
 <tr class="odd">
 <td>Escape non-printable characters</td>
-<td>Tick this option if the data in your database consists of characters that are not serializable to XML. Few examples are &amp; &lt; &gt; " '. When you invoke services that access such data and produce responses, the sever throws errors. Ticking this option ensures that non-printable characters will be ignored when producing the responses.</td>
+<td>Use this option if the data in your database consists of characters that are not serializable to XML. Few examples are &amp; &lt; &gt; " '. When you invoke services that access such data and produce responses, the sever throws errors. This option ensures that non-printable characters will be ignored when producing the responses.</td>
 </tr>
 <tr class="even">
 <td>Row Namespace</td>
-<td>See <a href="https://docs.wso2.com/display/EI611/Using+Namespaces+in+Data+Services">Defining Namespaces</a> .</td>
+<td>See <a href="../../../../references/synapse-properties/data-services/using-Namespaces">Defining Namespaces</a> .</td>
 </tr>
 <tr class="odd">
 <td>Query Result Export</td>
@@ -209,17 +200,11 @@ datasources such as RDBMS.
 
 Query property details are described below.
 
-<table>
-<colgroup>
-<col style="width: 16%" />
-<col style="width: 83%" />
-</colgroup>
-<thead>
+<table>>
 <tr class="header">
 <th><p>Property Name</p></th>
 <th><p>Description</p></th>
 </tr>
-</thead>
 <tbody>
 <tr class="odd">
 <td><p>Timeout</p></td>

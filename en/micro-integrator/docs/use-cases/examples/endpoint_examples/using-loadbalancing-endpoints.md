@@ -1,4 +1,6 @@
-# Session Affinity Load Balancing between Three Endpoints
+# Using the Load Balance Endpoint
+
+**Session Affinity Load Balancing between Three Endpoints**
 
 This sample demonstrates how the Micro Integrator can handle load balancing with
 session affinity using simple client sessions. Here the

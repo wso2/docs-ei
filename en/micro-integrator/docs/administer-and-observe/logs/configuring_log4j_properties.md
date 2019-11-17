@@ -1,8 +1,8 @@
-# Configuring Log4j Properties
+# Configuring Log4j2 Properties
 
-All WSO2 products are shipped with the log4j logging capabilities, which generates administrative activities and server side logs. The `log4j2.properties` file, which governs how logging is performed by the server can be found in the `MI_HOME/conf` directory.
+All WSO2 products are shipped with the log4j2 logging capabilities, which generates administrative activities and server side logs. The `log4j2.properties` file, which governs how logging is performed by the server can be found in the `MI_HOME/conf` directory.
 
-There are three main components when configuring log4j: **Loggers**, **Appenders**, and **Layouts**. 
+There are three main components when configuring log4j2: **Loggers**, **Appenders**, and **Layouts**. 
 
 ## Setting the log level
 
@@ -45,9 +45,9 @@ The log message type sent to the system log server.
 
 Filters log entries based on their level. For example, threshold set to 'WARN' will allow the log entry to pass into appender. If its level is 'WARN', 'ERROR' or 'FATAL', other entries will be discarded. This is the minimum log level at which you can log a message. See descriptions of the available log levels .
 
-## Configuring Log4j Appenders
+## Configuring Log4j2 Appenders
 
-This section allows you to configure appenders individually. Log4j allows logging requests to print to multiple destinations. These output destinations are called 'Appenders'. You can attach several appenders to one logger.
+This section allows you to configure appenders individually. Log4j2 allows logging requests to print to multiple destinations. These output destinations are called 'Appenders'. You can attach several appenders to one logger.
 
 -   **CARBON_CONSOLE**: Logs to the console when the server is running.
 -   **CARBON_LOGFILE**: Writes the logs to MI_HOME/repository/logs/wso2carbon.log .
@@ -58,7 +58,7 @@ This section allows you to configure appenders individually. Log4j allows loggin
 -   **CARBON_SYS_LOG**: Allows separating the software that generates messages, from the system that stores them and the software that reports and analyzes them.
 -   **CARBON_TRACE_LOGFILE**:
 
-## Configuring Log4j Loggers
+## Configuring Log4j2 Loggers
 
 A Logger is an object used to log messages for a specific system or application component. 
 

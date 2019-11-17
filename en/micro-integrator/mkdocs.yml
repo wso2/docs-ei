@@ -144,7 +144,7 @@ nav:
             - 'RabbitMQ Inbound Endpoint': 'use-cases/examples/inbound_endpoint_examples/inbound-endpoint-rabbitmq-protocol.md'
             #- 'CXF WS RM Inbound Endpoint': 'use-cases/examples/inbound_endpoint_examples/using-CXF-WS-RM-Inbound.md'
             - 'Kafka Inbound Endpoint': 'use-cases/examples/inbound_endpoint_examples/inbound-endpoint-kafka.md'
-            - 'WebSocket Inbound Endpoint': 'use-cases/examples/inbound_endpoint_examples/inbound-endpoint-secured-websocket.md'
+            - 'Secured WebSocket Inbound Endpoint': 'use-cases/examples/inbound_endpoint_examples/inbound-endpoint-secured-websocket.md'
             - 'Using Inbound Endpoints with Registry': 'use-cases/examples/inbound_endpoint_examples/inbound-endpoint-with-registry.md'
           - Scheduled Tasks: 
             - 'Task Scheduling using a Simple Trigger': 'use-cases/examples/scheduled-tasks/task-scheduling-simple-trigger.md'
@@ -291,7 +291,7 @@ nav:
       - Creating Custom Artifacts:
         - 'Creating a Custom Inbound Endpoint' : 'develop/customizations/creating-custom-Inbound-endpoint.md'
         - 'Creating a Custom Mediator': 'develop/customizations/creating-custom-mediators.md'
-        - 'Creating a Synapse Handlers': 'develop/customizations/creating-synapse-handlers.md'
+        - 'Creating a Synapse Handler': 'develop/customizations/creating-synapse-handlers.md'
         - 'Customizing Task Scheduling': 'develop/customizations/creating-custom-task-scheduling.md'
       - Securing Artifacts:
         - 'Encrypting Synapse Passwords' : 'develop/creating-artifacts/encrypting-synapse-passwords.md'
@@ -326,7 +326,7 @@ nav:
       - 'Using the Management API': 'administer-and-observe/working-with-management-api.md'
       - Logging:
         - 'Logs in WSO2 Micro Integrator' : 'administer-and-observe/logs/monitoring_logs.md'
-        - 'Configuring Log4j Properties' : 'administer-and-observe/logs/configuring_log4j_properties.md'
+        - 'Configuring Log4j2 Properties' : 'administer-and-observe/logs/configuring_log4j_properties.md'
         - 'Managing Log Growth' : 'administer-and-observe/logs/managing_log_growth.md'
         - 'Masking Sensitive Information in Logs' : 'administer-and-observe/logs/masking_sensitive_info_in_logs.md'
       - Metrics:
@@ -425,16 +425,16 @@ nav:
             - 'Scheduled Failover Message Forwarding Processor': 'references/synapse-properties/message-processors/msg-sched-failover-forwarding-processor-properties.md'
         - 'Templates': 'references/synapse-properties/template-properties.md'
         - 'Endpoints': 'references/synapse-properties/endpoint-properties.md'
-        - 'Data Service' : 'references/synapse-properties/data-services.md'
-        #- 'Elements of a Data Service': 'references/synapse-properties/data-services/elements-of-a-data-service.md'
-        #- 'Query Parameters': 'references/synapse-properties/data-services/query-parameters.md'
-        #- 'Input Validators': 'references/synapse-properties/data-services/input-validators.md'
-        #- 'Filtering Responses by User Role': 'references/synapse-properties/data-services/filtering-responses-by-user-role.md'
-        #- 'Dynamic User Authentication': 'references/synapse-properties/data-services/dynamic-user-authentication.md'
-        #- 'Using Namespaces': 'references/synapse-properties/data-services/using-Namespaces.md'
-        #- 'SQL Dialects': 'references/synapse-properties/data-services/sql-dialects.md'
-        #- 'Mapping Data Types': 'references/synapse-properties/data-services/mapping-data-types.md'
-        #- 'Using Namespaces': 'references/synapse-properties/data-services/using-Namespaces.md'
+        - Data Services:
+          - 'About Data Services' : 'references/synapse-properties/data-services.md'
+          - 'Elements of a Data Service': 'references/synapse-properties/data-services/elements-of-a-data-service.md'
+          - 'Query Parameters': 'references/synapse-properties/data-services/query-parameters.md'
+          - 'Input Validators': 'references/synapse-properties/data-services/input-validators.md'
+          - 'Filtering Responses by User Role': 'references/synapse-properties/data-services/filtering-responses-by-user-role.md'
+          - 'Dynamic User Authentication': 'references/synapse-properties/data-services/dynamic-user-authentication.md'
+          - 'Using Namespaces': 'references/synapse-properties/data-services/using-Namespaces.md'
+          - 'SQL Dialects': 'references/synapse-properties/data-services/sql-dialects.md'
+          - 'Mapping Data Types': 'references/synapse-properties/data-services/mapping-data-types.md'
         - Transport Configs:
           - 'VFS Parameters': 'references/synapse-properties/transport-parameters/vfs-transport-parameters.md'
           - 'JMS Parameters': 'references/synapse-properties/transport-parameters/jms-transport-parameters.md'

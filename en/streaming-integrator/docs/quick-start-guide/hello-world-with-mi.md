@@ -2,21 +2,19 @@
 
 This quick start guide explains how to trigger an integration flow using a message received by the Streaming Integrator.
 
-In this example, the same message you send to the Micro Integrator goes through the `inSeq` defined, and uses the `respond` mediator (to be changed with a `grpcResponseMediator`) to send back the response to the Streaming integrator.
+In this example, the same message you send to the Micro Integrator goes through the `inSeq` defined, and uses the `respond` mediator to send back the response to the Streaming integrator.
 
 !!!tip "Before you begin:"
-
-    - Download and install both the Streaming Integrator and the Streaming Integrator Tooling from [here](Link).
-
-    - Download and install both the the Micro Integrator from [here](Link).
-
-    - Start the Streaming Integrator Tooling by issuing one of the following commands from the `<SI_HOME>/bin` directory:
-        -   For Windows: `server.bat`
-        -   For Linux: `./server.sh`
-
-    - Start the Streaming Integrator by issuing one of the following commands from the `<SI_TOOLING_HOME>/bin` directory:
-        - For Windows: `tooling.bat`
-        - For Linux: `./tooling.sh`
+    - Download and install both the Streaming Integrator and the Streaming Integrator Tooling from [here](Link).<br/>
+    - Download and install both the the Micro Integrator from [here](Link).<br/>
+    - Start the Streaming Integrator via one of the following methods depending on your operating system.<br/>
+        - On MacOS/Linux/CentOS, open a terminal and issue the following command:<br/>
+            `sudo wso2si`<br/>
+        - On windows, go to **Start Menu -> Programs -> WSO2 -> Enterprise Integrator**. This opens a terminal. Start Streaming Integrator profile.<br/>
+    - Start the Streaming Integrator Tooling via one of the following methods depending on your operating system..<br/>
+        - On MacOS/Linux/CentOS, open a terminal and issue the following command:<br/>
+            `sudo wso2si-tooling-<VERSION>`<br/>
+        - On windows, go to **Start Menu -> Programs -> WSO2 -> Streaming Integrator Tooling**. A terminal opens.
 
 To create and deploy Siddhi application that triggers an integration flow, and then try it out by sending events, follow the procedure below:
 
@@ -91,32 +89,31 @@ To create and deploy Siddhi application that triggers an integration flow, and t
 
 5. Deploy the required artifacts in the Micro Integrator as follows:
 
-    1. Save the following GRPC inbound endpoint  as `rpcInboundEndpoint.xml` in the `<MI_Home>/repository/deployment/server/synapse-configs/default/inbound-endpoints` directory. You can name the file `g`.
+    1. Save the following GRPC inbound endpoint  as `grpcInboundEndpoint.xml` in the `<MI_Home>/repository/deployment/server/synapse-configs/default/inbound-endpoints` directory.
 
+        ```xml
+        <?xml version="1.0" encoding="UTF-8"?>
+        <inboundEndpoint xmlns="http://ws.apache.org/ns/synapse" name="GrpcInboundEndpoint" sequence="inSeq" onError="fault" protocol="grpc" suspend="false">
+            <parameters>
+                <parameter name="inbound.grpc.port">8888</parameter>
+            </parameters>
+        </inboundEndpoint>
         ```
-            <?xml version="1.0" encoding="UTF-8"?>
-            <inboundEndpoint xmlns="http://ws.apache.org/ns/synapse" name="GrpcInboundEndpoint" sequence="inSeq" onError="fault" protocol="grpc" suspend="false">
-                <parameters>
-                    <parameter name="inbound.grpc.port">8888</parameter>
-                </parameters>
-            </inboundEndpoint>
-         ```
 
     2. Save the following sequence that includes a `respond` mediator in the `<MI_Home>/repository/deployment/server/synapse-configs/default/sequences` directory. You can name the file `InSeq.xml`.
 
-        ```
-            <?xml version="1.0" encoding="UTF-8"?>
-            <sequence xmlns="http://ws.apache.org/ns/synapse" name="inSeq">
-               <log level="full"/>
-               <respond/>
-            </sequence>
+        ```xml
+        <?xml version="1.0" encoding="UTF-8"?>
+        <sequence xmlns="http://ws.apache.org/ns/synapse" name="inSeq">
+           <log level="full"/>
+           <respond/>
+        </sequence>
         ```
 
 
 6. Issue the following CURL command to send an event to the Streaming Integrator. This is received via the `http` source configured in the `grpc-call-response` Siddhi application, and it triggers an integration flow with the Micro Integrator.
 
-    `curl -X POST -d "{\"event\":{\"message\":\"http_curl\",\"headers\":\"'Content-Type:json'\"}}" http://localhost:8006/inputstream --header "Content-Type:application/json"
-     */`
+    `curl -X POST -d "{\"event\":{\"message\":\"http_curl\",\"headers\":\"'Content-Type:json'\"}}" http://localhost:8006/inputstream --header "Content-Type:application/json"`
 
     The following response is logged in the console in which you are running the SI server.
 

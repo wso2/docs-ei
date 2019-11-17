@@ -5,13 +5,13 @@ server. A properly configured logging system is vital for identifying
 errors, security threats, and usage patterns.
 
 !!! Info
-    **Java logging and Log4j integration:** In addition to the logs from libraries that use Log4j, all logs from libraries that use the Java logging framework are also visible in the same log files. That is, when Java logging is enabled
-        in Carbon, only the Log4j appenders will write to the log files. If
+    **Java logging and Log4j2 integration:** In addition to the logs from libraries that use Log4j2, all logs from libraries that use the Java logging framework are also visible in the same log files. That is, when Java logging is enabled
+        in Carbon, only the Log4j2 appenders will write to the log files. If
         the Java Logging Handlers have logs, these logs will be delegated to
-        the log events of the corresponding Log4j appenders. A Pub/Sub
+        the log events of the corresponding Log4j2 appenders. A Pub/Sub
         registry pattern implementation has been used in the latter
         mentioned scenario to plug the handlers and appenders. The following
-        default log4j appenders in the
+        default log4j2 appenders in the
         `           log4j2.properties          ` file are used for this
         implementation:
 
@@ -27,7 +27,7 @@ Listed below are the various log types used in WSO2 Micro Integrator.
 
 The Carbon log file (`wso2carbon.log`) covers all the management features of a product. Carbon logs are configured in the `log4j2.properties` file (stored in the `MI_HOME/conf` directory).
 
-The Carbon log file is enabled in the product by default as shown below. You can configure the details that are captured in this log file by [configuring the log4j properties](../logs/configuring_log4j_properties.md).
+The Carbon log file is enabled in the product by default as shown below. You can configure the details that are captured in this log file by [configuring the log4j2 properties](../logs/configuring_log4j_properties.md).
 
 ```xml
 # CARBON_LOGFILE is set to be a DailyRollingFileAppender using a PatternLayout.
@@ -53,7 +53,7 @@ appender.CARBON_LOGFILE.filter.threshold.level = DEBUG
 
 Audit logs are used for tracking the sequence of actions that affect a particular task carried out on the server. These are also configured in the `log4j2.properties` file (stored in the `MI_HOME/conf` directory).
 
-Audit logs are enabled in the product by default as shown below. You can configure the details that are captured in this log file by [configuring the log4j properties](../logs/configuring_log4j_properties.md).
+Audit logs are enabled in the product by default as shown below. You can configure the details that are captured in this log file by [configuring the log4j2 properties](../logs/configuring_log4j_properties.md).
 
 ```xml
 # Appender config to AUDIT_LOGFILE

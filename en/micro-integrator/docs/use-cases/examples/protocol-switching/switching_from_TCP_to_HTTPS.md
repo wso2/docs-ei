@@ -2,11 +2,11 @@
 
 This example demonstrates how WSO2 Micro Integrator receives SOAP messages over TCP and forwards them over HTTP.
 
-TCP is not an application layer protocol. Hence there are no application level headers available in the requests. The Micro Integrator has to simply read the XML content coming through the socket and dispatch it to the right proxy service based on the information available in the message payload itself. The TCP transport is capable of dispatching requests based on addressing headers or the first element in the SOAP body. In this sample, we will get the sample client to send WS-Addressing headers in the request. Therefore the dispatching will take place based on the addressing header values.
+TCP is not an application layer protocol. Hence there are no application-level headers available in the requests. The Micro Integrator has to simply read the XML content coming through the socket and dispatch it to the right proxy service based on the information available in the message payload. The TCP transport is capable of dispatching requests based on addressing headers or the first element in the SOAP body. In this sample, we will get the sample client to send WS-Addressing headers in the request. Therefore, the dispatching will take place based on the addressing header values.
 
 ## Synapse configuration
 
-Following are the integration artifacts (proxy service) that we can used to implement this scenario.
+Following are the integration artifacts (proxy service) that we can used to implement this scenario. See the instructions on how to [build and run](#build-and-run) this example.
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
@@ -39,12 +39,12 @@ Set up the back-end service.
 * Download the [stockquote_service.jar](
 https://github.com/wso2-docs/WSO2_EI/blob/master/Back-End-Service/stockquote_service.jar)
 
-* Run the mock service using the following command
-```
-$ java -jar stockquote_service.jar
-```
+* Run the mock service using the following command:
+  ```bash
+  java -jar stockquote_service.jar
+  ```
 
-[Enable the TCP transport](../../../setup/transport_configurations/configuring-transports/#configuring-the-tcp-transport) and start the Micro-Integrator.
+[Enable the TCP transport](../../../../setup/transport_configurations/configuring-transports/#configuring-the-tcp-transport) and start the Micro-Integrator.
 
 Send the following message via TCP to the TCP listener port.
 ```xml

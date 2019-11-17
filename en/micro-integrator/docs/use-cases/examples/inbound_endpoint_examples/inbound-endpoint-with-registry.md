@@ -1,6 +1,4 @@
-# Specifying inbound endpoint parameters as registry values
-## Example use case
-
+# Using Inbound Endpoints with the Registry
 Other than specifying parameter values inline, you can also
 specify parameter values as registry entries. The advantage of
 specifying a parameter value as a registry entry is that the same
