@@ -86,7 +86,7 @@ See the [complete list of parameters](../../../references/config-catalog/#ldap-u
 
 ## Configuring an RDBMS user store (Optional)
 
-If you are already using a JDBC user store (database) with another WSO2 product (WSO2 API Manager or WSO2 Identity Server), you can connect the same database to the Micro Integrator of WSO2 Enterprise Integrator 7 as explained below.
+If you are already using a JDBC user store (database) with another WSO2 product ([WSO2 API Manager](https://wso2.com/api-management/), [WSO2 Identity Server](https://wso2.com/identity-and-access-management/), or an instance of [WSO2 Enterprise Integrator 6.x.x](https://wso2.com/enterprise-integrator/6.5.0)), you can connect the same database to the Micro Integrator of WSO2 Enterprise Integrator 7 as explained below.
 
 !!! Warning
 	You cannot manage users and roles when you use a JDBC user store with the Micro Integrator. Therefore, be sure that your database is already up-to-date before connecting it to the Micro Integrator. Alternatively, you can shift to an [LDAP user store](#configuring-an-ldap-user-store).
