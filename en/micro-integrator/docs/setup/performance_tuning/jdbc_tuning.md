@@ -3,7 +3,7 @@
 If you have connected a [JDBC user store](../../../setup/user_stores/setting_up_ro_ldap) to the Micro Integrator, you can apply the following datasource tuning recommendations in the `deployment.toml` file (stored in the `<MI_HOME>/conf` directory).
 
 !!! Info
-    The following recommendations also apply when you create a data service to expose data in an RDBMS. Find out more about [RDBMS configurations](../../../references/synapse-properties/data-services/datasource-configuration-parameters) in data services.
+    The following recommendations also apply when you create a data service to expose data in an RDBMS. Find out more about [RDBMS configurations](../../../references/synapse-properties/data-services/datasource-Configuration-Parameters) in data services.
 
 ## JDBC connection pool tuning recommendations
 
