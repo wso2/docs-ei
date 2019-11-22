@@ -188,6 +188,7 @@ nav:
         - 'JSON Examples': 'use-cases/examples/json_examples/json-examples.md'
     - Setup and Install:
       - Installation Guide:
+        - 'Installation Prerequisites': 'setup/installation/install_prerequisites.md'
         - 'Install on a VM': 'setup/installation/install_in_vm.md'
         - 'Run on Docker': 'setup/installation/run_in_docker.md'
         - 'Run on Kubernetes': 'setup/installation/run_in_kubernetes.md'
