@@ -429,7 +429,7 @@ nav:
           - 'About Data Services' : 'references/synapse-properties/data-services.md'
           - 'Elements of a Data Service': 'references/synapse-properties/data-services/elements-of-a-data-service.md'
           - 'Query Parameters': 'references/synapse-properties/data-services/query-parameters.md'
-          - 'Datasource Parameters': 'references/synapse-properties/data-services/datasource-configuration-parameters.md'
+          - 'Datasource Parameters': 'references/synapse-properties/data-services/datasource-Configuration-Parameters.md'
           - 'Input Validators': 'references/synapse-properties/data-services/input-validators.md'
           - 'Filtering Responses by User Role': 'references/synapse-properties/data-services/filtering-responses-by-user-role.md'
           - 'Dynamic User Authentication': 'references/synapse-properties/data-services/dynamic-user-authentication.md'
