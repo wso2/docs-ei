@@ -1,5 +1,8 @@
 # Configuring Kafka
 
+!!! Warning
+    **Please note that the contents on this page are under review!**
+
 In order to use the kafka inbound endpoint, you need to download and install [Apache Kafka](http://kafka.apache.org/downloads.html). The recommended version is `kafka_2.9.2-0.8.1.1`.
 
 To configure the kafka inbound endpoint, copy the following client libraries from the `KAFKA_HOME/libs` directory to the `MI_HOME/lib` directory.
