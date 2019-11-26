@@ -48,7 +48,7 @@ Let’s implement a simple integration solution that can be used to query the av
         For more information, see the [installation instructions](../../setup/installation/install_in_vm/).
 
 2. Download the [sample files](https://github.com/wso2/docs-ei/blob/7.0.0/en/micro-integrator/docs/assets/attach/quick-start-guide/MI_QSG_HOME.zip). From this point onwards, let's refer to this folder as `<MI_QSG_HOME>`.
-3. Download [curl](https://curl.haxx.se/) or a similar tool that can call an endpoint.
+3. Download [curl](https://curl.haxx.se/) or a similar tool that can call an HTTP endpoint.
 
 ## Set up the workspace
 
