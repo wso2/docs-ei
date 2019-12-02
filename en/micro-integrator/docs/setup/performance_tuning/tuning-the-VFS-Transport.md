@@ -45,8 +45,7 @@ Apply the following configurations when you create a proxy service.
 Following is a sample configuration that uses the VFS transport to handle large files:
 
 ```xml
-<definitions xmlns="http://ws.apache.org/ns/synapse">
-    <proxy name="StockQuoteProxy" transports="vfs">
+    <proxy xmlns="http://ws.apache.org/ns/synapse" name="StockQuoteProxy" transports="vfs">
         <parameter name="transport.vfs.FileURI">smb://host/test/in</parameter>        
         <parameter name="transport.vfs.ContentType">text/xml</parameter>
         <parameter name="transport.vfs.FileNamePattern">.*\.xml</parameter>
@@ -71,5 +70,4 @@ Following is a sample configuration that uses the VFS transport to handle large 
         </target>
         <publishWSDL uri="file:repository/samples/resources/proxy/sample_proxy_1.wsdl"/>
     </proxy>
-</definitions>
 ```

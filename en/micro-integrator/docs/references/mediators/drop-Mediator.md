@@ -25,9 +25,9 @@ As with other mediators, after adding the drop mediator to a sequence, you can c
 You can use the drop mediator for messages that do not meet the filter criteria in case the client is waiting for a response to ensure the message was received by the Micro Integrator. For example:
 
 ```
-<definitions xmlns="http://ws.apache.org/ns/synapse">
-  <sequence name="main">
-     <in>
+<proxy name="SimpleProxy" transports="http https" startonload="true" trace="disable" xmlns="http://ws.apache.org/ns/synapse">
+    <target>
+         <inSequence>
      <!-- filtering of messages with XPath and regex matches -->
        <filter source="get-property('To')" regex=".*/StockQuote.*">
           <then>

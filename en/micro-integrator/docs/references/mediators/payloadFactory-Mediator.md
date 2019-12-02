@@ -73,9 +73,9 @@ generate XML and JSON messages.
 ### Using XML
 
 ``` 
-<definitions xmlns="http://ws.apache.org/ns/synapse">
-    <sequence name="main">
-        <in>
+<proxy name="RespondMediatorProxy" startOnLoad="true" transports="http https" xmlns="http://ws.apache.org/ns/synapse">
+     <target>
+        <inSequence>
             <!-- using payloadFactory mediator to transform the request message -->
             <payloadFactory media-type="xml">
                 <format>
@@ -89,8 +89,8 @@ generate XML and JSON messages.
                     <arg xmlns:m0="http://services.samples" expression="//m0:Code"/>
                 </args>
             </payloadFactory>
-        </in>
-        <out>
+        </inSequence>
+        <outSequence>
             <!-- using payloadFactory mediator to transform the response message -->
             <payloadFactory media-type="xml">
                 <format>
@@ -104,10 +104,10 @@ generate XML and JSON messages.
                     <arg xmlns:m0="http://services.samples/xsd" expression="//m0:last"/>
                 </args>
             </payloadFactory>
-        </out>
-        <send/>
-    </sequence>
-</definitions>
+            <send/>
+        </outSequence>          
+     </target>
+</proxy>
 ```
 
 ### Using JSON
@@ -414,8 +414,7 @@ You can add custom SOAP headers to a request by using the PayloadFactory
 Mediator in a proxy service as shown in the example below.
 
 ``` xml
-<definitions xmlns="http://ws.apache.org/ns/synapse">
-<proxy name="StockQuoteProxy"
+<proxy xmlns="http://ws.apache.org/ns/synapse" name="StockQuoteProxy"
 transports="https http"
 startOnLoad="true"
 trace="disable">
@@ -456,10 +455,13 @@ xmlns:ser="http://services.samples">
 <outSequence>
 <send/>
 </outSequence>
+<faultSequence>
+     <sequence key="errorHandler"/>
+</faultSequence>
 </target>
 <publishWSDL uri="file:repository/samples/resources/proxy/sample_proxy_1.wsdl"/>
 </proxy>
-<sequence name="fault">
+<sequence xmlns="http://ws.apache.org/ns/synapse" name="errorHandler">
 <log level="full">
 <property name="MESSAGE" value="Executing default "fault" sequence"/>
 <property name="ERROR_CODE" expression="get-property('ERROR_CODE')"/>
@@ -467,11 +469,6 @@ xmlns:ser="http://services.samples">
 </log>
 <drop/>
 </sequence>
-<sequence name="main">
-<log/>
-<drop/>
-</sequence>
-</definitions>
 ```
 
 <!--

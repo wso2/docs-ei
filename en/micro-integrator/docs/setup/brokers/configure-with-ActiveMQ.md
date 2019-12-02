@@ -267,8 +267,10 @@ Note `java.naming.provider.url=failover:(tcp://localhost:61616,tcp://localhost:6
 Integrity is part of message-level security and can be implemented using a standard like WS-Security. The following sample shows the application of WS-Security for message-level encryption where messages are stored in a message store in WSO2 Micro Integrator.
 
 ```xml
-<definitions xmlns="http://ws.apache.org/ns/synapse">
-    <localEntry key="sec_policy" src="file:repository/samples/resources/policy/policy_3.xml"/>
+    <localEntry key="sec_policy" src="file:repository/samples/resources/policy/policy_3.xml" xmlns="http://ws.apache.org/ns/synapse"/>
+```
+
+```xml
     <proxy name="FailOverJMS" startOnLoad="true" transports="http" xmlns="http://ws.apache.org/ns/synapse">
         <target>
             <inSequence>
@@ -288,5 +290,4 @@ Integrity is part of message-level security and can be implemented using a stand
             <faultSequence/>
         </target>
     </proxy>
-</definitions>
 ```
