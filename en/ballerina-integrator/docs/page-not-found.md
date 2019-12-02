@@ -23,5 +23,5 @@ template: templates/no-nav.html
 ## Page not found.
 
 Sorry but the page you are looking for does not exist, has been removed, changed, or is temporarily unavailable.   
-For inquiries, please reach us at [documentation@wso2.com](mailto:documentation@wso2.com).
+For inquiries, please reach us at [dev@wso2.org](mailto:dev@wso2.org).
 
