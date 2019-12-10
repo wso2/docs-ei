@@ -1,4 +1,4 @@
-#Correlating Data
+# Correlating Data
 
 The streaming integrator can correlate data in order to detect patterns and trends in streaming data. Correlating can be done via patterns as well as sequences.
 
