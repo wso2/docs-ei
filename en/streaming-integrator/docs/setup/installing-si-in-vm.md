@@ -2,6 +2,14 @@
 
 Follow the steps given below to install and run WSO2 Streaming Integrator on a VM.
 
+## System requirements
+
+| Type   | Requirement                                                                                     |
+|--------|-------------------------------------------------------------------------------------------------|
+| CPU    | You require a minimum of one CPU with 2 cores. It is recommended to have a CPU with four cores. |
+| Memory | ~ 4 GB minimum is recommended</br> </br>  ~ 2 GB heap size                                      |
+| Disk   | ~ 1 GB minimum (excluding space allocated for log files and databases.)                         |
+
 ## Installing the Streaming Integrator
 
 Follow the steps below:
