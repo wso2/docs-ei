@@ -5,23 +5,16 @@ Create a Kubernetes project directory if you want to deploy your integration sol
 ## Create Kubernetes project
 Follow the steps given below,
 
-1.  There are two ways to create the Kubernetes project:
+1.  Open **WSO2 Integration Studio** and click **ESB Project → Create New** in the **Getting Started** view as shown below.
+    ![Create ESB project](../assets/img/tutorials/119132413/119132414.png)
 
-    -   Open **WSO2 Integration Studio** and click **ESB Project → Create New** in the **Getting Started** view as shown below.
-        ![Create ESB project](../../assets/img/tutorials/119132413/119132414.png)
-
-        In the **New ESB Solution Project** dialog that opens, enter a name for the ESB config project. Select the **Create Docker/Kubernetes Exporter Project** along with **ESB Config project** and click **Next**.
-        ![Create Container Project](../../assets/img/create_project/docker_k8s_project/create-container-project.png)
-
-    -   If you already have an ESB Config project with the integration artifacts, click **Miscellaneous → Create New Docker/Kubernetes Project** in the **Getting Started** view as shown below.
-        ![Create kubernetes/docker project](../../assets/img/create_project/docker_k8s_project/kubernetes-docker-project.png)
-
-        In the **New Docker/Kubernetes Project** dialog that opens, select **New Kubernetes Project** and click **Next**.
-        ![Create Kubernetes Project](../../assets/img/create_project/docker_k8s_project/new_k8_project.png)
+    In the **New ESB Solution Project** dialog that opens, enter a name for the ESB config project. Select the **Create Docker/Kubernetes Exporter Project** along with **ESB Config project** and click **Next**.
+    
+    ![Create Container Project](../assets/img/create_project/docker_k8s_project/create-container-project.png)
 
 3.  Enter information in the **Docker/Kubernetes Project Information** page as follows:
 
-    ![Kubernetes Configuration](../../assets/img/create_project/docker_k8s_project/k8s-details.png)
+    ![Kubernetes Configuration](../assets/img/create_project/docker_k8s_project/k8s-details.png)
 
     -   **Container Type**: Type of the container of the project. Select **Kubernetes**.
     -   **Container Name**: Name of the Kubernetes cluster.
@@ -37,7 +30,7 @@ Follow the steps given below,
 
 5.  Expand the Kubernetes Exporter Project in the project explorer. You can find the following folders and files inside it.
 
-    ![Kubernetes Project Structure](../../assets/img/create_project/docker_k8s_project/k8s-project.png)
+    ![Kubernetes Project Structure](../assets/img/create_project/docker_k8s_project/k8s-project.png)
     
     -   **CompositeApps**:  Directory to store the composite apps which are selected by the user. During the build time these composite apps will copy to the image.
     -   **Conf**: Directory to store configuration files. During the build time these configuration files inside the Conf will copy to the image.   
@@ -45,6 +38,13 @@ Follow the steps given below,
     -   **Dockerfile**: Dockerfile which contains build details.
     -   **kubernetes_cr.yaml**: Kubernetes configuration file generated based on the user inputs.
     -   **pom.xml**: File for select multiple composite apps and build and push Docker images to the Docker registries.
+
+!!! Info
+    If you already have an ESB Config project with the integration artifacts, click **Miscellaneous → Create New Docker/Kubernetes Project** in the **Getting Started** view as shown below.
+    ![Create kubernetes/docker project](../assets/img/create_project/docker_k8s_project/kubernetes-docker-project.png)
+
+    In the **New Docker/Kubernetes Project** dialog that opens, select **New Kubernetes Project** and follow the instructions.
+    ![Create Kubernetes Project](../assets/img/create_project/docker_k8s_project/new_k8_project.png)
        
 ## Build and Push Docker images
 
@@ -52,12 +52,12 @@ Follow the steps given below.
 
 1.  Open the **pom.xml** file inside the Kubernetes project.
 
-    ![Kubernetes pom view](../../assets/img/create_project/docker_k8s_project/k8s-pom.png)
+    ![Kubernetes pom view](../assets/img/create_project/docker_k8s_project/k8s-pom.png)
     
-2.  Select multiple composite applications which wants to pack inside the Docker image under the Dependencies section, and save the file.
+2.  Select multiple composite applications which are needed to be packed inside the Docker image under the Dependencies section, and save the file.
 3.  Click **Build & Push**, to start the Docker image build and push process.
 
-    ![Docker Registry Auth Details](../../assets/img/create_project/docker_k8s_project/k8s-auth.png)
+    ![Docker Registry Auth Details](../assets/img/create_project/docker_k8s_project/k8s-auth.png)
 
     The **Enter Docker Registry Credentials** wizard opens.
     
@@ -71,10 +71,10 @@ Follow the steps given below.
     
 5.  Once you enter the above details, click **Push Image**.
 
-6.  First it will build the Docker image based on the Dockerfile and the Target details. Once it done it will show a popup message regarding the status of it.
+6.  First it will build the Docker image based on the Dockerfile and the Target details. Once it is done, it will show a popup message regarding the status of it.
 
-    ![Docker Build Success](../../assets/img/create_project/docker_k8s_project/build.png)
+    ![Docker Build Success](../assets/img/create_project/docker_k8s_project/build.png)
 
-7.  Finally, it will start to push the built image to the given registry. Once it done it will show a popup message regarding the status of it.
+7.  Finally, it will start to push the built image to the given registry. Once it is done, it will show a popup message regarding the status of it.
 
-    ![Docker Push Success](../../assets/img/create_project/docker_k8s_project/push.png)
+    ![Docker Push Success](../assets/img/create_project/docker_k8s_project/push.png)

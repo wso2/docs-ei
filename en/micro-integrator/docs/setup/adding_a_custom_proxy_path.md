@@ -1,5 +1,8 @@
 # Adding a Custom Proxy Path
 
+!!! Warning
+    **Please note that the contents on this page are under review!**
+
 Adding a custom proxy path is useful when you have a proxy server
 fronting your product server. In this scenario, the "custom proxy path"
 is used for mapping a proxy url with the actual url of your
@@ -28,7 +31,7 @@ parameter="value"
  When a client sends a request to the proxy entry url path, e.g.
 <https://wso2test.com/apimanager> , the request is directed to the
 back-end service url (
-[https://10.100.1.1:\<PortNumber\>/carbon](https://10.100.1.1:9443/carbon)
+[https://10.100.1.1:<PortNumber>/carbon](https://10.100.1.1:9443/carbon)
 ) where the original service lies. Eventually, the client has to be
 served via the requested proxy entry url path. The mapping between the
 proxy url path and the back-end service url path is resolved by the
@@ -44,7 +47,7 @@ reverse proxy server fronting the back-end service.
 ## Access WSO2 products through a custom proxy path
 
 This functionality will be demonstrated in this documentation using two
-WSO2 product servers as examples; WSO2 Application Server and WSO2 ESB
+WSO2 product servers as examples; WSO2 API Manager and WSO2 MI
 as the back-end servers, and [nginx](http://nginx.org/) as the reverse
 proxy.
 
@@ -130,18 +133,18 @@ Follow the steps given below.
         ssl_certificate /etc/nginx/ssl/server.crt;
         ssl_certificate_key /etc/nginx/ssl/server.key;
 
-        #with portOffset 0 running AS
-        location /appserver/ {
-            proxy_pass https://wso2test.com:9443/;
-            proxy_redirect https://wso2test.com:8243/ https://wso2test.com:8243/appserver/;
-            proxy_cookie_path / /appserver;
+        #with portOffset 0 running APIM
+        location /apim/ {
+            proxy_pass https://wso2test.com:8243/;
+            proxy_redirect https://wso2test.com:8243/ https://wso2test.com:8243/apim/;
+            proxy_cookie_path / /apim;
         }
 
-        #with portOffset 10 running ESB
-        location /esb/ {
-            proxy_pass https://wso2test.com:9453/;
-            proxy_redirect https://wso2test.com:8243/ https://wso2test.com:8243/esb/;
-            proxy_cookie_path / /esb;
+        #with portOffset 10 running MI
+        location /mi/ {
+            proxy_pass https://wso2test.com:8253/;
+            proxy_redirect https://wso2test.com:8243/ https://wso2test.com:8243/mi/;
+            proxy_cookie_path / /mi;
         }
     }
 
@@ -154,24 +157,24 @@ Follow the steps given below.
         root /usr/share/nginx/www;
         index index.html index.htm;
 
-        #with portOffset 0 running AS
-        location /appserver/ {
+        #with portOffset 0 running APIM
+        location /apim/ {
             proxy_pass http://wso2test.com:9763/;
-            proxy_redirect http://wso2test.com:8280/ http://wso2test.com:8280/appserver/;
-            proxy_cookie_path / /appserver;
+            proxy_redirect http://wso2test.com:8280/ http://wso2test.com:8280/apim/;
+            proxy_cookie_path / /apim;
         }
 
-        #with portOffset 10 running ESB
-        location /esb/ {
-            proxy_pass http://wso2test.com:9773/;
-            proxy_redirect http://wso2test.com:8280/ http://wso2test.com:8280/esb/;
-            proxy_cookie_path / /esb;
+        #with portOffset 10 running MI
+        location /mi/ {
+            proxy_pass http://wso2test.com:8290/;
+            proxy_redirect http://wso2test.com:8280/ http://wso2test.com:8280/mi/;
+            proxy_cookie_path / /mi;
         }
     }
     ```
 
     !!! Info
-        According to the nginx configuration, https requests with the /appserver/\* pattern are directed to the /\* pattern and then when the service is served to the client, it resolves the url pattern to /appserver/\*. This works the same for http requests.
+        According to the nginx configuration, https requests with the /mi/\* pattern are directed to the /\* pattern and then when the service is served to the client, it resolves the url pattern to /mi/\*. This works the same for http requests.
 
 10. Save the file and restart the nginx server using the following
     command to complete the nginx configuration:  
@@ -183,129 +186,69 @@ Follow the steps given below.
 11. In the above configuration, the https and http requests are
     listening on 8243 and 8280 ports respectively. Server name is set to
     wso2test.com. To test this in a local machine, you need to add
-    `           wso2test.com          ` and
-    `           as.wso2.com          ` to the
+    `           wso2test.com          ` , `mi.wso2test.com` and
+    `           apim.wso2.com          ` to the
     `           /etc/hosts          ` file as shown below.  
 
     ```bash
     127.0.0.1  wso2test.com
-    127.0.0.1  as.wso2test.com
-    127.0.0.1  esb.wso2test.com
+    127.0.0.1  apim.wso2test.com
+    127.0.0.1  mi.wso2test.com
     ```
 
 ### Step 2: Configure products with proxy context path
 
 1.  Download WSO2 Application Server and WSO2 ESB.
-2.  Open the `                       carbon.xml                     `
+2.  Open the `                       deployment.toml                     `
     file stored in the
-    `           <PRODUCT_HOME>/repository/conf/          ` directory and
+    `           <MI_HOME>/conf/          ` directory and
     set the HostName to what you defined in the nginx configuration as
     shown below (for both products):
 
     ```bash
+    [server]
+    hostname = "wso2test.com"
+    ```
+    
+3. Open the carbon.xml file stored in the <APIM_HOME>/repository/conf/ directory and set the HostName to what you defined in the nginx configuration as shown below:
+
+    ```xml
     <HostName>wso2test.com</HostName>
     ```
 
-3.  Now, set the MgtHostName as shown below.
-
-    -   For Application Server:  
-
-        ```xml
-                    <MgtHostName>as.wso2test.com</MgtHostName>
-        ```
-
-    -   For ESB:  
-
-        ``` java
-                    <MgtHostName>esb.wso2test.com</MgtHostName> 
-        ```
-
-4.  Set the "ProxyContextPath" as shown below. This is the proxy path
+4.  Set the proxy context path as shown below. This is the proxy path
     string, which will appear in the management console, web apps and
     services urls.
 
-    -   For Application Server:  
+    -   For APIM: In <APIM_HOME>/repository/conf/carbon.xml file 
 
-        ``` java
+        ```xml
         <ProxyContextPath>appserver</ProxyContextPath> 
         ```
+    <!--
+    -   For MI: In <MI_HOME>/conf/deployment.toml file
 
-    -   For ESB:  
-
-        ``` java
+        ```xml
         <ProxyContextPath>esb</ProxyContextPath> 
         ```
-
+    -->
+    
 5.  Since you need to run both products (AS and ESB) simultaneously, set
     port offsets as shown below.
 
-    -   For Application Server:
+    -   For APIM:
         `<Offset>0</Offset>            `
 
-    -   For ESB: `<Offset>10</Offset>`
-
-6.  According to the nginx configuration, the https, http requests are
-    listening on 8243 and 8280 ports. However, by default WSO2 products
-    are listening on 9443 (WSO2 Application Server) and 9453 (WSO2 ESB).
-    Therefore, the listening ports of the reverse proxy should be
-    configured as proxy ports in Application Server and ESB
-    respectively. T o enable proxy ports, open the
-    `<PRODUCT_HOME>/repository/conf/tomcat/catalina-server.xml          `
-    file and add the "proxyPort" entries.  
-
-    !!! Note
-        After you define proxy ports (8243 and 8280) in the
-        `           catalina-server.xml          ` file, it will no longer
-        be possible to access the products using the normal ports (9443 and
-        9453).
-
-
-    For example, the "proxyPort" entries for Application Server are as
-    follows:
-
-    ``` java
-        <Connector  protocol="org.apache.coyote.http11.Http11NioProtocol"
-                        port="9763"
-                        proxyPort="8280"
-                        redirectPort="9443"
-                        bindOnInit="false"
-                        maxHttpHeaderSize="8192"
-                        acceptorThreadCount="2"
-                        maxThreads="250"
-                        minSpareThreads="50"
-                        disableUploadTimeout="false"
-                        connectionUploadTimeout="120000"
-                        maxKeepAliveRequests="200"
-                        acceptCount="200"
-                        server="WSO2 Carbon Server"
-                        compression="on"
-                        compressionMinSize="2048"
-                        noCompressionUserAgents="gozilla, traviata"
-                        compressableMimeType="text/html,text/javascript,application/xjavascript,application/javascript,application/xml,text/css,
-                                              application/xslt+xml,text/xsl,image/gif,image/jpg,image/jpeg" 
-                        URIEncoding="UTF-8"/>
-            <!--
-            optional attributes:
-            proxyPort="443"
-            -->
-            <Connector  protocol="org.apache.coyote.http11.Http11NioProtocol"
-                        port="9443"
-                        proxyPort="8243"
-                        bindOnInit="false"
-                        sslProtocol="TLS"
-                        maxHttpHeaderSize="8192"
-    ```
+    -   For MI:
+        ```toml
+        [server]
+        offset  = 0     
+        ```
 
 ### Step 3: Start the Product
 
-1.  Start the server and enter the following url in a browser:
-    -   For Application Server:
-        https://wso2test.com:8243/appserver/carbon/
-    -   For ESB: https://wso2test.com:8243/esb/carbon/
-2.  Give the admin credentials and log in to the server. You'll find the
-    proxy path for admin console, services, webapps changed for each
-    product as shown below.
-    -   For “/appserver” proxy path:
-        https://wso2test.com:8243/appserver/carbon/admin/index.jsp.
-    -   For "/esb" proxy path:
-        https://wso2test.com:8243/esb/carbon/admin/index.jsp.
+Start the server and invoke services:
+
+-   For APIM:
+    https://wso2test.com:8243/apim/<api_name>
+-   For MI: https://wso2test.com:8243/mi/<api_name>

@@ -1,4 +1,4 @@
-# Using the Gmail Connector
+# Connecting Web APIs/Cloud Services
 
 ## What you'll build
 
@@ -12,8 +12,7 @@ When you integrate the systems in your organizaion, it is also necessary to inte
 
 To set up the tools:
 
--   Select the relevant [WSO2 Integration Studio](https://wso2.com/integration/tooling/) based on your operating system and extract the
-    ZIP file.  The path to this folder is referred to as `MI_TOOLING_HOME` throughout this tutorial.
+-   Download the relevant [WSO2 Integration Studio](https://wso2.com/integration/tooling/) based on your operating system.  The path to the extracted/installed folder is referred to as `MI_TOOLING_HOME` throughout this tutorial.
 -   Download the [CLI Tool](https://wso2.com/integration/micro-integrator/install/) for monitoring artifact deployments.
 
 If you did not try the [asynchronous messaging](storing-and-forwarding-messages.md) tutorial yet, open WSO2 Integration Studio, click **File** , and then click **Import** . Next, select **Existing WSO2 Projects into workspace** under the **WSO2** category, click **Next** and upload the [pre-packaged project](https://github.com/wso2-docs/WSO2_EI/blob/master/Integration-Tutorial-Artifacts/StoreAndForwardTutorial.zip).
@@ -34,6 +33,7 @@ Follow the steps below if you want to use your own email address for sending the
 
 4.  Select **Web Application** and create a client.
 5.  Provide <https://developers.google.com/oauthplayground> as the redirect URL under **Authorized redirect URIs** and click **Create**. The client ID and client secret will then be displayed.
+
     !!! Info
         See [Gmail API documentation](https://developers.google.com/gmail/api/auth/web-server) for details on creating the Client ID and Client Secret.
     
@@ -51,7 +51,7 @@ Follow these steps to automatically refresh the expired token when connecting to
 2. Provide the client ID and client secret you [previously created](#creating-a-client-id-and-client-secret) and click **Close**.
 3. Now under Step 1, select **Gmail API v1** from the list of APIs, select all the scopes listed under it, and click **Authorize APIs**.
 
-  ![](../../assets/img/tutorials/using-the-gmail-connector/GmailApiV1.png)
+    ![](../../assets/img/tutorials/using-the-gmail-connector/GmailApiV1.png)
    
 4. You will then be prompted to allow permission, click **Allow**.
 5. Now , click **Exchange authorization code for tokens** to generate and display the access token and refresh token.
@@ -123,31 +123,28 @@ The connector operations are used in the **PaymentRequestProcessingSequence**. S
 7.  Add the sendMail method from the Gmail Connector palette and access the **Property** tab and specify the following details;
 
     <table>
-      <tr>
-         <th>Property</th>
-         <th>Value/Expression</th>
-         <th>Description</th>
-      </tr>
-      <tr>
-         <td>Parameter Editor Type</td>
-         <td>Select <strong>inline</strong></td>
-         <td>.</td>
-      </tr>
-      <tr>
-         <td>to</td>
-         <td><code>               {$ctx:email_id}              </code></td>
-         <td>Retrieves the patient email address that was stored in the relevant Property mediator.</td>
-      </tr>
-      <tr>
-         <td>subject</td>
-         <td>Payment Status</td>
-         <td>The subject line in the email that is sent out.</td>
-      </tr>
-      <tr>
-         <td>messageBody</td>
-         <td><code>               {$ctx:payment_response}              </code></td>
-         <td>Retrieves the payment response that was stored in the relevant Property mediator.</td>
-      </tr>
+        <tr>
+            <th>Property</th>
+            <th>Description</th>
+        </tr>
+        <tr>
+            <td>to</td>
+            <td>
+              Enter `{$ctx:email_id}` as the value. This retrieves the patient email address that was stored in the relevant Property mediator.  
+            </td>
+        </tr>
+        <tr>
+            <td>subject</td>
+            <td>
+                Enter `Payment Status` as the value. This is the subject line in the email that is sent out.
+            </td>
+        </tr>
+        <tr>
+            <td>messageBody</td>
+            <td>
+                Enter `{$ctx:payment_response}` as the value. This retrieves the payment response that was stored in the relevant Property mediator.
+            </td>
+        </tr>
     </table>
 
     The updated **PaymentRequestProcessingSequence** should now look like this:  
@@ -215,10 +212,12 @@ Let's test the use case by sending a simple client request that invokes the serv
 To set up WSO2 Message Broker:
 
 1. Download WSO2 Message Broker. The path to this folder is referred to as `MB_HOME` throughout this tutorial.
-2. Add the following JAR files from the `MB_HOME/wso2/broker/client-lib/` directory to the `MI_TOOLING_HOME/Contents/Eclipse/runtime/microesb/lib/` directory.
-3. Open the `deployment.toml` file from `MI_TOOLING_HOME/Contents/Eclipse/runtime/microesb/conf/` or 
-`MI_TOOLING_HOME/runtime/microesb/conf/` ( for linux ) directory and add 
-the configurations given below. This is required for enabling the broker to store messages.
+2. Add the following JAR files from the `MB_HOME/wso2/broker/client-lib/` directory to the  `MI_TOOLING_HOME/Contents/Eclipse/runtime/microesb/lib/` (in MacOS) or  `MI_TOOLING_HOME/runtime/microesb/lib` (in Windows) directory.
+    -   andes-client-*.jar
+    -   geronimo-jms_1.1_spec-*.jar
+    -   org.wso2.securevault-*.jar
+3. Open the `deployment.toml` file from the `MI_TOOLING_HOME/Contents/Eclipse/runtime/microesb/conf/` (in MacOS) or 
+`MI_TOOLING_HOME/runtime/microesb/conf/` (in Windows) directory and add the configurations given below. This is required for enabling the broker to store messages.
 
     ```toml
     [[transport.jms.listener]]

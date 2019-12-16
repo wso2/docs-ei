@@ -1,4 +1,7 @@
-# Introduction
+---
+title: Introduction
+note: This is an auto-generated file do not edit this, You can edit content in "ballerina-integrator" repo
+---
 
 WSO2 Enterprise Integrator (EI) 7.0 includes a Ballerina Integrator, which is a powerful code-based approach to integration. 
 
@@ -6,15 +9,18 @@ For developers, the Ballerina-based integration component marks a new phase of i
 
 The following image is an illustration of what Ballerina Integrator consists of and the various components that work together to solve an integration problem.
 
-![Ballerina Interator components](../../assets/img/ballerina-integrator-architecture.svg)
+![Ballerina Integrator components](../../assets/img/ballerina-integrator-architecture.svg)
 
 <table>
   <tr>
+    <th>Component</th>
+    <th>Description</th>
+  <tr>
     <td><b>Ballerina Core</b></td>
-    <td>The underlying core of the Ballerina Integrator is the [Ballerina language](http://ballerina.io/), which allows you to build projects and modules with smaller functionality and natively deploy these as microservices in Docker and Kubernetes.</td>
+    <td>The underlying core of the Ballerina Integrator is the <a href="http://ballerina.io/">Ballerina language</a>, which allows you to build projects and modules with smaller functionality and natively deploy these as microservices in Docker and Kubernetes.</td>
   </tr>
   <tr>
-    <td>Ballerina Standard Library</td>
+    <td><b>Ballerina Standard Library</b></td>
     <td>Ballerina standard library provides a rich set of in-built modules that help you build your integrations to support a variety of protocols, servers, and extensions.</td>
   </tr>
   <tr>
@@ -34,3 +40,9 @@ The following image is an illustration of what Ballerina Integrator consists of 
     <td>Tooling is done via VS Code and the developer's experience is further enhanced by a custom built plug-in for Ballerina, which enables you to easily bring up and use templates to do integration.</td>
   </tr>
 </table>
+
+---
+
+## What's Next
+
+Try out Ballerina Integrator by following the [Quick Start Guide](../../get-started/quick-start-guide/).

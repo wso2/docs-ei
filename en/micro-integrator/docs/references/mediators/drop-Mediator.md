@@ -6,7 +6,7 @@ then dropped by the Micro Integrator. If you have any mediators defined after th
 When the Drop mediator is within the `         In        ` sequence, it sends an HTTP 202 Accepted response to the client when it stops the message flow. When the Drop mediator is within the `         Out        ` sequence before the Send mediator, no response is sent to the client.
 
 !!! Info
-    The Drop mediator is a [content-unaware](../../../concepts/message-processing-units/#classification-of-mediators) mediator.
+    The Drop mediator is a [content-unaware](../../../references/mediators/about-mediators/#classification-of-mediators) mediator.
 
 ## Syntax
 
@@ -25,9 +25,9 @@ As with other mediators, after adding the drop mediator to a sequence, you can c
 You can use the drop mediator for messages that do not meet the filter criteria in case the client is waiting for a response to ensure the message was received by the Micro Integrator. For example:
 
 ```
-<definitions xmlns="http://ws.apache.org/ns/synapse">
-  <sequence name="main">
-     <in>
+<proxy name="SimpleProxy" transports="http https" startonload="true" trace="disable" xmlns="http://ws.apache.org/ns/synapse">
+    <target>
+         <inSequence>
      <!-- filtering of messages with XPath and regex matches -->
        <filter source="get-property('To')" regex=".*/StockQuote.*">
           <then>

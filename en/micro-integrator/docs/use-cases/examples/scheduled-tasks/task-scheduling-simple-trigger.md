@@ -1,7 +1,7 @@
-# Introduction to Tasks with a Simple 
-This sample introduces the concept of tasks and demonstrates how a simple trigger works. Here the `MessageInjector` class is used, which injects a specified message to the Micro Integrator environment. You can write your own task class implementing the `org.apache.synapse.startup.Task` interface and implement the `execute` method to run the task.
+# Task Scheduling using a Simple Trigger
+This example demonstrates the concept of tasks and how a simple trigger works. Here the `MessageInjector` class is used, which injects a specified message to the Micro Integrator environment. You can write your own task class implementing the `org.apache.synapse.startup.Task` interface and implement the `execute` method to run the task.
 
-If the task should send the message directly to the endpoint through the main sequence, the endpoint address should be specified. For example, if the address of the endpoint is `http://localhost:9000/services/SimpleStockQuoteService`, the Synapse configuration of the scheduled task will be as follows:
+If the task should send the message directly to the endpoint through the main sequence, the endpoint address should be specified. For example, if the address of the endpoint is `http://localhost:9000/services/SimpleStockQuoteService`, the Synapse configuration of the scheduled task will be as shown below.
 
 ## Synapse configurations
 
@@ -48,10 +48,17 @@ Following are the integration artifacts that we can used to implement this scena
 Create the artifacts:
 
 1. [Set up WSO2 Integration Studio](../../../../develop/installing-WSO2-Integration-Studio).
-2. [Create an ESB Solution project](../../../../develop/creating-projects/#esb-config-project)
-3. Create the [main sequence](../../../../develop/creating-artifacts/creating-reusable-sequences) and a [scheduled task](../../../../develop/creating-an-inbound-endpoint) with the configurations given above.
+2. [Create an ESB Solution project](../../../../develop/creating-projects/#esb-config-project).
+3. Create the [main sequence](../../../../develop/creating-artifacts/creating-reusable-sequences) and a [scheduled task](../../../../develop/creating-artifacts/creating-scheduled-task) with the configurations given above.
 4. [Deploy the artifacts](../../../../develop/deploy-and-run) in your Micro Integrator.
 
-Setup a backend server.
+Set up the back-end service:
 
-When the Micro Integrator is invoked, you will see that the Axis2 server generates a quote every 5 seconds and that the Micro Integrator receives the stock quote response. This is because the injected message is sent to the sample Axis2 server, which sends back a response to the Micro Integrator. 
+1. Download the [stockquote_service.jar](https://github.com/wso2-docs/WSO2_EI/blob/master/Back-End-Service/stockquote_service.jar).
+2. Open a terminal, navigate to the location of the downloaded service, and run it using the following command:
+
+    ```bash
+    java -jar stockquote_service.jar
+    ```
+
+When the Micro Integrator is invoked, you will see that the back-end service generates a quote every 5 seconds and that the Micro Integrator receives the stock quote response.

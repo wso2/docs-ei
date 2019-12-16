@@ -1,9 +1,9 @@
 # Creating New keystores
 
-There are two ways to create new [keystores for the Micro Integrator](../../references/using_keystores.md): 
+There are two ways to create new [keystores for the Micro Integrator](../../../references/security/using_keystores): 
 
 * Create  the keystore with a new (self-signed) public key certificate.
-* Generate a keystore using an already existing [CA-signed](../../references/using_keystores.md) public key certificate.
+* Generate a keystore using an already existing [CA-signed](../../../references/security/using_keystores) public key certificate.
 
 ## Creating a new keystore using a new certificate
 You can follow the steps in this section to create a new keystore with a private key and a new public key certificate. We will be using the keytool that is available with your JDK installation. 

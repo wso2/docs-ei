@@ -6,9 +6,11 @@ VFS transport listener will pick the file from the directory in the FTP server. 
 
 ## Synapse configuration
 
+Following are the integration artifacts that we can used to implement this scenario. See the instructions on how to [build and run](#build-and-run) this example.
+
 ```xml
-<proxy name="StockQuoteProxy" transports="vfs">
-    <parameter name="transport.vfs.FileURI">vfs:ftp://guest:guest@localhost/test?vfs.passive=true</parameter> <!--CHANGE-->
+<proxy name="SFTPtoMailToProxy" startOnLoad="true" transports="vfs" xmlns="http://ws.apache.org/ns/synapse">
+    <parameter name="transport.vfs.FileURI">vfs:sftp://guest:guest@localhost/test?vfs.passive=true</parameter> <!--CHANGE-->
     <parameter name="transport.vfs.ContentType">text/xml</parameter>
     <parameter name="transport.vfs.FileNamePattern">.*\.xml</parameter>
     <parameter name="transport.PollInterval">15</parameter>
@@ -28,6 +30,41 @@ VFS transport listener will pick the file from the directory in the FTP server. 
             </send>
         </outSequence>
     </target>
-    <publishWSDL uri="file:repository/samples/resources/proxy/sample_proxy_1.wsdl"/>
+    <publishWSDL key="conf:custom/sample_proxy_1.wsdl" preservePolicy="true"/>
 </proxy>
+```
+
+## Build and Run
+
+Create the artifacts:
+
+1. [Set up WSO2 Integration Studio](../../../../develop/installing-WSO2-Integration-Studio).
+2. [Create an ESB Solution project](../../../../develop/creating-projects/#esb-config-project).
+3. Add [sample_proxy_1.wsdl](https://github.com/wso2-docs/WSO2_EI/blob/master/samples-protocol-switching/sample_proxy_1.wsdl) as a [registry resource](../../../../develop/creating-artifacts/creating-registry-resources) (change the registry path of the proxy accordingly). 
+4. Create the proxy service with the [VFS configurations parameters given above](../../../../references/config-catalog/#vfs-transport).
+5. Configure [MailTo transport sender](../../../../setup/transport_configurations/configuring-transports/#configuring-the-mailto-transport).
+6. [Deploy the artifacts](../../../../develop/deploy-and-run) in your Micro Integrator and start the Micro Integrator.
+
+Set up the back-end service.
+
+1.	Download the [stockquote_service.jar](
+https://github.com/wso2-docs/WSO2_EI/blob/master/Back-End-Service/stockquote_service.jar)
+
+2.	Open a terminal, navigate to the location of the downloaded service, and run it using the following command:
+	```bash
+	java -jar stockquote_service.jar
+	```
+Add the following request.xml file to the sftp location and verify the content received via the mailto transport.
+
+```xml
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+   <soapenv:Header/>
+<soapenv:Body>
+	<m0:getQuote xmlns:m0="http://services.samples">
+        <m0:request>
+            <m0:symbol>WSO2</m0:symbol>
+        </m0:request>
+     </m0:getQuote>
+</soapenv:Body>
+</soapenv:Envelope> 
 ```

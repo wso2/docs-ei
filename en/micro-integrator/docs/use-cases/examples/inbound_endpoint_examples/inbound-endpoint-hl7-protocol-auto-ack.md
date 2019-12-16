@@ -1,6 +1,4 @@
-# Inbound HL7 with Automatic Acknowledgement
-
-## Example use case
+# Using the HL7 Inbound Endpoint (with Auto Ack)
 The HL7 inbound endpoint implementation is fully asynchronous and is based on the Minimal Lower Layer Protocol(MLLP) implemented on top of event driven I/O.
 
 ## Synapse configuration

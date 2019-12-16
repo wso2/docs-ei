@@ -1,11 +1,9 @@
-# Routing a Message to a Dynamic List of Recipients
-## Example use case
-
-This sample demonstrates message routing to a set of dynamic endpoints.
+# Routing Messages to a Dynamic List of Recipients
+This example demonstrates message routing to a set of dynamic endpoints.
 
 ## Synapse configuration
 
-The XML configuration for this sample is as follows:
+Following are the integration artifacts you can use to implement this scenario.
 
 ```xml tab='Error Handling Sequence'
 <sequence name="errorHandler">
@@ -28,33 +26,33 @@ The XML configuration for this sample is as follows:
 </sequence>
 ```
 
-```xml tab='Main Sequence'
-<sequence name="main" onError="errorHandler">
-  <in>
-     <property name="EP_LIST" value="http://localhost:9001/services/SimpleStockQuoteService,http://localhost:9002/services/SimpleStockQuoteService,http://localhost:9003/services/SimpleStockQuoteService"/>  
-     <property name="OUT_ONLY" value="true" />
-     <property name="FORCE_SC_ACCEPTED" value="true" scope="axis2" />
-     <send>
-        <endpoint>
-           <recipientlist>
-              <endpoints value="{get-property('EP_LIST')}" max-cache="20" />
-           </recipientlist>
-        </endpoint>
-     </send>
-     <drop/>
-  </in>
-</sequence>
+```xml tab='Proxy Service'
+<proxy name="RecipientListProxy" startOnLoad="true" transports="http https" xmlns="http://ws.apache.org/ns/synapse">
+   <target>
+        <inSequence>
+            <header name="Action" value="urn:placeOrder"/>
+             <property name="EP_LIST" value="http://localhost:9001/services/SimpleStockQuoteService,http://localhost:9002/services/SimpleStockQuoteService,http://localhost:9003/services/SimpleStockQuoteService"/>  
+             <property name="OUT_ONLY" value="true" />
+             <property name="FORCE_SC_ACCEPTED" value="true" scope="axis2" />
+             <call>
+                <endpoint>
+                   <recipientlist>
+                      <endpoints value="{get-property('EP_LIST')}" max-cache="20" />
+                   </recipientlist>
+                </endpoint>
+             </call>
+             <drop/>
+        <outSequence>
+              <send/>
+        </outSequence>
+        <faultSequence>
+              <sequence key="errorHandler"/>
+        </faultSequence
+      </target>
+  </proxy>
 ```
 
-## Build and run
-
-Create the artifacts:
-
-1. Set up WSO2 Integration Studio.
-2. Create an ESB Config project
-3. Create the integration artifacts shown above.
-4. Deploy the artifacts in your Micro Integrator.
-
+<!--
 Set up the back-end service.
 
 Invoke the Micro Integrator:
@@ -62,3 +60,4 @@ Invoke the Micro Integrator:
 ```bash
 ant stockquote -Dmode=placeorder -Dtrpurl=http://localhost:8280/
 ```
+-->

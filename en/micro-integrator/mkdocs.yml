@@ -18,7 +18,7 @@
 site_name: WSO2 Enterprise Integrator Documentation
 site_description: Documentation for WSO2 Enterprise Integrator
 site_author: WSO2
-site_url: https://wso2.com/integration/
+site_url: https://ei.docs.wso2.com/en/latest/micro-integrator/
 
 # Repository
 repo_name: wso2/docs-ei
@@ -97,27 +97,35 @@ nav:
           - 'Sending and Receiving Emails': 'use-cases/examples/file-processing/mailto-transport-examples.md'
         - Data Integration:
           - 'Exposing an RDBMS datasource': 'use-cases/examples/data_integration/rdbms-data-service.md'
+          - Exposing Other Datasources:
+            - 'Exposing a CSV datasource': 'use-cases/examples/data_integration/csv-data-service.md'
+            - 'Exposing an Excel datasource': 'use-cases/examples/data_integration/excel-data-service.md'
+            - 'Exposing a Google Spreadsheet': 'use-cases/examples/data_integration/google-spreadsheet-data-service.md'
+            - 'Exposing a Cassandra datasource': 'use-cases/examples/data_integration/cassandra-data-service.md'
+            - 'Exposing an RDF datasource': 'use-cases/examples/data_integration/rdf-data-service.md'
+            - 'Exposing a Web Resource': 'use-cases/examples/data_integration/web-resource-data-service.md'
+            - 'Exposing a Carbon datasource': 'use-cases/examples/data_integration/carbon-data-service.md'
+            - 'Exposing a Custom datasource': 'use-cases/examples/data_integration/custom-datasource.md'
+            - 'Exposing a JNDI datasource': 'use-cases/examples/data_integration/jndi-data-service.md'
           - 'Exposing Data in JSON Format': 'use-cases/examples/data_integration/json-with-data-service.md'
           - 'Using an OData Service': 'use-cases/examples/data_integration/odata-service.md'
           - 'Using Nested Data Queries': 'use-cases/examples/data_integration/nested-queries-in-data-service.md'
           - 'Batch Requesting': 'use-cases/examples/data_integration/batch-requesting.md'
           - 'Invoking Multiple Operations as a Request Box': 'use-cases/examples/data_integration/request-box.md'
           - 'Using Distributed Transactions in Data Services': 'use-cases/examples/data_integration/distributed-trans-data-service.md'
-          - 'Receiving Notifications in Data Services': 'use-cases/examples/data_integration/data-service-notifications.md'
           - 'Validating Data Input': 'use-cases/examples/data_integration/data-input-validator.md'
-          - 'Schedule Tasks in Data Services': 'use-cases/examples/data_integration/data-service-scheduled-task.md'
         - Examples of Components:
           - REST APIs:
             - 'Using a Simple REST API': 'use-cases/examples/rest_api_examples/introduction-rest-api.md'
-            - 'Working with Query Parameters': 'use-cases/examples/rest_api_examples/setting-query-params-outgoing-messages.md'
+            - 'Setting Query Parameters on Outgoing Messages': 'use-cases/examples/rest_api_examples/setting-query-params-outgoing-messages.md'
             - 'Exposing a SOAP Endpoint as a RESTful API': 'use-cases/examples/rest_api_examples/enabling-rest-to-soap.md'
             - 'Exposing Non-HTTP Services as RESTful APIs': 'use-cases/examples/rest_api_examples/configuring-non-http-endpoints.md'
-            - 'Handling Non Matching Resources': 'use-cases/examples/rest_api_examples/handling-non-matching-resources.md'
+            - 'Handling Non-Matching Resources': 'use-cases/examples/rest_api_examples/handling-non-matching-resources.md'
             - 'Handling HTTP Status Codes': 'use-cases/examples/rest_api_examples/setting-https-status-codes.md'
-            - 'Manipulating Content Types': 'use-cases/examples/rest_api_examples/transforming-content-type.md'
+            - 'Transforming Content Types': 'use-cases/examples/rest_api_examples/transforming-content-type.md'
             - 'Securing a REST API': 'use-cases/examples/rest_api_examples/securing-rest-apis.md'
             - Handling Special Cases:
-              - 'Using GET with a Body': 'use-cases/examples/rest_api_examples/using-get-with-a-body.md'
+              - 'Using GET with a Message Body': 'use-cases/examples/rest_api_examples/using-get-with-a-body.md'
               - 'Using POST with Empty Message Body': 'use-cases/examples/rest_api_examples/using-post-with-no-body.md'
               - 'Using POST with Query Parameters': 'use-cases/examples/rest_api_examples/using-post-with-query-param.md'
           - Proxy Services:
@@ -125,7 +133,7 @@ nav:
             - 'Publishing a Custom WSDL': 'use-cases/examples/proxy_service_examples/publishing-a-custom-wsdl.md'
             #- 'Configuring Pinned Servers': 'use-cases/examples/proxy_service_examples/using-pinned-servers.md'
             - 'Exposing a Proxy Service via Inbound Endpoints': 'use-cases/examples/proxy_service_examples/exposing-proxy-via-inbound.md'
-            - 'Applying WS-Security to a Proxy Service': 'use-cases/examples/proxy_service_examples/securing-proxy-services.md'
+            - 'Securing a Proxy Service': 'use-cases/examples/proxy_service_examples/securing-proxy-services.md'
           - Inbound Endpoints:
             - 'JMS Inbound Endpoint': 'use-cases/examples/inbound_endpoint_examples/inbound-endpoint-jms-protocol.md'
             - 'File Inbound Endpoint': 'use-cases/examples/inbound_endpoint_examples/file-inbound-endpoint.md'
@@ -136,7 +144,7 @@ nav:
             - 'RabbitMQ Inbound Endpoint': 'use-cases/examples/inbound_endpoint_examples/inbound-endpoint-rabbitmq-protocol.md'
             #- 'CXF WS RM Inbound Endpoint': 'use-cases/examples/inbound_endpoint_examples/using-CXF-WS-RM-Inbound.md'
             - 'Kafka Inbound Endpoint': 'use-cases/examples/inbound_endpoint_examples/inbound-endpoint-kafka.md'
-            - 'WebSocket Endpoint': 'use-cases/examples/inbound_endpoint_examples/inbound-endpoint-secured-websocket.md'
+            - 'Secured WebSocket Inbound Endpoint': 'use-cases/examples/inbound_endpoint_examples/inbound-endpoint-secured-websocket.md'
             - 'Using Inbound Endpoints with Registry': 'use-cases/examples/inbound_endpoint_examples/inbound-endpoint-with-registry.md'
           - Scheduled Tasks: 
             - 'Task Scheduling using a Simple Trigger': 'use-cases/examples/scheduled-tasks/task-scheduling-simple-trigger.md'
@@ -180,12 +188,19 @@ nav:
         - 'JSON Examples': 'use-cases/examples/json_examples/json-examples.md'
     - Setup and Install:
       - Installation Guide:
-        - 'Install in a VM': 'setup/installation/install_in_vm.md'
-        - 'Run in Docker': 'setup/installation/run_in_docker.md'
-        - 'Run in Kubernetes': 'setup/installation/run_in_kubernetes.md'
+        - 'Installation Prerequisites': 'setup/installation/install_prerequisites.md'
+        - 'Install on a VM': 'setup/installation/install_in_vm.md'
+        - 'Run on Docker': 'setup/installation/run_in_docker.md'
+        - 'Run on Kubernetes': 'setup/installation/run_in_kubernetes.md'
       - Product Deployment:
-        - 'Deploying WSO2 Micro Integrator' : 'setup/deployment/deploying_wso2_ei.md'
-        #- 'Upgrading from a Previous Release' : 'setup/deployment/upgrading.md'
+        - Kubernetes Deployment:
+          - 'Deploy on Kubernetes': 'setup/deployment/kubernetes_deployment.md' 
+          - K8s Deployment Samples: 
+            - 'Sample 1: Hello World': 'setup/deployment/k8s-samples/hello-world.md' 
+            - 'Sample 2: Message Routing': 'setup/deployment/k8s-samples/content-based-routing.md' 
+            - 'Sample 3: JMS Sender/Receiver': 'setup/deployment/k8s-samples/jms-sender-receiver.md'
+        - 'Deploy on a VM': 'setup/deployment/deploying_wso2_ei.md' 
+        - 'Migrating from WSO2 EI 6.x': 'setup/deployment/migrating-from-ei-6.x.x.md' 
         - 'Setting up a Load Balancer': 'setup/deployment/setting_up_lb.md'
         - 'Troubleshooting Production Deployment' : 'setup/deployment/troubleshooting_deployment.md'
         - 'Product Deployment Checklist' : 'setup/deployment/deployment_checklist.md'
@@ -204,6 +219,8 @@ nav:
           - 'Encrypting Passwords' : 'setup/security/encrypting_plain_text.md'
           - 'Using Symmetric Encryption' : 'setup/security/single_key_encryption.md'
           - 'Set Passwords using Environment Variables/System Properties' : 'setup/security/replace_passwords_with_sys_properties.md'
+        - 'Securing the Management API' : 'setup/security/securing_management_api.md'
+        - 'Configuring a User Store' : 'setup/user_stores/setting_up_ro_ldap.md'
       - Performance Tuning:
         - 'Tuning JVM Performance' : 'setup/performance_tuning/tuning_jvm_performance.md'
         - 'Tuning Network and OS Performance' : 'setup/performance_tuning/network_os_performance.md'
@@ -214,8 +231,6 @@ nav:
         - 'Tuning the RabbitMQ Transport' : 'setup/performance_tuning/rabbitmq_transport_tuning.md'
         - 'Tuning the Inbound Endpoints' : 'setup/performance_tuning/tuning-inbound-endpoints.md'
       - Feature-Specific Configurations:
-        - 'Configuring the Task Scheduling Component': 'setup/feature_configs/configuring_task_scheduling_comp.md'
-        - 'Enabling CORS for Data Services': 'setup/feature_configs/enabling_CORS_for_data_services.md'
         - 'Configuring Time Stamp Conversion for RDBMS': 'setup/feature_configs/configuring_timestamp_conversion_for_rdbms.md'
         - 'Configuring Message Builders and Formatters' : 'setup/message_builders_formatters/message-builders-and-formatters.md'
         - 'Configuring Message Relay': 'setup/message_builders_formatters/message-relay.md'
@@ -248,7 +263,7 @@ nav:
       - WSO2 Integration Studio:
         - 'Quick Tour - WSO2 Integration Studio' : 'develop/WSO2-Integration-Studio.md'
         - 'Installing WSO2 Integration Studio' : 'develop/installing-WSO2-Integration-Studio.md'
-        - 'Designing Message Flow': 'develop/working-with-wso2-integration-studio.md'
+        - 'Working with WSO2 Integration Studio': 'develop/working-with-wso2-integration-studio.md'
         - 'Troubleshooting WSO2 Integration Studio': 'develop/troubleshooting-WSO2-Integration-Studio.md'
       - Creating Projects:
         - 'Creating ESB Projects': 'develop/creating-projects.md'
@@ -271,12 +286,13 @@ nav:
         - 'Creating Local Registry Entries': 'develop/creating-artifacts/registry/creating-local-registry-entries.md'
         - 'Creating a Smooks Configuration': 'develop/creating-artifacts/creating-smooks-artifacts.md'
         - 'Creating a Data Service': 'develop/creating-artifacts/data-services/creating-data-services.md'
+        - 'Creating a Datasource': 'develop/creating-artifacts/data-services/creating-datasources.md'
         - 'Creating a Data Service Input Validator': 'develop/creating-artifacts/data-services/creating-input-validators.md'
         - 'Adding Connectors': 'develop/creating-artifacts/adding-connectors.md'
       - Creating Custom Artifacts:
         - 'Creating a Custom Inbound Endpoint' : 'develop/customizations/creating-custom-Inbound-endpoint.md'
         - 'Creating a Custom Mediator': 'develop/customizations/creating-custom-mediators.md'
-        - 'Creating a Synapse Handlers': 'develop/customizations/creating-synapse-handlers.md'
+        - 'Creating a Synapse Handler': 'develop/customizations/creating-synapse-handlers.md'
         - 'Customizing Task Scheduling': 'develop/customizations/creating-custom-task-scheduling.md'
       - Securing Artifacts:
         - 'Encrypting Synapse Passwords' : 'develop/creating-artifacts/encrypting-synapse-passwords.md'
@@ -296,7 +312,7 @@ nav:
         - 'Monitoring Proxy Service Access Logs': 'develop/enabling-logs-for-services.md'
         - 'Monitoring REST API Access Logs': 'develop/enabling-logs-for-api.md'
         - 'Endpoint Tracing' : 'develop/endpoint-trace-logs.md'
-        - 'Running on WSO2 Integration Cloud': 'develop/deploying-in-integration-cloud.md'
+      - 'Running on WSO2 Integration Cloud': 'develop/deploying-in-integration-cloud.md'
       - Advanced Development Tasks:
         - 'Injecting Parameters as Environment Variables': 'develop/injecting-parameters.md'
         - 'Changing the Endpoint of a Deployed Service': 'develop/advanced-development/changing-the-endpoint-of-deployed-service.md'
@@ -307,9 +323,11 @@ nav:
       - 'Micro Integrator Dashboard': 'administer-and-observe/working-with-monitoring-dashboard.md'
       - 'Micro Integrator CLI': 'administer-and-observe/using-the-command-line-interface.md'
       - 'Monitoring Message Round Trip': 'administer-and-observe/observability.md'
+      - 'Analyzing Statistics and Tracing': 'administer-and-observe/using-the-analytics-dashboard.md'
+      - 'Using the Management API': 'administer-and-observe/working-with-management-api.md'
       - Logging:
         - 'Logs in WSO2 Micro Integrator' : 'administer-and-observe/logs/monitoring_logs.md'
-        - 'Configuring Log4j Properties' : 'administer-and-observe/logs/configuring_log4j_properties.md'
+        - 'Configuring Log4j2 Properties' : 'administer-and-observe/logs/configuring_log4j_properties.md'
         - 'Managing Log Growth' : 'administer-and-observe/logs/managing_log_growth.md'
         - 'Masking Sensitive Information in Logs' : 'administer-and-observe/logs/masking_sensitive_info_in_logs.md'
       - Metrics:
@@ -408,7 +426,17 @@ nav:
             - 'Scheduled Failover Message Forwarding Processor': 'references/synapse-properties/message-processors/msg-sched-failover-forwarding-processor-properties.md'
         - 'Templates': 'references/synapse-properties/template-properties.md'
         - 'Endpoints': 'references/synapse-properties/endpoint-properties.md'
-        - 'Data Services': 'references/synapse-properties/data-services.md'
+        - Data Services:
+          - 'About Data Services' : 'references/synapse-properties/data-services.md'
+          - 'Elements of a Data Service': 'references/synapse-properties/data-services/elements-of-a-data-service.md'
+          - 'Query Parameters': 'references/synapse-properties/data-services/query-parameters.md'
+          - 'Datasource Parameters': 'references/synapse-properties/data-services/datasource-Configuration-Parameters.md'
+          - 'Input Validators': 'references/synapse-properties/data-services/input-validators.md'
+          - 'Filtering Responses by User Role': 'references/synapse-properties/data-services/filtering-responses-by-user-role.md'
+          - 'Dynamic User Authentication': 'references/synapse-properties/data-services/dynamic-user-authentication.md'
+          - 'Using Namespaces': 'references/synapse-properties/data-services/using-Namespaces.md'
+          - 'SQL Dialects': 'references/synapse-properties/data-services/sql-dialects.md'
+          - 'Mapping Data Types': 'references/synapse-properties/data-services/mapping-data-types.md'
         - Transport Configs:
           - 'VFS Parameters': 'references/synapse-properties/transport-parameters/vfs-transport-parameters.md'
           - 'JMS Parameters': 'references/synapse-properties/transport-parameters/jms-transport-parameters.md'
@@ -419,9 +447,11 @@ nav:
       - Security Topics:
         - 'Customizing Secure Vault' : 'references/security/customizing-secure-vault.md'
         - 'Using Keystores' : 'references/security/using_keystores.md'
+        - 'WS-Security Implementations' : 'references/security/security-implementation.md'
       - 'Best Practices' : 'references/best-Practices.md'
       - 'Troubleshooting JMS' : 'references/troubleshooting-jms.md'
       - 'Error Codes' : 'references/error_handling.md'
+      - 'WSO2 Micro Integrator vs WSO2 EI 6.x Family' : 'references/comparisong-mi7-ei6xx.md'
     - '': page-not-found.md
      
 # Extensions

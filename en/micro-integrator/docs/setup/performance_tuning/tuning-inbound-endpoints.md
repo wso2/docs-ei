@@ -12,8 +12,8 @@ Open the deployment.toml file, and change the inbound thread pool size based on 
 
 ```toml
 [[mediation]]
-inbound.threads.core = 200 
-inbound.threads.max = 1000   
+inbound.core_threads = 200 
+inbound.max_threads = 1000   
 ```
 See the [descriptions of the parameters](../../../references/config-catalog/#message-mediation).
 

@@ -7,9 +7,11 @@ The dashboard as well as the CLI communicates with the management API of WSO2 Mi
 ## Enable the Management API
 
 To use the management dashboard, you need to enable the management API when you
-start your WSO2 Micro Integrator instance. This can be done by passing
-the `-DenableManagementApi` system property when you
-start the Micro Integrator. 
+start your WSO2 Micro Integrator instance. Pass the following system property:
+
+```bash
+-DenableManagementApi
+```
 
 Note that the default address is **https://localhost** and the port is **9164**.
 
@@ -27,12 +29,16 @@ Note that the default address is **https://localhost** and the port is **9164**.
     sh micro-integrator.sh -DenableManagementApi
     ```
 
--   The CLI tool is enabled for the embedded Micro Integrator in WSO2 Integration Studio by default.
+-   The Management API is enabled for the embedded Micro Integrator in WSO2 Integration Studio by default.
 
 ## Install and run the dashboard
 
-1.  To download the dashboard, go the **WSO2 Micro Integrator** website → [Additional Resources](https://wso2.com/integration/micro-integrator/install/), click **Micro Integrator Dashboard**, and download the dashboard.
-2.  Execute the following command to start the dashboard server:
+!!! Warning
+    In a non-production environment (with the self signed certificate), you have to add the certificate of the micro integrator instance to the browser as a trusted source. For example, direct the browser to `https://localhost:9164/management` and add the site as trusted. This step will not be required with a custom production certificate.
+
+1.  To download the dashboard, go to [**WSO2 Micro Integrator** website](https://wso2.com/integration/micro-integrator/#) -> **Download** -> **Other Resources**, and click **Monitoring Dashboard**.
+2.  Extract the downloaded ZIP file. This will be the `MI_DASHBOARD_HOME` directory.
+3.  Open a terminal, navigate to the `MI_DASHBOARD_HOME` directory, and execute the following command to start the dashboard server:
 
     ```bash
     sh dashboard.sh
@@ -42,9 +48,6 @@ Note that the default address is **https://localhost** and the port is **9164**.
     ```bash
     Web app 'dashboard' is available at 'https://127.0.0.1:9743/dashboard
     ```
-
-    !!! Note
-        In a non-production environment (with the self signed certificate), you have to add the certificate of the micro integrator instance to the browser as a trusted source. For example, direct the browser to  https://localhost:9164/magagement and add the site as trusted. This step will not be required with a custom production certificate.
   
 3.  Log in to the dashboard using the following: 
 
@@ -70,11 +73,10 @@ By default, the management api of the Micro Integrator is shipped with a CORS co
        <allowedOrigins>https://127.0.0.1:9743</allowedOrigins>
        <allowedHeaders>Authorization</allowedHeaders>
  </cors>
-
 ```
 If required, you can remove the wild card and add a specific origin for this configuration for security requirements.  
 
-As the management dashboard is utilizing the management api, the user store is bound to the given api. Therefore, if you want to add a new user to view the management dashboard, you have to add a new user to the userstore defined in the `internal-apis.xml` as shown below.
+As management dashboard is utilizing the management api, the user store is bound to the said api. Therefore, if you want to add a new user to view the management dashboard, you have to add a new user to the userstore defined in the `internal-apis.xml` (stored in the `MI_HOME/comf` directory).
 
 ```xml
 <UserStore>
@@ -86,3 +88,7 @@ As the management dashboard is utilizing the management api, the user store is b
     </users>
 </UserStore>
 ```
+ 
+<!--
+If the ` <UserStore>` element is not defined in `internal-apis.xml` user store will default to the carbon user store defined in user-mgt.xml.
+-->

@@ -1,8 +1,5 @@
-# Using the File Inbound Protocol
+# Using the File Inbound Endpoint
 ## Failure tracking using File Inbound
-
-### Example use case
-
 To track failures in file processing that can occur when a resource
 becomes unavailable, the VFS transport creates and maintains a failed
 records file. This text file contains a list of files that failed to
@@ -13,6 +10,8 @@ file, and if a file is listed as a failed record, it will skip
 processing and schedule a move task to move that file.
 
 ### Synapse configuration
+
+Following are the integration artifacts that we can used to implement this scenario. See the instructions on how to [build and run](#build-and-run) this example.
 
 ```xml tab='Inbound Endpoint'
 <?xml version="1.0" encoding="UTF-8"?>
@@ -52,7 +51,7 @@ Create the artifacts:
 3. Create a [mediation sequence](../../../../develop/creating-artifacts/creating-reusable-sequences) and [inbound endpoint](../../../../develop/creating-an-inbound-endpoint) with configurations given in the above example.
 4. [Deploy the artifacts](../../../../develop/deploy-and-run) in your Micro Integrator.
 
-Invoke the inbound endpoint:
+Invoke the inbound endpoint.
 
 ## Configuring FTP, SFTP, and FILE Connections
 

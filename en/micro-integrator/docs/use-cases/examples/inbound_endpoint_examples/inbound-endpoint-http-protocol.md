@@ -1,6 +1,4 @@
-# HTTP Inbound Endpoint Sample
-## Example use case
-
+# Using the HTTP Inbound Endpoint
 This sample demonstrates how an HTTP inbound endpoint can act as a
 dynamic http listener. Many http listeners can be added without
 restarting the server. When a message arrives at a port it will bypass

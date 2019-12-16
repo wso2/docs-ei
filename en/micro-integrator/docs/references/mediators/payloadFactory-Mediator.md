@@ -8,7 +8,7 @@ SOAP message. You can configure the format of the request or response
 and map it to the arguments provided.
 
 !!! Info
-    The PayloadFactory mediator is a [content aware](../../../concepts/message-processing-units/#classification-of-mediators) mediator.
+    The PayloadFactory mediator is a [content aware](../../../references/mediators/about-mediators/#classification-of-mediators) mediator.
 
 ## Syntax
 
@@ -73,9 +73,9 @@ generate XML and JSON messages.
 ### Using XML
 
 ``` 
-<definitions xmlns="http://ws.apache.org/ns/synapse">
-    <sequence name="main">
-        <in>
+<proxy name="RespondMediatorProxy" startOnLoad="true" transports="http https" xmlns="http://ws.apache.org/ns/synapse">
+     <target>
+        <inSequence>
             <!-- using payloadFactory mediator to transform the request message -->
             <payloadFactory media-type="xml">
                 <format>
@@ -89,8 +89,8 @@ generate XML and JSON messages.
                     <arg xmlns:m0="http://services.samples" expression="//m0:Code"/>
                 </args>
             </payloadFactory>
-        </in>
-        <out>
+        </inSequence>
+        <outSequence>
             <!-- using payloadFactory mediator to transform the response message -->
             <payloadFactory media-type="xml">
                 <format>
@@ -104,10 +104,10 @@ generate XML and JSON messages.
                     <arg xmlns:m0="http://services.samples/xsd" expression="//m0:last"/>
                 </args>
             </payloadFactory>
-        </out>
-        <send/>
-    </sequence>
-</definitions>
+            <send/>
+        </outSequence>          
+     </target>
+</proxy>
 ```
 
 ### Using JSON
@@ -172,27 +172,11 @@ rel=\"nofollow\"&gt;YoruFukurou&lt;/a&gt;",
 <property name="messageType" value="application/json" scope="axis2"/>
 ```
 
-!!! Note
-    By default, JSON messages are converted to XML when they are received by
-    the PayloadFactor mediator. However, if you enable the JSON stream
-    formatter and builder, incoming JSON messages are left in JSON format,
-    which improves performance. To enable them, uncomment the following
-    lines in `         <PRODUCT_HOME>/repository/conf/axis2/axis2.xml        ` :
-
-    ```
-    <!--messageFormatter contentType="application/json"
-            class="org.apache.axis2.json.JSONStreamFormatter"/-->
-           
-    <!--messageBuilder contentType="application/json"
-            class="org.apache.axis2.json.JSONStreamBuilder"/-->
-    ```
-
-When the JSON stream formatter and builder are enabled, if you specify a
-JSON expression in the PayloadFactory mediator, you must use the
-`         evaluator        ` attribute to specify that it is JSON. You
-can also use the evaluator to specify that an XPath expression is XML,
-or if you omit the evaluator attribute, XML is assumed by default. For
-example:
+If you specify a JSON expression in the PayloadFactory mediator, you 
+must use the `         evaluator        ` attribute to specify that it 
+is JSON. You can also use the evaluator to specify that an XPath 
+expression is XML, or if you omit the evaluator attribute, XML is 
+assumed by default. For example:
 
 <table>
 <colgroup>
@@ -430,8 +414,7 @@ You can add custom SOAP headers to a request by using the PayloadFactory
 Mediator in a proxy service as shown in the example below.
 
 ``` xml
-<definitions xmlns="http://ws.apache.org/ns/synapse">
-<proxy name="StockQuoteProxy"
+<proxy xmlns="http://ws.apache.org/ns/synapse" name="StockQuoteProxy"
 transports="https http"
 startOnLoad="true"
 trace="disable">
@@ -472,10 +455,13 @@ xmlns:ser="http://services.samples">
 <outSequence>
 <send/>
 </outSequence>
+<faultSequence>
+     <sequence key="errorHandler"/>
+</faultSequence>
 </target>
 <publishWSDL uri="file:repository/samples/resources/proxy/sample_proxy_1.wsdl"/>
 </proxy>
-<sequence name="fault">
+<sequence xmlns="http://ws.apache.org/ns/synapse" name="errorHandler">
 <log level="full">
 <property name="MESSAGE" value="Executing default "fault" sequence"/>
 <property name="ERROR_CODE" expression="get-property('ERROR_CODE')"/>
@@ -483,11 +469,6 @@ xmlns:ser="http://services.samples">
 </log>
 <drop/>
 </sequence>
-<sequence name="main">
-<log/>
-<drop/>
-</sequence>
-</definitions>
 ```
 
 <!--
