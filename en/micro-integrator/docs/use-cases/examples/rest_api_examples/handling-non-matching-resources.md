@@ -1,11 +1,11 @@
-# Handling non-matching resources
+# Handling Non-Matching Resources
     
-This example demonstrates how you can define a sequence to be invoked if the the Micro Integrator is unable to find a matching resource definition for a specific API invocation. This sequence generates a response indicating an error when no matching resource definition is found.
+This example demonstrates how you can define a sequence to be invoked if the Micro Integrator is unable to find a matching resource definition for a specific API invocation. This sequence generates a response indicating an error when no matching resource definition is found.
     
 ## Synapse configurations
-    
-Following is a sample REST Api configuration and mediation Sequence that we can used to implement this scenario.
-    
+
+Following is a sample REST API configuration and Sequence configuration that we can used to implement this scenario. See the instructions on how to [build and run](#build-and-run) this example.
+        
 ```xml tab='REST Api'
 <api xmlns="http://ws.apache.org/ns/synapse" name="jaxrs" context="/jaxrs">
    <resource methods="GET" uri-template="/customers/{id}">
@@ -54,7 +54,14 @@ Create the artifacts:
 3. Create the [rest api](../../../../develop/creating-artifacts/creating-an-api) and [mediation sequence](../../../../develop/creating-artifacts/creating-reusable-sequences) with the configurations given above.
 4. [Deploy the artifacts](../../../../develop/deploy-and-run) in your Micro Integrator.
 
-Set up the back-end service.
+Set up the back-end service:
+
+1. Download the [stockquote_service.jar](https://github.com/wso2-docs/WSO2_EI/blob/master/Back-End-Service/stockquote_service.jar)
+2. Open a terminal, navigate to the location of the downloaded service, and run it (stock quote service) using the following command:
+
+    ```bash
+    java -jar stockquote_service.jar
+    ```
 
 Send an invalid request to the back end as follows:
     
@@ -72,5 +79,3 @@ You will get the following response:
 <tp:description>The requested resource (//customers-wrong/123) is not available.</tp:description>
 </tp:fault>
 ```
-
-Notice that we have specified the REST_URL_POSTFIX property with the value set to "remove". When invoking this API, even if the request contains a trailing slash after the context (e.g., `POST http://127.0.0.1:8290/orderdelayAPI/` instead of `POST  http://127.0.0.1:8290/orderdelayAPI`, the endpoint will be called correctly.

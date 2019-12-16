@@ -25,27 +25,46 @@ request and, thereby, analyze the behaviour of the message flow.
 Follow the steps given below to configure correlation logs in the Micro Integrator
 server.
 
-1.  Add the following parameters to the `log4j.properties` file (stored in the `MI_HOME/conf/` directory):
+1.  Add the following parameters to the `log4j2.properties` file (stored in the `MI_HOME/conf/` directory):
 
     ```xml
-    # correlation logs
-    log4j.logger.correlation=INFO, CORRELATION
-    log4j.additivity.correlation=false
-    # Appender config for correlation logs
-    log4j.appender.CORRELATION=org.apache.log4j.RollingFileAppender
-    log4j.appender.CORRELATION.File=${carbon.home}/repository/logs/${instance.log}/correlation.log
-    log4j.appender.CORRELATION.MaxFileSize=10MB
-    log4j.appender.CORRELATION.layout=org.apache.log4j.PatternLayout
-    log4j.appender.CORRELATION.Threshold=INFO
-    log4j.appender.CORRELATION.layout.ConversionPattern=%d{yyyy-MM-dd HH:mm:ss,SSS}|%X{Correlation-ID}|%t|%m%n
-    ```
+    # Appender config to put correlation Log.
+    appender.CORRELATION.type = RollingFile
+    appender.CORRELATION.name = CORRELATION
+    appender.CORRELATION.fileName = ${sys:carbon.home}/repository/logs/correlation.log
+    appender.CORRELATION.filePattern = ${sys:carbon.home}/repository/logs/correlation-%d{MM-dd-yyyy.log
+    appender.CORRELATION.layout.type = PatternLayout
+    appender.CORRELATION.layout.pattern = %d{yyyy-MM-dd HH:mm:ss,SSS}|%X{Correlation-ID}|%t|%m%n
+    appender.CORRELATION.policies.type = Policies
+    appender.CORRELATION.policies.time.type = TimeBasedTriggeringPolicy
+    appender.CORRELATION.policies.time.interval = 1
+    appender.CORRELATION.policies.time.modulate = true
+    appender.CORRELATION.policies.size.type = SizeBasedTriggeringPolicy
+    appender.CORRELATION.policies.size.size = 10MB
+    appender.CORRELATION.strategy.type = DefaultRolloverStrategy
+    appender.CORRELATION.strategy.max = 20
+    appender.CORRELATION.filter.threshold.type = ThresholdFilter
+    appender.CORRELATION.filter.threshold.level = INFO 
+     ```
 
-2.  Note that the maximum file size of the correlation log is set to
+2.  Add `correlation` as a logger
+
+    ```xml
+    loggers = AUDIT_LOG, SERVICE_LOGGER, correlation,
+    ```
+    
+3.  Add `CORRELATION` as an appender
+
+    ```xml
+    appenders = CARBON_CONSOLE, CARBON_LOGFILE, AUDIT_LOGFILE, CORRELATION, 
+    ``` 
+
+4.  Note that the maximum file size of the correlation log is set to
     10MB in the above configuration. That is, when the size of the file
     exceeds 10MB, a new log file is created. If required, you can change
     this file size.
 
-3.  **If required** , you can change the default HTTP header (which is
+5.  **If required** , you can change the default HTTP header (which is
     'activity_id') that is used to carry the correlation ID by adding
     the following property to the
     `deployment.toml` file (stored in the `MI_HOME/conf/` directory). Replace
@@ -76,7 +95,7 @@ You can enable correlation logging by passing a system property.
     starting the server by executing the following command:
 
     - On **Linux/MacOS/CentOS**: `sh micro-integrator.sh -DenableCorrelationLogs=true`
-    - On **Windows**: `integrator.bat -DenableCorrelationLogs=true`
+    - On **Windows**: `micro-integrator.bat -DenableCorrelationLogs=true`
 
 
 Now when you start the Micro Integrator, the
@@ -97,7 +116,7 @@ that are related to the same request.
 
 Shown below is the POST request that is sent using the CURL client. Note that the correlation ID is set in this request.
 
-``` java
+```bash
 curl -X POST --data @request.json http://localhost:8280/healthcare/categories/surgery/reserve -H "Content-Type:application/json" -H "activityid:correlationID"
 ```
 

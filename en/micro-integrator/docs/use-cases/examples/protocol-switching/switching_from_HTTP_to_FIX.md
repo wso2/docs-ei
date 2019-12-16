@@ -2,144 +2,84 @@
 
 This example demonstrates how WSO2 Micro Integrator receives messages in HTTP and forwards them through FIX.
 
-Synapse will create a session with Executor and forward the order request. The first response coming from the Executor will be sent back over HTTP. Executor generally sends two responses for each incoming order request. But since the response has to be forwarded over HTTP, only one can be sent back to the client.
+Synapse will create a session with the **Executor** and forward the order request. The first response coming from the Executor will be sent back over HTTP. The Executor generally sends two responses for each incoming order request. But since the response has to be forwarded over HTTP, only one can be sent back to the client.
 
 ## Synapse configuration
 
-Following are the integration artifacts (proxy service) that we can used to implement this scenario.
+Following are the integration artifacts (proxy service) that we can used to implement this scenario. See the instructions on how to [build and run](#build-and-run) this example.
 
 ```xml
-<proxy name="FIXProxy">
-    <parameter name="transport.fix.InitiatorConfigURL">file:/home/synapse_user/fix-config/synapse-sender.cfg</parameter>
+<?xml version="1.0" encoding="UTF-8"?>
+<proxy xmlns="http://ws.apache.org/ns/synapse" name="HTTPToFIXProxy" startOnLoad="true">
+    <description />
+    <target>
+        <inSequence>
+            <log level="full"></log>
+            <property name="transport.fix.ServiceName" value="HTTPToFIXProxy" scope="axis2-client" />
+            <send>
+                <endpoint>
+                    <address uri="fix://localhost:19876?BeginString=FIX.4.0&amp;SenderCompID=SYNAPSE&amp;TargetCompID=EXEC" />
+                </endpoint>
+            </send>
+        </inSequence>
+        <outSequence>
+            <log level="full"></log>
+            <send />
+        </outSequence>
+    </target>
+    <parameter name="transport.fix.InitiatorConfigURL">file:/{file_path}/synapse-sender.cfg</parameter>
     <parameter name="transport.fix.InitiatorMessageStore">file</parameter>
     <parameter name="transport.fix.SendAllToInSequence">false</parameter>
     <parameter name="transport.fix.DropExtraResponses">true</parameter>
-    <target>
-        <endpoint>
-            <address uri="fix://localhost:19876?BeginString=FIX.4.0&SenderCompID=SYNAPSE&TargetCompID=EXEC"/>
-        </endpoint>
-        <inSequence>
-            <property name="transport.fix.ServiceName" value="FIXProxy" scope="axis2-client"/>
-            <log level="full"/>
-        </inSequence>
-        <outSequence>
-            <log level="full"/>
-            <send/>
-        </outSequence>
-    </target>
 </proxy>
 ```
 
-<!--
+## Build and Run
 
-## Configuring Sample FIX Applications
+Create the artifacts:
 
-If you are using a binary distribution of Quickfix/J, the two samples
-and their configuration files are all packed to a single JAR file called
-`         quickfixj-examples.jar        ` . You will have to extract the
-JAR file, modify the configuration files and pack them to a JAR file
-again under the same name.
+1. [Set up WSO2 Integration Studio](../../../../develop/installing-WSO2-Integration-Studio).
+2. [Create an ESB Solution project](../../../../develop/creating-projects/#esb-config-project).
+3. Create the [proxy service](../../../../develop/creating-artifacts/creating-a-proxy-service) with the configurations given above.
+4. Download the FIX transport resources from [here](https://github.com/wso2-docs/WSO2_EI/tree/master/FIX-transport-resources) and change the `{file_path}` of the proxy with the downloaded location. 
+5. [Deploy the artifacts](../../../../develop/deploy-and-run) in your Micro Integrator.
 
-You can pass the new configuration file as a command line parameter too,
-in that case you do not need to modify the
-`         quickfixj-examples.jar        ` . You can copy the config
-files from `         $ESB_HOME/repository/samples/resources/fix        `
-folder to `         $QFJ_HOME/etc folder        ` . Execute the sample
-apps from `         $QFJ_HOME/bin        ` ,
-`         ./banzai.sh/bat ../etc/banzai.cfg executor.sh/bat ../etc/executor.cfg        `
-.
+[Enable the FIX transport](../../../../setup/transport_configurations/configuring-transports/#configuring-the-fix-transport) and start the Micro-Integrator.
 
-Locate and edit the FIX configuration file of Executor to be as follows.
-This file is usually named `         executor.cfg        ` .
+Run the quickfixj **Executor** sample application.
 
-```java
-[default]
-    FileStorePath=examples/target/data/executor
-    ConnectionType=acceptor
-    StartTime=00:00:00
-    EndTime=00:00:00
-    HeartBtInt=30
-    ValidOrderTypes=1,2,F
-    SenderCompID=EXEC
-    TargetCompID=SYNAPSE
-    UseDataDictionary=Y
-    DefaultMarketPrice=12.30
-
-    [session]
-    BeginString=FIX.4.0
-    SocketAcceptPort=19876
+```bash
+java -jar quickfixj-examples-executor-2.1.1.jar
 ```
 
-Locate and edit the FIX configuration file of Banzai to be as follows.
-This file is usually named `         banzai.cfg        ` .
+Send the following request to EI and we will receive the response from the executor application.
 
-```java
-[default]
-    FileStorePath=examples/target/data/banzai
-    ConnectionType=initiator
-    SenderCompID=BANZAI
-    TargetCompID=SYNAPSE
-    SocketConnectHost=localhost
-    StartTime=00:00:00
-    EndTime=00:00:00
-    HeartBtInt=30
-    ReconnectInterval=5
-
-    [session]
-    BeginString=FIX.4.0
-    SocketConnectPort=9876
+```bash
+curl -X POST \
+  http://lahiru-thinkpad-x1-carbon-4th:8290/services/HTTPToFIXProxy \
+  -H 'cache-control: no-cache' \
+  -H 'content-type: text/xml' \
+  -H 'soapaction: \"urn:mediate\"' \
+  -d '<?xml version="1.0" encoding="UTF-8"?>
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+   <soapenv:Header />
+   <soapenv:Body>
+      <message>
+         <header>
+            <field id="35">D</field>
+            <field id="52">Fri Nov 08 11:04:31 IST 2019</field>
+         </header>
+         <body>
+            <field id="11">122333</field>
+            <field id="21">1</field>
+            <field id="38">5</field>
+            <field id="40">1</field>
+            <field id="54">1</field>
+            <field id="55">IBM</field>
+            <field id="59">0</field>
+         </body>
+         <trailer />
+      </message>
+   </soapenv:Body>
+</soapenv:Envelope>
 ```
-
-The `         FileStorePath        ` property in the above two files
-should point to two directories in your local file system. The launcher
-scripts for the sample application can be found in the bin directory of
-Quickfix/J distribution.
-
-## Configuring Micro Integrator for FIX Samples
-
-In order to configure WSO2 Micro Integrator to run the FIX samples given above, you will need to create some FIX configuration files as specified below (you can find the config files from `$ESB_HOME/repository/samples/resources/fix folder`).
-
-The `FileStorePath` property in the following two files should point to two directories in your local file system. Once the
-samples are executed, Synapse will create FIX message stores in these
-two directories.
-
-Put the following entries in a file called `fix-synapse.cfg`.
-
-```java
-[default]
-FileStorePath=repository/logs/fix/data
-ConnectionType=acceptor
-StartTime=00:00:00
-EndTime=00:00:00
-HeartBtInt=30
-ValidOrderTypes=1,2,F
-SenderCompID=SYNAPSE
-TargetCompID=BANZAI
-UseDataDictionary=Y
-DefaultMarketPrice=12.30
-
-[session]
-BeginString=FIX.4.0
-SocketAcceptPort=9876
-```
-
-Put the following entries in a file called
-`synapse-sender.cfg`.
-
-```java
-[default]
-FileStorePath=repository/logs/fix/data
-SocketConnectHost=localhost
-StartTime=00:00:00
-EndTime=00:00:00
-HeartBtInt=30
-ReconnectInterval=5
-SenderCompID=SYNAPSE
-TargetCompID=EXEC
-ConnectionType=initiator
-
-[session]
-BeginString=FIX.4.0
-SocketConnectPort=19876
-```
--->

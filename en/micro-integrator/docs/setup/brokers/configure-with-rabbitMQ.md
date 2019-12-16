@@ -7,20 +7,22 @@ This section describes how to configure WSO2 Micro Integrator to connect with Ra
 Add the following parameters to the deployment.toml file (stored in the `MI_HOME/conf` directory).
 
 ```toml
+[transport.rabbitmq]
+sender_enable = true
+
 [[transport.rabbitmq.listener]]
-name = "rabbitMQListener"
+name = "AMQPConnectionFactory"
 parameter.hostname = "localhost"
 parameter.port = 5672
 parameter.username = "guest"
 parameter.password = "guest"
-parameter.connection_factory = ""
 ```
 
-Download the "amqp-client-5.7.0.jar" and copy it into `MI_HOME/lib` directory.
+Download the [amqp-client-5.7.0.jar](https://www.rabbitmq.com/java-client.html) and copy it into `MI_HOME/lib` directory.
 
 ## Enabling SSL
 
-Add the following parameters to the deployment.toml file (stored in the `MI_HOME/conf` directory).
+Add the following parameters under the RabbitMQ configuration section to the deployment.toml file (stored in the `MI_HOME/conf` directory).
 
 ```toml
 [[transport.rabbitmq.listener]]
@@ -37,7 +39,7 @@ See the complete list of server-level configurations for the [RabbitMQ Listener]
 
 ## Configuring connection recovery
 
-Add the following parameters to the deployment.toml file (stored in the `MI_HOME/conf` directory).
+Add the following parameters under the RabbitMQ to the deployment.toml file (stored in the `MI_HOME/conf` directory).
 
 ```toml
 [[transport.rabbitmq.listener]]
@@ -59,7 +61,7 @@ The parameter specified above sets the retry interval with which the RabbitMQ cl
 
 For increased performance and higher throughput in message delivery, configure the transport sender as shown below.
 
-Add the following parameters to the deployment.toml file (stored in the `MI_HOME/conf` directory).
+Add the following parameters under the RabbitMQ to the deployment.toml file (stored in the `MI_HOME/conf` directory).
 
 ```toml
 [[transport.rabbitmq.sender]]

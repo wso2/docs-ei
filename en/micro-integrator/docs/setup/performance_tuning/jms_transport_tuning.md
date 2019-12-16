@@ -72,7 +72,6 @@ After adding concurrency consumers and cache level, your complete configuration
 [[transport.jms.listener]]
 name = "myQueueConnectionFactory"
 parameter.initial_naming_factory = "org.apache.activemq.jndi.ActiveMQInitialContextFactory"
-parameter.broker_name = "ActiveMQ"
 parameter.provider_url = "tcp://localhost:61616"
 parameter.connection_factory_name = "QueueConnectionFactory"
 parameter.connection_factory_type = "queue"
@@ -112,8 +111,7 @@ The possible values for the `parameter.cache_level` are `none`, `auto`, `connect
 !!! Info
     -   When using `producer` as the cache level, be sure to add the JMS destination parameter to avoid the following error:
         ```bash       
-        INFO - AxisEngine [MessageContext: logID=2eabe85aeeb3bb62c26bb46d21b11b087ebf1e5e0b350839] JMSCC0029: A destination must be specified when sending from        `
-        `         this        ` `         producer.
+        INFO - AxisEngine [MessageContext: logID=2eabe85aeeb3bb62c26bb46d21b11b087ebf1e5e0b350839] JMSCC0029: A destination must be specified when sending from  this   producer.
         ```
     -   By default, Axis2 spawns a new thread to handle each outgoing message. To change this behavior, you need to remove the `ClientApiNonBlocking` property from the message when sending messages. Removal of this property is vital when queuing transports like JMS are involved. Add the following parameter to your mediation configuration to remove `ClientApiNonBlocking` when sending messages via JMS:
 

@@ -23,22 +23,23 @@ example.csv has data in below format<br/>
         1,WSO2,100.0<br/>
         2,IBM,2.5<br/>
 			
+???info "Click here to view the sample Siddhi application."
 
-```sql
-@App:name("CSVDefaultMapping")
-@App:description('Publish and receive data events processed within Siddhi to files in CSV default format.')
+    ```sql
+    @App:name("CSVDefaultMapping")
+    @App:description('Publish and receive data events processed within Siddhi to files in CSV default format.')
 
 
-@source(type='file',
-dir.uri='file://{WSO2SIHome}/samples/artifacts/CSVMappingWithFile/new',
-action.after.process='NONE',
-@map(type='csv'))
-define stream InputStream (id int, name string, amount double);
+    @source(type='file',
+    dir.uri='file://{WSO2SIHome}/samples/artifacts/CSVMappingWithFile/new',
+    action.after.process='NONE',
+    @map(type='csv'))
+    define stream InputStream (id int, name string, amount double);
 
-@sink(type='file', file.uri='/{WSO2SIHome}/samples/artifacts/CSVMappingWithFile/new/outputOfDefault.csv' , @map(type='csv'))
-define stream OutputStream (id int, name string, amount double);
+    @sink(type='file', file.uri='/{WSO2SIHome}/samples/artifacts/CSVMappingWithFile/new/outputOfDefault.csv' , @map(type='csv'))
+    define stream OutputStream (id int, name string, amount double);
 
-from InputStream
-select *
-insert into OutputStream;
-```
+    from InputStream
+    select *
+    insert into OutputStream;
+    ```

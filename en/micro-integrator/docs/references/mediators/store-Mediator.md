@@ -78,12 +78,7 @@ message context specified using an XPath expression.
 
 ```
 <?xml version="1.0" encoding="UTF-8"?>
-<definitions xmlns="http://ws.apache.org/ns/synapse">
-    <registry provider="org.wso2.carbon.mediation.registry.WSO2Registry">
-        <parameter name="cachableDuration">15000</parameter>
-    </registry>
-    <taskManager provider="org.wso2.carbon.mediation.ntask.NTaskTaskManager"/>
-    <proxy name="StoreMediatorProxy" startOnLoad="true" transports="http https">
+    <proxy xmlns="http://ws.apache.org/ns/synapse" name="StoreMediatorProxy" startOnLoad="true" transports="http https">
         <description/>
         <target>
             <inSequence>
@@ -92,10 +87,10 @@ message context specified using an XPath expression.
             </inSequence>
         </target>
     </proxy>
-    <endpoint name="StoreMediatorEndpoint">
+    <endpoint xmlns="http://ws.apache.org/ns/synapse" name="StoreMediatorEndpoint">
         <address uri="http://localhost:9000/services/SimpleStockQuoteService"/>
     </endpoint>
-    <sequence name="fault">
+    <sequence xmlns="http://ws.apache.org/ns/synapse" name="errorHandler">
         <!-- Log the message at the full log level with the ERROR_MESSAGE and the ERROR_CODE-->
         <log level="full">
             <property name="MESSAGE" value="Executing default 'fault' sequence"/>
@@ -105,8 +100,9 @@ message context specified using an XPath expression.
         <!-- Drops the messages by default if there is a fault -->
         <drop/>
     </sequence>
-    <sequence name="main">
-        <in>
+    <proxy name="SimpleProxy" transports="http https" startonload="true" trace="disable" xmlns="http://ws.apache.org/ns/synapse">
+       <target>
+          <inSequence>
             <!-- Log all messages passing through -->
             <log level="full"/>
             <!-- ensure that the default configuration only sends if it is one of samples -->
@@ -115,14 +111,17 @@ message context specified using an XPath expression.
                 <!-- Send the messages where they have been sent (i.e. implicit "To" EPR) -->
                 <send/>
             </filter>
-        </in>
-        <out>
+         </inSequence>
+        <outSequence>
             <send/>
-        </out>
-        <description>The main sequence for the message mediation</description>
-    </sequence>
-    <messageStore name="StoreMediatorStore"/>
-    <messageProcessor
+        </outSequence>
+        <faultSequence>
+             <sequence key="errorHandler"/>
+        </faultSequence>
+        </target>
+    </proxy>
+    <messageStore xmlns="http://ws.apache.org/ns/synapse" name="StoreMediatorStore"/>
+    <messageProcessor xmlns="http://ws.apache.org/ns/synapse"
         class="org.apache.synapse.message.processor.impl.forwarder.ScheduledMessageForwardingProcessor"
         messageStore="StoreMediatorStore" name="StoreMediatorProcessor" targetEndpoint="StoreMediatorEndpoint">
         <parameter name="client.retry.interval">1000</parameter>
@@ -134,7 +133,4 @@ message context specified using an XPath expression.
         <parameter name="is.active">true</parameter>
         <parameter name="target.endpoint">StoreMediatorEndpoint</parameter>
     </messageProcessor>
-    <!-- You can add any flat sequences, endpoints, etc.. to this synapse.xml file if you do
-    *not* want to keep the artifacts in several files -->
-</definitions>
 ```

@@ -1,5 +1,6 @@
 # Multi-HTTPS Transport
 
+<!--
 ## Synchronizing the profiles in a cluster
 
 If you are running in a clustered environment and want your SSL profiles
@@ -36,149 +37,119 @@ it into each WSO2 EI node by invoking the
 `         reloadSSLProfileConfig        ` in the
 `         org.apache.synapse.MultiSSLProfileReload        ` MBean in
 JConsole. For more information, see [JMX-based
-Monitoring](https://docs.wso2.com/display/ADMIN44x/JMX-Based+Monitoring)
-.
+Monitoring](https://docs.wso2.com/display/ADMIN44x/JMX-Based+Monitoring).
+-->
 
-## Dynamic SSL profiles
-
-In addition to updating `         axis2.xml        ` with the SSL
-profile configurations, you can dynamically load the SSL profiles at
-runtime using a periodic schedule or JMX invocation. Now instead of
-reloading the entire `         axis2.xml        ` at runtime, you can
+You can [enable dynamic SSL profiles](#enabling-dynamic-ssl-profiles) for the Micro Integrator by updating the `deployment.toml` file with the required SSL
+profile configurations. Also, you can [dynamically load the SSL profiles](#loading-ssl-profiles-at-runtime) at
+runtime using a periodic schedule or JMX invocation. That is, instead of reloading the entire `deployment.toml` at runtime, you can
 reload the new configuration files that contain only the custom profile
 information for the sender and receiver.
 
-### Enabling dynamic SSL profiles
+## Enabling dynamic SSL profiles
 
 The following configuration changes should be done in the Multi-HTTPS
 transport receiver and sender.
 
-**Do the following changes in the Multi-HTTPS transport receiver:**
+Dynamic SSL profiles for the Multi-HTTPS **transport listener**:
 
--   Edit the `           <EI_HOME>/conf/Axis2/axis2.xml          ` file
-    and add the `           dynamicSSLProfilesConfig          `
-    parameter as follows to the multi-https transport listener:
+1.   Open the `deployment.toml` file (stored in the `MI_HOME/conf` directory) and add the following parameters.
 
-    ```
-    <transportReceiver name="multi-https" class="org.apache.synapse.transport.nhttp.HttpCoreNIOMultiSSLListener">
-                <parameter name="port">8343</parameter>
-                <parameter name="non-blocking">true</parameter>
-                ..........
-                <parameter name="dynamicSSLProfilesConfig">
-                    <filePath>conf/sslprofiles/listenerprofiles.xml</filePath>
-                    <fileReadInterval>3600000</fileReadInterval>        
-                </parameter>
-                .........
-    </transportReceiver>
+    ```toml
+    [transport.http]
+    listener.ssl_profile.file_path = "conf/sslprofiles/listenerprofiles.xml"
+    listener.ssl_profile.read_interval = 600000
     ```
 
--   Create the `           listenerprofiles.xml          ` file with the
-    following configuration in the
-    `           <EI_HOME>/conf/sslprofiles          ` directory:
+2.   Create the `listenerprofiles.xml` file with the following configuration in the
+    `MI_HOME/conf/sslprofiles` directory:
 
     !!! Info
-        You can configure the file path for the
-        `           listenerprofiles.xml          ` file as required.
-    
-    **Configuration for listenerprofiles.xml**
+        You can configure the file path for the `listenerprofiles.xml` file as required.
 
-    ```
-        <parameter name="SSLProfiles">
-        <profile>
-                <bindAddress>192.168.0.123</bindAddress>
-                <KeyStore>
-                    <Location>repository/resources/security/esb.jks</Location>
-                    <Type>JKS</Type>
-                    <Password>123456</Password>
-                    <KeyPassword>123456</KeyPassword>
-                    </KeyStore>
-                <TrustStore>              
-                    <Location>repository/resources/security/esbtruststore.jks</Location>
-                    <Type>JKS</Type>
-                    <Password>123456</Password>
-                </TrustStore>
-                <SSLVerifyClient>require</SSLVerifyClient>
-            </profile>
-        </parameter>
+    ```xml
+    <parameter name="SSLProfiles">
+    <profile>
+            <bindAddress>192.168.0.123</bindAddress>
+            <KeyStore>
+                <Location>repository/resources/security/esb.jks</Location>
+                <Type>JKS</Type>
+                <Password>123456</Password>
+                <KeyPassword>123456</KeyPassword>
+                </KeyStore>
+            <TrustStore>              
+                <Location>repository/resources/security/esbtruststore.jks</Location>
+                <Type>JKS</Type>
+                <Password>123456</Password>
+            </TrustStore>
+            <SSLVerifyClient>require</SSLVerifyClient>
+        </profile>
+    </parameter>
     ```
 
     The SSL profile will be applied to each request that is received at
     the IP specified within the `           <bindAddress>          `
     element.
 
-**Do the following changes in the Multi-HTTPS transport sender:**
+Dynamic SSL profiles for the Multi-HTTPS **transport sender**:
 
--   Edit the `           <EI_HOME>/conf/Axis2/axis2.xml          ` file
-    and add the `           dynamicSSLProfilesConfig          `
-    parameter as follows:
+1.   Open the `deployment.toml` file (stored in the `MI_HOME/conf` directory) and add the following parameters.
 
-    ```
-            <transportSender name="https" class="org.apache.synapse.transport.nhttp.HttpCoreNIOSSLSender">
-                .......  
-                <parameter name="dynamicSSLProfilesConfig">
-                    <filePath>repository/conf/sslprofiles/senderprofiles.xml</filePath>
-                    <fileReadInterval>3600000</fileReadInterval>        
-                </parameter>
-                .......
-            </transportSender>
+    ```toml
+    [transport.http]
+    sender.ssl_profile.file_path = "conf/sslprofiles/senderprofiles.xml"
+    sender.ssl_profile.read_interval = 600000
     ```
 
--   Create the `           senderprofiles.xml          ` file with the
-    following configuration in the
-    `           <EI_HOME>/conf/sslprofiles          ` directory:
+2.   Create the `senderprofiles.xml` file with the following configuration in the
+    `MI_HOME/conf/sslprofiles` directory:
 
     !!! Info
-        You can configure the file path for the
-        `           senderprofiles.xml          ` file as required.
-    
+        You can configure the file path for the `senderprofiles.xml` file as required.
 
-    **Configuration for senderprofiles.xml**
-
-    ```
-        <parameter name="customSSLProfiles">
-            <profile>
-                <servers>localhost:8244,192.168.1.234:8245</servers>
-                <KeyStore>
-                    <Location>repository/resources/security/esb.jks</Location>
-                    <Type>JKS</Type>
-                    <Password>123456</Password>
-                    <KeyPassword>123456</KeyPassword>
-                </KeyStore>
-                <TrustStore>          
-                    <Location>repository/resources/security/esbtruststore.jks</Location>
-                    <Type>JKS</Type>
-                    <Password>123456</Password>
-                </TrustStore>
-            </profile>
-        </parameter>
+    ```xml
+    <parameter name="customSSLProfiles">
+        <profile>
+            <servers>localhost:8244,192.168.1.234:8245</servers>
+            <KeyStore>
+                <Location>repository/resources/security/esb.jks</Location>
+                <Type>JKS</Type>
+                <Password>123456</Password>
+                <KeyPassword>123456</KeyPassword>
+            </KeyStore>
+            <TrustStore>          
+                <Location>repository/resources/security/esbtruststore.jks</Location>
+                <Type>JKS</Type>
+                <Password>123456</Password>
+            </TrustStore>
+        </profile>
+    </parameter>
     ```
 
     The SSL profile will be applied to each request that is sent to the
     destination server specified within the
-    `           <servers>          ` element as IP:Port combination.
+    `<servers>` element as IP:Port combination.
 
-### Loading SSL profiles dynamically at runtime
+## Loading SSL profiles at runtime
 
 You can either use a periodic schedule or a JMX invocation to apply
 custom profiles at runtime. The following section describes the two
 options in detail:
 
--   Periodic schedule - If you use this option, the WSO2 EI server will
+-   **Periodic schedule**: If you use this option, the Micro Integrator will
     automatically check updates of the file content and apply the custom
     profiles based on the value specified in the
     `           fileReadInterval          ` parameter. For example, if
     you have set the `           fileReadInterval          ` as 1 hour,
-    WSO2 EI will automatically check updates of the file content and
+    The Micro Integrator will automatically check updates of the file content and
     apply the custom profile every 1 hour.
 
-<!-- -->
-
--   JMX Invocation - If you use this option, custom profiles will be
+-   **JMX Invocation**: If you use this option, custom profiles will be
     applied dynamically by invoking the
-    `           notifyFileUpdate          ` method in the
+    `notifyFileUpdate` method in the
     respective sender/listener MBean under the
-    `           ListenerSSLProfileReloader          ` or
-    `           SenderSSLProfileReloader          ` group in JConsole.
+    `ListenerSSLProfileReloader` or
+    `SenderSSLProfileReloader` group in JConsole.
 
 The following table provides information on the parameters that you can
 set when you enable dynamic SSL profiles:

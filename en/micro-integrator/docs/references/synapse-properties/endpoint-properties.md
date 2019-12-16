@@ -27,7 +27,7 @@ Indirect endpoints are endpoint configurations that refer [named endpoints](#nam
 <endpoint key="address">
 ```
 
-Indirect endpoints are useful when the actual endpoints are stored in the [registry](registry-concepts.md).
+Indirect endpoints are useful when the actual endpoints are stored in the registry.
 
 ### Resolving Endpoints
 

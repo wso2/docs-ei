@@ -60,6 +60,7 @@ nav:
           - 'Working With Salesforce Client': 'learn/tutorials/saas-integrations/sfdc46/working-with-salesforce-client/1.md'
           - 'Import Contacts into Salesforce Using FTP': 'learn/tutorials/saas-integrations/sfdc46/import-contacts-into-salesforce-using-ftp/1.md'
           - 'Salesforce to MySQL Database': 'learn/tutorials/saas-integrations/sfdc46/salesforce-to-mysql-db/1.md'
+          - 'Backup CSV files using Google Spreadsheets': 'learn/tutorials/saas-integrations/googlespreadsheet/using-google-spreadsheets-connector/1.md'
         - Database Integration:
           - 'Data-backed Service' : 'learn/tutorials/database-integrations/data-backed-service/1.md'
           - 'Managing Database Transactions' : 'learn/tutorials/database-integrations/managing-database-transactions/1.md'
@@ -67,6 +68,7 @@ nav:
         - Messaging Integration:
           - 'Sending JSON Data to an ActiveMQ Queue' : 'learn/tutorials/messaging-integrations/json-data-to-activemq-queue/1.md'
           - 'Reliable Delivery' : 'learn/tutorials/messaging-integrations/reliable-delivery/1.md'
+          - 'Messaging with Kafka' : 'learn/tutorials/messaging-integrations/messaging-with-kafka/1.md'
         - File-based Integration:
           - 'File Integration Using FTP' : 'learn/tutorials/file-based-integrations/file-integration-using-ftp/1.md'
           - 'File Integration Using Samba' : 'learn/tutorials/file-based-integrations/file-integration-using-smb/1.md'
@@ -77,7 +79,7 @@ nav:
           - 'Service Orchestration': 'learn/tutorials/integration-patterns-and-soa/service-orchestration/1.md'
           - 'Service Composition': 'learn/tutorials/integration-patterns-and-soa/service-composition/1.md'
           - 'Backend for Frontend' : 'learn/tutorials/integration-patterns-and-soa/backend-for-frontend/1.md'
-          - 'REST to SOAP' : 'learn/tutorials/integration-patterns-and-soa/exposing-soap-service/1.md'
+          - 'REST to SOAP' : 'learn/tutorials/integration-patterns-and-soa/rest-to-soap-service/1.md'
           - 'JSON to XML and Upload to FTP' : 'learn/tutorials/integration-patterns-and-soa/converting-json-to-xml-and-upload-to-ftp/1.md'
       - 'Examples': 'learn/examples.md'
     - Develop:
@@ -86,7 +88,7 @@ nav:
       - 'Managing Ballerina Code' : 'develop/managing-ballerina-code.md'
       - 'Deploying on Docker': 'develop/deploy-on-docker.md'
       - 'Deploying on Kubernetes': 'develop/deploy-on-kubernetes.md'
-      - 'Running as a Java Program': 'develop/running-as-a-java-program.md'
+      - 'Running on JVM': 'develop/running-on-jvm.md'
     - Observability:
       - 'Observing a Service with Prometheus' : 'observability/observing-a-service.md'
       - 'Logging using Logstash and Kibana' : 'observability/logstash-kibana.md'
@@ -94,6 +96,7 @@ nav:
     - References:
       - 'References' : 'references/references.md'
       - 'EI Connectors' : 'references/ei-connectors.md'
+      - 'FAQ' : 'references/faq.md'
     - '': page-not-found.md
      
 # Extensions

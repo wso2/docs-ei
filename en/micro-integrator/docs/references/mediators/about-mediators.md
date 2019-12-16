@@ -48,7 +48,7 @@ WSO2 Micro Integrator includes a comprehensive library of mediators that provide
 
 **Filter Mediators**
 
-[Filter](../references/mediators/filter-Mediator.md) | [Validate](../references/mediators/validate-Mediator.md) | [Switch](../references/mediators/switch-Mediator.md) | 
+[Filter](../../references/mediators/filter-Mediator.md) | [Validate](../../references/mediators/validate-Mediator.md) | [Switch](../../references/mediators/switch-Mediator.md) | 
 
 **Transform Mediators**
 
@@ -56,7 +56,7 @@ WSO2 Micro Integrator includes a comprehensive library of mediators that provide
 
 **Advanced Mediators**
 
-[Cache](../../references/mediators/cache-Mediator.md) | [ForEach](../../references/mediators/forEach-Mediator.md) | [Clone](../../references/mediators/clone-Mediator.md) | [Store](../../references/mediators/store-Mediator.md) | [Iterate](../../references/mediators/iterate-Mediator.md) | [Aggregate](../../references/mediators/aggregate-Mediator.md) | [Callout](../../references/mediators/callout-Mediator.md) | [Transaction](../../references/mediators/transaction-Mediator.md) | [Throttle](../../references/mediators/throttle-Mediator.md) | [DBReport](../../references/mediators/db-Report-Mediator.md) | [DBLookup](../../references/mediators/dbLookup-Mediator.md) | [EJB](../../references/mediators/ejb-Mediator.md) | [Rule](../../references/mediators/rule-Mediator.md) | [Binder](../../references/mediators/call-Mediator.md) | [Entitlement](../../references/mediators/call-Mediator.md) | [OAuth](../../references/mediators/call-Mediator.md) | [Smooks](../../references/mediators/binder-Mediator.md) | [Data Mapper](../../references/mediators/data-Mapper-Mediator.md) | 
+[Cache](../../references/mediators/cache-Mediator.md) | [ForEach](../../references/mediators/forEach-Mediator.md) | [Clone](../../references/mediators/clone-Mediator.md) | [Store](../../references/mediators/store-Mediator.md) | [Iterate](../../references/mediators/iterate-Mediator.md) | [Aggregate](../../references/mediators/aggregate-Mediator.md) | [Callout](../../references/mediators/callout-Mediator.md) | [Transaction](../../references/mediators/transaction-Mediator.md) | [Throttle](../../references/mediators/throttle-Mediator.md) | [DBReport](../../references/mediators/dB-Report-Mediator.md) | [DBLookup](../../references/mediators/dBLookup-Mediator.md) | [EJB](../../references/mediators/eJB-Mediator.md) | [Rule](../../references/mediators/rule-Mediator.md) | [Binder](../../references/mediators/builder-Mediator.md) | [Entitlement](../../references/mediators/call-Mediator.md) | [OAuth](../../references/mediators/call-Mediator.md) | [Smooks](../../references/mediators/smooks-Mediator.md) | [Data Mapper](../../references/mediators/data-Mapper-Mediator.md) | 
 
 **Extension Mediators**
 

@@ -3,7 +3,7 @@
 The **Send Mediator** is used to send messages out of Synapse to an endpoint. The Send Mediator also copies any message context properties from the current message context to the reply message received on the execution of the send operation, so that the response could be correlated back to the request. Messages may be correlated by WS-A MessageID, or even simple custom text labels.
 
 !!! Info
-    - The Send mediator is a [content-unaware](../../../concepts/message-processing-units/#classification-of-mediators) mediator.
+    - The Send mediator is a [content-unaware](../../../references/mediators/about-mediators/#classification-of-mediators) mediator.
     - A send operation can be blocking or non-blocking depending on the actual transport implementation used. The default NIO-based http/s implementation does not block on a send. Therefore, if a message should be sent and further processed (e.g. transformed) afterwards, it is required to clone the message into two copies and then perform the processing to avoid conflicts.
     - Do not add any mediator configurations after Send mediator in the same sequence, because the Micro Integrator does not process them. Any mediator configuration after the Send mediator should go to the outSequence or receive sequence.
 
@@ -89,19 +89,21 @@ example just sends it back to the client because there is no Out
 endpoint specified.
 
 ``` java
-<definitions xmlns="http://ws.apache.org/ns/synapse">
-    <in>
+<proxy name="SimpleProxy" transports="http https" startonload="true" trace="disable" xmlns="http://ws.apache.org/ns/synapse">
+    <target>
+         <inSequence>
         <send>
             <endpoint>
                 <address uri="http://localhost:9000/services/SimpleStockQuoteService"/>
             </endpoint>
         </send>
         <drop/>
-    </in>
-    <out>
+    </inSequence>
+    <outSequence>
         <send/>
-    </out>
-</definitions>
+    </outSequence>
+    </target>
+</proxy>
 ```
 
 ### Specifying a response handling sequence (service chaining) 

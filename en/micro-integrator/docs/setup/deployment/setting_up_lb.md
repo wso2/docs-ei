@@ -1,6 +1,6 @@
 # Setting up a Load balancer
 
-The following instructions will guide you to set up a load balancer for your two-node [Micro Integrator deployment](deployment/deploying_wso2_ei.md). The load balancer automatically distributes incoming traffic across the
+The following instructions will guide you to set up a load balancer for your two-node [Micro Integrator deployment](../deploying_wso2_ei). The load balancer automatically distributes incoming traffic across the
 multiple product instances in your deployment, which enables better fault tolerance in your deployment.
 
 ## Before you begin
@@ -8,7 +8,7 @@ multiple product instances in your deployment, which enables better fault tolera
 Note the following:
 
 * These configurations are not required if your clustering setup does not have a load balancer.
-* The load balancer ports of the [deployment pattern](deployment/deploying_wso2_ei.md) are HTTP 80 and HTTPS 443. If your system uses any other ports, be sure to replace 80 and 443 values with the corresponding ports when you follow the configuration steps in this section.
+* The load balancer ports of the [deployment pattern](../deploying_wso2_ei) are HTTP 80 and HTTPS 443. If your system uses any other ports, be sure to replace 80 and 443 values with the corresponding ports when you follow the configuration steps in this section.
 * The load balancer directs requests to the server on a round robin basis. For example, the load balancer will direct requests to node 1 (` xxx.xxx.xxx.xx1`) of the ESB cluster as follows:
     * HTTP requests will be directed to node 1 using the `http://xxx.xxx.xxx.xx1/<service>` URL via HTTP 80 port.
     * HTTPS requests will be directed to node 1 using the `https://xxx.xxx.xxx.xx1/<service>` URL via HTTPS 443 port.
@@ -165,4 +165,4 @@ community](http://nginx.org/) version 1.9.2 as the load balancer.
 
 ## Configuring the Micro Integrator
 
-See [Deploying WSO2 Micro Integrator](deployment/deploying_wso2_ei.md) for instructions on configuring the Micro Integrator with the load balancer.
+See [Deploying WSO2 Micro Integrator](../deploying_wso2_ei) for instructions on configuring the Micro Integrator with the load balancer.

@@ -15,8 +15,8 @@ To implement this use case, you will add a new REST resource to the existing RES
 
 To set up the tools:
 
--   Select the relevant [WSO2 Integration Studio](https://wso2.com/integration/tooling/) based on your operating system and extract the ZIP file.  The path to this folder is referred to as `MI_TOOLING_HOME` throughout this tutorial.
--   Download the [CLI Tool](https://wso2.com/integration/micro-integrator/install/) for monitoring artifact deployments.
+-  Download the relevant [WSO2 Integration Studio](https://wso2.com/integration/tooling/) based on your operating system.  The path to the extracted/installed folder is referred to as `MI_TOOLING_HOME` throughout this tutorial.
+-  Download the [CLI Tool](https://wso2.com/integration/micro-integrator/install/) for monitoring artifact deployments.
 
 If you did not try the [Sending a Simple Message to a Service](sending-a-simple-message-to-a-service.md) tutorial yet, open WSO2 Integration Studio, click **File**, and click **Import**. Next, expand the **WSO2** category and select **Existing WSO2 Projects into workspace**, click **Next** and upload the [pre-packaged
 project](https://github.com/wso2-docs/WSO2_EI/blob/master/Integration-Tutorial-Artifacts/SimpleMessageToServiceTutorial.zip). 
@@ -207,9 +207,6 @@ You can now start configuring the API resource.
                   </strong>
                </li>
             </ol>
-            <p><strong><img src="../../assets/img/tutorials/119132155/119132162.png" width="450" /><br />
-               </strong>
-            </p>
          </div>
       </td>
    </tr>
@@ -228,7 +225,6 @@ You can now start configuring the API resource.
                      <li>Case 2:  clemency medical center</li>
                      <li>Case 3:  pine valley community hospital</li>
                   </ul>
-                  <img src="../../assets/img/tutorials/119132155/119132161.png" width="900" />
                </li>
                <li>Click <strong>OK</strong> .</li>
             </ol>
@@ -298,7 +294,6 @@ You can now start configuring the API resource.
                         </li>
                     </ol>
                 <b>Note</b>: This XPath expression value gets the value stored in the Property mediator and concatenates the two strings to display the log message `Routing to <hospital name>`.
-        <img src="../../assets/img/tutorials/119132155/119132160.png">
                 </li>
                 <li>
                     Click OK.

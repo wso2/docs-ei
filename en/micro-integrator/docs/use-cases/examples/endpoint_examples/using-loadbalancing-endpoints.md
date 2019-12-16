@@ -1,90 +1,76 @@
-# Session Affinity Load Balancing between Three Endpoints
+# Using the Load Balance Endpoint
 
-### Introduction
+**Session Affinity Load Balancing between Three Endpoints**
 
-This sample demonstrates how the ESB can handle load balancing with
-session affinity using simple client sessions . The configuration used
-here is the same as the configuration in sample 52, except that here the
+This sample demonstrates how the Micro Integrator can handle load balancing with
+session affinity using simple client sessions. Here the
 session type is specified as `         simpleClientSession        ` .
 This is a client initiated session, which means that the client
 generates the session identifier and sends it with each request. In this
 sample session type, the client adds a SOAP header named ClientID
-containing the identifier of the client. The ESB binds this ID with a
-server on the first request and sends all seccessive requests containing
+containing the identifier of the client. The MI binds this ID with a
+server on the first request and sends all successive requests containing
 that ID to the same server.
 
-### Prerequisites
+## Synapse configuration
 
-For a list of prerequisites, see [Prerequisites to Start the ESB
-Samples](https://docs.wso2.com/display/EI650/Setting+Up+the+ESB+Samples#SettingUptheESBSamples-ESBSamplePrerequisites)
-.
+Following is a sample REST API configuration that we can used to implement this scenario.
 
-### Building the sample
+```xml 
+<proxy name="LoadBalanceProxy" startOnLoad="true" transports="http https" xmlns="http://ws.apache.org/ns/synapse">
+   <target>
+       <inSequence>
+            <header name="Action" value="urn:placeOrder"/>
+            <call>
+                <endpoint>
+                    <!-- specify the session as the simple client session provided by Synapse for
+                    testing purpose -->
+                    <session type="simpleClientSession"/>
 
-The XML configuration for this sample is as follows:
-
-``` 
-    <definitions xmlns="http://ws.apache.org/ns/synapse">
-        <sequence name="main" onError="errorHandler">
-            <in>
-                <send>
-                    <endpoint>
-                        <!-- specify the session as the simple client session provided by Synapse for
-                        testing purpose -->
-                        <session type="simpleClientSession"/>
-    
-                        <loadbalance>
-                            <endpoint>
-                                <address uri="http://localhost:9001/services/LBService1">
-                                    <enableAddressing/>
-                                </address>
-                            </endpoint>
-                            <endpoint>
-                                <address uri="http://localhost:9002/services/LBService1">
-                                    <enableAddressing/>
-                                </address>
-                            </endpoint>
-                            <endpoint>
-                                <address uri="http://localhost:9003/services/LBService1">
-                                    <enableAddressing/>
-                                </address>
-                            </endpoint>
-                        </loadbalance>
-                    </endpoint>
-                </send><drop/>
-            </in>
-            <out>
-                <!-- Send the messages where they have been sent (i.e. implicit To EPR) -->
-                <send/>
-            </out>
-        </sequence>
-        <sequence name="errorHandler">
-            <makefault>
-                <code value="tns:Receiver" xmlns:tns="http://www.w3.org/2003/05/soap-envelope"/>
-                <reason value="COULDN'T SEND THE MESSAGE TO THE SERVER."/>
-            </makefault>
-    
-            <header name="To" action="remove"/>
-            <property name="RESPONSE" value="true"/>
+                    <loadbalance>
+                        <endpoint>
+                            <address uri="http://localhost:9001/services/LBService1">
+                                <enableAddressing/>
+                            </address>
+                        </endpoint>
+                        <endpoint>
+                            <address uri="http://localhost:9002/services/LBService1">
+                                <enableAddressing/>
+                            </address>
+                        </endpoint>
+                        <endpoint>
+                            <address uri="http://localhost:9003/services/LBService1">
+                                <enableAddressing/>
+                            </address>
+                        </endpoint>
+                    </loadbalance>
+                </endpoint>
+            </call>
+            <respond/>
+       </inSequence>
+       <outSequence>
             <send/>
-        </sequence>
-    </definitions>
+       </outSequence>
+       <faultSequence>
+            <sequence key="errorHandler"/>
+       </faultSequence
+   </target>
+</proxy>
+
+<sequence name="errorHandler">
+    <makefault>
+        <code value="tns:Receiver" xmlns:tns="http://www.w3.org/2003/05/soap-envelope"/>
+        <reason value="COULDN'T SEND THE MESSAGE TO THE SERVER."/>
+    </makefault>
+
+    <header name="To" action="remove"/>
+    <property name="RESPONSE" value="true"/>
+    <send/>
+</sequence>
 ```
 
+<!--
 **To build the sample**
-
-1.  Start three instances of the sample Axis2 server on HTTP ports 9001,
-    9002 and 9003 and give unique names to each server. For instructions
-    on starting the Axis2 server, see [Starting the Axis2
-    server](https://docs.wso2.com/display/EI650/Setting+Up+the+ESB+Samples#SettingUptheESBSamples-Axis2server)
-    .
-
-2.  Deploy the back-end service
-    `           LoadbalanceFailoverService          ` . For instructions
-    on deploying sample back-end services, see [Deploying sample
-    back-end
-    services](https://docs.wso2.com/display/EI650/Setting+Up+the+ESB+Samples#SettingUptheESBSamples-Backend)
-    .
 
 ### Executing the sample
 
@@ -130,3 +116,5 @@ session number 0 is bound to MyServer1. Similarly, session 1 s always
 directed to MyServer3 and session 2 is always directed to MyServer2.
 This means that session 1 and 2 are bound to MyServer3 and MyServer2
 respectively.
+
+-->

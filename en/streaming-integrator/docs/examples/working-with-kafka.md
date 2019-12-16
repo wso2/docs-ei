@@ -39,15 +39,17 @@ This tutorial takes you through consuming from a Kafka topic, processing the mes
 
 ## Tutorial steps
 
+### Consuming data from Kafka
+
 ### Start Kafka
 
 1. Navigate to the `<KAFKA_HOME>` directory and start a zookeeper node by issuing the following command.
 
-   `sh bin/zookeeper-server-start.sh config/zookeeper.properties`
+    `sh bin/zookeeper-server-start.sh config/zookeeper.properties`
 
 2. Navigate to the `<KAFKA_HOME>` directory and start Kafka server node by issuing the following command.
 
-   `sh bin/kafka-server-start.sh config/server.properties`
+    `sh bin/kafka-server-start.sh config/server.properties`
 
 
 ### Start the Streaming Integrator

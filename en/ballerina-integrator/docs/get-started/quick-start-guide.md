@@ -3,7 +3,7 @@ title: Quick Start Guide
 note: This is an auto-generated file do not edit this, You can edit content in "ballerina-integrator" repo
 ---
 
-Let's get started with WSO2 Ballerina Integrator by running a simple use case in your local environment. This is a simple service orchestration scenario. The scenario is about a basic health care system where Ballerina Integrator is used to integrate two backend hospital services to provide information to the client.
+Let's get started with WSO2 Ballerina Integrator by running an integration use case in your local environment. This is a simple service orchestration scenario. The scenario is about a basic healthcare system where Ballerina Integrator is used to integrate two backend hospital services to provide information to the client.
 
 Most healthcare centers have a system that is used to make doctor appointments. To check the availability of the doctors for a particular time, users need to visit the hospitals or use each and every online system that is dedicated for a particular healthcare center. Here we are making it easier for patients by orchestrating those isolated systems for each healthcare provider and exposing a single interface to the users.
 
@@ -41,15 +41,17 @@ Grand Oak Hospital service accepts a GET request in following service endpoint U
 http://<HOST_NAME>:<PORT>/grandOak/doctors/<DOCTOR_TYPE>
 ```
 
-Let’s implement a simple service that can be used to query for availability of doctors for a particular category from all the available healthcare centers.
+Let’s implement a simple service that can be used to query the availability of doctors for a particular category from all the available healthcare centers.
 
 <!-- Common Prerequisites to include in markdown files --> 
 ## Before you begin
  
-* Download [Ballerina Integrator](https://wso2.com/integration/ballerina-integrator/) for your operating system
+* Download and install [Ballerina Integrator](https://wso2.com/integration/ballerina-integrator/) for your operating system
+  > **Note**: This installs Ballerina language version 1.0.1, a compiler plugin to help mitigate errors, and snippet .jar files for custom auto-completion. 
 * Install Oracle JDK 1.8.*
-* Install a Text Editor or an IDE 
-  > **Tip**: For a better development experience, use [VS Code](https://code.visualstudio.com/Download) (which is the recommended editor for Ballerina Integrator) and install the [Ballerina Integrator Extension](https://marketplace.visualstudio.com/items?itemName=WSO2.ballerina-integrator).
+* Install [VS Code](https://code.visualstudio.com/Download) 
+  > **Tip**: For a better development experience, use VS Code (which is the recommended editor for Ballerina Integrator).
+* Install the [Ballerina Integrator Extension](https://marketplace.visualstudio.com/items?itemName=WSO2.ballerina-integrator) from the VS Code marketplace
 * Download [curl](https://curl.haxx.se/) or a similar tool that can call an endpoint.
 
 Once you have installed the VS Code extension, you could press `Command + Shift + P` in Mac or `Ctrl + Shift + P` in Windows/Linux and search for the command `Ballerina Integrator: Dashboard` to find the Ballerina Integrator dashboard shown below. Please refer the extension's [home page](https://marketplace.visualstudio.com/items?itemName=WSO2.ballerina-integrator) for more details on how to use the provided features.
@@ -58,35 +60,78 @@ Once you have installed the VS Code extension, you could press `Command + Shift 
 
 ## Create a Project, Add a Template, and Invoke the Service
 
-Create a new project by navigating to a directory of your choice and running the following command. 
+Let's create a project using the Ballerina Integrator dashboard. To do this, click **Create** under the Quick Start Guide template. 
+
+A module is a directory that contains Ballerina source code files.
+
+A new window will appear at the top of your screen where you can specify the name of your module.
+
+![alt text](../../assets/img/module-name.png)
+
+Once you specify the name of the module, you need to choose if your project is a new project or an existing project. In this case you would choose **New Project**.
+
+![alt text](../../assets/img/new-existing-project.png)
+
+Once this is done, specify the name of your project in the window that appears and choose the location of your project in your local machine.
+
+![alt text](../../assets/img/project-name.png)
+
+> **Note:** Alternatively, you could use the command line to create your project and add the `healthcare_service` module.
+
+<details>
+    <summary>Click here to create a project and add a pre-defined template using the command line instead.</summary>
+Create a new project by navigating to a directory of your choice and running the following command. </br>
+</p>
+
+<code>ballerina new quick-start-guide</code></br>
+</p>
+
+You see a response confirming that your project is created.</br>
+</p>
+
+Let's use a predefined module from Ballerina Central, which is a public directory that allows you to host templates and modules. </br>
+</p>
+
+A template is a predefined code that solves a particular integration scenario. </br>
+</p>
+
+In this case, we use the <code>healthcare_service</code> module. Run the following command to pull this module from Ballerina Central.</br>
+</p>
+
+<code>ballerina pull wso2/healthcare_service</code></br>
+</p>
+
+Now navigate into the project directory you created.</br>
+</p>
+
+<code>cd quick-start-guide</code></br>
+</p>
+
+The following command enables you to apply a predefined template you pulled.</br>
+</p>
+
+<code>ballerina add -t wso2/healthcare_service healthcare_service</code></br>
+</p>
+
+This automatically creates a healthcare service for you inside an <code>src</code> directory. 
+
+</details>
+
+A Ballerina service represents a collection of network accessible entry points in Ballerina. A resource within a service represents one such entry point. The generated sample service exposes a network entry point on port 9090.
+
+From the command line, navigate to the `src` directory.
 
 ```bash
-$ ballerina new quick-start-guide
+cd <project-and-module-location>/src
 ```
-
-You see a response confirming that your project is created.
-
-Let's use a predefined module from Ballerina Central, which is a public directory that allows you to host templates and modules. A module is a directory that contains Ballerina source code files, while a template is a predefined code that solves a particular integration scenario. In this case, we use the `healthcare_service` module. Navigate into the project directory you created and run the following command.
-
-```
-$ ballerina pull wso2/healthcare_service
-```
-
-Now navigate into the above module directory you created. The following command enables you to apply a predefined template you pulled.
-
-```bash
-$ ballerina add -t wso2/healthcare_service healthcare_service
-```
-
-This automatically creates a healthcare service for you inside an `src` directory. A Ballerina service represents a collection of network accessible entry points in Ballerina. A resource within a service represents one such entry point. The generated sample service exposes a network entry point on port 9090.
-
-> **Note:** Alternatively, you could use the Ballerina Integrator VS Code extension to directly add the `healthcare_service` module to a new or an existing Ballerina project using the `Quick Start Guide` module template available in the `Ballerina Integrator: Dashboard` page.
 
 Build the service using the `ballerina build` command.
 
 ```bash
-$ ballerina build healthcare_service
+ballerina build -a
 ```
+
+> **Tip**: The `-a` command builds all modules in the project.
 
 You get the following output.
 
@@ -109,7 +154,7 @@ Generating executables
 Run the following Java command to run the executable .jar file that is created once you build your module.
 
 ```bash
-$ java -jar target/bin/healthcare_service.jar
+java -jar target/bin/healthcare_service.jar
 ```
 
 Your service is now up and running. You can invoke the service using an HTTP client. In this case, we use cURL.
@@ -117,7 +162,7 @@ Your service is now up and running. You can invoke the service using an HTTP cli
 > **Tip**: If you do not have cURL installed, you can download it from [https://curl.haxx.se/download.html](https://curl.haxx.se/download.html).
 
 ```bash
-$ curl http://localhost:9090/healthcare/doctor/physician
+curl http://localhost:9090/healthcare/doctor/physician
 ```
 
 You get the following response.
@@ -221,7 +266,9 @@ function handleError(http:Caller caller, string errorMsg) {
 ```
 </details>
 
+---
+
 ## What's Next
 
 - Try out the tutorials available in the [Learn section of our documentation](../../learn/use-cases/).
-- You can easily deploy the projects you create by following our documentation on [Docker](../../learn/deploy-on-docker/) and [Kubernetes](../../learn/deploy-on-kubernetes/).
+- You can easily deploy the projects you create by following our documentation on [Docker](../../develop/deploy-on-docker/) and [Kubernetes](../../develop/deploy-on-kubernetes/). Alternately, you can [run this on a JVM](../../develop/running-on-jvm/)

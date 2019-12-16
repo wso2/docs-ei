@@ -10,27 +10,21 @@ To configure the JMS transport with JBossMQ:
 
 2.  If you want the Micro Integrator to receive messages from an JBossMQ instance, or to send messages to an ActiveMQ instance, you need to update the deployment.toml file with the relevant connection parameters.
 
-    - Add the following configurations to enable the JMS listener with JBossMQ connection parameters.
-        ```toml
-        [[transport.jms.listener]]
-        name = "myQueueListener"
-        parameter.initial_naming_factory = "org.jnp.interfaces.NamingContextFactory"
-        parameter.broker_name = "jboss" 
-        parameter.provider_url = "jnp://localhost:1099"
-        parameter.connection_factory_name = "QueueConnectionFactory"
-        parameter.connection_factory_type = "queue/susaQueue"
-        ```
-        <parameter name="java.naming.factory.url.pkgs" locked="false">org.jnp.interfaces:org.jboss.naming</parameter>
-
-    - Add the following configurations to enable the JMS sender with JBossMQ connection parameters.
-        ```toml
-        [[transport.jms.sender]]
-        name = "myQueueSender"
-        parameter.initial_naming_factory = "org.jnp.interfaces.NamingContextFactory"
-        parameter.broker_name = "jboss" 
-        parameter.provider_url = "jnp://localhost:1099"
-        parameter.connection_factory_name = "QueueConnectionFactory"
-        parameter.connection_factory_type = "queue/susaQueue"
-        ```
+    Add the following configurations to enable the JMS sender and listener with JBossMQ connection parameters.
+    
+    ```toml
+    [transport.jms]
+    sender_enable = true
+    
+    [[transport.jms.listener]]
+    name = "MyQueueConnectionFactory"
+    parameter.initial_naming_factory = "org.jnp.interfaces.NamingContextFactory"
+    parameter.provider_url = "jnp://localhost:1099"
+    parameter.connection_factory_name = "/ConnectionFactory"
+    parameter.destination = "queue/susaQueue"
+    parameter.'java.naming.factory.url.pkgs' = "org.jnp.interfaces:org.jboss.naming"
+    ```
+    !!! Info
+        For details on the JMS configuration parameters used in the code segments above, see [JMS connection factory parameters](../../references/config-catalog/#jms-transport-listener-non-blocking-mode).
 
 4.  Start WSO2 Micro Integrator and ensure that the logs print messages indicating that the JMS listener and sender are started, and that the JMS transport is initialized.

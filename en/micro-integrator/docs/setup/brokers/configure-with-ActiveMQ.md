@@ -8,7 +8,7 @@ Follow the instructions below to set up and configure.
 
 1.  Download [Apache ActiveMQ](http://activemq.apache.org/).
 2.  Download and install WSO2 Micro Integrator.
-3.  Copy the following client libraries from the `ACTIVEMQ_HOME/lib` directory to the `MI_HOME/wso2/lib` directory.
+3.  Copy the following client libraries from the `ACTIVEMQ_HOME/lib` directory to the `MI_HOME/lib` directory.
 
     **ActiveMQ 5.8.0 and above**
 
@@ -34,8 +34,7 @@ Follow the instructions below to set up and configure.
         ```toml
         [[transport.jms.listener]]
         name = "myTopicListener"
-        parameter.initial_naming_factory = "org.apache.activemq.artemis.jndi.ActiveMQInitialContextFactory"
-        parameter.broker_name = "activemq" 
+        parameter.initial_naming_factory = "org.apache.activemq.jndi.ActiveMQInitialContextFactory"
         parameter.provider_url = "tcp://localhost:61616"
         parameter.connection_factory_name = "TopicConnectionFactory"
         parameter.connection_factory_type = "topic"
@@ -44,8 +43,7 @@ Follow the instructions below to set up and configure.
         ```toml
         [[transport.jms.listener]]
         name = "myQueueListener"
-        parameter.initial_naming_factory = "org.apache.activemq.artemis.jndi.ActiveMQInitialContextFactory"
-        parameter.broker_name = "activemq" 
+        parameter.initial_naming_factory = "org.apache.activemq.jndi.ActiveMQInitialContextFactory"
         parameter.provider_url = "tcp://localhost:61616"
         parameter.connection_factory_name = "QueueConnectionFactory"
         parameter.connection_factory_type = "queue"
@@ -56,8 +54,7 @@ Follow the instructions below to set up and configure.
         ```toml
         [[transport.jms.sender]]
         name = "myTopicSender"
-        parameter.initial_naming_factory = "org.apache.activemq.artemis.jndi.ActiveMQInitialContextFactory"
-        parameter.broker_name = "activemq"
+        parameter.initial_naming_factory = "org.apache.activemq.jndi.ActiveMQInitialContextFactory"
         parameter.provider_url = "tcp://localhost:61616"
         parameter.connection_factory_name = "TopicConnectionFactory"
         parameter.connection_factory_type = "topic"
@@ -66,8 +63,7 @@ Follow the instructions below to set up and configure.
         ```toml
         [[transport.jms.sender]]
         name = "myQueueSender"
-        parameter.initial_naming_factory = "org.apache.activemq.artemis.jndi.ActiveMQInitialContextFactory"
-        parameter.broker_name = "activemq"
+        parameter.initial_naming_factory = "org.apache.activemq.jndi.ActiveMQInitialContextFactory"
         parameter.provider_url = "tcp://localhost:61616"
         parameter.connection_factory_name = "QueueConnectionFactory"
         parameter.connection_factory_type = "queue"
@@ -192,7 +188,6 @@ Simple Authentication: ActiveMQ comes with an authentication plugin, which provi
       [[transport.jms.listener]]
       name = "myTopicListener"
       parameter.initial_naming_factory = "org.apache.activemq.artemis.jndi.ActiveMQInitialContextFactory"
-      parameter.broker_name = "artemis" 
       parameter.provider_url = "tcp://localhost:61616"
       parameter.connection_factory_name = "TopicConnectionFactory"
       parameter.connection_factory_type = "topic"
@@ -272,8 +267,10 @@ Note `java.naming.provider.url=failover:(tcp://localhost:61616,tcp://localhost:6
 Integrity is part of message-level security and can be implemented using a standard like WS-Security. The following sample shows the application of WS-Security for message-level encryption where messages are stored in a message store in WSO2 Micro Integrator.
 
 ```xml
-<definitions xmlns="http://ws.apache.org/ns/synapse">
-    <localEntry key="sec_policy" src="file:repository/samples/resources/policy/policy_3.xml"/>
+    <localEntry key="sec_policy" src="file:repository/samples/resources/policy/policy_3.xml" xmlns="http://ws.apache.org/ns/synapse"/>
+```
+
+```xml
     <proxy name="FailOverJMS" startOnLoad="true" transports="http" xmlns="http://ws.apache.org/ns/synapse">
         <target>
             <inSequence>
@@ -293,5 +290,4 @@ Integrity is part of message-level security and can be implemented using a stand
             <faultSequence/>
         </target>
     </proxy>
-</definitions>
 ```

@@ -7,7 +7,7 @@ Integrator.
 
 Integration developers will follow the workflow illustrated by the following diagram.
 
-![developer workflow](../../assets/img/development_workflow.png)
+![developer workflow](../assets/img/development_workflow.png)
 
 <table>
 	<tr>
