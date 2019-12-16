@@ -15,7 +15,9 @@ In this guide, you will download the SI distribution, start it and then try out 
 
 ## Downloading Streaming Integrator
 
-Download the Streaming Integrator distribution from [WSO2 Enterprise Integrator site](https://wso2.com/integration/#) and extract it to a location of your choice. Hereafter, the extracted location is referred to as `<SI_HOME>`.
+
+Download the Streaming Integrator distribution from [Streaming Integrator Home Page](https://wso2.com/integration/streaming-integrator/) and extract it to a location of your choice. Hereafter, the extracted location is referred to as `<SI_HOME>`.
+
 
 ## Starting the server
 
