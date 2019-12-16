@@ -13,18 +13,17 @@ Siddhi query API provides APIs related to:
 
 For a comprehensive reference on the Siddhi query API, see [Streaming Integration REST API Guide](https://ei.docs.wso2.com/en/next/streaming-integrator/ref/si-rest-api-guide/).
 
-This tutorial demonstrates how you can use the Siddhi query API to perform essential operations that you would need to perform using the SI using simple examples.
-
+This tutorial demonstrates how you can use the Siddhi query API to perform essential operations in SI, using simple examples.
 
 ## Preparing the server
 
-!!!tip"Before you begin:"
+!!!tip "Before you begin:"
     - You need to have access to a MySQL instance.<br/>
-    - Save the MySQL JDBC driver in the `<SI_HOME>/lib` directory as follows:
-      1. Download the MySQL JDBC driver from [the MySQL site](https://dev.mysql.com/get/Downloads/Connector-J/mysql-connector-java-5.1.45.tar.gz).
-      2. Unzip the archive.
-      3. Copy the `mysql-connector-java-5.1.45-bin.jar` to the `<SI_HOME>/lib` directory.
-      4. Start the SI server.
+    - Save the MySQL JDBC driver in the `<SI_HOME>/lib` directory as follows:<br/>
+      1. Download the MySQL JDBC driver from [the MySQL site](https://dev.mysql.com/get/Downloads/Connector-J/mysql-connector-java-5.1.45.tar.gz).<br/>
+      2. Unzip the archive.<br/>
+      3. Copy the `mysql-connector-java-5.1.45-bin.jar` to the `<SI_HOME>/lib` directory.<br/>
+      4. Start the SI server.<br/>
 
 1. Let's create a new database in the MySQL server which you are to use throughout this tutorial. To do this, execute the following query.
     ```
@@ -226,7 +225,7 @@ In this section, deploy a stateful Siddhi application and use the REST API to ta
     {"revision":"1566293390654__CountProductions"}
     ```
 
-    !!! info
+    !!!info
         `1566293390654__CountProductions` is the revision number of the Siddhi application snapshot that you requested via the REST API. You can store this revision number and later use it in order to restore the Siddhi application to the state at which you took the snapshot.
 
 ## Restoring a Siddhi Application via a snapshot

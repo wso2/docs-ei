@@ -1,5 +1,8 @@
 # Configuring Kafka
 
+!!! Warning
+    **Please note that the contents on this page are under review!**
+
 In order to use the kafka inbound endpoint, you need to download and install [Apache Kafka](http://kafka.apache.org/downloads.html). The recommended version is `kafka_2.9.2-0.8.1.1`.
 
 To configure the kafka inbound endpoint, copy the following client libraries from the `KAFKA_HOME/libs` directory to the `MI_HOME/lib` directory.
@@ -15,7 +18,7 @@ To configure the kafka inbound endpoint, copy the following client libraries fr
 
         1. Create a directory named `conf` inside the `MI_HOME/repository` directory.
         2. Create a directory named identity inside the `MI_HOME/repository/conf` directory.
-        3. Add the [jaas.conf](attachments/119130492/119130493.conf) file to the `MI_HOME/repository/conf/identity` directory. This is required because Kerberos authentication is enforced on newer versions of ZooKeeper.
+        3. Add the `jaas.conf` file to the `MI_HOME/repository/conf/identity` directory. This is required because Kerberos authentication is enforced on newer versions of ZooKeeper.
 
 To start the Kafka server:
 

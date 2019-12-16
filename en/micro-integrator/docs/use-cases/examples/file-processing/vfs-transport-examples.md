@@ -1,6 +1,6 @@
 # VFS Transport
 
-The Micro Integrator can access the local file system using the [VFS transport](../../setup/transport_configurations/configuring-transports/configuring-the-vfs-transport) sender and
+The Micro Integrator can access the local file system using the [VFS transport](../../../../references/synapse-properties/transport-parameters/vfs-transport-parameters) sender and
 receiver. This example demonstrates the VFS transport by using the file system as a transport medium.
 
 ## Synapse configuration
@@ -8,8 +8,7 @@ receiver. This example demonstrates the VFS transport by using the file system a
 Following are the integration artifacts (proxy service) that we can used to implement this scenario.
 
 ```xml
-<definitions xmlns="http://ws.apache.org/ns/synapse">
-    <proxy name="StockQuoteProxy" transports="vfs">
+    <proxy xmlns="http://ws.apache.org/ns/synapse" name="StockQuoteProxy" transports="vfs">
         <parameter name="transport.vfs.FileURI">file:///home/user/test/in</parameter>  
         <parameter name="transport.vfs.ContentType">text/xml</parameter>
         <parameter name="transport.vfs.FileNamePattern">.*\.xml</parameter>
@@ -36,7 +35,6 @@ Following are the integration artifacts (proxy service) that we can used to impl
         </target>
         <publishWSDL uri="file:repository/samples/resources/proxy/sample_proxy_1.wsdl"/>
     </proxy>
-</definitions>
 ```
 
 To configure a VFS endpoint, use the `vfs:file` prefix in the URI. For example:

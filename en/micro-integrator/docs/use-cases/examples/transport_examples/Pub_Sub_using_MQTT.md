@@ -1,5 +1,4 @@
 # Using the MQTT transport
-## Example use case
 This sample demonstrates how to run a Pub-Sub use case using MQTT as the broker.  the MQTT listener in the Micro Integrator consumes messages from a MQTT topic, and the MQTT sender publishes messages to a MQTT topic.
 
 ## Synapse configuration
@@ -27,17 +26,27 @@ This sample demonstrates how to run a Pub-Sub use case using MQTT as the broker.
 </proxy>  
 ```
 
+Add the following configurations to enable the MQTT listener and sender in `<MI_HOME>/conf/deployment.toml` file.
+
+```toml
+[transport.mqtt]
+listener.enable = true
+listener.hostname = "localhost"
+listener.connection_factory = "mqttConFactory"
+listener.server_port = 1883
+listener.client_id = "client-id-1234"
+listener.topic_name = "esb.test2"
+
+sender.enable = true
+```
+
 ## Build and run
 
 -   Download the `org.eclipse.paho.client.mqttv3-1.1.0.jar`
     file.
--   Download the Mosquitto-clients ( <http://mosquitto.org/> )
--   Download [WSO2 MB 3.1.0](http://wso2.com/products/message-broker/) or the mosquitto MQTT broker (http://mosquitto.org/)
+-   Download mosquitto MQTT broker (http://mosquitto.org/)
 -   Copy the `org.eclipse.paho.client.mqttv3-1.1.0.jar` file to the `MI_HOME/lib/` directory.
 -   Start the MQTT broker.
--   [Start WSO2 MB](https://docs.wso2.com/display/MB310/Running+the+Product#RunningtheProduct-Startingtheserver), [open the Management Console](https://docs.wso2.com/display/MB310/Running+the+Product#RunningtheProduct-AccessingtheManagementConsole) and [create a
-    topic](https://docs.wso2.com/display/MB310/Managing+Topics+and+Sub+Topics#ManagingTopicsandSubTopics-AddingtopicsfromthemanagementconsoleAdd)
-    named *esb.test2*.
 
 Invoke the proxy service:
 

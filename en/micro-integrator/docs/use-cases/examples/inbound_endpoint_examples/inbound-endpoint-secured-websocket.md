@@ -1,4 +1,4 @@
-# Using the Secure Websocket Inbound
+# Using the Secure Websocket Inbound Endpoint
 
 If you need to read and transform the content of WebSocket frames, the
 information in incoming WebSocket frames is not sufficient because the

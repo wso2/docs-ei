@@ -143,6 +143,6 @@ These transformations involve converting the message format to a different forma
 converting the format before publishing the message. This is managed via mapping. For detailed instructions to convert
  message formats via mapping, see the following guides:
  
- - [Consuming Messages - Supported Message Formats](consuming-messages/#supported-message-formats)
- - [Publishing Messages - Supported Message Formats](publishing-data/#supported-message-formats)
+ - [Consuming Messages - Supported Message Formats](consuming-messages.md#supported-message-formats)
+ - [Publishing Messages - Supported Message Formats](publishing-data.md#supported-message-formats)
 

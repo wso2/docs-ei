@@ -1,6 +1,4 @@
-# Inbound Endpoint JMS Protocol Sample
-## Example use case
-
+# Using the JMS Inbound Endpoint
 This sample demonstrates how one way message bridging from JMS to HTTP can be done using the inbound JMS endpoint.
 
 ## Synapse configuration

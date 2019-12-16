@@ -1,4 +1,7 @@
-# Developing Integration Solutions
+---
+title: Developing Integration Solutions
+note: This is an auto-generated file do not edit this, You can edit content in "ballerina-integrator" repo
+---
 
 The contents on this page will walk you through the topics related to developing integration micro services for the WSO2 Ballerina Integrator.
 
@@ -41,7 +44,7 @@ Integration developers will follow the workflow illustrated by the following dia
 			<ul>
 				<li><a href="../../develop/deploy-on-docker">Deploy your services on Docker</a></li>
 				<li><a href="../../develop/deploy-on-kubernetes">Deploy your services on Kubernetes</a></li>
-				<li><a href="../../develop/running-as-a-java-program">Running your service as a Java program</a></li>
+				<li><a href="../../develop/running-on-jvm">Running your service on a JVM</a></li>
 			</ul>
 		</td>
 	</tr>

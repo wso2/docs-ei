@@ -1,33 +1,34 @@
 # Using the Address Endpoint
-## Example use case
-
-This sample demonstrates how you can convert a POX message to a SOAP request.
+This sample demonstrates how you can convert a POX message to a SOAP request using an <b>Address</b> endpoint.
 
 ## Synapse configuration
 
-The XML configuration for this sample is as follows:
+Following is a sample REST API configuration that we can used to implement this scenario. See the instructions on how to [build and run](#build-and-run) this example.
 
-```xml 
+```xml
 <?xml version="1.0" encoding="UTF-8"?>
-<proxy name="SimpleStockQuoteProxy" startOnLoad="true" transports="http https" xmlns="http://ws.apache.org/ns/synapse">
-    <target>
-        <inSequence>
-			<!-- filtering of messages with XPath and regex matches -->
-			<filter source="get-property('To')" regex=".*/StockQuote.*">
-				<header name="Action" value="urn:getQuote" />
-				<send>
-					<endpoint>
-						<address
-							uri="http://localhost:9000/services/SimpleStockQuoteService"
-							format="soap11" />
-					</endpoint>
-				</send>
-			</filter>
-		</inSequence>
-		<outSequence>
-			<send />
-		</outSequence>
-    </target>
+ <proxy name="SimpleStockQuoteProxy" startOnLoad="true" transports="http https" xmlns="http://ws.apache.org/ns/synapse">
+     <target>
+         <inSequence>
+             <!-- filtering of messages with XPath and regex matches -->
+             <filter regex=".*StockQuote.*" source="get-property('To')">
+                 <then>
+                     <header name="Action" scope="default" value="urn:getQuote"/>
+                     <call>
+                         <endpoint>
+                             <address format="soap11" uri="http://localhost:9000/services/SimpleStockQuoteService"/>
+                         </endpoint>
+                     </call>
+                     <respond/>
+                 </then>
+                 <else/>
+             </filter>
+         </inSequence>
+         <outSequence>
+             <call/>
+         </outSequence>
+         <faultSequence/>
+     </target>
 </proxy>
 ```
 
@@ -35,18 +36,21 @@ The XML configuration for this sample is as follows:
 
 Create the artifacts:
 
-1. Set up WSO2 Integration Studio.
-2. Create an ESB Config project
-3. Create the following artifacts.
-4. Deploy the artifacts in your Micro Integrator.
+1. [Set up WSO2 Integration Studio](../../../../develop/installing-WSO2-Integration-Studio).
+2. [Create an ESB Solution project](../../../../develop/creating-projects/#esb-config-project).
+3. [Create a proxy service](../../../../develop/creating-artifacts/creating-a-proxy-service) with the configurations given above.
+4. [Deploy the artifacts](../../../../develop/deploy-and-run) in your Micro Integrator.
 
-Configure the ActiveMQ broker.
+Set up the back-end service:
 
-Set up the back-end service.
+1. Download the [stockquote_service.jar](https://github.com/wso2-docs/WSO2_EI/blob/master/Back-End-Service/stockquote_service.jar).
+2. Open a terminal, navigate to the location of the downloaded service, and run it using the following command:
 
-Invoking the service.
+    ```bash
+    java -jar stockquote_service.jar
+    ```
 
-The request sent by the client is as follows:
+Send the following request:
 
 ```bash
 POST /services/SimpleStockQuoteProxy/StockQuote HTTP/1.1
@@ -63,4 +67,4 @@ Transfer-Encoding: chunked
 </m0:getQuote>
 ```
 
-It is a HTTP REST request, which will be transformed into a SOAP request and forwarded to the stock quote service.
+This HTTP REST request will be transformed into a SOAP request and forwarded to the stock quote service.

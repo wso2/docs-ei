@@ -1,22 +1,26 @@
-# Sending multiple messages via the same TCP channel
-## Example use case
+# Using the TCP Transport
 
-Generally, you can send only one message via one generic TCP channel as described above. Nevertheless, the Micro Integrator also supports sending multiple messages via the same TCP channel by splitting them in different ways.
+**Sending multiple messages via the same TCP channel**
 
-Hence, the TCP transport needs to determine the end of the message that is mediated through the Micro Integrator to split it by a character, a sequence of characters, message length, and special characters in hex form. Client can select which input type to use to send the request to the TCP proxy out of the available options (i.e., binary and String). Splitting the message by a single character is the most efficient method.
+Generally, you can send only one message via one generic TCP channel. Nevertheless, the Micro Integrator also supports sending multiple messages via the same TCP channel by splitting them in different ways.  Hence, the TCP transport needs to determine the end of the message that is mediated through the Micro Integrator to split it by a character, a sequence of characters, message length, or special characters in hex form. The client can select which input type to use to send the request to the TCP proxy out of the available options (i.e., binary and String). Splitting the message by a single character is the most efficient method.
 
 You can split the following sample request input message in different ways as explained below.
 
 ```xml
-<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">""<soapenv:Header/><soapenv:Body/></soapenv:Envelope>"
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"><soapenv:Header/><soapenv:Body/></soapenv:Envelope>"
 ```
-## Synapse configurations
-### Splitting by a character
+## Prerequisites
 
-The sample proxy below splits the message by a character. It receives a message with an empty body, which it will forward to the HTTP endpoint after enriching the body with the symbolic value "`IBM`".
+[Enable the TCP transport](../../../../setup/transport_configurations/configuring-transports/#configuring-the-tcp-transport). 
+
+## Example 1: Splitting by a character
+
+### Synapse configurations
+
+The following proxy service splits the message by a character. It receives a message with an empty body, which it will forward to the HTTP endpoint after enriching the body with the symbolic value "`IBM`".
 
 ```xml
-<proxy name="TCPProxy" 
+<proxy xmlns="http://ws.apache.org/ns/synapse" name="TCPProxy" 
               transports="tcp" 
               startOnLoad="true" 
               trace="disable"> 
@@ -39,6 +43,7 @@ The sample proxy below splits the message by a character. It receives a message 
                    <target xmlns:m="http://services.samples" xpath="//m:getQuote/m:request/m:symbol"/> 
                 </enrich> 
                 <log level="full" separator=","/> 
+                <header name="Action" value="urn:getQuote" />
                 <send> 
                    <endpoint> 
                       <address uri="http://localhost:9000/services/SimpleStockQuoteService" format="soap11"/> 
@@ -58,13 +63,43 @@ The sample proxy below splits the message by a character. It receives a message 
           <parameter name="transport.tcp.contentType">text/xml</parameter> 
 </proxy>
 ```
+### Build and Run (Example 1)
 
-### Splitting by a special character
+Create the artifacts:
+
+1. [Set up WSO2 Integration Studio](../../../../develop/installing-WSO2-Integration-Studio).
+2. [Create an ESB Solution project](../../../../develop/creating-projects/#esb-config-project).
+3. Create the [proxy service](../../../../develop/creating-artifacts/creating-a-proxy-service) with the configurations given above.
+4. [Deploy the artifacts](../../../../develop/deploy-and-run) in your Micro Integrator.
+
+Set up the back-end service.
+
+* Download the [stockquote_service.jar](
+https://github.com/wso2-docs/WSO2_EI/blob/master/Back-End-Service/stockquote_service.jar)
+
+* Run the mock service using the following command
+```
+$ java -jar stockquote_service.jar
+```
+
+Send the following message via TCP to the TCP listener port.
+```xml
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"><soapenv:Header/><soapenv:Body/></soapenv:Envelope>|<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"><soapenv:Header/><soapenv:Body/></soapenv:Envelope>
+```
+In linux, we can save the request in a <strong>request.xml</strong> file and use netcat to send the TCP request. 
+```
+netcat localhost 6060 < request.xml
+```
+It can be observed that two messages are sent to the backend.
+
+## Example 2: Splitting by a special character
+
+### Synapse configuration
 
 The sample proxy below splits the input message by appending a special character to the end of the message.
 
 ```xml 
-<proxy name="TCPProxy" 
+<proxy xmlns="http://ws.apache.org/ns/synapse" name="TCPProxy" 
           transports="tcp" 
           startOnLoad="true" 
           trace="disable"> 
@@ -87,6 +122,7 @@ The sample proxy below splits the input message by appending a special characte
                <target xmlns:m="http://services.samples" xpath="//m:getQuote/m:request/m:symbol"/> 
             </enrich> 
             <log level="full" separator=","/> 
+            <header name="Action" value="urn:getQuote" />
             <send> 
                <endpoint> 
                   <address uri="http://localhost:9000/services/SimpleStockQuoteService" format="soap11"/> 
@@ -107,12 +143,42 @@ The sample proxy below splits the input message by appending a special characte
 </proxy>
 ```
 
-### Splitting by a character sequence
+### Build and Run (Example 2)
+
+Create the artifacts:
+
+1. [Set up WSO2 Integration Studio](../../../../develop/installing-WSO2-Integration-Studio).
+2. [Create an ESB Solution project](../../../../develop/creating-projects/#esb-config-project).
+3. Create the [proxy service](../../../../develop/creating-artifacts/creating-a-proxy-service) with the configurations given above.
+4. [Deploy the artifacts](../../../../develop/deploy-and-run) in your Micro Integrator.
+
+Set up the back-end service.
+
+* Download the [stockquote_service.jar](
+https://github.com/wso2-docs/WSO2_EI/blob/master/Back-End-Service/stockquote_service.jar)
+
+* Run the mock service using the following command
+```
+$ java -jar stockquote_service.jar
+```
+
+Send the following message via TCP to the TCP listener port.
+```xml
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"><soapenv:Header/><soapenv:Body/></soapenv:Envelope>
+```
+In linux, we can save the request in a <strong>request.xml</strong> file and use netcat to send the TCP request. 
+```
+netcat localhost 6060 < request.xml
+```
+
+## Example 3: Splitting by a character sequence
+
+### Synapse configuration
 
 The sample proxy below splits the input message by a sequence of characters.
 
 ```xml
-<proxy name="TCPProxy" 
+<proxy xmlns="http://ws.apache.org/ns/synapse" name="TCPProxy" 
           transports="tcp" 
           startOnLoad="true" 
           trace="disable"> 
@@ -136,6 +202,7 @@ The sample proxy below splits the input message by a sequence of characters.
                <target xmlns:m="http://services.samples" xpath="//m:getQuote/m:request/m:symbol"/> 
             </enrich> 
             <log level="full" separator=","/> 
+            <header name="Action" value="urn:getQuote" />
             <send> 
                <endpoint> 
                   <address uri="http://localhost:9000/services/SimpleStockQuoteService" format="soap11"/> 
@@ -156,12 +223,43 @@ The sample proxy below splits the input message by a sequence of characters.
  </proxy>
 ```
 
+### Build and Run (Example 3)
+
+Create the artifacts:
+
+1. [Set up WSO2 Integration Studio](../../../../develop/installing-WSO2-Integration-Studio).
+2. [Create an ESB Solution project](../../../../develop/creating-projects/#esb-config-project).
+3. Create the [proxy service](../../../../develop/creating-artifacts/creating-a-proxy-service) with the configurations given above.
+4. [Deploy the artifacts](../../../../develop/deploy-and-run) in your Micro Integrator.
+
+Set up the back-end service.
+
+* Download the [stockquote_service.jar](
+https://github.com/wso2-docs/WSO2_EI/blob/master/Back-End-Service/stockquote_service.jar)
+
+* Run the mock service using the following command
+```
+$ java -jar stockquote_service.jar
+```
+
+Send the following message via TCP to the TCP listener port.
+```xml
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"><soapenv:Header/><soapenv:Body/></soapenv:Envelope>split<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"><soapenv:Header/><soapenv:Body/></soapenv:Envelope>
+```
+
+In linux, we can save the request in a <strong>request.xml</strong> file and use netcat to send the TCP request.
+
+```
+netcat localhost 6060 < request.xml
+```
+It can be observed that two messages are sent to the backend.
+
 ## Developing the Java Client for the Transport
 
 The sample Java Client below splits the input message by a special character. Also, you can develop a character delimiter client by changing the below client accordingly.
 
 ```java
-import java.io.ByteArrayOutputStream;
+ import java.io.ByteArrayOutputStream;
  import java.io.IOException;
  import java.io.InputStream;
  import java.io.OutputStreamWriter;
@@ -170,63 +268,62 @@ import java.io.ByteArrayOutputStream;
  
  public class TCPClient {
  
- String host = "localhost";
- int port = 6789;
- Socket socket = null;
- int count = 0;
- 
- public static void main(String args[]) throws Exception {
- Character aByte = 0x10;
- TCPClient client = new TCPClient();
- String message = "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\">"
-                 + "<soapenv:Header/><soapenv:Body/></soapenv:Envelope>" + aByte;
- client.sendToServer(message);
- client.recieveFromServer();
- client.sendToServer(message);
- client.recieveFromServer();
- client.close();
- }
- 
- TCPClient() throws Exception {
- socket = new Socket(host, port);
- }
- 
- void sendToServer(String msg) throws Exception {
- //create output stream attached to socket
- PrintWriter outToServer = new PrintWriter(new OutputStreamWriter(socket.getOutputStream()));
- //send msg to server
- outToServer.print(msg);
- outToServer.flush();
- }
- 
- void recieveFromServer() throws Exception {
- char delimiter = 0x10;
- InputStream inFromServer = socket.getInputStream();
- //read from server
- int next = inFromServer.read();
- ByteArrayOutputStream bos = new ByteArrayOutputStream();
- while (next > -1) {
- if (delimiter != next) {
- bos.write(next);
- }
- next = inFromServer.read();
- if (delimiter == next) {
- System.out.println(new String(bos.toByteArray()));
- count++;
- if (count == 1 || count == 2) {
- break;
- }
- bos = new ByteArrayOutputStream();
- }
- }
- 
- if (count == 2) {
- close();
- }
- }
- 
- void close() throws IOException {
- socket.close();
- }
+     String host = "localhost";
+     int port = 6789;
+     Socket socket = null;
+     int count = 0;
+     
+     public static void main(String args[]) throws Exception {
+         Character aByte = 0x10;
+         TCPClient client = new TCPClient();
+         String message = "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\">"
+                         + "<soapenv:Header/><soapenv:Body/></soapenv:Envelope>" + aByte;
+         client.sendToServer(message);
+         client.recieveFromServer();
+         client.sendToServer(message);
+         client.recieveFromServer();
+         client.close();
+     }
+     
+     TCPClient() throws Exception {
+        socket = new Socket(host, port);
+     }
+     
+     void sendToServer(String msg) throws Exception {
+         //create output stream attached to socket
+         PrintWriter outToServer = new PrintWriter(new OutputStreamWriter(socket.getOutputStream()));
+         //send msg to server
+         outToServer.print(msg);
+         outToServer.flush();
+     }
+     
+     void recieveFromServer() throws Exception {
+         char delimiter = 0x10;
+         InputStream inFromServer = socket.getInputStream();
+         //read from server
+         int next = inFromServer.read();
+         ByteArrayOutputStream bos = new ByteArrayOutputStream();
+         while (next > -1) {
+             if (delimiter != next) {
+                bos.write(next);
+            }
+            next = inFromServer.read();
+            if (delimiter == next) {
+                System.out.println(new String(bos.toByteArray()));
+                count++;
+                if (count == 1 || count == 2) {
+                    break;
+                }
+                bos = new ByteArrayOutputStream();
+            }
+        }   
+        if (count == 2) {
+            close();
+        }
+     }
+     
+     void close() throws IOException {
+        socket.close();
+     }
  }
 ```

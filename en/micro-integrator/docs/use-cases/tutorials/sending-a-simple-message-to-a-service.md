@@ -10,7 +10,7 @@ To implement this use case, you will create a REST API resource and other artifa
 
 ### Step 1: Set up the workspace
 
--  Select the relevant [WSO2 Integration Studio](https://wso2.com/integration/tooling/) based on your operating system and extract the ZIP file.  The path to the extracted folder is referred to as `MI_TOOLING_HOME` throughout this tutorial.
+-  Download the relevant [WSO2 Integration Studio](https://wso2.com/integration/tooling/) based on your operating system.  The path to the extracted/installed folder is referred to as `MI_TOOLING_HOME` throughout this tutorial.
 -  Download the [CLI Tool](https://wso2.com/integration/micro-integrator/install/) for monitoring artifact deployments.
 
 ### Step 2: Develop the integration artifacts
@@ -226,7 +226,7 @@ You can now start configuring the API resource.
                   </li>
                   <li><strong>Value/Expression</strong> : <code>"Welcome to HealthcareService"</code></li>
                </ul>
-               <p><img src="../../assets/img/tutorials/119132413/119132423.png" width="546" height="369" /></p>
+               <p><img src="../../../assets/img/tutorials/119132413/119132423.png"/></p>
             </div>
          </td>
       </tr>

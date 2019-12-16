@@ -37,34 +37,35 @@ In this configuration, the Micro Integrator sends the requested message to the 
         For more information on using the get property method, see the [Property Mediator](property-Mediator.md).
 
 ``` java
-<definitions xmlns="http://ws.apache.org/ns/synapse">
+<sequence xmlns="http://ws.apache.org/ns/synapse" name="errorHandler">
+    <makefault>
+        <code value="tns:Receiver" xmlns:tns="http://www.w3.org/2003/05/soap-envelope"/>
+        <reason value="Mediation failed."/>
+    </makefault>
+    <send/>
+</sequence>
 
-        <sequence name="fault">
-            <makefault>
-                <code value="tns:Receiver" xmlns:tns="http://www.w3.org/2003/05/soap-envelope"/>
-                <reason value="Mediation failed."/>
-            </makefault>
-            <send/>
-        </sequence>
-
-        <sequence name="main" onError="fault">
-            <in>
+<proxy name="SimpleProxy" transports="http https" startonload="true" trace="disable" xmlns="http://ws.apache.org/ns/synapse">
+    <target>
+         <inSequence>
                 <send>
                     <endpoint name="stockquote">
                         <address uri="http://localhost:9000/services/SimpleStockQuoteService"/>
                     </endpoint>
                 </send>
-            </in>
-            <out>
+            </inSequence>
+            <outSequence>
                 <class name="samples.mediators.SimpleClassMediator">
                     <property name="variable1" value="10"/>
                     <property name="variable2" value="5"/>
                 </class>
                 <send/>
-            </out>
-        </sequence>
-
-    </definitions>
+            </outSequence>
+            <faultSequence>
+                 <sequence key="errorHandler"/>
+            </faultSequence>
+    </target>
+</proxy>
 ```
 
 See the following sample Class Mediator and note the `         SynapseMessageContext        ` and the full Synapse API in there.

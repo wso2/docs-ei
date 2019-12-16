@@ -41,18 +41,18 @@ This tutorial takes you through consuming from a Kafka topic, processing the mes
 
 ### Consuming data from Kafka
 
-**Step 1: Start Kafka**
+### Start Kafka
 
 1. Navigate to the `<KAFKA_HOME>` directory and start a zookeeper node by issuing the following command.
 
-   `sh bin/zookeeper-server-start.sh config/zookeeper.properties`
+    `sh bin/zookeeper-server-start.sh config/zookeeper.properties`
 
 2. Navigate to the `<KAFKA_HOME>` directory and start Kafka server node by issuing the following command.
 
-   `sh bin/kafka-server-start.sh config/server.properties`
+    `sh bin/kafka-server-start.sh config/server.properties`
 
 
-**Step 2: Start the Streaming Integrator**
+### Start the Streaming Integrator
 
 Navigate to the `<SI_HOME>/bin` directory and issue the following command. 
 `sh server.sh`
@@ -63,7 +63,7 @@ The following log appears on the SI console when the server is started successfu
 INFO {org.wso2.carbon.kernel.internal.CarbonStartupHandler} - WSO2 Streaming Integrator started in 4.240 sec
 ```
 
-**Step 3: Consume from a Kafka topic**
+### Consume from a Kafka topic
 
 Let's create a basic Siddhi application to consume messages from a Kafka topic.
 
@@ -103,7 +103,7 @@ Let's create a basic Siddhi application to consume messages from a Kafka topic.
     You just created a Siddhi application that listens to a Kafka topic named `productions` and logs any incoming messages. When logging, the name attribute of the message is converted to upper case. However, you have still not created this Kafka topic or published any messages to it. To do this, proceed to the next section.
 
 
-**Step 4: Generate Kafka messages**
+#### Generate Kafka messages
 
 Now let's generate some Kafka messages that the Streaming Integrator can receive. 
 
@@ -133,66 +133,6 @@ Now let's generate some Kafka messages that the Streaming Integrator can receive
 
 You may notice that the output message has an uppercase name: `ALMOND COOKIE`. This is because of the simple message transformation done in the Siddhi application.   
 
-**Step 5: Publish to a Kafka topic**
- 
-Now let's create a new Siddhi application to consume from the `productions` topic, filter the incoming messages based on a condition, and then publish those filtered messages to another Kafka topic.
-
-1. First, let's create a new topic named `bulk-orders` in the Kafka server.
-
-2. To publish the filtered messages to the `bulk-orders` Kafka topic you created, issue the following command.
-
-    ```
-    bin/kafka-topics.sh --create --bootstrap-server localhost:9092 --replication-factor 1 --partitions 1 --topic bulk-orders
-    ```
-
-3. Next, let's create the Siddhi application. Open a text file, and copy-paste following Siddhi application into it.
-
-    ```
-        @App:name("PublishToKafka")
-
-        @App:description('Consume events from a Kafka Topic, do basic filtering and publish filtered messages to a Kafka topic.')
-
-        @source(type='kafka',
-                topic.list='productions',
-                threading.option='single.thread',
-                group.id="group2",
-                bootstrap.servers='localhost:9092',
-                @map(type='json'))
-        define stream SweetProductionStream (name string, amount double);
-
-        @sink(type='kafka',
-              topic='bulk-orders',
-              bootstrap.servers='localhost:9092',
-              partition.no='0',
-              @map(type='json'))
-        define stream BulkOrdersStream (name string, amount double);
-
-        from SweetProductionStream[amount > 50]
-        select *
-        insert into BulkOrdersStream;
-    ```
-
-4. Save this file as `PublishToKafka.siddhi` in the `<SI_HOME>/wso2/server/deployment/siddhi-files` directory. When the 
-   Siddhi application is successfully deployed, the following `INFO` log appears in the Streaming Integrator console.
-
-    ```
-    INFO {org.wso2.carbon.streaming.integrator.core.internal.StreamProcessorService} - Siddhi App PublishToKafka deployed successfully
-    ```
-
-    !!!info
-        The `PublishToKafka` Siddhi application consumes all the messages from the `productions` topic and populates the `SweetProductionStream` stream. All the sweet production runs where the amount is greater than 100 are inserted into the `BulkOrdersStream` stream. These events are pushed to the `bulk-orders` Kafka topic.
-    
-
-5. To observe the messages in the `bulk-orders` topic, run a Kafka Console Consumer. Then navigate to the `<KAFKA_HOME>` directory and issue the following command.
-    ```
-    bin/kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic bulk-orders --from-beginning
-    ```
-   You can see the following message in the Kafka Consumer log. These indicate the production runs of which the amount is greater than 50.
-
-    ```
-    {"event":{ "name":"Almond cookie", "amount":100.0}}
-    ``` 
-   
 ### Consuming with an offset
 
 Previously, you consumed messages from the `productions` topic *without specifying an offset*. In other words, the Kafka offset was zero. In this section, instead of consuming with a zero offset, you specify an offset value and consume messages from that offset onwards.
@@ -420,6 +360,66 @@ Let's alter your topic to have three partitions. After that, you can assign two 
 
    You can observe a pattern where the load is distributed among `consumer-1` and `consumer-2` in the 2:1 ratio. This is because you assigned two partitions to `consumer-1` and assigned only one partition to `consumer-2`.
 
+### Publish to a Kafka topic
+ 
+Now let's create a new Siddhi application to consume from the `productions` topic, filter the incoming messages based on a condition, and then publish those filtered messages to another Kafka topic.
+
+1. First, let's create a new topic named `bulk-orders` in the Kafka server.
+
+2. To publish the filtered messages to the `bulk-orders` Kafka topic you created, issue the following command.
+
+    ```
+    bin/kafka-topics.sh --create --bootstrap-server localhost:9092 --replication-factor 1 --partitions 1 --topic bulk-orders
+    ```
+
+3. Next, let's create the Siddhi application. Open a text file, and copy-paste following Siddhi application into it.
+
+    ```
+        @App:name("PublishToKafka")
+
+        @App:description('Consume events from a Kafka Topic, do basic filtering and publish filtered messages to a Kafka topic.')
+
+        @source(type='kafka',
+                topic.list='productions',
+                threading.option='single.thread',
+                group.id="group2",
+                bootstrap.servers='localhost:9092',
+                @map(type='json'))
+        define stream SweetProductionStream (name string, amount double);
+
+        @sink(type='kafka',
+              topic='bulk-orders',
+              bootstrap.servers='localhost:9092',
+              partition.no='0',
+              @map(type='json'))
+        define stream BulkOrdersStream (name string, amount double);
+
+        from SweetProductionStream[amount > 50]
+        select *
+        insert into BulkOrdersStream;
+    ```
+
+4. Save this file as `PublishToKafka.siddhi` in the `<SI_HOME>/wso2/server/deployment/siddhi-files` directory. When the 
+   Siddhi application is successfully deployed, the following `INFO` log appears in the Streaming Integrator console.
+
+    ```
+    INFO {org.wso2.carbon.streaming.integrator.core.internal.StreamProcessorService} - Siddhi App PublishToKafka deployed successfully
+    ```
+
+    !!!info
+        The `PublishToKafka` Siddhi application consumes all the messages from the `productions` topic and populates the `SweetProductionStream` stream. All the sweet production runs where the amount is greater than 100 are inserted into the `BulkOrdersStream` stream. These events are pushed to the `bulk-orders` Kafka topic.
+    
+
+5. To observe the messages in the `bulk-orders` topic, run a Kafka Console Consumer. Then navigate to the `<KAFKA_HOME>` directory and issue the following command.
+    ```
+    bin/kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic bulk-orders --from-beginning
+    ```
+   You can see the following message in the Kafka Consumer log. These indicate the production runs of which the amount is greater than 50.
+
+    ```
+    {"event":{ "name":"Almond cookie", "amount":100.0}}
+    ``` 
+    
 ### Preserving the state of the application through a system failure
 
 Let's try out a scenario in which you deploy a Siddhi application to count the total number of productions.

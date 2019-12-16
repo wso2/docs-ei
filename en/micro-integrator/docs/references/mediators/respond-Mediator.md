@@ -32,10 +32,10 @@ the rest of the CRF case configuration is left intact, allowing you to
 revert to the original behavior in the future by removing the Respond
 mediator if required.
 
-``` java
-<definitions xmlns="http://ws.apache.org/ns/synapse">
-  <sequence name="main">
-    <in>
+```xml
+<proxy name="SimpleProxy" transports="http https" startonload="true" trace="disable" xmlns="http://ws.apache.org/ns/synapse">
+    <target>
+         <inSequence>
       <switch source="//m0:getQuote/m0:request/m0:symbol" xmlns:m0="http://services.samples">
         <case regex="WSO2">
           <property name="symbol" value="Great stock - WSO2"/>
@@ -61,10 +61,10 @@ mediator if required.
             expression="fn:concat('Normal Stock - ', //m0:getQuote/m0:request/m0:symbol)" xmlns:m0="http://services.samples"/>
         </default>
       </switch>
-    </in>
-    <out>
+    </inSequence>
+    <outSequence>
       <send/>
-    </out>
-  </sequence>
-</definitions>
+    </outSequence>
+  </target>
+</proxy>
 ```

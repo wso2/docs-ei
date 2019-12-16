@@ -10,7 +10,7 @@ Follow the instructions given below to create a new Message Processor artifact i
 4.  Specify values for the required parameter for the selected message processor.
 
 	!!! Info
-        See the list of configurable properties for a [Message Sampling Processor](../../references/synapse-properties/message-processors/msg-sampling-processor-properties.md), [Scheduled Message Forwarding Processorr](../../references/synapse-properties/message-processors/msg-sched-forwarding-processor-properties.md), or a [Scheduled Failover Message Forwarding Processor](../../references/synapse-properties/message-processors/msg-sched-failover-forwarding-processor-properties.md).
+        See the list of configurable properties for a [Message Sampling Processor](../../references/synapse-properties/message-processors/msg-sampling-processor-properties.md), [Scheduled Message Forwarding Processor](../../references/synapse-properties/message-processors/msg-sched-forwarding-processor-properties.md), or a [Scheduled Failover Message Forwarding Processor](../../references/synapse-properties/message-processors/msg-sched-failover-forwarding-processor-properties.md).
 
 4.  Do one of the following:  
     -   To save the endpoint in an existing ESB Config project in your workspace, click **Browse** and select that project.
@@ -19,7 +19,7 @@ Follow the instructions given below to create a new Message Processor artifact i
 6.  Open the new artifact from the project explorer, and update any optional message processor properties.
 
 	!!! Info
-        See the list of configurable properties for a [Message Sampling Processor](../../references/synapse-properties/message-processors/msg-sampling-processor-properties.md), [Scheduled Message Forwarding Processorr](../../references/synapse-properties/message-processors/msg-sched-forwarding-processor-properties.md), or a [Scheduled Failover Message Forwarding Processor](../../references/synapse-properties/message-processors/msg-sched-failover-forwarding-processor-properties.md).
+        See the list of configurable properties for a [Message Sampling Processor](../../references/synapse-properties/message-processors/msg-sampling-processor-properties.md), [Scheduled Message Forwarding Processor](../../references/synapse-properties/message-processors/msg-sched-forwarding-processor-properties.md), or a [Scheduled Failover Message Forwarding Processor](../../references/synapse-properties/message-processors/msg-sched-failover-forwarding-processor-properties.md).
 
 ## Examples
 
@@ -40,4 +40,4 @@ Follow the instructions given below to create a new Message Processor artifact i
 
 ## Tutorials
 
--	See the tutorial on [using a message processor](../../../../use-cases/tutorials/storing-and-forwarding-messages).
+-	See the tutorial on [using message stores and processors](../../../../use-cases/tutorials/storing-and-forwarding-messages)

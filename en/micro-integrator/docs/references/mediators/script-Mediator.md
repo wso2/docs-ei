@@ -8,7 +8,7 @@ The **Script Mediator** is used to invoke the functions of a variety of scripti
     -   Achieve the same functionality via a [Class mediator](class-Mediator.md) .
     -   If the original message consists of repetitive sections, you can use the [Iterate mediator](iterate-Mediator.md) to generate a relatively
     small payload using those repetitive sections. This will then allow you to use the Script mediator.
-    -   The Script Mediator supports using Nashorn to execute JavaScripts, in addition to its default Rhino engine. For more information, see [Script Mediator with Nashorn Support](script-Mediator-with-Nashorn-Support.md).
+    -   The Script Mediator supports using Nashorn to execute JavaScripts, in addition to its default Rhino engine.
 
 A Script mediator can be created in one of the following methods.
 
@@ -62,7 +62,7 @@ when using JavaScript `         getPayloadXML        ` and
 and when using Ruby, REXML documents.
 
 !!! Info
-    The Script mediator is a [content-aware](../../../concepts/message-processing-units/#classification-of-mediators) mediator.
+    The Script mediator is a [content-aware](../../../references/mediators/about-mediators/#classification-of-mediators) mediator.
 
 ## Prerequisites
 

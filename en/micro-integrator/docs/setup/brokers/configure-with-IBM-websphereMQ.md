@@ -8,8 +8,7 @@ following topics cover the configuration steps.
 
 ## Prerequisites
 
--   Download and install WSO2 Micro Integratot. 
--   To test the samples, you must also have Apache Ant installed.
+-   Download and install WSO2 Micro Integrator. 
 -   WebSphere MQ is installed and the latest fix pack applied (see the [IBM documentation](http://publib.boulder.ibm.com/infocenter/sametime/v8r0/index.jsp?topic=/com.ibm.help.sametime.advanced.doc/stv_inst_mq_appl_win_t.html). The fix pack can be obtained from <http://www-01.ibm.com/software/integration/wmq>). These instructions are tested on [IBM WebSphere MQ version 8.0.0.4](http://www-01.ibm.com/support/docview.wss?uid=swg24040022).
 
 ### Creating queue manager, queue and channel in IBM WebSphere MQ
@@ -32,7 +31,7 @@ following topics cover the configuration steps.
     | **Listen on port number** field | Enter the number of the port where you want to set the listener. In this example, the port number will be 1414.|
 
 6.  Click **Next** and then click **Finish** to save the configuration. The queue manager will be created as shown below.  
-    ![](attachments/119130332/119130334.png)
+    ![](../../assets/img/broker-configs/IBM-websphere-mq/119130334.png)
 7.  Expand the navigation tree of the ESBQManager queue manager in the navigation tree. Right-click **Queues**, move the cursor to **New**, and then click **Local Queue** to open the **Create a Local Queue** wizard. Enter the local queue name as `LocalQueue1` and complete running the wizard. Leave the default values of all other fields unchanged, and click **Finish** to save the local queue.  
 8.  Right-click **Channels** , move the cursor to **New** , and then click **Server-connection Channel** to open the **Create a Server-connection Channel** wizard. Enter **myChannel** as the channel name and click **Next**. Make sure that the value for the **Transmission Protocol** is **TCP** . Leave the default values unchanged for the rest of the fields, and click **Finish** to save the channel.
 
@@ -44,14 +43,14 @@ following topics cover the configuration steps.
     in the `          G         ` folder.
 2.  Go to IBM Websphere MQ, and right-click on **JMS Administered
     Objects** , and then click **Add Initial Context** .  
-    ![](attachments/119130332/119130339.png)
+    ![](../../assets/img/broker-configs/IBM-websphere-mq/119130339.png)
 3.  Select the **File system** option in the **Connection Details**
     wizard. Enter `          file:G/jndidirectory         ` in the
     **Context nickname** field. Leave the default values unchanged for
     other fields and complete running the wizard. The new file initial
     context will be displayed in the left navigator under **JMS
     Administered Objects** as shown below.  
-    ![](attachments/119130332/119130338.png)
+    ![](../../assets/img/broker-configs/IBM-websphere-mq/119130338.png)
 4.  Click the file initial context (named
     `          file:G/jndidirectory         ` in this example) in the
     navigator to expand it. Right-click on **Connection Factories**,
@@ -109,7 +108,7 @@ REFRESH SECURITY TYPE(CONNAUTH)
   
 The following will be displayed in the command prompt.
 
-![](attachments/119130332/119130336.png)
+![](../../assets/img/broker-configs/IBM-websphere-mq/119130336.png)
 
 ### Configuring the Micro Integrator
 
@@ -137,54 +136,46 @@ The following will be displayed in the command prompt.
 
 1.  Add the following configurations to enable the two JMS listeners.
 
-    ```xml
+    ```toml
     [[transport.jms.listener]]
-    name = "myTopicListener"
+    name = "myQueueConnectionFactory1"
     parameter.initial_naming_factory = "com.sun.jndi.fscontext.RefFSContextFactory"
-    parameter.broker_name = "" 
     parameter.provider_url = "file:/G:/jndidirectory"
     parameter.connection_factory_name = "MyQueueConnectionFactory"
     parameter.connection_factory_type = "queue"
-    parameter.username = ""
-    parameter.password = ""
-    parameter.cache_level = "consumer"
+    parameter.username = "username"
+    parameter.password = "password"
 
     [[transport.jms.listener]]
-    name = "myTopicListener"
+    name = "default"
     parameter.initial_naming_factory = "com.sun.jndi.fscontext.RefFSContextFactory"
-    parameter.broker_name = "" 
     parameter.provider_url = "file:/G:/jndidirectory"
     parameter.connection_factory_name = "MyQueueConnectionFactory"
     parameter.connection_factory_type = "queue"
-    parameter.username = ""
-    parameter.password = ""
-    parameter.cache_level = "consumer"
+    parameter.username = "username"
+    parameter.password = "password"
     ```
 
 2.  Add the following configurations to enable the two JMS senders.
 
-    ```xml
+    ```toml
     [[transport.jms.sender]]
-    name = "myTopicSender"
+    name = "myQueueConnectionFactory1"
     parameter.initial_naming_factory = "com.sun.jndi.fscontext.RefFSContextFactory"
-    parameter.broker_name = ""
     parameter.provider_url = "file:/G:/jndidirectory"
     parameter.connection_factory_name = "MyQueueConnectionFactory"
     parameter.connection_factory_type = "queue"
-    parameter.username = ""
-    parameter.password = ""
-    parameter.cache_level = "producer"
+    parameter.username = "username"
+    parameter.password = "password"
 
     [[transport.jms.sender]]
-    name = "myTopicSender"
+    name = "default"
     parameter.initial_naming_factory = "com.sun.jndi.fscontext.RefFSContextFactory"
-    parameter.broker_name = ""
     parameter.provider_url = "file:/G:/jndidirectory"
     parameter.connection_factory_name = "MyQueueConnectionFactory"
     parameter.connection_factory_type = "queue"
-    parameter.username = ""
-    parameter.password = ""
-    parameter.cache_level = "producer"
+    parameter.username = "username"
+    parameter.password = "password"
     ```
 
 ### Copying IBM Websphere MQ libraries
@@ -203,9 +194,12 @@ Follow the instructions below to build and install IBM WebSphere MQ client JAR f
     `<IBM_MQ_HOME>` refers to the IBM WebSphere MQ
     installation directory) to the
     `wmq-client/lib/` directory.
-
+    
+    !!! Info
+        If you are using IBM MQ docker container, you can find these libraries in inside the `/opt/mqm/java/lib` directory. You can use `docker cp` command to copy jar files from the docker container.
+   
     !!! Note
-        If you are using IBM MQ 8 with Mutual SSL enabled, you need to download the [wmq-client-8.0.0.zip](attachments/119130332/119130333.zip)
+        If you are using IBM MQ 8 with Mutual SSL enabled, you need to download the [wmq-client-8.0.0.zip](../../assets/img/broker-configs/IBM-websphere-mq/119130333.zip)
         file and follow the instructions in the readme.txt file.
 
     -   `             com.ibm.mq.allclient.jar            `
@@ -323,617 +317,4 @@ In this section, the following simple proxy service is deployed to listen to the
 
 Open IBM Websphere MQ and publish a message to `LocalQueue1`.
 
-![](attachments/119130332/119130337.png)
-
-
-### Sample Scenarios
-
-This section describes how to configure the following sample scenarios
-using the JMS transport, WebSphere MQ, and WSO2 EI:
-
--   [Queue Scenario 1](#ConfigurewithIBMWebSphereMQ-QueueScenario1): JMS Client -> Queue -> WSO2 EI -> Axis2server
--   [Queue Scenario 2](#ConfigurewithIBMWebSphereMQ-QueueScenario2): JMS Client -> WSO2 EI -> Queue -> Axis2server
--   [Topic Scenario 1](#ConfigurewithIBMWebSphereMQ-TopicScenario1): JMS Client -> Topic -> WSO2 EI -> Axis2server
--   [Topic Scenario 2](#ConfigurewithIBMWebSphereMQ-TopicScenario2): JMS Client -> WSO2 EI -> Topic -> Axis2server
-
-In scenarios where the client places the message directly on the queue or topic, and the message is then picked up by WSO2 EI, you configure
-the non-default connection factories in `MI_HOME\conf\axis2\axis2.xml` and comment them out
-in the
-`         <EI_HOME>\samples\axis2Server\repository\conf\axis2.xml        `
-file. In scenarios where the client sends the message to WSO2 EI first,
-and WSO2 places the message on the queue or topic, you configure the
-non-default connection factories in
-`         <EI_HOME>\samples\axis2Server\repository\conf\axis2.xml        `
-and comment them out in
-`         <EI_HOME>\conf\axis2\axis2.xml        ` .
-
-#### Queue Scenario 1: Client to Queue to WSO2 EI
-
-In this scenario, the JMS client places an order on the JMS\_QUEUE
-queue. WSO2 EI listens on this queue, gets the message, and sends it to
-the back-end server to process.
-
-1.  In `           <EI_HOME>\conf\axis2\axis2.xml          ` , comment
-    out the myTopicConnectionFactory parameter and uncomment the
-    SQProxyCF parameter. It should look as shown below.
-
-    ```xml
-    <transportReceiver name="jms" class="org.apache.axis2.transport.jms.JMSListener">
-        <!--parameter name="myTopicConnectionFactory" locked="false"> 
-          <parameter name="java.naming.factory.initial" 
-    locked="false">com.sun.jndi.fscontext.RefFSContextFactory</parameter>
-          <parameter name="java.naming.provider.url" locked="false">file:/C:/JNDI-Directory</parameter>
-          <parameter name="transport.jms.ConnectionFactoryJNDIName" locked="false">MQ_JMS_MANAGER</parameter>
-          <parameter name="transport.jms.ConnectionFactoryType" locked="false">topic</parameter>
-          <parameter name="transport.jms.Destination">JMS_QUEUE</parameter>
-        </parameter--> 
-
-        <parameter name="SQProxyCF" locked="false">
-          <parameter name="java.naming.factory.initial">com.sun.jndi.fscontext.RefFSContextFactory</parameter>
-          <parameter name="java.naming.provider.url">file:/C:/JNDI-Directory</parameter>
-          <parameter name="transport.jms.ConnectionFactoryJNDIName" locked="false">MQ_JMS_MANAGER</parameter>
-          <parameter name="transport.jms.ConnectionFactoryType" locked="false">queue</parameter>
-          <parameter name="transport.jms.Destination">JMS_QUEUE</parameter>
-        </parameter>
-
-        <parameter name="default" locked="false">
-          <parameter name="java.naming.factory.initial" 
-    locked="false">com.sun.jndi.fscontext.RefFSContextFactory</parameter>
-          <parameter name="java.naming.provider.url" locked="false">file:/C:/JNDI-Directory</parameter>
-          <parameter name="transport.jms.ConnectionFactoryJNDIName" locked="false">MQ_JMS_MANAGER</parameter>
-          <parameter name="transport.jms.ConnectionFactoryType" locked="false">queue</parameter>
-          <parameter name="transport.jms.Destination">JMS_QUEUE</parameter>
-        </parameter>
-    </transportReceiver>
-    ```
-
-2.  If you are using version 6.0 of IBM WebSphere MQ, add the following
-    parameter to axis2.xml to ensure that JMS Spec version 1.1.2b is
-    used instead of version 1.1:
-
-    ```java
-    <parameter name="transport.jms.JMSSpecVersion">1.0.2b</parameter>
-    ```
-
-3.  Start WSO2 EI with the [Sample
-    250](https://docs.wso2.com/display/ESB500/Sample+250%3A+Introduction+to+Switching+Transports)
-    configuration by running the following command.  
-    `           wso2ei-samples.bat -sn 250          `
-
-4.  Log in to the server management console at:
-    <https://localhost:9443/carbon/> .
-
-5.  Click **Services -\> list -\> StockQuoteProxy -\> edit (Specific
-    Configuration)**
-
-6.  Add a service parameter as follows and save it.  
-    `           name = transport.jms.ConnectionFactory value = SQProxyCF          `
-
-7.  Go to the `           <EI_HOME>/samples/axis2Client          `
-    directory and build it using the `           ant          ` command.
-
-8.  Go to the
-    `           <EI_HOME>/samples/axis2Client/src/samples/userguide          `
-    directory, open the `           GenericJMSClient.java          `
-    source file, and make the following changes in the code:
-
-    1.  Set the jms\_dest property default value to
-        `             JMS_QUEUE            ` (line 45)
-
-    2.  Set the java.naming.provider.url to
-        `             file:/C:/JNDI-Directory            ` (line 82)
-
-    3.  Set the java.naming.factory.initial to
-        `             com.sun.jndi.fscontext.RefFSContextFactory            `
-        (line 85)
-
-    4.  Set the lookup key to `             MQ_JMS_MANAGER            `
-        (line 89)
-
-9.  Configure the proxy configuration so that it appears as follows.
-
-    ```xml
-    <definitions xmlns="http://ws.apache.org/ns/synapse">
-      <proxy name="StockQuoteProxy" transports="https http jms" startOnLoad="true" trace="disable">
-        <target>
-          <endpoint>
-            <address uri="http://localhost:9000/services/SimpleStockQuoteService"/>
-          </endpoint>
-          <inSequence>
-            <property name="OUT_ONLY" value="true"/>
-          </inSequence>
-          <outSequence>
-            <send/>
-          </outSequence>
-        </target>
-        <publishWSDL uri="file:samples/service-bus/resources/proxy/sample_proxy_1.wsdl"/>
-        <parameter name="transport.jms.ContentType">
-          <rules>
-            <jmsProperty>contentType</jmsProperty>
-            <default>application/xml</default>
-          </rules>
-        </parameter>
-        <parameter name="transport.jms.ConnectionFactory">SQProxyCF</parameter>
-      </proxy>
-      <sequence name="fault">
-        <log level="full">
-          <property name="MESSAGE" value="Executing default "fault" sequence"/>
-          <property name="ERROR_CODE" expression="get-property('ERROR_CODE')"/>
-          <property name="ERROR_MESSAGE" expression="get-property('ERROR_MESSAGE')"/>
-        </log>
-        <drop/>
-      </sequence>
-      <sequence name="main">
-        <log/>
-        <drop/>
-      </sequence>
-    </definitions>
-    ```
-
-10. Configure `           <EI_HOME>\samples\axis2Server\repository\conf\axis2.xml          `
-    so that it looks as follows.
-
-    ```xml
-    <transportReceiver name="jms" class="org.apache.axis2.transport.jms.JMSListener">
-      <!--parameter name="myTopicConnectionFactory" locked="false">
-        <parameter name="java.naming.factory.initial" 
-    locked="false">com.sun.jndi.fscontext.RefFSContextFactory</parameter>
-        <parameter name="java.naming.provider.url" locked="false">file:/C:/JNDI-Directory</parameter>
-        <parameter name="transport.jms.ConnectionFactoryJNDIName" locked="false">MQ_JMS_MANAGER</parameter>
-        <parameter name="transport.jms.ConnectionFactoryType" locked="false">topic</parameter>
-        <parameter name="transport.jms.Destination">JMS_QUEUE</parameter>
-      </parameter-->
-
-      <!--parameter name="SQProxyCF" locked="false">
-        <parameter name="java.naming.factory.initial">com.sun.jndi.fscontext.RefFSContextFactory</parameter>
-        <parameter name="java.naming.provider.url">file:/C:/JNDI-Directory</parameter>
-        <parameter name="transport.jms.ConnectionFactoryJNDIName" locked="false">MQ_JMS_MANAGER</parameter>
-        <parameter name="transport.jms.ConnectionFactoryType" locked="false">queue</parameter>
-        <parameter name="transport.jms.Destination">JMS_QUEUE</parameter>
-      </parameter-->
-
-      <parameter name="default" locked="false">
-        <parameter name="java.naming.factory.initial" 
-    locked="false">com.sun.jndi.fscontext.RefFSContextFactory</parameter>
-        <parameter name="java.naming.provider.url" locked="false">file:/C/JNDI-Directory</parameter>
-        <parameter name="transport.jms.ConnectionFactoryJNDIName" locked="false">MQ_JMS_MANAGER</parameter>
-        <parameter name="transport.jms.ConnectionFactoryType" locked="false">queue</parameter>
-        <parameter name="transport.jms.Destination">JMS_QUEUE</parameter>
-      </parameter>
-    </transportReceiver>
-    ```
-
-11. Start the axis2 Server with the following command.  
-    `           axis2Server.bat          `
-
-12. Send the request from the JMS client, and the sample Axis2 server
-    console will print a message.  
-    `           ant jmsclient -Djms_type=pox -Djms_dest=JMS_QUEUE -Djms_payload=MSFT          `
-
-#### Queue Scenario 2: Client to WSO2 EI to Queue
-
-In this scenario, the JMS client places an order to the WSO2 EI, which
-then places it on the queue. The back-end server listens on this queue,
-and then gets the message and processes the request.
-
-1.  In `           <EI_HOME>\conf\axis2\axis2.xml          ` , comment
-    out both the myTopicConnectionFactory parameter and the SQProxyCF
-    parameter. It should look as shown below.
-
-    ```xml
-    <transportReceiver name="jms" class="org.apache.axis2.transport.jms.JMSListener">
-        <!--parameter name="myTopicConnectionFactory" locked="false"> 
-          <parameter name="java.naming.factory.initial" 
-    locked="false">com.sun.jndi.fscontext.RefFSContextFactory</parameter>
-          <parameter name="java.naming.provider.url" locked="false">file:/C:/JNDI-Directory</parameter>
-          <parameter name="transport.jms.ConnectionFactoryJNDIName" locked="false">MQ_JMS_MANAGER</parameter>
-          <parameter name="transport.jms.ConnectionFactoryType" locked="false">topic</parameter>
-          <parameter name="transport.jms.Destination">JMS_QUEUE</parameter>
-        </parameter--> 
-
-        <!--parameter name="SQProxyCF" locked="false">
-          <parameter name="java.naming.factory.initial">com.sun.jndi.fscontext.RefFSContextFactory</parameter>
-          <parameter name="java.naming.provider.url">file:/C:/JNDI-Directory</parameter>
-          <parameter name="transport.jms.ConnectionFactoryJNDIName" locked="false">MQ_JMS_MANAGER</parameter>
-          <parameter name="transport.jms.ConnectionFactoryType" locked="false">queue</parameter>
-          <parameter name="transport.jms.Destination">JMS_QUEUE</parameter>
-        </parameter-->
-
-        <parameter name="default" locked="false">
-          <parameter name="java.naming.factory.initial" 
-    locked="false">com.sun.jndi.fscontext.RefFSContextFactory</parameter>
-          <parameter name="java.naming.provider.url" locked="false">file:/C:/JNDI-Directory</parameter>
-          <parameter name="transport.jms.ConnectionFactoryJNDIName" locked="false">MQ_JMS_MANAGER</parameter>
-          <parameter name="transport.jms.ConnectionFactoryType" locked="false">queue</parameter>
-          <parameter name="transport.jms.Destination">JMS_QUEUE</parameter>
-        </parameter>
-    </transportReceiver>
-    ```
-
-2.  Start the WSO2 EI with the [Sample
-    251](https://docs.wso2.com/display/ESB500/Sample+251%3A+Switching+from+HTTP%28S%29+to+JMS)
-    configuration using the following command.  
-    `           wso2ei-samples.bat -sn 251          `
-
-3.  Log into the WSO2 EI management console at: [https://localhost: 8243
-    /carbon/](https://localhost:9443/carbon/) .
-4.  Select **Service Bus -\> Source view** and update the JMS URL as
-    follows.  
-    `          jms:/JMS_QUEUE?transport.jms.ConnectionFactoryJNDIName=MQ_JMS_MANAGER&java.naming.factory.initial=com.sun.jndi.fscontext.RefFSContextFactory&java.naming.provider.url=file:/C:/JNDI-Directory&transport.jms.DestinationType=queue&transport.jms.ConnectionFactoryType=queue &transport.jms.Destination=JMS_QUEUE         `
-5.  Configure the proxy service as follows.
-
-    ```xml
-    <definitions xmlns="http://ws.apache.org/ns/synapse">
-      <proxy name="StockQuoteProxy" transports="https http jms" startOnLoad="true" trace="disable">
-        <target>
-          <endpoint>
-            <address uri="jms:/JMS_QUEUE?transport.jms.ConnectionFactoryJNDIName=MQ_JMS_MANAGER&amp;java.naming.factory.initial=com.sun.jndi.fscontext.RefFSContextFactory&amp;java.naming.provider.url=file:/C:/JNDI-Directory&amp;transport.jms.DestinationType=queue&transport.jms.ConnectionFactoryType=queue&amp;transport.jms.Destination=JMS_QUEUE"/>
-          </endpoint>
-          <inSequence>
-            <property name="TRANSPORT_HEADERS" scope="axis2" action="remove"/>
-            <property name="OUT_ONLY" value="true"/>
-          </inSequence>
-          <outSequence>
-            <send/>
-          </outSequence>
-        </target>
-        <publishWSDL uri="file:samples/service-bus/resources/proxy/sample_proxy_1.wsdl"/>
-      </proxy>
-      <sequence name="fault">
-        <log level="full">
-          <property name="MESSAGE" value="Executing default "fault" sequence"/>
-          <property name="ERROR_CODE" expression="get-property('ERROR_CODE')"/>
-          <property name="ERROR_MESSAGE" expression="get-property('ERROR_MESSAGE')"/>
-        </log>
-        <drop/>
-      </sequence>
-      <sequence name="main">
-        <log/>
-        <drop/>
-      </sequence>
-    </definitions>
-    ```
-
-6.  Comment out `myTopicConnectionFactory` and
-    uncomment `SQProxyCF` in the
-    `<EI_HOME>\samples\axis2Server\repository\conf\axis2.xml`
-    file as follows.
-
-    ```xml
-      <transportReceiver name="jms" class="org.apache.axis2.transport.jms.JMSListener">
-        <!--parameter name="myTopicConnectionFactory" locked="false"> 
-        <parameter name="java.naming.factory.initial" 
-    locked="false">com.sun.jndi.fscontext.RefFSContextFactory</parameter>
-        <parameter name="java.naming.provider.url" locked="false">file:/C:/JNDI-Directory</parameter>
-        <parameter name="transport.jms.ConnectionFactoryJNDIName" locked="false">MQ_JMS_MANAGER</parameter>
-         <parameter name="transport.jms.ConnectionFactoryType" locked="false">topic</parameter>
-         <parameter name="transport.jms.Destination">JMS_QUEUE</parameter>
-        </parameter-->
-
-        <parameter name="SQProxyCF" locked="false">
-         <parameter name="java.naming.factory.initial">com.sun.jndi.fscontext.RefFSContextFactory</parameter>
-         <parameter name="java.naming.provider.url">file:/C:/JNDI-Directory</parameter>
-         <parameter name="transport.jms.ConnectionFactoryJNDIName" locked="false">MQ_JMS_MANAGER</parameter>
-         <parameter name="transport.jms.ConnectionFactoryType" locked="false">queue</parameter>
-         <parameter name="transport.jms.Destination">JMS_QUEUE</parameter>
-        </parameter>
-
-        <parameter name="default" locked="false"> 
-        <parameter name="java.naming.factory.initial" 
-    locked="false">com.sun.jndi.fscontext.RefFSContextFactory</parameter>
-        <parameter name="java.naming.provider.url" locked="false">file:/C:/JNDI-Directory</parameter>
-        <parameter name="transport.jms.ConnectionFactoryJNDIName" locked="false">MQ_JMS_MANAGER</parameter>
-         <parameter name="transport.jms.ConnectionFactoryType" locked="false">queue</parameter>
-         <parameter name="transport.jms.Destination">JMS_QUEUE</parameter>
-        </parameter>
-      </transportReceiver>
-    ```
-
-7.  Start the axis2 Server with the following command.  
-    `           axis2Server.bat          `
-
-8.  Add the following parameters to `           service.xml          `
-    in
-    `           <EI_HOME>\samples\axis2Server\repository\services\SimpleStockQuoteService.aar.          `
-
-    ```java
-    <parameter name="transport.jms.ConnectionFactory">SQProxyCF</parameter>
-    <parameter name="transport.jms.Destination">JMS_QUEUE</parameter>
-    ```
-
-9.  Send the request from the JMS client, and the sample Axis2 server
-    console will print a message as follows.
-
-    ```bash
-    ant stockquote -Daddurl=http://localhost:8280/services/StockQuoteProxy -Dmode=placeorder -Dsymbol=MSFT 
-    ```
-
-#### Topic Scenario 1: Client to Topic to WSO2 EI 
-
-In this scenario, the JMS client places an order on the topic ivtT. The
-WSO2 EI listens to this topic, gets the message, and sends it to the
-back-end server to process the request.
-
-1.  In `           <EI_HOME>           \conf\axis2\axis2.xml          `
-    , uncomment the `           myTopicConnectionFactory          `
-    parameter and comment out the `           SQProxyCF          `
-    parameter. It should look as shown below.
-
-    ```xml
-      <transportReceiver name="jms" class="org.apache.axis2.transport.jms.JMSListener">
-        <parameter name="myTopicConnectionFactory" locked="false"> 
-        <parameter name="java.naming.factory.initial" 
-    locked="false">com.sun.jndi.fscontext.RefFSContextFactory</parameter>
-        <parameter name="java.naming.provider.url" locked="false">file:/C:/JNDI-Directory</parameter>
-        <parameter name="transport.jms.ConnectionFactoryJNDIName" locked="false">MQ_JMS_MANAGER</parameter>
-         <parameter name="transport.jms.ConnectionFactoryType" locked="false">topic</parameter>
-         <parameter name="transport.jms.Destination">JMS_QUEUE</parameter>
-        </parameter>
-
-        <!--parameter name="SQProxyCF" locked="false">
-         <parameter name="java.naming.factory.initial">com.sun.jndi.fscontext.RefFSContextFactory</parameter>
-         <parameter name="java.naming.provider.url">file:/C:/JNDI-Directory</parameter>
-         <parameter name="transport.jms.ConnectionFactoryJNDIName" locked="false">MQ_JMS_MANAGER</parameter>
-         <parameter name="transport.jms.ConnectionFactoryType" locked="false">queue</parameter>
-         <parameter name="transport.jms.Destination">JMS_QUEUE</parameter>
-        </parameter-->
-
-        <parameter name="default" locked="false"> 
-        <parameter name="java.naming.factory.initial" 
-    locked="false">com.sun.jndi.fscontext.RefFSContextFactory</parameter>
-        <parameter name="java.naming.provider.url" locked="false">file:/C:/JNDI-Directory</parameter>
-        <parameter name="transport.jms.ConnectionFactoryJNDIName" locked="false">MQ_JMS_MANAGER</parameter>
-         <parameter name="transport.jms.ConnectionFactoryType" locked="false">queue</parameter>
-         <parameter name="transport.jms.Destination">JMS_QUEUE</parameter>
-        </parameter>
-      </transportReceiver>
-    ```
-
-2.  S tart WSO2 EI with the [Sample
-    250](https://docs.wso2.com/display/ESB500/Sample+250%3A+Introduction+to+Switching+Transports)
-    configuration by running the following command.  
-    `           wso2ei-samples.bat -sn 250          `
-
-3.  L og in to the server management console at: [https://localhost:
-    8243 /carbon/](https://localhost:9443/carbon/) .
-
-4.  Click **web services -\> list -\> StockQuoteProxy -\> edit (Specific
-    Configuration)**
-
-5.  Add a service parameter as follows and save it.  
-    `           name = transport.jms.ConnectionFactory value = myTopicConnectionFactory          `  
-
-6.  Go to the `           <EI_HOME>/samples/axis2Client          `
-    directory and build it using the `           ant          ` command.
-
-7.  Go to the `           <EI_HOME>/samples/axis2Client          `
-    `           /src/samples/userguide          ` directory, open the
-    `           GenericJMSClient.java          ` source file, and make
-    the following changes in the code.
-
-    1.  Set the jms\_dest property default value to
-        `             ivtT            ` (line 45)
-
-    2.  Set the java.naming.provider.url to
-        `             file:/C:/JNDI-Directory            ` " (line 82)
-
-    3.  Set the java.naming.factory.initial to
-        `             com.sun.jndi.fscontext.RefFSContextFactory            `
-        (line 85)
-
-    4.  Set the lookup key to `             MQ_JMS_MANAGER            `
-        (line 89)
-
-8.  Configure the proxy configuration so that it appears as follows .
-
-    ```xml
-    <definitions xmlns="http://ws.apache.org/ns/synapse">
-      <proxy name="StockQuoteProxy" transports="https http jms" startOnLoad="true" trace="disable">
-        <target>
-          <endpoint>
-            <address uri="http://localhost:9000/services/SimpleStockQuoteService"/>
-          </endpoint>
-          <inSequence>
-            <property name="OUT_ONLY" value="true"/>
-          </inSequence>
-          <outSequence>
-            <send/>
-          </outSequence>
-        </target>
-        <publishWSDL uri="file:samples/service-bus/resources/proxy/sample_proxy_1.wsdl"/>
-        <parameter name="transport.jms.ContentType">
-          <rules>
-            <jmsProperty>contentType</jmsProperty>
-            <default>application/xml</default>
-          </rules>
-        </parameter>
-        <parameter name="transport.jms.ConnectionFactory">myTopicConnectionFactory</parameter>
-      </proxy>
-      <sequence name="fault">
-        <log level="full">
-          <property name="MESSAGE" value="Executing default "fault" sequence"/>
-          <property name="ERROR_CODE" expression="get-property('ERROR_CODE')"/>
-          <property name="ERROR_MESSAGE" expression="get-property('ERROR_MESSAGE')"/>
-        </log>
-        <drop/>
-      </sequence>
-      <sequence name="main">
-        <log/>
-        <drop/>
-      </sequence>
-    </definitions>
-    ```
-
-9.  Comment out the non-default connection factories in the
-    `           <EI_HOME>\samples\axis2Server\repository\conf\axis2.xml          `
-    file so that it looks as follows.
-
-    ```xml
-    <transportReceiver name="jms" class="org.apache.axis2.transport.jms.JMSListener">
-      <!--parameter name="myTopicConnectionFactory" locked="false">
-        <parameter name="java.naming.factory.initial" 
-    locked="false">com.sun.jndi.fscontext.RefFSContextFactory</parameter>
-        <parameter name="java.naming.provider.url" locked="false">file:/C:/JNDI-Directory</parameter>
-        <parameter name="transport.jms.ConnectionFactoryJNDIName" locked="false">MQ_JMS_MANAGER</parameter>
-        <parameter name="transport.jms.ConnectionFactoryType" locked="false">topic</parameter>
-        <parameter name="transport.jms.Destination">JMS_QUEUE</parameter>
-      </parameter-->
-
-      <!--parameter name="SQProxyCF" locked="false">
-        <parameter name="java.naming.factory.initial">com.sun.jndi.fscontext.RefFSContextFactory</parameter>
-        <parameter name="java.naming.provider.url">file:/C:/JNDI-Directory</parameter>
-        <parameter name="transport.jms.ConnectionFactoryJNDIName" locked="false">MQ_JMS_MANAGER</parameter>
-        <parameter name="transport.jms.ConnectionFactoryType" locked="false">queue</parameter>
-        <parameter name="transport.jms.Destination">JMS_QUEUE</parameter>
-      </parameter-->
-
-      <parameter name="default" locked="false">
-        <parameter name="java.naming.factory.initial" 
-    locked="false">com.sun.jndi.fscontext.RefFSContextFactory</parameter>
-        <parameter name="java.naming.provider.url" locked="false">file:/D/JNDI-Directory</parameter>
-        <parameter name="transport.jms.ConnectionFactoryJNDIName" locked="false">MQ_JMS_MANAGER</parameter>
-        <parameter name="transport.jms.ConnectionFactoryType" locked="false">queue</parameter>
-        <parameter name="transport.jms.Destination">bogusq</parameter>
-      </parameter>
-    </transportReceiver>
-    ```
-
-10. Start the axis2 server with the following command.  
-    `           axis2Server.bat          `
-
-11. Send the request from the JMS client, and the sample Axis2 server
-    console will print a message.
-
-#### Topic Scenario 2: Client to WSO2 EI to Topic
-
-In this scenario, the JMS client sends an order to the WSO2 EI, which
-places it on the topic `         ivtT        ` . The back-end server
-listens on this topic, and then gets the message and processes the
-request.
-
-1.  In `           <EI_HOME>\conf\axis2\axis2.xml          ` , comment
-    out the non-default connection factories as follows:
-
-    ```xml
-    <transportReceiver name="jms" class="org.apache.axis2.transport.jms.JMSListener">
-        <!--parameter name="myTopicConnectionFactory" locked="false"> 
-          <parameter name="java.naming.factory.initial" 
-    locked="false">com.sun.jndi.fscontext.RefFSContextFactory</parameter>
-          <parameter name="java.naming.provider.url" locked="false">file:/C:/JNDI-Directory</parameter>
-          <parameter name="transport.jms.ConnectionFactoryJNDIName" locked="false">MQ_JMS_MANAGER</parameter>
-          <parameter name="transport.jms.ConnectionFactoryType" locked="false">topic</parameter>
-          <parameter name="transport.jms.Destination">ivtT</parameter>
-        </parameter--> 
-
-        <!--parameter name="SQProxyCF" locked="false">
-          <parameter name="java.naming.factory.initial">com.sun.jndi.fscontext.RefFSContextFactory</parameter>
-          <parameter name="java.naming.provider.url">file:/C:/JNDI-Directory</parameter>
-          <parameter name="transport.jms.ConnectionFactoryJNDIName" locked="false">MQ_JMS_MANAGER</parameter>
-          <parameter name="transport.jms.ConnectionFactoryType" locked="false">queue</parameter>
-          <parameter name="transport.jms.Destination">JMS_QUEUE</parameter>
-        </parameter-->
-
-        <parameter name="default" locked="false">
-          <parameter name="java.naming.factory.initial" 
-    locked="false">com.sun.jndi.fscontext.RefFSContextFactory</parameter>
-          <parameter name="java.naming.provider.url" locked="false">file:/C:/JNDI-Directory</parameter>
-          <parameter name="transport.jms.ConnectionFactoryJNDIName" locked="false">MQ_JMS_MANAGER</parameter>
-          <parameter name="transport.jms.ConnectionFactoryType" locked="false">queue</parameter>
-          <parameter name="transport.jms.Destination">bogusq</parameter>
-        </parameter>
-    </transportReceiver>
-    ```
-
-2.  Start the WSO2 EI with the [Sample
-    251](https://docs.wso2.com/display/ESB500/Sample+251%3A+Switching+from+HTTP%28S%29+to+JMS)
-    configuration by running the following command.  
-    `           wso2ei-samples.bat -sn 251          `
-
-3.  Log into WSO2 EI server management console at [https://localhost:
-    8243 /carbon/](https://localhost:9443/carbon/) .
-
-4.  Click **Service Bus -\> Source view** , and in the JMS URL, change
-    transport.jms.DestinationType to `           topic.          `
-
-5.  Add the following parameters to service.xml in
-    `           <EI_HOME>\samples\axis2Server\repository\services\SimpleStockQuoteService.aar.          `
-
-    ```java
-    <parameter name="transport.jms.ConnectionFactory">myTopicConnectionFactory</parameter>
-    <parameter name="transport.jms.Destination">ivtT</parameter>
-    ```
-
-6.  Configure the proxy service so that it appears as follows.
-
-    ```xml
-    <definitions xmlns="http://ws.apache.org/ns/synapse">
-      <proxy name="StockQuoteProxy" transports="https http jms" startOnLoad="true" trace="disable">
-        <target>
-          <endpoint>
-            <address uri="jms:/ivtT?transport.jms.ConnectionFactoryJNDIName=MQ_JMS_MANAGER&amp;java.naming.factory.initial=com.sun.jndi.fscontext.RefFSContextFactory&amp;java.naming.provider.url=file:/C:/JNDI-Directory&amp;transport.jms.DestinationType=topic&amp;transport.jms.ConnectionFactoryType=topic&transport.jms.Destination=ivtT"/>
-          </endpoint>
-          <inSequence>
-            <property name="TRANSPORT_HEADERS" scope="axis2" action="remove"/>
-            <property name="OUT_ONLY" value="true"/>
-          </inSequence>
-          <outSequence>
-            <send/>
-          </outSequence>
-        </target>
-        <publishWSDL uri="file:samples/service-bus/resources/proxy/sample_proxy_1.wsdl"/>
-      </proxy>
-      <sequence name="fault">
-        <log level="full">
-          <property name="MESSAGE" value="Executing default "fault" sequence"/>
-          <property name="ERROR_CODE" expression="get-property('ERROR_CODE')"/>
-          <property name="ERROR_MESSAGE" expression="get-property('ERROR_MESSAGE')"/>
-        </log>
-        <drop/>
-      </sequence>
-      <sequence name="main">
-        <log/>
-        <drop/>
-      </sequence>
-    </definitions>
-    ```
-
-7.  In
-    `           <EI_HOME>\samples\axis2Server\repository\conf\axis2.xml          `
-    , uncomment `           myTopicConnectionFactory          ` and
-    comment out `           SQProxyCF          ` .
-
-    ```xml
-    <transportReceiver name="jms" class="org.apache.axis2.transport.jms.JMSListener">
-      <parameter name="myTopicConnectionFactory" locked="false">
-        <parameter name="java.naming.factory.initial" 
-    locked="false">com.sun.jndi.fscontext.RefFSContextFactory</parameter>
-        <parameter name="java.naming.provider.url" locked="false">file:/C:/JNDI-Directory</parameter>
-        <parameter name="transport.jms.ConnectionFactoryJNDIName" locked="false">MQ_JMS_MANAGER</parameter>
-        <parameter name="transport.jms.ConnectionFactoryType" locked="false">topic</parameter>
-        <parameter name="transport.jms.Destination">ivtT</parameter>
-      </parameter>
-
-      <!--parameter name="SQProxyCF" locked="false">
-        <parameter name="java.naming.factory.initial">com.sun.jndi.fscontext.RefFSContextFactory</parameter>
-        <parameter name="java.naming.provider.url">file:/D:/JNDI-Directory</parameter>
-        <parameter name="transport.jms.ConnectionFactoryJNDIName" locked="false">MQ_JMS_MANAGER</parameter>
-        <parameter name="transport.jms.ConnectionFactoryType" locked="false">queue</parameter>
-        <parameter name="transport.jms.Destination">JMS_QUEUE</parameter>
-      </parameter-->
-
-      <parameter name="default" locked="false">
-        <parameter name="java.naming.factory.initial" 
-    locked="false">com.sun.jndi.fscontext.RefFSContextFactory</parameter>
-        <parameter name="java.naming.provider.url" locked="false">file:/D/JNDI-Directory</parameter>
-        <parameter name="transport.jms.ConnectionFactoryJNDIName" locked="false">MQ_JMS_MANAGER</parameter>
-        <parameter name="transport.jms.ConnectionFactoryType" locked="false">queue</parameter>
-        <parameter name="transport.jms.Destination">bogusq</parameter>
-      </parameter>
-    </transportReceiver>
-    ```
-
-8.  Start the axis2 server with the following command.  
-    `           axis2Server.bat          `
-
-9.  Send the request from the JMS client, and the sample Axis2 server
-    console will print a message.
+![](../../assets/img/broker-configs/IBM-websphere-mq/119130337.png)

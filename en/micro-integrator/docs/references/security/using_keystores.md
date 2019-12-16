@@ -89,8 +89,8 @@ certificates. These certificates can be either of the following:
 
 ## Related topics
 
-* [Configure keystores for the Micro Integrator](../setup/security/configuring_keystores.md)
-* [Create new keystores](../setup/security/creating_keystores.md)
-* [Import new SSL certificates to keystores](../setup/security/importing_ssl_certificate.md)
-* [Renewing existing SSL certificates in keystores](../setup/security/renewing_ca_signed_certificate_in_keystore.md)
-* [Product deployment guidelines](../setup/deployment/deployment_checklist.md)
+* [Configure keystores for the Micro Integrator](../../../setup/security/configuring_keystores)
+* [Create new keystores](../../../setup/security/creating_keystores)
+* [Import new SSL certificates to keystores](../../../setup/security/importing_ssl_certificate)
+* [Renewing existing SSL certificates in keystores](../../../setup/security/renewing_ca_signed_certificate_in_keystore)
+* [Product deployment guidelines](../../../setup/deployment/deployment_checklist)

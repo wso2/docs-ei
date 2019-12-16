@@ -34,11 +34,11 @@ The WebSocket Inbound protocol is based on the <a href="http://tools.ietf.org/ht
 
 ## Properties
 
-Listed below are the properties used for [creating a Websocket inbound endpiont](../../../develop/creating-artifacts/creating-an-inbound-endpoint.md).
+Listed below are the properties used for [creating a Websocket inbound endpiont](../../../../../develop/creating-artifacts/creating-an-inbound-endpoint).
 
 ### Required Properties
 
-The following properties are required when [creating a Websocket inbound endpiont](../../../develop/creating-artifacts/creating-an-inbound-endpoint.md).
+The following properties are required when [creating a Websocket inbound endpiont](../../../../../develop/creating-artifacts/creating-an-inbound-endpoint).
 
 <table>
   <tr>
@@ -68,7 +68,7 @@ The following properties are required when [creating a Websocket inbound endpion
   <tr>
          <td>sequential</td>
          <td>The behavior when executing the given sequence.<br />
-            When set as <code>true</code> , mediation will happen within the same thread. When set as <code>false</code> , the mediation engine will use the inbound thread pool. The default thread pool values can be found in the <code>MI_HOME/conf/synapse.properties</code> file. The default setting is <code>true</code>.
+            When set as <code>true</code> , mediation will happen within the same thread. When set as <code>false</code> , the mediation engine will use the inbound thread pool. The default thread pool values can be found in the <code>MI_HOME/conf/deployment.toml</code> file, under the `[mediation]` section. The default setting is <code>true</code>.
          </td>
       </tr>
       <tr>
@@ -81,7 +81,7 @@ The following properties are required when [creating a Websocket inbound endpion
 
 ### Required Properties (for Secured Websocket)
 
-In addition to the [common websocket inbound properties](#common-websocket-inbound-required-properties) listed above, the following properties are required when [creating a **secured** Websocket inbound endpiont](../../../develop/creating-artifacts/creating-an-inbound-endpoint.md).
+In addition to the [common websocket inbound properties](#common-websocket-inbound-required-properties) listed above, the following properties are required when [creating a **secured** Websocket inbound endpiont](../../../../../develop/creating-artifacts/creating-an-inbound-endpoint).
 
 <table>
   <tr>
@@ -132,7 +132,7 @@ In addition to the [common websocket inbound properties](#common-websocket-inbou
 
 ### Optional Properties
 
-The following optional properties can be configured when [creating a Websocket inbound endpiont](../../../develop/creating-artifacts/creating-an-inbound-endpoint.md).
+The following optional properties can be configured when [creating a Websocket inbound endpiont](../../../../../develop/creating-artifacts/creating-an-inbound-endpoint).
 
 <table>
    <thead>
@@ -181,7 +181,7 @@ The following optional properties can be configured when [creating a Websocket i
 
 ### Optional Properties (for Secured Websocket)
 
-The following optional properties can be configured when [creating a **Secured** Websocket inbound endpiont](../../../develop/creating-artifacts/creating-an-inbound-endpoint.md).
+The following optional properties can be configured when [creating a **Secured** Websocket inbound endpiont](../../../../../develop/creating-artifacts/creating-an-inbound-endpoint).
 
 <table>
   <tr>

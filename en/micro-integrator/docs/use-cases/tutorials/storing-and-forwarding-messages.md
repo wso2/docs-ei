@@ -1,4 +1,4 @@
-# Storing and Forwarding Messages
+# Asynchronous Messaging
 
 ## What you'll build
 
@@ -13,8 +13,7 @@ Processor** to retrieve the message from the store before delivering it to the b
 
 To set up the tools:
 
--   Select the relevant [WSO2 Integration Studio](https://wso2.com/integration/tooling/) based on your operating system and extract the
-    ZIP file.  The path to this folder is referred to as `MI_TOOLING_HOME` throughout this tutorial.
+-   Download the relevant [WSO2 Integration Studio](https://wso2.com/integration/tooling/) based on your operating system. The path to the extracted/installed folder is referred to as `MI_TOOLING_HOME` throughout this tutorial.
 -  Download the [CLI Tool](https://wso2.com/integration/micro-integrator/install/) for monitoring artifact deployments.
 
 If you did not try the [Exposing Several Services as a Single Service](exposing-several-services-as-a-single-service.md) tutorial yet, open WSO2 Integration Studio, click **File** , and then click **Import** . Next, select **Existing WSO2 Projects into workspace** under the **WSO2** category, click **Next** and upload the [pre-packaged project](https://github.com/wso2-docs/WSO2_EI/blob/master/Integration-Tutorial-Artifacts/ExposingSeveralServicesTutorial.zip).
@@ -74,7 +73,9 @@ Let's create a Sequence that uses the message in the message store to send the r
 
 3.  Click **Finish**.
 
-4.  Drag and drop a Call mediator from the **Mediators** palette and add SettlePaymentEP from **Defined Endpoints** palette to the empty box adjoining the Call mediator. This sends the request message from the store to SettlePaymentEP.
+4.  In the sequence you have created in the previous step, drag and drop a Call mediator from the **Mediators** palette 
+and add SettlePaymentEP from **Defined 
+Endpoints** palette to the empty box adjoining the Call mediator. This sends the request message from the store to SettlePaymentEP.
 
     ![](../../assets/img/tutorials/119132268/119132272.png)
 
@@ -235,8 +236,15 @@ Let's test the use case by sending a simple client request that invokes the serv
 To set up WSO2 Message Broker:
 
 1. Download WSO2 Message Broker. The path to this folder is referred to as `MB_HOME` throughout this tutorial.
-2. Add the following JAR files from the `MB_HOME/wso2/broker/client-lib/` directory to the `MI_TOOLING_HOME/Contents/Eclipse/runtime/microesb/lib/` directory.
-3. Open the `deployment.toml` file from `MI_TOOLING_HOME/Contents/Eclipse/runtime/microesb/conf/` directory and add the configurations given below. This is required for enabling the broker to store messages.
+
+2. Add the following JAR files from the `MB_HOME/wso2/broker/client-lib/` directory to the 
+`MI_TOOLING_HOME/Contents/Eclipse/runtime/microesb/lib/` (in MacOS) or 
+`MI_TOOLING_HOME/runtime/microesb/lib` (in Windows) directory.
+    -   andes-client-*.jar
+    -   geronimo-jms_1.1_spec-*.jar
+    -   org.wso2.securevault-*.jar
+3. Open the `deployment.toml` file from the `MI_TOOLING_HOME/Contents/Eclipse/runtime/microesb/conf/` (in MacOS) or 
+`MI_TOOLING_HOME/runtime/microesb/conf/` (in Windows) directory and add the configurations given below. This is required for enabling the broker to store messages.
 
     ```toml
     [[transport.jms.listener]]
@@ -256,12 +264,6 @@ To set up WSO2 Message Broker:
     parameter.connection_factory_name = "QueueConnectionFactory"
     parameter.connection_factory_type = "queue"
     parameter.cache_level = "producer"
-
-    [truststore]
-    file_name = "client-truststore.jks"
-    password = "wso2carbon"
-    alias = "symmetric.key.value"
-    algorithm = "AES"
 
     [transport.jndi.connection_factories]
     QueueConnectionFactory = "amqp://admin:admin@clientID/carbon?brokerlist='tcp://localhost:5675'"
@@ -301,7 +303,7 @@ Let's use the **CLI Tool** to find the URL of the REST API that is deployed in t
 2.  Execute the following command to start the tool:
     `./mi`
 3.  Execute the following command to find the APIs deployed in the server:
-    `mi show api`
+    `mi api show`
 
 Let's send a request to the API resource.
 
@@ -322,7 +324,7 @@ Let's send a request to the API resource.
     ```
 2.  Open a command line terminal and execute the following command from the location where `request.json` file you created is saved:
 
-    ```
+    ```bash
     curl -v -X POST --data @request.json http://localhost:8290/healthcare/categories/surgery/reserve --header "Content-Type:application/json"
     ```
 
@@ -333,13 +335,13 @@ Let's send a request to the API resource.
 
 You will see the response as follows:
 
-```
+```json
 {"message":"Payment request successfully submitted. Payment confirmation will be sent via email."}
 ```
 
 Check the WSO2 Integration Studio's **Console** tab and you will see that the response from SettlePaymentEP is logged as follows:
 
-```
+```bash
 [2017-04-30 14:33:48,578] [EI-Core]  INFO - LogMediator message = Routing to grand oak community hospital
         
 [2017-04-30 14:33:48,598] [EI-Core]  INFO - TimeoutHandler This engine will expire all callbacks after GLOBAL_TIMEOUT: 120 seconds, irrespective of the timeout action, after the specified or optional timeout
