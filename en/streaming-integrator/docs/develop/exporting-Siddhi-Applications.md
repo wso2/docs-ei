@@ -134,7 +134,7 @@ To export one or more Siddhi applications for Kubernetes, follow the procedure b
     └── siddhi-process.yaml
     ```
 
-15. Once the ZIP is downloaded, you can extract and open the `<ZIP_HOME>/siddhi-process.yaml` via a text editor to modify the SiddhiProcess configuration.
+15. Once the ZIP is downloaded, you can extract and open the `<ZIP_HOME>/siddhi-process.yaml` via a text editor to modify the SiddhiProcess configuration.<br />
 
     For more information on **SiddhiProcess** Kubernetes configuration, see [Siddhi 5.1 as a Kubernetes Microservice](https://siddhi.io/en/v5.1/docs/siddhi-as-a-docker-microservice/) documentation.
 
