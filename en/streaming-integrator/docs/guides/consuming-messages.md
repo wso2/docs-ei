@@ -301,3 +301,82 @@ schema before it processes the message. To understand how messages are consumed 
     define stream ConsumerSalesTotalsStream(transNo int, product string, price int, quantity int, salesValue long);
     ```
    
+   
+## Alerting the End of File after File Read
+
+WSO2 Siddhi [file(source)](https://siddhi-io.github.io/siddhi-io-file/api/2.0.3/#file-source) provides the functionality for the user to feed data to the Siddhi from files and both text and binary files are supported by it.
+Here, we are discussing using a property to identify the end of the file we read.
+
+To create a sample Siddhi application with the source configuration defined inline, follow the steps below.
+
+1. Open the Streaming Integrator Studio and start creating a new Siddhi application.
+For more information, see [Creating a Siddhi Application](../develop/creating-a-Siddhi-Application.md). <br/>
+
+2. Enter a name for the Siddhi application as shown below.<br/>
+          
+        @App:name("FileReadApp")
+    
+3. Define an input stream to define the schema based on which input events are selected to the streaming integrator flow as follows. 
+Note that the end of file property (‘eof’) type is boolean and it’ll pass ‘true’ in the last event. The rest of the events, it will be false. <br/>
+  
+        define stream InStream (A string, B int, C string, eof bool, fp String);
+    
+4. Connect a source to the input stream as follows. <br/>
+  You can add a source of the file type to the InStream input stream in the example of the previous step.<br/>
+      
+        @source(type = 'file', dir.uri = 'file:/home/methma/Desktop/resources/toprocess/', move.after.process = 'file:/home/methma/Desktop/resources/processed', move.after.failure = 'file:/home/methma/Desktop/resources/failure/', mode = 'LINE', tailing = 'false', action.after.process = 'MOVE', action.after.failure = 'MOVE', add.event.separator = 'false', @map(...)
+      
+5. Add an @map annotation to the source configuration as shown below.  
+Note that the attribute mappings for the end of the file and the file path are 'trp:eof' and 'trp:file.path' respectively. <br/>
+
+        @source(type = 'file', dir.uri = 'file:/home/methma/Desktop/resources/toprocess/', move.after.process = 'file:/home/methma/Desktop/resources/processed', move.after.failure = 'file:/home/methma/Desktop/resources/failureA = "0", B = "1", C = "2",A = "0", B = "1", C = "2",/', mode = 'LINE', tailing = 'false', action.after.process = 'MOVE', action.after.failure = 'MOVE', add.event.separator = 'false',
+ 
+           @map(type='csv',header='false', @attributes(A = "0", B = "1", C = "2", eof = 'trp:eof', fp = 'trp:file.path')))
+
+6. Add a Siddhi query to check the last event from the file and insert it to an alert stream.<br/>
+
+          @info(name = 'SiddhiAppFileRead') 
+          from InStream[ eof == true ]#log("last event ####")
+          select *
+          insert into AlertStream;
+ 
+7. Complete the Siddhi application by defining an output stream with a connected sink configuration. <br/>  
+
+        define stream OutStream (A string, B int, C string, eof bool, fp String);
+  
+8. Save the Siddhi Application. The completed application is as follows: <br/>
+  ```
+      @App:name("SiddhiAppFileRead")
+      @App:description("Description of the plan")
+     
+      @source(type = 'file', dir.uri = 'file:/home/methma/Desktop/resources/toprocess/', move.after.process = 'file:/home/methma/Desktop/resources/processed', move.after.failure = 'file:/home/methma/Desktop/resources/failuer/', mode = 'LINE', tailing = 'false', action.after.process = 'MOVE', action.after.failure = 'MOVE', add.event.separator = 'false',
+      @map(type='csv',header='false', @attributes(A = "0", B = "1", C = "2", eof = 'trp:eof', fp = 'trp:file.path')))
+     
+      define stream InStream (A string, B int, C string, eof bool, fp String);
+      define stream AlertStream (A string, B int, C string, eof bool, fp String);
+     
+      @info(name = 'SiddhiAppFileRead')
+      from InStream[ eof == true ]#log("last event ####")
+      select *
+      insert into AlertStream;
+  ```
+Furthermore, it is possible to read a text file and extract data using a regex.
+In that case, the last event will pass the end of the file property true.
+
+Following is a sample Siddhi app for the Regex use case. <br/>
+```
+   @App:name("RegexCSV")
+   @App:description("Description of the plan")
+  
+   @source(type = 'file', dir.uri = "file:/home/methma/Desktop/resources/toprocess/", mode = "REGEX", begin.regex = "yes",  end.regex = "80",  tailing = "false", action.after.process = "MOVE", action.after.failure = "MOVE",
+     move.after.process = "file:/home/methma/Desktop/resources/processed/", move.after.failure = "file:/home/methma/Desktop/resources/failure/", add.event.separator = 'false',
+     file.read.wait.timeout = "1000",
+     @map(type='csv',header='false', @attributes(symbol = "0", price = "1", volume = "2", eof = 'trp:eof', fp = 'trp:file.path')))
+   define stream FooStream (symbol string, price int, volume int, eof bool, fp String);
+  
+   @info(name = 'RegexCSV')
+   define stream barStream (symbol String, price int, volume int, eof bool, fp string);
+   from FooStream
+   select *
+   insert into barStream;
+``
