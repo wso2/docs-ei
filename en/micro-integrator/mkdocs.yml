@@ -192,20 +192,20 @@ nav:
         - 'Install on a VM': 'setup/installation/install_in_vm.md'
         - 'Run on Docker': 'setup/installation/run_in_docker.md'
         - 'Run on Kubernetes': 'setup/installation/run_in_kubernetes.md'
-      - Product Deployment:
-        - Kubernetes Deployment:
-          - 'Deploy on Kubernetes': 'setup/deployment/kubernetes_deployment.md' 
-          - K8s Deployment Samples: 
-            - 'Sample 1: Hello World': 'setup/deployment/k8s-samples/hello-world.md' 
-            - 'Sample 2: Message Routing': 'setup/deployment/k8s-samples/content-based-routing.md' 
-            - 'Sample 3: JMS Sender/Receiver': 'setup/deployment/k8s-samples/jms-sender-receiver.md'
+      - Kubernetes Deployment:
+        - 'Deploy on Kubernetes': 'setup/deployment/kubernetes_deployment.md' 
+        - K8s Deployment Samples: 
+          - 'Sample 1: Hello World': 'setup/deployment/k8s-samples/hello-world.md' 
+          - 'Sample 2: Message Routing': 'setup/deployment/k8s-samples/content-based-routing.md' 
+          - 'Sample 3: JMS Sender/Receiver': 'setup/deployment/k8s-samples/jms-sender-receiver.md'
+      - VM Deployment:
         - 'Deploy on a VM': 'setup/deployment/deploying_wso2_ei.md' 
-        - 'Migrating from WSO2 EI 6.x': 'setup/deployment/migrating-from-ei-6.x.x.md' 
         - 'Setting up a Load Balancer': 'setup/deployment/setting_up_lb.md'
-        - 'Troubleshooting Production Deployment' : 'setup/deployment/troubleshooting_deployment.md'
-        - 'Product Deployment Checklist' : 'setup/deployment/deployment_checklist.md'
+        - 'Troubleshooting a Production Deployment' : 'setup/deployment/troubleshooting_deployment.md'
         - 'Backup and Recovery' : 'setup/deployment/backup_recovery.md'
         - 'Setting up a File-Based Registry' : 'setup/deployment/file_based_registry.md'
+      - 'Migrating from WSO2 EI 6.x': 'setup/deployment/migrating-from-ei-6.x.x.md' 
+      - 'Product Deployment Checklist': 'setup/deployment/deployment_checklist.md'
       - Security Hardening :
         - Setting up Keystores:
           - 'Creating New Keystores' : 'setup/security/creating_keystores.md'
@@ -339,7 +339,7 @@ nav:
         - 'Message Monitoring with TCPMon' : 'administer-and-observe/tcp/message_monitoring_with_tcpmon.md'
         - 'Other Usages of TCPMon' : 'administer-and-observe/tcp/other_usages_of_tcpmon.md'
     - References:
-      - 'Product Configurations' : 'references/config-catalog.md'
+      - 'Product Configurations': 'references/config-catalog.md'
       - Synapse Configurations:
         - Mediator Catalog: 
           - 'About Mediators': 'references/mediators/about-mediators.md'
