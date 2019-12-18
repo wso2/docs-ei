@@ -31,6 +31,16 @@ Follow the steps given below.
 !!! info
     **Getting an error message?** See the [troubleshooting](#troubleshooting) tips.
 
+### Get the latest updates
+
+If you have already installed and set up WSO2 Integration Studio, you can get the latest updates as follows:
+
+1.  Open WSO2 Integration Studio on your computer.
+2.  Go to **Help** -> **Check for Updates**.
+
+    <img src="../../../../../assets/img/get-updates.png" alt="get tooling updates" width="300">
+
+3.  Once the update check is completed, you can select all the available updates and install.
 
 ### Troubleshooting
 
