@@ -28,7 +28,7 @@ Follow the steps given below.
     application. If you are a MacOS user, be sure to add it to the **Applications** directory.
 3.  Run the **IntegrationStudio** application to start the tool.
 
-!!! info
+!!! Info
     **Getting an error message?** See the [troubleshooting](#troubleshooting) tips.
 
 ### Get the latest updates
