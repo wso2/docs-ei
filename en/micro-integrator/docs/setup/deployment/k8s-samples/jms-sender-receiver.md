@@ -26,12 +26,12 @@ Follow the steps given below.
     
     Right-click the Maven Multi Module project in the project explorer, go to **New → Project**, and select **ESB Config Project** to open the **New ESB Config Project** dialog.
 
-    <img src="../../../../../assets/img/create_project/docker_k8s_project/esb-config.png" alt="Create ESB Config Project" width="500">
+    <img src="../../../../assets/img/create_project/docker_k8s_project/esb-config.png" alt="Create ESB Config Project" width="500">
     
 3.  Add the following proxy service configuration to your ESB Config Project. This service listens to messages from ActiveMQ and publishes to another queue in ActiveMQ.
 
     1.  Right-click the ESB Config project in the project explorer, go to **New -> Proxy Service** and create a custom proxy service named `JmsSenderListener`. 
-        <img src="../../../../../assets/img/create_project/docker_k8s_project/custom-proxy-service-jms.png" alt="Create ESB Config Project" width="500">
+        <img src="../../../../assets/img/create_project/docker_k8s_project/custom-proxy-service-jms.png" alt="Create ESB Config Project" width="500">
 
     2.  You can then use the **Source View** to copy the following configuration.
 
@@ -77,14 +77,14 @@ Follow the steps given below.
 
     1.  Right-click the maven multi modiule project, go to **New → Project**, select **Composite Application Project**, and click **Next**.
     2.  Be sure to select the proxy service under **Dependencies** as shown below.
-        <img src="../../../../../assets/img/create_project/docker_k8s_project/composite-proj-jms.png" alt="Create Composite Application Project" width="500">    
+        <img src="../../../../assets/img/create_project/docker_k8s_project/composite-proj-jms.png" alt="Create Composite Application Project" width="500">    
 
     3.  Click **Finish**.
 
 5.  Create a **Kubernetes Project** inside the Maven Multi Module Project. 
 
     1.  Right-click the Maven Multi Module project, go to **New → Project**, select **Kubernetes Exporter Project**, and click **Next**.
-        <img src="../../../../../assets/img/create_project/docker_k8s_project/k8s-proj.png" alt="Create Kubernetes Project" width="500">
+        <img src="../../../../assets/img/create_project/docker_k8s_project/k8s-proj.png" alt="Create Kubernetes Project" width="500">
 
     2.  In the **Kubernetes Project Information** dialog that opens, enter the following details:
         <table>
@@ -170,7 +170,7 @@ Follow the steps given below.
 
 Finally, the created Maven Multi Module project should look as follows:
 
-<img src="../../../../../assets/img/create_project/docker_k8s_project/jms_example_project.png" alt="Hello World Project" width="300">
+<img src="../../../../assets/img/create_project/docker_k8s_project/jms_example_project.png" alt="Hello World Project" width="300">
 
 ## Step 2: Update JMS configurations
 
@@ -241,7 +241,7 @@ You need to build a Docker image of the integration solution and push it to your
 2.  Open the **pom.xml** file in the Kubernetes project, ensure that the composite application is selected under **Dependencies**, and click **Build and Push**.
     In the dialog that opens, enter the credentials of your Docker registry to which the image should be pushed.
 
-    <img src="../../../../../assets/img/create_project/docker_k8s_project/docker-registry-credentials.png" alt="docker registry credentials" width="500">
+    <img src="../../../../assets/img/create_project/docker_k8s_project/docker-registry-credentials.png" alt="docker registry credentials" width="500">
 
     !!! Info
         Alternatively, you can build the Docker image and push it to the Docker registry as follows:
