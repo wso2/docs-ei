@@ -1,95 +1,183 @@
-# Kubernetes Deployment
+# Deploy on Kubernetes
 
-## k8s-ei-operator
-Provides native support for the Kubernetes ecosystem with WSO2 Micro Integrator.
-The k8s-ei-operator allows you to deploy your integration solutions as an **Integration** kind into the Kubernetes environment built on top of [WSO2 Integration Studio](../../../develop/WSO2-Integration-Studio). 
+<!--
+## Kubernetes deployment workflow
+The following diagram illustrates the workflow that can be followed to deploy your Micro Integrator solutions in a Kubernetes cluster. The heart of this solution is the **[EI Kubernetes (K8s) Operator](#ei-kubernetes-k8s-operator)**, which enables a fully-automated deployment process for your integration solutions developed using WSO2 Integration Studio.
 
-## Prerequisites
-The k8s-ei-operator is built with operator-sdk v0.7.0 and supported in the following environments.
+**Development** process (using WSO2 Integration Studio):
 
--   [Kubernetes](https://kubernetes.io/docs/setup/) cluster and client v1.11+   
+1.  Create the integration solution.
+2.  Generate Kubernetes project.
+
+**Deployment** process:
+
+1.  Publish Docker image to Docker registry.
+2.  Install the EI K8s Operator.
+3.  Configure the EI K8s Operator (optional).
+4.  Deploy the integration solution in the K8s environment.
+-->
+
+##  EI Kubernetes (K8s) Operator
+
+The EI Kubernetes operator (**k8s-ei-operator**) provides first-class support for Micro Integrator deployments in the Kubernetes ecosystem. It uses the **Integration custom resource** (`integration_cr.yaml` file) that is available in the Kubernetes project (exported from WSO2 Integration Studio) and deploys the integration in your Kubernetes environment.
+
+The operator is configured with an NGINX Ingress controller by default, which exposes the deployed integration through HTTP. If required, you can use the operator's configuration mapper (`config_map.yaml` file) to disable the default Ingress controller and apply other configuration changes. Find out more about [changing the default configurations](#configure-the-ei-k8s-operator-optional) of the EI K8s operator.
+
+##  Prerequisites (system requirements)
+
+Listed below are the system requirements for deploying integration solutions in Kubernetes using the EI K8s operator.
+
+!!! Info
+    The EI K8s Operator (k8s-ei-operator) is built with **operator-sdk v0.7.0** and supported in the below environments.
+
+-   [Kubernetes](https://kubernetes.io/docs/setup/) cluster and **v1.11+** client. 
 -   [Docker](https://docs.docker.com/)
 
-## Install the EI Operator
+##  Install the EI K8s Operator
 Follow the steps given below to install the EI Kubernetes operator in your Kubernetes environment.
 
-1.  Clone the **k8s-ei-operator** GitHub repository.
+1.  Clone the latest **k8s-ei-operator** GitHub repository:
 
     ```bash
     git clone https://github.com/wso2/k8s-ei-operator.git
     ```
     
-2.  Change the directory to k8s-ei-operator.
+2.  Navigate to the `k8s-ei-operator` directory that you cloned:
 
     ```bash
     cd k8s-ei-operator
     ```
-    
-3.  Set up the service account.
+
+3.  Start your Kubernetes environment.
+
+    !!! Tip
+        If you are using Minikube as your kubernetes environment, [install and start Minikube](https://kubernetes.io/docs/setup/learning-environment/minikube/).
+
+4.  Set up the service account:
 
     ```bash
     kubectl create -f deploy/service_account.yaml
     ```
     
-5.  Set up RBAC.
+5.  Set up RBAC:
 
     ```bash
     kubectl create -f deploy/role.yaml
     kubectl create -f deploy/role_binding.yaml
     ```
     
-6.  Deploy a CustomResourceDefinition into the Kubernetes cluster to understand custom resource type.
+6.  Deploy a **custom resource definition**, which enables a Kubernetes cluster to understand the custom resource type. The EI K8s operator introduces the **Integration** custom resource.
 
     ```bash
     kubectl create -f deploy/crds/integration_v1alpha1_integration_crd.yaml
     ```
     
-7.  Deploy the k8s-ei-operator.
+7.  Deploy the k8s-ei-operator:
 
     ```bash
     kubectl create -f deploy/operator.yaml
     ```
     
-8. Apply the configurations for the ingress controller.
+8. Apply the Ingress controller configurations to the `config_map.yaml` file (configuration mapping file):
 
     ```bash
     kubectl apply -f deploy/config_map.yaml
     ```
 
-You can verify the installation by making sure the following deployments are running in your Kubernetes cluster.
+9. Verify the installation by making sure that the following deployment is running in your Kubernetes cluster:
 
-```bash
-kubectl get deployment
+    ```bash
+    kubectl get deployment
 
-NAME               READY   UP-TO-DATE   AVAILABLE   AGE
-k8s-ei-operator     1/1     1            1          1m
-```
+    NAME               READY   UP-TO-DATE   AVAILABLE   AGE
+    k8s-ei-operator     1/1     1            1          1m
+    ```
 
-## Deploy and run integration solutions with the EI operator
-The EI operator supports the deployment and running of your integration solutions in a Kubernetes environment. 
+Your Kubernetes environment is now configured with the EI K8s operator. If required, you can [configure the optional settings](#configure-the-ei-k8s-operator-optional) before using the operator.
 
-Here, we have demonstrated an example of a **HelloWorld** service, which outputs the response as `{"Hello":"World"}` to the user request. This scenario can be created using the `integration_cr.yaml` format as given below.
+## Deploy integration solutions in K8s
 
-```yaml
-apiVersion: "integration.wso2.com/v1alpha2"
-kind: "Integration"
-metadata:
-  name: "hello-world"
-spec:
-  replicas: 1
-  image: "<Docker image for the Hello World Scenario>"
-```
+!!! Tip
+    To try the end-to-end process of deploying integration solutions on Kubernetes, see the K8s examples: 
 
-!!! Note
-    You can refer the [K8s-ei-operator Hello World](https://ei.docs.wso2.com/en/latest/micro-integrator/setup/deployment/k8s-samples/hello-world/) example implemented via [WSO2 Integration Studio](https://ei.docs.wso2.com/en/latest/micro-integrator/develop/WSO2-Integration-Studio/) to try out the application.
+    - [Hello World example](../k8s-samples/hello-world)
+    - [Message Routing example](../k8s-samples/content-based-routing)
+    - [JMS Sender/Receiver exampe](../k8s-samples/jms-sender-receiver)
 
-To deploy the above integration solution in your kubernetes cluster, execute the following command:
+Given below are the main steps your will follow when you deploy integration solutions in a Kubernetes cluster.
 
-```bash
-kubectl apply -f integration_cr.yaml
-``` 
+1.  Be sure that the [system requirements](#prerequisites-system-requirements) are fulfilled, and that the [EI K8s operator](#install-the-ei-k8s-operator) is installed in your Kuberenetes environment.
+2.  Your integration solution should be prepared using **WSO2 Integration Studio** as follows:
 
-If the `hello-world` integration is deployed successfully, it should create the `hello-world` integration, `hello-world-deployment`, `hello-world-service`, and `ei-operator-ingress` as follows:
+    1. Create the integration solution.
+    2. Generate a Kubernetes project for the solution.
+    3. Build the Docker image of your integration and push it to your Docker registry.
+
+3.  Open the `integration_cr.yaml` file from the Kubernetes project in WSO2 Integration Studio.
+4.  See that the details of your **integration** are correctly included in the file. See the example given below.
+
+    ```yaml
+    apiVersion: "integration.wso2.com/v1alpha2"
+    kind: "Integration"
+    metadata:
+      name: "hello-world"
+    spec:
+      replicas: 1
+      image: "<Docker image for the Hello World Scenario>"
+    ```
+
+    <table>
+      <tr>
+        <th>
+          <b>Property</b>
+        </th>
+        <th>
+          <b>Description</b>
+        </th>
+      </tr>
+      <tr>
+        <td>
+          kind
+        </td>
+        <td>
+            The <b>Integration</b> kind represents the integration solution that will be deployed in the Kubernetes environment.
+        </td>
+      </tr>
+      <tr>
+        <td>
+          metadata name
+        </td>
+        <td>
+            The name of the integration solution.
+        </td>
+      </tr>
+      <tr>
+          <td>
+            replicas
+          </td>
+          <td>
+              The number of pods that should be created in the Kubernetes cluster.
+          </td>
+      </tr>
+      <tr>
+        <td>
+          image
+        </td>
+        <td>
+          Specify the Docker image of your integration solution. If you are using a Docker image from a private registry, you need to push the deployment as a Kuberntes secret. Follow the instructions in <a href="#use-docker-images-from-private-registries">using a private registry image</a>.
+        </td>
+      </tr>
+    </table>
+
+5.  Open a terminal, navigate to the location of your `integration_cr.yaml` file, and execute the following command to deploy the integration solution into the Kubernetes cluster:
+    ```bash
+    kubectl apply -f integration_cr.yaml
+    ``` 
+
+When the integration is successfully deployed, it should create the `hello-world` integration, `hello-world-deployment`, `hello-world-service`, and `ei-operator-ingress` as follows:
+
+!!! Tip
+    The `ei-operator-ingress` will not be created if you have [disabled the ingress controller](#disable-ingress-controller).
 
 ```bash
 kubectl get integration
@@ -113,46 +201,89 @@ NAME                  HOSTS     ADDRESS     PORTS     AGE
 ei-operator-ingress   wso2ei    10.0.2.15   80, 443   2m
 ```
 
-### Invoke the integration solution with Ingress controller
+## Use Docker images from private registries
 
-To invoke the integration solution, obtain the **External IP** of the ingress load balancer using the `kubectl get ingress` command as follows:
+The EI operator allows the use of any custom Docker image in a private registry as an integration solution. To achieve this, users have to pass the credentials to pull the image to the Kubernetes containers as a Kubernetes secret. The EI operator uses `imagePullSecret` to read the Kubernetes secret of the registry credentials. 
 
-```bash
-kubectl get ingress
-NAME                  HOSTS     ADDRESS     PORTS     AGE
-ei-operator-ingress   wso2ei    10.0.2.15   80, 443   2m
-```
-Then, add the **wso2ei** host and related external IP (ADDRESS) to the `/etc/hosts` file in your machine.
-
-For **Minikube**, you have to use Minikube IP as the external IP. Hence, run `minikube ip` command to get the IP of the Minikube cluster.
-
-Use the following CURL command to run the `hello-world` deployed in Kubernetes:
-
-```bash
-curl http://wso2ei/hello-world-service/services/HelloWorld
-
-{"Hello":"World"}%
-```
-
-### Invoke the integration solution without Ingress Controller
-You can invoke out integration solutions without the ingress controller using the **[port-forward](https://kubernetes.io/docs/tasks/access-application-cluster/port-forward-access-application-cluster/#forward-a-local-port-to-a-port-on-the-pod)** method for services. Use the following commands:
-
-1. Port forward:
+1.  You can use the following command to create a Kubernetes secret with the credentials of the private Docker image:
 
     ```bash
-    kubectl port-forward service/hello-world-service 8290:8290
+    kubectl create secret docker-registry <secret-alias> --docker-server=<your-registry-server> --docker-username=<your-name> --docker-password=<your-password> --docker-email=<your-email>
     ```
 
-2. Invoke the proxy service:
+    <table>
+        <tr>
+            <td>
+                <b>Parameter</b>
+            </td>
+            <td>
+                <b>Description</b>
+            </td>
+        </tr>
+        <tr>
+            <td>
+               <code>secret-alias</code>
+            </td>
+            <td>
+                The name of the secret.
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <code>your-registry-server</code>
+            </td>
+            <td>
+                The <a href="https://index.docker.io/v1/">private Docker registry FQDN</a> for DockerHub.
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <code>your-name</code>
+            </td>
+            <td>
+                Your Docker user name.
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <code>your-password</code>
+            </td>
+            <td>
+                Your Docker password.
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <code>your-email</code>
+            </td>
+            <td>
+                You Docker email.
+            </td>
+        </tr>
+    </table>
+
+2.  Add the `imagePullSecret` property to the `integration_cr.yaml` custom resource file as follows:
+
+    ```yaml
+    apiVersion: "integration.wso2.com/v1alpha2"
+    kind: "Integration"
+    metadata:
+      name: "hello-world"
+    spec:
+      replicas: 1
+      image: "<Docker image for the Hello World Scenario>"
+      imagePullSecret: <secret-alias>
+    ```
+
+3.  You can now deploy the integration: Open a terminal and execute the following command from the location of your `integration_cr.yaml` file.
 
     ```bash
-    curl http://localhost:8290/services/HelloWorld
+    kubectl apply -f integration_cr.yaml
+    ``` 
 
-    {"Hello":"World"}%
-    ```
+## View integration process logs
 
-### View integration process logs
-See the output of the running integration solutions using the pod's logs. 
+Once you have [deployed your integrations](#deploy-integration-solutions-in-k8s) in the Kubernetes cluster, see the output of the running integration solutions using the pod's logs. 
 
 1. First, you need to get the associated **pod id**. Use the `kubectl get pods` command to list down all the deployed pods.
 
@@ -177,64 +308,127 @@ See the output of the running integration solutions using the pod's logs.
     [2019-10-28 05:29:24,251]  INFO {org.wso2.micro.integrator.initializer.StartupFinalizer} - WSO2 Micro Integrator started in 4 seconds
     ```
 
-## Change the default configuration of the EI Operator-Ingress Controller
-You can change the ingress-level configurations in the EI operator by using the `ei-operator-config` configuration map. You can update the `host` property to change the host for the ingress as given below. Ingress will use this host to register all the service routes. By default, it will use `wso2ei`.
+## Invoke the integration solution 
 
-```yaml
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: ei-operator-config
-data:
-  host: <YOUR-HOST-NAME>
-  autoIngressCreation: "true" 
+You can invoke the integration solution you deployed in Kubernetes using two methods.
+
+### Invoke using Ingress controller
+
+Once you have [deployed your integrations](#deploy-integration-solutions-in-k8s) in the Kubernetes cluster, you can use the default Ingress controller in the deployment to invoke the solution:
+
+1.  Obtain the **External IP** of the ingress load balancer using the `kubectl get ingress` command as follows:
+
+    ```bash
+    kubectl get ingress
+    NAME                  HOSTS     ADDRESS     PORTS     AGE
+    ei-operator-ingress   wso2ei    10.0.2.15   80, 443   2m
+    ```
+    For **Minikube**, you have to use the Minikube IP as the external IP. Hence, run `minikube ip` command to get the IP of the Minikube cluster.
+
+2.  Add the **HOST** (`wso2ei`) and related **ADDRESS** (external IP) to the `/etc/hosts` file in your machine.
+
+    !!! Tip
+        Note that the HOST of the Ingress controller is configured in the `deploy/config_map.yaml` file. The default host is `wso2ei`.
+
+3.  Execute the following CURL command to run the `hello-world` service in Kubernetes:
+
+    ```bash
+    curl http://wso2ei/hello-world-service/services/HelloWorld
+    ```
+
+    You will receive the following response:
+
+    ```bash
+    {"Hello":"World"}%
+    ```
+
+### Invoke without Ingress controller
+
+Once you have [deployed your integrations](#deploy-integration-solutions-in-k8s) in the Kubernetes cluster, you can also invoke the integration solutions without going through the Ingress controller by using the [port-forward](https://kubernetes.io/docs/tasks/access-application-cluster/port-forward-access-application-cluster/#forward-a-local-port-to-a-port-on-the-pod) method for services. 
+
+Follow the steps given below:
+
+1. Apply port forwarding:
+
+    ```bash
+    kubectl port-forward service/hello-world-service 8290:8290
+    ```
+
+2. Invoke the proxy service:
+
+    ```bash
+    curl http://localhost:8290/services/HelloWorld
+    ```
+
+    You will receive the following response:
+
+    ```bash
+    {"Hello":"World"}%
+    ```
+
+## Update existing integration deployments
+
+The EI K8s operator allows you to update the Docker images used in Kubernetes pods(replicas) with the latest update of the tag. To pull the latest tag, we need to delete the associated pod with its pod ID as follows:
+
+```bash 
+kubectl delete pod <POD-NAME>
 ```
 
-## Deploy the integration solution without Ingress creation
-By default, the EI operator creates an NGINX ingress, through which it exposes HTTP/HTTPS transport protocols. If user needs to create a deployment without the default ingress, you have to change the `autoIngressCreation` property value to `false` in the `ei-operator-config` config mapping as follows.
+When you run the above command, Kubernetes will spawn another temporary pod, which has the same behaviour of the pod we have deleted. Then the deleted pod will restart by pulling the latest tag from the Docker image path. 
 
-```yaml
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: ei-operator-config
-data:
-  host: wso2ei
-  autoIngressCreation: "false" 
-```
+!!! Note 
+    Here we are recommending to use a different image path for the updated integration solution. Otherwise, (because the Docker image is re-pulled from the existing deployment) some traffic from outside might get lost. 
 
-##  Run the integration solution with HTTPS
-We can use the **ingressTLS** property in the configuration mapping to expose an ingress NGINX HTTPS transport of your integration application in Kubernetes. If a user has defined **ingressTLS** in the configuration mapping, the ingress controller uses this TLS and terminates with the given HTTP.
+## Configure the EI K8s Operator (Optional)
+See the topics given below to update/change the default configurations of the EI K8s operator.
+
+### Disable Ingress controller
+
+By default, the EI operator creates an NGINX ingress through which it exposes HTTP/HTTPS transport protocols. If user needs to create a deployment without the default ingress:
+
+1.  Open the `config_map.yaml` file.
+2.  Change the `autoIngressCreation` property value to `false` in the `ei-operator-config` config mapping as follows.
+
+    ```yaml
+    apiVersion: v1
+    kind: ConfigMap
+    metadata:
+      name: ei-operator-config
+    data:
+      host: wso2ei
+      autoIngressCreation: "false" 
+    ```
+
+### Enable HTTPS for the integration solution
+We can use the **ingressTLS** property in the configuration mapping of the operator to expose an ingress NGINX HTTPS transport of your integration application in Kubernetes. If a user has defined **ingressTLS** in the configuration mapping, the ingress controller uses this TLS and terminates with the given HTTP.
 
 ```yaml
 ingressTLS: wso2-tls
 ```
 
-### Sample: Running an integration solution with HTTPS
-First, you need to generate a self-signed certificate and private key using the following command. For more details about certificate creation, see [this link](https://github.com/kubernetes/ingress-nginx/blob/master/docs/user-guide/tls.md#tls-secrets).
+Follow the steps given below.
 
-```bash
-openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout wso2.key -out wso2.crt -subj "/CN=wso2/O=wso2"
-```
+1.  You need to generate a self-signed certificate and private key using the following command. For more details about certificate creation, see [this link](https://github.com/kubernetes/ingress-nginx/blob/master/docs/user-guide/tls.md#tls-secrets).
+    ```bash
+    openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout wso2.key -out wso2.crt -subj "/CN=wso2/O=wso2"
+    ```
 
-Then, create a Kubernetes secret called `wso2-tls`, which deliberates to add to the TLS configurations in the ingress spec using the following command.
+2.  Create a Kubernetes secret called `wso2-tls` by executing the following command:
+    ```bash
+    kubectl create secret tls wso2-tls --key wso2.key --cert wso2.crt
+    ```
 
-```bash
-kubectl create secret tls wso2-tls --key wso2.key --cert wso2.crt
-```
-
-Then, add this secret alias called `wso2-tls` to the `ei-operator-config` configuration mappint as follows:
-
-```yaml
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: ei-operator-config
-data:
-  host: wso2ei
-  autoIngressCreation: "false" 
-  ingressTLS: wso2-tls
-```
+3.  Open the `config_map.yaml` file, and add this secret alias called `wso2-tls` to the `ei-operator-config` configuration mapping as follows:
+    ```yaml
+    apiVersion: v1
+    kind: ConfigMap
+    metadata:
+      name: ei-operator-config
+    data:
+      host: wso2ei
+      autoIngressCreation: "false" 
+      ingressTLS: wso2-tls
+    ```
 
 Now, you can invoke the deployed applications from following URL format.
 
@@ -242,39 +436,46 @@ Now, you can invoke the deployed applications from following URL format.
 https://<HOST-NAME>/<SERVICE-NAME>/<SERVICE-CONTEXT>
 ```
 
-According to the **Hello World** example, we can invoke the hello-world proxy as folows:
+For the **Hello World** example, the request should be as follows:
 
 ```bash
 curl --cacert wso2.crt https://wso2ei/hello-world-service/services/HelloWorld
+```
 
+You will receive the following response:
+
+```bash
 {"Hello":"World"}%
 ```
 
-##  Disable Server-side HTTPS enforcement through Redirect
-By default, the ingress controller redirects HTTP requests to the HTTPS port 443 using a **308 Permanent Redirect response** if TLS is enabled for that Ingress. To allow HTTP and HTTPS both request we can configure the config map by adding following property. 
+### Enable both HTTP and HTTPS
+
+If you have [enabled HTTPS for the Ingress controller](#enable-https-for-the-integration-solution), the ingress controller redirects HTTP requests to the HTTPS port (443), by default, using a **308 Permanent Redirect response**. To allow both HTTP and HTTPS requests, we can update the configuration mapping by adding the following property:
 
 ```yaml
 sslRedirect: "false"
 ```
- 
-The final `ei-operator-config` configuration mapping will look as follows:
 
-```yaml
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: ei-operator-config
-data:
-  host: wso2ei
-  autoIngressCreation: "false" 
-  ingressTLS: wso2-tls
-  sslRedirect: "false"
-```
+1.  Open the `config_map.yaml` file.
+2.  Update the `ei-operator-config` configuration mapping:
 
-## Run inbound endpoints as HTTP and HTTPS services
-[Inbound Endpoints](https://ei.docs.wso2.com/en/latest/micro-integrator/references/synapse-properties/inbound-endpoints/about-inbound-endpoints/) in the Micro Integrator are used for separating endpoint listeners. That is, for each HTTP inbound endpoint, messages are handled separately. Also, we can create any number of inbound endpoints on any port. 
+    ```yaml
+    apiVersion: v1
+    kind: ConfigMap
+    metadata:
+      name: ei-operator-config
+    data:
+      host: wso2ei
+      autoIngressCreation: "false" 
+      ingressTLS: wso2-tls
+      sslRedirect: "false"
+    ```
 
-So, we can expose the inbound endpoint ports from the Kubernetes cluster by passing the `inboundPorts` property inside our `integration_cr.yaml` custom resource file as follows:
+### Run inbound endpoints
+
+[Inbound Endpoints](../../../references/synapse-properties/inbound-endpoints/about-inbound-endpoints/) in the Micro Integrator are used for separating endpoint listeners. That is, for each HTTP inbound endpoint, messages are handled separately. Also, we can create any number of inbound endpoints on any port. 
+
+Therefore, we can expose the inbound endpoint ports from the Kubernetes cluster by passing the `inboundPorts` property inside our `integration_cr.yaml` custom resource file as follows:
 
 ```yaml
 apiVersion: "integration.wso2.com/v1alpha2"
@@ -290,57 +491,16 @@ spec:
     ... 
 ```
 
-Use the following methods to invoke the inbound endpoints in HTTP and HTTPS transports.
-**INTEGRATION-NAME** is the value we have used as the metadata name in the `integration_cr.yaml` file. 
+Use the following methods to invoke the inbound endpoints in HTTP and HTTPS transports. Note that `<INTEGRATION-NAME>` is the value we have used as the metadata name in the `integration_cr.yaml` file. 
 
-```bash
-#Request as HTTP
-curl http://<HOST-NAME>/<INTEGRATION-NAME>-inbound/<PORT>/<CONTEXT>
+-   HTTP request
 
-#Request as HTTPS
-curl --cacert <CERT_FILE> https://<HOST-NAME>/<INTEGRATION-NAME>-inbound/<PORT>/<CONTEXT>
-```
+    ```bash
+    curl http://<HOST-NAME>/<INTEGRATION-NAME>-inbound/<PORT>/<CONTEXT>
+    ```
 
-!!! Note
-    Here, we are not allowed to create **HTTPS Inbound Endpoints** inside integration solutions because every service can be secured through ingress-level encryption by using TLS for the ingress-controller. 
+-   HTTPS request
 
-## Using the private registry image as an integration solution
-The EI operator allows the use of any custom Docker image in a private registry as an integration solution. To achieve this, users have to pass the credentials to pull the image to the Kubernetes containers as a Kubernetes secret. The EI operator uses `imagePullSecret` to read the Kubernetes secret of the registry credentials. 
-
-You can use the following command to create a Kubernetes secret with the credentials of the private image:
-
-```bash
-kubectl create secret docker-registry <secret-alias> --docker-server=<your-registry-server> --docker-username=<your-name> --docker-password=<your-password> --docker-email=<your-email>
-```
-
--   `<secret-alias>` is the name for the secret
--   `<your-registry-server>` is your Private Docker Registry FQDN. (https://index.docker.io/v1/ for DockerHub)
--   `<your-name>` is your Docker username.
--   `<your-password>` is your Docker password.
--   `<your-email>` is your Docker email.
-
-Now, you can add the `imagePullSecret` property to the `integration_cr.yaml` custom resource file as follows:
-
-```yaml
-apiVersion: "integration.wso2.com/v1alpha2"
-kind: "Integration"
-metadata:
-  name: "hello-world"
-spec:
-  replicas: 1
-  image: "<Docker image for the Hello World Scenario>"
-  imagePullSecret: <secret-alias>
-```
-
-## Update existing integration deployments in the cluster
-
-The EI operator allows you to update the Docker images used in Kubernetes pods(replicas) with the latest update of the tag. To pull the latest tag, we need to delete the associated pod with its pod ID as follows:
-
-```bash 
-kubectl delete pod <POD-NAME>
-```
-
-When you run the above command, Kubernetes will spawn another temporary pod, which has the same behaviour of the pod we have deleted. Then the deleted pod will restart by pulling the latest tag from the Docker image path. 
-
-!!! Note 
-    Here we are recommending to use a different image path for the updated integration solution. Otherwise, (because the Docker image is re-pulled from the existing deployment) some traffic from outsiders might get lost. 
+    ```bash
+    curl --cacert <CERT_FILE> https://<HOST-NAME>/<INTEGRATION-NAME>-inbound/<PORT>/<CONTEXT>
+    ```
