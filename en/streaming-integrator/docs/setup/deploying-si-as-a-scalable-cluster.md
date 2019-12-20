@@ -12,7 +12,11 @@ aggregations etc which keep data in memory to carry out calculations.
 The deployment options for a scalable streaming integrator depends on the stateless and statefulness of siddhi apps. 
 Below are the detail descriptions of two approaches.
 
-#### Stateless Scalable High Availability (HA) Deployment
+## Systen Requirements
+
+For system requirements for this deployment, see [Installing the Streaming Integrator in a Virtual Machine](installing-si-in-vm.md).
+
+## Stateless scalable high availability (HA) deployment
 
 In stateless scenarios system does not work with any inmemory state.Thus in order to scale we can keep adding SI servers
  to the system and front them with a load balancer which will publish the events in round robin way. 
@@ -23,7 +27,7 @@ See below the architecture depicted
 
 
 
-#### Stateful Scalable High Availability (HA) Deployment
+## Stateful scalable high availability (HA) deployment
 
 As described earlier stateful operations keep state data in memory thus inorder to scale such system we need to process 
 particular data on same node without processing same state data in different servers. So to achieve this we can use data 
@@ -40,7 +44,7 @@ See below the high level diagram of event flow and components to achieve scalabl
 
 Below describes each component in detail and how to configure them with streaming integrator.
 
-#####Partitioning Layer
+### Partitioning layer
 
 As depicted above first we need to have a partitioning layer. Here we are using a SI server to achieve it. This layer 
 responsible of consuming events from output sources and then partition the events based on a partitioning condition. 
