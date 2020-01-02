@@ -26,7 +26,7 @@ events to active node. To achieve this, you can use a load balancing mechanism t
 
 In order to configure a minimum HA cluster, the following prerequisites must be completed:
 
-  - It is recommended to run this setup with two CPUs. Each CPU should have four cores, and 4GB memory.
+  - For each WSO2 SP instance, you need a CPU with four cores, and a total memory of 4GB
   - Two binary packs of WSO2 SI must be available.
   - A working RDBMS instance to be used for clustering of the 2 nodes. 
   - Download the MySQL connector from <a target="_blank" href="https://dev.mysql.com/downloads/connector/j/">here</a>. 
