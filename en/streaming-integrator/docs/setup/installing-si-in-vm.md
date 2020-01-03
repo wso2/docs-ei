@@ -2,19 +2,11 @@
 
 Follow the steps given below to install and run WSO2 Streaming Integrator on a VM.
 
-## System requirements
-
-| Type   | Requirement                                                                                     |
-|--------|-------------------------------------------------------------------------------------------------|
-| CPU    | You require a minimum of one CPU with 2 cores. It is recommended to have a CPU with 4 cores.    |
-| Memory | ~ 4 GB minimum is recommended</br> </br>  ~ 2 GB heap size                                      |
-| Disk   | ~ 1 GB minimum (excluding space allocated for log files and databases.)                         |
-
 ## Installing the Streaming Integrator
 
 Follow the steps below:
 
-1. Go to the Enterprise Integrator [product page](https://wso2.com/integration/streaming-integrator/) and click **Download** to get the **product installer**. The installer that is compatible with your operating system is downloaded.
+1. Go to the Streaming Integrator [product page](https://wso2.com/integration/streaming-integrator/) and click **Download** to get the **product installer**. The installer that is compatible with your operating system is downloaded.
 
     !!! Info
         Alternatively, go to **Other Installation Options** and click **Binary** to download the product distribution as a ZIP file.
@@ -154,4 +146,3 @@ listener port is 8253.
 
 To stop the Streaming Integrator runtime, press Ctrl+C in the command
 window.
-
