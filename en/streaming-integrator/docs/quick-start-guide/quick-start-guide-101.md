@@ -26,7 +26,7 @@ Create a basic Siddhi application for a simple use case.
 
 1. Extract the Streaming Integrator Tooling pack to a preferred location. Hereafter, the extracted location is referred to as `<SI_TOOLING_HOME>`.
 
-2. Navigate to the `<SI_TOOLING_HOME>/bin` directory and issue the following command to start the Streaming Integration tooling.
+2. Navigate to the `<SI_TOOLING_HOME>/bin` directory and issue the following commands (depending on your operating system) to start the Streaming Integration tooling.
 
     -   For Windows: `tooling.bat`
 
