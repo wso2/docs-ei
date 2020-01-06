@@ -15,18 +15,13 @@ In this guide, you will download the SI distribution, start it and then try out 
 
 ## Downloading Streaming Integrator
 
-
-Download the Streaming Integrator distribution from [Streaming Integrator Home Page](https://wso2.com/integration/streaming-integrator/) and extract it to a location of your choice. Hereafter, the extracted location is referred to as `<SI_HOME>`.
-
+Download the Streaming Integrator distribution from [WSO2 Streaming Integrator site](https://wso2.com/integration/streaming-integrator/) and extract it to a location of your choice. Hereafter, the extracted location is referred to as `<SI_HOME>`.
 
 ## Starting the server
 
-- On MacOS/Linux/CentOS, open a terminal and issue the following command:
-
-    `sudo wso2si`
-
-- On windows, go to **Start Menu -> Programs -> WSO2 -> Enterprise Integrator**. This opens a terminal. Start Streaming Integrator profile.
-
+Navigate to the `<SI_HOME>/bin` directory in the console and issue the appropriate command depending on your operating system to start the Streaming Integrator. <br/>
+    - For Windows: `server.bat`
+    - For Linux/MacOS: `./server.sh`
 
 ## Deploying a simple Siddhi application
 

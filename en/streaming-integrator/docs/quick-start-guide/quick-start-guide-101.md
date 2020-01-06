@@ -26,10 +26,11 @@ Create a basic Siddhi application for a simple use case.
 
 1. Extract the Streaming Integrator Tooling pack to a preferred location. Hereafter, the extracted location is referred to as `<SI_TOOLING_HOME>`.
 
-2. Start the Streaming Integrator Tooling via one of the following methods depending on your operating system..<br/>
-           - On MacOS/Linux/CentOS, open a terminal and issue the following command:<br/>
-               `sudo wso2si-tooling-<VERSION>`<br/>
-           - On windows, go to **Start Menu -> Programs -> WSO2 -> Streaming Integrator Tooling**. A terminal opens.
+2. Navigate to the `<SI_TOOLING_HOME>/bin` directory and issue the appropriate command depending on your operating system to start the Streaming Integration tooling.
+
+    -   For Windows: `tooling.bat`
+
+    -   For Linux/MacOS: `./tooling.sh`
     
 3. Access the Streaming Integration Tooling via the `http://<HOST_NAME>:<TOOLING_PORT>/editor` URL.
 
@@ -224,13 +225,9 @@ To deploy your Siddhi application in the Streaming Integrator server, follow the
 !!!info
     To deploy the Siddhi application, you need to run both the Streaming Integrator server and Streaming Integrator Tooling. The home directories of the Streaming Integrator server is referred to as `<SI_HOME>` and the home directory of Streaming Integrator Tooling is referred to as `<SI_TOOLING_HOME>`.
 
-1. Start the Streaming Integrator via one of the following methods depending on your operating system.
-
-   - On MacOS/Linux/CentOS, open a terminal and issue the following command:
-
-       `sudo wso2si`
-
-   - On windows, go to **Start Menu -> Programs -> WSO2 -> Enterprise Integrator**. This opens a terminal. Start Streaming Integrator profile.
+1. Start the Streaming Integrator server by navigating to the `<SI_HOME>/bin` directory from the CLI, and issuing the appropriate command based on your operating system:</br>
+   - For Windows: `server.bat --run`</br>
+   - For Linux/Mac OS:  `./server.sh`
 
 2. In the Streaming Integrator Tooling, click **Deploy** and then click **Deploy to Server**.
 
@@ -309,7 +306,7 @@ To export the `TemperatureApp` Siddhi application as a Docker artifact, follow t
     Click **Export**. The Siddhi application is exported as a Docker artifact in a zip file to the default location in your machine, based on your operating system and browser settings.
 
 
-## Extending the Streaming Integrator
+##Extending the Streaming Integrator
 
 The Streaming Integrator is by default shipped with most of the available Siddhi extensions by default. If a Siddhi extension you require is not shipped by default, you can download and install it.
 
@@ -324,7 +321,7 @@ In this scenario, let's assume that the laboratories require the siddhi-executio
 3. Click on the **V4.1.1** for this scenario. As a result, the following page opens.
     ![Extrema Extension Page](../images/quick-start-guide-101/extension-page.png)
 
-4. To download the extension, click **Download Extension**. Then enter your email address in the dialog box that appears, and click **Submit**. As a result, a JAR fil is downloaded into a location in your machine (the location depends on your browser settings).
+4. To download the extension, click **Download Extension**. Then enter your email address in the dialog box that appears, and click **Submit**. As a result, a JAR fil is downloaded to a location in your machine (the location depends on your browser settings).
 
 5. To install the siddhi-execution-extrema extension in your Streaming Integrator, place the JAR file you downloaded in the `<SI_HOME>/lib directory`.
 
