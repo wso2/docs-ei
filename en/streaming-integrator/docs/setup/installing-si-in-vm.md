@@ -14,7 +14,7 @@ Follow the steps given below to install and run WSO2 Streaming Integrator on a V
 
 Follow the steps below:
 
-1. Go to the Enterprise Integrator [product page](https://wso2.com/integration/streaming-integrator/) and click **Download** to get the **product installer**. The installer that is compatible with your operating system is downloaded.
+1. Go to the Streaming Integrator [product page](https://wso2.com/integration/streaming-integrator/) and click **Download** to get the **product installer**. The installer that is compatible with your operating system is downloaded.
 
     !!! Info
         Alternatively, go to **Other Installation Options** and click **Binary** to download the product distribution as a ZIP file.
