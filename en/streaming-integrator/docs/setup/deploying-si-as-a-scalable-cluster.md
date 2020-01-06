@@ -12,9 +12,9 @@ aggregations etc which keep data in memory to carry out calculations.
 The deployment options for a scalable streaming integrator depends on the stateless and statefulness of siddhi apps. 
 Below are the detail descriptions of two approaches.
 
-## Systen Requirements
+!!! tip "System Requirements"
+    For system requirements for this deployment, see [Installing the Streaming Integrator in a Virtual Machine](installing-si-in-vm.md).
 
-For system requirements for this deployment, see [Installing the Streaming Integrator in a Virtual Machine](installing-si-in-vm.md).
 
 ## Stateless scalable high availability (HA) deployment
 

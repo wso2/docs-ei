@@ -5,7 +5,8 @@ in the streaming integration world. The other deployment options, namely [Minimu
 [Scalable High Available(HA) Deployment](deploying-si-as-a-single-deployment.md) are mainly introduced to handle high availability, scalability, and resiliency.
 However, single node deployment too allows you to achieve resilient deployment as explained in the [Resilient Deployment](#resilient-deployment.md) subsection.
 
-For system requirements for this deployment, see [Installing the Streaming Integrator in a Virtual Machine](installing-si-in-vm.md).
+!!! tip "System Requirements"
+    For system requirements for this deployment, see [Installing the Streaming Integrator in a Virtual Machine](installing-si-in-vm.md).
 
 ## Resilient deployment
 
