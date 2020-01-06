@@ -58,12 +58,13 @@ below:
         For detailed instructions to simulate events, see the following
         sections:
     
-        - [Simulating a Single Event](_Simulating_a_Single_Event_)
-        - [Simulating Multiple Events via CS Files](_Simulating_Multiple_Events_via_CSV_Files_)
-        - [Simulating Multiple Events via Databases](_Simulating_Multiple_Events_via_Databases_)
-        - [Generating Random Data](_Generating_Random_Data_)
+        - [Simulating a Single Event](testing-a-Siddhi-Application.md#simulating-a-single-event)
+        - [Simulating Multiple Events via CS Files](testing-a-Siddhi-Application.md#simulating-multiple-events-via-csv-files)
+        - [Simulating Multiple Events via Databases](testing-a-Siddhi-Application.md#simulating-multiple-events-via-databases)
+        - [Generating Random Data](testing-a-Siddhi-Application.md#generating-random-events
     
-    ![Debug points being hit](../imagess/Debugging-Siddhi-Applications/Hitting-Debug-Points.png) 
+    ![Debug points being hit](../images/Debugging-Siddhi-Applications/Hitting-Debug-Points.png)
+
     Two viewing options are provided under both **Event State** and the
     **Query State** sections of the **Debug** tab for each debug point
     hit as shown above.
