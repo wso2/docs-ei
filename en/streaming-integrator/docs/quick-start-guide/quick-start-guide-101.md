@@ -26,11 +26,11 @@ Create a basic Siddhi application for a simple use case.
 
 1. Extract the Streaming Integrator Tooling pack to a preferred location. Hereafter, the extracted location is referred to as `<SI_TOOLING_HOME>`.
 
-2. Navigate to the `<SI_TOOLING_HOME>/bin` directory and issue the following commands (depending on your operating system) to start the Streaming Integration tooling.
+2. Navigate to the `<SI_TOOLING_HOME>/bin` directory and issue the appropriate command depending on your operating system to start the Streaming Integration tooling.
 
     -   For Windows: `tooling.bat`
 
-    -   For Linux: `./tooling.sh`
+    -   For Linux/MacOS: `./tooling.sh`
     
 3. Access the Streaming Integration Tooling via the `http://<HOST_NAME>:<TOOLING_PORT>/editor` URL.
 
@@ -225,9 +225,9 @@ To deploy your Siddhi application in the Streaming Integrator server, follow the
 !!!info
     To deploy the Siddhi application, you need to run both the Streaming Integrator server and Streaming Integrator Tooling. The home directories of the Streaming Integrator server is referred to as `<SI_HOME>` and the home directory of Streaming Integrator Tooling is referred to as `<SI_TOOLING_HOME>`.
 
-1. Start the Streaming Integrator server by navigating to the `<SI_HOME>/bin` directory from the CLI, and issuing one of the following commands:
-   - On Windows: `server.bat --run`
-   - On Linux/Mac OS:  `./server.sh`
+1. Start the Streaming Integrator server by navigating to the `<SI_HOME>/bin` directory from the CLI, and issuing the appropriate command based on your operating system:</br>
+   - For Windows: `server.bat --run`</br>
+   - For Linux/Mac OS:  `./server.sh`
 
 2. In the Streaming Integrator Tooling, click **Deploy** and then click **Deploy to Server**.
 
