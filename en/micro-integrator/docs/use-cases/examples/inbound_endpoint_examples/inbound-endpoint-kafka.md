@@ -51,7 +51,7 @@ Set up the back-end service.
 
 -   Apache Kafka inbound endpoint should be configured. The recommended version for the customized kafka inbound endpoint is `kafka_2.9.2-0.8.1.1`. See [Configuring Kafka](../../../../setup/feature_configs/configuring-kafka) for more information. 
 
--   Go to the [WSO2 Connector Store](https://store.wso2.com/store/assets/esbconnector/details/kafka) and click **Download Inbound Endpoint** to download the inbound JAR file. Add the downloaded JAR file to the <MI_HOME>/dropins directory.
+-   Go to the [WSO2 Connector Store](https://store.wso2.com/store/assets/esbconnector/details/b15e9612-5144-4c97-a3f0-179ea583be88) and click **Download Inbound Endpoint** to download the inbound JAR file. Add the downloaded JAR file to the <MI_HOME>/dropins directory.
 
 Run the following commands in the {KAFKA_HOME} directory to invoke the service.
     
