@@ -2,7 +2,7 @@
 
 The minimum high availability deployment mainly focuses on providing high availability that ensures the prevention of data loss if the
 system suffers a failure due to one or more unforeseeable reasons. One of the main adavantages of this deployment pattern is that it uses minimum
-amount of infrastructure resources possible. Thus deployment pattern iis run with only two Streaming integration servers.
+amount of infrastructure resources possible. Thus deployment pattern is run with only two Streaming integration servers.
 
 In the minimum HA setup, one node is assigned as the active node while the other node is assigned as the passive node.
 Only the active node processes the incoming events and publishes the outgoing events. Internally, the active node 
@@ -64,7 +64,8 @@ To configure the HA cluster, follow the steps below:
 2. To allow the two nodes to use same persistence storage, you need to configure RDBMS persistence configuration under `state.persistence`. The following is a configuration for db-based file persistence.
 
     !!! info
-        This step covers persistent configuration.
+        This step covers persistent configuration. For this purpose, you can use MySQL, MSSQL, POSTGRES and Oracle database types. For more information about the supported database types, see [Configuring Data Sources](configuring-data-sources.md).
+
 
     ```
      - state.persistence:

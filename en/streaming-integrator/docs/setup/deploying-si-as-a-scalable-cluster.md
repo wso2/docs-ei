@@ -1,16 +1,17 @@
 # Scalable Deployment
 
-Scalable high availability deployment predominantly focused on scaling the system according to the load or the TPS of
+Scalable high availability deployment predominantly focuses on scaling the system according to the load or the TPS of
 the system. This is achieved with the help of horizontal scalability.
 
-Streaming Integration underneath uses siddhi as the streaming language. In siddhi one can write siddhi logic in a 
-stateless and stateful way. 
+WSO2 Streaming Integrator uses Siddhi as the streaming language. Siddhi allopws you to write Siddhi logic in a
+stateless way as well as a stateful way.
 
-Stateless operations include filters , database operations etc and stateful operations include window operations , 
-aggregations etc which keep data in memory to carry out calculations.
+Stateless operations include filters, database operations etc., and stateful operations include window operations,
+aggregations etc., that keep data in memory to carry out calculations.
 
-The deployment options for a scalable streaming integrator depends on the stateless and statefulness of siddhi apps. 
-Below are the detail descriptions of two approaches.
+The deployment options for a scalable streaming integrator depends on the statelessness and the statefulness of Siddhi applications.
+
+The following topics provide detailed descriptions of two approaches.
 
 !!! tip "System Requirements"
     For system requirements for this deployment, see [Installing the Streaming Integrator in a Virtual Machine](installing-si-in-vm.md).
@@ -18,7 +19,7 @@ Below are the detail descriptions of two approaches.
 
 ## Stateless scalable high availability (HA) deployment
 
-In stateless scenarios system does not work with any inmemory state.Thus in order to scale we can keep adding SI servers
+In stateless scenarios, the system does not work with any in-memory state. Thus in order to scale we can keep adding SI servers
  to the system and front them with a load balancer which will publish the events in round robin way. 
  
 See below the architecture depicted 
