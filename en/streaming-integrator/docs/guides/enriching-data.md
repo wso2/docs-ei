@@ -1,6 +1,6 @@
-#Enriching Data
+# Enriching Data
 
-##Introduction
+## Introduction
 
 Enriching data involves integrated the data received into a streaming integration flow with data from other medium such 
 as a data store, another data stream, or an external service to derive an expected result. To understand the different ways in which this is done,
