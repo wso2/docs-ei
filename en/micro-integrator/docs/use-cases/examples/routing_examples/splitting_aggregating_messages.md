@@ -1,0 +1,129 @@
+# Splitting Messages and Aggregating Responses
+    
+This example scenario uses the Iterate mediator to split incoming messages (requests) into parts, process them asynchronously, and then aggregate the response messages received from the backend.
+
+## Synapse configuration
+    
+Listed below are the synapse configurations (proxy service) that are necessary for implementing this scenario. See the instructions on how to [build and run](#build-and-run) this example.
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<proxy name="SplitAggregateProxy" xmlns="http://ws.apache.org/ns/synapse" transports="https http" startOnLoad="true" trace="disable">
+    <target>
+        <inSequence>
+            <iterate expression="//m0:getQuote/m0:request" preservePayload="true"
+                     attachPath="//m0:getQuote"
+                     xmlns:m0="http://services.samples">
+                <target>
+                    <sequence>
+                        <header name="Action" scope="default" value="urn:getQuote"/>
+                        <send>
+                            <endpoint>
+                                <address
+                                    uri="http://localhost:9000/services/SimpleStockQuoteService"/>
+                            </endpoint>
+                        </send>
+                    </sequence>
+                </target>
+            </iterate>
+        </inSequence>
+        <outSequence>
+            <property name="enclose" scope="default">
+        <ns:Results xmlns:ns="http://services.samples" />
+     </property>
+             <aggregate>
+                <onComplete expression="$body/*[1]" enclosingElementProperty="enclose">
+                    <send/>
+                </onComplete>
+            </aggregate>
+        </outSequence>
+    </target>
+</proxy>
+```
+
+## Build and run
+
+Create the artifacts:
+
+1. [Set up WSO2 Integration Studio](../../../../develop/installing-WSO2-Integration-Studio).
+2. [Create an ESB Solution project](../../../../develop/creating-projects/#esb-config-project).
+3. [Create the proxy service](../../../../develop/creating-artifacts/creating-a-proxy-service) with the configurations given above.
+4. [Deploy the artifacts](../../../../develop/deploy-and-run) in your Micro Integrator.
+
+Set up the back-end service:
+
+1. Download the [stockquote_service.jar](https://github.com/wso2-docs/WSO2_EI/blob/master/Back-End-Service/stockquote_service.jar).
+2. Open a terminal, navigate to the location of the downloaded service, and run it using the following command:
+
+    ```bash
+    java -jar stockquote_service.jar
+    ```
+
+Invoke the sample Proxy Service:
+
+```xml
+HTTP method: POST 
+Request URL: http://localhost:8290/services/SplitAggregateProxy
+Content-Type: text/xml;charset=UTF-8
+SOAPAction: "urn:mediate"
+CustomHeader: application/json
+Message Body:
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+   <soapenv:Header/>
+   <soapenv:Body>
+   <m0:getQuote xmlns:m0="http://services.samples" xmlns:xsd="http://services.samples/xsd">
+        <m0:request>
+            <m0:symbol>IBM</m0:symbol>
+        </m0:request>
+        <m0:request>
+            <m0:symbol>SUN</m0:symbol>
+        </m0:request>
+    </m0:getQuote>
+   </soapenv:Body>
+</soapenv:Envelope>
+```
+
+You can then observe that the response from the proxy service is the aggregated response received for each of the `getQuote` requests that were sent to the backend.
+
+```xml
+<ns:Results xmlns:ns="http://services.samples">
+    <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ax21="http://services.samples/xsd">
+        <soapenv:Body>
+            <ns:getQuoteResponse>
+                <ax21:change>-2.86843917118114</ax21:change>
+                <ax21:earnings>-8.540305401672558</ax21:earnings>
+                <ax21:high>-176.67958828498735</ax21:high>
+                <ax21:last>177.66987465262923</ax21:last>
+                <ax21:low>-176.30898912339075</ax21:low>
+                <ax21:marketCap>5.649557998178506E7</ax21:marketCap>
+                <ax21:name>IBM Company</ax21:name>
+                <ax21:open>185.62740369461244</ax21:open>
+                <ax21:peRatio>24.341353665128693</ax21:peRatio>
+                <ax21:percentageChange>-1.4930577008849097</ax21:percentageChange>
+                <ax21:prevClose>192.11844053187397</ax21:prevClose>
+                <ax21:symbol>IBM</ax21:symbol>
+                <ax21:volume>7791</ax21:volume>
+            </ns:getQuoteResponse>
+        </soapenv:Body>
+    </soapenv:Envelope>
+    <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ax21="http://services.samples/xsd">
+        <soapenv:Body>
+            <ns:getQuoteResponse>
+                <ax21:change>-2.86843917118114</ax21:change>
+                <ax21:earnings>-8.540305401672558</ax21:earnings>
+                <ax21:high>-176.67958828498735</ax21:high>
+                <ax21:last>177.66987465262923</ax21:last>
+                <ax21:low>-176.30898912339075</ax21:low>
+                <ax21:marketCap>5.649557998178506E7</ax21:marketCap>
+                <ax21:name>SUN Company</ax21:name>
+                <ax21:open>185.62740369461244</ax21:open>
+                <ax21:peRatio>24.341353665128693</ax21:peRatio>
+                <ax21:percentageChange>-1.4930577008849097</ax21:percentageChange>
+                <ax21:prevClose>192.11844053187397</ax21:prevClose>
+                <ax21:symbol>SUN</ax21:symbol>
+                <ax21:volume>7791</ax21:volume>
+            </ns:getQuoteResponse>
+        </soapenv:Body>
+    </soapenv:Envelope>
+</ns:Results>
+```

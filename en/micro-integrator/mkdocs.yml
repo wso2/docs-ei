@@ -67,6 +67,10 @@ nav:
         - 'Reusing Mediation Sequences': 'use-cases/tutorials/using-templates.md'
         - 'Integrating with SAP': 'use-cases/tutorials/sap-integration.md'
       - Examples:
+        - Message Routing:
+            - 'Routing Based on Message Headers': 'use-cases/examples/routing_examples/routing_based_on_headers.md'
+            - 'Routing Based on Message Payload': 'use-cases/examples/routing_examples/routing_based_on_payloads.md'
+            - 'Splitting Messages and Aggregating Responses': 'use-cases/examples/routing_examples/splitting_aggregating_messages.md'
         - Asynchronous Messaging:
             - 'Consuming JMS Messages': 'use-cases/examples/jms_examples/consuming-jms.md'
             - 'Producing JMS Messages': 'use-cases/examples/jms_examples/producing-jms.md'
