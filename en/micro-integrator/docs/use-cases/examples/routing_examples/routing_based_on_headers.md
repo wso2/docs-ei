@@ -27,7 +27,7 @@ Listed below are the synapse configurations that are necessary for implementing 
               </case>
               <default>
               <log level="custom"> 
-                  <property name="AcceptHeader" value="other" /> 
+                  <property name="CustomHeader" value="other" /> 
               </log> 
               <sequence key="sequence3" />
               </default>
