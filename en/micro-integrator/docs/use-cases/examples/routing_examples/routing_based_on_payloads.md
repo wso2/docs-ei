@@ -24,8 +24,9 @@ Listed below are the synapse configurations (proxy service) for implementing thi
                     <sequence key="sequence2"/>
                 </case>
                 <default>
-                    <property expression="fn:concat('Normal Stock - ', //ser:getQuote/ser:request/xsd:symbol" xmlns:ser="http://services.samples" xmlns:xsd="http://services.samples/xsd" name="symbol" scope="default" type="STRING"/>
-                    <sequence key="sequence3"/>
+                    <log level="custom">
+                        <property expression="fn:concat('Invalid request for symbol - ', //ser:getQuote/ser:request/xsd:symbol)" name="Error"/>
+                    </log>
                 </default>
                 <!-- The isolated content will be filtered -->
             </switch>
@@ -51,15 +52,7 @@ Listed below are the synapse configurations (proxy service) for implementing thi
         <property name="messageType" value="text/xml" scope="axis2"/>
         <respond/>
 </sequence>
-```
-
-```xml tab="Sequence 3"
-<?xml version="1.0" encoding="UTF-8"?>
-<sequence xmlns="http://ws.apache.org/ns/synapse" name="sequence3"> 
-        <sequence key="send_seq"/> 
-        <respond/>
-</sequence>
-```    
+```   
 
 ```xml tab="Send Seq"
 <?xml version="1.0" encoding="UTF-8"?>
@@ -99,7 +92,6 @@ Invoke the proxy service:
     HTTP method: POST 
     Request URL: http://localhost:8290/services/ContentBasedRoutingProxy
     Content-Type: text/xml;charset=UTF-8
-    SOAPAction: "urn:getQuote"
     Message Body:
     <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="http://services.samples" xmlns:xsd="http://services.samples/xsd">
       <soapenv:Header/>
@@ -143,7 +135,6 @@ Invoke the proxy service:
     HTTP method: POST 
     Request URL: http://localhost:8290/services/ContentBasedRoutingProxy
     Content-Type: text/xml;charset=UTF-8
-    SOAPAction: "urn:getQuote"
     Message Body:
     <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="http://services.samples" xmlns:xsd="http://services.samples/xsd">
       <soapenv:Header/>
