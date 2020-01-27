@@ -61,7 +61,7 @@ Listed below are the synapse configurations (proxy service) for implementing thi
 </sequence>
 ```    
 
-```xml tab="Sequence (Send Seq)"
+```xml tab="Send Seq"
 <?xml version="1.0" encoding="UTF-8"?>
 <sequence xmlns="http://ws.apache.org/ns/synapse" name="send_seq"> 
     <header name="Action" scope="default" value="urn:getQuote"/>
