@@ -137,7 +137,7 @@ Invoke the proxy service:
     }
     ```
 
-- Send a request to get the MSFT stock quote and see that a JSON response is received with the MSFT stock quote.
+- Send a request to get the MSFT stock quote and see that an XML response is received with the MSFT stock quote.
 
     ```xml tab='Request'
     HTTP method: POST 
