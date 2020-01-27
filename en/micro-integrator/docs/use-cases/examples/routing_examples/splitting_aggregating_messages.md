@@ -1,10 +1,14 @@
 # Splitting Messages and Aggregating Responses
-    
-This example scenario uses the Iterate mediator to split incoming messages (requests) into parts, process them asynchronously, and then aggregate the response messages received from the backend.
+
+This example scenario uses a back-end service with two stock quote inventories (IBM and SUN). A proxy service is configured in the Micro Integrator with the **Iterate** mediator (to split the incoming message) and the **Aggregate** mediator (to aggregate the responses).
+
+When a stock quote request is received by the Micro Integrator, the proxy service will read the **message payload** and first identify the parts of the message that are intended for each of the inventories. The Iterate mediator will then split the message and route the parts to the relevant inventories in the backend. These messages will be processed asynchronously. 
+
+When the response messages are received from the backend, the Aggregate mediator will aggregate the responses into one and send to the client.
 
 ## Synapse configuration
     
-Listed below are the synapse configurations (proxy service) that are necessary for implementing this scenario. See the instructions on how to [build and run](#build-and-run) this example.
+Listed below are the synapse configurations (proxy service) for implementing this scenario. See the instructions on how to [build and run](#build-and-run) this example.
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
