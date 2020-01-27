@@ -2,7 +2,7 @@
 
 This example scenario uses a back-end service with two stock quote inventories (IBM and MSFT). A proxy service is configured in the Micro Integrator to use separate mediation sequences for processing request messages with different **payloads**. 
 
-When a stock quote request is received by the Micro Integrator, it will read the **message payload** (content) and then route the message to the relevant mediation sequence for processing. The sequence will forward the message to the relevant stock quote inventory in the backend, receive the response, process it, and return it to the client.
+When a stock quote request is received, the Micro Integrator will read the **message payload** (content) and then route the message to the relevant mediation sequence for processing. The sequence will forward the message to the relevant stock quote inventory in the backend, receive the response, process it, and return it to the client.
     
 ## Synapse configuration
     
@@ -93,7 +93,7 @@ Set up the back-end service:
 
 Invoke the proxy service:
 
-- Send a request to get the IBM stock quote and see the an XML response is received with the IBM stock quote.
+- Send a request to get the IBM stock quote and see that an XML response is received with the IBM stock quote.
 
     ```xml tab='Request'
     HTTP method: POST 
@@ -134,7 +134,7 @@ Invoke the proxy service:
     </soapenv:Envelope>
     ```
 
-- Send a request to get the MSFT stock quote and see the a JSON response is received with the MSFT stock quote.
+- Send a request to get the MSFT stock quote and see that a JSON response is received with the MSFT stock quote.
 
     ```xml tab='Request'
     HTTP method: POST 
