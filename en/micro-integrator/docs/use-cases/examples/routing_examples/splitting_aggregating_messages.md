@@ -63,7 +63,7 @@ Set up the back-end service:
     java -jar stockquote_service.jar
     ```
 
-Invoke the sample Proxy Service:
+Invoke the sample proxy service:
 
 ```xml
 HTTP method: POST 
