@@ -93,52 +93,12 @@ Set up the back-end service:
 
 Invoke the proxy service:
 
-- Send a request to get the IBM stock quote and see that an XML response is received with the IBM stock quote.
+- Send a request to get the IBM stock quote and see that a JSON response is received with the IBM stock quote.
 
     ```xml tab='Request'
     HTTP method: POST 
     Request URL: http://localhost:8290/services/ContentBasedRoutingProxy
-    SOAPAction: "urn:getQuote"
-    Message Body:
-    <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="http://services.samples" xmlns:xsd="http://services.samples/xsd">
-      <soapenv:Header/>
-      <soapenv:Body>
-         <ser:getQuote xmlns:ser="http://services.samples" xmlns:xsd="http://services.samples/xsd">
-            <ser:request>
-               <xsd:symbol>IBM</xsd:symbol>
-            </ser:request>
-         </ser:getQuote>
-      </soapenv:Body>
-    </soapenv:Envelope>
-    ```
-
-    ```xml tab='Response'
-    <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ns="http://services.samples" xmlns:ax21="http://services.samples/xsd">
-        <soapenv:Body>
-            <ns:getQuoteResponse>
-                <ax21:change>-2.86843917118114</ax21:change>
-                <ax21:earnings>-8.540305401672558</ax21:earnings>
-                <ax21:high>-176.67958828498735</ax21:high>
-                <ax21:last>177.66987465262923</ax21:last>
-                <ax21:low>-176.30898912339075</ax21:low>
-                <ax21:marketCap>5.649557998178506E7</ax21:marketCap>
-                <ax21:name>IBM Company</ax21:name>
-                <ax21:open>185.62740369461244</ax21:open>
-                <ax21:peRatio>24.341353665128693</ax21:peRatio>
-                <ax21:percentageChange>-1.4930577008849097</ax21:percentageChange>
-                <ax21:prevClose>192.11844053187397</ax21:prevClose>
-                <ax21:symbol>IBM</ax21:symbol>
-                <ax21:volume>7791</ax21:volume>
-            </ns:getQuoteResponse>
-        </soapenv:Body>
-    </soapenv:Envelope>
-    ```
-
-- Send a request to get the MSFT stock quote and see that a JSON response is received with the MSFT stock quote.
-
-    ```xml tab='Request'
-    HTTP method: POST 
-    Request URL: http://localhost:8290/services/ContentBasedRoutingProxy
+    Content-Type: text/xml;charset=UTF-8
     SOAPAction: "urn:getQuote"
     Message Body:
     <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="http://services.samples" xmlns:xsd="http://services.samples/xsd">
@@ -155,24 +115,70 @@ Invoke the proxy service:
 
     ```xml tab='Response'
     {
-      "Envelope": {
-          "Body": {
-              "getQuoteResponse": {
-                  "change": -2.86843917118114,
-                  "earnings": -8.540305401672558,
-                  "high": -176.67958828498735,
-                  "last": 177.66987465262923,
-                  "low": -176.30898912339075,
-                  "marketCap": 56495579.98178506,
-                  "name": "MSFT Company",
-                  "open": 185.62740369461244,
-                  "peRatio": 24.341353665128693,
-                  "percentageChange": -1.4930577008849097,
-                  "prevClose": 192.11844053187397,
-                  "symbol": "MSFT",
-                  "volume": 7791
+    "Envelope": {
+        "Body": {
+            "getQuoteResponse": {
+                "change": -2.86843917118114,
+                "earnings": -8.540305401672558,
+                "high": -176.67958828498735,
+                "last": 177.66987465262923,
+                "low": -176.30898912339075,
+                "marketCap": 56495579.98178506,
+                "name": "IBM Company",
+                "open": 185.62740369461244,
+                "peRatio": 24.341353665128693,
+                "percentageChange": -1.4930577008849097,
+                "prevClose": 192.11844053187397,
+                "symbol": "IBM",
+                "volume": 7791
                 }
             }
         }
     }
+    ```
+
+- Send a request to get the MSFT stock quote and see that a JSON response is received with the MSFT stock quote.
+
+    ```xml tab='Request'
+    HTTP method: POST 
+    Request URL: http://localhost:8290/services/ContentBasedRoutingProxy
+    Content-Type: text/xml;charset=UTF-8
+    SOAPAction: "urn:getQuote"
+    Message Body:
+    <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="http://services.samples" xmlns:xsd="http://services.samples/xsd">
+      <soapenv:Header/>
+      <soapenv:Body>
+         <ser:getQuote xmlns:ser="http://services.samples" xmlns:xsd="http://services.samples/xsd">
+            <ser:request>
+               <xsd:symbol>IBM</xsd:symbol>
+            </ser:request>
+         </ser:getQuote>
+      </soapenv:Body>
+    </soapenv:Envelope>
+    ```
+
+    ```xml tab='Response'
+    <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+    <soapenv:Body>
+        <soapenv:Envelope xmlns:ax21="http://services.samples/xsd" xmlns:ns="http://services.samples">
+            <soapenv:Body>
+                <ns:getQuoteResponse>
+                    <ax21:change>-2.86843917118114</ax21:change>
+                    <ax21:earnings>-8.540305401672558</ax21:earnings>
+                    <ax21:high>-176.67958828498735</ax21:high>
+                    <ax21:last>177.66987465262923</ax21:last>
+                    <ax21:low>-176.30898912339075</ax21:low>
+                    <ax21:marketCap>5.649557998178506E7</ax21:marketCap>
+                    <ax21:name>MSFT Company</ax21:name>
+                    <ax21:open>185.62740369461244</ax21:open>
+                    <ax21:peRatio>24.341353665128693</ax21:peRatio>
+                    <ax21:percentageChange>-1.4930577008849097</ax21:percentageChange>
+                    <ax21:prevClose>192.11844053187397</ax21:prevClose>
+                    <ax21:symbol>MSFT</ax21:symbol>
+                    <ax21:volume>7791</ax21:volume>
+                </ns:getQuoteResponse>
+            </soapenv:Body>
+            </soapenv:Envelope>
+        </soapenv:Body>
+    </soapenv:Envelope>
     ```
