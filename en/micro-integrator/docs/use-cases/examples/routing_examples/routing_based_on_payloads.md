@@ -24,7 +24,7 @@ Listed below are the synapse configurations (proxy service) for implementing thi
                     <sequence key="sequence2"/>
                 </case>
                 <default>
-                    <property expression="fn:concat('Normal Stock - ', //m0:getQuote/m0:request/m0:symbol)" name="symbol" scope="default" type="STRING"/>
+                    <property expression="fn:concat('Normal Stock - ', //ser:getQuote/ser:request/xsd:symbol" xmlns:ser="http://services.samples" xmlns:xsd="http://services.samples/xsd" name="symbol" scope="default" type="STRING"/>
                     <sequence key="sequence3"/>
                 </default>
                 <!-- The isolated content will be filtered -->
