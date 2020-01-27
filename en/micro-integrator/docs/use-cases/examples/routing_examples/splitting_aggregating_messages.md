@@ -33,13 +33,13 @@ Listed below are the synapse configurations (proxy service) for implementing thi
         </inSequence>
         <outSequence>
             <property name="enclose" scope="default">
-        <ns:Results xmlns:ns="http://services.samples" />
-     </property>
+            <ns:Results xmlns:ns="http://services.samples" />
+            </property>
              <aggregate>
                 <onComplete expression="$body/*[1]" enclosingElementProperty="enclose">
                     <send/>
                 </onComplete>
-            </aggregate>
+           </aggregate>
         </outSequence>
     </target>
 </proxy>
