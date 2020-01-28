@@ -103,7 +103,6 @@ Invoke the proxy service:
     HTTP method: POST 
     Request URL: http://localhost:8290/services/HeaderBasedRoutingProxy
     Content-Type: text/xml;charset=UTF-8
-    SOAPAction: "urn:mediate"
     CustomHeader: application/json
     Message Body:
     <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
@@ -145,7 +144,6 @@ Invoke the proxy service:
     HTTP method: POST 
     Request URL: http://localhost:8290/services/HeaderBasedRoutingProxy
     Content-Type: text/xml;charset=UTF-8
-    SOAPAction: "urn:mediate"
     CustomHeader: text/xml
     Message Body:
     <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
