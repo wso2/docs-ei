@@ -236,6 +236,7 @@ nav:
     - 'Exporting Siddhi Files': 'develop/exporting-Siddhi-Files.md'
   - 'Observability':
     - 'Monitoring the Streaming Integrator': 'admin/monitoring-the-streaming-integrator.md'
+    - 'Streaming Integrator Grafana Dashboard': 'admin/grafana-dashboard-for-streaming-integrator.md'
   - 'References':
     - 'Streaming Integration REST API Guide': 'ref/si-rest-api-guide.md'
     - 'Performance Analysis Results': 'ref/performance-analysis-results.md'
