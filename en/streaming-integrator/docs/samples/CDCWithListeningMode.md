@@ -6,9 +6,11 @@ This sample demonstrates how to capture change data from MySQL using Siddhi. The
 !!!info "Before you begin:"
     1. Ensure that MySQL is installed on your computer.<br/>
     2. Add the MySQL JDBC driver to the `<SI_TOOLING_HOME>/lib` directory as follows:<br/>
-        1. Download the JDBC driver from the [MySQL website](https://dev.mysql.com/get/Downloads/Connector-J/mysql-connector-java-5.1.45.tar.gz).<br/>
+        1. Download the JDBC driver from the<br/> 
+        &nbsp;   &nbsp;   &nbsp;   &nbsp;   &nbsp;  [MySQL website](https://dev.mysql.com/get/Downloads/Connector-J/mysql-connector-java-5.1.45.tar.gz) - for siddhi-io-cdc v2.0.3.<br/>
+        &nbsp;   &nbsp;   &nbsp;   &nbsp;   &nbsp;  [MySQL website](https://dev.mysql.com/get/Downloads/Connector-J/mysql-connector-java-8.0.18.tar.gz) - for siddhi-io-cdc v2.0.4 and up.<br/>
         2. Unzip the archive.<br/>
-        3. Copy the `mysql-connector-java-5.1.45-bin.jar` JAR and place it in the `<SI_TOOLING_HOME>/lib` directory.<br/>
+        3. Copy the `mysql-connector-java-x.x.xx-bin.jar` JAR and place it in the `<SI_TOOLING_HOME>/lib` directory.<br/>
     3. Configure MySQL to [enable binary logging](https://debezium.io/docs/connectors/mysql/#enabling-the-binlog).<br/>
     4. Enable state persistence in siddhi applications. To do this, open the `<SI_TOOLING_HOME>/conf/server/deployment.yaml` file and set the `state.persistence enabled=true` property.<br/>
     5. Create a database named `production` by issuing the following command.<br/>
