@@ -138,13 +138,13 @@ This script automatically assigns the JAVA_HOME of your VM to the root user of y
 
     * On **MacOS/Linux/CentOS**
       ```bash
-      sh streaming-integrator.sh
+      sh server.sh
       ```
 
 
     * On **Windows**
       ```bash
-      streaming-integrator.bat
+      server.bat
       ```
 
 By default, the HTTP listener port is 8290 and the default HTTPS
