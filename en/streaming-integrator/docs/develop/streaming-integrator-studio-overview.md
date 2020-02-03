@@ -232,9 +232,9 @@ The **Tools** menu provides access to the following tools that are shipped with 
     ![Sample event generator](../images/streaming-integrator-studio-overview/Sample_Event_Generator.png)  
     Here, you can generate sample events for a selected stream within a selected Siddhi application in a specified format.  
       
--   **Siddhi Store Query**
-    This opens the **Siddhi Store Query** dialog box.  
-    ![Siddhi Store Query](../images/streaming-integrator-studio-overview/Siddhi_Store_Query.png)
+-   **On-Demand Query**
+    This opens the **On-Demand Query** dialog box.
+    ![Siddhi Store Query](../images/streaming-integrator-studio-overview/on-demand-query.png)
     Here, you can select a Siddhi application, and then enter a query to
     manipulate the store in which that Siddhi Application saves data.
     You can enter queries that can update record, insert/update records,
