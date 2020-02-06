@@ -1,0 +1,195 @@
+# Converting JSON to SOAP 
+
+Let's consider a scenario where you have a SOAP-based backend (that can only recieve SOAP request) and a JSON client. When the JSON client sends a message to the SOAP client, the proxy service in the Micro Integrator should convert the JSON message to SOAP.
+
+The following examples explain different methods of converting JSON messages to SOAP using the Micro Integrator.
+
+## Using the PayloadFactory Mediator
+
+Let's convert JSON messages to SOAP using the [PayloadFactory mediator](../../../../references/mediators/payloadFactory-Mediator).
+
+### Synapse configuration
+Following is a sample proxy service configuration that we can used to implement this scenario. See the instructions on how to [build and run](#build-and-run) this example.
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<proxy xmlns="http://ws.apache.org/ns/synapse"
+       name="JSONToSOAP"
+       startOnLoad="true"
+       statistics="disable"
+       trace="disable"
+       transports="http,https">
+   <target>
+      <inSequence>
+         <payloadFactory media-type="xml">
+            <format>
+               <soapenv:Envelope xmlns:soapenv="http://www.w3.org/2003/05/soap-envelope"
+                                 xmlns:ns="http://www.viewstar.com/webservices/2002/11">
+                  <soapenv:Header/>
+                  <soapenv:Body>
+                     <ns:placeOrder>
+                        <ns:order>
+                            <ns:symbol>$1</ns:symbol>
+                            <ns:price>$2</ns:price>
+                            <ns:quantity>$3</ns:quantity>
+                        </ns:order>
+                    </ns:placeOrder>
+                  </soapenv:Body>
+               </soapenv:Envelope>
+            </format>
+            <args>
+               <arg evaluator="json" expression="$.placeOrder.order.symbol"/>
+               <arg evaluator="json" expression="$.placeOrder.order.price"/>
+               <arg evaluator="json" expression="$.placeOrder.order.quantity"/>
+            </args>
+         </payloadFactory>
+         <log level="full"/>
+         <send>
+              <endpoint>
+                  <address uri="http://localhost:9000/services/SimpleStockQuoteService"/>
+              </endpoint>
+          </send>
+      </inSequence>
+   </target>
+   <description/>
+</proxy>
+```
+
+### Build and run
+
+Create the artifacts:
+
+1. [Set up WSO2 Integration Studio](../../../../develop/installing-WSO2-Integration-Studio).
+2. [Create an ESB Solution project](../../../../develop/creating-projects/#esb-config-project).
+3. [Create the proxy service](../../../../develop/creating-artifacts/creating-a-proxy-service) with the configurations given above.
+4. [Deploy the artifacts](../../../../develop/deploy-and-run) in your Micro Integrator.
+
+Set up the back-end service:
+
+1. Download the [stockquote_service.jar](https://github.com/wso2-docs/WSO2_EI/blob/master/Back-End-Service/stockquote_service.jar).
+2. Open a terminal, navigate to the location of the downloaded service, and run it using the following command:
+
+    ```bash
+    java -jar stockquote_service.jar
+    ```
+
+Invoke the proxy service:
+
+- HTTP method: POST
+- Request URL: http://localhost:8290/services/JSONToSOAP
+- Content-Type: application/json
+- Message Body:
+    ```json
+    {"placeOrder":
+      {"order":
+        {
+          "symbol":"IBM",
+          "price":"3.141593E0",
+          "quantity":"4"
+        }
+      }
+    }
+    ```
+
+Check the log printed on the back-end service's terminal to confirm that the order is successfully placed.
+
+```xml
+2020-01-30 16:39:51,902 INFO  [wso2/stockquote_service] - Stock quote service invoked. 
+2020-01-30 16:39:51,904 INFO  [wso2/stockquote_service] - Generating placeOrder response 
+2020-01-30 16:39:51,904 INFO  [wso2/stockquote_service] - The order was placed. 
+```
+
+## Using the XSLT Mediator
+
+Let's convert JSON messages to SOAP using the [XSLT mediator](../../../../references/mediators/xSLT-Mediator). The XSLT, which specifies the message conversion parameters, is stored in the product registry as a **local entry**.
+
+### Synapse configuration
+Following are the synapse configurations for implementing this scenario. See the instructions on how to [build and run](#build-and-run) this example.
+
+```xml tab='Proxy Service'
+<?xml version="1.0" encoding="UTF-8"?>
+<proxy name="Convert_JSON_To_Soap_Using_XSLT" startOnLoad="true" transports="http https" xmlns="http://ws.apache.org/ns/synapse">
+    <target>
+        <inSequence>
+            <log level="full"/>
+            <xslt key="in_transform"/>
+            <property name="messageType" scope="axis2" type="STRING" value="text/xml"/>
+            <header name="Action" scope="default" value="urn:getQuote"/>
+            <enrich>
+                <source clone="true" xmlns:m0="http://services.samples" xpath="//m0:getQuote"/>
+                <target type="body"/>
+            </enrich>
+            <log level="full"/>
+            <send>
+                <endpoint>
+                    <address uri="http://localhost:9000/services/SimpleStockQuoteService">
+                        <suspendOnFailure>
+                            <initialDuration>-1</initialDuration>
+                            <progressionFactor>1</progressionFactor>
+                        </suspendOnFailure>
+                        <markForSuspension>
+                            <retriesBeforeSuspension>0</retriesBeforeSuspension>
+                        </markForSuspension>
+                    </address>
+                </endpoint>
+            </send>
+        </inSequence>
+    </target>
+</proxy>
+```
+
+```xml tab='Local Entry - In Transform XSLT'
+<?xml version="1.0" encoding="UTF-8"?>
+<localEntry key="in_transform" xmlns="http://ws.apache.org/ns/synapse">
+    <xsl:stylesheet exclude-result-prefixes="m0 fn" version="2.0" xmlns:fn="http://www.w3.org/2005/02/xpath-functions" xmlns:m0="http://services.samples" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+        <xsl:output indent="yes" method="xml" omit-xml-declaration="yes"/>
+        <xsl:template match="*">
+            <xsl:element name="{local-name()}" namespace="http://services.samples">
+                <xsl:copy-of select="attribute::*"/>
+                <xsl:apply-templates/>
+            </xsl:element>
+        </xsl:template>
+    </xsl:stylesheet>
+</localEntry>
+```
+
+### Build and run
+
+Create the artifacts:
+
+1. [Set up WSO2 Integration Studio](../../../../develop/installing-WSO2-Integration-Studio).
+2. [Create an ESB Solution project](../../../../develop/creating-projects/#esb-config-project).
+3. [Create the proxy service](../../../../develop/creating-artifacts/creating-a-proxy-service) with the configurations given above.
+4. [Create local entries](../../../../develop/creating-artifacts/registry/creating-local-registry-entries) with the above XSLT configs.
+5. [Deploy the artifacts](../../../../develop/deploy-and-run) in your Micro Integrator.
+
+Set up the back-end service:
+
+1. Download the [stockquote_service.jar](https://github.com/wso2-docs/WSO2_EI/blob/master/Back-End-Service/stockquote_service.jar).
+2. Open a terminal, navigate to the location of the downloaded service, and run it using the following command:
+
+    ```bash
+    java -jar stockquote_service.jar
+    ```
+
+Invoke the proxy service:
+
+- HTTP method: POST
+- Request URL: http://localhost:8290/services/Convert_JSON_To_Soap_Using_XSLT
+- Content-Type: application/json
+- Message Body:
+    ```json
+    {"getQuote":
+      {"request":
+        {"symbol":"WSO2"}
+      }
+    }
+    ```
+
+Check the log printed on the back-end service's terminal to confirm that the request is successfully sent.
+
+```xml
+2020-01-30 15:35:28,088 INFO  [wso2/stockquote_service] - Stock quote service invoked. 
+2020-01-30 15:35:28,090 INFO  [wso2/stockquote_service] - Generating getQuote response for IBM 
+2020-01-30 15:35:28,091 INFO  [wso2/stockquote_service] - Stock quote generated. 
+```

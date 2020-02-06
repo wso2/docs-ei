@@ -71,6 +71,9 @@ nav:
             - 'Routing Based on Message Headers': 'use-cases/examples/routing_examples/routing_based_on_headers.md'
             - 'Routing Based on Message Payload': 'use-cases/examples/routing_examples/routing_based_on_payloads.md'
             - 'Splitting Messages and Aggregating Responses': 'use-cases/examples/routing_examples/splitting_aggregating_messages.md'
+        - Message Transformation:
+            - 'Converting JSON Messages to SOAP': 'use-cases/examples/message_transformation_examples/json-to-soap-conversion.md'
+            - 'Converting SOAP Messages to JSON': 'use-cases/examples/message_transformation_examples/soap-to-json-conversion.md'
         - Asynchronous Messaging:
             - 'Consuming JMS Messages': 'use-cases/examples/jms_examples/consuming-jms.md'
             - 'Producing JMS Messages': 'use-cases/examples/jms_examples/producing-jms.md'
