@@ -1,8 +1,6 @@
 # Introduction
 
-The **Micro Integrator** of [WSO2 Enterprise Integrator 7.0.0](https://ei.docs.wso2.com/en/latest/) is a powerful configuration-driven approach to integration, which allows developers to build integration solutions graphically. 
-
-This is an alternative to the code-driven integration approach that is offered by the [Ballerina Integrator](https://ei.docs.wso2.com/en/latest/ballerina-integrator/get-started/introduction/).
+The **Micro Integrator** of [WSO2 Enterprise Integrator 7.0.0](https://ei.docs.wso2.com/en/latest/) is a powerful configuration-driven approach to integration, which allows developers to build integration solutions graphically.
 
 ## Building Centralized, Monolithic integrations
 
@@ -16,7 +14,7 @@ WSO2 Micro Integrator is also light-weight and container friendly. This allows y
 
 ![Centralized Integration](../assets/img/intro/cloud-native-microservices.png)
 
-As shown above, if your organization is running on a decentralized, cloud-native, integration architecture where micro services are used for integrating the various APIs, events, and systems, WSO2 Micro Integrator can easily function as your **Integration** (micro) services and **API** (micro) services.
+As shown above, if your organization is running on a decentralized, cloud-native, integration architecture where microservices are used for integrating the various APIs, events, and systems, WSO2 Micro Integrator can easily function as your **Integration** (micro) services and **API** (micro) services.
 
 ## Graphical integration desigining
 
