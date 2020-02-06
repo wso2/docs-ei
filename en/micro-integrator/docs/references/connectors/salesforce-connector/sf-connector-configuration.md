@@ -91,7 +91,7 @@ An sObject refers to any object that can be stored in the [Force.com](https://ww
 
 This section provides more information on each of the operations.
 
-###### Retrieving a list of available objects**
+###### Retrieving a list of available objects
 
 To retrieve a list of objects that are available in the system, use salesforce.describeGlobal. 
 
@@ -599,8 +599,10 @@ To update existing records and insert new records in a single operation, use sal
 * sObjects: XML representation of the records to update and insert. When inserting a new record, you do not specify sfdc:Id.
 
 ---
+
 **Set the externalId field :**
 If you need to give any existing externalId field of sObject to externalId then the payload should be with that externalId field and value as follows in sample
+
 ---
 
 **Sample to set ExternalId field and value**
@@ -748,7 +750,9 @@ Given below is a sample response for the search operation.
 To retrieve data from an object, use salesforce.query and specify the following properties. If you already know the record IDs, you can use retrieve instead. 
 
 ---
+
 **Note**: If you want your search results to include deleted records that are available in the Recycle Bin, use salesforce.queryAll in place of salesforce.query.
+
 ---
 
 **query**
