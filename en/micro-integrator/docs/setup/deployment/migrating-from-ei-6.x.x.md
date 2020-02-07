@@ -1,6 +1,6 @@
 # Migrating from WSO2 EI 6.x to WSO2 EI 7.0
 
-This guide provides an overview of the recommended migration strategy for migrating from WSO2 EI 6.x to WSO2 EI 7.0. Note that these guidelines are only applicable when you are migrating the ESB profile of EI 6.x to the Micro Integrator.
+This guide provides an overview of the recommended migration strategy for migrating from WSO2 EI 6.x to WSO2 EI 7.0. Note that these guidelines are only applicable when you are migrating the ESB profile of EI 6.x to the Micro Integrator in EI 7.0.
 
 ## Before you begin
 
