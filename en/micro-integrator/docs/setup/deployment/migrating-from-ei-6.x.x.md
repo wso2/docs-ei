@@ -1,6 +1,6 @@
 # Migrating from WSO2 EI 6.x to WSO2 EI 7.0
 
-This guide provides an overview of the recommended migration strategy for migrating from WSO2 EI 6.x to WSO2 EI 7.0. Note that these guidelines are only applicable when you are migrating the ESB profile of EI 6.x to either the Micro Integrator or the Ballerina Integrator in EI 7.0.
+This guide provides an overview of the recommended migration strategy for migrating from WSO2 EI 6.x to WSO2 EI 7.0. Note that these guidelines are only applicable when you are migrating the ESB profile of EI 6.x to the Micro Integrator in EI 7.0.
 
 ## Before you begin
 
@@ -18,7 +18,6 @@ Note that EI 7 is a **WUM-only release**, which means that manual patches are no
 If you are an EI 6.x user, migration is recommended for the following requirements:
  
 -   You need to switch to a microservices architecture from the conventional centralized architecture.
--   You prefer the code-driven integration approach.
 -   You need a more lightweight, container-friendly runtime.
 -   You need native support for Kubernetes.
    
@@ -124,11 +123,3 @@ From EI 7 onwards, the `carbon.logging.jar` file is not packed and the `pax-logg
 	logger.synapse-transport-http-wire.appenderRef.CARBON_LOGFILE.ref = CARBON_LOGFILE
 	loggers = AUDIT_LOG, API_LOG, synapse-transport-http-wire, 
 	```
-
-## Migrating to the Ballerina Integrator
- 
-Integration development in EI 6.x is based on the configuration-driven/graphical tooling experience provided through [WSO2 Integration Studio](../../../develop/WSO2-Integration-Studio). Integration development in the EI 7.0 Ballerina Integrator is based on a code-driven approach. 
- 
-Even though there are no tools to convert your integration configurations (developed using [WSO2 Integration Studio](../../../develop/WSO2-Integration-Studio)) to Ballerina code, the intuitiveness and built-in integration concepts of the Ballerina language helps to build integration solutions very quickly. 
- 
-All the integration capabilities that you used in the ESB can be used in the Ballerina Integrator through the code-driven approach. See the documentation on Ballerina Integrator's [templates and tutorials](https://ei.docs.wso2.com/en/latest/ballerina-integrator/learn/use-cases/) to help you with this process.
