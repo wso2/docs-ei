@@ -7,15 +7,11 @@
 -	WSO2 EI 7.x.x family
 -	WSO2 EI 6.x.x family
  
-[WSO2 EI 6.5.0](https://docs.wso2.com/display/EI650/WSO2+Enterprise+Integrator+Documentation) is the latest release of the 6.x family, which includes the ESB profile and other supporting profiles. This WSO2 EI product family offers the conventional, centralized integration solution of the WSO2 middleware stack. The next release of the 6.x family would be EI 6.6.0 that includes support for JDK11.
+This [WSO2 EI 6.x product family](http://docs.wso2.com/enterprise-integrator) offers the conventional, centralized integration solution of the WSO2 middleware stack. WSO2 EI 6.x includes the ESB profile and other supporting profiles packaged in a single distribution.
  
-The new [WSO2 Enterprise Integrator (WSO2 EI 7.0.0)](https://ei.docs.wso2.com/en/latest/) is a hybrid platform that enables API-centric integration supporting various integration architecture styles: MSAs, cloud-native architecture, or a centralized ESB architecture. This integration platform offers the choice between code-driven and graphical/configuration-driven approaches to integration development.
+The new [WSO2 Enterprise Integrator (WSO2 EI 7.0.0)](https://ei.docs.wso2.com/en/latest/) is a hybrid platform that enables API-centric integration supporting various integration architecture styles: microservices architecture, cloud-native architecture, or a centralized ESB architecture. This integration platform offers a graphical/configuration-driven approach to developing integrations for any of the architectural styles.
  
-The following are the three approaches to integration with EI 7.0.0.
- 
--   **Code-driven Integration** with **Ballerina Integrator**
-
-    The [Ballerina Integrator](https://ei.docs.wso2.com/en/latest/ballerina-integrator/get-started/introduction/) provides a powerful, simple-to-learn, code-driven approach to programming integration solutions based on the Ballerina programming language. The Ballerina language offers a revolutionary approach to closing the integration gaps often left by traditional ESBs when supporting modern, cloud-native app development. The Ballerina Integrator simplifies integration by offering high-level abstractions that represent services, endpoints, and network data types, along with a sequence diagram-based visualization of interactions. 
+The following are the approaches to integration with EI 7.0.0.
  
 -   **Low-code Integration** with **Micro Integrator**
 
