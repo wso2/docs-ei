@@ -4,7 +4,7 @@ template: templates/home-page.html
 
 # WSO2 Enterprise Integrator Documentation
 
-The new WSO2 Enterprise Integrator (WSO2 EI) 7.0 is the only open-source hybrid integration platform that enables API-centric integration using integration architecture styles such as microservices, cloud-native, or centralized ESB. The platform provides a choice of approaches for either code-driven or graphical, drag-and-drop/configuration-driven integration.
+The new WSO2 Enterprise Integrator (WSO2 EI) 7.0 is the only open-source hybrid integration platform that enables API-centric integration using integration architecture styles such as microservices, cloud-native, or centralized ESB. The platform provides a choice of approaches for graphical and drag-and-drop/configuration-driven integration.
 
 
 <!--
