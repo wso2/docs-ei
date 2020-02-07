@@ -1,9 +1,28 @@
 # Salesforce Connector Example
 
-In this use-case, we are going to receive the details about the Salesforces themes.
+The Salesforce REST Connector allows you to work with records in Salesforce, a web-based service that allows organizations to manage contact relationship management (CRM) data. You can use the Salesforce connector to create, query, retrieve, update, and delete records in your organization's Salesforce data. The connector uses the [Salesforce REST API](https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/intro_what_is_rest_api.htm) to interact with Salesforce.
+
+## What you'll build
+
+This example explains how to use the Salesforce client to connect with the Salesforce instance and perform the 
+following operations:
+
+* Create Account with Contacts and Opportunities
+* Execute a SOQL query
+
+The following diagram illustrates all the required functionality of the Salesforce Service that you are going to build.
+
+<p><img src="/assets/img/connectors/working-with-sf-client.png" title="Working with Salesforce Client" width="800" alt="Working with Salesforce Client" /></p>
+
+To implement this, you need to do the following.
+
+1. [Generate Salesforce access tokens](../sf-access-token-generation.md).
+2. Configure and run the connector in WSO2 Integration Studio.
+
+## Configure and run the connector in WSO2 Integration Studio
 
 1. Open WSO2 Integration Studio and create an ESB Solution Project.
-2. Our API would be looking as below(source view).
+2. Our project would look similar to the following (source view).
 
     ```
     <?xml version="1.0" encoding="UTF-8"?>
@@ -48,14 +67,16 @@ In this use-case, we are going to receive the details about the Salesforces them
     $ export PATH=/path/to/mi/cli/directory/bin:$PATH\
     ```
 
-5. Login.
+## Testing
+
+1. Login.
 
     ```
     ./mi remote login
     ```
 
-6. Provide default credentials admin for both username and password.
-7. In order to view the APIs deployed, execute the following command.
+2. Provide default credentials admin for both username and password.
+3. In order to view the APIs deployed, execute the following command.
 
     ```
     ./mi api show
