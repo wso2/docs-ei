@@ -84,4 +84,4 @@ To implement this, you need to do the following.
 
 ## Deployment
 
-You can deploy your project on a container-based environment like [Kubernetes](../../setup/deployment/kubernetes_deployment.md).
+You can deploy your project on a container-based environment like [Kubernetes](../../../setup/deployment/kubernetes_deployment.md).
