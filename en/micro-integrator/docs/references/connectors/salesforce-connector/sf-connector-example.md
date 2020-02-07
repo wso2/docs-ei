@@ -17,9 +17,9 @@ The following diagram illustrates all the required functionality of the Salesfor
 To implement this, you need to do the following.
 
 1. [Generate Salesforce access tokens](../sf-access-token-generation.md).
-2. Configure and run the connector in WSO2 Integration Studio.
+2. Configure the connector in WSO2 Integration Studio.
 
-## Configure and run the connector in WSO2 Integration Studio
+## Configure the connector in WSO2 Integration Studio
 
 1. Open WSO2 Integration Studio and create an ESB Solution Project.
 2. Our project would look similar to the following (source view).
