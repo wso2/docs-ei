@@ -1,6 +1,6 @@
 # Migrating from WSO2 EI 6.x to WSO2 EI 7.0
 
-This guide provides an overview of the recommended migration strategy for migrating from WSO2 EI 6.x to WSO2 EI 7.0. Note that these guidelines are only applicable when you are migrating the ESB profile of EI 6.x to either the Micro Integrator or the Ballerina Integrator in EI 7.0.
+This guide provides an overview of the recommended migration strategy for migrating from WSO2 EI 6.x to WSO2 EI 7.0. Note that these guidelines are only applicable when you are migrating the ESB profile of EI 6.x to the Micro Integrator.
 
 ## Before you begin
 
@@ -18,7 +18,6 @@ Note that EI 7 is a **WUM-only release**, which means that manual patches are no
 If you are an EI 6.x user, migration is recommended for the following requirements:
  
 -   You need to switch to a microservices architecture from the conventional centralized architecture.
--   You prefer the code-driven integration approach.
 -   You need a more lightweight, container-friendly runtime.
 -   You need native support for Kubernetes.
    
@@ -30,13 +29,13 @@ Both the ESB profile of EI 6.x and the Micro Integrator of EI 7.0 uses the same 
 
 In summary, all the integration capabilities that you used in the ESB can be used in the Micro Integrator with minimal changes. However, EI 7.0 introduces a [Toml-based configuration strategy](../../../references/config-catalog) to replace XML configurations, which simplifies your product configurations.
  
-See the [detailed comparison of EI 6.5 and EI 7.0](../../../references/comparisong-mi7-ei6xx) to understand what has changed between the ESB profile of EI 6.5 and the Micro Integrator of EI 7.0.
+See the [detailed comparison of EI 6.5 and EI 7.0](../../../references/comparisong-mi7-ei6xx) to understand what has changed between the ESB profile of EI 6.x.x and the Micro Integrator of EI 7.0.
 
 Follow the instructions below to start the migration!
 
 ### Set up the migration
 
--	Make a backup of the existing database used by the current EI 6.5.0 deployment. This backup is necessary in case the migration causes any issues in the existing database.
+-	Make a backup of the existing database used by the current EI 6.x.x deployment. This backup is necessary in case the migration causes any issues in the existing database.
 -	Download and install EI 7.0 in your environment. The home directory of your installation will be referred to as `<MI_HOME>` from hereon.
 	-	[On a VM](../../../setup/installation/install_in_vm)
 	-	[On Docker](../../../setup/installation/run_in_docker)
@@ -47,26 +46,26 @@ Follow the instructions below to start the migration!
 		Note that you need a valid [WSO2 subscription](https://wso2.com/subscription) to use updates in a production environment.
 
 ### Migrating databases
-If you are already using a JDBC user store with EI 6.5.0, you can connect the same database to the Micro Integrator of EI 7 by simply updating the user store configurations in the Micro Integrator.
+If you are already using a JDBC user store with EI 6.x.x, you can connect the same database to the Micro Integrator of EI 7 by simply updating the user store configurations in the Micro Integrator.
 
 !!! Note
-	You cannot manage users and roles when you use a JDBC user store with the Micro Integrator. Therefore, be sure that your database is already up-to-date before connecting it to the Micro Integrator. Alternatively, you can shift to an LDAP user store. Read more about [user stores in the Micro Integrator](../../../setup/user_stores/setting_up_ro_ldap).
+    You cannot manage users and roles when you use a JDBC user store with the Micro Integrator. Therefore, be sure that your database is already up-to-date before connecting it to the Micro Integrator. Alternatively, you can shift to an LDAP user store. Read more about [user stores in the Micro Integrator](../../../setup/user_stores/setting_up_ro_ldap).
 
 ### Migrating the registry
 
-The Micro Integrator uses a [file based registry](../file_based_registry) instead of a database (which is used in EI 6.5.0). Note the following when migrating the registry:
+The Micro Integrator uses a [file based registry](../file_based_registry) instead of a database (which is used in EI 6.x.x). Note the following when migrating the registry:
 
--	If the artifacts in EI 6.5.0 are added in carbon applications developed using WSO2 Integration Studio, you can directly migrate the artifacts to the Micro Integrator of EI 7.
--	If the artifacts are added through the management console in EI 6.5.0, first download the artifacts from the management console, and then add to the `<MI_HOME>/registry/` folder by maintaining the same resource structure.
+-	If the artifacts in EI 6.x.x are added in carbon applications developed using WSO2 Integration Studio, you can directly migrate the artifacts to the Micro Integrator of EI 7.
+-	If the artifacts are added through the management console in EI 6.x.x, first download the artifacts from the management console, and then add to the `<MI_HOME>/registry/` folder by maintaining the same resource structure.
 
 ### Migrating artifacts
-Copy the contents inside `<EI_6.5.0_HOME>/repository/deployment` to the `<MI_HOME>/repository/deployment` folder.
+Copy the contents inside `<EI_6.x.x_HOME>/repository/deployment` to the `<MI_HOME>/repository/deployment` folder.
 
 ### Migrating custom components
-Copy custom OSGI components in the `<EI_6.5.0_HOME>/dropins` folder to the `<MI_HOME>/dropins` folder. If you have custom JARs in the `<OLD_EI_HOME>/lib` directory, copy those components to the `<MI_HOME>/lib` directory.
+Copy custom OSGI components in the `<EI_6.x.x_HOME>/dropins` folder to the `<MI_HOME>/dropins` folder. If you have custom JARs in the `<OLD_EI_HOME>/lib` directory, copy those components to the `<MI_HOME>/lib` directory.
 
 ### Migrating keystores
-Copy the JKS files in the `<EI_6.5.0_HOME>/repository/resources/security` directory to the `<MI_HOME>/repository/resources/security` directory.
+Copy the JKS files in the `<EI_6.x.x_HOME>/repository/resources/security` directory to the `<MI_HOME>/repository/resources/security` directory.
 
 ### Migrating configurations
 WSO2 EI 6.x.x versions supported multiple configuration files such as carbon.xml, synapse.properties, and axis2.xml. With the new configuration model in the Micro Integrator of EI 7, product configurations are primarily handled by a single configuration file named `deployment.toml` (stored in the `<MI_HOME>/conf` directory). The log4j2 configurations are handled in the `log4j2.properties`.
@@ -76,59 +75,45 @@ WSO2 EI 6.x.x versions supported multiple configuration files such as carbon.xml
 See the [product configuration catalog](../../../references/config-catalog) for the complete list of configurations that are available for the Micro Integrator.
 
 !!! Tip
-	If you have a [WSO2 subscription](https://wso2.com/subscription), it is highly recommended to reach WSO2 Support before attempting to proceed with the configuration migration.
+     If you have a [WSO2 subscription](https://wso2.com/subscription), it is highly recommended to reach WSO2 Support before attempting to proceed with the configuration migration.
 
 **Migrating Log4j configurations**
 
-From EI 7 onwards, the `carbon.logging.jar` file is not packed and the `pax-logging-api` is used instead. With this upgrade, the log4j version is also updated to log4j2.
+Older versions of the WSO2 EI 6.x.x family (EI 6.5.0 and earlier) use log4j. In  WSO2 EI 7 Micro Integrator, the `carbon.logging.jar` file is not packed and the `pax-logging-api` is used instead. With this upgrade, the log4j version is also updated to log4j2.
 
--	If custom log appenders are used in your EI 6.5.0 deployment, add that as an appender in the `<MI_HOME>/conf/log4j2.properties` file. For example:
+Therefore, you need to follow the instructions given below to migrate from log4j (in EI 6.5.0 or earlier version) to log4j2 (in EI 7 Micro Integrator).
 
-	```xml
-	appender.SQ_PROXY_APPENDER.type = RollingFile
-	appender.SQ_PROXY_APPENDER.name = SQ_PROXY_APPENDER
-	appender.SQ_PROXY_APPENDER.fileName = ${sys:carbon.home}/repository/logs/stock-quote-proxy-service.log
-	appender.SQ_PROXY_APPENDER.filePattern = ${sys:carbon.home}/repository/logs/stock-quote-proxy-service-%d{MM-dd-yyyy}.log
-	appender.SQ_PROXY_APPENDER.layout.type = PatternLayout
-	appender.SQ_PROXY_APPENDER.layout.pattern = TID: [%d] %5p {%c} [%logger] - %m%ex%n
-	appender.SQ_PROXY_APPENDER.policies.type = Policies
-	appender.SQ_PROXY_APPENDER.policies.time.type = TimeBasedTriggeringPolicy
-	appender.SQ_PROXY_APPENDER.policies.time.interval = 1
-	appender.SQ_PROXY_APPENDER.policies.time.modulate = true
-	appender.SQ_PROXY_APPENDER.policies.size.type = SizeBasedTriggeringPolicy
-	appender.SQ_PROXY_APPENDER.policies.size.size=10MB
-	appender.SQ_PROXY_APPENDER.strategy.type = DefaultRolloverStrategy
-	appender.SQ_PROXY_APPENDER.strategy.max = 20
-	appender.SQ_PROXY_APPENDER.filter.threshold.type = ThresholdFilter
-	appender.SQ_PROXY_APPENDER.filter.threshold.level = DEBUG
-	```
+If you have used a custom log4j component in you you older EI version, apply the following changes to your component:
 
-	Then, add the appender to the appenders list. For example:
+1.	Replace carbon logging or commons.logging dependencies with pax-logging dependency as shown below.
+		```xml
+		<!-- Pax Logging -->
+		<dependency>
+		   <groupId>org.ops4j.pax.logging</groupId>
+		   <artifactId>pax-logging-api</artifactId>
+		   <version>${pax.logging.api.version}</version>
+		</dependency>
+		<!-- Pax Logging Version -->
+		<pax.logging.api.version>1.10.1</pax.logging.api.version>
+		```
 
-	```xml
-	appenders = CARBON_CONSOLE, CARBON_LOGFILE, AUDIT_LOGFILE, SQ_PROXY_APPENDER, … 
-	```
+2.	If log4j dependency is directly used, apply one of the options given below.
 
--	If the log level is changed/added for a component in your EI 6.5.0 deployment, add a logger in the `<MI_HOME>/conf/log4j2.properties` file as shown below.
+	-	Replace the log4j dependency (shown below) with log4j2 and rewrite the loggers accordingly.
+			```xml
+			<dependency>
+			   <groupId>org.ops4j.pax.logging</groupId>
+			   <artifactId>pax-logging-log4j2</artifactId>
+			   <version>${pax.logging.log4j2.version}</version>
+			</dependency>
+			```
+	-	Replace the log4j dependency with pax-logging dependency and rewrite the loggers using commons.logging accordingly.
 
-	```xml
-	logger.<Logger_Name>.name = <Component_name> 
-	logger.<Logger_Name>.type = INFO
-	```
+3.	If commons.logging is imported using Import-Package, add the version range.
+		```xml
+		org.apache.commons.logging; 
+		version="${commons.logging.version.range}" 
+		<commons.logging.version.range>[1.2.0,2.0.0)</commons.logging.version.range>
+		```
 
-	Then, add the logger name to the comma-separated list of logger. For example:
-
-	```xml
-	logger.synapse-transport-http-wire.name=org.apache.synapse.transport.http.wire
-	logger.synapse-transport-http-wire.level=DEBUG
-	logger.synapse-transport-http-wire.appenderRef.CARBON_LOGFILE.ref = CARBON_LOGFILE
-	loggers = AUDIT_LOG, API_LOG, synapse-transport-http-wire, 
-	```
-
-## Migrating to the Ballerina Integrator
- 
-Integration development in EI 6.x is based on the configuration-driven/graphical tooling experience provided through [WSO2 Integration Studio](../../../develop/WSO2-Integration-Studio). Integration development in the EI 7.0 Ballerina Integrator is based on a code-driven approach. 
- 
-Even though there are no tools to convert your integration configurations (developed using [WSO2 Integration Studio](../../../develop/WSO2-Integration-Studio)) to Ballerina code, the intuitiveness and built-in integration concepts of the Ballerina language helps to build integration solutions very quickly. 
- 
-All the integration capabilities that you used in the ESB can be used in the Ballerina Integrator through the code-driven approach. See the documentation on Ballerina Integrator's [templates and tutorials](https://ei.docs.wso2.com/en/latest/ballerina-integrator/learn/use-cases/) to help you with this process.
+4.	Follow the instructions on [configuring log4j2](../../../administer-and-observe/logs/configuring_log4j_properties) to register the Appenders and Loggers.
