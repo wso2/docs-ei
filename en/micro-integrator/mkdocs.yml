@@ -328,6 +328,11 @@ nav:
         - 'Other Usages of TCPMon' : 'administer-and-observe/tcp/other_usages_of_tcpmon.md'
     - References:
       - 'Product Configurations' : 'references/config-catalog.md'
+      - Connectors:
+        - Salesforce Connector:
+          - 'Salesforce Access Token Generation': 'references/connectors/salesforce-connector/sf-access-token-generation.md'
+          - 'Salesforce Connector Example': 'references/connectors/salesforce-connector/sf-connector-example.md'
+          - 'Salesforce Connector Configuration': 'references/connectors/salesforce-connector/sf-connector-configuration.md'
       - Synapse Configurations:
         - Mediator Catalog: 
           - 'About Mediators': 'references/mediators/about-mediators.md'
