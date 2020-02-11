@@ -38,7 +38,7 @@ Note that the default address is **https://localhost** and the port is **9164**.
 
 1.  To download the dashboard, go to [**WSO2 Micro Integrator** website](https://wso2.com/integration/micro-integrator/#) -> **Download** -> **Other Resources**, and click **Monitoring Dashboard**.
 2.  Extract the downloaded ZIP file. This will be the `MI_DASHBOARD_HOME` directory.
-3.  Open a terminal, navigate to the `MI_DASHBOARD_HOME` directory, and execute the following command to start the dashboard server:
+3.  Open a terminal, navigate to the `MI_DASHBOARD_HOME/bin` directory, and execute the following command to start the dashboard server:
 
     ```bash
     sh dashboard.sh
