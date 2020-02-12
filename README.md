@@ -1,4 +1,5 @@
 # WSO2 Enterprise Integrator Documentation
 
-This is the Github repository for the latest released documentation of WSO2 Enterprise Integrator. 
-Please visit following to see the existing live documentation site: https://ei.docs.wso2.com/en/latest/
+This is the documentation for the upcoming release of the WSO2 Enterprise Integrator 7 family. Please note that this documentation is work in progress.
+
+To see the **latest released documentation** for the WSO2 Enterprise Integrator 7 family, go to: https://ei.docs.wso2.com/en/latest/
