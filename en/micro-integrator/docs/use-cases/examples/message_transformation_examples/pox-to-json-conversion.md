@@ -10,7 +10,7 @@ Let's convert a POX message to JSON using the [messageType property](../../../..
 Following is a sample proxy service configuration that we can use to implement this scenario. 
 
 !!! Tip
-    After the [messageType property](../../../../references/mediators/property-reference/generic-Properties) completes the message convertion, we are using the [Respond mediator](../../../../references/mediators/respond-Mediator) to return the converted message back to the JSON client.
+    Note that after the [messageType property](../../../../references/mediators/property-reference/generic-Properties) completes the message convertion, we are using the [Respond mediator](../../../../references/mediators/respond-Mediator) to return the converted message back to the JSON client.
 
 See the instructions on how to [build and run](#build-and-run-example-1) this example.
 
@@ -103,7 +103,7 @@ Let's convert a POX message to JSON using a [PayloadFactory mediator](../../../.
 Following is a sample proxy service configuration that we can use to implement this scenario. 
 
 !!! Tip
-    After the [PayloadFactory mediator](../../../../references/mediators/payloadFactory-Mediator) completes the message convertion, we are using the [Respond mediator](../../../../references/mediators/respond-Mediator) to return the converted message back to the JSON client.
+    Note that after the [PayloadFactory mediator](../../../../references/mediators/payloadFactory-Mediator) completes the message convertion, we are using the [Respond mediator](../../../../references/mediators/respond-Mediator) to return the converted message back to the JSON client.
 
 See the instructions on how to [build and run](#build-and-run-example-2) this example.
 

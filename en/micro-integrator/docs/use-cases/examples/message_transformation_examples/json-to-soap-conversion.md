@@ -11,7 +11,8 @@ The following examples explain different methods of converting JSON messages to 
 Let's convert JSON messages to SOAP using the [PayloadFactory mediator](../../../../references/mediators/payloadFactory-Mediator).
 
 ### Synapse configuration
-Following is a sample REST Api configuration that we can use to implement this scenario. See the instructions on how to [build and run](#build-and-run-example-1) this example.
+Following is a sample REST Api configuration that we can use to implement this scenario. 
+See the instructions on how to [build and run](#build-and-run-example-1) this example.
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
@@ -127,7 +128,8 @@ The JSON client will receive the following response from the backend confirming 
 Let's convert JSON messages to SOAP using the [XSLT mediator](../../../../references/mediators/xSLT-Mediator). The XSLT, which specifies the message conversion parameters, is stored in the product registry as a **local entry**.
 
 ### Synapse configuration
-Following are the synapse configurations for implementing this scenario. See the instructions on how to [build and run](#build-and-run-example-2) this example.
+Following are the synapse configurations for implementing this scenario. 
+See the instructions on how to [build and run](#build-and-run-example-2) this example.
 
 ```xml tab='REST Api'
 <?xml version="1.0" encoding="UTF-8"?>
