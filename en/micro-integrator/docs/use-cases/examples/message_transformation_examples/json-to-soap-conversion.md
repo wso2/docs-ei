@@ -11,7 +11,8 @@ The following examples explain different methods of converting JSON messages to 
 Let's convert JSON messages to SOAP using the [PayloadFactory mediator](../../../../references/mediators/payloadFactory-Mediator).
 
 ### Synapse configuration
-Following is a sample REST Api configuration that we can use to implement this scenario. See the instructions on how to [build and run](#build-and-run-example-1) this example.
+Following is a sample REST Api configuration that we can use to implement this scenario. 
+See the instructions on how to [build and run](#build-and-run-example-1) this example.
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
@@ -68,7 +69,7 @@ Following is a sample REST Api configuration that we can use to implement this s
 Create the artifacts:
 
 1. [Set up WSO2 Integration Studio](../../../../develop/installing-WSO2-Integration-Studio).
-2. [Create an ESB Solution project](../../../../develop/creating-projects/#esb-config-project).
+2. [Create an ESB Config project](../../../../develop/creating-projects/#esb-config-project).
 3. [Create the REST API](../../../../develop/creating-artifacts/creating-an-api) with the configurations given above.
 4. [Deploy the artifacts](../../../../develop/deploy-and-run) in your Micro Integrator.
 
@@ -86,7 +87,7 @@ Invoke the REST Api:
 - HTTP method: POST
 - Request URL: http://localhost:8290/stockorder_api
 - Content-Type: application/json
-- Soap Action: urn:placeOrder
+- SoapAction: urn:placeOrder
 - Message Body:
     ```json
     {"placeOrder":
@@ -127,7 +128,8 @@ The JSON client will receive the following response from the backend confirming 
 Let's convert JSON messages to SOAP using the [XSLT mediator](../../../../references/mediators/xSLT-Mediator). The XSLT, which specifies the message conversion parameters, is stored in the product registry as a **local entry**.
 
 ### Synapse configuration
-Following are the synapse configurations for implementing this scenario. See the instructions on how to [build and run](#build-and-run-example-2) this example.
+Following are the synapse configurations for implementing this scenario. 
+See the instructions on how to [build and run](#build-and-run-example-2) this example.
 
 ```xml tab='REST Api'
 <?xml version="1.0" encoding="UTF-8"?>
@@ -183,9 +185,9 @@ Following are the synapse configurations for implementing this scenario. See the
 Create the artifacts:
 
 1. [Set up WSO2 Integration Studio](../../../../develop/installing-WSO2-Integration-Studio).
-2. [Create an ESB Solution project](../../../../develop/creating-projects/#esb-config-project).
+2. [Create an ESB Config project](../../../../develop/creating-projects/#esb-config-project).
 3. [Create the REST API](../../../../develop/creating-artifacts/creating-an-api) with the configurations given above.
-4. [Create local entries](../../../../develop/creating-artifacts/registry/creating-local-registry-entries) with the above XSLT configs.
+4. [Create a local entry](../../../../develop/creating-artifacts/registry/creating-local-registry-entries) named **in_transform** with the above XSLT configuration.
 5. [Deploy the artifacts](../../../../develop/deploy-and-run) in your Micro Integrator.
 
 Set up the back-end service:
@@ -202,7 +204,7 @@ Invoke the REST Api:
 - HTTP method: POST
 - Request URL: http://localhost:8290/stockorder_api
 - Content-Type: application/json
-- Soap Action: urn:getQuote
+- SoapAction: urn:getQuote
 - Message Body:
     ```json
     {"getQuote":
