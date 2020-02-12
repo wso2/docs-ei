@@ -68,7 +68,7 @@ Following is a sample REST Api configuration that we can use to implement this s
 Create the artifacts:
 
 1. [Set up WSO2 Integration Studio](../../../../develop/installing-WSO2-Integration-Studio).
-2. [Create an ESB Solution project](../../../../develop/creating-projects/#esb-config-project).
+2. [Create an ESB Config project](../../../../develop/creating-projects/#esb-config-project).
 3. [Create the REST API](../../../../develop/creating-artifacts/creating-an-api) with the configurations given above.
 4. [Deploy the artifacts](../../../../develop/deploy-and-run) in your Micro Integrator.
 
@@ -86,7 +86,7 @@ Invoke the REST Api:
 - HTTP method: POST
 - Request URL: http://localhost:8290/stockorder_api
 - Content-Type: application/json
-- Soap Action: urn:placeOrder
+- SoapAction: urn:placeOrder
 - Message Body:
     ```json
     {"placeOrder":
@@ -183,9 +183,9 @@ Following are the synapse configurations for implementing this scenario. See the
 Create the artifacts:
 
 1. [Set up WSO2 Integration Studio](../../../../develop/installing-WSO2-Integration-Studio).
-2. [Create an ESB Solution project](../../../../develop/creating-projects/#esb-config-project).
+2. [Create an ESB Config project](../../../../develop/creating-projects/#esb-config-project).
 3. [Create the REST API](../../../../develop/creating-artifacts/creating-an-api) with the configurations given above.
-4. [Create local entries](../../../../develop/creating-artifacts/registry/creating-local-registry-entries) with the above XSLT configs.
+4. [Create a local entry](../../../../develop/creating-artifacts/registry/creating-local-registry-entries) named **in_transform** with the above XSLT configuration.
 5. [Deploy the artifacts](../../../../develop/deploy-and-run) in your Micro Integrator.
 
 Set up the back-end service:
@@ -202,7 +202,7 @@ Invoke the REST Api:
 - HTTP method: POST
 - Request URL: http://localhost:8290/stockorder_api
 - Content-Type: application/json
-- Soap Action: urn:getQuote
+- SoapAction: urn:getQuote
 - Message Body:
     ```json
     {"getQuote":
