@@ -291,33 +291,6 @@ You can view the following Latency MBeans:
 |------------------------------------|----------------------------------------------------------|
 | `             reset()            ` | Clear recorded latency statistics and restart recording. |
 
-### Threading MBeans
-
-These MBeans are only available in the NHTTP transport and not in the
-default Pass-Through transport.
-
-You can view the following Threading MBeans:
-
--   `          org.apache.synapse/Threading/HttpClientWorker         `
--   `          org.apache.synapse/Threading/HttpServerWorker         `
-
-**Attributes**
-
-| Attribute Name                                            | Description                                                         |
-|-----------------------------------------------------------|---------------------------------------------------------------------|
-| `             TotalWorkerCount            `               | Total worker threads related to this server/client.                 |
-| `             AvgUnblockedWorkerPercentage            `   | Time-averaged unblocked worker thread percentage.                   |
-| `             AvgBlockedWorkerPercentage            `     | Time-averaged blocked worker thread percentage.                     |
-| `             LastXxxBlockedWorkerPercentage            ` | Blocked worker thread percentage averaged for last Xxx time period. |
-| `             DeadLockedWorkers            `              | Number of deadlocked worker threads since last statistics reset.    |
-| `             LastResetTime            `                  | The time the thread statistic recordings were last reset.           |
-
-**Operations**
-
-| Operation Name                     | Description                                            |
-|------------------------------------|--------------------------------------------------------|
-| `             reset()            ` | Clear recorded thread statistic and restart recording. |
-
 ### Transport MBeans
 
 For each transport listener and sender enabled in WSO2 Micro Integrator, there will be
