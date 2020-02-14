@@ -35,7 +35,7 @@ Follow the steps below to create a composite application archive (CAR) file cont
 4.  Select **Add Connector** and click **Next**. Then, click on the **Workspace** option. This will list down the connectors that have been imported into WSO2 Integration Studio.
 5.  Select the connector and click **OK**.
 
-You can export this connector file as a CAR file just as other ESB artifacts. See [exporting artifacts](../../../../develop/exporting-artifacts) for instructions.
+You can export this connector file as a CAR file just as other ESB artifacts. See [exporting artifacts](../../../develop/exporting-artifacts) for instructions.
 
 ### Removing Connectors
 
