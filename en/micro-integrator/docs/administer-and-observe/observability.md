@@ -26,38 +26,35 @@ Follow the steps given below to configure correlation logs in the Micro Integrat
 server.
 
 1.  Add the following parameters to the `log4j2.properties` file (stored in the `MI_HOME/conf/` directory):
+        ```xml
+        # Appender config to put correlation Log.
+        appender.CORRELATION.type = RollingFile
+        appender.CORRELATION.name = CORRELATION
+        appender.CORRELATION.fileName = ${sys:carbon.home}/repository/logs/correlation.log
+        appender.CORRELATION.filePattern = ${sys:carbon.home}/repository/logs/correlation-%d{MM-dd-yyyy}.log
+        appender.CORRELATION.layout.type = PatternLayout
+        appender.CORRELATION.layout.pattern = %d{yyyy-MM-dd HH:mm:ss,SSS}|%X{Correlation-ID}|%t|%m%n
+        appender.CORRELATION.policies.type = Policies
+        appender.CORRELATION.policies.time.type = TimeBasedTriggeringPolicy
+        appender.CORRELATION.policies.time.interval = 1
+        appender.CORRELATION.policies.time.modulate = true
+        appender.CORRELATION.policies.size.type = SizeBasedTriggeringPolicy
+        appender.CORRELATION.policies.size.size = 10MB
+        appender.CORRELATION.strategy.type = DefaultRolloverStrategy
+        appender.CORRELATION.strategy.max = 20
+        appender.CORRELATION.filter.threshold.type = ThresholdFilter
+        appender.CORRELATION.filter.threshold.level = INFO 
+        ```
 
-    ```xml
-    # Appender config to put correlation Log.
-    appender.CORRELATION.type = RollingFile
-    appender.CORRELATION.name = CORRELATION
-    appender.CORRELATION.fileName = ${sys:carbon.home}/repository/logs/correlation.log
-    appender.CORRELATION.filePattern = ${sys:carbon.home}/repository/logs/correlation-%d{MM-dd-yyyy.log
-    appender.CORRELATION.layout.type = PatternLayout
-    appender.CORRELATION.layout.pattern = %d{yyyy-MM-dd HH:mm:ss,SSS}|%X{Correlation-ID}|%t|%m%n
-    appender.CORRELATION.policies.type = Policies
-    appender.CORRELATION.policies.time.type = TimeBasedTriggeringPolicy
-    appender.CORRELATION.policies.time.interval = 1
-    appender.CORRELATION.policies.time.modulate = true
-    appender.CORRELATION.policies.size.type = SizeBasedTriggeringPolicy
-    appender.CORRELATION.policies.size.size = 10MB
-    appender.CORRELATION.strategy.type = DefaultRolloverStrategy
-    appender.CORRELATION.strategy.max = 20
-    appender.CORRELATION.filter.threshold.type = ThresholdFilter
-    appender.CORRELATION.filter.threshold.level = INFO 
-     ```
-
-2.  Add `correlation` as a logger
-
-    ```xml
-    loggers = AUDIT_LOG, SERVICE_LOGGER, correlation,
-    ```
+2.  Add `correlation` as a logger:
+        ```xml
+        loggers = AUDIT_LOG, SERVICE_LOGGER, correlation,
+        ```
     
-3.  Add `CORRELATION` as an appender
-
-    ```xml
-    appenders = CARBON_CONSOLE, CARBON_LOGFILE, AUDIT_LOGFILE, CORRELATION, 
-    ``` 
+3.  Add `CORRELATION` as an appender:
+        ```xml
+        appenders = CARBON_CONSOLE, CARBON_LOGFILE, AUDIT_LOGFILE, CORRELATION, 
+        ``` 
 
 4.  Note that the maximum file size of the correlation log is set to
     10MB in the above configuration. That is, when the size of the file
