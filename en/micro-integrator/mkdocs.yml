@@ -333,6 +333,8 @@ nav:
           - 'Salesforce Access Token Generation': 'references/connectors/salesforce-connector/sf-access-token-generation.md'
           - 'Salesforce Connector Example': 'references/connectors/salesforce-connector/sf-connector-example.md'
           - 'Salesforce Connector Configuration': 'references/connectors/salesforce-connector/sf-connector-configuration.md'
+        - Gmail Connector:
+          - 'Gmail Connector Example': 'references/connectors/gmail-connector/gmail-connector-example.md'
       - Synapse Configurations:
         - Mediator Catalog: 
           - 'About Mediators': 'references/mediators/about-mediators.md'
