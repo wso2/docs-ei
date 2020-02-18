@@ -4,7 +4,9 @@ template: templates/home-page.html
 
 # WSO2 Enterprise Integrator Documentation
 
-The new WSO2 Enterprise Integrator (WSO2 EI) 7.0 is the only open-source hybrid integration platform that enables API-centric integration using integration architecture styles such as microservices, cloud-native, or centralized ESB. The platform provides a choice of approaches for graphical and drag-and-drop/configuration-driven integration.
+WSO2 Enterprise Integrator (WSO2 EI) 7.x is an open-source hybrid integration platform that enables API-centric integration using integration architecture styles such as microservices or centralized ESB. The platform provides a graphical drag-and-drop flow designer and a configuration-driven approach to build low-code integration solutions for cloud and container-native projects.
+
+Enterprise Integrator 7.x series product suite consists of Micro Integrator and Streaming integrator runtimes.
 
 
 <!--
@@ -17,7 +19,7 @@ The new WSO2 Enterprise Integrator (WSO2 EI) 7.0 is the only open-source hybrid 
     </svg>
     Micro Integrator
     </h3>
-    <p>Micro Integrator is an intuitive, graphical, drag-and-drop, and configuration-driven integrator based on the cloud-native variant of the battle-tested WSO2 EI/ESB runtime.</p>
+    <p>A cloud-native variant of the battle-tested WSO2 EI/ESB runtime based on xml configurations. It comes with Integration Studio { a graphical drag-and-drop integration flow development environment}. Additionally, it includes a CLI tool, a Kubernetes operator, a monitoring dashboard, and 100s of connectors that facilitate integration with on-premise systems and SaaS applications.</p>
     <a href="micro-integrator/overview/introduction">Get Started</a>
 </div>
 <div class="integratorDescription">
@@ -26,7 +28,7 @@ The new WSO2 Enterprise Integrator (WSO2 EI) 7.0 is the only open-source hybrid 
             <path fill="none" stroke="#434343" stroke-width="1.5" stroke-miterlimit="10" d="M50.4 52v2.6c0 1.4-1.3 2.6-3 2.6h-36a3 3 0 0 1-3-3V32.6M8.5 6.7V4c0-1.5 1.3-2.7 3-2.7h36a3 3 0 0 1 3 3v22.1"></path><path fill="none" stroke="#434343" stroke-miterlimit="10" d="M16 47.8v-5h27.3v5zM16 37.2v-4.9h27.3v5zM16 26.7v-5h27.2v5zM16 16.1v-4.9h27.3v5z"></path><path fill="#FF7300" d="M10.8 13.7L.8 9v9.6zM10.8 25.6L.8 21v9.5zM57.8 32.8l-10-4.8v9.6zM57.8 44.7l-10-4.8v9.6z"></path>
         </svg>
         Streaming Integrator</h3>
-    <p>Streaming Integrator is a cloud-native, lightweight component that understands streaming SQL queries to capture, analyze, process, and act on events in real-time.</p>
+    <p>An advanced stream processing engine that understands streaming SQL queries to capture, analyze, and process streaming data, and allows us to integrate and act on event streams in real-time. Streaming Integrator allows you to connect any data source to any destination with its 60+ prebuilt, production-grade connectors. It comes with a web-based IDE for designing, developing, testing, and deploying stream processing applications with a graphical drag-and-drop experience or by writing streaming SQL queries.</p>
     <a href="streaming-integrator/overview/overview">Get Started</a>
 </div>
 
