@@ -6,10 +6,10 @@ Follow the steps given below to install and run WSO2 Micro Integrator on a VM.
 
 Follow the steps below:
 
-1.  Go to the WSO2 Micro Integrator [product page](https://wso2.com/integration/micro-integrator/) and click **Download** to get the **product installer**. The installer that is compatible with your operating system will be downloaded.
+1.  Go to the WSO2 Enterprise Integrator [product page](https://wso2.com/integration/) and click **Download** to get the latest **EI 7x** version. You can now download the **product installer** (which is compatible with your operating system) or the **binary**.
     
     !!! Info
-        Alternatively, go to **Other Installation Options** and click **Binary** to download the product distribution as a ZIP file.
+        Alternatively, you can also go to **Other Installation Options** and click **Binary** to download the binary distribution.
 
 2.  If you used the installer, double-click to open the installation wizard, which will guide you through the installation. When you finish, the product will be installed and ready for use.
 
@@ -33,19 +33,19 @@ If you used the **installer** to install the product, this is located in a place
    <tbody>
       <tr class="odd">
          <td>Mac OS</td>
-         <td><code>/Library/WSO2/EnterpriseIntegrator/7.0.0/micro-integrator</code></td>
+         <td><code>/Library/WSO2/EnterpriseIntegrator/7.0.2/micro-integrator</code></td>
       </tr>
       <tr class="even">
          <td>Windows</td>
-         <td><code>C:\Program Files\WSO2\Enterprise Integrator\7.0.0\micro-integrator</code></td>
+         <td><code>C:\Program Files\WSO2\Enterprise Integrator\7.0.2\micro-integrator</code></td>
       </tr>
       <tr class="odd">
          <td>Ubuntu</td>
-         <td><code>/usr/lib/wso2/wso2ei/7.0.0/micro-integrator</code></td>
+         <td><code>/usr/lib/wso2/wso2ei/7.0.2/micro-integrator</code></td>
       </tr>
       <tr class="even">
          <td>CentOS</td>
-         <td><code>/usr/lib64/wso2/wso2ei/7.0.0/micro-integrator</code></td>
+         <td><code>/usr/lib64/wso2/wso2ei/7.0.2/micro-integrator</code></td>
       </tr>
    </tbody>
 </table>
@@ -66,20 +66,20 @@ If you used the **installer** to install the product, you can uninstall by follo
 <td>Mac OS</td>
 <td><div class="content-wrapper">
 <p>Open a terminal and run the following command as the root user:</p>
-  <code>sudo bash /Library/WSO2/EnterpriseIntegrator/7.0.0</code>
+  <code>sudo bash /Library/WSO2/EnterpriseIntegrator/7.0.2</code>
 </div>
 </div>
 </div></td>
 </tr>
 <tr class="even">
 <td>Windows</td>
-<td>Go to <strong>Start Menu -&gt; Programs -&gt; WSO2 -&gt; Uninstall Enterprise Integrator 7.0.0</strong> or search <strong>Uninstall Enterprise Integrator 7.0.0</strong> and click the shortcut icon. This will uninstall the product from your computer.</td>
+<td>Go to <strong>Start Menu -&gt; Programs -&gt; WSO2 -&gt; Uninstall Enterprise Integrator 7.0.2</strong> or search <strong>Uninstall Enterprise Integrator 7.0.2</strong> and click the shortcut icon. This will uninstall the product from your computer.</td>
 </tr>
 <tr class="odd">
 <td>Ubuntu</td>
 <td><div class="content-wrapper">
 <p>Open a terminal and run the following command:</p>
-<code>sudo apt purge wso2ei-7.0.0</code>
+<code>sudo apt purge wso2ei-7.0.2</code>
 </div>
 </div>
 </div></td>
@@ -88,7 +88,7 @@ If you used the **installer** to install the product, you can uninstall by follo
 <td>CentOS</td>
 <td><div class="content-wrapper">
 <p>Open a terminal and run the following command:</p>
-<code>sudo yum remove wso2ei-7.0.0</code>
+<code>sudo yum remove wso2ei-7.0.2</code>
 </div>
 </div>
 </div></td>
@@ -108,7 +108,7 @@ Start WSO2 Micro Integrator by following the instructions given below.
   ```
   The operation log keeps running until the integrator starts, which usually takes several seconds. Wait until the profile fully boots up and displays a message similar to " *WSO2 Carbon started in n seconds.* "
 
-* On **Windows**, go to **Start Menu -> Programs -> WSO2 -> Enterprise Integrator**. This
+* On **Windows**, go to **Start Menu -> Programs -> WSO2 -> Enterprise Integrator 7.0.2 Micro Integrator**. This
 will open a terminal and start the relevant profile.
 
 If you have **installed the product using the installer** and you want to manually run the product startup script from the `MI_HOME/bin` directory, you need to use the following command:
