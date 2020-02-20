@@ -199,7 +199,7 @@ WSO2 Micro Integrator supports more than 150 connectors, where Salesforce, Gmail
 			<b>Tutorials</b></br>
 			<ul>
 				<li>
-					Try the end-to-end use case on <a href="../../use-cases/tutorials/storing-and-forwarding-messages">connecting web Apis and cloud services</a>
+					Try the end-to-end use case on <a href="../../use-cases/tutorials/using-the-gmail-connector">connecting web Apis and cloud services</a>
 				</li>
 			</ul>
 		</td>
