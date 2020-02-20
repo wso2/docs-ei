@@ -71,6 +71,9 @@ nav:
             - 'Routing Based on Message Headers': 'use-cases/examples/routing_examples/routing_based_on_headers.md'
             - 'Routing Based on Message Payload': 'use-cases/examples/routing_examples/routing_based_on_payloads.md'
             - 'Splitting Messages and Aggregating Responses': 'use-cases/examples/routing_examples/splitting_aggregating_messages.md'
+        - Message Transformation:
+            - 'Converting JSON Messages to SOAP': 'use-cases/examples/message_transformation_examples/json-to-soap-conversion.md'
+            - 'Converting POX Messages to JSON': 'use-cases/examples/message_transformation_examples/pox-to-json-conversion.md'
         - Asynchronous Messaging:
             - 'Consuming JMS Messages': 'use-cases/examples/jms_examples/consuming-jms.md'
             - 'Producing JMS Messages': 'use-cases/examples/jms_examples/producing-jms.md'
@@ -297,6 +300,7 @@ nav:
         - 'Creating a Custom Inbound Endpoint' : 'develop/customizations/creating-custom-Inbound-endpoint.md'
         - 'Creating a Custom Mediator': 'develop/customizations/creating-custom-mediators.md'
         - 'Creating a Synapse Handler': 'develop/customizations/creating-synapse-handlers.md'
+        - 'Creating a New Connector': 'develop/customizations/creating-new-connector.md'
         - 'Customizing Task Scheduling': 'develop/customizations/creating-custom-task-scheduling.md'
       - Securing Artifacts:
         - 'Encrypting Synapse Passwords' : 'develop/creating-artifacts/encrypting-synapse-passwords.md'
