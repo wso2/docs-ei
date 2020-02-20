@@ -59,7 +59,7 @@ Set up the back-end service.
 
 -   Go to the [WSO2 Connector Store](https://store.wso2.com/store/assets/esbconnector/details/b15e9612-5144-4c97-a3f0-179ea583be88) and click **Download Inbound Endpoint** to download the inbound JAR file. Add the downloaded JAR file to the <MI_HOME>/dropins directory.
 
-Run the following commands in the {KAFKA_HOME} directory to invoke the service.
+Run the following commands in the <KAFKA_HOME> directory to invoke the service.
     
 -   Run the following on the Kafka command line to create a topic named `test` with a single partition and only one
     replica:
@@ -68,17 +68,17 @@ Run the following commands in the {KAFKA_HOME} directory to invoke the service.
     bin/kafka-topics.sh --create --zookeeper localhost:2181 --replication-factor 1 --partitions 1 --topic test
     ```
 
--   Run the following on the Kafka command line to send a message to the Kafka brokers. You can also use the WSO2 ESB Kafka producer connector to send the message to the Kafka brokers.
+-   Run the following on the Kafka command line to send a message to the Kafka brokers. You can also use the **WSO2 ESB Kafka producer** connector to send the message to the Kafka brokers.
 
     ```bash
     bin/kafka-console-producer.sh --broker-list localhost:9092 --topic test
     ```
     
-    Executing the above command will open up the console producer, send the following message using it
+-   Executing the above command will open up the console producer. Send the following message using the console:
     
-```json
-{"test":"wso2"}
-```
+    ```json
+    {"test":"wso2"}
+    ```
 
 You can see the following Message content in the Micro Integrator:
 
@@ -91,14 +91,14 @@ You can see the following Message content in the Micro Integrator:
 
 The Kafka inbound gets the messages from the Kafka brokers and logs the messages in the Micro Integrator.
 
-### Note
+## Using specific topics/topic patterns
 
-You may consume messages in two ways: Using **specific topics** or using a **topic patterns**.
+You may consume messages in two ways: Using **specific topics** or using a **topic pattern**.
 
 ```xml tab='Using Specific Topics'
-  <parameter name="topic.names">test,sampletest</parameter>
+<parameter name="topic.names">test,sampletest</parameter>
 ```
 
 ```xml tab='Using a Topic Pattern'
-  <parameter name="topic.pattern">.*test</parameter>
+<parameter name="topic.pattern">.*test</parameter>
 ```
