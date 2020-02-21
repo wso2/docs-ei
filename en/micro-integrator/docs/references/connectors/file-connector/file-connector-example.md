@@ -4,24 +4,26 @@ The File Connector allows you to connect to different file systems and perform v
 
 WSO2 EI File connector introduces the atomic operation related to the file system and allows you to easily manipulate files based on your requirement. The file streaming functionality using Apache Commons I/O lets you copy large files and reduces the file transfer time between two file systems resulting in a significant improvement in performance that can be utilized in file operations.
 
+Using File Connector it can be perform operations in local file system as well as in a remote server such as FTP and SFTP. 
+
 ## What you'll build
 
-This example explains how to use File Connector to create a file in the local file system and read the particular file. 
+This example explains how to use File Connector to create a file in the local file system and read the particular file. The user will send a payload specifying which content to be written to the file. Based on that content a file will be created in the specified location. Then it can be read the content of the file as an http response by invoking the other api resource upon the existence of the file. 
 
-It will have two api resources which are /create and /read. 
+It will have two http api resources which are create and read. 
 
 * /create : It will create a file with the content that the user specifies in the payload. 
 
 * /read : It will first check if the file exists. If so it will read the content of the file. 
 
 ## Configure the connector in WSO2 Integration Studio
+1. Follow these steps to set up the ESB Solution Project and the Connector Exporter Project. 
+[Configure the Connector and the Connector Exporter Project.](../configure-connector-exporter-project.md).
 
-1. Open WSO2 Integration Studio and create an ESB Solution Project.
-2. Right click on the project that you created and click on 'Add or Remove Connector' -> Add Connector. 
-3. It will be navigated to the WSO2 Connector Store. 
-4. Search for File Connector and download it. 
-5. Now the File Connector is added to the left side palette when you go to the design view of a synapse configuration. 
-6. Create the following REST API with two api resources. 
+6. Right Click on the created ESB Solution Project -> New -> Rest API to create the REST API. 
+<p><img src="/assets/img/connectors/adding-an-api.png" title="Adding a Rest API" width="800" alt="Adding a Rest API"/></p>
+
+7. Provide the API name as File Connector and the api context as /fileconnector. You can go to the source view and copy paste the following api configuration. 
 ```
 <?xml version="1.0" encoding="UTF-8"?>
 <api context="/fileconnector" name="FileConnector" xmlns="http://ws.apache.org/ns/synapse">
@@ -69,10 +71,7 @@ It will have two api resources which are /create and /read.
 </api>
 
 ```
-7. Now it needs to add a Connector Exporter Project. 
-8. Go to File -> New -> Other -> WSO2 -> Extensions -> Project Types -> Connector Exporter Project
-9. Provide a name for Connector Exporter Project and in the next screen tick on 'Specify the parent from workspace' and select the File Connector project. 
-10. Now it needs to add the Connector to Connector Exporter project that we just created. Right Click on the Connector Exporter project -> New -> Add Remove Connectors -> Add Connector -> Add from Workspace -> File Connector
+
 11. Right-click on the Composite Application Project and click on **Export Project Artifacts and Run**. Select **Run on Micro Integrator**.
 12. Micro Integrator will be started and the composite application will be deployed. You can further refer to the application deployed through the CLI tool. Make sure you first export the PATH as below.
 
