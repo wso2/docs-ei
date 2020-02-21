@@ -21,7 +21,7 @@ It will have two http api resources which are create and read.
 [Configure the Connector and the Connector Exporter Project.](../configure-connector-exporter-project.md).
 
 6. Right Click on the created ESB Solution Project -> New -> Rest API to create the REST API. 
-<p><img src="/assets/img/connectors/adding-an-api.png" title="Adding a Rest API" width="800" alt="Adding a Rest API"/></p>
+<p><img src="../../../assets/img/connectors/adding-an-api.png" title="Adding a Rest API" width="800" alt="Adding a Rest API"/></p>
 
 7. Provide the API name as File Connector and the api context as /fileconnector. You can go to the source view and copy paste the following api configuration. 
 ```
