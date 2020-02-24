@@ -335,6 +335,8 @@ nav:
           - 'Salesforce Connector Configuration': 'references/connectors/salesforce-connector/sf-connector-configuration.md'
         - File Connector:
           - 'File Connector Example': 'references/connectors/file-connector/file-connector-example.md'
+        - 'Exporting-artifacts' : 'references/connectors/exporting-artifacts.md'
+        - 'Importing Connector to Integration Studio Solution Project': 'references/connectors/importing-connector-to-integration-studio.md'
       - Synapse Configurations:
         - Mediator Catalog: 
           - 'About Mediators': 'references/mediators/about-mediators.md'
