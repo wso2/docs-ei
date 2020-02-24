@@ -65,6 +65,7 @@ run/debug mode, follow the procedure below:
     following output is logged in the console.  
     ![Siddhi application in a faulty state](../images/Testing-Siddhi-Applications/Faulty_Siddhi_Application_Message.png)
 
+<a name="simulate"></a>
 ## Simulating events
 
 This section demonstrates how to test a Siddhi application via event simulation. Event simulation involves simulating 
