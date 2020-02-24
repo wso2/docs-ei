@@ -3,9 +3,7 @@ The following sections provide information and instructions on how to deploy the
 
 ## The deployment pattern
 
-This deployment scenario uses a two-node Micro Integrator deployment. That is, two Micro Integrator nodes are configured to serve requests with high availability and scalability. As depicted by the following diagram, the product nodes in the deployment are fronted by an external third-party load balancer, which routes requests to the two nodes on a round-robin basis.
-
-![Micro Integrator Deployment Pattern](../../assets/img/mi_deployment.png)
+This deployment scenario uses a two-node Micro Integrator deployment. That is, two Micro Integrator nodes are configured to serve requests with high availability and scalability. The product nodes in the deployment are fronted by an external third-party load balancer, which routes requests to the two nodes on a round-robin basis.
 
 ## Installing WSO2 Micro Integrator
 
@@ -51,7 +49,7 @@ Follow the steps given below to configure the two nodes in the Micro Integrator 
 
 If you have already done the configurations explained above, you have the option of applying the following configurations for your deployment.
 
-If you wish to view reports, statistics, and graphs related to the message mediation that happens through the Micro Integrator, you need to configure Analytics for the Micro Integrator. Follow configuring WSO2 EI Analytics in a production setup.
+If you wish to view reports, statistics, and graphs related to the message mediation that happens through the Micro Integrator, you need to configure Analytics for the Micro Integrator. Follow [configuring WSO2 EI Analytics](../../../administer-and-observe/using-the-analytics-dashboard/) in a production setup.
 
 ## Verifying your deployment
 
