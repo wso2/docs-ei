@@ -176,8 +176,8 @@ Finally, the created Maven Multi Module project should look as follows:
 
 1.  Uncomment the following two commands in the Dockerfile inside the Kubernetes project.
     ```bash
-    COPY Libs/*.jar /home/wso2carbon/wso2mi/lib/
-    COPY Conf/* /home/wso2carbon/wso2mi/conf/
+    COPY Libs/*.jar $WSO2_SERVER_HOME/lib/
+    COPY Conf/* $WSO2_SERVER_HOME/conf/
     ```
 2.  Download [Apache ActiveMQ](http://activemq.apache.org/).
 3.  Copy the following client libraries from the `<ACTIVEMQ_HOME>/lib` directory to the `<MAVEN_MULTI_MODULE>/<KUBERNETES_PROJECT>/Lib` directory.
