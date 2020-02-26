@@ -63,7 +63,7 @@ start your WSO2 Micro Integrator instance. Pass the following system property:
     help             Help about any command
     inboundendpoint  Manage deployed inbound endpoints
     localentry       Manage local entries
-    log-level        Manage log4j properties
+    log-level        Manage log4j2 properties
     messageprocessor Manage message processors
     messagestore     Manage message stores
     proxyservice     Manage deployed proxy services
@@ -175,10 +175,10 @@ mi version
 
      Examples:
         # Show information about a logger
-        mi log-level show org.apache.coyote
+        mi log-level show org-apache-coyote
 
         # Update the log level of a logger
-        mi log-level update org.apache.coyote DEBUG
+        mi log-level update org-apache-coyote DEBUG
      ```
  -  **api**
     ```bash
