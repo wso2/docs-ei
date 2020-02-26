@@ -20,7 +20,7 @@ It will have two HTTP API resources, which are `create` and `read`.
 
 ## Configure the connector in WSO2 Integration Studio
 
-1. Follow these steps to set up the ESB Solution Project and the Connector Exporter Project. {! ../importing-connector-to-integration-studio.md !}
+1. Follow these steps to set up the ESB Solution Project and the Connector Exporter Project. {! ../../importing-connector-to-integration-studio.md !}
 
 2. Right click on the created ESB Solution Project and select, -> **New** -> **Rest API** to create the REST API. 
     <img src="../../../assets/img/connectors/adding-an-api.png" title="Adding a Rest API" width="800" alt="Adding a Rest API"/>
@@ -74,10 +74,10 @@ It will have two HTTP API resources, which are `create` and `read`.
 
     ```
 
-4. Follow these steps to {! ../exporting-artifacts.md !}
+4. Follow these steps to {! ../../exporting-artifacts.md !}
 
 ## Deployment
-Follow these steps to deploy the exported CApp in the Enterprise Integrator Runtime. {! ../deploy-capp.md !}
+Follow these steps to deploy the exported CApp in the Enterprise Integrator Runtime. {! ../../deploy-capp.md !}
 
 ## Testing
 
