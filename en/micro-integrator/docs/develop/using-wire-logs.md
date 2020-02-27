@@ -24,7 +24,7 @@ logger.synapse-transport-http-wire.name=org.apache.synapse.transport.http.wire
 logger.synapse-transport-http-wire.level=OFF
 ```
 
-The wire logs can be enabled by changing the log level. The log level can be either updated in the file itself or via MI CLI. When updating the log level directly in the log4j2.properties file a server restart is required. 
+Wire logs can be enabled by changing the log level to DEBUG. The log level of a running MI instance can be changed via the CLI by using the command below. Please note that updating the entry in the log4j2.properties file directly without the use of the CLI requires a server restart for the changes to be reflected. 
 Using the MI CLI the configurations can be dynamically updated and does not require a server restart.
 
 Use the following command in CLI to set the log-level of synapse-transport-http-wire to DEBUG,
