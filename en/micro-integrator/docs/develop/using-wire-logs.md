@@ -17,17 +17,21 @@ content-type is properly set in the outgoing message, etc.
 
 ## Enabling wire logs
 
-The passthrough HTTP transport is the main transport, which handles HTTP/HTTPS messages in the Micro Integrator. Uncomment the following entry in the `MI_HOME/conf/log4j2.properties` file to enable wire logs for the passthrough HTTP transport:
+The passthrough HTTP transport is the main transport, which handles HTTP/HTTPS messages in the Micro Integrator. The following entry in the `MI_HOME/conf/log4j2.properties` file enables wire logs for the passthrough HTTP transport:
 
 ```xml
 logger.synapse-transport-http-wire.name=org.apache.synapse.transport.http.wire
-logger.synapse-transport-http-wire.level=DEBUG
+logger.synapse-transport-http-wire.level=OFF
 ```
 
-Then, add to the loggers as a comma-separated list:
-```xml
-loggers = synapse-transport-http-wire, AUDIT_LOG, SERVICE_LOGGER, trace-messages,
-```
+The wire logs can be enabled by changing the log level. The log level can be either updated in the file itself or via MI CLI. When updating the log level directly in the log4j2.properties file a server restart is required. 
+Using the MI CLI the configurations can be dynamically updated and does not require a server restart.
+
+Use the following command in CLI to set the log-level of synapse-transport-http-wire to DEBUG,
+
+```mi log-level update synapse-transport-http-wire DEBUG```
+
+See the documentation on [using the command line interface](../administer-and-observe/using-the-command-line-interface.md) for more details on CLI commands.
 
 Following is a sample wirelog.
 
