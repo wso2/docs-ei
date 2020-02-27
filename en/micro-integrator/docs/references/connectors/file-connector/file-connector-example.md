@@ -13,18 +13,18 @@ This example explains how to use File Connector to create a file in the local fi
 It will have two HTTP API resources, which are `create` and `read`. 
 
 * `/create `: It will create a file with the content that the user specifies in the payload. 
-    <img src="../../../assets/img/connectors/FileConnector-03.png" title="Adding a Rest API" width="800" alt="Adding a Rest API"/>
+    <p><img src="/assets/img/connectors/FileConnector-03.png" title="Adding a Rest API" width="800" alt="Adding a Rest API" /></p>
 
 * `/read `: It will first check if the file exists. If so it will read the content of the file. 
-    <img src="../../../assets/img/connectors/FileConnector-02.png" title="Adding a Rest API" width="800" alt="Adding a Rest API"/>
+    <img src="/assets/img/connectors/FileConnector-02.png" title="Adding a Rest API" width="800" alt="Adding a Rest API"/>
 
 ## Configure the connector in WSO2 Integration Studio
 
 1. Follow these steps to set up the ESB Solution Project and the Connector Exporter Project. 
-{! ../../importing-connector-to-integration-studio.md !}
+[Importing Connector to Integration Studio Solution Project](../importing-connector-to-integration-studio.md)
 
 2. Right click on the created ESB Solution Project and select, -> **New** -> **Rest API** to create the REST API. 
-    <img src="../../../assets/img/connectors/adding-an-api.png" title="Adding a Rest API" width="800" alt="Adding a Rest API"/>
+    <img src="/assets/img/connectors/adding-an-api.png" title="Adding a Rest API" width="800" alt="Adding a Rest API"/>
 
 3. Provide the API name as File Connector and the API context as `/fileconnector`. You can go to the source view of the xml configuration file of the API and copy the following configuration. 
     ```
@@ -75,12 +75,12 @@ It will have two HTTP API resources, which are `create` and `read`.
 
     ```
 
-4. Follow these steps to 
-{! ../../exporting-artifacts.md !}
+4. Follow these steps to export the artifacts. 
+[Exporting Artifacts](../exporting-artifacts.md)
 
 ## Deployment
 Follow these steps to deploy the exported CApp in the Enterprise Integrator Runtime. 
-{! ../../deploy-capp.md !}
+[Deploying the CApp on Enterprise Integrator Runtime](../deploy-capp.md)
 
 ## Testing
 
