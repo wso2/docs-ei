@@ -148,7 +148,7 @@ The following tables explain the default data sources configured in the Streamin
             <td>Database Access Requirement
                 <br />
             </td>
-            <td>The RDBMS provider publishes records from RDBMS tables into generated widgets. It can also be configured to purge records in tables. In order to carry out these actions, this provider requires access to read and delete records in user defined tables of the database. For more information about the RDBMS data provider, see <a href="https://docs.wso2.com/display/SP440/Generating+Widgets">Generating Widgets</a> .</td>
+            <td>The RDBMS provider publishes records from RDBMS tables into generated widgets. It can also be configured to purge records in tables. In order to carry out these actions, this provider requires access to read and delete records in user defined tables of the database. For more information about the RDBMS data provider, see <a href="https://docs.wso2.com/display/SP440/Generating+Widgets">Generating Widgets</a>.</td>
         </tr>
         <tr class="even">
             <td>Required/Optional</td>
@@ -288,7 +288,7 @@ The following tables explain the default data sources configured in the Streamin
         <tr class="odd">
             <td>Schemas and Queries</td>
             <td>
-                <p>Information about the default queries and schema: <a href="https://github.com/wso2/carbon-analytics/blob/v2.0.250/components/org.wso2.carbon.status.dashboard.core/src/main/resources/queries.yaml">https://github.com/wso2/carbon-analytics/blob/v2.0.250/components/org.wso2.carbon.status.dashboard.core/src/main/resources/queries.yaml</a></p>
+                <p>Information about the default queries and schema can be viewed [here](https://github.com/wso2/carbon-analytics/blob/v2.0.250/components/org.wso2.carbon.status.dashboard.core/src/main/resources/queries.yaml).
             </td>
         </tr>
         <tr class="even">
@@ -310,7 +310,7 @@ The following tables explain the default data sources configured in the Streamin
     <tbody>
         <tr class="odd">
             <td>Database Access Requirement</td>
-            <td>It gives the capability of creating the tables at the siddhi app runtime and access the existing tablesif a user defined carbon datasource or JNDI property in a siddhi app. Documentation can be found in <a href="https://wso2-extensions.github.io/siddhi-store-rdbms/api/4.0.15/">https://wso2-extensions.github.io/siddhi-store-rdbms/api/4.0.15/</a></td>
+            <td>It gives the capability of creating the tables at the siddhi application runtime and access the existing tables if a user-defined carbon data source or JNDI property in a siddhi application. Documentation can be found in [Siddhi Extensions Documentation](https://siddhi-io.github.io/siddhi-store-rdbms/api/latest/).</td>
         </tr>
         <tr class="even">
             <td>Required/Optional</td>
@@ -318,7 +318,7 @@ The following tables explain the default data sources configured in the Streamin
         </tr>
         <tr class="odd">
             <td>Default Datasource Name</td>
-            <td>No such default Datasource. User has to create the datasource in the Siddhi app</td>
+            <td>No such default Datasource. User has to create the datasource in the Siddhi application</td>
         </tr>
         <tr class="even">
             <td>Tables</td>
@@ -327,7 +327,7 @@ The following tables explain the default data sources configured in the Streamin
         <tr class="odd">
             <td>Schemas and Queries</td>
             <td>
-                <p>Information about the default queries and schema: <a href="https://github.com/wso2-extensions/siddhi-store-rdbms/blob/v4.0.15/component/src/main/resources/rdbms-table-config.xml">https://github.com/wso2-extensions/siddhi-store-rdbms/blob/v4.0.15/component/src/main/resources/rdbms-table-config.xml</a></p>
+                <p>See [information about the default queries and schema](https://github.com/wso2-extensions/siddhi-store-rdbms/blob/v4.0.15/component/src/main/resources/rdbms-table-config.xml).</p>
             </td>
         </tr>
         <tr class="even">
@@ -366,7 +366,7 @@ The following tables explain the default data sources configured in the Streamin
         <tr class="odd">
             <td>Schemas and Queries</td>
             <td>
-                <p><a href="https://github.com/wso2/carbon-dashboards/tree/master/features/org.wso2.carbon.dashboards.api.feature/src/main/resources/sql">https://github.com/wso2/carbon-dashboards/tree/master/features/org.wso2.carbon.dashboards.api.feature/src/main/resources/sql</a></p>
+                <p><See [information on schemas and queries](https://github.com/wso2/carbon-dashboards/tree/master/features/org.wso2.carbon.dashboards.api.feature/src/main/resources/sql).
             </td>
         </tr>
         <tr class="even">
@@ -407,7 +407,7 @@ The following tables explain the default data sources configured in the Streamin
         <tr class="odd">
             <td>Schemas and Queries</td>
             <td>
-                <p><a href="https://github.com/wso2/carbon-analytics/blob/v2.0.250/components/org.wso2.carbon.business.rules.core/src/main/resources/queries.yaml">https://github.com/wso2/carbon-analytics/blob/v2.0.250/components/org.wso2.carbon.business.rules.core/src/main/resources/queries.yaml</a></p>
+                <p>See [information about schemas and queries](https://github.com/wso2/carbon-analytics/blob/v2.0.250/components/org.wso2.carbon.business.rules.core/src/main/resources/queries.yaml).</p>
             </td>
         </tr>
         <tr class="even">
@@ -446,7 +446,7 @@ The following tables explain the default data sources configured in the Streamin
         <tr class="odd">
             <td>Schemas and Queries</td>
             <td>
-                <p><a href="https://github.com/wso2/carbon-analytics-common/blob/v6.0.52/components/authentication/org.wso2.carbon.analytics.idp.client/src/main/resources/queries.yaml">https://github.com/wso2/carbon-analytics-common/blob/v6.0.52/components/authentication/org.wso2.carbon.analytics.idp.client/src/main/resources/queries.yaml</a></p>
+                <p> See [information about schemas and queries](https://github.com/wso2/carbon-analytics-common/blob/v6.0.52/components/authentication/org.wso2.carbon.analytics.idp.client/src/main/resources/queries.yaml)</p>
             </td>
         </tr>
         <tr class="even">
@@ -468,7 +468,7 @@ The following tables explain the default data sources configured in the Streamin
     <tbody>
         <tr class="odd">
             <td>Database Access Requirement</td>
-            <td>Permission provider will access the DB to p ersist permissions and role - permission mappings.</td>
+            <td>Permission provider will access the DB to persist permissions and role - permission mappings.</td>
         </tr>
         <tr class="even">
             <td>Required/Optional</td>
@@ -487,7 +487,7 @@ The following tables explain the default data sources configured in the Streamin
         <tr class="odd">
             <td>Schemas and Queries</td>
             <td>
-                <p><a href="https://github.com/wso2/carbon-analytics-common/blob/v6.0.52/components/permission-provider/org.wso2.carbon.analytics.permissions/src/main/resources/queries.yaml">https://github.com/wso2/carbon-analytics-common/blob/v6.0.52/components/permission-provider/org.wso2.carbon.analytics.permissions/src/main/resources/queries.yaml</a></p>
+                <p>See [information about schemas and queries](https://github.com/wso2/carbon-analytics-common/blob/v6.0.52/components/permission-provider/org.wso2.carbon.analytics.permissions/src/main/resources/queries.yaml)</p>
             </td>
         </tr>
         <tr class="even">
