@@ -76,7 +76,7 @@ It will have two HTTP API resources, which are `create` and `read`.
     ```
 
 4. Follow these steps to export the artifacts. 
-[Exporting Artifacts](../exporting-artifacts.md)
+{! /references/connectors/exporting-artifacts.md !}
 
 ## Deployment
 Follow these steps to deploy the exported CApp in the Enterprise Integrator Runtime. 
