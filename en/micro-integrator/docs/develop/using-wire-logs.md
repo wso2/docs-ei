@@ -17,7 +17,7 @@ content-type is properly set in the outgoing message, etc.
 
 ## Enabling wire logs
 
-The passthrough HTTP transport is the main transport, which handles HTTP/HTTPS messages in the Micro Integrator. The following entry in the `MI_HOME/conf/log4j2.properties` file enables wire logs for the passthrough HTTP transport:
+Passthrough HTTP transport is the main transport which handles HTTP/HTTPS messages in the Micro Integrator. The following entry in `MI_HOME/conf/log4j2.properties` file enables wire logs for the Passthrough HTTP transport:
 
 ```xml
 logger.synapse-transport-http-wire.name=org.apache.synapse.transport.http.wire
