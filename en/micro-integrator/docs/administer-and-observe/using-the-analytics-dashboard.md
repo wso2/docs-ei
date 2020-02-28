@@ -6,7 +6,7 @@ and for debugging and troubleshooting problems.
 When it comes to troubleshooting, the ability to trace messages that pass through the mediation flows of the 
 Micro Integrator is very useful. 
 For monitoring statistics and tracing, we can use the Analytics profile of 
-[WSO2 Enterprise Integrator 6.x family (EI Analytics)](https://wso2.com/enterprise-integrator/6.5.0). 
+[WSO2 Enterprise Integrator 6.x family](https://docs.wso2.com/display/EI660). 
 
 You can monitor the following statistics through the EI Analytics profile:
 
@@ -19,7 +19,7 @@ You can monitor the following statistics through the EI Analytics profile:
 - Top Inbound Endpoints by Request Count
 - Top Sequences by Request Count
 
-Please see [this documentation](https://docs.wso2.com/display/EI650/Analyzing+the+ESB+Profile+Statistics+Overview) 
+Please see [this documentation](https://docs.wso2.com/display/EI660/Analyzing+the+ESB+Profile+Statistics+Overview) 
 for more information on what you can monitor using EI Analytics.
 
 The Analytics profile consists of two components: **Worker** and **Dashboard**. 
@@ -87,8 +87,8 @@ Follow the steps below to enable statistics for the **endpoint** artifacts:
 !!! Note
     Be sure to start the **Analytics** worker before [starting the Micro Integrator](#starting-the-micro-integrator).
 
-1.  Download and install [WSO2 Enterprise Integrator 6.5.0](https://docs.wso2.com/display/EI650/Installing+the+Product). The location of your WSO2 EI 6.5.0 installation will be referred to as `<EI_6.5.0_HOME>` from hereon.
-2.  Open a terminal and navigate to the `<EI_6.5.0_HOME>/wso2/analytics/bin` directory.
+1.  Download and install [WSO2 Enterprise Integrator 6.x.x](https://docs.wso2.com/display/EI660/Installing+the+Product). The location of your WSO2 EI 6.x.x installation will be referred to as `<EI_6.x.x_HOME>` from hereon.
+2.  Open a terminal and navigate to the `<EI_6.x.x_HOME>/wso2/analytics/bin` directory.
 3.  Start the Analytics Worker runtime by executing the following command:
 
     -   On **MacOS/Linux/CentOS**
@@ -108,13 +108,13 @@ Follow the steps below to enable statistics for the **endpoint** artifacts:
 !!! Warning
     To allow the Micro Integrator server and the Analytics server to communicate using SSL, the digital certifacates should be shared by the two servers. See the instructions on [adding SSL certificates to keystores](../../setup/security/importing_ssl_certificate).
     
-    For testing, you can simply copy the keystore files from the `<EI_6.5.0_HOME>/wso2/analytics/resources/security` directory to the `MI_HOME/resources/security` directory.
+    For testing, you can simply copy the keystore files from the `<EI_6.x.x_HOME>/wso2/analytics/resources/security` directory to the `MI_HOME/resources/security` directory.
 
 Once you have [started the Analytics Worker](#starting-the-analytics-worker), you can [start the Micro Integrator](../../develop/deploy-and-run) with your integration artifacts.
 
 ## Starting the Analytics Dashboard
 
-1.  Open a terminal and navigate to the `<EI_HOME>/wso2/analytics/bin` directory.
+1.  Open a terminal and navigate to the `<EI_6.x.x_HOME>/wso2/analytics/bin` directory.
 2.  Start the Analytics Dashboard runtime by executing the following command:
 
     -   On **MacOS/Linux/CentOS**
@@ -201,7 +201,7 @@ Let's send 8 requests to the Micro Integrator to invoke the integration artifact
 Go to the [Analytics Dashboard](#starting-the-analytics-dashboard) and see the statistics listed below.
 
 !!! Tip
-    See the documentation on [using the Analytics dashsboard](https://docs.wso2.com/display/EI650/Using+the+WSO2+EI+Analytics+Dashboard) for more information on dashboard function.
+    See the documentation on [using the Analytics dashsboard](https://docs.wso2.com/display/EI660/Using+the+WSO2+EI+Analytics+Dashboard) for more information on dashboard function.
 
 1.  Click the **Enterprise Integrator Analytics** icon shown below to
     open the dashboard.  
