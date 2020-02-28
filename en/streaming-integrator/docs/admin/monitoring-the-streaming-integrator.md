@@ -612,7 +612,7 @@ To download and access the Status Dashboard, follow the procedure below:
 
     `https://localhost:<DASHBOARD_PORT>/si-status-dashboard`
 
-    e.g., <https://0.0.0.0:9643/si-status-dashboard>
+    e.g., `https://0.0.0.0:9643/si-status-dashboard`
 
 After login this opens  the Status Dashboard with the nodes that you have already added as shown in the example below.
 
