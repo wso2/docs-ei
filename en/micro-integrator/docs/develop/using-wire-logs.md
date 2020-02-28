@@ -17,21 +17,21 @@ content-type is properly set in the outgoing message, etc.
 
 ## Enabling wire logs
 
-Passthrough HTTP transport is the main transport which handles HTTP/HTTPS messages in the Micro Integrator. The following entry in `MI_HOME/conf/log4j2.properties` file enables wire logs for the Passthrough HTTP transport:
+Passthrough HTTP transport is the main transport that handles HTTP/HTTPS messages in the Micro Integrator. The following entry in the `MI_HOME/conf/log4j2.properties` file is used for configuring wire logs for the Passthrough HTTP transport:
 
 ```xml
 logger.synapse-transport-http-wire.name=org.apache.synapse.transport.http.wire
 logger.synapse-transport-http-wire.level=OFF
 ```
 
-Wire logs can be enabled by changing the log level to DEBUG. The log level of a running MI instance can be changed via the CLI by using the command below. Please note that updating the entry in the log4j2.properties file directly without the use of the CLI requires a server restart for the changes to be reflected. 
-Using the MI CLI the configurations can be dynamically updated and does not require a server restart.
+To enable wire logs, change the log level to **DEBUG**. The log level of a running Micro Integrator instance can be changed from the **CLI Tool** by executing the command given below. The changes you make from the CLI Tool will be dynamically updated and does not require a server restart. Learn more about [using the command line interface](../administer-and-observe/using-the-command-line-interface.md).
 
-Use the following command in CLI to set the log-level of synapse-transport-http-wire to DEBUG,
+!!! Note
+    If you change the wire log configuration directly from the `log4j2.properties` file (without using the CLI), the Micro Integrator needs to be restarted for the changes to become effective.
 
-```mi log-level update synapse-transport-http-wire DEBUG```
-
-See the documentation on [using the command line interface](../administer-and-observe/using-the-command-line-interface.md) for more details on CLI commands.
+```bash
+mi log-level update synapse-transport-http-wire DEBUG
+```
 
 Following is a sample wirelog.
 
