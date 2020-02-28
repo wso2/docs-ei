@@ -16,6 +16,6 @@ WSO2 Micro Integrator is also light-weight and container friendly. This allows y
 
 As shown above, if your organization is running on a decentralized, cloud-native, integration architecture where micro services are used for integrating the various APIs, events, and systems, WSO2 Micro Integrator can easily function as your **Integration** (micro) services and **API** (micro) services.
 
-## Graphical integration desigining
+## Graphical integration designing
 
 WSO2 Micro Integrator is coupled with [WSO2 Integration Studio](../../develop/WSO2-Integration-Studio); a comprehensive graphical integration flow designer for building integrations using a simple drag-and-drop functionality.
