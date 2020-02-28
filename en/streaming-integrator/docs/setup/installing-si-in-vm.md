@@ -41,19 +41,19 @@ If you used the **installer** to install the product, this is located in a place
    <tbody>
       <tr class="odd">
          <td>Mac OS</td>
-         <td><code>/Library/WSO2/EnterpriseIntegrator/7.0.0/streaming-integrator</code></td>
+         <td><code>/Library/WSO2/EnterpriseIntegrator/7.0.2/streaming-integrator</code></td>
       </tr>
       <tr class="even">
          <td>Windows</td>
-         <td><code>C:\Program Files\WSO2\Enterprise Integrator\7.0.0\streaming-integrator</code></td>
+         <td><code>C:\Program Files\WSO2\Enterprise Integrator\7.0.2\streaming-integrator</code></td>
       </tr>
       <tr class="odd">
          <td>Ubuntu</td>
-         <td><code>/usr/lib/wso2/wso2ei/7.0.0/streaming-integrator</code></td>
+         <td><code>/usr/lib/wso2/wso2ei/7.0.2/streaming-integrator</code></td>
       </tr>
       <tr class="even">
          <td>CentOS</td>
-         <td><code>/usr/lib64/wso2/wso2ei/7.0.0/streaming-integrator</code></td>
+         <td><code>/usr/lib64/wso2/wso2ei/7.0.2/streaming-integrator</code></td>
       </tr>
    </tbody>
 </table>
@@ -74,20 +74,20 @@ If you used the **installer** to install the product, you can uninstall by follo
 <td>Mac OS</td>
 <td><div class="content-wrapper">
 <p>Open a terminal and run the following command as the root user:</p>
-    <code>sudo bash /Library/WSO2/EnterpriseIntegrator/7.0.0</code>
+    <code>sudo bash /Library/WSO2/EnterpriseIntegrator/7.0.2</code>
 </div>
 </div>
 </div></td>
 </tr>
 <tr class="even">
 <td>Windows</td>
-<td>Go to <strong>Start Menu -&gt; Programs -&gt; WSO2 -&gt; Uninstall Enterprise Integrator 7.0.0</strong> or search <strong>Uninstall Enterprise Integrator 7.0.0</strong> and click the shortcut icon. This uninstalls the product from your computer.</td>
+<td>Go to <strong>Start Menu -&gt; Programs -&gt; WSO2 -&gt; Uninstall Enterprise Integrator 7.0.2</strong> or search <strong>Uninstall Enterprise Integrator 7.0.2</strong> and click the shortcut icon. This uninstalls the product from your computer.</td>
 </tr>
 <tr class="odd">
 <td>Ubuntu</td>
 <td><div class="content-wrapper">
 <p>Open a terminal and run the following command:</p>
-    <code>sudo apt purge wso2ei-7.0.0</code>
+    <code>sudo apt purge wso2ei-7.0.2</code>
 </div>
 </div>
 </div></td>
@@ -96,7 +96,7 @@ If you used the **installer** to install the product, you can uninstall by follo
 <td>CentOS</td>
 <td><div class="content-wrapper">
 <p>Open a terminal and run the following command:</p>
-    <code>sudo yum remove wso2ei-7.0.0</code>
+    <code>sudo yum remove wso2ei-7.0.2</code>
 </div>
 </div>
 </div></td>
