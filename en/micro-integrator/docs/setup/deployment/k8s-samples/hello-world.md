@@ -7,7 +7,7 @@ Let's define a basic Hello World scenario using WSO2 Micro Integrator and deploy
     
     !!! Tip
         Be sure to [get the latest updates](../../../../develop/installing-WSO2-Integration-Studio#get-the-latest-updates) before trying this example.
-        
+
 -   Install a [Kubernetes](https://kubernetes.io/docs/setup/) cluster and **v1.11+** client. Alternatively, you can [run Kubernetes locally via Minikube](https://kubernetes.io/docs/setup/learning-environment/minikube/).
 -   Install [Docker](https://docs.docker.com/).
 -   Install the [EI Kubernetes operator](../../../../setup/deployment/kubernetes_deployment#install-the-ei-k8s-operator).
