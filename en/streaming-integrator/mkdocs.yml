@@ -222,6 +222,7 @@ nav:
       - 'Streaming Integrator Tooling Overview': 'develop/streaming-integrator-studio-overview.md'
       - 'Working with the Design View': 'develop/working-with-the-Design-View.md'
     - 'Creating Siddhi Applications': 'develop/creating-a-Siddhi-Application.md'
+    - 'Installing Siddhi Extensions': 'develop/installing-siddhi-extensions.md'
     - 'Testing Siddhi Applications': 'develop/testing-a-Siddhi-Application.md'
     - 'Debugging Siddhi Applications': 'develop/debugging_siddhi_applications.md'
     - 'Deploying Siddhi Applications': 'develop/deploying-Streaming-Applications.md'

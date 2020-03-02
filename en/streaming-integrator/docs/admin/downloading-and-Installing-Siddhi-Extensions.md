@@ -6,6 +6,7 @@ extension, it can be downloaded from the [Siddhi Extensions
 Store](https://store.wso2.com/store/assets/analyticsextension/list). To
 download and install an Siddhi extension, follow the sections below.
 
+<!-- // TODO Link Extensions Installer -->
 
 ## Downloading Siddhi extensions
 
