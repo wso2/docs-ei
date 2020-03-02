@@ -6,43 +6,37 @@ Create a Docker project if you want to deploy your integration solutions inside 
 Follow the steps given below.   
 
 1.  Open **WSO2 Integration Studio** and click **ESB Project → Create New** in the **Getting Started** view as shown below.
-    ![Create ESB project](../assets/img/tutorials/119132413/119132414.png)
+    ![Create ESB project](../assets/img/create_project/docker_k8s_project/create-integration-solution.png)
 
-    In the **New ESB Solution Project** dialog that opens, enter a name for the ESB config project. Select the **Create Docker/Kubernetes Exporter Project** along with **ESB Config project** and click **Next**.
-        
-    ![Create Container Project](../assets/img/create_project/docker_k8s_project/create-container-project.png) 
+2.  In the **New ESB Solution Project** dialog that opens, enter a name for the ESB config project. Select the **Create Docker Exporter Project** along with **ESB Config project** and click **Next**.
 
-2.  In the **New ESB Solution Project** dialog that opens, enter a name for the ESB config project. Select the **Create Docker/Kubernetes Exporter Project** along with **ESB Config project** and click **Next**.
+    ![Create Docker Project](../assets/img/create_project/docker_k8s_project/create-docker-project.png)
 
-    ![Create Docker Project](../assets/img/create_project/docker_k8s_project/create-docker.png)
-
-3.  Enter information in the **Docker/Kubernetes Project Information** page as follows:
+3.  Enter information in the **Docker Project Information** page as follows:
 
     ![Docker Configuration](../assets/img/create_project/docker_k8s_project/docker-details.png)
 
-    -  **Container Type**: Type of the container of the project. Select **Docker**.
-    -  **Remote Repository**:  Base image for the docker build.
-    -  **Remote Tag**: Base image tag for the docker build.
-    -  **Target Repository**:  Target Docker image repository.
-    -  **Target Tag**: Target Docker image tag.
+    -  **Base Image Repository**:  Base image for the docker build.
+    -  **Base Image Tag**: Base image tag for the docker build.
+    -  **Target Image Repository**:  Creating Docker image repository name.
+    -  **Target Image Tag**: Creating Docker image tag.
+    -  **Automatically deploy configurations**: Check if you are using EI7 Micro Integrator as base image.
+    -  **Environment Variables**: Add/Remove environment variables to the Docker image.
     
 4.  Click **Finish**. The Docker project is created in the project explorer.
 5.  Expand the Docker Exporter Project in the project explorer. The following folders and files are stored within.
 
     ![Docker Project Structure](../assets/img/create_project/docker_k8s_project/docker-project.png)
     
-    -   **CompositeApps**: Directory to store the composite apps which are selected by the user. During the build time these composite apps will copy to the image.
-    -   **Conf**: Directory to store configuration files. During the build time these configuration files inside the **Conf** directory will copy to the image.   
     -   **Libs**: Directory to store libraries. During the build time these libraries inside the **Libs** directory will copy to the image.
+    -   **Resources**: Directory to store any resource files which want to copy into the Docker image. Make sure to add the relevant Docker COPY command for added files inside the Dockerfile.
     -   **Dockerfile**: The Dockerfile, which contains build details.
+    -   **deployment.toml**: The deployment.toml file, which contains Micro Integrator configurations.
     -   **pom.xml**: File for select multiple composite apps and build & push Docker images to the Docker registries.  
 
 !!! Info
-    If you already have an ESB Config project with the integration artifacts, click **Miscellaneous → Create New Docker/Kubernetes Project** in the **Getting Started** view as shown below.
+    If you already have an ESB Config project with the integration artifacts, click **Miscellaneous → Create New Docker Project** in the **Getting Started** view as shown below.
     ![Create kubernetes/docker project](../assets/img/create_project/docker_k8s_project/kubernetes-docker-project.png)
-
-    In the **New Docker/Kubernetes Project** dialog that opens, select **New Docker Project** and follow the instructions.
-    ![Create Kubernetes Project](../assets/img/create_project/docker_k8s_project/new_docker_project.png) 
     
 ## Build Docker images
 
