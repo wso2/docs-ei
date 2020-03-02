@@ -18,9 +18,13 @@
   <img src="/assets/img/connectors/create-credentials.png" title="Create Credentials" width="800" alt="Create Credentials" />
 
 7. Enter the following details in the Create OAuth client ID screen and click Create.
-    Application type: Web Application
-    Name: GmailConnector
-    Authorized redirect URIs: https://developers.google.com/oauthplayground
+
+| Type                        | Name                                             | 
+| ------------------          | -------------------------------------------------|
+| Application type            | Web Application                                  |
+| Name                        | GmailConnector                                   |
+| Authorized redirect URIs    | https://developers.google.com/oauthplayground    |
+
   
 8. It will be provided a client id and a client secret. Keep them saved.
   <img src="/assets/img/connectors/credentials.png" title="Credentials" width="800" alt="Credentials" />
