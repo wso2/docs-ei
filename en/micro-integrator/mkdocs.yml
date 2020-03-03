@@ -333,8 +333,11 @@ nav:
           - 'Salesforce Access Token Generation': 'references/connectors/salesforce-connector/sf-access-token-generation.md'
           - 'Salesforce Connector Example': 'references/connectors/salesforce-connector/sf-connector-example.md'
           - 'Salesforce Connector Configuration': 'references/connectors/salesforce-connector/sf-connector-configuration.md'
-         - Kafka Connector:
-          - 'kafka-connector-configuration.md': 'references/connectors/kafka-connector/kafka-connector-configuration.md'
+        - File Connector:
+          - 'File Connector Example': 'references/connectors/file-connector/file-connector-example.md'
+        - Kafka Connector:
+          - 'kafka-connector-configuration.md': 'references/connectors/kafka-connector/kafka-connector-configuration.md'      
+
       - Synapse Configurations:
         - Mediator Catalog: 
           - 'About Mediators': 'references/mediators/about-mediators.md'
@@ -466,6 +469,8 @@ markdown_extensions:
   - pymdownx.tasklist:
       custom_checkbox: true
   - pymdownx.tilde
+  - markdown_include.include:
+      base_path: docs
     
 # Extra
 extra_css:
