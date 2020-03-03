@@ -149,8 +149,12 @@ Let's update the API resource that was used in the [previous tutorial](routing-r
         -  <> : represents primitive field values
         -  A : represents XML attribute value
 
-11. Do the mapping by dragging arrows from field values in the input box to the relevant field values in the output box. The final mapping is as follows:  
+11. Now there are 2 options to do the mapping; Using the AI Data mapper to perform the mapping automatically or you can draw the mappings manually. The final mapping is as follows:
     ![](../../assets/img/tutorials/119132196/119132199.png)
+1. For automatic option, click on the **Apply** button in the AI Mapping generation bar. You can also change the mapping manually afterwards.
+    
+2. For manual option, do the mapping by dragging arrows from field values in the input box to the relevant field values in the output box.  
+
 12. Save and close the configuration.
 13. Go back to the **Design View** of the API Resource and select the **Data Mapper** mediator and edit the following in the **Properties** tab:
     <table>
