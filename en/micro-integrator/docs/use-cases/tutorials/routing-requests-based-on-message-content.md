@@ -161,10 +161,14 @@ You can now start configuring the API resource.
          <td>Enter <code>               set              </code>.</td>
       </tr>
       <tr class="even">
+         <td>Property Scope</td>
+         <td>Enter <code>               default              </code>.</td>
+      </tr>
+      <tr class="odd">
          <td>Value Type</td>
          <td>Enter <code>               EXPRESSION              </code>.</td>
       </tr>
-      <tr class="odd">
+      <tr class="even">
          <td>Value Expression</td>
          <td>
             <div class="content-wrapper">
@@ -193,15 +197,15 @@ You can now start configuring the API resource.
             <th>Property</th>
             <th>Description</th>
         </tr>
-   <tr class="odd">
+   <tr class="odd">With the Switch mediator selected
       <td><strong>Source XPath</strong></td>
       <td>
          <div class="content-wrapper">
             <p>The <strong>Source XPath</strong> field is where we specify the XPath expression, which obtains the value of Hospital that we stored in the Property mediator.</p>
             <p>Follow the steps given below to specify the expression:</p>
             <ol>
-               <li>Click in the <strong>Value</strong> field of the <strong>Source XPath</strong> property.</li>
-               <li>Click the <strong>browse (...)</strong> .</li>
+               <li>Click in the Textbox in front of the <strong>Source XPath</strong> property which will cause a pop up window to open.</li>
+               <li>Select <strong>Expression</strong> from the dropdown list on top of the window.</li>
                <li>Enter <code>                  get-property('Hospital')                 </code> and overwrite the default expression.</li>
                <li>Click <strong>OK.</strong> <strong><br />
                   </strong>
@@ -216,8 +220,7 @@ You can now start configuring the API resource.
          <div class="content-wrapper">
             <p>Follow the steps given below to add the case branches:</p>
             <ol>
-               <li>Click in the <strong>Value</strong> field of the <strong>Case Branches</strong> property.</li>
-               <li>Click the <strong>browse (...)</strong> .</li>
+               <li>Double click in the Textbox of each branch which will open up a window.</li>
                <li>
                   Change the RegExp values as follows:
                   <ul>
@@ -272,12 +275,10 @@ You can now start configuring the API resource.
             Follow the steps given below to extract the stock symbol from the request and print a welcome message in the log:
             <ul>
                 <li>
-                    Click the **Value** field of the **Properties** property, and then
-    click the **browse (...)** icon that appears.
+                    Click the **Plus** icon that appears.
                 </li>
                 <li>
-                    In the Log Mediator Configuration dialog, click **New** , and then
-    add a property as follows:
+                    In the Log Property Configuration dialog add a property as follows:
                     <ol>
                         <li>
                         **Name** : `                    message                   `
@@ -423,7 +424,9 @@ Let's send a request to the API resource to make a reservation.
         -   jared morris
         -   henry foster
 
-2.  Open a terminal, navigate to the directory where you have saved the `           request.json          ` file and execute the following command.
+2.  You can either use the terminal or the embedded HTTP Client in the bottom panel.
+
+1.  To use the terminal, open a terminal, navigate to the directory where you have saved the `           request.json          ` file and execute the following command.
 
     ```json
     curl -v -X POST --data @request.json http://localhost:8290/healthcare/categories/surgery/reserve --header "Content-Type:application/json"
@@ -432,6 +435,37 @@ Let's send a request to the API resource to make a reservation.
     !!! Info
         The URI-Template format that is used in this command was defined when creating the API resource:
         `http://<host>:<port>/categories/{category}/reserve`
+
+2.  To use the HTTP Client, click on the HTTP Client Panel, set the following details, and click on the **Send** icon.
+
+ <table>
+    <tr>
+        <th>Property</th>
+        <th>Value</th>
+    </tr>
+    <tr>
+        <td>Request Category</td>
+        <td>
+           <code>POST</code> 
+        </td>
+    </tr>
+    <tr>
+        <td>Headers</td>
+        <td>
+            <code>Content-Type=application/json</code>
+        </td>
+    </tr>
+    <tr>
+        <td>URL</td>
+        <td>http://localhost:8290/healthcare/categories/surgery/reserve</td>
+    </tr>
+    <tr>
+        <td>Body</td>
+        <td>Set the above json here.</td>
+    </tr>
+ </table>
+ 
+ ![](../../assets/img/tutorials/119132155/http4e-client.png)
 
 #### Analyze the response
 
