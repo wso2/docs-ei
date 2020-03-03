@@ -80,7 +80,8 @@ It will have two HTTP API resources, which are `create` and `read`.
 
 ## Deployment
 Follow these steps to deploy the exported CApp in the Enterprise Integrator Runtime. 
-[Deploying the CApp on Enterprise Integrator Runtime](../deploy-capp.md)
+
+{!references/connectors/deploy-capp.md!}
 
 ## Testing
 
