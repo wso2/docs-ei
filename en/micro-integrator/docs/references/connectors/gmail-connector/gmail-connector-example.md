@@ -3,6 +3,10 @@
 The Gmail connector allows you to access the Gmail REST API through WSO2 ESB. Gmail is a free, Web-based e-mail service provided by Google. It allows you to send, read, and delete emails through the Gmail REST API. Furthermore, it provides the ability to read, trash, untrash, and delete threads, create, update and detele drafts, get the Gmail profile, and access the mailbox history as well, while handling OAuth 2.0 authentication. 
 
 ## What you'll build
+
+    <img src="/assets/img/connectors/GmailConnector.png" title="Using Gmail Connector" width="800" alt="Using Gmail Connector"/>
+
+
 This example demonstrates a scenario where a customer feedback Gmail account of a company can be easily managed using the WSO2 Gmail Connector. This application contains a service that can be invoked through an HTTP GET request. Once the service is invoked, it returns the contents of unread emails in the Inbox under the label of Customers, while sending an automated response to the customer, thanking them for their feedback. The number of emails that can be handled in a single invocation is specified in the application.
 
 ## Configure the connector in WSO2 Integration Studio
