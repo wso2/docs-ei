@@ -18,11 +18,11 @@
 
 7. Enter the following details in the Create OAuth client ID screen and click Create.
 
-| Type                        | Name                                             | 
-| ------------------          | -------------------------------------------------|
-| Application type            | Web Application                                  |
-| Name                        | GmailConnector                                   |
-| Authorized redirect URIs    | https://developers.google.com/oauthplayground    |
+  | Type                        | Name                                             | 
+  | ------------------          | -------------------------------------------------|
+  | Application type            | Web Application                                  |
+  | Name                        | GmailConnector                                   |
+  | Authorized redirect URIs    | https://developers.google.com/oauthplayground    |
 
   
 8. A Client ID and a Client Secret are provided. Keep them saved.

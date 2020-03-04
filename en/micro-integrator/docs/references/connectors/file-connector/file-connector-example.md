@@ -119,3 +119,7 @@ You should get the following text returned.
 `
 This is a test file
 `
+## What's Next
+
+* You can deploy and run your project on [Docker](../../../setup/installation/run_in_docker.md) or [Kubernetes](../../../setup/installation/run_in_kubernetes.md).
+* To customize this example for your own scenario, see [File Connector Configuration](../file-connector-config.md) documentation.
