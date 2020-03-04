@@ -275,7 +275,9 @@ You can now start updating the API resource with the mediation flow.
     </tr>
     <tr class="odd">
     <td>Value Expression</td>
-    <td><code>               json-eval($.appointmentNumber)              </code></td>
+    <td><code>               json-eval($.appointmentNumber)              </code><br />
+    To set the expression, click in the textbox which will open a the Expression Selector dialog.
+    Select <strong>Expression</strong> from the dropdown list on top of the window and set the value.
     </tr>
     <tr class="even">
     <td>Description</td>
@@ -457,7 +459,8 @@ You can now start updating the API resource with the mediation flow.
     | Field         | Description                                                  | Description                                                          |
     |---------------|--------------------------------------------------------------|----------------------------------------------------------------------|
     | **Type**      | Expression                                                   | -                                                                    |
-    | **Value**     | `$ctx:uri.var.appointment_id `                               | The value for the first variable ($1) in the message payload format. |
+    | **Expression**     | `$ctx:uri.var.appointment_id `                               | The value for the first variable ($1) in the message payload format. To set the expression, click in the textbox which will open a the Expression Selector dialog.
+                                                                                                                                                                   Select <strong>Expression</strong> from the dropdown list on top of the window and set the value.|
     | **Evaluator** | xml                                                          | Indicates that the expression provided is in XML.                    |
 
     !!! Info
@@ -549,7 +552,7 @@ Let's send a request to the API resource.
     ```
 
 2.  Open a command line terminal and execute the following command from the location where the `           request.json          ` file is
-    saved:
+    saved. Alternatively, you can use the embedded **HTTP Client** in the bottom panel:
 
     ```bash
     curl -v -X POST --data @request.json  http://localhost:8290/healthcare/categories/surgery/reserve  --header "Content-Type:application/json"
