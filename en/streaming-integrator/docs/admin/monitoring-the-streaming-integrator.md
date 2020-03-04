@@ -12,14 +12,15 @@ The following sections cover the configurations that need to be done in
 order to view statistics relating to the performance of your Streaming Integrator
 deployment in the Status Dashboard.
 
+!!!info
+    - If you need to monitor the performance of the Streaming Integrator via a status dashboard, you need to download the WSO2 Stream Processor and use the dashboard shipped with it. To download and install and install the Stream Processor, see [Stream Processor Documentation - Installing the Product](https://docs.wso2.com/display/SP4xx/Installing+the+Product).
+    - In this section, `<DASHBOARD_HOME` refers to the `<SP_HOME>/wso2/dashboard` directory.
+
 
 ### Assigning unique carbon IDs to nodes
 
-Carbon metrics uses the carbon ID as the source ID for metrics.
-Therefore, all the worker nodes are required to have a **unique carbon
-ID** defined in the `wso2.carbon:` section of the
-`<SI_HOME>/conf/server/deployment.yaml` file as shown
-in the extract below.
+Carbon metrics uses the carbon ID as the source ID for metrics. Therefore, all the worker nodes are required to have a **unique carbon ID** defined in the
+`wso2.carbon:` section of the `<SP_HOME>/conf/dashboard/deployment.yaml` file as shown in the extract below.
 
 !!! info
     You need to ensure that the carbon ID of each node is unique because it is required for the Status dashboard to identify the worker nodes and display their statistics accordingly.
@@ -63,18 +64,18 @@ Set up a database of the required type by following the steps below. In this sec
     ``` java
         mysql> create database WSO2_METRICS_DB;
         mysql> use WSO2_METRICS_DB;
-        mysql> source <SI_TOOLING_HOME>/wso2/server/dbscripts/metrics/mysql.sql;
+        mysql> source <DASHBOARD_HOME>/wso2/server/dbscripts/metrics/mysql.sql;
         mysql> grant all on WSO2_METRICS_DB.* TO username@localhost identified by "password";
     ```
 
     ``` java
             mysql> create database WSO2_STATUS_DASHBOARD_DB;
             mysql> use WSO2_STATUS_DASHBOARD_DB;
-            mysql> source <SI_TOOLING_HOME>/wso2/server/dbscripts/metrics/mysql.sql;
+            mysql> source <DASHBOARD_HOME>/wso2/server/dbscripts/metrics/mysql.sql;
             mysql> grant all on WSO2_STATUS_DASHBOARD_DB.* TO username@localhost identified by "password";
     ```
 
-7. Create two datasources named `WSO2_METRICS_DB` and `WSO2_STATUS_DASHBOARD_DB` by adding the following datasource configurations under the `wso2.datasources:` section of the `<SI_HOME>/conf/server/deployment.yaml` file.
+7. Create two datasources named `WSO2_METRICS_DB` and `WSO2_STATUS_DASHBOARD_DB` by adding the following datasource configurations under the `wso2.datasources:` section of the `<SP_HOME>/conf/dashboard/deployment.yaml` file.
 
     !!! info
         The names of the data sources must be the same as the names of the database tables you created for metrics and statistics. You need to change the values for the `username` and `password` parameters to the username and password that you are using to access the MySQL database.
@@ -269,30 +270,19 @@ This section explains how to configure metrics for your status dashboard.
 **Configuring worker metrics**
 
 To enable metrics and to configure metric-related properties, do the
-following configurations in the \<
-`         SI_HOME>/conf/server/deployment.yaml        ` file for the
-required nodes.
+following configurations in the `SI_HOME>/conf/server/deployment.yaml` file for the
+required SI nodes.
 
-1.  To enable Carbon metrics, set the `           enabled          `
-    property to `           true          ` under
-    `           wso2.metrics          ` as shown below.
+1. To enable Carbon metrics, set the `enabled` property to `true` under `wso2.metrics` as shown below.
 
     ``` xml
             wso2.metrics:
               enabled: true
     ```
 
-2.  To enable JDBC reporting, set the
-    `           Enable JDBC parameter          ` to
-    `           true          ` in the
-    `           wso2.metrics.jdbc:          ` =\>
-    `           reporting:          ` subsection as shown below. If JDBC
-    reporting is not enabled, only real-time metrics are displayed in
-    the first page of the Status dashboard, and information relating to
-    metrics history is not displayed in the other pages of the
-    dashboard. To render the first entry of the graph, you need to wait
-    for the time duration specified as the
-    `           pollingPeriod          ` .
+2. To enable JDBC reporting, set the `Enable JDBC parameter` to `true` in the `wso2.metrics.jdbc:` -> `reporting:` subsection as shown below. If JDBC reporting
+ is not enabled, only real-time metrics are displayed in the first page of the Status dashboard, and information relating to metrics history is not displayed in
+  the other pages of the dashboard. To render the first entry of the graph, you need to wait for the time duration specified as the `pollingPeriod`.
 
     ``` xml
             # Enable JDBC Reporter
@@ -301,8 +291,7 @@ required nodes.
              pollingPeriod: 60
     ```
 
-3.  Under `           wso2.metrics.jdbc          ` , configure the
-    following properties to clean up the database entries.
+3. Under `wso2.metrics.jdbc` , configure the following properties to clean up the database entries.
 
     ``` xml
             wso2.metrics.jdbc:
@@ -367,15 +356,9 @@ required nodes.
     </tbody>
     </table>
 
-4.  JVM metrics of which the log level is set to
-    `           OFF          ` are not measured by default. If you need
-    to monitor one or more of them, add the relevant metric name(s)
-    under the `           wso2.metrics:          ` =\>
-    `           levels          ` subsection as shown in the extract
-    below. As shown below, you also need to mention log4j mode in which
-    the metrics need to be monitored (i.e., `           OFF          ` ,
-    `           INFO          ` , `           DEBUG          ` ,
-    `           TRACE          ` , or `           ALL          ` ).
+4. JVM metrics of which the log level is set to `OFF` are not measured by default. If you need to monitor one or more of them, add the relevant metric name(s)
+under the `wso2.metrics:` -> `levels` subsection as shown in the extract below. As shown below, you also need to mention log4j mode in which the metrics need to be monitored (i.e., `           OFF          ` ,
+`INFO`, `DEBUG`, `TRACE`, or `ALL`).
 
     ``` xml
             wso2.metrics:
@@ -422,17 +405,17 @@ required nodes.
 
         - **Threads**
 
-            | Property                                                               | Default Level                                | Description                                                                                                                                                                                                     |
-            |------------------------------------------------------------------------|----------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-            | `                   jvm.threads.count                  `               | `                   Debug                  ` | The gauge for showing the number of active and idle threads currently available in the JVM thread pool.                                                                                                         |
-            | `                   jvm.threads.daemon.count                  `        | `                   Debug                  ` | The gauge for showing the number of active daemon threads currently available in the JVM thread pool.                                                                                                           |
-            | `                   jvm.threads.blocked.count                  `       | `                   OFF                  `   | The gauge for showing the number of threads that are currently blocked in the JVM thread pool.                                                                                                                  |
-            | `                   jvm.threads.deadlock.count                  `      | `                   OFF                  `   | The gauge for showing the number of threads that are currently deadlocked in the JVM thread pool.                                                                                                               |
-            | `                   jvm.threads.new.count                  `           | `                   OFF                  `   | The gauge for showing the number of new threads generated in the JVM thread pool.                                                                                                                               |
-            | `                   jvm.threads.runnable.count                  `      | `                   OFF                  `   | The gauge for showing the number of runnable threads currently available in the JVM thread pool.                                                                                                                |
-            | `                   jvm.threads.terminated.count                  `    | `                   OFF                  `   | The gauge for showing the number of threads terminated from the JVM thread pool since user started running the WSO2 API Manager instance.                                                                       |
-            | `                   jvm.threads.timed_waiting.count                  ` | `                   OFF                  `   | The gauge for showing the number of threads in the Timed\_Waiting state.                                                                                                                                        |
-            | `                   jvm.threads.waiting.count                  `       | `                   OFF                  `   | The gauge for showing the number of threads in the Waiting state in the JVM thread pool. One or more other threads are required to perform certain actions before these threads can proceed with their actions. |
+            | Property                          | Default Level | Description                                                                                                                                                                                                     |
+            |-----------------------------------|---------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+            | `jvm.threads.count`               | `Debug`       | The gauge for showing the number of active and idle threads currently available in the JVM thread pool.                                                                                                         |
+            | `jvm.threads.daemon.count`        | `Debug`       | The gauge for showing the number of active daemon threads currently available in the JVM thread pool.                                                                                                           |
+            | `jvm.threads.blocked.count`       | `OFF`         | The gauge for showing the number of threads that are currently blocked in the JVM thread pool.                                                                                                                  |
+            | `jvm.threads.deadlock.count`      | `OFF`         | The gauge for showing the number of threads that are currently deadlocked in the JVM thread pool.                                                                                                               |
+            | `jvm.threads.new.count`           | `OFF`         | The gauge for showing the number of new threads generated in the JVM thread pool.                                                                                                                               |
+            | `jvm.threads.runnable.count`      | `OFF`         | The gauge for showing the number of runnable threads currently available in the JVM thread pool.                                                                                                                |
+            | `jvm.threads.terminated.count`    | `OFF`         | The gauge for showing the number of threads terminated from the JVM thread pool since user started running the WSO2 API Manager instance.                                                                       |
+            | `jvm.threads.timed_waiting.count` | `OFF`         | The gauge for showing the number of threads in the Timed\_Waiting state.                                                                                                                                        |
+            | `jvm.threads.waiting.count`       | `OFF`         | The gauge for showing the number of threads in the Waiting state in the JVM thread pool. One or more other threads are required to perform certain actions before these threads can proceed with their actions. |
 
         - **File descriptor details**
 
@@ -444,10 +427,8 @@ required nodes.
 
 **Configuring Siddhi application metrics**
 
-To enable Siddhi application level metrics for a Siddhi application, you
-need to add the `         @app:statistics        ` annotation bellow the
-Siddhi application name in the Siddhi file as shown in the example
-below.
+To enable Siddhi application level metrics for a Siddhi application, you need to add the `@app:statistics` annotation below the Siddhi application name in the
+Siddhi file as shown in the example below.
 
 ``` sql
     @App:name('TestMetrics')
@@ -458,8 +439,7 @@ below.
 The following are the metrics measured for a Siddhi application.
 
 !!! info
-    The default level after enabling metrics is `         INFO        ` for
-    all the meytrics listed in the following table.
+    The default level after enabling metrics is `INFO` for all the meytrics listed in the following table.
 
     <table>
     <thead>
@@ -512,16 +492,11 @@ The following are the metrics measured for a Siddhi application.
 
 ### Configuring cluster credentials
 
-In order to access the nodes in a cluster and derive statistics, you
-need to maintain and share a user name and a password for each node in a
-SI cluster. This user name and password must be specified in the
-`         <DASHBOARD_HOME>/conf/server/deployment.yaml        ` file. If you
-want to secure sensitive information such as the user name and the
-password, you can encrypt them via WSO2 Secure Vault.
+In order to access the nodes in a cluster and derive statistics, you need to maintain and share a user name and a password for each node in a SI cluster. This
+user name and password must be specified in the `<DASHBOARD_HOME>/conf/server/deployment.yaml` file. If you nwant to secure sensitive information such as the
+user name and the password, you can encrypt them via WSO2 Secure Vault.
 
-1.  To specify the user name and the password to access a node, define
-    them under the `           wso2.status.dashboard          ` section
-    as shown in the following example.
+1. To specify the user name and the password to access a node, define them under the `wso2.status.dashboard` section as shown in the following example.
 
     ``` xml
         wso2.status.dashboard:
@@ -538,8 +513,7 @@ password, you can encrypt them via WSO2 Secure Vault.
 
 ### Configuring permissions
 
-The following are the three levels of permissions that can be granted
-for the users of the Status Dashboard.
+The following are the three levels of permissions that can be granted for the users of the Status Dashboard.
 
 <table>
 <thead>
@@ -573,14 +547,11 @@ for the users of the Status Dashboard.
 </tbody>
 </table>
 
-The `         admin user        ` in the userstore is assigned the
-`         SysAdmin        ` permission level by default.
+The `admin user` in the user store is assigned the `SysAdmin` permission level by default.
 
-To assign different permission levels to different roles, you can list
-the required roles under the relevant permission level in the
-`         wso2.status.dashboard        ` section of the
-`         DASHBOARD_HOME>/conf/dashboard/deployment.yaml        ` file as shown
-in the extract below.
+To assign different permission levels to different roles, you can list the required roles under the relevant permission level in the `wso2.status.dashboard`
+section of the
+`DASHBOARD_HOME>/conf/dashboard/deployment.yaml` file as shown in the extract below.
 
 ``` xml
     wso2.status.dashboard:
@@ -595,15 +566,11 @@ in the extract below.
 !!! info
     The display name of the roles given in the configuration must be present in the user store. To configure user store check, [User Management](../admin/user-management.md).
 
-## Downloading and accessing the Status Dashboard
+## Accessing the Status Dashboard
 
-To download and access the Status Dashboard, follow the procedure below:
+To access the Status Dashboard, follow the procedure below:
 
-1. Download the Status Dashboard from TODO.
-
-2. Unzip the downloaded fine. The unzipped directory is referred to as `<DASHBOARD_HOME>` for the rest iof this section.
-
-3. In the terminal, navigate to the `<DASHBOARD_HOME>/bin` directory and issue the following command.
+3. In the terminal, navigate to the `<SP_HOME>/bin` directory and issue the relevant command to start the dashboard profile based on your operating system.
 
     - For Windows: `dashboard.bat`
     - For Linux : `./dashboard.sh`
@@ -612,7 +579,7 @@ To download and access the Status Dashboard, follow the procedure below:
 
     `https://localhost:<DASHBOARD_PORT>/si-status-dashboard`
 
-    e.g., `https://0.0.0.0:9643/si-status-dashboard`
+    e.g., <https://0.0.0.0:9643/sp-status-dashboard>
 
 After login this opens  the Status Dashboard with the nodes that you have already added as shown in the example below.
 
@@ -643,7 +610,7 @@ view the status by following the procedure below:
     1. In the **Host** parameter, enter the host ID of the node you want to add.
 
     2. In the **Port** parameter, enter the port number of the node you want to add.
-    
+
 3. If the node you added is currently unreachable, the following dialog box is displayed.
 
     ![Unreachable Node](../images/monitoring-the-streaming-integrator/unreachable-node.png)
