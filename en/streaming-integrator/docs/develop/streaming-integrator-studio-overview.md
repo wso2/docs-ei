@@ -1,7 +1,7 @@
 # Streaming Integrator Tooling Overview
 
 !!! info
-    This page describes the latest publicly-available version of Streaming Integrator Tooling. If you cannot see some of the user interface elements described here, [update your Streaming Integrator Tooling installation](https://wso2.com/updates/wum).
+    This page describes the latest publicly-available version of Streaming Integrator Tooling. If you cannot see some of the user interface elements described here, [update your Streaming Integrator Tooling installation](https://docs.wso2.com/display/updates/Getting+Continuous+Updates).
 
 The Streaming Integrator Tooling is a developer tool that is shipped with
 the Streaming Integrator to develop Siddhi applications. It allows provides two
@@ -289,7 +289,7 @@ that you want to use in your Siddhi applications.
 
 ### Template Variables
 
-![Template Variables](../images/streaming-integrator-studio-overview/Template_Variables.png)
+![Template Variables](../images/streaming-integrator-studio-overview/template_variables-icon.png)
 
 Click this icon to open the **Templated Variables** side panel (shown below) where you can open the templated attributes in the currently saved Siddhi applications and provide variables to be applied when running the Siddhi applications.
 

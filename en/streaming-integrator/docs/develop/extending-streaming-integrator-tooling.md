@@ -1,7 +1,7 @@
 # Managing Siddhi Extensions for SI Tooling
 
 !!! info
-    This section describes a feature available with the latest WSO2 Streaming Integrator Tooling release. If the user interface elements described here are not available in your installation, [update your Streaming Integrator Tooling installation](https://wso2.com/updates/wum).
+    This section describes a feature available with the latest WSO2 Streaming Integrator Tooling release. If the user interface elements described here are not available in your installation, [update your Streaming Integrator Tooling installation](https://docs.wso2.com/display/updates/Getting+Continuous+Updates).
 
 This section explains how to select the Siddhi extensions that you want to use with the Streaming Integrator (SI) Tooling. You can check whether a specific Siddhi
 extension is already installed in SI Tooling, and then install/uninstall it as required. For the complete list of supported extensions, see [Siddhi Extensions](https://siddhi.io/en/v5.1/docs/extensions/).

@@ -54,7 +54,7 @@ To create a Siddhi application via the source view of the Streaming Integrator T
 
  The Streaming Integrator Tooling opens as shown below.
 
-    ![Welcome Page](../images/Creating-Siddhi-Applications/Welcome-Page.png)
+  ![Welcome Page](../images/Creating-Siddhi-Applications/Welcome-Page.png)
 
 2. Click **New** to start defining a new Siddhi application. A new file opens as shown below.
 
@@ -226,33 +226,41 @@ To create a Siddhi application via the source view of the Streaming Integrator T
 
 6.  To see a graphical view of the event flow you defined in your Siddhi
     application, click **Design View**.
-    ![Switch to Design View](../../images/Creating-Siddhi-Applications/Design_View.png)  
+    ![Switch to Design View](../../images/Creating-Siddhi-Applications/Design_View.png)
     The event flow is displayed as follows.  
-    ![Siddhi Application in Design View](../../images/Creating-Siddhi-Applications/Siddhi_Application_Design_View.png){width="900"}
+    ![Siddhi Application in Design View](../../images/Creating-Siddhi-Applications/Siddhi_Application_Design_View.png)
 
 ### Creating a Siddhi application in the design view
 
 To create a Siddhi application via the design view of the Streaming Integrator Tooling, follow the steps below:
 
-1.  Start the Streaming Integrator Studio by navigating to the `<SI_TOOLING_HOME>/bin` directory and issue one of the following commands:
+1.  Start the Streaming Integrator Tooling by navigating to the `<SI_TOOLING_HOME>/bin` directory and issue one of the following commands:
 
     - For Windows: `streaming-integrator-tooling.bat`
     - For Linux: `./streaming-integrator-tooling.sh`
- The Stream Processor Studio opens as shown below.  
+
+    Streaming Integrator Tooling opens as shown below.
     ![Welcome Page](../images/Creating-Siddhi-Applications/Welcome-Page.png)
+
 2.  Click **New** to start defining a new Siddhi application. A new file
     opens as shown below.  
     ![New Siddhi File](../images/Creating-Siddhi-Applications/New_Siddhi_File.png)
-3.  To open the design view, click **Design View** .
+
+3.  To open the design view, click **Design View**.
+
 4.  To define the input stream into which the events to be processed via
     the Siddhi application should be received, drag and drop the stream
     icon (shown below) into the grid.  
-    ![Stream Icon](../images/Creating-Siddhi-Applications/Stream_Icon.png) 
+    ![Stream Icon](../images/Creating-Siddhi-Applications/Stream_Icon.png)
+
     Once the stream component is added to the grid, move the cursor over
-    it, and then click on the settings icon as shown below.  
-    ![Stream Settings](../images/Creating-Siddhi-Applications/Stream_Settings.png)  
+    it, and then click on the settings icon as shown below.
+
+    ![Stream Settings](../images/Creating-Siddhi-Applications/Stream_Settings.png)
+
     As as result, the Stream Configuration form opens as follows.  
-    ![Stream Configuration form](../images/Creating-Siddhi-Applications/Stream_Configuration_Form.png) 
+    ![Stream Configuration form](../images/Creating-Siddhi-Applications/Stream_Configuration_Form.png)
+
     Fill this form as follows to define a stream named `SweetProductionStream` with two attributes named
     `name` and `amount`:  
       
