@@ -1,5 +1,8 @@
 # Streaming Integrator Tooling Overview
 
+!!! info
+    This page describes the latest publicly-available version of Streaming Integrator Tooling. If you cannot see some of the user interface elements described here, [update your Streaming Integrator Tooling installation](https://wso2.com/updates/wum).
+
 The Streaming Integrator Tooling is a developer tool that is shipped with
 the Streaming Integrator to develop Siddhi applications. It allows provides two
 interfaces to develop Siddhi applications
@@ -200,7 +203,7 @@ The **Tools** menu provides access to the following tools that are shipped with 
 
 -  **Extension Installer**
 
-    This opens the **Extension Installer** dialog box (shown below) where you can search for the required extension and install/uninstall it by clicking **Install** or **Uninstall** as appropriate. Once you install/uninstall an extension, you need to restart the Streaming Integrator Tooling.
+    This opens the **Extension Installer** dialog box (shown below) where you can search for the required extension and install/uninstall it by clicking **Install** or **Uninstall** as appropriate. Once you install/uninstall an extension, you need to restart the Streaming Integrator Tooling. For detailed instructions, see [Managing Siddhi Extensions for SI Tooling](extending-streaming-integrator-tooling.md).
 
     ![Extension Installer](../images/streaming-integrator-studio-overview/extension-installer.png)
       
@@ -301,12 +304,11 @@ For more information about templated variables, see [Siddhi Documentation - Sidd
 -   **Run icon**  
     Click this to start a currently open Siddhi application in the Run
     mode. This icon is enabled only for saved Siddhi applications.  
--   **Debug icon**  
-    Click this to start a currently open Siddhi application in the Debug
-    mode. This icon is enabled only for saved Siddhi applications.  
+
 -   **Stop icon**  
     Click this to stop a Siddhi application that is currently running in
-    either the Run or Debug mode.  
+    either the Run or Debug mode.
+
 -   **Revert icon**  
     Click this to revert the unsaved changes in the Siddhi application
     that is currently being created/edited.
