@@ -91,7 +91,7 @@ start your WSO2 Micro Integrator instance. Pass the following system property:
 
 ## Log in to the CLI
 
-To login using the CLI, use the following command. This will ask for the username and password. The default username is "admin" and the default password is "admin". 
+Use the following command to log in to the CLI tool. This will ask for the username and password. The default username is "admin" and the default password is "admin". 
 
 ```bash
 mi remote login
