@@ -243,7 +243,8 @@ To create a Siddhi application via the design view of the Streaming Integrator T
     ![Welcome Page](../images/Creating-Siddhi-Applications/Welcome-Page.png)
 
 2.  Click **New** to start defining a new Siddhi application. A new file
-    opens as shown below.  
+    opens as shown below.
+
     ![New Siddhi File](../images/Creating-Siddhi-Applications/New_Siddhi_File.png)
 
 3.  To open the design view, click **Design View**.
