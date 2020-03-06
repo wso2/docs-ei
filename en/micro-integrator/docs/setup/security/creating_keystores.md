@@ -45,7 +45,7 @@ You can use an already existing CA-signed certificate to generate your keystore 
 2. Convert the PKCS12/PFX formatted keystore to a Java keystore using the following command:
 
     ```bash
-    openssl pkcs12 -export -in <certificate file>.crt -inkey <private>.key -name "<alias>" -certfile <additional certificate file> -out <pfx keystore name>.pfx
+    keytool -importkeystore -srckeystore <pkcs12 file name>.pfx -srcstoretype pkcs12 -destkeystore <JKS name>.jks -deststoretype JKS
     ```
 
 ## What's next?
