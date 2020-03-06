@@ -8,16 +8,15 @@ the Streaming Integrator to develop Siddhi applications. It allows provides two
 interfaces to develop Siddhi applications
 
 -   **Source View** : This allows you to write Siddhi applications
-    in the Siddhi Query Language. This supports auto-completion,
-    tracking syntax errors and debugging.
+    in the Siddhi Query Language. This supports auto-completion and
+    tracking syntax errors.
+
 -   **Design View** :This interface visualizes the event flow of a
     Siddhi application, and allows you to compose the applications by
     dragging and dropping Siddhi components to a graph.
 
 Once a Siddhi application is created, you can simulate events via the
-Streaming Integrator Tooling to test whether it works as expected. You can
-also run the Siddhi application in the debug mode to detect errors in
-the Siddhi logic.
+Streaming Integrator Tooling to test whether it works as expected.
 
 ## Starting Streaming Integrator Tooling
 
@@ -25,8 +24,10 @@ To start and access the Streaming Integrator Tooling, follow the steps below:
 
 1.  Start the Streaming Integrator Tooling by issuing one of the following
     commands from the `<SI_HOME>/bin` directory.
+
     -   For Windows: `streaming-integrator-tooling.bat`
     -   For Linux: `./streaming-integrator-tooling.sh           `
+
 2.  Access the Streaming Integrator Tooling via the `http://localhost:/editor`
     URL. The Streaming Integrator Tooling opens as shown below.
 
@@ -178,7 +179,7 @@ The **Run** menu includes the following options.
     
 
 -   **Stop**  
-    Click this to stop a Siddhi application that is already started in either the Run or Debug mode.
+    Click this to stop a Siddhi application that is already running.
 
   
 
@@ -201,11 +202,11 @@ The **Tools** menu provides access to the following tools that are shipped with 
     For detailed information about event simulation, see [Simulating Events](_Simulating_Events_).  
     The event simulator can also be accessed from the [Side Panel](#StreamProcessorStudioOverview-SidePanel).
 
--  **Extension Installer**
+- **Extension Installer**
 
     This opens the **Extension Installer** dialog box (shown below) where you can search for the required extension and install/uninstall it by clicking **Install** or **Uninstall** as appropriate. Once you install/uninstall an extension, you need to restart the Streaming Integrator Tooling. For detailed instructions, see [Managing Siddhi Extensions for SI Tooling](extending-streaming-integrator-tooling.md).
 
-    ![Extension Installer](../images/streaming-integrator-studio-overview/extension-installer.png)
+     ![Extension Installer](../images/streaming-integrator-studio-overview/extension-installer.png)
       
 -   **Console**
     This is an output console that provides feedback on various user
@@ -289,25 +290,26 @@ that you want to use in your Siddhi applications.
 
 ### Template Variables
 
-![Template Variables](../images/streaming-integrator-studio-overview/template_variables-icon.png)
+ ![Template Variables](../images/streaming-integrator-studio-overview/template_variables-icon.png)
+
 
 Click this icon to open the **Templated Variables** side panel (shown below) where you can open the templated attributes in the currently saved Siddhi applications and provide variables to be applied when running the Siddhi applications.
 
-![Templated Variables](../images/streaming-integrator-studio-overview/templated-variables.png)
+
+ ![Templated Variables](../images/streaming-integrator-studio-overview/templated-variables.png)
 
 For more information about templated variables, see [Siddhi Documentation - Siddhi as a Local Microservice - Running with environmental/system variables](https://siddhi.io/en/v5.1/docs/siddhi-as-a-local-microservice/#running-with-environmentalsystem-variables).
 
 ## Toolbar
 
-![Tool Bar menu](../images/streaming-integrator-studio-overview/Editor_Toolbar.png)
+  ![Tool Bar menu](../images/streaming-integrator-studio-overview/Editor_Toolbar.png)
 
 -   **Run icon**  
     Click this to start a currently open Siddhi application in the Run
     mode. This icon is enabled only for saved Siddhi applications.  
 
 -   **Stop icon**  
-    Click this to stop a Siddhi application that is currently running in
-    either the Run or Debug mode.
+    Click this to stop a Siddhi application that is currently running.
 
 -   **Revert icon**  
     Click this to revert the unsaved changes in the Siddhi application

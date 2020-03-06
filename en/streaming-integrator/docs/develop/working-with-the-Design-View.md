@@ -1187,12 +1187,7 @@ demonstrated below.
 
 ![Connecting Siddhi components](../images/working-with-the design-view/Connect-Siddhi-Components.gif)
 
-## Saving, running and debugging Siddhi applications
+## Saving and running Siddhi applications
 
-To save a Siddhi application that you created in the design view, you
-need to switch to the source view. You also need to switch to the source
-view to run or debug a Siddhi application. For more information, see the
-following sections:
+To save a Siddhi application that you created in the design view, you need to switch to the source view. You also need to switch to the source view to run a Siddhi application. For more information, see [Streaming Integrator Tiooling Overview](streaming-integrator-studio-overview.md).
 
--   [Streaming Integrator Tiooling Overview](streaming-integrator-studio-overview.md)
--   [Debugging a Siddhi Application](_Debugging_a_Siddhi_Application_)
