@@ -16,6 +16,7 @@ It is recommended to [get the latest updates](../../develop/installing-WSO2-Inte
     <img src="../../assets/img/create_project/create-integration-solution.png">
 
 2.  In the **New Integration Project** dialog that opens, provide the following information:
+
     <img src="../../assets/img/create_project/new_soln_vm_deployment.png" width="500">
 
     <table>
