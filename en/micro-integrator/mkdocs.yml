@@ -273,10 +273,11 @@ nav:
         - 'Working with WSO2 Integration Studio': 'develop/working-with-wso2-integration-studio.md'
         - 'Troubleshooting WSO2 Integration Studio': 'develop/troubleshooting-WSO2-Integration-Studio.md'
       - Creating Projects:
-        - 'Creating ESB Projects': 'develop/creating-projects.md'
-        - 'Importing ESB Projects': 'develop/importing-projects.md'
-        - 'Creating Docker Project': 'develop/create-docker-project.md'
-        - 'Creating Kubernetes Project': 'develop/create-kubernetes-project.md'
+        - 'Creating a Project Solution': 'develop/creating-project-solution.md'
+        - 'Creating Integration Projects': 'develop/creating-projects.md'
+        - 'Importing Integration Projects': 'develop/importing-projects.md'
+        - 'Creating a Docker Project': 'develop/create-docker-project.md'
+        - 'Creating a Kubernetes Project': 'develop/create-kubernetes-project.md'
       - Creating New Artifacts:
         - 'Importing Artifacts': 'develop/importing-artifacts.md'
         - 'Creating a REST API': 'develop/creating-artifacts/creating-an-api.md'
