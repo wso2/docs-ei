@@ -333,6 +333,9 @@ nav:
           - 'Salesforce Access Token Generation': 'references/connectors/salesforce-connector/sf-access-token-generation.md'
           - 'Salesforce Connector Example': 'references/connectors/salesforce-connector/sf-connector-example.md'
           - 'Salesforce Connector Configuration': 'references/connectors/salesforce-connector/sf-connector-configuration.md'
+        - Salesforce REST API Connector:
+          - 'Salesforce Access Token Generation': 'references/connectors/salesforce-rest-connector/sf-access-token-generation.md'
+          - 'Salesforce Connector Example': 'references/connectors/salesforce-rest-connector/sf-rest-connector-example.md'
         - File Connector:
           - 'File Connector Example': 'references/connectors/file-connector/file-connector-example.md'
           - 'File Connector Configuration': 'references/connectors/file-connector/file-connector-config.md'
