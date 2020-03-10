@@ -190,6 +190,13 @@ The **Tools** menu provides access to the following tools that are shipped with 
 
 -   **File Explorer** 
     The file explorer. This is also avaible in the [Side Panel](#StreamProcessorStudioOverview-SidePanel).
+
+- **Extension Installer**
+
+    This opens the Extension Installer as follows.
+    ![Extension Installer](../images/streaming-integrator-studio-overview/Extension_Installer.png)
+    This can be used to install and un-install Siddhi extensions. For more information, see [Installing Siddhi Extensions](./installing-siddhi-extensions.md).
+    
     
 -   **Event Simulator**  
 
