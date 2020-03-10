@@ -63,7 +63,7 @@ to the grid of the design view when you create a Siddhi application.
          <td>Example</td>
          <td>
             <div class="content-wrapper">
-               <p><img src="../../images/working-with-the design-view/Stream_Configuration.png"/></p>
+               <p><img src="../../images/Creating-Siddhi-Applications/Stream_Configuration_Form.png"/></p>
                <p>The details entered in the above <strong></strong> form creates a stream configuration as follows:</p>
                <div class="code panel pdl" style="border-width: 1px;">
                   <div class="codeContent panelContent pdl">
