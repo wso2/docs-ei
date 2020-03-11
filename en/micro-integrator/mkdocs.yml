@@ -335,6 +335,7 @@ nav:
           - 'Salesforce Connector Configuration': 'references/connectors/salesforce-connector/sf-connector-configuration.md'
         - File Connector:
           - 'File Connector Example': 'references/connectors/file-connector/file-connector-example.md'
+          - 'File Connector Configuration': 'references/connectors/file-connector/file-connector-config.md'
       - Synapse Configurations:
         - Mediator Catalog: 
           - 'About Mediators': 'references/mediators/about-mediators.md'

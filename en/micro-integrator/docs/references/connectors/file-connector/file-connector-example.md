@@ -20,13 +20,14 @@ It will have two HTTP API resources, which are `create` and `read`.
 
 ## Configure the connector in WSO2 Integration Studio
 
-1. Follow these steps to set up the ESB Solution Project and the Connector Exporter Project. 
-[Importing Connector to Integration Studio Solution Project](../importing-connector-to-integration-studio.md)
+Follow these steps to set up the ESB Solution Project and the Connector Exporter Project. 
 
-2. Right click on the created ESB Solution Project and select, -> **New** -> **Rest API** to create the REST API. 
+{!references/connectors/importing-connector-to-integration-studio.md!} 
+
+1. Right click on the created ESB Solution Project and select, -> **New** -> **Rest API** to create the REST API. 
     <img src="/assets/img/connectors/adding-an-api.png" title="Adding a Rest API" width="800" alt="Adding a Rest API"/>
 
-3. Provide the API name as File Connector and the API context as `/fileconnector`. You can go to the source view of the xml configuration file of the API and copy the following configuration. 
+2. Provide the API name as File Connector and the API context as `/fileconnector`. You can go to the source view of the xml configuration file of the API and copy the following configuration. 
     ```
     <?xml version="1.0" encoding="UTF-8"?>
     <api context="/fileconnector" name="FileConnector" xmlns="http://ws.apache.org/ns/synapse">
@@ -75,12 +76,14 @@ It will have two HTTP API resources, which are `create` and `read`.
 
     ```
 
-4. Follow these steps to export the artifacts. 
-{! /references/connectors/exporting-artifacts.md !}
+{!references/connectors/exporting-artifacts.md!}
+
 
 ## Deployment
+
 Follow these steps to deploy the exported CApp in the Enterprise Integrator Runtime. 
-[Deploying the CApp on Enterprise Integrator Runtime](../deploy-capp.md)
+
+{!references/connectors/deploy-capp.md!}
 
 ## Testing
 
@@ -117,5 +120,10 @@ You should get a 'Success' response, and the file should be created in the speci
 You should get the following text returned. 
 
 `
-This is a test file
+This is a test file.
 `
+
+## What's Next
+
+* You can deploy and run your project on [Docker](../../../setup/installation/run_in_docker.md) or [Kubernetes](../../../setup/installation/run_in_kubernetes.md).
+* To customize this example for your own scenario, see [File Connector Configuration](../file-connector-config.md) documentation for all operation details of the connector.
