@@ -10,6 +10,8 @@ following operations:
 * Create an Account 
 * Execute a SOQL query to retrieve the Account Name and ID in all the existing Accounts. 
 
+<img src="/assets/img/connectors/Salesforce.png" title="Using Salesforce Rest Connector" width="800" alt="Using Salesforce Rest Connector"/>
+
 ## Configure the connector in WSO2 Integration Studio
 1. Follow these steps to set up the ESB Solution Project and the Connector Exporter Project. 
 {!references/connectors/importing-connector-to-integration-studio.md!}
@@ -17,7 +19,7 @@ following operations:
 2. Right click on the created ESB Solution Project and select, -> **New** -> **Rest API** to create the REST API. 
     <img src="/assets/img/connectors/adding-an-api.png" title="Adding a Rest API" width="800" alt="Adding a Rest API"/>
 
-3. Follow these steps to [generate the Access Tokens for Salesforce](sf-access-token-generation.md) and obtain the Client Id, Client Secret, Access Token and Refresh Token. 
+3. Follow these steps to [generate the Access Tokens for Salesforce](../salesforce-connector/sf-access-token-generation.md) and obtain the Client Id, Client Secret, Access Token and Refresh Token. 
 
 4. First, we will create two defined sequences called `create.xml` and  `retrieve.xml` to create an Account and retrieve data. You can go to the source view of the XML configuration file of the API and copy the following configuration. Replace the `clientSecret`, `clientId`, `accessToken`, `refreshToken` with obtained values in step 3. 
 
