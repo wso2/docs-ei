@@ -335,6 +335,7 @@ nav:
           - 'Salesforce Connector Configuration': 'references/connectors/salesforce-connector/sf-connector-configuration.md'
         - File Connector:
           - 'File Connector Example': 'references/connectors/file-connector/file-connector-example.md'
+          - 'File Connector Configuration': 'references/connectors/file-connector/file-connector-config.md'
         - Kafka Connector:
           - 'kafka-connector-configuration.md': 'references/connectors/kafka-connector/kafka-connector-configuration.md'      
         - Gmail Connector:

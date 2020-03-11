@@ -1,6 +1,7 @@
+## Creating Connector Exporter Project
+
 In this section we focus on creating the Connector Exporter Project and Exporting the CApp. CApp is the deployable artefact on the Enterprise Integrator runtime.
 
-## Creating Connector Exporter Project
 1. Go to **File** -> **New** -> **Other** -> **WSO2** -> **Extensions** -> **Project Types** -> **Connector Exporter Project**
   <img src="/assets/img/connectors/connector-exporter-project-1.png" title="Add Connector Exporter Project" width="800" alt="Add Connector Exporter Project"/>
 

@@ -67,7 +67,22 @@ To implement this, you need to do the following.
     $ export PATH=/path/to/mi/cli/directory/bin:$PATH\
     ```
 
+## Download the project
+
+Cick the following button to download the project.
+
+**Note**: You need to modify the following configurations.
+
+* Credentials to access the Salesforce API. To obtain these credentials, see [Generate Salesforce Access Tokens](../sf-access-token-generation.md).
+
+
 ## Testing
+
+### Setting up the testing environment
+
+
+
+### Testing the scenario
 
 1. Login.
 
