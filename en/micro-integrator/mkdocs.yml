@@ -337,7 +337,9 @@ nav:
           - 'File Connector Example': 'references/connectors/file-connector/file-connector-example.md'
           - 'File Connector Configuration': 'references/connectors/file-connector/file-connector-config.md'
         - Kafka Connector:
-          - 'kafka-connector-configuration.md': 'references/connectors/kafka-connector/kafka-connector-configuration.md'      
+          - 'Kafka Connector Configuration': 'references/connectors/kafka-connector/kafka-connector-configuration.md'
+          - 'Kafka Connector Example': 'references/connectors/kafka-connector/kafka-connector-producer-example.md'
+          - 'Kafka Inbound Endpoint Example': 'references/connectors/kafka-connector/kafka-inbound-endpoint-example.md'
         - Gmail Connector:
           - 'Gmail Connector Example': 'references/connectors/gmail-connector/gmail-connector-example.md'
       - Synapse Configurations:
