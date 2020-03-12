@@ -3,10 +3,10 @@
 The Kafka inbound endpoint of WSO2 EI acts as a message consumer. It creates a connection to ZooKeeper and requests messages for either a topic/s or topic filters.
 
 ## What you'll build
-This sample demonstrates how one way message bridging from Kafka to HTTP can be done using the inbound kafka endpoint.
+This sample demonstrates how one way message bridging from Kafka to HTTP can be done using the inbound Kafka endpoint.
 See [Configuring kafka connector](kafka-connector-configuration.md) for more information.
 
-The following diagram illustrates all the required functionality of the Kafka service that you are going to build.In this example, you only need to consider about the scenario of message consuming.
+The following diagram illustrates all the required functionality of the Kafka service that you are going to build. In this example, you only need to consider about the scenario of message consuming.
 
 <img src="/assets/img/connectors/KafkaConnector.png" title="KafkaConnector" width="800" alt="KafkaConnector"/>
 
@@ -88,7 +88,7 @@ Follow these steps to deploy the exported CApp in the Enterprise Integrator Runt
    [2020-02-19 12:39:59,336]  INFO {org.apache.synapse.mediators.builtin.LogMediator} - messageValue = {"test":"wso2"}
    [2020-02-19 12:39:59,336]  INFO {org.apache.synapse.mediators.builtin.LogMediator} - offset = 6  
    ```
-   The Kafka inbound gets the messages from the Kafka brokers and logs the messages in the Micro Integrator.
+   The Kafka inbound endpoint gets the messages from the Kafka brokers and logs the messages in the Micro Integrator.
    
    ## What's next
    
