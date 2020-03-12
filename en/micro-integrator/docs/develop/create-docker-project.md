@@ -13,9 +13,11 @@ It is recommended to [get the latest updates](../../develop/installing-WSO2-Inte
 Follow the steps given below.   
 
 1.  Open **WSO2 Integration Studio** and click **Miscellaneous → Create New Docker Project** in the **Getting Started** view as shown below.
+
     <img src="../../assets/img/create_project/docker_k8s_project/get_started_docker_project.png" width="1000">
 
 2.  In the **New Docker Project** dialog that opens, enter a name for the Docker project and other parameters as shown below.
+
     <img src="../../assets/img/create_project/docker_k8s_project/new_docker_project_info.png" width="500">
 
     Enter the following information:
@@ -101,6 +103,7 @@ Follow the steps given below.
     </table>
 
 3.  Optionally, click **Next** and configure Maven details for the Docker project.
+
     <img src="../../assets/img/create_project/docker_k8s_project/new_docker_project_maven_info.png" width="500">
 
 4.  Click **Finish**. The Docker project is created in the project explorer.
