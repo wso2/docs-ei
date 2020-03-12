@@ -6,8 +6,7 @@ The dashboard as well as the CLI communicates with the management API of WSO2 Mi
 
 ## Enable the Management API
 
-To use the CLI tool, you need to enable the management API when you
-start your WSO2 Micro Integrator instance. Pass the following system property:
+Enable the management API when you start your WSO2 Micro Integrator instance by pass the following system property:
 
 ```bash
 -DenableManagementApi
@@ -24,29 +23,38 @@ start your WSO2 Micro Integrator instance. Pass the following system property:
         -  The default address is **https://localhost** and the port is **9164**.
         -  You can change the default host and port of the dashboard by using the [remote](#commands) command.
 
--   When you run the Micro Integrator on a VM, use the following command
+-   When you run the Micro Integrator on a VM, navigate to the `<MI_HOME>/bin` directory, and execute the following command
     to enable the `enableManagementApi` system property:
 
-    ```bash
+    ```bash tab='On MacOS/Linux/CentOS'
     sh micro-integrator.sh -DenableManagementApi
+    ```
+
+    ```bash tab='On Windows'
+    micro-integrator.bat -DenableManagementApi
     ```
 
 -   The Management API is enabled for the embedded Micro Integrator in WSO2 Integration Studio by default.
 
 ## Install and run the CLI
 
-1.  To download the dashboard, go to [**WSO2 Micro Integrator** website](https://wso2.com/integration/micro-integrator/#) -> **Download** -> **Other Resources**, and click **CLI Tooling**.
-2.  If you are using a UNIX-based operating system (Linux, Solaris, and Mac OS X), be sure to set the `MI_CLI_HOME/bin` folder path as the PATH:
+1.  To download the CLI, go to [**WSO2 Micro Integrator** website](https://wso2.com/integration/micro-integrator/#) -> **Download** -> **Other Resources**, and click **CLI Tooling**.
+2.  Extract the downloaded ZIP file. This will be your `<CLI_HOME>` directory.
+3.  Export the path to your `<CLI_HOME>/bin` directory as a system variable. This allows you to run the CLI tool from any location on your computer.
+
+    -  If you are using a UNIX-based operating system (Linux, Solaris, and MacOS X), execute the following command:
+        ```bash
+        export PATH=/path/to/mi/cli/directory/bin:$PATH
+        ```
+    -   If you are using the Windows OS, go to **System Properties -> Advanced -> Environment Variables** and add the path to the list of variables.
+
+4.  Execute the following command to start the CLI:
 
     ```bash
-    $ export PATH=/path/to/mi/cli/directory/bin:$PATH
+    mi
     ```
-3.  Execute the following command to start the CLI:
 
-    ```bash
-    ./mi
-    ```
-4.  The available commands are listed as follows:
+5.  The available commands are listed as follows:
 
     ```bash
     mi is a Command Line Tool for Management of WSO2 Micro Integrator
@@ -82,7 +90,7 @@ start your WSO2 Micro Integrator instance. Pass the following system property:
 
 ## Log in to the CLI
 
-To login using the CLI, use the following command. This will ask for the username and password. The default username is "admin" and the default password is "admin". 
+Use the following command to log in to the CLI tool. This will ask for the username and password. The default username is "admin" and the default password is "admin". 
 
 ```bash
 mi remote login
