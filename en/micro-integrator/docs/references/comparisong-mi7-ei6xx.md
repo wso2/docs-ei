@@ -27,7 +27,7 @@ As explained above, EI 7.0.0 addresses a wider audience that prefers different a
 
 Compared to the ESB profile of WSO2 Enterprise Integrator 6.x, the Micro Integrator encompasses the following key attributes that are essential for a microservice-ready integration solution.
 
--	Faster startup time (<3s).
+-	Faster startup time (<5s).
 -	Low memory footprint.
 -	Stateless services.
 -	Immutable services.
@@ -63,7 +63,7 @@ Given below is a comparision between the Micro Integrator of EI 7.0 and the ESB 
 			~600 MB
 		</td>
 		<td>
-			~100 MB
+			~130 MB
 		</td>
 	</tr>
 	<tr>
