@@ -97,21 +97,23 @@ Create the artifacts:
 
 1. [Set up WSO2 Integration Studio](../../../../develop/installing-WSO2-Integration-Studio).
 
-    !!! Note
-        The Websocket sender functionality of the Micro Integrator is disabled by default. To enable the transport, open the `deployment.toml` file from the `MI_TOOLING_HOME/Contents/Eclipse/runtime/microesb/conf/` directory and add the following: 
+2.  Open the `deployment.toml` file from the `MI_HOME/conf` directory and enable the websocket transport:
 
-        ```toml
-        [transport.ws]
-        sender.enable = true
-        ```
+    ```toml
+    [transport.ws]
+    sender.enable = true
+    ```
+
+    !!! Note
+        If you are running this sample using the embedded Micro Integrator of WSO2 Integration Studio, the `conf` directory is located in `MI_TOOLING_HOME/Contents/Eclipse/runtime/microesb/` (for Linux/MacOS/CentOS) or `MI_TOOLING_HOME/runtime/microesb/lib/` (for Windows). 
         
-2. [Create an ESB Solution project](../../../../develop/creating-projects/#esb-config-project)
-3. Create the [mediation sequences](../../../../develop/creating-artifacts/creating-reusable-sequences) and [inbound endpoint](../../../../develop/creating-an-inbound-endpoint) with the configurations given above.
-4. [Deploy the artifacts](../../../../develop/deploy-and-run) in your Micro Integrator.
+3. [Create an ESB Solution project](../../../../develop/creating-projects/#esb-config-project)
+4. Create the [mediation sequences](../../../../develop/creating-artifacts/creating-reusable-sequences) and [inbound endpoint](../../../../develop/creating-an-inbound-endpoint) with the configurations given above.
+5. [Deploy the artifacts](../../../../develop/deploy-and-run) in your Micro Integrator.
 
 Starting the Websocket client:
 
--  Download the netty artifacts zip file from [here](https://github.com/wso2-docs/ESB) and extract it. The extracted folder will be shown as `ESB-master`
+-  Download the netty artifacts zip file from [here](https://github.com/wso2-docs/ESB) and extract it. The extracted folder will be shown as `ESB-master`.
 -  Open a terminal, navigate to `ESB-master/ESB-Artifacts/Netty_artifacts_for_WebSocket_samples` and execute the following command to start the WebSocket server on port 8082:
     ```bash
     java -cp netty-example-4.0.30.Final.jar:lib/*:. io.netty.example.http.websocketx.server.WebSocketServer

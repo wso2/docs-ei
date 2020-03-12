@@ -260,7 +260,7 @@ To test the artifacts, deploy the [packaged artifacts](#step-3-package-the-artif
 
 #### Configure the Micro Integrator
 
-Open the `deployment.toml` file (stored in the `MI_TOOLING_HOME/Contents/Eclipse/runtime/microesb/conf/` directory on **Windows** or `MI_TOOLING_HOME/runtime/microesb/conf` directory on **MacOS/Linux/CentOS**) and apply the following changes:
+Open the `deployment.toml` file of the embedded Micro Integrator of WSO2 Integration Studio (stored in the `MI_TOOLING_HOME/Contents/Eclipse/runtime/microesb/conf/` directory on **Windows** or `MI_TOOLING_HOME/runtime/microesb/conf` directory on **MacOS/Linux/CentOS**) and apply the following changes:
 
 1.  The **VFS** transport is enabled in the Micro Integrator by default. Enable the [MailTo transport](../../../setup/transport_configurations/configuring-transports/#configuring-the-mailto-transport) for sending the email message as shown below and update the values:
 
