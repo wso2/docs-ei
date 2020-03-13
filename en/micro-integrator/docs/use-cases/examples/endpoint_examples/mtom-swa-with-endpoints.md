@@ -78,6 +78,9 @@ Create the artifacts:
       When this is enabled, incoming SwA messages are automatically
         identified by the Micro Integrator. 
 
+    !!! Note
+        If you are running this sample using the embedded Micro Integrator of WSO2 Integration Studio, the `conf` directory is located in `MI_TOOLING_HOME/Contents/Eclipse/runtime/microesb/` (for Linux/MacOS/CentOS) or `MI_TOOLING_HOME/runtime/microesb/lib/` (for Windows). 
+
 3. [Create an ESB Solution project](../../../../develop/creating-projects/#esb-config-project).
 4. Create the [main sequence](../../../../develop/creating-artifacts/creating-reusable-sequences) with the configurations given above.
 5. [Deploy the artifacts](../../../../develop/deploy-and-run) in your Micro Integrator.

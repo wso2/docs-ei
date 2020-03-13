@@ -46,7 +46,10 @@ Create the artifacts:
 Set up the MQTT server:
 
 1.  Install Mosquitto. (This sample is tested for [Mosquitto1.6.7 version](https://mosquitto.org/download/)). The Mosquitto server will run automatically in the background.
-2.  Download [MQTT client library](http://repo.spring.io/plugins-release/org/eclipse/paho/mqtt-client/0.4.0/) (i.e. `          mqtt-client-0.4.0.jar         ` ) and add it to the `MI_TOOLING_HOME/Contents/Eclipse/runtime/microesb/lib/` directory.
+2.  Download [MQTT client library](http://repo.spring.io/plugins-release/org/eclipse/paho/mqtt-client/0.4.0/) (i.e. `          mqtt-client-0.4.0.jar         ` ) and add it to the `MI_HOME/lib` directory.  
+
+    !!! Note
+        If you are running this sample using the embedded Micro Integrator of WSO2 Integration Studio, the `lib` directory is located in `MI_TOOLING_HOME/Contents/Eclipse/runtime/microesb/` (for Linux/MacOS/CentOS) or `MI_TOOLING_HOME/runtime/microesb/lib/` (for Windows). 
 
 [Deploy the artifacts](../../../../develop/deploy-and-run) in your Micro Integrator.
 

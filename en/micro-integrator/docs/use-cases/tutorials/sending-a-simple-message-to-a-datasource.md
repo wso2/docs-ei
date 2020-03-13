@@ -17,11 +17,12 @@ To set up the tools:
 To demonstrate how data services work, we will use a MySQL database as the datasource. Follow the steps given below to set up a MySQL database:
 
 1.  Install the MySQL server.
-2.  Download the JDBC driver for MySQL from [here](http://dev.mysql.com/downloads/connector/j/) and copy it to the `MI_TOOLING_HOME/Contents/Eclipse/runtime/microesb/lib/` (for MacOS) or 
-`MI_TOOLING_HOME/runtime/microesb/lib/` (for Windows) directory. 
-
+2.  Download the JDBC driver for MySQL from [here](http://dev.mysql.com/downloads/connector/j/) and copy it to the `lib` directory of the embedded Micro Integrator of WSO2 Integration Studio.
+    
     !!! Note
-        If the driver class does not exist in the relevant folders when you create the datasource, you will get an exception such as `Cannot load JDBC driver class com.mysql.jdbc.Driver`.
+        The `lib` directory of the embedded Micro Integrator of WSO2 Integration Studio is located in `MI_TOOLING_HOME/Contents/Eclipse/runtime/microesb/` (for Linux/MacOS/CentOS) or `MI_TOOLING_HOME/runtime/microesb/lib/` (for Windows). 
+
+    If the driver class does not exist in the relevant directory when you create the datasource, you will get an exception such as `Cannot load JDBC driver class com.mysql.jdbc.Driver`.
     
 3.  Create a database named `Employees`.
 
