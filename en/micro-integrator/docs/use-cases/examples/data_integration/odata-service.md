@@ -55,7 +55,7 @@ Create the artifacts:
     !!! Note
         If you are running this sample using the embedded Micro Integrator of WSO2 Integration Studio, the `lib` directory is located in `MI_TOOLING_HOME/Contents/Eclipse/runtime/microesb/` (for Linux/MacOS/CentOS) or `MI_TOOLING_HOME/runtime/microesb/lib/` (for Windows). 
 
-    If the driver class does not exist in the relevant folders when you create the datasource, you will get an exception such as `Cannot load JDBC driver class com.mysql.jdbc.Driver`.
+    If the driver class does not exist in the relevant directory when you create the datasource, you will get an exception such as `Cannot load JDBC driver class com.mysql.jdbc.Driver`.
         
 3. [Create a Data Service project](../../../../develop/creating-projects/#data-services-project)
 4. [Create the data service](../../../../develop/creating-artifacts/data-services/creating-data-services) with the configurations given above.
