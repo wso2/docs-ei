@@ -263,7 +263,6 @@ nav:
         - 'Configuring a Proxy Server': 'setup/configuring_proxy_servers.md'
         - 'Changing Default Ports': 'setup/changing_default_ports.md'
         - 'Customizing Error Messages': 'setup/customizing_error_pages.md'
-        - 'Governing External Reference Across Environments': 'setup/govern_ext_refs_across_env.md'
         - 'Enable SSL Tunneling through Proxy Server': 'setup/enabling_SSL_tunneling_thru_proxy_server.md'
     - Develop:
       - 'Developing Integration Solutions': 'develop/intro-integration-development.md'
@@ -327,7 +326,6 @@ nav:
         - 'Changing the Endpoint of a Deployed Service': 'develop/advanced-development/changing-the-endpoint-of-deployed-service.md'
         - 'Generating Swagger Documents for APIs': 'develop/advanced-development/generating-swagger-for-apis.md'
       - 'Managing the Registry': 'develop/creating-artifacts/registry/managing-the-Registry.md'
-      #- 'Using a CI/CD Pipeline' : 'develop/using-cicd-pipeline.md'
     - Observability:
       - 'Micro Integrator Dashboard': 'administer-and-observe/working-with-monitoring-dashboard.md'
       - 'Micro Integrator CLI': 'administer-and-observe/using-the-command-line-interface.md'
