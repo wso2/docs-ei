@@ -342,6 +342,9 @@ nav:
           - 'Kafka Inbound Endpoint Example': 'references/connectors/kafka-connector/kafka-inbound-endpoint-example.md'
         - Gmail Connector:
           - 'Gmail Connector Example': 'references/connectors/gmail-connector/gmail-connector-example.md'
+        - AmazonLambda Connector:
+          - 'Setting up the Amazon Lambda Environment': 'references/connectors/amazonlambda-connector/amazonlambda-configuration.md'
+          - 'Amazon Lambda Connector Example': 'references/connectors/amazonlambda-connector/amazonlambda-connector-example.md'
       - Synapse Configurations:
         - Mediator Catalog: 
           - 'About Mediators': 'references/mediators/about-mediators.md'
