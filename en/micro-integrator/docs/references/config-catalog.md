@@ -207,6 +207,26 @@ proxy_context_path = ""
                                         <p></p>
                                     </div>
                                 </div>
+                            </div><div class="param-name">
+                                  <span class="param-name-wrap"> <code>hot_deployment</code> </span>
+                                </div>
+                                <div class="param-info">
+                                    <div>
+                                        <p>
+                                            <span class="param-type string"> boolean </span>
+                                            
+                                        </p>
+                                        <div class="param-default">
+                                            <span class="param-default-value">Default: <code>false</code></span>
+                                        </div>
+                                        <div class="param-possible">
+                                            <span class="param-possible-values">Possible Values: <code>&quot;true&quot; or &quot;false&quot;</code></span>
+                                        </div>
+                                    </div>
+                                    <div class="param-description">
+                                        <p>Use this paramater to enable hot deployment for the server. When hot deployment is enabled, the Micro Integrator will allow you to dynamically deploy artifacts without restarting the server.</p>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
