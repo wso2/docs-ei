@@ -2,7 +2,7 @@
 
 ## What you'll build
 
-Store and forward messaging is used for serving traffic to back-end services that can accept request messages only at a given rate. This is also used for guaranteed delivery to ensure that request received never gets lost since they are stored in the message store and also available for future reference.
+Store and forward messaging is used for serving traffic to back-end services that can accept request messages only at a given rate. This is also used for guaranteed delivery to ensure that a request received never gets lost since they are stored in the message store and also available for future reference.
 
 **In this tutorial**, instead of sending the request directly to the back-end service, you store the request message in WSO2 Message Broker. You will then use a **Message
 Processor** to retrieve the message from the store before delivering it to the back-end service.
@@ -90,7 +90,7 @@ Endpoints** palette to the empty box adjoining the Call mediator. This sends th
 
     ![](../../assets/img/tutorials/119132268/119132271.png)
 
-5.  Save the updated REST API configuration.
+5.  Save the updated sequence configuration.
 
 
 #### Create the Message Processor
@@ -266,7 +266,7 @@ To set up WSO2 Message Broker:
     parameter.cache_level = "producer"
 
     [transport.jndi.connection_factories]
-    QueueConnectionFactory = "amqp://admin:admin@clientID/carbon?brokerlist='tcp://localhost:5675'"
+    'connectionfactory.QueueConnectionFactory' = "amqp://admin:admin@clientID/carbon?brokerlist='tcp://localhost:5675'"
 
     [transport.jndi.queue]
     PaymentRequestJMSMessageStore="PaymentRequestJMSMessageStore"
