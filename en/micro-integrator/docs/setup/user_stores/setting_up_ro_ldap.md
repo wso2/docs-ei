@@ -164,12 +164,12 @@ If you are already using a JDBC user store (database) with another WSO2 product 
 
 ## Disabling lazy loading of user store configurations (Optional)
 
-By default, the Micro Integrator initializes the user store configurations on demand (lazy loading). That is, user store configurations are initialized only when the configurations are engaged for the first time and not when the server starts. This behaviour improves the server startup time; however, the first server request that engages user store configurations (only effect one request to the entire lifetime of the server) will experience a delay due to the initialization.
+By default, the Micro Integrator initializes the user store configurations on demand (lazy loading). That is, user store configurations are initialized only when the configurations are engaged for the **first time** and not when the server starts. This behavior improves the server startup time; however, this **first** server request that engages user store configurations will experience a delay due to the initialization. Note that only the first server request will experience this delay and subsequent server requests received during the server's run time will not be affected.
 
 If you want the user store configurations to be initialized during server start up, you can disable lazy loading of user store configurations as explained below. This delays the server start up; however, the first server request that engages the user store configurations will not experience any delay.
 
-1.	Open the `carbon.properties` file from the `<MI_HOME>/conf` directory.
-2.  Add the following parameter and save the file:
+1. 	Open the `carbon.properties` file from the `<MI_HOME>/conf` directory.
+2.  	Add the following parameter and save the file:
 	```toml
 	mi.security.usermgt.lazy.init=false
 	```
