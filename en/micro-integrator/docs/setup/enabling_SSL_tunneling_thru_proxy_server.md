@@ -48,8 +48,10 @@ sender.proxy_port = 8080
 ```
 
 ```toml tab='Passthrough HTTPS'
-[transport.https]
-sender.parameter.'http.proxyHost' = "hostname"
-sender.parameter.'http.proxyPort' = "8080"
-sender.parameter.'HostnameVerifier' = "AllowAll"
+[transport.http]
+secured_proxy_host="hostname"
+secured_proxy_port="8080"
+hostname_verifier="AllowAll"
 ```
+
+See the complete list of [configuration parameters](../../../references/config-catalog/#https-transport-non-blocking-mode).
