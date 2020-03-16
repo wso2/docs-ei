@@ -336,6 +336,10 @@ nav:
         - File Connector:
           - 'File Connector Example': 'references/connectors/file-connector/file-connector-example.md'
           - 'File Connector Configuration': 'references/connectors/file-connector/file-connector-config.md'
+        - Kafka Connector:
+          - 'kafka-connector-configuration.md': 'references/connectors/kafka-connector/kafka-connector-configuration.md'      
+        - Gmail Connector:
+          - 'Gmail Connector Example': 'references/connectors/gmail-connector/gmail-connector-example.md'
       - Synapse Configurations:
         - Mediator Catalog: 
           - 'About Mediators': 'references/mediators/about-mediators.md'
