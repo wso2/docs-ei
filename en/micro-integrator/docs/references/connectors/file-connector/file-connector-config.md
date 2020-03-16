@@ -61,30 +61,42 @@ The following operations allow you to work with the File Connector version 2. Cl
         <tr>
             <td>Sample configuration</td>
             <td>
-                <code class="xml">
-                    <fileconnector.append>
-                        <destination>{$ctx:destination}</destination>
-                        <inputContent>{$ctx:inputContent}</inputContent>
-                        <position>{$ctx:position}</position>
-                        <encoding>{$ctx:encoding}</encoding>
-                        <setTimeout>{$ctx:setTimeout}</setTimeout>
-                        <setPassiveMode>{$ctx:setPassiveMode}</setPassiveMode>
-                        <setSoTimeout>{$ctx:setSoTimeout}</setSoTimeout>
-                        <setUserDirIsRoot>{$ctx:setUserDirIsRoot}</setUserDirIsRoot>
-                        <setStrictHostKeyChecking>{$ctx:setStrictHostKeyChecking}</setStrictHostKeyChecking>
-                    </fileconnector.append>
-                </code>
+                <div class="code panel pdl" style="border-width: 1px;">
+                    <div class="codeContent panelContent pdl">
+                        <pre lang="xml" data-syntaxhighlighter-params="brush: html/xml; gutter: false; theme: Confluence" data-theme="Confluence" style="brush: html/xml; gutter: false; theme: Confluence">
+                            <code class="xml">
+                                <fileconnector.append>
+                                    <destination>{$ctx:destination}</destination>
+                                    <inputContent>{$ctx:inputContent}</inputContent>
+                                    <position>{$ctx:position}</position>
+                                    <encoding>{$ctx:encoding}</encoding>
+                                    <setTimeout>{$ctx:setTimeout}</setTimeout>
+                                    <setPassiveMode>{$ctx:setPassiveMode}</setPassiveMode>
+                                    <setSoTimeout>{$ctx:setSoTimeout}</setSoTimeout>
+                                    <setUserDirIsRoot>{$ctx:setUserDirIsRoot}</setUserDirIsRoot>
+                                    <setStrictHostKeyChecking>{$ctx:setStrictHostKeyChecking}</setStrictHostKeyChecking>
+                                </fileconnector.append>
+                            </code>
+                        </pre>
+                    </div>
+                </div>
             </td>
         </tr>
         <tr>
             <td>Sample request</td>
             <td>Following is a sample REST/JSON request that can be handled by the append operation.
-                <code class="json">
-                    {
-                        "destination":"/home/vive/Desktop/file/append.txt",
-                        "inputContent":"Add Append Text."
-                    }
-                </code>
+                <div class="code panel pdl" style="border-width: 1px;">
+                    <div class="codeContent panelContent pdl">
+                        <pre class="json" data-syntaxhighlighter-params="brush: json; gutter: false; theme: Confluence" data-theme="Confluence" style="brush: json; gutter: false; theme: Confluence">
+                            <code class="json">
+                                {
+                                    "destination":"/home/vive/Desktop/file/append.txt",
+                                    "inputContent":"Add Append Text."
+                                }
+                            </code>
+                        </pre>
+                    </div>
+                </div>
             </td>
         </tr>
     </table>
@@ -101,8 +113,11 @@ The following operations allow you to work with the File Connector version 2. Cl
         <tr>
             <td>source</td>
             <td>The location of the file. This can be a file on the local physical file system or a file on an FTP server. 
-            * For local files, the URI format is [file://]absolute-path, where absolute-path is a valid absolute file name for the local platform. UNC names are supported under Windows (e.g., file:///home/user/test or file:///C:/Windows). 
-            * For files on a FTP server, the URI format is ftp://[ username[: password]@] hostname[: port][ relative-path] (e.g., ftp://myusername:mypassword@somehost/pub/downloads/test.txt).</td>
+                <ul>
+                    <li>For local files, the URI format is [file://]absolute-path, where absolute-path is a valid absolute file name for the local platform. UNC names are supported under Windows (e.g., file:///home/user/test or file:///C:/Windows).</li> 
+                    <li>For files on a FTP server, the URI format is ftp://[ username[: password]@] hostname[: port][ relative-path] (e.g., ftp://myusername:mypassword@somehost/pub/downloads/test.txt).</li>
+                </ul>
+            </td>
             <td>Yes</td>
         </tr>
         <tr>
@@ -189,12 +204,14 @@ The following operations allow you to work with the File Connector version 2. Cl
             <th>Description</th>
             <th>Required</th>
         </tr>
-
         <tr>
             <td>source</td>
             <td>The location of the file. This can be a file on the local physical file system or a file on an FTP server. 
-            * For local files, the URI format is [file://]absolute-path, where absolute-path is a valid absolute file name for the local platform. UNC names are supported under Windows (e.g., file:///home/user/test or file:///C:/Windows). 
-            * For files on a FTP server, the URI format is ftp://[ username[: password]@] hostname[: port][ relative-path] (e.g., ftp://myusername:mypassword@somehost/pub/downloads/test.txt).</td>
+                <ul>
+                    <li>For local files, the URI format is [file://]absolute-path, where absolute-path is a valid absolute file name for the local platform. UNC names are supported under Windows (e.g., file:///home/user/test or file:///C:/Windows).</li>
+                    <li>For files on a FTP server, the URI format is ftp://[ username[: password]@] hostname[: port][ relative-path] (e.g., ftp://myusername:mypassword@somehost/pub/downloads/test.txt).</li>
+                </ul>
+            </td>
             <td>Yes</td>
         </tr>
         <tr>
@@ -285,8 +302,11 @@ The following operations allow you to work with the File Connector version 2. Cl
         <tr>
             <td>source</td>
             <td>The location of the file. This can be a file on the local physical file system or a file on an FTP server. 
-            * For local files, the URI format is [file://]absolute-path, where absolute-path is a valid absolute file name for the local platform. UNC names are supported under Windows (e.g., file:///home/user/test or file:///C:/Windows). 
-            * For files on a FTP server, the URI format is ftp://[ username[: password]@] hostname[: port][ relative-path] (e.g., ftp://myusername:mypassword@somehost/pub/downloads/test.txt).</td>
+                <ul>
+                    <li>For local files, the URI format is [file://]absolute-path, where absolute-path is a valid absolute file name for the local platform. UNC names are supported under Windows (e.g., file:///home/user/test or file:///C:/Windows).</li> 
+                    <li>For files on a FTP server, the URI format is ftp://[ username[: password]@] hostname[: port][ relative-path] (e.g., ftp://myusername:mypassword@somehost/pub/downloads/test.txt).</li>
+                </ul>
+            </td>
             <td>Yes</td>
         </tr>
         <tr>
@@ -376,8 +396,11 @@ The following operations allow you to work with the File Connector version 2. Cl
         <tr>
             <td>source</td>
             <td>The location of the file. This can be a file on the local physical file system or a file on an FTP server. 
-            * For local files, the URI format is [file://]absolute-path, where absolute-path is a valid absolute file name for the local platform. UNC names are supported under Windows (e.g., file:///home/user/test or file:///C:/Windows). 
-            * For files on a FTP server, the URI format is ftp://[ username[: password]@] hostname[: port][ relative-path] (e.g., ftp://myusername:mypassword@somehost/pub/downloads/test.txt).</td>
+                <ul>
+                    <li>For local files, the URI format is [file://]absolute-path, where absolute-path is a valid absolute file name for the local platform. UNC names are supported under Windows (e.g., file:///home/user/test or file:///C:/Windows).</li> 
+                    <li>For files on a FTP server, the URI format is ftp://[ username[: password]@] hostname[: port][ relative-path] (e.g., ftp://myusername:mypassword@somehost/pub/downloads/test.txt).</li>
+                </ul>
+            </td>
             <td>Yes</td>
         </tr>
         <tr>
@@ -454,8 +477,11 @@ The following operations allow you to work with the File Connector version 2. Cl
         <tr>
             <td>source</td>
             <td>The location of the file. This can be a file on the local physical file system or a file on an FTP server. 
-            * For local files, the URI format is [file://]absolute-path, where absolute-path is a valid absolute file name for the local platform. UNC names are supported under Windows (e.g., file:///home/user/test or file:///C:/Windows). 
-            * For files on a FTP server, the URI format is ftp://[ username[: password]@] hostname[: port][ relative-path] (e.g., ftp://myusername:mypassword@somehost/pub/downloads/test.txt).</td>
+                <ul>
+                    <li>For local files, the URI format is [file://]absolute-path, where absolute-path is a valid absolute file name for the local platform. UNC names are supported under Windows (e.g., file:///home/user/test or file:///C:/Windows).</li> 
+                    <li>For files on a FTP server, the URI format is ftp://[ username[: password]@] hostname[: port][ relative-path] (e.g., ftp://myusername:mypassword@somehost/pub/downloads/test.txt).</li>
+                </ul>
+            </td>
             <td>Yes</td>
         </tr>
         <tr>
@@ -525,8 +551,11 @@ The following operations allow you to work with the File Connector version 2. Cl
         <tr>
             <td>source</td>
             <td>The location of the file. This can be a file on the local physical file system or a file on an FTP server. 
-            * For local files, the URI format is [file://]absolute-path, where absolute-path is a valid absolute file name for the local platform. UNC names are supported under Windows (e.g., file:///home/user/test or file:///C:/Windows). 
-            * For files on a FTP server, the URI format is ftp://[ username[: password]@] hostname[: port][ relative-path] (e.g., ftp://myusername:mypassword@somehost/pub/downloads/test.txt).</td>
+                <ul>
+                    <li>For local files, the URI format is [file://]absolute-path, where absolute-path is a valid absolute file name for the local platform. UNC names are supported under Windows (e.g., file:///home/user/test or file:///C:/Windows).</li> 
+                    <li>For files on a FTP server, the URI format is ftp://[ username[: password]@] hostname[: port][ relative-path] (e.g., ftp://myusername:mypassword@somehost/pub/downloads/test.txt).</li>
+                </ul>
+            </td>
             <td>Yes</td>
         </tr>
         <tr>
@@ -598,8 +627,11 @@ The following operations allow you to work with the File Connector version 2. Cl
         <tr>
             <td>source</td>
             <td>The location of the file. This can be a file on the local physical file system or a file on an FTP server. 
-            * For local files, the URI format is [file://]absolute-path, where absolute-path is a valid absolute file name for the local platform. UNC names are supported under Windows (e.g., file:///home/user/test or file:///C:/Windows). 
-            * For files on a FTP server, the URI format is ftp://[ username[: password]@] hostname[: port][ relative-path] (e.g., ftp://myusername:mypassword@somehost/pub/downloads/test.txt).</td>
+                <ul>
+                    <li>For local files, the URI format is [file://]absolute-path, where absolute-path is a valid absolute file name for the local platform. UNC names are supported under Windows (e.g., file:///home/user/test or file:///C:/Windows).</li> 
+                    <li>For files on a FTP server, the URI format is ftp://[ username[: password]@] hostname[: port][ relative-path] (e.g., ftp://myusername:mypassword@somehost/pub/downloads/test.txt).</li>
+                </ul>
+            </td>
             <td>Yes</td>
         </tr>
         <tr>
@@ -685,8 +717,11 @@ The following operations allow you to work with the File Connector version 2. Cl
         <tr>
             <td>source</td>
             <td>The location of the file. This can be a file on the local physical file system or a file on an FTP server. 
-            * For local files, the URI format is [file://]absolute-path, where absolute-path is a valid absolute file name for the local platform. UNC names are supported under Windows (e.g., file:///home/user/test or file:///C:/Windows). 
-            * For files on a FTP server, the URI format is ftp://[ username[: password]@] hostname[: port][ relative-path] (e.g., ftp://myusername:mypassword@somehost/pub/downloads/test.txt).</td>
+                <ul>
+                    <li>For local files, the URI format is [file://]absolute-path, where absolute-path is a valid absolute file name for the local platform. UNC names are supported under Windows (e.g., file:///home/user/test or file:///C:/Windows).</li> 
+                    <li>For files on a FTP server, the URI format is ftp://[ username[: password]@] hostname[: port][ relative-path] (e.g., ftp://myusername:mypassword@somehost/pub/downloads/test.txt).</li>
+                </ul>
+            </td>
             <td>Yes</td>
         </tr>
         <tr>
@@ -785,8 +820,11 @@ The following operations allow you to work with the File Connector version 2. Cl
         <tr>
             <td>source</td>
             <td>The location of the file. This can be a file on the local physical file system or a file on an FTP server. 
-            * For local files, the URI format is [file://]absolute-path, where absolute-path is a valid absolute file name for the local platform. UNC names are supported under Windows (e.g., file:///home/user/test or file:///C:/Windows). 
-            * For files on a FTP server, the URI format is ftp://[ username[: password]@] hostname[: port][ relative-path] (e.g., ftp://myusername:mypassword@somehost/pub/downloads/test.txt).</td>
+                <ul>
+                    <li>For local files, the URI format is [file://]absolute-path, where absolute-path is a valid absolute file name for the local platform. UNC names are supported under Windows (e.g., file:///home/user/test or file:///C:/Windows).</li> 
+                    <li>For files on a FTP server, the URI format is ftp://[ username[: password]@] hostname[: port][ relative-path] (e.g., ftp://myusername:mypassword@somehost/pub/downloads/test.txt).</li>
+                </ul>
+            </td>
             <td>Yes</td>
         </tr>
         <tr>
@@ -876,8 +914,11 @@ The following operations allow you to work with the File Connector version 2. Cl
         <tr>
             <td>source</td>
             <td>The location of the file. This can be a file on the local physical file system or a file on an FTP server. 
-            * For local files, the URI format is [file://]absolute-path, where absolute-path is a valid absolute file name for the local platform. UNC names are supported under Windows (e.g., file:///home/user/test or file:///C:/Windows). 
-            * For files on a FTP server, the URI format is ftp://[ username[: password]@] hostname[: port][ relative-path] (e.g., ftp://myusername:mypassword@somehost/pub/downloads/test.txt).</td>
+                <ul>
+                    <li>For local files, the URI format is [file://]absolute-path, where absolute-path is a valid absolute file name for the local platform. UNC names are supported under Windows (e.g., file:///home/user/test or file:///C:/Windows).</li> 
+                    <li>For files on a FTP server, the URI format is ftp://[ username[: password]@] hostname[: port][ relative-path] (e.g., ftp://myusername:mypassword@somehost/pub/downloads/test.txt).</li>
+                </ul>
+            </td>
             <td>Yes</td>
         </tr>
         <tr>
@@ -1464,13 +1505,3 @@ The following is a sample proxy service that illustrates how to connect to the F
 ```
 
 **Note**: For more information on how this works in an actual scenario, see [File Connector Example](../file-connector-example.md).
-
-
-
-
-    
-    
-    
-
-
-
