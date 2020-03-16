@@ -103,9 +103,9 @@ The dialog box displays all the dependencies that need to be manually installed.
 
     |**Installation Location**|**Directory**|
     |---------------------|-----------------------------------------------------------------------------------------------------------------------------------------------|
-    |**bundle in runtime**|Place the OSGi bundle(s) you downloaded/converted in either the `<SI_HOME>/lib` or the `<SI_HOME>/bundles` directory based on the instructions.|
-    |**jar in runtime**   |Place the non-OSGi bundle(s) you downloaded in the `<SI_HOME>/jars` directory.                                                                 |
-    |**jar in samples**   |Place the non-OSGi bundle(s) you dowloaded in the `<SI_HOME>/samples/sample-clients/lib` directory.                                            |
+    |**bundle in runtime**|Place the OSGi bundle you downloaded/converted in either the `<SI_HOME>/lib` or the `<SI_HOME>/bundles` directory based on the instructions.|
+    |**jar in runtime**   |Place the non-OSGi bundle you downloaded in the `<SI_HOME>/jars` directory.                                                                 |
+    |**jar in samples**   |Place the non-OSGi bundle you dowloaded in the `<SI_HOME>/samples/sample-clients/lib` directory.                                            |
 
 
 ## Configuring Extension Dependencies
@@ -126,7 +126,7 @@ The configuration of an extension is a JSON object that looks as follows:
     }
 ```
 
-`<extension_name>` which is the key of this JSON object, is the uniquely identifiable name of the extension. The extension is described under [`extension`](#extension)`.
+`<extension_name>` which is the key of this JSON object, is the uniquely identifiable name of the extension. The extension is described under [`extension`](#extension).
 
 #### `extension`
 
@@ -217,7 +217,7 @@ This is an _array_. Each member of this _array_ is an _object_ that denotes info
       <p>This denotes download information of the dependency via the following properties.</p>
       <ul>
         <li><code>autoDownloadable</code>: This specifies whether the dependency is auto downloadable via the <code>true</code> and <code>false</code> values. If the value is <code>false</code>, the property is <a href="#manually-installable-dependencies">manually installable</a>.</li>
-        <li><code>url</code>: <strong>If the dependency is auto downloadable</strong>, this specifies the URL via which you can download the JAR of the dependency.</li>
+        <li><code>url</code>: <strong>If the dependency is auto downloadable</strong>, this specifies the URL via which the JAR of the dependency is downloaded.</li>
         <li><code>instructions</code>: <strong>If the dependency is only <a href="#manually-installable-dependencies">manually installable</a></strong>, this property provides instructions to download (and if applicable, convert) the JAR of the dependency.</li>
       </ul>
     </td>
