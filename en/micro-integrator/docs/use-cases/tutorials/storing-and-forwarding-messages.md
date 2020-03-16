@@ -2,9 +2,9 @@
 
 ## What you'll build
 
-Store and forward messaging is used for serving traffic to back-end services that can accept request messages only at a given rate. This is also used for guaranteed delivery to ensure that a request received never gets lost since they are stored in the message store and also available for future reference.
+Store and forward messaging is used for serving traffic to back-end services that can accept request messages only at a given rate. This is also used to ensure guaranteed delivery of messages. Messages never get lost since they are stored in the message store and available for future reference.
 
-**In this tutorial**, instead of sending the request directly to the back-end service, you store the request message in WSO2 Message Broker. You will then use a **Message
+**In this tutorial**, instead of sending the request directly to the back-end service, you store the request message in the Message Broker profile of WSO2 EI 6.6.0. You will then use a **Message
 Processor** to retrieve the message from the store before delivering it to the back-end service.
 
 ## Let's get started!
@@ -24,7 +24,7 @@ If you did not try the [Exposing Several Services as a Single Service](exposing-
 
 Now, let's create a Message Store artifact to represent the broker.
 
-1.  Right-click on **SampleServices** in the Project Explorer and navigate to **New->Message Store**.
+1.  Right-click **SampleServices** in the Project Explorer and navigate to **New->Message Store**.
 2.  Select **Create a new message-store artifact** and specify the following details:
 
     <table>
@@ -62,19 +62,19 @@ Now, let's create a Message Store artifact to represent the broker.
 
 3.  Click **Finish**.
 
-#### Create the Response Sequence
+#### Create the Response sequence
 
 Let's create a Sequence that uses the message in the message store to send the request to SettlePaymentEP.
 
 1.  Right click the **SampleServices** project in the Project Explorer and navigate to **New -> Sequence**. 
-2.  Select **Create New Sequence** and provide the name **PaymentRequestProcessingSequence**.
+2.  Select **Create New Sequence** and give **PaymentRequestProcessingSequence** as the name.
 
     ![](../../assets/img/tutorials/119132268/119132273.png)  
 
 3.  Click **Finish**.
 
-4.  In the sequence you have created in the previous step, drag and drop a Call mediator from the **Mediators** palette 
-and add SettlePaymentEP from **Defined 
+4.  In the sequence you have created (in the previous step), drag and drop a Call mediator from the **Mediators** palette 
+and add SettlePaymentEP from the **Defined 
 Endpoints** palette to the empty box adjoining the Call mediator. This sends the request message from the store to SettlePaymentEP.
 
     ![](../../assets/img/tutorials/119132268/119132272.png)
@@ -233,11 +233,11 @@ Let's test the use case by sending a simple client request that invokes the serv
 
 #### Start the Message Broker runtime
 
-To set up WSO2 Message Broker:
+To set up Message Broker profile of WSO2 EI 6.6.0:
 
-1. Download WSO2 Message Broker. The path to this folder is referred to as `MB_HOME` throughout this tutorial.
+1. Download WSO2 EI 6.6.0, which includes the Message Broker profile. The path to this folder is referred to as `EI_6.6.0_HOME` throughout this tutorial.
 
-2. Add the following JAR files from the `MB_HOME/wso2/broker/client-lib/` directory to the 
+2. Add the following JAR files from the `EI_6.6.0_HOME/wso2/broker/client-lib/` directory to the 
 `MI_TOOLING_HOME/Contents/Eclipse/runtime/microesb/lib/` (in MacOS) or 
 `MI_TOOLING_HOME/runtime/microesb/lib` (in Windows) directory.
     -   andes-client-*.jar
@@ -272,10 +272,10 @@ To set up WSO2 Message Broker:
     PaymentRequestJMSMessageStore="PaymentRequestJMSMessageStore"
     ```
     
-To start WSO2 Message Broker:
+To start the Message Broker:
 
-1.  Open a terminal and navigate to the `MI_HOME/wso2/broker/bin` directory.
-2.  Execute the following command to run the in message broker. 
+1.  Open a terminal and navigate to the `EI_6.6.0_HOME/wso2/broker/bin` directory.
+2.  Execute the following command to run the message broker. 
     
     -   On **MacOS/Linux/CentOS**:
 
@@ -289,7 +289,7 @@ To start WSO2 Message Broker:
         wso2server.bat
         ```
 
-    See the [WSO2 EI 6.5.0 documentation](https://docs.wso2.com/display/EI650/Running+the+Product) for more information on how to run the WSO2 MB.
+    See the [WSO2 EI 6.6.0 documentation](https://docs.wso2.com/display/EI660/Running+the+Product) for more information on how to run the Message Broker profile.
 
 #### Restart the Micro Integrator
 
