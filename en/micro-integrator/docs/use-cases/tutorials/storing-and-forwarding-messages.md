@@ -235,7 +235,7 @@ Let's test the use case by sending a simple client request that invokes the serv
 
 To set up Message Broker profile of WSO2 EI 6.6.0:
 
-1. Download WSO2 EI 6.6.0, which includes the Message Broker profile. The path to this folder is referred to as `EI_6.6.0_HOME` throughout this tutorial.
+1. Download [WSO2 EI 6.6.0](https://wso2.com/enterprise-integrator/6.6.0), which includes the Message Broker profile. The path to this folder is referred to as `EI_6.6.0_HOME` throughout this tutorial.
 
 2. Add the following JAR files from the `EI_6.6.0_HOME/wso2/broker/client-lib/` directory to the 
 `MI_TOOLING_HOME/Contents/Eclipse/runtime/microesb/lib/` (in MacOS) or 
