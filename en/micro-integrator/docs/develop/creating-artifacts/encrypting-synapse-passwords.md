@@ -67,9 +67,31 @@ cipher tool:
 	
 4.  You can then enter the secret alias (vault key) for the password that you want to encrypt. For example, enter 
 'PasswordAlias'.
+
+	```bash
+	[Please Enter the Secret Alias] PasswordAlias
+	```
+
 5.  In the next step, enter the password of the keystore that is used for secure vault in the product. If the default
  product keystore is used, the password is 'wso2carbon'.
-6.  Then, specify the plain text password that should be encrypted.
+
+ 	```bash
+ 	[Please Enter Primary KeyStore Password of Carbon Server : ]
+ 	```
+
+6.  Specify the plain text password that should be encrypted. By default, you are required to specify a string value with 5 to 30 characters as the password.
+
+	!!! Tip
+		If you want to change the default password requirement (password length and character composition), add the following parameter in the [deployment.toml](../../../references/config-catalog#system-parameters) file (stored in the `<MI_HOME>/conf` directory) and specify a regex value with the requirement.
+		```toml
+		[system.parameter]
+   		org.wso2.SecureVaultPasswordRegEx = "any_valid_regex"
+   		```
+
+	```bash
+	[Enter Plain Text Value : ]
+	[Please Enter Value Again : ]
+	```
 
 The encrypted password is stored in the `secure-vault.properties` file as shown below. This file is stored in the `<MI_HOME>/registry/config/repository/components/secure-vault/` directory.
 
