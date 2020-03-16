@@ -162,7 +162,7 @@ If you are already using a JDBC user store (database) with another WSO2 product 
 	```
 	The datasource configured under the `[[datasource]]` toml heading will now be the effective user store for the Micro Integrator.
 
-## Disabling lazy loading of user store configs (Optional)
+## Disabling lazy loading of user store configurations (Optional)
 
 By default, the Micro Integrator initializes the user store configurations on demand (lazy loading). That is, user store configurations are initialized only when the configurations are engaged for the first time and not when the server starts. This behaviour improves the server startup time; however, the first server request that engages user store configurations will experience a delay due to the initialization.
 
