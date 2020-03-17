@@ -39,13 +39,13 @@ Create a basic Siddhi application for a simple use case.
         
    The Streaming Integration Tooling opens as shown below.
 
-   ![Streaming Integrator Tooling Welcome Page](../images/quick-start-guide-101/Welcome-Page.png)
+   ![Welcome Page](../images/Creating-Siddhi-Applications/Welcome-Page.png)
         
 4. Open a new Siddhi file by clicking **New**.
 
     The new file opens as follows.
     
-    ![New Siddhi File](../images/quick-start-guide-101/New_Siddhi_File.png)
+    ![New Siddhi File](../images/Creating-Siddhi-Applications/New_Siddhi_File.png)
     
 5. Specify a name for the new Siddhi application via the `@App:name` annotation, and a description via the `@App:description` annotation.
 
@@ -108,12 +108,7 @@ insert into AverageTempStream;
 
 ## Testing your Siddhi application
 
-The application you created needs to be tested before he uses it to process the actual data received. You can test it in the following methods:
-
-
-### Simulating events
-
-To simulate events for the Siddhi application, you can use the event simulator available with in the Streaming Integration Tooling as explained in the procedure below.
+The application you created needs to be tested before he uses it to process the actual data received. You can test it by simulating events as follows:
 
 1. In the Streaming Integrator Tooling, click the following icon for event simulation on the side panel.
 
@@ -161,57 +156,6 @@ To simulate events for the Siddhi application, you can use the event simulator a
 The output is logged in the console as follows:
 ![Console Log](../images/quick-start-guide-101/output-console.png)
 
-### Debugging
-
-To debug your Siddhi application, you need to mark debug points, and then simulate events as you did in the previous section. The complete procedure is as follows:
-
-1. Open the `TemperatureApp` Siddhi application.
-2. To run the Siddhi application in the debug mode, click **Run** => **Debug**, or click the following icon for debugging.
-
-    ![Debug icon](../images/quick-start-guide-101/debug-icon.png)
-
-    As a result, the **Debug** console opens in a new tab below the Siddhi application as follows.
-
-    ![Debug Console](../images/quick-start-guide-101/debug-console.png)
-
-3. Apply debug points in the lines with the `from` and `insert into` clauses. To mark a debug point, you need to click on the left of the required line number so that it is marked with a dot as shown in the image below.
-
-    !!!info
-        You can only mark lines with from or insert into clauses as debug points.
-
-   ![Debug Points](../images/quick-start-guide-101/debug-points.png)
-
-4. Now simulate a single event the same way you simulated it in the previous section, with the following values.
-   <style type="text/css">
-   .tg  {border-collapse:collapse;border-spacing:0;}
-   .tg td{font-family:Arial, sans-serif;font-size:14px;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:black;}
-   .tg th{font-family:Arial, sans-serif;font-size:14px;font-weight:normal;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:black;}
-   .tg .tg-0pky{border-color:inherit;text-align:left;vertical-align:top}
-   </style>
-   <table class="tg">
-     <tr>
-       <th class="tg-0pky"><span style="font-weight:bold">Attribute</span></th>
-       <th class="tg-0pky"><span style="font-weight:bold">Value</span></th>
-     </tr>
-     <tr>
-       <td class="tg-0pky"><span style="font-weight:bold">roomNo</span></td>
-       <td class="tg-0pky">NW106</td>
-     </tr>
-     <tr>
-       <td class="tg-0pky"><span style="font-weight:bold">deviceID</span></td>
-       <td class="tg-0pky">262626367171371717</td>
-     </tr>
-     <tr>
-       <td class="tg-0pky"><span style="font-weight:bold">temp</span></td>
-       <td class="tg-0pky">26</td>
-     </tr>
-   </table>
-
-   Click **Send** to send the event.
-
-   When a debug point is hit, the line marked as a debug point is highlighted as shown below. The status of the event and the query is displayed in the debug console below the Siddhi application.
-
-   ![Debugging](../images/quick-start-guide-101/debug-points-and-console.png)
 
 
 ## Deploying Siddhi applications
@@ -269,7 +213,7 @@ To export the `TemperatureApp` Siddhi application as a Docker artifact, follow t
 
 2. Click **Export** in the top menu, and then click **For Docker**.
 
-    ![Export Siddhi Application as Docker](../images/quick-start-guide-101/export-as-docker.png)
+    ![Export as Docker/Kubernetes Menu](../images/exporting-Siddhi-Applications/Export_Docker_k8s_Menu.png)
 
     As a result, **Step 1** of the **Export Siddhi Apps for Docker image** wizard opens as follows.
     

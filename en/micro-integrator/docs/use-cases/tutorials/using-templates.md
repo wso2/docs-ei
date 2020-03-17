@@ -240,7 +240,7 @@ Send a simple request to invoke the service.
     the location where the request.json file you created is saved:
 
     ```
-    curl -v -X POST --data @request.json http://localhost:8280/healthcare/categories/surgery/reserve --header "Content-Type:application/json"
+    curl -v -X POST --data @request.json http://localhost:8290/healthcare/categories/surgery/reserve --header "Content-Type:application/json"
     ```
 
 2.  You will see the response in the command line terminal.

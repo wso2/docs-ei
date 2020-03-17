@@ -13,9 +13,11 @@ It is recommended to [get the latest updates](../../develop/installing-WSO2-Inte
 Follow the steps given below.   
 
 1.  Open **WSO2 Integration Studio** and click **Miscellaneous → Create New Docker Project** in the **Getting Started** view as shown below.
+
     <img src="../../assets/img/create_project/docker_k8s_project/get_started_docker_project.png" width="1000">
 
 2.  In the **New Docker Project** dialog that opens, enter a name for the Docker project and other parameters as shown below.
+
     <img src="../../assets/img/create_project/docker_k8s_project/new_docker_project_info.png" width="500">
 
     Enter the following information:
@@ -45,7 +47,7 @@ Follow the steps given below.
                 <b>Required</b>. Select the base Micro Integrator Docker image for your solution. Use one of the following options:
                 <ul>
                     <li>
-                        <b>wso2/micro-integrator</b>: This is the community version of the of the Micro Integrator Docker image, which is stored in the <a href="https://hub.docker.com/r/wso2/micro-integrator">public WSO2 Docker registry</a>. This is selected by default.
+                        <b>wso2/micro-integrator</b>: This is the community version of the Micro Integrator Docker image, which is stored in the <a href="https://hub.docker.com/r/wso2/micro-integrator">public WSO2 Docker registry</a>. This is selected by default.
                     </li>
                     <li>
                         <b>docker.wso2.com</b>: This is the Micro Integrator Docker image that includes <b>product updates</b>. This image is stored in the <a href="https://docker.wso2.com/tags.php?repo=wso2mi">private WSO2 Docker registry</a>.
@@ -101,14 +103,14 @@ Follow the steps given below.
     </table>
 
 3.  Optionally, click **Next** and configure Maven details for the Docker project.
+
     <img src="../../assets/img/create_project/docker_k8s_project/new_docker_project_maven_info.png" width="500">
 
 4.  Click **Finish**. The Docker project is created in the project explorer.
-5.  Expand the **Docker Exporter Project** in the project explorer. 
 
 ## The Docker project directory
 
-You will find the following folders and files are stored within the Docker project.
+Expand the **Docker Exporter Project** in the project explorer. See that the following folders and files are created:
 
 <img src="../../assets/img/create_project/docker_k8s_project/proj_explorer_docker_project.png" width="400">
 

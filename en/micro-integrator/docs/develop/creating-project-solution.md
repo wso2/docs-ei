@@ -15,7 +15,8 @@ It is recommended to [get the latest updates](../../develop/installing-WSO2-Inte
 1.  Open **WSO2 Integration Studio** and click **Integration → Create New Integration Project** in the **Getting Started** view as shown below.
     <img src="../../assets/img/create_project/create-integration-solution.png">
 
-2.  In the **New ESB Solution Project** dialog that opens, provide the following information:
+2.  In the **New Integration Project** dialog that opens, provide the following information:
+
     <img src="../../assets/img/create_project/new_soln_vm_deployment.png" width="500">
 
     <table>
@@ -29,7 +30,7 @@ It is recommended to [get the latest updates](../../develop/installing-WSO2-Inte
         </tr>
         <tr>
             <td>
-                ESB Project Name
+                Integration Project Name
             </td>
             <td>
                 <b>Required</b>. Enter a name for the main project (**Config** project) in this field. The Config project stores the mediation sequence and related mediation artifacts.
@@ -99,21 +100,13 @@ In the **Docker Project Information** page, enter the details required for the D
     </tr>
     <tr>
         <td>
-            Docker Project Name
-        </td>
-        <td>
-            <b>Required</b>. Give a name for the Docker project.
-        </td>
-    </tr>
-    <tr>
-        <td>
             Base Image Repository
         </td>
         <td>
             <b>Required</b>. Select the base Micro Integrator Docker image for your solution. Use one of the following options:
             <ul>
                 <li>
-                    <b>wso2/micro-integrator</b>: This is the community version of the of the Micro Integrator Docker image, which is stored in the <a href="https://hub.docker.com/r/wso2/micro-integrator">public WSO2 Docker registry</a>. This is selected by default.
+                    <b>wso2/micro-integrator</b>: This is the community version of the Micro Integrator Docker image, which is stored in the <a href="https://hub.docker.com/r/wso2/micro-integrator">public WSO2 Docker registry</a>. This is selected by default.
                 </li>
                 <li>
                     <b>docker.wso2.com</b>: This is the Micro Integrator Docker image that includes <b>product updates</b>. This image is stored in the <a href="https://docker.wso2.com/tags.php?repo=wso2mi">private WSO2 Docker registry</a>.
@@ -190,14 +183,6 @@ In the **Kubernetes Project Information** page, enter the details required for t
     </tr>
     <tr>
         <td>
-            Kubernetes Project Name
-        </td>
-        <td>
-            <b>Required</b>. Give a name for the Kubernetes project.
-        </td>
-    </tr>
-    <tr>
-        <td>
             Integration Name
         </td>
         <td>
@@ -220,7 +205,7 @@ In the **Kubernetes Project Information** page, enter the details required for t
             <b>Required</b>. Select the base Micro Integrator Docker image for your solution. Use one of the following options:
             <ul>
                 <li>
-                    <b>wso2/micro-integrator</b>: This is the community version of the of the Micro Integrator Docker image, which is stored in the <a href="https://hub.docker.com/r/wso2/micro-integrator">public WSO2 Docker registry</a>. This is selected by default.
+                    <b>wso2/micro-integrator</b>: This is the community version of the Micro Integrator Docker image, which is stored in the <a href="https://hub.docker.com/r/wso2/micro-integrator">public WSO2 Docker registry</a>. This is selected by default.
                 </li>
                 <li>
                     <b>docker.wso2.com/wso2mi</b>: This is the Micro Integrator Docker image that includes <b>product updates</b>. This image is stored in the <a href="https://docker.wso2.com/tags.php?repo=wso2mi">private WSO2 Docker registry</a>.
@@ -299,7 +284,7 @@ The projects are created and saved in the project explorer. See the example give
 
 <img src="../../assets/img/create_project/project-solution-explorer.png" width="400">
 
-Go to [Docker project directory](../../develop/create-docker-project#the-docker-project-directory) or [Kubernetes project directory](../../develop/create-docker-project#the-kubernetes-project-directory) for more details about the directory structure.
+Go to [Docker project directory](../../develop/create-docker-project#the-docker-project-directory) or [Kubernetes project directory](../../develop/create-kubernetes-project#the-kubernetes-project-directory) for more details about the directory structure.
 
 ## What's Next?
 

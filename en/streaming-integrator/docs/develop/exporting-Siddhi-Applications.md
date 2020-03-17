@@ -16,7 +16,7 @@ To export one or more Siddhi applications as a Docker image, follow the procedur
 
     The Streaming Integrator Tooling opens as shown below.
 
-    ![Streaming Integrator Welcome Page](../images/exporting-Siddhi-Applications/SI-Welcome_Page.png)
+    ![Welcome Page](../images/Creating-Siddhi-Applications/Welcome-Page.png)
 
 2. Create the required Siddhi files. The rest of the documentation assumes that you have one or more Siddhi applications to be exported as a Docker image. For more information, see [Creating a Siddhi Application](creating-a-Siddhi-Application.md).
 
@@ -84,7 +84,7 @@ To export one or more Siddhi applications for Kubernetes, follow the procedure b
 
     The Streaming Integrator Tooling opens as shown below.
 
-    ![Streaming Integrator Welcome Page](../images/exporting-Siddhi-Applications/SI-Welcome_Page.png)
+    ![Welcome Page](../images/Creating-Siddhi-Applications/Welcome-Page.png)
 
 2. Create the required Siddhi files. The rest of the documentation assumes that you have one or more Siddhi applications to be exported as a Kubernetes artifact. For more information, see [Creating a Siddhi Application](creating-a-Siddhi-Application.md).
 
