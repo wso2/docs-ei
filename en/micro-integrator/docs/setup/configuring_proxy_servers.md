@@ -16,11 +16,19 @@ To configure the Micro Integrator to route messages through a proxy server
 values. This configuration ensures that all HTTP requests pass through
 the configured proxy server.
 
-```toml
+```toml tab='HTTP'
 [transport.http]
-sender.proxy_host= "<hostname/ip>"
-sender.proxy_port= <port>
+sender.proxy_host = "<hostname/ip>"
+sender.proxy_port = <port>
 ```
+
+```toml tab='HTTPS'
+[transport.http]
+sender.secured_proxy_host = "<hostname/ip>"
+sender.secured_proxy_port = <port>
+```
+
+See the complete list of [configuration parameters](../../../references/config-catalog/#https-transport-non-blocking-mode).
 
 ### For blocking service calls
 
@@ -29,11 +37,19 @@ To configure the Micro Integrator to route messages through a proxy server
 values. This configuration ensures that all HTTP requests pass through
 the configured proxy server.
 
-```toml
+```toml tab='HTTP Blocking'
 [transport.blocking.http]
-sender.parameter.'http.proxyHost'= "<hostname/ip>"
-sender.parameter.'http.proxyPort'= <port>
+sender.proxy_host = "<hostname/ip>"
+sender.proxy_port = <port>
 ```
+
+```toml tab='HTTPS Blocking'
+[transport.blocking.http]
+sender.secured_proxy_host = "<hostname/ip>"
+sender.secured_proxy_port = <port>
+```
+
+See the complete list of [configuration parameters](../../../references/config-catalog/#https-transport-blocking-mode).
 
 !!! Info
     **Bypass the proxy server for blocking calls?**  
