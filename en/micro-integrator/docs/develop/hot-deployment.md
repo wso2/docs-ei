@@ -17,4 +17,4 @@ Open the `deployment.toml` file from the `<MI_HOME>/conf` directory and add the 
 hot_deployment = true
 ```
 
-See the [complete list of server configurations](../../references/synapse-properties/config-catalog).
+See the [complete list of server configurations](../../references/config-catalog/#deployment).

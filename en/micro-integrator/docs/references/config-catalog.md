@@ -54,6 +54,7 @@ userAgent = "WSO2 ${product.key} ${product.version}"
 serverDetails = "WSO2 ${product.key} ${product.version}"
 offset  = 0
 proxy_context_path = ""
+hot_deployment = "false"
 </code></pre>
                     </div>
                 </div>
@@ -188,7 +189,8 @@ proxy_context_path = ""
                                         <p></p>
                                     </div>
                                 </div>
-                            </div><div class="param">
+                            </div>
+                            <div class="param">
                                 <div class="param-name">
                                   <span class="param-name-wrap"> <code>synapse_config_file_path</code> </span>
                                 </div>
@@ -207,13 +209,15 @@ proxy_context_path = ""
                                         <p></p>
                                     </div>
                                 </div>
-                            </div><div class="param-name">
+                            </div>
+                            <div class="param">
+                                <div class="param-name">
                                   <span class="param-name-wrap"> <code>hot_deployment</code> </span>
                                 </div>
                                 <div class="param-info">
                                     <div>
                                         <p>
-                                            <span class="param-type string"> boolean </span>
+                                            <span class="param-type boolean"> boolean </span>
                                             
                                         </p>
                                         <div class="param-default">
@@ -224,7 +228,7 @@ proxy_context_path = ""
                                         </div>
                                     </div>
                                     <div class="param-description">
-                                        <p>Use this paramater to enable hot deployment for the server. When hot deployment is enabled, the Micro Integrator will allow you to dynamically deploy artifacts without restarting the server.</p>
+                                        <p>Use this parameter to enable hot deployment for the server. When this parameter is enabled, you can dynamically deploy artifacts in the server while the server is running. That is, you do not have to restart the server after an artifact deployment.</p>
                                     </div>
                                 </div>
                             </div>

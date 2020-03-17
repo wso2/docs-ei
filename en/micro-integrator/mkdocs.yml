@@ -313,6 +313,7 @@ nav:
         - 'Generating Docker Images': 'develop/generate-docker-image.md'
       - Testing Integrations:
         - 'Deploy and Run Artifacts': 'develop/deploy-and-run.md'
+        - 'Hot Deploying Artifacts': 'develop/hot-deployment.md'
         - 'Creating a Unit Test Suite': 'develop/creating-unit-test-suite.md'
       - Debugging Integrations:
         - 'Mediation Debugging': 'develop/debugging-mediation.md'
