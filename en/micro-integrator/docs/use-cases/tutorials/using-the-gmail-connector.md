@@ -216,7 +216,7 @@ Let's test the use case by sending a simple client request that invokes the serv
 
 #### Start the Message Broker runtime
 
-To set up Message Broker profile of WSO2 EI 6.6.0:
+Set up the Message Broker profile of WSO2 EI 6.6.0. This is required because the Message Broker profile is used for guaranteed message delivery in this use case.
 
 1. Download [WSO2 EI 6.6.0](https://wso2.com/enterprise-integrator/6.6.0), which includes the Message Broker profile. The path to this folder is referred to as `EI_6.6.0_HOME` throughout this tutorial.
 
