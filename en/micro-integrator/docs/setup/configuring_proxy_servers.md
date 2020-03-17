@@ -28,7 +28,7 @@ sender.secured_proxy_host = "<hostname/ip>"
 sender.secured_proxy_port = <port>
 ```
 
-See the complete list of [configuration parameters](../../../references/config-catalog/#https-transport-non-blocking-mode).
+See the complete list of [configuration parameters](../references/config-catalog.md/#https-transport-non-blocking-mode).
 
 ### For blocking service calls
 
@@ -49,7 +49,7 @@ sender.secured_proxy_host = "<hostname/ip>"
 sender.secured_proxy_port = <port>
 ```
 
-See the complete list of [configuration parameters](../../../references/config-catalog/#https-transport-blocking-mode).
+See the complete list of [configuration parameters](../references/config-catalog/#https-transport-blocking-mode).
 
 !!! Info
     **Bypass the proxy server for blocking calls?**  
