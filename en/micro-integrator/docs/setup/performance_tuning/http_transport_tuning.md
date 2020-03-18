@@ -17,7 +17,7 @@ max_http_connection_per_host_port = 32767
 preserve_http_user_agent = false
 preserve_http_headers = ["Content-Type"]
 ```
-See the [descriptions](../../../references/config-catalog/#http-transport) of these parameters.
+See the [descriptions](../../../references/config-catalog/#https-transport-non-blocking-mode) of these parameters.
 
 <!--
 

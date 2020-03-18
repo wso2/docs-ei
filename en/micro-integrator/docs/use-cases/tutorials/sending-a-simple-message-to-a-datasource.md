@@ -11,8 +11,12 @@ Google spreadsheets, and more. The following sections describe how you can use W
 
 To set up the tools:
 
--  Download the relevant [WSO2 Integration Studio](https://wso2.com/integration/tooling/) based on your operating system.  The path to the extracted/installed folder is referred to as `MI_TOOLING_HOME` throughout this tutorial.
--  Download the [CLI Tool](https://wso2.com/integration/micro-integrator/install/) for monitoring artifact deployments.
+-   Download the relevant [WSO2 Integration Studio](https://wso2.com/integration/tooling/) based on your operating system. The path to the extracted/installed folder is referred to as `MI_TOOLING_HOME` throughout this tutorial.
+-   Optionally, you can set up the **CLI tool** for artifact monitoring. This will later help you get details of the artifacts that you deploy in your Micro Integrator.
+    1.  Go to the [WSO2 Micro Integrator website](https://wso2.com/integration/#). 
+    2.  Click **Download -> Other Resources** and click **CLI Tooling** to download the tool. 
+    3.  Extract the downloaded ZIP file. This will be your `MI_CLI_HOME` directory. 
+    4.  Export the `MI_CLI_HOME/bin` directory path as an environment variable. This allows you to run the tool from any location on your computer using the `mi` command. Read more about the [CLI tool](../../../administer-and-observe/using-the-command-line-interface).
 
 To demonstrate how data services work, we will use a MySQL database as the datasource. Follow the steps given below to set up a MySQL database:
 
@@ -269,351 +273,40 @@ To test the artifacts, deploy the [packaged artifacts](#step-3-package-the-artif
 
 ### Step 5: Testing the data service
 
-Let's use the **CLI Tool** to find the URL of the data service that is deployed in the Micro Integrator:
+Let's test the use case by sending a simple client request that invokes the service.
 
-1.  Open a terminal and navigate to the `CLI_HOME/bin` directory.
-2.  Execute the following command to start the tool:
-    `./mi`
-3.  Execute the following command to find the data services deployed in the server:
-    `./mi proxyservice show`
+#### Get details of deployed artifacts (Optional)
+
+Let's use the **CLI Tool** to find the URL of the data service (that is deployed in the Micro Integrator) to which you send a request. 
+
+!!! Tip
+    Be sure to set up the CLI tool for your work environment as explained in the [first step](#step-1-set-up-the-workspace) of this tutorial.
+
+1.  Open a terminal and execute the following command to start the tool:
+    ```bash
+    mi
+    ```
     
-    Note: Please remember to login to CLI using `./mi remote login` command giving `admin` as both username and 
-    password before executing the above command.
+2.  Log in to the CLI tool. Let's use the server administrator user name and password:
+    ```bash
+    mi remote login admin admin
+    ```
 
-Now, open a command line terminal and enter the following request:
+    You will receive the following message: *Login successful for remote: default!*
+
+3.  Execute the following command to find the data services deployed in the server:
+    ```bash
+    mi dataservice show
+    ```
+
+Read more about [using the CLI tool](../../../administer-and-observe/using-the-command-line-interface).
+
+#### Send the client request
+
+Open a command line terminal and enter the following request:
 
 ```bash
 curl -X GET http://localhost:8290/services/RDBMSDataService.HTTPEndpoint/Employee/3
 ```
 
 You will receive the employee's details in the response.
-
-<!--
-## What you'll build
-
-Let’s try a simple scenario where a patient makes an inquiry specifying
-the doctor's specialization (category) to retrieve a list of doctors
-that match the specialization. The required information is stored in an
-H2 database. We will create a data service in WSO2 Micro Integrator,
-which will expose the information in the database, thereby decoupling
-the client and the database layer in the back end. The client will then
-communicate with the data service hosted in the Micro Integrator to get the required
-information instead of communicating directly with the back end.
-
-**In this tutorial** , we will define a data service in the Micro Integrator to expose the back-end database. A client can then invoke the
-data service to send messages to the database. If you want to use a
-back-end service instead of a database, see the tutorial on [sending a simple message to a service](sending-a-simple-message-to-a-service) .
-
-![](/assets/img/tutorials/119132403/119132408.png)
-
-## Let's get started!
-
-### Step 1: Set up the workspace
-
-To set up the tools:
-
-1.  Go to the product page of WSO2 Micro Integrator, download the product installer and run it to set up the product.
-2.  Select the relevant WSO2 Integration Studio based on your operating system and extract the ZIP file. The path to this folder is referred to as `MI_TOOLING_HOME` throughout this tutorial.
-3.  Download the CLI Tool for monitoring artifact deployments.
-
-To create the H2 database instance:
-
-Let's set up a back-end database for the healthcare service. We will create a database named `DATA_SERV_QSG` in the
-`MI_HOME/samples/data-services/database` directory for this purpose.
-
-1.  Download the `dataServiceSample.zip` file and extract it to a location on your computer. Let's call this location `<Dataservice_Home>` . This
-    contains a DB script for updating the back-end database with the channeling information of the healthcare service.
-2.  Open a terminal, navigate to the `<Dataservice_Home>` directory and execute the following command:
-
-    !!! Tip
-        When executing the below command, replace the `<PATH_TO_EI_HOME>` with the folder path of your WSO2 Micro Integrator distribution. For example, if your Micro Integrator distribution
-        (i.e., `MI_HOME` ) is located in the `/Users/Documents/` directory, execute the
-        following command:
-        `ant -Ddshome=/Users/Documents/wso2ei-6.x.x`
-    
-        Also, you need to install [Apache Ant](https://ant.apache.org/) to
-        execute this command.
-    
-        ```java
-        ant -Ddshome=<PATH_TO_MI_HOME>
-        ```
-
-The database is now updated with information on all available doctors in the healthcare service.
-
-### Step 2: Develop the integration artifacts
-
-Follow the steps given below to start the Micro Integrator and create the data service.
-
-1.  To start the Micro Integrator, open a terminal, navigate to the `MI_HOME/bin/` directory, and execute one of the following commands:
-
-    ```bash tab='On Linux/MacOS/CentOS'
-    sh micro-integrator.sh
-    ```
-
-    ```bash tab='On Windows'
-    micro-integrator.bat
-    ```
-
-1.  In your Web browser, navigate to the ESB profile's management
-    console using the following URL:
-    `                     https://localhost:9443/carbon                    /         `
-    .
-2.  Log into the management console using the following credentials:
-    -   Username: `            admin           `
-    -   Password: `            admin           `
-
-### Exposing a datasource through a data service
-
-Now, let's start creating the data service using the management console.
-
-1.  On the **Main** tab, click **Create** under **Data Service** .
-
-2.  In the **Create Data Service** screen, enter
-    `           DOCTORS_DataService          ` as the data service name,
-    and click **Next** .
-
-3.  Click **Add New Datasource** and enter the following details:
-
-    | Field           | Value                                                                                      |
-    |-----------------|--------------------------------------------------------------------------------------------|
-    | DatasourceID    | `               default              `                                                     |
-    | Datasourcetype  | Select **RDBMS** and **default** .                                                         |
-    | Database Engine | `               H2              `                                                          |
-    | Driver Class    | `               org.h2.Driver              `                                               |
-    | URL             | `               jdbc:h2:file:./samples/data-services/database/DATA_SERV_QSG              ` |
-    | User Name       | `               wso2ds              `                                                      |
-    | Password        | `               wso2ds              `                                                      |
-
-4.  Click **Save** and then click **Next** to start defining a query.
-
-5.  Now, let's start writing a query to get data from the datasource.  
-    First, you need to define a query to get the details of all the
-    available doctors from the database.
-
-    1.  Click **Add New Query** to open the **Add New Query** screen.
-    2.  Enter the following values:  
-
-        <table>
-        <thead>
-        <tr class="header">
-        <th>Field</th>
-        <th>Value</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr class="odd">
-        <td><strong>Query ID</strong></td>
-        <td><code>                 select_all_DOCTORS_query                </code></td>
-        </tr>
-        <tr class="even">
-        <td><strong>Datasource</strong></td>
-        <td><code>                 default                </code></td>
-        </tr>
-        <tr class="odd">
-        <td><strong>SQL</strong></td>
-        <td><div class="content-wrapper">
-        <div class="code panel pdl" style="border-width: 1px;">
-        <div class="codeContent panelContent pdl">
-        <div class="sourceCode" id="cb1" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence" style="brush: java; gutter: false; theme: Confluence"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb1-1"><a href="#cb1-1"></a>SELECT NAME, HOSPITAL, SPECIALITY, AVAILABILITY, CHARGE FROM PUBLIC.<span class="fu">DOCTORS</span></span></code></pre></div>
-        </div>
-        </div>
-        </div></td>
-        </tr>
-        </tbody>
-        </table>
-
-    3.  Click ****Generate Response**** to automatically create mappings
-        for the fields.
-
-    4.  Under the **Result (Output Mapping)** section, change the values
-        of the following fields.  
-
-        |                        |                                                      |
-        |------------------------|------------------------------------------------------|
-        | **Grouped by element** | `                 DOCTORSCollection                ` |
-        | **Row name**           | `                 DOCTOR                `            |
-
-        The output mapping will be as shown below.  
-        ![](/assets/img/tutorials/119132403/119132405.png){width="800"
-        height="338"}
-
-                !!! info
-        
-                Output mapping specifies how the data that is fetched from your
-                query will be shown in the response. Note that, by default, the
-                output type is **XML** .
-        
-
-6.  Click **Save** .
-7.  Now, let's create another query that can get the doctor information
-    based on specialization.
-    1.  Click **Add New Query** to open the **Add New Query** screen.
-    2.  Enter the following values:
-
-        <table>
-        <thead>
-        <tr class="header">
-        <th>Field</th>
-        <th>Value</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr class="odd">
-        <td><strong>Query ID</strong></td>
-        <td><code>                 select_DOCTORS_from_SPECIALITY_query                </code></td>
-        </tr>
-        <tr class="even">
-        <td><strong>Datasource</strong></td>
-        <td><code>                 default                </code></td>
-        </tr>
-        <tr class="odd">
-        <td><strong>SQL</strong></td>
-        <td><div class="content-wrapper">
-        <div class="code panel pdl" style="border-width: 1px;">
-        <div class="codeContent panelContent pdl">
-        <div class="sourceCode" id="cb1" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence" style="brush: java; gutter: false; theme: Confluence"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb1-1"><a href="#cb1-1"></a>SELECT NAME, HOSPITAL, SPECIALITY, AVAILABILITY, CHARGE FROM PUBLIC.<span class="fu">DOCTORS</span> WHERE SPECIALITY=?</span></code></pre></div>
-        </div>
-        </div>
-        </div></td>
-        </tr>
-        </tbody>
-        </table>
-
-    3.  Click **Generate Input Mappings** and a new input mapping record
-        will be created.
-
-    4.  Edit the record and change the **Mapping Name** to SPECIALITY,
-        and click **Save** . You will now have the following input
-        mapping:  
-        ![](/assets/img/tutorials/119132403/119132406.png){width="842"
-        height="109"}
-
-                !!! info
-        
-                Input mappings allow you to add parameters to a query so that
-                you can set the parameter value when executing the
-                query. According to the above definition, you need to provide
-                the SPECIALTY as an input in order to retrieve the data
-                corresponding to the SPECIALTY.
-        
-
-    5.  Click **Main Configuration** , to go back to the main
-        configuration after adding the input mapping.  
-
-    6.  Click **Generate Response** to automatically create mappings for
-        the fields.
-
-    7.  Under the **Result (Output Mapping)** section, change the values
-        of the following fields  
-
-        |                        |                                               |
-        |------------------------|-----------------------------------------------|
-        | **Grouped by element** | `                 DOCTORList                ` |
-        | **Row name**           | `                 DOCTOR                `     |
-
-        The output mapping will be as shown below.  
-        ![](/assets/img/tutorials/119132403/119132407.png){width="800"
-        height="363"}  
-
-                !!! info
-        
-                Output mapping specifies how the data that is fetched from your
-                query is shown in the response. Note that, by default, the
-                output type is **XML** .
-        
-
-8.  Click **Save** and then click **Next** to open the **Operations**
-    screen.  
-    Since we are exposing the data as a REST resource, we do not need an
-    operation. An operation is needed only if you are exposing the data
-    as a SOAP operation.
-9.  Click Next to open the **Resources** screen.
-    1.  Click **Add New Resources** to open the **Add Resources**
-        screen.  
-        Let's first create a resource to invoke the
-        `             select_all_DOCTORS_query            ` :  
-
-        | Field               | Value                                                       |
-        |---------------------|-------------------------------------------------------------|
-        | **Resource Path**   | `                 /getAllDoctors                `           |
-        | **Resource Method** | `                 GET                `                      |
-        | **Query ID**        | `                 select_all_DOCTORS_query                ` |
-
-    2.  Click **Save** to save the resource.
-
-10. Now, let's create another resource to invoke the
-    `          select_DOCTORS_from_SPECIALITY_query         ` .
-    1.  Click **Add New Resources** to open the **Add Resources** screen
-        and enter the following details:
-
-        | Field               | Value                                                                   |
-        |---------------------|-------------------------------------------------------------------------|
-        | **Resource Path**   | `                 /getDoctors                `                          |
-        | **Resource Method** | `                 GET                `                                  |
-        | **Query ID**        | `                 select_DOCTORS_from_SPECIALITY_query                ` |
-
-    2.  Click **Save** to save the resource.
-
-11. Click **Finish** after you have defined the resources to complete
-    the data service creation process. You are now taken to the
-    **Deployed Services** screen, which shows all the data services
-    deployed on the server including the one you created.  
-    ![created new data service
-    group](/assets/img/tutorials/119132403/119132404.png "created new data service group"){width="1149"
-    height="411"}  
-
-### Sending requests to the ESB
-
-Let's send a request to the data service, which is now deployed in the
-ESB profile of WSO2 EI. You will need a REST client like curl for this.
-
-1.  Open a command line terminal and enter the following request to get
-    the information of all the doctors specializing under surgery.
-
-    ``` java
-        curl -v http://localhost:8280/services/DOCTORS_DataService/getDoctors?SPECIALITY=surgery
-    ```
-
-        !!! info
-    
-        You can use the specialties listed below in your request too:
-    
-        -   `             cardiology            `
-    
-        -   `             gynaecology            `
-    
-        -   `             ent            `
-    
-        -   `             paediatric            `
-    
-
-2.  You see the following response message from data service with a list
-    of all available doctors and relevant details.
-
-    ``` xml
-        <DOCTORSLIST xmlns="http://ws.wso2.org/dataservice">
-        <DOCTOR>
-            <NAME>thomas collins</NAME>
-            <HOSPITAL>grand oak community hospital</HOSPITAL>
-            <SPECIALITY>surgery</SPECIALITY>
-            <AVAILABILITY>9.00 a.m - 11.00 a.m</AVAILABILITY>
-            <CHARGE>7000</CHARGE>
-        </DOCTOR>
-        <DOCTOR>
-            <NAME>anne clement</NAME>
-            <HOSPITAL>clemency medical center</HOSPITAL>
-            <SPECIALITY>surgery</SPECIALITY>
-            <AVAILABILITY>8.00 a.m - 10.00 a.m</AVAILABILITY>
-            <CHARGE>12000</CHARGE>
-        </DOCTOR>
-        <DOCTOR>
-            <NAME>seth mears</NAME>
-            <HOSPITAL>pine valley community hospital</HOSPITAL>
-            <SPECIALITY>surgery</SPECIALITY>
-            <AVAILABILITY>3.00 p.m - 5.00 p.m</AVAILABILITY>
-            <CHARGE>8000</CHARGE>
-        </DOCTOR>
-        </DOCTORSLIST>
-    ```
-
--->
