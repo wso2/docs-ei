@@ -10,8 +10,13 @@ The result of the query should be as follows when you query to view the records
 
 ### Step 1: Set up the workspace
 
--  Download the relevant [WSO2 Integration Studio](https://wso2.com/integration/tooling/) based on your operating system.  The path to the extracted/installed folder is referred to as `MI_TOOLING_HOME` throughout this tutorial.
--  Download the [CLI Tool](https://wso2.com/integration/micro-integrator/install/) for monitoring artifact deployments.
+- Download the relevant [WSO2 Integration Studio](https://wso2.com/integration/tooling/) based on your operating system. The path to the extracted/installed folder is referred to as `MI_TOOLING_HOME` throughout this tutorial.
+- Optionally, you can set up the **CLI tool** for artifact monitoring. This will later help you get details of the artifacts that you deploy in your Micro Integrator.
+
+    1.  Go to the [WSO2 Micro Integrator website](https://wso2.com/integration/#). 
+    2.  Click **Download -> Other Resources** and click **CLI Tooling** to download the tool. 
+    3.  Extract the downloaded ZIP file. This will be your `MI_CLI_HOME` directory. 
+    4.  Export the `MI_CLI_HOME/bin` directory path as an environment variable. This allows you to run the tool from any location on your computer using the `mi` command. Read more about the [CLI tool](../../../administer-and-observe/using-the-command-line-interface).
 
 Let's setup a MySQL database:
 
@@ -257,6 +262,32 @@ To test the artifacts, deploy the [packaged artifacts](#step-3-package-the-artif
 4.  Click **Finish**. The artifacts will be deployed in the embedded Micro Integrator and the server will start. See the startup log in the **Console** tab.
 
 ### Step 5: Test the use case
+
+#### Get details of deployed artifacts (Optional)
+
+Let's use the **CLI Tool** to find information of the artifacts you deployed in the Micro integrator.
+
+!!! Tip
+    Be sure to set up the CLI tool for your work environment as explained in the [first step](#step-1-set-up-the-workspace) of this tutorial.
+
+1.  Open a terminal and execute the following command to start the tool:
+    ```bash
+    mi
+    ```
+    
+2.  Log in to the CLI tool. Let's use the server administrator user name and password:
+    ```bash
+    mi remote login admin admin
+    ```
+
+    You will receive the following message: *Login successful for remote: default!*
+
+3.  Execute the following command to find the sequences deployed in the server:
+    ```bash
+    mi sequence show
+    ```
+
+Similarly, you can get details of other integration artifacts deployed in the server. Read more about [using the CLI tool](../../../administer-and-observe/using-the-command-line-interface).
 
 #### Configure the Micro Integrator
 

@@ -307,7 +307,7 @@ Right-click the composite application project and click **Export Project Artifac
 
 #### Get details of deployed artifacts (Optional)
 
-Let's use the **CLI Tool** to find the URL of the REST API that is deployed in the Micro Integrator. 
+Let's use the **CLI Tool** to find the URL of the REST API (that is deployed in the Micro integrator) to which you will send a request.
 
 !!! Tip
     Be sure to set up the CLI tool for your work environment as explained in the [first step](#step-1-set-up-the-workspace) of this tutorial.
@@ -322,10 +322,7 @@ Let's use the **CLI Tool** to find the URL of the REST API that is deployed in t
     mi remote login admin admin
     ```
 
-    You will receive the following message: 
-    ```bash
-    Login successful for remote: default!
-    ```
+    You will receive the following message: *Login successful for remote: default!*
 
 3.  Execute the following command to find the APIs deployed in the server:
     ```bash
@@ -333,12 +330,11 @@ Let's use the **CLI Tool** to find the URL of the REST API that is deployed in t
     ```
 
     You will receive the following information:
-    ```bash
-    NAME            URL                               
-    HealthcareAPI   http://localhost:8290/healthcare  
-    ```
 
-Read more about [using the CLI tool](../../../administer-and-observe/using-the-command-line-interface).
+    *NAME : HealthcareAPI*            
+    *URL  : http://localhost:8290/healthcare* 
+
+Similarly, you can get details of message stores, message processors, and other artifacts deployed in the server. Read more about [using the CLI tool](../../../administer-and-observe/using-the-command-line-interface).
 
 #### Send the client request
 

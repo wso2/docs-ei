@@ -299,10 +299,7 @@ Let's use the **CLI Tool** to find the URL of the REST API (that is deployed in 
     mi remote login admin admin
     ```
 
-    You will receive the following message: 
-    ```bash
-    Login successful for remote: default!
-    ```
+    You will receive the following message: *Login successful for remote: default!*
 
 3.  Execute the following command to find the APIs deployed in the server:
     ```bash
@@ -310,10 +307,9 @@ Let's use the **CLI Tool** to find the URL of the REST API (that is deployed in 
     ```
 
     You will receive the following information:
-    ```bash
-    NAME            URL                               
-    HealthcareAPI   http://localhost:8290/healthcare  
-    ```
+
+    *NAME : HealthcareAPI*            
+    *URL  : http://localhost:8290/healthcare* 
 
 Similarly, you can get details of Connectors as well as other artifacts deployed in the server. Read more about [using the CLI tool](../../../administer-and-observe/using-the-command-line-interface).
 
