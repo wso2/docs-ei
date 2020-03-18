@@ -18,7 +18,7 @@
 site_name: WSO2 Enterprise Integrator Documentation
 site_description: Documentation for WSO2 Enterprise Integrator
 site_author: WSO2
-site_url: https://ei.docs.wso2.com/en/latest/micro-integrator/
+site_url: https://ei.docs.wso2.com/en/latest/
 
 # Repository
 repo_name: wso2/docs-ei
@@ -153,7 +153,7 @@ nav:
             - 'Kafka Inbound Endpoint': 'use-cases/examples/inbound_endpoint_examples/inbound-endpoint-kafka.md'
             - 'Secured WebSocket Inbound Endpoint': 'use-cases/examples/inbound_endpoint_examples/inbound-endpoint-secured-websocket.md'
             - 'Using Inbound Endpoints with Registry': 'use-cases/examples/inbound_endpoint_examples/inbound-endpoint-with-registry.md'
-          - Scheduled Tasks: 
+          - Scheduled Tasks:
             - 'Task Scheduling using a Simple Trigger': 'use-cases/examples/scheduled-tasks/task-scheduling-simple-trigger.md'
             - 'Injecting Messages to a RESTful Endpoint': 'use-cases/examples/scheduled-tasks/injecting-messages-to-rest-endpoint.md'
           - 'Local Registry Entries': 'use-cases/examples/registry_examples/local-registry-entries.md'
@@ -313,6 +313,7 @@ nav:
         - 'Generating Docker Images': 'develop/generate-docker-image.md'
       - Testing Integrations:
         - 'Deploy and Run Artifacts': 'develop/deploy-and-run.md'
+        - 'Hot Deploying Artifacts': 'develop/hot-deployment.md'
         - 'Creating a Unit Test Suite': 'develop/creating-unit-test-suite.md'
       - Debugging Integrations:
         - 'Mediation Debugging': 'develop/debugging-mediation.md'
@@ -349,7 +350,7 @@ nav:
     - References:
       - 'Product Configurations': 'references/config-catalog.md'
       - Synapse Configurations:
-        - Mediator Catalog: 
+        - Mediator Catalog:
           - 'About Mediators': 'references/mediators/about-mediators.md'
           - 'Aggregate Mediators' : 'references/mediators/aggregate-Mediator.md'
           - 'Builder Mediator' : 'references/mediators/builder-Mediator.md'

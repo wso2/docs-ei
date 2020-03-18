@@ -131,7 +131,7 @@ If you already have **packaged integration artifacts** in a CAR file, you can ma
 
     ```bash
     FROM <docker_image_name>:1.1.0
-    COPY <directoy_path>/<capp_name> /home/wso2carbon/wso2mi/repository/deployment/server/carbonapps
+    COPY <directoy_path>/<capp_name> $WSO2_SERVER_HOME/repository/deployment/server/carbonapps
     ```
     The information specified in the Docker file is as follows:
 
@@ -166,13 +166,14 @@ If you already have **packaged integration artifacts** in a CAR file, you can ma
     <tr class="even">
     <td>COPY</td>
     <td><div class="content-wrapper">
-    <p>The 'COPY' tag in the docker file specifies the directory path to your composite application, followed by the location in your Docker instance to which the composite application should be copied.</p>
+    <p>The 'COPY' tag in the docker file specifies the directory path to your composite application, followed by the location in your Docker instance to which the composite application should be copied. 
+    The location of MI_HOME can be referred to as 'WSO2_SERVER_HOME' since this is exposed as an environment variable from the base image.</p>
     <div class="code panel pdl" style="border-width: 1px;">
     <div class="codeHeader panelHeader pdl" style="border-bottom-width: 1px;">
     <strong>Example 1</strong>
     </div>
     <div class="codeContent panelContent pdl">
-    <div class="sourceCode" id="cb3" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence" style="brush: java; gutter: false; theme: Confluence"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb3-1"><a href="#cb3-1"></a>COPY carbonapps /home/wso2carbon/wso2mi/repository/deployment/server/carbonapps</span></code></pre></div>
+    <div class="sourceCode" id="cb3" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence" style="brush: java; gutter: false; theme: Confluence"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb3-1"><a href="#cb3-1"></a>COPY carbonapps $WSO2_SERVER_HOME/repository/deployment/server/carbonapps</span></code></pre></div>
     </div>
     </div>
     <p>If you have multiple composite application that you want to deploy in Docker using a single Docker image, add another entry to the Dockerfile. For example:</p>
@@ -181,8 +182,8 @@ If you already have **packaged integration artifacts** in a CAR file, you can ma
     <strong>Example 2</strong>
     </div>
     <div class="codeContent panelContent pdl">
-    <div class="sourceCode" id="cb4" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence" style="brush: java; gutter: false; theme: Confluence"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb4-1"><a href="#cb4-1"></a>COPY carbonapps /home/wso2carbon/wso2mi/repository/deployment/server/carbonapps</span>
-    <span id="cb4-2"><a href="#cb4-2"></a>COPY &lt;sample_carbon_app&gt; /home/wso2carbon/wso2mi/repository/deployment/server/carbonapps</span></code></pre></div>
+    <div class="sourceCode" id="cb4" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence" style="brush: java; gutter: false; theme: Confluence"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb4-1"><a href="#cb4-1"></a>COPY carbonapps $WSO2_SERVER_HOME/repository/deployment/server/carbonapps</span>
+    <span id="cb4-2"><a href="#cb4-2"></a>COPY &lt;sample_carbon_app&gt; $WSO2_SERVER_HOME/repository/deployment/server/carbonapps</span></code></pre></div>
     </div>
     </div>
     </div></td>
