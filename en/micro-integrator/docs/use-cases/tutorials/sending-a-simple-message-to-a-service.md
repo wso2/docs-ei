@@ -10,8 +10,13 @@ To implement this use case, you will create a REST API resource and other artifa
 
 ### Step 1: Set up the workspace
 
--  Download the relevant [WSO2 Integration Studio](https://wso2.com/integration/tooling/) based on your operating system.  The path to the extracted/installed folder is referred to as `MI_TOOLING_HOME` throughout this tutorial.
--  Download the [CLI Tool](https://wso2.com/integration/micro-integrator/install/) for monitoring artifact deployments.
+- Download the relevant [WSO2 Integration Studio](https://wso2.com/integration/tooling/) based on your operating system. The path to the extracted/installed folder is referred to as `MI_TOOLING_HOME` throughout this tutorial.
+- Optionally, you can set up the **CLI tool** for artifact monitoring. This will later help you get details of the artifacts that you deploy in your Micro Integrator.
+
+    1.  Go to the [WSO2 Micro Integrator website](https://wso2.com/integration/#). 
+    2.  Click **Download -> Other Resources** and click **CLI Tooling** to download the tool. 
+    3.  Extract the downloaded ZIP file. This will be your `MI_CLI_HOME` directory. 
+    4.  Export the `MI_CLI_HOME/bin` directory path as an environment variable. This allows you to run the tool from any location on your computer using the `mi` command. Read more about the [CLI tool](../../../administer-and-observe/using-the-command-line-interface).
 
 ### Step 2: Develop the integration artifacts
 
@@ -267,71 +272,6 @@ Package the artifacts in your composite application project (SampleServicesCompo
 
 3.  Save the project.
 
-<!--
-### Packaging the artifacts
-
-You need to Package the `         QueryDoctorEP        ` endpoint and
-the `         HealthcareAP        ` I resource into the [Composite
-Application (C-App)
-project](https://docs.wso2.com/display/EI600/Key+Concepts#KeyConcepts-CompositeApplicationproject)
-named `         SampleServicesCompositeApplication        ` .
-
-!!! note
-
-The `         SampleCApp        ` Composite Application project is
-generated and is listed under SampleApp project in the Project Explorer.
-The **Composite Application Project POM Editor** can be accessed by
-selecting the `         pom.xml        ` file listed under
-SampleServicesCompositeApplication project.
-
-
-Follow the steps given below to create the CAR file using one of the
-following options:
-
--   [**C-App project**](#d315a56d2d1a4fb09994e4b7feae2edb)
--   [**pom.xml file**](#06b881fb4c044882b615cbab73367095)
-
-1.  Right-click the C-App project and select **Export Composite
-    Application Project** from the pop-up menu.  
-    Example:  
-    ![](/assets/img/tutorials/119132413/119132419.png){width="500" height="332"}
-2.  Define the location you want to generate the CAR file by clicking
-    the Browse next to **Export Destination** and click **Next** .
-3.  Select the artifact that needs to be included into the CAR file and
-    click **Finish** .
-
-        !!! tip
-    
-        **Tip** : When you create a CAR file with artifacts, ensure that
-        each artifact name is the same as the relevant artifact file name.
-    
-
-Now you see the `             .car            ` file created in the
-defined location.
-
-1.  Open the `              pom.xml             ` file of the C-App
-    project in the Composite Application Project POM Editor.
-2.  Select the artifact that needs to be included into the CAR file.
-3.  Click ![](/assets/img/tutorials/119132413/119132433.png){width="30"} and
-    define the location you want to create the CAR file.
-
-Now you see the .car file created in the defined location.
-
-You have now exported all your project's artifacts into a single CAR
-file. Next, you need to deploy the Composite Application in the server.
-
-!!! note
-
-Note
-
--   In a CAR file, if a particular artifact name is different from the
-    relevant artifact file name, re-deploying the CAR file fails with an
-    error.
--   If a CAR file has one or more artifacts that are named differently
-    from the relevant artifact file name, you are unable to remove those
-    artifacts from memory when you delete the CAR file.
--->
-
 ### Step 4: Build and run the artifacts
 
 To test the artifacts, deploy the [packaged artifacts](#step-3-package-the-artifacts) in the embedded Micro Integrator:
@@ -354,20 +294,40 @@ Let's test the use case by sending a simple client request that invokes the serv
     java -jar Hospital-Service-2.0.0-EI7.jar
     ```
 
+#### Get details of deployed artifacts (Optional)
+
+Let's use the **CLI Tool** to find the URL of the REST API (that is deployed in the Micro integrator) to which you will send a request.
+
+!!! Tip
+    Be sure to set up the CLI tool for your work environment as explained in the [first step](#step-1-set-up-the-workspace) of this tutorial.
+
+1.  Open a terminal and execute the following command to start the tool:
+    ```bash
+    mi
+    ```
+    
+2.  Log in to the CLI tool. Let's use the server administrator user name and password:
+    ```bash
+    mi remote login admin admin
+    ```
+
+    You will receive the following message: *Login successful for remote: default!*
+
+3.  Execute the following command to find the APIs deployed in the server:
+    ```bash
+    mi api show
+    ```
+
+    You will receive the following information:
+
+    *NAME : HealthcareAPI*            
+    *URL  : http://localhost:8290/healthcare* 
+
+Similarly, you can get details of other artifacts deployed in the server. Read more about [using the CLI tool](../../../administer-and-observe/using-the-command-line-interface).
+
 #### Send the client request
 
-Let's use the **CLI Tool** to find the URL of the REST API that is deployed in the Micro Integrator:
-
-1.  Open a terminal and navigate to the `CLI_HOME/bin` directory.
-2.  Execute the following command to start the tool:
-    `./mi`
-3.  Execute the following command to find the APIs deployed in the server:
-    `mi api show`
-    
-    Note: Please remember to login to CLI using `mi remote login` command giving `admin` as both username and 
-    password before executing the above command.
-
-Now, open a command line terminal and enter the following request: 
+Open a command line terminal and enter the following request: 
 
 ```bash
 curl -v http://localhost:8290/healthcare/querydoctor/surgery

@@ -8,17 +8,21 @@ In this sample scenario, you will use an **Inbound Endpoint** to expose an alrea
 
 ### Step 1: Set up the workspace
 
-To set up the tools:
+Set up WSO2 Integration Studio as follows:
 
--   Go to the [product page](https://wso2.com/integration/) of **WSO2 Micro Integrator**, download the product installer and run it to set up the product.
--   Download the relevant [WSO2 Integration Studio](https://wso2.com/integration/tooling/) based on your operating system. The path to the extracted/installed folder is referred to as `MI_TOOLING_HOME` throughout this tutorial.
--   Download the CLI Tool for monitoring artifact deployments.
+1.  Download the relevant [WSO2 Integration Studio](https://wso2.com/integration/tooling/) based on your operating system. The path to the extracted/installed folder is referred to as `MI_TOOLING_HOME` throughout this tutorial.
+2.  If you did not try the [Sending a Simple Message to a Service](../sending-a-simple-message-to-a-service) tutorial yet:
 
-To set up the previous artifacts:
+    1.  Open WSO2 Integration Studio and go to **File -> Import**. 
+    2.  Select **Existing WSO2 Projects into workspace** under the **WSO2** category, click **Next**, and then upload the [pre-packaged
+project](https://github.com/wso2-docs/WSO2_EI/blob/master/Integration-Tutorial-Artifacts/SimpleMessageToServiceTutorial.zip).
 
-1.  If you did not try the [Sending a Simple Message to a Service](../sending-a-simple-message-to-a-service) tutorial yet, open WSO2 Integration Studio, click **File**, and click **Import**. Next, expand the **WSO2** category and select **Existing WSO2 Projects into workspace**, click **Next** and upload the [pre-packaged
-project](https://github.com/wso2-docs/WSO2_EI/blob/master/Integration-Tutorial-Artifacts/SimpleMessageToServiceTutorial.zip). 
-2.  Download the JAR file of the back-end service from [here](https://github.com/wso2-docs/WSO2_EI/blob/master/Back-End-Service/Hospital-Service-2.0.0-EI7.jar).
+Optionally, you can set up the **CLI tool** for artifact monitoring. This will later help you get details of the artifacts that you deploy in your Micro Integrator.
+
+1.  Go to the [WSO2 Micro Integrator website](https://wso2.com/integration/#). 
+2.  Click **Download -> Other Resources** and click **CLI Tooling** to download the tool. 
+3.  Extract the downloaded ZIP file. This will be your `MI_CLI_HOME` directory. 
+4.  Export the `MI_CLI_HOME/bin` directory path as an environment variable. This allows you to run the tool from any location on your computer using the `mi` command. Read more about the [CLI tool](../../../administer-and-observe/using-the-command-line-interface).
 
 ### Step 2: Develop the Inbound Endpoint
 
@@ -107,23 +111,64 @@ Let's test the use case by sending a simple client request that invokes the serv
 
 #### Start the backend service
 
-First, start the back-end service.
+1. Download the JAR file of the back-end service from [here](https://github.com/wso2-docs/WSO2_EI/blob/master/Back-End-Service/Hospital-Service-2.0.0-EI7.jar).
+2. Open a terminal, navigate to the location where your saved the [back-end service](#step-1-set-up-the-workspace).
+3. Execute the following command to start the service:
+
+    ```bash
+    java -jar Hospital-Service-2.0.0-EI7.jar
+    ```
+
+#### Get details of deployed artifacts (Optional)
+
+Let's use the **CLI Tool** to find details of the inbound endpoint and REST API. 
+
+!!! Tip
+    Be sure to set up the CLI tool for your work environment as explained in the [first step](#step-1-set-up-the-workspace) of this tutorial.
+
+1.  Open a terminal and execute the following command to start the tool:
+    ```bash
+    mi
+    ```
+    
+2.  Log in to the CLI tool. Let's use the server administrator user name and password:
+    ```bash
+    mi remote login admin admin
+    ```
+
+    You will receive the following message: *Login successful for remote: default!*
+
+3.  Execute the following commands:
+
+    -   To find the Inbound Endpoint artifacts deployed in the server:
+        ```bash
+        mi inboundendpoint show
+        ```
+
+        You will receive the following information:
+
+        *Name : QueryDoctorInboundEndpoint*                       
+        *Type : http* 
+
+    -   To find the REST API deployed in the server:
+        ```bash
+        mi api show
+        ```
+
+        You will receive the following information:
+
+        *NAME : HealthcareAPI*            
+        *URL  : http://localhost:8290/healthcare* 
+
+Similarly, you can get details of other artifacts deployed in the server. Read more about [using the CLI tool](../../../administer-and-observe/using-the-command-line-interface).
 
 #### Send the client request
 
-Let's use the **CLI Tool** to find the URL of the REST API that is deployed in the Micro Integrator:
-
-1.  Open a terminal and navigate to the `CLI_HOME` directory.
-2.  Execute the following command to start the tool:
-    `./mi`
-3.  Execute the following command to find the APIs deployed in the server:
-    `mi show api`
-
-Let's send a message to the **healthcare** REST API on the 8285 port.
+Let's send a message to the **healthcare** REST API (through the inbound endpoint) on port 8285.
 
 1.  Open a command line terminal and execute the following command:
 
-    ```
+    ```bash
     curl -v http://localhost:8285/healthcare/querydoctor/surgery
     ```
 
