@@ -35,9 +35,7 @@ To understand how an active-active cluster processes aggregations when aggregati
  To learn more about Siddhi queries, see [Siddhi Query Guide](https://siddhi.io/en/v4.x/docs/query-guide/).
 
 ```
-
 define stream TradeStream (symbol string, price double, quantity long, ;timestamp long);
-
 @store(type='rdbms',jdbc.url="jdbc:mysql://localhost:3306/TestDB", username="root", password="root" , jdbc.driver.name="com.mysql.jdbc.Driver")
 @PartitionById(enable='true')
 define aggregation TradeAggregation
