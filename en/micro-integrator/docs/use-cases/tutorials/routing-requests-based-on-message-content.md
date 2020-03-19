@@ -427,9 +427,9 @@ Let's send a request to the API resource to make a reservation. You can use the 
     !!! Tip
         If you don't see the <b>HTTP Client</b> pane, go to <b>Window -> Show View - Other</b> and select <b>HTTP Client</b> to enable the client pane.
 
-    <img src="../../../assets/img/tutorials/119132155/http4e-client-empty.png" width="800">
+    <img src="../../assets/img/tutorials/119132155/http4e-client-empty.png" width="800">
 
-2. Enter the request information as given below and click the <b>Send</b> icon (<img src="../../../assets/img/tutorials/119132155/play-head-icon.png" width="20">).
+2. Enter the request information as given below and click the <b>Send</b> icon (<img src="../../assets/img/tutorials/119132155/play-head-icon.png" width="20">).
     
     <table>
         <tr>
@@ -483,7 +483,7 @@ Let's send a request to the API resource to make a reservation. You can use the 
         </tr>
      </table>
      
-     <img src="../../../assets/img/tutorials/119132155/http4e-client.png" width="800">
+     <img src="../../assets/img/tutorials/119132155/http4e-client.png" width="800">
 
 If you want to send the client request from your terminal:
 
