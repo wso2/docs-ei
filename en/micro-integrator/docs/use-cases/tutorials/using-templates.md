@@ -11,17 +11,19 @@ on how to work with templates using WSO2 Integration Studio.
 
 ### Step 1: Set up the workspace
 
-To set up the tools:
+Set up WSO2 Integration Studio as follows:
 
--   Go to the [product page](https://wso2.com/integration/) of **WSO2 Micro Integrator**, download the product installer and run it to set up the product.
--   Download the relevant [WSO2 Integration Studio](https://wso2.com/integration/tooling/) based on your operating system. The path to the extracted/installed folder is referred to as `MI_TOOLING_HOME` throughout this tutorial.
--   Download the CLI Tool for monitoring artifact deployments.
+1.  Download the relevant [WSO2 Integration Studio](https://wso2.com/integration/tooling/) based on your operating system. The path to the extracted/installed folder is referred to as `MI_TOOLING_HOME` throughout this tutorial.
+2.  If you did not try the [Exposing Several Services as a Single Service](exposing-several-services-as-a-single-service.md) tutorial yet:
+    1.  Open WSO2 Integration Studio and go to **File -> Import**. 
+    2.  Select **Existing WSO2 Projects into workspace** under the **WSO2** category, click **Next**, and then upload the [pre-packaged project](https://github.com/wso2-docs/WSO2_EI/blob/master/Integration-Tutorial-Artifacts/ExposingSeveralServicesTutorial.zip).
 
-To set up the previous artifacts:
+Optionally, you can set up the **CLI tool** for artifact monitoring. This will later help you get details of the artifacts that you deploy in your Micro Integrator.
 
-1.  If you did not try the [Sending a Simple Message to a Service](../sending-a-simple-message-to-a-service) tutorial yet, open WSO2 Integration Studio, click **File**, and click **Import**. Next, expand the **WSO2** category and select **Existing WSO2 Projects into workspace**, click **Next** and upload the [pre-packaged
-project](https://github.com/wso2-docs/WSO2_EI/blob/master/Integration-Tutorial-Artifacts/SimpleMessageToServiceTutorial.zip). 
-2.  Download the JAR file of the back-end service from [here](https://github.com/wso2-docs/WSO2_EI/blob/master/Back-End-Service/Hospital-Service-2.0.0.jar).
+1.  Go to the [WSO2 Micro Integrator website](https://wso2.com/integration/#). 
+2.  Click **Download -> Other Resources** and click **CLI Tooling** to download the tool. 
+3.  Extract the downloaded ZIP file. This will be your `MI_CLI_HOME` directory. 
+4.  Export the `MI_CLI_HOME/bin` directory path as an environment variable. This allows you to run the tool from any location on your computer using the `mi` command. Read more about the [CLI tool](../../../administer-and-observe/using-the-command-line-interface).
 
 ### Step 2: Develop the integration artifacts
 
@@ -224,23 +226,82 @@ To test the artifacts, deploy the [packaged artifacts](#step-3-package-the-artif
 2.  In the dialog that opens, select the composite application project that you want to deploy.  
 4.  Click **Finish**. The artifacts will be deployed in the embedded Micro Integrator and the server will start. See the startup log in the **Console** tab. 
 
+
 ### Step 5: Testing the use case
 
-Let's use the **CLI Tool** to find the URL of the REST API that is deployed in the Micro Integrator:
+Let's test the use case by sending a simple client request that invokes the service.
 
-1.  Open a terminal and navigate to the `CLI_HOME` directory.
-2.  Execute the following command to start the tool:
-    `./mi`
+#### Start the backend service
+
+1. Download the JAR file of the back-end service from [here](https://github.com/wso2-docs/WSO2_EI/blob/master/Back-End-Service/Hospital-Service-2.0.0-EI7.jar).
+2. Open a terminal, navigate to the location where your saved the [back-end service](#step-1-set-up-the-workspace).
+3. Execute the following command to start the service:
+
+    ```bash
+    java -jar Hospital-Service-2.0.0-EI7.jar
+    ```
+
+#### Get details of deployed artifacts (Optional)
+
+Let's use the **CLI Tool** to find the URL of the REST API (that is deployed in the Micro integrator) to which you will send a request.
+
+!!! Tip
+    Be sure to set up the CLI tool for your work environment as explained in the [first step](#step-1-set-up-the-workspace) of this tutorial.
+
+1.  Open a terminal and execute the following command to start the tool:
+    ```bash
+    mi
+    ```
+    
+2.  Log in to the CLI tool. Let's use the server administrator user name and password:
+    ```bash
+    mi remote login admin admin
+    ```
+
+    You will receive the following message: *Login successful for remote: default!*
+
 3.  Execute the following command to find the APIs deployed in the server:
-    `mi show api`
+    ```bash
+    mi api show
+    ```
+
+    You will receive the following information:
+
+    *NAME : HealthcareAPI*            
+    *URL  : http://localhost:8290/healthcare*
+     
+Similarly, you can get details of Connectors as well as other artifacts deployed in the server. Read more about [using the CLI tool](../../../administer-and-observe/using-the-command-line-interface).
+
+#### Send the client request
 
 Send a simple request to invoke the service.
 
-1.  Open a command line terminal and execute the following command from
+1.  Create a JSON file names `request.json` with the following request payload.
+
+    ```json
+    {
+     "name": "John Doe",
+     "dob": "1940-03-19",
+     "ssn": "234-23-525",
+     "address": "California",
+     "phone": "8770586755",
+     "email": "johndoe@gmail.com",
+     "doctor": "thomas collins",
+     "hospital": "grand oak community hospital",
+     "cardNo": "7844481124110331",
+     "appointment_date": "2025-04-02"
+    }
+    ```
+
+2.  Open a command line terminal and execute the following command from
     the location where the request.json file you created is saved:
 
-    ```
-    curl -v -X POST --data @request.json http://localhost:8280/healthcare/categories/surgery/reserve --header "Content-Type:application/json"
+    ```bash
+    curl -v -X POST --data @request.json http://localhost:8290/healthcare/categories/surgery/reserve --header "Content-Type:application/json"
     ```
 
 2.  You will see the response in the command line terminal.
+
+    ```bash
+    {"appointmentNo":2,"doctorName":"thomas collins","patient":"John Doe","actualFee":7000.0,"discount":20,"discounted":5600.0,"paymentID":"cc7e4c23-a66d-4d60-8b72-2cf9143c6335","status":"Settled"}
+    ```
