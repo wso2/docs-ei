@@ -3,203 +3,130 @@
 Streaming Integrator Tooling uses Siddhi extensions to connect with various data sources. Siddhi extensions can be installed or un-installed using the Extension Installer.
 
 !!!Tip
-    The Extension Installer can install/un-install extensions within Streaming Integrator Tooling. When deploying Siddhi applications in Streaming Integrator Server, these have to be manually done.
+    The Extension Installer can install/un-install extensions within Streaming Integrator Tooling. When deploying Siddhi applications in Streaming Integrator Server, these have to be manually done. For more information, see [Downloading and Installing Siddhi Extensions](../admin/downloading-and-Installing-Siddhi-Extensions.md).
 
-To install or un-install Siddhi extensions, follow the steps given below.
+## Managing Siddhi extensions
 
-## Accessing the Extension Installer
+The following topics cover how to manage Siddhi extensions in Streaming Integrator Tooling
 
-1. Start the Streaming Integrator Tooling by issuing one of the following commands from the `<SI_HOME>/bin` directory.
+### Finding the Siddhi extensions to install/uninstall
+
+To access the Extension installer and find the extensions you need to install/uninstall, follow the steps below:
+
+1. To start Streaming Integrator Tooling, navigate to the `<SI_TOOLING_HOME>/bin` directory and issue the appropriate command out of the following based on your operating system:
 
     - For Windows: `tooling.bat`
 
     - For Linux: `./tooling.sh`
 
-2. Click **Tools** menu option and then click **Extension Installer**. 
-    
+
+2. Click **Tools** menu option, and then click **Extension Installer**.
+
     ![Extensions Installer option in the Tools menu](../images/installing-siddhi-extensions/tools-menu.png)
 
-    As a result, the following dialog box opens.
 
-    ![Extensions Installer dialog box](../images/installing-siddhi-extensions/extensions-installer-dialog-box.png)
+    The **Extension Installer** dialog box opens as shown below.
 
-3. Locate the extension you wish to install/un-install.
-
-    !!! tip
-        Enter the name, or part of the name of an extension in the search bar, which will filter the extension(s) matching the entered keyword.
-        
-    ![Search Extensions](../images/installing-siddhi-extensions/search-filter-extensions.png)
-    
-    An extension will have one of the following statuses.
-    <table>
-        <tr>
-            <th>Status</th>
-            <th>Description</th>
-        </tr>
-        <tr>
-            <td>Installed</td>
-            <td>
-            <b>The extension has been completely installed.</b> Jar of the extension itself, and all its dependencies (if any) have been installed.
-            </td>
-        </tr>
-        <tr>
-            <td>Not Installed</td>
-            <td>
-            <b>The extension has not been installed.</b> Jar of the extension itself has not been installed. Dependencies (if any) might have been installed due to <a href="#shared-dependencies-among-multiple-extensions">shared dependencies</a>.
-            </td>
-        </tr>
-        <tr>
-            <td>Partially Installed</td>
-            <td>
-            Jar of the extension itself has been installed. But, some of the dependencies of the extension have to be installed.
-            </td>
-        </tr>
-        <tr>
-            <td>Restart Required</td>
-            <td>
-                Installation or un-installation has finished for this extension. The editor has to be restarted in order to update the status.
-            </td>
-        </tr>
-    </table>
+    ![Extension Installer](../images/streaming-integrator-studio-overview/extension-installer.png)
 
 
-4. An icon is shown next to the status as shown below, when there are [manually installable dependencies](#manually-installable-dependencies).
+3. Locate the extension that you want to install/un-install. You can enter the name, or a part of the name of the relevant extension in the **Search** field. It filters one or more extensions that match the entered key word.
 
-    ![Manually Installable Dependencies Available for Extension](../images/installing-siddhi-extensions/manually-installable-dependencies-available.png)
+    !!!info
+        The status of the extension can be one of the following.<br/><br/>
+        - **Installed**<br/>This indicates that the extension is completely installed. The installation includes the JAR of the extension itself as well as all its dependencies (if any).<br/><br/>
+        - **Not-Installed**<br/>This indicates that the extension has not been installed. The JAR of the extension itself has not been installed. Dependencies (if any) may be already installed due to shared dependencies. For more information about shared dependencies, see step 2 of [Un-installing an extension](#un-installing-an-extension).<br/><br/>
+        - **Partially-Installed**<br/>This indicates that the JAR of the extension itself has been installed, but one or more dependencies of the extension still need to be installed.<br/> If these extensions need to be manually installed, it is indicated by an information icon next to the status. For more information, see [Manually installable dependencies](#manually-installable-dependencies).<br/><br/>
+        - **Restart-Required**<br/>This indicates that you need to restart Streaming Integrator Tooling in order to complete the installation/un-installation of the extension.
 
 
-## Installing an extension
+### Installing an extension
 
-1. Click on the **Install** button next to an extension.
+1. To install an extension, click **Install** for it.
 
     ![Not Installed Extension](../images/installing-siddhi-extensions/a-not-installed-extension.png)
 
+    Then click **Install** in the confirmation dialog box that appears to confirm whether you want to proceed with the installation.
 
-    The confirmation dialog will be shown as follows.
 
-    ![Confirm Installation](../images/installing-siddhi-extensions/install-confirmation.png)
+2. Once the installation is complete, restart Streaming Integrator Tooling.
 
-2. Click on the **Install** button to confirm. Installation will begin.
-
-    ![Installing](../images/installing-siddhi-extensions/installing.png)
-
-3. When the installation finishes, the following dialog will be shown. A restart is required after the installation.
-
-    ![Restart Required After Installation](../images/installing-siddhi-extensions/restart-required-installation.png)
-
-4. After restarting the editor, the particular extension's status will be updated.
+    After restarting Streaming Integrator Tooling, you can open the Extension installer and view the extension you installed with the updated status.
 
     ![Status Change as Installed](../images/installing-siddhi-extensions/installed-status.png)
 
 
-## Un-installing an extension
+### Un-installing an extension
 
-1. Click on the **UnInstall** button next to an extension.
+1. To un-install an extension, click **UnInstall** for it.
 
     ![Installed Extension](../images/installing-siddhi-extensions/an-installed-extension.png)
 
-    The confirmation dialog will be shown as follows.
+    Then click **UnInstall** in the confirmation dialog box that appears to confirm whether you want to proceed to un-install the extension.
 
-    ![Confirm Un-Installation](../images/installing-siddhi-extensions/un-install-confirmation.png)
 
-2. Click on the **UnInstall** button to confirm un-installation.
+2. If the extension you are un-installing has shared dependencies with one or more other extensions, a message appears with information as shown in the example below.
 
-3. If the particular extension shares any dependency with other extension(s), a dialog box will be shown with information about [shared dependencies](#shared-dependencies-among-multiple-extensions). Otherwise, un-installation will begin.
-
-    ### Shared Dependencies among Multiple Extensions
-
-    Some dependencies are common for more than one extension. For example, _MySQL Connector_ is used by the _RDBMS MySQL extension_, as well as the _Change Data Capture MySQL extension_. In cases similar to this, un-installing one such extension will implicitly delete dependencies of other extension(s) too. Therefore, you will have to re-install those extensions, in order to use them.
-
-    When trying to un-install such an extension, the following dialog box will be shown.
-    
     ![Shared Dependencies Exist Dialog Box](../images/installing-siddhi-extensions/shared-dependencies-exist-dialog-box.png)
 
-    This denotes that, some dependencies of _this_ extension (which you are trying to un-install), are also used by some other extension(s). Those extensions are shown in **bold**, and the dependencies that are common to _this_ extension are listed under them.
-
-    The above screenshot shows that, the dependency `mysql-connector-java` is _also_ required by the **rdbms-mysql** extension, and the dependency `siddhi-io-cdc` is _also_ used by the extensions:  **cdc-oracle**, **cdc-postgresql**, **cdc-mssql** and **cdc-mongodb**.
-
-    Pressing the **Confirm** button will continue the un-installation. The shown dependencies will be deleted as part of the un-installation, and therefore, the listed down extensions will loose some of their dependencies. You will have to re-install those extensions in order to use them.
-
-4. The following dialog box will appear once the un-installation is complete. A restart is required after the un-installation.
-
-    ![Restart Required After Installation](../images/installing-siddhi-extensions/restart-required-un-installation.png)
+    The names of the other extensions are in bold. The dependencies each extension shares with the extension you are deleting are listed under the extension name. In this example, the extension being un-installed shares the `mysql-connector-java` dependency with the `rdbms-mysql` extension, and the `siddhi-io-cdc` dependency with the `cdc-oracle`, `cdc-postgresql`, `cdc-mssql`, and `cdc-mongodb` extensions.
 
 
-## Manually Installable Dependencies
-Certain dependencies of some extensions can not be automatically downloaded through the Extension Installer. These dependencies should be manually downloaded and installed. When there is at least one such dependency for an extension, an icon will be shown as follows, next to the extension's status.
+    If you want to proceed, click **Confirm**.
+
+    !!! note
+        If you click **Confirm** the other extensions that use the shared dependencies lose some of their dependencies. Therefore, if you need to continue to use those extensions, you need to reinstall them.
+
+    If there are no shared dependencies, click **UnInstall** in the confirmation dialog that appears to confirm whether you want to proceed to un-install the extension.
+
+
+3. Once the un-installation is completed, restart Streaming Integrator Tooling for the un-installation to be effective.
+
+
+## Manually installable dependencies
+
+Certain dependencies of some extensions cannot be automatically downloaded via the Extension Installer. These dependencies should be manually downloaded and installed in order to complete the installation of the extensions that use them.
+
+When there is at least one such dependency for an extension, an icon is displayed next to the status of the extension as shown below.
     
 ![Manually Installable Dependencies Available for Extension](../images/installing-siddhi-extensions/manually-installable-dependencies-available.png)
 
-Clicking this icon will open the following dialog box.
+Click this information to open a dialog box as shown below with information about the dependency.
     
 ![Manually Installable Dependency Instructions](../images/installing-siddhi-extensions/manually-installable-instructions.png)
 
-The dialog box will show each dependency - that should be manually installed, of the particular extension, along with the following information.
+The dialog box displays all the dependencies that need to be manually installed. For each dependency, the dialog box provides the following information.
 
-- **Instructions** - Instructions to follow, in order to download (and convert) the jar of the dependency.
-- **Installation Locations** - After following the instructions, the resultant jar should be placed in its specific location, based on the following table.
+- **Instructions** to download (and depending on the dependency, to convert) the JAR of the dependency.
 
-    <table>
-        <tr>
-            <th>Location</th>
-            <th>Directory</th>
-            <th>Jar Types</th>
-        </tr>
-        <tr>
-            <td rowspan=2>runtime</td>
-            <td>
-                <code>&lt;SI_HOME&gt;/lib</code> or <code>&lt;SI_HOME&gt;/bundles</code> based on the instructions.
-            </td>
-            <td>
-                <b>bundle in runtime:</b> An OSGi bundle should be placed in this directory. Conversion instructions will be available in the <code>instructions</code>.
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <code>&lt;SI_HOME&gt;/jars</code>
-            </td>
-            <td>
-                <b>jar in runtime:</b> A non-OSGi bundle can be placed in this directory.
-            </td>
-        </tr>
-        <tr>
-            <td rowspan=2>samples</td>
-            <td>
-                <code>&lt;SI_HOME&gt;/samples/sample-clients/lib</code>
-            </td>
-            <td>
-                <b>jar in samples:</b> A non-OSGi bundle can be placed in this directory.
-            </td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>
-            <b>bundle in samples</b> is <b>not</b> applicable.
-          </td>
-        </tr>
-    </table>
+- **Installation Location** where the downloaded JAR (and depending on the dependency, the converted OSGi bundle) needs to be placed in order to install the dependency. The following table especifies the directory in which you need to place the JAR/OSGi bundle depending on the installation location.
 
-Installation of extensions of which, manually installable dependencies are present, will not be complete until you install these dependencies manually.
+    |**Installation Location**|**Directory**|
+    |---------------------|-----------------------------------------------------------------------------------------------------------------------------------------------|
+    |**bundle in runtime**|Place the OSGi bundle you downloaded/converted in either the `<SI_HOME>/lib` or the `<SI_HOME>/bundles` directory based on the instructions.|
+    |**jar in runtime**   |Place the non-OSGi bundle you downloaded in the `<SI_HOME>/jars` directory.                                                                 |
+    |**jar in samples**   |Place the non-OSGi bundle you dowloaded in the `<SI_HOME>/samples/sample-clients/lib` directory.                                            |
 
 
 ## Configuring Extension Dependencies
 
-Configurations of extensions are loaded from the configuration file, which is located in `<SI_HOME>/wso2/server/resources/extensionsInstaller/extensionDependencies.json`.
+Configurations of extensions are loaded from the `<SI_HOME>/wso2/server/resources/extensionsInstaller/extensionDependencies.json` configuration file.
 
-When you are working with [custom extensions](../admin/writing-Custom-Siddhi-Extensions.md#writing-custom-siddhi-extensions), and if you want a custom extension to be installable from the Extension Installer, you should add the extension's configuration to the configuration file.
+When you are working with [custom extensions](../admin/writing-Custom-Siddhi-Extensions.md#writing-custom-siddhi-extensions), and if you want a custom extension to be installable from the Extension Installer, you need to add the configuration of the extension to this configuration file.
 
-An extension's configuration is a JSON object that looks like the following.
+The configuration of an extension is a JSON object that looks as follows:
 
 ```json
-"<extension_name>": {
-  "extension": {...},
-  "dependencies": [
-    {...},
-    {...}
-  ]
-}
+    "<extension_name>": {
+      "extension": {...},
+      "dependencies": [
+        {...},
+        {...}
+      ]
+    }
 ```
-`<extension_name>` - which is the key of this JSON object, is the uniquely identifiable name of the extension. This is same as [`extension`](#extension)`.name`.
+
+`<extension_name>` which is the key of this JSON object, is the uniquely identifiable name of the extension. The extension is described under [`extension`](#extension).
 
 #### `extension`
 
@@ -215,7 +142,7 @@ This _object_ contains information about the extension, denoted by the following
       <code>name</code>
     </td>
     <td>
-      Uniquely identifiable name of the extension.
+      The uniquely identifiable name of the extension.
     </td>
   </tr>
   <tr>
@@ -223,7 +150,7 @@ This _object_ contains information about the extension, denoted by the following
       <code>displayName</code>
     </td>
     <td>
-      Displayable name of the extension.
+      The displayable name of the extension.
     </td>
   </tr>
   <tr>
@@ -231,7 +158,7 @@ This _object_ contains information about the extension, denoted by the following
       <code>version</code>
     </td>
     <td>
-      Version of the extension.
+      The version of the extension.
     </td>
   </tr>
 </table>
@@ -254,10 +181,10 @@ The following is an example of the `extension` object, taken from the configurat
 
 #### `dependencies`
 
-This is an _array_. Each member of this _array_ is an _object_, which denotes information of a dependency of the extension, through the following properties.
+This is an _array_. Each member of this _array_ is an _object_ that denotes information of a dependency of the extension via the following properties.
 
-!!! Info
-        The jar of the Siddhi extension itself should be added as a dependency too. For example, in the configuration for the `jms` extension, you can see that `siddhi-io-jms` has been listed as a dependency under `dependencies`.
+!!! info
+        The jar of the Siddhi extension itself should be added as a dependency too. e.g., In the configuration of the `jms` extension, you can see that `siddhi-io-jms` has been listed as a dependency under `dependencies`.
 
 <table>
   <tr>
@@ -273,7 +200,7 @@ This is an _array_. Each member of this _array_ is an _object_, which denotes in
       <code>name</code>
     </td>
     <td>
-      Uniquely identifiable name of the dependency. If this dependency denotes the jar of the Siddhi extension itself, this starts with <code>siddhi-</code>.
+      The uniquely identifiable name of the dependency. If this dependency denotes the jar of the Siddhi extension itself, it starts with <code>siddhi-</code>.
     </td>
   </tr>
   <tr>
@@ -281,39 +208,18 @@ This is an _array_. Each member of this _array_ is an _object_, which denotes in
       <code>version</code>
     </td>
     <td>
-      Version of the dependency.
+      The version of the dependency.
     </td>
   </tr>
   <tr>
     <td><code>download</code></td>
     <td>
-      Denotes download information of the dependency, through the following properties.
-      <table>
-        <tr>
-          <td>
-            <code>autoDownloadable</code>
-          </td>
-          <td>
-            Whether the dependency is auto downloadable (<code>true</code>) or not (<code>false</code> - <a href="#manually-installable-dependencies">manually installable</a>).
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <code>url</code>
-          </td>
-          <td>
-            <b>Applicable only if the dependency is auto downloadable.</b> The download URL to download the dependency's jar.
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <code>instructions</code>
-          </td>
-          <td>
-            <b>Applicable only if the dependency is <a href="#manually-installable-dependencies">manually installable</a>.</b> Instructions to download (and convert) the dependency's jar.
-          </td>
-        </tr>
-      </table>
+      <p>This denotes download information of the dependency via the following properties.</p>
+      <ul>
+        <li><code>autoDownloadable</code>: This specifies whether the dependency is auto downloadable via the <code>true</code> and <code>false</code> values. If the value is <code>false</code>, the property is <a href="#manually-installable-dependencies">manually installable</a>.</li>
+        <li><code>url</code>: <strong>If the dependency is auto downloadable</strong>, this specifies the URL via which the JAR of the dependency is downloaded.</li>
+        <li><code>instructions</code>: <strong>If the dependency is only <a href="#manually-installable-dependencies">manually installable</a></strong>, this property provides instructions to download (and if applicable, convert) the JAR of the dependency.</li>
+      </ul>
     </td>
   </tr>
   <tr>
@@ -321,22 +227,11 @@ This is an _array_. Each member of this _array_ is an _object_, which denotes in
       <code>usages</code>
     </td>
     <td>
-      This is an <i>array</i>. Each member of this <i>array</i> is an <i>object</i>, that denotes a directory where the dependency's jar should be present. Each such directory (location) is denoted by the following properties:
-      <table>
-        <tr>
-          <td><code>type</code></td>
-          <td>
-            Type of the jar, whether an OSGi bundle (<code>BUNDLE</code>) or not (<code>JAR</code>).
-          </td>
-        </tr>
-        <tr>
-          <td><code>usedBy</code></td>
-          <td>
-            Type of location, where this jar is used. (<code>RUNTIME</code> or <code>SAMPLES</code>).
-          </td>
-        </tr>
-      </table>
-      For more information, please refer <b>installation locations</b> under <a href="#manually-installable-dependencies">Manually Installable Dependencies</a>.
+      <p>This is an <i>array</i>. Each member of this <i>array</i> is an <i>object</i> that denotes a directory where the jar of the dependency needs to be placed. Each such directory (location) is denoted by the following properties:</p>
+      <ul>
+        <li><code>type</code>: The type of the JAR. Possible values are as follows:<br/><li style="margin-left:2em"><code>BUNDLE</code>: This means that the dependency JAR is an OSGi bundle.</li><li style="margin-left:2em"><code>JAR</code>: This means that the dependency JAR is not converted to an OSGi bundle.</li></li><br/>
+        <li><code>usedBy</code>: This indicates whether the JAR is used in runtime or in samples. For more information, see the explanation of <b>installation locations</b> under <a href="#manually-installable-dependencies">Manually installable dependencies</a></li>
+      </ul>
     </td>
   </tr>
   <tr>
@@ -344,14 +239,14 @@ This is an _array_. Each member of this _array_ is an _object_, which denotes in
       <code>lookupRegex</code>
     </td>
     <td>
-      Regex pattern for the jar's file name. This is used to lookup and detect whether the jar is present in the locations, mentioned under <code>usages</code>.
+      The regex pattern for the file name of the JAR. This is useful for to looking up and detecting whether the JAR is available in the locations mentioned under <code>usages</code>.
     </td>
   </tr>
 </table>
 
-The following examples denote members of the `dependencies` array, taken from the configuration of the `jms` extension.
+The following examples, taken from the configuration of the `jms` extension, show the members of the `dependencies` array.
 
-**Example1: Auto downloadable dependency**
+**Example 1: Auto downloadable dependency**
 
 This denotes the `hawtbuf` dependency of the `jms` extension, which is auto downloadable from the URL specified in `download.url`.
 
@@ -386,9 +281,9 @@ This denotes the `hawtbuf` dependency of the `jms` extension, which is auto down
   }
 ```
 
-**Example2: Manually installable dependency**
+**Example 2: Manually installable dependency**
 
-This denotes the `activemq-client` dependency of the `jms` extension, which should be manually downloaded, and conversions should be done based on the given `download.instructions`.
+This denotes the `activemq-client` dependency of the `jms` extension. This dependency needs to be manually downloaded, and the conversions should be done based on the given `download.instructions`.
 
 ```json
   "jms": {

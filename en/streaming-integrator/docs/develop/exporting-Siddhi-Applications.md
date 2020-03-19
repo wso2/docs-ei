@@ -42,7 +42,7 @@ To export one or more Siddhi applications as a Docker image, follow the procedur
 
 7. Once the templates are defined, click **Next**.
 
-8. In **Step 3: Update Streaming Integrator configurations**, update the `deployment.yaml` file of the Streaming Integrator to enter configurations specific for the Docker image. Similar to the previous step, you can template the configurations as well. Use the similar notation (i.e., `${...}`) to specify a template within the configuration file.
+8. In **Step 3: Update Siddhi Runner configurations**, update the `deployment.yaml` file of the Streaming Integrator to enter configurations specific for the Docker image. Similar to the previous step, you can template the configurations as well. Use the similar notation (i.e., `${...}`) to specify a template within the configuration file.
 
 9. Once the configuration is complete, click **Next**.
 
@@ -50,9 +50,13 @@ To export one or more Siddhi applications as a Docker image, follow the procedur
 
 11. Once the template values are set, click **Next**.
 
-12. In **Step 5: Bundle additional dependencies**, select the additional JARs to be shipped with the Docker image.
+12. In **Step 5: Configure Custom Docker Image**, select any additional OSGi bundles or JARs )(i.e., the ones that are not shipped with WSO2 Streaming Integrator Tooling by default) to be shipped with your docker image by selecting the relevant checkboxes. Only the additional OSGi bundles and JARs that you have already added to the libraries of your Streaming Integrator Tooling pack are displayed in this wizard.
 
-13. Once the everything is complete, click **Export** to export a ZIP file with the following directory structure.
+13. Once the required OSGi bundles and JARs are selected, click **Next**.
+
+14. In **Step 6: Export Custom Docker Image**, select the export mode. If you do not have an account in [Docker Hub](https://hub.docker.com), you can select **Download Artifacts** and enter a name for the file you are exporting. If you have an account, select **Push to docker registry** and enter your credentials.
+
+15. Once the everything is complete, click **Export** to export a ZIP file with the following directory structure.
 
     ```
     .
@@ -110,7 +114,7 @@ To export one or more Siddhi applications for Kubernetes, follow the procedure b
 
 7. Once the templates are defined, click **Next**.
 
-8. In **Step 3: Update Streaming Integrator configurations**, update the `deployment.yaml` file of the Streaming Integrator to enter configurations specific for the Kubernetes artifact. Similar to the previous step, you can template the configurations as well. Use the similar notation (i.e., `${...}`) to specify a template within the configuration file.
+8. In **Step 3: Update Siddhi Runner configurations**, update the `deployment.yaml` file of the Streaming Integrator to enter configurations specific for the Kubernetes artifact. Similar to the previous step, you can template the configurations as well. Use the similar notation (i.e., `${...}`) to specify a template within the configuration file.
 
 9. Once the configuration is complete, click **Next**.
 
@@ -118,11 +122,23 @@ To export one or more Siddhi applications for Kubernetes, follow the procedure b
 
 11. Once the template values are set, click **Next**.
 
-12. In **Step 5: Bundle additional dependencies**, select the additional JARs to be shipped with the Docker image.
+12. In **Step 5: Select Docker Image** select the relevant option to specify whether you want to create a new Docker image with extensions and artifacts, or whether to use an existing Docker image. If you selected **Use an existing Docker image**, enter the path to the Docker image in the data field that appears.
 
-13. Once the JARs are selected, click **Next**.
+13. Once the method to create the Docker image is selected, click **Next**.
 
-14. In **Step 7: Add Kubernetes config**, click **Export**. This downloads the ZIP file with the following directory structure.
+14. If you selected **Use an existing Docker image**, in **Step 5: Select Docker Image**, you are  directed to **Step 8: Add Deployment Configurations**. To proceed to that step, see step 18 of this procedure.
+
+    If you selected **Build custom docker image with extensions and artifacts** in **Step 5: Select Docker Image**, you are directed to **Step 6: Configure Docker Image**. Here, select any additional OSGi bundles or JARs )(i.e., the ones that are not shipped with WSO2 Streaming Integrator Tooling by default) to be shipped with your docker image by selecting the relevant checkboxes. Only the additional OSGi bundles and JARs that you have already added to the libraries of your Streaming Integrator Tooling pack are displayed in this wizard.
+
+15. Once the required OSGi bundles and JARs are selected, click **Next**.
+
+16. In **Step 7: Export Custom Docker Image**, enter the credentials to access your Docker Hub account so that the Docker image can be pushed to the Docker registry.
+
+17. Click **Next**.
+
+18. In **Step 8: Add Deployment Configurations**, select an option to indicate the preferred deployment mode. Then select a value for the **Persistence** field to specify how persistence should be carried out.
+
+19. Once deployment configurations are entered, click **Export**. This downloads the ZIP file with the following directory structure.
 
     ```
     ├── Dockerfile
@@ -134,7 +150,7 @@ To export one or more Siddhi applications for Kubernetes, follow the procedure b
     └── siddhi-process.yaml
     ```
 
-15. Once the ZIP is downloaded, you can extract and open the `<ZIP_HOME>/siddhi-process.yaml` via a text editor to modify the SiddhiProcess configuration.<br />
+20. Once the ZIP is downloaded, you can extract and open the `<ZIP_HOME>/siddhi-process.yaml` via a text editor to modify the SiddhiProcess configuration.<br />
 
     For more information on **SiddhiProcess** Kubernetes configuration, see [Siddhi 5.1 as a Kubernetes Microservice](https://siddhi.io/en/v5.1/docs/siddhi-as-a-docker-microservice/) documentation.
 
