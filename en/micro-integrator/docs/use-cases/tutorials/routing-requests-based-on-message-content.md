@@ -429,9 +429,7 @@ Let's send a request to the API resource to make a reservation. You can use the 
 
     <img src="../../../assets/img/tutorials/119132155/http4e-client-empty.png" width="800">
 
-2. Enter the request information as shown below and click the <b>Send</b> icon (<img src="../../../assets/img/tutorials/119132155/play-head-icon.png" width="20">).
-
-    <img src="../../../assets/img/tutorials/119132155/http4e-client.png" width="800">
+2. Enter the request information as given below and click the <b>Send</b> icon (<img src="../../../assets/img/tutorials/119132155/play-head-icon.png" width="20">).
     
     <table>
         <tr>
@@ -484,6 +482,8 @@ Let's send a request to the API resource to make a reservation. You can use the 
             </ul>
         </tr>
      </table>
+     
+     <img src="../../../assets/img/tutorials/119132155/http4e-client.png" width="800">
 
 If you want to send the client request from your terminal:
 
