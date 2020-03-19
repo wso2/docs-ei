@@ -290,23 +290,23 @@ You can now start configuring the API resource.
             Follow the steps given below to extract the stock symbol from the request and print a welcome message in the log:
             <ol>
                 <li>
-                    Click the <b>plus</b> icon (<img src="../../../assets/img/tutorials/plus-icon.png" width="30">)
+                    Click the <b>plus</b> icon (<img src="../../assets/img/tutorials/plus-icon.png" width="30">)
     to start defining a property. This opens the <b>LogProperty</b> dialog.
                 </li>
                 <li>
                     Add the following values in the <b>LogProperty</b> dialog:
                     <ul>
                         <li>
-                        **Name** : `message`
+                            <b>Name</b> : `message`
                         </li>
                         <li> 
-                            **Type** : `EXPRESSION`. (We select `EXPRESSION`
+                            <b>Type</b> : `EXPRESSION`. (We select `EXPRESSION`
         because the required properties for the log message must be
         extracted from the request, which we can do using an XPath
         expression.)    </li>
                         <li>
-            **Value/Expression** : Click **browse (...)** in the
-        **Value/Expression** field and enter
+                            <b>Value/Expression</b> : Click <b>browse (...)</b> in the
+                            <b>Value/Expression</b> field and enter
         `fn:concat('Routing to ', get-property('Hospital'))`.
                         </li>
                     </ul>
