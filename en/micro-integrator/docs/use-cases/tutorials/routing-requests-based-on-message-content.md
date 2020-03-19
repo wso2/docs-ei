@@ -17,8 +17,9 @@ Set up WSO2 Integration Studio as follows:
 
 1.  Download the relevant [WSO2 Integration Studio](https://wso2.com/integration/tooling/) based on your operating system. The path to the extracted/installed folder is referred to as `MI_TOOLING_HOME` throughout this tutorial.
 2.   If you did not try the [Sending a Simple Message to a Service](sending-a-simple-message-to-a-service.md) tutorial yet:
-    1.  Open WSO2 Integration Studio and go to **File -> Import**. 
-    2.  Select **Existing WSO2 Projects into workspace** under the **WSO2** category, click **Next**, and then upload the [pre-packaged project](https://github.com/wso2-docs/WSO2_EI/blob/master/Integration-Tutorial-Artifacts/SimpleMessageToServiceTutorial.zip).
+    1.  Download the [pre-packaged project](https://github.com/wso2-docs/WSO2_EI/blob/master/Integration-Tutorial-Artifacts/SimpleMessageToServiceTutorial.zip).
+    2.  Open WSO2 Integration Studio and go to **File -> Import**. 
+    3.  Select **Existing WSO2 Projects into workspace** under the **WSO2** category, click **Next**, and then upload the **prepackaged project**.
 
 Optionally, you can set up the **CLI tool** for artifact monitoring. This will later help you get details of the artifacts that you deploy in your Micro Integrator.
 
@@ -33,13 +34,13 @@ Follow the instructions given in this section to create and configure the requir
 
 #### Create Endpoints
 
-In this tutorial we have three hospital services hosted as the backend:
+In this tutorial, we have three hospital services hosted as the backend:
 
 -   Grand Oak Community Hospital: `http://localhost:9090/grandoaks/`
 -   Clemency Medical Center: `http://localhost:9090/clemency/`
 -   Pine Valley Community Hospital: `http://localhost:9090/pinevalley/`
 
-The request method is POST and the format of the request URL expected by the backend services is
+The request method is POST and the format of the request URL expected by the back-end services is
 `http://localhost:9090/grandoaks/categories/{category}/reserve`.
 
 Let's create three different HTTP endpoints for the above services.
@@ -178,11 +179,18 @@ You can now start configuring the API resource.
          <td>Value Expression</td>
          <td>
             <div class="content-wrapper">
-               <p>Click <strong>Value</strong> field of Value Expression in the <strong>Property</strong> tab and add the following expression:<br />
-                  <code>                 json-eval($.hospital)                </code>
-               </p>
+              <p>Follow the steps given below to specify the expression:</p>
+            <ol>
+                <li>Click the <b>Value</b> field for <strong>Value Expression</strong>. This opens the <b>Expression Selector</b> dialog.</li>
+               <li>Select <strong>Expression</strong> from the list.
+                </li>
+               <li>Enter <code>json-eval($.hospital)</code> to overwrite the default expression.</li>
+               <li>Click <strong>OK.</strong> <strong><br />
+                  </strong>
+               </li>
+            </ol>
                <b>Note</b>:
-               <p>This is the JSONPath expression that will extract the hospital from the request payload.</p>
+               This is the JSONPath expression that will extract the hospital from the request payload.
             </div>
          </td>
       </tr>
@@ -210,7 +218,7 @@ You can now start configuring the API resource.
             <p>The <strong>Source XPath</strong> field is where we specify the XPath expression, which obtains the value of Hospital that we stored in the Property mediator.</p>
             <p>Follow the steps given below to specify the expression:</p>
             <ol>
-                <li>Click <b>value</b> field for the <strong>Source XPath</strong> property. This opens the <b>Expression Selector</b> dialog.</li>
+                <li>Click the <b>Value</b> field for the <strong>Source XPath</strong> property. This opens the <b>Expression Selector</b> dialog.</li>
                <li>Select <strong>Expression</strong> from the list.
                 </li>
                <li>Enter <code>                  get-property('Hospital')                 </code> to overwrite the default expression.</li>
@@ -227,7 +235,7 @@ You can now start configuring the API resource.
          <div class="content-wrapper">
             <p>Follow the steps given below to add the case branches:</p>
             <ol>
-                <li>Double each <b>case regex</b> (corresponding to each branch) that is listed to open the <b>SwitchCaseBranchOutputConnector</b> dialog.</li>
+                <li>Double click each <b>case regex</b> (corresponding to each branch) that is listed. This will open the <b>SwitchCaseBranchOutputConnector</b> dialog.</li>
                <li>
                   Change the RegEx values for the switch cases as follows:
                   <ul>
@@ -280,15 +288,16 @@ You can now start configuring the API resource.
         <td>Properties</td>
         <td colspan="2">
             Follow the steps given below to extract the stock symbol from the request and print a welcome message in the log:
-            <ul>
+            <ol>
                 <li>
-                    Click the **Plus** icon to open the <b>LogProperty</b> dialog.
+                    Click the <b>plus</b> icon (<img src="../../../assets/img/tutorials/plus-icon.png" width="30">)
+    to start defining a property. This opens the <b>LogProperty</b> dialog.
                 </li>
                 <li>
                     Add the following values in the <b>LogProperty</b> dialog:
-                    <ol>
+                    <ul>
                         <li>
-                        **Name** : `                    message                   `
+                        **Name** : `message`
                         </li>
                         <li> 
                             **Type** : `EXPRESSION`. (We select `EXPRESSION`
@@ -296,17 +305,17 @@ You can now start configuring the API resource.
         extracted from the request, which we can do using an XPath
         expression.)    </li>
                         <li>
-            **Value/Expression** : Click the **browse (...)** icon in the
+            **Value/Expression** : Click **browse (...)** in the
         **Value/Expression** field and enter
         `fn:concat('Routing to ', get-property('Hospital'))`.
                         </li>
-                    </ol>
-                <b>Note</b>: This XPath expression value gets the value stored in the Property mediator and concatenates the two strings to display the log message `Routing to <hospital name>`.
+                    </ul>
+                <b>Note</b>: This XPath expression value gets the value stored in the Property mediator and concatenates the two strings to display the log message: `Routing to <hospital name>`.
                 </li>
                 <li>
-                    Click OK.
+                    Click <b>OK</b>.
                 </li>
-            </ul>
+            </ol>
         </td>
     </tr>
     </table>
@@ -330,7 +339,7 @@ You can now start configuring the API resource.
     !!! Note
         Make sure to name this **Fault Log** and change its Value/Expression as follows:`fn:concat('Invalid hospital - ', get-property('Hospital'))`
 
-    The default case of the Switch mediator handles the invalid hospital requests that are sent to the request payload. This logs the message `Invalid hospital - <Hospital Name>` " for requests that have the invalid hospital name.
+    The default case of the Switch mediator handles the invalid hospital requests that are sent to the request payload. This logs the message (`Invalid hospital - <Hospital Name>`) for requests that have the invalid hospital name.
 
 12. Drag a **Respond mediator** next to the Log mediator you just added. This ensures that there is no further processing of the current message and returns the request message back to the client.  
 
@@ -349,10 +358,10 @@ Package the artifacts in your composite application project (SampleServicesCompo
 1.  Open the `          pom.xml         ` file in the composite application project POM editor.
 2.  Ensure that the following artifacts are selected in the POM file.
 
-    -   `            HealthcareAPI           `
-    -   `            ClemencyEP           `
-    -   `            GrandOakEP           `
-    -   `            PineValleyEP           `
+    -   `HealthcareAPI`
+    -   `ClemencyEP`
+    -   `GrandOakEP`
+    -   `PineValleyEP`
 
 3.  Save the project.
 
@@ -411,16 +420,19 @@ Similarly, you can get details of other artifacts deployed in the server. Read m
 
 #### Send the client request
 
-Let's send a request to the API resource to make a reservation. You can use the embedded HTTP Client of WSO2 Integration Studio as follows:
+Let's send a request to the API resource to make a reservation. You can use the embedded <b>HTTP Client</b> of WSO2 Integration Studio as follows:
 
-1. Got the <b>HTTP Client</b> pane at the bottom of the screen.
+1. Open the <b>HTTP Client</b> of WSO2 Integration Studio.
 
     !!! Tip
         If you don't see the <b>HTTP Client</b> pane, go to <b>Window -> Show View - Other</b> and select <b>HTTP Client</b> to enable the client pane.
 
-    ![](../../assets/img/tutorials/119132155/http4e-client.png)
+    <img src="../../../assets/img/tutorials/119132155/http4e-client-empty.png" width="800">
 
-2. Enter the request information as shown below and click the <b>Send</b> icon.
+2. Enter the request information as shown below and click the <b>Send</b> icon (<img src="../../../assets/img/tutorials/119132155/play-head-icon.png" width="20">).
+
+    <img src="../../../assets/img/tutorials/119132155/http4e-client.png" width="800">
+    
     <table>
         <tr>
             <th>Method</th>
@@ -500,7 +512,7 @@ If you want to send the client request from your terminal:
 
 #### Analyze the response
 
-You get the following response:
+You will see the following response received to your <b>HTTP Client</b>:
 
 ```json
 {"appointmentNumber":1,
