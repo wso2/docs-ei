@@ -411,41 +411,45 @@ Similarly, you can get details of other artifacts deployed in the server. Read m
 
 #### Send the client request
 
-Let's send a request to the API resource to make a reservation. 
-
-You can use the embedded HTTP Client of WSO2 Integration Studio to send the client request:
+Let's send a request to the API resource to make a reservation. You can use the embedded HTTP Client of WSO2 Integration Studio as follows:
 
 1. Got the <b>HTTP Client</b> pane at the bottom of the screen.
-2. Enter the request information as shown below and click <b>Send</b>.
+
+    !!! Tip
+        If you don't see the <b>HTTP Client</b> pane, go to <b>Window -> Show View - Other</b> and select <b>HTTP Client</b> to enable the client pane.
+
+    ![](../../assets/img/tutorials/119132155/http4e-client.png)
+
+2. Enter the request information as shown below and click the <b>Send</b> icon.
     <table>
         <tr>
-            <th>Property</th>
-            <th>Value</th>
-        </tr>
-        <tr>
-            <td>Request Category</td>
+            <th>Method</th>
             <td>
                <code>POST</code> 
             </td>
         </tr>
         <tr>
-            <td>Headers</td>
+            <th>Headers</th>
             <td>
-                <code>Content-Type=application/json</code>
+              <code>Content-Type=application/json</code>
             </td>
         </tr>
         <tr>
-            <td>URL</td>
-            <td><code>http://localhost:8290/healthcare/categories/surgery/reserve</code><br><br>
-                The URI-Template format that is used in this command was defined when creating the API resource:
-        <code>http://<host>:<port>/categories/{category}/reserve</code>.
+            <th>URL</th>
+            <td><code>http://localhost:8290/healthcare/categories/surgery/reserve</code></br></br>
+              <ul>
+                <li>
+                  The URI-Template format that is used in this URL was defined when creating the API resource:
+          <code>http://<host>:<port>/categories/{category}/reserve</code>.
+                </li>
+              </ul>
             </td>
         </tr>
         <tr>
-            <td>Body</td>
-            <td>Set the following JSON payload as the message body:<br>
-            <code>
-              <div>
+            <th>Body</th>
+            <td>
+            <div>
+              <code>
                 {
                     "patient": {
                     "name": "John Doe",
@@ -459,32 +463,20 @@ You can use the embedded HTTP Client of WSO2 Integration Studio to send the clie
                     "hospital": "grand oak community hospital",
                     "appointment_date": "2025-04-02"
                 }
-              </div>
-            </code
-            </td>
+              </code>
+            </div></br>
+            <ul>
+              <li>
+                This JSON payload contains details of the appointment reservation, which includes patient details, doctor, hospital, and data of appointment.
+              </li>
+            </ul>
         </tr>
      </table>
 
-     ![](../../assets/img/tutorials/119132155/http4e-client.png)
+If you want to send the client request from your terminal:
 
-3. You can also try using any of the following parameters in your request payload.
-    For hospital:
-    -   clemency medical center
-    -   pine valley community hospital
-    Doctor Names:
-    -   thomas collins
-    -   henry parker
-    -   abner jones
-    -   anne clement
-    -   thomas kirk
-    -   cailen cooper
-    -   seth mears
-    -   emeline fulton
-    -   jared morris
-    -   henry foster
-    
-If you want to invoke the request using your terminal:
-1. Create a JSON file names `           request.json          ` with the following request payload.
+1. Install and set up [cURL](https://curl.haxx.se/) as your REST client.
+2. Create a JSON file named `request.json` with the following request payload.
     ```json
     {
         "patient": {
@@ -500,8 +492,8 @@ If you want to invoke the request using your terminal:
         "appointment_date": "2025-04-02"
     }
     ```
-2. Open a terminal and navigate to the directory where you have saved the `request.json` file.
-3. Execute the following command.
+3. Open a terminal and navigate to the directory where you have saved the `request.json` file.
+4. Execute the following command.
     ```json
     curl -v -X POST --data @request.json http://localhost:8290/healthcare/categories/surgery/reserve --header "Content-Type:application/json"
     ```
