@@ -340,6 +340,7 @@ nav:
           - 'kafka-connector-configuration.md': 'references/connectors/kafka-connector/kafka-connector-configuration.md'      
         - Gmail Connector:
           - 'Gmail Connector Example': 'references/connectors/gmail-connector/gmail-connector-example.md'
+          - 'Gmail Connector Configuration': 'references/connectors/gmail-connector/gmail-connector-config.md'
       - Synapse Configurations:
         - Mediator Catalog: 
           - 'About Mediators': 'references/mediators/about-mediators.md'
