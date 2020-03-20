@@ -16,8 +16,9 @@ Set up WSO2 Integration Studio as follows:
 
 1.  Download the relevant [WSO2 Integration Studio](https://wso2.com/integration/tooling/) based on your operating system. The path to the extracted/installed folder is referred to as `MI_TOOLING_HOME` throughout this tutorial.
 2.  If you did not try the [Transforming Message Content](transforming-message-content.md) tutorial yet:  
-    1.  Open WSO2 Integration Studio and go to **File -> Import**. 
-    2.  Select **Existing WSO2 Projects into workspace** under the **WSO2** category, click **Next** and upload the [pre-packaged project](https://github.com/wso2-docs/WSO2_EI/blob/master/Integration-Tutorial-Artifacts/TransformingContentTutorial.zip).
+    1.  Download the [pre-packaged project](https://github.com/wso2-docs/WSO2_EI/blob/master/Integration-Tutorial-Artifacts/TransformingContentTutorial.zip). 
+    2.  Open WSO2 Integration Studio and go to **File -> Import**. 
+    3.  Select **Existing WSO2 Projects into workspace** under the **WSO2** category, click **Next**, and upload the **prepackaged project**. 
 
 Optionally, you can set up the **CLI tool** for artifact monitoring. This will later help you get details of the artifacts that you deploy in your Micro Integrator.
 
@@ -542,46 +543,56 @@ You can now start updating the API resource with the mediation flow.
     | Media Type     | Select <strong>json</strong>                                                                           |
     | Payload        | `{"appointmentNumber":$1, "doctor":$2, "patient":$3, "fee":$4, "confirmed":"false", "card_number":"$5"}`</br></br> This is the message payload to send with the request to SettlePaymentEP. In this payload, $1, $2, $3, $4, and $5 indicate variables. |
     
-17. To add the **Args** field for the PayloadFactory mediator, click the **Add (+)** icon in the **Args** field and enter the following information as in the table below. It provides the argument that defines the actual value of the first variable used in the format definition in the previous step.
+17. To add the **Args** field for the PayloadFactory mediator:
+    1. Click the **plus** icon (<img src="../../../assets/img/tutorials/common/plus-icon.png" width="30">) in the **Args** field to open the **PayloadFactoryArgument** dialog. 
+    2. Enter the following information in the **PayloadFactoryArgument** dialog. This provides the argument that defines the actual value of the first variable (used in the format definition given in the previous step).
 
-    !!! Tip
-        To avoid getting an error message, first select the **Media Type** before providing the **Payload.**
-        
-    <table>
-            <tr>
-              <th>Property</th>
-              <th>Description</th>
-            </tr>
-            <tr class="even">
-                 <td>Value</td>
-                 <td>
-                    <div class="content-wrapper">
-                      <p>Follow the steps given below to specify the expression:</p>
-                    <ol>
-                        <li>Click the text box for the <strong>Value</strong> field. This opens the <b>Expression Selector</b> dialog.</li>
-                       <li>Select <strong>Expression</strong> from the list.
-                        </li>
-                       <li>Enter <code>$ctx:uri.var.appointment_id</code> to overwrite the default expression.</li>
-                       <li>Click <strong>OK.</strong> <strong><br/>
-                          </strong>
-                       </li>
-                    </ol>
-                    </div>
-                 </td>
-              </tr>
-              <tr>
-                <td>
-                    Evaluator
-                </td>
-                <td>
-                    Enter <code>xml</code>.</br></br>
-                    This indicates that the expression is provided in XML.
-                </td>
-              </tr>
-          </table>
+        !!! Tip
+            To avoid getting an error message, first select the **Media Type** before providing the **Payload.**
 
-    !!! Info
-        The `$ctx` method is similar to using the `get-property` method. This method checks in the message context.
+        <table>
+          <tr>
+            <th>Property</th>
+            <th>Description</th>
+          </tr>
+          <tr>
+            <td>
+              Argument Type
+            </td>
+            <td>
+              Select <code>Expression</code>.
+            </td>
+          </tr>
+          <tr class="even">
+             <td>Argument Expression</td>
+             <td>
+                <div class="content-wrapper">
+                  <p>Follow the steps given below to specify the expression:</p>
+                <ol>
+                    <li>Click the text box for the <strong>Argument Expression</strong> field. This opens the <b>Expression Selector</b> dialog.</li>
+                   <li>Select <strong>Expression</strong> from the list.
+                    </li>
+                   <li>
+                      Enter "$ctx:uri.var.appointment_id".
+                      Note that the "$ctx" method is similar to using the <code>get-property</code> method. This method checks in the message context.
+                   </li>
+                   <li>Click <strong>OK.</strong> <strong><br/>
+                      </strong>
+                   </li>
+                </ol>
+                </div>
+             </td>
+          </tr>
+          <tr>
+            <td>
+                Evaluator
+            </td>
+            <td>
+                Select <code>xml</code>.</br></br>
+                This indicates that the expression is provided in XML.
+            </td>
+          </tr>
+        </table>
     
 18. Similarly, click **Add** and add more arguments to define the other variables that are used in the message payload format definition. Use the following as the **Value** for each of them:
 

@@ -181,7 +181,7 @@ You can now start configuring the API resource.
             <div class="content-wrapper">
               <p>Follow the steps given below to specify the expression:</p>
             <ol>
-                <li>Click the <b>Value</b> field for <strong>Value Expression</strong>. This opens the <b>Expression Selector</b> dialog.</li>
+                <li>Click the text box of the <strong>Value Expression</strong> field. This opens the <b>Expression Selector</b> dialog.</li>
                <li>Select <strong>Expression</strong> from the list.
                 </li>
                <li>Enter <code>json-eval($.hospital)</code> to overwrite the default expression.</li>
@@ -218,7 +218,7 @@ You can now start configuring the API resource.
             <p>The <strong>Source XPath</strong> field is where we specify the XPath expression, which obtains the value of Hospital that we stored in the Property mediator.</p>
             <p>Follow the steps given below to specify the expression:</p>
             <ol>
-                <li>Click the <b>Value</b> field for the <strong>Source XPath</strong> property. This opens the <b>Expression Selector</b> dialog.</li>
+                <li>Click the text box of the <strong>Source XPath</strong> property. This opens the <b>Expression Selector</b> dialog.</li>
                <li>Select <strong>Expression</strong> from the list.
                 </li>
                <li>Enter <code>                  get-property('Hospital')                 </code> to overwrite the default expression.</li>
@@ -290,7 +290,7 @@ You can now start configuring the API resource.
             Follow the steps given below to extract the stock symbol from the request and print a welcome message in the log:
             <ol>
                 <li>
-                    Click the <b>plus</b> icon (<img src="../../../assets/img/tutorials/plus-icon.png" width="30">)
+                    Click the <b>plus</b> icon (<img src="../../../assets/img/tutorials/common/plus-icon.png" width="30">)
     to start defining a property. This opens the <b>LogProperty</b> dialog.
                 </li>
                 <li>
@@ -427,9 +427,9 @@ Let's send a request to the API resource to make a reservation. You can use the 
     !!! Tip
         If you don't see the <b>HTTP Client</b> pane, go to <b>Window -> Show View - Other</b> and select <b>HTTP Client</b> to enable the client pane.
 
-    <img src="../../../assets/img/tutorials/119132155/http4e-client-empty.png" width="800">
+    <img src="../../../assets/img/tutorials/common/http4e-client-empty.png" width="800">
 
-2. Enter the request information as given below and click the <b>Send</b> icon (<img src="../../../assets/img/tutorials/119132155/play-head-icon.png" width="20">).
+2. Enter the request information as given below and click the <b>Send</b> icon (<img src="../../../assets/img/tutorials/common/play-head-icon.png" width="20">).
     
     <table>
         <tr>
