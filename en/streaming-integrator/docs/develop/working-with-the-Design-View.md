@@ -54,7 +54,7 @@ to the grid of the design view when you create a Siddhi application.
          <td>
             <div class="content-wrapper">
                <p>To configure the stream, click the settings icon on the stream component you added to the grid. Then enter values as follows:</p>
-               <p><strong>Stream Name</strong> <strong>:</strong> A unique name for the stream. This should be specified in title caps, and without spaces (e.g., <code>               ProductionDataStream              </code> ).</p>
+               <p><strong>Stream Name</strong> <strong>:</strong> A unique name for the stream. This should be specified in title caps, and without spaces (e.g., <code>ProductionDataStream</code> ).</p>
                <p><strong>Attributes</strong> : Attributes of streams are specified as name and type pairs in the <strong>Attributes</strong> table.</p>
                <p>If you want to generate the the stream from a file or a database, click <strong>Generate Stream</strong>. However, note that you need to create the relevant file or set up the database and the tables beforehand.</p>
                <p><img src="../../images/working-with-the design-view/Generate-Stream.png"/></p>
@@ -63,7 +63,30 @@ to the grid of the design view when you create a Siddhi application.
                <p>To generate the stream from a file:
                 <ol>
                 <li>In the <strong>Generate Stream</strong> form, select <strong>From File</strong>.</li>
-                <li>Then click <strong>Choose File</strong> and browse for the file from which you want to generate the stream</li>
+                <li><p>Then click <strong>Choose File</strong> and browse for the file from which you want to generate the stream. <br/> the supported file types are <code>CSV</code>, <code>JSON</code>, and <code>XML</code>. If you select a file that is not of one of these types, the <strong>Select File Type</strong> field is enabled as shown in the example below.</p>
+                    <p><img src="../../images/working-with-the design-view/select-file-type.png"/></p>
+                    <p>You are required to select the appropriate file type in this field in order to proceed to generate the stream from the selected file.</p>
+                    <p>The rest of the fields that appear in the dialog box differ based on the file type as explained below. If required, change the default values that appear in them as required</p>
+                    <ul>
+                        <li style="margin-left:2em">If the file type is <strong>CSV</strong>:</li>
+                        <ul>
+                            <li style="margin-left:2em"><strong>Stream Name</strong>: A name for the stream that you are generating.</li>
+                            <li style="margin-left:2em"><strong>Delimiter</strong>: A blank space, comma, or any other character/symbol that indicates the beginning or the end of a character string, word, or a data item.</li>
+                            <li style="margin-left:2em"><strong>Is Header Exists</strong>: If this is set to <strong>true</strong>, a header exists for the purpose of identifying the attribute names and the data types of the data values in the file.</li>
+                        </ul>
+                        <li style="margin-left:2em">If the file type is <strong>JSON</strong>:</li>
+                        <ul>
+                            <li style="margin-left:2em"><strong>Stream Name</strong>: A name for the stream that you are generating.</li>
+                            <li style="margin-left:2em"><strong>Enclosing Element</strong>: The symbol/element used to enclose the JSON object.</li>
+                        </ul>
+                        <li style="margin-left:2em">If the file type is <strong>XML</strong>:</li>
+                        <ul>
+                            <li style="margin-left:2em"><strong>Stream Name</strong>: A name for the stream that you are generating.</li>
+                            <li style="margin-left:2em"><strong>Namespace</strong>: This is an optional field to enter an XML namespace.</li>
+                            <li style="margin-left:2em"><strong>Enclosing Element</strong>: The symbol/element used to enclose the XML object.</li>
+                        </ul>
+                    </ul>
+                </li>
                 <li>Click <strong>Generate</strong>. The <strong>Stream Configuration</strong> form is populated with the values in the file you selected.</li>
                 </ol>
                </p>
