@@ -7,11 +7,9 @@ This quick start guide gets you started with the Streaming Integrator (SI), in j
 
 In this guide, you will download the SI distribution, start it and then try out a simple Siddhi application.
 
-## Tutorial Outline
+The outline of this quick start guide is shown in the diagram below.
 
-- [Downloading Streaming Integrator](#downloading-streaming-integrator)
-- [Starting the server](#starting-the-server)
-- [Deploying a simple Siddhi app](#deploying-a-simple-siddhi-app)
+![Quick Start Guide Outline](../../images/qsg/qsg-outline.png)
 
 ## Downloading Streaming Integrator
 
