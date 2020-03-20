@@ -151,6 +151,7 @@ You can now start updating the API resource with the mediation flow.
     ![](../../assets/img/tutorials/119132228/119132238.png?effects=drop-shadow)  
 
 2.  With the Property mediator selected, access the Properties tab and specify the following details:
+
     <table>
         <tr>
             <th>Property</th>
@@ -172,10 +173,21 @@ You can now start updating the API resource with the mediation flow.
          <td>Value Type</td>
          <td>Enter <code>               EXPRESSION              </code>.</td>
       </tr>
-      <tr class="odd">
+      <tr class="even">
          <td>Value Expression</td>
          <td>
-            <code>json-eval($.cardNo)</code>
+            <div class="content-wrapper">
+              <p>Follow the steps given below to specify the expression:</p>
+            <ol>
+                <li>Click the <b>Value</b> field for <strong>Value Expression</strong>. This opens the <b>Expression Selector</b> dialog.</li>
+               <li>Select <strong>Expression</strong> from the list.
+                </li>
+               <li>Enter <code>json-eval($.cardNo)</code> to overwrite the default expression.</li>
+               <li>Click <strong>OK.</strong> <strong><br />
+                  </strong>
+               </li>
+            </ol>
+            </div>
          </td>
       </tr>
       <tr>
@@ -273,12 +285,23 @@ You can now start updating the API resource with the mediation flow.
     <td>Value Type</td>
     <td>Select <strong>EXPRESSION</strong></td>
     </tr>
-    <tr class="odd">
-    <td>Value Expression</td>
-    <td><code>               json-eval($.appointmentNumber)              </code><br />
-    To set the expression, click in the textbox which will open a the Expression Selector dialog.
-    Select <strong>Expression</strong> from the dropdown list on top of the window and set the value.
-    </tr>
+    <tr class="even">
+         <td>Value Expression</td>
+         <td>
+            <div class="content-wrapper">
+              <p>Follow the steps given below to specify the expression:</p>
+            <ol>
+                <li>Click the <b>Value</b> field for <strong>Value Expression</strong>. This opens the <b>Expression Selector</b> dialog.</li>
+               <li>Select <strong>Expression</strong> from the list.
+                </li>
+               <li>Enter <code>json-eval($.appointmentNumber)</code> to overwrite the default expression.</li>
+               <li>Click <strong>OK.</strong> <strong><br />
+                  </strong>
+               </li>
+            </ol>
+            </div>
+         </td>
+      </tr>
     <tr class="even">
     <td>Description</td>
     <td>Get Appointment Number</td>
@@ -332,18 +355,23 @@ You can now start updating the API resource with the mediation flow.
                 Select <strong>set</strong>.
               </td>
             </tr>
-            <tr>
-              <td>Value Type</td>
-              <td>
-                Select <strong>EXPRESSION</strong>.
-              </td>
-            </tr>
-            <tr>
-              <td>Value Expression</td>
-              <td>
-                Enter <code>json-eval($.doctor)</code>.
-              </td>
-            </tr>
+            <tr class="even">
+                 <td>Value Expression</td>
+                 <td>
+                    <div class="content-wrapper">
+                      <p>Follow the steps given below to specify the expression:</p>
+                    <ol>
+                        <li>Click the <b>Value</b> field for <strong>Value Expression</strong>. This opens the <b>Expression Selector</b> dialog.</li>
+                       <li>Select <strong>Expression</strong> from the list.
+                        </li>
+                       <li>Enter <code>json-eval($.doctor)</code> to overwrite the default expression.</li>
+                       <li>Click <strong>OK.</strong> <strong><br />
+                          </strong>
+                       </li>
+                    </ol>
+                    </div>
+                 </td>
+              </tr>
             <tr>
               <td>Description</td>
               <td>
@@ -381,12 +409,23 @@ You can now start updating the API resource with the mediation flow.
                 Select <strong>EXPRESSION</strong>
               </td>
             </tr>
-            <tr>
-              <td>Value Expression</td>
-              <td>
-                Enter <code>json-eval($.patient)</code>
-              </td>
-            </tr>
+            <tr class="even">
+                 <td>Value Expression</td>
+                 <td>
+                    <div class="content-wrapper">
+                      <p>Follow the steps given below to specify the expression:</p>
+                    <ol>
+                        <li>Click the <b>Value</b> field for <strong>Value Expression</strong>. This opens the <b>Expression Selector</b> dialog.</li>
+                       <li>Select <strong>Expression</strong> from the list.
+                        </li>
+                       <li>Enter <code>json-eval($.patient)</code> to overwrite the default expression.</li>
+                       <li>Click <strong>OK.</strong> <strong><br />
+                          </strong>
+                       </li>
+                    </ol>
+                    </div>
+                 </td>
+              </tr>
           </table>
 
     ![](../../assets/img/tutorials/119132228/119132233.png)
@@ -395,14 +434,60 @@ You can now start updating the API resource with the mediation flow.
 12.  Add a Property mediator adjoining the Call mediator box to retrieve and store the value sent as `           actualFee          `. 
 13.  Access the Property tab of the mediator and specify the following details:
 
-    | Property            | Description                                                                                                                                    |
-    |-------------------|--------------------------------------------------------------------------------------------------------------------------------------------------|
-    | Property Name     | Select **New Property**                                                                                                                          |
-    | New Property Name | `               actual_fee              ` (This value is used when invoking [SettlePaymentEP](#ExposingSeveralServicesasaSingleService-Settle) ) |
-    | Property Action   | Select **set**                                                                                                                                   |
-    | Value Type        | Select **EXPRESSION**                                                                                                                            |
-    | Value Expression  | `               json-eval($.actualFee)              `                                                                                            |
-    | Description       | Get Actual Fee                                                                                                                                   |
+      <table>
+            <tr>
+              <th>Property</th>
+              <th>Description</th>
+            </tr>
+            <tr>
+              <td>Property Name</td>
+              <td>Select <strong>New Property</strong></td>
+            </tr>
+            <tr>
+              <td>New Property Name</td>
+              <td>
+                  Enter <code>actual_fee</code></br></br>
+                  <b>Note</b>: This value is used when invoking <a src="#ExposingSeveralServicesasaSingleService-Settle">SettlePaymentEP</a>.
+              </td>
+            </tr>
+            <tr>
+              <td>Property Action</td>
+              <td>
+                Select <strong>set</strong>
+              </td>
+            </tr>
+            <tr>
+              <td>Value Type</td>
+              <td>
+                Select <strong>EXPRESSION</strong>
+              </td>
+            </tr>
+            <tr class="even">
+                 <td>Value Expression</td>
+                 <td>
+                    <div class="content-wrapper">
+                      <p>Follow the steps given below to specify the expression:</p>
+                    <ol>
+                        <li>Click the <b>Value</b> field for <strong>Value Expression</strong>. This opens the <b>Expression Selector</b> dialog.</li>
+                       <li>Select <strong>Expression</strong> from the list.
+                        </li>
+                       <li>Enter <code>json-eval($.actualFee)</code> to overwrite the default expression.</li>
+                       <li>Click <strong>OK.</strong> <strong><br />
+                          </strong>
+                       </li>
+                    </ol>
+                    </div>
+                 </td>
+              </tr>
+              <tr>
+                <td>
+                    Description
+                </td>
+                <td>
+                    Get Actual Fee
+                </td>
+              </tr>
+          </table>
 
     ![](../../assets/img/tutorials/119132228/119132232.png)
 
@@ -455,16 +540,42 @@ You can now start updating the API resource with the mediation flow.
 
     !!! Tip
         To avoid getting an error message, first select the **Media Type** before providing the **Payload.**
-
-    | Field         | Description                                                  | Description                                                          |
-    |---------------|--------------------------------------------------------------|----------------------------------------------------------------------|
-    | **Type**      | Expression                                                   | -                                                                    |
-    | **Expression**     | `$ctx:uri.var.appointment_id `                               | The value for the first variable ($1) in the message payload format. To set the expression, click in the textbox which will open a the Expression Selector dialog.
-                                                                                                                                                                   Select <strong>Expression</strong> from the dropdown list on top of the window and set the value.|
-    | **Evaluator** | xml                                                          | Indicates that the expression provided is in XML.                    |
+        
+    <table>
+            <tr>
+              <th>Property</th>
+              <th>Description</th>
+            </tr>
+            <tr class="even">
+                 <td>Value</td>
+                 <td>
+                    <div class="content-wrapper">
+                      <p>Follow the steps given below to specify the expression:</p>
+                    <ol>
+                        <li>Click the <b>Value</b> field for <strong>Value Expression</strong>. This opens the <b>Expression Selector</b> dialog.</li>
+                       <li>Select <strong>Expression</strong> from the list.
+                        </li>
+                       <li>Enter <code>$ctx:uri.var.appointment_id</code> to overwrite the default expression.</li>
+                       <li>Click <strong>OK.</strong> <strong><br/>
+                          </strong>
+                       </li>
+                    </ol>
+                    </div>
+                 </td>
+              </tr>
+              <tr>
+                <td>
+                    Evaluator
+                </td>
+                <td>
+                    Enter <code>xml</code>.</br></br>
+                    This indicates that the expression is provided in XML.
+                </td>
+              </tr>
+          </table>
 
     !!! Info
-        The `           $ctx          ` method is similar to using the `           get-property          ` method. This method checks in the message context.
+        The `$ctx` method is similar to using the `get-property` method. This method checks in the message context.
     
 18. Similarly, click **Add** and add more arguments to define the other variables that are used in the message payload format definition. Use the following as the **Value** for each of them:
 
@@ -522,7 +633,7 @@ Let's test the use case by sending a simple client request that invokes the serv
     java -jar Hospital-Service-2.0.0-EI7.jar
     ```
 
-#### Send the client request
+#### Get details of deployed artifacts (Optional)
 
 Let's use the **CLI Tool** to find the URL of the REST API that is deployed in the Micro Integrator:
 
@@ -531,11 +642,78 @@ Let's use the **CLI Tool** to find the URL of the REST API that is deployed in t
     `./mi`
 3.  Execute the following command to find the APIs deployed in the server:
     `mi api show`
+    
 
-Let's send a request to the API resource.
+#### Send the client request
 
-1.  Create a JSON file named `           request.json          ` with the following request payload.
+Let's send a request to the API resource to make a reservation. You can use the embedded <b>HTTP Client</b> of WSO2 Integration Studio as follows:
 
+1. Open the <b>HTTP Client</b> of WSO2 Integration Studio.
+
+    !!! Tip
+        If you don't see the <b>HTTP Client</b> pane, go to <b>Window -> Show View - Other</b> and select <b>HTTP Client</b> to enable the client pane.
+
+    <img src="../../../assets/img/tutorials/common/http4e-client-empty.png" width="800">
+
+2. Enter the request information as given below and click the <b>Send</b> icon (<img src="../../../assets/img/tutorials/common/play-head-icon.png" width="20">).
+    
+    <table>
+        <tr>
+            <th>Method</th>
+            <td>
+               <code>POST</code> 
+            </td>
+        </tr>
+        <tr>
+            <th>Headers</th>
+            <td>
+              <code>Content-Type=application/json</code>
+            </td>
+        </tr>
+        <tr>
+            <th>URL</th>
+            <td><code>http://localhost:8290/healthcare/categories/surgery/reserve</code></br></br>
+              <ul>
+                <li>
+                  The URI-Template format that is used in this URL was defined when creating the API resource:
+          <code>http://<host>:<port>/categories/{category}/reserve</code>.
+                </li>
+              </ul>
+            </td>
+        </tr>
+        <tr>
+            <th>Body</th>
+            <td>
+            <div>
+              <code>
+                {
+                 "name": "John Doe",
+                 "dob": "1940-03-19",
+                 "ssn": "234-23-525",
+                 "address": "California",
+                 "phone": "8770586755",
+                 "email": "johndoe@gmail.com",
+                 "doctor": "thomas collins",
+                 "hospital": "grand oak community hospital",
+                 "cardNo": "7844481124110331",
+                 "appointment_date": "2025-04-02"
+                }
+              </code>
+            </div></br>
+            <ul>
+              <li>
+                This JSON payload contains details of the appointment reservation, which includes patient details, doctor, hospital, and data of appointment.
+              </li>
+            </ul>
+        </tr>
+     </table>
+     
+     <img src="../../../assets/img/tutorials/119132228/http4e-client-service-chaining.png" width="800">
+
+If you want to send the client request from your terminal:
+
+1. Install and set up [cURL](https://curl.haxx.se/) as your REST client.
+2. Create a JSON file named `request.json` with the following request payload.
     ```json
     {
      "name": "John Doe",
@@ -550,20 +728,15 @@ Let's send a request to the API resource.
      "appointment_date": "2025-04-02"
     }
     ```
-
-2.  Open a command line terminal and execute the following command from the location where the `           request.json          ` file is
-    saved. Alternatively, you can use the embedded **HTTP Client** in the bottom panel:
-
-    ```bash
+3. Open a terminal and navigate to the directory where you have saved the `request.json` file.
+4. Execute the following command.
+    ```json
     curl -v -X POST --data @request.json  http://localhost:8290/healthcare/categories/surgery/reserve  --header "Content-Type:application/json"
     ```
 
-    !!! Info
-        This is derived from the **URI-Template** defined when creating the API resource: `http://<host>:<port>/categories/{category}/reserve`
-    
 #### Analyze the response
 
-You will see the response as follows:
+You will see the response received to your <b>HTTP Client</b>:
 
 ```json
 {  
