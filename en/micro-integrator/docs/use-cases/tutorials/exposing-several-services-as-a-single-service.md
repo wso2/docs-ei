@@ -12,13 +12,19 @@ To build this mediation flow, you will update the API resource from the [previou
 
 ### Step 1: Set up the workspace
 
-To set up the tools:
+Set up WSO2 Integration Studio as follows:
 
--   Download the relevant [WSO2 Integration Studio](https://wso2.com/integration/tooling/) based on your operating system. The path to the extracted/installed folder is referred to as `MI_TOOLING_HOME` throughout this tutorial.
--  Download the [CLI Tool](https://wso2.com/integration/micro-integrator/install/) for monitoring artifact deployments.
+1.  Download the relevant [WSO2 Integration Studio](https://wso2.com/integration/tooling/) based on your operating system. The path to the extracted/installed folder is referred to as `MI_TOOLING_HOME` throughout this tutorial.
+2.  If you did not try the [Transforming Message Content](transforming-message-content.md) tutorial yet:  
+    1.  Open WSO2 Integration Studio and go to **File -> Import**. 
+    2.  Select **Existing WSO2 Projects into workspace** under the **WSO2** category, click **Next** and upload the [pre-packaged project](https://github.com/wso2-docs/WSO2_EI/blob/master/Integration-Tutorial-Artifacts/TransformingContentTutorial.zip).
 
-If you did not try the [Transforming Message Content](transforming-message-content.md) tutorial yet, open WSO2 Integration Studio, click **File** , and then click **Import**. Next, select **Existing WSO2 Projects into workspace** under the **WSO2** category, click **Next** and upload the [pre-packaged project](https://github.com/wso2-docs/WSO2_EI/blob/master/Integration-Tutorial-Artifacts/TransformingContentTutorial.zip). 
+Optionally, you can set up the **CLI tool** for artifact monitoring. This will later help you get details of the artifacts that you deploy in your Micro Integrator.
 
+1.  Go to the [WSO2 Micro Integrator website](https://wso2.com/integration/#). 
+2.  Click **Download -> Other Resources** and click **CLI Tooling** to download the tool. 
+3.  Extract the downloaded ZIP file. This will be your `MI_CLI_HOME` directory. 
+4.  Export the `MI_CLI_HOME/bin` directory path as an environment variable. This allows you to run the tool from any location on your computer using the `mi` command. Read more about the [CLI tool](../../../administer-and-observe/using-the-command-line-interface).
 
 ### Step 2: Develop the integration artifacts
 
@@ -635,14 +641,34 @@ Let's test the use case by sending a simple client request that invokes the serv
 
 #### Get details of deployed artifacts (Optional)
 
-Let's use the **CLI Tool** to find the URL of the REST API that is deployed in the Micro Integrator:
+Let's use the **CLI Tool** to find the URL of the REST API (that is deployed in the Micro integrator) to which you will send a request.
 
-1.  Open a terminal and navigate to the `CLI_HOME/bin` directory.
-2.  Execute the following command to start the tool:
-    `./mi`
-3.  Execute the following command to find the APIs deployed in the server:
-    `mi api show`
+!!! Tip
+    Be sure to set up the CLI tool for your work environment as explained in the [first step](#step-1-set-up-the-workspace) of this tutorial.
+
+1.  Open a terminal and execute the following command to start the tool:
+    ```bash
+    mi
+    ```
     
+2.  Log in to the CLI tool. Let's use the server administrator user name and password:
+    ```bash
+    mi remote login admin admin
+    ```
+
+    You will receive the following message: *Login successful for remote: default!*
+
+3.  Execute the following command to find the APIs deployed in the server:
+    ```bash
+    mi api show
+    ```
+
+    You will receive the following information:
+
+    *NAME : HealthcareAPI*            
+    *URL  : http://localhost:8290/healthcare* 
+
+Similarly, you can get details of other artifacts deployed in the server. Read more about [using the CLI tool](../../../administer-and-observe/using-the-command-line-interface).
 
 #### Send the client request
 
@@ -654,7 +680,7 @@ Let's send a request to the API resource to make a reservation. You can use the 
         If you don't see the <b>HTTP Client</b> pane, go to <b>Window -> Show View - Other</b> and select <b>HTTP Client</b> to enable the client pane.
 
     <img src="../../../assets/img/tutorials/common/http4e-client-empty.png" width="800">
-
+    
 2. Enter the request information as given below and click the <b>Send</b> icon (<img src="../../../assets/img/tutorials/common/play-head-icon.png" width="20">).
     
     <table>

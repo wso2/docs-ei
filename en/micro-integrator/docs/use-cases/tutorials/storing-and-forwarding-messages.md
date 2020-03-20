@@ -1,22 +1,28 @@
 # Asynchronous Messaging
 
 ## What you'll build
+Store and forward messaging is used for serving traffic to back-end services that can accept request messages only at a given rate. This is also used to ensure guaranteed delivery of messages. Messages never get lost since they are stored in the message store and available for future reference.
 
-Store and forward messaging is used for serving traffic to back-end services that can accept request messages only at a given rate. This is also used for guaranteed delivery to ensure that request received never gets lost since they are stored in the message store and also available for future reference.
-
-**In this tutorial**, instead of sending the request directly to the back-end service, you store the request message in WSO2 Message Broker. You will then use a **Message
+**In this tutorial**, instead of sending the request directly to the back-end service, you store the request message in the Message Broker profile of WSO2 EI 6.6.0. You will then use a **Message
 Processor** to retrieve the message from the store before delivering it to the back-end service.
 
 ## Let's get started!
 
 ### Step 1: Set up the workspace
 
-To set up the tools:
+Set up WSO2 Integration Studio as follows:
 
--   Download the relevant [WSO2 Integration Studio](https://wso2.com/integration/tooling/) based on your operating system. The path to the extracted/installed folder is referred to as `MI_TOOLING_HOME` throughout this tutorial.
--  Download the [CLI Tool](https://wso2.com/integration/micro-integrator/install/) for monitoring artifact deployments.
+1.  Download the relevant [WSO2 Integration Studio](https://wso2.com/integration/tooling/) based on your operating system. The path to the extracted/installed folder is referred to as `MI_TOOLING_HOME` throughout this tutorial.
+2.   If you did not try the [Exposing Several Services as a Single Service](exposing-several-services-as-a-single-service.md) tutorial yet:
+    1.  Open WSO2 Integration Studio and go to **File -> Import**. 
+    2.  Select **Existing WSO2 Projects into workspace** under the **WSO2** category, click **Next**, and then upload the [pre-packaged project](https://github.com/wso2-docs/WSO2_EI/blob/master/Integration-Tutorial-Artifacts/ExposingSeveralServicesTutorial.zip).
 
-If you did not try the [Exposing Several Services as a Single Service](exposing-several-services-as-a-single-service.md) tutorial yet, open WSO2 Integration Studio, click **File** , and then click **Import** . Next, select **Existing WSO2 Projects into workspace** under the **WSO2** category, click **Next** and upload the [pre-packaged project](https://github.com/wso2-docs/WSO2_EI/blob/master/Integration-Tutorial-Artifacts/ExposingSeveralServicesTutorial.zip).
+Optionally, you can set up the **CLI tool** for artifact monitoring. This will later help you get details of the artifacts that you deploy in your Micro Integrator.
+
+1.  Go to the [WSO2 Micro Integrator website](https://wso2.com/integration/#). 
+2.  Click **Download -> Other Resources** and click **CLI Tooling** to download the tool. 
+3.  Extract the downloaded ZIP file. This will be your `MI_CLI_HOME` directory. 
+4.  Export the `MI_CLI_HOME/bin` directory path as an environment variable. This allows you to run the tool from any location on your computer using the `mi` command. Read more about the [CLI tool](../../../administer-and-observe/using-the-command-line-interface).
 
 ### Step 2: Develop the integration artifacts
 
@@ -24,7 +30,7 @@ If you did not try the [Exposing Several Services as a Single Service](exposing-
 
 Now, let's create a Message Store artifact to represent the broker.
 
-1.  Right-click on **SampleServices** in the Project Explorer and navigate to **New->Message Store**.
+1.  Right-click **SampleServices** in the Project Explorer and navigate to **New->Message Store**.
 2.  Select **Create a new message-store artifact** and specify the following details:
 
     <table>
@@ -62,19 +68,19 @@ Now, let's create a Message Store artifact to represent the broker.
 
 3.  Click **Finish**.
 
-#### Create the Response Sequence
+#### Create the Response sequence
 
 Let's create a Sequence that uses the message in the message store to send the request to SettlePaymentEP.
 
 1.  Right click the **SampleServices** project in the Project Explorer and navigate to **New -> Sequence**. 
-2.  Select **Create New Sequence** and provide the name **PaymentRequestProcessingSequence**.
+2.  Select **Create New Sequence** and give **PaymentRequestProcessingSequence** as the name.
 
     ![](../../assets/img/tutorials/119132268/119132273.png)  
 
 3.  Click **Finish**.
 
-4.  In the sequence you have created in the previous step, drag and drop a Call mediator from the **Mediators** palette 
-and add SettlePaymentEP from **Defined 
+4.  In the sequence you have created (in the previous step), drag and drop a Call mediator from the **Mediators** palette 
+and add SettlePaymentEP from the **Defined 
 Endpoints** palette to the empty box adjoining the Call mediator. This sends the request message from the store to SettlePaymentEP.
 
     ![](../../assets/img/tutorials/119132268/119132272.png)
@@ -90,7 +96,7 @@ Endpoints** palette to the empty box adjoining the Call mediator. This sends th
 
     ![](../../assets/img/tutorials/119132268/119132271.png)
 
-5.  Save the updated REST API configuration.
+5.  Save the updated sequence configuration.
 
 
 #### Create the Message Processor
@@ -233,11 +239,11 @@ Let's test the use case by sending a simple client request that invokes the serv
 
 #### Start the Message Broker runtime
 
-To set up WSO2 Message Broker:
+To set up Message Broker profile of WSO2 EI 6.6.0:
 
-1. Download WSO2 Message Broker. The path to this folder is referred to as `MB_HOME` throughout this tutorial.
+1. Download [WSO2 EI 6.6.0](https://wso2.com/enterprise-integrator/6.6.0), which includes the Message Broker profile. The path to this folder is referred to as `EI_6.6.0_HOME` throughout this tutorial.
 
-2. Add the following JAR files from the `MB_HOME/wso2/broker/client-lib/` directory to the 
+2. Add the following JAR files from the `EI_6.6.0_HOME/wso2/broker/client-lib/` directory to the 
 `MI_TOOLING_HOME/Contents/Eclipse/runtime/microesb/lib/` (in MacOS) or 
 `MI_TOOLING_HOME/runtime/microesb/lib` (in Windows) directory.
     -   andes-client-*.jar
@@ -266,16 +272,16 @@ To set up WSO2 Message Broker:
     parameter.cache_level = "producer"
 
     [transport.jndi.connection_factories]
-    QueueConnectionFactory = "amqp://admin:admin@clientID/carbon?brokerlist='tcp://localhost:5675'"
+    'connectionfactory.QueueConnectionFactory' = "amqp://admin:admin@clientID/carbon?brokerlist='tcp://localhost:5675'"
 
     [transport.jndi.queue]
     PaymentRequestJMSMessageStore="PaymentRequestJMSMessageStore"
     ```
     
-To start WSO2 Message Broker:
+To start the Message Broker:
 
-1.  Open a terminal and navigate to the `MI_HOME/wso2/broker/bin` directory.
-2.  Execute the following command to run the in message broker. 
+1.  Open a terminal and navigate to the `EI_6.6.0_HOME/wso2/broker/bin` directory.
+2.  Execute the following command to run the message broker. 
     
     -   On **MacOS/Linux/CentOS**:
 
@@ -289,21 +295,48 @@ To start WSO2 Message Broker:
         wso2server.bat
         ```
 
-    See the [WSO2 EI 6.5.0 documentation](https://docs.wso2.com/display/EI650/Running+the+Product) for more information on how to run the WSO2 MB.
+    See the [WSO2 EI 6.6.0 documentation](https://docs.wso2.com/display/EI660/Running+the+Product) for more information on how to run the Message Broker profile.
 
 #### Restart the Micro Integrator
 
-Start the Micro Integrator on WSO2 Integration Studio.
+Let's restart the Micro Integrator with the deployed artifacts:
+
+Right-click the composite application project and click **Export Project Artifacts and Run** as shown below.
+
+<img src="../../../assets/img/tutorials/restart_server.png" width="400">
+
+#### Get details of deployed artifacts (Optional)
+
+Let's use the **CLI Tool** to find the URL of the REST API (that is deployed in the Micro integrator) to which you will send a request.
+
+!!! Tip
+    Be sure to set up the CLI tool for your work environment as explained in the [first step](#step-1-set-up-the-workspace) of this tutorial.
+
+1.  Open a terminal and execute the following command to start the tool:
+    ```bash
+    mi
+    ```
+    
+2.  Log in to the CLI tool. Let's use the server administrator user name and password:
+    ```bash
+    mi remote login admin admin
+    ```
+
+    You will receive the following message: *Login successful for remote: default!*
+
+3.  Execute the following command to find the APIs deployed in the server:
+    ```bash
+    mi api show
+    ```
+
+    You will receive the following information:
+
+    *NAME : HealthcareAPI*            
+    *URL  : http://localhost:8290/healthcare* 
+
+Similarly, you can get details of message stores, message processors, and other artifacts deployed in the server. Read more about [using the CLI tool](../../../administer-and-observe/using-the-command-line-interface).
 
 #### Send the client request
-
-Let's use the **CLI Tool** to find the URL of the REST API that is deployed in the Micro Integrator:
-
-1.  Open a terminal and navigate to the `CLI_HOME/bin` directory.
-2.  Execute the following command to start the tool:
-    `./mi`
-3.  Execute the following command to find the APIs deployed in the server:
-    `mi api show`
 
 Let's send a request to the API resource.
 
@@ -322,6 +355,7 @@ Let's send a request to the API resource.
     "cardNo": "7844481124110331"
     }
     ```
+
 2.  Open a command line terminal and execute the following command from the location where `request.json` file you created is saved:
 
     ```bash

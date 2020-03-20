@@ -48,12 +48,20 @@ The client message format must be transformed to the back-end service message fo
 
 ### Step 1: Set up the workspace
 
-To set up the tools:
+Set up WSO2 Integration Studio as follows:
 
--  Download the relevant [WSO2 Integration Studio](https://wso2.com/integration/tooling/) based on your operating system. The path to the extracted/installed folder is referred to as `MI_TOOLING_HOME` throughout this tutorial.
--  Download the [CLI Tool](https://wso2.com/integration/micro-integrator/install/) for monitoring artifact deployments.
+1.  Download the relevant [WSO2 Integration Studio](https://wso2.com/integration/tooling/) based on your operating system. The path to the extracted/installed folder is referred to as `MI_TOOLING_HOME` throughout this tutorial.
+2.   If you did not try the [Routing Requests Based on Message Content](routing-requests-based-on-message-content.md) tutorial yet:
+    1.  Download the [pre-packaged project](https://github.com/wso2-docs/WSO2_EI/blob/master/Integration-Tutorial-Artifacts/RequestRoutingTutorial.zip). 
+    2.  Open WSO2 Integration Studio and go to **File -> Import**. 
+    3.  Select **Existing WSO2 Projects into workspace** under the **WSO2** category, click **Next**, and then upload the **pre-packaged project**.
 
-If you did not try the [Routing Requests Based on Message Content](routing-requests-based-on-message-content.md) tutorial yet, open WSO2 Integration Studio, click **File**, and then click **Import**. Next, select **Existing WSO2 Projects into workspace** under the **WSO2** category, click **Next** and upload the [pre-packaged project](https://github.com/wso2-docs/WSO2_EI/blob/master/Integration-Tutorial-Artifacts/RequestRoutingTutorial.zip).
+Optionally, you can set up the **CLI tool** for artifact monitoring. This will later help you get details of the artifacts that you deploy in your Micro Integrator.
+
+1.  Go to the [WSO2 Micro Integrator website](https://wso2.com/integration/#). 
+2.  Click **Download -> Other Resources** and click **CLI Tooling** to download the tool. 
+3.  Extract the downloaded ZIP file. This will be your `MI_CLI_HOME` directory. 
+4.  Export the `MI_CLI_HOME/bin` directory path as an environment variable. This allows you to run the tool from any location on your computer using the `mi` command. Read more about the [CLI tool](../../../administer-and-observe/using-the-command-line-interface).
 
 ### Step 2: Develop the integration artifacts
 
@@ -62,7 +70,7 @@ Let's update the API resource that was used in the [previous tutorial](routing-r
 1.  In WSO2 Integration Studio, add a **Data Mapper** mediator just after
     the Property mediator in the In Sequence of the API resource.
 
-    ![](../../assets/img/tutorials/119132196/119132205.png)
+    <img src="../../../assets/img/tutorials/119132196/119132205.png">
 
 2.  Double-click the Data Mapper mediator icon and specify the following details:
     <table>
@@ -81,10 +89,12 @@ Let's update the API resource that was used in the [previous tutorial](routing-r
       </tr>
     </table>
 
-    ![](../../assets/img/tutorials/119132196/119132224.png)
+    <img src="../../../assets/img/tutorials/119132196/119132224.png">
+
 
     Click **OK**. You view the data mapping editor.  
-    ![](../../assets/img/tutorials/119132196/119132204.png)
+
+    <img src="../../../assets/img/tutorials/119132196/119132204.png">
 
 3.  Create a JSON file (e.g., `input.json`) by copying the following sample content of the request message sent to the API resource and save it in your local file system.
 
@@ -107,15 +117,15 @@ Let's update the API resource that was used in the [previous tutorial](routing-r
 
 4.  Right-click on the top title bar of the **Input** box and click **Load Input** as shown below.
 
-    ![](../../assets/img/tutorials/119132196/119132200.png)
+    <img src="../../../assets/img/tutorials/119132196/119132200.png" width="500">
 
 5.  Select **JSON** as the **Resource Type** as shown below.
 
-    ![](../../assets/img/tutorials/119132196/119132203.png)
+    <img src="../../../assets/img/tutorials/119132196/119132203.png" width="500">
 
 6.  Click the **file system** link in **Select resource from**, select the JSON file (i.e., `input.json` ) you saved in your local file system, and click **Open**. You can view the input format loaded in the **Input** box of the editor as shown below.
 
-    ![the input format](../../assets/img/tutorials/119132196/119132211.png)
+    <img src="../../../assets/img/tutorials/119132196/119132211.png" width="500">
 
 7.  Create another JSON file (e.g., `output.json`) by copying the following sample content of the request message expected by the back-end service and save it in your local file system.
 
@@ -136,10 +146,13 @@ Let's update the API resource that was used in the [previous tutorial](routing-r
     ```
 
 8.  Right-click on the top title bar of the **Output** box and click **Load Output** as shown below.  
-    ![](../../assets/img/tutorials/119132196/119132202.png)
+
+    <img src="../../../assets/img/tutorials/119132196/119132202.png" width="500">
+
 9.  Select **JSON** as the resource type.
-10. Click the **file system** link in **Select resource from**, select the JSON file you saved in your local file system, and click **Open**. You can view the input format loaded in the **Output** box in the editor as shown below.  
-    ![](../../assets/img/tutorials/119132196/119132201.png)
+10. Click the **file system** link in **Select resource from**, select the JSON file you saved in your local file system, and click **Open**. You can view the input format loaded in the **Output** box in the editor as shown below. 
+
+    <img src="../../../assets/img/tutorials/119132196/119132201.png" width="500"> 
 
     !!! Info
         Check the **Input** and **Output** boxes with the sample messages to see if the element types (i.e. Arrays, Objects and Primitive values) are correctly identified. The following symbols will help you to identify them correctly.
@@ -149,8 +162,16 @@ Let's update the API resource that was used in the [previous tutorial](routing-r
         -  <> : represents primitive field values
         -  A : represents XML attribute value
 
-11. Do the mapping by dragging arrows from field values in the input box to the relevant field values in the output box. The final mapping is as follows:  
-    ![](../../assets/img/tutorials/119132196/119132199.png)
+11. Now, you need to map the input message with the output message. There are two ways to do the mapping:
+    - If you click **Apply**, the mapping will be generated by the **AI Data Mapper**. You have the option to manually change the mapping after it is generated.
+    - You can also manually draw the mapping by dragging arrows from the values in the **Input** box to the relevant values in the **Output** box.  
+
+    <img src="../../../assets/img/tutorials/119132196/119132199.png">
+
+    The completed mapping will look as follows:
+
+    <img src="../../../assets/img/tutorials/119132196/data-mapping.png">
+
 12. Save and close the configuration.
 13. Go back to the **Design View** of the API Resource and select the **Data Mapper** mediator and edit the following in the **Properties** tab:
     <table>
@@ -171,12 +192,12 @@ Let's update the API resource that was used in the [previous tutorial](routing-r
         </td>
       </tr>
     </table>
-    
-    ![](../../assets/img/tutorials/119132196/119132197.png)
 
+    <img src="../../../assets/img/tutorials/119132196/119132197.png">
+    
 14. Save the REST API configuration.
 
-    ![](../../assets/img/tutorials/119132196/119132198.png)
+    <img src="../../../assets/img/tutorials/119132196/119132198.png">
 
 You have successfully created all the artifacts that are required for this use case. 
 
@@ -214,24 +235,111 @@ Let's test the use case by sending a simple client request that invokes the serv
 2. Open a terminal, navigate to the location where your saved the [back-end service](#step-1-set-up-the-workspace).
 3. Execute the following command to start the service:
 
-    ```
+    ```bash
     java -jar Hospital-Service-2.0.0-EI7.jar
     ```
 
+#### Get details of deployed artifacts (Optional)
+
+Let's use the **CLI Tool** to find the URL of the REST API (that is deployed in the Micro integrator) to which you will send a request.
+
+!!! Tip
+    Be sure to set up the CLI tool for your work environment as explained in the [first step](#step-1-set-up-the-workspace) of this tutorial.
+
+1.  Open a terminal and execute the following command to start the tool:
+    ```bash
+    mi
+    ```
+    
+2.  Log in to the CLI tool. Let's use the server administrator user name and password:
+    ```bash
+    mi remote login admin admin
+    ```
+
+    You will receive the following message: *Login successful for remote: default!*
+
+3.  Execute the following command to find the APIs deployed in the server:
+    ```bash
+    mi api show
+    ```
+
+    You will receive the following information:
+
+    *NAME : HealthcareAPI*            
+    *URL  : http://localhost:8290/healthcare*
+
+Similarly, you can get details of other artifacts deployed in the server. Read more about [using the CLI tool](../../../administer-and-observe/using-the-command-line-interface).
+
 #### Send the client request
 
-Let's use the **CLI Tool** to find the URL of the REST API that is deployed in the Micro Integrator:
+Let's send a request to the API resource to make a reservation. You can use the embedded <b>HTTP Client</b> of WSO2 Integration Studio as follows:
 
-1.  Open a terminal and navigate to the `CLI_HOME/bin` directory.
-2.  Execute the following command to start the tool:
-    `./mi`
-3.  Execute the following command to find the APIs deployed in the server:
-    `mi api show`
+1. Open the <b>HTTP Client</b> of WSO2 Integration Studio.
 
-Let's send a request to the API resource.
+    !!! Tip
+        If you don't see the <b>HTTP Client</b> pane, go to <b>Window -> Show View - Other</b> and select <b>HTTP Client</b> to enable the client pane.
 
-1.  Create a JSON file names `           request.json          ` with the following request payload.
+    <img src="../../../assets/img/tutorials/119132196/http4e-client-empty.png" width="800">
 
+2. Enter the request information as given below and click the <b>Send</b> icon (<img src="../../../assets/img/tutorials/119132196/play-head-icon.png" width="20">).
+    
+    <table>
+        <tr>
+            <th>Method</th>
+            <td>
+               <code>POST</code> 
+            </td>
+        </tr>
+        <tr>
+            <th>Headers</th>
+            <td>
+              <code>Content-Type=application/json</code>
+            </td>
+        </tr>
+        <tr>
+            <th>URL</th>
+            <td><code>http://localhost:8290/healthcare/categories/surgery/reserve</code></br></br>
+              <ul>
+                <li>
+                  The URI-Template format that is used in this URL was defined when creating the API resource:
+          <code>http://<host>:<port>/categories/{category}/reserve</code>.
+                </li>
+              </ul>
+            </td>
+        </tr>
+        <tr>
+            <th>Body</th>
+            <td>
+            <div>
+              <code>
+                {
+                  "name": "John Doe",
+                  "dob": "1990-03-19",
+                  "ssn": "234-23-525",
+                  "address": "California",
+                  "phone": "8770586755",
+                  "email": "johndoe@gmail.com",
+                  "doctor": "thomas collins",
+                  "hospital": "grand oak community hospital",
+                  "cardNo": "7844481124110331",
+                  "appointment_date": "2025-04-02"
+                }
+              </code>
+            </div></br>
+            <ul>
+              <li>
+                This JSON payload contains details of the appointment reservation, which includes patient details, doctor, hospital, and data of appointment.
+              </li>
+            </ul>
+        </tr>
+     </table>
+     
+     <img src="../../../assets/img/tutorials/119132196/http4e-client-message-transformation.png" width="800">
+
+If you want to send the client request from your terminal:
+
+1. Install and set up [cURL](https://curl.haxx.se/) as your REST client.
+2. Create a JSON file named `request.json` with the following request payload.
     ```json
     {
       "name": "John Doe",
@@ -246,19 +354,15 @@ Let's send a request to the API resource.
       "appointment_date": "2025-04-02"
     }
     ```
-
-2.  Open a command line terminal and execute the following command from the location where `request.json` file you created is saved: 
-
-    ```bash
+3. Open a terminal and navigate to the directory where you have saved the `request.json` file.
+4. Execute the following command.
+    ```json
     curl -v -X POST --data @request.json http://localhost:8290/healthcare/categories/surgery/reserve --header "Content-Type:application/json"
     ```
-
-    !!! Info
-        This is derived from the **URI-Template** defined when creating the API resource: `http://<host>:<port>/categories/{category}/reserve`
     
 #### Analyze the response
 
-You will see the response as follows:
+You will see the following response received to your <b>HTTP Client</b>:
 
 ```json
 {"appointmentNumber":1,
