@@ -179,7 +179,7 @@ You can now start updating the API resource with the mediation flow.
             <div class="content-wrapper">
               <p>Follow the steps given below to specify the expression:</p>
             <ol>
-                <li>Click the <b>Value</b> field for <strong>Value Expression</strong>. This opens the <b>Expression Selector</b> dialog.</li>
+                <li>Click the text box for the <strong>Value Expression</strong> field. This opens the <b>Expression Selector</b> dialog.</li>
                <li>Select <strong>Expression</strong> from the list.
                 </li>
                <li>Enter <code>json-eval($.cardNo)</code> to overwrite the default expression.</li>
@@ -254,7 +254,7 @@ You can now start updating the API resource with the mediation flow.
     
     Let's use Property mediators to retrieve and store the values that you get from the response you receive from GrandOakEP, ClemencyEP, or PineValleyEP.
 
-8.  Next to the Switch mediator, add a Property mediator to retrieve and store the value sent as `           appointmentNumber          ` .
+8.  Next to the Switch mediator, add a Property mediator to retrieve and store the value sent as `appointmentNumber` .
 
     ![](../../assets/img/tutorials/119132228/119132234.png) 
 
@@ -291,7 +291,7 @@ You can now start updating the API resource with the mediation flow.
             <div class="content-wrapper">
               <p>Follow the steps given below to specify the expression:</p>
             <ol>
-                <li>Click the <b>Value</b> field for <strong>Value Expression</strong>. This opens the <b>Expression Selector</b> dialog.</li>
+                <li>Click the text box for the <strong>Value Expression</strong> field. This opens the <b>Expression Selector</b> dialog.</li>
                <li>Select <strong>Expression</strong> from the list.
                 </li>
                <li>Enter <code>json-eval($.appointmentNumber)</code> to overwrite the default expression.</li>
@@ -361,7 +361,7 @@ You can now start updating the API resource with the mediation flow.
                     <div class="content-wrapper">
                       <p>Follow the steps given below to specify the expression:</p>
                     <ol>
-                        <li>Click the <b>Value</b> field for <strong>Value Expression</strong>. This opens the <b>Expression Selector</b> dialog.</li>
+                        <li>Click the text box for the <strong>Value Expression</strong> field. This opens the <b>Expression Selector</b> dialog.</li>
                        <li>Select <strong>Expression</strong> from the list.
                         </li>
                        <li>Enter <code>json-eval($.doctor)</code> to overwrite the default expression.</li>
@@ -415,7 +415,7 @@ You can now start updating the API resource with the mediation flow.
                     <div class="content-wrapper">
                       <p>Follow the steps given below to specify the expression:</p>
                     <ol>
-                        <li>Click the <b>Value</b> field for <strong>Value Expression</strong>. This opens the <b>Expression Selector</b> dialog.</li>
+                        <li>Click the text box for the <strong>Value Expression</strong> field. This opens the <b>Expression Selector</b> dialog.</li>
                        <li>Select <strong>Expression</strong> from the list.
                         </li>
                        <li>Enter <code>json-eval($.patient)</code> to overwrite the default expression.</li>
@@ -431,7 +431,7 @@ You can now start updating the API resource with the mediation flow.
     ![](../../assets/img/tutorials/119132228/119132233.png)
 
 11.  Add a Call mediator and add ChannelingFeeEP from **Defined Endpoints** palette to the empty box adjoining the Call mediator.
-12.  Add a Property mediator adjoining the Call mediator box to retrieve and store the value sent as `           actualFee          `. 
+12.  Add a Property mediator adjoining the Call mediator box to retrieve and store the value sent as `actualFee`. 
 13.  Access the Property tab of the mediator and specify the following details:
 
       <table>
@@ -468,7 +468,7 @@ You can now start updating the API resource with the mediation flow.
                     <div class="content-wrapper">
                       <p>Follow the steps given below to specify the expression:</p>
                     <ol>
-                        <li>Click the <b>Value</b> field for <strong>Value Expression</strong>. This opens the <b>Expression Selector</b> dialog.</li>
+                        <li>Click the text box for the <strong>Value Expression</strong> field. This opens the <b>Expression Selector</b> dialog.</li>
                        <li>Select <strong>Expression</strong> from the list.
                         </li>
                        <li>Enter <code>json-eval($.actualFee)</code> to overwrite the default expression.</li>
@@ -490,6 +490,7 @@ You can now start updating the API resource with the mediation flow.
           </table>
 
     ![](../../assets/img/tutorials/119132228/119132232.png)
+    
 
     !!! Note
         You derive the Value Expression in the above table from the following response that is received from ChannelingFeeEP:
@@ -525,8 +526,7 @@ You can now start updating the API resource with the mediation flow.
     ```
 
 15.  Add a PayloadFactory mediator next to the Property mediator, from the **mediators** palette to construct the above message payload.
-
-    ![](../../assets/img/tutorials/119132228/119132229.png) 
+      ![](../../assets/img/tutorials/119132228/119132229.png) 
 
 16. With the Payloadfactory mediator selected, access the properties tab of the mediator and specify the following details:
 
@@ -552,7 +552,7 @@ You can now start updating the API resource with the mediation flow.
                     <div class="content-wrapper">
                       <p>Follow the steps given below to specify the expression:</p>
                     <ol>
-                        <li>Click the <b>Value</b> field for <strong>Value Expression</strong>. This opens the <b>Expression Selector</b> dialog.</li>
+                        <li>Click the text box for the <strong>Value</strong> field. This opens the <b>Expression Selector</b> dialog.</li>
                        <li>Select <strong>Expression</strong> from the list.
                         </li>
                        <li>Enter <code>$ctx:uri.var.appointment_id</code> to overwrite the default expression.</li>
@@ -580,9 +580,9 @@ You can now start updating the API resource with the mediation flow.
 18. Similarly, click **Add** and add more arguments to define the other variables that are used in the message payload format definition. Use the following as the **Value** for each of them:
 
     -   `$ctx:doctor_details`  
-    -   `           $ctx:patient_details          `  
-    -   `           $ctx:actual_fee          `  
-    -   `           $ctx:card_number          `  
+    -   `$ctx:patient_details`  
+    -   `$ctx:actual_fee`  
+    -   `$ctx:card_number`  
 
     ![](../../assets/img/tutorials/119132228/119132231.png)
 
