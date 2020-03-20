@@ -212,7 +212,7 @@ and their configuration files are all packed to two JAR files called
 JAR file, modify the configuration files and pack them to a JAR file
 again under the same name.
 
-Change the banzai.cfg file in quickfixj-examples-executor-2.1.1.jar (/quickfix/examples/banzai) by changing `TargetCompID` to `SYNAPSE`
+Change the banzai.cfg file in quickfixj-examples-banzai-2.1.1.jar (/quickfix/examples/banzai) by changing `TargetCompID` to `SYNAPSE`
 ```
 [default]
 FileStorePath=target/data/banzai
