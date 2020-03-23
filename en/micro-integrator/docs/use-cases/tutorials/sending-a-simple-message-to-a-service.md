@@ -22,13 +22,13 @@ To implement this use case, you will create a REST API resource and other artifa
 
 Follow the instructions given in this section to create and configure the required artifacts.
 
-#### Create an ESB Config project
+#### Create an Integration project
 
-To create an ESB solution consisting of an **ESB config** project and a **Composite Application** project:
+To create an Integration solution consisting of an **Integration** project and a **Composite Application** project:
 
 1.  Open **WSO2 Integration Studio**.
-2.  Go to **ESB Project** and click **Create New**.
-    ![](../../assets/img/tutorials/119132413/119132414.png)
+2.  Go to **Integration Project** and click **Create New**.
+    ![](../../assets/img/create_project/create-integration-project.png)
 
 3.  Enter `SampleServices` as the project name. Be sure to select the following check boxes so that the relevant
     projects will be created.
@@ -36,7 +36,7 @@ To create an ESB solution consisting of an **ESB config** project and a **Compos
     -   **Create Composite Application Project**
     -   **Create Connector Exported Project**
 
-    ![](../../assets/img/tutorials/119132413/esb-solution-dialog.png)
+    ![](../../assets/img/tutorials/119132413/create-simple-message-project.png)
 
 4.  Click **Finish**.  
     The created projects are saved in the **Project Explorer** as shown below:
@@ -85,12 +85,12 @@ An Endpoint artifact is required for the purpose of exposing the URL that connec
          <td>Static Endpoint</td>
          <td><br/>
          </td>
-         <td>Select this option because we are going to use this endpoint only in this ESB Config project and will not reuse it in other projects.</br/> <b>Note</b>: If you need to create a reusable endpoint, save it as a Dynamic Endpoint in either the Configuration or Governance Registry.</td>
+         <td>Select this option because we are going to use this endpoint only in this Integration project and will not reuse it in other projects.</br/> <b>Note</b>: If you need to create a reusable endpoint, save it as a Dynamic Endpoint in either the Configuration or Governance Registry.</td>
       </tr>
       <tr class="even">
          <td>Save Endpoint in</td>
          <td><code>               SampleServices              </code></td>
-         <td>This is the ESB Config project we created in the last section</td>
+         <td>This is the Integration project we created in the last section</td>
       </tr>
      </tbody>
     </table>
@@ -98,7 +98,7 @@ An Endpoint artifact is required for the purpose of exposing the URL that connec
     ![](../../assets/img/tutorials/119132413/create-endpoint-artifact.png)
 
 4.  Click **Finish**.  
-    The **QueryDoctorEP** endpoint is saved in the `           endpoints          ` folder within the ESB Config project you created.  
+    The **QueryDoctorEP** endpoint is saved in the `           endpoints          ` folder within the Integration project you created.  
     ![](../../assets/img/tutorials/119132413/endpoint-project-explorer.png)
 
 #### Create a REST API
@@ -134,7 +134,7 @@ A REST API is required for receving the client response and the REST resource wi
           SampleServices
         </td>
         <td>
-          This is the ESB config project where the artifact will be saved.
+          This is the Integration project where the artifact will be saved.
         </td>
       </tr>
     </table>
@@ -327,11 +327,41 @@ Similarly, you can get details of other artifacts deployed in the server. Read m
 
 #### Send the client request
 
-Open a command line terminal and enter the following request: 
+Let's send the request to the API. You can use the embedded <b>HTTP Client</b> of WSO2 Integration Studio as follows:
 
-```bash
-curl -v http://localhost:8290/healthcare/querydoctor/surgery
-```
+1. Open the <b>HTTP Client</b> of WSO2 Integration Studio.
+
+    !!! Tip
+        If you don't see the <b>HTTP Client</b> pane, go to <b>Window -> Show View - Other</b> and select <b>HTTP Client</b> to enable the client pane.
+
+    <img src="../../../assets/img/tutorials/common/http4e-client-empty.png" width="800">
+    
+2. Enter the request information as given below and click the <b>Send</b> icon (<img src="../../../assets/img/tutorials/common/play-head-icon.png" width="20">).
+    
+    <table>
+        <tr>
+            <th>Method</th>
+            <td>
+               <code>GET</code> 
+            </td>
+        </tr>
+        <tr>
+            <th>URL</th>
+            <td>
+                <code>http://localhost:8290/healthcare/categories/surgery/reserve</code>
+            </td>
+        </tr>
+     </table>
+     
+     <img src="../../../assets/img/tutorials/119132413/http4e-config.png" width="800">
+
+If you want to send the client request from your terminal:
+
+1. Install and set up [cURL](https://curl.haxx.se/) as your REST client.
+2. Execute the following command.
+    ```bash
+    curl -v http://localhost:8290/healthcare/querydoctor/surgery
+    ```
 
 !!! Info
     - The above request is formed as per the **URI-Template** (`http://:/healthcare/{uri.var.category}`) defined when creating the endpoint. 
