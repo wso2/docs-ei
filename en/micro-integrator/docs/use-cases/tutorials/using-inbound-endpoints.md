@@ -164,19 +164,47 @@ Similarly, you can get details of other artifacts deployed in the server. Read m
 
 #### Send the client request
 
-Let's send a message to the **healthcare** REST API (through the inbound endpoint) on port 8285.
+Let's send a message to the **healthcare** REST API (through the inbound endpoint) on port 8285. You can use the embedded <b>HTTP Client</b> of WSO2 Integration Studio as follows:
 
-1.  Open a command line terminal and execute the following command:
+1. Open the <b>HTTP Client</b> of WSO2 Integration Studio.
+
+    !!! Tip
+        If you don't see the <b>HTTP Client</b> pane, go to <b>Window -> Show View - Other</b> and select <b>HTTP Client</b> to enable the client pane.
+
+    <img src="../../../assets/img/tutorials/common/http4e-client-empty.png" width="800">
+    
+2. Enter the request information as given below and click the <b>Send</b> icon (<img src="../../../assets/img/tutorials/common/play-head-icon.png" width="20">).
+    
+    <table>
+        <tr>
+            <th>Method</th>
+            <td>
+               <code>GET</code> 
+            </td>
+        </tr>
+        <tr>
+            <th>URL</th>
+            <td><code>http://localhost:8285/healthcare/querydoctor/surgery</code></br></br>
+            </td>
+        </tr>
+     </table>
+     
+     <img src="../../../assets/img/tutorials/inbound_http_client.png" width="800">
+
+If you want to send the client request from your terminal:
+
+1.  Install and set up [cURL](https://curl.haxx.se/) as your REST client.
+2.  Open a command line terminal and execute the following command:
 
     ```bash
     curl -v http://localhost:8285/healthcare/querydoctor/surgery
     ```
 
-2.  You will get the response shown below. The inbound endpoint has successfully invoked the REST API, and further, the response received by the REST API has been routed back to client through the inbound endpoint.
+You will get the response shown below. The inbound endpoint has successfully invoked the REST API, and further, the response received by the REST API has been routed back to client through the inbound endpoint.
 
-    ```json
-    [{"name":"thomas collins","hospital":"grand oak community 
-    hospital","category":"surgery","availability":"9.00 a.m - 11.00 a.m","fee":7000.0},
-    {"name":"anne clement","hospital":"clemency medical center","category":"surgery","availability":"8.00 a.m - 10.00 A.m","fee":12000.0},
-    {"name":"seth mears","hospital":"pine valley community hospital","category":"surgery","availability":"3.00 p.m - 5.00 p.m","fee":8000.0}]
-    ```
+```json
+[{"name":"thomas collins","hospital":"grand oak community 
+hospital","category":"surgery","availability":"9.00 a.m - 11.00 a.m","fee":7000.0},
+{"name":"anne clement","hospital":"clemency medical center","category":"surgery","availability":"8.00 a.m - 10.00 A.m","fee":12000.0},
+{"name":"seth mears","hospital":"pine valley community hospital","category":"surgery","availability":"3.00 p.m - 5.00 p.m","fee":8000.0}]
+```
