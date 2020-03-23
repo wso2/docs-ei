@@ -1361,4 +1361,4 @@ The following is a sample proxy service that illustrates how to connect to the F
 </proxy>         
 ```
 
-**Note**: For more information on how this works in an actual scenario, see [File Connector Example](../file-connector-example.md).
+**Note**: For more information on how this works in an actual scenario, see [File Connector Example](file-connector-example.md).

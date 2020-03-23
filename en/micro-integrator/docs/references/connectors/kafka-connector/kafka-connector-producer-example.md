@@ -47,31 +47,33 @@ Follow these steps to set up the ESB Solution Project and the Connector Exporter
 1. Our project would look similar to the following (source view).
 
     ```
-   <?xml version="1.0" encoding="UTF-8"?>
-   <proxy name="KafkaTransport" startOnLoad="true" transports="https http" xmlns="http://ws.apache.org/ns/synapse">
-       <target>
+    <?xml version="1.0" encoding="UTF-8"?>
+    <proxy name="KafkaTransport" startOnLoad="true" transports="https http" xmlns="http://ws.apache.org/ns/synapse">
+        <target>
            <inSequence>
-               <kafkaTransport.init>
+                <kafkaTransport.init>
                    <bootstrapServers>localhost:9092</bootstrapServers>
                    <keySerializerClass>org.apache.kafka.common.serialization.StringSerializer</keySerializerClass>
                    <valueSerializerClass>org.apache.kafka.common.serialization.StringSerializer</valueSerializerClass>
                    <maxPoolSize>100</maxPoolSize>
-               </kafkaTransport.init>
-               <kafkaTransport.publishMessages>
-                   <topic>test</topic>
-               </kafkaTransport.publishMessages>
-           </inSequence>
-           <outSequence/>
-           <faultSequence/>
-       </target>
-   </proxy>
-        ```
+                </kafkaTransport.init>
+                <kafkaTransport.publishMessages>
+                    <topic>test</topic>
+                </kafkaTransport.publishMessages>
+            </inSequence>
+            <outSequence/>
+            <faultSequence/>
+        </target>
+    </proxy>
+    ```
 2. Right-click on the Composite Application Project and click on **Export Project Artifacts and Run**. Select **Run on Micro Integrator**.
+
 3. Micro Integrator will be started and the composite application will be deployed. You can further refer to the application deployed through the CLI tool. Make sure you first export the PATH as below.
 
     ```
     $ export PATH=/path/to/mi/cli/directory/bin:$PATH\
     ```
+
 {! /references/connectors/exporting-artifacts.md !}
 
 ## Deployment
@@ -117,4 +119,4 @@ This demonstrates how the Kafka connector publishes messages to the Kafka broker
 ## What's next
 
 * You can deploy and run your project on [Docker](../../../setup/installation/run_in_docker.md) or [Kubernetes](../../../setup/installation/run_in_kubernetes.md).
-* To customize this example for your own scenario, see [kafka Connector Configuration](../sf-connector-configuration.md) documentation.
+* To customize this example for your own scenario, see [kafka Connector Configuration](kafka-connector-config.md) documentation.

@@ -18,11 +18,10 @@ Follow these steps to set up the ESB Solution Project and the Connector Exporter
 
 1. Our project would look similar to the following (source view).
 
-```
-<?xml version="1.0" encoding="UTF-8"?>
-<inboundEndpoint name="KAFKAListenerEP" sequence="kafka_process_seq" onError="fault" class="org.wso2.carbon.inbound.kafka.KafkaMessageConsumer" suspend="false" 
-    xmlns="http://ws.apache.org/ns/synapse">
-    <parameters>
+   ```
+   <?xml version="1.0" encoding="UTF-8"?>
+   <inboundEndpoint name="KAFKAListenerEP" sequence="kafka_process_seq" onError="fault" class="org.wso2.carbon.inbound.kafka.KafkaMessageConsumer" suspend="false" xmlns="http://ws.apache.org/ns/synapse">
+      <parameters>
         <parameter name="sequential">true</parameter>
         <parameter name="interval">10</parameter>
         <parameter name="coordination">true</parameter>
@@ -34,32 +33,35 @@ Follow these steps to set up the ESB Solution Project and the Connector Exporter
         <parameter name="group.id">hello</parameter>
         <parameter name="contentType">application/json</parameter>
         <parameter name="key.deserializer">org.apache.kafka.common.serialization.StringDeserializer</parameter>
-    </parameters>
-</inboundEndpoint>
-```
-Sequence
+      </parameters>
+   </inboundEndpoint>
+   ```
+   Sequence
 
-```
-<?xml version="1.0" encoding="ISO-8859-1"?>
-<sequence xmlns="http://ws.apache.org/ns/synapse" name="kafka_process_seq">
-   <log level="full"/>
-   <log level="custom">
-      <property xmlns:ns="http://org.apache.synapse/xsd" name="partitionNo" expression="get-property('partitionNo')"/>
-   </log>
-   <log level="custom">
-      <property xmlns:ns="http://org.apache.synapse/xsd" name="messageValue" expression="get-property('messageValue')"/>
-   </log>
-   <log level="custom">
-      <property xmlns:ns="http://org.apache.synapse/xsd" name="offset" expression="get-property('offset')"/>
-   </log>
-</sequence>
-```
+   ```
+   <?xml version="1.0" encoding="ISO-8859-1"?>
+      <sequence xmlns="http://ws.apache.org/ns/synapse" name="kafka_process_seq">
+         <log level="full"/>
+         <log level="custom">
+            <property xmlns:ns="http://org.apache.synapse/xsd" name="partitionNo" expression="get-property('partitionNo')"/>
+         </log>
+         <log level="custom">
+            <property xmlns:ns="http://org.apache.synapse/xsd" name="messageValue" expression="get-property('messageValue')"/>
+         </log>
+         <log level="custom">
+            <property xmlns:ns="http://org.apache.synapse/xsd" name="offset" expression="get-property('offset')"/>
+         </log>
+      </sequence>
+   ```
+
 2. Right-click on the Composite Application Project and click on **Export Project Artifacts and Run**. Select **Run on Micro Integrator**.
+
 3. Micro Integrator will be started and the composite application will be deployed. You can further refer to the application deployed through the CLI tool. Make sure you first export the PATH as below.
 
     ```
     $ export PATH=/path/to/mi/cli/directory/bin:$PATH\
     ```
+
 {!references/connectors/exporting-artifacts.md !}
 
 ## Deployment
@@ -93,4 +95,4 @@ Follow these steps to deploy the exported CApp in the Enterprise Integrator Runt
    ## What's next
    
    * You can deploy and run your project on [Docker](../../../setup/installation/run_in_docker.md) or [Kubernetes](../../../setup/installation/run_in_kubernetes.md).
-   * To customize this example for your own scenario, see [kafka Connector Configuration](../kafka-connector-configuration.md) documentation.
+   * To customize this example for your own scenario, see [kafka Connector Configuration](kafka-connector-config.md) documentation.
