@@ -337,14 +337,16 @@ nav:
           - 'File Connector Example': 'references/connectors/file-connector/file-connector-example.md'
           - 'File Connector Configuration': 'references/connectors/file-connector/file-connector-config.md'
         - Kafka Connector:
-          - 'Kafka Connector Configuration': 'references/connectors/kafka-connector/kafka-connector-configuration.md'
+          - 'Setting up Kafka': 'references/connectors/kafka-connector/setting-up-kafka.md'
+          - 'Enabling Security for Kafka': 'references/connectors/kafka-connector/enabling-security-for-kafka.md'
           - 'Kafka Connector Example': 'references/connectors/kafka-connector/kafka-connector-producer-example.md'
           - 'Kafka Inbound Endpoint Example': 'references/connectors/kafka-connector/kafka-inbound-endpoint-example.md'
+          - 'Kafka Connector Configuration': 'references/connectors/kafka-connector/kafka-connector-config.md'
         - Gmail Connector:
           - 'Gmail Connector Example': 'references/connectors/gmail-connector/gmail-connector-example.md'
           - 'Gmail Connector Configuration': 'references/connectors/gmail-connector/gmail-connector-config.md'
         - AmazonLambda Connector:
-          - 'Setting up the Amazon Lambda Environment': 'references/connectors/amazonlambda-connector/amazonlambda-configuration.md'
+          - 'Setting up Amazon Lambda Environment': 'references/connectors/amazonlambda-connector/amazonlambda-configuration.md'
           - 'Amazon Lambda Connector Example': 'references/connectors/amazonlambda-connector/amazonlambda-connector-example.md'
       - Synapse Configurations:
         - Mediator Catalog: 

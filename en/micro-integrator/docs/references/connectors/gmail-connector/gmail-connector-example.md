@@ -104,4 +104,4 @@ The senders should receive an email with a subject of "Best of Europe — 6 Coun
 ## What's Next
 
 * You can deploy and run your project on [Docker](../../../setup/installation/run_in_docker.md) or [Kubernetes](../../../setup/installation/run_in_kubernetes.md).
-* To customize this example for your own scenario, see [Gmail Connector Configuration](../gmail-connector-config.md) documentation.
+* To customize this example for your own scenario, see [Gmail Connector Configuration](gmail-connector-config.md) documentation.
