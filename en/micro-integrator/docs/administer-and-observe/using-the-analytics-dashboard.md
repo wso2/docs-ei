@@ -106,7 +106,7 @@ Follow the steps below to enable statistics for the **endpoint** artifacts:
 ## Starting the Micro Integrator
 
 !!! Warning
-    To allow the Micro Integrator server and the Analytics server to communicate using SSL, the digital certifacates should be shared by the two servers. See the instructions on [adding SSL certificates to keystores](../../setup/security/importing_ssl_certificate).
+    To allow the Micro Integrator server and the Analytics server to communicate using SSL, the digital certificates should be shared by the two servers. See the instructions on [adding SSL certificates to keystores](../../setup/security/importing_ssl_certificate).
     
     For testing, you can simply copy the keystore files from the `<EI_6.5.0_HOME>/wso2/analytics/resources/security` directory to the `MI_HOME/resources/security` directory.
 
@@ -130,7 +130,7 @@ Once you have [started the Analytics Worker](#starting-the-analytics-worker), yo
         ```
 
 In a new browser window or tab, open the Analytics dashboard using the following URL: <https://localhost:9643/portal> . Use
-    `           admin          ` for both the username and password.
+    `admin` for both the username and password.
 
 <img src="../../assets/img/ei-analytics/dashboard-login.png" width="500">
 
