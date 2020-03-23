@@ -12,7 +12,7 @@ following operations:
 
 <img src="/assets/img/connectors/Salesforce.png" title="Using Salesforce Rest Connector" width="800" alt="Using Salesforce Rest Connector"/>
 
-The user calls the Salesforcerest API. It will invoke the create sequence and create a new account in Salesforce. Then through the retrieve sequence, it will display all the existing account details to the user. 
+The user calls the Salesforcerest API. It invokes the **create** sequence and create a new account in Salesforce. Then through the **retrieve** sequence, it displays all the existing account details to the user. 
 
 ## Configure the connector in WSO2 Integration Studio
 Follow these steps to set up the ESB Solution Project and the Connector Exporter Project. 
