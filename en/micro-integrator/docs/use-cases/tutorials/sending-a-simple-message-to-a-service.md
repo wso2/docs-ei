@@ -348,7 +348,18 @@ Let's send the request to the API. You can use the embedded <b>HTTP Client</b> o
         <tr>
             <th>URL</th>
             <td>
-                <code>http://localhost:8290/healthcare/categories/surgery/reserve</code>
+                <code>http://localhost:8290/healthcare/categories/surgery/reserve</code></br></br>
+                <ul>
+                    <li>
+                        The above request is formed as per the <b>URI-Template</b> (<code>http://:/healthcare/{uri.var.category}</code>) defined when creating the endpoint.
+                    </li>
+                    <li>
+                        Note that <code>{uri.var.category}</code> is also specified in the <b>URI-Template</b> (<code>http://<host>:<port>/querydoctor/{category}</code>.
+                    </li>
+                    <li>
+                       Other categories you can try sending in the request are: <code>cardiology</code>,  <code>gynaecology</code>, <code>ent</code>, and <code>paediatric</code>.
+                    </li>
+                </ul>
             </td>
         </tr>
      </table>
