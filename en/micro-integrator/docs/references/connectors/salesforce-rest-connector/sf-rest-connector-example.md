@@ -15,81 +15,81 @@ following operations:
 The user calls the Salesforcerest API. It will invoke the create sequence and create a new account in Salesforce. Then through the retrieve sequence, it will display all the existing account details to the user. 
 
 ## Configure the connector in WSO2 Integration Studio
-1. Follow these steps to set up the ESB Solution Project and the Connector Exporter Project. 
-{!references/connectors/importing-connector-to-integration-studio.md!}
+Follow these steps to set up the ESB Solution Project and the Connector Exporter Project. 
 
-2. Right click on the created ESB Solution Project and select, -> **New** -> **Rest API** to create the REST API. 
+{!references/connectors/importing-connector-to-integration-studio.md!} 
+
+1. Right click on the created ESB Solution Project and select, -> **New** -> **Rest API** to create the REST API. 
     <img src="/assets/img/connectors/adding-an-api.png" title="Adding a Rest API" width="800" alt="Adding a Rest API"/>
 
-3. Follow these steps to [generate the Access Tokens for Salesforce](../salesforce-connector/sf-access-token-generation.md) and obtain the Client Id, Client Secret, Access Token and Refresh Token. 
+2. Follow these steps to [generate the Access Tokens for Salesforce](../salesforce-connector/sf-access-token-generation.md) and obtain the Client Id, Client Secret, Access Token, and Refresh Token. 
 
-4. First, we will create two defined sequences called `create.xml` and  `retrieve.xml` to create an Account and retrieve data. You can go to the source view of the XML configuration file of the API and copy the following configuration. Replace the `clientSecret`, `clientId`, `accessToken`, `refreshToken` with obtained values in step 3. 
+3. First, we will create two defined sequences called `create.xml` and  `retrieve.xml` to create an account and retrieve data. You can go to the source view of the XML configuration file of the API and copy the following configuration. Replace the `clientSecret`, `clientId`, `accessToken`, `refreshToken` with obtained values in step 3. 
 
-create.xml
-```
-<?xml version="1.0" encoding="UTF-8"?>
-<sequence name="create" trace="disable" xmlns="http://ws.apache.org/ns/synapse">
-    <property expression="json-eval($.sObject)" name="sObject" scope="default" type="STRING"/>
-    <property expression="json-eval($.fieldAndValue)" name="fieldAndValue" scope="default" type="STRING"/>
-    <salesforcerest.init>
-        <accessToken></accessToken>
-        <apiVersion>v44.0</apiVersion>
-        <hostName>https://login.salesforce.com</hostName>
-        <refreshToken></refreshToken>
-        <clientSecret></clientSecret>
-        <clientId></clientId>
-        <apiUrl>https://ap16.salesforce.com</apiUrl>
-        <registryPath>connectors/SalesforceRest</registryPath>
-    </salesforcerest.init>
-    <salesforcerest.create>
-        <sObjectName>{$ctx:sObject}</sObjectName>
-        <fieldAndValue>{$ctx:fieldAndValue}</fieldAndValue>
-    </salesforcerest.create>
-</sequence>
-```
+    ```
+    create.xml
 
-retrieve.xml
-```
-<?xml version="1.0" encoding="UTF-8"?>
-<sequence name="retrieve" trace="disable" xmlns="http://ws.apache.org/ns/synapse">
-    <property expression="json-eval($.sObject)" name="sObject" scope="default" type="STRING"/>
-    <property expression="json-eval($.fieldAndValue)" name="fieldAndValue" scope="default" type="STRING"/>
-    <salesforcerest.init>
-        <accessToken></accessToken>
-        <apiVersion>v44.0</apiVersion>
-        <hostName>https://login.salesforce.com</hostName>
-        <refreshToken></refreshToken>
-        <clientSecret></clientSecret>
-        <clientId></clientId>
-        <apiUrl>https://ap16.salesforce.com</apiUrl>
-        <registryPath>connectors/SalesforceRest</registryPath>
-    </salesforcerest.init>
-    <salesforcerest.query>
-        <queryString>select id, name from Account</queryString>
-    </salesforcerest.query>
-</sequence>
-```
+    <?xml version="1.0" encoding="UTF-8"?>
+    <sequence name="create" trace="disable" xmlns="http://ws.apache.org/ns/synapse">
+        <property expression="json-eval($.sObject)" name="sObject" scope="default" type="STRING"/>
+        <property expression="json-eval($.fieldAndValue)" name="fieldAndValue" scope="default" type="STRING"/>
+        <salesforcerest.init>
+            <accessToken></accessToken>
+            <apiVersion>v44.0</apiVersion>
+            <hostName>https://login.salesforce.com</hostName>
+            <refreshToken></refreshToken>
+            <clientSecret></clientSecret>
+            <clientId></clientId>
+            <apiUrl>https://ap16.salesforce.com</apiUrl>
+            <registryPath>connectors/SalesforceRest</registryPath>
+        </salesforcerest.init>
+        <salesforcerest.create>
+            <sObjectName>{$ctx:sObject}</sObjectName>
+            <fieldAndValue>{$ctx:fieldAndValue}</fieldAndValue>
+        </salesforcerest.create>
+    </sequence>
+    ```
 
-5. Now create the API **salesforcerest**. You can go to the source view of the XML configuration file of the API and copy the following configuration. 
-```
-<?xml version="1.0" encoding="UTF-8"?>
-<api context="/salesforcerest" name="salesforcerest" xmlns="http://ws.apache.org/ns/synapse">
-    <resource methods="POST">
-        <inSequence>
-            <sequence key="create"/>
-            <sequence key="retrieve"/>
-            <respond/>
-        </inSequence>
-        <outSequence/>
-        <faultSequence/>
-    </resource>
-</api>
-```
-8. Follow these steps to export the artifacts. 
-{!references/connectors/exporting-artifacts.md !}
+    ```
+    retrieve.xml
 
+    <?xml version="1.0" encoding="UTF-8"?>
+    <sequence name="retrieve" trace="disable" xmlns="http://ws.apache.org/ns/synapse">
+        <salesforcerest.init>
+            <accessToken></accessToken>
+            <apiVersion>v44.0</apiVersion>
+            <hostName>https://login.salesforce.com</hostName>
+            <refreshToken></refreshToken>
+            <clientSecret></clientSecret>
+            <clientId></clientId>
+            <apiUrl>https://ap16.salesforce.com</apiUrl>
+            <registryPath>connectors/SalesforceRest</registryPath>
+        </salesforcerest.init>
+        <salesforcerest.query>
+            <queryString>select id, name from Account</queryString>
+        </salesforcerest.query>
+    </sequence>
+    ```
+
+4. Now create the API **salesforcerest**. You can go to the source view of the XML configuration file of the API and copy the following configuration. 
+    ```
+    <?xml version="1.0" encoding="UTF-8"?>
+    <api context="/salesforcerest" name="salesforcerest" xmlns="http://ws.apache.org/ns/synapse">
+        <resource methods="POST">
+            <inSequence>
+                <sequence key="create"/>
+                <sequence key="retrieve"/>
+                <respond/>
+            </inSequence>
+            <outSequence/>
+            <faultSequence/>
+        </resource>
+    </api>
+    ```
 ## Deployment
+
 Follow these steps to deploy the exported CApp in the Enterprise Integrator Runtime. 
+
 {!references/connectors/deploy-capp.md!}
 
 ## Testing
@@ -104,14 +104,14 @@ Save a file called data.json with the following payload.
 }
 ```
 
-Invoke the API as shown below using the curl command. Curl Application can be downloaded from [here](https://curl.haxx.se/download.html).
+Invoke the API as shown below using the curl command. Curl application can be downloaded from [here](https://curl.haxx.se/download.html).
 
 
 ```
 curl -X POST -d @data.json http://localhost:8280/salesforcerest --header "Content-Type:application/json"
 ```
 
-You will get set of Account names and their Ids as the output. 
+You will get a set of account names and the respective IDs as the output.
 
 ## What's Next
 
