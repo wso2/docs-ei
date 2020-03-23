@@ -374,11 +374,6 @@ If you want to send the client request from your terminal:
     curl -v http://localhost:8290/healthcare/querydoctor/surgery
     ```
 
-!!! Info
-    - The above request is formed as per the **URI-Template** (`http://:/healthcare/{uri.var.category}`) defined when creating the endpoint. 
-    - The `{uri.var.category}` is also specified in the **URI-Template** (`http://<host>:<port>/querydoctor/{category}`)
-    - Other categories you can try sending in the request are: `cardiology`,  `gynaecology`, `ent`, and `paediatric`.
-
 #### Analyze the response
 
 You will see the response message from the HealthcareService with a list of available doctors and the relevant details.
