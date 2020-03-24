@@ -80,7 +80,7 @@ The service can be invoked in REST-style via curl (
 command to invoke the GET resource:
 
 ```bash
-curl -X GET http://localhost:8290/services/RDBMSDataService.HTTPEndpoint/Employee/3
+curl -X GET http://localhost:8290/services/RDBMSDataService_3.HTTPEndpoint/Employee/3
 ```
 
 This generates a response as follows.
