@@ -4,7 +4,11 @@ WSO2 Integration Studio is your development environment for designing, developin
 
 ## Getting Started
 
-When you open WSO2 Integration Studio, you will see the tool's workbench, which includes the **Getting Started** view, the **Project Explorer**, and the **Template Guide**. 
+When you open WSO2 Integration Studio, you will see the **Getting Started** view in the tool's workbench. 
+
+<img src="../../assets/img/workbench/getting-started-view.png" width="800">
+
+Click the <img src="../../assets/img/workbench/icon-getting-started-workbench.png" width="20"> icon at the top-right of the workbench to open the **Project Explorer** and the **Template Guide** alongside the **Getting Started** tab as shown below.
 
 <img src="../../assets/img/workbench/workbench-getting-started.png" width="800">
 
@@ -26,7 +30,7 @@ To get started, you need to first create the required project directories. Alter
 		</th>
 		<td>
 			<p>
-				WSO2 Intgration Studio includes a list of sample projects and integration artifacts that represent integration scenarios. You can use these to explore WSO2 Micro Integrator and to try out common integration use cases. The <a href="#template-guide">template guide</a> will help you with instructions on how to run the templates.
+				The <b>Getting Started</b> view lists a set of sample projects and integration artifacts that represent common integration scenarios. You can use these to explore WSO2 Micro Integrator and to try out common integration use cases. The <a href="#template-guide">template guide</a> will provide instructions on how to run the templates.
 			</p>
 			<img src="../../assets/img/workbench/getting-started-templates.png">
 		</td>
