@@ -101,7 +101,7 @@ An Endpoint artifact is required for the purpose of exposing the URL that connec
     ![](../../assets/img/tutorials/119132413/create-endpoint-artifact.png)
 
 4.  Click **Finish**.  
-    The **QueryDoctorEP** endpoint is saved in the `endpoints` folder within the Integration project you created.  
+    The **QueryDoctorEP** endpoint is saved in the `endpoints` folder within the **Config** project you created.  
     ![](../../assets/img/tutorials/119132413/endpoint-project-explorer.png)
 
 #### Create a REST API
