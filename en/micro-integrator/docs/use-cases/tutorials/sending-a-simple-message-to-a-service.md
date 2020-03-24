@@ -37,6 +37,8 @@ To create the required project directories for this integration scenario:
     -   **Create Connector Exported Project**
 
     ![](../../assets/img/tutorials/119132413/create-simple-message-project.png)
+    
+    You will now have an **Integration** project, **Registry Resource** project, **Composite Application** project, and a **Connector Exporter** project created in your workspace.
 
 4.  Click **Finish**.  
     The created projects are saved in the **Project Explorer** as shown below:
