@@ -141,7 +141,7 @@ Invoke the proxy service:
       <soapenv:Body>
          <ser:getQuote xmlns:ser="http://services.samples" xmlns:xsd="http://services.samples/xsd">
             <ser:request>
-               <xsd:symbol>IBM</xsd:symbol>
+               <xsd:symbol>MSFT</xsd:symbol>
             </ser:request>
          </ser:getQuote>
       </soapenv:Body>
