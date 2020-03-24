@@ -22,12 +22,12 @@ To implement this use case, you will create a REST API resource and other artifa
 
 Follow the instructions given in this section to create and configure the required artifacts.
 
-#### Create an Integration project
+#### Create the project directories
 
-To create an Integration solution consisting of an **Integration** project and a **Composite Application** project:
+To create the required project directories for this integration scenario:
 
 1.  Open **WSO2 Integration Studio**.
-2.  Go to **Integration Project** and click **Create New**.
+2.  Go to **Integration** and click **Create Integration Project**.
     ![](../../assets/img/create_project/create-integration-project.png)
 
 3.  Enter `SampleServices` as the project name. Be sure to select the following check boxes so that the relevant
