@@ -8,7 +8,7 @@ When you open WSO2 Integration Studio, you will see the **Getting Started** view
 
 <img src="../../assets/img/workbench/getting-started-view.png" width="800">
 
-Click the <img src="../../assets/img/workbench/icon-getting-started-workbench.png" width="20"> icon at the top-right of the workbench to open the **Project Explorer** and the **Template Guide** alongside the **Getting Started** tab as shown below.
+If you click the <img src="../../assets/img/workbench/icon-getting-started-workbench.png" width="20"> icon at the top-right of the workbench, the **Project Explorer** and the **Template Guide** will open alongside the **Getting Started** tab as shown below.
 
 <img src="../../assets/img/workbench/workbench-getting-started.png" width="800">
 
