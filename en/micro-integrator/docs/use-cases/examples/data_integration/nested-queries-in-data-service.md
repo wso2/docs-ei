@@ -62,11 +62,16 @@ You will now have two tables in the **Company** database as shown below:
 ## Synapse configuration
 Given below is the data service configuration you need to build. See the instructions on how to [build and run](#build-and-run) this example.
 
+!!! Tip
+    Be sure to replace the datasource username and password with the correct values for your MySQL instance.
+
 ```xml
 <data name="nested_queries" transports="http https local">
    <config enableOData="false" id="Datasource">
       <property name="driverClassName">com.mysql.jdbc.Driver</property>
       <property name="url">jdbc:mysql://localhost:3306/Company</property>
+      <property name="username">root</property>
+      <property name="password">password</property>
    </config>
    <query id="EmployeeOfficeSQL" useConfig="Datasource">
       <sql>select EmployeeNumber, FirstName, LastName, Email, JobTitle, OfficeCode from EMPLOYEES where OfficeCode=:OfficeCode</sql>
@@ -163,14 +168,14 @@ It gets the details of the office that has the office code 1, and all
 the employees that belong to office code 1.
 
 ```bash
-curl -X GET http://localhost:8290/services/EmployeesDataService.HTTPEndpoint/offices/1
+curl -X GET http://localhost:8290/services/nested_queries/offices/1
 ```
 
 !!! Tip
     If you configured the output mapping of the `listOfficeSQL` query to be in the JSON format, you need to add the header `-H 'Accept: application/json'` to your curl command to get the output in the JSON format.
 
 ```bash
-curl -H 'Accept: application/json' -X GET http://localhost:8290/services/EmployeesDataService.HTTPEndpoint/offices/1
+curl -H 'Accept: application/json' -X GET http://localhost:8290/services/nested_queries/offices/1
 ```
 
 You will now see the following result:
