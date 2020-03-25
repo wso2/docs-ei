@@ -86,21 +86,48 @@ The connector operations are used in the sequence named **PaymentRequestProcessi
 
 2.  With the Property mediator selected, access the **Property** tab of the mediator and fill in the information in the following table:
 
-    | Property          | Value                      |
-    |-------------------|----------------------------|
-    | Property Name     | Select **New Property**    |
-    | New Property Name | email_id                   |
-    | Property Action   | Select **Set**             |
-    | Value Type        | Select **Expression**      |
-    | Value Expression  | json-eval($.patient.email) |
-    | Description       | Get Email ID               |
-    
-    To set the value expression do the followings, 
-    1. Click on its text field which will open the **Expression Selector** dialog box.
-    
-        ![](../../assets/img/tutorials/common/expression-selector-dialog.png)
-    
-    2. Enter the expression `json-eval($.patient.email)` in the top most text box and click **Ok**.
+    <table>
+        <tr>
+            <th>Property</th>
+            <th>Description</th>
+        </tr>
+      <tr class="odd">
+         <td>Property Name</td>
+         <td>Enter <code>               New Property...              </code>.</td>
+      </tr>
+      <tr class="even">
+         <td>New Property Name</td>
+         <td>Enter <code>email_id</code>.</td>
+      </tr>
+      <tr class="odd">
+         <td>Property Action</td>
+         <td>Enter <code>               set              </code>.</td>
+      </tr>
+      <tr class="even">
+         <td>Value Type</td>
+         <td>Enter <code>               EXPRESSION              </code>.</td>
+      </tr>
+      <tr class="even">
+         <td>Value Expression</td>
+         <td>
+            <div class="content-wrapper">
+              <p>Follow the steps given below to specify the expression:</p>
+            <ol>
+                <li>Click the text box for the <strong>Value Expression</strong> field. This opens the <b>Expression Selector</b> dialog box.</li>
+               <li>Select <strong>Expression</strong> from the list.
+                </li>
+               <li>Enter <code>json-eval($.patient.email)</code> to overwrite the default expression.</li>
+               <li>Click <strong>OK</strong>.<br />
+               </li>
+            </ol>
+            </div>
+         </td>
+      </tr>
+      <tr>
+          <td>Description</td>
+          <td>Get Email ID</td>
+      </tr>
+    </table>
 
 3.  Add another Property mediator just after the Log mediator to retrieve and store the response sent from SettlePaymentEP. This will be used within the body of the email.
 
