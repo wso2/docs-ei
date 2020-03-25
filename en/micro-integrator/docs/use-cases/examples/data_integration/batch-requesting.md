@@ -131,4 +131,4 @@ When you execute the batch operation, you will find that all the records have be
     SELECT * FROM Employees
     ```
         
-    You will see all the records that are in the `Employees` table, including the two employee records that you added in the previous step.  
+You will see all the records that are in the `Employees` table, including the two employee records that you added in the previous step.  
