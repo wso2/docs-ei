@@ -60,7 +60,10 @@ You will now have two tables in the **Company** database as shown below:
     `          SELECT * FROM Employees;         `  
 
 ## Synapse configuration
-Given below is the data service configuration you need to build. See the instructions on how to [build and run](#build-and-run) this example. Please replace the username and password fields in the datasource with the correct values.
+Given below is the data service configuration you need to build. See the instructions on how to [build and run](#build-and-run) this example.
+
+!!! Tip
+    Be sure to replace the datasource username and password with the correct values for your MySQL instance.
 
 ```xml
 <data name="nested_queries" transports="http https local">
