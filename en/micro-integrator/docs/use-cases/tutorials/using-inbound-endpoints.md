@@ -200,7 +200,7 @@ If you want to send the client request from your terminal:
     curl -v http://localhost:8285/healthcare/querydoctor/surgery
     ```
 
-You will get the response shown below. The inbound endpoint has successfully invoked the REST API, and further, the response received by the REST API has been routed back to client through the inbound endpoint.
+You will get the response shown below. The inbound endpoint has successfully invoked the REST API, and further, the response received by the REST API has been routed back to the client through the inbound endpoint.
 
 ```json
 [{"name":"thomas collins","hospital":"grand oak community 
