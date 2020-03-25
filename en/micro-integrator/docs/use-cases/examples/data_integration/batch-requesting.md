@@ -27,11 +27,16 @@ Let's create a MySQL database with the required data.
 
 Given below is the data service configuration you need to build. See the instructions on how to [build and run](#build-and-run) this example.
 
+!!! Tip
+    Be sure to replace the datasource username and password with the correct values for your MySQL instance.
+
 ```xml
 <data name="batch_requesting_sample" transports="http https local">
    <config enableOData="false" id="Datasource">
       <property name="driverClassName">com.mysql.jdbc.Driver</property>
       <property name="url">jdbc:mysql://localhost:3306/Company</property>
+      <property name="username">root</property>
+      <property name="password">password</property>
    </config>
    <query id="addEmployeeQuery" useConfig="Datasource">
       <sql>insert into Employees (EmployeeNumber, FirstName, LastName, Email, JobTitle, OfficeCode) values(:EmployeeNumber,:FirstName,:LastName,:Email,:JobTitle,:Officecode)</sql>
@@ -71,7 +76,18 @@ Create the artifacts:
 4. [Create the data service](../../../../develop/creating-artifacts/data-services/creating-data-services) with the configurations given above.
 5. [Deploy the artifacts](../../../../develop/deploy-and-run) in your Micro Integrator. 
 
-Send a request with multiple transactions as shown below. In this example, we are sending two transactions with details of two employees.
+Let's send a request with multiple transactions to the data service:
+
+1. Download and Install [SoapUI](https://www.soapui.org/downloads/soapui.html) to run this SOAP service.
+2. Create a new SOAP Project in the SoapUI using following wsdl file:
+   ```bash
+   http://localhost:8290/services/batch_requesting_sample?wsdl
+   ```
+
+3. Invoke the **addEmployeeOp** under **batch_requesting_sampleSOAP11Binding** with the following request body:
+
+   !!! Tip
+       In this example, we are sending two transactions with details of two employees.
 
 ```xml
 <p:addEmployeeOp_batch_req xmlns:p="http://ws.wso2.org/dataservice">
