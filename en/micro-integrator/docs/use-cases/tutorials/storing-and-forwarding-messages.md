@@ -422,7 +422,7 @@ If you want to send the client request from your terminal:
     }
     ```
 
-3.  Open a command line terminal and execute the following command from the location where `request.json` file you created is saved:
+3.  Open a command line terminal and execute the following command from the location where the `request.json` file you created is saved:
 
     ```bash
     curl -v -X POST --data @request.json http://localhost:8290/healthcare/categories/surgery/reserve --header "Content-Type:application/json"
