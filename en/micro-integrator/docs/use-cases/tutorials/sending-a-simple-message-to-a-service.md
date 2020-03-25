@@ -24,24 +24,25 @@ Follow the instructions given in this section to create and configure the requir
 
 #### Create the project directories
 
-To create the required project directories for this integration scenario:
+To create the required projects for this integration scenario:
 
 1.  Open **WSO2 Integration Studio**.
 2.  Go to **Integration** and click **Create Integration Project**.
     ![](../../assets/img/create_project/create-integration-project.png)
 
-3.  Enter `SampleServices` as the project name. Be sure to select the following check boxes so that the relevant
-    projects will be created.
+3.  Enter `SampleServices` as the project name and select the following check boxes.
     -   **Create Registry Resources Project**
     -   **Create Composite Application Project**
     -   **Create Connector Exported Project**
 
-    ![](../../assets/img/tutorials/119132413/create-simple-message-project.png)
-    
-    You will now have an **Integration** project, **Registry Resource** project, **Composite Application** project, and a **Connector Exporter** project created in your workspace.
+    !!! Note
+        This will create a **Config** project named `SampleServices` along with the **Registry Resource** project, **Composite Application** project, and a **Connector Exporter** project with the specified names.
 
-4.  Click **Finish**.  
-    The created projects are saved in the **Project Explorer** as shown below:
+    ![](../../assets/img/tutorials/119132413/create-simple-message-project.png)
+
+4.  Click **Finish**. 
+
+    You can see the projects listed in the **Project Explorer** as shown below:
 
     ![](../../assets/img/tutorials/119132413/project-explorer-simple-service.png)
 
@@ -87,12 +88,12 @@ An Endpoint artifact is required for the purpose of exposing the URL that connec
          <td>Static Endpoint</td>
          <td><br/>
          </td>
-         <td>Select this option because we are going to use this endpoint only in this Integration project and will not reuse it in other projects.</br/> <b>Note</b>: If you need to create a reusable endpoint, save it as a Dynamic Endpoint in either the Configuration or Governance Registry.</td>
+         <td>Select this option because we are going to use this endpoint only in this <code>SampleServices</code> project and will not reuse it in other projects.</br/></br/> <b>Note</b>: If you need to create a reusable endpoint, save it as a Dynamic Endpoint in either the Configuration or Governance Registry.</td>
       </tr>
       <tr class="even">
          <td>Save Endpoint in</td>
-         <td><code>               SampleServices              </code></td>
-         <td>This is the Integration project we created in the last section</td>
+         <td><code>SampleServices</code></td>
+         <td>This is the <b>Config</b> project where the artifact will be saved.</td>
       </tr>
      </tbody>
     </table>
@@ -100,7 +101,7 @@ An Endpoint artifact is required for the purpose of exposing the URL that connec
     ![](../../assets/img/tutorials/119132413/create-endpoint-artifact.png)
 
 4.  Click **Finish**.  
-    The **QueryDoctorEP** endpoint is saved in the `           endpoints          ` folder within the Integration project you created.  
+    The **QueryDoctorEP** endpoint is saved in the `endpoints` folder within the **Config** project you created.  
     ![](../../assets/img/tutorials/119132413/endpoint-project-explorer.png)
 
 #### Create a REST API
@@ -127,7 +128,7 @@ A REST API is required for receving the client response and the REST resource wi
         <td>Context</td>
         <td><code>/healthcare </code></td>
         <td>
-          Here you are anchoring the API in the <code>/healthcare </code> context. This will become part of the name of the generated URL used by the client when sending requests to Healthcare service. For example, setting the context to /healthcare defines that the API will only handle HTTP requests where the URL path starts <b><code>http://<host>:<port>/healthcare</b>.
+          Here you are anchoring the API in the <code>/healthcare </code> context. This will become part of the name of the generated URL used by the client when sending requests to Healthcare service. For example, setting the context to /healthcare defines that the API will only handle HTTP requests where the URL path starts with <code>http://host:port/healthcare<code>.
         </td>
       </tr>
       <tr>
@@ -136,7 +137,7 @@ A REST API is required for receving the client response and the REST resource wi
           SampleServices
         </td>
         <td>
-          This is the Integration project where the artifact will be saved.
+          This is the <b>Config</b> project where the artifact will be saved.
         </td>
       </tr>
     </table>
@@ -161,6 +162,7 @@ You can now start configuring the API resource.
 1.  Double-click the **Resource** icon on the left side of the canvas.  
     The properties for the API resource appear on the **Properties** tab at the bottom of the window. If they do not appear, you can right-click the **Resource** icon and click **Show Properties View**.
 2.  On the **Properties** tab, provide the following as **Basic** properties:
+
     <table>
       <tr>
         <th>Property</th>
