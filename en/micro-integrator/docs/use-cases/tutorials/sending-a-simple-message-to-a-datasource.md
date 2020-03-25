@@ -10,7 +10,6 @@ Google spreadsheets, and more. The following sections describe how you can use W
 ### Step 1: Set up the workspace
 
 To set up the tools:
-
 -   Download the relevant [WSO2 Integration Studio](https://wso2.com/integration/tooling/) based on your operating system. The path to the extracted/installed folder is referred to as `MI_TOOLING_HOME` throughout this tutorial.
 -   Optionally, you can set up the **CLI tool** for artifact monitoring. This will later help you get details of the artifacts that you deploy in your Micro Integrator.
     1.  Go to the [WSO2 Micro Integrator website](https://wso2.com/integration/#). 
@@ -65,7 +64,7 @@ Data Service project. Follow the steps given below to create a project:
 Follow the steps given below to create the data service file:
 
 1.  Select the already created **Data Service Project** in the project
-    navigator, right-click and go to **New -> Data Service**.  
+    explorer, right-click and go to **New -> Data Service**.  
     The **New Data Service** window will open as shown below.  
     ![](../../assets/img/tutorials/data_services/119130577/119130578.png)
 2.  To start creating a data service from scratch, select **Create New
@@ -87,9 +86,8 @@ Follow the steps given below to create the data service file:
     </tbody>
     </table>
     
-
 A data service file (DBS file) will now be created in your data service
-project. Shown below is the project directory.
+project as shown below.
 
 ![](../../assets/img/tutorials/data_services/dataservice_view.png)
 
@@ -111,13 +109,11 @@ project. Shown below is the project directory.
     | URL                                | jdbc:mysql://localhost:3306/Employees |
     | User Name                          | root                                  |
 
-4.  Click **Test Connection** to expand the section and click the **Test Connection** button. 
-
+4.  Click **Test Connection** to expand the section.
     ![](../../assets/img/tutorials/data_services/test_connection.png)
 
-    This will verify the connectivity between the MySQL datasource and the data service.
-
-5.  Save the data service.
+5.  Click the **Test Connection** button to verify the connectivity between the MySQL datasource and the data service.
+6.  Save the data service.
 
 ##### Creating a query
 
@@ -125,7 +121,9 @@ Let's write an SQL query to GET data from the MySQL datasource that you
 configured in the previous step:
 
 1.  Click **Queries** to expand the section. 
+    ![](../../assets/img/tutorials/data_services/data_source_expanded.png)
 2.  Click **Add New** to open the **Add Query** page.
+    ![](../../assets/img/tutorials/data_services/add_query.png)
 3.  Enter the following query details:
 
     | Parameter  |  Description       |
@@ -135,8 +133,9 @@ configured in the previous step:
     | SQL Query  | select EmployeeNumber, FirstName, LastName, Email from Employees where EmployeeNumber=:EmployeeNumber|
 
 4.  Click **Input Mappings** to expand the section. 
+    ![](../../assets/img/tutorials/data_services/data_source_expanded.png)
 5.  Click **Add New** to open the **Add Input Mapping** page.
-    ![](../../assets/img/tutorials/data_services/input_mappings.png)
+    ![](../../assets/img/tutorials/data_services/add_input_mappings.png)
 5.  Enter the following input mapping details:
 
     | Property       | Description    |
@@ -146,7 +145,9 @@ configured in the previous step:
     | SQL Type       | STRING         |
 
 5.  Save the input mapping.
+    ![](../../assets/img/tutorials/data_services/input_mappings.png)
 6.  Click **Result (Output Mappings)** to expand the section.
+    ![](../../assets/img/tutorials/data_services/data_source_expanded.png)
 7.  Enter the following value to group the output mapping:
 
     <table>
@@ -160,7 +161,7 @@ configured in the previous step:
     </tr>
     </table>
 
-8.  Click **Generate** to generate mappings automatically.
+8.  Click **Generate** to generate output mappings automatically.
 
     !!! Tip
         Alternatively, you can manually add the mappings:
@@ -198,19 +199,18 @@ configured in the previous step:
             | column          | LastName          | LastName               | string      |
             | column          | Email             | Email                  | string      |
     
-    After entering the details or generating the mappings, your wizard will look similar to the following.
-    ![](../../assets/img/tutorials/data_services/output_mapings.png)
-
 9.  Click **Save** to save the query.
+    ![](../../assets/img/tutorials/data_services/output_mapings.png)
 
 ##### Creating a resource to invoke the query
 
 Now, let's create a REST resource that can be used to invoke the query.
 
 1.  Click **Resources** to expand the section. 
+    ![](../../assets/img/tutorials/data_services/data_source_expanded.png)
 2.  Click **Add New** to open the **Create Resource** page.
     ![](../../assets/img/tutorials/data_services/create_resource.png)
-3.  Add the following resource details.
+3.  Enter the following resource details.
 
     <table>
     <tr>
