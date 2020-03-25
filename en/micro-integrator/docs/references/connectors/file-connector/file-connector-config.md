@@ -57,49 +57,31 @@ The following operations allow you to work with the File Connector version 2. Cl
         </tr>
     </table>
 
-    <table>
-        <tr>
-            <td>Sample configuration</td>
-            <td>
-                <div class="code panel pdl" style="border-width: 1px;">
-                    <div class="codeContent panelContent pdl">
-                        <pre lang="xml" data-syntaxhighlighter-params="brush: html/xml; gutter: false; theme: Confluence" data-theme="Confluence" style="brush: html/xml; gutter: false; theme: Confluence">
-                            <code class="xml">
-                                <fileconnector.append>
-                                    <destination>{$ctx:destination}</destination>
-                                    <inputContent>{$ctx:inputContent}</inputContent>
-                                    <position>{$ctx:position}</position>
-                                    <encoding>{$ctx:encoding}</encoding>
-                                    <setTimeout>{$ctx:setTimeout}</setTimeout>
-                                    <setPassiveMode>{$ctx:setPassiveMode}</setPassiveMode>
-                                    <setSoTimeout>{$ctx:setSoTimeout}</setSoTimeout>
-                                    <setUserDirIsRoot>{$ctx:setUserDirIsRoot}</setUserDirIsRoot>
-                                    <setStrictHostKeyChecking>{$ctx:setStrictHostKeyChecking}</setStrictHostKeyChecking>
-                                </fileconnector.append>
-                            </code>
-                        </pre>
-                    </div>
-                </div>
-            </td>
-        </tr>
-        <tr>
-            <td>Sample request</td>
-            <td>Following is a sample REST/JSON request that can be handled by the append operation.
-                <div class="code panel pdl" style="border-width: 1px;">
-                    <div class="codeContent panelContent pdl">
-                        <pre class="json" data-syntaxhighlighter-params="brush: json; gutter: false; theme: Confluence" data-theme="Confluence" style="brush: json; gutter: false; theme: Confluence">
-                            <code class="json">
-                                {
-                                    "destination":"/home/vive/Desktop/file/append.txt",
-                                    "inputContent":"Add Append Text."
-                                }
-                            </code>
-                        </pre>
-                    </div>
-                </div>
-            </td>
-        </tr>
-    </table>
+    **Sample configuration**
+
+    ```xml
+    <fileconnector.append>
+        <destination>{$ctx:destination}</destination>
+        <inputContent>{$ctx:inputContent}</inputContent>
+        <position>{$ctx:position}</position>
+        <encoding>{$ctx:encoding}</encoding>
+        <setTimeout>{$ctx:setTimeout}</setTimeout>
+        <setPassiveMode>{$ctx:setPassiveMode}</setPassiveMode>
+        <setSoTimeout>{$ctx:setSoTimeout}</setSoTimeout>
+        <setUserDirIsRoot>{$ctx:setUserDirIsRoot}</setUserDirIsRoot>
+        <setStrictHostKeyChecking>{$ctx:setStrictHostKeyChecking}</setStrictHostKeyChecking>
+    </fileconnector.append>
+    ```
+    
+    **Sample request**
+    
+    Following is a sample REST/JSON request that can be handled by the append operation.
+    ```json
+        {
+            "destination":"/home/vive/Desktop/file/append.txt",
+            "inputContent":"Add Append Text."
+        }
+    ```
 
 
 ??? note "archive"
@@ -162,38 +144,33 @@ The following operations allow you to work with the File Connector version 2. Cl
         </tr>
     </table>
 
-    > NOTE: To make an archive operation, you can provide either the source or inputContent. If inputContent is provided as the parameter, we need to specify fileName. Otherwise, it will use the default fileName(output.txt).
+    > NOTE: To make an archive operation, you can provide either the source or inputContent. If inputContent is provided as the parameter, we need to specify fileName. Otherwise, it will use the default fileName (output.txt).
 
-    <table>
-        <tr>
-            <td>Sample configuration</td>
-            <td>
-                <code class="xml">
-                    <fileconnector.archives>
-                        <source>{$ctx:source}</source>
-                        <destination>{$ctx:destination}</destination>
-                        <inputContent>{$ctx:inputContent}</inputContent>
-                        <fileName>{$ctx:fileName}</fileName>
-                        <setTimeout>{$ctx:setTimeout}</setTimeout>
-                        <setPassiveMode>{$ctx:setPassiveMode}</setPassiveMode>
-                        <setSoTimeout>{$ctx:setSoTimeout}</setSoTimeout>
-                        <setUserDirIsRoot>{$ctx:setUserDirIsRoot}</setUserDirIsRoot>
-                        <setStrictHostKeyChecking>{$ctx:setStrictHostKeyChecking}</setStrictHostKeyChecking>
-                    </fileconnector.archives>
-                </code>
-            </td>
-        </tr>
-        <tr>
-            <td>Sample request</td>
-            <td>Following is a sample REST/JSON request that can be handled by the append operation.
-                <code class="json">
-                    {
-                        "source":"/home/vive/Desktop/file",
-                        "destination":"/home/user/test/file.zip"
-                    }
-            </td>
-        </tr>
-    </table>
+    **Sample configuration**
+    
+    ```xml
+    <fileconnector.archives>
+        <source>{$ctx:source}</source>
+        <destination>{$ctx:destination}</destination>
+        <inputContent>{$ctx:inputContent}</inputContent>
+        <fileName>{$ctx:fileName}</fileName>
+        <setTimeout>{$ctx:setTimeout}</setTimeout>
+        <setPassiveMode>{$ctx:setPassiveMode}</setPassiveMode>
+        <setSoTimeout>{$ctx:setSoTimeout}</setSoTimeout>
+        <setUserDirIsRoot>{$ctx:setUserDirIsRoot}</setUserDirIsRoot>
+        <setStrictHostKeyChecking>{$ctx:setStrictHostKeyChecking}</setStrictHostKeyChecking>
+    </fileconnector.archives>
+    ```
+    
+    **Sample request**
+    
+    Following is a sample REST/JSON request that can be handled by the append operation.
+    ```json
+    {
+        "source":"/home/vive/Desktop/file",
+        "destination":"/home/user/test/file.zip"
+    }
+    ```
 
 
 ??? note "copy"
@@ -256,39 +233,32 @@ The following operations allow you to work with the File Connector version 2. Cl
         </tr>
     </table>
 
-    <table>
-        <tr>
-            <td>Sample configuration</td>
-            <td>
-                <code class="json">
-                    <fileconnector.copy>
-                        <source>{$ctx:source}</source>
-                        <destination>{$ctx:destination}</destination>
-	                    <filePattern>{$ctx:filePattern}</filePattern>
-                        <setTimeout>{$ctx:setTimeout}</setTimeout>
-                        <setPassiveMode>{$ctx:setPassiveMode}</setPassiveMode>
-                        <setSoTimeout>{$ctx:setSoTimeout}</setSoTimeout>
-                        <setUserDirIsRoot>{$ctx:setUserDirIsRoot}</setUserDirIsRoot>
-                        <setStrictHostKeyChecking>{$ctx:setStrictHostKeyChecking}</setStrictHostKeyChecking>
-	                    <includeParentDirectory>{$ctx:includeParentDirectory}</includeParentDirectory>
-                    </fileconnector.copy>
-                </code>
-            </td>
-        </tr>
-        <tr>
-            <td>Sample request</td>
-            <td>
-                <code class="json">
-                    {
-                        "source":"/home/vive/Desktop/file",
-                        "destination":"/home/user/test/fileCopy",
-                        "filePattern":".*\.xml",
-                        "includeParentDirectory":"false"
-                    }
-                </code>
-            </td>
-        </tr>
-    </table>
+    **Sample configuration**
+
+    ```xml
+    <fileconnector.copy>
+        <source>{$ctx:source}</source>
+        <destination>{$ctx:destination}</destination>
+	    <filePattern>{$ctx:filePattern}</filePattern>
+        <setTimeout>{$ctx:setTimeout}</setTimeout>
+        <setPassiveMode>{$ctx:setPassiveMode}</setPassiveMode>
+        <setSoTimeout>{$ctx:setSoTimeout}</setSoTimeout>
+        <setUserDirIsRoot>{$ctx:setUserDirIsRoot}</setUserDirIsRoot>
+        <setStrictHostKeyChecking>{$ctx:setStrictHostKeyChecking}</setStrictHostKeyChecking>
+	    <includeParentDirectory>{$ctx:includeParentDirectory}</includeParentDirectory>
+    </fileconnector.copy>
+    ```
+    
+    **Sample request**
+
+    ```json
+    {
+        "source":"/home/vive/Desktop/file",
+        "destination":"/home/user/test/fileCopy",
+        "filePattern":".*\.xml",
+        "includeParentDirectory":"false"
+    }
+    ```
 
 
 ??? note "create"
@@ -351,38 +321,31 @@ The following operations allow you to work with the File Connector version 2. Cl
         </tr>
     </table>
 
-    <table>
-        <tr>
-            <td>Sample configuration</td>
-            <td>
-                <code class="xml">
-                    <fileconnector.create>
-                        <source>{$ctx:source}</source>
-                        <inputContent>{$ctx:inputContent}</inputContent>
-	                    <encoding>{$ctx:encoding}</encoding>
-	                    <isBinaryContent>{$ctx:isBinaryContent}</isBinaryContent>
-                        <setTimeout>{$ctx:setTimeout}</setTimeout>
-                        <setPassiveMode>{$ctx:setPassiveMode}</setPassiveMode>
-                        <setSoTimeout>{$ctx:setSoTimeout}</setSoTimeout>
-                        <setUserDirIsRoot>{$ctx:setUserDirIsRoot}</setUserDirIsRoot>
-                        <setStrictHostKeyChecking>{$ctx:setStrictHostKeyChecking}</setStrictHostKeyChecking>
-                    </fileconnector.create>
-                </code>
-            </td>
-        </tr>
-        <tr>
-            <td>Sample request</td>
-            <td>
-                <code class="json">
-                    {
-                        "source":"sftp://UserName:Password@Host/home/connectors/create.txt",
-                        "inputContent":"InputContent Text",
-                        "encoding":"UTF8"
-                    }
-                </code>
-            </td>
-        </tr>
-    </table>
+    **Sample configuration**
+
+    ```xml
+    <fileconnector.create>
+        <source>{$ctx:source}</source>
+        <inputContent>{$ctx:inputContent}</inputContent>
+	    <encoding>{$ctx:encoding}</encoding>
+	    <isBinaryContent>{$ctx:isBinaryContent}</isBinaryContent>
+        <setTimeout>{$ctx:setTimeout}</setTimeout>
+        <setPassiveMode>{$ctx:setPassiveMode}</setPassiveMode>
+        <setSoTimeout>{$ctx:setSoTimeout}</setSoTimeout>
+        <setUserDirIsRoot>{$ctx:setUserDirIsRoot}</setUserDirIsRoot>
+        <setStrictHostKeyChecking>{$ctx:setStrictHostKeyChecking}</setStrictHostKeyChecking>
+    </fileconnector.create>
+    ```
+    
+    **Sample request**
+    
+    ```json
+    {
+        "source":"sftp://UserName:Password@Host/home/connectors/create.txt",
+        "inputContent":"InputContent Text",
+        "encoding":"UTF8"
+    }
+    ```
 
 
 ??? note "delete"
@@ -435,35 +398,28 @@ The following operations allow you to work with the File Connector version 2. Cl
         </tr>
     </table>
 
-    <table>
-        <tr>
-            <td>Sample configuration</td>
-            <td>
-                <code class="xml">
-                    <fileconnector.delete>
-                        <source>{$ctx:source}</source>
-                        <filePattern>{$ctx:filePattern}</filePattern>
-	                    <setTimeout>{$ctx:setTimeout}</setTimeout>
-                        <setPassiveMode>{$ctx:setPassiveMode}</setPassiveMode>
-                        <setSoTimeout>{$ctx:setSoTimeout}</setSoTimeout>
-                        <setUserDirIsRoot>{$ctx:setUserDirIsRoot}</setUserDirIsRoot>
-                        <setStrictHostKeyChecking>{$ctx:setStrictHostKeyChecking}</setStrictHostKeyChecking>
-                    </fileconnector.delete>
-                </code>
-            </td>
-        </tr>
-        <tr>
-            <td>Sample request</td>
-            <td>
-                <code class="json">
-                    {
-                        "source":"/home/vive/Desktop/file",
-                        "filePattern":".*\.txt"
-                    }
-                </code>
-            </td>
-        </tr>
-    </table>
+    **Sample configuration**
+    
+    ```xml
+    <fileconnector.delete>
+        <source>{$ctx:source}</source>
+        <filePattern>{$ctx:filePattern}</filePattern>
+	    <setTimeout>{$ctx:setTimeout}</setTimeout>
+        <setPassiveMode>{$ctx:setPassiveMode}</setPassiveMode>
+        <setSoTimeout>{$ctx:setSoTimeout}</setSoTimeout>
+        <setUserDirIsRoot>{$ctx:setUserDirIsRoot}</setUserDirIsRoot>
+        <setStrictHostKeyChecking>{$ctx:setStrictHostKeyChecking}</setStrictHostKeyChecking>
+    </fileconnector.delete>
+    ```
+    
+    **Sample request**
+    
+    ```json
+    {
+        "source":"/home/vive/Desktop/file",
+        "filePattern":".*\.txt"
+    }
+    ```
 
 
 ??? note "isFileExist"
@@ -511,33 +467,26 @@ The following operations allow you to work with the File Connector version 2. Cl
         </tr>
     </table>
 
-    <table>
-        <tr>
-            <td>Sample configuration</td>
-            <td>
-                <code class="xml">
-                    <fileconnector.isFileExist>
-                        <source>{$ctx:source}</source>
-                        <setTimeout>{$ctx:setTimeout}</setTimeout>
-                        <setPassiveMode>{$ctx:setPassiveMode}</setPassiveMode>
-                        <setSoTimeout>{$ctx:setSoTimeout}</setSoTimeout>
-                        <setUserDirIsRoot>{$ctx:setUserDirIsRoot}</setUserDirIsRoot>
-                        <setStrictHostKeyChecking>{$ctx:setStrictHostKeyChecking}</setStrictHostKeyChecking>
-                    </fileconnector.isFileExist>
-                </code>
-            </td>
-        </tr>
-        <tr>
-            <td>Sample request</td>
-            <td>
-                <code class="json">
-                    {
-                        "source":"/home/vive/Desktop/file/test.txt"
-                    }
-                </code>
-            </td>
-        </tr>
-    </table>
+    **Sample configuration**
+    
+    ```xml
+    <fileconnector.isFileExist>
+        <source>{$ctx:source}</source>
+        <setTimeout>{$ctx:setTimeout}</setTimeout>
+        <setPassiveMode>{$ctx:setPassiveMode}</setPassiveMode>
+        <setSoTimeout>{$ctx:setSoTimeout}</setSoTimeout>
+        <setUserDirIsRoot>{$ctx:setUserDirIsRoot}</setUserDirIsRoot>
+        <setStrictHostKeyChecking>{$ctx:setStrictHostKeyChecking}</setStrictHostKeyChecking>
+    </fileconnector.isFileExist>
+    ```
+
+    **Sample request**
+    
+    ```json
+    {
+        "source":"/home/vive/Desktop/file/test.txt"
+    }
+    ```
 
 
 ??? note "listFileZip"
@@ -585,33 +534,26 @@ The following operations allow you to work with the File Connector version 2. Cl
         </tr>
     </table>
 
-    <table>
-        <tr>
-            <td>Sample configuration</td>
-            <td>
-                <code class="xml">
-                    <fileconnector.listFileZip>
-                        <source>{$ctx:source}</source>
-                        <setTimeout>{$ctx:setTimeout}</setTimeout>
-                        <setPassiveMode>{$ctx:setPassiveMode}</setPassiveMode>
-                        <setSoTimeout>{$ctx:setSoTimeout}</setSoTimeout>
-                        <setUserDirIsRoot>{$ctx:setUserDirIsRoot}</setUserDirIsRoot>
-                        <setStrictHostKeyChecking>{$ctx:setStrictHostKeyChecking}</setStrictHostKeyChecking>
-                    </fileconnector.listFileZip>
-                </code>
-            </td>
-        </tr>
-        <tr>
-            <td>Sample request</td>
-            <td>
-                <code class="json">
-                    {
-                        "source":"/home/vive/Desktop/file/test.zip"
-                    }
-                </code>
-            </td>
-        </tr>
-    </table>
+    **Sample configuration**
+    
+    ```xml
+    <fileconnector.listFileZip>
+        <source>{$ctx:source}</source>
+        <setTimeout>{$ctx:setTimeout}</setTimeout>
+        <setPassiveMode>{$ctx:setPassiveMode}</setPassiveMode>
+        <setSoTimeout>{$ctx:setSoTimeout}</setSoTimeout>
+        <setUserDirIsRoot>{$ctx:setUserDirIsRoot}</setUserDirIsRoot>
+        <setStrictHostKeyChecking>{$ctx:setStrictHostKeyChecking}</setStrictHostKeyChecking>
+    </fileconnector.listFileZip>
+    ```
+    
+    **Sample request**
+    
+    ```json
+    {
+        "source":"/home/vive/Desktop/file/test.zip"
+    }
+    ```
 
 
 ??? note "move"
@@ -671,39 +613,32 @@ The following operations allow you to work with the File Connector version 2. Cl
         </tr>
     </table>
 
-    <table>
-        <tr>
-            <td>Sample configuration</td>
-            <td>
-                <code class="xml">
-                    <fileconnector.move>
-                        <source>{$ctx:source}</source>
-                        <destination>{$ctx:destination}</destination>
-                        <setTimeout>{$ctx:setTimeout}</setTimeout>
-                        <setPassiveMode>{$ctx:setPassiveMode}</setPassiveMode>
-                        <setSoTimeout>{$ctx:setSoTimeout}</setSoTimeout>
-                        <setUserDirIsRoot>{$ctx:setUserDirIsRoot}</setUserDirIsRoot>
-                        <setStrictHostKeyChecking>{$ctx:setStrictHostKeyChecking}</setStrictHostKeyChecking>
-                        <filePattern>{$ctx:filePattern}</filePattern>
-	                    <includeParentDirectory>{$ctx:includeParentDirectory}</includeParentDirectory>
-                    </fileconnector.move>
-                </code>
-            </td>
-        </tr>
-        <tr>
-            <td>Sample request</td>
-            <td>
-                <code class="json">
-                    {
-                        "source":"/home/vive/Desktop/file",
-                        "destination":"/home/vive/Desktop/move",
-                        "filePattern":".*\.txt",
-                        "includeParentDirectory":"true"
-                    }
-                </code>
-            </td>
-        </tr>
-    </table>
+    **Sample configuration**
+    
+    ```xml
+    <fileconnector.move>
+        <source>{$ctx:source}</source>
+        <destination>{$ctx:destination}</destination>
+        <setTimeout>{$ctx:setTimeout}</setTimeout>
+        <setPassiveMode>{$ctx:setPassiveMode}</setPassiveMode>
+        <setSoTimeout>{$ctx:setSoTimeout}</setSoTimeout>
+        <setUserDirIsRoot>{$ctx:setUserDirIsRoot}</setUserDirIsRoot>
+        <setStrictHostKeyChecking>{$ctx:setStrictHostKeyChecking}</setStrictHostKeyChecking>
+        <filePattern>{$ctx:filePattern}</filePattern>
+	    <includeParentDirectory>{$ctx:includeParentDirectory}</includeParentDirectory>
+    </fileconnector.move>
+    ```
+
+    **Sample request**
+    
+    ```json
+    {
+        "source":"/home/vive/Desktop/file",
+        "destination":"/home/vive/Desktop/move",
+        "filePattern":".*\.txt",
+        "includeParentDirectory":"true"
+    }
+    ```
 
 
 ??? note "read"
@@ -775,38 +710,31 @@ The following operations allow you to work with the File Connector version 2. Cl
     * Add <messageFormatter contentType="application/file" class="org.wso2.carbon.relay.ExpandingMessageFormatter"/> under message formatters.
     * Add <messageBuilder contentType="application/file" class="org.apache.axis2.format.BinaryBuilder"/> under message builders.
 
-    <table>
-        <tr>
-            <td>Sample configuration</td>
-            <td>
-                <code class="xml">
-                    <fileconnector.read>
-                        <source>{$ctx:source}</source>
-                        <filePattern>{$ctx:filePattern}</filePattern>
-                        <contentType>{$ctx:contentType}</contentType>
-                        <setTimeout>{$ctx:setTimeout}</setTimeout>
-                        <setPassiveMode>{$ctx:setPassiveMode}</setPassiveMode>
-                        <setSoTimeout>{$ctx:setSoTimeout}</setSoTimeout>
-                        <setUserDirIsRoot>{$ctx:setUserDirIsRoot}</setUserDirIsRoot>
-                        <setStrictHostKeyChecking>{$ctx:setStrictHostKeyChecking}</setStrictHostKeyChecking>
-                    </fileconnector.read>
-                </code>
-            </td>
-        </tr>
-        <tr>
-            <td>Sample request</td>
-            <td>
-                <code class="json">
-                    {
-                        "source":"/home/vive/Desktop/file",
-                        "contentType":"application/xml",
-                        "filePattern":".*\.xml",
-                        "streaming":"false"
-                    }
-                </code>
-            </td>
-        </tr>
-    </table>
+    **Sample configuration**
+    
+    ```xml
+    <fileconnector.read>
+        <source>{$ctx:source}</source>
+        <filePattern>{$ctx:filePattern}</filePattern>
+        <contentType>{$ctx:contentType}</contentType>
+        <setTimeout>{$ctx:setTimeout}</setTimeout>
+        <setPassiveMode>{$ctx:setPassiveMode}</setPassiveMode>
+        <setSoTimeout>{$ctx:setSoTimeout}</setSoTimeout>
+        <setUserDirIsRoot>{$ctx:setUserDirIsRoot}</setUserDirIsRoot>
+        <setStrictHostKeyChecking>{$ctx:setStrictHostKeyChecking}</setStrictHostKeyChecking>
+    </fileconnector.read>
+    ```
+    
+    **Sample request**
+
+    ```json
+    {
+        "source":"/home/vive/Desktop/file",
+        "contentType":"application/xml",
+        "filePattern":".*\.xml",
+        "streaming":"false"
+    }
+    ```
 
 
 ??? note "search"
@@ -869,37 +797,29 @@ The following operations allow you to work with the File Connector version 2. Cl
         </tr>
     </table>
 
-    <table>
-        <tr>
-            <td>Sample configuration</td>
-            <td>
-                <code class="xml">
-                    <fileconnector.search>
-                        <source>{$ctx:source}</source>
-                        <filePattern>{$ctx:filePattern}</filePattern>
-	                    <recursiveSearch>{$ctx:recursiveSearch}</recursiveSearch>
-                        <setTimeout>{$ctx:setTimeout}</setTimeout>
-                        <setPassiveMode>{$ctx:setPassiveMode}</setPassiveMode>
-                        <setSoTimeout>{$ctx:setSoTimeout}</setSoTimeout>
-                        <setUserDirIsRoot>{$ctx:setUserDirIsRoot}</setUserDirIsRoot>
-                        <setStrictHostKeyChecking>{$ctx:setStrictHostKeyChecking}</setStrictHostKeyChecking>
-                    </fileconnector.search>
-                </code>
-            </td>
-        </tr>
-        <tr>
-            <td>Sample request</td>
-            <td>
-                <code class="json">
-                    {
-                        "source":"/home/vive/Desktop/file",
-                        "filePattern":".*\.xml",
-                        "recursiveSearch":"true"
-                    }
-                </code>
-            </td>
-        </tr>
-    </table>
+    **Sample configuration**
+    
+    ```xml
+    <fileconnector.search>
+        <source>{$ctx:source}</source>
+        <filePattern>{$ctx:filePattern}</filePattern>
+	    <recursiveSearch>{$ctx:recursiveSearch}</recursiveSearch>
+        <setTimeout>{$ctx:setTimeout}</setTimeout>
+        <setPassiveMode>{$ctx:setPassiveMode}</setPassiveMode>
+        <setSoTimeout>{$ctx:setSoTimeout}</setSoTimeout>
+        <setUserDirIsRoot>{$ctx:setUserDirIsRoot}</setUserDirIsRoot>
+        <setStrictHostKeyChecking>{$ctx:setStrictHostKeyChecking}</setStrictHostKeyChecking>
+    </fileconnector.search>
+    ```
+    
+    **Sample request**
+    ```json
+    {
+        "source":"/home/vive/Desktop/file",
+        "filePattern":".*\.xml",
+        "recursiveSearch":"true"
+    }
+    ```
 
 
 
@@ -953,35 +873,28 @@ The following operations allow you to work with the File Connector version 2. Cl
         </tr>
     </table>
 
-    <table>
-        <tr>
-            <td>Sample configuration</td>
-            <td>
-                <code class="xml">
-                    <fileconnector.unzip>
-                        <source>{$ctx:source}</source>
-                        <destination>{$ctx:destination}</destination>
-                        <setTimeout>{$ctx:setTimeout}</setTimeout>
-                        <setPassiveMode>{$ctx:setPassiveMode}</setPassiveMode>
-                        <setSoTimeout>{$ctx:setSoTimeout}</setSoTimeout>
-                        <setUserDirIsRoot>{$ctx:setUserDirIsRoot}</setUserDirIsRoot>
-                        <setStrictHostKeyChecking>{$ctx:setStrictHostKeyChecking}</setStrictHostKeyChecking>
-                    </fileconnector.unzip>
-                </code>
-            </td>
-        </tr>
-        <tr>
-            <td>Sample request</td>
-            <td>
-                <code class="json">
-                    {
-                        "source":"/home/vive/Desktop/file/test.zip",
-                        "destination":"/home/vive/Desktop/file/test"
-                    }
-                </code>
-            </td>
-        </tr>
-    </table>
+    **Sample configuration**
+    
+    ```xml
+    <fileconnector.unzip>
+        <source>{$ctx:source}</source>
+        <destination>{$ctx:destination}</destination>
+        <setTimeout>{$ctx:setTimeout}</setTimeout>
+        <setPassiveMode>{$ctx:setPassiveMode}</setPassiveMode>
+        <setSoTimeout>{$ctx:setSoTimeout}</setSoTimeout>
+        <setUserDirIsRoot>{$ctx:setUserDirIsRoot}</setUserDirIsRoot>
+        <setStrictHostKeyChecking>{$ctx:setStrictHostKeyChecking}</setStrictHostKeyChecking>
+    </fileconnector.unzip>
+    ```
+    
+    **Sample request**
+    
+    ```json
+    {
+        "source":"/home/vive/Desktop/file/test.zip",
+        "destination":"/home/vive/Desktop/file/test"
+    }
+    ```
 
 
 ??? note "ftpOverProxy"
@@ -1064,49 +977,42 @@ The following operations allow you to work with the File Connector version 2. Cl
         </tr>
     </table>
 
-    <table>
-        <tr>
-            <td>Sample configuration</td>
-            <td>
-                <code class="xml">
-                    <fileconnector.ftpOverProxy>
-                        <proxyHost>{$ctx:proxyHost}</proxyHost>
-                        <proxyPort>{$ctx:proxyPort}</proxyPort>
-                        <proxyUsername>{$ctx:proxyUsername}</proxyUsername>
-                        <proxyPassword>{$ctx:proxyPassword}</proxyPassword>
-                        <ftpUsername>{$ctx:ftpUsername}</ftpUsername>
-                        <ftpPassword>{$ctx:ftpPassword}</ftpPassword>
-                        <ftpServer>{$ctx:ftpServer}</ftpServer>
-                        <ftpPort>{$ctx:ftpPort}</ftpPort>
-                        <targetPath>{$ctx:targetPath}</targetPath>
-                        <targetFile>{$ctx:targetFile}</targetFile>
-                        <keepAliveTimeout>{$ctx:keepAliveTimeout}</keepAliveTimeout>
-                        <controlKeepAliveReplyTimeout>{$ctx:controlKeepAliveReplyTimeout}</controlKeepAliveReplyTimeout>
-                        <binaryTransfer>{$ctx:binaryTransfer}</binaryTransfer>
-                        <localActive>{$ctx:localActive}</localActive>
-                    </fileconnector.ftpOverProxy>
-                </code>
-            </td>
-        </tr>
-        <tr>
-            <td>Sample request</td>
-            <td>
-                <code class="json">
-                    {
-                        "proxyHost":"SampleProxy",
-                        "proxyPort":"3128",
-                        "proxyUsername":"wso2",
-                        "proxyPassword":"Password",
-                        "ftpUsername":"master",
-                        "ftpPassword":"Password",
-                        "ftpServer":"192.168.56.6",
-                        "ftpPort":"21",
-                        "targetFile":"/home/master/res"
-                    }
-                </code>
-            </td>
-        </tr>
-    </table>
+    **Sample configuration**
+
+    ```xml
+    <fileconnector.ftpOverProxy>
+        <proxyHost>{$ctx:proxyHost}</proxyHost>
+        <proxyPort>{$ctx:proxyPort}</proxyPort>
+        <proxyUsername>{$ctx:proxyUsername}</proxyUsername>
+        <proxyPassword>{$ctx:proxyPassword}</proxyPassword>
+        <ftpUsername>{$ctx:ftpUsername}</ftpUsername>
+        <ftpPassword>{$ctx:ftpPassword}</ftpPassword>
+        <ftpServer>{$ctx:ftpServer}</ftpServer>
+        <ftpPort>{$ctx:ftpPort}</ftpPort>
+        <targetPath>{$ctx:targetPath}</targetPath>
+        <targetFile>{$ctx:targetFile}</targetFile>
+        <keepAliveTimeout>{$ctx:keepAliveTimeout}</keepAliveTimeout>
+        <controlKeepAliveReplyTimeout>{$ctx:controlKeepAliveReplyTimeout}</controlKeepAliveReplyTimeout>
+        <binaryTransfer>{$ctx:binaryTransfer}</binaryTransfer>
+        <localActive>{$ctx:localActive}</localActive>
+    </fileconnector.ftpOverProxy>
+    ```
+
+    **Sample request**
+    
+    ```json
+    {
+        "proxyHost":"SampleProxy",
+        "proxyPort":"3128",
+        "proxyUsername":"wso2",
+        "proxyPassword":"Password",
+        "ftpUsername":"master",
+        "ftpPassword":"Password",
+        "ftpServer":"192.168.56.6",
+        "ftpPort":"21",
+        "targetFile":"/home/master/res"
+    }
+    ```
 
 
 ??? note "send"
@@ -1135,30 +1041,23 @@ The following operations allow you to work with the File Connector version 2. Cl
              <property name="ClientApiNonBlocking" value="true" scope="axis2" action="remove"/>
     ```
 
-    <table>
-        <tr>
-            <td>Sample configuration</td>
-            <td>
-                <code class="xml">
-                    <fileconnector.send>
-                        <address>{$ctx:address}</address>
-	                    <append>{$ctx:append}</append>
-                    </fileconnector.send>
-                </code>
-            </td>
-        </tr>
-        <tr>
-            <td>Sample request</td>
-            <td>
-                <code class="json">
-                    {
-                        "address":"/home/vive/Desktop/file/outTest",
-                        "append":"true"
-                    }
-                </code>
-            </td>
-        </tr>
-    </table>
+    **Sample configuration**
+    
+    ```xml
+    <fileconnector.send>
+        <address>{$ctx:address}</address>
+	    <append>{$ctx:append}</append>
+    </fileconnector.send>
+    ```
+
+    **Sample request**
+    
+    ```json
+    {
+        "address":"/home/vive/Desktop/file/outTest",
+        "append":"true"
+    }
+    ```
 
 
 ??? note "getSize"
@@ -1176,28 +1075,21 @@ The following operations allow you to work with the File Connector version 2. Cl
         </tr>
     </table>
 
-    <table>
-        <tr>
-            <td>Sample configuration</td>
-            <td>
-                <code class="xml">
-                    <fileconnector.getSize>
-                        <source>{$ctx:source}</source>
-                    </fileconnector.getSize>
-                </code>
-            </td>
-        </tr>
-        <tr>
-            <td>Sample request</td>
-            <td>
-                <code class="json">
-                    {
-                        "source":"/home/vive/Desktop/file/outTest/sample.txt"
-                    }
-                </code>
-            </td>
-        </tr>
-    </table>
+    **Sample configuration**
+    
+    ```xml
+    <fileconnector.getSize>
+        <source>{$ctx:source}</source>
+    </fileconnector.getSize>
+    ```
+
+    **Sample request**
+    
+    ```json
+    {
+        "source":"/home/vive/Desktop/file/outTest/sample.txt"
+    }
+    ```
 
 
 ??? note "getLastModifiedTime"
@@ -1215,28 +1107,21 @@ The following operations allow you to work with the File Connector version 2. Cl
         </tr>
     </table>
 
-    <table>
-        <tr>
-            <td>Sample configuration</td>
-            <td>
-                <code class="xml">
-                    <fileconnector.getLastModifiedTime>
-                        <source>{$ctx:source}</source>
-                    </fileconnector.getLastModifiedTime>
-                </code>
-            </td>
-        </tr>
-        <tr>
-            <td>Sample request</td>
-            <td>
-                <code class="json">
-                    {
-                        "source":"/home/vive/Desktop/file/outTest/sample.txt"
-                    }
-                </code>
-            </td>
-        </tr>
-    </table>
+    **Sample configuration**
+    
+    ```xml
+    <fileconnector.getLastModifiedTime>
+        <source>{$ctx:source}</source>
+    </fileconnector.getLastModifiedTime>
+    ```
+
+    **Sample request**
+    
+    ```json
+    {
+        "source":"/home/vive/Desktop/file/outTest/sample.txt"
+    }
+    ```
 
 
 ??? note "splitFile"
@@ -1274,35 +1159,28 @@ The following operations allow you to work with the File Connector version 2. Cl
         </tr>
     </table>
 
-    <table>
-        <tr>
-            <td>Sample configuration</td>
-            <td>
-                <code class="xml">
-                    <fileconnector.splitFile>
-                        <source>{$ctx:source}</source>
-                        <destination>{$ctx:destination}</destination>
-                        <chunkSize>{$ctx:chunkSize}</chunkSize>
-	                    <numberOfLines>{$ctx:numberOfLines}</numberOfLines>
-	                    <xpathExpression>{$ctx:xpathExpression}</xpathExpression>
-                    </fileconnector.splitFile>
-                </code>
-            </td>
-        </tr>
-        <tr>
-            <td>Sample request</td>
-            <td>
-                <code class="json">
-                    {
-                        "source":"/home/vive/Desktop/file/outTest/sample.txt",
-                        "destination":"/home/vive/Desktop/file/outTest/",
-                        "chunkSize":"4096",
-                        "xpathExpression":"//products/product"
-                    }
-                </code>
-            </td>
-        </tr>
-    </table>
+    **Sample configuration**
+    
+    ```xml
+    <fileconnector.splitFile>
+        <source>{$ctx:source}</source>
+        <destination>{$ctx:destination}</destination>
+        <chunkSize>{$ctx:chunkSize}</chunkSize>
+	    <numberOfLines>{$ctx:numberOfLines}</numberOfLines>
+	    <xpathExpression>{$ctx:xpathExpression}</xpathExpression>
+    </fileconnector.splitFile>
+    ```
+    
+    **Sample request**
+    
+    ```json
+    {
+        "source":"/home/vive/Desktop/file/outTest/sample.txt",
+        "destination":"/home/vive/Desktop/file/outTest/",
+        "chunkSize":"4096",
+        "xpathExpression":"//products/product"
+    }
+    ```
 
 
 ??? note "mergeFiles"
@@ -1330,32 +1208,25 @@ The following operations allow you to work with the File Connector version 2. Cl
         </tr>
     </table>
 
-    <table>
-        <tr>
-            <td>Sample configuration</td>
-            <td>
-                <code class="xml">
-                    <fileconnector.mergeFiles>
-                        <source>{$ctx:source}</source>
-                        <destination>{$ctx:destination}</destination>
-                        <filePattern>{$ctx:filePattern}</filePattern>
-                    </fileconnector.mergeFiles>
-                </code>
-            </td>
-        </tr>
-        <tr>
-            <td>Sample request</td>
-            <td>
-                <code class="json">
-                    {
-                        "source":"/home/vive/Desktop/file/outTest/",
-                        "destination":"/home/vive/Desktop/file/outTest/sample.txt",
-                        "filePattern":"*.txt*"
-                    }
-                </code>
-            </td>
-        </tr>
-    </table>
+    **Sample configuration**
+
+    ```xml
+    <fileconnector.mergeFiles>
+        <source>{$ctx:source}</source>
+        <destination>{$ctx:destination}</destination>
+        <filePattern>{$ctx:filePattern}</filePattern>
+    </fileconnector.mergeFiles>
+    ```
+    
+    **Sample request**
+    
+    ```json
+    {
+        "source":"/home/vive/Desktop/file/outTest/",
+        "destination":"/home/vive/Desktop/file/outTest/sample.txt",
+        "filePattern":"*.txt*"
+    }
+    ```
 
 
 ??? note "readSpecifiedLines"
@@ -1388,33 +1259,26 @@ The following operations allow you to work with the File Connector version 2. Cl
         </tr>
     </table>
 
-    <table>
-        <tr>
-            <td>Sample configuration</td>
-            <td>
-                <code class="xml">
-                    <fileconnector.readSpecifiedLines>
-                        <source>{$ctx:source}</source>
-                        <contentType>{$ctx:contentType}</contentType>
-                        <start>{$ctx:start}</start>
-                        <end>{$ctx:end}</end>
-                    </fileconnector.readSpecifiedLines>
-                </code>
-            </td>
-        </tr>
-        <tr>
-            <td>Sample request</td>
-            <td>
-                <code class="json">
-                    {
-                        "source":"/home/vive/Desktop/file/outTest/sampleText.txt",
-                        "start":"5",
-                        "end":"25"
-                    }
-                </code>
-            </td>
-        </tr>
-    </table>
+    **Sample configuration**
+
+    ```xml
+    <fileconnector.readSpecifiedLines>
+        <source>{$ctx:source}</source>
+        <contentType>{$ctx:contentType}</contentType>
+        <start>{$ctx:start}</start>
+        <end>{$ctx:end}</end>
+    </fileconnector.readSpecifiedLines>
+    ```
+
+    **Sample request**
+
+    ```json
+    {
+        "source":"/home/vive/Desktop/file/outTest/sampleText.txt",
+        "start":"5",
+        "end":"25"
+    }
+    ```
 
 
 ??? note "readALine"
@@ -1437,30 +1301,23 @@ The following operations allow you to work with the File Connector version 2. Cl
         </tr>
     </table>
 
-    <table>
-        <tr>
-            <td>Sample configuration</td>
-            <td>
-                <code class="xml">
-                    <fileconnector.readALine>
-                        <source>{$ctx:source}</source>
-                        <lineNumber>{$ctx:lineNumber}</lineNumber>
-                    </fileconnector.readALine>
-                </code>
-            </td>
-        </tr>
-        <tr>
-            <td>Sample request</td>
-            <td>
-                <code class="json">
-                    {
-                        "source":"/home/vive/Desktop/file/outTest/sampleText.txt",
-                        "lineNumber":"5"
-                    }
-                </code>
-            </td>
-        </tr>
-    </table>
+    **Sample configuration**
+
+    ```xml
+    <fileconnector.readALine>
+        <source>{$ctx:source}</source>
+        <lineNumber>{$ctx:lineNumber}</lineNumber>
+    </fileconnector.readALine>
+    ```
+    
+    **Sample request**
+
+    ```json
+    {
+        "source":"/home/vive/Desktop/file/outTest/sampleText.txt",
+        "lineNumber":"5"
+    }
+    ```
 
 
 
@@ -1504,4 +1361,4 @@ The following is a sample proxy service that illustrates how to connect to the F
 </proxy>         
 ```
 
-**Note**: For more information on how this works in an actual scenario, see [File Connector Example](../file-connector-example.md).
+**Note**: For more information on how this works in an actual scenario, see [File Connector Example](file-connector-example.md).
