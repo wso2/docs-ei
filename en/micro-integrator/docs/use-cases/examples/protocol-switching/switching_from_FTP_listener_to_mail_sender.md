@@ -17,10 +17,12 @@ Following are the integration artifacts that we can used to implement this scena
     <target>
         <inSequence>
             <header name="Action" value="urn:getQuote"/>
+            <send>
+                <endpoint>
+                    <address uri="http://localhost:9000/services/SimpleStockQuoteService"/>
+                </endpoint>
+            </send>
         </inSequence>
-        <endpoint>
-            <address uri="http://localhost:9000/services/SimpleStockQuoteService"/>
-        </endpoint>
         <outSequence>
             <property action="set" name="OUT_ONLY" value="true"/>
             <send>
