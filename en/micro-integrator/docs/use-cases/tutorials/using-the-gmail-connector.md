@@ -66,19 +66,19 @@ Follow these steps to automatically refresh the expired token when connecting to
 #### Importing the Gmail Connector into WSO2 Integration Studio
 
 1. Right click on **Sample Services** in the Project Explorer and select **Add or Remove Connector**.
-2. Select **Add Connector** and click **Next**. Now you will get connected to [WSO2 Connector store](https://store.wso2.com).
-3. Scroll down to find **Gmail** from the list of connectors. Click on the **Download** button in the Gmail connector. 
+2. Select **Add Connector** and click **Next**. You are now connected to the [WSO2 Connector store](https://store.wso2.com).
+3. Find **Gmail** from the list of connectors and click the **Download** button (for the Gmail connector). 
     ![](../../assets/img/tutorials/119132294/import-gmail-connector.png)
 
 4. Click **Finish**.
-   The connector is now downloaded into your WSO2 Integration Studio and the connector operations will be available in the Gmail Connector palette.  
+   The connector is now downloaded to your WSO2 Integration Studio workspace and the connector operations are available in the Gmail Connector palette.  
     ![](../../assets/img/tutorials/119132294/select-connector-dialog.png)
 
 Let's use these connector operations in the configuration.
 
 #### Update the message flow
 
-The connector operations are used in the **PaymentRequestProcessingSequence**. Select this sequence and do the following updates:
+The connector operations are used in the sequence named **PaymentRequestProcessingSequence**. Select this sequence and do the following updates:
 
 1.  Add a Property Mediator just before the Call mediator to retrieve and store the patient's email address.
 
