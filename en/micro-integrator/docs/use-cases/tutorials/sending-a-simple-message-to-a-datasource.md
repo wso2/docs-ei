@@ -2,8 +2,10 @@
 
 ## What you'll build
 
-A **data service** provides a Web service interface to access data that is stored in relational databases, CSV files, Microsoft Excel sheets,
-Google spreadsheets, and more. The following sections describe how you can use WSO2 Integration Studio to work with data services' artifacts. 
+A **data service** provides a web service interface to access data that is stored in various datasources. The following sections describe how you can use WSO2 Integration Studio to work with data services' artifacts. 
+
+!!! Tip
+    Note that this feature is currently supported in WSO2 Integration Studio for relational datasources and CSV files.
 
 ## Let's get started!
 
@@ -193,12 +195,14 @@ configured in the previous step:
             </table>   
         3.  Save the element.
         4.  Follow the same steps to create the following output elements:
+
             | Datasource Type | Output Field Name | Datasource Column Name | Schema Type |
             |-----------------|-------------------|------------------------|-------------|
             | column          | FirstName         | FirstName              | string      |
             | column          | LastName          | LastName               | string      |
             | column          | Email             | Email                  | string      |
-    
+   
+ 
 9.  Click **Save** to save the query.
     ![](../../assets/img/tutorials/data_services/output_mapings.png)
 
