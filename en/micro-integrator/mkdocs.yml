@@ -350,6 +350,8 @@ nav:
           - 'Amazon Lambda Connector Example': 'references/connectors/amazonlambda-connector/amazonlambda-connector-example.md'
         - Microsoft Dynamics 365 Connector:
           - 'Setting up the Microsoft Dynamics365 Environment with Azure': 'references/connectors/amazonlambda-connector/microsoft-dynamics365-configuration.md'
+        - Salesforce Rest Connector:
+          - 'Salesforce Rest API Connector Example': 'references/connectors/salesforce-rest-connector/sf-rest-connector-example.md'
       - Synapse Configurations:
         - Mediator Catalog:
           - 'About Mediators': 'references/mediators/about-mediators.md'
