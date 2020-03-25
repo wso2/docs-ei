@@ -219,6 +219,7 @@ Follow these steps to set up the ESB Solution Project and import AmazonS3 connec
 ```
 
 **Note**
+
 * As `accessKeyId` use the access key obtained from Amazon S3 setup and update above API configuration. 
 * As `secretAccessKey` use the secret key obtained from Amazon S3 setup and update above API configuration.
 * Note that When you configure `addobject` resource, there are three parts to it. You need to use three operations of the connector in order. 
