@@ -105,28 +105,48 @@ Create the artifacts:
 3. [Create a Data Service project](../../../../develop/creating-projects/#data-services-project)
 4. [Create the data service](../../../../develop/creating-artifacts/data-services/creating-data-services) with the configurations given above.
 5. [Deploy the artifacts](../../../../develop/deploy-and-run) in your Micro Integrator.
+6. Download and Install [SoapUI](https://www.soapui.org/downloads/soapui.html) to run this SOAP service.
+7. Create a new SOAP Project in the SoapUI using following wsdl file
+```http://localhost:8290/services/request_box_example?wsdl```
+8. Invoke the **request_box** under the **request_box_exampleSOAP12Binding** with the following request body.
+      ```xml
+            <dat:request_box xmlns:p="http://ws.wso2.org/dataservice">
+                  <!--Exactly 1 occurrence-->
+                  <addEmployeeOp xmlns="http://ws.wso2.org/dataservice">
+                        <!--Exactly 1 occurrence-->
+                        <xs:EmployeeNumber xmlns:xs="http://ws.wso2.org/dataservice">1003</xs:EmployeeNumber>
+                        <!--Exactly 1 occurrence-->
+                        <xs:FirstName xmlns:xs="http://ws.wso2.org/dataservice">Chris</xs:FirstName>
+                        <!--Exactly 1 occurrence-->
+                        <xs:LastName xmlns:xs="http://ws.wso2.org/dataservice">Sam</xs:LastName>
+                        <!--Exactly 1 occurrence-->
+                        <xs:Email xmlns:xs="http://ws.wso2.org/dataservice">chris@sam.com</xs:Email>
+                        <!--Exactly 1 occurrence-->
+                        <xs:OfficeCode xmlns:xs="http://ws.wso2.org/dataservice">1</xs:OfficeCode>
+                  </addEmployeeOp>
+                  <!--Exactly 1 occurrence-->
+                  <selectEmployeeOp xmlns="http://ws.wso2.org/dataservice">
+                        <!--Exactly 1 occurrence-->
+                        <xs:EmployeeNumber xmlns:xs="http://ws.wso2.org/dataservice">1003</xs:EmployeeNumber>
+                  </selectEmployeeOp>
+            </dat:request_box>
+      ```
 
-Send a request with multiple transactions as shown below. In this example, we are sending two transactions with details of two employees.
-
-```xml
-<p:request_box xmlns:p="http://ws.wso2.org/dataservice">
-  <!--Exactly 1 occurrence-->
-  <addEmployeeOp xmlns="http://ws.wso2.org/dataservice">
-     <!--Exactly 1 occurrence-->
-     <xs:EmployeeNumber xmlns:xs="http://ws.wso2.org/dataservice">1003</xs:EmployeeNumber>
-     <!--Exactly 1 occurrence-->
-     <xs:FirstName xmlns:xs="http://ws.wso2.org/dataservice">Chris</xs:FirstName>
-     <!--Exactly 1 occurrence-->
-     <xs:LastName xmlns:xs="http://ws.wso2.org/dataservice">Sam</xs:LastName>
-     <!--Exactly 1 occurrence-->
-     <xs:Email xmlns:xs="http://ws.wso2.org/dataservice">chris@sam.com</xs:Email>
-     <!--Exactly 1 occurrence-->
-     <xs:OfficeCode xmlns:xs="http://ws.wso2.org/dataservice">1</xs:OfficeCode>
-  </addEmployeeOp>
-  <!--Exactly 1 occurrence-->
-  <selectEmployeeOp xmlns="http://ws.wso2.org/dataservice">
-     <!--Exactly 1 occurrence-->
-     <xs:EmployeeNumber xmlns:xs="http://ws.wso2.org/dataservice">1003</xs:EmployeeNumber>
-  </selectEmployeeOp>
-</p:request_box>
-```
+      above sends request with multiple transactions. In this example, we are sending two transactions with details of two employees.
+ 9. You should be able to see a result in the SoapUI as follows,
+      ```xml
+      <soapenv:Envelope xmlns:soapenv="http://www.w3.org/2003/05/soap-envelope">
+            <soapenv:Body>
+                  <axis2ns16:DATA_SERVICE_REQUEST_BOX_RESPONSE xmlns:axis2ns16="http://ws.wso2.org/dataservice">
+                        <Entries xmlns="http://ws.wso2.org/dataservice">
+                              <Entry>
+                                    <EmployeeNumber>1003</EmployeeNumber>
+                                    <FirstName>Chris</FirstName>
+                                    <LastName>Sam</LastName>
+                                    <Email>chris@sam.com</Email>
+                                    <OfficeCode>1</OfficeCode>
+                              </Entry>
+                        </Entries>
+                  </axis2ns16:DATA_SERVICE_REQUEST_BOX_RESPONSE>
+            </soapenv:Body>
+      </soapenv:Envelope>
