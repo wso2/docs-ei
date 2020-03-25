@@ -51,8 +51,7 @@ Follow the steps given below to create a new data service.
 All the data services' artifacts that you create should be stored in a
 Data Service project. Follow the steps given below to create a project:
 
-1.  Open **WSO2 Integration Studio,** and click **DS Project → Create
-    New** in the **Getting Started** tab as shown below.  
+1.  Open **WSO2 Integration Studio** and click **Data Service → Create Data Service Project** in the **Getting Started** tab as shown below.  
     ![](../../assets/img/create_project/create_data_service_project.png)
 
 2.  In the **New Data Service Project** dialog that opens, give a name
@@ -66,13 +65,14 @@ Data Service project. Follow the steps given below to create a project:
 Follow the steps given below to create the data service file:
 
 1.  Select the already created **Data Service Project** in the project
-    navigator, right click and go to **New -> Data Service**.  
+    navigator, right-click and go to **New -> Data Service**.  
     The **New Data Service** window will open as shown below.  
     ![](../../assets/img/tutorials/data_services/119130577/119130578.png)
 2.  To start creating a data service from scratch, select **Create New
-    Data Service** and click **Next**. Next window will appear as shown below.  
-    ![](../../assets/img/tutorials/data_services/new_dataservice.png)
+    Data Service** and click **Next** to go to the next page.
 3.  Enter a name for the data service and click **Finish**:
+
+    ![](../../assets/img/tutorials/data_services/new_dataservice.png)
 
     <table>
         <tr>
@@ -95,10 +95,11 @@ project. Shown below is the project directory.
 
 ##### Creating the datasource connection
 
-1.  Click on the **Data Sources** and it will expand as shown in below.
-![](../../assets/img/tutorials/data_services/data_source_expanded.png)
-2.  Click on the **Add New** button. 
-3.  Add the datasource connection details given below.
+1.  Click **Data Sources** to expand the section.
+    ![](../../assets/img/tutorials/data_services/data_source_expanded.png)
+2.  Click **Add New** to open the **Create Datasource** page.
+    ![](../../assets/img/tutorials/data_services/add_data_source.png)
+3.  Enter the datasource connection details given below.
 
     |       Property                     |       Description                     |
     |------------------------------------|---------------------------------------|
@@ -110,9 +111,12 @@ project. Shown below is the project directory.
     | URL                                | jdbc:mysql://localhost:3306/Employees |
     | User Name                          | root                                  |
 
-    After entering the details, your wizard will look similar to the following.
-![](../../assets/img/tutorials/data_services/add_data_source.png)   
-4.  Expand the test connection modal and click on the **Test connection** button to verify connectivity.
+4.  Click **Test Connection** to expand the section and click the **Test Connection** button. 
+
+    ![](../../assets/img/tutorials/data_services/test_connection.png)
+
+    This will verify the connectivity between the MySQL datasource and the data service.
+
 5.  Save the data service.
 
 ##### Creating a query
@@ -120,8 +124,9 @@ project. Shown below is the project directory.
 Let's write an SQL query to GET data from the MySQL datasource that you
 configured in the previous step:
 
-1.  Click on **Queries** and click on the **Add New** button.
-2.  Enter the following query details:
+1.  Click **Queries** to expand the section. 
+2.  Click **Add New** to open the **Add Query** page.
+3.  Enter the following query details:
 
     | Parameter  |  Description       |
     |------------|--------------------|
@@ -129,19 +134,19 @@ configured in the previous step:
     | Datasource | Datasource         |
     | SQL Query  | select EmployeeNumber, FirstName, LastName, Email from Employees where EmployeeNumber=:EmployeeNumber|
 
-3.  Click on **Input Mappings** and click on the **Add New** button.
-4.  Enter the following input mapping details:
+4.  Click **Input Mappings** to expand the section. 
+5.  Click **Add New** to open the **Add Input Mapping** page.
+    ![](../../assets/img/tutorials/data_services/input_mappings.png)
+5.  Enter the following input mapping details:
 
     | Property       | Description    |
     |----------------|----------------|
     | Mapping Name   | EmployeeNumber |
     | Parameter Type | SCALAR         |
     | SQL Type       | STRING         |
-    After entering the details, your wizard will look similar to the following.
-![](../../assets/img/tutorials/data_services/input_mappings.png)   
 
 5.  Save the input mapping.
-6.  Click on **Output Mappings** and click on the **Add New** button.
+6.  Click **Result (Output Mappings)** to expand the section.
 7.  Enter the following value to group the output mapping:
 
     <table>
@@ -155,58 +160,57 @@ configured in the previous step:
     </tr>
     </table>
 
-8.  Click on the **Generate** button to generate mappings automatically.
+8.  Click **Generate** to generate mappings automatically.
 
-    Alternatively, you can manually add the mappings. To add manually, follow the steps given below.
-    1. Click on the **Add New** button in the bottom to create an element.
-
-    2. Enter the following element details.
-
-        <table>
-        <tr>
-                <th>Property</th>
-                <th>Description</th>
+    !!! Tip
+        Alternatively, you can manually add the mappings:
+        1. Click **Add New** to open the **Add Output Mapping** page.
+        2. Enter the following output element details.
+            <table>
+            <tr>
+                    <th>Property</th>
+                    <th>Description</th>
+                </tr>
+            <tbody>
+            <tr class="odd">
+            <td>Datasource Type</td>
+            <td>column</td>
             </tr>
-        <tbody>
-        <tr class="odd">
-        <td>Datasource Type</td>
-        <td>column</td>
-        </tr>
-        <tr class="even">
-        <td>Output Field Name</td>
-        <td>EmployeeNumber</td>
-        </tr>
-        <tr class="odd">
-        <td>Datasource Column Name</td>
-        <td>EmployeeNumber</td>
-        </tr>
-        <tr class="even">
-        <td>Schema Type</td>
-        <td>String</td>
-        </tr>
-        </tbody>
-        </table>   
-
-    3.  Save the element.
-    4.  Follow the same steps to create the following output elements:
-
-    | Datasource Type | Output Field Name | Datasource Column Name | Schema Type |
-    |-----------------|-------------------|------------------------|-------------|
-    | column          | FirstName         | FirstName              | string      |
-    | column          | LastName          | LastName               | string      |
-    | column          | Email             | Email                  | string      |
-
+            <tr class="even">
+            <td>Output Field Name</td>
+            <td>EmployeeNumber</td>
+            </tr>
+            <tr class="odd">
+            <td>Datasource Column Name</td>
+            <td>EmployeeNumber</td>
+            </tr>
+            <tr class="even">
+            <td>Schema Type</td>
+            <td>String</td>
+            </tr>
+            </tbody>
+            </table>   
+        3.  Save the element.
+        4.  Follow the same steps to create the following output elements:
+            | Datasource Type | Output Field Name | Datasource Column Name | Schema Type |
+            |-----------------|-------------------|------------------------|-------------|
+            | column          | FirstName         | FirstName              | string      |
+            | column          | LastName          | LastName               | string      |
+            | column          | Email             | Email                  | string      |
+    
     After entering the details or generating the mappings, your wizard will look similar to the following.
-![](../../assets/img/tutorials/data_services/output_mapings.png)
+    ![](../../assets/img/tutorials/data_services/output_mapings.png)
 
-9.  Click on **Save** button to save the query.
+9.  Click **Save** to save the query.
 
 ##### Creating a resource to invoke the query
 
 Now, let's create a REST resource that can be used to invoke the query.
 
-1.  Click on **Resources** and click on the **Add New** button.
-2.  Add the following resource details.
+1.  Click **Resources** to expand the section. 
+2.  Click **Add New** to open the **Create Resource** page.
+    ![](../../assets/img/tutorials/data_services/create_resource.png)
+3.  Add the following resource details.
 
     <table>
     <tr>
@@ -228,10 +232,8 @@ Now, let's create a REST resource that can be used to invoke the query.
     </tr>
     </tbody>
     </table>
-    
-    After entering the details, your wizard will look similar to the following.
-![](../../assets/img/tutorials/data_services/create_resource.png)   
-3.  Save the resource.
+       
+4.  Save the resource.
 
 ### Step 3: Package the artifacts
 
@@ -319,9 +321,9 @@ If you want to send the client request from your terminal:
 
 1. Install and set up [cURL](https://curl.haxx.se/) as your REST client.
 2. Execute the following command.
-```bash
-curl -X GET http://localhost:8290/services/RDBMSDataService.HTTPEndpoint/Employee/3
-```
+    ```bash
+    curl -X GET http://localhost:8290/services/RDBMSDataService.HTTPEndpoint/Employee/3
+    ```
 
 #### Analyze the response
 
