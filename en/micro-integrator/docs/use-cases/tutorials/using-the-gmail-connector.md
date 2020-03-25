@@ -71,7 +71,7 @@ Follow these steps to automatically refresh the expired token when connecting to
     ![](../../assets/img/tutorials/119132294/import-gmail-connector.png)
 
 4. Click **Finish**.
-   The connector is now downloaded to your WSO2 Integration Studio workspace and the connector operations are available in the Gmail Connector palette.  
+   The connector is now downloaded to your workspace in WSO2 Integration Studio and the connector operations are available in the Gmail Connector palette.  
     ![](../../assets/img/tutorials/119132294/select-connector-dialog.png)
 
 Let's use these connector operations in the configuration.
