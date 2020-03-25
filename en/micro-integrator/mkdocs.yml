@@ -348,8 +348,10 @@ nav:
         - AmazonLambda Connector:
           - 'Setting up Amazon Lambda Environment': 'references/connectors/amazonlambda-connector/amazonlambda-configuration.md'
           - 'Amazon Lambda Connector Example': 'references/connectors/amazonlambda-connector/amazonlambda-connector-example.md'
+        - Microsoft Dynamics 365 Connector:
+          - 'Setting up the Microsoft Dynamics365 Environment with Azure': 'references/connectors/amazonlambda-connector/microsoft-dynamics365-configuration.md'
       - Synapse Configurations:
-        - Mediator Catalog: 
+        - Mediator Catalog:
           - 'About Mediators': 'references/mediators/about-mediators.md'
           - 'Aggregate Mediators' : 'references/mediators/aggregate-Mediator.md'
           - 'Builder Mediator' : 'references/mediators/builder-Mediator.md'
