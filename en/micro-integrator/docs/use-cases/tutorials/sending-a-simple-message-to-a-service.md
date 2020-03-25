@@ -128,7 +128,7 @@ A REST API is required for receving the client response and the REST resource wi
         <td>Context</td>
         <td><code>/healthcare </code></td>
         <td>
-          Here you are anchoring the API in the <code>/healthcare </code> context. This will become part of the name of the generated URL used by the client when sending requests to Healthcare service. For example, setting the context to /healthcare defines that the API will only handle HTTP requests where the URL path starts with <b><code>http://<host>:<port>/healthcare</b>.
+          Here you are anchoring the API in the <code>/healthcare </code> context. This will become part of the name of the generated URL used by the client when sending requests to Healthcare service. For example, setting the context to /healthcare defines that the API will only handle HTTP requests where the URL path starts with <code>http://host:port/healthcare<code>.
         </td>
       </tr>
       <tr>
