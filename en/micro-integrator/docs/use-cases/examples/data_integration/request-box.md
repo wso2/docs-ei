@@ -54,6 +54,8 @@ Given below is the data service configuration you need to build. See the instruc
    <config enableOData="false" id="Datasource">
       <property name="driverClassName">com.mysql.jdbc.Driver</property>
       <property name="url">jdbc:mysql://localhost:3306/Company</property>
+      <property name="username">root</property>
+      <property name="password">password</property>
    </config>
    <query id="addEmployeeQuery" useConfig="Datasource">
       <sql>insert into Employees (EmployeeNumber, FirstName, LastName, Email,OfficeCode) values(:EmployeeNumber,:FirstName,:LastName,:Email,:OfficeCode)</sql>
