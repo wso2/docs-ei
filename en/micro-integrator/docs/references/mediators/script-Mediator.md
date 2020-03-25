@@ -93,6 +93,10 @@ JavaScript, Groovy, or Ruby.
 </tbody>
 </table>
 
+!!! Note
+    If you are using nashornJS as the JavaScript language, and also if you have JSON operations defined in the script mediator, you need to have at least 8u112 JDK version or above in your environment.
+    The JDK versions below that might encounter exceptions with JSON support due to this reported [jdk bug](https://bugs.openjdk.java.net/browse/JDK-8157160).
+
 ## Syntax
 
 Click on the relevant tab to view the syntax for a script mediator using an Inline script, or a script mediator using a script of a registry

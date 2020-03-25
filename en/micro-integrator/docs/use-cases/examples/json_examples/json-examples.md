@@ -784,6 +784,10 @@ Save the above payload in request.json file and use the following command to inv
 curl -v POST -H "Content-Type:application/json" -d@request.json "http://localhost:8290/services/locations"
 ```
 
+!!! Note
+    If you are using nashornJS as the JavaScript language, and also if you have JSON operations defined in the script mediator, you need to have at least 8u112 JDK version or above in your environment.
+    The JDK versions below that might encounter exceptions with JSON support due to this reported [jdk bug](https://bugs.openjdk.java.net/browse/JDK-8157160).
+
 The response payload would look like this:
 
 ``` javascript
