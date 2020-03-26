@@ -56,7 +56,7 @@ Send the following request to EI and we will receive the response from the execu
 
 ```bash
 curl -X POST \
-  http://lahiru-thinkpad-x1-carbon-4th:8290/services/HTTPToFIXProxy \
+  http://localhost:8290/services/HTTPToFIXProxy \
   -H 'cache-control: no-cache' \
   -H 'content-type: text/xml' \
   -H 'soapaction: \"urn:mediate\"' \
