@@ -666,10 +666,15 @@ addition, we can perform various operations (such as deleting individual
 keys, modifying selected values, and inserting new objects) on JSON
 payloads to transform from one JSON format to another JSON format by
 using the `         getPayloadJSON        ` and
-`         setPayloadJSON        ` methods. Following is an example of a
-JSON to JSON transformation performed by the Script mediator.
+`         setPayloadJSON        ` methods. 
 
-Suppose a second service returns the following response:
+!!! Note
+    If you are using **nashornJS** as the JavaScript language, and also if you have JSON operations defined in the Script mediator, you need to have JDK version 8u112 or a later version in your environment.
+    If your environment has an older JDK version, the Script mediator (that uses nashornJS and JSON operations) will not function properly because of this [JDK bug](https://bugs.openjdk.java.net/browse/JDK-8157160). That is, you will encounter server exceptions in the Micro Integrator.
+
+**Example**
+
+Following is an example of a JSON to JSON transformation performed by the Script mediator. Suppose a second service returns the following response:
 
 ```
 {
@@ -783,10 +788,6 @@ Save the above payload in request.json file and use the following command to inv
 ``` bash
 curl -v POST -H "Content-Type:application/json" -d@request.json "http://localhost:8290/services/locations"
 ```
-
-!!! Note
-    If you are using nashornJS as the JavaScript language, and also if you have JSON operations defined in the script mediator, you need to have at least 8u112 JDK version or above in your environment.
-    The JDK versions below that might encounter exceptions with JSON support due to this reported [jdk bug](https://bugs.openjdk.java.net/browse/JDK-8157160).
 
 The response payload would look like this:
 
