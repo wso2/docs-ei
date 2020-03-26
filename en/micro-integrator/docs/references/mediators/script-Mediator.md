@@ -66,7 +66,7 @@ and when using Ruby, REXML documents.
 
 ## Prerequisites
 
--   If you are using **nashornJS** as the JavaScript language, and also if you have JSON operations defined in the Script mediator, you need to have JDK version 8u112 or a later version in your environment.
+-   If you are using **nashornJS** as the JavaScript language, and also if you have JSON operations defined in the Script mediator, you need to have JDK version `8u112` or a later version in your environment.
     If your environment has an older JDK version, the Script mediator (that uses nashornJS and JSON operations) will not function properly because of this [JDK bug](https://bugs.openjdk.java.net/browse/JDK-8157160). That is, you will encounter server exceptions in the Micro Integrator.
 
 -   Listed below are the prerequisites for writing a Script mediator using
