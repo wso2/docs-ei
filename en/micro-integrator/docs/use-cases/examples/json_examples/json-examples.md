@@ -600,7 +600,7 @@ Note the following aspects of the proxy service configuration:
 
 ##### Configuring the payload format
 
-The `         <format>        ` section of the proxy service
+The `<format>` section of the proxy service
 configuration defines the format of the response. Notice that in the
 example above, the name and tags field values are enclosed by double
 quotes ("), which creates a string value in the final response. If you
@@ -653,7 +653,7 @@ recurring structures such as arrays of objects. The Script mediator
 defines the following important methods that can be used to manipulate
 payloads in many different ways:
 
--   `          getPayloadJSON         `
+-   `getPayloadJSON`
 -   `          setPayloadJSON         `
 -   `          getPayloadXML         `
 -   `          setPayloadXML         `
@@ -669,7 +669,7 @@ using the `         getPayloadJSON        ` and
 `         setPayloadJSON        ` methods. 
 
 !!! Note
-    If you are using **nashornJS** as the JavaScript language, and also if you have JSON operations defined in the Script mediator, you need to have JDK version 8u112 or a later version in your environment.
+    If you are using **nashornJS** as the JavaScript language, and also if you have JSON operations defined in the Script mediator, you need to have JDK version `8u112` or a later version in your environment.
     If your environment has an older JDK version, the Script mediator (that uses nashornJS and JSON operations) will not function properly because of this [JDK bug](https://bugs.openjdk.java.net/browse/JDK-8157160). That is, you will encounter server exceptions in the Micro Integrator.
 
 **Example**
