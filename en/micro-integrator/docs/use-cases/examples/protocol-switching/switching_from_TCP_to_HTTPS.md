@@ -15,12 +15,14 @@ Following are the integration artifacts (proxy service) that we can used to impl
        transports="tcp"
        startOnLoad="true">
    <target>
-      <endpoint>
-         <address uri="http://localhost:9000/services/SimpleStockQuoteService"/>
-      </endpoint>
       <inSequence>
          <log level="full"/>
          <property name="OUT_ONLY" value="true"/>
+         <send>
+            <endpoint>
+               <address uri="http://localhost:9000/services/SimpleStockQuoteService"/>
+            </endpoint>
+         </send>
       </inSequence>
    </target>
 </proxy>
@@ -73,3 +75,10 @@ In linux, we can save the above request in a <strong>request.xml</strong> file a
 netcat localhost 6060 < request.xml
 ```
 
+You will see the following response in the back-end service's console:
+
+```bash
+INFO  [wso2/stockquote_service] - Stock quote service invoked.
+INFO  [wso2/stockquote_service] - Generating placeOrder response
+INFO  [wso2/stockquote_service] - The order was placed.
+```
