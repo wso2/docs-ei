@@ -78,33 +78,35 @@ Create the artifacts:
 Let's send a request with invalid and valid data to the data service:
 
 1. Download and Install [SoapUI](https://www.soapui.org/downloads/soapui.html) to run this SOAP service.
-2. Create a new SOAP Project in the SoapUI using following wsdl file:
+2. Create a new SOAP project in SoapUI by using the following wsdl file:
    ```bash
    http://localhost:8290/services/input_validator_sample?wsdl
    ```
    
-3. Invoke the **addEmployeeOp** under **input_validator_sample.SOAP12Binding** with the following request body:
+3. Update the **addEmployeeOp** operation (under **input_validator_sample.SOAP12Binding**) with the request body as shown below:
 
     ```xml
-        <dat:addEmployeeOp>
-            <dat:EmployeeNumber>6001</dat:EmployeeNumber>
-            <dat:FirstName>AB</dat:FirstName>
-            <dat:LastName>Nick</dat:LastName>
-            <dat:Email>test@test.com</dat:Email>
-            <dat:Salary>1500</dat:Salary>
-        </dat:addEmployeeOp>
+    <dat:addEmployeeOp>
+        <dat:EmployeeNumber>6001</dat:EmployeeNumber>
+        <dat:FirstName>AB</dat:FirstName>
+        <dat:LastName>Nick</dat:LastName>
+        <dat:Email>test@test.com</dat:Email>
+        <dat:Salary>1500</dat:Salary>
+    </dat:addEmployeeOp>
     ```
+    
+4. Invoke the **addEmployeeOp** operation.
 
-     A validation error is thrown as the response because the addEmployeeOp operation has failed. This is because                  the FirstName only has 2 characters.
+   A validation error is thrown as the response because the **addEmployeeOp** operation has failed. This is because                  the FirstName only has 2 characters.
 
-4. Now, change the FirstName in the request as
+5. Now, change the FirstName value in the request as shown below and invoke the operation again.
     ```xml
-        <dat:addEmployeeOp>
-            <dat:EmployeeNumber>6001</dat:EmployeeNumber>
-            <dat:FirstName>ABC</dat:FirstName>
-            <dat:LastName>Nick</dat:LastName>
-            <dat:Email>test@test.com</dat:Email>
-            <dat:Salary>1500</dat:Salary>
-        </dat:addEmployeeOp>
+    <dat:addEmployeeOp>
+        <dat:EmployeeNumber>6001</dat:EmployeeNumber>
+        <dat:FirstName>ABC</dat:FirstName>
+        <dat:LastName>Nick</dat:LastName>
+        <dat:Email>test@test.com</dat:Email>
+        <dat:Salary>1500</dat:Salary>
+    </dat:addEmployeeOp>
     ```
-The employee details are added to the database table.
+    The employee details are added to the database table.
