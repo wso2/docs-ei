@@ -33,18 +33,20 @@ Given below is the data service configuration you need to build. See the instruc
 <data name="input_validator_sample" transports="http https local">
    <config enableOData="false" id="Datasource">
       <property name="driverClassName">com.mysql.jdbc.Driver</property>
-      <property name="url">jdbc:mysql://localhost:3306/Company</property>
+      <property name="url">jdbc:mysql://localhost:3306/EmployeeDatabase</property>
+      <property name="username">root</property>
+      <property name="password">password</property>
    </config>
    <query id="addEmployeeQuery" useConfig="Datasource">
-      <sql>insert into Employees (EmployeeNumber, FirstName, LastName, Email, JobTitle, OfficeCode) values(:EmployeeNumber,:FirstName,:LastName,:Email,:JobTitle,:Officecode)</sql>
+      <sql>insert into Employees (EmployeeNumber, FirstName, LastName, Email, Salary) values(:EmployeeNumber,:FirstName,:LastName,:Email,:Salary)</sql>
       <param name="EmployeeNumber" sqlType="STRING"/>
       <param name="FirstName" sqlType="STRING">
             <validateLength maximum="10" minimum="3"/>
       </param>
       <param name="LastName" sqlType="STRING"/>
       <param name="Email" sqlType="STRING"/>
-      <param name="JobTitle" sqlType="STRING"/>
-      <param name="Officecode" sqlType="STRING"/>
+      <param name="Salary" sqlType="STRING"/>
+
    </query>
    <operation name="addEmployeeOp">
       <call-query href="addEmployeeQuery">
@@ -52,8 +54,7 @@ Given below is the data service configuration you need to build. See the instruc
          <with-param name="FirstName" query-param="FirstName"/>
          <with-param name="LastName" query-param="LastName"/>
          <with-param name="Email" query-param="Email"/>
-         <with-param name="JobTitle" query-param="JobTitle"/>
-         <with-param name="Officecode" query-param="Officecode"/>
+         <with-param name="Salary" query-param="Salary"/>
       </call-query>
    </operation>
 </data>
@@ -74,40 +75,38 @@ Create the artifacts:
 4. [Create the data service](../../../../develop/creating-artifacts/data-services/creating-data-services) with the configurations given above.
 5. [Deploy the artifacts](../../../../develop/deploy-and-run) in your Micro Integrator. 
 
-The **Deployed Services** window allows you to manage data services. You
-can try the data service you created by using the TryIt tool in this
-screen, which is in your product by default.
+Let's send a request with invalid and valid data to the data service:
 
-1.  Invoke the **addEmployeeOp** operation:
-```xml
-<addEmployeeOp xmlns="http://ws.wso2.org/dataservice">
-     <!--Exactly 1 occurrence-->
-     <xs:EmployeeNumber xmlns:xs="http://ws.wso2.org/dataservice">6001</xs:EmployeeNumber>
-     <!--Exactly 1 occurrence-->
-     <xs:FirstName xmlns:xs="http://ws.wso2.org/dataservice">AB</xs:FirstName>
-     <!--Exactly 1 occurrence-->
-     <xs:LastName xmlns:xs="http://ws.wso2.org/dataservice">Nick</xs:LastName>
-     <!--Exactly 1 occurrence-->
-     <xs:Email xmlns:xs="http://ws.wso2.org/dataservice">test@test.com</xs:Email>
-     <!--Exactly 1 occurrence-->
-     <xs:Salary xmlns:xs="http://ws.wso2.org/dataservice">1500</xs:Salary>
-</addEmployeeOp>
-```
-A validation error is thrown as the response because the addEmployeeOp operation has failed. This is because the FirstName only has 2 characters.
+1. Download and Install [SoapUI](https://www.soapui.org/downloads/soapui.html) to run this SOAP service.
+2. Create a new SOAP project in SoapUI by using the following wsdl file:
+   ```bash
+   http://localhost:8290/services/input_validator_sample?wsdl
+   ```
+   
+3. Update the **addEmployeeOp** operation (under **input_validator_sample.SOAP12Binding**) with the request body as shown below:
 
-2. Now, change the FirstName in the request as
-```xml
-<addEmployeeOp xmlns="http://ws.wso2.org/dataservice">
-     <!--Exactly 1 occurrence-->
-     <xs:EmployeeNumber xmlns:xs="http://ws.wso2.org/dataservice">6001</xs:EmployeeNumber>
-     <!--Exactly 1 occurrence-->
-     <xs:FirstName xmlns:xs="http://ws.wso2.org/dataservice">ABC</xs:FirstName>
-     <!--Exactly 1 occurrence-->
-     <xs:LastName xmlns:xs="http://ws.wso2.org/dataservice">Nick</xs:LastName>
-     <!--Exactly 1 occurrence-->
-     <xs:Email xmlns:xs="http://ws.wso2.org/dataservice">test@test.com</xs:Email>
-     <!--Exactly 1 occurrence-->
-     <xs:Salary xmlns:xs="http://ws.wso2.org/dataservice">1500</xs:Salary>
-</addEmployeeOp>
-```
-The employee details are added to the database table.  
+    ```xml
+    <dat:addEmployeeOp>
+        <dat:EmployeeNumber>6001</dat:EmployeeNumber>
+        <dat:FirstName>AB</dat:FirstName>
+        <dat:LastName>Nick</dat:LastName>
+        <dat:Email>test@test.com</dat:Email>
+        <dat:Salary>1500</dat:Salary>
+    </dat:addEmployeeOp>
+    ```
+    
+4. Invoke the **addEmployeeOp** operation.
+
+   A validation error is thrown as the response because the **addEmployeeOp** operation has failed. This is because                  the FirstName only has 2 characters.
+
+5. Now, change the FirstName value in the request as shown below and invoke the operation again.
+    ```xml
+    <dat:addEmployeeOp>
+        <dat:EmployeeNumber>6001</dat:EmployeeNumber>
+        <dat:FirstName>ABC</dat:FirstName>
+        <dat:LastName>Nick</dat:LastName>
+        <dat:Email>test@test.com</dat:Email>
+        <dat:Salary>1500</dat:Salary>
+    </dat:addEmployeeOp>
+    ```
+    The employee details are added to the database table.
