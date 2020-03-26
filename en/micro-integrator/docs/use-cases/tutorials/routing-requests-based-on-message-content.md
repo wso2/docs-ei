@@ -82,6 +82,16 @@ Let's create three different HTTP endpoints for the above services.
             </td>
         </tr>
         <tr>
+            <td>Method</td>
+            <td>
+                <code>POST</code>
+            </td>
+            <td>
+                Endpoint HTTP REST Method.
+            </td>
+        </tr>
+    
+        <tr>
          <td>Static Endpoint</td>
          <td><br/>
          </td>
@@ -157,23 +167,23 @@ You can now start configuring the API resource.
         </tr>
       <tr class="odd">
          <td>Property Name</td>
-         <td>Enter <code>               New Property...              </code>.</td>
+         <td>Enter <code>New Property...</code>.</td>
       </tr>
       <tr class="even">
          <td>New Property Name</td>
-         <td>Enter <code>               Hospital              </code>.</td>
+         <td>Enter <code>Hospital</code>.</td>
       </tr>
       <tr class="odd">
          <td>Property Action</td>
-         <td>Enter <code>               set              </code>.</td>
+         <td>Enter <code>set</code>.</td>
       </tr>
       <tr class="even">
          <td>Property Scope</td>
-         <td>Enter <code>               default              </code>.</td>
+         <td>Enter <code>default</code>.</td>
       </tr>
       <tr class="odd">
          <td>Value Type</td>
-         <td>Enter <code>               EXPRESSION              </code>.</td>
+         <td>Enter <code>EXPRESSION</code>.</td>
       </tr>
       <tr class="even">
          <td>Value Expression</td>
