@@ -75,7 +75,7 @@ In linux, we can save the above request in a <strong>request.xml</strong> file a
 netcat localhost 6060 < request.xml
 ```
 
-You will see the following response in the back-end service console:
+You will see the following response in the back-end service's console:
 
 ```bash
 INFO  [wso2/stockquote_service] - Stock quote service invoked.
