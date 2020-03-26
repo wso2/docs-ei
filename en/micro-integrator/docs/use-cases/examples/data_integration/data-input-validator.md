@@ -85,9 +85,6 @@ Let's send a request with invalid and valid data to the data service:
    
 3. Invoke the **addEmployeeOp** under **input_validator_sample.SOAP12Binding** with the following request body:
 
-   !!! Tip
-       Note that we are sending two transactions with details of two employees.
-
     ```xml
         <dat:addEmployeeOp>
             <dat:EmployeeNumber>6001</dat:EmployeeNumber>
