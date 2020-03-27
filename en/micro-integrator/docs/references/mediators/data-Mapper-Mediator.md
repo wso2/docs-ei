@@ -339,6 +339,14 @@ replaces the first occurrence of a target String with another.
 ![](../../assets/img/mediators/119131284/119134968.png) **Match** – check
 whether the input match with a (JS) Regular Expression
 
+## AI Mapping Generation
+
+In addition to configuring the mappings using graphical drag and drop tools, WSO2 Integration Studio allows user to 
+seamlessly generate mapping using its sophisticated AI Data Mapping generator. To generate mappings using the AI Data 
+Mapper, load the input and output as usual and click on the **Apply** button.
+
+![example one Data mapper diagram](../../assets/img/mediators/119131284/ai_datamapper.png)
+
 ## Examples
 
 ### Example 1 - Creating a SOAP payload with namespaces
