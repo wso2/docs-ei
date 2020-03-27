@@ -65,7 +65,7 @@ Follow these steps to set up the ESB Solution Project and the Connector Exporter
 
 1. Our project would look similar to the following (source view).
 
-   ```
+    ```
     <?xml version="1.0" encoding="UTF-8"?>
     <api context="/createFunction" name="createFunction" xmlns="http://ws.apache.org/ns/synapse">
         <resource methods="POST">
@@ -133,6 +133,7 @@ Follow these steps to set up the ESB Solution Project and the Connector Exporter
     ```
         
 2. Right-click on the Composite Application Project and click on **Export Project Artifacts and Run**. Select **Run on Micro Integrator**.
+
 3. Micro Integrator will be started and the composite application will be deployed. You can further refer to the application deployed through the CLI tool. Make sure you first export the PATH as below.
 
     ```
@@ -173,7 +174,7 @@ Please use command line terminal or shell to run following commands. Commands ar
 4. Select created Amazon Lambda Deployment Package (ZIP archive) and Upload.
 
 ## Create Execution Role
-You need to create an Execution Role using [Setting up the Amazon Lambda Environment](../amazonlambda-configuration.md) documentation.  
+You need to create an Execution Role by referring to the [Setting up the Amazon Lambda Environment](setting-up-amazonlambda.md) documentation.  
 
 ## Deployment
 Follow these steps to deploy the exported CApp in the Enterprise Integrator Runtime. 
@@ -194,31 +195,32 @@ Follow these steps to deploy the exported CApp in the Enterprise Integrator Runt
     ./mi api show
     ```
 4. Send a POST request using a CURL command or sample client.
-  ``` 
-  curl -v POST -d 
-  '{
-    "secretAccessKey":"xxxx",
-    "accessKeyId":"xxxx",
-    "region":"us-east-2",
-    "blocking":"false",
-    "s3Bucket":"eiconnectortest",
-    "s3Key":"addingNumbers.zip",
-    "s3ObjectVersion":"null",
-    "functionName":"eiLambdaConnector",
-    "handler":"addingNumbers.addingNumbers",
-    "role":"arn:aws:iam::610968236798:role/EIConnectorTestRole",
-    "runtime":"python3.7",
-    "apiVersionCreateFunction":"2015-03-31"
+   ``` 
+   curl -v POST -d 
+   '{
+     "secretAccessKey":"xxxx",
+     "accessKeyId":"xxxx",
+     "region":"us-east-2",
+     "blocking":"false",
+     "s3Bucket":"eiconnectortest",
+     "s3Key":"addingNumbers.zip",
+     "s3ObjectVersion":"null",
+     "functionName":"eiLambdaConnector",
+     "handler":"addingNumbers.addingNumbers",
+     "role":"arn:aws:iam::610968236798:role/EIConnectorTestRole",
+     "runtime":"python3.7",
+     "apiVersionCreateFunction":"2015-03-31"
     }' "http://localhost:8290/createFunction" -H "Content-Type:application/json"  
- ```
+   ```
 5. See the following message content.
 
- ```
- {
+   ```
+   {
         "Description": "",
         "TracingConfig": {
             "Mode": "PassThrough"
-        },
+   },
+   {
         "VpcConfig": null,
         "RevisionId": "4b6e5fdd-cbfa-4ba2-9f6e-528cccdb333f",
         "LastModified": "2020-03-13T05:33:54.900+0000",
@@ -243,8 +245,8 @@ Follow these steps to deploy the exported CApp in the Enterprise Integrator Runt
         "Environment": null,
         "StateReasonCode": null,
         "LastUpdateStatusReasonCode": null
-    }
-```
+   }
+   ```
 6. Log in to the AWS Management Console.
 
 7. Navigate to the AWS Lambda and Functions tab.
