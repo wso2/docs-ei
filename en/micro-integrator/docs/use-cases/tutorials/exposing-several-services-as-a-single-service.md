@@ -281,7 +281,7 @@ You can now start updating the API resource with the mediation flow.
     </tr>
     <tr class="even">
     <td>New Property Name</td>
-    <td>Enter <code>               uri.var.appointment_id              </code>.<br />
+    <td>Enter <code>uri.var.appointment_id</code>.<br />
     This value is used when invoking <b>ChannelingFeeEP</b>.</td>
     </tr>
     <tr class="odd">
