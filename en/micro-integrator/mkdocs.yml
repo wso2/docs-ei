@@ -360,6 +360,9 @@ nav:
         - LDAP Connector:
             - 'Setting up an LDAP Server': 'references/connectors/ldap-connector/ldap-server-configuration.md'
             - 'LDAP Connector Example': 'references/connectors/ldap-connector/ldap-connector-example.md'
+        - DB Event Listener Inbound Endpoint:
+          - 'Database Event Listener Example': 'references/connectors/db-event-inbound-endpoint/db-event-inbound-endpoint-example.md'
+          - 'Database Event Listener Configuration': 'references/connectors/db-event-inbound-endpoint/db-event-inbound-endpoint-config.md'
       - Synapse Configurations:
         - Mediator Catalog:
           - 'About Mediators': 'references/mediators/about-mediators.md'
