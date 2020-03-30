@@ -1,8 +1,8 @@
 # Creating a Maven Multi Module Project
 
-A Maven Multi Module (MMM) project allows you to manage multiple projects such as Config projects, Composite Application projects, and Registry Resource projects as a single entity paving the way to a seamless **CI/CD** pipeline. Therefore, it is recommended as a best practice to create your Config project and other projects inside an MMM project. 
+A Maven Multi Module (MMM) project allows you to manage multiple projects such as Config projects, Composite Application projects, and Registry Resource projects as a single entity. 
 
-The Maven Multi Module project is the parent project in an integration solution. The subprojects are added as modules. Therefore, when you build the MMM project, all the projects that are in the MMM project get built.
+The MMM project is the parent project in an integration solution and the subprojects are added as modules. By building the parent MMM project, you can build all the subprojects in the integration solution simultaneously. This allows you to seamlessly push your integration solutions to a **CI/CD** pipeline. Therefore, it is recommended as a best practice to create your Config project and other projects inside an MMM project.
 
 ## Creating the Maven Multi Module Project
 Follow the steps given below.
