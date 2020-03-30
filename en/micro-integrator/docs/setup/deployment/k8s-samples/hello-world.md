@@ -192,7 +192,7 @@ You need to build a Docker image of the integration solution and push it to your
     ![Select composite projects](../../../assets/img/create_project/docker_k8s_project/select-dependency-hello-world.png)
     
     The deployment configurations can be automatically deployed to the base image, if you check the 'automatically deploy configurations'. Please note that this is supported only on MI 1.1.0 or upwards. 
-    So if you are using some other product such as EI or ESB recommendation is to uncheck this. 
+    So if you are using other product such as EI or ESB, recommendation is to uncheck this. 
     
     In the dialog that opens, enter the credentials of your Docker registry to which the image should be pushed.
 

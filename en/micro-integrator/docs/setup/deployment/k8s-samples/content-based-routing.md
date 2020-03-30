@@ -216,6 +216,22 @@ Follow the steps given below.
             </tr>
             <tr>
                 <td>
+                    Base Image Repository
+                </td>
+                <td>
+                    The Docker repository to which the Docker image will be pulled to create the target image: 'docker_user_name/repository_name'.
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Base Image Tag
+                </td>
+                <td>
+                    Give a tag name for the base Docker image.
+                </td>
+            </tr>
+            <tr>
+                <td>
                     Target Image Repository
                 </td>
                 <td>
@@ -231,7 +247,56 @@ Follow the steps given below.
                 </td>
             </tr>
         </table>
+        
+!!!Tip
+With the new version we’ve provided the functionality to use custom base images to be pulled from a docker repository. This can be used in below 3 scenarios.
+
+1. Pull from a public docker repository as the base image
+You can just add the Docker repository to which the Docker image will be pulled to create the target image: 'docker_user_name/repository_name'
+ 
+2. Pull from private Docker repository as the base image
+Open the console of the relevant OS and run the following command.
+ 
+    ```bash 
+    docker login -u username -p password 
+    ```
+
+    Then provide the docker repository which will be used to pull the base image.
+
+3. If the image you are going to pull is already in local Docker registry
+
+    If the image you are going to pull is already in local Docker registry,  by default,  it will compare the current latest image in the repository and if there are changes it will pull the newer image from the repository. This will cause some change conflicts if you are already using an older docker image. In such scenarios (using a custom image which created inside your local Docker registry) you need to add the following property under the dockerfile-maven-plugin > executions > execution > configurations in the  pom.xml file which located inside the Docker Exporter Project. 
     
+    ```xml
+    <pullNewerImage>false</pullNewerImage>
+   ```
+    
+    This will stop comparing the image with the latest tag and pulling it. Example plugin config after adding the property is given below.
+    ```xml
+      <plugin>
+        <groupId>com.spotify</groupId>
+        <artifactId>dockerfile-maven-plugin</artifactId>
+        <version>1.4.3</version>
+        <extensions>true</extensions>
+        <executions>
+          <execution>
+            <goals>
+              <goal>build</goal>
+              <goal>push</goal>
+            </goals>
+            <configuration>
+              <username>${username}</username>
+              <password>${password}</password>
+              <repository>docker/helloworld</repository>
+              <tag>1.1.0</tag>
+              <pullNewerImage>false</pullNewerImage> 
+            </configuration>
+          </execution>
+        </executions>
+        <configuration/>
+      </plugin>
+    ```
+
 Finally, the created Maven Multi Module project should look as follows:
 
 <img src="../../../../assets/img/create_project/docker_k8s_project/routing_example_project.png" alt="messag routing project" width="300">
@@ -243,6 +308,9 @@ You need to build a Docker image of the integration solution and push it to your
 1.  Start the Docker daemon in the host machine.
 2.  Open the POM file in the Kubernetes project, ensure that the composite application is selected under **Dependencies**, **save** the file, and then click **Build and Push**.
     ![Select composite projects](../../../assets/img/create_project/docker_k8s_project/select-dependency-routing-example.png) 
+
+    The deployment configurations can be automatically deployed to the base image, if you check the 'automatically deploy configurations'. Please note that this is supported only on MI 1.1.0 or upwards. 
+    So if you are using other product such as EI or ESB, recommendation is to uncheck this. 
 
     In the dialog that opens, enter the credentials of your Docker registry to which the image should be pushed.
 
