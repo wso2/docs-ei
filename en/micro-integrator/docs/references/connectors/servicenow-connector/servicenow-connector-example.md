@@ -1,19 +1,21 @@
 # ServiceNow Connector Example
 
-The ServiceNow connector allows you to access the ServiceNow REST API through WSO2 EI. ServiceNow is a software platform that supports IT service management and automates common business processes. This software as a service (SaaS) platform contains a number of modular applications that can vary by instance and user. 
+ServiceNow is an application platform as a service, which is a cloud-based computing model that provides the infrastructure needed to develop, run, and manage applications. It offers activities of an organization such as data collection, storage, workflow automation, and reporting through a single user interface. This software as a service (SaaS) platform contains a number of modular applications that can vary by instance and user. It focuses on service-orientation toward the tasks, activities, and processes.
 
-It focuses on service-orientation toward the tasks, activities, and processes.
+The WSO2 ServiceNow connector allows you to access the ServiceNow REST API through WSO2 EI. Using ServiceNow connector you can work with Aggregate API, Import Set API and Table API in ServiceNow. You can further read about ServiceNow REST APIs from [here.](https://developer.servicenow.com/dev.do#!/reference/api/orlando/rest/c_TableAPI)
 
 ## What you'll build
 
-This example explains how to use ServiceNow Connector to create records in a table and retrieve its information. Assume your organization uses ServiceNow support and you need to create an incident. In order to do that we can use the tableAPI which is a Rest API. This can be easily done using WSO2 ServiceNow connector. We can use the following API which is designed using the ServiceNow connector to create record in the incident table as well as to read the created incident ticket. 
+This example explains how to use ServiceNow Connector to create records in a table and retrieve its information. Assume your organization uses ServiceNow support and you need to create an incident. In order to do that we can use the tableAPI which is a Rest API. This can be easily done using WSO2 ServiceNow connector. Whenever integration needs to raise an incident at ServiceNow, above EI API can be called with required information.
 
 It will have two HTTP API resources, which are `postRecord` and `readRecord`. 
+
+<img src="/assets/img/connectors/serviceNow.png" title="ServiceNow Scenario" width="800" alt="ServiceNow Scenario"/>
 
 * `/postRecord`: It creates a new record in the existing incident table in ServiceNow instance 
 
 * `/readRecord `: It reads the detailed information about the created incident record in the incident table.
-    <img src="/assets/img/connectors/serviceNow.png" title="Adding a Rest API" width="800" alt="Adding a Rest API"/>
+
 
 ## Setting up the environment 
 
@@ -22,14 +24,14 @@ Keep them saved to be used in the next steps.
 
 ## Configure the connector in WSO2 Integration Studio
 
-Follow these steps to set up the ESB Solution Project and the Connector Exporter Project. 
+Follow these steps to set up the Integration Project and the Connector Exporter Project. 
 
 {!references/connectors/importing-connector-to-integration-studio.md!} 
 
 1. First let's create postRecord sequence and ReadRecord sequences. Right click on the created ESB Solution Project and select, -> **New** -> **Sequence** to create the Sequence. 
     <img src="/assets/img/connectors/add-sequence.png" title="Adding a Sequence" width="800" alt="Adding a Sequence"/>
 
-2. Provide the Sequence name as PostRecord. You can go to the source view of the xml configuration file of the API and copy the following configuration. 
+2. Provide the Sequence name as PostRecord. You can go to the source view of the XML configuration file of the API and copy the following configuration. 
     ```
       <?xml version="1.0" encoding="UTF-8"?>
       <sequence name="PostRecord" trace="disable" xmlns="http://ws.apache.org/ns/synapse">
@@ -70,9 +72,8 @@ Follow these steps to set up the ESB Solution Project and the Connector Exporter
     </sequence>
   ```
   4. Now right click on the created ESB Solution Project and select, -> **New** -> **Rest API** to create the REST API. 
-    <img src="/assets/img/connectors/adding-an-api.png" title="Adding a Rest API" width="800" alt="Adding a Rest API"/>
   
-  5. Provide the API name as ServiceNowAPI and the API context as `/servicenow`. You can go to the source view of the xml configuration file of the API and copy the following configuration. 
+  5. Provide the API name as ServiceNowAPI and the API context as `/servicenow`. You can go to the source view of the XML configuration file of the API and copy the following configuration. 
     ```
       <?xml version="1.0" encoding="UTF-8"?>
       <api context="/servicenow" name="ServiceNowAPI" xmlns="http://ws.apache.org/ns/synapse">
@@ -112,7 +113,7 @@ Follow these steps to deploy the exported CApp in the Enterprise Integrator Runt
 
 ### Post Record Operation
 
-1. Create a file called data.json with the following payload. 
+1. Create a file called data.json with the following payload. You can further refer to the parameters from [here.](https://docs.servicenow.com/bundle/orlando-application-development/page/integrate/inbound-rest/concept/c_TableAPI.html#c_TableAPI) 
     ```
     {
         "shortDescription":"Incident type: L2",
