@@ -49,13 +49,16 @@ The following table explains the above steps.
 ## Setting up the SI cluster in AWS ECS
 
 !!! tip "Before you begin:"
-    In order to deploy WSO2 Streaming Integrator in AWS ECS, you need to [create an account in AWS](https://portal.aws.amazon.com).
+    In order to deploy WSO2 Streaming Integrator in AWS ECS, you need to complete the following requisites:<br/>
+     - [create an account in AWS](https://portal.aws.amazon.com).
+     - [Download and install AWS CLI Version 2](https://docs.aws.amazon.com/cli/latest/userguide/install-cliv2.html).
+     - Download and install Docker. For instructions, see [Docker Documentation](https://docs.docker.com/install/).
 
 ### Step 1: Store SI Docker images in ECR
 
 1. Generate an access key and a secret key.
 
-    1. Sign in to the IAM console. Under **Access Management**, click **Users**.
+    1. Sign in to the IAM console via the AWS console. Under **Access Management**, click **Users**.
 
         ![AWS IAM console](../images/si-as-minimum-ha-cluster-in-aws-ecs/aws-iam-console.png)
 
@@ -78,9 +81,7 @@ The following table explains the above steps.
             ![Get access keys and secret key](../images/si-as-minimum-ha-cluster-in-aws-ecs/get-access-key-and-secret-key.png)
 
 
-2. Install the AWS CLI from [AWS - Installing the AWS CLI version 2](https://docs.aws.amazon.com/cli/latest/userguide/install-cliv2.html).
-
-    Once it is installed, issue the following command in the terminal to configure it.
+2. Issue the following command in the terminal to configure AWS.
 
      `aws configure`
 
@@ -95,7 +96,7 @@ The following table explains the above steps.
 
 2. Create a repository in the ECR (Elastic Container Registry).
 
-    1. Open the [AWS Elastic Container Registry](https://us-east-2.console.aws.amazon.com).
+    1. Access AWS ECR (Elastic Container Registry) via the AWS Console.
 
     2. To create a new repository, click **Create a repository** -> **Get Started**. The **Create Repository** page opens.
 
@@ -273,3 +274,56 @@ The following table explains the above steps.
         `docker push <AWS_ACCOUNT_NUMBER>.dkr.ecr.us-east-2.amazonaws.com/wso2:ha2`
 
 ### STEP 2: Create RDS for persisting and clustering requirements
+
+To create a Amazon RDS (Relational Database Service) for the purpose of persisting data handled by the cluster, follow the procedure below:
+
+1. Access Amazon RDS via the AWS console.
+
+2. To add a parameter group and change the value for the `max_connections` parameter for it, follow the procedure below:
+
+    1. In the left navigator, click **Parameter groups**. Then, in the **Parameter Groups** page, click **Create Parameter Group** to create a new parameter group.
+
+        ![Create New Parameter Group](../images/si-as-minimum-ha-cluster-in-aws-ecs/create-new-parameter-group.png)
+
+        The **Create parameter group** page opens.
+
+    2. Enter details in the **Create parameter group** page to create a new parameter group.
+
+        ![Create New Parameter Group](../images/si-as-minimum-ha-cluster-in-aws-ecs/create-parameter-group.png)
+
+        Then click **Create**. The newly created parameter group appears in the **Parameter groups** page as follows.
+
+        ![Created Parameter Group](../images/si-as-minimum-ha-cluster-in-aws-ecs/parameter-groups.png)
+
+    3. To edit the parameter group, click on it. Then search for the **max_connections** parameter, select it, and click **Edit parameters**. Change the value for the `max_connections` parameter to `300` and then click **Save changes**.
+
+3. Create an RDS instance as follows:
+
+    1. In the left navigator, click **Databases**. Then in the **Databases** page, click **Create database** to open the **Create Database** page.
+
+        ![Create New Database](../images/si-as-minimum-ha-cluster-in-aws-ecs/create-new-database.png)
+
+    2. In the **Create Database** page, enter details as follows.
+
+        1. Select **Standard Create**.
+
+        2. Under **Engine Type**, select **MySQL**.
+
+        3. Under **Templates**, select **Free Tier**.
+
+        4. Under **Settings**, enter details as instructed within the user interface.
+
+            ![RD Instance Settings](../images/si-as-minimum-ha-cluster-in-aws-ecs/RD-instance-settings.png)
+
+        5. Under **Connectivity**, expand the **Additional connectivity configuration**. Under **Publicly accessible**, select **Yes**. This allows you to connect and create the database, and then check on the database values later.
+
+            ![Additional Connectivity](../images/si-as-minimum-ha-cluster-in-aws-ecs/additional-connectivity.png)
+
+        6. Expand the **Additional Configurations** section. In the **DB parameter group** field, select the parameter group that you previously created.
+
+            ![Additional Configurations](../images/si-as-minimum-ha-cluster-in-aws-ecs/additional-configurations.png)
+
+        7. Click **Create database**.
+
+
+
