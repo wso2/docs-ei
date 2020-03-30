@@ -359,6 +359,7 @@ nav:
           - 'AmazonS3 Connector Configuration': 'references/connectors/amazons3-connector/amazons3-connector-reference.md'
         - ServiceNow Connector:
           - 'ServiceNow Connector Example': 'references/connectors/servicenow-connector/servicenow-connector-example.md'
+          - 'Setting up Servicenow Instance': 'references/connectors/servicenow-connector/settingup-servicenow-instance.md'
       - Synapse Configurations:
         - Mediator Catalog:
           - 'About Mediators': 'references/mediators/about-mediators.md'

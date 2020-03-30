@@ -15,6 +15,11 @@ It will have two HTTP API resources, which are `postRecord` and `readRecord`.
 * `/readRecord `: It reads the detailed information about the created incident record in the incident table.
     <img src="/assets/img/connectors/serviceNow.png" title="Adding a Rest API" width="800" alt="Adding a Rest API"/>
 
+## Setting up the environment 
+
+Please follow the steps mentioned at [Setting up Servicenow Instance](settingup-servicenow-instance.md) document in order to create a Servicenow Instance and obtain the credentials. 
+Keep them saved to be used in the next steps.  
+
 ## Configure the connector in WSO2 Integration Studio
 
 Follow these steps to set up the ESB Solution Project and the Connector Exporter Project. 
