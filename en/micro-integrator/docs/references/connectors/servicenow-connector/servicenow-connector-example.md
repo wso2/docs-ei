@@ -13,7 +13,7 @@ It will have two HTTP API resources, which are `postRecord` and `readRecord`.
 * `/postRecord`: It creates a new record in the existing incident table in ServiceNow instance 
 
 * `/readRecord `: It reads the detailed information about the created incident record in the incident table.
-    <img src="/assets/img/connectors/FileConnector-02.png" title="Adding a Rest API" width="800" alt="Adding a Rest API"/>
+    <img src="/assets/img/connectors/serviceNow.png" title="Adding a Rest API" width="800" alt="Adding a Rest API"/>
 
 ## Configure the connector in WSO2 Integration Studio
 
