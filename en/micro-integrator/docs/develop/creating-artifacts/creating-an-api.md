@@ -28,7 +28,7 @@ Follow the instructions given below to generate a new [REST API](../../../refere
                 Generate API using Swagger Definition
             </th>
             <td>
-                Selet this option if you want to generate the REST API artifact from an existing Swagger definition (YAML file). That is, the synapse configuration (XML) of the REST API will be generated using the Swagger definition.
+                Selet this option if you want to generate the REST API artifact from an existing Swagger definition (YAML/JSON file). That is, the synapse configuration (XML) of the REST API will be generated using the Swagger definition.
             </td>
         </tr>
         <tr>
@@ -112,8 +112,7 @@ Follow the instructions given below to generate a new [REST API](../../../refere
                     Swagger Registry Path
                 </td>
                 <td>
-                    <b>Required</b>.</br></br>
-                    Click <b>Browse</b> to select an existing registry project in your workspace. The Swagger definition (YAML file) will be saved to this registry.</br></br>
+                    Click <b>Browse</b> to select an existing registry project in your workspace. The Swagger definition will be saved to this registry.</br></br>
                     If you don't have an existing registry project, click <b>Create new project</b> to add a new registry project to your workspace.
                 </td>
             </tr>
