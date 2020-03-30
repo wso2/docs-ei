@@ -123,7 +123,7 @@ Let's write an SQL query to GET data from the MySQL datasource that you
 configured in the previous step:
 
 1.  Click **Queries** to expand the section. 
-    ![](../../assets/img/tutorials/data_services/data_source_expanded.png)
+    ![](../../assets/img/tutorials/data_services/query_expanded.png)
 2.  Click **Add New** to open the **Add Query** page.
     ![](../../assets/img/tutorials/data_services/add_query.png)
 3.  Enter the following query details:
@@ -135,7 +135,7 @@ configured in the previous step:
     | SQL Query  | select EmployeeNumber, FirstName, LastName, Email from Employees where EmployeeNumber=:EmployeeNumber|
 
 4.  Click **Input Mappings** to expand the section. 
-    ![](../../assets/img/tutorials/data_services/data_source_expanded.png)
+    ![](../../assets/img/tutorials/data_services/input_mapping_expanded.png)
 5.  Click **Add New** to open the **Add Input Mapping** page.
     ![](../../assets/img/tutorials/data_services/add_input_mappings.png)
 5.  Enter the following input mapping details:
@@ -149,7 +149,7 @@ configured in the previous step:
 5.  Save the input mapping.
     ![](../../assets/img/tutorials/data_services/input_mappings.png)
 6.  Click **Result (Output Mappings)** to expand the section.
-    ![](../../assets/img/tutorials/data_services/data_source_expanded.png)
+    ![](../../assets/img/tutorials/data_services/out_mapping_expanded.png)
 7.  Enter the following value to group the output mapping:
 
     <table>
@@ -211,7 +211,7 @@ configured in the previous step:
 Now, let's create a REST resource that can be used to invoke the query.
 
 1.  Click **Resources** to expand the section. 
-    ![](../../assets/img/tutorials/data_services/data_source_expanded.png)
+    ![](../../assets/img/tutorials/data_services/resource_expanded.png)
 2.  Click **Add New** to open the **Create Resource** page.
     ![](../../assets/img/tutorials/data_services/create_resource.png)
 3.  Enter the following resource details.
