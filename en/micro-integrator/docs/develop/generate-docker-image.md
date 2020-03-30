@@ -15,13 +15,20 @@ See the topics given below.
     then click **Generate Docker Image**.  
     ![Create docker](../assets/img/create_project/open-docker_image_generation_wizard.png) 
 
-    The **WSO2 Platform Distribution - Generate Docker Image** wizard
+    The **Generate Docker Image Wizard**
     opens.
     
 3.  Enter information in the wizard as follows:
 
-    1.  In the **Generate Docker Image** page, enter the following
-        details:  
+     Select one from the following three options:
+        ![Generate docker image dialog](../assets/img/create_project/docker_k8s_project/generate-docker-image-options.png)
+    
+       1.  **Create a new Docker Exporter Project** : This option will create a new [Docker Exporter Project](create-docker-project.md).
+           You can build a docker image using Docker Exporter Project
+    
+       2.  **Generate Docker Image with the Embedded MI** : This option will create a Docker Image with the Micro Integrator runtime that is packed inside the Integration studio.
+        Note : This is recommended only for testing.
+        Enter the following details : 
         ![Create docker image dialog](../assets/img/create_project/generate_docker_image_dialog.png) 
 
         -   **Name of the application** : The name of the composite
@@ -36,10 +43,13 @@ See the topics given below.
         -   **Export Destination** : Browse for the preferred location
             in your machine to export the Docker image.
 
-    2.  Once you have entered the required details, click **Next**.
-    3.  In the next page, select the ESB projects that you want to
+        -  Once you have entered the required details, click **Next**.
+        -  In the next page, select the ESB projects that you want to
         include in the Docker image and click **Finish** .  
         ![Create docker image](../assets/img/create_project/select_artifact_docker.png)  
         Once the Docker image is successfully created, a message similar
         to the following appears in your screen.  
         ![Create docker image](../assets/img/create_project/docker_image_successful.png)
+
+       3. **Generate Docker Image With an Existing Project** : This will use the selected Existing Docker Exporter Project and create a docker image.
+          
