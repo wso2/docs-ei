@@ -18,9 +18,14 @@ Following are the integration artifacts (proxy service) that we can used to impl
         <parameter name="transport.vfs.ActionAfterProcess">MOVE</parameter>
         <parameter name="transport.vfs.ActionAfterFailure">MOVE</parameter>
         <target>
-            <endpoint>
-                <address format="soap12" uri="http://localhost:9000/services/SimpleStockQuoteService"/>
-            </endpoint>
+            <inSequence>
+                <header name="Action" value="urn:getQuote"/>
+                <send>
+                    <endpoint>
+                        <address uri="http://localhost:9000/services/SimpleStockQuoteService"/>
+                    </endpoint>
+                </send>
+            </inSequence>
             <outSequence>
                 <property name="transport.vfs.ReplyFileName"
                           expression="fn:concat(fn:substring-after(get-property('MessageID'), 'urn:uuid:'), '.xml')"
@@ -33,7 +38,7 @@ Following are the integration artifacts (proxy service) that we can used to impl
                 </send>
             </outSequence>
         </target>
-        <publishWSDL uri="file:repository/samples/resources/proxy/sample_proxy_1.wsdl"/>
+        <publishWSDL uri="conf:custom//sample_proxy_1.wsdl"/>
     </proxy>
 ```
 
@@ -64,6 +69,16 @@ To test this sample, the following files and directories should be created:
     -   Be sure that the endpoint in the `<outSequence>` points to the **out** directory location. Make sure that the prefix
         `          vfs:         ` in the endpoint URL is not removed or changed.
 
+-   Add [sample_proxy_1.wsdl](https://github.com/wso2-docs/WSO2_EI/blob/master/samples-protocol-switching/sample_proxy_1.wsdl) as a [registry resource](../../../../develop/creating-artifacts/creating-registry-resources) (change the registry path of the proxy accordingly). 
+
+-   Set up the back-end service.
+
+    -	Download the [stockquote_service.jar](https://github.com/wso2-docs/WSO2_EI/blob/master/Back-End-Service/stockquote_service.jar)
+
+    -	Open a terminal, navigate to the location of the downloaded service, and run it using the following command:
+	```bash
+	java -jar stockquote_service.jar
+	```
 -   Create the `test.xml` file shown below and copy it to the location specified by the `transport.vfs.FileURI` property in the configuration (i.e., the **in** directory). This contains a simple stock quote request in XML/SOAP format.
 
     ```xml
