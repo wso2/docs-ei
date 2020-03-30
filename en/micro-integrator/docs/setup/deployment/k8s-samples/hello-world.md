@@ -191,7 +191,7 @@ You need to build a Docker image of the integration solution and push it to your
 2.  Open the **pom.xml** file in the Kubernetes project, ensure that the composite application is selected under **Dependencies**, and click **Build and Push**.
     ![Select composite projects](../../../assets/img/create_project/docker_k8s_project/select-dependency-hello-world.png)
     
-    The deployment configurations can be automatically deployed if you check the automatically deploy configurations. Please note that this is supported only on MI 1.1.0 or upwards.
+    The deployment configurations can be automatically deployed to the server before starting, if you check the automatically deploy configurations. Please note that this is supported only on MI 1.1.0 or upwards.
     
     In the dialog that opens, enter the credentials of your Docker registry to which the image should be pushed.
 
