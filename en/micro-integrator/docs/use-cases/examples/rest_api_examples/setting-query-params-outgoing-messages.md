@@ -33,10 +33,10 @@ There are two query parameters (customer name and ID) that must be set in the ou
                <arg evaluator="xml" expression="get-property('query.param.param2')"/>
             </args>
          </payloadFactory>
+         <property name="SOAPAction" value="urn:getQuote" scope="transport"/>
          <send>
             <endpoint>
                <address uri="http://localhost:9000/services/SimpleStockQuoteService" format="soap11"/>
-               <property name="SOAPAction" value="urn:getQuote" scope="transport"/>
             </endpoint>
          </send>
       </inSequence>
