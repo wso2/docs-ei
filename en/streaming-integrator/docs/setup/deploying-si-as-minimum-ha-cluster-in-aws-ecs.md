@@ -352,5 +352,38 @@ To create a Amazon RDS (Relational Database Service) for the purpose of persisti
 
             Then click **Save rules**.
 
+### Step 3: Set up ECS cluster, tasks and services
 
+1. To create a VPC (Virtual Private Cloud), a subnet, and a security group, follow the procedure below:
+
+    1. Access the VPC Dashboard via the AWS Console.
+
+    2. Click **Launch VPC Wizard**.
+
+    3. In **Step 1: Select a VPC Configuration**, **VPC with a Single Public Subnet** is selected by default in the left pane. Click **Select** for it.
+
+        ![Select VPC Type](../images/si-as-minimum-ha-cluster-in-aws-ecs/edit-inbound-rules.png)
+
+    4. In **Step 2: VPC with a Single Public Subnet**, enter `si-ha-vpc` in the **VPC name** field. Then click **Create VPC**.
+
+        ![Create VPC](../images/si-as-minimum-ha-cluster-in-aws-ecs/create-vpc.png)
+
+    After successfully creating the VPC, you can view it in the **Your VPCs** page as follows:
+
+    ![Created VPC](../images/si-as-minimum-ha-cluster-in-aws-ecs/created-vpc.png)
+
+    To view the public subnet created, click **Subnets** in the left navigator. The subnet connected to the VPC is displayed as shown below.
+
+    ![Created subnet](../images/si-as-minimum-ha-cluster-in-aws-ecs/created-subnet.png)
+
+    To view the security group of the VPC, click **Security Groups** in the left navigator. The security group is displayed as follows.
+
+    ![security group](../images/si-as-minimum-ha-cluster-in-aws-ecs/security-groups.png)
+
+    !!! info
+        When you select the security group and view details for it at the bottom of the **Security Groups** page, note that all incoming traffic is currently enabled for now in the **Inbound Rules** tab.
+
+        ![Inbound Rules](../images/si-as-minimum-ha-cluster-in-aws-ecs/inbound-rules.png)
+
+2. Set up the cluster as follows:
 
