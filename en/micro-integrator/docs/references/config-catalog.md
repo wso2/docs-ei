@@ -6566,7 +6566,7 @@ MyTopic = "example.MyTopic"
                     <div class="mb-config-example">
 <pre><code class="toml">[[transport.rabbitmq.listener]]
 
-name = "rabbitMQListener"
+name = "AMQPConnectionFactory"
 parameter.hostname = "localhost"
 parameter.port = 5672
 parameter.username = "guest"
@@ -7235,7 +7235,11 @@ parameter.truststore_password = "$ref{truststore.password}"
                 <label class="tab-selector" for="_tab_34"><i class="icon fa fa-code"></i></label>
                 <div class="superfences-content">
                     <div class="mb-config-example">
-<pre><code class="toml">[[transport.rabbitmq.sender]]
+<pre><code class="toml">
+[transport.rabbitmq]
+sender_enable = true
+
+[[transport.rabbitmq.sender]]
 
 name = "rabbitMQSender"
 parameter.hostname = "localhost"
