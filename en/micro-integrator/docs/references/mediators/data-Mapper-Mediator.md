@@ -83,7 +83,7 @@ the example below.
 #### Input and output schema files
 
 Input and output schema files are custom-defined JSON schemas that
-define the input/output format of input/output messages. T he Data
+define the input/output format of input/output messages. The Data
 Mapper tool generates them when loading the input and output files as
 shown below.
 
@@ -156,8 +156,8 @@ You need the following information to configure the Data Mapper Engine:
 -   Mapping configuration
 
 At the runtime, the Data Mapper Engine gets the input message and the
-runtime variable map object and outputs the transformed message. The D
-ata Mapper Engine uses the J ava Scripting API, t o execute the mapping
+runtime variable map object and outputs the transformed message. The Data Mapper 
+Engine uses the Java Scripting API, to execute the mapping
 configuration. Therefore, if your runtime is JAVA 7, it uses the Rhino
 JS Engine and if your runtime is JAVA 8, it uses the Nashorn JS engine.
 
@@ -198,7 +198,7 @@ Data Mapper.
 ### Data Mapper operations
 
 The operations palette placed in the left-hand side of the WSO2 Data
-Mapping Diagram Editor displays t he operations that the Data Mapper
+Mapping Diagram Editor displays the operations that the Data Mapper
 supports as shown below .
 
 ![](../../assets/img/mediators/119131284/119131286.png)
@@ -339,6 +339,12 @@ replaces the first occurrence of a target String with another.
 ![](../../assets/img/mediators/119131284/119134968.png) **Match** – check
 whether the input match with a (JS) Regular Expression
 
+## AI Data Mapper
+
+WSO2 Integration Studio allows you to seamlessly generate the input-output mapping using its sophisticated AI Data Mapping generator. You simply have to load the input and output to the relevant sections as shown below and click **Apply**. Alternatively, you can manually create the mapping using the graphical drag-and-drop tool.
+
+![example one Data mapper diagram](../../assets/img/mediators/119131284/ai_datamapper.png)
+
 ## Examples
 
 ### Example 1 - Creating a SOAP payload with namespaces
@@ -439,7 +445,7 @@ The sample o utput XML is as follows.
 ### Example 3 - Mapping primitive types
 
 This example demonstrates how you can map an XML payload with integer,
-boolean etc. values, into a JSON payload with required primitive types,
+boolean etc. values into a JSON payload with required primitive types,
 by specifying the required primitive type in the JSON schema.
 
 ![](../../assets/img/mediators/119131284/119131294.png) 
