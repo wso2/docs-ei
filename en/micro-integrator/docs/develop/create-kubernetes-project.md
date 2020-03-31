@@ -76,6 +76,7 @@ Follow the steps given below.
                         You can also use a custom Docker image from a custom repository.
                     </li>
                 </ul>
+                If you specify a Docker image from a private repository, note that you need to log in to your repository from a terminal before you build and push the image (as explained below).
             </td>
         </tr>
             <td>
@@ -202,8 +203,20 @@ Expand the **Kubernetes Exporter Project** in the project explorer. See that the
 ## Build and Push Docker images
 
 !!! Info
-    **Before you begin**, you need to create your integration artifacts in a [Config](../../develop/creating-projects/#esb-config-proje) project and package the artifacts in a [Composite Application project](../../develop/packaging-artifacts). For example, see the HelloWorld sample given below.
-     <img alt="Integration artifacts for Docker" src="../../assets/img/create_project/docker_k8s_project/integration-projects-for-k8s.png" width="300">
+    **Before you begin**:
+
+    -   Create your integration artifacts in a [Config project](../../develop/creating-projects/#esb-config-proje) and package the artifacts in a [Composite Application project](../../develop/packaging-artifacts). For example, see the HelloWorld sample given below.
+
+        <img alt="Integration artifacts for Docker" src="../../assets/img/create_project/docker_k8s_project/integration-projects-for-k8s.png" width="300">
+
+    -   If you are using a Micro Integrator Docker image from a private registry as your base image:
+
+        1.  Open a terminal and use the following command to log in to Docker:
+            ```bash 
+            docker login -u username -p password 
+            ```
+        2.  In the next step, specify the name of the private Docker registry.
+
 
 Follow the steps given below.
 
