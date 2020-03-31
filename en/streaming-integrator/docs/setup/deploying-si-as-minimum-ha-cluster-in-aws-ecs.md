@@ -323,7 +323,34 @@ To create a Amazon RDS (Relational Database Service) for the purpose of persisti
 
             ![Additional Configurations](../images/si-as-minimum-ha-cluster-in-aws-ecs/additional-configurations.png)
 
-        7. Click **Create database**.
+        7. Click **Create database**. The database you created appears in the **Databases** page.
+
+    3. Enable public access to the database as follows:
+
+        1. In the **Databases** page, click on the **wso2** database you created to view details of it in a separate page.
+
+        2. In the **Security** section, click the VPC.
+
+            ![Security VPC](../images/si-as-minimum-ha-cluster-in-aws-ecs/database-vpc.png)
+
+        3. In the **Security Groups** page that opens, click on the relevant security group to view details of it in a separate page.
+
+            ![Security Group](../images/si-as-minimum-ha-cluster-in-aws-ecs/security-group.png)
+
+        4. In the page with details of your security group, click **Edit Inbound Rules**.
+
+            ![Edit Inbound Rules](../images/si-as-minimum-ha-cluster-in-aws-ecs/edit-inbound-rules.png)
+
+            This opens the **Edit inbound rules** page.
+
+        5. In the **Edit inbound rules** page, add two rules as follows.
+
+            |**Type**        |**Source**                                                                            |
+            |----------------|--------------------------------------------------------------------------------------|
+            |**MYSQL/AURORA**|Select **Custom** for the **Source** field and then select **0.0.0.0/0** as the value.|
+            |**MYSQL/AURORA**|Select **Custom** for the **Source** field and then select **::/0** as the value.     |
+
+            Then click **Save rules**.
 
 
 
