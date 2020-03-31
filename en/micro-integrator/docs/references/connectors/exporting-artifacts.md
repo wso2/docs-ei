@@ -1,6 +1,6 @@
 ## Exporting Integration Logic as a CApp
 
-**CApp (Carbon Application)** is the deployable artefact on the Enterprise Integrator runtime. Let us see how we can export integration logic we developed into a CApp along with the connector. 
+**CApp (Carbon Application)** is the deployable artifact on the Enterprise Integrator runtime. Let us see how we can export integration logic we developed into a CApp along with the connector. 
 
 ### Creating Connector Exporter Project
 
