@@ -125,7 +125,8 @@ Follow the steps given below.
                     Base Image Repository
                 </td>
                 <td>
-                    The Docker repository to which the Docker image will be pulled to create the target image: 'docker_user_name/repository_name'.
+                    Specify the base Micro Integrator Docker image for your solution. For this example, let's use the Micro Integrator docker image from the WSO2 public docker registry: <b>wso2/micro-integrator</b>.</br></br>
+                    Note that the image value format should be 'docker_user_name/repository_name'.
                 </td>
             </tr>
             <tr>
@@ -152,56 +153,45 @@ Follow the steps given below.
                 </td>
             </tr>
         </table>
+
+    3.  This step is only required if you already have a Docker image (in your local Docker repository) with the same name as the base image specified above. 
     
-        !!!Tip
-        With the new version we’ve provided the functionality to use custom base images to be pulled from a docker repository. This can be used in below 3 scenarios.
+        !!! Info
+            In this scenario, WSO2 Integration Studio will first check if there is a difference in the two images before pulling the image specified in the **Base Image Repository** field. If the given base image is more updated, the existing image will be overwritten by this new image. Therefore, if you are currently using an older version, or if you have custom changes in your existing image, they will be replaced. 
+
+        To avoid your existing custom/older images from being replaced, add the following property under **dockerfile-maven-plugin -> executions -> execution -> configurations** in the `pom.xml` file of your Kubernetes Exporter project. This configuration will ensure that the base image will not be pulled when a Docker image already exists with the same name.
+
+        ```xml
+        <pullNewerImage>false</pullNewerImage>
+        ```
+
+        Example plugin configuration after adding the property:
+        ```xml
+          <plugin>
+            <groupId>com.spotify</groupId>
+            <artifactId>dockerfile-maven-plugin</artifactId>
+            <version>1.4.3</version>
+            <extensions>true</extensions>
+            <executions>
+              <execution>
+                <goals>
+                  <goal>build</goal>
+                  <goal>push</goal>
+                </goals>
+                <configuration>
+                  <username>${username}</username>
+                  <password>${password}</password>
+                  <repository>docker/helloworld</repository>
+                  <tag>1.1.0</tag>
+                  <pullNewerImage>false</pullNewerImage> 
+                </configuration>
+              </execution>
+            </executions>
+            <configuration/>
+          </plugin>
+        ```
         
-        1. Pull from a public docker repository as the base image
-        You can just add the Docker repository to which the Docker image will be pulled to create the target image: 'docker_user_name/repository_name'
-         
-        2. Pull from private Docker repository as the base image
-        Open the console of the relevant OS and run the following command.
-         
-            ```bash 
-            docker login -u username -p password 
-            ```
-        
-            Then provide the docker repository which will be used to pull the base image.
-        
-        3. If the image you are going to pull is already in local Docker registry
-        
-            If the image you are going to pull is already in local Docker registry,  by default,  it will compare the current latest image in the repository and if there are changes it will pull the newer image from the repository. This will cause some change conflicts if you are already using an older docker image. In such scenarios (using a custom image which created inside your local Docker registry) you need to add the following property under the dockerfile-maven-plugin > executions > execution > configurations in the  pom.xml file which located inside the Docker Exporter Project. 
-            
-            ```xml
-            <pullNewerImage>false</pullNewerImage>
-           ```
-            
-            This will stop comparing the image with the latest tag and pulling it. Example plugin config after adding the property is given below.
-            ```xml
-              <plugin>
-                <groupId>com.spotify</groupId>
-                <artifactId>dockerfile-maven-plugin</artifactId>
-                <version>1.4.3</version>
-                <extensions>true</extensions>
-                <executions>
-                  <execution>
-                    <goals>
-                      <goal>build</goal>
-                      <goal>push</goal>
-                    </goals>
-                    <configuration>
-                      <username>${username}</username>
-                      <password>${password}</password>
-                      <repository>docker/helloworld</repository>
-                      <tag>1.1.0</tag>
-                      <pullNewerImage>false</pullNewerImage> 
-                    </configuration>
-                  </execution>
-                </executions>
-                <configuration/>
-              </plugin>
-            ```
-    3.  Open the **integration_cr.yaml** file inside the Kubernetes project and add the environment variables as shown below. These values will be injected to the parameters defined in the proxy service.
+    4.  Open the **integration_cr.yaml** file inside the Kubernetes project and add the environment variables as shown below. These values will be injected to the parameters defined in the proxy service.
 
         !!! Tip
             Be sure to update the **tcp://localhost:61616** URL in the above configuration with the actual/connecting URL that will be reachable from the Kubernetes pod.
@@ -301,7 +291,9 @@ Finally, the created Maven Multi Module project should look as follows:
 You need to build a Docker image of the integration solution and push it to your Docker registry.
       
 1.  Start the Docker daemon in the host machine.
-2.  Open the **pom.xml** file in the Kubernetes project, ensure that the composite application is selected under **Dependencies**, and click **Build and Push**.
+2.  Open the **pom.xml** file in the Kubernetes project and ensure that the composite application is selected under **Dependencies**.
+3.  Leave the **Automatically deploy configurations** check box selected. This ensures that deployment configurations are automatically deployed to the base image.
+4.  Click **Build and Push**.
     In the dialog that opens, enter the credentials of your Docker registry to which the image should be pushed.
 
     <img src="../../../../assets/img/create_project/docker_k8s_project/docker-registry-credentials.png" alt="docker registry credentials" width="500">
