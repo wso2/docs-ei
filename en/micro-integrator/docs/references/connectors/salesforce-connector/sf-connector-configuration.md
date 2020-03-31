@@ -48,7 +48,7 @@ Secure Vault is supported for encrypting passwords. See, [Working with Passwords
 ---
 **Re-using Salesforce configurations**
 
-You can save the Salesforce connection configuration as a [local entry](https://docs.wso2.com/display/EI620/Working+with+Local+Registry+Entries) and then easily reference it with the configKey attribute in your operations. For example, if you saved the above <salesforce.init> entry as a local entry named MySFConfig, you could reference it from an operation like getUserInfo as follows:
+You can save the Salesforce connection configuration as a [local entry](../../../develop/creating-artifacts/registry/creating-local-registry-entries.md) and then easily reference it with the configKey attribute in your operations. For example, if you saved the above <salesforce.init> entry as a local entry named MySFConfig, you could reference it from an operation like getUserInfo as follows:
 
 ```xml
 <salesforce.getUserInformation configKey="MySFConfig"/>
@@ -70,7 +70,7 @@ The following operations allow you to work with sObjects. Click an operation nam
 | [describeSObjects](#retrieving-metadata-for-multiple-object-types)    | Retrieves metadata (such as name, label, and fields, including the field properties) for multiple object types. |
 
 
-An sObject refers to any object that can be stored in the [Force.com](https://www.salesforce.com) platform database and includes all the standard and custom objects in your organization. With the Salesforce connector operations, you can define an sObject structure in the message payload, which you can send directly from the caller or generate using the [PayloadFactory mediator](https://docs.wso2.com/display/EI620/PayloadFactory+Mediator) in ESB as follows:
+An sObject refers to any object that can be stored in the [Force.com](https://www.salesforce.com) platform database and includes all the standard and custom objects in your organization. With the Salesforce connector operations, you can define an sObject structure in the message payload, which you can send directly from the caller or generate using the [PayloadFactory mediator](../../mediators/payloadFactory-Mediator.md) in ESB as follows:
 
 ```xml
 <payloadFactory>
