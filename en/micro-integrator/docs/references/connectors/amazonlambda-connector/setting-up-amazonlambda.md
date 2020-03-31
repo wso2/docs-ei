@@ -6,13 +6,12 @@ To use the AmazonLambda service, you must have an AWS account. If you don't alre
 
 ## Signing Up for AWS
 
-* **To sign up for AWS:**
+**To sign up for AWS:**
 
-    1. Navigate to [Amazon AWS website](https://aws.amazon.com/) and select **Create an AWS Account**.
+1. Navigate to [Amazon AWS website](https://aws.amazon.com/) and select **Create an AWS Account**.
+   > **Note**: If you previously signed in to the AWS Management Console using AWS account root user credentials, select **Sign in to a different account**. If you previously signed in to the console using IAM credentials, choose Sign-in using root account credentials. Then select **Create a new AWS account**.
 
-        > **Note**: If you previously signed in to the AWS Management Console using AWS account root user credentials, select **Sign in to a different account**. If you previously signed in to the console using IAM credentials, choose Sign-in using root account credentials. Then select **Create a new AWS account**.
-
-    2. Follow the online instructions.
+2. Follow the online instructions.
 
 Part of the sign-up procedure involves receiving a phone call and entering a verification code using the phone keypad. AWS will notify you by email when your account is active and available for you to use.
 
@@ -45,7 +44,7 @@ You can access the Amazon Lambda service using the root user credentials but the
   
   2. In the navigation pane, choose Users.
 
-     <img src="/assets/img/connectors/iam-users.png" title="IAM users" width="800" alt="IAM users"/>
+     <img src="/assets/img/connectors/iam-users.png" title="IAM users" width="300" alt="IAM users"/>
      
   3. Add a checkmark next to the name of the desired user, and then choose User Actions from the top.
   4. Click on Manage Access Keys.
@@ -64,12 +63,9 @@ You can access the Amazon Lambda service using the root user credentials but the
 
   1. Navigate to the created **AWS** account.
   2. Click **Services** tab on left top of the screen.
-  
-     <img src="/assets/img/connectors/amazon-services.png" title="Select amazon services" width="800" alt="Select amazon services"/>
-  
   3. Select **Storage** and click **S3**.
   
-     <img src="/assets/img/connectors/amazon-s3-create-bucket-sample-1.png" title="Select S3 services" width="800" alt="Select S3 services"/>
+     <img src="/assets/img/connectors/amazon-services.png" title="Select amazon services" width="800" alt="Select amazon services"/>
 
   4. Create a bucket.
   
