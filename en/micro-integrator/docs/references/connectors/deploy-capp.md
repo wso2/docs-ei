@@ -1,6 +1,6 @@
 ### Deploying on WSO2 Enterprise Integrator 7
 
-You can copy the carbon application to the <PRODUCT-HOME>/repository/deployment/server/carbonapps folder and start the server. Micro Integrator will be started and the composite application will be deployed. You can further refer to the application deployed through the CLI tool. You can download the CLI tool from [here](https://wso2.com/integration/micro-integrator/) from the `Other Resources` section. Make sure you first export the PATH as below.
+You can copy the composite application to the <PRODUCT-HOME>/repository/deployment/server/carbonapps folder and start the server. Micro Integrator will be started and the composite application will be deployed. You can further refer to the application deployed through the CLI tool. You can download the CLI tool from [here](https://wso2.com/integration/micro-integrator/) from the `Other Resources` section. Make sure you first export the PATH as below.
 
   ```
     $ export PATH=/path/to/mi/cli/directory/bin:$PATH
@@ -19,10 +19,9 @@ You can copy the carbon application to the <PRODUCT-HOME>/repository/deployment/
     ./mi api show
     ```
 
-### Deploying on WSO2 Enterprise Integrator 6
+??? note "Click here for instructions on deploying on WSO2 Enterprise Integrator 6"
+    1. You can copy the composite application to the <PRODUCT-HOME>/repository/deployment/server/carbonapps folder and start the server. 
 
-1. You can copy the carbon application to the <PRODUCT-HOME>/repository/deployment/server/carbonapps folder and start the server. 
+    2. WSO2 EI server starts and you can login to the Management Console https://localhost:9443/carbon/ URL. Provide login credentials. The default credentials will be admin/admin. 
 
-2. WSO2 EI server starts and you can login to the Management Console https://localhost:9443/carbon/ URL. Provide login credentials. The default credentials will be admin/admin. 
-
-3. You can see that the API is deployed under the API section. 
+    3. You can see that the API is deployed under the API section. 
