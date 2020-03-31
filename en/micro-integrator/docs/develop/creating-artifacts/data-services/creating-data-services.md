@@ -1,98 +1,328 @@
 # Creating a Data Service
-## Instructions
-### Creating the datasource connection
 
-!!! Tip
-You can try-out built-in sample and onscreen help about Creating Data Service in the tool. 
-First, open the **Getting Started** window by navigating Menu -> Help -> Getting Started 
-In the Getting Started window select **Data Service** tab from the Left navigator pane. Then select the **REST Data Service** example.
+Follow the instructions given below to create a new REST API artifact.
+
+!!!	Tip	
+	You can also use a sample template to create your data service.
+
+	1.	Open the **Getting Started** view of WSO2 Integration Studio (**Menu -> Help -> Getting Started**). 
+	2.	In the Getting Started view, go to the **Data Service** tab and select the **REST Data Service** example.
+
+## Instructions
+
+### Create the data service artifact
 
 Follow the steps given below to create the data service file:
 
-1.  Select the already created **Data Service Project** in the project
-    navigator, right click and go to **New -> Data Service**.  
-    The **New Data Service** window will open as shown below. 
+1.  Right-click the **Data Service** project in the project
+    explorer and go to **New -> Data Service**. 
+
+    <img src="../../../../assets/img/tutorials/data_services/new-data-service.png" width="500"> 
+
+2.	In the **New Data Service** wizard that opens, select **Create New
+    Data Service** and click **Next**.
 
     <img src="../../../../assets/img/tutorials/data_services/119130577/119130578.png" width="500">
 
-2.  To start creating a data service from scratch, select **Create New
-    Data Service** and click **Next**.
-3.  Enter a name for the data service.
-4.  Save the data service.
+3.  Enter a name for the data service and click **Finish**.
 
 A data service file (DBS file) will now be created in your data service
-project. Shown below is the project directory.
+project as show below.
 
 ![](../../../assets/img/tutorials/data_services/data-service-project-structure.png)
 
-### Add a data source
+### Adding a datasource
 
-1. Click on the **Data Sources** to expand the Data Source and then click on the **Add New** button.
-![](../../../assets/img/tutorials/data_services/add-datasource-1.png)
-2. Give the data base connection details in the Add Data Source dialog
-![](../../../assets/img/tutorials/data_services/add-datasource-2.png)
-3. You can test the database connection using the Test Connection Section
+You can configure the datasource connection details using this section.
+
+1.	Click **Data Sources** to expand the section.
+
+	![](../../../assets/img/tutorials/data_services/add-datasource-1.png)
+
+2.	Click **Add New** to open the **Create Datasource** page.
+
+	![](../../../assets/img/tutorials/data_services/add-datasource-2.png)
+
+3.	Enter the datasource connection details.
+4.	Click **Test Connection** to expand the section.
+
+    ![](../../../assets/img/tutorials/data_services/test_connection.png)
+
+5.  Click the **Test Connection** button to verify the connectivity between the MySQL datasource and the data service.
+
+6.  Save the data service.
 
 ### Creating a query
 
+You can configure the main query details using this section.
 
-1.  Click on the **Queries** menu in the Data Source Editor.
-2.  Then click **Add New** button to add a new query.  
-    ![](../../../assets/img/tutorials/data_services/add-new-query.png)
+1.  Click **Queries** to expand the section. 
+
+    ![](../../../assets/img/tutorials/data_services/query_expanded.png)
+
+2.  Click **Add New** to open the **Add Query** page.
+
+    ![](../../../assets/img/tutorials/data_services/add_query.png)
+
 3.  Enter the following query details.
+	
+	<table>
+		<tr>
+			<th>
+				Parameter
+			</th>
+			<th>
+				Description
+			</th>
+		</tr>
+		<tr>
+			<td>
+				Query ID
+			</td>
+			<td>
+				Give a unique name to Identify the Query.
+			</td>
+		</tr>
+		<tr>
+			<td>
+				Datasource
+			</td>
+			<td>
+			   All the datasources created for this data service are listed. Select the required datasource from the list.
+			</td>
+		</tr>
+		<tr>
+			<td>
+				SQL Query
+			</td>
+			<td>
+				You can enter the SQL query in this text box.
+			</td>
+		</tr>
+	</table>
 
-**QueryID** : Give a unique name to Identify the Query.
-    
-**Datasource** : Select the data source from the dropdown list (This will list all the created datasources for this data service)
+#### Input mapping
 
-**SQL Query** : You can enter the SQL query in this text box
-    
-**Input Mappings** : You can click **Generate** button to automatically generate the Input mappings from the SQL Query
-                        If you want to add a new input mapping you can add by clicking **Add New** button. 
-    
-**Result (Output Mappings)** : You can either generate output mappings by clicking **Generate** button or add a new output mapping by clicking **Add New** button 
-    
-**Advanced Properties** : You can configure advance Properties for queries using this section
-    
-Finally, click **Save** button to add the Query to the data service.
-    ![](../../../assets/img/tutorials/data_services/query-adding-window.png)
-     
-The data service should now have the query element added as shown below.
-    ![](../../../assets/img/tutorials/data_services/query-added.png)
+You can configure input parameters for the query using this section.
 
-### Adding a SOAP Operation
-Click on **Add New** under the Operations to add a SOAP Operation for your data service.
-![](../../../assets/img/tutorials/data_services/new-operataion.png)
-   
-**Operation Name** : Give a name to the SOAP Operation
-    
-**Query ID** : Select the Query from the listed queries.
-    
-**Operation Parameters** : Click **Add New** button to add new parameters to the operation
-    
-![](../../../assets/img/tutorials/data_services/operation-added.png)
+1.  Click **Input Mappings** to expand the section. 
 
+    ![](../../../assets/img/tutorials/data_services/input_mapping_expanded.png)
 
-### Creating a resource to invoke the query
+2.	There are two  ways to create the mapping:
+	
+	-	You can click **Generate** to automatically generate the input mappings from the SQL query.
+	-	If you want to add a new input mapping:
 
-Now, let's create a REST resource that can be used to invoke the query.
+		1.	Click **Add New** to open the **Add Input Mapping** page.
 
-1.  Click on **Resources** and click **Add New** button to add a new Resource.
-![](../../../assets/img/tutorials/data_services/add-new-resource.png)
+			<img src="../../../../assets/img/tutorials/data_services/add_input_mappings.png" width="500">
 
-2. Give the following details to create the REST resource. 
+		2.	Enter the following input mapping details:
 
-**Resource Path** : Give the HTTP REST resource path you need to expose.
+			<table>
+				<tr>
+					<th>
+						Parameter
+					</th>
+					<th>
+						Description
+					</th>
+				</tr>
+				<tr>
+					<td>
+						Mapping Name
+					</td>
+					<td>
+						Give a name for the mapping.
+					</td>
+				</tr>
+				<tr>
+					<td>
+						Parameter Type
+					</td>
+					<td>
+						The parameter type.
+					</td>
+				</tr>
+				<tr>
+					<td>
+						SQL Type
+					</td>
+					<td>
+						The SQL type.
+					</td>
+				</tr>
+			</table>
 
-**Resource Method** : Select the HTTP REST method from the drop down list.
+		3.	Save the input mapping. 
 
-**Query ID** : Select the Query ID from the drop down list that you need to expose as a REST Resource
+Shown below is an example query with input mapping:
+                        
+![](../../../assets/img/tutorials/data_services/input_mappings.png)
 
-Click **Save** button to add the Resource to the data service.
+#### Result (Output Mappings) 
 
-The data service should now have the resource added as shown below.
+You can configure output result parameters for the query using this section.
 
-![](../../../assets/img/tutorials/data_services/added-resources.png)
+1.  Click **Result (Output Mappings)** to expand the section.
+    ![](../../../assets/img/tutorials/data_services/out_mapping_expanded.png)
+2.  Enter the following details:
+
+    <table>
+        <tr>
+            <th>Property</th>
+            <th>Description</th>
+        </tr>
+    <tr class="odd">
+    <td>Grouped by Element</td>
+    <td>Employees</td>
+    </tr>
+    </table>
+
+3.	There are two ways to create the output mapping:
+
+	-	You can click **Generate** to automatically generate the output mappings from the SQL query.
+	-	Alternatively, you can manually add the mappings:
+
+		1. Click **Add New** to open the **Add Output Mapping** page.
+
+			![](../../../assets/img/tutorials/data_services/add_output_mappings.png)
+
+		2. Enter the following output element details.
+
+		    <table>
+		    <tr>
+		            <th>Property</th>
+		            <th>Description</th>
+		        </tr>
+		    <tbody>
+		    <tr class="odd">
+		    <td>Datasource Type</td>
+		    <td>column</td>
+		    </tr>
+		    <tr class="even">
+		    <td>Output Field Name</td>
+		    <td>EmployeeNumber</td>
+		    </tr>
+		    <tr class="odd">
+		    <td>Datasource Column Name</td>
+		    <td>EmployeeNumber</td>
+		    </tr>
+		    <tr class="even">
+		    <td>Schema Type</td>
+		    <td>String</td>
+		    </tr>
+		    </tbody>
+		    </table>   
+
+		3.  Save the element.
+		4.  Follow the same steps to create the remaining output elements.
+
+Shown below is an example query with output mappings:
+
+![](../../../assets/img/tutorials/data_services/output_mapings.png)
+
+#### Advanced properties 
+
+Click **Advanced Properties** to expand the section and add the required parameter values.
+
+![](../../../assets/img/tutorials/data_services/advances_properties_expanded.png)
+
+The data service should now have the query element added.
+
+### Adding a SOAP operation
+
+Use this section to configure a SOAP operation for invoking the data service.
+
+1.  Click **Operations** to expand the section.
+
+    ![](../../../assets/img/tutorials/data_services/new-operataion.png)
+
+2.  Click **Add New** to add a SOAP Operation for your data service.
+
+	![](../../../assets/img/tutorials/data_services/operation-added.png)
+
+3.	Enter the following information:
+
+	<table>
+		<tr>
+			<th>
+				Parameter
+			</th>
+			<th>
+				Description
+			</th>
+		</tr>
+		<tr>
+			<td>
+				Operation Name
+			</td>
+			<td>
+				Give a name to the SOAP Operation.
+			</td>
+		</tr>
+		<tr>
+			<td>
+				Query ID
+			</td>
+			<td>
+				Select the Query from the listed queries.
+			</td>
+		</tr>
+		<tr>
+			<td>
+				Operation Parameters
+			</td>
+			<td>
+				Click <b>Add New</b> to add new parameters to the operation.
+			</td>
+		</tr>
+	</table>
+
+### Adding a Resource
+
+Use this section to configure a SOAP operation for invoking the data service.
+
+1.  Click **Resources** to expand the section.
+	![](../../../assets/img/tutorials/data_services/add-new-resource.png)
+
+2.	Click **Add New** to add a new resource.
+
+	![](../../../assets/img/tutorials/data_services/resource-added.png)
+
+3.	Give the following details to create the REST resource. 
+
+	<table>
+		<tr>
+			<th>
+				Parameter
+			</th>
+			<th>
+				Description
+			</th>
+		</tr>
+		<tr>
+			<td>
+				Resource Path
+			</td>
+			<td>
+				Give the HTTP REST resource path you need to expose.
+			</td>
+		</tr>
+		<tr>
+			<td>
+				Query ID
+			</td>
+			<td>
+				Select the Query ID from the drop down list that you need to expose as a REST resource.
+			</td>
+		</tr>
+	</table>
+
+4.	Click **Save** to add the resource to the data service.
+
+The data service should now have the resource added.
 
 ## Examples
 

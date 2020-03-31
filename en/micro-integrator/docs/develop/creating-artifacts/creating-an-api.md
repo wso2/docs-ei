@@ -1,6 +1,6 @@
 # Creating a REST API
 
-Follow the instructions given below to generate a new [REST API](../../../references/synapse-properties/rest-api-properties) artifact using a Swagger definition.
+Follow the instructions given below to create a new [REST API](../../../references/synapse-properties/rest-api-properties) artifact.
 
 ## Instructions
 

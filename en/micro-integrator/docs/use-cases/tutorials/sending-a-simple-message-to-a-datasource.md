@@ -12,8 +12,10 @@ A **data service** provides a web service interface to access data that is stor
 ### Step 1: Set up the workspace
 
 To set up the tools:
+
 -   Download the relevant [WSO2 Integration Studio](https://wso2.com/integration/tooling/) based on your operating system. The path to the extracted/installed folder is referred to as `MI_TOOLING_HOME` throughout this tutorial.
 -   Optionally, you can set up the **CLI tool** for artifact monitoring. This will later help you get details of the artifacts that you deploy in your Micro Integrator.
+
     1.  Go to the [WSO2 Micro Integrator website](https://wso2.com/integration/#). 
     2.  Click **Download -> Other Resources** and click **CLI Tooling** to download the tool. 
     3.  Extract the downloaded ZIP file. This will be your `MI_CLI_HOME` directory. 
