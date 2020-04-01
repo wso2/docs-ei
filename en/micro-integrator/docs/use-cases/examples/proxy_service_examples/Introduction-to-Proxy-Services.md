@@ -26,10 +26,19 @@ An `inSequence` or `endpoint` or both of these would decide how the message woul
 The wsdl file `sample_proxy_1.wsdl` can be downloaded from [sample_proxy_1.wsdl](https://github.com/wso2-docs/WSO2_EI/blob/master/samples-protocol-switching/sample_proxy_1.wsdl).
 The wsdl uri needs to be updated with the path to the sample_proxy_1.wsdl file.
 
+Set up the back-end service:
+
+1. Download the [stockquote_service.jar](https://github.com/wso2-docs/WSO2_EI/blob/master/Back-End-Service/stockquote_service.jar).
+2. Open a terminal, navigate to the location of the downloaded service, and run it using the following command:
+
+    ```bash
+    java -jar stockquote_service.jar
+    ```
+
 Create the artifacts:
 
 1. [Set up WSO2 Integration Studio](../../../../develop/installing-WSO2-Integration-Studio).
-2. [Create an ESB Solution project](../../../../develop/creating-projects/#esb-config-project).
+2. [Create an ESB Integration project](../../../../develop/creating-projects/#esb-config-project).
 3. [Create the proxy service](../../../../develop/creating-artifacts/creating-a-proxy-service) with the configurations given above.
 4. [Deploy the artifacts](../../../../develop/deploy-and-run) in your Micro Integrator.
 
@@ -41,20 +50,18 @@ http://localhost:8290/services/StockQuoteProxy?wsdl
 
 This WSDL is based on the source WSDL supplied in the proxy service definition and is updated to reflect the proxy service EPR.
 
-Set up the back-end service:
+In order to test the service you can use SOAPUI client. 
 
-1. Download the [stockquote_service.jar](https://github.com/wso2-docs/WSO2_EI/blob/master/Back-End-Service/stockquote_service.jar).
-2. Open a terminal, navigate to the location of the downloaded service, and run it using the following command:
+1. Download and Install [SoapUI](https://www.soapui.org/downloads/soapui.html) to run this SOAP service.
+2. Create a new SOAP Project in the SoapUI using following wsdl file:
 
-    ```bash
-    java -jar stockquote_service.jar
-    ```
+   ```bash
+   http://localhost:8290/services/StockQuoteProxy?wsdl
+   ```
 
-Send the payloads listed below as SOAP messages:
-
--   Send the following payload to receive a response containing the last sales price for the
-    stock.
-
+-   Send the following payload to receive a response containing the last sales price for the stock. For this you can 
+use getQuote operation.
+       
     ```xml
     <ser:getQuote xmlns:ser="http://services.samples" xmlns:xsd="http://services.samples/xsd">
         <ser:request>
@@ -63,7 +70,8 @@ Send the payloads listed below as SOAP messages:
     </ser:getQuote>
     ```
 
--   Send the following payload to get simple quote response containing the last sales price for stock.
+-   Send the following payload to get simple quote response containing the last sales price for stock. For this you can 
+use getSimpleQuote operation.
 
     ```xml
     <ser:getSimpleQuote xmlns:ser="http://services.samples">
@@ -72,6 +80,7 @@ Send the payloads listed below as SOAP messages:
     ```
 
 -   Send the following payload to get quote reports for the stock over a number of days (i.e. last 100 days of the year).
+For this you can use getFullQuote operation.
 
     ```xml
     <ser:getFullQuote xmlns:ser="http://services.samples" xmlns:xsd="http://services.samples/xsd">
@@ -82,7 +91,7 @@ Send the payloads listed below as SOAP messages:
     ```
 
 -   Send the following payload as an order for stocks using a
-    one way request
+    one way request. For this you can use placeOrder operation.
 
     ```xml
     <ser:placeOrder xmlns:ser="http://services.samples" xmlns:xsd="http://services.samples/xsd">
@@ -95,7 +104,7 @@ Send the payloads listed below as SOAP messages:
     ```
 
 -   Send the following paylaod to get a market activity report
-    for the day (i.e. quotes for multiple symbols)
+    for the day (i.e. quotes for multiple symbols). For this you can use getMarketActivity operation.
 
     ```xml
     <ser:getMarketActivity xmlns:ser="http://services.samples" xmlns:xsd="http://services.samples/xsd">
