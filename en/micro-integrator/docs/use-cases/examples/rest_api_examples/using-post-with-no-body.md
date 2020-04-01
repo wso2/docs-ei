@@ -14,7 +14,7 @@ Following is a sample REST API configuration that we can used to implement this 
         <property name="REST_URL_POSTFIX" scope="axis2" action="remove"/>
         <send>
             <endpoint>
-                <address uri="http://localhost:9090/grandoaks/categories/surgery/reserve"/>
+                <address uri="http://localhost:8292/grandoaks/categories/surgery/reserve"/>
             </endpoint>
         </send>
      </inSequence>
@@ -43,7 +43,7 @@ Set up the back-end service:
     java -jar Hospital-Service-2.0.0-EI7.jar
     ```
 
-3. Start tcpmon and configure it to listen to port 8292 of your local machine. It is also important to set the target host name and port as required. In this case, the target port needs to be set to 8290 (i.e. the port where the back-end service is running). We will now test the connection by sending a POST message that includes a payload inside an HTML body.
+3. Start tcpmon and configure it to listen to port 8292 of your local machine. It is also important to set the target host name and port as required. In this case, the target port needs to be set to 9090 (i.e. the port where the back-end service is running). We will now test the connection by sending a POST message that includes a payload inside an HTML body.
 
 Invoke the REST API:
 
