@@ -39,13 +39,6 @@ Following is a sample proxy service configuration that we can used to implement 
 The wsdl file `sample_proxy_1.wsdl` can be downloaded from  [sample_proxy_1.wsdl](https://github.com/wso2-docs/WSO2_EI/blob/master/samples-protocol-switching/sample_proxy_1.wsdl). 
 The wsdl uri needs to be updated with the path to the sample_proxy_1.wsdl file
 
-Create the artifacts:
-
-1. [Set up WSO2 Integration Studio](../../../../develop/installing-WSO2-Integration-Studio).
-2. [Create an ESB Solution project](../../../../develop/creating-projects/#esb-config-project).
-3. [Create the proxy service](../../../../develop/creating-artifacts/creating-a-proxy-service) with the configurations given above.
-4. [Deploy the artifacts](../../../../develop/deploy-and-run) in your Micro Integrator.
-
 Set up the back-end service:
 
 1. Download the [stockquote_service.jar](https://github.com/wso2-docs/WSO2_EI/blob/master/Back-End-Service/stockquote_service.jar).
@@ -55,18 +48,27 @@ Set up the back-end service:
     java -jar stockquote_service.jar
     ```
 
-Send the following request to the service:
+
+Create the artifacts:
+
+1. [Set up WSO2 Integration Studio](../../../../develop/installing-WSO2-Integration-Studio).
+2. [Create an ESB Integration project](../../../../develop/creating-projects/#esb-config-project).
+3. [Create the proxy service](../../../../develop/creating-artifacts/creating-a-proxy-service) with the configurations given above.
+4. [Deploy the artifacts](../../../../develop/deploy-and-run) in your Micro Integrator.
+
+In order to test the service you can use SOAPUI client. 
+
+1. Download and Install [SoapUI](https://www.soapui.org/downloads/soapui.html) to run this SOAP service.
+2. Create a new SOAP Project in the SoapUI using following wsdl file:
+
+   ```bash
+   http://localhost:8290/services/StockQuoteProxy?wsdl
+   ```
+
+-   Send the following payload to receive a response containing the last sales price for the stock. For this you can 
+use getQuote operation.
 
 ```xml
-POST http://localhost:8290/services/StockQuoteProxy.StockQuoteProxyHttpSoap11Endpoint HTTP/1.1
-Accept-Encoding: gzip,deflate
-Content-Type: text/xml;charset=UTF-8
-SOAPAction: "urn:getQuote"
-Content-Length: 492
-Host: localhost:8290
-Connection: Keep-Alive
-User-Agent: Apache-HttpClient/4.1.1 (java 1.5)
-
 <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="http://services.samples" xmlns:xsd="http://services.samples/xsd">
    <soapenv:Header/>
    <soapenv:Body>
