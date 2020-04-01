@@ -16,7 +16,7 @@ To configure the ISO8583 connector, copy the following client libraries from the
 
 ## Configure the test server
 
-For testing purposes, you need to have a test server (basically a Java socket connection that listens on port 5010) to handle ISO8583 requests that come from the connector. You also need to generate responses by changing the relevant response fields, and then send the responses back to the connector. You can test the connector with the sample Java server program that is provided in the following [git location](https://github.com/wso2-docs/CONNECTORS/tree/master/ISO8583/ISO8583TestServer). 
+For testing purposes, you need to have a test server (basically a Java socket connection that listens on port 5010) to handle ISO8583 requests that come from the connector. You also need to generate responses by changing the relevant response fields, and then send the responses back to the connector. You can test the connector with the sample Java server program that is provided in the following [git location](https://github.com/wso2-docs/CONNECTORS/tree/master/ISO8583/ISO8583TestServer). To test the ISO8583 Inbound operation scenario, you can use the sample Java client program that is provided in the following [git location](https://github.com/wso2-docs/CONNECTORS/tree/master/ISO8583/ISO8583TestClient/1.0.0).
 
 You can include required header information within the header tag. It supports 2-byte or 4-byte headers. To include header information, you need to convert the 2-byte or 4-byte header into a string using base64 encoding, and then specify the string value within the header tag. For more information on the ISO8583 standard, see [ISO8583 Documentation](https://en.wikipedia.org/wiki/ISO_8583).
 
