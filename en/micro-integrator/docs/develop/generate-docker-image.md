@@ -101,5 +101,7 @@ See the topics given below.
 
     -   **Generate Docker Image with an Existing Project**
 
-        This will use the selected Existing Docker Exporter Project and create a docker image.
+        This will use the existing Docker Exporter Project that you selected and create a Docker image. You will receive a message similar to the following:
+
+        ![Create docker image](../assets/img/create_project/docker_image_successful.png)
           
