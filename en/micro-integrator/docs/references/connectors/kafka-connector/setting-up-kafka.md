@@ -21,8 +21,6 @@ To configure the Kafka connector, copy the following client libraries from the `
 * [zkclient-0.10.jar](https://mvnrepository.com/artifact/com.101tec/zkclient/0.10)
 * [zookeeper-3.4.10.jar](https://mvnrepository.com/artifact/org.apache.zookeeper/zookeeper/3.4.10)
 
-> **Note**: When configuring the Kafka Inbound Operation, navigate to https://store.wso2.com/store/assets/esbconnector/details/kafka, and click **Download Inbound Endpoint** to download the inbound JAR file and add the downloaded .jar file to the <PRODUCT_HOME>/dropins directory.
-
 Run the following command to start the ZooKeeper server:
 
 ```
