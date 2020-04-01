@@ -72,7 +72,7 @@ The following configurations allow you to configure DB Event Inbound Endpoint or
   <tr>
     <td class="tg-0pky">filteringColumnName</td>
     <td class="tg-0pky">The actual name of the column that captures changes.<br/>
-        <li>If filteringCriteria is `byLastUpdatedTimestampColumn` this needs to be a column of type `Timestamp` and should be updated with the record.</li>
+        <li>If filteringCriteria is `byLastUpdatedTimestampColumn`, this needs to be a column of type `Timestamp` and should be updated with the record.</li>
         <li>If filteringCriteria is `byBooleanColumn` this needs to be a column of type `Varchar`.</li>
     </td>
     <td class="tg-0pky">Required if the value of the filteringCriteria parameter is specified as byLastUpdatedTimestampColumn or byBooleanColumn</td>
@@ -106,8 +106,8 @@ The following configurations allow you to configure DB Event Inbound Endpoint or
 
 ## Rollback the events
 
-Once processing of an event fails, it will trigger specified `fault sequence`. In there it is possible to specify below property. 
+Once processing of an event fails, it will trigger a specified `fault sequence`. It is possible to specify the following property in such a situation. 
 ```xml
 <property name="SET_DB_ROLLBACK_ONLY" value="true"/>
 ```
-Once this property is set to `true`, DB event listener will not do any updates to the database. That is it will not delete the row associated with the event or it will not update the boolean value being monitored. Also it will not consider that event as received by the endpoint. Upon the next DB event poll, same event will be triggered again. You can build a re-try mechanism upon mediation failures using this feature. 
+Once this property is set to `true`, DB event listener will not do any updates to the database. That is, it will not delete the row associated with the event or it will not update the boolean value being monitored. Also, it will not consider that event as received by the endpoint. Upon the next DB event poll, the same event will be triggered again. You can build a re-try mechanism upon mediation failures using this feature. 
