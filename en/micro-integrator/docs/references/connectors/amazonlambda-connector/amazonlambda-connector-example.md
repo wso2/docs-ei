@@ -183,14 +183,12 @@ Follow these steps to deploy the exported CApp in the Enterprise Integrator Runt
 
 ## Testing
 1. Log in to the Micro Integrator CLI tool.
-
     ```
     ./mi remote login
     ```
 2. Provide default credentials admin for both username and password.
 
 3. In order to view the proxy services deployed, execute the following command.
-
     ```
     ./mi api show
     ```
@@ -213,7 +211,6 @@ Follow these steps to deploy the exported CApp in the Enterprise Integrator Runt
     }' "http://localhost:8290/createFunction" -H "Content-Type:application/json"  
    ```
 5. See the following message content.
-
    ```
    {
         "Description": "",
@@ -252,8 +249,7 @@ Follow these steps to deploy the exported CApp in the Enterprise Integrator Runt
 7. Navigate to the AWS Lambda and Functions tab.
    <img src="/assets/img/connectors/AWSLambdaFunction.png" title="Amazon Lambda Function" width="800" alt="Amazon Lambda Function"/>
    
-8. Next you need to execute the function. Navigate to **Configure test events**.
-   
+8. Next you need to execute the function. Navigate to **Configure test events**. <br>
    <img src="/assets/img/connectors/configureTestEvent.png" title="Configure Test Event" width="800" alt="Configure Test Event"/>
    
 9. Click **Create new test event**.
@@ -264,4 +260,4 @@ Follow these steps to deploy the exported CApp in the Enterprise Integrator Runt
  
 ## What's next
 * You can deploy and run your project on [Docker](../../../setup/installation/run_in_docker.md) or [Kubernetes](../../../setup/installation/run_in_kubernetes.md).
-* To customize this example for your own scenario, see [Amazon Lambda Connector Configuration](../amazonlambda-configuration.md) documentation.
+* To customize this example for your own scenario, see [Amazon Lambda Connector Configuration](amazonlambda-configuration.md) documentation.
