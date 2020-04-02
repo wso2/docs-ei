@@ -49,6 +49,11 @@ Follow the instructions below to set up and configure.
         parameter.connection_factory_type = "queue"
         parameter.cache_level = "consumer"
         ```        
+    !!! Note
+        When configuring the jms listener, be sure to add the connection factory [service-level jms parameter](../../references/synapse-properties/transport-parameters/jms-transport-parameters.md) to the synapse configuration with the name of the already defined connection factory.
+        ```xml
+        <parameter name="transport.jms.ConnectionFactory">myQueueListener</parameter>
+        ```
 
     - Add the following configurations to enable the JMS sender with ActiveMQ connection parameters.
         ```toml
