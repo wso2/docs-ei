@@ -59,6 +59,14 @@ Set up the back-end service:
 
 Be sure to [configure a user store](../../../../setup/user_stores/setting_up_ro_ldap) for the Micro Integrator and add the required users and roles.
 
+1. Download and Install [SoapUI](https://www.soapui.org/downloads/soapui.html) to run this SOAP service.
+2. Create a new SOAP Project in the SoapUI using following wsdl file:
+
+   ```bash
+   http://localhost:8253/services/StockQuoteProxy?wsdl
+   ```
+3. For this you can use getQuote operation and to call the secure service you need to set [Authorization](https://www.soapui.org/soap-and-wsdl/authenticating-soap-requests.html) in soap UI request.
+
 Send a simple request to invoke the service:
 
 ```xml
