@@ -387,3 +387,33 @@ To create a Amazon RDS (Relational Database Service) for the purpose of persisti
 
 2. Set up the cluster as follows:
 
+    To set up the cluster, follow the procedure below:
+
+    1. Access Amazon ECS via the AWS Console.
+    
+    2. In the left navigator, click **Clusters**. Then click **Create Cluster** in the **Clusters** page.
+    
+        ![clusters](../images/si-as-minimum-ha-cluster-in-aws-ecs/clusters.png)
+    
+    3. In the **Create Cluster** wizard that opens, select **EC2 Linux + Networking** and then click **Next step**.
+        ![create cluster](../images/si-as-minimum-ha-cluster-in-aws-ecs/create-cluster-step-1.png)
+    4. In **Step 2: Configure Cluster** of the **Create Cluster** wizard, enter information as follows:
+        
+        ![configure cluster](../images/si-as-minimum-ha-cluster-in-aws-ecs/configure-cluster.png)
+    
+        1. In the **Cluster name** field, enter a name for your cluster. In this example, let's enter `si-ha-cluster` as the name.
+        
+        2. Select the **Create an empty cluster** check box.
+        
+        3. Click **Create** to create the cluster.
+        
+3. Create a task for Streaming Integrator node 1 as follows:
+
+    1. In the left navigator of Amazon ECS, click **Task Definitions**. Then in the **Task Definitions** window, click **Create new Task Definition**.
+    
+        ![Create New Task Definition](../images/si-as-minimum-ha-cluster-in-aws-ecs/create-task-definition.png)
+        
+    2. In the **Select launch type compatibility** page, click **FARGATE** and then click **Next step**.
+    
+    3. 
+
