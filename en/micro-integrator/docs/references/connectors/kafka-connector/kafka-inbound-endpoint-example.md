@@ -8,15 +8,19 @@ See [Configuring kafka connector](kafka-connector-configuration.md) for more inf
 
 The following diagram illustrates all the required functionality of the Kafka service that you are going to build. In this example, you only need to consider about the scenario of message consuming.
 
-<img src="/assets/img/connectors/KafkaConnector.png" title="KafkaConnector" width="800" alt="KafkaConnector"/>
+<img src="/assets/img/connectors/Kafkainboundendpoint.png" title="Kafka inbound endpoint" width="800" alt="Kafka inbound endpoint"/>
 
-## Configure the connector in WSO2 Integration Studio
+## Configure inbound endpoint using WSO2 Integration Studio
 
-Follow these steps to set up the ESB Solution Project and the Connector Exporter Project.
+1. Download [WSO2 Integration Studio](https://wso2.com/integration/integration-studio/). Create an **Integration Project** as below. 
+<img src="/assets/img/connectors/solution-project.png" title="Creating a new Integration Project" width="800" alt="Creating a new Integration Project" />
 
-{!references/connectors/importing-connector-to-integration-studio.md!}
+2. Right click on **Source** -> **main** -> **synapse-config** -> **inbound-endpoints** and add a new **custom inbound endpoint**.</br> 
+<img src="/assets/img/connectors/db-event-inbound-ep.png" title="Creating inbound endpoint" width="400" alt="Creating inbound endpoint" style="border:1px solid black"/>
 
-1. Our project would look similar to the following (source view).
+Click on **Inbound Endpoint** in the design view and under the `properties` tab, update the class name to `org.wso2.carbon.inbound.kafka.KafkaMessageConsumer`.
+
+4. Navigate to the source view and update it with the following configuration as required.  
 
    ```
    <?xml version="1.0" encoding="UTF-8"?>
@@ -36,7 +40,9 @@ Follow these steps to set up the ESB Solution Project and the Connector Exporter
       </parameters>
    </inboundEndpoint>
    ```
-   Sequence
+   Sequence to process the message.
+   
+   In this example for simplicity we will just log the message, but in a real world use case, this can be any type of message mediation.
 
    ```
    <?xml version="1.0" encoding="ISO-8859-1"?>
@@ -53,35 +59,43 @@ Follow these steps to set up the ESB Solution Project and the Connector Exporter
          </log>
       </sequence>
    ```
+## Exporting Integration Logic as a CApp
 
-2. Right-click on the Composite Application Project and click on **Export Project Artifacts and Run**. Select **Run on Micro Integrator**.
+**CApp (Carbon Application)** is the deployable artefact on the Enterprise Integrator runtime. Let us see how we can export integration logic we developed into a CApp. To export the `Solution Project` as a CApp, a `Composite Application Project` needs to be created. Usually, when a solution project is created, this project is automatically created by Integration Studio. If not, you can specifically create it by navigating to  **File** -> **New** -> **Other** -> **WSO2** -> **Distribution** -> **Composite Application Project**. 
 
-3. Micro Integrator will be started and the composite application will be deployed. You can further refer to the application deployed through the CLI tool. Make sure you first export the PATH as below.
+1. Right click on Composite Application Project and click on **Export Composite Application Project**.</br> 
+  <img src="/assets/img/connectors/capp-project1.png" title="Export as a Carbon Application" width="300" alt="Export as a Carbon Application" />
 
-    ```
-    $ export PATH=/path/to/mi/cli/directory/bin:$PATH\
-    ```
+2. Select an **Export Destination** where you want to save the .car file. 
 
-{!references/connectors/exporting-artifacts.md !}
+3. In the next **Create a deployable CAR file** screen, select inbound endpoint and sequence artifacts and click **Finish**. The CApp will get created at the specified location provided in the previous step.   
 
 ## Deployment
-Follow these steps to deploy the exported CApp in the Enterprise Integrator Runtime. 
 
-{!references/connectors/deploy-capp.md!}
+1. Navigate to the [connector store](https://store.wso2.com/store/assets/esbconnector/list) and search for `Kafka`. Click on `Kafka Inbound Endpoint` and download the .jar file by clicking on `Download Inbound Endpoint`. Copy this .jar file into  <PRODUCT-HOME>/lib folder. 
+
+2. Copy the exported carbon application to the <PRODUCT-HOME>/repository/deployment/server/carbonapps folder. 
+
+3. [Start the WSO2 EI server](https://ei.docs.wso2.com/en/latest/micro-integrator/overview/quick-start-guide/#start-the-micro-integrator).
 
 ## Testing  
-1. Run the following on the Kafka command line to create a topic named test with a single partition and only one replica:
+   
+   **Sample request**
+   
+   Run the following on the Kafka command line to create a topic named test with a single partition and only one replica:
    ```
    bin/kafka-topics.sh --create --zookeeper localhost:2181 --replication-factor 1 --partitions 1 --topic test
    ```           
-2. Run the following on the Kafka command line to send a message to the Kafka brokers. You can also use the WSO2 Kafka Producer connector to send the message to the Kafka brokers.
+   Run the following on the Kafka command line to send a message to the Kafka brokers. You can also use the WSO2 Kafka Producer connector to send the message to the Kafka brokers.
    ```
    bin/kafka-console-producer.sh --broker-list localhost:9092 --topic test
    ```   
-3. Executing the above command will open up the console producer. Send the following message using the console:
+   Executing the above command will open up the console producer. Send the following message using the console: 
    ```
    {"test":"wso2"}
    ```
+   **Expected respons**
+   
    You can see the following Message content in the Micro Integrator:
    
    ```  

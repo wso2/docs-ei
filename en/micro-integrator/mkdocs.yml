@@ -357,9 +357,15 @@ nav:
           - 'Setting up Amazon S3 Environment': 'references/connectors/amazons3-connector/amazons3-connector-config.md'
           - 'AmazonS3 Connector Example': 'references/connectors/amazons3-connector/amazons3-connector-example.md'
           - 'AmazonS3 Connector Configuration': 'references/connectors/amazons3-connector/amazons3-connector-reference.md'
+        - ServiceNow Connector:
+          - 'ServiceNow Connector Example': 'references/connectors/servicenow-connector/servicenow-connector-example.md'
+          - 'Setting up Servicenow Instance': 'references/connectors/servicenow-connector/settingup-servicenow-instance.md'
         - LDAP Connector:
             - 'Setting up an LDAP Server': 'references/connectors/ldap-connector/ldap-server-configuration.md'
             - 'LDAP Connector Example': 'references/connectors/ldap-connector/ldap-connector-example.md'
+        - DB Event Listener Inbound Endpoint:
+          - 'Database Event Listener Example': 'references/connectors/db-event-inbound-endpoint/db-event-inbound-endpoint-example.md'
+          - 'Database Event Listener Configuration': 'references/connectors/db-event-inbound-endpoint/db-event-inbound-endpoint-config.md'
       - Synapse Configurations:
         - Mediator Catalog:
           - 'About Mediators': 'references/mediators/about-mediators.md'
