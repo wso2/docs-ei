@@ -25,10 +25,10 @@ The following is a sample scenario that demonstrates how WSO2 Micro Integrator i
      </endpoint>
     </send>
  </inSequence>
-</target>
  <outSequence>
-   <drop/>
- </outSequence>
+    <drop/>
+  </outSequence>
+</target>
     <parameter name="rabbitmq.queue.name">queue</parameter>
     <parameter name="rabbitmq.exchange.name">exchange</parameter>
     <parameter name="rabbitmq.connection.factory">AMQPConnectionFactory</parameter>
