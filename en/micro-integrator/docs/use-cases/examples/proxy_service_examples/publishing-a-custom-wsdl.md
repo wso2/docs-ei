@@ -51,13 +51,13 @@ Set up the back-end service:
 Create the artifacts:
 
 1. [Set up WSO2 Integration Studio](../../../../develop/installing-WSO2-Integration-Studio).
-2. [Create an ESB Integration project](../../../../develop/creating-projects/#esb-config-project).
+2. [Create an Integration project](../../../../develop/creating-projects/#esb-config-project).
 3. [Create the proxy service](../../../../develop/creating-artifacts/creating-a-proxy-service) with the configurations given above.
 4. [Deploy the artifacts](../../../../develop/deploy-and-run) in your Micro Integrator.
 
 Set up the SOAP client: 
 
-1. Download and Install [SoapUI](https://www.soapui.org/downloads/soapui.html) to run this SOAP service.
+1. Download and install [SoapUI](https://www.soapui.org/downloads/soapui.html) to run this SOAP service.
 2. Create a new SOAP project in the SoapUI using the following wsdl file:
 
    ```bash
