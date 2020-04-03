@@ -79,8 +79,8 @@ Follow the instructions given below to create a new [REST API](../../../referenc
                     Path to Swagger Definition
                 </td>
                 <td>
-                    Enter the path to a custom Swagger definition (YAML file) that is stored in a registry project in your workspace.</br></br>
-                    Once this API is created and deployed in the Micro Integrator, users will be able to access this custom Swagger definition in addition to the default Swagger definition of the API.
+                    Enter the path to a custom Swagger definition (YAML/JSON file) that is stored in a registry project in your workspace.</br></br>
+                    Once this API is created and deployed in the Micro Integrator, users will be able to access this custom Swagger definition and not the default Swagger definition of the API.
                 </td>
             </tr>
         </table>
