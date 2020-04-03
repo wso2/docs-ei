@@ -415,5 +415,56 @@ To create a Amazon RDS (Relational Database Service) for the purpose of persisti
         
     2. In the **Select launch type compatibility** page, click **FARGATE** and then click **Next step**.
     
-    3. 
+        ![Select Launch Type](../images/si-as-minimum-ha-cluster-in-aws-ecs/create-task-definition.png)
+        
+    3. In **Step 2: Configure task and container definitions**, enter information in the **Create new Task Definition** wizard as follows:
+    
+        1. In the **Task Definition Name** field, enter `ha-node-1-task` as the name of the task definition.
+        
+        2. In the **Task Size** section, enter values as follows:
+        
+            |**Field**              |**Value**  |
+            |-----------------------|-----------|
+            |**Task memory (GB)**   |`0.5GB`    |
+            |**Task CPU (vCPU)**    |`0.25vCPU` |
+            
+        3. In the **Container Definitions** section, click **Add container**. Then enter information as follows:
+        
+            1. In the **Container name** field, enter `node-1-ha-container` as the name of the container.
+            
+            2. In the **Image** field, enter the image URI.
+            
+                !!! tip
+                    To get the image URI, follow the steps below:<br/>
+                    1. Access Amazon ECR via the AWS Console.<br/>
+                    2. In the left navigator, click **Repositories** to open the **Repositories** window.<br/>
+                    3. Click on your repository (which is `wso2` in this example).<br/>
+                    The available docker images are displayed in the **Images** window.<br/>
+                    ![Docker Images](../images/si-as-minimum-ha-cluster-in-aws-ecs/docker-images.png)                                     
+            3. In the **Port Mappings** section, add the following ports. 
+            
+                |**Port**   |**Protocol**|
+                |-----------|------------|
+                |9893       |tcp         |
+                |9090       |tcp         |
+                |9711       |tcp         |
+                |9611       |tcp         |
+                |7711       |tcp         |
+                |7611       |tcp         |
+                |7443       |tcp         |
+                |7070       |tcp         |
+                |9443       |tcp         |
+                |8006       |tcp         |                
+            
+                To add each port, click **Add Port Mapping**.                        
+                    
+            4. Click **Add**.
+            
+            5. Click **Create** in the **Configure task and container definitions** page to create the task.
+            
+4. Create a task for Streaming Integrator node 2 as follows:
+
+    
+                    
+
 
