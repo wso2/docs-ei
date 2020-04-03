@@ -108,6 +108,16 @@ Follow the steps given below.
     <img src="../../assets/img/create_project/docker_k8s_project/new_docker_project_maven_info.png" width="500">
 
 4.  Click **Finish**. The Docker project is created in the project explorer.
+5.  This step is only required if you already have a Docker image (in your local Docker repository) with the same name as the base image specified above. 
+    
+        !!! Info
+            In this scenario, WSO2 Integration Studio will first check if there is a difference in the two images before pulling the image specified in the **Base Image Repository** field. If the given base image is more updated, the existing image will be overwritten by this new image. Therefore, if you are currently using an older version, or if you have custom changes in your existing image, they will be replaced. 
+        
+        To avoid your existing custom/older images from being replaced, add the following property under **dockerfile-maven-plugin -> executions -> execution -> configurations** in the `pom.xml` file of your Docker Exporter project. This configuration will ensure that the base image will not be pulled when a Docker image already exists with the same name.
+            
+        ```xml
+        <pullNewerImage>false</pullNewerImage>
+        ```
 
 ## The Docker project directory
 
