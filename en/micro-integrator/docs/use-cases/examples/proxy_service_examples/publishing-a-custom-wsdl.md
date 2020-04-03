@@ -48,7 +48,6 @@ Set up the back-end service:
     java -jar stockquote_service.jar
     ```
 
-
 Create the artifacts:
 
 1. [Set up WSO2 Integration Studio](../../../../develop/installing-WSO2-Integration-Studio).
@@ -56,32 +55,32 @@ Create the artifacts:
 3. [Create the proxy service](../../../../develop/creating-artifacts/creating-a-proxy-service) with the configurations given above.
 4. [Deploy the artifacts](../../../../develop/deploy-and-run) in your Micro Integrator.
 
-In order to test the service you can use SOAPUI client. 
+Set up the SOAP client: 
 
 1. Download and Install [SoapUI](https://www.soapui.org/downloads/soapui.html) to run this SOAP service.
-2. Create a new SOAP Project in the SoapUI using following wsdl file:
+2. Create a new SOAP project in the SoapUI using the following wsdl file:
 
    ```bash
    http://localhost:8290/services/StockQuoteProxy?wsdl
    ```
+ 
+3.  Use the `getQuote` operation.
+4.  Enter the following payload. This will return a response containing the last sales price for the stock.
 
--   Send the following payload to receive a response containing the last sales price for the stock. For this you can 
-use getQuote operation.
-
-```xml
-<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="http://services.samples" xmlns:xsd="http://services.samples/xsd">
-   <soapenv:Header/>
-   <soapenv:Body>
-      <ser:getQuote xmlns:ser="http://services.samples" xmlns:xsd="http://services.samples/xsd">
-         <!--Optional:-->
-         <ser:request>
-            <!--Optional:-->
-            <xsd:symbol>IBM</xsd:symbol>
-         </ser:request>
-      </ser:getQuote>
-   </soapenv:Body>
-</soapenv:Envelope>
-```
+    ```xml
+    <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="http://services.samples" xmlns:xsd="http://services.samples/xsd">
+       <soapenv:Header/>
+       <soapenv:Body>
+          <ser:getQuote xmlns:ser="http://services.samples" xmlns:xsd="http://services.samples/xsd">
+             <!--Optional:-->
+             <ser:request>
+                <!--Optional:-->
+                <xsd:symbol>IBM</xsd:symbol>
+             </ser:request>
+          </ser:getQuote>
+       </soapenv:Body>
+    </soapenv:Envelope>
+    ```
 
 You will receive the following response:
 
