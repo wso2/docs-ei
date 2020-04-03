@@ -1,5 +1,5 @@
 # Sequences and Endpoints as Local Registry Entries
-This sample demonstrates how sequences and endpoints can be fetched from a local registry so that it is possible to have the sequences and endpoints as local registry entries.
+This sample demonstrates how sequences and endpoints can be fetched from a local registry.
 
 ## Synapse configurations
 
@@ -61,6 +61,6 @@ Set up the back-end service:
 
 Send a message to invoke the service and analyze the mediation log on the Micro Integrator's start-up console.
 
-You will see that the sequence and the endpoint are fetched from the local entry and property `direction` set by the proxy is logged by the sequence.
+You will see that the sequence and the endpoint are fetched from the local entry and that the property named `direction` (which was set by the proxy service) is logged by the sequence.
 
 `INFO {org.apache.synapse.mediators.builtin.LogMediator} - Text = Sending quote request, direction = incoming`
