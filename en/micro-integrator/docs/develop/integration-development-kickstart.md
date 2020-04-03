@@ -450,9 +450,9 @@ Let's invoke the API from the embedded <b>HTTP Client</b> of WSO2 Integration St
     !!! Tip
         If you don't see the <b>HTTP Client</b> tab, go to <b>Window -> Show View - Other</b> and select <b>HTTP Client</b> to enable the client tab.
 
-    <img src="../../../assets/img/developing-first-integration/http4e-client-empty.png" width="800">
+    <img src="../../assets/img/developing-first-integration/http4e-client-empty.png" width="800">
     
-2.  Enter the request information as given below and click the <b>Send</b> icon (<img src="../../../assets/img/tutorials/common/play-head-icon.png" width="20">).
+2.  Enter the request information as given below and click the <b>Send</b> icon (<img src="../../assets/img/tutorials/common/play-head-icon.png" width="20">).
     
     <table>
         <tr>
