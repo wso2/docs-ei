@@ -317,6 +317,7 @@ nav:
         - 'Deploy and Run Artifacts': 'develop/deploy-and-run.md'
         - 'Hot Deploying Artifacts': 'develop/hot-deployment.md'
         - 'Creating a Unit Test Suite': 'develop/creating-unit-test-suite.md'
+        - 'Using the HTTP REST Client': 'develop/using-http_rest_client.md'
       - Debugging Integrations:
         - 'Mediation Debugging': 'develop/debugging-mediation.md'
         - 'Using Wire Logs': 'develop/using-wire-logs.md'
