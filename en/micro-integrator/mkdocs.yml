@@ -435,7 +435,6 @@ nav:
           - 'Filtering Responses by User Role': 'references/synapse-properties/data-services/filtering-responses-by-user-role.md'
           - 'Dynamic User Authentication': 'references/synapse-properties/data-services/dynamic-user-authentication.md'
           - 'Using Namespaces': 'references/synapse-properties/data-services/using-Namespaces.md'
-          - 'SQL Dialects': 'references/synapse-properties/data-services/sql-dialects.md'
           - 'Mapping Data Types': 'references/synapse-properties/data-services/mapping-data-types.md'
         - Transport Configs:
           - 'VFS Parameters': 'references/synapse-properties/transport-parameters/vfs-transport-parameters.md'
