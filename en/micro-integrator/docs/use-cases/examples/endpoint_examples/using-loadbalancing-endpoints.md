@@ -16,7 +16,7 @@ that ID to the same server.
 
 Following is a sample REST API configuration that we can used to implement this scenario.
 
-```xml 
+```xml tab='Proxy Service'
 <proxy name="LoadBalanceProxy" startOnLoad="true" transports="http https" xmlns="http://ws.apache.org/ns/synapse">
    <target>
        <inSequence>
@@ -29,17 +29,17 @@ Following is a sample REST API configuration that we can used to implement this 
 
                     <loadbalance>
                         <endpoint>
-                            <address uri="http://localhost:9001/services/LBService1">
+                            <address uri="http://localhost:9001/services/SimpleStockQuoteService">
                                 <enableAddressing/>
                             </address>
                         </endpoint>
                         <endpoint>
-                            <address uri="http://localhost:9002/services/LBService1">
+                            <address uri="http://localhost:9002/services/SimpleStockQuoteService">
                                 <enableAddressing/>
                             </address>
                         </endpoint>
                         <endpoint>
-                            <address uri="http://localhost:9003/services/LBService1">
+                            <address uri="http://localhost:9003/services/SimpleStockQuoteService">
                                 <enableAddressing/>
                             </address>
                         </endpoint>
@@ -53,13 +53,15 @@ Following is a sample REST API configuration that we can used to implement this 
        </outSequence>
        <faultSequence>
             <sequence key="errorHandler"/>
-       </faultSequence
+       </faultSequence>
    </target>
 </proxy>
+```
 
-<sequence name="errorHandler">
-    <makefault>
-        <code value="tns:Receiver" xmlns:tns="http://www.w3.org/2003/05/soap-envelope"/>
+```xml tab='Sequence'
+<sequence name="errorHandler"> 
+    <makefault version="soap11">
+        <code value="soap11Env:VersionMismatch" xmlns:soap11Env="http://schemas.xmlsoap.org/soap/envelope/"/>
         <reason value="COULDN'T SEND THE MESSAGE TO THE SERVER."/>
     </makefault>
 
@@ -69,52 +71,52 @@ Following is a sample REST API configuration that we can used to implement this 
 </sequence>
 ```
 
-<!--
-**To build the sample**
+## Build and run
 
-### Executing the sample
+Create the artifacts:
 
-The sample client used here is the **Load Balance and Failover Client**
-.
+1. [Set up WSO2 Integration Studio](../../../../develop/installing-WSO2-Integration-Studio).
+2. [Create an ESB Solution project](../../../../develop/creating-projects/#esb-config-project).
+3. [Create the Proxy](../../../../develop/creating-artifacts/creating-a-proxy-service) and the Sequence with the configurations given above.
+4. [Deploy the artifacts](../../../../develop/deploy-and-run) in your Micro Integrator.
 
-**To execute the sample client**
+Set up the back-end service:
 
--   Run the following command from the
-    `           <ESB_HOME>/samples/axis2Client          ` directory.
+1. Download the [stockquote_service.jar](https://github.com/wso2-docs/WSO2_EI/blob/master/Back-End-Service/stockquote_service.jar).
+2. Open a terminal, navigate to the location of the downloaded service, and run it using the following command:
 
-    ``` bash
-            ant loadbalancefailover -Dmode=session
+    ```bash
+    java -jar stockquote_service.jar
     ```
+3. Open the `tcpmon` application which is in `MI_TOOLING_HOME/Contents/Eclipse/runtime/microesb/bin/` (in MacOS) or `MI_TOOLING_HOME/runtime/microesb/bin` (in Windows/Linux) directory.
+4. Configure `tcpmon` to listen to ports `9001, 9002, and 9003` and set the target hostname to `localhost` and target port to `9000` in each instance.
 
-### Analyzing the output
+Invoking the proxy service:
 
-When the client is run in the session mode, the client continuously
-sends requests with three different session IDs. Out of these three IDs
-one ID is selected randomly for each request. Then the client prints the
-session ID with the server that responds for each request.
+Send the following request  **3 or more times**. Make sure to include a `simpleClientSession` to the header.
 
-When you analyze the output on the client console, you will see the
-client output for the first 10 requests, which will be as follows:
+```xml
+POST http://localhost:8290/services/LoadBalanceProxy HTTP/1.1
+Content-Type: text/xml;charset=UTF-8
+simpleClientSession: 123
 
-``` java
-    [java] Request: 1 Session number: 1 Response from server: MyServer3
-    [java] Request: 2 Session number: 2 Response from server: MyServer2
-    [java] Request: 3 Session number: 0 Response from server: MyServer1
-    [java] Request: 4 Session number: 2 Response from server: MyServer2
-    [java] Request: 5 Session number: 1 Response from server: MyServer3
-    [java] Request: 6 Session number: 2 Response from server: MyServer2
-    [java] Request: 7 Session number: 2 Response from server: MyServer2
-    [java] Request: 8 Session number: 1 Response from server: MyServer3
-    [java] Request: 9 Session number: 0 Response from server: MyServer1
-    [java] Request: 10 Session number: 0 Response from server: MyServer1
-    ... 
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+   <soapenv:Header/>
+   <soapenv:Body>
+   <m0:placeOrder xmlns:m0="http://services.samples">
+            <m0:order>
+                <m0:price>172.23182849731984</m0:price>
+                <m0:quantity>18398</m0:quantity>
+                <m0:symbol>IBM</m0:symbol>
+            </m0:order>
+        </m0:placeOrder>
+   </soapenv:Body>
+</soapenv:Envelope>
 ```
 
-By analysing the above output, y ou will see that the session number 0
-is always directed to the server named MyServer1. This means that the
-session number 0 is bound to MyServer1. Similarly, session 1 s always
-directed to MyServer3 and session 2 is always directed to MyServer2.
-This means that session 1 and 2 are bound to MyServer3 and MyServer2
-respectively.
+Analyzing the output:
 
--->
+When inspecting the `tcpmon`, you will see that each listener 
+has received a request (If you have only sent 3 requests, otherwise more than 1). This is because,
+when multiple requests are sent with the same session Id, they are distributed across
+the three end points in a round robin manner. 
