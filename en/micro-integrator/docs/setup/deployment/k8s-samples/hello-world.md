@@ -140,33 +140,6 @@ Follow the steps given below.
         ```xml
         <pullNewerImage>false</pullNewerImage>
         ```
-
-        Example plugin configuration after adding the property:
-
-        ```xml
-          <plugin>
-            <groupId>com.spotify</groupId>
-            <artifactId>dockerfile-maven-plugin</artifactId>
-            <version>1.4.3</version>
-            <extensions>true</extensions>
-            <executions>
-              <execution>
-                <goals>
-                  <goal>build</goal>
-                  <goal>push</goal>
-                </goals>
-                <configuration>
-                  <username>${username}</username>
-                  <password>${password}</password>
-                  <repository>docker/helloworld</repository>
-                  <tag>1.1.0</tag>
-                  <pullNewerImage>false</pullNewerImage> 
-                </configuration>
-              </execution>
-            </executions>
-            <configuration/>
-          </plugin>
-        ```
          
 Finally, the created Maven Multi Module project should look as follows:
 
