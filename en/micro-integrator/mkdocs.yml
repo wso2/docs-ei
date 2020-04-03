@@ -106,14 +106,7 @@ nav:
           - 'Exposing an RDBMS datasource': 'use-cases/examples/data_integration/rdbms-data-service.md'
           - Exposing Other Datasources:
             - 'Exposing a CSV datasource': 'use-cases/examples/data_integration/csv-data-service.md'
-            - 'Exposing an Excel datasource': 'use-cases/examples/data_integration/excel-data-service.md'
-            - 'Exposing a Google Spreadsheet': 'use-cases/examples/data_integration/google-spreadsheet-data-service.md'
-            - 'Exposing a Cassandra datasource': 'use-cases/examples/data_integration/cassandra-data-service.md'
-            - 'Exposing an RDF datasource': 'use-cases/examples/data_integration/rdf-data-service.md'
-            - 'Exposing a Web Resource': 'use-cases/examples/data_integration/web-resource-data-service.md'
             - 'Exposing a Carbon datasource': 'use-cases/examples/data_integration/carbon-data-service.md'
-            - 'Exposing a Custom datasource': 'use-cases/examples/data_integration/custom-datasource.md'
-            - 'Exposing a JNDI datasource': 'use-cases/examples/data_integration/jndi-data-service.md'
           - 'Exposing Data in JSON Format': 'use-cases/examples/data_integration/json-with-data-service.md'
           - 'Using an OData Service': 'use-cases/examples/data_integration/odata-service.md'
           - 'Using Nested Data Queries': 'use-cases/examples/data_integration/nested-queries-in-data-service.md'
@@ -299,7 +292,7 @@ nav:
         - 'Creating a Data Service Input Validator': 'develop/creating-artifacts/data-services/creating-input-validators.md'
         - 'Adding Connectors': 'develop/creating-artifacts/adding-connectors.md'
       - Creating Custom Artifacts:
-        - 'Creating a Custom Inbound Endpoint' : 'develop/customizations/creating-custom-Inbound-endpoint.md'
+        - 'Creating a Custom Inbound Endpoint': 'develop/customizations/creating-custom-Inbound-endpoint.md'
         - 'Creating a Custom Mediator': 'develop/customizations/creating-custom-mediators.md'
         - 'Creating a Synapse Handler': 'develop/customizations/creating-synapse-handlers.md'
         - 'Creating a New Connector': 'develop/customizations/creating-new-connector.md'
