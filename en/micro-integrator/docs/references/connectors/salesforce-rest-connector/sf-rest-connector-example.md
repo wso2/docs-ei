@@ -14,6 +14,8 @@ following operations:
 
 The user calls the Salesforcerest API. It invoke the **create** sequence and create a new account in Salesforce. Then through the **retrieve** sequence, it displays all the existing account details to the user. 
 
+If you do not want to build this yourself, you can simply [get the project](#get-the-project) and run it.
+
 ## Configure the connector in WSO2 Integration Studio
 Follow these steps to set up the ESB Solution Project and the Connector Exporter Project. 
 
@@ -86,6 +88,15 @@ Follow these steps to set up the ESB Solution Project and the Connector Exporter
         </resource>
     </api>
     ```
+
+## Get the project
+
+You can download the ZIP file and extract the contents to get the project code.
+
+<a href="../../../../assets/attach/connectors/salesforceRest.zip">
+    <img src="../../../../assets/img/connectors/download-zip.png" width="200" alt="Download ZIP">
+</a>
+
 ## Deployment
 
 Follow these steps to deploy the exported CApp in the Enterprise Integrator Runtime. 

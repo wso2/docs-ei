@@ -22,7 +22,7 @@ To invoke each operation user uses the same API.
 
 <img src="/assets/img/connectors/Amazon-s3-diagram.png" title="Overview of Amazon S3 use case" width="800" alt="Amazon S3 use case"/>
 
-
+If you do not want to build this yourself, you can simply [get the project](#get-the-project) and run it.
 
 ## Setting up the environment 
 
@@ -235,6 +235,18 @@ Now we can export the imported connector and the API into a single CAR applicati
 {!references/connectors/exporting-artifacts.md!}
 
 Now the exported CApp can be deployed in Enterprise Integrator Runtime so that we can run it and test.
+
+## Get the project
+
+You can download the ZIP file and extract the contents to get the project code.
+
+<a href="../../../../assets/attach/connectors/s3-connector.zip">
+    <img src="../../../../assets/img/connectors/download-zip.png" width="200" alt="Download ZIP">
+</a>
+
+## Deployment
+
+Follow these steps to deploy the exported CApp in the Enterprise Integrator Runtime. 
 
 {!references/connectors/deploy-capp.md!}
 

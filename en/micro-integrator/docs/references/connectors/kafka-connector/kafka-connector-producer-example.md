@@ -12,6 +12,8 @@ The following diagram illustrates all the required functionality of the Kafka se
 
 <img src="/assets/img/connectors/KafkaConnectorPublishMessage.png" title="KafkaConnector" width="800" alt="KafkaConnector"/>
 
+If you do not want to build this yourself, you can simply [get the project](#get-the-project) and run it.
+
 ## Configure the connector in WSO2 Integration Studio
 
 Follow these steps to set up the ESB Solution Project and the Connector Exporter Project.
@@ -45,6 +47,14 @@ Follow these steps to set up the ESB Solution Project and the Connector Exporter
 Now we can export the imported connector and the API into a single CAR application. The CAR application needs to be deployed during server runtime. 
 
 {!/references/connectors/exporting-artifacts.md!}
+
+## Get the project
+
+You can download the ZIP file and extract the contents to get the project code.
+
+<a href="../../../../assets/attach/connectors/FileConnector.zip">
+    <img src="../../../../assets/img/connectors/download-zip.png" width="200" alt="Download ZIP">
+</a>
 
 ## Deployment
 

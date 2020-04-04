@@ -1,6 +1,6 @@
 # DB Event Inbound Endpoint Configuration
 
-The following configurations allow you to configure DB Event Inbound Endpoint or your scenario. 
+The following configurations allow you to configure DB Event Inbound Endpoint for your scenario. 
 
 <style type="text/css">
 .tg  {border-collapse:collapse;border-spacing:0;}

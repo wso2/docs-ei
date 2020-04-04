@@ -16,6 +16,7 @@ It will have two HTTP API resources, which are `postRecord` and `readRecord`.
 
 * `/readRecord `: It reads the detailed information about the created incident record in the incident table.
 
+If you do not want to build this yourself, you can simply [get the project](#get-the-project) and run it.
 
 ## Setting up the environment 
 
@@ -102,6 +103,13 @@ Follow these steps to set up the Integration Project and the Connector Exporter 
 
 {!references/connectors/exporting-artifacts.md!}
 
+## Get the project
+
+You can download the ZIP file and extract the contents to get the project code.
+
+<a href="../../../../assets/attach/connectors/ServiceNow.zip">
+    <img src="../../../../assets/img/connectors/download-zip.png" width="200" alt="Download ZIP">
+</a>
 
 ## Deployment
 

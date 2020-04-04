@@ -19,6 +19,8 @@ To implement this, you need to do the following.
 1. [Generate Salesforce access tokens](../sf-access-token-generation.md).
 2. Configure the connector in WSO2 Integration Studio.
 
+If you do not want to build this yourself, you can simply [get the project](#get-the-project) and run it.
+
 ## Configure the connector in WSO2 Integration Studio
 
 1. Open WSO2 Integration Studio and create an ESB Solution Project.
