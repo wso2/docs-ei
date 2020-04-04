@@ -58,6 +58,8 @@ This example demonstrates, how to create an Amazon Lambda function easily using 
 
 As a next step, simply create an AWS S3 bucket and the deployment package should be uploaded into that bucket. This sample API contains a service that can be invoked through an HTTP POST request. Once the service is invoked, it creates a Lambda function inside the AWS Lambda service. When the created Lambda function is invoked, it is able to run without provisioning or managing servers.
 
+If you do not want to build this yourself, you can simply [get the project](#get-the-project) and run it.
+
 ## Configure the connector in WSO2 Integration Studio
 Follow these steps to set up the ESB Solution Project and the Connector Exporter Project.
 
@@ -175,6 +177,14 @@ Please use command line terminal or shell to run following commands. Commands ar
 
 ## Create Execution Role
 You need to create an Execution Role by referring to the [Setting up the Amazon Lambda Environment](setting-up-amazonlambda.md) documentation.  
+
+## Get the project
+
+You can download the ZIP file and extract the contents to get the project code.
+
+<a href="../../../../assets/attach/connectors/amazon-lambda-connector.zip">
+    <img src="../../../../assets/img/connectors/download-zip.png" width="200" alt="Download ZIP">
+</a>
 
 ## Deployment
 Follow these steps to deploy the exported CApp in the Enterprise Integrator Runtime. 

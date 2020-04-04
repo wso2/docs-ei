@@ -18,6 +18,8 @@ It will have two HTTP API resources, which are `create` and `read`.
 * `/read `: It will first check if the file exists. If so it will read the content of the file. 
     <img src="/assets/img/connectors/FileConnector-02.png" title="Adding a Rest API" width="800" alt="Adding a Rest API"/>
 
+If you do not want to build this yourself, you can simply [get the project](#get-the-project) and run it.
+
 ## Configure the connector in WSO2 Integration Studio
 
 Follow these steps to set up the ESB Solution Project and the Connector Exporter Project. 
@@ -78,6 +80,14 @@ Follow these steps to set up the ESB Solution Project and the Connector Exporter
 
 {!references/connectors/exporting-artifacts.md!}
 
+
+## Get the project
+
+You can download the ZIP file and extract the contents to get the project code.
+
+<a href="../../../../assets/attach/connectors/FileConnector.zip">
+    <img src="../../../../assets/img/connectors/download-zip.png" width="200" alt="Download ZIP">
+</a>
 
 ## Deployment
 

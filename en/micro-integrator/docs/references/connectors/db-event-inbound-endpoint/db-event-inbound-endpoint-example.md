@@ -19,6 +19,7 @@ Following diagram shows the overall solution we are going to build. External sys
 
 <img src="/assets/img/connectors/db-event-diagram.png" title="Overview of DB event inbound EP use case" width="600" alt="Overview of DB event inbound EP use case"/>
 
+If you do not want to build this yourself, you can simply [get the project](#get-the-project) and run it.
 
 ## Setting up the environment 
 
@@ -89,7 +90,13 @@ First, install [MySQL database](https://www.mysql.com/downloads/) locally. If yo
 
 3. In the next **Create a deployable CAR file** screen, select inbound endpoint and sequence artifacts and click **Finish**. The CApp will get created at the specified location provided at the previous step. 
 
+## Get the project
 
+You can download the ZIP file and extract the contents to get the project code.
+
+<a href="../../../../assets/attach/connectors/db-event-listener.zip">
+    <img src="../../../../assets/img/connectors/download-zip.png" width="200" alt="Download ZIP">
+</a>
 
 ## Deploying on WSO2 Enterprise Integrator
 
@@ -103,8 +110,6 @@ First, install [MySQL database](https://www.mysql.com/downloads/) locally. If yo
 
 
 Now WSO2 EI will start listening to the data changes of `CDC_CUSTOM` table. 
-
-
 
 ## Testing
 
