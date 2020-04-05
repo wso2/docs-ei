@@ -7,11 +7,9 @@ This quick start guide gets you started with the Streaming Integrator (SI), in j
 
 In this guide, you will download the SI distribution, start it and then try out a simple Siddhi application.
 
-## Tutorial Outline
+The outline of this quick start guide is shown in the diagram below.
 
-- [Downloading Streaming Integrator](#downloading-streaming-integrator)
-- [Starting the server](#starting-the-server)
-- [Deploying a simple Siddhi app](#deploying-a-simple-siddhi-app)
+![Quick Start Guide Outline](../../images/qsg/qsg-outline.png)
 
 ## Downloading Streaming Integrator
 
@@ -20,8 +18,9 @@ Download the Streaming Integrator distribution from [WSO2 Streaming Integrator s
 ## Starting the server
 
 Navigate to the `<SI_HOME>/bin` directory in the console and issue the appropriate command depending on your operating system to start the Streaming Integrator. <br/>
-    - For Windows: `server.bat`
-    - For Linux/MacOS: `./server.sh`
+
+- For Windows: `server.bat`
+- For Linux/MacOS: `./server.sh`
 
 ## Deploying a simple Siddhi application
 
@@ -51,15 +50,16 @@ insert into TransformedProductionStream;
 ```
 
 !!!note
-    The output of this application is written into a the file, specified via the `file.uri` parameter. Change the value for this parameter accordingly.
+    The output of this application is written into a the file, specified via the `file.uri` parameter. Change the value for this parameter accordingly so that you publish the output to a file saved in your machine.
 
 Save this file as `MySimpleApp.siddhi` in the `<SI_HOME>/wso2/server/deployment/siddhi-files` directory.
 
 !!!info
     Once you deploy the above Siddhi application, it creates a new `HTTP` endpoint at `http://localhost:8006/productionStream` and starts listening to the endpoint for incoming messages. The incoming messages are then published to:<br/>
-    1. Streaming Integrator logs<br/>
-    2. To a file specified by you in XML format<br/>
-    The next step is to publish a message to the endpoint that you created, via a CURL command.
+        - Streaming Integrator logs<br/>
+        - To a file specified by you in XML format<br/>
+
+The next step is to publish a message to the endpoint that you created, via a CURL command.
 
 ## Testing your Siddhi application
 
@@ -72,17 +72,27 @@ curl -X POST -d "{\"event\": {\"name\":\"sugar\",\"amount\": 20.5}}"  http://loc
 Note that you published a message with a lower case name, i.e., `sugar`. However, the output you observe in the SI console is similar to following.
 
 ```
-INFO {io.siddhi.core.stream.output.sink.LogSink} - MySimpleApp : TransformedProductionStream : Event{timestamp=1563539561686, data=[SUGAR, 21], isExpired=false}
+INFO {io.siddhi.core.stream.output.sink.LogSink} - MySimpleApp :
+TransformedProductionStream :Event{timestamp=1563539561686, data=[SUGAR, 21],
+isExpired=false}
 ```
+
 
 Note that the output message has an uppercase name: `SUGAR`. In addition to that, the `amount` has being rounded. This is because of the simple message transformation carried out by the Siddhi application.
 
-In addition to this, open `low_productions.txt` file (i.e., the file that you specified via the `file.uri` parameter). The file should contain the following text.
+Now open `low_productions.txt` file (i.e., the file that you specified via the `file.uri` parameter). The file should contain the following text.
 
 ```
-<events><event><nameInUpperCase>SUGAR</nameInUpperCase><roundedAmount>21</roundedAmount></event></events>
+<events><event><nameInUpperCase>SUGAR</nameInUpperCase><roundedAmount>21
+</roundedAmount></event></events>
 ``` 
 
 ## What's next?
 
-The Streaming Integrator works seamlessly with the Micro Integrator to trigger integration flows based on the output it generates for streaming data. To try out a scenario where you process streaming data and trigger an integration flow via the Micro Integrator in five minutes, see [Getting SI Running with MI in Five Minutes](hello-world-with-mi.md).
+Once you try out this quick start guide, you can proceed to one of the following sections.
+
+- Learn the basic functionality of the Streaming Integrator in 20 minutes by [Creating Your First Siddhi Application](quick-start-guide-101.md)
+
+- To understand how to trigger integration flows via the Micro Integrator based on the results you generate via the Streaming Integrator, see [Getting SI Running with MI in Five Minutes](hello-world-with-mi.md).
+
+- Try out [Streaming Integrator tutorials](../examples/tutorials.overview.md).

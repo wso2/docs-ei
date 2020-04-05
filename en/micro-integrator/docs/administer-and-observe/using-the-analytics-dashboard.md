@@ -106,7 +106,7 @@ Follow the steps below to enable statistics for the **endpoint** artifacts:
 ## Starting the Micro Integrator
 
 !!! Warning
-    To allow the Micro Integrator server and the Analytics server to communicate using SSL, the digital certifacates should be shared by the two servers. See the instructions on [adding SSL certificates to keystores](../../setup/security/importing_ssl_certificate).
+    To allow the Micro Integrator server and the Analytics server to communicate using SSL, the digital certificates should be shared by the two servers. See the instructions on [adding SSL certificates to keystores](../../setup/security/importing_ssl_certificate).
     
     For testing, you can simply copy the keystore files from the `<EI_6.x.x_HOME>/wso2/analytics/resources/security` directory to the `MI_HOME/resources/security` directory.
 

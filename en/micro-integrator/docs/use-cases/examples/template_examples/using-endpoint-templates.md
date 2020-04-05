@@ -1,9 +1,5 @@
 # Using Endpoint Templates
 
-!!! Warning
-    **Please note that the contents on this page are under review!**
-
-## Synapse configuration
 For example, let's say we have two default endpoints with following hypothetical configurations:
 
 ```xml tab='Endpoint 1'

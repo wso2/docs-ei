@@ -19,7 +19,6 @@ To set up the tools:
         If you do not see the features given below in the WSO2 Integrations Studio that you are using, you can [get the latest updates](../../../develop/installing-WSO2-Integration-Studio/#get-the-latest-updates).
 
 -   Optionally, you can set up the **CLI tool** for artifact monitoring. This will later help you get details of the artifacts that you deploy in your Micro Integrator.
-
     1.  Go to the [WSO2 Micro Integrator website](https://wso2.com/integration/#). 
     2.  Click **Download -> Other Resources** and click **CLI Tooling** to download the tool. 
     3.  Extract the downloaded ZIP file. This will be your `MI_CLI_HOME` directory. 
@@ -236,7 +235,7 @@ configured in the previous step:
     ![](../../assets/img/tutorials/data_services/input_mapping_expanded.png)
 5.  Click **Add New** to open the **Add Input Mapping** page.
     ![](../../assets/img/tutorials/data_services/add_input_mappings.png)
-5.  Enter the following input mapping details:
+6.  Enter the following input mapping details:
 
     <table>
         <tr>
@@ -273,11 +272,11 @@ configured in the previous step:
         </tr>
     </table>
 
-5.  Save the input mapping.
+7.  Save the input mapping.
     ![](../../assets/img/tutorials/data_services/input_mappings.png)
-6.  Click **Result (Output Mappings)** to expand the section.
+8.  Click **Result (Output Mappings)** to expand the section.
     ![](../../assets/img/tutorials/data_services/out_mapping_expanded.png)
-7.  Enter the following value to group the output mapping:
+9.  Enter the following value to group the output mapping:
 
     <table>
         <tr>
@@ -290,49 +289,50 @@ configured in the previous step:
         </tr>
     </table>
 
-8.  Click **Generate** to generate output mappings automatically.
+10. Click **Generate** to generate output mappings automatically.
 
     !!! Tip
-
         Alternatively, you can manually add the mappings:
 
         1. Click **Add New** to open the **Add Output Mapping** page.
         2. Enter the following output element details.
-            <table>
-            <tr>
-                    <th>Property</th>
-                    <th>Description</th>
-                </tr>
-            <tbody>
-            <tr class="odd">
-            <td>Datasource Type</td>
-            <td>column</td>
-            </tr>
-            <tr class="even">
-            <td>Output Field Name</td>
-            <td>EmployeeNumber</td>
-            </tr>
-            <tr class="odd">
-            <td>Datasource Column Name</td>
-            <td>EmployeeNumber</td>
-            </tr>
-            <tr class="even">
-            <td>Schema Type</td>
-            <td>String</td>
-            </tr>
-            </tbody>
-            </table>   
+              <table>
+              <tr>
+                      <th>Property</th>
+                      <th>Description</th>
+                  </tr>
+              <tbody>
+              <tr class="odd">
+              <td>Datasource Type</td>
+              <td>column</td>
+              </tr>
+              <tr class="even">
+              <td>Output Field Name</td>
+              <td>EmployeeNumber</td>
+              </tr>
+              <tr class="odd">
+              <td>Datasource Column Name</td>
+              <td>EmployeeNumber</td>
+              </tr>
+              <tr class="even">
+              <td>Schema Type</td>
+              <td>String</td>
+              </tr>
+              </tbody>
+              </table>   
+
         3.  Save the element.
 
-9.  Follow the same steps to create the following output elements:
 
-    | Datasource Type | Output Field Name | Datasource Column Name | Schema Type |
-    |-----------------|-------------------|------------------------|-------------|
-    | column          | FirstName         | FirstName              | string      |
-    | column          | LastName          | LastName               | string      |
-    | column          | Email             | Email                  | string      |
+Follow the same steps to create the following output elements:
+
+| Datasource Type | Output Field Name | Datasource Column Name | Schema Type |
+|-----------------|-------------------|------------------------|-------------|
+| column          | FirstName         | FirstName              | string      |
+| column          | LastName          | LastName               | string      |
+| column          | Email             | Email                  | string      |
    
- 
+   
 You will now have the following output elements created:
 
 ![](../../assets/img/tutorials/data_services/output_mapings.png)
