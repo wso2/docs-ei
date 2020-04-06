@@ -326,7 +326,7 @@ nav:
       - Advanced Development Tasks:
         - 'Injecting Parameters as Environment Variables': 'develop/injecting-parameters.md'
         - 'Changing the Endpoint of a Deployed Service': 'develop/advanced-development/changing-the-endpoint-of-deployed-service.md'
-        - 'Generating Swagger Documents for APIs': 'develop/advanced-development/generating-swagger-for-apis.md'
+        - 'Using Swagger Documents': 'develop/advanced-development/using-swagger-for-apis.md'
       - 'Managing the Registry': 'develop/creating-artifacts/registry/managing-the-Registry.md'
     - Observability:
       - 'Micro Integrator Dashboard': 'administer-and-observe/working-with-monitoring-dashboard.md'
