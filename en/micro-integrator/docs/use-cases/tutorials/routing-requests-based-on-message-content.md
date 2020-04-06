@@ -315,9 +315,7 @@ You can now start configuring the API resource.
         extracted from the request, which we can do using an XPath
         expression.)    </li>
                         <li>
-                            <b>Value/Expression</b> : Click <b>browse (...)</b> in the
-                            <b>Value/Expression</b> field and enter
-        `fn:concat('Routing to ', get-property('Hospital'))`.
+                            <b>Property Expression</b> : Click the text box to open the <b>Expression Selector</b> dialog box and enter `fn:concat('Routing to ', get-property('Hospital'))` as the value.
                         </li>
                     </ul>
                 <b>Note</b>: This XPath expression value gets the value stored in the Property mediator and concatenates the two strings to display the log message: `Routing to <hospital name>`.
@@ -347,7 +345,7 @@ You can now start configuring the API resource.
 11. Add a **Log mediator** to the **Default** case (the bottom box) of the Switch mediator and configure it the same way as the previous Log mediators.
 
     !!! Note
-        Make sure to name this **Fault Log** and change its Value/Expression as follows:`fn:concat('Invalid hospital - ', get-property('Hospital'))`
+        Make sure to name this **Fault Log** and change the **Property Expression** value to:`fn:concat('Invalid hospital - ', get-property('Hospital'))`
 
     The default case of the Switch mediator handles the invalid hospital requests that are sent to the request payload. This logs the message (`Invalid hospital - <Hospital Name>`) for requests that have the invalid hospital name.
 
