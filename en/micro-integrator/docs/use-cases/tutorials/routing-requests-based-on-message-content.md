@@ -13,13 +13,20 @@ To implement this use case, you will add a new REST resource to the existing RES
 
 ### Step 1: Set up the workspace
 
-To set up the tools:
+Set up WSO2 Integration Studio as follows:
 
--  Download the relevant [WSO2 Integration Studio](https://wso2.com/integration/tooling/) based on your operating system.  The path to the extracted/installed folder is referred to as `MI_TOOLING_HOME` throughout this tutorial.
--  Download the [CLI Tool](https://wso2.com/integration/micro-integrator/install/) for monitoring artifact deployments.
+1.  Download the relevant [WSO2 Integration Studio](https://wso2.com/integration/tooling/) based on your operating system. The path to the extracted/installed folder is referred to as `MI_TOOLING_HOME` throughout this tutorial.
+2.   If you did not try the [Sending a Simple Message to a Service](sending-a-simple-message-to-a-service.md) tutorial yet:
+    1.  Download the [pre-packaged project](https://github.com/wso2-docs/WSO2_EI/blob/master/Integration-Tutorial-Artifacts/SimpleMessageToServiceTutorial.zip).
+    2.  Open WSO2 Integration Studio and go to **File -> Import**. 
+    3.  Select **Existing WSO2 Projects into workspace** under the **WSO2** category, click **Next**, and then upload the **prepackaged project**.
 
-If you did not try the [Sending a Simple Message to a Service](sending-a-simple-message-to-a-service.md) tutorial yet, open WSO2 Integration Studio, click **File**, and click **Import**. Next, expand the **WSO2** category and select **Existing WSO2 Projects into workspace**, click **Next** and upload the [pre-packaged
-project](https://github.com/wso2-docs/WSO2_EI/blob/master/Integration-Tutorial-Artifacts/SimpleMessageToServiceTutorial.zip). 
+Optionally, you can set up the **CLI tool** for artifact monitoring. This will later help you get details of the artifacts that you deploy in your Micro Integrator.
+
+1.  Go to the [WSO2 Micro Integrator website](https://wso2.com/integration/#). 
+2.  Click **Download -> Other Resources** and click **CLI Tooling** to download the tool. 
+3.  Extract the downloaded ZIP file. This will be your `MI_CLI_HOME` directory. 
+4.  Export the `MI_CLI_HOME/bin` directory path as an environment variable. This allows you to run the tool from any location on your computer using the `mi` command. Read more about the [CLI tool](../../../administer-and-observe/using-the-command-line-interface). 
 
 ### Step 2: Develop the integration artifacts
 
@@ -27,13 +34,13 @@ Follow the instructions given in this section to create and configure the requir
 
 #### Create Endpoints
 
-In this tutorial we have three hospital services hosted as the backend:
+In this tutorial, we have three hospital services hosted as the backend:
 
 -   Grand Oak Community Hospital: `http://localhost:9090/grandoaks/`
 -   Clemency Medical Center: `http://localhost:9090/clemency/`
 -   Pine Valley Community Hospital: `http://localhost:9090/pinevalley/`
 
-The request method is POST and the format of the request URL expected by the backend services is
+The request method is POST and the format of the request URL expected by the back-end services is
 `http://localhost:9090/grandoaks/categories/{category}/reserve`.
 
 Let's create three different HTTP endpoints for the above services.
@@ -41,6 +48,7 @@ Let's create three different HTTP endpoints for the above services.
 1.  Right-click **SampleServices** in the Project Explorer and navigate to **New -> Endpoint**. 
 2.  Ensure **Create a New Endpoint** is selected and click **Next**.
 3.  Enter the information given below to create the new endpoint.
+
     <table>
         <tr>
             <th>Property</th>
@@ -75,6 +83,15 @@ Let's create three different HTTP endpoints for the above services.
             </td>
         </tr>
         <tr>
+            <td>Method</td>
+            <td>
+                <code>POST</code>
+            </td>
+            <td>
+                Endpoint HTTP REST Method.
+            </td>
+        </tr>
+        <tr>
          <td>Static Endpoint</td>
          <td><br/>
          </td>
@@ -87,7 +104,7 @@ Let's create three different HTTP endpoints for the above services.
       </tr>
     </table>
 
-    ![](../../assets/img/tutorials/119132155/119132166.png)
+    <img src="../../../assets/img/tutorials/119132155/119132166.png" width="500">
 
 4.  Click **Finish**.
 5.  Similarly, create the HTTP endpoints for the other two hospital services using the URI Templates given below:
@@ -150,29 +167,40 @@ You can now start configuring the API resource.
         </tr>
       <tr class="odd">
          <td>Property Name</td>
-         <td>Enter <code>               New Property...              </code>.</td>
+         <td>Enter <code>New Property...</code>.</td>
       </tr>
       <tr class="even">
          <td>New Property Name</td>
-         <td>Enter <code>               Hospital              </code>.</td>
+         <td>Enter <code>Hospital</code>.</td>
       </tr>
       <tr class="odd">
          <td>Property Action</td>
-         <td>Enter <code>               set              </code>.</td>
+         <td>Enter <code>set</code>.</td>
       </tr>
       <tr class="even">
-         <td>Value Type</td>
-         <td>Enter <code>               EXPRESSION              </code>.</td>
+         <td>Property Scope</td>
+         <td>Enter <code>default</code>.</td>
       </tr>
       <tr class="odd">
+         <td>Value Type</td>
+         <td>Enter <code>EXPRESSION</code>.</td>
+      </tr>
+      <tr class="even">
          <td>Value Expression</td>
          <td>
             <div class="content-wrapper">
-               <p>Click <strong>Value</strong> field of Value Expression in the <strong>Property</strong> tab and add the following expression:<br />
-                  <code>                 json-eval($.hospital)                </code>
-               </p>
+              <p>Follow the steps given below to specify the expression:</p>
+            <ol>
+                <li>Click the text box of the <strong>Value Expression</strong> field. This opens the <b>Expression Selector</b> dialog.</li>
+               <li>Select <strong>Expression</strong> from the list.
+                </li>
+               <li>Enter <code>json-eval($.hospital)</code> to overwrite the default expression.</li>
+               <li>Click <strong>OK.</strong> <strong><br />
+                  </strong>
+               </li>
+            </ol>
                <b>Note</b>:
-               <p>This is the JSONPath expression that will extract the hospital from the request payload.</p>
+               This is the JSONPath expression that will extract the hospital from the request payload.
             </div>
          </td>
       </tr>
@@ -183,7 +211,7 @@ You can now start configuring the API resource.
 
     ![](../../assets/img/tutorials/119132155/119132163.png) 
 
-    We hae three different hospital endpoints, which corresponds to three switch cases. Enter 3 for **Number of branches** and click **OK**.  
+    We have three different hospital endpoints, which corresponds to three switch cases. Enter 3 for **Number of branches** and click **OK**.  
 
     ![](../../assets/img/tutorials/119132155/switch-cases-dialog.png)
 
@@ -200,9 +228,10 @@ You can now start configuring the API resource.
             <p>The <strong>Source XPath</strong> field is where we specify the XPath expression, which obtains the value of Hospital that we stored in the Property mediator.</p>
             <p>Follow the steps given below to specify the expression:</p>
             <ol>
-               <li>Click in the <strong>Value</strong> field of the <strong>Source XPath</strong> property.</li>
-               <li>Click the <strong>browse (...)</strong> .</li>
-               <li>Enter <code>                  get-property('Hospital')                 </code> and overwrite the default expression.</li>
+                <li>Click the text box of the <strong>Source XPath</strong> property. This opens the <b>Expression Selector</b> dialog.</li>
+               <li>Select <strong>Expression</strong> from the list.
+                </li>
+               <li>Enter <code>                  get-property('Hospital')                 </code> to overwrite the default expression.</li>
                <li>Click <strong>OK.</strong> <strong><br />
                   </strong>
                </li>
@@ -216,10 +245,9 @@ You can now start configuring the API resource.
          <div class="content-wrapper">
             <p>Follow the steps given below to add the case branches:</p>
             <ol>
-               <li>Click in the <strong>Value</strong> field of the <strong>Case Branches</strong> property.</li>
-               <li>Click the <strong>browse (...)</strong> .</li>
+                <li>Double click each <b>case regex</b> (corresponding to each branch) that is listed. This will open the <b>SwitchCaseBranchOutputConnector</b> dialog.</li>
                <li>
-                  Change the RegExp values as follows:
+                  Change the RegEx values for the switch cases as follows:
                   <ul>
                      <li>Case 1: grand oak community hospital</li>
                      <li>Case 2:  clemency medical center</li>
@@ -270,35 +298,34 @@ You can now start configuring the API resource.
         <td>Properties</td>
         <td colspan="2">
             Follow the steps given below to extract the stock symbol from the request and print a welcome message in the log:
-            <ul>
+            <ol>
                 <li>
-                    Click the **Value** field of the **Properties** property, and then
-    click the **browse (...)** icon that appears.
+                    Click the <b>plus</b> icon (<img src="../../../assets/img/tutorials/common/plus-icon.png" width="30">)
+    to start defining a property. This opens the <b>LogProperty</b> dialog.
                 </li>
                 <li>
-                    In the Log Mediator Configuration dialog, click **New** , and then
-    add a property as follows:
-                    <ol>
+                    Add the following values in the <b>LogProperty</b> dialog:
+                    <ul>
                         <li>
-                        **Name** : `                    message                   `
+                            <b>Name</b> : `message`
                         </li>
                         <li> 
-                            **Type** : `EXPRESSION`. (We select `EXPRESSION`
+                            <b>Type</b> : `EXPRESSION`. (We select `EXPRESSION`
         because the required properties for the log message must be
         extracted from the request, which we can do using an XPath
         expression.)    </li>
                         <li>
-            **Value/Expression** : Click the **browse (...)** icon in the
-        **Value/Expression** field and enter
+                            <b>Value/Expression</b> : Click <b>browse (...)</b> in the
+                            <b>Value/Expression</b> field and enter
         `fn:concat('Routing to ', get-property('Hospital'))`.
                         </li>
-                    </ol>
-                <b>Note</b>: This XPath expression value gets the value stored in the Property mediator and concatenates the two strings to display the log message `Routing to <hospital name>`.
+                    </ul>
+                <b>Note</b>: This XPath expression value gets the value stored in the Property mediator and concatenates the two strings to display the log message: `Routing to <hospital name>`.
                 </li>
                 <li>
-                    Click OK.
+                    Click <b>OK</b>.
                 </li>
-            </ul>
+            </ol>
         </td>
     </tr>
     </table>
@@ -322,7 +349,7 @@ You can now start configuring the API resource.
     !!! Note
         Make sure to name this **Fault Log** and change its Value/Expression as follows:`fn:concat('Invalid hospital - ', get-property('Hospital'))`
 
-    The default case of the Switch mediator handles the invalid hospital requests that are sent to the request payload. This logs the message `Invalid hospital - <Hospital Name>` " for requests that have the invalid hospital name.
+    The default case of the Switch mediator handles the invalid hospital requests that are sent to the request payload. This logs the message (`Invalid hospital - <Hospital Name>`) for requests that have the invalid hospital name.
 
 12. Drag a **Respond mediator** next to the Log mediator you just added. This ensures that there is no further processing of the current message and returns the request message back to the client.  
 
@@ -341,10 +368,10 @@ Package the artifacts in your composite application project (SampleServicesCompo
 1.  Open the `          pom.xml         ` file in the composite application project POM editor.
 2.  Ensure that the following artifacts are selected in the POM file.
 
-    -   `            HealthcareAPI           `
-    -   `            ClemencyEP           `
-    -   `            GrandOakEP           `
-    -   `            PineValleyEP           `
+    -   `HealthcareAPI`
+    -   `ClemencyEP`
+    -   `GrandOakEP`
+    -   `PineValleyEP`
 
 3.  Save the project.
 
@@ -370,21 +397,108 @@ Let's test the use case by sending a simple client request that invokes the serv
     java -jar Hospital-Service-2.0.0-EI7.jar
     ```
 
+#### Get details of deployed artifacts (Optional)
+
+Let's use the **CLI Tool** to find the URL of the REST API (that is deployed in the Micro integrator) to which you will send a request.
+
+!!! Tip
+    Be sure to set up the CLI tool for your work environment as explained in the [first step](#step-1-set-up-the-workspace) of this tutorial.
+
+1.  Open a terminal and execute the following command to start the tool:
+    ```bash
+    mi
+    ```
+    
+2.  Log in to the CLI tool. Let's use the server administrator user name and password:
+    ```bash
+    mi remote login admin admin
+    ```
+
+    You will receive the following message: *Login successful for remote: default!*
+
+3.  Execute the following command to find the APIs deployed in the server:
+    ```bash
+    mi api show
+    ```
+
+    You will receive the following information:
+
+    *NAME : HealthcareAPI*            
+    *URL  : http://localhost:8290/healthcare* 
+
+Similarly, you can get details of other artifacts deployed in the server. Read more about [using the CLI tool](../../../administer-and-observe/using-the-command-line-interface).
+
 #### Send the client request
 
-Let's use the **CLI Tool** to find the URL of the REST API that is deployed in the Micro Integrator:
+Let's send a request to the API resource to make a reservation. You can use the embedded <b>HTTP Client</b> of WSO2 Integration Studio as follows:
 
-1.  Open a terminal and navigate to the `CLI_HOME/bin` directory.
-2.  Execute the following command to start the tool:
-    `./mi`
-3.  Execute the following command to find the APIs deployed in the server:
-    `mi show api`
+1. Open the <b>HTTP Client</b> of WSO2 Integration Studio.
 
-Let's send a request to the API resource to make a reservation.
+    !!! Tip
+        If you don't see the <b>HTTP Client</b> pane, go to <b>Window -> Show View - Other</b> and select <b>HTTP Client</b> to enable the client pane.
 
-1.  Create a JSON file names `           request.json          ` with
-    the following request payload.
+    <img src="../../../assets/img/tutorials/common/http4e-client-empty.png" width="800">
 
+2. Enter the request information as given below and click the <b>Send</b> icon (<img src="../../../assets/img/tutorials/common/play-head-icon.png" width="20">).
+    
+    <table>
+        <tr>
+            <th>Method</th>
+            <td>
+               <code>POST</code> 
+            </td>
+        </tr>
+        <tr>
+            <th>Headers</th>
+            <td>
+              <code>Content-Type=application/json</code>
+            </td>
+        </tr>
+        <tr>
+            <th>URL</th>
+            <td><code>http://localhost:8290/healthcare/categories/surgery/reserve</code></br></br>
+              <ul>
+                <li>
+                  The URI-Template format that is used in this URL was defined when creating the API resource:
+          <code>http://<host>:<port>/categories/{category}/reserve</code>.
+                </li>
+              </ul>
+            </td>
+        </tr>
+        <tr>
+            <th>Body</th>
+            <td>
+            <div>
+              <code>
+                {
+                    "patient": {
+                    "name": "John Doe",
+                    "dob": "1940-03-19",
+                    "ssn": "234-23-525",
+                    "address": "California",
+                    "phone": "8770586755",
+                    "email": "johndoe@gmail.com"
+                    },
+                    "doctor": "thomas collins",
+                    "hospital": "grand oak community hospital",
+                    "appointment_date": "2025-04-02"
+                }
+              </code>
+            </div></br>
+            <ul>
+              <li>
+                This JSON payload contains details of the appointment reservation, which includes patient details, doctor, hospital, and data of appointment.
+              </li>
+            </ul>
+        </tr>
+     </table>
+     
+     <img src="../../../assets/img/tutorials/119132155/http4e-client.png" width="800">
+
+If you want to send the client request from your terminal:
+
+1. Install and set up [cURL](https://curl.haxx.se/) as your REST client.
+2. Create a JSON file named `request.json` with the following request payload.
     ```json
     {
         "patient": {
@@ -400,42 +514,15 @@ Let's send a request to the API resource to make a reservation.
         "appointment_date": "2025-04-02"
     }
     ```
-
-    !!! Info
-        You can also try using any of the following parameters in your
-        request payload.
-
-        For hospital:
-
-        -   clemency medical center
-        -   pine valley community hospital
-    
-        Doctor Names:
-        
-        -   thomas collins
-        -   henry parker
-        -   abner jones
-        -   anne clement
-        -   thomas kirk
-        -   cailen cooper
-        -   seth mears
-        -   emeline fulton
-        -   jared morris
-        -   henry foster
-
-2.  Open a terminal, navigate to the directory where you have saved the `           request.json          ` file and execute the following command.
-
+3. Open a terminal and navigate to the directory where you have saved the `request.json` file.
+4. Execute the following command.
     ```json
     curl -v -X POST --data @request.json http://localhost:8290/healthcare/categories/surgery/reserve --header "Content-Type:application/json"
     ```
 
-    !!! Info
-        The URI-Template format that is used in this command was defined when creating the API resource:
-        `http://<host>:<port>/categories/{category}/reserve`
-
 #### Analyze the response
 
-You get the following response:
+You will see the following response received to your <b>HTTP Client</b>:
 
 ```json
 {"appointmentNumber":1,

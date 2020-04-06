@@ -12,13 +12,20 @@ To build this mediation flow, you will update the API resource from the [previou
 
 ### Step 1: Set up the workspace
 
-To set up the tools:
+Set up WSO2 Integration Studio as follows:
 
--   Download the relevant [WSO2 Integration Studio](https://wso2.com/integration/tooling/) based on your operating system. The path to the extracted/installed folder is referred to as `MI_TOOLING_HOME` throughout this tutorial.
--  Download the [CLI Tool](https://wso2.com/integration/micro-integrator/install/) for monitoring artifact deployments.
+1.  Download the relevant [WSO2 Integration Studio](https://wso2.com/integration/tooling/) based on your operating system. The path to the extracted/installed folder is referred to as `MI_TOOLING_HOME` throughout this tutorial.
+2.  If you did not try the [Transforming Message Content](transforming-message-content.md) tutorial yet:  
+    1.  Download the [pre-packaged project](https://github.com/wso2-docs/WSO2_EI/blob/master/Integration-Tutorial-Artifacts/TransformingContentTutorial.zip). 
+    2.  Open WSO2 Integration Studio and go to **File -> Import**. 
+    3.  Select **Existing WSO2 Projects into workspace** under the **WSO2** category, click **Next**, and upload the **prepackaged project**. 
 
-If you did not try the [Transforming Message Content](transforming-message-content.md) tutorial yet, open WSO2 Integration Studio, click **File** , and then click **Import**. Next, select **Existing WSO2 Projects into workspace** under the **WSO2** category, click **Next** and upload the [pre-packaged project](https://github.com/wso2-docs/WSO2_EI/blob/master/Integration-Tutorial-Artifacts/TransformingContentTutorial.zip). 
+Optionally, you can set up the **CLI tool** for artifact monitoring. This will later help you get details of the artifacts that you deploy in your Micro Integrator.
 
+1.  Go to the [WSO2 Micro Integrator website](https://wso2.com/integration/#). 
+2.  Click **Download -> Other Resources** and click **CLI Tooling** to download the tool. 
+3.  Extract the downloaded ZIP file. This will be your `MI_CLI_HOME` directory. 
+4.  Export the `MI_CLI_HOME/bin` directory path as an environment variable. This allows you to run the tool from any location on your computer using the `mi` command. Read more about the [CLI tool](../../../administer-and-observe/using-the-command-line-interface).
 
 ### Step 2: Develop the integration artifacts
 
@@ -151,6 +158,7 @@ You can now start updating the API resource with the mediation flow.
     ![](../../assets/img/tutorials/119132228/119132238.png?effects=drop-shadow)  
 
 2.  With the Property mediator selected, access the Properties tab and specify the following details:
+
     <table>
         <tr>
             <th>Property</th>
@@ -172,10 +180,21 @@ You can now start updating the API resource with the mediation flow.
          <td>Value Type</td>
          <td>Enter <code>               EXPRESSION              </code>.</td>
       </tr>
-      <tr class="odd">
+      <tr class="even">
          <td>Value Expression</td>
          <td>
-            <code>json-eval($.cardNo)</code>
+            <div class="content-wrapper">
+              <p>Follow the steps given below to specify the expression:</p>
+            <ol>
+                <li>Click the text box for the <strong>Value Expression</strong> field. This opens the <b>Expression Selector</b> dialog.</li>
+               <li>Select <strong>Expression</strong> from the list.
+                </li>
+               <li>Enter <code>json-eval($.cardNo)</code> to overwrite the default expression.</li>
+               <li>Click <strong>OK.</strong> <strong><br />
+                  </strong>
+               </li>
+            </ol>
+            </div>
          </td>
       </tr>
       <tr>
@@ -242,7 +261,7 @@ You can now start updating the API resource with the mediation flow.
     
     Let's use Property mediators to retrieve and store the values that you get from the response you receive from GrandOakEP, ClemencyEP, or PineValleyEP.
 
-8.  Next to the Switch mediator, add a Property mediator to retrieve and store the value sent as `           appointmentNumber          ` .
+8.  Next to the Switch mediator, add a Property mediator to retrieve and store the value sent as `appointmentNumber` .
 
     ![](../../assets/img/tutorials/119132228/119132234.png) 
 
@@ -262,7 +281,7 @@ You can now start updating the API resource with the mediation flow.
     </tr>
     <tr class="even">
     <td>New Property Name</td>
-    <td>Enter <code>               uri.var.appointment_id              </code>.<br />
+    <td>Enter <code>uri.var.appointment_id</code>.<br />
     This value is used when invoking <b>ChannelingFeeEP</b>.</td>
     </tr>
     <tr class="odd">
@@ -273,10 +292,23 @@ You can now start updating the API resource with the mediation flow.
     <td>Value Type</td>
     <td>Select <strong>EXPRESSION</strong></td>
     </tr>
-    <tr class="odd">
-    <td>Value Expression</td>
-    <td><code>               json-eval($.appointmentNumber)              </code></td>
-    </tr>
+    <tr class="even">
+         <td>Value Expression</td>
+         <td>
+            <div class="content-wrapper">
+              <p>Follow the steps given below to specify the expression:</p>
+            <ol>
+                <li>Click the text box for the <strong>Value Expression</strong> field. This opens the <b>Expression Selector</b> dialog.</li>
+               <li>Select <strong>Expression</strong> from the list.
+                </li>
+               <li>Enter <code>json-eval($.appointmentNumber)</code> to overwrite the default expression.</li>
+               <li>Click <strong>OK.</strong> <strong><br />
+                  </strong>
+               </li>
+            </ol>
+            </div>
+         </td>
+      </tr>
     <tr class="even">
     <td>Description</td>
     <td>Get Appointment Number</td>
@@ -330,18 +362,23 @@ You can now start updating the API resource with the mediation flow.
                 Select <strong>set</strong>.
               </td>
             </tr>
-            <tr>
-              <td>Value Type</td>
-              <td>
-                Select <strong>EXPRESSION</strong>.
-              </td>
-            </tr>
-            <tr>
-              <td>Value Expression</td>
-              <td>
-                Enter <code>json-eval($.doctor)</code>.
-              </td>
-            </tr>
+            <tr class="even">
+                 <td>Value Expression</td>
+                 <td>
+                    <div class="content-wrapper">
+                      <p>Follow the steps given below to specify the expression:</p>
+                    <ol>
+                        <li>Click the text box for the <strong>Value Expression</strong> field. This opens the <b>Expression Selector</b> dialog.</li>
+                       <li>Select <strong>Expression</strong> from the list.
+                        </li>
+                       <li>Enter <code>json-eval($.doctor)</code> to overwrite the default expression.</li>
+                       <li>Click <strong>OK.</strong> <strong><br />
+                          </strong>
+                       </li>
+                    </ol>
+                    </div>
+                 </td>
+              </tr>
             <tr>
               <td>Description</td>
               <td>
@@ -379,30 +416,88 @@ You can now start updating the API resource with the mediation flow.
                 Select <strong>EXPRESSION</strong>
               </td>
             </tr>
-            <tr>
-              <td>Value Expression</td>
-              <td>
-                Enter <code>json-eval($.patient)</code>
-              </td>
-            </tr>
+            <tr class="even">
+                 <td>Value Expression</td>
+                 <td>
+                    <div class="content-wrapper">
+                      <p>Follow the steps given below to specify the expression:</p>
+                    <ol>
+                        <li>Click the text box for the <strong>Value Expression</strong> field. This opens the <b>Expression Selector</b> dialog.</li>
+                       <li>Select <strong>Expression</strong> from the list.
+                        </li>
+                       <li>Enter <code>json-eval($.patient)</code> to overwrite the default expression.</li>
+                       <li>Click <strong>OK.</strong> <strong><br />
+                          </strong>
+                       </li>
+                    </ol>
+                    </div>
+                 </td>
+              </tr>
           </table>
 
     ![](../../assets/img/tutorials/119132228/119132233.png)
 
 11.  Add a Call mediator and add ChannelingFeeEP from **Defined Endpoints** palette to the empty box adjoining the Call mediator.
-12.  Add a Property mediator adjoining the Call mediator box to retrieve and store the value sent as `           actualFee          `. 
+12.  Add a Property mediator adjoining the Call mediator box to retrieve and store the value sent as `actualFee`. 
 13.  Access the Property tab of the mediator and specify the following details:
 
-    | Property            | Description                                                                                                                                    |
-    |-------------------|--------------------------------------------------------------------------------------------------------------------------------------------------|
-    | Property Name     | Select **New Property**                                                                                                                          |
-    | New Property Name | `               actual_fee              ` (This value is used when invoking [SettlePaymentEP](#ExposingSeveralServicesasaSingleService-Settle) ) |
-    | Property Action   | Select **set**                                                                                                                                   |
-    | Value Type        | Select **EXPRESSION**                                                                                                                            |
-    | Value Expression  | `               json-eval($.actualFee)              `                                                                                            |
-    | Description       | Get Actual Fee                                                                                                                                   |
+      <table>
+            <tr>
+              <th>Property</th>
+              <th>Description</th>
+            </tr>
+            <tr>
+              <td>Property Name</td>
+              <td>Select <strong>New Property</strong></td>
+            </tr>
+            <tr>
+              <td>New Property Name</td>
+              <td>
+                  Enter <code>actual_fee</code></br></br>
+                  <b>Note</b>: This value is used when invoking <a src="#ExposingSeveralServicesasaSingleService-Settle">SettlePaymentEP</a>.
+              </td>
+            </tr>
+            <tr>
+              <td>Property Action</td>
+              <td>
+                Select <strong>set</strong>
+              </td>
+            </tr>
+            <tr>
+              <td>Value Type</td>
+              <td>
+                Select <strong>EXPRESSION</strong>
+              </td>
+            </tr>
+            <tr class="even">
+                 <td>Value Expression</td>
+                 <td>
+                    <div class="content-wrapper">
+                      <p>Follow the steps given below to specify the expression:</p>
+                    <ol>
+                        <li>Click the text box for the <strong>Value Expression</strong> field. This opens the <b>Expression Selector</b> dialog.</li>
+                       <li>Select <strong>Expression</strong> from the list.
+                        </li>
+                       <li>Enter <code>json-eval($.actualFee)</code> to overwrite the default expression.</li>
+                       <li>Click <strong>OK.</strong> <strong><br />
+                          </strong>
+                       </li>
+                    </ol>
+                    </div>
+                 </td>
+              </tr>
+              <tr>
+                <td>
+                    Description
+                </td>
+                <td>
+                    Get Actual Fee
+                </td>
+              </tr>
+          </table>
 
     ![](../../assets/img/tutorials/119132228/119132232.png)
+    
 
     !!! Note
         You derive the Value Expression in the above table from the following response that is received from ChannelingFeeEP:
@@ -438,8 +533,7 @@ You can now start updating the API resource with the mediation flow.
     ```
 
 15.  Add a PayloadFactory mediator next to the Property mediator, from the **mediators** palette to construct the above message payload.
-
-    ![](../../assets/img/tutorials/119132228/119132229.png) 
+      ![](../../assets/img/tutorials/119132228/119132229.png) 
 
 16. With the Payloadfactory mediator selected, access the properties tab of the mediator and specify the following details:
 
@@ -449,26 +543,63 @@ You can now start updating the API resource with the mediation flow.
     | Media Type     | Select <strong>json</strong>                                                                           |
     | Payload        | `{"appointmentNumber":$1, "doctor":$2, "patient":$3, "fee":$4, "confirmed":"false", "card_number":"$5"}`</br></br> This is the message payload to send with the request to SettlePaymentEP. In this payload, $1, $2, $3, $4, and $5 indicate variables. |
     
-17. To add the **Args** field for the PayloadFactory mediator, click the **Add (+)** icon in the **Args** field and enter the following information as in the table below. It provides the argument that defines the actual value of the first variable used in the format definition in the previous step.
+17. To add the **Args** field for the PayloadFactory mediator:
+    1. Click the **plus** icon (<img src="../../../assets/img/tutorials/common/plus-icon.png" width="30">) in the **Args** field to open the **PayloadFactoryArgument** dialog. 
+    2. Enter the following information in the **PayloadFactoryArgument** dialog. This provides the argument that defines the actual value of the first variable (used in the format definition given in the previous step).
 
-    !!! Tip
-        To avoid getting an error message, first select the **Media Type** before providing the **Payload.**
+        !!! Tip
+            To avoid getting an error message, first select the **Media Type** before providing the **Payload.**
 
-    | Field         | Description                                                  | Description                                                          |
-    |---------------|--------------------------------------------------------------|----------------------------------------------------------------------|
-    | **Type**      | Expression                                                   | -                                                                    |
-    | **Value**     | `$ctx:uri.var.appointment_id `                               | The value for the first variable ($1) in the message payload format. |
-    | **Evaluator** | xml                                                          | Indicates that the expression provided is in XML.                    |
-
-    !!! Info
-        The `           $ctx          ` method is similar to using the `           get-property          ` method. This method checks in the message context.
+        <table>
+          <tr>
+            <th>Property</th>
+            <th>Description</th>
+          </tr>
+          <tr>
+            <td>
+              Argument Type
+            </td>
+            <td>
+              Select <code>Expression</code>.
+            </td>
+          </tr>
+          <tr class="even">
+             <td>Argument Expression</td>
+             <td>
+                <div class="content-wrapper">
+                  <p>Follow the steps given below to specify the expression:</p>
+                <ol>
+                    <li>Click the text box for the <strong>Argument Expression</strong> field. This opens the <b>Expression Selector</b> dialog.</li>
+                   <li>Select <strong>Expression</strong> from the list.
+                    </li>
+                   <li>
+                      Enter "$ctx:uri.var.appointment_id".
+                      Note that the "$ctx" method is similar to using the <code>get-property</code> method. This method checks in the message context.
+                   </li>
+                   <li>Click <strong>OK.</strong> <strong><br/>
+                      </strong>
+                   </li>
+                </ol>
+                </div>
+             </td>
+          </tr>
+          <tr>
+            <td>
+                Evaluator
+            </td>
+            <td>
+                Select <code>xml</code>.</br></br>
+                This indicates that the expression is provided in XML.
+            </td>
+          </tr>
+        </table>
     
 18. Similarly, click **Add** and add more arguments to define the other variables that are used in the message payload format definition. Use the following as the **Value** for each of them:
 
     -   `$ctx:doctor_details`  
-    -   `           $ctx:patient_details          `  
-    -   `           $ctx:actual_fee          `  
-    -   `           $ctx:card_number          `  
+    -   `$ctx:patient_details`  
+    -   `$ctx:actual_fee`  
+    -   `$ctx:card_number`  
 
     ![](../../assets/img/tutorials/119132228/119132231.png)
 
@@ -519,20 +650,107 @@ Let's test the use case by sending a simple client request that invokes the serv
     java -jar Hospital-Service-2.0.0-EI7.jar
     ```
 
+#### Get details of deployed artifacts (Optional)
+
+Let's use the **CLI Tool** to find the URL of the REST API (that is deployed in the Micro integrator) to which you will send a request.
+
+!!! Tip
+    Be sure to set up the CLI tool for your work environment as explained in the [first step](#step-1-set-up-the-workspace) of this tutorial.
+
+1.  Open a terminal and execute the following command to start the tool:
+    ```bash
+    mi
+    ```
+    
+2.  Log in to the CLI tool. Let's use the server administrator user name and password:
+    ```bash
+    mi remote login admin admin
+    ```
+
+    You will receive the following message: *Login successful for remote: default!*
+
+3.  Execute the following command to find the APIs deployed in the server:
+    ```bash
+    mi api show
+    ```
+
+    You will receive the following information:
+
+    *NAME : HealthcareAPI*            
+    *URL  : http://localhost:8290/healthcare* 
+
+Similarly, you can get details of other artifacts deployed in the server. Read more about [using the CLI tool](../../../administer-and-observe/using-the-command-line-interface).
+
 #### Send the client request
 
-Let's use the **CLI Tool** to find the URL of the REST API that is deployed in the Micro Integrator:
+Let's send a request to the API resource to make a reservation. You can use the embedded <b>HTTP Client</b> of WSO2 Integration Studio as follows:
 
-1.  Open a terminal and navigate to the `CLI_HOME/bin` directory.
-2.  Execute the following command to start the tool:
-    `./mi`
-3.  Execute the following command to find the APIs deployed in the server:
-    `mi api show`
+1. Open the <b>HTTP Client</b> of WSO2 Integration Studio.
 
-Let's send a request to the API resource.
+    !!! Tip
+        If you don't see the <b>HTTP Client</b> pane, go to <b>Window -> Show View - Other</b> and select <b>HTTP Client</b> to enable the client pane.
 
-1.  Create a JSON file named `           request.json          ` with the following request payload.
+    <img src="../../../assets/img/tutorials/common/http4e-client-empty.png" width="800">
+    
+2. Enter the request information as given below and click the <b>Send</b> icon (<img src="../../../assets/img/tutorials/common/play-head-icon.png" width="20">).
+    
+    <table>
+        <tr>
+            <th>Method</th>
+            <td>
+               <code>POST</code> 
+            </td>
+        </tr>
+        <tr>
+            <th>Headers</th>
+            <td>
+              <code>Content-Type=application/json</code>
+            </td>
+        </tr>
+        <tr>
+            <th>URL</th>
+            <td><code>http://localhost:8290/healthcare/categories/surgery/reserve</code></br></br>
+              <ul>
+                <li>
+                  The URI-Template format that is used in this URL was defined when creating the API resource:
+          <code>http://<host>:<port>/categories/{category}/reserve</code>.
+                </li>
+              </ul>
+            </td>
+        </tr>
+        <tr>
+            <th>Body</th>
+            <td>
+            <div>
+              <code>
+                {
+                 "name": "John Doe",
+                 "dob": "1940-03-19",
+                 "ssn": "234-23-525",
+                 "address": "California",
+                 "phone": "8770586755",
+                 "email": "johndoe@gmail.com",
+                 "doctor": "thomas collins",
+                 "hospital": "grand oak community hospital",
+                 "cardNo": "7844481124110331",
+                 "appointment_date": "2025-04-02"
+                }
+              </code>
+            </div></br>
+            <ul>
+              <li>
+                This JSON payload contains details of the appointment reservation, which includes patient details, doctor, hospital, and data of appointment.
+              </li>
+            </ul>
+        </tr>
+     </table>
+     
+     <img src="../../../assets/img/tutorials/119132228/http4e-client-service-chaining.png" width="800">
 
+If you want to send the client request from your terminal:
+
+1. Install and set up [cURL](https://curl.haxx.se/) as your REST client.
+2. Create a JSON file named `request.json` with the following request payload.
     ```json
     {
      "name": "John Doe",
@@ -547,20 +765,15 @@ Let's send a request to the API resource.
      "appointment_date": "2025-04-02"
     }
     ```
-
-2.  Open a command line terminal and execute the following command from the location where the `           request.json          ` file is
-    saved:
-
-    ```bash
+3. Open a terminal and navigate to the directory where you have saved the `request.json` file.
+4. Execute the following command.
+    ```json
     curl -v -X POST --data @request.json  http://localhost:8290/healthcare/categories/surgery/reserve  --header "Content-Type:application/json"
     ```
 
-    !!! Info
-        This is derived from the **URI-Template** defined when creating the API resource: `http://<host>:<port>/categories/{category}/reserve`
-    
 #### Analyze the response
 
-You will see the response as follows:
+You will see the response received to your <b>HTTP Client</b>:
 
 ```json
 {  

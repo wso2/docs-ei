@@ -10,12 +10,19 @@ When you integrate the systems in your organizaion, it is also necessary to inte
 
 ### Step 1: Set up the workspace
 
-To set up the tools:
+Set up WSO2 Integration Studio as follows:
 
--   Download the relevant [WSO2 Integration Studio](https://wso2.com/integration/tooling/) based on your operating system.  The path to the extracted/installed folder is referred to as `MI_TOOLING_HOME` throughout this tutorial.
--   Download the [CLI Tool](https://wso2.com/integration/micro-integrator/install/) for monitoring artifact deployments.
+1.  Download the relevant [WSO2 Integration Studio](https://wso2.com/integration/tooling/) based on your operating system. The path to the extracted/installed folder is referred to as `MI_TOOLING_HOME` throughout this tutorial.
+2.   If you did not try the [asynchronous messaging](storing-and-forwarding-messages.md) tutorial yet:
+    1.  Open WSO2 Integration Studio and go to **File -> Import**. 
+    2.  Select **Existing WSO2 Projects into workspace** under the **WSO2** category, click **Next**, and then upload the [pre-packaged project](https://github.com/wso2-docs/WSO2_EI/blob/master/Integration-Tutorial-Artifacts/StoreAndForwardTutorial.zip).
 
-If you did not try the [asynchronous messaging](storing-and-forwarding-messages.md) tutorial yet, open WSO2 Integration Studio, click **File** , and then click **Import** . Next, select **Existing WSO2 Projects into workspace** under the **WSO2** category, click **Next** and upload the [pre-packaged project](https://github.com/wso2-docs/WSO2_EI/blob/master/Integration-Tutorial-Artifacts/StoreAndForwardTutorial.zip).
+Optionally, you can set up the **CLI tool** for artifact monitoring. This will later help you get details of the artifacts that you deploy in your Micro Integrator.
+
+1.  Go to the [WSO2 Micro Integrator website](https://wso2.com/integration/#). 
+2.  Click **Download -> Other Resources** and click **CLI Tooling** to download the tool. 
+3.  Extract the downloaded ZIP file. This will be your `MI_CLI_HOME` directory. 
+4.  Export the `MI_CLI_HOME/bin` directory path as an environment variable. This allows you to run the tool from any location on your computer using the `mi` command. Read more about the [CLI tool](../../../administer-and-observe/using-the-command-line-interface).
 
 ### Step 2: Develop the integration artifacts
 
@@ -59,20 +66,19 @@ Follow these steps to automatically refresh the expired token when connecting to
 #### Importing the Gmail Connector into WSO2 Integration Studio
 
 1. Right click on **Sample Services** in the Project Explorer and select **Add or Remove Connector**.
-2. Select **Add Connector** and click **Next**.
-3. Select **Connector Store location** and click **Connect** to connect to [WSO2 Connector store](https://store.wso2.com).
-4. Scroll down and select **Gmail** from the list of connectors.  
+2. Select **Add Connector** and click **Next**. You are now connected to the [WSO2 Connector store](https://store.wso2.com).
+3. Find **Gmail** from the list of connectors and click the **Download** button (for the Gmail connector). 
     ![](../../assets/img/tutorials/119132294/import-gmail-connector.png)
 
-5. Click **Finish**.
-   The connector is now downloaded into your WSO2 Integration Studio and the connector operations will be available in the Gmail Connector palette.  
+4. Click **Finish**.
+   The connector is now downloaded to your workspace in WSO2 Integration Studio and the connector operations are available in the Gmail Connector palette.  
     ![](../../assets/img/tutorials/119132294/select-connector-dialog.png)
 
 Let's use these connector operations in the configuration.
 
 #### Update the message flow
 
-The connector operations are used in the **PaymentRequestProcessingSequence**. Select this sequence and do the following updates:
+The connector operations are used in the sequence named **PaymentRequestProcessingSequence**. Select this sequence and do the following updates:
 
 1.  Add a Property Mediator just before the Call mediator to retrieve and store the patient's email address.
 
@@ -80,14 +86,48 @@ The connector operations are used in the **PaymentRequestProcessingSequence**. S
 
 2.  With the Property mediator selected, access the **Property** tab of the mediator and fill in the information in the following table:
 
-    | Property          | Value                      |
-    |-------------------|----------------------------|
-    | Property Name     | Select **New Property**    |
-    | New Property Name | email_id                   |
-    | Property Action   | Select **Set**             |
-    | Value Type        | Select **Expression**      |
-    | Value Expression  | json-eval($.patient.email) |
-    | Description       | Get Email ID               |
+    <table>
+        <tr>
+            <th>Property</th>
+            <th>Description</th>
+        </tr>
+      <tr class="odd">
+         <td>Property Name</td>
+         <td>Enter <code>               New Property...              </code>.</td>
+      </tr>
+      <tr class="even">
+         <td>New Property Name</td>
+         <td>Enter <code>email_id</code>.</td>
+      </tr>
+      <tr class="odd">
+         <td>Property Action</td>
+         <td>Enter <code>               set              </code>.</td>
+      </tr>
+      <tr class="even">
+         <td>Value Type</td>
+         <td>Enter <code>               EXPRESSION              </code>.</td>
+      </tr>
+      <tr class="even">
+         <td>Value Expression</td>
+         <td>
+            <div class="content-wrapper">
+              <p>Follow the steps given below to specify the expression:</p>
+            <ol>
+                <li>Click the text box for the <strong>Value Expression</strong> field. This opens the <b>Expression Selector</b> dialog box.</li>
+               <li>Select <strong>Expression</strong> from the list.
+                </li>
+               <li>Enter <code>json-eval($.patient.email)</code> to overwrite the default expression.</li>
+               <li>Click <strong>OK</strong>.<br />
+               </li>
+            </ol>
+            </div>
+         </td>
+      </tr>
+      <tr>
+          <td>Description</td>
+          <td>Get Email ID</td>
+      </tr>
+    </table>
 
 3.  Add another Property mediator just after the Log mediator to retrieve and store the response sent from SettlePaymentEP. This will be used within the body of the email.
 
@@ -209,15 +249,18 @@ Let's test the use case by sending a simple client request that invokes the serv
 
 #### Start the Message Broker runtime
 
-To set up WSO2 Message Broker:
+Set up the Message Broker profile of WSO2 EI 6.6.0. This is required because the Message Broker profile is used for guaranteed message delivery in this use case.
 
-1. Download WSO2 Message Broker. The path to this folder is referred to as `MB_HOME` throughout this tutorial.
-2. Add the following JAR files from the `MB_HOME/wso2/broker/client-lib/` directory to the  `MI_TOOLING_HOME/Contents/Eclipse/runtime/microesb/lib/` (in MacOS) or  `MI_TOOLING_HOME/runtime/microesb/lib` (in Windows) directory.
+1. Download [WSO2 EI 6.6.0](https://wso2.com/enterprise-integrator/6.6.0), which includes the Message Broker profile. The path to this folder is referred to as `EI_6.6.0_HOME` throughout this tutorial.
+
+2. Add the following JAR files from the `EI_6.6.0_HOME/wso2/broker/client-lib/` directory to the 
+`MI_TOOLING_HOME/Contents/Eclipse/runtime/microesb/lib/` (in MacOS) or 
+`MI_TOOLING_HOME/runtime/microesb/lib` (in Windows/Linux) directory.
     -   andes-client-*.jar
     -   geronimo-jms_1.1_spec-*.jar
     -   org.wso2.securevault-*.jar
 3. Open the `deployment.toml` file from the `MI_TOOLING_HOME/Contents/Eclipse/runtime/microesb/conf/` (in MacOS) or 
-`MI_TOOLING_HOME/runtime/microesb/conf/` (in Windows) directory and add the configurations given below. This is required for enabling the broker to store messages.
+`MI_TOOLING_HOME/runtime/microesb/conf/` (in Windows/Linux) directory and add the configurations given below. This is required for enabling the broker to store messages.
 
     ```toml
     [[transport.jms.listener]]
@@ -239,16 +282,16 @@ To set up WSO2 Message Broker:
     parameter.cache_level = "producer"
 
     [transport.jndi.connection_factories]
-    QueueConnectionFactory = "amqp://admin:admin@clientID/carbon?brokerlist='tcp://localhost:5675'"
+    'connectionfactory.QueueConnectionFactory' = "amqp://admin:admin@clientID/carbon?brokerlist='tcp://localhost:5675'"
 
     [transport.jndi.queue]
     PaymentRequestJMSMessageStore="PaymentRequestJMSMessageStore"
     ```
+    
+To start the Message Broker:
 
-To start WSO2 Message Broker:
-
-1.  Open a terminal and navigate to the `MI_HOME/wso2/broker/bin` directory.
-2.  Execute the following command to run the in message broker. 
+1.  Open a terminal and navigate to the `EI_6.6.0_HOME/wso2/broker/bin` directory.
+2.  Execute the following command to run the message broker. 
     
     -   On **MacOS/Linux/CentOS**:
 
@@ -262,28 +305,118 @@ To start WSO2 Message Broker:
         wso2server.bat
         ```
 
-    See the [WSO2 EI 6.5.0 documentation](https://docs.wso2.com/display/EI650/Running+the+Product) for more information on how to run the WSO2 MB.
+    See the [WSO2 EI 6.6.0 documentation](https://docs.wso2.com/display/EI660/Running+the+Product) for more information on how to run the Message Broker profile.
 
 #### Restart the Micro Integrator
 
-Start the Micro Integrator on WSO2 Integration Studio.
+Let's restart the Micro Integrator with the deployed artifacts:
+
+Right-click the composite application project and click **Export Project Artifacts and Run** as shown below.
+
+<img src="../../../assets/img/tutorials/restart_server.png" width="400">
+
+#### Get details of deployed artifacts (Optional)
+
+Let's use the **CLI Tool** to find the URL of the REST API (that is deployed in the Micro integrator) to which you will send a request.
+
+!!! Tip
+    Be sure to set up the CLI tool for your work environment as explained in the [first step](#step-1-set-up-the-workspace) of this tutorial.
+
+1.  Open a terminal and execute the following command to start the tool:
+    ```bash
+    mi
+    ```
+    
+2.  Log in to the CLI tool. Let's use the server administrator user name and password:
+    ```bash
+    mi remote login admin admin
+    ```
+
+    You will receive the following message: *Login successful for remote: default!*
+
+3.  Execute the following command to find the APIs deployed in the server:
+    ```bash
+    mi api show
+    ```
+
+    You will receive the following information:
+
+    *NAME : HealthcareAPI*            
+    *URL  : http://localhost:8290/healthcare* 
+
+Similarly, you can get details of Connectors as well as other artifacts deployed in the server. Read more about [using the CLI tool](../../../administer-and-observe/using-the-command-line-interface).
 
 #### Send the client request
 
-Let's use the **CLI Tool** to find the URL of the REST API that is deployed in the Micro Integrator:
+Let's send a request to the API resource. You can use the embedded <b>HTTP Client</b> of WSO2 Integration Studio as follows:
 
-1.  Open a terminal and navigate to the `CLI_HOME/bin` directory.
-2.  Execute the following command to start the tool:
-    `./mi`
-3.  Execute the following command to find the APIs deployed in the server:
-    `mi api show`
+1. Open the <b>HTTP Client</b> of WSO2 Integration Studio.
+
+    !!! Tip
+        If you don't see the <b>HTTP Client</b> pane, go to <b>Window -> Show View - Other</b> and select <b>HTTP Client</b> to enable the client pane.
+
+    <img src="../../../assets/img/tutorials/common/http4e-client-empty.png" width="800">
     
-    Note: Please remember to login to CLI using `mi remote login` command giving `admin` as both username and 
-        password before executing the above command.
+2. Enter the request information as given below and click the <b>Send</b> icon (<img src="../../../assets/img/tutorials/common/play-head-icon.png" width="20">).
+    
+    <table>
+        <tr>
+            <th>Method</th>
+            <td>
+               <code>POST</code> 
+            </td>
+        </tr>
+        <tr>
+            <th>Headers</th>
+            <td>
+              <code>Content-Type=application/json</code>
+            </td>
+        </tr>
+        <tr>
+            <th>URL</th>
+            <td><code>http://localhost:8290/healthcare/categories/surgery/reserve</code></br></br>
+              <ul>
+                <li>
+                  The URI-Template format that is used in this URL was defined when creating the API resource:
+          <code>http://<host>:<port>/categories/{category}/reserve</code>.
+                </li>
+              </ul>
+            </td>
+        </tr>
+        <tr>
+            <th>Body</th>
+            <td>
+            <div>
+              <code>
+                {
+                 "name": "John Doe",
+                 "dob": "1940-03-19",
+                 "ssn": "234-23-525",
+                 "address": "California",
+                 "phone": "8770586755",
+                 "email": "johndoe@gmail.com",
+                 "doctor": "thomas collins",
+                 "hospital": "grand oak community hospital",
+                 "cardNo": "7844481124110331",
+                 "appointment_date": "2025-04-02"
+                }
+              </code>
+            </div></br>
+            <ul>
+              <li>
+                This JSON payload contains details of the appointment reservation, which includes patient details, doctor, hospital, and data of appointment.
+              </li>
+            </ul>
+        </tr>
+     </table>
+     
+     <img src="../../../assets/img/tutorials/119132294/http-client-request-config.png" width="800">
 
-Let's send a request to the API resource.
+If you want to send the client request from your terminal:
 
-1.  Create a JSON file names `request.json` with the following request payload. Make sure you provide a valid email address so that you can test the email being sent to the patient.
+1.  Install and set up [cURL](https://curl.haxx.se/) as your REST client.
+
+2.  Create a JSON file names `request.json` with the following request payload. Make sure you provide a valid email address so that you can test the email being sent to the patient.
 
     ```json
     {
@@ -300,16 +433,13 @@ Let's send a request to the API resource.
     }
     ```
 
-2.  Open a command line terminal and execute the following command from the location where `           request.json          ` file you created is saved:
+3.  Open a command line terminal and execute the following command from the location where the `request.json` file you created is saved:
 
     ```bash
     curl -v -X POST --data @request.json http://localhost:8290/healthcare/categories/surgery/reserve --header 
     "Content-Type:application/json"
     ```
-
-    !!! Info
-        This is derived from the **URI-Template** defined when creating the API resource: `http://<host>:<port>/categories/{category}/reserve`
-    
+   
 #### Analyze the response
 
 You will see the response as follows:

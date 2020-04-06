@@ -10,31 +10,39 @@ To implement this use case, you will create a REST API resource and other artifa
 
 ### Step 1: Set up the workspace
 
--  Download the relevant [WSO2 Integration Studio](https://wso2.com/integration/tooling/) based on your operating system.  The path to the extracted/installed folder is referred to as `MI_TOOLING_HOME` throughout this tutorial.
--  Download the [CLI Tool](https://wso2.com/integration/micro-integrator/install/) for monitoring artifact deployments.
+- Download the relevant [WSO2 Integration Studio](https://wso2.com/integration/tooling/) based on your operating system. The path to the extracted/installed folder is referred to as `MI_TOOLING_HOME` throughout this tutorial.
+- Optionally, you can set up the **CLI tool** for artifact monitoring. This will later help you get details of the artifacts that you deploy in your Micro Integrator.
+
+    1.  Go to the [WSO2 Micro Integrator website](https://wso2.com/integration/#). 
+    2.  Click **Download -> Other Resources** and click **CLI Tooling** to download the tool. 
+    3.  Extract the downloaded ZIP file. This will be your `MI_CLI_HOME` directory. 
+    4.  Export the `MI_CLI_HOME/bin` directory path as an environment variable. This allows you to run the tool from any location on your computer using the `mi` command. Read more about the [CLI tool](../../../administer-and-observe/using-the-command-line-interface).
 
 ### Step 2: Develop the integration artifacts
 
 Follow the instructions given in this section to create and configure the required artifacts.
 
-#### Create an ESB Config project
+#### Create the project directories
 
-To create an ESB solution consisting of an **ESB config** project and a **Composite Application** project:
+To create the required projects for this integration scenario:
 
 1.  Open **WSO2 Integration Studio**.
-2.  Go to **ESB Project** and click **Create New**.
-    ![](../../assets/img/tutorials/119132413/119132414.png)
+2.  Go to **Integration** and click **Create Integration Project**.
+    ![](../../assets/img/create_project/create-integration-project.png)
 
-3.  Enter `SampleServices` as the project name. Be sure to select the following check boxes so that the relevant
-    projects will be created.
+3.  Enter `SampleServices` as the project name and select the following check boxes.
     -   **Create Registry Resources Project**
     -   **Create Composite Application Project**
     -   **Create Connector Exported Project**
 
-    ![](../../assets/img/tutorials/119132413/esb-solution-dialog.png)
+    !!! Note
+        This will create a **Config** project named `SampleServices` along with the **Registry Resource** project, **Composite Application** project, and a **Connector Exporter** project with the specified names.
 
-4.  Click **Finish**.  
-    The created projects are saved in the **Project Explorer** as shown below:
+    ![](../../assets/img/tutorials/119132413/create-simple-message-project.png)
+
+4.  Click **Finish**. 
+
+    You can see the projects listed in the **Project Explorer** as shown below:
 
     ![](../../assets/img/tutorials/119132413/project-explorer-simple-service.png)
 
@@ -80,12 +88,12 @@ An Endpoint artifact is required for the purpose of exposing the URL that connec
          <td>Static Endpoint</td>
          <td><br/>
          </td>
-         <td>Select this option because we are going to use this endpoint only in this ESB Config project and will not reuse it in other projects.</br/> <b>Note</b>: If you need to create a reusable endpoint, save it as a Dynamic Endpoint in either the Configuration or Governance Registry.</td>
+         <td>Select this option because we are going to use this endpoint only in this <code>SampleServices</code> project and will not reuse it in other projects.</br/></br/> <b>Note</b>: If you need to create a reusable endpoint, save it as a Dynamic Endpoint in either the Configuration or Governance Registry.</td>
       </tr>
       <tr class="even">
          <td>Save Endpoint in</td>
-         <td><code>               SampleServices              </code></td>
-         <td>This is the ESB Config project we created in the last section</td>
+         <td><code>SampleServices</code></td>
+         <td>This is the <b>Config</b> project where the artifact will be saved.</td>
       </tr>
      </tbody>
     </table>
@@ -93,7 +101,7 @@ An Endpoint artifact is required for the purpose of exposing the URL that connec
     ![](../../assets/img/tutorials/119132413/create-endpoint-artifact.png)
 
 4.  Click **Finish**.  
-    The **QueryDoctorEP** endpoint is saved in the `           endpoints          ` folder within the ESB Config project you created.  
+    The **QueryDoctorEP** endpoint is saved in the `endpoints` folder within the **Config** project you created.  
     ![](../../assets/img/tutorials/119132413/endpoint-project-explorer.png)
 
 #### Create a REST API
@@ -120,7 +128,7 @@ A REST API is required for receving the client response and the REST resource wi
         <td>Context</td>
         <td><code>/healthcare </code></td>
         <td>
-          Here you are anchoring the API in the <code>/healthcare </code> context. This will become part of the name of the generated URL used by the client when sending requests to Healthcare service. For example, setting the context to /healthcare defines that the API will only handle HTTP requests where the URL path starts <b><code>http://<host>:<port>/healthcare</b>.
+          Here you are anchoring the API in the <code>/healthcare </code> context. This will become part of the name of the generated URL used by the client when sending requests to Healthcare service. For example, setting the context to /healthcare defines that the API will only handle HTTP requests where the URL path starts with <code>http://host:port/healthcare<code>.
         </td>
       </tr>
       <tr>
@@ -129,7 +137,7 @@ A REST API is required for receving the client response and the REST resource wi
           SampleServices
         </td>
         <td>
-          This is the ESB config project where the artifact will be saved.
+          This is the <b>Config</b> project where the artifact will be saved.
         </td>
       </tr>
     </table>
@@ -154,6 +162,7 @@ You can now start configuring the API resource.
 1.  Double-click the **Resource** icon on the left side of the canvas.  
     The properties for the API resource appear on the **Properties** tab at the bottom of the window. If they do not appear, you can right-click the **Resource** icon and click **Show Properties View**.
 2.  On the **Properties** tab, provide the following as **Basic** properties:
+
     <table>
       <tr>
         <th>Property</th>
@@ -267,71 +276,6 @@ Package the artifacts in your composite application project (SampleServicesCompo
 
 3.  Save the project.
 
-<!--
-### Packaging the artifacts
-
-You need to Package the `         QueryDoctorEP        ` endpoint and
-the `         HealthcareAP        ` I resource into the [Composite
-Application (C-App)
-project](https://docs.wso2.com/display/EI600/Key+Concepts#KeyConcepts-CompositeApplicationproject)
-named `         SampleServicesCompositeApplication        ` .
-
-!!! note
-
-The `         SampleCApp        ` Composite Application project is
-generated and is listed under SampleApp project in the Project Explorer.
-The **Composite Application Project POM Editor** can be accessed by
-selecting the `         pom.xml        ` file listed under
-SampleServicesCompositeApplication project.
-
-
-Follow the steps given below to create the CAR file using one of the
-following options:
-
--   [**C-App project**](#d315a56d2d1a4fb09994e4b7feae2edb)
--   [**pom.xml file**](#06b881fb4c044882b615cbab73367095)
-
-1.  Right-click the C-App project and select **Export Composite
-    Application Project** from the pop-up menu.  
-    Example:  
-    ![](/assets/img/tutorials/119132413/119132419.png){width="500" height="332"}
-2.  Define the location you want to generate the CAR file by clicking
-    the Browse next to **Export Destination** and click **Next** .
-3.  Select the artifact that needs to be included into the CAR file and
-    click **Finish** .
-
-        !!! tip
-    
-        **Tip** : When you create a CAR file with artifacts, ensure that
-        each artifact name is the same as the relevant artifact file name.
-    
-
-Now you see the `             .car            ` file created in the
-defined location.
-
-1.  Open the `              pom.xml             ` file of the C-App
-    project in the Composite Application Project POM Editor.
-2.  Select the artifact that needs to be included into the CAR file.
-3.  Click ![](/assets/img/tutorials/119132413/119132433.png){width="30"} and
-    define the location you want to create the CAR file.
-
-Now you see the .car file created in the defined location.
-
-You have now exported all your project's artifacts into a single CAR
-file. Next, you need to deploy the Composite Application in the server.
-
-!!! note
-
-Note
-
--   In a CAR file, if a particular artifact name is different from the
-    relevant artifact file name, re-deploying the CAR file fails with an
-    error.
--   If a CAR file has one or more artifacts that are named differently
-    from the relevant artifact file name, you are unable to remove those
-    artifacts from memory when you delete the CAR file.
--->
-
 ### Step 4: Build and run the artifacts
 
 To test the artifacts, deploy the [packaged artifacts](#step-3-package-the-artifacts) in the embedded Micro Integrator:
@@ -354,29 +298,74 @@ Let's test the use case by sending a simple client request that invokes the serv
     java -jar Hospital-Service-2.0.0-EI7.jar
     ```
 
+#### Get details of deployed artifacts (Optional)
+
+Let's use the **CLI Tool** to find the URL of the REST API (that is deployed in the Micro integrator) to which you will send a request.
+
+!!! Tip
+    Be sure to set up the CLI tool for your work environment as explained in the [first step](#step-1-set-up-the-workspace) of this tutorial.
+
+1.  Open a terminal and execute the following command to start the tool:
+    ```bash
+    mi
+    ```
+    
+2.  Log in to the CLI tool. Let's use the server administrator user name and password:
+    ```bash
+    mi remote login admin admin
+    ```
+
+    You will receive the following message: *Login successful for remote: default!*
+
+3.  Execute the following command to find the APIs deployed in the server:
+    ```bash
+    mi api show
+    ```
+
+    You will receive the following information:
+
+    *NAME : HealthcareAPI*            
+    *URL  : http://localhost:8290/healthcare* 
+
+Similarly, you can get details of other artifacts deployed in the server. Read more about [using the CLI tool](../../../administer-and-observe/using-the-command-line-interface).
+
 #### Send the client request
 
-Let's use the **CLI Tool** to find the URL of the REST API that is deployed in the Micro Integrator:
+Let's send the request to the API. You can use the embedded <b>HTTP Client</b> of WSO2 Integration Studio as follows:
 
-1.  Open a terminal and navigate to the `CLI_HOME/bin` directory.
-2.  Execute the following command to start the tool:
-    `./mi`
-3.  Execute the following command to find the APIs deployed in the server:
-    `mi api show`
+1. Open the <b>HTTP Client</b> of WSO2 Integration Studio.
+
+    !!! Tip
+        If you don't see the <b>HTTP Client</b> pane, go to <b>Window -> Show View - Other</b> and select <b>HTTP Client</b> to enable the client pane.
+
+    <img src="../../../assets/img/tutorials/common/http4e-client-empty.png" width="800">
     
-    Note: Please remember to login to CLI using `mi remote login` command giving `admin` as both username and 
-    password before executing the above command.
+2. Enter the request information as given below and click the <b>Send</b> icon (<img src="../../../assets/img/tutorials/common/play-head-icon.png" width="20">).
+    
+    <table>
+        <tr>
+            <th>Method</th>
+            <td>
+               <code>GET</code> 
+            </td>
+        </tr>
+        <tr>
+            <th>URL</th>
+            <td>
+                <code>http://localhost:8290/healthcare/querydoctor/surgery</code></br></br>
+            </td>
+        </tr>
+     </table>
+     
+     <img src="../../../assets/img/tutorials/119132413/http4e-config.png" width="800">
 
-Now, open a command line terminal and enter the following request: 
+If you want to send the client request from your terminal:
 
-```bash
-curl -v http://localhost:8290/healthcare/querydoctor/surgery
-```
-
-!!! Info
-    - The above request is formed as per the **URI-Template** (`http://:/healthcare/{uri.var.category}`) defined when creating the endpoint. 
-    - The `{uri.var.category}` is also specified in the **URI-Template** (`http://<host>:<port>/querydoctor/{category}`)
-    - Other categories you can try sending in the request are: `cardiology`,  `gynaecology`, `ent`, and `paediatric`.
+1. Install and set up [cURL](https://curl.haxx.se/) as your REST client.
+2. Execute the following command.
+    ```bash
+    curl -v http://localhost:8290/healthcare/querydoctor/surgery
+    ```
 
 #### Analyze the response
 

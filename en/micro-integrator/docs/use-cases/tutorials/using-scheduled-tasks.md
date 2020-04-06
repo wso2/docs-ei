@@ -8,20 +8,19 @@ The sections below demonstrate an example of scheduling a task (using the defaul
 
 ### Step 1: Set up the workspace
 
--  Download the relevant [WSO2 Integration Studio](https://wso2.com/integration/tooling/) based on your operating system. The path to the extracted/installed folder is referred to as `MI_TOOLING_HOME` throughout this tutorial.
--  Download the [CLI Tool](https://wso2.com/integration/micro-integrator/install/) for monitoring artifact deployments.
+Download the relevant [WSO2 Integration Studio](https://wso2.com/integration/tooling/) based on your operating system. The path to the extracted/installed folder is referred to as `MI_TOOLING_HOME` throughout this tutorial.
 
 ### Step 2: Develop the integration artifacts
 
 Follow the instructions given in this section to create and configure the required artifacts.
 
-#### Create an ESB Config project
+#### Creating the Config project
 
-To create an ESB solution consisting of an **ESB config** project and a **Composite Application** project:
+To create a solution consisting of a **Config** project and a **Composite Application** project:
 
 1.  Open **WSO2 Integration Studio**.
-2.  Go to **ESB Project** and click **Create New**.
-    ![](../../assets/img/tutorials/119132413/119132414.png)
+2.  Go to **Integration** and click **Create Integration Project**.
+    ![](../../assets/img/create_project/create-integration-project.png)
 
 3.  Enter `ScheduleDefaultTask` as the project name. Be sure to select the following check boxes so that the relevant
     projects will be created.

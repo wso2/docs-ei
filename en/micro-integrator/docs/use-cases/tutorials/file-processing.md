@@ -1,4 +1,4 @@
-# File processing
+# File Processing
 
 ## What you'll build
 
@@ -10,8 +10,13 @@ The result of the query should be as follows when you query to view the records
 
 ### Step 1: Set up the workspace
 
--  Download the relevant [WSO2 Integration Studio](https://wso2.com/integration/tooling/) based on your operating system.  The path to the extracted/installed folder is referred to as `MI_TOOLING_HOME` throughout this tutorial.
--  Download the [CLI Tool](https://wso2.com/integration/micro-integrator/install/) for monitoring artifact deployments.
+- Download the relevant [WSO2 Integration Studio](https://wso2.com/integration/tooling/) based on your operating system. The path to the extracted/installed folder is referred to as `MI_TOOLING_HOME` throughout this tutorial.
+- Optionally, you can set up the **CLI tool** for artifact monitoring. This will later help you get details of the artifacts that you deploy in your Micro Integrator.
+
+    1.  Go to the [WSO2 Micro Integrator website](https://wso2.com/integration/#). 
+    2.  Click **Download -> Other Resources** and click **CLI Tooling** to download the tool. 
+    3.  Extract the downloaded ZIP file. This will be your `MI_CLI_HOME` directory. 
+    4.  Export the `MI_CLI_HOME/bin` directory path as an environment variable. This allows you to run the tool from any location on your computer using the `mi` command. Read more about the [CLI tool](../../../administer-and-observe/using-the-command-line-interface).
 
 Let's setup a MySQL database:
 
@@ -38,13 +43,13 @@ Let's setup a MySQL database:
 
 Follow the instructions given in this section to create and configure the required artifacts.
 
-#### Create an ESB Config project
+#### Creating the Config project
 
-To create an ESB solution consisting of an **ESB config** project and a **Composite Application** project:
+To create a solution consisting of an **Config** project and a **Composite Application** project:
 
 1.  Open **WSO2 Integration Studio**.
-2.  Go to **ESB Project** and click **Create New**.
-    ![](../../assets/img/tutorials/119132413/119132414.png)
+2.  Go to **Integration** and click **Create Integration Project**.
+    ![](../../../assets/img/create_project/create-integration-project.png)
 
 3.  Enter `FileProcessingService` as the project name and select the **Create Composite Application Project** check box.
 4.  Click **Finish**. The created project is saved in the **Project Explorer**.
@@ -145,7 +150,7 @@ connect to the database to insert the data.
         <log level="full">
             <property name="sequence" value="after-smooks"/>
         </log>
-        <iterate expression="//csv-records/csv-record">
+        <iterate expression="//csv-set/csv-record">
           <target>
            <sequence>
             <dbreport>
@@ -258,6 +263,32 @@ To test the artifacts, deploy the [packaged artifacts](#step-3-package-the-artif
 
 ### Step 5: Test the use case
 
+#### Get details of deployed artifacts (Optional)
+
+Let's use the **CLI Tool** to find information of the artifacts you deployed in the Micro integrator.
+
+!!! Tip
+    Be sure to set up the CLI tool for your work environment as explained in the [first step](#step-1-set-up-the-workspace) of this tutorial.
+
+1.  Open a terminal and execute the following command to start the tool:
+    ```bash
+    mi
+    ```
+    
+2.  Log in to the CLI tool. Let's use the server administrator user name and password:
+    ```bash
+    mi remote login admin admin
+    ```
+
+    You will receive the following message: *Login successful for remote: default!*
+
+3.  Execute the following command to find the sequences deployed in the server:
+    ```bash
+    mi sequence show
+    ```
+
+Similarly, you can get details of other integration artifacts deployed in the server. Read more about [using the CLI tool](../../../administer-and-observe/using-the-command-line-interface).
+
 #### Configure the Micro Integrator
 
 Open the `deployment.toml` file of the embedded Micro Integrator of WSO2 Integration Studio (stored in the `MI_TOOLING_HOME/Contents/Eclipse/runtime/microesb/conf/` directory on **Windows** or `MI_TOOLING_HOME/runtime/microesb/conf` directory on **MacOS/Linux/CentOS**) and apply the following changes:
@@ -295,7 +326,7 @@ Open the `deployment.toml` file of the embedded Micro Integrator of WSO2 Integra
 
 This example uses a CSV smooks library.
 
-1.  You can find the CSV smooks library `milyn-smooks-csv-1.2.4.jar` and the `groovy-all-1.1-rc-1.jar` in the [attached file](https://github.com/wso2-docs/WSO2_EI/blob/master/Integration-Tutorial-Artifacts/Artifacts-fileProcessingTutorial.zip). 
+1.  You can find the CSV smooks library `milyn-smooks-csv-1.2.4.jar` in the [attached file](https://github.com/wso2-docs/WSO2_EI/blob/master/Integration-Tutorial-Artifacts/Artifacts-fileProcessingTutorial.zip). 
     You can find the file in the `SAMPLE_HOME/lib` directory.
 2.  Copy the library to the the `MI_TOOLING_HOME/Contents/Eclipse/runtime/microesb/lib/` directory on **Windows** or the **MI_TOOLING_HOME/runtime/microesb/lib** directory on **MacOS/Linux/CentOS**.
 
@@ -320,4 +351,4 @@ this file.
 2.  The Micro Integrator inserts the records from the text file to the database. Make sure the data is in the info table. The following screenshot displays the content of the `          test.info         ` table with the data from the file.  
 3.  Make sure the original file is moved to the `          /home/<username>/test/original         ` directory.
 4.  Make sure the e-mail notification is sent to the email address that is specified. The message should contain the file data. The
-    following screenshot displays a notification received.  
+    following screenshot displays a notification received. If you see the error message `Username and Password not accepted` in the logs, you might need to turn on `Allow less secure apps` in your Google account from [here](https://myaccount.google.com/lesssecureapps).
