@@ -344,7 +344,7 @@ You can now start configuring the API resource.
     !!! Info
         You have now configured the Switch mediator to log the `Routing to <Hospital Name>` message when a request is sent to this API resource. The request message will then be routed to the relevant hospital backend service based on the hospital that is sent in the request payload.
 
-11. Add a **Log mediator** to the **Default** (the bottom box) of the Switch mediator and configure it the same way as the previous Log mediators.
+11. Add a **Log mediator** to the **Default** case (the bottom box) of the Switch mediator and configure it the same way as the previous Log mediators.
 
     !!! Note
         Make sure to name this **Fault Log** and change its Value/Expression as follows:`fn:concat('Invalid hospital - ', get-property('Hospital'))`
