@@ -3,7 +3,7 @@
 Follow the instructions given below to create a new [REST API](../../../references/synapse-properties/rest-api-properties) artifact.
 
 !!! Tip
-    If you do not see the features given below in the WSO2 Integrations Studio that you are using, you can [get the latest updates](../../../../develop/installing-WSO2-Integration-Studio/#get-the-latest-updates).
+    If you do not see the features given below in the WSO2 Integrations Studio that you are using, you can [get the latest updates](../../../develop/installing-WSO2-Integration-Studio/#get-the-latest-updates).
 
 ## Instructions
 
