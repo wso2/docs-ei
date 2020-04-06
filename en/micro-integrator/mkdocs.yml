@@ -274,7 +274,9 @@ nav:
       - Creating Projects:
         - 'Creating a Project Solution': 'develop/creating-project-solution.md'
         - 'Creating Integration Projects': 'develop/creating-projects.md'
+        - 'Creating a Maven Multi Module Project': 'develop/create-multi-maven-project.md'
         - 'Importing Integration Projects': 'develop/importing-projects.md'
+        - 'Exporting Project': 'develop/export_project.md'
         - 'Creating a Docker Project': 'develop/create-docker-project.md'
         - 'Creating a Kubernetes Project': 'develop/create-kubernetes-project.md'
       - Creating New Artifacts:
