@@ -464,6 +464,142 @@ To create a Amazon RDS (Relational Database Service) for the purpose of persisti
             
 4. Create a task for Streaming Integrator node 2 as follows:
 
+    1. In the left navigator of Amazon ECS, click **Task Definitions**. Then in the **Task Definitions** window, click **Create new Task Definition**.
+    
+        ![Create New Task Definition](../images/si-as-minimum-ha-cluster-in-aws-ecs/create-task-definition.png)
+        
+    2. In the **Select launch type compatibility** page, click **FARGATE** and then click **Next step**.
+    
+        ![Select Launch Type](../images/si-as-minimum-ha-cluster-in-aws-ecs/create-task-definition.png)
+        
+    3. In **Step 2: Configure task and container definitions**, enter information in the **Create new Task Definition** wizard as follows:
+    
+        1. In the **Task Definition Name** field, enter `ha-node-2-task` as the name of the task definition.
+        
+        2. In the **Task Size** section, enter values as follows:
+        
+            |**Field**              |**Value**  |
+            |-----------------------|-----------|
+            |**Task memory (GB)**   |`0.5GB`    |
+            |**Task CPU (vCPU)**    |`0.25vCPU` |
+            
+        3. In the **Container Definitions** section, click **Add container**. Then enter information as follows:
+        
+            1. In the **Container name** field, enter `node-2-ha-container` as the name of the container.
+            
+            2. In the **Image** field, enter the image URI.
+            
+            3. In the **Port Mappings** section, add the following ports. 
+                           
+               |**Port**   |**Protocol**|
+               |-----------|------------|
+               |9893       |tcp         |
+               |9090       |tcp         |
+               |9711       |tcp         |
+               |9611       |tcp         |
+               |7711       |tcp         |
+               |7611       |tcp         |
+               |7443       |tcp         |
+               |7070       |tcp         |
+               |9443       |tcp         |
+               |8006       |tcp         |                
+           
+               To add each port, click **Add Port Mapping**.                        
+                   
+            4. Click **Add**.
+           
+            5. Click **Create** in the **Configure task and container definitions** page to create the task.
+            
+5. Create a service for node 1 using the `ha-node1-task` task as follows:
+
+    1. In Amazon ECS, click **Clusters** in the left navigator. Then click on your cluster.
+
+        ![Create Task for Cluster](../images/si-as-minimum-ha-cluster-in-aws-ecs/create-task-for-cluster.png)
+        
+        This opens the **Create Service** wizard.
+        
+    2. In the **Step 1: Configure service** page, select/enter information as follows:
+        
+        ![Configure Service](../images/si-as-minimum-ha-cluster-in-aws-ecs/configure-service.png)
+    
+        |**Field**          |**Value**          |
+        |-------------------|-------------------|
+        |**Launch Type**    |**FARGATE**        |
+        |**Task Definition**|**ha-node-1-task** |
+        |**Service Name**   |`ha-node1-service` |
+        |**Number of tasks**|               `1` | 
+        
+        Then click **Next step**.
+        
+    3. In the **Step 2: Configure network**, select/enter information as follows:
+    
+        ![Configure Network](../images/si-as-minimum-ha-cluster-in-aws-ecs/configure-network.png)
+    
+        1. In the **Cluster VPC** field, select the VPC that you previously created.
+        
+        2. In the **Subnets** field, select the subnet that you previously created for your VPC.
+        
+        3. Click **Edit** to select the security group. 
+        
+            When you click **Edit**, the **Configure security groups** dialog box opens. Here, select the **Select existing security group** option and then select the security group that you previously created and connected to your VPC. Then click **Save** to save he information you entered in this dialog box.
+            
+            ![Select security groups](../images/si-as-minimum-ha-cluster-in-aws-ecs/select-security-group.png)
+            
+            Once you are back in the **Step 2: Configure network** page of the **Create Service** wizard, click **Next step**.
+            
+    4. Skip **Step 3: Set Auto Scaling (optional)** by clicking **Next step** in the page without making any changes. In **Step 4: Review**, check the information, and click **Create Service**. 
+    
+        Once the service is successfully created, click **View Service** to view it. You can also access it by clicking **Clusters** in the left navigator, and then clicking **si-ha-cluster** -> **Services** tab -> **ha-node1-service**.
+        
+    5. To view the running service and node logs, follow substeps below: 
+    
+        1. Click **Clusters** in the left navigator. Then click **si-ha-cluster** -> **Services** tab -> **ha-node1-service** to view the `ha-node1-service` service you created.
+        
+        2. Click on the **Tasks** tab. The task is displayed as shown below.
+        
+            ![View Task](../images/si-as-minimum-ha-cluster-in-aws-ecs/view-task.png)
+            
+        3. Click on the task to view it in a separate page. In that page, click on the **View logs in CloudWatch**. The following logs should be available to indicate that the node is started in the **Active** mode and it is persisting events.
+        
+            ```
+                [2020-03-20 20:18:48,283]  INFO {org.wso2.carbon.streaming.integrator.core.ha.HAManager} - HA Deployment: Starting up as Active Node
+                [2020-03-20 20:18:52,261]  INFO {org.wso2.carbon.kernel.internal.CarbonStartupHandler} - WSO2 Streaming Integrator started in 44.893 sec
+                [2020-03-20 20:19:46,595]  INFO {org.wso2.carbon.streaming.integrator.core.persistence.PersistenceManager} - Siddhi apps persisted successfully
+
+            ```           
+    
+6. Create a service for node 2 using the `ha-node2-task` task by following the same procedure you followed in the previous step (i.e., step 5) to create a service for node 1. However, make sure that the task definition is `ha-node2-task`. The service name can be `ha-node2-service`.
+
+    ![Service for node 2](../images/si-as-minimum-ha-cluster-in-aws-ecs/node2-service.png)
+    
+    When you view logs in CloudWatch for node 2, the following is displayed.
+    
+    ```
+        [2020-03-20 20:38:14,390]  INFO {org.wso2.carbon.streaming.integrator.core.ha.HAManager} - HA Deployment: Starting up as Passive Node
+        [2020-03-20 20:38:18,287]  INFO {org.wso2.carbon.kernel.internal.CarbonStartupHandler} - WSO2 Streaming Integrator started in 46.604 sec
+
+    ```
+   
+7. To check whether the cluster is working, check logs for node 1 as well as the error trace nodes.
+
+    Logs similar to the following should be printed for node 1.
+    
+    ```
+        [2020-03-20 20:38:15,409]  INFO {org.wso2.carbon.streaming.integrator.core.ha.HAEventListener} - memberAdded event received for node id : wso2-si-2
+        [2020-03-20 20:38:15,455]  INFO {org.wso2.carbon.streaming.integrator.core.ha.HAEventListener} - Active node retrieved node details of passive node
+
+    ```
+   
+   Also, the following log should be printed without errors by the Error traces.
+   
+   ```
+    [2020-03-20 20:38:46,587]  INFO {org.wso2.carbon.streaming.integrator.core.persistence.PersistenceManager} - Siddhi apps persisted successfully
+   ```
+
+
+   
+                    
+            
     
                     
 
