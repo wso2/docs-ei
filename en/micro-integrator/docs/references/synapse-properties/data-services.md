@@ -36,6 +36,9 @@ A data service has the ability to aggregate the data that is stored in various, 
 
 ### Distributed Transactions
 
+!!! Note
+    **This section on 'distributed transactions' is currently under review!**
+
 A distributed transaction is a set of operations that should be performed on two or more distributed RDBMS data stores. If the operation on one data store (node) fails, the entire set of operations will fail in all the data stores. In other words, a distributed transaction is an example of a batch process, where multiple requests are grouped into one server call and processed as one unit by the data service.
 
 Data services in WSO2 Micro Integrator supports distributed transactions, which allows
