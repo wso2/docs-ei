@@ -53,6 +53,15 @@ The following properties are optional properties you can configure when [creatin
          <td>Version</td>
          <td>The Micro Integrator identifies each API by its unique context name. If you introduce a version in the API context (e.g., /Service 1.0.0), you can update it when you upgrade the same API (e.g., /Service 1.0.1). Version your APIs as early as possible in the development cycle.</td>
       </tr>
+      <tr>
+        <td>
+          Path to Swagger Definition
+        </td>
+        <td>
+          The path to a custom Swagger definition (YAML/JSON file) that is stored in a registry project in your workspace.</br></br>
+          Once this API is created and deployed in the Micro Integrator, users will be able to access this custom Swagger definition and not the default Swagger definition of the API. See the instructions on <a href="../../../develop/advanced-development/using-swagger-for-apis">using Swagger documents</a> for more information.
+        </td>
+      </tr>
 </table>
 
 ### REST API Resource Properties
