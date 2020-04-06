@@ -366,6 +366,12 @@ nav:
         - DB Event Listener Inbound Endpoint:
           - 'Database Event Listener Example': 'references/connectors/db-event-inbound-endpoint/db-event-inbound-endpoint-example.md'
           - 'Database Event Listener Configuration': 'references/connectors/db-event-inbound-endpoint/db-event-inbound-endpoint-config.md'
+        - Microsoft Dynmics365 Connector:
+            - 'Setting up the Microsoft Dynamics365 Environment with Azure': 'references/connectors/microsoft-dynamics365-connector/microsoft-dynamics365-configuration.md'
+        - ISO8583 Connector:
+            - 'Setting up ISO8583 Connector': 'references/connectors/ISO8583-connector/ISO8583-connector-configuration.md'
+            - 'ISO8583 Connector Example': 'references/connectors/ISO8583-connector/ISO8583-connector-example.md'
+            - 'ISO8583 Inbound Endpoint Example': 'references/connectors/ISO8583-connector/ISO8583-inbound-endpoint-example.md'
       - Synapse Configurations:
         - Mediator Catalog:
           - 'About Mediators': 'references/mediators/about-mediators.md'
