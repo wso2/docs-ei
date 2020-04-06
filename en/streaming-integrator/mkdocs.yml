@@ -201,6 +201,7 @@ nav:
       - 'Minimum HA Cluster': 'setup/deploying-si-as-minimum-ha-cluster.md'
       - 'Active-Active Cluster': 'setup/deploying-si-as-an-active-active-deployment.md'
       - 'Scalable Cluster': 'setup/deploying-si-as-a-scalable-cluster.md'
+      - 'Minimum HA Cluster in AWS ECS': 'setup/deploying-si-as-minimum-ha-cluster-in-aws-ecs.md'
     - 'Setting up Databases':
       - 'Configuring Datasources': 'setup/configuring-data-sources.md'
     - 'Working with Siddhi Connectors':

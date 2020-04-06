@@ -259,6 +259,7 @@ Set up the Message Broker profile of WSO2 EI 6.6.0. This is required because the
     -   andes-client-*.jar
     -   geronimo-jms_1.1_spec-*.jar
     -   org.wso2.securevault-*.jar
+    
 3. Open the `deployment.toml` file from the `MI_TOOLING_HOME/Contents/Eclipse/runtime/microesb/conf/` (in MacOS) or 
 `MI_TOOLING_HOME/runtime/microesb/conf/` (in Windows/Linux) directory and add the configurations given below. This is required for enabling the broker to store messages.
 
@@ -353,7 +354,7 @@ Let's send a request to the API resource. You can use the embedded <b>HTTP Clien
 1. Open the <b>HTTP Client</b> of WSO2 Integration Studio.
 
     !!! Tip
-        If you don't see the <b>HTTP Client</b> pane, go to <b>Window -> Show View - Other</b> and select <b>HTTP Client</b> to enable the client pane.
+        If you don't see the <b>HTTP Client</b> tab, go to <b>Window -> Show View - Other</b> and select <b>HTTP Client</b> to enable the client.
 
     <img src="../../../assets/img/tutorials/common/http4e-client-empty.png" width="800">
     
@@ -450,7 +451,8 @@ You will see the response as follows:
 
 An email will be sent to the provided patient email address with the following details:
 
-Note: If you haven't received the mail yet, there are possibilities that your access token might have expired.
+!!! Note
+    If you haven't received the mail yet, there are possibilities that your access token might have expired.
 Follow the steps in [obtaining-the-access-token-and-refresh-token](#obtaining-the-access-token-and-refresh-token) to 
 obtain a new access token and update the gmail init operation.
 

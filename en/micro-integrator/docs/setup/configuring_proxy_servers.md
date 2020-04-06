@@ -28,7 +28,7 @@ sender.secured_proxy_host = "<hostname/ip>"
 sender.secured_proxy_port = <port>
 ```
 
-See the complete list of [configuration parameters](../../../references/config-catalog/#https-transport-non-blocking-mode).
+See the complete list of [configuration parameters](../../references/config-catalog/#https-transport-non-blocking-mode).
 
 ### For blocking service calls
 
@@ -49,10 +49,10 @@ sender.secured_proxy_host = "<hostname/ip>"
 sender.secured_proxy_port = <port>
 ```
 
-See the complete list of [configuration parameters](../../../references/config-catalog/#https-transport-blocking-mode).
+See the complete list of [configuration parameters](../../references/config-catalog/#https-transport-blocking-mode).
 
 !!! Info
-    **Bypass the proxy server for blocking calls?**  
+    **Bypass the proxy server for blocking calls?**
     In the case of blocking service calls, you can apply a system property in the Micro Integrator to bypass the proxy server and route messages directly to the hosts that should receive the messages. Explained below are two methods of applying the system property:
 
     -  Set the system property in the product startup script that is located in the `MI_HOME/bin/          ` directory
@@ -65,7 +65,7 @@ See the complete list of [configuration parameters](../../../references/config-c
     ```xml
     ./micro-integrator.sh -Dhttp.nonProxyHosts =10.|localhost|127.0.0.1|.\.domain.com
     ```
-        
+
 !!! Note
     A proxy server might require HTTP basic authentication before it handles communication from the Micro Integrator.
 
@@ -88,7 +88,7 @@ bypass_hosts = [""]
 ```
 
 !!! Tip
-    When you define a profile, it is mandatory to specify the `target_hosts`, `proxy_host` and `proxy_port` parameters for each profile. 
+    When you define a profile, it is mandatory to specify the `target_hosts`, `proxy_host` and `proxy_port` parameters for each profile.
 
 When you configure a proxy profile, following are details of the parameters that you need to define in a `<profile>` :
 

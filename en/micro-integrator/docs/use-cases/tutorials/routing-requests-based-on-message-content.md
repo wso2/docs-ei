@@ -16,7 +16,7 @@ To implement this use case, you will add a new REST resource to the existing RES
 Set up WSO2 Integration Studio as follows:
 
 1.  Download the relevant [WSO2 Integration Studio](https://wso2.com/integration/tooling/) based on your operating system. The path to the extracted/installed folder is referred to as `MI_TOOLING_HOME` throughout this tutorial.
-2.   If you did not try the [Sending a Simple Message to a Service](sending-a-simple-message-to-a-service.md) tutorial yet:
+2.  If you did not try the [Sending a Simple Message to a Service](sending-a-simple-message-to-a-service.md) tutorial yet:
     1.  Download the [pre-packaged project](https://github.com/wso2-docs/WSO2_EI/blob/master/Integration-Tutorial-Artifacts/SimpleMessageToServiceTutorial.zip).
     2.  Open WSO2 Integration Studio and go to **File -> Import**. 
     3.  Select **Existing WSO2 Projects into workspace** under the **WSO2** category, click **Next**, and then upload the **prepackaged project**.
@@ -413,7 +413,7 @@ Let's use the **CLI Tool** to find the URL of the REST API (that is deployed in 
     ```bash
     mi remote login admin admin
     ```
-
+    
     You will receive the following message: *Login successful for remote: default!*
 
 3.  Execute the following command to find the APIs deployed in the server:
@@ -435,7 +435,7 @@ Let's send a request to the API resource to make a reservation. You can use the 
 1. Open the <b>HTTP Client</b> of WSO2 Integration Studio.
 
     !!! Tip
-        If you don't see the <b>HTTP Client</b> pane, go to <b>Window -> Show View - Other</b> and select <b>HTTP Client</b> to enable the client pane.
+        If you don't see the <b>HTTP Client</b> tab, go to <b>Window -> Show View - Other</b> and select <b>HTTP Client</b> to enable the client.
 
     <img src="../../../assets/img/tutorials/common/http4e-client-empty.png" width="800">
 

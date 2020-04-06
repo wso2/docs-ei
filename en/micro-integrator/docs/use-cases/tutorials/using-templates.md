@@ -15,7 +15,6 @@ Set up WSO2 Integration Studio as follows:
 
 1.  Download the relevant [WSO2 Integration Studio](https://wso2.com/integration/tooling/) based on your operating system. The path to the extracted/installed folder is referred to as `MI_TOOLING_HOME` throughout this tutorial.
 2.  If you did not try the [Exposing Several Services as a Single Service](exposing-several-services-as-a-single-service.md) tutorial yet:
-
     1.  Download the [pre-packaged project](https://github.com/wso2-docs/WSO2_EI/blob/master/Integration-Tutorial-Artifacts/ExposingSeveralServicesTutorial.zip). 
     2.  Open WSO2 Integration Studio and go to **File -> Import**. 
     3.  Select **Existing WSO2 Projects into workspace** under the **WSO2** category, click **Next**, and then upload the **pre-packaged project**.
@@ -228,7 +227,6 @@ To test the artifacts, deploy the [packaged artifacts](#step-3-package-the-artif
 2.  In the dialog that opens, select the composite application project that you want to deploy.  
 4.  Click **Finish**. The artifacts will be deployed in the embedded Micro Integrator and the server will start. See the startup log in the **Console** tab. 
 
-
 ### Step 5: Testing the use case
 
 Let's test the use case by sending a simple client request that invokes the service.
@@ -251,11 +249,13 @@ Let's use the **CLI Tool** to find the URL of the REST API (that is deployed in 
     Be sure to set up the CLI tool for your work environment as explained in the [first step](#step-1-set-up-the-workspace) of this tutorial.
 
 1.  Open a terminal and execute the following command to start the tool:
+
     ```bash
     mi
     ```
     
 2.  Log in to the CLI tool. Let's use the server administrator user name and password:
+
     ```bash
     mi remote login admin admin
     ```
@@ -281,7 +281,7 @@ Let's send a simple request to invoke the service. You can use the embedded <b>H
 1. Open the <b>HTTP Client</b> of WSO2 Integration Studio.
 
     !!! Tip
-        If you don't see the <b>HTTP Client</b> pane, go to <b>Window -> Show View - Other</b> and select <b>HTTP Client</b> to enable the client pane.
+        If you don't see the <b>HTTP Client</b> tab, go to <b>Window -> Show View - Other</b> and select <b>HTTP Client</b> to enable the client.
 
     <img src="../../../assets/img/tutorials/common/http4e-client-empty.png" width="800">
     
@@ -364,6 +364,7 @@ If you want to send the client request from your terminal:
 #### Analyze the response
 
 You will see the response received to your <b>HTTP Client</b>:
-    ```bash
-    {"appointmentNo":2,"doctorName":"thomas collins","patient":"John Doe","actualFee":7000.0,"discount":20,"discounted":5600.0,"paymentID":"cc7e4c23-a66d-4d60-8b72-2cf9143c6335","status":"Settled"}
-    ```
+
+```bash
+{"appointmentNo":2,"doctorName":"thomas collins","patient":"John Doe","actualFee":7000.0,"discount":20,"discounted":5600.0,"paymentID":"cc7e4c23-a66d-4d60-8b72-2cf9143c6335","status":"Settled"}
+```

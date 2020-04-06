@@ -688,7 +688,7 @@ Let's send a request to the API resource to make a reservation. You can use the 
 1. Open the <b>HTTP Client</b> of WSO2 Integration Studio.
 
     !!! Tip
-        If you don't see the <b>HTTP Client</b> pane, go to <b>Window -> Show View - Other</b> and select <b>HTTP Client</b> to enable the client pane.
+        If you don't see the <b>HTTP Client</b> tab, go to <b>Window -> Show View - Other</b> and select <b>HTTP Client</b> to enable the client.
 
     <img src="../../../assets/img/tutorials/common/http4e-client-empty.png" width="800">
     

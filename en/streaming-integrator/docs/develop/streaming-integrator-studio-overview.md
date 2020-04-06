@@ -211,7 +211,7 @@ The **Tools** menu provides access to the following tools that are shipped with 
 
 - **Extension Installer**
 
-    This opens the **Extension Installer** dialog box (shown below) where you can search for the required extension and install/uninstall it by clicking **Install** or **Uninstall** as appropriate. Once you install/uninstall an extension, you need to restart the Streaming Integrator Tooling. For detailed instructions, see [Managing Siddhi Extensions for SI Tooling](extending-streaming-integrator-tooling.md).
+    This opens the **Extension Installer** dialog box (shown below) where you can search for the required extension and install/uninstall it by clicking **Install** or **Uninstall** as appropriate. Once you install/uninstall an extension, you need to restart the Streaming Integrator Tooling. For detailed instructions, see [Installing Siddhi Extensions](installing-siddhi-extensions.md).
 
      ![Extension Installer](../images/streaming-integrator-studio-overview/extension-installer.png)
       
