@@ -111,13 +111,13 @@ User-Agent: Apache-HttpClient/4.1.1 (java 1.5)
 <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
    <soapenv:Header />
    <soapenv:Body>
-      <getQuote xmlns="http://services.samples">
-         <request>
-            <price>50</price>
-            <quantity>10</quantity>
-            <symbol>SUN</symbol>
-         </request>
-      </getQuote>
+      <m0:getQuote xmlns:m0="http://services.samples">
+         <m0:request>
+            <m0:price>50</m0:price>
+            <m0:quantity>10</m0:quantity>
+            <m0:symbol>SUN</m0:symbol>
+         </m0:request>
+      </m0:getQuote>
    </soapenv:Body>
 </soapenv:Envelope>
 ```
