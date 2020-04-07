@@ -348,7 +348,7 @@ nav:
         - Microsoft Dynamics 365 Connector:
           - 'Setting up the Microsoft Dynamics365 Environment with Azure': 'references/connectors/amazonlambda-connector/microsoft-dynamics365-configuration.md'
         - Salesforce Rest Connector:
-          - 'Salesforce Access Token Generation': 'references/connectors/salesforce-connector/sf-access-token-generation.md'
+          - 'Salesforce Access Token Generation': 'references/connectors/salesforce-rest-connector/sf-access-token-generation.md'
           - 'Salesforce Rest API Connector Example': 'references/connectors/salesforce-rest-connector/sf-rest-connector-example.md'
           - 'Salesforce Rest API Connector Configuration': 'references/connectors/salesforce-rest-connector/sf-rest-connector-config.md'
         - AmazonS3 Connector:
