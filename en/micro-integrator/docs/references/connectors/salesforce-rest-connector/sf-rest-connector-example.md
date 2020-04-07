@@ -24,7 +24,7 @@ Follow these steps to set up the ESB Solution Project and the Connector Exporter
 1. Right click on the created ESB Solution Project and select, -> **New** -> **Rest API** to create the REST API. 
     <img src="/assets/img/connectors/adding-an-api.png" title="Adding a Rest API" width="800" alt="Adding a Rest API"/>
 
-2. Follow these steps to [generate the Access Tokens for Salesforce](../salesforce-connector/sf-access-token-generation.md) and obtain the Client Id, Client Secret, Access Token, and Refresh Token. 
+2. Follow these steps to [generate the Access Tokens for Salesforce](sf-access-token-generation.md) and obtain the Client Id, Client Secret, Access Token, and Refresh Token. 
 
 3. First, we will create two defined sequences called `create.xml` and  `retrieve.xml` to create an account and retrieve data. You can go to the source view of the XML configuration file of the API and copy the following configuration. Replace the `clientSecret`, `clientId`, `accessToken`, `refreshToken` with obtained values in step 3. 
 
