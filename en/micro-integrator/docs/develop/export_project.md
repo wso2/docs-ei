@@ -1,4 +1,7 @@
-# Exporting a Project
+# Exporting Projects
+
+!!! Tip
+    If you do not see this feature in the WSO2 Integrations Studio that you are using, you need to [get the latest updates](../../develop/installing-WSO2-Integration-Studio/#get-the-latest-updates).
 
 With WSO2 Integration Studio, you can export projects from your workspace and later [import them](../importing-projects).
 

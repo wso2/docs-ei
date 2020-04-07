@@ -12,8 +12,8 @@ It is recommended to [get the latest updates](../../develop/installing-WSO2-Inte
 
 ## Step 1: Select the required projects
 
-1.  Open **WSO2 Integration Studio** and click **Integration → Create New Integration Project** in the **Getting Started** view as shown below.
-    <img src="../../assets/img/create_project/create-integration-solution.png">
+1.  Open **WSO2 Integration Studio** and click **Integration → Create Integration Project** in the **Getting Started** view as shown below.
+    <img src="../../assets/img/create_project/create-integration-project.png">
 
 2.  In the **New Integration Project** dialog that opens, provide the following information:
 
@@ -116,6 +116,7 @@ In the **Docker Project Information** page, enter the details required for the D
                     You can also use a custom Docker image from a custom repository.
                 </li>
             </ul>
+            If you specify a Docker image from a private repository, note that you need to log in to your repository from a terminal before you build the image.
         </td>
     </tr>
         <td>
@@ -215,6 +216,7 @@ In the **Kubernetes Project Information** page, enter the details required for t
                     You can also use a custom Docker image from a custom repository.
                 </li>
             </ul>
+            If you specify a Docker image from a private repository, note that you need to log in to your repository from a terminal before you build the image.
         </td>
     </tr>
         <td>

@@ -21,6 +21,9 @@ Follow the steps given below.
 
 ## Step 2: Creating subprojects in the MMM project
 
+!!! Tip
+    If you do not see this feature in the WSO2 Integrations Studio that you are using, you need to [get the latest updates](../../develop/installing-WSO2-Integration-Studio/#get-the-latest-updates).
+
 Now you can create other projects inside the MMM project. For example, let's create a **Config** project and a **Composite Application** project:
 
 1.  Right-click the created MMM project in the project explorer and go to **New -> Integration Project**. This will open the **New Integration Project** wizard. 

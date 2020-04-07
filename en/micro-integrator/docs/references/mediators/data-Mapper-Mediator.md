@@ -336,10 +336,13 @@ white spaces from the beginning and end of a String.
 ![](../../assets/img/mediators/119131284/119134969.png) **Replace:**
 replaces the first occurrence of a target String with another.
 
-![](../../assets/img/mediators/119131284/119134968.png) **Match** – check
+![](../../assets/img/mediators/119131284/119134968.png) **Match:** check
 whether the input match with a (JS) Regular Expression
 
 ## AI Data Mapper
+
+!!! Tip
+    If you do not see this feature in the WSO2 Integrations Studio that you are using, you need to [get the latest updates](../../../develop/installing-WSO2-Integration-Studio/#get-the-latest-updates).
 
 WSO2 Integration Studio allows you to seamlessly generate the input-output mapping using its sophisticated AI Data Mapping generator. You simply have to load the input and output to the relevant sections as shown below and click **Apply**. Alternatively, you can manually create the mapping using the graphical drag-and-drop tool.
 

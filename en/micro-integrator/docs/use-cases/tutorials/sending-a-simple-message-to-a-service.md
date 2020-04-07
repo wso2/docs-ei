@@ -281,7 +281,7 @@ Package the artifacts in your composite application project (SampleServicesCompo
 To test the artifacts, deploy the [packaged artifacts](#step-3-package-the-artifacts) in the embedded Micro Integrator:
 
 1.  Right-click the composite application project and click **Export Project Artifacts and Run**.
-2.  In the dialog that opens, select the composite application project that you want to deploy.  
+2.  In the dialog that opens, select the artifacts that you want to deploy.  
 4.  Click **Finish**. The artifacts will be deployed in the embedded Micro Integrator and the server will start. See the startup log in the **Console** tab.
 
 ### Step 5: Test the use case

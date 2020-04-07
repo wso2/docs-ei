@@ -3,7 +3,7 @@
 WSO2 Micro Integrator contains an embedded HTTP REST client, which allows you to conveniently invoke your integration solutions after they are deployed in a server.
 
 !!! Tip
-    If you do not see the features given below in the WSO2 Integrations Studio that you are using, you can [get the latest updates](../../develop/installing-WSO2-Integration-Studio/#get-the-latest-updates).
+    If you do not see this feature in the WSO2 Integrations Studio that you are using, you need to [get the latest updates](../../develop/installing-WSO2-Integration-Studio/#get-the-latest-updates).
 
 When you open WSO2 Integration Studio, click the <img src="../../assets/img/testing-integrations/project-view-icon.png" width="20"> icon on the upper-right of the window. The **HTTP REST Client** tab is listed in the lower pane as shown below. 
 

@@ -2,7 +2,7 @@
 
 See the topics given below.
 
-## Before you begin
+## Prerequisites
 
 1.  Install Docker from the [Docker Site](https://docs.docker.com/).
 2.  Create a Docker Account at [Docker Hub](https://hub.docker.com) and log in.
