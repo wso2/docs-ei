@@ -245,12 +245,12 @@ To set up Message Broker profile of WSO2 EI 6.6.0:
 
 2. Add the following JAR files from the `EI_6.6.0_HOME/wso2/broker/client-lib/` directory to the 
 `MI_TOOLING_HOME/Contents/Eclipse/runtime/microesb/lib/` (in MacOS) or 
-`MI_TOOLING_HOME/runtime/microesb/lib` (in Windows) directory.
+`MI_TOOLING_HOME/runtime/microesb/lib` (in Windows/Linux) directory.
     -   andes-client-*.jar
     -   geronimo-jms_1.1_spec-*.jar
     -   org.wso2.securevault-*.jar
 3. Open the `deployment.toml` file from the `MI_TOOLING_HOME/Contents/Eclipse/runtime/microesb/conf/` (in MacOS) or 
-`MI_TOOLING_HOME/runtime/microesb/conf/` (in Windows) directory and add the configurations given below. This is required for enabling the broker to store messages.
+`MI_TOOLING_HOME/runtime/microesb/conf/` (in Windows/Linux) directory and add the configurations given below. This is required for enabling the broker to store messages.
 
     ```toml
     [[transport.jms.listener]]
@@ -338,9 +338,75 @@ Similarly, you can get details of message stores, message processors, and other 
 
 #### Send the client request
 
-Let's send a request to the API resource.
+Let's send a request to the API resource. You can use the embedded <b>HTTP Client</b> of WSO2 Integration Studio as follows:
 
-1.  Create a JSON file names `request.json` with the following request payload.
+1. Open the <b>HTTP Client</b> of WSO2 Integration Studio.
+
+    !!! Tip
+        If you don't see the <b>HTTP Client</b> tab, go to <b>Window -> Show View - Other</b> and select <b>HTTP Client</b> to enable the client.
+
+    <img src="../../../assets/img/tutorials/common/http4e-client-empty.png" width="800">
+    
+2. Enter the request information as given below and click the <b>Send</b> icon (<img src="../../../assets/img/tutorials/common/play-head-icon.png" width="20">).
+    
+    <table>
+        <tr>
+            <th>Method</th>
+            <td>
+               <code>POST</code> 
+            </td>
+        </tr>
+        <tr>
+            <th>Headers</th>
+            <td>
+              <code>Content-Type=application/json</code>
+            </td>
+        </tr>
+        <tr>
+            <th>URL</th>
+            <td><code>http://localhost:8290/healthcare/categories/surgery/reserve</code></br></br>
+              <ul>
+                <li>
+                  The URI-Template format that is used in this URL was defined when creating the API resource QueryDoctorAPI:
+          <code>http://<host>:<port>/categories/{category}/reserve</code>.
+                </li>
+              </ul>
+            </td>
+        </tr>
+        <tr>
+            <th>Body</th>
+            <td>
+            <div>
+              <code>
+                {
+                 "name": "John Doe",
+                 "dob": "1940-03-19",
+                 "ssn": "234-23-525",
+                 "address": "California",
+                 "phone": "8770586755",
+                 "email": "johndoe@gmail.com",
+                 "doctor": "thomas collins",
+                 "hospital": "grand oak community hospital",
+                 "cardNo": "7844481124110331",
+                 "appointment_date": "2025-04-02"
+                }
+              </code>
+            </div></br>
+            <ul>
+              <li>
+                This JSON payload contains details of the appointment reservation, which includes patient details, doctor, hospital, and data of appointment.
+              </li>
+            </ul>
+        </tr>
+     </table>
+     
+     <img src="../../../assets/img/tutorials/119132268/http-client-request-config.png" width="800">
+
+If you want to send the client request from your terminal:
+
+1.  Install and set up [cURL](https://curl.haxx.se/) as your REST client.
+
+2.  Create a JSON file names `request.json` with the following request payload.
 
     ```json
     {
@@ -356,15 +422,12 @@ Let's send a request to the API resource.
     }
     ```
 
-2.  Open a command line terminal and execute the following command from the location where `request.json` file you created is saved:
+3.  Open a command line terminal and execute the following command from the location where the `request.json` file you created is saved:
 
     ```bash
     curl -v -X POST --data @request.json http://localhost:8290/healthcare/categories/surgery/reserve --header "Content-Type:application/json"
     ```
 
-    !!! Info
-        This URL format is from the **URI-Template** defined when creating the API resource QueryDoctorAPI: `http://<host>:<port>/categories/{category}/reserve`
-    
 #### Analyze the response
 
 You will see the response as follows:
