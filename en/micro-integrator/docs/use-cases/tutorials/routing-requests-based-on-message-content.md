@@ -95,12 +95,12 @@ Let's create three different HTTP endpoints for the above services.
          <td>Static Endpoint</td>
          <td><br/>
          </td>
-         <td>Select this option because we are going to use this endpoint only in this ESB Config project and will not reuse it in other projects.</br/></br/> <b>Note</b>: If you need to create a reusable endpoint, save it as a Dynamic Endpoint in either the Configuration or Governance Registry.</td>
+         <td>Select this option because we are going to use this endpoint only in this Config project and will not reuse it in other projects.</br/></br/> <b>Note</b>: If you need to create a reusable endpoint, save it as a Dynamic Endpoint in either the Configuration or Governance Registry.</td>
       </tr>
       <tr>
          <td>Save Endpoint in</td>
          <td><code>               SampleServices              </code></td>
-         <td>This is the ESB Config project we created in the last section</td>
+         <td>This is the Config project we created in the last section</td>
       </tr>
     </table>
 
@@ -152,7 +152,7 @@ To implement the routing scenario, let's add a new API resource to the REST API 
     </tr>
     </table>
 
-    ![](../../assets/img/tutorials/119132155/119132164.png)
+    <img src="../../../assets/img/tutorials/119132155/119132164.png" width="800">
 
 #### Define the mediation flow 
 
@@ -191,7 +191,7 @@ You can now start configuring the API resource.
             <div class="content-wrapper">
               <p>Follow the steps given below to specify the expression:</p>
             <ol>
-                <li>Click the text box of the <strong>Value Expression</strong> field. This opens the <b>Expression Selector</b> dialog.</li>
+                <li>Click the text box of the <strong>Value Expression</strong> field. This opens the <b>Expression Selector</b> dialog box.</li>
                <li>Select <strong>Expression</strong> from the list.
                 </li>
                <li>Enter <code>json-eval($.hospital)</code> to overwrite the default expression.</li>
@@ -208,8 +208,8 @@ You can now start configuring the API resource.
 
 3.  Add a **Switch** mediator from the **Mediator** palette just after the Property Mediator.
 4.  Right-click the Switch mediator you just added and select **Add/Remove Case** to add the number of cases you want to specify.  
-
-    ![](../../assets/img/tutorials/119132155/119132163.png) 
+    
+    <img src="../../../assets/img/tutorials/119132155/119132163.png" width="500">
 
     We have three different hospital endpoints, which corresponds to three switch cases. Enter 3 for **Number of branches** and click **OK**.  
 
@@ -228,7 +228,7 @@ You can now start configuring the API resource.
             <p>The <strong>Source XPath</strong> field is where we specify the XPath expression, which obtains the value of Hospital that we stored in the Property mediator.</p>
             <p>Follow the steps given below to specify the expression:</p>
             <ol>
-                <li>Click the text box of the <strong>Source XPath</strong> property. This opens the <b>Expression Selector</b> dialog.</li>
+                <li>Click the text box of the <strong>Source XPath</strong> property. This opens the <b>Expression Selector</b> dialog box.</li>
                <li>Select <strong>Expression</strong> from the list.
                 </li>
                <li>Enter <code>                  get-property('Hospital')                 </code> to overwrite the default expression.</li>
@@ -245,7 +245,7 @@ You can now start configuring the API resource.
          <div class="content-wrapper">
             <p>Follow the steps given below to add the case branches:</p>
             <ol>
-                <li>Double click each <b>case regex</b> (corresponding to each branch) that is listed. This will open the <b>SwitchCaseBranchOutputConnector</b> dialog.</li>
+                <li>Double click each <b>case regex</b> (corresponding to each branch) that is listed. This will open the <b>SwitchCaseBranchOutputConnector</b> dialog box.</li>
                <li>
                   Change the RegEx values for the switch cases as follows:
                   <ul>
@@ -254,7 +254,6 @@ You can now start configuring the API resource.
                      <li>Case 3:  pine valley community hospital</li>
                   </ul>
                </li>
-               <li>Click <strong>OK</strong> .</li>
             </ol>
          </div>
       </td>
@@ -301,10 +300,10 @@ You can now start configuring the API resource.
             <ol>
                 <li>
                     Click the <b>plus</b> icon (<img src="../../../assets/img/tutorials/common/plus-icon.png" width="30">)
-    to start defining a property. This opens the <b>LogProperty</b> dialog.
+    to start defining a property. This opens the <b>LogProperty</b> dialog box.
                 </li>
                 <li>
-                    Add the following values in the <b>LogProperty</b> dialog:
+                    Add the following values in the <b>LogProperty</b> dialog box:
                     <ul>
                         <li>
                             <b>Name</b> : `message`
@@ -378,7 +377,7 @@ Package the artifacts in your composite application project (SampleServicesCompo
 To test the artifacts, deploy the [packaged artifacts](#step-3-package-the-artifacts) in the embedded Micro Integrator:
 
 1.  Right-click the composite application project and click **Export Project Artifacts and Run**.
-2.  In the dialog that opens, select the composite application project that you want to deploy.  
+2.  In the dialog that opens, select the artifacts that you want to deploy.  
 4.  Click **Finish**. The artifacts will be deployed in the embedded Micro Integrator and the server will start. See the startup log in the **Console** tab. 
 
 ### Step 5: Test the use case
@@ -523,22 +522,17 @@ If you want to send the client request from your terminal:
 You will see the following response received to your <b>HTTP Client</b>:
 
 ```json
-{"appointmentNumber":1,
-    "doctor":
-         {"name":"thomas collins",
-          "hospital":"grand oak community hospital",
-          "category":"surgery","availability":"9.00 a.m - 11.00 a.m",
-          "fee":7000.0},
-    "patient":
-        {"name":"John Doe",
-         "dob":"1990-03-19",
-         "ssn":"234-23-525",
-         "address":"California",
-         "phone":"8770586755",
-         "email":"johndoe@gmail.com"},
-    "fee":7000.0,
-"confirmed":false,
-"appointmentDate":"2025-04-02"}
+{ "patient": 
+  { "name": "John Doe", 
+    "dob": "1940-03-19", 
+    "ssn": "234-23-525", 
+    "address": "California", 
+    "phone": "8770586755", 
+    "email": "johndoe@gmail.com" }, 
+  "doctor": "thomas collins", 
+  "hospital": "grand oak community hospital", 
+  "appointment_date": "2025-04-02" 
+}
 ```
 
 Now check the **Console** tab of WSO2 Integration Studio and you will see the following message: `INFO - LogMediator message = Routing to grand oak community hospital`

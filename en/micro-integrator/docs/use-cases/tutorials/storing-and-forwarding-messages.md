@@ -13,9 +13,10 @@ Processor** to retrieve the message from the store before delivering it to the b
 Set up WSO2 Integration Studio as follows:
 
 1.  Download the relevant [WSO2 Integration Studio](https://wso2.com/integration/tooling/) based on your operating system. The path to the extracted/installed folder is referred to as `MI_TOOLING_HOME` throughout this tutorial.
-2.   If you did not try the [Exposing Several Services as a Single Service](exposing-several-services-as-a-single-service.md) tutorial yet:
-    1.  Open WSO2 Integration Studio and go to **File -> Import**. 
-    2.  Select **Existing WSO2 Projects into workspace** under the **WSO2** category, click **Next**, and then upload the [pre-packaged project](https://github.com/wso2-docs/WSO2_EI/blob/master/Integration-Tutorial-Artifacts/ExposingSeveralServicesTutorial.zip).
+2.  If you did not try the [Exposing Several Services as a Single Service](exposing-several-services-as-a-single-service.md) tutorial yet:
+    1.  Download the [pre-packaged project](https://github.com/wso2-docs/WSO2_EI/blob/master/Integration-Tutorial-Artifacts/ExposingSeveralServicesTutorial.zip). 
+    2.  Open WSO2 Integration Studio and go to **File -> Import**. 
+    2.  Select **Existing WSO2 Projects into workspace** under the **WSO2** category, click **Next**, and then upload the **pre-packaged** project. 
 
 Optionally, you can set up the **CLI tool** for artifact monitoring. This will later help you get details of the artifacts that you deploy in your Micro Integrator.
 
@@ -64,7 +65,7 @@ Now, let's create a Message Store artifact to represent the broker.
     </tr>
     </table>
 
-    ![](../../assets/img/tutorials/119132268/119132276.png)
+    <img src="../../../assets/img/tutorials/119132268/119132276.png" width="500">
 
 3.  Click **Finish**.
 
@@ -75,7 +76,7 @@ Let's create a Sequence that uses the message in the message store to send the r
 1.  Right click the **SampleServices** project in the Project Explorer and navigate to **New -> Sequence**. 
 2.  Select **Create New Sequence** and give **PaymentRequestProcessingSequence** as the name.
 
-    ![](../../assets/img/tutorials/119132268/119132273.png)  
+    <img src="../../../assets/img/tutorials/119132268/119132273.png" width="500">
 
 3.  Click **Finish**.
 
@@ -148,7 +149,7 @@ Let's create a **Message Sampling Processor** to dispatch the request message fr
         </tr>
     </table>
 
-    ![](../../assets/img/tutorials/119132268/119132269.png)
+    <img src="../../../assets/img/tutorials/119132268/119132269.png" width="500">
 
 2.  Click **Finish**.
 
@@ -217,7 +218,7 @@ Package the artifacts in your composite application project (SampleServicesCompo
 To test the artifacts, deploy the [packaged artifacts](#step-3-package-the-artifacts) in the embedded Micro Integrator:
 
 1.  Right-click the composite application project and click **Export Project Artifacts and Run**.
-2.  In the dialog that opens, select the composite application project that you want to deploy.  
+2.  In the dialog that opens, select the artifacts that you want to deploy.  
 4.  Click **Finish**. The artifacts will be deployed in the embedded Micro Integrator and the server will start. See the startup log in the **Console** tab.
 
 !!! Warning

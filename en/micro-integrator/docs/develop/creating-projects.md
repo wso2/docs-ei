@@ -7,14 +7,14 @@ Create the project directories that are required for storing the various synapse
 
 ## Config Project
 
-This project directory stores the integration artifacts that are used when defining a mediation flow.
+This project directory stores the synapse configurations (artifacts) that are used when defining a mediation flow.
 
 <ol>
     <li>
-        Open <b>WSO2 Integration Studio</b> and click <b>Miscellaneous → Create New Config Project</b> in the <b>Getting Started</b> view as shown below.</br></br><img src="../../assets/img/create_project/new_config_project.png">
+        Open <b>WSO2 Integration Studio</b> and click <b>Miscellaneous → Create Config Project</b> in the <b>Getting Started</b> view as shown below.</br></br><img src="../../assets/img/create_project/new_config_project.png">
     </li> 
     <li>
-        In the dialog that opens, select <b>New ESB Config Project</b> and click <b>Next</b>.
+        In the dialog box that opens, select <b>New ESB Config Project</b> and click <b>Next</b>.
     </li>
     <li>
         Enter a name for the Config project.
@@ -32,10 +32,10 @@ Create this project directory if you want to create registry resources for your 
             
 <ol>
     <li>
-        Open <b>WSO2 Integration Studio</b> and click <b>Miscellaneous → Create New Registry Project</b> in the <b>Getting Started</b> view as shown below.</br></br><img src="../../assets/img/create_project/new_registy_project.png">
+        Open <b>WSO2 Integration Studio</b> and click <b>Miscellaneous → Create Registry Project</b> in the <b>Getting Started</b> view as shown below.</br></br><img src="../../assets/img/create_project/new_registy_project.png">
     </li>
     <li>
-        In the dialog that opens, enter a name for the registry project. 
+        In the dialog box that opens, enter a name for the registry project. 
     </li>
     <li>
         Click <b>Finish</b> and see that the project is now listed in the project explorer.  
@@ -49,24 +49,24 @@ See the instructions on <a href="../../develop/creating-artifacts/creating-regis
 Create this project directory to start creating data services (.dbs files) for exposing various datasources as a service.</br>
 <ol>
     <li>
-        Open <b>WSO2 Integration Studio</b> and click <b>Data Service → Create New Data Service</b> in the <b>Getting Started</b> view as shown below.
-                    <img src="../../assets/img/create_project/data_services_project.png">
+        Open <b>WSO2 Integration Studio</b> and click <b>Data Service → Create Data Service Project</b> in the <b>Getting Started</b> view as shown below.
+        <img src="../../assets/img/create_project/data_services_project.png">
     </li>
     <li>
-        In the dialog that opens, enter a project name and click <b>Next</b>.
+        In the dialog box that opens, enter a project name and click <b>Next</b>.
     </li>
     <li>
         Click <b>Finish</b> and see that the project is now listed in the project explorer.
     </li>
 </ol>
 
-You can now start <a href="../../develop/creating-artifacts/data-services/creating-data-services/">managing data service artifacts</a> using <b>WSO2 Integration Studio</b>.
+You can now start <a href="../../develop/creating-artifacts/data-services/creating-data-services/">creating data service artifacts</a> using <b>WSO2 Integration Studio</b>.
 
 ## Datasource Project
 
 Create this project directory to start creating datasources that you can expose through a data service.
 
-1. Open **WSO2 Integration Studio** and click **Data Service → Create New Data Source** in the **Getting Started** view as shown below.
+1. Open **WSO2 Integration Studio** and click **Data Service → Create Data Source** in the **Getting Started** view as shown below.
     <img src="../../assets/img/create_project/datasource-project.png">
 2. In the dialog that opens, enter a project name and click **Next**.
     <img src="../../assets/img/create_project/datasource-project-dialog.png">
@@ -75,7 +75,7 @@ Create this project directory to start creating datasources that you can expose 
 
 ## Connector Exporter Project
 
-Create this project directory if you have used **Connectors** in your medition sequence (defined in the Config project). All connector artifacts need to be stored in a connector exporter project before packaging. See the instructions on [creating and using connectors](../../develop/creating-artifacts/adding-connectors).
+Create this project directory if you have used **Connectors** in your medition sequence (defined in the Config project). All connector artifacts need to be stored in a connector exporter project before packaging. See the instructions on [using connectors](../../develop/creating-artifacts/adding-connectors).
 
 ## Composite Application Project
 

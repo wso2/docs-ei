@@ -4,9 +4,9 @@
 
 When information from several services are required to construct a response to a client request, service chaining needs to be implemented. That is, several services are integrated based on some business logic and exposed as a single, aggregated service. 
 
-In this use tutorial, when a client sends a request for a medical appointment, the Micro Integrator performs several service call to multiple back-end services in order to construct the response that includes all the necessary details. 
+In this tutorial, when a client sends a request for a medical appointment, the Micro Integrator performs several service calls to multiple back-end services in order to construct the response that includes all the necessary details. 
 
-To build this mediation flow, you will update the API resource from the [previous tutorial](transforming-message-content.md) to send messages through the Micro Integrator to the back-end service using the **Call** mediator instead of the **Send** mediator. Using the Call mediator allows you to specify all service invocations one after the other within a single sequence. You will then use the **PayloadFactory** mediator to take the response from one back-end service and change it to the format that is accepted by the other back-end service.
+To build this mediation flow, you will update the API resource from the [previous tutorial](transforming-message-content.md) to send messages through the Micro Integrator to the back-end service using the **Call** mediator instead of the **Send** mediator. The Call mediator allows you to specify all service invocations one after the other within a single sequence. You will then use the **PayloadFactory** mediator to take the response from one back-end service and change it to the format that is accepted by the other back-end service.
 
 ## Let's get started!
 
@@ -31,10 +31,10 @@ Optionally, you can set up the **CLI tool** for artifact monitoring. This will l
 
 #### Create new Endpoints
 
-Let's create new HTTP endpoints to represent the back-end services that are required for checking the channelling fee and to settle the payment.
+Let's create new HTTP endpoints to represent the back-end services that are required for checking the channelling fee and for settling the payment.
 
 1.  Right click **SampleServices** in the Project Explorer and navigate to **New -> Endpoint**. 
-2.  Ensure **Create a New Endpoint** is selected and click **Next.**
+2.  Ensure **Create a New Endpoint** is selected and click **Next**.
 3.  Enter the details given below:
     <table>
         <tr>
@@ -78,18 +78,18 @@ Let's create new HTTP endpoints to represent the back-end services that are requ
          <td>Static Endpoint</td>
          <td><br/>
          </td>
-         <td>Select this option because we are going to use this endpoint only in this ESB Config project and will not reuse it in other projects.</br/></br/> <b>Note</b>: If you need to create a reusable endpoint, save it as a Dynamic Endpoint in either the Configuration or Governance Registry.</td>
+         <td>Select this option because we are going to use this endpoint only in this Config project and will not reuse it in other projects.</br/></br/> <b>Note</b>: If you need to create a reusable endpoint, save it as a Dynamic Endpoint in either the Configuration or Governance Registry.</td>
       </tr>
       <tr>
          <td>Save Endpoint in</td>
          <td><code>               SampleServices              </code></td>
-         <td>This is the ESB Config project we created in the last section</td>
+         <td>This is the Config project we created in the last section</td>
       </tr>
     </table>
 
 4.  Click **Finish**.
 
-    ![](../../assets/img/tutorials/119132228/119132240.png)
+    <img src="../../../assets/img/tutorials/119132228/119132240.png" width="500">
 
 5.  Create another endpoint for the Settle Payment back-end service and specify the details given below:
     <table>
@@ -134,18 +134,18 @@ Let's create new HTTP endpoints to represent the back-end services that are requ
          <td>Static Endpoint</td>
          <td><br/>
          </td>
-         <td>Select this option because we are going to use this endpoint only in this ESB Config project and will not reuse it in other projects.</br/></br/> <b>Note</b>: If you need to create a reusable endpoint, save it as a Dynamic Endpoint in either the Configuration or Governance Registry.</td>
+         <td>Select this option because we are going to use this endpoint only in this Config project and will not reuse it in other projects.</br/></br/> <b>Note</b>: If you need to create a reusable endpoint, save it as a Dynamic Endpoint in either the Configuration or Governance Registry.</td>
       </tr>
       <tr>
          <td>Save Endpoint in</td>
          <td><code>SampleServices</code></td>
-         <td>This is the ESB Config project we created in the last section</td>
+         <td>This is the Config project we created in the last section</td>
       </tr>
     </table>
 
 6.  Click **Finish**.
 
-    ![](../../assets/img/tutorials/119132228/119132239.png)
+    <img src="../../../assets/img/tutorials/119132228/119132239.png" width="500">
 
 You have now created the additional endpoints that are required for this tutorial.
 
@@ -164,29 +164,29 @@ You can now start updating the API resource with the mediation flow.
             <th>Property</th>
             <th>Description</th>
         </tr>
-      <tr class="odd">
+      <tr>
          <td>Property Name</td>
-         <td>Enter <code>               New Property...              </code>.</td>
+         <td>Enter <code>New Property...</code>.</td>
       </tr>
-      <tr class="even">
+      <tr >
          <td>New Property Name</td>
-         <td>Enter <code>card_number             </code>.</td>
+         <td>Enter <code>card_number</code>.</td>
       </tr>
-      <tr class="odd">
+      <tr>
          <td>Property Action</td>
-         <td>Enter <code>               set              </code>.</td>
+         <td>Enter <code>set</code>.</td>
       </tr>
-      <tr class="even">
+      <tr>
          <td>Value Type</td>
-         <td>Enter <code>               EXPRESSION              </code>.</td>
+         <td>Enter <code>EXPRESSION</code>.</td>
       </tr>
-      <tr class="even">
+      <tr>
          <td>Value Expression</td>
          <td>
-            <div class="content-wrapper">
+            <div">
               <p>Follow the steps given below to specify the expression:</p>
             <ol>
-                <li>Click the text box for the <strong>Value Expression</strong> field. This opens the <b>Expression Selector</b> dialog.</li>
+                <li>Click the text box for the <strong>Value Expression</strong> field. This opens the <b>Expression Selector</b> dialog box.</li>
                <li>Select <strong>Expression</strong> from the list.
                 </li>
                <li>Enter <code>json-eval($.cardNo)</code> to overwrite the default expression.</li>
@@ -203,7 +203,7 @@ You can now start updating the API resource with the mediation flow.
       </tr>
     </table>
 
-3.  Go to the first case box of the Switch mediator. Add a Property mediator just after the Log mediator to store the value for `          uri.var.hospital         ` variable that will be used when sending requests to **ChannelingFeeEP** service. 
+3.  Go to the first case box of the Switch mediator. Add a Property mediator just after the Log mediator to store the value for `uri.var.hospital` variable that will be used when sending requests to **ChannelingFeeEP** service. 
 
     ![](../../assets/img/tutorials/119132228/119132237.png)
 
@@ -215,15 +215,15 @@ You can now start updating the API resource with the mediation flow.
         </tr>
       <tr class="odd">
          <td>Property Name</td>
-         <td>Enter <code>               New Property...              </code>.</td>
+         <td>Enter <code>New Property...</code>.</td>
       </tr>
       <tr class="even">
          <td>New Property Name</td>
-         <td>Enter <code>uri.var.hospital </code>.</td>
+         <td>Enter <code>uri.var.hospital</code>.</td>
       </tr>
       <tr class="odd">
          <td>Property Action</td>
-         <td>Enter <code>               set              </code>.</td>
+         <td>Enter <code>set</code>.</td>
       </tr>
       <tr class="even">
          <td>Value Type</td>
@@ -246,8 +246,8 @@ You can now start updating the API resource with the mediation flow.
     </table>
 
 5.  Similarly, add property mediators in the other two case boxes in the Switch mediator. Change only the **Value** field as follows:
-    -   Case 2: `            clemency           `
-    -   Case 3: `            pinevalley           `  
+    -   Case 2: `clemency`
+    -   Case 3: `pinevalley`  
 
     ![](../../assets/img/tutorials/119132228/119132236.png)
 
@@ -261,7 +261,7 @@ You can now start updating the API resource with the mediation flow.
     
     Let's use Property mediators to retrieve and store the values that you get from the response you receive from GrandOakEP, ClemencyEP, or PineValleyEP.
 
-8.  Next to the Switch mediator, add a Property mediator to retrieve and store the value sent as `appointmentNumber` .
+8.  Next to the Switch mediator, add a Property mediator to retrieve and store the value sent as `appointmentNumber`.
 
     ![](../../assets/img/tutorials/119132228/119132234.png) 
 
@@ -298,7 +298,7 @@ You can now start updating the API resource with the mediation flow.
             <div class="content-wrapper">
               <p>Follow the steps given below to specify the expression:</p>
             <ol>
-                <li>Click the text box for the <strong>Value Expression</strong> field. This opens the <b>Expression Selector</b> dialog.</li>
+                <li>Click the text box for the <strong>Value Expression</strong> field. This opens the <b>Expression Selector</b> dialog box.</li>
                <li>Select <strong>Expression</strong> from the list.
                 </li>
                <li>Enter <code>json-eval($.appointmentNumber)</code> to overwrite the default expression.</li>
@@ -368,7 +368,7 @@ You can now start updating the API resource with the mediation flow.
                     <div class="content-wrapper">
                       <p>Follow the steps given below to specify the expression:</p>
                     <ol>
-                        <li>Click the text box for the <strong>Value Expression</strong> field. This opens the <b>Expression Selector</b> dialog.</li>
+                        <li>Click the text box for the <strong>Value Expression</strong> field. This opens the <b>Expression Selector</b> dialog box.</li>
                        <li>Select <strong>Expression</strong> from the list.
                         </li>
                        <li>Enter <code>json-eval($.doctor)</code> to overwrite the default expression.</li>
@@ -396,37 +396,37 @@ You can now start updating the API resource with the mediation flow.
             </tr>
             <tr>
               <td>Property Name</td>
-              <td>Select <strong>New Property</strong></td>
+              <td>Select <strong>New Property</strong>.</td>
             </tr>
             <tr>
               <td>New Property Name</td>
               <td>
-                Enter <code>patient_details</code>
+                Enter <code>patient_details</code>.
               </td>
             </tr>
             <tr>
               <td>Property Action</td>
               <td>
-                Select <strong>set</strong>
+                Select <strong>set</strong>.
               </td>
             </tr>
             <tr>
               <td>Value Type</td>
               <td>
-                Select <strong>EXPRESSION</strong>
+                Select <strong>EXPRESSION</strong>.
               </td>
             </tr>
-            <tr class="even">
+            <tr>
                  <td>Value Expression</td>
                  <td>
-                    <div class="content-wrapper">
+                    <div>
                       <p>Follow the steps given below to specify the expression:</p>
                     <ol>
-                        <li>Click the text box for the <strong>Value Expression</strong> field. This opens the <b>Expression Selector</b> dialog.</li>
+                        <li>Click the text box for the <strong>Value Expression</strong> field. This opens the <b>Expression Selector</b> dialog box.</li>
                        <li>Select <strong>Expression</strong> from the list.
                         </li>
                        <li>Enter <code>json-eval($.patient)</code> to overwrite the default expression.</li>
-                       <li>Click <strong>OK.</strong> <strong><br />
+                       <li>Click <strong>OK</strong>.<br />
                           </strong>
                        </li>
                     </ol>
@@ -454,7 +454,7 @@ You can now start updating the API resource with the mediation flow.
               <td>New Property Name</td>
               <td>
                   Enter <code>actual_fee</code></br></br>
-                  <b>Note</b>: This value is used when invoking <a src="#ExposingSeveralServicesasaSingleService-Settle">SettlePaymentEP</a>.
+                  <b>Note</b>: This value is used when invoking SettlePaymentEP.
               </td>
             </tr>
             <tr>
@@ -475,11 +475,11 @@ You can now start updating the API resource with the mediation flow.
                     <div class="content-wrapper">
                       <p>Follow the steps given below to specify the expression:</p>
                     <ol>
-                        <li>Click the text box for the <strong>Value Expression</strong> field. This opens the <b>Expression Selector</b> dialog.</li>
+                        <li>Click the text box for the <strong>Value Expression</strong> field. This opens the <b>Expression Selector</b> dialog box.</li>
                        <li>Select <strong>Expression</strong> from the list.
                         </li>
                        <li>Enter <code>json-eval($.actualFee)</code> to overwrite the default expression.</li>
-                       <li>Click <strong>OK.</strong> <strong><br />
+                       <li>Click <strong>OK</strong>.<br />
                           </strong>
                        </li>
                     </ol>
@@ -497,7 +497,6 @@ You can now start updating the API resource with the mediation flow.
           </table>
 
     ![](../../assets/img/tutorials/119132228/119132232.png)
-    
 
     !!! Note
         You derive the Value Expression in the above table from the following response that is received from ChannelingFeeEP:
@@ -532,7 +531,8 @@ You can now start updating the API resource with the mediation flow.
     }
     ```
 
-15.  Add a PayloadFactory mediator next to the Property mediator, from the **mediators** palette to construct the above message payload.
+15.  Add a PayloadFactory mediator next to the Property mediator from the **mediators** palette to construct the above message payload.
+
       ![](../../assets/img/tutorials/119132228/119132229.png) 
 
 16. With the Payloadfactory mediator selected, access the properties tab of the mediator and specify the following details:
@@ -544,8 +544,8 @@ You can now start updating the API resource with the mediation flow.
     | Payload        | `{"appointmentNumber":$1, "doctor":$2, "patient":$3, "fee":$4, "confirmed":"false", "card_number":"$5"}`</br></br> This is the message payload to send with the request to SettlePaymentEP. In this payload, $1, $2, $3, $4, and $5 indicate variables. |
     
 17. To add the **Args** field for the PayloadFactory mediator:
-    1. Click the **plus** icon (<img src="../../../assets/img/tutorials/common/plus-icon.png" width="30">) in the **Args** field to open the **PayloadFactoryArgument** dialog. 
-    2. Enter the following information in the **PayloadFactoryArgument** dialog. This provides the argument that defines the actual value of the first variable (used in the format definition given in the previous step).
+    1. Click the **plus** icon (<img src="../../../assets/img/tutorials/common/plus-icon.png" width="30">) in the **Args** field to open the **PayloadFactoryArgument** dialog box. 
+    2. Enter the following information in the **PayloadFactoryArgument** dialog box. This provides the argument that defines the actual value of the first variable (used in the format definition given in the previous step).
 
         !!! Tip
             To avoid getting an error message, first select the **Media Type** before providing the **Payload.**
@@ -569,7 +569,7 @@ You can now start updating the API resource with the mediation flow.
                 <div class="content-wrapper">
                   <p>Follow the steps given below to specify the expression:</p>
                 <ol>
-                    <li>Click the text box for the <strong>Argument Expression</strong> field. This opens the <b>Expression Selector</b> dialog.</li>
+                    <li>Click the text box for the <strong>Argument Expression</strong> field. This opens the <b>Expression Selector</b> dialog box.</li>
                    <li>Select <strong>Expression</strong> from the list.
                     </li>
                    <li>
@@ -633,7 +633,7 @@ Package the artifacts in your composite application project (SampleServicesCompo
 To test the artifacts, deploy the [packaged artifacts](#step-3-package-the-artifacts) in the embedded Micro Integrator:
 
 1.  Right-click the composite application project and click **Export Project Artifacts and Run**.
-2.  In the dialog that opens, select the composite application project that you want to deploy.  
+2.  In the dialog box that opens, select the artifacts that you want to deploy.  
 3.  Click **Finish**. The artifacts will be deployed in the embedded Micro Integrator and the server will start. See the startup log in the **Console** tab. 
 
 ### Step 5: Test the use case

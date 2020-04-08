@@ -2,7 +2,7 @@
 
 ## What you'll build
 
-In this sample scenario, you will use an **Inbound Endpoint** to expose an already defined REST API through a different port. You can reuse the REST API that was defined in the [Sending a Simple Message to a Service](../sending-a-simple-message-to-a-service) tutorial. See [Creating an Inbound Endpoint](../../develop/creating-artifacts/creating-an-inbound-endpoint.md) for details on how to work with inbound endpoints using WSO2 Integration Studio.
+In this tutorial, you will use an **Inbound Endpoint** to expose an already defined REST API through a different port. You can reuse the REST API that was defined in the [Sending a Simple Message to a Service](../sending-a-simple-message-to-a-service) tutorial. See [Creating an Inbound Endpoint](../../develop/creating-artifacts/creating-an-inbound-endpoint.md) for details on how to work with inbound endpoints using WSO2 Integration Studio.
 
 ## Let's get started!
 
@@ -30,7 +30,7 @@ Optionally, you can set up the **CLI tool** for artifact monitoring. This will l
     project directory will appear with the artifacts as shown below.
     Note the 'HealthcareAPI' that is already included.
 
-    ![](../../assets/img/tutorials/inbound-project-explorer.png)
+    ![](../../assets/img/tutorials/inbound-endpoint/inbound-project-explorer.png)
 
 2.  Right-click on **SampleServices** and navigate to **New -> Inbound
     Endpoint**. Select **Create A New Inbound Endpoint** and click
@@ -57,7 +57,7 @@ Optionally, you can set up the **CLI tool** for artifact monitoring. This will l
         </tr>
     </table>
 
-    ![](https://lh3.googleusercontent.com/CYLJoSvCMhZfVYSZc73iRyAHhzgVWwjCqfkNgjPDlVs2qAs6QhsbDKt8mbIzEk8ojpONkEl2nemszzeNLPSAW3ogSs0eHqbGQMmw7WSlhx3b3Nbvfp0xGJ2Xbwl-Qbi0NxMGrSJB)
+    <img src="../../../assets/img/tutorials/inbound-endpoint/inbound-endpoint-wizard.png" width="500">
 
 4.  Go to the **Properties** tab in the **Design** view and enter the following:
 
@@ -80,7 +80,7 @@ Optionally, you can set up the **CLI tool** for artifact monitoring. This will l
         </tr>
     </table>
 
-    ![](https://lh5.googleusercontent.com/KUBGiYXSzSVkZo_mDb0y9yzGFp6Fts7FdUrvrH_QlvpGDtaTiwnivjvCsMBpzhGDyRrJvCeBysYQNBFL3ndpEXwUB-U5TDsBbNS2actK3_8ie2RWULV6-g1LY3Q9XWaWOHsZNc7O)
+    <img src="../../../assets/img/tutorials/inbound-endpoint/inbound-endpoint-properties.png" width="800">
 
 The endpoint will now get mapped to any URL that matches the above pattern provided. You will be exposing the health care API on a new port
 through this inbound endpoint.
@@ -102,7 +102,7 @@ Package the artifacts in your composite application project (SampleServicesCompo
 To test the artifacts, deploy the [packaged artifacts](#step-3-package-the-artifacts) in the embedded Micro Integrator:
 
 1.  Right-click the composite application project and click **Export Project Artifacts and Run**.
-2.  In the dialog that opens, select the composite application project that you want to deploy.  
+2.  In the dialog that opens, select the artifacts that you want to deploy.  
 4.  Click **Finish**. The artifacts will be deployed in the embedded Micro Integrator and the server will start. See the startup log in the **Console** tab. 
 
 ### Step 5: Test the use case
@@ -188,7 +188,7 @@ Let's send a message to the **healthcare** REST API (through the inbound endpoin
         </tr>
      </table>
      
-     <img src="../../../assets/img/tutorials/inbound_http_client.png" width="800">
+     <img src="../../../assets/img/tutorials/inbound-endpoint/inbound_http_client.png" width="800">
 
 If you want to send the client request from your terminal:
 
@@ -202,8 +202,27 @@ If you want to send the client request from your terminal:
 You will get the response shown below. The inbound endpoint has successfully invoked the REST API, and further, the response received by the REST API has been routed back to the client through the inbound endpoint.
 
 ```json
-[{"name":"thomas collins","hospital":"grand oak community 
-hospital","category":"surgery","availability":"9.00 a.m - 11.00 a.m","fee":7000.0},
-{"name":"anne clement","hospital":"clemency medical center","category":"surgery","availability":"8.00 a.m - 10.00 A.m","fee":12000.0},
-{"name":"seth mears","hospital":"pine valley community hospital","category":"surgery","availability":"3.00 p.m - 5.00 p.m","fee":8000.0}]
+[
+    {"name":
+        "thomas collins",
+        "hospital":"grand oak community hospital",
+        "category":"surgery",
+        "availability":"9.00 a.m - 11.00 a.m",
+        "fee":7000.0
+    },
+    {"name":
+        "anne clement",
+        "hospital":"clemency medical center",
+        "category":"surgery",
+        "availability":"8.00 a.m - 10.00 A.m",
+        "fee":12000.0
+    },
+    {"name":
+        "seth mears",
+        "hospital":"pine valley community hospital",
+        "category":"surgery",
+        "availability":"3.00 p.m - 5.00 p.m",
+        "fee":8000.0
+    }
+]
 ```

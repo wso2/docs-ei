@@ -1,4 +1,4 @@
-# Importing projects
+# Importing Projects
 
 If you have an already created your [integration projects](../../develop/creating-projects), you can import it to
 your WSO2 Integration Studio workspace.

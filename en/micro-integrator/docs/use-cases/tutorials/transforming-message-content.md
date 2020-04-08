@@ -2,11 +2,11 @@
 
 ## What you'll build
 
-Message transformation is necessary when the message format sent by the client is different from the message format expected by the back-end service. The **Message Translator** architectural pattern in WSO2 Micro Integrator describes how to translate from one data format to another.
+Message transformation is necessary when the message format sent by the client is different from the message format expected by the back-end service. The **Message Translator** architectural pattern in WSO2 Micro Integrator describes how you can translate one data format to another.
 
-**In this tutorial**, you send a request message to a back-end service where the format of the request payload is different to what is expected by the back-end service. The **Data Mapper** mediator is used to transform the request message payload to the format expected by the back-end service.
+**In this tutorial**, you will send a request message to a back-end service where the format of the request payload is different to what is expected by the back-end service. The **Data Mapper** mediator is used to transform the request message payload to the format expected by the back-end service.
 
-Let’s assume this is the format of the request sent by the client:
+Let’s assume that the client sends the following message format:
 
 ```json
 {
@@ -23,7 +23,7 @@ Let’s assume this is the format of the request sent by the client:
 }
 ```
 
-However, the format of the message compatible with the backend service is as follows:
+However, the format of the message compatible with the back-end service is as follows:
 
 ```json
 {
@@ -42,7 +42,7 @@ However, the format of the message compatible with the backend service is as fol
 }
 ```
 
-The client message format must be transformed to the back-end service message format within the In sequence.
+The client message format must be transformed to the back-end service's message format within the In sequence.
 
 ## Let's get started!
 
@@ -67,7 +67,7 @@ Optionally, you can set up the **CLI tool** for artifact monitoring. This will l
 
 Let's update the API resource that was used in the [previous tutorial](routing-requests-based-on-message-content.md) by adding a **Data Mapper** mediator to configure the data transforrmation logic.
 
-1.  In WSO2 Integration Studio, add a **Data Mapper** mediator just after
+1.  In WSO2 Integration Studio, open the **HealthcareAPI** and add a **Data Mapper** mediator just after
     the Property mediator in the In Sequence of the API resource.
 
     <img src="../../../assets/img/tutorials/119132196/119132205.png">
@@ -84,12 +84,12 @@ Let's update the API resource that was used in the [previous tutorial](routing-r
       </tr>
       <tr>
         <td>Save in project</td>
-        <td>Specify the <b>Registry Resource project</b> where the data mapper configuration should be saved. The <b>SampleServicesRegistry</b> project is created at the time of creating the ESB Solution project and will selected by default.
+        <td>Specify the <b>Registry Resource project</b> where the data mapper configuration should be saved. The <b>SampleServicesRegistry</b> project that already exists in the project explorer is selected by default.
       </td>
       </tr>
     </table>
 
-    <img src="../../../assets/img/tutorials/119132196/119132224.png">
+    <img src="../../../assets/img/tutorials/119132196/119132224.png" width="500">
 
 
     Click **OK**. You view the data mapping editor.  
@@ -115,19 +115,20 @@ Let's update the API resource that was used in the [previous tutorial](routing-r
     !!! Info
         You can create a JSON schema manually for input and output using the Data Mapper Diagram editor.
 
-4.  Right-click on the top title bar of the **Input** box and click **Load Input** as shown below.
+4.  Click **Load Input File** to open the **Load Input** dialog box shown below.
 
     <img src="../../../assets/img/tutorials/119132196/119132200.png" width="500">
 
-5.  Select **JSON** as the **Resource Type** as shown below.
+    Enter the following information:
 
-    <img src="../../../assets/img/tutorials/119132196/119132203.png" width="500">
+    1.  Select **JSON** as the **Resource Type**.
+    2.  Click **file system**, select the JSON file (i.e., `input.json` ) that you saved in your local file system, and click **Open**. 
 
-6.  Click the **file system** link in **Select resource from**, select the JSON file (i.e., `input.json` ) you saved in your local file system, and click **Open**. You can view the input format loaded in the **Input** box of the editor as shown below.
+    You can view the input format loaded in the **Input** box of the editor as shown below.
 
-    <img src="../../../assets/img/tutorials/119132196/119132211.png" width="500">
+    <img src="../../../assets/img/tutorials/119132196/119132211.png" width="300">
 
-7.  Create another JSON file (e.g., `output.json`) by copying the following sample content of the request message expected by the back-end service and save it in your local file system.
+5.  Create another JSON file (e.g., `output.json`) with the following content (the request message expected by the back-end service) and save it in your local file system.
 
     ```json
     {
@@ -145,14 +146,13 @@ Let's update the API resource that was used in the [previous tutorial](routing-r
     }
     ```
 
-8.  Right-click on the top title bar of the **Output** box and click **Load Output** as shown below.  
+6.  Click **Load Output File** to open the **Load Output** dialog box and enter the following information:  
+    1.  Select **JSON** as the resource type.
+    2.  Click **file system**, select the JSON file you saved in your local file system, and click **Open**. 
 
-    <img src="../../../assets/img/tutorials/119132196/119132202.png" width="500">
+    You can view the output format loaded in the **Output** box in the editor as shown below. 
 
-9.  Select **JSON** as the resource type.
-10. Click the **file system** link in **Select resource from**, select the JSON file you saved in your local file system, and click **Open**. You can view the input format loaded in the **Output** box in the editor as shown below. 
-
-    <img src="../../../assets/img/tutorials/119132196/119132201.png" width="500"> 
+    <img src="../../../assets/img/tutorials/119132196/119132201.png" width="300"> 
 
     !!! Info
         Check the **Input** and **Output** boxes with the sample messages to see if the element types (i.e. Arrays, Objects and Primitive values) are correctly identified. The following symbols will help you to identify them correctly.
@@ -162,11 +162,11 @@ Let's update the API resource that was used in the [previous tutorial](routing-r
         -  <> : represents primitive field values
         -  A : represents XML attribute value
 
-11. Now, you need to map the input message with the output message. There are two ways to do the mapping:
+7.  Now, you need to map the input message with the output message. There are two ways to do the mapping:
     - If you click **Apply**, the mapping will be generated by the **AI Data Mapper**. You have the option to manually change the mapping after it is generated.
     - You can also manually draw the mapping by dragging arrows from the values in the **Input** box to the relevant values in the **Output** box.  
 
-    <img src="../../../assets/img/tutorials/119132196/119132199.png" width="500">
+    <img src="../../../assets/img/tutorials/119132196/119132199.png" width="700">
 
     The completed mapping will look as follows:
 
@@ -193,11 +193,9 @@ Let's update the API resource that was used in the [previous tutorial](routing-r
       </tr>
     </table>
 
-    <img src="../../../assets/img/tutorials/119132196/119132197.png">
+    <img src="../../../assets/img/tutorials/119132196/119132198.png">
     
 14. Save the REST API configuration.
-
-    <img src="../../../assets/img/tutorials/119132196/119132198.png">
 
 You have successfully created all the artifacts that are required for this use case. 
 
@@ -222,7 +220,7 @@ Package the artifacts in your composite application project (SampleServicesCompo
 To test the artifacts, deploy the [packaged artifacts](#step-3-package-the-artifacts) in the embedded Micro Integrator:
 
 1.  Right-click the composite application project and click **Export Project Artifacts and Run**.
-2.  In the dialog that opens, select the composite application project that you want to deploy.  
+2.  In the dialog box that opens, select the artifacts that you want to deploy.  
 4.  Click **Finish**. The artifacts will be deployed in the embedded Micro Integrator and the server will start. See the startup log in the **Console** tab. 
 
 ### Step 5: Test the use case

@@ -2,9 +2,9 @@
 
 ## What you'll build
 
-This sample demonstrates how to pick a file from a directory and process it within the Micro Integrator. In this sample scenario you pick a file from the local directory, insert the records in the file to a database, send an email with the file content, trace and write the log and finally move the file to another directory.
+This tutorial demonstrates how to pick a file from a directory and process it within the Micro Integrator. In this sample scenario the Micro Integrator will pick a file from the local directory, insert the records in the file to a database, send an email with the file content, trace and write the log, and finally move the file to another directory.
 
-The result of the query should be as follows when you query to view the records in the `test.info` table. You will see that there is no data in the table.
+When you query to view the records in the `test.info` table, you will see that there is no data in the table.
   
 ## Let's get started!
 
@@ -258,7 +258,7 @@ Package the artifacts in your composite application project to be able to deploy
 To test the artifacts, deploy the [packaged artifacts](#step-3-package-the-artifacts) in the embedded Micro Integrator:
 
 1.  Right-click the composite application project and click **Export Project Artifacts and Run**.
-2.  In the dialog that opens, select the composite application project that you want to deploy.  
+2.  In the dialog that opens, select the artifacts that you want to deploy.  
 4.  Click **Finish**. The artifacts will be deployed in the embedded Micro Integrator and the server will start. See the startup log in the **Console** tab.
 
 ### Step 5: Test the use case
@@ -320,7 +320,7 @@ Open the `deployment.toml` file of the embedded Micro Integrator of WSO2 Integra
 
 1.  Find the MySQL database driver `mysql-connector-java-5.1.10-bin.jar` in the [attached file](https://github.com/wso2-docs/WSO2_EI/blob/master/Integration-Tutorial-Artifacts/Artifacts-fileProcessingTutorial.zip). 
     You can find the file in the `SAMPLE_HOME/lib` directory.
-2.  Copy the driver to the `MI_TOOLING_HOME/Contents/Eclipse/runtime/microesb/lib/` directory on **Windows** or the **MI_TOOLING_HOME/runtime/microesb/lib** directory on **MacOS/Linux/CentOS**.
+2.  Copy the driver to the `MI_TOOLING_HOME/Contents/Eclipse/runtime/microesb/lib/` directory (on **Windows**) or the `MI_TOOLING_HOME/runtime/microesb/lib` directory (on **MacOS/Linux/CentOS**).
 
 #### Add smooks libraries
 
@@ -328,7 +328,7 @@ This example uses a CSV smooks library.
 
 1.  You can find the CSV smooks library `milyn-smooks-csv-1.2.4.jar` in the [attached file](https://github.com/wso2-docs/WSO2_EI/blob/master/Integration-Tutorial-Artifacts/Artifacts-fileProcessingTutorial.zip). 
     You can find the file in the `SAMPLE_HOME/lib` directory.
-2.  Copy the library to the the `MI_TOOLING_HOME/Contents/Eclipse/runtime/microesb/lib/` directory on **Windows** or the **MI_TOOLING_HOME/runtime/microesb/lib** directory on **MacOS/Linux/CentOS**.
+2.  Copy the library to the the `MI_TOOLING_HOME/Contents/Eclipse/runtime/microesb/lib/` directory (on **Windows**) or the `MI_TOOLING_HOME/runtime/microesb/lib` directory (on **MacOS/Linux/CentOS**).
 
 #### Create the input file
 
