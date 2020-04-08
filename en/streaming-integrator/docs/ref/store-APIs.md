@@ -9,12 +9,12 @@
 |                         |                                                                                                    |
 |-------------------------|----------------------------------------------------------------------------------------------------|
 | Description             | Queries records in the Siddhi store. For more information, see Managing Stored Data via REST API . |
-| API Context             | `             /stores/query            `                                                           |
-| HTTP Method             | `             POST            `                                                                    |
-| Request/Response Format | `             application/json            `                                                        |
+| API Context             | `/stores/query`                                                                                    |
+| HTTP Method             | `POST`                                                                                             |
+| Request/Response Format | `application/json`                                                                                 |
 | Authentication          | Basic                                                                                              |
-| Username                | `             admin            `                                                                   |
-| Password                | `             admin            `                                                                   |
+| Username                | `admin`                                                                                            |
+| Password                | `admin`                                                                                            |
 | Runtime                 | Worker                                                                                             |
 
 ### curl command syntax
