@@ -54,8 +54,66 @@ to the grid of the design view when you create a Siddhi application.
          <td>
             <div class="content-wrapper">
                <p>To configure the stream, click the settings icon on the stream component you added to the grid. Then enter values as follows:</p>
-               <p><strong>Stream Name</strong> <strong>:</strong> A unique name for the stream. This should be specified in title caps, and without spaces (e.g., <code>               ProductionDataStream              </code> ).</p>
+               <p><strong>Stream Name</strong> <strong>:</strong> A unique name for the stream. This should be specified in title caps, and without spaces (e.g., <code>ProductionDataStream</code> ).</p>
                <p><strong>Attributes</strong> : Attributes of streams are specified as name and type pairs in the <strong>Attributes</strong> table.</p>
+               <p>If you want to generate the the stream from a file or a database, click <strong>Generate Stream</strong>. However, note that you need to create the relevant file or set up the database and the tables beforehand.</p>
+               <p><img src="../../images/working-with-the design-view/Generate-Stream.png"/></p>
+               <p>The <strong>Generate Stream</strong> form opens as follows</p>
+               <p><img src="../../images/working-with-the design-view/generate-stream-form.png"/></p>
+               <p>To generate the stream from a file:
+                <ol>
+                <li>In the <strong>Generate Stream</strong> form, select <strong>From File</strong>.</li>
+                <li><p>Then click <strong>Choose File</strong> and browse for the file from which you want to generate the stream. <br/> the supported file types are <code>CSV</code>, <code>JSON</code>, and <code>XML</code>. If you select a file that is not of one of these types, the <strong>Select File Type</strong> field is enabled as shown in the example below.</p>
+                    <p><img src="../../images/working-with-the design-view/select-file-type.png"/></p>
+                    <p>You are required to select the appropriate file type in this field in order to proceed to generate the stream from the selected file.</p>
+                    <p>The rest of the fields that appear in the dialog box differ based on the file type as explained below. If required, change the default values that appear in them as required</p>
+                    <ul>
+                        <li style="margin-left:2em">If the file type is <strong>CSV</strong>:</li>
+                        <ul>
+                            <li style="margin-left:2em"><strong>Stream Name</strong>: A name for the stream that you are generating.</li>
+                            <li style="margin-left:2em"><strong>Delimiter</strong>: A blank space, comma, or any other character/symbol that indicates the beginning or the end of a character string, word, or a data item.</li>
+                            <li style="margin-left:2em"><strong>Is Header Exists</strong>: If this is set to <strong>true</strong>, a header exists for the purpose of identifying the attribute names and the data types of the data values in the file.</li>
+                        </ul>
+                        <li style="margin-left:2em">If the file type is <strong>JSON</strong>:</li>
+                        <ul>
+                            <li style="margin-left:2em"><strong>Stream Name</strong>: A name for the stream that you are generating.</li>
+                            <li style="margin-left:2em"><strong>Enclosing Element</strong>: The symbol/element used to enclose the JSON object.</li>
+                        </ul>
+                        <li style="margin-left:2em">If the file type is <strong>XML</strong>:</li>
+                        <ul>
+                            <li style="margin-left:2em"><strong>Stream Name</strong>: A name for the stream that you are generating.</li>
+                            <li style="margin-left:2em"><strong>Namespace</strong>: This is an optional field to enter an XML namespace.</li>
+                            <li style="margin-left:2em"><strong>Enclosing Element</strong>: The symbol/element used to enclose the XML object.</li>
+                        </ul>
+                    </ul>
+                </li>
+                <li>Click <strong>Generate</strong>. The <strong>Stream Configuration</strong> form is populated with the values in the file you selected.</li>
+                </ol>
+               </p>
+               <p>To generate the stream from a database:
+                <ol>
+                    <li>In the <strong>Generate Stream</strong> form, select <strong>From Database</strong>.</li>
+                    <li>If you want to provide the data source definition inline, select <strong>Inline Configuration</strong>. If not, select <strong>Provide Datasource</strong> to select a data source that is already defined externally.</li>
+                    <li> Enter details relating to the data source as follows.</li>
+                        <ul>
+                            <li>If you are defining the data source configuration inline, enter information as follows:</li>
+                            <p><img src="../../images/working-with-the design-view/generate-stream-with-inline-datasource-configuration.png"/></p>
+                                <ul>
+                                    <li><strong>Stream Name</strong>: A name for the stream that you are generating.</li>
+                                    <li><strong>Database URL</strong>: The URL via which you can connect to the database.</li>
+                                    <li><strong>Username</strong>: The username via which you access the database.</li>
+                                    <li><strong>Password</strong>: The password via which you access the database.</li>
+                                    <li><strong>Table Name</strong>: The name of the database table from which you are generating the stream. To make the available tables appear in this field as a list so that you can select one, enter the relevant information in the previous fields and click <strong>Retrieve Tables</strong>.</li>
+                                </ul>
+                            <li>If the data source you are using is already defined externally, enter information as follows:</li>
+                            <p><img src="../../images/working-with-the design-view/generate-stream-with-externally-defined-datasource.png"/></p>
+                                <ul>
+                                    <li><strong>Stream Name</strong>: A name for the stream that you are generating.</li>
+                                    <li><strong>Datasource Name</strong>: The name of the data source from which you are generating the stream.</li>
+                                    <li><strong>Table Name</strong>: The name of the database table from which you are generating the stream. To make the available tables appear in this field as a list so that you can select one, enter the relevant data source in the <strong>Datasource Name</strong> field and click <strong>Retrieve Tables</strong>.</li>
+                                </ul>
+                    <li>Click <strong>Generate</strong> to generate the stream.</li>
+                </ol>
             </div>
          </td>
       </tr>
@@ -68,7 +126,7 @@ to the grid of the design view when you create a Siddhi application.
                <div class="code panel pdl" style="border-width: 1px;">
                   <div class="codeContent panelContent pdl">
                      <div class="sourceCode" id="cb1" data-syntaxhighlighter-params="brush: sql; gutter: false; theme: Confluence" data-theme="Confluence" style="brush: sql; gutter: false; theme: Confluence">
-                        <pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb1-1"><a href="#cb1-1"></a>define stream SweetProductionStream (amount <span class="dt">double</span>, name string);</span></code></pre>
+                        <pre class="sourceCode sql"><code class="sourceCode sql"><a href="#cb1-1"></a>define stream SweetProductionStream (amount double, name string);</code></pre>
                      </div>
                   </div>
                </div>
@@ -127,8 +185,8 @@ to the grid of the design view when you create a Siddhi application.
                <p>To configure the source, click the settings icon on the source component you added to the grid. This opens a form where you can enter the following information:<br /></p>
                    To access the form in which you can configure a source, you must first connect the source as the source (input) object to a stream component.
                <ul>
-                  <li><strong>Source Type</strong> : This specifies the transport type via which the events are received. The value should be entered in lower case (e.g., t <code>                cp               </code> ). The other parameters displayed for the source depends on the source type selected.</li>
-                  <li><strong>Map Type</strong> : This specifies the format in which you want to receive the events (e.g., <code>                xml               </code> ). The other parameters displayed for the map depends on the map type selected. If you want to add more configurations to the mapping, click <strong>Customized Options</strong> and set the required properties and key value pairs.<br /></li>
+                  <li><strong>Source Type</strong> : This specifies the transport type via which the events are received. The value should be entered in lower case (e.g., <code>tcp</code> ). The other parameters displayed for the source depends on the source type selected.</li>
+                  <li><strong>Map Type</strong> : This specifies the format in which you want to receive the events (e.g., <code>xml</code> ). The other parameters displayed for the map depends on the map type selected. If you want to add more configurations to the mapping, click <strong>Customized Options</strong> and set the required properties and key value pairs.<br /></li>
                   <li>
                      <p><strong>Map Attribute as Key/Value Pairs</strong> : If this check box is selected, you can define custom mapping by entering key value pairs. You can add as many key value pairs as required under this check box.</p>
                   </li>
@@ -145,9 +203,8 @@ to the grid of the design view when you create a Siddhi application.
                <div class="code panel pdl" style="border-width: 1px;">
                   <div class="codeContent panelContent pdl">
                      <div class="sourceCode" id="cb1" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence" style="brush: java; gutter: false; theme: Confluence">
-                        <pre class="sourceCode java"><code class="sourceCode java"><span id="cb1-1"><a href="#cb1-1"></a><span class="at">@source</span>(type = &#39;tcp&#39;, </span>
-<span id="cb1-2"><a href="#cb1-2"></a>    <span class="at">@map</span>(type = &#39;json&#39;, </span>
-<span id="cb1-3"><a href="#cb1-3"></a>        <span class="at">@attributes</span>(name = <span class="st">&quot;$.sweet&quot;</span>, amount = <span class="st">&quot;$.batch.count&quot;</span>)))</span></code></pre>
+                        <pre class="sourceCode java"><code class="sourceCode java"><a href="#cb1-1"></a>@source(type = &#39;tcp&#39;, <a href="#cb1-2"></a>    @map(type = &#39;json&#39;,
+<a href="#cb1-3"></a>        @attributes(name =&quot;$.sweet&quot;, amount = &quot;$.batch.count&quot;)))</code></pre>
                      </div>
                   </div>
                </div>
@@ -191,8 +248,8 @@ to the grid of the design view when you create a Siddhi application.
                <p>To configure the sink, click the settings icon on the sink component you added to the grid.<br /></p>
                !!! info  To access the form in which you can configure a sink, you must first connect the sink as the target object to a stream component.
                <ul>
-                  <li><strong>Sink Type</strong> : This specifies the transport via which the sink publishes processed events. The value should be entered in lower case (e.g., <code>                log               </code> ).<br /></li>
-                  <li><strong>Map Type</strong> : This specifies the format in which you want to publish the events (e.g., <code>                passThrough               </code> ). The other parameters displayed for the map depends on the map type selected. If you want to add more configurations to the mapping, click <strong>Customized Options</strong> and set the required properties and key value pairs.</li>
+                  <li><strong>Sink Type</strong> : This specifies the transport via which the sink publishes processed events. The value should be entered in lower case (e.g., <code>log</code> ).<br /></li>
+                  <li><strong>Map Type</strong> : This specifies the format in which you want to publish the events (e.g., <code>passThrough</code> ). The other parameters displayed for the map depends on the map type selected. If you want to add more configurations to the mapping, click <strong>Customized Options</strong> and set the required properties and key value pairs.</li>
                   <li>
                      <p><strong>Map Attribute as Key/Value Pairs</strong> : If this check box is selected, you can define custom mapping by entering key value pairs. You can add as many key value pairs as required under this check box.<br /></p>
                   </li>
@@ -209,7 +266,7 @@ to the grid of the design view when you create a Siddhi application.
                <div class="code panel pdl" style="border-width: 1px;">
                   <div class="codeContent panelContent pdl">
                      <div class="sourceCode" id="cb1" data-syntaxhighlighter-params="brush: sql; gutter: false; theme: Confluence" data-theme="Confluence" style="brush: sql; gutter: false; theme: Confluence">
-                        <pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb1-1"><a href="#cb1-1"></a><span class="ot">@sink(type = &#39;log&#39;, prefix = &quot;Sweet Totals:&quot;)</span></span></code></pre>
+                        <pre class="sourceCode sql"><code class="sourceCode sql">><a href="#cb1-1"></a>@sink(type = &#39;log&#39;, prefix = &quot;Sweet Totals:&quot;</code></pre>
                      </div>
                   </div>
                </div>
@@ -265,8 +322,8 @@ to the grid of the design view when you create a Siddhi application.
                <div class="code panel pdl" style="border-width: 1px;">
                   <div class="codeContent panelContent pdl">
                      <div class="sourceCode" id="cb1" data-syntaxhighlighter-params="brush: sql; gutter: false; theme: Confluence" data-theme="Confluence" style="brush: sql; gutter: false; theme: Confluence">
-                        <pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb1-1"><a href="#cb1-1"></a><span class="ot">@store(type = &#39;rdbms&#39;, datasource = &quot;SweetProductionDB&quot;)</span></span>
-<span id="cb1-2"><a href="#cb1-2"></a>define <span class="kw">table</span> ShipmentDetails (name string, supplier string, amount <span class="dt">double</span>);</span></code></pre>
+                        <pre class="sourceCode sql"><code class="sourceCode sql"><a href="#cb1-1"></a>@store(type = &#39;rdbms&#39;, datasource = &quot;SweetProductionDB&quot;)
+<a href="#cb1-2"></a>define table ShipmentDetails (name string, supplier string, amount double);</code></pre>
                      </div>
                   </div>
                </div>
@@ -336,7 +393,7 @@ to the grid of the design view when you create a Siddhi application.
                <div class="code panel pdl" style="border-width: 1px;">
                   <div class="codeContent panelContent pdl">
                      <div class="sourceCode" id="cb1" data-syntaxhighlighter-params="brush: sql; gutter: false; theme: Confluence" data-theme="Confluence" style="brush: sql; gutter: false; theme: Confluence">
-                        <pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb1-1"><a href="#cb1-1"></a>define window FiveMinTempWindow (roomNo <span class="dt">int</span>, temp <span class="dt">double</span>) <span class="dt">time</span>(<span class="dv">5</span> <span class="fu">min</span>) output <span class="kw">all</span> <span class="kw">events</span>;</span></code></pre>
+                        <pre class="sourceCode sql"><code class="sourceCode sql"<a href="#cb1-1"></a>define window FiveMinTempWindow (roomNo int, temp double) time(5 min) output all events;</code></pre>
                      </div>
                   </div>
                </div>
@@ -385,6 +442,74 @@ to the grid of the design view when you create a Siddhi application.
          <td>A trigger allows you to generate events periodically. For more information, see <a href="https://siddhi-io.github.io/siddhi/documentation/siddhi-4.x/query-guide-4.x/#trigger">Siddhi Query Guide - Trigger</a>.</td>
       </tr>
       <tr class="odd">
+      <td>Form</td>
+      <td>
+        <div class="content-wrapper">
+            <p>To configure the trigger, <a href="#WorkingwiththeDesignView-Settings">click the settings icon</a> on the trigger component you added to the grid, and update the following information.</p>
+             <ul>
+                <li><strong>Name</strong> <strong>:</strong> A unique name for the trigger</li>
+                <li><strong>Trigger Criteria</strong> : This specifies the criteria based on which the trigger is activated. Possible values are as follows:
+                    <ul>
+                        <li><strong>start</strong> : Select this to trigger events when the Streaming Integrator server has started.</li>
+                        <li><strong>every</strong> : Select this to specify a time interval at which events should be triggered.</li>
+                        <li><strong>cron-expression</strong> : Select this to enter a cron expression based on which the events can be triggered. For more information about cron expressions, see the <a href="http://www.quartz-scheduler.org/documentation/quartz-2.3.0/tutorials/crontrigger.html">quartz-scheduler</a>.</li>
+                    </ul>
+               </li>
+              </ul>
+        </div>
+      </td>
+      </tr>
+      <tr class="even">
+         <td>Example</td>
+         <td>
+            <div class="content-wrapper">
+               <p><br /></p>
+               <img src="../../images/working-with-the design-view/Trigger_Configuration_Form.png"/>
+               <p>The details entered in the above form creates a trigger definition as follows:</p>
+               <div class="code panel pdl" style="border-width: 1px;">
+                  <div class="codeContent panelContent pdl">
+                     <div class="sourceCode" id="cb1" data-syntaxhighlighter-params="brush: sql; gutter: false; theme: Confluence" data-theme="Confluence" style="brush: sql; gutter: false; theme: Confluence">
+                        <pre class="sourceCode sql"><code class="sourceCode sql"><a href="#cb1-1"></a>define trigger FiveMinTriggerStream at every 5;</code></pre>
+                     </div>
+                  </div>
+               </div>
+               <p><br /></p>
+            </div>
+         </td>
+      </tr>
+      <tr class="odd">
+         <td>Source</td>
+         <td>N/A</td>
+      </tr>
+      <tr class="even">
+         <td>Target</td>
+         <td>
+            <ul>
+               <li>Projection queries</li>
+               <li>Window queries</li>
+               <li>Filter queries</li>
+               <li>Join queries</li>
+            </ul>
+         </td>
+      </tr>
+   </tbody>
+</table>
+
+<table>
+   <tbody>
+      <tr class="odd">
+         <td>Icon</td>
+         <td>
+            <div class="content-wrapper">
+               <p><img src="../../images/working-with-the design-view/Trigger_Icon.png"/></p>
+            </div>
+         </td>
+      </tr>
+      <tr class="even">
+         <td>Description</td>
+         <td>A trigger allows you to generate events periodically. For more information, see <a href="https://siddhi-io.github.io/siddhi/documentation/siddhi-4.x/query-guide-4.x/#trigger">Siddhi Query Guide - Trigger</a>.</td>
+      </tr>
+      <tr class="odd">
          <td>Form</td>
          <td>
             <div class="content-wrapper">
@@ -396,7 +521,7 @@ to the grid of the design view when you create a Siddhi application.
                      <ul>
                         <li><strong>start</strong> : Select this to trigger events when the Streaming Integrator server has started.</li>
                         <li><strong>every</strong> : Select this to specify a time interval at which events should be triggered.</li>
-                        <li><strong>cron-expression</strong> : Select this to enter a cron expression based on which the events can be triggered. For more information about cron expressions, see the <a href="http://www.quartz-scheduler.org/documentation/quartz-2.2.x/tutorials/tutorial-lesson-06">quartz-scheduler</a>.</li>
+                        <li><strong>cron-expression</strong> : Select this to enter a cron expression based on which the events can be triggered. For more information about cron expressions, see the <a href="http://www.quartz-scheduler.org/documentation/quartz-2.3.0/tutorials/crontrigger.html</a>.</li>
                      </ul>
                   </li>
                </ul>
@@ -413,7 +538,7 @@ to the grid of the design view when you create a Siddhi application.
                <div class="code panel pdl" style="border-width: 1px;">
                   <div class="codeContent panelContent pdl">
                      <div class="sourceCode" id="cb1" data-syntaxhighlighter-params="brush: sql; gutter: false; theme: Confluence" data-theme="Confluence" style="brush: sql; gutter: false; theme: Confluence">
-                        <pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb1-1"><a href="#cb1-1"></a>define <span class="kw">trigger</span> FiveMinTriggerStream <span class="kw">at</span> every <span class="dv">5</span> <span class="fu">min</span>;</span></code></pre>
+                        <pre class="sourceCode sql"><code class="sourceCode sql"><a href="#cb1-1"></a>define trigger FiveMinTriggerStream at every 5;</code></pre>
                      </div>
                   </div>
                </div>
@@ -483,11 +608,11 @@ to the grid of the design view when you create a Siddhi application.
                <div class="code panel pdl" style="border-width: 1px;">
                   <div class="codeContent panelContent pdl">
                      <div class="sourceCode" id="cb1" data-syntaxhighlighter-params="brush: sql; gutter: false; theme: Confluence" data-theme="Confluence" style="brush: sql; gutter: false; theme: Confluence">
-                        <pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb1-1"><a href="#cb1-1"></a>define aggregation TradeAggregation</span>
-<span id="cb1-2"><a href="#cb1-2"></a><span class="kw">from</span> TradeStream</span>
-<span id="cb1-3"><a href="#cb1-3"></a><span class="kw">select</span> symbol, <span class="fu">avg</span>(price) <span class="kw">as</span> avgPrice, <span class="fu">sum</span>(price) <span class="kw">as</span> total</span>
-<span id="cb1-4"><a href="#cb1-4"></a>    <span class="kw">group</span> <span class="kw">by</span> symbol</span>
-<span id="cb1-5"><a href="#cb1-5"></a>    aggregate <span class="kw">by</span> <span class="dt">timestamp</span> every seconds<span class="op">..</span>.years;</span></code></pre>
+                        <pre class="sourceCode sql"><code class="sourceCode sql"><a href="#cb1-1"></a>define aggregation TradeAggregation
+<a href="#cb1-2"></a>from TradeStream
+<a href="#cb1-3"></a>select symbol, avg(price) as avgPrice, sum(price) as total
+<a href="#cb1-4"></a>    group by symbol
+<a href="#cb1-5"></a>    aggregateby timestamp every seconds...years;</code></pre>
                      </div>
                   </div>
                </div>
@@ -542,13 +667,13 @@ to the grid of the design view when you create a Siddhi application.
                <div class="code panel pdl" style="border-width: 1px;">
                   <div class="codeContent panelContent pdl">
                      <div class="sourceCode" id="cb1" data-syntaxhighlighter-params="brush: sql; gutter: false; theme: Confluence" data-theme="Confluence" style="brush: sql; gutter: false; theme: Confluence">
-                        <pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb1-1"><a href="#cb1-1"></a>define <span class="kw">function</span> concatFN[JAVASCRIPT] <span class="kw">return</span> string {</span>
-<span id="cb1-2"><a href="#cb1-2"></a>    var str1 <span class="op">=</span> <span class="kw">data</span>[<span class="dv">0</span>];</span>
-<span id="cb1-3"><a href="#cb1-3"></a>    var str2 <span class="op">=</span> <span class="kw">data</span>[<span class="dv">1</span>];</span>
-<span id="cb1-4"><a href="#cb1-4"></a>    var str3 <span class="op">=</span> <span class="kw">data</span>[<span class="dv">2</span>];</span>
-<span id="cb1-5"><a href="#cb1-5"></a>    var responce <span class="op">=</span> str1 <span class="op">+</span> str2 <span class="op">+</span> str3;</span>
-<span id="cb1-6"><a href="#cb1-6"></a>    <span class="kw">return</span> responce;</span>
-<span id="cb1-7"><a href="#cb1-7"></a>};</span></code></pre>
+                        <pre class="sourceCode sql"><code class="sourceCode sql"><a href="#cb1-1"></a>define function concatFN[JAVASCRIPT] return string {
+<a href="#cb1-2"></a>    var str1 = ata[0];
+<a href="#cb1-3"></a>    var str2 = data[1];
+<a href="#cb1-4"></a>    var str3= data[2];
+<a href="#cb1-5"></a>    var responce = str1 + str2 + str3;
+<a href="#cb1-6"></a>    return responce;
+<a href="#cb1-7"></a>};</code></pre>
                      </div>
                   </div>
                </div>
@@ -614,9 +739,9 @@ to the grid of the design view when you create a Siddhi application.
                <div class="code panel pdl" style="border-width: 1px;">
                   <div class="codeContent panelContent pdl">
                      <div class="sourceCode" id="cb1" data-syntaxhighlighter-params="brush: sql; gutter: false; theme: Confluence" data-theme="Confluence" style="brush: sql; gutter: false; theme: Confluence">
-                        <pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb1-1"><a href="#cb1-1"></a><span class="kw">from</span> TradeStream</span>
-<span id="cb1-2"><a href="#cb1-2"></a><span class="kw">select</span> symbol, <span class="fu">avg</span>(price) <span class="kw">as</span> averagePrice, <span class="fu">sum</span>(volume) <span class="kw">as</span> total</span>
-<span id="cb1-3"><a href="#cb1-3"></a><span class="kw">insert</span> <span class="kw">all</span> <span class="kw">events</span> <span class="kw">into</span> OutputStream;</span></code></pre>
+                        <pre class="sourceCode sql"><code class="sourceCode sql"><a href="#cb1-1"></a>from TradeStream
+<a href="#cb1-2"></a>select symbol, avg(price) as averagePrice, sum(volume) a total
+<a href="#cb1-3"></a>insert all events into OutputStream;</code></pre>
                      </div>
                   </div>
                </div>
@@ -697,9 +822,9 @@ to the grid of the design view when you create a Siddhi application.
 <p>The details entered in the above form creates a query with a filter as follows:</p>
 <div class="code panel pdl" style="border-width: 1px;">
 <div class="codeContent panelContent pdl">
-<div class="sourceCode" id="cb1" data-syntaxhighlighter-params="brush: sql; gutter: false; theme: Confluence" data-theme="Confluence" style="brush: sql; gutter: false; theme: Confluence"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb1-1"><a href="#cb1-1"></a><span class="kw">from</span> TradeStream[<span class="fu">sum</span>(amount) <span class="op">&gt;</span> <span class="dv">10000</span>]</span>
-<span id="cb1-2"><a href="#cb1-2"></a><span class="kw">select</span> symbol, <span class="fu">avg</span>(price) <span class="kw">as</span> averagePrice, <span class="fu">sum</span>(amount) <span class="kw">as</span> total</span>
-<span id="cb1-3"><a href="#cb1-3"></a><span class="kw">insert</span> <span class="kw">all</span> <span class="kw">events</span> <span class="kw">into</span> OutputStream;</span></code></pre></div>
+<div class="sourceCode" id="cb1" data-syntaxhighlighter-params="brush: sql; gutter: false; theme: Confluence" data-theme="Confluence" style="brush: sql; gutter: false; theme: Confluence"><pre class="sourceCode sql"><code class="sourceCode sql"><a href="#cb1-1"></a>from TradeStream[sum(amount)&gt; 10000]
+<a href="#cb1-2"></a>select symbol, avg(price) as averagePrice, sum(amount) as total
+<a href="#cb1-3"></a>insert all events into OutputStream;</pre></div>
 </div>
 </div>
 </div></td>
@@ -785,9 +910,9 @@ to the grid of the design view when you create a Siddhi application.
                <div class="code panel pdl" style="border-width: 1px;">
                   <div class="codeContent panelContent pdl">
                      <div class="sourceCode" id="cb1" data-syntaxhighlighter-params="brush: sql; gutter: false; theme: Confluence" data-theme="Confluence" style="brush: sql; gutter: false; theme: Confluence">
-                        <pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb1-1"><a href="#cb1-1"></a><span class="kw">from</span> TradeStream#window.<span class="dt">time</span>(<span class="dv">1</span> <span class="dt">month</span>)</span>
-<span id="cb1-2"><a href="#cb1-2"></a><span class="kw">select</span> symbol, <span class="fu">avg</span>(price) <span class="kw">as</span> averagePrice, <span class="fu">sum</span>(amount) <span class="kw">as</span> total</span>
-<span id="cb1-3"><a href="#cb1-3"></a><span class="kw">insert</span> <span class="kw">all</span> <span class="kw">events</span> <span class="kw">into</span> OutputStream;</span></code></pre>
+                        <pre class="sourceCode sql"><code class="sourceCode sql"><a href="#cb1-1"></a>from TradeStream#window.time(1 month)
+<a href="#cb1-2"></a>select symbol, avg(price) as averagePrice, sum(amount) as total
+<a href="#cb1-3"></a>insert all events into OutputStream;</code></pre>
                      </div>
                   </div>
                </div>
@@ -870,11 +995,11 @@ to the grid of the design view when you create a Siddhi application.
                <div class="code panel pdl" style="border-width: 1px;">
                   <div class="codeContent panelContent pdl">
                      <div class="sourceCode" id="cb1" data-syntaxhighlighter-params="brush: sql; gutter: false; theme: Confluence" data-theme="Confluence" style="brush: sql; gutter: false; theme: Confluence">
-                        <pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb1-1"><a href="#cb1-1"></a><span class="kw">from</span> TempStream[temp <span class="op">&gt;</span> <span class="fl">30.0</span>]#window.<span class="dt">time</span>(<span class="dv">1</span> <span class="fu">min</span>) <span class="kw">as</span> T</span>
-<span id="cb1-2"><a href="#cb1-2"></a>  <span class="kw">join</span> RegulatorStream[isOn <span class="op">==</span> <span class="kw">false</span>]#window.<span class="fu">length</span>(<span class="dv">1</span>) <span class="kw">as</span> R</span>
-<span id="cb1-3"><a href="#cb1-3"></a>  <span class="kw">on</span> T.roomNo <span class="op">==</span> R.roomNo</span>
-<span id="cb1-4"><a href="#cb1-4"></a><span class="kw">select</span> T.roomNo, R.deviceID, <span class="st">&#39;start&#39;</span> <span class="kw">as</span> action</span>
-<span id="cb1-5"><a href="#cb1-5"></a><span class="kw">insert</span> <span class="kw">into</span> RegulatorActionStream;</span></code></pre>
+                        <pre class="sourceCode sql"><code class="sourceCode sql"><a href="#cb1-1"></a>from TempStream[temp &gt; 30.0]#window.time(1 min) as T
+<a href="#cb1-2"></a>  join RegulatorStream[isOn == false]#window.length(1) as R
+<a href="#cb1-3"></a>  on T.roomNo == R.roomNo
+<a href="#cb1-4"></a>select T.roomNo, R.deviceID, &#39;start&#39; as action
+<a href="#cb1-5"></a>insert into RegulatorActionStream;</code></pre>
                      </div>
                   </div>
                </div>
@@ -974,10 +1099,10 @@ to the grid of the design view when you create a Siddhi application.
                <div class="code panel pdl" style="border-width: 1px;">
                   <div class="codeContent panelContent pdl">
                      <div class="sourceCode" id="cb1" data-syntaxhighlighter-params="brush: sql; gutter: false; theme: Confluence" data-theme="Confluence" style="brush: sql; gutter: false; theme: Confluence">
-                        <pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb1-1"><a href="#cb1-1"></a><span class="kw">from</span> every (e1<span class="op">=</span>MaterialSupplyStream) <span class="op">-&gt;</span> <span class="kw">not</span> MaterialConsumptionStream[name <span class="op">==</span> e1.name <span class="kw">and</span> amount <span class="op">==</span> e1.amount]</span>
-<span id="cb1-2"><a href="#cb1-2"></a>    for 15</span> sec
-<span id="cb1-3"><a href="#cb1-3"></a>select e1.name, e1.amount
-<span id="cb1-4"><a href="#cb1-4"></a>insert into ProductionDelayAlertStream;</code></pre>
+                        <pre class="sourceCode sql"><code class="sourceCode sql"><a href="#cb1-1"></a>from every (e1=MaterialSupplyStream) -&gt; not MaterialConsumptionStream[name == e1.name and amount == e1.amount]
+<a href="#cb1-2"></a>    for 15 sec
+<a href="#cb1-3"></a>select e1.name, e1.amount
+<a href="#cb1-4"></a>insert into ProductionDelayAlertStream;</code></pre>
                      </div>
                   </div>
                </div>
@@ -1071,11 +1196,11 @@ to the grid of the design view when you create a Siddhi application.
                <div class="code panel pdl" style="border-width: 1px;">
                   <div class="codeContent panelContent pdl">
                      <div class="sourceCode" id="cb1" data-syntaxhighlighter-params="brush: sql; gutter: false; theme: Confluence" data-theme="Confluence" style="brush: sql; gutter: false; theme: Confluence">
-                        <pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb1-1"><a href="#cb1-1"></a><span class="kw">from</span> every e1<span class="op">=</span>SweetProductionStream, </span>
-<span id="cb1-2"><a href="#cb1-2"></a>e2<span class="op">=</span>SweetProductionStream[e1.amount <span class="op">&gt;</span> amount <span class="kw">and</span> (<span class="dt">timestamp</span> <span class="op">-</span> e1.<span class="dt">timestamp</span>) <span class="op">&lt;</span> <span class="dv">10</span> <span class="op">*</span> <span class="dv">60000</span>]<span class="op">*</span>,</span>
-<span id="cb1-3"><a href="#cb1-3"></a>e3<span class="op">=</span>SweetProductionStream[<span class="dt">timestamp</span> <span class="op">-</span> e1.<span class="dt">timestamp</span> <span class="op">&gt;</span> <span class="dv">10</span> <span class="op">*</span> <span class="dv">60000</span> <span class="kw">and</span> e1.amount <span class="op">&gt;</span> amount]</span>
-<span id="cb1-4"><a href="#cb1-4"></a><span class="kw">select</span> e1.name, e1.amount <span class="kw">as</span> initialAmount, e2.amount <span class="kw">as</span> finalAmount, e2.<span class="dt">timestamp</span></span>
-<span id="cb1-5"><a href="#cb1-5"></a><span class="kw">insert</span> <span class="kw">into</span> DecreasingTrendAlertStream;</span></code></pre>
+                        <pre class="sourceCode sql"><code class="sourceCode sql"><<a href="#cb1-1"></a>from every e1=SweetProductionStream,
+<a href="#cb1-2"></a>e2=SweetProductionStream[e1.amount &gt; amount and (timestamp - e1.timestamp) &lt; 10 * 6000]*,
+<a href="#cb1-3"></a>e3=SweetProductionStream[timestamp - e1.timestam &gt; <10 * 60000 and e1.amount &gt; amount]
+<a href="#cb1-4"></a>select e1.name, e1.amount as initialAmount, e2.amount as finalAmount, e2.timestamp
+<a href="#cb1-5"></a>insert into DecreasingTrendAlertStream;</code></pre>
                      </div>
                   </div>
                </div>
@@ -1150,14 +1275,14 @@ to the grid of the design view when you create a Siddhi application.
                <div class="code panel pdl" style="border-width: 1px;">
                   <div class="codeContent panelContent pdl">
                      <div class="sourceCode" id="cb1" data-syntaxhighlighter-params="brush: sql; gutter: false; theme: Confluence" data-theme="Confluence" style="brush: sql; gutter: false; theme: Confluence">
-                        <pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb1-1"><a href="#cb1-1"></a><span class="kw">partition</span> <span class="kw">with</span> ( roomNo <span class="op">&gt;=</span> <span class="dv">1030</span> <span class="kw">as</span> <span class="st">&#39;serverRoom&#39;</span> <span class="kw">or</span> </span>
-<span id="cb1-2"><a href="#cb1-2"></a>                 roomNo <span class="op">&lt;</span> <span class="dv">1030</span> <span class="kw">and</span> roomNo <span class="op">&gt;=</span> <span class="dv">330</span> <span class="kw">as</span> <span class="st">&#39;officeRoom&#39;</span> <span class="kw">or</span> </span>
-<span id="cb1-3"><a href="#cb1-3"></a>                 roomNo <span class="op">&lt;</span> <span class="dv">330</span> <span class="kw">as</span> <span class="st">&#39;lobby&#39;</span> <span class="kw">of</span> TempStream)</span>
-<span id="cb1-4"><a href="#cb1-4"></a><span class="cf">begin</span></span>
-<span id="cb1-5"><a href="#cb1-5"></a>    <span class="kw">from</span> TempStream#window.<span class="dt">time</span>(<span class="dv">10</span> <span class="fu">min</span>)</span>
-<span id="cb1-6"><a href="#cb1-6"></a>    <span class="kw">select</span> roomNo, deviceID, <span class="fu">avg</span>(temp) <span class="kw">as</span> avgTemp</span>
-<span id="cb1-7"><a href="#cb1-7"></a>    <span class="kw">insert</span> <span class="kw">into</span> AreaTempStream</span>
-<span id="cb1-8"><a href="#cb1-8"></a><span class="cf">end</span>;</span></code></pre>
+                        <pre class="sourceCode sql"><code class="sourceCode sql"><a href="#cb1-1"></a><partition with ( roomNo &gt;= 1030 as &#39;serverRoom&#39; o
+<a href="#cb1-2"></a>                 roomNo &lt; <1030 and roomNo &gt;= 330 as &#39;officeRoom&#39; or
+<a href="#cb1-3"></a>                 roomNo &lt; 330 as &#39;lobby&#39; of TempStream)
+<a href="#cb1-4"></a>begin
+<a href="#cb1-5"></a>    from TempStream#window.time(10 min)
+<a href="#cb1-6"></a>    select roomNo, deviceID, avg(temp) as avgTemp
+<a href="#cb1-7"></a>    insert into AreaTempStream
+<a href="#cb1-8"></a>end</code></pre>
                      </div>
                   </div>
                </div>
@@ -1187,12 +1312,7 @@ demonstrated below.
 
 ![Connecting Siddhi components](../images/working-with-the design-view/Connect-Siddhi-Components.gif)
 
-## Saving, running and debugging Siddhi applications
+## Saving and running Siddhi applications
 
-To save a Siddhi application that you created in the design view, you
-need to switch to the source view. You also need to switch to the source
-view to run or debug a Siddhi application. For more information, see the
-following sections:
+To save a Siddhi application that you created in the design view, you need to switch to the source view. You also need to switch to the source view to run a Siddhi application. For more information, see [Streaming Integrator Tiooling Overview](streaming-integrator-studio-overview.md).
 
--   [Streaming Integrator Tiooling Overview](streaming-integrator-studio-overview.md)
--   [Debugging a Siddhi Application](_Debugging_a_Siddhi_Application_)

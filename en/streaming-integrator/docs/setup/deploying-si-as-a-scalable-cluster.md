@@ -3,7 +3,7 @@
 Scalable high availability deployment predominantly focuses on scaling the system according to the load or the TPS of
 the system. This is achieved with the help of horizontal scalability.
 
-WSO2 Streaming Integrator uses Siddhi as the streaming language. Siddhi allopws you to write Siddhi logic in a
+WSO2 Streaming Integrator uses Siddhi as the streaming language. Siddhi allows you to write Siddhi logic in a
 stateless way as well as a stateful way.
 
 Stateless operations include filters, database operations etc., and stateful operations include window operations,
@@ -48,7 +48,7 @@ As shown in the above diagram, first you need to have a partitioning layer. Here
 
 In order to partition you can leverage on the Distributed sink extension in WSO2 Streaming Integrator. The following is a
 sample Siddhi application syntax that defines a stream. It shows how the distributed sink can be applied to partition data. In
-this example, data is partitioned from tenant domain. For more information, see [Siddhi Query Guide - Distributed Sink](https://siddhi.io/en/v5.x/docs/query-guide/#distributed-sink).
+this example, data is partitioned from tenant domain. For more information, see [Siddhi Query Guide - Distributed Sink](https://siddhi.io/en/v4.x/docs/query-guide/#distributed-sink).
 
 !!! note
     In the following example, the definition of the `Request` stream(Request stream) only includes the logicto send events out for load balancers via http for each

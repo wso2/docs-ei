@@ -1,13 +1,14 @@
 # Deploying Siddhi Applications
 
-After creating and testing and debugging a Siddhi application, you need to deploy it in the Streaming Integrator server. You can also deploy it in Docker and Kubernetes.
+After creating and testing a Siddhi application, you need to deploy it in the Streaming Integrator server. You can also deploy it in Docker and Kubernetes.
 
 To deploy your Siddhi application in the Streaming Integrator server, follow the procedure below:
 
 !!!info
     To deploy the Siddhi application, you need to run both the Streaming Integrator server and Streaming Integrator Tooling. The home directories of the Streaming Integrator server is referred to as `<SI_HOME>` and the home directory of Streaming Integrator Tooling is referred to as `<SI_TOOLING_HOME>`.
 
-1. Start the Streaming Integrator server by navigating to the `<SI_HOME>/bin` directory from the CLI, and issuing one of the following commands:
+1. Start the Streaming Integrator server by navigating to the `<SI_HOME>/bin` directory from the CLI, and issuing the appropriate command out of the following, based on your operating system.
+
    - On Windows: `server.bat --run`
    - On Linux/Mac OS:  `./server.sh`
 
