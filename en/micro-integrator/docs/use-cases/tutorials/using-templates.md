@@ -4,7 +4,7 @@
 
 In this sample scenario, you will use a **Sequence Template**
 and reuse it in multiple places of the medation flow. You can reuse the
-mediation flow that was defined in the [Sending a Simple Message to a Service](../sending-a-simple-message-to-a-service) tutorial and then replace its sections with the sequence template . See [Creating Templates](../../develop/creating-artifacts/creating-sequence-templates.md) for details
+mediation flow that was defined in the [Exposing Several Services as a Single Service](exposing-several-services-as-a-single-service.md) tutorial and then replace its sections with the sequence template . See [Creating Templates](../../develop/creating-artifacts/creating-sequence-templates.md) for details
 on how to work with templates using WSO2 Integration Studio.
 
 ## Let's get started!
@@ -15,8 +15,9 @@ Set up WSO2 Integration Studio as follows:
 
 1.  Download the relevant [WSO2 Integration Studio](https://wso2.com/integration/tooling/) based on your operating system. The path to the extracted/installed folder is referred to as `MI_TOOLING_HOME` throughout this tutorial.
 2.  If you did not try the [Exposing Several Services as a Single Service](exposing-several-services-as-a-single-service.md) tutorial yet:
-    1.  Open WSO2 Integration Studio and go to **File -> Import**. 
-    2.  Select **Existing WSO2 Projects into workspace** under the **WSO2** category, click **Next**, and then upload the [pre-packaged project](https://github.com/wso2-docs/WSO2_EI/blob/master/Integration-Tutorial-Artifacts/ExposingSeveralServicesTutorial.zip).
+    1.  Download the [pre-packaged project](https://github.com/wso2-docs/WSO2_EI/blob/master/Integration-Tutorial-Artifacts/ExposingSeveralServicesTutorial.zip). 
+    2.  Open WSO2 Integration Studio and go to **File -> Import**. 
+    3.  Select **Existing WSO2 Projects into workspace** under the **WSO2** category, click **Next**, and then upload the **pre-packaged project**.
 
 Optionally, you can set up the **CLI tool** for artifact monitoring. This will later help you get details of the artifacts that you deploy in your Micro Integrator.
 
@@ -31,7 +32,7 @@ Optionally, you can set up the **CLI tool** for artifact monitoring. This will l
 
 1.  Once you have exported the ESB project as described above, the project directory will appear with the artifacts as shown below.
 
-    ![](../../assets/img/tutorials/sequence-temp-project-explorer.png)
+    ![](../../assets/img/tutorials/using-templates/sequence-temp-project-explorer.png)
 
 2.  Right-click on **SampleServices** and navigate to **New -> Template** . The **New Template Artifact** dialog will open.
 3.  Select the **Create a New Template** and click **Next**.
@@ -51,19 +52,19 @@ Optionally, you can set up the **CLI tool** for artifact monitoring. This will l
         </tr>
     </table>
 
-    ![](https://lh6.googleusercontent.com/jlYENAKLNtl-psHJCLm1dG_ziOYkinAK755IrObL-xdK2KXYmCkMju76X957PeSMQ8Hn5Q5RfNRgv_Uq-wOjE6apTyTlU3-jhf0ZUylfuydaOTCp8EZPtWkQ4hS9_cLADSME168K)
+    <img src="../../../assets/img/tutorials/using-templates/new-template-wizard.png" width="500">
 
 5.  The template artifact will open in the canvas as shown below.
 
-    ![](../../assets/img/tutorials/sequence-canvas-1.png)
+    ![](../../assets/img/tutorials/using-templates/sequence-canvas-1.png)
 
 6.  Open the **Properties** tab of the sequence template by clicking on
     the canvas (outside the sequence box).  
 
-7.  Click the ![](../../assets/img/tutorials/plus-icon.png) icon
+7.  Click the ![](../../assets/img/tutorials/common/plus-icon.png) icon
     to start adding parameters .
 
-    ![](../../assets/img/tutorials/sequence-canvas-2.png) 
+    ![](../../assets/img/tutorials/using-templates/sequence-canvas-2.png) 
 
 8.  In the **Template Parameter** dialog that opens, enter 'sethospital' as the parameter name and click **Finish** .
 
@@ -71,7 +72,7 @@ Optionally, you can set up the **CLI tool** for artifact monitoring. This will l
     will print a message indicating to which hospital a requested
     message is routed.
 
-    ![](../../assets/img/tutorials/log-mediator-in-sequence.png) 
+    ![](../../assets/img/tutorials/using-templates/log-mediator-in-sequence.png) 
 
 10. Open the **Properties** tab of the log mediator and specify the
     following:
@@ -91,7 +92,7 @@ Optionally, you can set up the **CLI tool** for artifact monitoring. This will l
         </tr>
     </table>
 
-11. Click the ![](../../assets/img/tutorials/plus-icon.png) icon
+11. Click the ![](../../assets/img/tutorials/common/plus-icon.png) icon
     to start defining a property. Then add the following details for the
     property:
 
@@ -121,7 +122,7 @@ Optionally, you can set up the **CLI tool** for artifact monitoring. This will l
 12. Add a **Property** mediator just after the **Log** mediator to store
     the value for uri.var.hospital.
 
-    ![](https://lh6.googleusercontent.com/Q4ulnFRxB7JyfuTexWUkGz_BurFUn8K45OPKrKDy-fZ1dS9fbC3Y0CBTdCMcKanKdPD2Httx-7C6S746QEb96ixJ-y48On_IHgaxqG2FqnAQfM4JemIkN2EnSpoJgqvF2FGztgA-) 
+    <img src="../../../assets/img/tutorials/using-templates/add-property.png">
 
 13. With the **Property** mediator selected, access the **Properties**
     tab and enter the information given below:
@@ -164,18 +165,20 @@ Optionally, you can set up the **CLI tool** for artifact monitoring. This will l
 
 1.  Open the design view of the HealthcareAPI.xml and delete 'GrandOak'
     **Log** mediator by right clicking the mediator and selecting
-    **Delete from Model** .  
-    ![](https://lh4.googleusercontent.com/6Lsp6WbAQJwjSbmsyWlKnIMkP6Q3cB9hiwzvGRkyFUtbZKteu--ePnwvaA2LqfD-7AyLqy6U1Im42We67PsSP4JhL41vlZ8nwTC8S2KrF11Hpfu365bBXhCNOZX8cMlgdBgGX7e-)
+    **Delete from Model**.
+
+    <img src="../../../assets/img/tutorials/using-templates/delete-from-model.png" width="800">
 
 2.  Delete the 'Set Hospital Variable' **Property** mediator.
 
 3.  Add a **Call Template** mediator to the sequence as shown below.  
-    ![](https://lh6.googleusercontent.com/1SUm23IRnOH-vp_o0QWpSS3bhIawxhmsKN_1Y_PYyEaZ2k6_2tuDFeyyJtp18c8Q-p6mubMToqA6v4tyWDtBMgQcJdXet00Vtxa-IDnu7TTh5eSvqnEfSi9YEoxEhuE1yJO62w4B)
+
+    <img src="../../../assets/img/tutorials/using-templates/add-call-template.png" width="800">
 
 4.  Open the **Properties** tab of the **Call Template** mediator and
     select ' HospitalRoutingSeq' from the list of available templates.
 
-5.  Click the ![](../../assets/img/tutorials/plus-icon.png) icon
+5.  Click the ![](../../assets/img/tutorials/common/plus-icon.png) icon
     to start adding parameters. Enter the following parameter details
     and click **Finish** .
 
@@ -198,7 +201,7 @@ Optionally, you can set up the **CLI tool** for artifact monitoring. This will l
         </tr>
     </table>
 
-    ![](https://lh5.googleusercontent.com/Pu0UusC_42jmt_VQ2NEA1PdwOI8z2VyC7bDm7HSJ6iJgf9J8Jz4k87PZ2e9UAuT62FEHdpFXXGlXx5n78qtBBvQxEmQbDkMlg3lCfTIn5grDxKDaZW0XGItxqJ72XmC0_uE84gKO)
+    <img src="../../../assets/img/tutorials/using-templates/call-template-param.png" width="800">
 
 6.  Repeat the above steps to add **Call Templates** for 'Clemency' and
     'Pine Valley' hospitals. Add **clemency** and **pinevalley** as the
@@ -223,9 +226,8 @@ Package the artifacts in your composite application project (SampleServicesCompo
 To test the artifacts, deploy the [packaged artifacts](#step-3-package-the-artifacts) in the embedded Micro Integrator:
 
 1.  Right-click the composite application project and click **Export Project Artifacts and Run**.
-2.  In the dialog that opens, select the composite application project that you want to deploy.  
+2.  In the dialog that opens, select the artifacts that you want to deploy.  
 4.  Click **Finish**. The artifacts will be deployed in the embedded Micro Integrator and the server will start. See the startup log in the **Console** tab. 
-
 
 ### Step 5: Testing the use case
 
@@ -249,11 +251,13 @@ Let's use the **CLI Tool** to find the URL of the REST API (that is deployed in 
     Be sure to set up the CLI tool for your work environment as explained in the [first step](#step-1-set-up-the-workspace) of this tutorial.
 
 1.  Open a terminal and execute the following command to start the tool:
+
     ```bash
     mi
     ```
     
 2.  Log in to the CLI tool. Let's use the server administrator user name and password:
+
     ```bash
     mi remote login admin admin
     ```
@@ -274,9 +278,68 @@ Similarly, you can get details of Connectors as well as other artifacts deployed
 
 #### Send the client request
 
-Send a simple request to invoke the service.
+Let's send a simple request to invoke the service. You can use the embedded <b>HTTP Client</b> of WSO2 Integration Studio as follows:
 
-1.  Create a JSON file names `request.json` with the following request payload.
+1. Open the <b>HTTP Client</b> of WSO2 Integration Studio.
+
+    !!! Tip
+        If you don't see the <b>HTTP Client</b> tab, go to <b>Window -> Show View - Other</b> and select <b>HTTP Client</b> to enable the client.
+
+    <img src="../../../assets/img/tutorials/common/http4e-client-empty.png" width="800">
+    
+2. Enter the request information as given below and click the <b>Send</b> icon (<img src="../../../assets/img/tutorials/common/play-head-icon.png" width="20">).
+    
+    <table>
+        <tr>
+            <th>Method</th>
+            <td>
+               <code>POST</code> 
+            </td>
+        </tr>
+        <tr>
+            <th>Headers</th>
+            <td>
+              <code>Content-Type=application/json</code>
+            </td>
+        </tr>
+        <tr>
+            <th>URL</th>
+            <td><code>http://localhost:8290/healthcare/categories/surgery/reserve</code></br></br>
+            </td>
+        </tr>
+        <tr>
+            <th>Body</th>
+            <td>
+            <div>
+              <code>
+                {
+                 "name": "John Doe",
+                 "dob": "1940-03-19",
+                 "ssn": "234-23-525",
+                 "address": "California",
+                 "phone": "8770586755",
+                 "email": "johndoe@gmail.com",
+                 "doctor": "thomas collins",
+                 "hospital": "grand oak community hospital",
+                 "cardNo": "7844481124110331",
+                 "appointment_date": "2025-04-02"
+                }
+              </code>
+            </div></br>
+            <ul>
+              <li>
+                This JSON payload contains details of the appointment reservation, which includes patient details, doctor, hospital, and data of appointment.
+              </li>
+            </ul>
+        </tr>
+     </table>
+     
+     <img src="../../../assets/img/tutorials/using-templates/http4e-client-service-chaining.png" width="800">
+
+If you want to send the client request from your terminal:
+
+1.  Install and set up [cURL](https://curl.haxx.se/) as your REST client.
+2.  Create a JSON file names `request.json` with the following request payload.
 
     ```json
     {
@@ -293,15 +356,17 @@ Send a simple request to invoke the service.
     }
     ```
 
-2.  Open a command line terminal and execute the following command from
+3.  Open a command line terminal and execute the following command from
     the location where the request.json file you created is saved:
 
     ```bash
     curl -v -X POST --data @request.json http://localhost:8290/healthcare/categories/surgery/reserve --header "Content-Type:application/json"
     ```
 
-2.  You will see the response in the command line terminal.
+#### Analyze the response
 
-    ```bash
-    {"appointmentNo":2,"doctorName":"thomas collins","patient":"John Doe","actualFee":7000.0,"discount":20,"discounted":5600.0,"paymentID":"cc7e4c23-a66d-4d60-8b72-2cf9143c6335","status":"Settled"}
-    ```
+You will see the response received to your <b>HTTP Client</b>:
+
+```bash
+{"appointmentNo":2,"doctorName":"thomas collins","patient":"John Doe","actualFee":7000.0,"discount":20,"discounted":5600.0,"paymentID":"cc7e4c23-a66d-4d60-8b72-2cf9143c6335","status":"Settled"}
+```

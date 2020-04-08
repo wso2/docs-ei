@@ -1,12 +1,12 @@
 # Data Services 
 
-The data in your organization can be a complex pool of information that is stored in heterogeneous systems, ranging from RDBMSs to Excel files, and Google spreadsheets, etc. Data services are created for the purpose of decoupling the data from its infrastructure. In other words, when you create a data service in WSO2 Micro Integrator, the data that is stored in a storage system (such as an RDBMS) can be exposed in the form of a service. This allows users (that may be any application or system) to access the data without interacting with the original source of the data. Data services are, thereby, a convenient interface for interacting with the database layer in your organization.
+The data in your organization can be a complex pool of information that is stored in heterogeneous systems (such as an RDBMS). Data services are created for the purpose of decoupling the data from its infrastructure. In other words, when you create a data service in WSO2 Micro Integrator, the data that is stored in a storage system (such as the RDBMS) can be exposed in the form of a service. This allows users (that may be any application or system) to access the data without interacting with the original source of the data. Data services are, thereby, a convenient interface for interacting with the database layer in your organization.
 
-A data service in WSO2 Micro Integrator is a SOAP-based web service by default. However, you also have the option of creating REST resources, which allows applications and systems consuming the data service to have both SOAP-based, and RESTful access to your data.
+A data service in WSO2 Micro Integrator is a SOAP-based web service by default. However, you also have the option of creating REST resources, which allows applications and systems consuming the data service to have both SOAP-based and RESTful access to your data.
 
 ### Datasources
 
-Your organization's data can be stored in various data storage systems, which are the datasources. The following datasources are supported: Relational databases, CSV files, Microsoft Excel Sheets, Google Spreadsheets, RDF, MongoDB, Cassandra, and Web Resources. Additionally, you can also useJNDIdatasources, and create custom datasources.
+Your organization's data can be stored in various data storage systems, which are the datasources. The following datasources are currently supported: Relational databases and CSV files.
 
 ### RESTful data services
 
@@ -23,11 +23,11 @@ for each purpose. However, when you enable OData for your RESTful data
 service, these CRUD operations will be enabled automatically, which
 allows RESTful data access using CRUD operations out of the box.
 
-Currently, OData support is only available for RDBMS datasources, MongoDB datasources and Cassandra datasources using the following endpoint: `http://localhost:9763/odata/{dataserviceName}/{datasourceId}/`
+Currently, OData support is only available for RDBMS datasources. You can use the following endpoint URL: `http://localhost:9763/odata/{dataserviceName}/{datasourceId}/`
 
 ### Data Federation
 
-A data service defined in WSO2 Micro Integrator has the ability to aggregate the data that is stored in various, disparate datasources and present the data as a single output. For example, the data of employees in a company may be stored in various data stores (details of employment history, details of the physical office, contact information, etc.). Data federation allows users to consume all this data through a single request to the data service. The data service will aggregate the relevant data from each of the disparate datasources and present it as one response to the request. Data federation can be achieved in two ways:
+A data service has the ability to aggregate the data that is stored in various, disparate datasources and present the data as a single output. For example, the data of employees in a company may be stored in various data stores (details of employment history, details of the physical office, contact information, etc.). Data federation allows users to consume all this data through a single request to the data service. The data service will aggregate the relevant data from each of the disparate datasources and present it as one response to the request. Data federation can be achieved in two ways:
 
 -   Expose multiple datasources using a single data service.
 -   Use Nested Queries in your data service. This will allow you to feed
@@ -35,6 +35,9 @@ A data service defined in WSO2 Micro Integrator has the ability to aggregate the
     is, data can be combined into a single response or resource.
 
 ### Distributed Transactions
+
+!!! Note
+    **This section on 'distributed transactions' is currently under review!**
 
 A distributed transaction is a set of operations that should be performed on two or more distributed RDBMS data stores. If the operation on one data store (node) fails, the entire set of operations will fail in all the data stores. In other words, a distributed transaction is an example of a batch process, where multiple requests are grouped into one server call and processed as one unit by the data service.
 
@@ -73,7 +76,7 @@ insert multiple records into that database, using this operation.
 Therefore, the client can invoke this operation using a single request,
 to insert multiple records. This is client-side batch requesting.
 
-Consider another example, where the client needs to enter the employee’s
+Consider another example where the client needs to enter the employee’s
 bank details along with the personal details, but the bank details
 should be inserted to a different data store. In this example, the data
 service will have two separate operations for inserting data into two

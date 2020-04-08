@@ -2,7 +2,7 @@
 
 ## What you'll build
 
-The sections below demonstrate an example of scheduling a task (using the default implementation) to inject an XML message and to print it in the logs of the server.
+This tutorial demonstrates how you can schedule a task (using the default implementation) to inject an XML message to the Micro Integrator and to print the message in the logs of the server.
 
 ## Let's get started!
 
@@ -14,13 +14,14 @@ Download the relevant [WSO2 Integration Studio](https://wso2.com/integration/too
 
 Follow the instructions given in this section to create and configure the required artifacts.
 
-#### Create an ESB Config project
+#### Creating the Config project
 
-To create an ESB solution consisting of an **ESB config** project and a **Composite Application** project:
+To create a solution consisting of a **Config** project and a **Composite Application** project:
 
 1.  Open **WSO2 Integration Studio**.
-2.  Go to **ESB Project** and click **Create New**.
-    ![](../../assets/img/tutorials/119132413/119132414.png)
+2.  Go to **Integration** and click **Create Integration Project**.
+
+    <img src="../../../assets/img/create_project/create-integration-project.png" width="500">
 
 3.  Enter `ScheduleDefaultTask` as the project name. Be sure to select the following check boxes so that the relevant
     projects will be created.
@@ -31,11 +32,15 @@ To create an ESB solution consisting of an **ESB config** project and a **Compos
 
 #### Creating the Sequence
 
-1.  In the **Project Explorer**, right click the **ScheduleDefaultTask** project, and click **New** → **Sequence**.  
-    ![](../../assets/img/tutorials/scheduled-tasks/1-select-sequence.png) 
+1.  In the **Project Explorer**, right click the **ScheduleDefaultTask** project, and click **New** → **Sequence**. 
+
+    <img src="../../../assets/img/tutorials/scheduled-tasks/1-select-sequence.png" width="500"> 
+
 2.  Click **Create New Sequence** and click **Next**.
-3.  Enter **InjectXMLSequence** as the sequence name and click **Finish**.  
-    ![](../../assets/img/tutorials/scheduled-tasks/2-enter-sequence-artifact.png)  
+3.  Enter **InjectXMLSequence** as the sequence name and click **Finish**.
+    
+    <img src="../../../assets/img/tutorials/scheduled-tasks/2-enter-sequence-artifact.png" width="500">  
+
 4.  Drag and drop a **Log** mediator and a **Drop** mediator from the **Mediators** Palette.  
     ![](../../assets/img/tutorials/scheduled-tasks/3-inject-xml.png) 
 5.  Click the **Log** mediator and enter the following details in the **Properties** section.  
@@ -78,14 +83,15 @@ Shown below is the complete source configuration of the Sequence (i.e., the `Inj
     ![](../../assets/img/tutorials/scheduled-tasks/4-create-task.png)  
 
 2. Select **Create a New Scheduled Task Artifact** and click **Next**.
-    ![](../../assets/img/tutorials/scheduled-tasks/5-task-artifact-creation-options.png)  
+
+    <img src="../../../assets/img/tutorials/scheduled-tasks/5-task-artifact-creation-options.png" width="500">
 
 3.  Enter the following details and click **Next**:
     -   **Task Name:** `InjectXMLTask`
     -   **Count:** `-1`
     -   **Interval (in seconds):** 5
 
-    ![](../../assets/img/tutorials/scheduled-tasks/6-task-artifact-creation-dialog.png) 
+    <img src="../../../assets/img/tutorials/scheduled-tasks/6-task-artifact-creation-dialog.png" width="500">
 
 4.  In the **Form View** of the `InjectXMLTask` task, click **Task Implementation Properties**. 
 
@@ -139,7 +145,7 @@ Package the artifacts in your composite application project (SampleServicesCompo
 To test the artifacts, deploy the [packaged artifacts](#step-3-package-the-artifacts) in the embedded Micro Integrator:
 
 1.  Right-click the composite application project and click **Export Project Artifacts and Run**.
-2.  In the dialog that opens, select the composite application project that you want to deploy.  
+2.  In the dialog that opens, select the artifacts that you want to deploy.  
 4.  Click **Finish**. The artifacts will be deployed in the embedded Micro Integrator and the server will start. See the startup log in the **Console** tab.
 
 ### Step 5: Test the use case

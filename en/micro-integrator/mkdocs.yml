@@ -106,14 +106,7 @@ nav:
           - 'Exposing an RDBMS datasource': 'use-cases/examples/data_integration/rdbms-data-service.md'
           - Exposing Other Datasources:
             - 'Exposing a CSV datasource': 'use-cases/examples/data_integration/csv-data-service.md'
-            - 'Exposing an Excel datasource': 'use-cases/examples/data_integration/excel-data-service.md'
-            - 'Exposing a Google Spreadsheet': 'use-cases/examples/data_integration/google-spreadsheet-data-service.md'
-            - 'Exposing a Cassandra datasource': 'use-cases/examples/data_integration/cassandra-data-service.md'
-            - 'Exposing an RDF datasource': 'use-cases/examples/data_integration/rdf-data-service.md'
-            - 'Exposing a Web Resource': 'use-cases/examples/data_integration/web-resource-data-service.md'
             - 'Exposing a Carbon datasource': 'use-cases/examples/data_integration/carbon-data-service.md'
-            - 'Exposing a Custom datasource': 'use-cases/examples/data_integration/custom-datasource.md'
-            - 'Exposing a JNDI datasource': 'use-cases/examples/data_integration/jndi-data-service.md'
           - 'Exposing Data in JSON Format': 'use-cases/examples/data_integration/json-with-data-service.md'
           - 'Using an OData Service': 'use-cases/examples/data_integration/odata-service.md'
           - 'Using Nested Data Queries': 'use-cases/examples/data_integration/nested-queries-in-data-service.md'
@@ -274,9 +267,11 @@ nav:
       - Creating Projects:
         - 'Creating a Project Solution': 'develop/creating-project-solution.md'
         - 'Creating Integration Projects': 'develop/creating-projects.md'
-        - 'Importing Integration Projects': 'develop/importing-projects.md'
+        - 'Creating a Maven Multi Module Project': 'develop/create-multi-maven-project.md'
         - 'Creating a Docker Project': 'develop/create-docker-project.md'
         - 'Creating a Kubernetes Project': 'develop/create-kubernetes-project.md'
+        - 'Importing Projects': 'develop/importing-projects.md'
+        - 'Exporting Projects': 'develop/export_project.md'
       - Creating New Artifacts:
         - 'Importing Artifacts': 'develop/importing-artifacts.md'
         - 'Creating a REST API': 'develop/creating-artifacts/creating-an-api.md'
@@ -314,6 +309,7 @@ nav:
       - Testing Integrations:
         - 'Deploy and Run Artifacts': 'develop/deploy-and-run.md'
         - 'Creating a Unit Test Suite': 'develop/creating-unit-test-suite.md'
+        - 'Using the HTTP REST Client': 'develop/using-http_rest_client.md'
       - Debugging Integrations:
         - 'Mediation Debugging': 'develop/debugging-mediation.md'
         - 'Using Wire Logs': 'develop/using-wire-logs.md'
@@ -324,7 +320,7 @@ nav:
       - Advanced Development Tasks:
         - 'Injecting Parameters as Environment Variables': 'develop/injecting-parameters.md'
         - 'Changing the Endpoint of a Deployed Service': 'develop/advanced-development/changing-the-endpoint-of-deployed-service.md'
-        - 'Generating Swagger Documents for APIs': 'develop/advanced-development/generating-swagger-for-apis.md'
+        - 'Using Swagger Documents': 'develop/advanced-development/using-swagger-for-apis.md'
       - 'Managing the Registry': 'develop/creating-artifacts/registry/managing-the-Registry.md'
     - Observability:
       - 'Micro Integrator Dashboard': 'administer-and-observe/working-with-monitoring-dashboard.md'
@@ -442,7 +438,6 @@ nav:
           - 'Filtering Responses by User Role': 'references/synapse-properties/data-services/filtering-responses-by-user-role.md'
           - 'Dynamic User Authentication': 'references/synapse-properties/data-services/dynamic-user-authentication.md'
           - 'Using Namespaces': 'references/synapse-properties/data-services/using-Namespaces.md'
-          - 'SQL Dialects': 'references/synapse-properties/data-services/sql-dialects.md'
           - 'Mapping Data Types': 'references/synapse-properties/data-services/mapping-data-types.md'
         - Transport Configs:
           - 'VFS Parameters': 'references/synapse-properties/transport-parameters/vfs-transport-parameters.md'
