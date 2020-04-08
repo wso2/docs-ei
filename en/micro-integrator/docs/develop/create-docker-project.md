@@ -12,7 +12,7 @@ It is recommended to [get the latest updates](../../develop/installing-WSO2-Inte
 ## Creating the Docker project
 Follow the steps given below.   
 
-1.  Open **WSO2 Integration Studio** and click **Miscellaneous → Create New Docker Project** in the **Getting Started** view as shown below.
+1.  Open **WSO2 Integration Studio** and click **Miscellaneous → Create Docker Exporter Project** in the **Getting Started** view as shown below.
 
     <img src="../../assets/img/create_project/docker_k8s_project/get_started_docker_project.png" width="1000">
 
