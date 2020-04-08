@@ -458,6 +458,8 @@ nav:
      
 # Extensions
 markdown_extensions:
+  - markdown_include.include:
+      base_path: docs
   - markdown.extensions.admonition
   - markdown.extensions.codehilite:
       linenums: true
