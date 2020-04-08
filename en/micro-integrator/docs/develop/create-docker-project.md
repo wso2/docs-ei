@@ -10,6 +10,7 @@ Create a Docker project if you want to deploy your integration solutions inside 
 It is recommended to [get the latest updates](../../develop/installing-WSO2-Integration-Studio#get-the-latest-updates) for your [WSO2 Integration Studio](../../develop/installing-WSO2-Integration-Studio) before trying these instructions.
 
 ## Creating the Docker project
+
 Follow the steps given below.   
 
 1.  Open **WSO2 Integration Studio** and click **Miscellaneous → Create Docker Exporter Project** in the **Getting Started** view as shown below.
