@@ -95,8 +95,7 @@ To download a required connector, go to the [WSO2 Connector Store](https://store
 
 ## Data Services 
 
-The data in your organization can be a complex pool of information that is stored in heterogeneous systems, 
-ranging from RDBMSs to Excel files, and Google spreadsheets, etc. Data services are created for the purpose of decoupling 
+The data in your organization can be a complex pool of information that is stored in heterogeneous systems. Data services are created for the purpose of decoupling 
 the data from its infrastructure. In other words, when you create a data service in WSO2 Micro Integrator, 
 the data that is stored in a storage system (such as an RDBMS) can be exposed in the form of a service. 
 This allows users (that may be any application or system) to access the data without interacting with the original 
