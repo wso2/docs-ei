@@ -2889,3 +2889,456 @@ To use the Salesforce REST connector, add the `<salesforcerest.init>` element in
         "success" : true
     }
     ```
+
+### Working with sObjects
+
+??? note "describeGlobal"
+    To retrieve a list of the objects that are available in the system, use salesforcerest.describeGlobal. You can then get metadata for an object or objects as described in the next sections. See the [related API documentation](https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/resources_describeGlobal.htm) for more information.
+
+    **Sample configuration**
+
+    ```xml
+    <salesforcerest.describeGlobal/>
+    ```
+
+    **Sample request**
+
+    The following is a sample request that can be handled by the describeGlobal operation.
+
+    ```json
+    {
+        "accessToken":"00D280000017q6q!AQoAQOeXcp7zKo3gUdy6r064_LsJ5bYYrUn_qAZG9TtKFLPfUMRxiato.E162_2XAtCTZLFQTbNk2Rz6Zm_juSakFE_aaBPp",
+        "apiUrl":"https://ap2.salesforce.com",
+        "clientId": "3MVG9ZL0ppGP5UrBrnsanGUZRgHqc8gTV4t_6tfuef8Zz4LhFPipmlooU6GBszpplbTzVXXWjqkGHubhRip1s",
+        "refreshToken": "5Aep861TSESvWeug_xvFHRBTTbf_YrTWgEyjBJo7Xr34yOQ7GCFUN5DnNPxzDIoGoWi4evqOl_lT1B9nE5dAtSb",
+        "clientSecret": "9104967092887676680",
+        "hostName": "https://login.salesforce.com",
+        "apiVersion": "v32.0",
+        "intervalTime" : "100000",
+        "registryPath": "connectors/SalesforceRest"
+    }
+    ```
+
+    **Sample Response**
+
+    Given below is a sample response for the describeGlobal operation.
+
+    ```json
+    {
+        "maxBatchSize":200,
+        "sobjects":[
+            {
+                "updateable":false,
+                "activateable":false,
+                "deprecatedAndHidden":false,
+                "layoutable":false,
+                "custom":false,
+                "deletable":false,
+                "replicateable":false,
+                "undeletable":false,
+                "label":"Accepted Event Relation",
+                "keyPrefix":null,
+                "searchable":false,
+                "queryable":true,
+                "mergeable":false,
+                "urls":{
+                    "rowTemplate":"/services/data/v32.0/sobjects/AcceptedEventRelation/{ID}",
+                    "describe":"/services/data/v32.0/sobjects/AcceptedEventRelation/describe",
+                    "sobject":"/services/data/v32.0/sobjects/AcceptedEventRelation"
+                },
+                "createable":false,
+                "feedEnabled":false,
+                "retrieveable":true,
+                "name":"AcceptedEventRelation",
+                "customSetting":false,
+                "labelPlural":"Accepted Event Relations",
+                "triggerable":false
+            },
+            .
+            .
+        ],
+        "encoding":"UTF-8"
+    }
+    ```
+
+??? note "describeSObject"
+    To get metadata (such as name, label, and fields, including the field properties) for a specific object type, use salesforcerest.describeSObject and specify the following properties. See the [related API documentation](https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/resources_sobject_describe.htm) for more information.
+    <table>
+        <tr>
+            <th>Parameter Name</th>
+            <th>Description</th>
+            <th>Required</th>
+        </tr>
+        <tr>
+            <td>sObjectName</td>
+            <td>The object type whose metadata you want to retrieve.</td>
+            <td>Yes</td>
+        </tr>
+    </table>
+
+    **Sample configuration**
+
+    ```xml
+    <salesforcerest.describeSObject>
+        <sObjectName>{$ctx:sObjectName}</sObjectName>
+    </salesforcerest.describeSObject>
+    ```
+
+    **Sample request**
+
+    The following is a sample request that can be handled by the describeSObject operation.
+
+    ```json
+    {
+        "accessToken":"00D280000017q6q!AQoAQOeXcp7zKo3gUdy6r064_LsJ5bYYrUn_qAZG9TtKFLPfUMRxiato.E162_2XAtCTZLFQTbNk2Rz6Zm_juSakFE_aaBPp",
+        "apiUrl":"https://ap2.salesforce.com",
+        "clientId": "3MVG9ZL0ppGP5UrBrnsanGUZRgHqc8gTV4t_6tfuef8Zz4LhFPipmlooU6GBszpplbTzVXXWjqkGHubhRip1s",
+        "refreshToken": "5Aep861TSESvWeug_xvFHRBTTbf_YrTWgEyjBJo7Xr34yOQ7GCFUN5DnNPxzDIoGoWi4evqOl_lT1B9nE5dAtSb",
+        "clientSecret": "9104967092887676680",
+        "hostName": "https://login.salesforce.com",
+        "apiVersion": "v32.0",
+        "intervalTime" : "100000",
+        "sObjectName":"Account",
+        "registryPath": "connectors/SalesforceRest"
+    }
+    ```
+
+    **Sample Response**
+
+    Given below is a sample response for the describeSObject operation.
+
+    ```json
+    {
+        "updateable":true,
+        "activateable":false,
+        "childRelationships":[
+            {
+                "relationshipName":"ChildAccounts",
+                "field":"ParentId",
+                "deprecatedAndHidden":false,
+                "childSObject":"Account",
+                "cascadeDelete":false,
+                "restrictedDelete":false
+            },
+            {
+                "relationshipName":"AccountCleanInfos",
+                "field":"AccountId",
+                "deprecatedAndHidden":false,
+                "childSObject":"AccountCleanInfo",
+                "cascadeDelete":true,
+                "restrictedDelete":false
+            },
+            .
+        ]
+    }
+    ```
+
+??? note "listAvailableApiVersion"
+    To retrieve a list of summary information about each REST API version that is currently available, use salesforcerest.listAvailableApiVersion. See the [related API documentation](https://developer.salesforce.com/docs/atlas.en-us.198.0.api_rest.meta/api_rest/dome_versions.htm) for more information.
+
+    **Sample configuration**
+
+    ```xml
+    <salesforcerest.listAvailableApiVersion/>
+    ```
+
+    **Sample request**
+
+    The following is a sample request that can be handled by the listAvailableApiVersion operation.
+
+    ```json
+    {
+        "accessToken":"00D280000017q6q!AQoAQOeXcp7zKo3gUdy6r064_LsJ5bYYrUn_qAZG9TtKFLPfUMRxiato.E162_2XAtCTZLFQTbNk2Rz6Zm_juSakFE_aaBPp",
+        "apiUrl":"https://ap2.salesforce.com",
+        "clientId": "3MVG9ZL0ppGP5UrBrnsanGUZRgHqc8gTV4t_6tfuef8Zz4LhFPipmlooU6GBszpplbTzVXXWjqkGHubhRip1s",
+        "refreshToken": "5Aep861TSESvWeug_xvFHRBTTbf_YrTWgEyjBJo7Xr34yOQ7GCFUN5DnNPxzDIoGoWi4evqOl_lT1B9nE5dAtSb",
+        "clientSecret": "9104967092887676680",
+        "hostName": "https://login.salesforce.com",
+        "apiVersion": "v32.0",
+        "intervalTime" : "100000",
+        "registryPath": "connectors/SalesforceRest"
+    }
+    ```
+
+    **Sample Response**
+
+    Given below is a sample response for the listAvailableApiVersion operation.
+
+    ```json
+    {
+        "output":"[
+        {\"label\":\"Winter '11\",\"url\":\"/services/data/v20.0\",\"version\":\"20.0\"},
+        .
+        .
+        ]"
+    }
+    ```
+
+??? note "listOrganizationLimits"
+    To retrieve the limit information for your organization, use salesforcerest.listOrganizationLimits. See the [related API documentation](https://developer.salesforce.com/docs/atlas.en-us.198.0.api_rest.meta/api_rest/dome_limits.htm) for more information.
+
+    **Sample configuration**
+
+    ```xml
+    <salesforcerest.listOrganizationLimits/>
+    ```
+
+    **Sample request**
+
+    The following is a sample request that can be handled by the listOrganizationLimits operation.
+
+    ```json
+    {
+        "accessToken":"00D280000017q6q!AQoAQOeXcp7zKo3gUdy6r064_LsJ5bYYrUn_qAZG9TtKFLPfUMRxiato.E162_2XAtCTZLFQTbNk2Rz6Zm_juSakFE_aaBPp",
+        "apiUrl":"https://ap2.salesforce.com",
+        "clientId": "3MVG9ZL0ppGP5UrBrnsanGUZRgHqc8gTV4t_6tfuef8Zz4LhFPipmlooU6GBszpplbTzVXXWjqkGHubhRip1s",
+        "refreshToken": "5Aep861TSESvWeug_xvFHRBTTbf_YrTWgEyjBJo7Xr34yOQ7GCFUN5DnNPxzDIoGoWi4evqOl_lT1B9nE5dAtSb",
+        "clientSecret": "9104967092887676680",
+        "hostName": "https://login.salesforce.com",
+        "apiVersion": "v32.0",
+        "intervalTime" : "100000",
+        "registryPath": "connectors/SalesforceRest"
+    }
+    ```
+
+    **Sample Response**
+
+    Given below is a sample response for the listOrganizationLimits operation.
+
+    ```json
+    {
+        "DailyApiRequests":{
+            "Dataloader Bulk":{
+                "Max":0,
+                "Remaining":0
+            },
+            "test":{
+                "Max":0,
+                "Remaining":0
+            },
+            "Max":5000,
+            "Salesforce Mobile Dashboards":{
+                "Max":0,
+                "Remaining":0
+            },
+        .
+        .
+    }
+    ```
+
+??? note "listResourcesByApiVersion"
+    To retrieve the resources that are available in the specified API version, use salesforcerest.listResourcesByApiVersion. You can then get the details of those resources. See the [related API documentation](https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/dome_discoveryresource.htm) for more information.
+
+    **Sample configuration**
+
+    ```xml
+    <salesforcerest.listResourcesByApiVersion/>
+    ```
+
+    **Sample request**
+
+    The following is a sample request that can be handled by the listResourcesByApiVersion operation.
+
+    ```json
+    {
+        "accessToken":"00D280000017q6q!AQoAQOeXcp7zKo3gUdy6r064_LsJ5bYYrUn_qAZG9TtKFLPfUMRxiato.E162_2XAtCTZLFQTbNk2Rz6Zm_juSakFE_aaBPp",
+        "apiUrl":"https://ap2.salesforce.com",
+        "clientId": "3MVG9ZL0ppGP5UrBrnsanGUZRgHqc8gTV4t_6tfuef8Zz4LhFPipmlooU6GBszpplbTzVXXWjqkGHubhRip1s",
+        "refreshToken": "5Aep861TSESvWeug_xvFHRBTTbf_YrTWgEyjBJo7Xr34yOQ7GCFUN5DnNPxzDIoGoWi4evqOl_lT1B9nE5dAtSb",
+        "clientSecret": "9104967092887676680",
+        "hostName": "https://login.salesforce.com",
+        "apiVersion": "v32.0",
+        "intervalTime" : "100000",
+        "registryPath": "connectors/SalesforceRest"
+    }
+    ```
+
+    **Sample Response**
+
+    Given below is a sample response for the listResourcesByApiVersion operation.
+
+    ```json
+    {
+        "tooling":"/services/data/v32.0/tooling",
+        "folders":"/services/data/v32.0/folders",
+        "eclair":"/services/data/v32.0/eclair",
+        "prechatForms":"/services/data/v32.0/prechatForms",
+        "chatter":"/services/data/v32.0/chatter",
+        "tabs":"/services/data/v32.0/tabs",
+        "appMenu":"/services/data/v32.0/appMenu",
+        "quickActions":"/services/data/v32.0/quickActions",
+        "queryAll":"/services/data/v32.0/queryAll",
+        "commerce":"/services/data/v32.0/commerce",
+        .
+    }
+    ```
+
+??? note "sObjectBasicInfo"
+    To retrieve the individual metadata for the specified object, use salesforcerest.sObjectBasicInfo. See the [related API documentation](https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/resources_sobject_basic_info.htm) for more information.
+    <table>
+        <tr>
+            <th>Parameter Name</th>
+            <th>Description</th>
+            <th>Required</th>
+        </tr>
+        <tr>
+            <td>sObjectName</td>
+            <td>The object type whose metadata you want to retrieve.</td>
+            <td>Yes</td>
+        </tr>
+    </table>
+
+    **Sample configuration**
+
+    ```xml
+    <salesforcerest.sObjectBasicInfo>
+        <sObjectName>{$ctx:sObjectName}</sObjectName>
+    </salesforcerest.sObjectBasicInfo>
+    ```
+
+    **Sample request**
+
+    The following is a sample request that can be handled by the sObjectBasicInfo operation.
+
+    ```json
+    {
+        "accessToken":"00D280000017q6q!AQoAQOeXcp7zKo3gUdy6r064_LsJ5bYYrUn_qAZG9TtKFLPfUMRxiato.E162_2XAtCTZLFQTbNk2Rz6Zm_juSakFE_aaBPp",
+        "apiUrl":"https://ap2.salesforce.com",
+        "clientId": "3MVG9ZL0ppGP5UrBrnsanGUZRgHqc8gTV4t_6tfuef8Zz4LhFPipmlooU6GBszpplbTzVXXWjqkGHubhRip1s",
+        "refreshToken": "5Aep861TSESvWeug_xvFHRBTTbf_YrTWgEyjBJo7Xr34yOQ7GCFUN5DnNPxzDIoGoWi4evqOl_lT1B9nE5dAtSb",
+        "clientSecret": "9104967092887676680",
+        "hostName": "https://login.salesforce.com",
+        "apiVersion": "v32.0",
+        "intervalTime" : "100000",
+        "sObjectName":"Account",
+        "registryPath": "connectors/SalesforceRest"
+    }
+    ```
+
+    **Sample Response**
+
+    Given below is a sample response for the sObjectBasicInfo operation.
+
+    ```json
+    {
+        "objectDescribe":{
+            "updateable":true,
+            "activateable":false,
+            "deprecatedAndHidden":false,
+            "layoutable":true,
+            "custom":false,
+            "deletable":true,
+            "replicateable":true,
+            "undeletable":true,
+            "label":"Account",
+            "keyPrefix":"001",
+            "searchable":true,
+            "queryable":true,
+            "mergeable":true,
+            "urls":{
+                "compactLayouts":"/services/data/v32.0/sobjects/Account/describe/compactLayouts",
+                "rowTemplate":"/services/data/v32.0/sobjects/Account/{ID}"
+            },
+            "createable":true,
+            "feedEnabled":true,
+            "retrieveable":true,
+            "name":"Account",
+            "customSetting":false,
+            "labelPlural":"Accounts",
+            "triggerable":true
+        },
+        .
+    }
+    ```
+
+??? note "sObjectGetDeleted"
+    To retrieve a list of individual records that have been deleted within the given timespan for the specified object, use salesforcerest.sObjectGetDeleted. The date and time should be provided in ISO 8601 format:YYYY-MM-DDThh:mm:ss+hh:mm. See the [related API documentation](https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/resources_sobject_basic_info.htm) for more information.
+    <table>
+        <tr>
+            <th>Parameter Name</th>
+            <th>Description</th>
+            <th>Required</th>
+        </tr>
+        <tr>
+            <td>sObjectName</td>
+            <td>The object type whose metadata you want to retrieve.</td>
+            <td>Yes</td>
+        </tr>
+        <tr>
+            <td>startTime</td>
+            <td>Starting date/time (Coordinated Universal Time (UTC)—not local—timezone) of the timespan for which to retrieve the data.</td>
+            <td>Yes</td>
+        </tr>
+        <tr>
+            <td>endTime</td>
+            <td>Ending date/time (Coordinated Universal Time (UTC)—not local—timezone) of the timespan for which to retrieve the data.</td>
+            <td>Yes</td>
+        </tr>
+    </table>
+
+    **Sample configuration**
+
+    ```xml
+    <salesforcerest.sObjectGetDeleted>
+        <sObjectName>{$ctx:sObjectName}</sObjectName>
+        <startTime>{$ctx:startTime}</startTime>
+        <endTime>{$ctx:endTime}</endTime>
+    </salesforcerest.sObjectGetDeleted>
+    ```
+
+    **Sample request**
+
+    The following is a sample request that can be handled by the sObjectGetDeleted operation.
+
+    ```json
+    {
+        "accessToken":"00D280000017q6q!AQoAQOeXcp7zKo3gUdy6r064_LsJ5bYYrUn_qAZG9TtKFLPfUMRxiato.E162_2XAtCTZLFQTbNk2Rz6Zm_juSakFE_aaBPp",
+        "apiUrl":"https://ap2.salesforce.com",
+        "clientId": "3MVG9ZL0ppGP5UrBrnsanGUZRgHqc8gTV4t_6tfuef8Zz4LhFPipmlooU6GBszpplbTzVXXWjqkGHubhRip1s",
+        "refreshToken": "5Aep861TSESvWeug_xvFHRBTTbf_YrTWgEyjBJo7Xr34yOQ7GCFUN5DnNPxzDIoGoWi4evqOl_lT1B9nE5dAtSb",
+        "clientSecret": "9104967092887676680",
+        "hostName": "https://login.salesforce.com",
+        "apiVersion": "v32.0",
+        "sObjectName":"Account",
+        "intervalTime" : "100000",
+        "startTime":"2015-10-05T12:30:30+05:30",
+        "endTime":"2015-10-10T20:30:30+05:30",
+        "registryPath": "connectors/SalesforceRest"
+    }
+    ```
+
+    **Sample Response**
+
+    Given below is a sample response for the sObjectGetDeleted operation.
+
+    ```json
+    {
+        "objectDescribe":{
+            "updateable":true,
+            "activateable":false,
+            "deprecatedAndHidden":false,
+            "layoutable":true,
+            "custom":false,
+            "deletable":true,
+            "replicateable":true,
+            "undeletable":true,
+            "label":"Account",
+            "keyPrefix":"001",
+            "searchable":true,
+            "queryable":true,
+            "mergeable":true,
+            "urls":{
+                "compactLayouts":"/services/data/v32.0/sobjects/Account/describe/compactLayouts",
+                "rowTemplate":"/services/data/v32.0/sobjects/Account/{ID}"
+            },
+            "createable":true,
+            "feedEnabled":true,
+            "retrieveable":true,
+            "name":"Account",
+            "customSetting":false,
+            "labelPlural":"Accounts",
+            "triggerable":true
+        },
+        .
+    }
+    ```
