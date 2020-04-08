@@ -616,8 +616,7 @@ mediator.
 
 For example, suppose we have saved the following text content in the
 registry under the location
-`         conf:/repository/MI/transform        ` . (The resource name is
-“transform”.)
+`         conf:/repository/MI/transform.txt        ` .
 
 ```
 {
@@ -636,7 +635,7 @@ to the registry resource key):
 
 ```
 <payloadFactory media-type="json">
-  <format key="conf:/repository/MI/transform"/>
+  <format key="conf:/repository/MI/transform.txt"/>
   ... 
 </payloadFactory>
 ```
@@ -1090,7 +1089,7 @@ In this example, the required schema for validating messages going through the V
   <schema key="conf:/schema/StockQuoteSchema.json"/>
     <on-fail>
             <payloadFactory media-type="json">
-                <format>{"Error":$1"}</format>
+                <format>{"Error":"$1"}</format>
                 <args>
                     <arg evaluator="xml" expression="$ctx:ERROR_MESSAGE"/>
                 </args>
