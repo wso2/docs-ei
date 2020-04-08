@@ -39,8 +39,9 @@ Given below is the data service configuration you need to build. See the instruc
 <data name="odata_service" transports="http https local">
    <config enableOData="true" id="Datasource">
       <property name="driverClassName">com.mysql.jdbc.Driver</property>
-      <property name="url">jdbc:mysql://localhost:3306/Company</property>
+      <property name="url">jdbc:mysql://localhost:3306/CompanyAccounts</property>
       <property name="username">root</property>
+      <property name="password">password</property>
    </config>
 </data>
 ```
@@ -69,17 +70,17 @@ Open a command prompt execute the following CURL commands using CRUD operations:
 -   To get the service document:
 
     ```bash
-    curl -X GET -H 'Accept: application/json' http://localhost:8290/odata/ExposeDatabaseService/Datasource
+    curl -X GET -H 'Accept: application/json' http://localhost:8290/odata/odata_service/Datasource
     ```
 
 -   To get the metadata of the service:
 
     ```bash
-    curl -X GET -H 'Accept: application/xml' http://localhost:8290/odata/ExposeDatabaseService/Datasource/$metadata
+    curl -X GET -H 'Accept: application/xml' http://localhost:8290/odata/odata_service/Datasource/$metadata
     ```
 
 -   To read details from the ACCOUNT table:
 
     ```bash
-    curl -X GET -H 'Accept: application/xml' http://localhost:8290/odata/ExposeDatabaseService/Datasource/ACCOUNT
+    curl -X GET -H 'Accept: application/xml' http://localhost:8290/odata/odata_service/Datasource/ACCOUNT
     ```

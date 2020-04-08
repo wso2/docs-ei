@@ -24,9 +24,7 @@ Following is a sample REST API configuration that we can used to implement this 
                  <else/>
              </filter>
          </inSequence>
-         <outSequence>
-             <call/>
-         </outSequence>
+         <outSequence/>
          <faultSequence/>
      </target>
 </proxy>

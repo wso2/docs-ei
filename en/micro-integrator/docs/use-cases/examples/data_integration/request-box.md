@@ -49,11 +49,16 @@ Let's create a MySQL database with the required data.
 ## Synapse configuration
 Given below is the data service configuration you need to build. See the instructions on how to [build and run](#build-and-run) this example.
 
+!!! Tip
+    Be sure to replace the datasource username and password with the correct values for your MySQL instance.
+
 ```xml
 <data disableLegacyBoxcarringMode="true" enableBoxcarring="true" name="request_box_example" transports="http https local">
    <config enableOData="false" id="Datasource">
       <property name="driverClassName">com.mysql.jdbc.Driver</property>
       <property name="url">jdbc:mysql://localhost:3306/Company</property>
+      <property name="username">root</property>
+      <property name="password">password</property>
    </config>
    <query id="addEmployeeQuery" useConfig="Datasource">
       <sql>insert into Employees (EmployeeNumber, FirstName, LastName, Email,OfficeCode) values(:EmployeeNumber,:FirstName,:LastName,:Email,:OfficeCode)</sql>
@@ -106,27 +111,58 @@ Create the artifacts:
 4. [Create the data service](../../../../develop/creating-artifacts/data-services/creating-data-services) with the configurations given above.
 5. [Deploy the artifacts](../../../../develop/deploy-and-run) in your Micro Integrator.
 
-Send a request with multiple transactions as shown below. In this example, we are sending two transactions with details of two employees.
+Let's send a request with multiple transactions to the data service:
+
+1. Download and Install [SoapUI](https://www.soapui.org/downloads/soapui.html) to run this SOAP service.
+2. Create a new SOAP Project in the SoapUI using following wsdl file:
+   ```bash
+   http://localhost:8290/services/request_box_example?wsdl
+   ```
+
+3. Invoke the **request_box** under **request_box_exampleSOAP12Binding** with the following request body:
+
+   !!! Tip
+       Note that we are sending two transactions with details of two employees.
+
+      ```xml
+      <dat:request_box xmlns:p="http://ws.wso2.org/dataservice">
+            <!--Exactly 1 occurrence-->
+            <addEmployeeOp xmlns="http://ws.wso2.org/dataservice">
+                  <!--Exactly 1 occurrence-->
+                  <xs:EmployeeNumber xmlns:xs="http://ws.wso2.org/dataservice">1003</xs:EmployeeNumber>
+                  <!--Exactly 1 occurrence-->
+                  <xs:FirstName xmlns:xs="http://ws.wso2.org/dataservice">Chris</xs:FirstName>
+                  <!--Exactly 1 occurrence-->
+                  <xs:LastName xmlns:xs="http://ws.wso2.org/dataservice">Sam</xs:LastName>
+                  <!--Exactly 1 occurrence-->
+                  <xs:Email xmlns:xs="http://ws.wso2.org/dataservice">chris@sam.com</xs:Email>
+                  <!--Exactly 1 occurrence-->
+                  <xs:OfficeCode xmlns:xs="http://ws.wso2.org/dataservice">1</xs:OfficeCode>
+            </addEmployeeOp>
+            <!--Exactly 1 occurrence-->
+            <selectEmployeeOp xmlns="http://ws.wso2.org/dataservice">
+                  <!--Exactly 1 occurrence-->
+                  <xs:EmployeeNumber xmlns:xs="http://ws.wso2.org/dataservice">1003</xs:EmployeeNumber>
+            </selectEmployeeOp>
+      </dat:request_box>
+      ```
+
+You will see the following response received by SoapUI:
 
 ```xml
-<p:request_box xmlns:p="http://ws.wso2.org/dataservice">
-  <!--Exactly 1 occurrence-->
-  <addEmployeeOp xmlns="http://ws.wso2.org/dataservice">
-     <!--Exactly 1 occurrence-->
-     <xs:EmployeeNumber xmlns:xs="http://ws.wso2.org/dataservice">1003</xs:EmployeeNumber>
-     <!--Exactly 1 occurrence-->
-     <xs:FirstName xmlns:xs="http://ws.wso2.org/dataservice">Chris</xs:FirstName>
-     <!--Exactly 1 occurrence-->
-     <xs:LastName xmlns:xs="http://ws.wso2.org/dataservice">Sam</xs:LastName>
-     <!--Exactly 1 occurrence-->
-     <xs:Email xmlns:xs="http://ws.wso2.org/dataservice">chris@sam.com</xs:Email>
-     <!--Exactly 1 occurrence-->
-     <xs:OfficeCode xmlns:xs="http://ws.wso2.org/dataservice">1</xs:OfficeCode>
-  </addEmployeeOp>
-  <!--Exactly 1 occurrence-->
-  <selectEmployeeOp xmlns="http://ws.wso2.org/dataservice">
-     <!--Exactly 1 occurrence-->
-     <xs:EmployeeNumber xmlns:xs="http://ws.wso2.org/dataservice">1003</xs:EmployeeNumber>
-  </selectEmployeeOp>
-</p:request_box>
+<soapenv:Envelope xmlns:soapenv="http://www.w3.org/2003/05/soap-envelope">
+<soapenv:Body>
+      <axis2ns16:DATA_SERVICE_REQUEST_BOX_RESPONSE xmlns:axis2ns16="http://ws.wso2.org/dataservice">
+            <Entries xmlns="http://ws.wso2.org/dataservice">
+                  <Entry>
+                        <EmployeeNumber>1003</EmployeeNumber>
+                        <FirstName>Chris</FirstName>
+                        <LastName>Sam</LastName>
+                        <Email>chris@sam.com</Email>
+                        <OfficeCode>1</OfficeCode>
+                  </Entry>
+            </Entries>
+      </axis2ns16:DATA_SERVICE_REQUEST_BOX_RESPONSE>
+</soapenv:Body>
+</soapenv:Envelope>
 ```

@@ -2,8 +2,6 @@
 
 The datasource configuration in a data service specifies how the service connects to the datasource. The datasource connection parameters you can use depends on the type of datasource you are exposing.
 
-<img src="../../../../assets/img/data-services/data-service-datasource.png" width="500">
-
 ## RDBMS Connection parameters
 
 Shown below is the synapse configuration of an RDBMS datasource in a data service. See the complete list of [JDBC connection pool parameters](http://tomcat.apache.org/tomcat-7.0-doc/jdbc-pool.html) and the [DBCP configuration guide](http://commons.apache.org/proper/commons-dbcp/configuration.html) for more details.

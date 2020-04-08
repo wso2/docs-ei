@@ -106,14 +106,7 @@ nav:
           - 'Exposing an RDBMS datasource': 'use-cases/examples/data_integration/rdbms-data-service.md'
           - Exposing Other Datasources:
             - 'Exposing a CSV datasource': 'use-cases/examples/data_integration/csv-data-service.md'
-            - 'Exposing an Excel datasource': 'use-cases/examples/data_integration/excel-data-service.md'
-            - 'Exposing a Google Spreadsheet': 'use-cases/examples/data_integration/google-spreadsheet-data-service.md'
-            - 'Exposing a Cassandra datasource': 'use-cases/examples/data_integration/cassandra-data-service.md'
-            - 'Exposing an RDF datasource': 'use-cases/examples/data_integration/rdf-data-service.md'
-            - 'Exposing a Web Resource': 'use-cases/examples/data_integration/web-resource-data-service.md'
             - 'Exposing a Carbon datasource': 'use-cases/examples/data_integration/carbon-data-service.md'
-            - 'Exposing a Custom datasource': 'use-cases/examples/data_integration/custom-datasource.md'
-            - 'Exposing a JNDI datasource': 'use-cases/examples/data_integration/jndi-data-service.md'
           - 'Exposing Data in JSON Format': 'use-cases/examples/data_integration/json-with-data-service.md'
           - 'Using an OData Service': 'use-cases/examples/data_integration/odata-service.md'
           - 'Using Nested Data Queries': 'use-cases/examples/data_integration/nested-queries-in-data-service.md'
@@ -274,7 +267,9 @@ nav:
         - 'Troubleshooting WSO2 Integration Studio': 'develop/troubleshooting-WSO2-Integration-Studio.md'
       - Creating Projects:
         - 'Creating ESB Projects': 'develop/creating-projects.md'
-        - 'Importing ESB Projects': 'develop/importing-projects.md'
+        - 'Creating a Maven Multi Module Project': 'develop/create-multi-maven-project.md'
+        - 'Importing Projects': 'develop/importing-projects.md'
+        - 'Exporting Projects': 'develop/export_project.md'
         - 'Creating Docker Project': 'develop/create-docker-project.md'
         - 'Creating Kubernetes Project': 'develop/create-kubernetes-project.md'
       - Creating New Artifacts:
@@ -297,7 +292,7 @@ nav:
         - 'Creating a Data Service Input Validator': 'develop/creating-artifacts/data-services/creating-input-validators.md'
         - 'Adding Connectors': 'develop/creating-artifacts/adding-connectors.md'
       - Creating Custom Artifacts:
-        - 'Creating a Custom Inbound Endpoint' : 'develop/customizations/creating-custom-Inbound-endpoint.md'
+        - 'Creating a Custom Inbound Endpoint': 'develop/customizations/creating-custom-Inbound-endpoint.md'
         - 'Creating a Custom Mediator': 'develop/customizations/creating-custom-mediators.md'
         - 'Creating a Synapse Handler': 'develop/customizations/creating-synapse-handlers.md'
         - 'Creating a New Connector': 'develop/customizations/creating-new-connector.md'
@@ -315,6 +310,7 @@ nav:
         - 'Deploy and Run Artifacts': 'develop/deploy-and-run.md'
         - 'Hot Deploying Artifacts': 'develop/hot-deployment.md'
         - 'Creating a Unit Test Suite': 'develop/creating-unit-test-suite.md'
+        - 'Using the HTTP REST Client': 'develop/using-http_rest_client.md'
       - Debugging Integrations:
         - 'Mediation Debugging': 'develop/debugging-mediation.md'
         - 'Using Wire Logs': 'develop/using-wire-logs.md'
@@ -325,7 +321,7 @@ nav:
       - Advanced Development Tasks:
         - 'Injecting Parameters as Environment Variables': 'develop/injecting-parameters.md'
         - 'Changing the Endpoint of a Deployed Service': 'develop/advanced-development/changing-the-endpoint-of-deployed-service.md'
-        - 'Generating Swagger Documents for APIs': 'develop/advanced-development/generating-swagger-for-apis.md'
+        - 'Using Swagger Documents': 'develop/advanced-development/using-swagger-for-apis.md'
       - 'Managing the Registry': 'develop/creating-artifacts/registry/managing-the-Registry.md'
       #- 'Using a CI/CD Pipeline' : 'develop/using-cicd-pipeline.md'
     - Observability:
@@ -444,7 +440,6 @@ nav:
           - 'Filtering Responses by User Role': 'references/synapse-properties/data-services/filtering-responses-by-user-role.md'
           - 'Dynamic User Authentication': 'references/synapse-properties/data-services/dynamic-user-authentication.md'
           - 'Using Namespaces': 'references/synapse-properties/data-services/using-Namespaces.md'
-          - 'SQL Dialects': 'references/synapse-properties/data-services/sql-dialects.md'
           - 'Mapping Data Types': 'references/synapse-properties/data-services/mapping-data-types.md'
         - Transport Configs:
           - 'VFS Parameters': 'references/synapse-properties/transport-parameters/vfs-transport-parameters.md'
@@ -465,6 +460,8 @@ nav:
      
 # Extensions
 markdown_extensions:
+  - markdown_include.include:
+      base_path: docs
   - markdown.extensions.admonition
   - markdown.extensions.codehilite:
       linenums: true
@@ -490,7 +487,7 @@ markdown_extensions:
   - pymdownx.tasklist:
       custom_checkbox: true
   - pymdownx.tilde
-    
+      
 # Extra
 extra_css:
   - assets/lib/highlightjs/default.min.css

@@ -10,12 +10,14 @@ Following are the integration artifacts (proxy service) that we can used to impl
 <?xml version="1.0" encoding="UTF-8"?>
 <proxy name="StockQuoteProxy" startOnLoad="true" transports="udp" xmlns="http://ws.apache.org/ns/synapse">
     <target>
-        <endpoint>
-            <address uri="http://localhost:9000/services/SimpleStockQuoteService"/>
-        </endpoint>
         <inSequence>
             <log level="full"/>
             <property name="OUT_ONLY" value="true"/>
+            <send>
+                <endpoint>
+                    <address uri="http://localhost:9000/services/SimpleStockQuoteService"/>
+                </endpoint>
+            </send>
         </inSequence>
     </target>
     <publishWSDL key="conf:UDP_WSDL/sample_proxy_1.wsdl" preservePolicy="true"/>
@@ -50,7 +52,7 @@ Send the following message via UDP to the UDP listener port (9999).
 ```xml
 <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
     <soapenv:Header xmlns:wsa="http://www.w3.org/2005/08/addressing">
-        <wsa:To>tcp://localhost:6060/services/StockQuoteProxy</wsa:To>
+        <wsa:To>udp://localhost:9999/services/StockQuoteProxy</wsa:To>
         <wsa:ReplyTo>
             <wsa:Address>http://www.w3.org/2005/08/addressing/none</wsa:Address>
         </wsa:ReplyTo>

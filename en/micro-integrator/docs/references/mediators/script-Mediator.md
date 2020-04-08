@@ -66,32 +66,35 @@ and when using Ruby, REXML documents.
 
 ## Prerequisites
 
-Listed below are the prerequisites for writing a Script mediator using
+-   If you are using **nashornJS** as the JavaScript language, and also if you have JSON operations defined in the Script mediator, you need to have JDK version `8u112` or a later version in your environment.
+    If your environment has an older JDK version, the Script mediator (that uses nashornJS and JSON operations) will not function properly because of this [JDK bug](https://bugs.openjdk.java.net/browse/JDK-8157160). That is, you will encounter server exceptions in the Micro Integrator.
+
+-   Listed below are the prerequisites for writing a Script mediator using
 JavaScript, Groovy, or Ruby.
 
-<table>
-<thead>
-<tr class="header">
-<th>Scripting Language</th>
-<th>Prerequisite</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Groovy</td>
-<td>Download the groovy-all <code>             -2.4.4.jar            </code> file and copy it to the <code>                           &lt;EI_HOME&gt;/             </code> dropins directory. Note that when you define the script, you need to start by importing Groovy.</td>
-</tr>
-<tr class="even">
-<td>Ruby</td>
-<td><p>Install the JRuby engine for mediation. This is available in the WSO2 P2 repository as a feature (<strong>WSO2 Carbon - JRuby Engine for Mediation</strong>).</p>
-<p>Alternatively, you can download and install the JRuby engine manually: Download the <code>              jruby-complete-1.3.0.wso2v1.jar             </code> file from the WSO2 P2 repository and copy it to the <code>                             &lt;EI_HOME&gt;/              </code> dropins directory.</p></td>
-</tr>
-<tr class="odd">
-<td>JavaScript</td>
-<td>The JavaScript/E4X support is enabled by default in the WSO2 Enterprise Integrator distribution and ready for use.</td>
-</tr>
-</tbody>
-</table>
+    <table>
+    <thead>
+    <tr class="header">
+    <th>Scripting Language</th>
+    <th>Prerequisite</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr class="odd">
+    <td>Groovy</td>
+    <td>Download the groovy-all <code>-2.4.4.jar</code> file and copy it to the <code>&lt;EI_HOME&gt;/</code> dropins directory. Note that when you define the script, you need to start by importing Groovy.</td>
+    </tr>
+    <tr class="even">
+    <td>Ruby</td>
+    <td><p>Install the JRuby engine for mediation. This is available in the WSO2 P2 repository as a feature (<strong>WSO2 Carbon - JRuby Engine for Mediation</strong>).</p>
+    <p>Alternatively, you can download and install the JRuby engine manually: Download the <code>              jruby-complete-1.3.0.wso2v1.jar             </code> file from the WSO2 P2 repository and copy it to the <code>                             &lt;EI_HOME&gt;/              </code> dropins directory.</p></td>
+    </tr>
+    <tr class="odd">
+    <td>JavaScript</td>
+    <td>The JavaScript/E4X support is enabled by default in the WSO2 Enterprise Integrator distribution and ready for use.</td>
+    </tr>
+    </tbody>
+    </table>
 
 ## Syntax
 

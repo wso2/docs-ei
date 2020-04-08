@@ -27,11 +27,16 @@ Let's create a MySQL database with the required data.
 
 Given below is the data service configuration you need to build. See the instructions on how to [build and run](#build-and-run) this example.
 
+!!! Tip
+    Be sure to replace the datasource username and password with the correct values for your MySQL instance.
+
 ```xml
 <data name="batch_requesting_sample" transports="http https local">
    <config enableOData="false" id="Datasource">
       <property name="driverClassName">com.mysql.jdbc.Driver</property>
       <property name="url">jdbc:mysql://localhost:3306/Company</property>
+      <property name="username">root</property>
+      <property name="password">password</property>
    </config>
    <query id="addEmployeeQuery" useConfig="Datasource">
       <sql>insert into Employees (EmployeeNumber, FirstName, LastName, Email, JobTitle, OfficeCode) values(:EmployeeNumber,:FirstName,:LastName,:Email,:JobTitle,:Officecode)</sql>
@@ -70,43 +75,56 @@ Create the artifacts:
 4. [Create the data service](../../../../develop/creating-artifacts/data-services/creating-data-services) with the configurations given above.
 5. [Deploy the artifacts](../../../../develop/deploy-and-run) in your Micro Integrator. 
 
-Send a request with multiple transactions as shown below. In this example, we are sending two transactions with details of two employees.
+Let's send a request with multiple transactions to the data service:
 
-```xml
-<p:addEmployeeOp_batch_req xmlns:p="http://ws.wso2.org/dataservice">
-      <!--1 or more occurrences-->
-      <addEmployeeOp xmlns="http://ws.wso2.org/dataservice">
-         <!--Exactly 1 occurrence-->
-         <xs:EmployeeNumber xmlns:xs="http://ws.wso2.org/dataservice">1002</xs:EmployeeNumber>
-         <!--Exactly 1 occurrence-->
-         <xs:FirstName xmlns:xs="http://ws.wso2.org/dataservice">John</xs:FirstName>
-         <!--Exactly 1 occurrence-->
-         <xs:LastName xmlns:xs="http://ws.wso2.org/dataservice">Doe</xs:LastName>
-         <!--Exactly 1 occurrence-->
-         <xs:Email xmlns:xs="http://ws.wso2.org/dataservice">johnd@wso2.com</xs:Email>
-         <!--Exactly 1 occurrence-->
-         <xs:JobTitle xmlns:xs="http://ws.wso2.org/dataservice">Consultant</xs:JobTitle>
-         <!--Exactly 1 occurrence-->
-         <xs:Officecode xmlns:xs="http://ws.wso2.org/dataservice">01</xs:Officecode>
-      </addEmployeeOp>
-      <addEmployeeOp xmlns="http://ws.wso2.org/dataservice">
-         <!--Exactly 1 occurrence-->
-         <xs:EmployeeNumber xmlns:xs="http://ws.wso2.org/dataservice">1004</xs:EmployeeNumber>
-         <!--Exactly 1 occurrence-->
-         <xs:FirstName xmlns:xs="http://ws.wso2.org/dataservice">Peter</xs:FirstName>
-         <!--Exactly 1 occurrence-->
-         <xs:LastName xmlns:xs="http://ws.wso2.org/dataservice">Parker</xs:LastName>
-         <!--Exactly 1 occurrence-->
-         <xs:Email xmlns:xs="http://ws.wso2.org/dataservice">peterp@wso2.com</xs:Email>
-         <!--Exactly 1 occurrence-->
-         <xs:JobTitle xmlns:xs="http://ws.wso2.org/dataservice">Consultant</xs:JobTitle>
-         <!--Exactly 1 occurrence-->
-         <xs:Officecode xmlns:xs="http://ws.wso2.org/dataservice">01</xs:Officecode>
-      </addEmployeeOp>
-   </p:addEmployeeOp_batch_req>
-```
+1. Download and Install [SoapUI](https://www.soapui.org/downloads/soapui.html) to run this SOAP service.
+2. Create a new SOAP project in SoapUI by using the following wsdl file:
+   ```bash
+   http://localhost:8290/services/batch_requesting_sample?wsdl
+   ```
 
-When you execute the batch operation, you will find that all the records have been inserted into the database simultaneously.
+3. Update the **addEmployeeOp** operation (under **batch_requesting_sampleSOAP11Binding**) with the request body as shown below:
+
+   !!! Tip
+       In this example, we are sending two transactions with details of two employees.
+
+    ```xml
+    <p:addEmployeeOp_batch_req xmlns:p="http://ws.wso2.org/dataservice">
+          <!--1 or more occurrences-->
+          <addEmployeeOp xmlns="http://ws.wso2.org/dataservice">
+             <!--Exactly 1 occurrence-->
+             <xs:EmployeeNumber xmlns:xs="http://ws.wso2.org/dataservice">1002</xs:EmployeeNumber>
+             <!--Exactly 1 occurrence-->
+             <xs:FirstName xmlns:xs="http://ws.wso2.org/dataservice">John</xs:FirstName>
+             <!--Exactly 1 occurrence-->
+             <xs:LastName xmlns:xs="http://ws.wso2.org/dataservice">Doe</xs:LastName>
+             <!--Exactly 1 occurrence-->
+             <xs:Email xmlns:xs="http://ws.wso2.org/dataservice">johnd@wso2.com</xs:Email>
+             <!--Exactly 1 occurrence-->
+             <xs:JobTitle xmlns:xs="http://ws.wso2.org/dataservice">Consultant</xs:JobTitle>
+             <!--Exactly 1 occurrence-->
+             <xs:Officecode xmlns:xs="http://ws.wso2.org/dataservice">01</xs:Officecode>
+          </addEmployeeOp>
+          <addEmployeeOp xmlns="http://ws.wso2.org/dataservice">
+             <!--Exactly 1 occurrence-->
+             <xs:EmployeeNumber xmlns:xs="http://ws.wso2.org/dataservice">1004</xs:EmployeeNumber>
+             <!--Exactly 1 occurrence-->
+             <xs:FirstName xmlns:xs="http://ws.wso2.org/dataservice">Peter</xs:FirstName>
+             <!--Exactly 1 occurrence-->
+             <xs:LastName xmlns:xs="http://ws.wso2.org/dataservice">Parker</xs:LastName>
+             <!--Exactly 1 occurrence-->
+             <xs:Email xmlns:xs="http://ws.wso2.org/dataservice">peterp@wso2.com</xs:Email>
+             <!--Exactly 1 occurrence-->
+             <xs:JobTitle xmlns:xs="http://ws.wso2.org/dataservice">Consultant</xs:JobTitle>
+             <!--Exactly 1 occurrence-->
+             <xs:Officecode xmlns:xs="http://ws.wso2.org/dataservice">01</xs:Officecode>
+          </addEmployeeOp>
+       </p:addEmployeeOp_batch_req>
+    ```
+    
+4.  Invoke the **addEmployeeOp** operation.
+
+You will find that all the records have been inserted into the `Employees` database simultaneously.
 
 !!! Tip
     Want to confirm that the records are added to the database? Run the following MySQL command.
@@ -114,5 +132,3 @@ When you execute the batch operation, you will find that all the records have be
     ```bash
     SELECT * FROM Employees
     ```
-        
-    You will see all the records that are in the `Employees` table, including the two employee records that you added in the previous step.  

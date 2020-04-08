@@ -17,7 +17,7 @@ Following is a sample REST API configuration that we can used to implement this 
             <endpoint name="SampleFailover">
                 <failover>
                     <endpoint name="Sample_First" statistics="enable" >
-                        <address uri="http://localhost/myendpoint" statistics="enable" trace="disable">
+                        <address uri="http://localhost:123/myendpoint" statistics="enable" trace="disable">
                             <timeout>
                                 <duration>60000</duration>
                             </timeout>
@@ -152,7 +152,7 @@ Multiple address endpoints are used in this example.
                                 <maximumDuration>30000</maximumDuration>
                             </suspendOnFailure>
                             <retryConfig>
-                                <disabledErrorCodes>101507,101504</disabledErrorCodes>
+                                <disabledErrorCodes>101507,101503</disabledErrorCodes>
                             </retryConfig>
                         </http>
                     </endpoint>

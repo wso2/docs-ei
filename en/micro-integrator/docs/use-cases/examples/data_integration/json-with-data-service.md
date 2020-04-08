@@ -33,14 +33,28 @@ Let's create a MySQL database with the required data.
 Given below is the data service configuration you need to build. See the instructions on how to [build and run](#build-and-run) this example.
 
 ```xml
-<data name="RDBMSDataService" serviceStatus="inactive" transports="http https local">
+<data name="RDBMSDataService" serviceStatus="active" transports="http https local">
    <config enableOData="false" id="Datasource">
       <property name="driverClassName">com.mysql.jdbc.Driver</property>
       <property name="url">jdbc:mysql://localhost:3306/Employees</property>
+      <property name="username">root</property>
+      <property name="password">password</property>
    </config>
    <query id="GetEmployeeDetails" useConfig="Datasource">
       <sql>select EmployeeNumber, FirstName, LastName, Email, Salary from Employees where EmployeeNumber=:EmployeeNumber</sql>
-      <result outputType="json">{ "Employees":{"Employee":[ {"EmployeeNumber":"$EmployeeNumber","Details":          "FirstName":"$FirstName","LastName":"$LastName","Email":"$Email","Salary":"$Salary"}} ]}}</result>
+      <result outputType="json">{
+   "Employees":{
+      "Employee":[
+         {
+            "EmployeeNumber":"$EmployeeNumber",
+            "FirstName":"$FirstName",
+            "LastName":"$LastName",
+            "Email":"$Email",
+            "Salary":"$Salary"
+         }
+      ]
+   }
+}</result>
       <param name="EmployeeNumber" sqlType="STRING"/>
    </query>
    <query id="AddEmployeeDetails" useConfig="Datasource">
