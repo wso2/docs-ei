@@ -74,25 +74,19 @@ Once you have configured the policy file, you can add the security
 policy to the data service as explained below.
 
 1.  If you have already created a data service using WSO2 Integration
-    Studio, select the file from the Project Explorer.
+    Studio, select the file from the project explorer.
 
     !!! Tip
         Be sure to update your database credentials in the dataservice file.
     
-2.  Once you have select the data service file, click the **browse**
-    icon for the **Policy** field.
+2.  Once you have opened the data service file, switch to the **Source View** to see 
+the source of the data service.
 
-    ![](../../../assets/img/tutorials/data_services/119130577/119130582.png)
-
-3.  Click **workspace**, to add the security policy from the current
-    workspace. You can select the path to the
-    `          sample_policy.         ` xml file that you created in the
-    previous steps.  
-    ![](../../../assets/img/tutorials/data_services/119130577/119130581.png)
-4.  Click **OK**, and the security policy will be added to the data
-    service.  
-    ![](../../../assets/img/tutorials/data_services/119130577/119130579.png)
-5.  Save the data service.
+3.  Add the following elements inside the `<data>` element and save the file.
+    ```xml
+     <policy key="gov:ws-policy/Sample_Policy.xml" />
+     <enableSec />
+    ```
 
 ## Step 3: Package the artifacts
 
