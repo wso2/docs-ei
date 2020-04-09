@@ -29,7 +29,7 @@
 ### Sample curl command
 
 ``` java
-    curl -X POST https://localhost:9444/stores/query -H "content-type: application/json" -u "admin:admin" -d '{"appName" : "ApiRequestSummary", "query" : "from API_REQUEST_SUMMARY within 1586249325000L, 1586335725000L per \"days\" select userId, apiPublisher, sum(totalRequestCount) as net_total_requests group by userId, apiPublisher order by net_total_requests DESC;" }' -k
+    curl -X POST https://localhost:9443/stores/query -H "content-type: application/json" -u "admin:admin" -d '{"appName" : "ApiRequestSummary", "query" : "from API_REQUEST_SUMMARY within 1586249325000L, 1586335725000L per \"days\" select userId, apiPublisher, sum(totalRequestCount) as net_total_requests group by userId, apiPublisher order by net_total_requests DESC;" }' -k
 ```
 
 ### Sample output
