@@ -7,7 +7,9 @@ The WSO2 Amazon SQS connector allows you to access the exposed API through the W
 ## What you'll build
 
 This example explains how to use Amazon SQS Connector to create a queue in the Amazon SQS, send a message to the queue, forward it to Simple Stock Quote Service Backend and send the response to the user. 
-It has single HTTP API resources, which is `sendToQueue`. 
+It has a single HTTP API resource, which is `sendToQueue`. 
+
+  <img src="/assets/img/connectors/AmazonSQS-Connector.png" title="AmazonSQS-Connector" width="800" alt="AmazonSQS-Connector"/>
 
 If you do not want to build this yourself, you can simply [get the project](#get-the-project) and run it.
 
@@ -15,15 +17,15 @@ If you do not want to build this yourself, you can simply [get the project](#get
 
 1. Please follow the steps mentioned in the [Setting up the Amazon S3 Environment ](../amazons3-connector/amazons3-connector-config.md) document in order to create a Amazon account and obtain access key id and secret access key. Keep them saved to be used in the next steps.  
 
-2. In this example we will be using xpath 2.0 which needs to enable in the product as below before starting the wso2-ei service. 
-
-    If you are using EI 6, you can enable this property by uncommenting **synapse.xpath.dom.failover.enabled=true** property in PRODUCT-HOME/conf/synapse.properties file. 
+2. In this example we will be using XPath 2.0 which needs to be enabled in the product as shown below before starting the WSO2 EI service. 
 
     If you are using EI7, you need to enable this property by adding the following to the PRODUCT-HOME/conf/deployment.toml file. You can further refer to the [Product Configurations](https://ei.docs.wso2.com/en/latest/micro-integrator/references/config-catalog/#http-transport).
       ```
         [mediation]
         synapse.enable_xpath_dom_failover="true"
       ```
+
+    If you are using EI 6, you can enable this property by uncommenting **synapse.xpath.dom.failover.enabled=true** property in PRODUCT-HOME/conf/synapse.properties file. 
 
 3. In this example we use SimpleStockQuote Service backend. Therefore SimpleStockQuote service needs to be started. 
 
@@ -60,7 +62,7 @@ Follow these steps to set up the Integration Project and the Connector Exporter 
           </enrich>
       </sequence>
     ```
-3. Create the createQueue sequence as below. In this sequence we create a queue in the Amazon SQS instance. 
+3. Create the createQueue sequence as shown below. In this sequence, we create a queue in the Amazon SQS instance. 
   ```
     <?xml version="1.0" encoding="UTF-8"?>
     <sequence name="createQueue" trace="disable" xmlns="http://ws.apache.org/ns/synapse">
@@ -84,7 +86,7 @@ Follow these steps to set up the Integration Project and the Connector Exporter 
     </sequence>
   ```
 
-  4. Create sendMessage sequence as below. In this sequence we send the message that we build in step 1 to the Amazon SQS Queue. 
+  4. Create sendMessage sequence as shown below. In this sequence, we send the message that we built in step 1 to the Amazon SQS Queue. 
     ```
       <?xml version="1.0" encoding="UTF-8"?>
       <sequence name="sendMessage" trace="disable" xmlns="http://ws.apache.org/ns/synapse">
@@ -102,7 +104,7 @@ Follow these steps to set up the Integration Project and the Connector Exporter 
       </sequence>
     ```
 
-  5. Create the ReceiveAndForwardMessage sequence as below. In this sequence we will receive the message from the Amazon SQS queue and forward it into the StockQuote Endpoint. 
+  5. Create the ReceiveAndForwardMessage sequence as shown below. In this sequence, we will receive the message from the Amazon SQS queue and forward it into the StockQuote Endpoint. 
     ```
       <?xml version="1.0" encoding="UTF-8"?>
       <sequence name="ReceiveAndForwardMessage" trace="disable" xmlns="http://ws.apache.org/ns/synapse">
@@ -211,4 +213,4 @@ You should get the following response with the 'sys_id' and keep it saved.
 ## What's Next
 
 * You can deploy and run your project on [Docker](../../../setup/installation/run_in_docker.md) or [Kubernetes](../../../setup/installation/run_in_kubernetes.md).
-* To customize this example for your own scenario, see [ServiceNow Connector Configuration](file-connector-config.md) documentation for all operation details of the connector.
+
