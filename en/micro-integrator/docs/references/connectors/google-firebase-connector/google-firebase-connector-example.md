@@ -1,8 +1,8 @@
 # Amazon S3 Connector Example 
 
-Google Firebase is a rich modern platform to create quick mobile app back-ends, with a ton of built-in and ready-to-integrate features. The most used feature of Firebase is as a back-end. But along with this back-end, one of the popular features is **push notifications**. We can register Android, IOS and Web based backend to Google Firebase applications and push notifications to them. Firebase being a Google product, a lot of people use it for reliable push notifications. In mobile world push notifications are very popular. 
+Google Firebase is a rich modern platform to create quick mobile app back-ends, with a ton of built-in and ready-to-integrate features. The most used feature of Firebase is as a back-end. However, along with this back-end, one of the popular features is **push notifications**. We can register Android, IOS, and Web-based backend to Google Firebase applications and push notifications to them. Firebase being a Google product, a lot of people use it for reliable push notifications. In the mobile world, push notifications are very popular.  
 
-You can use firebase console itself to trigger out messages to the registered devices or you can even schedule a CRON job. Firebase provides a `Messaging Console`, which you can use to send all kinds of push messages, filter target users, schedule messages and much more. Needlessly to state, it provides notification history and reports as well. However, when it come to integration scenarios we should be able to generate a notification externally and send it to Google Firebase. 
+You can use the Firebase console itself to trigger out messages to the registered devices or you can even schedule a CRON job. Firebase provides a `Messaging Console`, which you can use to send all kinds of push messages, filter target users, schedule messages, and much more. Needless to state, it provides notification history and reports as well. However, when it come to integration scenarios we should be able to generate a notification externally and send it to Google Firebase.  
 
 **Google Firebase Connector** is useful for integrating Google Firebase with other enterprise applications, on-premise or cloud. You can generate notifications and send them to Firebase so that they will be triggered to all the registered devices on that topic.
 
@@ -167,7 +167,7 @@ Follow these steps to set up the Integration Project and import Google Firebase 
    ```
 
 > **NOTE:**
-The parameters under `<init>` section of the configuration above are referring to the credentials we obtained from Google Firebase in above steps. The parameters are mapped to the keys of the Json file that you have downloaded as below. 
+The parameters under `<init>` section of the configuration above are referring to the credentials we obtained from Google Firebase in above steps. The parameters are mapped to the keys of the JSON file that you have downloaded as below. 
 
 ```
 accountType --> type
@@ -182,7 +182,7 @@ authProviderCertUrl --> auth_provider_x509_cert_url
 clientCertUrl --> client_x509_cert_url
 ```
 
-Now we can export the imported connector, sequence and the API into a single CAR application. CAR application is the one we are going to deploy to server runtime.
+Now we can export the imported connector, sequence, and the API into a single CAR application. CAR application is the one we are going to deploy to server runtime.
 
 
 {!references/connectors/exporting-artifacts.md!}
@@ -191,13 +191,12 @@ Now we can export the imported connector, sequence and the API into a single CAR
 Now the exported CApp can be deployed in Enterprise Integrator Runtime so that we can run it and test. 
 
 **NOTE**
-Download following jars. 
+Download the following .jar files. 
 1. [firebase-admin-6.5.0.jar](https://mvnrepository.com/artifact/com.google.firebase/firebase-admin/6.5.0)
 2. [google-auth-library-credentials-0.11.0.jar](https://mvnrepository.com/artifact/com.google.auth/google-auth-library-credentials/0.11.0)
 3. [google-auth-library-oauth2-http-0.11.0.jar](https://mvnrepository.com/artifact/com.google.auth/google-auth-library-oauth2-http/0.11.0)
 4. [api-common-1.7.0.jar](https://mvnrepository.com/artifact/com.google.api/api-common/1.7.0)
-
-and place those into  `<Product_HOME>/lib` folder.
+and place those into `<Product_HOME>/lib` folder.
 
 {!references/connectors/deploy-capp.md!}
 
