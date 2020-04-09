@@ -66,7 +66,10 @@ Create the artifacts:
 4. See the instructions on [creating an inbound endpoint](../../../../develop/creating-artifacts/creating-an-inbound-endpoint) to define the inbound endpoint given above.
 5. [Deploy the artifacts](../../../../develop/deploy-and-run) in your Micro Integrator.
 
-Invoke the inbound endpoint with the below request. Add basic auth from the http client you use.
+Invoke the inbound endpoint with the below request. 
+
+!!! Tip
+    Be sure to add **basic auth** from the http client you use.
 
 ```xml
 POST https://localhost:8085 HTTP/1.1
