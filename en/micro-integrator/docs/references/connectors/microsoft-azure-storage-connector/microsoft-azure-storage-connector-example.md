@@ -1,4 +1,4 @@
-# Microsoft Azure Storage Connector
+# Microsoft Azure Storage Connector Example
 
 The Microsoft Azure Storage Connector allows you to access the Azure Storage services using Microsoft Azure Storage Java SDK through WSO2 EI. [Azure Storage](https://azure.microsoft.com/en-us/) is a Microsoft-managed cloud service that provides storage that is highly available, secure, durable, scalable and redundant. The Azure Storage consists of four primary Azure Storage types. They are blob storage, table storage, file storage, queue storage.
 
