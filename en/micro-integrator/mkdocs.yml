@@ -372,6 +372,9 @@ nav:
             - 'ISO8583 Inbound Endpoint Example': 'references/connectors/ISO8583-connector/ISO8583-inbound-endpoint-example.md'
         - Amazon SQS Connector:
             - 'Amazon SQS Connector Example': 'references/connectors/amazonsqs-connector/amazonsqs-connector-example.md'
+        - Microsoft Azure Storage Connector:
+            - 'Setting up the Microsoft Azure Storage Environment': 'references/connectors/microsoft-azure-storage-connector/microsoft-azure-storage-configuration.md'
+            - 'Microsoft Azure Storage Connector Example': 'references/connectors/microsoft-azure-storage-connector/microsoft-azure-storage-connector-example.md'
       - Synapse Configurations:
         - Mediator Catalog:
           - 'About Mediators': 'references/mediators/about-mediators.md'
