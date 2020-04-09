@@ -1,32 +1,11 @@
-# Filtering Responses by User Role
+# Extend Role-Based Data Filtering
 
-When you work with data services, you can control access to sensitive
-data for specific user roles. This facility is called **Role-based
-content filtering**. It filters data where specific data sections are
-only accessible to a given type of users.
+When you use data services in WSO2 Micro Integrator, you can filter content to specific user roles by taking roles from
+the [user store](../../../../setup/user_stores/setting_up_ro_ldap) that is connected to the server. 
+This feature is available by default.
 
-## Define user role-based result filtering
-
-Follow the steps below to filter a data service according to a specific user role.
-
-1. [Secure the dataservice](../../../../develop/creating-artifacts/data-services/securing-data-services) using `UsernameToken` for user authentication.
-2. Add `requiredRoles` attribute to the output mapping with the comma separated list of user roles.
-    ```xml
-    <query id="getEmployeesQuery" useConfig="datasource">
-      <sql>select EmployeeNumber,FirstName,Email from Employees</sql>
-      <result element="Elements" rowName="Element">
-         <element column="EmployeeNumber" name="EmployeeNumber" requiredRoles="admin, role1" xsdType="string"/>
-         <element column="FirstName" name="FirstName"/>
-         <element column="Email" name="Email" requiredRoles="admin"/>
-      </result>
-    </query>
-    ``` 
-
-## Extend role-based filtering via a custom authorization provider
-
-In the Micro Integrator, you can filter content to specific user roles by taking roles from
-the [user store](../../../../setup/user_stores/setting_up_ro_ldap) connected to the server. However, this extension provides
-the flexibility for you to develop data services by plugging in a
+By using a custom authentication provider you can have
+the flexibility of plugging in a
 mechanism to provide those role details from any preferred external
 source (e.g., third party identity provider, JWT token etc.). Hence, in
 data integration scenarios where data needs to be filtered based on the

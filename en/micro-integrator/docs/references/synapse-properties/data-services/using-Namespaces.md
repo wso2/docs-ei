@@ -6,6 +6,9 @@ identify the elements defined within a specific web service. Using
 namespaces for a data service is optional. However, in certain data
 services, namespaces become necessary. Read below for more information.
 
+The namespace is specified by the `<targetNamespace>` element in the WSDL that
+represents the data service.
+
 ## Namespace inheritance in a data service
 
 Namespaces can be defined at different levels of a data service, which
