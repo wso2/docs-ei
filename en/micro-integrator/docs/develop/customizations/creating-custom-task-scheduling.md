@@ -222,29 +222,6 @@ In addition to the `             execute()            ` method, it
     is also possible to make the class implement a
     `             JavaBean            ` interface.
 
-!!! Info
-    When creating customized task schedules, if the injecting sequence
-        of the message flow contains **Publish Event** mediators, set the
-        following property in the Synapse message context:
-    
-```xml
-mc.setProperty("CURRENT_TASK_EXECUTING_TENANT_IDENTIFIER",PrivilegedCarbonContext.getThreadLocalCarbonContext().getTenantId());
-```
-        
-Also, add the following dependency to the POM file of the custom
-            task project:
-            `             WSO2 Carbon - Utilities bundle            ` (symbolic
-            name: `             org.wso2.carbon.utils            ` )
-        
-!!! Info
-    When creating customized task schedules, if the injecting sequence
-        of the message flow contains **Publish Event** mediators, set the
-        following property in the Synapse message context:
-    
-```xml
-mc.setProperty("CURRENT_TASK_EXECUTING_TENANT_IDENTIFIER",PrivilegedCarbonContext.getThreadLocalCarbonContext().getTenantId());
-```
-
 Also, add the following dependency to the POM file of the custom task project: `             WSO2 Carbon - Utilities bundle            ` (symbolic name: `             org.wso2.carbon.utils            ` )
         
 This is a bean implementing two properties: To and StockFile. These are used to configure the task.
