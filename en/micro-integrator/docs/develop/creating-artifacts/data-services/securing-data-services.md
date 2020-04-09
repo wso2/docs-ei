@@ -79,14 +79,14 @@ policy to the data service as explained below.
     !!! Tip
         Be sure to update your database credentials in the dataservice file.
     
-2.  Once you have select the data service file, switch to source view to get 
-the source of the dataservice.
+2.  Once you have opened the data service file, switch to the **Source View** to see 
+the source of the data service.
 
-3.  Add the following elements inside the ```<data>``` element and save the file.
-```xml
- <policy key="gov:ws-policy/Sample_Policy.xml" />
- <enableSec />
-```
+3.  Add the following elements inside the `<data>` element and save the file.
+    ```xml
+     <policy key="gov:ws-policy/Sample_Policy.xml" />
+     <enableSec />
+    ```
 
 ## Step 3: Package the artifacts
 
