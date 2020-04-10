@@ -9,7 +9,7 @@ only accessible to a given type of users.
 
 Follow the steps below to filter a data service according to a specific user role.
 
-1. [Secure the dataservice](../../../../develop/creating-artifacts/data-services/securing-data-services) using `UsernameToken` for user authentication.
+1. [Secure the dataservice](../../../develop/creating-artifacts/data-services/securing-data-services) using `UsernameToken` for user authentication.
 2. Add `requiredRoles` attribute to the output mapping with the comma separated list of user roles.
     ```xml
     <query id="getEmployeesQuery" useConfig="datasource">
@@ -25,7 +25,7 @@ Follow the steps below to filter a data service according to a specific user rol
 ## Using a custom authorization provider
 
 When you use data services in WSO2 Micro Integrator, you can filter content to specific user roles by taking roles from
-the [user store](../../../../setup/user_stores/setting_up_ro_ldap) that is connected to the server. 
+the [user store](../../../setup/user_stores/setting_up_ro_ldap) that is connected to the server. 
 This feature is available by default.
 
 By using a custom authentication provider you can have
