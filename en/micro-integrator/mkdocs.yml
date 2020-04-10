@@ -329,6 +329,7 @@ nav:
     - References:
       - 'Product Configurations' : 'references/config-catalog.md'
       - Connectors:
+        - 'Connectors Overview' : 'references/connectors/connectors-overview.md'
         - File Connector:
           - 'File Connector Example': 'references/connectors/file-connector/file-connector-example.md'
           - 'File Connector Configuration': 'references/connectors/file-connector/file-connector-config.md'
