@@ -73,14 +73,15 @@ An operation of a particular connector represents a function that can be execute
 
 ### Input Sources
 
-As described above input for the connector operations would be
+As described above input for the connector operations would be:
+
 * Hard coded values
 * Values of properties set to the message flow before the connector operation is used 
 * Payload that is in message context (message flow) at the place he connector operation is used
 
 ### Inbound endpoints
 
-Inbound endpoints are used to listen or poll for messages from external systems like Kafka and NATS. These are also used to trigger events into WSO2 EI and start a message flow upon changes made to external systems (i.e RDBMS Database). 
+Inbound endpoints are used to listen or poll for messages from external systems like Kafka and NATS. These are also used to trigger events into WSO2 EI and start a message flow upon changes made to external systems (i.e., RDBMS Database). 
 
 The configurations are made using Integration Studio for inbound endpoints as well. When configuring, you need to define it as an inbound endpoint of type “custom”. The parameter “class” has the fully qualified name to the Java class implementing message pooling functionality. 
 
@@ -100,7 +101,7 @@ We have to be honest; we would really like to encourage developers who want to s
 
 ### Report an issue
 
-You can report issues for any connector under the Micro Integrator repository (https://github.com/wso2/micro-integrator/issues/new). Once you have reported the issue, do the following:
+You can report issues for any connector under the [Micro Integrator repository](https://github.com/wso2/micro-integrator/issues/new). Once you have reported the issue, do the following:
 
 * Add the label `Connector`. 
 * Add to the project `WSO2 Connectors`.
@@ -122,5 +123,6 @@ For an example, please refer to [this issue](https://github.com/wso2/micro-integ
 ### Write your own custom connector
 
 There may be instances where the product you want to integrate with does not have a connector as yet. In this case, you can build your own connector. Please refer to the document here for detailed instructions.
+
 * Custom connector 
 * Custom inbound endpoint  
