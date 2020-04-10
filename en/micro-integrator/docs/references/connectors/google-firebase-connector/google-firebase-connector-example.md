@@ -22,7 +22,7 @@ The connector can also be used to register a device to a particular topic on Fir
 
 Overall integration scenario would look like below. 
 <br/><br/>
-<img src="/assets/img/connectors/google-firebase-scenario.png" title="Google Firebase Connector scenario" width="800" alt="Google Firebase Connector scenario"/>
+<img src="../../../../assets/img/connectors/google-firebase-scenario.png" title="Google Firebase Connector scenario" width="800" alt="Google Firebase Connector scenario"/>
 
 ## Setting up the environment
 

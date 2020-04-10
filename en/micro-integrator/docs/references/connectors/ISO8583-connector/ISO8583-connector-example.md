@@ -16,7 +16,7 @@ Given below is a sample API that illustrates how you can configure ISO8583 with 
 
 To know the further information about the  `init` and `iso8583.sendMessage` operations please refer this link.
 
-<img src="/assets/img/connectors/ISO8583-connector.png" title="ISO8583 Connector" width="800" alt="ISO8583 Connector"/>
+<img src="../../../../assets/img/connectors/ISO8583-connector.png" title="ISO8583 Connector" width="800" alt="ISO8583 Connector"/>
 
 If you do not want to build this yourself, you can simply [get the project](#get-the-project) and run it.
 
