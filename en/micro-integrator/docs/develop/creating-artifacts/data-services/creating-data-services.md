@@ -3,7 +3,7 @@
 Follow the instructions given below to create a new REST API artifact.
 
 !!! Tip
-    If you do not see the features given below in the WSO2 Integrations Studio that you are using, you can [get the latest updates](../../../../develop/installing-WSO2-Integration-Studio/#get-the-latest-updates).
+    If you do not see the features given below in the WSO2 Integrations Studio that you are using, you need to [get the latest updates](../../../../develop/installing-WSO2-Integration-Studio/#get-the-latest-updates).
 
 ## Instructions
 
@@ -40,9 +40,9 @@ You can now start updating the data service.
 
 ### Adding a datasource
 
-You can create a new datasource connection by adding a **datasource**:
+To create a new datasource connection:
 
-1.	Click **Data Sources** to expand the section.
+1.	Click **Data Sources** and expand the section:
 
 	![](../../../assets/img/create_artifacts/data_services/add-datasource-1.png)
 
@@ -50,20 +50,73 @@ You can create a new datasource connection by adding a **datasource**:
 
 	![](../../../assets/img/create_artifacts/data_services/add-datasource-2.png)
 
-3.	Enter the [datasource connection details.
-4.	Click **Test Connection** to expand the section.
+3.	You can now select the type of datasource that you want to use:
+	
+	<table>
+		<tr>
+			<th>Datasource Type</th>
+			<th>Description</th>
+		</tr>
+		<tr>
+			<td>
+				RDBMS
+			</td>
+			<td>
+				When you select RDBMS, the database engines that you can use are listed in the <b>Database Engine</b> field. Select the required database engine and enter the parameters relevant to the database.</br></br>
+				See the following examples:
+				<ul>
+					<li>
+						<a href="../../../../use-cases/tutorials/sending-a-simple-message-to-a-datasource">Data Integration tutorial</a>
+					</li>
+					<li>
+						<a href="../../../../use-cases/examples/data_integration/rdbms-data-service">RDBMS datasource example</a>
+					</li>
+					<li>
+						<a href="../../../../use-cases/examples/data_integration/odata-service">OData service example</a>
+					</li>
+				</ul>
+				If you select <b>External Datasource</b>, you need to specify the class that implements the datasource.
+			</td>
+		</tr>
+		<tr>
+			<td>
+				CSV
+			</td>
+			<td>
+				When you select CSV, you can expose a CSV file as a data service. Specify the details relevant to your CSV file.</br></br>
+				See the <a href="../../../../use-cases/examples/data_integration/csv-data-service">CSV datasource example</a> for more details.
+			</td>
+		</tr>
+		<tr>
+			<td>
+				Carbon Datasource
+			</td>
+			<td>
+				This option allows you to specify a separate <a href="../../../../develop/creating-artifacts/data-services/creating-datasources">Carbon Datasource configuration</a> to generate the data service.
+			</td>
+		</tr>
+	</table>
 
-    ![](../../../assets/img/create_artifacts/data_services/test_connection.png)
+4.	If you specified an RDBM datasource in the previous step:
 
-5.  Click the **Test Connection** button to verify the connectivity between the MySQL datasource and the data service.
+	-	You can switch to the **Source View** to configure addition [connection pool parameters](../../../../references/synapse-properties/data-services/datasource-Configuration-Parameters).
+	-	Click **Test Connection** to expand the section and then click the **Test Connection** button to verify the connectivity between the database and the data service.
+		![](../../../assets/img/create_artifacts/data_services/test_connection.png)
 
-6.  Save the data service.
+5.	If you want to configure dynamic authentication, click **Dynamic Authentication** and specify the required values:
+	
+	![](../../../assets/img/create_artifacts/data_services/dynamic_auth_expanded.png)
+
+	!!! Tip
+		See the example use case on [dynamic user authentication](../../../../develop/advanced-development/dynamic-user-authentication).
+
+5.  Save the updates.
 
 ### Creating a query
 
-You can configure the main query details using this section.
+To specify a query for your source:
 
-1.  Click **Queries** to expand the section. 
+1.  Click **Queries** and expand the section:
 
     ![](../../../assets/img/create_artifacts/data_services/query_expanded.png)
 
@@ -71,7 +124,7 @@ You can configure the main query details using this section.
 
     ![](../../../assets/img/create_artifacts/data_services/add_query.png)
 
-3.  Enter the following query details.
+3.  Start by entering the following query details.
 	
 	<table>
 		<tr>
@@ -112,119 +165,38 @@ You can configure the main query details using this section.
 
 You can configure input parameters for the query using this section.
 
-1.  Click **Input Mappings** to expand the section. 
+1.  Click **Input Mappings** and expand the section. 
 
     ![](../../../assets/img/create_artifacts/data_services/input_mapping_expanded.png)
 
 2.	There are two  ways to create the mapping:
 	
-	-	You can click **Generate** to automatically generate the input mappings from the SQL query.
-	-	If you want to add a new input mapping:
+	-	Click **Generate** to automatically generate the input mappings from the SQL query.
+	-	Alternatively, click **Add New** to manually create new input elements.
+		<img src="../../../../assets/img/create_artifacts/data_services/add_input_mappings.png" width="500">
 
-		1.	Click **Add New** to open the **Add Input Mapping** page.
-
-			<img src="../../../../assets/img/create_artifacts/data_services/add_input_mappings.png" width="500">
-
-		2.	Enter the following input mapping details:
-
-			<table>
-				<tr>
-					<th>
-						Parameter
-					</th>
-					<th>
-						Description
-					</th>
-				</tr>
-				<tr>
-					<td>
-						Mapping Name
-					</td>
-					<td>
-						Give a name for the mapping.
-					</td>
-				</tr>
-				<tr>
-					<td>
-						Parameter Type
-					</td>
-					<td>
-						The parameter type.
-					</td>
-				</tr>
-				<tr>
-					<td>
-						SQL Type
-					</td>
-					<td>
-						The SQL type.
-					</td>
-				</tr>
-			</table>
-
-		3.	Save the input mapping. 
+!!! Info
+	See the complete list of [input mapping parameters](../../../../references/synapse-properties/data-services/query-parameters/#input-parameters).
 
 Shown below is an example query with input mapping:
                         
 ![](../../../assets/img/create_artifacts/data_services/input_mappings.png)
 
-#### Result (Output Mappings) 
+#### Result (Output Mapping) 
 
 You can configure output result parameters for the query using this section.
 
 1.  Click **Result (Output Mappings)** to expand the section.
     ![](../../../assets/img/create_artifacts/data_services/out_mapping_expanded.png)
-2.  Enter the following details:
+2.  Enter a value for the **Grouped by element** field to group all the output elements that you will define.
+3.	There are two ways to create the output elements:
 
-    <table>
-        <tr>
-            <th>Property</th>
-            <th>Description</th>
-        </tr>
-    <tr class="odd">
-    <td>Grouped by Element</td>
-    <td>Employees</td>
-    </tr>
-    </table>
+	-	Click **Generate** to automatically generate the output elements from the SQL query.
+	-	Alternatively, click **Add New** to manually create new output elements.
+		<img src="../../../../assets/img/create_artifacts/data_services/add_output_mappings.png">
 
-3.	There are two ways to create the output mapping:
-
-	-	You can click **Generate** to automatically generate the output mappings from the SQL query.
-	-	Alternatively, you can manually add the mappings:
-
-		1. Click **Add New** to open the **Add Output Mapping** page.
-
-			![](../../../assets/img/create_artifacts/data_services/add_output_mappings.png)
-
-		2. Enter the following output element details.
-
-		    <table>
-		    <tr>
-		            <th>Property</th>
-		            <th>Description</th>
-		        </tr>
-		    <tbody>
-		    <tr class="odd">
-		    <td>Datasource Type</td>
-		    <td>column</td>
-		    </tr>
-		    <tr class="even">
-		    <td>Output Field Name</td>
-		    <td>EmployeeNumber</td>
-		    </tr>
-		    <tr class="odd">
-		    <td>Datasource Column Name</td>
-		    <td>EmployeeNumber</td>
-		    </tr>
-		    <tr class="even">
-		    <td>Schema Type</td>
-		    <td>String</td>
-		    </tr>
-		    </tbody>
-		    </table>   
-
-		3.  Save the element.
-		4.  Follow the same steps to create the remaining output elements.
+!!! Info
+	See the complete list of [output mapping parameters](../../../../references/synapse-properties/data-services/query-parameters/#output-parameters).
 
 Shown below is an example query with output mappings:
 
@@ -236,13 +208,16 @@ Click **Advanced Properties** to expand the section and add the required paramet
 
 ![](../../../assets/img/create_artifacts/data_services/advances_properties_expanded.png)
 
+!!! Info
+	See the complete list of [advanced properties](../../../../references/synapse-properties/data-services/query-parameters/#advanced-query-parameters).
+
 The data service should now have the query element added.
 
 ### Adding a SOAP operation
 
 Use this section to configure a SOAP operation for invoking the data service.
 
-1.  Click **Operations** to expand the section.
+1.  Click **Operations** and expand the section:
 
     ![](../../../assets/img/create_artifacts/data_services/new-operataion.png)
 
@@ -266,7 +241,7 @@ Use this section to configure a SOAP operation for invoking the data service.
 				Operation Name
 			</td>
 			<td>
-				Give a name to the SOAP Operation.
+				Give a name to the SOAP operation.
 			</td>
 		</tr>
 		<tr>
@@ -274,7 +249,7 @@ Use this section to configure a SOAP operation for invoking the data service.
 				Query ID
 			</td>
 			<td>
-				Select the Query from the listed queries.
+				Select the query from the listed queries.
 			</td>
 		</tr>
 		<tr>
@@ -282,16 +257,16 @@ Use this section to configure a SOAP operation for invoking the data service.
 				Operation Parameters
 			</td>
 			<td>
-				Click <b>Add New</b> to add new parameters to the operation.
+				Click <b>Add New</b> and add parameters representing the <a href="#input-mapping">input elements</a> in your query.
 			</td>
 		</tr>
 	</table>
 
-### Adding a Resource
+### Adding a RESTful Resource
 
-Use this section to configure a SOAP operation for invoking the data service.
+Use this section to configure a REST resource for invoking the data service.
 
-1.  Click **Resources** to expand the section.
+1.  Click **Resources** and expand the section:
 	![](../../../assets/img/create_artifacts/data_services/add-new-resource.png)
 
 2.	Click **Add New** to add a new resource.
@@ -322,7 +297,7 @@ Use this section to configure a SOAP operation for invoking the data service.
 				Query ID
 			</td>
 			<td>
-				Select the Query ID from the drop down list that you need to expose as a REST resource.
+				Select the Query ID for which you want to create a REST resource.
 			</td>
 		</tr>
 	</table>

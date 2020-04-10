@@ -33,6 +33,8 @@ statement for getting details of an employee from a data store.
 To get the details, it is necessary to provide the identifier of the employee in the
 data store. 
 
+### General input parameters
+
 <table>
 	<tr>
 		<th>
@@ -43,9 +45,9 @@ data store.
 		</th>
 	</tr>
 	<tr>
-		<td>Generate Input Mapping</td>
+		<td>Generate</td>
 		<td>
-			If you have defined an SQL query, you can generate input mappings corresponding to the input fields specified in the query by clicking <strong>Generate Input Mappings</strong>.
+			If you have defined an SQL query, you can generate input mappings corresponding to the input fields specified in the query by clicking <strong>Generate</strong>.
 		</td>
 	</tr>
 	<tr>
@@ -63,6 +65,8 @@ data store.
 		</td>
 	</tr>
 </table>
+
+### Input element parameters
 
 For each input, you can specify the following parameter values:
 
@@ -120,7 +124,22 @@ For each input, you can specify the following parameter values:
       <tr>
          <td>Validators</td>
          <td>
-         	See <a href="../../../../references/synapse-properties/data-services/input-validators">input validators</a>
+         	Validators are added to individual input mappings in a query. Input validation allows data services to validate the input parameters in a request and stop the execution of the request if the input doesn’t meet the required criteria. WSO2 Micro Integrator provides a set of built-in validators for some of the most common use cases. It also provides an extension mechanism to write custom validators.
+         	<ul>
+         		<li>
+         			<b>Long Range Validator</b>: Validates if an integer value is in the specified range. The validator requires a minimum and a maximum value to set the range.
+         		</li>
+         		<li>
+         			<b>Double Range Validator</b>: Validates if a floating point is in the specified range. The validator requires a minimum and a maximum value to set the range.
+         		</li>
+         		<li>
+         			<b>Length Validator</b>: Validates if a floating point is in the specified range. The validator requires a minimum and a maximum value to set the range.
+         		</li>
+         		<li>
+         			<b>Pattern Validator</b>: Validates the string value of the parameter against a given regular expression.
+         		</li>
+         	</ul>
+         	See the example on using <a href="../../../../use-cases/examples/data_integration/data-input-validator">input validators</a>
          </td>
       </tr>
    </tbody>
@@ -133,6 +152,8 @@ mapping determines how the output of a query should be presented. Use
 this section to specify how the result of the query should be presented.
 You can choose XML, JSON, or RDF as the format of the result, along with
 the parameters that should be used to represent the data.
+
+### General output parameters
 
 <table>
 	<tr>
@@ -164,33 +185,34 @@ the parameters that should be used to represent the data.
 	</tr>
 </table>
 
+### XML/RDF output parameters
+
 The following parameters are configurable for XML/RDF output types.
 
-<table style="width:100%;">
-<colgroup>
-<col style="width: 5%" />
-<col style="width: 94%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>Parameter</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Generate Output Mapping</td>
-<td><div class="content-wrapper">
-<p>Note that this option is only available for <code>               SELECT              </code> statements excluding <code>               SELECT *              </code> , and for datasources such as RDBMS.</p>
-<p>If you have defined an SQL query, you can generate output mappings corresponding to the fields specified in the query by clicking <strong>Generate Response</strong>. In the example shown below, there is an SQL query that needs to output values for the <code>customernumber</code> and <code>customername</code> fields in the <code>customers</code> table.</p>
-<p>
-</p>
-</div></td>
-<tr class="even">
-<td>Row Namespace</td>
-<td>See <a href="../../../../references/synapse-properties/data-services/using-Namespaces">Defining Namespaces</a> .</td>
-</tr>
-</tbody>
+<table>
+	<tr>
+		<th>Parameter</th>
+		<th>Description</th>
+	</tr>
+	<tr>
+		<td>Row Namespace</td>
+		<td>See <a href="../../../../references/synapse-properties/data-services/using-Namespaces">Defining Namespaces</a> .</td>
+	</tr>
+	<tr>
+		<td>Generate</td>
+		<td>
+			Note that this option is only available for <code>               SELECT              </code> statements excluding <code>               SELECT *              </code> , and for datasources such as RDBMS.</br>
+			If you have defined an SQL query, you can generate output mappings corresponding to the fields specified in the query by clicking <strong>Generate Response</strong>. In the example shown below, there is an SQL query that needs to output values for the <code>customernumber</code> and <code>customername</code> fields in the <code>customers</code> table.
+		</td>
+	</tr>
+	<tr>
+		<td>
+			XSLT Path
+		</td>
+		<td>
+			XSLT transformation is used in data services to transform the result of an already defined operation into a different result. The user can define the transformation xslt and provide the url of the transformation file in the result element.
+		</td>
+	</tr>
 </table>
 
 For each output element, you can specify the following parameters:
@@ -263,6 +285,38 @@ For each output element, you can specify the following parameters:
 				<li><strong>ARRAY</strong>: An array of values will be exported. Each occurrence of the value is added to an array and exported.
 				</li>
 			</ul>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			Allowed User Roles
+		</td>
+		<td>
+			Select the <b>user roles</b> that should be granted access to view this result.</br></br>
+			See <a href="../../../../setup/user_stores/setting_up_ro_ldap">configuring user stores</a> for information on how to set up user roles.
+		</td>
+	</tr>
+</table>
+
+### JSON output parameters
+
+If you have selected JSON as the output type, specify the JSON payload:
+
+<table>
+	<tr>
+		<th>
+			Parameter
+		</th>
+		<th>
+			Description
+		</th>
+	</tr>
+	<tr>
+		<td>
+			JSON Payload
+		</td>
+		<td>
+			Specify the JSON payload to map the elements that are returned from the datasource.
 		</td>
 	</tr>
 </table>

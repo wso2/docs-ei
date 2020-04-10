@@ -290,7 +290,6 @@ nav:
         - 'Creating a Smooks Configuration': 'develop/creating-artifacts/creating-smooks-artifacts.md'
         - 'Creating a Data Service': 'develop/creating-artifacts/data-services/creating-data-services.md'
         - 'Creating a Datasource': 'develop/creating-artifacts/data-services/creating-datasources.md'
-        - 'Creating a Data Service Input Validator': 'develop/creating-artifacts/data-services/creating-input-validators.md'
         - 'Adding Connectors': 'develop/creating-artifacts/adding-connectors.md'
       - Creating Custom Artifacts:
         - 'Creating a Custom Inbound Endpoint' : 'develop/customizations/creating-custom-Inbound-endpoint.md'
@@ -322,6 +321,8 @@ nav:
         - 'Injecting Parameters as Environment Variables': 'develop/injecting-parameters.md'
         - 'Changing the Endpoint of a Deployed Service': 'develop/advanced-development/changing-the-endpoint-of-deployed-service.md'
         - 'Using Swagger Documents': 'develop/advanced-development/using-swagger-for-apis.md'
+        - 'Extend Role-based Data Filtering': 'develop/advanced-development/extend-role-based-filtering-for-ds.md'
+        - 'Dynamic User Authentication': 'develop/advanced-development/dynamic-user-authentication.md'
       - 'Managing the Registry': 'develop/creating-artifacts/registry/managing-the-Registry.md'
     - Observability:
       - 'Micro Integrator Dashboard': 'administer-and-observe/working-with-monitoring-dashboard.md'
@@ -435,11 +436,9 @@ nav:
           - 'Elements of a Data Service': 'references/synapse-properties/data-services/elements-of-a-data-service.md'
           - 'Query Parameters': 'references/synapse-properties/data-services/query-parameters.md'
           - 'Datasource Parameters': 'references/synapse-properties/data-services/datasource-Configuration-Parameters.md'
-          - 'Input Validators': 'references/synapse-properties/data-services/input-validators.md'
-          - 'Filtering Responses by User Role': 'references/synapse-properties/data-services/filtering-responses-by-user-role.md'
           - 'Dynamic User Authentication': 'references/synapse-properties/data-services/dynamic-user-authentication.md'
-          - 'Using Namespaces': 'references/synapse-properties/data-services/using-Namespaces.md'
-          - 'Mapping Data Types': 'references/synapse-properties/data-services/mapping-data-types.md'
+          - 'Namespaces': 'references/synapse-properties/data-services/using-Namespaces.md'
+          - 'SQL/Data Types': 'references/synapse-properties/data-services/mapping-data-types.md'
         - Transport Configs:
           - 'VFS Parameters': 'references/synapse-properties/transport-parameters/vfs-transport-parameters.md'
           - 'JMS Parameters': 'references/synapse-properties/transport-parameters/jms-transport-parameters.md'

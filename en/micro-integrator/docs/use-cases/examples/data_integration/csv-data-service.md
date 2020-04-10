@@ -1,4 +1,4 @@
-# Exposing an CSV Datasource
+# Exposing a CSV Datasource
 
 This example demonstrates how CSV data can be exposed as a data service.
 

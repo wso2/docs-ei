@@ -1,10 +1,13 @@
-# Using Namespaces
+# Namespaces
 
 Data services are implemented using XML, which means that there can be
 conflicting element names. Therefore, we use namespaces to uniquely
 identify the elements defined within a specific web service. Using
 namespaces for a data service is optional. However, in certain data
 services, namespaces become necessary. Read below for more information.
+
+The namespace is specified by the `<targetNamespace>` element in the WSDL that
+represents the data service.
 
 ## Namespace inheritance in a data service
 
