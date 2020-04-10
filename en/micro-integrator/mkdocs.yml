@@ -436,6 +436,7 @@ nav:
           - 'Elements of a Data Service': 'references/synapse-properties/data-services/elements-of-a-data-service.md'
           - 'Query Parameters': 'references/synapse-properties/data-services/query-parameters.md'
           - 'Datasource Parameters': 'references/synapse-properties/data-services/datasource-Configuration-Parameters.md'
+          - 'Dynamic User Authentication': 'references/synapse-properties/data-services/dynamic-user-authentication.md'
           - 'Namespaces': 'references/synapse-properties/data-services/using-Namespaces.md'
           - 'SQL/Data Types': 'references/synapse-properties/data-services/mapping-data-types.md'
         - Transport Configs:
@@ -457,6 +458,8 @@ nav:
      
 # Extensions
 markdown_extensions:
+  - markdown_include.include:
+      base_path: docs
   - markdown.extensions.admonition
   - markdown.extensions.codehilite:
       linenums: true
