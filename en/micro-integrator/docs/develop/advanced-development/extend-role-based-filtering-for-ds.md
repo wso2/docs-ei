@@ -1,4 +1,4 @@
-# Filtering Responses by User Role
+# Extend Role-Based Data Filtering
 
 When you work with data services, you can control access to sensitive
 data for specific user roles. This facility is called **Role-based
@@ -20,13 +20,16 @@ Follow the steps below to filter a data service according to a specific user rol
          <element column="Email" name="Email" requiredRoles="admin"/>
       </result>
     </query>
-    ``` 
+    ```
 
-## Extend role-based filtering via a custom authorization provider
+## Using a custom authorization provider
 
-In the Micro Integrator, you can filter content to specific user roles by taking roles from
-the [user store](../../../../setup/user_stores/setting_up_ro_ldap) connected to the server. However, this extension provides
-the flexibility for you to develop data services by plugging in a
+When you use data services in WSO2 Micro Integrator, you can filter content to specific user roles by taking roles from
+the [user store](../../../../setup/user_stores/setting_up_ro_ldap) that is connected to the server. 
+This feature is available by default.
+
+By using a custom authentication provider you can have
+the flexibility of plugging in a
 mechanism to provide those role details from any preferred external
 source (e.g., third party identity provider, JWT token etc.). Hence, in
 data integration scenarios where data needs to be filtered based on the
