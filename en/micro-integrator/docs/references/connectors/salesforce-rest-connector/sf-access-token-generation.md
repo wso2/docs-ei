@@ -7,10 +7,10 @@ You can create a Salesforce account (developer edition) and create a connected A
 1. Log in to Salesforce after verifying your account, with the newly created credentials. In the upper-right corner, select **Setup**.
 
 2. Navigate to **Apps** > **App Manager** and click on the **New Connected App**.<br>
-   <img src="/assets/img/connectors/new-connected-app.png" title="Add new connected app" width="800"/> 
+   <img src="../../../../assets/img/connectors/new-connected-app.png" title="Add new connected app" width="800"/> 
 
 3. On the **New Connected App** page, fill the required fields as listed below.<br>
-   <img src="/assets/img/connectors/create-connected-app.png" title="Create new connected app" width="800"/> 
+   <img src="../../../../assets/img/connectors/create-connected-app.png" title="Create new connected app" width="800"/> 
 
     * Fill in **Connected App Name**, **API Name**, and **Contact Email** under **Basic Information**.
 
@@ -28,7 +28,7 @@ You can create a Salesforce account (developer edition) and create a connected A
 6. Navigate to **Connected Apps** (Apps > App Manager) list, and click the App that you have just created, and then click on **View**.
 
 7. Go to **API (Enable OAuth Settings)**, and note down the **Consumer Key** and **Consumer Secret**.<br>
-   <img src="/assets/img/connectors/connected-app.png" title="Connected app" width="800"/>
+   <img src="../../../../assets/img/connectors/connected-app.png" title="Connected app" width="800"/>
 
 8. Now we have to obtain the access token and refresh token as indicated below. Enter the following URL in your web browser.
 
@@ -67,4 +67,4 @@ You can create a Salesforce account (developer edition) and create a connected A
     * code
     * client_id
     * client_secret<br>
-    <img src="/assets/img/connectors/postman-connected-app.png" title="Postman connected app" width="800"/>
+    <img src="../../../../assets/img/connectors/postman-connected-app.png" title="Postman connected app" width="800"/>

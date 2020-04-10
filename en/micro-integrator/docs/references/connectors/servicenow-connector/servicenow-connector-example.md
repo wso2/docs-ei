@@ -10,7 +10,7 @@ This example explains how to use ServiceNow Connector to create records in a tab
 
 It will have two HTTP API resources, which are `postRecord` and `readRecord`. 
 
-<img src="/assets/img/connectors/serviceNow.png" title="ServiceNow Scenario" width="800" alt="ServiceNow Scenario"/>
+<img src="../../../../assets/img/connectors/serviceNow.png" title="ServiceNow Scenario" width="800" alt="ServiceNow Scenario"/>
 
 * `/postRecord`: It creates a new record in the existing incident table in the ServiceNow instance.
 
@@ -30,7 +30,7 @@ Follow these steps to set up the Integration Project and the Connector Exporter 
 {!references/connectors/importing-connector-to-integration-studio.md!} 
 
 1. First let's create postRecord sequence and ReadRecord sequences. Right click on the created Integration Project and select, -> **New** -> **Sequence** to create the Sequence. 
-    <img src="/assets/img/connectors/add-sequence.png" title="Adding a Sequence" width="800" alt="Adding a Sequence"/>
+    <img src="../../../../assets/img/connectors/add-sequence.png" title="Adding a Sequence" width="800" alt="Adding a Sequence"/>
 
 2. Provide the Sequence name as PostRecord. You can go to the source view of the XML configuration file of the API and copy the following configuration. 
     ```

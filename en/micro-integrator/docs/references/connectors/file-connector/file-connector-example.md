@@ -13,10 +13,10 @@ This example explains how to use File Connector to create a file in the local fi
 It will have two HTTP API resources, which are `create` and `read`. 
 
 * `/create `: It will create a file with the content that the user specifies in the payload. 
-    <p><img src="/assets/img/connectors/FileConnector-03.png" title="Adding a Rest API" width="800" alt="Adding a Rest API" /></p>
+    <p><img src="../../../../assets/img/connectors/FileConnector-03.png" title="Adding a Rest API" width="800" alt="Adding a Rest API" /></p>
 
 * `/read `: It will first check if the file exists. If so it will read the content of the file. 
-    <img src="/assets/img/connectors/FileConnector-02.png" title="Adding a Rest API" width="800" alt="Adding a Rest API"/>
+    <img src="../../../../assets/img/connectors/FileConnector-02.png" title="Adding a Rest API" width="800" alt="Adding a Rest API"/>
 
 If you do not want to build this yourself, you can simply [get the project](#get-the-project) and run it.
 
@@ -27,7 +27,7 @@ Follow these steps to set up the ESB Solution Project and the Connector Exporter
 {!references/connectors/importing-connector-to-integration-studio.md!} 
 
 1. Right click on the created ESB Solution Project and select, -> **New** -> **Rest API** to create the REST API. 
-    <img src="/assets/img/connectors/adding-an-api.png" title="Adding a Rest API" width="800" alt="Adding a Rest API"/>
+    <img src="../../../../assets/img/connectors/adding-an-api.png" title="Adding a Rest API" width="800" alt="Adding a Rest API"/>
 
 2. Provide the API name as File Connector and the API context as `/fileconnector`. You can go to the source view of the xml configuration file of the API and copy the following configuration. 
     ```

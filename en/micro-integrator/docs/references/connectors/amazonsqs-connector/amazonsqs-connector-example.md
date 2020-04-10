@@ -9,7 +9,7 @@ The WSO2 Amazon SQS connector allows you to access the exposed API through the W
 This example explains how to use Amazon SQS Connector to create a queue in the Amazon SQS, send a message to the queue, forward it to Simple Stock Quote Service Backend and send the response to the user. 
 It has a single HTTP API resource, which is `sendToQueue`. 
 
-  <img src="/assets/img/connectors/AmazonSQS-Connector.png" title="AmazonSQS-Connector" width="800" alt="AmazonSQS-Connector"/>
+  <img src="../../../../assets/img/connectors/AmazonSQS-Connector.png" title="AmazonSQS-Connector" width="800" alt="AmazonSQS-Connector"/>
 
 If you do not want to build this yourself, you can simply [get the project](#get-the-project) and run it.
 
@@ -36,7 +36,7 @@ Follow these steps to set up the Integration Project and the Connector Exporter 
 {!references/connectors/importing-connector-to-integration-studio.md!} 
 
 1. First let's create the following sequences, which are buildMessage, createQueue, sendMessage and ReceiveAndForwardMessage. Right click on the created Integration Project and select, -> **New** -> **Sequence** to create the Sequence. 
-    <img src="/assets/img/connectors/add-sequence.png" title="Adding a Sequence" width="800" alt="Adding a Sequence"/>
+    <img src="../../../../assets/img/connectors/add-sequence.png" title="Adding a Sequence" width="800" alt="Adding a Sequence"/>
 
 2. Provide the Sequence name as buildMessage. You can go to the source view of the XML configuration file of the API and copy the following configuration. In this sequence we are taking the user's input `companyName` and we build the message using a Payload Factory Mediator. 
     ```

@@ -363,8 +363,6 @@ nav:
           - 'Setting up Amazon Lambda Environment': 'references/connectors/amazonlambda-connector/setting-up-amazonlambda.md'
           - 'Amazon Lambda Connector Example': 'references/connectors/amazonlambda-connector/amazonlambda-connector-example.md'
           - 'Amazon Lambda Connector Configuration': 'references/connectors/amazonlambda-connector/amazonlambda-connector-config.md'
-        - Microsoft Dynamics 365 Connector:
-          - 'Setting up the Microsoft Dynamics365 Environment with Azure': 'references/connectors/amazonlambda-connector/microsoft-dynamics365-configuration.md'
         - Salesforce Rest Connector:
           - 'Salesforce Access Token Generation': 'references/connectors/salesforce-rest-connector/sf-access-token-generation.md'
           - 'Salesforce Rest API Connector Example': 'references/connectors/salesforce-rest-connector/sf-rest-connector-example.md'

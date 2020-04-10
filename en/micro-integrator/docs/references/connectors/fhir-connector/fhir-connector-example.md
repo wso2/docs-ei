@@ -24,7 +24,7 @@ In here FHIR clients can invoke the API with HTTP/HTTPs with required informatio
 
 This server is regularly loaded with a standard set of test data sets and also this server can store any data that related to administrative concepts such as patients, providers, organizations and devices, as well as a variety of clinical concepts including problems, medications, diagnostics, care plans and financial issues, among others.
 
-<img src="/assets/img/connectors/FHIRConnector.png" title="FHIR Connector" width="800" alt="FHIR Connector"/>
+<img src="../../../../assets/img/connectors/FHIRConnector.png" title="FHIR Connector" width="800" alt="FHIR Connector"/>
 
 ## Configure the connector in WSO2 Integration Studio
 

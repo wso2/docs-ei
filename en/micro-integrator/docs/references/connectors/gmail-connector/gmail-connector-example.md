@@ -4,7 +4,7 @@ The Gmail Connector allows you to access the Gmail REST API through WSO2 EI. Gma
 
 ## What you'll build
 
-<img src="/assets/img/connectors/GmailConnector.png" title="Using Gmail Connector" width="800" alt="Using Gmail Connector"/>
+<img src="../../../../assets/img/connectors/GmailConnector.png" title="Using Gmail Connector" width="800" alt="Using Gmail Connector"/>
 
 This example demonstrates a scenario where a customer feedback Gmail account of a company can be easily managed using the WSO2 Gmail Connector. This application contains a service that can be invoked through an HTTP GET request. Once the service is invoked, it returns the contents of unread emails in the Inbox under the label of Customers, while sending an automated response to the customer, thanking them for their feedback. The number of emails that can be handled in a single invocation is specified in the application.
 
@@ -15,7 +15,7 @@ If you do not want to build this yourself, you can simply [get the project](#get
 {!references/connectors/importing-connector-to-integration-studio.md!}
 
 2. Right click on the created ESB Solution Project and select, -> **New** -> **Rest API** to create the REST API. 
-    <img src="/assets/img/connectors/adding-an-api.png" title="Adding a Rest API" width="800" alt="Adding a Rest API"/>
+    <img src="../../../../assets/img/connectors/adding-an-api.png" title="Adding a Rest API" width="800" alt="Adding a Rest API"/>
 
 3. Follow these steps to [configure the Gmail API](configuring-gmail-api.md) and obtain the Client Id, Client Secret, Access Token and Refresh Token. 
 
