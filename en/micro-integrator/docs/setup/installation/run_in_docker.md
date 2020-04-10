@@ -24,7 +24,7 @@ Two types of base Docker images are available for the Micro Integrator:
     **Micro Integrator Docker image (with updates)**
 
     ```bash
-    docker.wso2.com/micro-integrator:1.1.0
+    docker.wso2.com/wso2mi:latest
     ```
 
     **Log in to WSO2 Docker Registry**
@@ -35,12 +35,15 @@ Two types of base Docker images are available for the Micro Integrator:
 
 -   The community version of WSO2 Micro Integrator's base Docker image is
     available on [DockerHub](https://hub.docker.com/r/wso2/micro-integrator).
-
+    
     **Base Docker Image and Tag (community version)**
-
+    
     ```bash
-    wso2/micro-integrator:1.1.0
+    wso2/wso2mi:latest
     ```
+    The wso2mi:latest tag points to the most lightweight version of the Micro Integrator coming with the minimal Docker Image based on Alpine Linux.
+    
+    Go to [DockerHub](https://hub.docker.com/r/wso2/micro-integrator) to find the Micro Integrator Docker images that are based on Ubuntu and CentOS platforms.
 
 ## Run on Docker using WSO2 Integration Studio
 
