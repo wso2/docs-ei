@@ -14,7 +14,7 @@ Following is a sample REST API configuration with a custom Swagger definition. S
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
-<api context="/v2" name="SwaggerPetstore" publishSwagger="/_system/governance/swagger_files/simple_petstore.yaml" version="1.0.0" version-type="context" xmlns="http://ws.apache.org/ns/synapse">
+<api context="/v2" name="SwaggerPetstore" publishSwagger="/_system/governance/swagger_files/simple_petstore.yaml" xmlns="http://ws.apache.org/ns/synapse">
     <resource methods="POST" url-mapping="/pet">
         <inSequence>
             <!--This is generated API skeleton.-->
@@ -58,7 +58,7 @@ Create the artifacts:
     - <b>Registry</b> project
     - <b>Composite Application</b> project.
 3. To create the REST API with the above configurations:
-    - Download the Swagger file: `simple_petstore.yaml`.
+    - Download the Swagger file: [simple_petstore.yaml](https://github.com/wso2-docs/WSO2_EI/blob/master/samples-rest-apis/simple_petstore.yaml).
     - Follow the instructions on [creating a REST API](../../../../develop/creating-artifacts/creating-an-api).
 
 4. Open the `deployment.toml` file from the `MI_HOME/conf` directory and [enable the Swagger processors](../../../../develop/advanced-development/using-swagger-for-apis).
