@@ -34,7 +34,7 @@ Two types of base Docker images are available for the Micro Integrator:
     ```
 
 -   The community version of WSO2 Micro Integrator's base Docker image is
-    available on [DockerHub](https://hub.docker.com/r/wso2/micro-integrator).
+    available on [DockerHub](https://hub.docker.com/r/wso2/wso2mi).
     
     **Base Docker Image and Tag (community version)**
     
@@ -43,7 +43,7 @@ Two types of base Docker images are available for the Micro Integrator:
     ```
     The wso2mi:latest tag points to the most lightweight version of the Micro Integrator coming with the minimal Docker Image based on Alpine Linux.
     
-    Go to [DockerHub](https://hub.docker.com/r/wso2/micro-integrator) to find the Micro Integrator Docker images that are based on Ubuntu and CentOS platforms.
+    Go to [DockerHub](https://hub.docker.com/r/wso2/wso2mi/tags) to find the Micro Integrator Docker images that are based on Ubuntu and CentOS platforms.
 
 ## Run on Docker using WSO2 Integration Studio
 
@@ -90,7 +90,7 @@ Let's create a **Docker project** for an integration solution and run it on a Do
     ```bash
     REPOSITORY              TAG                 IMAGE ID            CREATED             SIZE
     sampleproxy             1.0.0               49092809b36a        10 minutes ago      315MB
-    wso2/micro-integrator   1.1.0               088477c689f6        2 days ago          315MB
+    wso2/wso2mi             latest              088477c689f6        2 days ago          315MB
     ```
     
 5.  Start the container with the following command:
@@ -161,7 +161,7 @@ If you already have **packaged integration artifacts** in a CAR file, you can ma
     <strong>Example 2: Docker image without updates (community version)</strong>
     </div>
     <div class="codeContent panelContent pdl">
-    <div class="sourceCode" id="cb2" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence" style="brush: java; gutter: false; theme: Confluence"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb2-1"><a href="#cb2-1"></a>FROM wso2/micro-integrator:<span class="fl">1.1.</span><span class="dv">0</span></span></code></pre></div>
+    <div class="sourceCode" id="cb2" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence" style="brush: java; gutter: false; theme: Confluence"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb2-1"><a href="#cb2-1"></a>FROM wso2/wso2mi:<span class="fl">1.1.</span><span class="dv">0</span></span></code></pre></div>
     </div>
     </div>
     </div></td>
