@@ -429,7 +429,6 @@ nav:
           - 'PayloadFactory Mediator' : 'references/mediators/payloadFactory-Mediator.md'
           - 'Property Mediator' : 'references/mediators/property-Mediator.md'
           - 'Property Group Mediator' : 'references/mediators/property-Group-Mediator.md'
-          - 'Publish Event Mediator' : 'references/mediators/publish-Event-Mediator.md'
           - 'Respond Mediator' : 'references/mediators/respond-Mediator.md'
           - 'Rule Mediator' : 'references/mediators/rule-Mediator.md'
           - 'Script Mediator' : 'references/mediators/script-Mediator.md'
