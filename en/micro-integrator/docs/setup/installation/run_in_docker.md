@@ -41,7 +41,7 @@ Two types of base Docker images are available for the Micro Integrator:
     ```bash
     wso2/wso2mi:latest
     ```
-    The wso2mi:latest tag points to the most lightweight version of the Micro Integrator coming with the minimal Docker Image based on Alpine Linux.
+    The **wso2mi:latest** tag points to the most lightweight version of the Micro Integrator, which includes the minimal Docker image based on **Alpine Linux**.
     
     Go to [DockerHub](https://hub.docker.com/r/wso2/wso2mi/tags) to find the Micro Integrator Docker images that are based on Ubuntu and CentOS platforms.
 
