@@ -615,7 +615,7 @@ Registry** instead of **Define inline** when defining the PayloadFactory
 mediator.
 
 For example, suppose we have saved the following text content in the
-registry under the location
+following registry location:
 `         conf:/repository/MI/transform.txt        ` .
 
 ```
