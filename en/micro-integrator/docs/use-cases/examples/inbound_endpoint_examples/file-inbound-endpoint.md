@@ -51,7 +51,7 @@ Create the artifacts:
 3. Create a [mediation sequence](../../../../develop/creating-artifacts/creating-reusable-sequences) and [inbound endpoint](../../../../develop/creating-an-inbound-endpoint) with configurations given in the above example.
 4. [Deploy the artifacts](../../../../develop/deploy-and-run) in your Micro Integrator.
 
-In invoke the inbound endpoint, create a file with the below content and save it as `request.xml` in the `/home/user/test/in` folder.
+To invoke the inbound endpoint, you can create a file with the below content and save it as `request.xml` in the `/home/user/test/in` directory.
 
 ```xml
 <?xml version='1.0' encoding='UTF-8'?>
@@ -66,8 +66,7 @@ In invoke the inbound endpoint, create a file with the below content and save it
 </soapenv:Envelope>
 ```
 
-Once the file is created, it will trigger the inbound endpoint's sequence (request) and log the contents of the file.
-In the carbon log, you will see the following log:
+Once the file is created, the inbound endpoint's sequence (request) is triggered and the following content is logged:
 
 ```xml
 To: , MessageID: urn:uuid:CA46833F184F7EAA0E1585819580883, Direction: request, Envelope: <?xml version='1.0' encoding='utf-8'?><soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:wsa="http://www.w3.org/2005/08/addressing"><soapenv:Body>
