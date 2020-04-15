@@ -46,8 +46,8 @@ Create the artifacts:
 
 1. [Set up WSO2 Integration Studio](../../../../develop/installing-WSO2-Integration-Studio).
 2. [Create an ESB Solution project](../../../../develop/creating-projects/#esb-config-project)
-3. Create sequence `stockquote` and endpoint `simple` as [local entries](../../../../develop/creating-artifacts/registry/creating-local-registry-entries) with the configurations given above.
-4. Also, create the [proxy service](../../../../develop/creating-artifacts/creating-a-proxy-service) `MainProxy` with the configuration given above.
+3. Create the `stockquote` sequence and the `simple` endpoint as [local entries](../../../../develop/creating-artifacts/registry/creating-local-registry-entries) with the configurations given above.
+4. Also, create the [proxy service](../../../../develop/creating-artifacts/creating-a-proxy-service) named `MainProxy` with the configuration given above.
 5. [Deploy the artifacts](../../../../develop/deploy-and-run) in your Micro Integrator.
 
 Set up the back-end service:
