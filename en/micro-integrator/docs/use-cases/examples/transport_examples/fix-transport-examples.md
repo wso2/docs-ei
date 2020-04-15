@@ -32,8 +32,8 @@ Banzai.
 
 -   You will need the two sample FIX applications that come with
     Quickfix/J (Banzai and Executor). [Configure the two applications](../../../../setup/transport_configurations/configuring-transports/#configuring-the-fix-transport) to
-    establish sessions with the Micro Integrator and enable the FIX transport in the Micro-Integrator.
--   Start the Micro-Integrator.
+    establish sessions with the Micro Integrator and enable the FIX transport in the Micro Integrator.
+-   Start the Micro Integrator.
 -   Be sure that the
     `           transport.fix.AcceptorConfigURL          ` property
     points to the `           fix-synapse.cfg          ` file you
@@ -43,7 +43,8 @@ Banzai.
     created.
 
     !!! Note
-        The ESB creates a new FIX session with Banzai at this point.
+        The Micro Integrator creates a new FIX session with Banzai at this point.
+        
 -   Start Banzai and Executor.
 -   Send an order request from Banzai to the Micro Integrator.
 
