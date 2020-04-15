@@ -43,7 +43,8 @@ Banzai.
     created.
 
     !!! Note
-        The ESB creates a new FIX session with Banzai at this point.
+        The Micro Integrator creates a new FIX session with Banzai at this point.
+        
 -   Start Banzai and Executor.
 -   Send an order request from Banzai to the Micro Integrator.
 
