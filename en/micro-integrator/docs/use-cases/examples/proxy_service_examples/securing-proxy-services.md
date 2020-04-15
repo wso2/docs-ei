@@ -133,4 +133,4 @@ By analyzing the debug log output or the TCPMon output, you will see that the re
 
 You can look up the WSDL of the proxy service by requesting the `http://localhost:8290/services/StockQuoteProxy?wsdl` URL. This confirms the security policy attachment to the supplied base WSDL.
 
-When sending the message to the backend service, you can verify that the security headers were removed, the response received does not use WS-Security, and that the response being forwarded back to the client is signed and encrypted as expected by the client.
+When sending the message to the back-end service, you can verify that the security headers were removed, the response received does not use WS-Security, and that the response being forwarded back to the client is signed and encrypted as expected by the client.
