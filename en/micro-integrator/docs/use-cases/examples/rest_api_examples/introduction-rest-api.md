@@ -71,7 +71,7 @@ Invoke the sample Api:
 
 -  Sending a GET request.
    
-   Open a terminal and execute the following command. This sends a simple GET request to the Micro Integrator.
+    Open a terminal and execute the following command. This sends a simple GET request to the Micro Integrator.
         
     ```bash
     curl http://127.0.0.1:8290/stockquote/view/IBM
