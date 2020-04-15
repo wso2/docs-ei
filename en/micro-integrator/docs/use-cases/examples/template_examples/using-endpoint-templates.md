@@ -3,7 +3,7 @@
 For example, let's say we have two default endpoints with following hypothetical configurations:
 
 ```xml tab='Endpoint 1'
-<endpoint  name="ep1">
+<endpoint  name="ep1" xmlns="http://ws.apache.org/ns/synapse">
   <default>
     <suspendOnFailure>
       <errorCodes>10001,10002</errorCodes>
@@ -18,7 +18,7 @@ For example, let's say we have two default endpoints with following hypothetical
 ```
 
 ```xml tab='Endpoint 2'
-<endpoint  name="ep2">
+<endpoint  name="ep2" xmlns="http://ws.apache.org/ns/synapse">
   <default>
     <suspendOnFailure>
       <errorCodes>10001,10003</errorCodes>
@@ -35,7 +35,7 @@ For example, let's say we have two default endpoints with following hypothetical
 We can see that these two endpoints have different set of error codes and different progression factors for suspension. Furthermore, the number of retries is different between them. By defining an endpoint template, these two endpoints can be converged to a generalized form. This is illustrated in the following:
 
 ```
-<template name="ep_template">
+<template name="ep_template" xmlns="http://ws.apache.org/ns/synapse">
   <parameter name="codes"/>
   <parameter name="factor"/>
   <parameter name="retries"/>
@@ -61,7 +61,7 @@ We can see that these two endpoints have different set of error codes and differ
 Since we have a template defined, we can use template endpoints to create two concrete endpoint instances with different parameter values for this scenario. This is shown below.
 
 ``` java tab='Endpoint 1'
-<endpoint name="ep1" template="ep_template">
+<endpoint name="ep1" template="ep_template" xmlns="http://ws.apache.org/ns/synapse">
   <parameter name="codes" value="10001,10002" />
   <parameter name="factor" value="1.0" />
   <parameter name="retries" value="5" />
@@ -69,7 +69,7 @@ Since we have a template defined, we can use template endpoints to create two co
 ```
 
 ``` java tab='Endpoint 2'
-<endpoint name="ep2" template="ep_template">
+<endpoint name="ep2" template="ep_template" xmlns="http://ws.apache.org/ns/synapse">
   <parameter name="codes" value="10001,10003" />
   <parameter name="factor" value="2.0" />
   <parameter name="retries" value="3" />
