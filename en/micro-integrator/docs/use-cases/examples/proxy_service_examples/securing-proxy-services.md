@@ -48,6 +48,8 @@ Create the artifacts:
 3. Create the [proxy service](../../../../develop/creating-artifacts/creating-a-proxy-service) and [security policy](../../../../develop/creating-artifacts/registry/creating-local-registry-entries) with the configurations given above.
 4. [Deploy the artifacts](../../../../develop/deploy-and-run) in your Micro Integrator.
 
+Be sure to [configure a user store](../../../../setup/user_stores/setting_up_ro_ldap) for the Micro Integrator and add the required users and roles.
+
 Set up the back-end service:
 
 1. Download the [stockquote_service.jar](https://github.com/wso2-docs/WSO2_EI/blob/master/Back-End-Service/stockquote_service.jar).
@@ -56,8 +58,18 @@ Set up the back-end service:
     ```bash
     java -jar stockquote_service.jar
     ```
+   
+Set up the SOAP client:
 
-Be sure to [configure a user store](../../../../setup/user_stores/setting_up_ro_ldap) for the Micro Integrator and add the required users and roles.
+1. Download and Install [SoapUI](https://www.soapui.org/downloads/soapui.html) to run this SOAP service.
+2. Create a new SOAP project in the SoapUI using the following wsdl file:
+
+   ```bash
+   http://localhost:8253/services/StockQuoteProxy?wsdl
+   ```
+3. Use the `getQuote` operation. 
+
+4. Set [Authorization](https://www.soapui.org/soap-and-wsdl/authenticating-soap-requests.html) in the SoapUI request.
 
 Send a simple request to invoke the service:
 
@@ -121,4 +133,4 @@ By analyzing the debug log output or the TCPMon output, you will see that the re
 
 You can look up the WSDL of the proxy service by requesting the `http://localhost:8290/services/StockQuoteProxy?wsdl` URL. This confirms the security policy attachment to the supplied base WSDL.
 
-When sending the message to the backend service, you can verify that the security headers were removed, the response received does not use WS-Security, and that the response being forwarded back to the client is signed and encrypted as expected by the client.
+When sending the message to the back-end service, you can verify that the security headers were removed, the response received does not use WS-Security, and that the response being forwarded back to the client is signed and encrypted as expected by the client.
