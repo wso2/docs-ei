@@ -91,7 +91,7 @@ Test the API:
     curl -v http://127.0.0.1:8290/stockquote/view/IBM -H "Authorization: Basic YWRtaW46YWRtaW4="
     ```
     !!! Info
-            In the authorization header `Authorization: Basic YWRtaW46YWRtaW4=`, credential `YWRtaW46YWRtaW4=` is the Base64 encoded username and password in the format `username:password`.
+         Note that the credentials (`YWRtaW46YWRtaW4=`) given in the authorization header (`Authorization: Basic YWRtaW46YWRtaW4=`) are the Base64-encoded username and password in the following format: `username:password`.
 
     The request is passed to the back-end service and you will receive a response similar to what is shown below:
 
