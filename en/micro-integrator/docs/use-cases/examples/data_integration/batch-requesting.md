@@ -78,49 +78,49 @@ Create the artifacts:
 
 Let's send a request with multiple transactions to the data service:
 
-1. Download and Install [SoapUI](https://www.soapui.org/downloads/soapui.html) to run this SOAP service.
-2. Create a new SOAP project in SoapUI by using the following wsdl file:
-   ```bash
-   http://localhost:8290/services/batch_requesting_sample?wsdl
-   ```
+1.  Download and Install [SoapUI](https://www.soapui.org/downloads/soapui.html) to run this SOAP service.
+2.  Create a new SOAP project in SoapUI by using the following wsdl file:
+    ```bash
+    http://localhost:8290/services/batch_requesting_sample?wsdl
+    ```
 
-3. Update the **addEmployeeOp** operation (under **batch_requesting_sampleSOAP11Binding**) with the request body as shown below:
+3.  Update the **addEmployeeOp** operation (under **batch_requesting_sampleSOAP11Binding**) with the request body as shown below:
 
-   !!! Tip
-       In this example, we are sending two transactions with details of two employees.
+    !!! Tip
+        In this example, we are sending two transactions with details of two employees.
 
     ```xml
     <p:addEmployeeOp_batch_req xmlns:p="http://ws.wso2.org/dataservice">
-          <!--1 or more occurrences-->
-          <addEmployeeOp xmlns="http://ws.wso2.org/dataservice">
-             <!--Exactly 1 occurrence-->
-             <xs:EmployeeNumber xmlns:xs="http://ws.wso2.org/dataservice">1002</xs:EmployeeNumber>
-             <!--Exactly 1 occurrence-->
-             <xs:FirstName xmlns:xs="http://ws.wso2.org/dataservice">John</xs:FirstName>
-             <!--Exactly 1 occurrence-->
-             <xs:LastName xmlns:xs="http://ws.wso2.org/dataservice">Doe</xs:LastName>
-             <!--Exactly 1 occurrence-->
-             <xs:Email xmlns:xs="http://ws.wso2.org/dataservice">johnd@wso2.com</xs:Email>
-             <!--Exactly 1 occurrence-->
-             <xs:JobTitle xmlns:xs="http://ws.wso2.org/dataservice">Consultant</xs:JobTitle>
-             <!--Exactly 1 occurrence-->
-             <xs:Officecode xmlns:xs="http://ws.wso2.org/dataservice">01</xs:Officecode>
-          </addEmployeeOp>
-          <addEmployeeOp xmlns="http://ws.wso2.org/dataservice">
-             <!--Exactly 1 occurrence-->
-             <xs:EmployeeNumber xmlns:xs="http://ws.wso2.org/dataservice">1004</xs:EmployeeNumber>
-             <!--Exactly 1 occurrence-->
-             <xs:FirstName xmlns:xs="http://ws.wso2.org/dataservice">Peter</xs:FirstName>
-             <!--Exactly 1 occurrence-->
-             <xs:LastName xmlns:xs="http://ws.wso2.org/dataservice">Parker</xs:LastName>
-             <!--Exactly 1 occurrence-->
-             <xs:Email xmlns:xs="http://ws.wso2.org/dataservice">peterp@wso2.com</xs:Email>
-             <!--Exactly 1 occurrence-->
-             <xs:JobTitle xmlns:xs="http://ws.wso2.org/dataservice">Consultant</xs:JobTitle>
-             <!--Exactly 1 occurrence-->
-             <xs:Officecode xmlns:xs="http://ws.wso2.org/dataservice">01</xs:Officecode>
-          </addEmployeeOp>
-       </p:addEmployeeOp_batch_req>
+      <!--1 or more occurrences-->
+      <addEmployeeOp xmlns="http://ws.wso2.org/dataservice">
+         <!--Exactly 1 occurrence-->
+         <xs:EmployeeNumber xmlns:xs="http://ws.wso2.org/dataservice">1002</xs:EmployeeNumber>
+         <!--Exactly 1 occurrence-->
+         <xs:FirstName xmlns:xs="http://ws.wso2.org/dataservice">John</xs:FirstName>
+         <!--Exactly 1 occurrence-->
+         <xs:LastName xmlns:xs="http://ws.wso2.org/dataservice">Doe</xs:LastName>
+         <!--Exactly 1 occurrence-->
+         <xs:Email xmlns:xs="http://ws.wso2.org/dataservice">johnd@wso2.com</xs:Email>
+         <!--Exactly 1 occurrence-->
+         <xs:JobTitle xmlns:xs="http://ws.wso2.org/dataservice">Consultant</xs:JobTitle>
+         <!--Exactly 1 occurrence-->
+         <xs:Officecode xmlns:xs="http://ws.wso2.org/dataservice">01</xs:Officecode>
+      </addEmployeeOp>
+      <addEmployeeOp xmlns="http://ws.wso2.org/dataservice">
+         <!--Exactly 1 occurrence-->
+         <xs:EmployeeNumber xmlns:xs="http://ws.wso2.org/dataservice">1004</xs:EmployeeNumber>
+         <!--Exactly 1 occurrence-->
+         <xs:FirstName xmlns:xs="http://ws.wso2.org/dataservice">Peter</xs:FirstName>
+         <!--Exactly 1 occurrence-->
+         <xs:LastName xmlns:xs="http://ws.wso2.org/dataservice">Parker</xs:LastName>
+         <!--Exactly 1 occurrence-->
+         <xs:Email xmlns:xs="http://ws.wso2.org/dataservice">peterp@wso2.com</xs:Email>
+         <!--Exactly 1 occurrence-->
+         <xs:JobTitle xmlns:xs="http://ws.wso2.org/dataservice">Consultant</xs:JobTitle>
+         <!--Exactly 1 occurrence-->
+         <xs:Officecode xmlns:xs="http://ws.wso2.org/dataservice">01</xs:Officecode>
+      </addEmployeeOp>
+    </p:addEmployeeOp_batch_req>
     ```
     
 4.  Invoke the **addEmployeeOp** operation.

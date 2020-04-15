@@ -18,7 +18,7 @@ Follow the steps given below.
 
 1.  Create a Maven Multi Module project using WSO2 Integration Studio.
 
-    ![Create Maven Multi Module Project](../../../assets/img/create_project/docker_k8s_project/create-maven-project.png) 
+    ![Create Maven Multi Module Project](../../../assets/img/create_project/create_mmm_project.png) 
     
 2.  Create an **ESB Config Project** inside the Maven Multi Module project:
     
@@ -97,6 +97,23 @@ Follow the steps given below.
             </tr>
             <tr>
                 <td>
+                    Base Image Repository
+                </td>
+                <td>
+                    Specify the base Micro Integrator Docker image for your solution. For this example, let's use the Micro Integrator docker image from the WSO2 public docker registry: <b>wso2/micro-integrator</b>.</br></br>
+                    Note that the image value format should be 'docker_user_name/repository_name'.
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Base Image Tag
+                </td>
+                <td>
+                    Give a tag name for the base Docker image.
+                </td>
+            </tr>
+            <tr>
+                <td>
                     Target Image Repository
                 </td>
                 <td>
@@ -112,7 +129,18 @@ Follow the steps given below.
                 </td>
             </tr>
         </table>
+        
+    3.  This step is only required if you already have a Docker image (in your local Docker repository) with the same name as the base image specified above. 
     
+        !!! Info
+            In this scenario, WSO2 Integration Studio will first check if there is a difference in the two images before pulling the image specified in the **Base Image Repository** field. If the given base image is more updated, the existing image will be overwritten by this new image. Therefore, if you are currently using an older version, or if you have custom changes in your existing image, they will be replaced. 
+        
+            To avoid your existing custom/older images from being replaced, add the following property under **dockerfile-maven-plugin -> executions -> execution -> configurations** in the `pom.xml` file of your Docker Exporter project. This configuration will ensure that the base image will not be pulled when a Docker image already exists with the same name.
+            
+            ```xml
+            <pullNewerImage>false</pullNewerImage>
+            ```
+         
 Finally, the created Maven Multi Module project should look as follows:
 
 <img src="../../../../assets/img/create_project/docker_k8s_project/hello_world_project.png" alt="Hello World Project" width="300">
@@ -122,9 +150,12 @@ Finally, the created Maven Multi Module project should look as follows:
 You need to build a Docker image of the integration solution and push it to your Docker registry.
       
 1.  Start the Docker daemon in the host machine.
-2.  Open the **pom.xml** file in the Kubernetes project, ensure that the composite application is selected under **Dependencies**, and click **Build and Push**.
-    ![Select composite projects](../../../assets/img/create_project/docker_k8s_project/select-dependency-hello-world.png) 
-
+2.  Open the **pom.xml** file in the Kubernetes project and ensure that the composite application is selected under **Dependencies**.
+    ![Select composite projects](../../../assets/img/create_project/docker_k8s_project/select-dependency-hello-world.png)
+   
+3.  Leave the **Automatically deploy configurations** check box selected. This ensures that deployment configurations are automatically deployed to the base image.
+4.  Click **Build and Push**.
+    
     In the dialog that opens, enter the credentials of your Docker registry to which the image should be pushed.
 
     <img src="../../../../assets/img/create_project/docker_k8s_project/docker-registry-credentials.png" alt="docker registry credentials" width="500">
@@ -151,7 +182,7 @@ You need to build a Docker image of the integration solution and push it to your
 Follow the steps given below.
 
 1.  Open the `integration_cr.yaml` file from the Kubernetes project in WSO2 Integration Studio.
-2.  See that the **integration** details of the `routing-example` solution are updated:
+2.  See that the **integration** details of the `hello-world` solution are updated:
 
     ```yaml
     apiVersion: "integration.wso2.com/v1alpha2"

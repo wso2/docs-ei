@@ -122,32 +122,32 @@ Let's send a request with multiple transactions to the data service:
 
 3. Invoke the **request_box** under **request_box_exampleSOAP12Binding** with the following request body:
 
-   !!! Tip
-       Note that we are sending two transactions with details of two employees.
+    !!! Tip
+        Note that we are invoking two operations consecutively through this request.
 
-      ```xml
-      <dat:request_box xmlns:p="http://ws.wso2.org/dataservice">
+    ```xml
+    <dat:request_box xmlns:p="http://ws.wso2.org/dataservice">
+      <!--Exactly 1 occurrence-->
+      <addEmployeeOp xmlns="http://ws.wso2.org/dataservice">
             <!--Exactly 1 occurrence-->
-            <addEmployeeOp xmlns="http://ws.wso2.org/dataservice">
-                  <!--Exactly 1 occurrence-->
-                  <xs:EmployeeNumber xmlns:xs="http://ws.wso2.org/dataservice">1003</xs:EmployeeNumber>
-                  <!--Exactly 1 occurrence-->
-                  <xs:FirstName xmlns:xs="http://ws.wso2.org/dataservice">Chris</xs:FirstName>
-                  <!--Exactly 1 occurrence-->
-                  <xs:LastName xmlns:xs="http://ws.wso2.org/dataservice">Sam</xs:LastName>
-                  <!--Exactly 1 occurrence-->
-                  <xs:Email xmlns:xs="http://ws.wso2.org/dataservice">chris@sam.com</xs:Email>
-                  <!--Exactly 1 occurrence-->
-                  <xs:OfficeCode xmlns:xs="http://ws.wso2.org/dataservice">1</xs:OfficeCode>
-            </addEmployeeOp>
+            <xs:EmployeeNumber xmlns:xs="http://ws.wso2.org/dataservice">1003</xs:EmployeeNumber>
             <!--Exactly 1 occurrence-->
-            <selectEmployeeOp xmlns="http://ws.wso2.org/dataservice">
-                  <!--Exactly 1 occurrence-->
-                  <xs:EmployeeNumber xmlns:xs="http://ws.wso2.org/dataservice">1003</xs:EmployeeNumber>
-            </selectEmployeeOp>
-      </dat:request_box>
-      ```
-      
+            <xs:FirstName xmlns:xs="http://ws.wso2.org/dataservice">Chris</xs:FirstName>
+            <!--Exactly 1 occurrence-->
+            <xs:LastName xmlns:xs="http://ws.wso2.org/dataservice">Sam</xs:LastName>
+            <!--Exactly 1 occurrence-->
+            <xs:Email xmlns:xs="http://ws.wso2.org/dataservice">chris@sam.com</xs:Email>
+            <!--Exactly 1 occurrence-->
+            <xs:OfficeCode xmlns:xs="http://ws.wso2.org/dataservice">1</xs:OfficeCode>
+      </addEmployeeOp>
+      <!--Exactly 1 occurrence-->
+      <selectEmployeeOp xmlns="http://ws.wso2.org/dataservice">
+            <!--Exactly 1 occurrence-->
+            <xs:EmployeeNumber xmlns:xs="http://ws.wso2.org/dataservice">1003</xs:EmployeeNumber>
+      </selectEmployeeOp>
+    </dat:request_box>
+    ```
+
 You will see the following response received by SoapUI:
 
 ```xml
