@@ -18,7 +18,7 @@ Follow the steps given below.
 
 1.  Create a Maven Multi Module project using WSO2 Integration Studio.
 
-    ![Create Maven Multi Module Project](../../../assets/img/create_project/docker_k8s_project/create-maven-project.png) 
+    ![Create Maven Multi Module Project](../../../assets/img/create_project/create_mmm_project.png) 
     
 2.  Create an **ESB Config Project** inside the Maven Multi Module project:
     
@@ -176,7 +176,7 @@ Follow the steps given below.
 
     3.  Click **Finish**.
 
-5.  Create a **Kubernetes Project** inside the Maven Multi Module Project. 
+6.  Create a **Kubernetes Project** inside the Maven Multi Module Project. 
 
     1.  Right-click the Maven Multi Module project, go to **New → Project**, select **Kubernetes Exporter Project**, and click **Next**.
         <img src="../../../../assets/img/create_project/docker_k8s_project/k8s-proj.png" alt="Create Kubernetes Project" width="500">
@@ -219,7 +219,8 @@ Follow the steps given below.
                     Base Image Repository
                 </td>
                 <td>
-                    The Docker repository to which the Docker image will be pulled to create the target image: 'docker_user_name/repository_name'.
+                    Specify the base Micro Integrator Docker image for your solution. For this example, let's use the Micro Integrator docker image from the WSO2 public docker registry: <b>wso2/micro-integrator</b>.</br></br>
+                    Note that the image value format should be 'docker_user_name/repository_name'.
                 </td>
             </tr>
             <tr>
@@ -248,55 +249,16 @@ Follow the steps given below.
             </tr>
         </table>
         
-!!!Tip
-With the new version we’ve provided the functionality to use custom base images to be pulled from a docker repository. This can be used in below 3 scenarios.
-
-1. Pull from a public docker repository as the base image
-You can just add the Docker repository to which the Docker image will be pulled to create the target image: 'docker_user_name/repository_name'
- 
-2. Pull from private Docker repository as the base image
-Open the console of the relevant OS and run the following command.
- 
-    ```bash 
-    docker login -u username -p password 
-    ```
-
-    Then provide the docker repository which will be used to pull the base image.
-
-3. If the image you are going to pull is already in local Docker registry
-
-    If the image you are going to pull is already in local Docker registry,  by default,  it will compare the current latest image in the repository and if there are changes it will pull the newer image from the repository. This will cause some change conflicts if you are already using an older docker image. In such scenarios (using a custom image which created inside your local Docker registry) you need to add the following property under the dockerfile-maven-plugin > executions > execution > configurations in the  pom.xml file which located inside the Docker Exporter Project. 
+    3.  This step is only required if you already have a Docker image (in your local Docker repository) with the same name as the base image specified above. 
     
-    ```xml
-    <pullNewerImage>false</pullNewerImage>
-   ```
-    
-    This will stop comparing the image with the latest tag and pulling it. Example plugin config after adding the property is given below.
-    ```xml
-      <plugin>
-        <groupId>com.spotify</groupId>
-        <artifactId>dockerfile-maven-plugin</artifactId>
-        <version>1.4.3</version>
-        <extensions>true</extensions>
-        <executions>
-          <execution>
-            <goals>
-              <goal>build</goal>
-              <goal>push</goal>
-            </goals>
-            <configuration>
-              <username>${username}</username>
-              <password>${password}</password>
-              <repository>docker/helloworld</repository>
-              <tag>1.1.0</tag>
-              <pullNewerImage>false</pullNewerImage> 
-            </configuration>
-          </execution>
-        </executions>
-        <configuration/>
-      </plugin>
-    ```
-
+        !!! Info
+            In this scenario, WSO2 Integration Studio will first check if there is a difference in the two images before pulling the image specified in the **Base Image Repository** field. If the given base image is more updated, the existing image will be overwritten by this new image. Therefore, if you are currently using an older version, or if you have custom changes in your existing image, they will be replaced. 
+        
+            To avoid your existing custom/older images from being replaced, add the following property under **dockerfile-maven-plugin -> executions -> execution -> configurations** in the `pom.xml` file of your Kubernetes Exporter project. This configuration will ensure that the base image will not be pulled when a Docker image already exists with the same name.
+            
+            ```xml
+            <pullNewerImage>false</pullNewerImage>
+            ```
 Finally, the created Maven Multi Module project should look as follows:
 
 <img src="../../../../assets/img/create_project/docker_k8s_project/routing_example_project.png" alt="messag routing project" width="300">
@@ -306,12 +268,11 @@ Finally, the created Maven Multi Module project should look as follows:
 You need to build a Docker image of the integration solution and push it to your Docker registry.
     
 1.  Start the Docker daemon in the host machine.
-2.  Open the POM file in the Kubernetes project, ensure that the composite application is selected under **Dependencies**, **save** the file, and then click **Build and Push**.
-    ![Select composite projects](../../../assets/img/create_project/docker_k8s_project/select-dependency-routing-example.png) 
-
-    The deployment configurations can be automatically deployed to the base image, if you check the 'automatically deploy configurations'. Please note that this is supported only on MI 1.1.0 or upwards. 
-    So if you are using other product such as EI or ESB, recommendation is to uncheck this. 
-
+2.  Open the POM file in the Kubernetes project, ensure that the composite application is selected under **Dependencies**, **save** the file.
+    ![Select composite projects](../../../assets/img/create_project/docker_k8s_project/select-dependency-routing-example.png)
+    
+3.  Leave the **Automatically deploy configurations** check box selected. This ensures that deployment configurations are automatically deployed to the base image.
+4.  Click **Build and Push**.
     In the dialog that opens, enter the credentials of your Docker registry to which the image should be pushed.
 
     <img src="../../../../assets/img/create_project/docker_k8s_project/docker-registry-credentials.png" alt="docker registry credentials" width="500">
@@ -328,7 +289,7 @@ You need to build a Docker image of the integration solution and push it to your
             mvn dockerfile:push -Ddockerfile.username={username} -Ddockerfile.password={password}
             ``` 
 
-3.  Run the `docker image ls` command to verify that the Docker image is created.
+5.  Run the `docker image ls` command to verify that the Docker image is created.
     
 ## Step 3: Deploy the solution in K8s
 

@@ -2,7 +2,7 @@
 
 ## What you'll build
 
-In this sample scenario, you will use an **Inbound Endpoint** to expose an already defined REST API through a different port. You can reuse the REST API that was defined in the [Sending a Simple Message to a Service](../sending-a-simple-message-to-a-service) tutorial. See [Creating an Inbound Endpoint](../../develop/creating-artifacts/creating-an-inbound-endpoint.md) for details on how to work with inbound endpoints using WSO2 Integration Studio.
+In this tutorial, you will use an **Inbound Endpoint** to expose an already defined REST API through a different port. You can reuse the REST API that was defined in the [Sending a Simple Message to a Service](../sending-a-simple-message-to-a-service) tutorial. See [Creating an Inbound Endpoint](../../develop/creating-artifacts/creating-an-inbound-endpoint.md) for details on how to work with inbound endpoints using WSO2 Integration Studio.
 
 ## Let's get started!
 
@@ -12,10 +12,10 @@ Set up WSO2 Integration Studio as follows:
 
 1.  Download the relevant [WSO2 Integration Studio](https://wso2.com/integration/tooling/) based on your operating system. The path to the extracted/installed folder is referred to as `MI_TOOLING_HOME` throughout this tutorial.
 2.  If you did not try the [Sending a Simple Message to a Service](../sending-a-simple-message-to-a-service) tutorial yet:
-
-    1.  Open WSO2 Integration Studio and go to **File -> Import**. 
-    2.  Select **Existing WSO2 Projects into workspace** under the **WSO2** category, click **Next**, and then upload the [pre-packaged
-project](https://github.com/wso2-docs/WSO2_EI/blob/master/Integration-Tutorial-Artifacts/SimpleMessageToServiceTutorial.zip).
+    1.  Download the [pre-packaged
+project](https://github.com/wso2-docs/WSO2_EI/blob/master/Integration-Tutorial-Artifacts/SimpleMessageToServiceTutorial.zip).     
+    2.  Open WSO2 Integration Studio and go to **File -> Import**. 
+    3.  Select **Existing WSO2 Projects into workspace** under the **WSO2** category, click **Next**, and then upload the **prepackaged project**.
 
 Optionally, you can set up the **CLI tool** for artifact monitoring. This will later help you get details of the artifacts that you deploy in your Micro Integrator.
 
@@ -30,7 +30,7 @@ Optionally, you can set up the **CLI tool** for artifact monitoring. This will l
     project directory will appear with the artifacts as shown below.
     Note the 'HealthcareAPI' that is already included.
 
-    ![](../../assets/img/tutorials/inbound-project-explorer.png)
+    ![](../../assets/img/tutorials/inbound-endpoint/inbound-project-explorer.png)
 
 2.  Right-click on **SampleServices** and navigate to **New -> Inbound
     Endpoint**. Select **Create A New Inbound Endpoint** and click
@@ -57,7 +57,7 @@ Optionally, you can set up the **CLI tool** for artifact monitoring. This will l
         </tr>
     </table>
 
-    ![](https://lh3.googleusercontent.com/CYLJoSvCMhZfVYSZc73iRyAHhzgVWwjCqfkNgjPDlVs2qAs6QhsbDKt8mbIzEk8ojpONkEl2nemszzeNLPSAW3ogSs0eHqbGQMmw7WSlhx3b3Nbvfp0xGJ2Xbwl-Qbi0NxMGrSJB)
+    <img src="../../../assets/img/tutorials/inbound-endpoint/inbound-endpoint-wizard.png" width="500">
 
 4.  Go to the **Properties** tab in the **Design** view and enter the following:
 
@@ -80,7 +80,7 @@ Optionally, you can set up the **CLI tool** for artifact monitoring. This will l
         </tr>
     </table>
 
-    ![](https://lh5.googleusercontent.com/KUBGiYXSzSVkZo_mDb0y9yzGFp6Fts7FdUrvrH_QlvpGDtaTiwnivjvCsMBpzhGDyRrJvCeBysYQNBFL3ndpEXwUB-U5TDsBbNS2actK3_8ie2RWULV6-g1LY3Q9XWaWOHsZNc7O)
+    <img src="../../../assets/img/tutorials/inbound-endpoint/inbound-endpoint-properties.png" width="800">
 
 The endpoint will now get mapped to any URL that matches the above pattern provided. You will be exposing the health care API on a new port
 through this inbound endpoint.
@@ -102,7 +102,7 @@ Package the artifacts in your composite application project (SampleServicesCompo
 To test the artifacts, deploy the [packaged artifacts](#step-3-package-the-artifacts) in the embedded Micro Integrator:
 
 1.  Right-click the composite application project and click **Export Project Artifacts and Run**.
-2.  In the dialog that opens, select the composite application project that you want to deploy.  
+2.  In the dialog that opens, select the artifacts that you want to deploy.  
 4.  Click **Finish**. The artifacts will be deployed in the embedded Micro Integrator and the server will start. See the startup log in the **Console** tab. 
 
 ### Step 5: Test the use case
@@ -114,7 +114,6 @@ Let's test the use case by sending a simple client request that invokes the serv
 1. Download the JAR file of the back-end service from [here](https://github.com/wso2-docs/WSO2_EI/blob/master/Back-End-Service/Hospital-Service-2.0.0-EI7.jar).
 2. Open a terminal, navigate to the location where your saved the [back-end service](#step-1-set-up-the-workspace).
 3. Execute the following command to start the service:
-
     ```bash
     java -jar Hospital-Service-2.0.0-EI7.jar
     ```
@@ -164,19 +163,66 @@ Similarly, you can get details of other artifacts deployed in the server. Read m
 
 #### Send the client request
 
-Let's send a message to the **healthcare** REST API (through the inbound endpoint) on port 8285.
+Let's send a message to the **healthcare** REST API (through the inbound endpoint) on port 8285. You can use the embedded <b>HTTP Client</b> of WSO2 Integration Studio as follows:
 
-1.  Open a command line terminal and execute the following command:
+1. Open the <b>HTTP Client</b> of WSO2 Integration Studio.
+
+    !!! Tip
+        If you don't see the <b>HTTP Client</b> tab, go to <b>Window -> Show View - Other</b> and select <b>HTTP Client</b> to enable the client.
+
+    <img src="../../../assets/img/tutorials/common/http4e-client-empty.png" width="800">
+    
+2. Enter the request information as given below and click the <b>Send</b> icon (<img src="../../../assets/img/tutorials/common/play-head-icon.png" width="20">).
+    
+    <table>
+        <tr>
+            <th>Method</th>
+            <td>
+               <code>GET</code> 
+            </td>
+        </tr>
+        <tr>
+            <th>URL</th>
+            <td><code>http://localhost:8285/healthcare/querydoctor/surgery</code></br></br>
+            </td>
+        </tr>
+     </table>
+     
+     <img src="../../../assets/img/tutorials/inbound-endpoint/inbound_http_client.png" width="800">
+
+If you want to send the client request from your terminal:
+
+1.  Install and set up [cURL](https://curl.haxx.se/) as your REST client.
+2.  Open a command line terminal and execute the following command:
 
     ```bash
     curl -v http://localhost:8285/healthcare/querydoctor/surgery
     ```
 
-2.  You will get the response shown below. The inbound endpoint has successfully invoked the REST API, and further, the response received by the REST API has been routed back to client through the inbound endpoint.
+You will get the response shown below. The inbound endpoint has successfully invoked the REST API, and further, the response received by the REST API has been routed back to the client through the inbound endpoint.
 
-    ```json
-    [{"name":"thomas collins","hospital":"grand oak community 
-    hospital","category":"surgery","availability":"9.00 a.m - 11.00 a.m","fee":7000.0},
-    {"name":"anne clement","hospital":"clemency medical center","category":"surgery","availability":"8.00 a.m - 10.00 A.m","fee":12000.0},
-    {"name":"seth mears","hospital":"pine valley community hospital","category":"surgery","availability":"3.00 p.m - 5.00 p.m","fee":8000.0}]
-    ```
+```json
+[
+    {"name":
+        "thomas collins",
+        "hospital":"grand oak community hospital",
+        "category":"surgery",
+        "availability":"9.00 a.m - 11.00 a.m",
+        "fee":7000.0
+    },
+    {"name":
+        "anne clement",
+        "hospital":"clemency medical center",
+        "category":"surgery",
+        "availability":"8.00 a.m - 10.00 A.m",
+        "fee":12000.0
+    },
+    {"name":
+        "seth mears",
+        "hospital":"pine valley community hospital",
+        "category":"surgery",
+        "availability":"3.00 p.m - 5.00 p.m",
+        "fee":8000.0
+    }
+]
+```

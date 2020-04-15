@@ -1,10 +1,10 @@
-# File processing
+# File Processing
 
 ## What you'll build
 
-This sample demonstrates how to pick a file from a directory and process it within the Micro Integrator. In this sample scenario you pick a file from the local directory, insert the records in the file to a database, send an email with the file content, trace and write the log and finally move the file to another directory.
+This tutorial demonstrates how to pick a file from a directory and process it within the Micro Integrator. In this sample scenario the Micro Integrator will pick a file from the local directory, insert the records in the file to a database, send an email with the file content, trace and write the log, and finally move the file to another directory.
 
-The result of the query should be as follows when you query to view the records in the `test.info` table. You will see that there is no data in the table.
+When you query to view the records in the `test.info` table, you will see that there is no data in the table.
   
 ## Let's get started!
 
@@ -43,13 +43,13 @@ Let's setup a MySQL database:
 
 Follow the instructions given in this section to create and configure the required artifacts.
 
-#### Create an ESB Config project
+#### Creating the Config project
 
-To create an ESB solution consisting of an **ESB config** project and a **Composite Application** project:
+To create a solution consisting of an **Config** project and a **Composite Application** project:
 
 1.  Open **WSO2 Integration Studio**.
-2.  Go to **ESB Project** and click **Create New**.
-    ![](../../assets/img/tutorials/119132413/119132414.png)
+2.  Go to **Integration** and click **Create Integration Project**.
+    ![](../../../assets/img/create_project/create-integration-project.png)
 
 3.  Enter `FileProcessingService` as the project name and select the **Create Composite Application Project** check box.
 4.  Click **Finish**. The created project is saved in the **Project Explorer**.
@@ -150,7 +150,7 @@ connect to the database to insert the data.
         <log level="full">
             <property name="sequence" value="after-smooks"/>
         </log>
-        <iterate expression="//csv-records/csv-record">
+        <iterate expression="//csv-set/csv-record">
           <target>
            <sequence>
             <dbreport>
@@ -258,7 +258,7 @@ Package the artifacts in your composite application project to be able to deploy
 To test the artifacts, deploy the [packaged artifacts](#step-3-package-the-artifacts) in the embedded Micro Integrator:
 
 1.  Right-click the composite application project and click **Export Project Artifacts and Run**.
-2.  In the dialog that opens, select the composite application project that you want to deploy.  
+2.  In the dialog that opens, select the artifacts that you want to deploy.  
 4.  Click **Finish**. The artifacts will be deployed in the embedded Micro Integrator and the server will start. See the startup log in the **Console** tab.
 
 ### Step 5: Test the use case
@@ -320,15 +320,15 @@ Open the `deployment.toml` file of the embedded Micro Integrator of WSO2 Integra
 
 1.  Find the MySQL database driver `mysql-connector-java-5.1.10-bin.jar` in the [attached file](https://github.com/wso2-docs/WSO2_EI/blob/master/Integration-Tutorial-Artifacts/Artifacts-fileProcessingTutorial.zip). 
     You can find the file in the `SAMPLE_HOME/lib` directory.
-2.  Copy the driver to the `MI_TOOLING_HOME/Contents/Eclipse/runtime/microesb/lib/` directory on **Windows** or the **MI_TOOLING_HOME/runtime/microesb/lib** directory on **MacOS/Linux/CentOS**.
+2.  Copy the driver to the `MI_TOOLING_HOME/Contents/Eclipse/runtime/microesb/lib/` directory (on **Windows**) or the `MI_TOOLING_HOME/runtime/microesb/lib` directory (on **MacOS/Linux/CentOS**).
 
 #### Add smooks libraries
 
 This example uses a CSV smooks library.
 
-1.  You can find the CSV smooks library `milyn-smooks-csv-1.2.4.jar` and the `groovy-all-1.1-rc-1.jar` in the [attached file](https://github.com/wso2-docs/WSO2_EI/blob/master/Integration-Tutorial-Artifacts/Artifacts-fileProcessingTutorial.zip). 
+1.  You can find the CSV smooks library `milyn-smooks-csv-1.2.4.jar` in the [attached file](https://github.com/wso2-docs/WSO2_EI/blob/master/Integration-Tutorial-Artifacts/Artifacts-fileProcessingTutorial.zip). 
     You can find the file in the `SAMPLE_HOME/lib` directory.
-2.  Copy the library to the the `MI_TOOLING_HOME/Contents/Eclipse/runtime/microesb/lib/` directory on **Windows** or the **MI_TOOLING_HOME/runtime/microesb/lib** directory on **MacOS/Linux/CentOS**.
+2.  Copy the library to the the `MI_TOOLING_HOME/Contents/Eclipse/runtime/microesb/lib/` directory (on **Windows**) or the `MI_TOOLING_HOME/runtime/microesb/lib` directory (on **MacOS/Linux/CentOS**).
 
 #### Create the input file
 
@@ -351,4 +351,4 @@ this file.
 2.  The Micro Integrator inserts the records from the text file to the database. Make sure the data is in the info table. The following screenshot displays the content of the `          test.info         ` table with the data from the file.  
 3.  Make sure the original file is moved to the `          /home/<username>/test/original         ` directory.
 4.  Make sure the e-mail notification is sent to the email address that is specified. The message should contain the file data. The
-    following screenshot displays a notification received.  
+    following screenshot displays a notification received. If you see the error message `Username and Password not accepted` in the logs, you might need to turn on `Allow less secure apps` in your Google account from [here](https://myaccount.google.com/lesssecureapps).

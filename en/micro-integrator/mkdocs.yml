@@ -106,14 +106,7 @@ nav:
           - 'Exposing an RDBMS datasource': 'use-cases/examples/data_integration/rdbms-data-service.md'
           - Exposing Other Datasources:
             - 'Exposing a CSV datasource': 'use-cases/examples/data_integration/csv-data-service.md'
-            - 'Exposing an Excel datasource': 'use-cases/examples/data_integration/excel-data-service.md'
-            - 'Exposing a Google Spreadsheet': 'use-cases/examples/data_integration/google-spreadsheet-data-service.md'
-            - 'Exposing a Cassandra datasource': 'use-cases/examples/data_integration/cassandra-data-service.md'
-            - 'Exposing an RDF datasource': 'use-cases/examples/data_integration/rdf-data-service.md'
-            - 'Exposing a Web Resource': 'use-cases/examples/data_integration/web-resource-data-service.md'
             - 'Exposing a Carbon datasource': 'use-cases/examples/data_integration/carbon-data-service.md'
-            - 'Exposing a Custom datasource': 'use-cases/examples/data_integration/custom-datasource.md'
-            - 'Exposing a JNDI datasource': 'use-cases/examples/data_integration/jndi-data-service.md'
           - 'Exposing Data in JSON Format': 'use-cases/examples/data_integration/json-with-data-service.md'
           - 'Using an OData Service': 'use-cases/examples/data_integration/odata-service.md'
           - 'Using Nested Data Queries': 'use-cases/examples/data_integration/nested-queries-in-data-service.md'
@@ -131,6 +124,7 @@ nav:
             - 'Handling HTTP Status Codes': 'use-cases/examples/rest_api_examples/setting-https-status-codes.md'
             - 'Transforming Content Types': 'use-cases/examples/rest_api_examples/transforming-content-type.md'
             - 'Securing a REST API': 'use-cases/examples/rest_api_examples/securing-rest-apis.md'
+            - 'Publishing a Custom Swagger Document': 'use-cases/examples/rest_api_examples/publishing-a-swagger-api.md'
             - Handling Special Cases:
               - 'Using GET with a Message Body': 'use-cases/examples/rest_api_examples/using-get-with-a-body.md'
               - 'Using POST with Empty Message Body': 'use-cases/examples/rest_api_examples/using-post-with-no-body.md'
@@ -274,9 +268,11 @@ nav:
       - Creating Projects:
         - 'Creating a Project Solution': 'develop/creating-project-solution.md'
         - 'Creating Integration Projects': 'develop/creating-projects.md'
-        - 'Importing Integration Projects': 'develop/importing-projects.md'
+        - 'Creating a Maven Multi Module Project': 'develop/create-multi-maven-project.md'
         - 'Creating a Docker Project': 'develop/create-docker-project.md'
         - 'Creating a Kubernetes Project': 'develop/create-kubernetes-project.md'
+        - 'Importing Projects': 'develop/importing-projects.md'
+        - 'Exporting Projects': 'develop/export_project.md'
       - Creating New Artifacts:
         - 'Importing Artifacts': 'develop/importing-artifacts.md'
         - 'Creating a REST API': 'develop/creating-artifacts/creating-an-api.md'
@@ -294,7 +290,6 @@ nav:
         - 'Creating a Smooks Configuration': 'develop/creating-artifacts/creating-smooks-artifacts.md'
         - 'Creating a Data Service': 'develop/creating-artifacts/data-services/creating-data-services.md'
         - 'Creating a Datasource': 'develop/creating-artifacts/data-services/creating-datasources.md'
-        - 'Creating a Data Service Input Validator': 'develop/creating-artifacts/data-services/creating-input-validators.md'
         - 'Adding Connectors': 'develop/creating-artifacts/adding-connectors.md'
       - Creating Custom Artifacts:
         - 'Creating a Custom Inbound Endpoint' : 'develop/customizations/creating-custom-Inbound-endpoint.md'
@@ -314,6 +309,7 @@ nav:
       - Testing Integrations:
         - 'Deploy and Run Artifacts': 'develop/deploy-and-run.md'
         - 'Creating a Unit Test Suite': 'develop/creating-unit-test-suite.md'
+        - 'Using the HTTP REST Client': 'develop/using-http_rest_client.md'
       - Debugging Integrations:
         - 'Mediation Debugging': 'develop/debugging-mediation.md'
         - 'Using Wire Logs': 'develop/using-wire-logs.md'
@@ -324,7 +320,9 @@ nav:
       - Advanced Development Tasks:
         - 'Injecting Parameters as Environment Variables': 'develop/injecting-parameters.md'
         - 'Changing the Endpoint of a Deployed Service': 'develop/advanced-development/changing-the-endpoint-of-deployed-service.md'
-        - 'Generating Swagger Documents for APIs': 'develop/advanced-development/generating-swagger-for-apis.md'
+        - 'Using Swagger Documents': 'develop/advanced-development/using-swagger-for-apis.md'
+        - 'Extend Role-based Data Filtering': 'develop/advanced-development/extend-role-based-filtering-for-ds.md'
+        - 'Dynamic User Authentication': 'develop/advanced-development/dynamic-user-authentication.md'
       - 'Managing the Registry': 'develop/creating-artifacts/registry/managing-the-Registry.md'
     - Observability:
       - 'Micro Integrator Dashboard': 'administer-and-observe/working-with-monitoring-dashboard.md'
@@ -347,6 +345,58 @@ nav:
         - 'Other Usages of TCPMon' : 'administer-and-observe/tcp/other_usages_of_tcpmon.md'
     - References:
       - 'Product Configurations': 'references/config-catalog.md'
+      - Connectors:
+        - 'Connectors Overview' : 'references/connectors/connectors-overview.md'
+        - File Connector:
+          - 'File Connector Example': 'references/connectors/file-connector/file-connector-example.md'
+          - 'File Connector Configuration': 'references/connectors/file-connector/file-connector-config.md'
+        - Kafka Connector:
+          - 'Setting up Kafka': 'references/connectors/kafka-connector/setting-up-kafka.md'
+          - 'Enabling Security for Kafka': 'references/connectors/kafka-connector/enabling-security-for-kafka.md'
+          - 'Kafka Connector Example': 'references/connectors/kafka-connector/kafka-connector-producer-example.md'
+          - 'Kafka Inbound Endpoint Example': 'references/connectors/kafka-connector/kafka-inbound-endpoint-example.md'
+          - 'Kafka Connector Configuration': 'references/connectors/kafka-connector/kafka-connector-config.md'
+        - Gmail Connector:
+          - 'Gmail Connector Example': 'references/connectors/gmail-connector/gmail-connector-example.md'
+          - 'Gmail Connector Configuration': 'references/connectors/gmail-connector/gmail-connector-config.md'
+        - AmazonLambda Connector:
+          - 'Setting up Amazon Lambda Environment': 'references/connectors/amazonlambda-connector/setting-up-amazonlambda.md'
+          - 'Amazon Lambda Connector Example': 'references/connectors/amazonlambda-connector/amazonlambda-connector-example.md'
+          - 'Amazon Lambda Connector Configuration': 'references/connectors/amazonlambda-connector/amazonlambda-connector-config.md'
+        - Salesforce Rest Connector:
+          - 'Salesforce Access Token Generation': 'references/connectors/salesforce-rest-connector/sf-access-token-generation.md'
+          - 'Salesforce Rest API Connector Example': 'references/connectors/salesforce-rest-connector/sf-rest-connector-example.md'
+          - 'Salesforce Rest API Connector Configuration': 'references/connectors/salesforce-rest-connector/sf-rest-connector-config.md'
+        - AmazonS3 Connector:
+          - 'Setting up Amazon S3 Environment': 'references/connectors/amazons3-connector/amazons3-connector-config.md'
+          - 'AmazonS3 Connector Example': 'references/connectors/amazons3-connector/amazons3-connector-example.md'
+          - 'AmazonS3 Connector Configuration': 'references/connectors/amazons3-connector/amazons3-connector-reference.md'
+        - ServiceNow Connector:
+          - 'ServiceNow Connector Example': 'references/connectors/servicenow-connector/servicenow-connector-example.md'
+          - 'Setting up Servicenow Instance': 'references/connectors/servicenow-connector/settingup-servicenow-instance.md'
+        - LDAP Connector:
+            - 'Setting up an LDAP Server': 'references/connectors/ldap-connector/ldap-server-configuration.md'
+            - 'LDAP Connector Example': 'references/connectors/ldap-connector/ldap-connector-example.md'
+        - DB Event Listener Inbound Endpoint:
+          - 'Database Event Listener Example': 'references/connectors/db-event-inbound-endpoint/db-event-inbound-endpoint-example.md'
+          - 'Database Event Listener Configuration': 'references/connectors/db-event-inbound-endpoint/db-event-inbound-endpoint-config.md'
+        - Microsoft Dynmics365 Connector:
+            - 'Setting up the Microsoft Dynamics365 Environment with Azure': 'references/connectors/microsoft-dynamics365-connector/microsoft-dynamics365-configuration.md'
+        - ISO8583 Connector:
+            - 'Setting up ISO8583 Connector': 'references/connectors/ISO8583-connector/ISO8583-connector-configuration.md'
+            - 'ISO8583 Connector Example': 'references/connectors/ISO8583-connector/ISO8583-connector-example.md'
+            - 'ISO8583 Inbound Endpoint Example': 'references/connectors/ISO8583-connector/ISO8583-inbound-endpoint-example.md'
+        - Amazon SQS Connector:
+            - 'Amazon SQS Connector Example': 'references/connectors/amazonsqs-connector/amazonsqs-connector-example.md'
+        - Microsoft Azure Storage Connector:
+            - 'Setting up the Microsoft Azure Storage Environment': 'references/connectors/microsoft-azure-storage-connector/microsoft-azure-storage-configuration.md'
+            - 'Microsoft Azure Storage Connector Example': 'references/connectors/microsoft-azure-storage-connector/microsoft-azure-storage-connector-example.md'
+        - Google Firebase Connector: 
+          - 'Setting up Google Firebase Environment': 'references/connectors/google-firebase-connector/google-firebase-setup.md'
+          - 'Google Firebase Connector Example': 'references/connectors/google-firebase-connector/google-firebase-connector-example.md'
+          - 'Google Firebase Connector Configuration': 'references/connectors/google-firebase-connector/google-firebase-configuration.md'
+        - FHIR Connector:
+          - 'FHIR Connector Example': 'references/connectors/fhir-connector/fhir-connector-example.md'
       - Synapse Configurations:
         - Mediator Catalog:
           - 'About Mediators': 'references/mediators/about-mediators.md'
@@ -438,12 +488,9 @@ nav:
           - 'Elements of a Data Service': 'references/synapse-properties/data-services/elements-of-a-data-service.md'
           - 'Query Parameters': 'references/synapse-properties/data-services/query-parameters.md'
           - 'Datasource Parameters': 'references/synapse-properties/data-services/datasource-Configuration-Parameters.md'
-          - 'Input Validators': 'references/synapse-properties/data-services/input-validators.md'
-          - 'Filtering Responses by User Role': 'references/synapse-properties/data-services/filtering-responses-by-user-role.md'
           - 'Dynamic User Authentication': 'references/synapse-properties/data-services/dynamic-user-authentication.md'
-          - 'Using Namespaces': 'references/synapse-properties/data-services/using-Namespaces.md'
-          - 'SQL Dialects': 'references/synapse-properties/data-services/sql-dialects.md'
-          - 'Mapping Data Types': 'references/synapse-properties/data-services/mapping-data-types.md'
+          - 'Namespaces': 'references/synapse-properties/data-services/using-Namespaces.md'
+          - 'SQL/Data Types': 'references/synapse-properties/data-services/mapping-data-types.md'
         - Transport Configs:
           - 'VFS Parameters': 'references/synapse-properties/transport-parameters/vfs-transport-parameters.md'
           - 'JMS Parameters': 'references/synapse-properties/transport-parameters/jms-transport-parameters.md'
@@ -463,6 +510,8 @@ nav:
      
 # Extensions
 markdown_extensions:
+  - markdown_include.include:
+      base_path: docs
   - markdown.extensions.admonition
   - markdown.extensions.codehilite:
       linenums: true
