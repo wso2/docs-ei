@@ -328,7 +328,7 @@ This example uses a CSV smooks library.
 
 1.  You can find the CSV smooks library `milyn-smooks-csv-1.2.4.jar` in the [attached file](https://github.com/wso2-docs/WSO2_EI/blob/master/Integration-Tutorial-Artifacts/Artifacts-fileProcessingTutorial.zip). 
     You can find the file in the `SAMPLE_HOME/lib` directory.
-2.  Copy the library to the the `MI_TOOLING_HOME/Contents/Eclipse/runtime/microesb/lib/` directory on **Windows** or the **MI_TOOLING_HOME/runtime/microesb/lib** directory on **MacOS/Linux/CentOS**.
+2.  Copy the library to the the `MI_TOOLING_HOME/Contents/Eclipse/runtime/microesb/lib/` directory on **Windows** or the `MI_TOOLING_HOME/runtime/microesb/lib` directory on **MacOS/Linux/CentOS**.
 
 #### Create the input file
 
@@ -351,4 +351,4 @@ this file.
 2.  The Micro Integrator inserts the records from the text file to the database. Make sure the data is in the info table. The following screenshot displays the content of the `          test.info         ` table with the data from the file.  
 3.  Make sure the original file is moved to the `          /home/<username>/test/original         ` directory.
 4.  Make sure the e-mail notification is sent to the email address that is specified. The message should contain the file data. The
-    following screenshot displays a notification received. If you see the error message `Username and Password not accepted` in the logs, you might need to turn on `Allow less secure apps` in your Google account from [here](https://myaccount.google.com/lesssecureapps).
+    following screenshot displays a notification received. If you see the error message (`Username and Password not accepted`) in the logs, you might need to turn on `Allow less secure apps` in your Google account from [here](https://myaccount.google.com/lesssecureapps).
