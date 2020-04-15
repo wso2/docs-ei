@@ -55,5 +55,5 @@ Create the artifacts:
 3. Create the [proxy service](../../../../develop/creating-artifacts/creating-a-proxy-service) and a [scheduled task](../../../../develop/creating-artifacts/creating-scheduled-task) with the configurations given above.
 4. [Deploy the artifacts](../../../../develop/deploy-and-run) in your Micro Integrator.
 
-The following log will be printed each time a message is injected.
+The XML message you injected (i.e., This is a scheduled task of the default implementation.) will be printed in the logs of the Micro Integrator twice, 5 seconds apart.
 `INFO {org.apache.synapse.mediators.builtin.LogMediator} - Which city? = London, Which country? = UK`
