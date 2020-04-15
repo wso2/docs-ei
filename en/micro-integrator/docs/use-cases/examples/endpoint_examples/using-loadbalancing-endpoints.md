@@ -88,7 +88,7 @@ Set up the back-end service:
     ```bash
     java -jar stockquote_service.jar
     ```
-3. Open the `tcpmon` application which is in `MI_TOOLING_HOME/Contents/Eclipse/runtime/microesb/bin/` (in MacOS) or `MI_TOOLING_HOME/runtime/microesb/bin` (in Windows/Linux) directory.
+3. Open the `tcpmon` application, which is in `MI_TOOLING_HOME/Contents/Eclipse/runtime/microesb/bin/` (in MacOS) or `MI_TOOLING_HOME/runtime/microesb/bin` (in Windows/Linux) directory.
 4. Configure `tcpmon` to listen to ports `9001, 9002, and 9003` and set the target hostname to `localhost` and target port to `9000` in each instance.
 
 Invoking the proxy service:
@@ -118,5 +118,5 @@ Analyzing the output:
 
 When inspecting the `tcpmon`, you will see that each listener 
 has received a request (If you have only sent 3 requests, otherwise more than 1). This is because,
-when multiple requests are sent with the same session Id, they are distributed across
-the three end points in a round robin manner. 
+when multiple requests are sent with the same session ID, they are distributed across
+the three endpoints in a round robin manner. 
