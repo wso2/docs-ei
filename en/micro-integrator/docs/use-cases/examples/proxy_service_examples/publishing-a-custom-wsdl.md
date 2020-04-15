@@ -39,7 +39,7 @@ Following is a sample proxy service configuration that we can used to implement 
 Create the artifacts:
 
 1. [Set up WSO2 Integration Studio](../../../../develop/installing-WSO2-Integration-Studio).
-2. [Create an ESB Integration project](../../../../develop/creating-projects/#esb-config-project).
+2. [Create an Integration project](../../../../develop/creating-projects/#esb-config-project).
 3. [Create the proxy service](../../../../develop/creating-artifacts/creating-a-proxy-service) with the configurations given above.
 
     !!! Tip
