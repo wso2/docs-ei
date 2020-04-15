@@ -54,7 +54,7 @@ To configure a VFS endpoint, use the `vfs:file` prefix in the URI. For example:
 
 To test this sample, the following files and directories should be created:
 
--   Create the file directories:
+1. Create the file directories:
 
     -   Create 3 new directories (folders) named **in** , **out**, and **original** in a suitable location in a test directory (e.g.,
         /home/user/test) in the local file system. 
@@ -69,9 +69,9 @@ To test this sample, the following files and directories should be created:
     -   Be sure that the endpoint in the `<outSequence>` points to the **out** directory location. Make sure that the prefix
         `          vfs:         ` in the endpoint URL is not removed or changed.
 
--   Add [sample_proxy_1.wsdl](https://github.com/wso2-docs/WSO2_EI/blob/master/samples-protocol-switching/sample_proxy_1.wsdl) as a [registry resource](../../../../develop/creating-artifacts/creating-registry-resources). Change the registry path of the proxy accordingly. 
+2. Add [sample_proxy_1.wsdl](https://github.com/wso2-docs/WSO2_EI/blob/master/samples-protocol-switching/sample_proxy_1.wsdl) as a [registry resource](../../../../develop/creating-artifacts/creating-registry-resources). Change the registry path of the proxy accordingly. 
 
--   Set up the back-end service.
+3. Set up the back-end service.
 
     -	Download the [stockquote_service.jar](https://github.com/wso2-docs/WSO2_EI/blob/master/Back-End-Service/stockquote_service.jar)
 
@@ -79,7 +79,7 @@ To test this sample, the following files and directories should be created:
 	```bash
 	java -jar stockquote_service.jar
 	```
--   Create the `test.xml` file shown below and copy it to the location specified by the `transport.vfs.FileURI` property in the configuration (i.e., the **in** directory). This contains a simple stock quote request in XML/SOAP format.
+4. Create the `test.xml` file shown below and copy it to the location specified by the `transport.vfs.FileURI` property in the configuration (i.e., the **in** directory). This contains a simple stock quote request in XML/SOAP format.
 
     ```xml
     <?xml version='1.0' encoding='UTF-8'?>
