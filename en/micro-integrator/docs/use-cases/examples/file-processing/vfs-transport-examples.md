@@ -69,7 +69,7 @@ To test this sample, the following files and directories should be created:
     -   Be sure that the endpoint in the `<outSequence>` points to the **out** directory location. Make sure that the prefix
         `          vfs:         ` in the endpoint URL is not removed or changed.
 
--   Add [sample_proxy_1.wsdl](https://github.com/wso2-docs/WSO2_EI/blob/master/samples-protocol-switching/sample_proxy_1.wsdl) as a [registry resource](../../../../develop/creating-artifacts/creating-registry-resources) (change the registry path of the proxy accordingly). 
+-   Add [sample_proxy_1.wsdl](https://github.com/wso2-docs/WSO2_EI/blob/master/samples-protocol-switching/sample_proxy_1.wsdl) as a [registry resource](../../../../develop/creating-artifacts/creating-registry-resources). Change the registry path of the proxy accordingly. 
 
 -   Set up the back-end service.
 
