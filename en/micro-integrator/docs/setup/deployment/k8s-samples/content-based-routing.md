@@ -176,7 +176,7 @@ Follow the steps given below.
 
     3.  Click **Finish**.
 
-5.  Create a **Kubernetes Project** inside the Maven Multi Module Project. 
+6.  Create a **Kubernetes Project** inside the Maven Multi Module Project. 
 
     1.  Right-click the Maven Multi Module project, go to **New → Project**, select **Kubernetes Exporter Project**, and click **Next**.
         <img src="../../../../assets/img/create_project/docker_k8s_project/k8s-proj.png" alt="Create Kubernetes Project" width="500">
@@ -249,7 +249,7 @@ Follow the steps given below.
             </tr>
         </table>
         
-    6.  This step is only required if you already have a Docker image (in your local Docker repository) with the same name as the base image specified above. 
+    3.  This step is only required if you already have a Docker image (in your local Docker repository) with the same name as the base image specified above. 
     
         !!! Info
             In this scenario, WSO2 Integration Studio will first check if there is a difference in the two images before pulling the image specified in the **Base Image Repository** field. If the given base image is more updated, the existing image will be overwritten by this new image. Therefore, if you are currently using an older version, or if you have custom changes in your existing image, they will be replaced. 
@@ -259,7 +259,6 @@ Follow the steps given below.
             ```xml
             <pullNewerImage>false</pullNewerImage>
             ```
-
 Finally, the created Maven Multi Module project should look as follows:
 
 <img src="../../../../assets/img/create_project/docker_k8s_project/routing_example_project.png" alt="messag routing project" width="300">
@@ -270,7 +269,7 @@ You need to build a Docker image of the integration solution and push it to your
     
 1.  Start the Docker daemon in the host machine.
 2.  Open the POM file in the Kubernetes project, ensure that the composite application is selected under **Dependencies**, **save** the file.
-    ![Select composite projects](../../../assets/img/create_project/docker_k8s_project/select-dependency-routing-example.png) 
+    ![Select composite projects](../../../assets/img/create_project/docker_k8s_project/select-dependency-routing-example.png)
     
 3.  Leave the **Automatically deploy configurations** check box selected. This ensures that deployment configurations are automatically deployed to the base image.
 4.  Click **Build and Push**.
@@ -290,7 +289,7 @@ You need to build a Docker image of the integration solution and push it to your
             mvn dockerfile:push -Ddockerfile.username={username} -Ddockerfile.password={password}
             ``` 
 
-3.  Run the `docker image ls` command to verify that the Docker image is created.
+5.  Run the `docker image ls` command to verify that the Docker image is created.
     
 ## Step 3: Deploy the solution in K8s
 

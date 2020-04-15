@@ -155,7 +155,7 @@ Follow the steps given below.
         </table>
 
     3.  This step is only required if you already have a Docker image (in your local Docker repository) with the same name as the base image specified above. 
-    
+
         !!! Info
             In this scenario, WSO2 Integration Studio will first check if there is a difference in the two images before pulling the image specified in the **Base Image Repository** field. If the given base image is more updated, the existing image will be overwritten by this new image. Therefore, if you are currently using an older version, or if you have custom changes in your existing image, they will be replaced. 
 
