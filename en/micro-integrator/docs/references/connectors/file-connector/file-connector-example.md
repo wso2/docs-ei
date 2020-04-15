@@ -12,11 +12,13 @@ This example explains how to use File Connector to create a file in the local fi
 
 It will have two HTTP API resources, which are `create` and `read`. 
 
-* `/create `: It will create a file with the content that the user specifies in the payload. 
-    <p><img src="../../../../assets/img/connectors/FileConnector-03.png" title="Adding a Rest API" width="800" alt="Adding a Rest API" /></p>
+* `/create `: User sends the request payload which includes the location where the file needs to be saved and the content needs to be added to the file. This request is sent to WSO2 EI by invoking the FileConnector API. It will save the file in the specified location with the relevant content. 
 
-* `/read `: It will first check if the file exists. If so it will read the content of the file. 
-    <img src="../../../../assets/img/connectors/FileConnector-02.png" title="Adding a Rest API" width="800" alt="Adding a Rest API"/>
+    <p><img src="/assets/img/connectors/FileConnector-03.png" title="Adding a Rest API" width="800" alt="Adding a Rest API" /></p>
+
+* `/read `: User sends the request payload which includes the location of the file which it needs to be read. This request is sent to WSO2 EI where the FileConnector API resides. Once the API is invoked, it first checks if the file exists in the specified location. If exists, the content is read and response is sent to the user. If the file does not exist, it sends an error response to the user. 
+
+    <img src="/assets/img/connectors/FileConnector-02.png" title="Adding a Rest API" width="800" alt="Adding a Rest API"/>
 
 If you do not want to build this yourself, you can simply [get the project](#get-the-project) and run it.
 
@@ -27,9 +29,52 @@ Follow these steps to set up the ESB Solution Project and the Connector Exporter
 {!references/connectors/importing-connector-to-integration-studio.md!} 
 
 1. Right click on the created ESB Solution Project and select, -> **New** -> **Rest API** to create the REST API. 
-    <img src="../../../../assets/img/connectors/adding-an-api.png" title="Adding a Rest API" width="800" alt="Adding a Rest API"/>
+    <img src="/assets/img/connectors/adding-an-api.png" title="Adding a Rest API" width="800" alt="Adding a Rest API"/>
 
-2. Provide the API name as File Connector and the API context as `/fileconnector`. You can go to the source view of the xml configuration file of the API and copy the following configuration. 
+2. Provide the API name as File Connector and the API context as `/fileconnector`.
+
+3. First we will create the `/create` resource. Right click on the API Resource and go to **Properties** view. We use a URL template called `/create` as we have two API resources inside single API. The method will be `Post`. 
+    <img src="/assets/img/connectors/filecon-3.png" title="Adding the API resource." width="800" alt="Adding the API resource."/>
+
+4. In this operation we are going to receive input from user which are `source` and `inputContent`. 
+    - source - location of the file is going to be created
+    - inputContent - what needs to be written to the file. 
+
+5. The above two parameters are saved to properties. Therefore drag and drop property mediator to the design view and do as shown below. 
+    <img src="/assets/img/connectors/filecon-1.png" title="Adding a property" width="800" alt="Adding a property"/>
+
+6. Add the another Property Mediator to get the InputContent value copied. Do the same as in the above step. 
+    - property name: InputContent
+    - Value Type: EXPRESSION
+    - Value Expression: json-eval($.inputContent)
+
+7. Now drag and drop create operation of the File Connector to the Design View as shown below. Set the parameter values as below. We use the property values that we add in step 10 and 11 in this step as `$ctx:source` and `$ctx:inputContent`.
+    <img src="/assets/img/connectors/file-con2.png" title="Adding createFile operation" width="800" alt="Adding createFile operation"/>
+
+8. Finally add a Respond Mediator as user needs to see the response. Now we are done with creating the first API resource, and it is displayed as below. 
+    <img src="/assets/img/connectors/filecon9.png" title="First API Resource" width="800" alt="First API Resource"/>
+
+9. Now we can create the next API resource which is `/read`. From this we are going to read the file content from a user specified location. 
+
+10. As described in step 8, drag and drop another API resource to the design view. Use the URL template as `/read`. The method will be POST. 
+
+11. In this operation user sends the file location as the request payload. It will be written to property as we did in step 10. 
+    <img src="/assets/img/connectors/filecon4.png" title="Adding property mediator" width="800" alt="Adding property mediator"/>
+
+12. Then we are going to check if the file actually exists in the specified location. We can use `isFileExists` operation of the File Connector. 
+    <img src="/assets/img/connectors/filecon5.png" title="Adding property mediator" width="800" alt="Adding property mediator"/>
+
+13. Then we copy the `isFileExists` response to a property mediator. Add another property mediator and add values as shown below. 
+    <img src="/assets/img/connectors/filecon6.png" title="Adding property mediator" width="800" alt="Adding property mediator"/>
+
+14. Based on its response we decide if we read the file or print an error to the user. In this case, we use a Switch Mediator.
+    <img src="/assets/img/connectors/filecon7.png" title="Adding switch mediator" width="800" alt="Adding switch mediator"/>
+
+15. Drag and drop the read operation to the **case** in the Switch mediator. To the default case log an error. 
+    <img src="/assets/img/connectors/filecon8.png" title="switch mediator" width="800" alt="switch mediator"/>
+
+ 16. You can find the complete API XML configuration below. You can go to the source view and copy paste the following config. 
+
     ```
     <?xml version="1.0" encoding="UTF-8"?>
     <api context="/fileconnector" name="FileConnector" xmlns="http://ws.apache.org/ns/synapse">
