@@ -151,15 +151,20 @@ Create the artifacts:
 2. Open the `deployment.toml` file from the `MI_TOOLING_HOME/Contents/Eclipse/runtime/microesb/conf` directory, and [enable the MailTo transport sender](../../../../setup/transport_configurations/configuring-transports/#configuring-the-mailto-transport).
 3. [Create the proxy service](../../../../develop/creating-artifacts/creating-a-proxy-service) with the configurations given above.
 4. Add [sample_proxy_1.wsdl](https://github.com/wso2-docs/WSO2_EI/blob/master/samples-protocol-switching/sample_proxy_1.wsdl) as a [registry resource](../../../../develop/creating-artifacts/creating-registry-resources) (change the registry path of the proxy accordingly). 
-5. Set up the back-end service.
-   - Download the [stockquote_service.jar](https://github.com/wso2-docs/WSO2_EI/blob/master/Back-End-Service/stockquote_service.jar)
-   
-   - Open a terminal, navigate to the location of the downloaded service, and run it using the following command:
+5. [Deploy the artifacts](../../../../develop/deploy-and-run) in your Micro Integrator.
+
+Set up the back-end service:
+
+1.  Download the [stockquote_service.jar](https://github.com/wso2-docs/WSO2_EI/blob/master/Back-End-Service/stockquote_service.jar)
+2.  Open a terminal, navigate to the location of the downloaded service, and run it using the following command:
        ```bash
        java -jar stockquote_service.jar
-6. [Deploy the artifacts](../../../../develop/deploy-and-run) in your Micro Integrator.
+       ```
 
-Send a plain/text e-mail (Make sure you switch to **Plain text** **mode** when you are composing the email) with the following body and any custom Subject from your mail account to the mail address `synapse.demo.1@gmail.com`. 
+Send a plain-text email (with the following body and a custom subject) from your mail account to the following mail address: `synapse.demo.1@gmail.com`. 
+
+!!! Tip
+     Make sure you switch to **Plain text** mode when composing the email.
 
 ```xml 
 <m0:getQuote xmlns:m0="http://services.samples">
@@ -169,4 +174,4 @@ Send a plain/text e-mail (Make sure you switch to **Plain text** **mode** when y
 </m0:getQuote>
 ```
 
-After a few seconds (for example 30 seconds), you should receive a POX response in your e-mail account with the stock quote reply.
+After a few seconds (for example 30 seconds), you should receive a POX response to your email account with the stock quote information.
