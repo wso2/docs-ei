@@ -147,7 +147,7 @@ Create the artifacts:
 4. [Deploy the artifacts](../../../../develop/deploy-and-run) in your Micro Integrator.
 
 ## Example 3: Dynamic endpoint failover management
-Let's look at a sample configuration where you have dynamic URL with failover management for
+Let's look at a sample configuration where you have a dynamic URL with failover management for
 the endpoint.
 
 ### Synapse configuration
@@ -265,20 +265,3 @@ to the first endpoint, the endpoint is not retried, whereas in the
 second endpoint, the endpoint is always retried if error code 101503
 occurs. You can specify enabled or disabled error codes (but not both)
 for a given endpoint.
-
-<!--
-### Build and run
-
-Create the artifacts:
-
-1. Set up WSO2 Integration Studio.
-2. Create an ESB Config project
-3. Create the integration artifacts shown above.
-4. Deploy the artifacts in your Micro Integrator.
-
-Configure the ActiveMQ broker.
-
-Set up the back-end service.
-
-Invoke the Micro Integrator:
--->
