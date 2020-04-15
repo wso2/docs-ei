@@ -69,7 +69,7 @@ Set up the back-end service:
 
 Invoke the sample Api:
 
-1. Sending a GET request
+-  Sending a GET request.
    
    Open a terminal and execute the following command. This sends a simple GET request to the Micro Integrator.
         
@@ -77,7 +77,7 @@ Invoke the sample Api:
     curl http://127.0.0.1:8290/stockquote/view/IBM
     ```
     
-    The Micro Integrator returns the following response back to the client.
+    The Micro Integrator returns the following response to the client.
 
     ```xml
     <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ns="http://services.samples" xmlns:ax21="http://services.samples/xsd">
@@ -101,7 +101,7 @@ Invoke the sample Api:
     </soapenv:Envelope>
     ```
 
-2. Sending a POST request
+-  Sending a POST request.
     1. Save the following sample request as `placeorder.xml` in your local file system. 
     
         ```bash
@@ -120,7 +120,7 @@ Invoke the sample Api:
         curl -v -d @placeorder.xml -H "Content-type: application/xml" http://127.0.0.1:8290/stockquote/order/
         ```
     
-        The Micro Integrator returns the 202 response back to the client.
+        The Micro Integrator returns the 202 response to the client.
     
         ```xml
         < HTTP/1.1 202 Accepted
