@@ -350,5 +350,4 @@ this file.
     directory.
 2.  The Micro Integrator inserts the records from the text file to the database. Make sure the data is in the info table. The following screenshot displays the content of the `          test.info         ` table with the data from the file.  
 3.  Make sure the original file is moved to the `          /home/<username>/test/original         ` directory.
-4.  Make sure the e-mail notification is sent to the email address that is specified. The message should contain the file data. The
-    following screenshot displays a notification received. If you see the error message `Username and Password not accepted` in the logs, you might need to turn on `Allow less secure apps` in your Google account from [here](https://myaccount.google.com/lesssecureapps).
+4.  Make sure the e-mail notification is sent to the email address that is specified. The message should contain the file data. The following screenshot displays a notification received. If you see the error message `Username and Password not accepted` in the logs, you might need to turn on `Allow less secure apps` in your Google account from [here](https://myaccount.google.com/lesssecureapps).
