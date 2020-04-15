@@ -23,14 +23,16 @@ An `inSequence` or `endpoint` or both of these would decide how the message woul
 
 ## Build and run
 
-The wsdl file `sample_proxy_1.wsdl` can be downloaded from [sample_proxy_1.wsdl](https://github.com/wso2-docs/WSO2_EI/blob/master/samples-protocol-switching/sample_proxy_1.wsdl).
-The wsdl uri needs to be updated with the path to the sample_proxy_1.wsdl file.
-
 Create the artifacts:
 
 1. [Set up WSO2 Integration Studio](../../../../develop/installing-WSO2-Integration-Studio).
-2. [Create an ESB Solution project](../../../../develop/creating-projects/#esb-config-project).
+2. [Create an ESB Integration project](../../../../develop/creating-projects/#esb-config-project).
 3. [Create the proxy service](../../../../develop/creating-artifacts/creating-a-proxy-service) with the configurations given above.
+
+    !!! Tip
+        Download the wsdl file (`sample_proxy_1.wsdl`) from [sample_proxy_1.wsdl](https://github.com/wso2-docs/WSO2_EI/blob/master/samples-protocol-switching/sample_proxy_1.wsdl).
+        The wsdl uri in the proxy service needs to be updated with the path to this `sample_proxy_1.wsdl` file.
+        
 4. [Deploy the artifacts](../../../../develop/deploy-and-run) in your Micro Integrator.
 
 When the Micro Integrator starts, you could go to the following URL and view the WSDL generated for the proxy service defined in the configuration. 
@@ -50,11 +52,20 @@ Set up the back-end service:
     java -jar stockquote_service.jar
     ```
 
-Send the payloads listed below as SOAP messages:
+Set up the SoapUI client. 
 
--   Send the following payload to receive a response containing the last sales price for the
-    stock.
+1. Download and Install [SoapUI](https://www.soapui.org/downloads/soapui.html) to run this SOAP service.
+2. Create a new SOAP project in the SoapUI using following wsdl file:
 
+   ```bash
+   http://localhost:8290/services/StockQuoteProxy?wsdl
+   ```
+   
+Send requests to the proxy service:
+
+-   Send the following payload to receive a response containing the last sales price for the stock. You can 
+use the `getQuote` operation.
+       
     ```xml
     <ser:getQuote xmlns:ser="http://services.samples" xmlns:xsd="http://services.samples/xsd">
         <ser:request>
@@ -63,7 +74,8 @@ Send the payloads listed below as SOAP messages:
     </ser:getQuote>
     ```
 
--   Send the following payload to get simple quote response containing the last sales price for stock.
+-   Send the following payload to get simple quote response containing the last sales price for stock. You can 
+use the `getSimpleQuote` operation.
 
     ```xml
     <ser:getSimpleQuote xmlns:ser="http://services.samples">
@@ -72,6 +84,7 @@ Send the payloads listed below as SOAP messages:
     ```
 
 -   Send the following payload to get quote reports for the stock over a number of days (i.e. last 100 days of the year).
+You can use the `getFullQuote` operation.
 
     ```xml
     <ser:getFullQuote xmlns:ser="http://services.samples" xmlns:xsd="http://services.samples/xsd">
@@ -82,7 +95,7 @@ Send the payloads listed below as SOAP messages:
     ```
 
 -   Send the following payload as an order for stocks using a
-    one way request
+    one way request. For this you can use placeOrder operation.
 
     ```xml
     <ser:placeOrder xmlns:ser="http://services.samples" xmlns:xsd="http://services.samples/xsd">
@@ -95,7 +108,7 @@ Send the payloads listed below as SOAP messages:
     ```
 
 -   Send the following paylaod to get a market activity report
-    for the day (i.e. quotes for multiple symbols)
+    for the day (i.e. quotes for multiple symbols). You can use the `getMarketActivity` operation.
 
     ```xml
     <ser:getMarketActivity xmlns:ser="http://services.samples" xmlns:xsd="http://services.samples/xsd">
