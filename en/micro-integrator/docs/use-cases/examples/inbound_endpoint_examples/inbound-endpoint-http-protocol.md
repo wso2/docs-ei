@@ -36,6 +36,13 @@ Following are the integration artifacts that we can used to implement this scena
 ```
 ## Build and run
 
+Create the artifacts:
+
+1. [Set up WSO2 Integration Studio](../../../../develop/installing-WSO2-Integration-Studio).
+2. [Create an ESB Solution project](../../../../develop/creating-projects/#esb-config-project)
+3. Create a [mediation sequence](../../../../develop/creating-artifacts/creating-reusable-sequences) and [inbound endpoint](../../../../develop/creating-artifacts/creating-an-inbound-endpoint) with configurations given in the above example.
+4. [Deploy the artifacts](../../../../develop/deploy-and-run) in your Micro Integrator.
+
 Set up the back-end service:
 
 1. Download the [stockquote_service.jar](https://github.com/wso2-docs/WSO2_EI/blob/master/Back-End-Service/stockquote_service.jar).
@@ -44,13 +51,6 @@ Set up the back-end service:
     ```bash
     java -jar stockquote_service.jar
     ```
-
-Create the artifacts:
-
-1. [Set up WSO2 Integration Studio](../../../../develop/installing-WSO2-Integration-Studio).
-2. [Create an ESB Solution project](../../../../develop/creating-projects/#esb-config-project)
-3. Create a [mediation sequence](../../../../develop/creating-artifacts/creating-reusable-sequences) and [inbound endpoint](../../../../develop/creating-artifacts/creating-an-inbound-endpoint) with configurations given in the above example.
-4. [Deploy the artifacts](../../../../develop/deploy-and-run) in your Micro Integrator.
 
 Invoke the inbound endpoint with the below request.
 
@@ -78,7 +78,6 @@ User-Agent: Apache-HttpClient/4.1.1 (java 1.5)
 </soapenv:Envelope>
 ```
 
-Inbound endpoint will capture any request coming through 8085 port and divert it to TestIn sequence. 
+The inbound endpoint will capture any request coming through the `8085` port and divert it to the `TestIn` sequence. 
 
-For further details analyze the output debug messages for the actions in the dumb client mode. You will see that the Micro Integrator receives a message when the Micro Integrator Inbound is set as the ultimate receiver. You will also see the response from the back
-end in the client.
+For further details, analyze the output debug messages for the actions in the dumb client mode. You will see that the Micro Integrator receives a message when the Micro Integrator Inbound is set as the ultimate receiver. You will also see the response from the backend in the client.
