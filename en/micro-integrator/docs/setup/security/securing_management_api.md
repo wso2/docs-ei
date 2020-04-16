@@ -112,9 +112,35 @@ A file-based user store is included for the [authentication handler](#user-authe
 </UserStore>
 ```
 
+### Adding users to the User Store
+
+Insert the below config to the `deployment.toml` file with users you need to add.
+
+```yaml
+[[management_api.handler.user_store.users]]
+user.name = "user-1"
+user.password = "pwd-1"
+
+[[management_api.handler.user_store.users]]
+user.name = "user-2"
+user.password = "pwd-2"
+
+[[management_api.handler.user_store.users]]
+user.name = "user-3"
+user.password = "pwd-3"
+```
+
 Update this configuration to add/remove users for the management API. You can [encrypt the plain text passwords](../../../setup/security/encrypting_plain_text) using **secure vault**.
 
-To **disable** the file-based user store, remove this section from the `internal-apis.xml` file. When the file-based user store is disabled, the [external user store](../../../setup/user_stores/setting_up_ro_ldap) that is configured for the Micro Integrator will function as the management API's user store.
+To **disable** the file-based user store, add the below section to the file `deployment.toml`. 
+
+```yaml
+[management_api.handler.file_user_store]
+enable = false
+```
+
+When the file-based user store is disabled, the [external user store](../../../setup/user_stores/setting_up_ro_ldap) 
+that is configured for the Micro Integrator will function as the management API's user store.
 
 ## CORS Configurations
 
@@ -129,14 +155,13 @@ The default configuration allows all origins (denoted by the `*` symbol) as show
        <allowedHeaders>Authorization</allowedHeaders>
  </cors>
 ```
-If required, you can remove the wild card and add specific origins as a comma-separated list. You can also add more header values in a comma separated list (same as for origins).
+If required, you can modify this by adding the following configurations to the `deployment.toml` file.
 
-```xml
-<cors>
-       <enabled>true</enabled>
-       <allowedOrigins>https://127.0.0.1:9743</allowedOrigins>
-       <allowedHeaders>Authorization</allowedHeaders>
- </cors>
+```yaml
+[management_api.cors]
+enabled = true
+allowed_origins = "https://127.0.0.1:9743,https://wso2.com:9743"
+allowed_headers = "Authorization"
 ```
 
 ## Securing API login/logout
