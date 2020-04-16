@@ -10,7 +10,7 @@ The following diagram illustrates all the required functionality of the Kafka se
 
 <img src="../../../../assets/img/connectors/Kafkainboundendpoint.png" title="Kafka inbound endpoint" width="800" alt="Kafka inbound endpoint"/>
 
-If you do not want to build this yourself, you can simply [get the project](#get-the-project) and run it.
+If you do not want to configure this yourself, you can simply [get the project](#get-the-project) and run it.
 
 ## Configure inbound endpoint using WSO2 Integration Studio
 

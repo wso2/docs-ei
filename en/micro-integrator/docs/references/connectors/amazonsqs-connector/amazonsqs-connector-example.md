@@ -11,7 +11,7 @@ It has a single HTTP API resource, which is `sendToQueue`.
 
   <img src="../../../../assets/img/connectors/AmazonSQS-Connector.png" title="AmazonSQS-Connector" width="800" alt="AmazonSQS-Connector"/>
 
-If you do not want to build this yourself, you can simply [get the project](#get-the-project) and run it.
+If you do not want to configure this yourself, you can simply [get the project](#get-the-project) and run it.
 
 ## Setting up the environment 
 

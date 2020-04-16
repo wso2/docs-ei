@@ -14,7 +14,7 @@ following operations:
 
 The user calls the Salesforcerest API. It invoke the **create** sequence and create a new account in Salesforce. Then through the **retrieve** sequence, it displays all the existing account details to the user. 
 
-If you do not want to build this yourself, you can simply [get the project](#get-the-project) and run it.
+If you do not want to configure this yourself, you can simply [get the project](#get-the-project) and run it.
 
 ## Configure the connector in WSO2 Integration Studio
 Follow these steps to set up the ESB Solution Project and the Connector Exporter Project. 

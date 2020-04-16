@@ -19,7 +19,7 @@ todo : add an image
 
 * `/search` : This will performs a search for one or more LDAP entities with the specified search keys.
 
-If you do not want to build this yourself, you can simply [get the project](#get-the-project) and run it.
+If you do not want to configure this yourself, you can simply [get the project](#get-the-project) and run it.
 
 ## Configure the connector in WSO2 Integration Studio
 
