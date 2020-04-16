@@ -6,7 +6,7 @@ The WSO2 ServiceNow connector allows you to access the ServiceNow REST API throu
 
 ## What you'll build
 
-This example explains how to use ServiceNow Connector to create records in a table and retrieve its information. Assume your organization uses ServiceNow support and you need to create an incident. In order to do that we can use the tableAPI which is a Rest API. This can be easily done using WSO2 ServiceNow connector. Whenever you need to raise an incident at ServiceNow, the above API can be called with the required information.
+This example explains how to use ServiceNow Connector to create records in a table and retrieve its information. Assume your organization uses ServiceNow support and you need to create an incident. In order to do that we can use the tableAPI, which is a REST API. This can be easily done using WSO2 ServiceNow connector. Whenever you need to raise an incident at ServiceNow, the above API can be called with the required information.
 
 It will have two HTTP API resources, which are `postRecord` and `readRecord`. 
 
@@ -16,7 +16,7 @@ It will have two HTTP API resources, which are `postRecord` and `readRecord`.
 
 * `/readRecord `: It reads the detailed information about the created incident record in the incident table.
 
-If you do not want to build this yourself, you can simply [get the project](#get-the-project) and run it.
+If you do not want to configure this yourself, you can simply [get the project](#get-the-project) and run it.
 
 ## Setting up the environment 
 

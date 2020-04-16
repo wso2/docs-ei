@@ -18,7 +18,7 @@ It will have two HTTP API resources, which are `create` and `read`.
 * `/read `: It will first check if the file exists. If so it will read the content of the file. 
     <img src="../../../../assets/img/connectors/FileConnector-02.png" title="Adding a Rest API" width="800" alt="Adding a Rest API"/>
 
-If you do not want to build this yourself, you can simply [get the project](#get-the-project) and run it.
+If you do not want to configure this yourself, you can simply [get the project](#get-the-project) and run it.
 
 ## Configure the connector in WSO2 Integration Studio
 

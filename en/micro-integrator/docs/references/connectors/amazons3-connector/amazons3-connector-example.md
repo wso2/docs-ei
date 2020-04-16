@@ -22,7 +22,7 @@ To invoke each operation user uses the same API.
 
 <img src="../../../../assets/img/connectors/Amazon-s3-diagram.png" title="Overview of Amazon S3 use case" width="800" alt="Amazon S3 use case"/>
 
-If you do not want to build this yourself, you can simply [get the project](#get-the-project) and run it.
+If you do not want to configure this yourself, you can simply [get the project](#get-the-project) and run it.
 
 ## Setting up the environment 
 
