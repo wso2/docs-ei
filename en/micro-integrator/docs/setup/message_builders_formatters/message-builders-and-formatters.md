@@ -229,9 +229,9 @@ processed in the WSO2 Micro Integrator mediation flow.
 Similarly, you can write your own message formatter to manipulate the
 outgoing payload from the WSO2 Micro Integrator.
 
-When creating a custom message formatter, you will need to create a class implementing the `org.apache.axis2.transport.MessageFormatter` interface and then override the `writeTo` method. You can implement your logic within the `writeTo` method.
+When creating a custom message formatter, you will need to create a class implementing the `org.apache.axis2.transport.MessageFormatter` interface and then override the `writeTo` method. You can implement your logic within the `writeTo` method. Let's use the `org.apache.axis2.transport.http.HTMLMessageFormatter` class to implement the `org.apache.axis2.transport.MessageFormatter` interface. 
 
-Let `org.apache.axis2.transport.http.HTMLMessageFormatter` be the class that implements the `org.apache.axis2.transport.MessageFormatter` interface. To enable this custom message formatter for content type text/html, add the following line in the deployment.toml file:
+To enable this custom message formatter for content type `text/html`, add the following configuration to the `deployment.toml` file:
 
 ```toml
 [[custom_message_formatters]]
