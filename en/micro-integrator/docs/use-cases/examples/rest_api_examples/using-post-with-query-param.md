@@ -11,7 +11,7 @@ Following is a sample REST Api configuration that we can used to implement this 
      <inSequence>
         <send>
             <endpoint>
-                <address uri="http://localhost:9090/grandoaks/categories/surgery"/>
+                <address uri="http://localhost:8292/grandoaks/categories/surgery"/>
             </endpoint>
         </send>
      </inSequence>
@@ -39,7 +39,7 @@ Set up the back-end service:
     java -jar Hospital-Service-2.0.0-EI7.jar
     ```
     
-3. Start tcpmon and configure it to listen to port 8292 of your local machine. It is also important to set the target host name and port as required. In this case, the target port needs to be set to 8290 (i.e. the port where the back-end service is running). We will now test the connection by sending a POST message that includes a payload inside an HTML body.
+3. Start tcpmon and configure it to listen to port 8292 of your local machine. It is also important to set the target host name and port as required. In this case, the target port needs to be set to 9090 (i.e. the port where the back-end service is running). We will now test the connection by sending a POST message that includes a payload inside an HTML body.
 
 Add some query parameters to the URL and execute the following command:
 
@@ -51,8 +51,8 @@ When you execute this command, you can see the following output:
 
 ```bash
 > POST /healthcare/reserve?param1=value1 HTTP/1.1
-> Host: localhost:8290
-> User-Agent: curl/7.54.0
+> Host: localhost:8292
+> User-Agent: Synapse-PI-HttpComponents-NIO
 > Accept: */*
 > Content-Type: application/json
 ```

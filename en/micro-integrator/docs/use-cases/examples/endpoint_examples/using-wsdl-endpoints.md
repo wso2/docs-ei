@@ -16,7 +16,7 @@ Following is a sample REST API configuration that we can used to implement this 
             <call>
                 <endpoint>
                     <wsdl uri="file:/path/to/sample_proxy_1.wsdl"
-                        service="SimpleStockQuoteService" port="SimpleStockQuoteServiceHttpSoap11Endpoint"/>
+                        service="SimpleStockQuoteService" port="SimpleStockQuoteServiceHttpSoapDefaultEndpoint"/>
                 </endpoint>
             </call>
             <respond/>
@@ -100,8 +100,8 @@ in above sample is given below.
 
 ```xml
 <wsdl:service name="SimpleStockQuoteService">
-   <wsdl:port name="SimpleStockQuoteServiceHttpSoap11Endpoint" binding="ns:SimpleStockQuoteServiceSoap11Binding">
-            <soap:address location="http://localhost:9000/services/SimpleStockQuoteService.SimpleStockQuoteServiceHttpSoap11Endpoint"/>
+   <wsdl:port name="SimpleStockQuoteServiceHttpSoapDefaultEndpoint" binding="ns:SimpleStockQuoteServiceSoap11Binding">
+            <soap:address location="http://localhost:9000/services/SimpleStockQuoteService"/>
    </wsdl:port>
    <wsdl:port name="SimpleStockQuoteServiceHttpSoap12Endpoint" binding="ns:SimpleStockQuoteServiceSoap12Binding">
             <soap12:address location="http://localhost:9000/services/SimpleStockQuoteService.SimpleStockQuoteServiceHttpSoap12Endpoint"/>
@@ -111,4 +111,4 @@ in above sample is given below.
 
 According to the above WSDL, the service and port specified in the
 configuration refers to the endpoint address:
-`http://localhost:9000/services/SimpleStockQuoteService.SimpleStockQuoteServiceHttpSoap11Endpoint`
+`http://localhost:9000/services/SimpleStockQuoteService`
