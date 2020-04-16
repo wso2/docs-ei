@@ -91,7 +91,7 @@ Now open `low_productions.txt` file (i.e., the file that you specified via the `
 
 Once you try out this quick start guide, you can proceed to one of the following sections.
 
-- Learn the basic functionality of the Streaming Integrator in 20 minutes by [Creating Your First Siddhi Application](quick-start-guide-101.md)
+- Learn the basic functionality of the Streaming Integrator in less than 30 minutes by [Creating Your First Siddhi Application](getting-started/getting-started-guide-overview.md)
 
 - To understand how to trigger integration flows via the Micro Integrator based on the results you generate via the Streaming Integrator, see [Getting SI Running with MI in Five Minutes](hello-world-with-mi.md).
 
