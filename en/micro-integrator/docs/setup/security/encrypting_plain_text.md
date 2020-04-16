@@ -73,7 +73,7 @@ To change any password which we have encrypted already, follow the below steps:
 2. Open a command prompt and go to the MI_HOME/bin/ directory, where the cipher tool scripts (for Windows and Linux) are stored.
 3. Execute the following command for your OS:
     * On Linux: `./ciphertool.sh -Dchange`
-    * On Windows: `./ciphertool.bat -Dchange`
+    * On Windows: `ciphertool.bat -Dchange`
 4. It will prompt for the primary keystore password. Enter the keystore password (which is "wso2carbon" for the default keystore).
 5. The alias values of all the passwords that you encrypted will now be shown in a numbered list.
 6. The system will then prompt you to select the alias of the password which you want to change. Enter the list number of the password alias.
