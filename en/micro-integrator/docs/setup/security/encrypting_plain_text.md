@@ -25,7 +25,7 @@ Note that you can customize the default secure vault configurations in the produ
 
 2. Open a terminal, navigate to the MI_HOME/bin/ directory, and execute the following command (You must first enable the Cipher tool for the product by executing the `-Dconfigure` command with the cipher tool script as shown below).
     * On Linux: `./ciphertool.sh -Dconfigure`
-    * On Windows: `./ciphertool.bat -Dconfigure`
+    * On Windows: `ciphertool.bat -Dconfigure`
 
 3. Go back to the deployment.toml file and see that the alias passwords are encrypted.
 
