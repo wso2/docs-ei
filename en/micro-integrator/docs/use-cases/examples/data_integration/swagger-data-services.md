@@ -24,7 +24,7 @@ This example demonstrates how a custom Swagger definition is published for a RES
 Following is a sample data service configuration with a custom Swagger definition. See the instructions on how to [build and run](#build-and-run) this example.
 
 !!! Note
-    The custom Swagger file is saved to the Micro Integrator's registry. The `publishSwagger` element in the data service configuration specifies the registry path. In this example, we are storing the Swagger definition in the <b>governance</b> registry as shown below.
+    The custom Swagger file (JSON file) is saved to the Micro Integrator's registry. The `publishSwagger` element in the data service configuration specifies the registry path. In this example, we are storing the Swagger definition in the <b>governance</b> registry as shown below.
 
 ```xml
 <data enableBatchRequests="true" name="RDBMSDataService" serviceGroup="" serviceNamespace="">
