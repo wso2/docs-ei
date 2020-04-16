@@ -14,7 +14,7 @@ As an open source project, WSO2 EI welcomes contributions from the community. To
 
     If the CLA gets changed for some (unlikely) reason, you will be presented with the new CLA text after sending your first PR after the change.
 
-2. Fork this repo, make your changes, and send in a pull request. Make sure you are contributing to the correct branch (for example, if your change is relevant to WSO2 EI 7.0.0 documentation, you should commit your changes to the 7.0.0 branch).
+2. Fork this repository, make your changes, and send in a pull request. Make sure you are contributing to the correct branch (for example, if your change is relevant to WSO2 EI 7.0.0 documentation, you should commit your changes to the 7.0.0 branch).
 
 Check the issue tracker for open issues that interest you. We look forward to receiving your contributions.
 
