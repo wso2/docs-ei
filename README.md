@@ -24,7 +24,7 @@ Check the issue tracker for open issues that interest you. We look forward to re
 
 If you are using MacOS, you probably already have a version of Python installed on your machine. You can verify this by running the following command.
 
-`$ python --version`
+`python --version`
 `Python 2.7.2`
 
 
@@ -37,21 +37,21 @@ Once you are done, you will have two versions of Python on your machine; a versi
 
 Pip is most likely installed by default. However, you may need to upgrade pip to the latest version:
 
-`$ pip install --upgrade pip`
+`pip install --upgrade pip`
 
 If pip is not already installed on your machine, download get-pip.py to install pip for the first time. Then run the following command to install it:
 
-`$ python get-pip.py`
+`python get-pip.py`
 
 ### 3. Install pip packages
 
-`$ pip install mkdocs`
+`pip install mkdocs`
 
-`$ pip install mkdocs-material`
+`pip install mkdocs-material`
 
-`$ pip install markdown-include`
+`pip install markdown-include`
 
-`$ pip install pymdown-extensions`
+`pip install pymdown-extensions`
 
 ### 4. Run mkdocs 
 
@@ -59,7 +59,7 @@ Clone this GitHub repository.
 
 Navigate to the branch you want and the directory you want. For example, `cd docs-ei/en/micro-integrator/` in the `7.0.0` branch. Then run the following command:
 
-`$ mkdocs serve --dirtyreload`
+`mkdocs serve --dirtyreload`
   
 Open the URL that is generated in a new browser window to view the sample site. 
 
