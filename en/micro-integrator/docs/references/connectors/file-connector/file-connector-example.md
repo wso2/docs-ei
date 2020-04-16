@@ -28,7 +28,9 @@ Follow these steps to set up the ESB Solution Project and the Connector Exporter
 
 {!references/connectors/importing-connector-to-integration-studio.md!} 
 
-1. Right click on the created ESB Solution Project and select, -> **New** -> **Rest API** to create the REST API. 
+## Creating the Integration Logic
+
+1. Right click on the created Integration Project and select, -> **New** -> **Rest API** to create the REST API. 
     <img src="/assets/img/connectors/adding-an-api.png" title="Adding a Rest API" width="800" alt="Adding a Rest API"/>
 
 2. Provide the API name as File Connector and the API context as `/fileconnector`.
@@ -40,7 +42,7 @@ Follow these steps to set up the ESB Solution Project and the Connector Exporter
     - source - location of the file is going to be created
     - inputContent - what needs to be written to the file. 
 
-5. The above two parameters are saved to properties. Therefore drag and drop property mediator to the design view and do as shown below. 
+5. The above two parameters are saved to properties. Therefore drag and drop property mediator to the design view and do as shown below. For further reference, you can read about [Property mediator](https://ei.docs.wso2.com/en/latest/micro-integrator/references/mediators/property-Mediator/).
     <img src="/assets/img/connectors/filecon-1.png" title="Adding a property" width="800" alt="Adding a property"/>
 
 6. Add the another Property Mediator to get the InputContent value copied. Do the same as in the above step. 
@@ -48,7 +50,7 @@ Follow these steps to set up the ESB Solution Project and the Connector Exporter
     - Value Type: EXPRESSION
     - Value Expression: json-eval($.inputContent)
 
-7. Now drag and drop create operation of the File Connector to the Design View as shown below. Set the parameter values as below. We use the property values that we add in step 10 and 11 in this step as `$ctx:source` and `$ctx:inputContent`.
+7. Now drag and drop create operation of the File Connector to the Design View as shown below. Set the parameter values as below. We use the property values that we add in step 4 and 5 in this step as `$ctx:source` and `$ctx:inputContent`.
     <img src="/assets/img/connectors/file-con2.png" title="Adding createFile operation" width="800" alt="Adding createFile operation"/>
 
 8. Finally add a Respond Mediator as user needs to see the response. Now we are done with creating the first API resource, and it is displayed as below. 
@@ -56,7 +58,8 @@ Follow these steps to set up the ESB Solution Project and the Connector Exporter
 
 9. Now we can create the next API resource which is `/read`. From this we are going to read the file content from a user specified location. 
 
-10. As described in step 8, drag and drop another API resource to the design view. Use the URL template as `/read`. The method will be POST. 
+10. As described in step 3, drag and drop another API resource to the design view. Use the URL template as `/read`. The method will be POST. 
+    <img src="/assets/img/connectors/apiResource.png" title="Adding an API resource" width="800" alt="Adding an API resource"/>
 
 11. In this operation user sends the file location as the request payload. It will be written to property as we did in step 10. 
     <img src="/assets/img/connectors/filecon4.png" title="Adding property mediator" width="800" alt="Adding property mediator"/>
@@ -112,9 +115,9 @@ Follow these steps to set up the ESB Solution Project and the Connector Exporter
                         <log>
                             <property name="notext" value="&quot;File does not exist&quot;"/>
                         </log>
+                        <drop/>
                     </default>
                 </switch>
-                <drop/>
             </inSequence>
             <outSequence/>
             <faultSequence/>
