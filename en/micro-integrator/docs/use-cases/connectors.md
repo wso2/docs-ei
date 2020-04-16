@@ -62,7 +62,7 @@ The following are of documented connectors available from the [connector store](
             <td>This connector enables you to send messages to a Kafka broker via Kafka topics. This uses the <a href="http://kafka.apache.org/documentation.html#producerapi">Producer API</a>.</td>
         </tr>
         <tr>
-            <td><a href="../../references/connectors/amazonsqs-connector/kafka-inbound-endpoint-example/">Kafka Inbound Endpoint</a></td>
+            <td><a href="../../references/connectors/kafka-connector/kafka-inbound-endpoint-example/">Kafka Inbound Endpoint</a></td>
             <td>The Kafka inbound endpoint of WSO2 EI acts as a message consumer. It creates a connection to ZooKeeper and requests messages for either a topic/s or topic filters.</td>
         </tr>
         <tr>
