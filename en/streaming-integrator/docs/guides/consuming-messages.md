@@ -191,9 +191,28 @@ define stream ConsumeSalesTotalsStream (transNo int, product string, price int, 
 ```
 
 ### Supported event source types
-<source categories table here> 
+
+The supported event source types are as follows:
+
+|**Source Category**        |**Supported Extensions**           |
+|---------------------------|-----------------------------------|
+|Streaming Messaging Systems| - [io-nats](https://siddhi-io.github.io/siddhi-io-nats/)<br/> - [io-kafka](https://siddhi-io.github.io/siddhi-io-kafka/)<br/> - [io-tcp](https://siddhi-io.github.io/siddhi-io-tcp/)<br/> - [io-jms](https://siddhi-io.github.io/siddhi-io-jms/)|
+|Software and Sensors       | - [io-http](https://siddhi-io.github.io/siddhi-io-http/)<br/> - [io-email](https://siddhi-io.github.io/siddhi-io-email/)|
+|Cloud                      | - [io-googlepubsub](https://siddhi-io.github.io/siddhi-io-googlepubsub/)|
+|Databases                  | - [io-cdc](https://siddhi-io.github.io/siddhi-io-cdc/)<br/> - [io-prometheus](https://siddhi-io.github.io/siddhi-io-prometheus/)|
+|Files                      | - [io-file](https://siddhi-io.github.io/siddhi-io-file/)|
 
 ### Supported message formats
+
+You can receive messages in any of the following formats via the relevant Siddhi extensions. Click on the format for more details about the Siddhi extension.
+
+- [JSON](https://siddhi-io.github.io/siddhi-map-json/)
+- [XML](https://siddhi-io.github.io/siddhi-map-xml/)
+- [Text](https://siddhi-io.github.io/siddhi-map-text/)
+- [Avro](https://siddhi-io.github.io/siddhi-map-avro/)
+- [KeyValue](https://siddhi-io.github.io/siddhi-map-keyvalue/)
+- [CSV](https://siddhi-io.github.io/siddhi-map-csv/)
+- [Binary](https://siddhi-io.github.io/siddhi-map-binary/)
 
 #### Consuming a message in default format
 
