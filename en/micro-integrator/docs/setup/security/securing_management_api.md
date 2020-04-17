@@ -5,16 +5,14 @@ the **admin services** that were available in WSO2 EI 6.x.x.
 
 The [Micro Integrator CLI](../../../administer-and-observe/using-the-command-line-interface) and the [Micro Integrator dashboard](../../../administer-and-observe/working-with-monitoring-dashboard) communicates with this service to
 obtain administrative information of the server instance. If required, you can [directly access the management API](../../../administer-and-observe/working-with-management-api) without using the dashboard or CLI.
-
-The management API of the Micro Integrator is configured using the `internal-apis.xml` file (stored in the `MI_HOME/conf/` directory).
  
-## JWT-based User Authentication
+## JWT-based user authentication
 
 JWT-based user authentication is enabled in the Micro Integrator by default. Note that only Authentication is allowed (no role-based Authorization).
 
 If you want to update the defualt settings, open the `deployment.toml` file (stored in the `MI_HOME/conf/` directory) and add the following:
 
-### Disable user authentication**
+### Disable user authentication
 
 If security is **not required**, you can simply disable the handler for the Micro Integrator:
 
@@ -23,7 +21,7 @@ If security is **not required**, you can simply disable the handler for the Micr
 enable = false
 ```
 
-### Token store configurations**
+### Update token store configurations
 
 ```toml
 [management_api.handler.token_store_config]
@@ -53,7 +51,7 @@ remove_oldest_token_on_overflow = true
     </tr>
 </table>
 
-### Token configurations**
+### Update token configurations
 
 Settings for the JWT token issued.
 
@@ -78,7 +76,7 @@ size = "2048"
     </tr>
 </table>
 
-### Adding users to the User Store
+### Adde users
 
 The management API uses a file-based user store by default. You can open the `deployment.toml` file and add new users as shown below. You can [encrypt the plain text](../../../setup/security/encrypting_plain_text) using **secure vault**.
 
@@ -96,12 +94,12 @@ user.name = "user-3"
 user.password = "pwd-3"
 ```
 
-### Disabling the file-based user store
+### Disable the file-based user store
 
 When the file-based user store is disabled, the [external user store](../../../setup/user_stores/setting_up_ro_ldap) 
 that is configured for the Micro Integrator will function as the management API's user store.
 
-To **disable** the file-based user store, add the below section to the `deployment.toml`. 
+To **disable** the file-based user store, add the following to the `deployment.toml` file.
 
 ```toml
 [management_api.handler.file_user_store]
@@ -112,7 +110,7 @@ enable = false
 
 CORS is enabled for the management API by default. The default configuration allows all origins (denoted by the `*` symbol). The `Authorization` header is also enabled by default to cater to the functionalities of the the Micro Integrator dashboard.
  
-If required, you can modify this by adding the following configurations to the `deployment.toml` file.
+Add the following to the `deployment.toml` file and update the values.
 
 ```toml
 [management_api.cors]
