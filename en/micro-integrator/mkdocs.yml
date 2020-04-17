@@ -207,6 +207,7 @@ nav:
         - 'Setting up a File-Based Registry' : 'setup/deployment/file_based_registry.md'
       - 'Migrating from WSO2 EI 6.x': 'setup/deployment/migrating-from-ei-6.x.x.md' 
       - 'Product Deployment Checklist': 'setup/deployment/deployment_checklist.md'
+      - 'Managing Configurations across Environments': 'setup/dynamic_server_configurations.md'
       - Security Hardening :
         - Setting up Keystores:
           - 'Creating New Keystores' : 'setup/security/creating_keystores.md'
