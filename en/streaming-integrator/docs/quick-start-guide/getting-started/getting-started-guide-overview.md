@@ -18,8 +18,8 @@ WSO2 Streaming Integrator allows data to be received from multiple sources such 
 
 To understand how Streaming Integration is performed via the WSO2 Streaming Integrator, follow the sections below.
 
-[**Step 1: Download and Install Streaming Integrator**](download-install-and-start-si.md)
-[**Step 2: Create a Siddhi Application**](create-the-siddhi-application.md)
-[**Step 3: Test the Siddhi Application**](test-siddhi-application.md)
-[**Step 4: Deploy the Siddhi Application**](deploy-siddhi-application.md)
-[**Extend Streaming Integrator**](extend-si.md)
+[**Step 1: Download and Install Streaming Integrator**](download-install-and-start-si.md)<br/><br/>
+[**Step 2: Create a Siddhi Application**](create-the-siddhi-application.md)<br/><br/>
+[**Step 3: Test the Siddhi Application**](test-siddhi-application.md)<br/><br/>
+[**Step 4: Deploy the Siddhi Application**](deploy-siddhi-application.md)<br/><br/>
+[**Extend Streaming Integrator**](extend-si.md)<br/><br/>

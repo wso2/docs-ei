@@ -10,4 +10,4 @@
 
 ## What's Next?
 
-Once you have successfully downloaded the WSO2 Streaming Integrator, you can proceed to [**Step 2: Create a Siddhi Application**](create-the-siddhi-application.md).
+Once you have successfully downloaded the WSO2 Streaming Integrator, you can proceed to [Step 2: Create a Siddhi Application](create-the-siddhi-application.md).

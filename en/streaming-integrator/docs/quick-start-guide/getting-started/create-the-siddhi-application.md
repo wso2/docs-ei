@@ -23,13 +23,13 @@ The following image depicts the procedure to be followed by the Siddhi applicati
         
    The Streaming Integration Tooling opens as shown below.
 
-   ![Welcome Page](../images/Creating-Siddhi-Applications/Welcome-Page.png)
+   ![Welcome Page](../../images/Creating-Siddhi-Applications/Welcome-Page.png)
         
 4. Open a new Siddhi file by clicking **New**.
 
     The new file opens as follows.
     
-    ![New Siddhi File](../images/Creating-Siddhi-Applications/New_Siddhi_File.png)
+    ![New Siddhi File](../../images/Creating-Siddhi-Applications/New_Siddhi_File.png)
     
 5. Specify a name for the new Siddhi application via the `@App:name` annotation, and a description via the `@App:description` annotation.
 
@@ -100,4 +100,4 @@ insert into AverageTempStream;
 
 ## What's Next?
 
-To test the `TemperatureApp` Siddhi application you created, proceed to [**Step 3: Test the Siddhi Application**](test-siddhi-application.md).
+To test the `TemperatureApp` Siddhi application you created, proceed to [Step 3: Test the Siddhi Application](test-siddhi-application.md).
