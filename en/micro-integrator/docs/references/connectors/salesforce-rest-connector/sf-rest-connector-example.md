@@ -1,5 +1,5 @@
 # Salesforce Rest API Connector Example
-salesforce
+
 The Salesforce REST Connector allows you to work with records in Salesforce, a web-based service that allows organizations to manage contact relationship management (CRM) data. You can use the Salesforce connector to create, query, retrieve, update, and delete records in your organization's Salesforce data. The connector uses the [Salesforce REST API](https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/intro_what_is_rest_api.htm) to interact with Salesforce.
 
 ## What you'll build
@@ -9,7 +9,7 @@ following operations:
 
 * Create an Account.
 
-  The user sends the request payload which includes with `sObjects` (Any object that can be stored in the Lightning platform database), to create a new Account object in the sales force. This request is sent to WSO2 EI by invoking the Salesforce connector API. 
+  The user sends the request payload that includes sObjects (any object that can be stored in the Lightning platform database), to create a new Account object in Salesforce. This request is sent to WSO2 EI by invoking the Salesforce connector API. 
 
 * Execute a SOQL query to retrieve the Account Name and ID in all the existing Accounts.
 
@@ -44,7 +44,7 @@ Follow these steps to set up the ESB Solution Project and the Connector Exporter
     
         1. Follow these steps to [generate the Access Tokens for Salesforce](sf-access-token-generation.md) and obtain the Client Id, Client Secret, Access Token, and Refresh Token.
     
-        2. Navigate into the **Palette** pane and select the graphical operations icons listed under **Salesforce Connector** section. Then drag and drop the `init` operation into the Design pane.
+        2. Navigate into the **Palette** pane and select the graphical operations icons listed under **Salesforce Connector** section. Then drag and drop the `init` operation into the Design panel.
         
             <img src="../../../../assets/img/connectors/salesforce-drag-and-drop-init.png" title="Drag and drop init operation" width="800" alt="Drag and drop init operation"/>
         
@@ -56,27 +56,21 @@ Follow these steps to set up the ESB Solution Project and the Connector Exporter
             - **refreshToken** : Value of the refresh token.
        
             <img src="../../../../assets/img/connectors/salesforce-api-init-operation-sequnce.png" title="Add values to the init operation" width="800" alt="Add values to the init operation"/>
-    
-        4. The above four parameters are saved to the properties section and add the values into the `init` operation.
-    
-            <img src="../../../../assets/img/connectors/salesforce-api-create-operation-sequnce.png" title="Add values to the create operation" width="800" alt="Add values to the create operation"/>
-     
-    2. Setting up the created operation.
+           
+    2. Setting up the `create` operation.
 
-        1. Then we will setup the `create` sequence configurations. In this operation we are going to create a `sObjects` in the Salesforce account. An `SObject` represents a specific table in the database that you can discretely query. It describes the individual metadata for the specified object. Please find the `create` operation parameters listed here.
+        1. Setup the `create` operation configurations. In this operation we are going to create `sObjects` in the Salesforce account. An `sObject` represents a specific table in the database that you can discretely query. It describes the individual metadata for the specified object. Please find the `create` operation parameters listed here.
        
             - **sObjectName** : Name of the sObject which we need to create in the salesforce.
             - **fieldAndValue** : The field and value need to store in the created salesforce sObject.
         
-            While invoking the API, the above two parameters values come as a user input.
+            While invoking the API, the above two parameters values are extracted out of the user input.
     
-        2. Navigate into the **Palette** pane and select the graphical operations icons listed under **Salesforce Connector** section. Then drag and drop the `create` operation into the Design pane.
+        2. Navigate into the **Palette** pane and select the graphical operations icons listed under **Salesforce Connector** section. Then drag and drop the `create` operation into the Design panel.
     
             <img src="../../../../assets/img/connectors/salesforce-drag-and-drop-create.png" title="Drag and drop create operation" width="800" alt="Drag and drop create operations"/>
     
-        3. To get the input values in to the API we can use the [property mediator](https://ei.docs.wso2.com/en/next/micro-integrator/references/mediators/property-Mediator/) .
-
-        4. Navigate into the **Palette** pane and select the graphical mediators icons listed under **Mediators** section. Then drag and drop the `Property` mediators into the Design pane as shown bellow.
+        3. To get the input values into the API, we can use the [property mediator](https://ei.docs.wso2.com/en/next/micro-integrator/references/mediators/property-Mediator/). Navigate into the **Palette** pane and select the graphical mediators icons listed under the **Mediators** section. Then drag and drop the `Property` mediators into the Design panel as shown below.
     
             <img src="../../../../assets/img/connectors/salesforce-api-drag-and-drop-property-mediator.png" title="Add property mediators" width="800" alt="Add property mediators"/>
 
@@ -84,7 +78,7 @@ Follow these steps to set up the ESB Solution Project and the Connector Exporter
     
             > **Note**: That the properties should be add to the pallet before create the operation.
     
-        5. Add the property mediator to capture the `sObjectName` value.The sObjectName type can be used to retrieve the metadata for the Account object using the GET method, or create a new Account object using the POST method. In this example we are going to create a new Account object using the POST method.
+        4. Add the property mediator to capture the `sObjectName` value. The sObjectName type can be used to retrieve the metadata for the Account object using the GET method, or create a new Account object using the POST method. In this example we are going to create a new Account object using the POST method.
    
             - **name** : sObjectName
             - **expression** : json-eval($.sObject)
@@ -92,7 +86,7 @@ Follow these steps to set up the ESB Solution Project and the Connector Exporter
    
             <img src="../../../../assets/img/connectors/salesforce-api-property-mediator-values1.png" title="Add values to capture sObjectName value" width="800" alt="Add values to capture sObjectName value"/>
     
-        6. Add the property mediator to capture the `fieldAndValue` values. The fieldAndValue contains object fields and values that user need to store.
+        5. Add the property mediator to capture the `fieldAndValue` values. The fieldAndValue contains object fields and values that the user needs to store.
    
             - **name** : fieldAndValue
             - **expression** : json-eval($.fieldAndValue)
@@ -100,29 +94,33 @@ Follow these steps to set up the ESB Solution Project and the Connector Exporter
      
             <img src="../../../../assets/img/connectors/salesforce-api-property-mediator-values2.png" title="Add values to capture fieldAndValue value" width="800" alt="Add values to capture fieldAndValue value"/>  
     
-3. Creating the sequence to retrive the salesforce objects created.
+3. Creating the sequence to retrieve the created Salesforce objects.
 
+   For this you need to define a new sequence called `retrieve`. Please follow the steps given in 2 to create a new sequence.
+    
     1. Initialize the connector.
     
-        You can use the generated tokens to initialize the connector. Please follow the steps  given in 2.1 for setting up the `init` operation to the `retrive.xml` sequence. 
+        You can use the generated tokens to initialize the connector. Please follow the steps  given in 2.a for setting up the `init` operation to the `retrive.xml` sequence. 
     
     2. Setting up the retrieve operation.
 
         1. To retrieve data from the created objects in the Salesforce account, you need to add the `query` operation to the `retrieve` sequence. 
     
-            - **queryString** :  This variable contains specified SOQL query. In this sample this SOQL query executes to retrive `id` and `name` from created `Account`. If the query results are too large, the response contains the first batch of results.
+            - **queryString** :  This variable contains the specified SOQL query. In this sample, this SOQL query executes to retrieve `id` and `name` from the created `Account`. If the query results are too large, the response contains the first batch of results.
 
-        2. Navigate into the **Palette** pane and select the graphical operations icons listed under **Salesforce Connector** section. Then drag and drop the `query` operations into the Design pane.      
+        2. Navigate into the **Palette** pane and select the graphical operations icons listed under **Salesforce Connector** section. Then, drag and drop the `query` operations into the Design panel.      
     
             <img src="../../../../assets/img/connectors/salesforce-drag-and-drop-query.png" title="Add query operation to retrive sequnce" width="800" alt="Add query operation to retrive sequnce"/> 
     
-        3. Select the query operation and add `id, name from Account` query to the properties section shown as bellow.
+        3. Select the query operation and add the SOQL query to the properties section shown below.
+           
+            - **SOQL query** : `id` and `name` from `Account` (Retrieve list of `id`s and `name`s from the `Account` type sObject)
     
             <img src="../../../../assets/img/connectors/salesforce-api-retrive-query-operation-sequnce.png" title="Add query to the query operation in retrive sequnce" width="800" alt="Add query to the query operation in retrive sequnce"/>
     
 4. Configure the `salesforcerest API` using the created `create` and `retrive` sequences.
  
-    Now you can select the API which we created in step 1. Navigate into the **Palette** pane and select the graphical operations icons listed under **Defined Sequences** section. Then drag and drop the created `create` and `retrive` sequences to the Design pane.
+    Now you can select the API which we created in step 1. Navigate into the **Palette** pane and select the graphical operations icons listed under **Defined Sequences** section. Then drag and drop the created `create` and `retrive` sequences to the Design panel.
     
     <img src="../../../../assets/img/connectors/salesforce-drag-and-drop-sequencestothe-DesignPane.png" title="Drag and drop sequences to the Design view" width="800" alt="Drag and drop sequences to the Design view"/> 
  
@@ -138,7 +136,7 @@ Follow these steps to set up the ESB Solution Project and the Connector Exporter
     
         <img src="../../../../assets/img/connectors/salesforce-api-design-view.png" title="API Design view" width="800" alt="API Design view"/>
        
-6.  Now you can switch into the Source view and check the XML configuration files of the created API and sequences. 
+> **Note**:  XML configs are auto generated when we drag and drop mediators and connector operations to the design pallet.
    
    **create.xml**
    
