@@ -55,8 +55,8 @@ nav:
         - 'Step 2: Create the Siddhi Application': 'quick-start-guide/getting-started/create-the-siddhi-application.md'
         - 'Step 3: Test the Siddhi Application': 'quick-start-guide/getting-started/test-siddhi-application.md'
         - 'Step 4: Deploy the Siddhi Application': 'quick-start-guide/getting-started/deploy-siddhi-application.md'
-        - 'Extend WSO2 SI': 'quick-start-guide/getting-started/deploy-siddhi-application.md'
-    - 'Running the Streaming Integrator with Micro Integrator': 'quick-start-guide/extend-si.md'
+        - 'Extend WSO2 SI': 'quick-start-guide/getting-started/extend-si'
+    - 'Running the Streaming Integrator with Micro Integrator': 'quick-start-guide/hello-world-with-mi.md'
     - 'Architecture': 'overview/architecture.md'
     - 'Key Concepts': 'concepts/concepts.md'
   - 'Learn':
