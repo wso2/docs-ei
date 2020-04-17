@@ -100,9 +100,9 @@ sh carbondump.sh [-carbonHome path] [-pid of the carbon instance]
 
 For example,
 
-- In Linux: `sh carbondump.sh -carbonHome /home/user/wso2carbon-3.0.0/ -pid 5151`
+- In Linux: `sh carbondump.sh -carbonHome /home/user/wso2ei-<version>/ -pid 5151`
     
-- In Windows: `carbondump.bat -carbonHome c:\wso2carbon-3.0.0\ -pid 5151`
+- In Windows: `carbondump.bat -carbonHome c:\wso2ei-<version>\ -pid 5151`
 
 The tool captures the following information about the system:
 
