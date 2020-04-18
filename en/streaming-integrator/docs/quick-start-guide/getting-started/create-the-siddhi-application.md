@@ -2,7 +2,7 @@
 
 Let's create your first Siddhi application.
 
-For this purpose, you can use the same example of temperature readings via a sensor mentioned in [Understanding Streaming Integration](getting-started-guide-overview.md). You can consider a simple use case where you need to do view the temperature readings on your terminal. Also, instead of viewing all the temperature readings, you want to view the average of every three readings in a sliding manner.
+For this purpose, you can use the same example of temperature readings via a sensor mentioned in [Streaming Integration Overview](getting-started-guide-overview.md). You can consider a simple use case where you need to do view the temperature readings on your terminal. Also, instead of viewing all the temperature readings, you want to view the average of every three readings in a sliding manner.
 
 The following image depicts the procedure to be followed by the Siddhi application you create.
 
