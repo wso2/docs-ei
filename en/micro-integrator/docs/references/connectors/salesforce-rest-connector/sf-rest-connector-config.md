@@ -4,7 +4,7 @@ The following operations allow you to work with the Salesforce REST Connector. C
 
 ---
 
-Salesforce REST API uses the OAuth protocol to allow application users to securely access data without having to reveal their user credentials. For more information on authentication is done in Salesforce see [Understanding Authentication](https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/intro_understanding_authentication.htm).
+Salesforce REST API uses the OAuth protocol to allow application users to securely access data without having to reveal their user credentials. For more information on how authentication is done in Salesforce, see [Understanding Authentication](https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/intro_understanding_authentication.htm).
 
 To use the Salesforce REST connector, add the `<salesforcerest.init>` element in your configuration before carrying out any other Salesforce REST operations. 
 
