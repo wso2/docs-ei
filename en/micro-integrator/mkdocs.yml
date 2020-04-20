@@ -375,8 +375,9 @@ nav:
           - 'ServiceNow Connector Example': 'references/connectors/servicenow-connector/servicenow-connector-example.md'
           - 'Setting up Servicenow Instance': 'references/connectors/servicenow-connector/settingup-servicenow-instance.md'
         - LDAP Connector:
-            - 'Setting up an LDAP Server': 'references/connectors/ldap-connector/ldap-server-configuration.md'
+            - 'Setting up an LDAP Server': 'references/connectors/ldap-connector/setting-up-ldap.md'
             - 'LDAP Connector Example': 'references/connectors/ldap-connector/ldap-connector-example.md'
+            - 'LDAP Connector Configuration': 'references/connectors/ldap-connector/ldap-server-configuration.md'
         - DB Event Listener Inbound Endpoint:
           - 'Database Event Listener Example': 'references/connectors/db-event-inbound-endpoint/db-event-inbound-endpoint-example.md'
           - 'Database Event Listener Configuration': 'references/connectors/db-event-inbound-endpoint/db-event-inbound-endpoint-config.md'
