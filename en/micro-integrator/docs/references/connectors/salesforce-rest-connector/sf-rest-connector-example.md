@@ -9,7 +9,7 @@ following operations:
 
 * Create an Account.
 
-  The user sends the request payload which includes with `sObjects` (Any object that can be stored in the Lightning platform database), to create a new Account object in the sales force. This request is sent to WSO2 EI by invoking the Salesforce connector API. 
+  The user sends the request payload that includes sObjects (any object that can be stored in the Lightning platform database), to create a new Account object in Salesforce. This request is sent to WSO2 EI by invoking the Salesforce connector API. 
 
 * Execute a SOQL query to retrieve the Account Name and ID in all the existing Accounts.
 
