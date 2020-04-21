@@ -60,7 +60,7 @@ Now follow the steps below to add configurations to the sequence.
         - **accessToken** : Value of the access token to access the API via request.
         - **refreshToken** : Value of the refresh token.
        
-        <img src="../../../../assets/img/connectors/salesforce-api-init-operation-sequnce.png" title="Add values to the init operation" width="800" alt="Add values to the init operation"/>
+        <img src="../../../../assets/img/connectors/salesforce-api-init-operation-sequnce1.png" title="Add values to the init operation" width="800" alt="Add values to the init operation"/>
     
      
 2. Set up the created operation.
@@ -90,7 +90,7 @@ Now follow the steps below to add configurations to the sequence.
         - **expression** : json-eval($.sObject)
         - **type** : STRING
    
-        <img src="../../../../assets/img/connectors/salesforce-api-property-mediator-values1.png" title="Add values to capture sObjectName value" width="800" alt="Add values to capture sObjectName value"/>
+        <img src="../../../../assets/img/connectors/salesforce-api-property-mediator-property1-value1.png" title="Add values to capture sObjectName value" width="800" alt="Add values to capture sObjectName value"/>
     
     6. Add the property mediator to capture the `fieldAndValue` values. The fieldAndValue contains object fields and values that user need to store.
    
@@ -98,7 +98,7 @@ Now follow the steps below to add configurations to the sequence.
         - **expression** : json-eval($.fieldAndValue)
         - **type** : STRING
      
-        <img src="../../../../assets/img/connectors/salesforce-api-property-mediator-values2.png" title="Add values to capture fieldAndValue value" width="800" alt="Add values to capture fieldAndValue value"/>  
+        <img src="../../../../assets/img/connectors/salesforce-api-property-mediator-property2-value2.png" title="Add values to capture fieldAndValue value" width="800" alt="Add values to capture fieldAndValue value"/>  
     
 #### Configure a sequence for the retrieve operation
 
@@ -120,7 +120,7 @@ Create the sequence to retrive the Salesforce objects created.
     
     3. Select the query operation and add `id, name from Account` query to the properties section shown as bellow.
     
-        <img src="../../../../assets/img/connectors/salesforce-api-retrive-query-operation-sequnce.png" title="Add query to the query operation in retrive sequnce" width="800" alt="Add query to the query operation in retrive sequnce"/>
+        <img src="../../../../assets/img/connectors/salesforce-api-retrive-query-operation-sequnce1.png" title="Add query to the query operation in retrive sequnce" width="800" alt="Add query to the query operation in retrive sequnce"/>
     
 #### Configuring the API and getting a response
 
