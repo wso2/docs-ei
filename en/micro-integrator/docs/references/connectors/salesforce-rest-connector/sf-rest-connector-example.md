@@ -62,9 +62,6 @@ Now follow the steps below to add configurations to the sequence.
        
         <img src="../../../../assets/img/connectors/salesforce-api-init-operation-sequnce.png" title="Add values to the init operation" width="800" alt="Add values to the init operation"/>
     
-    4. The above four parameters are saved to the properties section and add the values into the `init` operation.
-    
-        <img src="../../../../assets/img/connectors/salesforce-api-create-operation-sequnce.png" title="Add values to the create operation" width="800" alt="Add values to the create operation"/>
      
 2. Set up the created operation.
 
@@ -79,9 +76,7 @@ Now follow the steps below to add configurations to the sequence.
     
         <img src="../../../../assets/img/connectors/salesforce-drag-and-drop-create.png" title="Drag and drop create operation" width="500" alt="Drag and drop create operations"/>
     
-    3. To get the input values in to the API we can use the [property mediator](https://ei.docs.wso2.com/en/next/micro-integrator/references/mediators/property-Mediator/) .
-
-    4. Navigate into the **Palette** pane and select the graphical mediators icons listed under **Mediators** section. Then drag and drop the `Property` mediators into the Design pane as shown bellow.
+    3. To get the input values in to the API we can use the [property mediator](https://ei.docs.wso2.com/en/next/micro-integrator/references/mediators/property-Mediator/). Navigate into the **Palette** pane and select the graphical mediators icons listed under **Mediators** section. Then drag and drop the `Property` mediators into the Design pane as shown bellow.
     
         <img src="../../../../assets/img/connectors/salesforce-api-drag-and-drop-property-mediator.png" title="Add property mediators" width="800" alt="Add property mediators"/>
 
