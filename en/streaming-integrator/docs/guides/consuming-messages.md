@@ -115,9 +115,7 @@ To create a Siddhi application with the source configuration defined inline, fol
     group by product
     insert into PublishSalesTotalsStream;
     ```
-
-    
-
+  
 ## Defining event source externally in the configuration file
 
 If you want to use the same source configuration in multiple Siddhi applications, you  can define it externally in the 
