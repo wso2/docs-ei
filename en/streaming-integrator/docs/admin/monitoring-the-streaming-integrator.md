@@ -505,7 +505,7 @@ In order to access the nodes in a cluster and derive statistics, you need to mai
 user name and password must be specified in the `<DASHBOARD_HOME>/conf/portal/deployment.yaml` file. If you nwant to secure sensitive information such as the
 user name and the password, you can encrypt them via WSO2 Secure Vault.
 
-1. To specify the user name and the password to access a node, define them under the `wso2.status.dashboard` section as shown in the following example.
+1. To specify the user name and the password to access a node, define them under a new section named `wso2.status.dashboard`as shown in the following example.
 
     ``` xml
         wso2.status.dashboard:
@@ -579,10 +579,10 @@ section of the
 
 To access the Status Dashboard, follow the procedure below:
 
-3. In the terminal, navigate to the `<SP_HOME>/bin` directory and issue the relevant command to start the dashboard profile based on your operating system.
+3. In the terminal, navigate to the `<DASHBOARD_HOME>/bin` directory and issue the relevant command to start the dashboard profile based on your operating system.
 
-    - For Windows: `dashboard.bat`
-    - For Linux : `./dashboard.sh`
+    - For Windows: `portal.bat`
+    - For Linux : `./portal.sh`
 
 4. Access the Status Dashboard via the following URL format.
 
