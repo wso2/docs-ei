@@ -368,6 +368,8 @@ nav:
           - 'Salesforce Access Token Generation': 'references/connectors/salesforce-rest-connector/sf-access-token-generation.md'
           - 'Salesforce Rest API Connector Example': 'references/connectors/salesforce-rest-connector/sf-rest-connector-example.md'
           - 'Salesforce Rest API Connector Configuration': 'references/connectors/salesforce-rest-connector/sf-rest-connector-config.md'
+          - 'Setting up the PushTopic in Salesforce': 'references/connectors/salesforce-rest-connector/sf-rest-inbound-endpoint-configuration.md'
+          - 'Salesforce Inbound Endpoint Example': 'references/connectors/salesforce-rest-connector/sf-rest-inbound-endpoint-example.md'
         - AmazonS3 Connector:
           - 'Setting up Amazon S3 Environment': 'references/connectors/amazons3-connector/amazons3-connector-config.md'
           - 'AmazonS3 Connector Example': 'references/connectors/amazons3-connector/amazons3-connector-example.md'
