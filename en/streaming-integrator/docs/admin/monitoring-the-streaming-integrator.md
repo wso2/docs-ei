@@ -12,15 +12,15 @@ The following sections cover the configurations that need to be done in
 order to view statistics relating to the performance of your Streaming Integrator
 deployment in the Status Dashboard.
 
-!!!info
-    - If you need to monitor the performance of the Streaming Integrator via a status dashboard, you need to download the WSO2 Stream Processor and use the dashboard shipped with it. To download and install and install the Stream Processor, see [Stream Processor Documentation - Installing the Product](https://docs.wso2.com/display/SP4xx/Installing+the+Product).
-    - In this section, `<DASHBOARD_HOME` refers to the `<SP_HOME>/wso2/dashboard` directory.
-
+!!! tip "Before you begin""
+    - Download the Analytics Dashboard from the [WSO2 Analytics Dashboard Github Repository](https://github.com/wso2/analytics-dashboard/releases).
+    - Once you extract the zip file, the extracted location is referred to as the `<DASHBOARD_HOME>` in the rest of this section.
+    
 
 ### Assigning unique carbon IDs to nodes
 
 Carbon metrics uses the carbon ID as the source ID for metrics. Therefore, all the worker nodes are required to have a **unique carbon ID** defined in the
-`wso2.carbon:` section of the `<SP_HOME>/conf/dashboard/deployment.yaml` file as shown in the extract below.
+`wso2.carbon:` section of the `<SI_HOME>/conf/dashboard/deployment.yaml` file as shown in the extract below.
 
 !!! info
     You need to ensure that the carbon ID of each node is unique because it is required for the Status dashboard to identify the worker nodes and display their statistics accordingly.
@@ -64,18 +64,18 @@ Set up a database of the required type by following the steps below. In this sec
     ``` java
         mysql> create database WSO2_METRICS_DB;
         mysql> use WSO2_METRICS_DB;
-        mysql> source <DASHBOARD_HOME>/wso2/server/dbscripts/metrics/mysql.sql;
+        mysql> source <DASHBOARD_HOME>/wso2/portal/dbscripts/metrics/mysql.sql;
         mysql> grant all on WSO2_METRICS_DB.* TO username@localhost identified by "password";
     ```
 
     ``` java
             mysql> create database WSO2_STATUS_DASHBOARD_DB;
             mysql> use WSO2_STATUS_DASHBOARD_DB;
-            mysql> source <DASHBOARD_HOME>/wso2/server/dbscripts/metrics/mysql.sql;
+            mysql> source <DASHBOARD_HOME>/wso2/portal/dbscripts/metrics/mysql.sql;
             mysql> grant all on WSO2_STATUS_DASHBOARD_DB.* TO username@localhost identified by "password";
     ```
 
-7. Create two datasources named `WSO2_METRICS_DB` and `WSO2_STATUS_DASHBOARD_DB` by adding the following datasource configurations under the `wso2.datasources:` section of the `<SP_HOME>/conf/dashboard/deployment.yaml` file.
+7. Create two datasources named `WSO2_METRICS_DB` and `WSO2_STATUS_DASHBOARD_DB` by adding the following datasource configurations under the `wso2.datasources:` section of the `<DASHBOARD_HOME>/conf/portal/deployment.yaml` file.
 
     !!! info
         The names of the data sources must be the same as the names of the database tables you created for metrics and statistics. You need to change the values for the `username` and `password` parameters to the username and password that you are using to access the MySQL database.
@@ -270,7 +270,7 @@ This section explains how to configure metrics for your status dashboard.
 **Configuring worker metrics**
 
 To enable metrics and to configure metric-related properties, do the
-following configurations in the `SI_HOME>/conf/server/deployment.yaml` file for the
+following configurations in the `<SI_HOME>/conf/server/deployment.yaml` file for the
 required SI nodes.
 
 1. To enable Carbon metrics, set the `enabled` property to `true` under `wso2.metrics` as shown below.
@@ -493,7 +493,7 @@ The following are the metrics measured for a Siddhi application.
 ### Configuring cluster credentials
 
 In order to access the nodes in a cluster and derive statistics, you need to maintain and share a user name and a password for each node in a SI cluster. This
-user name and password must be specified in the `<DASHBOARD_HOME>/conf/server/deployment.yaml` file. If you nwant to secure sensitive information such as the
+user name and password must be specified in the `<DASHBOARD_HOME>/conf/portal/deployment.yaml` file. If you nwant to secure sensitive information such as the
 user name and the password, you can encrypt them via WSO2 Secure Vault.
 
 1. To specify the user name and the password to access a node, define them under the `wso2.status.dashboard` section as shown in the following example.
