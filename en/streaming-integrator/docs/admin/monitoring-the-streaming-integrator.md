@@ -29,10 +29,15 @@ Carbon metrics uses the carbon ID as the source ID for metrics. Therefore, all t
 ``` xml
     wso2.carbon:
         # value to uniquely identify a server
-      id: wso2-sp
+      id: wso2-si-1
         # server name
-      name: WSO2 Stream Processor
+      name: WSO2 Streaming Integrator
+        # server type
+      type: wso2-si
         # ports used by this server
+      ports:
+          # port offset
+        offset: 0
 ```
 
 
@@ -65,15 +70,19 @@ Set up a database of the required type by following the steps below. In this sec
         mysql> create database WSO2_METRICS_DB;
         mysql> use WSO2_METRICS_DB;
         mysql> source <DASHBOARD_HOME>/wso2/portal/dbscripts/metrics/mysql.sql;
-        mysql> grant all on WSO2_METRICS_DB.* TO username@localhost identified by "password";
+        mysql> grant all privileges on WSO2_METRICS_DB.* TO 'username'@'localhost';
     ```
 
     ``` java
             mysql> create database WSO2_STATUS_DASHBOARD_DB;
             mysql> use WSO2_STATUS_DASHBOARD_DB;
             mysql> source <DASHBOARD_HOME>/wso2/portal/dbscripts/metrics/mysql.sql;
-            mysql> grant all on WSO2_STATUS_DASHBOARD_DB.* TO username@localhost identified by "password";
+            mysql> grant all privileges on WSO2_STATUS_DASHBOARD_DB.* TO 'username'@'localhost';
     ```
+    !!! tip
+        - The syntax of the MySQL commands depend on the MySQL version. The given systax is for MySQL 8x versions. Check the syntax for the version you are using when performing this step. 
+        - Replace <DASHBOARD_HOME> with the path to your <DASHBOARD_HOME>.
+        - Replace `'username'@'localhost'` with your username and host name (e.g., `'root'@'localhost'`)
 
 7. Create two datasources named `WSO2_METRICS_DB` and `WSO2_STATUS_DASHBOARD_DB` by adding the following datasource configurations under the `wso2.datasources:` section of the `<DASHBOARD_HOME>/conf/portal/deployment.yaml` file.
 
