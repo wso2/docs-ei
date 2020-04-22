@@ -157,9 +157,29 @@ e.g., The log sink used as the example in the previous section can be defined ex
 ```
 
 ### Supported event sink types
-<Sink categories table here> 
+
+The supported event sink types are as follows:
+
+|**Source Category**        |**Supported Extensions**           |
+|---------------------------|-----------------------------------|
+|Streaming Messaging Systems| - [io-nats](https://siddhi-io.github.io/siddhi-io-nats/)<br/> - [io-kafka](https://siddhi-io.github.io/siddhi-io-kafka/)<br/> - [io-tcp](https://siddhi-io.github.io/siddhi-io-tcp/)<br/> - [io-jms](https://siddhi-io.github.io/siddhi-io-jms/)<br/> - [io-rabbitmq](https://siddhi-io.github.io/siddhi-io-rabbitmq/)<br/> - [io-mqtt](https://siddhi-io.github.io/siddhi-io-mqtt/)<br/> - [io-sqs](https://siddhi-io.github.io/siddhi-io-sqs/)<br/> - [io-grpc](https://siddhi-io.github.io/siddhi-io-grpc/)|
+|Software and Sensors       | - [io-http](https://siddhi-io.github.io/siddhi-io-http/)<br/> - [io-email](https://siddhi-io.github.io/siddhi-io-email/)<br/> - [io-grpc](https://siddhi-io.github.io/siddhi-io-grpc/)|
+|Cloud                      | - [io-googlepubsub](https://siddhi-io.github.io/siddhi-io-googlepubsub/)<br/> - [io-s3](https://siddhi-io.github.io/siddhi-io-s3/)<br/> [io-gcs](https://siddhi-io.github.io/siddhi-io-gcs/api/latest/)|
+|Databases                  | - [io-prometheus](https://siddhi-io.github.io/siddhi-io-prometheus/)<br/> - |
+|Files                      | - [io-file](https://siddhi-io.github.io/siddhi-io-file/)|
 
 ### Supported event formats
+
+You can publish messages in any of the following formats via the relevant Siddhi extensions. Click on the format for more details about the Siddhi extension.
+
+- [JSON](https://siddhi-io.github.io/siddhi-map-json/)
+- [XML](https://siddhi-io.github.io/siddhi-map-xml/)
+- [Text](https://siddhi-io.github.io/siddhi-map-text/)
+- [Avro](https://siddhi-io.github.io/siddhi-map-avro/)
+- [KeyValue](https://siddhi-io.github.io/siddhi-map-keyvalue/)
+- [CSV](https://siddhi-io.github.io/siddhi-map-csv/)
+- [Binary](https://siddhi-io.github.io/siddhi-map-binary/)
+- [Protocol Buffers](https://siddhi-io.github.io/siddhi-map-protobuf/)
 
 #### Publishing data in default format
 

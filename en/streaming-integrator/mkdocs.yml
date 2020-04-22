@@ -235,6 +235,11 @@ nav:
     - 'Exporting Siddhi Applications': 'develop/exporting-Siddhi-Applications.md'
   - 'Observability':
     - 'Monitoring the Streaming Integrator': 'admin/monitoring-the-streaming-integrator.md'
+  - 'Connectors':
+    - 'Streaming Integrator Connectors Overview': 'connectors/connectors-overview.md'
+    - 'Downloading and Installing Siddhi Connectors': 'connectors/downloading-and-Installing-Siddhi-Extensions.md'
+    - 'Writing Custom Siddhi Extensions': 'connectors/writing-Custom-Siddhi-Extensions.md'
+    - 'Configuring System Parameters for Siddhi Extensions': 'connectors/configuring-System-Parameters-for-Siddhi-Extensions.md'
   - 'References':
     - 'Streaming Integration REST API Guide': 'ref/si-rest-api-guide.md'
     - 'Performance Analysis Results': 'ref/performance-analysis-results.md'
