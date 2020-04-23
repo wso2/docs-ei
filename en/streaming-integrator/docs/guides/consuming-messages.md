@@ -26,7 +26,7 @@ For the Streaming Integrator to consume events, the following is required.
 
 To create a Siddhi application with the source configuration defined inline, follow the steps below.
 
-1. Open the Streaming Integrator Studio and start creating a new Siddhi application. For more information, see [Creating a Siddhi Application](../develop/creating-a-Siddhi-Application.md).
+1. Open the Streaming Integrator Tooling and start creating a new Siddhi application. For more information, see [Creating a Siddhi Application](../develop/creating-a-Siddhi-Application.md).
 
 2. Enter a name for the Siddhi application as shown below.<br/>
    `@App:name("<Siddhi_Application_Name>)`<br/>e.g., `@App:name("SalesTotalsApp")`<br/>

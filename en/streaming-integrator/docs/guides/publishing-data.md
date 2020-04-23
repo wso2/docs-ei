@@ -31,7 +31,7 @@ This section explains how to configure a basic sink without mapping. A Siddhi ap
 
 To create a Siddhi application with the sink configuration defined inline, follow the steps below.
 
-1. Open the Streaming Integrator Studio and start creating a new Siddhi application. For more information, see [Creating a Siddhi Application](../develop/creating-a-Siddhi-Application.md).
+1. Open the Streaming Integrator Tooling and start creating a new Siddhi application. For more information, see [Creating a Siddhi Application](../develop/creating-a-Siddhi-Application.md).
 
 2. Enter a name for the Siddhi application as shown below.<br/>
    `@App:name("<Siddhi_Application_Name>)`<br/>e.g., `@App:name("SalesTotalsApp")`<br/>

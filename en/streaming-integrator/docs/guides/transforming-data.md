@@ -14,7 +14,7 @@ The operators that you can configure inline within Siddhi applications in order 
 To show how an inline operators are configured, let's consider an example where readings from a sensor that indicates 
 the temperature of a room every second are transformed to indicate the average tempertature and the average humidity as at each second.
 
-1. Open the Streaming Integrator Studio and start creating a new Siddhi application. For more information, see [Creating a Siddhi Application](../develop/creating-a-Siddhi-Application.md).
+1. Open the Streaming Integrator Tooling and start creating a new Siddhi application. For more information, see [Creating a Siddhi Application](../develop/creating-a-Siddhi-Application.md).
 
 2. Enter a name for the Siddhi application as shown below.<br/>
    `@App:name("<Siddhi_Application_Name>)`<br/>
