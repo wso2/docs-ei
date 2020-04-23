@@ -20,7 +20,7 @@ deployment in the Status Dashboard.
 ### Assigning unique carbon IDs to nodes
 
 Carbon metrics uses the carbon ID as the source ID for metrics. Therefore, all the worker nodes are required to have a **unique carbon ID** defined in the
-`wso2.carbon:` section of the `<SI_HOME>/conf/dashboard/deployment.yaml` file as shown in the extract below.
+`wso2.carbon:` section of the `<SI_HOME>/conf/server/deployment.yaml` file as shown in the extract below.
 
 !!! info
     You need to ensure that the carbon ID of each node is unique because it is required for the Status dashboard to identify the worker nodes and display their statistics accordingly.
@@ -69,14 +69,14 @@ Set up a database of the required type by following the steps below. In this sec
     ``` java
         mysql> create database WSO2_METRICS_DB;
         mysql> use WSO2_METRICS_DB;
-        mysql> source <DASHBOARD_HOME>/wso2/portal/dbscripts/metrics/mysql.sql;
+        mysql> source <DASHBOARD_HOME>/wso2/monitor/dbscripts/metrics/mysql.sql;
         mysql> grant all privileges on WSO2_METRICS_DB.* TO 'username'@'localhost';
     ```
 
     ``` java
             mysql> create database WSO2_STATUS_DASHBOARD_DB;
             mysql> use WSO2_STATUS_DASHBOARD_DB;
-            mysql> source <DASHBOARD_HOME>/wso2/portal/dbscripts/metrics/mysql.sql;
+            mysql> source <DASHBOARD_HOME>/wso2/monitor/dbscripts/metrics/mysql.sql;
             mysql> grant all privileges on WSO2_STATUS_DASHBOARD_DB.* TO 'username'@'localhost';
     ```
     !!! tip
@@ -84,7 +84,7 @@ Set up a database of the required type by following the steps below. In this sec
         - Replace <DASHBOARD_HOME> with the path to your <DASHBOARD_HOME>.
         - Replace `'username'@'localhost'` with your username and host name (e.g., `'root'@'localhost'`)
 
-7. Create two datasources named `WSO2_METRICS_DB` and `WSO2_STATUS_DASHBOARD_DB` by adding the following datasource configurations under the `wso2.datasources:` section of the `<DASHBOARD_HOME>/conf/portal/deployment.yaml` file.
+7. Create two datasources named `WSO2_METRICS_DB` and `WSO2_STATUS_DASHBOARD_DB` by adding the following datasource configurations under the `wso2.datasources:` section of the `<DASHBOARD_HOME>/conf/monitor/deployment.yaml` file.
 
     !!! info
         The names of the data sources must be the same as the names of the database tables you created for metrics and statistics. You need to change the values for the `username` and `password` parameters to the username and password that you are using to access the MySQL database.
@@ -95,44 +95,44 @@ Set up a database of the required type by following the steps below. In this sec
     - `WSO2_METRICS_DB`
 
         ``` xml
-                   - name: WSO2_METRICS_DB
-                      description: The datasource used for dashboard feature
-                      jndiConfig:
-                        name: jdbc/WSO2MetricsDB
-                      definition:
-                        type: RDBMS
-                        configuration:
-                          jdbcUrl: 'jdbc:mysql://localhost/WSO2_METRICS_DB?useSSL=false'
-                          username: root
-                          password: root
-                          driverClassName: com.mysql.jdbc.Driver
-                          maxPoolSize: 50
-                          idleTimeout: 60000
-                          connectionTestQuery: SELECT 1
-                          validationTimeout: 30000
-                          isAutoCommit: false
+           - name: WSO2_METRICS_DB
+              description: The datasource used for dashboard feature
+              jndiConfig:
+                name: jdbc/WSO2MetricsDB
+              definition:
+                type: RDBMS
+                configuration:
+                  jdbcUrl: 'jdbc:mysql://localhost/WSO2_METRICS_DB?allowPublicKeyRetrieval=true&useSSL=false'
+                  username: root
+                  password: root
+                  driverClassName: com.mysql.jdbc.Driver
+                  maxPoolSize: 50
+                  idleTimeout: 60000
+                  connectionTestQuery: SELECT 1
+                  validationTimeout: 30000
+                  isAutoCommit: false
         ```
 
     - `WSO2_STATUS_DASHBOARD_DB`
 
         ``` xml
-                        - name: WSO2_STATUS_DASHBOARD_DB
-                          description: The datasource used for dashboard feature
-                          jndiConfig:
-                            name: jdbc/wso2_status_dashboard
-                            useJndiReference: true
-                          definition:
-                            type: RDBMS
-                            configuration:
-                              jdbcUrl: 'jdbc:mysql://localhost/WSO2_STATUS_DASHBOARD_DB?useSSL=false'
-                              username: root
-                              password: root
-                              driverClassName: com.mysql.jdbc.Driver
-                              maxPoolSize: 50
-                              idleTimeout: 60000
-                              connectionTestQuery: SELECT 1
-                              validationTimeout: 30000
-                              isAutoCommit: false
+            - name: WSO2_STATUS_DASHBOARD_DB
+              description: The datasource used for dashboard feature
+              jndiConfig:
+                name: jdbc/wso2_status_dashboard
+                useJndiReference: true
+              definition:
+                type: RDBMS
+                configuration:
+                  jdbcUrl: 'jdbc:mysql://localhost/WSO2_STATUS_DASHBOARD_DB?allowPublicKeyRetrieval=true&useSSL=false'
+                  username: root
+                  password: root
+                  driverClassName: com.mysql.jdbc.Driver
+                  maxPoolSize: 50
+                  idleTimeout: 60000
+                  connectionTestQuery: SELECT 1
+                  validationTimeout: 30000
+                  isAutoCommit: false
         ```
 
 
@@ -502,7 +502,7 @@ The following are the metrics measured for a Siddhi application.
 ### Configuring cluster credentials
 
 In order to access the nodes in a cluster and derive statistics, you need to maintain and share a user name and a password for each node in a SI cluster. This
-user name and password must be specified in the `<DASHBOARD_HOME>/conf/portal/deployment.yaml` file. If you nwant to secure sensitive information such as the
+user name and password must be specified in the `<DASHBOARD_HOME>/conf/monitor/deployment.yaml` file. If you nwant to secure sensitive information such as the
 user name and the password, you can encrypt them via WSO2 Secure Vault.
 
 1. To specify the user name and the password to access a node, define them under a new section named `wso2.status.dashboard`as shown in the following example.
@@ -581,8 +581,8 @@ To access the Status Dashboard, follow the procedure below:
 
 3. In the terminal, navigate to the `<DASHBOARD_HOME>/bin` directory and issue the relevant command to start the dashboard profile based on your operating system.
 
-    - For Windows: `portal.bat`
-    - For Linux : `./portal.sh`
+    - For Windows: `monitor.bat`
+    - For Linux : `./monitor.sh`
 
 4. Access the Status Dashboard via the following URL format.
 
