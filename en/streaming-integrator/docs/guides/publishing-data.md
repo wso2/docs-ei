@@ -156,7 +156,7 @@ e.g., The log sink used as the example in the previous section can be defined ex
            prefix:'Sales Totals'
 ```
 
-### Supported event sink types
+## Supported event sink types
 
 The supported event sink types are as follows:
 
@@ -168,7 +168,7 @@ The supported event sink types are as follows:
 |Databases                  | - [io-prometheus](https://siddhi-io.github.io/siddhi-io-prometheus/)<br/> - |
 |Files                      | - [io-file](https://siddhi-io.github.io/siddhi-io-file/)|
 
-### Supported event formats
+## Supported event formats
 
 You can publish messages in any of the following formats via the relevant Siddhi extensions. Click on the format for more details about the Siddhi extension.
 

@@ -189,7 +189,7 @@ e.g., The HTTP source that you previously created can be referred to as follows.
 define stream ConsumeSalesTotalsStream (transNo int, product string, price int, quantity int, salesValue long);
 ```
 
-### Supported event source types
+## Supported event source types
 
 The supported event source types are as follows:
 
@@ -201,7 +201,7 @@ The supported event source types are as follows:
 |Databases                  | - [io-cdc](https://siddhi-io.github.io/siddhi-io-cdc/)<br/> - [io-prometheus](https://siddhi-io.github.io/siddhi-io-prometheus/)|
 |Files                      | - [io-file](https://siddhi-io.github.io/siddhi-io-file/)|
 
-### Supported message formats
+## Supported message formats
 
 You can receive messages in any of the following formats via the relevant Siddhi extensions. Click on the format for more details about the Siddhi extension.
 
