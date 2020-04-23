@@ -102,7 +102,7 @@ Set up a database of the required type by following the steps below. In this sec
               definition:
                 type: RDBMS
                 configuration:
-                  jdbcUrl: 'jdbc:mysql://localhost/WSO2_METRICS_DB?allowPublicKeyRetrieval=true&useSSL=false'
+                  jdbcUrl: 'jdbc:mysql://localhost:3306/WSO2_METRICS_DB?allowPublicKeyRetrieval=true&useSSL=false'
                   username: root
                   password: root
                   driverClassName: com.mysql.jdbc.Driver
@@ -124,7 +124,7 @@ Set up a database of the required type by following the steps below. In this sec
               definition:
                 type: RDBMS
                 configuration:
-                  jdbcUrl: 'jdbc:mysql://localhost/WSO2_STATUS_DASHBOARD_DB?allowPublicKeyRetrieval=true&useSSL=false'
+                  jdbcUrl: 'jdbc:mysql://localhost:3306/WSO2_STATUS_DASHBOARD_DB?allowPublicKeyRetrieval=true&useSSL=false'
                   username: root
                   password: root
                   driverClassName: com.mysql.jdbc.Driver
@@ -134,7 +134,6 @@ Set up a database of the required type by following the steps below. In this sec
                   validationTimeout: 30000
                   isAutoCommit: false
         ```
-
 
 
     The following are sample configurations for database tables when you use other database types supported.
@@ -502,10 +501,10 @@ The following are the metrics measured for a Siddhi application.
 ### Configuring cluster credentials
 
 In order to access the nodes in a cluster and derive statistics, you need to maintain and share a user name and a password for each node in a SI cluster. This
-user name and password must be specified in the `<DASHBOARD_HOME>/conf/monitor/deployment.yaml` file. If you nwant to secure sensitive information such as the
+user name and password must be specified in the `<DASHBOARD_HOME>/conf/monitor/deployment.yaml` file. If you want to secure sensitive information such as the
 user name and the password, you can encrypt them via WSO2 Secure Vault.
 
-1. To specify the user name and the password to access a node, define them under a new section named `wso2.status.dashboard`as shown in the following example.
+1. To specify the user name and the password to access a node, define them under the `wso2.status.dashboard` section as shown in the following example.
 
     ``` xml
         wso2.status.dashboard:
