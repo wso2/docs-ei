@@ -447,7 +447,7 @@ Siddhi file as shown in the example below.
 The following are the metrics measured for a Siddhi application.
 
 !!! info
-    The default level after enabling metrics is `INFO` for all the meytrics listed in the following table.
+    The default level after enabling metrics is `INFO` for all the metrics listed in the following table.
 
     <table>
     <thead>
@@ -508,9 +508,12 @@ user name and the password, you can encrypt them via WSO2 Secure Vault.
 
     ``` xml
         wso2.status.dashboard:
-            workerAccessCredentials:
-                username: 'admin'
-                password: 'admin'
+          pollingInterval: 5
+          metricsDatasourceName: 'WSO2_METRICS_DB'
+          dashboardDatasourceName: 'WSO2_STATUS_DASHBOARD_DB'
+          workerAccessCredentials:
+            username: 'admin'
+            password: 'admin'
     ```
 
 2. To encrypt the user name and the password you defined, define aliases for them as described in [Protecting Sensitive Data via the Secure Vault](protecting-sensitive-data-via-the-secure-vault.md).
@@ -559,7 +562,7 @@ The `admin user` in the user store is assigned the `SysAdmin` permission level b
 
 To assign different permission levels to different roles, you can list the required roles under the relevant permission level in the `wso2.status.dashboard`
 section of the
-`DASHBOARD_HOME>/conf/dashboard/deployment.yaml` file as shown in the extract below.
+`<DASHBOARD_HOME>/conf/monitor/deployment.yaml` file as shown in the extract below.
 
 ``` xml
     wso2.status.dashboard:
@@ -585,9 +588,9 @@ To access the Status Dashboard, follow the procedure below:
 
 4. Access the Status Dashboard via the following URL format.
 
-    `https://localhost:<DASHBOARD_PORT>/si-status-dashboard`
+    `https://localhost:<DASHBOARD_PORT>/monitoring
 
-    e.g., <https://0.0.0.0:9643/sp-status-dashboard>
+    e.g., https://0.0.0.0:9648/monitoring
 
 After login this opens  the Status Dashboard with the nodes that you have already added as shown in the example below.
 
