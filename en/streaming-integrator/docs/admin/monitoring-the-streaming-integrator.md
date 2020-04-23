@@ -581,18 +581,20 @@ section of the
 
 To access the Status Dashboard, follow the procedure below:
 
-3. In the terminal, navigate to the `<DASHBOARD_HOME>/bin` directory and issue the relevant command to start the dashboard profile based on your operating system.
+1. In the terminal, navigate to the `<DASHBOARD_HOME>/bin` directory and issue the relevant command to start the dashboard profile based on your operating system.
 
     - For Windows: `monitor.bat`
     - For Linux : `./monitor.sh`
 
-4. Access the Status Dashboard via the following URL format.
+2. Access the Status Dashboard via the following URL format.
 
     `https://localhost:<DASHBOARD_PORT>/monitoring
 
     e.g., https://0.0.0.0:9648/monitoring
+    
+3. Sign in by entering `admin` as both the user name and the password.
 
-After login this opens  the Status Dashboard with the nodes that you have already added as shown in the example below.
+After signing in, this opens  the Status Dashboard with the nodes that you have already added as shown in the example below.
 
 ![Status Dashboard Overview](../images/monitoring-the-streaming-integrator/status_dashboard_overview.png)
 
