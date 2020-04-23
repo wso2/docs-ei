@@ -12,6 +12,20 @@ Your organization's data can be stored in various data storage systems, which ar
 
 You can enable RESTful access to your data by defining RESTful resources for the relevant data in your data service. REST resources in the Micro Integrator support both JSON and XML media types out of the box. Therefore, a resource can receive requests and send responses in either medium. You can secure your resources with HTTP(S) Basic Auth via [WSO2 Identity Server](http://wso2.com/products/identity-server/).
 
+### Swagger definition for REST resources
+
+When RESTful resources are added to the data-service, the Micro Integrator can generate a corresponding swagger
+ definition automatically. 
+ 
+The swagger definition is exposed via the following URL format
+ ```
+http://localhost:8290/services/<data-service name>?swagger.json
+```
+Similarly, we can fetch the swagger definition in YAML format using the following URL
+ ```
+http://localhost:8290/services/<data-service name>?swagger.yaml
+```
+
 ### OData Services
 
 RESTful data services in WSO2 Micro Integrator supports OData ([OData](http://www.odata.org/) protocol version 4 - OASIS standards),
