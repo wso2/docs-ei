@@ -61,7 +61,7 @@ If your RESTful data service is deployed, copy the following URLs to your browse
 
     **Example**: 
     ```bash
-    http://localhost:8290/RDBMSDataServic?swagger.yaml
+    http://localhost:8290/RDBMSDataService?swagger.yaml
     ```
 
 !!! Tip
