@@ -4,6 +4,8 @@ The following operations allow you to work with the Salesforce REST Connector. C
 
 ---
 
+## Initialize the connector
+
 Salesforce REST API uses the OAuth protocol to allow application users to securely access data without having to reveal their user credentials. For more information on how authentication is done in Salesforce, see [Understanding Authentication](https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/intro_understanding_authentication.htm).
 
 To use the Salesforce REST connector, add the `<salesforcerest.init>` element in your configuration before carrying out any other Salesforce REST operations. 
@@ -204,7 +206,7 @@ To use the Salesforce REST connector, add the `<salesforcerest.init>` element in
 
 ---
 
-### Working with AppMenu
+### AppMenu
 
 ??? note "listItemsInMenu"
     To retrieve the list of items in either the Salesforce app drop-down menu or the Salesforce1 navigation menu, use salesforcerest.listItemsInMenu and specify the following property. See the [related API documentation](https://developer.salesforce.com/docs/atlas.en-us.198.0.api_rest.meta/api_rest/resources_appmenu.htm?search_text=menu) for more information.
@@ -341,7 +343,7 @@ To use the Salesforce REST connector, add the `<salesforcerest.init>` element in
 
 ---
 
-### Working with Approvals
+### Approvals
 
 ??? note "listApprovals"
     To retrieve the list of approvals in Salesforce, use salesforcerest.listApprovals. See the [related API documentation](https://developer.salesforce.com/docs/atlas.en-us.198.0.api_rest.meta/api_rest/dome_process_approvals.htm) for more information.
@@ -384,7 +386,7 @@ To use the Salesforce REST connector, add the `<salesforcerest.init>` element in
 
 ---
 
-### Working with Event Monitoring
+### Event Monitoring
 
 ??? note "describeEventMonitoring"
     To retrieve the description of the event monitoring log, use salesforcerest.describeEventMonitoring. See the [related API documentation](https://developer.salesforce.com/docs/atlas.en-us.198.0.api_rest.meta/api_rest/dome_event_log_file_describe.htm) for more information.
@@ -512,7 +514,7 @@ To use the Salesforce REST connector, add the `<salesforcerest.init>` element in
 
 ---
 
-### Working with Invocable Actions
+### Invocable Actions
 
 ??? note "getListOfAction"
     To retrieve the list of general action types for the current organization, use salesforcerest.getListOfAction and specify the following properties. See the [related API documentation](https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/resources_actions_invocable.htm?search_text=action) for more information.
@@ -693,7 +695,7 @@ To use the Salesforce REST connector, add the `<salesforcerest.init>` element in
     }
     ```
 
-### Working with Layouts
+### Layouts
 
 ??? note "sObjectLayouts"
     To retrieve a list of layouts and descriptions (including for actions) for a specific object, use salesforcerest.sObjectLayouts and specify the following properties. See the [related API documentation](https://developer.salesforce.com/docs/atlas.en-us.198.0.api_rest.meta/api_rest/resources_sobject_layouts.htm?search_text=layouts) for more information.
@@ -862,7 +864,7 @@ To use the Salesforce REST connector, add the `<salesforcerest.init>` element in
     **Sample configuration**
 
     ```xml
-    <salesforcerest.globalSObjectLayouts/>
+    <salesforcerest.compactLayouts/>
     ```
     
     **Sample request**
@@ -1159,7 +1161,7 @@ To use the Salesforce REST connector, add the `<salesforcerest.init>` element in
     }
     ```
 
-### Working with List Views
+### List Views
 
 ??? note "listViews"
     To retrieve a list of list views for the specific sObject, use salesforcerest.listViews and specify the following properties. See the [related API documentation](https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/resources_listviews.htm) for more information.
@@ -1554,7 +1556,7 @@ To use the Salesforce REST connector, add the `<salesforcerest.init>` element in
     }
     ```
 
-### Working with Process Rules
+### Process Rules
 
 ??? note "listProcessRules"
     To retrieve the list of process rules in the organization, use salesforcerest.listProcessRules. See the [related API documentation](https://developer.salesforce.com/docs/atlas.en-us.198.0.api_rest.meta/api_rest/dome_process_rules.htm) for more information.
@@ -1666,7 +1668,7 @@ To use the Salesforce REST connector, add the `<salesforcerest.init>` element in
     }
     ```
 
-### Working with Queries
+### Queries
 
 ??? note "query"
     To retrieve data from an object, use salesforcerest.query and specify the following properties. If you want your results to include deleted records in the Recycle Bin, use salesforcerest.queryAll in place of salesforcerest.query. See the [related API documentation](https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/resources_query.htm) for more information.
@@ -1954,7 +1956,7 @@ To use the Salesforce REST connector, add the `<salesforcerest.init>` element in
     }
     ```
 
-### Working with Quick Actions
+### Quick Actions
 
 ??? note "quickActions"
     To retrieve a list of global actions, use salesforcerest.quickActions. See the [related API documentation](https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/resources_quickactions.htm) for more information.
@@ -2281,7 +2283,7 @@ To use the Salesforce REST connector, add the `<salesforcerest.init>` element in
     }
     ```
 
-### Working with Records
+### Records
 
 ??? note "create"
     To create a record, use salesforcerest.create and specify the following properties. See the [related API documentation](https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/dome_sobject_create.htm) for more information.
@@ -2302,10 +2304,10 @@ To use the Salesforce REST connector, add the `<salesforcerest.init>` element in
             <td>fieldAndValue</td>
             <td>The .json format property used to create the record. Include all mandatory fields according to the requirements for the specified sObject.</td>
             <td>Yes</td>
-            <td>{
+            <td><pre>{
             "name": "wso2",
             "description":"This Account belongs to WSO2"}
-            </td>
+            </pre></td>
         </tr>
     </table>
 
@@ -2382,7 +2384,7 @@ To use the Salesforce REST connector, add the `<salesforcerest.init>` element in
             <td>fieldAndValue</td>
             <td>The .json format property, which specifies each record as an entry within the records array. Include all mandatory fields according to the requirements for the specified sObject.</td>
             <td>Yes</td>
-            <td>{
+            <td><pre>{
                     "records": [
                         {
                         "attributes": {"type": "Account", "referenceId": "ref1"},
@@ -2397,7 +2399,7 @@ To use the Salesforce REST connector, add the `<salesforcerest.init>` element in
                         "website": "www.salesforce2.com"
                         }]
                     }
-            </td>
+            </pre></td>
         </tr>
     </table>
 
@@ -2505,7 +2507,7 @@ To use the Salesforce REST connector, add the `<salesforcerest.init>` element in
             <td>fieldAndValue</td>
             <td>The .json format property, which specifies each record as an entry within the records array. Include all mandatory fields according to the requirements for the specified sobject.</td>
             <td>Yes</td>
-            <td>{
+            <td><pre>{
     "records" :[{
         "attributes" : {"type" : "Account", "referenceId" : "ref1"},
         "name" : "SampleAccount1",
@@ -2556,7 +2558,7 @@ To use the Salesforce REST connector, add the `<salesforcerest.init>` element in
         }
     }]
     }
-            </td>
+            </pre></td>
         </tr>
     </table>
 
@@ -2743,10 +2745,11 @@ To use the Salesforce REST connector, add the `<salesforcerest.init>` element in
             <td>fieldAndValue</td>
             <td>The json format property with the new definition for the record.</td>
             <td>Yes</td>
-            <td>{
+            <td><pre>{
         "name": "wso2",
         "description":"This Account belongs to WSO2"
-    }</td>
+    }
+            </pre></td>
         </tr>
         <tr>
             <td>Id</td>
@@ -3063,7 +3066,7 @@ To use the Salesforce REST connector, add the `<salesforcerest.init>` element in
     }
     ```
 
-### Working with sObjects
+### sObjects
 
 ??? note "describeGlobal"
     To retrieve a list of the objects that are available in the system, use salesforcerest.describeGlobal. You can then get metadata for an object or objects as described in the next sections. See the [related API documentation](https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/resources_describeGlobal.htm) for more information.

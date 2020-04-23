@@ -41,7 +41,7 @@ First create an API, which will be where we configure the integration logic. Rig
 
 Create the sequence needed to create Salesforce object. We will create two defined sequences called `create.xml` and  `retrieve.xml` to create an account and retrieve data. Right click on the created Integration Project and select, -> **New** -> **Sequence** to create the Sequence. 
   
-<img src="../../../../assets/img/connectors/add-sequence.png" title="Adding a Sequnce" width="600" alt="Adding a Sequnce"/>
+<img src="../../../../assets/img/connectors/add-sequence.png" title="Adding a Sequnce" width="500" alt="Adding a Sequnce"/>
 
 Now follow the steps below to add configurations to the sequence.
     
@@ -84,21 +84,21 @@ Now follow the steps below to add configurations to the sequence.
     
         > **Note**: That the properties should be add to the pallet before create the operation.
     
-    5. Add the property mediator to capture the `sObjectName` value.The sObjectName type can be used to retrieve the metadata for the Account object using the GET method, or create a new Account object using the POST method. In this example we are going to create a new Account object using the POST method.
+    4. Add the property mediator to capture the `sObjectName` value.The sObjectName type can be used to retrieve the metadata for the Account object using the GET method, or create a new Account object using the POST method. In this example we are going to create a new Account object using the POST method.
    
         - **name** : sObjectName
         - **expression** : json-eval($.sObject)
         - **type** : STRING
    
-        <img src="../../../../assets/img/connectors/salesforce-api-property-mediator-property1-value1.png" title="Add values to capture sObjectName value" width="800" alt="Add values to capture sObjectName value"/>
+        <img src="../../../../assets/img/connectors/salesforce-api-property-mediator-property1-value1.png" title="Add values to capture sObjectName value" width="600" alt="Add values to capture sObjectName value"/>
     
-    6. Add the property mediator to capture the `fieldAndValue` values. The fieldAndValue contains object fields and values that user need to store.
+    5. Add the property mediator to capture the `fieldAndValue` values. The fieldAndValue contains object fields and values that user need to store.
    
         - **name** : fieldAndValue
         - **expression** : json-eval($.fieldAndValue)
         - **type** : STRING
      
-        <img src="../../../../assets/img/connectors/salesforce-api-property-mediator-property2-value2.png" title="Add values to capture fieldAndValue value" width="800" alt="Add values to capture fieldAndValue value"/>  
+        <img src="../../../../assets/img/connectors/salesforce-api-property-mediator-property2-value2.png" title="Add values to capture fieldAndValue value" width="600" alt="Add values to capture fieldAndValue value"/>  
     
 #### Configure a sequence for the retrieve operation
 
@@ -108,7 +108,7 @@ Create the sequence to retrive the Salesforce objects created.
     
     You can use the generated tokens to initialize the connector. Please follow the steps  given in 2.1 for setting up the `init` operation to the `retrive.xml` sequence. 
     
-2. Setting up the retrieve operation.
+2. Set up the retrieve operation.
 
     1. To retrieve data from the created objects in the Salesforce account, you need to add the `query` operation to the `retrieve` sequence. 
     
@@ -122,7 +122,7 @@ Create the sequence to retrive the Salesforce objects created.
     
         <img src="../../../../assets/img/connectors/salesforce-api-retrive-query-operation-sequnce1.png" title="Add query to the query operation in retrive sequnce" width="800" alt="Add query to the query operation in retrive sequnce"/>
     
-#### Configuring the API and getting a response
+#### Configuring the API
 
 1. Configure the `salesforcerest API` using the created `create` and `retrive` sequences.
  
@@ -140,7 +140,7 @@ Create the sequence to retrive the Salesforce objects created.
 
     2. Once you have setup the sequences and API, you can see the `salesforcerest` API as shown below.
     
-        <img src="../../../../assets/img/connectors/salesforce-api-design-view.png" title="API Design view" width="800" alt="API Design view"/>
+        <img src="../../../../assets/img/connectors/salesforce-api-design-view.png" title="API Design view" width="600" alt="API Design view"/>
        
 3.  Now you can switch into the Source view and check the XML configuration files of the created API and sequences. 
 
@@ -219,7 +219,8 @@ Follow these steps to deploy the exported CApp in the Enterprise Integrator Runt
 
 ## Testing
 Save a file called data.json with the following payload. 
-```
+
+```json
 {
 	"sObject":"Account",
 	"fieldAndValue": {
@@ -241,3 +242,4 @@ You will get a set of account names and the respective IDs as the output.
 ## What's Next
 
 * You can deploy and run your project on [Docker](../../../setup/installation/run_in_docker.md) or [Kubernetes](../../../setup/installation/run_in_kubernetes.md).
+* To customize this example for your own scenario, see [Salesforce Connector Configuration](sf-rest-connector-config.md) documentation for all operation details of the connector.
