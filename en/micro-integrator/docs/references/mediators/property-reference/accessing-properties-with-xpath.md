@@ -1,6 +1,13 @@
 # Accessing Properties with XPath
 
-The WSO2 Micro Integrator supports standard XPath functions and variables through its underlying XPath engine. The Micro Integrator also provides custom XPath functions and variables for accessing message properties.
+The WSO2 Micro Integrator supports standard XPath functions and variables through its underlying XPath engine. It supports XPath 1.0 by default where as the support for XPath 2.0 can be introduced by adding the following property in <MI_HOME>/conf/deployment.toml.
+
+```toml
+[mediation]
+synapse.enable_xpath_dom_failover=true
+```
+
+The Micro Integrator also provides custom XPath functions and variables for accessing message properties.
 
 ## XPath Extension Functions
 

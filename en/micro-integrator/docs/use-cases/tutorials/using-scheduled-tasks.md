@@ -92,7 +92,7 @@ Shown below is the complete source configuration of the Sequence (i.e., the `Inj
     ![](../../assets/img/tutorials/scheduled-tasks/7-select-task-implementation-prop.png) 
 
     1.  Enter the following parameters:
-        -   **injectTo:** `InjectXMLTask`
+        -   **injectTo:** `sequence`
         -   **sequenceName:** `InjectXMLSequence`
 
     2.  Select **XML** as the **Parameter Type** of the **message** parameter, and enter the following as the XML message in the **Value/Expression** field and click **OK**. 

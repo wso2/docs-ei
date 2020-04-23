@@ -51,17 +51,12 @@ Following are the integration artifacts that we can used to implement this scena
 Create the artifacts:
 
 1. [Set up WSO2 Integration Studio](../../../../develop/installing-WSO2-Integration-Studio).
-2. [Create an ESB Solution project](../../../../develop/creating-projects/#esb-config-project).
+2. [Create an Integration project](../../../../develop/creating-projects/#esb-config-project).
 3. Create the [proxy service](../../../../develop/creating-artifacts/creating-a-proxy-service) and a [scheduled task](../../../../develop/creating-artifacts/creating-scheduled-task) with the configurations given above.
 4. [Deploy the artifacts](../../../../develop/deploy-and-run) in your Micro Integrator.
 
-Set up the back-end service:
+The XML message you injected (i.e., This is a scheduled task of the default implementation.) will be printed in the logs of the Micro Integrator twice, 5 seconds apart.
 
-1. Download the [stockquote_service.jar](https://github.com/wso2-docs/WSO2_EI/blob/master/Back-End-Service/stockquote_service.jar).
-2. Open a terminal, navigate to the location of the downloaded service, and run it using the following command:
-
-    ```bash
-    java -jar stockquote_service.jar
-    ```
-
-The XML message you injected (i.e., `<abc>This is a scheduled task of the default implementation.</abc>`) will be printed in the logs of the Micro Integrator every 5 seconds.
+```bash
+INFO {org.apache.synapse.mediators.builtin.LogMediator} - Which city? = London, Which country? = UK
+```

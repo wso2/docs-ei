@@ -186,6 +186,7 @@ nav:
           - 'Using the MQTT Transport': 'use-cases/examples/transport_examples/Pub_Sub_using_MQTT.md'
         - 'Working with Transactions': 'use-cases/examples/working-with-transactions.md'
         - 'JSON Examples': 'use-cases/examples/json_examples/json-examples.md'
+      - 'Connectors': 'use-cases/connectors.md'
     - Setup and Install:
       - Installation Guide:
         - 'Installation Prerequisites': 'setup/installation/install_prerequisites.md'
@@ -345,6 +346,60 @@ nav:
         - 'Other Usages of TCPMon' : 'administer-and-observe/tcp/other_usages_of_tcpmon.md'
     - References:
       - 'Product Configurations': 'references/config-catalog.md'
+      - Connectors:
+        - 'Connectors Overview' : 'references/connectors/connectors-overview.md'
+        - File Connector:
+          - 'File Connector Example': 'references/connectors/file-connector/file-connector-example.md'
+          - 'File Connector Configuration': 'references/connectors/file-connector/file-connector-config.md'
+        - Kafka Connector:
+          - 'Setting up Kafka': 'references/connectors/kafka-connector/setting-up-kafka.md'
+          - 'Enabling Security for Kafka': 'references/connectors/kafka-connector/enabling-security-for-kafka.md'
+          - 'Kafka Connector Example': 'references/connectors/kafka-connector/kafka-connector-producer-example.md'
+          - 'Kafka Inbound Endpoint Example': 'references/connectors/kafka-connector/kafka-inbound-endpoint-example.md'
+          - 'Kafka Connector Configuration': 'references/connectors/kafka-connector/kafka-connector-config.md'
+        - Gmail Connector:
+          - 'Gmail Connector Example': 'references/connectors/gmail-connector/gmail-connector-example.md'
+          - 'Gmail Connector Configuration': 'references/connectors/gmail-connector/gmail-connector-config.md'
+        - AmazonLambda Connector:
+          - 'Setting up Amazon Lambda Environment': 'references/connectors/amazonlambda-connector/setting-up-amazonlambda.md'
+          - 'Amazon Lambda Connector Example': 'references/connectors/amazonlambda-connector/amazonlambda-connector-example.md'
+          - 'Amazon Lambda Connector Configuration': 'references/connectors/amazonlambda-connector/amazonlambda-connector-config.md'
+        - Salesforce Rest Connector:
+          - 'Salesforce Access Token Generation': 'references/connectors/salesforce-rest-connector/sf-access-token-generation.md'
+          - 'Salesforce Rest API Connector Example': 'references/connectors/salesforce-rest-connector/sf-rest-connector-example.md'
+          - 'Salesforce Rest API Connector Configuration': 'references/connectors/salesforce-rest-connector/sf-rest-connector-config.md'
+          - 'Setting up the PushTopic in Salesforce': 'references/connectors/salesforce-rest-connector/sf-rest-inbound-endpoint-configuration.md'
+          - 'Salesforce Inbound Endpoint Example': 'references/connectors/salesforce-rest-connector/sf-rest-inbound-endpoint-example.md'
+        - AmazonS3 Connector:
+          - 'Setting up Amazon S3 Environment': 'references/connectors/amazons3-connector/amazons3-connector-config.md'
+          - 'AmazonS3 Connector Example': 'references/connectors/amazons3-connector/amazons3-connector-example.md'
+        - ServiceNow Connector:
+          - 'ServiceNow Connector Example': 'references/connectors/servicenow-connector/servicenow-connector-example.md'
+          - 'Setting up Servicenow Instance': 'references/connectors/servicenow-connector/settingup-servicenow-instance.md'
+        - LDAP Connector:
+            - 'Setting up an LDAP Server': 'references/connectors/ldap-connector/setting-up-ldap.md'
+            - 'LDAP Connector Example': 'references/connectors/ldap-connector/ldap-connector-example.md'
+            - 'LDAP Connector Configuration': 'references/connectors/ldap-connector/ldap-server-configuration.md'
+        - DB Event Listener Inbound Endpoint:
+          - 'Database Event Listener Example': 'references/connectors/db-event-inbound-endpoint/db-event-inbound-endpoint-example.md'
+          - 'Database Event Listener Configuration': 'references/connectors/db-event-inbound-endpoint/db-event-inbound-endpoint-config.md'
+        - Microsoft Dynmics365 Connector:
+            - 'Setting up the Microsoft Dynamics365 Environment with Azure': 'references/connectors/microsoft-dynamics365-connector/microsoft-dynamics365-configuration.md'
+        - ISO8583 Connector:
+            - 'Setting up ISO8583 Connector': 'references/connectors/ISO8583-connector/ISO8583-connector-configuration.md'
+            - 'ISO8583 Connector Example': 'references/connectors/ISO8583-connector/ISO8583-connector-example.md'
+            - 'ISO8583 Inbound Endpoint Example': 'references/connectors/ISO8583-connector/ISO8583-inbound-endpoint-example.md'
+        - Amazon SQS Connector:
+            - 'Amazon SQS Connector Example': 'references/connectors/amazonsqs-connector/amazonsqs-connector-example.md'
+        - Microsoft Azure Storage Connector:
+            - 'Setting up the Microsoft Azure Storage Environment': 'references/connectors/microsoft-azure-storage-connector/microsoft-azure-storage-configuration.md'
+            - 'Microsoft Azure Storage Connector Example': 'references/connectors/microsoft-azure-storage-connector/microsoft-azure-storage-connector-example.md'
+        - Google Firebase Connector: 
+          - 'Setting up Google Firebase Environment': 'references/connectors/google-firebase-connector/google-firebase-setup.md'
+          - 'Google Firebase Connector Example': 'references/connectors/google-firebase-connector/google-firebase-connector-example.md'
+          - 'Google Firebase Connector Configuration': 'references/connectors/google-firebase-connector/google-firebase-configuration.md'
+        - FHIR Connector:
+          - 'FHIR Connector Example': 'references/connectors/fhir-connector/fhir-connector-example.md'
       - Synapse Configurations:
         - Mediator Catalog:
           - 'About Mediators': 'references/mediators/about-mediators.md'
@@ -377,7 +432,6 @@ nav:
           - 'PayloadFactory Mediator' : 'references/mediators/payloadFactory-Mediator.md'
           - 'Property Mediator' : 'references/mediators/property-Mediator.md'
           - 'Property Group Mediator' : 'references/mediators/property-Group-Mediator.md'
-          - 'Publish Event Mediator' : 'references/mediators/publish-Event-Mediator.md'
           - 'Respond Mediator' : 'references/mediators/respond-Mediator.md'
           - 'Rule Mediator' : 'references/mediators/rule-Mediator.md'
           - 'Script Mediator' : 'references/mediators/script-Mediator.md'

@@ -58,7 +58,7 @@ The following proxy service splits the message by a character. It receives a mes
           <parameter name="transport.tcp.responseClient">true</parameter> 
           <parameter name="transport.tcp.recordDelimiter">|</parameter> 
           <parameter name="transport.tcp.inputType">string</parameter> 
-          <parameter name="transport.tcp.port">6789</parameter> 
+          <parameter name="transport.tcp.port">6060</parameter> 
           <parameter name="transport.tcp.recordDelimiterType">character</parameter> 
           <parameter name="transport.tcp.contentType">text/xml</parameter> 
 </proxy>
@@ -137,7 +137,7 @@ The sample proxy below splits the input message by appending a special characte
   <parameter name="transport.tcp.recordDelimiter">0x03</parameter> 
   <parameter name="transport.tcp.responseClient">true</parameter> 
   <parameter name="transport.tcp.inputType">binary</parameter> 
-  <parameter name="transport.tcp.port">6789</parameter> 
+  <parameter name="transport.tcp.port">6060</parameter> 
   <parameter name="transport.tcp.recordDelimiterType">byte</parameter> 
   <parameter name="transport.tcp.contentType">text/xml</parameter> 
 </proxy>
@@ -217,7 +217,7 @@ The sample proxy below splits the input message by a sequence of characters.
 <parameter name="transport.tcp.responseClient">true</parameter> 
       <parameter name="transport.tcp.recordDelimiter">split</parameter>
       <parameter name="transport.tcp.inputType">string</parameter> 
-      <parameter name="transport.tcp.port">6789</parameter> 
+      <parameter name="transport.tcp.port">6060</parameter> 
       <parameter name="transport.tcp.recordDelimiterType">string</parameter> 
       <parameter name="transport.tcp.contentType">text/xml</parameter> 
  </proxy>
@@ -269,7 +269,7 @@ The sample Java Client below splits the input message by a special character. Al
  public class TCPClient {
  
      String host = "localhost";
-     int port = 6789;
+     int port = 6060;
      Socket socket = null;
      int count = 0;
      

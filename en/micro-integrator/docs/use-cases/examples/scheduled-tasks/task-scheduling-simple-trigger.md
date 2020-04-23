@@ -13,6 +13,7 @@ Following are the integration artifacts that we can used to implement this scena
     <trigger interval="5"/>
     <property name="soapAction" value="urn:getQuote" xmlns:task="http://www.wso2.org/products/wso2commons/tasks"/>
     <property name="to" value="http://localhost:9000/services/SimpleStockQuoteService" xmlns:task="http://www.wso2.org/products/wso2commons/tasks"/>
+    <property name="format" value="soap11" xmlns:task="http://www.wso2.org/products/wso2commons/tasks"/>
     <property name="message" xmlns:task="http://www.wso2.org/products/wso2commons/tasks">
         <m0:getQuote xmlns:m0="http://services.samples">
             <m0:request>
@@ -31,11 +32,11 @@ Following are the integration artifacts that we can used to implement this scena
         </in>
         <out>
             <log level="custom">
-                <property name="Stock_Quote_on" expression="//ns:return/ax21:lastTradeTimestamp/child::text()"
+                <property name="First_Value" expression="//ns:getQuoteResponse/ax21:open/child::text()"
                           xmlns:ax21="http://services.samples/xsd" xmlns:ns="http://services.samples"/>
-                <property name="For_the_organization" expression="//ns:return/ax21:name/child::text()"
+                <property name="For_the_organization" expression="//ns:getQuoteResponse/ax21:name/child::text()"
                           xmlns:ax21="http://services.samples/xsd" xmlns:ns="http://services.samples"/>
-                <property name="Last_Value" expression="//ns:return/ax21:last/child::text()"
+                <property name="Last_Value" expression="//ns:getQuoteResponse/ax21:last/child::text()"
                           xmlns:ax21="http://services.samples/xsd" xmlns:ns="http://services.samples"/>
             </log>
             <drop/>
