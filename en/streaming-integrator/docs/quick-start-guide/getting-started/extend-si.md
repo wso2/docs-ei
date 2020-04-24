@@ -23,4 +23,6 @@ In this scenario, let's assume that the laboratories require the siddhi-executio
 
 - For more hands-on experience with WSO2 Streaming Integrator, try the [Tutorials](../../examples/tutorials-overview.md).
 
-- To learn how to the Streaming Integrator can triggar an integration flow to act on the results it generates, see [Getting SI Running with MI in Five Minutes](../hello-world-with-mi.md).
+- For more guidance as you use WSO2 Streaming Integrator for your Streaming Integration use cases, see [Use Cases](../guides/use-cases.md)
+
+- To learn how to the Streaming Integrator can trigger an integration flow to act on the results it generates, see [Getting SI Running with MI in Five Minutes](../hello-world-with-mi.md).
