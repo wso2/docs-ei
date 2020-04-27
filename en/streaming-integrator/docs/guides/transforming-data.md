@@ -11,7 +11,7 @@ transformations are carried out via operators that are defined inline within the
 
 ## Transforming data using inline operators
 
-The operators that you can configure inline within Siddhi applications in order to carry out data transformations are listed in the [Siddhi Query Guide - Selct clause](https://siddhi.io/en/v5.0/docs/query-guide/#select).
+The operators that you can configure inline within Siddhi applications in order to carry out data transformations are listed in the [Siddhi Query Guide - Select clause](https://siddhi.io/en/v5.0/docs/query-guide/#select).
 
 To show how an inline operators are configured, let's consider an example where readings from a sensor that indicates 
 the temperature of a room every second are transformed to indicate the average tempertature and the average humidity as at each second.
@@ -19,6 +19,7 @@ the temperature of a room every second are transformed to indicate the average t
 1. Open the Streaming Integrator Tooling and start creating a new Siddhi application. For more information, see [Creating a Siddhi Application](../develop/creating-a-Siddhi-Application.md).
 
 2. Enter a name for the Siddhi application as shown below.<br/>
+
    `@App:name("<Siddhi_Application_Name>)`<br/>
    
    In this example, let's name the application `TemperatureApp`.
