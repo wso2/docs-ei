@@ -7,9 +7,9 @@ transformations are carried out via operators that are defined inline within the
  transformations, you can use Siddhi extensions that are available to be downloaded via the [Siddhi Extension Store](https://store.wso2.com/store/assets/analyticsextension/list).
  Most of these extensions are shipped with the Streaming Integrator by default.
 
-## Transform data using inline operators
+## Transforming data using inline operators
 
-The operators that you can configure inline within Siddhi applications in order to carry out data transformations are listed in the [Siddhi Query Guide - Inbuild Aggregation Functions section](https://siddhi.io/en/v5.0/docs/query-guide/#select).
+The operators that you can configure inline within Siddhi applications in order to carry out data transformations are listed in the [Siddhi Query Guide - Selct clause](https://siddhi.io/en/v5.0/docs/query-guide/#select).
 
 To show how an inline operators are configured, let's consider an example where readings from a sensor that indicates 
 the temperature of a room every second are transformed to indicate the average tempertature and the average humidity as at each second.
@@ -78,11 +78,8 @@ the temperature of a room every second are transformed to indicate the average t
     insert into OutputStream;
     ```
 
-Give an example and point to existing inline math and logical operators.
 
-
-
-## Transform data using in-built extensions
+## Transforming data using in-built extensions
 
 The Streaming Integrator offers a variety of options to carry out data transformations via in-built extensions. The 
 following table describes the complete list of extensions that provide data transformation functionality.
@@ -100,7 +97,7 @@ following table describes the complete list of extensions that provide data tran
 
 These extensions are shipped with the Streaming Integrator by default. If you want to use a Siddhi extension that is not shipped by default, see [Downloading and Installing Siddhi Extensions](../admin/downloading-and-Installing-Siddhi-Extensions.md)
 
-## Transform data using custom function calls
+## Transforming data using custom function calls
 
 To write custom function calls with Siddhi-script-js, follow the procedure below:
 
