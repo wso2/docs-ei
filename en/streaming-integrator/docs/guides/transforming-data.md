@@ -5,7 +5,9 @@
 The Streaming Integrator allows you to perform a wide range of transformations to the input data received. Some of these 
 transformations are carried out via operators that are defined inline within the Siddhi application. For the rest of the
  transformations, you can use Siddhi extensions that are available to be downloaded via the [Siddhi Extension Store](https://store.wso2.com/store/assets/analyticsextension/list).
- Most of these extensions are shipped with the Streaming Integrator by default.
+ Most of these extensions are shipped with the Streaming Integrator by default. Siddhi also allows you to write a custom script to do a data transformation. You can also transform data in a specific format to another format.
+ 
+ ![Transforming Data](../images/transforming-data/transforming-data.png)
 
 ## Transforming data using inline operators
 
