@@ -66,7 +66,7 @@ If you used the **installer** to install the product, you can uninstall by follo
 <td>Mac OS</td>
 <td><div class="content-wrapper">
 <p>Open a terminal and run the following command as the root user:</p>
-  <code>sudo bash /Library/WSO2/EnterpriseIntegrator/7.0.0</code>
+  <code>sudo bash /Library/WSO2/EnterpriseIntegrator/7.0.0/uninstall.sh</code>
 </div>
 </div>
 </div></td>

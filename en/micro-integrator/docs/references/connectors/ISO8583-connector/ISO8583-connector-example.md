@@ -31,7 +31,7 @@ Follow these steps to set up the ESB Solution Project and the Connector Exporter
 
 2. Specify the API name as `SendisoTestAPI` and API context as `/sendiso`. You can go to the source view of the XML configuration file of the API and copy the following configuration (source view).
 
-    ```
+   ```
    <?xml version="1.0" encoding="UTF-8"?>
    <api context="/sendiso" name="SendisoTestAPI" xmlns="http://ws.apache.org/ns/synapse">
        <resource methods="POST">

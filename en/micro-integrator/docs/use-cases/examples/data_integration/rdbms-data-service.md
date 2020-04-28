@@ -173,3 +173,17 @@ This generates a response as follows.
     ```bash
     curl -X PUT -H 'Accept: application/xml'  -H 'Content-Type: application/xml' --data "@employee-update-payload.xml" http://localhost:8290/services/RDBMSDataService/employee
     ```
+
+#### Get Swagger definition
+
+-   Copy the following URL to your browser to get the Swagger definition in JSON format:
+
+    ```bash
+    http://localhost:8290/services/RDBMSDataService?swagger.json
+    ```
+
+-   Copy the following URL to your browser to get the Swagger definition in YAML format:
+
+    ```bash
+    http://localhost:8290/services/RDBMSDataService?swagger.yaml
+    ```
