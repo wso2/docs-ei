@@ -48,8 +48,14 @@ nav:
   - 'Home': index.md
   - 'Get Started':
     - 'Introduction': 'overview/overview.md'
-    - 'Quick Start Guide': 'quick-start-guide/getting-started-with-si.md'
-    - 'Streaming Integrator 101': 'quick-start-guide/quick-start-guide-101.md'
+    - 'Quick Start Guide': 'quick-start-guide/quick-start-guide.md'
+    - 'Creating Your First Siddhi Application':
+        - 'Streaming Integration Overview': 'quick-start-guide/getting-started/getting-started-guide-overview.md'
+        - 'Step 1: Download and Install Streaming Integrator': 'quick-start-guide/getting-started/download-install-and-start-si.md'
+        - 'Step 2: Create the Siddhi Application': 'quick-start-guide/getting-started/create-the-siddhi-application.md'
+        - 'Step 3: Test the Siddhi Application': 'quick-start-guide/getting-started/test-siddhi-application.md'
+        - 'Step 4: Deploy the Siddhi Application': 'quick-start-guide/getting-started/deploy-siddhi-application.md'
+        - 'Extend WSO2 SI': 'quick-start-guide/getting-started/extend-si'
     - 'Running the Streaming Integrator with Micro Integrator': 'quick-start-guide/hello-world-with-mi.md'
     - 'Architecture': 'overview/architecture.md'
     - 'Key Concepts': 'concepts/concepts.md'
@@ -201,12 +207,9 @@ nav:
       - 'Minimum HA Cluster': 'setup/deploying-si-as-minimum-ha-cluster.md'
       - 'Active-Active Cluster': 'setup/deploying-si-as-an-active-active-deployment.md'
       - 'Scalable Cluster': 'setup/deploying-si-as-a-scalable-cluster.md'
+      - 'Minimum HA Cluster in AWS ECS': 'setup/deploying-si-as-minimum-ha-cluster-in-aws-ecs.md'
     - 'Setting up Databases':
       - 'Configuring Datasources': 'setup/configuring-data-sources.md'
-    - 'Working with Siddhi Connectors':
-      - 'Downloading and Installing Siddhi Connectors': 'admin/downloading-and-Installing-Siddhi-Extensions.md'
-      - 'Writing Custom Siddhi Extensions': 'admin/writing-Custom-Siddhi-Extensions.md'
-      - 'Configuring System Parameters for Siddhi Extensions': 'admin/configuring-System-Parameters-for-Siddhi-Extensions.md'
     - 'Working with Business Rules': 'admin/creating-business-rules-templates.md'
     - 'General Data Protection Regulations': 'admin/general-data-protection-regulations.md'
     - 'Working with Keystores': 'admin/working-with-Keystores.md'
@@ -228,6 +231,11 @@ nav:
     - 'Exporting Siddhi Applications': 'develop/exporting-Siddhi-Applications.md'
   - 'Observability':
     - 'Monitoring the Streaming Integrator': 'admin/monitoring-the-streaming-integrator.md'
+  - 'Connectors':
+    - 'Streaming Integrator Connectors Overview': 'connectors/connectors-overview.md'
+    - 'Downloading and Installing Siddhi Connectors': 'connectors/downloading-and-Installing-Siddhi-Extensions.md'
+    - 'Writing Custom Siddhi Extensions': 'connectors/writing-Custom-Siddhi-Extensions.md'
+    - 'Configuring System Parameters for Siddhi Extensions': 'connectors/configuring-System-Parameters-for-Siddhi-Extensions.md'
   - 'References':
     - 'Streaming Integration REST API Guide': 'ref/si-rest-api-guide.md'
     - 'Performance Analysis Results': 'ref/performance-analysis-results.md'
