@@ -327,16 +327,15 @@ To enable the MSMQ transport listener and sender, set the following parameters t
 listener.enable = false
 sender.enable =false
 ```
-## Configuring the MailTo transport 
+## Configuring the MailTo transport
 
-To enable the MailTo transport listener and sender, set the following parameters to `true` in the deployment.toml file (stored in the `MI_HOME/conf` directory).
+-	Configuring the MailTo listener
 
--	Enabling the MailTo listener
-
-	```toml
-	[transport.mail.listener]
-	enable = true
-	```
+    The MailTo transport listener is enabled by default. For more information
+    , see [About MailTo Transport](../../references/synapse-properties/mailto-transport-parameters.md).
+    
+    See the [complete list of MailTo parameters](../../../references/config-catalog/#mail-transport-listener-non
+    -blocking-mode).
 
 -	Configuring the MailTo sender
 
