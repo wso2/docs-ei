@@ -61,6 +61,7 @@ nav:
     - 'Key Concepts': 'concepts/concepts.md'
   - 'Learn':
     - 'Use Cases':
+      - 'Use Cases': 'guides/use-cases.md'
       - 'Consuming Data': 'guides/consuming-messages.md'
       - 'Transforming Data': 'guides/transforming-data.md'
       - 'Enriching Data': 'guides/enriching-data.md'

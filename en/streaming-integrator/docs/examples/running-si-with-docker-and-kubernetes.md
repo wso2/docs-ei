@@ -40,7 +40,7 @@ To run the Streaming Integrator in the  open source image that is available for 
 
 1. To pull the required WSO2 Streaming Integrator distribution with updates from the Docker image, issue the following command.
 
-    `docker pull -it wso2/streaming-integrator`
+    `docker pull -it wso2/streaming-integrator:1.0.0`
 
 2. Expose the required ports via docker when running the docker container. In this scenario, you need to expose the following ports:
 
@@ -50,7 +50,7 @@ To run the Streaming Integrator in the  open source image that is available for 
 
     To expose these ports, issue the following command.
 
-    `docker run -p 9443:9443 -p 8006:8006 wso2/streaming-integrator -v <local-absolute-siddhi-file-path>/MySimpleApp.siddhi:/apps/MySimpleApp.siddhi siddhiio/siddhi-runner-alpine -Dapps=/apps/MySimpleApp.siddhi`
+    `docker run -p 9443:9443 -p 8006:8006 wso2/streaming-integrator/1.0.0 -v <local-absolute-siddhi-file-path>/MySimpleApp.siddhi:/apps/MySimpleApp.siddhi siddhiio/siddhi-runner-alpine -Dapps=/apps/MySimpleApp.siddhi`
 
     !!!info
         In the above command, you are mounting the location where you have saved the `MySimpleApp.siddhi` file so that the Streaming Integrator can locate it and run it when it starts in Docker. Therefore, replace `<local-absolute-siddhi-file-path>` with the path in which you saved the Siddhi application in your machine.
