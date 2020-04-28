@@ -1,50 +1,37 @@
 # Installing Streaming Integrator Using Kubernetes
-WSO2 Streaming Integrator can be deployed natively on kubernetes using Siddhi Kubernetes Operator.
 
-Streaming Integrator can be configured in SiddhiProcess yaml and passed to the CRD(Custom Resource Definition) for deployment.
-Siddhi logic can be directly written inline in SiddhiProcess yaml or passed as .siddhi files via config maps.
+WSO2 Streaming Integrator can be deployed natively on Kubernetes via the Siddhi Kubernetes Operator.
 
-To install WSO2 Streaming Integrator using Kubernetes, follow the steps
-below:
+The Streaming Integrator can be configured in the `<SI-TOOLING_HOME>/wso2/server/resources/decker/export/siddhi-process.yaml` file and passed to the CRD(Custom Resource Definition)for deployment.
+Siddhi logic can be directly written in the `<SI-TOOLING_HOME>/wso2/server/resources/decker/export/siddhi-process.yaml` file or passed as `.siddhi` files via config maps.
 
-### Prerequisites
+To install WSO2 Streaming Integrator via Kubernetes, follow the steps below:
 
-* A Kubernetes cluster v1.10.11 or higher.
-    * [Minikube](https://github.com/kubernetes/minikube#installation)
-    * [Google Kubernetes Engine(GKE) Cluster](https://console.cloud.google.com/)
-    * [Docker for Mac](https://docs.docker.com/docker-for-mac/install/)
-    * Or any other Kubernetes cluster.
-* Admin privilages to install Siddhi operator.
-
-#### Minikube
-
-Siddhi operator automatically creates NGINX ingress. Therefore it to work we can either enable ingress on Minikube using the following command.
-```
-minikube addons enable ingress
-```
-or disable Siddhi operator's [automatically ingress creation](https://siddhi.io/en/v5.0/docs/siddhi-as-a-kubernetes-microservice/#deploy-siddhi-apps-without-ingress-creation).
-
-#### Google Kubernetes Engine Cluster
-
-To install Siddhi operator, you have to give cluster admin permission to your account. In order to do that execute the following command (by replacing "your-address@email.com" with your account email address).
-
-```
-kubectl create clusterrolebinding user-cluster-admin-binding --clusterrole=cluster-admin --user=your-address@email.com
-```
-
-
-#### Docker For Mac
-
-Siddhi operator automatically creates NGINX ingress. Therefore it to work we can either enable ingress on Docker for mac following the official [documentation](https://kubernetes.github.io/ingress-nginx/deploy/#docker-for-mac) or disable Siddhi operator's [automatically ingress creation](https://siddhi.io/en/v5.0/docs/siddhi-as-a-kubernetes-microservice/#deploy-siddhi-apps-without-ingress-creation).
-
+!!! tip "Before you begin:"
+    Start a Kubernetes cluster. The Kubernetes version must be v1.10.11 or later. To start the cluster, you can use one of the following, or any other Kubernetes cluster.<br/><br/>
+     **Minikube**<br/><br/>
+        You can install Minikube from the [Kubernetes/Minikube](https://github.com/kubernetes/minikube#installation)<br/><br/>
+        Siddhi operator automatically creates NGINX ingress. Therefore, for it to work, you can do one of the following: <br/><br/>
+        - Enable ingress on Minikube by issuing the following command.<br/><br/>
+            `minikube addons enable ingress`<br/><br/>
+        - Disable automatic ingress creation by the Siddhi operator. For instructions, see [Siddhi Kubernetes Microservice Documentation - Deploy Siddhi Applications without Ingress creation](https://siddhi.io/en/v5.0/docs/siddhi-as-a-kubernetes-microservice/#deploy-siddhi-apps-without-ingress-creation).<br/><br/>
+     **Google Kubernetes Engine (GKE) Cluster**<br/><br/>
+        To install Siddhi operator, you have to give cluster admin permission to your account. In order to do this, issue the following command. You need to replace `your-address@email.com` with your account email address<br/><br/>
+        `kubectl create clusterrolebinding user-cluster-admin-binding --clusterrole=cluster-admin --user=your-address@email.com`<br/><br/>
+     **Docker for Mac****<br/><br/>
+        Siddhi operator automatically creates NGINX ingress. Therefore, for it to work, you can do one of the following: <br/><br/>
+        - Enable NGINX ingress. For instructions, see [NGINX Ingress Controller documentation](https://kubernetes.github.io/ingress-nginx/deploy/#docker-for-mac).
+        - Disable automatic ingress creation by the Siddhi operator. For instructions, see [Siddhi Kubernetes Microservice Documentation - Deploy Siddhi Applications without Ingress creation](https://siddhi.io/en/v5.0/docs/siddhi-as-a-kubernetes-microservice/#deploy-siddhi-apps-without-ingress-creation).<br/><br/>
+    You are also required to have admin privileges to install the Siddhi operator.
+        
 
 ## Install Siddhi Operator for Streaming Integrator
 
-To install the Siddhi Kubernetes operator for streaming integrator run the following commands.
+To install the Siddhi Kubernetes operator for WSO2 Streaming Integrator, issue the following commands.
 
 ```
-kubectl apply -f https://github.com/wso2/streaming-integrator/releases/download/v1.0.0-m1/00-prereqs.yaml
-kubectl apply -f https://github.com/wso2/streaming-integrator/releases/download/v1.0.0-m1/01-siddhi-operator.yaml
+kubectl apply -f https://github.com/wso2/streaming-integrator/tree/master/modules/kubenetes/00-prereqs.yaml
+kubectl apply -f https://github.com/wso2/streaming-integrator/tree/master/modules/kubenetes/01-siddhi-operator.yaml
 ```
 
 You can verify the installation by making sure the following deployments are running in your Kubernetes cluster.
@@ -58,63 +45,161 @@ siddhi-parser          1         1         1            1           1m
 
 ## Deploy Streaming Integrator
 
-Siddhi app which consists the streaming integration logic can be deployed on kubernetes using the siddhi operator.
+The Siddhi application that contains the streaming integration logic can be deployed in Kubernetes via the Siddhi operator.
 
-Here we will creating a very simple Siddhi stream processing application that consumes events via HTTP, filers the input events on the type 'monitored' and logs the output on the console. This can be created using a SiddhiProcess yaml file as given below.
+To understand how this is done, let's create a very simple Siddhi stream processing application that consumes events via HTTP, filters the input events where the value for `deviceType` is `dryer` and the value for `power` is greater than `600`, and then logs the output in the console. This can be created by configuring the `<SI-TOOLING_HOME>/wso2/server/resources/decker/export/siddhi-process.yaml` file as given below.
 
-<script src="https://gist.github.com/AnuGayan/f11e235ee0dbc3df94126820f7bad282.js"></script>
+```yaml
+    apiVersion: siddhi.io/v1alpha2
+    kind: SiddhiProcess
+    metadata: 
+      name: streaming-integrator
+    spec: 
+      apps: 
+        - script: |
+            @App:name("PowerSurgeDetection")
+            @App:description("App consumes events from HTTP as a JSON message of { 'deviceType': 'dryer', 'power': 6000 } format and inserts the events into DevicePowerStream, and alerts the user if the power level is greater than or equal to 600W by printing a message in the log.")
+            /*
+                Input: deviceType string and powerConsuption int(Watt)
+                Output: Alert user from printing a log, if there is a power surge in the dryer. In other words, notify when power is greater than or equal to 600W.
+            */
+            
+            @source(
+              type='http',
+              receiver.url='${RECEIVER_URL}',
+              basic.auth.enabled='false',
+              @map(type='json')
+            )
+            define stream DevicePowerStream(deviceType string, power int);
+            @sink(type='log', prefix='LOGGER')  
+            define stream PowerSurgeAlertStream(deviceType string, power int); 
+            @info(name='surge-detector')  
+            from DevicePowerStream[deviceType == 'dryer' and power >= 600] 
+            select deviceType, power  
+            insert into PowerSurgeAlertStream;
+      container: 
+        env: 
+          - 
+            name: RECEIVER_URL
+            value: "http://0.0.0.0:8080/checkPower"
+          - 
+            name: BASIC_AUTH_ENABLED
+            value: "false"
+    ```
+    
+    To change the default configurations in WSO2 Streaming Integrator that are defined in the `<SI-TOOLING_HOME>/conf/server/deployment.yaml` file, you need to add he required configurations with the required over-riding values in the `SiddhiProcess.yaml` file under a section named `runner` as shown in the example below.
+    
+    ```yaml
+    apiVersion: siddhi.io/v1alpha2
+    kind: SiddhiProcess
+    metadata: 
+      name: streaming-integrator-app
+    spec: 
+      apps: 
+        - script: |
+            @App:name("PowerSurgeDetection")
+            @App:description("App consumes events from HTTP as a JSON message of { 'deviceType': 'dryer', 'power': 6000 } format and inserts the events into DevicePowerStream, and alerts the user if the power level is greater than or equal to 600W by printing a message in the log.")
+            /*
+                Input: deviceType string and powerConsuption int(Watt)
+                Output: Alert user from printing a log, if there is a power surge in the dryer. In other words, notify when power is greater than or equal to 600W.
+            */
+            
+            @source(
+              type='http',
+              receiver.url='${RECEIVER_URL}',
+              basic.auth.enabled='false',
+              @map(type='json')
+            )
+            define stream DevicePowerStream(deviceType string, power int);
+            @sink(type='log', prefix='LOGGER')  
+            define stream PowerSurgeAlertStream(deviceType string, power int); 
+            @info(name='surge-detector')  
+            from DevicePowerStream[deviceType == 'dryer' and power >= 600] 
+            select deviceType, power  
+            insert into PowerSurgeAlertStream;
+      container: 
+        env: 
+          - 
+            name: RECEIVER_URL
+            value: "http://0.0.0.0:8080/checkPower"
+          - 
+            name: BASIC_AUTH_ENABLED
+            value: "false"
+            
+      runner: |
+        auth.configs:
+          type: 'local'        # Type of the IdP client used
+          userManager:
+            adminRole: admin   # Admin role which is granted all permissions
+            userStore:         # User store
+              users:
+              -
+                user:
+                  username: root
+                  password: YWRtaW4=
+                  roles: 1
+              roles:
+              -
+                role:
+                  id: 1
+                  displayName: root
+          restAPIAuthConfigs:
+            exclude:
+              - /simulation/*
+              - /stores/* 
+```
 
-To change the default configurations in streaming integrator you can provide the configuration that needed to overide through SiddhiProcess yaml
-
-Here we have updated the above SiddhiProcess yaml to have the modified configuration for auth.configs in order to change the default configurations in streaming integrator.
-
-!!! info 
-    we can overide the default deployment.yaml file by using this appoach
-
-<script src="https://gist.github.com/AnuGayan/249a3363a8aa47c6ae2d760d19ee5cad.js"></script>
+Here, you have included a configuration for `auth.configs` to over-ride the default values that are applicable to the Streaming Integrator (i.e., vlues configured under `auth.configs` in the `<SI-TOOLING_HOME>/conf/server/deployment.yaml` file.
 
 
 ### Invoke Siddhi Applications
 
-To invoke the Siddhi Apps, first obtain the external IP of the ingress load balancer using `kubectl get ingress` command as follows and then, add the host siddhi and related external IP (ADDRESS) to the /etc/hosts file in your machine.
+To invoke Siddhi Applications, follow the steps below:
 
-```
-$ kubectl get ingress
-NAME      HOSTS     ADDRESS     PORTS     AGE
-siddhi    siddhi    10.0.2.15    80       14d
-```
+1. To obtain the external IP of the Ingress load balancer, issue the following command.
+    
+    `kubectl get ingress`
+    
+    This generates a response similar to the following:
+    
+    ```
+    NAME      HOSTS     ADDRESS     PORTS     AGE
+    siddhi    siddhi    10.0.2.15    80       14d
+    ```
+     
+2. Add the host (i.e., `siddhi`) and the related external IP (i.e., `ADDRESS`) in the `/etc/hosts` file in your machine.
 
-!!! info "Minikube"
-    For Minikube, you have to use Minikube IP as the external IP. Hence, run minikube ip command to get the IP of the Minikube cluster.
+    !!! info
+        For Minikube, you have to use Minikube IP as the external IP. Therefore, issue the `minikube ip` command to get the IP of the Minikube cluster.
 
-Use the following CURL command to send events to monitor-app deployed in Kubernetes.
+3. To send events to the `PowerSurgeDetection` deployed in Kubernetes, issue the following CURL command.
 
-```
-curl -X POST \
-  http://siddhi/streaming-integrator-0/8080/checkPower \
-    -H 'Accept: */*' \
-    -H 'Content-Type: application/json' \
-    -H 'Host: siddhi' \
-    -d '{
-        "deviceType": "dryer",
-        "power": 600
-        }'
-```    
-To monitor the associated logs for the above siddhi app, list down the available pods by executing the following command.
+    ```
+    curl -X POST \
+      http://siddhi/streaming-integrator-0/8080/checkPower \
+        -H 'Accept: */*' \
+        -H 'Content-Type: application/json' \
+        -H 'Host: siddhi' \
+        -d '{
+            "deviceType": "dryer",
+            "power": 600
+            }'
+    ```    
+4. To monitor the associated logs for the above Siddhi application, list down the available pods by executing the following command.
+    
+    `kubectl get pods`
+    
+    The pods are listed as shown in the following sample response.
+    
+    ```
+    NAME                                        READY    STATUS    RESTARTS    AGE
+    streaming-integrator-app-0-b4dcf85-npgj7     1/1     Running      0        165m
+    streaming-integrator-5f9fcb7679-n4zpj        1/1     Running      0        173m
+    ```
 
-```
-$ kubectl get pods
+5. Issue the following command in order to monitor the logs of the relevant pod. In this example, let's assume that you need to monitor the logs for the `streaming-integrator-app-0-b4dcf85-npgj7` pod.
 
-NAME                                        READY    STATUS    RESTARTS    AGE
-streaming-integrator-app-0-b4dcf85-npgj7     1/1     Running      0        165m
-streaming-integrator-5f9fcb7679-n4zpj        1/1     Running      0        173m
-```
-
-and then execute the following command in order to monitor the logs of the relevant pod.
-
-```
- kubectl logs -f streaming-integrator-app-0-b4dcf85-npgj7
-```
+    `kubectl logs -f streaming-integrator-app-0-b4dcf85-npgj7`
 
 !!! info 
-    For more details regarding the Siddhi Operator, Please refer to the following [document](https://siddhi.io/en/v5.0/docs/siddhi-as-a-kubernetes-microservice/#!).
+    For more details about the Siddhi Operator, see [Siddhi as a Kubernetes Microservice](https://siddhi.io/en/v5.0/docs/siddhi-as-a-kubernetes-microservice/#!).
