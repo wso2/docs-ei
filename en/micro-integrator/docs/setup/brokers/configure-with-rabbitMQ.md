@@ -19,7 +19,7 @@ parameter.password = "guest"
 ```
 
 !!! Warning
-    The above configurations would work if you have a pack updated with WUM on or after 28/11/2019. If not please refer to   [MI-1040](https://github.com/wso2/micro-integrator/issues/1040) & for [MI-1041](https://github.com/wso2/micro-integrator/issues/1041) for work arounds.
+    The above configurations would work if you have a pack updated with WUM on or after 28/11/2019. If not please refer to   [MI-1040](https://github.com/wso2/micro-integrator/issues/1040) & [MI-1041](https://github.com/wso2/micro-integrator/issues/1041) for work arounds.
 
 Download the [amqp-client-5.7.0.jar](https://www.rabbitmq.com/java-client.html) and copy it into `MI_HOME/lib` directory.
 
