@@ -1,4 +1,4 @@
-# Setting up WSO2 SI for Production
+# Production Checklist
 
 Once you download and install WSO2 Streaming Integrator, you may need to update the its default configurations based on your requirements.
 
@@ -35,6 +35,8 @@ In order minimize the loss of data that can result from a system failure, you ca
 ## Creating Business Rules templates
 
 If you want to allow business users with limited coding knowledge to write business rules, you can template Siddhi applications and quesries. For more information, see [Working with Business Rules](../admin/creating-business-rules-templates.md).
+
+## Monitoring the Streaming Integrator
 
 
 
