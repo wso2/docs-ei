@@ -124,6 +124,7 @@ nav:
             - 'Handling HTTP Status Codes': 'use-cases/examples/rest_api_examples/setting-https-status-codes.md'
             - 'Transforming Content Types': 'use-cases/examples/rest_api_examples/transforming-content-type.md'
             - 'Securing a REST API': 'use-cases/examples/rest_api_examples/securing-rest-apis.md'
+            - 'Publishing a Custom Swagger Document': 'use-cases/examples/rest_api_examples/publishing-a-swagger-api.md'
             - Handling Special Cases:
               - 'Using GET with a Message Body': 'use-cases/examples/rest_api_examples/using-get-with-a-body.md'
               - 'Using POST with Empty Message Body': 'use-cases/examples/rest_api_examples/using-post-with-no-body.md'
@@ -251,6 +252,7 @@ nav:
           - 'Connecting to TIBCO EMS': 'setup/brokers/configure-with-Tibco-EMS.md'
           - 'Connecting to Weblogic': 'setup/brokers/configure-with-WebLogic.md'
           - 'Connecting to WSO2 MB': 'setup/brokers/configure-with-WSO2-MB.md'
+          - 'Connecting to Azure Service Bus': 'setup/brokers/configure-with-azure-service-bus.md'
           - 'Connecting to Multiple Brokers': 'setup/brokers/configure-with-multiple-brokers.md'
       - Additional Configurations:
         - 'Adding a Custom Proxy Path': 'setup/adding_a_custom_proxy_path.md'
