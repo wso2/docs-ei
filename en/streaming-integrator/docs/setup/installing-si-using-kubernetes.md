@@ -8,19 +8,19 @@ Siddhi logic can be directly written in the `<SI-TOOLING_HOME>/wso2/server/resou
 To install WSO2 Streaming Integrator via Kubernetes, follow the steps below:
 
 !!! tip "Before you begin:"
-    Start a Kubernetes cluster. The Kubernetes version must be v1.10.11 or later. To start the cluster, you can use one of the following, or any other Kubernetes cluster.<br/><br/>
+    Start a Kubernetes cluster. The Kubernetes version must be v1.10.11 or later. To start the cluster, you can use Minikube, GKE(Google Kubernetes Engine) Cluster, Docker for Mac, or any other Kubernetes cluster.<br/><br/>
      **Minikube**<br/><br/>
         You can install Minikube from the [Kubernetes/Minikube](https://github.com/kubernetes/minikube#installation)<br/><br/>
         Siddhi operator automatically creates NGINX ingress. Therefore, for it to work, you can do one of the following: <br/><br/>
         - Enable ingress on Minikube by issuing the following command.<br/><br/>
             `minikube addons enable ingress`<br/><br/>
         - Disable automatic ingress creation by the Siddhi operator. For instructions, see [Siddhi Kubernetes Microservice Documentation - Deploy Siddhi Applications without Ingress creation](https://siddhi.io/en/v5.0/docs/siddhi-as-a-kubernetes-microservice/#deploy-siddhi-apps-without-ingress-creation).<br/><br/>
-     **Google Kubernetes Engine (GKE) Cluster**<br/><br/>
+     **GKE Cluster**<br/><br/>
         To install Siddhi operator, you have to give cluster admin permission to your account. In order to do this, issue the following command. You need to replace `your-address@email.com` with your account email address<br/><br/>
         `kubectl create clusterrolebinding user-cluster-admin-binding --clusterrole=cluster-admin --user=your-address@email.com`<br/><br/>
-     **Docker for Mac****<br/><br/>
+     **Docker for Mac**<br/><br/>
         Siddhi operator automatically creates NGINX ingress. Therefore, for it to work, you can do one of the following: <br/><br/>
-        - Enable NGINX ingress. For instructions, see [NGINX Ingress Controller documentation](https://kubernetes.github.io/ingress-nginx/deploy/#docker-for-mac).
+        - Enable NGINX ingress. For instructions, see [NGINX Ingress Controller documentation](https://kubernetes.github.io/ingress-nginx/deploy/#docker-for-mac).<br/><br/>
         - Disable automatic ingress creation by the Siddhi operator. For instructions, see [Siddhi Kubernetes Microservice Documentation - Deploy Siddhi Applications without Ingress creation](https://siddhi.io/en/v5.0/docs/siddhi-as-a-kubernetes-microservice/#deploy-siddhi-apps-without-ingress-creation).<br/><br/>
     You are also required to have admin privileges to install the Siddhi operator.
         
@@ -184,7 +184,8 @@ To invoke Siddhi Applications, follow the steps below:
             "deviceType": "dryer",
             "power": 600
             }'
-    ```    
+    ```   
+    
 4. To monitor the associated logs for the above Siddhi application, list down the available pods by executing the following command.
     
     `kubectl get pods`
