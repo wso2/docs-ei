@@ -6,9 +6,9 @@ To help with this migration, see the following set of examples that are similar 
 
 !!! Note 
     These examples are implemented with the following identical parameters.
-    * Same payloads for input and output.
-    * Same configuration values and variable names.
-    * Similar Synapse configuration.
+    <ul><li>Same payloads for input and output.</li>
+    <li>Same configuration values and variable names.</li>
+    <li>Similar Synapse configuration.</li></ul>
 
 <table>
     <tr>

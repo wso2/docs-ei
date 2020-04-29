@@ -507,6 +507,9 @@ nav:
         - 'Customizing Secure Vault' : 'references/security/customizing-secure-vault.md'
         - 'Using Keystores' : 'references/security/using_keystores.md'
         - 'WS-Security Implementations' : 'references/security/security-implementation.md'
+      - Migrating from Mulesoft:
+        - 'Migrating from Mulesoft Overview' : 'references/mule-migration/migrating-mule.md'
+        - 'Hello World' : 'references/mule-migration/hello-world-example.md'
       - 'Best Practices' : 'references/best-Practices.md'
       - 'Troubleshooting JMS' : 'references/troubleshooting-jms.md'
       - 'Error Codes' : 'references/error_handling.md'
