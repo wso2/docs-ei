@@ -77,11 +77,7 @@ The encrypted password is stored in the `secure-vault.properties` file as shown 
 #Secure Vault keys for micro integrator
 #Thu Sep 27 14:38:33 IST 2018
 ProductAlias=hMH3b4S2AhG6l0699uhUVD9O38G04NRygA6TW46/OFMkdNO/0Ucj1ql/x9gCRKrR2TVLFYaM7Sx7E14dJ4IoOaIX9zql9ZxG9bF6ktG2rrktRGoB39BuaLIJ/wPYLoNT26bKr7QXj+NR16eQWlckn1f40Ru2zvE/2wG2smuQL7g67Ptw4DL800IaNYWW8vnhHfaeK+E5CgOKQnTDnwuDDodjiXsJh+2mu2l0KdgDPdxcSjb8uPVC1OubRymygqOJpzKg6Md1R42fGgKGBG9CP9pRj7hW95dVy9h23tHx22ejCrSoxIiEoQjAIIu2wVCBI7fY2HUKBUQOHhb+kenawA\=\=
-```
-
-!!! Warning
-    If you're running securevault on a fresh Micro Integrator distribution, you may have to manually create the `secure-vault.properties` file inside the `<MI_HOME>/registry/config/repository/components/secure-vault/` directory to avoid the error mentioned in [MI-1060](https://github.com/wso2/micro-integrator/issues/1060)
-         
+```         
 
 ## Using encrypted passwords in synapse configurations
 
