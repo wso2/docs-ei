@@ -1,8 +1,24 @@
-# MQTT Connection Factory Parameters
+# MQTT Parameters
 
-Given below is the list of transport parameters that can be configured when you [create a proxy service](../../../develop/creating-artifacts/creating-a-proxy-service.md).
+When you implement an integration use case that requires an MQTT connection, you need to configure the MQTT parameters relevant to your use case from WSO2 Integration Studio. This content explains the MQTT connection factory parameters you can use at the service level.
 
-## Required Parameters
+!!! Info
+      The Micro Integrator can communicate through MQTT only if the MQTT transport listener and sender are enabled and configured at the server level. Read about the [MQTT transport](../../../../setup/transport_configurations/configuring-transports/#configuring-the-mqtt-transport).
+
+## Configuring Service-Level Parameters
+
+To configure MQTT parameters for your integration use case:
+
+1. Open WSO2 Integration Studio and select your [proxy service](../../../develop/creating-artifacts/creating-a-proxy-service.md) artifact. 
+2. Go to the **Service Parameters** section in the **Properties** tab as shown below and add the parameters.
+   
+      <img src="../../../../assets/img/references/proxy-service-properties.png">
+
+## Service-Level Parameters
+
+Given below is the list of MQTT parameters that can be configured at the service level.  
+
+### Required Parameters
 
 <table>
 	<tr>

@@ -1,12 +1,22 @@
-# RabbitMQ Transport
+# RabbitMQ Parameters
 
-## About the RabbitMQ Transport
+When you implement an integration use case that requires a RabbitMQ connection, you need to configure the RabbitMQ parameters relevant to your use case from WSO2 Integration Studio. This content explains the RabbitMQ parameters you can use at the service level.
 
-<a href="http://en.wikipedia.org/wiki/Advanced_Message_Queuing_Protocol">AMQP</a> is a wire-level messaging protocol that describes the format of the data that is sent across the network. If a system or application can read and write AMQP, it can exchange messages with any other system or application that understands AMQP, regardless of the implementation language. The RabbitMQ AMQP transport is implemented using the <a href="http://www.rabbitmq.com/java-client.html">RabbitMQ Java Client</a>. It allows you to send or receive AMQP messages by directly calling an AMQP broker (RabbitMQ).
+!!! Info
+      The Micro Integrator can listen to a RabbitMQ instance or send messages to a RabbitMQ instance only if the RabbitMQ transport listener and sender are enabled and configured at the server level. Read about the [RabbitMQ transport](../../../../setup/brokers/configure-with-rabbitMQ).
 
-## Parameters
+## Configuring Service-Level Parameters
 
-Given below is the list of RabbitMQ transport parameters that can be configured when you [create a proxy service](../../../develop/creating-artifacts/creating-a-proxy-service.md).
+To configure RabbitMQ parameters for your integration use case:
+
+1. Open WSO2 Integration Studio and select your [proxy service](../../../develop/creating-artifacts/creating-a-proxy-service.md) artifact. 
+2. Go to the **Service Parameters** section in the **Properties** tab as shown below and add the parameters.
+   
+      <img src="../../../../assets/img/references/proxy-service-properties.png">
+
+## Service-Level Parameters
+
+Given below is the list of RabbitMQ transport parameters that can be configured at the service level.  
 
 ### Required Parameters (Receiving Messages)
 

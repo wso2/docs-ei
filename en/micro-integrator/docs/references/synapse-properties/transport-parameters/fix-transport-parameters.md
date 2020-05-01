@@ -1,12 +1,20 @@
-# FIX Transport
+# FIX Parameters
 
-## About the FIX transport
+When you implement an integration use case that requires a FIX connection, you need to configure the FIX parameters relevant to your use case from WSO2 Integration Studio. This content explains the FIX parameters you can use at the service level.
 
-This transport implementation is a module developed under the Apache Synapse project. This transport is mainly used in conjunction with proxy services. This transport supports JMX. FIX transport does not support any global parameters. All the FIX configuration parameters should be specified at service level. QuickFix 4J configuration parameters can be found <a href="http://www.quickfixengine.org/quickfix/doc/html/configuration.html">here</a>.
+!!! Info
+      The Micro Integrator can use the FIX transport only if the FIX transport listener and sender are enabled and configured at the server level. Read about the [FIX transport](../../../../setup/transport_configurations/configuring-transports/#configuring-the-fix-transport).
 
-## Parameters
+## Configuring Service-Level Parameters
 
-Given below is the list of transport parameters that can be configured when you [create a proxy service](../../../develop/creating-artifacts/creating-a-proxy-service.md).
+To configure FIX parameters for your integration use case:
+
+1. Open WSO2 Integration Studio and select your [proxy service](../../../develop/creating-artifacts/creating-a-proxy-service.md) artifact. 
+2. Go to the **Service Parameters** section in the **Properties** tab as shown below and add the parameters.
+   
+      <img src="../../../../assets/img/references/proxy-service-properties.png">
+
+## Service-level parameters
 
 <table>
       <tr>
@@ -20,7 +28,7 @@ Given below is the list of transport parameters that can be configured when you 
    <tbody>
       <tr>
          <td>
-			transport.fix.AcceptorConfigURL
+			   transport.fix.AcceptorConfigURL
          </td>
          <td>
             URL to the Quickfix/J acceptor configuration file (see notes below).</br></br> This is required for receiving messages over FIX.

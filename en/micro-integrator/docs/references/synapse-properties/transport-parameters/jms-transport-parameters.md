@@ -1,32 +1,69 @@
-# JMS Transport Parameters
+# JMS Parameters
 
-## About the JMS transport
+When you implement an integration use case that requires a JMS connection, you need to configure the JMS parameters relevant to your use case from WSO2 Integration Studio. This content explains the JMS parameters you can use at the service level.
 
-The Java Message Service (JMS) transport in WSO2 Micro Integrator allows you to easily send and receive messages to queues and topics of any JMS service that implements the JMS specification.
+!!! Info
+      The Micro Integrator can listen to a JMS instance or send messages to a JMS instance only if the JMS transport listener and sender are enabled and configured at the server level. Read about the [JMS transport](../../../../setup/transport_configurations/configuring-transports/#configuring-the-jms-transport).
 
-Java Message Service (JMS) is a widely used API in Java-based Message Oriented Middleware(MOM) applications. It facilitates loosely coupled, reliable, and asynchronous communication between different components of a distributed application. It supports two asynchronous communication models for messaging as follows:
-<ul>
-   <li><b>Point-to-point model</b>: In this model message communication happens from one JMS client to another JMS client through a dedicated queue.</li>
-   <li><b>Publish and subscribe model</b>:  In this model message communication happens from one JMS client(publisher) to many JMS clients(subscribers) through a topic.</li>
-</ul> 
-JMS supports two models for messaging as follows:
-<ul>
-   <li><b>Queues</b>: point-to-point.</li>
-   <li><b>Topics</b>: publish and subscribe.</li>
-</ul> 
-The Micro Integrator supports the following messaging features introduced with JMS 2.0:
-<ul>
-   <li>Shared Topic Subscription</li>
-   <li>JMSX Delivery Count</li>
-   <li>JMS Message Delivery Delay</li>
-</ul>
-The JMS transport implementation comes from the WS-Commons Transports project, and it makes use of JNDI to connect to various JMS brokers. As a result, WSO2 Micro Integrator can work with any JMS broker that offers JNDI support.
+## Configuring Service-Level Parameters
 
-## Parameters
+To configure JMS parameters for your integration use case:
 
-Given below is the list of JMS transport parameters that can be configured when you [create a proxy service](../../../develop/creating-artifacts/creating-a-proxy-service.md).
+1. Open WSO2 Integration Studio and select your [proxy service](../../../develop/creating-artifacts/creating-a-proxy-service.md) artifact. 
+2. Go to the **Service Parameters** section in the **Properties** tab as shown below and add the parameters.
+   
+      <img src="../../../../assets/img/references/proxy-service-properties.png">
 
-### JMS connection factory parameters
+## Service-level JMS configuration parameters
+
+<table>
+      <tr>
+         <th>
+            Parameter Name
+         </th>
+         <th>
+            Description
+         </th>
+      </tr>
+   <tbody>
+      <tr>
+         <td>
+            transport.jms.ConnectionFactory
+         </td>
+         <td>
+            Name of the JMS connection factory the service should use. You can specify the name of an already defined connection factory
+         </td>
+      </tr>
+      <tr>
+         <td>
+            transport.jms.PublishEPR
+         </td>
+         <td>
+            JMS EPR to be published in the WSDL. Specify a JMS EPR.
+         </td>
+      </tr>
+      <tr>
+         <td>transport.jms.ContentType</td>
+         <td>Specifies how the transport listener should determine the content type of received messages. Specify a simple string value, in which case the transport listener assumes that the received messages always have the specified content type, or a set of rules. For more information, see <a href="http://axis.apache.org/axis2/java/transports/jms.html#Service_configuration">http://axis.apache.org/axis2/java/transports/jms.html#Service_configuration</a>.</td>
+      </tr>
+      <tr>
+         <td>
+            <code>transport.jms.MessagePropertyHyphens</code>
+         </td>
+         <td>Specifies the action to be taken when there are JMS Message property names that contain hyphens. The possible values are as follows:
+            <ul>
+               <li><b>none</b>: No action will be taken. This is the default value.</li>
+               <li><b>replace</b>: Transport headers with hyphens will be replaced before adding them as JMS message properties, and if the Micro Integrator is the consumer, hyphens will be reintroduced on message retrieval.</li>
+               <li>
+                  <b>delete</b>: Transport headers with hyphens will be deleted.
+               </li>
+            </ul>
+         </td>
+      </tr>
+   </tbody>
+</table>
+
+## JMS connection factory parameters
 
 Configuration parameters for the JMS receiver and the sender are XML fragments that represent JMS connection factories.
 
@@ -454,55 +491,6 @@ Configuration parameters for the JMS receiver and the sender are XML fragments t
          <td>transport.jms.MaxConsumeErrorRetryCount</td>
          <td>
             The maximum number of times the consumer should retry upon receiving a consumer error. You need to introduce this parameter only if the Broker has issues in notifying the Exception Listeners about the exceptions occurred. You can specify any positive integer. The default value is <code>1</code>.
-         </td>
-      </tr>
-   </tbody>
-</table>
-
-### Service-level JMS configuration parameters
-
-<table>
-      <tr>
-         <th>
-            Parameter Name
-         </th>
-         <th>
-            Description
-         </th>
-      </tr>
-   <tbody>
-      <tr>
-         <td>
-            transport.jms.ConnectionFactory
-         </td>
-         <td>
-            Name of the JMS connection factory the service should use. You can specify the name of an already defined connection factory
-         </td>
-      </tr>
-      <tr>
-         <td>
-            transport.jms.PublishEPR
-         </td>
-         <td>
-            JMS EPR to be published in the WSDL. Specify a JMS EPR.
-         </td>
-      </tr>
-      <tr>
-         <td>transport.jms.ContentType</td>
-         <td>Specifies how the transport listener should determine the content type of received messages. Specify a simple string value, in which case the transport listener assumes that the received messages always have the specified content type, or a set of rules. For more information, see <a href="http://axis.apache.org/axis2/java/transports/jms.html#Service_configuration">http://axis.apache.org/axis2/java/transports/jms.html#Service_configuration</a>.</td>
-      </tr>
-      <tr>
-         <td>
-            <code>transport.jms.MessagePropertyHyphens</code>
-         </td>
-         <td>Specifies the action to be taken when there are JMS Message property names that contain hyphens. The possible values are as follows:
-            <ul>
-               <li><b>none</b>: No action will be taken. This is the default value.</li>
-               <li><b>replace</b>: Transport headers with hyphens will be replaced before adding them as JMS message properties, and if the Micro Integrator is the consumer, hyphens will be reintroduced on message retrieval.</li>
-               <li>
-                  <b>delete</b>: Transport headers with hyphens will be deleted.
-               </li>
-            </ul>
          </td>
       </tr>
    </tbody>
