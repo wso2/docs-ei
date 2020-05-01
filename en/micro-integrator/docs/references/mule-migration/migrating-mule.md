@@ -1,14 +1,14 @@
-# Migrating from Mulesoft
+# Migrating from Mulesoft Overview
 
 Mulesoft provides an integration platform to connect SaaS and enterprise applications on the cloud or on-premise. If you wish to migrate your solutions from Mulesoft to WSO2 EI, you can easily do this by implementing the same use cases in WSO2 Integration Studio.
 
 To help with this migration, see the following set of examples that are similar to [Mulesoft Anypoint Examples](https://github.com/mulesoft/anypoint-examples). You will find that these examples can be easily replicated in WSO2 Integration Studio. 
 
 !!! Note 
-    These examples are implemented with the following identical parameters.
-    <ul><li>Same payloads for input and output.</li>
-    <li>Same configuration values and variable names.</li>
-    <li>Similar Synapse configuration.</li></ul>
+    These examples are implemented with the following similar parameters.
+    <ul><li>Payloads for input and output.</li>
+    <li>Configuration values and variable names.</li>
+    <li>Synapse configurations.</li></ul>
 
 <table>
     <tr>

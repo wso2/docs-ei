@@ -34,8 +34,8 @@ You can run **Composite Application** using WSO2 Enterprise Integrator server ru
 
 You can download the ZIP file and extract the contents to get the project code.
 
-<a href="../../../assets/attach/connectors/FileConnector.zip">
-    <img src="../../../assets/img/connectors/download-zip.png" width="200" alt="Download ZIP">
+<a href="../../../../assets/attach/connectors/FileConnector.zip">
+    <img src="../../../../assets/img/connectors/download-zip.png" width="200" alt="Download ZIP">
 </a>
 
 ### Go further

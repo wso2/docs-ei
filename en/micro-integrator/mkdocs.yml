@@ -507,13 +507,13 @@ nav:
         - 'Customizing Secure Vault' : 'references/security/customizing-secure-vault.md'
         - 'Using Keystores' : 'references/security/using_keystores.md'
         - 'WS-Security Implementations' : 'references/security/security-implementation.md'
-<<<<<<< HEAD
       - Migrating from Mulesoft:
-        - 'Migrating from Mulesoft Overview' : 'references/mule-migration/migrating-mule.md'
-        - 'Hello World' : 'references/mule-migration/hello-world-example.md'
-=======
-      - 'Migrating from Mulesoft' : 'references/migrating-mule.md'
->>>>>>> 6f6e5944faff1aac18d8ec316490e46c1a2bf9d4
+        - 'Overview' : 'references/mule-migration/migrating-mule.md'
+        - Examples:
+          - 'Hello World Example' : 'references/mule-migration/migration-examples/hello-world-example.md'
+          - 'Content-based Routing Example' : 'references/mule-migration/migration-examples/content-based-routing.md'
+          - 'Addition Using JavaScript Transformer Example' : 'references/mule-migration/migration-examples/addition-using-javascript-transformer.md'
+          - 'Authenticating Salesforce Using OAuth2 Example' : 'references/mule-migration/migration-examples/authenticating-salesforce-using-oauth2.md'
       - 'Best Practices' : 'references/best-Practices.md'
       - 'Troubleshooting JMS' : 'references/troubleshooting-jms.md'
       - 'Error Codes' : 'references/error_handling.md'
