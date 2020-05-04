@@ -1,6 +1,6 @@
 # Production Checklist
 
-Once you download and install WSO2 Streaming Integrator, you may need to update the its default configurations based on your requirements.
+Once you download and install WSO2 Streaming Integrator, you may need to update its default configurations based on your requirements.
 
 The changes that you need to make include the following:
 
@@ -22,7 +22,7 @@ This involves configuring the network firewall for opening the ports used by WSO
 
 ## Setting up databases
 
-If you are integrating data stores in your Streaming Integration flows, you need to set up databases. For information about database types supported and how to configure datasources for them, see [Configuring Datasources](setup/configuring-data-sources).
+If you are integrating data stores in your Streaming Integration flows, you need to set up databases. For information about supported database types and how to configure datasources for them, see [Configuring Datasources](setup/configuring-data-sources).
 
 ## Configuring Transports
 
@@ -30,13 +30,15 @@ In order to use certain transports to receive and send data, you are required to
 
 ## Minimizing the impact of system failure
 
-In order minimize the loss of data that can result from a system failure, you can configure WSO2 Streaming Integrator to periodically save its state in a database. For more information, see [Configuring Database and File System State Persistence](admin/configuring-Database-and-File-System-State-Persistence).
+In order to minimize the loss of data that can result from a system failure, you can configure WSO2 Streaming Integrator to periodically save its state in a database. For more information, see [Configuring Database and File System State Persistence](admin/configuring-Database-and-File-System-State-Persistence).
 
 ## Creating Business Rules templates
 
-If you want to allow business users with limited coding knowledge to write business rules, you can template Siddhi applications and quesries. For more information, see [Working with Business Rules](../admin/creating-business-rules-templates.md).
+If you want to allow business users with limited coding knowledge to write business rules, you can template Siddhi applications and queries. For more information, see [Working with Business Rules](../admin/creating-business-rules-templates.md).
 
 ## Monitoring the Streaming Integrator
+
+To monitor the performance of your Streaming Integrator setup, configure the Status Dashboard as described in [Monitoring the Streaming Integrator](../admin/monitoring-the-streaming-integrator.md).
 
 
 
