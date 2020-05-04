@@ -12,7 +12,7 @@ Multiple users with various roles in your organization can require access to you
 
 WSO2 SI is an open-source product. Therefore, anyone who downloads it has access to the default users and passwords, default keystore settings, etc. Therefore, you are required to update the configurations related to security in order to ensure that your data is secure when you run WSO2 SI in a production environment. For more information, see the following topics:
 
-- WSO2 uses key stores to store cryptographic keys and certificates that are used for various purposes. For more information on how to configure and manage them, see [Working witb Keystores](../admin/working-with-Keystores.md).
+- WSO2 uses key stores to store cryptographic keys and certificates that are used for various purposes. For more information on how to configure and manage them, see [Working with Keystores](../admin/working-with-Keystores.md).
 - To protect sensitive data, see [Protecting Sensitive Data via the Secure Vault](https://ei.docs.wso2.com/en/latest/streaming-integrator/admin/protecting-sensitive-data-via-the-secure-vault/).
 - To understand how WSO2 Streaming Integrator complies with GDPR(General Data Protection Regulations) and how you can comply with the same when you are using WSO2 Streaming Integrator, see [General Data Protection Regulations](../admin/general-data-protection-regulations.md).
 
