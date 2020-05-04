@@ -88,10 +88,10 @@ To deploy your custom synapse handler in WSO2 Micro Integrator, bundle the artif
 
 ## Step 3: Engaging the Synapse handler
 
-To engage the deployed Synapse handler, you need to add the following configuration to the `MI_HOME/conf/synapse-handlers.xml` file.
+To engage the deployed Synapse handler, you need to add the following configuration to the `deployment.toml` file.
 
-```xml
-<handlers>
-  <handler name="TestHandler" class="package.TestHandler"/>
-</handlers>
+```toml
+[[synapse_handlers]]
+name = "TestHandler"
+class = "package.TestHandler"
 ```
