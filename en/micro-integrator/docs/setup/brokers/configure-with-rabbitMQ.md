@@ -1,5 +1,7 @@
 # Connecting to RabbitMQ
 
+<a href="http://en.wikipedia.org/wiki/Advanced_Message_Queuing_Protocol">AMQP</a> is a wire-level messaging protocol that describes the format of the data that is sent across the network. If a system or application can read and write AMQP, it can exchange messages with any other system or application that understands AMQP, regardless of the implementation language. The RabbitMQ AMQP transport is implemented using the <a href="http://www.rabbitmq.com/java-client.html">RabbitMQ Java Client</a>. It allows you to send or receive AMQP messages by directly calling an AMQP broker (RabbitMQ).
+
 This section describes how to configure WSO2 Micro Integrator to connect with RabbitMQ.
 
 ## Enabling the RabbitMQ transport 

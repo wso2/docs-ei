@@ -105,6 +105,13 @@ listener.parameter.PreferredCiphers = "TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA256,T
     
 ## Configuring the VFS transport
 
+This transport is used to process files in the specified source directory. After processing the files, it moves them to a specified location or deletes them. Note that files cannot remain in the source directory after processing because they will be processed again. Therefore, if you need to maintain these files or keep track of which files have been processed, specify the option to move them instead of deleting them after processing. If you want to move files into a database, use the VFS transport and the [DBReport Mediator](../../../../references/mediators/dB-Report-Mediator).
+
+!!! Note
+    When you transfer a file to a remote FTP location via VFS, the integrator tries to detect the FTP location by navigating from the root folder first. If the integrator does not have <b>at least list permission</b> to the root (/), the file transfer fails.
+
+The VFS transport is enabled in the Micro Integrator server by default. Also, the VFS transport does not have any global parameters that can apply to all VFS use cases. Rather, it has a set of service-level parameters that must be specified when you create a proxy service or REST API artifact.
+
 The VFS transport is enabled by defualt in the Micro Integrator. The VFS transport supports the **SFTP protocol** with **Secure Sockets Layer (SSL)**. The configuration is identical to other protocols with the only difference being the URL prefixes and parameters. 
 
 For more information, see [VFS URL parameters](../../../references/synapse-properties/transport-parameters/vfs-transport-parameters).
@@ -178,6 +185,8 @@ class="org.wso2.carbon.business.messaging.hl7.message.HL7MessageFormatter"
 -->
 
 ## Configuring the FIX transport
+
+This transport implementation is a module developed under the Apache Synapse project. This transport is mainly used in conjunction with proxy services. This transport supports JMX. FIX transport does not support any global parameters. All the FIX configuration parameters should be specified at service level. QuickFix 4J configuration parameters can be found <a href="http://www.quickfixengine.org/quickfix/doc/html/configuration.html">here</a>.
 
 To enable the FIX transport listener and sender, set the following parameters to `true` in the deployment.toml file (stored in the `MI_HOME/conf` directory).
 
@@ -290,7 +299,6 @@ SocketAcceptPort=9880
 BeginString=FIXT.1.1
 DefaultApplVerID=FIX.5.0
 SocketAcceptPort=9881
-
 ```
 
 ## Configuring the MQTT transport
@@ -329,13 +337,16 @@ sender.enable =false
 ```
 ## Configuring the MailTo transport
 
+When you use the Micro Integrator to mediate messages, the mediation sequence can be configured to send emails (over SMTP) or receive emails (Over POP3 or IMAP) by using the MailTo transport protocol.
+
+The MailTo transport listener implementation can be configured by setting the parameters as described in the JavaMail API documentation. For IMAP related properties, see [IMAP Package Summary](https://javaee.github.io/javamail/docs/api/com/sun/mail/imap/package-summary.html). For POP3 properties, see [POP3 Package Summary](https://javaee.github.io/javamail/docs/api/com/sun/mail/pop3/package-summary.html). The MailTo transport listener also supports the following transport parameters in addition to the parameters described in the JavaMail API documentation.
+
 -	Configuring the MailTo listener
 
     The MailTo transport listener is enabled by default. For more information
     , see [About MailTo Transport](../../../references/synapse-properties/transport-parameters/mailto-transport-parameters).
     
-    See the [complete list of MailTo parameters](../../../references/config-catalog/#mail-transport-listener-non
-    -blocking-mode).
+    See the [complete list of MailTo parameters](../../../references/config-catalog/#mail-transport-listener-non-blocking-mode).
 
 -	Configuring the MailTo sender
 
@@ -368,6 +379,28 @@ sender.enable =false
 	-	`transport.mail.Format` : Format of the outgoing mail. Possible values are <b>Text</b> and <b>Multipart</b>.
 
 ## Configuring the JMS transport
+
+The Java Message Service (JMS) transport in WSO2 Micro Integrator allows you to easily send and receive messages to queues and topics of any JMS service that implements the JMS specification.
+
+Java Message Service (JMS) is a widely used API in Java-based Message Oriented Middleware(MOM) applications. It facilitates loosely coupled, reliable, and asynchronous communication between different components of a distributed application. It supports two asynchronous communication models for messaging as follows:
+
+<ul>
+   <li><b>Point-to-point model</b>: In this model message communication happens from one JMS client to another JMS client through a dedicated queue.</li>
+   <li><b>Publish and subscribe model</b>:  In this model message communication happens from one JMS client(publisher) to many JMS clients(subscribers) through a topic.</li>
+</ul> 
+JMS supports two models for messaging as follows:
+<ul>
+   <li><b>Queues</b>: point-to-point.</li>
+   <li><b>Topics</b>: publish and subscribe.</li>
+</ul> 
+The Micro Integrator supports the following messaging features introduced with JMS 2.0:
+<ul>
+   <li>Shared Topic Subscription</li>
+   <li>JMSX Delivery Count</li>
+   <li>JMS Message Delivery Delay</li>
+</ul>
+
+The JMS transport implementation comes from the WS-Commons Transports project, and it makes use of JNDI to connect to various JMS brokers. As a result, WSO2 Micro Integrator can work with any JMS broker that offers JNDI support.
 
 To enable the JMS transport sender and listener in the Micro Integrator, you need to update the deployment.toml file (stored in the `MI_HOME/conf` directory) with the connection parameters for your JMS broker you are using. **Be sure** to add the required libraries to the `MI_HOME/lib` directory.
 
