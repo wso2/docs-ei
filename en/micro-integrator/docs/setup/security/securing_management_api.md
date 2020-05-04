@@ -232,13 +232,6 @@ If your product instance has the latest updates, open the `deployment.toml` file
     user.password = "pwd-3"
     ```
 
-- Disabling the file-based user store:
-
-    ```toml
-    [management_api.handler.file_user_store]
-    enable = false
-    ```
-
 - Configuring CORS for the management API:
 
     ```toml
