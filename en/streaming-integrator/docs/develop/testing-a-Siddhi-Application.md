@@ -4,8 +4,8 @@ The Streaming Integrator allows the following tasks to be carried
 out to ensure that the Siddhi applications you create and deploy are
 validated before they are run in an actual production environment.
 
--   Validate Siddhi applications that are written in the Streaming Integrator Studio.
--   Run Siddhi applications that were written in the Streaming Integrator Studio.
+-   Validate Siddhi applications that are written in the Streaming Integrator Tooling.
+-   Run Siddhi applications that were written in the Streaming Integrator Tooling.
 -   Simulate events to test the Siddhi applications and analyze events
     that are received and sent. This allows you to analyze the status of
     each query within a Siddhi application at different execution
@@ -15,8 +15,8 @@ validated before they are run in an actual production environment.
 
 To validate a Siddhi application, follow the procedure below:
 
-1.  Start and access the Streaming Integrator Studio. For detailed
-    instructions, see [Starting Stream Integration Studio](streaming-integrator-studio-overview.md#Starting-Streaming-Integration-Studio).
+1.  Start and access the Streaming Integrator Tooling. For detailed
+    instructions, see [Starting Streaming Integrator Tooling](streaming-integrator-studio-overview.md#Starting-Streaming-Integration-Studio).
 
 2.  In this example, let's use an existing sample as an example. Click
     on the **ReceiveAndCount** sample to open it.
@@ -44,8 +44,8 @@ To validate a Siddhi application, follow the procedure below:
 You can run a Siddhi application to verify whether the logic
 you have written is correct. To start a Siddhi application, follow the procedure below:
 
-1.  Start and access the Streaming Integrator Studio. For detailed
-    instructions, see [Starting Stream Integration Studio](streaming-integrator-studio-overview.md#Starting-Streaming-Integration-Studio).
+1.  Start and access the Streaming Integrator Tooling. For detailed
+    instructions, see [Starting Stream Integration Tooling](streaming-integrator-studio-overview.md#Starting-Streaming-Integration-Studio).
     
 2.  For this example, click the **existing** sample **ReceiveAndCount**. It opens in a new untitled tab.
 
@@ -95,8 +95,8 @@ via the Streaming Integrator.
     
 To simulate a single event, follow the steps given below.
 
-1.  Access the Streaming Integrator Studio via the `http://localhost:/editor`
-    URL. The Streaming Integrator Studio opens as shown below.
+1.  Access the Streaming Integrator Tooling via the `http://localhost:/editor`
+    URL. The Streaming Integrator Tooling opens as shown below.
     
     !!! info
         The default URL is`http://localhost:9090/editor`.
