@@ -39,7 +39,7 @@ start your WSO2 Micro Integrator instance. Pass the following system property:
 2.  If you are using a UNIX-based operating system (Linux, Solaris, and Mac OS X), be sure to set the `MI_CLI_HOME/bin` folder path as the PATH:
 
     ```bash
-    $ export PATH=/path/to/mi/cli/directory/bin:$PATH
+    export PATH=/path/to/mi/cli/directory/bin:$PATH
     ```
 3.  Execute the following command to start the CLI:
 
