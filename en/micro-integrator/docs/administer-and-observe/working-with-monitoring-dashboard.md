@@ -65,30 +65,4 @@ Note that the default address is **https://localhost** and the port is **9164**.
 
 ## Configure dashboard security (Optional)
 
-By default, the management api of the Micro Integrator is shipped with a CORS configuration that allows all origins. This configuration can be found in the `internal-apis.xml` file (stored in the `MI-HOME/conf/`) as shown below. 
-  
-```xml
-<cors>
-       <enabled>true</enabled>
-       <allowedOrigins>https://127.0.0.1:9743</allowedOrigins>
-       <allowedHeaders>Authorization</allowedHeaders>
- </cors>
-```
-If required, you can remove the wild card and add a specific origin for this configuration for security requirements.  
-
-As management dashboard is utilizing the management api, the user store is bound to the said api. Therefore, if you want to add a new user to view the management dashboard, you have to add a new user to the userstore defined in the `internal-apis.xml` (stored in the `MI_HOME/comf` directory).
-
-```xml
-<UserStore>
-    <users>
-        <user>
-            <username>admin</username>
-            <password>admin</password>
-        </user>
-    </users>
-</UserStore>
-```
- 
-<!--
-If the ` <UserStore>` element is not defined in `internal-apis.xml` user store will default to the carbon user store defined in user-mgt.xml.
--->
+See [Securing the Management API](../../setup/security/securing_management_api).
