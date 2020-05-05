@@ -56,7 +56,7 @@ To manage Siddhi extensions via the command line, see the following topics.
 
 ### Identifying the Siddhi extensions to install/uninstall
 
-The following are some actions that you are required to perform in order to determine which Siddhi extensions you need to install. Navigate to the `<SI_HOME>/wso2/tools/extension-installer` in order to issue these commands.
+The following are some actions that you are required to perform in order to identify the Siddhi extensions you need to install. Navigate to the `<SI_HOME>/bin` directory in the CLI to issue these commands.
 
 - **Viewing the list of extensions that are currently installed**
 
@@ -67,6 +67,11 @@ The following are some actions that you are required to perform in order to dete
     - **For Windows**     : `extension-installer.bat list`
     - **For Linux/MacOS** : `./extension-installer.sh list`
     
+    The following is a sample response log for this command.
+    
+    ![List of Installed Extensions](../images/downloading-and-installing-siddhi-extensions/list-response.png)
+    
+    
 - **Viewing the installation status of all the supported Siddhi extensions**
 
     You can view the complete list of Siddhi extensions supported for WSO2 Streaming Integrator together with the current installation status for each extension.
@@ -75,16 +80,19 @@ The following are some actions that you are required to perform in order to dete
     
     |**Installation Status**|**Description**                                                    |
     |-----------------------|-------------------------------------------------------------------|
-    |**Installed**          |This indicates that the extension is completely installed. The installation includes the JAR of the extension itself as well as all its dependencies (if any).|
-    |**Not-Installed**      |This indicates that the extension has not been installed. The JAR of the extension itself has not been installed. Dependencies (if any) may be already installed due to shared dependencies.|
-    |**Partially-Installed**|This indicates that the JAR of the extension itself has been installed, but one or more dependencies of the extension still need to be installed.<br/><br/> If an extension has this status, you can view more information about the dependencies to be installed by checking the installation status of that specific extension individually.|
-    |**Restart-Required**   |This indicates that you need to restart Streaming Integrator Tooling in order to complete the installation/un-installation of the extension.|
+    |**INSTALLED**          |This indicates that the extension is completely installed. The installation includes the JAR of the extension itself as well as all its dependencies (if any).|
+    |**NOT_INSTALLED**      |This indicates that the extension has not been installed. The JAR of the extension itself has not been installed. Dependencies (if any) may be already installed due to shared dependencies.|
+    |**PARTIALLY_INSTALLED**|This indicates that the JAR of the extension itself has been installed, but one or more dependencies of the extension still need to be installed. When this status is displayed with an asterisk (i.e., `PARTIALLY_INSTALLED (*)`), it means that there are one or more dependencies that need to be manually installed for the extension.<br/><br/> If an extension has this status, you can view more information about the dependencies to be installed by checking the installation status of that specific extension individually.|
 
     To perform this action, issue the appropriate command out of the following based on your operating system:
     
     - **For Windows**     : `extension-installer.bat list --all`
     - **For Linux/MacOS** : `./extension-installer.sh list --all`
     
+    The following is a sample response for this command.
+    
+    ![List of installed Siddhi extensions with status](../images/downloading-and-installing-siddhi-extensions/list-and-status-response.png)
+        
 - **Checking the installation status of a specific Siddhi extension**
 
     You can view the installation status of a specific extension individually together with details of dependencies that need to be manually downloaded (if any exist).
@@ -93,18 +101,54 @@ The following are some actions that you are required to perform in order to dete
     
     - **For Windows**     : `extension-installer.bat list <EXTENSION_NAME>`
     - **For Linux/MacOS** : `./extension-installer.sh list <EXTENSION_NAME>`   
-
+    
+    !!! info
+        Here, the `<EXTENSION_NAME>` refers to the name of the extension. When you use the command line to view the list of extensions that are currently installed or to view the installation status of all the supported Siddhi extensions, the extension names are displayed in the `name` column.<br/><br/>e.g., The extension name of the gRPC extension is `grpc`.
+        
+    e.g., To view the installation status of the `cdc-oracle` extension (which is partially installed by default), issue the following command:
+    
+    - **For Windows**     : `extension-installer.bat list cdc-oracle`
+    - **For Linux/MacOS** : `./extension-installer.sh list cdc-oracle`
+    
+    The sample response is as follows.
+    
+    ![List status for specific exension](../images/downloading-and-installing-siddhi-extensions/list-status-for-specific-extension.png)
+    
 ### Installing Siddhi Extensions
 
-If the Siddhi applications deployed in your WSO2 Streaming Integrator setup use Siddhi extensions that are not currently installed, you can install all those extensions at once. To do this, issue the appropriate command out of the following based on your operating system.
+#### Installing all extensions required for currently deployed Siddhi applications
+
+If the Siddhi applications deployed in your WSO2 Streaming Integrator setup use Siddhi extensions that are not currently installed, you can automatically install all those extensions at once. To do this, issue the appropriate command out of the following based on your operating system.
 
 - **For Windows**     : `extension-installer.bat install`
 - **For Linux/MacOS** : `./extension-installer.sh install` 
+
+e.g., If a Siddhi application that is currently deployed in your WSO2 Streaming Integrator setup uses the Amazon S3 extension, and if this extension is not already installed, you can issue the command given above. As a result, the following message appears in the terminal informing you of extensions that are used in Siddhi applications, but not installed. It also prompts you to specify whether you want to install them.
+
+![Not-installed extensions in Siddhi applications](../images/downloading-and-installing-siddhi-extensions/not-installed-but-used-extensions.png)
+
+If you enter `y` to specify that you want to proceed with the installation, the following message appears to inform you of the status of the installation and to prompt you to restart the WSO2 Streaming Integrator server once the installation is complete.
+
+![installed missing extension](../images/downloading-and-installing-siddhi-extensions/installed-missing-extension-message.png)
+
+#### Installing a specific Siddhi extension
 
 If you want to install a specific Siddhi extension, issue the appropriate command out of the following based on your operating system.
 
 - **For Windows**     : `extension-installer.bat install <EXTENSION_NAME>`
 - **For Linux/MacOS** : `./extension-installer.sh install <EXTENSION_NAME>` 
+
+!!! info
+    Here, the `<EXTENSION_NAME>` refers to the name of the extension. When you use the command line to view the list of extensions that are currently installed or to view the installation status of all the supported Siddhi extensions, the extension names are displayed in the `name` column.<br/><br/>e.g., The extension name of the gRPC extension is `grpc`.
+    
+e.g., To install the `grpc` Siddhi extension, issue the following command.
+
+- **For Windows**     : `extension-installer.bat install grpc`
+- **For Linux/MacOS** : `./extension-installer.sh install grpc` 
+
+The following message appears to inform you of the status of the installation and to prompt you to restart the WSO2 Streaming Integrator server once the installation is complete.
+
+![install extension log](../images/downloading-and-installing-siddhi-extensions/install-extension-log.png)
 
 ### Uninstalling Siddhi Extensions
 
@@ -113,4 +157,18 @@ To uninstall a specific Siddhi application, issue the appropriate command out of
 - **For Windows**     : `extension-installer.bat uninstall <EXTENSION_NAME>`
 - **For Linux/MacOS** : `./extension-installer.sh uninstall <EXTENSION_NAME>` 
 
-  
+!!! info
+    Here, the `<EXTENSION_NAME>` refers to the name of the extension. When you use the command line to view the list of extensions that are currently installed or to view the installation status of all the supported Siddhi extensions, the extension names are displayed in the `name` column.<br/><br/>e.g., The extension name of the gRPC extension is `grpc`.
+     
+e.g., To un-install the `grpc` Siddhi extension, issue the following command.
+
+- **For Windows**     : `extension-installer.bat uninstall grpc`
+- **For Linux/MacOS** : `./extension-installer.sh uninstall grpc` 
+
+A message appears to inform you of any other extension that shares dependencies with the extension being uninstalled. The message also prompts you to confirm whether you want to proceed with the installation or not.
+
+![uninstall extension log](../images/downloading-and-installing-siddhi-extensions/uninstall-extension-log.png)
+
+If you enter `y` and proceed with the un-installation, the following log appears to inform you of the progress of the un-installation and then prompt you to restart the Streaming Integrator server once the un-installation is complete.
+
+![uninstall extension](../images/downloading-and-installing-siddhi-extensions/uninstall-extension.png)
