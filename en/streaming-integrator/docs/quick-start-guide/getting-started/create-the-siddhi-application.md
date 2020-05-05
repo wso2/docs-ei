@@ -40,11 +40,11 @@ The following image depicts the procedure to be followed by the Siddhi applicati
     
 6. The details to be captures include the room ID, device ID, and the temperature. To specify this, define an input stream with attributes to capture each of these details.
 
-    `define stream TempStream(roomNo string, deviceNo long, temp double)`
+    `define stream TempStream(roomNo string, deviceID long, temp double)`
     
 7. The technicians need to know the average temperature with each new temperature reading. To publish this information, define an output stream including these details as attributes in the schema.
 
-    `define stream AverageTempStream(roomNo string, deviceNo long, avgTemp double)`
+    `define stream AverageTempStream(roomNo string, deviceID long, avgTemp double)`
     
 8. The average temperature needs to be logged. Therefore, connect a sink of the `log` type to the output stream as shown below.
 
@@ -73,7 +73,7 @@ The following image depicts the procedure to be followed by the Siddhi applicati
 
     3. Specify how the values for the output stream attributes are derived by adding a `select` clause as follows.
 
-        `select roomNo, deviceNo, avg(temp)`
+        `select roomNo, deviceID, avg(temp)`
         
         Here, you are applying the `avg()` function to the `temp` attribute in order to calculate the average for that attribute. However, this average calculation is applied to every subset of three events due to the length window connected to the `from` clause.
 

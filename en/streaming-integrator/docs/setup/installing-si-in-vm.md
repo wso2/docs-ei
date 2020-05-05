@@ -155,3 +155,13 @@ listener port is 8253.
 To stop the Streaming Integrator runtime, press Ctrl+C in the command
 window.
 
+## What's Next?
+
+Once you have successfully downloaded and installed WSO2 Streaming Integrator, you can proceed to do any of the following:
+
+- If you were previously using WSO2 Stream Processor and want to migrate to WSO2 Streaming Integrator, follow the instructions in [Migrating from WSO2 Stream Processor](migrating-from-stream-processor.md).
+
+- To deploy WSO2 Streaming Integrator as a single-node deployment or a cluster (based on your requirements), see [Deploying Streaming Integrator](deployment-guide.md).
+
+- To set up WSO2 Streaming Integrator and make it ready to run in a production environment, see the [Production Checklist](production-checklist.md).
+    

@@ -14,7 +14,7 @@ the required output, follow the procedures below:
 
 - **Filtering based on exact match of attribute:**
  
-     1. Open the Streaming Integrator Studio and start creating a new Siddhi application. For more information, see [Creating a Siddhi Application](../develop/creating-a-Siddhi-Application.md).
+     1. Open the Streaming Integrator Tooling and start creating a new Siddhi application. For more information, see [Creating a Siddhi Application](../develop/creating-a-Siddhi-Application.md).
 
      2. Enter a name for the Siddhi application via the `@App:name` annotation. In this example, let's name it `TemperatureApp`.
 

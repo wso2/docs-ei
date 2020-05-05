@@ -2,6 +2,8 @@
 
 The streaming integrator can correlate data in order to detect patterns and trends in streaming data. Correlating can be done via patterns as well as sequences.
 
+![patterns-sequences-matrix](../images/correlating-events/patterns-sequences-matrix.png)
+
 The difference between patterns and sequence is that sequences require all the matching events to arrive consecutively to
  match the sequence condition, whereas patterns identify events that match the pattern condition irrespective of the order in which they arrive.
 
@@ -9,14 +11,14 @@ The difference between patterns and sequence is that sequences require all the m
 
 This section explains how you can use Siddhi patterns to detect trends and patterns. There are two types of Siddhi patterns as follows:
 
-- Counting Patterns: These count the number of intances that match the given pattern condition.
+- Counting Patterns: These count the number of instances that match the given pattern condition.
 - Logical Patterns: These identify logical relationships between events.
 
 ### Count and match multiple events for a given pattern condition
 
 To understand how to count and match multiple events that match a specific condition, consider the example where a store 
 wants to check the frequency with which a specific product needs to be repaired within two months after it is purchased. 
-If a specific product is brought back for repairs within two months more than five times, the manager of purchases needs 
+If the buyer brings back a specific product for repairs more than five times within two months, the manager of purchases needs 
 to be notified via a mail. To do this, create a Siddhi application as follows.
 
 1. Start creating a new Siddhi application. You can name it `DefectDetectionApp` For instructions, see [Creating a Siddhi Application](../develop/creating-a-Siddhi-Application.md).
@@ -140,7 +142,7 @@ insert into ProductionDecreaseAlertStream;
 ```
 
 
-## Find non-occurance of events
+## Find non-occurrence of events
 
 This section explains how to analyze data by observing scenarios where events do not occur. To understand how this is 
 done, consider a taxi service company that tracks the movements of the taxis it runs and wants to be notified of unexpected 
