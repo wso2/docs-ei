@@ -1,15 +1,9 @@
 # Downloading and Installing Siddhi Extensions
 
 The Siddhi extensions supported for the Streaming Integrator are shipped with the product by
-default. If you need to download and install a different version of an
-extension, you can download it manually or via command line. To
-download and install an Siddhi extension, follow the sections below.
+default. If you need to download and install a different version of an extension, it can be downloaded from the [Siddhi Extensions Store](https://store.wso2.com/store/assets/analyticsextension/list). To download and install an Siddhi extension, follow the topics below.
 
-## Downloading and installing Siddhi extensions manually
-
-### Downloading Siddhi extensions
-
-To download Siddhi extensions manually from the store and install them, follow the steps below.
+## Downloading Siddhi extensions
 
 To download the Siddhi extensions, follow the steps below
 
@@ -42,27 +36,11 @@ To download the Siddhi extensions, follow the steps below
    2. Click on the relavent version. It directs you to the download page. To download the bundle, click on it.  
     ![Download Bundle](../images/downloading-and-installing-siddhi-extensions/Maven_Bundle.png)
 
-### Installing Siddhi extensions
+## Installing Siddhi extensions
 
 To install the Siddhi extension in your Streaming Integrator pack, place the extension JAR you downloaded in the 
 `<SI_HOME>/lib` directory.
 
-### Uninstalling Siddhi extensions
+## Uninstalling Siddhi extensions
 
 To uninstall a Siddhi extension, delete the relevant extension JAR in the `<SI_HOME>/lib` directory.
-
-## Downloading and installing Siddhi extensions via the command line
-
-To manage Siddhi extensions via the command line, see the following topics.
-
-### Finding Siddhi extensions to install
-
-The following are some actions that you are required to perform in order to determine which Siddhi extensions you need to install.
-
-|**Required Action**                                                        |**CLI Command**        |
-|---------------------------------------------------------------------------|-----------------------|
-|
-
-
-
-  
