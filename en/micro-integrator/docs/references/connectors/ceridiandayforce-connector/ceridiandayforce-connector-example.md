@@ -147,7 +147,7 @@ Ceridian. The address can be obtained ad mentioned in section Setting up the env
  
 **Expected Response**:
 
-You should receive 200OK response with the response body as follows,
+You should receive 200 OK response with the response body as follows,
 
 ```json
 {
