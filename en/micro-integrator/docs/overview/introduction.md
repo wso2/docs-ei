@@ -1,6 +1,6 @@
 # Introduction
 
-The **Micro Integrator** of [WSO2 Enterprise Integrator 7.0.0](https://ei.docs.wso2.com/en/latest/) is a powerful configuration-driven approach to integration, which allows developers to build integration solutions graphically. 
+The **Micro Integrator** of **WSO2 Enterprise Integrator 7.1.0** is a powerful configuration-driven approach to integration, which allows developers to build integration solutions graphically. 
 
 ## Building Centralized, Monolithic integrations
 
