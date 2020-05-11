@@ -236,5 +236,5 @@ curl --location --request POST 'http://192.168.8.100:8290/dayforceconnector/post
 environment. However, if you use this in a test or production environment changes will be made to the database.
 
 In this example Ceridian Dayforce connector is used to perform operations with Dayforce HCM.  Please read the 
-[Ceridian Dayforce connector reference guide](!point to connector docs) to learn more about the 
+[Ceridian Dayforce connector reference guide](ceridiandayforce-connector-reference.md ) to learn more about the 
 operations you can perform with the Dayforce connector.
