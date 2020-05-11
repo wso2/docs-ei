@@ -4,7 +4,7 @@ The Dayforce Connector allows you to access the REST API of
 [Ceridian Dayforce HCM](https://www.ceridian.com/products/dayforce), 
 which lets you store your human capital information and retrieve them back when needed. 
 
-To use the Dayforce cloud service, you must have an [Dayforce HCM](https://www.dayforcehcm.com) account. 
+To use the Dayforce cloud service, you must have a [Dayforce HCM](https://www.dayforcehcm.com) account. 
 To test the REST API of dayforce we will use a Dayforce developer acount which is free and lets us access a 
 developer Dayforce instance.
 
