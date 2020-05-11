@@ -6,7 +6,7 @@
 
 > NOTE: For development purposes we can use test credentials provided by Dayforce. However, to understand the Dayforce API and the request responses handled by Dayforce it is recommended that you create a developer account. If you do not have a Dayforce account, go to [https://developers.dayforce.com/Special-Pages/Registration.aspx](https://developers.dayforce.com/Special-Pages/Registration.aspx) and create a Dayforce developer account.
 
-To use the Darforce REST connector, add the <ceridiandayforce.init> element in your configuration before carrying out any other Dayforce REST operation. 
+To use the Dayforce REST connector, add the <ceridiandayforce.init> element in your configuration before carrying out any other Dayforce REST operation. 
 
 ## Initializing the connector
 Add the following <ceridiandayforce.init>
