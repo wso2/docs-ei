@@ -188,7 +188,7 @@ You should receive 200OK response with the response body as follows,
 ### POST the contact information of an employee in Dayforce
 
 * Invoke the API as shown below using the curl command. Curl Application can be downloaded from 
-[here] (https://curl.haxx.se/download.html).
+[here](https://curl.haxx.se/download.html).
 
 ```
 curl --location --request POST 'http://192.168.8.100:8290/dayforceconnector/postEmployeeContact' \
