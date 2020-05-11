@@ -46,7 +46,7 @@ These are the latest changes that have yet to be released.
 <table>
     <tbody>
         <tr>
-            <th>next</th>
+            <th>7.1.0</th>
             <td>
                 <a id="pre-release-version-documentation-link">Documentation</a>
             </td>
