@@ -27,7 +27,7 @@ Dayforce sample APIs. Keep them saved to be used in the next steps.
 
 ## Configure the connector in WSO2 Integration Studio
 
-Follow these steps to set up the ESB Solution Project and import Dayforce connector into it.
+Follow these steps to set up the Integration Project and import Dayforce connector into it.
 
 {!references/connectors/importing-connector-to-integration-studio.md!} 
 
