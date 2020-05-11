@@ -15,7 +15,7 @@ developer Dayforce instance.
     1. Navigate to [Ceridian Dayforce Developer Network](https://developers.dayforce.com) and select **Register**.
     2. Follow the online instructions.
 
-If your companyhas already purchased a namespace in Dayforce use that to sign up. Otherwise you can still use their 
+If your company has already purchased a namespace in Dayforce, use that to sign up. Otherwise, you can still use their 
 sample environment by selecting sample option.
 
 ## Obtaining Test User Credentials
