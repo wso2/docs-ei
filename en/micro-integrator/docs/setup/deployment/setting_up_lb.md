@@ -3,6 +3,19 @@
 The following instructions will guide you to set up a load balancer for your two-node [Micro Integrator deployment](../deploying_wso2_ei). The load balancer automatically distributes incoming traffic across the
 multiple product instances in your deployment, which enables better fault tolerance in your deployment.
 
+-	HTTP URL: http://<Ip_Address>:<HttpPort>
+-	HTTPS URL: http://<Ip_Address>:<HttpsPort>
+
+	-	HttpPort = 8280 + offset
+	-	HttpsPort = 8243 + offset
+
+The load balancer directs requests to the server on a round robin basis. For example, the load balancer will direct requests to node 1 (xxx.xxx.xxx.xx1) of the Micro Integrator cluster as follows:
+
+-   HTTP requests will be directed to node 1 using the `http://xxx.xxx.xxx.xx1/<service>` URL via HTTP 80 port.
+-   HTTPS requests will be directed to node 1 using the `https://xxx.xxx.xxx.xx1/<service>` URL via HTTPS 443 port.
+
+Follow the instructions on [setting up a load balancer](../../setup/deployment/setting_up_lb.md) for a two-node deployment of the Micro Integrator.
+
 ## Before you begin
 
 Note the following:
