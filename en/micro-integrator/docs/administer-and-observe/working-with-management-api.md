@@ -113,6 +113,30 @@ The management API has multiple resources to provide information regarding the d
 	curl -X GET "https://localhost:9164/management/proxy-services?proxyServiceName=helloProxy" -H "accept: application/json" -H "Authorization: Bearer TOKEN" -k -i
 	```
 
+### POST PROXY SERVICES
+
+-	**Resource**: `/proxy-services`
+
+	**Description**: Activate and Deactivate a specified proxy service.
+
+	**Example**:
+
+	```bash tab='Request'
+		curl -X POST \
+    	  https://localhost:9164/management/proxy-services \
+    	  -H 'authorization: Bearer TOKEN
+    	  -H 'content-type: application/json' \
+    	  -d '{
+    		"name": "HelloWorld",
+    		"status": "inactive"
+    	}' -k -i
+	```
+
+
+	```bash tab='Response'
+    {"Message":"Proxy service HelloWorld stopped successfully"}
+	```
+	
 ### GET CARBON APPLICATIONS
 
 -	**Resource**: `/applications`
@@ -177,6 +201,30 @@ The management API has multiple resources to provide information regarding the d
 -	**Resource**: `/endpoints?endpointName={endpointname}`
 
 	**Description**: Retrieves information related to a specified endpoint.
+	
+
+### POST ENDPOINTS
+
+-	**Resource**: `/endpoints`
+
+	**Description**:  Activate and Deactivate a specified endpoint.
+
+	**Example**:
+
+	```bash tab='Request'
+		curl -X POST \
+    	  https://localhost:9164/management/endpoints \
+    	  -H 'authorization: Bearer TOKEN
+    	  -H 'content-type: application/json' \
+    	  -d '{
+    		"name": "HTTPEP",
+    		"status": "inactive"
+    	} -k -i
+    ```
+    
+	```bash tab='Response'
+    {"Message":"HTTPEP : is switched Off"}
+	```
 
 ### GET APIs
 
