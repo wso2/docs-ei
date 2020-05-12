@@ -23,7 +23,7 @@ site_url: https://ei.docs.wso2.com/en/latest/
 # Repository
 repo_name: wso2/docs-ei
 repo_url: https://github.com/wso2/docs-ei
-edit_uri: https://github.com/wso2/docs-ei/edit/7.0.0/en/streaming-integrator/docs/
+edit_uri: https://github.com/wso2/docs-ei/edit/master/en/streaming-integrator/docs/
 
 # Copyright
 copyright: WSO2 Enterprise Integrator - Documentation
@@ -61,6 +61,7 @@ nav:
     - 'Key Concepts': 'concepts/concepts.md'
   - 'Learn':
     - 'Use Cases':
+      - 'Use Cases': 'guides/use-cases.md'
       - 'Consuming Data': 'guides/consuming-messages.md'
       - 'Transforming Data': 'guides/transforming-data.md'
       - 'Enriching Data': 'guides/enriching-data.md'
@@ -208,17 +209,18 @@ nav:
       - 'Active-Active Cluster': 'setup/deploying-si-as-an-active-active-deployment.md'
       - 'Scalable Cluster': 'setup/deploying-si-as-a-scalable-cluster.md'
       - 'Minimum HA Cluster in AWS ECS': 'setup/deploying-si-as-minimum-ha-cluster-in-aws-ecs.md'
-    - 'Setting up Databases':
+    - 'Production Hardening':
+      - 'Production Checklist': 'setup/setting-up-si-for-production.md'
       - 'Configuring Datasources': 'setup/configuring-data-sources.md'
-    - 'Working with Business Rules': 'admin/creating-business-rules-templates.md'
-    - 'General Data Protection Regulations': 'admin/general-data-protection-regulations.md'
-    - 'Working with Keystores': 'admin/working-with-Keystores.md'
-    - 'Supporting Different Transports': 'admin/supporting-different-transports.md'
-    - 'User Management': 'admin/user-management.md'
-    - 'Configuring State Persistence': 'admin/configuring-Database-and-File-System-State-Persistence'
-    - 'Protecting Sensitive Data via the Secure Vault': 'admin/protecting-sensitive-data-via-the-secure-vault.md'
-    - 'Adding Third Party Non OSGi Library': 'admin/adding-third-party-non-osgi-libraries.md'
-    - 'Configuring Default Ports': 'ref/configuring-default-ports.md'
+      - 'Working with Business Rules': 'admin/creating-business-rules-templates.md'
+      - 'General Data Protection Regulations': 'admin/general-data-protection-regulations.md'
+      - 'Working with Keystores': 'admin/working-with-Keystores.md'
+      - 'Supporting Different Transports': 'admin/supporting-different-transports.md'
+      - 'User Management': 'admin/user-management.md'
+      - 'Configuring State Persistence': 'admin/configuring-Database-and-File-System-State-Persistence'
+      - 'Protecting Sensitive Data via the Secure Vault': 'admin/protecting-sensitive-data-via-the-secure-vault.md'
+      - 'Adding Third Party Non OSGi Library': 'admin/adding-third-party-non-osgi-libraries.md'
+      - 'Configuring Default Ports': 'ref/configuring-default-ports.md'
   - 'Develop':
     - 'Developing Streaming Integrator Solutions': 'develop/developing-streaming-integration-solutions.md'
     - 'Streaming Integrator Tooling':

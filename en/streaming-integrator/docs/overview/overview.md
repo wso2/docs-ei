@@ -51,5 +51,5 @@ Deploying SI as a highly available [minimum HA cluster](../setup/deploying-si-as
 
 !!! tip "What's Next"
     - [Get started with WSO2 SI in 5 minutes](../quick-start-guide/getting-started-with-si.md)<br/>
-    - [Learn SI functionality in 30 minutes](../quick-start-guide/quick-start-guide-101.md)
+    - [Create Your First Siddhi Application](../quick-start-guide/getting-started/getting-started-guide-overview.md)
 
