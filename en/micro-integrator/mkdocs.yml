@@ -370,6 +370,7 @@ nav:
           - 'Amazon Lambda Connector Example': 'references/connectors/amazonlambda-connector/amazonlambda-connector-example.md'
           - 'Amazon Lambda Connector Configuration': 'references/connectors/amazonlambda-connector/amazonlambda-connector-config.md'
         - Salesforce Rest Connector:
+          - 'Salesforce REST Connector Overview': 'references/connectors/salesforce-rest-connector/sf-rest-overview.md'
           - 'Salesforce Access Token Generation': 'references/connectors/salesforce-rest-connector/sf-access-token-generation.md'
           - 'Salesforce Rest API Connector Example': 'references/connectors/salesforce-rest-connector/sf-rest-connector-example.md'
           - 'Salesforce Rest API Connector Configuration': 'references/connectors/salesforce-rest-connector/sf-rest-connector-config.md'
