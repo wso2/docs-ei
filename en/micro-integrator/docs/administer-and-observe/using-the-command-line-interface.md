@@ -71,6 +71,7 @@ start your WSO2 Micro Integrator instance. Pass the following system property:
     sequence         Manage deployed seqeunces
     task             Manage deployed tasks
     template         Manage templates
+    secret           Manage secret encryption
     version          Version of the CLI
 
     Flags:
@@ -378,3 +379,32 @@ mi version
          # To get details about a specific local entry
          mi localentry show  sampleLocalEntry
     ```
+- **secret**
+    ```
+     Usage:
+         mi secret [command] [arguments] [flags]
+
+     Available Commands:
+         init     initialize keystore information used in encryption
+         create   create secrets based on preference
+     
+     Available Flags:
+         -f properties file used to input multiple plaintext secrets
+         
+     Examples:
+         # To initialize keystore information
+         mi secret init
+       
+         # To encrypt secret and get output to console
+         mi secret create 
+       
+         # To encrypt secret and get output to file
+         mi secret create file
+       
+         # To encrypt secret and get output as a .yaml file
+         mi secret create k8
+       
+         # To bulk encrypt secrets defined in a properties file
+         mi secret create -f=</file_path>
+    ```
+    
