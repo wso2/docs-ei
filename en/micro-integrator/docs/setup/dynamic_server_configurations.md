@@ -1,65 +1,86 @@
-# Managing Server Configurations Between Multiple Environments 
-All configurations related to a micro-integrator instance are specified in a single
-[TOML based configuration file](https://ei.docs.wso2.com/en/latest/micro-integrator/references/config-catalog/).
-In order to support ease of management between different environments, this configuration file supports 
-environment variables and system properties to set up the server environment.
+# Managing Configurations across Environments 
 
+All the server configurations of the Micro Integrator are specified in a single
+[TOML-based configuration file](../../references/config-catalog), which is the `deployment.toml` file (stored int he  `<MI_HOME>/conf` directory). 
 
-In your deployment.toml file you can define the configuration in one of three ways based on your preference. 
+When you have multiple environments (Dev, QA, UAT, Prod), you need the flexibility of dynamically updating the configurations in this file. You can achieve this by defining your server configurations as environment variables or system properties in your server's configuration file. You can then separately inject configuration values for each environment.
+
+In your `deployment.toml` file, you can define the configurations in one of three ways based on your preference. 
 Let's assume you want to set the server offset of your micro-integrator instance.
 
-## $sys{systemPropertyName} - System Property
-When defining the offset as a system property you will have to add the offset property to 
-the deployment.toml file as follows.
+## System properties
 
-`offset = "$sys{propertyName}"
-`
+Use the following syntax in the `deployment.toml` file to specify a configuration as a system property:
 
-![deployment.toml with with sys variable](../assets/img/env-variable-support/sys_variable_toml.png)
+```toml
+parameter="$sys{systemPropertyName}"
+```
 
-Upon saving the deployment.toml you can start the server and set the system property and start the server as usual.
-You can set the system property during server startup as follows while executing the micro-integrator.sh file
-in the <MI-HOME>/bin directory.
+**Example**:
 
-`./micro-integrator.sh -Doffset=19`
+In the following example, the value for the server offset parameter is specified by the `offset` system property.
 
-## $env{environmentVariableName} - Environment Variable
-If you want to set a configuration property of the Micro-integrator instance using an Environment variable 
-(as opposed to a system property), you can define the property in the deployment.toml as follows.
+```toml
+[server]
+offset = "$sys{offset}"
+```
 
-`offset = "$env{offset}"`
+You can set the value for the `offset` system property during server startup. That is, when you execute the server startup command on your terminal, pass the system property value as shown below.
 
-![deployment.toml with with env variable](../assets/img/env-variable-support/env_variable_img.png)
+```bash
+./micro-integrator.sh -Doffset=19
+```
 
-Upon saving the deployment.toml set the environment variables you have defined as follows before
-starting the server as follows.
-`export offset=22`
+## Environment variables
 
-## ${VariableName} - Resolving in Runtime
+Use the following syntax in the `deployment.toml` file to specify a configuration as an environment variable:
 
-As opposed to defining the configuration parameter as $sys{property} or $env{variable}, 
-you can also set it as follows. 
+```toml
+parameter="$env{environmentVariableName}"
+```
 
-`offset = "${offset}"`
+**Example**:
 
-When defined as above, the value will not be resolved by the configuration mapper before the server
-startup and instead it will be resolved at runtime. 
-The property can either be set as an environment variable or a system property and the precedence for 
-the resolution will be as follows (if you have set it as both system property and an environmental variable).
+In the following example, the value for the server offset parameter is specified by the `offset` variable.
+
+```toml
+[server]
+offset = "$env{offset}"
+```
+
+You can now set the environment variables you defined as follows before starting the server:
+
+```bash
+export offset=22
+```
+
+## Variables resolved during runtime
+
+As opposed to defining the configuration parameter as `$sys{property}` or `$env{variable}`, if you use the following syntax in the deployment.toml file, you can pass configurations and resolve them during runtime. That is, you do not have to restart the server for the parameter values to become effective.
+
+```toml
+offset = "${VariableName}"
+```
+
+**Example**:
+
+In the following example, the value for the server offset parameter is specified by the `offset` variable.
+
+```toml
+[server]
+offset = "${offset}"
+```
+
+You can set a value for the `offset` variable as an environment variable or a system property and it will be resolved during runtime. If you have set the value as both a system property and an environmental variable, the system property will be effective.
 	
-	System property > Environment variable
+*System property > Environment variable*
  
-## Docker Deployment
-You can deploy your integration scenarios in a docker environment using the Docker/Kubernetes exporter project.
-Inside the docker exporter project, you will find a deployment.toml file which will be used as 
-the configuration file for the Micro-integrator instance in your docker image. 
-You can configure this deployment.toml file as described above and then build the docker image as required.
+## Docker/Kubernetes environments
 
-You will have to set the System properties and environment variables you have defined in the .toml 
-file inside your docker container with your docker run command.
- These values will be resolved dynamically during the run time.
+When you update product configurations for a container deployment (Docker or Kubernetes), you will update the `deployment.toml` file from your Docker Exporter project or Kubernetes Exporter project in WSO2 Integration Studio. 
 
+You can open the `deployment.toml` file from the project explorer and update the parameter values as [system properties](#system-properties) or [environment variables](#environment-variables).
 
+<img src="../../assets/img/env-variable-support/k8s-project-deployment-file.img" width="500">
 
-
-
+When you execute the `docker run` command to start the container, you can pass the system properties and environment variables. These values will be resolved dynamically during the runtime.

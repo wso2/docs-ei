@@ -17,7 +17,7 @@ Docker Hub. You can view these images [In Docker Hub - WSO2](https://hub.docker.
 To pull the required WSO2 Streaming Integrator distribution with updates from the Docker image, issue the following command.
 
 ```
-docker pull wso2/streaming-integrator
+docker pull wso2/streaming-integrator:1.0.0
 ```
 
 ## Running WSO2 Streaming Integrator
@@ -25,7 +25,7 @@ docker pull wso2/streaming-integrator
 To run WSO2 Streaming Integrator, issue the following command.
 
 ```
-docker run -it wso2/streaming-integrator
+docker run -it wso2/streaming-integrator/1.0.0
 ```
 
 !!! tip

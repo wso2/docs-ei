@@ -16,11 +16,11 @@ schemas. This schema is defined via an output stream definition.
  
  As shown in the image above, a sink configuration consists of three parts.
  
-   + **`@sink`**: This annotation defines the sink type via which the data is published, and allows you to configure the sink parameters (which change depending on the sink type). For the complete list of supported sink types, see [Siddhi Query Guide - Sink](https://siddhi.io/en/v4.x/docs/query-guide/#sink).
-   
-   + **`@map`**: This annotation specifies the format in which the data is published, and allows you to configure the mapping parameters (which change based of the mapping type/format selected). For the complete list of supported mapping types, see [Siddhi Query Guide - Sink Mapper](https://siddhi.io/en/v4.x/docs/query-guide/#sink-mapper).
-   
-   + **`@attributes`**: This annotation specifies a custom mapping based on which events in the streaming integration flow that need to be published are identified. This is useful when the attributes of the output messages you want the Streaming Integrator to publish are different to the corresponding attribute name in the stream definition. e.g., In a scenario where the Streaming Integrator is publishing the average temperature per second, the temperature can be referred to as  `avgTemp` in the output stream definition in your Siddhi application. However, you want to publish it with the `Temperature` to the streaming application to which you are publishing. In this instance, you need a custom mapping to indicate that `Temperature` is the same as `avgTemp`.
+      |**Annotation**       |**Description**                                                                                  |
+      |---------------------|-------------------------------------------------------------------------------------------------|
+      |**`@sink`**          |This annotation defines the sink type via which the data is published, and allows you to configure the sink parameters (which change depending on the sink type). For the complete list of supported sink types, see [Siddhi Query Guide - Sink](https://siddhi.io/en/v4.x/docs/query-guide/#sink).|
+      |**`@map`**           |This annotation specifies the format in which the data is published, and allows you to configure the mapping parameters (which change based of the mapping type/format selected). For the complete list of supported mapping types, see [Siddhi Query Guide - Sink Mapper](https://siddhi.io/en/v4.x/docs/query-guide/#sink-mapper).|
+      |**`@attributes`**    |This annotation specifies a custom mapping based on which events in the streaming integration flow that need to be published are identified. This is useful when the attributes of the output messages you want the Streaming Integrator to publish are different to the corresponding attribute name in the stream definition. e.g., In a scenario where the Streaming Integrator is publishing the average temperature per second, the temperature can be referred to as  `avgTemp` in the output stream definition in your Siddhi application. However, you want to publish it with the `Temperature` to the streaming application to which you are publishing. In this instance, you need a custom mapping to indicate that `Temperature` is the same as `avgTemp`.|
    
 
 ## Publishing data using an event sink
@@ -31,7 +31,7 @@ This section explains how to configure a basic sink without mapping. A Siddhi ap
 
 To create a Siddhi application with the sink configuration defined inline, follow the steps below.
 
-1. Open the Streaming Integrator Studio and start creating a new Siddhi application. For more information, see [Creating a Siddhi Application](../develop/creating-a-Siddhi-Application.md).
+1. Open the Streaming Integrator Tooling and start creating a new Siddhi application. For more information, see [Creating a Siddhi Application](../develop/creating-a-Siddhi-Application.md).
 
 2. Enter a name for the Siddhi application as shown below.<br/>
    `@App:name("<Siddhi_Application_Name>)`<br/>e.g., `@App:name("SalesTotalsApp")`<br/>
@@ -156,10 +156,30 @@ e.g., The log sink used as the example in the previous section can be defined ex
            prefix:'Sales Totals'
 ```
 
-### Supported event sink types
-<Sink categories table here> 
+## Supported event sink types
 
-### Supported event formats
+The supported event sink types are as follows:
+
+|**Source Category**        |**Supported Extensions**           |
+|---------------------------|-----------------------------------|
+|Streaming Messaging Systems| - [io-nats](https://siddhi-io.github.io/siddhi-io-nats/)<br/> - [io-kafka](https://siddhi-io.github.io/siddhi-io-kafka/)<br/> - [io-tcp](https://siddhi-io.github.io/siddhi-io-tcp/)<br/> - [io-jms](https://siddhi-io.github.io/siddhi-io-jms/)<br/> - [io-rabbitmq](https://siddhi-io.github.io/siddhi-io-rabbitmq/)<br/> - [io-mqtt](https://siddhi-io.github.io/siddhi-io-mqtt/)<br/> - [io-sqs](https://siddhi-io.github.io/siddhi-io-sqs/)<br/> - [io-grpc](https://siddhi-io.github.io/siddhi-io-grpc/)|
+|Software and Sensors       | - [io-http](https://siddhi-io.github.io/siddhi-io-http/)<br/> - [io-email](https://siddhi-io.github.io/siddhi-io-email/)<br/> - [io-grpc](https://siddhi-io.github.io/siddhi-io-grpc/)|
+|Cloud                      | - [io-googlepubsub](https://siddhi-io.github.io/siddhi-io-googlepubsub/)<br/> - [io-s3](https://siddhi-io.github.io/siddhi-io-s3/)<br/> - [io-gcs](https://siddhi-io.github.io/siddhi-io-gcs/api/latest/)|
+|Databases                  | - [io-prometheus](https://siddhi-io.github.io/siddhi-io-prometheus/)<br/>|
+|Files                      | - [io-file](https://siddhi-io.github.io/siddhi-io-file/)|
+
+## Supported event formats
+
+You can publish messages in any of the following formats via the relevant Siddhi extensions. Click on the format for more details about the Siddhi extension.
+
+- [JSON](https://siddhi-io.github.io/siddhi-map-json/)
+- [XML](https://siddhi-io.github.io/siddhi-map-xml/)
+- [Text](https://siddhi-io.github.io/siddhi-map-text/)
+- [Avro](https://siddhi-io.github.io/siddhi-map-avro/)
+- [KeyValue](https://siddhi-io.github.io/siddhi-map-keyvalue/)
+- [CSV](https://siddhi-io.github.io/siddhi-map-csv/)
+- [Binary](https://siddhi-io.github.io/siddhi-map-binary/)
+- [Protocol Buffers](https://siddhi-io.github.io/siddhi-map-protobuf/)
 
 #### Publishing data in default format
 

@@ -26,7 +26,7 @@ You can publish data event to the file, through event simulator.
 ## Viewing the Results:
 Messages similar to the following would be shown on the console.
 ```
-INFO {io.siddhi.core.stream.output.sink.LogSink} - SteamingMLExtensionkmeans-incremental-sample : SweetStatePredictionStream : Event{timestamp=1513603080892, data=[12.5, 124.5, 12.5, 124.5], isExpired=false}
+INFO {io.siddhi.core.stream.output.sink.LogSink} - StreamingMLExtensionkmeans-incremental-sample : SweetStatePredictionStream : Event{timestamp=1513603080892, data=[12.5, 124.5, 12.5, 124.5], isExpired=false}
 ```
 
 First two values of the data array represent the coordinates of the cluster that given product belongs to.

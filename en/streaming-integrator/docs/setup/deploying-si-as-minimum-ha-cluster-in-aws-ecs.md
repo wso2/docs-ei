@@ -1,6 +1,3 @@
-!!! note
-    This section is still a work in progress!
-
 # Deploying the Streaming Integrator as a Minimum HA Cluster in AWS ECS
 
 ## Introduction
