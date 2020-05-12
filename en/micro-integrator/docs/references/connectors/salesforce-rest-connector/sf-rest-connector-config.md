@@ -4,7 +4,9 @@ The following operations allow you to work with the Salesforce REST Connector. C
 
 ---
 
-Salesforce REST API uses the OAuth protocol to allow application users to securely access data without having to reveal their user credentials. For more information on authentication is done in Salesforce see [Understanding Authentication](https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/intro_understanding_authentication.htm).
+## Initialize the connector
+
+Salesforce REST API uses the OAuth protocol to allow application users to securely access data without having to reveal their user credentials. For more information on how authentication is done in Salesforce, see [Understanding Authentication](https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/intro_understanding_authentication.htm).
 
 To use the Salesforce REST connector, add the `<salesforcerest.init>` element in your configuration before carrying out any other Salesforce REST operations. 
 
@@ -15,56 +17,67 @@ To use the Salesforce REST connector, add the `<salesforcerest.init>` element in
             <th>Parameter Name</th>
             <th>Description</th>
             <th>Required</th>
+            <th>Sample Value</th>
         </tr>
         <tr>
             <td>apiVersion</td>
             <td>The version of the Salesforce API.</td>
             <td>Yes</td>
+            <td>v32.0</td>
         </tr>
         <tr>
             <td>accessToken</td>
             <td>The access token to authenticate your API calls.</td>
             <td>Yes</td>
+            <td>00D280000017q6q!AQoAQOeXcp7zKo3gUdy6r064_LsJ5bYYrUn_qAZG9TtKFLPfUMRxiato.E162_2XAtCTZLFQTbNk2Rz6Zm_juSakFE_aaBPp</td>
         </tr>
         <tr>
             <td>apiUrl</td>
             <td>The instance URL for your organization.</td>
             <td>Yes</td>
+            <td>https://ap2.salesforce.com</td>
         </tr>
         <tr>
             <td>hostName</td>
             <td>SalesforceOAuth endpoint when issuing authentication requests in your application.</td>
             <td>Yes</td>
+            <td>https://login.salesforce.com</td>
         </tr>
         <tr>
             <td>refreshToken</td>
             <td>The refresh token that you received to refresh the API access token.</td>
             <td>Yes</td>
+            <td>5Aep861TSESvWeug_ztpnAk6BGQxRdovMLhHso81iyYKO6hTm6kHoL4.YfwIi9cHLwga.pPTsTuJlmKjo05x.o.</td>
         </tr>
         <tr>
             <td>clientId</td>
             <td>The consumer key of the connected application that you created.</td>
             <td>Yes</td>
+            <td>3MVG9ZL0ppGP5UrBztM9gSLYyUe7VwAVhD9.yQnZX2mmCu_48Uwc._doxrBTgY4jqmOSDhxRAiUBf8gCr2mk7</td>
         </tr>
         <tr>
             <td>clientSecret</td>
             <td>The consumer secret of the connected application that you created.</td>
             <td>Yes</td>
+            <td>1187341468789253319</td>
         </tr>
         <tr>
             <td>intervalTime</td>
             <td>The time interval in milliseconds, after which you need to check the validity of the access token.</td>
             <td>Yes</td>
+            <td>100000</td>
         </tr>
         <tr>
             <td>registryPath</td>
             <td>The registry path of the connector. You must specify the registry path as follows: registryPath = “connectors/salesforcerest”.</td>
             <td>Yes</td>
+            <td>connectors/salesforcerest</td>
         </tr>
         <tr>
             <td>blocking</td>
             <td>Indicates whether the connector needs to perform blocking invocations to Salesforce.</td>
             <td>Yes</td>
+            <td>false</td>
         </tr>
     </table>
 
@@ -109,46 +122,55 @@ To use the Salesforce REST connector, add the `<salesforcerest.init>` element in
             <th>Parameter Name</th>
             <th>Description</th>
             <th>Required</th>
+            <th>Sample Value</th>
         </tr>
         <tr>
             <td>apiVersion</td>
             <td>The version of the Salesforce API.</td>
             <td>Yes</td>
+            <td>v32.0</td>
         </tr>
         <tr>
             <td>apiUrl</td>
             <td>The instance URL for your organization.</td>
             <td>Yes</td>
+            <td>https://ap2.salesforce.com</td>
         </tr>
         <tr>
             <td>hostName</td>
             <td>SalesforceOAuth endpoint when issuing authentication requests in your application.</td>
             <td>Yes</td>
+            <td>https://login.salesforce.com</td>
         </tr>
         <tr>
             <td>clientId</td>
             <td>The consumer key of the connected application that you created.</td>
             <td>Yes</td>
+            <td>3MVG9ZL0ppGP5UrBztM9gSLYyUe7VwAVhD9.yQnZX2mmCu_48Uwc._doxrBTgY4jqmOSDhxRAiUBf8gCr2mk7</td>
         </tr>
         <tr>
             <td>clientSecret</td>
             <td>The consumer secret of the connected application that you created.</td>
             <td>Yes</td>
+            <td>1187341468789253319</td>
         </tr>
         <tr>
             <td>username</td>
             <td>The username for Salesforce.</td>
             <td>Yes</td>
+            <td>tharis63@outlook.com</td>
         </tr>
         <tr>
             <td>password</td>
             <td>The password for Salesforce (need to append the password with security key).</td>
             <td>Yes</td>
+            <td>xxxxxxxxxxxxxxxxxxxxxx</td>
         </tr>
         <tr>
             <td>blocking</td>
             <td>Indicates whether the connector needs to perform blocking invocations to Salesforce.</td>
             <td>Yes</td>
+            <td>false</td>
         </tr>
     </table>
 
@@ -184,7 +206,7 @@ To use the Salesforce REST connector, add the `<salesforcerest.init>` element in
 
 ---
 
-### Working with AppMenu
+### AppMenu
 
 ??? note "listItemsInMenu"
     To retrieve the list of items in either the Salesforce app drop-down menu or the Salesforce1 navigation menu, use salesforcerest.listItemsInMenu and specify the following property. See the [related API documentation](https://developer.salesforce.com/docs/atlas.en-us.198.0.api_rest.meta/api_rest/resources_appmenu.htm?search_text=menu) for more information.
@@ -193,11 +215,13 @@ To use the Salesforce REST connector, add the `<salesforcerest.init>` element in
             <th>Parameter Name</th>
             <th>Description</th>
             <th>Required</th>
+            <th>Sample Value</th>
         </tr>
         <tr>
             <td>menuType</td>
             <td>The type of the menu, either AppSwitcher or Salesforce.</td>
             <td>Yes</td>
+            <td>AppSwitcher, Salesforce</td>
         </tr>
     </table>
 
@@ -319,7 +343,7 @@ To use the Salesforce REST connector, add the `<salesforcerest.init>` element in
 
 ---
 
-### Working with Approvals
+### Approvals
 
 ??? note "listApprovals"
     To retrieve the list of approvals in Salesforce, use salesforcerest.listApprovals. See the [related API documentation](https://developer.salesforce.com/docs/atlas.en-us.198.0.api_rest.meta/api_rest/dome_process_approvals.htm) for more information.
@@ -362,7 +386,7 @@ To use the Salesforce REST connector, add the `<salesforcerest.init>` element in
 
 ---
 
-### Working with Event Monitoring
+### Event Monitoring
 
 ??? note "describeEventMonitoring"
     To retrieve the description of the event monitoring log, use salesforcerest.describeEventMonitoring. See the [related API documentation](https://developer.salesforce.com/docs/atlas.en-us.198.0.api_rest.meta/api_rest/dome_event_log_file_describe.htm) for more information.
@@ -427,11 +451,14 @@ To use the Salesforce REST connector, add the `<salesforcerest.init>` element in
             <th>Parameter Name</th>
             <th>Description</th>
             <th>Required</th>
+            <th>Sample Value</th>
         </tr>
         <tr>
             <td>queryStringForEventMonitoringData</td>
             <td>The query string to use to get the field values from the log.</td>
             <td>Yes</td>
+            <td>SELECT+Id+,+EventType+,+LogFile+,+LogDate+,+LogFileLength+FROM+EventLogFile+WHERE+LogDate+>+Yesterday+AND+EventType+=+'API'
+            </td>
         </tr>
     </table>
 
@@ -487,7 +514,7 @@ To use the Salesforce REST connector, add the `<salesforcerest.init>` element in
 
 ---
 
-### Working with Invocable Actions
+### Invocable Actions
 
 ??? note "getListOfAction"
     To retrieve the list of general action types for the current organization, use salesforcerest.getListOfAction and specify the following properties. See the [related API documentation](https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/resources_actions_invocable.htm?search_text=action) for more information.
@@ -546,11 +573,13 @@ To use the Salesforce REST connector, add the `<salesforcerest.init>` element in
             <th>Parameter Name</th>
             <th>Description</th>
             <th>Required</th>
+            <th>Sample Value</th>
         </tr>
         <tr>
             <td>actionType</td>
             <td>The type of the invocable action.</td>
             <td>Yes</td>
+            <td>standard</td>
         </tr>
     </table>
 
@@ -599,16 +628,19 @@ To use the Salesforce REST connector, add the `<salesforcerest.init>` element in
             <th>Parameter Name</th>
             <th>Description</th>
             <th>Required</th>
+            <th>Sample Value</th>
         </tr>
         <tr>
             <td>actionType</td>
             <td>The type of the invocable action.</td>
             <td>Yes</td>
+            <td>standard</td>
         </tr>
         <tr>
             <td>attribute</td>
             <td>The attribute whose details you want to retrieve.</td>
             <td>Yes</td>
+            <td>emailSimple</td>
         </tr>
     </table>
 
@@ -663,7 +695,7 @@ To use the Salesforce REST connector, add the `<salesforcerest.init>` element in
     }
     ```
 
-### Working with Layouts
+### Layouts
 
 ??? note "sObjectLayouts"
     To retrieve a list of layouts and descriptions (including for actions) for a specific object, use salesforcerest.sObjectLayouts and specify the following properties. See the [related API documentation](https://developer.salesforce.com/docs/atlas.en-us.198.0.api_rest.meta/api_rest/resources_sobject_layouts.htm?search_text=layouts) for more information.
@@ -672,11 +704,13 @@ To use the Salesforce REST connector, add the `<salesforcerest.init>` element in
             <th>Parameter Name</th>
             <th>Description</th>
             <th>Required</th>
+            <th>Sample Value</th>
         </tr>
         <tr>
             <td>sObjectName</td>
             <td>The type of object whose layouts and descriptions you want to retrieve.</td>
             <td>Yes</td>
+            <td>Account</td>
         </tr>
     </table>
 
@@ -830,7 +864,7 @@ To use the Salesforce REST connector, add the `<salesforcerest.init>` element in
     **Sample configuration**
 
     ```xml
-    <salesforcerest.globalSObjectLayouts/>
+    <salesforcerest.compactLayouts/>
     ```
     
     **Sample request**
@@ -901,11 +935,13 @@ To use the Salesforce REST connector, add the `<salesforcerest.init>` element in
             <th>Parameter Name</th>
             <th>Description</th>
             <th>Required</th>
+            <th>Sample Value</th>
         </tr>
         <tr>
             <td>sObjectName</td>
             <td>The type of object whose layouts you want to retrieve.</td>
             <td>Yes</td>
+            <td>Account</td>
         </tr>
     </table>
 
@@ -951,11 +987,13 @@ To use the Salesforce REST connector, add the `<salesforcerest.init>` element in
             <th>Parameter Name</th>
             <th>Description</th>
             <th>Required</th>
+            <th>Sample Value</th>
         </tr>
         <tr>
             <td>sObjectName</td>
             <td>The type of object whose layouts you want to retrieve.</td>
             <td>Yes</td>
+            <td>Account</td>
         </tr>
     </table>
 
@@ -1026,16 +1064,19 @@ To use the Salesforce REST connector, add the `<salesforcerest.init>` element in
             <th>Parameter Name</th>
             <th>Description</th>
             <th>Required</th>
+            <th>Sample Value</th>
         </tr>
         <tr>
             <td>sObjectName</td>
             <td>The type of object whose layouts you want to retrieve.</td>
             <td>Yes</td>
+            <td>Account</td>
         </tr>
         <tr>
             <td>layoutName</td>
             <td>The type of layout.</td>
             <td>Yes</td>
+            <td>UserAlt</td>
         </tr>
     </table>
 
@@ -1120,7 +1161,7 @@ To use the Salesforce REST connector, add the `<salesforcerest.init>` element in
     }
     ```
 
-### Working with List Views
+### List Views
 
 ??? note "listViews"
     To retrieve a list of list views for the specific sObject, use salesforcerest.listViews and specify the following properties. See the [related API documentation](https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/resources_listviews.htm) for more information.
@@ -1129,11 +1170,13 @@ To use the Salesforce REST connector, add the `<salesforcerest.init>` element in
             <th>Parameter Name</th>
             <th>Description</th>
             <th>Required</th>
+            <th>Sample Value</th>
         </tr>
         <tr>
             <td>sObjectName</td>
             <td>The type of object whose list views you want to retrieve.</td>
             <td>Yes</td>
+            <td>Account</td>
         </tr>
     </table>
 
@@ -1197,16 +1240,19 @@ To use the Salesforce REST connector, add the `<salesforcerest.init>` element in
             <th>Parameter Name</th>
             <th>Description</th>
             <th>Required</th>
+            <th>Sample Value</th>
         </tr>
         <tr>
             <td>sObjectName</td>
             <td>The type of object whose list of list views you want to retrieve.</td>
             <td>Yes</td>
+            <td>Account</td>
         </tr>
         <tr>
             <td>listViewId</td>
-            <td>The ID of the specific list view whose information you want to return.</td>
+            <td>The ID of the specific list view whose information you want to return. This can be obtained by `listViews` operation</td>
             <td>Yes</td>
+            <td>00B28000002yqeVEAQ</td>
         </tr>
     </table>
 
@@ -1262,11 +1308,13 @@ To use the Salesforce REST connector, add the `<salesforcerest.init>` element in
             <th>Parameter Name</th>
             <th>Description</th>
             <th>Required</th>
+            <th>Sample Value</th>
         </tr>
         <tr>
             <td>sObjectName</td>
             <td>The type of object whose recently used list views you want to return.</td>
             <td>Yes</td>
+            <td>Account</td>
         </tr>
     </table>
 
@@ -1330,16 +1378,19 @@ To use the Salesforce REST connector, add the `<salesforcerest.init>` element in
             <th>Parameter Name</th>
             <th>Description</th>
             <th>Required</th>
+            <th>Sample Value</th>
         </tr>
         <tr>
             <td>sObjectName</td>
             <td>The type of object to which the list view applies.</td>
             <td>Yes</td>
+            <td>Account</td>
         </tr>
         <tr>
             <td>listViewID</td>
             <td>The ID of the list view.</td>
             <td>Yes</td>
+            <td>00B28000002yqeVEAQ (obtained by `listViews` operation)</td>
         </tr>
     </table>
 
@@ -1427,16 +1478,19 @@ To use the Salesforce REST connector, add the `<salesforcerest.init>` element in
             <th>Parameter Name</th>
             <th>Description</th>
             <th>Required</th>
+            <th>Sample Value</th>
         </tr>
         <tr>
             <td>sObjectName</td>
             <td>The type of object to which the list view applies.</td>
             <td>Yes</td>
+            <td>Account</td>
         </tr>
         <tr>
             <td>listViewID</td>
-            <td>The ID of the list view.</td>
+            <td>The ID of the list view (obtained by `listViews` operation).</td>
             <td>Yes</td>
+            <td>00B28000002yqeVEAQ</td>
         </tr>
     </table>
 
@@ -1502,7 +1556,7 @@ To use the Salesforce REST connector, add the `<salesforcerest.init>` element in
     }
     ```
 
-### Working with Process Rules
+### Process Rules
 
 ??? note "listProcessRules"
     To retrieve the list of process rules in the organization, use salesforcerest.listProcessRules. See the [related API documentation](https://developer.salesforce.com/docs/atlas.en-us.198.0.api_rest.meta/api_rest/dome_process_rules.htm) for more information.
@@ -1550,16 +1604,19 @@ To use the Salesforce REST connector, add the `<salesforcerest.init>` element in
             <th>Parameter Name</th>
             <th>Description</th>
             <th>Required</th>
+            <th>Sample Value</th>
         </tr>
         <tr>
             <td>sObjectName</td>
             <td>The object whose process rule you want to retrieve.</td>
             <td>Yes</td>
+            <td>Account</td>
         </tr>
         <tr>
             <td>workflowRuleId</td>
-            <td>The ID of the process rule.</td>
+            <td>The ID of the process rule. You can get IDs using operation `listProcessRules`.</td>
             <td>Yes</td>
+            <td>01QD0000000APli</td>
         </tr>
     </table>
 
@@ -1611,7 +1668,7 @@ To use the Salesforce REST connector, add the `<salesforcerest.init>` element in
     }
     ```
 
-### Working with Queries
+### Queries
 
 ??? note "query"
     To retrieve data from an object, use salesforcerest.query and specify the following properties. If you want your results to include deleted records in the Recycle Bin, use salesforcerest.queryAll in place of salesforcerest.query. See the [related API documentation](https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/resources_query.htm) for more information.
@@ -1620,11 +1677,13 @@ To use the Salesforce REST connector, add the `<salesforcerest.init>` element in
             <th>Parameter Name</th>
             <th>Description</th>
             <th>Required</th>
+            <th>Sample Value<th>
         </tr>
         <tr>
             <td>queryString</td>
             <td>The SQL query to use to search for records.</td>
             <td>Yes</td>
+            <td>select id, name from Account</td>
         </tr>
     </table>
 
@@ -1706,11 +1765,13 @@ To use the Salesforce REST connector, add the `<salesforcerest.init>` element in
             <th>Parameter Name</th>
             <th>Description</th>
             <th>Required</th>
+            <th>Sample Value</th>
         </tr>
         <tr>
             <td>nextRecordsUrl</td>
             <td>The query identifier for retrieving additional results.</td>
             <td>Yes</td>
+            <td>QWE45HUJ39D9UISD00</td>
         </tr>
     </table>
 
@@ -1770,11 +1831,13 @@ To use the Salesforce REST connector, add the `<salesforcerest.init>` element in
             <th>Parameter Name</th>
             <th>Description</th>
             <th>Required</th>
+            <th>Sample Value</th>
         </tr>
         <tr>
             <td>queryString</td>
             <td>The SQL query to use to get feedback for a query.</td>
             <td>Yes</td>
+            <td>select id, name from Account</td>
         </tr>
     </table>
 
@@ -1833,11 +1896,13 @@ To use the Salesforce REST connector, add the `<salesforcerest.init>` element in
             <th>Parameter Name</th>
             <th>Description</th>
             <th>Required</th>
+            <th>Sample Value</th>
         </tr>
         <tr>
             <td>listViewID</td>
             <td>The ID of the report or list view to get feedback for a query.</td>
             <td>Yes</td>
+            <td>00B28000002yqeVEAQ</td>
         </tr>
     </table>
 
@@ -1891,7 +1956,7 @@ To use the Salesforce REST connector, add the `<salesforcerest.init>` element in
     }
     ```
 
-### Working with Quick Actions
+### Quick Actions
 
 ??? note "quickActions"
     To retrieve a list of global actions, use salesforcerest.quickActions. See the [related API documentation](https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/resources_quickactions.htm) for more information.
@@ -1956,11 +2021,13 @@ To use the Salesforce REST connector, add the `<salesforcerest.init>` element in
             <th>Parameter Name</th>
             <th>Description</th>
             <th>Required</th>
+            <th>Sample Value</th>
         </tr>
         <tr>
             <td>sObjectName</td>
             <td>The type of object for which you want to retrieve a list of quick actions.</td>
             <td>Yes</td>
+            <td>Account</td>
         </tr>
     </table>
 
@@ -2017,11 +2084,13 @@ To use the Salesforce REST connector, add the `<salesforcerest.init>` element in
             <th>Parameter Name</th>
             <th>Description</th>
             <th>Required</th>
+            <th>Sample Value</th>
         </tr>
         <tr>
             <td>actionName</td>
-            <td>The action to return.</td>
+            <td>The name of action to return.</td>
             <td>Yes</td>
+            <td>hariprasath__LogACall</td>
         </tr>
     </table>
 
@@ -2088,11 +2157,13 @@ To use the Salesforce REST connector, add the `<salesforcerest.init>` element in
             <th>Parameter Name</th>
             <th>Description</th>
             <th>Required</th>
+            <th>Sample Value</th>
         </tr>
         <tr>
             <td>actionName</td>
             <td>The action whose description you want to return.</td>
             <td>Yes</td>
+            <td>hariprasath__LogACall</td>
         </tr>
     </table>
 
@@ -2159,11 +2230,13 @@ To use the Salesforce REST connector, add the `<salesforcerest.init>` element in
             <th>Parameter Name</th>
             <th>Description</th>
             <th>Required</th>
+            <th>Sample Value</th>
         </tr>
         <tr>
             <td>actionName</td>
             <td>The specific action.</td>
             <td>Yes</td>
+            <td>hariprasath__LogACall</td>
         </tr>
     </table>
 
@@ -2210,7 +2283,7 @@ To use the Salesforce REST connector, add the `<salesforcerest.init>` element in
     }
     ```
 
-### Working with Records
+### Records
 
 ??? note "create"
     To create a record, use salesforcerest.create and specify the following properties. See the [related API documentation](https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/dome_sobject_create.htm) for more information.
@@ -2219,16 +2292,22 @@ To use the Salesforce REST connector, add the `<salesforcerest.init>` element in
             <th>Parameter Name</th>
             <th>Description</th>
             <th>Required</th>
+            <th>Sample Value</th>
         </tr>
         <tr>
             <td>sObjectName</td>
             <td>The type of object for which you will create a record.</td>
             <td>Yes</td>
+            <td>Account</td>
         </tr>
         <tr>
             <td>fieldAndValue</td>
             <td>The .json format property used to create the record. Include all mandatory fields according to the requirements for the specified sObject.</td>
             <td>Yes</td>
+            <td><pre>{
+            "name": "wso2",
+            "description":"This Account belongs to WSO2"}
+            </pre></td>
         </tr>
     </table>
 
@@ -2293,16 +2372,34 @@ To use the Salesforce REST connector, add the `<salesforcerest.init>` element in
             <th>Parameter Name</th>
             <th>Description</th>
             <th>Required</th>
+            <th>Sample Value</th>
         </tr>
         <tr>
             <td>sObjectName</td>
             <td>The type of object for which you will create a record.</td>
             <td>Yes</td>
+            <td>Account</td>
         </tr>
         <tr>
             <td>fieldAndValue</td>
             <td>The .json format property, which specifies each record as an entry within the records array. Include all mandatory fields according to the requirements for the specified sObject.</td>
             <td>Yes</td>
+            <td><pre>{
+                    "records": [
+                        {
+                        "attributes": {"type": "Account", "referenceId": "ref1"},
+                        "name": "wso2",
+                        "phone": "1111111",
+                        "website": "www.salesforce1.com"
+                        },
+                        {
+                        "attributes": {"type": "Account", "referenceId": "ref2"},
+                        "name": "slwso2",
+                        "phone": "22222222",
+                        "website": "www.salesforce2.com"
+                        }]
+                    }
+            </pre></td>
         </tr>
     </table>
 
@@ -2398,16 +2495,70 @@ To use the Salesforce REST connector, add the `<salesforcerest.init>` element in
             <th>Parameter Name</th>
             <th>Description</th>
             <th>Required</th>
+            <th>Sample Value</th>
         </tr>
         <tr>
             <td>sObjectName</td>
             <td>The type of object for which you will create a record.</td>
             <td>Yes</td>
+            <td></td>
         </tr>
         <tr>
             <td>fieldAndValue</td>
             <td>The .json format property, which specifies each record as an entry within the records array. Include all mandatory fields according to the requirements for the specified sobject.</td>
             <td>Yes</td>
+            <td><pre>{
+    "records" :[{
+        "attributes" : {"type" : "Account", "referenceId" : "ref1"},
+        "name" : "SampleAccount1",
+        "phone" : "1234567890",
+        "website" : "www.salesforce.com",
+        "numberOfEmployees" : "100",
+        "type" : "Analyst",
+        "industry" : "Banking",
+        "Contacts" : {
+          "records" : [{
+            "attributes" : {"type" : "Contact", "referenceId" : "ref2"},
+            "lastname" : "Smith",
+            "Title" : "President",
+            "email" : "sample@salesforce.com"
+          },{
+            "attributes" : {"type" : "Account", "referenceId" : "ref3"},
+            "lastname" : "Evans",
+            "title" : "Vice President",
+            "email" : "sample@salesforce.com"
+        }]
+        }
+    },{
+        "attributes" : {"type" : "Account", "referenceId" : "ref4"},
+        "name" : "SampleAccount2",
+        "phone" : "1234567890",
+        "website" : "www.salesforce.com",
+        "numberOfEmployees" : "52000",
+        "type" : "Analyst",
+        "industry" : "Banking",
+        "childAccounts" : {
+        "records" : [{
+            "attributes" : {"type" : "Account", "referenceId" : "ref5"},
+            "name" : "SampleChildAccount1",
+            "phone" : "1234567890",
+            "website" : "www.salesforce.com",
+            "numberOfEmployees" : "100",
+            "type" : "Analyst",
+            "industry" : "Banking"
+        }]
+        },
+        "Contacts" : {
+        "records" : [{
+            "attributes" : {"type" : "Contact", "referenceId" : "ref6"},
+            "lastname" : "Jones",
+            "title" : "President",
+            "email" : "sample@salesforce.com"
+        }]
+        }
+    }]
+    }
+            </pre></td>
         </tr>
     </table>
 
@@ -2582,21 +2733,29 @@ To use the Salesforce REST connector, add the `<salesforcerest.init>` element in
             <th>Parameter Name</th>
             <th>Description</th>
             <th>Required</th>
+            <th>Sample Value</th>
         </tr>
         <tr>
             <td>sObjectName</td>
             <td>The type of object for which you will create a record.</td>
             <td>Yes</td>
+            <td>Account</td>
         </tr>
         <tr>
             <td>fieldAndValue</td>
             <td>The json format property with the new definition for the record.</td>
             <td>Yes</td>
+            <td><pre>{
+        "name": "wso2",
+        "description":"This Account belongs to WSO2"
+    }
+            </pre></td>
         </tr>
         <tr>
             <td>Id</td>
             <td>The ID of the record you are updating.</td>
             <td>Yes</td>
+            <td>00128000002OOhD</td>
         </tr>
     </table>
 
@@ -2641,16 +2800,19 @@ To use the Salesforce REST connector, add the `<salesforcerest.init>` element in
             <th>Parameter Name</th>
             <th>Description</th>
             <th>Required</th>
+            <th>Sample Value</th>
         </tr>
         <tr>
             <td>sObjectName</td>
             <td>The object type of the record.</td>
             <td>Yes</td>
+            <td>Account</td>
         </tr>
         <tr>
             <td>Id</td>
             <td>The ID of the record you are deleting.</td>
             <td>Yes</td>
+            <td>00128000002OOhD</td>
         </tr>
     </table>
 
@@ -2691,11 +2853,13 @@ To use the Salesforce REST connector, add the `<salesforcerest.init>` element in
             <th>Parameter Name</th>
             <th>Description</th>
             <th>Required</th>
+            <th>Sample Value</th>
         </tr>
         <tr>
             <td>limit</td>
             <td>The maximum number of records to be returned.</td>
             <td>Yes</td>
+            <td>5</td>
         </tr>
     </table>
 
@@ -2750,21 +2914,25 @@ To use the Salesforce REST connector, add the `<salesforcerest.init>` element in
             <th>Parameter Name</th>
             <th>Description</th>
             <th>Required</th>
+            <th>Sample Value</th>
         </tr>
         <tr>
             <td>sObjectName</td>
             <td>The object type whose metadata you want to retrieve.</td>
             <td>Yes</td>
+            <td>Account</td>
         </tr>
         <tr>
             <td>rowId</td>
             <td>The ID of the record whose values you want to retrieve.</td>
             <td>Yes</td>
+            <td>00128000005YjDnAAK</td>
         </tr>
         <tr>
             <td>fields</td>
             <td>A comma-separated list of fields whose values you want to retrieve.</td>
             <td>Yes</td>
+            <td>AccountNumber,BillingPostalCode</td>
         </tr>
     </table>
 
@@ -2819,26 +2987,34 @@ To use the Salesforce REST connector, add the `<salesforcerest.init>` element in
             <th>Parameter Name</th>
             <th>Description</th>
             <th>Required</th>
+            <th>Sample Value</th>
         </tr>
         <tr>
             <td>sObjectName</td>
             <td>The object type whose value you want to upsert.</td>
             <td>Yes</td>
+            <td>Account</td>
         </tr>
         <tr>
             <td>externalIDField</td>
             <td>The external Id Field of the subject.</td>
             <td>Yes</td>
+            <td>sample__c</td>
         </tr>
         <tr>
             <td>Id</td>
             <td>The value of the customExtIdField.</td>
             <td>Yes</td>
+            <td>15222</td>
         </tr>
         <tr>
             <td>fieldAndValue</td>
             <td>The json format property/payload used to create the record.</td>
             <td>Yes</td>
+            <td>{
+                "Name":"john"
+            }
+            </td>
         </tr>
     </table>
 
@@ -2890,7 +3066,7 @@ To use the Salesforce REST connector, add the `<salesforcerest.init>` element in
     }
     ```
 
-### Working with sObjects
+### sObjects
 
 ??? note "describeGlobal"
     To retrieve a list of the objects that are available in the system, use salesforcerest.describeGlobal. You can then get metadata for an object or objects as described in the next sections. See the [related API documentation](https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/resources_describeGlobal.htm) for more information.
@@ -2968,11 +3144,13 @@ To use the Salesforce REST connector, add the `<salesforcerest.init>` element in
             <th>Parameter Name</th>
             <th>Description</th>
             <th>Required</th>
+            <th>Sample Value</th>
         </tr>
         <tr>
             <td>sObjectName</td>
             <td>The object type whose metadata you want to retrieve.</td>
             <td>Yes</td>
+            <td>Account</td>
         </tr>
     </table>
 
@@ -3180,11 +3358,13 @@ To use the Salesforce REST connector, add the `<salesforcerest.init>` element in
             <th>Parameter Name</th>
             <th>Description</th>
             <th>Required</th>
+            <th>Sample Value</th>
         </tr>
         <tr>
             <td>sObjectName</td>
             <td>The object type whose metadata you want to retrieve.</td>
             <td>Yes</td>
+            <td>Account</td>
         </tr>
     </table>
 
@@ -3258,21 +3438,25 @@ To use the Salesforce REST connector, add the `<salesforcerest.init>` element in
             <th>Parameter Name</th>
             <th>Description</th>
             <th>Required</th>
+            <th>Sample Value</th>
         </tr>
         <tr>
             <td>sObjectName</td>
             <td>The object type whose metadata you want to retrieve.</td>
             <td>Yes</td>
+            <td>Account</td>
         </tr>
         <tr>
             <td>startTime</td>
             <td>Starting date/time (Coordinated Universal Time (UTC)—not local—timezone) of the timespan for which to retrieve the data.</td>
             <td>Yes</td>
+            <td>2015-10-05T12:30:30+05:30</td>
         </tr>
         <tr>
             <td>endTime</td>
             <td>Ending date/time (Coordinated Universal Time (UTC)—not local—timezone) of the timespan for which to retrieve the data.</td>
             <td>Yes</td>
+            <td>2015-10-10T20:30:30+05:30</td>
         </tr>
     </table>
 

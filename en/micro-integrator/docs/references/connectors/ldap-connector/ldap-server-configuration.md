@@ -1,39 +1,53 @@
 # LDAP Connector Configuration
 
-## Setting up an LDAP Server
-WSO2 Identity Server offers an embedded LDAP as a primary user store. Download Identity Server from 
-[here](https://wso2.com/identity-and-access-management/) and start the server. See 
-[Quick Start Guide](https://is.docs.wso2.com/en/5.10.0/get-started/quick-start-guide/)
+To use the LDAP connector, add the `<ldap.init>` element in your configuration before carrying out any other LDAP operations. 
 
-### Apache Directory Studio
+??? note "ldap.init"
+    The ldap.init operation initializes the connector to interact with an LDAP.
+    <table>
+        <tr>
+            <th>Parameter Name</th>
+            <th>Description</th>
+            <th>Required</th>
+        </tr>
+        <tr>
+            <td>providerUrl</td>
+            <td>The URL of the LDAP server.</td>
+            <td>Yes</td>
+        </tr>
+        <tr>
+            <td>securityPrincipal</td>
+            <td>The Distinguished Name (DN) of the admin of the LDAP Server.</td>
+            <td>Yes</td>
+        </tr>
+        <tr>
+            <td>securityCredentials</td>
+            <td>The password of the LDAP admin.</td>
+            <td>Yes</td>
+        </tr>
+        <tr>
+            <td>secureConnection</td>
+            <td>The boolean value for the secure connection.</td>
+            <td>Yes</td>
+        </tr>
+        <tr>
+            <td>disableSSLCertificateChecking</td>
+            <td>The boolean value to check whether the certificate is enabled or not.</td>
+            <td>Yes</td>
+        </tr>
+    </table>
 
-1. Download Apache Directory Studio from [here](http://directory.apache.org/studio/) and open.
-2. Right click on the LDAP Servers tab found on the bottom left corner and click **New Connection**.
-    ![image](../../../assets/img/connectors/ldap_connector/ds_create_new_connection.png)
-3. Configure network parameters as follows and click next.
-    ![image](../../../assets/img/connectors/ldap_connector/creating_a_new_connection.png)
-4. Provide authentication parameters as follows and click finish.
-    * Bind DN or user parameter - **uid=admin,ou=system**
-    * Bind password - **admin**
-5. Right click on newly created connection and select **Open Connection**.
-    ![image](../../../assets/img/connectors/ldap_connector/open_connection.png)
+    **Sample configuration**
+    ```xml
+    <ldap.init>
+        <providerUrl>{$ctx:providerUrl}</providerUrl>
+        <securityPrincipal>{$ctx:securityPrincipal}</securityPrincipal>
+        <securityCredentials>{$ctx:securityCredentials}</securityCredentials>
+        <secureConnection>{$ctx:secureConnection}</secureConnection>
+        <disableSSLCertificateChecking>{$ctx:disableSSLCertificateChecking}</disableSSLCertificateChecking>
+    </ldap.init>
+    ```
 
-### init
-```xml
-<ldap.init>
-    <providerUrl>{$ctx:providerUrl}</providerUrl>
-    <securityPrincipal>{$ctx:securityPrincipal}</securityPrincipal>
-    <securityCredentials>{$ctx:securityCredentials}</securityCredentials>
-    <secureConnection>{$ctx:secureConnection}</secureConnection>
-    <disableSSLCertificateChecking>{$ctx:disableSSLCertificateChecking}</disableSSLCertificateChecking>
-</ldap.init>
-```
-
-**providerUrl** : The URL of the LDAP server.</br>
-**securityPrincipal** : The Distinguished Name(DN) of the admin of the LDAP Server.</br>
-**securityCredentials** : The password of the LDAP admin.</br>
-**secureConnection** : The boolean value for the secure connection.</br>
-**disableSSLCertificateChecking** : The boolean value to check whether the certificate is enabled or not.</br>
 
 You can follow the steps below to import your LDAP certificate into wso2ei client’s keystore as follows:
 

@@ -1,4 +1,4 @@
-# DB Event inbound endpoint example
+# DB Event Inbound Endpoint Example
 
 Data is the most valuable asset in any business. Almost every cooperate system has an on-premise or cloud-based data storage facility. When the individual systems in a particular business are integrated together, sometimes they are coupled via database systems. For an example, one system can write data, while another system reads and processes them. In such instances, the systems may want to know if there are any changes to the data being performed by external parties or systems. 
 
@@ -19,7 +19,7 @@ Following diagram shows the overall solution we are going to build. External sys
 
 <img src="../../../../assets/img/connectors/db-event-diagram.png" title="Overview of DB event inbound EP use case" width="600" alt="Overview of DB event inbound EP use case"/>
 
-If you do not want to build this yourself, you can simply [get the project](#get-the-project) and run it.
+If you do not want to configure this yourself, you can simply [get the project](#get-the-project) and run it.
 
 ## Setting up the environment 
 

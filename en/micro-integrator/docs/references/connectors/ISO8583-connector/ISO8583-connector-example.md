@@ -3,6 +3,7 @@
 Given below is a sample scenario that demonstrates how the WSO2 ISO8583 Connector sends an ISO8583 message to financial networks using WSO2 Micro Integrator.
 
 The ISO8583 message format is used for financial transactions such as ATM, POS, Credit Card, Mobile Banking, Internet Banking, KIOSK, e-commerce, etc. transactions.
+
 The financial transaction involves communication between two systems through a socket connection. After the connection is established, each system can send messages in ISO8583 format, which commonly will be requested and the other system will send a response. 
 
 For example, the purchase made in a store may travel from the merchant terminal through another terminal such as banking systems. This requires a network or networks to the issuing bank where the card holder's account is held.
@@ -18,7 +19,7 @@ To know the further information about the  `init` and `iso8583.sendMessage` oper
 
 <img src="../../../../assets/img/connectors/ISO8583-connector.png" title="ISO8583 Connector" width="800" alt="ISO8583 Connector"/>
 
-If you do not want to build this yourself, you can simply [get the project](#get-the-project) and run it.
+If you do not want to configure this yourself, you can simply [get the project](#get-the-project) and run it.
 
 ## Configure the connector in WSO2 Integration Studio
 
@@ -30,7 +31,7 @@ Follow these steps to set up the ESB Solution Project and the Connector Exporter
 
 2. Specify the API name as `SendisoTestAPI` and API context as `/sendiso`. You can go to the source view of the XML configuration file of the API and copy the following configuration (source view).
 
-    ```
+   ```
    <?xml version="1.0" encoding="UTF-8"?>
    <api context="/sendiso" name="SendisoTestAPI" xmlns="http://ws.apache.org/ns/synapse">
        <resource methods="POST">

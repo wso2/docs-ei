@@ -367,16 +367,19 @@ nav:
           - 'Salesforce Access Token Generation': 'references/connectors/salesforce-rest-connector/sf-access-token-generation.md'
           - 'Salesforce Rest API Connector Example': 'references/connectors/salesforce-rest-connector/sf-rest-connector-example.md'
           - 'Salesforce Rest API Connector Configuration': 'references/connectors/salesforce-rest-connector/sf-rest-connector-config.md'
+          - 'Setting up the PushTopic in Salesforce': 'references/connectors/salesforce-rest-connector/sf-rest-inbound-endpoint-configuration.md'
+          - 'Salesforce Inbound Endpoint Example': 'references/connectors/salesforce-rest-connector/sf-rest-inbound-endpoint-example.md'
+          - 'Salesforce Inbound Endpoint Configuration': 'references/connectors/salesforce-rest-connector/sf-rest-inbound-endpoint-reference-configuration.md'
         - AmazonS3 Connector:
           - 'Setting up Amazon S3 Environment': 'references/connectors/amazons3-connector/amazons3-connector-config.md'
           - 'AmazonS3 Connector Example': 'references/connectors/amazons3-connector/amazons3-connector-example.md'
-          - 'AmazonS3 Connector Configuration': 'references/connectors/amazons3-connector/amazons3-connector-reference.md'
         - ServiceNow Connector:
           - 'ServiceNow Connector Example': 'references/connectors/servicenow-connector/servicenow-connector-example.md'
           - 'Setting up Servicenow Instance': 'references/connectors/servicenow-connector/settingup-servicenow-instance.md'
         - LDAP Connector:
-            - 'Setting up an LDAP Server': 'references/connectors/ldap-connector/ldap-server-configuration.md'
+            - 'Setting up an LDAP Server': 'references/connectors/ldap-connector/setting-up-ldap.md'
             - 'LDAP Connector Example': 'references/connectors/ldap-connector/ldap-connector-example.md'
+            - 'LDAP Connector Configuration': 'references/connectors/ldap-connector/ldap-server-configuration.md'
         - DB Event Listener Inbound Endpoint:
           - 'Database Event Listener Example': 'references/connectors/db-event-inbound-endpoint/db-event-inbound-endpoint-example.md'
           - 'Database Event Listener Configuration': 'references/connectors/db-event-inbound-endpoint/db-event-inbound-endpoint-config.md'
