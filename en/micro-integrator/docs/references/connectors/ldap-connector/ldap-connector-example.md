@@ -19,15 +19,17 @@ todo : add an image
 
 * `/search` : This will performs a search for one or more LDAP entities with the specified search keys.
 
-If you do not want to build this yourself, you can simply [get the project](#get-the-project) and run it.
+If you do not want to configure this yourself, you can simply [get the project](#get-the-project) and run it.
 
 ## Configure the connector in WSO2 Integration Studio
+
+Before you begin, see [Setting up LDAP](setting-up-ldap.md) if you need to setup an LDAP and try this out. 
 
 Follow these steps to set up the Integration Project and the Connector Exporter Project. 
 
 {!references/connectors/importing-connector-to-integration-studio.md!} 
 
-1. Right click on the created Integration Project and select, -> **New** -> **Rest API** to create the REST API. 
+1. Right click on the created Integration Project and select, **New** -> **Rest API** to create the REST API. 
    
 2. Provide the API name as `college_student_api` and the API context as `/student`. You can go to the source view of the 
 xml configuration file of the API and copy the following configuration. 
@@ -219,3 +221,4 @@ You should get all entries that match with the provided filter. A sample respons
 
 * You can deploy and run your project on [Docker](../../../setup/installation/run_in_docker.md) or 
 [Kubernetes](../../../setup/installation/run_in_kubernetes.md).
+* To customize this example for your own scenario, see [LDAP Connector Configuration](ldap-server-configuration.md) documentation for all operation details of the connector.

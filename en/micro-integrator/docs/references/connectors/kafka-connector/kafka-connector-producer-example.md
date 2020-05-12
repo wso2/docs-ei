@@ -1,6 +1,6 @@
 # Kafka Connector Example
 
-Given below is a sample scenario that demonstrates how to send messages to a Kafka broker via Kafka topics.The publishMessages operation allows you to publish messages to the Kafka brokers via Kafka topics.
+Given below is a sample scenario that demonstrates how to send messages to a Kafka broker via Kafka topics. The publishMessages operation allows you to publish messages to the Kafka brokers via Kafka topics.
 
 ## What you'll build
 
@@ -12,11 +12,11 @@ The following diagram illustrates all the required functionality of the Kafka se
 
 <img src="../../../../assets/img/connectors/KafkaConnectorPublishMessage.png" title="KafkaConnector" width="800" alt="KafkaConnector"/>
 
-If you do not want to build this yourself, you can simply [get the project](#get-the-project) and run it.
+If you do not want to configure this yourself, you can simply [get the project](#get-the-project) and run it.
 
 ## Configure the connector in WSO2 Integration Studio
 
-Follow these steps to set up the ESB Solution Project and the Connector Exporter Project.
+Follow these steps to set up the Integration Project and the Connector Exporter Project.
 
 {!references/connectors/importing-connector-to-integration-studio.md!}
 
