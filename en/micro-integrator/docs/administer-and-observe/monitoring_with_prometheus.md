@@ -43,8 +43,8 @@ To use Prometheus, you need to first start the WSO2 Micro Integrator instance by
 
 - If your Micro Integrator is running on a **VM** with Prometheus enabled, navigate to the `MI_HOME/bin        ` directory and issue one of the following commands.
 
-    -   On **Windows**: `          integrator.bat -DenablePrometheusApi         `
-    -   For **Linux/MacOS/CentOS** : `          ./integrator.sh -DenablePrometheusApi         `
+    -   On **Windows**: `          micro-integrator.bat -DenablePrometheusApi         `
+    -   For **Linux/MacOS/CentOS** : `          ./micro-integrator.sh -DenablePrometheusApi         `
 
 ## Viewing statistics
 

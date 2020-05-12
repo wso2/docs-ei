@@ -28,8 +28,8 @@ Following are the integration artifacts that we can used to implement this scena
       <parameter name="transport.vfs.MoveAfterProcess">file:///home/user/test/out</parameter>
       <parameter name="transport.vfs.FileURI">file:///home/user/test/in</parameter>
       <parameter name="transport.vfs.MoveAfterFailure">file:///home/user/test/failed</parameter>
-      <parameter name="transport.vfs.FileNamePattern">.*.txt</parameter>
-      <parameter name="transport.vfs.ContentType">text/plain</parameter>
+      <parameter name="transport.vfs.FileNamePattern">.*.xml</parameter>
+      <parameter name="transport.vfs.ContentType">text/xml</parameter>
       <parameter name="transport.vfs.ActionAfterFailure">MOVE</parameter>
    </parameters>
 </inboundEndpoint>
@@ -38,7 +38,7 @@ Following are the integration artifacts that we can used to implement this scena
 ```xml tab='Sequence'
 <?xml version="1.0" encoding="UTF-8"?>
 <sequence xmlns="http://ws.apache.org/ns/synapse" name="request">
-    <send/>
+    <log level="full"/>
 </sequence>
 ```
 
@@ -51,7 +51,32 @@ Create the artifacts:
 3. Create a [mediation sequence](../../../../develop/creating-artifacts/creating-reusable-sequences) and [inbound endpoint](../../../../develop/creating-an-inbound-endpoint) with configurations given in the above example.
 4. [Deploy the artifacts](../../../../develop/deploy-and-run) in your Micro Integrator.
 
-Invoke the inbound endpoint.
+To invoke the inbound endpoint, you can create a file with the below content and save it as `request.xml` in the `/home/user/test/in` directory.
+
+```xml
+<?xml version='1.0' encoding='UTF-8'?>
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:wsa="http://www.w3.org/2005/08/addressing">
+    <soapenv:Body>
+        <m0:getQuote xmlns:m0="http://services.samples">
+            <m0:request>
+                <m0:symbol>IBM</m0:symbol>
+            </m0:request>
+        </m0:getQuote>
+    </soapenv:Body>
+</soapenv:Envelope>
+```
+
+Once the file is created, the inbound endpoint's sequence (request) is triggered and the following content is logged:
+
+```xml
+To: , MessageID: urn:uuid:CA46833F184F7EAA0E1585819580883, Direction: request, Envelope: <?xml version='1.0' encoding='utf-8'?><soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:wsa="http://www.w3.org/2005/08/addressing"><soapenv:Body>
+       <m0:getQuote xmlns:m0="http://services.samples">
+           <m0:request>
+               <m0:symbol>IBM</m0:symbol>
+           </m0:request>
+       </m0:getQuote>
+   </soapenv:Body></soapenv:Envelope>
+```
 
 ## Configuring FTP, SFTP, and FILE Connections
 

@@ -125,7 +125,7 @@ Follow the steps given below.
                     Base Image Repository
                 </td>
                 <td>
-                    Specify the base Micro Integrator Docker image for your solution. For this example, let's use the Micro Integrator docker image from the WSO2 public docker registry: <b>wso2/micro-integrator</b>.</br></br>
+                    Specify the base Micro Integrator Docker image for your solution. For this example, let's use the Micro Integrator docker image from the WSO2 public docker registry: <b>wso2/wso2mi</b>.</br></br>
                     Note that the image value format should be 'docker_user_name/repository_name'.
                 </td>
             </tr>

@@ -42,8 +42,12 @@ Create the artifacts:
 
 1. [Set up WSO2 Integration Studio](../../../../develop/installing-WSO2-Integration-Studio).
 2. [Create an ESB Solution project](../../../../develop/creating-projects/#esb-config-project).
-3. Add [sample_proxy_1.wsdl](https://github.com/wso2-docs/WSO2_EI/blob/master/samples-protocol-switching/sample_proxy_1.wsdl) as a [registry resource](../../../../develop/creating-artifacts/creating-registry-resources) (change the registry path of the proxy accordingly). 
+3. Add [sample_proxy_1.wsdl](https://github.com/wso2-docs/WSO2_EI/blob/master/samples-protocol-switching/sample_proxy_1.wsdl) as a [registry resource](../../../../develop/creating-artifacts/creating-registry-resources). 
 4. Create the proxy service with the [VFS configurations parameters given above](../../../../references/config-catalog/#vfs-transport).
+
+    !!! Tip
+        Update the registry path to the WSDL file accordingly.
+
 5. Configure [MailTo transport sender](../../../../setup/transport_configurations/configuring-transports/#configuring-the-mailto-transport).
 6. [Deploy the artifacts](../../../../develop/deploy-and-run) in your Micro Integrator and start the Micro Integrator.
 
@@ -56,7 +60,8 @@ https://github.com/wso2-docs/WSO2_EI/blob/master/Back-End-Service/stockquote_ser
 	```bash
 	java -jar stockquote_service.jar
 	```
-Add the following request.xml file to the sftp location and verify the content received via the mailto transport.
+
+Add the following `request.xml` file to the SFTP location and verify the content received via the MailTo transport.
 
 ```xml
 <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">

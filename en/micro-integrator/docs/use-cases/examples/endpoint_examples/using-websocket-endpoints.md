@@ -43,16 +43,14 @@ Create the sequence for client to backend mediation, sequence for the backend to
 
 ```xml tab='Sequence (Backend Mediation)'
 <sequence name="dispatchSeq" xmlns="http://ws.apache.org/ns/synapse">
-    <in>
-        <property name="OUT_ONLY" value="true"/>
-        <property name="FORCE_SC_ACCEPTED" scope="axis2" type="STRING" value="true"/>
-        <property name="websocket.accept.contenType" scope="axis2" value="application/json"/>
-             <send>
-                <endpoint>
-                     <address uri="ws://localhost:8082/websocket"/>
-                </endpoint>
-            </send>
-     </in>
+    <property name="OUT_ONLY" value="true"/>
+    <property name="FORCE_SC_ACCEPTED" scope="axis2" type="STRING" value="true"/>
+    <property name="websocket.accept.contenType" scope="axis2" value="application/json"/>
+     <send>
+        <endpoint>
+             <address uri="ws://localhost:8082/websocket"/>
+        </endpoint>
+    </send>
 </sequence>
 ```
 
@@ -98,9 +96,15 @@ Starting the Websocket client:
 
 -  Download the netty artifacts zip file from [here](https://github.com/wso2-docs/ESB) and extract it. The extracted folder will be shown as `ESB-master`.
 -  Open a terminal, navigate to `ESB-master/ESB-Artifacts/Netty_artifacts_for_WebSocket_samples` and execute the following command to start the WebSocket server on port 8082:
-    ```bash
+   
+   If you are using Linux/MacOs, execute the following command: 
+   ```bash
     java -cp netty-example-4.0.30.Final.jar:lib/*:. io.netty.example.http.websocketx.server.WebSocketServer
     ```
+   If you are using Windows, execute the following command: 
+   ```bash
+   java -cp netty-example-4.0.30.Final.jar;lib/*;. io.netty.example.http.websocketx.server.WebSocketServer
+   ```
 
 If you analyze the log, you will see that an HTTP request is sent to the
 Websocket server, and that the Websocket server injects the response to

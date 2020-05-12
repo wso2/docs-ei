@@ -4,7 +4,34 @@ This section describes how to configure WSO2 Micro Integrator to connect with Ra
 
 ## Enabling the RabbitMQ transport 
 
-Add the following parameters to the deployment.toml file (stored in the `MI_HOME/conf` directory).
+Add the following parameters to the `deployment.toml` file (stored in the `MI_HOME/conf` directory).
+
+!!! Warning 
+	The configurations listed below are available in the current version of the Micro Integrator as a product update (released on the **28th of November, 2019**). You can get all the available updates using [WSO2 Update Manager](https://docs.wso2.com/display/updates/Getting+Started)  
+
+	??? Note "Click here if you don't have the product update."
+	    Use the following TOML configuration as an alternative if you don't have the product update.
+	    ```toml
+	    [transport.rabbitmq.listener]
+		name = "rabbitmq"
+		
+		[transport.rabbitmq.listener.AMQPConnectionFactory]
+		name = "rabbitMQListener"
+		parameter.hostname = "localhost"
+		parameter.port = 5672
+		parameter.username = "guest"
+		parameter.password = "guest"
+
+		[transport.rabbitmq.sender]
+		name = "rabbitmq"
+
+		[transport.rabbitmq.sender.AMQPConnectionFactory]
+		name = "rabbitMQSender"
+		parameter.hostname = "localhost"
+		parameter.port = 5672
+		parameter.username = "guest"
+		parameter.password = "guest"
+		```
 
 ```toml
 [transport.rabbitmq]

@@ -234,7 +234,7 @@ When creating a custom message formatter, you will need to create a class implem
 To enable your custom message formatter for content type text/xml, add the following line in the deployment.toml file:
 
 ```toml
-[[custom_message_builders]]
+[[custom_message_formatters]]
 content_type = "text/xml"
 class="org.apache.axis2.transport.http.SOAPMessageFormatter"
 ```

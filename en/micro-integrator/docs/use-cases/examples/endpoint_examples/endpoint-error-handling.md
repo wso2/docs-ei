@@ -33,7 +33,7 @@ Following is a sample REST API configuration that we can used to implement this 
       <inSequence>
          <call>
             <endpoint name="Sample_First" statistics="enable" >
-                <address uri="http://localhost/myendpoint" statistics="enable" trace="disable">
+                <address uri="http://localhost:123/myendpoint" statistics="enable" trace="disable">
                     <timeout>
                         <duration>60000</duration>
                     </timeout>
@@ -105,18 +105,22 @@ the endpoint.
 Following is a sample REST API configuration that we can used to implement this scenario. See the instructions on how to [build and run](#build-and-run-example-2) this example.
 
 ```xml
-<sequence name=dynamic_sequence xmlns="http://ws.apache.org/ns/synapse">
-  <property name="timeout" scope="default" type="INTEGER" velue=20000>
-  <send>
-      <endpoint>
-          <address uri="http://localhost/myendpoint">
-          <timeout>
-            <duration>{get-property('timeout')}</duration>
-            <responseAction>discard</responseAction>
-          </timeout>
-      </endpoint>
-  </send>
-</sequence>
+<api xmlns="http://ws.apache.org/ns/synapse" name="TestAPI" context="/test">
+   <resource methods="GET">
+      <inSequence>
+         <property name="timeout" scope="default" type="INTEGER" value="20000"/>
+		  <send>
+		      <endpoint>
+		          <address uri="http://localhost:123/myendpoint"/>
+		          <timeout>
+		            <duration>{get-property('timeout')}</duration>
+		            <responseAction>discard</responseAction>
+		          </timeout>
+		      </endpoint>
+		  </send>
+      </inSequence>
+   </resource>
+</api>
 ```
 
 In this example, the timeout value is defined using a [Property mediator](../../../../references/mediators/property-Mediator) outside
@@ -143,7 +147,7 @@ Create the artifacts:
 4. [Deploy the artifacts](../../../../develop/deploy-and-run) in your Micro Integrator.
 
 ## Example 3: Dynamic endpoint failover management
-Let's look at a sample configuration where you have dynamic timeout with failover management for
+Let's look at a sample configuration where you have a dynamic URL with failover management for
 the endpoint.
 
 ### Synapse configuration
@@ -261,20 +265,3 @@ to the first endpoint, the endpoint is not retried, whereas in the
 second endpoint, the endpoint is always retried if error code 101503
 occurs. You can specify enabled or disabled error codes (but not both)
 for a given endpoint.
-
-<!--
-### Build and run
-
-Create the artifacts:
-
-1. Set up WSO2 Integration Studio.
-2. Create an ESB Config project
-3. Create the integration artifacts shown above.
-4. Deploy the artifacts in your Micro Integrator.
-
-Configure the ActiveMQ broker.
-
-Set up the back-end service.
-
-Invoke the Micro Integrator:
--->

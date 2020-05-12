@@ -79,7 +79,7 @@ https://github.com/wso2-docs/WSO2_EI/blob/master/Back-End-Service/stockquote_ser
 
 * Run the mock service using the following command
 ```
-$ java -jar stockquote_service.jar
+java -jar stockquote_service.jar
 ```
 
 Send the following message via TCP to the TCP listener port.
@@ -159,7 +159,7 @@ https://github.com/wso2-docs/WSO2_EI/blob/master/Back-End-Service/stockquote_ser
 
 * Run the mock service using the following command
 ```
-$ java -jar stockquote_service.jar
+java -jar stockquote_service.jar
 ```
 
 Send the following message via TCP to the TCP listener port.
@@ -239,7 +239,7 @@ https://github.com/wso2-docs/WSO2_EI/blob/master/Back-End-Service/stockquote_ser
 
 * Run the mock service using the following command
 ```
-$ java -jar stockquote_service.jar
+java -jar stockquote_service.jar
 ```
 
 Send the following message via TCP to the TCP listener port.
@@ -252,6 +252,7 @@ In linux, we can save the request in a <strong>request.xml</strong> file and use
 ```
 netcat localhost 6060 < request.xml
 ```
+
 It can be observed that two messages are sent to the backend.
 
 ## Developing the Java Client for the Transport

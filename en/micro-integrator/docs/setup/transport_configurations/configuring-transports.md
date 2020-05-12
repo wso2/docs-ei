@@ -107,7 +107,7 @@ listener.parameter.PreferredCiphers = "TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA256,T
 
 The VFS transport is enabled by defualt in the Micro Integrator. The VFS transport supports the **SFTP protocol** with **Secure Sockets Layer (SSL)**. The configuration is identical to other protocols with the only difference being the URL prefixes and parameters. 
 
-For more information, see [VFS URL parameters](../../references/synapse-properties/vfs-transport-parameters).
+For more information, see [VFS URL parameters](../../../references/synapse-properties/transport-parameters/vfs-transport-parameters).
 
 See the [complete list of VFS parameters](../../../references/config-catalog/#vfs-transport).
 
@@ -327,16 +327,15 @@ To enable the MSMQ transport listener and sender, set the following parameters t
 listener.enable = false
 sender.enable =false
 ```
-## Configuring the MailTo transport 
+## Configuring the MailTo transport
 
-To enable the MailTo transport listener and sender, set the following parameters to `true` in the deployment.toml file (stored in the `MI_HOME/conf` directory).
+-	Configuring the MailTo listener
 
--	Enabling the MailTo listener
-
-	```toml
-	[transport.mail.listener]
-	enable = true
-	```
+    The MailTo transport listener is enabled by default. For more information
+    , see [About MailTo Transport](../../../references/synapse-properties/transport-parameters/mailto-transport-parameters).
+    
+    See the [complete list of MailTo parameters](../../../references/config-catalog/#mail-transport-listener-non
+    -blocking-mode).
 
 -	Configuring the MailTo sender
 
