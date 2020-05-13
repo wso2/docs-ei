@@ -1,10 +1,10 @@
-# Salesforce Access Token Generation
+   # Salesforce Access Token Generation
 
 First, we will create a Salesforce App and obtain the OAuth 2tokens from Salesforce REST API.
 
 You can create a Salesforce account (developer edition) and create a connected App.
 
-1. Log in to Salesforce after verifying your account, with the newly created credentials. In the upper-right corner, select **Setup**.
+1. Log in to the [Salesforce developer portal](https://developer.salesforce.com/signup) after verifying your account, with the newly created credentials. In the upper-right corner, select **Setup**.
 
 2. Navigate to **Apps** > **App Manager** and click on the **New Connected App**.<br>
    <img src="../../../../assets/img/connectors/new-connected-app.png" title="Add new connected app" width="800"/> 
