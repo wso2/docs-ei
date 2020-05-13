@@ -257,6 +257,13 @@ html .md-typeset .superfences-tabs > label:hover {
     transition-timing-function: cubic-bezier(.680, 0, .265, 1);
 }
 
+.md-typeset h2 {
+    margin: 2rem 0 .8rem;
+    font-size: 1.25rem;
+    line-height: 1.4;
+    border-bottom: 1px solid rgba(0,0,0,.54);
+}
+
 .mb-config-catalog {
     display: table;
     max-width: 770px;
