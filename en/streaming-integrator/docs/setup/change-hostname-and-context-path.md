@@ -1,4 +1,4 @@
-# Changing the IP address and Context Path of Web UI Applications
+# Changing the Host Name and Context Path of Web UI Applications
 
 When you start any web application of the WSO2 Streaming Integrator (i.e., [Streaming Integrator Tooling](streaming-integrator-studio-overview.md), the [Template Editor](../admin/creating-business-rules-templates.md/#creating-a-business-rules-template), [Business Rules](../admin/creating-business-rules-templates.md), or Policies) the URL to access its user interface is displayed in the start up logs as follows.
 

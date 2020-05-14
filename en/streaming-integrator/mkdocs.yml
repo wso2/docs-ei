@@ -221,7 +221,7 @@ nav:
       - 'Protecting Sensitive Data via the Secure Vault': 'admin/protecting-sensitive-data-via-the-secure-vault.md'
       - 'Adding Third Party Non OSGi Library': 'admin/adding-third-party-non-osgi-libraries.md'
       - 'Configuring Default Ports': 'ref/configuring-default-ports.md'
-      - 'Changing the IP address and Context Path of Web UI Applications': 'setup/change-hostname-and-context-path.md)'
+      - 'Changing the Host Name and Context Path of Web UI Applications': 'setup/change-hostname-and-context-path.md)'
   - 'Develop':
     - 'Developing Streaming Integrator Solutions': 'develop/developing-streaming-integration-solutions.md'
     - 'Streaming Integrator Tooling':
