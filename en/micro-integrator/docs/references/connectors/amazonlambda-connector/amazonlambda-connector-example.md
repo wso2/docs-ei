@@ -7,49 +7,14 @@ Given below is a sample scenario that demonstrates how to create an Amazon Lambd
 ## What you'll build
 To use the Amazon Lambda connector, add the <amazonlambda.init> element in your configuration before carrying out any Amazon Lambda operations. This Amazon Lambda configuration authenticates with Amazon Lambda by specifying the AWS access key ID and secret access key ID, which are used for every operation. The signature is used with every request and thus differs based on the request the user makes.
 
-**initialize the connector**
+This example demonstrates how to use Amazon Lambda Connector connector to use `createFunction` opertaion.
 
-You can add the parameter as follows in the init operation:
+Here we exposed the `createFunction` operation via an API. The API has one resource with the context `/createFunction`.
 
-````xml
-<amazonlambda.init>
-    <region>{$ctx:region}</region>
-    <secretAccessKey>{$ctx:secretAccessKey}</secretAccessKey>
-    <accessKeyId>{$ctx:accessKeyId}</accessKeyId>
-    <blocking>{$ctx:blocking}</blocking>
-</amazonlambda.init>
-````
-**createFunction**
+* `/createFunction` : The `createFunction` operation creates a Lambda function. 
 
-The `createFunction` operation creates a Lambda function. To create a function, you need a deployment package and an execution role. The deployment package contains your function code. The execution role grants the function permission to use AWS services.
+To create a function, you need a deployment package and an execution role. The deployment package contains your function code. The execution role grants the function permission to use AWS services.
 
-You can add the parameter as follows in the `createFunction` operation:
-
-````xml
-<amazonlambda.createFunction>
-    <apiVersionCreateFunction>{$ctx:apiVersionCreateFunction}</apiVersionCreateFunction>
-    <functionName>{$ctx:functionName}</functionName>
-    <functionDescription>{$ctx:functionDescription}</functionDescription>
-    <s3Bucket>{$ctx:s3Bucket}</s3Bucket>
-    <s3Key>{$ctx:s3Key}</s3Key>
-    <s3ObjectVersion>{$ctx:s3ObjectVersion}</s3ObjectVersion>
-    <zipFile>{$ctx:zipFile}</zipFile>
-    <targetArn>{$ctx:targetArn}</targetArn>
-    <environmentVariables>{$ctx:environmentVariables}</environmentVariables>
-    <handler>{$ctx:handler}</handler>
-    <kmsKeyArn>{$ctx:kmsKeyArn}</kmsKeyArn>
-    <layers>{$ctx:layers}</layers>
-    <memorySize>{$ctx:memorySize}</memorySize>
-    <publish>{$ctx:publish}</publish>
-    <role>{$ctx:role}</role>
-    <runtime>{$ctx:runtime}</runtime>
-    <tags>{$ctx:tags}</tags>
-    <timeout>{$ctx:timeout}</timeout>
-    <mode>{$ctx:mode}</mode>
-    <securityGroupIds>{$ctx:securityGroupIds}</securityGroupIds>
-    <subnetIds>{$ctx:subnetIds}</subnetIds>
-</amazonlambda.createFunction>
-````
 The following diagram illustrates all the required functionality of the Amazon Lambda Service that you are going to build.
 
 <img src="../../../../assets/img/connectors/AmazonLambdaConnectorSample.png" title="Amazon Lambda Connector" width="800" alt="Amazon Lambda Connector"/>
@@ -65,7 +30,9 @@ Follow these steps to set up the ESB Solution Project and the Connector Exporter
 
 {!references/connectors/importing-connector-to-integration-studio.md!}
 
-1. Our project would look similar to the following (source view).
+1. Right click on the created Integration Project and select, -> **New** -> **Rest API** to create the REST API.
+
+2. Specify the API name as `createFunction` and API context as `/createFunction`. You can go to the XML configuration of the API (source view) and copy the following configuration.
 
     ```
     <?xml version="1.0" encoding="UTF-8"?>
@@ -133,15 +100,9 @@ Follow these steps to set up the ESB Solution Project and the Connector Exporter
         </resource>
     </api> 
     ```
-        
-2. Right-click on the Composite Application Project and click on **Export Project Artifacts and Run**. Select **Run on Micro Integrator**.
+3. Now we can export the imported connector and the API into a single CAR application. The CAR application is what we are going to deploy during server runtime.
 
-3. Micro Integrator will be started and the composite application will be deployed. You can further refer to the application deployed through the CLI tool. Make sure you first export the PATH as below.
-
-    ```
-    $ export PATH=/path/to/mi/cli/directory/bin:$PATH\
-    ```
-{!/references/connectors/exporting-artifacts.md!} 
+{!/references/connectors/exporting-artifacts.md!}
 
 ## Create Amazon Lambda Deployment Package (Lambda function) 
 In this scenario we created sample AWS Deployment Package (Lambda function) in Python.
@@ -170,12 +131,14 @@ Please use command line terminal or shell to run following commands. Commands ar
  adding: addingNumbers.py.py (deflated 17%)
 ```
 ## Upload Amazon Lambda Deployment Package (ZIP archive) in to the AWS S3 bucket
+
 1. Log in to the AWS Management Console.
 2. Navigate to the created S3 bucket (e.g., eiconnectortest).
 3. Click **Upload**.
 4. Select created Amazon Lambda Deployment Package (ZIP archive) and Upload.
 
 ## Create Execution Role
+
 You need to create an Execution Role by referring to the [Setting up the Amazon Lambda Environment](setting-up-amazonlambda.md) documentation.  
 
 ## Get the project
@@ -187,11 +150,13 @@ You can download the ZIP file and extract the contents to get the project code.
 </a>
 
 ## Deployment
+
 Follow these steps to deploy the exported CApp in the Enterprise Integrator Runtime. 
 
 {!references/connectors/deploy-capp.md!}
 
 ## Testing
+
 1. Log in to the Micro Integrator CLI tool.
     ```
     ./mi remote login
@@ -269,5 +234,6 @@ Follow these steps to deploy the exported CApp in the Enterprise Integrator Runt
    <img src="../../../../assets/img/connectors/executeCreatedEvent.png" title="Execute Test Event" width="800" alt="Execute Test Event"/>
  
 ## What's next
+
 * You can deploy and run your project on [Docker](../../../setup/installation/run_in_docker.md) or [Kubernetes](../../../setup/installation/run_in_kubernetes.md).
 * To customize this example for your own scenario, see [Amazon Lambda Connector Configuration](amazonlambda-configuration.md) documentation.
