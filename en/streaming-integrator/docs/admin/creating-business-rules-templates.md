@@ -29,7 +29,7 @@ To create a business rule from a template, follow the procedure below:
     | HTTPS    | `https://<SI_TOOLING_HOST>:<HTTPS_PORT>/business-rules` | `https://0.0.0.0:9443/business-rules` |
 
     !!!tip
-        The URLs given above are the defaul URLs. If required, you can change the host name (i.e., `0.0.0.0`) or the web UI application name (i.e., `business-rules`). For instructions, see [Changing the IP address and Context Path of SI Tooling](../setup/change-hostname-and-context-path.md).
+        The URLs given above are the defaul URLs. If required, you can change the host name (i.e., `0.0.0.0`) or the web UI application name (i.e., `business-rules`). For instructions, see [Changing the Host Name and Context Path of SI Tooling](../setup/change-hostname-and-context-path.md).
         
     This opens the following:
 
@@ -84,7 +84,7 @@ To create a business rule from scratch, follow the procedure below:
     | HTTPS    | `https://<SI_TOOLING_HOST>:<HTTPS_PORT>/business-rules` | `https://0.0.0.0:9443/business-rules` |
 
     !!!tip
-            The URLs given above are the defaul URLs. If required, you can change the host name (i.e., `0.0.0.0`) or the web UI application name (i.e., `business-rules`). For instructions, see [Changing the IP address and Context Path of SI Tooling](../setup/change-hostname-and-context-path.md).
+            The URLs given above are the defaul URLs. If required, you can change the host name (i.e., `0.0.0.0`) or the web UI application name (i.e., `business-rules`). For instructions, see [Changing the Host Name and Context Path of SI Tooling](../setup/change-hostname-and-context-path.md).
             
     This opens the following:
 
@@ -249,7 +249,7 @@ To create a business template using the Business Rules Template editor, follow t
     ![Template Editor URL](../images/working-with-business-rules/template-editor-url.png)
 
     !!! info
-        The default URL is `http://localhost:9390/template-editor`. If required, you can change the host name (i.e., `localhost`) or the web UI application name (i.e., `template-editor`). For instructions, see [Changing the IP address and Context Path of SI Tooling](../setup/change-hostname-and-context-path.md).
+        The default URL is `http://localhost:9390/template-editor`. If required, you can change the host name (i.e., `localhost`) or the web UI application name (i.e., `template-editor`). For instructions, see [Changing the Host Name and Context Path of SI Tooling](../setup/change-hostname-and-context-path.md).
 
 
 3. The Template Editor opens as shown below. There are two views from which you can interact and create a template group. **Design view** allows you to visualize a template group and interact with it. **Code view** allows you to interact with a template group by typing content. (For more information about template group structure, see
@@ -449,7 +449,7 @@ WSO2 SI allows you to make edits to a business rules template that you have alre
     ![Template Editor URL](../images/working-with-business-rules/template-editor-url.png)
 
     !!!info
-        The default URL is `http://localhost:9390/template-editor`. If required, you can change the host name (i.e., `localhost`) or the web UI application name (i.e., `template-editor`). For instructions, see [Changing the IP address and Context Path of SI Tooling](../setup/change-hostname-and-context-path.md).
+        The default URL is `http://localhost:9390/template-editor`. If required, you can change the host name (i.e., `localhost`) or the web UI application name (i.e., `template-editor`). For instructions, see [Changing the Host Name and Context Path of SI Tooling](../setup/change-hostname-and-context-path.md).
 
 3. The Template Editor opens as follows.
 
