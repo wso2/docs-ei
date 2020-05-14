@@ -2,7 +2,6 @@
 
 In streaming integration, there are common use cases for analyzing statistics that involve operations such as calculating the average, minimum, maximum etc., for different endpoints. The Business Rules Manager allows you to define templates and generate business rules from them for different scenarios with common requirements.
 
-
 ## Creating Business Rules
 This section explains how to create a business rule. A business rule can be [created from a template](#creating-business-rules-from-a-template) or [from scratch](#creating-a-business-rule-from-scratch).
 
@@ -12,8 +11,8 @@ Creating business rules from an existing template allows you to use sources, sin
 
 !!!tip "Before you begin:"
     - The business rule template must be already configured in the `<SI_TOOLING_HOME>/conf/server/deployment.yaml` file. For detailed instructions, see [Business Rules Templates](#business-rules-templates).
-    - If you want to deploy the business rule after creating it, you need to start the SI server by navigating to the `<SI_HOME>/bin` directory and issuing one of the following commands:
-        - On Windows: `server.bat --run`
+    - If you want to deploy the business rule after creating it, you need to start the SI server by navigating to the `<SI_HOME>/bin` directory and issuing one of the following commands:<br/><br/>
+        - On Windows: `server.bat --run`<br/>
         - On Linux/Mac OS:  `./server.sh`
 
 To create a business rule from a template, follow the procedure below:
@@ -29,6 +28,9 @@ To create a business rule from a template, follow the procedure below:
     | HTTP     | `http://<SI_TOOLING_HOST>:<HTTP_PORT>/business-rules`   | `http://0.0.0.0:9090/business-rules`  |
     | HTTPS    | `https://<SI_TOOLING_HOST>:<HTTPS_PORT>/business-rules` | `https://0.0.0.0:9443/business-rules` |
 
+    !!!tip
+        The URLs given above are the defaul URLs. If required, you can change the host name (i.e., `0.0.0.0`) or the web UI application name (i.e., `business-rules`). For instructions, see [Changing the IP address and Context Path of SI Tooling](../setup/change-hostname-and-context-path.md).
+        
     This opens the following:
 
     ![No Business Rule Exists](../images/working-with-business-rules/no-business-rules-exist.png)
@@ -64,8 +66,8 @@ To create a business rule from a template, follow the procedure below:
 Creating a business rule from scratch allows you to define the filter logic for the rule at the time of creating, instead of using the filter logic that has been already defined in a template. However, you can select the required source and sink configurations from an existing template.
 
 !!!tip "Before you begin:"
-    If you want to deploy the business rule after creating it, you need to start the SI server by navigating to the `<SI_HOME>/bin` directory and issuing one of the following commands:
-        - On Windows: `server.bat --run`
+    If you want to deploy the business rule after creating it, you need to start the SI server by navigating to the `<SI_HOME>/bin` directory and issuing one of the following commands:<br/><br/>
+        - On Windows: `server.bat --run`<br/>
         - On Linux/Mac OS:  `./server.sh`
 
 To create a business rule from scratch, follow the procedure below:
@@ -81,6 +83,9 @@ To create a business rule from scratch, follow the procedure below:
     | HTTP     | `http://<SI_TOOLING_HOST>:<HTTP_PORT>/business-rules`   | `http://0.0.0.0:9090/business-rules`  |
     | HTTPS    | `https://<SI_TOOLING_HOST>:<HTTPS_PORT>/business-rules` | `https://0.0.0.0:9443/business-rules` |
 
+    !!!tip
+            The URLs given above are the defaul URLs. If required, you can change the host name (i.e., `0.0.0.0`) or the web UI application name (i.e., `business-rules`). For instructions, see [Changing the IP address and Context Path of SI Tooling](../setup/change-hostname-and-context-path.md).
+            
     This opens the following:
 
     ![No Business Rule Exists](../images/working-with-business-rules/no-business-rules-exist.png)
@@ -186,8 +191,8 @@ Modify values for the parameters displayed as required and click **Save**.
 ### Deploying business rules
 
 !!!tip "Before you begin:"
-    Start the Streaming Integrator server by navigating to the `<SI_HOME>/bin` directory from the CLI, and issuing one of the following commands:
-    - On Windows: `server.bat --run`
+    Start the Streaming Integrator server by navigating to the `<SI_HOME>/bin` directory from the CLI, and issuing one of the following commands:<br/><br/>
+    - On Windows: `server.bat --run`<br/>
     - On Linux/Mac OS:  `./server.sh`
 
 To deploy a business rule that you have previously saved, click the icon for deploying (marked in the image below) for the relevant row. As a result, a message appears to inform you that the rule is successfully deployed.
@@ -244,7 +249,7 @@ To create a business template using the Business Rules Template editor, follow t
     ![Template Editor URL](../images/working-with-business-rules/template-editor-url.png)
 
     !!! info
-        The default URL is `http://localhost:9390/template-editor`.
+        The default URL is `http://localhost:9390/template-editor`. If required, you can change the host name (i.e., `localhost`) or the web UI application name (i.e., `template-editor`). For instructions, see [Changing the IP address and Context Path of SI Tooling](../setup/change-hostname-and-context-path.md).
 
 
 3. The Template Editor opens as shown below. There are two views from which you can interact and create a template group. **Design view** allows you to visualize a template group and interact with it. **Code view** allows you to interact with a template group by typing content. (For more information about template group structure, see
@@ -444,7 +449,7 @@ WSO2 SI allows you to make edits to a business rules template that you have alre
     ![Template Editor URL](../images/working-with-business-rules/template-editor-url.png)
 
     !!!info
-        The default URL is `http://localhost:9390/template-editor` .
+        The default URL is `http://localhost:9390/template-editor`. If required, you can change the host name (i.e., `localhost`) or the web UI application name (i.e., `template-editor`). For instructions, see [Changing the IP address and Context Path of SI Tooling](../setup/change-hostname-and-context-path.md).
 
 3. The Template Editor opens as follows.
 
