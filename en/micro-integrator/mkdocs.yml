@@ -23,7 +23,7 @@ site_url: https://ei.docs.wso2.com/en/latest/
 # Repository
 repo_name: wso2/docs-ei
 repo_url: https://github.com/wso2/docs-ei
-edit_uri: https://github.com/wso2/docs-ei/edit/7.0.0/en/micro-integrator/docs/
+edit_uri: https://github.com/wso2/docs-ei/edit/master/en/micro-integrator/docs/
 
 # Copyright
 copyright: WSO2 Enterprise Integrator - Documentation
@@ -370,6 +370,7 @@ nav:
           - 'Amazon Lambda Connector Example': 'references/connectors/amazonlambda-connector/amazonlambda-connector-example.md'
           - 'Amazon Lambda Connector Configuration': 'references/connectors/amazonlambda-connector/amazonlambda-connector-config.md'
         - Salesforce Rest Connector:
+          - 'Salesforce REST Connector Overview': 'references/connectors/salesforce-rest-connector/sf-rest-overview.md'
           - 'Salesforce Access Token Generation': 'references/connectors/salesforce-rest-connector/sf-access-token-generation.md'
           - 'Salesforce Rest API Connector Example': 'references/connectors/salesforce-rest-connector/sf-rest-connector-example.md'
           - 'Salesforce Rest API Connector Configuration': 'references/connectors/salesforce-rest-connector/sf-rest-connector-config.md'
@@ -406,6 +407,72 @@ nav:
           - 'Google Firebase Connector Configuration': 'references/connectors/google-firebase-connector/google-firebase-configuration.md'
         - FHIR Connector:
           - 'FHIR Connector Example': 'references/connectors/fhir-connector/fhir-connector-example.md'
+        - Ceridian Dayforce Connector:
+            - 'Setting up the Ceridian Dayforce Connector': 'references/connectors/ceridiandayforce-connector/ceridiandayforce-connector-config.md'
+            - 'Ceridian Dayforce Connector Example': 'references/connectors/ceridiandayforce-connector/ceridiandayforce-connector-example.md'
+            - 'Ceridian Dayforce Connector Reference':
+              - 'Initializing': 'references/connectors/ceridiandayforce-connector/ceridiandayforce-connector-reference.md'
+              - 'Employee': 'references/connectors/ceridiandayforce-connector/employee.md'
+              - 'Configuration':
+                  - 'orgUnits': 'references/connectors/ceridiandayforce-connector/configuration/orgUnits.md'
+                  - 'orgUnitDetails': 'references/connectors/ceridiandayforce-connector/configuration/orgUnitDetails.md'
+              - 'Employee Documents':
+                  - 'listOfDocuments': 'references/connectors/ceridiandayforce-connector/employeeDocuments/listOfDocuments.md'
+                  - 'documentDetails': 'references/connectors/ceridiandayforce-connector/employeeDocuments/documentDetails.md'
+              - Employee Employemnt Information:
+                  - 'employeeClockDeviceGroups': 'references/connectors/ceridiandayforce-connector/employeeEmploymentInformation/employeeClockDeviceGroups.md'
+                  - 'employeeCompensationSummary': 'references/connectors/ceridiandayforce-connector/employeeEmploymentInformation/employeeCompensationSummary.md'
+                  - 'employeeCourses': 'references/connectors/ceridiandayforce-connector/employeeEmploymentInformation/employeeCourses.md'
+                  - 'employeeEmploymentAgreements': 'references/connectors/ceridiandayforce-connector/employeeEmploymentInformation/employeeEmploymentAgreements.md'
+                  - 'employeeEmploymentStatuses': 'references/connectors/ceridiandayforce-connector/employeeEmploymentInformation/employeeEmploymentStatuses.md'
+                  - 'employeeEmploymentTypes': 'references/connectors/ceridiandayforce-connector/employeeEmploymentInformation/employeeEmploymentTypes.md'
+                  - 'employeeHighlyCompensatedEmployees': 'references/connectors/ceridiandayforce-connector/employeeEmploymentInformation/employeeHighlyCompensatedEmployees.md'
+                  - 'employeeHRIncidents': 'references/connectors/ceridiandayforce-connector/employeeEmploymentInformation/employeeHRIncidents.md'
+                  - 'employeeLaborDefaults': 'references/connectors/ceridiandayforce-connector/employeeEmploymentInformation/employeeLaborDefaults.md'
+                  - 'employeeOnboardingPolicies': 'references/connectors/ceridiandayforce-connector/employeeEmploymentInformation/employeeOnboardingPolicies.md'
+                  - 'employeeOrgInfo': 'references/connectors/ceridiandayforce-connector/employeeEmploymentInformation/employeeOrgInfo.md'
+                  - 'employeePayAdjustmentCodeGroups': 'references/connectors/ceridiandayforce-connector/employeeEmploymentInformation/employeePayAdjustmentCodeGroups.md'
+                  - 'employeePayGradeRates': 'references/connectors/ceridiandayforce-connector/employeeEmploymentInformation/employeePayGradeRates.md'
+                  - 'employeePerformanceRatings': 'references/connectors/ceridiandayforce-connector/employeeEmploymentInformation/employeePerformanceRatings.md'
+                  - 'employeeProperties': 'references/connectors/ceridiandayforce-connector/employeeEmploymentInformation/employeeProperties.md'
+                  - 'employeeSkills': 'references/connectors/ceridiandayforce-connector/employeeEmploymentInformation/employeeSkills.md'
+                  - 'employeeTrainingPrograms': 'references/connectors/ceridiandayforce-connector/employeeEmploymentInformation/employeeTrainingPrograms.md'
+                  - 'employeeUnionMemberships': 'references/connectors/ceridiandayforce-connector/employeeEmploymentInformation/employeeUnionMemberships.md'
+                  - 'employeeWorkAssignments': 'references/connectors/ceridiandayforce-connector/employeeEmploymentInformation/employeeWorkAssignments.md'
+                  - 'employeeWorkContracts': 'references/connectors/ceridiandayforce-connector/employeeEmploymentInformation/employeeWorkContracts.md'
+                  - 'employeeWorkContracts': 'references/connectors/ceridiandayforce-connector/employeeEmploymentInformation/employeeWorkContracts.md'
+              - 'Employee Personal Information':
+                  - 'employeeAddresses': 'references/connectors/ceridiandayforce-connector/employeePersonalInformation/employeeAddresses.md'
+                  - 'employeeCANTaxes': 'references/connectors/ceridiandayforce-connector/employeePersonalInformation/employeeCANTaxes.md'
+                  - 'employeeContacts': 'references/connectors/ceridiandayforce-connector/employeePersonalInformation/employeeContacts.md'
+                  - 'employeeDirectDeposits': 'references/connectors/ceridiandayforce-connector/employeePersonalInformation/employeeDirectDeposits.md'
+                  - 'employeeEmergencyContacts': 'references/connectors/ceridiandayforce-connector/employeePersonalInformation/employeeEmergencyContacts.md'
+                  - 'employeeEthnicities': 'references/connectors/ceridiandayforce-connector/employeePersonalInformation/employeeEthnicities.md'
+                  - 'employeeHealthandWellness': 'references/connectors/ceridiandayforce-connector/employeePersonalInformation/employeeHealthandWellness.md'
+                  - 'employeeMaritalStatuses': 'references/connectors/ceridiandayforce-connector/employeePersonalInformation/employeeMaritalStatuses.md'
+                  - 'employeeUSTaxes': 'references/connectors/ceridiandayforce-connector/employeePersonalInformation/employeeUSTaxes.md'
+              - 'Employee Time Management':
+                  - 'availability': 'references/connectors/ceridiandayforce-connector/employeeTimeManagement/availability.md'
+                  - 'employeePunches': 'references/connectors/ceridiandayforce-connector/employeeTimeManagement/employeePunches.md'
+                  - 'employeeRawPunches': 'references/connectors/ceridiandayforce-connector/employeeTimeManagement/employeeRawPunches.md'
+                  - 'schedules': 'references/connectors/ceridiandayforce-connector/employeeTimeManagement/schedules.md'
+                  - 'timeAwayFromWork': 'references/connectors/ceridiandayforce-connector/employeeTimeManagement/timeAwayFromWork.md'
+              - 'Employment Eligibility Verification':
+                  - 'i9Order': 'references/connectors/ceridiandayforce-connector/employmentEligibilityVerification/i9Order.md'
+              - 'Recruiting':
+                  - 'jobPostings': 'references/connectors/ceridiandayforce-connector/recruiting/jobPostings.md'
+              - 'Reporting':
+                  - 'reportMetadataForAListOfReports': 'references/connectors/ceridiandayforce-connector/reporting/reportMetadataForAListOfReports.md'
+                  - 'reportMetadataForASpecificReport': 'references/connectors/ceridiandayforce-connector/reporting/reportMetadataForASpecificReport.md'
+                  - 'reports': 'references/connectors/ceridiandayforce-connector/reporting/reports.md'
+              - 'User Security Authority And Management':
+                  - 'documentManagementSecurityGroups': 'references/connectors/ceridiandayforce-connector/userSecurityAuthorityAndManagement/documentManagementSecurityGroups.md'
+                  - 'employeeLocations': 'references/connectors/ceridiandayforce-connector/userSecurityAuthorityAndManagement/employeeLocations.md'
+                  - 'employeeManagers': 'references/connectors/ceridiandayforce-connector/userSecurityAuthorityAndManagement/employeeManagers.md'
+                  - 'employeeRoles': 'references/connectors/ceridiandayforce-connector/userSecurityAuthorityAndManagement/employeeRoles.md'
+                  - 'employeeSSOAccounts': 'references/connectors/ceridiandayforce-connector/userSecurityAuthorityAndManagement/employeeSSOAccounts.md'
+                  - 'employeeWorkAssignmentManagers': 'references/connectors/ceridiandayforce-connector/userSecurityAuthorityAndManagement/employeeWorkAssignmentManagers.md'
+                  - 'userPayAdjustmentCodeGroups': 'references/connectors/ceridiandayforce-connector/userSecurityAuthorityAndManagement/userPayAdjustmentCodeGroups.md'
       - Synapse Configurations:
         - Mediator Catalog:
           - 'About Mediators': 'references/mediators/about-mediators.md'
