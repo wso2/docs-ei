@@ -83,7 +83,7 @@ start your WSO2 Micro Integrator instance. Pass the following system property:
 
 ## Log in to the CLI
 
-To login using the CLI, use the following command. This will ask for the username and password. The default username is "admin" and the default password is "admin". 
+To login using the CLI, use the following command. This will ask for the username and password. The default username is "admin" and the default password is "admin".
 
 ```bash
 mi remote login
@@ -91,20 +91,20 @@ mi remote login
 
 If you want to login using a one line command, use the following command:
 
-!!! Note 
+!!! Note
     If you are on **Windows**, you must always login with the following command.
 
 ```bash
 mi remote login [username] [password]
 ```
 
-To logout from the CLI, please use the following command: 
+To logout from the CLI, please use the following command:
 
 ```bash
 mi remote logout
 ```
 
-## Using the CLI 
+## Using the CLI
 
 ### Usage
 
@@ -115,7 +115,7 @@ mi [command]
 ### version
 
 ```bash
-mi version 
+mi version
 ```
 
 ### Global Flags
@@ -158,10 +158,10 @@ mi version
 
         # To show available Micro Integrators
         mi remote show
-        
+
         # login to the current (selected)  Micro Integrator instance
         mi remote login     # will be prompted for username and password
-            
+
         # login (with inline username and password)
         mi remote login admin admin
     ```
@@ -379,32 +379,31 @@ mi version
          # To get details about a specific local entry
          mi localentry show  sampleLocalEntry
     ```
-- **secret**
-  ```
-   Usage:
-       mi secret [command] [arguments] [flags]
+-   **secret**
+    ```bash
+     Usage:
+         mi secret [command] [arguments] [flags]
 
-   Available Commands:
-       init     Initialize the keystore information used for encryption
-       create   Create secrets based on preference
-     
-   Available Flags:
-       -f Use properties file to input multiple plaintext secrets
-         
-   Examples:
-       # To initialize keystore information
-       mi secret init
-       
-       # To encrypt secret and get output to console
-       mi secret create 
-       
-       # To encrypt secret and get output to file
-       mi secret create file
-       
-       # To encrypt secret and get output as a .yaml file
-       mi secret create k8
-       
-       # To bulk encrypt secrets defined in a properties file
-       mi secret create -f=</file_path>
+     Available Commands:
+         init     Initialize the keystore information used for encryption
+         create   Create secrets based on preference
+
+     Available Flags:
+         -f Use properties file to input multiple plaintext secrets
+
+     Examples:
+         # To initialize keystore information
+         mi secret init
+
+         # To encrypt secret and get output to console
+         mi secret create
+
+         # To encrypt secret and get output to file
+         mi secret create file
+
+         # To encrypt secret and get output as a .yaml file
+         mi secret create k8
+
+         # To bulk encrypt secrets defined in a properties file
+         mi secret create -f=</file_path>
     ```
-    
