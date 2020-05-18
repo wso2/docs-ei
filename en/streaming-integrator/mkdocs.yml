@@ -210,7 +210,7 @@ nav:
       - 'Scalable Cluster': 'setup/deploying-si-as-a-scalable-cluster.md'
       - 'Minimum HA Cluster in AWS ECS': 'setup/deploying-si-as-minimum-ha-cluster-in-aws-ecs.md'
     - 'Production Hardening':
-      - 'Production Checklist': 'setup/setting-up-si-for-production.md'
+      - 'Production Checklist': 'setup/production-checklist.md'
       - 'Configuring Datasources': 'setup/configuring-data-sources.md'
       - 'Working with Business Rules': 'admin/creating-business-rules-templates.md'
       - 'General Data Protection Regulations': 'admin/general-data-protection-regulations.md'
