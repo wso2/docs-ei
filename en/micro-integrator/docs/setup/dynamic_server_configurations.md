@@ -86,6 +86,6 @@ You can open the `deployment.toml` file from the project explorer and update the
 When you execute the `docker run` command to start the container, you can pass the system properties and environment variables.
 
 !!! Tip
-		Some of the server configurations that you have defined as a system variable or environment variable may be secrets that should be encrypted. Therefore, you must first encrypt these values [using the CLI tool](../../setup/security/encrypting_plain_text/#using-the-cli-tool) and then be sure to pass the encrypted secret when you execute the `docker run` command.
+		Some of the server configurations that you have defined as a system variable or environment variable may be secrets that should be encrypted. Therefore, you must first encrypt these values [using the CLI tool](../../setup/security/encrypting_plain_text/#dynamic-secrets) and then be sure to pass the encrypted secret when you execute the `docker run` command.
 
 These values will be resolved dynamically during the runtime.

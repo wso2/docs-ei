@@ -1,6 +1,6 @@
 # Using Kubernetes Secrets
 
-When you deploy your integration solutions in a Kubernetes environment, you cannot [use secure vault to encrypt secrets](encrypting_plain_text.md) as you do for a VM deployment.
+When you deploy your integration solutions in a Kubernetes environment, you cannot [use secure vault to encrypt secrets](../../../develop/creating-artifacts/encrypting-synapse-passwords) as you do for a VM deployment.
 
 You need to generate Kubernetes secrets for the sensitive data and inject them to the pods in your deployment as environment variables. Follow the steps given below.
 

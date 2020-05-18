@@ -8,13 +8,13 @@ There are two ways to resolve encrypted secrets in the `deployment.toml` file (s
 ### Enter password in command-line
 1. Start the server by running the product start up script from the `<MI_HOME>/bin/` directory as shown below.
 
-   ```bash tab='On Linux'
-   ./micro-integrator.sh
-   ```
+     ```bash tab='On Linux'
+     ./micro-integrator.sh
+     ```
 
-   ```bash tab='On Window'
-   micro-integrator.bat
-   ```
+     ```bash tab='On Window'
+     micro-integrator.bat
+     ```
 
 2. When you run the startup script, the following message will be prompted before starting the server: `[Enter KeyStore and Private Key Password:]`. This is because, in order to connect to the default user store, the encrypted passwords should be decrypted. The administrator starting the server must provide the private key and keystore passwords using the command-line. Note that passwords are hidden from the terminal and log files.
 

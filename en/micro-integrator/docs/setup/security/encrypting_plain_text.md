@@ -1,6 +1,6 @@
 # Encrypting Secrets in Server Configurations
 
-WSO2 Micro Integrator can use secrets with static origins as well as dynamic origins.
+WSO2 Micro Integrator can use secrets with static origins as well as dynamic origins in server configurations.
 
 ## Static Secrets
 
@@ -18,7 +18,7 @@ Note that you can customize the default secure vault configurations in the produ
 !!! Tip
     If you are using **Windows**, you need to have [Ant](http://ant.apache.org/) installed before using the Cipher Tool.
 
-1. Open the `deployment.toml` file located in `<MI_HOME>/conf/` directory and add the `[secrets]` configuration section as shown below. Give an alias for the password type followed by the actual password. The following example lists the most common passwords in configuration files.
+1. Open the `deployment.toml` file located in the `<MI_HOME>/conf/` directory and add the `[secrets]` configuration section as shown below. Give an alias for the password type followed by the actual password.
 
     ```toml
     [secrets]
@@ -52,7 +52,7 @@ Note that you can customize the default secure vault configurations in the produ
     See the complete list of [configuration parameters](../../references/config-catalog.md#secret-passwords).
 
 ### Using the encrypted secrets
-When you have [encrypted secrets](#encrypting-passwords) using secure vault, you can refer them from the `deployment.toml` file by using the alias of the encrypted value instead of the plain-text password. The  `$secret` place holder is used for holding the value as shown below.
+When you have secrets encrypted using secure vault, you can refer them from the `deployment.toml` file by using the alias of the encrypted value instead of the plain-text secret. The  `$secret` place holder is used for holding the value as shown below.
 
 ```toml
 [keystore.tls]
@@ -68,7 +68,8 @@ See the complete list of [configuration parameters](../../references/config-cata
 
 !!! Tip
     **Using server secrets in synapse configurations**
-    A static secret defined in the `delpoyment.toml` file can also be used within your synapse configurations when creating your integration scenarios.
+
+    A static secret encrypted in the `delpoyment.toml` file can also be used within your synapse configurations when creating your integration scenarios. See the instructions on [using encrypted synapse secrets](../../../develop/creating-artifacts/encrypting-synapse-passwords).
 
 ## Dynamic Secrets
 
@@ -76,7 +77,7 @@ If you want to dynamically populate secrets (as an environment variable, system 
 
 A place holder specified in the `deployment.toml` file is then used to fetch the secret during runtime.
 
-Dynamic secrets are useful when you want to manage your product configurations in multiple environments.
+Dynamic secrets are useful when you want to manage your [product configurations in multiple environments](../../../setup/dynamic_server_configurations).
 
 ### Generating encrypted secrets
 
@@ -117,7 +118,7 @@ Dynamic secrets are useful when you want to manage your product configurations i
 
 ### Using the generated secrets
 
-Update the secret values in the `deployment.toml` file with the relevant place holder as shown below.
+To dynamically load secrets into the server, you need to update the parameters in the `deployment.toml` file as an environment variable or system property.
 
 ```toml tab='Environment Variable'
 [keystore.primary]
