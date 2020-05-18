@@ -1,31 +1,6 @@
 # Siddhi Application Management APIs
 
--   [Updating a Siddhi
-    Application](#SiddhiApplicationManagementAPIs-UpdatingaSiddhiApplication)
--   [Deleting a Siddhi
-    application](#SiddhiApplicationManagementAPIs-DeletingaSiddhiapplication)
--   [Listing all active Siddhi
-    applications](#SiddhiApplicationManagementAPIs-ListingallactiveSiddhiapplications)
--   [Retrieving a specific Siddhi
-    application](#SiddhiApplicationManagementAPIs-RetrievingaspecificSiddhiapplication)
--   [Fetching the status of a Siddhi
-    Application](#SiddhiApplicationManagementAPIs-FetchingthestatusofaSiddhiApplication)
--   [Taking a snapshot of a Siddhi
-    Application](#SiddhiApplicationManagementAPIs-TakingasnapshotofaSiddhiApplicationSnapshot)
--   [Restoring a Siddhi Application via a
-    snapshot](#SiddhiApplicationManagementAPIs-RestoringaSiddhiApplicationviaasnapshot)
--   [Returning real-time statistics of a
-    worker](#SiddhiApplicationManagementAPIs-Returningreal-timestatisticsofaworker)
--   [Enabling/disabling worker
-    statistics](#SiddhiApplicationManagementAPIs-Enabling/disablingworkerstatistics)
--   [Returning general details of a
-    worker](#SiddhiApplicationManagementAPIs-Returninggeneraldetailsofaworker)
--   [Returning detailed statistics of all Siddhi
-    applications](#SiddhiApplicationManagementAPIs-ReturningdetailedstatisticsofallSiddhiapplications)
--   [Enabling/disabling the statistics of a specific Siddhi
-    application](#SiddhiApplicationManagementAPIs-Enabling/disablingthestatisticsofaspecificSiddhiapplication)
--   [Enabling/disabling the statistics of all Siddhi
-    applications](#SiddhiApplicationManagementAPIs-Enabling/disablingthestatisticsofallSiddhiapplications)
+
 
 ### Creating a Siddhi application
 

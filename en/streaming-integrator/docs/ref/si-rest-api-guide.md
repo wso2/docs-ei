@@ -19,7 +19,7 @@ The following sections cover the different categories of REST API available for 
 </tr>
 <tr class="even">
 <th>API Context</th>
-<td><code>             /siddhi-apps            </code></td>
+<td><code>/siddhi-apps</code></td>
 </tr>
 <tr class="odd">
 <th>HTTP Method</th>
