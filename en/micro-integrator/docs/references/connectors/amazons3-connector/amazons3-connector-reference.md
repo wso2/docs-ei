@@ -1319,3 +1319,46 @@ To use the Amazon S3 connector, add the <amazons3.init> element in your configur
         <delimiter>images</delimiter>
     </getObjectsInBucket>
     ```
+
+??? note "getBucketLifeCycle"
+    The getBucketLifeCycle operation returns the lifecycle configuration information set on the bucket. To use this operation, permissions should be given to perform the s3:GetLifecycleConfiguration action. The bucket owner has this permission by default and can grant this permission to others. There is usually some time lag before lifecycle configuration deletion is fully propagated to all the Amazon S3 systems. When calling init before this operation, the following headers should be removed: xAmzAcl, xAmzGrantRead, xAmzGrantWrite, xAmzGrantReadAcp, xAmzGrantWriteAcp, and xAmzGrantFullControl. See the [related API documentation](http://docs.aws.amazon.com/AmazonS3/latest/API/RESTBucketDELETEwebsite.html) for more information.
+    <table>
+        <tr>
+            <th>Parameter Name</th>
+            <th>Description</th>
+            <th>Required</th>
+        </tr>
+        <tr>
+            <td>bucketUrl</td>
+            <td>The URL of the bucket.</td>
+            <td>Yes</td>
+        </tr>
+    </table>
+
+    **Sample configuration**
+
+    ```xml
+    <amazons3.getBucketLifeCycle>
+        <bucketUrl>{$ctx:bucketUrl}</bucketUrl>
+    </amazons3.getObjectsInBucket>
+    ```
+    
+    **Sample request**
+
+    ```xml
+    <getBucketLifeCycle>
+        <accessKeyId>AKIXXXXXHXQXXG5XX</accessKeyId>
+        <secretAccessKey>qHXXBXXXXASYQc4oMCEOj+343HD82s</secretAccessKey>
+        <region>us-east-2</region>
+        <methodType>GET</methodType>
+        <contentType>application/xml</contentType>
+        <contentLength></contentLength>
+        <contentMD5></contentMD5>
+        <bucketName>signv4test</bucketName>
+        <isXAmzDate>true</isXAmzDate>
+        <xAmzSecurityToken></xAmzSecurityToken>
+        <host>s3.us-east-2.amazonaws.com</host>
+        <expect></expect>
+        <bucketUrl>http://s3.us-east-2.amazonaws.com/signv4test</bucketUrl>
+    </getBucketLifeCycle>
+    ```
