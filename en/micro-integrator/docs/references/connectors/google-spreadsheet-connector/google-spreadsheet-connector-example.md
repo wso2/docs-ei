@@ -27,7 +27,7 @@ Follow these steps to set up the ESB Solution Project and the Connector Exporter
 
 ## Creating the Integration Logic
 
-1. First we need to create Google Spreadsheet Project in the Google API Console and obtain the credentials. You can follow [Get Credentials for Google Spreadsheet]() steps. 
+1. Follow these steps to [Configure Google Sheets API](get-credentials-for-google-spreadsheet.md) and obtain the Client Id, Client Secret, Access Token and Refresh Token.  
 
 2. Right click on the created Integration Project and select, -> **New** -> **Rest API** to create the REST API. 
     <img src="../../../../assets/img/connectors/adding-an-api.png" title="Adding a Rest API" width="800" alt="Adding a Rest API"/>
