@@ -1,3 +1,6 @@
+!!! note
+    **This page is still a work in progress!**
+
 # Streaming Integrator REST API Guide
 
 The following sections cover the different categories of REST API available for the Streaming Integrator the HTTP status codes thyat they can return.
@@ -11,37 +14,37 @@ The following sections cover the different categories of REST API available for 
 <table>
 <tbody>
 <tr class="odd">
-<td>Description</td>
+<th>Description</th>
 <td>Creates a new Siddhi Application.</td>
 </tr>
 <tr class="even">
-<td>API Context</td>
-<td><code>             /siddhi-apps            </code></td>
+<th>API Context</th>
+<td><code>/siddhi-apps</code></td>
 </tr>
 <tr class="odd">
-<td>HTTP Method</td>
+<th>HTTP Method</th>
 <td>POST</td>
 </tr>
 <tr class="even">
-<td>Request/Response format</td>
+<th>Request/Response format</th>
 <td><strong>Request</strong> : text/plain<br />
 <strong>Response</strong> : application/json</td>
 </tr>
 <tr class="odd">
-<td>Authentication</td>
+<th>Authentication</th>
 <td>Basic</td>
 </tr>
 <tr class="even">
-<td>Username</td>
+<th>Username</th>
 <td>admin</td>
 </tr>
 <tr class="odd">
-<td>Password</td>
+<th>Password</th>
 <td>admin</td>
 </tr>
 <tr class="even">
-<td>Runtime</td>
-<td>worker/manager</td>
+<th>Runtime</th>
+<td>server/tooling</td>
 </tr>
 </tbody>
 </table>
@@ -112,7 +115,7 @@ following.
 <table>
 <tbody>
 <tr class="odd">
-<td>HTTP Status Code</td>
+<th>HTTP Status Code</th>
 <td><p>Possible codes are 201, 409, 400, and 500.</p>
 <p>For descriptions of the HTTP status codes, see <a href="_HTTP_Status_Codes_">HTTP Status Codes</a> .</p></td>
 </tr>
@@ -126,37 +129,37 @@ following.
 <table>
 <tbody>
 <tr class="odd">
-<td>Description</td>
+<th>Description</th>
 <td>Updates a Siddhi Application.</td>
 </tr>
 <tr class="even">
-<td>API Context</td>
+<th>API Context</th>
 <td><code>             /siddhi-apps            </code></td>
 </tr>
 <tr class="odd">
-<td>HTTP Method</td>
+<th>HTTP Method</th>
 <td>PUT</td>
 </tr>
 <tr class="even">
-<td>Request/Response format</td>
+<th>Request/Response format</th>
 <td><strong>Request</strong> : text/plain<br />
 <strong>Response</strong> : application/json</td>
 </tr>
 <tr class="odd">
-<td>Authentication</td>
+<th>Authentication</th>
 <td>Basic</td>
 </tr>
 <tr class="even">
-<td>Username</td>
+<th>Username</th>
 <td>admin</td>
 </tr>
 <tr class="odd">
-<td>Password</td>
+<th>Password</th>
 <td>admin</td>
 </tr>
 <tr class="even">
-<td>Runtime</td>
-<td>worker/manager</td>
+<th>Runtime</th>
+<td>server/tooling</td>
 </tr>
 </tbody>
 </table>
@@ -204,7 +207,7 @@ following.
 <table>
 <tbody>
 <tr class="odd">
-<td>HTTP Status Code</td>
+<th>HTTP Status Code</th>
 <td><p>Possible codes are 200, 201, 400, and 500.</p>
 <p>For descriptions of the HTTP status codes, see <a href="_HTTP_Status_Codes_">HTTP Status Codes</a> .</p></td>
 </tr>
@@ -217,24 +220,46 @@ following.
 
 #### Overview
 
-|                         |                                                            |
-|-------------------------|------------------------------------------------------------|
-| Description             | Sends the name of a Siddhi application as a URL parameter. |
-| API Context             | `             /siddhi-apps/{appName}            `          |
-| HTTP Method             | DELETE                                                     |
-| Request/Response format | application/json                                           |
-| Authentication          | Basic                                                      |
-| Username                | admin                                                      |
-| Password                | admin                                                      |
-| Runtime                 | worker/manager                                             |
-
-
+<table>
+    <tr>
+        <th>Description</th>
+        <td>Sends the name of a Siddhi application as a URL parameter.</td>
+    </tr>
+    <tr>
+        <th>API Context</th>
+        <td><code>/siddhi-apps/{appName}</code></td>
+    </tr>
+    <tr>
+        <th>HTTP Method </th>
+        <td><code>DELETE</code></td>
+    </tr>
+    <tr>
+        <th>Request/Response format</th>
+        <td>application/json</td>
+    </tr>
+    <tr>
+        <th>Authentication</th>
+        <td>Basic</td>
+    </tr>
+    <tr>
+        <th>Username</th>
+        <td>admin</td>
+    </tr>
+    <tr>
+        <th>Password</th>
+        <td>admin</td>
+    </tr>
+    <tr>
+        <th>Runtime</th>
+        <td>server/tooling</td>
+    </tr>
+</table>
 
 ##### Parameter Description
 
-| Parameter                            | Description                                       |
-|--------------------------------------|---------------------------------------------------|
-| `             {appName}            ` | The name of the Siddhi application to be deleted. |
+| Parameter | Description                                       |
+|-----------|---------------------------------------------------|
+|`{appName}`| The name of the Siddhi application to be deleted. |
 
 
 
@@ -252,7 +277,7 @@ following.
 
 #### Sample output
 
-The respose for the sample curl command given above can be one of the
+The response for the sample curl command given above can be one of the
 following:
 
 -   If the API request is valid and a Siddhi application with the given
@@ -303,7 +328,7 @@ following:
 <table>
 <tbody>
 <tr class="odd">
-<td>HTTP Status Code</td>
+<th>HTTP Status Code</th>
 <td><p>200, 404, 500 or 400.</p>
 <p>For descriptions of the HTTP status codes, see <a href="_HTTP_Status_Codes_">HTTP Status Codes</a> .</p></td>
 </tr>
@@ -317,38 +342,38 @@ following:
 <table>
 <tbody>
 <tr class="odd">
-<td>Description</td>
+<th>Description</th>
 <td><p>Lists all the currently active Siddhi applications.</p>
-<p>If the <code>              isActive=true             </code> parameter is set, all the active Siddhi Applications are listed. If not, all the inactive Siddhi applications are listed.</p></td>
+<p>If the <code>isActive=true</code> parameter is set, all the active Siddhi Applications are listed. If not, all the inactive Siddhi applications are listed.</p></td>
 </tr>
 <tr class="even">
-<td>API Context</td>
-<td><code>             /siddhi-apps            </code></td>
+<th>API Context</th>
+<td><code>/siddhi-apps</code></td>
 </tr>
 <tr class="odd">
-<td>HTTP Method</td>
+<th>HTTP Method</th>
 <td>GET</td>
 </tr>
 <tr class="even">
-<td>Request/Response format</td>
+<th>Request/Response format</th>
 <td><strong>Request content type</strong> : any<br />
-<strong>Response content type</strong> : <code>             application/json            </code></td>
+<strong>Response content type</strong> : <code>application/json</code></td>
 </tr>
 <tr class="odd">
-<td>Authentication</td>
+<th>Authentication</th>
 <td>Basic</td>
 </tr>
 <tr class="even">
-<td>Username</td>
+<th>Username</th>
 <td>admin</td>
 </tr>
 <tr class="odd">
-<td>Password</td>
+<th>Password</th>
 <td>admin</td>
 </tr>
 <tr class="even">
-<td>Runtime</td>
-<td>worker/manager</td>
+<th>Runtime</th>
+<td>server/tooling</td>
 </tr>
 </tbody>
 </table>
@@ -425,7 +450,7 @@ Possible responses are as follows:
 | Authentication          | Basic                                             |
 | Username                | admin                                             |
 | Password                | admin                                             |
-| Runtime                 | worker/manager                                    |
+| Runtime                 | server/tooling                                    |
 
 
 
@@ -526,7 +551,7 @@ The possible outputs are as follows:
 </tr>
 <tr class="even">
 <td>Runtime</td>
-<td>worker/manager</td>
+<td>server/tooling</td>
 </tr>
 </tbody>
 </table>
@@ -604,7 +629,7 @@ The possible outputs are as follows:
 | Authentication          | Basic                                                     |
 | Username                | admin                                                     |
 | Password                | admin                                                     |
-| Runtime                 | worker/manager                                            |
+| Runtime                 | server/tooling                                           |
 
 
 
@@ -720,7 +745,7 @@ The output can be one of the following:
 </tr>
 <tr class="even">
 <td><p>Runtime</p></td>
-<td><p>worker/manager</p></td>
+<td><p>server/tooling</p></td>
 </tr>
 </tbody>
 </table>
@@ -821,20 +846,20 @@ responses:
 </tbody>
 </table>
 
-### Returning real-time statistics of a worker
+### Returning real-time statistics of a Streaming Integrator node
 
 #### Overview
 
 |                         |                                               |
 |-------------------------|-----------------------------------------------|
-| Description             | Returns the real-time statistics of a worker. |
+| Description             | Returns the real-time statistics of a Streaming Integrator node. |
 | API Context             | `             /statistics            `        |
 | HTTP Method             | GET                                           |
 | Request/Response format | application/json                              |
 | Authentication          | Basic                                         |
 | Username                | admin                                         |
 | Password                | admin                                         |
-| Runtime                 | worker/manager                                |
+| Runtime                 | server/tooling                               |
 
 
 
@@ -865,20 +890,20 @@ responses:
 </tbody>
 </table>
 
-### Enabling/disabling worker statistics
+### Enabling/disabling statistics for Streaming Integrator nodes
 
 #### Overview
 
 |                         |                                                         |
 |-------------------------|---------------------------------------------------------|
-| Description             | Enables/diables generating statistics for worker nodes. |
+| Description             | Enables/diables generating statistics for Streaming Integrator nodes. |
 | API Context             | `             /statistics            `                  |
 | HTTP Method             | PUT                                                     |
 | Request/Response format | application/json                                        |
 | Authentication          | Basic                                                   |
 | Username                | admin                                                   |
 | Password                | admin                                                   |
-| Runtime                 | worker/manager                                          |
+| Runtime                 | server/tooling                                         |
 
 
 
@@ -909,20 +934,20 @@ responses:
 </tbody>
 </table>
 
-### Returning general details of a worker
+### Returning general details of a Streaming Integrator node
 
 #### Overview
 
 |                         |                                            |
 |-------------------------|--------------------------------------------|
-| Description             | Returns general details of a worker.       |
-| API Context             | `             /system-details            ` |
+| Description             | Returns general details of a Streaming Integrator node.       |
+| API Context             | `/system-details` |
 | HTTP Method             | GET                                        |
 | Request/Response format | application/json                           |
 | Authentication          | Basic                                      |
 | Username                | admin                                      |
 | Password                | admin                                      |
-| Runtime                 | worker/manager                             |
+| Runtime                 | server/tooling                             |
 
 
 
@@ -966,7 +991,7 @@ responses:
 | Authentication          | Basic                                                                                              |
 | Username                | admin                                                                                              |
 | Password                | admin                                                                                              |
-| Runtime                 | worker/manager                                                                                     |
+| Runtime                 | server/tooling                                                                                    |
 
 
 
@@ -1010,7 +1035,7 @@ responses:
 | Authentication          | Basic                                                           |
 | Username                | admin                                                           |
 | Password                | admin                                                           |
-| Runtime                 | worker/manager                                                  |
+| Runtime                 | server/tooling                                                 |
 
 
 
@@ -1060,7 +1085,7 @@ responses:
 | Authentication          | Basic                                                        |
 | Username                | admin                                                        |
 | Password                | admin                                                        |
-| Runtime                 | worker/manager                                               |
+| Runtime                 | server/tooling                                              |
 
 
 
@@ -1947,7 +1972,7 @@ responses:
 | Authentication          | Basic                                                                                              |
 | Username                | `             admin            `                                                                   |
 | Password                | `             admin            `                                                                   |
-| Runtime                 | Worker                                                                                             |
+| Runtime                 | server/tooling                                                                                             |
 
 #### curl command syntax
 
