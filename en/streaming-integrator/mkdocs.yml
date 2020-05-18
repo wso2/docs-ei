@@ -241,6 +241,7 @@ nav:
     - 'Configuring System Parameters for Siddhi Extensions': 'connectors/configuring-System-Parameters-for-Siddhi-Extensions.md'
   - 'References':
     - 'Streaming Integration REST API Guide': 'ref/si-rest-api-guide.md'
+    - 'Environment Compatibility': 'ref/environment-compatibility.md'
     - 'Performance Analysis Results': 'ref/performance-analysis-results.md'
   - '': page-not-found.md
 
