@@ -207,7 +207,7 @@ The management API has multiple resources to provide information regarding the d
 
 -	**Resource**: `/endpoints`
 
-	**Description**:  Activate and Deactivate a specified endpoint.
+	**Description**:  Activate or deactivate a specified endpoint.
 
 	**Example**:
 
@@ -220,10 +220,10 @@ The management API has multiple resources to provide information regarding the d
     		"name": "HTTPEP",
     		"status": "inactive"
     	} -k -i
-    ```
+        ```
     
 	```bash tab='Response'
-    {"Message":"HTTPEP : is switched Off"}
+        {"Message":"HTTPEP : is switched Off"}
 	```
 
 ### GET APIs
@@ -430,7 +430,7 @@ The management API has multiple resources to provide information regarding the d
 
 -	**Resource**: `/message-processors`
 
-	**Description**: Used to activate or deactivate a specific message processor
+	**Description**: Used to activate or deactivate a specific message processor.
 
 	**Example**:
 
@@ -610,7 +610,7 @@ The management API has multiple resources to provide information regarding the d
 	**Example**:
 
 	```bash tab='Request'
-	curl -X GET "https://localhost:9164/management/data-services" -H "accept: application/json" -H "Authorization: Bearer TOKEN" -k -i
+	curl -X GET "https://localhost:9164/management/data-services" -H "accept: application/json" -H "Authorization: Bearer         TOKEN" -k -i
 	```
 
 	```bash tab='Response'
@@ -633,5 +633,5 @@ The management API has multiple resources to provide information regarding the d
 	**Example**:
 
 	```bash
-	curl -X GET "https://localhost:9164/management/data-services?dataServiceName=StudentDataService" -H "accept: application/json" -H "Authorization: Bearer TOKEN" -k -i
+	curl -X GET "https://localhost:9164/management/data-services?dataServiceName=StudentDataService" -H "accept:          application/json" -H "Authorization: Bearer TOKEN" -k -i
 	```
