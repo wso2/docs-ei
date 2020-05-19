@@ -89,20 +89,22 @@ enable = false
 
 ## Authorization
 
-Authorization can be set to resources that only need to be invoked by admin users. The resource `/management/users` is by default secured with authorization, meaning that only users with admin privileges can access this resource.
+You can enable Authorization only for resources (in the management API) that need to be invoked by admin users. The `/management/users` resource is by default secured with authorization, meaning that only users with admin privileges can access this resource.
 
 !!! Note
-    Authorization is not supported with the file based user store. Hence, make sure you configure an [external user store](../../../setup/user_stores/setting_up_ro_ldap), 
-    and disable the file based user store as explained earlier if you want authorization to be in effect.
+    Authorization is not supported with the file-based user store. Therefore, be sure to configure an [external user store](../../../setup/user_stores/setting_up_ro_ldap) and [disable the file-based user store](#disable-the-file-based-user-store) if you want authorization to be in effect.
      
 ### Disable authorization
+
+Add the following to the `deployment.toml` file.
+
 ```toml
 [management_api.authorization_handler]
 enable = false
 ```
 
 ### Enable authorization for other resources
-If you want to enable authorization to any other resource than `/users`, open the `deployment.toml` file (stored in
+If you want to enable authorization for any resources other than `/users`, open the `deployment.toml` file (stored in
 the `MI_HOME/conf/` directory) and add the following:
 
 ```toml
@@ -114,8 +116,8 @@ path = "/apis"
 ```
 
 !!! Note
-    You need to re-define the `/user` resource in the case where you need to customize the resources that need 
-    authorization. Failing to do so will cause authorization to be removed from the `/user` resource.
+    You need to redefine the `/user` resource in cases where you need to customize the resources that need 
+    authorization. Failing to do so will remove authorization from the `/user` resource.
 
 ## Configuring CORS
 
