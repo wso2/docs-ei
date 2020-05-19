@@ -32,11 +32,7 @@ This single replica deployment is not recommended if you expect a high amount of
 
 ### High availability
 
-The failure of this single worker node will take down the entire Micro Integrator deployment (depends on how many resources you have additionally). Also, if there is a failure in the single pod, there will be a downtime before a new pod is spawned again. Therefore, to achieve high availability, you require more than one worker node (which avoids single point of failure) and multiple replicas of the pod (which avoids downtime).
-
-### Startup time
-
-The server start-up time is 10s. Therefore, this type of deployment can have a minimum downtime of 10s (either during a rollout update or during a pod failure). This is the biggest disadvantage of this approach since this downtime can vary upon the time it takes to deploy all the capps during the server startup, which could result in a significant downtime in your cluster. If this downtime is acceptable and does not negatively impact your requirements, this approach may be the easiest way for you to get started.
+The failure of this single worker node will take down the entire Micro Integrator deployment (depending on how many resources you have additionally). Also, if there is a failure in the single pod, there will be a downtime before a new pod is spawned again. This downtime can vary depending on the server_startup_time + artifact_deployment_time, which could lead to a significant downtime in your cluster. If this downtime is acceptable and does not negatively impact your requirements, this approach may be the easiest way for you to get started. Otherwise, to achieve high availability, you require more than one worker node (which avoids single point of failure) and multiple replicas of the pod (which avoids downtime).
 
 ## Multiple Replicas
 
