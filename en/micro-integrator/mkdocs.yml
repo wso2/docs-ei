@@ -416,6 +416,12 @@ nav:
           - 'Google Firebase Connector Configuration': 'references/connectors/google-firebase-connector/google-firebase-configuration.md'
         - FHIR Connector:
           - 'FHIR Connector Example': 'references/connectors/fhir-connector/fhir-connector-example.md'
+        - SMPP Connector:
+            - 'Setting up the SMPP Connector': 'references/connectors/smpp-connector/smpp-connector-configuration.md'
+            - 'SMPP Connector Example': 'references/connectors/smpp-connector/smpp-connector-example.md'
+            - 'SMPP Inbound Endpoint Example': 'references/connectors/smpp-connector/smpp-inbound-endpoint-example.md'
+            - 'SMPP Connector Configuration': 'references/connectors/smpp-connector/smpp-connector-config.md'
+            - 'SMPP Inbound Endpoint Configuration': 'references/connectors/smpp-connector/smpp-inbound-endpoint-config.md'
         - Ceridian Dayforce Connector:
             - 'Setting up the Ceridian Dayforce Connector': 'references/connectors/ceridiandayforce-connector/ceridiandayforce-connector-config.md'
             - 'Ceridian Dayforce Connector Example': 'references/connectors/ceridiandayforce-connector/ceridiandayforce-connector-example.md'
