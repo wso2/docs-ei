@@ -159,5 +159,6 @@ If you are already using a JDBC user store (database) with another WSO2 product 
 	```toml
 	[user_store]
 	class = "org.wso2.micro.integrator.security.user.core.jdbc.JDBCUserStoreManager"
+	type = "database"
 	```
 	The datasource configured under the `[[datasource]]` toml heading will now be the effective user store for the Micro Integrator.
