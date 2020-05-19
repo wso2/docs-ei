@@ -33,11 +33,11 @@ However, the format of the message compatible with the backend service is as fol
     "ssn": "234-23-525",
     "address": "California",
     "phone": "8770586755",
-    "email": "johndoe@gmail.com"
+    "email": "johndoe@gmail.com",
     "cardNo": "7844481124110331"
     },
   "doctor": "thomas collins",
-  "hospital": "grand oak community hospital"
+  "hospital": "grand oak community hospital",
   "appointment_date": "2017-04-02"
 }
 ```
