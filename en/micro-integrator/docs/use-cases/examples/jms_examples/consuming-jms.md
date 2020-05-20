@@ -29,6 +29,7 @@ See the instructions on how to [build and run](#build-and-run) this example.
          <default>text/xml</default>
       </rules>
    </parameter>
+    <parameter name="transport.jms.ConnectionFactory">myQueueListener</parameter>
 </proxy>
 ```
 
