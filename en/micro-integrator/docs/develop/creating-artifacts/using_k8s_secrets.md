@@ -59,6 +59,8 @@ Secret can be accessed from the integration artifacts by using the `wso2:vault-l
 wso2:vault-lookup('<alias>', '<type>', '<isEncrypted>')
 ```
 
+Specify values for the following three parameters:
+
 -	`<alias>`: Name of the environment variable specified in the `integraton_cr.yml` file.
 - `<type>`: Set this to `ENV`
 -	`<isEncrypted>`: Set this to `true` or `false` to specify whether the secret is encrypted.

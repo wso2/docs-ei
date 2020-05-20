@@ -282,7 +282,7 @@ nav:
         - 'Creating a REST API': 'develop/creating-artifacts/creating-an-api.md'
         - 'Creating a Proxy Service': 'develop/creating-artifacts/creating-a-proxy-service.md'
         - 'Creating an Inbound Endpoint': 'develop/creating-artifacts/creating-an-inbound-endpoint.md'
-        - 'Creating Scheduled Tasks' : 'develop/creating-artifacts/creating-scheduled-task.md'
+        - 'Creating Scheduled Tasks': 'develop/creating-artifacts/creating-scheduled-task.md'
         - 'Creating a Message Store': 'develop/creating-artifacts/creating-a-message-store.md'
         - 'Creating a Message Processor': 'develop/creating-artifacts/creating-a-message-processor.md'
         - 'Creating an Endpoint': 'develop/creating-artifacts/creating-endpoints.md'
@@ -305,9 +305,10 @@ nav:
       - Securing Artifacts:
         - 'Encrypting Synapse Secrets': 'develop/creating-artifacts/encrypting-synapse-passwords.md'
         - 'Using Kubernetes Secrets': 'develop/creating-artifacts/using_k8s_secrets.md'
+        - 'Using Docker Secrets': 'develop/creating-artifacts/using_docker_secrets.md'
         - 'Applying Security to a REST API': 'develop/advanced-development/applying-security-to-an-api.md'
         - 'Applying Security to a Proxy Service': 'develop/advanced-development/applying-security-to-a-proxy-service.md'
-        - 'Applying Security to a Data Service' : 'develop/creating-artifacts/data-services/securing-data-services.md'
+        - 'Applying Security to a Data Service': 'develop/creating-artifacts/data-services/securing-data-services.md'
       - Packaging Artifacts:
         - 'Packaging Artifacts': 'develop/packaging-artifacts.md'
         - 'Exporting Artifacts': 'develop/exporting-artifacts.md'

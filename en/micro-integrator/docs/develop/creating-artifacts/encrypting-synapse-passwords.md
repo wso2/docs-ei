@@ -8,35 +8,41 @@ In a VM deployment, you can encrypt the sensitive data in the synapse configurat
 
 Follow the steps given below:
 
-1.  Open a command terminal and navigate to the `MI_HOME/bin/` directory.
-2.  If you are using the Cipher tool for the first time in your environment, you must enable the Cipher tool by
-executing the `-Dconfigure` command with the Cipher tool script.
-		Execute the following command to initialize the
-cipher tool:
+1. Open a terminal and navigate to the `MI_HOME/bin/` directory.
+2. If you are using the Cipher tool for the first time in your environment, you must enable the Cipher tool by executing the `-Dconfigure` command with the Cipher tool script. Execute the following command to initialize the cipher tool:
 
-		```bash tab='On Linux'
-		bash ciphertool.sh -Dconfigure
-		```
-
-		```bash tab='On MacOS'
-		./ciphertool.sh -Dconfigure
-		```
-
-		```bash tab='On Windows'
-		ciphertool.bat -Dconfigure
-		```
-
-    !!! Note
-        If you are using **Linux**, make sure to run the script using **bash**.
-
-3.  Execute the following command to initialize secure vault:
-		!!! Warning
-		    If you are using **Windows**, be sure to update the `securevault.bat` file with the following configuration before  encrypting passwords.
-			```java
-			set CARBON_CLASSPATH=.\conf
-			    FOR %%c in ("%CARBON_HOME%\wso2\components\plugins\org.wso2.micro.integrator.security*.jar") DO (
-			    set CARBON_CLASSPATH=!CARBON_CLASSPATH!;".\wso2\components\plugins\%%~nc%%~xc")
+			```bash tab='On Linux'
+			bash ciphertool.sh -Dconfigure
 			```
+
+			```bash tab='On MacOS'
+			./ciphertool.sh -Dconfigure
+			```
+
+			```bash tab='On Windows'
+			ciphertool.bat -Dconfigure
+			```
+
+   !!! Note
+       If you are using **Linux**, make sure to run the script using **bash**.
+
+3. Execute the following command to initialize secure vault:
+
+				!!! Warning
+				    If you are using **Windows**, be sure to update the `securevault.bat` file with the following configuration before  encrypting passwords.
+					```java
+					set CARBON_CLASSPATH=.\conf
+					    FOR %%c in ("%CARBON_HOME%\wso2\components\plugins\org.wso2.micro.integrator.security*.jar") DO (
+					    set CARBON_CLASSPATH=!CARBON_CLASSPATH!;".\wso2\components\plugins\%%~nc%%~xc")
+					```
+
+	 ```bash tab='On Linux/MacOS'
+	 sh securevault.sh
+	 ```
+
+	 ```bash tab='On Windows'
+	 securevault.bat
+	 ```
 4.  You can then enter the secret alias (vault key) for the password that you want to encrypt. For example, enter
 'PasswordAlias'.
 5.  In the next step, enter the password of the keystore that is used for secure vault in the product. If the default product keystore is used, the password is 'wso2carbon'.
