@@ -76,6 +76,7 @@ nav:
       - 'Performing Real-time ETL with MySQL': 'examples/performing-real-time-etl-with-mysql.md'
       - 'Performing Real-time ETL with Files': 'examples/performing-real-time-etl-with-files.md'
       - 'Working with Kafka': 'examples/working-with-kafka.md'
+      - 'Working with Business Rules': 'admin/creating-business-rules-templates.md'
       - 'Exposing Processed Data as API': 'examples/exposing-processed-data-as-api.md'
       - 'Triggering Integrations via MI': 'examples/triggering-integrations-via-micro-integrator.md'
       - 'Running SI with Docker and Kubernetes': 'examples/running-si-with-docker-and-kubernetes.md'
@@ -210,9 +211,9 @@ nav:
       - 'Scalable Cluster': 'setup/deploying-si-as-a-scalable-cluster.md'
       - 'Minimum HA Cluster in AWS ECS': 'setup/deploying-si-as-minimum-ha-cluster-in-aws-ecs.md'
     - 'Production Hardening':
-      - 'Production Checklist': 'setup/setting-up-si-for-production.md'
+      - 'Production Checklist': 'setup/production-checklist.md'
       - 'Configuring Datasources': 'setup/configuring-data-sources.md'
-      - 'Working with Business Rules': 'admin/creating-business-rules-templates.md'
+      - 'Configuring Business Rules Deployment': 'setup/configuring-business-rules-deployment.md'
       - 'General Data Protection Regulations': 'admin/general-data-protection-regulations.md'
       - 'Working with Keystores': 'admin/working-with-Keystores.md'
       - 'Supporting Different Transports': 'admin/supporting-different-transports.md'
@@ -221,6 +222,7 @@ nav:
       - 'Protecting Sensitive Data via the Secure Vault': 'admin/protecting-sensitive-data-via-the-secure-vault.md'
       - 'Adding Third Party Non OSGi Library': 'admin/adding-third-party-non-osgi-libraries.md'
       - 'Configuring Default Ports': 'ref/configuring-default-ports.md'
+      - 'Changing the Host Name and Context Path of Web UI Applications': 'setup/change-hostname-and-context-path.md)'
   - 'Develop':
     - 'Developing Streaming Integrator Solutions': 'develop/developing-streaming-integration-solutions.md'
     - 'Streaming Integrator Tooling':
@@ -239,7 +241,18 @@ nav:
     - 'Writing Custom Siddhi Extensions': 'connectors/writing-Custom-Siddhi-Extensions.md'
     - 'Configuring System Parameters for Siddhi Extensions': 'connectors/configuring-System-Parameters-for-Siddhi-Extensions.md'
   - 'References':
-    - 'Streaming Integration REST API Guide': 'ref/si-rest-api-guide.md'
+    - 'Streaming Integration REST API Guide':
+        - 'REST API Guide Overview': 'ref/rest-api-guide-overview.md'
+        - 'Siddhi Application Management APIs': 'ref/siddhi-Application-Management-APIs.md'
+        - 'Event Simulation APIs': 'ref/event-simulation-apis.md'
+        - 'Status Monitoring APIs': 'ref/status-monitoting-apis.md'
+        - 'Authentication APIs': 'ref/authentication-apis.md'
+        - 'Permission APIs': 'ref/permission-apis.md'
+        - 'Business Rules APIs': 'ref/business-rules-apis.md'
+        - 'Store APIs': 'ref/store-apis.md'
+        - 'Healthcheck APIs': 'ref/healthcheck-apis.md'
+        - 'HTTP Status Codes': 'ref/http-status-codes.md'
+    - 'Environment Compatibility': 'ref/environment-compatibility.md'
     - 'Performance Analysis Results': 'ref/performance-analysis-results.md'
   - '': page-not-found.md
 

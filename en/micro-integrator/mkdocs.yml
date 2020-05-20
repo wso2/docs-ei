@@ -18,7 +18,7 @@
 site_name: WSO2 Enterprise Integrator Documentation
 site_description: Documentation for WSO2 Enterprise Integrator
 site_author: WSO2
-site_url: https://ei.docs.wso2.com/en/latest/
+site_url: https://ei.docs.wso2.com/en/7.1.0/
 
 # Repository
 repo_name: wso2/docs-ei
@@ -196,18 +196,27 @@ nav:
         - 'Run on Docker': 'setup/installation/run_in_docker.md'
         - 'Run on Kubernetes': 'setup/installation/run_in_kubernetes.md'
       - Kubernetes Deployment:
-        - 'Deploy on Kubernetes': 'setup/deployment/kubernetes_deployment.md'
-        - K8s Deployment Samples:
-          - 'Sample 1: Hello World': 'setup/deployment/k8s-samples/hello-world.md'
-          - 'Sample 2: Message Routing': 'setup/deployment/k8s-samples/content-based-routing.md'
+        - 'Kubernetes Deployment Patterns': 'setup/deployment/kubernetes_deployment_patterns.md' 
+        - 'EI Kubernetes Operator': 'setup/deployment/ei_kubernetes_operator.md'
+        - 'Deploy on Kubernetes': 'setup/deployment/kubernetes_deployment.md' 
+        - K8s Deployment Samples: 
+          - 'Sample 1: Hello World': 'setup/deployment/k8s-samples/hello-world.md' 
+          - 'Sample 2: Message Routing': 'setup/deployment/k8s-samples/content-based-routing.md' 
           - 'Sample 3: JMS Sender/Receiver': 'setup/deployment/k8s-samples/jms-sender-receiver.md'
       - VM Deployment:
-        - 'Deploy on a VM': 'setup/deployment/deploying_wso2_ei.md'
-        - 'Setting up a Load Balancer': 'setup/deployment/setting_up_lb.md'
-        - 'Troubleshooting a Production Deployment': 'setup/deployment/troubleshooting_deployment.md'
-        - 'Backup and Recovery': 'setup/deployment/backup_recovery.md'
-        - 'Setting up a File-Based Registry': 'setup/deployment/file_based_registry.md'
-      - 'Migrating from WSO2 EI 6.x': 'setup/deployment/migrating-from-ei-6.x.x.md'
+        - 'Clustered Deployment': 'setup/deployment/deploying_wso2_ei.md' 
+        - 'Deployment Synchronization': 'setup/deployment/deployment_synchronization.md'
+        - 'Load Balancing': 'setup/deployment/setting_up_lb.md'
+        - Cluster Coordination Database: 
+          - 'MySQL Database': 'setup/deployment/databases/setting-up-MySQL.md'
+          - 'MSSQL Database': 'setup/deployment/databases/setting-up-MSSQL.md'
+          - 'Oracle Database': 'setup/deployment/databases/setting-up-Oracle.md'
+          - 'PostgreSQL Database': 'setup/deployment/databases/setting-up-PostgreSQL.md'
+          - 'IBM Database': 'setup/deployment/databases/setting-up-IBM-DB2.md'
+        - 'File-Based Registry' : 'setup/deployment/file_based_registry.md'
+        - 'Troubleshooting a Production Deployment' : 'setup/deployment/troubleshooting_deployment.md'
+        - 'Backup and Recovery' : 'setup/deployment/backup_recovery.md'
+      - 'Migrating from WSO2 EI 6.x': 'setup/deployment/migrating-from-ei-6.x.x.md' 
       - 'Product Deployment Checklist': 'setup/deployment/deployment_checklist.md'
       - 'Managing Configurations across Environments': 'setup/dynamic_server_configurations.md'
       - Security Hardening :
@@ -410,6 +419,12 @@ nav:
           - 'Google Firebase Connector Configuration': 'references/connectors/google-firebase-connector/google-firebase-configuration.md'
         - FHIR Connector:
           - 'FHIR Connector Example': 'references/connectors/fhir-connector/fhir-connector-example.md'
+        - SMPP Connector:
+            - 'Setting up the SMPP Connector': 'references/connectors/smpp-connector/smpp-connector-configuration.md'
+            - 'SMPP Connector Example': 'references/connectors/smpp-connector/smpp-connector-example.md'
+            - 'SMPP Inbound Endpoint Example': 'references/connectors/smpp-connector/smpp-inbound-endpoint-example.md'
+            - 'SMPP Connector Configuration': 'references/connectors/smpp-connector/smpp-connector-config.md'
+            - 'SMPP Inbound Endpoint Configuration': 'references/connectors/smpp-connector/smpp-inbound-endpoint-config.md'
         - Ceridian Dayforce Connector:
             - 'Setting up the Ceridian Dayforce Connector': 'references/connectors/ceridiandayforce-connector/ceridiandayforce-connector-config.md'
             - 'Ceridian Dayforce Connector Example': 'references/connectors/ceridiandayforce-connector/ceridiandayforce-connector-example.md'
