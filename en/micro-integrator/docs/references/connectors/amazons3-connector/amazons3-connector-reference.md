@@ -1242,7 +1242,7 @@ To use the Amazon S3 connector, add the <amazons3.init> element in your configur
     ```
 
 ??? note "getObjectsInBucket"
-    The getObjectsInBucket implementation of the GET operation returns some or all (up to 1000) of the objects in a bucket. The request parameters act as selection criteria to return a subset of the objects in a bucket. To use this implementation of the operation, the user must have READ access to the bucket. When calling init before this operation, the following headers should be removed: xAmzAcl, x AmzGrantRead, xAmzGrantWrite, xAmzGrantReadAcp, xAmzGrantWriteAcp, and xAmzGrantFullControl. See the [related API documentation](http://docs.aws.amazon.com/AmazonS3/latest/API/RESTBucketDELETEwebsite.html) for more information.
+    The getObjectsInBucket implementation of the GET operation returns some or all (up to 1000) of the objects in a bucket. The request parameters act as selection criteria to return a subset of the objects in a bucket. To use this implementation of the operation, the user must have READ access to the bucket. When calling init before this operation, the following headers should be removed: xAmzAcl, x AmzGrantRead, xAmzGrantWrite, xAmzGrantReadAcp, xAmzGrantWriteAcp, and xAmzGrantFullControl. See the [related API documentation](http://docs.aws.amazon.com/AmazonS3/latest/API/RESTBucketGET.html)) for more information.
     <table>
         <tr>
             <th>Parameter Name</th>
@@ -1321,7 +1321,7 @@ To use the Amazon S3 connector, add the <amazons3.init> element in your configur
     ```
 
 ??? note "getBucketLifeCycle"
-    The getBucketLifeCycle operation returns the lifecycle configuration information set on the bucket. To use this operation, permissions should be given to perform the s3:GetLifecycleConfiguration action. The bucket owner has this permission by default and can grant this permission to others. There is usually some time lag before lifecycle configuration deletion is fully propagated to all the Amazon S3 systems. When calling init before this operation, the following headers should be removed: xAmzAcl, xAmzGrantRead, xAmzGrantWrite, xAmzGrantReadAcp, xAmzGrantWriteAcp, and xAmzGrantFullControl. See the [related API documentation](http://docs.aws.amazon.com/AmazonS3/latest/API/RESTBucketDELETEwebsite.html) for more information.
+    The getBucketLifeCycle operation returns the lifecycle configuration information set on the bucket. To use this operation, permissions should be given to perform the s3:GetLifecycleConfiguration action. The bucket owner has this permission by default and can grant this permission to others. There is usually some time lag before lifecycle configuration deletion is fully propagated to all the Amazon S3 systems. When calling init before this operation, the following headers should be removed: xAmzAcl, xAmzGrantRead, xAmzGrantWrite, xAmzGrantReadAcp, xAmzGrantWriteAcp, and xAmzGrantFullControl. See the [related API documentation](http://docs.aws.amazon.com/AmazonS3/latest/API/RESTBucketGETlifecycle.html) for more information.
     <table>
         <tr>
             <th>Parameter Name</th>
@@ -1340,7 +1340,7 @@ To use the Amazon S3 connector, add the <amazons3.init> element in your configur
     ```xml
     <amazons3.getBucketLifeCycle>
         <bucketUrl>{$ctx:bucketUrl}</bucketUrl>
-    </amazons3.getObjectsInBucket>
+    </amazons3.getBucketLifeCycle>
     ```
     
     **Sample request**
@@ -1361,4 +1361,892 @@ To use the Amazon S3 connector, add the <amazons3.init> element in your configur
         <expect></expect>
         <bucketUrl>http://s3.us-east-2.amazonaws.com/signv4test</bucketUrl>
     </getBucketLifeCycle>
+    ```
+
+??? note "createBucketCors"
+    The createBucketCors operation returns the cors configuration information set for the bucket. To use this operation, you must have permission to perform the s3:CreateBucketCORS action. By default, the bucket owner has this permission and can grant it to others. When calling init before this operation, the following headers should be removed: xAmzAcl, xAmzGrantRead, xAmzGrantWrite, xAmzGrantReadAcp, xAmzGrantWriteAcp, and xAmzGrantFullControl. See the [related API documentation](http://docs.aws.amazon.com/AmazonS3/latest/API/RESTBucketPUTcors.html) for more information.
+    <table>
+        <tr>
+            <th>Parameter Name</th>
+            <th>Description</th>
+            <th>Required</th>
+        </tr>
+        <tr>
+            <td>bucketUrl</td>
+            <td>The URL of the bucket.</td>
+            <td>Yes</td>
+        </tr>
+        <tr>
+            <td>corsConfiguration</td>
+            <td>Container for up to 100 CORSRules elements.</td>
+            <td>Yes</td>
+        </tr>
+    </table>
+
+    **Sample configuration**
+
+    ```xml
+    <amazons3.createBucketCors>
+        <bucketUrl>{$ctx:bucketUrl}</bucketUrl>
+        <corsConfiguration>{$ctx:corsConfiguration}</corsConfiguration>
+    </amazons3.createBucketCors>
+    ```
+    
+    **Sample request**
+
+    ```xml
+    <createBucketCors>
+        <accessKeyId>AKXXXXXXXXXXX5EA</accessKeyId>
+        <secretAccessKey>qHXXXXXXXXXXXqQc4oMQMnAOj+33XXXXXDPO2s</secretAccessKey>
+        <region>us-east-2</region>
+        <methodType>PUT</methodType>
+        <contentLength>256</contentLength>
+        <contentType>application/xml</contentType>
+        <expect></expect>
+        <host>s3.us-east-2.amazonaws.com</host>
+        <isXAmzDate>true</isXAmzDate>
+        <xAmzSecurityToken></xAmzSecurityToken>
+        <bucketName>signv4test</bucketName>
+        <bucketUrl>http://s3.us-east-2.amazonaws.com/signv4test</bucketUrl>
+        <corsConfiguration>
+            <CORSRule>
+                <AllowedOrigin>*</AllowedOrigin>
+                <AllowedMethod>GET</AllowedMethod>
+                <AllowedHeader>*</AllowedHeader>
+                <MaxAgeSeconds>3000</MaxAgeSeconds>
+            </CORSRule>
+        </corsConfiguration>
+    </createBucketCors>
+    ```
+
+??? note "getBucketCors"
+    The getBucketCors operation returns the cors configuration information set for the bucket. To use this operation, you must have permission to perform the s3:GetBucketCORS action. By default, the bucket owner has this permission and can grant it to others. When calling init before this operation, the following headers should be removed: xAmzAcl, xAmzGrantRead, xAmzGrantWrite, xAmzGrantReadAcp, xAmzGrantWriteAcp, and xAmzGrantFullControl. See the [related API documentation](http://docs.aws.amazon.com/AmazonS3/latest/API/RESTBucketGETcors.html) for more information.
+    <table>
+        <tr>
+            <th>Parameter Name</th>
+            <th>Description</th>
+            <th>Required</th>
+        </tr>
+        <tr>
+            <td>bucketUrl</td>
+            <td>The URL of the bucket.</td>
+            <td>Yes</td>
+        </tr>
+    </table>
+
+    **Sample configuration**
+
+    ```xml
+    <amazons3.getBucketCors>
+        <bucketUrl>{$ctx:bucketUrl}</bucketUrl>
+    </amazons3.getBucketCors>
+    ```
+    
+    **Sample request**
+
+    ```xml
+    <getBucketCors>
+        <accessKeyId>AKIXXXXXHXQXXG5XX</accessKeyId>
+        <secretAccessKey>qHXXBXXXXASYQc4oMCEOj+343HD82s</secretAccessKey>
+        <region>us-east-2</region>
+        <methodType>GET</methodType>
+        <contentType>application/xml</contentType>
+        <contentLength>256</contentLength>
+        <contentMD5></contentMD5>
+        <bucketName>signv4test</bucketName>
+        <isXAmzDate>true</isXAmzDate>
+        <xAmzSecurityToken></xAmzSecurityToken>
+        <host>s3.us-east-2.amazonaws.com</host>
+        <expect></expect>
+        <bucketUrl>http://s3.us-east-2.amazonaws.com/signv4test</bucketUrl>
+    </getBucketCors>
+    ```
+
+??? note "getBucketLocation"
+    The getBucketLocation operation returns the lifecycle configuration information set on the bucket. To use this operation, you must be the bucket owner. When calling init before this operation, the following headers should be removed: xAmzAcl, x AmzGrantRead, xAmzGrantWrite, xAmzGrantReadAcp, xAmzGrantWriteAcp, and xAmzGrantFullControl. See the [related API documentation](http://docs.aws.amazon.com/AmazonS3/latest/API/RESTBucketGETlocation.html) for more information.
+    <table>
+        <tr>
+            <th>Parameter Name</th>
+            <th>Description</th>
+            <th>Required</th>
+        </tr>
+        <tr>
+            <td>bucketUrl</td>
+            <td>The URL of the bucket.</td>
+            <td>Yes</td>
+        </tr>
+    </table>
+
+    **Sample configuration**
+
+    ```xml
+    <amazons3.getBucketLocation>
+        <bucketUrl>{$ctx:bucketUrl}</bucketUrl>
+    </amazons3.getBucketLocation>
+    ```
+    
+    **Sample request**
+
+    ```xml
+    <getBucketLocation>
+        <accessKeyId>AKIXXXXXHXQXXG5XX</accessKeyId>
+        <secretAccessKey>qHXXBXXXXASYQc4oMCEOj+343HD82s</secretAccessKey>
+        <region>us-east-2</region>
+        <methodType>GET</methodType>
+        <contentType>application/xml</contentType>
+        <contentLength></contentLength>
+        <contentMD5></contentMD5>
+        <bucketName>signv4test</bucketName>
+        <isXAmzDate>true</isXAmzDate>
+        <xAmzSecurityToken></xAmzSecurityToken>
+        <host>s3.us-east-2.amazonaws.com</host>
+        <expect></expect>
+        <bucketUrl>http://s3.us-east-2.amazonaws.com/signv4test</bucketUrl>
+    </getBucketLocation>
+    ```
+
+??? note "getBucketLogging"
+    The getBucketLogging operation returns the logging status of a bucket and the permissions users have to view and modify that status. To use this operation, you must be the bucket owner. When calling init before this operation, the following headers should be removed: xAmzAcl, xAmzGrantRead, xAmzGrantWrite, xAmzGrantReadAcp, xAmzGrantWriteAcp, and xAmzGrantFullControl. See the [related API documentation](http://docs.aws.amazon.com/AmazonS3/latest/API/RESTBucketGETlogging.html) for more information.
+    <table>
+        <tr>
+            <th>Parameter Name</th>
+            <th>Description</th>
+            <th>Required</th>
+        </tr>
+        <tr>
+            <td>bucketUrl</td>
+            <td>The URL of the bucket.</td>
+            <td>Yes</td>
+        </tr>
+    </table>
+
+    **Sample configuration**
+
+    ```xml
+    <amazons3.getBucketLogging>
+        <bucketUrl>{$ctx:bucketUrl}</bucketUrl>
+    </amazons3.getBucketLogging>
+    ```
+    
+    **Sample request**
+
+    ```xml
+    <getBucketLogging>
+        <accessKeyId>AKIXXXXXHXQXXG5XX</accessKeyId>
+        <secretAccessKey>qHXXBXXXXASYQc4oMCEOj+343HD82s</secretAccessKey>
+        <region>us-east-2</region>
+        <methodType>GET</methodType>
+        <contentType>application/xml</contentType>
+        <contentLength></contentLength>
+        <contentMD5></contentMD5>
+        <bucketName>signv4test</bucketName>
+        <isXAmzDate>true</isXAmzDate>
+        <xAmzSecurityToken></xAmzSecurityToken>
+        <host>s3.us-east-2.amazonaws.com</host>
+        <expect></expect>
+        <bucketUrl>http://s3.us-east-2.amazonaws.com/signv4test</bucketUrl>
+    </getBucketLogging>
+    ```
+
+??? note "getBucketNotification"
+    The getBucketNotification operation returns the lifecycle configuration information set on the bucket. To use this operation, you must be the bucket owner to read the notification configuration of a bucket. However, the bucket owner can use a bucket policy to grant permission to other users to read this configuration with the s3:GetBucketNotification permission. When calling init before this operation, the following headers should be removed: xAmzAcl, xAmzGrantRead, xAmzGrantWrite, xAmzGrantReadAcp, xAmzGrantWriteAcp, and xAmzGrantFullControl. See the [related API documentation](http://docs.aws.amazon.com/AmazonS3/latest/API/RESTBucketGETnotification.html) for more information.
+    <table>
+        <tr>
+            <th>Parameter Name</th>
+            <th>Description</th>
+            <th>Required</th>
+        </tr>
+        <tr>
+            <td>bucketUrl</td>
+            <td>The URL of the bucket.</td>
+            <td>Yes</td>
+        </tr>
+    </table>
+
+    **Sample configuration**
+
+    ```xml
+    <amazons3.getBucketNotification>
+        <bucketUrl>{$ctx:bucketUrl}</bucketUrl>
+    </amazons3.getBucketNotification>
+    ```
+    
+    **Sample request**
+
+    ```xml
+    <getBucketNotification>
+        <accessKeyId>AKIXXXXXHXQXXG5XX</accessKeyId>
+        <secretAccessKey>qHXXBXXXXASYQc4oMCEOj+343HD82s</secretAccessKey>
+        <region>us-east-2</region>
+        <methodType>GET</methodType>
+        <contentType>application/xml</contentType>
+        <contentLength></contentLength>
+        <contentMD5></contentMD5>
+        <bucketName>signv4test</bucketName>
+        <isXAmzDate>true</isXAmzDate>
+        <xAmzSecurityToken></xAmzSecurityToken>
+        <host>s3.us-east-2.amazonaws.com</host>
+        <expect></expect>
+        <bucketUrl>http://s3.us-east-2.amazonaws.com/signv4test</bucketUrl>
+    </getBucketNotification>
+    ```
+
+??? note "getBucketTagging"
+    The getBucketTagging operation returns the lifecycle configuration information set on the bucket. To use this operation, you must have permission to perform the s3:GetBucketTagging action. By default, the bucket owner has this permission and can grant this permission to others. When calling init before this operation, the following headers should be removed: xAmzAcl, xAmzGrantRead, xAmzGrantWrite, xAmzGrantReadAcp, xAmzGrantWriteAcp, and xAmzGrantFullControl. See the [related API documentation](http://docs.aws.amazon.com/AmazonS3/latest/API/RESTBucketGETtagging.html) for more information.
+    <table>
+        <tr>
+            <th>Parameter Name</th>
+            <th>Description</th>
+            <th>Required</th>
+        </tr>
+        <tr>
+            <td>bucketUrl</td>
+            <td>The URL of the bucket.</td>
+            <td>Yes</td>
+        </tr>
+    </table>
+
+    **Sample configuration**
+
+    ```xml
+    <amazons3.getBucketTagging>
+        <bucketUrl>{$ctx:bucketUrl}</bucketUrl>
+    </amazons3.getBucketTagging>
+    ```
+    
+    **Sample request**
+
+    ```xml
+    <getBucketTagging>
+        <accessKeyId>AKIXXXXXHXQXXG5XX</accessKeyId>
+        <secretAccessKey>qHXXBXXXXASYQc4oMCEOj+343HD82s</secretAccessKey>
+        <region>us-east-2</region>
+        <methodType>GET</methodType>
+        <contentType>application/xml</contentType>
+        <contentLength></contentLength>
+        <contentMD5></contentMD5>
+        <bucketName>signv4test</bucketName>
+        <isXAmzDate>true</isXAmzDate>
+        <xAmzSecurityToken></xAmzSecurityToken>
+        <host>s3.us-east-2.amazonaws.com</host>
+        <expect></expect>
+        <bucketUrl>http://s3.us-east-2.amazonaws.com/signv4test</bucketUrl>
+    </getBucketTagging>
+    ```
+
+??? note "getBucketReplication"
+    The getBucketReplication operation returns the lifecycle configuration information set on the bucket. To use this operation, you must have permission to perform the s3:GetReplicationConfiguration action. For more information about permissions, go to Using Bucket Policies and User Policies in the Amazon Simple Storage Service Developer Guide. When calling init before this operation, the following headers should be removed: xAmzAcl, x AmzGrantRead, xAmzGrantWrite, xAmzGrantReadAcp, xAmzGrantWriteAcp, and xAmzGrantFullControl. See the [related API documentation](http://docs.aws.amazon.com/AmazonS3/latest/API/RESTBucketGETreplication.html) for more information.
+    <table>
+        <tr>
+            <th>Parameter Name</th>
+            <th>Description</th>
+            <th>Required</th>
+        </tr>
+        <tr>
+            <td>bucketUrl</td>
+            <td>The URL of the bucket.</td>
+            <td>Yes</td>
+        </tr>
+    </table>
+
+    **Sample configuration**
+
+    ```xml
+    <amazons3.getBucketReplication>
+        <bucketUrl>{$ctx:bucketUrl}</bucketUrl>
+    </amazons3.getBucketReplication>
+    ```
+    
+    **Sample request**
+
+    ```xml
+    <getBucketReplication>
+        <accessKeyId>AKIXXXXXHXQXXG5XX</accessKeyId>
+        <secretAccessKey>qHXXBXXXXASYQc4oMCEOj+343HD82s</secretAccessKey>
+        <region>us-east-2</region>
+        <methodType>GET</methodType>
+        <contentType>application/xml</contentType>
+        <contentLength></contentLength>
+        <contentMD5></contentMD5>
+        <bucketName>signv4test</bucketName>
+        <isXAmzDate>true</isXAmzDate>
+        <xAmzSecurityToken></xAmzSecurityToken>
+        <host>s3.us-east-2.amazonaws.com</host>
+        <expect></expect>
+        <bucketUrl>http://s3.us-east-2.amazonaws.com/signv4test</bucketUrl>
+    </getBucketReplication>
+    ```
+
+??? note "getBucketPolicy"
+    The getBucketPolicy implementation of the GET operation returns the policy of a specified bucket. To use this operation, the user must have GetPolicy permissions on the specified bucket, and the user must be the bucket owner. If the user does not have GetPolicy permissions, Amazon S3 returns a 403 Access Denied error. If the user has correct permissions, but the user is not the bucket owner, Amazon S3 returns a 405 Method Not Allowed error. If the bucket does not have a policy, Amazon S3 returns a 404 Policy Not found error. There are restrictions about who can create bucket policies and which objects in a bucket they can apply to. When calling init before this operation, the following headers should be removed: xAmzAcl, xAmzGrantRead, xAmzGrantWrite, xAmzGrantReadAcp, xAmzGrantWriteAcp, and xAmzGrantFullControl. See the [related API documentation](http://docs.aws.amazon.com/AmazonS3/latest/API/RESTBucketGETpolicy.html) for more information.
+    <table>
+        <tr>
+            <th>Parameter Name</th>
+            <th>Description</th>
+            <th>Required</th>
+        </tr>
+        <tr>
+            <td>bucketUrl</td>
+            <td>The URL of the bucket.</td>
+            <td>Yes</td>
+        </tr>
+    </table>
+
+    **Sample configuration**
+
+    ```xml
+    <amazons3.getBucketPolicy>
+        <bucketUrl>{$ctx:bucketUrl}</bucketUrl>
+    </amazons3.getBucketPolicy>
+    ```
+    
+    **Sample request**
+
+    ```xml
+    <getBucketPolicy>
+        <accessKeyId>AKIXXXXXHXQXXG5XX</accessKeyId>
+        <secretAccessKey>qHXXBXXXXASYQc4oMCEOj+343HD82s</secretAccessKey>
+        <region>us-east-2</region>
+        <methodType>GET</methodType>
+        <contentType>application/xml</contentType>
+        <contentLength></contentLength>
+        <contentMD5></contentMD5>
+        <bucketName>signv4test</bucketName>
+        <isXAmzDate>true</isXAmzDate>
+        <xAmzSecurityToken></xAmzSecurityToken>
+        <host>s3.us-east-2.amazonaws.com</host>
+        <expect></expect>
+        <bucketUrl>http://s3.us-east-2.amazonaws.com/signv4test</bucketUrl>
+    </getBucketPolicy>
+    ```
+
+??? note "getBucketObjectVersions"
+    The getBucketObjectVersions operation lists metadata about all of the versions of objects in a bucket. Request parameters can be used as selection criteria to return metadata about a subset of all the object versions. To use this operation, the user must have READ access to the bucket. When calling init before this operation, the following headers should be removed: xAmzAcl, xAmzGrantRead, xAmzGrantWrite, xAmzGrantReadAcp, xAmzGrantWriteAcp, and xAmzGrantFullControl. See the [related API documentation](http://docs.aws.amazon.com/AmazonS3/latest/API/RESTBucketGETVersion.html) for more information.
+    <table>
+        <tr>
+            <th>Parameter Name</th>
+            <th>Description</th>
+            <th>Required</th>
+        </tr>
+        <tr>
+            <td>bucketUrl</td>
+            <td>The URL of the bucket.</td>
+            <td>Yes</td>
+        </tr>
+        <tr>
+            <td>delimiter</td>
+            <td>A delimiter is a character used to group keys.</td>
+            <td>Optional</td>
+        </tr>
+        <tr>
+            <td>encodingType</td>
+            <td>Requests Amazon S3 to encode the response and specifies the encoding method to use.</td>
+            <td>Optional</td>
+        </tr>
+        <tr>
+            <td>keyMarker</td>
+            <td>Specifies the key in the bucket that you want to start listing from. See also versionIdMarker below.</td>
+            <td>Optional</td>
+        </tr>
+        <tr>
+            <td>maxKeys</td>
+            <td>Sets the maximum number of keys returned in the response body.</td>
+            <td>Optional</td>
+        </tr>
+        <tr>
+            <td>prefix</td>
+            <td>Limits the response to keys that begin with the specified prefix.</td>
+            <td>Optional</td>
+        </tr>
+        <tr>
+            <td>versionIdMarker</td>
+            <td>Specifies the object version you want to start listing from.</td>
+            <td>Optional</td>
+        </tr>
+    </table>
+
+    **Sample configuration**
+
+    ```xml
+    <amazons3.getBucketObjectVersions>
+        <bucketUrl>{$ctx:bucketUrl}</bucketUrl>
+        <delimiter>{$ctx:delimiter}</delimiter>
+        <encodingType>{$ctx:encodingType}</encodingType>
+        <keyMarker>{$ctx:keyMarker}</keyMarker>
+        <maxKeys>{$ctx:maxKeys}</maxKeys>
+        <prefix>{$ctx:prefix}</prefix>
+        <versionIdMarker>{$ctx:versionIdMarker}</versionIdMarker>
+    </amazons3.getBucketObjectVersions>
+    ```
+    
+    **Sample request**
+
+    ```xml
+    <getBucketObjectVersions>
+	    <accessKeyId>AKXXXXXS3KJA</accessKeyId>
+        <secretAccessKey>ieXXHXXTVh/12hL2VxxJJS</secretAccessKey>
+        <methodType>GET</methodType>
+        <contentType>application/xml</contentType>
+	    <contentLength>256</contentLength>
+	    <contentMD5></contentMD5>
+        <bucketName>testkeerthu1234</bucketName>
+        <isXAmzDate>true</isXAmzDate>
+	    <xAmzSecurityToken></xAmzSecurityToken>
+	    <host></host>
+	    <expect></expect>
+        <bucketUrl>http://s3.amazonaws.com/testkeerthu1234</bucketUrl>
+        <delimiter>/</delimiter>
+        <encodingType></encodingType>
+        <keyMarker></keyMarker>
+        <maxKeys>3</maxKeys>
+        <prefix>images</prefix>
+        <versionIdMarker></versionIdMarker>
+    </getBucketObjectVersions>
+    ```
+
+??? note "getBucketRequestPayment"
+    The getBucketRequestPayment implementation of the GET operation returns the request payment configuration of a bucket. To use this operation, the user must be the bucket owner. When calling init before this operation, the following headers should be removed: xAmzAcl, xAmzGrantRead, xAmzGrantWrite, xAmzGrantReadAcp, xAmzGrantWriteAcp, and xAmzGrantFullControl. See the [related API documentation](http://docs.aws.amazon.com/AmazonS3/latest/API/RESTBucketGETpolicy.html) for more information.
+    <table>
+        <tr>
+            <th>Parameter Name</th>
+            <th>Description</th>
+            <th>Required</th>
+        </tr>
+        <tr>
+            <td>bucketUrl</td>
+            <td>The URL of the bucket.</td>
+            <td>Yes</td>
+        </tr>
+    </table>
+
+    **Sample configuration**
+
+    ```xml
+    <amazons3.getBucketRequestPayment>
+        <bucketUrl>{$ctx:bucketUrl}</bucketUrl>
+    </amazons3.getBucketRequestPayment>
+    ```
+    
+    **Sample request**
+
+    ```xml
+    <getBucketRequestPayment>
+        <accessKeyId>AKIXXXXXHXQXXG5XX</accessKeyId>
+        <secretAccessKey>qHXXBXXXXASYQc4oMCEOj+343HD82s</secretAccessKey>
+        <region>us-east-2</region>
+        <methodType>GET</methodType>
+        <contentType>application/xml</contentType>
+        <contentLength></contentLength>
+        <contentMD5></contentMD5>
+        <bucketName>signv4test</bucketName>
+        <isXAmzDate>true</isXAmzDate>
+        <xAmzSecurityToken></xAmzSecurityToken>
+        <host>s3.us-east-2.amazonaws.com</host>
+        <expect></expect>
+        <bucketUrl>http://s3.us-east-2.amazonaws.com/signv4test</bucketUrl>
+    </getBucketRequestPayment>
+    ```
+
+??? note "getBucketVersioning"
+    The getBucketVersioning implementation of the GET operation returns the versioning state of a bucket. To retrieve the versioning state of a bucket, the user must be the bucket owner. This implementation also returns the MFA Delete status of the versioning state. If the MFA Delete status is enabled, the bucket owner must use an authentication device to change the versioning state of the bucket. When calling init before this operation, the following headers should be removed: xAmzAcl, xAmzGrantRead, xAmzGrantWrite, xAmzGrantReadAcp, xAmzGrantWriteAcp, and xAmzGrantFullControl. See the [related API documentation](http://docs.aws.amazon.com/AmazonS3/latest/API/RESTBucketGETpolicy.html) for more information.
+    <table>
+        <tr>
+            <th>Parameter Name</th>
+            <th>Description</th>
+            <th>Required</th>
+        </tr>
+        <tr>
+            <td>bucketUrl</td>
+            <td>The URL of the bucket.</td>
+            <td>Yes</td>
+        </tr>
+    </table>
+
+    **Sample configuration**
+
+    ```xml
+    <amazons3.getBucketVersioning>
+        <bucketUrl>{$ctx:bucketUrl}</bucketUrl>
+    </amazons3.getBucketVersioning>
+    ```
+    
+    **Sample request**
+
+    ```xml
+    <getBucketVersioning>
+        <accessKeyId>AKIXXXXXHXQXXG5XX</accessKeyId>
+        <secretAccessKey>qHXXBXXXXASYQc4oMCEOj+343HD82s</secretAccessKey>
+        <region>us-east-2</region>
+        <methodType>GET</methodType>
+        <contentType>application/xml</contentType>
+        <contentLength></contentLength>
+        <contentMD5></contentMD5>
+        <bucketName>signv4test</bucketName>
+        <isXAmzDate>true</isXAmzDate>
+        <xAmzSecurityToken></xAmzSecurityToken>
+        <host>s3.us-east-2.amazonaws.com</host>
+        <expect></expect>
+        <bucketUrl>http://s3.us-east-2.amazonaws.com/signv4test</bucketUrl>
+    </getBucketVersioning>
+    ```
+
+??? note "getWebSiteConfiguration"
+    The getWebSiteConfiguration implementation of the GET operation returns the website configuration associated with a bucket. To host the website on Amazon S3, a bucket can be configured as a website by adding a website configuration. This GET operation requires the S3:GetBucketWebsite permission. By default, only the bucket owner can read the bucket website configuration. However, bucket owners can allow other users to read the website configuration by writing a bucket policy granting them the S3:GetBucketWebsite permission. When calling init before this operation, the following headers should be removed: xAmzAcl, xAmzGrantRead, xAmzGrantWrite, xAmzGrantReadAcp, xAmzGrantWriteAcp, and xAmzGrantFullControl. See the [related API documentation](http://docs.aws.amazon.com/AmazonS3/latest/API/RESTBucketGETwebsite.html) for more information.
+    <table>
+        <tr>
+            <th>Parameter Name</th>
+            <th>Description</th>
+            <th>Required</th>
+        </tr>
+        <tr>
+            <td>bucketUrl</td>
+            <td>The URL of the bucket.</td>
+            <td>Yes</td>
+        </tr>
+    </table>
+
+    **Sample configuration**
+
+    ```xml
+    <amazons3.getWebSiteConfiguration>
+        <bucketUrl>{$ctx:bucketUrl}</bucketUrl>
+    </amazons3.getWebSiteConfiguration>
+    ```
+    
+    **Sample request**
+
+    ```xml
+    <getWebSiteConfiguration>
+        <accessKeyId>AKIXXXXXHXQXXG5XX</accessKeyId>
+        <secretAccessKey>qHXXBXXXXASYQc4oMCEOj+343HD82s</secretAccessKey>
+        <region>us-east-2</region>
+        <methodType>GET</methodType>
+        <contentType>application/xml</contentType>
+        <contentLength></contentLength>
+        <contentMD5></contentMD5>
+        <bucketName>signv4test</bucketName>
+        <isXAmzDate>true</isXAmzDate>
+        <xAmzSecurityToken></xAmzSecurityToken>
+        <host>s3.us-east-2.amazonaws.com</host>
+        <expect></expect>
+        <bucketUrl>http://s3.us-east-2.amazonaws.com/signv4test</bucketUrl>
+    </getWebSiteConfiguration>
+    ```
+
+??? note "getBucketACL"
+    The getBucketACL implementation of the GET operation returns the access control list (ACL) of a bucket. To use GET to return the ACL of the bucket, the user must have READ_ACP access to the bucket. If READ_ACP permission is granted to the anonymous user, you can return the ACL of the bucket without using an authorization header. When calling init before this operation, the following headers should be removed: xAmzAcl, xAmzGrantRead, xAmzGrantWrite, xAmzGrantReadAcp, xAmzGrantWriteAcp, and xAmzGrantFullControl. See the [related API documentation](http://docs.aws.amazon.com/AmazonS3/latest/API/RESTBucketGETacl.html) for more information.
+    <table>
+        <tr>
+            <th>Parameter Name</th>
+            <th>Description</th>
+            <th>Required</th>
+        </tr>
+        <tr>
+            <td>bucketUrl</td>
+            <td>The URL of the bucket.</td>
+            <td>Yes</td>
+        </tr>
+    </table>
+
+    **Sample configuration**
+
+    ```xml
+    <amazons3.getBucketACL>
+        <bucketUrl>{$ctx:bucketUrl}</bucketUrl>
+    </amazons3.getBucketACL>
+    ```
+    
+    **Sample request**
+
+    ```xml
+    <getBucketACL>
+        <accessKeyId>AKIXXXXXHXQXXG5XX</accessKeyId>
+        <secretAccessKey>qHXXBXXXXASYQc4oMCEOj+343HD82s</secretAccessKey>
+        <region>us-east-2</region>
+        <methodType>GET</methodType>
+        <contentType>application/xml</contentType>
+        <contentLength>256</contentLength>
+        <contentMD5></contentMD5>
+        <bucketName>signv4test</bucketName>
+        <isXAmzDate>true</isXAmzDate>
+        <xAmzSecurityToken></xAmzSecurityToken>
+        <host>s3.us-east-2.amazonaws.com</host>
+        <expect></expect>
+        <bucketUrl>http://s3.us-east-2.amazonaws.com/signv4test</bucketUrl>
+    </getBucketACL>
+    ```
+
+??? note "checkBucketPermission"
+    The checkBucketPermission operation determines whether a bucket exists and you have permission to access it. The operation returns a 200 OK if the bucket exists and you have permission to access it. Otherwise, the operation might return responses such as 404 Not Found and 403 Forbidden. When calling init before this operation, the following headers should be removed: xAmzAcl, x AmzGrantRead, xAmzGrantWrite, xAmzGrantReadAcp, xAmzGrantWriteAcp, and xAmzGrantFullControl. See the [related API documentation](http://docs.aws.amazon.com/AmazonS3/latest/user-guide/bucket-permissions-check.html) for more information.
+    <table>
+        <tr>
+            <th>Parameter Name</th>
+            <th>Description</th>
+            <th>Required</th>
+        </tr>
+        <tr>
+            <td>bucketUrl</td>
+            <td>The URL of the bucket.</td>
+            <td>Yes</td>
+        </tr>
+    </table>
+
+    **Sample configuration**
+
+    ```xml
+    <amazons3.getBucketACL>
+        <bucketUrl>{$ctx:bucketUrl}</bucketUrl>
+    </amazons3.getBucketACL>
+    ```
+    
+    **Sample request**
+
+    ```xml
+    <checkBucketPermission>
+        <accessKeyId>AKXXXXXXXXXXX5EA</accessKeyId>
+        <secretAccessKey>qHXXXXXXXXXXXqQc4oMQMnAOj+33XXXXXDPO2s</secretAccessKey>
+        <region>us-east-2</region>
+        <methodType>HEAD</methodType>
+        <contentType>application/xml</contentType>
+        <contentLength></contentLength>
+        <contentMD5></contentMD5>
+        <expect></expect>
+        <host>s3.us-east-2.amazonaws.com</host>
+        <xAmzSecurityToken></xAmzSecurityToken>
+        <bucketName>signv4test</bucketName>
+        <isXAmzDate>true</isXAmzDate>
+        <bucketUrl>http://s3.us-east-2.amazonaws.com/signv4test</bucketUrl>
+    </checkBucketPermission>
+    ```
+
+??? note "setBucketACL"
+    The setBucketACL implementation of the PUT operation sets the permissions on an existing bucket using access control lists (ACL). You set the permissions by specifying the ACL in the request body. When calling init before this operation, the following headers should be removed: xAmzAcl, x AmzGrantRead, xAmzGrantWrite, xAmzGrantReadAcp, xAmzGrantWriteAcp, and xAmzGrantFullControl. See the [related API documentation](http://docs.aws.amazon.com/AmazonS3/latest/API/RESTBucketPUTacl.html) for more information.
+    <table>
+        <tr>
+            <th>Parameter Name</th>
+            <th>Description</th>
+            <th>Required</th>
+        </tr>
+        <tr>
+            <td>bucketUrl</td>
+            <td>The URL of the bucket.</td>
+            <td>Yes</td>
+        </tr>
+        <tr>
+            <td>accessControlPolicy</td>
+            <td>Contains the following elements that set the ACL permissions for an object per grantee:
+                <ul>
+                    <li>Owner: Container for the bucket owner's ID and display name.
+                        <ul>
+                            <li>ID: ID of the bucket owner, or the ID of the grantee.</li>
+                            <li>DisplayName: Screen name of the bucket owner.</li>
+                        </ul>
+                    </li>
+                    <li>AccessControlList: Container for the grants.
+                        <ul>
+                            <li>Grant: Container for the grantee and the permissions of this grant.
+                                <ul>
+                                    <li>Grantee: The subject whose permissions are being set.
+                                        <ul>
+                                            <li>URI: Granting permission to a predefined Amazon S3 group.</li>
+                                        </ul>
+                                    </li>
+                                    <li>Permission: Specifies the permission given to the grantee.</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </td>
+            <td>Yes</td>
+        </tr>
+    </table>
+
+    **Sample configuration**
+
+    ```xml
+    <amazons3.setBucketACL>
+        <bucketUrl>{$ctx:bucketUrl}</bucketUrl>
+        <accessControlPolicy>{$ctx:accessControlPolicy}</accessControlPolicy>
+    </amazons3.setBucketACL>
+    ```
+    
+    **Sample request**
+
+    ```xml
+    <setBucketACL>
+        <accessKeyId>AKIXXXXXHXQXXG5XX</accessKeyId>
+        <secretAccessKey>qHXXBXXXXASYQc4oMCEOj+343HD82s</secretAccessKey>
+        <region>us-east-2</region>
+        <methodType>PUT</methodType>
+        <contentLength>2000</contentLength>
+        <contentType>application/xml</contentType>
+        <contentMD5></contentMD5>
+        <expect></expect>
+        <host>s3.us-east-2.amazonaws.com</host>
+        <isXAmzDate>true</isXAmzDate>
+        <xAmzSecurityToken></xAmzSecurityToken>
+        <bucketName>signv4test</bucketName>
+        <bucketUrl>http://s3.us-east-2.amazonaws.com/signv4test</bucketUrl>
+        <accessControlPolicy>
+            <Owner>
+                <ID>9a48e6b16816cc75df306d35bb5d0bd0778b61fbf49b8ef4892143197c84a867</ID>
+                <DisplayName>admin+aws+connectors+secondary</DisplayName>
+            </Owner>
+            <AccessControlList>
+                <Grant>
+                    <Grantee xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="CanonicalUser">
+                        <ID>9a48e6b16816cc75df306d35bb5d0bd0778b61fbf49b8ef4892143197c84a867</ID>
+                        <DisplayName>admin+aws+connectors+secondary</DisplayName>
+                    </Grantee>
+                    <Permission>FULL_CONTROL</Permission>
+                </Grant>
+                <Grant>
+                    <Grantee xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="Group">
+                        <URI xmlns="">http://acs.amazonaws.com/groups/global/AllUsers</URI>
+                    </Grantee>
+                    <Permission xmlns="">READ</Permission>
+                </Grant>
+                <Grant>
+                    <Grantee xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="Group">
+                        <URI xmlns="">http://acs.amazonaws.com/groups/s3/LogDelivery</URI>
+                    </Grantee>
+                    <Permission xmlns="">WRITE</Permission>
+                </Grant>
+            </AccessControlList>
+        </accessControlPolicy>
+    </setBucketACL>
+    ```
+
+??? note "headBucket"
+    The headBucket operation is useful to determine if a bucket exists and you have permission to access it. The operation returns a 200 OK if the bucket exists and you have permission to access it. Otherwise, the operation might return responses such as 404 Not Found and 403 Forbidden. See the [related API documentation](http://docs.aws.amazon.com/AmazonS3/latest/API/RESTBucketHEAD.html) for more information.
+    <table>
+        <tr>
+            <th>Parameter Name</th>
+            <th>Description</th>
+            <th>Required</th>
+        </tr>
+        <tr>
+            <td>bucketUrl</td>
+            <td>The URL of the bucket.</td>
+            <td>Yes</td>
+        </tr>
+    </table>
+
+    **Sample configuration**
+
+    ```xml
+    <amazons3.headBucket>
+        <bucketUrl>{$ctx:bucketUrl}</bucketUrl>
+    </amazons3.headBucket>
+    ```
+    
+    **Sample request**
+
+    ```xml
+    <headBucket>
+        <accessKeyId>AKIXXXXXHXQXXG5XX</accessKeyId>
+        <secretAccessKey>qHXXBXXXXASYQc4oMCEOj+343HD82s</secretAccessKey>
+        <region>us-west-2</region>
+        <methodType>HEAD</methodType>
+        <contentType>application/xml</contentType>
+        <addCharset>false</addCharset>
+        <contentLength></contentLength>
+        <contentMD5></contentMD5>
+        <bucketName>1513162931643testconbkt2</bucketName>
+        <isXAmzDate>true</isXAmzDate>
+        <xAmzSecurityToken></xAmzSecurityToken>
+        <host>s3-us-west-2.amazonaws.com</host>
+        <expect></expect>
+        <bucketUrl>http://s3-us-west-2.amazonaws.com/1513162931643testconbkt2</bucketUrl>
+    </headBucket>
+    ```
+
+??? note "listMultipartUploads"
+    The listMultipartUploads operation lists in-progress multipart uploads. A multipart upload is in progress when it has been initiated using the Initiate Multipart Upload request but has not yet been completed or aborted. It returns a default value of 1000 multipart uploads in the response. The number of uploads can be further limited in a response by specifying the maxUploads property. If additional multipart uploads satisfy the list criteria, the response will contain an "IsTruncated" element with the value "true". To list the additional multipart uploads, use the keyMarker and uploadIdMarker request parameters.
+
+    In the response, the uploads are sorted by key. If the application has initiated more than one multipart upload using the same object key, uploads in the response are first sorted by key. Additionally, uploads are sorted in ascending order within each key by the upload initiation time.
+
+    When calling init before this operation, the following headers should be removed: xAmzAcl, xAmzGrantRead, xAmzGrantWrite, xAmzGrantReadAcp, xAmzGrantWriteAcp, and xAmzGrantFullControl. See the [related API documentation](http://docs.aws.amazon.com/AmazonS3/latest/API/mpUploadListMPUpload.html) for more information.
+    <table>
+        <tr>
+            <th>Parameter Name</th>
+            <th>Description</th>
+            <th>Required</th>
+        </tr>
+        <tr>
+            <td>bucketUrl</td>
+            <td>The URL of the bucket.</td>
+            <td>Yes</td>
+        </tr>
+        <tr>
+            <td>delimiter</td>
+            <td>A delimiter is a character you use to group keys. All keys that contain the same string between the prefix, if specified, and the first occurrence of the delimiter after the prefix are grouped under a single result element CommonPrefixes. If you do not specify the prefix parameter, the substring starts at the beginning of the key. The keys that are grouped under the CommonPrefixesresult element are not returned elsewhere in the response.</td>
+            <td>Yes</td>
+        </tr>
+        <tr>
+            <td>encodingType</td>
+            <td>Requests Amazon S3 to encode the response and specifies the encoding method to use. An object key can contain any Unicode character. However, XML 1.0 parser cannot parse some characters such as characters with an ASCII value from 0 to 10. For characters that are not supported in XML 1.0, you can add this parameter to request Amazon S3 to encode the keys in the response.</td>
+            <td>Yes</td>
+        </tr>
+        <tr>
+            <td>maxUploads</td>
+            <td>Sets the maximum number of multipart uploads, from 1 to 1,000, to return in the response body. 1,000 is the maximum number of uploads that can be returned in a response.</td>
+            <td>Yes</td>
+        </tr>
+        <tr>
+            <td>keyMarker</td>
+            <td>Specifies the key to start with when listing objects in a bucket. Amazon S3 lists objects in alphabetical order.</td>
+            <td>Yes</td>
+        </tr>
+        <tr>
+            <td>prefix</td>
+            <td>Limits the response to keys that begin with the specified prefix.</td>
+            <td>Yes</td>
+        </tr>
+        <tr>
+            <td>versionIdMarker</td>
+            <td>Together with keyMarker, specifies the multipart upload after which listing should begin. If keyMarker is not specified, the uploadIdMarker parameter is ignored. Otherwise, any multipart uploads for a key equal to the keyMarker might be included in the list only if they have an upload ID lexicographically greater than the specified uploadIdMarker.</td>
+            <td>Yes</td>
+        </tr>
+    </table>
+
+    **Sample configuration**
+
+    ```xml
+    <amazons3.listMultipartUploads>
+        <bucketUrl>{$ctx:bucketUrl}</bucketUrl>
+        <delimiter>{$ctx:delimiter}</delimiter>
+        <encodingType>{$ctx:encodingType}</encodingType>
+        <maxUploads>{$ctx:maxUploads}</maxUploads>
+        <keyMarker>{$ctx:keyMarker}</keyMarker>
+        <prefix>{$ctx:prefix}</prefix>
+        <uploadIdMarker>{$ctx:uploadIdMarker}</uploadIdMarker>
+    </amazons3.listMultipartUploads>
+    ```
+    
+    **Sample request**
+
+    ```xml
+    <listMultipartUploads>
+        <accessKeyId>AKIXXXXXHXQXXG5XX</accessKeyId>
+        <secretAccessKey>qHXXBXXXXASYQc4oMCEOj+343HD82s</secretAccessKey>
+        <region>us-east-2</region>
+        <methodType>GET</methodType>
+        <contentType>application/xml</contentType>
+        <isXAmzDate>true</isXAmzDate>
+        <bucketUrl>http://s3.us-east-2.amazonaws.com/signv4test</bucketUrl>
+        <contentLength>0</contentLength>
+        <contentMD5></contentMD5>
+        <bucketName>signv4test</bucketName>
+        <host>s3.us-east-2.amazonaws.com</host>
+        <expect></expect>
+        <xAmzSecurityToken></xAmzSecurityToken>
+        <xAmzAcl>public-read</xAmzAcl>
+        <xAmzGrantRead></xAmzGrantRead>
+        <xAmzGrantWrite></xAmzGrantWrite>
+        <xAmzGrantReadAcp></xAmzGrantReadAcp>
+        <xAmzGrantWriteAcp></xAmzGrantWriteAcp>
+        <xAmzGrantFullControl></xAmzGrantFullControl>
+    </listMultipartUploads>
     ```
