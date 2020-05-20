@@ -9,7 +9,7 @@ The following operations allow you to work with the Amazon S3 Connector. Click a
 To use the Amazon S3 connector, add the <amazons3.init> element in your configuration before carrying out any Amazon S3 operations. This Amazon S3 configuration authenticates with Amazon S3 by specifying the AWS access key ID and secret access key ID, which are used for every operation. The signature is used with every request and thus differs based on the request the user makes.
 
 ??? note "init"
-    The init operation is used to initialize the connection to Amazon S2.
+    The init operation is used to initialize the connection to Amazon S3.
     <table>
         <tr>
             <th>Parameter Name</th>
