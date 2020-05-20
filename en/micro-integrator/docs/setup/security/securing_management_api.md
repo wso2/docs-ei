@@ -89,7 +89,7 @@ enable = false
 
 ## Authorization
 
-You can enable Authorization only for resources (in the management API) that need to be invoked by admin users. The `/management/users` resource is by default secured with authorization, meaning that only users with admin privileges can access this resource.
+Authorization can be set for resources that only need to be invoked by admin users. The `/management/users` resource is by default secured with authorization, meaning that only users with admin privileges can access this resource.
 
 !!! Note
     Authorization is not supported with the file-based user store. Therefore, be sure to configure an [external user store](../../../setup/user_stores/setting_up_ro_ldap) and [disable the file-based user store](#disable-the-file-based-user-store) if you want authorization to be in effect.
