@@ -15,7 +15,7 @@ To configure a Streaming Integrator node to use specific rules templates, follow
           <NODE2_HOST_NAME>:<NODE2_PORT>
     ```
    
-   e.g.,
+    e.g.,
      ```yaml
       deployment_configs:
           - localhost:9090
