@@ -1,3 +1,6 @@
+!!! note
+    **This page is still a work in progress!**
+
 # Store APIs
 
 -   [Query records in Siddhi store](#StoreAPIs-QueryrecordsinSiddhistore)

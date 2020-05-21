@@ -1,3 +1,6 @@
+!!! note
+    **This page is still a work in progress!**
+
 # Stream Processor REST API Guide
 
 The following topics cover information relating to the public APIs
