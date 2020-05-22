@@ -10,18 +10,18 @@ This example explains how to use Google Spreadsheet Connector to create a Google
 
 It will have three HTTP API resources, which are `insert`, `read` and `edit`. 
 
-* `/insert `: The user sends the request payload which includes the name of the spreadsheet should be, what are the sheet names and what data should be inserted to which sheet and the which range of cells.  This request is sent to WSO2 EI by invoking the Spreadsheet API. It creates a spreadsheet with specified data in the specified cell rage. 
+* `/insert `: The user sends the request payload, which includes the name of the spreadsheet, the sheet names, and what data should be inserted to which sheet and which range of cells.  This request is sent to WSO2 EI by invoking the Spreadsheet API. It creates a spreadsheet with specified data in the specified cell range.  
 
-* `/read `: The user sends the request payload, which includes the spreadsheet Id which should be obtained from calling the `insert` API resource, and the range of the cell range to be read. 
+* `/read `: The user sends the request payload, which includes the spreadsheet Id that should be obtained from calling the `insert` API resource, and the range of the cell range to be read. 
 
-* `/edit `: The user sends the request payload which includes the spreadsheet Id which should be obtained from calling the `insert` API resource, and the data to be edited that includes values and the range. 
+* `/edit `: The user sends the request payload, which includes the spreadsheet Id that should be obtained from calling the `insert` API resource, and the data to be edited that includes values and the range. 
 
 
 If you do not want to configure this yourself, you can simply [get the project](#get-the-project) and run it.
 
 ## Configure the connector in WSO2 Integration Studio
 
-Follow these steps to set up the ESB Solution Project and the Connector Exporter Project. 
+Follow these steps to set up the Integration Project and the Connector Exporter Project. 
 
 {!references/connectors/importing-connector-to-integration-studio.md!} 
 
@@ -37,13 +37,13 @@ Follow these steps to set up the ESB Solution Project and the Connector Exporter
 4. First we will create the `/insert` resource. Right click on the API Resource and go to **Properties** view. We use a URL template called `/insert` as we have two API resources inside single API. The method will be `Post`. 
     <img src="../../../../assets/img/connectors/filecon-3.png" title="Adding the API resource." width="800" alt="Adding the API resource."/>
 
-5. In this operation we are going to receive input from the user which are `properties`, `sheets`, `range` and `values`. 
+5. In this operation we are going to receive input from the user, which are `properties`, `sheets`, `range` and `values`. 
     - properties - It can provide the spreadsheet properties such as title of the spreadsheet. 
     - sheets - It can provide set of sheets to be created.
     - range - It provides the sheet name and the range that data need to be inserted. 
     - values - Data to be inserted.
 
-6. The above four parameters are saved to a property group. Drag and drop the Property Group mediator onto the canvas in the design view and do as shown below. For further reference, you can read about the [Property Group mediator](https://ei.docs.wso2.com/en/latest/micro-integrator/references/mediators/property-Group-Mediator/). You can add set of properties as below. 
+6. The above four parameters are saved to a property group. Drag and drop the Property Group mediator onto the canvas in the design view and do as shown below. For further reference, you can read about the [Property Group mediator](../../mediators/property-Group-Mediator). You can add set of properties as below. 
 
     <img src="/assets/img/connectors/sheetcon1.png" title="Adding a property into a property group" width="800" alt="Adding a property"/>
 
@@ -84,7 +84,7 @@ Follow these steps to set up the ESB Solution Project and the Connector Exporter
     </sequence>
 ```
 
-12. Next we need to create the `addData.xml` sequence as above. As explained in step 8, create a sequence by right clicking the Integration Project which has already been created. 
+12. Next we need to create the `addData.xml` sequence as above. As explained in step 8, create a sequence by right clicking the Integration Project that has already been created. 
 
 13. Below is the complete XML configuration for `addData.xml` file. 
 ```xml
@@ -233,7 +233,7 @@ Follow these steps to deploy the exported CApp in the Enterprise Integrator Runt
 
 ### Spreadsheet insert Operation
 
-1. Invoke the SpreadsheetAPI with the following URL. Application such as [Postman](https://www.postman.com/) can be used to invoke the API. 
+Invoke the SpreadsheetAPI with the following URL. An application such as [Postman](https://www.postman.com/) can be used to invoke the API. 
 
 ```
   Resource method: POST
@@ -298,7 +298,7 @@ You should get a success response as below, and the spreadsheet should be create
 
 ### Spreadsheet Read Operation
 
-1. Invoke the SpreadsheetAPI with the following URL. Application such as [Postman](https://www.postman.com/) can be used to invoke the API. Obtain the Spreadsheet ID from the step 1. 
+Invoke the SpreadsheetAPI with the following URL. An application such as [Postman](https://www.postman.com/) can be used to invoke the API. Obtain the Spreadsheet ID from step 1. 
 ```
   Resource method: POST
   URL: http://localhost:8290/spreadsheet/read
@@ -379,7 +379,7 @@ You should get the following response returned.
     ]
   }
 ```
-The spreadsheet should be edited with in the above specified cell range. 
+The spreadsheet should be edited within the above specified cell range. 
 
 ## What's Next
 

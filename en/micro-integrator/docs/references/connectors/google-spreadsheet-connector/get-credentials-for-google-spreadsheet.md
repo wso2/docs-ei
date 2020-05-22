@@ -1,8 +1,8 @@
 # Get Credentials for Google Spreadsheet
 
-To obtain the access token, client Id, client secret and refresh token, we need to follow the below steps. 
+To obtain the Access Token, Client Id, Client Secret and Refresh Token, we need to follow the below steps. 
 
-1. Open the [Google API Console Credentials](https://console.developers.google.com/apis/credentials) page. You will be prompt to log in to a Google Account. Log in to your relevant Google Account. 
+1. Open the [Google API Console Credentials](https://console.developers.google.com/apis/credentials) page. You will be prompted to log in to a Google Account. Log in to your relevant Google Account. 
 
 2. Click on **Select a Project** and click **NEW PROJECT**, to create a project.
  <img src="../../../../assets/img/connectors/create-project.png" title="Creating a new Project" width="800" alt="Creating a new Project" />
@@ -37,17 +37,17 @@ To obtain the access token, client Id, client secret and refresh token, we need 
 
 
 ## Obtaining Access Token and Refresh Token
-1. Navigate to [OAuth 2.0 Playground](https://developers.google.com/oauthplayground/) and click OAuth 2.0 Configuration button in the Right top corner.
+1. Navigate to [OAuth 2.0 Playground](https://developers.google.com/oauthplayground/) and click the OAuth 2.0 Configuration button in the top right corner of your screen.
 
-2. Select **Use your own OAuth credentials**, and provide the obtained Client ID and Client Secret values as above click on Close.
+2. Select **Use your own OAuth credentials**, and provide the obtained Client ID and Client Secret values. Click on **Close**.
   <img src="../../../../assets/img/connectors/oath-configuration.png" title="Obtaining Oauth-configuration" width="800" alt="Obtaining Oauth-configuration" />
 
-3. Under Step 1, select `Google Sheets API v4` from the list of APIs, select all the scopes. 
+3. Under Step 1, select `Google Sheets API v4` from the list of APIs and select all the scopes. 
   <img src="../../../../assets/img/connectors/sheetsapi2.png" title="Selecting Scopes" width="800" alt="Selecting Scopes" />
 
 4. Click on **Authorize APIs** button and select your Gmail account when you are asked and allow the scopes.
   <img src="../../../../assets/img/connectors/sheetsapi4.png" title="Grant Permission" width="800" alt="Grant Permission" />
 
-5.  Under Step 2, click **Exchange authorization code for tokens** to generate an display the Access Token and Refresh Token. Now we are done with configuring the Google Sheets API.
+5.  Under Step 2, click **Exchange authorization code for tokens** to generate and display the Access Token and Refresh Token. Now we are done with configuring the Google Sheets API.
   <img src="../../../../assets/img/connectors/refreshtoken.png" title="Getting Tokens" width="800" alt="Getting Tokens" />
 
