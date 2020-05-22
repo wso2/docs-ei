@@ -12,15 +12,15 @@ It will have three HTTP API resources, which are `insert`, `read` and `edit`.
 
 * `/insert `: The user sends the request payload, which includes the name of the spreadsheet, the sheet names, and what data should be inserted to which sheet and which range of cells.  This request is sent to WSO2 EI by invoking the Spreadsheet API. It creates a spreadsheet with specified data in the specified cell range. 
 
-    <img src="/assets/img/connectors/sheet-insert.png" title="Adding a property into a property group" width="800" alt="Adding a property"/> 
+    <img src="/assets/img/connectors/sheet-insert.png" title="Calling insert operation" width="800" alt="Calling insert operation"/> 
 
 * `/read `: The user sends the request payload, which includes the spreadsheet Id that should be obtained from calling the `insert` API resource, and the range of the cell range to be read. 
 
-    <img src="/assets/img/connectors/sheet-read.png" title="Adding a property into a property group" width="800" alt="Adding a property"/>
+    <img src="/assets/img/connectors/sheet-read.png" title="Calling read operation" width="800" alt="Calling read operation"/>
 
 * `/edit `: The user sends the request payload, which includes the spreadsheet Id that should be obtained from calling the `insert` API resource, and the data to be edited that includes values and the range. 
 
-    <img src="/assets/img/connectors/sheet-edit.png" title="Adding a property into a property group" width="800" alt="Adding a property"/>
+    <img src="/assets/img/connectors/sheet-edit.png" title="Calling edit operation" width="800" alt="Calling edit operation"/>
 
 
 If you do not want to configure this yourself, you can simply [get the project](#get-the-project) and run it.
