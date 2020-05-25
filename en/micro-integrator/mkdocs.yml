@@ -422,6 +422,9 @@ nav:
             - 'SMPP Inbound Endpoint Example': 'references/connectors/smpp-connector/smpp-inbound-endpoint-example.md'
             - 'SMPP Connector Configuration': 'references/connectors/smpp-connector/smpp-connector-config.md'
             - 'SMPP Inbound Endpoint Configuration': 'references/connectors/smpp-connector/smpp-inbound-endpoint-config.md'
+        - Amazon DynamoDB Connector:
+            - 'Setting up the Amazon DynamoDB Connector ': 'references/connectors/amazondynamodb-connector/amazondynamodb-connector-configuration.md'
+            - 'Amazon DynamoDB Connector Example': 'references/connectors/amazondynamodb-connector/amazondynamodb-connector-example.md'
         - Ceridian Dayforce Connector:
             - 'Setting up the Ceridian Dayforce Connector': 'references/connectors/ceridiandayforce-connector/ceridiandayforce-connector-config.md'
             - 'Ceridian Dayforce Connector Example': 'references/connectors/ceridiandayforce-connector/ceridiandayforce-connector-example.md'
