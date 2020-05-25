@@ -1,6 +1,6 @@
 # Using Kubernetes Secrets
 
-When you deploy your integration solutions in a container environment, you cannot [use the Cipher Tool to encrypt secrets](../../../develop/creating-artifacts/encrypting-synapse-passwords) as you do for a VM deployment.
+WSO2 Micro Integrator comes with a built-in secret repository as a part of its secure vault implementation by default. In addition to this, the Micro Integrator also provides built-in support for Docker secrets and Kubernetes secrets for your containerized deployments.
 
 You need to generate Kubernetes secrets for the sensitive data and inject them to the pods in your deployment as environment variables. Follow the steps given below.
 
