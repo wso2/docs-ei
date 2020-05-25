@@ -136,16 +136,3 @@ password = "$sys{system.property}"
 ```
 
 Read more about [using dynamic server configurations](../../../setup/dynamic_server_configurations).
-
-To dynamically load secrets to synapse configurations, define the synapse secret as an environment variable.
-For example, consider the JMS user name and password in a proxy service as secrets:
-
-```xml
-<?xml version="1.0" encoding="UTF-8"?>
-<proxy name="JmsListner" pinnedServers="localhost" startOnLoad="true" transports="http https jms" xmlns="http://ws.apache.org/ns/synapse">
-    .................
-    <parameter name="transport.jms.UserName">$SYSTEM:jmsuname</parameter>
-    <parameter name="transport.jms.Password">$SYSTEM:jmspass</parameter>
-</proxy>
-```
-Note that all parameters in synapse configurations don't support dynamic values. Read more about [using dynamic synapse configurations](../../../develop/injecting-parameters)
