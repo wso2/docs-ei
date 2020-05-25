@@ -395,6 +395,7 @@ nav:
             - 'ISO8583 Connector Configuration': 'references/connectors/ISO8583-connector/ISO8583-connector-reference.md'
         - Amazon SQS Connector:
             - 'Amazon SQS Connector Example': 'references/connectors/amazonsqs-connector/amazonsqs-connector-example.md'
+            - 'Amazon SQS Connector Configuration': 'references/connectors/amazonsqs-connector/amazonsqs-connector-config.md'
         - Microsoft Azure Storage Connector:
             - 'Setting up the Microsoft Azure Storage Environment': 'references/connectors/microsoft-azure-storage-connector/microsoft-azure-storage-configuration.md'
             - 'Microsoft Azure Storage Connector Example': 'references/connectors/microsoft-azure-storage-connector/microsoft-azure-storage-connector-example.md'
@@ -405,6 +406,7 @@ nav:
           - 'Google Firebase Connector Configuration': 'references/connectors/google-firebase-connector/google-firebase-configuration.md'
         - FHIR Connector:
           - 'FHIR Connector Example': 'references/connectors/fhir-connector/fhir-connector-example.md'
+          - 'FHIR Connector Configuration': 'references/connectors/fhir-connector/fhir-connector-config.md'
         - Ceridian Dayforce Connector:
             - 'Setting up the Ceridian Dayforce Connector': 'references/connectors/ceridiandayforce-connector/ceridiandayforce-connector-config.md'
             - 'Ceridian Dayforce Connector Example': 'references/connectors/ceridiandayforce-connector/ceridiandayforce-connector-example.md'
