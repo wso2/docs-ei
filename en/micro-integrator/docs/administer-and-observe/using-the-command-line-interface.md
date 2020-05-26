@@ -41,11 +41,13 @@ start your WSO2 Micro Integrator instance. Pass the following system property:
     ```bash
     export PATH=/path/to/mi/cli/directory/bin:$PATH
     ```
-3.  Execute the following command to start the CLI:
+
+3. Execute the following command to start the CLI:
 
     ```bash
     ./mi
     ```
+
 4.  The available commands are listed as follows:
 
     ```bash
@@ -71,6 +73,7 @@ start your WSO2 Micro Integrator instance. Pass the following system property:
     sequence         Manage deployed seqeunces
     task             Manage deployed tasks
     template         Manage templates
+    users            Add, remove, and show users
     secret           Manage secret encryption
     version          Version of the CLI
 
@@ -83,7 +86,7 @@ start your WSO2 Micro Integrator instance. Pass the following system property:
 
 ## Log in to the CLI
 
-To login using the CLI, use the following command. This will ask for the username and password. The default username is "admin" and the default password is "admin". 
+To login using the CLI, use the following command. This will ask for the username and password. The default username is "admin" and the default password is "admin".
 
 ```bash
 mi remote login
@@ -91,20 +94,20 @@ mi remote login
 
 If you want to login using a one line command, use the following command:
 
-!!! Note 
+!!! Note
     If you are on **Windows**, you must always login with the following command.
 
 ```bash
 mi remote login [username] [password]
 ```
 
-To logout from the CLI, please use the following command: 
+To logout from the CLI, please use the following command:
 
 ```bash
 mi remote logout
 ```
 
-## Using the CLI 
+## Using the CLI
 
 ### Usage
 
@@ -115,7 +118,7 @@ mi [command]
 ### version
 
 ```bash
-mi version 
+mi version
 ```
 
 ### Global Flags
@@ -158,14 +161,15 @@ mi version
 
         # To show available Micro Integrators
         mi remote show
-        
+
         # login to the current (selected)  Micro Integrator instance
         mi remote login     # will be prompted for username and password
-            
+
         # login (with inline username and password)
         mi remote login admin admin
     ```
- -  **log-level**
+
+-  **log-level**
      ```bash
      Usage:
         mi log-level [command] [arguments]
@@ -181,7 +185,7 @@ mi version
         # Update the log level of a logger
         mi log-level update org-apache-coyote DEBUG
      ```
- -  **api**
+-  **api**
     ```bash
     Usage:
         mi api [command] [argument]
@@ -257,6 +261,7 @@ mi version
         # To get details about a specific proxy service
         mi proxyservice show sampleProxy
     ```
+
 -   **sequence**
     ```bash
     Usage:
@@ -272,6 +277,7 @@ mi version
         # To get details about a specific sequence
         mi sequence show sampleProxy
     ```
+
 -   **task**
     ```bash
     Usage:
@@ -287,6 +293,7 @@ mi version
         # To get details about a specific task
         mi task show sampleProxy
     ```
+
 -   **dataservice**
     ```bash
     Usage:
@@ -379,32 +386,67 @@ mi version
          # To get details about a specific local entry
          mi localentry show  sampleLocalEntry
     ```
-- **secret**
-  ```
-   Usage:
-       mi secret [command] [arguments] [flags]
 
-   Available Commands:
-       init     Initialize the keystore information used for encryption
-       create   Create secrets based on preference
-     
-   Available Flags:
-       -f Use properties file to input multiple plaintext secrets
-         
-   Examples:
-       # To initialize keystore information
-       mi secret init
-       
-       # To encrypt secret and get output to console
-       mi secret create 
-       
-       # To encrypt secret and get output to file
-       mi secret create file
-       
-       # To encrypt secret and get output as a .yaml file
-       mi secret create k8
-       
-       # To bulk encrypt secrets defined in a properties file
-       mi secret create -f=</file_path>
+-   **user**
+    ```bash
+    Usage:
+       mi user [command] [flag]
+
+    Available Commands:
+       add              Add new user
+       remove           Remove an existing user
+       show             Get information about users
+
+    Flags:
+       -h, --help       Help for user
+       -p, --pattern    Specify a regex as a user name pattern
+       -r, --role       Specify a role to fetch a users        
+
+    Examples:
+       # To add a new user. This option is only available for admin users, therefore, set the `is-admin` flag to `true`
+       mi user add [new user-id] [password] [is-admin]
+
+       # To remove a user
+       mi user remove [user-id]
+
+       # To list all the users
+       mi user show
+
+       # To list user by user ID
+       mi user show [user ID]
+
+       # To list users by user role
+       mi user show -r [role name]
+
+       # To list users matching a user name regex pattern
+       mi user show -p [user name regex pattern]
     ```
-    
+
+-   **secret**
+    ```bash
+    Usage:
+         mi secret [command] [arguments] [flags]
+
+    Available Commands:
+         init     Initialize the keystore information used for encryption
+         create   Create secrets based on preference
+
+    Available Flags:
+         -f Use properties file to input multiple plaintext secrets
+
+    Examples:
+         # To initialize keystore information
+         mi secret init
+
+         # To encrypt secret and get output to console
+         mi secret create
+
+         # To encrypt secret and get output to file
+         mi secret create file
+
+         # To encrypt secret and get output as a .yaml file
+         mi secret create k8
+
+         # To bulk encrypt secrets defined in a properties file
+         mi secret create -f=</file_path>
+    ```

@@ -1,8 +1,27 @@
-# Setting up Oracle
+# Setting up an Oracle Database
 
-Given below are the steps you need to follow in order to use an Oracle database for cluster coordination in a Micro Integrator cluster.
+Follow the steps given below to set up the required Oracle databases for your Micro Integrator.
 
 ## Setting up the database and users
+
+The following Oracle scripts are stored in the `<MI_HOME>/dbscripts/` directory of your Micro Integrator.
+
+<table>
+	<tr>
+		<th>Script</th>
+		<th>Description</th>
+	</tr>
+	<tr>
+		<td>oracle_cluster.sql</td>
+		<td>This script creates the database tables that are required for cluster coordination.</td>
+	</tr>
+	<tr>
+		<td>oracle_rac_user.sql</td>
+		<td>This script creates the database tables that are required for storing users and roles.</td>
+	</tr>
+</table>
+
+First create the databases, and then create the DB tables by pointing to the relevant script in the `<MI_HOME>/dbscripts/` directory. It is recommended to maintain separate databases for these use cases.
 
 Follow the steps below to set up an Oracle database.
 
@@ -16,16 +35,22 @@ Follow the steps below to set up an Oracle database.
 3.  After configuring the `           .ora          ` files, start the
     Oracle instance using the following command:
 
-     `sudo /etc/init.d/oracle-xe restart`
+     ```
+     sudo /etc/init.d/oracle-xe restart
+     ```
 
 4.  Connect to Oracle using SQL\*Plus as SYSDBA as follows:
 
-    `./$<ORACLE_HOME>/config/scripts/sqlplus.sh sysadm/password as SYSDBA`
+    ```
+    ./$<ORACLE_HOME>/config/scripts/sqlplus.sh sysadm/password as SYSDBA
+    ```
 
 5.  Connect to the instance with the username and password using the
     following command:
 
-    `connect`
+    ```
+    connect
+    ```
 
 6.  As SYSDBA, create a database user and grant privileges to the user
     as shown below:
@@ -54,11 +79,23 @@ Follow the steps below to set up an Oracle database.
 
 ## Connecting to the database
 
-Add the following parameters to the `deployment.toml` file in the `MI_HOME/conf` directory.
+Open the `deployment.toml` file in the `<MI_HOME>/conf` directory and add the following sections to create the connection between the Micro Integrator and the relevant database. Note that you need two separate configurations corresponding to the two separate databases (`clusterdb` and `userdb`).
 
-```toml
+```toml tab='Cluster DB Connection'
 [[datasource]]
 id = "WSO2_COORDINATION_DB"
+url= "jdbc:oracle:thin:@SERVER_NAME:PORT/SID"
+username="root"
+password="root"
+driver="oracle.jdbc.OracleDriver"
+pool_options.maxActive=50
+pool_options.maxWait = 60000
+pool_options.testOnBorrow = true
+```
+
+```toml tab='User DB Connection'
+[[datasource]]
+id = "WSO2_USER_DB"
 url= "jdbc:oracle:thin:@SERVER_NAME:PORT/SID"
 username="root"
 password="root"

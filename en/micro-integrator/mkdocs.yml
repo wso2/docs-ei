@@ -207,7 +207,7 @@ nav:
         - 'Clustered Deployment': 'setup/deployment/deploying_wso2_ei.md'
         - 'Deployment Synchronization': 'setup/deployment/deployment_synchronization.md'
         - 'Load Balancing': 'setup/deployment/setting_up_lb.md'
-        - Cluster Coordination Database:
+        - Databases:
           - 'MySQL Database': 'setup/deployment/databases/setting-up-MySQL.md'
           - 'MSSQL Database': 'setup/deployment/databases/setting-up-MSSQL.md'
           - 'Oracle Database': 'setup/deployment/databases/setting-up-Oracle.md'
@@ -232,7 +232,9 @@ nav:
           - 'Encrypting Passwords' : 'setup/security/encrypting_plain_text.md'
           - 'Using Symmetric Encryption' : 'setup/security/single_key_encryption.md'
         - 'Securing the Management API' : 'setup/security/securing_management_api.md'
-        - 'Configuring a User Store' : 'setup/user_stores/setting_up_ro_ldap.md'
+        - Working with User Stores:
+          - 'Configuring a User Store' : 'setup/user_stores/setting_up_ro_ldap.md'
+          - 'Managing Users' : 'setup/user_stores/managing_users.md'
       - Performance Tuning:
         - 'Tuning JVM Performance' : 'setup/performance_tuning/tuning_jvm_performance.md'
         - 'Tuning Network and OS Performance' : 'setup/performance_tuning/network_os_performance.md'
@@ -289,7 +291,7 @@ nav:
         - 'Creating a REST API': 'develop/creating-artifacts/creating-an-api.md'
         - 'Creating a Proxy Service': 'develop/creating-artifacts/creating-a-proxy-service.md'
         - 'Creating an Inbound Endpoint': 'develop/creating-artifacts/creating-an-inbound-endpoint.md'
-        - 'Creating Scheduled Tasks' : 'develop/creating-artifacts/creating-scheduled-task.md'
+        - 'Creating Scheduled Tasks': 'develop/creating-artifacts/creating-scheduled-task.md'
         - 'Creating a Message Store': 'develop/creating-artifacts/creating-a-message-store.md'
         - 'Creating a Message Processor': 'develop/creating-artifacts/creating-a-message-processor.md'
         - 'Creating an Endpoint': 'develop/creating-artifacts/creating-endpoints.md'
@@ -579,7 +581,7 @@ nav:
         - 'Templates': 'references/synapse-properties/template-properties.md'
         - 'Endpoints': 'references/synapse-properties/endpoint-properties.md'
         - Data Services:
-          - 'About Data Services' : 'references/synapse-properties/data-services.md'
+          - 'About Data Services': 'references/synapse-properties/data-services.md'
           - 'Elements of a Data Service': 'references/synapse-properties/data-services/elements-of-a-data-service.md'
           - 'Query Parameters': 'references/synapse-properties/data-services/query-parameters.md'
           - 'Datasource Parameters': 'references/synapse-properties/data-services/datasource-Configuration-Parameters.md'

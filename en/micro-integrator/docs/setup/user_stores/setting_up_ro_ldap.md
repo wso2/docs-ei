@@ -2,7 +2,7 @@
 
 An external user store (such as an LDAP or RDBMS) can be used with the Micro Integrator for the following two scenarios:
 
--	When [WS-Security](../../../references/security/security-implementation) is enabled for your integration artifacts, the user store will be used for authenticating the credentials of users invoking the artifacts. 
+-	When [WS-Security](../../../references/security/security-implementation) is enabled for your integration artifacts, the user store will be used for authenticating the credentials of users invoking the artifacts.
 
 	See the following resources on how to enable WS security for integration artifacts:
 
@@ -20,29 +20,23 @@ An LDAP user store is recommended for the Micro Integrator. Follow the instructi
 
 See the documentation of your LDAP provider for instructions on setting up the LDAP, and for managing users and roles.
 
-!!! Note
-	The current release of the Micro Integrator does not offer user management functionality. Therefore, you must manage users and roles from your LDAP and then [connect it to the Micro Integrator](#step-2-connecting-to-the-ldap).
-
-### Step 2: Connecting to the LDAP 
+### Step 2: Connecting to the LDAP
 
 Follow the steps given below to connect the Micro Integrator to the LDAP user store.
 
-!!! Note
-	The following configuration defines **read-only** access to the LDAP from the Micro Integrator. The Micro Integrator does not require write access since it will not manage the user data in the LDAP.
-
 1.	Open the `deployment.toml` file stored in the `<MI_HOME>/conf/` directory.
-2.	Add the following configurations and update the required values. 
+2.	Add the following configurations and update the required values.
 
 	```toml
 	[user_store]
 	connection_url = "ldap://localhost:10389"  
-	connection_name = "uid=admin,ou=system" 
+	connection_name = "uid=admin,ou=system"
 	connection_password = "admin"  
 	user_search_base = "ou=system"   
 	```
 
 	Parameters used above are explained below.
-	
+
 	<table>
 		<tr>
 			<th>Parameter</th>
@@ -61,7 +55,7 @@ Follow the steps given below to connect the Micro Integrator to the LDAP user st
 				<code>connection_name</code>
 			</td>
 			<td>
-				The username used to connect to the user store and perform various operations. This user does not need to be an administrator in the user store. However, the user requires permission to read the user list and user attributes, and to perform search operations on the user store. The value you specify is used as the DN (Distinguish Name) attribute of the user who has sufficient permissions to perform operations on users and roles in LDAP.
+				The username used to connect to the user store and perform various operations. This user needs to be an administrator in the user store. That is, the user requires write permission to manage add, modify users and to perform search operations on the user store. The value you specify is used as the DN (Distinguish Name) attribute of the user who has sufficient permissions to perform operations on users and roles in LDAP.
 			</td>
 		</tr>
 		<tr>
@@ -84,27 +78,87 @@ Follow the steps given below to connect the Micro Integrator to the LDAP user st
 
 See the [complete list of parameters](../../../references/config-catalog/#ldap-user-store) you can configure for the ldap user store.
 
-## Configuring an RDBMS user store (Optional)
+## Configuring an RDBMS user store
 
-If you are already using a JDBC user store (database) with another WSO2 product ([WSO2 API Manager](https://wso2.com/api-management/), [WSO2 Identity Server](https://wso2.com/identity-and-access-management/), or an instance of [WSO2 Enterprise Integrator 6.x.x](https://wso2.com/enterprise-integrator/6.5.0)), you can connect the same database to the Micro Integrator of WSO2 Enterprise Integrator 7 as explained below.
+1.	Set up an RDBMS. You can use one of the following types.
 
-!!! Warning
-	You cannot manage users and roles when you use a JDBC user store with the Micro Integrator. Therefore, be sure that your database is already up-to-date before connecting it to the Micro Integrator. Alternatively, you can shift to an [LDAP user store](#configuring-an-ldap-user-store).
+	!!! Note
+			Be sure to use the relevant database script stored in the `<MI_HOME>/dbscripts/` directory when you create the database.
 
-1.	Open the `deployment.toml` file (stored in the `<MI_HOME>/conf` directory).
-2.	Add the following datasource configuration and update the values for your database.
+		- [Setting up a MySQL database](../../../setup/deployment/databases/setting-up-MySQL)
+		- [Setting up an MSSQL database](../../../setup/deployment/databases/setting-up-MSSQL)
+		- [Setting up an Oracle database](../../../setup/deployment/databases/setting-up-Oracle)
+		- [Setting up a Postgre database](../../../setup/deployment/databases/setting-up-PostgreSQL)
+		- [Setting up an IBM database](../../../setup/deployment/databases/setting-up-IBM-DB2)
 
-	```toml
+2.	Open the `deployment.toml` file (stored in the `<MI_HOME>/conf` directory).
+3.	Add the relevant datasource configuration and update the values for your database.
+
+	!!! Tip
+			If you are already using a JDBC user store (database) with another WSO2 product ([WSO2 API Manager](https://wso2.com/api-management/), [WSO2 Identity Server](https://wso2.com/identity-and-access-management/), or an instance of [WSO2 Enterprise Integrator 6.x.x](https://wso2.com/enterprise-integrator/6.6.0)), you can connect the same database to the Micro Integrator of WSO2 Enterprise Integrator 7 as explained below.
+
+	```toml tab='MySQL'
 	[[datasource]]
-	id = "WSO2_CARBON_DB"
-	url= "jdbc:h2:./repository/database/WSO2CARBON_DB;DB_CLOSE_ON_EXIT=FALSE;LOCK_TIMEOUT=60000"
-	username="username"
-	password="password"
-	driver="org.h2.Driver"
+	id = "WSO2_USER_DB"
+	url= "jdbc:mysql://localhost:3306/userdb"
+	username="root"
+	password="root"
+	driver="com.mysql.jdbc.Driver"
+	pool_options.maxActive=50
+	pool_options.maxWait = 60000
+	pool_options.testOnBorrow = true
+	```
+
+	```toml tab='MSSQL'
+	[[datasource]]
+	id = "WSO2_USER_DB"
+	url= "jdbc:sqlserver://<IP>:1433;databaseName=userdb;SendStringParametersAsUnicode=false"
+	username="root"
+	password="root"
+	driver="com.microsoft.sqlserver.jdbc.SQLServerDriver"
+	pool_options.maxActive=50
+	pool_options.maxWait = 60000
+	pool_options.testOnBorrow = true
+	```
+
+	```toml tab='Oracle'
+	[[datasource]]
+	id = "WSO2_USER_DB"
+	url= "jdbc:oracle:thin:@SERVER_NAME:PORT/SID"
+	username="root"
+	password="root"
+	driver="oracle.jdbc.OracleDriver"
+	pool_options.maxActive=50
+	pool_options.maxWait = 60000
+	pool_options.testOnBorrow = true
+	```
+
+	```toml tab='PostgreSQL'
+	[[datasource]]
+	id = "WSO2_USER_DB"
+	url= "jdbc:postgresql://localhost:5432/userdb"
+	username="root"
+	password="root"
+	driver="org.postgresql.Driver"
+	pool_options.maxActive=50
+	pool_options.maxWait = 60000
+	pool_options.testOnBorrow = true
+	```
+
+	```toml tab='IBM DB'
+	[[datasource]]
+	id = "WSO2_USER_DB"
+	url="jdbc:db2://SERVER_NAME:PORT/userdb"
+	username="root"
+	password="root"
+	driver="com.ibm.db2.jcc.DB2Driver"
+	pool_options.maxActive=50
+	pool_options.maxWait = 60000
+	pool_options.testOnBorrow = true
 	```
 
 	Parameters used above are explained below.
-	
+
 	<table>
 		<tr>
 			<th>Parameter</th>
@@ -131,7 +185,7 @@ If you are already using a JDBC user store (database) with another WSO2 product 
 				<code>username</code>
 			</td>
 			<td>
-				The username used to connect to the user store and perform various operations. This user does not need to be an administrator in the user store. However, the user requires permission to read the user list and user attributes, and to perform search operations on the user store.
+				The username used to connect to the user store and perform various operations. This user needs to be an administrator in the user store. That is, the user requires write permission to manage add, modify users and to perform search operations on the user store.
 			</td>
 		</tr>
 		<tr>
@@ -154,7 +208,7 @@ If you are already using a JDBC user store (database) with another WSO2 product 
 
 	See the complete list of [database connection parameters](../../../references/config-catalog/#database-connection) and their descriptions. Also, see the recommendations for [tuning the JDBC connection pool](../../../setup/performance_tuning/jdbc_tuning).
 
-3.	Add the JDBC user store manager under the `[user_store]` toml heading as shown below.
+4.	Add the JDBC user store manager under the `[user_store]` toml heading as shown below.
 
 	```toml
 	[user_store]
@@ -162,3 +216,7 @@ If you are already using a JDBC user store (database) with another WSO2 product 
 	type = "database"
 	```
 	The datasource configured under the `[[datasource]]` toml heading will now be the effective user store for the Micro Integrator.
+
+## What's next?
+
+See [Managing Users](../managing_users) for instructions on adding, deleting, or viewing users in the user store.
