@@ -2,7 +2,7 @@
 
 When you have a [clustered deployment](../deploying_wso2_ei), the integration artifacts deployed in each server node of the cluster needs to be identical. This can be achieved by synchronizing the deployment directories of each server. That is, the `<MI_HOME>/repository/deployment/server` folder of each server needs to be shared.
 
-Select on of the following approaches depending on the expected rate of change (of artifacts) in your cluster:
+Select one of the following approaches depending on the expected rate of change (of artifacts) in your cluster:
 
 -   For a high rate of changes (i.e., if changes happen very frequently), us **Network File Share (NFS)**.
 -   For a medium rate of change, use **Remote Synchronization (Rsync)**.
