@@ -119,7 +119,7 @@ To dynamically load secrets to server configurations, update the parameters in t
 [keystore.primary]
 password = "$env{ENV_VAR}"
 alias = "$env{ENV_VAR}"
-key_password = "$$env{ENV_VAR}"  
+key_password = "$env{ENV_VAR}"  
 
 [truststore]                  
 password = "$env{ENV_VAR}"
