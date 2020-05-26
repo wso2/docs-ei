@@ -21,8 +21,8 @@ To set up MySQL:
 Execute the following command to create the DB by pointing to the MySQL script (`mysql_cluster.sql`) in the `<MI_HOME>/dbscripts/` directory:
 
 ```bash
-mysql> create database mi_db;
-mysql> use mi_db;
+mysql> create database clusterdb;
+mysql> use clusterdb;
 mysql> source <MI_HOME>/dbscripts/mysql_cluster.sql;
 ```
 
