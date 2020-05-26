@@ -231,7 +231,6 @@ nav:
         - Working with Passwords:
           - 'Encrypting Passwords' : 'setup/security/encrypting_plain_text.md'
           - 'Using Symmetric Encryption' : 'setup/security/single_key_encryption.md'
-          - 'Set Passwords using Environment Variables/System Properties' : 'setup/security/replace_passwords_with_sys_properties.md'
         - 'Securing the Management API' : 'setup/security/securing_management_api.md'
         - 'Configuring a User Store' : 'setup/user_stores/setting_up_ro_ldap.md'
       - Performance Tuning:
