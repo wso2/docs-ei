@@ -1,8 +1,9 @@
 # Using Docker Secrets
 
-When you deploy your integration solutions in a container environment, you cannot [use the Cipher Tool to encrypt secrets](../../../develop/creating-artifacts/encrypting-synapse-passwords) as you do for a VM deployment.
 
-Managing sensitive information in a Docker environment can be achieved with docker secrets using two simple steps:
+WSO2 Micro Integrator comes with a built-in secret repository as a part of its secure vault implementation by default. In addition to this, the Micro Integrator also provides built-in support for Docker secrets and Kubernetes secrets for your containerized deployments.
+
+Managing sensitive information in a Docker environment can be achieved with Docker secrets using two simple steps:
 
 1.	Adding the secret to your Docker environment.
 2.	Accessing the secret from within your synapse configurations.
