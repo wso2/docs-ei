@@ -38,8 +38,7 @@ Follow the steps below to set up an Oracle database.
     commit;
     ```
 
-7.  Exit from the SQL\*Plus session by executing the
-    `          quit         ` command.
+7.  Exit from the SQL\*Plus session by executing the `quit` command.
 
 ## Setting up the JDBC driver
 

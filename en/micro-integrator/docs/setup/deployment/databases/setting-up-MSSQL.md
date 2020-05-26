@@ -1,6 +1,6 @@
 # Setting up Microsoft SQL
 
-Given below are the steps you need to follow in order to use a MSSQL database for cluster coordination in a Micro Integrator cluster.
+Given below are the steps you need to follow in order to use an MSSQL database for cluster coordination in a Micro Integrator cluster.
 
 ## Enable TCP/IP
 
@@ -9,7 +9,7 @@ Given below are the steps you need to follow in order to use a MSSQL database fo
 3. Enable **TCP/IP** and disable **Named Pipes** from protocols of your Microsoft SQL server.
 4. Double click **TCP/IP** to open the TCP/IP properties window and set **Listen All** to `Yes` on the **Protocol** tab.
 5. On the **IP Address** tab, disable **TCP Dynamic Ports** by leaving it blank and give a valid TCP port, so that Microsoft SQL server will listen on that port. The best practice is to use port 1433, because you can use it in order processing services.
-6. Similarly, enable TCP/IP from **SQL Native Client Configuration** and disable **Named Pipes** . Also, check whether the port is set correctly to 1433.
+6. Similarly, enable TCP/IP from **SQL Native Client Configuration** and disable **Named Pipes**. Also, check whether the port is set correctly to 1433.
 7. Restart Microsoft SQL server.
 
 ## Create the database and user
@@ -35,7 +35,7 @@ Add the following parameters to the `deployment.toml` file in the `MI_HOME/conf`
 ```bash
 [[datasource]]
 id = "WSO2_COORDINATION_DB"
-url= "jdbc:sqlserver://<IP>:1433;databaseName=wso2greg;SendStringParametersAsUnicode=false"
+url= "jdbc:sqlserver://<IP>:1433;databaseName=clusterdb;SendStringParametersAsUnicode=false"
 username="root"
 password="root"
 driver="com.microsoft.sqlserver.jdbc.SQLServerDriver"
