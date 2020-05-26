@@ -1,7 +1,6 @@
 # Using Kubernetes Secrets
 
 WSO2 Micro Integrator comes with a built-in secret repository as a part of its secure vault implementation by default. In addition to this, the Micro Integrator also provides built-in support for Docker secrets and Kubernetes secrets for your containerized deployments.
-
 You need to generate Kubernetes secrets for the sensitive data and inject them to the pods in your deployment as environment variables. Follow the steps given below.
 
 ## Step 1: Creating the secret

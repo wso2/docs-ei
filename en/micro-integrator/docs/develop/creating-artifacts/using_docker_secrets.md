@@ -1,5 +1,6 @@
 # Using Docker Secrets
 
+
 WSO2 Micro Integrator comes with a built-in secret repository as a part of its secure vault implementation by default. In addition to this, the Micro Integrator also provides built-in support for Docker secrets and Kubernetes secrets for your containerized deployments.
 
 Managing sensitive information in a Docker environment can be achieved with Docker secrets using two simple steps:
