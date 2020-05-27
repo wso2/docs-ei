@@ -393,6 +393,7 @@ nav:
             - 'ISO8583 Connector Example': 'references/connectors/ISO8583-connector/ISO8583-connector-example.md'
             - 'ISO8583 Inbound Endpoint Example': 'references/connectors/ISO8583-connector/ISO8583-inbound-endpoint-example.md'
             - 'ISO8583 Connector Configuration': 'references/connectors/ISO8583-connector/ISO8583-connector-reference.md'
+            - 'ISO8583 Inbound Endpoint Configuration': 'references/connectors/ISO8583-connector/ISO8583-inbound-endpoint-config.md'
         - Amazon SQS Connector:
             - 'Amazon SQS Connector Example': 'references/connectors/amazonsqs-connector/amazonsqs-connector-example.md'
             - 'Amazon SQS Connector Configuration': 'references/connectors/amazonsqs-connector/amazonsqs-connector-config.md'
