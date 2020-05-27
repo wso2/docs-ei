@@ -44,7 +44,7 @@ Define your synapse artifacts using "$FILE:parameter_key" as the parameter value
 
 **Setting up the file**
 
-You can use a configuration file to load the parameter values for each environment. By default, the Micro Integrator is shipped with the file.properties file (stored in the `<EI_HOME>/conf` directory), which you can use to store the parameter values that should be injected to your synapse configuration. The parameter values should be specified as a key-value pair as shown below.
+You can use a configuration file to load the parameter values for each environment. By default, the Micro Integrator is shipped with the file.properties file (stored in the `<MI_HOME>/conf` directory), which you can use to store the parameter values that should be injected to your synapse configuration. The parameter values should be specified as a key-value pair as shown below.
 
 ```xml
 stockQuoteEP=http://localhost:9000/services/SimpleStockQuoteService
@@ -57,7 +57,7 @@ Alternatively, you can use a custom file stored in a file system instead of the 
 
 **Updating the System property**
 
-In the the product startup scripts (integrator.sh and integrator.bat file), which are available in the <EI_HOME>/bin directory, a system variable is defined as shown below and the value is set to default. When the system property is set to default as shown below, the system reads the parameters from the file.properties file that is available in the <EI_HOME>/conf directory.
+In the the product startup scripts (integrator.sh and integrator.bat file), which are available in the `<MI_HOME>/bin` directory, a system variable is defined as shown below and the value is set to default. When the system property is set to default as shown below, the system reads the parameters from the file.properties file that is available in the <>/conf directory.
 
 ```bash
 -Dproperties.file.path=default
