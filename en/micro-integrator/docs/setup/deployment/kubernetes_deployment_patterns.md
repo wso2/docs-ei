@@ -3,10 +3,10 @@
 !!! Warning
 	**This content is currently work in progress**
 
-These are the deployment patterns you can use when deploying your WSO2 Micro Integrator-based integration solutions in a Kubernetes environment. 
+These are the deployment patterns you can use when deploying your WSO2 Micro Integrator-based integration solutions in a Kubernetes environment.
 
 <!--
-The following Kubernetes concepts 
+The following Kubernetes concepts
 
 -   Kuberentes cluster
 -   Worker nodes
@@ -16,7 +16,7 @@ The following Kubernetes concepts
 -   Load balancing in Kuberentes
 -->
 
-When you deploy your integrations, the main concern is to ensure high availability and scalability of your system. Therefore, you need to decide upon the number of worker nodes and the number of replicas that are required to scale the deployment and to ensure high availability. 
+When you deploy your integrations, the main concern is to ensure high availability and scalability of your system. Therefore, you need to decide upon the number of worker nodes and the number of replicas that are required to scale the deployment and to ensure high availability.
 
 ## Single Replica
 
@@ -24,7 +24,7 @@ The following diagram depicts a single worker node deployment, which contains a 
 
 <img src="../../../assets/img/k8s_deployment/k8s-single-pod.png">
 
-Designing with a single-node will give you less management overhead if you are building an on-premises cluster (this does not apply to cloud instances). Also, there will be lower cost and resource requirements when compared to a multiple node cluster. 
+Designing with a single-node will give you less management overhead if you are building an on-premises cluster (this does not apply to cloud instances). Also, there will be lower cost and resource requirements when compared to a multiple node cluster.
 
 ### Load balancing
 
@@ -44,11 +44,11 @@ Running multiple instances of an application will require a way to distribute th
 
 ### Load balancing
 
-This deployment pattern is suitable for handling high incoming traffic because the workload is shared by multiple instances (replicas) of the deployment. The ingress or external load balancer that fronts the deployment distributes the workload across replicas. 
+This deployment pattern is suitable for handling high incoming traffic because the workload is shared by multiple instances (replicas) of the deployment. The ingress or external load balancer that fronts the deployment distributes the workload across replicas.
 
 ### High availability
 
-This approach ensures high availability in your cluster. If one worker node fails, the traffic will be routed to another worker node. Simillarly, if one pod replica fails, the traffic will be routed to another replica that runs concurrently at a given point of time. This avoids the impact of pod downtime. 
+This approach ensures high availability in your cluster. If one worker node fails, the traffic will be routed to another worker node. Simillarly, if one pod replica fails, the traffic will be routed to another replica that runs concurrently at a given point of time. This avoids the impact of pod downtime.
 
 ### Rolling updates
 
@@ -56,7 +56,7 @@ Because there are multiple replicas (i.e., multiple instances of the same deploy
 
 ## Multiple Replicas (with Coordination)
 
-Most of the integration solutions that you develop can be deployed using a single Micro Integrator container. That is, as explained in the previous deployment pattern, you can have multiple replicas of a single pod. Because most of these integration flows are stateless (does not need to persist status) the multiple instances (replicas) are not require to coordinate with one other. 
+Most of the integration solutions that you develop can be deployed using a single Micro Integrator container. That is, as explained in the previous deployment pattern, you can have multiple replicas of a single pod. Because most of these integration flows are stateless (does not need to persist status) the multiple instances (replicas) are not require to coordinate with one other.
 
 However, the following set of artifacts are stateful and requires coordination among themselves if they are deployed in more than a single instance.
 
@@ -76,7 +76,7 @@ As long as you maintain a single artifact deployment for each of these artifacts
 
 ### Load balancing
 
-Because these artifacts cannot be deployed in multiple containers/pods, the workload for the artifacts cannot be distributed among multipe instances when there is high traffic. However, load balancing can be achieved by isolating each of the artiacts in individual containers/pod to reduce the workload for a single instance. 
+Because these artifacts cannot be deployed in multiple containers/pods, the workload for the artifacts cannot be distributed among multipe instances when there is high traffic. However, load balancing can be achieved by isolating each of the artiacts in individual containers/pod to reduce the workload for a single instance.
 
 For example, as shown in the above diagram, if `recurringOrder_Task` and s`chedulOrder_Task` are highly utilized scheduled tasks in your deployment, you can distribute the tasks across multiple containers.
 
