@@ -7,11 +7,11 @@ If you are user with admin privileges, you can add new users, view users, and de
 ## Prerequisites
 
 - [Enable the management API](../../../administer-and-observe/working-with-management-api/#enabling-the-management-api) when you start the Micro Integrator.
-- Set up an [external user store](../setting_up_ro_ldap) should be configured for the Micro Integrator.
+- Set up an [external user store](../setting_up_ro_ldap) with **write access** for the Micro Integrator.
 
 ## Using the CLI Tool
 
-1.	[Download](https://wso2.com/integration/micro-integrator/tooling/) and setup the Micro Integrator CLI tool.
+1.	[Download](https://wso2.com/integration/micro-integrator/tooling/) and set up the Micro Integrator CLI tool.
 
 2.  Initialize the CLI tool from your command line:
 
@@ -21,9 +21,9 @@ If you are user with admin privileges, you can add new users, view users, and de
 
 3.	Log in to the CLI tool as 'admin':
 
-			```bash
-			mi remote login
-			```
+		```bash
+		mi remote login
+		```
 
 4.  Execute the relevant command:
 

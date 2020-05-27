@@ -210,10 +210,16 @@ See the [complete list of parameters](../../../references/config-catalog/#ldap-u
 
 4.	Add the JDBC user store manager under the `[user_store]` toml heading as shown below.
 
+	!!! Tip
+			If you want to be able to modify the data in your user store, be sure to enable write access to the user store.
+
 	```toml
 	[user_store]
 	class = "org.wso2.micro.integrator.security.user.core.jdbc.JDBCUserStoreManager"
 	type = "database"
+
+	# Add the following parameter only if you want to enable write access to the user store.
+	read_only = false
 	```
 	The datasource configured under the `[[datasource]]` toml heading will now be the effective user store for the Micro Integrator.
 
