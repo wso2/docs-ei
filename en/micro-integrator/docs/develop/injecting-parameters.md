@@ -1,12 +1,85 @@
-# Injecting Parameters as Environment Variables 
+# Injecting Parameters
 
-When deploying integration artifacts in different environments, it is necessary to change the synapse parameters used in the artifacts according to the environment. For example, the 'endpoint URL' will be different in each environment. If you define the synapse parameters in your artifacts as explained below, you can inject the required parameter values for each environment using system variables. Without this feature, you need to create and maintain separate artifacts for each environment.
+When deploying integration artifacts in different environments, it is necessary to change the synapse parameters used in the artifacts according to the environment. For example, the 'endpoint URL' will be different in each environment. If you define the synapse parameters in your artifacts as explained below, you can inject the required parameter values for each environment using system variables. Without this feature, you need to create and maintain separate artifacts for each environment. This feature is useful for container deployments.
 
-This feature is useful for container deployments. We need to dynamically inject the parameter values to the docker container.
+There are two ways to inject parameters into synapse configurations: By injecting values using environment variables, or by using a file to inject the parameter values.
 
-## Injecting Endpoint parameters
+## Using Environment Variables
 
-Configure the Endpoint parameters in your synapse configuration as shown below.
+If you want to inject parameter values as environment variables, you need to apply the following.
+
+**Configuring the synapse artifacts**
+
+Define your synapse artifacts using "$SYSTEM:parameter_key" as the parameter value. Note that parameter_key represents a place holder representing the parameter. For example, shown below is an endpoint artifact, where the endpoint uri configured for this feature:
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<endpoint xmlns="http://ws.apache.org/ns/synapse" name="StockQuoteEndPoint">
+  <address uri="$SYSTEM:stockQuoteEP"/>
+</endpoint>
+```
+
+**Exporting the environment variable**
+
+In a VM deployment, you can export the environment variables as shown below. Here VAR is the url you need to have set as environment property.
+
+```bash
+export stockQuoteEP=http://localhost:61616/...
+```
+
+## Using a File
+
+If you want to inject parameter values using a configuration file, you need to apply the following configurations.
+
+**Configuring the synapse artifacts**
+
+Define your synapse artifacts using "$FILE:parameter_key" as the parameter value. For example, shown below is an endpoint artifact, where the endpoint uri is configured for the purpose injecting values using a configuration file:
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<endpoint xmlns="http://ws.apache.org/ns/synapse" name="StockQuoteEndPoint">
+  <address uri="$FILE:stockQuoteEP"/>
+</endpoint>
+```
+
+**Setting up the file**
+
+You can use a configuration file to load the parameter values for each environment. By default, the Micro Integrator is shipped with the file.properties file (stored in the `<EI_HOME>/conf` directory), which you can use to store the parameter values that should be injected to your synapse configuration. The parameter values should be specified as a key-value pair as shown below.
+
+```xml
+stockQuoteEP=http://localhost:9000/services/SimpleStockQuoteService
+```
+
+Alternatively, you can use a custom file stored in a file system instead of the default `file.properties` file. For example, a file named `dev.properties` can be used to inject parameter values to the development environment and a file named `prod.properties` can be used to inject parameter values to the production environment.
+
+!!! Tip
+    It is possible to use a file from a network file system mount (NFS mount) as the file path. We can then use the environment specific configurations from the file in the NFS mount and inject the parameter values to the environment.
+
+**Updating the System property**
+
+In the the product startup scripts (integrator.sh and integrator.bat file), which are available in the <EI_HOME>/bin directory, a system variable is defined as shown below and the value is set to default. When the system property is set to default as shown below, the system reads the parameters from the file.properties file that is available in the <EI_HOME>/conf directory.
+
+```bash
+-Dproperties.file.path=default
+```
+
+If you are using a custom configuration file, instead of the `file.properties` file, you need to configure the particular file path in the product startup script as shown below.
+
+```bash tab='On Linux/MacOs'
+-Dproperties.file.path=/home/user/ei_configs/dev/dev.properties
+```
+
+```bash tab='On Windows'
+-Dproperties.file.path="%CONFIG_DIR%\dev\dev.properties
+```
+
+## Supported Parameters
+
+Listed below are the synapse artifact parameters to which you can dynamically inject values. Note that there are two ways to inject parameters as discussed above.
+
+### Endpoint parameters
+
+Listed below are the Endpoint parameters that can be dynamically injected.
 
 <table>
     <tr>
@@ -47,33 +120,39 @@ Configure the Endpoint parameters in your synapse configuration as shown below.
     </tr>
 </table>
 
-### Example
+#### Example
 
-In the following example, the endpoint URL is configured for an environment variable.
+In the following example, the endpoint URL is configured as a dynamic value.
 
-```xml
+```xml tab='Using Environment Variables'
 <?xml version="1.0" encoding="UTF-8"?>
 <endpoint xmlns="http://ws.apache.org/ns/synapse" name="JSON_EP">
   <address uri="$SYSTEM:VAR"/>
 </endpoint>
 ```
 
--   In a **VM** deployment, you can export the variables as shown below. Here VAR is the url you need to have set as environment property.
+```xml tab='Using a File'
+<?xml version="1.0" encoding="UTF-8"?>
+<endpoint xmlns="http://ws.apache.org/ns/synapse" name="StockQuoteEndPoint">
+  <address uri="$FILE:stockQuoteEP"/>
+</endpoint>
+```
 
-    ```bash
-    export VAR=http://localhost:61616/...
-    ```
+### Data service parameters
 
-## Injecting Data service parameters
+!!! Tip
+    Note that you cannot inject parameters to data service using a file. You can only use environment variables.
+
+Listed below are the data service parameters that can be dynamically injected.
 
 -   `Driver`
 -   `URL`
 -   `Username`
 -   `Password`
 
-### Example
+#### Example
 
-In the following example, the data service parameters are configured for an environment variable.
+In the following example, parameters are configured as dynamic values in the data service.
 
 ```xml tab='Inline Datasource'
 <data name="DataServiceSample" serviceGroup="" serviceNamespace="">
@@ -108,22 +187,13 @@ In the following example, the data service parameters are configured for an envi
 </datasource>
 ```
 
--  In a **VM** deployment, you can export the variables as shown below. Here VAR is the url you need to have set as environment property.
+### Scheduled Task parameters
 
-    ```bash
-    export uname=
-    export pass=
-    export url1=
-    export driver1=
-    ```
+The <b>pinned servers</b> parameter can be dynamically injected to a scheduled task or proxy service. See the example given below.
 
-## Injecting Scheduled Task parameters
+#### Example
 
-The <b>pinned servers</b> parameter can be set as an environment variable for a scheduled task or proxy service. See the examples given below.
-
-### Example
-
-```xml
+```xml tab='Using Environment Variables'
 <?xml version="1.0" encoding="UTF-8"?>
 <task class="org.apache.synapse.startup.tasks.MessageInjector" group="synapse.simple.quartz" name="ProxytestInject" pinnedServers="$SYSTEM:pinned" xmlns="http://ws.apache.org/ns/synapse">
     <trigger count="5" interval="10"/>
@@ -136,15 +206,22 @@ The <b>pinned servers</b> parameter can be set as an environment variable for a 
 </task>
 ```
 
--   In a **VM** deployment, you can export the variables as shown below. Here VAR is the url you need to have set as environment property.
+```xml tab='Using a File'
+<?xml version="1.0" encoding="UTF-8"?>
+<task class="org.apache.synapse.startup.tasks.MessageInjector" group="synapse.simple.quartz" name="ProxytestInject" pinnedServers="$FILE:pinned" xmlns="http://ws.apache.org/ns/synapse">
+    <trigger count="5" interval="10"/>
+    <property name="injectTo" value="proxy" xmlns:task="http://www.wso2.org/products/wso2commons/tasks"/>
+    <property name="proxyName" value="testProxy" xmlns:task="http://www.wso2.org/products/wso2commons/tasks"/>
+    <property name="soapAction" value="mediate" xmlns:task="http://www.wso2.org/products/wso2commons/tasks"/>
+    <property name="message" xmlns:task="http://www.wso2.org/products/wso2commons/tasks">
+        ----------
+    </property>
+</task>
+```
 
-    ```bash
-    export pinned=
-    ```
+### Inbound Endpoint parameters
 
-## Injecting Inbound Endpoint parameters
-
-See the list of properties that can be defined as environment variables:
+See the list of inbound endpoint parameters that can be dynamically injected.
 
 -   <a href="../../references/synapse-properties/inbound-endpoints/listening-inbound-endpoints/http-inbound-endpoint-properties">HTTP/HTTPS Inbound Protocol</a>
 -   <a href="../../references/synapse-properties/inbound-endpoints/listening-inbound-endpoints/hl7-inbound-endpoint-properties">HL7 Inbound Protocol</a>
@@ -158,131 +235,11 @@ See the list of properties that can be defined as environment variables:
 -   <a href="../../references/synapse-properties/inbound-endpoints/event-based-inbound-endpoints/mqtt-inbound-endpoint-properties">MQTT Inbound Protocol</a>
 -   <a href="../../references/synapse-properties/inbound-endpoints/event-based-inbound-endpoints/rabbitmq-inbound-endpoint-properties">RabbitMQ Inbound Protocol</a>
 
-<!--
-<table>
-    <tr>
-        <th>Inbound Endpoint Type</th>
-        <th>Parameters</th>
-    </tr>
-    <tr>
-        <td>HTTP/S</td>
-        <td>
-            <code>inbound.http.port</code>
-        </td>
-    </tr>
-    <tr>
-        <td>HL7</td>
-        <td>
-            <code>inbound.hl7.Port</code>
-        </td>
-    </tr>
-    <tr>
-        <td>CFX-WS-RM</td>
-        <td>
-            <ul>
-                <li>
-                    <code>Inbound.cxf.rm.port</code>
-                </li>
-                <li>
-                    <code>inbound.cxf.rm.host</code>
-                </li>
-            </ul>
-        </td>
-    </tr>
-    <tr>
-        <td>Websocket/Secure</td>
-        <td>
-            <code>inbound.ws.port</code>
-        </td>
-    </tr>
-    <tr>
-        <td>File</td>
-        <td>
-            <ul>
-                <li>
-                    <code>transport.vfs.FileURI</code>
-                </li>
-                <li>
-                    <code>transport.vfs.MoveAfterFailure</code>
-                </li>
-                <li>
-                    <code>transport.vfs.MoveAfterProcess</code>
-                </li>
-                <li>
-                    <code>transport.vfs. ReplyFileURI</code>
-                </li>
-            </ul>
-        </td>
-    </tr>
-    <tr>
-        <td>JMS</td>
-        <td>
-            <ul>
-                <li>
-                    <code>pinnedServers</code>
-                </li>
-                <li>
-                    <code>java.naming.provider.url</code>
-                </li>
-                <li>
-                    <code>transport.jms.UserName</code>
-                </li>
-                <li>
-                    <code>transport.jms.Password</code>
-                </li>
-            </ul>
-        </td>
-    </tr>
-    <tr>
-        <td>Kafka</td>
-        <td>
-            <code>zookeeper.connect</code>
-        </td>
-    </tr>
-    <tr>
-        <td>MQTT</td>
-        <td>
-            <ul>
-                <li>
-                    <code>mqtt.server.host.name</code>
-                </li>
-                <li>
-                    <code>mqtt.server.port</code>
-                </li>
-                <li>
-                    <code>mqtt.subscription.username</code>
-                </li>
-                <li>
-                    <code>mqtt.subscription.password</code>
-                </li>
-            </ul>
-        </td>
-    </tr>
-    <tr>
-        <td>RabbitMQ</td>
-        <td>
-            <ul>
-                <li>
-                    <code>rabbitmq.server.host.name</code>
-                </li>
-                <li>
-                    <code>rabbitmq.server.port</code>
-                </li>
-                <li>
-                    <code>rabbitmq.server.user.name</code>
-                </li>
-                <li>
-                    <code>rabbitmq.server.password</code>
-                </li>
-            </ul>
-        </td>
-    </tr>
-</table>
--->
+#### Example
 
-### Example
+In the following example, JMS transport parameters in an inbound endpoint are configured as dynamic values.
 
-```xml
+```xml tab='Using Environment Variables'
 <?xml version="1.0" encoding="UTF-8"?>
 <inboundEndpoint name="jms" onError="fault" protocol="jms" sequence="LogMsgSeq" suspend="false" xmlns="http://ws.apache.org/ns/synapse">
     <parameters>
@@ -307,19 +264,34 @@ See the list of properties that can be defined as environment variables:
 </inboundEndpoint>
 ```
 
--   In a **VM** deployment, you can export the variables as shown below. Here VAR is the url you need to have set as environment property.
+```xml tab='Using a File'
+<?xml version="1.0" encoding="UTF-8"?>
+<inboundEndpoint name="jms" onError="fault" protocol="jms" sequence="LogMsgSeq" suspend="false" xmlns="http://ws.apache.org/ns/synapse">
+    <parameters>
+        <parameter name="interval">15000</parameter>
+        <parameter name="sequential">true</parameter>
+        <parameter name="coordination">true</parameter>
+        <parameter name="transport.jms.Destination">myq</parameter>
+        <parameter name="transport.jms.CacheLevel">3</parameter>
+        <parameter name="transport.jms.ConnectionFactoryJNDIName">$FILE:jmsconfac</parameter>
+        <parameter name="java.naming.factory.initial">org.apache.activemq.jndi.ActiveMQInitialContextFactory</parameter>
+        <parameter name="java.naming.provider.url">$FILE:jmsurl</parameter>
+        <parameter name="transport.jms.UserName">$FILE:jmsuname</parameter>
+        <parameter name="transport.jms.SessionAcknowledgement">AUTO_ACKNOWLEDGE</parameter>
+        <parameter name="transport.jms.Password">$FILE:jmspass</parameter>
+        <parameter name="transport.jms.SessionTransacted">false</parameter>
+        <parameter name="transport.jms.ConnectionFactoryType">queue</parameter>
+        <parameter name="transport.jms.ContentType">application/xml</parameter>
+        <parameter name="transport.jms.SharedSubscription">false</parameter>
+        <parameter name="pinnedServers">$FILE:pinned</parameter>
+        <parameter name="transport.jms.ResetConnectionOnPollingSuspension">false</parameter>
+    </parameters>
+</inboundEndpoint>
+```
 
-    ```bash
-    export jmsconfac=
-    export jmsurl=
-    export jmsuname=
-    export jmspass=
-    export pinned=
-    ```
+### Proxy Service parameters
 
-## Injecting proxy service parameters
-    
-The <b>pinned servers</b> parameter as well as all the service-level <b>transport parameters</b>:
+The <b>pinned servers</b> parameter as well as all the service-level <b>transport parameters</b> can be dynamically injected to a proxy service.
 
 -   [JMS parameters](../../references/synapse-properties/transport-parameters/jms-transport-parameters)
 -   [FIX parameters](../../references/synapse-properties/transport-parameters/fix-transport-parameters)
@@ -328,9 +300,11 @@ The <b>pinned servers</b> parameter as well as all the service-level <b>transpor
 -   [RabbitMQ parameters](../../references/synapse-properties/transport-parameters/rabbitmq-transport-parameters)
 -   [VFS parameters](../../references/synapse-properties/transport-parameters/vfs-transport-parameters)
 
-### Example
+#### Example
 
-```xml
+In the following example, JMS transport parameters are dynamically injected to the proxy service.
+
+```xml tab='Using Environment Variables'
 <?xml version="1.0" encoding="UTF-8"?>
 <proxy name="JmsListner" pinnedServers="localhost" startOnLoad="true" transports="http https jms" xmlns="http://ws.apache.org/ns/synapse">
     <target>
@@ -354,16 +328,33 @@ The <b>pinned servers</b> parameter as well as all the service-level <b>transpor
 </proxy>
 ```
 
--  In a **VM** deployment, you can export the variables as shown below. Here VAR is the url you need to have set as environment property.
+```xml tab='Using a File'
+<?xml version="1.0" encoding="UTF-8"?>
+<proxy name="JmsListner" pinnedServers="localhost" startOnLoad="true" transports="http https jms" xmlns="http://ws.apache.org/ns/synapse">
+    <target>
+        <inSequence>
+            -------------
+            <drop/>
+        </inSequence>
+        <outSequence/>
+        <faultSequence/>
+    </target>
+    <parameter name="transport.jms.SessionAcknowledgement">AUTO_ACKNOWLEDGE</parameter>
+    <parameter name="transport.jms.Destination">myq</parameter>
+    <parameter name="transport.jms.ConnectionFactoryType">queue</parameter>
+    <parameter name="transport.jms.ContentType">application/xml</parameter>
+    <parameter name="java.naming.factory.initial">org.apache.activemq.jndi.ActiveMQInitialContextFactory</parameter>
+    <parameter name="java.naming.provider.url">$FILE:jmsurl</parameter>
+    <parameter name="transport.jms.SessionTransacted">false</parameter>
+    <parameter name="transport.jms.ConnectionFactoryJNDIName">$FILE:jmsconfac</parameter>
+    <parameter name="transport.jms.UserName">$FILE:jmsuname</parameter>
+    <parameter name="transport.jms.Password">$FILE:jmspass</parameter>
+</proxy>
+```
 
-    ```bash
-    export jmsurl=
-    export jmsconfac=
-    export jmsuname=
-    export jmspass=
-    ```
+### Message Store parameters
 
-## Injecting Message Store parameters
+Listed below are the message store parameters that can be dynamically injected.
 
 <table>
     <tr>
@@ -432,9 +423,11 @@ The <b>pinned servers</b> parameter as well as all the service-level <b>transpor
     </tr>
 </table>
 
-### Example
+#### Example
 
-```xml
+In the following example, the parameters in the RabbitMQ message store are configured as dynamic values.
+
+```xml tab='Using Environment Variables'
 <?xml version="1.0" encoding="UTF-8"?>
 <messageStore class="org.apache.synapse.message.store.impl.rabbitmq.RabbitMQStore" name="InboundStore" xmlns="http://ws.apache.org/ns/synapse">
     <parameter name="store.rabbitmq.host.name">$SYSTEM:rabbithost</parameter>
@@ -450,11 +443,18 @@ The <b>pinned servers</b> parameter as well as all the service-level <b>transpor
 </messageStore>
 ```
 
--  In a **VM** deployment, you can export the variables as shown below.
-
-    ```bash
-    export rabbithost=
-    export rabbitport=
-    export rabbitname=
-    export rabbitpass=
-    ```
+```xml tab='Using a File'
+<?xml version="1.0" encoding="UTF-8"?>
+<messageStore class="org.apache.synapse.message.store.impl.rabbitmq.RabbitMQStore" name="InboundStore" xmlns="http://ws.apache.org/ns/synapse">
+    <parameter name="store.rabbitmq.host.name">$FILE:rabbithost</parameter>
+    <parameter name="store.producer.guaranteed.delivery.enable">false</parameter>
+    <parameter name="store.rabbitmq.host.port">$FILE:rabbitport</parameter>
+    <parameter name="store.rabbitmq.route.key"/>
+    <parameter name="store.rabbitmq.username">$FILE:rabbitname</parameter>
+    <parameter name="store.rabbitmq.virtual.host"/>
+    <parameter name="rabbitmq.connection.ssl.enabled">false</parameter>
+    <parameter name="store.rabbitmq.exchange.name">exchange3</parameter>
+    <parameter name="store.rabbitmq.queue.name">queue3</parameter>
+    <parameter name="store.rabbitmq.password">$FILE:rabbitpass</parameter>
+</messageStore>
+```
