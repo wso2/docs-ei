@@ -46,7 +46,7 @@ Define your synapse artifacts using "$FILE:parameter_key" as the parameter value
 
 You can use a configuration file to load the parameter values for each environment. By default, the Micro Integrator is shipped with the file.properties file (stored in the `<MI_HOME>/conf` directory), which you can use to store the parameter values that should be injected to your synapse configuration. The parameter values should be specified as a key-value pair as shown below.
 
-```xml
+```text
 stockQuoteEP=http://localhost:9000/services/SimpleStockQuoteService
 ```
 
