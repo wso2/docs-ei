@@ -1175,7 +1175,7 @@ curl -X PUT "https://localhost:9443/siddhi-apps/TestSiddhiApp/statistics" -H "ac
 <table>
 <tbody>
 <tr class="odd">
-<td>HTTP Status Code</td>
+<th>HTTP Status Code</th>
 <td><p>200 or 404</p>
 <p>For descriptions of the HTTP status codes, see <a href="_HTTP_Status_Codes_">HTTP Status Codes</a> .</p></td>
 </tr>
@@ -1243,7 +1243,7 @@ curl -X PUT "https://localhost:9443/siddhi-apps/statistics" -H "accept: applicat
 <table>
 <tbody>
 <tr class="odd">
-<td>HTTP Status Code</td>
+<th>HTTP Status Code</th>
 <td><p>200 or 404</p>
 <p>For descriptions of the HTTP status codes, see <a href="_HTTP_Status_Codes_">HTTP Status Codes</a> .</p></td>
 </tr>
