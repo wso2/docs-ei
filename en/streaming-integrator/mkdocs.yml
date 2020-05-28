@@ -247,12 +247,12 @@ nav:
       - 'Siddhi Application Management APIs': 'ref/siddhi-Application-Management-APIs.md'
       - 'Event Simulation APIs': 'ref/event-simulation-apis.md'
       - 'Status Monitoring APIs': 'ref/status-monitoring-apis.md'
-      - 'Authentication APIs': 'ref/authentication-apis.md'
+      - 'Authentication APIs': 'ref/authentication-APIs.md'
       - 'Permission APIs': 'ref/permission-apis.md'
-      - 'Business Rules APIs': 'ref/business-rules-apis.md'
-      - 'Store APIs': 'ref/store-apis.md'
-      - 'Healthcheck APIs': 'ref/healthcheck-apis.md'
-      - 'HTTP Status Codes': 'ref/http-status-codes.md'
+      - 'Business Rules APIs': 'ref/business-Rules-APIs.md'
+      - 'Store APIs': 'ref/store-APIs.md'
+      - 'Healthcheck APIs': 'ref/healthcheck-APIs.md'
+      - 'HTTP Status Codes': 'ref/hTTP-Status-Codes.md'
     - 'Performance Analysis Results': 'ref/performance-analysis-results.md'
   - '': page-not-found.md
 
