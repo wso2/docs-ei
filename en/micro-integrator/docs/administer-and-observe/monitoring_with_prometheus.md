@@ -48,12 +48,6 @@ To use Prometheus, you need to first start the WSO2 Micro Integrator instance by
 
 ## Viewing statistics
 
-The stats can be viewed in following urls ( This is an internal url which is to be used by prometheus ). 
-
-```bash
-http://localhost:9201/metric-service/metrics
-```
-
 You may also visit following url in Prometheus server to plot the
 graphs.
 
