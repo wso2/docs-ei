@@ -77,12 +77,15 @@ A place holder specified in the `deployment.toml` file is then used to fetch the
 To encrypt secrets using the CLI tool:
 
 1.  [Download](https://wso2.com/integration/micro-integrator/tooling/) and setup the Micro Integrator CLI tool.
-2.  Initialize the CLI tool from your command line:
+
+2.  Go to the Micro Integrator CLI tool Home folder and Navigate to the bin folder <MI-CLI>/bin
+
+3.  Initialize the CLI tool from your command line:
 
     ```bash
-    ./mi
+    mi
     ```
-3.  Initialize the secret creation process in the tool:
+4.  Initialize the secret creation process in the tool:
 
     ```bash
     mi secret init
@@ -95,7 +98,7 @@ To encrypt secrets using the CLI tool:
     - keystore alias
     - Keystore password
 
-4.  Execute one of the following commands to generate the secret:
+5.  Execute one of the following commands to generate the secret:
 
     ```bash
     # To encrypt secret and get output to console
