@@ -42,7 +42,7 @@ theme:
   feature:
     tabs: true
   language: 'en'
-  
+
 # Navigation
 nav:
     - 'Home': index.md
@@ -90,7 +90,7 @@ nav:
         - Protocol Switching:
           - 'Switching from JMS to HTTP/S': 'use-cases/examples/protocol-switching/switching_from_JMS_to_HTTP.md'
           - 'Switching from HTTP/S to JMS': 'use-cases/examples/protocol-switching/switching_from_HTTPS_to_JMS.md'
-          - 'Switching from FTP Listener to Mail Sender': 'use-cases/examples/protocol-switching/switching_from_FTP_listener_to_mail_sender.md'   
+          - 'Switching from FTP Listener to Mail Sender': 'use-cases/examples/protocol-switching/switching_from_FTP_listener_to_mail_sender.md'
           - 'Switching from HTTP to FIX': 'use-cases/examples/protocol-switching/switching_from_HTTP_to_FIX.md'
           - 'Switch from FIX to HTTP': 'use-cases/examples/protocol-switching/switching_from_FIX_to_HTTP.md'
           - 'Switch from FIX to AMQP': 'use-cases/examples/protocol-switching/switching_from_FIX_to_AMQP.md'
@@ -158,7 +158,7 @@ nav:
           - Message Stores & Processors:
             - 'Introduction to Message Stores and Processors': 'use-cases/examples/message_store_processor_examples/intro-message-stores-processors.md'
             - 'JDBC Message Store': 'use-cases/examples/message_store_processor_examples/using-jdbc-message-store.md'
-            - 'JMS Message Store': 'use-cases/examples/message_store_processor_examples/using-jms-message-stores.md'          
+            - 'JMS Message Store': 'use-cases/examples/message_store_processor_examples/using-jms-message-stores.md'
             - 'RabbitMQ Message Store': 'use-cases/examples/message_store_processor_examples/using-rabbitmq-message-stores.md'
             - 'Message Sampling Processor': 'use-cases/examples/message_store_processor_examples/using-message-sampling-processor.md'
             - 'Message Forwarding Processor': 'use-cases/examples/message_store_processor_examples/using-message-forwarding-processor.md'
@@ -181,7 +181,7 @@ nav:
           - Sequences:
             - 'Breaking Complex Flows into Multiple Sequences': 'use-cases/examples/sequence_examples/using-multiple-sequences.md'
             - 'Using Fault Sequences': 'use-cases/examples/sequence_examples/using-fault-sequences.md'
-            - 'Resusig Sequences': 'use-cases/examples/sequence_examples/custom-sequences-with-proxy-services.md'  
+            - 'Resusig Sequences': 'use-cases/examples/sequence_examples/custom-sequences-with-proxy-services.md'
         - Transports:
           - 'Using the TCP Transport': 'use-cases/examples/transport_examples/tcp-transport-examples.md'
           - 'Using the FIX Transport': 'use-cases/examples/transport_examples/fix-transport-examples.md'
@@ -190,24 +190,25 @@ nav:
         - 'JSON Examples': 'use-cases/examples/json_examples/json-examples.md'
       - 'Connectors': 'use-cases/connectors.md'
     - Setup and Install:
+      - 'Setup and Install Overview': 'setup/micro_integrator_deployment_overview.md'
       - Installation Guide:
         - 'Installation Prerequisites': 'setup/installation/install_prerequisites.md'
         - 'Install on a VM': 'setup/installation/install_in_vm.md'
         - 'Run on Docker': 'setup/installation/run_in_docker.md'
         - 'Run on Kubernetes': 'setup/installation/run_in_kubernetes.md'
       - Kubernetes Deployment:
-        - 'Kubernetes Deployment Patterns': 'setup/deployment/kubernetes_deployment_patterns.md' 
+        - 'Kubernetes Deployment Patterns': 'setup/deployment/kubernetes_deployment_patterns.md'
         - 'EI Kubernetes Operator': 'setup/deployment/ei_kubernetes_operator.md'
-        - 'Deploy on Kubernetes': 'setup/deployment/kubernetes_deployment.md' 
-        - K8s Deployment Samples: 
-          - 'Sample 1: Hello World': 'setup/deployment/k8s-samples/hello-world.md' 
-          - 'Sample 2: Message Routing': 'setup/deployment/k8s-samples/content-based-routing.md' 
+        - 'Deploy on Kubernetes': 'setup/deployment/kubernetes_deployment.md'
+        - K8s Deployment Samples:
+          - 'Sample 1: Hello World': 'setup/deployment/k8s-samples/hello-world.md'
+          - 'Sample 2: Message Routing': 'setup/deployment/k8s-samples/content-based-routing.md'
           - 'Sample 3: JMS Sender/Receiver': 'setup/deployment/k8s-samples/jms-sender-receiver.md'
       - VM Deployment:
-        - 'Clustered Deployment': 'setup/deployment/deploying_wso2_ei.md' 
+        - 'Clustered Deployment': 'setup/deployment/deploying_wso2_ei.md'
         - 'Deployment Synchronization': 'setup/deployment/deployment_synchronization.md'
         - 'Load Balancing': 'setup/deployment/setting_up_lb.md'
-        - Cluster Coordination Database: 
+        - Cluster Coordination Database:
           - 'MySQL Database': 'setup/deployment/databases/setting-up-MySQL.md'
           - 'MSSQL Database': 'setup/deployment/databases/setting-up-MSSQL.md'
           - 'Oracle Database': 'setup/deployment/databases/setting-up-Oracle.md'
@@ -216,16 +217,16 @@ nav:
         - 'File-Based Registry' : 'setup/deployment/file_based_registry.md'
         - 'Troubleshooting a Production Deployment' : 'setup/deployment/troubleshooting_deployment.md'
         - 'Backup and Recovery' : 'setup/deployment/backup_recovery.md'
-      - 'Migrating from WSO2 EI 6.x': 'setup/deployment/migrating-from-ei-6.x.x.md' 
+      - 'Migrating from WSO2 EI 6.x': 'setup/deployment/migrating-from-ei-6.x.x.md'
       - 'Product Deployment Checklist': 'setup/deployment/deployment_checklist.md'
       - 'Managing Configurations across Environments': 'setup/dynamic_server_configurations.md'
       - Security Hardening :
         - Setting up Keystores:
-          - 'Creating New Keystores' : 'setup/security/creating_keystores.md'
-          - 'Adding SSL certificates to keystores' : 'setup/security/importing_ssl_certificate.md'
-          - 'Renewing a CA-signed Certificate' : 'setup/security/renewing_ca_signed_certificate_in_keystore.md'
-          - 'Configuring Keystores' : 'setup/security/configuring_keystores.md'
-        - Complying with GDPR: 
+          - 'Creating New Keystores': 'setup/security/creating_keystores.md'
+          - 'Adding SSL certificates to keystores': 'setup/security/importing_ssl_certificate.md'
+          - 'Renewing a CA-signed Certificate': 'setup/security/renewing_ca_signed_certificate_in_keystore.md'
+          - 'Configuring Keystores': 'setup/security/configuring_keystores.md'
+        - Complying with GDPR:
           - 'GDPR for the WSO2 Micro Integrator' : 'setup/security/gdpr_ei.md'
           - 'About the Identity Anonymization Tool' : 'setup/security/about_forgetme_tool.md'
         - Working with Passwords:
@@ -410,7 +411,7 @@ nav:
         - Microsoft Azure Storage Connector:
             - 'Setting up the Microsoft Azure Storage Environment': 'references/connectors/microsoft-azure-storage-connector/microsoft-azure-storage-configuration.md'
             - 'Microsoft Azure Storage Connector Example': 'references/connectors/microsoft-azure-storage-connector/microsoft-azure-storage-connector-example.md'
-        - Google Firebase Connector: 
+        - Google Firebase Connector:
           - 'Setting up Google Firebase Environment': 'references/connectors/google-firebase-connector/google-firebase-setup.md'
           - 'Google Firebase Connector Example': 'references/connectors/google-firebase-connector/google-firebase-connector-example.md'
           - 'Google Firebase Connector Configuration': 'references/connectors/google-firebase-connector/google-firebase-configuration.md'
@@ -559,7 +560,7 @@ nav:
         - 'Mediation Sequences': 'references/synapse-properties/sequence-properties.md'
         - Message Stores and Processors:
           - 'About Message Stores and Processors': 'references/synapse-properties/about-message-stores-processors.md'
-          - Message Stores: 
+          - Message Stores:
             - 'JMS Message Store': 'references/synapse-properties/message-stores/jms-msg-store-properties.md'
             - 'JDBC Message Store': 'references/synapse-properties/message-stores/jdbc-msg-store-properties.md'
             - 'RabbitMQ Message Store': 'references/synapse-properties/message-stores/rabbitmq-msg-store-properties.md'
@@ -597,7 +598,7 @@ nav:
       - 'Error Codes' : 'references/error_handling.md'
       - 'WSO2 Micro Integrator vs WSO2 EI 6.x Family' : 'references/comparisong-mi7-ei6xx.md'
     - '': page-not-found.md
-     
+
 # Extensions
 markdown_extensions:
   - markdown_include.include:
@@ -627,7 +628,7 @@ markdown_extensions:
   - pymdownx.tasklist:
       custom_checkbox: true
   - pymdownx.tilde
-      
+
 # Extra
 extra_css:
   - assets/lib/highlightjs/default.min.css
