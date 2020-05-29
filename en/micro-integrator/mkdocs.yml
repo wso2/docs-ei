@@ -233,7 +233,7 @@ nav:
           - 'Using Symmetric Encryption' : 'setup/security/single_key_encryption.md'
         - 'Securing the Management API' : 'setup/security/securing_management_api.md'
         - Working with User Stores:
-          - 'Configuring a User Store' : 'setup/user_stores/setting_up_ro_ldap.md'
+          - 'Configuring a User Store' : 'setup/user_stores/setting_up_a_userstore.md'
           - 'Managing Users' : 'setup/user_stores/managing_users.md'
       - Performance Tuning:
         - 'Tuning JVM Performance' : 'setup/performance_tuning/tuning_jvm_performance.md'

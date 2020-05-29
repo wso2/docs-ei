@@ -418,8 +418,8 @@ mi version
        # To list users by user role
        mi user show -r [role name]
 
-       # To list users matching a user name regex pattern
-       mi user show -p [user name regex pattern]
+       # To list users matching a user name pattern. You can use the wild card symbol "*" (at the start and/or end of pattern) to define a pattern. Example: '*mi*'
+       mi user show -p [user name pattern]
     ```
 
 -   **secret**

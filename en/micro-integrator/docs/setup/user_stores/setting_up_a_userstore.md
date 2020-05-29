@@ -25,7 +25,14 @@ See the documentation of your LDAP provider for instructions on setting up the L
 Follow the steps given below to connect the Micro Integrator to the LDAP user store.
 
 1.	Open the `deployment.toml` file stored in the `<MI_HOME>/conf/` directory.
-2.	Add the following configurations and update the required values.
+2.	Add the following configuration to disable the default file-based user store:
+
+	```toml
+	[internal_apis.file_user_store]
+	enable = false
+	```
+
+3.	Add the following configurations and update the required values.
 
 	```toml
 	[user_store]
@@ -92,7 +99,14 @@ See the [complete list of parameters](../../../references/config-catalog/#ldap-u
 		- [Setting up an IBM database](../../../setup/deployment/databases/setting-up-IBM-DB2)
 
 2.	Open the `deployment.toml` file (stored in the `<MI_HOME>/conf` directory).
-3.	Add the relevant datasource configuration and update the values for your database.
+3.	Add the following configuration to disable the default file-based user store:
+
+	```toml
+	[internal_apis.file_user_store]
+	enable = false
+	```
+
+4.	Add the relevant datasource configuration and update the values for your database.
 
 	!!! Tip
 			If you are already using a JDBC user store (database) with another WSO2 product ([WSO2 API Manager](https://wso2.com/api-management/), [WSO2 Identity Server](https://wso2.com/identity-and-access-management/), or an instance of [WSO2 Enterprise Integrator 6.x.x](https://wso2.com/enterprise-integrator/6.6.0)), you can connect the same database to the Micro Integrator of WSO2 Enterprise Integrator 7 as explained below.
@@ -208,7 +222,7 @@ See the [complete list of parameters](../../../references/config-catalog/#ldap-u
 
 	See the complete list of [database connection parameters](../../../references/config-catalog/#database-connection) and their descriptions. Also, see the recommendations for [tuning the JDBC connection pool](../../../setup/performance_tuning/jdbc_tuning).
 
-4.	Add the JDBC user store manager under the `[user_store]` toml heading as shown below.
+5.	Add the JDBC user store manager under the `[user_store]` toml heading as shown below.
 
 	!!! Tip
 			If you want to be able to modify the data in your user store, be sure to enable write access to the user store.

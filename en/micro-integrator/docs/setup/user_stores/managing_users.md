@@ -7,7 +7,7 @@ If you are user with admin privileges, you can add new users, view users, and de
 ## Prerequisites
 
 - [Enable the management API](../../../administer-and-observe/working-with-management-api/#enabling-the-management-api) when you start the Micro Integrator.
-- Set up an [external user store](../setting_up_ro_ldap) with **write access** for the Micro Integrator.
+- Set up an [external user store](../setting_up_a_userstore) with **write access** for the Micro Integrator.
 
 ## Using the CLI Tool
 

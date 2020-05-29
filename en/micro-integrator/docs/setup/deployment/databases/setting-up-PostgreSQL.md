@@ -78,6 +78,9 @@ driver="org.postgresql.Driver"
 pool_options.maxActive=50
 pool_options.maxWait = 60000
 pool_options.testOnBorrow = true
+
+[realm_manager]
+data_source = "WSO2_USER_DB"
 ```
 
 Find more parameters for [connecting to the database](../../../../references/config-catalog/#database-connection).

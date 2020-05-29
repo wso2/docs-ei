@@ -87,7 +87,7 @@ The management API has multiple resources to provide information regarding the d
 	**Example**:
 
   	```bash tab='Request'
-  	curl -X GET "https://localhost:9164/management/users?pattern=”*us*”&role=”sole”" -H "accept: application/json" -H "Authorization: Bearer %AccessToken%" -k -i
+  	curl -X GET "https://localhost:9164/management/users?pattern=”*us*”&role=”role”" -H "accept: application/json" -H "Authorization: Bearer %AccessToken%" -k -i
   	```
 
     ```bash tab='Response'
@@ -115,8 +115,8 @@ The management API has multiple resources to provide information regarding the d
     ```bash tab='Response'
     {
       userid: “user1”,
-      	isAdmin: true/false,
-      	roles :
+      isAdmin: true/false,
+      roles :
       [
            role1,
           role2,
@@ -126,12 +126,12 @@ The management API has multiple resources to provide information regarding the d
 
 -	**Resource**: `/users/pattern=”*”&role=admin`
 
-	**Description**: Retrieves information related to user names (stored in an [external user store](../../../setup/user_stores/setting_up_ro_ldap)) that match a specific regex pattern.
+	**Description**: Retrieves information related to user names (stored in an [external user store](../../../setup/user_stores/setting_up_ro_ldap)) that match a specific pattern.
 
 	**Example**:
 
   	```bash tab='Request'
-  	curl -X GET "https://localhost:9164/management/users?pattern=”*us*”&role=”sole”" -H "accept: application/json" -H "Authorization: Bearer %AccessToken%" -k -i
+  	curl -X GET "https://localhost:9164/management/users?pattern=”*us*”&role=”role”" -H "accept: application/json" -H "Authorization: Bearer %AccessToken%" -k -i
   	```
 
     ```bash tab='Response'
@@ -146,7 +146,7 @@ The management API has multiple resources to provide information regarding the d
     }
     ```
 
-### POST USERS
+### ADD USERS
 
 -	**Resource**: `/users`
 
@@ -233,7 +233,7 @@ The management API has multiple resources to provide information regarding the d
 	curl -X GET "https://localhost:9164/management/proxy-services?proxyServiceName=helloProxy" -H "accept: application/json" -H "Authorization: Bearer TOKEN" -k -i
 	```
 
-### POST PROXY SERVICES
+### ACTIVATE/DEACTIVATE PROXY SERVICES
 
 -	**Resource**: `/proxy-services`
 
@@ -323,27 +323,20 @@ The management API has multiple resources to provide information regarding the d
 	**Description**: Retrieves information related to a specified endpoint.
 
 
-### POST ENDPOINTS
+### ACTIVATE/DEACTIVATE ENDPOINTS
 
 -	**Resource**: `/endpoints`
 
-	**Description**:  Activate or deactivate a specified endpoint.
+	**Description**: Activate or deactivate a specified endpoint.
 
 	**Example**:
 
 	```bash tab='Request'
-	curl -X POST \
-  	  https://localhost:9164/management/endpoints \
-  	  -H 'authorization: Bearer TOKEN
-  	  -H 'content-type: application/json' \
-  	  -d '{
-  		"name": "HTTPEP",
-  		"status": "inactive"
-  	} -k -i
-  ```
+	curl -X POST \https://localhost:9164/management/endpoints \ -H 'authorization: Bearer TOKEN -H 'content-type: application/json' \ -d '{"name": "HTTPEP", "status": "inactive"} -k -i
+	```
 
 	```bash tab='Response'
-        {"Message":"HTTPEP : is switched Off"}
+	{"Message":"HTTPEP : is switched Off"}
 	```
 
 ### GET APIs
@@ -546,7 +539,7 @@ The management API has multiple resources to provide information regarding the d
 
 	**Description**: Retrieves information related to a specified message processor.
 
-### POST MESSAGE PROCESSORS
+### ACTIVATE/DEACTIVATE MESSAGE PROCESSORS
 
 -	**Resource**: `/message-processors`
 
