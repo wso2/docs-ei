@@ -23,7 +23,7 @@ Follow the steps below to set up a PostgreSQL database.
 
     These values will be used in the product configurations as described
         in the following sections. In the sample configuration,
-        `           gregadmin          ` will be used as both the role name
+        `           dbadmin          ` will be used as both the role name
         and the password.
 
 8.  Optionally, enter other policies, such as the expiration time for
@@ -42,7 +42,7 @@ Add the following parameters to the `deployment.toml` file in the `MI_HOME/conf`
 ```toml
 [[datasource]]
 id = "WSO2_COORDINATION_DB"
-url= "jdbc:postgresql://localhost:5432/gregdb"
+url= "jdbc:postgresql://localhost:5432/clusterdb"
 username="root"
 password="root"
 driver="org.postgresql.Driver"

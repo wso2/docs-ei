@@ -232,7 +232,6 @@ nav:
         - Working with Passwords:
           - 'Encrypting Passwords' : 'setup/security/encrypting_plain_text.md'
           - 'Using Symmetric Encryption' : 'setup/security/single_key_encryption.md'
-          - 'Set Passwords using Environment Variables/System Properties' : 'setup/security/replace_passwords_with_sys_properties.md'
         - 'Securing the Management API' : 'setup/security/securing_management_api.md'
         - 'Configuring a User Store' : 'setup/user_stores/setting_up_ro_ldap.md'
       - Performance Tuning:
@@ -275,8 +274,8 @@ nav:
     - Develop:
       - 'Developing Integration Solutions': 'develop/intro-integration-development.md'
       - WSO2 Integration Studio:
-        - 'Quick Tour - WSO2 Integration Studio' : 'develop/WSO2-Integration-Studio.md'
-        - 'Installing WSO2 Integration Studio' : 'develop/installing-WSO2-Integration-Studio.md'
+        - 'Quick Tour - WSO2 Integration Studio': 'develop/WSO2-Integration-Studio.md'
+        - 'Installing WSO2 Integration Studio': 'develop/installing-WSO2-Integration-Studio.md'
         - 'Working with WSO2 Integration Studio': 'develop/working-with-wso2-integration-studio.md'
         - 'Troubleshooting WSO2 Integration Studio': 'develop/troubleshooting-WSO2-Integration-Studio.md'
       - Creating Projects:
@@ -312,10 +311,12 @@ nav:
         - 'Creating a New Connector': 'develop/customizations/creating-new-connector.md'
         - 'Customizing Task Scheduling': 'develop/customizations/creating-custom-task-scheduling.md'
       - Securing Artifacts:
-        - 'Encrypting Synapse Passwords' : 'develop/creating-artifacts/encrypting-synapse-passwords.md'
+        - 'Encrypting Synapse Passwords': 'develop/creating-artifacts/encrypting-synapse-passwords.md'
+        - 'Using Docker Secrets': 'develop/creating-artifacts/using_docker_secrets.md'
+        - 'Using Kubernetes Secrets': 'develop/creating-artifacts/using_k8s_secrets.md'
         - 'Applying Security to a REST API': 'develop/advanced-development/applying-security-to-an-api.md'
         - 'Applying Security to a Proxy Service': 'develop/advanced-development/applying-security-to-a-proxy-service.md'
-        - 'Applying Security to a Data Service' : 'develop/creating-artifacts/data-services/securing-data-services.md'
+        - 'Applying Security to a Data Service': 'develop/creating-artifacts/data-services/securing-data-services.md'
       - Packaging Artifacts:
         - 'Packaging Artifacts': 'develop/packaging-artifacts.md'
         - 'Exporting Artifacts': 'develop/exporting-artifacts.md'
@@ -330,7 +331,7 @@ nav:
         - 'Using Wire Logs': 'develop/using-wire-logs.md'
         - 'Monitoring Proxy Service Access Logs': 'develop/enabling-logs-for-services.md'
         - 'Monitoring REST API Access Logs': 'develop/enabling-logs-for-api.md'
-        - 'Endpoint Tracing' : 'develop/endpoint-trace-logs.md'
+        - 'Endpoint Tracing': 'develop/endpoint-trace-logs.md'
       - 'Running on WSO2 Integration Cloud': 'develop/deploying-in-integration-cloud.md'
       - Advanced Development Tasks:
         - 'Injecting Parameters as Environment Variables': 'develop/injecting-parameters.md'
@@ -339,7 +340,6 @@ nav:
         - 'Extend Role-based Data Filtering': 'develop/advanced-development/extend-role-based-filtering-for-ds.md'
         - 'Dynamic User Authentication': 'develop/advanced-development/dynamic-user-authentication.md'
       - 'Managing the Registry': 'develop/creating-artifacts/registry/managing-the-Registry.md'
-      #- 'Using a CI/CD Pipeline' : 'develop/using-cicd-pipeline.md'
     - Observability:
       - 'Micro Integrator Dashboard': 'administer-and-observe/working-with-monitoring-dashboard.md'
       - 'Micro Integrator CLI': 'administer-and-observe/using-the-command-line-interface.md'
@@ -390,6 +390,7 @@ nav:
         - AmazonS3 Connector:
           - 'Setting up Amazon S3 Environment': 'references/connectors/amazons3-connector/amazons3-connector-config.md'
           - 'AmazonS3 Connector Example': 'references/connectors/amazons3-connector/amazons3-connector-example.md'
+          - 'AmazonS3 Connector Configuration': 'references/connectors/amazons3-connector/amazons3-connector-reference.md'
         - ServiceNow Connector:
           - 'ServiceNow Connector Example': 'references/connectors/servicenow-connector/servicenow-connector-example.md'
           - 'Setting up Servicenow Instance': 'references/connectors/servicenow-connector/settingup-servicenow-instance.md'
@@ -406,23 +407,33 @@ nav:
             - 'Setting up ISO8583 Connector': 'references/connectors/ISO8583-connector/ISO8583-connector-configuration.md'
             - 'ISO8583 Connector Example': 'references/connectors/ISO8583-connector/ISO8583-connector-example.md'
             - 'ISO8583 Inbound Endpoint Example': 'references/connectors/ISO8583-connector/ISO8583-inbound-endpoint-example.md'
+            - 'ISO8583 Connector Configuration': 'references/connectors/ISO8583-connector/ISO8583-connector-reference.md'
+            - 'ISO8583 Inbound Endpoint Configuration': 'references/connectors/ISO8583-connector/ISO8583-inbound-endpoint-config.md'
         - Amazon SQS Connector:
             - 'Amazon SQS Connector Example': 'references/connectors/amazonsqs-connector/amazonsqs-connector-example.md'
+            - 'Amazon SQS Connector Configuration': 'references/connectors/amazonsqs-connector/amazonsqs-connector-config.md'
         - Microsoft Azure Storage Connector:
             - 'Setting up the Microsoft Azure Storage Environment': 'references/connectors/microsoft-azure-storage-connector/microsoft-azure-storage-configuration.md'
             - 'Microsoft Azure Storage Connector Example': 'references/connectors/microsoft-azure-storage-connector/microsoft-azure-storage-connector-example.md'
+            - 'Microsoft Azure Storage Connector Configuration': 'references/connectors/microsoft-azure-storage-connector/microsoft-azure-storage-reference.md'
         - Google Firebase Connector:
           - 'Setting up Google Firebase Environment': 'references/connectors/google-firebase-connector/google-firebase-setup.md'
           - 'Google Firebase Connector Example': 'references/connectors/google-firebase-connector/google-firebase-connector-example.md'
           - 'Google Firebase Connector Configuration': 'references/connectors/google-firebase-connector/google-firebase-configuration.md'
         - FHIR Connector:
           - 'FHIR Connector Example': 'references/connectors/fhir-connector/fhir-connector-example.md'
+          - 'FHIR Connector Configuration': 'references/connectors/fhir-connector/fhir-connector-config.md'
         - SMPP Connector:
             - 'Setting up the SMPP Connector': 'references/connectors/smpp-connector/smpp-connector-configuration.md'
             - 'SMPP Connector Example': 'references/connectors/smpp-connector/smpp-connector-example.md'
             - 'SMPP Inbound Endpoint Example': 'references/connectors/smpp-connector/smpp-inbound-endpoint-example.md'
             - 'SMPP Connector Configuration': 'references/connectors/smpp-connector/smpp-connector-config.md'
             - 'SMPP Inbound Endpoint Configuration': 'references/connectors/smpp-connector/smpp-inbound-endpoint-config.md'
+        - Google Spreadsheet Connector:
+          - 'Google Spreadsheet Connector Example': 'references/connectors/google-spreadsheet-connector/google-spreadsheet-connector-example.md'
+        - Amazon DynamoDB Connector:
+            - 'Setting up the Amazon DynamoDB Connector ': 'references/connectors/amazondynamodb-connector/amazondynamodb-connector-configuration.md'
+            - 'Amazon DynamoDB Connector Example': 'references/connectors/amazondynamodb-connector/amazondynamodb-connector-example.md'
         - Ceridian Dayforce Connector:
             - 'Setting up the Ceridian Dayforce Connector': 'references/connectors/ceridiandayforce-connector/ceridiandayforce-connector-config.md'
             - 'Ceridian Dayforce Connector Example': 'references/connectors/ceridiandayforce-connector/ceridiandayforce-connector-example.md'

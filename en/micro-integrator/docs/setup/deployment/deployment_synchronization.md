@@ -1,18 +1,14 @@
 # Deployment Synchronization
 
-When you have a cluster of nodes, the integration artifacts deployed in each server node needs to be identical. This can be achieved by synchronizing the deployment directories of each server. That is, the `<MI_HOME>/repository/deployment/server` folder of each server needs to be shared.
+When you have a [clustered deployment](../deploying_wso2_ei), the integration artifacts deployed in each server node of the cluster needs to be identical. This can be achieved by synchronizing the deployment directories of each server. That is, the `<MI_HOME>/repository/deployment/server` folder of each server needs to be shared.
 
-Use the following deployment synchronization recommendations based on the rate of change of artifacts that is expected to happen in your cluster:
+Select one of the following approaches depending on the expected rate of change (of artifacts) in your cluster:
 
--   For a high rate of changes (i.e., if changes happen very frequently):
-    Network File Share (NFS)
-
--   For a medium rate of change
-    Remote Synchronization (Rsync)
-
+-   For a high rate of changes (i.e., if changes happen very frequently), us **Network File Share (NFS)**.
+-   For a medium rate of change, use **Remote Synchronization (Rsync)**.
 -   For a low rate of changes (i.e., if changes happen once a week):
-    - Use the configuration management system to handle artifacts
-    - Use other deployment options (e.g., Puppet, Chef etc.)
+    - Use the **configuration management system** to handle artifacts.
+    - Use other deployment options (e.g., Puppet, Chef etc.).
 
 Be sure to choose the deployment synchronization method that suits your production environment.
 
@@ -41,30 +37,30 @@ If you are unable to maintain a shared file system, you can synchronize the cont
     Configure syncing the `<EI_HOME>/repository/tenant/` directory to share the tenant artifacts across the cluster.
 
     ```bash
-    #!/bin/sh 
+    #!/bin/sh
     ei_server_dir=~/wso2ei-6.6.0/repository/deployment/server/
     pem_file=~/.ssh/carbon-440-test.pem
-     
-     
+
+
     #delete the lock on exit
     trap 'rm -rf /var/lock/depsync-lock' EXIT
-     
-    mkdir /tmp/carbon-rsync-logs/ 
-     
+
+    mkdir /tmp/carbon-rsync-logs/
+
     #keep a lock to stop parallel runs
     if mkdir /var/lock/depsync-lock; then
       echo "Locking succeeded" >&2
     else
       echo "Lock failed - exit" >&2
       exit 1
-    fi 
-     
+    fi
+
     #get the nodes-list.txt
     pushd `dirname $0` > /dev/null
     SCRIPTPATH=`pwd`
     popd > /dev/null
     echo $SCRIPTPATH
-     
+
     for x in `cat ${SCRIPTPATH}/nodes-list.txt`
     do
     echo ================================================== >> /tmp/carbon-rsync-logs/logs.txt;

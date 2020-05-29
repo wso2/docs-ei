@@ -11,7 +11,7 @@ This deployment scenario uses a two-node Micro Integrator deployment. That is, t
 
 Let's set up two instances of the Micro Integrator.
 
-[Download and install WSO2 Micro Integrator](../../setup/installation/install_in_vm.md). 
+[Download and install WSO2 Micro Integrator](../../setup/installation/install_in_vm.md).
 
 ## Hostnames
 
@@ -26,7 +26,7 @@ Find more [parameters](../../../references/config-catalog/#deployment) for deplo
 
 ## Cluster coordination
 
-Most of the integration flows are stateless and don't actually require coordination when there is more than a single instance of the server running. However, the following set of artifacts requires coordination among themselves when deployed in more than a single instance of the server. 
+Most of the integration flows are stateless and don't actually require coordination when there is more than a single instance of the server running. However, the following set of artifacts requires coordination among themselves when deployed in more than a single instance of the server.
 
 -   Scheduled Tasks
 -   Message Processors
@@ -37,19 +37,25 @@ Most of the integration flows are stateless and don't actually require coordinat
 
 When the nodes in the cluster need to communicate with each other, the Micro Integrator uses RDBMS-based coordination among the server nodes. That is, all the nodes communicate via a database. Hence, you need to have a database to enable coordination among the artifacts.
 
-1.  Create a database named `WSO2_COORDINATION_DB`.
+1.  Create a database named `clusterdb`. Select a database type from the following list:
 
     ??? Note "Tested Databases"
         The following database types are tested with this version of the Micro Integrator:
-    
+
         -   MySQL 8.0.19
         -   Microsoft SQL Server 2017 (RTM-CU11) (KB4462262) - 14.0.3038.14 (X64)
         -   postgres (PostgreSQL) 12.2 (Debian 12.2-2.pgdg100+1)
         -   DB2 v11.5.0.0
         -   Oracle Database 12c Enterprise Edition Release 12.2.0.1.0 - 64bit Production
 
-2.  Open the `deployment.toml` file and update the configurations as shown below.
-    
+    - [Setting up a MySQL database](../../../setup/deployment/databases/setting-up-MySQL)
+    - [Setting up an MSSQL database](../../../setup/deployment/databases/setting-up-MSSQL)
+    - [Setting up an Oracle database](../../../setup/deployment/databases/setting-up-Oracle)
+    - [Setting up a Postgre database](../../../setup/deployment/databases/setting-up-PostgreSQL)
+    - [Setting up an IBM database](../../../setup/deployment/databases/setting-up-IBM-DB2)
+
+2.  Open the `deployment.toml` file and see that the configurations are updated as shown below.
+
     ```toml tab='MySQL'
     [[datasource]]
     id = "WSO2_COORDINATION_DB"
@@ -60,12 +66,12 @@ When the nodes in the cluster need to communicate with each other, the Micro Int
     pool_options.maxActive=50
     pool_options.maxWait = 60000
     pool_options.testOnBorrow = true
-    ``` 
+    ```
 
     ```toml tab='MSSQL'
     [[datasource]]
     id = "WSO2_COORDINATION_DB"
-    url= "jdbc:sqlserver://<IP>:1433;databaseName=wso2greg;SendStringParametersAsUnicode=false"
+    url= "jdbc:sqlserver://<IP>:1433;databaseName=clusterdb;SendStringParametersAsUnicode=false"
     username="root"
     password="root"
     driver="com.microsoft.sqlserver.jdbc.SQLServerDriver"
@@ -89,7 +95,7 @@ When the nodes in the cluster need to communicate with each other, the Micro Int
     ```toml tab='PostgreSQL'
     [[datasource]]
     id = "WSO2_COORDINATION_DB"
-    url= "jdbc:postgresql://localhost:5432/gregdb"
+    url= "jdbc:postgresql://localhost:5432/clusterdb"
     username="root"
     password="root"
     driver="org.postgresql.Driver"
@@ -101,7 +107,7 @@ When the nodes in the cluster need to communicate with each other, the Micro Int
     ```toml tab='IBM DB'
     [[datasource]]
     id = "WSO2_COORDINATION_DB"
-    url="jdbc:db2://SERVER_NAME:PORT/DB_NAME"
+    url="jdbc:db2://SERVER_NAME:PORT/clusterdb"
     username="root"
     password="root"
     driver="com.ibm.db2.jcc.DB2Driver"
@@ -134,7 +140,7 @@ If the node ID is specified using multiple methods, the applicable node ID will 
 When you have scheduled task in your integration deployment, each task should only run in one node of the cluster. The task resolver configuration in your server nodes specifies the logic allocation of tasks to the server nodes.
 
 -   Default resolver
-    
+
     By default, tasks are resolved by selecting a random node from the available list of nodes in the cluster. All the tasks are resolved to the selected node. The tasks will be resolved to some other node only if the first node leaves the cluster. Optionally, you can apply the following [advanced configurations](#advanced-parameters).
 
     ```toml
@@ -150,7 +156,7 @@ When you have scheduled task in your integration deployment, each task should on
     ```toml
     [task_handling]
     resolver_class = "org.wso2.micro.integrator.ntask.coordination.task.resolver.RoundRobinResolver"
-     
+
     [[task_resolver]]
     task_server_count = "3"
     ```
@@ -162,7 +168,7 @@ When you have scheduled task in your integration deployment, each task should on
     ```toml
     [task_handling]
     resolver_class= "org.wso2.micro.integrator.ntask.coordination.task.resolver.TaskNodeResolver"
-     
+
     [[task_resolver]]
     task_nodes = "node-1,node-2 ,node-3,node-4"
     ```
@@ -227,7 +233,7 @@ resolving_frequency = "3"
 !!! Note
     Registry sharing is only required if you have Message Processors in your deployment.
 
-Registry sharing maintains the state of the Message Processor, which is deployed in deactivated state upon new member additions. 
+Registry sharing maintains the state of the Message Processor, which is deployed in deactivated state upon new member additions.
 
 1.  Follow the instructions on [configuring the file-based registry](../../setup/deployment/file_based_registry.md) for a two-node deployment of the Micro Integrator.
 2.  The `<MI_HOME>/registry` folder of each node in the cluster should be shared with each other. This can be done in the same way as deployment synchronization.

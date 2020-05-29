@@ -5,30 +5,25 @@ Given below are the steps you need to follow in order to use a MySQL database fo
 
 ## Setting up MySQL
 
-Following the steps below to create the necessary databases.
+To set up MySQL:
 
 1. Download and install [MySQL Server](http://dev.mysql.com/downloads/).
 2. Download the [MySQL JDBC driver](http://dev.mysql.com/downloads/connector/j/).
-3. [Download](http://wso2.com/integration) and unzip the database scripts for the Micro Integrator.
-4. Unzip the downloaded MySQL driver and copy the MySQL JDBC driver JAR (mysql-connector-java-x.x.xx-bin.jar) into the `MI_HOME/lib/` directory of your Micro Integrator.
-5. Execute the following command in a terminal/command where the username is the username you want to use to access the databases:
+3. Unzip the downloaded MySQL driver and copy the MySQL JDBC driver JAR (mysql-connector-java-x.x.xx-bin.jar) to the `<MI_HOME>/lib/` directory of the Micro Integrator nodes in your cluster.
+4. Execute the following command in a terminal/command where the username is the username you want to use to access the databases:
 
 	 `mysql -u username -p`
 
-6. When prompted, specify the password to access the databases with the username you specified.
+5. When prompted, specify the password to access the database with the username you specified.
 
 ## Creating the database
 
-Create the user DB by pointing to the MySQL script that you downloaded. Execute the following command:
-
-!!! Tip
-	If you are using MySQL 5.7 or a later version, you need to use the mysql5.7.sql script instead of the mysql.sql script. This script has been tested on MySQL 5.7 and MySQL 8.
+Execute the following command to create the DB by pointing to the MySQL script (`mysql_cluster.sql`) in the `<MI_HOME>/dbscripts/` directory:
 
 ```bash
 mysql> create database clusterdb;
 mysql> use clusterdb;
-mysql> source <MI_HOME>dbscripts/mysql_cluster.sql;
-mysql> grant all on WSO2_USER_DB.* TO regadmin@"carbondb.mysql-wso2.com" identified by "regadmin";
+mysql> source <MI_HOME>/dbscripts/mysql_cluster.sql;
 ```
 
 !!! Info
