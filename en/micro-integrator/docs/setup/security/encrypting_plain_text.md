@@ -119,23 +119,32 @@ To encrypt secrets using the CLI tool:
 To dynamically load secrets to server configurations, update the parameters in the `deployment.toml` file as an environment variable or system property:
 
 ```toml tab='Environment Variable'
-[keystore.primary]
-password = "$env{ENV_VAR}"
-alias = "$env{ENV_VAR}"
-key_password = "$env{ENV_VAR}"  
+[keystore.tls]
+file_name = "wso2carbon.jks"
+password = "$secret{carbon_secret}"
+alias = "$secret{carbon_secret}"
+key_password = "$secret{carbon_secret}"
 
-[truststore]                  
-password = "$env{ENV_VAR}"
+[secrets]
+carbon_secret = "$env{env_carbon_sec}"
+
+Here the value of env_carbon_sec environment variable should be the encrypted value
 ```
 
 ```toml tab='System Property'
-[keystore.primary]
-password = "$sys{system.property}"
-alias = "$sys{system.property}"
-key_password = "$sys{system.property}"  
+[keystore.tls]
+file_name = "wso2carbon.jks"
+password = "$secret{carbon_secret}"
+alias = "$secret{carbon_secret}"
+key_password = "$secret{carbon_secret}"
 
-[truststore]                  
-password = "$sys{system.property}"
+[secrets]
+carbon_secret = "$sys{sys_carbon_sec}"
+
+Here the value of sys_carbon_sec system property should be the encrypted value
 ```
+
+Also note that each time a new secret is added to the [secrets] section of deployment.toml file
+you should run the Cipher Tool. 
 
 Read more about [using dynamic server configurations](../../../setup/dynamic_server_configurations).
