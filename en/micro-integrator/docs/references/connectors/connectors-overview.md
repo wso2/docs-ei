@@ -57,7 +57,11 @@ Using connectors provide the following advantages:
 
 When configuring the integration logic, you need to use Integration Studio. When ready, you can export the project along with dependency connectors to the WSO2 EI runtime. See [documentation on adding connectors](https://ei.docs.wso2.com/en/latest/micro-integrator/develop/creating-artifacts/adding-connectors/) for more information.
 
-Note: You can also access the connectors directly from the [connector store](https://store.wso2.com/store/assets/esbconnector/list) if required. 
+See the following video for a quick look at how to use connectors.
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/O2rAFdL8lZQ" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+> **Note**: You can also access the connectors directly from the [connector store](https://store.wso2.com/store/assets/esbconnector/list) if required. 
 
 ### Connectors in Integration Studio
 
@@ -122,7 +126,7 @@ For an example, please refer to [this issue](https://github.com/wso2/micro-integ
 
 ### Write your own custom connector
 
-There may be instances where the product you want to integrate with does not have a connector as yet. In this case, you can build your own connector. Please refer to the document here for detailed instructions.
+There may be instances where the product you want to integrate with does not have a connector as yet. In this case, you can build your own connector. Please refer to the document [here](../../develop/customizations/creating-new-connector.md) for detailed instructions. The following are the types of custom connectors that you can write.
 
 * Custom connector 
 * Custom inbound endpoint  
