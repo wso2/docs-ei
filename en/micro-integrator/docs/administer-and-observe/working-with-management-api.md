@@ -82,7 +82,7 @@ The management API has multiple resources to provide information regarding the d
 
 -	**Resource**: `/users`
 
-	**Description**: Retrieves a list of all users stored in an [external user store](../../../setup/user_stores/setting_up_ro_ldap).
+	**Description**: Retrieves a list of all users stored in an [external user store](../../../setup/user_stores/setting_up_a_userstore).
 
 	**Example**:
 
@@ -104,7 +104,7 @@ The management API has multiple resources to provide information regarding the d
 
 -	**Resource**: `/users/{user_id}`
 
-	**Description**: Retrieves information related to a specified user stored in the [external user store](../../../setup/user_stores/setting_up_ro_ldap).
+	**Description**: Retrieves information related to a specified user stored in the [external user store](../../../setup/user_stores/setting_up_a_userstore).
 
 	**Example**:
 
@@ -126,7 +126,7 @@ The management API has multiple resources to provide information regarding the d
 
 -	**Resource**: `/users/pattern=”*”&role=admin`
 
-	**Description**: Retrieves information related to user names (stored in an [external user store](../../../setup/user_stores/setting_up_ro_ldap)) that match a specific pattern.
+	**Description**: Retrieves information related to user names (stored in an [external user store](../../../setup/user_stores/setting_up_a_userstore)) that match a specific pattern.
 
 	**Example**:
 
@@ -150,7 +150,7 @@ The management API has multiple resources to provide information regarding the d
 
 -	**Resource**: `/users`
 
-	**Description**: Adds a user to the [external user store](../../../setup/user_stores/setting_up_ro_ldap).
+	**Description**: Adds a user to the [external user store](../../../setup/user_stores/setting_up_a_userstore).
 
 	**Example**:
 
@@ -181,7 +181,7 @@ The management API has multiple resources to provide information regarding the d
 
 -	**Resource**: `/users`
 
-	**Description**: Deletes a user from the [external user store](../../../setup/user_stores/setting_up_ro_ldap).
+	**Description**: Deletes a user from the [external user store](../../../setup/user_stores/setting_up_a_userstore).
 
 	**Example**:
 
