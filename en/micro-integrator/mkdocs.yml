@@ -393,6 +393,7 @@ nav:
         - ServiceNow Connector:
           - 'ServiceNow Connector Example': 'references/connectors/servicenow-connector/servicenow-connector-example.md'
           - 'Setting up Servicenow Instance': 'references/connectors/servicenow-connector/settingup-servicenow-instance.md'
+          - 'ServiceNow Connector Reference': 'references/connectors/servicenow-connector/servicenow-connector-config.md'
         - LDAP Connector:
             - 'Setting up an LDAP Server': 'references/connectors/ldap-connector/setting-up-ldap.md'
             - 'LDAP Connector Example': 'references/connectors/ldap-connector/ldap-connector-example.md'
