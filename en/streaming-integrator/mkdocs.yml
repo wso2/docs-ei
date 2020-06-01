@@ -218,11 +218,11 @@ nav:
       - 'Working with Keystores': 'admin/working-with-Keystores.md'
       - 'Supporting Different Transports': 'admin/supporting-different-transports.md'
       - 'User Management': 'admin/user-management.md'
-      - 'Configuring State Persistence': 'admin/configuring-Database-and-File-System-State-Persistence'
+      - 'Configuring State Persistence': 'admin/configuring-Database-and-File-System-State-Persistence.md'
       - 'Protecting Sensitive Data via the Secure Vault': 'admin/protecting-sensitive-data-via-the-secure-vault.md'
       - 'Adding Third Party Non OSGi Library': 'admin/adding-third-party-non-osgi-libraries.md'
       - 'Configuring Default Ports': 'ref/configuring-default-ports.md'
-      - 'Changing the Host Name and Context Path of Web UI Applications': 'setup/change-hostname-and-context-path.md)'
+      - 'Changing the Host Name and Context Path of Web UI Applications': 'setup/change-hostname-and-context-path.md'
   - 'Develop':
     - 'Developing Streaming Integrator Solutions': 'develop/developing-streaming-integration-solutions.md'
     - 'Streaming Integrator Tooling':
