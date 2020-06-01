@@ -33,7 +33,7 @@ Click on **Inbound Endpoint** in the design view and under the `properties` tab,
         <parameter name="coordination">true</parameter>
         <parameter name="inbound.behavior">polling</parameter>
         <parameter name="value.deserializer">org.apache.kafka.common.serialization.StringDeserializer</parameter>
-        <parameter name="topic.names">test</parameter>
+        <parameter name="topic.name">test</parameter>
         <parameter name="poll.timeout">100</parameter>
         <parameter name="bootstrap.servers">localhost:9092</parameter>
         <parameter name="group.id">hello</parameter>
