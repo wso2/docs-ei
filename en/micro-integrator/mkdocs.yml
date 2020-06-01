@@ -431,6 +431,7 @@ nav:
             - 'SMPP Inbound Endpoint Configuration': 'references/connectors/smpp-connector/smpp-inbound-endpoint-config.md'
         - Google Spreadsheet Connector:
           - 'Google Spreadsheet Connector Example': 'references/connectors/google-spreadsheet-connector/google-spreadsheet-connector-example.md'
+          - 'Google Spreadsheet Connector Reference': 'references/connectors/google-spreadsheet-connector/google-spreadsheet-connector-config.md'
         - Amazon DynamoDB Connector:
             - 'Setting up the Amazon DynamoDB Connector ': 'references/connectors/amazondynamodb-connector/amazondynamodb-connector-configuration.md'
             - 'Amazon DynamoDB Connector Example': 'references/connectors/amazondynamodb-connector/amazondynamodb-connector-example.md'
