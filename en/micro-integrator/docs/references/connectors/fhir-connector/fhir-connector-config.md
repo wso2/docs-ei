@@ -19,9 +19,9 @@ For more information on authentication/security of the FHIR REST API, see http:/
             <th>Required</th>
         </tr>
         <tr>
-            <th>base</th>
-            <th>The service root URL.</th>
-            <th>Yes.</th>
+            <td>base</td>
+            <td>The service root URL.</td>
+            <td>Yes.</td>
         </tr>
     </table>
 
@@ -46,19 +46,19 @@ For more information on authentication/security of the FHIR REST API, see http:/
             <th>Required</th>
         </tr>
         <tr>
-            <th>base</th>
-            <th>The <a href="http://www.hl7.org/implement/standards/fhir/http.html#root">service root URL</a>.</th>
-            <th>Yes.</th>
+            <td>base</td>
+            <td>The <a href="http://www.hl7.org/implement/standards/fhir/http.html#root">service root URL</a>.</td>
+            <td>Yes.</td>
         </tr>
         <tr>
             <th>format</th>
-            <th>The <a href="http://www.hl7.org/implement/standards/fhir/http.html#mime-type">Mime Type</a>.</th>
-            <th>Yes.</th>
+            <td>The <a href="http://www.hl7.org/implement/standards/fhir/http.html#mime-type">Mime Type</a>.</td>
+            <td>Yes.</td>
         </tr>
         <tr>
-            <th>id, content, lastUpdated, profile, query, security, tag, text, filter</th>
-            <th>These are the optional parameters and are common search parameters for all resources.</th>
-            <th>Optional.</th>
+            <td>id, content, lastUpdated, profile, query, security, tag, text, filter</td>
+            <td>These are the optional parameters and are common search parameters for all resources.</td>
+            <td>Optional.</td>
         </tr>
     </table>
 
@@ -109,29 +109,29 @@ For more information on authentication/security of the FHIR REST API, see http:/
             <th>Required</th>
         </tr>
         <tr>
-            <th>base</th>
-            <th>The <a href="http://www.hl7.org/implement/standards/fhir/http.html#root">service root URL</a>.</th>
-            <th>Yes.</th>
+            <td>base</td>
+            <td>The <a href="http://www.hl7.org/implement/standards/fhir/http.html#root">service root URL</a>.</td>
+            <td>Yes.</td>
         </tr>
         <tr>
-            <th>type</th>
-            <th>The name of a resource type (e.g., "Patient").</th>
-            <th>Yes.</th>
+            <td>type</td>
+            <td>The name of a resource type (e.g., "Patient").</td>
+            <td>Yes.</td>
         </tr>
         <tr>
-            <th>idForHistory</th>
-            <th>The id of the history that needs to be retrieved.</th>
-            <th>Yes.</th>
+            <td>idForHistory</td>
+            <td>The id of the history that needs to be retrieved.</td>
+            <td>Yes.</td>
         </tr>
         <tr>
-            <th>format</th>
-            <th>The <a href="http://www.hl7.org/implement/standards/fhir/http.html#mime-type">Mime Type</a>.</th>
-            <th>Yes.</th>
+            <td>format</td>
+            <td>The <a href="http://www.hl7.org/implement/standards/fhir/http.html#mime-type">Mime Type</a>.</td>
+            <td>Yes.</td>
         </tr>
         <tr>
-            <th>id, content, lastUpdated, profile, query, security, tag, text, filter</th>
-            <th>These are the optional parameters and are common search parameters for all resources.</th>
-            <th>Optional.</th>
+            <td>id, content, lastUpdated, profile, query, security, tag, text, filter</td>
+            <td>These are the optional parameters and are common search parameters for all resources.</td>
+            <td>Optional.</td>
         </tr>
     </table>
 
@@ -184,19 +184,19 @@ For more information on authentication/security of the FHIR REST API, see http:/
             <th>Required</th>
         </tr>
         <tr>
-            <th>base</th>
-            <th>The <a href="http://www.hl7.org/implement/standards/fhir/http.html#root">service root URL</a>.</th>
-            <th>Yes.</th>
+            <td>base</td>
+            <td>The <a href="http://www.hl7.org/implement/standards/fhir/http.html#root">service root URL</a>.</td>
+            <td>Yes.</td>
         </tr>
         <tr>
-            <th>format</th>
-            <th>The <a href="http://www.hl7.org/implement/standards/fhir/http.html#mime-type">Mime Type</a>.</th>
-            <th>Yes.</th>
+            <td>format</td>
+            <td>The <a href="http://www.hl7.org/implement/standards/fhir/http.html#mime-type">Mime Type</a>.</td>
+            <td>Yes.</td>
         </tr>
         <tr>
-            <th>id, content, lastUpdated, profile, query, security, tag, text, filter</th>
-            <th>These are the optional parameters and are common search parameters for all resources.</th>
-            <th>Optional.</th>
+            <td>id, content, lastUpdated, profile, query, security, tag, text, filter</td>
+            <td>These are the optional parameters and are common search parameters for all resources.</td>
+            <td>Optional.</td>
         </tr>
     </table>
 
@@ -240,29 +240,29 @@ For more information on authentication/security of the FHIR REST API, see http:/
     To retrieves the history of all resources of a given type supported by the system , use fhir.historyType and specify the following properties. For more information, see related [FHIR API documentation](http://www.hl7.org/implement/standards/fhir/http.html#history).
     <table>
         <tr>
-            <th>Parameter Name</th>
-            <th>Description</th>
-            <th>Required</th>
+            <th>Parameter Name</td>
+            <th>Description</td>
+            <th>Required</td>
         </tr>
         <tr>
-            <th>base</th>
-            <th>The <a href="http://www.hl7.org/implement/standards/fhir/http.html#root">service root URL</a>.</th>
-            <th>Yes.</th>
+            <td>base</td>
+            <td>The <a href="http://www.hl7.org/implement/standards/fhir/http.html#root">service root URL</a>.</td>
+            <td>Yes.</td>
         </tr>
         <tr>
-            <th>type</th>
-            <th>The name of a resource type (e.g., "Patient").</th>
-            <th>Yes.</th>
+            <td>type</td>
+            <td>The name of a resource type (e.g., "Patient").</td>
+            <td>Yes.</td>
         </tr>
         <tr>
-            <th>format</th>
-            <th>The <a href="http://www.hl7.org/implement/standards/fhir/http.html#mime-type">Mime Type</a>.</th>
-            <th>Yes.</th>
+            <td>format</td>
+            <td>The <a href="http://www.hl7.org/implement/standards/fhir/http.html#mime-type">Mime Type</a>.</td>
+            <td>Yes.</td>
         </tr>
         <tr>
-            <th>id, content, lastUpdated, profile, query, security, tag, text, filter</th>
-            <th>These are the optional parameters and are common search parameters for all resources.</th>
-            <th>Optional.</th>
+            <td>id, content, lastUpdated, profile, query, security, tag, text, filter</td>
+            <td>These are the optional parameters and are common search parameters for all resources.</td>
+            <td>Optional.</td>
         </tr>
     </table>
 
@@ -315,24 +315,24 @@ For more information on authentication/security of the FHIR REST API, see http:/
             <th>Required</th>
         </tr>
         <tr>
-            <th>base</th>
-            <th>The <a href="http://www.hl7.org/implement/standards/fhir/http.html#root">service root URL</a>.</th>
-            <th>Yes.</th>
+            <td>base</td>
+            <td>The <a href="http://www.hl7.org/implement/standards/fhir/http.html#root">service root URL</a>.</td>
+            <td>Yes.</td>
         </tr>
         <tr>
-            <th>type</th>
-            <th>The name of a resource type (e.g., "Patient").</th>
-            <th>Yes.</th>
+            <td>type</td>
+            <td>The name of a resource type (e.g., "Patient").</td>
+            <td>Yes.</td>
         </tr>
         <tr>
-            <th>format</th>
-            <th>The <a href="http://www.hl7.org/implement/standards/fhir/http.html#mime-type">Mime Type</a>.</th>
-            <th>Yes.</th>
+            <td>format</td>
+            <td>The <a href="http://www.hl7.org/implement/standards/fhir/http.html#mime-type">Mime Type</a>.</td>
+            <td>Yes.</td>
         </tr>
         <tr>
-            <th>id, content, lastUpdated, profile, query, security, tag, text, filter</th>
-            <th>These are the optional parameters and are common search parameters for all resources.</th>
-            <th>Optional.</th>
+            <td>id, content, lastUpdated, profile, query, security, tag, text, filter</td>
+            <td>These are the optional parameters and are common search parameters for all resources.</td>
+            <td>Optional.</td>
         </tr>
     </table>
 
@@ -383,24 +383,24 @@ For more information on authentication/security of the FHIR REST API, see http:/
             <th>Required</th>
         </tr>
         <tr>
-            <th>base</th>
-            <th>The <a href="http://www.hl7.org/implement/standards/fhir/http.html#root">service root URL</a>.</th>
-            <th>Yes.</th>
+            <td>base</td>
+            <td>The <a href="http://www.hl7.org/implement/standards/fhir/http.html#root">service root URL</a>.</td>
+            <td>Yes.</td>
         </tr>
         <tr>
-            <th>type</th>
-            <th>The name of a resource type (e.g., "Patient").</th>
-            <th>Yes.</th>
+            <td>type</td>
+            <td>The name of a resource type (e.g., "Patient").</td>
+            <td>Yes.</td>
         </tr>
         <tr>
-            <th>format</th>
-            <th>The <a href="http://www.hl7.org/implement/standards/fhir/http.html#mime-type">Mime Type</a>.</th>
-            <th>Yes.</th>
+            <td>format</td>
+            <td>The <a href="http://www.hl7.org/implement/standards/fhir/http.html#mime-type">Mime Type</a>.</td>
+            <td>Yes.</td>
         </tr>
         <tr>
-            <th>id, content, lastUpdated, profile, query, security, tag, text, filter</th>
-            <th>These are the optional parameters and are common search parameters for all resources.</th>
-            <th>Optional.</th>
+            <td>id, content, lastUpdated, profile, query, security, tag, text, filter</td>
+            <td>These are the optional parameters and are common search parameters for all resources.</td>
+            <td>Optional.</td>
         </tr>
     </table>
 
