@@ -2819,10 +2819,11 @@ To use the Salesforce REST connector, add the `<salesforcerest.init>` element in
     **Sample configuration**
 
     ```xml
-    <salesforcerest.delete>
+    <salesforcerest.update>
         <sObjectName>{$ctx:sObjectName}</sObjectName>
+        <fieldAndValue>{$ctx:fieldAndValue}</fieldAndValue>
         <Id>{$ctx:Id}</Id>
-    </salesforcerest.delete>
+    </salesforcerest.update>
     ```
 
     **Sample request**
