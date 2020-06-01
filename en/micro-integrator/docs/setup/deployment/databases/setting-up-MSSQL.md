@@ -1,6 +1,6 @@
-# Setting up Microsoft SQL
+# Setting up a Microsoft SQL Database
 
-Given below are the steps you need to follow in order to use an MSSQL database for cluster coordination in a Micro Integrator cluster.
+Follow the steps given below to set up the required MSSQL databases for your Micro Integrator.
 
 ## Enable TCP/IP
 
@@ -13,6 +13,25 @@ Given below are the steps you need to follow in order to use an MSSQL database f
 7. Restart Microsoft SQL server.
 
 ## Create the database and user
+
+The following MSSQL scripts are stored in the `<MI_HOME>/dbscripts/` directory of your Micro Integrator.
+
+<table>
+	<tr>
+		<th>Script</th>
+		<th>Description</th>
+	</tr>
+	<tr>
+		<td>mssql_cluster.sql</td>
+		<td>This script creates the database tables that are required for cluster coordination.</td>
+	</tr>
+	<tr>
+		<td>mssql_user.sql</td>
+		<td>This script creates the database tables that are required for storing users and roles.</td>
+	</tr>
+</table>
+
+First create the databases, and then create the DB tables by pointing to the relevant script in the `<MI_HOME>/dbscripts/` directory. It is recommended to maintain separate databases for these use cases.
 
 1. Open the Microsoft SQL Management Studio to create a database and user.
 2. Click **New Database** from the **Database** menu and specify all the options to create a new database.
@@ -30,9 +49,9 @@ server permissions.
 
 ## Connecting to the database
 
-Add the following parameters to the `deployment.toml` file in the `MI_HOME/conf` directory.
+Open the `deployment.toml` file in the `<MI_HOME>/conf` directory and add the following sections to create the connection between the Micro Integrator and the relevant database. Note that you need two separate configurations corresponding to the two separate databases (`clusterdb` and `userdb`).
 
-```bash
+```toml tab='Cluster DB Connection'
 [[datasource]]
 id = "WSO2_COORDINATION_DB"
 url= "jdbc:sqlserver://<IP>:1433;databaseName=clusterdb;SendStringParametersAsUnicode=false"
@@ -42,6 +61,21 @@ driver="com.microsoft.sqlserver.jdbc.SQLServerDriver"
 pool_options.maxActive=50
 pool_options.maxWait = 60000
 pool_options.testOnBorrow = true
+```
+
+```toml tab='User DB Connection'
+[[datasource]]
+id = "WSO2_USER_DB"
+url= "jdbc:sqlserver://<IP>:1433;databaseName=userdb;SendStringParametersAsUnicode=false"
+username="root"
+password="root"
+driver="com.microsoft.sqlserver.jdbc.SQLServerDriver"
+pool_options.maxActive=50
+pool_options.maxWait = 60000
+pool_options.testOnBorrow = true
+
+[realm_manager]
+data_source = "WSO2_USER_DB"
 ```
 
 Find more parameters for [connecting to the database](../../../../references/config-catalog/#database-connection).

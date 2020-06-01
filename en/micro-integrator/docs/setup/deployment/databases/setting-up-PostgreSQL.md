@@ -1,10 +1,27 @@
-# Setting up PostgreSQL
+# Setting up a PostgreSQL Database
 
-Given below are the steps you need to follow in order to use an PostgreSQl database for cluster coordination in a Micro Integrator cluster.
+Follow the steps given below to set up the required Postgre databases for your Micro Integrator.
 
 ## Setting up the database and login role
 
-Follow the steps below to set up a PostgreSQL database.
+The following Postgre scripts are stored in the `<MI_HOME>/dbscripts/` directory of your Micro Integrator.
+
+<table>
+	<tr>
+		<th>Script</th>
+		<th>Description</th>
+	</tr>
+	<tr>
+		<td>postgresql_cluster.sql</td>
+		<td>This script creates the database tables that are required for cluster coordination.</td>
+	</tr>
+	<tr>
+		<td>postgresql_user.sql</td>
+		<td>This script creates the database tables that are required for storing users and roles.</td>
+	</tr>
+</table>
+
+First create the databases, and then create the DB tables by pointing to the relevant script in the `<MI_HOME>/dbscripts/` directory. It is recommended to maintain separate databases for these use cases.
 
 1.  Install PostgreSQL on your computer as follows:  
 2.  Start the PostgreSQL service using the following command:  
@@ -37,9 +54,9 @@ Follow the steps below to set up a PostgreSQL database.
 
 ## Connecting the database to the server
 
-Add the following parameters to the `deployment.toml` file in the `MI_HOME/conf` directory.
+Open the `deployment.toml` file in the `<MI_HOME>/conf` directory and add the following sections to create the connection between the Micro Integrator and the relevant database. Note that you need two separate configurations corresponding to the two separate databases (`clusterdb` and `userdb`).
 
-```toml
+```toml tab='Cluster DB Connection'
 [[datasource]]
 id = "WSO2_COORDINATION_DB"
 url= "jdbc:postgresql://localhost:5432/clusterdb"
@@ -49,6 +66,21 @@ driver="org.postgresql.Driver"
 pool_options.maxActive=50
 pool_options.maxWait = 60000
 pool_options.testOnBorrow = true
+```
+
+```toml tab='User DB Connection'
+[[datasource]]
+id = "WSO2_USER_DB"
+url= "jdbc:postgresql://localhost:5432/userdb"
+username="root"
+password="root"
+driver="org.postgresql.Driver"
+pool_options.maxActive=50
+pool_options.maxWait = 60000
+pool_options.testOnBorrow = true
+
+[realm_manager]
+data_source = "WSO2_USER_DB"
 ```
 
 Find more parameters for [connecting to the database](../../../../references/config-catalog/#database-connection).

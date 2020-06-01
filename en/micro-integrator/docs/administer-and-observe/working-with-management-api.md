@@ -1,7 +1,7 @@
 # Using the Management API
 
 The Management API of WSO2 Micro Integrator is an internal REST API, which was introduced to substitute
-the **admin services** that were available in WSO2 EI 6.x.x. 
+the **admin services** that were available in WSO2 EI 6.x.x.
 
 The [Micro Integrator CLI](../../administer-and-observe/using-the-command-line-interface) and the [Micro Integrator dashboard](../../administer-and-observe/working-with-monitoring-dashboard) communicates with this service to
 obtain administrative information of the server instance. If you are not using the dashboard or the CLI, you can directly access the [resources](#accessig-api-resources) of the management API by following the instructions given below.
@@ -41,7 +41,7 @@ The management API is secured using JWT authentication by default. Therefore, wh
 
 ### Getting a JWT token
 
-Follow the steps given below to acquire the JWT token. 
+Follow the steps given below to acquire the JWT token.
 
 1.	First, encode your username:password in Basic Auth format (encoded in base64). For example, use the default `admin:admin` credentials.
 2.	Invoke the `/login` resource of the API with your encoded credintials as shown below.
@@ -50,14 +50,14 @@ Follow the steps given below to acquire the JWT token.
   	```
 3.	The API will validate the authorization header and provide a response with the JWT token as follows:
   	```json
-  	{ 
+  	{
   	   "AccessToken":"%AccessToken%"
   	}
   	```
 
 ### Invoking an API resource
 
-You can now use this token when you invoke a [resource](#accessig-api-resources). 
+You can now use this token when you invoke a [resource](#accessig-api-resources).
 
 !!! Info
      When the default JWT security handler is engaged, all the management API resources except `/login` is protected by JWT auth. Therefore, it is necessary to send the token as a bearer token when invoking the API resources.
@@ -74,9 +74,129 @@ Invoke the `/logout` resource to revoke the JWT token you used for [invoking the
 curl -X GET "https://localhost:9164/management/logout” -H "accept: application/json" -H "Authorization: Bearer %AccessToken%”
 ```
 
-## Accessig API resources
+## Accessing API resources
 
 The management API has multiple resources to provide information regarding the deployed artifacts as well as the server itself.
+
+### GET USERS
+
+-	**Resource**: `/users`
+
+	**Description**: Retrieves a list of all users stored in an [external user store](../../../setup/user_stores/setting_up_a_userstore).
+
+	**Example**:
+
+  	```bash tab='Request'
+  	curl -X GET "https://localhost:9164/management/users?pattern=”*us*”&role=”role”" -H "accept: application/json" -H "Authorization: Bearer %AccessToken%" -k -i
+  	```
+
+    ```bash tab='Response'
+    {
+    	count:2
+    	list:
+    	[
+    		userId: user1,
+    		userId: user2,
+    		userId: user3,
+    	]
+    }
+    ```
+
+-	**Resource**: `/users/{user_id}`
+
+	**Description**: Retrieves information related to a specified user stored in the [external user store](../../../setup/user_stores/setting_up_a_userstore).
+
+	**Example**:
+
+  	```bash tab='Request'
+  	curl -X GET "https://localhost:9164/management/users/user1" -H "accept: application/json" -H "Authorization: Bearer %AccessToken%" -k -i
+  	```
+
+    ```bash tab='Response'
+    {
+      userid: “user1”,
+      isAdmin: true/false,
+      roles :
+      [
+           role1,
+          role2,
+      ]
+    }
+    ```
+
+-	**Resource**: `/users/pattern=”*”&role=admin`
+
+	**Description**: Retrieves information related to user names (stored in an [external user store](../../../setup/user_stores/setting_up_a_userstore)) that match a specific pattern.
+
+	**Example**:
+
+  	```bash tab='Request'
+  	curl -X GET "https://localhost:9164/management/users?pattern=”*us*”&role=”role”" -H "accept: application/json" -H "Authorization: Bearer %AccessToken%" -k -i
+  	```
+
+    ```bash tab='Response'
+    {
+    	count:2
+    	list:
+    	[
+    		userId: user1,
+    		userId: user2,
+    		userId: user3,
+    	]
+    }
+    ```
+
+### ADD USERS
+
+-	**Resource**: `/users`
+
+	**Description**: Adds a user to the [external user store](../../../setup/user_stores/setting_up_a_userstore).
+
+	**Example**:
+
+    First create the following JSON file with user details:
+
+    ```json
+    {
+     "userId":"user4",
+     "password":"pwd1",
+     "isAdmin":"true"
+    }
+    ```
+
+    Execute the following request and receive the response:
+
+  	```bash tab='Request'
+  	curl -X POST -d @user "https://localhost:9164/management/users" -H "accept: application/json" -H "Content-Type: application/json" -H "Authorization: Bearer %AccessToken% " -k -i
+  	```
+
+  	```bash tab='Response'
+    {
+      "userId":"user4",
+      “status”:added
+    }
+  	```
+
+### DELETE USERS
+
+-	**Resource**: `/users`
+
+	**Description**: Deletes a user from the [external user store](../../../setup/user_stores/setting_up_a_userstore).
+
+	**Example**:
+
+    The following request deletes the `user1` from the user store:
+
+  	```bash tab='Request'
+  	curl -X DELETE "https://localhost:9164/management/users/user1" -H "accept: application/json" -H "Authorization: Bearer %AccessToken%" -k -i
+  	```
+
+  	```bash tab='Response'
+    {
+      "userId":"user1",
+      “status”:deleted
+    }
+  	```
 
 ### GET PROXY SERVICES
 
@@ -113,7 +233,7 @@ The management API has multiple resources to provide information regarding the d
 	curl -X GET "https://localhost:9164/management/proxy-services?proxyServiceName=helloProxy" -H "accept: application/json" -H "Authorization: Bearer TOKEN" -k -i
 	```
 
-### POST PROXY SERVICES
+### ACTIVATE/DEACTIVATE PROXY SERVICES
 
 -	**Resource**: `/proxy-services`
 
@@ -136,7 +256,7 @@ The management API has multiple resources to provide information regarding the d
 	```bash tab='Response'
     {"Message":"Proxy service HelloWorld stopped successfully"}
 	```
-	
+
 ### GET CARBON APPLICATIONS
 
 -	**Resource**: `/applications`
@@ -201,29 +321,22 @@ The management API has multiple resources to provide information regarding the d
 -	**Resource**: `/endpoints?endpointName={endpointname}`
 
 	**Description**: Retrieves information related to a specified endpoint.
-	
 
-### POST ENDPOINTS
+
+### ACTIVATE/DEACTIVATE ENDPOINTS
 
 -	**Resource**: `/endpoints`
 
-	**Description**:  Activate or deactivate a specified endpoint.
+	**Description**: Activate or deactivate a specified endpoint.
 
 	**Example**:
 
 	```bash tab='Request'
-		curl -X POST \
-    	  https://localhost:9164/management/endpoints \
-    	  -H 'authorization: Bearer TOKEN
-    	  -H 'content-type: application/json' \
-    	  -d '{
-    		"name": "HTTPEP",
-    		"status": "inactive"
-    	} -k -i
-        ```
-    
+	curl -X POST \https://localhost:9164/management/endpoints \ -H 'authorization: Bearer TOKEN -H 'content-type: application/json' \ -d '{"name": "HTTPEP", "status": "inactive"} -k -i
+	```
+
 	```bash tab='Response'
-        {"Message":"HTTPEP : is switched Off"}
+	{"Message":"HTTPEP : is switched Off"}
 	```
 
 ### GET APIs
@@ -426,7 +539,7 @@ The management API has multiple resources to provide information regarding the d
 
 	**Description**: Retrieves information related to a specified message processor.
 
-### POST MESSAGE PROCESSORS
+### ACTIVATE/DEACTIVATE MESSAGE PROCESSORS
 
 -	**Resource**: `/message-processors`
 
@@ -557,7 +670,7 @@ The management API has multiple resources to provide information regarding the d
 
 -	**Resource**: `/templates?type={type}&name={template}`
 
-	**Description**: Retrieves information related to a specific template. However this requires the template type to be included in the 
+	**Description**: Retrieves information related to a specific template. However this requires the template type to be included in the
 	request as a query parameter in addition to the template name.
 
 	**Example**:

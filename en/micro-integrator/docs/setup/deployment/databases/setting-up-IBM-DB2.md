@@ -1,6 +1,6 @@
-# Setting up IBM DB2
+# Setting up an IBM DB2
 
-Given below are the steps you need to follow in order to use an IBM DB2 database for cluster coordination in a Micro Integrator cluster.
+Follow the steps given below to set up the required IBM databases for your Micro Integrator.
 
 ## Prerequisites
 
@@ -10,6 +10,25 @@ and install it on your computer.
 For instructions on installing DB2 Express-C, see this [ebook](https://www.ibm.com/developerworks/community/wikis/home?lang=en#!/wiki/Big%20Data%20University/page/FREE%20eBook%20-%20Getting%20Started%20with%20DB2%20Express-C).
 
 ## Setting up the database and users
+
+The following IBM DB scripts are stored in the `<MI_HOME>/dbscripts/` directory of your Micro Integrator.
+
+<table>
+	<tr>
+		<th>Script</th>
+		<th>Description</th>
+	</tr>
+	<tr>
+		<td>db2_cluster.sql</td>
+		<td>This script creates the database tables that are required for cluster coordination.</td>
+	</tr>
+	<tr>
+		<td>db2_user.sql</td>
+		<td>This script creates the database tables that are required for storing users and roles.</td>
+	</tr>
+</table>
+
+First create the databases, and then create the DB tables by pointing to the relevant script in the `<MI_HOME>/dbscripts/` directory. It is recommended to maintain separate databases for these use cases.
 
 Create the database using either [DB2 command processor](#using-the-db2-command-processor) or [DB2 control center](#using-the-db2-control-center) as described below.
 
@@ -51,9 +70,9 @@ Copy the DB2 JDBC drivers (`db2jcc.jar` and `db2jcc_license_c0u.jar`) from the `
 
 ## Connecting to the database
 
-Add the following parameters to the `deployment.toml` file in the `MI_HOME/conf` directory.
+Open the `deployment.toml` file in the `<MI_HOME>/conf` directory and add the following sections to create the connection between the Micro Integrator and the relevant database. Note that you need two separate configurations corresponding to the two separate databases (`clusterdb` and `userdb`).
 
-```toml
+```toml tab='Cluster DB Connection'
 [[datasource]]
 id = "WSO2_COORDINATION_DB"
 url="jdbc:db2://SERVER_NAME:PORT/clusterdb"
@@ -63,6 +82,21 @@ driver="com.ibm.db2.jcc.DB2Driver"
 pool_options.maxActive=50
 pool_options.maxWait = 60000
 pool_options.testOnBorrow = true
+```
+
+```toml tab='User DB Connection'
+[[datasource]]
+id = "WSO2_USER_DB"
+url="jdbc:db2://SERVER_NAME:PORT/userdb"
+username="root"
+password="root"
+driver="com.ibm.db2.jcc.DB2Driver"
+pool_options.maxActive=50
+pool_options.maxWait = 60000
+pool_options.testOnBorrow = true
+
+[realm_manager]
+data_source = "WSO2_USER_DB"
 ```
 
 Find more parameters for [connecting to the database](../../../../references/config-catalog/#database-connection).
