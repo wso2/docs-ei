@@ -1,11 +1,11 @@
 # Securing the Management API
 
 The Management API of WSO2 Micro Integrator is an internal REST API, which was introduced to substitute
-the **admin services** that were available in WSO2 EI 6.x.x. 
+the **admin services** that were available in WSO2 EI 6.x.x.
 
 The [Micro Integrator CLI](../../../administer-and-observe/using-the-command-line-interface) and the [Micro Integrator dashboard](../../../administer-and-observe/working-with-monitoring-dashboard) communicates with this service to
 obtain administrative information of the server instance. If required, you can [directly access the management API](../../../administer-and-observe/working-with-management-api) without using the dashboard or CLI.
- 
+
 ## JWT-based user authentication
 
 JWT-based user authentication is enabled in the Micro Integrator by default.
@@ -77,7 +77,7 @@ user.password = "pwd-2"
 
 ### Disable the file-based user store
 
-When the file-based user store is disabled, the [external user store](../../../setup/user_stores/setting_up_ro_ldap) 
+When the file-based user store is disabled, the [external user store](../../../setup/user_stores/setting_up_a_userstore)
 that is configured for the Micro Integrator will function as the management API's user store.
 
 To **disable** the file-based user store, add the following to the `deployment.toml` file.
@@ -92,8 +92,8 @@ enable = false
 Authorization can be set for resources that only need to be invoked by admin users. The `/management/users` resource is by default secured with authorization, meaning that only users with admin privileges can access this resource.
 
 !!! Note
-    Authorization is not supported with the file-based user store. Therefore, be sure to configure an [external user store](../../../setup/user_stores/setting_up_ro_ldap) and [disable the file-based user store](#disable-the-file-based-user-store) if you want authorization to be in effect.
-     
+    Authorization is not supported with the file-based user store. Therefore, be sure to configure an [external user store](../../../setup/user_stores/setting_up_a_userstore) and [disable the file-based user store](#disable-the-file-based-user-store) if you want authorization to be in effect.
+
 ### Disable authorization
 
 Add the following to the `deployment.toml` file.
@@ -116,13 +116,13 @@ path = "/apis"
 ```
 
 !!! Note
-    You need to redefine the `/user` resource in cases where you need to customize the resources that need 
+    You need to redefine the `/user` resource in cases where you need to customize the resources that need
     authorization. Failing to do so will remove authorization from the `/user` resource.
 
 ## Configuring CORS
 
 CORS is enabled for the management API by default. The default configuration allows all origins (denoted by the `*` symbol). The `Authorization` header is also enabled by default to cater to the functionalities of the the Micro Integrator dashboard.
- 
+
 Add the following to the `deployment.toml` file and update the values.
 
 ```toml
@@ -134,11 +134,11 @@ allowed_headers = "Authorization"
 
 ## Securing API login/logout
 
-JWT authentication introduces two additional resources to the management API to handle API login and logout: 
+JWT authentication introduces two additional resources to the management API to handle API login and logout:
 
--        `/login`: This resource is used to obtain a JWT token based on the user name and password and it is protected by basic auth. The credentials for this basic authentication is set here as the users. Please refer [user store configs](#user-store-of-management-api) for more details.
+-       `/login`: This resource is used to obtain a JWT token based on the user name and password and it is protected by basic auth. The credentials for this basic authentication is set here as the users. Please refer [user store configs](#user-store-of-management-api) for more details.
 -        `/logout`: This resource is used to revoke the JWT token.
 
-When you [access the management API directly](../../../administer-and-observe/working-with-management-api), you must first acquire a JWT token with your valid username and password. To log out of the management API, this token must be revoked. See [securely invoking the management API](../../../administer-and-observe/working-with-management-api/#securely-invoking-the-api) for more information. 
+When you [access the management API directly](../../../administer-and-observe/working-with-management-api), you must first acquire a JWT token with your valid username and password. To log out of the management API, this token must be revoked. See [securely invoking the management API](../../../administer-and-observe/working-with-management-api/#securely-invoking-the-api) for more information.
 
 When you use the [Micro Integrator Dashboard](../../../administer-and-observe/working-with-monitoring-dashboard) or the [Micro Integrator CLI](../../../administer-and-observe/using-the-command-line-interface), JWT token-based authentication is handled internally.
