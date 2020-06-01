@@ -379,6 +379,7 @@ nav:
         - ServiceNow Connector:
           - 'ServiceNow Connector Example': 'references/connectors/servicenow-connector/servicenow-connector-example.md'
           - 'Setting up Servicenow Instance': 'references/connectors/servicenow-connector/settingup-servicenow-instance.md'
+          - 'ServiceNow Connector Reference': 'references/connectors/servicenow-connector/servicenow-connector-config.md'
         - LDAP Connector:
             - 'Setting up an LDAP Server': 'references/connectors/ldap-connector/setting-up-ldap.md'
             - 'LDAP Connector Example': 'references/connectors/ldap-connector/ldap-connector-example.md'
@@ -416,6 +417,7 @@ nav:
             - 'SMPP Inbound Endpoint Configuration': 'references/connectors/smpp-connector/smpp-inbound-endpoint-config.md'
         - Google Spreadsheet Connector:
           - 'Google Spreadsheet Connector Example': 'references/connectors/google-spreadsheet-connector/google-spreadsheet-connector-example.md'
+          - 'Google Spreadsheet Connector Reference': 'references/connectors/google-spreadsheet-connector/google-spreadsheet-connector-config.md'
         - Amazon DynamoDB Connector:
             - 'Setting up the Amazon DynamoDB Connector ': 'references/connectors/amazondynamodb-connector/amazondynamodb-connector-configuration.md'
             - 'Amazon DynamoDB Connector Example': 'references/connectors/amazondynamodb-connector/amazondynamodb-connector-example.md'
