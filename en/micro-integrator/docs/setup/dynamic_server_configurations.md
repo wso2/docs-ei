@@ -96,4 +96,4 @@ When you execute the `docker run` command to start the container, you can pass t
 
 You can dynamically inject parameters to synapse configurations either using environment variables or a file (containing parameter values).
 
-Read [Injecting Synapse Parameters](../../../develop/injecting-parameters) for details.
+Read [Injecting Synapse Parameters](../../develop/injecting-parameters) for details.
