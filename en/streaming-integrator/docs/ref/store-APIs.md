@@ -66,7 +66,7 @@ curl -X POST https://localhost:7443/stores/query -H "content-type: application/j
 <tr class="odd">
 <th>HTTP Status Code</th>
 <td><p>200 or 404</p>
-<p>For descriptions of the HTTP status codes, see <a href="_HTTP_Status_Codes_">HTTP Status Codes</a> .</p></td>
+<p>For descriptions of the HTTP status codes, see <a href="hTTP-Status-Codes.md">HTTP Status Codes</a> .</p></td>
 </tr>
 </tbody>
 </table>

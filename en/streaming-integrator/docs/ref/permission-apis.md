@@ -69,7 +69,7 @@ curl -X POST https://localhost:9443/permissions/ -H 'content-type: application/j
 <tr class="odd">
 <th>HTTP Status Code</th>
 <td><p>Possible codes are 200 and 404.</p>
-<p>For descriptions of the HTTP status codes, see <a href="_HTTP_Status_Codes_">HTTP Status Codes</a> .</p></td>
+<p>For descriptions of the HTTP status codes, see <a href="hTTP-Status-Codes.md">HTTP Status Codes</a> .</p></td>
 </tr>
 </tbody>
 </table>
@@ -144,7 +144,7 @@ curl -X GET https://localhost:9443/permissions/app/MON
 <tr class="odd">
 <th>HTTP Status Code</th>
 <td><p>Possible codes are 200 and 404.</p>
-<p>For descriptions of the HTTP status codes, see <a href="_HTTP_Status_Codes_">HTTP Status Codes</a> .</p></td>
+<p>For descriptions of the HTTP status codes, see <a href="hTTP-Status-Codes.md">HTTP Status Codes</a> .</p></td>
 </tr>
 </tbody>
 </table>
@@ -220,7 +220,7 @@ curl -X GET https://localhost:9443/permissions/auth/8dc31fec-8364-3082-9f88-c7ca
 <tr class="odd">
 <th>HTTP Status Code</th>
 <td><p>Possible codes are 200 and 404.</p>
-<p>For descriptions of the HTTP status codes, see <a href="_HTTP_Status_Codes_">HTTP Status Codes</a> .</p></td>
+<p>For descriptions of the HTTP status codes, see <a href="hTTP-Status-Codes.md">HTTP Status Codes</a> .</p></td>
 </tr>
 </tbody>
 </table>
@@ -291,7 +291,7 @@ curl -X DELETE https://localhost:9443/permissions/e9687c6f-b5b2-3216-b3bd-82e7a8
 <tr class="odd">
 <th>HTTP Status Code</th>
 <td><p>Possible codes are 200 and 404.</p>
-<p>For descriptions of the HTTP status codes, see <a href="_HTTP_Status_Codes_">HTTP Status Codes</a> .</p></td>
+<p>For descriptions of the HTTP status codes, see <a href="hTTP-Status-Codes.md">HTTP Status Codes</a> .</p></td>
 </tr>
 </tbody>
 </table>
@@ -366,7 +366,7 @@ curl -X GET https://localhost:9443/permissions/8dc31fec-8364-3082-9f88-c7ca7d979
 <tr class="odd">
 <th>HTTP Status Code</th>
 <td><p>Possible codes are 200 and 404.</p>
-<p>For descriptions of the HTTP status codes, see <a href="_HTTP_Status_Codes_">HTTP Status Codes</a> .</p></td>
+<p>For descriptions of the HTTP status codes, see <a href="hTTP-Status-Codes.md">HTTP Status Codes</a> .</p></td>
 </tr>
 </tbody>
 </table>
@@ -441,7 +441,7 @@ curl -X POST https://localhost:9443/permissions/revoke/8dc31fec-8364-3082-9f88-c
 <tr class="odd">
 <th>HTTP Status Code</th>
 <td><p>Possible codes are 200 and 404.</p>
-<p>For descriptions of the HTTP status codes, see <a href="_HTTP_Status_Codes_">HTTP Status Codes</a> .</p></td>
+<p>For descriptions of the HTTP status codes, see <a href="hTTP-Status-Codes.md">HTTP Status Codes</a> .</p></td>
 </tr>
 </tbody>
 </table>
@@ -516,7 +516,7 @@ curl -X POST 'https://localhost:9443/permissions/roles/admin?action=revoke' -H '
 <tr class="odd">
 <th>HTTP Status Code</th>
 <td><p>Possible codes are 200 and 404.</p>
-<p>For descriptions of the HTTP status codes, see <a href="_HTTP_Status_Codes_">HTTP Status Codes</a> .</p></td>
+<p>For descriptions of the HTTP status codes, see <a href="hTTP-Status-Codes.md">HTTP Status Codes</a> .</p></td>
 </tr>
 </tbody>
 </table>
