@@ -1,3 +1,6 @@
+!!! note
+    **This page is still a work in progress!**
+
 # Authentication APIs
 
 -   [Log in to a dashboard
