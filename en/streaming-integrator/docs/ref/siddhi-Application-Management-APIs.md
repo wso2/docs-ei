@@ -113,7 +113,7 @@ following.
 <tr class="odd">
 <th>HTTP Status Code</th>
 <td><p>Possible codes are 201, 409, 400, and 500.</p>
-<p>For descriptions of the HTTP status codes, see <a href="_HTTP_Status_Codes_">HTTP Status Codes</a> .</p></td>
+<p>For descriptions of the HTTP status codes, see <a href="hTTP-Status-Codes.md">HTTP Status Codes</a> .</p></td>
 </tr>
 </tbody>
 </table>
@@ -205,7 +205,7 @@ curl -X PUT "https://localhost:9443/siddhi-apps" -H "accept: application/json" -
 <tr class="odd">
 <th>HTTP Status Code</th>
 <td><p>Possible codes are 200, 201, 400, and 500.</p>
-<p>For descriptions of the HTTP status codes, see <a href="_HTTP_Status_Codes_">HTTP Status Codes</a> .</p></td>
+<p>For descriptions of the HTTP status codes, see <a href="hTTP-Status-Codes.md">HTTP Status Codes</a> .</p></td>
 </tr>
 </tbody>
 </table>
@@ -326,7 +326,7 @@ following:
 <tr class="odd">
 <th>HTTP Status Code</th>
 <td><p>200, 404, 500 or 400.</p>
-<p>For descriptions of the HTTP status codes, see <a href="_HTTP_Status_Codes_">HTTP Status Codes</a> .</p></td>
+<p>For descriptions of the HTTP status codes, see <a href="hTTP-Status-Codes.md">HTTP Status Codes</a> .</p></td>
 </tr>
 </tbody>
 </table>
@@ -417,7 +417,7 @@ Possible responses are as follows:
 <tr class="odd">
 <th>HTTP Status Code</th>
 <td><p>200</p>
-<p>For descriptions of the HTTP status codes, see <a href="_HTTP_Status_Codes_">HTTP Status Codes</a> .</p></td>
+<p>For descriptions of the HTTP status codes, see <a href="hTTP-Status-Codes.md">HTTP Status Codes</a> .</p></td>
 </tr>
 </tbody>
 </table>
@@ -510,7 +510,7 @@ curl -X GET "https://localhost:9443/siddhi-apps/SiddhiTestApp" -H "accept: appli
 <tr class="odd">
 <th>HTTP Status Code</th>
 <td><p>200 or 404</p>
-<p>For descriptions of the HTTP status codes, see <a href="_HTTP_Status_Codes_">HTTP Status Codes</a> .</p></td>
+<p>For descriptions of the HTTP status codes, see <a href="hTTP-Status-Codes.md">HTTP Status Codes</a> .</p></td>
 </tr>
 </tbody>
 </table>
@@ -608,7 +608,7 @@ curl -X GET "https://localhost:9443/siddhi-apps/TestSiddhiApp/status" -H "accept
 <tr class="odd">
 <th>HTTP Status Code</th>
 <td><p>200 or 404</p>
-<p>For descriptions of the HTTP status codes, see <a href="_HTTP_Status_Codes_">HTTP Status Codes</a> .</p></td>
+<p>For descriptions of the HTTP status codes, see <a href="hTTP-Status-Codes.md">HTTP Status Codes</a> .</p></td>
 </tr>
 </tbody>
 </table>
@@ -714,7 +714,7 @@ The output can be one of the following:
 <tr class="odd">
 <th>HTTP Status Code</th>
 <td><p>201, 404, or 500.</p>
-<p>For descriptions of the HTTP status codes, see <a href="_HTTP_Status_Codes_">HTTP Status Codes</a> .</p></td>
+<p>For descriptions of the HTTP status codes, see <a href="hTTP-Status-Codes.md">HTTP Status Codes</a> .</p></td>
 </tr>
 </tbody>
 </table>
@@ -834,7 +834,7 @@ The above sample curl command can generate either one of the following responses
 <tr class="odd">
 <th>HTTP Status Code</th>
 <td><p>200, 404 or 500.</p>
-<p>For descriptions of the HTTP status codes, see <a href="_HTTP_Status_Codes_">HTTP Status Codes</a> .</p></td>
+<p>For descriptions of the HTTP status codes, see <a href="hTTP-Status-Codes.md">HTTP Status Codes</a> .</p></td>
 </tr>
 </tbody>
 </table>
@@ -902,7 +902,7 @@ curl -X GET "https://localhost:9443/statistics" -H "accept: application/json" -u
 <tr class="odd">
 <th>HTTP Status Code</th>
 <td><p>200 or 404</p>
-<p>For descriptions of the HTTP status codes, see <a href="_HTTP_Status_Codes_">HTTP Status Codes</a> .</p></td>
+<p>For descriptions of the HTTP status codes, see <a href="hTTP-Status-Codes.md">HTTP Status Codes</a> .</p></td>
 </tr>
 </tbody>
 </table>
@@ -969,7 +969,7 @@ curl -X PUT "https://localhost:9443/statistics" -H "accept: application/json" -H
 <tr class="odd">
 <th>HTTP Status Code</th>
 <td><p>200 or 404</p>
-<p>For descriptions of the HTTP status codes, see <a href="_HTTP_Status_Codes_">HTTP Status Codes</a> .</p></td>
+<p>For descriptions of the HTTP status codes, see <a href="hTTP-Status-Codes.md">HTTP Status Codes</a> .</p></td>
 </tr>
 </tbody>
 </table>
@@ -1036,7 +1036,7 @@ curl -X GET "https://localhost:9443/system-details" -H "accept: application/json
 <tr class="odd">
 <th>HTTP Status Code</th>
 <td><p>200 or 404</p>
-<p>For descriptions of the HTTP status codes, see <a href="_HTTP_Status_Codes_">HTTP Status Codes</a> .</p></td>
+<p>For descriptions of the HTTP status codes, see <a href="hTTP-Status-Codes.md">HTTP Status Codes</a> .</p></td>
 </tr>
 </tbody>
 </table>
@@ -1103,7 +1103,7 @@ curl -X GET "https://localhost:9443/siddhi-apps/statistics" -H "accept: applicat
 <tr class="odd">
 <th>HTTP Status Code</th>
 <td><p>200 or 404</p>
-<p>For descriptions of the HTTP status codes, see <a href="_HTTP_Status_Codes_">HTTP Status Codes</a> .</p></td>
+<p>For descriptions of the HTTP status codes, see <a href="hTTP-Status-Codes.md">HTTP Status Codes</a> .</p></td>
 </tr>
 </tbody>
 </table>
@@ -1177,7 +1177,7 @@ curl -X PUT "https://localhost:9443/siddhi-apps/TestSiddhiApp/statistics" -H "ac
 <tr class="odd">
 <th>HTTP Status Code</th>
 <td><p>200 or 404</p>
-<p>For descriptions of the HTTP status codes, see <a href="_HTTP_Status_Codes_">HTTP Status Codes</a> .</p></td>
+<p>For descriptions of the HTTP status codes, see <a href="hTTP-Status-Codes.md">HTTP Status Codes</a> .</p></td>
 </tr>
 </tbody>
 </table>
@@ -1245,7 +1245,7 @@ curl -X PUT "https://localhost:9443/siddhi-apps/statistics" -H "accept: applicat
 <tr class="odd">
 <th>HTTP Status Code</th>
 <td><p>200 or 404</p>
-<p>For descriptions of the HTTP status codes, see <a href="_HTTP_Status_Codes_">HTTP Status Codes</a> .</p></td>
+<p>For descriptions of the HTTP status codes, see <a href="hTTP-Status-Codes.md">HTTP Status Codes</a> .</p></td>
 </tr>
 </tbody>
 </table>
