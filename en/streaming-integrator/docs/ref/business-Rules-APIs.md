@@ -1,63 +1,46 @@
+!!! note
+    **This page is still a work in progress!**
+
 # Business Rules APIs
 
--   [Lists available business rule
-    instances](#BusinessRulesAPIs-Listsavailablebusinessruleinstances)
--   [Delete business rule with given
-    UUID](#BusinessRulesAPIs-DeletebusinessrulewithgivenUUID)
--   [Fetch template group with the given
-    UUID](#BusinessRulesAPIs-FetchtemplategroupwiththegivenUUID)
--   [Fetch rule templates of the template group with given
-    UUID](#BusinessRulesAPIs-FetchruletemplatesofthetemplategroupwithgivenUUID)
--   [Fetch rule template of specific UUID available under a template
-    group with specific
-    UUID](#BusinessRulesAPIs-FetchruletemplateofspecificUUIDavailableunderatemplategroupwithspecificUUID)
--   [Fetch available template
-    groups](#BusinessRulesAPIs-Fetchavailabletemplategroups)
--   [Fetch business rule instance with given
-    UUID](#BusinessRulesAPIs-FetchbusinessruleinstancewithgivenUUID)
--   [Create and save a business
-    rule](#BusinessRulesAPIs-Createandsaveabusinessrule)
--   [Update business rules instance with given
-    UUID](#BusinessRulesAPIs-UpdatebusinessrulesinstancewithgivenUUID)
-
-## Lists available business rule instances
+## Listing the available business rule instances
 
 ### Overview
 
 <table>
 <tbody>
 <tr class="odd">
-<td>Description</td>
+<th>Description</th>
 <td>Returns the list of business rule instances that are currently available.</td>
 </tr>
 <tr class="even">
-<td>API Context</td>
-<td><code>             /business-rules/instances            </code></td>
+<th>API Context</th>
+<td><code>/business-rules/instances</code></td>
 </tr>
 <tr class="odd">
-<td>HTTP Method</td>
-<td><code>             GET            </code></td>
+<th>HTTP Method</th>
+<td><code>GET</code></td>
 </tr>
 <tr class="even">
-<td>Request/Response Format</td>
+<th>Request/Response Format</th>
 <td><br />
 </td>
 </tr>
 <tr class="odd">
-<td>Authentication</td>
+<th>Authentication</th>
 <td>Basic</td>
 </tr>
 <tr class="even">
-<td>Username</td>
-<td><code>             admin            </code></td>
+<th>Username</th>
+<td><code>admin</code></td>
 </tr>
 <tr class="odd">
-<td>Password</td>
-<td><code>             admin            </code></td>
+<th>Password</th>
+<td><code>admin</code></td>
 </tr>
 <tr class="even">
 <td>Runtime</td>
-<td>Dashboard</td>
+<td>tooling</td>
 </tr>
 </tbody>
 </table>
@@ -65,14 +48,13 @@
 ### curl command syntax
 
 ``` java
+curl -X GET "https://<HOST_NAME>:<PORT>/business-rules/instances" -u admin:admin -k
 ```
-
-  
 
 ### Sample curl command
 
 ``` java
-    curl -X GET "https://localhost:9643/business-rules/instances" -u admin:admin -k
+curl -X GET "https://localhost:9643/business-rules/instances" -u admin:admin -k
 ```
 
 ### Sample output
@@ -87,7 +69,7 @@
 <tr class="odd">
 <td>HTTP Status Code</td>
 <td><p>200 or 404</p>
-<p>For descriptions of the HTTP status codes, see <a href="_HTTP_Status_Codes_">HTTP Status Codes</a> .</p></td>
+<p>For descriptions of the HTTP status codes, see <a href="hTTP-Status-Codes.md">HTTP Status Codes</a> .</p></td>
 </tr>
 </tbody>
 </table>

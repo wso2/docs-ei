@@ -15,13 +15,12 @@ To configure a Streaming Integrator node to use specific rules templates, follow
           <NODE2_HOST_NAME>:<NODE2_PORT>
     ```
    
-   e.g.,
-   
-    ```yaml    
-     deployment_configs:
-         - localhost:9090
-           10.100.4.140:9090
-    ```
+    e.g.,
+     ```yaml
+      deployment_configs:
+          - localhost:9090
+            10.100.4.140:9090
+     ```
     
 3. List down the UUIDs of required rule templates under each node. As a result, Siddhi applications are created out of the business rules that are derived from these templates for the required nodes.
 
