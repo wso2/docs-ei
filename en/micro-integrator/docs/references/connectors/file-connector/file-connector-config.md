@@ -270,7 +270,7 @@ The following operations allow you to work with the File Connector version 2. Cl
             <th>Required</th>
         </tr>
         <tr>
-            <td>source</td>
+            <td>filePath</td>
             <td>The location of the file. This can be a file on the local physical file system or a file on an FTP server. 
                 <ul>
                     <li>For local files, the URI format is [file://]absolute-path, where absolute-path is a valid absolute file name for the local platform. UNC names are supported under Windows (e.g., file:///home/user/test or file:///C:/Windows).</li> 
@@ -325,7 +325,7 @@ The following operations allow you to work with the File Connector version 2. Cl
 
     ```xml
     <fileconnector.create>
-        <source>{$ctx:source}</source>
+        <filePath>{$ctx:filePath}</filePath>
         <inputContent>{$ctx:inputContent}</inputContent>
 	    <encoding>{$ctx:encoding}</encoding>
 	    <isBinaryContent>{$ctx:isBinaryContent}</isBinaryContent>
@@ -341,7 +341,7 @@ The following operations allow you to work with the File Connector version 2. Cl
     
     ```json
     {
-        "source":"sftp://UserName:Password@Host/home/connectors/create.txt",
+        "filePath":"sftp://UserName:Password@Host/home/connectors/create.txt",
         "inputContent":"InputContent Text",
         "encoding":"UTF8"
     }
