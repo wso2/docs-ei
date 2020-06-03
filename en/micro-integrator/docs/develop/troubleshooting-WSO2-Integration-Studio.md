@@ -31,7 +31,7 @@ When you use **display scaling** that exceed 150% (in **Windows** or **Linux** e
 -Dswt.autoScale=100
 ```
 
-## Error creating Docker image
+## Error creating Docker image (on MacOS)
 
 When you run WSO2 Integration Studio on MacOS, you will sometimes get the following error when you [generate a Docker image](../../develop/generate-docker-image) of your integration artifacts: "**Error creating Docker image**".
 
@@ -72,6 +72,53 @@ at java.lang.ProcessBuilder.start(ProcessBuilder.java:1029)
 This error is because the **Docker UI** installation on your MacOs has a feature that stores Docker credentials on Mac Keychain. To fix this, you must disable this feature from the Docker UI. Also, this will automatically be saved in your `~/.docker/config.json` file.
 
 ![docker ui](../../assets/img/docker-ui.png)
+
+## Error creating Docker image (on Windows)
+
+When you build a Docker image either via [Docker Exporter Project](../../develop/create-docker-project) or [Kubernetes Exporter Project](../../develop/create-kubernetes-project) in WSO2 Integration Studio on Windows, you may sometimes get the following error: "**Docker image generation failed**".
+
+The details of the error are given below. To access WSO2 Integration Studio errors, see the instructions on [viewing the WSO2 Integration Studio error log](#view-wso2-integration-studio-error-log)
+
+```java
+[WARNING] An attempt failed, will retry 1 more times
+org.apache.maven.plugin.MojoExecutionException: Could not build image
+at com.spotify.plugin.dockerfile.BuildMojo.buildImage(BuildMojo.java:185)
+at com.spotify.plugin.dockerfile.BuildMojo.execute(BuildMojo.java:105)
+at com.spotify.plugin.dockerfile.AbstractDockerMojo.tryExecute(AbstractDockerMojo.java:252)
+at com.spotify.plugin.dockerfile.AbstractDockerMojo.execute(AbstractDockerMojo.java:241)
+at org.apache.maven.plugin.DefaultBuildPluginManager.executeMojo(DefaultBuildPluginManager.java:134)
+at org.apache.maven.lifecycle.internal.MojoExecutor.execute(MojoExecutor.java:207)
+at org.apache.maven.lifecycle.internal.MojoExecutor.execute(MojoExecutor.java:153)
+at org.apache.maven.lifecycle.internal.MojoExecutor.execute(MojoExecutor.java:145)
+at org.apache.maven.lifecycle.internal.LifecycleModuleBuilder.buildProject(LifecycleModuleBuilder.java:116)
+at org.apache.maven.lifecycle.internal.LifecycleModuleBuilder.buildProject(LifecycleModuleBuilder.java:80)
+at org.apache.maven.lifecycle.internal.builder.singlethreaded.SingleThreadedBuilder.build(SingleThreadedBuilder.java:51)
+.....
+Caused by: com.spotify.docker.client.shaded.org.apache.http.conn.HttpHostConnectException: Connect to localhost:2375 [localhost/127.0.0.1, localhost/0:0:0:0:0:0:0:1] failed: Connection refused: connect
+at com.spotify.docker.client.shaded.org.apache.http.impl.conn.DefaultHttpClientConnectionOperator.connect(DefaultHttpClientConnectionOperator.java:151)
+at com.spotify.docker.client.shaded.org.apache.http.impl.conn.PoolingHttpClientConnectionManager.connect(PoolingHttpClientConnectionManager.java:353)
+at com.spotify.docker.client.shaded.org.apache.http.impl.execchain.MainClientExec.establishRoute(MainClientExec.java:380)
+at com.spotify.docker.client.shaded.org.apache.http.impl.execchain.MainClientExec.execute(MainClientExec.java:236)
+... 21 more
+Caused by: java.net.ConnectException: Connection refused: connect
+at java.net.DualStackPlainSocketImpl.waitForConnect(Native Method)
+at java.net.DualStackPlainSocketImpl.socketConnect(DualStackPlainSocketImpl.java:85)
+```
+
+To overcome this issue, you must go to the [**Docker Desktop**](https://docs.docker.com/docker-for-windows/) settings in Windows and expose the **daemon** on TCP without TLS .
+
+Follow the steps given below.
+
+1.  Right-click the Docker icon in the **Notifications** area (or System tray) to open the [**Docker Desktop**](https://docs.docker.com/docker-for-windows/) menu.
+2.  Select **Settings**.
+
+    ![Docker Desktop menu](../../assets/img/docker-desktop-menu-windows.png)
+
+3.  In the **Settings** dialog box that opens, select **Expose daemon on tcp without TLS**.
+
+    ![Docker settings tab](../../assets/img/docker-ui-setting-windows.png)
+
+4.  Restart Docker to apply the changes.
 
 ## View WSO2 Integration Studio Error Log
 
