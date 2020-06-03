@@ -1,4 +1,4 @@
-# AmazonSQS Inbound Endpoint Configuration
+# AmazonSQS Inbound Endpoint Reference
 
 The following configurations allow you to configure AmazonSQS Inbound Endpoint for your scenario. 
 

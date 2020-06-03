@@ -98,6 +98,9 @@ You can download the ZIP file and extract the contents to get the project code.
     <img src="../../../../assets/img/connectors/download-zip.png" width="200" alt="Download ZIP">
 </a>
 
+!!! tip
+    You may need to update the database details and make other such changes before deploying and running this project.
+
 ## Deploying on WSO2 Enterprise Integrator
 
 1. Navigate to the [connector store](https://store.wso2.com/store/assets/esbconnector/list) and search for `DB Event Listener`. Click on `DB Event Listener` and download the .jar file by clicking on `Download Inbound Endpoint`. Copy this .jar file into the <PRODUCT-HOME>/lib folder. 

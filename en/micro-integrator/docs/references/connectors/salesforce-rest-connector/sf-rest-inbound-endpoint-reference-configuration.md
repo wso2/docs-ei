@@ -1,4 +1,4 @@
-# Salesforce Inbound Endpoint Configuration
+# Salesforce Inbound Endpoint Reference
 
 The following configurations allow you to configure Salesforce Inbound Endpoint for your scenario. 
 

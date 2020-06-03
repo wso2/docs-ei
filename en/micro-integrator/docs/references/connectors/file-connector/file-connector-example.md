@@ -24,7 +24,7 @@ If you do not want to configure this yourself, you can simply [get the project](
 
 ## Configure the connector in WSO2 Integration Studio
 
-Follow these steps to set up the ESB Solution Project and the Connector Exporter Project. 
+Follow these steps to set up the Integration Project and the Connector Exporter Project. 
 
 {!references/connectors/importing-connector-to-integration-studio.md!} 
 

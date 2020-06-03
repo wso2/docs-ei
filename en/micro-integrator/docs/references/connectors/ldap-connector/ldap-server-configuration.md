@@ -1,4 +1,4 @@
-# LDAP Connector Configuration
+# LDAP Connector Reference
 
 To use the LDAP connector, add the `<ldap.init>` element in your configuration before carrying out any other LDAP operations. 
 

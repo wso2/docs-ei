@@ -28,15 +28,15 @@ This server is regularly loaded with a standard set of test data sets and also t
 
 ## Configure the connector in WSO2 Integration Studio
 
-Follow these steps to set up the ESB Solution Project and the Connector Exporter Project.
+Follow these steps to set up the Integration Project and the Connector Exporter Project.
 
 {!references/connectors/importing-connector-to-integration-studio.md!}
 
-1. Right click on the created ESB Solution Project and select **New** -> **Rest API** to create the REST API.
+1. Right click on the created Integration Project and select **New** -> **Rest API** to create the REST API.
 
 2. Specify the API name as `SendisoTestAPI` and API context as `/resources`. You can go to the source view of the XML configuration file of the API and copy the following configuration (source view).
 
-   ```
+   ```xml
    <?xml version="1.0" encoding="UTF-8"?>
    <api context="/resources" name="SampleApi" xmlns="http://ws.apache.org/ns/synapse">
        <resource methods="POST" url-mapping="/create">
@@ -213,7 +213,15 @@ To learn about supported operations and their parameters, please refer to `FHIR 
  
 3. Now we can export the imported connector and the API into a single CAR application. The CAR application is what we are going to deploy during server runtime.
 
-{! /references/connectors/exporting-artifacts.md !}
+{!references/connectors/exporting-artifacts.md!}
+
+## Get the project
+
+You can download the ZIP file and extract the contents to get the project code.
+
+<a href="../../../../assets/attach/connectors/fhir-connector.zip">
+    <img src="../../../../assets/img/connectors/download-zip.png" width="200" alt="Download ZIP">
+</a>
 
 ## Deployment
 
@@ -225,21 +233,21 @@ Follow these steps to deploy the exported CApp in the Enterprise Integrator Runt
 
 Invoke the API as shown below using the curl command. Curl Application can be downloaded from [here](https://curl.haxx.se/download.html).
 
-1. Add patient information.
+### Add patient information
    
-   **Sample Request** 
+**Sample Request** 
       
-   ```
-   curl -v POST -d 
+```
+curl -v POST -d 
    '  {  "resourceType": "Patient",
            "name": [{"family": "Jhone","given": ["Winney","Rodrigo"]}]
       }' "http://localhost:8290/resources/create" -H "Content-Type:application/json" 
        
-   ```
-   **Expected Response**: 
+```
+**Expected Response**: 
       
-   ```
-   <jsonObject>
+```
+<jsonObject>
        <resourceType>Patient</resourceType>
        <id>698021</id>
         <meta>
@@ -255,61 +263,64 @@ Invoke the API as shown below using the curl command. Curl Application can be do
             <given>Winney</given>
             <given>Rodrigo</given>
         </name>
-   </jsonObject>
-   ```  
+</jsonObject>
+```  
            
-2. Read patient information.
+### Read patient information
 
-   **Sample Request** 
+**Sample Request** 
       
-   ```
-   curl -v POST -d 
+```
+curl -v POST -d 
    '  {  
        	"resourceType": "Patient"
       }' "http://localhost:8290/resources/read" -H "Content-Type:application/json"        
-   ```
-   **Expected Response**: 
+```
 
-   It will retrieve all the existing resources in the FHIR server.
+**Expected Response**: 
+
+It will retrieve all the existing resources in the FHIR server.
   
-3. Read specific patient information.
+### Read specific patient information
    
-   **Sample Request** 
+**Sample Request** 
       
-   ```
-   curl -v POST -d 
+```
+curl -v POST -d 
    '{
        "resourceType":"Patient",
        "id":"698021"
     }' "http://localhost:8290/resources/readSpecificResourceById" -H "Content-Type:application/json"            
-   ```         
-   **Expected Response**: 
+```         
+
+**Expected Response**: 
       
-   ```
-   <jsonObject>
-          <resourceType>Patient</resourceType>
-             <id>698021</id>
-              <meta>
-              <versionId>1</versionId>
-              <lastUpdated>2020-03-24T07:57:14.506+00:00</lastUpdated>
-              </meta>
-              <text>
-                 <status>generated</status>
-                 <div>&lt;div xmlns="http://www.w3.org/1999/xhtml"&gt;&lt;div class="hapiHeaderText"&gt;Winney Rodrigo &lt;b&gt;JHONE &lt;/b&gt;&lt;/div&gt;&lt;table class="hapiPropertyTable"&gt;&lt;tbody/&gt;&lt;/table&gt;&lt;/div&gt;</div>
-              </text>
+```xml
+<jsonObject>
+    <resourceType>Patient</resourceType>
+    <id>698021</id>
+    <meta>
+        <versionId>1</versionId>
+        <lastUpdated>2020-03-24T07:57:14.506+00:00</lastUpdated>
+    </meta>
+    <text>
+        <status>generated</status>
+        <div>&lt;div xmlns="http://www.w3.org/1999/xhtml"&gt;&lt;div class="hapiHeaderText"&gt;Winney Rodrigo &lt;b&gt;JHONE &lt;/b&gt;&lt;/div&gt;&lt;table class="hapiPropertyTable"&gt;&lt;tbody/&gt;&lt;/table&gt;&lt;/div&gt;</div>
+        </text>
                <name>
                   <family>Jhone</family>
                   <given>Winney</given>
                   <given>Rodrigo</given>
                </name>
-   </jsonObject>
-   ```
-4. Update patient information. 
+</jsonObject>
+```
+
+### Update patient information
    
-   **Sample Request** 
+**Sample Request** 
    
-   ```
-      curl -v POST -d 
+```
+curl -v POST -d 
          '{
              "resourceType":"Patient",
              "idToUpdate":"597079",
@@ -323,11 +334,12 @@ Invoke the API as shown below using the curl command. Curl Application can be do
                 }
              ]
           }' "http://localhost:8290/resources/update" -H "Content-Type:application/json"   
-   ```
-   **Expected Response**: 
+```
+
+**Expected Response**: 
       
-   ```
-   <jsonObject>
+```xml
+<jsonObject>
          <resourceType>Patient</resourceType>
          <id>597079</id>
          <meta>
@@ -343,23 +355,25 @@ Invoke the API as shown below using the curl command. Curl Application can be do
             <given>Samsong</given>
             <given>Perera</given>
          </name>
-      </jsonObject>
-   ```     
-5. Delete patient information.
+</jsonObject>
+```     
+
+### Delete patient information
     
-   **Sample Request** 
+**Sample Request** 
   
-   ```
-   curl -v POST -d 
+```
+curl -v POST -d 
    '{
       "resourceType":"Patient",
       "idToDelete":"597079",
     }' "http://localhost:8290/resources/delete" -H "Content-Type:application/json" 
-   ```   
-   **Expected Response**: 
+```   
+
+**Expected Response**: 
    
-   ```
-      <jsonObject>
+```xml
+<jsonObject>
          <resourceType>OperationOutcome</resourceType>
          <text>
             <status>generated</status>
@@ -375,8 +389,9 @@ Invoke the API as shown below using the curl command. Curl Application can be do
             <code>informational</code>
             <diagnostics>Successfully deleted 1 resource(s) in 46ms</diagnostics>
          </issue>
-      </jsonObject>
-   ```    
+</jsonObject>
+```    
+
 This demonstrates how the WSO2 EI FHIR connector works.
    
 ## What's next

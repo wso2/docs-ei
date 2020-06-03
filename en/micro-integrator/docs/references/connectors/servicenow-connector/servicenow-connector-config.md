@@ -1,4 +1,4 @@
-# ServiceNow Connector Configuration
+# ServiceNow Connector Reference
 
 The following operations allow you to work with the ServiceNow Connector. Click an operation name to see parameter details and samples on how to use it.
 

@@ -1,4 +1,4 @@
-# File Connector Configuration
+# File Connector Reference
 
 The following operations allow you to work with the File Connector version 2. Click an operation name to see parameter details and samples on how to use it.
 

@@ -1,4 +1,4 @@
-# FHIR Connector Configuration
+# FHIR Connector Reference
 
 The FHIR Connector allows you to work with resources in [FHIR](http://www.hl7.org/fhir/index.html), which are the modular components of FHIR. The connector uses the [FHIR RESTFul API](http://www.hl7.org/fhir/http.html)  to interact with FHIR.
 
