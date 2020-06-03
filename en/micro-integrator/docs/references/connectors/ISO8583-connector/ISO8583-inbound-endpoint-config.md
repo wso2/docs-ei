@@ -1,4 +1,4 @@
-# ISO8583 Inbound Endpoint Configuration
+# ISO8583 Inbound Endpoint Reference
 
 The following operations allow you to work with the ISO8583 Inbound Endpoint. Click an operation name to see parameter details and samples on how to use it.
 

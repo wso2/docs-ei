@@ -1,4 +1,4 @@
-# Google Spreadsheet Connector Configuration
+# Google Spreadsheet Connector Reference
 
 The following operations allow you to work with the Google Spreadsheet Connector. Click an operation name to see parameter details and samples on how to use it.
 
