@@ -69,7 +69,7 @@ curl -X GET "https://localhost:9643/business-rules/instances" -u admin:admin -k
 <tr class="odd">
 <th>HTTP Status Code</th>
 <td><p>200 or 404</p>
-<p>For descriptions of the HTTP status codes, see <a href="hTTP-Status-Codes.md">HTTP Status Codes</a>.</p></td>
+<p>For descriptions of the HTTP status codes, see <a href="https://ei.docs.wso2.com/en/latest/streaming-integrator/ref/hTTP-Status-Codes/">HTTP Status Codes</a>.</p></td>
 </tr>
 </tbody>
 </table>
@@ -146,7 +146,7 @@ curl -X DELETE "https://localhost:9643/business-rules/instances/business-rule-1?
 <tr class="odd">
 <th>HTTP Status Code</th>
 <td><p>200 or 404</p>
-<p>For descriptions of the HTTP status codes, see <a href="_HTTP_Status_Codes_">HTTP Status Codes</a> .</p></td>
+<p>For descriptions of the HTTP status codes, see <a href="https://ei.docs.wso2.com/en/latest/streaming-integrator/ref/hTTP-Status-Codes/">HTTP Status Codes</a> .</p></td>
 </tr>
 </tbody>
 </table>
@@ -223,7 +223,7 @@ curl -X GET "https://localhost:9643/business-rules/template-groups/sweet-factory
 <tr class="odd">
 <th>HTTP Status Code</th>
 <td><p>200 or 404</p>
-<p>For descriptions of the HTTP status codes, see <a href="_HTTP_Status_Codes_">HTTP Status Codes</a> .</p></td>
+<p>For descriptions of the HTTP status codes, see <a href="https://ei.docs.wso2.com/en/latest/streaming-integrator/ref/hTTP-Status-Codes/">HTTP Status Codes</a> .</p></td>
 </tr>
 </tbody>
 </table>
@@ -300,7 +300,7 @@ curl -X GET "https://localhost:9643/business-rules/template-groups/sweet-factory
 <tr class="odd">
 <th>HTTP Status Code</th>
 <td><p>200 or 404</p>
-<p>For descriptions of the HTTP status codes, see <a href="_HTTP_Status_Codes_">HTTP Status Codes</a> .</p></td>
+<p>For descriptions of the HTTP status codes, see <a href="https://ei.docs.wso2.com/en/latest/streaming-integrator/ref/hTTP-Status-Codes/">HTTP Status Codes</a> .</p></td>
 </tr>
 </tbody>
 </table>
@@ -378,7 +378,7 @@ curl -X GET "https://localhost:9643/business-rules/template-groups/sweet-factory
 <tr class="odd">
 <th>HTTP Status Code</th>
 <td><p>200 or 404</p>
-<p>For descriptions of the HTTP status codes, see <a href="_HTTP_Status_Codes_">HTTP Status Codes</a> .</p></td>
+<p>For descriptions of the HTTP status codes, see <a href="https://ei.docs.wso2.com/en/latest/streaming-integrator/ref/hTTP-Status-Codes/">HTTP Status Codes</a> .</p></td>
 </tr>
 </tbody>
 </table>
@@ -450,7 +450,7 @@ curl -X GET "https://localhost:9643/business-rules/template-groups" -u admin:adm
 <tr class="odd">
 <th>HTTP Status Code</th>
 <td><p>200 or 404</p>
-<p>For descriptions of the HTTP status codes, see <a href="_HTTP_Status_Codes_">HTTP Status Codes</a>.</p></td>
+<p>For descriptions of the HTTP status codes, see <a href="https://ei.docs.wso2.com/en/latest/streaming-integrator/ref/hTTP-Status-Codes/">HTTP Status Codes</a>.</p></td>
 </tr>
 </tbody>
 </table>
@@ -529,7 +529,7 @@ curl -X GET "https://localhost:9643/business-rules/instances/business-rule-1" -H
 <tr class="odd">
 <th>HTTP Status Code</th>
 <td><p>200 or 404</p>
-<p>For descriptions of the HTTP status codes, see <a href="_HTTP_Status_Codes_">HTTP Status Codes</a>.</p></td>
+<p>For descriptions of the HTTP status codes, see <a href="https://ei.docs.wso2.com/en/latest/streaming-integrator/ref/hTTP-Status-Codes/">HTTP Status Codes</a>.</p></td>
 </tr>
 </tbody>
 </table>
@@ -620,7 +620,7 @@ curl -X POST "https://localhost:9643/business-rules/instances?deploy=true" -H "a
 <tr class="odd">
 <th>HTTP Status Code</th>
 <td><p>200 or 404</p>
-<p>For descriptions of the HTTP status codes, see <a href="_HTTP_Status_Codes_">HTTP Status Codes</a> .</p></td>
+<p>For descriptions of the HTTP status codes, see <a href="https://ei.docs.wso2.com/en/latest/streaming-integrator/ref/hTTP-Status-Codes/">HTTP Status Codes</a> .</p></td>
 </tr>
 </tbody>
 </table>
@@ -717,7 +717,7 @@ curl -X PUT "https://localhost:9643/business-rules/instances/business-rule-5?dep
 <tr class="odd">
 <th>HTTP Status Code</th>
 <td><p>200 or 404</p>
-<p>For descriptions of the HTTP status codes, see <a href="_HTTP_Status_Codes_">HTTP Status Codes</a>.</p></td>
+<p>For descriptions of the HTTP status codes, see <a href="https://ei.docs.wso2.com/en/latest/streaming-integrator/ref/hTTP-Status-Codes/">HTTP Status Codes</a>.</p></td>
 </tr>
 </tbody>
 </table>
