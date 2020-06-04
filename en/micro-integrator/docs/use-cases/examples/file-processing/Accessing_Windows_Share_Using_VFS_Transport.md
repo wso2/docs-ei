@@ -1,11 +1,9 @@
 # Accessing a Windows Share using VFS
-## Example use case
-
-This sample demonstrates how to use the [VFS transport](../../setup/transport_configurations/configuring-transports/configuring-the-vfs-transport) to access a windows share.
+This example demonstrates how the [VFS transport](../../setup/transport_configurations/configuring-transports/configuring-the-vfs-transport) in WSO2 Micro Integrator can be used to access a windows share.
 
 ## Synapse configuration
 
-The XML configuration for this sample is as follows:
+Following are the integration artifacts (proxy service) that we can used to implement this scenario.
 
 ```xml
 <proxy xmlns="http://ws.apache.org/ns/synapse" name="StockQuoteProxy" transports="vfs">
@@ -19,9 +17,14 @@ The XML configuration for this sample is as follows:
     <parameter name="transport.vfs.ActionAfterFailure">MOVE</parameter>
 
     <target>
-        <endpoint>
-            <address format="soap12" uri="http://localhost:9000/services/SimpleStockQuoteService"/>
-        </endpoint>
+        <inSequence>=
+            <header name="Action" value="urn:getQuote"/>
+            <send>
+                <endpoint>
+                    <address uri="http://localhost:9000/services/SimpleStockQuoteService"/>
+                </endpoint>
+            </send>
+        </inSequence>
         <outSequence>
             <property name="transport.vfs.ReplyFileName"
                       expression="fn:concat(fn:substring-after(get-property('MessageID'), 'urn:uuid:'), '.xml')" scope="transport"/>
@@ -33,11 +36,13 @@ The XML configuration for this sample is as follows:
             </send>
         </outSequence>
     </target>
-    <publishWSDL uri="file:repository/samples/resources/proxy/sample_proxy_1.wsdl"/>
+    <publishWSDL key="conf:custom/sample_proxy_1.wsdl"/>
 </proxy>
 ```
 
 ## Build and run
+
+To test this sample, the following files and directories should be created:
 
 1.  Create the file directories:
 
@@ -53,7 +58,17 @@ The XML configuration for this sample is as follows:
     -   You need to set both `transport.vfs.MoveAfterProcess` and `transport.vfs.MoveAfterFailure` parameter values to point to the **original** directory location.
     -   Be sure that the endpoint in the `<outSequence>` points to the **out** directory location. Make sure that the prefix `vfs:` in the endpoint URL is not removed or changed.
 
-2.  Create the `test.xml` file shown below and copy it to the location specified in `transport.vfs.FileURI` in the configuration (i.e., the **in** directory). This contains a simple stock quote request in XML/SOAP format.
+2.  Add [sample_proxy_1.wsdl](https://github.com/wso2-docs/WSO2_EI/blob/master/samples-protocol-switching/sample_proxy_1.wsdl) as a [registry resource](../../../../develop/creating-artifacts/creating-registry-resources). Change the registry path of the proxy accordingly. 
+    
+3.  Set up the back-end service.
+        
+    -	Download the [stockquote_service.jar](https://github.com/wso2-docs/WSO2_EI/blob/master/Back-End-Service/stockquote_service.jar)
+
+    -	Open a terminal, navigate to the location of the downloaded service, and run it using the following command:
+    ```bash
+    java -jar stockquote_service.jar
+        
+4.  Create the `test.xml` file shown below and copy it to the location specified by `transport.vfs.FileURI` in the configuration (i.e., the **in** directory). This contains a simple stock quote request in XML/SOAP format.
 
     ```xml
     <?xml version='1.0' encoding='UTF-8'?>
@@ -67,7 +82,4 @@ The XML configuration for this sample is as follows:
         </soapenv:Body>
     </soapenv:Envelope>
     ```
-
-3. Analyzing the output
-
-    You will see that the VFS transport listener picks the file from the **in** directory and sends it to the Axis2 service over HTTP. Then you will see that the request XML file is moved to the **original** directory and that the response from the Axis2 server is saved to the **out** directory.
+When the sample is executed, the VFS transport listener picks the file from the **in** directory and sends it to the back service over HTTP. Then the request XML file is moved to the **original** directory and the response is saved to the **out** directory.

@@ -1,4 +1,4 @@
-#Consuming Data
+# Consuming Data
 
 ## Introduction
 
@@ -7,25 +7,26 @@ to produce the required output.
  
 For the Streaming Integrator to consume events, the following is required.
 
-* A message schema: The Streaming Integrator identifies the messages that it selects into a streaming integration flows by their schemas. The schema based on which the messages are selected are defined via a *stream*.
+* **A message schema**: The Streaming Integrator identifies the messages that it selects into a streaming integration flows by their schemas. The schema based on which the messages are selected are defined via a *stream*.
 
-* A source: The messages are consumed from different sources including streaming applications, cloud-based applications, databases, and files. The source is defined via a *source configuration*.
+* **A source**: The messages are consumed from different sources including streaming applications, cloud-based applications, databases, and files. The source is defined via a *source configuration*.
   ![Receiving events](../images/consuming-messages/ConsumingMessages.png)
   
-  A source configuration consists of the following:
+  A source configuration consists of the following annotations.
   
-  + **`@source`**: This annotation defines the source type via which the messages are consumed, and allows you to configure the source parameters (which change depending on the source type). For the complete list of supported source types, see [Siddhi Query Guide - Source](https://siddhi.io/en/v4.x/docs/query-guide/#source)
-  + **`@map`**: This annotation specifies the format in which messages are consumed, and allows you to configure the mapping parameters (which change based of the mapping type/format selected). For the complete list of supported mapping types, see [Siddhi Query Guide - Source Mapper](https://siddhi.io/en/v4.x/docs/query-guide/#source-mapper)
-  + **`@attributes`**: This annotation specifies a custom mapping based on which events to be selected into the streaming integration flow are identified. This is useful when the attributes of the incoming messages you want the Streaming Integrator to consume are different to the corresponding attribute name in the stream definition. e.g., In a scenario where the Streaming Integrator is reading employee records, the employee name might be defined as `emp No` in the database from which you are extracting the records. However, the corresponding attribute name in the stream definition is `employeeNo` because that is how yoy want to refer to the attribute in the streaming integration flow. In this instance, you need a custom mapping to indicate that `emp No` is the same as `employeeNo`.
-  
-  
+  |**Annotation**       |**Description**                                                                                  |
+  |---------------------|-------------------------------------------------------------------------------------------------|
+  |**`@source`**        |This annotation defines the source type via which the messages are consumed, and allows you to configure the source parameters (which change depending on the source type). For the complete list of supported source types, see [Siddhi Query Guide - Source](https://siddhi.io/en/v5.1/docs/query-guide/#source).|
+  |**`@map`**           |This annotation specifies the format in which messages are consumed and allows you to configure the mapping parameters (which change based of the mapping type/format selected). For the complete list of supported mapping types, see [Siddhi Query Guide - Source Mapper](https://siddhi.io/en/v5.1/docs/query-guide/#source-mapper).|
+  |**`@attributes`**    |This annotation specifies a custom mapping based on which events to be selected into the streaming integration flow are identified. This is useful when the attributes of the incoming messages you want the Streaming Integrator to consume are different to the corresponding attribute name in the stream definition. e.g., In a scenario where the Streaming Integrator is reading employee records, the employee name might be defined as `emp No` in the database from which you are extracting the records. However, the corresponding attribute name in the stream definition is `employeeNo` because that is how you want to refer to the attribute in the streaming integration flow. In this instance, you need a custom mapping to indicate that `emp No` is the same as `employeeNo`.|
+    
   In a Siddhi application, you can define a source configuration inline or refer to a source configuration defined externally in a configuration file.
 
 ## Defining event source inline in the Siddhi application
 
 To create a Siddhi application with the source configuration defined inline, follow the steps below.
 
-1. Open the Streaming Integrator Studio and start creating a new Siddhi application. For more information, see [Creating a Siddhi Application](../develop/creating-a-Siddhi-Application.md).
+1. Open the Streaming Integrator Tooling and start creating a new Siddhi application. For more information, see [Creating a Siddhi Application](../develop/creating-a-Siddhi-Application.md).
 
 2. Enter a name for the Siddhi application as shown below.<br/>
    `@App:name("<Siddhi_Application_Name>)`<br/>e.g., `@App:name("SalesTotalsApp")`<br/>
@@ -114,9 +115,7 @@ To create a Siddhi application with the source configuration defined inline, fol
     group by product
     insert into PublishSalesTotalsStream;
     ```
-
-    
-
+  
 ## Defining event source externally in the configuration file
 
 If you want to use the same source configuration in multiple Siddhi applications, you  can define it externally in the 
@@ -190,10 +189,30 @@ e.g., The HTTP source that you previously created can be referred to as follows.
 define stream ConsumeSalesTotalsStream (transNo int, product string, price int, quantity int, salesValue long);
 ```
 
-### Supported event source types
-<source categories table here> 
+## Supported event source types
 
-### Supported message formats
+The supported event source types are as follows:
+
+|**Source Category**        |**Supported Extensions**           |
+|---------------------------|-----------------------------------|
+|Streaming Messaging Systems| - [io-nats](https://siddhi-io.github.io/siddhi-io-nats/)<br/> - [io-kafka](https://siddhi-io.github.io/siddhi-io-kafka/)<br/> - [io-tcp](https://siddhi-io.github.io/siddhi-io-tcp/)<br/> - [io-jms](https://siddhi-io.github.io/siddhi-io-jms/)<br/> - [io-rabbitmq](https://siddhi-io.github.io/siddhi-io-rabbitmq/)<br/> - [io-mqtt](https://siddhi-io.github.io/siddhi-io-mqtt/)<br/> - [io-sqs](https://siddhi-io.github.io/siddhi-io-sqs/)<br/> - [io-grpc](https://siddhi-io.github.io/siddhi-io-grpc/)|
+|Software and Sensors       | - [io-http](https://siddhi-io.github.io/siddhi-io-http/)<br/> - [io-email](https://siddhi-io.github.io/siddhi-io-email/)<br/> - [io-grpc](https://siddhi-io.github.io/siddhi-io-grpc/)|
+|Cloud                      | - [io-googlepubsub](https://siddhi-io.github.io/siddhi-io-googlepubsub/)|
+|Databases                  | - [io-cdc](https://siddhi-io.github.io/siddhi-io-cdc/)<br/> - [io-prometheus](https://siddhi-io.github.io/siddhi-io-prometheus/)|
+|Files                      | - [io-file](https://siddhi-io.github.io/siddhi-io-file/)|
+
+## Supported message formats
+
+You can receive messages in any of the following formats via the relevant Siddhi extensions. Click on the format for more details about the Siddhi extension.
+
+- [JSON](https://siddhi-io.github.io/siddhi-map-json/)
+- [XML](https://siddhi-io.github.io/siddhi-map-xml/)
+- [Text](https://siddhi-io.github.io/siddhi-map-text/)
+- [Avro](https://siddhi-io.github.io/siddhi-map-avro/)
+- [KeyValue](https://siddhi-io.github.io/siddhi-map-keyvalue/)
+- [CSV](https://siddhi-io.github.io/siddhi-map-csv/)
+- [Binary](https://siddhi-io.github.io/siddhi-map-binary/)
+- [Protocol Buffers](https://siddhi-io.github.io/siddhi-map-protobuf/)
 
 #### Consuming a message in default format
 

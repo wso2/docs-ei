@@ -1,49 +1,80 @@
+# Publishing and Receiving CSV Events via Files
 
-## Purpose:
-This app will demonstrate how to use the extension siddhi-gpl-execution-geo to calculate distance between two locations.
+## Purpose
 
-## Prerequisites:
-1. Download siddhi-gpl-execution-geo-x.x.x.jar from the following link and copy the jar to  {WSO2SIHome}/lib
-    - http://maven.wso2.org/nexus/content/repositories/wso2gpl/org/wso2/extension/siddhi/gpl/execution/geo/siddhi-gpl-execution-geo/
+This example demonstrates how to calculate the distance between two locations via the `siddhi-gpl-execution-geo` extension.
 
-2. Save this sample. If there is no syntax error, the following messages would be shown on the console
-    - Siddhi App GeoDistanceCalculation.siddhi successfully deployed.
+!!!info "Before you begin:"
+    1. Download the [siddhi-gpl-execution-geo-x.x.x.jar](http://maven.wso2.org/nexus/content/repositories/wso2gpl/org/wso2/extension/siddhi/gpl/execution/geo/siddhi-gpl-execution-geo/5.0.0/siddhi-gpl-execution-geo-5.0.0.jar) and place it in the `<SI_TOOLING_HOME>/lib` directory.<br/>
+    2. Save this sample in Streaming Integrator Tooling.
 
-## Executing the Sample:
-1) Start the Siddhi application by clicking on 'Run'
-2) If the Siddhi application starts successfully, the following messages would be shown on the console
-    * GeoDistanceCalculation.siddhi - Started Successfully!
+## Executing the Sample
 
-## Testing the Sample:
-1) Click on 'Event Simulator' (double arrows on left tab)
-2) Click 'Single Simulation' (this will be already selected)
-3) Select GeoDistanceCalculation as 'Siddhi App Name'
-4) Select LocationPointsStream as 'StreamName'
-5) Click on the start button (Arrow symbol) next to the newly created simulator
-6) Provide attribute values
-    - latitude : 8.116553
-    - longitude : 77.523679
-    - prevLatitude : 9.850047
-    - prevLongitude : 98.597177
-7) Send event
+To execute the sample open the saved Siddhi application in Streaming Integrator Tooling, and start it by clicking the **Start** button (shown below) or by clicking **Run** => **Run**.
 
-## Viewing the Results:
-After clicking the start button see the output on the console as below.\
-INFO {io.siddhi.core.query.processor.stream.LogStreamProcessor} - GeoDistanceCalculation: Event :, StreamEvent{ timestamp=1513616078228, beforeWindowData=null, onAfterWindowData=null, outputData=[2322119.848252557], type=CURRENT, next=null}
+![Start button](../../images/amazon-s3-sink-sample/start.png)
+
+If the Siddhi application starts successfully, the following message appears in the console.
+
+`GeoDistanceCalculation.siddhi - Started Successfully!`
+
+## Testing the Sample
+
+To test the sample application, simulate a single event for it as follows:
+
+1. To open the Event Simulator, click the **Event Simulator** icon.
+
+    ![Event Simulator Icon](../../images/Testing-Siddhi-Applications/Event_Simulation_Icon.png)
+
+    This opens the event simulation panel.
+
+2. To simulate events for the `LocationPointsStream` stream of the `GeoDistanceCalculation` Siddhi application, enter information in the **Single Simulation** tab of the event simulation panel as follows.
 
 
-```sql
-@App:name("GeoDistanceCalculation")
 
-@App:description('This will demonstrate the distance between two locations')
+    | **Field**              | **Value**                  |
+    |------------------------|----------------------------|
+    | **Siddhi App Name**    | `GeoDistanceCalculation`   |
+    | **StreamName**         | `LocationPointsStream`     |
 
-define stream LocationPointsStream (latitude double, longitude double, prevLatitude double, prevLongitude double);
+    ![Select Siddhi Application and Stream](../../images/aggregate-data-incrementally-sample/aggregate-data-incrementally-event-simulation.png)
 
-@sink(type='log')
-define stream DistanceStream (distance double);
+    As a result, the attributes of the `GeoDistanceCalculation` stream appear in the panel.
 
-@info(name = 'query1')
-from LocationPointsStream
-select geo:distance(latitude, longitude, prevLatitude, prevLongitude) as distance
-insert into DistanceStream;
-```
+3. Enter attribute values as follows.
+
+   ![Attribute Values](../../images/execution-geo-sample/attribute-values.png).
+
+   | **Attribute**         | **Value**      |
+   |-----------------------|----------------|
+   | **latitude**          | `8.116553`     |
+   | **longitude**         | `77.523679`    |
+   | **prevLatitude**      | `9.850047`     |
+   | **prevLongitude**     | `98.597177`    |
+
+
+4. Send the event
+
+## Viewing the Results
+
+The following output is logged inthe Streaming Integrator console for the single event you simulated.
+
+`INFO {io.siddhi.core.query.processor.stream.LogStreamProcessor} - GeoDistanceCalculation: Event :, StreamEvent{ timestamp=1513616078228, beforeWindowData=null, onAfterWindowData=null, outputData=[2322119.848252557], type=CURRENT, next=null}`
+
+???info "Click here to view the sample Siddhi application."
+
+    ```sql
+    @App:name("GeoDistanceCalculation")
+
+    @App:description('This will demonstrate the distance between two locations')
+
+    define stream LocationPointsStream (latitude double, longitude double, prevLatitude double, prevLongitude double);
+
+    @sink(type='log')
+    define stream DistanceStream (distance double);
+
+    @info(name = 'query1')
+    from LocationPointsStream
+    select geo:distance(latitude, longitude, prevLatitude, prevLongitude) as distance
+    insert into DistanceStream;
+    ```

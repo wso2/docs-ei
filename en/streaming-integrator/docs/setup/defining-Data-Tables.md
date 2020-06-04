@@ -1,13 +1,12 @@
 # Defining Data Tables
 
-This section explains how to configure data tables to store the events
-you need to persist to carry out time series aggregation.
+This section explains how to configure data tables to store the events you need to persist to carry out time series aggregation.
 
-The data handled by WSO2 Stream Processor are stored in the following
-two types of tables:
+The data handled by WSO2 Stream Processor are stored in the following two types of tables:
 
 -   **In-memory tables** : If no  store-backed tables are defined, data
     is stored in in-memory tables by default.
+
 -   **Store-backed tables** : These are tables that are defined by you
     in an external database. For a list of database types supported and
     instructions to define table for different database types, see
@@ -95,4 +94,5 @@ The above configuration ensures that the entries stored in the
 `         StockTable        ` event table are indexed by the
 `         symbol        ` attribute.
 
+### Defining Tables for Physical Stores
   

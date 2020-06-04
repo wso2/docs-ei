@@ -1,22 +1,12 @@
 # Load Balancing with Message Forwarding Processor
-## Example use case
+This example demonstrates how the message forwarding processor handles load balancing.
 
 ## Synapse configuration
 
-The XML configuration for this sample is as follows:
-
-```xml tab='Registry Resource'
- <registry provider="org.wso2.carbon.mediation.registry.WSO2Registry">
-    <parameter name="cachableDuration">15000</parameter>
- </registry>
-```
-
-```xml tab='Scheduled Task'
-<taskManager provider="org.wso2.carbon.mediation.ntask.NTaskTaskManager"/>
-```
+Following are the artifact configurations that we can use to implement this scenario. See the instructions on how to [build and run](#build-and-run) this example.
 
 ```xml tab='Proxy Service'
-<proxy name="StockQuoteProxy"
+<proxy xmlns="http://ws.apache.org/ns/synapse" name="StockQuoteProxy"
               transports="https http"
               startOnLoad="true">
     <description/>
@@ -33,51 +23,25 @@ The XML configuration for this sample is as follows:
 ```
 
 ```xml tab='Endpoint 1'
-<endpoint name="SimpleStockQuoteService1">
+<endpoint xmlns="http://ws.apache.org/ns/synapse" name="SimpleStockQuoteService1">
   <address uri="http://localhost:9001/services/SimpleStockQuoteService"/>
 </endpoint>
 ```
 
 ```xml tab='Endpoint 2'
-<endpoint name="SimpleStockQuoteService2">
+<endpoint xmlns="http://ws.apache.org/ns/synapse" name="SimpleStockQuoteService2">
   <address uri="http://localhost:9002/services/SimpleStockQuoteService"/>
 </endpoint>
 ```
 
 ```xml tab='Endpoint 3'
-<endpoint name="SimpleStockQuoteService3">
+<endpoint xmlns="http://ws.apache.org/ns/synapse" name="SimpleStockQuoteService3">
   <address uri="http://localhost:9003/services/SimpleStockQuoteService"/>
 </endpoint>
 ```
 
-```xml tab='Main Sequence'
-<sequence name="main">
-  <in>
-     <log level="full"/>
-     <filter source="get-property('To')" regex="http://localhost:9000.*">
-        <send/>
-     </filter>
-  </in>
-  <out>
-     <send/>
-  </out>
-  <description>The main sequence for the message mediation</description>
-</sequence>
-```
-
-```xml tab='Fault Sequence'
-<sequence name="fault">
-  <log level="full">
-     <property name="MESSAGE" value="Executing default 'fault' sequence"/>
-     <property name="ERROR_CODE" expression="get-property('ERROR_CODE')"/>
-     <property name="ERROR_MESSAGE" expression="get-property('ERROR_MESSAGE')"/>
-  </log>
-  <drop/>
-</sequence>
-```
-
 ```xml tab='Message Store'
-<messageStore class="org.apache.synapse.message.store.impl.jms.JmsStore" name="JMSMS">
+<messageStore xmlns="http://ws.apache.org/ns/synapse" class="org.apache.synapse.message.store.impl.jms.JmsStore" name="JMSMS">
   <parameter name="java.naming.factory.initial">org.apache.activemq.jndi.ActiveMQInitialContextFactory</parameter>
   <parameter name="store.jms.cache.connection">false</parameter>
   <parameter name="java.naming.provider.url">tcp://localhost:61616</parameter>
@@ -87,7 +51,7 @@ The XML configuration for this sample is as follows:
 ```
 
 ```xml tab='Message Processor 1'
-<messageProcessor class="org.apache.synapse.message.processor.impl.forwarder.ScheduledMessageForwardingProcessor"
+<messageProcessor xmlns="http://ws.apache.org/ns/synapse" class="org.apache.synapse.message.processor.impl.forwarder.ScheduledMessageForwardingProcessor"
                          name="Forwarder1"
                          targetEndpoint="SimpleStockQuoteService1"
                          messageStore="JMSMS">
@@ -98,7 +62,7 @@ The XML configuration for this sample is as follows:
 ```
 
 ```xml tab='Message Processor 2'
-<messageProcessor class="org.apache.synapse.message.processor.impl.forwarder.ScheduledMessageForwardingProcessor"
+<messageProcessor xmlns="http://ws.apache.org/ns/synapse" class="org.apache.synapse.message.processor.impl.forwarder.ScheduledMessageForwardingProcessor"
                          name="Forwarder2"
                          targetEndpoint="SimpleStockQuoteService2"
                          messageStore="JMSMS">
@@ -109,7 +73,7 @@ The XML configuration for this sample is as follows:
 ```
 
 ```xml tab='Message Processor 3'
-<messageProcessor class="org.apache.synapse.message.processor.impl.forwarder.ScheduledMessageForwardingProcessor"
+<messageProcessor xmlns="http://ws.apache.org/ns/synapse" class="org.apache.synapse.message.processor.impl.forwarder.ScheduledMessageForwardingProcessor"
                          name="Forwarder3"
                          targetEndpoint="SimpleStockQuoteService3"
                          messageStore="JMSMS">
@@ -123,29 +87,19 @@ The XML configuration for this sample is as follows:
 
 Create the artifacts:
 
-1. Set up WSO2 Integration Studio.
-2. Create an ESB Config project
-3. Create a integration artifacts with the above configuration.
-4. Deploy the artifacts in your Micro Integrator.
+1. [Set up WSO2 Integration Studio](../../../../develop/installing-WSO2-Integration-Studio).
+2. [Create an ESB Solution project](../../../../develop/creating-projects/#esb-config-project).
+3. Create the [proxy service](../../../../develop/creating-artifacts/creating-a-proxy-service), [endpoints](../../../../develop/creating-artifacts/creating-endpoints), [message stores](../../../../develop/creating-artifacts/creating-a-message-store) and [message processors](../../../../develop/creating-artifacts/creating-a-message-processor) with the configurations given above.
+4. [Deploy the artifacts](../../../../develop/deploy-and-run) in your Micro Integrator.
 
-Set up the back-end service:
-
-........
-
-Configure the ActiveMQ broker.
-
-Send the following request:
-
-```bash
-ant stockquote -Daddurl=http://localhost:8280/services/StockQuoteProxy -Dmode=placeorder -Dsymbol=WSO2
-```
+[Configure the ActiveMQ broker](../../../../setup/brokers/configure-with-ActiveMQ).
 
 You can analyze the message sent by the Micro Integrator to the secure service using TCPMon.
 
-On successful execution of the placeorder request, you will see thefollowing message on the back-end:
+On successful execution of the placeorder request, you will see the following message on the back-end:
 
 ```xml
 Sun Aug 18 10:58:00 IST 2013 samples.services.SimpleStockQuoteService :: Accepted order #5 for : 18851 stocks of WSO2 at $ 61.782478265721714
 ```
 
-If you use the stockqoute client to send the placeorder request several times and observe the log on the back-end server, you will see that the messages are distributed randomly among the back-end nodes since you send the placeorder request randomly. However, if you send the request message evenly (such as when using soapUI), you will see that the messages are evenly distributed among the back-end nodes.
+If you send the placeorder request to the proxy service several times and observe the log on the back-end server, you will see that the messages are distributed among the back-end nodes.

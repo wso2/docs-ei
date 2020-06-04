@@ -1,40 +1,78 @@
-# Enabling Logs for APIs
+# Monitoring API-level Logs
 
 The advantage of having per-API log files is that it is very easy to analyze/monitor what went wrong in a particular REST API defined in WSO2 Micro Integrator by looking at the log files. The API log is an additional log file, which will contain a copy of the logs to a particular REST API.
 
 Below are the configuration details to configure the logs of a REST API called `TestAPI` using `log4j`
 properties.
 
-Open `MI_HOME/conf/log4j.properties` file using your favorite text editor to configure `         log4j        ` to log the
-API specific logs to a file. You can configure the logger for either [INFO level logs](#info-level) or [DEBUG level logs](#debug-level) as follows:
+Open `MI_HOME/conf/log4j2.properties` file using your favorite text editor to configure `log4j` to log the API specific logs to a file. You can configure the logger for either INFO level logs or DEBUG level logs as follows:
 
-## INFO level
+## Enabling log4j for an API
 
-Add the following section to the end of the file to configure the logger for log messages where the **Log Category** is **INFO**.
+Follow the instructions below to enable log4j2 logs for a sample REST API (named `TestAPI`). 
+
+1.  Open up the `log4j2.properties` file (stored in the `MI_HOME/conf` directory. 
+2.  Let's define a new appender for the `TestAPI` API by adding the following section to the end of the file (starting in a new line).
+
+	!!! Note
+        This configuration creates a log file named `TestAPI.log` in the folder `MI_HOME/repository/logs` folder.
+
+	```bash
+	# API_APPENDER is set to be a DailyRollingFileAppender using a PatternLayout.
+	appender.API_APPENDER.type = RollingFile
+	appender.API_APPENDER.name = API_APPENDER
+	appender.API_APPENDER.fileName = ${sys:carbon.home}/repository/logs/wso2-ei-api.log
+	appender.API_APPENDER.filePattern = ${sys:carbon.home}/repository/logs/wso2-ei-api-%d{MM-dd-yyyy}.log
+	appender.API_APPENDER.layout.type = PatternLayout
+	appender.API_APPENDER.layout.pattern = TID: [%d] %5p {%c} [%logger] - %m%ex%n
+	appender.API_APPENDER.policies.type = Policies
+	appender.API_APPENDER.policies.time.type = TimeBasedTriggeringPolicy
+	appender.API_APPENDER.policies.time.interval = 1
+	appender.API_APPENDER.policies.time.modulate = true
+	appender.API_APPENDER.policies.size.type = SizeBasedTriggeringPolicy
+	appender.API_APPENDER.policies.size.size=10MB
+	appender.API_APPENDER.strategy.type = DefaultRolloverStrategy
+	appender.API_APPENDER.strategy.max = 20
+	appender.API_APPENDER.filter.threshold.type = ThresholdFilter
+	appender.API_APPENDER.filter.threshold.level = INFO
+	```
+
+3. Register the appender (named `API_APPENDER`):
+        
+	```xml
+	appenders = CARBON_CONSOLE, CARBON_LOGFILE, AUDIT_LOGFILE, API_APPENDER, 
+	```
+
+4. Define a new logger to filter out `TestAPI` related logs:
+
+	```xml
+	logger.API_LOG.name=API_LOGGER.TestAPI
+	logger.API_LOG.level=INFO
+	logger.API_LOG.appenderRef.API_APPENDER.ref = API_APPENDER
+	logger.API_LOG.additivity=false
+	```
+
+5.  Register the `API_LOG` logger:
+
+	```xml
+	loggers = AUDIT_LOG, API_LOG, SERVICE_LOGGER,
+	```  
+
+6.	Save the `log4j2.properties` file.
+
+## Configuring the REST API
+
+The log4j2 configurations in the `log4j2.properties` file does not create logs for the REST API by default. Add a <b>Log</b> mediator to the REST API's in-sequence and configure it to log messages at `INFO` log level.
+
+## Dynamically changing log level
+
+You can update the log level of the REST API in a running Micro Integrator instance by using the **CLI Tool**. For exmaple, to change the log level to DEBUG, execute the following command on the CLI tool: 
 
 ```bash
-log4j.category.API_LOGGER=INFO, API_APPENDER
-log4j.additivity.API_LOGGER=false
-log4j.appender.API_APPENDER=org.apache.log4j.RollingFileAppender
-log4j.appender.API_APPENDER.File=${carbon.home}/repository/logs/${instance.log}/wso2-ei-api${instance.log}.log
-log4j.appender.API_APPENDER.MaxFileSize=1000KB
-log4j.appender.API_APPENDER.MaxBackupIndex=10
-log4j.appender.API_APPENDER.layout=org.apache.log4j.PatternLayout
-log4j.appender.API_APPENDER.layout.ConversionPattern=%d{ISO8601} [%X{ip}-%X{host}] [%t] %5p %c{1} %m%n</pre>
+mi log-level API_LOG DEBUG
 ```
 
-!!! Tip
-	The in-sequence of the REST API will need to contain a **Log mediator** with the **Log Category** defined as **INFO** to be able to view logs in the log file.
+Learn more about [using the command line interface](../administer-and-observe/using-the-command-line-interface.md).
 
-## DEBUG level
-
-Add the following section to the end of the file to configure the logger for log messages where the **Log Category** is **DEBUG**.
-
-```xml
-log4j.additivity.API_LOGGER.TestAPI=false
-```
-    
-!!! Tip
-	-	The above configuration creates a log file names `TestAPI.log` in the folder `MI_HOME/repository/logs` .
-	-	The in-sequence of the REST API will need to contain a **Log mediator** with the **Log Category** defined as **DEBUG** to be able to view logs in the log file.
-
+!!! Note
+    If you change the log4j2 configuration directly from the `log4j2.properties` file (without using the CLI), the Micro Integrator needs to be restarted for the changes to become effective.

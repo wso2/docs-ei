@@ -21,7 +21,7 @@ Create a Maven Project using the following information.
 
 Create a Java Package inside the Maven Project using the following name: `             org.wso2.task.stockquote.v1            `
 
-![](/assets/img/custom-task-scheduling/119130458/119130467.png)
+![](../../assets/img/custom-task-scheduling/119130458/119130467.png)
 
 ### Creating the Java Class
 
@@ -165,7 +165,7 @@ Create a Java Package inside the Maven Project using the following name: `     
         }
     ```
 
-    ![](/assets/img/custom-task-scheduling/119130458/119130464.png)
+    ![](../../assets/img/custom-task-scheduling/119130458/119130464.png)
 
 3.  In the **Project Explorer**, double-click on the **pom.xml** file and replace its source with the below content.
 
@@ -197,7 +197,7 @@ Create a Java Package inside the Maven Project using the following name: `     
     </project>
     ```
 
-    ![](/assets/img/custom-task-scheduling/119130458/119130465.png)  
+    ![](../../assets/img/custom-task-scheduling/119130458/119130465.png)  
 
 ### Writing the custom Task
 
@@ -221,29 +221,6 @@ The `             execute()            ` method contains the
 In addition to the `             execute()            ` method, it
     is also possible to make the class implement a
     `             JavaBean            ` interface.
-
-!!! Info
-    When creating customized task schedules, if the injecting sequence
-        of the message flow contains **Publish Event** mediators, set the
-        following property in the Synapse message context:
-    
-```xml
-mc.setProperty("CURRENT_TASK_EXECUTING_TENANT_IDENTIFIER",PrivilegedCarbonContext.getThreadLocalCarbonContext().getTenantId());
-```
-        
-Also, add the following dependency to the POM file of the custom
-            task project:
-            `             WSO2 Carbon - Utilities bundle            ` (symbolic
-            name: `             org.wso2.carbon.utils            ` )
-        
-!!! Info
-    When creating customized task schedules, if the injecting sequence
-        of the message flow contains **Publish Event** mediators, set the
-        following property in the Synapse message context:
-    
-```xml
-mc.setProperty("CURRENT_TASK_EXECUTING_TENANT_IDENTIFIER",PrivilegedCarbonContext.getThreadLocalCarbonContext().getTenantId());
-```
 
 Also, add the following dependency to the POM file of the custom task project: `             WSO2 Carbon - Utilities bundle            ` (symbolic name: `             org.wso2.carbon.utils            ` )
         
@@ -337,7 +314,7 @@ Follow the steps below to create the task and schedule it.
 2.  [Create a Sequence](../creating-artifacts/creating-reusable-sequences.md) using the following information named `PrintStockQuoteSequence`. 
 3.  Add a **Log Mediator** and a **Drop Mediator** to the sequence and configure them.
 
-    ![](/assets/img/custom-task-scheduling/119130458/119130461.png)
+    ![](../../assets/img/custom-task-scheduling/119130458/119130461.png)
 
     The below is the complete source configuration of the Sequence (i.e., the `PrintStockQuoteSequence.xml` file):
 
@@ -349,7 +326,7 @@ Follow the steps below to create the task and schedule it.
     </sequence>
     ```
     
-4.  [Create a Scheduled Task](../creating-artifacts/scheduling-esb-tasks.md) using the following information:
+4.  [Create a Scheduled Task](../creating-artifacts/creating-scheduled-task) using the following information:
     <table>
         <tr>
             <th>Task Property</th>
@@ -369,7 +346,7 @@ Follow the steps below to create the task and schedule it.
         </tr>
     </table>
 
-    ![](/assets/img/custom-task-scheduling/119130458/119130460.png)
+    ![](../../assets/img/custom-task-scheduling/119130458/119130460.png)
 
 5.  Defining the properties of the Task: In the **Project Explorer** , double-click the **Print StockQuoteScheduledTask.xml** file and replace its source with the below content.
 
@@ -463,4 +440,4 @@ You will view the stock quotes sent by the backend service printed every 3 secon
 INFO - StockQuoteTask placed order symbol:IBM quantity:100 price:120.50
 ```
 
-![](/assets/img/custom-task-scheduling/119130458/119130459.png)
+![](../../assets/img/custom-task-scheduling/119130458/119130459.png)

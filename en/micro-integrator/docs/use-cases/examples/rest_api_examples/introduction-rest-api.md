@@ -1,16 +1,12 @@
-# Introduction to REST APIs
+# Using a Simple REST API
 
-## Example use case
-
-<!--
-In addition to exposing RESTful interfaces and mediating RESTful invocations by mapping REST concepts to SOAP via [proxy services](https://docs.wso2.com/display/EI650/Using+REST+with+a+Proxy+Service), you can configure REST endpoints in the Micro Integrator by directly specifying HTTP verbs, URL patterns, URI templates, HTTP media types, and other related headers. You can define REST APIs and the associated resources by combining REST APIs with mediation features provided by the underlying messaging framework.
--->
+You can configure REST endpoints in the Micro Integrator by directly specifying HTTP verbs, URL patterns, URI templates, HTTP media types, and other related headers. You can define REST APIs and the associated resources by combining REST APIs with mediation features provided by the underlying messaging framework.
 
 ## Synapse configuration
 
-Following is a sample REST Api configuration that we can used to implement this scenario.
+Following is a sample REST API configuration that we can used to implement this scenario. See the instructions on how to [build and run](#build-and-run) this example.
 
-This is a REST api with two api resources. The GET calls are handled by the first resource (StockQuoteAPI). These REST calls will get converted into SOAP calls and sent to the back-end service. The response will be sent to the client in POX format.
+This is a REST api with two api resources. The GET calls are handled by the first resource. These REST calls will get converted into SOAP calls and sent to the back-end service. The response will be sent to the client in POX format.
 
 ```xml
 <api name="StockQuoteAPI" context="/stockquote" xmlns="http://ws.apache.org/ns/synapse">
@@ -57,31 +53,77 @@ This is a REST api with two api resources. The GET calls are handled by the firs
 
 Create the artifacts:
 
-1. Set up WSO2 Integration Studio.
-2. Create an ESB Config project
-3. Create a REST Api artifact with the above configuration.
-4. Deploy the artifacts in your Micro Integrator.
+1. [Set up WSO2 Integration Studio](../../../../develop/installing-WSO2-Integration-Studio).
+2. [Create an ESB Solution project](../../../../develop/creating-projects/#esb-config-project).
+3. [Create the rest api](../../../../develop/creating-artifacts/creating-an-api) with the configurations given above.
+4. [Deploy the artifacts](../../../../develop/deploy-and-run) in your Micro Integrator.
 
 Set up the back-end service:
 
-........
+1. Download the [stockquote_service.jar](https://github.com/wso2-docs/WSO2_EI/blob/master/Back-End-Service/stockquote_service.jar).
+2. Open a terminal, navigate to the location of the downloaded service, and run it using the following command:
+
+    ```bash
+    java -jar stockquote_service.jar
+    ```
 
 Invoke the sample Api:
 
-1. Save the following sample request as "placeorder.xml" in your local file system. 
-
+-  Sending a GET request.
+   
+   Open a terminal and execute the following command. This sends a simple GET request to the Micro Integrator.
+        
     ```bash
-    <placeOrder xmlns="http://services.samples">
-      <order>
-         <price>50</price>
-         <quantity>10</quantity>
-         <symbol>IBM</symbol>
-      </order>
-    </placeOrder>
+    curl http://127.0.0.1:8290/stockquote/view/IBM
+    ```
+    
+    The Micro Integrator returns the following response to the client.
+
+    ```xml
+    <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ns="http://services.samples" xmlns:ax21="http://services.samples/xsd">
+        <soapenv:Body>
+            <ns:getQuoteResponse>
+                    <ax21:change>-2.86843917118114</ax21:change>
+                    <ax21:earnings>-8.540305401672558</ax21:earnings>
+                    <ax21:high>-176.67958828498735</ax21:high>
+                    <ax21:last>177.66987465262923</ax21:last>
+                    <ax21:low>-176.30898912339075</ax21:low>
+                    <ax21:marketCap>5.649557998178506E7</ax21:marketCap>
+                    <ax21:name>IBM Company</ax21:name>
+                    <ax21:open>185.62740369461244</ax21:open>
+                    <ax21:peRatio>24.341353665128693</ax21:peRatio>
+                    <ax21:percentageChange>-1.4930577008849097</ax21:percentageChange>
+                    <ax21:prevClose>192.11844053187397</ax21:prevClose>
+                    <ax21:symbol>IBM</ax21:symbol>
+                    <ax21:volume>7791</ax21:volume>
+            </ns:getQuoteResponse>
+        </soapenv:Body>
+    </soapenv:Envelope>
     ```
 
-2.  The following command posts a simple XML request to the Micro Integrator. Execute the command that is used to invoke a SOAP service. The Micro Integrator returns the 202 response back to the client.
-
-    ```bash
-    curl -v -d @placeorder.xml -H "Content-type: application/xml" http://127.0.0.1:8280/stockquote/order/
-    ```
+-  Sending a POST request.
+    1. Save the following sample request as `placeorder.xml` in your local file system. 
+    
+        ```bash
+        <placeOrder xmlns="http://services.samples">
+          <order>
+             <price>50</price>
+             <quantity>10</quantity>
+             <symbol>IBM</symbol>
+          </order>
+        </placeOrder>
+        ```
+    
+    2.  Open a terminal, navigate to the location of your `placeorder.xml` file, and execute the following command. This posts a simple XML request to the Micro Integrator.
+    
+        ```bash
+        curl -v -d @placeorder.xml -H "Content-type: application/xml" http://127.0.0.1:8290/stockquote/order/
+        ```
+    
+        The Micro Integrator returns the 202 response back to the client.
+    
+        ```xml
+        < HTTP/1.1 202 Accepted
+        < Date: Wed, 30 Oct 2019 05:33:49 GMT
+        < Transfer-Encoding: chunked
+        ```

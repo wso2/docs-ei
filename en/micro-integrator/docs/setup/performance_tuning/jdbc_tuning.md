@@ -1,14 +1,28 @@
 # Tuning JDBC Pool Configurations
 
-We use Tomcat JDBC pooling as the default pooling framework due to its production-ready stability and high performance. The goal of tuning the pool properties is to maintain a pool that is large enough to handle peak load without unnecessarily utilizing resources. These pooling configurations can be tuned for your production server in general in the deployment.toml file.
+If you have connected a [JDBC user store](../../../setup/user_stores/setting_up_ro_ldap) to the Micro Integrator, you can apply the following datasource tuning recommendations in the `deployment.toml` file (stored in the `<MI_HOME>/conf` directory).
 
-The following parameters should be considered when tuning the connection pool:
+!!! Info
+    The following recommendations also apply when you create a data service to expose data in an RDBMS. Find out more about [RDBMS configurations](../../../references/synapse-properties/data-services/datasource-Configuration-Parameters) in data services.
+
+## JDBC connection pool tuning recommendations
+
+When a database operation is processed, the server spawns a database
+connection from an associated datasource. After using this connection,
+the server returns it to the pool of connections. The physical
+connection is not dropped with the database server unless it becomes
+stale or the datasource connection is closed. This is called
+**datasource connection pooling** and is a recommended way to gain more
+performance/throughput in the system. The goal of tuning the pool properties is to maintain an 
+RDBMS connection pool that is large enough to handle peak load without unnecessarily utilizing resources.
+
+The following parameters should be considered when tuning the connection pool for the database:
 
 -   The application's concurrency requirement.
 -   The average time used for running a database query.
 -   The maximum number of connections the database server can support.
 
-The table below indicates some recommendations on how to configure the JDBC pool. For more details about recommended JDBC configurations, see [Tomcat JDBC Connection Pool](http://tomcat.apache.org/tomcat-7.0-doc/jdbc-pool.html). 
+The table below indicates some recommendations on how to configure the JDBC pool. See the complete list of [JDBC configuration parameters](../../../references/config-catalog/#database-connection) that you can use in the `deployment.toml` file. For more details about recommended JDBC configurations, see [Tomcat JDBC Connection Pool](http://tomcat.apache.org/tomcat-7.0-doc/jdbc-pool.html). 
 
 <table>
     <tr>
@@ -17,7 +31,7 @@ The table below indicates some recommendations on how to configure the JDBC pool
         <th>Tuning Recommendations</th>
     </tr>
     <tr>
-        <td>maxActive</td>
+        <td>pool_options.maxActive</td>
         <td>
             The maximum number of active connections that can be allocated from the connection pool at the same time. The default value is 100.
         </td>
@@ -33,7 +47,7 @@ The table below indicates some recommendations on how to configure the JDBC pool
         </td>
     </tr>
     <tr>
-        <td>maxWait</td>
+        <td>pool_options.maxWait</td>
         <td>
             The maximum time that requests are expected to wait in the queue for a connection to be released. This property comes into effect when the maximum number of active connections allowed in the connection pool (see maxActive property) is used up.
         </td>
@@ -48,7 +62,7 @@ The table below indicates some recommendations on how to configure the JDBC pool
         </td>
     </tr>
     <tr>
-        <td>minIdle</td>
+        <td>pool_options.minIdle</td>
         <td>
             The maximum number of connections that can remain idle in the pool.
         </td>
@@ -57,7 +71,7 @@ The table below indicates some recommendations on how to configure the JDBC pool
         </td>
     </tr>
     <tr>
-        <td>testOnBorrow</td>
+        <td>pool_options.testOnBorrow</td>
         <td>
             The indication of whether connection objects will be validated before they are borrowed from the pool. If the object validation fails, the connection is dropped from the pool, and there will be an attempt to borrow another connection.
         </td>
@@ -66,7 +80,7 @@ The table below indicates some recommendations on how to configure the JDBC pool
         </td>
     </tr>
     <tr>
-        <td>validationInterval</td>
+        <td>pool_options.validationInterval</td>
         <td>
             This parameter controls how frequently a given validation query is executed (time in milliseconds). The default value is 30000 (30 seconds). That is, if a connection is due for validation, but has been validated previously within this interval, it will not be validated again.
         </td>
@@ -77,7 +91,7 @@ The table below indicates some recommendations on how to configure the JDBC pool
         </td>
     </tr>
     <tr>
-        <td>validationQuery</td>
+        <td>pool_options.validationQuery</td>
         <td>
             The SQL query used to validate connections from this pool before returning them to the caller. If specified, this query does not have to return any data, it just can't throw an SQLException. The default value is null. Example values are SELECT 1(mysql), select 1 from dual(oracle), SELECT 1(MS Sql Server).
         </td>
@@ -86,18 +100,26 @@ The table below indicates some recommendations on how to configure the JDBC pool
         </td>
     </tr>
     <tr>
-        <td>MaxPermSize</td>
+        <td>pool_options.MaxPermSize</td>
         <td>
             The memory size allocated for the WSO2 product. 
         </td>
         <td>
             The default memory allocated for the product via this parameter is as follows:
             <code>-Xms256m -Xmx512m -XX:MaxPermSize=256m</code> </br></br>
-            You can increase the performance by increasing this value in the <PRODUCT_HOME>/bin/wso2server.sh file as follows: 
+            You can increase the performance by increasing this value in the <MI_HOME>/bin/micro-integrator.sh file as follows: 
             <code>-Xms2048m -Xmx2048m -XX:MaxPermSize=1024m</code>
         </td>
     </tr>
 </table>
+
+The following properties are used for detecting and removing the connections that get leaked from the connection pool:
+
+| Property Name            | How to configure                                                                                                                                                                                                                                                   |
+|--------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| pool_options.removeAbandoned         | If this property is set to 'true', a connection is considered abandoned and eligible for removal if it has been in use for longer than the `removeAbandonedTimeout` value explained below.                                              |
+| pool_options.removeAbandonedTimeout | The time in seconds that should pass before a connection that is in use can be removed. This is the time period after which the connection will be declared abandoned. This value should be set to the longest running query that the applications might have.     |
+| pool_options.logAbandoned            | Set this property to "true" if you wish to log when the connection was abandoned. If this option is set to "true", a stack trace is recorded during the `dataSource.getConnection` call and is printed when a connection is not returned. |
 
 !!! Info
     -   When it comes to web applications, users are free to experiment and package their own pooling framework such BoneCP.

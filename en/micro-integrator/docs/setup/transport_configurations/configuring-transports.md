@@ -4,7 +4,7 @@ A transport protocol is responsible for carrying messages that are in a specific
 
 ## Configuring the HTTP/HTTPS transport
 
-The HTTP and HTTPS passthrough transports are enabled by defualt in the Micro Integrator. 
+The HTTP and HTTPS passthrough transports are enabled by default in the Micro Integrator. 
 
 See the [complete list of HTTP/HTTPS parameters](../../../references/config-catalog/#http-transport).
 
@@ -15,10 +15,10 @@ The default HTTP transport (PassThrough transport) of WSO2 Micro Integrator has 
 You can configure the number of listeners for the HTTP transport in the deployment.toml file:
 
 ```toml
-[[transport.http]]
-io_thread_count=2
+[passthru_properties]
+io_threads_per_reactor=2
 ```
-You are able to define any number of listeners (by updating the `io_thread_count` value) as there is no maximum limit defined in the code level.
+You are able to define any number of listeners (by updating the `io_threads_per_reactor` value) as there is no maximum limit defined in the code level.
 
 !!! Note
     The number of listener threads is double the value of the `io_threads_per_reactor` property because the same number of `PassThroughHttpListener` and `PassThroughHttpSSLListener` threads are created. For example, if you defined the value for the `io_threads_per_reactor` property as 5, you have 5 `PassThroughHttpListener` threads and 5 `PassThroughHttpSSLListener` threads. Therefore, the total number of listeners are 10.
@@ -30,7 +30,7 @@ With the default HTTP transport (PassThrough transport) you can enable connectio
 To enable connection throttling, update the following property in the deployment.toml file:
 
 ```toml
-[[transport.http]]
+[transport.http]
 max_open_connections = 2
 ```
 
@@ -58,26 +58,56 @@ process checks all the certificates in a certificate chain.
 To enable this feature for the HTTP passthrough, add the following parameters for the HTTP transport receiver and sender in the deployment.toml file:
 
 ```toml tab='Passthrough Listener'
-[[transport.http]]
-listener.CertificateRevocationVerifier=""
-listener.CacheSize=1024
-listenerCacheDelay=1000
+[transport.http]
+listener.certificate_revocation_verifier_enable = true
+listener.certificate_revocation_cache_size = 1024
+listener.certificate_revocation_cache_delay = 1000
 
 ``` 
 
 ```toml tab='Passthrough Sender'
-[[transport.http]]
-sender.CertificateRevocationVerifier=""
-sender.CacheSize=1024
-sender.CacheDelay=1000
+[transport.http]
+sender.certificate_revocation_verifier_enable = true
+sender.certificate_revocation_cache_size = 1024
+sender.certificate_revocation_cache_delay = 1000
 
 ``` 
 
+### Configuring Transport Level Security  
+
+Micro Integrator supports both SSL and TLS protocols. But since the SSL protocol is vulnerable to Poodle attacks, it is necessary to make sure that only TLS protocol versions are enabled.
+
+!!! Note
+    It is necessary to disable SSL in Carbon servers because of a bug (Poodle Attack) in the SSL protocol that could expose critical data encrypted between clients and servers. The Poodle Attack makes the system vulnerable by telling the client that the server does not support the more secure TLS (Transport Layer Security) protocol, and thereby forces it to connect via SSL. The effect of this bug can be mitigated by disabling the SSL protocol for your server.
+
+To configure the enabled protocols, update the following property in the deployment.toml file:
+```toml
+[transport.http]
+listener.secured_protocols = "TLSv1,TLSv1.1,TLSv1.2"
+sender.secured_protocols = "TLSv1,TLSv1.1,TLSv1.2"
+```
+### Disabling weak ciphers
+
+A cipher is an algorithm for performing encryption or decryption. When you set the sslprotocol of your server to TLS, the TLS and the default ciphers get enabled without considering the strength of the ciphers. This is a security risk as weak ciphers, also known as EXPORT ciphers, can make your system vulnerable to attacks such as the Logjam attack on Diffie-Hellman key exchange. The Logjam attack is also called the Man-in-the-Middle attack. It downgrades your connection's encryption to a less-secured level (e.g., 512 bit) that can be decrypted with sufficient processing power.
+
+To prevent these types of security attacks, it is encouraged to disable the weak ciphers. You can enable only the ciphers that you want the server to support in a comma-separated list in the ciphers  attribute. 
+
+To configure the enabled ciphers, update the following property in the deployment.toml file:
+```toml
+[transport.https]
+listener.parameter.PreferredCiphers = "TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA256,TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256,TLS_DHE_RSA_WITH_AES_128_CBC_SHA256,TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA,TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA,TLS_DHE_RSA_WITH_AES_128_CBC_SHA,TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256,TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256,TLS_DHE_RSA_WITH_AES_128_GCM_SHA256"
+```
+
+!!! Note
+    To check the above configuration changes related to SSL. Download [TestSSLServer.jar](https://docs.wso2.com/download/attachments/53125465/TestSSLServer.jar?version=1&modificationDate=1471859455000&api=v2) and test with the following command.
+
+    $ java -jar TestSSLServer.jar localhost 8253
+    
 ## Configuring the VFS transport
 
 The VFS transport is enabled by defualt in the Micro Integrator. The VFS transport supports the **SFTP protocol** with **Secure Sockets Layer (SSL)**. The configuration is identical to other protocols with the only difference being the URL prefixes and parameters. 
 
-For more information, see [VFS URL parameters](../../references/synapse-properties/vfs-transport-parameters).
+For more information, see [VFS URL parameters](../../../references/synapse-properties/transport-parameters/vfs-transport-parameters).
 
 See the [complete list of VFS parameters](../../../references/config-catalog/#vfs-transport).
 
@@ -92,10 +122,12 @@ See the [complete list of local parameters](../../../references/config-catalog/#
 ## Configuring the TCP transport
 
 To enable the TCP transport listener and sender, set the following parameters to `true` in the deployment.toml file (stored in the `MI_HOME/conf` directory).
+Change the listener port value as required.
 
 ```toml
 [transport.tcp]
-listener.enable = false
+listener.enable = true
+listener.port = 6060
 sender.enable = true
 ```
 
@@ -155,17 +187,111 @@ listener.enable = false
 sender.enable = false   
 ```
 
-Download Quickfix/J and in the distribution archive you will find all the dependencies listed below. Also please refer to [Quickfix/J](https://www.quickfixj.org/) documentation on configuring FIX acceptors and initiators. <b>Note</b> that the FIX transport does not support any global parameters. All the FIX configuration parameters should be specified at service level.
+Download Quickfix/J and in the distribution archive you will find all the dependencies listed below. Add the following jars to the MI_HOME/libs folder.
+
+Please refer to [Quickfix/J](https://www.quickfixj.org/) documentation on configuring FIX acceptors and initiators. <b>Note</b> that the FIX transport does not support any global parameters. All the FIX configuration parameters should be specified at service level.
 
 -	mina-core.jar
 -	quickfixj-core.jar
--	quickfixj-msg-fix40.jar
--	quickfixj-msg-fix41.jar
--	quickfixj-msg-fix42.jar
--	quickfixj-msg-fix43.jar
--	quickfixj-msg-fix44.jar
+-	quickfixj-messages-fix40.jar
+-	quickfixj-messages-fix41.jar
+-	quickfixj-messages-fix42.jar
+-	quickfixj-messages-fix43.jar
+-	quickfixj-messages-fix44.jar
 -	slf4j-api.jar
 -	slf4j-log4j12.jar
+
+Also [download](https://logging.apache.org/log4j/1.2/download.html) the following jar and add it to the libs folder.
+-   log4j-1.2.17.jar
+
+### Configuring Sample FIX Applications
+
+If you are using a binary distribution of Quickfix/J, the two samples (FIX messages sender/reveiver)
+and their configuration files are all packed to two JAR files called
+`quickfixj-examples-banzai-2.1.1.jar` and `quickfixj-examples-executor-2.1.1.jar`. You will have to extract the
+JAR file, modify the configuration files and pack them to a JAR file
+again under the same name.
+
+Change the banzai.cfg file in quickfixj-examples-banzai-2.1.1.jar (/quickfix/examples/banzai) by changing `TargetCompID` to `SYNAPSE`
+```
+[default]
+FileStorePath=target/data/banzai
+ConnectionType=initiator
+SenderCompID=BANZAI
+TargetCompID=SYNAPSE
+SocketConnectHost=localhost
+StartTime=00:00:00
+EndTime=00:00:00
+HeartBtInt=30
+ReconnectInterval=5
+
+[session]
+BeginString=FIX.4.0
+SocketConnectPort=9876
+
+[session]
+BeginString=FIX.4.1
+SocketConnectPort=9877
+
+[session]
+BeginString=FIX.4.2
+SocketConnectPort=9878
+
+[session]
+BeginString=FIX.4.3
+SocketConnectPort=9879
+
+[session]
+BeginString=FIX.4.4
+SocketConnectPort=9880
+
+[session]
+BeginString=FIXT.1.1
+DefaultApplVerID=FIX.5.0
+SocketConnectPort=9881
+
+```
+
+Edit the executor.cfg file in quickfixj-examples-executor-2.1.1.jar (/quickfix/examples/executor) by changing `TargetCompID` to `SYNAPSE` and changing `SocketAcceptPort` to `19876`
+```
+[default]
+FileStorePath=target/data/executor
+ConnectionType=acceptor
+StartTime=00:00:00
+EndTime=00:00:00
+HeartBtInt=30
+ValidOrderTypes=1,2,F
+SenderCompID=EXEC
+TargetCompID=SYNAPSE
+UseDataDictionary=Y
+DefaultMarketPrice=12.30
+
+[session]
+BeginString=FIX.4.0
+SocketAcceptPort=19876
+
+[session]
+BeginString=FIX.4.1
+SocketAcceptPort=9877
+
+[session]
+BeginString=FIX.4.2
+SocketAcceptPort=9878
+
+[session]
+BeginString=FIX.4.3
+SocketAcceptPort=9879
+
+[session]
+BeginString=FIX.4.4
+SocketAcceptPort=9880
+
+[session]
+BeginString=FIXT.1.1
+DefaultApplVerID=FIX.5.0
+SocketAcceptPort=9881
+
+```
 
 ## Configuring the MQTT transport
 
@@ -229,13 +355,15 @@ To enable the MailTo transport listener and sender, set the following parameters
 	!!! Note
 		In addition to enabling the MailTO transport, the following parameters are used in the above configuration to set a default email account as the mail sender. You can override this default mail sender by specifying an email sender account within your mediation sequence.
 
-		-	`mail.smtp.from` : The email address from which mails will be sent.
-		-	`mail.smtp.user` : The user name of the email account (mail sender). Note that in some email service providers, the user name is the same as the email address specified for the 'From' parameter.
-		-	`mail.smtp.password` : The password of the email account (mail sender).
+		-	`parameter.from` : The email address from which mails will be sent.
+		-	`parameter.username` : The user name of the email account (mail sender). Note that in some email service providers, the user name is the same as the email address specified for the 'From' parameter.
+		-	`parameter.password` : The password of the email account (mail sender).
 
 	If you want to use multiple mail boxes to send emails, make a copy of the default MailTo sender configuration in the `MI_HOME/conf/deployment.toml` file and change the transport sender name. For example, add `mailtoWSO2` as the name.
 
-	For a list of parameters supported by the MailTo transport sender, see [SMTP Package Summary](https://javaee.github.io/javamail/docs/api/com/sun/mail/smtp/package-summary.html). In addition to the parameters described there, the MailTo transport sender supports the following parameters.
+	For a list of parameters supported by the MailTo transport sender, see [SMTP Package Summary](https://javaee.github.io/javamail/docs/api/com/sun/mail/smtp/package-summary.html). You can add these parameters into the mail transport as custom parameters by appending relevant parameters surrounded by single quotes into the parameter section. For example, to add `mail.smtp.localport` parameter into the mail transport, toml configuration would be `parameter.'mail.smtp.localport'=5000`.
+	
+	In addition to the parameters described there, the MailTo transport sender supports the following custom parameters.
 
 	-	`transport.mail.SMTPBccAddresses` : If one or more e-mail addresses need to be specified as BCC addresses for outgoing mails, this parameter can be used. You can enter a comma-separated list of e-mail addresses.
 	-	`transport.mail.Format` : Format of the outgoing mail. Possible values are <b>Text</b> and <b>Multipart</b>.

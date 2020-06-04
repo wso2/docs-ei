@@ -1,61 +1,60 @@
-#Scalable High Availability (HA) Deployment
+# Scalable Deployment
 
-Scalable high availability deployment predominantly focused on scaling the system according to the load or the TPS of
+Scalable high availability deployment predominantly focuses on scaling the system according to the load or the TPS of
 the system. This is achieved with the help of horizontal scalability.
 
-Streaming Integration underneath uses siddhi as the streaming language. In siddhi one can write siddhi logic in a 
-stateless and stateful way. 
+WSO2 Streaming Integrator uses Siddhi as the streaming language. Siddhi allows you to write Siddhi logic in a
+stateless way as well as a stateful way.
 
-Stateless operations include filters , database operations etc and stateful operations include window operations , 
-aggregations etc which keep data in memory to carry out calculations.
+Stateless operations include filters, database operations etc., and stateful operations include window operations,
+aggregations etc., that keep data in memory to carry out calculations.
 
-The deployment options for a scalable streaming integrator depends on the stateless and statefulness of siddhi apps. 
-Below are the detail descriptions of two approaches.
+The deployment options for a scalable streaming integrator depends on the statelessness and the statefulness of Siddhi applications.
 
-#### Stateless Scalable High Availability (HA) Deployment
+The following topics provide detailed descriptions of two approaches.
 
-In stateless scenarios system does not work with any inmemory state.Thus in order to scale we can keep adding SI servers
- to the system and front them with a load balancer which will publish the events in round robin way. 
+!!! tip "System Requirements"
+    For system requirements for this deployment, see [Installing the Streaming Integrator in a Virtual Machine](installing-si-in-vm.md).
+
+
+## Stateless scalable high availability (HA) deployment
+
+In stateless scenarios, the system does not work with any in-memory state. Thus in order to scale, you can keep adding Streaming Integrator servers to the system and front them with a load balancer that publishes the events in round robin manner.
  
-See below the architecture depicted 
+This is depicted in the diagram below.
 
-##![overview](../images/statelessDeploymentOverview.jpg?)
+![overview](../../images/deploying-si-as-a-scalable-cluster/statelessDeploymentOverview.png)
 
 
 
-#### Stateful Scalable High Availability (HA) Deployment
+## Stateful scalable high availability (HA) deployment
 
-As described earlier stateful operations keep state data in memory thus inorder to scale such system we need to process 
-particular data on same node without processing same state data in different servers. So to achieve this we can use data 
-partitioning so that one bucket of partitioned data will only process in one particular server. 
+As described before, stateful operations keep state data in memory. Therefore, in order to scale such a system, you need to process
+specific data on the same node without processing same-state data in different servers. You can achieve this via data
+partitioning where one bucket of partitioned data is processed only in one specific server.
 
-!!! note
+!!! info
+    In order to scale stateful operations, it is required to have some partitioning attribute available enabling the partitioned data to be processed independently.
 
-    In order to scale stateful operations it is a must to have some kind of partitioning attribute available so that 
-    partitioned data can be processed independently.
+The following is a high level diagram of event flow and components to achieve scalable, stateful, and highly available deployment.
 
-See below the high level diagram of event flow and components to achieve scalable stateful high available deployment.
+![overview](../../images/deploying-si-as-a-scalable-cluster/statefulDeploymentOverview.png)
 
-##![overview](../images/statefulDeploymentOverview.jpg?)
+The following sections describe each component in detail and how to configure them with WSO2 Streaming Integrator.
 
-Below describes each component in detail and how to configure them with streaming integrator.
+### Partitioning layer
 
-#####Partitioning Layer
+As shown in the above diagram, first you need to have a partitioning layer. Here, you are using an SI server to achieve it. The function of this layer is to consume events from output sources and then partition the events based on a partitioning condition.
 
-As depicted above first we need to have a partitioning layer. Here we are using a SI server to achieve it. This layer 
-responsible of consuming events from output sources and then partition the events based on a partitioning condition. 
-
-In order to partition you can leverage the Distributed sink extension in Streaming integration. Consider following 
-sample siddhi app syntax which defines a stream and how the distributed sink can be applied to partition data and for
-this example data are partitioned from tenant domain. To see more check on 
-<a target="_blank" href="https://siddhi.io/en/v5.0/docs/query-guide/#distributed-sink">distributed sink</a>
+In order to partition you can leverage on the Distributed sink extension in WSO2 Streaming Integrator. The following is a
+sample Siddhi application syntax that defines a stream. It shows how the distributed sink can be applied to partition data. In
+this example, data is partitioned from tenant domain. For more information, see [Siddhi Query Guide - Distributed Sink](https://siddhi.io/en/v4.x/docs/query-guide/#distributed-sink).
 
 !!! note
+    In the following example, the definition of the `Request` stream(Request stream) only includes the logicto send events out for load balancers via http for each
+    partition. In addition, there should be a logic to consume eventsfrom outside and direct them to the `Request` stream.
 
-    Below configuration(Request stream) only consist on how to send events out for load balancers via http for each 
-    partition. In addition there should be a logic to consume events coming from outside and pass it to Request stream.
-
-Eg:-
+e.g.,
 
     // Stream defined with distributed sink with partitioned stratergy      
     @Sink(type = 'http',
@@ -82,23 +81,20 @@ Eg:-
          backendTime long);
          
     
-According to above distributed sink configuration, events which comes to Request stream will be partitioned based on 
-userTenantDomain attribute. So if there are two tenant domain values "fooDomain" and "barDomain" , then events belong 
-"fooDomain" might publish to Ip1 and the events belong to "barDomain" will publish into Ip2.Distributed sink will make
-sure that unique partitioned events will not distribute across the cluster.Here Ip1 and Ip2 represents the load balancer
-IP's. Reason for using load balancers because stateful layer also contain two SI servers to handle the high 
-availability. Hence we need a load balancer to send traffic in fail over manner.
+According to above distributed sink configuration, events that arrive at the `Request` stream are partitioned based on the
+`userTenantDomain` attribute. Therefore, if there are two tenant domain values `fooDomain` and `barDomain`, then events of
+`fooDomain` can be published to `Ip1`, and the events of `barDomain` can be published to `Ip2`. The distributed sink ensures that the unique partitioned events are not distributed across the cluster. Here, `Ip1` and `Ip2` represent the load balancer
+IPs. The reason for using load balancers is because the stateful layer also contains two SI servers to handle the high availability. Therefore, you need a load balancer to direct the traffic in a failover manner.
 
-According to above diagram there are four partitions hence the use of four load balancers.
+According to the above diagram, there are four partitions. Therefore, four load balancers are used.
 
-Since we need the high availability in the partitioning layer we can use two SI servers (minimum) as depicted in the 
-diagram.
+You need the high availability in the partitioning layer. Therefore, you can use two WSO2 Streaming Integrator servers (minimum) as depicted in the diagram.
 
-#####Stateful Layer
+### Stateful Layer
 
-Responsibility of this layer is to consume events according to each partition and carry out rest of the stateful 
-operations.Since we have partitioned data we can seamlessly handle the scalability of the system. Also we have to address 
-the high availability of the system as well. Thus for each partition we can deploy the system as mentioned in two node 
+The function of this layer is to consume events according to each partition and carry out the rest of the stateful
+operations. When you have partitioned the date, you can seamlessly handle the scalability of the system as well as address the requirement for high availability of the system.
+Thus for each partition we can deploy the system as mentioned in two node
 minimum high available deployment section. Basically for each partition or partitions there will be a separate cluster 
 of two SI nodes. So if active node fails for a particular partition the other node in the cluster will carry out the 
 work.

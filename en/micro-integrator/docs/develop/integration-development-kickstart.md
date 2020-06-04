@@ -1,444 +1,520 @@
 # Developing Your First Integration Solution
 
-Integration developers need efficient tools to build and test all the
-integration use cases required by the enterprise before pushing them
-into a production environment. The following topics will guide you
-through the process of building and running an example integration use
-case using **WSO2 Integration Studio** . This tool contains an embedded
-**WSO2 Micro Integrator** instance as well as other capabilities that
-allows you to conveniently design, develop, and test your integration
-artifacts before deploying them in your production environment.
+Integration developers need efficient tools to build and test all the integration use cases required by the enterprise before pushing them into a production environment. 
+The following topics will guide you through the process of building and running an example 
+integration use case using WSO2 Integration Studio. 
+This tool contains an embedded WSO2 Micro Integrator instance as well as other capabilities 
+that allows you to conveniently design, develop, and test your integration artifacts before 
+deploying them in your production environment.
 
+## Use case
 
-## Example use case
+We are going to use the same use case we considered in the [Quick Start Guide](../../overview/quick-start-guide). 
+In the quick start guide, we just executed the already-built integration scenario. 
+Here, we are going to build the integration scenario from scratch. Let’s recall the 
+business scenario:
 
-You will set up a service (named **integration-service** ), which can
-communicate with a backend service (named **order-processing-be** ) that
-processes book orders. The **integration-service** consists of a REST
-API artifact. This REST API ( `         forwardOrderApi)        `
-receives the request that is sent from a client, and the **Call**
-mediator in the API forwards the request to the URL of the backend
-service ( **order-processing-be** ).
+![Integration Scenario](../assets/img/developing-first-integration/dev-first-integration-0.png)
 
-![Running a REST API on Docker](../assets/img/developer_workflow.png)
+The scenario is about a basic healthcare system where WSO2 Micro Integrator is used as the integration middleware. Most healthcare centers use a system to help patients book doctor appointments. To check the availability of doctors, patients will typically use each and every online system that is dedicated for a particular healthcare center or personally visit the healthcare centers. 
 
-The **order-processing-be** receives the message, processes the request,
-and returns the response by appending the 'orderID', 'price', and
-'status' to the order details.
+We will simplify this process of booking doctor appointments by building an integration solution that orchestrates the isolated systems in each healthcare provider and exposes a single interface to the users. 
 
-![Order processing backend service](../assets/img/backend.png)
+Both the Grand Oak service and Pine Valley service are exposed over the HTTP protocol. 
 
-## Running the use case
+- The Grand Oak service accept GET requests in the following service endpoint url:
+  ```bash
+  http://<HOST_NAME>:<PORT>/grandOak/doctors/<DOCTOR_TYPE>
+  ```
 
-Follow the steps given below and get started.
+- The Pine Vallery service accepts POST requests in the following service endpoint url:
+  ```bash
+  http://<HOST_NAME>:<PORT>/pineValley/doctors
+  ```
 
-### Step 1: Set up the workspace
+    The expected payload should be in the following JSON format:
+    ```bash
+    {
+            "doctorType": "<DOCTOR_TYPE>"
+    }
+    ```
 
-In this guide, you will see how this use case can be executed by running
-the Micro Integrator on Docker, on Kubernetes, or on a VM.
+Let’s implement a simple Rest API that can be used to query the availability of doctors for a particular category 
+from all the available healthcare centers.
 
--   Install [WSO2 Integration
-    Studio](https://wso2.com/integration/tooling/) .
--   Install [Docker](https://www.docker.com/) (version 17.09.0-ce or
-    higher).
--   Install [Curl](https://curl.haxx.se/) .
--   [Install
-    Minikube](https://kubernetes.io/docs/tasks/tools/install-minikube/)
-    (only required for running the use case on Kubernetes) . Once you
-    have completed this step, you should have **kubectl** configured to
-    use Minikube from your terminal.
+## Set up the workspace
 
-### Step 2: Develop the integration artifacts
+Download the relevant [WSO2 Integration Studio](https://wso2.com/integration/integration-studio/) based on your operating system. For more information, see [Installing WSO2 Integration Studio](../../develop/installing-WSO2-Integration-Studio).
 
-We use **WSO2 Integration Studio** to develop the integration artifacts. To run this use case, you need two REST API artifacts for the frontend service ( **integration** service) and a backend service (**order-processing** service) respectively. The synapse artifacts of these two services are given below. To run this tutorial, let's import
-the pre-built artifacts of the two services to WSO2 Integration Studio, and proceed from there. If you want to build the artifacts from scratch, see the instruction in [Using WSO2 Integration Studio](../develop/creating-artifacts/creating-an-api.md).
+## Develop the integration artifacts
 
-``` xml tab="Integration Service"
-<?xml version="1.0" encoding="UTF-8"?>
-<api context="/forward" name="forwardOrderApi" xmlns="http://ws.apache.org/ns/synapse">
-    <resource methods="POST">
-        <inSequence>
-            <call>
-                 <endpoint>
-                    <address uri="http://backed:8290/order"/>
-                </endpoint>
-            </call>
-            <respond/>
-        </inSequence>
-        <outSequence/>
-        <faultSequence/>
-    </resource>
-</api>
-```
+### Step 1: Create projects
+ 
+Let's create the required project directories (to store artifacts) in WSO2 Integration Studio.
 
-``` xml tab="Backend Service"
-<?xml version="1.0" encoding="UTF-8"?>
-<api context="/order" name="OrderProcessApi" xmlns="http://ws.apache.org/ns/synapse">
-    <resource methods="POST">
-        <inSequence>
-            <payloadFactory description="order placement payload" media-type="json">
-                <format>{
-                "orderDetails":$1,
-                "orderID":"1a23456",
-                "price":25.65,
-                "status":"successful"
-                }</format>
-                <args>
-                    <arg evaluator="json" expression="$"/>
-                </args>
-            </payloadFactory>
-            <log description="order result log" level="full"/>
-            <respond description="respond with order placement details"/>
-        </inSequence>
-        <outSequence/>
-        <faultSequence/>
-    </resource>
-</api>
-```
+1.  Open **WSO2 Integration Studio**.
+2.  Go to **Integration** and click **Create Integration Project** in the **Getting Started** view.
 
-To import the pre-built artifacts:
+    ![Getting Started Dashboard](../assets/img/developing-first-integration/dev-first-integration-1.png)
 
-1.  Download the <a href="../../assets/attach/tutorial/MI_Tutorial.zip">project file</a> with the integration artifacts.
-2.  Open WSO2 Integration Studio, and [import the project files](../../develop/importing-artifacts).
-3.  The project files of the frontend (integration service) and the backend (order-processing-be service) are listed in the project explorer:
-
-    ![project explorer](../../assets/img/developer-kickstart-proj-explorer.png)
-
-    The **BackendService** and the **IntegrationService** project folders contain the synapse configurations of the backend service and integration service respectively. The **BackendServiceCompositeApplication** and the **IntegrationServiceCompositeApplication** project folders are the composite application projects that are used for packaging the synapse artifacts.
-
-4.  Open the REST API of the integration service and verify that the
-    endpoint URL correctly points to the backend service:
-    1.  When you run the two services on Docker, the endpoint URL of the
-        backend should be as follows:
-
-        ``` xml
-        <endpoint>
-            <address uri="http://backend:8290/order"/>
-        </endpoint>
-        ```
-
-    2.  When you run the two services on Kubernetes, the endpoint URL of
-        the backend should be as follows:
-
-        ``` xml
-        <endpoint>
-            <address uri="http://order-process-be-service:8290/order"/>
-        </endpoint>
-        ```
-
-    3.  When you run the two services on your VM, the endpoint URL of
-        the backend should be as shown below. Note that the port of the
-        backend server is incremented by 1 (8291), and we are using
-        localhost as the IP address.
-
-        ``` xml
-        <endpoint>
-            <address uri="http://localhost:8291/order"/>
-        </endpoint>
-        ```
-
-You can now build and run the artifacts in your local environment.
-
-### Step 3: Build and Run the integration artifacts
-
-#### Using Docker
-
-To Build the backend (Docker image):
+2.  In the **New Integration Project** wizard that opens, enter `HealthcareConfigProject` as the project name.
     
-1. Right-click the **BackendServiceCompositeApplication** (application project of the Backend service) in the project explorer, and click **Generate Docker Image**.
+    !!! Tip
+        Be sure to leave the **Create Composite Application Project** check box selected.
 
-2.  In the dialog that opens, enter the following details, and click **Next**.
+    <img src="../../assets/img/developing-first-integration/dev-first-integration-2.png" width="500">
 
-    | Parameter                   |                                Description                                                                                                                                   |
-    |-----------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-    | Name of the application     | The name of the composite application with the artifacts created for your EI project. The name of the EI project is displayed by default, but it can be changed if required. |
-    | Application version         | Enter **1.0.0** as the version of the composite application.                                                                                                                 |
-    | Name of Docker Image        | Enter **backend_docker_image** as the name of the Docker image.                                                                                                            |
-    | Docker Image Tag            | Enter **latest** as the tag for the Docker image to be used for reference.                                                                                                   |
-    | Export Destination          | Browse for the preferred location in your machine to export the Docker image.                                                                                                |
+3. Click **Finish** to save the projects. The projects are listed in the project explorer as shown below.
 
-3.  Select the integration artifacts in the **BackendService** project
-    folder, and click **Finish** .  
-    The Docker image of the WSO2 Micro Integrator (with the artifacts of
-    the backend service) is now created and deployed your local Docker
-    registry.
+    <img src="../../assets/img/developing-first-integration/dev-first-integration-3.png" width="300">
 
-To build the integration service (Docker image):
+    The `HealthcareConfigProject` folder stores the integration (synapse) artifacts and the 
+    `HealthcareConfigProjectCompositeApplication` folder stores the composite application project that is used for packaging the integration artifacts. 
 
-1.  Right-click the **IntegrationServiceCompositeApplication**
-    (application project of the integration service) in the project
-    explorer, and click **Generate Docker Image** .
-2.  In the dialog that opens, enter the following details, and click
-    **Next**.
+### Step 2: Create Endpoints
 
-    |         Parameter           |                     Description                                                                                                                                              |
-    |-----------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-    | **Name of the application** | The name of the composite application with the artifacts created for your EI project. The name of the EI projecty is displayed by default, but it can be changed if required. |
-    | Application version         | Enter **1.0.0** as the version of the composite application.                                                                                                                  |
-    | Name of Docker Image        | Enter **integration_docker_image** as the name of the Docker image.                                                                                                         |
-    | Docker Image Tag            | Enter **latest** as the tag for the Docker image to be used for reference.                                                                                                    |
-    | Export Destination          | Browse for the preferred location in your machine to export the Docker image.                                                                                                 |
+The actual back-end services (healthcare services) are logically represented in the integration solution as **Endpiont** artifacts. 
 
-3.  Select the integration artifacts in the **IntegrationService**
-    project folder, and click **Finish** .  
-    The Docker image of the WSO2 Micro Integrator (with the artifacts of
-    the integration service) is now created and deployed your local
-    Docker registry.
+Let's create two Endpoint artifacts for the two healthcare services:
 
-To compose and run the Docker images:
+1.  Right-click `HealthcareConfigProject` and go to **New** → **Endpoint** to open the **New Endpoint Artifact** dialog box.
 
-1.  Download the <a href="../../assets/attach/tutorial/docker-compose.yml">docker-compose.yml</a> file
-    (shown below) and save it to a known directory. According to the
-    contents of this file, the Docker container with the backend service
-    will start on port **8291** and the Docker container with the
-    integration service will start on port **8290**.
-
-    <details>
-        <summary>docker-compose.yml</summary>    
-        ```toml
-        version: "3.7"
-        services:
-          service:
-            image: integration_docker_image:latest
-            ports:
-              - 8290:8290
-          backend:
-            image: backend_docker_image:latest
-            expose:
-              - 8290
-            ports:
-              - 8291:8290
-        ```
-    </details>
-
-2.  Open a terminal, navigate to the directory with the
-    docker-compose.yml file, and execute the following command. This
-    will compose the two Docker images (of the backend and the
-    integration service), and start two Docker containers with the two
-    images.
-
-    ```bash
-    docker-compose up -d
-    ```
-
-The two Docker containers are now running. You can now [test the integration flow](#step-4-test-the-integration-flow) .
-
-#### Using Kubernetes
-
-To **build the backend (Docker image)** :
-
-1.  Right-click the **BackendServiceCompositeApplication** (application
-    project of the Backend service) in the project explorer, and click
-    **Generate Docker Image** .
-2.  In the dialog that opens, enter the following details, and click
-    **Next** .
-
-    |    Parameter                |                                             Description                                                                                                                     |
-    |-----------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-    | Name of the application | The name of the composite application with the artifacts created for your EI project. The name of the EI project is displayed by default, but it can be changed if required. |
-    | Application version         | Enter **1.0.0** as the version of the composite application.                                                                                                                 |
-    | Name of Docker Image        | Enter **backend_docker_image_k8** as the name of the Docker image.                                                                                                        |
-    | Docker Image Tag            | Enter **latest** as the tag for the Docker image to be used for reference.                                                                                                   |
-    | Export Destination          | The .tar file of the Docker image will be saved to this location.                                                                                                            |
-
-3.  Select the integration artifacts in the **BackendService** project folder, and click **Finish** .
-
-To **build the integration service (Docker image)**:
-
-!!! Info
-    Before you build the integration service, be sure that you have changed the endpoint URL of your integration service to the following:
-    ```xml
-    <endpoint>
-        <address uri="http://order-process-be-service:8290/order"/>
-    </endpoint>
-    ```
-
-1.  Right-click the **IntegrationServiceCompositeApplication** (application project of the integration service) in the project explorer, and click **Generate Docker Image** .
-2.  In the dialog that opens, enter the following details, and click **Next**.
-
-    |    Parameter                |                                             Description                                                                                                                     |
-    |-----------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-    | Name of the application | The name of the composite application with the artifacts created for your EI project. The name of the EI project is displayed by default, but it can be changed if required. |
-    | Application version         | Enter **1.0.0** as the version of the composite application.                                                                                                                 |
-    | Name of Docker Image        | Enter **integration_docker_image_k8** as the name of the Docker image.                                                                                                    |
-    | Docker Image Tag            | Enter **latest** as the tag for the Docker image to be used for reference.                                                                                                   |
-    | Export Destination          | The .tar file of the Docker image will be saved to this location.                                                                                                            |
-
-3.  Select the integration artifacts in the **IntegrationService**
-    project folder, and click **Finish** .
-
-To set up a **Minikube** cluster:
-
-1.  Start Minikube on your terminal:
-
-    ```bash
-    minikube start
-    ```
-
-2.  Execute the command given below to start using Minikube's built-in
-    Docker daemon. You need this Docker daemon to be able to create
-    Docker images for the Minikube environment.
-
-    ```bash
-    eval $(minikube docker-env)
-    ```
-
-To **load the two Docker images** to the Minikube environment execute
-the commands given below. Be sure to replace the file path with the
-directory paths to the .tar files of your Docker images.
-
-1.  To load the backend service, execute the following command:
-
-    ```bash
-    docker load --input <file_path-tar_file_of_backend_service>
-    ```
-
-    Verify (by running the '
-    `               docker image ls              ` ' command) that the
-    docker image has been loaded to Minikube without a tag.  
-    ![load docker image](../assets/img/load-docker-img.png)
-
-    Use the image ID and tag your image in Minikube:
-
-    ``` java
-    docker tag 3fd3399caa63 backend_docker_image_k8
-    ```
-
-2.  To load the integration service execute the following command:
-
-    ```bash
-    docker load --input <file_path-tar_file_of_integration_service>
-    ```
-
-    Verify (by running the '`docker image ls`' command) that the docker image has been loaded to Minikube without a tag.
-
-    ![tag docker image](../assets/img/tag-docker-img.png) 
-
-    Use the image ID and tag your image in Minikube:  
-
-    ```bash
-    docker tag 10d6e28754fd integration_docker_image_k8
-    ```
-
-To **compose and run the Docker images** on Minikube:
-
-1.  Download the <a href="../../assets/attach/tutorial/docker-compose.yml">k8-deployment.yaml</a> file and save it to a know location.
-2.  Navigate to the location of the k8-deployment.yaml file, and execute the following command:
-
-    ```bash
-    kubectl create -f k8s-deployment.yaml
-    ```
-
-3.  Check whether all the Kubernetes artifacts are deployed successfully by executing the following command:
-
-    ```bash
-    kubectl get all
-    ```
-
-    You will get a result similar to the following. Be sure that the deployment is in 'Running' state.
-
-    ```bash
-    NAME                                            READY   STATUS    RESTARTS   AGE
-    pod/mi-helloworld-deployment-56f58c9676-djbwh   1/1     Running   0          14m
-    pod/mi-helloworld-deployment-56f58c9676-xj4fq   1/1     Running   0          14m
-             
-    NAME                            TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)          AGE
-    service/kubernetes              ClusterIP   10.96.0.1       <none>        443/TCP          25m
-    service/mi-helloworld-service   NodePort    10.110.50.146   <none>        8290:32100/TCP   14m
-    NAME                                       READY   UP-TO-DATE   AVAILABLE   AGE
-    deployment.apps/mi-helloworld-deployment   2/2     2            2           14m
-             
-    NAME                                                  DESIRED   CURRENT   READY   AGE
-    replicaset.apps/mi-helloworld-deployment-56f58c9676   2         2         2       14m
-    ```
-
-The two Docker containers are now running. You can now [test the integration flow](#step-4-test-the-integration-flow).
-
-#### Using a VM
-
-**Build and Run the backend service**
-
-1.  Install the [binary of WSO2 Micro Integrator](../../setup/installation/install_in_vm/#using-the-binary-distribution). The installation location of this server instance will be referred to as MI1_HOME.
-2.  Setup the backend server:
-    1.  Create a CAR file from the artifacts in your BackendService
-        project: Right-click the **BackendServiceCompositeApplication**
-        and click **Export Composite Application Project** . Follow the
-        steps on the wizard to save the CAR file.
-    2.  Copy the CAR file to the `MI1_HOME/repository/deployment/server/carbonapps/` directory.
-    3.  Start the Micro Integrator instance (MI1) with a port offset
-        of 11. This changes the effective port of the Micro Integrator
-        to **8291** . Note that the following commands are applicable if
-        the product is set up [using the **installer**](../../setup/installation/install_in_vm/#using-the-installer).
-
-        - On **MacOS/Linux/CentOS**:
-
-            Open a terminal and execute the following command:
-
-            ```bash 
-            sudo wso2mi-1.0.0 -DportOffset=11
-            ```
-
-        - On **Windows**:
+    <img src="../../assets/img/developing-first-integration/dev-first-integration-4.png" width="500">
     
-            First, open the `deployment.toml` file (stored in the `MI1_HOME/conf/` directory) and set the port offset to 11:
+2.  Select **Create a New Endpoint** and click **Next**.
+3.  For the ‘Grand Oak hospital service’, let’s use the following values:
 
-            ```toml
-            [port_offset]
-            offset=11
-            ```
+    <table>
+      <tr>
+         <th>Parameter</th>
+         <th>Value</th>
+      </tr>
+      <tr>
+        <td>Endpoint Name</td>
+        <td>GrandOakEndpoint</td>
+      </tr>
+      <tr>
+        <td>Endpoint Type</td>
+        <td>HTTP Endpoint</td>
+      </tr>
+      <tr>
+        <td>URI Template</td>
+        <td>http://localhost:9090/grandOak/doctors/{uri.var.doctorType}</td>
+      </tr>
+      <tr>
+        <td>Method</td>
+        <td>GET</td>
+      </tr>
+    </table>
+   
+    <img src="../../assets/img/developing-first-integration/dev-first-integration-5.png" width="500">
 
-            Next, go to **Start Menu -> Programs -> WSO2 -> Micro Integrator.** This will open a terminal and start the relevant profile.
+4.  Click **Finish** to save the endpoint configuration.
+5.  Follow the same steps to create an endpoint for ‘Pine Valley Hospital’. Use the following parameter values:
+   
+    <table>
+      <tr>
+         <th>Parameter</th>
+         <th>Value</th>
+      </tr>
+    
+      <tr>
+        <td>Endpoint Name</td>
+        <td>PineValleyEndpoint</td>
+      </tr>
+    
+      <tr>
+        <td>Endpoint Type</td>
+        <td>HTTP Endpoint</td>
+      </tr>
+    
+      <tr>
+        <td>URI Template</td>
+        <td>http://localhost:9091/pineValley/doctors</td>
+      </tr>
+    
+      <tr>
+        <td>Method</td>
+        <td>POST</td>
+      </tr>
+    </table>  
+    
+### Step 3: Create the REST API
 
-**Build and run the integration service**
+We are orchestrating multiple services and exposing a single API to the clients. The main integration artifact is going to be a REST API. 
 
-!!! Info
-    Before you build the integration service, be sure that you have changed the endpoint URL of your integration service to the following:
+1. Right-click `HealthcareConfigProject` in the project explorer and 
+go to **New** → **REST API** to open the **API Artifact Creation Options** dialog box.
+2. Select **Create A New API Artifact** and click **Next**.
+3. Specify values for the required REST API properties:
+
+    <table>
+      <tr>
+         <th>Parameter</th>
+         <th>Value</th>
+      </tr>
+      <tr>
+        <td>Name</td>
+        <td>HealthcareAPI</td>
+      </tr>
+      <tr>
+        <td>Context</td>
+        <td>/healthcare</td>
+      </tr>
+    </table> 
+
+    <img src="../../assets/img/developing-first-integration/dev-first-integration-6.png" width="500">
+        
+4. Click **Finish**. The REST API is created in the `src/main/synapse-config/api` folder under `HealthcareConfigProject`.
+5. Open the new artifact from the project explorer. You will see the graphical view of the `HealthcareAPI` with its default **API Resource**.
+
+    ![API Resource](../assets/img/developing-first-integration/dev-first-integration-7.png)
+    
+    To the left of the editor, you will see the **Mediators** palette containing various mediators 
+    that can be dragged and dropped into the canvas of the **API Resource**. 
+
+6. Double-click the API resource to open the **Properties** view:
+
+    ![Resource Properties](../assets/img/developing-first-integration/dev-first-integration-8.png)
+    
+    Specify values for the required resource properties:
+
+    <table>
+      <tr>
+         <th>Parameter</th>
+         <th>Value</th>
+      </tr>
+      <tr>
+        <td>Url Style</td>
+        <td>URL_TEMPLATE</td>
+      </tr>
+      <tr>
+        <td>Uri Template</td>
+        <td>
+          <code>/doctor/{doctorType}</code></br></br>
+          <b>Note</b> that '{doctorType}' is a uri variable that gets resolved to the path parameter value in the runtime. We can access the value of the uri variable in the mediation flow using the variable (property) called ‘uri.var.doctorType’.
+        </td>
+      </tr>
+      <tr>
+        <td>Methods</td>
+        <td>Get</td>
+      </tr>
+    </table>     
+
+### Step 4: Create the mediation logic
+
+1. Create two parallel message flows:
+    
+    In this scenario, the Healthcare API receives an HTTP GET request, which should be delivered to two different back-end services. That is, we need to clone the message into two branches and process them in parallel. 
+    To do that, we can use the **Clone Mediator**.
+
+    Drag the **Clone** mediator from the mediator palette and drop it into the request path (inSequence) of the API Resource canvas. 
+
+    ![Clone](../assets/img/developing-first-integration/dev-first-integration-9.png)
+
+    Right-click the Clone mediator and select **Add/Remove Target..**. 
+    In the **Add Target Branches** window, set the number of branches to 2. 
+    You will now see two branches inside the **Clone** mediator.
+
+    ![Clone Branches](../assets/img/developing-first-integration/dev-first-integration-10.png)
+
+2. Invoke the GrandOak Endpoint:
+
+    The **Call** mediator is used to invoke a back-end service. In [Step 2](#step-2-create-endpoints), we have already created an Endpoint to represent the GrandOak endpoint.
+
+    Drag the Call mediator from the mediator palette into one branch of the Clone mediator. 
+
+    ![Call Mediator](../assets/img/developing-first-integration/dev-first-integration-11.png)
+   
+    Then, drag the already-defined GrandOak endpoint artifact, which is available under the **Defined Endpoints** section of the palette, into the Call mediator.
+    
+    ![Call Mediator EP](../assets/img/developing-first-integration/dev-first-integration-12.png)
+   
+3. Construct message payload for the PineValley Endpoint:
+
+    Unlike the GrandOAK endpoint, which accepts a simple GET request, the PineValley endpoint requires a POST request with the following JSON message:
+
+    ```bash
+    {
+        "doctorType": "<DOCTOR_TYPE>"
+    }
+    ```
+
+    Therefore, we need to first construct the required message payload. There are several 
+    Transformation mediators available for constructing messages. Let's use the **PayloadFactory** mediator.
+    Drag the PayloadFactory mediator into the 2nd branch of the **Clone** mediator as shown below.
+
+    ![PayloadFactory Mediator](../assets/img/developing-first-integration/dev-first-integration-13.png)
+    
+    Specify values for the required PayloadFactory properties:
+
+    <table>
+      <tr>
+         <th>Parameter</th>
+         <th>Value</th>
+      </tr>
+    
+      <tr>
+        <td>Payload Format</td>
+        <td>Inline</td>
+      </tr>
+    
+      <tr>
+        <td>Media Type</td>
+        <td>json</td>
+      </tr>
+      
+      <tr>
+        <td>Payload</td>
+        <td>{
+                  "doctorType": "$1"
+            }
+        </td>
+      </tr>
+      
+      <tr>
+        <td>Args</td>
+        <td>$ctx:uri.var.doctorType</td>
+      </tr>
+    </table>
+
+    Note the `$1` in the Payload format. It denotes a parameter that can get a value assigned dynamically. The value for the parameters need to be assigned using Arguments **(Args)**. 
+    **Args** can be added using the **PayloadFactoryArgument** dialog box, which appears when you click the + sign.
+    
+    ![PayloadFactory Mediator Args](../assets/img/developing-first-integration/dev-first-integration-14.png)
+    
+    In the `PayloadFactoryArgument` dialog box, select **Expression** as the **Argument Type**, and click **Argument Expression**. You will then see the **Expression Selector** dialog box. Enter **$ctx:uri.var.doctorType** as the value for the expression.
+    
+4. Invoke the PineValley Endpoint:
+    
+    Use the Call mediator to invoke the PineVallery Endpoint. Follow the same steps you used under ‘Invoke GrandOak Endpoint’. 
+    
+5. Aggregating response messages:
+    
+    Since we are cloning the messages and delivering into two different services, we will receive two responses. 
+    So we need to aggregate those two responses and construct a single response. To do that, we can use the **Aggregate** mediator.
+    
+    Drag the Aggregate mediator and drop it next to the Clone mediator as shown below.
+   
+    ![Aggregate Mediator](../assets/img/developing-first-integration/dev-first-integration-15.png)
+   
+    Specify values for the required Aggregate mediator properties.
+
+    <table>
+      <tr>
+         <th>Parameter</th>
+         <th>Value</th>
+      </tr>
+    
+      <tr>
+        <td>Aggregation Expression</td>
+        <td>json-eval($.doctors.doctor)</td>
+      </tr>
+    
+    </table>
+
+6. Send a response back to the client :
+
+    To send the response back to the client, we can use the **Respond** mediator. Place the Respond mediator inside the Aggregate mediator as shown below.
+
+    ![Respond Mediator](../assets/img/developing-first-integration/dev-first-integration-16.png)
+    
+The final mediation configuration looks similar to the above diagram.     
+Following is what you will see in the **Source View** of WSO2 Integration Studio.
 
 ```xml
-<endpoint>
-    <address uri="http://localhost:8291/order"/>
-</endpoint>
+<?xml version="1.0" encoding="UTF-8"?>
+<api context="/healthcare" name="HealthcareAPI" xmlns="http://ws.apache.org/ns/synapse">
+<resource methods="GET" uri-template="/doctor/{doctorType}">
+    <inSequence>
+	<clone>
+	    <target>
+		<sequence>
+		    <call>
+			<endpoint key="GrandOakEndpoint"/>
+		    </call>
+		</sequence>
+	    </target>
+	    <target>
+		<sequence>
+		    <payloadFactory media-type="json">
+			<format>{
+					  "doctorType": "$1"
+				       }
+			</format>
+			<args>
+			    <arg evaluator="xml" expression="$ctx:uri.var.doctorType"/>
+			</args>
+		    </payloadFactory>
+		    <call>
+			<endpoint key="PineValleyEndpoint"/>
+		    </call>
+		</sequence>
+	    </target>
+	</clone>
+	<aggregate>
+	    <completeCondition>
+		<messageCount max="-1" min="-1"/>
+	    </completeCondition>
+	    <onComplete expression="json-eval($.doctors.doctor)">
+		<respond/>
+	    </onComplete>
+	</aggregate>
+    </inSequence>
+    <outSequence/>
+    <faultSequence/>
+</resource>
+</api>
 ```
 
-Let's run the integration service in the Micro Integrator that is
-embedded in WSO2 Integration Studio: Right-click the **IntegrationServiceCompositeApplication**, and click **Export Project
-Artifacts and Run** .
+## Build and run the artifacts
 
-The two services are now running on two instances of WSO2 Micro Integrator.
+There are several ways to deploy and run the integration scenario. 
 
-### Step 4: Test the integration flow
+### Option 1: Using WSO2 Integration Studio
 
--   If the Micro Integrator is running on Docker or a VM, open a
-    terminal and send the following request using **Curl.**
+1. Right-click `HealthcareConfigProjectCompositeApplication` and click **Export Project Artifacts and Run**.
+
+    <img src="../../assets/img/developing-first-integration/dev-first-integration-17.png" width="500">
+
+2. You will see the following dialog box. Select the `HealthcareConfigProject` in the artifact list and click **Finish**.
+
+    <img src="../../assets/img/developing-first-integration/dev-first-integration-18.png" width="700">
+
+    The embedded Micro Integrator starts with the deployed artifacts.
+  
+### Option 2: Using a local Micro Integrator instance
+
+**Before you begin**, be sure to install the Micro Integrator on your machine:
+
+1.  Go to the [website](https://wso2.com/integration/#) to download the Micro Integrator. 
+2.  Click **Download** and see that the installation options are listed. You can either download and run the **installer**, or use the **binary** file. The home directory of your Micro Integrator installation will be referred to as `<MI_HOME>` from hereon.
+
+Once you have downloaded and set up the Micro Integrator locally, follow the steps given below.
+
+1.  **Export the artifacts as a deployable CAR file**: Right-click `HealthcareConfigProjectProjectCompositeApplication` in WSO2 Integration Studio and select **Export Composite Application Project**.
+
+    <img src="../../assets/img/developing-first-integration/dev-first-integration-19.png" width="400">
+   
+2.  **Deploy the Healthcare service**: Copy the exported CAR file of the Healthcare service to the `MI_HOME/repository/deployment/server/carbonapps` directory.
+
+3.  **Start the Micro Integrator**:
+    
+    If you set up the product using the **installer**, follow the steps relevant to your OS as shown below.
+
+    -   On **MacOS/Linux/CentOS**, open a terminal and execute the following command:
+        ```bash
+        sudo wso2mi
+        ```
+    -   On **Windows**, go to **Start Menu -> Programs -> WSO2 -> Micro Integrator**. This will open a terminal and start the Micro Integrator.
+
+    If you set up the product using the **binary** distribution, open a terminal, navigate to the `<MI_HOME>/bin` directory, and execute the command relevant to your OS as shown below.
+
+    -   On **MacOS/Linux/CentOS**:
+        ```bash
+        sh micro-integrator.sh
+        ```
+    -   On **Windows**:
+        ```bash
+        micro-integrator.bat
+        ```
+
+## Start back-end services
+
+Let's start the mock back-end services for this use case:
+
+1.  Download the [`DoctorInfo.jar` file](../assets/attach/developing-first-integration/DoctorInfo.jar). This contains two healthcare services.
+2.  Open a terminal, navigate to the location of the downloaded `DoctorInfo.jar` file, and execute the following command to start the services:
 
     ```bash
-    curl --header "Content-Type: application/json" --request POST   --data '{"store": {"book": [{"author": "Nigel Rees","title": "Sayings of the Century"},{"author": "J. R. R. Tolkien","title": "The Lord of the Rings","isbn": "0-395-19395-8"}]}}' http://localhost:8290/forward
+    java -jar DoctorInfo.jar
     ```
 
--   If the Micro Integrator is running on Kubernetes, open a terminal
-    and send the following request using curl. Be sure to replace
-    MINIKUBE\IP with the IP of your Minikube installation.
+You will see the following printed on your terminal:
+
+```bash
+[ballerina/http] started HTTP/WS listener 0.0.0.0:9090
+[ballerina/http] started HTTP/WS listener 0.0.0.0:9091
+```
+   
+## Invoke the Healthcare service
+
+There are two ways to invoke the service:
+
+### Option 1: Using WSO2 Integration Studio
+
+Let's invoke the API from the embedded <b>HTTP Client</b> of WSO2 Integration Studio as follows:
+
+1.  Open the <b>HTTP Client</b> of WSO2 Integration Studio.
+
+    !!! Tip
+        If you don't see the <b>HTTP Client</b> tab, go to <b>Window -> Show View - Other</b> and select <b>HTTP Client</b> to enable the client tab.
+
+    <img src="../../assets/img/developing-first-integration/http4e-client-empty.png" width="800">
+    
+2.  Enter the request information as given below and click the <b>Send</b> icon (<img src="../../assets/img/tutorials/common/play-head-icon.png" width="20">).
+    
+    <table>
+        <tr>
+            <th>Method</th>
+            <td>
+               <code>GET</code> 
+            </td>
+        </tr>
+        <tr>
+            <th>URL</th>
+            <td>
+                <code>http://localhost:8290/healthcare/doctor/Ophthalmologist</code></br></br>
+            </td>
+        </tr>
+     </table>
+     
+The response is printed in the **HTTP Response** section.
+
+### Option 2: Using your terminal
+
+If you want to send the client request from your terminal:
+
+1.  Install and set up [cURL](https://curl.haxx.se/) as your REST client.
+2.  Open a terminal and execute the following curl command to invoke the service:
 
     ```bash
-    curl --header "Content-Type: application/json" --request POST   --data '{"store": {"book": [{"author": "Nigel Rees","title": "Sayings of the Century"},{"author": "J. R. R. Tolkien","title": "The Lord of the Rings","isbn": "0-395-19395-8"}]}}' http://MINIKUBE_IP:32100/forward
+    curl -v http://localhost:8290/healthcare/doctor/Ophthalmologist
     ```
 
-The following response will be received:
+You will receive the following response:
 
-```json
-{
-"orderDetails":{"store": {"book": [{"author": "Nigel Rees","title": "Sayings of the Century"},{"author": "J. R. R. Tolkien","title": "The Lord of the Rings","isbn": "0-395-19395-8"}]}},
-"orderID":"1a23456",
-"price":25.65,
-"status":"successful"
-}
+```bash
+[
+    [
+        {
+            "name": "John Mathew",
+            "time": "03:30 PM",
+            "hospital": "Grand Oak"
+        },
+        {
+            "name": "Allan Silvester",
+            "time": "04:30 PM",
+            "hospital": "Grand Oak"
+        }
+    ],
+    [
+        {
+            "name": "John Mathew",
+            "time": "07:30 AM",
+            "hospital": "pineValley"
+        },
+        {
+            "name": "Roma Katherine",
+            "time": "04:30 PM",
+            "hospital": "pineValley"
+        }
+    ]
+]
 ```
 
-### Step 5: Publish to production
+## What's Next
 
-You can now publish your integration artifacts into your production environment. It is recommended to use a [CICD pipeline](../develop/using-cicd-pipeline.md).
-
-### What's next?
-
--   Use [WSO2 Micro Integrator's CLI Tool](../administer-and-observe/using-the-command-line-interface.md) to check the integration artifacts deployed in the Micro Integrator instance.
--   Use **Prometheus** to [monitor your Micro Integrator](../administer-and-observe/monitoring_with_prometheus.md) instance.
+- [Running on Docker](../../setup/installation/run_in_docker/).
+- [Running on Kubernetes](../../setup/installation/run_in_kubernetes/).
+- [Writing a unit test for integration artifacts](../creating-unit-test-suite/).

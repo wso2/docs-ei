@@ -29,11 +29,10 @@ application_xml = "org.apache.axis2.builder.ApplicationXMLBuilder"
 form_urlencoded = "org.apache.synapse.commons.builders.XFormURLEncodedBuilder"
 multipart_form_data = "org.apache.axis2.builder.MultipartFormDataBuilder"
 text_plain = "org.apache.axis2.format.PlainTextBuilder"
-application_json = "org.wso2.carbon.integrator.core.json.JsonStreamBuilder"
+application_json = "org.wso2.micro.integrator.core.json.JsonStreamBuilder"
 json_badgerfish = "org.apache.axis2.json.JSONBadgerfishOMBuilder"
 text_javascript = "org.apache.axis2.json.JSONBuilder"
 octet_stream = "org.wso2.carbon.relay.BinaryRelayBuilder"
-edi_hl7 = "org.wso2.carbon.business.messaging.hl7.message.HL7MessageBuilder"
 application_binary = "org.apache.axis2.format.BinaryBuilder"
 ```
 
@@ -44,11 +43,10 @@ application_xml = "org.apache.axis2.transport.http.ApplicationXMLFormatter"
 text_xml = "org.apache.axis2.transport.http.SOAPMessageFormatter"
 soap_xml = "org.apache.axis2.transport.http.SOAPMessageFormatter"
 text_plain = "org.apache.axis2.format.PlainTextFormatter"
-application_json = "org.wso2.carbon.integrator.core.json.JsonStreamFormatter"
+application_json = "org.wso2.micro.integrator.core.json.JsonStreamFormatter"
 json_badgerfish = "org.apache.axis2.json.JSONBadgerfishMessageFormatter"
 text_javascript = "org.apache.axis2.json.JSONMessageFormatter"
 octet_stream = "org.wso2.carbon.relay.ExpandingMessageFormatter"
-edi_hl7 = "org.wso2.carbon.business.messaging.hl7.message.HL7MessageFormatter"
 application_binary = "org.apache.axis2.format.BinaryFormatter"
 ```
 
@@ -231,14 +229,14 @@ processed in the WSO2 Micro Integrator mediation flow.
 Similarly, you can write your own message formatter to manipulate the
 outgoing payload from the WSO2 Micro Integrator.
 
-When creating a custom message formatter, you will need to create a class implementing the `org.apache.axis2.transport.MessageFormatter` interface and then override the `writeTo` method. You can implement your logic within the `writeTo` method.
+When creating a custom message formatter, you will need to create a class implementing the `org.apache.axis2.transport.MessageFormatter` interface and then override the `writeTo` method. You can implement your logic within the `writeTo` method. Let's use the `org.apache.axis2.transport.http.HTMLMessageFormatter` class to implement the `org.apache.axis2.transport.MessageFormatter` interface. 
 
-To enable your custom message formatter for content type text/xml, add the following line in the deployment.toml file:
+To enable this custom message formatter for content type `text/html`, add the following configuration to the `deployment.toml` file:
 
 ```toml
-[[custom_message_builders]]
-content_type = "text/xml"
-class="org.apache.axis2.transport.http.SOAPMessageFormatter"
+[[custom_message_formatters]]
+content_type = "text/html"
+class="org.apache.axis2.transport.http.HTMLMessageFormatter"
 ```
 
 The class name used in the above line should be the name used for the class when writing the formatter.

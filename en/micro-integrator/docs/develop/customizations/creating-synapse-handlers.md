@@ -6,12 +6,12 @@ This section gives an introduction to what a handler is and describes how you ca
 
 Synapse Handlers can be used to process requests in a scenario where you have multiple requests and each request needs be processed in a specific manner. A Handler defines the interface that is required to handle the request and concreteHandlers are to handle requests in a specific manner based on what needs to be done with regard to each type of request. The diagram below illustrates this.
 
-![Handler](../../../assets/img/synapse_handlers/Handler.png)
+![Handler](../../assets/img/synapse_handlers/Handler.png)
 
 Synapse handler is the interface used to register server response callbacks. Synapse handler provides the abstract handler implementation
 that executes the request in flow, request out flow, response in flow and response out flow. The diagram below is an illustration of how the specified flows execute in the abstract handler implementation.
 
-![Message Flow using Handler](../../../assets/img/synapse_handlers/inFlow_outFlow.png)
+![Message Flow using Handler](../../assets/img/synapse_handlers/inFlow_outFlow.png)
 
 -   **Request in flow**
     This executes when the request reaches the synapse engine.
@@ -41,7 +41,7 @@ that executes the request in flow, request out flow, response in flow and respon
 
 The diagram below illustrates the basic component structure of WSO2 Micro Integrator and how the flows mentioned above execute in the request path and the response path.
 
-![Request-Response Flow](../../../assets/img/synapse_handlers/ESBwithRequestResponseFlow.png)
+![Request-Response Flow](../../assets/img/synapse_handlers/ESBwithRequestResponseFlow.png)
 
 Now that you understand what a handler is, let's see how you can write a concrete Synapse handler.
 
@@ -88,10 +88,10 @@ To deploy your custom synapse handler in WSO2 Micro Integrator, bundle the artif
 
 ## Step 3: Engaging the Synapse handler
 
-To engage the deployed Synapse handler, you need to add the following configuration to the `MI_HOME/conf/synapse-handlers.xml` file.
+To engage the deployed Synapse handler, you need to add the following configuration to the `deployment.toml` file.
 
-```xml
-<handlers>
-  <handler name="TestHandler" class="package.TestHandler"/>
-</handlers>
+```toml
+[[synapse_handlers]]
+name = "TestHandler"
+class = "package.TestHandler"
 ```

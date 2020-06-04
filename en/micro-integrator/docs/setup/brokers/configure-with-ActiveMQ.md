@@ -34,26 +34,47 @@ Follow the instructions below to set up and configure.
         ```toml
         [[transport.jms.listener]]
         name = "myTopicListener"
-        parameter.initial_naming_factory = "org.apache.activemq.artemis.jndi.ActiveMQInitialContextFactory"
-        parameter.broker_name = "activemq" 
+        parameter.initial_naming_factory = "org.apache.activemq.jndi.ActiveMQInitialContextFactory"
         parameter.provider_url = "tcp://localhost:61616"
         parameter.connection_factory_name = "TopicConnectionFactory"
         parameter.connection_factory_type = "topic"
         parameter.cache_level = "consumer"
+        ```
+        ```toml
+        [[transport.jms.listener]]
+        name = "myQueueListener"
+        parameter.initial_naming_factory = "org.apache.activemq.jndi.ActiveMQInitialContextFactory"
+        parameter.provider_url = "tcp://localhost:61616"
+        parameter.connection_factory_name = "QueueConnectionFactory"
+        parameter.connection_factory_type = "queue"
+        parameter.cache_level = "consumer"
+        ```        
+    !!! Note
+        When configuring the jms listener, be sure to add the connection factory [service-level jms parameter](../../references/synapse-properties/transport-parameters/jms-transport-parameters.md) to the synapse configuration with the name of the already defined connection factory.
+        ```xml
+        <parameter name="transport.jms.ConnectionFactory">myQueueListener</parameter>
         ```
 
     - Add the following configurations to enable the JMS sender with ActiveMQ connection parameters.
         ```toml
         [[transport.jms.sender]]
         name = "myTopicSender"
-        parameter.initial_naming_factory = "org.apache.activemq.artemis.jndi.ActiveMQInitialContextFactory"
-        parameter.broker_name = "activemq"
+        parameter.initial_naming_factory = "org.apache.activemq.jndi.ActiveMQInitialContextFactory"
         parameter.provider_url = "tcp://localhost:61616"
         parameter.connection_factory_name = "TopicConnectionFactory"
         parameter.connection_factory_type = "topic"
         parameter.cache_level = "producer"
         ```
-
+        ```toml
+        [[transport.jms.sender]]
+        name = "myQueueSender"
+        parameter.initial_naming_factory = "org.apache.activemq.jndi.ActiveMQInitialContextFactory"
+        parameter.provider_url = "tcp://localhost:61616"
+        parameter.connection_factory_name = "QueueConnectionFactory"
+        parameter.connection_factory_type = "queue"
+        parameter.cache_level = "producer"
+        ```
+        
     !!! Note
         - When configuring the JMS transport with ActiveMQ, you can append [ActiveMQ-specific properties](http://activemq.apache.org/connection-configuration-uri.html) to the value of the `parameter.provider_url` property. For example, you can set the `redeliveryDelay` and `initialRedeliveryDelay` properties when configuring a JMS inbound endpoint as follows:
           ```toml
@@ -172,7 +193,6 @@ Simple Authentication: ActiveMQ comes with an authentication plugin, which provi
       [[transport.jms.listener]]
       name = "myTopicListener"
       parameter.initial_naming_factory = "org.apache.activemq.artemis.jndi.ActiveMQInitialContextFactory"
-      parameter.broker_name = "artemis" 
       parameter.provider_url = "tcp://localhost:61616"
       parameter.connection_factory_name = "TopicConnectionFactory"
       parameter.connection_factory_type = "topic"
@@ -252,8 +272,10 @@ Note `java.naming.provider.url=failover:(tcp://localhost:61616,tcp://localhost:6
 Integrity is part of message-level security and can be implemented using a standard like WS-Security. The following sample shows the application of WS-Security for message-level encryption where messages are stored in a message store in WSO2 Micro Integrator.
 
 ```xml
-<definitions xmlns="http://ws.apache.org/ns/synapse">
-    <localEntry key="sec_policy" src="file:repository/samples/resources/policy/policy_3.xml"/>
+    <localEntry key="sec_policy" src="file:repository/samples/resources/policy/policy_3.xml" xmlns="http://ws.apache.org/ns/synapse"/>
+```
+
+```xml
     <proxy name="FailOverJMS" startOnLoad="true" transports="http" xmlns="http://ws.apache.org/ns/synapse">
         <target>
             <inSequence>
@@ -273,5 +295,4 @@ Integrity is part of message-level security and can be implemented using a stand
             <faultSequence/>
         </target>
     </proxy>
-</definitions>
 ```

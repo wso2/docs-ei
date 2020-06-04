@@ -2,26 +2,30 @@
 
 Follow the steps given below to install and run WSO2 Streaming Integrator on a VM.
 
+## System requirements
+
+| Type   | Requirement                                                                                     |
+|--------|-------------------------------------------------------------------------------------------------|
+| CPU    | You require a minimum of one CPU with 2 cores. It is recommended to have a CPU with 4 cores.    |
+| Memory | ~ 4 GB minimum is recommended</br> </br>  ~ 2 GB heap size                                      |
+| Disk   | ~ 1 GB minimum (excluding space allocated for log files and databases.)                         |
+
 ## Installing the Streaming Integrator
 
 Follow the steps below:
 
-1.  Go to the Streaming Integrator [product page](https://wso2.com/integration/streaming-integrator/) and click **Download** to get the **product installer**. The installer that is compatible with you operating system is downloaded.
+1. Go to the Streaming Integrator [product page](https://wso2.com/integration/streaming-integrator/) and click **Download** to get the **product installer**. The installer that is compatible with your operating system is downloaded.
 
     !!! Info
         Alternatively, go to **Other Installation Options** and click **Binary** to download the product distribution as a ZIP file.
 
-2.  If you used the installer, double-click to open the installation
-    wizard, that guides you through the installation. When you
-    finish, the product is installed and ready for use.
+2. If you used the installer, double-click to open the installation wizard that guides you through the installation. When you finish, the product is installed and ready for use.
 
 ### Accessing the HOME directory
 
-Let's call the installation location of your product the
-**`<SI_HOME>`** directory.
+Let's call the installation location of your product the **`<SI_HOME>`** directory.
 
-If you used the **installer** to install the product, this is located in
-a place specific to your OS as shown below:
+If you used the **installer** to install the product, this is located in a place specific to your OS as shown below:
 
 <table style="width:100%;">
    <colgroup>
@@ -37,19 +41,19 @@ a place specific to your OS as shown below:
    <tbody>
       <tr class="odd">
          <td>Mac OS</td>
-         <td><code>              /Library/WSO2/StreamingIntegrator/1.0.0             </code></td>
+         <td><code>/Library/WSO2/EnterpriseIntegrator/7.0.2/streaming-integrator</code></td>
       </tr>
       <tr class="even">
          <td>Windows</td>
-         <td><code>              C:\Program Files\WSO2\StreamingIntegrator\1.0.0             </code></td>
+         <td><code>C:\Program Files\WSO2\Enterprise Integrator\7.0.2\streaming-integrator</code></td>
       </tr>
       <tr class="odd">
          <td>Ubuntu</td>
-         <td><code>              /usr/lib/wso2/StreamingIntegrator/1.0.0             </code></td>
+         <td><code>/usr/lib/wso2/wso2ei/7.0.2/streaming-integrator</code></td>
       </tr>
       <tr class="even">
          <td>CentOS</td>
-         <td><code>              /usr/lib64/StreamingIntegrator/1.0.0             </code></td>
+         <td><code>/usr/lib64/wso2/wso2ei/7.0.2/streaming-integrator</code></td>
       </tr>
    </tbody>
 </table>
@@ -70,24 +74,20 @@ If you used the **installer** to install the product, you can uninstall by follo
 <td>Mac OS</td>
 <td><div class="content-wrapper">
 <p>Open a terminal and run the following command as the root user:</p>
-<div class="code panel pdl" style="border-width: 1px;">
-<div class="codeContent panelContent pdl">
-<div class="sourceCode" id="cb1" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence" style="brush: java; gutter: false; theme: Confluence"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb1-1"><a href="#cb1-1"></a>sudo bash /Library/WSO2/StreamingIntegrator/<span class="fl">1.0.</span><span class="dv">0</span>/uninstall.<span class="fu">sh</span></span></code></pre></div>
+    <code>sudo bash /Library/WSO2/EnterpriseIntegrator/7.0.2</code>
 </div>
 </div>
 </div></td>
 </tr>
 <tr class="even">
 <td>Windows</td>
-<td>Go to the <strong>Start Menu -&gt; Programs -&gt; WSO2 -&gt; Uninstall Streaming Integrator 1.0.0</strong> or search <strong>Uninstall Micro Integrator 1.0.0</strong> and click the shortcut icon. This uninstalls the product from your computer.</td>
+<td>Go to <strong>Start Menu -&gt; Programs -&gt; WSO2 -&gt; Uninstall Enterprise Integrator 7.0.2</strong> or search <strong>Uninstall Enterprise Integrator 7.0.2</strong> and click the shortcut icon. This uninstalls the product from your computer.</td>
 </tr>
 <tr class="odd">
 <td>Ubuntu</td>
 <td><div class="content-wrapper">
 <p>Open a terminal and run the following command:</p>
-<div class="code panel pdl" style="border-width: 1px;">
-<div class="codeContent panelContent pdl">
-<div class="sourceCode" id="cb2" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence" style="brush: java; gutter: false; theme: Confluence"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb2-1"><a href="#cb2-1"></a>sudo apt-get purge wso2si-<span class="fl">1.0.</span><span class="dv">0</span></span></code></pre></div>
+    <code>sudo apt purge wso2ei-7.0.2</code>
 </div>
 </div>
 </div></td>
@@ -96,9 +96,7 @@ If you used the **installer** to install the product, you can uninstall by follo
 <td>CentOS</td>
 <td><div class="content-wrapper">
 <p>Open a terminal and run the following command:</p>
-<div class="code panel pdl" style="border-width: 1px;">
-<div class="codeContent panelContent pdl">
-<div class="sourceCode" id="cb3" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence" style="brush: java; gutter: false; theme: Confluence"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb3-1"><a href="#cb3-1"></a>sudo yum remove wso2ei-<span class="fl">1.0.</span><span class="dv">0</span>-x86_<span class="dv">64</span></span></code></pre></div>
+    <code>sudo yum remove wso2ei-7.0.2</code>
 </div>
 </div>
 </div></td>
@@ -114,40 +112,39 @@ Start the WSO2 Streaming Integrator by following the instructions given below.
 
 * On **MacOS/Linux/CentOS**, open a terminal and execute the command given below.
   ```bash
-  sudo wso2si-1.0.0
+  sudo wso2si
   ```
   The operation log keeps running until the profile starts, which usually
        takes several seconds. Wait until the profile fully boots up and
        displays a message similar to " *WSO2 Carbon started in n seconds.* "
-* On **Windows**, go to **Start Menu -\> Programs -\> WSO2 -\> Streaming Integrator.** This
+
+* On **Windows**, go to **Start Menu -> Programs -> WSO2 -> Enterprise Integrator**. This
 opens a terminal and start the relevant profile.
+
+If you have **installed the product using the installer** and you want to manually run the product startup script from the `<SI_HOME/bin>` directory, you need to issue the following command:
+
+```bash
+sudo sh launcher_streaming-integrator.sh
+```
+This script automatically assigns the JAVA_HOME of your VM to the root user of your Streaming Integrator instance.
 
 ### Using the binary distribution
 
-1.  Before you execute the product startup script, be sure to set the
-    JAVA HOME in your machine. Use a [JDK that is compatible with WSO2
-    Streaming
-    Integrator](https://docs.wso2.com/display/compatibility/Tested+Operating+Systems+and+JDKs).
+1. Before you execute the product startup script, be sure to set the JAVA HOME in your machine. Use a [JDK that is compatible with WSO2 Enterprise Integrator](https://docs.wso2.com/display/compatibility/Tested+Operating+Systems+and+JDKs).
 
-2.  Open a terminal and navigate to the
-    `<SI_HOME>/bin/         ` directory, where
-    `<SI_HOME>` is the home directory of your product
-    distribution.
-3.  Execute the relevant command.
+2. Open a terminal and navigate to the `<SI_HOME>/bin/` directory, where `<SI_HOME>` is the home directory of the distribution you downloaded.
+
+3. Execute the relevant command.
 
     * On **MacOS/Linux/CentOS**
       ```bash
-      sh streaming-integrator.sh
+      sh server.sh
       ```
-      If you have **installed the product using the installer**, and you want to manually run the product startup script from the
-      `/bin` directory, you need to issue the `sudo
-      launcher_streaming-integrator` command. This script automatically
-      assigns the JAVA HOME of your VM to the root user of your Streaming
-      Integrator instance.
+
 
     * On **Windows**
       ```bash
-      streaming-integrator.bat
+      server.bat
       ```
 
 By default, the HTTP listener port is 8290 and the default HTTPS
@@ -158,3 +155,13 @@ listener port is 8253.
 To stop the Streaming Integrator runtime, press Ctrl+C in the command
 window.
 
+## What's Next?
+
+Once you have successfully downloaded and installed WSO2 Streaming Integrator, you can proceed to do any of the following:
+
+- If you were previously using WSO2 Stream Processor and want to migrate to WSO2 Streaming Integrator, follow the instructions in [Migrating from WSO2 Stream Processor](migrating-from-stream-processor.md).
+
+- To deploy WSO2 Streaming Integrator as a single-node deployment or a cluster (based on your requirements), see [Deploying Streaming Integrator](deployment-guide.md).
+
+- To set up WSO2 Streaming Integrator and make it ready to run in a production environment, see the [Production Checklist](production-checklist.md).
+    

@@ -2,11 +2,11 @@
 This application demonstrates how to configure WSO2 Streaming Integrator Tooling to send sweet production events via MQTT transport in XML format and view the output on the mqtt-consumer.
 
 ## Prerequisites:
-1) Save this sample. The following message appears on the console.
+1. Save this sample. The following message appears on the console.
     ```
     Siddhi App PublishMqttInXmlFormat successfully deployed.
     ```
-2) Setting up MQTT Mosquitto broker in Ubuntu Linux.
+2. Setting up MQTT Mosquitto broker in Ubuntu Linux.
     1. Add the mosquitto repository using the following commands.
         ```bash
         sudo apt-add-repository ppa:mosquitto-dev/mosquitto-ppa
@@ -30,23 +30,23 @@ This application demonstrates how to configure WSO2 Streaming Integrator Tooling
         ```
 
 ## Executing the Sample:
-1) Open a terminal, navigate to the `{WSO2SIHome}/samples/sample-clients/mqtt-consumer` directory and run the `ant` command.
+1. Open a terminal, navigate to the `{WSO2SIHome}/samples/sample-clients/mqtt-consumer` directory and run the `ant` command.
     * If you use the default topic `mqtt_topic` and URL `tcp://localhost:1883`, in your program use the `ant` command without any arguments.
     * However, if you use a different topic, run the `ant` command with appropriate argument.
     e.g. `ant -Dtopic=mqttTest`
-2) Start the Siddhi application by clicking 'Run'.
-3) If the Siddhi application starts successfully, the following messages appear on the console
+2. Start the Siddhi application by clicking 'Run'.
+3. If the Siddhi application starts successfully, the following messages appear on the console
     ```
     PublishMqttInXmlFormat.siddhi - Started Successfully!
     ```
 
 ## Testing the Sample:
-1) Open the event simulator by clicking on the second icon or press Ctrl+Shift+I.
-2) In the Single Simulation tab of the panel, select values as follows:
+1. Open the event simulator by clicking on the second icon or press Ctrl+Shift+I.
+2. In the Single Simulation tab of the panel, select values as follows:
     * Siddhi App Name: PublishMqttInXmlFormat
     * Stream Name: SweetProductionStream
-3) In the name field and amount fields, enter 'toffee' and '45.24' respectively. Then click Send to send the event.
-4) Send some more events.
+3. In the name field and amount fields, enter 'toffee' and '45.24' respectively. Then click Send to send the event.
+4. Send some more events.
 
 ## Viewing the Results:
 See the output in the terminal of `{WSO2SIHome}/samples/sample-clients/mqtt-consumer`. You will get the output as follows (example for 3 events):

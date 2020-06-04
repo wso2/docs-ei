@@ -1,42 +1,45 @@
-# Healthcheck APIs
+!!! note
+    **This page is still a work in progress!**
+
+# Healthcheck API
 
 ### Overview
 
 <table>
 <tbody>
 <tr class="odd">
-<td>Description</td>
+<th>Description</th>
 <td><br />
 </td>
 </tr>
 <tr class="even">
-<td>API Context</td>
+<th>API Context</th>
 <td><br />
 </td>
 </tr>
 <tr class="odd">
-<td>HTTP Method</td>
-<td><code>             GET            </code></td>
+<th>HTTP Method</th>
+<td><code>GET</code></td>
 </tr>
 <tr class="even">
-<td>Request/Response Format</td>
+<th>Request/Response Format</th>
 <td><br />
 </td>
 </tr>
 <tr class="odd">
-<td>Authentication</td>
+<th>Authentication</th>
 <td>Basic</td>
 </tr>
 <tr class="even">
-<td>Username</td>
-<td><code>             admin            </code></td>
+<th>Username</th>
+<td><code>admin</code></td>
 </tr>
 <tr class="odd">
-<td>Password</td>
-<td><code>             admin            </code></td>
+<th>Password</th>
+<td><code>admin</code></td>
 </tr>
 <tr class="even">
-<td>Runtime</td>
+<th>Runtime</th>
 <td><br />
 </td>
 </tr>
@@ -46,14 +49,13 @@
 ### curl command syntax
 
 ``` java
+curl -k -X GET http://<HOST_NAME>:<PORT>/health
 ```
-
-  
 
 ### Sample curl command
 
 ``` java
-    curl -k -X GET http://localhost:9090/health
+curl -k -X GET http://localhost:9090/health
 ```
 
 ### Sample output
@@ -66,9 +68,9 @@
 <table>
 <tbody>
 <tr class="odd">
-<td>HTTP Status Code</td>
+<th>HTTP Status Code</th>
 <td><p>200 or 404</p>
-<p>For descriptions of the HTTP status codes, see <a href="_HTTP_Status_Codes_">HTTP Status Codes</a> .</p></td>
+<p>For descriptions of the HTTP status codes, see <a href="hTTP-Status-Codes.md">HTTP Status Codes</a> .</p></td>
 </tr>
 </tbody>
 </table>

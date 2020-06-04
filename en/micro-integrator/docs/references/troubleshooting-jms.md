@@ -38,7 +38,7 @@ When WSO2 Micro Integrator attempts to forward a message over JMS, there are ins
 This problem occurs when the developer uses the property mediator to manipulate property values set on the message. Certain implementations of JMS have data type restrictions on properties. But the property mediator always sets property values as strings.
 
 The solution is to revise the mediation sequences and avoid manipulating property values containing non-string values. If you want to set a
-non-string property value, write a simple custom mediator. Instructions are given in section [Creating Custom Mediators](../../develop/customizations/creating-custom-mediators.md). For an example, to set a property named foo with integer value 12345, use the property mediator as follows and set the type attribute
+non-string property value, write a simple custom mediator. Instructions are given in section [Creating Custom Mediators](../../develop/customizations/creating-custom-mediators). For an example, to set a property named foo with integer value 12345, use the property mediator as follows and set the type attribute
 to INTEGER.  If the type attribute of the property is not specifically set, it will be assigned to String by default.
 
 ```xml
@@ -65,16 +65,18 @@ the warning "JMSUtils cannot locate destination". For more information, see <htt
 <address uri="jms:/my::topic?transport.jms.ConnectionFactoryJNDIName=QueueConnectionFactory&amp;java.naming.factory.initial=org.wso2.andes.jndi.PropertiesFileInitialContextFactory&amp;java.naming.provider.url=repository/conf/jndi.properties&amp;transport.jms.DestinationType=topic"/>
 ```
 
-To avoid this issue, you can create a key-value pair in the `jndi.properties` file that maps the topic/queue name to a key that either escapes these characters with a backslash (\\) or does not contain ":" or "=". For example:
+To avoid this issue, you can create a key-value pair in the `deployment.toml` file that maps the topic/queue name to a key that either escapes these characters with a backslash (\\) or does not contain ":" or "=". For example:
 
-```xml
-topic.my\:\:topic = my::topic        
+```toml     
+[transport.jndi.topic]
+'my\:\:topic' = "my::topic"
 ```
 
 or
 
-```xml
-topic.myTopic = my::topic
+```toml
+[transport.jndi.topic]
+myTopic = "my::topic"
 ```
 
 You can then use this key in the proxy service as follows:
@@ -89,3 +91,31 @@ key-value pair right in the proxy configuration:
 ```xml
 <address uri="jms:/my\:\:topic?transport.jms.ConnectionFactoryJNDIName=TopicConnectionFactory&amp;java.naming.factory.initial=org.wso2.andes.jndi.PropertiesFileInitialContextFactory&amp;topic.my\:\:topic=my::topic&amp;java.naming.provider.url=repository/conf/jndi.properties&amp;transport.jms.DestinationType=topic"/>
 ```
+
+## All the threads get blocked if one JMS backend is not available and do not recover when the backend is available again
+
+When one backend fails, the following state appears for all the threads as they try to connect to the unavailable backend.
+
+`- state:BLOCKED`
+
+Once the backend is available again, the threads do not become active again
+
+This is because in WSO2 EI JMS transport, all the threads that use the same JMS session for communication are synchronized for thread safety.
+Therefore, if one thread obtains the shared JMS session object and waits to obtain another resource (i.e., a reconnection to IBM MQ), this results in a set of threads waiting on this monitor. This results in all the synapse threads being blocked. When all the threads are blocked in the connection pool, WSO2 MI stops responding to requests.
+
+In order to make sure that WSO2 MI recovers after the backend is fixed, specify a connection timeout by following the steps below.
+
+1. Open the `<MI_HOME>/bin/micro-integrator.sh` file.
+
+2. In the `JAVA_OPTS` section, set the following property.
+
+    `Dcom.ibm.mq.cfg.TCP.Connect_Timeout=5`
+    
+    e.g., The following is an extract of the `JAVA_OPTS` section with this property.
+    
+    `JAVA_OPTS="-Xdebug -Xnoagent -Djava.compiler=NONE -Dcom.ibm.mq.cfg.TCP.Connect_Timeout=5 -Xrunjdwp:transport=dt_socket,server=y,suspend=y,address=$PORT"`
+    
+    !!! info
+        By default, the value of this parameter is `0` which results in the thread that tries to reconnect to IBM MQ keeps retrying, and remains blocked together with all the other threads that share the same JMS session. Here, you are specifying a timeout period of five seconds to reconnect to IBM MQ. So that all the threads in the thread pool are prevented from being blocked until the connection is successfully established. For more information about this parameter, see [IBM Knowledge Centre - TCP stanza of the client configuration file](https://www.ibm.com/support/knowledgecenter/SSFKSJ_9.1.0/com.ibm.mq.con.doc/q016910_.htm).
+        
+3. Restart the WSO2 MI server.

@@ -4,7 +4,7 @@ The **Property Mediator** has no direct impact on the message, but rather on the
 the properties set on a message later through the Synapse XPath Variables or the `         get-property()        ` extension function. A property can have a defined scope for which it is valid. If a property has no defined scope, it defaults to the Synapse message context scope. Using the property element with the **action** specified as `remove,` you can remove any existing message context properties.
 
 !!! Info
-    The Property mediator is a [conditionally content aware](../../../concepts/message-processing-units/#classification-of-mediators) mediator.
+    The Property mediator is a [conditionally content aware](../../../references/mediators/about-mediators/#classification-of-mediators) mediator.
 
 ## Syntax
 
@@ -30,6 +30,20 @@ The parameters available for configuring the Property mediator are as follows:
 <td><strong>Name</strong></td>
 <td><div class="content-wrapper">
 <p>A name for the property.</p>
+<p>You can provide a static value or a dynamic value for the property name. A dynamic property name can be retrieved
+by using an XPath function. You can use any of the <a href="../../mediators/property-reference/accessing-properties-with-xpath">XPath functions</a> that you use for the property <b>value</b> or property <b>expression</b>.</p>
+<p>Note that the XPath function should be contained within curly brackets (<code>{}</code>) as well as double quotations (<code>""</code>). See the examples given below.</p>
+  <ul>
+    <li>
+      <code>property name="{get-property('propertyName')}"</code>
+    </li>
+    <li>
+      <code>property name="{$ctx:propertyName}"</code>
+    </li>
+    <li>
+      <code>property name="{json-eval({$ctx:propertyName})}"</code>
+    </li>
+  </ul>
 <p>For names of the generic properties that come by default, see <a href="../../mediators/property-reference/generic-Properties">Generic Properties</a> . You can select them from the drop-down list if you are adding the Property Mediator as shown below.</p>
 <p><img src="/assets/img/mediators/119131214/119131215.png" title="generic properties list" width="800" alt="generic properties list" /></p>
 </div></td>
@@ -110,7 +124,7 @@ If the <strong>Expression</strong> option is selected for the <strong>Set Action
 
 In this example, we are setting the property symbol and later we can log it using the [Log Mediator](log-Mediator.md).
 
-```
+```xml
 <property name="symbol" expression="fn:concat('Normal Stock - ', //m0:getQuote/m0:request/m0:symbol)" xmlns:m0="http://services.samples/xsd"/>
 
 <log level="custom">
@@ -124,14 +138,7 @@ In this configuration, a response is sent to the client based on the `         A
 based on the `Accept` header using the `$ctx:accept` expression. The message is then sent back to the client via the [Respond mediator](respond-Mediator.md).
 
 !!! Note
-    There are predefined XPath variables (such as `         $ctx        ` )
-that you can directly use in the Synapse configuration, instead of using
-the synapse:get-property() function. These XPath variables get
-properties of various scopes and have better performance than the
-get-property() function, which can have much lower performance because
-it does a registry lookup. These XPath variables get properties of
-various scopes. For more information on these XPath variables, see
-[Accessing Properties with XPath](property-reference/accessing-properties-with-xpath.md).
+    There are predefined XPath variables (such as `         $ctx        ` ) that you can directly use in the Synapse configuration, instead of using the synapse:get-property() function. These XPath variables get properties of various scopes and have better performance than the `get-property()` function, which can have much lower performance because it does a registry lookup. These XPath variables get properties of various scopes. For more information on these XPath variables, see [Accessing Properties with XPath](property-reference/accessing-properties-with-xpath.md).
 
 ``` xml
 <payloadFactory media-type="xml">
@@ -161,11 +168,7 @@ For example, the following Synapse configuration retrieves the
 ```
 
 !!! Info
-    You can use the following syntaxes to read properties or resources
-stored in the `         gov        ` or `         conf        `
-Registries. When specifying the path to the resource, do not give the
-absolute path. Instead, use the `         gov        ` or
-`         conf        ` prefixes.
+    You can use the following syntaxes to read properties or resources stored in the `         gov        ` or `         conf        ` Registries. When specifying the path to the resource, do not give the absolute path. Instead, use the `         gov        ` or `         conf        ` prefixes.
 
 #### Reading a property stored under a collection
 
@@ -190,7 +193,7 @@ the following XML file stored in the Registry (i.e., `         gov:/test.xml    
 
 **test.xml**
 
-```
+```xml
 <root>
   <book>A Song of Ice and Fire</book>
   <author>George R. R. Martin</author>
@@ -211,7 +214,7 @@ Your Synapse configuration should be as follows. This uses XPath to read XML.
 Your output log will look like this.
 
 ``` text
-[2015-09-21 16:01:28,750]  INFO - LogMediator Book_Name = A Song of Ice and Fire 
+[2015-09-21 16:01:28,750]  INFO - LogMediator Book_Name = A Song of Ice and Fire
 ```
 
 ### Reading SOAP headers

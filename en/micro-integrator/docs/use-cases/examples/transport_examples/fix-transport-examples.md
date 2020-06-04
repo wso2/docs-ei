@@ -1,6 +1,6 @@
 # Using the FIX Transport
 
-Demonstrate the usage of the FIX (Financial Information eXchange) transport with Proxy Services .
+This example demonstrates the usage of the FIX (Financial Information eXchange) transport with proxy services.
 
 ## Synapse configuration
 
@@ -8,7 +8,7 @@ WSO2 Micro Integrator will create a session with an Executor and forward the ord
 Banzai.
 
 ```xml
-<proxy name="FIXProxy" transports="fix">
+<proxy name="FIXProxy" transports="fix" xmlns="http://ws.apache.org/ns/synapse">
     <parameter name="transport.fix.AcceptorConfigURL">file:/home/synapse_user/fix-config/fix-synapse.cfg</parameter>
     <parameter name="transport.fix.InitiatorConfigURL">file:/home/synapse_user/fix-config/synapse-sender.cfg</parameter>
     <parameter name="transport.fix.AcceptorMessageStore">file</parameter>
@@ -31,9 +31,9 @@ Banzai.
 ## Build and run
 
 -   You will need the two sample FIX applications that come with
-    Quickfix/J (Banzai and Executor). Configure the two applications to
-    establish sessions with the Micro Integrator.
--   Start Banzai and Executor.
+    Quickfix/J (Banzai and Executor). [Configure the two applications](../../../../setup/transport_configurations/configuring-transports/#configuring-the-fix-transport) to
+    establish sessions with the Micro Integrator and enable the FIX transport in the Micro-Integrator.
+-   Start the Micro-Integrator.
 -   Be sure that the
     `           transport.fix.AcceptorConfigURL          ` property
     points to the `           fix-synapse.cfg          ` file you
@@ -43,72 +43,10 @@ Banzai.
     created.
 
     !!! Note
-        The ESB creates a new FIX session with Banzai at this point.
-
+        The Micro Integrator creates a new FIX session with Banzai at this point.
+        
+-   Start Banzai and Executor.
 -   Send an order request from Banzai to the Micro Integrator.
-
-### Configuring Sample FIX Applications
-
-If you use a binary distribution of Quickfix/J, the two samples and
-their configuration files are all packed to a single JAR file called
-`         quickfixj-examples.jar        ` . You will have to extract the
-JAR file, modify the configuration files and pack them to a JAR file
-again under the same name.
-
-You can pass the new configuration file as a command line parameter too,
-in that case you do not need to modify the
-`         quickfixj-examples.jar        ` . You can copy the config
-files from
-`MI_HOME/repository/samples/resources/fix        ` folder to
-`$QFJ_HOME/etc folder        ` . Execute the sample apps from
-`<QFJ_HOME>/bin," "./banzai.sh/bat ../etc/banzai.cfg executor.sh/bat ../etc/executor.cfg        `
-.
-
-Locate and edit the FIX configuration file of Executor to be as follows.
-This file is usually named `executor.cfg` .
-
-``` java
-[default]
-    FileStorePath=examples/target/data/executor
-    ConnectionType=acceptor
-    StartTime=00:00:00
-    EndTime=00:00:00
-    HeartBtInt=30
-    ValidOrderTypes=1,2,F
-    SenderCompID=EXEC
-    TargetCompID=SYNAPSE
-    UseDataDictionary=Y
-    DefaultMarketPrice=12.30
-
-    [session]
-    BeginString=FIX.4.0
-    SocketAcceptPort=19876
-```
-
-Locate and edit the FIX configuration file of Banzai to be as follows.
-This file is usually named `         banzai.cfg        ` .
-
-``` java
-[default]
-    FileStorePath=examples/target/data/banzai
-    ConnectionType=initiator
-    SenderCompID=BANZAI
-    TargetCompID=SYNAPSE
-    SocketConnectHost=localhost
-    StartTime=00:00:00
-    EndTime=00:00:00
-    HeartBtInt=30
-    ReconnectInterval=5
-
-    [session]
-    BeginString=FIX.4.0
-    SocketConnectPort=9876
-```
-
-The `         FileStorePath        ` property in the above two files
-should point to two directories in your local file system. The launcher
-scripts for the sample application can be found in the bin directory of 
-Quickfix/J distribution.
 
 ### Configuring the Micro Integrator for FIX Samples
 

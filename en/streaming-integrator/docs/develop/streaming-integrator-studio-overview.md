@@ -1,20 +1,22 @@
 # Streaming Integrator Tooling Overview
 
+!!! info
+    This page describes the latest publicly-available version of Streaming Integrator Tooling. If you cannot see some of the user interface elements described here, [update your Streaming Integrator Tooling installation](https://docs.wso2.com/display/updates/Getting+Continuous+Updates).
+
 The Streaming Integrator Tooling is a developer tool that is shipped with
 the Streaming Integrator to develop Siddhi applications. It allows provides two
 interfaces to develop Siddhi applications
 
 -   **Source View** : This allows you to write Siddhi applications
-    in the Siddhi Query Language. This supports auto-completion,
-    tracking syntax errors and debugging.
+    in the Siddhi Query Language. This supports auto-completion and
+    tracking syntax errors.
+
 -   **Design View** :This interface visualizes the event flow of a
     Siddhi application, and allows you to compose the applications by
     dragging and dropping Siddhi components to a graph.
 
 Once a Siddhi application is created, you can simulate events via the
-Streaming Integrator Tooling to test whether it works as expected. You can
-also run the Siddhi application in the debug mode to detect errors in
-the Siddhi logic.
+Streaming Integrator Tooling to test whether it works as expected.
 
 ## Starting Streaming Integrator Tooling
 
@@ -22,33 +24,36 @@ To start and access the Streaming Integrator Tooling, follow the steps below:
 
 1.  Start the Streaming Integrator Tooling by issuing one of the following
     commands from the `<SI_HOME>/bin` directory.
+
     -   For Windows: `streaming-integrator-tooling.bat`
     -   For Linux: `./streaming-integrator-tooling.sh           `
+
 2.  Access the Streaming Integrator Tooling via the `http://localhost:/editor`
     URL. The Streaming Integrator Tooling opens as shown below.
 
     !!! info
-        The default URL is `http://localhost:9390/editor`.
+        The default URL is `http://localhost:9390/editor`. If required, you can change the host name (i.e., `localhost`) or the web UI application name (i.e., `editor`). For instructions, see [Changing the Host Name and Context Path of SI Tooling](../setup/change-hostname-and-context-path.md).
     
 
 ## Welcome Page
 
-![Streaming Integrator Tooling Welcome Page](../images/streaming-integrator-studio-overview/Stream_Processor_Studio_Welcome_Page.png)
+![Streaming Integrator Tooling Welcome Page](../images/streaming-integrator-studio-overview/streaming-integrator-tooling-welcome-page.png)
 
 The **Welcome to the Streaming Integrator Tooling Tour Guide** is open by
 default. You can take a tour by following the instructions on the dialog
 box, or close it and proceed to explore the Streaming Integrator Tooling on
-your own. You can also access this dialog box by clicking **Tools** =\>
+your own. You can also access this dialog box by clicking **Tools** ->
 **Tour Guide** . Once you close the dialog box, you can try the
 following:
 
--   **New**  
+-   **New**
     Click this to open a new untitled Siddhi file.
 
--   **Open**  
+-   **Open**
     Click this to open a Siddhi file that is already saved in the `workspace` directory of the Streaming Integrator 
     Tooling. If the file is already opened in a new tab, clicking **Open** does not open it again. The default path to 
     the `workspace` directory is `<SI_Home>/wso2/server/deployment`.
+
 -   **Try out samples**  
     The pre-created samples provided out of the box are listed in this
     section. When you click on a sample, it opens in a new tab without a
@@ -105,25 +110,7 @@ The **File** menu includes the following options.
      
 -   **Export File** 
     Click this to export a saved file to a system location. This is only applicable to Siddhi application tabs that are
-     in a saved state.  
-      
--   **Export as Docker**
-
-    !!! tip
-        The exported Docker artifacts use docker-compose for this purpose.
-        Therefore to run the artifacts, you need to install the following in
-        the running environment.
-        
-            + Docker
-            + Docker Compose
-    
-    Click this to export one or more selected Siddhi applications in a Docker container. Once you click on this menu 
-    item, the **Export as Docker** dialog box appears.  
-    ![Exporting a Siddhi appliucation as a Docker artifact](../images/streaming-integrator-studio-overview/Export_As_Docker.png) 
-    Select the relevant check boxes to indicate which Siddhi files you need to export. If you select the check box for
-     **workspace** , all the Siddhi applications in the `workspace` directory are exported.  
-      
-    For detailed information, see [Exporting Siddhi Files](exporting-Siddhi-Files.md).     
+     in a saved state.
 
 -   **Close File**
     Click this to close a currently active Siddhi application that is already open in a tab.  
@@ -164,7 +151,7 @@ The **Edit** menu includes the following options.
     
 -   **Reformat Code**  
     Click this to reformat the Siddhi queries in the Siddhi
-    application you are currently creating/editing in the [source view](#StreamProcessorStudioOverview-SourceView).
+    application that you are currently creating/editing in the [source view](#StreamProcessorStudioOverview-SourceView).
 
     !!! info
         This menu option is only visible when you are working in the [source view](#StreamProcessorStudioOverview-SourceView).
@@ -191,15 +178,8 @@ The **Run** menu includes the following options.
         This menu option is enabled only when a Siddhi application is being created/edited in the [source view](#StreamProcessorStudioOverview-SourceView).
     
 
--   **Debug**  
-    Click this to start the Siddhi application in the Debug mode. Only saved Siddhi applications can be run in this mode.
-
-    !!! info
-        This menu option is enabled only when a Siddhi application is being created/edited in the [source view](#StreamProcessorStudioOverview-SourceView).
-    
-
 -   **Stop**  
-    Click this to stop a Siddhi application that is already started in either the Run or Debug mode.
+    Click this to stop a Siddhi application that is already running.
 
   
 
@@ -211,6 +191,13 @@ The **Tools** menu provides access to the following tools that are shipped with 
 
 -   **File Explorer** 
     The file explorer. This is also avaible in the [Side Panel](#StreamProcessorStudioOverview-SidePanel).
+
+- **Extension Installer**
+
+    This opens the Extension Installer as follows.
+    ![Extension Installer](../images/streaming-integrator-studio-overview/Extension_Installer.png)
+    This can be used to install and un-install Siddhi extensions. For more information, see [Installing Siddhi Extensions](./installing-siddhi-extensions.md).
+    
     
 -   **Event Simulator**  
 
@@ -220,7 +207,13 @@ The **Tools** menu provides access to the following tools that are shipped with 
     -   Feed Simulation
 
     For detailed information about event simulation, see [Simulating Events](_Simulating_Events_).  
-    The event simulator can also be accessed from the [Side Panel](#StreamProcessorStudioOverview-SidePanel).  
+    The event simulator can also be accessed from the [Side Panel](#StreamProcessorStudioOverview-SidePanel).
+
+- **Extension Installer**
+
+    This opens the **Extension Installer** dialog box (shown below) where you can search for the required extension and install/uninstall it by clicking **Install** or **Uninstall** as appropriate. Once you install/uninstall an extension, you need to restart the Streaming Integrator Tooling. For detailed instructions, see [Installing Siddhi Extensions](installing-siddhi-extensions.md).
+
+     ![Extension Installer](../images/streaming-integrator-studio-overview/extension-installer.png)
       
 -   **Console**
     This is an output console that provides feedback on various user
@@ -232,14 +225,14 @@ The **Tools** menu provides access to the following tools that are shipped with 
     ![Sample event generator](../images/streaming-integrator-studio-overview/Sample_Event_Generator.png)  
     Here, you can generate sample events for a selected stream within a selected Siddhi application in a specified format.  
       
--   **Siddhi Store Query**
-    This opens the **Siddhi Store Query** dialog box.  
-    ![Siddhi Store Query](../images/streaming-integrator-studio-overview/Siddhi_Store_Query.png)
+-   **On-Demand Query**
+    This opens the **On-Demand Query** dialog box.
+    ![Siddhi Store Query](../images/streaming-integrator-studio-overview/on-demand-query.png)
     Here, you can select a Siddhi application, and then enter a query to
     manipulate the store in which that Siddhi Application saves data.
     You can enter queries that can update record, insert/update records,
     retrieve records and delete records. For more information about
-    actions you can carry out for stores, see [Managing Stored Data via REST APIs](https://docs.wso2.com/display/SP440/Managing+Stored+Data+via+REST+APIs).  
+    actions you can carry out for stores, see [Storage Integration - Performing CRUD operations via REST API](../guides/storage-Integration.md#performing-crud-operations-via-rest-api).
       
 -   **Tour Guide**
     This opens a dialog box named **Welcome to the Streaming Integrator
@@ -249,13 +242,26 @@ The **Tools** menu provides access to the following tools that are shipped with 
 #### Deploy menu items
 
 The **Deploy** menu has the following option to select one or more Siddhi applications and deploy them to one or more 
-Streaming Integrator servers. For more information, see [Deploying Streaming Applications](https://docs.wso2.com/display/SP440/Deploying+Streaming+Applications#DeployingStreamingApplications-DeploySiddhiApplicationviaEditor)..
+Streaming Integrator servers. For more information, see [Deploying Siddhi Applications](deploying-StreamingApplications.md).
 
 ![Deploy menu](../images/streaming-integrator-studio-overview/Deploy_Menu.png)
+
+#### Export menu items
+
+The **Export** menu has the following options that allow you to export Siddhi applications in a format that can be deployed in a containerized environment.
+
+![Export menu](../images/streaming-integrator-studio-overview/Export_Menu.png)
+
+- **For Docker**
+    This opens the **Export Siddhi Apps for Docker image** wizard. For more information, see [Exporting Siddhi Applications - Exporting Siddhi applications as a Docker Image](exporting-Siddhi-Files.md#exporting-siddhi-applications-as-a-docker-image).
+
+- **For Kubernetes**
+    This opens the **Export Siddhi Apps For Kubernetes CRD** wizard. For more information, see [Exporting Siddhi Applications - Exporting Siddhi Applications for Kubernetes](exporting-Siddhi-Files.md#exporting-siddhi-applications-for-kubernetes).
 
 ## Side Panel
 
 **File Explorer**
+
 ![File Explorer menu](../images/streaming-integrator-studio-overview/File Explorer.png)
 
 This provides a view of all the files saved as shown in the example above.
@@ -289,19 +295,29 @@ that you want to use in your Siddhi applications.
 -   For detailed instructions to find and use a Siddhi extension via the
     Operator Finder demonstrated with an example, see [Creating a Siddhi Application](Creating-a-Siddhi-Application_112390796.html#CreatingaSiddhiApplication-Extension_Finder).
 
+### Template Variables
+
+ ![Template Variables](../images/streaming-integrator-studio-overview/template_variables-icon.png)
+
+
+Click this icon to open the **Templated Variables** side panel (shown below) where you can open the templated attributes in the currently saved Siddhi applications and provide variables to be applied when running the Siddhi applications.
+
+
+ ![Templated Variables](../images/streaming-integrator-studio-overview/templated-variables.png)
+
+For more information about templated variables, see [Siddhi Documentation - Siddhi as a Local Microservice - Running with environmental/system variables](https://siddhi.io/en/v5.1/docs/siddhi-as-a-local-microservice/#running-with-environmentalsystem-variables).
+
 ## Toolbar
 
-![Tool Bar menu](../images/streaming-integrator-studio-overview/Editor_Toolbar.png)
+  ![Tool Bar menu](../images/streaming-integrator-studio-overview/Editor_Toolbar.png)
 
 -   **Run icon**  
     Click this to start a currently open Siddhi application in the Run
     mode. This icon is enabled only for saved Siddhi applications.  
--   **Debug icon**  
-    Click this to start a currently open Siddhi application in the Debug
-    mode. This icon is enabled only for saved Siddhi applications.  
+
 -   **Stop icon**  
-    Click this to stop a Siddhi application that is currently running in
-    either the Run or Debug mode.  
+    Click this to stop a Siddhi application that is currently running.
+
 -   **Revert icon**  
     Click this to revert the unsaved changes in the Siddhi application
     that is currently being created/edited.

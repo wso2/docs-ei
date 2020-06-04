@@ -5,18 +5,21 @@
 The Streaming Integrator allows you to perform a wide range of transformations to the input data received. Some of these 
 transformations are carried out via operators that are defined inline within the Siddhi application. For the rest of the
  transformations, you can use Siddhi extensions that are available to be downloaded via the [Siddhi Extension Store](https://store.wso2.com/store/assets/analyticsextension/list).
- Most of these extensions are shipped with the Streaming Integrator by default.
+ Most of these extensions are shipped with the Streaming Integrator by default. Siddhi also allows you to write a custom script to do a data transformation. You can also transform data in a specific format to another format.
+ 
+ ![Transforming Data](../images/transforming-data/transforming-data.png)
 
-## Transform data using inline operators
+## Transforming data using inline operators
 
-The operators that you can configure inline within Siddhi applications in order to carry out data transformations are listed in the [Siddhi Query Guide - Inbuild Aggregation Functions section](https://siddhi.io/en/v5.0/docs/query-guide/#select).
+The operators that you can configure inline within Siddhi applications in order to carry out data transformations are listed in the [Siddhi Query Guide - Select clause](https://siddhi.io/en/v5.0/docs/query-guide/#select).
 
 To show how an inline operators are configured, let's consider an example where readings from a sensor that indicates 
 the temperature of a room every second are transformed to indicate the average tempertature and the average humidity as at each second.
 
-1. Open the Streaming Integrator Studio and start creating a new Siddhi application. For more information, see [Creating a Siddhi Application](../develop/creating-a-Siddhi-Application.md).
+1. Open the Streaming Integrator Tooling and start creating a new Siddhi application. For more information, see [Creating a Siddhi Application](../develop/creating-a-Siddhi-Application.md).
 
 2. Enter a name for the Siddhi application as shown below.<br/>
+
    `@App:name("<Siddhi_Application_Name>)`<br/>
    
    In this example, let's name the application `TemperatureApp`.
@@ -78,11 +81,8 @@ the temperature of a room every second are transformed to indicate the average t
     insert into OutputStream;
     ```
 
-Give an example and point to existing inline math and logical operators.
 
-
-
-## Transform data using in-built extensions
+## Transforming data using in-built extensions
 
 The Streaming Integrator offers a variety of options to carry out data transformations via in-built extensions. The 
 following table describes the complete list of extensions that provide data transformation functionality.
@@ -100,7 +100,7 @@ following table describes the complete list of extensions that provide data tran
 
 These extensions are shipped with the Streaming Integrator by default. If you want to use a Siddhi extension that is not shipped by default, see [Downloading and Installing Siddhi Extensions](../admin/downloading-and-Installing-Siddhi-Extensions.md)
 
-## Transform data using custom function calls
+## Transforming data using custom function calls
 
 To write custom function calls with Siddhi-script-js, follow the procedure below:
 
@@ -143,6 +143,6 @@ These transformations involve converting the message format to a different forma
 converting the format before publishing the message. This is managed via mapping. For detailed instructions to convert
  message formats via mapping, see the following guides:
  
- - [Consuming Messages - Supported Message Formats](consuming-messages/#supported-message-formats)
- - [Publishing Messages - Supported Message Formats](publishing-data/#supported-message-formats)
+ - [Consuming Messages - Supported Message Formats](consuming-messages.md#supported-message-formats)
+ - [Publishing Messages - Supported Message Formats](publishing-data.md#supported-message-formats)
 

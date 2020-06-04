@@ -1,9 +1,9 @@
 # Creating New keystores
 
-There are two ways to create new [keystores for the Micro Integrator](../../references/using_keystores.md): 
+There are two ways to create new [keystores for the Micro Integrator](../../../references/security/using_keystores): 
 
 * Create  the keystore with a new (self-signed) public key certificate.
-* Generate a keystore using an already existing [CA-signed](../../references/using_keystores.md) public key certificate.
+* Generate a keystore using an already existing [CA-signed](../../../references/security/using_keystores) public key certificate.
 
 ## Creating a new keystore using a new certificate
 You can follow the steps in this section to create a new keystore with a private key and a new public key certificate. We will be using the keytool that is available with your JDK installation. 
@@ -45,7 +45,7 @@ You can use an already existing CA-signed certificate to generate your keystore 
 2. Convert the PKCS12/PFX formatted keystore to a Java keystore using the following command:
 
     ```bash
-    openssl pkcs12 -export -in <certificate file>.crt -inkey <private>.key -name "<alias>" -certfile <additional certificate file> -out <pfx keystore name>.pfx
+    keytool -importkeystore -srckeystore <pkcs12 file name>.pfx -srcstoretype pkcs12 -destkeystore <JKS name>.jks -deststoretype JKS
     ```
 
 ## What's next?

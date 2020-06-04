@@ -33,7 +33,10 @@ Configuration parameters for the JMS receiver and the sender are XML fragments t
 <table>
       <tr>
          <th>
-            <p>Parameter Name</p>
+            <p>TOML Parameter Name</p>
+         </th>
+         <th>
+            <p>Axis2 Parameter Name</p>
          </th>
          <th>
             <p>Description</p>
@@ -42,13 +45,19 @@ Configuration parameters for the JMS receiver and the sender are XML fragments t
    <tbody>
       <tr>
          <td>
-           java.naming.factory.initial
+            parameter.initial_naming_factory  
+         </td>
+         <td>
+            java.naming.factory.initial
          </td>
          <td>
             JNDI initial context factory class. The class must implement the <code>java.naming.spi.InitialContextFactory</code> interface. The default value is <code>org.apache.activemq.jndi.ActiveMQInitialContextFactory</code>.
          </td>
       </tr>
       <tr>
+         <td>
+            parameter.provider_url 
+         </td>
          <td>
             java.naming.provider.url
          </td>
@@ -58,6 +67,9 @@ Configuration parameters for the JMS receiver and the sender are XML fragments t
       </tr>
       <tr>
          <td>
+            parameter.naming_security_principal 
+         </td>
+         <td>
             java.naming.security.principal
          </td>
          <td>
@@ -66,6 +78,9 @@ Configuration parameters for the JMS receiver and the sender are XML fragments t
       </tr>
       <tr>
          <td>
+            parameter.naming_security_credential
+         </td>
+         <td>
             java.naming.security.credentials
          </td>
          <td>
@@ -73,6 +88,9 @@ Configuration parameters for the JMS receiver and the sender are XML fragments t
          </td>
       </tr>
       <tr>
+         <td>
+            parameter.transactionality 
+         </td>
          <td>
             transport.Transactionality
          </td>
@@ -88,6 +106,9 @@ Configuration parameters for the JMS receiver and the sender are XML fragments t
       </tr>
       <tr>
          <td>
+            parameter.transaction_jndi_name
+         </td>
+         <td>
             transport.UserTxnJNDIName
          </td>
          <td>
@@ -95,6 +116,9 @@ Configuration parameters for the JMS receiver and the sender are XML fragments t
          </td>
       </tr>
       <tr>
+         <td>
+            parameter.cache_user_transaction
+         </td>
          <td>
             transport.CacheUserTxn
          </td>
@@ -104,6 +128,9 @@ Configuration parameters for the JMS receiver and the sender are XML fragments t
       </tr>
       <tr>
          <td>
+            parameter.session_transaction
+         </td>
+         <td>
             transport.jms.SessionTransacted
          </td>
          <td>
@@ -111,6 +138,9 @@ Configuration parameters for the JMS receiver and the sender are XML fragments t
          </td>
       </tr>
       <tr>
+         <td>
+           parameter.session_acknowledgement
+         </td>
          <td>
            transport.jms.SessionAcknowledgement
          </td>
@@ -127,6 +157,9 @@ Configuration parameters for the JMS receiver and the sender are XML fragments t
       </tr>
       <tr>
          <td>
+            parameter.connection_factory_name
+         </td>
+         <td>
             transport.jms.ConnectionFactoryJNDIName
          </td>
          <td>
@@ -140,6 +173,9 @@ Configuration parameters for the JMS receiver and the sender are XML fragments t
       </tr>
       <tr>
          <td>
+            parameter.connection_factory_type
+         </td>
+         <td>
             transport.jms.ConnectionFactoryType
          </td>
          <td>
@@ -147,6 +183,9 @@ Configuration parameters for the JMS receiver and the sender are XML fragments t
          </td>
       </tr>
       <tr>
+         <td>
+            parameter.jms_spec_version
+         </td>
          <td>
             transport.jms.JMSSpecVersion
          </td>
@@ -156,6 +195,9 @@ Configuration parameters for the JMS receiver and the sender are XML fragments t
       </tr> 
       <tr>
          <td>
+            parameter.username
+         </td>
+         <td>
             transport.jms.UserName
          </td>
          <td>
@@ -163,6 +205,9 @@ Configuration parameters for the JMS receiver and the sender are XML fragments t
          </td>
       </tr>
       <tr>
+         <td>
+            parameter.password
+         </td>
          <td>
             transport.jms.Password
          </td>
@@ -172,6 +217,9 @@ Configuration parameters for the JMS receiver and the sender are XML fragments t
       </tr>
       <tr>
          <td>
+           parameter.destination
+         </td>
+         <td>
             transport.jms.Destination
          </td>
          <td>
@@ -179,6 +227,9 @@ Configuration parameters for the JMS receiver and the sender are XML fragments t
          </td>
       </tr>
       <tr>
+         <td>
+            parameter.destination_type
+         </td>
          <td>
             transport.jms.DestinationType
          </td>
@@ -188,6 +239,9 @@ Configuration parameters for the JMS receiver and the sender are XML fragments t
       </tr>
       <tr>
          <td>
+            parameter.default_reply_destination
+         </td>
+         <td>
             transport.jms.DefaultReplyDestination
          </td>
          <td>
@@ -195,6 +249,9 @@ Configuration parameters for the JMS receiver and the sender are XML fragments t
          </td>
       </tr>
       <tr>
+         <td>
+            parameter.default_destination_type
+         </td>
          <td>
             transport.jms.DefaultReplyDestinationType
          </td>
@@ -204,6 +261,9 @@ Configuration parameters for the JMS receiver and the sender are XML fragments t
       </tr>
       <tr>
          <td>
+            parameter.message_selector
+         </td>
+         <td>
             transport.jms.MessageSelector
          </td>
          <td>
@@ -212,6 +272,9 @@ Configuration parameters for the JMS receiver and the sender are XML fragments t
       </tr>
       <tr>
          <td>
+            parameter.subscription_durable
+         </td>
+         <td>
             transport.jms.SubscriptionDurable
          </td>
          <td>
@@ -219,11 +282,15 @@ Configuration parameters for the JMS receiver and the sender are XML fragments t
          </td>
       </tr>
       <tr>
+         <td>parameter.durable_subscriber_client_id</td>
          <td>transport.jms.DurableSubscriberClientID</td>
          <td>The <code>ClientId</code> parameter when using durable subscriptions. This parameter is required if the value specified as <code>transport.jms.ubscriptionDurable</code> is <code>true</code>.
          </td>
       </tr>
       <tr>
+         <td>
+            parameter.durable_subscriber_name
+         </td>
          <td>
             transport.jms.DurableSubscriberName
          </td>
@@ -232,6 +299,7 @@ Configuration parameters for the JMS receiver and the sender are XML fragments t
          </td>
       </tr>
       <tr>
+         <td>parameter.pub_sub_local</td>
          <td>
             transport.jms.PubSubNoLocal
          </td>
@@ -240,6 +308,7 @@ Configuration parameters for the JMS receiver and the sender are XML fragments t
          </td>
       </tr>
       <tr>
+         <td>parameter.cache_level</td>
          <td>
             transport.jms.CacheLevel
          </td>
@@ -268,6 +337,7 @@ Configuration parameters for the JMS receiver and the sender are XML fragments t
          </td>
       </tr>
       <tr>
+         <td>parameter.receive_timeout</td>
          <td>
             transport.jms.ReceiveTimeout
          </td>
@@ -276,6 +346,7 @@ Configuration parameters for the JMS receiver and the sender are XML fragments t
          </td>
       </tr>
       <tr>
+         <td>parameter.concurrent_consumer</td>
          <td>
             transport.jms.ConcurrentConsumers
          </td>
@@ -284,6 +355,7 @@ Configuration parameters for the JMS receiver and the sender are XML fragments t
          </td>
       </tr>
       <tr>
+         <td>parameter.max_concurrent_consumer</td>
          <td>
             transport.jms.MaxConcurrentConsumers
          </td>
@@ -292,6 +364,7 @@ Configuration parameters for the JMS receiver and the sender are XML fragments t
          </td>
       </tr>
       <tr>
+         <td>parameter.idle_task_limit</td>
          <td>
             transport.jms.IdleTaskLimit
          </td>
@@ -300,6 +373,7 @@ Configuration parameters for the JMS receiver and the sender are XML fragments t
          </td>
       </tr>
       <tr>
+         <td>parameter.max_message_per_task</td>
          <td>
             transport.jms.MaxMessagesPerTask
          </td>
@@ -308,6 +382,7 @@ Configuration parameters for the JMS receiver and the sender are XML fragments t
          </td>
       </tr>
       <tr>
+         <td>parameter.initial_reconnection_duration</td>
          <td>
             transport.jms.InitialReconnectDuration
          </td>
@@ -316,6 +391,7 @@ Configuration parameters for the JMS receiver and the sender are XML fragments t
          </td>
       </tr>
       <tr>
+         <td>parameter.reconnect_progress_factor</td>
          <td>
             transport.jms.ReconnectProgressFactor
          </td>
@@ -324,6 +400,7 @@ Configuration parameters for the JMS receiver and the sender are XML fragments t
          </td>
       </tr>
       <tr>
+         <td>parameter.max_reconnect_duration</td>
          <td>
             transport.jms.MaxReconnectDuration
          <td>
@@ -331,11 +408,13 @@ Configuration parameters for the JMS receiver and the sender are XML fragments t
          </td>
       </tr>
       <tr>
+         <td>parameter.reconnect_interval</td>
          <td>transport.jms.ReconnectInterval</td>
          <td>Reconnection interval in milliseconds. The default value is <code>3600000</code> milliseconds (1 hour).
          </td>
       </tr>
       <tr>
+         <td>parameter.max_jsm_connection</td>
          <td>
             transport.jms.MaxJMSConnections
          </td>
@@ -344,6 +423,7 @@ Configuration parameters for the JMS receiver and the sender are XML fragments t
          </td>
       </tr>
       <tr>
+         <td>parameter.max_consumer_error_retrieve_before_delay</td>
          <td>
             transport.jms.MaxConsumeErrorRetriesBeforeDelay
          </td>
@@ -352,6 +432,7 @@ Configuration parameters for the JMS receiver and the sender are XML fragments t
          </td>
       </tr>
       <tr>
+         <td>parameter.consume_error_delay</td>
          <td>
             transport.jms.ConsumeErrorDelay
          </td>
@@ -360,6 +441,7 @@ Configuration parameters for the JMS receiver and the sender are XML fragments t
          </td>
       </tr>
       <tr>
+         <td>parameter.consume_error_progression</td>
          <td>
             transport.jms.ConsumeErrorProgression
          </td>
@@ -368,6 +450,7 @@ Configuration parameters for the JMS receiver and the sender are XML fragments t
          </td>
       </tr>
       <tr>
+         <td>MaxConsumeErrorRetryCount</td>
          <td>transport.jms.MaxConsumeErrorRetryCount</td>
          <td>
             The maximum number of times the consumer should retry upon receiving a consumer error. You need to introduce this parameter only if the Broker has issues in notifying the Exception Listeners about the exceptions occurred. You can specify any positive integer. The default value is <code>1</code>.

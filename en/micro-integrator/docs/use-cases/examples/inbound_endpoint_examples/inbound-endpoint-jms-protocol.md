@@ -1,11 +1,9 @@
-# Inbound Endpoint JMS Protocol Sample
-## Example use case
-
+# Using the JMS Inbound Endpoint
 This sample demonstrates how one way message bridging from JMS to HTTP can be done using the inbound JMS endpoint.
 
 ## Synapse configuration
 
-Following are the integration artifacts that we can used to implement this scenario.
+Following are the integration artifacts that we can used to implement this scenario. See the instructions on how to [build and run](#build-and-run) this example.
 
 ```xml tab='Inbound Endpoint'
  <?xml version="1.0" encoding="UTF-8"?>
@@ -41,14 +39,12 @@ Following are the integration artifacts that we can used to implement this scena
 
 Create the artifacts:
 
-1. Set up WSO2 Integration Studio.
-2. Create an ESB Solution project
-3. Create the following artifacts: Proxy service, registry resource, scheduled task, inbound endpoint, fault sequence.
-4. Deploy the artifacts in your Micro Integrator.
+1. [Set up WSO2 Integration Studio](../../../../develop/installing-WSO2-Integration-Studio).
+2. [Create an ESB Solution project](../../../../develop/creating-projects/#esb-config-project)
+3. Create a [mediation sequence](../../../../develop/creating-artifacts/creating-reusable-sequences) and [inbound endpoint](../../../../develop/creating-an-inbound-endpoint) with configurations given in the above example.
+4. [Deploy the artifacts](../../../../develop/deploy-and-run) in your Micro Integrator.
 
-Configure the ActiveMQ broker.
-
-Set up the back-end service.
+[Configure the ActiveMQ broker](../../../../setup/brokers/configure-with-ActiveMQ).
 
 Invoke the inbound endpoint:
 

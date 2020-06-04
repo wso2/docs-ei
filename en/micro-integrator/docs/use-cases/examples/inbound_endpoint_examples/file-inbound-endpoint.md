@@ -1,8 +1,5 @@
-# Using the File Inbound Protocol
-## Failure tracking
-
-### Example use case
-
+# Using the File Inbound Endpoint
+## Failure tracking using File Inbound
 To track failures in file processing that can occur when a resource
 becomes unavailable, the VFS transport creates and maintains a failed
 records file. This text file contains a list of files that failed to
@@ -14,7 +11,9 @@ processing and schedule a move task to move that file.
 
 ### Synapse configuration
 
-```xml
+Following are the integration artifacts that we can used to implement this scenario. See the instructions on how to [build and run](#build-and-run) this example.
+
+```xml tab='Inbound Endpoint'
 <?xml version="1.0" encoding="UTF-8"?>
 <inboundEndpoint xmlns="http://ws.apache.org/ns/synapse" 
                  name="file" sequence="request" 
@@ -29,32 +28,55 @@ processing and schedule a move task to move that file.
       <parameter name="transport.vfs.MoveAfterProcess">file:///home/user/test/out</parameter>
       <parameter name="transport.vfs.FileURI">file:///home/user/test/in</parameter>
       <parameter name="transport.vfs.MoveAfterFailure">file:///home/user/test/failed</parameter>
-      <parameter name="transport.vfs.FileNamePattern">.*.txt</parameter>
-      <parameter name="transport.vfs.ContentType">text/plain</parameter>
+      <parameter name="transport.vfs.FileNamePattern">.*.xml</parameter>
+      <parameter name="transport.vfs.ContentType">text/xml</parameter>
       <parameter name="transport.vfs.ActionAfterFailure">MOVE</parameter>
    </parameters>
 </inboundEndpoint>
 ```
 
-```xml
+```xml tab='Sequence'
 <?xml version="1.0" encoding="UTF-8"?>
 <sequence xmlns="http://ws.apache.org/ns/synapse" name="request">
-    <send/>
+    <log level="full"/>
 </sequence>
 ```
 
-## Build and run
+### Build and run
 
 Create the artifacts:
 
-1. Set up WSO2 Integration Studio.
-2. Create an ESB Solution project
-3. Create the following artifacts: Inbound endpoint, Sequence.
-4. Deploy the artifacts in your Micro Integrator.
+1. [Set up WSO2 Integration Studio](../../../../develop/installing-WSO2-Integration-Studio).
+2. [Create an ESB Solution project](../../../../develop/creating-projects/#esb-config-project)
+3. Create a [mediation sequence](../../../../develop/creating-artifacts/creating-reusable-sequences) and [inbound endpoint](../../../../develop/creating-an-inbound-endpoint) with configurations given in the above example.
+4. [Deploy the artifacts](../../../../develop/deploy-and-run) in your Micro Integrator.
 
-Set up the back-end service.
+To invoke the inbound endpoint, you can create a file with the below content and save it as `request.xml` in the `/home/user/test/in` directory.
 
-Invoke the inbound endpoint.
+```xml
+<?xml version='1.0' encoding='UTF-8'?>
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:wsa="http://www.w3.org/2005/08/addressing">
+    <soapenv:Body>
+        <m0:getQuote xmlns:m0="http://services.samples">
+            <m0:request>
+                <m0:symbol>IBM</m0:symbol>
+            </m0:request>
+        </m0:getQuote>
+    </soapenv:Body>
+</soapenv:Envelope>
+```
+
+Once the file is created, the inbound endpoint's sequence (request) is triggered and the following content is logged:
+
+```xml
+To: , MessageID: urn:uuid:CA46833F184F7EAA0E1585819580883, Direction: request, Envelope: <?xml version='1.0' encoding='utf-8'?><soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:wsa="http://www.w3.org/2005/08/addressing"><soapenv:Body>
+       <m0:getQuote xmlns:m0="http://services.samples">
+           <m0:request>
+               <m0:symbol>IBM</m0:symbol>
+           </m0:request>
+       </m0:getQuote>
+   </soapenv:Body></soapenv:Envelope>
+```
 
 ## Configuring FTP, SFTP, and FILE Connections
 

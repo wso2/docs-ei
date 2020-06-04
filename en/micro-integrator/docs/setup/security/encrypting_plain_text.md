@@ -1,122 +1,150 @@
-# Encrypting Passwords in Configuration files
+# Encrypting Secrets
 
-The instructions on this page explain how plain text passwords in configuration files can be encrypted using the secure vault implementation that is built into WSO2 products. 
+WSO2 Micro Integrator can use secrets with static origins as well as dynamic origins in configurations. This applies to secrets in server-level configurations as well as configurations within integration solutions (synapse configurations).
 
-Note that you can customize the default secure vault configurations in the product by implementing a new secret repository, call back handler etc.
+## Static Secrets
 
-## Before you begin
+Static secrets are sensitive data that are specified directly in configurations. The secret can be a plain-text value or the alias of an encrypted value.
 
-- If you are using **Windows**, you need to have [Ant](http://ant.apache.org/) installed before using the Cipher Tool.
-- If required, you can enable [single key encryption](../../setup/security/single_key_encryption.md) instead of (the default) asymmetric encryption.
+Because it is not recommended to use plain-text values for your sensitive data, you can encrypt the plain-text secrets by using the secure vault implementation that is built in to the Micro Integrator. The Micro Integrator is shipped with the **Cipher Tool**, which uses the secure vault implementation and encrypts the secrets you specify.
 
-## Encrypting passwords
+Note that you can customize the default secure vault configurations in the product by implementing a new secret repository, call back handler, etc.
 
-1. Open the deployment.toml file and add the `[secrets]` configuration section as shown below. Give an alias for the password type followed by the actual password. The following example lists the most common passwords in configuration files.
+### Encrypting static secrets
+
+!!! Tip
+    - This approach of encrypting static secrets in server configurations can only be applied to VM deployments.
+    - If you are using **Windows**, you need to have [Ant](http://ant.apache.org/) installed before using the Cipher Tool.
+
+You must first list the plain-text secrets in the `deployment.toml` file under the `secrets` header. When you run the Cipher Tool, these plain-text secrets will be encrypted. You can then refer the encrypted secrets from anywhere in your server configurations (also specified in the `deployment.toml` file) or synapse configurations (such as **proxy services** and **rest API** artifacts).
+
+Let's generate some encrypted values to represent the most common secrets in server configurations.
+
+1. Open the `deployment.toml` file located in the `<MI_HOME>/conf/` directory and add the `[secrets]` configuration section as shown below.
+
+    Note that we have specified an alias for the secret type followed by the actual plain-text secret.
 
     ```toml
     [secrets]
-    admin_password = "password_2"
-    keystore_password = "password_3"
-    key_password = "password_4"
-    truststrore_password = "password_5"
-    log4j.appender.LOGEVENT.password = "password_6"
+    keystore_password = "[password_3]"
+    key_password = "[password_4]"
+    truststore_password = "[password_5]"
     ```
 
-    See the complete list of [configuration parameters](../../references/config-catalog/#secret-passwords).
+2. Open a terminal, navigate to the `<MI_HOME>/bin/` directory.
+3. Enable the Cipher tool by executing the `-Dconfigure` command with the cipher tool script as shown below.
 
-2. Open a terminal, navigate to the MI_HOME/bin/ directory, and execute the following command (You must first enable the Cipher tool for the product by executing the `-Dconfigure` command with the cipher tool script as shown below).
-    * On Linux: `./ciphertool.sh -Dconfigure`
-    * On Windows: `./ciphertool.bat -Dconfigure`
+    ```bash tab='On Linux'
+    ./ciphertool.sh -Dconfigure
+    ```
 
-3. Go back to the deployment.toml file and see that the alias passwords are encrypted.
+    ```bash tab='On Windows'
+    ./ciphertool.bat -Dconfigure
+    ```
+
+3. Now, go back to the `deployment.toml` file and see that the secrets are encrypted.
 
     ```toml
     [secrets]
-    admin_password = "encrypted_pass_2"
     keystore_password = "encrypted_pass_3"
     key_password = "encrypted_pass_4"
-    truststrore_password = "encrypted_pass_5"
+    truststore_password = "encrypted_pass_5"
     ```
 
-    See the complete list of [configuration parameters](../../references/config-catalog/#secret-passwords).
-
-## Using encrypted passwords
-When you have [encrypted passwords](#encrypting-passwords), you can refer them from the relevant configuration files: The deployment.toml file or LOG4j properties.
-
-### Passwords in the deployment.toml
-
-You can add the encrypted password to the relevant sections in the deployment.toml file by using a place holder: `$secret`. 
-
-!!! Note
-    You can also replace your passwords by refering values passed by environment variables and system properties. See [Set Passwords using Environment Variables/System Properties](../../setup/security/replace_passwords_env_variables_sys_properties.md)
+### Using encrypted (static) secrets
+To use encrypted secrets (static) in server configurations, add the alias of the encrypted secret to the relevant configuration in the `deployment.toml` (instead of the plain-text secret). The  `$secret` place holder is used for holding the value as shown below.
 
 ```toml
-[super_admin]
-username="admin"
-password="$secret{admin_password}"
-
 [keystore.tls]
-password = "$secret{keystore_password}" 
-alias = "$secret{keystore_password}" 
+password = "$secret{keystore_password}"
+alias = "$secret{keystore_password}"
 key_password = "$secret{key_password }"  
 
 [truststore]                  
-password = "$secret{keystore_password}" 
+password = "$secret{truststore_password}"
 ```
 
-See the complete list of [configuration parameters](../../references/config-catalog.md).
+To use static encrypted secrets in synapse configurations, see [using encrypted synapse secrets](../../../develop/creating-artifacts/encrypting-synapse-passwords).
 
-### Passwords in LOG4j properties
-For example, consider the 'log4j.appender.LOGEVENT.password' in the log4j.properties file. You can refer the [encrypted password](#encrypting-passwords) form the log4j.properties file as shown below.
+## Dynamic Secrets
 
-```bash
-log4j.appender.LOGEVENT.password=secretAlias:log4j.appender.LOGEVENT.password
+If you want to dynamically populate secrets (as an environment variable, system property, Docker secret, or Kubernetes secret), you have to encrypt the secrets separately using the WSO2 Micro Integrator CLI tool.
+
+A place holder specified in the `deployment.toml` file is then used to fetch the secret during runtime.
+
+### Generating encrypted secrets
+
+To encrypt secrets using the CLI tool:
+
+1.  [Download](https://wso2.com/integration/micro-integrator/tooling/) and setup the Micro Integrator CLI tool.
+
+2.  Go to the Micro Integrator CLI tool Home folder and Navigate to the bin folder <MI-CLI>/bin
+
+3.  Initialize the CLI tool from your command line:
+
+    ```bash
+    mi
+    ```
+4.  Initialize the secret creation process in the tool:
+
+    ```bash
+    mi secret init
+    ```
+
+    You will be prompted to provide details of the keystore that will be used for encryption.
+
+    - Keystore location
+    - keystore type
+    - keystore alias
+    - Keystore password
+
+5.  Execute one of the following commands to generate the secret:
+
+    ```bash
+    # To encrypt secret and get output to console
+    mi secret create
+
+    # To encrypt secret and get output to file
+    mi secret create file
+
+    # To encrypt secret and get output as a .yaml file
+    mi secret create k8
+
+    # To bulk encrypt secrets defined in a properties file
+    mi secret create -f=</file_path>
+    ```
+
+### Using encrypted (dynamic) secrets
+
+To dynamically load secrets to server configurations, update the parameters in the `deployment.toml` file as an environment variable or system property:
+
+```toml tab='Environment Variable'
+[keystore.tls]
+file_name = "wso2carbon.jks"
+password = "$secret{carbon_secret}"
+alias = "$secret{carbon_secret}"
+key_password = "$secret{carbon_secret}"
+
+[secrets]
+carbon_secret = "$env{env_carbon_sec}"
+
+Here the value of env_carbon_sec environment variable should be the encrypted value
 ```
 
-## Changing encrypted passwords
+```toml tab='System Property'
+[keystore.tls]
+file_name = "wso2carbon.jks"
+password = "$secret{carbon_secret}"
+alias = "$secret{carbon_secret}"
+key_password = "$secret{carbon_secret}"
 
-To change any password which we have encrypted already, follow the below steps:
+[secrets]
+carbon_secret = "$sys{sys_carbon_sec}"
 
-1. Be sure to shut down the server.
-2. Open a command prompt and go to the MI_HOME/bin/ directory, where the cipher tool scripts (for Windows and Linux) are stored.
-3. Execute the following command for your OS:
-    * On Linux: `./ciphertool.sh -Dconfigure`
-    * On Windows: `./ciphertool.bat -Dconfigure`
-4. It will prompt for the primary keystore password. Enter the keystore password (which is "wso2carbon" for the default keystore).
-5. The alias values of all the passwords that you encrypted will now be shown in a numbered list.
-6. The system will then prompt you to select the alias of the password which you want to change. Enter the list number of the password alias.
-7. The system will then prompt you (twice) to enter the new password. Enter your new password.
+Here the value of sys_carbon_sec system property should be the encrypted value
+```
 
-## Resolving encrypted passwords
+Also note that each time a new secret is added to the [secrets] section of deployment.toml file
+you should run the Cipher Tool. 
 
-There are two ways to resolve encrypted passwords:
-
-!!! Note
-    If you have secured the plain text passwords in configuration files using Secure Vault, the keystore password and private key password of the product's [primary keystore](../../setup/security/configuring_keystores.md) will serve as the root passwords for Secure Vault. This is because the keystore passwords are needed to initialise the values encrypted by the **Secret Manager** in the **Secret Repository**. Therefore, the **Secret Callback handler** is used to resolve these passwords. The default secret CallbackHandler provides the two options given below. Read more about [Secure Vault concepts](../../references/security/customizing-secure-vault.md).
-
-### Enter password in command-line
-1. Start the server by running the product start up script from the MI_HOME/bin/ directory as shown below.
-   ```bash
-   ./micro-integrator.sh
-   ```
-2. When you run the startup script, the following message will be prompted before starting the server: `[Enter KeyStore and Private Key Password:]`. This is because, in order to connect to the default user store, the encrypted passwords should be decrypted. The administrator starting the server must provide the private key and keystore passwords using the command-line. Note that passwords are hidden from the terminal and log files.
-
-### Start server as a background job
-
-If you start the Micro Integrator as a background job, you will not be able to provide password values on the command line. Therefore, you must start the server in "daemon" mode as explained below.
-
-1. Create a new file in the MI_HOME directory. The file should be named according to your OS as explained below.
-
-    * For Linux: The file name should be `password-tmp`.
-    * For Windows: The file name should be `password-tmp.txt`.
-
-2. Add the primary keystore password (which is "wso2carbon" by default) to the new file and save. By default, the password provider assumes that both private key and keystore passwords are the same. If not, the private key password must be entered in the second line of the file.
-
-3. Now, start the server as a background process by running the following command.
-   ```bash
-   ./micro-integrator.sh start
-   ```
-4. Start the server by running the product start-up script from the MI_HOME/bin directory by executing the following command:
-   ```bash
-   daemon. sh micro-integrator.sh -start
-   ```
+Read more about [using dynamic server configurations](../../../setup/dynamic_server_configurations).

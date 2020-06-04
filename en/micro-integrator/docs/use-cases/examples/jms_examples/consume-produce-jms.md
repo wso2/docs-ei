@@ -1,26 +1,24 @@
 # Consuming and Producing JMS Messages
 
-This section describes how to configure WSO2 Micro Integrator to work as a JMS-to-JMS proxy service. In this example, the Micro Integrator listen to a JMS queue and consume messages, and then send those messages to another JMS queue.
-
-![](attachments/119130309/119130312.png){width="570"}
+This section describes how to configure WSO2 Micro Integrator to work as a JMS-to-JMS proxy service. In this example, the Micro Integrator listens to a JMS queue, consumes messages, and then sends those messages to another JMS queue.
 
 ## Synapse configuration
 
-Given below is the synapse configuration of the proxy service that mediates the above use case. Note that you need to update the JMS connection URL according to your broker as explained below.
+Given below is the synapse configuration of the proxy service that mediates the above use case. Note that you need to update the JMS connection URL according to your broker as explained below. See the instructions on how to [build and run](#build-and-run) this example.
 
-``` java
-    <proxy name="StockQuoteProxy" transports="jms">
-        <target>
-            <inSequence>
-                <property action="set" name="OUT_ONLY" value="true"/>
-                <send>
-                    <endpoint>
-                        <address uri=""/> <!-- Specify the JMS connection URL here -->
-                    </endpoint>
-                </send>
-            </inSequence>
-        </target>
-    </proxy>
+```xml
+<proxy name="StockQuoteProxy" transports="jms">
+    <target>
+        <inSequence>
+            <property action="set" name="OUT_ONLY" value="true"/>
+            <send>
+                <endpoint>
+                    <address uri=""/> <!-- Specify the JMS connection URL here -->
+                </endpoint>
+            </send>
+        </inSequence>
+    </target>
+</proxy>
 ```
 
 The Synapse artifacts used are explained below.
@@ -61,10 +59,10 @@ The Synapse artifacts used are explained below.
                     </code>
                </li></br>
                <li>
-                    If you have already specified the endpoint's connection factory parameters (for the JMS sender configuration) in the axis2.xml file, the connection URL in the proxy service should be as shown below. In this example, the endpoint URL of the proxy service refers the relevant connection factory in the axis2.xml file: </br></br>
+                    If you have already specified the endpoint's connection factory parameters (for the JMS sender configuration) in the deployment.toml file, the connection URL in the proxy service should be as shown below. In this example, the endpoint URL of the proxy service refers the relevant connection factory in the deployment.toml file: </br></br>
                     <b>When the broker is ActiveMQ</b></br>
                     <code>
-                        jms:transport.jms.ConnectionFactory=QueueConnectionFactory
+                        jms:/SimpleStockQuoteService?transport.jms.ConnectionFactory=QueueConnectionFactory
                     </code></br></br>
                     <b>When the broker is WSO2 Message Broker</b></br>
                     <code>
@@ -76,27 +74,38 @@ The Synapse artifacts used are explained below.
     </tr>
 </table>
 
+!!! Info
+    To refer details on JMS transport parameters, you can follow [JMS transport parameters](../../../references/synapse-properties/transport-parameters/jms-transport-parameters.md) used in the Micro Integrator.
+
 !!! Note
     Be sure to replace the ' `& ` ' character in the endpoint URL with '`&amp;`' to avoid the following exception:
-    ``` java
+    ```java
     com.ctc.wstx.exc.WstxUnexpectedCharException: Unexpected character '=' (code 61); expected a semi-colon after the reference for entity 'java.naming.factory.initial' at [row,col {unknown-source}
     ``` 
 
-## Run the Example
+## Build and run
 
-1.  Configure the Micro Integrator with Apache ActiveMQ and set up the JMS Sender.
-2.  Start WSO2 Integration Studio and create a proxy service with the above configuration. You can copy the synapse configuration given above to the **Source View** of your proxy service.
-3.  Send a message to the Micro Integrator by executing the following command from the `MI_HOME/samples/axis2Client`
-    folder.
+Create the artifacts:
 
-    ``` java
-    ant stockquote -Dmode=placeorder -Dtrpurl="jms:/StockQuoteProxy?transport.jms.ConnectionFactoryJNDIName=QueueConnectionFactory&java.naming.factory.initial=org.apache.activemq.jndi.ActiveMQInitialContextFactory&java.naming.provider.url=tcp://localhost:61616&transport.jms.ContentTypeProperty=Content-Type&transport.jms.DestinationType=queue"
+1. [Set up WSO2 Integration Studio](../../../../develop/installing-WSO2-Integration-Studio).
+2. [Create an ESB Solution project](../../../../develop/creating-projects/#esb-config-project).
+3. [Create the proxy service](../../../../develop/creating-artifacts/creating-a-proxy-service) with the configurations given above.
+4. [Deploy the artifacts](../../../../develop/deploy-and-run) in your Micro Integrator.
+
+Set up the broker:
+
+1.  [Configure a broker](../../../setup/transport_configurations/configuring-transports.md#configuring-the-jms-transport) with your Micro Integrator instance. Let's use Active MQ for this example.
+2.  Start the broker.
+3.  Start the Micro Integrator (after starting the broker).
+
+Set up the back-end service:
+
+1. Download the [stockquote_service.jar](
+https://github.com/wso2-docs/WSO2_EI/blob/master/Back-End-Service/stockquote_service.jar).
+2. Open a terminal, navigate to the location of the downloaded service, and run it using the following command:
+    ```bash
+    java -jar stockquote_service.jar
     ```
 
-    !!! Info
-        You can view the ActiveMQ queue by accessing the ActiveMQ management console using the URL `http://0.0.0.0:8161/admi`and using `admin` as both the username and password.
-
-## Related Examples
-
-Generally, JMS is used for one-way, asynchronous message exchange. However you can perform synchronous messaging also with JMS. For more information, see [JMS Synchronous Invocations : Dual Channel HTTP-to-JMS](../jms_examples/dual-channel-http-to-jms.md)
-and [JMS Synchronous Invocations : Quad Channel JMS-to-JMS](../jms_examples/quad-channel-jms-to-jms.md).
+You now have a running WSO2 Micro Integrator instance, ActiveMQ instance, and a sample back-end service to simulate the sample scenario.
+Add a message in the `StockQuoteProxy` queue using the [ActiveMQ Web Console](https://activemq.apache.org/web-console.html).

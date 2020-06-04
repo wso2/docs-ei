@@ -1,86 +1,93 @@
-# Using a WSDL Endpoint as the Target Endpoint
-
-### Introduction
-
+# Using the WSDL Endpoint
 This sample demonstrates how you can use a WSDL endpoint as the target
 endpoint. The configuration in this sample uses a WSDL endpoint inside
-the send mediator. This WSDL endpoint extracts the target endpoint r
-eference from the WSDL document specified in the configuration. In this
+the send mediator. This WSDL endpoint extracts the target endpoint reference from the WSDL document specified in the configuration. In this
 configuration the WSDL document is specified as a URI.
 
-### Prerequisites
+### Synapse configuration
 
-For a list of prerequisites, see [Prerequisites to Start the ESB
-Samples](https://docs.wso2.com/display/EI650/Setting+Up+the+ESB+Samples#SettingUptheESBSamples-ESBSamplePrerequisites)
-.
+Following is a sample REST API configuration that we can used to implement this scenario. See the instructions on how to [build and run](#build-and-run) this example.
 
-### Building the sample
-
-The XML configuration for this sample is as follows:
-
-```
-    <definitions xmlns="http://ws.apache.org/ns/synapse">
-        <sequence name="main">
-            <in>
-                <send>
-                    <!-- get epr from the given wsdl -->
-                    <endpoint>
-                        <wsdl uri="file:samples/service-bus/resources/proxy/sample_proxy_1.wsdl"
-                              service="SimpleStockQuoteService" port="SimpleStockQuoteServiceHttpSoap11Endpoint"/>
-                    </endpoint>
-                </send>
-            </in>
-            <out>
-                <send/>
-            </out>
-        </sequence>
-    </definitions>
+```xml
+<proxy name="SimpleStockQuoteProxy" startOnLoad="true" transports="http https" xmlns="http://ws.apache.org/ns/synapse">
+   <target>
+       <inSequence>
+            <header name="Action" value="urn:placeOrder"/>
+            <call>
+                <endpoint>
+                    <wsdl uri="file:/path/to/sample_proxy_1.wsdl"
+                        service="SimpleStockQuoteService" port="SimpleStockQuoteServiceHttpSoapDefaultEndpoint"/>
+                </endpoint>
+            </call>
+            <respond/>
+       </inSequence>
+       <outSequence>
+            <send/>
+       </outSequence>
+       <faultSequence/>
+   </target>
+</proxy>
 ```
 
-This configuration file `         synapse_sample_56.xml        ` is
-available in the `         <ESB_HOME>/repository/samples        `
-directory.
+## Build and run
 
-**To build the sample**
+Create the artifacts:
 
-1.  Start the Axis2 server. For instructions on starting the Axis2
-    server, see [Starting the Axis2
-    server](https://docs.wso2.com/display/EI650/Setting+Up+the+ESB+Samples#SettingUptheESBSamples-Axis2server)
-    .
+1. [Set up WSO2 Integration Studio](../../../../develop/installing-WSO2-Integration-Studio).
+2. [Create an ESB Solution project](../../../../develop/creating-projects/#esb-config-project).
+3. [Create a proxy service](../../../../develop/creating-artifacts/creating-a-proxy-service) with the configurations given above.
+4. [Deploy the artifacts](../../../../develop/deploy-and-run) in your Micro Integrator.
 
-2.  Deploy the back-end service
-    `           SimpleStockQuoteService          ` . For instructions on
-    deploying sample back-end services, see [Deploying sample back-end
-    services](https://docs.wso2.com/display/EI650/Setting+Up+the+ESB+Samples#SettingUptheESBSamples-Backend)
-    .
+The wsdl file `sample_proxy_1.wsdl` can be downloaded from  [sample_proxy_1.wsdl](https://github.com/wso2-docs/WSO2_EI/blob/master/samples-protocol-switching/sample_proxy_1.wsdl). 
+The wsdl uri of the endpoint needs to be updated with the path to the `sample_proxy_1.wsdl` file.
 
-### Executing the sample
+Set up the back-end service:
 
-The sample client used here is the **Stock Quote Client** , which can
-operate in several modes. For further details on this sample client and
-its operation modes, see [Stock Quote
-Client](https://docs.wso2.com/display/EI650/Using+the+Sample+Clients#UsingtheSampleClients-StockQuoteClient)
-.
+1. Download the [stockquote_service.jar](https://github.com/wso2-docs/WSO2_EI/blob/master/Back-End-Service/stockquote_service.jar).
+2. Open a terminal, navigate to the location of the downloaded service, and run it using the following command:
 
-**To execute the sample client**
-
--   Run the following command from the
-    `           <ESB_HOME>/samples/axis2Client          ` directory.
-
-    ``` bash
-            ant stockquote -Dsymbol=IBM -Dmode=quote -Daddurl=http://localhost:8280
+    ```bash
+    java -jar stockquote_service.jar
     ```
 
-### Analyzing the output
+Send a request to invoke the service:
 
-When the client is run, you will see the following output on the client
-console:
+```bash
+POST http://localhost:8290/services/SimpleStockQuoteProxy.SimpleStockQuoteProxyHttpSoap11Endpoint HTTP/1.1
+Accept-Encoding: gzip,deflate
+Content-Type: text/xml;charset=UTF-8
+SOAPAction: "urn:mediate"
+Content-Length: 428
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.1.1 (java 1.5)
 
-``` java
-    Standard :: Stock price = $95.26454380258552
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+   <soapenv:Header/>
+   <soapenv:Body>
+   <m0:placeOrder xmlns:m0="http://services.samples">
+            <m0:order>
+                <m0:price>172.23182849731984</m0:price>
+                <m0:quantity>18398</m0:quantity>
+                <m0:symbol>IBM</m0:symbol>
+            </m0:order>
+        </m0:placeOrder>
+   </soapenv:Body>
+</soapenv:Envelope>
 ```
 
-According to `         synapse_sample_56.xml        ` the WSDL endpoint
+You will see the following output as the response:
+
+```xml
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ns="http://services.samples" xmlns:ax21="http://services.samples/xsd">
+    <soapenv:Body>
+        <ns:placeOrderResponse>
+            <ax21:status>created</ax21:status>
+        </ns:placeOrderResponse>
+    </soapenv:Body>
+</soapenv:Envelope>
+```
+
+The WSDL endpoint
 inside the send mediator extracts the EPR from the WSDL document.
 Since WSDL documents can have many services and many ports inside each
 service, the service and port of the required endpoint has to be
@@ -89,19 +96,19 @@ specified in the configuration via the `         service        ` and
 address endpoints, the QoS parameters for the endpoint can be specified
 in the configuration. An excerpt taken from
 `         sample_proxy_1.wsdl        ` , which is the WSDL document used
-in `         synapse_sample_56.xml        ` is given below.
+in above sample is given below.
 
-```
-    <wsdl:service name="SimpleStockQuoteService">
-       <wsdl:port name="SimpleStockQuoteServiceHttpSoap11Endpoint" binding="ns:SimpleStockQuoteServiceSoap11Binding">
-                <soap:address location="http://localhost:9000/services/SimpleStockQuoteService.SimpleStockQuoteServiceHttpSoap11Endpoint"/>
-       </wsdl:port>
-       <wsdl:port name="SimpleStockQuoteServiceHttpSoap12Endpoint" binding="ns:SimpleStockQuoteServiceSoap12Binding">
-                <soap12:address location="http://localhost:9000/services/SimpleStockQuoteService.SimpleStockQuoteServiceHttpSoap12Endpoint"/>
-       </wsdl:port>
-    </wsdl:service>
+```xml
+<wsdl:service name="SimpleStockQuoteService">
+   <wsdl:port name="SimpleStockQuoteServiceHttpSoapDefaultEndpoint" binding="ns:SimpleStockQuoteServiceSoap11Binding">
+            <soap:address location="http://localhost:9000/services/SimpleStockQuoteService"/>
+   </wsdl:port>
+   <wsdl:port name="SimpleStockQuoteServiceHttpSoap12Endpoint" binding="ns:SimpleStockQuoteServiceSoap12Binding">
+            <soap12:address location="http://localhost:9000/services/SimpleStockQuoteService.SimpleStockQuoteServiceHttpSoap12Endpoint"/>
+   </wsdl:port>
+</wsdl:service>
 ```
 
 According to the above WSDL, the service and port specified in the
-configuration refers to the endpoint address
-`                   http://localhost:9000/services/SimpleStockQuoteService.SimpleStockQuoteServiceHttpSoap11Endpoint                 `
+configuration refers to the endpoint address:
+`http://localhost:9000/services/SimpleStockQuoteService`

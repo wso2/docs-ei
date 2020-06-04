@@ -1,6 +1,4 @@
-# HTTP Inbound Endpoint Sample
-## Example use case
-
+# Using the HTTP Inbound Endpoint
 This sample demonstrates how an HTTP inbound endpoint can act as a
 dynamic http listener. Many http listeners can be added without
 restarting the server. When a message arrives at a port it will bypass
@@ -9,7 +7,7 @@ for mediation.The response also behaves in the same way.
 
 ## Synapse configuration
 
-Following are the integration artifacts that we can used to implement this scenario.
+Following are the integration artifacts that we can used to implement this scenario. See the instructions on how to [build and run](#build-and-run) this example.
 
 ```xml tab='Inbound Endpoint'
 <?xml version="1.0" encoding="UTF-8"?>
@@ -28,32 +26,58 @@ Following are the integration artifacts that we can used to implement this scena
 ```xml tab='Sequence'
 <?xml version="1.0" encoding="UTF-8"?>
 <sequence xmlns="http://ws.apache.org/ns/synapse" name="TestIn">
-    <send receive="reciveSeq">
+    <call>
         <endpoint>
             <address uri="http://localhost:9000/services/SimpleStockQuoteService"/>
         </endpoint>
-    </send>
-</sequence>
-<sequence xmlns="http://ws.apache.org/ns/synapse" name="reciveSeq">
-    <send/>
+    </call>
+    <respond/>
 </sequence>
 ```
 ## Build and run
 
 Create the artifacts:
 
-1. Set up WSO2 Integration Studio.
-2. Create an ESB Solution project
-3. Create the following artifacts: Inbound endpoint, Sequence.
-4. Deploy the artifacts in your Micro Integrator.
+1. [Set up WSO2 Integration Studio](../../../../develop/installing-WSO2-Integration-Studio).
+2. [Create an Integration project](../../../../develop/creating-projects/#esb-config-project)
+3. Create a [mediation sequence](../../../../develop/creating-artifacts/creating-reusable-sequences) and [inbound endpoint](../../../../develop/creating-artifacts/creating-an-inbound-endpoint) with configurations given in the above example.
+4. [Deploy the artifacts](../../../../develop/deploy-and-run) in your Micro Integrator.
 
-Set up the back-end service.
+Set up the back-end service:
 
-Invoke the inbound endpoint:
+1. Download the [stockquote_service.jar](https://github.com/wso2-docs/WSO2_EI/blob/master/Back-End-Service/stockquote_service.jar).
+2. Open a terminal, navigate to the location of the downloaded service, and run it using the following command:
 
-Analyze the output debug messages for the actions in the dumb client
-mode.
+    ```bash
+    java -jar stockquote_service.jar
+    ```
 
-You will see that the Micro Integrator receives a message when the Micro Integrator Inbound is set
-as the ultimate receiver. You will also see the response from the back
-end in the client.
+Invoke the inbound endpoint with the below request.
+
+```xml
+POST http://localhost:8085 HTTP/1.1
+Accept-Encoding: gzip,deflate
+Content-Type: text/xml;charset=UTF-8
+SOAPAction: "urn:getQuote"
+Content-Length: 492
+Host: localhost:8290
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.1.1 (java 1.5)
+
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="http://services.samples" xmlns:xsd="http://services.samples/xsd">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ser:getQuote xmlns:ser="http://services.samples" xmlns:xsd="http://services.samples/xsd">
+         <!--Optional:-->
+         <ser:request>
+            <!--Optional:-->
+            <xsd:symbol>IBM</xsd:symbol>
+         </ser:request>
+      </ser:getQuote>
+   </soapenv:Body>
+</soapenv:Envelope>
+```
+
+The inbound endpoint will capture any request coming through the `8085` port and divert it to the `TestIn` sequence. 
+
+For further details, analyze the output debug messages for the actions in the dumb client mode. You will see that the Micro Integrator receives a message when the Micro Integrator Inbound is set as the ultimate receiver. You will also see the response from the backend in the client.

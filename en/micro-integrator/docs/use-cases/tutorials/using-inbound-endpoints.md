@@ -2,24 +2,27 @@
 
 ## What you'll build
 
-In this sample scenario, you will use an **Inbound Endpoint** to expose an already defined REST API through a different port. You can reuse the REST API that was defined in the [Sending a Simple Message to a Service](integration/sending-a-simple-message-to-a-service.md) tutorial. See [Creating an Inbound Endpoint](../../develop/creating-artifacts/creating-an-inbound-endpoint.md) for details on how to work with inbound endpoints using WSO2 Integration Studio.
+In this sample scenario, you will use an **Inbound Endpoint** to expose an already defined REST API through a different port. You can reuse the REST API that was defined in the [Sending a Simple Message to a Service](../sending-a-simple-message-to-a-service) tutorial. See [Creating an Inbound Endpoint](../../develop/creating-artifacts/creating-an-inbound-endpoint.md) for details on how to work with inbound endpoints using WSO2 Integration Studio.
 
 ## Let's get started!
 
 ### Step 1: Set up the workspace
 
-To set up the tools:
+Set up WSO2 Integration Studio as follows:
 
--   Go to the [product page](https://wso2.com/integration/) of **WSO2 Micro Integrator**, download the product installer and run it to set up the product.
--   Select the relevant [WSO2 Integration Studio](https://wso2.com/integration/tooling/) based on your operating system and extract the
-    ZIP file.  The path to this folder is referred to as `MI_TOOLING_HOME` throughout this tutorial.
--   Download the CLI Tool for monitoring artifact deployments.
+1.  Download the relevant [WSO2 Integration Studio](https://wso2.com/integration/tooling/) based on your operating system. The path to the extracted/installed folder is referred to as `MI_TOOLING_HOME` throughout this tutorial.
+2.  If you did not try the [Sending a Simple Message to a Service](../sending-a-simple-message-to-a-service) tutorial yet:
 
-To set up the previous artifacts:
+    1.  Download the [pre-packaged
+project](https://github.com/wso2-docs/WSO2_EI/blob/master/Integration-Tutorial-Artifacts/SimpleMessageToServiceTutorial.zip).     2.  Open WSO2 Integration Studio and go to **File -> Import**. 
+    3.  Select **Existing WSO2 Projects into workspace** under the **WSO2** category, click **Next**, and then upload the **prepackaged project**.
 
-1.  If you did not try the [Sending a Simple Message to a Service](integration/sending-a-simple-message-to-a-service.md) tutorial yet, open WSO2 Integration Studio, click **File**, and click **Import**. Next, expand the **WSO2** category and select **Existing WSO2 Projects into workspace**, click **Next** and upload the [pre-packaged
-project](https://github.com/wso2-docs/WSO2_EI/blob/master/Integration-Tutorial-Artifacts/SimpleMessageToServiceTutorial.zip). 
-2.  Download the JAR file of the back-end service from [here](https://github.com/wso2-docs/WSO2_EI/blob/master/Back-End-Service/Hospital-Service-2.0.0.jar).
+Optionally, you can set up the **CLI tool** for artifact monitoring. This will later help you get details of the artifacts that you deploy in your Micro Integrator.
+
+1.  Go to the [WSO2 Micro Integrator website](https://wso2.com/integration/#). 
+2.  Click **Download -> Other Resources** and click **CLI Tooling** to download the tool. 
+3.  Extract the downloaded ZIP file. This will be your `MI_CLI_HOME` directory. 
+4.  Export the `MI_CLI_HOME/bin` directory path as an environment variable. This allows you to run the tool from any location on your computer using the `mi` command. Read more about the [CLI tool](../../../administer-and-observe/using-the-command-line-interface).
 
 ### Step 2: Develop the Inbound Endpoint
 
@@ -27,7 +30,7 @@ project](https://github.com/wso2-docs/WSO2_EI/blob/master/Integration-Tutorial-A
     project directory will appear with the artifacts as shown below.
     Note the 'HealthcareAPI' that is already included.
 
-    ![](/assets/img/tutorials/inbound-project-explorer.png)
+    ![](../../assets/img/tutorials/inbound-project-explorer.png)
 
 2.  Right-click on **SampleServices** and navigate to **New -> Inbound
     Endpoint**. Select **Create A New Inbound Endpoint** and click
@@ -108,31 +111,100 @@ Let's test the use case by sending a simple client request that invokes the serv
 
 #### Start the backend service
 
-First, start the back-end service.
+1. Download the JAR file of the back-end service from [here](https://github.com/wso2-docs/WSO2_EI/blob/master/Back-End-Service/Hospital-Service-2.0.0-EI7.jar).
+2. Open a terminal, navigate to the location where your saved the [back-end service](#step-1-set-up-the-workspace).
+3. Execute the following command to start the service:
+
+    ```bash
+    java -jar Hospital-Service-2.0.0-EI7.jar
+    ```
+
+#### Get details of deployed artifacts (Optional)
+
+Let's use the **CLI Tool** to find details of the inbound endpoint and REST API. 
+
+!!! Tip
+    Be sure to set up the CLI tool for your work environment as explained in the [first step](#step-1-set-up-the-workspace) of this tutorial.
+
+1.  Open a terminal and execute the following command to start the tool:
+    ```bash
+    mi
+    ```
+    
+2.  Log in to the CLI tool. Let's use the server administrator user name and password:
+    ```bash
+    mi remote login admin admin
+    ```
+
+    You will receive the following message: *Login successful for remote: default!*
+
+3.  Execute the following commands:
+
+    -   To find the Inbound Endpoint artifacts deployed in the server:
+        ```bash
+        mi inboundendpoint show
+        ```
+
+        You will receive the following information:
+
+        *Name : QueryDoctorInboundEndpoint*                       
+        *Type : http* 
+
+    -   To find the REST API deployed in the server:
+        ```bash
+        mi api show
+        ```
+
+        You will receive the following information:
+
+        *NAME : HealthcareAPI*            
+        *URL  : http://localhost:8290/healthcare* 
+
+Similarly, you can get details of other artifacts deployed in the server. Read more about [using the CLI tool](../../../administer-and-observe/using-the-command-line-interface).
 
 #### Send the client request
 
-Let's use the **CLI Tool** to find the URL of the REST API that is deployed in the Micro Integrator:
+Let's send a message to the **healthcare** REST API (through the inbound endpoint) on port 8285. You can use the embedded <b>HTTP Client</b> of WSO2 Integration Studio as follows:
 
-1.  Open a terminal and navigate to the `CLI_HOME` directory.
-2.  Execute the following command to start the tool:
-    `./mi`
-3.  Execute the following command to find the APIs deployed in the server:
-    `mi show api`
+1. Open the <b>HTTP Client</b> of WSO2 Integration Studio.
 
-Let's send a message to the **healthcare** REST API on the 8285 port.
+    !!! Tip
+        If you don't see the <b>HTTP Client</b> pane, go to <b>Window -> Show View - Other</b> and select <b>HTTP Client</b> to enable the client pane.
 
-1.  Open a command line terminal and execute the following command:
+    <img src="../../../assets/img/tutorials/common/http4e-client-empty.png" width="800">
+    
+2. Enter the request information as given below and click the <b>Send</b> icon (<img src="../../../assets/img/tutorials/common/play-head-icon.png" width="20">).
+    
+    <table>
+        <tr>
+            <th>Method</th>
+            <td>
+               <code>GET</code> 
+            </td>
+        </tr>
+        <tr>
+            <th>URL</th>
+            <td><code>http://localhost:8285/healthcare/querydoctor/surgery</code></br></br>
+            </td>
+        </tr>
+     </table>
+     
+     <img src="../../../assets/img/tutorials/inbound_http_client.png" width="800">
 
-    ```
+If you want to send the client request from your terminal:
+
+1.  Install and set up [cURL](https://curl.haxx.se/) as your REST client.
+2.  Open a command line terminal and execute the following command:
+
+    ```bash
     curl -v http://localhost:8285/healthcare/querydoctor/surgery
     ```
 
-2.  You will get the response shown below. The inbound endpoint has successfully invoked the REST API, and further, the response received by the REST API has been routed back to client through the inbound endpoint.
+You will get the response shown below. The inbound endpoint has successfully invoked the REST API, and further, the response received by the REST API has been routed back to the client through the inbound endpoint.
 
-    ``` 
-    [{"name":"thomas collins","hospital":"grand oak community 
-    hospital","category":"surgery","availability":"9.00 a.m - 11.00 a.m","fee":7000.0},
-    {"name":"anne clement","hospital":"clemency medical center","category":"surgery","availability":"8.00 a.m - 10.00 A.m","fee":12000.0},
-    {"name":"seth mears","hospital":"pine valley community hospital","category":"surgery","availability":"3.00 p.m - 5.00 p.m","fee":8000.0}]
-    ```
+```json
+[{"name":"thomas collins","hospital":"grand oak community 
+hospital","category":"surgery","availability":"9.00 a.m - 11.00 a.m","fee":7000.0},
+{"name":"anne clement","hospital":"clemency medical center","category":"surgery","availability":"8.00 a.m - 10.00 A.m","fee":12000.0},
+{"name":"seth mears","hospital":"pine valley community hospital","category":"surgery","availability":"3.00 p.m - 5.00 p.m","fee":8000.0}]
+```

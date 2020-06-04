@@ -19,46 +19,7 @@ assigned to the incoming HTTP request is assigned to all the log entries
 corresponding to the request. Therefore, you can use this correlation ID
 to easily locate the logs relevant to the round trip of a specific HTTP
 request and, thereby, analyze the behaviour of the message flow.
-
-## Configuring correlation logs
-
-Follow the steps given below to configure correlation logs in the Micro Integrator
-server.
-
-1.  Add the following parameters to the `log4j.properties` file (stored in the `MI_HOME/conf/` directory):
-
-    ``` java
-    # correlation logs
-    log4j.logger.correlation=INFO, CORRELATION
-    log4j.additivity.correlation=false
-    # Appender config for correlation logs
-    log4j.appender.CORRELATION=org.apache.log4j.RollingFileAppender
-    log4j.appender.CORRELATION.File=${carbon.home}/repository/logs/${instance.log}/correlation.log
-    log4j.appender.CORRELATION.MaxFileSize=10MB
-    log4j.appender.CORRELATION.layout=org.apache.log4j.PatternLayout
-    log4j.appender.CORRELATION.Threshold=INFO
-    log4j.appender.CORRELATION.layout.ConversionPattern=%d{yyyy-MM-dd HH:mm:ss,SSS}|%X{Correlation-ID}|%t|%m%n
-    ```
-
-2.  Note that the maximum file size of the correlation log is set to
-    10MB in the above configuration. That is, when the size of the file
-    exceeds 10MB, a new log file is created. If required, you can change
-    this file size.
-
-3.  **If required** , you can change the default HTTP header (which is
-    'activity_id') that is used to carry the correlation ID by adding
-    the following property to the
-    `ei.toml` file (stored in the `MI_HOME/conf/` directory). Replace
-    `<correlation_id>` with a value of your choice.
-
-    ``` toml
-    [correlation_header]
-    correlation_header_name=<correlation_id>
-    ```
-
-Once the logs are configured, correlation logging should be enabled in
-the Micro Integrator as explained in the next section.
-
+ 
 ## Enabling correlation logs
 
 You can enable correlation logging by passing a system property.
@@ -68,7 +29,7 @@ You can enable correlation logging by passing a system property.
     script (stored in the `MI_HOME/bin/          `
     directory) and set it to `           true          ` .
 
-    ``` java
+    ```bash
     -DenableCorrelationLogs=true \
     ```
 
@@ -76,7 +37,7 @@ You can enable correlation logging by passing a system property.
     starting the server by executing the following command:
 
     - On **Linux/MacOS/CentOS**: `sh micro-integrator.sh -DenableCorrelationLogs=true`
-    - On **Windows**: `integrator.bat -DenableCorrelationLogs=true`
+    - On **Windows**: `micro-integrator.bat -DenableCorrelationLogs=true`
 
 
 Now when you start the Micro Integrator, the
@@ -97,7 +58,7 @@ that are related to the same request.
 
 Shown below is the POST request that is sent using the CURL client. Note that the correlation ID is set in this request.
 
-``` java
+```bash
 curl -X POST --data @request.json http://localhost:8280/healthcare/categories/surgery/reserve -H "Content-Type:application/json" -H "activityid:correlationID"
 ```
 
@@ -112,14 +73,14 @@ analyze, you can isolate the relevant logs as explained below.
 2.  Execute the following command with the required correlation ID.
     Replace `<correlation_ID>` with the required value.
 
-    ``` java
+    ```bash
     cat correlation.log | grep "<correlation_ID>"
     ```
 
 Shown below is an example of correlation log entries corresponding to
 the round trip of a single HTTP request.
 
-``` java
+```xml
 2018-11-30 15:27:27,262|correlationID|HTTP-Listener I/O dispatcher-5|0|HTTP State Transition|http-incoming-17|POST|/healthcare/categories/surgery/reserve|REQUEST_HEAD
 2018-11-30 15:27:27,262|correlationID|HTTP-Listener I/O dispatcher-5|0|HTTP State Transition|http-incoming-17|POST|/healthcare/categories/surgery/reserve|REQUEST_BODY
 2018-11-30 15:27:27,263|correlationID|HTTP-Listener I/O dispatcher-5|1|HTTP State Transition|http-incoming-17|POST|/healthcare/categories/surgery/reserve|REQUEST_DONE
@@ -140,11 +101,11 @@ the round trip of a single HTTP request.
 The pattern/format of a correlation log is shown below along with an
 example log entry.
 
-``` bash tab="Log Pattern"
+```bash tab="Log Pattern"
 Time Stamp|Correlation ID|Thread name|Duration|Call type|Connection name|Method type|Connection URL|HTTP state
 ```
 
-``` bash tab="Example Log"
+```bash tab="Example Log"
 2018-10-26 17:34:40,464|de461a83-fc74-4660-93ed-1b609ecfac23|HTTP-Listener I/O dispatcher-3|535|HTTP|http-incoming-3|GET|/api/querydoctor/surgery|ROUND-TRIP LATENCY
 ```
 
@@ -289,3 +250,44 @@ The detail recorded in a log entry is described below.
 </tbody>
 </table>
 
+## Configuring correlation logs ( Optional )
+
+Following are the default configurations for correlation logs in the Micro Integrator server.
+You might customize them in `log4j2.properties` file (stored in the `MI_HOME/conf/` directory) if required.
+
+        ```xml
+        # Appender config to put correlation Log.
+        appender.CORRELATION.type = RollingFile
+        appender.CORRELATION.name = CORRELATION
+        appender.CORRELATION.fileName =${sys:carbon.home}/repository/logs/correlation.log
+        appender.CORRELATION.filePattern =${sys:carbon.home}/repository/logs/correlation-%d{MM-dd-yyyy}.log
+        appender.CORRELATION.layout.type = PatternLayout
+        appender.CORRELATION.layout.pattern = %d{yyyy-MM-dd HH:mm:ss,SSS}|%X{Correlation-ID}|%t|%m%n
+        appender.CORRELATION.policies.type = Policies
+        appender.CORRELATION.policies.time.type = TimeBasedTriggeringPolicy
+        appender.CORRELATION.policies.time.interval = 1
+        appender.CORRELATION.policies.time.modulate = true
+        appender.CORRELATION.policies.size.type = SizeBasedTriggeringPolicy
+        appender.CORRELATION.policies.size.size=10MB
+        appender.CORRELATION.strategy.type = DefaultRolloverStrategy
+        appender.CORRELATION.strategy.max = 20
+        appender.CORRELATION.filter.threshold.type = ThresholdFilter
+        appender.CORRELATION.filter.threshold.level = INFO 
+        ```
+
+Note that the maximum file size of the correlation log is set to
+    10MB in the above configuration. That is, when the size of the file
+    exceeds 10MB, a new log file is created. If required, you can change
+    this file size.
+
+**If required** , you can change the default HTTP header (which is
+    'activity_id') that is used to carry the correlation ID by adding
+    the following property to the
+    `deployment.toml` file (stored in the `MI_HOME/conf/` directory). Replace
+    `<correlation_id>` with a value of your choice.
+
+    ```toml
+    [passthru_properties]
+    correlation_header_name="<correlation_id>"
+    ```
+   

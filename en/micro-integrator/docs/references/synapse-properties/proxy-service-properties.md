@@ -175,7 +175,15 @@ The following properties are required when [creating a transformer proxy service
 
 ### Service Parameters
 
-- See the list of [Transport Parameters](transport-parameters.md) you can configure at service level for a proxy service.
+- See the list of transport parameters you can configure at service level for a proxy service:
+
+    - [JMS properties](../transport-parameters/jms-transport-parameters)
+    - [MailTo properties](../transport-parameters/mailto-transport-parameters)
+    - [MQTT properties](../transport-parameters/mqtt-transport-parameters)
+    - [RabbitMQ properties](../transport-parameters/rabbitmq-transport-parameters)
+    - [VFS properties](../transport-parameters/vfs-transport-parameters)
+    - [Fix properties](../transport-parameters/fix-transport-parameters)
+
 - You can also configure the following service-level property to expose an [Inbound Endpoint](../../concepts/message-entry-points/#inbound-endpoints) through a proxy service:
   <table>
      <tr>
@@ -189,3 +197,105 @@ The following properties are required when [creating a transformer proxy service
         </td>
      </tr>
   </table>
+
+- To publish a custom WSDL for a proxy service, select one of the WSDL types.
+    <table>
+    <thead>
+    <tr class="header">
+    <th>WSDL Type</th>
+    <th>Description</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr class="odd">
+    <td>INLINE</td>
+    <td>Enter the WSDL definition in the <strong>WSDL XML</strong> field.</td>
+    </tr>
+    <tr class="even">
+    <td>SOURCE_URL</td>
+    <td><p>Enter the URI of the WSDL in the text box, and then click <strong>Test URI</strong> to ensure it is available. A URI consists of a URL and URN. The URL defines the host address of the network resource (can be omitted if resources are not network homed), and the URN defines the resource name in local "namespaces."</p>
+    <p>For example URI = <code>                                 ftp://ftp.dlink.ru/pub/ADSL                                , w               </code> here URL = <code>                                 ftp://ftp.dlink.ru                               </code> and URN = <code>                pub/ADSL               </code></p></td>
+    </tr>
+    <tr class="odd">
+    <td>REGISTRY_KEY</td>
+    <td><div class="content-wrapper">
+    <p>If the WSDL is saved as a registry entry, select this option and choose the reference key of that registry entry from the governance Registry or configuration Registry.</p>
+    </div></td>
+    </tr>
+    <tr class="even">
+    <td>ENDPOINT</td>
+    <td>-</td>
+    </tr>
+    </tbody>
+    </table>
+
+    Following are additional service parameters you can use to configure the service WSDL.
+    <table>
+    <thead>
+    <tr class="header">
+    <th><p>Parameter</p></th>
+    <th><p>Description</p></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr class="odd">
+    <td><p>useOriginalwsdl</p></td>
+    <td><div class="content-wrapper">
+    <p>If this parameter is set to <code>                 true                </code> , the original WSDL published via the <code>                 publishWSDL                </code> parameter is used instead of the custom WSDL.</p>
+    </div></td>
+    </tr>
+    <tr class="even">
+    <td><p>modifyUserWSDLPortAddress</p></td>
+    <td><p>If true (default), the port addresses will be modified to the current host. Effective only with <code>                useOriginalwsdl=true               </code> .</p></td>
+    </tr>
+    <tr class="odd">
+    <td>ApplicationXMLBuilder.allowDTD</td>
+    <td>If this parameter is set to true, it enables data type definition processing for the proxy service.<br />
+    Data type definition processing is disabled in the Axis2 engine due to security vulnerability. This parameter enables it for individual proxy services.</td>
+    </tr>
+    <tr class="even">
+    <td><p>enablePublishWSDLSafeMode</p></td>
+    <td><div class="content-wrapper">
+    <p>If this parameter is set to <code>                 true                </code> when deploying a proxy service, even though the WSDL is not available, you can prevent the proxy service from being faulty. However, the deployed proxy service will be inaccessible since the WSDL is not available.</p>
+        <p><b>Note</b> that this is only applicable when you publish the WSDL (i.e., via the <code>                 publishWSDL                </code> property) either as a URI or as an endpoint.</p>
+
+    </div></td>
+    </tr>
+    <tr class="odd">
+    <td>showAbsoluteSchemaURL</td>
+    <td>If this parameter is set to <code>               true              </code> , the absolute path of the referred schemas of the WSDL is shown instead of the relative paths.</td>
+    </tr>
+    <tr class="even">
+    <td>showProxySchemaURL</td>
+    <td>If this parameter is set to <code>               true              </code> , the full proxy URL will be set as the prefix to the schema location of the imports in proxy WSDL.</td>
+    </tr>
+    </tbody>
+    </table>
+
+    If your WSDL has dependencies with other resources (schemas or other
+      WSDL documents), you can link them using the **Wsdl Resources**
+      property. Click the **browse** icon and enter the
+      registry key and the location of the dependent resource: The
+      location is available in the WSDL. When you have the location, you
+      can find registry key corresponding to the location from the
+      registry.
+
+    In the following example, the WSDL imports a metadata schema from
+      the metadata.xsd file. Therefore, the location is metadata.xsd.
+
+    ```xml
+    <xsd:import namespace=http://www.wso2.org/test/10 schemaLocation="metadata.xsd" />
+    ```
+
+    In the following example, the WSDL is retrieved from the registry
+    using the key `           my.wsdl          ` . This WSDL imports
+    another WSDL from
+    `                                    http://www.standards.org/standard.wsdl                                 `
+    . This dependent WSDL is retrieved from the registry using the
+    `           standard.wsdl          ` registry key.
+
+    ```xml 
+    <publishWSDL key="my.wsdl">
+        <resource location="http://www.standards.org/standard.wsdl" key="standard.wsdl"/>
+    </publishWSDL>
+    ```

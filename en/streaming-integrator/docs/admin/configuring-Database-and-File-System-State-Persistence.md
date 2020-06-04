@@ -13,10 +13,10 @@ must be completed.
     server.
 -   A working RDBMS instance that can be used for data persistence must
     exist.
--   The requirements of the datasource must be already defined
-    `          .         `
+-   The requirements of the datasource must be already defined.
+
 -   Database persistence involves updating the databases connected to
-    WSO2 Steaming Integrator with the latest information relating to the
+    WSO2 Streaming Integrator with the latest information relating to the
     events that are being processed by WSO2 SI at a given time.
 
 ### Configuring database system persistence

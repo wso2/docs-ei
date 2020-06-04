@@ -18,12 +18,12 @@
 site_name: WSO2 Enterprise Integrator Documentation
 site_description: Documentation for WSO2 Enterprise Integrator
 site_author: WSO2
-site_url: https://wso2.com/integration/
+site_url: https://ei.docs.wso2.com/en/7.1.0/
 
 # Repository
 repo_name: wso2/docs-ei
 repo_url: https://github.com/wso2/docs-ei
-edit_uri: https://github.com/wso2/docs-ei/edit/7.0.0/en/micro-integrator/docs/
+edit_uri: https://github.com/wso2/docs-ei/edit/master/en/micro-integrator/docs/
 
 # Copyright
 copyright: WSO2 Enterprise Integrator - Documentation
@@ -42,47 +42,38 @@ theme:
   feature:
     tabs: true
   language: 'en'
-  
+
 # Navigation
 nav:
     - 'Home': index.md
     - Get Started:
       - 'Introduction': 'overview/introduction.md'
-      - 'Quick Start Guide': 'quick-start-guide/quick-start-guide.md'
+      - 'Quick Start Guide': 'overview/quick-start-guide.md'
       - 'Developing your First Integration': 'develop/integration-development-kickstart.md'
       - 'Key Concepts': 'overview/key-concepts.md'
     - Learn:
       - 'Integration Use Cases': 'use-cases/integration-use-cases.md'
       - Tutorials:
-        - 'Sending a Simple Message to a Service': 'use-cases/tutorials/integration/sending-a-simple-message-to-a-service.md'
-        - 'Message Routing': 'use-cases/tutorials/integration/routing-requests-based-on-message-content.md'
-        - 'Message Transformation': 'use-cases/tutorials/integration/transforming-message-content.md'
-        - 'Service Orchestration': 'use-cases/tutorials/integration/exposing-several-services-as-a-single-service.md'
-        - 'Asynchronous Messaging': 'use-cases/tutorials/integration/storing-and-forwarding-messages.md'
-        - 'Connecting Web APIs/Cloud Services': 'use-cases/tutorials/integration/using-the-gmail-connector.md'
-        - 'Data Integration': 'use-cases/tutorials/integration/sending-a-simple-message-to-a-datasource.md'
+        - 'Sending a Simple Message to a Service': 'use-cases/tutorials/sending-a-simple-message-to-a-service.md'
+        - 'Message Routing': 'use-cases/tutorials/routing-requests-based-on-message-content.md'
+        - 'Message Transformation': 'use-cases/tutorials/transforming-message-content.md'
+        - 'Service Orchestration': 'use-cases/tutorials/exposing-several-services-as-a-single-service.md'
+        - 'Asynchronous Messaging': 'use-cases/tutorials/storing-and-forwarding-messages.md'
+        - 'Connecting Web APIs/Cloud Services': 'use-cases/tutorials/using-the-gmail-connector.md'
+        - 'Data Integration': 'use-cases/tutorials/sending-a-simple-message-to-a-datasource.md'
         - 'File Processing': 'use-cases/tutorials/file-processing.md'
+        - 'Periodic Execution of Integration Process': 'use-cases/tutorials/using-scheduled-tasks.md'
         - 'Using Inbound Endpoints': 'use-cases/tutorials/using-inbound-endpoints.md'
         - 'Reusing Mediation Sequences': 'use-cases/tutorials/using-templates.md'
         - 'Integrating with SAP': 'use-cases/tutorials/sap-integration.md'
       - Examples:
-        #- Message Mediation Basics:
-          #- 'Split Aggregator Pattern': 'use-cases/examples/split_aggregate_pattern.md'
-          #- 'Optimized Message Transformation': 'use-cases/examples/message_transformation_example.md'
-        #- Message Mediation Advanced:
-          #- 'Split Aggregator Pattern': 'use-cases/examples/split_aggregate_pattern.md'
-          #- 'Optimized Message Transformation': 'use-cases/examples/message_transformation_example.md'
         - Message Routing:
-          - 'Routing based on Message Header': 'use-cases/examples/message-routing/header-based-routing.md'
-          - 'Routing based on Message Payload': 'use-cases/examples/message-routing/payload-based-routing.md'
-          - 'Splitting and Aggregating Response Messages': 'use-cases/examples/message-routing/split-and-aggregate-responses.md'
+            - 'Routing Based on Message Headers': 'use-cases/examples/routing_examples/routing_based_on_headers.md'
+            - 'Routing Based on Message Payload': 'use-cases/examples/routing_examples/routing_based_on_payloads.md'
+            - 'Splitting Messages and Aggregating Responses': 'use-cases/examples/routing_examples/splitting_aggregating_messages.md'
         - Message Transformation:
-          - 'Converting SOAP Message to JSON': 'use-cases/examples/message-transformations/soap-to-json-conversion.md'
-          - 'Converting POX Message to JSON': 'use-cases/examples/message-transformations/pox-to-json-conversion.md'
-          - 'Converting JSON Message to SOAP': 'use-cases/examples/message-transformations/json-to-soap-conversion.md'
-          - 'Converting CSV Message to Other Formats': 'use-cases/examples/message-transformations/csv-to-other-formats-conversion.md'
-          - 'Converting to CSV Message Format': 'use-cases/examples/message-transformations/csv-conversion.md'
-        #- Service Orchestration:
+            - 'Converting JSON Messages to SOAP': 'use-cases/examples/message_transformation_examples/json-to-soap-conversion.md'
+            - 'Converting POX Messages to JSON': 'use-cases/examples/message_transformation_examples/pox-to-json-conversion.md'
         - Asynchronous Messaging:
             - 'Consuming JMS Messages': 'use-cases/examples/jms_examples/consuming-jms.md'
             - 'Producing JMS Messages': 'use-cases/examples/jms_examples/producing-jms.md'
@@ -94,68 +85,58 @@ nav:
             - 'Shared Topic Subscription': 'use-cases/examples/jms_examples/shared-topic-subscription.md'
             - 'Detecting Repeatedly Redelivered Messages': 'use-cases/examples/jms_examples/detecting-repeatedly-redelivered-messages.md'
             - 'Specifying Delivery Delay on Messages': 'use-cases/examples/jms_examples/specifying-a-delivery-delay-on-messages.md'
-            - 'JMS Map Messaging': 'use-cases/examples/jms_examples/jms-map-message.md'
+            #- 'JMS Map Messaging': 'use-cases/examples/jms_examples/jms-map-message.md'
             - 'RabbitMQ Examples': 'use-cases/examples/jms_examples/rabbitmq-examples.md'
-        #- Connecting Web Api/Cloud Services:
-        #- Data Integration:
         - Protocol Switching:
-          - 'Introduction to Switching Transports': 'use-cases/examples/protocol-switching/Introduction_to_Switching_Transports_.md'
-          - 'Switching from FTP Listener to Mail Sender': 'use-cases/examples/protocol-switching/Switch_from_FTP_Listener_to_Mail__Sender.md'   
-          - 'Switching from HTTP to FIX': 'use-cases/examples/protocol-switching/Switching_from_HTTP_to_FIX_.md'
-          - 'Switch from FIX to HTTP': 'use-cases/examples/protocol-switching/Switch_from_FIX_to_HTTP_.md'
-          - 'Switch from FIX to AMQP': 'use-cases/examples/protocol-switching/Switch_from_FIX_to_AMQP_.md'
-          - 'Switching between FIX Versions': 'use-cases/examples/protocol-switching/Switching_between_FIX_Versions_.md'
-          - 'Switching from TCP to HTTP/S': 'use-cases/examples/protocol-switching/Switching_from_TCP_to_HTTP_S_.md'
-          - 'Switching from UDP to HTTP/S': 'use-cases/examples/protocol-switching/Switching_from_UDP_to_HTTP_S_.md'
-          - 'Switching between HTTP to MSMQ': 'use-cases/examples/protocol-switching/HTTP_to_MSMQ_and_MSMQ_to_HTTP_.md'
-          - 'Switching from HTTP/S to JMS': 'use-cases/examples/protocol-switching/Switching_from_HTTP_S_to_JMS_.md'
+          - 'Switching from JMS to HTTP/S': 'use-cases/examples/protocol-switching/switching_from_JMS_to_HTTP.md'
+          - 'Switching from HTTP/S to JMS': 'use-cases/examples/protocol-switching/switching_from_HTTPS_to_JMS.md'
+          - 'Switching from FTP Listener to Mail Sender': 'use-cases/examples/protocol-switching/switching_from_FTP_listener_to_mail_sender.md'
+          - 'Switching from HTTP to FIX': 'use-cases/examples/protocol-switching/switching_from_HTTP_to_FIX.md'
+          - 'Switch from FIX to HTTP': 'use-cases/examples/protocol-switching/switching_from_FIX_to_HTTP.md'
+          - 'Switch from FIX to AMQP': 'use-cases/examples/protocol-switching/switching_from_FIX_to_AMQP.md'
+          - 'Switching between FIX Versions': 'use-cases/examples/protocol-switching/switching_between_FIX_versions.md'
+          - 'Switching from TCP to HTTP/S': 'use-cases/examples/protocol-switching/switching_from_TCP_to_HTTPS.md'
+          - 'Switching from UDP to HTTP/S': 'use-cases/examples/protocol-switching/switching_from_UDP_to_HTTPS.md'
+          - 'Switching between HTTP to MSMQ': 'use-cases/examples/protocol-switching/switching_between_HTTP_and_MSMQ.md'
         - File Processing:
-          - 'Using the VFS Transport': 'use-cases/examples/file-processing/vfs-transport-examples.md'
+          - 'Using VFS for File Transferring': 'use-cases/examples/file-processing/vfs-transport-examples.md'
           - 'Accessing a Windows Share Using VFS': 'use-cases/examples/file-processing/Accessing_Windows_Share_Using_VFS_Transport.md'
-          - 'Using the MailTo Transport': 'use-cases/examples/file-processing/mailto-transport-examples.md'
-        - Gateway:
-          - 'Expose HTTP-based Applications as a SOAP Service': 'use-cases/examples/gateway/http-as-soap-service.md'
-          - 'Expose HTTP-based Applications as a REST Api': 'use-cases/examples/gateway/http-as-rest-api.md'
-          - 'Expose File-based Systems over HTTP': 'use-cases/examples/gateway/http-as-rest-api.md'
-          - 'Expose Services on Proprietary Protocols over Standard Protocols': 'use-cases/examples/gateway/http-as-rest-api.md'
-        - Security Gateway:
-          - 'Expose HTTP-based Applications as a SOAP Service': 'use-cases/examples/gateway/http-as-soap-service.md'
-          - 'Expose HTTP-based Applications as a REST Api': 'use-cases/examples/gateway/http-as-rest-api.md'
-          - 'Expose File-based Systems over HTTP': 'use-cases/examples/gateway/http-as-rest-api.md'
-          - 'Expose Services on Proprietary Protocols over Standard Protocols': 'use-cases/examples/gateway/securing-backend-with-request-throttling.md'
+          - 'Sending and Receiving Emails': 'use-cases/examples/file-processing/mailto-transport-examples.md'
+        - Data Integration:
+          - 'Exposing an RDBMS datasource': 'use-cases/examples/data_integration/rdbms-data-service.md'
+          - Exposing Other Datasources:
+            - 'Exposing a CSV datasource': 'use-cases/examples/data_integration/csv-data-service.md'
+            - 'Exposing a Carbon datasource': 'use-cases/examples/data_integration/carbon-data-service.md'
+          - 'Exposing Data in JSON Format': 'use-cases/examples/data_integration/json-with-data-service.md'
+          - 'Using an OData Service': 'use-cases/examples/data_integration/odata-service.md'
+          - 'Using Nested Data Queries': 'use-cases/examples/data_integration/nested-queries-in-data-service.md'
+          - 'Batch Requesting': 'use-cases/examples/data_integration/batch-requesting.md'
+          - 'Invoking Multiple Operations as a Request Box': 'use-cases/examples/data_integration/request-box.md'
+          - 'Using Distributed Transactions in Data Services': 'use-cases/examples/data_integration/distributed-trans-data-service.md'
+          - 'Validating Data Input': 'use-cases/examples/data_integration/data-input-validator.md'
+          - 'Swagger Documents of RESTful Data Services': 'use-cases/examples/data_integration/swagger-data-services.md'
         - Examples of Components:
           - REST APIs:
             - 'Using a Simple REST API': 'use-cases/examples/rest_api_examples/introduction-rest-api.md'
-            - 'Working with Query Parameters': 'use-cases/examples/rest_api_examples/setting-query-params-outgoing-messages.md'
-            #- 'Content Negotiation': 'use-cases/examples/rest_api_examples/content-negotiation.md'
-            #- 'Exposing non-HTTP Services as RESTful APIs': 'use-cases/examples/rest_api_examples/enabling-rest-to-jms.md'
+            - 'Setting Query Parameters on Outgoing Messages': 'use-cases/examples/rest_api_examples/setting-query-params-outgoing-messages.md'
             - 'Exposing a SOAP Endpoint as a RESTful API': 'use-cases/examples/rest_api_examples/enabling-rest-to-soap.md'
             - 'Exposing Non-HTTP Services as RESTful APIs': 'use-cases/examples/rest_api_examples/configuring-non-http-endpoints.md'
-            - 'Handling Non Matching Resources': 'use-cases/examples/rest_api_examples/handling-non-matching-resources.md'
-            #- 'Retrieving Metadata from the Head Request': 'use-cases/examples/rest_api_examples/retrieving-meta-data-from-head-request.md'
+            - 'Handling Non-Matching Resources': 'use-cases/examples/rest_api_examples/handling-non-matching-resources.md'
             - 'Handling HTTP Status Codes': 'use-cases/examples/rest_api_examples/setting-https-status-codes.md'
-            - 'Manipulating Content Types': 'use-cases/examples/rest_api_examples/transforming-content-type.md'
-            - 'Securing REST APIs' : 'use-cases/examples/rest_api_examples/securing-rest-apis.md'
+            - 'Transforming Content Types': 'use-cases/examples/rest_api_examples/transforming-content-type.md'
+            - 'Securing a REST API': 'use-cases/examples/rest_api_examples/securing-rest-apis.md'
+            - 'Publishing a Custom Swagger Document': 'use-cases/examples/rest_api_examples/publishing-a-swagger-api.md'
             - Handling Special Cases:
-              - 'Using DELETE with a Body': 'use-cases/examples/rest_api_examples/using-delete-with-a-body.md'
-              - 'Using GET with a Body': 'use-cases/examples/rest_api_examples/using-get-with-a-body.md'
+              - 'Using GET with a Message Body': 'use-cases/examples/rest_api_examples/using-get-with-a-body.md'
               - 'Using POST with Empty Message Body': 'use-cases/examples/rest_api_examples/using-post-with-no-body.md'
               - 'Using POST with Query Parameters': 'use-cases/examples/rest_api_examples/using-post-with-query-param.md'
           - Proxy Services:
             - 'Using a Simple Proxy Service': 'use-cases/examples/proxy_service_examples/Introduction-to-Proxy-Services.md'
-            #- 'Conditional Routing using Proxy Service': 'use-cases/examples/proxy_service_examples/conditional-routing.md'
-            #- 'Dual Channel Invocation with Proxy Service': 'use-cases/examples/proxy_service_examples/dual-channel-invocation-with-proxy-services.md'
-            #- 'Load Balancing with Proxy Service': 'use-cases/examples/proxy_service_examples/load-balancing-with-proxy-services.md'
-            #- 'Routing Messages without Processing Security Headers': 'use-cases/examples/proxy_service_examples/routing-messages-without-processing-security-headers.md'
-            #- 'Service Integration with Receiving Sequence': 'use-cases/examples/proxy_service_examples/service-Integration-with-receiving-sequence.md'
-            #- 'Switching Transport and Message Format': 'use-cases/examples/proxy_service_examples/switching-transports-and-message-format.md'
             - 'Publishing a Custom WSDL': 'use-cases/examples/proxy_service_examples/publishing-a-custom-wsdl.md'
-            - 'Configuring Pinned Servers': 'use-cases/examples/proxy_service_examples/using-pinned-servers.md'
-            #- 'Using REST with a Proxy Service': 'use-cases/examples/proxy_service_examples/rest-with-a-proxy-service.md'
+            #- 'Configuring Pinned Servers': 'use-cases/examples/proxy_service_examples/using-pinned-servers.md'
             - 'Exposing a Proxy Service via Inbound Endpoints': 'use-cases/examples/proxy_service_examples/exposing-proxy-via-inbound.md'
-            - 'Applying WS-Security to a Proxy Service': 'use-cases/examples/proxy_service_examples/securing-proxy-services.md'
+            - 'Securing a Proxy Service': 'use-cases/examples/proxy_service_examples/securing-proxy-services.md'
           - Inbound Endpoints:
-            #- 'Inbound Endpoint File Protocol Sample (VFS)': 'use-cases/examples/inbound_endpoint_examples/inbound-endpoint-file-processing.md'
             - 'JMS Inbound Endpoint': 'use-cases/examples/inbound_endpoint_examples/inbound-endpoint-jms-protocol.md'
             - 'File Inbound Endpoint': 'use-cases/examples/inbound_endpoint_examples/file-inbound-endpoint.md'
             - 'HTTP Inbound Endpoint': 'use-cases/examples/inbound_endpoint_examples/inbound-endpoint-http-protocol.md'
@@ -164,36 +145,24 @@ nav:
             - 'MQTT Inbound Endpoint': 'use-cases/examples/inbound_endpoint_examples/inbound-endpoint-mqtt-protocol.md'
             - 'RabbitMQ Inbound Endpoint': 'use-cases/examples/inbound_endpoint_examples/inbound-endpoint-rabbitmq-protocol.md'
             #- 'CXF WS RM Inbound Endpoint': 'use-cases/examples/inbound_endpoint_examples/using-CXF-WS-RM-Inbound.md'
-            - 'Kafka Inbound Endpoint': 'use-cases/examples/inbound_endpoint_examples/using-kafka-inbound-endpoints.md'
-            - 'WebSocket Endpoint': 'use-cases/examples/inbound_endpoint_examples/using-secure-websocket-inbound.md'
-            - 'Using Inbound Endpoints with Registry': 'use-cases/examples/inbound_endpoint_examples/using-inbound-endpoints.md'
-            - 'Securing Inbound Endpoint Parameters': 'use-cases/examples/inbound_endpoint_examples/using-inbound-endpoints.md'
-          - 'Using Scheduled Tasks': 'use-cases/examples/using-scheduled-tasks.md'
-          - Working with the Registry:
-            - 'Local Registry Entry Definitions, Reusable Endpoints and Sequences': 'use-cases/examples/registry_examples/Local-Registry-Entry-Definitions-Reusable-Endpoints-and-Sequences.md'
-            #- 'Using Dynamic and Static Registry Keys': 'use-cases/examples/registry_examples/Introduction-to-Dynamic-and-Static-Registry-Keys.md'
-            #- 'Using Sequences and Endpoints as Local Registry Items': 'use-cases/examples/registry_examples/Using-Sequences-and-Endpoints-as-Local-Registry-Items.md'
-            #- 'Using the Registry to Share Configurations Between Multiple Instances': 'use-cases/examples/registry_examples/Using-a-Full-Registry-Based-Configuration-and-Sharing-a-Configuration-Between-Multiple-Instances.md'
-            #- 'Introduction to Static and Dynamic Registry Resources and Using XSLT Transformations': 'use-cases/examples/registry_examples/Introduction-to-Static-and-Dynamic-Registry-Resources-and-Using-XSLT-Transformations.md'
-            #- 'Using Schema Validation with the Local Registry': 'use-cases/examples/registry_examples/Using-Schema-Validation-and-the-Usage-of-Local-Registry-for-Storing-Configuration-Metadata.md'
-            #- 'Using Dynamic Endpoints with the Registry': 'use-cases/examples/registry_examples/Using-Dynamic-Endpoints-with-the-Registry.md'
-            #- 'Using Dynamic Sequences with the Registry': 'use-cases/examples/registry_examples/Using-Dynamic-Sequences-with-the-Registry.md'
+            - 'Kafka Inbound Endpoint': 'use-cases/examples/inbound_endpoint_examples/inbound-endpoint-kafka.md'
+            - 'Secured WebSocket Inbound Endpoint': 'use-cases/examples/inbound_endpoint_examples/inbound-endpoint-secured-websocket.md'
+            - 'Using Inbound Endpoints with Registry': 'use-cases/examples/inbound_endpoint_examples/inbound-endpoint-with-registry.md'
+          - Scheduled Tasks:
+            - 'Task Scheduling using a Simple Trigger': 'use-cases/examples/scheduled-tasks/task-scheduling-simple-trigger.md'
+            - 'Injecting Messages to a RESTful Endpoint': 'use-cases/examples/scheduled-tasks/injecting-messages-to-rest-endpoint.md'
+          - 'Local Registry Entries': 'use-cases/examples/registry_examples/local-registry-entries.md'
           - Templates:
             - 'Using Sequence Templates': 'use-cases/examples/template_examples/using-sequence-templates.md'
-            #- 'Stereotyping XSLT Transformations with Templates': 'use-cases/examples/template_examples/using-sequence-templates.md'
-            #- 'Message Split Aggregate Using Templates': 'use-cases/examples/template_examples/using-sequence-templates.md'
             - 'Using Endpoint Templates': 'use-cases/examples/template_examples/using-endpoint-templates.md'
-            #- 'Load Balancing Between 3 Endpoints With Endpoint Templates': 'use-cases/examples/template_examples/using-endpoint-templates.md'
           - Message Stores & Processors:
             - 'Introduction to Message Stores and Processors': 'use-cases/examples/message_store_processor_examples/intro-message-stores-processors.md'
             - 'JDBC Message Store': 'use-cases/examples/message_store_processor_examples/using-jdbc-message-store.md'
-            #- 'Using an In Memory Message Store (Introduction to Message Store)': 'use-cases/examples/message_store_processor_examples/using-in-memory-message-store.md'
-            - 'JMS Message Store': 'use-cases/examples/message_store_processor_examples/using-jms-message-stores.md'          
+            - 'JMS Message Store': 'use-cases/examples/message_store_processor_examples/using-jms-message-stores.md'
             - 'RabbitMQ Message Store': 'use-cases/examples/message_store_processor_examples/using-rabbitmq-message-stores.md'
             - 'Message Sampling Processor': 'use-cases/examples/message_store_processor_examples/using-message-sampling-processor.md'
             - 'Message Forwarding Processor': 'use-cases/examples/message_store_processor_examples/using-message-forwarding-processor.md'
             - 'Securing the Message Forwarding Processor': 'use-cases/examples/message_store_processor_examples/securing-message-processor.md'
-            #- 'RESTful Invocations with Message Forwarding Processor': 'use-cases/examples/message_store_processor_examples/restful-invocations-with-message-processor.md'
             - 'Load Balancing with Message Forwarding Processor': 'use-cases/examples/message_store_processor_examples/loadbalancing-with-message-processor.md'
           - Endpoints:
             - 'Address Endpoint': 'use-cases/examples/endpoint_examples/using-address-endpoints.md'
@@ -201,69 +170,71 @@ nav:
             - 'HTTP Endpoint': 'use-cases/examples/endpoint_examples/using-http-endpoints.md'
             - 'WebSocket Endpoint': 'use-cases/examples/endpoint_examples/using-websocket-endpoints.md'
             - 'WSDL Endpoint': 'use-cases/examples/endpoint_examples/using-wsdl-endpoints.md'
-            - 'Load Balance Endpoint': 'use-cases/examples/endpoint_examples/using-address-endpoints.md'
+            - 'Load Balance Endpoint': 'use-cases/examples/endpoint_examples/using-loadbalancing-endpoints.md'
             - Recipient List of Endpoints:
               - 'Static List of Recepients': 'use-cases/examples/endpoint_examples/using-static-recepient-list-endpoints.md'
               - 'Dynamic List of Recepients': 'use-cases/examples/endpoint_examples/using-dynamic-recepient-list-endpoints-1.md'
               - 'Dynamic List of Recepients with Aggregated Responses': 'use-cases/examples/endpoint_examples/using-dynamic-recepient-list-endpoints-2.md'
             - 'Reusing Endpoints': 'use-cases/examples/endpoint_examples/reusing-endpoints.md'
-            #- 'Using Indirect Endpoints' : 'use-cases/examples/endpoint_examples/using-indirect-endpoints.md'
-            #- 'Using Dynamic Endpoints' : 'use-cases/examples/endpoint_examples/using-resolving-endpoints.md'
             - 'Endpoint Error Handling': 'use-cases/examples/endpoint_examples/endpoint-error-handling.md'
-            #- 'Session Affinity Load Balancing between Failover Endpoints': 'use-cases/examples/endpoint_examples/session-affinity-with-failover-endpoints.md'
-            #- 'Session Affinity Load Balancing between Three Endpoints': 'use-cases/examples/endpoint_examples/session-affinity-with-loadbalancing-endpoints.md'
-            #- 'Failover Endpoints to Handle Peak Loads': 'use-cases/examples/endpoint_examples/handling-peak-failover-endpoints.md'
-            #- 'Load Balancing Endpoints to Handle Peak Loads': 'use-cases/examples/endpoint_examples/handling-peak-loadbalancing-endpoints.md'
-            #- 'Dynamic Load Balancing between Three Nodes': 'use-cases/examples/endpoint_examples/dynamic-loadbalancing-with-endpoints.md'
-            #- 'Static Load Balancing between Three Nodes': 'use-cases/examples/endpoint_examples/static-loadbalancing-with-endpoints.md'
-            #- 'Weighted Load Balancing between 3 endpoints': 'use-cases/examples/endpoint_examples/weighted-loadbalancing-with-endpoints.md'
             - 'MTOM and SwA Optimizations': 'use-cases/examples/endpoint_examples/mtom-swa-with-endpoints.md'
           - Sequences:
             - 'Breaking Complex Flows into Multiple Sequences': 'use-cases/examples/sequence_examples/using-multiple-sequences.md'
             - 'Using Fault Sequences': 'use-cases/examples/sequence_examples/using-fault-sequences.md'
-            - 'Resusig Sequences': 'use-cases/examples/sequence_examples/custom-sequences-with-proxy-services.md'  
+            - 'Resusig Sequences': 'use-cases/examples/sequence_examples/custom-sequences-with-proxy-services.md'
         - Transports:
-          #- 'Using the HL7 Transport': 'use-cases/examples/transport_examples/hl7-transport-examples.md'
-          #- 'Using the Local Transport': 'use-cases/examples/transport_examples/local-transport-examples.md'
-          #- 'Proxy Services with the Local Transport': 'use-cases/examples/transport_examples/transport_switching/Proxy_Services_with_the_FIX_Transport_.md'
           - 'Using the TCP Transport': 'use-cases/examples/transport_examples/tcp-transport-examples.md'
-          #- 'JMS to http/s Using JBoss Messaging(JBM)': 'use-cases/examples/transport_examples/transport_switching/JMS_to_http_s_Using_JBoss_Messaging_JBM_.md'
-          #- 'Sending Two-Way Messages Using JMS transport': 'use-cases/examples/transport_examples/transport_switching/Sending_Two-Way_Messages_Using_JMS_transport_.md'
-          #- 'Pure Text (Binary) and POX Message Support with JMS': 'use-cases/examples/transport_examples/transport_switching/Pure_Text_Binary_and_POX_Message_Support_with_JMS_.md'
-          #- 'Bridging from JMS to HTTP and Replying with a 202 Accepted Response': 'use-cases/examples/transport_examples/transport_switching/Bridging_JMS-HTTP_with_202_Accepted_Response.md'
           - 'Using the FIX Transport': 'use-cases/examples/transport_examples/fix-transport-examples.md'
-          #- 'CBR of FIX Messages': 'use-cases/examples/transport_examples/transport_switching/CBR_of_FIX_Messages_.md'
           - 'Using the MQTT Transport': 'use-cases/examples/transport_examples/Pub_Sub_using_MQTT.md'
         - 'Working with Transactions': 'use-cases/examples/working-with-transactions.md'
         - 'JSON Examples': 'use-cases/examples/json_examples/json-examples.md'
+      - 'Connectors': 'use-cases/connectors.md'
     - Setup and Install:
       - Installation Guide:
-        - 'Install in a VM': 'setup/installation/install_in_vm.md'
-        - 'Install in Docker': 'setup/installation/install_in_docker.md'
-        - 'Install in Kubernetes': 'setup/installation/install_in_kubernetes.md'
-      - Product Deployment:
-        - 'Deploying WSO2 Micro Integrator' : 'setup/deployment/deploying_wso2_ei.md'
-        - 'Upgrading from a Previous Release' : 'setup/deployment/upgrading.md'
-        - 'Setting up a Load Balancer': 'setup/setting_up_lb.md'
-        - 'Troubleshooting Production Deployment' : 'setup/deployment/troubleshooting_deployment.md'
-        - 'Product Deployment Checklist' : 'setup/deployment/deployment_checklist.md'
+        - 'Installation Prerequisites': 'setup/installation/install_prerequisites.md'
+        - 'Install on a VM': 'setup/installation/install_in_vm.md'
+        - 'Run on Docker': 'setup/installation/run_in_docker.md'
+        - 'Run on Kubernetes': 'setup/installation/run_in_kubernetes.md'
+      - Kubernetes Deployment:
+        - 'Kubernetes Deployment Patterns': 'setup/deployment/kubernetes_deployment_patterns.md'
+        - 'EI Kubernetes Operator': 'setup/deployment/ei_kubernetes_operator.md'
+        - 'Deploy on Kubernetes': 'setup/deployment/kubernetes_deployment.md'
+        - K8s Deployment Samples:
+          - 'Sample 1: Hello World': 'setup/deployment/k8s-samples/hello-world.md'
+          - 'Sample 2: Message Routing': 'setup/deployment/k8s-samples/content-based-routing.md'
+          - 'Sample 3: JMS Sender/Receiver': 'setup/deployment/k8s-samples/jms-sender-receiver.md'
+      - VM Deployment:
+        - 'Clustered Deployment': 'setup/deployment/deploying_wso2_ei.md'
+        - 'Deployment Synchronization': 'setup/deployment/deployment_synchronization.md'
+        - 'Load Balancing': 'setup/deployment/setting_up_lb.md'
+        - Databases:
+          - 'MySQL Database': 'setup/deployment/databases/setting-up-MySQL.md'
+          - 'MSSQL Database': 'setup/deployment/databases/setting-up-MSSQL.md'
+          - 'Oracle Database': 'setup/deployment/databases/setting-up-Oracle.md'
+          - 'PostgreSQL Database': 'setup/deployment/databases/setting-up-PostgreSQL.md'
+          - 'IBM Database': 'setup/deployment/databases/setting-up-IBM-DB2.md'
+        - 'File-Based Registry' : 'setup/deployment/file_based_registry.md'
+        - 'Troubleshooting a Production Deployment' : 'setup/deployment/troubleshooting_deployment.md'
         - 'Backup and Recovery' : 'setup/deployment/backup_recovery.md'
-        - 'Setting up a File-Based Registry' : 'setup/file_based_registry.md'
+      - 'Migrating from WSO2 EI 6.x': 'setup/deployment/migrating-from-ei-6.x.x.md'
+      - 'Product Deployment Checklist': 'setup/deployment/deployment_checklist.md'
+      - 'Managing Configurations across Environments': 'setup/dynamic_server_configurations.md'
       - Security Hardening :
         - Setting up Keystores:
           - 'Creating New Keystores' : 'setup/security/creating_keystores.md'
           - 'Adding SSL certificates to keystores' : 'setup/security/importing_ssl_certificate.md'
           - 'Renewing a CA-signed Certificate' : 'setup/security/renewing_ca_signed_certificate_in_keystore.md'
           - 'Configuring Keystores' : 'setup/security/configuring_keystores.md'
-        - Complying with GDPR: 
+        - Complying with GDPR:
           - 'GDPR for the WSO2 Micro Integrator' : 'setup/security/gdpr_ei.md'
           - 'About the Identity Anonymization Tool' : 'setup/security/about_forgetme_tool.md'
         - Working with Passwords:
           - 'Encrypting Passwords' : 'setup/security/encrypting_plain_text.md'
           - 'Using Symmetric Encryption' : 'setup/security/single_key_encryption.md'
-          - 'Set Passwords using Environment Variables/System Properties' : 'setup/security/replace_passwords_env_variables_sys_properties.md'
-        - 'Mitigating Cross Site Request Forgery Attacks' : 'setup/security/mitigating_csrf.md'
-        - 'Securing Carbon Applications' : 'setup/security/securing_carbon_applications.md'
+        - 'Securing the Management API' : 'setup/security/securing_management_api.md'
+        - Working with User Stores:
+          - 'Configuring a User Store' : 'setup/user_stores/setting_up_a_userstore.md'
+          - 'Managing Users' : 'setup/user_stores/managing_users.md'
       - Performance Tuning:
         - 'Tuning JVM Performance' : 'setup/performance_tuning/tuning_jvm_performance.md'
         - 'Tuning Network and OS Performance' : 'setup/performance_tuning/network_os_performance.md'
@@ -274,14 +245,12 @@ nav:
         - 'Tuning the RabbitMQ Transport' : 'setup/performance_tuning/rabbitmq_transport_tuning.md'
         - 'Tuning the Inbound Endpoints' : 'setup/performance_tuning/tuning-inbound-endpoints.md'
       - Feature-Specific Configurations:
-        - 'Configuring the Task Scheduling Component': 'setup/configuring_task_scheduling_comp.md'
-        - 'Enabling CORS for Data Services': 'setup/enabling_CORS_for_data_services.md'
-        - 'Configuring Time Stamp Conversion for RDBMS': 'setup/configuring_timestamp_conversion_for_rdbms.md'
+        - 'Configuring Time Stamp Conversion for RDBMS': 'setup/feature_configs/configuring_timestamp_conversion_for_rdbms.md'
         - 'Configuring Message Builders and Formatters' : 'setup/message_builders_formatters/message-builders-and-formatters.md'
         - 'Configuring Message Relay': 'setup/message_builders_formatters/message-relay.md'
         - 'Configuring Transports': 'setup/transport_configurations/configuring-transports.md'
         - 'Configuring Multi-HTTPS': 'setup/transport_configurations/multi-https-transport.md'
-        - 'Configuring Kafka' : 'setup/configuring-kafka.md'
+        - 'Configuring Kafka' : 'setup/feature_configs/configuring-kafka.md'
         - Configuring Brokers:
           - 'Connecting to ActiveMQ': 'setup/brokers/configure-with-ActiveMQ.md'
           - 'Connecting to Apache Artemis': 'setup/brokers/configure-with-Apache-Artemis.md'
@@ -297,7 +266,7 @@ nav:
           - 'Connecting to WSO2 MB': 'setup/brokers/configure-with-WSO2-MB.md'
           - 'Connecting to Multiple Brokers': 'setup/brokers/configure-with-multiple-brokers.md'
       - Additional Configurations:
-        - 'Adding a Custom Proxy Path': 'setup/adding_a_custom_proxy__path.md'
+        - 'Adding a Custom Proxy Path': 'setup/adding_a_custom_proxy_path.md'
         - 'Configuring a Proxy Server': 'setup/configuring_proxy_servers.md'
         - 'Changing Default Ports': 'setup/changing_default_ports.md'
         - 'Customizing Error Messages': 'setup/customizing_error_pages.md'
@@ -306,19 +275,23 @@ nav:
     - Develop:
       - 'Developing Integration Solutions': 'develop/intro-integration-development.md'
       - WSO2 Integration Studio:
-        - 'Quick Tour - WSO2 Integration Studio' : 'develop/WSO2-Integration-Studio.md'
-        - 'Installing WSO2 Integration Studio' : 'develop/installing-WSO2-Integration-Studio.md'
-        - 'Designing Message Flow': 'develop/designing-mediation-flow.md'
+        - 'Quick Tour - WSO2 Integration Studio': 'develop/WSO2-Integration-Studio.md'
+        - 'Installing WSO2 Integration Studio': 'develop/installing-WSO2-Integration-Studio.md'
+        - 'Working with WSO2 Integration Studio': 'develop/working-with-wso2-integration-studio.md'
         - 'Troubleshooting WSO2 Integration Studio': 'develop/troubleshooting-WSO2-Integration-Studio.md'
       - Creating Projects:
-        - 'Creating Projects': 'develop/creating-projects.md'
+        - 'Creating ESB Projects': 'develop/creating-projects.md'
+        - 'Creating a Maven Multi Module Project': 'develop/create-multi-maven-project.md'
         - 'Importing Projects': 'develop/importing-projects.md'
+        - 'Exporting Projects': 'develop/export_project.md'
+        - 'Creating Docker Project': 'develop/create-docker-project.md'
+        - 'Creating Kubernetes Project': 'develop/create-kubernetes-project.md'
       - Creating New Artifacts:
         - 'Importing Artifacts': 'develop/importing-artifacts.md'
         - 'Creating a REST API': 'develop/creating-artifacts/creating-an-api.md'
         - 'Creating a Proxy Service': 'develop/creating-artifacts/creating-a-proxy-service.md'
         - 'Creating an Inbound Endpoint': 'develop/creating-artifacts/creating-an-inbound-endpoint.md'
-        - 'Creating Scheduled Tasks' : 'develop/creating-artifacts/scheduling-esb-tasks.md'
+        - 'Creating Scheduled Tasks': 'develop/creating-artifacts/creating-scheduled-task.md'
         - 'Creating a Message Store': 'develop/creating-artifacts/creating-a-message-store.md'
         - 'Creating a Message Processor': 'develop/creating-artifacts/creating-a-message-processor.md'
         - 'Creating an Endpoint': 'develop/creating-artifacts/creating-endpoints.md'
@@ -329,57 +302,209 @@ nav:
         - 'Creating Local Registry Entries': 'develop/creating-artifacts/registry/creating-local-registry-entries.md'
         - 'Creating a Smooks Configuration': 'develop/creating-artifacts/creating-smooks-artifacts.md'
         - 'Creating a Data Service': 'develop/creating-artifacts/data-services/creating-data-services.md'
+        - 'Creating a Datasource': 'develop/creating-artifacts/data-services/creating-datasources.md'
         - 'Creating a Data Service Input Validator': 'develop/creating-artifacts/data-services/creating-input-validators.md'
         - 'Adding Connectors': 'develop/creating-artifacts/adding-connectors.md'
       - Creating Custom Artifacts:
-        - 'Creating a Custom Inbound Endpoint' : 'develop/customizations/creating-custom-Inbound-endpoint.md'
+        - 'Creating a Custom Inbound Endpoint': 'develop/customizations/creating-custom-Inbound-endpoint.md'
         - 'Creating a Custom Mediator': 'develop/customizations/creating-custom-mediators.md'
-        - 'Creating a Synapse Handlers': 'develop/customizations/creating-synapse-handlers.md'
+        - 'Creating a Synapse Handler': 'develop/customizations/creating-synapse-handlers.md'
+        - 'Creating a New Connector': 'develop/customizations/creating-new-connector.md'
         - 'Customizing Task Scheduling': 'develop/customizations/creating-custom-task-scheduling.md'
       - Securing Artifacts:
-        - 'Encrypting Synapse Passwords' : 'develop/creating-artifacts/encrypting-synapse-passwords.md'
+        - 'Encrypting Synapse Passwords': 'develop/creating-artifacts/encrypting-synapse-passwords.md'
+        - 'Using Docker Secrets': 'develop/creating-artifacts/using_docker_secrets.md'
+        - 'Using Kubernetes Secrets': 'develop/creating-artifacts/using_k8s_secrets.md'
         - 'Applying Security to a REST API': 'develop/advanced-development/applying-security-to-an-api.md'
         - 'Applying Security to a Proxy Service': 'develop/advanced-development/applying-security-to-a-proxy-service.md'
-        - 'Applying Security to a Data Service' : 'develop/creating-artifacts/data-services/securing-data-services.md'
+        - 'Applying Security to a Data Service': 'develop/creating-artifacts/data-services/securing-data-services.md'
       - Packaging Artifacts:
         - 'Packaging Artifacts': 'develop/packaging-artifacts.md'
         - 'Exporting Artifacts': 'develop/exporting-artifacts.md'
         - 'Generating Docker Images': 'develop/generate-docker-image.md'
       - Testing Integrations:
         - 'Deploy and Run Artifacts': 'develop/deploy-and-run.md'
+        - 'Hot Deploying Artifacts': 'develop/hot-deployment.md'
         - 'Creating a Unit Test Suite': 'develop/creating-unit-test-suite.md'
+        - 'Using the HTTP REST Client': 'develop/using-http_rest_client.md'
       - Debugging Integrations:
         - 'Mediation Debugging': 'develop/debugging-mediation.md'
         - 'Using Wire Logs': 'develop/using-wire-logs.md'
         - 'Monitoring Proxy Service Access Logs': 'develop/enabling-logs-for-services.md'
         - 'Monitoring REST API Access Logs': 'develop/enabling-logs-for-api.md'
-        - 'Endpoint Tracing' : 'develop/endpoint-trace-logs.md'
-        - 'Running on WSO2 Integration Cloud': 'develop/deploying-in-integration-cloud.md'
+        - 'Endpoint Tracing': 'develop/endpoint-trace-logs.md'
+      - 'Running on WSO2 Integration Cloud': 'develop/deploying-in-integration-cloud.md'
       - Advanced Development Tasks:
-        - 'Injecting Parameters through Environment Variables': 'develop/injecting-parameters.md'
+        - 'Injecting Parameters as Environment Variables': 'develop/injecting-parameters.md'
         - 'Changing the Endpoint of a Deployed Service': 'develop/advanced-development/changing-the-endpoint-of-deployed-service.md'
-        - 'Generating Swagger Documents for APIs': 'develop/advanced-development/generating-swagger-for-apis.md'
+        - 'Using Swagger Documents': 'develop/advanced-development/using-swagger-for-apis.md'
+        - 'Extend Role-based Data Filtering': 'develop/advanced-development/extend-role-based-filtering-for-ds.md'
+        - 'Dynamic User Authentication': 'develop/advanced-development/dynamic-user-authentication.md'
       - 'Managing the Registry': 'develop/creating-artifacts/registry/managing-the-Registry.md'
-      #- 'Using a CI/CD Pipeline' : 'develop/using-cicd-pipeline.md'
     - Observability:
+      - 'Micro Integrator Dashboard': 'administer-and-observe/working-with-monitoring-dashboard.md'
+      - 'Micro Integrator CLI': 'administer-and-observe/using-the-command-line-interface.md'
       - 'Monitoring Message Round Trip': 'administer-and-observe/observability.md'
-      - 'JMX Monitoring': 'administer-and-observe/jmx_monitoring.md'
-      - 'SNMP Monitoring': 'administer-and-observe/snmp_monitoring.md'
-      - 'Prometheus for Monitoring': 'administer-and-observe/monitoring_with_prometheus.md'
-      - 'CLI for Monitoring': 'administer-and-observe/using-the-command-line-interface.md'
-      - Monitoring Logs:
+      - 'Analyzing Statistics and Tracing': 'administer-and-observe/using-the-analytics-dashboard.md'
+      - 'Using the Management API': 'administer-and-observe/working-with-management-api.md'
+      - Logging:
         - 'Logs in WSO2 Micro Integrator' : 'administer-and-observe/logs/monitoring_logs.md'
-        - 'Configuring Log4j Properties' : 'administer-and-observe/logs/configuring_log4j_properties.md'
+        - 'Configuring Log4j2 Properties' : 'administer-and-observe/logs/configuring_log4j_properties.md'
         - 'Managing Log Growth' : 'administer-and-observe/logs/managing_log_growth.md'
         - 'Masking Sensitive Information in Logs' : 'administer-and-observe/logs/masking_sensitive_info_in_logs.md'
-      - Monitoring TCP Messages:
+      - Metrics:
+        - 'JMX Monitoring': 'administer-and-observe/jmx_monitoring.md'
+        - 'SNMP Monitoring': 'administer-and-observe/snmp_monitoring.md'
+        - 'Prometheus for Monitoring': 'administer-and-observe/monitoring_with_prometheus.md'
+      - TCP Messages:
         - 'Starting TCPMon' : 'administer-and-observe/tcp/starting_tcp_mon.md'
         - 'Message Monitoring with TCPMon' : 'administer-and-observe/tcp/message_monitoring_with_tcpmon.md'
         - 'Other Usages of TCPMon' : 'administer-and-observe/tcp/other_usages_of_tcpmon.md'
     - References:
-      - 'Product Configurations' : 'references/config-catalog.md'
+      - 'Product Configurations': 'references/config-catalog.md'
+      - Connectors:
+        - 'Connectors Overview' : 'references/connectors/connectors-overview.md'
+        - File Connector:
+          - 'File Connector Example': 'references/connectors/file-connector/file-connector-example.md'
+          - 'File Connector Reference': 'references/connectors/file-connector/file-connector-config.md'
+        - Salesforce Rest Connector:
+          - 'Salesforce REST Connector Overview': 'references/connectors/salesforce-rest-connector/sf-rest-overview.md'
+          - 'Salesforce Access Token Generation': 'references/connectors/salesforce-rest-connector/sf-access-token-generation.md'
+          - 'Setting up the PushTopic in Salesforce': 'references/connectors/salesforce-rest-connector/sf-rest-inbound-endpoint-configuration.md'
+          - 'Salesforce REST API Connector Example': 'references/connectors/salesforce-rest-connector/sf-rest-connector-example.md'
+          - 'Salesforce Inbound Endpoint Example': 'references/connectors/salesforce-rest-connector/sf-rest-inbound-endpoint-example.md'
+          - 'Salesforce REST API Connector Reference': 'references/connectors/salesforce-rest-connector/sf-rest-connector-config.md'
+          - 'Salesforce Inbound Endpoint Reference': 'references/connectors/salesforce-rest-connector/sf-rest-inbound-endpoint-reference-configuration.md'
+        - Kafka Connector:
+          - 'Setting up Kafka': 'references/connectors/kafka-connector/setting-up-kafka.md'
+          - 'Enabling Security for Kafka': 'references/connectors/kafka-connector/enabling-security-for-kafka.md'
+          - 'Kafka Connector Example': 'references/connectors/kafka-connector/kafka-connector-producer-example.md'
+          - 'Kafka Inbound Endpoint Example': 'references/connectors/kafka-connector/kafka-inbound-endpoint-example.md'
+          - 'Kafka Connector Reference': 'references/connectors/kafka-connector/kafka-connector-config.md'
+        - Gmail Connector:
+          - 'Gmail Connector Example': 'references/connectors/gmail-connector/gmail-connector-example.md'
+          - 'Gmail Connector Reference': 'references/connectors/gmail-connector/gmail-connector-config.md'
+        - AmazonLambda Connector:
+          - 'Setting up Amazon Lambda Environment': 'references/connectors/amazonlambda-connector/setting-up-amazonlambda.md'
+          - 'Amazon Lambda Connector Example': 'references/connectors/amazonlambda-connector/amazonlambda-connector-example.md'
+          - 'Amazon Lambda Connector Reference': 'references/connectors/amazonlambda-connector/amazonlambda-connector-config.md'
+        - AmazonS3 Connector:
+          - 'Setting up Amazon S3 Environment': 'references/connectors/amazons3-connector/amazons3-connector-config.md'
+          - 'AmazonS3 Connector Example': 'references/connectors/amazons3-connector/amazons3-connector-example.md'
+          - 'AmazonS3 Connector Reference': 'references/connectors/amazons3-connector/amazons3-connector-reference.md'
+        - Amazon SQS Connector:
+            - 'Amazon SQS Connector Example': 'references/connectors/amazonsqs-connector/amazonsqs-connector-example.md'
+            - 'Amazon SQS Connector Reference': 'references/connectors/amazonsqs-connector/amazonsqs-connector-config.md'
+        - ServiceNow Connector:
+          - 'ServiceNow Connector Example': 'references/connectors/servicenow-connector/servicenow-connector-example.md'
+          - 'Setting up Servicenow Instance': 'references/connectors/servicenow-connector/settingup-servicenow-instance.md'
+          - 'ServiceNow Connector Reference': 'references/connectors/servicenow-connector/servicenow-connector-config.md'
+        - LDAP Connector:
+            - 'Setting up an LDAP Server': 'references/connectors/ldap-connector/setting-up-ldap.md'
+            - 'LDAP Connector Example': 'references/connectors/ldap-connector/ldap-connector-example.md'
+            - 'LDAP Connector Reference': 'references/connectors/ldap-connector/ldap-server-configuration.md'
+        - DB Event Listener Inbound Endpoint:
+          - 'Database Event Listener Example': 'references/connectors/db-event-inbound-endpoint/db-event-inbound-endpoint-example.md'
+          - 'Database Event Listener Reference': 'references/connectors/db-event-inbound-endpoint/db-event-inbound-endpoint-config.md'
+        - Microsoft Dynmics365 Connector:
+            - 'Setting up the Microsoft Dynamics365 Environment with Azure': 'references/connectors/microsoft-dynamics365-connector/microsoft-dynamics365-configuration.md'
+        - ISO8583 Connector:
+            - 'Setting up ISO8583 Connector': 'references/connectors/ISO8583-connector/ISO8583-connector-configuration.md'
+            - 'ISO8583 Connector Example': 'references/connectors/ISO8583-connector/ISO8583-connector-example.md'
+            - 'ISO8583 Inbound Endpoint Example': 'references/connectors/ISO8583-connector/ISO8583-inbound-endpoint-example.md'
+            - 'ISO8583 Connector Reference': 'references/connectors/ISO8583-connector/ISO8583-connector-reference.md'
+            - 'ISO8583 Inbound Endpoint Reference': 'references/connectors/ISO8583-connector/ISO8583-inbound-endpoint-config.md'
+        - Microsoft Azure Storage Connector:
+            - 'Setting up the Microsoft Azure Storage Environment': 'references/connectors/microsoft-azure-storage-connector/microsoft-azure-storage-configuration.md'
+            - 'Microsoft Azure Storage Connector Example': 'references/connectors/microsoft-azure-storage-connector/microsoft-azure-storage-connector-example.md'
+            - 'Microsoft Azure Storage Connector Reference': 'references/connectors/microsoft-azure-storage-connector/microsoft-azure-storage-reference.md'
+        - Google Firebase Connector:
+          - 'Setting up Google Firebase Environment': 'references/connectors/google-firebase-connector/google-firebase-setup.md'
+          - 'Google Firebase Connector Example': 'references/connectors/google-firebase-connector/google-firebase-connector-example.md'
+          - 'Google Firebase Connector Reference': 'references/connectors/google-firebase-connector/google-firebase-configuration.md'
+        - FHIR Connector:
+          - 'FHIR Connector Example': 'references/connectors/fhir-connector/fhir-connector-example.md'
+          - 'FHIR Connector Reference': 'references/connectors/fhir-connector/fhir-connector-config.md'
+        - SMPP Connector:
+            - 'Setting up the SMPP Connector': 'references/connectors/smpp-connector/smpp-connector-configuration.md'
+            - 'SMPP Connector Example': 'references/connectors/smpp-connector/smpp-connector-example.md'
+            - 'SMPP Inbound Endpoint Example': 'references/connectors/smpp-connector/smpp-inbound-endpoint-example.md'
+            - 'SMPP Connector Reference': 'references/connectors/smpp-connector/smpp-connector-config.md'
+            - 'SMPP Inbound Endpoint Reference': 'references/connectors/smpp-connector/smpp-inbound-endpoint-config.md'
+        - Google Spreadsheet Connector:
+          - 'Google Spreadsheet Connector Example': 'references/connectors/google-spreadsheet-connector/google-spreadsheet-connector-example.md'
+          - 'Google Spreadsheet Connector Reference': 'references/connectors/google-spreadsheet-connector/google-spreadsheet-connector-config.md'
+        - Amazon DynamoDB Connector:
+            - 'Setting up the Amazon DynamoDB Connector ': 'references/connectors/amazondynamodb-connector/amazondynamodb-connector-configuration.md'
+            - 'Amazon DynamoDB Connector Example': 'references/connectors/amazondynamodb-connector/amazondynamodb-connector-example.md'
+        - Ceridian Dayforce Connector:
+            - 'Setting up the Ceridian Dayforce Connector': 'references/connectors/ceridiandayforce-connector/ceridiandayforce-connector-config.md'
+            - 'Ceridian Dayforce Connector Example': 'references/connectors/ceridiandayforce-connector/ceridiandayforce-connector-example.md'
+            - 'Ceridian Dayforce Connector Reference':
+              - 'Initializing': 'references/connectors/ceridiandayforce-connector/ceridiandayforce-connector-reference.md'
+              - 'Employee': 'references/connectors/ceridiandayforce-connector/employee.md'
+              - 'Configuration':
+                  - 'orgUnits': 'references/connectors/ceridiandayforce-connector/configuration/orgUnits.md'
+                  - 'orgUnitDetails': 'references/connectors/ceridiandayforce-connector/configuration/orgUnitDetails.md'
+              - 'Employee Documents':
+                  - 'listOfDocuments': 'references/connectors/ceridiandayforce-connector/employeeDocuments/listOfDocuments.md'
+                  - 'documentDetails': 'references/connectors/ceridiandayforce-connector/employeeDocuments/documentDetails.md'
+              - Employee Employemnt Information:
+                  - 'employeeClockDeviceGroups': 'references/connectors/ceridiandayforce-connector/employeeEmploymentInformation/employeeClockDeviceGroups.md'
+                  - 'employeeCompensationSummary': 'references/connectors/ceridiandayforce-connector/employeeEmploymentInformation/employeeCompensationSummary.md'
+                  - 'employeeCourses': 'references/connectors/ceridiandayforce-connector/employeeEmploymentInformation/employeeCourses.md'
+                  - 'employeeEmploymentAgreements': 'references/connectors/ceridiandayforce-connector/employeeEmploymentInformation/employeeEmploymentAgreements.md'
+                  - 'employeeEmploymentStatuses': 'references/connectors/ceridiandayforce-connector/employeeEmploymentInformation/employeeEmploymentStatuses.md'
+                  - 'employeeEmploymentTypes': 'references/connectors/ceridiandayforce-connector/employeeEmploymentInformation/employeeEmploymentTypes.md'
+                  - 'employeeHighlyCompensatedEmployees': 'references/connectors/ceridiandayforce-connector/employeeEmploymentInformation/employeeHighlyCompensatedEmployees.md'
+                  - 'employeeHRIncidents': 'references/connectors/ceridiandayforce-connector/employeeEmploymentInformation/employeeHRIncidents.md'
+                  - 'employeeLaborDefaults': 'references/connectors/ceridiandayforce-connector/employeeEmploymentInformation/employeeLaborDefaults.md'
+                  - 'employeeOnboardingPolicies': 'references/connectors/ceridiandayforce-connector/employeeEmploymentInformation/employeeOnboardingPolicies.md'
+                  - 'employeeOrgInfo': 'references/connectors/ceridiandayforce-connector/employeeEmploymentInformation/employeeOrgInfo.md'
+                  - 'employeePayAdjustmentCodeGroups': 'references/connectors/ceridiandayforce-connector/employeeEmploymentInformation/employeePayAdjustmentCodeGroups.md'
+                  - 'employeePayGradeRates': 'references/connectors/ceridiandayforce-connector/employeeEmploymentInformation/employeePayGradeRates.md'
+                  - 'employeePerformanceRatings': 'references/connectors/ceridiandayforce-connector/employeeEmploymentInformation/employeePerformanceRatings.md'
+                  - 'employeeProperties': 'references/connectors/ceridiandayforce-connector/employeeEmploymentInformation/employeeProperties.md'
+                  - 'employeeSkills': 'references/connectors/ceridiandayforce-connector/employeeEmploymentInformation/employeeSkills.md'
+                  - 'employeeTrainingPrograms': 'references/connectors/ceridiandayforce-connector/employeeEmploymentInformation/employeeTrainingPrograms.md'
+                  - 'employeeUnionMemberships': 'references/connectors/ceridiandayforce-connector/employeeEmploymentInformation/employeeUnionMemberships.md'
+                  - 'employeeWorkAssignments': 'references/connectors/ceridiandayforce-connector/employeeEmploymentInformation/employeeWorkAssignments.md'
+                  - 'employeeWorkContracts': 'references/connectors/ceridiandayforce-connector/employeeEmploymentInformation/employeeWorkContracts.md'
+                  - 'employeeWorkContracts': 'references/connectors/ceridiandayforce-connector/employeeEmploymentInformation/employeeWorkContracts.md'
+              - 'Employee Personal Information':
+                  - 'employeeAddresses': 'references/connectors/ceridiandayforce-connector/employeePersonalInformation/employeeAddresses.md'
+                  - 'employeeCANTaxes': 'references/connectors/ceridiandayforce-connector/employeePersonalInformation/employeeCANTaxes.md'
+                  - 'employeeContacts': 'references/connectors/ceridiandayforce-connector/employeePersonalInformation/employeeContacts.md'
+                  - 'employeeDirectDeposits': 'references/connectors/ceridiandayforce-connector/employeePersonalInformation/employeeDirectDeposits.md'
+                  - 'employeeEmergencyContacts': 'references/connectors/ceridiandayforce-connector/employeePersonalInformation/employeeEmergencyContacts.md'
+                  - 'employeeEthnicities': 'references/connectors/ceridiandayforce-connector/employeePersonalInformation/employeeEthnicities.md'
+                  - 'employeeHealthandWellness': 'references/connectors/ceridiandayforce-connector/employeePersonalInformation/employeeHealthandWellness.md'
+                  - 'employeeMaritalStatuses': 'references/connectors/ceridiandayforce-connector/employeePersonalInformation/employeeMaritalStatuses.md'
+                  - 'employeeUSTaxes': 'references/connectors/ceridiandayforce-connector/employeePersonalInformation/employeeUSTaxes.md'
+              - 'Employee Time Management':
+                  - 'availability': 'references/connectors/ceridiandayforce-connector/employeeTimeManagement/availability.md'
+                  - 'employeePunches': 'references/connectors/ceridiandayforce-connector/employeeTimeManagement/employeePunches.md'
+                  - 'employeeRawPunches': 'references/connectors/ceridiandayforce-connector/employeeTimeManagement/employeeRawPunches.md'
+                  - 'schedules': 'references/connectors/ceridiandayforce-connector/employeeTimeManagement/schedules.md'
+                  - 'timeAwayFromWork': 'references/connectors/ceridiandayforce-connector/employeeTimeManagement/timeAwayFromWork.md'
+              - 'Employment Eligibility Verification':
+                  - 'i9Order': 'references/connectors/ceridiandayforce-connector/employmentEligibilityVerification/i9Order.md'
+              - 'Recruiting':
+                  - 'jobPostings': 'references/connectors/ceridiandayforce-connector/recruiting/jobPostings.md'
+              - 'Reporting':
+                  - 'reportMetadataForAListOfReports': 'references/connectors/ceridiandayforce-connector/reporting/reportMetadataForAListOfReports.md'
+                  - 'reportMetadataForASpecificReport': 'references/connectors/ceridiandayforce-connector/reporting/reportMetadataForASpecificReport.md'
+                  - 'reports': 'references/connectors/ceridiandayforce-connector/reporting/reports.md'
+              - 'User Security Authority And Management':
+                  - 'documentManagementSecurityGroups': 'references/connectors/ceridiandayforce-connector/userSecurityAuthorityAndManagement/documentManagementSecurityGroups.md'
+                  - 'employeeLocations': 'references/connectors/ceridiandayforce-connector/userSecurityAuthorityAndManagement/employeeLocations.md'
+                  - 'employeeManagers': 'references/connectors/ceridiandayforce-connector/userSecurityAuthorityAndManagement/employeeManagers.md'
+                  - 'employeeRoles': 'references/connectors/ceridiandayforce-connector/userSecurityAuthorityAndManagement/employeeRoles.md'
+                  - 'employeeSSOAccounts': 'references/connectors/ceridiandayforce-connector/userSecurityAuthorityAndManagement/employeeSSOAccounts.md'
+                  - 'employeeWorkAssignmentManagers': 'references/connectors/ceridiandayforce-connector/userSecurityAuthorityAndManagement/employeeWorkAssignmentManagers.md'
+                  - 'userPayAdjustmentCodeGroups': 'references/connectors/ceridiandayforce-connector/userSecurityAuthorityAndManagement/userPayAdjustmentCodeGroups.md'
       - Synapse Configurations:
-        - Mediator Catalog: 
+        - Mediator Catalog:
           - 'About Mediators': 'references/mediators/about-mediators.md'
           - 'Aggregate Mediators' : 'references/mediators/aggregate-Mediator.md'
           - 'Builder Mediator' : 'references/mediators/builder-Mediator.md'
@@ -410,7 +535,6 @@ nav:
           - 'PayloadFactory Mediator' : 'references/mediators/payloadFactory-Mediator.md'
           - 'Property Mediator' : 'references/mediators/property-Mediator.md'
           - 'Property Group Mediator' : 'references/mediators/property-Group-Mediator.md'
-          - 'Publish Event Mediator' : 'references/mediators/publish-Event-Mediator.md'
           - 'Respond Mediator' : 'references/mediators/respond-Mediator.md'
           - 'Rule Mediator' : 'references/mediators/rule-Mediator.md'
           - 'Script Mediator' : 'references/mediators/script-Mediator.md'
@@ -450,7 +574,7 @@ nav:
         - 'Mediation Sequences': 'references/synapse-properties/sequence-properties.md'
         - Message Stores and Processors:
           - 'About Message Stores and Processors': 'references/synapse-properties/about-message-stores-processors.md'
-          - Message Stores: 
+          - Message Stores:
             - 'JMS Message Store': 'references/synapse-properties/message-stores/jms-msg-store-properties.md'
             - 'JDBC Message Store': 'references/synapse-properties/message-stores/jdbc-msg-store-properties.md'
             - 'RabbitMQ Message Store': 'references/synapse-properties/message-stores/rabbitmq-msg-store-properties.md'
@@ -464,6 +588,14 @@ nav:
             - 'Scheduled Failover Message Forwarding Processor': 'references/synapse-properties/message-processors/msg-sched-failover-forwarding-processor-properties.md'
         - 'Templates': 'references/synapse-properties/template-properties.md'
         - 'Endpoints': 'references/synapse-properties/endpoint-properties.md'
+        - Data Services:
+          - 'About Data Services': 'references/synapse-properties/data-services.md'
+          - 'Elements of a Data Service': 'references/synapse-properties/data-services/elements-of-a-data-service.md'
+          - 'Query Parameters': 'references/synapse-properties/data-services/query-parameters.md'
+          - 'Datasource Parameters': 'references/synapse-properties/data-services/datasource-Configuration-Parameters.md'
+          - 'Input Validators': 'references/synapse-properties/data-services/input-validators.md'
+          - 'Namespaces': 'references/synapse-properties/data-services/using-Namespaces.md'
+          - 'SQL/Data Types': 'references/synapse-properties/data-services/mapping-data-types.md'
         - Transport Configs:
           - 'VFS Parameters': 'references/synapse-properties/transport-parameters/vfs-transport-parameters.md'
           - 'JMS Parameters': 'references/synapse-properties/transport-parameters/jms-transport-parameters.md'
@@ -474,13 +606,17 @@ nav:
       - Security Topics:
         - 'Customizing Secure Vault' : 'references/security/customizing-secure-vault.md'
         - 'Using Keystores' : 'references/security/using_keystores.md'
+        - 'WS-Security Implementations' : 'references/security/security-implementation.md'
       - 'Best Practices' : 'references/best-Practices.md'
       - 'Troubleshooting JMS' : 'references/troubleshooting-jms.md'
       - 'Error Codes' : 'references/error_handling.md'
+      - 'WSO2 Micro Integrator vs WSO2 EI 6.x Family' : 'references/comparisong-mi7-ei6xx.md'
     - '': page-not-found.md
-     
+
 # Extensions
 markdown_extensions:
+  - markdown_include.include:
+      base_path: docs
   - markdown.extensions.admonition
   - markdown.extensions.codehilite:
       linenums: true
@@ -506,7 +642,7 @@ markdown_extensions:
   - pymdownx.tasklist:
       custom_checkbox: true
   - pymdownx.tilde
-    
+
 # Extra
 extra_css:
   - assets/lib/highlightjs/default.min.css

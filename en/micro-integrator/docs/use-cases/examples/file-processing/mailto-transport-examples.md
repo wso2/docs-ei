@@ -2,13 +2,11 @@
 
 ## Globally setting the email sender
 
-Once the MailTo transport sender is enabled, you can configure email
-messaging within your mediation flow by applying the MailTo transport
-properties.
+When the [MailTo transport sender is enabled](../../../../setup/transport_configurations/configuring-transports/#configuring-the-mailto-transport) for the Micro Integrator, you can configure your mediation sequences to send emails. In this example, the email sender credentials are set globally in the `deployment.toml` file (stored in the `MI_HOME/conf` directory). You need to specify a valid email address prefixed with the transport sender name (which is specified in the deployment.toml file) in your mediation flow. For example, if the transport sender is 'mailto', the endpoint URL in the synapse configuration should be as follows: `mailto:targetemail@mail.com`
 
 ### Synapse configuration
 
-Enter a valid email address prefixed with the transport sender name (which is specified in the deployment.toml file). For example, if the transport sender is 'mailto', the endpoint URL should be as follows: `mailto:targetemail@mail.com`
+Following are the integration artifacts (proxy service) that we can used to implement this scenario.
 
 ```xml
 <proxy name="EmailSender" startOnLoad="true" transports="https http" xmlns="http://ws.apache.org/ns/synapse">
@@ -28,17 +26,24 @@ Enter a valid email address prefixed with the transport sender name (which is sp
 ```
 ### Build and run
 
-1.  Deploy the proxy service in you WSO2 Micro Integrator.
-2.  Invoke the proxy service by sending a request. For example use SOAP UI.
-3.  Check the inbox of your email account, which is configured as the
-    target endpoint. You will receive an email from the email sender
-    that is configured globally in the deployment.toml file.
+Create the artifacts:
+
+1. [Set up WSO2 Integration Studio](../../../../develop/installing-WSO2-Integration-Studio). The path to this folder is referred to as `MI_TOOLING_HOME` throughout this tutorial.
+2. Open the `deployment.toml` file from the `MI_TOOLING_HOME/Contents/Eclipse/runtime/microesb/conf` directory, and [enable the MailTo transport sender](../../../../setup/transport_configurations/configuring-transports/#configuring-the-mailto-transport).
+4. [Create the proxy service](../../../../develop/creating-artifacts/creating-a-proxy-service) with the configurations given above.
+5. [Deploy the artifacts](../../../../develop/deploy-and-run) in your Micro Integrator. 
+
+Invoke the proxy service by sending a request. For example use SOAP UI. Check the inbox of your email account, which is configured as the target endpoint. You will receive an email from the email sender that is configured globally in the deployment.toml file.
 
 ## Dynamically setting the email sender
 
+In this example, let's set the email sender details by adding **Property** mediators to the mediation sequence. If these details are not provided in the proxy service, the system uses the [email sender configurations](#globally-setting-the-email-sender) in the deployment.toml file explained above.
+
 ### Synapse configuration
 
-Enter a valid email address prefixed with the transport sender name (specified in the axis2.xml file). For example, if the transport sender is 'mailto', the endpoint URL should be as follows: `mailto:targetemail@mail.com`.
+Following are the integration artifacts (proxy service) that we can used to implement this scenario.
+
+Enter a valid email address prefixed with the transport sender name (specified in the `deployment.toml` file). For example, if the transport sender is 'mailto', the endpoint URL should be as follows: `mailto:targetemail@mail.com`.
 
 !!! Note
     -   You need to update the property values with actual values of the mail sender account.
@@ -46,8 +51,6 @@ Enter a valid email address prefixed with the transport sender name (specified i
 
 !!! Tip
     For testing purposes, be sure to enable access from less secure apps to your email account. See the documentation from your email service provider for instructions.
-
-Now, let's set the email sender details by adding **Property** mediators to the mediation sequence. If these details are not provided in the proxy service, the system uses the email [sender configurations in the deployment.toml file](#sending-emails-using-global-sender) explained above. Shown below is the new mediation sequence:
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
@@ -71,21 +74,27 @@ Now, let's set the email sender details by adding **Property** mediators to the 
 ```
 ### Build and run
 
-3.  Deploy the proxy service in you Micro Integrator server.
-4.  Invoke the proxy service by sending a request.
-5.  Check your inbox. You will receive an email from the email sender
-    that you configured for the proxy service.
+Create the artifacts:
+
+1. [Set up WSO2 Integration Studio](../../../../develop/installing-WSO2-Integration-Studio). The path to this folder is referred to as `MI_TOOLING_HOME` throughout this tutorial.
+2. Open the `deployment.toml` file from the `MI_TOOLING_HOME/Contents/Eclipse/runtime/microesb/conf` directory, and [enable the MailTo transport sender](../../../../setup/transport_configurations/configuring-transports/#configuring-the-mailto-transport).
+4. [Create the proxy service](../../../../develop/creating-artifacts/creating-a-proxy-service) with the configurations given above.
+5. [Deploy the artifacts](../../../../develop/deploy-and-run) in your Micro Integrator. 
+
+Invoke the proxy service by sending a request. Check your inbox. You will receive an email from the email sender that you configured for the proxy service.
 
 ## Receiving emails
 
-Follow the steps given below to configure your mediation sequence to receive emails, and then process the contents within the sequence. The MailTo transport receiver should be configured at service level and each service configuration should explicitly state the mail transport receiver configuration. This is required to enable different services to receive mails over different mail accounts and configurations.
+When the [MailTo transport listener is enabled](../../../../setup/transport_configurations/configuring-transports/#configuring-the-mailto-transport) for the Micro Integrator, you can configure your mediation sequences to send emails.
+
+In this example, let's configure your mediation sequence to receive emails and then process the email contents. The MailTo transport receiver should be configured at service level and each service configuration should explicitly state the mail transport receiver configuration. This is required to enable different services to receive mails over different mail accounts and configurations.
 
 !!! Info
     You need to provide correct parameters for a valid mail account at the service level.
 
 ### Synapse configuration
 
-In this sample, we used the `transport.mail.ContentType` property to make sure that the transport parses the request message as POX. If you remove this property, you may still be able to send requests using a standard mail client if instead of writing the XML in the body of the message, you add it as an attachment. In that case, you should use XML as a suffix for the attachment and format the request as a SOAP 1.1 message. Indeed, for a file with suffix XML the mail client will most likely use text/XML as the content type, exactly as required for SOAP 1.1. Sending a POX message using this approach will be a lot trickier, because most standard mail clients do not allow the user to explicitly set the content type.
+In this sample, we used the `transport.mail.ContentType` property to make sure that the transport parses the request message as POX. If you remove this property, you may still be able to send requests using a standard mail client. Instead of writing the XML in the body of the message, you add it as an attachment. In that case, you should use XML as a suffix for the attachment and format the request as a SOAP 1.1 message. Indeed, for a file with suffix XML, the mail client will most likely use text/XML as the content type, exactly as required for SOAP 1.1. Sending a POX message using this approach will be a lot trickier because most standard mail clients do not allow the user to explicitly set the content type.
 
 ```xml
 <proxy name="StockQuoteProxy" transports="mailto">
@@ -122,26 +131,34 @@ In this sample, we used the `transport.mail.ContentType` property to make sure t
             <send/>
         </outSequence>
     </target>
-    <publishWSDL uri="file:repository/samples/resources/proxy/sample_proxy_1.wsdl"/>
+    <publishWSDL key="conf:custom/sample_proxy_1.wsdl"/>
 </proxy>
 ```
 
-Once the MailTo transport receiver is enabled, you can configure email messaging within your mediation flow by applying the MailTo transport properties. The MailTo transport listener implementation can be configured by setting the parameters as described in the JavaMail API documentation. For IMAP related properties, see [IMAP Package Summary](https://javaee.github.io/javamail/docs/api/com/sun/mail/imap/package-summary.html). For POP3 properties, see [POP3 Package Summary](https://javaee.github.io/javamail/docs/api/com/sun/mail/pop3/package-summary.html). The MailTo transport listener also supports the following transport parameters in addition to the parameters described in the JavaMail API documentation.
-
 ### Build and run
 
--   Send a plain/text e-mail (Make sure you switch to **Plain text**
-    **mode** when you are composing the email) with the following body
-    and any custom Subject from your mail account to the mail address
-    `          synapse.demo.1@gmail.com         ` . 
+Create the artifacts:
 
-    ```xml 
-    <m0:getQuote xmlns:m0="http://services.samples">
-        <m0:request>
-            <m0:symbol>IBM</m0:symbol>
-        </m0:request>
-    </m0:getQuote>
-    ```
+1. [Set up WSO2 Integration Studio](../../../../develop/installing-WSO2-Integration-Studio). The path to this folder is referred to as `MI_TOOLING_HOME` throughout this tutorial.
+2. Open the `deployment.toml` file from the `MI_TOOLING_HOME/Contents/Eclipse/runtime/microesb/conf` directory, and [enable the MailTo transport sender](../../../../setup/transport_configurations/configuring-transports/#configuring-the-mailto-transport).
+3. [Create the proxy service](../../../../develop/creating-artifacts/creating-a-proxy-service) with the configurations given above.
+4. Add [sample_proxy_1.wsdl](https://github.com/wso2-docs/WSO2_EI/blob/master/samples-protocol-switching/sample_proxy_1.wsdl) as a [registry resource](../../../../develop/creating-artifacts/creating-registry-resources). Change the registry path of the proxy accordingly. 
+5. Set up the back-end service.
+   - Download the [stockquote_service.jar](https://github.com/wso2-docs/WSO2_EI/blob/master/Back-End-Service/stockquote_service.jar)
+   
+   - Open a terminal, navigate to the location of the downloaded service, and run it using the following command:
+       ```bash
+       java -jar stockquote_service.jar
+6. [Deploy the artifacts](../../../../develop/deploy-and-run) in your Micro Integrator. 
 
--   After a few seconds (for example 30 seconds), you should receive a
-    POX response in your e-mail account with the stock quote reply.
+Send a plain/text e-mail (Make sure you switch to **Plain text** **mode** when you are composing the email) with the following body and any custom Subject from your mail account to the mail address `synapse.demo.1@gmail.com`. 
+
+```xml 
+<m0:getQuote xmlns:m0="http://services.samples">
+    <m0:request>
+        <m0:symbol>IBM</m0:symbol>
+    </m0:request>
+</m0:getQuote>
+```
+
+After a few seconds (for example 30 seconds), you should receive a POX response in your e-mail account with the stock quote reply.
