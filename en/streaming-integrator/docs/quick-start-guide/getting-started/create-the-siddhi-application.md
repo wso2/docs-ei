@@ -21,9 +21,9 @@ The following image depicts the procedure to be followed by the Siddhi applicati
     !!!info
         The default URL is `http://<localhost:9390/editor`.
         
-   The Streaming Integration Tooling opens as shown below.
+    The Streaming Integration Tooling opens as shown below.
 
-   ![Welcome Page](../../images/Creating-Siddhi-Applications/Welcome-Page.png)
+    ![Welcome Page](../../images/Creating-Siddhi-Applications/Welcome-Page.png)
         
 4. Open a new Siddhi file by clicking **New**.
 
@@ -38,7 +38,7 @@ The following image depicts the procedure to be followed by the Siddhi applicati
     @App:description("This application captures the room temperature and analyzes it, and presents the results as logs in the output console.")
     ```
     
-6. The details to be captures include the room ID, device ID, and the temperature. To specify this, define an input stream with attributes to capture each of these details.
+6. The details to be captured include the room ID, device ID, and the temperature. To specify this, define an input stream with attributes to capture each of these details.
 
     `define stream TempStream(roomNo string, deviceID long, temp double)`
     
