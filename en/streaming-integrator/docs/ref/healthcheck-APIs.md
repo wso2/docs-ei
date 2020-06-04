@@ -70,7 +70,7 @@ curl -k -X GET http://localhost:9090/health
 <tr class="odd">
 <th>HTTP Status Code</th>
 <td><p>200 or 404</p>
-<p>For descriptions of the HTTP status codes, see <a href="hTTP-Status-Codes.md">HTTP Status Codes</a> .</p></td>
+<p>For descriptions of the HTTP status codes, see <a href="https://ei.docs.wso2.com/en/latest/streaming-integrator/ref/hTTP-Status-Codes/">HTTP Status Codes</a> .</p></td>
 </tr>
 </tbody>
 </table>
