@@ -190,6 +190,7 @@ nav:
         - 'JSON Examples': 'use-cases/examples/json_examples/json-examples.md'
       - 'Connectors': 'use-cases/connectors.md'
     - Setup and Install:
+      - 'Setup and Install Overview': 'setup/micro_integrator_deployment_overview.md'
       - Installation Guide:
         - 'Installation Prerequisites': 'setup/installation/install_prerequisites.md'
         - 'Install on a VM': 'setup/installation/install_in_vm.md'
@@ -221,10 +222,10 @@ nav:
       - 'Managing Configurations across Environments': 'setup/dynamic_server_configurations.md'
       - Security Hardening :
         - Setting up Keystores:
-          - 'Creating New Keystores' : 'setup/security/creating_keystores.md'
-          - 'Adding SSL certificates to keystores' : 'setup/security/importing_ssl_certificate.md'
-          - 'Renewing a CA-signed Certificate' : 'setup/security/renewing_ca_signed_certificate_in_keystore.md'
-          - 'Configuring Keystores' : 'setup/security/configuring_keystores.md'
+          - 'Creating New Keystores': 'setup/security/creating_keystores.md'
+          - 'Adding SSL certificates to keystores': 'setup/security/importing_ssl_certificate.md'
+          - 'Renewing a CA-signed Certificate': 'setup/security/renewing_ca_signed_certificate_in_keystore.md'
+          - 'Configuring Keystores': 'setup/security/configuring_keystores.md'
         - Complying with GDPR:
           - 'GDPR for the WSO2 Micro Integrator' : 'setup/security/gdpr_ei.md'
           - 'About the Identity Anonymization Tool' : 'setup/security/about_forgetme_tool.md'
