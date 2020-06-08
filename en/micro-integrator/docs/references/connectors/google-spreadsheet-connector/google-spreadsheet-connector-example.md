@@ -12,15 +12,15 @@ It will have three HTTP API resources, which are `insert`, `read` and `edit`.
 
 * `/insert `: The user sends the request payload, which includes the name of the spreadsheet, the sheet names, and what data should be inserted to which sheet and which range of cells.  This request is sent to WSO2 EI by invoking the Spreadsheet API. It creates a spreadsheet with specified data in the specified cell range. 
 
-    <img src="/assets/img/connectors/sheet-insert.png" title="Calling insert operation" width="800" alt="Calling insert operation"/> 
+    <img src="../../../../assets/img/connectors/sheet-insert.png" title="Calling insert operation" width="800" alt="Calling insert operation"/> 
 
 * `/read `: The user sends the request payload, which includes the spreadsheet Id that should be obtained from calling the `insert` API resource, and the range of the cell range to be read. 
 
-    <img src="/assets/img/connectors/sheet-read.png" title="Calling read operation" width="800" alt="Calling read operation"/>
+    <img src="../../../../assets/img/connectors/sheet-read.png" title="Calling read operation" width="800" alt="Calling read operation"/>
 
 * `/edit `: The user sends the request payload, which includes the spreadsheet Id that should be obtained from calling the `insert` API resource, and the data to be edited that includes values and the range. 
 
-    <img src="/assets/img/connectors/sheet-edit.png" title="Calling edit operation" width="800" alt="Calling edit operation"/>
+    <img src="../../../../assets/img/connectors/sheet-edit.png" title="Calling edit operation" width="800" alt="Calling edit operation"/>
 
 
 If you do not want to configure this yourself, you can simply [get the project](#get-the-project) and run it.
@@ -51,11 +51,11 @@ Follow these steps to set up the Integration Project and the Connector Exporter 
 
 6. The above four parameters are saved to a property group. Drag and drop the Property Group mediator onto the canvas in the design view and do as shown below. For further reference, you can read about the [Property Group mediator](../../mediators/property-Group-Mediator). You can add set of properties as below. 
 
-    <img src="/assets/img/connectors/sheetcon1.png" title="Adding a property into a property group" width="800" alt="Adding a property"/>
+    <img src="../../../../assets/img/connectors/sheetcon1.png" title="Adding a property into a property group" width="800" alt="Adding a property"/>
 
 7. Once all the properties are added to the Property Group Mediator, it looks as below. 
 
-    <img src="/assets/img/connectors/sheetcon2.png" title="Property Group Mediator" width="800" alt="Property Group Mediator"/>
+    <img src="../../../../assets/img/connectors/sheetcon2.png" title="Property Group Mediator" width="800" alt="Property Group Mediator"/>
 
 8. The `createSpreadsheet` operation is going to be added as a separate sequence. Right click on the created Integration Project and select, -> **New** -> **Sequence** to create the `createSpreadsheet` sequence.
 
@@ -66,11 +66,11 @@ Follow these steps to set up the Integration Project and the Connector Exporter 
     - clientSecret
     - refreshToken
 
-    <img src="/assets/img/connectors/sheetcon3.png" title="init operation" width="800" alt="init operation"/>
+    <img src="../../../../assets/img/connectors/sheetcon3.png" title="init operation" width="800" alt="init operation"/>
 
 10. Drag and drop **createSpreadsheet** operation to the Canvas next. Parameter values are defined in step 6 and 7 in the property group. 
 
-    <img src="/assets/img/connectors/sheetcon4.png" title="Parameters" width="800" alt="Parameters"/>
+    <img src="../../../../assets/img/connectors/sheetcon4.png" title="Parameters" width="800" alt="Parameters"/>
 
 11. The complete XML configuration for the `createSpreadsheet.xml` looks as below. 
 ```xml
@@ -119,7 +119,7 @@ Follow these steps to set up the Integration Project and the Connector Exporter 
 
 14. Now go back to `SpreadsheeetAPI.xml` file, and from **Defined Sequences** drag and drop **createSpreadsheet** sequence, **addData** sequence and finally the Respond Mediator to the canvas. Now we are done with creating the first API resource, and it is displayed as shown below. 
 
-    <img src="/assets/img/connectors/sheetcon5.png" title="insert operation xml config" width="800" alt="insert operation xml config"/>
+    <img src="../../../../assets/img/connectors/sheetcon5.png" title="insert operation xml config" width="800" alt="insert operation xml config"/>
 
 15. Create the next API resource, which is `/read`. From this, we are going to read the specified spreadsheet data. Use the URL template as `/read`. The method will be POST. 
 

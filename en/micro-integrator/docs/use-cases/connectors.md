@@ -12,8 +12,12 @@ The following are of documented connectors available from the [connector store](
             <th>Description</th>
         </tr>
         <tr>
-            <td><a href="../../references/connectors/salesforce-rest-connector/sf-rest-connector-example/">Salesforce REST</a></td>
-            <td>The connector uses the <a href="https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/intro_what_is_rest_api.htm">Salesforce REST API</a> to interact with Salesforce.</td>
+            <td><a href="../../references/connectors/amazondynamodb-connector/amazondynamodb-connector-configuration/">Amazon DynamoDB</a></td>
+            <td>Amazon DynamoDB Connector allows you to access the <a href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/HowItWorks.API.html">Amazon DynamoDB REST API</a> through WSO2 EI.</td>
+        </tr>
+        <tr>
+            <td><a href="../../references/connectors/amazonlambda-connector/amazonlambda-connector-example/">Amazon Lambda</a></td>
+            <td>The AmazonLambda Connector allows you to access the REST API of <a href="https://docs.aws.amazon.com/lambda/latest/dg/welcome.html">Amazon Web Service Lambda (AWS Lambda)</a>, which lets you run code without provisioning or managing servers.</td>
         </tr>
         <tr>
             <td><a href="../../references/connectors/amazons3-connector/amazons3-connector-example/">Amazon S3</a></td>
@@ -24,6 +28,10 @@ The following are of documented connectors available from the [connector store](
             <td>This connector enables you to perform CRUD operations for queues in Amazon SQS instance, update permissions and can work with messages through the <a href="https://docs.aws.amazon.com/AWSSimpleQueueService/latest/APIReference/Welcome.html">Amazon SQS API</a>.</td>
         </tr>
         <tr>
+            <td><a href="../../references/connectors/ceridiandayforce-connector/ceridiandayforce-connector-example/">Ceridian Dayforce</a></td>
+            <td>The Ceridian Dayforce connector allows you to  access the REST API of Ceridian Dayforce HCM.</td>
+        </tr>
+        <tr>
             <td><a href="../../references/connectors/gmail-connector/gmail-connector-example/">Gmail</a></td>
             <td>The Gmail Connector allows you to integrate with the <a href="https://developers.google.com/gmail/api/v1/reference">Gmail REST API</a> through WSO2 EI.</td>
         </tr>
@@ -32,8 +40,20 @@ The following are of documented connectors available from the [connector store](
             <td>Google Firebase Connector is useful for integrating Google Firebase with other enterprise applications, on-premise or cloud using the <a href="https://firebase.google.com/docs/reference/fcm/rest/v1/projects.messages">Google Firebase API</a>.</td>
         </tr>
         <tr>
+            <td><a href="../../references/connectors/google-spreadsheet-connector/google-spreadsheet-connector-example/">Google Spreadsheet</a></td>
+            <td>The WSO2 Google Spreadsheet Connector allows you to access the <a href="https://developers.google.com/sheets/api/guides/concepts">Google Spreadsheet API Version v4</a> through WSO2 EI.</td>
+        </tr>
+        <tr>
             <td><a href="../../references/connectors/microsoft-azure-storage-connector/microsoft-azure-storage-connector-example/">Microsoft Azure Storage</a></td>
-            <td>The Microsoft Dynamics 365 (Microsoft Dynamics CRM) Connector allows you to access the <a href="https://docs.microsoft.com/en-us/previous-versions/dynamicscrm-2016/developers-guide/mt593051(v=crm.8)?redirectedfrom=MSDN">Microsoft Dynamics 365 Web API</a> through WSO2 Enterprise Integrator.</td>
+            <td>The Microsoft Azure Storage Connector allows you to access the Azure Storage services using Microsoft Azure Storage Java SDK through WSO2 EI.</td>
+        </tr>
+        <tr>
+            <td><a href="../../references/connectors/salesforce-rest-connector/sf-rest-connector-example/">Salesforce REST</a></td>
+            <td>The connector uses the <a href="https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/intro_what_is_rest_api.htm">Salesforce REST API</a> to interact with Salesforce.</td>
+        </tr>
+        <tr>
+            <td><a href="../../references/connectors/salesforce-rest-connector/sf-rest-inbound-endpoint-example.md/">Salesforce REST</a></td>
+            <td>The Salesforce streaming Inbound Endpoint allows you to perform various operations on Salesforce streaming data via WSO2 EI. The <a href="https://developer.salesforce.com/docs/atlas.en-us.api_streaming.meta/api_streaming/intro_stream.htm">Salesforce streaming API</a> receives notifications based on the changes that happen to Salesforce data with respect to an SQQL (Salesforce Object Query Language) query you define, in a secured and scalable way.</td>
         </tr>
         <tr>
             <td><a href="../../references/connectors/servicenow-connector/servicenow-connector-example/">ServiceNow</a></td>
@@ -50,12 +70,24 @@ The following are of documented connectors available from the [connector store](
             <th>Description</th>
         </tr>
         <tr>
+            <td><a href="../../references/connectors/db-event-inbound-endpoint/db-event-inbound-endpoint-example/">DB Event Listener</a></td>
+            <td>DB Event Inbound Endpoint is the DB event listener for WSO2 Enterprise Integrator. You can configure it with any popular Database systems such as `MySQL` and `Oracle` etc.</td>
+        </tr>
+        <tr>
+            <td><a href="../../references/connectors/fhir-connector/fhir-connector-example/">FHIR</a></td>
+            <td>This connector uses the <a href="https://hapifhir.io">HAPI FHIR APIs</a> to connect with a Test Server, which is an open source server licensed under the Apache Software License 2.0 (Java-based implementation of the FHIR specification).</td>
+        </tr>
+        <tr>
             <td><a href="../../references/connectors/file-connector/file-connector-example/">File</a></td>
             <td>The File Connector uses the <a href="https://commons.apache.org/proper/commons-vfs/">Apache Commons VFS</a> I/O functionalities to execute operations related to the file system and allows you to easily manipulate files based on your requirement.</td>
         </tr>
         <tr>
-            <td><a href="../../references/connectors/db-event-inbound-endpoint/db-event-inbound-endpoint-example/">DB Event Listener</a></td>
-            <td>DB Event Inbound Endpoint is the DB event listener for WSO2 Enterprise Integrator. You can configure it with any popular Database systems such as `MySQL` and `Oracle` etc.</td>
+            <td><a href="../../references/connectors/ISO8583-connector/ISO8583-connector-example/">ISO8583</a></td>
+            <td>The ISO8583 message format is used for financial transactions such as ATM, POS, Credit Card, Mobile Banking, Internet Banking, KIOSK, e-commerce, etc.</td>
+        </tr>
+        <tr>
+            <td><a href="../../references/connectors/ISO8583-connector/ISO8583-inbound-endpoint-example/">ISO8583 Inbound Endpoint</a></td>
+            <td>The ISO8583 inbound endpoint supported via the WSO2 EI is a listening inbound endpoint that can consume ISO8583 standard messages.</td>
         </tr>
         <tr>
             <td><a href="../../references/connectors/kafka-connector/kafka-connector-producer-example/">Kafka Producer</a></td>
@@ -70,16 +102,8 @@ The following are of documented connectors available from the [connector store](
             <td>The LDAP connector allows you to connect to any LDAP server through a simple web services interface and perform CRUD (Create, Read, Update, Delete) operations on LDAP entries.</td>
         </tr>
         <tr>
-            <td><a href="../../references/connectors/ISO8583-connector/ISO8583-connector-example/">ISO8583</a></td>
-            <td>The ISO8583 message format is used for financial transactions such as ATM, POS, Credit Card, Mobile Banking, Internet Banking, KIOSK, e-commerce, etc.</td>
-        </tr>
-        <tr>
-            <td><a href="../../references/connectors/ISO8583-connector/ISO8583-inbound-endpoint-example/">ISO8583 Inbound Endpoint</a></td>
-            <td>The ISO8583 inbound endpoint supported via the WSO2 EI is a listening inbound endpoint that can consume ISO8583 standard messages.</td>
-        </tr>
-        <tr>
-            <td><a href="../../references/connectors/fhir-connector/fhir-connector-example/">FHIR</a></td>
-            <td>This connector uses the <a href="https://hapifhir.io">HAPI FHIR APIs</a> to connect with a Test Server, which is an open source server licensed under the Apache Software License 2.0 (Java-based implementation of the FHIR specification).</td>
+            <td><a href="../../references/connectors/smpp-connector/smpp-connector-example/">LDAP</a></td>
+            <td>SMPP (Short Message Peer-to-Peer Protocol) Connector allows you to send an SMS through the WSO2 EI. It uses the <a href="https://jsmpp.org/">jsmpp API</a> to communicate with an SMSC (Short Message Service Center)</td>
         </tr>
 </table>
 
