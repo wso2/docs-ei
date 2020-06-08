@@ -1,4 +1,4 @@
-# DB Event Inbound Endpoint Configuration
+# DB Event Inbound Endpoint Reference
 
 The following configurations allow you to configure DB Event Inbound Endpoint for your scenario. 
 

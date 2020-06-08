@@ -1,4 +1,4 @@
-# Salesforce REST Connector Configuration
+# Salesforce REST Connector Reference
 
 The following operations allow you to work with the Salesforce REST Connector. Click an operation name to see parameter details and samples on how to use it.
 

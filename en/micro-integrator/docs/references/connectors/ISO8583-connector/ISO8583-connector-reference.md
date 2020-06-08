@@ -1,4 +1,4 @@
-# ISO8583 Connector Configuration
+# ISO8583 Connector Reference
 
 The following operations allow you to work with the ISO8583 Connector. Click an operation name to see parameter details and samples on how to use it.
 

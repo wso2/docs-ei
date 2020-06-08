@@ -1,4 +1,4 @@
-# Microsoft Azure Storage Connector Configuration
+# Microsoft Azure Storage Connector Reference
 
 The following operations allow you to work with the Microsoft Azure Storage Connector. Click an operation name to see parameter details and samples on how to use it.
 

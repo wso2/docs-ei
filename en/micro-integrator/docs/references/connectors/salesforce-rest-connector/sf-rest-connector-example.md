@@ -211,6 +211,9 @@ You can download the ZIP file and extract the contents to get the project code.
     <img src="../../../../assets/img/connectors/download-zip.png" width="200" alt="Download ZIP">
 </a>
 
+!!! tip
+    You may need to update the value of the access token and make other such changes before deploying and running this project.
+
 ## Deployment
 
 Follow these steps to deploy the exported CApp in the Enterprise Integrator Runtime. 

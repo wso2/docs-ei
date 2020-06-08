@@ -99,6 +99,17 @@ Following diagram shows the overall solution we are going to build. The SMSC wil
 
 3. In the next **Create a deployable CAR file** screen, select inbound endpoint and sequence artifacts and click **Finish**. The CApp will get created at the specified location provided in the previous step. 
 
+## Get the project
+
+You can download the ZIP file and extract the contents to get the project code.
+
+<a href="../../../../assets/attach/connectors/smpp-inbound-endpoint.zip">
+    <img src="../../../../assets/img/connectors/download-zip.png" width="200" alt="Download ZIP">
+</a>
+
+!!! tip
+    You may need to update the simulator details and make other such changes before deploying and running this project.
+
 ## Deployment
 
 1. Navigate to the [connector store](https://store.wso2.com/store/assets/esbconnector/list) and search for `SMPP Connector`. Click on `SMPP Inbound Endpoint` and download the .jar file by clicking on `Download Inbound Endpoint`. Copy this .jar file into **<PRODUCT-HOME>/lib** folder. 
