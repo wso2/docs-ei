@@ -1,4 +1,4 @@
-# Amazon S3 Connector Example 
+# Google Firebase Connector Example 
 
 Google Firebase is a rich modern platform to create quick mobile app back-ends, with a ton of built-in and ready-to-integrate features. The most used feature of Firebase is as a back-end. However, along with this back-end, one of the popular features is **push notifications**. We can register Android, IOS, and Web-based backend to Google Firebase applications and push notifications to them. Firebase being a Google product, a lot of people use it for reliable push notifications. In the mobile world, push notifications are very popular.  
 
@@ -166,8 +166,7 @@ Follow these steps to set up the Integration Project and import Google Firebase 
     </sequence>
    ```
 
-> **NOTE:**
-The parameters under `<init>` section of the configuration above are referring to the credentials we obtained from Google Firebase in above steps. The parameters are mapped to the keys of the JSON file that you have downloaded as below. 
+> **Note**: The parameters under `<init>` section of the configuration above are referring to the credentials we obtained from Google Firebase in above steps. The parameters are mapped to the keys of the JSON file that you have downloaded as below. 
 
 ```
 accountType --> type
@@ -187,11 +186,22 @@ Now we can export the imported connector, sequence, and the API into a single CA
 
 {!references/connectors/exporting-artifacts.md!}
 
+## Get the project
+
+You can download the ZIP file and extract the contents to get the project code.
+
+<a href="../../../../assets/attach/connectors/google-firebase-test-project.zip">
+    <img src="../../../../assets/img/connectors/download-zip.png" width="200" alt="Download ZIP">
+</a>
+
+!!! tip
+    You may need to update the value of the credentials and make other such changes before deploying and running this project.
+
+## Deployment
 
 Now the exported CApp can be deployed in Enterprise Integrator Runtime so that we can run it and test. 
 
-**NOTE**
-Download the following .jar files. 
+**Note**: Download the following .jar files. 
 1. [firebase-admin-6.5.0.jar](https://mvnrepository.com/artifact/com.google.firebase/firebase-admin/6.5.0)
 2. [google-auth-library-credentials-0.11.0.jar](https://mvnrepository.com/artifact/com.google.auth/google-auth-library-credentials/0.11.0)
 3. [google-auth-library-oauth2-http-0.11.0.jar](https://mvnrepository.com/artifact/com.google.auth/google-auth-library-oauth2-http/0.11.0)

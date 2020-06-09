@@ -2,19 +2,17 @@
 
 Hot deployment is the process of dynamically deploying your synapse artifacts (XML), dataservices(DBS), carbon applications (CAR), etc., in your Micro Integrator. That is, it is not required to restart the server for the artifact deployment to be effective.
 
-Hot deployment is useful for testing your integration artifacts **in a VM environment**. Because you don't have to restart the server every time you deploy an artifact, the testing time will be shorter and efficient.
+Hot deployment is useful for testing the integration artifacts **in a VM environment**. With hot deployment, it is not required to restart the server each time you deploy an artifact and the testing time will be shorter and efficient. Hence, hot deploymet is enabled by default in the Micro Integrator distribution. However, this feature is disabled in the base Docker image of the Micro Integrator to honor the immutable nature of container environments.
 
-!!! Warning
-    Do not enable hot deployment when the Readiness Probe is enabled for the server. The Readiness Probe verifies the readiness of the server during server startup. That is, if there are faulty artifacts deployed in the server, the Readiness Probe should be allowed to identify them during server startup. However, if hot deployment is enabled, faulty artifacts can be deployed in the server during the server runtime, which prevents the readiness probe from functioning accurately.  
+!!! Note
+    If  Readiness Probe is used with hot deployment, it will not detect faulty carbon applications in the deployment. If you want your server to be detected as **not ready** due to faulty applications, you need to disable hot deployment.
 
-Be sure to disable hot deployment in the server if you want the readiness probe to work as expected.
-
-## Enabling hot deployment
-Open the `deployment.toml` file from the `<MI_HOME>/conf` directory and add the following configuration parameter to enable hot deployment.
+## Disabling hot deployment
+Open the `deployment.toml` file from the `<MI_HOME>/conf` directory and set hot_deployment property to false.
 
 ```toml
 [server]
-hot_deployment = true
+hot_deployment = false
 ```
 
 See the [complete list of server configurations](../../references/config-catalog/#deployment).

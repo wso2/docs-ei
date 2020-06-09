@@ -13,6 +13,7 @@ To configure the SMPP connector, copy the following client libraries from the gi
 ## Configure the SMSC (Short Message Service Center) simulator
 
 For testing purposes, it is not practical always to connect with real SMSC. SMSC Simulator is an application that can act like an SMSC. Using a simulator we can test our scenario without having access to a real SMSC. For the real production servers we have to use a real SMSC. In this example scenario we will be using [logica-smpp-sim](https://github.com/smn/logica-smpp-sim) simulator. 
+
 JSMPP is a Java implementation of SMPP protocol. The SMPP server in SMSC have all ESME (External Short Messaging Entity) addresses. ESME is an external application that connects to a SMSC and the active connection. It provides an API to communicate with a SMSC simulator as well.
 
 1. Navigate to [logica-smpp-sim](https://github.com/smn/logica-smpp-sim) and clone or download the repository.

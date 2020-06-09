@@ -1,4 +1,4 @@
-# Amazon S3 Connector Configuration
+# Amazon S3 Connector Reference
 
 The following operations allow you to work with the Amazon S3 Connector. Click an operation name to see parameter details and samples on how to use it.
 
