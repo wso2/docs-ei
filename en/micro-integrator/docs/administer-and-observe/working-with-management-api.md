@@ -587,3 +587,64 @@ The management API has multiple resources to provide information regarding the d
 	```bash
 	curl -X GET "https://localhost:9164/management/data-services?dataServiceName=StudentDataService" -H "accept: application/json" -H "Authorization: Bearer TOKEN" -k -i
 	```
+	!!! Info
+        **The following logging resource feature is supported in WSO2 MI 1.1.0 as a product update. This update is availble through WSO2 Update Manager from 10th of June, 2020 onwards.**
+        
+### GET LOG LEVEL
+-	**Resource**: `/logging?loggerName={logger}`
+
+    	**Description**: Retrieves information related to a specific logger.
+    	**Example**:
+    
+    	```bash tab='Request'
+    	curl -X GET "https://localhost:9164/management/logging?loggerName=org-apache-coyote" -H "accept: application/json" -H 	      "Authorization: Bearer Token" -k
+    	```
+    	```bash tab='Response'
+    	{
+      	"loggerName": "org-apache-coyote",
+      	"level":"WARN",
+      	"componentName":"org.apache.coyote"
+    	}
+    	```
+    	
+### UPDATE ROOT LOG LEVEL
+-	**Resource**: `/logging`
+    	**Description**: Updates the log level of root logger.   
+    	**Example**:
+    
+    	```bash tab='Request'
+    	curl -X PATCH \
+      	https://localhost:9164/management/logging \
+      	-H 'authorization: Bearer Token' \
+      	-H 'content-type: application/json' \
+      	-d '{
+        "loggerName": "rootLogger",
+        "loggingLevel": "WARN"
+    	}' -k
+    	```
+    	```bash tab='Response'
+    	{
+        "message": "Successfully updated rootLogger.level to WARN"
+    	}
+    	```
+    
+### UPDATE LOG LEVEL
+-	**Resource**: `/logging`
+    	**Description**: Updates the log level of a specific logger.
+    	**Example**:
+    
+    	```bash tab='Request'
+    	curl -X PATCH \
+      	https://localhost:9164/management/logging \
+      	-H 'authorization: Bearer Token' \
+      	-H 'content-type: application/json' \
+      	-d '{
+        "loggerName": "org-apache-hadoop-hive",
+        "loggingLevel": "DEBUG"
+    	}' -k
+    	```
+    	```bash tab='Response'
+    	{
+        "message": "Successfully updated logger.org-apache-hadoop-hive.level to DEBUG"
+    	}
+    	```
