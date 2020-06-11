@@ -751,12 +751,15 @@ The management API has multiple resources to provide information regarding the d
 ### GET LOG LEVEL
 
 -	**Resource**: `/logging?loggerName={logger}`
+
     	**Description**: Retrieves information related to a specific logger.
+	
     	**Example**:
     
     	```bash tab='Request'
     	curl -X GET "https://localhost:9164/management/logging?loggerName=org-apache-coyote" -H "accept: application/json" -H 	      "Authorization: Bearer Token" -k
     	```
+	
     	```bash tab='Response'
     	{
       	"loggerName": "org-apache-coyote",
@@ -768,7 +771,9 @@ The management API has multiple resources to provide information regarding the d
 ### UPDATE ROOT LOG LEVEL
 
 -	**Resource**: `/logging`
-    	**Description**: Updates the log level of root logger.   
+
+    	**Description**: Updates the log level of root logger. 
+	
     	**Example**:
     
     	```bash tab='Request'
@@ -781,6 +786,7 @@ The management API has multiple resources to provide information regarding the d
         "loggingLevel": "WARN"
     	}' -k
     	```
+	
     	```bash tab='Response'
     	{
         "message": "Successfully updated rootLogger.level to WARN"
@@ -790,7 +796,9 @@ The management API has multiple resources to provide information regarding the d
 ### UPDATE LOG LEVEL
 
 -	**Resource**: `/logging`
+
     	**Description**: Updates the log level of a specific logger.
+	
     	**Example**:
     
     	```bash tab='Request'
@@ -803,6 +811,7 @@ The management API has multiple resources to provide information regarding the d
         "loggingLevel": "DEBUG"
     	}' -k
     	```
+	
     	```bash tab='Response'
     	{
         "message": "Successfully updated logger.org-apache-hadoop-hive.level to DEBUG"
