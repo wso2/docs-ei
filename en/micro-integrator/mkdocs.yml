@@ -419,7 +419,6 @@ nav:
                   - 'employeeContacts': 'references/connectors/ceridiandayforce-connector/employeePersonalInformation/employeeContacts.md'
                   - 'employeeDirectDeposits': 'references/connectors/ceridiandayforce-connector/employeePersonalInformation/employeeDirectDeposits.md'
                   - 'employeeEmergencyContacts': 'references/connectors/ceridiandayforce-connector/employeePersonalInformation/employeeEmergencyContacts.md'
-                  - 'employeeEthnicities': 'references/connectors/ceridiandayforce-connector/employeePersonalInformation/employeeEthnicities.md'
                   - 'employeeHealthandWellness': 'references/connectors/ceridiandayforce-connector/employeePersonalInformation/employeeHealthandWellness.md'
                   - 'employeeMaritalStatuses': 'references/connectors/ceridiandayforce-connector/employeePersonalInformation/employeeMaritalStatuses.md'
                   - 'employeeUSTaxes': 'references/connectors/ceridiandayforce-connector/employeePersonalInformation/employeeUSTaxes.md'
