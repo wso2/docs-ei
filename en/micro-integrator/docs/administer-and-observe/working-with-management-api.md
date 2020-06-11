@@ -748,6 +748,7 @@ The management API has multiple resources to provide information regarding the d
 	```bash
 	curl -X GET "https://localhost:9164/management/data-services?dataServiceName=StudentDataService" -H "accept:          application/json" -H "Authorization: Bearer TOKEN" -k -i
 	```
+
 ### GET LOG LEVEL
 
 -	**Resource**: `/logging?loggerName={logger}`
@@ -816,5 +817,5 @@ The management API has multiple resources to provide information regarding the d
 	```bash tab='Response'
 	{
         "message": "Successfully updated logger.org-apache-hadoop-hive.level to DEBUG"
-    	}
+    }
 	```
