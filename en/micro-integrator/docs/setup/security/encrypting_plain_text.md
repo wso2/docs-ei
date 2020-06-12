@@ -127,7 +127,7 @@ To encrypt secrets using the CLI tool:
 
 ### Using encrypted (dynamic) secrets
 
-Dynamic secrets can be used in server configurations the same way as descibed in the `Using encrypted (static) secrets` section with the `$secret` placeholder. 
+Dynamic secrets can be used in server configurations the same way as described in the `Using encrypted (static) secrets` section with the `$secret` placeholder. 
 
 ```toml tab='Environment Variable'
 [keystore.tls]
