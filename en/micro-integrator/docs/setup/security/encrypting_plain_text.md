@@ -13,7 +13,6 @@ Note that you can customize the default secure vault configurations in the produ
 ### Encrypting static secrets
 
 !!! Tip
-    - This approach of encrypting static secrets in server configurations can only be applied to VM deployments.
     - If you are using **Windows**, you need to have [Ant](http://ant.apache.org/) installed before using the Cipher Tool.
 
 You must first list the plain-text secrets in the `deployment.toml` file under the `secrets` header. When you run the Cipher Tool, these plain-text secrets will be encrypted. You can then refer the encrypted secrets from anywhere in your server configurations (also specified in the `deployment.toml` file) or synapse configurations (such as **proxy services** and **rest API** artifacts).
@@ -113,10 +112,22 @@ To encrypt secrets using the CLI tool:
     # To bulk encrypt secrets defined in a properties file
     mi secret create -f=</file_path>
     ```
+6. Populate the secret into the relevant environment as required. For an instance, in the case of environment variables, you can populate them with the export command as follows.
+    ```bash
+    export env_carbon_sec=<ENCRYPTED_VALUE>
+    ```
+7. Open the `deployment.toml` file located in the `<MI_HOME>/conf/` directory and add the `[secrets]` configuration section as shown below.
+
+    ```toml
+   [secrets]
+   carbon_secret = "$env{env_carbon_sec}"
+    ```
+    
+8. Run the Cipher tool as explained in the previous section to enable security.
 
 ### Using encrypted (dynamic) secrets
 
-To dynamically load secrets to server configurations, update the parameters in the `deployment.toml` file as an environment variable or system property:
+Dynamic secrets can be used in server configurations the same way as descibed in the `Using encrypted (static) secrets` section with the `$secret` placeholder. 
 
 ```toml tab='Environment Variable'
 [keystore.tls]
@@ -127,9 +138,9 @@ key_password = "$secret{carbon_secret}"
 
 [secrets]
 carbon_secret = "$env{env_carbon_sec}"
-
-Here the value of env_carbon_sec environment variable should be the encrypted value
 ```
+
+Given below is an instance of populating the encrypted value as a system variable in the environment and referring it in the `deployment.toml` file.
 
 ```toml tab='System Property'
 [keystore.tls]
@@ -140,8 +151,6 @@ key_password = "$secret{carbon_secret}"
 
 [secrets]
 carbon_secret = "$sys{sys_carbon_sec}"
-
-Here the value of sys_carbon_sec system property should be the encrypted value
 ```
 
 Also note that each time a new secret is added to the [secrets] section of deployment.toml file
