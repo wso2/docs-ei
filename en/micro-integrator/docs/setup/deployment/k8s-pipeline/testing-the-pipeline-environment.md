@@ -1,13 +1,6 @@
 # Testing The Pipeline Environment
 
-The Jenkins Dashboard can be accessed through  `https://jenkins.example.com`. Thereafter, log in with the
-default username and password, which are `“admin” and “admin”`, and select `“wso2mi”.`
-
-[ ![Jenkins-Dashboard](../../../assets/img/k8s_pipeline/testing_pipeline/testing-mi-1.png) ](../../../assets/img/k8s_pipeline/testing_pipeline/testing-mi-1.png)
-
-1.  Trigger the job `push-chart-to-spinnaker`
-
-2.  Explore the Spinnaker Dashboard.
+1.  Explore the Spinnaker Dashboard.
     
     Navigate to the Spinnaker dashboard
     at `https://spinnaker.example.com`and
