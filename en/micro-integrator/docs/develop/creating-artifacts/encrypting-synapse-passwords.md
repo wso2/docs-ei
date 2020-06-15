@@ -9,7 +9,7 @@ In a VM deployment, static secrets are defined in the server configuration file 
 For example, shown below is the encrypted secret for the `property_expression` alias in the `deployment.toml` file:
 
 ```toml
-[secret]
+[secrets]
 property_expression= "<encrypted_secret>"
 ```
 
