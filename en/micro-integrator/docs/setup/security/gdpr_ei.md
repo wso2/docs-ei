@@ -52,14 +52,12 @@ The Micro Integrator can persist PII in various log files (carbon logs, audit lo
 
 ## Tools for removing PII in WSO2 Micro Integrator
 
-The following tools are shipped with the Micro Integrator:
-
 -   The **Forget-Me Tool** , which can anonymize
     a user's PII in log files and RDBMSs by replacing all occurrences of
     the deleted user with either a randomly generated UUID value or a
-    specified pseudonym. This tool is stored in the
-    `           MI_HOME/wso2/tools/forget-me/          ` directory of
-    the Micro Integrator. Find out about all the capabilities of the Forget-Me tool
+    specified pseudonym. This can be downloaded using the following 
+    [link](https://github.com/wso2-docs/WSO2_EI/raw/master/Forget-Me-Tool/org.wso2.carbon.privacy.forgetme.tool-1.3.1.zip).
+    . Find out about all the capabilities of the Forget-Me tool
     from [here](../security/about_forgetme_tool.md).
 
     **Important!** In the case of log files, note that the Forget-Me
@@ -122,8 +120,11 @@ INFO - LogMediator USER_NAME = Sam
 ```
 
 Let's look at how to anonymize the username value in log files.
-
-1.  Every log statement follows the same pattern where the "USER\_NAME"
+1.  [Download](https://github.com/wso2-docs/WSO2_EI/raw/master/Forget-Me-Tool/org.wso2.carbon.privacy.forgetme.tool-1.3.1.zip) 
+    the Forget-Me tool and extract it to a desired location. Then
+    navigate inside the tool. This location will be referred to as `TOOL_HOME`
+    from this point onwards.
+2.  Every log statement follows the same pattern where the "USER\_NAME"
     keyword is followed by an actual username (in this example it is
     "Sam"). The regex pattern of this log statement will be as shown
     below. The Forget-Me Tool will use the below regex pattern to
@@ -131,7 +132,7 @@ Let's look at how to anonymize the username value in log files.
 
     This pattern should be added to the
     `           ei-patterns.xml          ` file (stored in the
-    `           MI_HOME/wso2/tools/forget-me/conf/log-config/          `
+    `           TOOL_HOME/conf/log-config/          `
     directory).
 
     ```xml
@@ -141,8 +142,8 @@ Let's look at how to anonymize the username value in log files.
     </pattern>
     ```
 
-2.  Update the `           config.json          ` file (stored in the
-    `           MI_HOME/wso2/tools/forget-me/conf/          `
+3.  Update the `           config.json          ` file (stored in the
+    `           TOOL_HOME/conf/          `
     directory) as shown below. This file contains references to all the
     log files (except any [service-specific log file](../../develop/enabling-logs-for-services.md) in the system that store the above user information. If you have
     enabled a service-specific log file, you need to add that file name
@@ -193,8 +194,8 @@ Let's look at how to anonymize the username value in log files.
         warn.log, and wso2carbon.log files, **as well as** the archived
         files of the same logs. If you have enabled a [service-specific log file](../../develop/enabling-logs-for-services.md), **be sure to add** the file name to this list.
 
-3.  Open a command prompt and navigate to the `           MI_HOME/bin          ` directory.
-4.  Execute the following command to anonymize the user information that
+4.  Open a command prompt and navigate to the `           TOOL_HOME/bin          ` directory.
+5.  Execute the following command to anonymize the user information that
     was added to the ei-patterns.xml file.  
 
     -   On Linux:
