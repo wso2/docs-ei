@@ -1,6 +1,6 @@
 # Creating an Inbound Endpoint
 
-Follow the instructions given below to create a new Inbound Endpoint artifact in WSO2 Integration Studio.
+Follow the instructions given below to create a new [Inbound Endpoint](../../../references/synapse-properties/inbound-endpoints/about-inbound-endpoints) artifact in WSO2 Integration Studio.
 
 ## Instructions
 
@@ -39,15 +39,13 @@ When you open the inbound endpoint from the **Config** project in the project ex
 
 <img src="../../../assets/img/create_artifacts/new_inbound_endpoint/inbound-endpoint-design-view.png" width="800">
 
-The integration flow for an inbound endpoint is defined within [named sequences](). You can drag and drop **sequences** from the **Palette** to the canvas as shown below.
+The integration flow for an inbound endpoint is defined within [named sequences](../../../references/synapse-properties/sequence-properties/#named-sequences). You can drag and drop **sequences** from the **Palette** to the canvas as shown below.
 
 <img src="../../../assets/img/create_artifacts/new_inbound_endpoint/inbound-graphical-editor.png" width="800">
 
 Double-click the **Sequence** artifact to open the canvas for the sequence. You can now drag and drop the mediation artifacts from the palette and design the integration flow.
 
-<img src="../../../assets/img/create_artifacts/new_inbound_endpoint/sequence-graphical-editor.png" width="800">
-
-You can also use the [**Source** view](#using-the-source-view) to update the inbound endpoint configuration.
+<img src="../../../assets/img/create_artifacts/new_inbound_endpoint/sequence-graphical-editor.png" width="600">
 
 ### Updating the properties
 
@@ -55,19 +53,19 @@ To update properties from the **Design** view:
 
 1.  Double-click the **Inbound Endpoint** icon to open the <b>Properties</b> tab.
 
-    <img src="../../../assets/img/create_artifacts/new_inbound_endpoint/inbound-endpoint-properties.png" width="700">
+    <img src="../../../assets/img/create_artifacts/new_inbound_endpoint/inbound-endpoint-properties.png" width="500">
 
-2.  To add service-level parameters, expand the **Advanced** section. See the following links for the list of parameters for each inbound endpoint type:
+2.  See the following links for the list of parameters for each inbound endpoint type:
 
     - [HTTP Inbound Parameters](../../../references/synapse-properties/inbound-endpoints/listening-inbound-endpoints/http-inbound-endpoint-properties)
     - [CXF WS RM Inbound Parameters](../../../references/synapse-properties/inbound-endpoints/listening-inbound-endpoints/cxf-ws-rm-inbound-endpoint-properties)
     - [HL7 Inbound Parameters](../../../references/synapse-properties/inbound-endpoints/listening-inbound-endpoints/hl7-inbound-endpoint-properties)
     - [Websocket Inbound Parameters](../../../references/synapse-properties/inbound-endpoints/listening-inbound-endpoints/websocket-inbound-endpoint-properties)
-    - [File Inbound Parameters](../../../references/synapse-properties/inbound-endpoints/listening-inbound-endpoints/file-inbound-endpoint-properties)
-    - [JMS Inbound Parameters](../../../references/synapse-properties/inbound-endpoints/listening-inbound-endpoints/jms-inbound-endpoint-properties)
-    - [Kafka Inbound Parameters](../../../references/synapse-properties/inbound-endpoints/listening-inbound-endpoints/kafka-inbound-endpoint-properties)
-    - [RabbitMQ Inbound Parameters](../../../references/synapse-properties/inbound-endpoints/listening-inbound-endpoints/rabbitmq-inbound-endpoint-properties)
-    - [MQTT Inbound Parameters](../../../references/synapse-properties/inbound-endpoints/listening-inbound-endpoints/mqtt-inbound-endpoint-properties)
+    - [File Inbound Parameters](../../../references/synapse-properties/inbound-endpoints/polling-inbound-endpoints/file-inbound-endpoint-properties)
+    - [JMS Inbound Parameters](../../../references/synapse-properties/inbound-endpoints/polling-inbound-endpoints/jms-inbound-endpoint-properties)
+    - [Kafka Inbound Parameters](../../../references/synapse-properties/inbound-endpoints/polling-inbound-endpoints/kafka-inbound-endpoint-properties)
+    - [RabbitMQ Inbound Parameters](../../../references/synapse-properties/inbound-endpoints/event-based-inbound-endpoints/rabbitmq-inbound-endpoint-properties)
+    - [MQTT Inbound Parameters](../../../references/synapse-properties/inbound-endpoints/event-based-inbound-endpoints/mqtt-inbound-endpoint-properties)
 
 !!! Note
     **Redeployment of listening inbound endpoints fail?**

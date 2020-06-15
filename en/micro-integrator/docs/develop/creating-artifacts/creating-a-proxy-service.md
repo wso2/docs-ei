@@ -29,7 +29,7 @@ Follow the instructions given below to create a new [Proxy Service](../../../ref
     </tr>
     <tr class="even">
     <td>Transformer proxy</td>
-    <td>This template creates a proxy service that transforms all the incoming requests using XSLT and then forwards them to a given endpoint. It can also transform responses from the backend service.</td>
+    <td>This template creates a proxy service that transforms all the incoming requests using XSLT and then forwards them to a given endpoint. If required it can also transform responses from the back-end service according to an XSLT that you specify.</td>
     </tr>
     <tr class="odd">
     <td>Log Forward proxy</td>
@@ -37,7 +37,7 @@ Follow the instructions given below to create a new [Proxy Service](../../../ref
     </tr>
     <tr class="even">
     <td>WSDL-Based proxy</td>
-    <td>This template generates a proxy service from the remotely hosted WSDL of an existing web service. The endpoint information is extracted from the WSDL.
+    <td>This template generates a proxy service from the remotely hosted WSDL of an existing web service. The endpoint information is extracted from the WSDL you specify.
     </td>
     </tr>
     <tr class="odd">
@@ -68,8 +68,6 @@ Drag and drop the required integration artifacts from the **Palette** to the can
 
 <img src="../../../assets/img/create_artifacts/new_proxy_service/proxy-service-graphical-editor.png" width="800">
 
-You can also use the [**Source** view](#using-the-source-view) to update the proxy service configuration.
-
 ### Updating the properties
 
 To update service-level properties from the **Design** view:
@@ -86,7 +84,7 @@ To update service-level properties from the **Design** view:
 
     <img src="../../../assets/img/create_artifacts/new_proxy_service/service-level-params-dialog.png" width="500">
 
-    See the following links for the list of transport parameters:
+    See the following links for the list of transport parameters you can use:
 
       - [VFS Parameters](../../../references/synapse-properties/transport-parameters/vfs-transport-parameters)
       - [JMS Parameters](../../../references/synapse-properties/transport-parameters/jms-transport-parameters)
@@ -96,8 +94,6 @@ To update service-level properties from the **Design** view:
       - [RabbitMQ Parameters](../../../references/synapse-properties/transport-parameters/rabbitmq-transport-parameters)
 
 3.  See the complete list of [service-level properties and parameters](../../../references/synapse-properties/proxy-service-properties) that you can configure.
-
-You can also use the [**Source** view](#using-the-source-view) to update the proxy service configuration.
 
 ### Using the Source View
 
