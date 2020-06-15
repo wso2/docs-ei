@@ -2,7 +2,10 @@
 
 Initially, your registry resources project will contain only a `pom` file. You can create any number of registry resources inside that project. To create a registry resource:
 
-1.  If you have already created an [Registry Resource project](../../creating-projects/#registry-resource-project), right-click the project in the left navigation panel, click **New** , and then click **Registry Resource**. This will open the **New Registry Resource** window.
+1.  If you have already created a [Registry Resource project](../../creating-projects/#registry-resource-project), right-click the project in the left navigation panel, click **New** , and then click **Registry Resource**. This will open the **New Registry Resource** window.
+
+    <img src="../../../assets/img/create_artifacts/registry_resources/select-resource.png" width="500">
+
 2.  Select the **From existing template** option and click **Next**.
 
 ## From existing template
@@ -10,13 +13,19 @@ Initially, your registry resources project will contain only a `pom` file. You c
 Use the **From existing template** option if you want to select a template from which to create a registry resource.
 
 1.  Select **From existing template** and click **Next**.
-2.  In the **Template** field, select a template from the list. In this example, a WSDL file template is used.
-3.  Specify a name for the `          WSDL         ` file.
-4.  In the **Registry Path** field, define where you want to save the resource in the registry.
-5.  In the **Save Resource in** field, select an existing Registry Resource project in which you want to save the resource. Alternatively, you can create a new Registry Resource project.       
-6.  Click **Finish** .
-7.  Now you will see the `          WSDL         ` file generated with
-    the specified name and opened in the embedded WSDL editor.
+
+    <img src="../../../assets/img/create_artifacts/new_resource/new-resource-wizard-1.png" width="500">
+
+2.  Enter a unique name for the resource and select a resource template for the **Template** field. select a template from the list. In this example, a **WSDL File** template is used.
+
+    <img src="../../../assets/img/create_artifacts/new_resource/new-resource-wizard-2.png" width="500">
+
+3.  In the **Registry** field, select the registry partition: **conf** or **gov**.
+4.  In the **Registry Path** field, specify a folder within the registry partition you specified. Enter a value to create a folder by that name.
+5.  In the **Save Resource in** field, click **Browse** to select an existing registry resource project to save the resource. Alternatively, click **Create new Project** and create a new project.       
+6.  Click **Finish**.
+
+You will now see the `WSDL` file generated with the specified name and opened it in the embedded WSDL editor.
 
 ## Import from file system
 
@@ -40,7 +49,7 @@ instance.
     Resource project in which you want to save the resource.
     Alternatively, you can create a new Registry Resource project.
 6.  Click **Finish** .  
-    
+
 ## Import Registry dump file from file system
 
 Use this option to browse to a Registry Dump file which you can use to

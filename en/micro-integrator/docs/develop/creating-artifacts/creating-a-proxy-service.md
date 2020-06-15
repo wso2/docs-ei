@@ -1,8 +1,10 @@
 # Creating a Proxy Service
 
-Follow the instructions given below to create a new [Proxy Service](../../../references/synapse-properties/proxy-service-properties)  artifact in WSO2 Integration Studio.
+Follow the instructions given below to create a new [Proxy Service](../../../references/synapse-properties/proxy-service-properties) artifact in WSO2 Integration Studio.
 
 ## Instructions
+
+### Creating the Proxy Service artifact
 
 1.  Right-click the project in the navigator and go to **New → Proxy Service** to open the **New Proxy Service** dialog box.     
     <img src="../../../assets/img/create_artifacts/new_proxy_service/select-new-proxy.png">
@@ -11,7 +13,7 @@ Follow the instructions given below to create a new [Proxy Service](../../../ref
 
     <img src="../../../assets/img/create_artifacts/new_proxy_service/create-new-proxy-option.png" width="500">
 
-3.  Type a unique name for the proxy service and select a proxy service template from the list shown below. These templates will automatically generate the mediation flow that is required for each use case.
+3.  Enter a unique name for the proxy service and select a proxy service template from the list shown below. These templates will automatically generate the mediation flow that is required for each use case.
 
     <img src="../../../assets/img/create_artifacts/new_proxy_service/new-proxy-artifact-dialog.png" width="500">
 
@@ -27,7 +29,7 @@ Follow the instructions given below to create a new [Proxy Service](../../../ref
     </tr>
     <tr class="even">
     <td>Transformer proxy</td>
-    <td>This template creates a proxy service that transforms all the incoming requests using XSLT and then forwards them to a given endpoint. It can also transform responses from the backend service.</td>
+    <td>This template creates a proxy service that transforms all the incoming requests using XSLT and then forwards them to a given endpoint. If required it can also transform responses from the back-end service according to an XSLT that you specify.</td>
     </tr>
     <tr class="odd">
     <td>Log Forward proxy</td>
@@ -35,7 +37,7 @@ Follow the instructions given below to create a new [Proxy Service](../../../ref
     </tr>
     <tr class="even">
     <td>WSDL-Based proxy</td>
-    <td>This template generates a proxy service from the remotely hosted WSDL of an existing web service. The endpoint information is extracted from the WSDL. 
+    <td>This template generates a proxy service from the remotely hosted WSDL of an existing web service. The endpoint information is extracted from the WSDL you specify.
     </td>
     </tr>
     <tr class="odd">
@@ -52,11 +54,52 @@ Follow the instructions given below to create a new [Proxy Service](../../../ref
 4. Do one of the following to save the proxy service:  
     -   To save the proxy service in an existing ESB Config project in your workspace, click **Browse** and select that project.
     -   To save the proxy service in a new ESB Config project, click **Create new Project** and create the new project.
-5. Click **Finish**. The proxy service is created in the `src/main/synapse-config/proxy-services` folder under the project you specified.
-6. To update the properties of the proxy service:
-    1. Open the proxy service artifact from the project explorer and go to the **Design View** of the artifact.
-    2. Click the proxy service artifact on the canvas to enable the **Properties** tab.
-    3. You can now update the [service-level properties and parameters](../../references/synapse-properties/proxy-service-properties.md).
+5. Click **Finish**. 
+
+The proxy service is created in the `src/main/synapse-config/proxy-services` folder under the project you specified.
+
+### Designing the integration
+
+When you open the proxy service from the **Config** project in the project explorer, you will see the default **Design** view as shown below.
+
+<img src="../../../assets/img/create_artifacts/new_proxy_service/proxy-service-design-view.png" width="800">
+
+Drag and drop the required integration artifacts from the **Palette** to the canvas and design the integration flow.
+
+<img src="../../../assets/img/create_artifacts/new_proxy_service/proxy-service-graphical-editor.png" width="800">
+
+### Updating the properties
+
+To update service-level properties from the **Design** view:
+
+1.  Double-click the **Proxy Service** icon to open the <b>Properties</b> tab for the service.
+
+    <img src="../../../assets/img/create_artifacts/new_proxy_service/proxy-service-properties.png" width="700">
+
+2.  To add service-level transport parameters, expand the **Parameters** section and click the **plus** <img src="../../../assets/img/common/plus-icon.png" width="20"> icon.
+
+    <img src="../../../assets/img/create_artifacts/new_proxy_service/service-level-params.png" width="700">
+
+    In the dialog box that opens, enter the parameter name and value as a key-value pair:
+
+    <img src="../../../assets/img/create_artifacts/new_proxy_service/service-level-params-dialog.png" width="500">
+
+    See the following links for the list of transport parameters you can use:
+
+      - [VFS Parameters](../../../references/synapse-properties/transport-parameters/vfs-transport-parameters)
+      - [JMS Parameters](../../../references/synapse-properties/transport-parameters/jms-transport-parameters)
+      - [FIX Parameters](../../../references/synapse-properties/transport-parameters/fix-transport-parameters)
+      - [MailTo Parameters](../../../references/synapse-properties/transport-parameters/mailto-transport-parameters)
+      - [MQTT Parameters](../../../references/synapse-properties/transport-parameters/mqtt-transport-parameters)
+      - [RabbitMQ Parameters](../../../references/synapse-properties/transport-parameters/rabbitmq-transport-parameters)
+
+3.  See the complete list of [service-level properties and parameters](../../../references/synapse-properties/proxy-service-properties) that you can configure.
+
+### Using the Source View
+
+Click the **Source** tab to view the XML-based synapse configuration (source code) of the proxy service. You can update the service using this view.
+
+<img src="../../../assets/img/create_artifacts/new_proxy_service/proxy-service-source-view.png" width="800">
 
 ## Examples
 

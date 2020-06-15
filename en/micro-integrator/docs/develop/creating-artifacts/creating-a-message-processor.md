@@ -1,25 +1,49 @@
 # Creating a Message Processor
 
-Follow the instructions given below to create a new Message Processor artifact in WSO2 Integration Studio.
+Follow the instructions given below to create a new [Message Processor](../../../references/synapse-properties/about-message-stores-processors) artifact in WSO2 Integration Studio.
 
 ## Instructions
 
-1.  If you have already created an [ESB Config project](../../creating-projects/#esb-config-project), right-click the project and go to **New → Message Processor** to open the **New Message Processor Artifact** dialog.
+### Creating the Message Processor artifact
+
+1.  Right-click the [ESB Config project](../../creating-projects/#esb-config-project) and go to **New → Message Processor** to open the **New Message Processor Artifact** dialog box.
+
+	<img src="../../../assets/img/create_artifacts/new_message_processor/select-message-processor.png">
+
 2.  Select **Create a new message-processor artifact** and click **Next**.
-3.  Type a unique name for this message processor, specify the type of processor you're creating. 
-4.  Specify values for the required parameter for the selected message processor.
 
-	!!! Info
-        See the list of configurable properties for a [Message Sampling Processor](../../references/synapse-properties/message-processors/msg-sampling-processor-properties.md), [Scheduled Message Forwarding Processor](../../references/synapse-properties/message-processors/msg-sched-forwarding-processor-properties.md), or a [Scheduled Failover Message Forwarding Processor](../../references/synapse-properties/message-processors/msg-sched-failover-forwarding-processor-properties.md).
+	<img src="../../../assets/img/create_artifacts/new_message_processor/new-message-processor-wizard-1.png" width="500">
 
-4.  Do one of the following:  
-    -   To save the endpoint in an existing ESB Config project in your workspace, click **Browse** and select that project.
-    -   To save the endpoint in a new ESB Config project, click **Create new Project** and create the new project.
-5.  Click **Finish**. The message processor is created in the `src/main/synapse-config/message-processors` folder under the ESB Config project you specified.
-6.  Open the new artifact from the project explorer, and update any optional message processor properties.
+3.  Enter a unique name for this message processor, specify the type of processor you're creating.
 
-	!!! Info
-        See the list of configurable properties for a [Message Sampling Processor](../../references/synapse-properties/message-processors/msg-sampling-processor-properties.md), [Scheduled Message Forwarding Processor](../../references/synapse-properties/message-processors/msg-sched-forwarding-processor-properties.md), or a [Scheduled Failover Message Forwarding Processor](../../references/synapse-properties/message-processors/msg-sched-failover-forwarding-processor-properties.md).
+	<img src="../../../assets/img/create_artifacts/new_message_processor/new-message-processor-wizard-2.png" width="500">
+
+	See the links given below for descriptions of properties for each message processor type:
+
+	-	[Message Sampling Processor properties](../../../references/synapse-properties/message-processors/msg-sampling-processor-properties)
+	-	[Scheduled Message Forwarding Processor properties](../../../references/synapse-properties/message-processors/msg-sched-forwarding-processor-properties)
+	-	[Scheduled Failover Message Forwarding Processor properties](../../../references/synapse-properties/message-processors/msg-sched-failover-forwarding-processor-properties)
+
+4.  Do one of the following to save the artifact:
+
+  	-   To save the message processor in an existing ESB Config project in your workspace, click **Browse** and select that project.
+  	-   To save the message processor in a new ESB Config project, click **Create new Project** and create the new project.
+
+5.  Click **Finish**. 
+
+The message processor is created in the `src/main/synapse-config/message-processors` folder under the ESB Config project you specified.
+
+### Updating the properties
+
+Open the new message processor artifact from the project explorer. You can use the **Form** view or the **Source** view to update message processor properties.
+
+<img src="../../../assets/img/create_artifacts/new_message_processor/message-processor-form-view.png" width="800">
+
+See the links given below for descriptions of properties for each processor type:
+
+-	[Message Sampling Processor properties](../../../references/synapse-properties/message-processors/msg-sampling-processor-properties)
+-	[Scheduled Message Forwarding Processor properties](../../../references/synapse-properties/message-processors/msg-sched-forwarding-processor-properties)
+-	[Scheduled Failover Message Forwarding Processor properties](../../../references/synapse-properties/message-processors/msg-sched-failover-forwarding-processor-properties)
 
 ## Examples
 
