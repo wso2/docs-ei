@@ -1,84 +1,101 @@
 # Creating Registry Resources
 
-Initially, your registry resources project will contain only a `pom` file. You can create any number of registry resources inside that project. To create a registry resource:
+Initially, your registry resources project will contain only a `pom` file. You can create any number of registry resources inside that project.
 
-1.  If you have already created a [Registry Resource project](../../creating-projects/#registry-resource-project), right-click the project in the left navigation panel, click **New** , and then click **Registry Resource**. This will open the **New Registry Resource** window.
+## Step 1: Creating the resource artifact
 
-    <img src="../../../assets/img/create_artifacts/registry_resources/select-resource.png" width="500">
+Right-click the [Registry Resource project](../../creating-projects/#registry-resource-project) and click **New** -> **Registry Resource**.
 
-2.  Select the **From existing template** option and click **Next**.
+<img src="../../../assets/img/create_artifacts/new_resource/select-resource.png" width="500">
 
-## From existing template
+This will open the **New Registry Resource** window.
 
-Use the **From existing template** option if you want to select a template from which to create a registry resource.
+<img src="../../../assets/img/create_artifacts/new_resource/new-resource-wizard-1-1.png" width="500">
 
-1.  Select **From existing template** and click **Next**.
+Select one of the following options and click **Next**.
 
-    <img src="../../../assets/img/create_artifacts/new_resource/new-resource-wizard-1.png" width="500">
+- [From existing template](#from-existing-template)
+- [Import from file system](#import-from-file-system)
+- [Import Registry dump file from file system](#import-registry-dump-file-from-file-system)
+- [Check-out from Registry](#check-out-from-registry)
 
-2.  Enter a unique name for the resource and select a resource template for the **Template** field. select a template from the list. In this example, a **WSDL File** template is used.
+### From existing template
 
-    <img src="../../../assets/img/create_artifacts/new_resource/new-resource-wizard-2.png" width="500">
+Use the **From existing template** option if you want to generate a registry resource from a template.
 
-3.  In the **Registry** field, select the registry partition: **conf** or **gov**.
-4.  In the **Registry Path** field, specify a folder within the registry partition you specified. Enter a value to create a folder by that name.
-5.  In the **Save Resource in** field, click **Browse** to select an existing registry resource project to save the resource. Alternatively, click **Create new Project** and create a new project.       
-6.  Click **Finish**.
+<img src="../../../assets/img/create_artifacts/new_resource/new-resource-wizard-1-1.png" width="500">
 
-You will now see the `WSDL` file generated with the specified name and opened it in the embedded WSDL editor.
+Click **Next** and specify values for the following parameters:
 
-## Import from file system
+<img src="../../../assets/img/create_artifacts/new_resource/new-resource-wizard-2.png" width="500">
+
+Enter a unique name for the resource and select a resource template for the **Template** field. In this example, a **WSDL File** template is used.
+
+### Import from file system
 
 Use the **Import from file system** option to import a file or a folder
-containing registry resources. This helps you import a resource and
-collection from the same registry instance or a different registry
-instance that you have added. Similarly, you can export a resource or
-collection to the same registry instance or a different registry
-instance.
+containing registry resources.
 
-1.  Click the **Import from file system** option and click **Next** .
-2.  Click **Browse file** or **Browse folder** and browse to the
-    relevant file or folder.
-3.  If you browsed to a folder, the **Copy content only** check box will
-    be enabled. Select the check box if you want to copy only the
-    content of the folder and not the folder itself to the location you
-    specify below.
-4.  In the **Registry Path to deploy** field, specify where the registry
-    resource should be checked-in at the time of deployment.
-5.  In the **Save Resource in** field, select an existing Registry
-    Resource project in which you want to save the resource.
-    Alternatively, you can create a new Registry Resource project.
-6.  Click **Finish** .  
+!!! Tip
+    This helps you import a resource and collection from the same registry instance or a different registry instance that you have added. Similarly, you can export a resource or collection to the same registry instance or a different registry instance.
 
-## Import Registry dump file from file system
+<img src="../../../assets/img/create_artifacts/new_resource/new-resource-wizard-1-2.png" width="500">
 
-Use this option to browse to a Registry Dump file which you can use to
+Click **Next** and specify values for the following parameters:
+
+<img src="../../../assets/img/create_artifacts/new_resource/new-resource-wizard-3.png" width="500">
+
+<table>
+  <tr>
+    <th>Browse file/Browse folder</th>
+    <td>Browse to find the relevant file or folder.</td>
+  </tr>
+  <tr>
+    <th>Copy content only</th>
+    <td>If you selected <b>Browse Folder</b>, the <b>Copy content only</b> check box will be enabled. Select the check box if you want to copy only the content of the folder (and not the folder itself) to the save location.</td>
+  </tr>
+</table>
+
+### Import Registry dump file from file system
+
+Use this option to browse for a registry dump file, which you can use to
 sync a registry.
 
-1.  Click the **Import Registry dump file from file system** option and
-    click **Next** .
-2.  Click **Browse** and browse to the relevant file.
-3.  In the **Registry Path to deploy** field, specify where the registry
-    resource should be checked-in at the time of deployment.
-4.  In the **Save Resource in** field, select an existing Registry
-    Resource project in which you want to save the resource.
-    Alternatively, you can create a new Registry Resource project.
-5.  Click **Finish** .  
+<img src="../../../assets/img/create_artifacts/new_resource/new-resource-wizard-1-3.png" width="500">
 
-## Check-out from Registry
+Click **Next** and then click **Browse** to find the relevant file.  
 
-1.  Click **Check-out from registry** and click **Next**.
-2.  Specify the path and artifact name.
-3.  In the **Registry Path to deploy** field, specify where the registry
-    resource should be checked-in at the time of deployment.
-4.  In the **Save Resource in** field, select an existing Registry
-    Resource project in which you want to save the resource.
-    Alternatively, you can create a new Registry Resource project.
-5.  Click **Finish** .
+<img src="../../../assets/img/create_artifacts/new_resource/new-resource-wizard-4.png" width="500">
+
+### Check-out from registry
+
+Use this option to check out files from the registry.
+
+<img src="../../../assets/img/create_artifacts/new_resource/new-resource-wizard-1-4.png" width="500">
+
+Click **Next** and specify the artifact name and the registry path from which you want to check out the files.
+
+<img src="../../../assets/img/create_artifacts/new_resource/new-resource-wizard-5.png" width="500">  
+
+## Step 2: Saving the resource artifact
+
+Specify the location to save the registry resource and click **Finish**.
+
+<img src="../../../assets/img/create_artifacts/new_resource/new-resource-wizard-save.png" width="500">  
+
+<table>
+  <tr>
+    <th>Registry path to deploy</th>
+    <td>Specify where the registry resource should be saved to at the time of deployment.</td>
+  </tr>
+  <tr>
+    <th>Save Resource in</th>
+    <td>Select an existing <a href="../../../develop/creating-projects/#registry-resource-project">registry resource project</a> to save the resource. Alternatively, you can create a new registry resource project.</td>
+  </tr>
+</table>
 
 ## Editing a Registry Resource
 
-You may need to change the details you entered for a registry resource, for example, the registry path. You can edit such information using the Registry Resource Editor. To open the Registry Resource Editor, right-click on the Registry Resources project and click **Registry Resource Editor**.
+You may need to change the details you entered for a registry resource, for example, the registry path. You can edit such information using the **Registry Resource Editor**. To open this editor, right-click the [Registry Resource project](../../creating-projects/#registry-resource-project) and click **Registry Resource Editor**.
 
-This editor lists all the registry resources that you have defined in that project and it will list the **Registry Path to Deploy**
-information per resource.
+This editor lists all the registry resources that you have defined in that project and it will list the **Registry Path to Deploy** information per resource.
