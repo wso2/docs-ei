@@ -604,7 +604,7 @@ nav:
           - 'FIX Parameters': 'references/synapse-properties/transport-parameters/fix-transport-parameters.md'
           - 'MailTo Parameters': 'references/synapse-properties/transport-parameters/mailto-transport-parameters.md'
           - 'MQTT Parameters': 'references/synapse-properties/transport-parameters/mqtt-transport-parameters.md'
-      - Security Topics:
+      - Security Topics: 'references/security/customizing-secure-vault.md'
         - 'Customizing Secure Vault' : 'references/security/customizing-secure-vault.md'
         - 'Using Keystores' : 'references/security/using_keystores.md'
         - 'WS-Security Implementations' : 'references/security/security-implementation.md'
