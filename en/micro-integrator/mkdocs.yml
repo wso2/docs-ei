@@ -287,7 +287,7 @@ nav:
         - 'Exporting Projects': 'develop/export_project.md'
         - 'Creating Docker Project': 'develop/create-docker-project.md'
         - 'Creating Kubernetes Project': 'develop/create-kubernetes-project.md'
-      - Creating New Artifacts:
+      - Creating Artifacts:
         - 'Importing Artifacts': 'develop/importing-artifacts.md'
         - 'Creating a REST API': 'develop/creating-artifacts/creating-an-api.md'
         - 'Creating a Proxy Service': 'develop/creating-artifacts/creating-a-proxy-service.md'
@@ -604,7 +604,7 @@ nav:
           - 'FIX Parameters': 'references/synapse-properties/transport-parameters/fix-transport-parameters.md'
           - 'MailTo Parameters': 'references/synapse-properties/transport-parameters/mailto-transport-parameters.md'
           - 'MQTT Parameters': 'references/synapse-properties/transport-parameters/mqtt-transport-parameters.md'
-      - Security Topics: 'references/security/customizing-secure-vault.md'
+      - Security Topics:
         - 'Customizing Secure Vault' : 'references/security/customizing-secure-vault.md'
         - 'Using Keystores' : 'references/security/using_keystores.md'
         - 'WS-Security Implementations' : 'references/security/security-implementation.md'
