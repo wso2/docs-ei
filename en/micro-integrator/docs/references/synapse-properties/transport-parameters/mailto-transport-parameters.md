@@ -1,14 +1,15 @@
-# MailTo Transport
+# MailTo Parameters
 
-## About the MailTO transport
+When you implement an integration use case that requires the capability of sending emails (over SMTP) or receive emails (over POP3 or IMAP), you can use the following parameters in your [proxy service](../../../../develop/creating-artifacts/creating-a-proxy-service) artifact.
 
-When you use the Micro Integrator to mediate messages, the mediation sequence can be configured to send emails (over SMTP) or receive emails (Over POP3 or IMAP) by using the MailTo transport protocol.
+!!! Info
+    The Micro Integrator can use the MailTo transport only if the transport listener and sender are enabled and configured at the server level. Read about the [MailTo transport](../../../../setup/transport_configurations/configuring-transports/#configuring-the-mailto-transport).
 
-The MailTo transport listener implementation can be configured by setting the parameters as described in the JavaMail API documentation. For IMAP related properties, see [IMAP Package Summary](https://javaee.github.io/javamail/docs/api/com/sun/mail/imap/package-summary.html). For POP3 properties, see [POP3 Package Summary](https://javaee.github.io/javamail/docs/api/com/sun/mail/pop3/package-summary.html). The MailTo transport listener also supports the following transport parameters in addition to the parameters described in the JavaMail API documentation.
+{!references/synapse-properties/pull/proxy-service-add-properties-pull.md!}
 
-## Parameters
+See [Creating a Proxy Service](../../../../develop/creating-artifacts/creating-a-proxy-service) for instructions.
 
-Given below is the list of MailTo transport parameters that can be configured when you [create a proxy service](../../../develop/creating-artifacts/creating-a-proxy-service.md).
+## Service-Level Parameters
 
 <table>
    <thead>
