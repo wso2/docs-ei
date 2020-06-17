@@ -12,7 +12,7 @@ To be able to dynamically inject parameters to the embedded Micro Integrator, yo
 
     !!! Note
         The server configuration file (`deployment.toml`) of the embedded Micro Integrator of WSO2 Integration Studio is stored in the following directories:
-        
+
         - On **MacOS**: `<MI_TOOLING_HOME>/Contents/Eclipse/runtime/microesb/lib/`
         - On **Windows**: `<MI_TOOLING_HOME>/runtime/microesb/lib`
 
@@ -49,7 +49,7 @@ To inject environment variables to the embedded Micro Integrator:
         The offset parameter in the `deployment.toml` file of the embedded Micro Integrator should be specified as follows:
         ```toml
         [server]
-        offset="$env{offset}"
+        offset=$env{offset}
         ```
 
     ![run configurations environments](../../assets/img/run-configs-env-popup.png)
