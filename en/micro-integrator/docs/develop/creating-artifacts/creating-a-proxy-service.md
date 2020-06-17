@@ -70,28 +70,32 @@ Drag and drop the required integration artifacts from the **Palette** to the can
 
 ### Updating the properties
 
-To update service-level properties from the **Design** view:
+To add service-level properties to the proxy service from the **Design** view:
 
 1.  Double-click the **Proxy Service** icon to open the <b>Properties</b> tab for the service.
 
     <img src="../../../assets/img/create_artifacts/new_proxy_service/proxy-service-properties.png" width="700">
 
-2.  To add service-level transport parameters, expand the **Parameters** section and click the **plus** <img src="../../../assets/img/common/plus-icon.png" width="20"> icon.
+2.  Expand each section and add the required parameters.
+
+To add service-level transport parameters:
+
+1.  Go to the **Properties** tab and expand the **Parameters** section as shown below.
 
     <img src="../../../assets/img/create_artifacts/new_proxy_service/service-level-params.png" width="700">
 
-    In the dialog box that opens, enter the parameter name and value as a key-value pair:
+2.  Click the **plus** <img src="../../../assets/img/common/plus-icon.png" width="20"> icon and add the parameter name and value as a key-value pair:
 
     <img src="../../../assets/img/create_artifacts/new_proxy_service/service-level-params-dialog.png" width="500">
 
-    See the following links for the list of transport parameters you can use:
+See the following links for the list of transport parameters you can use:
 
-      - [VFS Parameters](../../../references/synapse-properties/transport-parameters/vfs-transport-parameters)
-      - [JMS Parameters](../../../references/synapse-properties/transport-parameters/jms-transport-parameters)
-      - [FIX Parameters](../../../references/synapse-properties/transport-parameters/fix-transport-parameters)
-      - [MailTo Parameters](../../../references/synapse-properties/transport-parameters/mailto-transport-parameters)
-      - [MQTT Parameters](../../../references/synapse-properties/transport-parameters/mqtt-transport-parameters)
-      - [RabbitMQ Parameters](../../../references/synapse-properties/transport-parameters/rabbitmq-transport-parameters)
+  - [VFS Parameters](../../../references/synapse-properties/transport-parameters/vfs-transport-parameters)
+  - [JMS Parameters](../../../references/synapse-properties/transport-parameters/jms-transport-parameters)
+  - [FIX Parameters](../../../references/synapse-properties/transport-parameters/fix-transport-parameters)
+  - [MailTo Parameters](../../../references/synapse-properties/transport-parameters/mailto-transport-parameters)
+  - [MQTT Parameters](../../../references/synapse-properties/transport-parameters/mqtt-transport-parameters)
+  - [RabbitMQ Parameters](../../../references/synapse-properties/transport-parameters/rabbitmq-transport-parameters)
 
 3.  See the complete list of [service-level properties and parameters](../../../references/synapse-properties/proxy-service-properties) that you can configure.
 
