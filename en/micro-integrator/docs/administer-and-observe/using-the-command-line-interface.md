@@ -450,3 +450,37 @@ mi version
          # To bulk encrypt secrets defined in a properties file
          mi secret create -f=</file_path>
     ```
+    
+-   **transaction**
+    ```bash
+     Usage:
+         mi transaction [command] [arguments] [flags]
+
+     Available Commands:
+         count                                    Get transaction count for the current month
+         count [year] [month]                     Get transaction count for the given year and month
+         remote [start] [end] [--path[=<path>]]   Generate the transaction report at the given location for the given period
+         remote [start] [end]                     Generate the transaction report at the current location with the data from the specified date
+         remote [start] [--path[=<path>]]         Generate the transaction report at the given location for the given period
+         
+         
+     Available Flags:
+         -p, --path              Specify a directory path to create the transaction count report. Applicable only to the command "report"
+         
+     Examples:
+         # To get the transction count for the current month
+         mi transaction count
+
+         # To get the transction count for 2020/05
+         mi transaction count 2020 05
+         
+         # To generate the transction count report at the given location with data between 2020-01 and 2020-05.
+         mi transaction report 2020-01 2020-05 --path=</dir_path>
+         
+         # To generate the report at the given location with data from 2020-01 upto now.
+         mi transaction count 2020-01 --path=</dir_path>
+         
+         # To generate the report at the current location for data between the given period of dates.
+         mi transaction count 2020-01 2020-05
+         
+    ```

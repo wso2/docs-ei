@@ -820,3 +820,75 @@ The management API has multiple resources to provide information regarding the d
         "message": "Successfully updated logger.org-apache-hadoop-hive.level to DEBUG"
     }
 	```
+	
+### GET TRANSACTION COUNT
+
+-	**Resource**: `/transactions/count`
+
+	**Description**: Retrieves the transction count for the current month.
+
+	**Example**:
+
+	```bash tab='Request'
+	curl -X GET "https://localhost:9164/management/transactions" -H "accept: application/json" -H "Authorization: Bearer TOKEN" -k -i
+	```
+
+	```bash tab='Response'
+	{
+	    "Month": 6,
+	    "Year": 2020,
+	    "RequestCount": 74087714
+	}
+	```
+
+-	**Resource**: `/transactions/count?year={year}&month={month}`
+
+	**Description**: Retrieves transaction count for the given year and month.
+
+	**Example**:
+
+	```bash
+	curl -X GET "https://localhost:9164/management/transactions?year=2020&month=5" -H "accept: application/json" -H "Authorization: Bearer TOKEN" -k -i
+	```
+
+    ```bash tab='Response'
+	{
+	    "Month": 5,
+	    "Year": 2020,
+	    "TransactionCount": 25074026
+	}
+	```
+	
+### GET TRANSACTION REPORT DATA
+
+-	**Resource**: `/transactions/report?start={start}&end={end}`
+
+	**Description**: Retrieves transaction report data for the given period. Generates the transaction report at the <CARBON_HOME>/tmp.
+
+	**Example**:
+
+	```bash tab='Request'
+	curl -X GET "https://localhost:9164/management/transactions/report?start=2020-01&end=2020-05" -H "accept: application/json" -H "Authorization: Bearer TOKEN" -k -i
+	```
+
+	```bash tab='Response'
+	{
+    	    "TransactionCountData": [[col1, col2, col3, col4],[val1, val2, val3, val4]]
+    	}
+	```
+
+-	**Resource**: `/transactions/report?start={start}`
+
+	**Description**: Retrieves transaction report data from the date specified. Generates the transaction report at the <CARBON_HOME>/tmp directory.
+
+	**Example**:
+
+	```bash
+	curl -X GET "https://localhost:9164/management/transactions/report?start=2020-01" -H "accept: application/json" -H "Authorization: Bearer TOKEN" -k -i
+    ```
+
+    ```bash tab='Response'
+	{
+	    "TransactionCountData": [[col1, col2, col3, col4],[val1, val2, val3, val4]]
+	}
+	```
