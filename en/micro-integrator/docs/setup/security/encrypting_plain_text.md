@@ -111,7 +111,7 @@ To encrypt secrets using the CLI tool:
     mi secret create -f=</file_path>
     ```
     
-### Add secrets to the environments
+### Adding secrets to the environment
 
 To add the encrypted secret to the relevant environment:
 
