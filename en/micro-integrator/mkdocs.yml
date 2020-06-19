@@ -46,7 +46,7 @@ theme:
 # Navigation
 nav:
     - 'Home': index.md
-    - Get Started:
+    - Get Started: 'overview/introduction.md'
       - 'Introduction': 'overview/introduction.md'
       - 'Quick Start Guide': 'overview/quick-start-guide.md'
       - 'Developing your First Integration': 'develop/integration-development-kickstart.md'
@@ -200,6 +200,14 @@ nav:
         - 'Kubernetes Deployment Patterns': 'setup/deployment/kubernetes_deployment_patterns.md'
         - 'EI Kubernetes Operator': 'setup/deployment/ei_kubernetes_operator.md'
         - 'Deploy on Kubernetes': 'setup/deployment/kubernetes_deployment.md'
+        - CICD Pipeline:
+          - 'Pipeline Overview': 'setup/deployment/k8s-pipeline/overview.md'
+          - 'Quick Start Guide': 'setup/deployment/k8s-pipeline/quick-start-guide.md'
+          - 'Testing the Pipeline Environment': 'setup/deployment/k8s-pipeline/testing-the-pipeline-environment.md'
+          - 'Adding Test Cases': 'setup/deployment/k8s-pipeline/adding-test-cases.md'
+          - 'Modifying Pipeline Configs': 'setup/deployment/k8s-pipeline/modifying-pipeline-configurations.md'
+          - 'Modifying Product Configs': 'setup/deployment/k8s-pipeline/modifying-product-configurations.md'
+          - 'Deploying your Own Artifact': 'setup/deployment/k8s-pipeline/deploy-your-own-artifact.md'
         - K8s Deployment Samples:
           - 'Sample 1: Hello World': 'setup/deployment/k8s-samples/hello-world.md'
           - 'Sample 2: Message Routing': 'setup/deployment/k8s-samples/content-based-routing.md'
@@ -589,7 +597,7 @@ nav:
             - 'Scheduled Failover Message Forwarding Processor': 'references/synapse-properties/message-processors/msg-sched-failover-forwarding-processor-properties.md'
         - 'Templates': 'references/synapse-properties/template-properties.md'
         - 'Endpoints': 'references/synapse-properties/endpoint-properties.md'
-        - Data Services: 'references/synapse-properties/data-services.md'
+        - Data Services:
           - 'About Data Services': 'references/synapse-properties/data-services.md'
           - 'Elements of a Data Service': 'references/synapse-properties/data-services/elements-of-a-data-service.md'
           - 'Query Parameters': 'references/synapse-properties/data-services/query-parameters.md'
