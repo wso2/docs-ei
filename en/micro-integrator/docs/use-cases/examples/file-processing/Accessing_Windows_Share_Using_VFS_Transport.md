@@ -43,8 +43,11 @@ Following are the integration artifacts (proxy service) that we can used to impl
 ## Build and run
 
 To test this sample, the following files and directories should be created:
-
-1.  Create the file directories:
+1.  Download the provider [jar](https://repo1.maven.org/maven2/jcifs/jcifs/1.3.17/jcifs-1.3.17.jar) and place it in <MI_HOME>/lib directory and continue with the feature.
+    Please note that, since the above library is licensed under LGPL version 2.1 and by downloading and 
+    installing the library you will have to comply with the terms of LGPL version 2.1 and its restrictions as found in https://www.gnu.org/licenses/old-licenses/lgpl-2.1.en.html."
+    
+2.  Create the file directories:
 
     -   Create a directory named **test** on a windows machine and create
         three sub directories named **in** , **out** and **original** within
@@ -58,9 +61,9 @@ To test this sample, the following files and directories should be created:
     -   You need to set both `transport.vfs.MoveAfterProcess` and `transport.vfs.MoveAfterFailure` parameter values to point to the **original** directory location.
     -   Be sure that the endpoint in the `<outSequence>` points to the **out** directory location. Make sure that the prefix `vfs:` in the endpoint URL is not removed or changed.
 
-2.  Add [sample_proxy_1.wsdl](https://github.com/wso2-docs/WSO2_EI/blob/master/samples-protocol-switching/sample_proxy_1.wsdl) as a [registry resource](../../../../develop/creating-artifacts/creating-registry-resources). Change the registry path of the proxy accordingly. 
+3.  Add [sample_proxy_1.wsdl](https://github.com/wso2-docs/WSO2_EI/blob/master/samples-protocol-switching/sample_proxy_1.wsdl) as a [registry resource](../../../../develop/creating-artifacts/creating-registry-resources). Change the registry path of the proxy accordingly. 
     
-3.  Set up the back-end service.
+4.  Set up the back-end service.
         
     -	Download the [stockquote_service.jar](https://github.com/wso2-docs/WSO2_EI/blob/master/Back-End-Service/stockquote_service.jar)
 
@@ -68,7 +71,7 @@ To test this sample, the following files and directories should be created:
     ```bash
     java -jar stockquote_service.jar
         
-4.  Create the `test.xml` file shown below and copy it to the location specified by `transport.vfs.FileURI` in the configuration (i.e., the **in** directory). This contains a simple stock quote request in XML/SOAP format.
+5.  Create the `test.xml` file shown below and copy it to the location specified by `transport.vfs.FileURI` in the configuration (i.e., the **in** directory). This contains a simple stock quote request in XML/SOAP format.
 
     ```xml
     <?xml version='1.0' encoding='UTF-8'?>
