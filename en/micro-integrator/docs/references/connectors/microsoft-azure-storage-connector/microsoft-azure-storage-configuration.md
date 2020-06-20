@@ -1,7 +1,5 @@
 # Setting up the Microsoft Azure Storage Environment
 
-The Microsoft Azure Storage Connector allows you to access the [Azure Storage services](https://azure.microsoft.com/en-us/) using Microsoft Azure Storage Java SDK through WSO2 Enterprise Integrator (WSO2 EI). Microsoft Azure Storage is a Microsoft-managed Cloud service that provides highly available and secure storage.
-
 To work with the Microsoft Azure Storage connector, you need to have a Microsoft Azure account. If you do not have a Microsoft Azure account, you are prompted to create one when you sign up.
 
 ## Signing Up for Microsoft Azure

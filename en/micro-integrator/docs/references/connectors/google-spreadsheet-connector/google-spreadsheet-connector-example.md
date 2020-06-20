@@ -1,12 +1,10 @@
 # Google Spreadsheet Connector Example
 
-The Google Sheets API lets users to read and modify any aspect of a spreadsheet. The WSO2 Google Spreadsheet Connector allows you to access the Google Spreadsheet [API Version v4](https://developers.google.com/sheets/api/guides/concepts) through WSO2 EI. It allows users to read/write any aspect of the spreadsheet via the spreadsheets collection.
-
-It has been provided the ability to do Spreadsheet operations and Spreadsheet Data operations. 
+The Google Sheets API lets users to read and modify any aspect of a spreadsheet. The WSO2 Google Spreadsheet Connector allows you to access the Google Spreadsheet [API Version v4](https://developers.google.com/sheets/api/guides/concepts) through WSO2 EI. It allows users to read/write any aspect of the spreadsheet via the spreadsheets collection. It has the ability to do spreadsheet operations and spreadsheet data operations. 
 
 ## What you'll build
 
-This example explains how to use Google Spreadsheet Connector to create a Google spreadsheet, write data to it and get them read. Further, it explains how the data in the spreadsheet can be edited. 
+This example explains how to use Google Spreadsheet Connector to create a Google spreadsheet, write data to it, and read it. Further, it explains how the data in the spreadsheet can be edited. 
 
 It will have three HTTP API resources, which are `insert`, `read` and `edit`. 
 
@@ -33,7 +31,7 @@ Follow these steps to set up the Integration Project and the Connector Exporter 
 
 ## Creating the Integration Logic
 
-1. Follow these steps to [Configure Google Sheets API](get-credentials-for-google-spreadsheet.md) and obtain the Client Id, Client Secret, Access Token and Refresh Token.  
+1. Follow these steps to [Configure Google Sheets API](get-credentials-for-google-spreadsheet.md) and obtain the Client Id, Client Secret, Access Token, and Refresh Token.  
 
 2. Right click on the created Integration Project and select, -> **New** -> **Rest API** to create the REST API. 
     <img src="../../../../assets/img/connectors/adding-an-api.png" title="Adding a Rest API" width="800" alt="Adding a Rest API"/>

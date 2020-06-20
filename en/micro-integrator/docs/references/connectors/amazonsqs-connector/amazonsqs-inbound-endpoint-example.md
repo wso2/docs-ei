@@ -5,7 +5,7 @@ The AmazonSQS Inbound Endpoint allows you to connect to Amazon and consume messa
 ## What you'll build
 
 This scenario demonstrates how the AmazonSQS inbound endpoint works as a message consumer. In this scenario, you should have a connectivity with Amazon AWS account. Please follow the steps mentioned in the [Setting up the Amazon Lambda Environment](../amazonlambda-connector/setting-up-amazonlambda.md) document in order to create an Amazon account and obtain access key id and secret access key.
-                                                                                                                                                                      
+
 The Amazon SQS queue will receive messages from a third party system, while the WSO2 EI will keep listening to the messages from that queue. First you need to create a **Queue** inside the **Simple Queue Service** and send a message to the created Queue. The WSO2 EI AmazonSQS Inbound Endpoint will receive the message and notify. If you are extending this sample scenario, you can perform any kind of mediation using the [mediators](../../../../references/mediators/about-mediators/) available with WSO2 EI.
 
 Following diagram shows the overall solution we are going to build. The Simple Queue Service will receive messages from the outside, while the AmazonSQS inbound endpoint will consume messages based on the updates.
