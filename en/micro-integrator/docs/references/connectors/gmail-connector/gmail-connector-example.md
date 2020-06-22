@@ -1,6 +1,6 @@
 # Gmail Connector Example
 
-The Gmail Connector allows you to access the [Gmail REST API](https://developers.google.com/gmail/api/v1/reference) through WSO2 EI. Gmail is a free, Web-based e-mail service provided by Google. It allows you to send, read, and delete emails through the Gmail REST API. Furthermore, it provides the ability to read, trash, untrash, and delete threads, create, update, and delete drafts, get the Gmail profile, and access the mailbox history as well, while handling OAuth 2.0 authentication. 
+The Gmail Connector allows you to access the [Gmail REST API](https://developers.google.com/gmail/api/v1/reference) through WSO2 EI. 
 
 ## What you'll build
 

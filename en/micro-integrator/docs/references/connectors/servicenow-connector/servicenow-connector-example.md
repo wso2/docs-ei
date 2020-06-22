@@ -1,7 +1,5 @@
 # ServiceNow Connector Example
 
-ServiceNow is an application platform as a service, which is a cloud-based computing model that provides the infrastructure needed to develop, run, and manage applications. It offers activities of an organization such as data collection, storage, workflow automation, and reporting through a single user interface. This software as a service (SaaS) platform contains a number of modular applications that can vary by instance and user. It focuses on service-orientation toward the tasks, activities, and processes.
-
 The WSO2 ServiceNow connector allows you to access the ServiceNow REST API through WSO2 EI. Using ServiceNow connector you can work with Aggregate API, Import Set API and Table API in ServiceNow. You can further read about ServiceNow REST APIs from [here](https://developer.servicenow.com/dev.do#!/reference/api/orlando/rest/c_TableAPI).
 
 ## What you'll build
@@ -20,8 +18,7 @@ If you do not want to configure this yourself, you can simply [get the project](
 
 ## Setting up the environment 
 
-Please follow the steps mentioned in the [Setting up ServiceNow Instance](settingup-servicenow-instance.md) document in order to create a ServiceNow Instance and obtain the credentials. 
-Keep them saved to be used in the next steps.  
+Please follow the steps mentioned in the [Setting up ServiceNow Instance](settingup-servicenow-instance.md) document in order to create a ServiceNow Instance and obtain the credentials. Keep them saved to be used in the next steps.  
 
 ## Configure the connector in WSO2 Integration Studio
 
@@ -72,9 +69,9 @@ Follow these steps to set up the Integration Project and the Connector Exporter 
         </servicenow.getRecordById>
     </sequence>
   ```
-  4. Now right click on the created Integration Project and select **New** -> **Rest API** to create the REST API. 
+4. Now right click on the created Integration Project and select **New** -> **Rest API** to create the REST API. 
   
-  5. Provide the API name as ServiceNowAPI and the API context as `/servicenow`. You can go to the source view of the XML configuration file of the API and copy the following configuration. 
+5. Provide the API name as ServiceNowAPI and the API context as `/servicenow`. You can go to the source view of the XML configuration file of the API and copy the following configuration. 
     ```
       <?xml version="1.0" encoding="UTF-8"?>
       <api context="/servicenow" name="ServiceNowAPI" xmlns="http://ws.apache.org/ns/synapse">
@@ -264,4 +261,4 @@ You should get the following text returned.
 ## What's Next
 
 * You can deploy and run your project on [Docker](../../../setup/installation/run_in_docker.md) or [Kubernetes](../../../setup/installation/run_in_kubernetes.md).
-* To customize this example for your own scenario, see [ServiceNow Connector Configuration](file-connector-config.md) documentation for all operation details of the connector.
+* To customize this example for your own scenario, see [ServiceNow Connector Configuration](servicenow-connector-config.md) documentation for all operation details of the connector.

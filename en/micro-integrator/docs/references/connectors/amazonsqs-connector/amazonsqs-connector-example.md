@@ -1,12 +1,11 @@
 # AmazonSQS Connector Example
 
-Amazon Simple Queue Service (SQS) is a fully managed message queuing service that allows you to run business applications and services so that the messaging is not dependent on the IT infrastructure itself. This means the messages can run and fail independently of each other in a way that does not cause slowdowns, system-wide faults, or a disturbance within the application. By using Amazon SQS, you can move data between distributed components of your applications that perform different tasks without losing messages or requiring each component to be always available.
-
-The WSO2 Amazon SQS connector allows you to access the exposed API through the WSO2 EI. Through this connector, you can perform CRUD operations for queues in Amazon SQS instance, update permissions and can work with messages. For further reference please refer to [Amazon SQS API reference](https://docs.aws.amazon.com/AWSSimpleQueueService/latest/APIReference/Welcome.html).
+The WSO2 Amazon SQS connector allows you to access the exposed Amazon SQS API through the WSO2 EI.
 
 ## What you'll build
 
 This example explains how to use Amazon SQS Connector to create a queue in the Amazon SQS, send a message to the queue, forward it to Simple Stock Quote Service Backend and send the response to the user. 
+
 It has a single HTTP API resource, which is `sendToQueue`. 
 
   <img src="../../../../assets/img/connectors/AmazonSQS-Connector.png" title="AmazonSQS-Connector" width="800" alt="AmazonSQS-Connector"/>

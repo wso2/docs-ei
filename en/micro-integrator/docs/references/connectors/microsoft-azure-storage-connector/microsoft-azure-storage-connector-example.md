@@ -1,7 +1,5 @@
 # Microsoft Azure Storage Connector Example
 
-The Microsoft Azure Storage Connector allows you to access the Azure Storage services using Microsoft Azure Storage Java SDK through WSO2 EI. [Azure Storage](https://azure.microsoft.com/en-us/) is a Microsoft-managed cloud service that provides storage that is highly available, secure, durable, scalable and redundant. The Azure Storage consists of four primary Azure Storage types. They are blob storage, table storage, file storage, queue storage.
-
 Given below is a sample scenario that demonstrates how to work with container and blob operations using the WSO2 Microsoft Azure Storage Connector.
 
 ## What you'll build
@@ -24,7 +22,7 @@ All six operations are exposed via an API. The API with the context `/resources`
 * `/deletedetails` : Remove added employee data from the specified text or binary employee data (blob).
 * `/deletecontainer` : Remove created container in the Microsoft Azure Storage account.
 
-For more information about these operations, please refer to the [Microsoft Azure Storage connector reference guide](microsoft-azure-storage-connector-reference.md).
+For more information about these operations, please refer to the [Microsoft Azure Storage connector reference guide](microsoft-azure-storage-reference.md).
 
 > **Note**: Before invoking the API, you need to create a **Storage Account** in **Microsoft Azure Storage account**. See [Azure Storage Configuration](microsoft-azure-storage-configuration.md) documentation for more information.
 
@@ -201,7 +199,7 @@ Follow these steps to deploy the exported CApp in the Enterprise Integrator Runt
 
 ## Testing
 
-Invoke the API as shown below using the curl command. Curl Application can be downloaded from [here] (https://curl.haxx.se/download.html).
+Invoke the API as shown below using the curl command. Curl Application can be downloaded from [here](https://curl.haxx.se/download.html).
 
 1. Creating a new container in Microsoft Azure Storage for store employee details.
  

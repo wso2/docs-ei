@@ -12,7 +12,7 @@ In this exmple we can trigger the notifications to the Salesforce Inbound Endpoi
 
 The following diagram illustrates all the required functionality of the Salesforce inbound operations that you are going to build. 
 
-For example, we are building integrated example driven through the [Salesforce connector](sf-rest-connector-example.md) and Salesforce Inbound Endpoint. The user calls the Salesforcerest API. It invokes the **create** sequence and creates a new account in Salesforce. Then through the **retrieve** sequence, it displays all the existing account details to the user. 
+For example, we are building an integrated example driven through the [Salesforce connector](sf-rest-connector-example.md) and Salesforce Inbound Endpoint. The user calls the Salesforce REST API. It invokes the **create** sequence and creates a new account in Salesforce. Then, through the **retrieve** sequence, it displays all the existing account details to the user. 
 
 Now that you have configured the Salesforce Inbound Endpoint, use the following Inbound Endpoint configuration to retrieve account details from your Salesforce account. The Salesforce inbound endpoint of WSO2 EI acts as a message receiver. You can inject that message into the mediation flow for getting the required output.
 
@@ -67,7 +67,7 @@ Now that you have configured the Salesforce Inbound Endpoint, use the following 
        <drop/>
    </sequence>
    ```
-> **Note**: To configure the `connection.salesforce.password` parameter value, please use the steps given under the topic `Reset Security Token` in the [sf-rest inbound endpoint configuration](sf-rest-inbound-endpoint-configuration.md) document.
+> **Note**: To configure the `connection.salesforce.password` parameter value, please use the steps given under the topic `Reset Security Token` in the [Salesforce inbound endpoint configuration](sf-inbound-endpoint-configuration.md) document.
    
 ## Exporting Integration Logic as a CApp
 
@@ -90,9 +90,9 @@ Now that you have configured the Salesforce Inbound Endpoint, use the following 
 
 ## Testing  
 
-> **Note**: If you want to test this scenario by inserting data manually into the created object records, please follow the steps given under topic `Testing the PushTopic Channel` in the [sf-rest inbound endpoint configuration](sf-rest-inbound-endpoint-configuration.md) document.
+> **Note**: If you want to test this scenario by inserting data manually into the created object records, please follow the steps given under topic `Testing the PushTopic Channel` in the [Salesforce inbound endpoint configuration document](sf-inbound-endpoint-configuration.md).
 
-   Please use the [sf-rest-connector-example](sf-rest-connector-example.md) testing steps to test this Inbound Endpoint scenario;
+   Please use the [Salesforce REST Connector example](sf-rest-connector-example.md) testing steps to test this Inbound Endpoint scenario;
    
    Save a file called data.json with the following payload (change the value of `Name` field as `Manager`).
    ```
@@ -119,3 +119,4 @@ Now that you have configured the Salesforce Inbound Endpoint, use the following 
 ## What's next
    
 * You can deploy and run your project on [Docker](../../../setup/installation/run_in_docker.md) or [Kubernetes](../../../setup/installation/run_in_kubernetes.md).
+* To customize this example for your own scenario, see [Salesforce Inbound Endpoint Reference](sf-inbound-endpoint-reference-configuration.md) documentation for all operation details of the connector.

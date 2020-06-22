@@ -7,17 +7,17 @@ The Salesforce REST Connector allows you to work with records in Salesforce, a w
 This example explains how to use the Salesforce client to connect with the Salesforce instance and perform the 
 following operations:
 
-* Create an Account.
+* Create an account.
 
   The user sends the request payload that includes sObjects (any object that can be stored in the Lightning platform database), to create a new Account object in Salesforce. This request is sent to WSO2 EI by invoking the Salesforce connector API. 
 
-* Execute a SOQL query to retrieve the Account Name and ID in all the existing Accounts.
+* Execute a SOQL query to retrieve the Account Name and ID in all the existing accounts.
 
   In this example use the Salesforce Object Query Language (SOQL) to search stored Salesforce data for specific information which is created under `sObjects`. 
 
 <img src="../../../../assets/img/connectors/Salesforce.png" title="Using Salesforce Rest Connector" width="800" alt="Using Salesforce Rest Connector"/>
 
-The user calls the Salesforcerest API. It invoke the **create** sequence and create a new account in Salesforce. Then through the **retrieve** sequence, it displays all the existing account details to the user. 
+The user calls the Salesforce REST API. It invokes the **create** sequence and creates a new account in Salesforce. Then through the **retrieve** sequence, it displays all the existing account details to the user. 
 
 If you do not want to configure this yourself, you can simply [get the project](#get-the-project) and run it.
 
@@ -27,7 +27,7 @@ Connectors can be added to integration flows in [WSO2 Integration Studio](https:
 
 ### Import the connector
 
-Follow these steps to set up the ESB Solution Project and the Connector Exporter Project. 
+Follow these steps to set up the Integration Project and the Connector Exporter Project. 
 
 {!references/connectors/importing-connector-to-integration-studio.md!} 
 
@@ -245,4 +245,4 @@ You will get a set of account names and the respective IDs as the output.
 ## What's Next
 
 * You can deploy and run your project on [Docker](../../../setup/installation/run_in_docker.md) or [Kubernetes](../../../setup/installation/run_in_kubernetes.md).
-* To customize this example for your own scenario, see [Salesforce Connector Configuration](sf-rest-connector-config.md) documentation for all operation details of the connector.
+* To customize this example for your own scenario, see [Salesforce REST Connector Configuration](sf-rest-connector-config.md) documentation for all operation details of the connector.

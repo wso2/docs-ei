@@ -4,7 +4,7 @@ The Kafka inbound endpoint of WSO2 EI acts as a message consumer. It creates a c
 
 ## What you'll build
 This sample demonstrates how one way message bridging from Kafka to HTTP can be done using the inbound Kafka endpoint.
-See [Configuring kafka connector](kafka-connector-configuration.md) for more information.
+See [Configuring kafka connector](kafka-connector-config.md) for more information.
 
 The following diagram illustrates all the required functionality of the Kafka service that you are going to build. In this example, you only need to consider about the scenario of message consuming.
 

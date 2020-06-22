@@ -6,7 +6,7 @@ First, we will create a Salesforce App (Connected App) and obtain the OAuth 2tok
    <img src="../../../../assets/img/connectors/salesforce-developer-edition-signup.png" title="Create salesforce account" width="800"/> 
 
 2. Log in to Salesforce after verifying your account, with the newly created credentials. In the upper-right corner, select **Setup**.
-   <img src="../../../../assets/img/connectors/Salesforce-account-setup.png" title="Select setup" width="800"/> 
+   <img src="../../../../assets/img/connectors/Salesforce-account-setup.png" title="Select setup" width="500"/> 
 
 3. Navigate to **Apps** > **App Manager** and click on the **New Connected App**.<br>
    <img src="../../../../assets/img/connectors/new-connected-app.png" title="Add new connected app" width="800"/> 
@@ -34,18 +34,17 @@ First, we will create a Salesforce App (Connected App) and obtain the OAuth 2tok
    
 8. On the page that opens, click the **Edit** button. Under **OAuth policies**, select All users may self-authorize in the Permitted Users list, and then click the **Save** button.   
 
-9. Now we have to obtain the access token and refresh token as indicated below. Enter the following URL in your web browser.
-   **<INSTANCE>** should be replaced with your `instance name`, in my example it is `ap17`.
+9. Now we have to obtain the access token and refresh token as indicated below. Enter the following URL in your web browser. **<INSTANCE>** should be replaced with your `instance name`, in my example it is `ap17`.
 
-   ```
-   https://<INSTANCE>.salesforce.com/services/oauth2/authorize?response_type=code&client_id=<CONSUMER_KEY>&redirect_uri=https://login.salesforce.com
-   ```
+    ```
+    https://<INSTANCE>.salesforce.com/services/oauth2/authorize?response_type=code&client_id=<CONSUMER_KEY>&redirect_uri=https://login.salesforce.com
+    ```
 
-   If this is a new browser, you will need to verify the account again with a code sent to the email, and login to the account. It will be redirected to a URL similar to the following.
+    If this is a new browser, you will need to verify the account again with a code sent to the email, and login to the account. It will be redirected to a URL similar to the following.
 
-   ```
-   https://login.salesforce.com/?code=aPrxYXyxzkuBzbiNknnlq2OFfWuX.EU66JOpBnNb_.rLpGZu.FdWAZXvDF6PtpoNWUjnrjYX8g%3D%3D
-   ```
+    ```
+    https://login.salesforce.com/?code=aPrxYXyxzkuBzbiNknnlq2OFfWuX.EU66JOpBnNb_.rLpGZu.FdWAZXvDF6PtpoNWUjnrjYX8g%3D%3D
+    ```
 
 10. Note down the value of the code. In my case, it is: 
 
