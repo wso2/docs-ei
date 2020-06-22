@@ -458,29 +458,29 @@ mi version
 
      Available Commands:
          count                                    Get transaction count for the current month
-         count [year] [month]                     Get transaction count for the given year and month
-         remote [start] [end] [--path[=<path>]]   Generate the transaction report at the given location for the given period
-         remote [start] [end]                     Generate the transaction report at the current location with the data from the specified date
-         remote [start] [--path[=<path>]]         Generate the transaction report at the given location for the given period
+         count [year] [month]                     Get transaction count for the specified year and month
+         remote [start] [end] [--path[=<path>]]   Generate transaction report for the specified period and store in the specified location
+         remote [start] [end]                     Generate transaction report for the specified date and store in the current location
+         remote [start] [--path[=<path>]]         Generate transaction report for the specified period and store in the specified location
          
          
      Available Flags:
-         -p, --path              Specify a directory path to create the transaction count report. Applicable only to the command "report"
+         -p, --path              Specify a directory path to create the transaction count report. Applicable only to the "report" command.
          
      Examples:
          # To get the transction count for the current month
          mi transaction count
 
-         # To get the transction count for 2020/05
+         # To get the transction count for 2020/05 [YYYY/MM]
          mi transaction count 2020 05
          
-         # To generate the transction count report at the given location with data between 2020-01 and 2020-05.
+         # To generate transction count report with data between 2020-01 and 2020-05 at the specified location
          mi transaction report 2020-01 2020-05 --path=</dir_path>
          
-         # To generate the report at the given location with data from 2020-01 upto now.
+         # To generate transaction count report with data from 2020-01 (upto current date) at the specified location
          mi transaction count 2020-01 --path=</dir_path>
          
-         # To generate the report at the current location for data between the given period of dates.
+         # To generate transaction count report at the current location for data between 2020-01 and 2020-05
          mi transaction count 2020-01 2020-05
          
     ```
