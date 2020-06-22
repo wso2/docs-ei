@@ -55,8 +55,7 @@ The Micro Integrator can persist PII in various log files (carbon logs, audit lo
 -   The **Forget-Me Tool** , which can anonymize
     a user's PII in log files and RDBMSs by replacing all occurrences of
     the deleted user with either a randomly generated UUID value or a
-    specified pseudonym. This can be downloaded using the following 
-    [link](https://github.com/wso2-docs/WSO2_EI/raw/master/Forget-Me-Tool/org.wso2.carbon.privacy.forgetme.tool-1.3.1.zip).
+    specified pseudonym. You can download the tool from this [link](https://github.com/wso2-docs/WSO2_EI/raw/master/Forget-Me-Tool/org.wso2.carbon.privacy.forgetme.tool-1.3.1.zip).
     . Find out about all the capabilities of the Forget-Me tool
     from [here](../security/about_forgetme_tool.md).
 
@@ -121,8 +120,7 @@ INFO - LogMediator USER_NAME = Sam
 
 Let's look at how to anonymize the username value in log files.
 1.  [Download](https://github.com/wso2-docs/WSO2_EI/raw/master/Forget-Me-Tool/org.wso2.carbon.privacy.forgetme.tool-1.3.1.zip) 
-    the Forget-Me tool and extract it to a desired location. Then
-    navigate inside the tool. This location will be referred to as `TOOL_HOME`
+    the **Forget-Me** tool and extract the contents. The location of the extracted folder will be referred to as `TOOL_HOME`
     from this point onwards.
 2.  Every log statement follows the same pattern where the "USER\_NAME"
     keyword is followed by an actual username (in this example it is
