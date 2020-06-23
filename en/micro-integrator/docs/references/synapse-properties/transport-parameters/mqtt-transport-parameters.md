@@ -1,8 +1,17 @@
-# MQTT Connection Factory Parameters
+# MQTT Parameters
 
-Given below is the list of transport parameters that can be configured when you [create a proxy service](../../../develop/creating-artifacts/creating-a-proxy-service.md).
+When you implement an integration use case that requires an MQTT connection, you can use the following MQTT parameters in your [proxy service](../../../../develop/creating-artifacts/creating-a-proxy-service) artifact.
 
-## Required Parameters
+!!! Info
+    The Micro Integrator can communicate through MQTT only if the MQTT transport listener and sender are enabled and configured at the server level. Read about the [MQTT transport](../../../../../setup/transport_configurations/configuring-transports/#configuring-the-mqtt-transport).
+
+{!references/synapse-properties/pull/proxy-service-add-properties-pull.md!}
+
+See [Creating a Proxy Service](../../../../develop/creating-artifacts/creating-a-proxy-service) for instructions.
+
+## Service-Level Parameters
+
+### Required Parameters
 
 <table>
 	<tr>
@@ -27,7 +36,7 @@ Given below is the list of transport parameters that can be configured when you 
    </tr>
 </table>
 
-## Optional Parameters
+### Optional Parameters
 
 <table>
    <tr>

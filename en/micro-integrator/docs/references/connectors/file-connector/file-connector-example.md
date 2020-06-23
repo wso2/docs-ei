@@ -1,9 +1,5 @@
 # File Connector Example
 
-The File Connector allows you to connect to different file systems and perform various operations. The File Connector uses the [Apache Commons VFS](https://commons.apache.org/proper/commons-vfs/) I/O functionalities to execute operations.
-
-WSO2 EI File Connector introduces the independent operations related to the file system and allows you to easily manipulate files based on your requirement. The file streaming functionality using Apache Commons I/O lets you copy large files and reduces the file transfer time between two file systems resulting in a significant improvement in performance that can be utilized in file operations.
-
 File Connector can be used to perform operations in the local file system as well as in a remote server such as FTP and SFTP. 
 
 ## What you'll build

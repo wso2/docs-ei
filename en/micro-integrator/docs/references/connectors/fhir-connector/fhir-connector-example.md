@@ -1,8 +1,6 @@
 # FHIR Connector Example
 
-Fast Healthcare Interoperability Resources (FHIR) is an interoperability standard for electronic exchange of healthcare information. The WSO2 EI FHIR connector can be used to invoke FHIR operations within WSO2 EI mediation logic. 
-
-In this example the connector uses the FHIR REST API to interact with FHIR. This connector uses the [HAPI FHIR APIs](https://hapifhir.io) to connect with a Test Server, which is an open source server licensed under the Apache Software License 2.0 (Java-based implementation of the FHIR specification). 
+In this example the connector uses the FHIR REST API to interact with FHIR.  
 
 ## What you'll build
 

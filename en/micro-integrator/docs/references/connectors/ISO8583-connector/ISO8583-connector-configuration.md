@@ -2,7 +2,7 @@
 
 ISO8583 is an international standard for financial transaction messaging protocol. It is the International Organization for Standardization standard for systems that exchange electronic transactions initiated by cardholders using payment cards.
 
-Typically, whenever we use a credit card, debit card, or ATM card, the data travels from one system to another system. A card-based transaction typically needs to travel between a number of systems.The WSO2 ISO8583 connector allows you to maintain the common transaction messaging standards.
+Typically, whenever we use a credit card, debit card, or ATM card, the data travels from one system to another system. A card-based transaction typically needs to travel between a number of systems. The WSO2 ISO8583 connector allows you to maintain the common transaction messaging standards.
 
 ## Setting up the environment
 

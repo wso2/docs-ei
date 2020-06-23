@@ -1,13 +1,11 @@
-# Amazon Lambda Connector Example
-
-AWS Lambda is a compute service that lets you run code without provisioning or managing servers. AWS Lambda executes your code only when needed and scales automatically, from a few requests per day to thousands per second. 
+# Amazon Lambda Connector Example 
 
 Given below is a sample scenario that demonstrates how to create an Amazon Lambda function in the AWS Lambda Service using the WSO2 Amazon Lambda Connector.
 
 ## What you'll build
 To use the Amazon Lambda connector, add the <amazonlambda.init> element in your configuration before carrying out any Amazon Lambda operations. This Amazon Lambda configuration authenticates with Amazon Lambda by specifying the AWS access key ID and secret access key ID, which are used for every operation. The signature is used with every request and thus differs based on the request the user makes.
 
-This example demonstrates how to use Amazon Lambda Connector connector to use `createFunction` opertaion.
+This example demonstrates how to use Amazon Lambda Connector to use `createFunction` opertaion.
 
 Here we exposed the `createFunction` operation via an API. The API has one resource with the context `/createFunction`.
 
@@ -26,7 +24,8 @@ As a next step, simply create an AWS S3 bucket and the deployment package should
 If you do not want to configure this yourself, you can simply [get the project](#get-the-project) and run it.
 
 ## Configure the connector in WSO2 Integration Studio
-Follow these steps to set up the ESB Solution Project and the Connector Exporter Project.
+
+Follow these steps to set up the Integration Project and the Connector Exporter Project.
 
 {!references/connectors/importing-connector-to-integration-studio.md!}
 
@@ -126,10 +125,12 @@ In this scenario we created sample AWS Deployment Package (Lambda function) in P
 2. Create a ZIP archive.
 
 Please use command line terminal or shell to run following commands. Commands are shown in listings preceded by a prompt symbol ($) and the name of the current directory, when appropriate:
+
 ```
 ~/Documents$ zip addingNumbers.zip addingNumbers.py
  adding: addingNumbers.py.py (deflated 17%)
 ```
+
 ## Upload Amazon Lambda Deployment Package (ZIP archive) in to the AWS S3 bucket
 
 1. Log in to the AWS Management Console.
