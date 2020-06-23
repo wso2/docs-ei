@@ -1,25 +1,24 @@
 # Enabling Transaction Counter
 
-A **Transaction** in WSO2 Micro Integrator is defined as an inbound request (a request coming to the server). According to this definition, any inbound request to a REST API, Proxy service, or Inbound Endpoint is considered as one transaction. 
-However, there will be an exception for scenarios where the Micro Integrator is configured as both a JMS producer and a JMS consumer by which the message flow gets asynchronous in the middle. In these cases, the Micro Integrator considers
-both the sending and listening requests as a single transaction.
+A **Transaction** in WSO2 Micro Integrator is defined as an inbound request (a request coming to the server). According to this definition, any inbound request to a REST API, Proxy service, or Inbound Endpoint is considered as one transaction.
+However, there will be an exception for scenarios where the Micro Integrator is configured as both a JMS producer and a JMS consumer by which the message flow gets asynchronous in the middle. In these cases, the Micro Integrator considers both the sending and listening requests as a single transaction.
 
-If you need to track the number of transactions that come to your Micro Integrator deployment, you can enable the transaction counter component in each Micro Integrator instance of your deployment. Currently, the transaction counter is responsible for counting all requests received via the Passthru and JMS transports and for persisting the summary of the transaction count in a database for future use.
+If you need to track the number of transactions that come to your Micro Integrator deployment, you can enable the transaction counter component in each Micro Integrator instance of your deployment. Currently, the transaction counter is responsible for counting all requests received via the [HTTP Passthru]() and [JMS]() transports and for persisting the summary of the transaction count in a database for future use.
 
 Follow the instructions given below to enable the transaction counter for WSO2 Micro Integrator.
 
 ## Prerequisites
 
-To persist the transaction count, you need a relational database connected to the Micro Integrator. 
+To persist the transaction count, you need a relational database connected to the Micro Integrator.
 
 1.	Create an RDBMS.
 
 	!!! Note
 	    If you already have a datasource configured for the Micro Integrator, you can skip configuring a new datasource for transaction counter component and use the existing datasource to store the transaction count summary.
-	    
+
 2.	Use the database script stored in the `<MI_HOME>/dbscripts` folder and run it against your RDBMS to create the required tables.
-3.	Open the `deployment.toml` file (stored in the `<MI_HOME>/conf` folder), add the following datasource configuration and update the values for your database. 
- 
+3.	Open the `deployment.toml` file (stored in the `<MI_HOME>/conf` folder), add the following datasource configuration and update the values for your database.
+
 	```toml
 	[[datasource]]
 	id = "WSO2_TRANSACTION_DB"
@@ -28,8 +27,8 @@ To persist the transaction count, you need a relational database connected to th
 	password="password"
 	driver="com.mysql.jdbc.Driver"
 	```
-	
-	See the complete list of [database connection parameters](../../references/config-catalog/#database-connection) and their descriptions. 
+
+	See the complete list of [database connection parameters](../../references/config-catalog/#database-connection) and their descriptions.
 
 ## Configuring Transaction Counter
 
@@ -47,7 +46,7 @@ Parameters used above are explained below.
 <table>
 	<tr>
 		<th>Parameter</th>
-		<th>Value</th>
+		<th>Description</th>
 	</tr>
 	<tr>
 		<td>
@@ -77,14 +76,14 @@ Parameters used above are explained below.
 
 ## Retrieve transaction count
 
-The summary of the transaction count can be retrieved directly via the CLI or the management API of WSO2 Micro Integrator. 
+The summary of the transaction count can be retrieved directly via the CLI or the management API of WSO2 Micro Integrator.
 
 -	See the [CLI commands for transaction count retrieval](../../administer-and-observe/using-the-command-line-interface).
 -	See the [API resources for transaction count retrieval](../../administer-and-observe/working-with-management-api/#get-transaction-count).
 
 ## Generate transaction count report
 
-A report for the transaction count can be also generated via the CLI or the management API of WSO2 Micro Integrator. 
+A report for the transaction count can be also generated via the CLI or the management API of WSO2 Micro Integrator.
 
 -	See the [CLI commands for transaction count report generation](../../administer-and-observe/using-the-command-line-interface.md).
--	See the [API resources for transaction count report generation](../../administer-and-observe/working-with-management-api/#get-transaction-count). 
+-	See the [API resources for transaction count report generation](../../administer-and-observe/working-with-management-api/#get-transaction-count).
