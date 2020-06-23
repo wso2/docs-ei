@@ -1,14 +1,17 @@
-# RabbitMQ Transport
+# RabbitMQ Parameters
 
-## About the RabbitMQ Transport
+When you implement an integration use case that requires a RabbitMQ connection, you can use the following RabbitMQ parameters in your [proxy service](../../../../develop/creating-artifacts/creating-a-proxy-service) artifact.
 
-<a href="http://en.wikipedia.org/wiki/Advanced_Message_Queuing_Protocol">AMQP</a> is a wire-level messaging protocol that describes the format of the data that is sent across the network. If a system or application can read and write AMQP, it can exchange messages with any other system or application that understands AMQP, regardless of the implementation language. The RabbitMQ AMQP transport is implemented using the <a href="http://www.rabbitmq.com/java-client.html">RabbitMQ Java Client</a>. It allows you to send or receive AMQP messages by directly calling an AMQP broker (RabbitMQ).
+!!! Info
+      The Micro Integrator can listen to a RabbitMQ instance or send messages to a RabbitMQ instance only if the RabbitMQ transport listener and sender are enabled and configured at the server level. Read about the [RabbitMQ transport](../../../../setup/brokers/configure-with-rabbitMQ).
 
-## Parameters
+## Service-Level Parameters (Receiving Messages)
 
-Given below is the list of RabbitMQ transport parameters that can be configured when you [create a proxy service](../../../develop/creating-artifacts/creating-a-proxy-service.md).
+{!references/synapse-properties/pull/proxy-service-add-properties-pull.md!}
 
-### Required Parameters (Receiving Messages)
+See [Creating a Proxy Service](../../../../develop/creating-artifacts/creating-a-proxy-service) for instructions.
+
+### Required Parameters
 
 <table>
   <tr>
@@ -31,7 +34,7 @@ Given below is the list of RabbitMQ transport parameters that can be configured 
   </tr>
 </table>
 
-### Optional Parameters (Receiving Messages)
+### Optional Parameters
 
 <table>
    <tr>
@@ -110,7 +113,118 @@ Given below is the list of RabbitMQ transport parameters that can be configured 
    </tbody>
 </table>
 
-### Required Parameters (Sending Messages)
+### Connection Recovery Parameters (Optional)
+
+In case of a network failure or broker shutdown, the Micro Integrator will try to recreate the connection.
+
+<table>
+  <tr>
+    <th>Parameter</th>
+    <th>Description</th>
+  </tr>
+  <tr>
+    <td>rabbitmq.connection.retry.interval</td>
+    <td>
+      The retry interval specifies how frequently (time interval) the Micro Integrator should retry to recreate a lost connection. The default value is <code>30000</code> ms. That is, the Micro Integrator retries to connect every 30000 miliseconds.
+    </td>
+  </tr>
+  <tr>
+    <td>rabbitmq.connection.retry.count</td>
+    <td>
+      The retry count specifies the number of times the Micro Integrator will try to recreate a lost connection. The default retry count is <code>3</code>. That is, the Micro Integrator retries only 3 times.
+    </td>
+  </tr>
+  <tr>
+    <td>rabbitmq.server.retry.interval</td>
+    <td>
+      This parameter is <b>optional</b>.</br>
+      The parameters specified above sets the retry interval with which the RabbitMQ client tries to reconnect. Generally having this value less than the value specified as <code>rabbitmq.connection.retry.interval</code> will help synchronize the reconnection of the Micro Integrator and the RabbitMQ client.
+    </td>
+  </tr>
+</table>
+
+### SSL Parameters (Optional)
+
+To enable SSL support in RabbitMQ, you need to configure the following parameters.
+
+<table>
+  <tr>
+    <th>Parameter</th>
+    <th>Description</th>
+  </tr>
+  <tr>
+    <td>rabbitmq.connection.ssl.enabled</td>
+    <td>
+       Specifies whether SSL is enabled for the connection.
+    </td>
+  </tr>
+  <tr>
+    <td>rabbitmq.connection.ssl.version</td>
+    <td>
+       The SSL protocols that are supported.
+    </td>
+  </tr>
+  <tr>
+    <td>rabbitmq.connection.ssl.keystore.location</td>
+    <td>
+       The location of the keystore that is used.
+    </td>
+  </tr>
+  <tr>
+    <td>rabbitmq.connection.ssl.keystore.type</td>
+    <td>
+       The type of keystore.
+    </td>
+  </tr>
+  <tr>
+    <td>rabbitmq.connection.ssl.keystore.password</td>
+    <td>
+       The keystore password.
+    </td>
+  </tr>
+  <tr>
+    <td>rabbitmq.connection.ssl.truststore.location</td>
+    <td>
+       The location of the truststore.
+    </td>
+  </tr>
+  <tr>
+    <td>rabbitmq.connection.ssl.truststore.type</td>
+    <td>
+       The type of the truststore.
+    </td>
+  </tr>
+  <tr>
+    <td>rabbitmq.connection.ssl.truststore.password</td>
+    <td>
+       The password of the keystore.
+    </td>
+  </tr>
+</table>
+
+
+## Service-Level Parameters (Sending Messages)
+
+In your integration solution, the following RabbitMQ send parameters can be specified in the **Address URL** that you specify in your [Endpoint artifact](../../../../develop/creating-artifacts/creating-endpoints).
+
+**Example**:
+
+-   Design view of an address endpoint in WSO2 Integration Studio:
+
+    Double-click the **Address Endpoint** artifact to open the **Properties** tab and enter the address URL with RabbitMQ parameters.
+
+    <img src="../../../../assets/img/create_artifacts/new_endpoint/address-endpoint-url.png" width="800">
+
+-   Source view of an address endpoint:
+
+    ```xml
+    <endpoint>
+       <address uri="rabbitmq:/AMQPProducerSample?rabbitmq.server.host.name=localhost&amp;rabbitmq.server.port=5672&amp;rabbitmq.queue.name=queue&amp;rabbitmq.queue.route.key=route&amp;rabbitmq.exchange.name=exchange">
+       </address>
+    </endpoint>
+    ```
+
+### Required Parameters
 
 <table>
   <tr>
@@ -127,7 +241,8 @@ Given below is the list of RabbitMQ transport parameters that can be configured 
   </tr>
 </table>
 
-### Optional Parameters (Sending Messages)
+
+### Optional Parameters
 
 <table>
    <tr>
@@ -216,93 +331,4 @@ Given below is the list of RabbitMQ transport parameters that can be configured 
          </td>
       </tr>
    </tbody>
-</table>
-
-### Optional Parameters (Connection Recovery)
-
-In case of a network failure or broker shutdown, the Micro Integrator will try to recreate the connection.
-
-<table>
-  <tr>
-    <th>Parameter</th>
-    <th>Description</th>
-  </tr>
-  <tr>
-    <td>rabbitmq.connection.retry.interval</td>
-    <td>
-      The retry interval specifies how frequently (time interval) the Micro Integrator should retry to recreate a lost connection. The default value is <code>30000</code> ms. That is, the Micro Integrator retries to connect every 30000 miliseconds.
-    </td>
-  </tr>
-  <tr>
-    <td>rabbitmq.connection.retry.count</td>
-    <td>
-      The retry count specifies the number of times the Micro Integrator will try to recreate a lost connection. The default retry count is <code>3</code>. That is, the Micro Integrator retries only 3 times.
-    </td>
-  </tr>
-  <tr>
-    <td>rabbitmq.server.retry.interval</td>
-    <td>
-      This parameter is <b>optional</b>.</br>
-      The parameters specified above sets the retry interval with which the RabbitMQ client tries to reconnect. Generally having this value less than the value specified as <code>rabbitmq.connection.retry.interval</code> will help synchronize the reconnection of the Micro Integrator and the RabbitMQ client.
-    </td>
-  </tr>
-</table>
-
-### Optional Parameters (SSL)
-
-To enable SSL support in RabbitMQ, you need to configure the following parameters.
-
-<table>
-  <tr>
-    <th>Parameter</th>
-    <th>Description</th>
-  </tr>
-  <tr>
-    <td>rabbitmq.connection.ssl.enabled</td>
-    <td>
-       Specifies whether SSL is enabled for the connection.
-    </td>
-  </tr>
-  <tr>
-    <td>rabbitmq.connection.ssl.version</td>
-    <td>
-       The SSL protocols that are supported.
-    </td>
-  </tr>
-  <tr>
-    <td>rabbitmq.connection.ssl.keystore.location</td>
-    <td>
-       The location of the keystore that is used.
-    </td>
-  </tr>
-  <tr>
-    <td>rabbitmq.connection.ssl.keystore.type</td>
-    <td>
-       The type of keystore.
-    </td>
-  </tr>
-  <tr>
-    <td>rabbitmq.connection.ssl.keystore.password</td>
-    <td>
-       The keystore password.
-    </td>
-  </tr>
-  <tr>
-    <td>rabbitmq.connection.ssl.truststore.location</td>
-    <td>
-       The location of the truststore.
-    </td>
-  </tr>
-  <tr>
-    <td>rabbitmq.connection.ssl.truststore.type</td>
-    <td>
-       The type of the truststore.
-    </td>
-  </tr>
-  <tr>
-    <td>rabbitmq.connection.ssl.truststore.password</td>
-    <td>
-       The password of the keystore.
-    </td>
-  </tr>
 </table>

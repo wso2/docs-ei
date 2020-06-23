@@ -1,30 +1,16 @@
 # Kubernetes Deployment Patterns
 
-!!! Warning
-	**This content is currently work in progress**
+These are the deployment patterns you can use when deploying your WSO2 Micro Integrator-based integration solutions in a Kubernetes environment.
 
-These are the deployment patterns you can use when deploying your WSO2 Micro Integrator-based integration solutions in a Kubernetes environment. 
-
-<!--
-The following Kubernetes concepts 
-
--   Kuberentes cluster
--   Worker nodes
--   Pods
--   Replicas
--   High availablity in Kuberenetes
--   Load balancing in Kuberentes
--->
-
-When you deploy your integrations, the main concern is to ensure high availability and scalability of your system. Therefore, you need to decide upon the number of worker nodes and the number of replicas that are required to scale the deployment and to ensure high availability. 
+When you deploy your integrations, the main concern is to ensure high availability and scalability of your system. Therefore, you need to decide upon the number of worker nodes and the number of replicas that are required to scale the deployment and to ensure high availability.
 
 ## Single Replica
 
 The following diagram depicts a single worker node deployment, which contains a single pod (single replica).
 
-<img src="../../../assets/img/k8s_deployment/k8s-single-pod.png">
+<img src="../../../assets/img/k8s_deployment/k8s-single-pod.png" width='400'>
 
-Designing with a single-node will give you less management overhead if you are building an on-premises cluster (this does not apply to cloud instances). Also, there will be lower cost and resource requirements when compared to a multiple node cluster. 
+Designing with a single-node will give you less management overhead if you are building an on-premises cluster (this does not apply to cloud instances). Also, there will be lower cost and resource requirements when compared to a multiple node cluster.
 
 ### Load balancing
 
@@ -36,19 +22,19 @@ The failure of this single worker node will take down the entire Micro Integrato
 
 ## Multiple Replicas
 
-The following diagram depicts a kubernetes cluster with multiple replicas of an integration deployment, scaled across multiple worker nodes.
+The following diagram depicts a kubernetes cluster with multiple replicas of an integration deployment, scaled across multiple worker nodes. In this example, one node only carries one replica of a pod. However, depending on the capacity of your worker node, you can maintain multiple pod replicas in a single worker node.
 
-<img src="../../../assets/img/k8s_deployment/k8s-muliple-workers-single-pod.png" width="1500">
+<img src="../../../assets/img/k8s_deployment/k8s-muliple-workers-single-pod.png" width="2000">
 
 Running multiple instances of an application will require a way to distribute the traffic to all of them. In this case, the cluster should be fronted by an Ingress or an external load balancer service (given that your Kubernetes environment supports external load balancers) that will distribute network traffic to all pods of an exposed deployment.
 
 ### Load balancing
 
-This deployment pattern is suitable for handling high incoming traffic because the workload is shared by multiple instances (replicas) of the deployment. The ingress or external load balancer that fronts the deployment distributes the workload across replicas. 
+This deployment pattern is suitable for handling high incoming traffic because the workload is shared by multiple instances (replicas) of the deployment. The ingress or external load balancer that fronts the deployment distributes the workload across replicas.
 
 ### High availability
 
-This approach ensures high availability in your cluster. If one worker node fails, the traffic will be routed to another worker node. Simillarly, if one pod replica fails, the traffic will be routed to another replica that runs concurrently at a given point of time. This avoids the impact of pod downtime. 
+This approach ensures high availability in your cluster. If one worker node fails, the traffic will be routed to another worker node. Similarly, if one pod replica fails, the traffic will be routed to another replica that runs concurrently at a given point of time. This avoids the impact of pod downtime.
 
 ### Rolling updates
 
@@ -56,7 +42,7 @@ Because there are multiple replicas (i.e., multiple instances of the same deploy
 
 ## Multiple Replicas (with Coordination)
 
-Most of the integration solutions that you develop can be deployed using a single Micro Integrator container. That is, as explained in the previous deployment pattern, you can have multiple replicas of a single pod. Because most of these integration flows are stateless (does not need to persist status) the multiple instances (replicas) are not require to coordinate with one other. 
+Most of the integration solutions that you develop can be deployed using a single Micro Integrator container. That is, as explained in the previous deployment pattern, you can have multiple replicas of a single pod. Because most of these integration flows are stateless (does not need to persist status) the multiple instances (replicas) are not required to coordinate with one other.
 
 However, the following set of artifacts are stateful and requires coordination among themselves if they are deployed in more than a single instance.
 
@@ -70,16 +56,16 @@ However, the following set of artifacts are stateful and requires coordination a
     -   MQTT Inbound Endpoint
     -   RabbitMQ Inbound Endpoint
 
-As long as you maintain a single artifact deployment for each of these artifacts (all these artifacts), no coordination is required. You can arrange your cluster in the following manner to ensure that there is no duplicate deployment of the same task in multiple containers/pods in the cluster.
+As long as you maintain a single artifact deployment for each of these artifacts (all these artifacts), no coordination is required. You can arrange your cluster in the following manner to ensure that there is no duplicate deployment of the same task in multiple containers/pods in the cluster. In this case, you can have multiple replicas of pod 1 in a single worker node (depending on the capacity of the worker node), however; there can only be one replica of the pods that contain artifacts that require coordination as shown below.
 
-<img src="../../../assets/img/k8s_deployment/k8s-muliple-workers.png" width="1500">
+<img src="../../../assets/img/k8s_deployment/k8s-muliple-workers.png" width="2000">
 
 ### Load balancing
 
-Because these artifacts cannot be deployed in multiple containers/pods, the workload for the artifacts cannot be distributed among multipe instances when there is high traffic. However, load balancing can be achieved by isolating each of the artiacts in individual containers/pod to reduce the workload for a single instance. 
+Because these artifacts cannot be deployed in multiple containers/pods, the workload for the artifacts cannot be distributed among multiple instances when there is high traffic. However, load balancing can be achieved by isolating each of the artifacts in individual containers/pod to reduce the workload for a single instance.
 
-For example, as shown in the above diagram, if `recurringOrder_Task` and s`chedulOrder_Task` are highly utilized scheduled tasks in your deployment, you can distribute the tasks across multiple containers.
+For example, as shown in the above diagram, if `recurringOrder_Task` and `schedulOrder_Task` are highly utilized scheduled tasks in your deployment, you can distribute the tasks across multiple containers.
 
 ### High availability
 
-Because the artifacts are deployed in one container/pod in one worker node, if the node fails or if the pod fails, the pod will be spawned again in one of the running working nodes. This avoids single point of failure. However, there will be a downtime until the pod deployment becomes active again.
+Because the artifacts (that require coordination) are deployed in one container/pod in one worker node, if the node fails or if the pod fails, the pod will be spawned again in one of the running working nodes. This avoids single point of failure. However, there will be a downtime until the pod deployment becomes active again.

@@ -67,7 +67,7 @@ To use the Gmail connector, add the `<gmail.init>` element in your configuration
 
 ---
 
-### Working with Gmail Drafts
+### Drafts
 
 ??? note "listDrafts"
     The listDrafts operation lists all drafts in Gmail. See the [related API documentation](https://developers.google.com/gmail/api/v1/reference/users/drafts/list) for more information.
@@ -263,7 +263,7 @@ To use the Gmail connector, add the `<gmail.init>` element in your configuration
     }
     ```
 
-### Working with Gmail Labels
+### Labels
 
 ??? note "listLabels"
      The listLabels operation lists all existing labels. See the [related API documentation](https://developers.google.com/gmail/api/v1/reference/users/labels/list) for more information.
@@ -504,7 +504,7 @@ To use the Gmail connector, add the `<gmail.init>` element in your configuration
     }
     ```
 
-### Working with Gmail Messages
+### Messages
 
 ??? note "listAllMails"
     The listAllMails operation lists all messages. See the [related API documentation](https://developers.google.com/gmail/api/v1/reference/users/labels/get) for more information.
@@ -896,7 +896,7 @@ To use the Gmail connector, add the `<gmail.init>` element in your configuration
     }
     ```
 
-### Working with Gmail Threads
+### Threads
 
 ??? note "listAllThreads"
     The listAllThreads operation lists all the existing email threads. See the [related API documentation](https://developers.google.com/gmail/api/v1/reference/users/threads/list) for more information.
@@ -1112,7 +1112,7 @@ To use the Gmail connector, add the `<gmail.init>` element in your configuration
     }
     ```
 
-### Working with Gmail User History
+### User History
 
 ??? note "listTheHistory"
     The listTheHistory operation lists the history of changes to the user's mailbox. See the [related API documentation](https://developers.google.com/gmail/api/v1/reference/users/history/list) for more information.
@@ -1160,7 +1160,7 @@ To use the Gmail connector, add the `<gmail.init>` element in your configuration
     }
     ```
 
-### Working with Gmail User Profiles
+### User Profiles
 
 ??? note "getUserProfile"
     The getUserProfile operation lists all details about the user's profile. See the [related API documentation](https://developers.google.com/gmail/api/v1/reference/users/getProfile) for more information.

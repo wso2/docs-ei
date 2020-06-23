@@ -1,12 +1,15 @@
-# FIX Transport
+# FIX Parameters
 
-## About the FIX transport
+When you implement an integration use case that requires a FIX connection, you can use the following FIX parameters in your [proxy service](../../../../develop/creating-artifacts/creating-a-proxy-service) artifact.
 
-This transport implementation is a module developed under the Apache Synapse project. This transport is mainly used in conjunction with proxy services. This transport supports JMX. FIX transport does not support any global parameters. All the FIX configuration parameters should be specified at service level. QuickFix 4J configuration parameters can be found <a href="http://www.quickfixengine.org/quickfix/doc/html/configuration.html">here</a>.
+!!! Info
+    The Micro Integrator can use the FIX transport only if the FIX transport listener and sender are enabled and configured at the server level. Read about the [FIX transport](../../../../setup/transport_configurations/configuring-transports/#configuring-the-fix-transport).
 
-## Parameters
+{!references/synapse-properties/pull/proxy-service-add-properties-pull.md!}
 
-Given below is the list of transport parameters that can be configured when you [create a proxy service](../../../develop/creating-artifacts/creating-a-proxy-service.md).
+See [Creating a Proxy Service](../../../../develop/creating-artifacts/creating-a-proxy-service) for instructions.
+
+## Service-Level Parameters
 
 <table>
       <tr>
@@ -20,7 +23,7 @@ Given below is the list of transport parameters that can be configured when you 
    <tbody>
       <tr>
          <td>
-			transport.fix.AcceptorConfigURL
+			   transport.fix.AcceptorConfigURL
          </td>
          <td>
             URL to the Quickfix/J acceptor configuration file (see notes below).</br></br> This is required for receiving messages over FIX.

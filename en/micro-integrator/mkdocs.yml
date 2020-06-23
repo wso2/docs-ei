@@ -190,6 +190,7 @@ nav:
         - 'JSON Examples': 'use-cases/examples/json_examples/json-examples.md'
       - 'Connectors': 'use-cases/connectors.md'
     - Setup and Install:
+      - 'Setup and Install Overview': 'setup/micro_integrator_deployment_overview.md'
       - Installation Guide:
         - 'Installation Prerequisites': 'setup/installation/install_prerequisites.md'
         - 'Install on a VM': 'setup/installation/install_in_vm.md'
@@ -219,12 +220,13 @@ nav:
       - 'Migrating from WSO2 EI 6.x': 'setup/deployment/migrating-from-ei-6.x.x.md'
       - 'Product Deployment Checklist': 'setup/deployment/deployment_checklist.md'
       - 'Managing Configurations across Environments': 'setup/dynamic_server_configurations.md'
+      - 'Configure Transaction Counter': 'setup/enabling_transaction_counter.md'
       - Security Hardening :
         - Setting up Keystores:
-          - 'Creating New Keystores' : 'setup/security/creating_keystores.md'
-          - 'Adding SSL certificates to keystores' : 'setup/security/importing_ssl_certificate.md'
-          - 'Renewing a CA-signed Certificate' : 'setup/security/renewing_ca_signed_certificate_in_keystore.md'
-          - 'Configuring Keystores' : 'setup/security/configuring_keystores.md'
+          - 'Creating New Keystores': 'setup/security/creating_keystores.md'
+          - 'Adding SSL certificates to keystores': 'setup/security/importing_ssl_certificate.md'
+          - 'Renewing a CA-signed Certificate': 'setup/security/renewing_ca_signed_certificate_in_keystore.md'
+          - 'Configuring Keystores': 'setup/security/configuring_keystores.md'
         - Complying with GDPR:
           - 'GDPR for the WSO2 Micro Integrator' : 'setup/security/gdpr_ei.md'
           - 'About the Identity Anonymization Tool' : 'setup/security/about_forgetme_tool.md'
@@ -286,7 +288,7 @@ nav:
         - 'Exporting Projects': 'develop/export_project.md'
         - 'Creating Docker Project': 'develop/create-docker-project.md'
         - 'Creating Kubernetes Project': 'develop/create-kubernetes-project.md'
-      - Creating New Artifacts:
+      - Creating Artifacts:
         - 'Importing Artifacts': 'develop/importing-artifacts.md'
         - 'Creating a REST API': 'develop/creating-artifacts/creating-an-api.md'
         - 'Creating a Proxy Service': 'develop/creating-artifacts/creating-a-proxy-service.md'
@@ -327,6 +329,7 @@ nav:
         - 'Hot Deploying Artifacts': 'develop/hot-deployment.md'
         - 'Creating a Unit Test Suite': 'develop/creating-unit-test-suite.md'
         - 'Using the HTTP REST Client': 'develop/using-http_rest_client.md'
+        - 'Injecting Environment Variable to Embedded MI': 'develop/inject_env_variables_to_embedded_mi.md'
       - Debugging Integrations:
         - 'Mediation Debugging': 'develop/debugging-mediation.md'
         - 'Using Wire Logs': 'develop/using-wire-logs.md'
@@ -364,83 +367,31 @@ nav:
       - 'Product Configurations': 'references/config-catalog.md'
       - Connectors:
         - 'Connectors Overview' : 'references/connectors/connectors-overview.md'
-        - File Connector:
-          - 'File Connector Example': 'references/connectors/file-connector/file-connector-example.md'
-          - 'File Connector Reference': 'references/connectors/file-connector/file-connector-config.md'
-        - Salesforce Rest Connector:
-          - 'Salesforce REST Connector Overview': 'references/connectors/salesforce-rest-connector/sf-rest-overview.md'
-          - 'Salesforce Access Token Generation': 'references/connectors/salesforce-rest-connector/sf-access-token-generation.md'
-          - 'Setting up the PushTopic in Salesforce': 'references/connectors/salesforce-rest-connector/sf-rest-inbound-endpoint-configuration.md'
-          - 'Salesforce REST API Connector Example': 'references/connectors/salesforce-rest-connector/sf-rest-connector-example.md'
-          - 'Salesforce Inbound Endpoint Example': 'references/connectors/salesforce-rest-connector/sf-rest-inbound-endpoint-example.md'
-          - 'Salesforce REST API Connector Reference': 'references/connectors/salesforce-rest-connector/sf-rest-connector-config.md'
-          - 'Salesforce Inbound Endpoint Reference': 'references/connectors/salesforce-rest-connector/sf-rest-inbound-endpoint-reference-configuration.md'
-        - Kafka Connector:
-          - 'Setting up Kafka': 'references/connectors/kafka-connector/setting-up-kafka.md'
-          - 'Enabling Security for Kafka': 'references/connectors/kafka-connector/enabling-security-for-kafka.md'
-          - 'Kafka Connector Example': 'references/connectors/kafka-connector/kafka-connector-producer-example.md'
-          - 'Kafka Inbound Endpoint Example': 'references/connectors/kafka-connector/kafka-inbound-endpoint-example.md'
-          - 'Kafka Connector Reference': 'references/connectors/kafka-connector/kafka-connector-config.md'
-        - Gmail Connector:
-          - 'Gmail Connector Example': 'references/connectors/gmail-connector/gmail-connector-example.md'
-          - 'Gmail Connector Reference': 'references/connectors/gmail-connector/gmail-connector-config.md'
-        - AmazonLambda Connector:
-          - 'Setting up Amazon Lambda Environment': 'references/connectors/amazonlambda-connector/setting-up-amazonlambda.md'
-          - 'Amazon Lambda Connector Example': 'references/connectors/amazonlambda-connector/amazonlambda-connector-example.md'
-          - 'Amazon Lambda Connector Reference': 'references/connectors/amazonlambda-connector/amazonlambda-connector-config.md'
-        - AmazonS3 Connector:
-          - 'Setting up Amazon S3 Environment': 'references/connectors/amazons3-connector/amazons3-connector-config.md'
-          - 'AmazonS3 Connector Example': 'references/connectors/amazons3-connector/amazons3-connector-example.md'
-          - 'AmazonS3 Connector Reference': 'references/connectors/amazons3-connector/amazons3-connector-reference.md'
-        - Amazon SQS Connector:
-            - 'Amazon SQS Connector Example': 'references/connectors/amazonsqs-connector/amazonsqs-connector-example.md'
-            - 'Amazon SQS Connector Reference': 'references/connectors/amazonsqs-connector/amazonsqs-connector-config.md'
-        - ServiceNow Connector:
-          - 'ServiceNow Connector Example': 'references/connectors/servicenow-connector/servicenow-connector-example.md'
-          - 'Setting up Servicenow Instance': 'references/connectors/servicenow-connector/settingup-servicenow-instance.md'
-          - 'ServiceNow Connector Reference': 'references/connectors/servicenow-connector/servicenow-connector-config.md'
-        - LDAP Connector:
-            - 'Setting up an LDAP Server': 'references/connectors/ldap-connector/setting-up-ldap.md'
-            - 'LDAP Connector Example': 'references/connectors/ldap-connector/ldap-connector-example.md'
-            - 'LDAP Connector Reference': 'references/connectors/ldap-connector/ldap-server-configuration.md'
-        - DB Event Listener Inbound Endpoint:
-          - 'Database Event Listener Example': 'references/connectors/db-event-inbound-endpoint/db-event-inbound-endpoint-example.md'
-          - 'Database Event Listener Reference': 'references/connectors/db-event-inbound-endpoint/db-event-inbound-endpoint-config.md'
-        - Microsoft Dynmics365 Connector:
-            - 'Setting up the Microsoft Dynamics365 Environment with Azure': 'references/connectors/microsoft-dynamics365-connector/microsoft-dynamics365-configuration.md'
-        - ISO8583 Connector:
-            - 'Setting up ISO8583 Connector': 'references/connectors/ISO8583-connector/ISO8583-connector-configuration.md'
-            - 'ISO8583 Connector Example': 'references/connectors/ISO8583-connector/ISO8583-connector-example.md'
-            - 'ISO8583 Inbound Endpoint Example': 'references/connectors/ISO8583-connector/ISO8583-inbound-endpoint-example.md'
-            - 'ISO8583 Connector Reference': 'references/connectors/ISO8583-connector/ISO8583-connector-reference.md'
-            - 'ISO8583 Inbound Endpoint Reference': 'references/connectors/ISO8583-connector/ISO8583-inbound-endpoint-config.md'
-        - Microsoft Azure Storage Connector:
-            - 'Setting up the Microsoft Azure Storage Environment': 'references/connectors/microsoft-azure-storage-connector/microsoft-azure-storage-configuration.md'
-            - 'Microsoft Azure Storage Connector Example': 'references/connectors/microsoft-azure-storage-connector/microsoft-azure-storage-connector-example.md'
-            - 'Microsoft Azure Storage Connector Reference': 'references/connectors/microsoft-azure-storage-connector/microsoft-azure-storage-reference.md'
-        - Google Firebase Connector:
-          - 'Setting up Google Firebase Environment': 'references/connectors/google-firebase-connector/google-firebase-setup.md'
-          - 'Google Firebase Connector Example': 'references/connectors/google-firebase-connector/google-firebase-connector-example.md'
-          - 'Google Firebase Connector Reference': 'references/connectors/google-firebase-connector/google-firebase-configuration.md'
-        - FHIR Connector:
-          - 'FHIR Connector Example': 'references/connectors/fhir-connector/fhir-connector-example.md'
-          - 'FHIR Connector Reference': 'references/connectors/fhir-connector/fhir-connector-config.md'
-        - SMPP Connector:
-            - 'Setting up the SMPP Connector': 'references/connectors/smpp-connector/smpp-connector-configuration.md'
-            - 'SMPP Connector Example': 'references/connectors/smpp-connector/smpp-connector-example.md'
-            - 'SMPP Inbound Endpoint Example': 'references/connectors/smpp-connector/smpp-inbound-endpoint-example.md'
-            - 'SMPP Connector Reference': 'references/connectors/smpp-connector/smpp-connector-config.md'
-            - 'SMPP Inbound Endpoint Reference': 'references/connectors/smpp-connector/smpp-inbound-endpoint-config.md'
-        - Google Spreadsheet Connector:
-          - 'Google Spreadsheet Connector Example': 'references/connectors/google-spreadsheet-connector/google-spreadsheet-connector-example.md'
-          - 'Google Spreadsheet Connector Reference': 'references/connectors/google-spreadsheet-connector/google-spreadsheet-connector-config.md'
         - Amazon DynamoDB Connector:
-            - 'Setting up the Amazon DynamoDB Connector ': 'references/connectors/amazondynamodb-connector/amazondynamodb-connector-configuration.md'
-            - 'Amazon DynamoDB Connector Example': 'references/connectors/amazondynamodb-connector/amazondynamodb-connector-example.md'
+          - 'Amazon DynamoDB Overview': 'references/connectors/amazondynamodb-connector/amazondynamodb-connector-overview.md'
+          - 'Setting up Amazon DynamoDB': 'references/connectors/amazondynamodb-connector/amazondynamodb-connector-configuration.md'
+          - 'Amazon DynamoDB Example': 'references/connectors/amazondynamodb-connector/amazondynamodb-connector-example.md'
+        - Amazon Lambda Connector:
+          - 'Amazon Lambda Overview': 'references/connectors/amazonlambda-connector/amazonlambda-connector-overview.md'
+          - 'Setting up Amazon Lambda': 'references/connectors/amazonlambda-connector/setting-up-amazonlambda.md'
+          - 'Amazon Lambda Example': 'references/connectors/amazonlambda-connector/amazonlambda-connector-example.md'
+          - 'Amazon Lambda Reference': 'references/connectors/amazonlambda-connector/amazonlambda-connector-config.md'
+        - Amazon S3 Connector:
+          - 'AmazonS3 Overview': 'references/connectors/amazons3-connector/amazons3-connector-overview.md'
+          - 'Setting up Amazon S3': 'references/connectors/amazons3-connector/amazons3-connector-config.md'
+          - 'AmazonS3 Example': 'references/connectors/amazons3-connector/amazons3-connector-example.md'
+          - 'AmazonS3 Reference': 'references/connectors/amazons3-connector/amazons3-connector-reference.md'
+        - Amazon SQS Connector:
+          - 'Amazon SQS Overview': 'references/connectors/amazonsqs-connector/amazonsqs-connector-overview.md'
+          - 'Amazon SQS Example': 'references/connectors/amazonsqs-connector/amazonsqs-connector-example.md'
+          - 'Amazon SQS Reference': 'references/connectors/amazonsqs-connector/amazonsqs-connector-config.md'
+          - 'Amazon SQS Inbound Endpoint Example': 'references/connectors/amazonsqs-connector/amazonsqs-inbound-endpoint-example.md'
+          - 'Amazon SQS Inbound Endpoint Reference': 'references/connectors/amazonsqs-connector/amazonsqs-inbound-endpoint-reference-configuration.md'
         - Ceridian Dayforce Connector:
+            - 'Ceridian Dayforce Overview': 'references/connectors/ceridiandayforce-connector/cerediandayforce-overview.md'
             - 'Setting up the Ceridian Dayforce Connector': 'references/connectors/ceridiandayforce-connector/ceridiandayforce-connector-config.md'
-            - 'Ceridian Dayforce Connector Example': 'references/connectors/ceridiandayforce-connector/ceridiandayforce-connector-example.md'
-            - 'Ceridian Dayforce Connector Reference':
+            - 'Ceridian Dayforce Example': 'references/connectors/ceridiandayforce-connector/ceridiandayforce-connector-example.md'
+            - 'Ceridian Dayforce Reference':
               - 'Initializing': 'references/connectors/ceridiandayforce-connector/ceridiandayforce-connector-reference.md'
               - 'Employee': 'references/connectors/ceridiandayforce-connector/employee.md'
               - 'Configuration':
@@ -449,7 +400,7 @@ nav:
               - 'Employee Documents':
                   - 'listOfDocuments': 'references/connectors/ceridiandayforce-connector/employeeDocuments/listOfDocuments.md'
                   - 'documentDetails': 'references/connectors/ceridiandayforce-connector/employeeDocuments/documentDetails.md'
-              - Employee Employemnt Information:
+              - 'Employee Employemnt Information':
                   - 'employeeClockDeviceGroups': 'references/connectors/ceridiandayforce-connector/employeeEmploymentInformation/employeeClockDeviceGroups.md'
                   - 'employeeCompensationSummary': 'references/connectors/ceridiandayforce-connector/employeeEmploymentInformation/employeeCompensationSummary.md'
                   - 'employeeCourses': 'references/connectors/ceridiandayforce-connector/employeeEmploymentInformation/employeeCourses.md'
@@ -477,7 +428,6 @@ nav:
                   - 'employeeContacts': 'references/connectors/ceridiandayforce-connector/employeePersonalInformation/employeeContacts.md'
                   - 'employeeDirectDeposits': 'references/connectors/ceridiandayforce-connector/employeePersonalInformation/employeeDirectDeposits.md'
                   - 'employeeEmergencyContacts': 'references/connectors/ceridiandayforce-connector/employeePersonalInformation/employeeEmergencyContacts.md'
-                  - 'employeeEthnicities': 'references/connectors/ceridiandayforce-connector/employeePersonalInformation/employeeEthnicities.md'
                   - 'employeeHealthandWellness': 'references/connectors/ceridiandayforce-connector/employeePersonalInformation/employeeHealthandWellness.md'
                   - 'employeeMaritalStatuses': 'references/connectors/ceridiandayforce-connector/employeePersonalInformation/employeeMaritalStatuses.md'
                   - 'employeeUSTaxes': 'references/connectors/ceridiandayforce-connector/employeePersonalInformation/employeeUSTaxes.md'
@@ -503,6 +453,75 @@ nav:
                   - 'employeeSSOAccounts': 'references/connectors/ceridiandayforce-connector/userSecurityAuthorityAndManagement/employeeSSOAccounts.md'
                   - 'employeeWorkAssignmentManagers': 'references/connectors/ceridiandayforce-connector/userSecurityAuthorityAndManagement/employeeWorkAssignmentManagers.md'
                   - 'userPayAdjustmentCodeGroups': 'references/connectors/ceridiandayforce-connector/userSecurityAuthorityAndManagement/userPayAdjustmentCodeGroups.md'
+        - DB Event Listener Inbound Endpoint:
+          - 'Database Event Listener Overview': 'references/connectors/db-event-inbound-endpoint/db-event-inbound-endpoint-overview.md'
+          - 'Database Event Listener Example': 'references/connectors/db-event-inbound-endpoint/db-event-inbound-endpoint-example.md'
+          - 'Database Event Listener Reference': 'references/connectors/db-event-inbound-endpoint/db-event-inbound-endpoint-config.md'
+        - FHIR Connector:
+          - 'FHIR Overview': 'references/connectors/fhir-connector/fhir-connector-overview.md'
+          - 'FHIR Example': 'references/connectors/fhir-connector/fhir-connector-example.md'
+          - 'FHIR Reference': 'references/connectors/fhir-connector/fhir-connector-config.md'
+        - File Connector:
+          - 'File Connector Overview': 'references/connectors/file-connector/file-connector-overview.md'
+          - 'File Connector Example': 'references/connectors/file-connector/file-connector-example.md'
+          - 'File Connector Reference': 'references/connectors/file-connector/file-connector-config.md'
+        - Gmail Connector:
+          - 'Gmail Overview': 'references/connectors/gmail-connector/gmail-connector-overview.md'
+          - 'Gmail Example': 'references/connectors/gmail-connector/gmail-connector-example.md'
+          - 'Gmail Reference': 'references/connectors/gmail-connector/gmail-connector-config.md'
+        - Google Firebase Connector:
+          - 'Google Firebase Overview': 'references/connectors/google-firebase-connector/google-firebase-overview.md'
+          - 'Setting up Google Firebase': 'references/connectors/google-firebase-connector/google-firebase-setup.md'
+          - 'Google Firebase Example': 'references/connectors/google-firebase-connector/google-firebase-connector-example.md'
+          - 'Google Firebase Reference': 'references/connectors/google-firebase-connector/google-firebase-configuration.md'
+        - Google Spreadsheet Connector:
+          - 'Google Spreadsheet Overview': 'references/connectors/google-spreadsheet-connector/google-spreadsheet-overview.md'
+          - 'Google Spreadsheet Example': 'references/connectors/google-spreadsheet-connector/google-spreadsheet-connector-example.md'
+          - 'Google Spreadsheet Reference': 'references/connectors/google-spreadsheet-connector/google-spreadsheet-connector-config.md'
+        - ISO8583 Connector:
+          - 'ISO8583 Overview': 'references/connectors/ISO8583-connector/ISO8583-connector-overview.md'
+          - 'Setting up ISO8583': 'references/connectors/ISO8583-connector/ISO8583-connector-configuration.md'
+          - 'ISO8583 Example': 'references/connectors/ISO8583-connector/ISO8583-connector-example.md'
+          - 'ISO8583 Reference': 'references/connectors/ISO8583-connector/ISO8583-connector-reference.md'
+          - 'ISO8583 Inbound Endpoint Example': 'references/connectors/ISO8583-connector/ISO8583-inbound-endpoint-example.md'
+          - 'ISO8583 Inbound Endpoint Reference': 'references/connectors/ISO8583-connector/ISO8583-inbound-endpoint-config.md'
+        - Kafka Connector:
+          - 'Kafka Overview': 'references/connectors/kafka-connector/kafka-connector-overview.md'
+          - 'Setting up Kafka': 'references/connectors/kafka-connector/setting-up-kafka.md'
+          - 'Enabling Security for Kafka': 'references/connectors/kafka-connector/enabling-security-for-kafka.md'
+          - 'Kafka Example': 'references/connectors/kafka-connector/kafka-connector-producer-example.md'
+          - 'Kafka Connector Reference': 'references/connectors/kafka-connector/kafka-connector-config.md'
+          - 'Kafka Inbound Endpoint Example': 'references/connectors/kafka-connector/kafka-inbound-endpoint-example.md'
+        - LDAP Connector:
+          - 'LDAP Overview': 'references/connectors/ldap-connector/ldap-connector-overview.md'
+          - 'Setting up an LDAP Server': 'references/connectors/ldap-connector/setting-up-ldap.md'
+          - 'LDAP Example': 'references/connectors/ldap-connector/ldap-connector-example.md'
+          - 'LDAP Reference': 'references/connectors/ldap-connector/ldap-server-configuration.md'
+        - Microsoft Azure Storage Connector:
+          - 'Microsoft Azure Storage Overview': 'references/connectors/microsoft-azure-storage-connector/microsoft-azure-overview.md'
+          - 'Setting up Microsoft Azure Storage': 'references/connectors/microsoft-azure-storage-connector/microsoft-azure-storage-configuration.md'
+          - 'Microsoft Azure Storage Example': 'references/connectors/microsoft-azure-storage-connector/microsoft-azure-storage-connector-example.md'
+          - 'Microsoft Azure Storage Reference': 'references/connectors/microsoft-azure-storage-connector/microsoft-azure-storage-reference.md'
+        - Salesforce Connectors:
+          - 'Salesforce Overview': 'references/connectors/salesforce-connectors/sf-overview.md'
+          - 'Salesforce Access Token Generation': 'references/connectors/salesforce-connectors/sf-access-token-generation.md'
+          - 'Setting up the PushTopic in Salesforce': 'references/connectors/salesforce-connectors/sf-inbound-endpoint-configuration.md'
+          - 'Salesforce REST API Example': 'references/connectors/salesforce-connectors/sf-rest-connector-example.md'
+          - 'Salesforce REST API Reference': 'references/connectors/salesforce-connectors/sf-rest-connector-config.md'
+          - 'Salesforce Inbound Endpoint Example': 'references/connectors/salesforce-connectors/sf-inbound-endpoint-example.md'
+          - 'Salesforce Inbound Endpoint Reference': 'references/connectors/salesforce-connectors/sf-inbound-endpoint-reference-configuration.md'
+        - ServiceNow Connector:
+          - 'ServiceNow Overview': 'references/connectors/servicenow-connector/servicenow-overview.md'
+          - 'Setting up Servicenow': 'references/connectors/servicenow-connector/settingup-servicenow-instance.md'
+          - 'ServiceNow Example': 'references/connectors/servicenow-connector/servicenow-connector-example.md'
+          - 'ServiceNow Reference': 'references/connectors/servicenow-connector/servicenow-connector-config.md'
+        - SMPP Connector:
+          - 'SMPP Overview': 'references/connectors/smpp-connector/smpp-connector-overview.md'
+          - 'Setting up the SMPP Connector': 'references/connectors/smpp-connector/smpp-connector-configuration.md'
+          - 'SMPP Example': 'references/connectors/smpp-connector/smpp-connector-example.md'
+          - 'SMPP Reference': 'references/connectors/smpp-connector/smpp-connector-config.md'
+          - 'SMPP Inbound Endpoint Example': 'references/connectors/smpp-connector/smpp-inbound-endpoint-example.md'
+          - 'SMPP Inbound Endpoint Reference': 'references/connectors/smpp-connector/smpp-inbound-endpoint-config.md'
       - Synapse Configurations:
         - Mediator Catalog:
           - 'About Mediators': 'references/mediators/about-mediators.md'

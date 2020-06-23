@@ -1,8 +1,6 @@
 # Amazon DynamoDB Connector Example
 
-Amazon DynamoDB Connector allows you to access the [Amazon DynamoDB REST API](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/HowItWorks.API.html) through WSO2 EI. 
-
-Amazon DynamoDB is a fully managed NoSQL database service that provides fast and predictable performance with seamless scalability. AmazonDynamoDB enables customers to offload the administrative burdens of operating and scaling distributed databases to AWS, so they do not have to worry about hardware provisioning, setup and configuration, replication, software patching, or cluster scaling.
+ Amazon DynamoDB Connector allows you to access the [Amazon DynamoDB REST API](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/HowItWorks.API.html) through WSO2 EI.
 
 ## What you'll build
 
@@ -22,13 +20,13 @@ All seven operations are exposed via an API. The API with the context `/resource
 
 * `/addtable` : Creates a new table in the Amazon DynamoDB with the specified table name to store employee details.
 * `/insertdetails` : Insert employee data (items) and store in the specified table.
-* `/updatetable` : Update specified table. (Provisioned throughput settings, global secondary indexes, or DynamoDB Streams settings for a specified table).
+* `/updatetable` : Update specified table (provisioned throughput settings, global secondary indexes, or DynamoDB Streams settings for a specified table).
 * `/listdetails` : Retrieve information about the added employee details (items).
 * `/deletedetails` : Remove added employee details from the specified table (items).
 * `/listtable` : Retrieve information about the created tables.
 * `/deletetable` : Remove created table in the Amazon DynamoDB.
 
-For more information about these operations, please refer to the [Amazon DynamoDB connector reference guide](amazon-dynamoDB-connector-reference.md).
+For more information about these operations, please refer to the [Amazon DynamoDB connector reference guide](amazondynamodb-connector-configuration.md).
 
 > **Note**: Before invoking the API, you need to configure message builders/formatters in deployment.toml. See [Setting up the Amazon DynamoDB Connector](amazondynamodb-connector-configuration.md) documentation for more information.
 

@@ -68,7 +68,7 @@ For example, while transferring bank and financial sector information using the 
 
 1. Navigate to the [connector store](https://store.wso2.com/store/assets/esbconnector/list) and search for `ISO8583`. Click on `ISO8583 Inbound Endpoint` and download the .jar file by clicking on `Download Inbound Endpoint`. Copy this .jar file into  <PRODUCT-HOME>/lib folder. 
 
-2. Download [jpos-1.9.4.jar]((http://mvnrepository.com/artifact/org.jpos/jpos/1.9.4)), [jdom-1.1.3.jar]((http://mvnrepository.com/artifact/org.jdom/jdom/1.1.3), and [commons-cli-1.3.1.jar]((http://mvnrepository.com/artifact/commons-cli/commons-cli/1.3.1) and add it to <PRODUCT-HOME>/lib folder.
+2. Download [jpos-1.9.4.jar](http://mvnrepository.com/artifact/org.jpos/jpos/1.9.4), [jdom-1.1.3.jar](http://mvnrepository.com/artifact/org.jdom/jdom/1.1.3), and [commons-cli-1.3.1.jar](http://mvnrepository.com/artifact/commons-cli/commons-cli/1.3.1) and add it to <PRODUCT-HOME>/lib folder.
 
 3. Copy the exported carbon application to the <PRODUCT-HOME>/repository/deployment/server/carbonapps folder. 
 
