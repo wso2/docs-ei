@@ -457,6 +457,10 @@ nav:
           - 'Database Event Listener Overview': 'references/connectors/db-event-inbound-endpoint/db-event-inbound-endpoint-overview.md'
           - 'Database Event Listener Example': 'references/connectors/db-event-inbound-endpoint/db-event-inbound-endpoint-example.md'
           - 'Database Event Listener Reference': 'references/connectors/db-event-inbound-endpoint/db-event-inbound-endpoint-config.md'
+        - Email Connector:
+          - 'Email Connector Overview': 'references/connectors/email-connector/email-connector-overview.md'
+          - 'Email Connector Example': 'references/connectors/email-connector/email-connector-example.md'
+          - 'Email Connector Reference': 'references/connectors/email-connector/email-connector-config.md'
         - FHIR Connector:
           - 'FHIR Overview': 'references/connectors/fhir-connector/fhir-connector-overview.md'
           - 'FHIR Example': 'references/connectors/fhir-connector/fhir-connector-example.md'
