@@ -70,7 +70,7 @@ curl -X POST "http://localhost:9390/simulation/single" -H "accept: application/j
 <tr class="odd">
 <th>HTTP Status Code</th>
 <td><p>Possible codes are 200 and 404.</p>
-<p>For descriptions of the HTTP status codes, see <a href="_HTTP_Status_Codes_">HTTP Status Codes</a> .</p></td>
+<p>For descriptions of the HTTP status codes, see <a href="https://ei.docs.wso2.com/en/latest/streaming-integrator/ref/hTTP-Status-Codes/">HTTP Status Codes</a> .</p></td>
 </tr>
 </tbody>
 </table>
@@ -142,7 +142,7 @@ curl -X POST "http://localhost:9390/simulation/feed" -H "accept: application/jso
 <tr class="odd">
 <th>HTTP Status Code</th>
 <td><p>Possible codes are 200, 403, 404, and 409.</p>
-<p>For descriptions of the HTTP status codes, see <a href="_HTTP_Status_Codes_">HTTP Status Codes</a> .</p></td>
+<p>For descriptions of the HTTP status codes, see <a href="https://ei.docs.wso2.com/en/latest/streaming-integrator/ref/hTTP-Status-Codes/">HTTP Status Codes</a> .</p></td>
 </tr>
 </tbody>
 </table>
@@ -213,7 +213,7 @@ curl -X GET "http://localhost:9390/simulation/feed" -H "accept: application/json
 <tr class="odd">
 <th>HTTP Status Code</th>
 <td><p>Possible codes are 200 and 404.</p>
-<p>For descriptions of the HTTP status codes, see <a href="_HTTP_Status_Codes_">HTTP Status Codes</a> .</p></td>
+<p>For descriptions of the HTTP status codes, see <a href="https://ei.docs.wso2.com/en/latest/streaming-integrator/ref/hTTP-Status-Codes/">HTTP Status Codes</a> .</p></td>
 </tr>
 </tbody>
 </table>
@@ -291,7 +291,7 @@ curl -X PUT "http://localhost:9390/simulation/feed/TestFeedSimulation" -H "accep
 <tr class="odd">
 <th>HTTP Status Code</th>
 <td><p>Possible codes are 200 and 404.</p>
-<p>For descriptions of the HTTP status codes, see <a href="_HTTP_Status_Codes_">HTTP Status Codes</a> .</p></td>
+<p>For descriptions of the HTTP status codes, see <a href="https://ei.docs.wso2.com/en/latest/streaming-integrator/ref/hTTP-Status-Codes/">HTTP Status Codes</a> .</p></td>
 </tr>
 </tbody>
 </table>
@@ -368,7 +368,7 @@ curl -X GET "http://localhost:9390/simulation/feed/TestFeedSimulation" -H "accep
 <tr class="odd">
 <th>HTTP Status Code</th>
 <td><p>Possible codes are 200 and 404.</p>
-<p>For descriptions of the HTTP status codes, see <a href="_HTTP_Status_Codes_">HTTP Status Codes</a> .</p></td>
+<p>For descriptions of the HTTP status codes, see <a href="https://ei.docs.wso2.com/en/latest/streaming-integrator/ref/hTTP-Status-Codes/">HTTP Status Codes</a> .</p></td>
 </tr>
 </tbody>
 </table>
@@ -445,7 +445,7 @@ curl -X DELETE "http://localhost:9390/simulation/feed/TestFeedSimulation" -H "ac
 <tr class="odd">
 <th>HTTP Status Code</th>
 <td><p>Possible codes are 200 and 404.</p>
-<p>For descriptions of the HTTP status codes, see <a href="_HTTP_Status_Codes_">HTTP Status Codes</a> .</p></td>
+<p>For descriptions of the HTTP status codes, see <a href="https://ei.docs.wso2.com/en/latest/streaming-integrator/ref/hTTP-Status-Codes/">HTTP Status Codes</a> .</p></td>
 </tr>
 </tbody>
 </table>
@@ -522,7 +522,7 @@ curl -X POST "http://localhost:9390/simulation/feed/TestFeedSimulation/?action=r
 <tr class="odd">
 <th>HTTP Status Code</th>
 <td><p>Possible codes are 200, 403, 404, and 409.</p>
-<p>For descriptions of the HTTP status codes, see <a href="_HTTP_Status_Codes_">HTTP Status Codes</a> .</p></td>
+<p>For descriptions of the HTTP status codes, see <a href="https://ei.docs.wso2.com/en/latest/streaming-integrator/ref/hTTP-Status-Codes/">HTTP Status Codes</a> .</p></td>
 </tr>
 </tbody>
 </table>
@@ -599,7 +599,7 @@ curl -X POST "http://localhost:9390/simulation/feed/TestFeedSimulation/?action=p
 <tr class="odd">
 <th>HTTP Status Code</th>
 <td><p>Possible codes are 200, 403, 404, and 409.</p>
-<p>For descriptions of the HTTP status codes, see <a href="_HTTP_Status_Codes_">HTTP Status Codes</a> .</p></td>
+<p>For descriptions of the HTTP status codes, see <a href="https://ei.docs.wso2.com/en/latest/streaming-integrator/ref/hTTP-Status-Codes/">HTTP Status Codes</a> .</p></td>
 </tr>
 </tbody>
 </table>
@@ -675,7 +675,7 @@ curl -X POST "http://localhost:9390/simulation/feed/TestFeedSimulation/?action=r
 <tr class="odd">
 <th>HTTP Status Code</th>
 <td><p>Possible codes are 200, 403, 404, and 409.</p>
-<p>For descriptions of the HTTP status codes, see <a href="_HTTP_Status_Codes_">HTTP Status Codes</a> .</p></td>
+<p>For descriptions of the HTTP status codes, see <a href="https://ei.docs.wso2.com/en/latest/streaming-integrator/ref/hTTP-Status-Codes/">HTTP Status Codes</a> .</p></td>
 </tr>
 </tbody>
 </table>
@@ -752,7 +752,7 @@ curl -X POST "http://localhost:9390/simulation/feed/TestFeedSimulation/?action=s
 <tr class="odd">
 <th>HTTP Status Code</th>
 <td><p>Possible codes are 200, 404, and 409.</p>
-<p>For descriptions of the HTTP status codes, see <a href="_HTTP_Status_Codes_">HTTP Status Codes</a> .</p></td>
+<p>For descriptions of the HTTP status codes, see <a href="https://ei.docs.wso2.com/en/latest/streaming-integrator/ref/hTTP-Status-Codes/">HTTP Status Codes</a> .</p></td>
 </tr>
 </tbody>
 </table>
@@ -829,7 +829,7 @@ curl -X GET "http://localhost:9390/simulation/feed/TestFeedSimulation/status" -H
 <tr class="odd">
 <th>HTTP Status Code</th>
 <td><p>Possible codes are 200 and 404.</p>
-<p>For descriptions of the HTTP status codes, see <a href="_HTTP_Status_Codes_">HTTP Status Codes</a> .</p></td>
+<p>For descriptions of the HTTP status codes, see <a href="https://ei.docs.wso2.com/en/latest/streaming-integrator/ref/hTTP-Status-Codes/">HTTP Status Codes</a> .</p></td>
 </tr>
 </tbody>
 </table>
@@ -900,7 +900,7 @@ curl -X GET "http://localhost:9390/simulation/feed/TestFeedSimulation/status" -H
 <tr class="odd">
 <th>HTTP Status Code</th>
 <td><p>Possible codes are 200 and 404.</p>
-<p>For descriptions of the HTTP status codes, see <a href="_HTTP_Status_Codes_">HTTP Status Codes</a> .</p></td>
+<p>For descriptions of the HTTP status codes, see <a href="https://ei.docs.wso2.com/en/latest/streaming-integrator/ref/hTTP-Status-Codes/">HTTP Status Codes</a> .</p></td>
 </tr>
 </tbody>
 </table>
@@ -967,7 +967,7 @@ curl -X GET "http://localhost:9390/simulation/files" -H "accept: application/jso
 <tr class="odd">
 <th>HTTP Status Code</th>
 <td><p>Possible codes are 200 and 404.</p>
-<p>For descriptions of the HTTP status codes, see <a href="_HTTP_Status_Codes_">HTTP Status Codes</a> .</p></td>
+<p>For descriptions of the HTTP status codes, see <a href="https://ei.docs.wso2.com/en/latest/streaming-integrator/ref/hTTP-Status-Codes/">HTTP Status Codes</a> .</p></td>
 </tr>
 </tbody>
 </table>
@@ -1040,7 +1040,7 @@ curl -X PUT -F 'file=@foostream.csv' http://localhost:9390/simulation/files/foos
 <tr class="odd">
 <th>HTTP Status Code</th>
 <td><p>Possible codes are 200 and 404.</p>
-<p>For descriptions of the HTTP status codes, see <a href="_HTTP_Status_Codes_">HTTP Status Codes</a> .</p></td>
+<p>For descriptions of the HTTP status codes, see <a href="https://ei.docs.wso2.com/en/latest/streaming-integrator/ref/hTTP-Status-Codes/">HTTP Status Codes</a> .</p></td>
 </tr>
 </tbody>
 </table>
@@ -1117,7 +1117,7 @@ curl -X DELETE "http://localhost:9390/simulation/files/CSVTestFile.csv" -H "acce
 <tr class="odd">
 <th>HTTP Status Code</th>
 <td><p>Possible codes are 200 and 404.</p>
-<p>For descriptions of the HTTP status codes, see <a href="_HTTP_Status_Codes_">HTTP Status Codes</a> .</p></td>
+<p>For descriptions of the HTTP status codes, see <a href="https://ei.docs.wso2.com/en/latest/streaming-integrator/ref/hTTP-Status-Codes/">HTTP Status Codes</a> .</p></td>
 </tr>
 </tbody>
 </table>
@@ -1188,7 +1188,7 @@ curl -X POST "http://localhost:9090/simulation/connectToDatabase" -H "accept: ap
 <tr class="odd">
 <th>HTTP Status Code</th>
 <td><p>Possible codes are 200 and 404.</p>
-<p>For descriptions of the HTTP status codes, see <a href="_HTTP_Status_Codes_">HTTP Status Codes</a> .</p></td>
+<p>For descriptions of the HTTP status codes, see <a href="https://ei.docs.wso2.com/en/latest/streaming-integrator/ref/hTTP-Status-Codes/">HTTP Status Codes</a> .</p></td>
 </tr>
 </tbody>
 </table>
@@ -1259,7 +1259,7 @@ curl -X POST "http://localhost:9090/simulation/connectToDatabase/retrieveTableNa
 <tr class="odd">
 <th>HTTP Status Code</th>
 <td><p>Possible codes are 200 and 404.</p>
-<p>For descriptions of the HTTP status codes, see <a href="_HTTP_Status_Codes_">HTTP Status Codes</a> .</p></td>
+<p>For descriptions of the HTTP status codes, see <a href="https://ei.docs.wso2.com/en/latest/streaming-integrator/ref/hTTP-Status-Codes/">HTTP Status Codes</a> .</p></td>
 </tr>
 </tbody>
 </table>
@@ -1332,7 +1332,7 @@ curl -X POST "http://localhost:9090/simulation/connectToDatabase/DataTable/retri
 <tr class="odd">
 <th>HTTP Status Code</th>
 <td><p>Possible codes are 200 and 404.</p>
-<p>For descriptions of the HTTP status codes, see <a href="_HTTP_Status_Codes_">HTTP Status Codes</a> .</p></td>
+<p>For descriptions of the HTTP status codes, see <a href="https://ei.docs.wso2.com/en/latest/streaming-integrator/ref/hTTP-Status-Codes/">HTTP Status Codes</a> .</p></td>
 </tr>
 </tbody>
 </table>

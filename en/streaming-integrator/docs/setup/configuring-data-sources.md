@@ -156,21 +156,21 @@ The following tables explain the default data sources configured in the Streamin
         </tr>
         <tr class="odd">
             <td>Default Datasource Name</td>
-            <td><code>             SAMPLE_DB            </code></td>
+            <td><code>SAMPLE_DB</code></td>
         </tr>
         <tr class="even">
             <td>Default Database</td>
-            <td>The default <code>             H2            </code> database location is <code> &lt;DASHBOARD_HOME&gt;/wso2/dashboard/database/SAMPLE_DB</code>.</td>
+            <td>The default <code>H2</code> database location is <code> &lt;DASHBOARD_HOME&gt;/wso2/dashboard/database/SAMPLE_DB</code>.</td>
         </tr>
         <tr class="odd">
             <td>Tables</td>
-            <td>The default database shipped with a sample table named <code>             TRANSACTION_TABLE            </code> .</td>
+            <td>The default database shipped with a sample table named <code>TRANSACTION_TABLE</code> .</td>
         </tr>
         <tr class="even">
             <td>Schemas and Queries</td>
             <td>
-                <p>The schema for the sample table is <code>              TRANSACTIONS_TABLE (creditCardNo VARCHAR(50), country VARCHAR(50), transaction VARCHAR(50), amount INT)             </code></p>
-                <p>The default queries can be viewed <a href="https://github.com/wso2/carbon-analytics/blob/v2.0.250/components/org.wso2.carbon.data.provider/src/main/resources/queries.yaml">here</a> .</p>
+                <p>The schema for the sample table is <code>TRANSACTIONS_TABLE (creditCardNo VARCHAR(50), country VARCHAR(50), transaction VARCHAR(50), amount INT)</code></p>
+                <p>You can also view <a href="https://github.com/wso2/carbon-analytics/blob/v2.0.250/components/org.wso2.carbon.data.provider/src/main/resources/queries.yaml">default schemas and queries</a> .</p>
             </td>
         </tr>
         <tr class="odd">
@@ -192,7 +192,7 @@ The following tables explain the default data sources configured in the Streamin
     <tbody>
         <tr class="odd">
             <td>Database Access Requirement</td>
-            <td>Carbon coordination supports zookeeper and RDBMS based coordination. In RDBMS coordination, database access is required for updating the heartbeats of the nodes. In addition, database access is required to update the coordinator and the other members in the cluster. For more information, see <a href="_Configuring_Cluster_Coordination_">Configuring Cluster Coordination</a>.</td>
+            <td>Carbon coordination supports zookeeper and RDBMS based coordination. In RDBMS coordination, database access is required for updating the heartbeats of the nodes. In addition, database access is required to update the coordinator and the other members in the cluster. For more information, see <a href="https://ei.docs.wso2.com/en/latest/streaming-integrator/admin/configuring-Cluster-Coordination/">Configuring Cluster Coordination</a>.</td>
         </tr>
         <tr class="even">
             <td>Required/Optional</td>
@@ -210,7 +210,7 @@ The following tables explain the default data sources configured in the Streamin
         <tr class="odd">
             <td>Schemas and Queries</td>
             <td>
-                <p>Information about the default queries and the schema can be viewed <a href="https://github.com/wso2/carbon-coordination/blob/v2.0.12/components/cluster-coordinator/org.wso2.carbon.cluster.coordinator/org.wso2.carbon.cluster.coordinator.rdbms/src/main/java/org/wso2/carbon/cluster/coordinator/rdbms/util/RDBMSConstants.java">here</a>.</p>
+                <p>See <a href="https://github.com/wso2/carbon-coordination/blob/v2.0.12/components/cluster-coordinator/org.wso2.carbon.cluster.coordinator/org.wso2.carbon.cluster.coordinator.rdbms/src/main/java/org/wso2/carbon/cluster/coordinator/rdbms/util/RDBMSConstants.java">information about schemas and queries</a>.</p>
             </td>
         </tr>
         <tr class="even">
@@ -232,7 +232,7 @@ The following tables explain the default data sources configured in the Streamin
     <tbody>
         <tr class="odd">
             <td>Database Access Requirement</td>
-            <td>This involves persisting the state of Siddhi Applications periodically in the database. State persistence is enabled by selecting the <code>org.wso2.carbon.stream.processor.core.persistence.DBPersistenceStore</code> class in the <code>state.persistence</code> section of the <code>&lt;SI_Home&gt;/conf/&lt;server&gt;/deployment.yaml</code> file. For more information, see <a href="_Configuring_Database_and_File_System_State_Persistence_">Configuring Database and File System State Persistence</a>.</td>
+            <td>This involves persisting the state of Siddhi Applications periodically in the database. State persistence is enabled by selecting the <code>org.wso2.carbon.stream.processor.core.persistence.DBPersistenceStore</code> class in the <code>state.persistence</code> section of the <code>&lt;SI_Home&gt;/conf/&lt;server&gt;/deployment.yaml</code> file. For more information, see <a href="https://ei.docs.wso2.com/en/latest/streaming-integrator/admin/configuring-Database-and-File-System-State-Persistence/">Configuring Database and File System State Persistence</a>.</td>
         </tr>
         <tr class="even">
             <td>Required/Optional</td>
@@ -249,7 +249,7 @@ The following tables explain the default data sources configured in the Streamin
         <tr class="odd">
             <td>Schemas and Queries</td>
             <td>
-                <p>Information about the default queries and schema can be viewed <a href="https://github.com/wso2/carbon-analytics/blob/master/components/org.wso2.carbon.stream.processor.core/src/main/resources/queries.yaml">here</a>.</p>
+                <p>See <a href="https://github.com/wso2/carbon-analytics/blob/master/components/org.wso2.carbon.streaming.integrator.core/src/main/resources/queries.yaml">information about schemas and queries</a>.</p>
             </td>
         </tr>
         <tr class="even">
@@ -288,7 +288,7 @@ The following tables explain the default data sources configured in the Streamin
         <tr class="odd">
             <td>Schemas and Queries</td>
             <td>
-                <p>Information about the default queries and schema can be viewed [here](https://github.com/wso2/carbon-analytics/blob/v2.0.250/components/org.wso2.carbon.status.dashboard.core/src/main/resources/queries.yaml).
+                <p>See <a href="https://github.com/wso2/carbon-analytics/blob/v2.0.250/components/org.wso2.carbon.status.dashboard.core/src/main/resources/queries.yaml">information about schemas and queries</a>.
             </td>
         </tr>
         <tr class="even">
@@ -327,7 +327,7 @@ The following tables explain the default data sources configured in the Streamin
         <tr class="odd">
             <td>Schemas and Queries</td>
             <td>
-                <p>See [information about the default queries and schema](https://github.com/wso2-extensions/siddhi-store-rdbms/blob/v4.0.15/component/src/main/resources/rdbms-table-config.xml).</p>
+                <p>See <a href="https://github.com/wso2-extensions/siddhi-store-rdbms/blob/v4.0.15/component/src/main/resources/rdbms-table-config.xml">information about schemas and queries</a>.</p>
             </td>
         </tr>
         <tr class="even">
@@ -366,7 +366,7 @@ The following tables explain the default data sources configured in the Streamin
         <tr class="odd">
             <td>Schemas and Queries</td>
             <td>
-                <p><See [information on schemas and queries](https://github.com/wso2/carbon-dashboards/tree/master/features/org.wso2.carbon.dashboards.api.feature/src/main/resources/sql).
+                <p><See <a href="https://github.com/wso2/carbon-dashboards/tree/master/features/org.wso2.carbon.dashboards.api.feature/src/main/resources/sql">information about schemas and queries</a>.
             </td>
         </tr>
         <tr class="even">
@@ -407,7 +407,7 @@ The following tables explain the default data sources configured in the Streamin
         <tr class="odd">
             <td>Schemas and Queries</td>
             <td>
-                <p>See [information about schemas and queries](https://github.com/wso2/carbon-analytics/blob/v2.0.250/components/org.wso2.carbon.business.rules.core/src/main/resources/queries.yaml).</p>
+                <p>See <a href="https://github.com/wso2/carbon-analytics/blob/v2.0.250/components/org.wso2.carbon.business.rules.core/src/main/resources/queries.yaml">information about schemas and queries</a>.</p>
             </td>
         </tr>
         <tr class="even">
@@ -446,7 +446,7 @@ The following tables explain the default data sources configured in the Streamin
         <tr class="odd">
             <td>Schemas and Queries</td>
             <td>
-                <p> See [information about schemas and queries](https://github.com/wso2/carbon-analytics-common/blob/v6.0.52/components/authentication/org.wso2.carbon.analytics.idp.client/src/main/resources/queries.yaml)</p>
+                <p> See <a href="https://github.com/wso2/carbon-analytics-common/blob/v6.0.52/components/authentication/org.wso2.carbon.analytics.idp.client/src/main/resources/queries.yaml">information about schemas and queries</a>.</p>
             </td>
         </tr>
         <tr class="even">
@@ -487,7 +487,7 @@ The following tables explain the default data sources configured in the Streamin
         <tr class="odd">
             <td>Schemas and Queries</td>
             <td>
-                <p>See [information about schemas and queries](https://github.com/wso2/carbon-analytics-common/blob/v6.0.52/components/permission-provider/org.wso2.carbon.analytics.permissions/src/main/resources/queries.yaml)</p>
+                <p>See <a href="https://github.com/wso2/carbon-analytics-common/blob/v6.0.52/components/permission-provider/org.wso2.carbon.analytics.permissions/src/main/resources/queries.yaml">information about schemas and queries</a>.</p>
             </td>
         </tr>
         <tr class="even">
