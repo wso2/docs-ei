@@ -1,7 +1,6 @@
 # Amazon S3 Connector Example 
 
-The AmazonS3 Connector allows you to access the REST API of Amazon Simple Storage Service (Amazon S3). Amazon S3 is a web based storage service which can be used to store and retrieve data at anytime from anywhere on the web. Amazon uses the same service to run its own network which proves its scalability, reliability and security.
-Hence WSO2 EI AmazonS3 Connector is useful to take your on-premise data to the cloud. The advantage is, you do not need to worry about managing and replicating data on-premise. 
+The AmazonS3 Connector allows you to access the REST API of Amazon Simple Storage Service (Amazon S3).  
 
 ## What you'll build
 
@@ -11,14 +10,15 @@ This example depicts how to use AmazonS3 connector to:
 2. Upload a message into the created bucket as a text file.
 3. Retrieve created text file back and convert into a message in WSO2 EI integration. 
 
-All three operations are exposed via an API. The API with the context `/s3connector` has three resources  
+All three operations are exposed via an API. The API with the context `/s3connector` has three resources:  
 
 * `/createbucket` - Once invoked, it will create a bucket in Amazon with the specified name
 * `/addobject`  - The incoming message will be stored into the specified bucket with the specified name
 * `/info` - Once invoked, it will read the specified file from the specified bucket and respond with the content of the file
 
-Following diagram shows the overall solution. User creates a bucket, stores some message into the bucket and then he receives it back. 
-To invoke each operation user uses the same API. 
+Following diagram shows the overall solution. The user creates a bucket, stores some message into the bucket, and then receives it back. 
+
+To invoke each operation, the user uses the same API. 
 
 <img src="../../../../assets/img/connectors/Amazon-s3-diagram.png" title="Overview of Amazon S3 use case" width="800" alt="Amazon S3 use case"/>
 
@@ -26,16 +26,15 @@ If you do not want to configure this yourself, you can simply [get the project](
 
 ## Setting up the environment 
 
-Please follow the steps mentioned at [Setting up AmazonS3](amazons3-connector-config.md) document in order to create a Amazon S3 account and obtain
-credentials you need to access the Amazon APIs. Keep them saved to be used in the next steps.  
+Please follow the steps mentioned at [Setting up Amazon S3](amazons3-connector-config.md) document in order to create a Amazon S3 account and obtain credentials you need to access the Amazon APIs. Keep them saved to be used in the next steps.  
 
 ## Configure the connector in WSO2 Integration Studio
 
-Follow these steps to set up the ESB Solution Project and import AmazonS3 connector into it.
+Follow these steps to set up the Integration Project and import AmazonS3 connector into it.
 
 {!references/connectors/importing-connector-to-integration-studio.md!} 
 
-1. Right click on the created ESB Solution Project and select, -> **New** -> **Rest API** to create the REST API.
+1. Right click on the created Integration Project and select, -> **New** -> **Rest API** to create the REST API.
    <img src="../../../../assets/img/connectors/adding-an-api.png" title="Adding a Rest API" width="800" alt="Adding a Rest API"/>
 
 2. Specify the API name as `S3ConnectorTestAPI` and API context as `/s3connector`. You can go to the source view of the XML configuration file of the API and copy the following configuration.
@@ -218,17 +217,16 @@ Follow these steps to set up the ESB Solution Project and import AmazonS3 connec
 </api>
 ```
 
-**Note**
+**Note**:
 
-* As `accessKeyId` use the access key obtained from Amazon S3 setup and update above API configuration. 
-* As `secretAccessKey` use the secret key obtained from Amazon S3 setup and update above API configuration.
-* Note that When you configure `addobject` resource, there are three parts to it. You need to use three operations of the connector in order. 
+* As `accessKeyId` use the access key obtained from Amazon S3 setup and update the above API configuration. 
+* As `secretAccessKey` use the secret key obtained from Amazon S3 setup and update the above API configuration.
+* Note that When you configure the `addobject` resource, there are three parts to it. You need to use three operations of the connector in order. 
     * initMultipartUpload - initialize the upload to the bucket. In the response of this operation you will receive generated `uploadId` by amazon S3
     * uploadPart - upload message part. There can be multiple parts to the same object. When you invoke the operation, feed `uploadId` and the correct `partNumber`. 
     * completeMultipartUpload - once all parts are done uploading, call this operation. It will add up all the parts and create the object in the requested bucket. 
- For more information please refer the [reference guide](amazons3-connector-reference.md) for Amazon S3 connector.
 * Note that `region` at `host` and `bucketUrl` properties are hard coded. Please change them as per the requirement. 
- 
+* For more information please refer the [reference guide](amazons3-connector-reference.md) for Amazon S3 connector. 
 
 Now we can export the imported connector and the API into a single CAR application. CAR application is the one we are going to deploy to server runtime. 
 
@@ -243,6 +241,9 @@ You can download the ZIP file and extract the contents to get the project code.
 <a href="../../../../assets/attach/connectors/s3-connector.zip">
     <img src="../../../../assets/img/connectors/download-zip.png" width="200" alt="Download ZIP">
 </a>
+
+!!! tip
+    You may need to update the value of the access key and make other such changes before deploying and running this project.
 
 ## Deployment
 

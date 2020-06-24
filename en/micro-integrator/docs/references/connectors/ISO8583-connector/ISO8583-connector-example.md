@@ -1,17 +1,10 @@
 # ISO8583 Connector Example
 
-Given below is a sample scenario that demonstrates how the WSO2 ISO8583 Connector sends an ISO8583 message to financial networks using WSO2 Micro Integrator.
-
-The ISO8583 message format is used for financial transactions such as ATM, POS, Credit Card, Mobile Banking, Internet Banking, KIOSK, e-commerce, etc. transactions.
-
-The financial transaction involves communication between two systems through a socket connection. After the connection is established, each system can send messages in ISO8583 format, which commonly will be requested and the other system will send a response. 
-
-For example, the purchase made in a store may travel from the merchant terminal through another terminal such as banking systems. This requires a network or networks to the issuing bank where the card holder's account is held.
-Cardholder-originated transactions include purchase, withdrawal, deposit, refund, reversal, balance inquiry, payments, and inter-account transfers. ISO8583 also defines system-to-system messages for secure key exchanges, reconciliation of totals, and other administrative purposes. The response on authorizing or declining the transaction needs to be returned by the same route to the terminal
+Given below is a sample scenario that demonstrates how the WSO2 ISO8583 Connector sends an ISO8583 message to financial networks using WSO2 Enterprise Integrator.
 
 ## What you'll build
 
-This example demonstrates, how to expose core banking system functionality working with ISO8583 protocol as an API. Here WSO2 EI acts as ISO8583 terminal for the banking network. In this scenario to mock the banking network we used Test mock server.
+This example demonstrates how to expose core banking system functionality working with ISO8583 protocol as an API. Here WSO2 EI acts as ISO8583 terminal for the banking network. In this scenario to mock the banking network we used Test mock server.
 
 Given below is a sample API that illustrates how you can configure ISO8583 with the `init` operation and then use the `iso8583.sendMessage` operation to send an ISO8583 message for the financial transactions.
 
@@ -23,11 +16,11 @@ If you do not want to configure this yourself, you can simply [get the project](
 
 ## Configure the connector in WSO2 Integration Studio
 
-Follow these steps to set up the ESB Solution Project and the Connector Exporter Project.
+Follow these steps to set up the Integration Project and the Connector Exporter Project.
 
 {!references/connectors/importing-connector-to-integration-studio.md!}
 
-1. Right click on the created ESB Solution Project and select, -> **New** -> **Rest API** to create the REST API.
+1. Right click on the created Integration Project and select, -> **New** -> **Rest API** to create the REST API.
 
 2. Specify the API name as `SendisoTestAPI` and API context as `/sendiso`. You can go to the source view of the XML configuration file of the API and copy the following configuration (source view).
 
@@ -74,7 +67,7 @@ Follow these steps to deploy the exported CApp in the Enterprise Integrator Runt
     
 ## Testing
 
-Invoke the API as shown below using the curl command. Curl Application can be downloaded from [here] (https://curl.haxx.se/download.html).
+Invoke the API as shown below using the curl command. Curl Application can be downloaded from [here](https://curl.haxx.se/download.html).
       
    ```
           curl -v POST -d 

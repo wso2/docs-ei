@@ -1,6 +1,6 @@
 # Gmail Connector Example
 
-The Gmail Connector allows you to access the [Gmail REST API](https://developers.google.com/gmail/api/v1/reference) through WSO2 EI. Gmail is a free, Web-based e-mail service provided by Google. It allows you to send, read, and delete emails through the Gmail REST API. Furthermore, it provides the ability to read, trash, untrash, and delete threads, create, update, and delete drafts, get the Gmail profile, and access the mailbox history as well, while handling OAuth 2.0 authentication. 
+The Gmail Connector allows you to access the [Gmail REST API](https://developers.google.com/gmail/api/v1/reference) through WSO2 EI. 
 
 ## What you'll build
 
@@ -11,10 +11,10 @@ This example demonstrates a scenario where a customer feedback Gmail account of 
 If you do not want to configure this yourself, you can simply [get the project](#get-the-project) and run it.
 
 ## Configure the connector in WSO2 Integration Studio
-1. Follow these steps to set up the ESB Solution Project and the Connector Exporter Project. 
+1. Follow these steps to set up the Integration Project and the Connector Exporter Project. 
 {!references/connectors/importing-connector-to-integration-studio.md!}
 
-2. Right click on the created ESB Solution Project and select, -> **New** -> **Rest API** to create the REST API. 
+2. Right click on the created Integration Project and select, -> **New** -> **Rest API** to create the REST API. 
     <img src="../../../../assets/img/connectors/adding-an-api.png" title="Adding a Rest API" width="800" alt="Adding a Rest API"/>
 
 3. Follow these steps to [configure the Gmail API](configuring-gmail-api.md) and obtain the Client Id, Client Secret, Access Token and Refresh Token. 
@@ -53,7 +53,7 @@ If you do not want to configure this yourself, you can simply [get the project](
 </api>
 ```
 
-5. Right click on the created ESB Solution Project and select **New** -> **Sequence** to create the defined sequence called **reply**. 
+5. Right click on the created Integration Project and select **New** -> **Sequence** to create the defined sequence called **reply**. 
 
 6. Provide the Sequence name as **reply**. You can go to the source view of the XML configuration file of the API and copy the following configuration. 
 ```
@@ -98,8 +98,12 @@ You can download the ZIP file and extract the contents to get the project code.
     <img src="../../../../assets/img/connectors/download-zip.png" width="200" alt="Download ZIP">
 </a>
 
+!!! tip
+    You may need to update the value of the access token and make other such changes before deploying and running this project.
+
 ## Deployment
-Follow these steps to deploy the exported CApp in the Enterprise Integrator Runtime. 
+Follow these steps to deploy the exported CApp in the Enterprise Integrator Runtime.<br>
+
 {!references/connectors/deploy-capp.md!}
 
 ## Testing

@@ -1,7 +1,5 @@
 # Setting up the Amazon Lambda Environment
 
-The AmazonLambda Connector allows you to access the REST API of [Amazon Web Service Lambda (AWS Lambda)](https://docs.aws.amazon.com/lambda/latest/dg/welcome.html), which lets you run code without provisioning or managing servers.AWS Lambda is one such serverless compute service. Therefore you don’t need to worry about which AWS resources to launch, or how will they manage them. Instead, you need to put the code on Lambda, and it runs.
-
 To use the AmazonLambda service, you must have an AWS account. If you don't already have an account, you are prompted to create one when you sign up. You're not charged for any AWS services that you sign up for unless you use them.
 
 ## Signing Up for AWS
