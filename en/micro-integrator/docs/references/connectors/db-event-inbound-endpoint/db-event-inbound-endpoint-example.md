@@ -1,8 +1,4 @@
-# DB Event Inbound Endpoint Example
-
-Data is the most valuable asset in any business. Almost every cooperate system has an on-premise or cloud-based data storage facility. When the individual systems in a particular business are integrated together, sometimes they are coupled via database systems. For an example, one system can write data, while another system reads and processes them. In such instances, the systems may want to know if there are any changes to the data being performed by external parties or systems. 
-
-Hence, for an enterprise integration platform it is a useful feature to be able to generate events based on the data changes. **DB Event Inbound Endpoint** is the DB event listener for `WSO2 Enterprise Integrator`. You can configure it with any popular Database systems such as `MySQL` and `Oracle` etc. 
+# DB Event Inbound Endpoint Example 
 
 Following are the main features of the event generator. 
 
@@ -97,6 +93,9 @@ You can download the ZIP file and extract the contents to get the project code.
 <a href="../../../../assets/attach/connectors/db-event-listener.zip">
     <img src="../../../../assets/img/connectors/download-zip.png" width="200" alt="Download ZIP">
 </a>
+
+!!! tip
+    You may need to update the database details and make other such changes before deploying and running this project.
 
 ## Deploying on WSO2 Enterprise Integrator
 

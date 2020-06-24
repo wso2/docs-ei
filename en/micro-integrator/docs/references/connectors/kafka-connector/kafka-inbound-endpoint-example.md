@@ -4,7 +4,7 @@ The Kafka inbound endpoint of WSO2 EI acts as a message consumer. It creates a c
 
 ## What you'll build
 This sample demonstrates how one way message bridging from Kafka to HTTP can be done using the inbound Kafka endpoint.
-See [Configuring kafka connector](kafka-connector-configuration.md) for more information.
+See [Configuring kafka connector](kafka-connector-config.md) for more information.
 
 The following diagram illustrates all the required functionality of the Kafka service that you are going to build. In this example, you only need to consider about the scenario of message consuming.
 
@@ -20,11 +20,11 @@ If you do not want to configure this yourself, you can simply [get the project](
 2. Right click on **Source** -> **main** -> **synapse-config** -> **inbound-endpoints** and add a new **custom inbound endpoint**.</br> 
 <img src="../../../../assets/img/connectors/db-event-inbound-ep.png" title="Creating inbound endpoint" width="400" alt="Creating inbound endpoint" style="border:1px solid black"/>
 
-Click on **Inbound Endpoint** in the design view and under the `properties` tab, update the class name to `org.wso2.carbon.inbound.kafka.KafkaMessageConsumer`.
+3. Click on **Inbound Endpoint** in the design view and under the `properties` tab, update the class name to `org.wso2.carbon.inbound.kafka.KafkaMessageConsumer`.
 
 4. Navigate to the source view and update it with the following configuration as required.  
 
-   ```
+   ```xml
    <?xml version="1.0" encoding="UTF-8"?>
    <inboundEndpoint name="KAFKAListenerEP" sequence="kafka_process_seq" onError="fault" class="org.wso2.carbon.inbound.kafka.KafkaMessageConsumer" suspend="false" xmlns="http://ws.apache.org/ns/synapse">
       <parameters>
@@ -42,11 +42,11 @@ Click on **Inbound Endpoint** in the design view and under the `properties` tab,
       </parameters>
    </inboundEndpoint>
    ```
-   Sequence to process the message.
+   Sequence to process the message:
    
    In this example for simplicity we will just log the message, but in a real world use case, this can be any type of message mediation.
 
-   ```
+   ```xml
    <?xml version="1.0" encoding="ISO-8859-1"?>
       <sequence xmlns="http://ws.apache.org/ns/synapse" name="kafka_process_seq">
          <log level="full"/>
@@ -116,7 +116,7 @@ You can download the ZIP file and extract the contents to get the project code.
    ```
    The Kafka inbound endpoint gets the messages from the Kafka brokers and logs the messages in the Micro Integrator.
    
-   ## What's next
-   
-   * You can deploy and run your project on [Docker](../../../setup/installation/run_in_docker.md) or [Kubernetes](../../../setup/installation/run_in_kubernetes.md).
-   * To customize this example for your own scenario, see [kafka Connector Configuration](kafka-connector-config.md) documentation.
+## What's next
+
+* You can deploy and run your project on [Docker](../../../setup/installation/run_in_docker.md) or [Kubernetes](../../../setup/installation/run_in_kubernetes.md).
+* To customize this example for your own scenario, see [kafka Connector Configuration](kafka-connector-config.md) documentation.

@@ -1,4 +1,4 @@
-# Kafka Connector Configuration
+# Kafka Connector Reference
 
 The following operations allow you to work with the Kafka Connector. Click an operation name to see parameter details and samples on how to use it.
 

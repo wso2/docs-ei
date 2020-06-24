@@ -1,24 +1,19 @@
-# Amazon S3 Connector Example 
-
-Google Firebase is a rich modern platform to create quick mobile app back-ends, with a ton of built-in and ready-to-integrate features. The most used feature of Firebase is as a back-end. However, along with this back-end, one of the popular features is **push notifications**. We can register Android, IOS, and Web-based backend to Google Firebase applications and push notifications to them. Firebase being a Google product, a lot of people use it for reliable push notifications. In the mobile world, push notifications are very popular.  
-
-You can use the Firebase console itself to trigger out messages to the registered devices or you can even schedule a CRON job. Firebase provides a `Messaging Console`, which you can use to send all kinds of push messages, filter target users, schedule messages, and much more. Needless to state, it provides notification history and reports as well. However, when it come to integration scenarios we should be able to generate a notification externally and send it to Google Firebase.  
+# Google Firebase Connector Example   
 
 **Google Firebase Connector** is useful for integrating Google Firebase with other enterprise applications, on-premise or cloud. You can generate notifications and send them to Firebase so that they will be triggered to all the registered devices on that topic.
 
-Please refer below for more use cases. 
+Please refer to the links below for more use cases. 
 
-* [https://firebase.google.com/docs/cloud-messaging/android/topic-messaging](https://firebase.google.com/docs/cloud-messaging/android/topic-messaging)
-* [https://inducesmile.com/android/android-firebase-push-notification-with-topic-message-subscription/](https://inducesmile.com/android/android-firebase-push-notification-with-topic-message-subscription/)
-* [https://www.youtube.com/watch?v=aG2JC8c9EK0](https://www.youtube.com/watch?v=aG2JC8c9EK0)
+* [Android Topic Messaging](https://firebase.google.com/docs/cloud-messaging/android/topic-messaging)
+* [Android Firebase Push Notifications with Topic Message Subscription](https://inducesmile.com/android/android-firebase-push-notification-with-topic-message-subscription/)
+* [Android Firebase Push Notifications video](https://www.youtube.com/watch?v=aG2JC8c9EK0)
 
 
 ## What you'll build
 
 In this example let us see how we can use Google Firebase Connector to generate a push notification based on an HTTP API invocation. The integration logic will extract information from HTTP message to the API to generate the push notification. 
 
-> **Note**
-The connector can also be used to register a device to a particular topic on Firebase. We will not cover it here. We will also not cover how the notifications can be received using Android or IOS apps. Please refer to online resources to get know about them. 
+> **Note**: The connector can also be used to register a device to a particular topic on Firebase. We will not cover it here. We will also not cover how the notifications can be received using Android or IOS apps. Please refer to online resources to get know about them. 
 
 Overall integration scenario would look like below. 
 <br/><br/>
@@ -166,8 +161,7 @@ Follow these steps to set up the Integration Project and import Google Firebase 
     </sequence>
    ```
 
-> **NOTE:**
-The parameters under `<init>` section of the configuration above are referring to the credentials we obtained from Google Firebase in above steps. The parameters are mapped to the keys of the JSON file that you have downloaded as below. 
+> **Note**: The parameters under `<init>` section of the configuration above are referring to the credentials we obtained from Google Firebase in above steps. The parameters are mapped to the keys of the JSON file that you have downloaded as below. 
 
 ```
 accountType --> type
@@ -187,11 +181,22 @@ Now we can export the imported connector, sequence, and the API into a single CA
 
 {!references/connectors/exporting-artifacts.md!}
 
+## Get the project
+
+You can download the ZIP file and extract the contents to get the project code.
+
+<a href="../../../../assets/attach/connectors/google-firebase-test-project.zip">
+    <img src="../../../../assets/img/connectors/download-zip.png" width="200" alt="Download ZIP">
+</a>
+
+!!! tip
+    You may need to update the value of the credentials and make other such changes before deploying and running this project.
+
+## Deployment
 
 Now the exported CApp can be deployed in Enterprise Integrator Runtime so that we can run it and test. 
 
-**NOTE**
-Download the following .jar files. 
+**Note**: Download the following .jar files. 
 1. [firebase-admin-6.5.0.jar](https://mvnrepository.com/artifact/com.google.firebase/firebase-admin/6.5.0)
 2. [google-auth-library-credentials-0.11.0.jar](https://mvnrepository.com/artifact/com.google.auth/google-auth-library-credentials/0.11.0)
 3. [google-auth-library-oauth2-http-0.11.0.jar](https://mvnrepository.com/artifact/com.google.auth/google-auth-library-oauth2-http/0.11.0)

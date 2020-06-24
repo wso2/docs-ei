@@ -1,8 +1,8 @@
-# Amazon Lambda Connector Configuration
+# Amazon Lambda Connector Reference
 
 The following operations allow you to work with the Amazon Lambda Connector. Click an operation name to see parameter details and samples on how to use it.
 
-### Working with Amazon Lambda Accounts
+### Accounts
 
 ??? note "getAccountSettings"
     The getAccountSettings operation retrieves details about your account's limits and usage in an AWS Region. See the [related API documentation](https://docs.aws.amazon.com/lambda/latest/dg/API_GetAccountSettings.html).
@@ -61,7 +61,7 @@ The following operations allow you to work with the Amazon Lambda Connector. Cli
     }
     ```
 
-### Working with Amazon Lambda Aliases
+### Aliases
 
 ??? note "createAlias"
     The createAlias implementation of the POST operation creates an alias for a Lambda function version. Use aliases to provide clients with a function identifier that you can update to invoke a different version. You can also map an alias to split invocation requests between two versions. Use the RoutingConfig parameter to specify a second version and the percentage of invocation requests that it receives. See the [related API documentation](https://docs.aws.amazon.com/lambda/latest/dg/API_CreateAlias.html).

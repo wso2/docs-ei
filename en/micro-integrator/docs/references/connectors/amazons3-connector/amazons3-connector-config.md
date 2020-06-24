@@ -1,7 +1,5 @@
 # Setting up the Amazon S3 Environment
 
-The AmazonS3 Connector allows you to access the REST API of [Amazon Storage Service S3](https://docs.aws.amazon.com/AmazonS3/latest/API/Welcome.html), which lets you store your information and retrieve them back when needed. 
-
 To use the AmazonS3 service, you must have an AWS account. If you don't already have an account, you are prompted to create one when you sign up. You're not charged for any AWS services that you sign up for unless you use them.
 
 ## Signing Up for AWS
