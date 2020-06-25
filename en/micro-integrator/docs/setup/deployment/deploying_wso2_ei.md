@@ -48,11 +48,11 @@ When the nodes in the cluster need to communicate with each other, the Micro Int
         -   DB2 v11.5.0.0
         -   Oracle Database 12c Enterprise Edition Release 12.2.0.1.0 - 64bit Production
 
-    - [Setting up a MySQL database](../../../setup/deployment/databases/setting-up-MySQL)
-    - [Setting up an MSSQL database](../../../setup/deployment/databases/setting-up-MSSQL)
-    - [Setting up an Oracle database](../../../setup/deployment/databases/setting-up-Oracle)
-    - [Setting up a Postgre database](../../../setup/deployment/databases/setting-up-PostgreSQL)
-    - [Setting up an IBM database](../../../setup/deployment/databases/setting-up-IBM-DB2)
+    - [Setting up a MySQL database](../../../setup/databases/setting-up-MySQL)
+    - [Setting up an MSSQL database](../../../setup/databases/setting-up-MSSQL)
+    - [Setting up an Oracle database](../../../setup/databases/setting-up-Oracle)
+    - [Setting up a Postgre database](../../../setup/databases/setting-up-PostgreSQL)
+    - [Setting up an IBM database](../../../setup/databases/setting-up-IBM-DB2)
 
 2.  Open the `deployment.toml` file and see that the configurations are updated as shown below.
 

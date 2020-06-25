@@ -194,7 +194,7 @@ Listed below are the common guidelines for making a WSO2 product ready for produ
    </tbody>
 </table>
 
-## Security guidelines and checklist
+## Security Guidelines
 
 Given below are the common security guidelines for deploying a WSO2 product in a **production environment.**
 
@@ -217,7 +217,7 @@ Given below are the common security guidelines for deploying a WSO2 product in a
             <ul>
                 <li>Using WUM ( WSO2 Update Manager ) to get the latest fixes. Users with a <a href="https://wso2.com/subscription">subscription</a> can take the latest security fixes via the WUM security channel.</li>
                 <li><a href="http://wso2.com/security-patch-releases">WSO2 Security Patch Release</a> page has all the security patches for the latest product versions. WSO2 does not issue patches publicly for older product versions. Community users are encouraged to use the latest product version to receive all the security fixes.
-</li>           <li><a href="https://docker.wso2.com/tags.php?repo=wso2mi">WSO2 Docker repository</a> releases docker images with security fixes. Users with a <a href="https://wso2.com/subscription">subscription</a> can fetch these docker images.</li> 
+</li>           <li><a href="https://docker.wso2.com/tags.php?repo=wso2mi">WSO2 Docker repository</a> releases docker images with security fixes. Users with a <a href="https://wso2.com/subscription">subscription</a> can fetch these docker images.</li>
             </ul>
          </td>
       </tr>
@@ -589,3 +589,171 @@ This section provides the list of security guidelines for configuring the netwo
       </tr>
    </tbody>
 </table>
+
+## Monitoring Transaction Counts
+
+A **Transaction** in WSO2 Micro Integrator is typically defined as an inbound request (a request coming to the server). That is, any inbound request to a [REST API](../../../develop/creating-artifacts/creating-an-api), [Proxy service](../../../develop/creating-artifacts/creating-a-proxy-service), or [Inbound Endpoint](../../../develop/creating-artifacts/creating-an-inbound-endpoint) is considered as one transaction.
+
+However, when the Micro Integrator is configured as both the message producer and consumer to handle **asynchronous** messaging scenarios, the two requests (listening request and sending request) are considered as a single transaction.
+
+If you need to track the number of transactions in your Micro Integrator deployment, you can enable the transaction counter component in each Micro Integrator instance of your deployment. Currently, the transaction counter is responsible for counting all requests received via the [HTTP Passthru](../../../setup/transport_configurations/configuring-transports/#configuring-the-httphttps-transport) and [JMS](../../../setup/transport_configurations/configuring-transports/#configuring-the-jms-transport) transports and for persisting the summary of the transaction count in a database for future use.
+
+Follow the instructions given below.
+
+### Enabling the Transaction Counter
+
+Configure a relational database to persist transaction count information and then enable the **Transaction Counter** component from the `deployment.toml` file (stored in the `<MI_HOME>/conf` folder).
+
+1.  Select the preferred database type from the  list given below and follow the relevant link to set up a database.
+
+    ??? Note "Tested Databases"
+        The following database types are tested with this version of the Micro Integrator:
+
+        -   MySQL 8.0.19
+        -   Microsoft SQL Server 2017 (RTM-CU11) (KB4462262) - 14.0.3038.14 (X64)
+        -   postgres (PostgreSQL) 12.2 (Debian 12.2-2.pgdg100+1)
+        -   DB2 v11.5.0.0
+        -   Oracle Database 12c Enterprise Edition Release 12.2.0.1.0 - 64bit Production
+
+    - [Setting up a MySQL database](../../../setup/databases/setting-up-MySQL)
+    - [Setting up an MSSQL database](../../../setup/databases/setting-up-MSSQL)
+    - [Setting up an Oracle database](../../../setup/databases/setting-up-Oracle)
+    - [Setting up a Postgre database](../../../setup/databases/setting-up-PostgreSQL)
+    - [Setting up an IBM database](../../../setup/databases/setting-up-IBM-DB2)
+
+2.  Once you have set up the database, verify that the `deployment.toml` file of your Micro Integrator contains the relevant datasource configurations:
+
+    ```toml tab='MySQL'
+    [[datasource]]
+    id = "WSO2_TRANSACTION_DB"
+    url= "jdbc:mysql://localhost:3306/transactiondb"
+    username="root"
+    password="root"
+    driver="com.mysql.jdbc.Driver"
+    pool_options.maxActive=50
+    pool_options.maxWait = 60000
+    pool_options.testOnBorrow = true
+    ```
+
+    ```toml tab='MSSQL'
+    [[datasource]]
+    id = "WSO2_TRANSACTION_DB"
+    url= "jdbc:sqlserver://<IP>:1433;databaseName=transactiondb;SendStringParametersAsUnicode=false"
+    username="root"
+    password="root"
+    driver="com.microsoft.sqlserver.jdbc.SQLServerDriver"
+    pool_options.maxActive=50
+    pool_options.maxWait = 60000
+    pool_options.testOnBorrow = true
+    ```
+
+    ```toml tab='Oracle'
+    [[datasource]]
+    id = "WSO2_TRANSACTION_DB"
+    url= "jdbc:oracle:thin:@SERVER_NAME:PORT/SID"
+    username="root"
+    password="root"
+    driver="oracle.jdbc.OracleDriver"
+    pool_options.maxActive=50
+    pool_options.maxWait = 60000
+    pool_options.testOnBorrow = true
+    ```
+
+    ```toml tab='PostgreSQL'
+    [[datasource]]
+    id = "WSO2_TRANSACTION_DB"
+    url= "jdbc:postgresql://localhost:5432/transactiondb"
+    username="root"
+    password="root"
+    driver="org.postgresql.Driver"
+    pool_options.maxActive=50
+    pool_options.maxWait = 60000
+    pool_options.testOnBorrow = true
+    ```
+
+    ```toml tab='IBM DB'
+    [[datasource]]
+    id = "WSO2_TRANSACTION_DB"
+    url="jdbc:db2://SERVER_NAME:PORT/transactiondb"
+    username="root"
+    password="root"
+    driver="com.ibm.db2.jcc.DB2Driver"
+    pool_options.maxActive=50
+    pool_options.maxWait = 60000
+    pool_options.testOnBorrow = true
+    ```
+
+3.  Add the parameters given below to the `deployment.toml` file and update the values.
+
+    ```toml
+    [transaction_counter]
+    enable = true
+    data_source = "WSO2_TRANSACTION_DB"
+    update_interval = 2
+    ```
+
+    Parameters used above are explained below.
+
+    <table>
+    	<tr>
+    		<th>Parameter</th>
+    		<th>Description</th>
+    	</tr>
+    	<tr>
+    		<td>
+    			<code>enable</code>
+    		</td>
+    		<td>
+    			This paramter is used for enabling the Transaction Counter. Default value if 'false'.
+    		</td>
+    	</tr>
+    	<tr>
+    		<td>
+    			<code>data_source</code>
+    		</td>
+    		<td>
+    			The ID of the datasource. This refers the datasource ID configured under the datasource configuration.
+    		</td>
+    	</tr>
+    	<tr>
+    		<td>
+    			<code>update_interval</code>
+    		</td>
+    		<td>
+    			The transaction count is stored in the database with an interval (specified by this parameter, which will be taken as the number of minutes) between the insert queries. The default update interval is one minute.
+    		</td>
+    	</tr>
+    </table>
+
+### Getting the Transaction Count
+
+To get the transaction count:
+
+- Execute the following commands in the [Micro Integrator CLI](../../../administer-and-observe/using-the-command-line-interface) to get the transaction count:
+
+    ```bash
+    # To get the transaction count for the current month
+    mi transaction count
+
+    # To get the transaction count for [YYYY/MM]
+    mi transaction count <YYYY> <MM>
+    ```
+
+- Use the [Management API resources](../../../administer-and-observe/working-with-management-api/#get-transaction-count) to get the transaction count.
+
+To get a transaction count report:
+
+- Execute the following commands in the [Micro Integrator CLI](../../../administer-and-observe/using-the-command-line-interface) to generate the transaction count report:
+
+    ```bash
+    # To generate transaction count report with data from the specified period at the specified location
+    mi transaction report <YYYY>-<MM> <YYYY>-<MM> --path=</dir_path>
+
+    # To generate transaction count report with data from the specified month (up to current date) at the specified location
+    mi transaction count <YYYY>-<MM> --path=</dir_path>
+
+    # To generate transaction count report at the current location for data from the specified period
+    mi transaction count <YYYY>-<MM> <YYYY>-<MM>
+    ```
+
+- Use the [Management API resources](../../../administer-and-observe/working-with-management-api/#get-transaction-data-report) to generate the transaction count report.
