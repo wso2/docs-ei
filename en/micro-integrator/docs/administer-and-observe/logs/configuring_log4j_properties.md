@@ -87,3 +87,22 @@ The logger element must have a name attribute specified. It may also have a **le
     ```xml
     loggers = AUDIT_LOG, SERVICE_LOGGER, VFSTransportSender, 
     ```
+
+## Optional Parameters
+
+By default when an error occurred while invoking a dataservice, it logs set of parameters in the error message. 
+For an example:
+```xml
+DS Code: INCOMPATIBLE_PARAMETERS_ERROR
+Source Data Service:-
+Name: RDBMSSample
+Location: /RDBMSSample.dbs
+Description: N/A
+Default Namespace: http://ws.wso2.org/dataservice
+Current Request Name: _addEmployee
+Current Params: {firstName=Will, lastName=Smith, salary=1200, email=will@abc.com}
+```
+The 'Current Params' can be hidden in the printed logs by passing the following system property:
+```xml
+-Ddss.disable.current.params=true \
+```
