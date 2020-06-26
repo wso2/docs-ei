@@ -14,7 +14,9 @@ Follow the steps given below to set up the required MSSQL databases for your Mic
 
 ## Create the database and user
 
-The following MSSQL scripts are stored in the `<MI_HOME>/dbscripts/` directory of your Micro Integrator.
+The following MSSQL scripts are stored in the `<MI_HOME>/dbscripts/` directory of your Micro Integrator. First, select the scripts that are required for your deployment.
+
+You can run the scripts on one database instance or set up separate instances for each requirement. For convenience, it is recommended to set up separate databases for each use case.
 
 <table>
 	<tr>
@@ -23,15 +25,19 @@ The following MSSQL scripts are stored in the `<MI_HOME>/dbscripts/` directory o
 	</tr>
 	<tr>
 		<td>mssql_cluster.sql</td>
-		<td>This script creates the database tables that are required for cluster coordination.</td>
+		<td>This script creates the database tables that are required for <a href='../../../../setup/deployment/deploying_wso2_ei/#cluster-coordination'>cluster coordination</a> (i.e., coordinating the server nodes in your VM deployment).</td>
 	</tr>
 	<tr>
 		<td>mssql_user.sql</td>
-		<td>This script creates the database tables that are required for storing users and roles.</td>
+		<td>This script creates the database tables that are required for storing users and roles. This is only required if you have configured an <a href='../../../../setup/user_stores/setting_up_a_userstore'>RDBMS user store</a>.</td>
+	</tr>
+	<tr>
+		<td>mssql_transaction_count.sql</td>
+		<td>This script creates the database tables that are required for storing the transaction counts. This is only required if you want to <a href='../../../../setup/deployment/deployment_checklist/#monitoring-transaction-counts'>monitor transaction counts</a> in your deployment.</td>
 	</tr>
 </table>
 
-First create the databases, and then create the DB tables by pointing to the relevant script in the `<MI_HOME>/dbscripts/` directory. It is recommended to maintain separate databases for these use cases.
+Create the databases and then create the DB tables by pointing to the relevant script in the `<MI_HOME>/dbscripts/` directory.
 
 1. Open the Microsoft SQL Management Studio to create a database and user.
 2. Click **New Database** from the **Database** menu and specify all the options to create a new database.
@@ -49,7 +55,7 @@ server permissions.
 
 ## Connecting to the database
 
-Open the `deployment.toml` file in the `<MI_HOME>/conf` directory and add the following sections to create the connection between the Micro Integrator and the relevant database. Note that you need two separate configurations corresponding to the two separate databases (`clusterdb` and `userdb`).
+Open the `deployment.toml` file in the `<MI_HOME>/conf` directory and add the following sections to create the connection between the Micro Integrator and the relevant database. Note that you need separate configurations corresponding to the separate databases (`clusterdb`, `userdb`, and `transactiondb`).
 
 ```toml tab='Cluster DB Connection'
 [[datasource]]
@@ -76,6 +82,23 @@ pool_options.testOnBorrow = true
 
 [realm_manager]
 data_source = "WSO2_USER_DB"
+```
+
+```toml tab='Transaction Counter DB Connection'
+[[datasource]]
+id = "WSO2_TRANSACTION_DB"
+url= "jdbc:sqlserver://<IP>:1433;databaseName=transactiondb;SendStringParametersAsUnicode=false"
+username="root"
+password="root"
+driver="com.microsoft.sqlserver.jdbc.SQLServerDriver"
+pool_options.maxActive=50
+pool_options.maxWait = 60000
+pool_options.testOnBorrow = true
+
+[transaction_counter]
+enable = true
+data_source = "WSO2_TRANSACTION_DB"
+update_interval = 2
 ```
 
 Find more parameters for [connecting to the database](../../../../references/config-catalog/#database-connection).
