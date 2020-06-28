@@ -386,6 +386,9 @@ nav:
           - 'Amazon SQS Reference': 'references/connectors/amazonsqs-connector/amazonsqs-connector-config.md'
           - 'Amazon SQS Inbound Endpoint Example': 'references/connectors/amazonsqs-connector/amazonsqs-inbound-endpoint-example.md'
           - 'Amazon SQS Inbound Endpoint Reference': 'references/connectors/amazonsqs-connector/amazonsqs-inbound-endpoint-reference-configuration.md'
+        - BigQuery Connector:
+          - 'Setting up the BigQuery Environment': 'references/connectors/bigquery-connector/bigquery-connector-configuration.md'
+          - 'BigQuery Connector Example': 'references/connectors/bigquery-connector/bigquery-connector-example.md'
         - Ceridian Dayforce Connector:
             - 'Ceridian Dayforce Overview': 'references/connectors/ceridiandayforce-connector/cerediandayforce-overview.md'
             - 'Setting up the Ceridian Dayforce Connector': 'references/connectors/ceridiandayforce-connector/ceridiandayforce-connector-config.md'
@@ -452,9 +455,6 @@ nav:
                   - 'employeeSSOAccounts': 'references/connectors/ceridiandayforce-connector/userSecurityAuthorityAndManagement/employeeSSOAccounts.md'
                   - 'employeeWorkAssignmentManagers': 'references/connectors/ceridiandayforce-connector/userSecurityAuthorityAndManagement/employeeWorkAssignmentManagers.md'
                   - 'userPayAdjustmentCodeGroups': 'references/connectors/ceridiandayforce-connector/userSecurityAuthorityAndManagement/userPayAdjustmentCodeGroups.md'
-        - BigQuery Connector:
-            - 'Setting up the BigQuery Environment': 'references/connectors/bigquery-connector/bigquery-connector-configuration.md'
-            - 'BigQuery Connector Example': 'references/connectors/bigquery-connector/bigquery-connector-example.md'
         - DB Event Listener Inbound Endpoint:
           - 'Database Event Listener Overview': 'references/connectors/db-event-inbound-endpoint/db-event-inbound-endpoint-overview.md'
           - 'Database Event Listener Example': 'references/connectors/db-event-inbound-endpoint/db-event-inbound-endpoint-example.md'
@@ -477,8 +477,8 @@ nav:
           - 'Google Firebase Example': 'references/connectors/google-firebase-connector/google-firebase-connector-example.md'
           - 'Google Firebase Reference': 'references/connectors/google-firebase-connector/google-firebase-configuration.md'
         - Google Pub Sub Connector:
-            - 'Setting up the Google Pub Sub Environment': 'references/connectors/google-pubsub-connector/googlepubsub-connector-configuration.md'
-            - 'Google Pub Sub Connector Example': 'references/connectors/google-pubsub-connector/googlepubsub-connector-example.md'
+          - 'Setting up the Google Pub Sub Environment': 'references/connectors/google-pubsub-connector/googlepubsub-connector-configuration.md'
+          - 'Google Pub Sub Connector Example': 'references/connectors/google-pubsub-connector/googlepubsub-connector-example.md'
         - Google Spreadsheet Connector:
           - 'Google Spreadsheet Overview': 'references/connectors/google-spreadsheet-connector/google-spreadsheet-overview.md'
           - 'Google Spreadsheet Example': 'references/connectors/google-spreadsheet-connector/google-spreadsheet-connector-example.md'
@@ -508,8 +508,10 @@ nav:
           - 'Microsoft Azure Storage Example': 'references/connectors/microsoft-azure-storage-connector/microsoft-azure-storage-connector-example.md'
           - 'Microsoft Azure Storage Reference': 'references/connectors/microsoft-azure-storage-connector/microsoft-azure-storage-reference.md'
         - Redis Connector:
-            - 'Setting up the Environment': 'references/connectors/redis-connector/redis-connector-configuration.md'
-            - 'Redis Connector Example': 'references/connectors/redis-connector/redis-connector-example.md'
+          - 'Redis Overview': 'references/connectors/redis-connector/redis-connector-overview.md'
+          - 'Setting up the Environment': 'references/connectors/redis-connector/redis-connector-configuration.md'
+          - 'Redis Example': 'references/connectors/redis-connector/redis-connector-example.md'
+          - 'Redis Reference': 'references/connectors/redis-connector/redis-connector-reference.md'
         - Salesforce Connectors:
           - 'Salesforce Overview': 'references/connectors/salesforce-connectors/sf-overview.md'
           - 'Salesforce Access Token Generation': 'references/connectors/salesforce-connectors/sf-access-token-generation.md'
