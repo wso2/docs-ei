@@ -1,8 +1,6 @@
 # Redis Connector Example
 
-The Redis connector allows you to access the Redis commands through the WSO2 EI. Redis is an open source (BSD licensed), in-memory data structure store, used as a **cache** or a **database**, cache and message broker. It supports data structures such as strings, hashes, lists, sets, sorted sets with range queries, bitmaps, hyperlogs and geospatial indexes with radius queries.
-
-This connector enables developers to use an external Redis server as a cache or a database in the WSO2 EI mediation logic.
+The Redis connector allows you to access the Redis commands through the WSO2 EI. 
 
 ## What you'll build
 
