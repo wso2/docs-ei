@@ -235,7 +235,13 @@ nav:
     - 'Deploying Siddhi Applications': 'develop/deploying-Streaming-Applications.md'
     - 'Exporting Siddhi Applications': 'develop/exporting-Siddhi-Applications.md'
   - 'Observability':
-    - 'Monitoring the Streaming Integrator': 'admin/monitoring-the-streaming-integrator.md'
+    - 'Monitoring SI via Grafana Dashboards':
+      - 'Configuring Grafana Dashboards': 'admin/setting-up-grafana-dashboards.md'
+      - 'Managing Grafana Dashboards': 'admin/managing-grafana-dashboards.md'
+      - 'Viewing Grafana Dashboards':
+        - 'Viewing CDC Statistics':
+            - 
+    - 'Monitoring SI via Analytics Dashboard: 'admin/monitoring-the-streaming-integrator.md'
   - 'Connectors':
     - 'Streaming Integrator Connectors Overview': 'connectors/connectors-overview.md'
     - 'Downloading and Installing Siddhi Connectors': 'connectors/downloading-and-Installing-Siddhi-Extensions.md'
