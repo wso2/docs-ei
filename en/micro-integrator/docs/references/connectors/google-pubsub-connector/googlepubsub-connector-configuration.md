@@ -1,4 +1,4 @@
-# Setting up the Google Pub Sub Environment  
+# Setting up the Google PubSub Environment  
 
 The Google Pub/Sub connector allows you to access the [Google Cloud Pub/Sub API Version v1](https://cloud.google.com/pubsub/docs/reference/rest/) through WSO2 EI.
 
@@ -36,7 +36,7 @@ Follow the steps below to generate user credentials.
 
     <img src="../../../../assets/img/connectors/pubsub-select-library.png" title="Select library" width="600" alt="Select library"/> 
 
-7. Search  **Google Cloud Pub/Sub API** under the **Big data or Networking category**.
+7. Search **Google Cloud Pub/Sub API** under the **Big data or Networking category**.
   
     <img src="../../../../assets/img/connectors/pubsub-select-API.png" title="Pubsub API" width="600" alt="Pubsub API"/> 
 
