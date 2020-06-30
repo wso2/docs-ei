@@ -3526,3 +3526,539 @@ To use the Salesforce REST connector, add the `<salesforcerest.init>` element in
         .
     }
     ```
+
+??? note "sObjectGetUpdated"
+    To retrieve a list of individual records that have been updated within the given timespan for the specified object, use salesforcerest.sObjectGetUpdated. The date and time should be provided in ISO 8601 format:YYYY-MM-DDThh:mm:ss+hh:mm. See the [related API documentation](https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/resources_getupdated.htm) for more information.
+    <table>
+        <tr>
+            <th>Parameter Name</th>
+            <th>Description</th>
+            <th>Required</th>
+            <th>Sample Value</th>
+        </tr>
+        <tr>
+            <td>sObjectName</td>
+            <td>The object type whose metadata you want to retrieve.</td>
+            <td>Yes</td>
+            <td>Account</td>
+        </tr>
+        <tr>
+            <td>startTime</td>
+            <td>Starting date/time (Coordinated Universal Time (UTC)—not local—timezone) of the timespan for which to retrieve the data.</td>
+            <td>Yes</td>
+            <td>2015-10-05T12:30:30+05:30</td>
+        </tr>
+        <tr>
+            <td>endTime</td>
+            <td>Ending date/time (Coordinated Universal Time (UTC)—not local—timezone) of the timespan for which to retrieve the data.</td>
+            <td>Yes</td>
+            <td>2015-10-10T20:30:30+05:30</td>
+        </tr>
+    </table>
+
+    **Sample configuration**
+
+    ```xml
+    <salesforcerest.sObjectGetUpdated>
+        <sObjectName>{$ctx:sObjectName}</sObjectName>
+        <startTime>{$ctx:startTime}</startTime>
+        <endTime>{$ctx:endTime}</endTime>
+    </salesforcerest.sObjectGetUpdated>
+    ```
+
+    **Sample request**
+
+    The following is a sample request that can be handled by the sObjectGetUpdated operation.
+
+    ```json
+    {
+        "accessToken":"00D280000017q6q!AQoAQOeXcp7zKo3gUdy6r064_LsJ5bYYrUn_qAZG9TtKFLPfUMRxiato.E162_2XAtCTZLFQTbNk2Rz6Zm_juSakFE_aaBPp",
+        "apiUrl":"https://ap2.salesforce.com",
+        "clientId": "3MVG9ZL0ppGP5UrBrnsanGUZRgHqc8gTV4t_6tfuef8Zz4LhFPipmlooU6GBszpplbTzVXXWjqkGHubhRip1s",
+        "refreshToken": "5Aep861TSESvWeug_xvFHRBTTbf_YrTWgEyjBJo7Xr34yOQ7GCFUN5DnNPxzDIoGoWi4evqOl_lT1B9nE5dAtSb",
+        "clientSecret": "9104967092887676680",
+        "hostName": "https://login.salesforce.com",
+        "apiVersion": "v32.0",
+        "sObjectName":"Account",
+        "intervalTime" : "100000",
+        "startTime":"2015-10-05T12:30:30+05:30",
+        "endTime":"2015-10-10T20:30:30+05:30",
+        "registryPath": "connectors/SalesforceRest"
+    }
+    ```
+
+    **Sample Response**
+
+    Given below is a sample response for the sObjectGetUpdated operation.
+
+    ```json
+    {
+        "ids":[
+
+        ],
+        "latestDateCovered":"2018-10-27T15:00:00.000+0000"
+    }
+    ```
+
+??? note "sObjectPlatformAction"
+    To retrieve the description of the PlatformAction, use salesforcerest.sObjectPlatformAction. See the [related API documentation](https://developer.salesforce.com/docs/atlas.en-us.198.0.api_rest.meta/api_rest/resources_sobject_platformaction.htm?search_text=PlatformAction) for more information.
+
+    **Sample configuration**
+
+    ```xml
+    <salesforcerest.sObjectPlatformAction/>
+    ```
+
+    **Sample request**
+
+    The following is a sample request that can be handled by the sObjectPlatformAction operation.
+
+    ```json
+    {
+        "accessToken":"00D280000017q6q!AQoAQOeXcp7zKo3gUdy6r064_LsJ5bYYrUn_qAZG9TtKFLPfUMRxiato.E162_2XAtCTZLFQTbNk2Rz6Zm_juSakFE_aaBPp",
+        "apiUrl":"https://ap2.salesforce.com",
+        "clientId": "3MVG9ZL0ppGP5UrBrnsanGUZRgHqc8gTV4t_6tfuef8Zz4LhFPipmlooU6GBszpplbTzVXXWjqkGHubhRip1s",
+        "refreshToken": "5Aep861TSESvWeug_xvFHRBTTbf_YrTWgEyjBJo7Xr34yOQ7GCFUN5DnNPxzDIoGoWi4evqOl_lT1B9nE5dAtSb",
+        "clientSecret": "9104967092887676680",
+        "hostName": "https://login.salesforce.com",
+        "apiVersion": "v32.0",
+        "intervalTime" : "100000",
+        "registryPath": "connectors/SalesforceRest"
+    }
+    ```
+
+    **Sample Response**
+
+    Given below is a sample response for the sObjectPlatformAction operation.
+
+    ```json
+    {
+        "objectDescribe":{
+        "updateable":false,
+        "activateable":false,
+        "deprecatedAndHidden":false,
+        "layoutable":false,
+        "custom":false,
+        "deletable":false,
+        "replicateable":false,
+        "undeletable":false,
+        "label":"Platform Action",
+        "keyPrefix":"0JV",
+        "searchable":false,
+        "queryable":true,
+        "mergeable":false,
+        "urls":{
+            "rowTemplate":"/services/data/v32.0/sobjects/PlatformAction/{ID}",
+            "describe":"/services/data/v32.0/sobjects/PlatformAction/describe",
+            "sobject":"/services/data/v32.0/sobjects/PlatformAction"
+        },
+        "createable":false,
+        "feedEnabled":false,
+        "retrieveable":false,
+        "name":"PlatformAction",
+        "customSetting":false,
+        "labelPlural":"Platform Actions",
+        "triggerable":false
+    },
+    "recentItems":[
+
+    ]
+    }
+    ```
+
+??? note "sObjectRows"
+    To retrieve details of a specific record, use salesforcerest.sObjectRows. See the [related API documentation](https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/resources_sobject_retrieve.htm) for more information.
+    <table>
+        <tr>
+            <th>Parameter Name</th>
+            <th>Description</th>
+            <th>Required</th>
+            <th>Sample Value</th>
+        </tr>
+        <tr>
+            <td>sObjectName</td>
+            <td>The object type of the record.</td>
+            <td>Yes</td>
+            <td>Account</td>
+        </tr>
+        <tr>
+            <td>rowId</td>
+            <td>The ID of the record whose details you want to retrieve.</td>
+            <td>Yes</td>
+            <td>00128000005YjDnAAK</td>
+        </tr>
+    </table>
+
+    **Sample configuration**
+
+    ```xml
+    <salesforcerest.sObjectRows>
+        <sObjectName>{$ctx:sObjectName}</sObjectName>
+        <rowId>{$ctx:rowId}</rowId>
+    </salesforcerest.sObjectRows>
+    ```
+
+    **Sample request**
+
+    The following is a sample request that can be handled by the sObjectRows operation.
+
+    ```json
+    {
+        "accessToken":"00D280000017q6q!AQoAQOeXcp7zKo3gUdy6r064_LsJ5bYYrUn_qAZG9TtKFLPfUMRxiato.E162_2XAtCTZLFQTbNk2Rz6Zm_juSakFE_aaBPp",
+        "apiUrl":"https://ap2.salesforce.com",
+        "clientId": "3MVG9ZL0ppGP5UrBrnsanGUZRgHqc8gTV4t_6tfuef8Zz4LhFPipmlooU6GBszpplbTzVXXWjqkGHubhRip1s",
+        "refreshToken": "5Aep861TSESvWeug_xvFHRBTTbf_YrTWgEyjBJo7Xr34yOQ7GCFUN5DnNPxzDIoGoWi4evqOl_lT1B9nE5dAtSb",
+        "clientSecret": "9104967092887676680",
+        "hostName": "https://login.salesforce.com",
+        "apiVersion": "v32.0",
+        "sObjectName":"Account",
+        "intervalTime" : "100000",
+        "rowId":"00128000005YjDnAAK",
+        "registryPath": "connectors/SalesforceRest"
+    }
+    ```
+
+    **Sample Response**
+
+    Given below is a sample response for the sObjectRows operation.
+
+    ```json
+    {
+        "AccountNumber" : "CD656092",
+        "BillingPostalCode" : "27215"
+    }
+    ```
+
+### Search
+
+??? note "search"
+    To search for records, use salesforcerest.search and specify the search string. See the [related API documentation](https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/resources_search.htm) for more information.
+    <table>
+        <tr>
+            <th>Parameter Name</th>
+            <th>Description</th>
+            <th>Required</th>
+            <th>Sample Value</th>
+        </tr>
+        <tr>
+            <td>searchString</td>
+            <td>The SQL query to use to search for records.</td>
+            <td>Yes</td>
+            <td>sample string</td>
+        </tr>
+    </table>
+
+    **Sample configuration**
+
+    ```xml
+    <salesforcerest.search>
+        <searchString>{$ctx:searchString}</searchString>
+    </salesforcerest.search>
+    ```
+
+    **Sample request**
+
+    The following is a sample request that can be handled by the search operation.
+
+    ```json
+    {
+        "accessToken":"00D280000017q6q!AQoAQOeXcp7zKo3gUdy6r064_LsJ5bYYrUn_qAZG9TtKFLPfUMRxiato.E162_2XAtCTZLFQTbNk2Rz6Zm_juSakFE_aaBPp",
+        "apiUrl":"https://ap2.salesforce.com",
+        "clientId": "3MVG9ZL0ppGP5UrBrnsanGUZRgHqc8gTV4t_6tfuef8Zz4LhFPipmlooU6GBszpplbTzVXXWjqkGHubhRip1s",
+        "refreshToken": "5Aep861TSESvWeug_xvFHRBTTbf_YrTWgEyjBJo7Xr34yOQ7GCFUN5DnNPxzDIoGoWi4evqOl_lT1B9nE5dAtSb",
+        "clientSecret": "9104967092887676680",
+        "hostName": "https://login.salesforce.com",
+        "apiVersion": "v32.0",
+        "intervalTime" : "100000",
+        "searchString": "FIND {map*} IN ALL FIELDS RETURNING Account (Id, Name), Contact, Opportunity, Lead",
+        "registryPath": "connectors/SalesforceRest"
+    }
+    ```
+
+    **Sample Response**
+
+    Given below is a sample response for the search operation.
+
+    ```json
+    {
+        {"output":"[{\"attributes\":{\"type\":\"Account\",\"url\":\"/services/data/v32.0/sobjects/Account/00128000005dMcSAAU\"},\"Id\":\"00128000005dMcSAAU\",\"Name\":\"GenePoint\"}]"}
+    }
+    ```
+
+??? note "searchScopeAndOrder"
+    To retrieve the search scope and order for the currently logged-in user, use salesforcerest.searchScopeAndOrder. See the [related API documentation](https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/resources_search_scope_order.htm) for more information.
+
+    **Sample configuration**
+
+    ```xml
+    <salesforcerest.searchScopeAndOrder/>
+    ```
+
+    **Sample request**
+
+    The following is a sample request that can be handled by the searchScopeAndOrder operation.
+
+    ```json
+    {
+        "accessToken":"00D280000017q6q!AQoAQOeXcp7zKo3gUdy6r064_LsJ5bYYrUn_qAZG9TtKFLPfUMRxiato.E162_2XAtCTZLFQTbNk2Rz6Zm_juSakFE_aaBPp",
+        "apiUrl":"https://ap2.salesforce.com",
+        "clientId": "3MVG9ZL0ppGP5UrBrnsanGUZRgHqc8gTV4t_6tfuef8Zz4LhFPipmlooU6GBszpplbTzVXXWjqkGHubhRip1s",
+        "refreshToken": "5Aep861TSESvWeug_xvFHRBTTbf_YrTWgEyjBJo7Xr34yOQ7GCFUN5DnNPxzDIoGoWi4evqOl_lT1B9nE5dAtSb",
+        "clientSecret": "9104967092887676680",
+        "hostName": "https://login.salesforce.com",
+        "apiVersion": "v32.0",
+        "intervalTime" : "100000",
+        "registryPath": "connectors/SalesforceRest"
+    }
+    ```
+
+    **Sample Response**
+
+    Given below is a sample response for the searchScopeAndOrder operation.
+
+    ```json
+    {
+        {"output":"[]"}
+    }
+    ```
+
+??? note "searchResultLayout"
+    To retrieve the search result layouts for one or more sObjects, use salesforcerest.searchResultLayout and specify the following properties. See the [related API documentation](https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/dome_retrieve_search_layouts.htm) for more information.
+    <table>
+        <tr>
+            <th>Parameter Name</th>
+            <th>Description</th>
+            <th>Required</th>
+            <th>Sample Value</th>
+        </tr>
+        <tr>
+            <td>sObjectNameList</td>
+            <td>A comma-delimited list of the objects whose search result layouts you want to retrieve.</td>
+            <td>Yes</td>
+            <td>Account,User</td>
+        </tr>
+    </table>
+
+    **Sample configuration**
+
+    ```xml
+    <salesforcerest.searchResultLayout>
+        <sObjectNameList>{$ctx:sObjectNameList}</sObjectNameList>
+    </salesforcerest.searchResultLayout>
+    ```
+
+    **Sample request**
+
+    The following is a sample request that can be handled by the searchResultLayout operation.
+
+    ```json
+    {
+        "accessToken":"00D280000017q6q!AQoAQOeXcp7zKo3gUdy6r064_LsJ5bYYrUn_qAZG9TtKFLPfUMRxiato.E162_2XAtCTZLFQTbNk2Rz6Zm_juSakFE_aaBPp",
+        "apiUrl":"https://ap2.salesforce.com",
+        "clientId": "3MVG9ZL0ppGP5UrBrnsanGUZRgHqc8gTV4t_6tfuef8Zz4LhFPipmlooU6GBszpplbTzVXXWjqkGHubhRip1s",
+        "refreshToken": "5Aep861TSESvWeug_xvFHRBTTbf_YrTWgEyjBJo7Xr34yOQ7GCFUN5DnNPxzDIoGoWi4evqOl_lT1B9nE5dAtSb",
+        "clientSecret": "9104967092887676680",
+        "hostName": "https://login.salesforce.com",
+        "apiVersion": "v32.0",
+        "intervalTime" : "100000",
+        "sObjectNameList": "Account,User",
+        "registryPath": "connectors/SalesforceRest"
+    }
+    ```
+
+    **Sample Response**
+
+    Given below is a sample response for the searchResultLayout operation.
+
+    ```json
+    {
+        {"output":"[{\"errorMsg\":null,\"label\":\"Search Results\",\"limitRows\":25,\"objectType\":\"Account\",\"searchColumns\":[{\"field\":\"Account.Name\",\"format\":null,\"label\":\"Account Name\",\"name\":\"Name\"},{\"field\":\"Account.Site\",\"format\":null,\"label\":\"Account Site\",\"name\":\"Site\"},.]"}
+    }
+    ```
+
+??? note "searchSuggestedRecords"
+    To return a list of suggested records whose names match the user’s search string, use salesforcerest.searchSuggestedRecords and specify the following properties. See the [related API documentation](https://developer.salesforce.com/docs/atlas.en-us.198.0.api_rest.meta/api_rest/resources_search_suggest_records.htm?search_text=search%20Suggested%20records) for more information.
+    <table>
+        <tr>
+            <th>Parameter Name</th>
+            <th>Description</th>
+            <th>Required</th>
+            <th>Sample Value</th>
+        </tr>
+        <tr>
+            <td>stringForSearch</td>
+            <td>The object type that the search is scoped to.</td>
+            <td>Yes</td>
+            <td>hari</td>
+        </tr>
+        <tr>
+            <td>sObjectName</td>
+            <td>The SOQL query to execute the search.</td>
+            <td>Yes</td>
+            <td>Account</td>
+        </tr>
+    </table>
+
+    **Sample configuration**
+
+    ```xml
+    <salesforcerest.searchSuggestedRecords>
+        <stringForSearch>{$ctx:stringForSearch}</stringForSearch>
+        <sObjectName>{$ctx:sObjectName}</sObjectName>
+    </salesforcerest.searchSuggestedRecords>
+    ```
+
+    **Sample request**
+
+    The following is a sample request that can be handled by the searchSuggestedRecords operation.
+
+    ```json
+    {
+        "accessToken":"00D280000017q6q!AQoAQOeXcp7zKo3gUdy6r064_LsJ5bYYrUn_qAZG9TtKFLPfUMRxiato.E162_2XAtCTZLFQTbNk2Rz6Zm_juSakFE_aaBPp",
+        "apiUrl":"https://ap2.salesforce.com",
+        "clientId": "3MVG9ZL0ppGP5UrBrnsanGUZRgHqc8gTV4t_6tfuef8Zz4LhFPipmlooU6GBszpplbTzVXXWjqkGHubhRip1s",
+        "refreshToken": "5Aep861TSESvWeug_xvFHRBTTbf_YrTWgEyjBJo7Xr34yOQ7GCFUN5DnNPxzDIoGoWi4evqOl_lT1B9nE5dAtSb",
+        "clientSecret": "9104967092887676680",
+        "hostName": "https://login.salesforce.com",
+        "apiVersion": "v32.0",
+        "intervalTime" : "100000",
+        "sObjectName": "Account",
+        "stringForSearch": "hari",
+        "registryPath": "connectors/SalesforceRest"
+    }
+    ```
+
+    **Sample Response**
+
+    Given below is a sample response for the searchSuggestedRecords operation.
+
+    ```json
+    {
+        {"autoSuggestResults":[],"hasMoreResults":false}
+    }
+    ```
+
+### Users
+
+??? note "getUserInformation"
+    To retrieve information about a specific user, use salesforcerest.getUserInformation and specify the following property. See the [related API documentation](https://developer.salesforce.com/docs/atlas.en-us.198.0.api_rest.meta/api_rest/dome_process_rules.htm) for more information.
+    <table>
+        <tr>
+            <th>Parameter Name</th>
+            <th>Description</th>
+            <th>Required</th>
+            <th>Sample Value</th>
+        </tr>
+        <tr>
+            <td>userId</td>
+            <td>The ID of the user whose information you want to retrieve.</td>
+            <td>Yes</td>
+            <td>00528000000yl7j</td>
+        </tr>
+    </table>
+
+    **Sample configuration**
+
+    ```xml
+    <salesforcerest.getUserInformation>
+        <userId>{$ctx:userId}</userId>
+    </salesforcerest.getUserInformation>
+    ```
+
+    **Sample request**
+
+    The following is a sample request that can be handled by the getUserInformation operation.
+
+    ```json
+    {
+        "accessToken":"00D280000017q6q!AQoAQOeXcp7zKo3gUdy6r064_LsJ5bYYrUn_qAZG9TtKFLPfUMRxiato.E162_2XAtCTZLFQTbNk2Rz6Zm_juSakFE_aaBPp",
+        "apiUrl":"https://ap2.salesforce.com",
+        "clientId": "3MVG9ZL0ppGP5UrBrnsanGUZRgHqc8gTV4t_6tfuef8Zz4LhFPipmlooU6GBszpplbTzVXXWjqkGHubhRip1s",
+        "refreshToken": "5Aep861TSESvWeug_xvFHRBTTbf_YrTWgEyjBJo7Xr34yOQ7GCFUN5DnNPxzDIoGoWi4evqOl_lT1B9nE5dAtSb",
+        "clientSecret": "9104967092887676680",
+        "hostName": "https://login.salesforce.com",
+        "apiVersion": "v32.0",
+        "intervalTime" : "100000",
+        "userId": "00528000000yl7j",
+        "registryPath": "connectors/SalesforceRest"
+    }
+    ```
+
+    **Sample Response**
+
+    Given below is a sample response for the getUserInformation operation.
+
+    ```json
+    {
+        "ProfileId":"00e28000000xIEQAA2",
+        "LastModifiedDate":"2016-11-29T05:40:45.000+0000",
+        "Address":{
+            "country":"LK",
+            "city":null,
+            "street":null,
+            "latitude":null,
+            "postalCode":null,
+            "geocodeAccuracy":null,
+            "state":null,
+            "longitude":null
+        },
+        "LanguageLocaleKey":"en_US",
+        "EmailPreferencesAutoBccStayInTouch":false
+        .
+        .
+    }
+    ```
+
+??? note "resetPassword"
+    To reset the password of a specific user, use salesforcerest.resetPassword and specify the following property. See the [related API documentation](https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/resources_sobject_user_password.htm) for more information.
+    <table>
+        <tr>
+            <th>Parameter Name</th>
+            <th>Description</th>
+            <th>Required</th>
+            <th>Sample Value</th>
+        </tr>
+        <tr>
+            <td>userId</td>
+            <td>The ID of the user whose information you want to retrieve.</td>
+            <td>Yes</td>
+            <td>00528000000yl7j</td>
+        </tr>
+    </table>
+
+    **Sample configuration**
+
+    ```xml
+    <salesforcerest.getUserInformation>
+        <userId>{$ctx:userId}</userId>
+    </salesforcerest.getUserInformation>
+    ```
+
+    **Sample request**
+
+    The following is a sample request that can be handled by the getUserInformation operation.
+
+    ```json
+    {
+        "accessToken":"00D280000017q6q!AQoAQOeXcp7zKo3gUdy6r064_LsJ5bYYrUn_qAZG9TtKFLPfUMRxiato.E162_2XAtCTZLFQTbNk2Rz6Zm_juSakFE_aaBPp",
+        "apiUrl":"https://ap2.salesforce.com",
+        "clientId": "3MVG9ZL0ppGP5UrBrnsanGUZRgHqc8gTV4t_6tfuef8Zz4LhFPipmlooU6GBszpplbTzVXXWjqkGHubhRip1s",
+        "refreshToken": "5Aep861TSESvWeug_xvFHRBTTbf_YrTWgEyjBJo7Xr34yOQ7GCFUN5DnNPxzDIoGoWi4evqOl_lT1B9nE5dAtSb",
+        "clientSecret": "9104967092887676680",
+        "hostName": "https://login.salesforce.com",
+        "apiVersion": "v32.0",
+        "intervalTime" : "100000",
+        "userId": "00528000000yl7j",
+        "registryPath": "connectors/SalesforceRest"
+    }
+    ```
+
+    **Sample Response**
+
+    Given below is a sample response for the getUserInformation operation.
+
+    ```json
+    {
+       "NewPassword" : "myNewPassword1234"
+    }
+    ```
