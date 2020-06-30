@@ -208,19 +208,18 @@ nav:
         - 'Clustered Deployment': 'setup/deployment/deploying_wso2_ei.md'
         - 'Deployment Synchronization': 'setup/deployment/deployment_synchronization.md'
         - 'Load Balancing': 'setup/deployment/setting_up_lb.md'
-        - Databases:
-          - 'MySQL Database': 'setup/deployment/databases/setting-up-MySQL.md'
-          - 'MSSQL Database': 'setup/deployment/databases/setting-up-MSSQL.md'
-          - 'Oracle Database': 'setup/deployment/databases/setting-up-Oracle.md'
-          - 'PostgreSQL Database': 'setup/deployment/databases/setting-up-PostgreSQL.md'
-          - 'IBM Database': 'setup/deployment/databases/setting-up-IBM-DB2.md'
         - 'File-Based Registry' : 'setup/deployment/file_based_registry.md'
         - 'Troubleshooting a Production Deployment' : 'setup/deployment/troubleshooting_deployment.md'
         - 'Backup and Recovery' : 'setup/deployment/backup_recovery.md'
+      - Setting up Databases:
+        - 'MySQL Database': 'setup/databases/setting-up-MySQL.md'
+        - 'MSSQL Database': 'setup/databases/setting-up-MSSQL.md'
+        - 'Oracle Database': 'setup/databases/setting-up-Oracle.md'
+        - 'PostgreSQL Database': 'setup/databases/setting-up-PostgreSQL.md'
+        - 'IBM Database': 'setup/databases/setting-up-IBM-DB2.md'
       - 'Migrating from WSO2 EI 6.x': 'setup/deployment/migrating-from-ei-6.x.x.md'
-      - 'Product Deployment Checklist': 'setup/deployment/deployment_checklist.md'
+      - 'Product Deployment Guidelines': 'setup/deployment/deployment_checklist.md'
       - 'Managing Configurations across Environments': 'setup/dynamic_server_configurations.md'
-      - 'Configure Transaction Counter': 'setup/enabling_transaction_counter.md'
       - Security Hardening :
         - Setting up Keystores:
           - 'Creating New Keystores': 'setup/security/creating_keystores.md'
@@ -387,6 +386,9 @@ nav:
           - 'Amazon SQS Reference': 'references/connectors/amazonsqs-connector/amazonsqs-connector-config.md'
           - 'Amazon SQS Inbound Endpoint Example': 'references/connectors/amazonsqs-connector/amazonsqs-inbound-endpoint-example.md'
           - 'Amazon SQS Inbound Endpoint Reference': 'references/connectors/amazonsqs-connector/amazonsqs-inbound-endpoint-reference-configuration.md'
+        - BigQuery Connector:
+          - 'Setting up the BigQuery Environment': 'references/connectors/bigquery-connector/bigquery-connector-configuration.md'
+          - 'BigQuery Connector Example': 'references/connectors/bigquery-connector/bigquery-connector-example.md'
         - Ceridian Dayforce Connector:
             - 'Ceridian Dayforce Overview': 'references/connectors/ceridiandayforce-connector/cerediandayforce-overview.md'
             - 'Setting up the Ceridian Dayforce Connector': 'references/connectors/ceridiandayforce-connector/ceridiandayforce-connector-config.md'
@@ -453,13 +455,14 @@ nav:
                   - 'employeeSSOAccounts': 'references/connectors/ceridiandayforce-connector/userSecurityAuthorityAndManagement/employeeSSOAccounts.md'
                   - 'employeeWorkAssignmentManagers': 'references/connectors/ceridiandayforce-connector/userSecurityAuthorityAndManagement/employeeWorkAssignmentManagers.md'
                   - 'userPayAdjustmentCodeGroups': 'references/connectors/ceridiandayforce-connector/userSecurityAuthorityAndManagement/userPayAdjustmentCodeGroups.md'
-        - BigQuery Connector:
-          - 'Setting up the BigQuery Environment': 'references/connectors/bigquery-connector/bigquery-connector-configuration.md'
-          - 'BigQuery Connector Example': 'references/connectors/bigquery-connector/bigquery-connector-example.md'
         - DB Event Listener Inbound Endpoint:
           - 'Database Event Listener Overview': 'references/connectors/db-event-inbound-endpoint/db-event-inbound-endpoint-overview.md'
           - 'Database Event Listener Example': 'references/connectors/db-event-inbound-endpoint/db-event-inbound-endpoint-example.md'
           - 'Database Event Listener Reference': 'references/connectors/db-event-inbound-endpoint/db-event-inbound-endpoint-config.md'
+        - Email Connector:
+          - 'Email Connector Overview': 'references/connectors/email-connector/email-connector-overview.md'
+          - 'Email Connector Example': 'references/connectors/email-connector/email-connector-example.md'
+          - 'Email Connector Reference': 'references/connectors/email-connector/email-connector-config.md'
         - FHIR Connector:
           - 'FHIR Overview': 'references/connectors/fhir-connector/fhir-connector-overview.md'
           - 'FHIR Example': 'references/connectors/fhir-connector/fhir-connector-example.md'
@@ -511,9 +514,10 @@ nav:
           - 'Microsoft Azure Storage Example': 'references/connectors/microsoft-azure-storage-connector/microsoft-azure-storage-connector-example.md'
           - 'Microsoft Azure Storage Reference': 'references/connectors/microsoft-azure-storage-connector/microsoft-azure-storage-reference.md'
         - Redis Connector:
+          - 'Redis Overview': 'references/connectors/redis-connector/redis-connector-overview.md'
           - 'Setting up the Environment': 'references/connectors/redis-connector/redis-connector-configuration.md'
-          - 'Redis Connector Example': 'references/connectors/redis-connector/redis-connector-example.md'
-          - 'Redis Connector Reference': 'references/connectors/redis-connector/redis-connector-reference.md'
+          - 'Redis Example': 'references/connectors/redis-connector/redis-connector-example.md'
+          - 'Redis Reference': 'references/connectors/redis-connector/redis-connector-reference.md'
         - Salesforce Connectors:
           - 'Salesforce Overview': 'references/connectors/salesforce-connectors/sf-overview.md'
           - 'Salesforce Access Token Generation': 'references/connectors/salesforce-connectors/sf-access-token-generation.md'
