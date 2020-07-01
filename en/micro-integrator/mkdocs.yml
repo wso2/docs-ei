@@ -480,9 +480,11 @@ nav:
           - 'Setting up Google Firebase': 'references/connectors/google-firebase-connector/google-firebase-setup.md'
           - 'Google Firebase Example': 'references/connectors/google-firebase-connector/google-firebase-connector-example.md'
           - 'Google Firebase Reference': 'references/connectors/google-firebase-connector/google-firebase-configuration.md'
-        - Google Pub Sub Connector:
-          - 'Setting up the Google Pub Sub Environment': 'references/connectors/google-pubsub-connector/googlepubsub-connector-configuration.md'
-          - 'Google Pub Sub Connector Example': 'references/connectors/google-pubsub-connector/googlepubsub-connector-example.md'
+        - Google Pub/Sub Connector:
+          - 'Google PubSub Overview': 'references/connectors/google-pubsub-connector/googlepubsub-connector-overview.md'
+          - 'Setting up the Google PubSub Environment': 'references/connectors/google-pubsub-connector/googlepubsub-connector-configuration.md'
+          - 'Google PubSub Example': 'references/connectors/google-pubsub-connector/googlepubsub-connector-example.md'
+          - 'Google PubSub Reference': 'references/connectors/google-pubsub-connector/googlepubsub-connector-reference.md'
         - Google Spreadsheet Connector:
           - 'Google Spreadsheet Overview': 'references/connectors/google-spreadsheet-connector/google-spreadsheet-overview.md'
           - 'Google Spreadsheet Example': 'references/connectors/google-spreadsheet-connector/google-spreadsheet-connector-example.md'

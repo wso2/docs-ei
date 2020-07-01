@@ -71,7 +71,7 @@ curl -X GET "https://localhost:9164/management/inbound-endpoints" -H "accept: ap
 Invoke the `/logout` resource to revoke the JWT token you used for [invoking the api resource](#invoking-an-api-resource).
 
 ```bash
-curl -X GET "https://localhost:9164/management/logout” -H "accept: application/json" -H "Authorization: Bearer %AccessToken%”
+curl -X GET "https://localhost:9164/management/logout" -H "accept: application/json" -H "Authorization: Bearer TOKEN" -k -i
 ```
 
 ## Accessing API resources
