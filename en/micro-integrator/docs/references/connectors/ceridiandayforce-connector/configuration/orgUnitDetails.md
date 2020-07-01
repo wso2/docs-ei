@@ -31,7 +31,7 @@ We can use GET Org Unit Details operation with required parameters to find detai
 
 * xRefCode (Mandatory - string): The unique identifier (external reference code) of the org unit. The value provided must be the exact match for an org unit; otherwise, a bad request (400) error will be returned.
 * contextDate (Optional - string): The Context Date value is an “as-of” date used to determine which org unit data to search when records have specific start and end dates. The service defaults to the current datetime if the requester does not specify a value. Example: 2019-01-01T12:34:56
-* expand (Optional - string): This parameter accepts a comma-separated list of top-level entities that contain the data elements needed for downstream processing. When this parameter is not used, only data elements from the orgunit master record will be included. For more information, please refer to the Introduction to Dayforce Web Services document.
+* expand (Optional - string): This parameter accepts a comma-separated list of top-level entities that contain the data elements needed for downstream processing. When this parameter is not used, only data elements from the orgunit primary record will be included. For more information, please refer to the Introduction to Dayforce Web Services document.
 * includeChildOrgUnits (Optional - boolean): When a TRUE value is used in this parameter, the immediate child org units’ information under the org unit being retrieved will be returned as well. The default value is FALSE if parameter is not specified.
 
 **Sample request**

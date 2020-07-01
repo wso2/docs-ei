@@ -40,8 +40,8 @@ run the tool in standalone mode to successfully remove references to a deleted u
     <tbody>
     <tr class="odd">
     <td><code>               config.json              </code></td>
-    <td>This is the master configuration file.<br />
-    You can configure this file depending on the metadata database tables, access logs, audit logs, or any other log files on which you want the Identity Anonymization tool to run. For information on how to configure this file, see <a href="#configuring-the-master-configuration-file">Configuring the master configuration file</a> .</td>
+    <td>This is the primary configuration file.<br />
+    You can configure this file depending on the metadata database tables, access logs, audit logs, or any other log files on which you want the Identity Anonymization tool to run. For information on how to configure this file, see <a href="#configuring-the-primary-configuration-file">Configuring the primary configuration file</a> .</td>
     </tr>
     <tr class="even">
     <td><code>               datasources              </code></td>
@@ -59,9 +59,9 @@ run the tool in standalone mode to successfully remove references to a deleted u
     </tbody>
     </table>
 
-## Configuring the master configuration file
+## Configuring the primary configuration file
 
-The master configuration file of the Identity Anonymization tool is the
+The primary configuration file of the Identity Anonymization tool is the
 `         config.json        ` file. Following is a sample config.json
 file:
 
@@ -209,7 +209,7 @@ use when you run the tool:
       <tr class="odd">
          <td>carbon</td>
          <td>
-            <p>The CARBON HOME directory path on which you want to run the tool. You should replace this with the variable <code>               $CARBON_HOME              </code> used in directories you have configured in the master configuration file.</p>
+            <p>The CARBON HOME directory path on which you want to run the tool. You should replace this with the variable <code>               $CARBON_HOME              </code> used in directories you have configured in the primary configuration file.</p>
          </td>
          <td>No</td>
          <td>
