@@ -93,7 +93,7 @@ Create this project directory if you have used ESB connectors in your medition s
 
 ## Composite Application Project
 
-This poject directory allows you to package all the artifacts (stored in other ESB projects) into one composite application (C-APP). This C-APP can then be deployed in the ESB server. See the instructions on packaging ESB artifacts.
+This project directory allows you to package all the artifacts (stored in other ESB projects) into one composite application (C-APP). This C-APP can then be deployed in the ESB server. See the instructions on packaging ESB artifacts.
 
 <!--
 <table>
