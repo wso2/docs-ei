@@ -34,7 +34,7 @@ We can use GET Schedules operation with required parameters to find the schedule
 * filterScheduleStartDate (Mandatory): Inclusive period start aligned to the employee business day start date to determine which employee schedule data to retrieve . Example: 2017-01-01T13:24:56
 * filterScheduleEndDate (Mandatory): Exclusive period end aligned to the employee business day start to determine which employee schedule data to retrieve . Example: 2017-01-01T13:24:56
 * isPosted (Optional - boolean): A flag to determine whether to display posted schedules.By default it searches for published schedules
-* expand (Optional - string): This parameter accepts a comma-separated list of top-level entities that contain the data elements needed for downstream processing. When this parameter is not used, only data elements from the master record will be included. For more information, please refer to the Introduction to Dayforce Web Services document.
+* expand (Optional - string): This parameter accepts a comma-separated list of top-level entities that contain the data elements needed for downstream processing. When this parameter is not used, only data elements from the primary record will be included. For more information, please refer to the Introduction to Dayforce Web Services document.
 
 **Sample request**
 
