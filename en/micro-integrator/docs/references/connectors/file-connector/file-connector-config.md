@@ -1006,11 +1006,11 @@ The following operations allow you to work with the File Connector version 2. Cl
         "proxyPort":"3128",
         "proxyUsername":"wso2",
         "proxyPassword":"Password",
-        "ftpUsername":"master",
+        "ftpUsername":"primary",
         "ftpPassword":"Password",
         "ftpServer":"192.168.56.6",
         "ftpPort":"21",
-        "targetFile":"/home/master/res"
+        "targetFile":"/home/primary/res"
     }
     ```
 
