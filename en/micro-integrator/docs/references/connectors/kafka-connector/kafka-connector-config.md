@@ -260,8 +260,38 @@ To use the Kafka connector, add the `<kafkaTransport.init>` element in your conf
             <td>Optional</td>
         </tr>
         <tr>
-            <td>maxPoolSize</td>
-            <td>The maximum number of message requests that can share the Kafka connection.</td>
+            <td>poolingEnabled</td>
+            <td>Indicates whether connection pooling is enabled or not. True if pooling is enabled. False otherwise.</td>
+            <td>Optional</td>
+        </tr>
+        <tr>
+            <td>maxActiveConnections</td>
+            <td>Maximum number of active connections in the pool.</td>
+            <td>Optional</td>
+        </tr>
+        <tr>
+            <td>maxIdleConnections</td>
+            <td>Maximum number of idle connections in the pool.</td>
+            <td>Optional</td>
+        </tr>
+        <tr>
+            <td>maxWaitTime</td>
+            <td>Maximum number of idle connections in the pool.</td>
+            <td>Optional</td>
+        </tr>
+        <tr>
+            <td>minEvictionTime</td>
+            <td>The minimum amount of time an object may sit idle in the pool before it is eligible for eviction.</td>
+            <td>Optional</td>
+        </tr>
+        <tr>
+            <td>evictionCheckInterval</td>
+            <td>The number of milliseconds between runs of the object evictor.</td>
+            <td>Optional</td>
+        </tr>
+        <tr>
+            <td>exhaustedAction</td>
+            <td>The behavior of the pool when the pool is exhausted. (WHEN_EXHAUSTED_FAIL/WHEN_EXHAUSTED_BLOCK/WHEN_EXHAUSTED_GROW)</td>
             <td>Optional</td>
         </tr>
     </table>
