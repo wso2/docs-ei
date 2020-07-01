@@ -74,10 +74,10 @@ The following properties are required when [creating a Kafka inbound endpiont](.
       </tr>
       <tr>
          <td>
-            filter.from.whitelist
+            filter.from.allowlist
          </td>
-         <td>If this is set to <code>true</code>, messages are consumed from the whitelist(include).<br />
-            If this is set to <code>false</code>, messages are consumed from the blacklist(exclude).
+         <td>If this is set to <code>true</code>, messages are consumed from the allowlist(include).<br />
+            If this is set to <code>false</code>, messages are consumed from the denylist(exclude).
          </td>
       </tr>
       <tr>
