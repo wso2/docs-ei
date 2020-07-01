@@ -584,7 +584,7 @@ This section provides the list of security guidelines for configuring the netwo
                <li>In addition to the "/services" context, be sure to expose only the required applications in your product to users beyond the DMZ level in your network.</li>
             </ul>
             <b>Note:</b>
-            <p>It is recommended to use a whitelisting approach when allowing access to resources in your product from the DMZ level.</p>
+            <p>It is recommended to use a allowlisting approach when allowing access to resources in your product from the DMZ level.</p>
          </td>
       </tr>
    </tbody>
