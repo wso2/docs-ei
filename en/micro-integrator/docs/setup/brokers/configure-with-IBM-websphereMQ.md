@@ -117,6 +117,11 @@ The following will be displayed in the command prompt.
         you need to provide username and password client authentication. The
         username and password that you need to provide here is the username
         and password that you provide to log on to your operating system.
+    -   If you need to enable MQCSP authentication mode to connect to IBM MQ (not using admin user name and password) 
+        please start the server (runtime) with the following system property.
+        ``bash
+        -Dcom.ibm.mq.cfg.jmqi.useMQCSPauthentication=Y
+        ``
     -   The `          vender.class.loader.enabled         ` parameter in
         the above configuration should be added only when you use IBM
         Websphere MQ as the JMS broker.
@@ -286,11 +291,11 @@ Follow the instructions below to build and install IBM WebSphere MQ client JAR f
 7.  Copy the `<wmq-client>/target/wmq-client-8.0.0.4.jar`
     file to the `MI_HOME/dropins` directory.
 8.  Download the [`jta.jar` file from the maven repository](http://central.maven.org/maven2/javax/transaction/jta/1.1/jta-1.1.jar), and copy it to the `MI_HOME/lib` directory.
-9.  Remove following line from the `MI_HOME/conf/etc/launch.` ini file: `javax.jms,\`
-10. [Regenerate `.bindings` file](#ConfigurewithIBMWebSphereMQ-generate) with the `Provider Version : 8` property (if you already
-    generated one before), and replace the existing `.bindings` file (if you have one) with the new `.bindings` file you generated.
+9. [Regenerate `.bindings` file](#ConfigurewithIBMWebSphereMQ-generate) with the `Provider Version : 8` property (if 
+you already generated one before), and replace the existing `.bindings` file (if you have one) with the new `
+.bindings` file you generated.
 
-11. Start the WSO2 Micro Integrator server.
+10. Start the WSO2 Micro Integrator server.
 
 ### Deploying JMS listener proxy service
 
