@@ -7,15 +7,17 @@ The Streaming Integrator (SI) allows you to perform real-time ETL with data that
 This tutorial takes you through the different modes and options you could use, in order to perform real-time ETL with files using the SI.
 
 !!!info "Before you begin:"
-    Start the SI server by navigating to the `<SI_HOME>/bin` directory and issuing one of the following commands:<br/>
-    <br/>
-    - For Windows: `streaming-integrator.bat`<br/>
-    <br/>
-    - For Linux:  `sh server.sh`<br/>
-    <br/>
+    - Start the SI server by navigating to the `<SI_HOME>/bin` directory and issuing one of the following commands:<br/>
+      <br/>
+        - For Windows: `streaming-integrator.bat`<br/>
+      <br/>
+        - For Linux:  `sh server.sh`<br/>
+      <br/>
     The following log appears in the Streaming Integrator console once the server is successfully started. <br/>
     <br/>
     `INFO {org.wso2.carbon.kernel.internal.CarbonStartupHandler} - WSO2 Streaming Integrator started in 4.240 sec`
+    <br/>
+    - Install the [siddhi-io-file](https://siddhi-io.github.io/siddhi-io-file/) extension. For instructions, see [Downloading and Instaling Siddhi Connectors](../connectors/downloading-and-Installing-Siddhi-Extensions/).
 
 ## Tutorial steps
     
