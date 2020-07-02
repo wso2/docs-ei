@@ -1,14 +1,6 @@
 # Google Pub Sub Connector Example  
 
-The Google Pub/Sub connector allows you to access the [Google Cloud Pub/Sub API Version v1](https://cloud.google.com/pubsub/docs/reference/rest/) through WSO2 EI. Google Cloud Pub/Sub is a fully-managed real-time messaging service that allows you to send and receive messages between independent applications.
-The Google Pub Sub Connector allows developers to make asynchronous messaging flows inside WSO2 EI mediation. It facilitates to achieve the following use-cases.
-
-1. One-to-many messaging. WSO2 EI can place a message in a topic and many other parties can consume it.
-2. Distributing event notifications - WSO2 EI can send events to Google Pub Sub and interested event listeners will get triggered.
-3. Streaming sensor data to Google cloud using WSO2 EI
-4. Reliability improvement in processing messages. Messages received by WSO2 EI can be sent to Google Pub Sub and later received and processed by an WSO2 EI in a different region.
-
-Inspired from: [Pubsub docs](https://cloud.google.com/pubsub/docs/overview)
+The Google Pub/Sub connector allows you to access the [Google Cloud Pub/Sub API Version v1](https://cloud.google.com/pubsub/docs/reference/rest/) through WSO2 EI. 
 
 ## What you'll build
 
