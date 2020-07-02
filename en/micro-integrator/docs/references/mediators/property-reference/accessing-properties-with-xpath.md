@@ -191,6 +191,16 @@ You can retrieve Java System properties using the following syntax.
 Syntax:  
 `get-property('system', String propertyName)`
 
+!!! Info
+    The environment scope for property mediator is available as a product update from **17th June, 2020** onwards. See the instructions on [getting product updates](https://docs.wso2.com/display/updates/Getting+Started).
+
+#### environment scope
+
+You can retrieve environment variables using the following syntax.
+
+Syntax:  
+`get-property('env', String propertyName)`
+
 #### operation scope
 
 You can retrieve a property in the operation context level from the
