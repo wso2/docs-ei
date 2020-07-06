@@ -1,4 +1,4 @@
-# Setting up the Environment 
+# Setting up the Redis Environment 
 
 The Redis connector allows you to access the Redis commands through the WSO2 EI. Redis stands for remote dictionary server. Redis store/server that stores data as key-value pairs and this key-value store can be used as a database.
 
