@@ -2,6 +2,10 @@
 
 This section explains how WSO2 Streaming Integrator can be configured to display statistics relating to change data in files and databases in Grafana dashboards.
 
+!!! tip "Before you begin:"
+    - Download and install Prometheus. For instructions, see [the Prometheus Getting Started Guide](https://prometheus.io/docs/prometheus/latest/getting_started/).<br/>
+    - Download Grafana from [Grafana Labs - Download Grafana](https://grafana.com/grafana/download).
+
 ## Configuring Grafana dashboards
 
 In order to configure a Grafana dashboard, follow the steps below:
@@ -54,9 +58,7 @@ In order to configure a Grafana dashboard, follow the steps below:
 
     Start and run the Prometheus server by following the procedure below.
     
-    1. Download and install Prometheus. For instructions, see [the Prometheus Getting Started Guide](https://prometheus.io/docs/prometheus/latest/getting_started/).
-    
-    2. Open the `<PROMETHEUS_HOME>/prometheus.yml` file and add the following configuration in the `scrape_configs:` section.
+    1. Open the `<PROMETHEUS_HOME>/prometheus.yml` file and add the following configuration in the `scrape_configs:` section.
     
         ```yaml
          scrape_configs:
@@ -64,7 +66,7 @@ In order to configure a Grafana dashboard, follow the steps below:
              static_configs:
              - targets: ['localhost:9005']
         ```
-    3. Start the Prometheus server by issuing the following command in the terminal.
+    2. Start the Prometheus server by issuing the following command in the terminal.
     
         `./prometheus`
 
@@ -72,12 +74,10 @@ In order to configure a Grafana dashboard, follow the steps below:
 
     To start and configure the Grafana server, follow the procedure below:
     
-    1. Download Grafana from [Grafana Labs - Download Grafana](https://grafana.com/grafana/download).
-    
     2. Start Grafana
     
         !!! info
-            The procedure to sart Grafana depends on your operating system and the installation process. 
+            The procedure to start Grafana depends on your operating system and the installation process. e.g., If your operating system is Mac OS and you have installed Grafana via Homebrew, you start Grafana by issuing the `brew services start grafana` command.
             
     3. Access Grafana via `http://localhost:3000/`.
    
