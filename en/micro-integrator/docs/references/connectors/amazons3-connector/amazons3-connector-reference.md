@@ -117,11 +117,6 @@ To use the Amazon S3 connector, add the <amazons3.init> element in your configur
             <td>Yes</td>
         </tr>
         <tr>
-            <td>isXAmzDate</td>
-            <td>The current date and time according to the requester.</td>
-            <td>Yes</td>
-        </tr>
-        <tr>
             <td>xAmzSecurityToken</td>
             <td>The security token based on whether using Amazon DevPay operations or temporary security credentials.</td>
             <td>Yes</td>
@@ -279,7 +274,12 @@ To use the Amazon S3 connector, add the <amazons3.init> element in your configur
         </tr>
         <tr>
             <td>apiUrl</td>
-            <td>Amazon S3 API URL, e.g., http://s3.amazonaws.com</td>
+            <td>Amazon S3 API URL, e.g.: http://s3.amazonaws.com</td>
+            <td>Yes</td>
+        </tr>
+        <tr>
+            <td>region</td>
+            <td>Amazon S3 region, e.g.: us-east-1</td>
             <td>Yes</td>
         </tr>
     </table>
@@ -311,9 +311,87 @@ To use the Amazon S3 connector, add the <amazons3.init> element in your configur
         <apiUrl>https://s3.amazonaws.com</apiUrl>
     </getBuckets>
     ```
-
+    
+    
 ??? note "createBucket"
     The createBucket implementation of the PUT operation creates a new bucket. To create a bucket, the user should be registered with Amazon S3 and have a valid AWS Access Key ID to authenticate requests. Anonymous requests are never allowed to create buckets. By creating the bucket, the user becomes the owner of the bucket. Not every string is an acceptable bucket name. For information on bucket naming restrictions, see [Working with Amazon S3 Buckets](http://docs.aws.amazon.com/AmazonS3/latest/dev/UsingBucket.html). By default, the bucket is created in the US Standard region. The user can optionally specify a region in the request body. For example, if the user resides in Europe, the user will probably find it advantageous to create buckets in the EU (Ireland) region. For more information, see [How to Select a Region for Your Buckets](http://docs.aws.amazon.com/AmazonS3/latest/dev/UsingBucket.html#access-bucket-intro). See the [related API documentation](http://docs.aws.amazon.com/AmazonS3/latest/API/RESTBucketPUT.html) for more information.
+    <table>
+        <tr>
+            <th>Parameter Name</th>
+            <th>Description</th>
+            <th>Required</th>
+        </tr>
+        <tr>
+            <td>bucketUrl</td>
+            <td>The URL of the bucket.</td>
+            <td>Yes</td>
+        </tr>
+        <tr>
+            <td>bucketRegion</td>
+            <td>Region for the created bucket.</td>
+            <td>Yes</td>
+        </tr>
+    </table>
+
+    **Sample configuration**
+
+    ```xml
+    <amazons3.createBucket>
+        <bucketUrl>{$ctx:bucketUrl}</bucketUrl>
+        <bucketRegion>{$ctx:bucketRegion}</bucketRegion>
+    </amazons3.createBucket>
+    ```
+    
+    **Sample request**
+
+    ```xml
+    <createBucketWebsiteConfiguration>
+        <accessKeyId>AKIXXXXXXXXXXA</accessKeyId>
+        <secretAccessKey>qHZXXXXXXQc4oMQMnAOj+340XXxO2s</secretAccessKey>
+        <region>us-east-2</region>
+        <methodType>PUT</methodType>
+        <contentLength>256</contentLength>
+        <contentType>application/xml</contentType>
+        <contentMD5></contentMD5>
+        <expect></expect>
+        <host>s3.us-east-2.amazonaws.com</host>
+        <isXAmzDate>true</isXAmzDate>
+        <xAmzSecurityToken></xAmzSecurityToken>
+        <bucketName>signv4test</bucketName>
+        <bucketRegion>us-east-2</bucketRegion>
+        <bucketUrl>http://s3.us-east-2.amazonaws.com/signv4test</bucketUrl>
+        <websiteConfig>
+            <IndexDocument>
+                <Suffix>index2.html</Suffix>
+            </IndexDocument>
+            <ErrorDocument>
+                <Key>Error2.html</Key>
+            </ErrorDocument>
+            <RoutingRules>
+                <RoutingRule>
+                    <Condition>
+                        <KeyPrefixEquals>docs/</KeyPrefixEquals>
+                    </Condition>
+                    <Redirect>
+                        <ReplaceKeyPrefixWith>documents/</ReplaceKeyPrefixWith>
+                    </Redirect>
+                </RoutingRule>
+                <RoutingRule>
+                    <Condition>
+                        <KeyPrefixEquals>images/</KeyPrefixEquals>
+                    </Condition>
+                    <Redirect>
+                        <ReplaceKeyPrefixWith>documents/</ReplaceKeyPrefixWith>
+                    </Redirect>
+                </RoutingRule>
+            </RoutingRules>
+        </websiteConfig>
+    </createBucketWebsiteConfiguration>
+    ```    
+    
+
+??? note "createBucketWebsiteConfiguration"
+    Sets the configuration of the website that is specified in the website subresource.
     <table>
         <tr>
             <th>Parameter Name</th>
@@ -653,6 +731,11 @@ To use the Amazon S3 connector, add the <amazons3.init> element in your configur
         <tr>
             <td>bucketUrl</td>
             <td>The URL of the bucket.</td>
+            <td>Yes</td>
+        </tr>
+        <tr>
+            <td>role</td>
+            <td>Amazon Resource Name (ARN) of an IAM role for Amazon S3 to assume when replicating the objects.</td>
             <td>Yes</td>
         </tr>
         <tr>
@@ -2261,6 +2344,7 @@ To use the Amazon S3 connector, add the <amazons3.init> element in your configur
     Following is the proxy configuration for init and deleteObject. The init section has additional parameters and parameters that need to be removed apart from those mentioned in the Connecting to Amazon S3 section.
 
     See the [related API documentation](http://docs.aws.amazon.com/AmazonS3/latest/API/RESTObjectDELETE.html) for more information.
+
     <table>
         <tr>
             <th>Parameter Name</th>
@@ -2339,12 +2423,12 @@ To use the Amazon S3 connector, add the <amazons3.init> element in your configur
         </tr>
         <tr>
             <td>objectName</td>
-            <td>The name of the object.</td>
+            <td>The name of the object to be deleted.</td>
             <td>Yes</td>
         </tr>
         <tr>
-            <td>versionID</td>
-            <td>The version ID of the object.</td>
+            <td>versionId</td>
+            <td>Version Id of an object to remove a specific object version.</td>
             <td>Yes</td>
         </tr>
     </table>
@@ -2381,8 +2465,8 @@ To use the Amazon S3 connector, add the <amazons3.init> element in your configur
 
     ```xml
     <deleteObject>
-        <accessKeyId>AKIAIGURKJSAZM7GJ7TRO6KQWER</accessKeyId>
-        <secretAccessKey>asAXsdfsdf8CJoDKzeOd0Ve5dMCFk4STUFDRHkGX6m0CcYdsf</secretAccessKey>
+        <accessKeyId>AKIXXXXXHXQXXG5XX</accessKeyId>
+        <secretAccessKey>qHXXBXXXXASYQc4oMCEOj+343HD82s</secretAccessKey>
         <methodType>DELETE</methodType>
         <contentLength></contentLength>
         <contentType>application/xml</contentType>
@@ -2529,8 +2613,8 @@ To use the Amazon S3 connector, add the <amazons3.init> element in your configur
 
     ```xml
     <deleteMultipleObjects>
-        <accessKeyId>SDAKIAIGURZM7GDFGJ7TRO6KQ</accessKeyId>
-        <secretAccessKey>asAX8CJoDdfEFKzeOd0Ve5dMCFk4STUFDRHkGX6m0CcY</secretAccessKey>
+        <accessKeyId>AKIXXXXXHXQXXG5XX</accessKeyId>
+        <secretAccessKey>qHXXBXXXXASYQc4oMCEOj+343HD82s</secretAccessKey>
         <methodType>POST</methodType>
         <contentType>application/xml</contentType>
         <isXAmzDate>true</isXAmzDate>
@@ -2580,7 +2664,12 @@ To use the Amazon S3 connector, add the <amazons3.init> element in your configur
         </tr>
         <tr>
             <td>objectName</td>
-            <td>The name of the object.</td>
+            <td>The name of the object to retrieve details for.</td>
+            <td>Yes</td>
+        </tr>
+        <tr>
+            <td>query</td>
+            <td>Query for search parameters.</td>
             <td>Yes</td>
         </tr>
         <tr>
@@ -2595,42 +2684,42 @@ To use the Amazon S3 connector, add the <amazons3.init> element in your configur
         </tr>
         <tr>
             <td>responseExpires</td>
-            <td>The Expires header of the response.</td>
+            <td>Expires header of the response.</td>
             <td>Yes</td>
         </tr>
         <tr>
             <td>responseCacheControl</td>
-            <td>The Cache-Control header of the response.</td>
+            <td>Cache-Control header of the response.</td>
             <td>Yes</td>
         </tr>
         <tr>
             <td>responseContentDisposition</td>
-            <td>The Content-Disposition header of the response.</td>
+            <td>Content-Disposition header of the response.</td>
             <td>Yes</td>
         </tr>
         <tr>
             <td>responseContentEncoding</td>
-            <td>The Content-Encoding header of the response.</td>
+            <td>Content-Encoding header of the response.</td>
             <td>Yes</td>
         </tr>
         <tr>
             <td>range</td>
-            <td>Downloads the specified range bytes of an object.</td>
+            <td>HTTP range header.</td>
             <td>Yes</td>
         </tr>
         <tr>
             <td>ifModifiedSince</td>
-            <td>Returns the object only if it has been modified since the specified time.</td>
+            <td>Return the object only if it has been modified.</td>
             <td>Yes</td>
         </tr>
         <tr>
             <td>ifUnmodifiedSince</td>
-            <td>Returns the object only if it has not been modified since the specified time.</td>
+            <td>Return the object only if it has not been modified.</td>
             <td>Yes</td>
         </tr>
         <tr>
             <td>ifMatch</td>
-            <td>Returns the object only if its ETag is the same as the one specified.</td>
+            <td>Return the object only if its ETag is the same.</td>
             <td>Yes</td>
         </tr>
         <tr>
@@ -2638,6 +2727,9 @@ To use the Amazon S3 connector, add the <amazons3.init> element in your configur
             <td>Returns the object only if its ETag is not the same as the one specified.</td>
             <td>Yes</td>
         </tr>
+            <td>Return the object only if its ETag is not same.</td>
+            <td>Yes</td>
+        </tr>        
     </table>
 
     **Sample configuration**
@@ -2664,8 +2756,8 @@ To use the Amazon S3 connector, add the <amazons3.init> element in your configur
 
     ```xml
     <getObject>
-        <accessKeyId>AFSKIAIGURZM7GJDFG7TRO6KQ</accessKeyId>
-        <secretAccessKey>asAXsdf8CJoDKzeOd0Ve5dMCFk4STUFDRHkGdfdfX6m0CcY</secretAccessKey>
+        <accessKeyId>AKIXXXXXHXQXXG5XX</accessKeyId>
+        <secretAccessKey>qHXXBXXXXASYQc4oMCEOj+343HD82s</secretAccessKey>
         <methodType>GET</methodType>
         <contentType>application/xml</contentType>
         <region>us-east-2</region>
@@ -2711,9 +2803,9 @@ To use the Amazon S3 connector, add the <amazons3.init> element in your configur
         </tr>
         <tr>
             <td>objectName</td>
-            <td>The name to give to the newly created object.</td>
+            <td>The name of the object to retrieve details for.</td>
             <td>Yes</td>
-        </tr>
+        </tr>   
     </table>
 
     **Sample configuration**
@@ -2744,7 +2836,7 @@ To use the Amazon S3 connector, add the <amazons3.init> element in your configur
         </tr>
         <tr>
             <td>objectName</td>
-            <td>The name of the object.</td>
+            <td>Name of the object whose acl needs to be set.</td>
             <td>Yes</td>
         </tr>
         <tr>
@@ -2776,9 +2868,9 @@ To use the Amazon S3 connector, add the <amazons3.init> element in your configur
         </tr>
         <tr>
             <td>versionId</td>
-            <td>ID of the object version.</td>
+            <td>Version Id of an object to remove a specific object version.</td>
             <td>Yes</td>
-        </tr>
+        </tr>  
     </table>
 
     **Sample configuration**
@@ -3002,7 +3094,7 @@ To use the Amazon S3 connector, add the <amazons3.init> element in your configur
             <td>destinationObject</td>
             <td>The destination where the source will be copied.</td>
             <td>Yes</td>
-        </tr>
+        </tr> 
     </table>
 
     **Sample configuration**
@@ -3048,8 +3140,8 @@ To use the Amazon S3 connector, add the <amazons3.init> element in your configur
 
     ```xml
     <createObjectCopy>
-        <accessKeyId>AKISFSAIGURZM7GJ7TRODSDF6KQ</accessKeyId>
-        <secretAccessKey>asAX8CJoDKzeOd0Ve5dMsdfWERCFk4STUFDRHkGX6m0CcY</secretAccessKey>
+        <accessKeyId>AKIXXXXXHXQXXG5XX</accessKeyId>
+        <secretAccessKey>qHXXBXXXXASYQc4oMCEOj+343HD82s</secretAccessKey>
         <methodType>PUT</methodType>
         <contentLength></contentLength>
         <contentType>application/xml</contentType>
@@ -3099,7 +3191,7 @@ To use the Amazon S3 connector, add the <amazons3.init> element in your configur
         </tr>
         <tr>
             <td>objectName</td>
-            <td>The name of the object.</td>
+            <td>The name of the object to retrieve details for.</td>
             <td>Yes</td>
         </tr>
         <tr>
@@ -3126,7 +3218,7 @@ To use the Amazon S3 connector, add the <amazons3.init> element in your configur
             <td>ifNoneMatch</td>
             <td>Returns the object only if its entity tag (ETag) is different from the one specified. Otherwise, returns 304.</td>
             <td>Yes</td>
-        </tr>
+        </tr>        
     </table>
 
     **Sample configuration**
@@ -3147,8 +3239,8 @@ To use the Amazon S3 connector, add the <amazons3.init> element in your configur
 
     ```xml
     <getObjectMetaData>
-        <accessKeyId>AKIAIGURSDFSDFDZM7GJ7TRO6KQSFGFD</accessKeyId>
-        <secretAccessKey>asAX8CJoDKzeOd0Ve5dMCFk4STUFDRHkGX6m0CcY</secretAccessKey>
+        <accessKeyId>AKIXXXXXHXQXXG5XX</accessKeyId>
+        <secretAccessKey>qHXXBXXXXASYQc4oMCEOj+343HD82s</secretAccessKey>
         <methodType>HEAD</methodType>
         <contentLength></contentLength>
         <contentType>application/xml</contentType>
@@ -3190,12 +3282,12 @@ To use the Amazon S3 connector, add the <amazons3.init> element in your configur
         </tr>
         <tr>
             <td>objectName</td>
-            <td>The name of the object.</td>
+            <td>The name to give for the newly created object.</td>
             <td>Yes</td>
         </tr>
         <tr>
             <td>uploadId</td>
-            <td>Upload ID.</td>
+            <td>This specifies the ID of the initiated multipart upload.</td>
             <td>Yes</td>
         </tr>
         <tr>
@@ -3259,14 +3351,39 @@ To use the Amazon S3 connector, add the <amazons3.init> element in your configur
         </tr>
         <tr>
             <td>objectName</td>
-            <td>The name of the object.</td>
+            <td>The name to give the newly created object.</td>
+            <td>Yes</td>
+        </tr>
+        <tr>
+            <td>cacheControl</td>
+            <td>This can be used to specify caching behavior along the request or reply chain.</td>
+            <td>Yes</td>
+        </tr>
+        <tr>
+            <td>contentDisposition</td>
+            <td>This specifies presentational information for the object.</td>
+            <td>Yes</td>
+        </tr>
+        <tr>
+            <td>contentEncoding</td>
+            <td>This specifies what content encodings have been applied to the object.</td>
+            <td>Yes</td>
+        </tr>
+        <tr>
+            <td>expires</td>
+            <td>This specifies the date and time at which the object is no longer cacheable.</td>
             <td>Yes</td>
         </tr>
         <tr>
             <td>uploadId</td>
-            <td>The ID of the upload.</td>
+            <td>This specifies the ID of the current multipart upload.</td>
             <td>Yes</td>
         </tr>
+        <tr>
+            <td>partDetails</td>
+            <td>This contains all the part numbers and the corresponding Etags.</td>
+            <td>Yes</td>
+        </tr>           
     </table>
 
     **Sample configuration**
@@ -3284,8 +3401,8 @@ To use the Amazon S3 connector, add the <amazons3.init> element in your configur
 
     ```xml
     <completeMultipartUpload>
-        <accessKeyId>AKIAJ5H4DUFASFDF3O2VJMLA</accessKeyId>
-        <secretAccessKey>oz22F2SDmwtR+JGCGaykdfdQmKHZj56zhUiiEbdfd48Fynwt</secretAccessKey>
+        <accessKeyId>AKIXXXXXHXQXXG5XX</accessKeyId>
+        <secretAccessKey>qHXXBXXXXASYQc4oMCEXXX343HD82s</secretAccessKey>
         <methodType>POST</methodType>
         <contentType>application/xml</contentType>
         <isXAmzDate>true</isXAmzDate>
@@ -3433,17 +3550,17 @@ To use the Amazon S3 connector, add the <amazons3.init> element in your configur
         </tr>
         <tr>
             <td>cacheControl</td>
-            <td>The Cache-Control header of the request.</td>
+            <td>This can be used to specify caching behavior along the request or reply chain.</td>
             <td>Yes</td>
         </tr>
         <tr>
             <td>contentDisposition</td>
-            <td>The Content-Disposition header of the request.</td>
+            <td>This specifies presentational information for the object.</td>
             <td>Yes</td>
         </tr>
         <tr>
             <td>contentEncoding</td>
-            <td>The Content-Encoding header of the request.</td>
+            <td>This specifies what content encodings have been applied to the object.</td>
             <td>Yes</td>
         </tr>
         <tr>
@@ -3463,9 +3580,9 @@ To use the Amazon S3 connector, add the <amazons3.init> element in your configur
         </tr>
         <tr>
             <td>uploadId</td>
-            <td>The ID of the upload.</td>
+            <td>This specifies the ID of the current multipart upload.</td>
             <td>Yes</td>
-        </tr>
+        </tr>         
     </table>
 
     **Sample configuration**
@@ -3511,8 +3628,8 @@ To use the Amazon S3 connector, add the <amazons3.init> element in your configur
 
     ```xml
     <abortMultipartUpload>
-        <accessKeyId>AKIAJ5H4DFDDUFA3O2VJMLASFD</accessKeyId>
-        <secretAccessKey>oz22F2mwtRsdfdsJGCGaykQmKHSDZj56zhUiiEb48Fynwt</secretAccessKey>
+        <accessKeyId>AKIXXXXXHXQXXG5XX</accessKeyId>
+        <secretAccessKey>qHXXBXXXXASYQc4oMCEXXX343HD82s</secretAccessKey>
         <methodType>DELETE</methodType>
         <contentType>application/xml</contentType>
         <isXAmzDate>true</isXAmzDate>
@@ -3691,8 +3808,8 @@ To use the Amazon S3 connector, add the <amazons3.init> element in your configur
 
     ```xml
     <listParts>
-        <accessKeyId>AFDKIAJ5H4DUFAADS3O2VJMLASDS</accessKeyId>
-        <secretAccessKey>oSDz22F2mwtR+JGCGaykQmKHZjsdff56zhUiiEb48Fynwt</secretAccessKey>
+        <accessKeyId>AKIXXXXXHXQXXG5XX</accessKeyId>
+        <secretAccessKey>oSDz22F2mwtR+qHXXBXXXXASYQc4oMCEXXX343HD82s</secretAccessKey>
         <methodType>GET</methodType>
         <contentLength></contentLength>
         <contentEncoding></contentEncoding>
@@ -3844,17 +3961,17 @@ To use the Amazon S3 connector, add the <amazons3.init> element in your configur
         </tr>
         <tr>
             <td>cacheControl</td>
-            <td>A request header that can be used to specify caching behavior along the request/reply chain.</td>
+            <td>This can be used to specify caching behavior along the request or reply chain.</td>
             <td>Yes</td>
         </tr>
         <tr>
             <td>contentDisposition</td>
-            <td>A request header that specifies presentational information for the object.</td>
+            <td>This specifies presentational information for the object.</td>
             <td>Yes</td>
         </tr>
         <tr>
             <td>contentEncoding</td>
-            <td>The Content-Encoding header of the request.</td>
+            <td>This specifies what content encodings have been applied to the object.</td>
             <td>Yes</td>
         </tr>
         <tr>
@@ -3917,8 +4034,8 @@ To use the Amazon S3 connector, add the <amazons3.init> element in your configur
 
     ```xml
     <initMultipartUpload>
-        <accessKeyId>ASDKIAJ5H4DUFAASDF3O2VJMLDFDA</accessKeyId>
-        <secretAccessKey>oz2sdf2F2mwtR+JGCGaykQmKHZjdfg56zhUiiEb48Fynwt</secretAccessKey>
+        <accessKeyId>AKIXXXXXHXQXXG5XX</accessKeyId>
+        <secretAccessKey>qHXXBXXXXASYQc4oMCEXXX343HD82s</secretAccessKey>
         <methodType>POST</methodType>
         <contentType>application/xml</contentType>
         <isXAmzDate>true</isXAmzDate>
@@ -3968,7 +4085,7 @@ To use the Amazon S3 connector, add the <amazons3.init> element in your configur
             <td>objectName</td>
             <td>The name of the object.</td>
             <td>Yes</td>
-        </tr>
+        </tr>      
     </table>
 
     **Sample configuration**
@@ -3984,8 +4101,8 @@ To use the Amazon S3 connector, add the <amazons3.init> element in your configur
 
     ```xml
     <getObjectACL>
-        <accessKeyId>ASDKIAJ5H4DUFAASDF3O2VJMLDFDA</accessKeyId>
-        <secretAccessKey>oz2sdf2F2mwtR+JGCGaykQmKHZjdfg56zhUiiEb48Fynwt</secretAccessKey>
+        <accessKeyId>AKIXXXXXHXQXXG5XX</accessKeyId>
+        <secretAccessKey>qHXXBXXXXASYQc4oMCEXXX343HD82s</secretAccessKey>
         <methodType>GET</methodType>
         <contentType>application/xml; charset=UTF-8</contentType>
         <isXAmzDate>true</isXAmzDate>
@@ -4032,7 +4149,7 @@ To use the Amazon S3 connector, add the <amazons3.init> element in your configur
             <td>objectName</td>
             <td>The name of the object.</td>
             <td>Yes</td>
-        </tr>
+        </tr>      
     </table>
 
     **Sample configuration**
@@ -4048,8 +4165,8 @@ To use the Amazon S3 connector, add the <amazons3.init> element in your configur
 
     ```xml
     <getObjectTorrent>
-        <accessKeyId>ASDKIAJ5H4DUFAASDF3O2VJMLDFDA</accessKeyId>
-        <secretAccessKey>oz2sdf2F2mwtR+JGCGaykQmKHZjdfg56zhUiiEb48Fynwt</secretAccessKey>
+        <accessKeyId>AKIXXXXXHXQXXG5XX</accessKeyId>
+        <secretAccessKey>qHXXBXXXXASYQc4oMCEXXX343HD82s</secretAccessKey>
         <methodType>GET</methodType>
         <contentType>application/xml; charset=UTF-8</contentType>
         <isXAmzDate>true</isXAmzDate>
@@ -4094,17 +4211,17 @@ To use the Amazon S3 connector, add the <amazons3.init> element in your configur
             <td>objectName</td>
             <td>The name of the object.</td>
             <td>Yes</td>
-        </tr>
+        </tr>   
         <tr>
             <td>numberOfDays</td>
             <td>Lifetime of the restored (active) copy.</td>
             <td>Yes</td>
-        </tr>
+        </tr>  
         <tr>
-            <td>versionID</td>
-            <td>The version ID of the object.</td>
+            <td>versionId</td>
+            <td>Version Id of an object to restore a specific object version.</td>
             <td>Yes</td>
-        </tr>
+        </tr>       
     </table>
 
     **Sample configuration**
@@ -4122,8 +4239,8 @@ To use the Amazon S3 connector, add the <amazons3.init> element in your configur
 
     ```xml
     <restoreObject>
-        <accessKeyId>ASDKIAJ5H4DUFAASDF3O2VJMLDFDA</accessKeyId>
-        <secretAccessKey>oz2sdf2F2mwtR+JGCGaykQmKHZjdfg56zhUiiEb48Fynwt</secretAccessKey>
+        <accessKeyId>AKIXXXXXHXQXXG5XX</accessKeyId>
+        <secretAccessKey>qHXXBXXXXASYQc4oMCEXXX343HD82s</secretAccessKey>
         <methodType>POST</methodType>
         <contentType>application/xml; charset=UTF-8</contentType>
         <isXAmzDate>true</isXAmzDate>
@@ -4164,19 +4281,19 @@ To use the Amazon S3 connector, add the <amazons3.init> element in your configur
         </tr>
         <tr>
             <td>objectName</td>
-            <td>The name of the object.</td>
+            <td>The name to give the newly created object.</td>
             <td>Yes</td>
-        </tr>
+        </tr>   
         <tr>
             <td>uploadId</td>
-            <td>Upload ID.</td>
+            <td>This specifiy the ID of the initiated multipart upload.</td>
             <td>Yes</td>
-        </tr>
+        </tr>  
         <tr>
             <td>partNumber</td>
-            <td>Part number that identifies the part.</td>
+            <td>This specifiy the number or the index of the uploaded part.</td>
             <td>Yes</td>
-        </tr>
+        </tr>       
     </table>
 
     **Sample configuration**
@@ -4194,8 +4311,8 @@ To use the Amazon S3 connector, add the <amazons3.init> element in your configur
 
     ```xml
     <uploadPartCopy>
-        <accessKeyId>ASDKIAJ5H4DUFAASDF3O2VJMLDFDA</accessKeyId>
-        <secretAccessKey>oz2sdf2F2mwtR+JGCGaykQmKHZjdfg56zhUiiEb48Fynwt</secretAccessKey>
+        <accessKeyId>AKIXXXXXHXQXXG5XX</accessKeyId>
+        <secretAccessKey>qHXXBXXXXASYQc4oMCEXXX343HD82s</secretAccessKey>
         <methodType>PUT</methodType>
         <contentType>application/xml; charset=UTF-8</contentType>
         <contentLength>256</contentLength>
@@ -4237,34 +4354,34 @@ To use the Amazon S3 connector, add the <amazons3.init> element in your configur
         </tr>
         <tr>
             <td>objectName</td>
-            <td>The name of the object.</td>
+            <td>The name to give the newly created object.</td>
             <td>Yes</td>
-        </tr>
+        </tr>   
         <tr>
             <td>range</td>
             <td>The specified range bytes of an object to download.</td>
             <td>Optional</td>
-        </tr>
+        </tr>  
         <tr>
             <td>ifModifiedSince</td>
             <td>Return the object only if it has been modified since the specified time.</td>
             <td>Optional</td>
-        </tr>
+        </tr> 
         <tr>
             <td>ifUnmodifiedSince</td>
             <td>Return the object only if it has not been modified since the specified time.</td>
             <td>Optional</td>
-        </tr>
+        </tr>  
         <tr>
             <td>ifMatch</td>
             <td>Return the object only if its entity tag (ETag) is the same as the one specified.</td>
             <td>Optional</td>
-        </tr>
+        </tr>    
         <tr>
             <td>ifNoneMatch</td>
             <td>Return the object only if its entity tag (ETag) is different from the one specified.</td>
             <td>Optional</td>
-        </tr>
+        </tr>      
     </table>
 
     **Sample configuration**
@@ -4284,31 +4401,31 @@ To use the Amazon S3 connector, add the <amazons3.init> element in your configur
     **Sample request**
 
     ```xml
-    <headObject>
-        <accessKeyId>AKIAIGURZMDFG7TRO6KQ</accessKeyId>
-        <secretAccessKey>asAX8CJoDKzdfg0Ve5dMCFk4STUFDRHkGX6m0CcY</secretAccessKey>
-        <methodType>PUT</methodType>
-        <contentLength>256</contentLength>
-        <contentType>application/xml</contentType>
-        <contentMD5></contentMD5>
-        <expect></expect>
-        <region>us-east-2</region>
-        <host>s3.us-east-2.amazonaws.com</host>
-        <bucketUrl>http://s3.us-east-2.amazonaws.com/signv4test</bucketUrl>
-        <bucketName>signv4test</bucketName>
-        <isXAmzDate>true</isXAmzDate>
-        <xAmzSecurityToken></xAmzSecurityToken>
-        <objectName>testObject2</objectName>
-        <xAmzAcl></xAmzAcl>
-        <xAmzGrantRead></xAmzGrantRead>
-        <xAmzGrantWrite></xAmzGrantWrite>
-        <xAmzGrantReadAcp></xAmzGrantReadAcp>
-        <xAmzGrantWriteAcp></xAmzGrantWriteAcp>
-        <xAmzGrantFullControl></xAmzGrantFullControl>
-        <range></range>
-        <ifModifiedSince></ifModifiedSince>
-        <ifMatch></ifMatch>
-        <ifNoneMatch></ifNoneMatch>
-        <ifUnmodifiedSince></ifUnmodifiedSince>
+      <accessKeyId>AKIXXXXXHXQXXG5XX</accessKeyId>
+      <secretAccessKey>qHXXBXXXXASYQc4oMCEXXX343HD82s</secretAccessKey>
+      <methodType>PUT</methodType>
+      <contentLength>256</contentLength>
+      <contentType>application/xml</contentType>
+      <contentMD5></contentMD5>
+      <expect></expect>
+      <region>us-east-2</region>
+      <host>s3.us-east-2.amazonaws.com</host>
+      <bucketUrl>http://s3.us-east-2.amazonaws.com/signv4test</bucketUrl>
+      <bucketName>signv4test</bucketName>
+      <isXAmzDate>true</isXAmzDate>
+      <xAmzSecurityToken></xAmzSecurityToken>
+      <objectName>testObject2</objectName>
+      <xAmzAcl></xAmzAcl>
+      <xAmzGrantRead></xAmzGrantRead>
+      <xAmzGrantWrite></xAmzGrantWrite>
+      <xAmzGrantReadAcp></xAmzGrantReadAcp>
+      <xAmzGrantWriteAcp></xAmzGrantWriteAcp>
+      <xAmzGrantFullControl></xAmzGrantFullControl>
+      <range></range>
+      <ifModifiedSince></ifModifiedSince>
+      <ifMatch></ifMatch>
+      <ifNoneMatch></ifNoneMatch>
+      <ifUnmodifiedSince></ifUnmodifiedSince>
     </headObject>
-    ```
+    ``` 
+    
