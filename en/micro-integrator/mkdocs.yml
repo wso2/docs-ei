@@ -370,6 +370,7 @@ nav:
           - 'Amazon DynamoDB Overview': 'references/connectors/amazondynamodb-connector/amazondynamodb-connector-overview.md'
           - 'Setting up Amazon DynamoDB': 'references/connectors/amazondynamodb-connector/amazondynamodb-connector-configuration.md'
           - 'Amazon DynamoDB Example': 'references/connectors/amazondynamodb-connector/amazondynamodb-connector-example.md'
+          - 'Amazon DynamoDB Reference': 'references/connectors/amazondynamodb-connector/amazondynamodb-connector-reference.md'
         - Amazon Lambda Connector:
           - 'Amazon Lambda Overview': 'references/connectors/amazonlambda-connector/amazonlambda-connector-overview.md'
           - 'Setting up Amazon Lambda': 'references/connectors/amazonlambda-connector/setting-up-amazonlambda.md'
