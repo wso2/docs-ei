@@ -324,11 +324,11 @@ nav:
         - 'Exporting Artifacts': 'develop/exporting-artifacts.md'
         - 'Generating Docker Images': 'develop/generate-docker-image.md'
       - Testing Integrations:
-        - 'Deploy and Run Artifacts': 'develop/deploy-and-run.md'
+        - 'Using the Embedded Micro Integrator': 'develop/using-embedded-micro-integrator.md'
+        - 'Using a Remote Micro Integrator': 'develop/using-remote-micro-integrator.md'
         - 'Hot Deploying Artifacts': 'develop/hot-deployment.md'
         - 'Creating a Unit Test Suite': 'develop/creating-unit-test-suite.md'
         - 'Using the HTTP REST Client': 'develop/using-http_rest_client.md'
-        - 'Injecting Environment Variable to Embedded MI': 'develop/inject_env_variables_to_embedded_mi.md'
       - Debugging Integrations:
         - 'Mediation Debugging': 'develop/debugging-mediation.md'
         - 'Using Wire Logs': 'develop/using-wire-logs.md'
