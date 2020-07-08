@@ -56,7 +56,7 @@ sender.parameter.'http.proxyPort'= <port>
 
 ## Configuring proxy profiles in WSO2 Micro Integrator
 
-When using the Micro Integrator, there can be scenarios where you need tovconfigure multiple proxy servers to route messages to different
+When using the Micro Integrator, there can be scenarios where you need to configure multiple proxy servers to route messages to different
 endpoints. When you need to route messages to different endpoints through multiple proxy servers, you can configure proxy profiles.
 
 To configure proxy profiles in WSO2 Micro Integrator, open the deployment.toml file and define multiple profiles based on the number of proxy servers you need to have:
