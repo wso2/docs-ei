@@ -231,6 +231,16 @@ The following operations allow you to work with the File Connector version 2. Cl
             <td>Set to true if you want to include the parent directory.</td>
             <td>Optional</td>
         </tr>
+	<tr>
+            <td>sftpIdentities</td>
+            <td>Location of the private key.</td>
+            <td>Optional</td>
+        </tr>
+	<tr>
+            <td>sftpIdentityPassphrase</td>
+            <td>Passphrase of the private key.</td>
+            <td>Optional</td>
+        </tr>
     </table>
 
     **Sample configuration**
@@ -246,6 +256,8 @@ The following operations allow you to work with the File Connector version 2. Cl
         <setUserDirIsRoot>{$ctx:setUserDirIsRoot}</setUserDirIsRoot>
         <setStrictHostKeyChecking>{$ctx:setStrictHostKeyChecking}</setStrictHostKeyChecking>
 	    <includeParentDirectory>{$ctx:includeParentDirectory}</includeParentDirectory>
+	<sftpIdentities>File path of the private key</sftpIdentities> 
+	<sftpIdentityPassphrase>passphrase of the private key</sftpIdentityPassphrase>
     </fileconnector.copy>
     ```
     
