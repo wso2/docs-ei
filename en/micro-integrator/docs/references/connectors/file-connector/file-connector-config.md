@@ -256,8 +256,8 @@ The following operations allow you to work with the File Connector version 2. Cl
         <setUserDirIsRoot>{$ctx:setUserDirIsRoot}</setUserDirIsRoot>
         <setStrictHostKeyChecking>{$ctx:setStrictHostKeyChecking}</setStrictHostKeyChecking>
 	    <includeParentDirectory>{$ctx:includeParentDirectory}</includeParentDirectory>
-	<sftpIdentities>File path of the private key</sftpIdentities> 
-	<sftpIdentityPassphrase>passphrase of the private key</sftpIdentityPassphrase>
+	<sftpIdentities>{$ctx:sftpIdentities}</sftpIdentities> 
+	<sftpIdentityPassphrase>{$ctx:sftpIdentityPassphrase}</sftpIdentityPassphrase>
     </fileconnector.copy>
     ```
     
