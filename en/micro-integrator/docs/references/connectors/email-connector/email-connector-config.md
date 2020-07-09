@@ -82,32 +82,32 @@ The following operations allow you to work with the Email Connector. Click an op
         </tr>
         <tr>
             <td>maxActiveConnections</td>
-            <td>Maximum number of active connections in the pool.</td>
+            <td>Maximum number of active connections in the pool. When negative, there is no limit to the number of objects that can be managed by the pool at one time. Default is 8.</td>
             <td>Optional</td>
         </tr>
         <tr>
             <td>maxIdleConnections</td>
-            <td>Maximum number of idle connections in the pool.</td>
+            <td>Maximum number of idle connections in the pool. When negative, there is no limit to the number of objects that may be idle at one time. Default is 8.</td>
             <td>Optional</td>
         </tr>
         <tr>
             <td>maxWaitTime</td>
-            <td>Maximum number of idle connections in the pool.</td>
-            <td>Optional</td>
-        </tr>
-        <tr>
-            <td>minEvictionTime</td>
-            <td>The minimum amount of time an object may sit idle in the pool before it is eligible for eviction.</td>
+            <td>Specifies the number of milliseconds to wait for a pooled component to become available when the pool is exhausted and the exhaustedAction is set to WHEN_EXHAUSTED_WAIT. If maxWait is negative, it will be blocked indefinitely. Default is -1.</td>
             <td>Optional</td>
         </tr>
         <tr>
             <td>evictionCheckInterval</td>
-            <td>The number of milliseconds between runs of the object evictor.</td>
+            <td>The number of milliseconds between runs of the object evictor. When non-positive, no eviction thread will be launched. The default setting for this parameter is -1</td>
+            <td>Optional</td>
+        </tr>
+        <tr>
+            <td>minEvictionTime</td>
+            <td>The minimum amount of time an object may sit idle in the pool before it is eligible for eviction. When non-positive, no object will be dropped from the pool due to idle time alone. This setting has no effect unless timeBetweenEvictionRunsMillis > 0. The default setting for this parameter is 30 minutes.</td>
             <td>Optional</td>
         </tr>
         <tr>
             <td>exhaustedAction</td>
-            <td>The behavior of the pool when the pool is exhausted. (WHEN_EXHAUSTED_FAIL/WHEN_EXHAUSTED_BLOCK/WHEN_EXHAUSTED_GROW)</td>
+            <td>The behavior of the pool when the pool is exhausted. (WHEN_EXHAUSTED_FAIL/WHEN_EXHAUSTED_BLOCK/WHEN_EXHAUSTED_GROW) Default is WHEN_EXHAUSTED_FAIL.</td>
             <td>Optional</td>
         </tr>
     </table>
