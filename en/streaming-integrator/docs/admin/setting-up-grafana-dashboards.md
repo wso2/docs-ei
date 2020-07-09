@@ -3,7 +3,7 @@
 This section explains how WSO2 Streaming Integrator can be configured to display statistics relating to change data in files and databases in Grafana dashboards.
 
 !!! tip "Before you begin:"
-    - Download and install Prometheus. For instructions, see [the Prometheus Getting Started Guide](https://prometheus.io/docs/prometheus/latest/getting_started/).<br/>
+    - Download and install Prometheus. For instructions, see [the Prometheus Getting Started Guide](https://prometheus.io/docs/prometheus/latest/getting_started/). <br/>
     - Download Grafana from [Grafana Labs - Download Grafana](https://grafana.com/grafana/download).
 
 ## Configuring Grafana dashboards
@@ -110,7 +110,7 @@ In order to configure a Grafana dashboard, follow the steps below:
     
     6. Click **Import**.
     
-    The pre-configured dashboards in Streaming Integrator are a follows:
+    The pre-configured dashboards in Streaming Integrator are as follows:
     
     - **cdc-statistics**
     

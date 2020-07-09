@@ -85,8 +85,15 @@ Now you can write a simple Siddhi application to monitor the `SweetProductionTab
 
     !!!info
         This Siddhi application captures all the inserts made to the `SweetProductionTable` database table and logs them.
+        
+3. To install the extensions required for the `CDCListenForInserts` Siddhi application you deployed, open a new terminal window and navigate to the `<SI_HOME>/bin` directory and issue one of the following commands as appropriate, based on your operating system:
+    <br/>
+    - For Windows: `extension-installer.bat`<br/>
+    <br/>
+    - For Linux:  `sh extension-installer.sh`<br/>
+    <br/>
 
-3. Now let's perform an insert operation on the MySQL table by executing the following MySQL query on the database:
+4. Now let's perform an insert operation on the MySQL table by executing the following MySQL query on the database:
 
     ```
     insert into SweetProductionTable values('chocolate',100.0);
