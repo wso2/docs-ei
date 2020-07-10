@@ -390,6 +390,7 @@ nav:
         - BigQuery Connector:
           - 'Setting up the BigQuery Environment': 'references/connectors/bigquery-connector/bigquery-connector-configuration.md'
           - 'BigQuery Connector Example': 'references/connectors/bigquery-connector/bigquery-connector-example.md'
+          - 'BigQuery Connector Reference': 'references/connectors/bigquery-connector/bigquery-connector-reference.md'
         - Ceridian Dayforce Connector:
             - 'Ceridian Dayforce Overview': 'references/connectors/ceridiandayforce-connector/cerediandayforce-overview.md'
             - 'Setting up the Ceridian Dayforce Connector': 'references/connectors/ceridiandayforce-connector/ceridiandayforce-connector-config.md'
