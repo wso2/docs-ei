@@ -1,7 +1,5 @@
 # BigQuery Connector Example
 
-The BigQuery connector allows you to access the [BigQuery REST API](https://cloud.google.com/bigquery/docs/reference/rest) through WSO2 EI. BigQuery is a tool that allows you to execute SQL-like queries on large amounts of data at outstanding speeds. It is a serverless Software as a Service that supports querying using ANSI SQL.
-
 The WSO2 EI BigQuery connector is mostly comprised of operations that are useful for retrieving BigQuery data such as project details, datasets, tables, and jobs (it has one operation that can be used to insert data into BigQuery tables).
 
 In this example we are trying to build up a sample scenario based on the BigQuery Table operations.
