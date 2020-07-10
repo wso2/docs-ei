@@ -99,6 +99,9 @@ Once the integration logic is done, you can export it along with the dependency 
 
 Within this documentation, each connector has an example scenario associated with it that illustrates how a simple use case can be done using the connector. It also has a detailed reference guide that lists out the operations and the respective properties of each of these operations, highlighting sample values, required configurations, and even sample requests and responses.
 
+!!! Info
+    For details on connectors not mentioned in this documentation, you can find more details in [WSO2 ESB Connectors documentation](https://docs.wso2.com/display/ESBCONNECTORS/WSO2+ESB+Connectors+Documentation) or in the [GitHub repository of the connector](https://github.com/wso2-extensions) you are looking for.
+
 ## Empowering the developer
 
 We have to be honest; we would really like to encourage developers who want to solve integration problems. If you have a use case that requires you to customize one of our connectors, we encourage you to go ahead and make the changes you need. 
