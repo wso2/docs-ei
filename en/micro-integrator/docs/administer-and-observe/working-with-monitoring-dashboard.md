@@ -1,26 +1,54 @@
 # Micro Integrator Dashboard
 
-The Micro Integrator dashboard provides a graphical view of the synapse artifacts that are deployed in a specified Micro Integrator server instance. This dashboard is an alternative to the [Micro Integrator CLI](../../administer-and-observe/using-the-command-line-interface), which allows you to monitor your deployments from the command line. The dashboard as well as the CLI communicates with the management API of WSO2 Micro Integrator to function.
+The Micro Integrator dashboard provides a graphical view of the synapse artifacts that are deployed in a specified Micro Integrator server instance. The dashboard (as well as the [Micro Integrator CLI](../../administer-and-observe/using-the-command-line-interface)) communicates with the management API of WSO2 Micro Integrator to function.
 
-## Install and run the dashboard
+You can use the dashboard to perform the following administration tasks related to your Micro Integrator deployment:
+
+-   <b>View deployed artifacts</b>
+
+    View details of the artifacts deployed in a Micro Integrator instance.
+
+-   <b>Update deployed artifacts</b>
+
+    You can activate/deactivate the following artifacts from the dashboard: <i>Proxy Services</i>, <i>Endpoints</i>, and <i>Message Processors</i>.
+
+    You can enable/disable tracing and statistics for the following artifacts: <i>Proxy Services</i>, <i>Endpoints</i>, and <i>Message Processors</i>.
+
+-   <b>View and update logs</b>
+
+    You can view the log files generated for the Micro Integrator, download the log files, and also update loggers and log levels.
+
+-   <b>Manage users</b>
+
+    You can view details of users stored in the external user store. If you are logged in to the dashsboard with administrator credentials, you can also add new users, and remove users from the user store.
 
 !!! Warning
     In a non-production environment (with the self signed certificate), you have to add the certificate of the micro integrator instance to the browser as a trusted source. For example, direct the browser to `https://localhost:9164/management` and add the site as trusted. This step will not be required with a custom production certificate.
 
-1.  To download the dashboard, go to [**WSO2 Micro Integrator** website](https://wso2.com/integration/micro-integrator/#) -> **Download** -> **Other Resources**, and click **Monitoring Dashboard**.
-2.  Extract the downloaded ZIP file. This will be the `MI_DASHBOARD_HOME` directory.
-3.  Open a terminal, navigate to the `MI_DASHBOARD_HOME/bin` directory, and execute the following command to start the dashboard server:
+## Installing the Dashboard
 
-    ```bash
+To download the dashboard, go to [**WSO2 Micro Integrator** website](https://wso2.com/integration/micro-integrator/#) -> **Download** -> **Other Resources**, and click **Monitoring Dashboard**.
+
+## Starting the Dashboard
+
+1.  Extract the downloaded ZIP file. This will be the `<MI_DASHBOARD_HOME>` directory.
+2.  Open a terminal, navigate to the `<MI_DASHBOARD_HOME>/bin` directory, and execute the following command to start the dashboard server:
+
+    ```bash tab='On Linux/MacOS'
     sh dashboard.sh
     ```
-    The dashboard server will start as follows.
+
+    ```bash tab='On Windows'
+    dashboard.bat
+    ```
+
+    The dashboard server will start as follows:
 
     ```bash
     Web app 'dashboard' is available at 'http://localhost:9390/dashboard/login'
     ```
 
-## Sign in to the dashboard
+## Sign in to the Dashboard
   
 1.  Copy the dashboard URL to your browser.
 
@@ -38,7 +66,7 @@ The Micro Integrator dashboard provides a graphical view of the synapse artifact
                 Host
             </th>
             <td>
-                The host name for the running Micro Integrator instance.
+                The host name for the running Micro Integrator instance. The default hostname is <b>localhost</b>.
             </td>
         </tr>
         <tr>
@@ -70,4 +98,168 @@ The Micro Integrator dashboard provides a graphical view of the synapse artifact
 
 3.  Click <b>SIGN IN</b> and you are redirected to the home page of the Micro Integrator dashboard.
      
-    ![login form for monitoring dashboard](../assets/img/monitoring-dashboard/home.png)
+    <img src="../../assets/img/monitoring-dashboard/dashboard-artifact-home.png">
+
+## Using the Dashboard
+
+Once you sign in to the dashboard, you can view details of artifacts, update artifact, and perform various other administration tasks. Select the required option from the left-hand navigator.
+
+<img src="../../assets/img/monitoring-dashboard/dashboard-artifact-list.png">
+
+<!--
+### Proxy Services
+
+Select this option to manage proxy services deployed in the Micro Integrator instance.
+
+<img src="../../assets/img/monitoring-dashboard/dashboard-proxy-service-1.png">
+
+You can view details, and update the <b>status</b> and enable <b>tracing</b>/<b>statistics</b> for each proxy service.
+
+<img src="../../assets/img/monitoring-dashboard/dashboard-proxy-service-2.png">
+
+### Endpoints
+
+Select this option to manage endpoint artifacts deployed in the Micro Integrator instance.
+
+<img src="../../assets/img/monitoring-dashboard/dashboard-endpoint-1.png">
+
+You can view details, update the <b>status</b>, and enable <b>tracing</b>/<b>statistics</b> for each endpoint.
+
+<img src="../../assets/img/monitoring-dashboard/dashboard-endpoint-2.png">
+
+### Inbound Endpoints
+
+Select this option to manage inbound endpoint artifacts deployed in the Micro Integrator instance.
+
+<img src="../../assets/img/monitoring-dashboard/dashboard-inbound-endpoint-1.png">
+
+You can view details of each inbound endpoint as shown below.
+
+<img src="../../assets/img/monitoring-dashboard/dashboard-inbound-endpoint-2.png">
+
+### Message Processors
+
+Select this option to manage message processor artifacts deployed in the Micro Integrator instance.
+
+<img src="../../assets/img/monitoring-dashboard/dashboard-message-processor-1.png">
+
+You can view details, update the <b>status</b>, and enable <b>tracing</b>/<b>statistics</b> for each message processor.
+
+<img src="../../assets/img/monitoring-dashboard/dashboard-message-processor-1.png">
+
+### Message Stores
+
+Select this option to manage message store artifacts deployed in the Micro Integrator instance.
+
+<img src="../../assets/img/monitoring-dashboard/dashboard-message-store-1.png">
+
+You can view details of each message store as shown below.
+
+<img src="../../assets/img/monitoring-dashboard/dashboard-message-store-2.png">
+
+### API
+
+Select this option to manage REST API artifacts deployed in the Micro Integrator instance.
+
+<img src="../../assets/img/monitoring-dashboard/dashboard-api-1.png">
+
+You can view details and update <b>tracing</b> for each API as shown below.
+
+<img src="../../assets/img/monitoring-dashboard/dashboard-api-2.png">
+
+### Templates
+
+Select this option to manage templates artifacts deployed in the Micro Integrator instance.
+
+<img src="../../assets/img/monitoring-dashboard/dashboard-template-1.png">
+
+You can view details for each template as shown below.
+
+<img src="../../assets/img/monitoring-dashboard/dashboard-template-2.png">
+
+### Sequences
+
+Select this option to manage sequence artifacts deployed in the Micro Integrator instance.
+
+<img src="../../assets/img/monitoring-dashboard/dashboard-sequence-1.png">
+
+You can view details and update <b>tracing</b> for each sequence as shown below.
+
+<img src="../../assets/img/monitoring-dashboard/dashboard-template-2.png">
+
+### Tasks
+
+Select this option to manage scheduled tasks deployed in the Micro Integrator instance.
+
+<img src="../../assets/img/monitoring-dashboard/dashboard-task-1.png">
+
+You can view details for each task as shown below.
+
+<img src="../../assets/img/monitoring-dashboard/dashboard-task-2.png">
+
+### Local Entries
+
+Select this option to manage local entries deployed in the Micro Integrator instance.
+
+<img src="../../assets/img/monitoring-dashboard/dashboard-localentry-1.png">
+
+You can view details for each local entry as shown below.
+
+<img src="../../assets/img/monitoring-dashboard/dashboard-localentry-2.png">
+
+### Data Services
+
+Select this option to manage data services deployed in the Micro Integrator instance.
+
+<img src="../../assets/img/monitoring-dashboard/dashboard-dataservice-1.png">
+
+You can view details for each data service as shown below.
+
+<img src="../../assets/img/monitoring-dashboard/dashboard-dataservice-2.png">
+
+### Connectors
+
+Select this option to manage connector artifacts deployed in the Micro Integrator instance.
+
+<img src="../../assets/img/monitoring-dashboard/dashboard-connector-1.png">
+
+You can view details for each connector as shown below.
+
+<img src="../../assets/img/monitoring-dashboard/dashboard-connector-2.png">
+
+### Carbon Applications
+
+Select this option to see the list of composite applications deployed in the Micro Integrator instance.
+
+<img src="../../assets/img/monitoring-dashboard/dashboard-capp.png">
+
+### Log Files
+
+Select this option to view and download log files of the Micro Integrator instance.
+
+<img src="../../assets/img/monitoring-dashboard/dashboard-view-logs.png">
+
+### Log Configs
+
+Select this option to manage the log4j loggers of the Micro Integrator instance.
+
+To view log configs and update log levels:
+
+<img src="../../assets/img/monitoring-dashboard/dashboard-logger-1.png">
+
+To add new loggers:
+
+<img src="../../assets/img/monitoring-dashboard/dashboard-logger-2.png">
+
+### Users
+
+Select this option to manage the users of the Micro Integrator instance. These users are stored in the external user store connected to the Micro Integrator.
+
+To view and remove users:
+
+<img src="../../assets/img/monitoring-dashboard/dashboard-users-1.png" width="700">
+
+To add new users:
+
+<img src="../../assets/img/monitoring-dashboard/dashboard-users-2.png" width="700">
+-->

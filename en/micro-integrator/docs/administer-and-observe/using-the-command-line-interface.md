@@ -1,6 +1,6 @@
 # Micro Integrator CLI
 
-The Micro Integrator CLI allows you to monitor the synapse artifacts (deployed in a specified Micro Integrator server) from the command line. The CLI is an alternative to the [dashboard](../../administer-and-observe/working-with-monitoring-dashboard), which provides a graphical view of the deployed artifacts. The dashboard as well as the CLI communicates with the management API of WSO2 Micro Integrator to function.
+The Micro Integrator CLI allows you to monitor the synapse artifacts (deployed in a specified Micro Integrator server) from the command line. The dashboard (as well as the [dashboard](../../administer-and-observe/working-with-monitoring-dashboard)) communicates with the management API of WSO2 Micro Integrator to function.
 
 ## Installing the CLI
 
@@ -148,7 +148,7 @@ Use `./mi` to initialize the CLI tool.
 
 ### version
 
-Use the `version` option get the version of the running CLI tool.
+Use the `version` option to get the version of the running CLI tool.
 
 ```bash
 mi version
@@ -657,7 +657,7 @@ Flags
 
 ```bash
 -p, --pattern    Specify a regex as a user name pattern.
--r, --role       Specify a user role to fetch a users.   
+-r, --role       Specify a user role to fetch a users. You can use the 'admin' user role or any other role that is stored in the user store. 
 ```   
 
 Examples

@@ -99,7 +99,7 @@ The management API has multiple resources to provide information regarding the d
 
 -	**Resource**: `/users/pattern=”*”&role=admin`
 
-	**Description**: Retrieves information related to user names (stored in an [external user store](../../../setup/user_stores/setting_up_a_userstore)) that match a specific pattern.
+	**Description**: Retrieves information related to user names (stored in an [external user store](../../../setup/user_stores/setting_up_a_userstore)) that match a specific pattern and user role.
 
 	**Example**:
 
@@ -123,11 +123,11 @@ The management API has multiple resources to provide information regarding the d
 
 -	**Resource**: `/users`
 
-	**Description**: Adds a user to the [external user store](../../../setup/user_stores/setting_up_a_userstore).
+	**Description**: Adds a user to the [external user store](../../../setup/user_stores/setting_up_a_userstore). Note that only admin users can create other users with admin access.
 
 	**Example**:
 
-    First create the following JSON file with user details:
+    First create the following JSON file with user details as shown below. Note that this new user is granted the admin role.
 
     ```json
     {
@@ -150,11 +150,11 @@ The management API has multiple resources to provide information regarding the d
     }
   	```
 
-### DELETE USERS
+### REMOVE USERS
 
 -	**Resource**: `/users`
 
-	**Description**: Deletes a user from the [external user store](../../../setup/user_stores/setting_up_a_userstore).
+	**Description**: Removes a user from the [external user store](../../../setup/user_stores/setting_up_a_userstore). Note that only admin users can remove other users with admin access.
 
 	**Example**:
 
@@ -852,7 +852,7 @@ The management API has multiple resources to provide information regarding the d
 
 -	**Resource**: `/transactions/report?start={start}`
 
-	**Description**: Retrieves the transaction report for the specified date. Generates the transaction report at the `<MI_HOME>/tmp` directory.
+	**Description**: Retrieves the transaction report for data starting from the specified date. Generates the transaction report at the `<MI_HOME>/tmp` directory.
 
 	**Example**:
 
