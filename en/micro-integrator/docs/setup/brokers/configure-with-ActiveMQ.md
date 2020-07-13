@@ -160,7 +160,7 @@ Let's see how some of the key concepts of system security such as authentication
 |------------------------------------------------|----------------------------------------------------------------|
 | [Authentication](#authentication) | Simple authentication and JAAS plugins.                                     |
 | [Authorization](#authorization) | Built-in authorization mechanism using XML configuration.                     |
-| [Availability](#availability)  | primary/secondary configurations using fail-over transport in ActiveMQ (not to be confused with the Micro Integrator's transports). |
+| [Availability](#availability)  | Primary/secondary configurations using fail-over transport in ActiveMQ (not to be confused with the Micro Integrator's transports). |
 | [Integrity](#integrity)  | WS-Security                                                                          |
 
 ### Authentication
@@ -226,15 +226,15 @@ ActiveMQ provides authorization schemes using simple XML configurations, which y
 
 ### Availability
 
-ActiveMQ supports the use of primary/secondary configurations and the failover transport to provide high availability. ActiveMQ supports two types of primary/secondary configurations as follows:
+ActiveMQ supports the use of primary and secondary configurations and the failover transport to provide high availability. ActiveMQ supports two types of primary and secondary configurations and they are as follows:
 
--   primary/secondary using shared file systems
--   primary/secondary using JDBC
+-   Primary/secondary configurations using shared file systems
+-   Primary/secondary configurations using JDBC
 
 !!! Info
-    For more information on either model, see the [ActiveMQ documentation on primary/secondary](http://activemq.apache.org/primarysecondary.html).
+    For more information on either model, see the [ActiveMQ documentation on primary/secondary](http://activemq.apache.org/masterslave.html).
 
-**primary/secondary using JDBC**
+**Primary/secondary using JDBC**
 
 ActiveMQ uses a special URI similar to the following to facilitate fail-over functionality: `failover://(tcp://127.0.0.1:61616,tcp://127.0.0.1:61617,tcp://127.0.0.1:61618)?initialReconnectDelay=100`. Use this URI inside the Micro Integrator for a highly-available JMS solution. See the example proxy service given below.
 
