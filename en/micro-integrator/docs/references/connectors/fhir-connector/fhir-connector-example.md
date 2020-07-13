@@ -16,6 +16,36 @@ To know the further information about these operations please refer this link.
 
 > **Note**: If no ID element is provided, or the value is wrong, the server responds with a HTTP 400 error code and provides an operation outcome identifying the issue.
 
+Before you start configuring the FHIR connector, you also need WSO2 MI, and we refer to that location as `<PRODUCT_HOME>`.
+
+Specific message builders/formatters configuration needs to be enabled in the product as shown below before starting the WSO2 EI service.
+
+If you are using **EI7**, you need to enable this property by adding the following to the **<PRODUCT_HOME>/conf/deployment.toml** file. You can further refer to the [Working with Message Builders and Formatters](../../../references/config-catalog/#http-transport) and [Product Configurations](../../micro-integrator/setup/message_builders_formatters/message-builders-and-formatters/) documentations.
+
+```
+[[custom_message_builders]]
+content_type = "application/fhir+json"
+class = "org.wso2.micro.integrator.core.json.JsonStreamBuilder"
+
+[[custom_message_formatters]]
+content_type = "application/fhir+json"
+class = "org.wso2.micro.integrator.core.json.JsonStreamFormatter"
+```
+
+If you are using **EI 6**, you can enable this property by doing the following Axis2 configurations in the **<PRODUCT_HOME>\repository\conf\axis2\axis2.xml** file.
+
+**messageFormatters**
+
+```
+<messageFormatter contentType="application/fhir+json" 
+class="org.wso2.carbon.integrator.core.json.JsonStreamFormatter"/>
+```
+**messageBuilders**
+```
+<messageBuilder contentType="application/fhir+json" 
+class="org.wso2.carbon.integrator.core.json.JsonStreamBuilder"/>
+```
+
 The following diagram illustrates all the required functionality of the FHIR API service that you are going to build.
 
 In here FHIR clients can invoke the API with HTTP/HTTPs with required information. The FHIR connector exposes each request to converting to the Health Level Seven International standards and then send to the resources available in the FHIR server.
