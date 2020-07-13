@@ -352,6 +352,7 @@ nav:
           - 'Amazon DynamoDB Overview': 'references/connectors/amazondynamodb-connector/amazondynamodb-connector-overview.md'
           - 'Setting up Amazon DynamoDB': 'references/connectors/amazondynamodb-connector/amazondynamodb-connector-configuration.md'
           - 'Amazon DynamoDB Example': 'references/connectors/amazondynamodb-connector/amazondynamodb-connector-example.md'
+          - 'Amazon DynamoDB Reference': 'references/connectors/amazondynamodb-connector/amazondynamodb-connector-reference.md'
         - Amazon Lambda Connector:
           - 'Amazon Lambda Overview': 'references/connectors/amazonlambda-connector/amazonlambda-connector-overview.md'
           - 'Setting up Amazon Lambda': 'references/connectors/amazonlambda-connector/setting-up-amazonlambda.md'
@@ -369,8 +370,10 @@ nav:
           - 'Amazon SQS Inbound Endpoint Example': 'references/connectors/amazonsqs-connector/amazonsqs-inbound-endpoint-example.md'
           - 'Amazon SQS Inbound Endpoint Reference': 'references/connectors/amazonsqs-connector/amazonsqs-inbound-endpoint-reference-configuration.md'
         - BigQuery Connector:
+          - 'BigQuery Overview': 'references/connectors/bigquery-connector/bigquery-connector-overview.md'
           - 'Setting up the BigQuery Environment': 'references/connectors/bigquery-connector/bigquery-connector-configuration.md'
-          - 'BigQuery Connector Example': 'references/connectors/bigquery-connector/bigquery-connector-example.md'
+          - 'BigQuery Example': 'references/connectors/bigquery-connector/bigquery-connector-example.md'
+          - 'BigQuery Reference': 'references/connectors/bigquery-connector/bigquery-connector-reference.md'
         - Ceridian Dayforce Connector:
             - 'Ceridian Dayforce Overview': 'references/connectors/ceridiandayforce-connector/cerediandayforce-overview.md'
             - 'Setting up the Ceridian Dayforce Connector': 'references/connectors/ceridiandayforce-connector/ceridiandayforce-connector-config.md'
@@ -462,9 +465,11 @@ nav:
           - 'Setting up Google Firebase': 'references/connectors/google-firebase-connector/google-firebase-setup.md'
           - 'Google Firebase Example': 'references/connectors/google-firebase-connector/google-firebase-connector-example.md'
           - 'Google Firebase Reference': 'references/connectors/google-firebase-connector/google-firebase-configuration.md'
-        - Google Pub Sub Connector:
-          - 'Setting up the Google Pub Sub Environment': 'references/connectors/google-pubsub-connector/googlepubsub-connector-configuration.md'
-          - 'Google Pub Sub Connector Example': 'references/connectors/google-pubsub-connector/googlepubsub-connector-example.md'
+        - Google Pub/Sub Connector:
+          - 'Google PubSub Overview': 'references/connectors/google-pubsub-connector/googlepubsub-connector-overview.md'
+          - 'Setting up the Google PubSub Environment': 'references/connectors/google-pubsub-connector/googlepubsub-connector-configuration.md'
+          - 'Google PubSub Example': 'references/connectors/google-pubsub-connector/googlepubsub-connector-example.md'
+          - 'Google PubSub Reference': 'references/connectors/google-pubsub-connector/googlepubsub-connector-reference.md'
         - Google Spreadsheet Connector:
           - 'Google Spreadsheet Overview': 'references/connectors/google-spreadsheet-connector/google-spreadsheet-overview.md'
           - 'Google Spreadsheet Example': 'references/connectors/google-spreadsheet-connector/google-spreadsheet-connector-example.md'
