@@ -13,8 +13,8 @@ To configure a Streaming Integrator node to use specific rules templates, follow
      deployment_configs:
         - <NODE1_HOST_NAME>:<NODE1_PORT>
           <NODE2_HOST_NAME>:<NODE2_PORT>
-    ```
-   
+    ``` 
+     
     e.g.,
      ```yaml
       deployment_configs:

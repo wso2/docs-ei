@@ -7,15 +7,16 @@ The Streaming Integrator (SI) allows you to perform real-time ETL with data that
 This tutorial takes you through the different modes and options you could use, in order to perform real-time ETL with files using the SI.
 
 !!!info "Before you begin:"
-    Start the SI server by navigating to the `<SI_HOME>/bin` directory and issuing one of the following commands:<br/>
-    <br/>
-    - For Windows: `streaming-integrator.bat`<br/>
-    <br/>
-    - For Linux:  `sh server.sh`<br/>
-    <br/>
-    The following log appears in the Streaming Integrator console once the server is successfully started. <br/>
+    - Start the SI server by navigating to the `<SI_HOME>/bin` directory and issuing one of the following commands as appropriate, based on your operating system:<br/>
+      <br/>
+        - For Windows: `streaming-integrator.bat`<br/>
+      <br/>
+        - For Linux:  `sh server.sh`<br/>
+      <br/>
+    The following log appears in the Streaming Integrator console once you have successfully started the server. <br/>
     <br/>
     `INFO {org.wso2.carbon.kernel.internal.CarbonStartupHandler} - WSO2 Streaming Integrator started in 4.240 sec`
+    <br/>
 
 ## Tutorial steps
     
@@ -62,8 +63,14 @@ In this scenario, you are tailing a text file, line by line, in order to extract
     ```
     INFO {org.wso2.carbon.streaming.integrator.core.internal.StreamProcessorService} - Siddhi App TailFileLineByLine deployed successfully
     ```
+4. To install the extensions required for the `TailFileLineByLine` Siddhi application you deployed, open a new terminal window and navigate to the `<SI_HOME>/bin` directory and issue one of the following commands as appropriate, based on your operating system:
+    <br/>
+    - For Windows: `extension-installer.bat`<br/>
+    <br/>
+    - For Linux:  `sh extension-installer.sh`<br/>
+    <br/>
 
-4. Now the Siddhi application starts to process the `productions.csv` file. The file contains the following entries.
+5. Now the Siddhi application starts to process the `productions.csv` file. The file contains the following entries.
 
     ```
     Almond cookie,100.0
@@ -77,13 +84,13 @@ In this scenario, you are tailing a text file, line by line, in order to extract
     INFO {io.siddhi.core.stream.output.sink.LogSink} - ReceiveEventsFromFile : LogStream : Event{timestamp=1564490830657, data=[BAKED ALASKA, 20.0], isExpired=false}
     ```     
             
-4. Now append the following line to `productions.csv` file and save the file.
+6. Now append the following line to `productions.csv` file and save the file.
 
     ```
     Cup cake,300.0
     ```
 
-5. The following log appears in the SI console:
+7. The following log appears in the SI console:
 
     ```
     INFO {io.siddhi.core.stream.output.sink.LogSink} - ReceiveEventsFromFile : LogStream : Event{timestamp=1564490869579, data=[CUP CAKE, 300.0], isExpired=false}
