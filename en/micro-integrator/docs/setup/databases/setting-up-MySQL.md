@@ -57,7 +57,7 @@ mysql> source <MI_HOME>/dbscripts/mysql_user.sql;
 
 ```bash tab='Transaction Counter DB'
 mysql> create database transactiondb;
-mysql> use userdb;
+mysql> use transactiondb;
 mysql> source <MI_HOME>/dbscripts/mysql_transaction_count.sql;
 ```
 
