@@ -16,7 +16,7 @@ To know the further information about these operations please refer this link.
 
 > **Note**: If no ID element is provided, or the value is wrong, the server responds with a HTTP 400 error code and provides an operation outcome identifying the issue.
 
-Before you start configuring the FHIR connector, you also need WSO2 MI, and we refer to that location as `<PRODUCT_HOME>`.
+Before you start configuring the FHIR connector, you also need to download WSO2 EI, and we refer to that location as `<PRODUCT_HOME>`.
 
 Specific message builders/formatters configuration needs to be enabled in the product as shown below before starting the WSO2 EI service.
 
