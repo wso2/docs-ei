@@ -4,34 +4,7 @@ The Management API of WSO2 Micro Integrator is an internal REST API, which was i
 the **admin services** that were available in WSO2 EI 6.x.x.
 
 The [Micro Integrator CLI](../../administer-and-observe/using-the-command-line-interface) and the [Micro Integrator dashboard](../../administer-and-observe/working-with-monitoring-dashboard) communicates with this service to
-obtain administrative information of the server instance. If you are not using the dashboard or the CLI, you can directly access the [resources](#accessig-api-resources) of the management API by following the instructions given below.
-
-## Enabling the management API
-
-The management API is disabled in the Micro Integrator by default. You can enable it when you
-start your Micro Integrator instance by passing the following system property:
-
-```bash
--DenableManagementApi
-```
-
-Note that the default address is **https://localhost** and the port is **9164**.
-
--   When you run the Micro Integrator on Docker, start your Docker
-    container by passing the `enableManagementApi` system property:
-
-    ```bash
-    docker run -p 8290:8290 -p 9164:9164 -e JAVA_OPTS="-DenableManagementApi=true" <Docker_Image_Name>
-    ```
-
--   When you run the Micro Integrator on a VM, use the following command
-    to enable the `enableManagementApi` system property:
-
-    ```bash
-    sh micro-integrator.sh -DenableManagementApi
-    ```
-
--   The Management API is enabled for the embedded Micro Integrator in WSO2 Integration Studio by default.
+obtain administrative information of the server instance and to perform various administration tasks. If you are not using the dashboard or the CLI, you can directly access the [resources](#accessig-api-resources) of the management API by following the instructions given below.
 
 ## Securely invoking the API
 The management API is secured using JWT authentication by default. Therefore, when you directly access the management API, you must first acquire a JWT token with your valid username and password.

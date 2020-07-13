@@ -1,35 +1,6 @@
 # Micro Integrator Dashboard
 
-The Micro Integrator dashboard provides a graphical view of the synapse artifacts that are deployed in a specified Micro Integrator server instance. This dashboard is an alternative to the [Micro Integrator CLI](../../administer-and-observe/using-the-command-line-interface), which allows you to monitor your deployments from the command line.
-
-The dashboard as well as the CLI communicates with the management API of WSO2 Micro Integrator to function. Therefore, be sure to [enable the Management API](#enable-the-management-api) in the server before using the management dashboard or the CLI.
-
-## Enable the Management API
-
-To use the management dashboard, you need to enable the management API when you
-start your WSO2 Micro Integrator instance. Pass the following system property:
-
-```bash
--DenableManagementApi
-```
-
-Note that the default address is **https://localhost** and the port is **9164**.
-
--   When you run the Micro Integrator on Docker, start your Docker
-    container by passing the `enableManagementApi` system property:
-
-    ```bash
-    docker run -p 8290:8290 -p 9164:9164 -e JAVA_OPTS="-DenableManagementApi=true" <Docker_Image_Name>
-    ```
-
--   When you run the Micro Integrator on a VM, use the following command
-    to enable the `enableManagementApi` system property:
-
-    ```bash
-    sh micro-integrator.sh -DenableManagementApi
-    ```
-
--   The Management API is enabled for the embedded Micro Integrator in WSO2 Integration Studio by default.
+The Micro Integrator dashboard provides a graphical view of the synapse artifacts that are deployed in a specified Micro Integrator server instance. This dashboard is an alternative to the [Micro Integrator CLI](../../administer-and-observe/using-the-command-line-interface), which allows you to monitor your deployments from the command line. The dashboard as well as the CLI communicates with the management API of WSO2 Micro Integrator to function.
 
 ## Install and run the dashboard
 
@@ -46,22 +17,57 @@ Note that the default address is **https://localhost** and the port is **9164**.
     The dashboard server will start as follows.
 
     ```bash
-    Web app 'dashboard' is available at 'https://127.0.0.1:9743/dashboard
+    Web app 'dashboard' is available at 'https://127.0.0.1:9390/dashboard
     ```
+
+## Sign in to the dashboard
   
-3.  Log in to the dashboard using the following: 
+1.  Copy the dashboard URL to your browser.
 
     ```bash
-    https://127.0.0.1:9743/dashboard/login
+    https://127.0.0.1:9390/dashboard/login
     ```
 
-3.  Enter your credentials to log in:
-
-    !!! Tip
-        Your user name and password should be defined in the user store. See [securing the management API](../../setup/security/securing_management_api) for information.
+2.  Enter the following details to sign in.
 
     ![login form for monitoring dashboard](../assets/img/monitoring-dashboard/login.png)
 
-    After a successful login, you will be redirected to the home page from where you can browse the deployed artifacts in the micro integrator server instance.
+    <table>
+        <tr>
+            <th>
+                Host
+            </th>
+            <td>
+                The host name for the running Micro Integrator instance.
+            </td>
+        </tr>
+        <tr>
+            <th>
+                Port
+            </th>
+            <td>
+                The port exposing the management API of your running Micro Integrator instance. The default port is <b>9201</b>.
+            </td>
+        </tr>
+        <tr>
+            <th>
+                User
+            </th>
+            <td>
+                The user name to sign in.</br></br>
+                <b>Note</b>: This should be a valid user name that is saved in the Micro Integrator server's user store. See <a href="../../../setup/user_stores/setting_up_a_userstore">configuring user stores</a> for information.
+            </td>
+        </tr>
+        <tr>
+            <th>
+                Password
+            </th>
+            <td>
+                The password of the user name.
+            </td>
+        </tr>
+    </table> 
+
+3.  Click <b>SIGN IN</b> and you are redirected to the home page of the Micro Integrator dashboard.
      
     ![login form for monitoring dashboard](../assets/img/monitoring-dashboard/home.png)
