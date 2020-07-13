@@ -191,6 +191,13 @@ You can retrieve Java System properties using the following syntax.
 Syntax:  
 `get-property('system', String propertyName)`
 
+#### environment scope
+
+You can retrieve environment variables using the following syntax.
+
+Syntax:  
+`get-property('env', String propertyName)`
+
 #### operation scope
 
 You can retrieve a property in the operation context level from the

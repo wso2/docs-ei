@@ -324,11 +324,11 @@ nav:
         - 'Exporting Artifacts': 'develop/exporting-artifacts.md'
         - 'Generating Docker Images': 'develop/generate-docker-image.md'
       - Testing Integrations:
-        - 'Deploy and Run Artifacts': 'develop/deploy-and-run.md'
+        - 'Using the Embedded Micro Integrator': 'develop/using-embedded-micro-integrator.md'
+        - 'Using a Remote Micro Integrator': 'develop/using-remote-micro-integrator.md'
         - 'Hot Deploying Artifacts': 'develop/hot-deployment.md'
         - 'Creating a Unit Test Suite': 'develop/creating-unit-test-suite.md'
         - 'Using the HTTP REST Client': 'develop/using-http_rest_client.md'
-        - 'Injecting Environment Variable to Embedded MI': 'develop/inject_env_variables_to_embedded_mi.md'
       - Debugging Integrations:
         - 'Mediation Debugging': 'develop/debugging-mediation.md'
         - 'Using Wire Logs': 'develop/using-wire-logs.md'
@@ -370,6 +370,7 @@ nav:
           - 'Amazon DynamoDB Overview': 'references/connectors/amazondynamodb-connector/amazondynamodb-connector-overview.md'
           - 'Setting up Amazon DynamoDB': 'references/connectors/amazondynamodb-connector/amazondynamodb-connector-configuration.md'
           - 'Amazon DynamoDB Example': 'references/connectors/amazondynamodb-connector/amazondynamodb-connector-example.md'
+          - 'Amazon DynamoDB Reference': 'references/connectors/amazondynamodb-connector/amazondynamodb-connector-reference.md'
         - Amazon Lambda Connector:
           - 'Amazon Lambda Overview': 'references/connectors/amazonlambda-connector/amazonlambda-connector-overview.md'
           - 'Setting up Amazon Lambda': 'references/connectors/amazonlambda-connector/setting-up-amazonlambda.md'
@@ -387,8 +388,10 @@ nav:
           - 'Amazon SQS Inbound Endpoint Example': 'references/connectors/amazonsqs-connector/amazonsqs-inbound-endpoint-example.md'
           - 'Amazon SQS Inbound Endpoint Reference': 'references/connectors/amazonsqs-connector/amazonsqs-inbound-endpoint-reference-configuration.md'
         - BigQuery Connector:
+          - 'BigQuery Overview': 'references/connectors/bigquery-connector/bigquery-connector-overview.md'
           - 'Setting up the BigQuery Environment': 'references/connectors/bigquery-connector/bigquery-connector-configuration.md'
-          - 'BigQuery Connector Example': 'references/connectors/bigquery-connector/bigquery-connector-example.md'
+          - 'BigQuery Example': 'references/connectors/bigquery-connector/bigquery-connector-example.md'
+          - 'BigQuery Reference': 'references/connectors/bigquery-connector/bigquery-connector-reference.md'
         - Ceridian Dayforce Connector:
             - 'Ceridian Dayforce Overview': 'references/connectors/ceridiandayforce-connector/cerediandayforce-overview.md'
             - 'Setting up the Ceridian Dayforce Connector': 'references/connectors/ceridiandayforce-connector/ceridiandayforce-connector-config.md'
