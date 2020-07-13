@@ -113,7 +113,7 @@ See the [complete list of parameters](../../../references/config-catalog/#ldap-u
 
 	```toml tab='MySQL'
 	[[datasource]]
-	id = "WSO2_USER_DB"
+	id = "WSO2CarbonDB"
 	url= "jdbc:mysql://localhost:3306/userdb"
 	username="root"
 	password="root"
@@ -125,7 +125,7 @@ See the [complete list of parameters](../../../references/config-catalog/#ldap-u
 
 	```toml tab='MSSQL'
 	[[datasource]]
-	id = "WSO2_USER_DB"
+	id = "WSO2CarbonDB"
 	url= "jdbc:sqlserver://<IP>:1433;databaseName=userdb;SendStringParametersAsUnicode=false"
 	username="root"
 	password="root"
@@ -137,7 +137,7 @@ See the [complete list of parameters](../../../references/config-catalog/#ldap-u
 
 	```toml tab='Oracle'
 	[[datasource]]
-	id = "WSO2_USER_DB"
+	id = "WSO2CarbonDB"
 	url= "jdbc:oracle:thin:@SERVER_NAME:PORT/SID"
 	username="root"
 	password="root"
@@ -149,7 +149,7 @@ See the [complete list of parameters](../../../references/config-catalog/#ldap-u
 
 	```toml tab='PostgreSQL'
 	[[datasource]]
-	id = "WSO2_USER_DB"
+	id = "WSO2CarbonDB"
 	url= "jdbc:postgresql://localhost:5432/userdb"
 	username="root"
 	password="root"
@@ -161,7 +161,7 @@ See the [complete list of parameters](../../../references/config-catalog/#ldap-u
 
 	```toml tab='IBM DB'
 	[[datasource]]
-	id = "WSO2_USER_DB"
+	id = "WSO2CarbonDB"
 	url="jdbc:db2://SERVER_NAME:PORT/userdb"
 	username="root"
 	password="root"
@@ -232,10 +232,20 @@ See the [complete list of parameters](../../../references/config-catalog/#ldap-u
 	class = "org.wso2.micro.integrator.security.user.core.jdbc.JDBCUserStoreManager"
 	type = "database"
 
-	# Add the following parameter only if you want to enable write access to the user store.
-	read_only = false
+	# Add the following parameter only if you want to disable write access to the user store.
+	read_only = true
 	```
 	The datasource configured under the `[[datasource]]` toml heading will now be the effective user store for the Micro Integrator.
+	
+6. [Optional] Add the Datasource `id` under `[realm_manager]`
+    
+    The User Store Datasource `id` defaults to `WSO2CarbonDB`. If you are configuring a new id (for eg: WSO2_USER_DB), add the id name under the `[realm_manager]`.
+    	
+    ```toml
+    [realm_manager]
+    data_source = "WSO2_USER_DB"
+    ```		 
+   
 
 ## What's next?
 

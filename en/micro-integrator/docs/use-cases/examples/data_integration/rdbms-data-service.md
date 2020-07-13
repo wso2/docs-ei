@@ -38,15 +38,13 @@ Given below is the data service configuration you need to build. See the instruc
             <element column="Salary" name="Salary" xsdType="xs:string"/>
         </result>
     </query>
-    <config id="Datasource">
-        <property name="org.wso2.ws.dataservice.user">root</property>
-        <property name="org.wso2.ws.dataservice.password"/>
-        <property name="org.wso2.ws.dataservice.protocol">jdbc:mysql://localhost:3306/Employees</property>
-        <property name="org.wso2.ws.dataservice.driver">com.mysql.jdbc.Driver</property>
-        <property name="org.wso2.ws.dataservice.minpoolsize"/>
-        <property name="org.wso2.ws.dataservice.maxpoolsize"/>
-        <property name="org.wso2.ws.dataservice.validation_query"/>
-    </config>
+  <config id="Datasource">
+    <property name="driverClassName">com.mysql.jdbc.Driver</property>
+    <property name="url">jdbc:mysql://localhost:3306/Employees</property>
+    <property name="username">root</property>
+    <property name="password"></property>
+    <property name="dynamicUserAuthClass">com.mysql.jdbc.Driver</property>
+  </config>
     <query id="AddEmployeeDetails" useConfig="Datasource">
         <sql>insert into Employees (EmployeeNumber, FirstName, LastName, Email, Salary) values(:EmployeeNumber,:FirstName,:LastName,:Email,:Salary)</sql>
         <param name="EmployeeNumber" paramType="SCALAR" sqlType="STRING"/>

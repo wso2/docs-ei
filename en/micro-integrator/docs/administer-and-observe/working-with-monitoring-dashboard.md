@@ -46,13 +46,13 @@ Note that the default address is **https://localhost** and the port is **9164**.
     The dashboard server will start as follows.
 
     ```bash
-    Web app 'dashboard' is available at 'https://127.0.0.1:9743/dashboard
+    Web app 'dashboard' is available at 'http://localhost:9390/dashboard/login'
     ```
   
 3.  Log in to the dashboard using the following: 
 
     ```bash
-    https://127.0.0.1:9743/dashboard/login
+   http://localhost:9390/dashboard/login
     ```
 
 3.  Enter your credentials to log in:
