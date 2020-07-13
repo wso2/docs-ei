@@ -187,7 +187,7 @@ Follow these steps to set up the Integration Project and the Connector Exporter 
             <respond/>
         </inSequence>
         <outSequence/>
-        <faultSequence/e>
+        <faultSequence/>
     </resource>
 </api>
 ```
