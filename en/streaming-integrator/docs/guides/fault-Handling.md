@@ -1,8 +1,8 @@
-# Fault Handling
+# Handling Errors
 
-Siddhi allows you to manage any faults that may occur when handling
+Siddhi allows you to manage any errors that may occur when handling
 streaming data in a graceful manner. This section explains the different
-ways in which the faults can be handled gracefully.
+ways in which the errors can be handled gracefully.
 
 ## Handling runtime errors
 
