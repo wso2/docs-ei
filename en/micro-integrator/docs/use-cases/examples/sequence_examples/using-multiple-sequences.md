@@ -85,7 +85,7 @@ Following are the integration artifacts that we can used to implement this scena
 
     ```xml tab='Sequence 6'
     <sequence xmlns="http://ws.apache.org/ns/synapse" name="CallStockQuoteSeq" onError="CallStockQuoteErrorSeq">
-        <switch source="//symbol" xmlns:ns="http://org.apache.synapse/xsd">
+        <switch source="//ns:symbol" xmlns:ns="http://org.apache.synapse/xsd">
             <case regex="IBM">
                 <log level="custom">
                     <property name="Sequence" value="CallStockQuoteSeq"/>

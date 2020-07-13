@@ -17,7 +17,7 @@ The Micro Integrator dashboard provides a graphical view of the synapse artifact
     The dashboard server will start as follows.
 
     ```bash
-    Web app 'dashboard' is available at 'https://127.0.0.1:9390/dashboard
+    Web app 'dashboard' is available at 'http://localhost:9390/dashboard/login'
     ```
 
 ## Sign in to the dashboard
@@ -25,7 +25,7 @@ The Micro Integrator dashboard provides a graphical view of the synapse artifact
 1.  Copy the dashboard URL to your browser.
 
     ```bash
-    https://127.0.0.1:9390/dashboard/login
+    http://localhost:9390/dashboard/login
     ```
 
 2.  Enter the following details to sign in.
