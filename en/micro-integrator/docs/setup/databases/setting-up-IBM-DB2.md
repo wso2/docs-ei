@@ -2,6 +2,13 @@
 
 Follow the steps given below to set up the required IBM databases for your Micro Integrator.
 
+!!! Tip
+	WSO2 Micro Integrator requires databases for the following optional scenarios: 
+	
+	-	<a href='../../../../setup/deployment/deploying_wso2_ei/#cluster-coordination'>cluster coordination</a>
+	-	<a href='../../../../setup/user_stores/setting_up_a_userstore'>using an RDBMS user store</a>
+	-	<a href='../../../../setup/deployment/deployment_checklist/#monitoring-transaction-counts'>monitoring transaction counts</a>.
+
 ## Prerequisites
 
 Download the latest version of [DB2 Express-C](http://www-01.ibm.com/software/data/db2/express/download.html) and install it on your computer.
@@ -10,7 +17,7 @@ For instructions on installing DB2 Express-C, see this [ebook](https://www.ibm.c
 
 ## Setting up the database and users
 
-The following IBM DB scripts are stored in the `<MI_HOME>/dbscripts/` directory of your Micro Integrator. First, select the scripts that are required for your deployment.
+The following IBM DB scripts are stored in the `<MI_HOME>/dbscripts/db2` directory of your Micro Integrator. First, select the scripts that are required for your deployment.
 
 You can run the scripts on one database instance or set up separate instances for each requirement. For convenience, it is recommended to set up separate databases for each use case.
 
@@ -21,7 +28,8 @@ You can run the scripts on one database instance or set up separate instances fo
 	</tr>
 	<tr>
 		<td>db2_cluster.sql</td>
-		<td>This script creates the database tables that are required for <a href='../../../../setup/deployment/deploying_wso2_ei/#cluster-coordination'>cluster coordination</a> (i.e., coordinating the server nodes in your VM deployment).</td>
+		<td>This script creates the database tables that are required for <a href='../../../../setup/deployment/deploying_wso2_ei/#cluster-coordination'>cluster coordination</a> (i.e., coordinating the server nodes in your VM deployment).This is only applicable if you have stateful integration artifacts deployed in a clustered setup.
+		</td>
 	</tr>
 	<tr>
 		<td>db2_user.sql</td>
@@ -33,7 +41,7 @@ You can run the scripts on one database instance or set up separate instances fo
 	</tr>
 </table>
 
-Create the databases and then create the DB tables by pointing to the relevant script in the `<MI_HOME>/dbscripts/` directory.
+Create the databases and then create the DB tables by pointing to the relevant script in the `<MI_HOME>/dbscripts/db2` directory.
 
 Create the database using either [DB2 command processor](#using-the-db2-command-processor) or [DB2 control center](#using-the-db2-control-center) as described below.
 
@@ -91,7 +99,7 @@ pool_options.testOnBorrow = true
 
 ```toml tab='User DB Connection'
 [[datasource]]
-id = "WSO2_USER_DB"
+id = "WSO2CarbonDB"
 url="jdbc:db2://SERVER_NAME:PORT/userdb"
 username="root"
 password="root"
@@ -99,9 +107,6 @@ driver="com.ibm.db2.jcc.DB2Driver"
 pool_options.maxActive=50
 pool_options.maxWait = 60000
 pool_options.testOnBorrow = true
-
-[realm_manager]
-data_source = "WSO2_USER_DB"
 ```
 
 ```toml tab='Transaction Counter DB Connection'
