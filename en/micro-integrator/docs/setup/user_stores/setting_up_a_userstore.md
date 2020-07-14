@@ -18,7 +18,7 @@ An LDAP user store is recommended for the Micro Integrator. Follow the instructi
 
 ### Step 1: Setting up an LDAP
 
-See the documentation of your LDAP provider for instructions on setting up the LDAP, and for managing users and roles.
+See the documentation of your LDAP provider for instructions on setting up the LDAP.
 
 ### Step 2: Connecting to the LDAP
 
@@ -39,7 +39,8 @@ Follow the steps given below to connect the Micro Integrator to the LDAP user st
 	connection_url = "ldap://localhost:10389"  
 	connection_name = "uid=admin,ou=system"
 	connection_password = "admin"  
-	user_search_base = "ou=system"   
+	user_search_base = "ou=system" 
+	type = "read_only_ldap"
 	```
 
 	Parameters used above are explained below.
@@ -79,6 +80,16 @@ Follow the steps given below to connect the Micro Integrator to the LDAP user st
 			</td>
 			<td>
 				The DN of the context or object under which the user entries are stored in the user store. When the user store searches for users, it will start from this location of the directory.
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<code>type</code>
+			</td>
+			<td>
+				Use one of the following values: </br></br>
+				<b>read_only_ldap</b>: The LDAP is connection does not provide write access.</br>
+				<b>read_write_ldap</b>: The LDAP is connection provides write access.
 			</td>
 		</tr>
 	</table>
@@ -183,7 +194,7 @@ See the [complete list of parameters](../../../references/config-catalog/#ldap-u
 				<code>id</code>
 			</td>
 			<td>
-				The name given to the datasource.
+				The name given to the datasource. This is required to be <b>WSO2CarbonDB</b>.
 			</td>
 		</tr>
 		<tr>
