@@ -1,7 +1,6 @@
 # Packaging Synapse artifacts
 
-To package Synapse artifacts, you need to create a [Composite Application Project](../../../develop/creating-projects/#composite-application-project).
-Use one of the following methods:
+To package Synapse artifacts, you need to create a Composite Application Project. Use one of the following methods:
 
 ## Using an existing composite application
 
