@@ -14,15 +14,12 @@ An external user store (such as an LDAP or RDBMS) can be used with the Micro Int
 
 ## Configuring an LDAP user store
 
-An LDAP user store is recommended for the Micro Integrator. Follow the instruction given below.
+An LDAP user store is recommended for the Micro Integrator.
 
-### Step 1: Setting up an LDAP
+!!! Note
+	<b>Before you begin</b>, see the documentation of your LDAP provider for instructions on setting up the LDAP.
 
-See the documentation of your LDAP provider for instructions on setting up the LDAP.
-
-### Step 2: Connecting to the LDAP
-
-Follow the steps given below to connect the Micro Integrator to the LDAP user store.
+Follow the steps given below to connect the Micro Integrator to your LDAP user store.
 
 1.	Open the `deployment.toml` file stored in the `<MI_HOME>/conf/` directory.
 2.	Add the following configuration to disable the default file-based user store:
