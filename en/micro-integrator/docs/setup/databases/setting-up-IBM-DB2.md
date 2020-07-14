@@ -126,4 +126,4 @@ data_source = "WSO2_TRANSACTION_DB"
 update_interval = 2
 ```
 
-Find more parameters for [connecting to the database](../../../../references/config-catalog/#database-connection).
+See the descriptions of [database connection parameters](../../../../references/config-catalog/#database-connection).
