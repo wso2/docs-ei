@@ -87,9 +87,9 @@ Follow the steps given below to connect the Micro Integrator to the LDAP user st
 				<code>type</code>
 			</td>
 			<td>
-				Use one of the following values: </br></br>
-				<b>read_only_ldap</b>: The LDAP is connection does not provide write access.</br>
-				<b>read_write_ldap</b>: The LDAP is connection provides write access.
+				Use one of the following values. </br></br>
+				<b>read_only_ldap</b>: The LDAP connection does not provide write access.</br>
+				<b>read_write_ldap</b>: The LDAP connection provides write access.
 			</td>
 		</tr>
 	</table>
@@ -194,7 +194,15 @@ See the [complete list of parameters](../../../references/config-catalog/#ldap-u
 				<code>id</code>
 			</td>
 			<td>
-				The name given to the datasource. This is required to be <b>WSO2CarbonDB</b>.
+				The name given to the datasource. This is required to be <b>WSO2CarbonDB</b>.</br></br>
+				<b>Note</b>: If you replace 'WSO2CarbonDB' with a different id, you also need to list the id as a datasource under the <code>[realm_manager]</code> section in the <code>deployment.toml</code> file as shown below.
+				<div>
+					<code>
+					[realm_manager]</br>
+					data_source = "new_id"
+					</code>
+				</div>
+				Otherwise the user store database id defaults to 'WSO2CarbonDB' in the realm manager configurations.
 			</td>
 		</tr>
 		<tr>
@@ -246,16 +254,7 @@ See the [complete list of parameters](../../../references/config-catalog/#ldap-u
 	# Add the following parameter only if you want to disable write access to the user store.
 	read_only = true
 	```
-	The datasource configured under the `[[datasource]]` toml heading will now be the effective user store for the Micro Integrator.
-	
-6. [Optional] Add the Datasource `id` under `[realm_manager]`
-    
-    The User Store Datasource `id` defaults to `WSO2CarbonDB`. If you are configuring a new id (for eg: WSO2_USER_DB), add the id name under the `[realm_manager]`.
-    	
-    ```toml
-    [realm_manager]
-    data_source = "WSO2_USER_DB"
-    ```		 
+	The datasource configured under the `[[datasource]]` toml heading will now be the effective user store for the Micro Integrator. 
    
 
 ## What's next?
