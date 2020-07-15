@@ -24,10 +24,10 @@ The Micro Integrator CLI allows you to monitor the synapse artifacts (deployed i
     The available commands are listed as follows:
 
     ```bash
-    ./mi is a Command Line Tool for Management of WSO2 Micro Integrator
+    mi is a Command Line Tool for Management of WSO2 Micro Integrator
 
     Usage:
-      ./mi [command]
+      mi [command]
 
     Available Commands:
       api              Manage deployed Apis
