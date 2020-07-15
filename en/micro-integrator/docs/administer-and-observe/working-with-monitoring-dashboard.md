@@ -1,6 +1,6 @@
 # Micro Integrator Dashboard
 
-The Micro Integrator dashboard provides a graphical view of the synapse artifacts that are deployed in a specified Micro Integrator server instance. The dashboard (as well as the [Micro Integrator CLI](../../administer-and-observe/using-the-command-line-interface)) communicates with the management API of WSO2 Micro Integrator to function.
+The Micro Integrator dashboard provides a graphical view of the synapse artifacts that are deployed in a specified Micro Integrator server instance. You can also perform various management and administration tasks using the dashboard. The dashboard (as well as the [Micro Integrator CLI](../../administer-and-observe/using-the-command-line-interface)) communicates with the management API of WSO2 Micro Integrator to function.
 
 You can use the dashboard to perform the following administration tasks related to your Micro Integrator deployment:
 
@@ -45,7 +45,7 @@ To download the dashboard, go to [**WSO2 Micro Integrator** website](https://wso
     The dashboard server will start as follows:
 
     ```bash
-    Web app 'dashboard' is available at 'http://localhost:9743/dashboard/login'
+    Web app 'dashboard' is available at 'https://localhost:9743/dashboard/login'
     ```
 
 ## Sign in to the Dashboard
@@ -53,7 +53,7 @@ To download the dashboard, go to [**WSO2 Micro Integrator** website](https://wso
 1.  Copy the dashboard URL to your browser.
 
     ```bash
-    http://localhost:9390/dashboard/login
+    https://localhost:9743/dashboard/login
     ```
 
 2.  Enter the following details to sign in.
