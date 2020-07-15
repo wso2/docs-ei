@@ -1,6 +1,6 @@
 # Micro Integrator CLI
 
-The Micro Integrator CLI allows you to monitor the synapse artifacts (deployed in a specified Micro Integrator server) from the command line. The dashboard (as well as the [dashboard](../../administer-and-observe/working-with-monitoring-dashboard)) communicates with the management API of WSO2 Micro Integrator to function.
+The Micro Integrator CLI allows you to monitor the synapse artifacts (deployed in a specified Micro Integrator server) and perform various management tasks from the command line. The CLI (as well as the [dashboard](../../administer-and-observe/working-with-monitoring-dashboard)) communicates with the management API of WSO2 Micro Integrator to function.
 
 ## Installing the CLI
 
@@ -18,7 +18,7 @@ The Micro Integrator CLI allows you to monitor the synapse artifacts (deployed i
     Execute the following command to start the CLI:
 
     ```bash
-    ./mi
+    mi
     ```
 
     The available commands are listed as follows:
@@ -140,10 +140,10 @@ The following global flags can be used with all the `mi` options and commands.
 
 ### mi
 
-Use `./mi` to initialize the CLI tool.
+Use `mi` to initialize the CLI tool.
 
 ```bash
-./mi
+mi
 ```
 
 ### version
