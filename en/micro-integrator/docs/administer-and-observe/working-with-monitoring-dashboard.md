@@ -45,7 +45,7 @@ To download the dashboard, go to [**WSO2 Micro Integrator** website](https://wso
     The dashboard server will start as follows:
 
     ```bash
-    Web app 'dashboard' is available at 'http://localhost:9390/dashboard/login'
+    Web app 'dashboard' is available at 'http://localhost:9743/dashboard/login'
     ```
 
 ## Sign in to the Dashboard
