@@ -3,7 +3,7 @@
 Follow the steps given below to set up the required Oracle databases for your Micro Integrator.
 
 !!! Tip
-    WSO2 Micro Integrator requires databases for the following optional scenarios: 
+    WSO2 Micro Integrator requires databases for the following scenarios:
     
     -   <a href='../../../../setup/deployment/deploying_wso2_ei/#cluster-coordination'>cluster coordination</a>
     -   <a href='../../../../setup/user_stores/setting_up_a_userstore'>using an RDBMS user store</a>
