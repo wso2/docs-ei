@@ -1,35 +1,55 @@
 # Configuring a User Store
 
-An external user store (such as an LDAP or RDBMS) can be used with the Micro Integrator for the following two scenarios:
+A user store is a repository that stores user credentials (user names and passwords). WSO2 Micro Integrator requires <b>user</b> credentials for the following scenarios:
 
--	When [WS-Security](../../../references/security/security-implementation) is enabled for your integration artifacts, the user store will be used for authenticating the credentials of users invoking the artifacts.
+-	[Authentication](../../../setup/security/securing_management_api/#authentication-jwt) for internal APIs
 
-	See the following resources on how to enable WS security for integration artifacts:
+	Users accessing the management API and related tools (Micro Integrator dashboard/Micro Integrator CLI) for administration tasks should be authenticated.
 
-	-	[Securing a proxy service](../../../develop/advanced-development/applying-security-to-a-proxy-service)
-	-	[Securing a data service](../../../develop/creating-artifacts/data-services/securing-data-services)
-	-	[Securing a REST API](../../../develop/advanced-development/applying-security-to-an-api)
+-	Authentication for integration use cases
 
--	Optionally, you can use the external user store for [securing the management API](../../../setup/security/securing_management_api). By default, the management API uses a file-based registry.
+	Some integration use cases require authentication by <b>dynamic username token</b> and similar <b>[WS-Security](../../../references/security/security-implementation)</b> options. User authentication is also required for [securing REST API artifacts](../../../develop/advanced-development/applying-security-to-an-api).
+
+-	[Authorization](../../../setup/security/securing_management_api/#authorization) for internal APIs
+
+	 Certain resources of the management API are protected by <b>authorization</b>. Therefore, users should be granted admin privileges to operate those resources.
+
+## File-based user store (Default)
+
+The default user store of the Micro Integrator is file-based. You can open the `deployment.toml` file and add new users to the file-based user store as shown below. You can [encrypt the plain text](../../../setup/security/encrypting_plain_text) using **secure vault**.
+
+```toml
+[[internal_apis.users]]
+user.name = "user-1"
+user.password = "pwd-1"
+
+[[internal_apis.users]]
+user.name = "user-2"
+user.password = "pwd-2"
+``` 
+
+The users in this store can only access the management API and related tools ([Micro Integrator dashboard](../../../administer-and-observe/working-with-monitoring-dashboard)/[Micro Integrator CLI](../../../administer-and-observe/using-the-command-line-interface)). That is, the file-based user store only supports user authentication for the management API. If you want to use **authentication for integration use cases** or **authorization**, you need an [LDAP](#configuring-an-ldap-user-store) or [RDBMS](#configuring-an-rdbms-user-store) user store.
+
+## Disabling the file-based user store
+
+To **disable** the file-based user store, add the following to the `deployment.toml` file.
+
+```toml
+[internal_apis.file_user_store]
+enable = false
+```
 
 ## Configuring an LDAP user store
 
-An LDAP user store is recommended for the Micro Integrator.
+<b>Before you begin</b>:
 
-!!! Note
-	<b>Before you begin</b>, see the documentation of your LDAP provider for instructions on setting up the LDAP.
+-	See the documentation of your LDAP provider for instructions on setting up the LDAP.
+-	[Disable the file-based user store](#disabling-the-file-based-user-store).
 
 Follow the steps given below to connect the Micro Integrator to your LDAP user store.
 
 1.	Open the `deployment.toml` file stored in the `<MI_HOME>/conf/` directory.
-2.	Add the following configuration to disable the default file-based user store:
-
-	```toml
-	[internal_apis.file_user_store]
-	enable = false
-	```
-
-3.	Add the following configurations and update the required values.
+2.	Add the following configurations and update the required values.
 
 	```toml
 	[user_store]
@@ -95,26 +115,24 @@ See the [complete list of parameters](../../../references/config-catalog/#ldap-u
 
 ## Configuring an RDBMS user store
 
+<b>Before you begin</b>, [disable the file-based user store](#disabling-the-file-based-user-store).
+
+Follow the steps given below to set up the RDBMS and connect it to the Micro Integrator.
+
 1.	Set up an RDBMS. You can use one of the following types.
 
 	!!! Note
-			Be sure to use the relevant database script stored in the `<MI_HOME>/dbscripts/` directory when you create the database.
+		Be sure to use the relevant database script stored in the `<MI_HOME>/dbscripts/` directory when you create the database.
 
-		- [Setting up a MySQL database](../../../setup/deployment/databases/setting-up-MySQL)
-		- [Setting up an MSSQL database](../../../setup/deployment/databases/setting-up-MSSQL)
-		- [Setting up an Oracle database](../../../setup/deployment/databases/setting-up-Oracle)
-		- [Setting up a Postgre database](../../../setup/deployment/databases/setting-up-PostgreSQL)
-		- [Setting up an IBM database](../../../setup/deployment/databases/setting-up-IBM-DB2)
+	- [Setting up a MySQL database](../../../setup/databases/setting-up-MySQL)
+	- [Setting up an MSSQL database](../../../setup/databases/setting-up-MSSQL)
+	- [Setting up an Oracle database](../../../setup/databases/setting-up-Oracle)
+	- [Setting up a Postgre database](../../../setup/databases/setting-up-PostgreSQL)
+	- [Setting up an IBM database](../../../setup/databases/setting-up-IBM-DB2)
 
 2.	Open the `deployment.toml` file (stored in the `<MI_HOME>/conf` directory).
-3.	Add the following configuration to disable the default file-based user store:
 
-	```toml
-	[internal_apis.file_user_store]
-	enable = false
-	```
-
-4.	Add the relevant datasource configuration and update the values for your database.
+3.	Add the relevant datasource configuration and update the values for your database.
 
 	!!! Tip
 			If you are already using a JDBC user store (database) with another WSO2 product ([WSO2 API Manager](https://wso2.com/api-management/), [WSO2 Identity Server](https://wso2.com/identity-and-access-management/), or an instance of [WSO2 Enterprise Integrator 6.x.x](https://wso2.com/enterprise-integrator/6.6.0)), you can connect the same database to the Micro Integrator of WSO2 Enterprise Integrator 7 as explained below.
@@ -238,7 +256,7 @@ See the [complete list of parameters](../../../references/config-catalog/#ldap-u
 
 	See the complete list of [database connection parameters](../../../references/config-catalog/#database-connection) and their descriptions. Also, see the recommendations for [tuning the JDBC connection pool](../../../setup/performance_tuning/jdbc_tuning).
 
-5.	Add the JDBC user store manager under the `[user_store]` toml heading as shown below.
+4.	Add the JDBC user store manager under the `[user_store]` toml heading as shown below.
 
 	!!! Tip
 			If you want to be able to modify the data in your user store, be sure to enable write access to the user store.
