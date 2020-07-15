@@ -720,6 +720,6 @@ Configure a relational database to persist transaction count information and the
 
 You can get the transaction count for a particular month or period. This data can be viewed or saved to a report. There are two ways to get transaction count data:
 
--  Start the [Micro Integrator CLI](../../../administer-and-observe/using-the-command-line-interface) and use the [mi transaction](../../../administer-and-observe/using-the-command-line-interface/#transaction) option.
+-  Start the [Micro Integrator CLI](../../../administer-and-observe/using-the-command-line-interface) and use the [mi transaction](../../../administer-and-observe/using-the-command-line-interface/#mi-transaction) option.
 
 -  Directly access the [Management API resources](../../../administer-and-observe/working-with-management-api) and invoke the [/transaction/count](../../../administer-and-observe/working-with-management-api/#get-transaction-count) and [/transaction/report](../../../administer-and-observe/working-with-management-api/#get-transaction-report-data) resources.
