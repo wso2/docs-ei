@@ -1,6 +1,6 @@
 # Micro Integrator CLI
 
-The Micro Integrator CLI allows you to monitor the synapse artifacts (deployed in a specified Micro Integrator server) and perform various management tasks from the command line. The CLI (as well as the [dashboard](../../administer-and-observe/working-with-monitoring-dashboard)) communicates with the management API of WSO2 Micro Integrator to function.
+The Micro Integrator CLI allows you to monitor the synapse artifacts (deployed in a specified Micro Integrator server) and perform various management and administration tasks from the command line. The CLI (as well as the [dashboard](../../administer-and-observe/working-with-monitoring-dashboard)) communicates with the management API of WSO2 Micro Integrator to function.
 
 ## Installing the CLI
 
