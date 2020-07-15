@@ -2,6 +2,13 @@
 
 Follow the steps given below to set up the required MSSQL databases for your Micro Integrator.
 
+!!! Tip
+	WSO2 Micro Integrator requires databases for the following scenarios:
+	
+	-	<a href='../../../../setup/deployment/deploying_wso2_ei/#cluster-coordination'>cluster coordination</a>
+	-	<a href='../../../../setup/user_stores/setting_up_a_userstore'>using an RDBMS user store</a>
+	-	<a href='../../../../setup/deployment/deployment_checklist/#monitoring-transaction-counts'>monitoring transaction counts</a>.
+
 ## Enable TCP/IP
 
 1. In the start menu, click **Programs** and launch **Microsoft SQL Server 2012.**
@@ -14,7 +21,7 @@ Follow the steps given below to set up the required MSSQL databases for your Mic
 
 ## Create the database and user
 
-The following MSSQL scripts are stored in the `<MI_HOME>/dbscripts/` directory of your Micro Integrator. First, select the scripts that are required for your deployment.
+The following MSSQL scripts are stored in the `<MI_HOME>/dbscripts/mssql` directory of your Micro Integrator. First, select the scripts that are required for your deployment.
 
 You can run the scripts on one database instance or set up separate instances for each requirement. For convenience, it is recommended to set up separate databases for each use case.
 
@@ -25,7 +32,8 @@ You can run the scripts on one database instance or set up separate instances fo
 	</tr>
 	<tr>
 		<td>mssql_cluster.sql</td>
-		<td>This script creates the database tables that are required for <a href='../../../../setup/deployment/deploying_wso2_ei/#cluster-coordination'>cluster coordination</a> (i.e., coordinating the server nodes in your VM deployment).</td>
+		<td>This script creates the database tables that are required for <a href='../../../../setup/deployment/deploying_wso2_ei/#cluster-coordination'>cluster coordination</a> (i.e., coordinating the server nodes in your VM deployment).This is only applicable if you have stateful integration artifacts deployed in a clustered setup.
+		</td>
 	</tr>
 	<tr>
 		<td>mssql_user.sql</td>
@@ -37,7 +45,7 @@ You can run the scripts on one database instance or set up separate instances fo
 	</tr>
 </table>
 
-Create the databases and then create the DB tables by pointing to the relevant script in the `<MI_HOME>/dbscripts/` directory.
+Create the databases and then create the DB tables by pointing to the relevant script in the `<MI_HOME>/dbscripts/mssql` directory.
 
 1. Open the Microsoft SQL Management Studio to create a database and user.
 2. Click **New Database** from the **Database** menu and specify all the options to create a new database.
@@ -71,7 +79,7 @@ pool_options.testOnBorrow = true
 
 ```toml tab='User DB Connection'
 [[datasource]]
-id = "WSO2_USER_DB"
+id = "WSO2CarbonDB"
 url= "jdbc:sqlserver://<IP>:1433;databaseName=userdb;SendStringParametersAsUnicode=false"
 username="root"
 password="root"
@@ -79,9 +87,6 @@ driver="com.microsoft.sqlserver.jdbc.SQLServerDriver"
 pool_options.maxActive=50
 pool_options.maxWait = 60000
 pool_options.testOnBorrow = true
-
-[realm_manager]
-data_source = "WSO2_USER_DB"
 ```
 
 ```toml tab='Transaction Counter DB Connection'
@@ -101,4 +106,4 @@ data_source = "WSO2_TRANSACTION_DB"
 update_interval = 2
 ```
 
-Find more parameters for [connecting to the database](../../../../references/config-catalog/#database-connection).
+See the descriptions of [database connection parameters](../../../../references/config-catalog/#database-connection).

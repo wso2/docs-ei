@@ -366,6 +366,7 @@ nav:
       - 'Product Configurations': 'references/config-catalog.md'
       - Connectors:
         - 'Connectors Overview' : 'references/connectors/connectors-overview.md'
+        - 'When to Use Connectors' : 'references/connectors/why-connectors.md'
         - Amazon DynamoDB Connector:
           - 'Amazon DynamoDB Overview': 'references/connectors/amazondynamodb-connector/amazondynamodb-connector-overview.md'
           - 'Setting up Amazon DynamoDB': 'references/connectors/amazondynamodb-connector/amazondynamodb-connector-configuration.md'
