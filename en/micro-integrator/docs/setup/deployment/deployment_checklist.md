@@ -606,15 +606,6 @@ Configure a relational database to persist transaction count information and the
 
 1.  Select the preferred database type from the  list given below and follow the relevant link to set up a database.
 
-    ??? Note "Tested Databases"
-        The following database types are tested with this version of the Micro Integrator:
-
-        -   MySQL 8.0.19
-        -   Microsoft SQL Server 2017 (RTM-CU11) (KB4462262) - 14.0.3038.14 (X64)
-        -   postgres (PostgreSQL) 12.2 (Debian 12.2-2.pgdg100+1)
-        -   DB2 v11.5.0.0
-        -   Oracle Database 12c Enterprise Edition Release 12.2.0.1.0 - 64bit Production
-
     - [Setting up a MySQL database](../../../setup/databases/setting-up-MySQL)
     - [Setting up an MSSQL database](../../../setup/databases/setting-up-MSSQL)
     - [Setting up an Oracle database](../../../setup/databases/setting-up-Oracle)
@@ -727,33 +718,8 @@ Configure a relational database to persist transaction count information and the
 
 ### Getting the Transaction Count
 
-To get the transaction count:
+You can get the transaction count for a particular month or period. This data can be viewed or saved to a report. There are two ways to get transaction count data:
 
-- Execute the following commands in the [Micro Integrator CLI](../../../administer-and-observe/using-the-command-line-interface) to get the transaction count:
+-  Start the [Micro Integrator CLI](../../../administer-and-observe/using-the-command-line-interface) and use the [mi transaction](../../../administer-and-observe/using-the-command-line-interface/#mi-transaction) option.
 
-    ```bash
-    # To get the transaction count for the current month
-    mi transaction count
-
-    # To get the transaction count for [YYYY/MM]
-    mi transaction count <YYYY> <MM>
-    ```
-
-- Use the [Management API resources](../../../administer-and-observe/working-with-management-api/#get-transaction-count) to get the transaction count.
-
-To get a transaction count report:
-
-- Execute the following commands in the [Micro Integrator CLI](../../../administer-and-observe/using-the-command-line-interface) to generate the transaction count report:
-
-    ```bash
-    # To generate transaction count report with data from the specified period at the specified location
-    mi transaction report <YYYY>-<MM> <YYYY>-<MM> --path=</dir_path>
-
-    # To generate transaction count report with data from the specified month (up to current date) at the specified location
-    mi transaction count <YYYY>-<MM> --path=</dir_path>
-
-    # To generate transaction count report at the current location for data from the specified period
-    mi transaction count <YYYY>-<MM> <YYYY>-<MM>
-    ```
-
-- Use the [Management API resources](../../../administer-and-observe/working-with-management-api/#get-transaction-data-report) to generate the transaction count report.
+-  Directly access the [Management API resources](../../../administer-and-observe/working-with-management-api) and invoke the [/transaction/count](../../../administer-and-observe/working-with-management-api/#get-transaction-count) and [/transaction/report](../../../administer-and-observe/working-with-management-api/#get-transaction-report-data) resources.
