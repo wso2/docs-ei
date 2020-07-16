@@ -27,7 +27,7 @@ within a specified period of time. This is done by evaluating the hash value of 
 ```
 
 !!! Info
-    In a message flow, you can use the cache mediator as a **finder** (in the incoming path to check the request) or as a **collector** (in the outgoing path to cache the response). It is not possible to have more than one cache mediator in the same message flow because mediation is terminated after the finder on a cache hit, and the response is not passed on to the next finder after a cache hit. See the [Example 1](#example-1) given below.
+    In a message flow, you can use the cache mediator as a **finder** (in the incoming path to check the request) or as a **collector** (in the outgoing path to cache the response). It is not possible to have more than one cache mediator in the same message flow because mediation is terminated after the finder on a cache hit, and the response is not passed on to the next finder after a cache hit. See the [Example 3](#example-3) given below.
 
 ## Configuration
 
@@ -145,7 +145,98 @@ Following are examples of how you can use the Cache mediator.
 
 ### Example 1
 
-Following is an example where the expected response from the last cache hit is not received because the response is sent once the request comes
+According to this example configuration, when the first message is sent
+to the API, the cache is not hit. The Cache mediator configured in
+the `         outSequence        ` sequence caches the response to this message.
+When a similar message is sent to the API for the second time, the
+previous response is directly fetched from the cache and sent to the
+requester. 
+
+``` java
+<?xml version="1.0" encoding="UTF-8"?>
+<api context="/cache" name="TestCache" xmlns="http://ws.apache.org/ns/synapse">
+    <resource methods="POST">
+        <inSequence>
+            <cache collector="false" maxMessageSize="2000" timeout="120">
+                <onCacheHit>
+                	<log level="custom">
+                		<property name="CACHE" value="ON_CACHE_HIT"></property>
+                	</log>
+                	<respond/>
+                </onCacheHit>
+                <protocol type="HTTP">
+                    <methods>POST</methods>
+                    <headersToExcludeInHash/>
+                    <responseCodes>2[0-9][0-9]</responseCodes>
+                    <enableCacheControl>false</enableCacheControl>
+                    <includeAgeHeader>false</includeAgeHeader>
+                    <hashGenerator>org.wso2.carbon.mediator.cache.digest.HttpRequestHashGenerator</hashGenerator>
+                </protocol>
+                <implementation maxSize="100"/>
+            </cache>
+            <send>
+                <endpoint>
+                    <address uri="http://localhost:9000/services/SimpleStockQuoteService"/>
+                </endpoint>
+            </send>
+        </inSequence>
+        <outSequence>
+            <cache collector="true"/>
+            <send/>
+        </outSequence>
+        <faultSequence/>
+    </resource>
+</api>
+```
+
+### Example 2
+
+According to this example configuration, if you define a cache collector
+using the cache mediator in the in sequence, you need to add the
+`         RESPONSE        ` property to consider the message as a
+response message.
+
+``` xml
+<?xml version="1.0" encoding="UTF-8"?>
+<api xmlns="http://ws.apache.org/ns/synapse" name="cacheAPI" context="/cache">
+<resource methods="POST GET" uri-template="/headerapi/*">
+    <inSequence>
+        <cache collector="false" timeout="5000">
+            <protocol type="HTTP">
+                <methods>GET, POST</methods>
+                <headersToExcludeInHash>*</headersToExcludeInHash>
+                <responseCodes>.*</responseCodes>
+                <enableCacheControl>false</enableCacheControl>
+                <includeAgeHeader>false</includeAgeHeader>
+                <hashGenerator>org.wso2.carbon.mediator.cache.digest.HttpRequestHashGenerator</hashGenerator>
+            </protocol>
+        </cache>
+        <call>
+            <endpoint>
+                <address uri="http://localhost:9000/services/SimpleStockQuoteService"/>
+            </endpoint>
+        </call>
+        <property name="RESPONSE" value="true" scope="default" type="STRING"/>
+        <enrich>
+            <source type="inline" clone="true">
+                <ax21:newvalue
+                    xmlns:ax21="http://services.samples/xsd">testsamplevalue
+                </ax21:newvalue>
+            </source>
+            <target
+                xmlns:ax21="http://services.samples/xsd"
+                xmlns:ns="http://services.samples" action="sibling" xpath="//ns:getQuoteResponse/ns:return/ax21:volume"/>
+            </enrich>
+            <cache collector="true"/>
+            <respond/>
+        </inSequence>
+</resource>
+</api>
+```
+
+### Example 3
+
+Following is an example where the expected response from the last cache hit **is not received** because the response is sent once the request comes
 to the first finder:
 
 ``` java
@@ -193,89 +284,6 @@ to the first finder:
       </inSequence>
    </target>
 </proxy>          
-```
-
-### Example 2
-
-According to this example configuration, when the first message is sent
-to the endpoint, the cache is not hit. The Cache mediator configured in
-the `         Out        ` sequence caches the response to this message.
-When a similar message is sent to the endpoint for the second time, the
-previous response is directly fetched from the cache and sent to the
-requester. This happens because the `         onCacheHit        `
-sequence is not defined in this configuration.
-
-``` java
-<?xml version="1.0" encoding="UTF-8"?>
-<sequence name="main">
-        <in>
-            <cache collector="false" maxMessageSize="10000" timeout="20">
-                <protocol type="HTTP">
-                    <methods>POST</methods>
-                    <headersToExcludeInHash/>
-                    <responseCodes>2[0-9][0-9]</responseCodes>
-                    <enableCacheControl>false</enableCacheControl>
-                    <includeAgeHeader>false</includeAgeHeader>
-                    <hashGenerator>org.wso2.carbon.mediator.cache.digest.HttpRequestHashGenerator</hashGenerator>
-                </protocol>
-                <implementation maxSize="100"/>
-            </cache>
-            <send>
-                <endpoint name="inlined">
-                    <address uri="http://localhost:9000/services/SimpleStockQuoteService"/>
-                </endpoint>
-            </send>
-        </in>
-        <out>
-            <cache collector="true"/>
-            <send/>
-        </out>
-    </sequence>
-```
-
-### Example 3
-
-According to this example configuration, if you define a cache collector
-using the cache mediator in the in sequence, you need to add the
-`         RESPONSE        ` property to consider the message as a
-response message.
-
-``` xml
-<?xml version="1.0" encoding="UTF-8"?>
-<api xmlns="http://ws.apache.org/ns/synapse" name="cacheAPI" context="/cache">
-<resource methods="POST GET" uri-template="/headerapi/*">
-    <inSequence>
-        <cache collector="false" timeout="5000">
-            <protocol type="HTTP">
-                <methods>GET, POST</methods>
-                <headersToExcludeInHash>*</headersToExcludeInHash>
-                <responseCodes>.*</responseCodes>
-                <enableCacheControl>false</enableCacheControl>
-                <includeAgeHeader>false</includeAgeHeader>
-                <hashGenerator>org.wso2.carbon.mediator.cache.digest.HttpRequestHashGenerator</hashGenerator>
-            </protocol>
-        </cache>
-        <call>
-            <endpoint>
-                <address uri="http://localhost:9000/services/SimpleStockQuoteService"/>
-            </endpoint>
-        </call>
-        <property name="RESPONSE" value="true" scope="default" type="STRING"/>
-        <enrich>
-            <source type="inline" clone="true">
-                <ax21:newvalue
-                    xmlns:ax21="http://services.samples/xsd">testsamplevalue
-                </ax21:newvalue>
-            </source>
-            <target
-                xmlns:ax21="http://services.samples/xsd"
-                xmlns:ns="http://services.samples" action="sibling" xpath="//ns:getQuoteResponse/ns:return/ax21:volume"/>
-            </enrich>
-            <cache collector="true"/>
-            <respond/>
-        </inSequence>
-</resource>
-</api>
 ```
 
 ### Invalidating cached responses remotely
