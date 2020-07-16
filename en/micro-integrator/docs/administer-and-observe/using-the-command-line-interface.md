@@ -69,7 +69,7 @@ The Micro Integrator CLI allows you to monitor the synapse artifacts (deployed i
     mi remote add <server-name> <hostname> <port>
     ```
 
-    Find out more about the `mi remote` option in the [CLI Reference](#remote).
+    Find out more about the `mi remote` option in the [CLI Reference](#mi-remote).
 
 3. **Select MI server**
 
@@ -146,7 +146,7 @@ Use `mi` to initialize the CLI tool.
 mi
 ```
 
-### version
+### mi version
 
 Use the `version` option to get the version of the running CLI tool.
 
@@ -154,7 +154,7 @@ Use the `version` option to get the version of the running CLI tool.
 mi version
 ```
 
-### remote
+### mi remote
 
 Use `remote` to manages the remote servers connected to the CLI tool. The CLI can be connected to multiple running Micro Integrator servers, however, you can only log in to one at a time.
 
@@ -201,7 +201,7 @@ mi remote login     # will be prompted for username and password
 mi remote login admin admin
 ```
 
-### logs
+### mi logs
 
 Use `logs` to list all the log files created for the Micro Integrator server.
 
@@ -224,7 +224,7 @@ Examples
 mi logs show
 ```
 
-### log-level
+### mi log-level
 
 Use `log-level` to manage the log4j logs in a Micro Integrator server.
 
@@ -251,7 +251,7 @@ mi log-level show org-apache-coyote
 mi log-level update org-apache-coyote DEBUG
 ```
 
-### api
+### mi api
 
 Use `api` to get details of API artifacts deployed in the Micro Integrator server.
 
@@ -278,7 +278,7 @@ mi api show
 mi api show sampleApi
 ```
 
-### compositeapp
+### mi compositeapp
 
 Use `compositeapp` to get details of the composite applications (CApps) that are deployed in the Micro Integrator server.
 
@@ -305,7 +305,7 @@ mi compositeapp show
 mi compositeapp show sampleApp
 ```
 
-### endpoint
+### mi endpoint
 
 Use `endpoint` to manage endpoint aritfacts deployed in the Micro Integrator server.
 
@@ -339,7 +339,7 @@ mi endpoint update sampleEndpoint state inactive
 mi endpoint update sampleEndpoint state active
 ```
 
-### inboundendpoint
+### mi inboundendpoint
 
 Use `inboundendpoint` to get details of inbound endpoint artifacts deployed in the Micro Integrator server.
 
@@ -366,7 +366,7 @@ mi inboundendpoint show
 mi inboundendpoint show sampleInboundEndpoint
 ```
 
-### proxyservice
+### mi proxyservice
 
 Use `proxyservice` to manage the proxy service artifacts deployed in the Micro Integrator server.
 
@@ -400,7 +400,7 @@ mi proxyservice update sampleProxy state inactive
 mi proxyservice update sampleProxy state active
 ```
 
-### sequence
+### mi sequence
 
 Use `sequence` to get details of the sequence artifacts deployed in the Micro Integrator server.
 
@@ -427,7 +427,7 @@ mi sequence show
 mi sequence show sampleProxy
 ```
 
-### task
+### mi task
 
 Use `task` to get details of the scheduled tasks deployed in the Micro Integrator server.
 
@@ -454,7 +454,7 @@ mi task show
 mi task show sampleTask
 ```
 
-### dataservice
+### mi dataservice
 
 Use `dataservice` to get details of data service artifacts deployed in the Micro Integrator server.
 
@@ -481,7 +481,7 @@ mi dataservice show
 mi dataservice show SampleDataService
 ```
 
-### connector
+### mi connector
 
 Use `connector` to get details of connector artifacts deployed in the Micro Integrator server.
 
@@ -508,7 +508,7 @@ Examples
  mi connector show sampleConnector
 ```
 
-### template
+### mi template
 
 Use `template` to get details of template artifacts (**Endpoint** templates and **Sequence** templates) that are deployed in the Micro Integrator server.
 
@@ -545,7 +545,7 @@ Examples
  mi template show sequence sampleSequenceTemplate
 ```
 
-### messageprocessor
+### mi messageprocessor
 
 Use `messageprocessor` to manage message processor artifacts deployed in the Micro Integrator server.
 
@@ -579,7 +579,7 @@ mi messageprocessor update sampleMessageProcessor state inactive
 mi messageprocessor update sampleMessageProcessor state active
 ```
 
-### messagestore
+### mi messagestore
 
 Use `messagestore` to get details of message store artifacts deployed in the Micro Integrator server.
 
@@ -606,7 +606,7 @@ Examples
  mi messagestore show  sampleMessageStore
 ```
 
-### localentry
+### mi localentry
 
 Use `localentry` to get details of local entry artifacts deployed in the Micro Integrator server.
 
@@ -633,7 +633,7 @@ mi localentry show
 mi localentry show  sampleLocalEntry
 ```
 
-### user
+### mi user
 
 Use `user` to manage the users in the Micro Integrator's user store. Note that only users assigned to the <b>admin</b> user role can manage other users in the user store.
 
@@ -682,7 +682,7 @@ mi user show -r dev-role
 mi user show -p [user name pattern]
 ```
 
-### secret
+### mi secret
 
 Use `secret` to encrypt plain text secrets that you will use in server configurations (`deployment.toml` file) and synapse configurations. Secrets encrypted using the CLI are used when you want to dynamically inject encrypted secrets to the Micro Integrator.
 
@@ -729,7 +729,7 @@ Examples
  mi secret create k8 -f=</file_path>
 ```
 
-### transaction
+### mi transaction
 
 Use `transaction` to count the inbound transactions received by the Micro Integrator.
 
