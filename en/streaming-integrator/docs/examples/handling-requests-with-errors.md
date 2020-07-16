@@ -5,7 +5,7 @@ In this tutorial, let's learn how you can handle streaming data that has errors 
 In this scenario, you are handling erroneous events by directing them to a MySQL store.
 
 !!! Tip "Before you begin:"
-    In order to save streaming data with erors in a MySQL store, complete the following prerequisites.<br/>    
+    In order to save streaming data with errors in a MySQL store, complete the following prerequisites.<br/>    
     - Start the SI server by navigating to the `<SI_HOME>/bin` directory and issuing one of the following commands as appropriate, based on your operating system:<br/>
         <br/>
           - For Windows: `streaming-integrator.bat`<br/>
