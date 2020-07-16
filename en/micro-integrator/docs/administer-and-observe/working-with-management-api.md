@@ -4,34 +4,7 @@ The Management API of WSO2 Micro Integrator is an internal REST API, which was i
 the **admin services** that were available in WSO2 EI 6.x.x.
 
 The [Micro Integrator CLI](../../administer-and-observe/using-the-command-line-interface) and the [Micro Integrator dashboard](../../administer-and-observe/working-with-monitoring-dashboard) communicates with this service to
-obtain administrative information of the server instance. If you are not using the dashboard or the CLI, you can directly access the [resources](#accessig-api-resources) of the management API by following the instructions given below.
-
-## Enabling the management API
-
-The management API is disabled in the Micro Integrator by default. You can enable it when you
-start your Micro Integrator instance by passing the following system property:
-
-```bash
--DenableManagementApi
-```
-
-Note that the default address is **https://localhost** and the port is **9164**.
-
--   When you run the Micro Integrator on Docker, start your Docker
-    container by passing the `enableManagementApi` system property:
-
-    ```bash
-    docker run -p 8290:8290 -p 9164:9164 -e JAVA_OPTS="-DenableManagementApi=true" <Docker_Image_Name>
-    ```
-
--   When you run the Micro Integrator on a VM, use the following command
-    to enable the `enableManagementApi` system property:
-
-    ```bash
-    sh micro-integrator.sh -DenableManagementApi
-    ```
-
--   The Management API is enabled for the embedded Micro Integrator in WSO2 Integration Studio by default.
+obtain administrative information of the server instance and to perform various administration tasks. If you are not using the dashboard or the CLI, you can directly access the [resources](#accessig-api-resources) of the management API by following the instructions given below.
 
 ## Securely invoking the API
 The management API is secured using JWT authentication by default. Therefore, when you directly access the management API, you must first acquire a JWT token with your valid username and password.
@@ -126,7 +99,7 @@ The management API has multiple resources to provide information regarding the d
 
 -	**Resource**: `/users/pattern=”*”&role=admin`
 
-	**Description**: Retrieves information related to user names (stored in an [external user store](../../../setup/user_stores/setting_up_a_userstore)) that match a specific pattern.
+	**Description**: Retrieves information related to user names (stored in an [external user store](../../../setup/user_stores/setting_up_a_userstore)) that match a specific pattern and user role.
 
 	**Example**:
 
@@ -150,11 +123,11 @@ The management API has multiple resources to provide information regarding the d
 
 -	**Resource**: `/users`
 
-	**Description**: Adds a user to the [external user store](../../../setup/user_stores/setting_up_a_userstore).
+	**Description**: Adds a user to the [external user store](../../../setup/user_stores/setting_up_a_userstore). Note that only admin users can create other users with admin access.
 
 	**Example**:
 
-    First create the following JSON file with user details:
+    First create the following JSON file with user details as shown below. Note that this new user is granted the admin role.
 
     ```json
     {
@@ -177,11 +150,11 @@ The management API has multiple resources to provide information regarding the d
     }
   	```
 
-### DELETE USERS
+### REMOVE USERS
 
 -	**Resource**: `/users`
 
-	**Description**: Deletes a user from the [external user store](../../../setup/user_stores/setting_up_a_userstore).
+	**Description**: Removes a user from the [external user store](../../../setup/user_stores/setting_up_a_userstore). Note that only admin users can remove other users with admin access.
 
 	**Example**:
 
@@ -845,7 +818,7 @@ The management API has multiple resources to provide information regarding the d
 
 	**Description**: Retrieves the transaction count for the specified year and month.
 
-  **Example**:
+        **Example**:
 
   	```bash tab='Request'
   	curl -X GET "https://localhost:9164/management/transactions?year=2020&month=5" -H "accept: application/json" -H "Authorization: Bearer TOKEN" -k -i
@@ -879,7 +852,7 @@ The management API has multiple resources to provide information regarding the d
 
 -	**Resource**: `/transactions/report?start={start}`
 
-	**Description**: Retrieves the transaction report for the specified date. Generates the transaction report at the `<MI_HOME>/tmp` directory.
+	**Description**: Retrieves the transaction report for data starting from the specified date. Generates the transaction report at the `<MI_HOME>/tmp` directory.
 
 	**Example**:
 

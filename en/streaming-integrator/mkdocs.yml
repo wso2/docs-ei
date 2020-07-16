@@ -219,6 +219,7 @@ nav:
       - 'Supporting Different Transports': 'admin/supporting-different-transports.md'
       - 'User Management': 'admin/user-management.md'
       - 'Configuring State Persistence': 'admin/configuring-Database-and-File-System-State-Persistence.md'
+      - 'Configuring Cluster Coordination': 'admin/configuring-Cluster-Coordination.md'
       - 'Protecting Sensitive Data via the Secure Vault': 'admin/protecting-sensitive-data-via-the-secure-vault.md'
       - 'Adding Third Party Non OSGi Library': 'admin/adding-third-party-non-osgi-libraries.md'
       - 'Configuring Default Ports': 'ref/configuring-default-ports.md'
@@ -234,7 +235,15 @@ nav:
     - 'Deploying Siddhi Applications': 'develop/deploying-Streaming-Applications.md'
     - 'Exporting Siddhi Applications': 'develop/exporting-Siddhi-Applications.md'
   - 'Observability':
-    - 'Monitoring the Streaming Integrator': 'admin/monitoring-the-streaming-integrator.md'
+    - 'Monitoring SI via Grafana Dashboards':
+      - 'Configuring Grafana Dashboards': 'admin/setting-up-grafana-dashboards.md'
+      - 'Managing Grafana Dashboards': 'admin/managing-grafana-dashboards.md'
+      - 'Viewing Grafana Dashboards':
+        - 'Viewing Overview Statistics': 'admin/viewing-overview-statistics.md'
+        - 'Viewing CDC Statistics': 'admin/viewing-cdc-statistice.md'
+        - 'Viewing File Statistics': 'admin/viewing-file-statistice.md'
+        - 'Viewing RDBMS Statistics': 'admin/viewing-rdbms-statistice.md'
+    - 'Monitoring SI via Analytics Dashboard': 'admin/monitoring-the-streaming-integrator.md'
   - 'Connectors':
     - 'Streaming Integrator Connectors Overview': 'connectors/connectors-overview.md'
     - 'Downloading and Installing Siddhi Connectors': 'connectors/downloading-and-Installing-Siddhi-Extensions.md'
@@ -246,8 +255,6 @@ nav:
       - 'REST API Guide Overview': 'ref/rest-api-guide-overview.md'
       - 'Siddhi Application Management APIs': 'ref/siddhi-Application-Management-APIs.md'
       - 'Event Simulation APIs': 'ref/event-simulation-apis.md'
-      - 'Status Monitoring APIs': 'ref/status-monitoring-apis.md'
-      - 'Authentication APIs': 'ref/authentication-APIs.md'
       - 'Permission APIs': 'ref/permission-apis.md'
       - 'Business Rules APIs': 'ref/business-Rules-APIs.md'
       - 'Store APIs': 'ref/store-APIs.md'

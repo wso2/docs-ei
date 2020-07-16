@@ -14,15 +14,12 @@ An external user store (such as an LDAP or RDBMS) can be used with the Micro Int
 
 ## Configuring an LDAP user store
 
-An LDAP user store is recommended for the Micro Integrator. Follow the instruction given below.
+An LDAP user store is recommended for the Micro Integrator.
 
-### Step 1: Setting up an LDAP
+!!! Note
+	<b>Before you begin</b>, see the documentation of your LDAP provider for instructions on setting up the LDAP.
 
-See the documentation of your LDAP provider for instructions on setting up the LDAP, and for managing users and roles.
-
-### Step 2: Connecting to the LDAP
-
-Follow the steps given below to connect the Micro Integrator to the LDAP user store.
+Follow the steps given below to connect the Micro Integrator to your LDAP user store.
 
 1.	Open the `deployment.toml` file stored in the `<MI_HOME>/conf/` directory.
 2.	Add the following configuration to disable the default file-based user store:
@@ -39,7 +36,8 @@ Follow the steps given below to connect the Micro Integrator to the LDAP user st
 	connection_url = "ldap://localhost:10389"  
 	connection_name = "uid=admin,ou=system"
 	connection_password = "admin"  
-	user_search_base = "ou=system"   
+	user_search_base = "ou=system" 
+	type = "read_only_ldap"
 	```
 
 	Parameters used above are explained below.
@@ -81,6 +79,16 @@ Follow the steps given below to connect the Micro Integrator to the LDAP user st
 				The DN of the context or object under which the user entries are stored in the user store. When the user store searches for users, it will start from this location of the directory.
 			</td>
 		</tr>
+		<tr>
+			<td>
+				<code>type</code>
+			</td>
+			<td>
+				Use one of the following values. </br></br>
+				<b>read_only_ldap</b>: The LDAP connection does not provide write access.</br>
+				<b>read_write_ldap</b>: The LDAP connection provides write access.
+			</td>
+		</tr>
 	</table>
 
 See the [complete list of parameters](../../../references/config-catalog/#ldap-user-store) you can configure for the ldap user store.
@@ -113,7 +121,7 @@ See the [complete list of parameters](../../../references/config-catalog/#ldap-u
 
 	```toml tab='MySQL'
 	[[datasource]]
-	id = "WSO2_USER_DB"
+	id = "WSO2CarbonDB"
 	url= "jdbc:mysql://localhost:3306/userdb"
 	username="root"
 	password="root"
@@ -125,7 +133,7 @@ See the [complete list of parameters](../../../references/config-catalog/#ldap-u
 
 	```toml tab='MSSQL'
 	[[datasource]]
-	id = "WSO2_USER_DB"
+	id = "WSO2CarbonDB"
 	url= "jdbc:sqlserver://<IP>:1433;databaseName=userdb;SendStringParametersAsUnicode=false"
 	username="root"
 	password="root"
@@ -137,7 +145,7 @@ See the [complete list of parameters](../../../references/config-catalog/#ldap-u
 
 	```toml tab='Oracle'
 	[[datasource]]
-	id = "WSO2_USER_DB"
+	id = "WSO2CarbonDB"
 	url= "jdbc:oracle:thin:@SERVER_NAME:PORT/SID"
 	username="root"
 	password="root"
@@ -149,7 +157,7 @@ See the [complete list of parameters](../../../references/config-catalog/#ldap-u
 
 	```toml tab='PostgreSQL'
 	[[datasource]]
-	id = "WSO2_USER_DB"
+	id = "WSO2CarbonDB"
 	url= "jdbc:postgresql://localhost:5432/userdb"
 	username="root"
 	password="root"
@@ -161,7 +169,7 @@ See the [complete list of parameters](../../../references/config-catalog/#ldap-u
 
 	```toml tab='IBM DB'
 	[[datasource]]
-	id = "WSO2_USER_DB"
+	id = "WSO2CarbonDB"
 	url="jdbc:db2://SERVER_NAME:PORT/userdb"
 	username="root"
 	password="root"
@@ -183,7 +191,15 @@ See the [complete list of parameters](../../../references/config-catalog/#ldap-u
 				<code>id</code>
 			</td>
 			<td>
-				The name given to the datasource.
+				The name given to the datasource. This is required to be <b>WSO2CarbonDB</b>.</br></br>
+				<b>Note</b>: If you replace 'WSO2CarbonDB' with a different id, you also need to list the id as a datasource under the <code>[realm_manager]</code> section in the <code>deployment.toml</code> file as shown below.
+				<div>
+					<code>
+					[realm_manager]</br>
+					data_source = "new_id"
+					</code>
+				</div>
+				Otherwise the user store database id defaults to 'WSO2CarbonDB' in the realm manager configurations.
 			</td>
 		</tr>
 		<tr>
@@ -232,10 +248,11 @@ See the [complete list of parameters](../../../references/config-catalog/#ldap-u
 	class = "org.wso2.micro.integrator.security.user.core.jdbc.JDBCUserStoreManager"
 	type = "database"
 
-	# Add the following parameter only if you want to enable write access to the user store.
-	read_only = false
+	# Add the following parameter only if you want to disable write access to the user store.
+	read_only = true
 	```
-	The datasource configured under the `[[datasource]]` toml heading will now be the effective user store for the Micro Integrator.
+	The datasource configured under the `[[datasource]]` toml heading will now be the effective user store for the Micro Integrator. 
+   
 
 ## What's next?
 

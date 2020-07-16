@@ -192,7 +192,7 @@ The following tables explain the default data sources configured in the Streamin
     <tbody>
         <tr class="odd">
             <td>Database Access Requirement</td>
-            <td>Carbon coordination supports zookeeper and RDBMS based coordination. In RDBMS coordination, database access is required for updating the heartbeats of the nodes. In addition, database access is required to update the coordinator and the other members in the cluster. For more information, see <a href="../admin/configuring-Cluster-Coordination.md">Configuring Cluster Coordination</a>.</td>
+            <td>Carbon coordination supports zookeeper and RDBMS based coordination. In RDBMS coordination, database access is required for updating the heartbeats of the nodes. In addition, database access is required to update the coordinator and the other members in the cluster. For more information, see <a href="https://ei.docs.wso2.com/en/latest/streaming-integrator/admin/configuring-Cluster-Coordination/">Configuring Cluster Coordination</a>.</td>
         </tr>
         <tr class="even">
             <td>Required/Optional</td>
@@ -232,7 +232,7 @@ The following tables explain the default data sources configured in the Streamin
     <tbody>
         <tr class="odd">
             <td>Database Access Requirement</td>
-            <td>This involves persisting the state of Siddhi Applications periodically in the database. State persistence is enabled by selecting the <code>org.wso2.carbon.stream.processor.core.persistence.DBPersistenceStore</code> class in the <code>state.persistence</code> section of the <code>&lt;SI_Home&gt;/conf/&lt;server&gt;/deployment.yaml</code> file. For more information, see <a href="../admin/configuring-Database-and-File-System-State-Persistence.md">Configuring Database and File System State Persistence</a>.</td>
+            <td>This involves persisting the state of Siddhi Applications periodically in the database. State persistence is enabled by selecting the <code>org.wso2.carbon.stream.processor.core.persistence.DBPersistenceStore</code> class in the <code>state.persistence</code> section of the <code>&lt;SI_Home&gt;/conf/&lt;server&gt;/deployment.yaml</code> file. For more information, see <a href="https://ei.docs.wso2.com/en/latest/streaming-integrator/admin/configuring-Database-and-File-System-State-Persistence/">Configuring Database and File System State Persistence</a>.</td>
         </tr>
         <tr class="even">
             <td>Required/Optional</td>

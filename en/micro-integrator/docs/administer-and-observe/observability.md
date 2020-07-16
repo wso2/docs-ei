@@ -5,7 +5,7 @@ using correlation logs. Correlation logs allow you to monitor individual
 HTTP requests from the point that a message is received by the Micro Integrator until
 the corresponding response message is sent back to the original message
 sender. That is, the complete round trip of an HTTP message (client →
-Micro Integrator → back-end → Micro Integrator → client) can be tracked and anlyzed using a log
+Micro Integrator → back-end → Micro Integrator → client) can be tracked and analyzed using a log
 file.
 
 When correlation logs are enabled for the Micro Integrator server, a separate log

@@ -146,7 +146,7 @@ Follow these steps to deploy the exported CApp in the Enterprise Integrator Runt
 1. Create a file called data.json with the following payload. 
     ```
     {
-        "source":"/Users/IsuruUyanage/Desktop/RnD/2020/Q1/ConnectorVerification/create.txt",
+        "source":"<file_path>/create.txt",
         "inputContent": "This is a test file"
     }
     ```
@@ -162,7 +162,7 @@ You should get a 'Success' response, and the file should be created in the speci
 1. Create a file called data.json with the following payload. 
     ```
     {
-        "source":"/Users/IsuruUyanage/Desktop/RnD/2020/Q1/ConnectorVerification/create.txt"
+        "source":"<file_path>/create.txt"
     }
     ```
 2. Invoke the API as shown below using the curl command. Curl Application can be downloaded from [here] (https://curl.haxx.se/download.html).
