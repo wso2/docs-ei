@@ -74,7 +74,7 @@ To download the dashboard, go to [**WSO2 Micro Integrator** website](https://wso
                 Port
             </th>
             <td>
-                The port exposing the management API of your running Micro Integrator instance. The default port is <b>9201</b>.
+                The port exposing the management API of your running Micro Integrator instance. The default HTTPS port is <b>9164</b>.
             </td>
         </tr>
         <tr>
@@ -98,7 +98,7 @@ To download the dashboard, go to [**WSO2 Micro Integrator** website](https://wso
 
 3.  Click <b>SIGN IN</b> and you are redirected to the home page of the Micro Integrator dashboard.
      
-    <img src="../../assets/img/monitoring-dashboard/dashboard-artifact-home.png">
+    <img src="../../assets/img/monitoring-dashboard/dashboard-artifact-home.png" width="700">
 
 ## Using the Dashboard
 
