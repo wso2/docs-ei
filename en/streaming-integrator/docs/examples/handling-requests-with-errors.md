@@ -32,12 +32,98 @@ Let's create the MySQL data store in which the events with errors can be saved. 
 
     `mysql -u <USERNAME> -p <PASSWORD>`
     
-5. To create a database named `errorstoredb` in which the events with errors can be saved, issue the following command.
-
-    `mysql> create database errorstoredb;`
-    
-6. To switch to the new database, issue the following command.
+5. To switch to the new database, issue the following command.
 
     `mysql> use errorstoredb;`
 
-## Step 2: Create the Siddhi applications
+## Step 2: Enable the error store
+
+To enable the error store, open the `<SI_HOME>/conf/server/deployment.yaml` file and add a configuration as follows:
+
+```
+error.store:
+  enabled: true
+  bufferSize: 1024
+  dropWhenBufferFull: true
+  errorStore: org.wso2.carbon.streaming.integrator.core.siddhi.error.handler.DBErrorStore
+  config:
+    datasource: ERROR_STORE_DB
+    table: ERROR_STORE_TABLE
+```
+
+This configuration refers to a data source named `Error_Store_DB`. Define this data source as follows under `Data sources` in the `<SI_HOME>/conf/server/deployment.yaml` file.
+
+```
+- name: SIDDHI_ERROR_STORE_DB
+  description: The datasource used for Siddhi error handling feature
+  jndiConfig:
+    name: jdbc/SiddhiErrorStoreDB
+  definition:
+    type: RDBMS
+    configuration:
+      jdbcUrl: 'jdbc:mysql://localhost:3306/errorstoredb?useSSL=false'
+      username: root
+      password: root
+      driverClassName: com.mysql.jdbc.Driver
+      minIdle: 5
+      maxPoolSize: 50
+      idleTimeout: 60000
+      connectionTestQuery: SELECT 1
+      validationTimeout: 30000
+      isAutoCommit: false
+```
+
+### Create and deploy the Siddhi application
+
+To create and deploy a Siddhi application, follow the steps below:
+
+1. Start the Streaming Integrator Tooling by navigating to the `<SI_TOOLING_HOME>/bin` directory and issuing one of the following commands as appropriate, based on your operating system:
+
+    - For Windows: `streaming-integrator-tooling.bat`
+
+    - For Linux: `./streaming-integrator-tooling.sh`
+    
+    Then Access the Streaming Integrator Tooling via the URL that appears in the start up log with the text `Editor Started on:`.
+    
+2. Open a new file. Then copy and paste the following Siddhi application to it.
+
+    ```
+        @App:name("MappingErrorTest")
+        
+        @Source(type = 'http',
+                 receiver.url='http://localhost:8006/productionStream',
+                 basic.auth.enabled='false',
+        	 @map(type='json', @attributes(name='name', amount='amount')))
+        define stream ProductionStream(name string, amount double);
+        
+        @sink(type='log', prefix='Successful mapping: ')
+        define stream LogStream(name string, amount double);
+        
+        from ProductionStream
+        select *
+        insert into LogStream;
+    ```
+3. Save the Siddhi file.
+
+4. To deploy the Siddhi file, follow the procedure below:
+
+    1. Click the **Deploy** menu and then click **Deploy to Server**. This opens the **Deploy Siddhi Apps to Server** dialog box.
+    
+    2. In the **Add New Server** section, enter the host, port, user name and the password of your Streaming Integrator server as shown below.
+    
+        ![Adding a New Server](../../images/handling-requests-with-errors/add-a-new-server.png)
+        
+        Then click **Add**.
+        
+    3. In the **Siddhi Apps to Deploy** section, select the checkbox for the **MappingErrorTest.siddhi** application. In the **Servers** section, select the check box for the server you added. Then click **Deploy**.
+    
+        ![Select Siddhi Application and Server](../../images/handling-requests-with-errors/select-siddhi-app-and-server.png)
+        
+        The following message appears in the **Deploy Siddhi Apps to Server** dialog box.
+        
+        `MappingErrorTest.siddhi was successfully deployed to 0.0.0.0:9443`
+        
+        
+### Step 4: Generate events with errors
+
+Let's simulate an event with an error to observe how it is handled.
