@@ -18,6 +18,18 @@ There are three types of connectors available in WSO2 EI.
 
 **Database Connectors**: You can integrate with databases and perform actions using connector operations. 
 
+## Inbound and outbound connectors
+
+Most of the connectors available in the connector store are outbound connectors that illustrate connections and operations going out from WSO2 EI to third-party applications and systems. However, there are connectors that also enable inbound connectivity from popular third-party applications into WSO2 EI.
+
+<img src="../../../assets/img/connectors/inbound-outbound.png" title="Inbound and Outbound Connectors" width="700" alt="Inbound and Outbound Connectors"/>
+
+Some examples for inbound connectors are as follows.
+
+* Salesforce
+* Amazon SQS
+* DB Event Listener
+
 ## Advantages of connectors
 
 Using connectors provide the following advantages:
