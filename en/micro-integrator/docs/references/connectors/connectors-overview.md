@@ -24,7 +24,7 @@ Most of the connectors available in the connector store are outbound connectors 
 
 <img src="../../../assets/img/connectors/inbound-outbound.png" title="Inbound and Outbound Connectors" width="700" alt="Inbound and Outbound Connectors"/>
 
-The three most common inbound connectors are as follows.
+Some examples for inbound connectors are as follows.
 
 * Salesforce
 * Amazon SQS
