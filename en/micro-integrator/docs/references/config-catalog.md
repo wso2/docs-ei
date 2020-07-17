@@ -684,12 +684,12 @@ connection_url = "ldap://localhost:10389"
 connection_name = "uid=admin,ou=system"
 connection_password = "admin"
 anonymous_bind = false
-user_search_base = "ou=system"
+user_search_base = "ou=Users,dc=wso2,dc=org"
 user_name_attribute = "uid"
 user_name_search_filter = "(&amp;(objectClass=person)(uid=?))"
 user_name_list_filter = "(objectClass=person)"
 read_groups = true
-group_search_base = "ou=system"
+group_search_base = "ou=Groups,dc=wso2,dc=org"
 group_name_attribute = "cn"
 group_name_search_filter = "(&amp;(objectClass=groupOfNames)(cn=?))"
 group_name_list_filter = "(objectClass=groupOfNames)"
@@ -708,6 +708,7 @@ connection_pooling_enabled = true
 ldap_connection_timeout = 5000
 read_timeout = ''
 retry_attempts = ''
+connection_retry_delay = "120000"
 </code></pre>
                     </div>
                 </div>
