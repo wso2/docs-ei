@@ -1,21 +1,21 @@
 # Clustered Deployment
-The following sections provide information and instructions on how to deploy the Micro Integrator with a third-party load balancer.
+See the instructions on how to set up a cluster of WSO2 Micro Integrator nodes in an on-premise VM deployment. A third-party load balancer is used for this deployment.
 
 ## The deployment pattern
 
-This deployment scenario uses a two-node Micro Integrator deployment. That is, two Micro Integrator nodes are configured to serve requests with high availability and scalability. The product nodes in the deployment are fronted by an external third-party load balancer, which routes requests to the two nodes on a round-robin basis.
+This deployment scenario is a two-node Micro Integrator deployment. That is, two Micro Integrator nodes are configured to serve requests with high availability and scalability. The product nodes in the deployment are fronted by an external third-party load balancer, which routes requests to the two nodes on a round-robin basis.
 
 <img src="../../../assets/img/clustered_deployment.png">
 
 ## Install the Micro Integrator
 
-Let's set up two instances of the Micro Integrator.
-
 [Download and install WSO2 Micro Integrator](../../setup/installation/install_in_vm.md).
+
+Let's set up two instances of the Micro Integrator server.
 
 ## Hostnames
 
-Open the `deployment.toml` file (stored in the `<MI_HOME>/conf`) of each server instance and update the hostname.
+Open the `deployment.toml` file (stored in the `<MI_HOME>/conf` folder) of each server instance and update the hostname.
 
 ```toml
 [server]
@@ -26,7 +26,7 @@ Find more [parameters](../../../references/config-catalog/#deployment) for deplo
 
 ## Cluster coordination
 
-Most of the integration flows are stateless and don't actually require coordination when there is more than a single instance of the server running. However, the following set of artifacts requires coordination among themselves when deployed in more than a single instance of the server.
+Most of the integration artifacts in your deployment are stateless and don't actually require coordination when there is more than a single instance of the server running. However, the following set of artifacts require coordination among themselves when deployed in more than a single instance of the server.
 
 -   Scheduled Tasks
 -   Message Processors
@@ -38,15 +38,6 @@ Most of the integration flows are stateless and don't actually require coordinat
 When the nodes in the cluster need to communicate with each other, the Micro Integrator uses RDBMS-based coordination among the server nodes. That is, all the nodes communicate via a database. Hence, you need to have a database to enable coordination among the artifacts.
 
 1.  Create a database named `clusterdb`. Select a database type from the following list:
-
-    ??? Note "Tested Databases"
-        The following database types are tested with this version of the Micro Integrator:
-
-        -   MySQL 8.0.19
-        -   Microsoft SQL Server 2017 (RTM-CU11) (KB4462262) - 14.0.3038.14 (X64)
-        -   postgres (PostgreSQL) 12.2 (Debian 12.2-2.pgdg100+1)
-        -   DB2 v11.5.0.0
-        -   Oracle Database 12c Enterprise Edition Release 12.2.0.1.0 - 64bit Production
 
     - [Setting up a MySQL database](../../../setup/databases/setting-up-MySQL)
     - [Setting up an MSSQL database](../../../setup/databases/setting-up-MSSQL)
@@ -118,7 +109,7 @@ When the nodes in the cluster need to communicate with each other, the Micro Int
 
 ### Node ID
 
-The node ID is a unique identifier, which is used to identify the node in the cluster. This is useful in situations where certain requests need to be routed to the server node based on the node ID. For example, scheduled tasks should only run in specific nodes.
+The node ID is a unique identifier, which is used to identify a node within the cluster. This is useful in situations where certain requests need to be routed to the server node based on the node ID. For example, <b>scheduled tasks</b> should only run in specific nodes.
 
 By default, a random UUID value will be used as the node ID. However, you can assign a specific node ID using the following methods:
 
@@ -137,21 +128,17 @@ If the node ID is specified using multiple methods, the applicable node ID will 
 
 ### Task resolver
 
-When you have scheduled task in your integration deployment, each task should only run in one node of the cluster. The task resolver configuration in your server nodes specifies the logic allocation of tasks to the server nodes.
+When you have scheduled tasks in your integration deployment, each task should only run in one node of the cluster. The task resolver configuration in your server nodes specifies the logic for allocating tasks to the server nodes.
 
 -   Default resolver
 
-    By default, tasks are resolved by selecting a random node from the available list of nodes in the cluster. All the tasks are resolved to the selected node. The tasks will be resolved to some other node only if the first node leaves the cluster. Optionally, you can apply the following [advanced configurations](#advanced-parameters).
+    By default, tasks are resolved by selecting a random node from the available list of nodes in the cluster. All the tasks are resolved to the selected node. The tasks will be resolved to some other node only if the first node leaves the cluster. 
 
-    ```toml
-    [task_handling]
-    resolving_period = "6"
-    resolving_frequency = "3"
-    ```
+    Optionally, you can apply the following [advanced configurations](#advanced-parameters).
 
 -   Round robin resolver
 
-    This class distributed the tasks among the nodes in a round robin fashion. In addition to that, it accepts a parameter named `task_server_count`, which specifies the number of nodes that should be present in the cluster before starting the task resolving process.
+    This class distributes the tasks among the nodes in a round robin manner. In addition to that, it accepts a parameter named `task_server_count`, which specifies the number of nodes that should be present in the cluster before starting the task resolving process.
 
     ```toml
     [task_handling]
@@ -163,7 +150,7 @@ When you have scheduled task in your integration deployment, each task should on
 
 -   Task node resolver
 
-    This class will resolve tasks to a predefined set of nodes (task nodes) in a round robin fashion. The `task_nodes` need to be defined as the `resolver_class` property.
+    This class will resolve tasks to a predefined set of nodes (task nodes) in a round robin manner. The `task_nodes` need to be defined as the `resolver_class` property.
 
     ```toml
     [task_handling]
@@ -175,7 +162,7 @@ When you have scheduled task in your integration deployment, each task should on
 
 #### Advanced parameters
 
-The `resolving_period` and `resolving_frequency` properties are set by default as shown below. It is not recommended to change these default values.
+The `resolving_period` and `resolving_frequency` properties are set by default as shown below. It is **not recommended** to change these default values.
 
 ```toml
 [task_handling]
@@ -209,7 +196,7 @@ resolving_frequency = "3"
             Any integer greater than 0.
         </td>
         <td>
-            The period in seconds, the leader node will resolve the unassigned tasks from the coordination database or the member nodes will schedule the tasks assigned to them.
+            The period in seconds. The the time gap for resolving unassigned tasks from the coordination database.
         </td>
     </tr>
     <tr>
@@ -223,20 +210,10 @@ resolving_frequency = "3"
             Any integer greater than 0.
         </td>
         <td>
-            The frequency at which the un-assigned tasks need to be resolved by the leader node per cleaning of the invalid tasks from the coordination database.
+            The coordination database is periodically cleaned to remove invalid tasks. This parameter specifies the frequency at which the unassigned tasks get resolved (per cleaning event).
         </td>
     </tr>
 </table>
-
-## Registry sharing
-
-!!! Note
-    Registry sharing is only required if you have Message Processors in your deployment.
-
-Registry sharing maintains the state of the Message Processor, which is deployed in deactivated state upon new member additions.
-
-1.  Follow the instructions on [configuring the file-based registry](../../setup/deployment/file_based_registry.md) for a two-node deployment of the Micro Integrator.
-2.  The `<MI_HOME>/registry` folder of each node in the cluster should be shared with each other. This can be done in the same way as deployment synchronization.
 
 ## Deployment synchronization
 
@@ -244,36 +221,51 @@ When you have a cluster of nodes, the integration artifacts deployed in each ser
 
 See [deployment synchronization](../../setup/deployment/deployment_synchronization.md) for instructions.
 
+## Registry synchronization (sharing)
+
+!!! Note
+    Registry sharing is only required if you have Message Processors in your deployment.
+
+The shared registry maintains the state (<b>active</b>/<b>inactive</b>) of the Message Processor artifact. This ensures that the same state is maintained for Message Processor in all the Micro Integrator nodes of the cluster.
+
+1.  Follow the instructions on [configuring the file-based registry](../../setup/deployment/file_based_registry.md) for a two-node deployment of the Micro Integrator.
+2.  The `<MI_HOME>/registry` folder of each node in the cluster should be shared with each other. You can follow the same instructions as for [deployment synchronization](../../setup/deployment/deployment_synchronization.md).
+
 ## Load balancing
 
-If you need the HTTP/HTTPS traffic to be distributed among the nodes, you need to front them via a load balancer of your choice and balance the loads among the urls.
+If you need the HTTP/HTTPS traffic to be distributed among the nodes, you need to front them via a load balancer of your choice and balance the loads among the node URLs.
 
 Follow the instructions on [setting up a load balancer](../../setup/deployment/setting_up_lb.md) for a two-node deployment of the Micro Integrator.
 
 ## Deployment hardening
 
-Ensure that you have taken into account the respective security hardening factors (e.g., changing and encrypting the default passwords, configuring JVM security etc.) before deploying the Micro Integrator. For more information, see the [Production Deployment Checklist](../../setup/deployment/deployment_checklist.md).
+Ensure that you have taken into account the respective security hardening factors (e.g., changing and encrypting the default passwords, configuring JVM security, etc.) before deploying the Micro Integrator. For more information, see the [production deployment guidelines](../../setup/deployment/deployment_checklist.md).
 
 ## Testing the cluster
 
-Start the server using the following standard start-up script.
+Start one server in the cluster by executing the server startup script from the `MI_HOME>/bin` folder.
 
-* On **Linux/MacOS/CentOS** : `cd MI_HOME/bin/ sh micro-integrator.sh`
-* ON **Windows** : `cd MI_HOME\bin\ micro-integrator.bat`
+```bash tab='On Linux/MacOS/Centos'
+sh micro-integrator.bat
+```
 
-Upon server startup you can observe the following logs in each instance.
+```bash tab='On Windows'
+micro-integrator.bat
+```
+
+When you start one server, you can observe the following logs indicating that it joined the cluster.
 
 ```bash
 [2020-04-17 17:09:14,768]  INFO {RDBMSCoordinationStrategy} - Successfully joined the cluster with id [506b71d5-0ba3-4a76-8959-7fde798c56de]
 ```
 
-You could observe the following member addition log in other servers when a node joins the cluster.
+When you start the second server, you can observe the following member addition log in the other server. This indicates to other servers in the cluster that a new node has joined.
 
 ```bash
 [2020-04-17 17:12:37,072]  INFO {ClusterCoordinator} - Member added [f5fc78fb-c147-4f66-8e5b-c0feae2b8c53]
 ```
 
-You could observe the following member removal log in other servers when a node joins the cluster.
+You could observe the following member removal log in other servers when one node is removed from the cluster.
 
 ```bash
 [2020-04-17 17:12:52,270]  INFO {ClusterCoordinator} - Member removed [506b71d5-0ba3-4a76-8959-7fde798c56de]
@@ -281,30 +273,30 @@ You could observe the following member removal log in other servers when a node 
 
 ##  Testing task coordination
 
-1.  Create a simple scheduled task using WSO2 Integration Studio and deploy it in the two Micro Integrator servers. See the instructions on [creating a scheduled task](../../../develop/creating-artifacts/creating-scheduled-task).
+Create a simple scheduled task using WSO2 Integration Studio and deploy it in the two Micro Integrator servers. See the instructions on [creating a scheduled task](../../../develop/creating-artifacts/creating-scheduled-task).
 
-    ```toml
-    <?xml version="1.0" encoding="UTF-8"?>
-    <task xmlns="http://ws.apache.org/ns/synapse" name="sample-task" class="org.apache.synapse.startup.tasks.MessageInjector" group="synapse.simple.quartz">
-      <trigger interval="5000"/>
-      <property xmlns:task="http://www.wso2.org/products/wso2commons/tasks" name="message">
-         <test xmlns="">sample-task</test>
-      </property>
-    </task>
-    ```
+```toml
+<?xml version="1.0" encoding="UTF-8"?>
+<task xmlns="http://ws.apache.org/ns/synapse" name="sample-task" class="org.apache.synapse.startup.tasks.MessageInjector" group="synapse.simple.quartz">
+  <trigger interval="5000"/>
+  <property xmlns:task="http://www.wso2.org/products/wso2commons/tasks" name="message">
+     <test xmlns="">sample-task</test>
+  </property>
+</task>
+```
 
-2.  Observe the following log in the server.
+Observe the following log in the server.
 
-    ```bash
-    [2020-04-20 11:13:21,982]  INFO {AbstractQuartzTaskManager} - Task scheduled: [ESB_TASK][sample-task].
-    ```
+```bash
+[2020-04-20 11:13:21,982]  INFO {AbstractQuartzTaskManager} - Task scheduled: [ESB_TASK][sample-task].
+```
 
-    The above log can be observed in only one server and this implies that the task is scheduled only in one node when coordination is enabled.
+The above log can be observed in only one server and this implies that the task is scheduled only in one node when coordination is enabled.
 
-3.  Shutdown the node in which the task is scheduled and observe the following log in the other node.
+Shutdown the node in which the task is scheduled and observe the following log in the other node.
 
-    ```bash
-    [2020-04-20 11:13:21,982]  INFO {AbstractQuartzTaskManager} - Task scheduled: [ESB_TASK][sample-task].
-    ```
+```bash
+[2020-04-20 11:13:21,982]  INFO {AbstractQuartzTaskManager} - Task scheduled: [ESB_TASK][sample-task].
+```
 
-    The above log describes the failover capability of the tasks when the task server becomes unavailable.
+The above log describes the failover capability of the tasks when the task server becomes unavailable.

@@ -4,11 +4,12 @@ When you have a [clustered deployment](../deploying_wso2_ei), the integration ar
 
 Select one of the following approaches depending on the expected rate of change (of artifacts) in your cluster:
 
--   For a high rate of changes (i.e., if changes happen very frequently), us **Network File Share (NFS)**.
+-   For a high rate of changes (i.e., if changes happen very frequently), use **Network File Share (NFS)**.
 -   For a medium rate of change, use **Remote Synchronization (Rsync)**.
 -   For a low rate of changes (i.e., if changes happen once a week):
-    - Use the **configuration management system** to handle artifacts.
-    - Use other deployment options (e.g., Puppet, Chef etc.).
+
+    -   Use the **configuration management system** to handle artifacts.
+    -   Use other deployment options (e.g., Puppet, Chef etc.).
 
 Be sure to choose the deployment synchronization method that suits your production environment.
 
