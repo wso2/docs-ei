@@ -54,19 +54,19 @@ Create the databases and then create the DB tables by pointing to the relevant M
 ```bash tab='Cluster Coordination DB'
 mysql> create database clusterdb;
 mysql> use clusterdb;
-mysql> source <MI_HOME>/dbscripts/mysql_cluster.sql;
+mysql> source <MI_HOME>/dbscripts/mysql/mysql_cluster.sql;
 ```
 
 ```bash tab='User Store DB'
 mysql> create database userdb;
 mysql> use userdb;
-mysql> source <MI_HOME>/dbscripts/mysql_user.sql;
+mysql> source <MI_HOME>/dbscripts/mysql/mysql_user.sql;
 ```
 
 ```bash tab='Transaction Counter DB'
 mysql> create database transactiondb;
 mysql> use transactiondb;
-mysql> source <MI_HOME>/dbscripts/mysql_transaction_count.sql;
+mysql> source <MI_HOME>/dbscripts/mysql/mysql_transaction_count.sql;
 ```
 
 !!! Info
