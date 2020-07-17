@@ -238,7 +238,7 @@ Commands and Arguments
 
 ```bash
 show [logger-name]                   Show information about a logger.
-update [logger-name] [log-level] [class-name]  Update the log level of existing logger or add new logger.  The possible values for log level: DEBUG, INFO, WARN, ERROR, TRACE, FATAL, OFF.
+update [logger-name] [class-name] [log-level] Update the log level of existing logger or add new logger.  The possible values for log level: DEBUG, INFO, WARN, ERROR, TRACE, FATAL, OFF.
 ```
 
 Examples
@@ -250,8 +250,8 @@ mi log-level show org-apache-coyote
 # Update the log level of an existing logger
 mi log-level update org-apache-coyote DEBUG
 
-# Update the log level of aa new logger
-mi log-level update synapse-api DEBUG org.apache.synapse.rest.API
+# Add a new logger
+mi log-level update synapse-api org.apache.synapse.rest.API DEBUG
 ```
 
 ### mi api

@@ -793,6 +793,32 @@ The management API has multiple resources to provide information regarding the d
         "message": "Successfully updated logger.org-apache-hadoop-hive.level to DEBUG"
     }
 	```
+	
+### ADD NEW LOGGER
+
+-	**Resource**: `/logging`
+
+	**Description**: Add a new logger.
+
+	**Example**:
+
+	```bash tab='Request'
+	curl -X PATCH \
+      	https://localhost:9164/management/logging \
+      	-H 'authorization: Bearer Token' \
+      	-H 'content-type: application/json' \
+      	-d '{
+              "loggerName": "synapse-api",
+              "loggingLevel": "DEBUG",
+              "loggerClass":"org.apache.synapse.rest.API"
+            }' -k
+	```
+
+	```bash tab='Response'
+	{
+	  "message":"Successfully added logger for ('synapse-api') with level DEBUG for class org.apache.synapse.rest.API"
+	}
+	```
 
 ### GET TRANSACTION COUNT
 
