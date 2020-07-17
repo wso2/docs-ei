@@ -159,22 +159,22 @@ Let's send 8 requests to the Micro Integrator to invoke the integration artifact
 
 1.  Create a JSON file called `request.json` with the following request payload.
 
-    ```java
+    ```json
     {
-    "name": "John Doe",
-    "dob": "1940-03-19",
-    "ssn": "234-23-525",
-    "address": "California",
-    "phone": "8770586755",
-    "email": "johndoe@gmail.com",
-    "doctor": "thomas collins",
-    "hospital": "grand oak community hospital",
-    "cardNo": "7844481124110331",
-    "appointment_date": "2025-04-02"
+        "name": "John Doe",
+        "dob": "1940-03-19",
+        "ssn": "234-23-525",
+        "address": "California",
+        "phone": "8770586755",
+        "email": "johndoe@gmail.com",
+        "doctor": "thomas collins",
+        "hospital": "grand oak community hospital",
+        "cardNo": "7844481124110331",
+        "appointment_date": "2025-04-02"
     }
     ```
 
-2.  Open a command line terminal and execute the following command (**six times** ) from the location where you save the
+2.  Open a command line terminal and execute the following command (**six times**) from the location where you save the
     `request.json` file:  
 
     ```bash
@@ -184,14 +184,16 @@ Let's send 8 requests to the Micro Integrator to invoke the integration artifact
     If the messages are sent successfully, you will receive the following response for each request.
 
     ```json
-    {"appointmentNo":1,
-    "doctorName":"thomas collins",
-    "patient":"John Doe",
-    "actualFee":7000.0,
-    "discount":20,
-    "discounted":5600.0,
-    "paymentID":"e1a72a33-31f2-46dc-ae7d-a14a486efc00",
-    "status":"Settled"}
+    {
+        "appointmentNo": 1,
+        "doctorName": "thomas collins",
+        "patient": "John Doe",
+        "actualFee": 7000.0,
+        "discount": 20,
+        "discounted": 5600.0,
+        "paymentID": "e1a72a33-31f2-46dc-ae7d-a14a486efc00",
+        "status": "Settled"
+    }
     ```
 
 3.  Now, shut down the back-end service and send two more requests.
