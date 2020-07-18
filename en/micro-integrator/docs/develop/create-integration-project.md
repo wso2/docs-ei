@@ -1,4 +1,4 @@
-# Create an Integration Project
+# Creating an Integration Project
 
 An integration project consists of one or several project directories. These directories store the various artifacts that you create for your integration sequence. An integration project can be created as a Maven Multi Module (MMM) project by default. This enables you to add ESB Configs, Composite Exporter, Registry Resources, Connector Exporter, Docker Exporter, and Kubernetes Exporter as sub-modules to the project. 
 
