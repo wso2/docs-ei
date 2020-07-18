@@ -281,7 +281,7 @@ nav:
         - 'Working with WSO2 Integration Studio': 'develop/working-with-wso2-integration-studio.md'
         - 'Troubleshooting WSO2 Integration Studio': 'develop/troubleshooting-WSO2-Integration-Studio.md'
       - Creating Projects:
-        - 'Creating ESB Projects': 'develop/creating-projects.md'
+        - 'Creating Integration Projects': 'develop/create-integration-project.md'
         - 'Creating a Maven Multi Module Project': 'develop/create-multi-maven-project.md'
         - 'Importing Projects': 'develop/importing-projects.md'
         - 'Exporting Projects': 'develop/export_project.md'

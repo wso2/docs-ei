@@ -2,10 +2,10 @@
 
 Create a Kubernetes project directory if you want to deploy your integration solutions in a Kubernetes environment. 
 
-The Kubernetes project allows you to package multiple [integration projects](../../develop/creating-projects) into a single Docker image. Also, a file named **integration_cr.yaml** is generated, which can be used to carry out Kubernetes deployments based on the [k8s-ei-operator](../../setup/deployment/kubernetes_deployment/#ei-kubernetes-k8s-operator).
+The Kubernetes project allows you to package multiple [integration projects](../../develop/create-integration-project) into a single Docker image. Also, a file named **integration_cr.yaml** is generated, which can be used to carry out Kubernetes deployments based on the [k8s-ei-operator](../../setup/deployment/kubernetes_deployment/#ei-kubernetes-k8s-operator).
 
 !!! Tip
-    If you want to simultaneously create all the projects required for your use case, read about the [integration project solution](../../develop/creating-project-solution).
+    If you want to simultaneously create all the projects required for your use case, read about the [integration project](../../develop/create-integration-project).
 
 ## Prerequisites
     
@@ -216,7 +216,7 @@ Expand the **Kubernetes Exporter Project** in the project explorer. See that the
 !!! Info
     **Before you begin**:
 
-    -   Create your integration artifacts in a [Config project](../../develop/creating-projects/#esb-config-proje) and package the artifacts in a [Composite Application project](../../develop/packaging-artifacts). For example, see the HelloWorld sample given below.
+    -   Create your integration artifacts in an [integration project](../../develop/create-integration-project) and package the artifacts in a [Composite Application project](../../develop/packaging-artifacts). For example, see the HelloWorld sample given below.
 
         <img alt="Integration artifacts for Docker" src="../../assets/img/create_project/docker_k8s_project/integration-projects-for-k8s.png" width="300">
 
