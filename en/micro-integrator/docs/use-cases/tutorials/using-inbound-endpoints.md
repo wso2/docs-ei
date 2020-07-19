@@ -16,7 +16,7 @@ Set up WSO2 Integration Studio as follows:
     !!! Note
         This tutorial is a continuation of the [Sending a Simple Message to a Service](sending-a-simple-message-to-a-service.md) tutorial.
 
-    1.  Download the [pre-packaged project](https://github.com/wso2-docs/WSO2_EI/blob/master/Integration-Tutorial-Artifacts/SimpleMessageToServiceTutorial.zip).
+    1.  Download the [pre-packaged project](https://github.com/wso2-docs/WSO2_EI/blob/master/Integration-Tutorial-Artifacts/Integration-Tutorial-Artifacts-EI7.1.0/sending-simple-message-tutorial.zip).
     2.  Open WSO2 Integration Studio and go to **File -> Import**. 
     3.  Select **Existing WSO2 Projects into workspace** under the **WSO2** category, click **Next**, and then upload the **prepackaged project**.
 
