@@ -4,9 +4,9 @@
 
 When information from several services are required to construct a response to a client request, service chaining needs to be implemented. That is, several services are integrated based on some business logic and exposed as a single, aggregated service. 
 
-In this use tutorial, when a client sends a request for a medical appointment, the Micro Integrator performs several service call to multiple back-end services in order to construct the response that includes all the necessary details. 
+In this tutorial, when a client sends a request for a medical appointment, the Micro Integrator performs several service call to multiple back-end services in order to construct the response that includes all the necessary details. 
 
-To build this mediation flow, you will update the API resource from the [previous tutorial](transforming-message-content.md) to send messages through the Micro Integrator to the back-end service using the **Call** mediator instead of the **Send** mediator. Using the Call mediator allows you to specify all service invocations one after the other within a single sequence. You will then use the **PayloadFactory** mediator to take the response from one back-end service and change it to the format that is accepted by the other back-end service.
+To build this mediation flow, you will update the API resource from the [Message Transformation](transforming-message-content.md) tutorial to send messages through the Micro Integrator to the back-end service using the **Call** mediator instead of the **Send** mediator. The Call mediator allows you to specify all service invocations one after the other within a single sequence. You will then use the **PayloadFactory** mediator to take the response from one back-end service and change it to the format that is accepted by the other back-end service.
 
 ## Let's get started!
 
@@ -15,17 +15,14 @@ To build this mediation flow, you will update the API resource from the [previou
 Set up WSO2 Integration Studio as follows:
 
 1.  Download the relevant [WSO2 Integration Studio](https://wso2.com/integration/tooling/) based on your operating system. The path to the extracted/installed folder is referred to as `MI_TOOLING_HOME` throughout this tutorial.
-2.  If you did not try the [Transforming Message Content](transforming-message-content.md) tutorial yet:  
-    1.  Download the [pre-packaged project](https://github.com/wso2-docs/WSO2_EI/blob/master/Integration-Tutorial-Artifacts/TransformingContentTutorial.zip). 
+2.  Set up the project from the [Message Transformation](transforming-message-content.md) tutorial:
+
+    !!! Note
+        This tutorial is a continuation of the [Message Transformation](transforming-message-content.md) tutorial.
+
+    1.  Download the [pre-packaged project](https://github.com/wso2-docs/WSO2_EI/blob/master/Integration-Tutorial-Artifacts/TransformingContentTutorial.zip).
     2.  Open WSO2 Integration Studio and go to **File -> Import**. 
-    3.  Select **Existing WSO2 Projects into workspace** under the **WSO2** category, click **Next**, and upload the **prepackaged project**. 
-
-Optionally, you can set up the **CLI tool** for artifact monitoring. This will later help you get details of the artifacts that you deploy in your Micro Integrator.
-
-1.  Go to the [WSO2 Micro Integrator website](https://wso2.com/integration/#). 
-2.  Click **Download -> Other Resources** and click **CLI Tooling** to download the tool. 
-3.  Extract the downloaded ZIP file. This will be your `MI_CLI_HOME` directory. 
-4.  Export the `MI_CLI_HOME/bin` directory path as an environment variable. This allows you to run the tool from any location on your computer using the `mi` command. Read more about the [CLI tool](../../../administer-and-observe/using-the-command-line-interface).
+    3.  Select **Existing WSO2 Projects into workspace** under the **WSO2** category, click **Next**, and then upload the **prepackaged project**.
 
 ### Step 2: Develop the integration artifacts
 
@@ -33,7 +30,7 @@ Optionally, you can set up the **CLI tool** for artifact monitoring. This will l
 
 Let's create new HTTP endpoints to represent the back-end services that are required for checking the channelling fee and to settle the payment.
 
-1.  Right click **SampleServices** in the Project Explorer and navigate to **New -> Endpoint**. 
+1.  Right click **SampleServicesConfigs** in the Project Explorer and navigate to **New -> Endpoint**. 
 2.  Ensure **Create a New Endpoint** is selected and click **Next.**
 3.  Enter the details given below:
     <table>
@@ -78,12 +75,12 @@ Let's create new HTTP endpoints to represent the back-end services that are requ
          <td>Static Endpoint</td>
          <td><br/>
          </td>
-         <td>Select this option because we are going to use this endpoint only in this ESB Config project and will not reuse it in other projects.</br/></br/> <b>Note</b>: If you need to create a reusable endpoint, save it as a Dynamic Endpoint in either the Configuration or Governance Registry.</td>
+         <td>Select this option because we are going to use this endpoint only in this ESB Config module and will not reuse it in other projects.</br/></br/> <b>Note</b>: If you need to create a reusable endpoint, save it as a Dynamic Endpoint in either the Configuration or Governance Registry.</td>
       </tr>
       <tr>
          <td>Save Endpoint in</td>
-         <td><code>               SampleServices              </code></td>
-         <td>This is the ESB Config project we created in the last section</td>
+         <td><code>               SampleServicesConfigs            </code></td>
+         <td>This is the ESB Config module.</td>
       </tr>
     </table>
 
@@ -134,12 +131,12 @@ Let's create new HTTP endpoints to represent the back-end services that are requ
          <td>Static Endpoint</td>
          <td><br/>
          </td>
-         <td>Select this option because we are going to use this endpoint only in this ESB Config project and will not reuse it in other projects.</br/></br/> <b>Note</b>: If you need to create a reusable endpoint, save it as a Dynamic Endpoint in either the Configuration or Governance Registry.</td>
+         <td>Select this option because we are going to use this endpoint only in this ESB Config module and will not reuse it in other projects.</br/></br/> <b>Note</b>: If you need to create a reusable endpoint, save it as a Dynamic Endpoint in either the Configuration or Governance Registry.</td>
       </tr>
       <tr>
          <td>Save Endpoint in</td>
-         <td><code>SampleServices</code></td>
-         <td>This is the ESB Config project we created in the last section</td>
+         <td><code>SampleServicesConfigs</code></td>
+         <td>This is the ESB Config module.</td>
       </tr>
     </table>
 
@@ -203,7 +200,7 @@ You can now start updating the API resource with the mediation flow.
       </tr>
     </table>
 
-3.  Go to the first case box of the Switch mediator. Add a Property mediator just after the Log mediator to store the value for `          uri.var.hospital         ` variable that will be used when sending requests to **ChannelingFeeEP** service. 
+3. Go to the first case box of the Switch mediator. Add a Property mediator just after the Log mediator to store the value for `          uri.var.hospital         ` variable that will be used when sending requests to **ChannelingFeeEP** service. 
 
     ![](../../assets/img/tutorials/119132228/119132237.png)
 
@@ -246,8 +243,8 @@ You can now start updating the API resource with the mediation flow.
     </table>
 
 5.  Similarly, add property mediators in the other two case boxes in the Switch mediator. Change only the **Value** field as follows:
-    -   Case 2: `            clemency           `
-    -   Case 3: `            pinevalley           `  
+    -   Case 2: `clemency`
+    -   Case 3: `pinevalley`  
 
     ![](../../assets/img/tutorials/119132228/119132236.png)
 
@@ -498,7 +495,6 @@ You can now start updating the API resource with the mediation flow.
 
     ![](../../assets/img/tutorials/119132228/119132232.png)
     
-
     !!! Note
         You derive the Value Expression in the above table from the following response that is received from ChannelingFeeEP:
         ```
@@ -511,28 +507,28 @@ You can now start updating the API resource with the mediation flow.
 
     ```json
     {"appointmentNumber":2,
-            "doctor":{
-                "name":"thomas collins",
-                "hospital":"grand oak community hospital",
-                "category":"surgery",
-                "availability":"9.00 a.m - 11.00 a.m",
-                "Fee":7000.0
-            },
-            "patient":{
-                "name":"John Doe",
-                "Dob":"1990-03-19",
-                "ssn":"234-23-525",
-                "address":"California",
-                "phone":"8770586755",
-                "email":"johndoe@gmail.com"
-            },
-            "fee":7000.0,
-            "Confirmed":false,
-            "card_number":"1234567890"
+        "doctor":{
+            "name":"thomas collins",
+            "hospital":"grand oak community hospital",
+            "category":"surgery",
+            "availability":"9.00 a.m - 11.00 a.m",
+            "Fee":7000.0
+        },
+        "patient":{
+            "name":"John Doe",
+            "Dob":"1990-03-19",
+            "ssn":"234-23-525",
+            "address":"California",
+            "phone":"8770586755",
+            "email":"johndoe@gmail.com"
+        },
+        "fee":7000.0,
+        "Confirmed":false,
+        "card_number":"1234567890"
     }
     ```
 
-15.  Add a PayloadFactory mediator next to the Property mediator, from the **mediators** palette to construct the above message payload.
+15.  Add a PayloadFactory mediator (from the **mediators** palette) next to the Property mediator to construct the above message payload.
       ![](../../assets/img/tutorials/119132228/119132229.png) 
 
 16. With the Payloadfactory mediator selected, access the properties tab of the mediator and specify the following details:
@@ -545,7 +541,7 @@ You can now start updating the API resource with the mediation flow.
     
 17. To add the **Args** field for the PayloadFactory mediator:
     1. Click the **plus** icon (<img src="../../../assets/img/tutorials/common/plus-icon.png" width="30">) in the **Args** field to open the **PayloadFactoryArgument** dialog. 
-    2. Enter the following information in the **PayloadFactoryArgument** dialog. This provides the argument that defines the actual value of the first variable (used in the format definition given in the previous step).
+    2. Enter the following information in the **PayloadFactoryArgument** dialog box. This provides the argument that defines the actual value of the first variable (used in the format definition given in the previous step).
 
         !!! Tip
             To avoid getting an error message, first select the **Media Type** before providing the **Payload.**
@@ -603,7 +599,7 @@ You can now start updating the API resource with the mediation flow.
 
     ![](../../assets/img/tutorials/119132228/119132231.png)
 
-19. Add a Call mediator and add SettlePaymentEP from Defined Endpoints palette to the empty box adjoining the Call mediator.
+19. Add a Call mediator and add SettlePaymentEP from the Defined Endpoints palette to the empty box adjoining the Call mediator.
 20. Add a **Respond** mediator to send the response to the client. 
 
 You should now have a completed configuration that looks like this: 
@@ -612,29 +608,34 @@ You should now have a completed configuration that looks like this:
 
 ### Step 3: Package the artifacts
 
-Package the artifacts in your composite application project (SampleServicesCompositeApplication project) and the registry resource project (SampleRegistryResource project) to be able to deploy the artifacts in the server.
+Package the artifacts in your composite exporter (SampleServicesCompositeExporter) to be able to deploy the artifacts in the server.
 
-1.  Open the `          pom.xml         ` file in the composite application project POM editor.
+1.  Open the `          pom.xml         ` file in the composite exporter.
 2.  Ensure that the following projects and artifacts are selected in the POM file.
 
-    -   SampleServicesCompositeApplicationProject
+    -   SampleServicesCompositeExporter
         -   `HealthcareAPI`
         -   `ClemencyEP`
         -   `GrandOakEP`
         -   `PineValleyEP`
         -   `ChannelingFeeEP`
         -   `SettlePaymentEP`
-    -   SampleServicesRegistryProject
+    -   SampleServicesRegistryResources
 
-3.  Save the project.
+3.  Save the changes.
 
 ### Step 4: Build and run the artifacts
 
 To test the artifacts, deploy the [packaged artifacts](#step-3-package-the-artifacts) in the embedded Micro Integrator:
 
-1.  Right-click the composite application project and click **Export Project Artifacts and Run**.
-2.  In the dialog that opens, select the composite application project that you want to deploy.  
-3.  Click **Finish**. The artifacts will be deployed in the embedded Micro Integrator and the server will start. See the startup log in the **Console** tab. 
+1.  Right-click the composite exporter module and click **Export Project Artifacts and Run**.
+2.  In the dialog box that opens, confirm that the required artifacts from the composite exporter module are selected.     
+4.  Click **Finish**. 
+
+The artifacts will be deployed in the embedded Micro Integrator and the server will start.
+
+- See the startup log in the **Console** tab.
+- See the URLs of the deployed services and APIs in the **Deployed Services** tab.
 
 ### Step 5: Test the use case
 
@@ -649,37 +650,6 @@ Let's test the use case by sending a simple client request that invokes the serv
     ```bash
     java -jar Hospital-Service-2.0.0-EI7.jar
     ```
-
-#### Get details of deployed artifacts (Optional)
-
-Let's use the **CLI Tool** to find the URL of the REST API (that is deployed in the Micro integrator) to which you will send a request.
-
-!!! Tip
-    Be sure to set up the CLI tool for your work environment as explained in the [first step](#step-1-set-up-the-workspace) of this tutorial.
-
-1.  Open a terminal and execute the following command to start the tool:
-    ```bash
-    mi
-    ```
-    
-2.  Log in to the CLI tool. Let's use the server administrator user name and password:
-    ```bash
-    mi remote login admin admin
-    ```
-
-    You will receive the following message: *Login successful for remote: default!*
-
-3.  Execute the following command to find the APIs deployed in the server:
-    ```bash
-    mi api show
-    ```
-
-    You will receive the following information:
-
-    *NAME : HealthcareAPI*            
-    *URL  : http://localhost:8290/healthcare* 
-
-Similarly, you can get details of other artifacts deployed in the server. Read more about [using the CLI tool](../../../administer-and-observe/using-the-command-line-interface).
 
 #### Send the client request
 

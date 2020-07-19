@@ -4,7 +4,7 @@
 
 In this sample scenario, you will use a **Sequence Template**
 and reuse it in multiple places of the medation flow. You can reuse the
-mediation flow that was defined in the [Sending a Simple Message to a Service](../sending-a-simple-message-to-a-service) tutorial and then replace its sections with the sequence template . See [Creating Templates](../../develop/creating-artifacts/creating-sequence-templates.md) for details
+mediation flow that was defined in the [Sending a Simple Message to a Service](../sending-a-simple-message-to-a-service) tutorial and then replace its sections with the sequence template. See [Creating Templates](../../develop/creating-artifacts/creating-sequence-templates.md) for details
 on how to work with templates using WSO2 Integration Studio.
 
 ## Let's get started!
@@ -14,28 +14,26 @@ on how to work with templates using WSO2 Integration Studio.
 Set up WSO2 Integration Studio as follows:
 
 1.  Download the relevant [WSO2 Integration Studio](https://wso2.com/integration/tooling/) based on your operating system. The path to the extracted/installed folder is referred to as `MI_TOOLING_HOME` throughout this tutorial.
-2.  If you did not try the [Exposing Several Services as a Single Service](exposing-several-services-as-a-single-service.md) tutorial yet:
+2.  Set up the project from the [Sending a Simple Message to a Service](sending-a-simple-message-to-a-service.md) tutorial:
 
-    1.  Download the [pre-packaged project](https://github.com/wso2-docs/WSO2_EI/blob/master/Integration-Tutorial-Artifacts/ExposingSeveralServicesTutorial.zip). 
+    !!! Note
+        This tutorial is a continuation of the [Sending a Simple Message to a Service](sending-a-simple-message-to-a-service.md) tutorial.
+
+    1.  Download the [pre-packaged project](https://github.com/wso2-docs/WSO2_EI/blob/master/Integration-Tutorial-Artifacts/SimpleMessageToServiceTutorial.zip).
     2.  Open WSO2 Integration Studio and go to **File -> Import**. 
-    3.  Select **Existing WSO2 Projects into workspace** under the **WSO2** category, click **Next**, and then upload the **pre-packaged project**.
-
-Optionally, you can set up the **CLI tool** for artifact monitoring. This will later help you get details of the artifacts that you deploy in your Micro Integrator.
-
-1.  Go to the [WSO2 Micro Integrator website](https://wso2.com/integration/#). 
-2.  Click **Download -> Other Resources** and click **CLI Tooling** to download the tool. 
-3.  Extract the downloaded ZIP file. This will be your `MI_CLI_HOME` directory. 
-4.  Export the `MI_CLI_HOME/bin` directory path as an environment variable. This allows you to run the tool from any location on your computer using the `mi` command. Read more about the [CLI tool](../../../administer-and-observe/using-the-command-line-interface).
+    3.  Select **Existing WSO2 Projects into workspace** under the **WSO2** category, click **Next**, and then upload the **prepackaged project**.
 
 ### Step 2: Develop the integration artifacts
 
 #### Create a Sequence Template
 
-1.  Once you have exported the ESB project as described above, the project directory will appear with the artifacts as shown below.
+1.  Once you have exported the integration project as described in above, the
+    project directory will appear with the artifacts as shown below.
+    Note the 'HealthcareAPI' that is already included.
 
     ![](../../assets/img/tutorials/sequence-temp-project-explorer.png)
 
-2.  Right-click on **SampleServices** and navigate to **New -> Template** . The **New Template Artifact** dialog will open.
+2.  Right-click on **SampleServicesConfigs** and navigate to **New -> Template** . The **New Template Artifact** dialog box will open.
 3.  Select the **Create a New Template** and click **Next**.
 4.  Enter the following details and click **Finish**.
     <table>
@@ -67,7 +65,7 @@ Optionally, you can set up the **CLI tool** for artifact monitoring. This will l
 
     ![](../../assets/img/tutorials/sequence-canvas-2.png) 
 
-8.  In the **Template Parameter** dialog that opens, enter 'sethospital' as the parameter name and click **Finish** .
+8.  In the **Template Parameter** dialog box that opens, enter 'sethospital' as the parameter name and click **Finish**.
 
 9.  Add a **Log** mediator to the sequence template as shown below. This
     will print a message indicating to which hospital a requested
@@ -210,24 +208,28 @@ Optionally, you can set up the **CLI tool** for artifact monitoring. This will l
 
 ### Step 3: Package the artifacts
 
-Package the artifacts in your composite application project (SampleServicesCompositeApplication project) to be able to deploy the artifacts in the server.
+Package the artifacts in your composite exporter module (SampleServicesCompositeExporter) to be able to deploy the artifacts in the server.
 
-1.  Open the `pom.xml` file in the composite application project POM editor.
+1.  Open the `pom.xml` file in the composite exporter module.
 2.  Ensure that the following artifacts are selected in the POM file.
 
     -   `HealthcareAPI`
     -   `HospitalRoutingSeq`
 
-3.  Save the project.
+3.  Save the changes.
 
 ### Step 4: Build and run the artifacts
 
 To test the artifacts, deploy the [packaged artifacts](#step-3-package-the-artifacts) in the embedded Micro Integrator:
 
-1.  Right-click the composite application project and click **Export Project Artifacts and Run**.
-2.  In the dialog that opens, select the composite application project that you want to deploy.  
-4.  Click **Finish**. The artifacts will be deployed in the embedded Micro Integrator and the server will start. See the startup log in the **Console** tab. 
+1.  Right-click the composite exporter module and click **Export Project Artifacts and Run**.
+2.  In the dialog box that opens, confirm that the required artifacts from the composite exporter module are selected.     
+4.  Click **Finish**. 
 
+The artifacts will be deployed in the embedded Micro Integrator and the server will start.
+
+- See the startup log in the **Console** tab.
+- See the URLs of the deployed services and APIs in the **Deployed Services** tab. 
 
 ### Step 5: Testing the use case
 
@@ -242,37 +244,6 @@ Let's test the use case by sending a simple client request that invokes the serv
     ```bash
     java -jar Hospital-Service-2.0.0-EI7.jar
     ```
-
-#### Get details of deployed artifacts (Optional)
-
-Let's use the **CLI Tool** to find the URL of the REST API (that is deployed in the Micro integrator) to which you will send a request.
-
-!!! Tip
-    Be sure to set up the CLI tool for your work environment as explained in the [first step](#step-1-set-up-the-workspace) of this tutorial.
-
-1.  Open a terminal and execute the following command to start the tool:
-    ```bash
-    mi
-    ```
-    
-2.  Log in to the CLI tool. Let's use the server administrator user name and password:
-    ```bash
-    mi remote login admin admin
-    ```
-
-    You will receive the following message: *Login successful for remote: default!*
-
-3.  Execute the following command to find the APIs deployed in the server:
-    ```bash
-    mi api show
-    ```
-
-    You will receive the following information:
-
-    *NAME : HealthcareAPI*            
-    *URL  : http://localhost:8290/healthcare*
-     
-Similarly, you can get details of Connectors as well as other artifacts deployed in the server. Read more about [using the CLI tool](../../../administer-and-observe/using-the-command-line-interface).
 
 #### Send the client request
 
