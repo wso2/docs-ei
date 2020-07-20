@@ -1,4 +1,4 @@
-# Creating a Kubernetes Exporter Project
+# Creating Kubernetes Exporter
 
 Create a Kubernetes project directory if you want to deploy your integration solutions in a Kubernetes environment. 
 
