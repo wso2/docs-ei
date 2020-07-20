@@ -36,7 +36,7 @@ Follow the steps given below to connect the Micro Integrator to your LDAP user s
 	connection_url = "ldap://localhost:10389"  
 	connection_name = "uid=admin,ou=system"
 	connection_password = "admin"  
-	user_search_base = "ou=system" 
+	user_search_base = "ou=Users,dc=wso2,dc=org"
 	type = "read_only_ldap"
 	```
 

@@ -16,17 +16,14 @@ To implement this use case, you will add a new REST resource to the existing RES
 Set up WSO2 Integration Studio as follows:
 
 1.  Download the relevant [WSO2 Integration Studio](https://wso2.com/integration/tooling/) based on your operating system. The path to the extracted/installed folder is referred to as `MI_TOOLING_HOME` throughout this tutorial.
-2.   If you did not try the [Sending a Simple Message to a Service](sending-a-simple-message-to-a-service.md) tutorial yet:
-    1.  Download the [pre-packaged project](https://github.com/wso2-docs/WSO2_EI/blob/master/Integration-Tutorial-Artifacts/SimpleMessageToServiceTutorial.zip).
+2.  Set up the project from the [Sending a Simple Message to a Service](sending-a-simple-message-to-a-service.md) tutorial:
+
+    !!! Note
+        This tutorial is a continuation of the [Sending a Simple Message to a Service](sending-a-simple-message-to-a-service.md) tutorial.
+
+    1.  Download the [pre-packaged project](https://github.com/wso2-docs/WSO2_EI/blob/master/Integration-Tutorial-Artifacts/Integration-Tutorial-Artifacts-EI7.1.0/sending-simple-message-tutorial.zip).
     2.  Open WSO2 Integration Studio and go to **File -> Import**. 
     3.  Select **Existing WSO2 Projects into workspace** under the **WSO2** category, click **Next**, and then upload the **prepackaged project**.
-
-Optionally, you can set up the **CLI tool** for artifact monitoring. This will later help you get details of the artifacts that you deploy in your Micro Integrator.
-
-1.  Go to the [WSO2 Micro Integrator website](https://wso2.com/integration/#). 
-2.  Click **Download -> Other Resources** and click **CLI Tooling** to download the tool. 
-3.  Extract the downloaded ZIP file. This will be your `MI_CLI_HOME` directory. 
-4.  Export the `MI_CLI_HOME/bin` directory path as an environment variable. This allows you to run the tool from any location on your computer using the `mi` command. Read more about the [CLI tool](../../../administer-and-observe/using-the-command-line-interface). 
 
 ### Step 2: Develop the integration artifacts
 
@@ -45,7 +42,7 @@ The request method is POST and the format of the request URL expected by the ba
 
 Let's create three different HTTP endpoints for the above services.
 
-1.  Right-click **SampleServices** in the Project Explorer and navigate to **New -> Endpoint**. 
+1.  Right-click **SampleServicesConfigs** in the Project Explorer and navigate to **New -> Endpoint**. 
 2.  Ensure **Create a New Endpoint** is selected and click **Next**.
 3.  Enter the information given below to create the new endpoint.
     <table>
@@ -90,17 +87,16 @@ Let's create three different HTTP endpoints for the above services.
                 Endpoint HTTP REST Method.
             </td>
         </tr>
-    
         <tr>
          <td>Static Endpoint</td>
          <td><br/>
          </td>
-         <td>Select this option because we are going to use this endpoint only in this ESB Config project and will not reuse it in other projects.</br/></br/> <b>Note</b>: If you need to create a reusable endpoint, save it as a Dynamic Endpoint in either the Configuration or Governance Registry.</td>
+         <td>Select this option because we are going to use this endpoint only in this ESB Config module and will not reuse it in other projects.</br/></br/> <b>Note</b>: If you need to create a reusable endpoint, save it as a Dynamic Endpoint in either the Configuration or Governance Registry.</td>
       </tr>
       <tr>
          <td>Save Endpoint in</td>
-         <td><code>               SampleServices              </code></td>
-         <td>This is the ESB Config project we created in the last section</td>
+         <td><code>               SampleServicesConfigs              </code></td>
+         <td>This is the ESB Config module we created in the last section</td>
       </tr>
     </table>
 
@@ -225,10 +221,10 @@ You can now start configuring the API resource.
       <td><strong>Source XPath</strong></td>
       <td>
          <div class="content-wrapper">
-            <p>The <strong>Source XPath</strong> field is where we specify the XPath expression, which obtains the value of Hospital that we stored in the Property mediator.</p>
+            <p>The <strong>Source XPath</strong> field is where we specify the XPath expression, which obtains the value of the Hospital that we stored in the Property mediator.</p>
             <p>Follow the steps given below to specify the expression:</p>
             <ol>
-                <li>Click the text box of the <strong>Source XPath</strong> property. This opens the <b>Expression Selector</b> dialog.</li>
+                <li>Click the text box of the <strong>Source XPath</strong> property. This opens the <b>Expression Selector</b> dialog box.</li>
                <li>Select <strong>Expression</strong> from the list.
                 </li>
                <li>Enter <code>                  get-property('Hospital')                 </code> to overwrite the default expression.</li>
@@ -245,7 +241,7 @@ You can now start configuring the API resource.
          <div class="content-wrapper">
             <p>Follow the steps given below to add the case branches:</p>
             <ol>
-                <li>Double click each <b>case regex</b> (corresponding to each branch) that is listed. This will open the <b>SwitchCaseBranchOutputConnector</b> dialog.</li>
+                <li>Double click each <b>case regex</b> (corresponding to each branch) that is listed. This will open the <b>SwitchCaseBranchOutputConnector</b> dialog box.</li>
                <li>
                   Change the RegEx values for the switch cases as follows:
                   <ul>
@@ -291,7 +287,7 @@ You can now start configuring the API resource.
         <td>Log Separator</td>
         <td>(blank)</td>
         <td>
-           Since there is only one property that is being logged, we do not require a separator, so this field can be left blank. 
+           Since there is only one property that is being logged, we do not require a separator. Therefore, this field can be left blank. 
         </td>
     </tr>
     <tr>
@@ -301,10 +297,10 @@ You can now start configuring the API resource.
             <ol>
                 <li>
                     Click the <b>plus</b> icon (<img src="../../../assets/img/tutorials/common/plus-icon.png" width="30">)
-    to start defining a property. This opens the <b>LogProperty</b> dialog.
+    to start defining a property. This opens the <b>LogProperty</b> dialog box.
                 </li>
                 <li>
-                    Add the following values in the <b>LogProperty</b> dialog:
+                    Add the following values in the <b>LogProperty</b> dialog box:
                     <ul>
                         <li>
                             <b>Name</b> : `message`
@@ -342,7 +338,7 @@ You can now start configuring the API resource.
 10. Add **Send** mediators adjoining these log mediators and add the **ClemencyEP** and **PineValleyEP** endpoints respectively from the **Defined Endpoints** palette.
 
     !!! Info
-        You have now configured the Switch mediator to log the `Routing to <Hospital Name>` message when a request is sent to this API resource. The request message will then be routed to the relevant hospital backend service based on the hospital that is sent in the request payload.
+        You have now configured the Switch mediator to log the `Routing to <Hospital Name>` message when a request is sent to this API resource. The request message will then be routed to the relevant hospital back-end service based on the hospital that is sent in the request payload.
 
 11. Add a **Log mediator** to the **Default** (the bottom box) of the Switch mediator and configure it the same way as the previous Log mediators.
 
@@ -363,9 +359,9 @@ You have successfully created all the artifacts that are required for routing me
 
 ### Step 3: Package the artifacts
 
-Package the artifacts in your composite application project (SampleServicesCompositeApplication project) to be able to deploy the artifacts in the server.
+Package the artifacts in your composite application module (SampleServicesCompositeExporter) to be able to deploy the artifacts in the server.
 
-1.  Open the `          pom.xml         ` file in the composite application project POM editor.
+1.  Open the `          pom.xml         ` file in the composite exporter module.
 2.  Ensure that the following artifacts are selected in the POM file.
 
     -   `HealthcareAPI`
@@ -373,15 +369,20 @@ Package the artifacts in your composite application project (SampleServicesCompo
     -   `GrandOakEP`
     -   `PineValleyEP`
 
-3.  Save the project.
+3.  Save the changes.
 
 ### Step 4: Build and run the artifacts
 
 To test the artifacts, deploy the [packaged artifacts](#step-3-package-the-artifacts) in the embedded Micro Integrator:
 
-1.  Right-click the composite application project and click **Export Project Artifacts and Run**.
-2.  In the dialog that opens, select the composite application project that you want to deploy.  
-4.  Click **Finish**. The artifacts will be deployed in the embedded Micro Integrator and the server will start. See the startup log in the **Console** tab. 
+1.  Right-click the composite exporter module and click **Export Project Artifacts and Run**.
+2.  In the dialog box that opens, confirm that the required artifacts from the composite exporter module are selected.     
+4.  Click **Finish**. 
+
+The artifacts will be deployed in the embedded Micro Integrator and the server will start.
+
+- See the startup log in the **Console** tab.
+- See the URLs of the deployed services and APIs in the **Deployed Services** tab.
 
 ### Step 5: Test the use case
 
@@ -396,37 +397,6 @@ Let's test the use case by sending a simple client request that invokes the serv
     ```bash
     java -jar Hospital-Service-2.0.0-EI7.jar
     ```
-
-#### Get details of deployed artifacts (Optional)
-
-Let's use the **CLI Tool** to find the URL of the REST API (that is deployed in the Micro integrator) to which you will send a request.
-
-!!! Tip
-    Be sure to set up the CLI tool for your work environment as explained in the [first step](#step-1-set-up-the-workspace) of this tutorial.
-
-1.  Open a terminal and execute the following command to start the tool:
-    ```bash
-    mi
-    ```
-    
-2.  Log in to the CLI tool. Let's use the server administrator user name and password:
-    ```bash
-    mi remote login admin admin
-    ```
-
-    You will receive the following message: *Login successful for remote: default!*
-
-3.  Execute the following command to find the APIs deployed in the server:
-    ```bash
-    mi api show
-    ```
-
-    You will receive the following information:
-
-    *NAME : HealthcareAPI*            
-    *URL  : http://localhost:8290/healthcare* 
-
-Similarly, you can get details of other artifacts deployed in the server. Read more about [using the CLI tool](../../../administer-and-observe/using-the-command-line-interface).
 
 #### Send the client request
 

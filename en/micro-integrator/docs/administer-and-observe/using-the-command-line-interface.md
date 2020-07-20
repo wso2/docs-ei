@@ -226,7 +226,7 @@ mi logs show
 
 ### mi log-level
 
-Use `log-level` to manage the log4j logs in a Micro Integrator server.
+Use `log-level` to manage the logging configurations in a Micro Integrator server.
 
 Usage
 
@@ -238,7 +238,7 @@ Commands and Arguments
 
 ```bash
 show [logger-name]                   Show information about a logger.
-update [logger-name] [log-level]     Update the log level of a logger. Specify both the logger name and log level as arguements. The possible values for log level: DEBUG, INFO, WARN, ERROR, TRACE, FATAL, OFF.
+update [logger-name] [class-name] [log-level] Update the log level of existing logger or add new logger.  The possible values for log level: DEBUG, INFO, WARN, ERROR, TRACE, FATAL, OFF.
 ```
 
 Examples
@@ -247,8 +247,11 @@ Examples
 # Show information about a logger
 mi log-level show org-apache-coyote
 
-# Update the log level of a logger
+# Update the log level of an existing logger
 mi log-level update org-apache-coyote DEBUG
+
+# Add a new logger
+mi log-level update synapse-api org.apache.synapse.rest.API DEBUG
 ```
 
 ### mi api

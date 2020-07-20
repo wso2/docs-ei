@@ -14,24 +14,28 @@ Download the relevant [WSO2 Integration Studio](https://wso2.com/integration/too
 
 Follow the instructions given in this section to create and configure the required artifacts.
 
-#### Create an ESB Config project
+#### Create an Integration Project
 
-To create an ESB solution consisting of an **ESB config** project and a **Composite Application** project:
+Create an integration project with the following modules: **ESB Configs** and **Composite Exporter** module:
 
 1.  Open **WSO2 Integration Studio**.
-2.  Go to **ESB Project** and click **Create New**.
-    ![](../../assets/img/tutorials/119132413/119132414.png)
+2.  Click **New Integration Project** in the **Getting Started** tab as shown below. 
 
-3.  Enter `ScheduleDefaultTask` as the project name. Be sure to select the following check boxes so that the relevant
-    projects will be created.
-    -   **Create Composite Application Project**
+    ![](../../assets/img/create_project/create-integration-project.png)
+
+    This will open the <b>New Integration Project</b> dialog box.
+
+3.  Enter `ScheduleDefaultTask` as the project name and select the following check boxes to create the required modules.
+    -   **Create ESB Configs**
+    -   **Create Composite Exporter**
 
 4.  Click **Finish**.  
-    The created projects are saved in the **Project Explorer**.
+
+The created projects are saved in the **Project Explorer**.
 
 #### Creating the Sequence
 
-1.  In the **Project Explorer**, right click the **ScheduleDefaultTask** project, and click **New** → **Sequence**.  
+1.  In the **Project Explorer**, right click **ScheduleDefaultTask**, and click **New** → **Sequence**.  
     ![](../../assets/img/tutorials/scheduled-tasks/1-select-sequence.png) 
 2.  Click **Create New Sequence** and click **Next**.
 3.  Enter **InjectXMLSequence** as the sequence name and click **Finish**.  
@@ -74,7 +78,7 @@ Shown below is the complete source configuration of the Sequence (i.e., the `Inj
 ```
 #### Creating the Scheduled Task
 
-1. Right click the **ScheduleDefaultTask** project and click **New → Scheduled Task**.
+1. In the **Project Explorer**, right click **ScheduleDefaultTask**, and click **New → Scheduled Task**.
     ![](../../assets/img/tutorials/scheduled-tasks/4-create-task.png)  
 
 2. Select **Create a New Scheduled Task Artifact** and click **Next**.
@@ -128,19 +132,24 @@ Shown below is the complete source configuration of the scheduled task.
 
 ### Step 3: Package the artifacts
 
-Package the artifacts in your composite application project (SampleServicesCompositeApplication project) to be able to deploy the artifacts in the server.
+Package the artifacts in your composite application module to be able to deploy the artifacts in the server.
 
-1.  Open the `          pom.xml         ` file in the composite application project POM editor.
+1.  Open the `          pom.xml         ` file in the composite exporter module.
 2.  Ensure that the relevant artifacts are selected in the POM file.
-3.  Save the project.
+3.  Save the changes.
 
 ### Step 4: Build and run the artifacts
 
 To test the artifacts, deploy the [packaged artifacts](#step-3-package-the-artifacts) in the embedded Micro Integrator:
 
-1.  Right-click the composite application project and click **Export Project Artifacts and Run**.
-2.  In the dialog that opens, select the composite application project that you want to deploy.  
-4.  Click **Finish**. The artifacts will be deployed in the embedded Micro Integrator and the server will start. See the startup log in the **Console** tab.
+1.  Right-click the composite exporter module and click **Export Project Artifacts and Run**.
+2.  In the dialog box that opens, confirm that the required artifacts from the composite exporter module are selected.     
+4.  Click **Finish**. 
+
+The artifacts will be deployed in the embedded Micro Integrator and the server will start.
+
+- See the startup log in the **Console** tab.
+- See the URLs of the deployed services and APIs in the **Deployed Services** tab.
 
 ### Step 5: Test the use case
 
