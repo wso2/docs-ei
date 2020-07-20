@@ -80,7 +80,7 @@ This configuration refers to a data source named `Error_Store_DB`. Define this d
       isAutoCommit: false
 ```
 
-### Create and deploy the Siddhi application
+### Step 3: Create and deploy the Siddhi application
 
 To create and deploy a Siddhi application, follow the steps below:
 
