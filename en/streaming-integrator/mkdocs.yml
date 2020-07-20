@@ -79,6 +79,7 @@ nav:
       - 'Working with Kafka': 'examples/working-with-kafka.md'
       - 'Working with Business Rules': 'admin/creating-business-rules-templates.md'
       - 'Exposing Processed Data as API': 'examples/exposing-processed-data-as-api.md'
+      - 'Managing Streaming Data with Errors': 'examples/handling-requests-with-errors.md'
       - 'Triggering Integrations via MI': 'examples/triggering-integrations-via-micro-integrator.md'
       - 'Running SI with Docker and Kubernetes': 'examples/running-si-with-docker-and-kubernetes.md'
     - 'Examples':
