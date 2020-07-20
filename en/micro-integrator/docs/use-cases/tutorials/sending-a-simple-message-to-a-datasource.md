@@ -11,39 +11,26 @@ A **data service** provides a web service interface to access data that is stor
 
 ### Step 1: Set up the workspace
 
-To set up the tools:
-
 -   Download the relevant [WSO2 Integration Studio](https://wso2.com/integration/tooling/) based on your operating system. The path to the extracted/installed folder is referred to as `MI_TOOLING_HOME` throughout this tutorial.
--   Optionally, you can set up the **CLI tool** for artifact monitoring. This will later help you get details of the artifacts that you deploy in your Micro Integrator.
 
-    1.  Go to the [WSO2 Micro Integrator website](https://wso2.com/integration/#). 
-    2.  Click **Download -> Other Resources** and click **CLI Tooling** to download the tool. 
-    3.  Extract the downloaded ZIP file. This will be your `MI_CLI_HOME` directory. 
-    4.  Export the `MI_CLI_HOME/bin` directory path as an environment variable. This allows you to run the tool from any location on your computer using the `mi` command. Read more about the [CLI tool](../../../administer-and-observe/using-the-command-line-interface).
+-   To demonstrate how data services work, we will use a MySQL database as the datasource. Follow the steps given below to set up a MySQL database:
 
-To demonstrate how data services work, we will use a MySQL database as the datasource. Follow the steps given below to set up a MySQL database:
+    1.  Install the MySQL server.
+    2.  Download the JDBC driver for MySQL from [here](http://dev.mysql.com/downloads/connector/j/). You will need this when you configure the MySQL server with the Micro Integrator.
+        
+    3.  Create a database named `Employees`.
 
-1.  Install the MySQL server.
-2.  Download the JDBC driver for MySQL from [here](http://dev.mysql.com/downloads/connector/j/) and copy it to the `lib` directory of the embedded Micro Integrator of WSO2 Integration Studio.
-    
-    !!! Note
-        The `lib` directory of the embedded Micro Integrator of WSO2 Integration Studio is located in `MI_TOOLING_HOME/Contents/Eclipse/runtime/microesb/` (for MacOS/CentOS) or `MI_TOOLING_HOME/runtime/microesb/lib/` (for Windows/Linux). 
+        ```bash
+        CREATE DATABASE Employees;
+        ```
 
-    If the driver class does not exist in the relevant directory when you create the datasource, you will get an exception such as `Cannot load JDBC driver class com.mysql.jdbc.Driver`.
-    
-3.  Create a database named `Employees`.
+    4.  Create the Employee table inside the Employees database:
 
-    ```bash
-    CREATE DATABASE Employees;
-    ```
-
-4.  Create the Employee table inside the Employees database:
-
-    ```bash
-    USE Employees;
-    CREATE TABLE Employees (EmployeeNumber int(11) NOT NULL, FirstName varchar(255) NOT NULL, LastName varchar(255) DEFAULT NULL, Email varchar(255) DEFAULT NULL, Salary varchar(255));
-    INSERT INTO Employees (EmployeeNumber, FirstName, LastName, Email, Salary) values (3, "Edgar", "Code", "edgar@rdbms.com", 100000);
-    ```
+        ```bash
+        USE Employees;
+        CREATE TABLE Employees (EmployeeNumber int(11) NOT NULL, FirstName varchar(255) NOT NULL, LastName varchar(255) DEFAULT NULL, Email varchar(255) DEFAULT NULL, Salary varchar(255));
+        INSERT INTO Employees (EmployeeNumber, FirstName, LastName, Email, Salary) values (3, "Edgar", "Code", "edgar@rdbms.com", 100000);
+        ```
 
 ### Step 2: Creating a data service
 
@@ -54,10 +41,10 @@ Follow the steps given below to create a new data service.
 All the data services' artifacts that you create should be stored in a
 Data Service project. Follow the steps given below to create a project:
 
-1.  Open **WSO2 Integration Studio** and click **Data Service → Create Data Service Project** in the **Getting Started** tab as shown below.  
+1.  Open **WSO2 Integration Studio** and click **New Data Service** in the **Getting Started** tab as shown below.  
     ![](../../assets/img/create_project/create_data_service_project.png)
 
-2.  In the **New Data Service Project** dialog that opens, give a name
+2.  In the **New Data Service Project** dialog box that opens, give a name
     for the project and click **Next**.
 3.  If required, change the Maven information about the project.
 4.  Click **Finish**. The new project will be listed in the project
@@ -95,7 +82,7 @@ project as shown below.
 
 ![](../../assets/img/tutorials/data_services/dataservice_view.png)
 
-##### Creating the datasource connection
+#### Creating the datasource connection
 
 1.  Click **Data Sources** to expand the section.
     ![](../../assets/img/tutorials/data_services/data_source_expanded.png)
@@ -119,7 +106,7 @@ project as shown below.
 5.  Click the **Test Connection** button to verify the connectivity between the MySQL datasource and the data service.
 6.  Save the data service.
 
-##### Creating a query
+#### Creating a query
 
 Let's write an SQL query to GET data from the MySQL datasource that you
 configured in the previous step:
@@ -208,7 +195,7 @@ configured in the previous step:
 9.  Click **Save** to save the query.
     ![](../../assets/img/tutorials/data_services/output_mapings.png)
 
-##### Creating a resource to invoke the query
+#### Creating a resource to invoke the query
 
 Now, let's create a REST resource that can be used to invoke the query.
 
@@ -245,54 +232,43 @@ Now, let's create a REST resource that can be used to invoke the query.
 
 Create a new composite application project:
 
-1.  Open the **Getting Started** view and click **Miscellaneous → Create New Composite Application**.  
-    ![Create new CAPP](../../assets/img/create_project/create_new_capp.png) 
-2.  In the **New Composite Application Project** dialog that opens, select the data service file, and click **Finish**.  
+1.  Right-click the project explorer and go to <b>New -> Project</b> and select <b>Composite Application Project</b> from the list.
+2.  In the dialog box that opens, select the data service file, and click **Finish**.  
     ![Create new CAPP](../../assets/img/tutorials/data_services/composite_app.png)
 
-Package the artifacts in your composite application project to be able to deploy the artifacts in the server.
+Package the artifacts in your composite exporter to be able to deploy the artifacts in the server.
 
-1.  Open the `pom.xml` file in the composite application project POM editor.
+1.  Open the `pom.xml` file in the composite application.
 2.  Ensure that your data service file is selected in the POM file.
 3.  Save the project.
 
-### Step 4: Build and run the artifacts
+### Step 4: Configure the Micro Integrator server
+
+We will use the embedded Micro Integrator of WSO2 Integration Studio to run this solution. 
+
+To add the MySQL databse driver to the server:
+
+1. Click the <b>Embedded Micro Integrator Configuration</b> icon on the upper menu to open the dialog box.
+2. Click the '+' icon to add the MySQL driver JAR (see [Setting up the Workspace](#step-1-set-up-the-workspace)) to the `/lib` directory of the embedded Micro Integrator.
+
+If the driver class does not exist in the relevant directory, you will get an exception such as `Cannot load JDBC driver class com.mysql.jdbc.Driver` when the Micro Integrator starts.
+
+### Step 5: Build and run the artifacts
 
 To test the artifacts, deploy the [packaged artifacts](#step-3-package-the-artifacts) in the embedded Micro Integrator:
 
-1.  Right-click the composite application project and click **Export Project Artifacts and Run**.
-2.  In the dialog that opens, select the composite application project that you want to deploy.  
-4.  Click **Finish**. The artifacts will be deployed in the embedded Micro Integrator and the server will start. See the startup log in the **Console** tab. 
+1.  Right-click the composite exporter module and click **Export Project Artifacts and Run**.
+2.  In the dialog box that opens, confirm that the required artifacts from the composite exporter module are selected.     
+4.  Click **Finish**. 
 
-### Step 5: Testing the data service
+The artifacts will be deployed in the embedded Micro Integrator and the server will start.
+
+- See the startup log in the **Console** tab.
+- See the URLs of the deployed services and APIs in the **Deployed Services** tab. 
+
+### Step 6: Testing the data service
 
 Let's test the use case by sending a simple client request that invokes the service.
-
-#### Get details of deployed artifacts (Optional)
-
-Let's use the **CLI Tool** to find the URL of the data service (that is deployed in the Micro Integrator) to which you send a request. 
-
-!!! Tip
-    Be sure to set up the CLI tool for your work environment as explained in the [first step](#step-1-set-up-the-workspace) of this tutorial.
-
-1.  Open a terminal and execute the following command to start the tool:
-    ```bash
-    mi
-    ```
-    
-2.  Log in to the CLI tool. Let's use the server administrator user name and password:
-    ```bash
-    mi remote login admin admin
-    ```
-
-    You will receive the following message: *Login successful for remote: default!*
-
-3.  Execute the following command to find the data services deployed in the server:
-    ```bash
-    mi dataservice show
-    ```
-
-Read more about [using the CLI tool](../../../administer-and-observe/using-the-command-line-interface).
 
 #### Send the client request
 
@@ -303,7 +279,7 @@ Let's send a request to the API resource to make a reservation. You can use the 
     !!! Tip
         If you don't see the <b>HTTP Client</b> pane, go to <b>Window -> Show View - Other</b> and select <b>HTTP Client</b> to enable the client pane.
 
-    <img src="../../../assets/img/tutorials/119132155/http4e-client-empty.png" width="800">
+    <img src="../../../assets/img/tutorials/common/http4e-client-empty.png" width="800">
 
 2. Enter the request information as given below and click the <b>Send</b> icon (<img src="../../../assets/img/tutorials/119132155/play-head-icon.png" width="20">).
     

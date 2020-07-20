@@ -10,33 +10,28 @@ To implement this use case, you will create a REST API resource and other artifa
 
 ### Step 1: Set up the workspace
 
-- Download the relevant [WSO2 Integration Studio](https://wso2.com/integration/tooling/) based on your operating system. The path to the extracted/installed folder is referred to as `MI_TOOLING_HOME` throughout this tutorial.
-- Optionally, you can set up the **CLI tool** for artifact monitoring. This will later help you get details of the artifacts that you deploy in your Micro Integrator.
-
-    1.  Go to the [WSO2 Micro Integrator website](https://wso2.com/integration/#). 
-    2.  Click **Download -> Other Resources** and click **CLI Tooling** to download the tool. 
-    3.  Extract the downloaded ZIP file. This will be your `MI_CLI_HOME` directory. 
-    4.  Export the `MI_CLI_HOME/bin` directory path as an environment variable. This allows you to run the tool from any location on your computer using the `mi` command. Read more about the [CLI tool](../../../administer-and-observe/using-the-command-line-interface).
+Download the relevant [WSO2 Integration Studio](https://wso2.com/integration/tooling/) based on your operating system. The path to the extracted/installed folder is referred to as `MI_TOOLING_HOME` throughout this tutorial.
 
 ### Step 2: Develop the integration artifacts
 
 Follow the instructions given in this section to create and configure the required artifacts.
 
-#### Create the project directories
+#### Create an Integration project
 
-To create the required projects for this integration scenario:
+An Integration project is a maven multi module project, which will contain all the required modules for the integration solution.
 
 1.  Open **WSO2 Integration Studio**.
-2.  Go to **Integration** and click **Create Integration Project**.
+2.  Click **New Integration Project** in the **Getting Started** tab as shown below. 
+
     ![](../../assets/img/create_project/create-integration-project.png)
 
-3.  Enter `SampleServices` as the project name and select the following check boxes.
-    -   **Create Registry Resources Project**
-    -   **Create Composite Application Project**
-    -   **Create Connector Exported Project**
+    This will open the <b>New Integration Project</b> dialog box.
 
-    !!! Note
-        This will create a **Config** project named `SampleServices` along with the **Registry Resource** project, **Composite Application** project, and a **Connector Exporter** project with the specified names.
+3.  Enter `SampleServicesConfigs` as the project name and select the following check boxes to create the required modules.
+    -   **Create ESB Configs**
+    -   **Create Registry Resources**
+    -   **Create Composite Exporter**
+    -   **Create Connector Exporter**
 
     ![](../../assets/img/tutorials/119132413/create-simple-message-project.png)
 
@@ -50,7 +45,7 @@ To create the required projects for this integration scenario:
 
 An Endpoint artifact is required for the purpose of exposing the URL that connects to the back-end service.
 
-1. Right-click **SampleServices** in the Project Explorer and navigate to **New -> Endpoint**.
+1. Right-click **SampleServicesConfigs** in the Project Explorer and navigate to **New -> Endpoint**.
 2. Ensure that **Create a New Endpoint** is selected and click **Next**.
 3. Enter the information given below to create the new endpoint.  
     <table>
@@ -88,12 +83,12 @@ An Endpoint artifact is required for the purpose of exposing the URL that connec
          <td>Static Endpoint</td>
          <td><br/>
          </td>
-         <td>Select this option because we are going to use this endpoint only in this <code>SampleServices</code> project and will not reuse it in other projects.</br/></br/> <b>Note</b>: If you need to create a reusable endpoint, save it as a Dynamic Endpoint in either the Configuration or Governance Registry.</td>
+         <td>Select this option because we are going to use this endpoint only in this <code>SampleServicesConfigs</code> module and will not reuse it in other projects.</br/></br/> <b>Note</b>: If you need to create a reusable endpoint, save it as a Dynamic Endpoint in either the Configuration or Governance Registry.</td>
       </tr>
       <tr class="even">
          <td>Save Endpoint in</td>
-         <td><code>SampleServices</code></td>
-         <td>This is the <b>Config</b> project where the artifact will be saved.</td>
+         <td><code>SampleServicesConfigs</code></td>
+         <td>This is the <b>ESB Config</b> module where the artifact will be saved.</td>
       </tr>
      </tbody>
     </table>
@@ -101,14 +96,14 @@ An Endpoint artifact is required for the purpose of exposing the URL that connec
     ![](../../assets/img/tutorials/119132413/create-endpoint-artifact.png)
 
 4.  Click **Finish**.  
-    The **QueryDoctorEP** endpoint is saved in the `endpoints` folder within the **Config** project you created.  
+    The **QueryDoctorEP** endpoint is saved in the `endpoints` folder within the **ESB Config** module of the integration project.  
     ![](../../assets/img/tutorials/119132413/endpoint-project-explorer.png)
 
 #### Create a REST API
 
 A REST API is required for receving the client response and the REST resource within the API will define the mediation logic that will send requests to the Healthcare back-end service and retrieve the available doctor information.
 
-1.  In the Project Explorer, right-click **SampleServices** and navigate to **New -> REST API**.
+1.  In the Project Explorer, right-click **SampleServicesConfigs** and navigate to **New -> REST API**.
 2.  Ensure **Create A New API Artifact** is selected and click **Next**.
 3.  Enter the details given below to create a new REST API.
     <table>
@@ -128,21 +123,21 @@ A REST API is required for receving the client response and the REST resource wi
         <td>Context</td>
         <td><code>/healthcare </code></td>
         <td>
-          Here you are anchoring the API in the <code>/healthcare </code> context. This will become part of the name of the generated URL used by the client when sending requests to Healthcare service. For example, setting the context to /healthcare defines that the API will only handle HTTP requests where the URL path starts with <code>http://host:port/healthcare<code>.
+          Here you are anchoring the API in the <code>/healthcare </code> context. This will become part of the name of the generated URL used by the client when sending requests to the Healthcare service. For example, setting the context to /healthcare means that the API will only handle HTTP requests where the URL path starts with <code>http://host:port/healthcare<code>.
         </td>
       </tr>
       <tr>
         <td>Save location</td>
         <td>
-          SampleServices
+          SampleServicesConfigs
         </td>
         <td>
-          This is the <b>Config</b> project where the artifact will be saved.
+          This is the <b>ESB Config</b> module where the artifact will be saved.
         </td>
       </tr>
     </table>
                                                                                                                                                                                                                        |
-    ![](../../assets/img/tutorials/119132413/create-rest-api.png)
+    <img src="../../../assets/img/tutorials/119132413/create-rest-api.png" width="500">
 
 4.  Click **Finish**.
 
@@ -177,13 +172,13 @@ You can now start configuring the API resource.
       <tr>
         <td>URI-Template</td>
         <td>
-          Enter <code>/querydoctor/{category}</code> . This defines the request URL format. In this case, the full request URL format is <code>http://host:port/querydoctor/{category}</code> where <code>{category}</code> is a variable.
+          Enter <code>/querydoctor/{category}</code>. This defines the request URL format. In this case, the full request URL format is <code>http://host:port/querydoctor/{category}</code> where <code>{category}</code> is a variable.
         </td>
       </tr>
       <tr>
         <td>Methods</td>
         <td>
-          Check if the value of <b>Get</b> is set to true. This defines that the API resource only handles the requests where the HTTP method is GET.
+          See that the <b>Get</b> check box is selected. This defines that the API resource only handles requests where the HTTP method is GET.
         </td>
       </tr>
     </table>
@@ -266,23 +261,28 @@ You have successfully created all the artifacts that are required for sending a 
 
 ### Step 3: Package the artifacts
 
-Package the artifacts in your composite application project (SampleServicesCompositeApplication project) to be able to deploy the artifacts in the server.
+Package the artifacts in your composite exporter module to be able to deploy the artifacts in the server.
 
-1.  Open the `pom.xml` file in the composite application project POM editor.
+1.  Open the `pom.xml` file of the **SampleServicesCompositeExporter** module.
 2.  Ensure that the following artifacts are selected in the POM file.
 
     -   `HealthcareAPI`
     -   `QueryDoctorEP`
 
-3.  Save the project.
+3.  Save the changes.
 
 ### Step 4: Build and run the artifacts
 
 To test the artifacts, deploy the [packaged artifacts](#step-3-package-the-artifacts) in the embedded Micro Integrator:
 
-1.  Right-click the composite application project and click **Export Project Artifacts and Run**.
-2.  In the dialog that opens, select the composite application project that you want to deploy.  
-4.  Click **Finish**. The artifacts will be deployed in the embedded Micro Integrator and the server will start. See the startup log in the **Console** tab.
+1.  Right-click the composite exporter module and click **Export Project Artifacts and Run**.
+2.  In the dialog box that opens, confirm that the required artifacts from the composite exporter module are selected.  
+4.  Click **Finish**. 
+
+The artifacts will be deployed in the embedded Micro Integrator and the server will start.
+
+- See the startup log in the **Console** tab.
+- See the URLs of the deployed services and APIs in the **Deployed Services** tab.
 
 ### Step 5: Test the use case
 
@@ -297,37 +297,6 @@ Let's test the use case by sending a simple client request that invokes the serv
     ```bash
     java -jar Hospital-Service-2.0.0-EI7.jar
     ```
-
-#### Get details of deployed artifacts (Optional)
-
-Let's use the **CLI Tool** to find the URL of the REST API (that is deployed in the Micro integrator) to which you will send a request.
-
-!!! Tip
-    Be sure to set up the CLI tool for your work environment as explained in the [first step](#step-1-set-up-the-workspace) of this tutorial.
-
-1.  Open a terminal and execute the following command to start the tool:
-    ```bash
-    mi
-    ```
-    
-2.  Log in to the CLI tool. Let's use the server administrator user name and password:
-    ```bash
-    mi remote login admin admin
-    ```
-
-    You will receive the following message: *Login successful for remote: default!*
-
-3.  Execute the following command to find the APIs deployed in the server:
-    ```bash
-    mi api show
-    ```
-
-    You will receive the following information:
-
-    *NAME : HealthcareAPI*            
-    *URL  : http://localhost:8290/healthcare* 
-
-Similarly, you can get details of other artifacts deployed in the server. Read more about [using the CLI tool](../../../administer-and-observe/using-the-command-line-interface).
 
 #### Send the client request
 
