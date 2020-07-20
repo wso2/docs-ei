@@ -749,7 +749,7 @@ count                                    Get transaction count for the current m
 count [year] [month]                     Get transaction count for the specified year and month.
 remote [start] [end] [--path[=<path>]]   Generate transaction report for the specified period and store in the specified location.
 remote [start] [end]                     Generate transaction report for the specified date and store in the current location.
-remote [start] [--path[=<path>]]         Generate transaction report for the specified period and store in the specified location.
+remote [start] [--path[=<path>]]         Generate transaction report from the specified date upto current date and store in the specified location.
 ```
 
 Flags
@@ -761,19 +761,19 @@ Flags
 Examples
 
 ```bash
- # To get the transction count for the current month
+ # To get the transaction count for the current month
  mi transaction count
 
- # To get the transction count for 2020/05 [YYYY/MM]
+ # To get the transaction count for 2020/05 [YYYY/MM]
  mi transaction count 2020 05
 
- # To generate transction count report with data between 2020-01 and 2020-05 at the specified location
+ # To generate transaction count report with data between 2020-01 and 2020-05 at the specified location
  mi transaction report 2020-01 2020-05 --path=</dir_path>
 
  # To generate transaction count report with data from 2020-01 (upto current date) at the specified location
- mi transaction count 2020-01 --path=</dir_path>
+ mi transaction report 2020-01 --path=</dir_path>
 
  # To generate transaction count report at the current location for data between 2020-01 and 2020-05
- mi transaction count 2020-01 2020-05
+ mi transaction report 2020-01 2020-05
 
 ```
