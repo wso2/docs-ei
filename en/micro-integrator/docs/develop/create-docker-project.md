@@ -1,4 +1,4 @@
-# Creating a Docker Exporter Project
+# Creating Docker Exporter
 
 Create a Docker project if you want to deploy your integration solutions inside a Docker environment. This project directory allows you to package multiple [integration projects](../../develop/create-integration-project) into a single Docker image and then build and push to the Docker registries.
 
