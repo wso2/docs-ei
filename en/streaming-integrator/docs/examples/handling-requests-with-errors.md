@@ -3,6 +3,8 @@
 
 # Managing Streaming Data with Errors
 
+## Introduction
+
 In this tutorial, let's learn how you can handle streaming data that has errors (e.g., events that do not have values for certain attributes). WSO2 Streaming Integrator allows you to log such events, direct them to a separate stream or store them in a data store. If these errors occur at the time of publishing (e.g., due to a connection error), WSO2 SI also provides the option to wait and then resume to publish once the connection is stable again. For detailed information about different ways to handle errors, see the [Handling Errors guide](../guides/handling-errors.md).
 
 In this scenario, you are handling erroneous events by directing them to a MySQL store.
@@ -20,8 +22,10 @@ In this scenario, you are handling erroneous events by directing them to a MySQL
       `INFO {org.wso2.carbon.kernel.internal.CarbonStartupHandler} - WSO2 Streaming Integrator started in 4.240 sec`
       <br/>
     - You need to have access to a MySQL instance.
+    
+## Tutorial steps
       
-## Step 1: Create the data store
+### Step 1: Create the data store
 
 Let's create the MySQL data store in which the events with errors can be saved. To do this, follow the steps below:
 
@@ -39,7 +43,7 @@ Let's create the MySQL data store in which the events with errors can be saved. 
 
     `mysql> use errorstoredb;`
 
-## Step 2: Enable the error store
+### Step 2: Enable the error store
 
 To enable the error store, open the `<SI_HOME>/conf/server/deployment.yaml` file and add a configuration as follows:
 
