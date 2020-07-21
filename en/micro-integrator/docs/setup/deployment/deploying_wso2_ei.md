@@ -246,7 +246,7 @@ Ensure that you have taken into account the respective security hardening factor
 Start one server in the cluster by executing the server startup script from the `MI_HOME>/bin` folder.
 
 ```bash tab='On Linux/MacOS/Centos'
-sh micro-integrator.bat
+sh micro-integrator.sh
 ```
 
 ```bash tab='On Windows'
