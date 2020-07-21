@@ -246,10 +246,10 @@ Package the artifacts in your composite exporter to be able to deploy the artifa
 
 We will use the embedded Micro Integrator of WSO2 Integration Studio to run this solution. 
 
-To add the MySQL databse driver to the server:
+To add the MySQL database driver to the server:
 
 1. Click the <b>Embedded Micro Integrator Configuration</b> icon on the upper menu to open the dialog box.
-2. Click the '+' icon to add the MySQL driver JAR (see [Setting up the Workspace](#step-1-set-up-the-workspace)) to the `/lib` directory of the embedded Micro Integrator.
+2. Click the (<img src="../../../assets/img/tutorials/common/plus-icon.png" width="20">) icon to add the MySQL driver JAR (see [Setting up the Workspace](#step-1-set-up-the-workspace)) to the `/lib` directory of the embedded Micro Integrator.
 
 If the driver class does not exist in the relevant directory, you will get an exception such as `Cannot load JDBC driver class com.mysql.jdbc.Driver` when the Micro Integrator starts.
 
