@@ -1,9 +1,9 @@
-# Creating a Docker Exporter Project
+# Creating Docker Exporter
 
-Create a Docker project if you want to deploy your integration solutions inside a Docker environment. This project directory allows you to package multiple [integration projects](../../develop/creating-projects) into a single Docker image and then build and push to the Docker registries.
+Create a Docker project if you want to deploy your integration solutions inside a Docker environment. This project directory allows you to package multiple [integration projects](../../develop/create-integration-project) into a single Docker image and then build and push to the Docker registries.
 
 !!! Tip
-    If you want to simultaneously create all the projects required for your use case, read about the [integration project solution](../../develop/creating-project-solution).
+    If you want to simultaneously create all the projects required for your use case, read about the [integration project solution](../../develop/create-integration-project).
 
 ## Prerequisites
 
@@ -12,13 +12,15 @@ It is recommended to [get the latest updates](../../develop/installing-WSO2-Inte
 ## Creating the Docker project
 Follow the steps given below.   
 
-1.  Open **WSO2 Integration Studio** and click **Miscellaneous → Create New Docker Project** in the **Getting Started** view as shown below.
+1. [Create a new integration project](../../develop/create-integration-project) and create a Docker Exporter project by doing one of the following.
 
-    <img src="../../assets/img/create_project/docker_k8s_project/get_started_docker_project.png" width="1000">
+    1. As part of creating an integration project, you can select the **Docker Exporter** checkbox.
 
-2.  In the **New Docker Project** dialog that opens, enter a name for the Docker project and other parameters as shown below.
+    2. You can right click on an existing integration project and select **New** -> **Docker Exporter Project**.
 
-    <img src="../../assets/img/create_project/docker_k8s_project/new_docker_project_info.png" width="500">
+2. In the **New Docker Exporter** dialog that opens, enter a name for the Docker project and other parameters as shown below.
+
+    <img src="../../assets/img/new_project/docker_exporter.png" width="500">
 
     Enter the following information:
 
@@ -181,7 +183,7 @@ Expand the **Docker Exporter Project** in the project explorer. See that the fol
 !!! Info
     **Before you begin**:
 
-    -   Create your integration artifacts in a [Config](../../develop/creating-projects/#esb-config-proje) project and package the artifacts in a [Composite Application project](../../develop/packaging-artifacts). For example, see the HelloWorld sample given below.
+    -   Create your integration artifacts in an [integration project](../../develop/create-integration-project) and package the artifacts in a [Composite Application project](../../develop/packaging-artifacts). For example, see the HelloWorld sample given below.
     
         <img alt="Integration artifacts for Docker" src="../../assets/img/create_project/docker_k8s_project/integration-projects-for-docker.png" width="300">
 
