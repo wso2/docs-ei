@@ -40,8 +40,8 @@ community](http://nginx.org/) version 1.9.2 as the load balancer.
 
 	 ```java
 	 upstream wso2.ei.com {
-     server xxx.xxx.xxx.xx1:8280;
-     server xxx.xxx.xxx.xx2:8280;
+     server xxx.xxx.xxx.xx1:8290;
+     server xxx.xxx.xxx.xx2:8290;
 	 }
 	 server {
      listen 80;
