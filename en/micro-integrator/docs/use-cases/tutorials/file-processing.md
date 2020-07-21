@@ -2,7 +2,7 @@
 
 ## What you'll build
 
-This sample demonstrates how to pick a file from a directory and process it within the Micro Integrator. In this sample scenario you pick a file from the local directory, insert the records in the file to a database, send an email with the file content, trace and write the log and finally move the file to another directory.
+This sample demonstrates how to pick a file from a folder and process it within the Micro Integrator. In this sample scenario you pick a file from the local directory, insert the records in the file to a database, send an email with the file content, trace and write the log and finally move the file to another directory.
 
 The result of the query should be as follows when you query to view the records in the `test.info` table. You will see that there is no data in the table.
   
@@ -10,13 +10,7 @@ The result of the query should be as follows when you query to view the records
 
 ### Step 1: Set up the workspace
 
-- Download the relevant [WSO2 Integration Studio](https://wso2.com/integration/tooling/) based on your operating system. The path to the extracted/installed folder is referred to as `MI_TOOLING_HOME` throughout this tutorial.
-- Optionally, you can set up the **CLI tool** for artifact monitoring. This will later help you get details of the artifacts that you deploy in your Micro Integrator.
-
-    1.  Go to the [WSO2 Micro Integrator website](https://wso2.com/integration/#). 
-    2.  Click **Download -> Other Resources** and click **CLI Tooling** to download the tool. 
-    3.  Extract the downloaded ZIP file. This will be your `MI_CLI_HOME` directory. 
-    4.  Export the `MI_CLI_HOME/bin` directory path as an environment variable. This allows you to run the tool from any location on your computer using the `mi` command. Read more about the [CLI tool](../../../administer-and-observe/using-the-command-line-interface).
+Download the relevant [WSO2 Integration Studio](https://wso2.com/integration/tooling/) based on your operating system. The path to the extracted/installed folder is referred to as `MI_TOOLING_HOME` throughout this tutorial.
 
 Let's setup a MySQL database:
 
@@ -43,15 +37,15 @@ Let's setup a MySQL database:
 
 Follow the instructions given in this section to create and configure the required artifacts.
 
-#### Create an ESB Config project
+#### Create an Integration Project
 
-To create an ESB solution consisting of an **ESB config** project and a **Composite Application** project:
+Create an integration project with the following modules: **ESB Configs** and **Composite Exporter** module:
 
 1.  Open **WSO2 Integration Studio**.
-2.  Go to **ESB Project** and click **Create New**.
+2.  Click **New Integration Project** in the **Getting Started** tab as shown below. 
     ![](../../assets/img/tutorials/119132413/119132414.png)
 
-3.  Enter `FileProcessingService` as the project name and select the **Create Composite Application Project** check box.
+3.  Enter `FileProcessingService` as the project name and select the **Create Composite Exporter** check box.
 4.  Click **Finish**. The created project is saved in the **Project Explorer**.
 
 #### Create the Main and Fault sequences
@@ -134,7 +128,7 @@ To create an ESB solution consisting of an **ESB config** project and a **Compos
 #### Create the `databaseSequence`
 
 Follow the instructions below to create a sequence that can be used to
-connect to the database to insert the data.
+connect to the database to insert data.
 
 1.  Create a sequence named `databaseSequence` with the following configuration. See the instructions on [creating a sequence](../../../develop/creating-artifacts/creating-reusable-sequences).
 
@@ -247,88 +241,62 @@ See the instructions on [creating a local registry configuration](../../../devel
 
 ### Step 3: Package the artifacts
 
-Package the artifacts in your composite application project to be able to deploy the artifacts in the server.
+Package the artifacts in your composite application module to be able to deploy the artifacts in the server.
 
-1.  Open the `pom.xml` file in the composite application project you created.
-2.  Ensure that all of the artifacts are selected in the POM file.
-3.  Save the project.
+1.  Open the `          pom.xml         ` file in the composite exporter module.
+2.  Ensure that the relevant artifacts are selected in the POM file.
+3.  Save the changes.
 
-### Step 4: Build and run the artifacts
+### Step 4: Configure the Micro Integrator
+
+1.  Click the <b>Embedded Micro Integrator Configuration</b> icon on the upper menu to open the dialog box.
+
+2.  Update the server configuration file (`deployment.toml` file) as follows:
+
+    -   The **VFS** transport is enabled in the Micro Integrator by default. Enable the [MailTo transport](../../../setup/transport_configurations/configuring-transports/#configuring-the-mailto-transport) for sending the email message as shown below and update the values:
+
+        ```toml
+        [[transport.mail.sender]]
+        name = "mailto"
+        parameter.hostname = "smtp.gmail.com"
+        parameter.port = "587"
+        parameter.enable_tls = true
+        parameter.auth = true
+        parameter.username = "demo_user"
+        parameter.password = "mailpassword"
+        parameter.from = "demo_user@wso2.com"
+        ```
+              
+        !!! Note
+            In this sample, you will not retrieve mails from a mailbox. Therefore, you do not need to enable the mailto transport receiver.
+
+    -   Add the following message formatter:
+
+        ```toml
+        text_xml = "org.apache.axis2.transport.http.ApplicationXMLFormatter"
+        ```
+
+3.  Click the '+' icon in the lower section and add the following drivers and libraries. 
+    -   [MySQL database driver](https://github.com/wso2-docs/WSO2_EI/blob/master/Integration-Tutorial-Artifacts/Artifacts-fileProcessingTutorial.zip).
+    -   [CSV smooks library](https://github.com/wso2-docs/WSO2_EI/blob/master/Integration-Tutorial-Artifacts/Artifacts-fileProcessingTutorial.zip).
+
+    !!! Note
+        These are copied to the `/lib` folder of the embedded Micro Integrator.
+
+### Step 5: Build and run the artifacts
 
 To test the artifacts, deploy the [packaged artifacts](#step-3-package-the-artifacts) in the embedded Micro Integrator:
 
-1.  Right-click the composite application project and click **Export Project Artifacts and Run**.
-2.  In the dialog that opens, select the composite application project that you want to deploy.  
-4.  Click **Finish**. The artifacts will be deployed in the embedded Micro Integrator and the server will start. See the startup log in the **Console** tab.
+1.  Right-click the composite exporter module and click **Export Project Artifacts and Run**.
+2.  In the dialog box that opens, confirm that the required artifacts from the composite exporter module are selected.     
+4.  Click **Finish**. 
 
-### Step 5: Test the use case
+The artifacts will be deployed in the embedded Micro Integrator and the server will start.
 
-#### Get details of deployed artifacts (Optional)
+- See the startup log in the **Console** tab.
+- See the URLs of the deployed services and APIs in the **Deployed Services** tab.
 
-Let's use the **CLI Tool** to find information of the artifacts you deployed in the Micro integrator.
-
-!!! Tip
-    Be sure to set up the CLI tool for your work environment as explained in the [first step](#step-1-set-up-the-workspace) of this tutorial.
-
-1.  Open a terminal and execute the following command to start the tool:
-    ```bash
-    mi
-    ```
-    
-2.  Log in to the CLI tool. Let's use the server administrator user name and password:
-    ```bash
-    mi remote login admin admin
-    ```
-
-    You will receive the following message: *Login successful for remote: default!*
-
-3.  Execute the following command to find the sequences deployed in the server:
-    ```bash
-    mi sequence show
-    ```
-
-Similarly, you can get details of other integration artifacts deployed in the server. Read more about [using the CLI tool](../../../administer-and-observe/using-the-command-line-interface).
-
-#### Configure the Micro Integrator
-
-Open the `deployment.toml` file of the embedded Micro Integrator of WSO2 Integration Studio (stored in the `MI_TOOLING_HOME/Contents/Eclipse/runtime/microesb/conf/` directory on **Windows** or `MI_TOOLING_HOME/runtime/microesb/conf` directory on **MacOS/Linux/CentOS**) and apply the following changes:
-
-1.  The **VFS** transport is enabled in the Micro Integrator by default. Enable the [MailTo transport](../../../setup/transport_configurations/configuring-transports/#configuring-the-mailto-transport) for sending the email message as shown below and update the values:
-
-    ```toml
-    [[transport.mail.sender]]
-    name = "mailto"
-    parameter.hostname = "smtp.gmail.com"
-    parameter.port = "587"
-    parameter.enable_tls = true
-    parameter.auth = true
-    parameter.username = "demo_user"
-    parameter.password = "mailpassword"
-    parameter.from = "demo_user@wso2.com"
-    ```
-          
-    !!! Note
-        In this sample, you will not retrieve mails from a mailbox. Therefore, you do not need to enable the mailto transport receiver.
-
-2.  Add the following message formatter:
-
-    ```toml
-    text_xml = "org.apache.axis2.transport.http.ApplicationXMLFormatter"
-    ```
-
-#### Add database drivers
-
-1.  Find the MySQL database driver `mysql-connector-java-5.1.10-bin.jar` in the [attached file](https://github.com/wso2-docs/WSO2_EI/blob/master/Integration-Tutorial-Artifacts/Artifacts-fileProcessingTutorial.zip). 
-    You can find the file in the `SAMPLE_HOME/lib` directory.
-2.  Copy the driver to the `MI_TOOLING_HOME/Contents/Eclipse/runtime/microesb/lib/` directory on **Windows** or the **MI_TOOLING_HOME/runtime/microesb/lib** directory on **MacOS/Linux/CentOS**.
-
-#### Add smooks libraries
-
-This example uses a CSV smooks library.
-
-1.  You can find the CSV smooks library `milyn-smooks-csv-1.2.4.jar` in the [attached file](https://github.com/wso2-docs/WSO2_EI/blob/master/Integration-Tutorial-Artifacts/Artifacts-fileProcessingTutorial.zip). 
-    You can find the file in the `SAMPLE_HOME/lib` directory.
-2.  Copy the library to the the `MI_TOOLING_HOME/Contents/Eclipse/runtime/microesb/lib/` directory on **Windows** or the **MI_TOOLING_HOME/runtime/microesb/lib** directory on **MacOS/Linux/CentOS**.
+### Step 6: Test the use case
 
 #### Create the input file
 
