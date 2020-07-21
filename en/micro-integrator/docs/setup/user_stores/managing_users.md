@@ -1,71 +1,48 @@
 # Managing Users
 
-You can manage the users in your user store by using the **CLI** tool or the **monitoring dashboard**. If required, you can also directly use the management API for this purpose.
+Micro Integrator users with admin privileges can manage other users in an [LDAP](../setting_up_a_userstore/#configuring-an-ldap-user-store) or [RDBMS](../setting_up_a_userstore/#configuring-an-rdbms-user-store) user store that is connected to the Micro Integrator server. These user management tasks include <b>viewing</b>, <b>adding</b>, and <b>removing</b> users.
 
-If you are user with admin privileges, you can add new users, view users, and delete users from the user store.
+## Admin users
 
-## Prerequisites
+If a user with admin privileges does not exist in your user store, the admin credentials will be created when you invoke the Micro Integrator's [management API](../../../administer-and-observe/working-with-management-api) for the first time. That is, when you log in to the Micro Integrator server from the <b>CLI tool</b>/<b>dashboard</b>, or directly invoke the management API, the user credentials you use will get stored in the user store and admin privileges will be assigned.
 
-- [Enable the management API](../../../administer-and-observe/working-with-management-api/#enabling-the-management-api) when you start the Micro Integrator.
-- Set up an [external user store](../setting_up_a_userstore) with **write access** for the Micro Integrator.
+An existing admin user can log in to the Micro Integrator server from the CLI tool or the dashboard to add new users with admin privileges. An admin user can only be removed by the creator.
 
-## Using the CLI Tool
+## Managing users from the CLI
 
-1.	[Download](https://wso2.com/integration/micro-integrator/tooling/) and set up the Micro Integrator CLI tool.
+See the [Micro Integrator CLI documentation](../../../administer-and-observe/using-the-command-line-interface) to set up the tool. Be sure to log in to the Micro Integrator server (from the CLI) with your admin user name and password.
 
-2.  Initialize the CLI tool from your command line:
+Use the [mi user](../../../administer-and-observe/using-the-command-line-interface/#mi-user) option in the CLI with the required commands as shown in the following examples:
 
-    ```bash
-    ./mi
-    ```
+```bash
+# To add a new user.
+mi user add [new user-id] [password] [is-admin]
 
-3.	Log in to the CLI tool with your admin credentials.
+# To remove a user
+mi user remove [user-id]
 
-    !!! Tip
-        The default admin user that is shipped with the Micro Integrator is `admin` and the password is also `admin`.
+# To list all the users
+mi user show
 
-	```bash
-	mi remote login
-	```
+# To list user by user ID
+mi user show [user ID]
 
-4.  Execute the relevant command:
+# To list users by user role
+mi user show -r [role name]
 
-	```bash
-	# To add a new user. This option is only available for admin users, therefore, set the `is-admin` flag to `true`
-	mi user add [new user-id] [password] [is-admin]
+# To list users matching a user name regex pattern
+mi user show -p [user name regex pattern]
+```
 
-	# To remove a user
-	mi user remove [user-id]
+## Managing users from the Dashboard
 
-	# To list all the users
-	mi user show
+See the [Micro Integrator Dashboard documentation](../../../administer-and-observe/working-with-monitoring-dashboard) to set up the dashboard. Be sure to log in to the Micro Integrator server (from the dashboard) with your admin user name and password.
 
-	# To list user by user ID
-	mi user show [user ID]
+Select <b>Users</b> in the left-hand navigator and use the <b>Users</b> tab to view the list of existing users. You can also delete other users (non-admin users and admin users created by you). 
 
-	# To list users by user role
-	mi user show -r [role name]
+<img src="../../../assets/img/monitoring-dashboard/dashboard-users-1.png" width="700">
 
-	# To list users matching a user name regex pattern
-	mi user show -p [user name regex pattern]
-	```
+Go to the <b>Add User</b> tab to create new users. Note that you can assign admin privileges during the creation.
 
-See [Micro Integrator CLI](../../../administer-and-observe/using-the-command-line-interface) for more details.
+<img src="../../../assets/img/monitoring-dashboard/dashboard-users-2.png" width="700">
 
-### Using the Monitoring Dashboard
-
-1.	[Download](https://wso2.com/integration/micro-integrator/tooling/) and setup the Micro Integrator Monitoring dashboard.
-2.	Open a terminal, navigate to the `<MI_DASHBOARD_HOME>/bin` directory, and execute the following command to start the dashboard server:
-		```bash
-		sh dashboard.sh
-		```
-3.	Open the dashboard using the following URL:
-		```bash
-		https://127.0.0.1:9743/dashboard/login
-		```
-4.  You need to log in with your admin credentials.
-
-    !!! Tip
-        The default admin user that is shipped with the Micro Integrator is `admin` and the password is also `admin`.
-
-See [Micro Integrator Dashboard](../../../administer-and-observe/working-with-monitoring-dashboard) for more details.
