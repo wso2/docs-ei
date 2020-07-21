@@ -26,6 +26,9 @@ When you use the [Micro Integrator Dashboard](../../../administer-and-observe/wo
 
 ### Disable user authentication
 
+!!! Note
+    The [management API](../../../administer-and-observe/working-with-management-api) and related tools (the [CLI](../../../administer-and-observe/using-the-command-line-interface) and the [dashboard](../../../administer-and-observe/working-with-monitoring-dashboard)) will not be accessible if authentication is disabled.
+
 If security is **not required**, you can simply disable the handler for the Micro Integrator. Open the `deployment.toml` file (stored in the `MI_HOME/conf/` directory) and add the following configuration:
 
 ```toml
