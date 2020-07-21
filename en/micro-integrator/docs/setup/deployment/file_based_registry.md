@@ -6,7 +6,7 @@ WSO2 Micro Integrator is shipped with a file-system-based registry. By default, 
 * **Config**
 * **Governance**
 
-The artifacts can be stored in any of the above folders. The directory structure is maintained to have backward compatibility with previous EI versions.
+The artifacts can be stored in any of the above folders based on the requirement and use case. The directory structure is maintained to have backward compatibility with previous EI versions.
 
 If you want to change the default locations of the registry folders, uncomment and change the following configuration in the `MI_HOME/repository/deployment/server/synapse-configs/default/registry.xml` file:
 
