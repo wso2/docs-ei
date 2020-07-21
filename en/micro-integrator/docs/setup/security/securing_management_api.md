@@ -17,7 +17,7 @@ JWT-based user authentication is enabled for the management API by default. This
 
 The following resources of the API handles login and logout:
 
--       `/login`: This resource is used to obtain a JWT token based for the provided user name and password and it is protected by basic auth.
+-       `/login`: This resource is used to obtain a JWT token for the provided user name and password and it is protected by basic auth.
 -       `/logout`: This resource is used to revoke the JWT token.
 
 When you [access the management API directly](../../../administer-and-observe/working-with-management-api), you must first acquire a JWT token with your valid username and password. To log out of the management API, this token must be revoked. See [securely invoking the management API](../../../administer-and-observe/working-with-management-api/#securely-invoking-the-api) for more information.
