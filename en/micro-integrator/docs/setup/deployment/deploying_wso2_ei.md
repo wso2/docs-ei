@@ -275,7 +275,7 @@ You could observe the following member removal log in other servers when one nod
 
 Create a simple scheduled task using WSO2 Integration Studio and deploy it in the two Micro Integrator servers. See the instructions on [creating a scheduled task](../../../develop/creating-artifacts/creating-scheduled-task).
 
-```toml
+```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <task xmlns="http://ws.apache.org/ns/synapse" name="sample-task" class="org.apache.synapse.startup.tasks.MessageInjector" group="synapse.simple.quartz">
   <trigger interval="5000"/>
