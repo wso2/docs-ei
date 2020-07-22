@@ -150,6 +150,8 @@ Follow these steps to deploy the exported CApp in the Enterprise Integrator Runt
         "inputContent": "This is a test file"
     }
     ```
+    > **Note**: When you configuring this `source` parameter in Windows operating system you need to set this property shown as `<source>C:\\Users\Kasun\Desktop\Salesforcebulk-connector\create.txt</source>`.
+    
 2. Invoke the API as shown below using the curl command. Curl Application can be downloaded from [here] (https://curl.haxx.se/download.html).
     ```
     curl -H "Content-Type: application/json" --request POST --data @body.json http://10.100.5.136:8290/fileconnector/create

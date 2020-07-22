@@ -1,14 +1,14 @@
 # Configuring the File-Based Registry
 
-WSO2 Micro Integrator is shipped with a file-system-based registry. Thus, by default, the `MI_HOME/registry/` directory will act as the registry to store registry artifacts etc. This main registry directory will consist of the following sub registry directories.
+WSO2 Micro Integrator is shipped with a file-system-based registry. By default, the `MI_HOME/registry/` folder acts as the registry that stores registry artifacts. This root registry folder consists of the following sub-registry folders:
 
 * **Local**
 * **Config**
 * **Governance**
 
-The artifacts can be stored in any of the above directories. The directory structure is maintained to have backward compatibility with previous EI versions.
+The artifacts can be stored in any of the above folders based on the requirement and use case. The directory structure is maintained to have backward compatibility with previous EI versions.
 
-If you want to change the default locations of the registry directories, uncomment and change the following configuration in the `MI_HOME/repository/deployment/server/synapse-configs/default/registry.xml` file.
+If you want to change the default locations of the registry folders, uncomment and change the following configuration in the `MI_HOME/repository/deployment/server/synapse-configs/default/registry.xml` file:
 
 ```xml
 <registry xmlns="http://ws.apache.org/ns/synapse" provider="org.wso2.micro.integrator.registry.MicroIntegratorRegistry">

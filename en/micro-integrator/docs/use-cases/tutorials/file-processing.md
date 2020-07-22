@@ -247,11 +247,11 @@ Package the artifacts in your composite application module to be able to deploy 
 2.  Ensure that the relevant artifacts are selected in the POM file.
 3.  Save the changes.
 
-### Step 4: Configure the Micro Integrator
+### Step 4: Configure the Micro Integrator server
 
 1.  Click the <b>Embedded Micro Integrator Configuration</b> icon on the upper menu to open the dialog box.
 
-2.  Update the server configuration file (`deployment.toml` file) as follows:
+2.  Add the following server configurations (to the `deployment.toml` file) using the upper section in the dialog box.
 
     -   The **VFS** transport is enabled in the Micro Integrator by default. Enable the [MailTo transport](../../../setup/transport_configurations/configuring-transports/#configuring-the-mailto-transport) for sending the email message as shown below and update the values:
 
@@ -276,7 +276,7 @@ Package the artifacts in your composite application module to be able to deploy 
         text_xml = "org.apache.axis2.transport.http.ApplicationXMLFormatter"
         ```
 
-3.  Click the '+' icon in the lower section and add the following drivers and libraries. 
+3.  Click the (<img src="../../../assets/img/tutorials/common/plus-icon.png" width="20">) icon in the lower section and add the following drivers and libraries. 
     -   [MySQL database driver](https://github.com/wso2-docs/WSO2_EI/blob/master/Integration-Tutorial-Artifacts/Artifacts-fileProcessingTutorial.zip).
     -   [CSV smooks library](https://github.com/wso2-docs/WSO2_EI/blob/master/Integration-Tutorial-Artifacts/Artifacts-fileProcessingTutorial.zip).
 

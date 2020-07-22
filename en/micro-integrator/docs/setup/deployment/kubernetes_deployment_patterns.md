@@ -2,7 +2,7 @@
 
 These are the deployment patterns you can use when deploying your WSO2 Micro Integrator-based integration solutions in a Kubernetes environment.
 
-When you deploy your integrations, the main concern is to ensure high availability and scalability of your system. Therefore, you need to decide upon the number of worker nodes and the number of replicas that are required to scale the deployment and to ensure high availability.
+When you deploy your integrations, the main concern is to ensure high availability and scalability of your system. Therefore, you need to decide upon the number of **worker nodes** and the number of **replicas** that are required for the purposes of scaling the deployment and ensuring high availability.
 
 ## Single Replica
 
@@ -10,23 +10,26 @@ The following diagram depicts a single worker node deployment, which contains a 
 
 <img src="../../../assets/img/k8s_deployment/k8s-single-pod.png" width='400'>
 
-Designing with a single-node will give you less management overhead if you are building an on-premises cluster (this does not apply to cloud instances). Also, there will be lower cost and resource requirements when compared to a multiple node cluster.
+A single worker node will reduce your management overheads when you build an on-premise cluster (does not apply to cloud instances). Also, there will be lower costs and resource requirements when compared to a multiple node cluster.
 
 ### Load balancing
 
-This single replica deployment is not recommended if you expect a high amount of traffic to your deployment. With only one replica, it is not possible to balance a high workload across multiple instances.
+The single replica deployment is not recommended if you expect a high amount of traffic to your deployment. Because there is only one replica, it is not possible to balance a high workload across multiple instances.
 
 ### High availability
 
-The failure of this single worker node will take down the entire Micro Integrator deployment (because we don't have an additional node to take over the workload). Also, if there is a failure in the single pod, there will be a downtime before a new pod is spawned again. This downtime can vary depending on the server_startup_time + artifact_deployment_time, which could lead to a significant downtime in your cluster. If this downtime is acceptable and does not negatively impact your requirements, this approach may be the easiest way for you to get started. Otherwise, to achieve high availability, you require more than one worker node (which avoids single point of failure) and multiple replicas of the pod (which avoids downtime).
+The failure of this single worker node will take down the entire Micro Integrator deployment (because we don't have an additional node to take over the workload). Also, if there is a failure in the single pod, there will be a downtime before a new pod is spawned again. This downtime can vary depending on the server_startup_time + artifact_deployment_time, which could lead to a significant downtime in your cluster. If this downtime is acceptable and does not negatively impact your requirements, this approach may be the easiest way for you to get started. Otherwise, to achieve high availability, you require more than one worker node (which avoids single point of failure) and multiple replicas of the pod (which avoids pod downtime).
 
 ## Multiple Replicas
 
-The following diagram depicts a kubernetes cluster with multiple replicas of an integration deployment, scaled across multiple worker nodes. In this example, one node only carries one replica of a pod. However, depending on the capacity of your worker node, you can maintain multiple pod replicas in a single worker node.
+The following diagram depicts a kubernetes cluster with multiple replicas of an integration deployment, which is scaled across multiple worker nodes. 
+
+!!! Note
+	In this example, one node only carries one replica of a pod. However, depending on the capacity of your worker node, you can maintain multiple pod replicas in a single worker node.
 
 <img src="../../../assets/img/k8s_deployment/k8s-muliple-workers-single-pod.png" width="2000">
 
-Running multiple instances of an application will require a way to distribute the traffic to all of them. In this case, the cluster should be fronted by an Ingress or an external load balancer service (given that your Kubernetes environment supports external load balancers) that will distribute network traffic to all pods of an exposed deployment.
+When you have multiple instances of an application, you need a way to distribute the traffic to all of them. Therefore, the cluster should be fronted by an <b>Ingress</b> or an <b>external load balancer service</b> (given that your Kubernetes environment supports external load balancers) that will distribute network traffic to all pods of the exposed deployment.
 
 ### Load balancing
 
@@ -34,7 +37,7 @@ This deployment pattern is suitable for handling high incoming traffic because t
 
 ### High availability
 
-This approach ensures high availability in your cluster. If one worker node fails, the traffic will be routed to another worker node. Similarly, if one pod replica fails, the traffic will be routed to another replica that runs concurrently at a given point of time. This avoids the impact of pod downtime.
+This approach ensures high availability in your cluster. If one worker node fails, the traffic will be routed to another worker node. Similarly, if one pod replica fails, the traffic will be routed to another replica that runs concurrently at a given point of time. The pods will not experience any downtime because new pods don't need to be spawned everytime one pod fails.
 
 ### Rolling updates
 
@@ -44,7 +47,7 @@ Because there are multiple replicas (i.e., multiple instances of the same deploy
 
 Most of the integration solutions that you develop can be deployed using a single Micro Integrator container. That is, as explained in the previous deployment pattern, you can have multiple replicas of a single pod. Because most of these integration flows are stateless (does not need to persist status) the multiple instances (replicas) are not required to coordinate with one other.
 
-However, the following set of artifacts are stateful and requires coordination among themselves if they are deployed in more than a single instance.
+However, the following set of integration artifacts are stateful and requires coordination among themselves if they are deployed in more than a single instance.
 
 -   Scheduled Tasks
 -   Message Processors
@@ -56,16 +59,16 @@ However, the following set of artifacts are stateful and requires coordination a
     -   MQTT Inbound Endpoint
     -   RabbitMQ Inbound Endpoint
 
-As long as you maintain a single artifact deployment for each of these artifacts (all these artifacts), no coordination is required. You can arrange your cluster in the following manner to ensure that there is no duplicate deployment of the same task in multiple containers/pods in the cluster. In this case, you can have multiple replicas of pod 1 in a single worker node (depending on the capacity of the worker node), however; there can only be one replica of the pods that contain artifacts that require coordination as shown below.
+As long as you maintain a single artifact deployment for each of these artifacts, coordination is not required. You can arrange your cluster in the following manner to ensure that the same task is not deployed in multiple containers/pods in the cluster. As shown below, you can have multiple replicas of <b>POD 1</b>. However, <b>POD 2</b> and <b>POD 3</b> can only have one replica each because they contain stateful artifacts.
 
 <img src="../../../assets/img/k8s_deployment/k8s-muliple-workers.png" width="2000">
 
 ### Load balancing
 
-Because these artifacts cannot be deployed in multiple containers/pods, the workload for the artifacts cannot be distributed among multiple instances when there is high traffic. However, load balancing can be achieved by isolating each of the artifacts in individual containers/pod to reduce the workload for a single instance.
+Because stateful artifacts cannot be deployed in multiple containers/pods, it is also not possible to distribute the workload for a stateful artifact when there is high traffic. However, it is possible to reduce the workload on a single worker node or pod by isolating individual stateful artifacts (or groups of selected artifacts) in individual pods.
 
-For example, as shown in the above diagram, if `recurringOrder_Task` and `schedulOrder_Task` are highly utilized scheduled tasks in your deployment, you can distribute the tasks across multiple containers.
+In the example shown above, you can assume that `recurringOrder_Task` and `schedulOrder_Task` are highly-utilized scheduled tasks in your deployment. By deploying them in two separate pods (<b>POD 2</b> and <b>POD 3</b>, you have optimized resource utilization.
 
 ### High availability
 
-Because the artifacts (that require coordination) are deployed in one container/pod in one worker node, if the node fails or if the pod fails, the pod will be spawned again in one of the running working nodes. This avoids single point of failure. However, there will be a downtime until the pod deployment becomes active again.
+Because stateful artifacts (that require coordination) are deployed in one container/pod in one worker node, if the node fails or if the pod fails, the pod will be spawned again in one of the running working nodes. This avoids single point of failure. However, there will be a downtime until the pod deployment becomes active again.
