@@ -124,7 +124,7 @@ WSO2 Enterprise Integrator (WSO2 EI) 7.x is an open-source hybrid integration pl
     </a>
 </div>
 <div class="integratorDescription">
-    <a style="color: #222222;" href="https://docs.wso2.com/display/IntegrationPatterns/">
+    <a style="color: #222222;" href="micro-integrator/use-cases/integration-use-cases/#asynchronous-message-processing">
         <div>
             <div>
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 45 44.9" style="width: 60px;">
@@ -134,7 +134,7 @@ WSO2 Enterprise Integrator (WSO2 EI) 7.x is an open-source hybrid integration pl
             <div class="content" style="">
                 Enterprise Messaging
                 <div class="description" style="">
-                Support for all enterprise integration patterns (EIPs) and common enterprise messaging scenarios.
+                Messages can be queued and do not require an immediate response to continue processing.
                 </div>
             </div>
         </div>
