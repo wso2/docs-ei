@@ -193,15 +193,17 @@ The **Tools** menu provides access to the following tools that are shipped with 
 
 ![Tools menu](../images/streaming-integrator-studio-overview/Tools_Menu.png)
 
--   **File Explorer** 
-    The file explorer. This is also avaible in the [Side Panel](#StreamProcessorStudioOverview-SidePanel).
+- **File Explorer** 
 
+    The file explorer. This is also avaible in the [Side Panel](#StreamProcessorStudioOverview-SidePanel).
+    
 - **Extension Installer**
+
     This opens the **Extension Installer** dialog box (shown below) where you can search for the required extension and install/uninstall it by clicking **Install** or **Uninstall** as appropriate. Once you install/uninstall an extension, you need to restart the Streaming Integrator Tooling. For detailed instructions, see [Installing Siddhi Extensions](installing-siddhi-extensions.md).
 
      ![Extension Installer](../images/streaming-integrator-studio-overview/extension-installer.png)   
     
--   **Event Simulator**  
+- **Event Simulator**  
 
     Simulation can be carried out in two ways:
 
@@ -210,19 +212,29 @@ The **Tools** menu provides access to the following tools that are shipped with 
 
     For detailed information about event simulation, see [Simulating Events](_Simulating_Events_).  
     The event simulator can also be accessed from the [Side Panel](#StreamProcessorStudioOverview-SidePanel).
-      
--   **Console**
-    This is an output console that provides feedback on various user
-    activities carried out on the Streaming Integration Tooling. It is
-    accesible from the [Side Panel](#StreamProcessorStudioOverview-SidePanel).
     
--   **Sample Event Generator**
+- **Error Store Explorer**
+
+    This opens the Error Store Explorer in which you can view and analyze the streaming events with errors that are stored in the error store. 
+    
+    To understand how to save messages with errors in the error store, see [Handling Errors](../guides/fault-Handling.md).
+    
+    To understand how to view and analyze events with errors in the Error Store Explorer, see [Handling Requests with Errors](../examples/handling-requests-with-errors.md).
+      
+- **Console**
+
+    This is an output console that provides feedback on various user activities carried out on the Streaming Integration Tooling. It is accessible from the [Side Panel](#StreamProcessorStudioOverview-SidePanel).
+    
+- **Sample Event Generator**
+
     This opens the Sample Event Generator as follows.  
     ![Sample event generator](../images/streaming-integrator-studio-overview/Sample_Event_Generator.png)  
     Here, you can generate sample events for a selected stream within a selected Siddhi application in a specified format.  
       
--   **On-Demand Query**
+- **On-Demand Query**
+
     This opens the **On-Demand Query** dialog box.
+    
     ![Siddhi Store Query](../images/streaming-integrator-studio-overview/on-demand-query.png)
     Here, you can select a Siddhi application, and then enter a query to
     manipulate the store in which that Siddhi Application saves data.
@@ -230,7 +242,8 @@ The **Tools** menu provides access to the following tools that are shipped with 
     retrieve records and delete records. For more information about
     actions you can carry out for stores, see [Storage Integration - Performing CRUD operations via REST API](../guides/storage-Integration.md#performing-crud-operations-via-rest-api).
       
--   **Tour Guide**
+- **Tour Guide**
+
     This opens a dialog box named **Welcome to the Streaming Integrator
     Tooling Tour Guide** which guides you to understand Streaming Integrator Tooling. When you start the Streaming Integrator Tooling and access it,
     this dialog box is open by default.
