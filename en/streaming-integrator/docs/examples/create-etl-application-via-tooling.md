@@ -1,4 +1,4 @@
-# Designing an ETL Application via SI Tooling
+# Creating an ETL Application via SI Tooling
 
 ## Introduction
 
@@ -21,7 +21,10 @@ In this tutorial, let's create the same Siddhi application created in [Performin
         1. Download the MySQL JDBC driver from [the MySQL site](https://dev.mysql.com/get/Downloads/Connector-J/mysql-connector-java-5.1.45.tar.gz).<br/>
         2. Unzip the archive.<br/>
         3. Copy the `mysql-connector-java-5.1.45-bin.jar` to the `<SI_HOME>/lib` directory.<br/>
-        4. Start the SI server.<br/>
+        4. Start the SI server by issuing the appropriate command based on your operating system.<br/>
+              - For Windows: `streaming-integrator.bat`<br/>
+              - For Linux:  `sh server.sh`<br/>
+            <br/>
     - Once you install MySQL and start the MySQL server, create the database and the database table you require as follows:
         1. Let's create a new database in the MySQL server which you are to use throughout this tutorial. To do this, execute the following query.<br/>
             ```
@@ -34,7 +37,7 @@ In this tutorial, let's create the same Siddhi application created in [Performin
         3. Switch to the `production` database and create a new table, by executing the following queries:<br/>
             `use production;`<br/>
             `CREATE TABLE SweetProductionTable (name VARCHAR(20),amount double(10,2));`<br/> 
-    - Open a new empty file in a text editor of your choice, and save it as `productioninserts.csv` in any location in your machine (e.g., in `/Users/foo`).
+    - Download `productions.csv` file from [here](https://github.com/wso2/docs-ei/tree/master/en/streaming-integrator/docs/examples/resources/productions.csv) and save it in a location of your choice. (e.g., in `/Users/foo`).<br/>    
     - Download and install [Streaming Integrator Tooling](https://wso2.com/integration/streaming-integrator/#)<br/>          
     - Download and install the [siddhi-io-cdc](https://siddhi-io.github.io/siddhi-io-cdc/) extension. For instructions, see [Downloading and Instaling Siddhi Connectors](../connectors/downloading-and-Installing-Siddhi-Extensions/).
 
@@ -188,6 +191,40 @@ To design the Siddhi application with ETL functionality via the Streaming Integr
     
 6. In **Step 5 Process Output Data**, move the cursor over the **+** sign under **Group Output by Fields**, and then click **name**. This groups the output events by the name of the product.
   
-    Then click **Next**.
+    Then click **Save**. 
     
+7. In **Step 6 Finish**, deploy the Siddhi application you just completed by clicking **Deploy to Worker**.
 
+    ![Complete ETL Application](../../images/create-etl-application-via-tooling/deploy-etl-app-to-worker.png)
+    
+    This opens the **Deploy Siddhi Apps to Server** dialog box.
+    
+    1. In the **Add New Server** section, enter the host, port, user name and the password of your Streaming Integrator server as shown below.
+    
+        ![Adding a New Server](../../images/create-etl-application-via-tooling/add-a-new-server.png)
+        
+        Then click **Add**.
+        
+    2. In the **Siddhi Apps to Deploy** section, select the checkbox for the **SweetFactoryETLTaskFlow.siddhi** application. In the **Servers** section, select the check box for the server you added. Then click **Deploy**.
+    
+        ![Select Siddhi Application and Server](../../images/create-etl-application-via-tooling/select-siddhi-app-and-server.png)
+        
+        The following message appears in the **Deploy Siddhi Apps to Server** dialog box.
+        
+        `SweetFactoryETLTaskFlow.siddhi was successfully deployed to 0.0.0.0:9444`
+        
+### Step 2: Test the Siddhi application
+
+To test the Siddhi application, insert a record to the `SweetProductionTable` MySQL table by issuing the following command in your MySQL console.
+
+`insert into SweetProductionTable values('chocolate',100.0);`
+
+The following log appears in the Streaming Integrator console.
+
+```
+INFO {org.wso2.siddhi.core.stream.output.sink.LogSink} - CDCWithListeningMode : logStream : Event{timestamp=1563200225948, data=[chocolate, 100.0], isExpired=false}
+```
+
+If you open the `/Users/foo/productions.csv` file, the `Chocalate, 100.0` record is displayed as shown below.
+
+![Updated File](../../images/create-etl-application-via-tooling/updated-file.png)
