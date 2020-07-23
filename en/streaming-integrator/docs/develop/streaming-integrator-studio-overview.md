@@ -53,6 +53,9 @@ following:
     Click this to open a Siddhi file that is already saved in the `workspace` directory of the Streaming Integrator 
     Tooling. If the file is already opened in a new tab, clicking **Open** does not open it again. The default path to 
     the `workspace` directory is `<SI_Home>/wso2/server/deployment`.
+    
+-   **New ETL Flow**
+    Click this to open a wizard with which you can create a Siddhi application with ETL functionality by entering values for the required parameters instead of constructing Siddhi queries by writing code or via a graphical interface. To understand how this is done, follow the [Creating an ETL Application via SI Tooling tutorial](../examples/create-etl-application-via-tooling.md).
 
 -   **Try out samples**  
     The pre-created samples provided out of the box are listed in this
@@ -81,6 +84,7 @@ The **File** menu includes the following options.
 
 -   **New**  
     Click this to open a new untitled Siddhi file.  
+    
 -   **Open File** 
     Click this to open a Siddhi file that is already saved in the `workspace` directory of the Streaming Integrator 
     Tooling. If the file is already opened in a new tab, clicking **Open** does not open it again. The default path to 
@@ -193,11 +197,9 @@ The **Tools** menu provides access to the following tools that are shipped with 
     The file explorer. This is also avaible in the [Side Panel](#StreamProcessorStudioOverview-SidePanel).
 
 - **Extension Installer**
+    This opens the **Extension Installer** dialog box (shown below) where you can search for the required extension and install/uninstall it by clicking **Install** or **Uninstall** as appropriate. Once you install/uninstall an extension, you need to restart the Streaming Integrator Tooling. For detailed instructions, see [Installing Siddhi Extensions](installing-siddhi-extensions.md).
 
-    This opens the Extension Installer as follows.
-    ![Extension Installer](../images/streaming-integrator-studio-overview/Extension_Installer.png)
-    This can be used to install and un-install Siddhi extensions. For more information, see [Installing Siddhi Extensions](./installing-siddhi-extensions.md).
-    
+     ![Extension Installer](../images/streaming-integrator-studio-overview/extension-installer.png)   
     
 -   **Event Simulator**  
 
@@ -208,12 +210,6 @@ The **Tools** menu provides access to the following tools that are shipped with 
 
     For detailed information about event simulation, see [Simulating Events](_Simulating_Events_).  
     The event simulator can also be accessed from the [Side Panel](#StreamProcessorStudioOverview-SidePanel).
-
-- **Extension Installer**
-
-    This opens the **Extension Installer** dialog box (shown below) where you can search for the required extension and install/uninstall it by clicking **Install** or **Uninstall** as appropriate. Once you install/uninstall an extension, you need to restart the Streaming Integrator Tooling. For detailed instructions, see [Installing Siddhi Extensions](installing-siddhi-extensions.md).
-
-     ![Extension Installer](../images/streaming-integrator-studio-overview/extension-installer.png)
       
 -   **Console**
     This is an output console that provides feedback on various user

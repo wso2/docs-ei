@@ -226,8 +226,11 @@ To create a Siddhi application via the source view of the Streaming Integrator T
 
 6.  To see a graphical view of the event flow you defined in your Siddhi
     application, click **Design View**.
+    
     ![Switch to Design View](../../images/Creating-Siddhi-Applications/Design_View.png)
+    
     The event flow is displayed as follows.  
+    
     ![Siddhi Application in Design View](../../images/Creating-Siddhi-Applications/Siddhi_Application_Design_View.png)
 
 ### Creating a Siddhi application in the design view
