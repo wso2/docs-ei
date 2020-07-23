@@ -140,3 +140,51 @@ By default, the HTTP listener port is 8290 and the default HTTPS listener port i
 ## Stopping the Micro Integrator
 
 To stop the Micro Integrator runtime, press Ctrl+C in the command window.
+
+## Running the Micro Integrator as a Windows Service
+
+### Prerequisites
+
+* Download the binary distribution of WSO2 MI and extract the ZIP file. This will be your `MI_HOME`.
+
+* Be sure to set up a compatible JDK and point the java_home variable to your JDK instance. Note that you must use **lower case** letters when setting the java_home in the Windows OS. That is, you must use `java_home` and not JAVA_HOME.
+ 
+* Set the wso2mi_home environment variable to point to the `MI_HOME` directory
+  Be sure to use **lower case** letters. That is, it should be `wso2mi_home` and not  WSO2MI_HOME.
+  
+### Setting up the YAJSW wrapper 
+
+YASJW uses the configurations defined in the `<YAJSW_HOME>/conf/wrapper.conf` file to wrap Java Applications. Replace the contents of this file with the configurations that are relevant to the WSO2 MI that you want to run as a service. You may use the **wrapper.conf** file available in `<MI_HOME>/bin/yajsw` directory.
+
+!!! Info
+    WSO2 recommends Yet Another Java Service Wrapper (YAJSW) version 12.14. If you are running on JDK 11, previous versions of YAJSW will not be compatible.
+
+### Installing and starting the service
+
+* To install the service, navigate to the `<YAJSW_HOME>/bat/` directory in the Windows Command Prompt and execute the following command: 
+ 
+```bash
+installService.bat
+```
+
+* To start the service, navigate to the `<YAJSW_HOME>/bat/` directory in the Windows Command Prompt and execute the following command: 
+
+```bash
+startService.bat
+```
+
+### Stopping the service
+
+To stop the service, navigate to the `<YAJSW_HOME>/bat/` directory in the Windows Command Prompt and execute the following command: 
+
+```bash
+stopService.bat
+```
+
+### Uninstalling the service
+
+To uninstall the service, navigate to the `<YAJSW_HOME>/bat/` directory in the Windows Command Prompt and execute the following command: 
+ 
+```bash
+uninstallServiceService.bat
+```
