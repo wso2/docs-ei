@@ -1,6 +1,3 @@
-!!! note
-    This section is still a work in progress and not reviewed!
-
 # Managing Streaming Data with Errors
 
 ## Introduction
@@ -131,8 +128,40 @@ To create and deploy a Siddhi application, follow the steps below:
     
         ![Select Siddhi Application and Server](../../images/handling-requests-with-errors/select-siddhi-app-and-server.png)
         
+### Step 4: Connect the Error Store Explorer to the SI server
+
+The Error Store Explorer is a tool that allows you to view, correct and replay events with errors. It order to use it, it needs to be connected to the SI server.
+
+To connect the Error Store Explorer to the SI server, follow the procedure below:
+
+1. Start the Streaming Integrator Tooling server by navigating to the `<SI_TOOLING_HOME>/bin` directory and issuing one of the following commands as appropriate, based on your operating system:
+                                                 
+     - For Windows: `streaming-integrator-tooling.bat`
+    
+     - For Linux: `./streaming-integrator-tooling.sh`
+     
+   Then Access the Streaming Integrator Tooling via the URL that appears in the start up log with the text `Editor Started on:`.
+       
+2. To open the Error Store Explorer, click **Tools** and then click **Error Store Explorer**.
+
+   The Error Store Explorer opens as shown below. 
+   
+   ![Access Error Store](../../images/handling-requests-with-errors/error-store-explorer-without-server.png)
+   
+3. Click **Connect to Server**. Then enter information as follows:
+
+    ![Server Configuration](../../images/handling-requests-with-errors/server-configurations.png)
+
+    |**Parameter**|**Value**    |
+    |-------------|-------------|
+    |**Host**     | `localhost` |
+    |**Port**     | `9444`      |
+    |**Username** | `admin`     |
+    |**Password** | `admin`     |
+    
+    Then click **Connect**.
         
-### Step 4: Generate events with errors
+### Step 5: Generate events with errors
 
 Let's simulate an event with an error to observe how it is handled.
 
@@ -152,9 +181,11 @@ To simulate REST API calls for the purpose, follow the procedure below:
 
     ![Imported Collections](../../images/handling-requests-with-errors/Postman.png)
     
-3. Under **Siddhi-Re-Stream Events**, select **Invalid Attribute** and click **Send**. This executes the collection to send an event with erroneous mapping. The error is indicated as follows:
+3. Under **Siddhi-Re-Stream Events**, select **Invalid Attribute** and click **Send**. 
 
-    `Error: connect ECONNREFUSED <HOST_NAME>:8006`
+    This executes the collection to send an event. To view the event, go to the **Body** tab  where the event is displayed as shown below.
+
+    ![View Event Body](../../images/handling-requests-with-errors/view-event-body.png)
 
 4. Under **Siddhi Re-Stream**, click **Get Erroneous Events from Error Store**. Enter `http://localhost:9090/error-handler/erroneous-events?siddhiApp=MappingErrorTest` as the URL and click **Send**.
 
@@ -177,7 +208,7 @@ To simulate REST API calls for the purpose, follow the procedure below:
         ]
     ```
     
-    This indicates that a mappinng error has occured. The reason for the mapping error is because in the input event, the attribute `name` is incorrectly replaced with `foo`.
+    This indicates that a mappinng error has occured. The reason for the mapping error is because in the input event, the attribute `name` is incorrectly replaced with `foo`.  Therefore, error cause is displayed as  `"No results for path: $['name']"`.
     
 5. To replay this event, do the following:
 
@@ -187,10 +218,29 @@ To simulate REST API calls for the purpose, follow the procedure below:
     
     3. Click **Send**. As a result `Successful mapping` is logged in the console.
     
-6. Start the Streaming Integrator Tooling server by navigating to the `<SI_TOOLING_HOME>/bin` directory and issuing one of the following commands as appropriate, based on your operating system:
-                                                 
-     - For Windows: `streaming-integrator-tooling.bat`
     
-     - For Linux: `./streaming-integrator-tooling.sh`
-         
-    Then Access the Streaming Integrator Tooling via the URL that appears in the start up log with the text `Editor Started on:`.
+7. To open the Error Store Explorer, open Streaming Integrator Tooling, click **Tools** and then click **Error Store Explorer**.
+
+    ![Access Error Store](../../images/handling-requests-with-errors/view-event-body.png)
+    
+    The Error Store Explorer opens as shown below.
+    
+    ![Error Store Explorer](../../images/handling-requests-with-errors/error-store-explorer.png)
+    
+    The single error displayed is the mapping error that you previously simulated.
+    
+8. To view details of the error, click **Detailed Info**. The following is displayed.
+
+    ![Error Entry](../../images/handling-requests-with-errors/error-entry.png)
+    
+9. You can correct the mapping and replay the event. To do this, change `foo` ion the event to `name` and click `replay`.
+    
+    ![Replay Error](../../images/handling-requests-with-errors/replay-error.png
+    
+    As a result, the **Error Entry** dialog box closes, and the **Error Store Explorer** dialog box is displayed with no errors.
+    
+    At the same time the following is logged for the Streaming Integrator Server.
+    
+    ```
+        INFO {io.siddhi.core.stream.output.sink.LogSink} - Successful mapping:  : Event{timestamp=1595574091411, data=[Cake, 20.02], isExpired=false}
+    ```
