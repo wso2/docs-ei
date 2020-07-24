@@ -242,24 +242,21 @@ There are two ways to build a Docker image of the integration solution and push 
 
 -   Using <b>Maven</b>:
 
-    1.  Navigate to the Integration project and run the following command to build the project. It will create a docker image with the provided target repository and tag once the build is successfull.
+    Navigate to the Integration project from your terminal and run the following command to build the Docker image and then push it to the specified Docker registry.
 
-        ```bash
-        mvn clean install -Dmaven.test.skip=true
-        ```
+    !!! Note
+        <b>Be sure</b> to specify the user name and password of your Docker registry when you run the following command.
 
-    2.  Navigate to the Kubernetes exporter inside the Integration project and run the following command to push the docker image to the remote docker registry.
-
-        ```bash
-        mvn dockerfile:push -Ddockerfile.username={username} -Ddockerfile.password={password}
-        ``` 
+    ```bash
+    mvn clean install -Dmaven.test.skip=true -Ddockerfile.username={username} -Ddockerfile.password={password} 
+    ```
 
 -   Using <b>WSO2 Integration Studio</b>:
       
     1.  Open the **pom.xml** file in the Kubernetes exporter.    
     2.  Ensure that the composite exporter is selected under **Dependencies** and click <b>Build & Push</b>.
 
-        <img src="../../../assets/img/create_project/docker_k8s_project/select-dependency-jms-example.png">
+        <img src="../../../../assets/img/create_project/docker_k8s_project/select-dependency-jms-example.png">
 
     3.  In the dialog box that opens, enter the credentials of your Docker registry to which the image should be pushed.
 
