@@ -1,3 +1,6 @@
+!!! note
+    This section is still a work in progress and not reviewed!
+
 # Handling Errors
 
 WSO2 Streaming Integrator allows you to handle any errors that may occur when handling streaming data in a graceful manner. Thgis section explains the different types of errors that can occur and how they can be handled.
@@ -131,5 +134,3 @@ error.store:
 - `bufferSize` denotes the size of the ring buffer that is used in the disruptor when publishing events to the ErrorStore. This has to be a power of two. If not, it throws an exception during initialization. The default buffer size is `1024`.
 
 - If the `dropWhenBufferFull` is set to `true`, the event is dropped when the capacity of the ring buffer is insufficient.
-
-

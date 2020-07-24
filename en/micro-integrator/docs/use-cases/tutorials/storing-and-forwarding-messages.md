@@ -205,45 +205,14 @@ Package the artifacts in your composite application project (SampleServicesCompo
 
 3.  Save the project.
 
-### Step 4: Build and run the artifacts
+### Step 4: Configure the Micro Integrator server
 
-To test the artifacts, deploy the [packaged artifacts](#step-3-package-the-artifacts) in the embedded Micro Integrator:
+We will use the embedded Micro Integrator of WSO2 Integration Studio to run this solution. 
 
-1.  Right-click the composite application project and click **Export Project Artifacts and Run**.
-2.  In the dialog that opens, select the composite application project that you want to deploy.  
-4.  Click **Finish**. The artifacts will be deployed in the embedded Micro Integrator and the server will start. See the startup log in the **Console** tab.
+Let's configure the embedded server to connect to the broker:
 
-!!! Warning
-    Stop the Micro Integrator before proceeding to test. This is because you need to start the broker profile before starting the Micro Integrator.
-
-### Step 5: Test the use case
-
-Let's test the use case by sending a simple client request that invokes the service.
-
-#### Start the backend service
-
-1. Download the JAR file of the back-end service from [here](https://github.com/wso2-docs/WSO2_EI/blob/master/Back-End-Service/Hospital-Service-2.0.0-EI7.jar).
-2. Open a terminal, navigate to the location where your saved the [back-end service](#step-1-set-up-the-workspace).
-3. Execute the following command to start the service:
-
-    ```bash
-    java -jar Hospital-Service-2.0.0-EI7.jar
-    ```
-
-#### Start the Message Broker runtime
-
-To set up Message Broker profile of WSO2 EI 6.6.0:
-
-1. Download [WSO2 EI 6.6.0](https://wso2.com/enterprise-integrator/6.6.0), which includes the Message Broker profile. The path to this folder is referred to as `EI_6.6.0_HOME` throughout this tutorial.
-
-2. Add the following JAR files from the `EI_6.6.0_HOME/wso2/broker/client-lib/` directory to the 
-`MI_TOOLING_HOME/Contents/Eclipse/runtime/microesb/lib/` (in MacOS) or 
-`MI_TOOLING_HOME/runtime/microesb/lib` (in Windows/Linux) directory.
-    -   andes-client-*.jar
-    -   geronimo-jms_1.1_spec-*.jar
-    -   org.wso2.securevault-*.jar
-3. Open the `deployment.toml` file from the `MI_TOOLING_HOME/Contents/Eclipse/runtime/microesb/conf/` (in MacOS) or 
-`MI_TOOLING_HOME/runtime/microesb/conf/` (in Windows/Linux) directory and add the configurations given below. This is required for enabling the broker to store messages.
+1.  Click the <b>Embedded Micro Integrator Configuration</b> icon on the upper menu to open the dialog box.
+2.  Add the following server configurations (to the `deployment.toml` file) using the upper section in the dialog box.
 
     ```toml
     [[transport.jms.listener]]
@@ -270,23 +239,57 @@ To set up Message Broker profile of WSO2 EI 6.6.0:
     [transport.jndi.queue]
     PaymentRequestJMSMessageStore="PaymentRequestJMSMessageStore"
     ```
+
+3. Click the (<img src="../../../assets/img/tutorials/common/plus-icon.png" width="20">) icon in the lower section and copy the following JARs from the `<EI_6.6.0_HOME>/wso2/broker/client-lib/` folder.
+    -   andes-client-*.jar
+    -   geronimo-jms_1.1_spec-*.jar
+    -   org.wso2.securevault-*.jar
+
+
+### Step 5: Build and run the artifacts
+
+To test the artifacts, deploy the [packaged artifacts](#step-3-package-the-artifacts) in the embedded Micro Integrator:
+
+1.  Right-click the composite exporter module and click **Export Project Artifacts and Run**.
+2.  In the dialog box that opens, confirm that the required artifacts from the composite exporter module are selected.     
+4.  Click **Finish**. 
+
+The artifacts will be deployed in the embedded Micro Integrator and the server will start.
+
+- See the startup log in the **Console** tab.
+- See the URLs of the deployed services and APIs in the **Deployed Services** tab.
+
+!!! Warning
+    Stop the Micro Integrator before proceeding to test. This is because you need to start the broker profile before starting the Micro Integrator.
+
+### Step 6: Test the use case
+
+Let's test the use case by sending a simple client request that invokes the service.
+
+#### Start the back-end service
+
+1. Download the JAR file of the back-end service from [here](https://github.com/wso2-docs/WSO2_EI/blob/master/Back-End-Service/Hospital-Service-2.0.0-EI7.jar).
+2. Open a terminal, navigate to the location where your saved the [back-end service](#step-1-set-up-the-workspace).
+3. Execute the following command to start the service:
+
+    ```bash
+    java -jar Hospital-Service-2.0.0-EI7.jar
+    ```
+
+#### Start the Message Broker runtime
     
 To start the Message Broker:
 
 1.  Open a terminal and navigate to the `EI_6.6.0_HOME/wso2/broker/bin` directory.
 2.  Execute the following command to run the message broker. 
-    
-    -   On **MacOS/Linux/CentOS**:
 
-        ```bash
-        sh wso2server.sh
-        ```
+    ```bash tab='On MacOS/Linux/Centos'
+    sh wso2server.sh
+    ```
 
-    -   On **Windows**:
-
-        ```bash
-        wso2server.bat
-        ```
+    ```bash tab='On Windows'
+    wso2server.bat
+    ```
 
     See the [WSO2 EI 6.6.0 documentation](https://docs.wso2.com/display/EI660/Running+the+Product) for more information on how to run the Message Broker profile.
 

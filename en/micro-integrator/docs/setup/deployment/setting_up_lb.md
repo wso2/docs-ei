@@ -40,8 +40,8 @@ community](http://nginx.org/) version 1.9.2 as the load balancer.
 
 	 ```java
 	 upstream wso2.ei.com {
-   server xxx.xxx.xxx.xx1:8280;
-   server xxx.xxx.xxx.xx2:8280;
+     server xxx.xxx.xxx.xx1:8290;
+     server xxx.xxx.xxx.xx2:8290;
 	 }
 	 server {
      listen 80;
@@ -169,9 +169,7 @@ community](http://nginx.org/) version 1.9.2 as the load balancer.
 	  	sudo service  nginx  restart
 	  	```
 
-	 -	Execute the following command if you do not need to restart the server when you are simply making and 	modification to the VHost file:
+	 -	Execute the following command if you do not need to restart the server when you are simply making modifications to the VHost file:
 			```bash
 			sudo service nginx reload
 			```
-
-See the instructions on [configuring the Micro Integrator](../deploying_wso2_ei) with the load balancer.
