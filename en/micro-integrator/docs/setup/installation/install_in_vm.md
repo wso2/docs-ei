@@ -125,18 +125,73 @@ This script automatically assigns the JAVA HOME of your VM to the root user of y
 2.  Open a terminal and navigate to the `MI_HOME/bin/` directory, where `MI_HOME` is the home directory of the distribution you downloaded.
 3.  Execute the relevant command:
 
-    * On **MacOS/Linux/CentOS**:
-      ```bash
-      sh micro-integrator.sh
-      ```      
-
-    * On **Windows**:
-      ```bash
-      micro-integrator.bat
-      ```
+    ```bash tab='On MacOS/Linux/CentOS'
+    sh micro-integrator.sh
+    ```
+    
+    ```bash tab='On Windows'
+    micro-integrator.bat
+    ```
       
 By default, the HTTP listener port is 8290 and the default HTTPS listener port is 8253.
 
-## Stopping the Micro Integrator
+### Stopping the Micro Integrator
 
 To stop the Micro Integrator runtime, press Ctrl+C in the command window.
+
+## Running the Micro Integrator as a Windows Service
+
+### Prerequisites
+
+* Go to the WSO2 Micro Integrator [product page](https://wso2.com/integration/micro-integrator/) -> **Other Installation Options** and click **Binary** to download the product distribution as a ZIP file. Extract the ZIP file. This will be your `<MI_HOME>`.
+
+* Set up a [JDK that is compatible with WSO2 Enterprise Integrator](https://docs.wso2.com/display/compatibility/Tested+Operating+Systems+and+JDKs) and point the java_home variable to your JDK instance. 
+
+    !!! Note 
+        Be sure to use **lower case** letters when setting the java_home in the Windows OS. That is, you must use `java_home` and not JAVA_HOME.
+ 
+* Set the `wso2mi_home` environment variable to point to the `MI_HOME` directory
+  
+  !!! Note
+      Be sure to use **lower case** letters. That is, it should be `wso2mi_home` and not  WSO2MI_HOME.
+  
+### Setting up the YAJSW wrapper 
+
+YASJW uses the configurations defined in the `<YAJSW_HOME>/conf/wrapper.conf` file to wrap Java applications. Replace the contents of this file with the configurations that are relevant to the Micro Integrator instance that you want to run as a service. Use the **wrapper.conf** file available in `<MI_HOME>/bin/yajsw` folder to get the relevant configurations.
+
+!!! Info
+    WSO2 recommends Yet Another Java Service Wrapper (YAJSW) version 12.14. If you are running on JDK 11, previous versions of YAJSW will not be compatible.
+
+### Installing and starting the service
+
+* To install the service:
+    
+    Navigate to the `<YAJSW_HOME>/bat/` directory in the Windows command prompt, and execute the following command: 
+ 
+    ```bash
+    installService.bat
+    ```
+
+* To start the service: 
+
+    Navigate to the `<YAJSW_HOME>/bat/` directory in the Windows command prompt, and execute the following command: 
+
+    ```bash
+    startService.bat
+    ```
+
+### Stopping the service
+
+To stop the service, navigate to the `<YAJSW_HOME>/bat/` directory in the Windows command prompt and execute the following command: 
+
+```bash
+stopService.bat
+```
+
+### Uninstalling the service
+
+To uninstall the service, navigate to the `<YAJSW_HOME>/bat/` directory in the Windows command prompt and execute the following command: 
+ 
+```bash
+uninstallServiceService.bat
+```
