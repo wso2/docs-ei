@@ -192,7 +192,7 @@ This generates an output event payload as shown below.
     ]
 ```
 
-This indicates that a mappinng error has occurred. The reason for the mapping error is because in the input event, the attribute `name` is incorrectly replaced with `foo`.  Therefore, error cause is displayed as  `"No results for path: $['name']"`.
+This indicates that a mapping error has occurred. The reason for the mapping error is because in the input event, the attribute `name` is incorrectly replaced with `foo`.  Therefore, error cause is displayed as  `"No results for path: $['name']"`.
  
 ### Step 6: Manage the error in the Error Store Explorer
 
