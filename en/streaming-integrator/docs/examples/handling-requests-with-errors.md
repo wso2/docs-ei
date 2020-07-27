@@ -19,7 +19,6 @@ In this scenario, you are handling erroneous events by directing them to a MySQL
       `INFO {org.wso2.carbon.kernel.internal.CarbonStartupHandler} - WSO2 Streaming Integrator started in 4.240 sec`
       <br/>
     - You need to have access to a MySQL instance.<br/>
-    - To simulate REST API calls, download and install [Postman](https://www.postman.com/downloads/).
     
 ## Tutorial steps
       
@@ -163,65 +162,45 @@ To connect the Error Store Explorer to the SI server, follow the procedure below
         
 ### Step 5: Generate events with errors
 
-Let's simulate an event with an error to observe how it is handled.
+To simulate an event with an error, issue the following CURL command:
 
-To simulate REST API calls for the purpose, follow the procedure below:
+```
+curl --location --request POST 'http://localhost:8006/productionStream' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+        "foo": "Cake",
+        "amount": 20.02
+}'
+```
 
-1. Download the two `.json` files from here and save them in a preferred location in your machine.
+This generates an output event payload as shown below.
 
-2. Open Postman. Click **Import** to open the **Import** dialog box, click **Upload Files**.
+```
+    [
+        {
+            "id": 1,
+            "timestamp": 1594638613532,
+            "siddhiAppName": "MappingErrorTest",
+            "streamName": "InvalidMappingCaller",
+            "event": "{\"foo\":\"Cake\",\"amount\":20.02}",
+            "cause": "No results for path: $['name']",
+            "stackTrace": "com.jayway.jsonpath.PathNotFoundException: No results for path: $['name']\n\tat com.jayway.jsonpath.internal.path.EvaluationContextImpl.getValue(EvaluationContextImpl.java:133)\n\tat com.jayway.jsonpath.JsonPath.read(JsonPath.java:187)\n\tat com.jayway.jsonpath.internal.JsonContext.read(JsonContext.java:164)\n\tat com.jayway.jsonpath.internal.JsonContext.read(JsonContext.java:151)\n\tat io.siddhi.extension.map.json.sourcemapper.JsonSourceMapper.processCustomEvent(JsonSourceMapper.java:555)\n\tat io.siddhi.extension.map.json.sourcemapper.JsonSourceMapper.convertToEvent(JsonSourceMapper.java:314)\n\tat io.siddhi.extension.map.json.sourcemapper.JsonSourceMapper.mapAndProcess(JsonSourceMapper.java:233)\n\tat io.siddhi.core.stream.input.source.SourceMapper.onEvent(SourceMapper.java:200)\n\tat io.siddhi.core.stream.input.source.SourceMapper.onEvent(SourceMapper.java:144)\n\tat io.siddhi.extension.io.http.source.HttpWorkerThread.run(HttpWorkerThread.java:62)\n\tat java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128)\n\tat java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)\n\tat java.base/java.lang.Thread.run(Thread.java:834)\n",
+            "errorOccurrence": "BEFORE_SOURCE_MAPPING",
+            "eventType": "PAYLOAD_STRING",
+            "errorType": "MAPPING"
+        }
+    ]
+```
 
-    ![Import Collections](../../images/handling-requests-with-errors/import-collections.png)
+This indicates that a mappinng error has occurred. The reason for the mapping error is because in the input event, the attribute `name` is incorrectly replaced with `foo`.  Therefore, error cause is displayed as  `"No results for path: $['name']"`.
+ 
+### Step 6: Manage the error in the Error Store Explorer
 
-    Then browse and select the two files you downloaded. In the  **Import** dialog box that appears, click **Import**. 
+To manage the error in the Error Store Explorer, follow the procedure below:
     
-    ![Import Collections](../../images/handling-requests-with-errors/confirm-import.png)
-    
-    As a result, the two collections are displayed in the left panel as follows.
+1. To open the Error Store Explorer, open Streaming Integrator Tooling, click **Tools** and then click **Error Store Explorer**.
 
-    ![Imported Collections](../../images/handling-requests-with-errors/Postman.png)
-    
-3. Under **Siddhi-Re-Stream Events**, select **Invalid Attribute** and click **Send**. 
-
-    This executes the collection to send an event. To view the event, go to the **Body** tab  where the event is displayed as shown below.
-
-    ![View Event Body](../../images/handling-requests-with-errors/view-event-body.png)
-
-4. Under **Siddhi Re-Stream**, click **Get Erroneous Events from Error Store**. Enter `http://localhost:9090/error-handler/erroneous-events?siddhiApp=MappingErrorTest` as the URL and click **Send**.
-
-    This generates an output event payload as shown below.
-    
-    ```
-        [
-            {
-                "id": 1,
-                "timestamp": 1594638613532,
-                "siddhiAppName": "MappingErrorTest",
-                "streamName": "InvalidMappingCaller",
-                "event": "{\"foo\":\"Cake\",\"amount\":20.02}",
-                "cause": "No results for path: $['name']",
-                "stackTrace": "com.jayway.jsonpath.PathNotFoundException: No results for path: $['name']\n\tat com.jayway.jsonpath.internal.path.EvaluationContextImpl.getValue(EvaluationContextImpl.java:133)\n\tat com.jayway.jsonpath.JsonPath.read(JsonPath.java:187)\n\tat com.jayway.jsonpath.internal.JsonContext.read(JsonContext.java:164)\n\tat com.jayway.jsonpath.internal.JsonContext.read(JsonContext.java:151)\n\tat io.siddhi.extension.map.json.sourcemapper.JsonSourceMapper.processCustomEvent(JsonSourceMapper.java:555)\n\tat io.siddhi.extension.map.json.sourcemapper.JsonSourceMapper.convertToEvent(JsonSourceMapper.java:314)\n\tat io.siddhi.extension.map.json.sourcemapper.JsonSourceMapper.mapAndProcess(JsonSourceMapper.java:233)\n\tat io.siddhi.core.stream.input.source.SourceMapper.onEvent(SourceMapper.java:200)\n\tat io.siddhi.core.stream.input.source.SourceMapper.onEvent(SourceMapper.java:144)\n\tat io.siddhi.extension.io.http.source.HttpWorkerThread.run(HttpWorkerThread.java:62)\n\tat java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128)\n\tat java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)\n\tat java.base/java.lang.Thread.run(Thread.java:834)\n",
-                "errorOccurrence": "BEFORE_SOURCE_MAPPING",
-                "eventType": "PAYLOAD_STRING",
-                "errorType": "MAPPING"
-            }
-        ]
-    ```
-    
-    This indicates that a mappinng error has occured. The reason for the mapping error is because in the input event, the attribute `name` is incorrectly replaced with `foo`.  Therefore, error cause is displayed as  `"No results for path: $['name']"`.
-    
-5. To replay this event, do the following:
-
-    1. Copy the output payload given above.
-    
-    2. Click **Siddhi Re-Stream**, and then click **ReStream Event(s)**. Paste the output event payload you copied in the body of the request. In `event": "{\"foo\":\"Cake\",\"amount\":20.02}`, replace `foo` with `name`.
-    
-    3. Click **Send**. As a result `Successful mapping` is logged in the console.
-    
-    
-7. To open the Error Store Explorer, open Streaming Integrator Tooling, click **Tools** and then click **Error Store Explorer**.
-
-    ![Access Error Store](../../images/handling-requests-with-errors/view-event-body.png)
+    ![Access Error Store](../../images/handling-requests-with-errors/access-error-store-explorer.png)
     
     The Error Store Explorer opens as shown below.
     
@@ -229,13 +208,13 @@ To simulate REST API calls for the purpose, follow the procedure below:
     
     The single error displayed is the mapping error that you previously simulated.
     
-8. To view details of the error, click **Detailed Info**. The following is displayed.
+2. To view details of the error, click **Detailed Info**. The following is displayed.
 
     ![Error Entry](../../images/handling-requests-with-errors/error-entry.png)
     
-9. You can correct the mapping and replay the event. To do this, change `foo` ion the event to `name` and click `replay`.
+3. You can correct the mapping and replay the event. To do this, change `foo` in the event to `name` and click `replay`.
     
-    ![Replay Error](../../images/handling-requests-with-errors/replay-error.png
+    ![Replay Error](../../images/handling-requests-with-errors/replay-error.png)
     
     As a result, the **Error Entry** dialog box closes, and the **Error Store Explorer** dialog box is displayed with no errors.
     

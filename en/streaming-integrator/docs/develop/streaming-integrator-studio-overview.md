@@ -221,13 +221,13 @@ The **Tools** menu provides access to the following tools that are shipped with 
     
     ![Connect to Server](../images/streaming-integrator-studio-overview/connect-error-store-explorer.png)
      
-    Once the Error Store Explorer is connected to an SI server, you can view basic details of events with errors as shown in the example below.
+    Once the Error Store Explorer is connected to an SI server, you can get an overview of events with errors as shown in the example below.
     
     ![Error Store Explorer](../images/streaming-integrator-studio-overview/view-basic-error-info.png)
     
     Here, you can do the following:
     
-    - **Fetch Errors**: At a given time, the Error Store Explorer displays the number of events with errors from the time it was last refreshed. To get the latest errors, select the required Siddhi application in the **Siddhi app** field and click **Fetch**.
+    - **Fetch Errors**: At a given time, the Error Store Explorer displays the number of events with errors from the time it was last fetched/refreshed. To get the latest errors, select the required Siddhi application in the **Siddhi app** field and click **Fetch**.
     
     - **View details**: To view details of a specific error, click **Detailed Info** for the relevant event. Then the details of the error are displayed in the **Error Entry** dialog box as shown in the example below.
            ![Error Entry](../../images/handling-requests-with-errors/error-entry.png)
@@ -238,13 +238,16 @@ The **Tools** menu provides access to the following tools that are shipped with 
         
         - To replay a single event without making any changes, click **Replay** for the specific event.
         
-        - To make any changes to the event (e.g., the mapping) before replaying, click **Detailed Info** for the relevant event and open the **Error Entry** dialog box. Then make the required changes to the event (which is displayed in an editable field) and click **Replay**.
+        - To make any changes to the event before replaying, click **Detailed Info** for the relevant event and open the **Error Entry** dialog box. Then make the required changes to the event (which is displayed in an editable field) and click **Replay**.
+        
+            !!!info
+                Note that only mapping errors can be corrected before replaying.
         
             ![Correct and Replay Event](../../images/handling-requests-with-errors/correct-and-replay-event.png)
             
     - **Discard events**: To discard all the erroneous events for the selected Siddhi application, click **Discard All**. To discard a specific erroneous event, click **Discard** for the relevant event.
     
-    - **Purge Events**: To periodically purge events, click **Purge**. This opens the **Purge Error Store** dialog box. In the **Retention Period (days)** field, enter the number of days for which you want to retain the erroneous events in the store and then click **Purge**. As a result, the each event stored is automatically removed after the specified number of days.
+    - **Purge Events**: To periodically purge events, click **Purge**. This opens the **Purge Error Store** dialog box. In the **Retention Period (days)** field, enter the number of past days for which you want to retain the erroneous events in the store and then click **Purge**. As a result, all the events except the ones stored in the specified number of past days are removed from the error store.
     
     To understand how to save messages with errors in the error store, see [Handling Errors](../guides/fault-Handling.md).
     
