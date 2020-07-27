@@ -719,16 +719,16 @@ Examples
  # To encrypt secret and get output on console
  mi secret create
 
- # To encrypt secret and get output to file (stored in the <CLI_HOME>/bin/security folder).
+ # To encrypt secret and get output to file (stored in the <CLI_HOME>/security folder).
  mi secret create file
 
- # To encrypt secret and get output as a .yaml file (stored in the <CLI_HOME>/bin/security folder).
+ # To encrypt secret and get output as a .yaml file (stored in the <CLI_HOME>/security folder).
  mi secret create k8
 
  # To bulk encrypt secrets defined in a properties file.
  mi secret create -f=</file_path>
 
- # To bulk encrypt secretes defined in a properties file and get a .yaml file (stored in the <CLI_HOME>/bin/security folder).
+ # To bulk encrypt secretes defined in a properties file and get a .yaml file (stored in the <CLI_HOME>/security folder).
  mi secret create k8 -f=</file_path>
 ```
 
