@@ -10,15 +10,15 @@ WSO2 Streaming Integrator allows you to handle any errors that may occur when ha
 <tbody>
 <tr class="odd">
 <th>Description</th>
-<td>These are errors identified based on Siddhi logic when processing events.<br/><br/>To specify how the system should handle errors that occur at runtime, you need to add an <code>@OnError</code> annotation to a stream definition as shown below.<br/><br/><code>@OnError(action='on_error_action')<br/>define stream <stream name> (<attribute name> <attribute type>, <attribute name> <attribute type>, ... );</code></td>
+<td>These are errors identified based on Siddhi logic when processing events.<br/><br/>To specify how the system should handle errors that occur at runtime, you need to add an <code>@OnError</code> annotation to a stream definition as shown below.<br/><br/><code>@OnError(action='on_error_action')<br/>define stream <stream name> (<attribute name> <attribute type>, <attribute name> <attribute type>, ... );</code>Events with such errors are collected and stored only if the <code>@OnError(action='STORE')</code> annotation is connected to a stream or if the `on.error='STORE'`parameter is set within a sink annotation.</td>
 </tr>
 <tr class="even">
 <th>Supported actions</th>
-<td><ul><li><code>LOG</code></li><li><code>STREAM</code></li><li><code>STORE</code></li></ul><br/><br/>For more information about these on-error actions, see [Supported on-error actions](#supported-on-error-actions).</td>
+<td><ul><li><code>LOG</code></li><li><code>STREAM</code></li><li><code>STORE</code> (</li></ul><br/><br/>For more information about these on-error actions, see [Supported on-error actions](#supported-on-error-actions).</td>
 </tr>
 <tr class="odd">
 <th>Example</th>
-<td>The following is a Siddhi application that includes the <code>@OnError</code> annotation to handle failures during runtime.<br/><br/><code>@OnError(name='STREAM')<br/><br/>define stream StreamA (symbol string, volume long);<br/><br>from StreamA[custom:fault() > volume]<br/>insert into StreamB;<br/><br>from !StreamA#log("Error Occured")<br/>select symbol, volume long, _error<br/>insert into tempStream;</code><br/><br/>Here, if an error occurs for the base stream named <code>StreamA</code> , a stream named <code>!StreamA</code> is automatically created. The base stream has two attributes named symbol and volume. Therefore, <code>!StreamA</code> has the same two attributes, and in addition, another attribute named <code>_error</code>.<br/><br/>The Siddhi query uses the <code>custom:fault()</code> extension generates the error detected based on the specified condition (i.e., if the volume is less than a specified amount). If no error is detected, the output is inserted into the <code>StreamB</code> stream. However, if an error is detected, it is logged with the <code>Error Occured</code> text. The output is inserted into a stream named <code>tempStream</code>, and the error details are presented via the <code>_error</code> stream attribute (which is automatically included in the <code>!StreamA</code> error stream and then inserted into the <code>TempStream</code> which is the inferred output stream).</td>
+<td>In the following Siddhi application, the sink annotation specifies <code>STORE</code> as the on-error action. If you send the <code>{"event": {"name": "Cake2", "amount": 20.222}}</code> event to the `http://localhost:8007/testUnavailableEP` endpoint, the event is collected and stored in the error store because the `unavailableEndpoint` does not exist.<br/><br/><code>@App:name("SinkTransportErrorTest")<br/><br/>@sink(type = 'http', on.error='STORE', blocking.io='true', publisher.url = "http://localhost:8090/unavailableEndpoint", method = "POST", @map(type = 'json'))<br/>define stream TestPublisherStream (name string, amount double);<br/><br/>@Source(type = 'http', receiver.url='http://localhost:8007/testUnavailableEP', basic.auth.enabled='false', @map(type='json', enclosing.element='$.event', @attributes(name='name', amount='amount')))<br/>define stream TestInput(name string, amount double);<br/><br/>from TestInput<br/>select name, amount<br/>insert into TestPublisherStream;</code></td>
 </tr>
 </tbody>
 </table>
@@ -38,25 +38,6 @@ WSO2 Streaming Integrator allows you to handle any errors that may occur when ha
 <tr class="odd">
 <th>Example</th>
 <td>The following is a sink annotation of the <code>tcp</code> type of which on-error type is <code>WAIT</code>. If an error occurs at publishing, the system would keep retrying to send the events until the connection is re-established.<br/><br/><code>@Sink(type = 'tcp', url='tcp://localhost:8080/abc', sync='true'<br/>   @map(type='binary'))<br/>define stream SalesStream (productName string, amount int);</code></td>
-</tr>
-</tbody>
-</table>
-
-### Transport errors
-
-<table>
-<tbody>
-<tr class="odd">
-<th>Description</th>
-<td>Transport errors occur when there is an error relating to the transport via which the events are being published (e.g., when the message is sent to the wrong endpoint). Events with such errors are collected and stored only if the <code>@OnError(action='STORE')</code> annotation is connected to a stream or if the `on.error='STORE'`parameter is set within a sink annotation. For more information about storing events with errors, see [Supported on-error actions](#supported-on-error-actions).</td>
-</tr>
-<tr class="even">
-<th>Supported actions</th>
-<td><code>STORE</code> <br/><br/>For more information, see [Supported on-error actions](#supported-on-error-actions).</td>
-</tr>
-<tr class="odd">
-<th>Example</th>
-<td>In the following Siddhi application, the sink annotation specifies <code>STORE</code> as the on-error action. If you send the <code>{"event": {"name": "Cake2", "amount": 20.222}}</code> event to the `http://localhost:8007/testUnavailableEP` endpoint, the event is collected and stored in the error store because the `unavailableEndpoint` does not exist.<br/><br/><code>@App:name("SinkTransportErrorTest")<br/><br/>@sink(type = 'http', on.error='STORE', blocking.io='true', publisher.url = "http://localhost:8090/unavailableEndpoint", method = "POST", @map(type = 'json'))<br/>define stream TestPublisherStream (name string, amount double);<br/><br/>@Source(type = 'http', receiver.url='http://localhost:8007/testUnavailableEP', basic.auth.enabled='false', @map(type='json', enclosing.element='$.event', @attributes(name='name', amount='amount')))<br/>define stream TestInput(name string, amount double);<br/><br/>from TestInput<br/>select name, amount<br/>insert into TestPublisherStream;</code></td>
 </tr>
 </tbody>
 </table>
