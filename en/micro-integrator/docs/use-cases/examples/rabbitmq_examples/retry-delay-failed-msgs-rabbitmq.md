@@ -1,4 +1,4 @@
-# Retry/Delay Failed Message Delivery
+# Control the number of retries and delay message in case of error
 
 !!! Note
     <b>Work in progress!</b>
@@ -47,4 +47,3 @@ See the instructions on how to [build and run](#build-and-run) this example.
 ```
 
 ## Build and run
-
