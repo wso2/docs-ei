@@ -1,7 +1,7 @@
 # A queue used to deliver a message to a consumer
 
-!!! Note
-    <b>Work in progress!</b>
+This example demonstrates how the WSO2 Micro-Integrator can be used to implement a point-to-point messaging scenario
+using queues and a RabbitMQ broker instance.
 
 ## Synapse configurations
 
@@ -17,7 +17,7 @@ See the instructions on how to [build and run](#build-and-run) this example.
           </log>
           <call>
               <endpoint>
-                  <http uri-template="http://localhost:8280/employees" method=”post”/>
+                  <http uri-template="http://localhost:8280/employees" method="post"/>
               </endpoint>
           </call>
       </inSequence>
@@ -49,3 +49,21 @@ See the instructions on how to [build and run](#build-and-run) this example.
 ```
 
 ## Build and run
+
+Create the artifacts:
+
+1. [Set up WSO2 Integration Studio](../../../../develop/installing-WSO2-Integration-Studio).
+2. [Create an ESB Solution project](../../../../develop/creating-projects/#esb-config-project).
+3. Create the [proxy service](../../../../develop/creating-artifacts/creating-a-proxy-service) with the configurations given above.
+4. Enable the RabbitMQ sender and receiver in the Micro-Integrator from the deployment.toml. Refer the 
+ [configuring RabbitMQ documentation](../../../setup/brokers/configure-with-rabbitMQ.md) for more information.
+5. [Deploy the artifacts](../../../../develop/deploy-and-run) in your Micro Integrator.
+6. Make sure you have a RabbitMQ broker instance running.
+7. Configure a queue named `queue1` with required exchanges and routing keys.
+8. Send the following payload to the RabbitMQ publisher proxy (QueueProducer).
+```xml
+<Message>
+<Name>John Doe</Name>
+<Age>27</Age>
+</Message>
+```
