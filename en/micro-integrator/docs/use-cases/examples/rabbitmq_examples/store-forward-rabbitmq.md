@@ -1,4 +1,4 @@
-# Store and Forward Messaging using RabbitMQ
+# Message store and message processor for guaranteed delivery
 
 !!! Note
     <b>Work in progress!</b>
@@ -43,4 +43,3 @@ See the instructions on how to [build and run](#build-and-run) this example.
 ```
 
 ## Build and run
-
