@@ -25,6 +25,9 @@ You can use the dashboard to perform the following administration tasks related 
 !!! Warning
     In a non-production environment (with the self signed certificate), you have to add the certificate of the micro integrator instance to the browser as a trusted source. For example, direct the browser to `https://localhost:9164/management` and add the site as trusted. This step will not be required with a custom production certificate.
 
+!!! Warning
+    We have identified issues with Microsoft Edge browser where it prompts trusting the management URL (with the self-signed certificate) in a loop. Please try trusting the management URL in the same tab if you face this issue. If the issue still persists, please consider switching the browser.
+
 ## Installing the Dashboard
 
 To download the dashboard, go to [**WSO2 Micro Integrator** website](https://wso2.com/integration/micro-integrator/#) -> **Download** -> **Other Resources**, and click **Monitoring Dashboard**.
