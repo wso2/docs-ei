@@ -172,25 +172,6 @@ curl --location --request POST 'http://localhost:8006/productionStream' \
         "amount": 20.02
 }'
 ```
-
-This generates an output event payload as shown below.
-
-```
-    [
-        {
-            "id": 1,
-            "timestamp": 1594638613532,
-            "siddhiAppName": "MappingErrorTest",
-            "streamName": "InvalidMappingCaller",
-            "event": "{\"foo\":\"Cake\",\"amount\":20.02}",
-            "cause": "No results for path: $['name']",
-            "stackTrace": "com.jayway.jsonpath.PathNotFoundException: No results for path: $['name']\n\tat com.jayway.jsonpath.internal.path.EvaluationContextImpl.getValue(EvaluationContextImpl.java:133)\n\tat com.jayway.jsonpath.JsonPath.read(JsonPath.java:187)\n\tat com.jayway.jsonpath.internal.JsonContext.read(JsonContext.java:164)\n\tat com.jayway.jsonpath.internal.JsonContext.read(JsonContext.java:151)\n\tat io.siddhi.extension.map.json.sourcemapper.JsonSourceMapper.processCustomEvent(JsonSourceMapper.java:555)\n\tat io.siddhi.extension.map.json.sourcemapper.JsonSourceMapper.convertToEvent(JsonSourceMapper.java:314)\n\tat io.siddhi.extension.map.json.sourcemapper.JsonSourceMapper.mapAndProcess(JsonSourceMapper.java:233)\n\tat io.siddhi.core.stream.input.source.SourceMapper.onEvent(SourceMapper.java:200)\n\tat io.siddhi.core.stream.input.source.SourceMapper.onEvent(SourceMapper.java:144)\n\tat io.siddhi.extension.io.http.source.HttpWorkerThread.run(HttpWorkerThread.java:62)\n\tat java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128)\n\tat java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)\n\tat java.base/java.lang.Thread.run(Thread.java:834)\n",
-            "errorOccurrence": "BEFORE_SOURCE_MAPPING",
-            "eventType": "PAYLOAD_STRING",
-            "errorType": "MAPPING"
-        }
-    ]
-```
  
 ### Step 6: Manage the error in the Error Store Explorer
 
