@@ -1,4 +1,4 @@
-# Move Messages to Dead Letter Queue (DLQ)
+# Publish unacked messages to Dead Letter Exchange
 
 !!! Note
     <b>Work in progress!</b>
@@ -45,4 +45,3 @@ See the instructions on how to [build and run](#build-and-run) this example.
 ```
 
 ## Build and run
-
