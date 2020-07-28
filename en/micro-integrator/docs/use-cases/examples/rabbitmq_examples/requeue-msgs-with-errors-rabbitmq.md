@@ -1,4 +1,4 @@
-# Requeue Messages with Errors
+# Requeue a message preserving the message order with a delay in case of error
 
 !!! Note
     <b>Work in progress!</b>
@@ -43,4 +43,3 @@ See the instructions on how to [build and run](#build-and-run) this example.
 ```
 
 ## Build and run
-
