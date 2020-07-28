@@ -1,4 +1,4 @@
-# Publish Subscribe Messaging using RabbitMQ
+# A topic used to broadcast a message to all consumers
 
 !!! Note
     <b>Work in progress!</b>
@@ -45,4 +45,3 @@ See the instructions on how to [build and run](#build-and-run) this example.
 ```
 
 ## Build and run
-
