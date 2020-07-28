@@ -1,4 +1,4 @@
-# Request-Response Messaging (Dual Channel)
+# Synchronous messaging with request-reply pattern
 
 !!! Note
     <b>Work in progress!</b>
@@ -67,4 +67,3 @@ See the instructions on how to [build and run](#build-and-run) this example.
 ```
 
 ## Build and run
-
