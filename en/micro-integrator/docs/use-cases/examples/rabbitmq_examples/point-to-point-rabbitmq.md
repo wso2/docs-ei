@@ -1,4 +1,4 @@
-# Point to Point Messaging using RabbitMQ
+# A queue used to deliver a message to a consumer
 
 !!! Note
     <b>Work in progress!</b>
@@ -49,4 +49,3 @@ See the instructions on how to [build and run](#build-and-run) this example.
 ```
 
 ## Build and run
-
