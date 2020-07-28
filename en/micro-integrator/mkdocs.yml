@@ -202,9 +202,11 @@ nav:
       - 'Setup and Install Overview': 'setup/micro_integrator_deployment_overview.md'
       - Installation Guide:
         - 'Installation Prerequisites': 'setup/installation/install_prerequisites.md'
-        - 'Install on a VM': 'setup/installation/install_in_vm.md'
-        - 'Run on Docker': 'setup/installation/run_in_docker.md'
-        - 'Run on Kubernetes': 'setup/installation/run_in_kubernetes.md'
+        - Installing the Micro Integrator:
+          - 'Installing via the Installer': 'setup/installation/install_in_vm_installer.md'
+          - 'Installing via the Binary': 'setup/installation/install_in_vm_binary.md'
+          - 'Installing as a Windows Service': 'setup/installation/install_as_service.md'
+        - 'Running the Micro Integrator on Containers': 'setup/installation/run_in_containers.md'
       - Kubernetes Deployment:
         - 'Kubernetes Deployment Patterns': 'setup/deployment/kubernetes_deployment_patterns.md'
         - 'EI Kubernetes Operator': 'setup/deployment/ei_kubernetes_operator.md'

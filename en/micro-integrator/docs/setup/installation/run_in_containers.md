@@ -1,5 +1,5 @@
 
-# Run WSO2 Micro Integrator on Docker
+# Running WSO2 Micro Integrator on Containers
 
 To run your Micro Integrator solutions on Docker or Kubernetes, you need
 to first create an **immutable** docker image with the required synapse
@@ -45,77 +45,49 @@ Two types of base Docker images are available for the Micro Integrator:
     
     Go to [DockerHub](https://hub.docker.com/r/wso2/wso2mi/tags) to find the Micro Integrator Docker images that are based on Ubuntu and CentOS platforms.
 
-## Run on Docker using WSO2 Integration Studio
+## Run the Micro Integrator on Docker
 
-Let's create a **Docker project** for an integration solution and run it on a Docker container. You will use [WSO2 Integration Studio](../../../develop/WSO2-Integration-Studio) and the [base Docker image](#base-docker-images) of the Micro Integrator for this process.
+You can easily run your Micro Integrator solution in a Docker environment by using the <b>Docker Exporter</b> in [WSO2 Integration Studio](../../../develop/WSO2-Integration-Studio). 
 
-1.  [Create a proxy service](../../../develop/creating-artifacts/creating-a-proxy-service) with the following configuration:
+### Create your integration solution
 
-    - Synapse configuration
+Once you have created your integration solution in WSO2 Integration Studio, you will have an integration project (maven multi module project) with all your integration artifacts. To run the solution on Docker, you need a <b>Docker Exporter</b> in the integration project.
 
-        ```xml
-        <?xml version="1.0" encoding="UTF-8"?>
-        <proxy name="HelloWorld" startOnLoad="true" transports="http https" xmlns="http://ws.apache.org/ns/synapse">
-            <target>
-                <inSequence>
-                    <payloadFactory media-type="json">
-                        <format>{"Hello":"World"}</format>
-                        <args/>
-                    </payloadFactory>
-                    <respond/>
-                </inSequence>
-                <outSequence/>
-                <faultSequence/>
-            </target>
-        </proxy>
-        ```
+Let's create a simple integration project with a Docker Exporter by running the <b>Hello Docker</b> sample template in WSO2 Integration Studio.
 
-    - Graphical view
-       ![Sample Proxy Service](../../assets/img/sample-proxy-service.png)
+<img src="../../../assets/img/create_project/docker_k8s_project/hello-docker-template.png" width="700">
 
-2.  You can now [create a Docker project](../../develop/create-docker-project.md) that includes the Synapse configuration given above.
-3.  Use the following details:
-    ```bash
-    Target Repository : sampleproxy
-    Target Tag : 1.0.0
-    ```
+You will get the following integration project in the project explorer:
 
-4.  Execute the following command:
-    ```bash
-    docker image ls
-    ``` 
+<img src="../../../assets/img/create_project/docker_k8s_project/hello-docker-proj-explorer.png" width="200">
 
-    The list of currently available Docker images are displayed in the terminal similar to the example given below. The Docker image you created is included in this list as shown below.
+### Build and Push the Docker image
 
-    ```bash
-    REPOSITORY              TAG                 IMAGE ID            CREATED             SIZE
-    sampleproxy             1.0.0               49092809b36a        10 minutes ago      315MB
-    wso2/wso2mi             latest              088477c689f6        2 days ago          315MB
-    ```
-    
-5.  Start the container with the following command:
+Open the `pom.xml` file of your Docker Exporter module and update the details for your Docker image.
 
-    ```bash
-    docker run -d -p 8290:8290 sampleproxy:1.0.0
-    ```
+<img src="../../../assets/img/create_project/docker_k8s_project/hello-docker-pom.png" width="700">
 
-    If you want to use the [micro integrator dashboard](../../administer-and-observe/working-with-monitoring-dashboard.md) for monitoring, use following docker command:
+-   The [base Docker image](#base-docker-images) to use.
+-   The target Docker registry to which the Docker image should be published.
 
-    ```bash
-    docker run -p 8290:8290 -p 9164:9164 -e   JAVA_OPTS="-DenableManagementApi=true" sampleproxy:1.0.0
-    ```
+Click <b>Build</b> to first build the image, and then click <b>Push</b> to push the image to a Docker registry.
 
-6.  Invoke the proxy service as follows:
+### Start Docker container
 
-    ```bash
-    curl http://localhost:8290/services/HelloWorld -XGET
-    ```
+Start a container in your Docker environment. This command will pull the image from your Docker registry and start a container.
 
-    You will see the following response:
-     
-    ```bash
-    {"Hello":"World"}
-    ```
+```bash
+docker run -d -p 8290:8290 sample_docker_image
+```
+
+## Running the Micro Integrator on Kubernetes
+
+Kubernetes is an open source container orchestration system for
+automating, scaling, and managing your application deployments. 
+
+You can easily run your Micro Integrator solution in a Kubernetes environment by using the <b>Kubernetes Exporter</b> in [WSO2 Integration Studio](../../../develop/WSO2-Integration-Studio) and the <b>EI Kubernetes Operator</b>.
+
+See the EI Kubernetes Operator samples for instructions.
 
 ## Create Docker files manually
 
@@ -124,10 +96,9 @@ If you already have **packaged integration artifacts** in a CAR file, you can ma
 !!! Tip
     **Before you begin**: Use WSO2 Integration Studio to [create the integration artifacts](../../../develop/intro-integration-development/#develop_artifacts) and then [export the integration artifacts](../../develop/exporting-artifacts.md) into a CAR file.
 
-1.  **Create the Dockerfile** as shown below. This file contains
-    instructions to download the base Docker image of WSO2 Micro
-    Integrator from DockerHub (community version) or the WSO2 Docker
-    Registry (includes updates), and to copy the integration artifacts
+1.  **Create the Dockerfile** as shown below. 
+
+    This file contains instructions to download the base Docker image of WSO2 Micro Integrator from DockerHub (community version) or the WSO2 Docker Registry (includes updates), and to copy the integration artifacts
     to the Micro Integrator.  
 
     The **Dockerfile**:
