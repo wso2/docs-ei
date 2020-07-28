@@ -104,15 +104,14 @@ nav:
           - 'Swagger Documents of RESTful Data Services': 'use-cases/examples/data_integration/swagger-data-services.md'
         - Asynchronous Messaging:
           - RabbitMQ Examples:
-            - Decoupling Messaging Systems:
-              - 'Point-to-Point Messaging using RabbitMQ Queues': 'use-cases/examples/rabbitmq_examples/point-to-point-rabbitmq.md'
-              - 'Publish-Subscribe Messaging using RabbitMQ Topics': 'use-cases/examples/rabbitmq_examples/pub-sub-rabbitmq.md'
+            - 'Point to Point': 'use-cases/examples/rabbitmq_examples/point-to-point-rabbitmq.md'
+            - 'Publish/Subscribe': 'use-cases/examples/rabbitmq_examples/pub-sub-rabbitmq.md'
             - Guaranteed Delivery:
-              - 'Store and Forward Messaging using RabbitMQ': 'use-cases/examples/rabbitmq_examples/store-forward-rabbitmq.md'
-              - 'Retry/Delay Failed Message Delivery': 'use-cases/examples/rabbitmq_examples/retry-delay-failed-msgs-rabbitmq.md'
-              - 'Requeue Messages with Errors': 'use-cases/examples/rabbitmq_examples/requeue-msgs-with-errors-rabbitmq.md'
-              - 'Move Messages to Dead Letter Queue': 'use-cases/examples/rabbitmq_examples/move-msgs-to-dlq-rabbitmq.md'
-            - 'Request-Response Messaging (Dual Channel)': 'use-cases/examples/rabbitmq_examples/request-response-rabbitmq.md'
+              - 'Message Store and Message Processor': 'use-cases/examples/rabbitmq_examples/store-forward-rabbitmq.md'
+              - 'Retry failed messages with a delay': 'use-cases/examples/rabbitmq_examples/retry-delay-failed-msgs-rabbitmq.md'
+              - 'Requeue a message preserving the order': 'use-cases/examples/rabbitmq_examples/requeue-msgs-with-errors-rabbitmq.md'
+              - 'Publish messages to DLX': 'use-cases/examples/rabbitmq_examples/move-msgs-to-dlq-rabbitmq.md'
+            - 'Dual Channel': 'use-cases/examples/rabbitmq_examples/request-response-rabbitmq.md'
           - JMS Examples:
             - 'Consuming JMS Messages': 'use-cases/examples/jms_examples/consuming-jms.md'
             - 'Producing JMS Messages': 'use-cases/examples/jms_examples/producing-jms.md'
