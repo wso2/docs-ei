@@ -41,17 +41,17 @@ After importing the connector, you can drag and drop operations to the design pa
 
 Some connectors use message content in the $body to execute the operation. In such situations you may need to transform the current message in the way the connector operation needs before using that with the connector operation. Following are some of the mediators you can use to transform the message. 
 
-    * [PayloadFactory mediator](../mediators/payloadFactory-Mediator.md) - This replaces the current message with a message in the format we specify. We can use the information of the current message to construct this new message.
+    * **[PayloadFactory mediator](../mediators/payloadFactory-Mediator.md)** - This replaces the current message with a message in the format we specify. We can use the information of the current message to construct this new message.
 
-    * [Enrich mediator](../mediators/enrich-Mediator.md) - Enrich the current message modifying or adding new elements. This is also useful to save the current message as a property and to place a message in a property as the current message.
+    * **[Enrich mediator](../mediators/enrich-Mediator.md)** - Enrich the current message modifying or adding new elements. This is also useful to save the current message as a property and to place a message in a property as the current message.
 
-    * [Datamapper mediator](../mediators/data-Mapper-Mediator.md) - Transform JSON, XML, CSV messages between formats.
+    * **[Datamapper mediator](../mediators/data-Mapper-Mediator.md)** - Transform JSON, XML, CSV messages between formats.
 
-    * [Script mediator](../mediators/script-Mediator.md) - Use JavaScript, Groovy or Ruby scripting languages to transform message in a custom manner.
+    * **[Script mediator](../mediators/script-Mediator.md)** - Use JavaScript, Groovy or Ruby scripting languages to transform message in a custom manner.
 
-    * [Custom class mediator](../mediators/class-Mediator.md) - Use Java to transform message in a custom manner (use Axiom, Jackson, or Gson libraries).
+    * **[Custom class mediator](../mediators/class-Mediator.md)** - Use Java to transform message in a custom manner (use Axiom, Jackson, or Gson libraries).
 
-    * Mediator Modules (new) - Import module and use operations to transform message (currently CSV related transformations only).
+    * **Mediator Modules (new)** - Import module and use operations to transform message (currently CSV related transformations only).
 
 The above mediators are useful to transform the message anywhere in the mediation flow. Hence, the same mediators can be used to transform the result of a certain connector operation in the way the next connector operation needs. 
 
@@ -71,8 +71,89 @@ The exported CApp needs to be copied to the deployment folder of the EI server (
 
 Configurations required to initialize the connectors must be provided in one of the following ways depending on the connector. 
 
-For new connector versions
+### For recently updated connector versions
 
-Creating a connection with configurations and associate with operations 
+For recently updated connector versions, you need to create a connection, add configurations, and associate your connection with operations.
 
-For new connector versions this is available with Integration Studio 7.1.0 onwards. When creating a connection you can provide configuration values and they will get saved as a local-entry internally. 
+For recently updated connector versions, this is available with Integration Studio 7.1.0 onwards. When creating a connection you can provide configuration values and they will get saved as a local-entry internally. 
+
+<img src="../../../assets/img/connectors/connection-configuration.png" title="Connection configuration" width="450" alt="Connection configuration"/>
+
+### For connector versions that were not updated recently
+
+For connector versions that were not updated recently, you need to use the `init` operation 
+
+You can refer to the documentation of the relevant connector and configure the `init` operation of it. This operation needs to be applied before any other operation of the same connector when you design mediation logic. The `init` operation is visible only for older connector versions in the Integration Studio.
+
+<img src="../../../assets/img/connectors/old-connection-configuration.png" title="Connection configuration with init" width="500" alt="Connection configuration with init"/>
+
+Instead of having the `init` operation before each connector operation, you can create an [inline XML local-entry](../../develop/creating-artifacts/registry/creating-local-registry-entries/) with the XML configuration of the `init` operation configuration and refer to it at the beginning of each connector operation.
+
+### Externalizing connector initialization parameters 
+
+Externalizing connection `init` parameters is important because it enables you to inject environment specific parameters without modifying the integration logic you deploy. The recommended approach to perform this is using environment specific CAR applications. 
+
+No matter whether you create a new connection or create a local entry manually with init operation configuration, at the end you will have connector initialization configurations as local entries. Connector operations will refer them by their names. This enables us to group local entries related to connector configurations as a separate CApp. 
+
+Keeping local entry names unchanged, you can create configurations specific to different environments and export them into different CApps. Upon deployment, it is possible to deploy this CApp along with other CApps containing integration logic
+
+The following are some other ways to externalize connection initialization parameters. 
+
+* For connector init operation parameters (for previous connector versions) or for connection parameters when creating new connector connections (newer connector versions), specify an expression to read them as system variables (i.e., `get-property('System','email.hostName')`). Then you can pass the values for system variables in the `<EI_HOME>/bin/integrator.sh` script. You can do this specific to the environment. 
+
+* For connector init operation parameters (for previous connector versions) or for connection parameters when creating new connector connections (newer connector versions), specify an expression to read them as registry variables (i.e., `get-property(get-property('registry','conf:<path to resource from config>'))`). Then you can provide values in the registry specific to the environment at the registry path specified. Make sure you share the registry between the nodes if setting up a WSO2 EI cluster. 
+
+## Deployment 
+
+There are no special requirements when deploying WSO2 EI with artifacts with WSO2 EI connectors. However, following facts need to be considered. 
+
+To seamlessly refresh tokens, use a registry location that is visible to all esb cluster members ( for example, config registry mounted). Here the refresh token value should be passed as a connector parameter. For detailed information on how this can be done for the relevant WSO2 ESB connectors, see the documentation for the relevant connector.
+
+## Performance tuning and monitoring
+
+SaaS connectors use HTTP/HTTPS protocol to communicate. They use WSO2 EI mediation engine itself. Hence HTTP protocol related tunings are applied. 
+
+Technology connectors use protocols that are custom. Thus their tuning needs to be done at the connector itself. All connection related tunings are present in the form you get when you create a new connection for the connector. For the older connectors configurations will be present in init operation. 
+
+Please refer to the reference documentation of the connector for details. 
+
+## Troubleshooting
+
+### Enable detailed logging 
+
+* Connector implementations will have DEBUG and TRACE level logs. You can enable them to see in detail what is going on with the connector. 
+
+* See [Configuring Log4j2 Properties section of the documentation](../../administer-and-observe/logs/configuring_log4j_properties/) on how to enable DEBUG logs specifically for a Java package and on how to view the logs.
+
+* To get the package name of the connector implementation, refer to the [How to contribute section of the overview page of connector documentation](connectors-overview/#contribute-to-the-connector-project). 
+
+### Enable wire logging 
+
+For SaaS connectors which use HTTP transport of WSO2 EI, developers can enable wire logs to see details of the messages that are sent from WSO2 EI to the backend service and the response sent back to WSO2 EI. This is useful to check the exact message that is sent out by the connector to the backend service. See [documentation on monitoring wire logs](../../administer-and-observe/logs/monitoring_logs/#wire-logs) for instructions on how to enable wire logs. 
+
+### Mediation debug 
+
+WSO2 Integration Studio provides debugging capabilities. You cannot use mediation debugging to debug templates packaged inside a connector. However, you can use it to check the following. 
+
+* Whether you are passing the correct message into the connector operation.
+* Whether your input parameters for connector operations contain the expected values.
+* What is the response message after using connector cooperation.
+
+Please refer to [the Debugging Mediation documentation](../../develop/debugging-mediation/) for instructions on how to use mediation debugging. 
+
+### Debugging connector code 
+
+You can get the source code of WSO2 EI connector and remotely debug it with your scenario to find out issues. Refer to [the How to contribute” section of the overview page of connector documentation](connectors-overview/#contribute-to-the-connector-project), get the GitHub repository, clone it, checkout to relevant version, and debug. It is open source!
+
+Start the server with `./integrator.sh -debug <port>`  and connect to that port from your IDE. 
+
+## Report an Issue
+
+Click on the report issue button on the connector store page for the connector. You will get navigated to the GitHub repository of the connector. Please report your issues there. 
+
+It is preferable to create another issue at WSO2 Micro Integrator project and link that issue. Place title of the issue as `[Connector]<title>`.
+
+## Contact Us
+
+* Mailing list: dev@wso2.org
+* Slack channel: [https://wso2-ei.slack.com/](https://wso2-ei.slack.com/)
