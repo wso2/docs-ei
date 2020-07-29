@@ -1,7 +1,7 @@
 # Synchronous messaging with request-reply pattern
 
-This sample demonstrates how you can setup a dual channel messaging scenario. The `Order Request Proxy Service` receives a HTTP
-request which it publishes to a RabbitMQ queue. This message is consumed and processed by the Order Processing Proxy Service
+This sample demonstrates how you can setup a dual channel messaging scenario. The `Order Request` Proxy Service receives a HTTP
+request, which it publishes to a RabbitMQ queue. This message is consumed and processed by the `Order Processing` proxy service
 and the response is sent back to the client over HTTP.
 
 ## Synapse configurations
@@ -77,9 +77,10 @@ See the instructions on how to [build and run](#build-and-run) this example.
 5. [Deploy the artifacts](../../../../develop/deploy-and-run) in your Micro Integrator.
 6. Make sure you have a RabbitMQ broker instance running.
 7. Send a message to the `Order Request Proxy Service` with the following payload. 
-```json
-{   "orderId": "1242",
+
+	```json
+	{   "orderId": "1242",
 	"orderQty": 43,
 	"orderDate": "2020/07/22"
-}
-```
+	}
+	```
