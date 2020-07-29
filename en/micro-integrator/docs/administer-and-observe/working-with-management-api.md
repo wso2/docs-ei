@@ -230,11 +230,11 @@ The management API has multiple resources to provide information regarding the d
     {"Message":"Proxy service HelloWorld stopped successfully"}
 	```
 	
-### ENABLE/DISABLE TRACE for PROXY SERVICES
+### ENABLE/DISABLE MESSAGE TRACING for PROXY SERVICES
 
 -	**Resource**: `/proxy-services`
 
-	**Description**: Enable and disable tracing for a specified proxy service.
+	**Description**: Enable or disable message tracing for a specified proxy service.
 
 	**Example**:
 
@@ -335,11 +335,11 @@ The management API has multiple resources to provide information regarding the d
 	{"Message":"HTTPEP : is switched Off"}
 	```
 
-### ENABLE/DISABLE TRACE for ENDPOINTS
+### ENABLE/DISABLE MESSAGE TRACING for ENDPOINTS
 
 -	**Resource**: `/endpoints`
 
-	**Description**: Enable or disable tracing for a specified endpoint.
+	**Description**: Enable or disable message tracing for a specified endpoint.
 
 	**Example**:
     ```bash tab='Request'
@@ -389,11 +389,11 @@ The management API has multiple resources to provide information regarding the d
 
 	**Description**: Retrieves information related to a specified api.
 
-### ENABLE/DISABLE TRACE for APIs
+### ENABLE/DISABLE MESSAGING TRACING for APIs
 
 -	**Resource**: `/apis`
 
-	**Description**: Enable or disable tracing for a specified api.
+	**Description**: Enable or disable message tracing for a specified api.
 
 	**Example**:
     ```bash tab='Request'
@@ -452,11 +452,11 @@ The management API has multiple resources to provide information regarding the d
 	**Description**: Retrieves information related to a specified sequence.
 
 
-### ENABLE/DISABLE TRACE for SEQUENCES
+### ENABLE/DISABLE MESSAGE TRACING for SEQUENCES
 
 -	**Resource**: `/sequences`
 
-	**Description**: Enable or disable tracing for a specified sequence.
+	**Description**: Enable or disable message tracing for a specified sequence.
 
 	**Example**:
     ```bash tab='Request'
@@ -648,11 +648,11 @@ The management API has multiple resources to provide information regarding the d
 
 	**Description**: Retrieves information related to a specified inbound endpoint.
 
-### ENABLE/DISABLE TRACE for INBOUND ENDPOINTS
+### ENABLE/DISABLE MESSAGE TRACING for INBOUND ENDPOINTS
 
 -	**Resource**: `/inbound-endpoints`
 
-	**Description**: Enable or disable tracing for a specified inbound-endpoint.
+	**Description**: Enable or disable message tracing for a specified inbound-endpoint.
 
 	**Example**:
     ```bash tab='Request'
@@ -771,11 +771,11 @@ The management API has multiple resources to provide information regarding the d
 	}
 	```
 
-### ENABLE/DISABLE TRACE for SEQUENCE TEMPLATES
+### ENABLE/DISABLE MESSAGE TRACING for SEQUENCE TEMPLATES
 
 -	**Resource**: `/templates`
 
-	**Description**: Enable or disable tracing for a specified sequence template.
+	**Description**: Enable or disable message tracing for a specified sequence template.
 
 	**Example**:
     ```bash tab='Request'
