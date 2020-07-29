@@ -35,7 +35,22 @@ To navigate through the Grafana dashboards you set up for monitoring WSO2 Stream
 
 3. In the **Dashboards** page, click **WSO2 Streaming Integrator Overall Statistics**.
 
-    ![Overall Statistics](../images/managing-wso2-dashboards/open-overall-statistics-dashboard.png)
+    ![Open Overall Statistics](../images/managing-wso2-dashboards/open-overall-statistics-dashboard.png)
     
-4.
+    The overall statistics are displayed as shown in the following example.
+    
+    ![Overall Statistics](../images/managing-wso2-dashboards/overall-statistics.png)
+    
+    This provides an overview on the overall performance of the WSO2 Streaming Integrator instance by displaying the total number of input events consumed and the total number of output events. It also provides the breakdown of the total inputs and outputs by Siddhi application. The **(Consume/Publish)/Sec** graph indicates the rate at which the consumed input events are published per second.
+    
+4. To view the statistics specific to a Siddhi application, click on the relevant Siddhi application.
  
+    ![Select Siddhi Application](../images/managing-wso2-dashboards/select-siddhi-applocation.png)
+    
+    The **WSO2 Streaming Integrator App Statistics** page opens. This allows you to access statistics relating to change data capture, file processing and data store integration activities carried out via the selected Siddhi application.
+    
+    - **Viewing CDC statistics**
+    
+    - **Viewing File statistics**
+    
+    - **Viewing RDBMS statistics**
