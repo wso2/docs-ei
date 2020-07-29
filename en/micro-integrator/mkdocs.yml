@@ -248,9 +248,8 @@ nav:
         - 'Creating a New Connector': 'develop/customizations/creating-new-connector.md'
         - 'Customizing Task Scheduling': 'develop/customizations/creating-custom-task-scheduling.md'
       - Securing Artifacts:
-        - 'Encrypting Synapse Passwords': 'develop/creating-artifacts/encrypting-synapse-passwords.md'
-        - 'Using Docker Secrets': 'develop/creating-artifacts/using_docker_secrets.md'
-        - 'Using Kubernetes Secrets': 'develop/creating-artifacts/using_k8s_secrets.md'
+        - 'Using Docker Secrets in Synapse Configurations': 'develop/creating-artifacts/using_docker_secrets.md'
+        - 'Using Kubernetes Secrets in Synapse Configurations': 'develop/creating-artifacts/using_k8s_secrets.md'
         - 'Applying Security to a REST API': 'develop/advanced-development/applying-security-to-an-api.md'
         - 'Applying Security to a Proxy Service': 'develop/advanced-development/applying-security-to-a-proxy-service.md'
         - 'Applying Security to a Data Service': 'develop/creating-artifacts/data-services/securing-data-services.md'
@@ -320,8 +319,8 @@ nav:
         - Complying with GDPR:
           - 'GDPR for the WSO2 Micro Integrator' : 'setup/security/gdpr_ei.md'
           - 'About the Identity Anonymization Tool' : 'setup/security/about_forgetme_tool.md'
-        - Working with Passwords:
-          - 'Encrypting Passwords' : 'setup/security/encrypting_plain_text.md'
+        - Working with Secrets:
+          - 'Encrypting Secrets' : 'setup/security/encrypting_plain_text.md'
           - 'Using Symmetric Encryption' : 'setup/security/single_key_encryption.md'
         - 'Securing the Management API' : 'setup/security/securing_management_api.md'
         - Working with User Stores:
