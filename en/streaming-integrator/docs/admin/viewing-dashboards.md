@@ -36,4 +36,6 @@ To navigate through the Grafana dashboards you set up for monitoring WSO2 Stream
 3. In the **Dashboards** page, click **WSO2 Streaming Integrator Overall Statistics**.
 
     ![Overall Statistics](../images/managing-wso2-dashboards/open-overall-statistics-dashboard.png)
+    
+4.
  
