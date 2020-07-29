@@ -342,6 +342,7 @@ The management API has multiple resources to provide information regarding the d
 	**Description**: Enable or disable message tracing for a specified endpoint.
 
 	**Example**:
+	
     ```bash tab='Request'
 		curl -X POST \
     	  https://localhost:9164/management/endpoints \
@@ -396,6 +397,7 @@ The management API has multiple resources to provide information regarding the d
 	**Description**: Enable or disable message tracing for a specified api.
 
 	**Example**:
+
     ```bash tab='Request'
 		curl -X POST \
     	  https://localhost:9164/management/apis \
@@ -459,6 +461,7 @@ The management API has multiple resources to provide information regarding the d
 	**Description**: Enable or disable message tracing for a specified sequence.
 
 	**Example**:
+
     ```bash tab='Request'
 		curl -X POST \
     	  https://localhost:9164/management/sequences \
@@ -655,6 +658,7 @@ The management API has multiple resources to provide information regarding the d
 	**Description**: Enable or disable message tracing for a specified inbound-endpoint.
 
 	**Example**:
+
     ```bash tab='Request'
 		curl -X POST \
     	  https://localhost:9164/management/inbound-endpoints \
@@ -778,6 +782,7 @@ The management API has multiple resources to provide information regarding the d
 	**Description**: Enable or disable message tracing for a specified sequence template.
 
 	**Example**:
+
     ```bash tab='Request'
 		curl -X POST \
     	  https://localhost:9164/management/templates \

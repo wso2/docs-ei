@@ -45,7 +45,7 @@ Two types of base Docker images are available for the Micro Integrator:
     
     Go to [DockerHub](https://hub.docker.com/r/wso2/wso2mi/tags) to find the Micro Integrator Docker images that are based on Ubuntu and CentOS platforms.
 
-## Run the Micro Integrator on Docker
+## Running the Micro Integrator on Docker
 
 You can easily run your Micro Integrator solution in a Docker environment by using the <b>Docker Exporter</b> in [WSO2 Integration Studio](../../../develop/WSO2-Integration-Studio). 
 
