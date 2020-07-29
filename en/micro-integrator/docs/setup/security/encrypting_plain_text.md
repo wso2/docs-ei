@@ -45,7 +45,7 @@ Dynamic secrets are specified in configurations as environment variables, system
 
 2.  Now, encrypt a plain-text secret for the `dynamic_secret` alias by using the Micro Integrator CLI.
 
-    1.  Download and set up the CLI tool.
+    1.  Download and [set up the CLI tool](../../../administer-and-observe/using-the-command-line-interface).
     3.  Execute one of the following commands to generate the secret:
 
         -   To generate secrets for a VM deployment, use the following commands:
