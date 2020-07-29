@@ -1,7 +1,7 @@
 # A topic used to broadcast a message to all consumers
 
 This sample demonstrates how you can implement a publisher subscriber messaging scenario with RabbitMQ topics and 
-WSO2 Micro Integrator. The publisher proxy will publish messages to a RabbitMQ topic which the subscriber proxies will
+WSO2 Micro Integrator. The publisher proxy will publish messages to a RabbitMQ topic, which the subscriber proxies will
 consume.
 
 ## Synapse configurations
@@ -81,9 +81,10 @@ Create the artifacts:
 6. Make sure you have a RabbitMQ broker instance running.
 7. Create queue1 and queue2 and add bind them in the `amq.topic` exchange with the routing key `topic1`.
 8. Publish the following payload to the topic using the publisher proxy (TopicPublisher).
-```xml
-<Message>
-<Name>John Doe</Name>
-<Age>27</Age>
-</Message>
-```
+
+    ```xml
+    <Message>
+    <Name>John Doe</Name>
+    <Age>27</Age>
+    </Message>
+    ```
