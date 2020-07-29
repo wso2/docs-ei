@@ -52,7 +52,18 @@ nav:
       - 'Developing your First Integration': 'develop/integration-development-kickstart.md'
       - 'Key Concepts': 'overview/key-concepts.md'
     - Learn:
-      - 'Integration Use Cases': 'use-cases/integration-use-cases.md'
+      - 'Overview': 'use-cases/learn-overview.md'
+      - Integration Use Cases:
+        - 'Message Routing': 'use-cases/integration-use-case/message-routing-overview.md'
+        - 'Message Transformation': 'use-cases/integration-use-case/message-transformation-overview.md'
+        - 'Service Orchestration': 'use-cases/integration-use-case/service-orchestration-overview.md'
+        - 'Asynchronous Message Processing': 'use-cases/integration-use-case/asynchronous-message-overview.md'
+        - 'SaaS and B2B Connectivity': 'use-cases/integration-use-case/connectors.md'
+        - 'Data Integration': 'use-cases/integration-use-case/data-integration-overview.md'
+        - 'Protocol Switching': 'use-cases/integration-use-case/protocol-switching-overview.md'
+        - 'Gateway': 'use-cases/integration-use-case/gateway-overview.md'
+        - 'File Processing': 'use-cases/integration-use-case/file-processing-overview.md'
+        - 'Periodic Execution of Integration Processes': 'use-case/integration-use-cases/scheduled-task-overview.md'
       - Tutorials:
         - 'Sending a Simple Message to a Service': 'use-cases/tutorials/sending-a-simple-message-to-a-service.md'
         - 'Message Routing': 'use-cases/tutorials/routing-requests-based-on-message-content.md'
@@ -74,19 +85,6 @@ nav:
         - Message Transformation:
             - 'Converting JSON Messages to SOAP': 'use-cases/examples/message_transformation_examples/json-to-soap-conversion.md'
             - 'Converting POX Messages to JSON': 'use-cases/examples/message_transformation_examples/pox-to-json-conversion.md'
-        - Asynchronous Messaging:
-            - 'Consuming JMS Messages': 'use-cases/examples/jms_examples/consuming-jms.md'
-            - 'Producing JMS Messages': 'use-cases/examples/jms_examples/producing-jms.md'
-            - 'Consuming and Producing JMS Messages': 'use-cases/examples/jms_examples/consume-produce-jms.md'
-            - 'Dual Channel HTTP-to-JMS': 'use-cases/examples/jms_examples/dual-channel-http-to-jms.md'
-            - 'Quad Channel JMS-to-JMS': 'use-cases/examples/jms_examples/quad-channel-jms-to-jms.md'
-            - 'Guaranteed Delivery with Failover': 'use-cases/examples/jms_examples/guaranteed-delivery-with-failover.md'
-            - 'Publish and Subscribe with JMS': 'use-cases/examples/jms_examples/publish-subscribe-with-jms.md'
-            - 'Shared Topic Subscription': 'use-cases/examples/jms_examples/shared-topic-subscription.md'
-            - 'Detecting Repeatedly Redelivered Messages': 'use-cases/examples/jms_examples/detecting-repeatedly-redelivered-messages.md'
-            - 'Specifying Delivery Delay on Messages': 'use-cases/examples/jms_examples/specifying-a-delivery-delay-on-messages.md'
-            #- 'JMS Map Messaging': 'use-cases/examples/jms_examples/jms-map-message.md'
-            - 'RabbitMQ Examples': 'use-cases/examples/jms_examples/rabbitmq-examples.md'
         - Protocol Switching:
           - 'Switching from JMS to HTTP/S': 'use-cases/examples/protocol-switching/switching_from_JMS_to_HTTP.md'
           - 'Switching from HTTP/S to JMS': 'use-cases/examples/protocol-switching/switching_from_HTTPS_to_JMS.md'
@@ -115,6 +113,28 @@ nav:
           - 'Using Distributed Transactions in Data Services': 'use-cases/examples/data_integration/distributed-trans-data-service.md'
           - 'Validating Data Input': 'use-cases/examples/data_integration/data-input-validator.md'
           - 'Swagger Documents of RESTful Data Services': 'use-cases/examples/data_integration/swagger-data-services.md'
+        - Asynchronous Messaging:
+          - RabbitMQ Examples:
+            - 'Point to Point': 'use-cases/examples/rabbitmq_examples/point-to-point-rabbitmq.md'
+            - 'Publish/Subscribe': 'use-cases/examples/rabbitmq_examples/pub-sub-rabbitmq.md'
+            - Guaranteed Delivery:
+              - 'Message Store and Message Processor': 'use-cases/examples/rabbitmq_examples/store-forward-rabbitmq.md'
+              - 'Retry failed messages with a delay': 'use-cases/examples/rabbitmq_examples/retry-delay-failed-msgs-rabbitmq.md'
+              - 'Requeue a message preserving the order': 'use-cases/examples/rabbitmq_examples/requeue-msgs-with-errors-rabbitmq.md'
+              - 'Publish messages to DLX': 'use-cases/examples/rabbitmq_examples/move-msgs-to-dlq-rabbitmq.md'
+            - 'Dual Channel': 'use-cases/examples/rabbitmq_examples/request-response-rabbitmq.md'
+          - JMS Examples:
+            - 'Consuming JMS Messages': 'use-cases/examples/jms_examples/consuming-jms.md'
+            - 'Producing JMS Messages': 'use-cases/examples/jms_examples/producing-jms.md'
+            - 'Consuming and Producing JMS Messages': 'use-cases/examples/jms_examples/consume-produce-jms.md'
+            - 'Dual Channel HTTP-to-JMS': 'use-cases/examples/jms_examples/dual-channel-http-to-jms.md'
+            - 'Quad Channel JMS-to-JMS': 'use-cases/examples/jms_examples/quad-channel-jms-to-jms.md'
+            - 'Guaranteed Delivery with Failover': 'use-cases/examples/jms_examples/guaranteed-delivery-with-failover.md'
+            - 'Publish and Subscribe with JMS': 'use-cases/examples/jms_examples/publish-subscribe-with-jms.md'
+            - 'Shared Topic Subscription': 'use-cases/examples/jms_examples/shared-topic-subscription.md'
+            - 'Detecting Repeatedly Redelivered Messages': 'use-cases/examples/jms_examples/detecting-repeatedly-redelivered-messages.md'
+            - 'Specifying Delivery Delay on Messages': 'use-cases/examples/jms_examples/specifying-a-delivery-delay-on-messages.md'
+            #- 'JMS Map Messaging': 'use-cases/examples/jms_examples/jms-map-message.md'
         - Examples of Components:
           - REST APIs:
             - 'Using a Simple REST API': 'use-cases/examples/rest_api_examples/introduction-rest-api.md'
@@ -181,14 +201,13 @@ nav:
           - Sequences:
             - 'Breaking Complex Flows into Multiple Sequences': 'use-cases/examples/sequence_examples/using-multiple-sequences.md'
             - 'Using Fault Sequences': 'use-cases/examples/sequence_examples/using-fault-sequences.md'
-            - 'Resusig Sequences': 'use-cases/examples/sequence_examples/custom-sequences-with-proxy-services.md'
+            - 'Reusing Sequences': 'use-cases/examples/sequence_examples/custom-sequences-with-proxy-services.md'
         - Transports:
           - 'Using the TCP Transport': 'use-cases/examples/transport_examples/tcp-transport-examples.md'
           - 'Using the FIX Transport': 'use-cases/examples/transport_examples/fix-transport-examples.md'
           - 'Using the MQTT Transport': 'use-cases/examples/transport_examples/Pub_Sub_using_MQTT.md'
         - 'Working with Transactions': 'use-cases/examples/working-with-transactions.md'
         - 'JSON Examples': 'use-cases/examples/json_examples/json-examples.md'
-      - 'Connectors': 'use-cases/connectors.md'
     - Setup and Install:
       - 'Setup and Install Overview': 'setup/micro_integrator_deployment_overview.md'
       - Installation Guide:
