@@ -196,7 +196,7 @@ WSO2 Enterprise Integrator (WSO2 EI) 7.x is an open-source hybrid integration pl
     </a>
 </div>
 <div class="integratorDescription">
-    <a style="color: #222222;" href="streaming-integrator/examples/tutorials-overview">
+    <a style="color: #222222;" href="streaming-integrator/examples/performing-real-time-etl-with-files">
         <div>
             <div>
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 45 44.9" style="width: 60px;">
@@ -286,7 +286,7 @@ WSO2 Enterprise Integrator (WSO2 EI) 7.x is an open-source hybrid integration pl
     </a>
 </div>
 <div class="integratorDescription">
-    <a style="color: #222222;" href="micro-integrator/references/connectors/connectors-overview">
+    <a style="color: #222222;" href="streaming-integrator/guides/use-cases">
         <div>
             <div>
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 45 44.9" style="width: 60px;">
