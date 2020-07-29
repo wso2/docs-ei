@@ -61,9 +61,10 @@ Create the artifacts:
 6. Make sure you have a RabbitMQ broker instance running.
 7. Configure a queue named `queue1` with required exchanges and routing keys.
 8. Send the following payload to the RabbitMQ publisher proxy (QueueProducer).
-```xml
-<Message>
-<Name>John Doe</Name>
-<Age>27</Age>
-</Message>
-```
+
+    ```xml
+    <Message>
+    <Name>John Doe</Name>
+    <Age>27</Age>
+    </Message>
+    ```
