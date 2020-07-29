@@ -52,7 +52,18 @@ nav:
       - 'Developing your First Integration': 'develop/integration-development-kickstart.md'
       - 'Key Concepts': 'overview/key-concepts.md'
     - Learn:
-      - 'Integration Use Cases': 'use-cases/integration-use-cases.md'
+      - 'Overview': 'use-cases/learn-overview.md'
+      - Integration Use Cases:
+        - 'Message Routing': 'use-cases/integration-use-case/message-routing-overview.md'
+        - 'Message Transformation': 'use-cases/integration-use-case/message-transformation-overview.md'
+        - 'Service Orchestration': 'use-cases/integration-use-case/service-orchestration-overview.md'
+        - 'Asynchronous Message Processing': 'use-cases/integration-use-case/asynchronous-message-overview.md'
+        - 'SaaS and B2B Connectivity': 'use-cases/integration-use-case/connectors.md'
+        - 'Data Integration': 'use-cases/integration-use-case/data-integration-overview.md'
+        - 'Protocol Switching': 'use-cases/integration-use-case/protocol-switching-overview.md'
+        - 'Gateway': 'use-cases/integration-use-case/gateway-overview.md'
+        - 'File Processing': 'use-cases/integration-use-case/file-processing-overview.md'
+        - 'Periodic Execution of Integration Processes': 'use-case/integration-use-cases/scheduled-task-overview.md'
       - Tutorials:
         - 'Sending a Simple Message to a Service': 'use-cases/tutorials/sending-a-simple-message-to-a-service.md'
         - 'Message Routing': 'use-cases/tutorials/routing-requests-based-on-message-content.md'
@@ -190,14 +201,13 @@ nav:
           - Sequences:
             - 'Breaking Complex Flows into Multiple Sequences': 'use-cases/examples/sequence_examples/using-multiple-sequences.md'
             - 'Using Fault Sequences': 'use-cases/examples/sequence_examples/using-fault-sequences.md'
-            - 'Resusig Sequences': 'use-cases/examples/sequence_examples/custom-sequences-with-proxy-services.md'
+            - 'Reusing Sequences': 'use-cases/examples/sequence_examples/custom-sequences-with-proxy-services.md'
         - Transports:
           - 'Using the TCP Transport': 'use-cases/examples/transport_examples/tcp-transport-examples.md'
           - 'Using the FIX Transport': 'use-cases/examples/transport_examples/fix-transport-examples.md'
           - 'Using the MQTT Transport': 'use-cases/examples/transport_examples/Pub_Sub_using_MQTT.md'
         - 'Working with Transactions': 'use-cases/examples/working-with-transactions.md'
         - 'JSON Examples': 'use-cases/examples/json_examples/json-examples.md'
-      - 'Connectors': 'use-cases/connectors.md'
     - Setup and Install:
       - 'Setup and Install Overview': 'setup/micro_integrator_deployment_overview.md'
       - Installation Guide:
