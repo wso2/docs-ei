@@ -113,7 +113,7 @@ key_password = "encrypted_pass_4"
 truststore_password = "encrypted_pass_5"
 ```
 
-## Step 3: Accessing secrets from configurations
+## Step 3: Accessing secrets
 
 ### In server configurations
 
