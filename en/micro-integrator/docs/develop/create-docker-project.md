@@ -1,15 +1,9 @@
 # Creating Docker Exporter
 
-Create a Docker project if you want to deploy your integration solutions inside a Docker environment. This project directory allows you to package multiple [integration projects](../../develop/create-integration-project) into a single Docker image and then build and push to the Docker registries.
+Create a Docker Exporter if you want to deploy your integration solutions inside a Docker environment. This project directory allows you to package multiple [integration modules](../../develop/create-integration-project) into a single Docker image and then build and push to the Docker registries.
 
-!!! Tip
-    If you want to simultaneously create all the projects required for your use case, read about the [integration project solution](../../develop/create-integration-project).
+## Creating the Docker exporter
 
-## Prerequisites
-
-It is recommended to [get the latest updates](../../develop/installing-WSO2-Integration-Studio#get-the-latest-updates) for your [WSO2 Integration Studio](../../develop/installing-WSO2-Integration-Studio) before trying these instructions.
-
-## Creating the Docker project
 Follow the steps given below.   
 
 1. [Create a new integration project](../../develop/create-integration-project) and create a Docker Exporter project by doing one of the following.
@@ -18,9 +12,9 @@ Follow the steps given below.
 
     2. You can right click on an existing integration project and select **New** -> **Docker Exporter Project**.
 
-2. In the **New Docker Exporter** dialog that opens, enter a name for the Docker project and other parameters as shown below.
+2. In the **New Docker Exporter** dialog box that opens, enter a name for the Docker exporter and other parameters as shown below.
 
-    <img src="../../assets/img/new_project/docker_exporter.png" width="500">
+    <img src="../../assets/img/new-project/docker-exporter.png" width="500">
 
     Enter the following information:
 
@@ -35,7 +29,7 @@ Follow the steps given below.
         </tr>
         <tr>
             <td>
-                Docker Project Name
+                Docker Exporter Name
             </td>
             <td>
                 <b>Required</b>. Give a name for the Docker project.
@@ -105,25 +99,25 @@ Follow the steps given below.
         </tr>
     </table>
 
-3.  Optionally, click **Next** and configure Maven details for the Docker project.
+3.  Optionally, click **Next** and configure Maven details for the Docker exporter.
 
     <img src="../../assets/img/create_project/docker_k8s_project/new_docker_project_maven_info.png" width="500">
 
-4.  Click **Finish**. The Docker project is created in the project explorer.
+4.  Click **Finish**. The Docker exporter is created in the project explorer.
 5.  This step is only required if you already have a Docker image (in your local Docker repository) with the same name as the base image specified above. 
     
-        !!! Info
-            In this scenario, WSO2 Integration Studio will first check if there is a difference in the two images before pulling the image specified in the **Base Image Repository** field. If the given base image is more updated, the existing image will be overwritten by this new image. Therefore, if you are currently using an older version, or if you have custom changes in your existing image, they will be replaced. 
+    !!! Info
+        In this scenario, WSO2 Integration Studio will first check if there is a difference in the two images before pulling the image specified in the **Base Image Repository** field. If the given base image is more updated, the existing image will be overwritten by this new image. Therefore, if you are currently using an older version, or if you have custom changes in your existing image, they will be replaced. 
         
-        To avoid your existing custom/older images from being replaced, add the following property under **dockerfile-maven-plugin -> executions -> execution -> configurations** in the `pom.xml` file of your Docker Exporter project. This configuration will ensure that the base image will not be pulled when a Docker image already exists with the same name.
+    To avoid your existing custom/older images from being replaced, add the following property under **dockerfile-maven-plugin -> executions -> execution -> configurations** in the `pom.xml` file of your Docker Exporter project. This configuration will ensure that the base image will not be pulled when a Docker image already exists with the same name.
             
-        ```xml
-        <pullNewerImage>false</pullNewerImage>
-        ```
+    ```xml
+    <pullNewerImage>false</pullNewerImage>
+    ```
 
-## The Docker project directory
+## The Docker Exporter directory
 
-Expand the **Docker Exporter Project** in the project explorer. See that the following folders and files are created:
+Expand the **Docker Exporter** in the project explorer. See that the following folders and files are created:
 
 <img src="../../assets/img/create_project/docker_k8s_project/proj_explorer_docker_project.png" width="400">
 
@@ -178,7 +172,7 @@ Expand the **Docker Exporter Project** in the project explorer. See that the fol
     </tr>
 </table>
     
-## Build Docker images
+## Build and Push Docker images
 
 !!! Info
     **Before you begin**:
@@ -206,4 +200,14 @@ Follow the steps given below.
 4.  Save the POM file and click **Build** to start the Docker image build.
 5.  It will build the Docker image based on the Dockerfile and the Target details. When the image is created, the following message will display. 
 
-    ![Docker Build Success](../assets/img/create_project/docker_k8s_project/build.png)
+    <img src="../../assets/img/create_project/docker_k8s_project/build.png" alt="Docker Build Success">
+
+6.  Click <b>Push</b> to push the Docker image to your Docker registry. 
+
+    In the dialog box that opens, provide the details of your Docker registry as shown below.
+
+    <img src="../../assets/img/create_project/docker_k8s_project/docker-registry-credentials.png">
+
+    When the image is pushed to the registry, you will see the following message.
+
+    <img src="../../assets/img/create_project/docker_k8s_project/push.png" alt="Docker Push Success">

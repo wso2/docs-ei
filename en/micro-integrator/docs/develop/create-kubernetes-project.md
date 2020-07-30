@@ -1,25 +1,20 @@
 # Creating Kubernetes Exporter
 
-Create a Kubernetes project directory if you want to deploy your integration solutions in a Kubernetes environment. 
+Create a Kubernetes Exporter if you want to deploy your integration solutions in a Kubernetes environment. 
 
-The Kubernetes project allows you to package multiple [integration projects](../../develop/create-integration-project) into a single Docker image. Also, a file named **integration_cr.yaml** is generated, which can be used to carry out Kubernetes deployments based on the [k8s-ei-operator](../../setup/deployment/kubernetes_deployment/#ei-kubernetes-k8s-operator).
-
-!!! Tip
-    If you want to simultaneously create all the projects required for your use case, read about the [integration project](../../develop/create-integration-project).
-
-## Prerequisites
-    
-It is recommended to [get the latest updates](../../develop/installing-WSO2-Integration-Studio#get-the-latest-updates) for your [WSO2 Integration Studio](../../develop/installing-WSO2-Integration-Studio) before trying these instructions.
+The Kubernetes Exporter allows you to package multiple [integration modules](../../develop/create-integration-project) into a single Docker image. Also, a file named **integration_cr.yaml** is generated, which can be used to carry out Kubernetes deployments based on the [k8s-ei-operator](../../setup/deployment/kubernetes_deployment/#ei-kubernetes-k8s-operator).
 
 ## Creating the Kubernetes project
 
 Follow the steps given below.   
 
-1.  Open **WSO2 Integration Studio** and click **Miscellaneous → Create New Kubernetes Project** in the **Getting Started** view as shown below.
-    
-    <img src="../../assets/img/create_project/docker_k8s_project/get_started_k8s_project.png" width="1000">
+1. [Create a new integration project](../../develop/create-integration-project) and create a Kubernetes Exporter project by doing one of the following.
 
-2.  In the **New Kubernetes Project** dialog that opens, enter a name for the Kubernetes project and other parameters as shown below.
+    1. As part of creating an integration project, you can select the **Kubernetes Exporter** check box.
+
+    2. You can right click on an existing integration project and select **New** -> **Kubernetes Exporter**.
+
+2.  In the **New Kubernetes Exporter** dialog box that opens, enter a name for the Kubernetes exporter and other parameters as shown below.
 
     <img src="../../assets/img/create_project/docker_k8s_project/new_k8s_project_info.png" width="500">
 
@@ -36,7 +31,7 @@ Follow the steps given below.
         </tr>
         <tr>
             <td>
-                Kubernetes Project Name
+                Kubernetes Exporter Name
             </td>
             <td>
                 <b>Required</b>. Give a name for the Kubernetes project.
@@ -129,26 +124,26 @@ Follow the steps given below.
         </tr>
     </table>
 
-3.  Optionally, click **Next** and configure Maven details for the Kubernetes project.
+3.  Optionally, click **Next** and configure Maven details for the Kubernetes exporter.
 
     <img src="../../assets/img/create_project/docker_k8s_project/new_k8s_project_maven_info.png" width="500">
     
-4.  Click **Finish**. The Kubernetes project is created in the project explorer. 
+4.  Click **Finish**. The Kubernetes exporter is created in the project explorer. 
 
 5.  This step is only required if you already have a Docker image (in your local Docker repository) with the same name as the base image specified above. 
     
-        !!! Info
-            In this scenario, WSO2 Integration Studio will first check if there is a difference in the two images before pulling the image specified in the **Base Image Repository** field. If the given base image is more updated, the existing image will be overwritten by this new image. Therefore, if you are currently using an older version, or if you have custom changes in your existing image, they will be replaced. 
+    !!! Info
+        In this scenario, WSO2 Integration Studio will first check if there is a difference in the two images before pulling the image specified in the **Base Image Repository** field. If the given base image is more updated, the existing image will be overwritten by this new image. Therefore, if you are currently using an older version, or if you have custom changes in your existing image, they will be replaced. 
         
-        To avoid your existing custom/older images from being replaced, add the following property under **dockerfile-maven-plugin -> executions -> execution -> configurations** in the `pom.xml` file of your Kubernetes Exporter project. This configuration will ensure that the base image will not be pulled when a Docker image already exists with the same name.
+    To avoid your existing custom/older images from being replaced, add the following property under **dockerfile-maven-plugin -> executions -> execution -> configurations** in the `pom.xml` file of your Kubernetes Exporter project. This configuration will ensure that the base image will not be pulled when a Docker image already exists with the same name.
             
-        ```xml
-        <pullNewerImage>false</pullNewerImage>
-        ```
+    ```xml
+    <pullNewerImage>false</pullNewerImage>
+    ```
 
-## The Kubernetes project directory
+## The Kubernetes Exporter directory
 
-Expand the **Kubernetes Exporter Project** in the project explorer. See that the following folders and files are created:
+Expand the **Kubernetes Exporter** in the project explorer. See that the following folders and files are created:
 
 <img src="../../assets/img/create_project/docker_k8s_project/proj_explorer_k8s_project.png" width="400">
 
@@ -231,7 +226,7 @@ Expand the **Kubernetes Exporter Project** in the project explorer. See that the
 
 Follow the steps given below.
 
-1.  Open the **pom.xml** file inside the Kubernetes project and click **Refresh** on the top-right. Your composite application project with integration artifacts will be listed under **Dependencies** as follows:
+1.  Open the **pom.xml** file inside the Kubernetes exporter and click **Refresh** on the top-right. Your composite application project with integration artifacts will be listed under **Dependencies** as follows:
 
     <img alt="Kubernetes pom view" src="../../assets/img/create_project/docker_k8s_project/k8s-pom.png" width="600">
     
@@ -281,8 +276,8 @@ Follow the steps given below.
 5.  Once you enter the above details, click **Push Image**.
 6.  First, it will build the Docker image based on the Dockerfile and the Target details. When the image is created, you will see the following message.
 
-    ![Docker Build Success](../assets/img/create_project/docker_k8s_project/build.png)
+    <img src="../../assets/img/create_project/docker_k8s_project/build.png" alt="Docker Build Success">
 
 7.  Finally, it will start to push the image to the given registry. Once the process is completed, you will see the following message.
 
-    ![Docker Push Success](../assets/img/create_project/docker_k8s_project/push.png)
+    <img src="../../assets/img/create_project/docker_k8s_project/push.png" alt="Docker Push Success">
