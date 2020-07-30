@@ -53,7 +53,7 @@ Following is a sample REST API configuration with a custom Swagger definition. S
 Create the artifacts:
 
 1. [Set up WSO2 Integration Studio](../../../../develop/installing-WSO2-Integration-Studio).
-2. [Create the projects](../../../../develop/creating-projects/#esb-config-project) listed below: 
+2. [Create an integration project](../../../../develop/create-integration-project) with the modules listed below: 
     - <b>Config</b> project
     - <b>Registry</b> project
     - <b>Composite Application</b> project.
@@ -61,7 +61,7 @@ Create the artifacts:
     - Download the Swagger file: [simple_petstore.yaml](https://github.com/wso2-docs/WSO2_EI/blob/master/samples-rest-apis/simple_petstore.yaml).
     - Follow the instructions on [creating a REST API](../../../../develop/creating-artifacts/creating-an-api).
 
-4. [Deploy the artifacts](../../../../develop/deploy-and-run) in your Micro Integrator.
+4. [Deploy the artifacts](../../../../develop/deploy-artifacts) in your Micro Integrator.
 
 Copy the following URLs to your browser to see the Swagger documents of your API:
 

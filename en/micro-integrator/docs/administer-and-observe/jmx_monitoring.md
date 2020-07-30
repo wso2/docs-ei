@@ -62,6 +62,7 @@ Once the product server is started, you can start the `JConsole` tool as follows
 3.  Enter the connection details in the above screen as follows:
     1.  Enter the **JMX server URL** in the **Remote Process** field. This URL is published on the command prompt when you start the
         server as explained [above](#starting-wso2-micro-integrator-with-jmx).
+
         !!! Info
             If you are connecting with a remote IP address instead of localhost, you need to bind the JMX service to the externally accessible IP address by adding the following system property to the product startup script stored in the `MI_HOME>/bin` directory (`micro-integrator.sh` for Linux and `micro-integrator.bat` for Windows). For more information, read [Troubleshooting Connection Problems in JConsole](https://blogs.oracle.com/jmxetc/entrytroubleshooting_connection_problems_in_jconsole).
             ``` java

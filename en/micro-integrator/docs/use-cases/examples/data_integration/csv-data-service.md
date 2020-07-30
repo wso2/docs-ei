@@ -53,7 +53,7 @@ Create the artifacts:
 2. [Create a Data Service project](../../../../develop/creating-projects/#data-services-project).
 4. [Create the data service](../../../../develop/creating-artifacts/data-services/creating-data-services) with the configurations given above.
    **Be sure** to update the CSV datasource path.
-5. [Deploy the artifacts](../../../../develop/deploy-and-run) in your Micro Integrator. 
+5. [Deploy the artifacts](../../../../develop/deploy-artifacts) in your Micro Integrator. 
 
 You can send an HTTP GET request to invoke the data service using cURL
 as shown below.
