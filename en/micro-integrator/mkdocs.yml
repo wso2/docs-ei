@@ -326,6 +326,7 @@ nav:
         - Working with User Stores:
           - 'Configuring a User Store' : 'setup/user_stores/setting_up_a_userstore.md'
           - 'Managing Users' : 'setup/user_stores/managing_users.md'
+      - 'Health Checking' : 'setup/deployment/health_check.md'
       - Performance Tuning:
         - 'Tuning JVM Performance' : 'setup/performance_tuning/tuning_jvm_performance.md'
         - 'Tuning Network and OS Performance' : 'setup/performance_tuning/network_os_performance.md'
