@@ -1,4 +1,4 @@
-# Create Datasource Project
+# Create Datasource Configs
 
 Create this project directory to start creating datasources that you can expose through a data service.
 
