@@ -1,4 +1,4 @@
-# Create Data Services Project
+# Create Data Services Configs
 
 Create this project directory to start creating data services (.dbs files) for exposing various datasources as a service.</br>
 <ol>
