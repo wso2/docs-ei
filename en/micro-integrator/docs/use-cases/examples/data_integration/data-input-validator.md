@@ -73,7 +73,7 @@ Create the artifacts:
         
 3. [Create a Data Service project](../../../../develop/creating-projects/#data-services-project)
 4. [Create the data service](../../../../develop/creating-artifacts/data-services/creating-data-services) with the configurations given above.
-5. [Deploy the artifacts](../../../../develop/deploy-and-run) in your Micro Integrator. 
+5. [Deploy the artifacts](../../../../develop/deploy-artifacts) in your Micro Integrator. 
 
 Let's send a request with invalid and valid data to the data service:
 
