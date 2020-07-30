@@ -247,22 +247,22 @@ nav:
         - 'Creating a Synapse Handler': 'develop/customizations/creating-synapse-handlers.md'
         - 'Creating a New Connector': 'develop/customizations/creating-new-connector.md'
         - 'Customizing Task Scheduling': 'develop/customizations/creating-custom-task-scheduling.md'
+      - 'Exporting Artifacts': 'develop/exporting-artifacts.md'
       - Securing Artifacts:
         - 'Using Docker Secrets in Synapse Configurations': 'develop/creating-artifacts/using_docker_secrets.md'
         - 'Using Kubernetes Secrets in Synapse Configurations': 'develop/creating-artifacts/using_k8s_secrets.md'
         - 'Applying Security to a REST API': 'develop/advanced-development/applying-security-to-an-api.md'
         - 'Applying Security to a Proxy Service': 'develop/advanced-development/applying-security-to-a-proxy-service.md'
         - 'Applying Security to a Data Service': 'develop/creating-artifacts/data-services/securing-data-services.md'
-      - Packaging Artifacts:
-        - 'Packaging Artifacts': 'develop/packaging-artifacts.md'
-        - 'Exporting Artifacts': 'develop/exporting-artifacts.md'
-        - 'Generating Docker Images': 'develop/generate-docker-image.md'
+      - 'Packaging Artifacts': 'develop/packaging-artifacts.md'
+      - 'Deploying Artifacts': 'develop/deploy-artifacts.md'
       - Testing Integrations:
         - 'Using the Embedded Micro Integrator': 'develop/using-embedded-micro-integrator.md'
         - 'Using a Remote Micro Integrator': 'develop/using-remote-micro-integrator.md'
         - 'Hot Deploying Artifacts': 'develop/hot-deployment.md'
         - 'Creating a Unit Test Suite': 'develop/creating-unit-test-suite.md'
         - 'Using the HTTP REST Client': 'develop/using-http_rest_client.md'
+        - 'Generating Docker Images': 'develop/generate-docker-image.md'
       - Debugging Integrations:
         - 'Mediation Debugging': 'develop/debugging-mediation.md'
         - 'Using Wire Logs': 'develop/using-wire-logs.md'
