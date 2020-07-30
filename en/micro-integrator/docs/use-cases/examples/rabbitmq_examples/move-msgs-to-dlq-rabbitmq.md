@@ -53,11 +53,11 @@ See the instructions on how to [build and run](#build-and-run) this example.
 4. Create queue `orders` (bound by `orders-exchange` with routing key `orders` ) and configure a
 dead letter exchange for it (`orders-error-exchange`).
 5. [Set up WSO2 Integration Studio](../../../../develop/installing-WSO2-Integration-Studio).
-6. [Create an ESB Solution project](../../../../develop/creating-projects/#esb-config-project).
+6. [Create an integration project](../../../../develop/create-integration-project) with an <b>ESB Configs</b> module and an <b>Composite Exporter</b>.
 7. Create the [proxy service](../../../../develop/creating-artifacts/creating-a-proxy-service) with the configurations given above.
 8. Enable the RabbitMQ sender and receiver in the Micro-Integrator from the deployment.toml. Refer the 
  [configuring RabbitMQ documentation](../../../setup/brokers/configure-with-rabbitMQ.md) for more information.
-9. [Deploy the artifacts](../../../../develop/deploy-and-run) in your Micro Integrator.
+9. [Deploy the artifacts](../../../../develop/deploy-artifacts) in your Micro Integrator.
 10. Make the `http://localhost:8280/orders` endpoint unavailable temporarily. 
 11. Publish a message to the orders queue.
 12. You will see that the failed message has been moved to the dead-letter-exchange.
