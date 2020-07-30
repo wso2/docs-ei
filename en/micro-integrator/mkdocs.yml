@@ -54,8 +54,7 @@ nav:
     - Learn:
       - 'Overview': 'use-cases/learn-overview.md'
       - Integration Use Cases:
-        - 'Message Routing': 'use-cases/integration-use-case/message-routing-overview.md'
-        - 'Message Transformation': 'use-cases/integration-use-case/message-transformation-overview.md'
+        - 'Message Routing and Transformation': 'use-cases/integration-use-case/message-routing-overview.md'
         - 'Service Orchestration': 'use-cases/integration-use-case/service-orchestration-overview.md'
         - 'Asynchronous Message Processing': 'use-cases/integration-use-case/asynchronous-message-overview.md'
         - 'SaaS and B2B Connectivity': 'use-cases/integration-use-case/connectors.md'
@@ -63,7 +62,7 @@ nav:
         - 'Protocol Switching': 'use-cases/integration-use-case/protocol-switching-overview.md'
         - 'Gateway': 'use-cases/integration-use-case/gateway-overview.md'
         - 'File Processing': 'use-cases/integration-use-case/file-processing-overview.md'
-        - 'Periodic Execution of Integration Processes': 'use-case/integration-use-cases/scheduled-task-overview.md'
+        - 'Periodic Execution of Integration Processes': 'use-case/integration-use-case/scheduled-task-overview.md'
       - Tutorials:
         - 'Sending a Simple Message to a Service': 'use-cases/tutorials/sending-a-simple-message-to-a-service.md'
         - 'Message Routing': 'use-cases/tutorials/routing-requests-based-on-message-content.md'
