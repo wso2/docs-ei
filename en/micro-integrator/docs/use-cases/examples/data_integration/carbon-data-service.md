@@ -73,7 +73,7 @@ Create the artifacts:
         
 3. [Create a Datasource project](../../../../develop/creating-projects/#datasource-project) and then [create a datasource](../../../../develop/creating-artifacts/data-services/creating-datasources).
 4. [Create a Data Service project](../../../../develop/creating-projects/#data-services-project) and then [create the data service](../../../../develop/creating-artifacts/data-services/creating-data-services) with the configurations given above.
-5. [Deploy the artifacts](../../../../develop/deploy-and-run) in your Micro Integrator. 
+5. [Deploy the artifacts](../../../../develop/deploy-artifacts) in your Micro Integrator. 
 
 The service can be invoked in REST-style via curl (
 [http://curl.haxx.se](http://curl.haxx.se/) ). Shown below is the curl
