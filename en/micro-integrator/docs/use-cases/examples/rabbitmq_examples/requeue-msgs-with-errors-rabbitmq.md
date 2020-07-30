@@ -1,7 +1,8 @@
 # Requeue a message preserving the message order with a delay in case of error
 
-!!! Note
-    <b>Work in progress!</b>
+This sample demonstrates how you can requeue a message (which was consumed by a consumer proxy service) to the RabbitMQ queue
+when an error occurs. In the sample given below, if the HTTP endpoint becomes unavailable the message will be returned
+to the `student-registration` queue until the endpoint becomes available.
 
 ## Synapse configurations
 
@@ -43,3 +44,13 @@ See the instructions on how to [build and run](#build-and-run) this example.
 ```
 
 ## Build and run
+
+1. [Set up WSO2 Integration Studio](../../../../develop/installing-WSO2-Integration-Studio).
+2. [Create an integration project](../../../../develop/create-integration-project) with an <b>ESB Configs</b> module and an <b>Composite Exporter</b>.
+3. Create the [proxy service](../../../../develop/creating-artifacts/creating-a-proxy-service) with the configurations given above.
+4. Enable the RabbitMQ sender and receiver in the Micro-Integrator from the deployment.toml. Refer the 
+ [configuring RabbitMQ documentation](../../../setup/brokers/configure-with-rabbitMQ.md) for more information.
+5. [Deploy the artifacts](../../../../develop/deploy-artifacts) in your Micro Integrator.
+6. Make the `http://localhost:8280/students` endpoint unavailable temporarily. 
+7. Make sure you have a RabbitMQ broker instance running.
+8. Publish a message to the student-registration queue.
