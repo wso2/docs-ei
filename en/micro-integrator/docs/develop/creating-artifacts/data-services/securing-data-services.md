@@ -8,28 +8,28 @@ service.
 
 ## Prerequisites
 
-Be sure to [configure a user store](../../../../setup/user_stores/setting_up_ro_ldap) for the Micro Integrator and add the required users and roles.
+Be sure to [configure a user store](../../../setup/user_stores/setting_up_a_userstore) for the Micro Integrator and add the required users and roles.
 
-## Step 1: Creating a registry project
+## Step 1: Creating a registry resource module
 
 Registry artifacts (such as security policy files) should be stored in a
-**Registry Resource** project. Follow the steps given below to create a
-project:
+**Registry Resource** module. Follow the steps given below to create a
+module:
 
-1.  Open **WSO2 Integration Studio** and click **Miscelleneous → Create
-    New Registry Project** in the **Getting Started** tab as shown
-    below.
+1.  Right click on the [Integration project](../../create-integration-project) 
+    and goto **New → Registry Resource**. 
+    
+    !!! Tip Alternatively, you can goto **File → New → Others** and 
+    select **Registry Resources** from the opening wizard.
 
-    ![](../../../assets/img/tutorials/data_services/119130577/119135181.png)
-
-2.  Enter a name for the project and click **Next** .
-3.  Enter the Maven information about the project and click **Finish** .
-4.  The new project will be listed in the project explorer.
+2.  Enter a name for the module and click **Next** .
+3.  Enter the Maven information about the module and click **Finish** .
+4.  The new module will be listed in the project explorer.
 
 ## Step 2: Creating a security policy as a registry resource
 
-1.  Right-click the registry resource project in the left navigation
-    panel, click **New** , and then click **Registry Resource** . This
+1.  Right-click the registry resource module in the left navigation
+    panel, click **New**, and then click **Registry Resource**. This
     will open the **New Registry Resource** window.
 2.  Select the **From existing template** option as shown below and
     click **Next** .  
@@ -90,11 +90,11 @@ the source of the data service.
 
 ## Step 3: Package the artifacts
 
-See the instructions on [packaging the artifacts](../../../../develop/packaging-artifacts) into a composite application project.
+See the instructions on [packaging the artifacts](../../../develop/packaging-artifacts) into a composite exporter.
 
 ## Step 4: Build and run the artifacts
 
-See the instructions [deploying the artifacts](../../../../develop/deploy-and-run).
+See the instructions [deploying the artifacts](../../../develop/deploy-artifacts).
 
 ## Step 5: Testing the service
 
@@ -107,33 +107,15 @@ option of encrypting the datasource connection password. This ensures
 that the password is encrypted in the configuration file (.dbs file) of
 the data service.
 
-See the instructions on [encrypting plain-text passwords](../../../../setup/security/encrypting_plain_text)
+See the instructions on [encrypting plain-text passwords](../../../setup/security/encrypting_plain_text)
 
 Once you have encrypted the datasource password, you can update the data
 service as explained below.
 
-1.  Select the data service from the [data service project](../../../../develop/creating-projects/#data-services-project), right click and
-    go to **-> Open With -> Text Editor** . This will open the data
-    service in text form.    
-2.  Update the datasource configuration by adding the secret alias of
-    the password. See the example given below.
-
-    ```xml
-    <config id="Datasource">
-            <property name="org.wso2.ws.dataservice.user">root</property>
-            <property name="org.wso2.ws.dataservice.password" svns:secretAlias="DB_Password_Alias"></property>
-            <property name="org.wso2.ws.dataservice.protocol">jdbc:mysql://localhost:3306/Employees</property>
-            <property name="org.wso2.ws.dataservice.driver">com.mysql.jdbc.Driver</property>
-            <property name="org.wso2.ws.dataservice.minpoolsize"/>
-            <property name="org.wso2.ws.dataservice.maxpoolsize"/>
-            <property name="org.wso2.ws.dataservice.validation_query"/>
-    </config>
-    ```
-
-3.  Add the "http://org.wso2.securevault/configuration" namespace
-    configuration to the datasource as follows:
-
-    ```xml
-    <data enableBatchRequests="true" name="RDBMSDataService" serviceNamespace="http://ws.wso2.org/dataservice/samples/rdbms_sample" xmlns:svns="http://org.wso2.securevault/configuration">
-    ```
-4.  Save the data service file.
+1.  Open the data service and click **Data Sources** to expand the section.
+    ![](../../../assets/img/tutorials/data_services/data_source_expanded.png)
+2.  Click on the **Edit** icon of the respective Datasource to open 
+    **Edit Datasource** page.
+    ![](../../../assets/img/tutorials/data_services/edit_datasource.png)
+3.  Make sure to check **Use as a Secret Alias**.
+4.  Update the Secret Alias and click on **Save**.
