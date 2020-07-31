@@ -3,7 +3,7 @@
 ## What you'll build
 Store and forward messaging is used for serving traffic to back-end services that can accept request messages only at a given rate. This is also used to ensure guaranteed delivery of messages. Messages never get lost since they are stored in the message store and available for future reference.
 
-**In this tutorial**, instead of sending the request directly to the back-end service, you store the request message in the Message Broker profile of WSO2 EI 6.6.0. You will then use a **Message
+**In this tutorial**, instead of sending the request directly to the back-end service, you store the request message in the RabbitMQ broker. You will then use a **Message
 Processor** to retrieve the message from the store before delivering it to the back-end service.
 
 ## Let's get started!
@@ -260,7 +260,7 @@ Let's test the use case by sending a simple client request that invokes the serv
     
 Make sure that you have installed and started a RabbitMQ server instance for the Micro-Integrator to communicate with.
 
-    See the [RabbitMQ documentation](https://www.rabbitmq.com/download.html) for more information on how to install and run the product.
+See the [RabbitMQ documentation](https://www.rabbitmq.com/download.html) for more information on how to install and run the product.
 
 #### Restart the Micro Integrator
 
