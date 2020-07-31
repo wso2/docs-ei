@@ -423,19 +423,12 @@ Once you have downloaded and set up the Micro Integrator locally, follow the ste
 
 Let's start the mock back-end services for this use case:
 
-1.  Download the [`DoctorInfo.jar` file](../assets/attach/developing-first-integration/DoctorInfo.jar). This contains two healthcare services.
-2.  Open a terminal, navigate to the location of the downloaded `DoctorInfo.jar` file, and execute the following command to start the services:
+1.  Download the [`DoctorInfo-JDK11.jar` file](https://ei.docs.wso2.com/en/7.1.0/micro-integrator/assets/attach/developing-first-integration/DoctorInfo-JDK11.jar). This contains two healthcare services.
+2.  Open a terminal, navigate to the location of the downloaded `DoctorInfo-JDK11.jar` file, and execute the following command to start the services:
 
     ```bash
-    java -jar DoctorInfo.jar
+    java -jar DoctorInfo-JDK11.jar
     ```
-
-You will see the following printed on your terminal:
-
-```bash
-[ballerina/http] started HTTP/WS listener 0.0.0.0:9090
-[ballerina/http] started HTTP/WS listener 0.0.0.0:9091
-```
    
 ## Invoke the Healthcare service
 
