@@ -60,44 +60,41 @@ See the instructions on how to [build and run](#build-and-run) this example.
 
 1. Make sure you have a RabbitMQ broker instance running.
 2. Declare exchange to route enrollment
-```
-rabbitmqadmin declare exchange --vhost=/ --user=guest --password=guest name=enrollment-exchange type=direct durable=true
-```
+    ```bash
+    rabbitmqadmin declare exchange --vhost=/ --user=guest --password=guest name=enrollment-exchange type=direct durable=true
+    ```
 
 3. Declare a queue to store enrollment. At the same time define DLX, DLK to control the error scenario.
-```
-rabbitmqadmin declare queue --vhost=/ --user=guest --password=guest name=enrollment durable=true arguments='{"x-dead-letter-exchange": "enrollment-error-exchange", "x-dead-letter-routing-key": "enrollment-error"}'
-```
+    ```bash
+    rabbitmqadmin declare queue --vhost=/ --user=guest --password=guest name=enrollment durable=true arguments='{"x-dead-letter-exchange": "enrollment-error-exchange", "x-dead-letter-routing-key": "enrollment-error"}'
+    ```
 
 4. Bind enrollment with enrollment-exchange.
-```
-rabbitmqadmin declare binding --vhost=/ --user=guest --password=guest source=enrollment-exchange destination=enrollment routing_key=enrollment
-
-```
+    ```bash
+    rabbitmqadmin declare binding --vhost=/ --user=guest --password=guest source=enrollment-exchange destination=enrollment routing_key=enrollment
+    ```
 
 5. Declare exchange to route enrollment-error.
-```
-rabbitmqadmin declare exchange --vhost=/ --user=guest --password=guest name=enrollment-error-exchange type=direct durable=true
-
-```
+    ```bash
+    rabbitmqadmin declare exchange --vhost=/ --user=guest --password=guest name=enrollment-error-exchange type=direct durable=true
+    ```
 
 6. Declare queue to store enrollment-error. Define DLX, DLK and TTL for control retries and delay message.
-```
-rabbitmqadmin declare queue --vhost=/ --user=guest --password=guest name=enrollment-error durable=true arguments='{"x-dead-letter-exchange": "enrollment-exchange", "x-dead-letter-routing-key": "enrollment", "x-message-ttl": 60000}'
-
-```
+    ```bash
+    rabbitmqadmin declare queue --vhost=/ --user=guest --password=guest name=enrollment-error durable=true arguments='{"x-dead-letter-exchange": "enrollment-exchange", "x-dead-letter-routing-key": "enrollment", "x-message-ttl": 60000}'
+    ```
 
 7. Bind enrollment-error with enrollment-error-exchange.
-```
-rabbitmqadmin declare binding --vhost=/ --user=guest --password=guest source=enrollment-error-exchange destination=enrollment-error routing_key=enrollment-error
-```
+    ```bash
+    rabbitmqadmin declare binding --vhost=/ --user=guest --password=guest source=enrollment-error-exchange destination=enrollment-error routing_key=enrollment-error
+    ```
 
 8. [Set up WSO2 Integration Studio](../../../../develop/installing-WSO2-Integration-Studio).
-9. [Create an ESB Solution project](../../../../develop/creating-projects/#esb-config-project).
+9. [Create an integration project](../../../../develop/create-integration-project) with an ESB Configs module and an Composite Exporter.
 10. Create the [proxy service](../../../../develop/creating-artifacts/creating-a-proxy-service) with the configurations given above.
 11. Enable the RabbitMQ sender and receiver in the Micro-Integrator from the deployment.toml. Refer the 
  [configuring RabbitMQ documentation](../../../setup/brokers/configure-with-rabbitMQ.md) for more information.
-12. [Deploy the artifacts](../../../../develop/deploy-and-run) in your Micro Integrator.
+12. [Deploy the artifacts](../../../../develop/deploy-artifacts) in your Micro Integrator.
 13. Make the `http://localhost:8280/enrollment` endpoint unavailable temporarily. 
 14. Publish a message to the enrollment queue.
 15. You will see that the failed message will be retried 3 times for delivery by the EnrollmentService proxy and then be discarded.
