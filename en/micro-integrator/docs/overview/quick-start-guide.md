@@ -210,6 +210,10 @@ Upon invocation, you should be able to observe the following response:
 ]
 ```
 
+## Streaming Integration
+
+To get started with the Streaming Integrator of WSO2 Enterprise Integrator, see the [Streaming Integrator Quick Start Guide](../../../streaming-integrator/docs/quick-start-guide/quick-start-guide.md)
+
 ## What's next?
 
 - [Develop your first integration solution](../../develop/integration-development-kickstart/).
