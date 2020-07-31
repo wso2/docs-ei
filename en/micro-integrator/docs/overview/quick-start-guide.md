@@ -47,7 +47,7 @@ Let’s implement a simple integration solution that can be used to query the av
     !!! Info
         For more information, see the [installation instructions](../../setup/installation/install_in_vm/).
 
-2. Download the [sample files](https://github.com/wso2/docs-ei/blob/7.0.0/en/micro-integrator/docs/assets/attach/quick-start-guide/MI_QSG_HOME.zip). From this point onwards, let's refer to this folder as `<MI_QSG_HOME>`.
+2. Download the [sample files](https://github.com/wso2/docs-ei/blob/master/en/micro-integrator/docs/assets/attach/quick-start-guide/MI_QSG_HOME-JDK11.zip). From this point onwards, let's refer to this folder as `<MI_QSG_HOME>`.
 3. Download [curl](https://curl.haxx.se/) or a similar tool that can call an HTTP endpoint.
 
 ## Set up the workspace
@@ -121,19 +121,12 @@ Follow the steps given below to run the integration artifacts we developed on a 
 
 #### Start backend services
 
-Two mock hospital information services are available in the `DoctorInfo.jar` file located in the `<MI_QSG_HOME>/Backend/` directory. 
+Two mock hospital information services are available in the `DoctorInfo-JDK11.jar` file located in the `<MI_QSG_HOME>/Backend/` directory. 
 
 Open a terminal window and use the following command to start the services:
 
 ```bash
-java -jar DoctorInfo.jar
-```
-
-You will see following printed in the terminal:
-
-```bash
-[ballerina/http] started HTTP/WS listener 0.0.0.0:9090
-[ballerina/http] started HTTP/WS listener 0.0.0.0:9091
+java -jar DoctorInfo-JDK11.jar
 ```
 
 #### Deploy the healthcare service
