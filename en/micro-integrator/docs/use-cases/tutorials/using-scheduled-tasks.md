@@ -35,7 +35,7 @@ The created projects are saved in the **Project Explorer**.
 
 #### Creating the Sequence
 
-1.  In the **Project Explorer**, right click **ScheduleDefaultTask**, and click **New** → **Sequence**.  
+1.  In the **Project Explorer**, right click **ScheduleDefaultTaskConfigs** project, and click **New** → **Sequence**.  
     ![](../../assets/img/tutorials/scheduled-tasks/1-select-sequence.png) 
 2.  Click **Create New Sequence** and click **Next**.
 3.  Enter **InjectXMLSequence** as the sequence name and click **Finish**.  
