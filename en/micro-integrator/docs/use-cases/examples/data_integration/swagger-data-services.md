@@ -104,7 +104,7 @@ Create the artifacts:
     - Download the Swagger file: [custom_data_service_swagger.yaml](https://github.com/wso2-docs/WSO2_EI/blob/master/samples-rest-apis/simple_petstore.yaml).
     - Follow the instructions on [creating a data service](../../../../develop/creating-artifacts/data-services/creating-data-services).
 
-4. [Deploy the artifacts](../../../../develop/deploy-and-run) in your Micro Integrator.
+4. [Deploy the artifacts](../../../../develop/deploy-artifacts) in your Micro Integrator.
 
 
 Copy the following URLs to your browser to see the Swagger documents of your RESTful data service:

@@ -45,9 +45,9 @@ Following are the integration artifacts that we can used to implement this scena
 Create the artifacts:
 
 1. [Set up WSO2 Integration Studio](../../../../develop/installing-WSO2-Integration-Studio).
-2. [Create an ESB Solution project](../../../../develop/creating-projects/#esb-config-project)
+2. [Create an integration project](../../../../develop/create-integration-project) with an <b>ESB Configs</b> module and an <b>Composite Exporter</b>.
 3. [Create two sequences](../../../../develop/creating-artifacts/creating-reusable-sequences) (Main and Fault) and an [inbound endpoint](../../../../develop/creating-an-inbound-endpoint) with the configurations given above.
-4. [Deploy the artifacts](../../../../develop/deploy-and-run) in your Micro Integrator.
+4. [Deploy the artifacts](../../../../develop/deploy-artifacts) in your Micro Integrator.
 
 To execute the sample, use the **HAPI HL7 TestPanel**:
 

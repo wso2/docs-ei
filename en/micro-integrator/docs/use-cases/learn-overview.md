@@ -8,8 +8,7 @@ The following are the main use cases of WSO2 Micro Integrator. These help you un
     <tr>
         <td>
             <ul>
-                <li><a href="../../use-cases/integration-use-case/message-routing-overview">Message Routing</a></li>
-                <li><a href="../../use-cases/integration-use-case/message-transformation-overview">Message Transformation</a></li>
+                <li><a href="../../use-cases/integration-use-case/message-routing-overview">Message Routing and Transformation</a></li>
                 <li><a href="../../use-cases/integration-use-case/service-orchestration-overview">Service Orchestration</a></li>
                 <li><a href="../../use-cases/integration-use-case/asynchronous-message-overview">Asynchronous Message Processing</a></li>
                 <li><a href="../../use-cases/integration-use-case/connectors">SaaS and B2B Connectivity</a></li>

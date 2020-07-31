@@ -14,7 +14,7 @@ Follow the instructions given below to create a new REST API artifact.
 
 Follow the steps given below to create the data service file:
 
-1.  Right-click the **Data Service** project in the project
+1.  Right-click the **Data Service Config** module in the project
     explorer and go to **New -> Data Service**. 
 
     <img src="../../../../assets/img/tutorials/data_services/new-data-service.png" width="500"> 
@@ -241,7 +241,7 @@ Use this section to configure a SOAP operation for invoking the data service.
 
 2.  Click **Add New** to add a SOAP Operation for your data service.
 
-	![](../../../assets/img/tutorials/data_services/operation-added.png)
+	![](../../../assets/img/tutorials/data_services/add-operation.png)
 
 3.	Enter the following information:
 
@@ -285,11 +285,11 @@ Use this section to configure a SOAP operation for invoking the data service.
 Use this section to configure a SOAP operation for invoking the data service.
 
 1.  Click **Resources** to expand the section.
-	![](../../../assets/img/tutorials/data_services/add-new-resource.png)
+	![](../../../assets/img/tutorials/data_services/resource_expanded.png)
 
 2.	Click **Add New** to add a new resource.
 
-	![](../../../assets/img/tutorials/data_services/resource-added.png)
+	![](../../../assets/img/tutorials/data_services/create_resource.png)
 
 3.	Give the following details to create the REST resource. 
 

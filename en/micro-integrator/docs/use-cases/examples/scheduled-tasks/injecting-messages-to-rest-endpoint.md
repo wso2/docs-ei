@@ -51,9 +51,9 @@ Following are the integration artifacts that we can used to implement this scena
 Create the artifacts:
 
 1. [Set up WSO2 Integration Studio](../../../../develop/installing-WSO2-Integration-Studio).
-2. [Create an Integration project](../../../../develop/creating-projects/#esb-config-project).
+2. [Create an integration project](../../../../develop/create-integration-project) with an <b>ESB Configs</b> module and an <b>Composite Exporter</b>.
 3. Create the [proxy service](../../../../develop/creating-artifacts/creating-a-proxy-service) and a [scheduled task](../../../../develop/creating-artifacts/creating-scheduled-task) with the configurations given above.
-4. [Deploy the artifacts](../../../../develop/deploy-and-run) in your Micro Integrator.
+4. [Deploy the artifacts](../../../../develop/deploy-artifacts) in your Micro Integrator.
 
 The XML message you injected (i.e., This is a scheduled task of the default implementation.) will be printed in the logs of the Micro Integrator twice, 5 seconds apart.
 

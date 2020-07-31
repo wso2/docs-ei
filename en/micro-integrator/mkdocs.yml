@@ -54,8 +54,7 @@ nav:
     - Learn:
       - 'Overview': 'use-cases/learn-overview.md'
       - Integration Use Cases:
-        - 'Message Routing': 'use-cases/integration-use-case/message-routing-overview.md'
-        - 'Message Transformation': 'use-cases/integration-use-case/message-transformation-overview.md'
+        - 'Message Routing and Transformation': 'use-cases/integration-use-case/message-routing-overview.md'
         - 'Service Orchestration': 'use-cases/integration-use-case/service-orchestration-overview.md'
         - 'Asynchronous Message Processing': 'use-cases/integration-use-case/asynchronous-message-overview.md'
         - 'SaaS and B2B Connectivity': 'use-cases/integration-use-case/connectors.md'
@@ -63,7 +62,7 @@ nav:
         - 'Protocol Switching': 'use-cases/integration-use-case/protocol-switching-overview.md'
         - 'Gateway': 'use-cases/integration-use-case/gateway-overview.md'
         - 'File Processing': 'use-cases/integration-use-case/file-processing-overview.md'
-        - 'Periodic Execution of Integration Processes': 'use-case/integration-use-cases/scheduled-task-overview.md'
+        - 'Periodic Execution of Integration Processes': 'use-case/integration-use-case/scheduled-task-overview.md'
       - Tutorials:
         - 'Sending a Simple Message to a Service': 'use-cases/tutorials/sending-a-simple-message-to-a-service.md'
         - 'Message Routing': 'use-cases/tutorials/routing-requests-based-on-message-content.md'
@@ -218,6 +217,8 @@ nav:
         - 'Troubleshooting WSO2 Integration Studio': 'develop/troubleshooting-WSO2-Integration-Studio.md'
       - Creating Projects:
         - 'Creating an Integration Project': 'develop/create-integration-project.md'
+        - 'Creating a Data Service Configs': 'develop/create-data-services.md'
+        - 'Creating a Datasource Configs': 'develop/create-datasources.md'
         - 'Importing Projects': 'develop/importing-projects.md'
         - 'Exporting Projects': 'develop/export_project.md'
         - 'Creating Docker Exporter': 'develop/create-docker-project.md'
@@ -247,22 +248,22 @@ nav:
         - 'Creating a Synapse Handler': 'develop/customizations/creating-synapse-handlers.md'
         - 'Creating a New Connector': 'develop/customizations/creating-new-connector.md'
         - 'Customizing Task Scheduling': 'develop/customizations/creating-custom-task-scheduling.md'
+      - 'Exporting Artifacts': 'develop/exporting-artifacts.md'
       - Securing Artifacts:
         - 'Using Docker Secrets in Synapse Configurations': 'develop/creating-artifacts/using_docker_secrets.md'
         - 'Using Kubernetes Secrets in Synapse Configurations': 'develop/creating-artifacts/using_k8s_secrets.md'
         - 'Applying Security to a REST API': 'develop/advanced-development/applying-security-to-an-api.md'
         - 'Applying Security to a Proxy Service': 'develop/advanced-development/applying-security-to-a-proxy-service.md'
         - 'Applying Security to a Data Service': 'develop/creating-artifacts/data-services/securing-data-services.md'
-      - Packaging Artifacts:
-        - 'Packaging Artifacts': 'develop/packaging-artifacts.md'
-        - 'Exporting Artifacts': 'develop/exporting-artifacts.md'
-        - 'Generating Docker Images': 'develop/generate-docker-image.md'
+      - 'Packaging Artifacts': 'develop/packaging-artifacts.md'
+      - 'Deploying Artifacts': 'develop/deploy-artifacts.md'
       - Testing Integrations:
         - 'Using the Embedded Micro Integrator': 'develop/using-embedded-micro-integrator.md'
         - 'Using a Remote Micro Integrator': 'develop/using-remote-micro-integrator.md'
         - 'Hot Deploying Artifacts': 'develop/hot-deployment.md'
         - 'Creating a Unit Test Suite': 'develop/creating-unit-test-suite.md'
         - 'Using the HTTP REST Client': 'develop/using-http_rest_client.md'
+        - 'Generating Docker Images': 'develop/generate-docker-image.md'
       - Debugging Integrations:
         - 'Mediation Debugging': 'develop/debugging-mediation.md'
         - 'Using Wire Logs': 'develop/using-wire-logs.md'
@@ -326,6 +327,7 @@ nav:
         - Working with User Stores:
           - 'Configuring a User Store' : 'setup/user_stores/setting_up_a_userstore.md'
           - 'Managing Users' : 'setup/user_stores/managing_users.md'
+      - 'Health Checking' : 'setup/deployment/health_check.md'
       - Performance Tuning:
         - 'Tuning JVM Performance' : 'setup/performance_tuning/tuning_jvm_performance.md'
         - 'Tuning Network and OS Performance' : 'setup/performance_tuning/network_os_performance.md'
@@ -387,6 +389,7 @@ nav:
       - Connectors:
         - 'Connectors Overview' : 'references/connectors/connectors-overview.md'
         - 'When to Use Connectors' : 'references/connectors/why-connectors.md'
+        - 'Connector Usage Guidelines' : 'references/connectors/connector-usage.md'
         - Amazon DynamoDB Connector:
           - 'Amazon DynamoDB Overview': 'references/connectors/amazondynamodb-connector/amazondynamodb-connector-overview.md'
           - 'Setting up Amazon DynamoDB': 'references/connectors/amazondynamodb-connector/amazondynamodb-connector-configuration.md'

@@ -78,9 +78,9 @@ Create the artifacts:
       When this is enabled, incoming SwA messages are automatically
         identified by the Micro Integrator. 
 
-3. [Create an ESB Solution project](../../../../develop/creating-projects/#esb-config-project).
+3. [Create an integration project](../../../../develop/create-integration-project) with an <b>ESB Configs</b> module and an <b>Composite Exporter</b>.
 4. Create the [main sequence](../../../../develop/creating-artifacts/creating-reusable-sequences) with the configurations given above.
-5. [Deploy the artifacts](../../../../develop/deploy-and-run) in your Micro Integrator.
+5. [Deploy the artifacts](../../../../develop/deploy-artifacts) in your Micro Integrator.
 
 When your client executes successfully, it will upload a file containing
 the ASF logo, receive its response, and save the response to a
