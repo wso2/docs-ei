@@ -4,7 +4,7 @@ This section describes how to configure WSO2 Micro Integrator to connect with Ra
 
 ## Enabling the RabbitMQ transport 
 
-Uncomment the following parameters in the deployment.toml file (stored in the `MI_HOME/conf` directory).
+Add the following parameters to the deployment.toml file (stored in the `MI_HOME/conf` directory).
 
 ```toml
 [transport.rabbitmq]
@@ -17,6 +17,8 @@ parameter.port = 5672
 parameter.username = "guest"
 parameter.password = "guest"
 ```
+
+Download the [amqp-client-5.7.0.jar](https://www.rabbitmq.com/java-client.html) and copy it into `MI_HOME/lib` directory.
 
 ## Enabling SSL
 
