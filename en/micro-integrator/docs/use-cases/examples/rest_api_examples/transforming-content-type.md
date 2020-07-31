@@ -68,11 +68,11 @@ Create the artifacts:
 
 Set up the back-end service:
 
-1. Download the [Hospital-Service-2.0.0-EI7.jar](https://github.com/wso2-docs/WSO2_EI/blob/master/Back-End-Service/Hospital-Service-JDK11-2.0.0.jar).
+1. Download the [Hospital-Service-2.0.0-JDK11.jar](https://github.com/wso2-docs/WSO2_EI/blob/master/Back-End-Service/Hospital-Service-JDK11-2.0.0.jar).
 2. Open a terminal, navigate to the location of the downloaded service, and run it using the following command:
 
     ```bash
-    java -jar Hospital-Service-2.0.0-EI7.jar
+    java -jar Hospital-Service-2.0.0-JDK11.jar
     ```
 
 Sending an **HTTP POST request**:

@@ -147,7 +147,7 @@ Let's start the hospital service that serves as the backend to the [service chai
 3. Execute the following command to start the service:
 
     ```bash
-    java -jar Hospital-Service-2.0.0-EI7.jar
+    java -jar Hospital-Service-2.0.0-JDK11.jar
     ```
 
 **Sending a message**

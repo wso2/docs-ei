@@ -234,7 +234,7 @@ Let's test the use case by sending a simple client request that invokes the serv
 3. Execute the following command to start the service:
 
     ```bash
-    java -jar Hospital-Service-2.0.0-EI7.jar
+    java -jar Hospital-Service-2.0.0-JDK11.jar
     ```
 
 #### Start the Message Broker runtime
