@@ -15,7 +15,7 @@ Follow the steps given below to create the datasource file:
 
     <img src="../../../../assets/img/data-services/create-datasource-dialog.png"> 
 
-2.  Select your [**datasource Config module**](../../../creating-projects/#datasource-project) as the **Container**, add the file name for your datasource, and click **Finish**.
+2.  Select your [**datasource config module**](../../../creating-projects/#datasource-project) as the **Container**, add the file name for your datasource, and click **Finish**.
 
 A datasource file will now be created in your datasource config module. 
 Shown below is the sample configuration that is created. You can now update the values in this configuration.
