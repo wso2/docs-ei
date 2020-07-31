@@ -167,7 +167,7 @@ Expand the **Docker Exporter** in the project explorer. See that the following f
             pom.xml
         </td>
         <td>
-            The file for selecting the relevant composite applications that should be included in the Docker image. This information is also used when you later build and push Docker images to the Docker registries.
+            The file for selecting the relevant composite exporters that should be included in the Docker image. This information is also used when you later build and push Docker images to the Docker registries.
         </td>
     </tr>
 </table>
@@ -177,7 +177,7 @@ Expand the **Docker Exporter** in the project explorer. See that the following f
 !!! Info
     **Before you begin**:
 
-    -   Create your integration artifacts in an [integration project](../../develop/create-integration-project) and package the artifacts in a [Composite Application project](../../develop/packaging-artifacts). For example, see the HelloWorld sample given below.
+    -   Create your integration artifacts in an [integration project](../../develop/create-integration-project) and package the artifacts in a [Composite Exporter](../../develop/packaging-artifacts). For example, see the HelloWorld sample given below.
     
         <img alt="Integration artifacts for Docker" src="../../assets/img/create_project/docker_k8s_project/integration-projects-for-docker.png" width="300">
 
@@ -195,7 +195,7 @@ Follow the steps given below.
 
     <img alt="Docker Pom view" src="../../assets/img/create_project/docker_k8s_project/docker-pom.png" width="700">
     
-2.  Select the composite applications that you want to package inside the Docker image.
+2.  Select the composite exporters that you want to package inside the Docker image.
 3.  If required, you can update the **Target Repository** to which the image should be pushed and the **Target Tag**.
 4.  Save the POM file and click **Build** to start the Docker image build.
 5.  It will build the Docker image based on the Dockerfile and the Target details. When the image is created, the following message will display. 
