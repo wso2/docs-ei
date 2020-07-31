@@ -49,45 +49,39 @@ See the instructions on how to [build and run](#build-and-run) this example.
 
 1. Make sure you have a RabbitMQ broker instance running.
 2. Create an exchange with the name `orders-exchange` to route orders.
-```
-rabbitmqadmin declare exchange --vhost=/ --user=guest --password=guest name=orders-exchange type=direct durable=true
-
-```
+    ```bash
+    rabbitmqadmin declare exchange --vhost=/ --user=guest --password=guest name=orders-exchange type=direct durable=true
+    ```
 
 3. Declare a queue to store orders.
-```
-rabbitmqadmin declare queue --vhost=/ --user=guest --password=guest name=orders durable=true
-
-```
+    ```bash
+    rabbitmqadmin declare queue --vhost=/ --user=guest --password=guest name=orders durable=true
+    ```
 
 4. Bind orders with orders-exchange
-```
-rabbitmqadmin declare binding --vhost=/ --user=guest --password=guest source=orders-exchange destination=orders routing_key=orders
-
-```
+    ```bash
+    rabbitmqadmin declare binding --vhost=/ --user=guest --password=guest source=orders-exchange destination=orders routing_key=orders
+    ```
 
 5. Declare exchange to route orders-error.
-```
-rabbitmqadmin declare exchange --vhost=/ --user=guest --password=guest name=orders-error-exchange type=direct durable=true
-
-```
+    ```bash
+    rabbitmqadmin declare exchange --vhost=/ --user=guest --password=guest name=orders-error-exchange type=direct durable=true
+    ```
 
 6. Declare queue to store orders-error.
-```
-rabbitmqadmin declare queue --vhost=/ --user=guest --password=guest name=orders-error durable=true
-
-```
+    ```bash
+    rabbitmqadmin declare queue --vhost=/ --user=guest --password=guest name=orders-error durable=true
+    ```
 
 7. Bind orders-error with orders-error-exchange.
-```
-rabbitmqadmin declare binding --vhost=/ --user=guest --password=guest source=orders-error-exchange destination=orders-error routing_key=orders-error
-```
+    ```bash
+    rabbitmqadmin declare binding --vhost=/ --user=guest --password=guest source=orders-error-exchange destination=orders-error routing_key=orders-error
+    ```
 
 8. Set the DLX to orders queue using policy.
-```
-rabbitmqctl set_policy DLX "^orders$" '{"dead-letter-exchange":"orders-error-exchange", "dead-letter-routing-key":"orders-error"}' --apply-to queues
-
-```
+    ```bash
+    rabbitmqctl set_policy DLX "^orders$" '{"dead-letter-exchange":"orders-error-exchange", "dead-letter-routing-key":"orders-error"}' --apply-to queues
+    ```
 9. [Set up WSO2 Integration Studio](../../../../develop/installing-WSO2-Integration-Studio).
 10. [Create an integration project](../../../../develop/create-integration-project) with an <b>ESB Configs</b> module and an <b>Composite Exporter</b>.
 11. Create the [proxy service](../../../../develop/creating-artifacts/creating-a-proxy-service) with the configurations given above.
