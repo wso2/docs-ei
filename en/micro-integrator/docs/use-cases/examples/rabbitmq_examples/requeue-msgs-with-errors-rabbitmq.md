@@ -4,6 +4,8 @@ This sample demonstrates how you can requeue a message (which was consumed by a 
 when an error occurs. In the sample given below, if the HTTP endpoint becomes unavailable the message will be returned
 to the `student-registration` queue until the endpoint becomes available.
 
+<img src="../../../../assets/img/rabbitmq/rabbitmq-requeue-messages.png">
+
 ## Synapse configurations
 
 See the instructions on how to [build and run](#build-and-run) this example.
@@ -53,4 +55,4 @@ See the instructions on how to [build and run](#build-and-run) this example.
 5. [Deploy the artifacts](../../../../develop/deploy-artifacts) in your Micro Integrator.
 6. Make the `http://localhost:8280/students` endpoint unavailable temporarily. 
 7. Make sure you have a RabbitMQ broker instance running.
-8. Publish a message to the student-registration queue.
+8. Publish a message to the `student-registration` queue.

@@ -3,13 +3,15 @@
 This sample demonstrates how you can control the number of message delivery retries to an endpoint and also to delay 
 the message delivery (in the event of an error in delivery).
 
+<img src="../../../../assets/img/rabbitmq/rabbitmq-retry-delay-messages.png">
+
 The Micro Integrator first consumes a message from RabbitMQ and attempts to deliver it to the endpoint. 
 However, if there is an error in delivery, the message is moved to the dead letter exchange (DLX) configured in RabbitMQ.
-The message will then be re-queued by RabbitMQ subject to a specified delay . Note that you have to configure this delay 
-in the RabbitMQ broker itself (using x-message-ttl property). If the message delivery to the endpoint continuous to fail, 
-the Micro Integrator will **retry ** for the number times specified by the rabbitmq.message.max.dead.lettered.count
+The message will then be re-queued by RabbitMQ subject to a specified **delay**. Note that you have to configure this delay 
+in the RabbitMQ broker itself (using the `x-message-ttl` property). If the message delivery to the endpoint continuous to fail, 
+the Micro Integrator will **retry** for the number times specified by the `rabbitmq.message.max.dead.lettered.count`
 parameter in the proxy. When this value is exceeded, the message will be either discarded or moved to a different 
-queue in RabbitMQ (specified by the rabbitmq.message.error.exchange.name and rabbitmq.message.error.queue.routing.key 
+queue in RabbitMQ (specified by the `rabbitmq.message.error.exchange.name` and `rabbitmq.message.error.queue.routing.key` 
 parameters in the proxy.
 
 ## Synapse configurations

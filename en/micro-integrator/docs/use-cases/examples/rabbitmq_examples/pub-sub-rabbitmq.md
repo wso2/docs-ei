@@ -1,8 +1,11 @@
 # A topic used to broadcast a message to all consumers
 
-This sample demonstrates how you can implement a publisher subscriber messaging scenario with RabbitMQ topics and 
-WSO2 Micro Integrator. The publisher proxy will publish messages to a RabbitMQ topic, which the subscriber proxies will
-consume.
+This sample demonstrates how you can implement a publisher-subscriber messaging scenario using RabbitMQ topics and 
+WSO2 Micro Integrator. 
+
+As shown below, the publisher proxy in the Micro Integrator will publish messages to a RabbitMQ topic, which multiple subscriber proxies (defined in the Micro Integrator) will consume.
+
+<img src="../../../../assets/img/rabbitmq/rabbitmq-pub-sub.png">
 
 ## Synapse configurations
 

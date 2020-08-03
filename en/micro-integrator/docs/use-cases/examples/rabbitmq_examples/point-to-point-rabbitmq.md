@@ -1,7 +1,10 @@
 # A queue used to deliver a message to a consumer
 
-This example demonstrates how the WSO2 Micro-Integrator can be used to implement a point-to-point messaging scenario
-using queues and a RabbitMQ broker instance.
+This example demonstrates how WSO2 Micro Integrator can be used to implement an asynchronous point-to-point messaging scenario using queues in a RabbitMQ broker instance.
+
+As shown below, a proxy service configured in the Micro Integrator sends messages to the RabbitMQ queue, which are then consumed by another proxy service in the Micro Integrator.
+
+<img src="../../../../assets/img/rabbitmq/rabbitmq-point-to-point.png">
 
 ## Synapse configurations
 
