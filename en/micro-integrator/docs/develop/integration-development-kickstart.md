@@ -508,6 +508,5 @@ You will receive the following response:
 
 ## What's Next
 
-- [Running on Docker](../../setup/installation/run_in_docker/).
-- [Running on Kubernetes](../../setup/installation/run_in_kubernetes/).
+- [Running the Micro Integrator on Containers](../../setup/installation/run_in_containers).
 - [Writing a unit test for integration artifacts](../creating-unit-test-suite/).
