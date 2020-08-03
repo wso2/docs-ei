@@ -6,11 +6,11 @@ Create a Docker Exporter if you want to deploy your integration solutions inside
 
 Follow the steps given below.   
 
-1. [Create a new integration project](../../develop/create-integration-project) and create a Docker Exporter project by doing one of the following.
+1. [Create a new integration project](../../develop/create-integration-project) and create a Docker Exporter by doing one of the following.
 
-    1. As part of creating an integration project, you can select the **Docker Exporter** checkbox.
+    1. As part of creating an integration project, you can select the **Docker Exporter** check box.
 
-    2. You can right click on an existing integration project and select **New** -> **Docker Exporter Project**.
+    2. You can right click on an existing integration project and select **New** -> **Docker Exporter**.
 
 2. In the **New Docker Exporter** dialog box that opens, enter a name for the Docker exporter and other parameters as shown below.
 
