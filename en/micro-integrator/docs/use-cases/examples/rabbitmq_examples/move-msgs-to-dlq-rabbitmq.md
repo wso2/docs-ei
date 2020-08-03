@@ -1,5 +1,9 @@
 # Publish unacked messages to Dead Letter Exchange
 
+This sample demonstrates how you can ensure guaranteed delivery of messages using the <b>Dead Letter Exchange</b> of RabbitMQ.
+
+As shown below, a proxy service in the Micro Integrator consumes messages from the 
+
 This sample demonstrates how you can configure a RabbitMQ consumer proxy to move the failed messages into a 
 dead letter exchange. When a message is sent to a consumer, if the message fails to deliver, it will be routed to the DLX.
 
