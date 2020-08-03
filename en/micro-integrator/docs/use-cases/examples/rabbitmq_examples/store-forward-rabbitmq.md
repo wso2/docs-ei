@@ -1,9 +1,11 @@
 # Message store and message processor for guaranteed delivery
 
-This sample shows how a store and forward messaging scenario can be implemented with WSO2 Micro Integrator and the RabbitMQ
-message broker. Store and forward messaging is used for serving traffic to back-end services that can accept request 
-messages only at a given rate. This is also used for guaranteed delivery to ensure that request received never gets
-lost since they are stored in the message store and also available for future reference. 
+This sample demonstrates how a store and forward messaging scenario can be implemented using the RabbitMQ
+message broker and WSO2 Micro Integrator. Store and forward messaging is used for serving traffic to back-end services that can accept request messages only at a given rate. This messaging pattern also ensures guarantee message delivery. That is, because request messages are stored in a message store, the messages never get lost.
+
+As shown below, when a client sends a message, the <b>message processor</b> artifact in the Micro Integrator will route the messages to the RabbitMQ broker. The <b>message processor</b> artifact in the Micro Integrator will then process the message from the broker and send it to the back-end service.
+
+<img src="../../../../assets/img/rabbitmq/rabbitmq-store-and-forward.png"> 
 
 ## Synapse configurations
 
