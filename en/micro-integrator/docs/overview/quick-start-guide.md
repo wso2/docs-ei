@@ -45,7 +45,7 @@ Let’s implement a simple integration solution that can be used to query the av
 1. Go to the [website](https://www.wso2.com/integration/micro-integrator) to download the Micro Integrator. When you click **Download**, the installation options will be listed. For this quick start, you can either download and run the **installer**, or use the **binary** file.
 
     !!! Info
-        For more information, see the [installation instructions](../../setup/installation/install_in_vm/).
+        For more information, see the [installation instructions](../../setup/installation/install_in_vm_installer/).
 
 2. Download the [sample files](https://github.com/wso2/docs-ei/blob/master/en/micro-integrator/docs/assets/attach/quick-start-guide/MI_QSG_HOME-JDK11.zip). From this point onwards, let's refer to this folder as `<MI_QSG_HOME>`.
 3. Download [curl](https://curl.haxx.se/) or a similar tool that can call an HTTP endpoint.
@@ -134,7 +134,7 @@ java -jar DoctorInfo-JDK11.jar
 Copy the CAR file of the healthcare service (HealthcareConfigProjectCompositeApplication_1.0.0.car) from the `<MI_QSG_HOME>/HealthcareConfigProjectCompositeApplication/target/` directory to the `<MI_HOME>/repository/deployment/server/carbonapps` directory.
 
 !!! Note
-    If you [set up the product](#before-you-begin) using the **installer**, the `<MI_HOME>` [location](../../setup/installation/install_in_vm/#accessing-the-home-directory) is specific to your OS.
+    If you [set up the product](#before-you-begin) using the **installer**, the `<MI_HOME>` [location](../../setup/installation/install_in_vm_installer/#accessing-the-mi_home-directory) is specific to your OS.
 
 #### Start the Micro Integrator
 
@@ -162,7 +162,7 @@ If you [set up the product](#before-you-begin) using the **binary** file, open a
     micro-integrator.bat
     ```
 
-Read more about [starting the Micro Integrator](../../setup/installation/install_in_vm/#running-the-micro-integrator).
+Read more about [starting the Micro Integrator](../../setup/installation/install_in_vm_installer/#starting-the-mi-server).
 
 #### Invoke the healthcare service
 
@@ -206,4 +206,4 @@ Upon invocation, you should be able to observe the following response:
 ## What's next?
 
 - [Develop your first integration solution](../../develop/integration-development-kickstart/).
-- Try out the **tutorials** and **examples** available in the [Learn section of our documentation](../../use-cases/integration-use-cases/).
+- Try out the **tutorials** and **examples** available in the [Learn section of our documentation](../../use-cases/learn-overview).
