@@ -57,7 +57,7 @@ Set up the back-end service:
     java -jar stockquote_service.jar
     ```
 
-Be sure to [configure a user store](../../../../setup/user_stores/setting_up_ro_ldap) for the Micro Integrator and add the required users and roles.
+Be sure to [configure a user store](../../../../setup/user_stores/setting_up_a_userstore) for the Micro Integrator and add the required users and roles.
 
 Set up the SOAP client:
 
