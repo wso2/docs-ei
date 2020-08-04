@@ -42,7 +42,7 @@ A **data service** provides a web service interface to access data that is stor
 
 Follow the steps given below to create a new data service.
 
-#### Creating a Maven Multi Module Project
+#### Creating a Maven Multi Module project
 
 All the data services' artifacts that you create should be stored in a
 Data Service Module. Follow the steps given below to create a module:
@@ -74,7 +74,7 @@ Data Service Module. Follow the steps given below to create a module:
 
 Follow the steps given below to create the data service file:
 
-1.  Select the already created **Data Service COnfig Module** in the project
+1.  Select the already-created **Data Service Config** module in the project
     explorer, right-click and go to **New -> Data Service**.  
     The **New Data Service** window will open as shown below.  
     ![](../../assets/img/tutorials/data_services/119130577/119130578.png)
