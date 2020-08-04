@@ -100,6 +100,37 @@ To use the Salesforce REST connector, add the `<salesforcerest.init>` element in
         "blocking" : "false"
     }
     ```
+    
+    Or if you want conector to handle token expiry
+    
+    **Sample configuration**
+    
+    ```xml
+    <salesforcerest.init>
+        <accessToken>{$ctx:accessToken}</accessToken>
+        <apiUrl>{$ctx:apiUrl}</apiUrl>
+        <hostName>{$ctx:hostName}</hostName>
+        <apiVersion>{$ctx:apiVersion}</apiVersion>
+        <refreshToken>{$ctx:refreshToken}</refreshToken>
+        <clientId>{$ctx:clientId}</clientId>
+        <clientSecret>{$ctx:clientSecret}</clientSecret>
+        <blocking>{$ctx:blocking}</blocking>
+    </salesforcerest.init>
+    ```
+
+    **Sample request**
+
+    ```json
+    {
+        "hostName": "https://login.salesforce.com",
+        "apiVersion": "v32.0",
+        "refreshToken":"XXXXXXXXXXXX (Replace with your refresh token)",
+        "apiUrl":"https://(your_instance).salesforce.com",
+        "clientId": "XXXXXXXXXXXX (Replace with your client ID)",
+        "clientSecret": "XXXXXXXXXXXX (Replace with your client secret)",
+        "blocking" : "false"
+    }
+    
 
 ??? note "salesforcerest.init for username/password flow"
     The salesforcerest.init operation initializes the connector to interact with the Salesforce REST API using a username/password flow. See the [related API documentation](https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/intro_understanding_username_password_oauth_flow.htm) for more information.
