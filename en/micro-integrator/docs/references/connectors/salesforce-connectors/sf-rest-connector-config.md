@@ -6,7 +6,15 @@ The following operations allow you to work with the Salesforce REST Connector. C
 
 ## Initialize the connector
 
-Salesforce REST API uses the OAuth protocol to allow application users to securely access data without having to reveal their user credentials. For more information on how authentication is done in Salesforce, see [Understanding Authentication](https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/intro_understanding_authentication.htm).
+Salesforce REST API uses the OAuth protocol to allow application users to securely access data without having to reveal 
+their user credentials. For more information on how authentication is done in Salesforce, see 
+[Understanding Authentication](https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/intro_understanding_authentication.htm).
+You can provide only access token and use it until it expires. After expiry, you will be responsible for getting a new 
+access token and using it. Alternatively, you have the option of providing refresh token, client secret, and client ID 
+which will be used to get access token initially and after every expiry by the connector itself. You will not be 
+required to handle access token expiry in this case.
+
+There also option to use basic authentication with username and password.
 
 To use the Salesforce REST connector, add the `<salesforcerest.init>` element in your configuration before carrying out any other Salesforce REST operations. 
 
@@ -28,8 +36,8 @@ To use the Salesforce REST connector, add the `<salesforcerest.init>` element in
         <tr>
             <td>accessToken</td>
             <td>The access token to authenticate your API calls.</td>
-            <td>Yes</td>
-            <td>00D280000017q6q!AQoAQOeXcp7zKo3gUdy6r064_LsJ5bYYrUn_qAZG9TtKFLPfUMRxiato.E162_2XAtCTZLFQTbNk2Rz6Zm_juSakFE_aaBPp</td>
+            <td>No</td>
+            <td>XXXXXXXXXXXX(Replace with your access token)</td>
         </tr>
         <tr>
             <td>apiUrl</td>
@@ -46,32 +54,20 @@ To use the Salesforce REST connector, add the `<salesforcerest.init>` element in
         <tr>
             <td>refreshToken</td>
             <td>The refresh token that you received to refresh the API access token.</td>
-            <td>Yes</td>
-            <td>5Aep861TSESvWeug_ztpnAk6BGQxRdovMLhHso81iyYKO6hTm6kHoL4.YfwIi9cHLwga.pPTsTuJlmKjo05x.o.</td>
+            <td>No</td>
+            <td>XXXXXXXXXXXX(Replace with your refresh token)</td>
         </tr>
         <tr>
             <td>clientId</td>
             <td>The consumer key of the connected application that you created.</td>
-            <td>Yes</td>
-            <td>3MVG9ZL0ppGP5UrBztM9gSLYyUe7VwAVhD9.yQnZX2mmCu_48Uwc._doxrBTgY4jqmOSDhxRAiUBf8gCr2mk7</td>
+            <td>No</td>
+            <td>XXXXXXXXXXXX(Replace with your client ID)</td>
         </tr>
         <tr>
             <td>clientSecret</td>
             <td>The consumer secret of the connected application that you created.</td>
-            <td>Yes</td>
-            <td>1187341468789253319</td>
-        </tr>
-        <tr>
-            <td>intervalTime</td>
-            <td>The time interval in milliseconds, after which you need to check the validity of the access token.</td>
-            <td>Yes</td>
-            <td>100000</td>
-        </tr>
-        <tr>
-            <td>registryPath</td>
-            <td>The registry path of the connector. You must specify the registry path as follows: registryPath = “connectors/salesforcerest”.</td>
-            <td>Yes</td>
-            <td>connectors/salesforcerest</td>
+            <td>No</td>
+            <td>XXXXXXXXXXXX(Replace with your client secret)</td>
         </tr>
         <tr>
             <td>blocking</td>
@@ -87,13 +83,8 @@ To use the Salesforce REST connector, add the `<salesforcerest.init>` element in
     <salesforcerest.init>
         <accessToken>{$ctx:accessToken}</accessToken>
         <apiUrl>{$ctx:apiUrl}</apiUrl>
-        <clientId>{$ctx:clientId}</clientId>
-        <clientSecret>{$ctx:clientSecret}</clientSecret>
-        <refreshToken>{$ctx:refreshToken}</refreshToken>
         <hostName>{$ctx:hostName}</hostName>
         <apiVersion>{$ctx:apiVersion}</apiVersion>
-        <registryPath>{$ctx:registryPath}</registryPath>
-        <intervalTime>{$ctx:intervalTime}</intervalTime>
         <blocking>{$ctx:blocking}</blocking>
     </salesforcerest.init>
     ```
@@ -102,18 +93,41 @@ To use the Salesforce REST connector, add the `<salesforcerest.init>` element in
 
     ```json
     {
-        "clientId": "3MVG9ZL0ppGP5UrBztM9gSLYyUe7VwAVhD9.yQnZX2mmCu_48Uwc._doxrBTgY4jqmOSDhxRAiUBf8gCr2mk7",
-        "refreshToken": "5Aep861TSESvWeug_ztpnAk6BGQxRdovMLhHso81iyYKO6hTm6kHoL4.YfwIi9cHLwga.pPTsTuJlmKjo05x.o.",
-        "clientSecret": "1187341468789253319",
         "hostName": "https://login.salesforce.com",
         "apiVersion": "v32.0",
-        "registryPath":"connectors/salesforcerest",
-        "accessToken":"00D280000017q6q!AQoAQOeXcp7zKo3gUdy6r064_LsJ5bYYrUn_qAZG9TtKFLPfUMRxiato.E162_2XAtCTZLFQTbNk2Rz6Zm_juSakFE_aaBPp",
-        "intervalTime" : "100000",
+        "accessToken":"XXXXXXXXXXXX(Replace with your access token)",
         "apiUrl":"https://ap2.salesforce.com",
         "blocking" : "false"
     }
     ```
+    
+    Or if you want connector to handle access token expiry internally,
+    
+    Config:
+    ```xml
+    <salesforcerest.init>
+        <apiUrl>{$ctx:apiUrl}</apiUrl>
+        <clientId>{$ctx:clientId}</clientId>
+        <clientSecret>{$ctx:clientSecret}</clientSecret>
+        <refreshToken>{$ctx:refreshToken}</refreshToken>
+        <hostName>{$ctx:hostName}</hostName>
+        <apiVersion>{$ctx:apiVersion}</apiVersion>
+        <blocking>{$ctx:blocking}</blocking>
+    </salesforcerest.init>
+    ```
+    
+    Request:
+    ```json
+        {
+            "hostName": "https://login.salesforce.com",
+            "apiVersion": "v32.0",
+            "refreshToken":"XXXXXXXXXXXX(Replace with your refresh token)",
+            "clientId":"XXXXXXXXXXXX(Replace with your client ID)",
+            "clientSecret":"XXXXXXXXXXXX(Replace with your client secret)",
+            "apiUrl":"https://ap2.salesforce.com",
+            "blocking" : "false"
+        }
+        ```
 
 ??? note "salesforcerest.init for username/password flow"
     The salesforcerest.init operation initializes the connector to interact with the Salesforce REST API using a username/password flow. See the [related API documentation](https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/intro_understanding_username_password_oauth_flow.htm) for more information.
@@ -146,19 +160,19 @@ To use the Salesforce REST connector, add the `<salesforcerest.init>` element in
             <td>clientId</td>
             <td>The consumer key of the connected application that you created.</td>
             <td>Yes</td>
-            <td>3MVG9ZL0ppGP5UrBztM9gSLYyUe7VwAVhD9.yQnZX2mmCu_48Uwc._doxrBTgY4jqmOSDhxRAiUBf8gCr2mk7</td>
+            <td>XXXXXXXXXXXX(Replace with your client ID)</td>
         </tr>
         <tr>
             <td>clientSecret</td>
             <td>The consumer secret of the connected application that you created.</td>
             <td>Yes</td>
-            <td>1187341468789253319</td>
+            <td>XXXXXXXXXXXX(Replace with your client secret)</td>
         </tr>
         <tr>
             <td>username</td>
             <td>The username for Salesforce.</td>
             <td>Yes</td>
-            <td>tharis63@outlook.com</td>
+            <td>youruser@gmail.com</td>
         </tr>
         <tr>
             <td>password</td>
@@ -193,11 +207,11 @@ To use the Salesforce REST connector, add the `<salesforcerest.init>` element in
     
     ```json
     {
-        "clientId": "3MVG9ZL0ppGP5UrBztM9gSLYyUe7VwAVhD9.yQnZX2mmCu_48Uwc._doxrBTgY4jqmOSDhxRAiUBf8gCr2mk7",
+        "clientId": "xxxxxxxxxxxxxxxxxxxxxxxx",
         "clientSecret": "xxxxxxxxxxxxxxxxxxxxxxxx",
         "hostName": "https://login.salesforce.com",
         "apiVersion": "v32.0",
-        "username": "tharis63@outlook.com",
+        "username": "youruser@gmail.com",
         "password": "xxxxxxxxxxxxxxxxxxxxxx",
         "apiUrl":"https://ap2.salesforce.com",
         "blocking" : "false"
@@ -237,16 +251,11 @@ To use the Salesforce REST connector, add the `<salesforcerest.init>` element in
 
     ```json
     {
-        "accessToken":"00D280000017q6q!AQoAQOeXcp7zKo3gUdy6r064_LsJ5bYYrUn_qAZG9TtKFLPfUMRxiato.E162_2XAtCTZLFQTbNk2Rz6Zm_juSakFE_aaBPp",
+        "accessToken":"XXXXXXXXXXXX(Replace with your access token)",
         "apiUrl":"https://ap2.salesforce.com",
-        "clientId": "3MVG9ZL0ppGP5UrBrnsanGUZRgHqc8gTV4t_6tfuef8Zz4LhFPipmlooU6GBszpplbTzVXXWjqkGHubhRip1s",
-        "refreshToken": "5Aep861TSESvWeug_xvFHRBTTbf_YrTWgEyjBJo7Xr34yOQ7GCFUN5DnNPxzDIoGoWi4evqOl_lT1B9nE5dAtSb",
-        "clientSecret": "9104967092887676680",
         "hostName": "https://login.salesforce.com",
         "apiVersion": "v32.0",
-        "intervalTime" : "100000",
         "menuType": "AppSwitcher",
-        "registryPath": "connectors/SalesforceRest"
     }
     ```
 
@@ -271,15 +280,10 @@ To use the Salesforce REST connector, add the `<salesforcerest.init>` element in
 
     ```json
     {
-        "accessToken":"00D280000017q6q!AQoAQOeXcp7zKo3gUdy6r064_LsJ5bYYrUn_qAZG9TtKFLPfUMRxiato.E162_2XAtCTZLFQTbNk2Rz6Zm_juSakFE_aaBPp",
+        "accessToken":"XXXXXXXXXXXX(Replace with your access token)",
         "apiUrl":"https://ap2.salesforce.com",
-        "clientId": "3MVG9ZL0ppGP5UrBrnsanGUZRgHqc8gTV4t_6tfuef8Zz4LhFPipmlooU6GBszpplbTzVXXWjqkGHubhRip1s",
-        "refreshToken": "5Aep861TSESvWeug_xvFHRBTTbf_YrTWgEyjBJo7Xr34yOQ7GCFUN5DnNPxzDIoGoWi4evqOl_lT1B9nE5dAtSb",
-        "clientSecret": "9104967092887676680",
         "hostName": "https://login.salesforce.com",
         "apiVersion": "v32.0",
-        "intervalTime" : "100000",
-        "registryPath": "connectors/SalesforceRest"
     }
     ```
 
@@ -306,15 +310,10 @@ To use the Salesforce REST connector, add the `<salesforcerest.init>` element in
 
     ```json
     {
-        "accessToken":"00D280000017q6q!AQoAQOeXcp7zKo3gUdy6r064_LsJ5bYYrUn_qAZG9TtKFLPfUMRxiato.E162_2XAtCTZLFQTbNk2Rz6Zm_juSakFE_aaBPp",
+        "accessToken":"XXXXXXXXXXXX(Replace with your access token)",
         "apiUrl":"https://ap2.salesforce.com",
-        "clientId": "3MVG9ZL0ppGP5UrBrnsanGUZRgHqc8gTV4t_6tfuef8Zz4LhFPipmlooU6GBszpplbTzVXXWjqkGHubhRip1s",
-        "refreshToken": "5Aep861TSESvWeug_xvFHRBTTbf_YrTWgEyjBJo7Xr34yOQ7GCFUN5DnNPxzDIoGoWi4evqOl_lT1B9nE5dAtSb",
-        "clientSecret": "9104967092887676680",
         "hostName": "https://login.salesforce.com",
         "apiVersion": "v32.0",
-        "intervalTime" : "100000",
-        "registryPath": "connectors/SalesforceRest"
     }
     ```
 
@@ -360,15 +359,10 @@ To use the Salesforce REST connector, add the `<salesforcerest.init>` element in
 
     ```json
     {
-        "accessToken":"00D280000017q6q!AQoAQOeXcp7zKo3gUdy6r064_LsJ5bYYrUn_qAZG9TtKFLPfUMRxiato.E162_2XAtCTZLFQTbNk2Rz6Zm_juSakFE_aaBPp",
+        "accessToken":"XXXXXXXXXXXX(Replace with your access token)",
         "apiUrl":"https://ap2.salesforce.com",
-        "clientId": "3MVG9ZL0ppGP5UrBrnsanGUZRgHqc8gTV4t_6tfuef8Zz4LhFPipmlooU6GBszpplbTzVXXWjqkGHubhRip1s",
-        "refreshToken": "5Aep861TSESvWeug_xvFHRBTTbf_YrTWgEyjBJo7Xr34yOQ7GCFUN5DnNPxzDIoGoWi4evqOl_lT1B9nE5dAtSb",
-        "clientSecret": "9104967092887676680",
         "hostName": "https://login.salesforce.com",
         "apiVersion": "v32.0",
-        "intervalTime" : "100000",
-        "registryPath": "connectors/SalesforceRest"
     }
     ```
 
@@ -403,15 +397,10 @@ To use the Salesforce REST connector, add the `<salesforcerest.init>` element in
 
     ```json
     {
-        "accessToken":"00D280000017q6q!AQoAQOeXcp7zKo3gUdy6r064_LsJ5bYYrUn_qAZG9TtKFLPfUMRxiato.E162_2XAtCTZLFQTbNk2Rz6Zm_juSakFE_aaBPp",
+        "accessToken":"XXXXXXXXXXXX(Replace with your access token)",
         "apiUrl":"https://ap2.salesforce.com",
-        "clientId": "3MVG9ZL0ppGP5UrBrnsanGUZRgHqc8gTV4t_6tfuef8Zz4LhFPipmlooU6GBszpplbTzVXXWjqkGHubhRip1s",
-        "refreshToken": "5Aep861TSESvWeug_xvFHRBTTbf_YrTWgEyjBJo7Xr34yOQ7GCFUN5DnNPxzDIoGoWi4evqOl_lT1B9nE5dAtSb",
-        "clientSecret": "9104967092887676680",
         "hostName": "https://login.salesforce.com",
         "apiVersion": "v32.0",
-        "intervalTime" : "100000",
-        "registryPath": "connectors/SalesforceRest"
     }
     ```
 
@@ -476,16 +465,14 @@ To use the Salesforce REST connector, add the `<salesforcerest.init>` element in
 
     ```json
     {
-        "accessToken":"00D280000017q6q!AQoAQOeXcp7zKo3gUdy6r064_LsJ5bYYrUn_qAZG9TtKFLPfUMRxiato.E162_2XAtCTZLFQTbNk2Rz6Zm_juSakFE_aaBPp",
+        "accessToken":"XXXXXXXXXXXX(Replace with your access token)",
         "apiUrl":"https://ap2.salesforce.com",
         "clientId": "3MVG9ZL0ppGP5UrBztM9gSLYyUe7VwAVhD9.yQnZX2mmCu_48Uwc._doxrBTgY4jqmOSDhxRAiUBf8gCr2mk7",
         "refreshToken": "5Aep861TSESvWeug_ztpnAk6BGQxRdovMLhHso81iyYKO6hTm45JVxz3FLewCKgI4BbUp19OzGfqG2TdCfqa2ZU",
         "clientSecret": "1187341468789253319",
         "hostName": "https://login.salesforce.com",
         "apiVersion": "v34.0",
-        "intervalTime" : "100000",
         "queryStringForEventMonitoringData": "SELECT+Id+,+EventType+,+LogFile+,+LogDate+,+LogFileLength+FROM+EventLogFile+WHERE+LogDate+>+Yesterday+AND+EventType+=+'API'",
-        "registryPath": "connectors/SalesforceRest"
     }
     ```
 
@@ -543,15 +530,10 @@ To use the Salesforce REST connector, add the `<salesforcerest.init>` element in
 
     ```json
     {
-        "accessToken":"00D280000017q6q!AQoAQOeXcp7zKo3gUdy6r064_LsJ5bYYrUn_qAZG9TtKFLPfUMRxiato.E162_2XAtCTZLFQTbNk2Rz6Zm_juSakFE_aaBPp",
+        "accessToken":"XXXXXXXXXXXX(Replace with your access token)",
         "apiUrl":"https://ap2.salesforce.com",
-        "clientId": "3MVG9ZL0ppGP5UrBrnsanGUZRgHqc8gTV4t_6tfuef8Zz4LhFPipmlooU6GBszpplbTzVXXWjqkGHubhRip1s",
-        "refreshToken": "5Aep861TSESvWeug_xvFHRBTTbf_YrTWgEyjBJo7Xr34yOQ7GCFUN5DnNPxzDIoGoWi4evqOl_lT1B9nE5dAtSb",
-        "clientSecret": "9104967092887676680",
         "hostName": "https://login.salesforce.com",
         "apiVersion": "v32.0",
-        "intervalTime" : "100000",
-        "registryPath": "connectors/SalesforceRest"
     }
     ```
 
@@ -597,16 +579,11 @@ To use the Salesforce REST connector, add the `<salesforcerest.init>` element in
 
     ```json
     {
-        "accessToken":"00D280000017q6q!AQoAQOeXcp7zKo3gUdy6r064_LsJ5bYYrUn_qAZG9TtKFLPfUMRxiato.E162_2XAtCTZLFQTbNk2Rz6Zm_juSakFE_aaBPp",
+        "accessToken":"XXXXXXXXXXXX(Replace with your access token)",
         "apiUrl":"https://ap2.salesforce.com",
-        "clientId": "3MVG9ZL0ppGP5UrBrnsanGUZRgHqc8gTV4t_6tfuef8Zz4LhFPipmlooU6GBszpplbTzVXXWjqkGHubhRip1s",
-        "refreshToken": "5Aep861TSESvWeug_xvFHRBTTbf_YrTWgEyjBJo7Xr34yOQ7GCFUN5DnNPxzDIoGoWi4evqOl_lT1B9nE5dAtSb",
-        "clientSecret": "9104967092887676680",
         "hostName": "https://login.salesforce.com",
         "apiVersion": "v32.0",
         "actionType": "standard",
-        "intervalTime" : "100000",
-        "registryPath": "connectors/SalesforceRest"
     }
     ```
 
@@ -659,17 +636,12 @@ To use the Salesforce REST connector, add the `<salesforcerest.init>` element in
 
     ```json
     {
-        "accessToken":"00D280000017q6q!AQoAQOeXcp7zKo3gUdy6r064_LsJ5bYYrUn_qAZG9TtKFLPfUMRxiato.E162_2XAtCTZLFQTbNk2Rz6Zm_juSakFE_aaBPp",
+        "accessToken":"XXXXXXXXXXXX(Replace with your access token)",
         "apiUrl":"https://ap2.salesforce.com",
-        "clientId": "3MVG9ZL0ppGP5UrBrnsanGUZRgHqc8gTV4t_6tfuef8Zz4LhFPipmlooU6GBszpplbTzVXXWjqkGHubhRip1s",
-        "refreshToken": "5Aep861TSESvWeug_xvFHRBTTbf_YrTWgEyjBJo7Xr34yOQ7GCFUN5DnNPxzDIoGoWi4evqOl_lT1B9nE5dAtSb",
-        "clientSecret": "9104967092887676680",
         "hostName": "https://login.salesforce.com",
         "apiVersion": "v32.0",
-        "intervalTime" : "100000",
         "actionType": "standard",
         "attribute": "emailSimple",
-        "registryPath": "connectors/SalesforceRest"
     }
     ```
 
@@ -728,16 +700,11 @@ To use the Salesforce REST connector, add the `<salesforcerest.init>` element in
 
     ```json
     {
-        "accessToken":"00D280000017q6q!AQoAQOeXcp7zKo3gUdy6r064_LsJ5bYYrUn_qAZG9TtKFLPfUMRxiato.E162_2XAtCTZLFQTbNk2Rz6Zm_juSakFE_aaBPp",
+        "accessToken":"XXXXXXXXXXXX(Replace with your access token)",
         "apiUrl":"https://ap2.salesforce.com",
-        "clientId": "3MVG9ZL0ppGP5UrBrnsanGUZRgHqc8gTV4t_6tfuef8Zz4LhFPipmlooU6GBszpplbTzVXXWjqkGHubhRip1s",
-        "refreshToken": "5Aep861TSESvWeug_xvFHRBTTbf_YrTWgEyjBJo7Xr34yOQ7GCFUN5DnNPxzDIoGoWi4evqOl_lT1B9nE5dAtSb",
-        "clientSecret": "9104967092887676680",
         "hostName": "https://login.salesforce.com",
         "apiVersion": "v32.0",
-        "intervalTime" : "100000",
         "sObjectName": "Account",
-        "registryPath": "connectors/SalesforceRest"
     }
     ```
 
@@ -805,15 +772,10 @@ To use the Salesforce REST connector, add the `<salesforcerest.init>` element in
 
     ```json
     {
-        "accessToken":"00D280000017q6q!AQoAQOeXcp7zKo3gUdy6r064_LsJ5bYYrUn_qAZG9TtKFLPfUMRxiato.E162_2XAtCTZLFQTbNk2Rz6Zm_juSakFE_aaBPp",
+        "accessToken":"XXXXXXXXXXXX(Replace with your access token)",
         "apiUrl":"https://ap2.salesforce.com",
-        "clientId": "3MVG9ZL0ppGP5UrBrnsanGUZRgHqc8gTV4t_6tfuef8Zz4LhFPipmlooU6GBszpplbTzVXXWjqkGHubhRip1s",
-        "refreshToken": "5Aep861TSESvWeug_xvFHRBTTbf_YrTWgEyjBJo7Xr34yOQ7GCFUN5DnNPxzDIoGoWi4evqOl_lT1B9nE5dAtSb",
-        "clientSecret": "9104967092887676680",
         "hostName": "https://login.salesforce.com",
         "apiVersion": "v32.0",
-        "intervalTime" : "100000",
-        "registryPath": "connectors/SalesforceRest"
     }
     ```
 
@@ -873,16 +835,11 @@ To use the Salesforce REST connector, add the `<salesforcerest.init>` element in
 
     ```json
     {
-        "accessToken":"00D280000017q6q!AQoAQOeXcp7zKo3gUdy6r064_LsJ5bYYrUn_qAZG9TtKFLPfUMRxiato.E162_2XAtCTZLFQTbNk2Rz6Zm_juSakFE_aaBPp",
+        "accessToken":"XXXXXXXXXXXX(Replace with your access token)",
         "apiUrl":"https://ap2.salesforce.com",
-        "clientId": "3MVG9ZL0ppGP5UrBrnsanGUZRgHqc8gTV4t_6tfuef8Zz4LhFPipmlooU6GBszpplbTzVXXWjqkGHubhRip1s",
-        "refreshToken": "5Aep861TSESvWeug_xvFHRBTTbf_YrTWgEyjBJo7Xr34yOQ7GCFUN5DnNPxzDIoGoWi4evqOl_lT1B9nE5dAtSb",
-        "clientSecret": "9104967092887676680",
         "hostName": "https://login.salesforce.com",
         "apiVersion": "v32.0",
-        "intervalTime" : "100000",
         "sObjectNameList":"Account,User",
-        "registryPath": "connectors/SalesforceRest"
     }
     ```
 
@@ -959,16 +916,11 @@ To use the Salesforce REST connector, add the `<salesforcerest.init>` element in
 
     ```json
     {
-        "accessToken":"00D280000017q6q!AQoAQOeXcp7zKo3gUdy6r064_LsJ5bYYrUn_qAZG9TtKFLPfUMRxiato.E162_2XAtCTZLFQTbNk2Rz6Zm_juSakFE_aaBPp",
+        "accessToken":"XXXXXXXXXXXX(Replace with your access token)",
         "apiUrl":"https://ap2.salesforce.com",
-        "clientId": "3MVG9ZL0ppGP5UrBrnsanGUZRgHqc8gTV4t_6tfuef8Zz4LhFPipmlooU6GBszpplbTzVXXWjqkGHubhRip1s",
-        "refreshToken": "5Aep861TSESvWeug_xvFHRBTTbf_YrTWgEyjBJo7Xr34yOQ7GCFUN5DnNPxzDIoGoWi4evqOl_lT1B9nE5dAtSb",
-        "clientSecret": "9104967092887676680",
         "hostName": "https://login.salesforce.com",
         "apiVersion": "v32.0",
-        "intervalTime" : "100000",
         "sObjectName":"Account",
-        "registryPath": "connectors/SalesforceRest"
     }
     ```
 
@@ -1011,16 +963,11 @@ To use the Salesforce REST connector, add the `<salesforcerest.init>` element in
 
     ```json
     {
-        "accessToken":"00D280000017q6q!AQoAQOeXcp7zKo3gUdy6r064_LsJ5bYYrUn_qAZG9TtKFLPfUMRxiato.E162_2XAtCTZLFQTbNk2Rz6Zm_juSakFE_aaBPp",
+        "accessToken":"XXXXXXXXXXXX(Replace with your access token)",
         "apiUrl":"https://ap2.salesforce.com",
-        "clientId": "3MVG9ZL0ppGP5UrBrnsanGUZRgHqc8gTV4t_6tfuef8Zz4LhFPipmlooU6GBszpplbTzVXXWjqkGHubhRip1s",
-        "refreshToken": "5Aep861TSESvWeug_xvFHRBTTbf_YrTWgEyjBJo7Xr34yOQ7GCFUN5DnNPxzDIoGoWi4evqOl_lT1B9nE5dAtSb",
-        "clientSecret": "9104967092887676680",
         "hostName": "https://login.salesforce.com",
         "apiVersion": "v32.0",
-        "intervalTime" : "100000",
         "sObjectName":"Account",
-        "registryPath": "connectors/SalesforceRest"
     }
     ```
 
@@ -1095,17 +1042,12 @@ To use the Salesforce REST connector, add the `<salesforcerest.init>` element in
 
     ```json
     {
-        "accessToken":"00D280000017q6q!AQoAQOeXcp7zKo3gUdy6r064_LsJ5bYYrUn_qAZG9TtKFLPfUMRxiato.E162_2XAtCTZLFQTbNk2Rz6Zm_juSakFE_aaBPp",
+        "accessToken":"XXXXXXXXXXXX(Replace with your access token)",
         "apiUrl":"https://ap2.salesforce.com",
-        "clientId": "3MVG9ZL0ppGP5UrBrnsanGUZRgHqc8gTV4t_6tfuef8Zz4LhFPipmlooU6GBszpplbTzVXXWjqkGHubhRip1s",
-        "refreshToken": "5Aep861TSESvWeug_xvFHRBTTbf_YrTWgEyjBJo7Xr34yOQ7GCFUN5DnNPxzDIoGoWi4evqOl_lT1B9nE5dAtSb",
-        "clientSecret": "9104967092887676680",
         "hostName": "https://login.salesforce.com",
         "apiVersion": "v32.0",
-        "intervalTime" : "100000",
         "sObjectName":"Account",
         "layoutName": "UserAlt",
-        "registryPath": "connectors/SalesforceRest"
     }
     ```
 
@@ -1194,16 +1136,11 @@ To use the Salesforce REST connector, add the `<salesforcerest.init>` element in
 
     ```json
     {
-        "accessToken":"00D280000017q6q!AQoAQOeXcp7zKo3gUdy6r064_LsJ5bYYrUn_qAZG9TtKFLPfUMRxiato.E162_2XAtCTZLFQTbNk2Rz6Zm_juSakFE_aaBPp",
+        "accessToken":"XXXXXXXXXXXX(Replace with your access token)",
         "apiUrl":"https://ap2.salesforce.com",
-        "clientId": "3MVG9ZL0ppGP5UrBrnsanGUZRgHqc8gTV4t_6tfuef8Zz4LhFPipmlooU6GBszpplbTzVXXWjqkGHubhRip1s",
-        "refreshToken": "5Aep861TSESvWeug_xvFHRBTTbf_YrTWgEyjBJo7Xr34yOQ7GCFUN5DnNPxzDIoGoWi4evqOl_lT1B9nE5dAtSb",
-        "clientSecret": "9104967092887676680",
         "hostName": "https://login.salesforce.com",
         "apiVersion": "v32.0",
-        "intervalTime" : "100000",
         "sObjectName": "Account",
-        "registryPath": "connectors/SalesforceRest"
     }
     ```
 
@@ -1271,17 +1208,12 @@ To use the Salesforce REST connector, add the `<salesforcerest.init>` element in
 
     ```json
     {
-        "accessToken":"00D280000017q6q!AQoAQOeXcp7zKo3gUdy6r064_LsJ5bYYrUn_qAZG9TtKFLPfUMRxiato.E162_2XAtCTZLFQTbNk2Rz6Zm_juSakFE_aaBPp",
+        "accessToken":"XXXXXXXXXXXX(Replace with your access token)",
         "apiUrl":"https://ap2.salesforce.com",
-        "clientId": "3MVG9ZL0ppGP5UrBrnsanGUZRgHqc8gTV4t_6tfuef8Zz4LhFPipmlooU6GBszpplbTzVXXWjqkGHubhRip1s",
-        "refreshToken": "5Aep861TSESvWeug_xvFHRBTTbf_YrTWgEyjBJo7Xr34yOQ7GCFUN5DnNPxzDIoGoWi4evqOl_lT1B9nE5dAtSb",
-        "clientSecret": "9104967092887676680",
         "hostName": "https://login.salesforce.com",
         "apiVersion": "v32.0",
         "sObjectName": "Account",
-        "intervalTime" : "100000",
         "listViewID":"00B28000002yqeVEAQ",
-        "registryPath": "connectors/SalesforceRest"
     }
     ```
 
@@ -1332,16 +1264,11 @@ To use the Salesforce REST connector, add the `<salesforcerest.init>` element in
 
     ```json
     {
-        "accessToken":"00D280000017q6q!AQoAQOeXcp7zKo3gUdy6r064_LsJ5bYYrUn_qAZG9TtKFLPfUMRxiato.E162_2XAtCTZLFQTbNk2Rz6Zm_juSakFE_aaBPp",
+        "accessToken":"XXXXXXXXXXXX(Replace with your access token)",
         "apiUrl":"https://ap2.salesforce.com",
-        "clientId": "3MVG9ZL0ppGP5UrBrnsanGUZRgHqc8gTV4t_6tfuef8Zz4LhFPipmlooU6GBszpplbTzVXXWjqkGHubhRip1s",
-        "refreshToken": "5Aep861TSESvWeug_xvFHRBTTbf_YrTWgEyjBJo7Xr34yOQ7GCFUN5DnNPxzDIoGoWi4evqOl_lT1B9nE5dAtSb",
-        "clientSecret": "9104967092887676680",
         "hostName": "https://login.salesforce.com",
         "apiVersion": "v32.0",
         "sObjectName": "Account",
-        "intervalTime" : "100000",
-        "registryPath": "connectors/SalesforceRest"
     }
     ```
 
@@ -1409,17 +1336,12 @@ To use the Salesforce REST connector, add the `<salesforcerest.init>` element in
 
     ```json
     {
-        "accessToken":"00D280000017q6q!AQoAQOeXcp7zKo3gUdy6r064_LsJ5bYYrUn_qAZG9TtKFLPfUMRxiato.E162_2XAtCTZLFQTbNk2Rz6Zm_juSakFE_aaBPp",
+        "accessToken":"XXXXXXXXXXXX(Replace with your access token)",
         "apiUrl":"https://ap2.salesforce.com",
-        "clientId": "3MVG9ZL0ppGP5UrBrnsanGUZRgHqc8gTV4t_6tfuef8Zz4LhFPipmlooU6GBszpplbTzVXXWjqkGHubhRip1s",
-        "refreshToken": "5Aep861TSESvWeug_xvFHRBTTbf_YrTWgEyjBJo7Xr34yOQ7GCFUN5DnNPxzDIoGoWi4evqOl_lT1B9nE5dAtSb",
-        "clientSecret": "9104967092887676680",
         "hostName": "https://login.salesforce.com",
         "apiVersion": "v32.0",
         "sObjectName": "Account",
         "listViewID":"00B28000002yqeVEAQ",
-        "intervalTime" : "100000",
-        "registryPath": "connectors/SalesforceRest"
     }
     ```
 
@@ -1509,17 +1431,12 @@ To use the Salesforce REST connector, add the `<salesforcerest.init>` element in
 
     ```json
     {
-        "accessToken":"00D280000017q6q!AQoAQOeXcp7zKo3gUdy6r064_LsJ5bYYrUn_qAZG9TtKFLPfUMRxiato.E162_2XAtCTZLFQTbNk2Rz6Zm_juSakFE_aaBPp",
+        "accessToken":"XXXXXXXXXXXX(Replace with your access token)",
         "apiUrl":"https://ap2.salesforce.com",
-        "clientId": "3MVG9ZL0ppGP5UrBrnsanGUZRgHqc8gTV4t_6tfuef8Zz4LhFPipmlooU6GBszpplbTzVXXWjqkGHubhRip1s",
-        "refreshToken": "5Aep861TSESvWeug_xvFHRBTTbf_YrTWgEyjBJo7Xr34yOQ7GCFUN5DnNPxzDIoGoWi4evqOl_lT1B9nE5dAtSb",
-        "clientSecret": "9104967092887676680",
         "hostName": "https://login.salesforce.com",
         "apiVersion": "v32.0",
         "sObjectName": "Account",
-        "intervalTime" : "100000",
         "listViewID":"00B28000002yqeVEAQ",
-        "registryPath": "connectors/SalesforceRest"
     }
     ```
 
@@ -1573,15 +1490,10 @@ To use the Salesforce REST connector, add the `<salesforcerest.init>` element in
 
     ```json
     {
-        "accessToken":"00D280000017q6q!AQoAQOeXcp7zKo3gUdy6r064_LsJ5bYYrUn_qAZG9TtKFLPfUMRxiato.E162_2XAtCTZLFQTbNk2Rz6Zm_juSakFE_aaBPp",
+        "accessToken":"XXXXXXXXXXXX(Replace with your access token)",
         "apiUrl":"https://ap2.salesforce.com",
-        "clientId": "3MVG9ZL0ppGP5UrBrnsanGUZRgHqc8gTV4t_6tfuef8Zz4LhFPipmlooU6GBszpplbTzVXXWjqkGHubhRip1s",
-        "refreshToken": "5Aep861TSESvWeug_xvFHRBTTbf_YrTWgEyjBJo7Xr34yOQ7GCFUN5DnNPxzDIoGoWi4evqOl_lT1B9nE5dAtSb",
-        "clientSecret": "9104967092887676680",
         "hostName": "https://login.salesforce.com",
         "apiVersion": "v32.0",
-        "intervalTime" : "100000",
-        "registryPath": "connectors/SalesforceRest"
     }
     ```
 
@@ -1635,17 +1547,12 @@ To use the Salesforce REST connector, add the `<salesforcerest.init>` element in
 
     ```json
     {
-        "accessToken":"00D280000017q6q!AQoAQOeXcp7zKo3gUdy6r064_LsJ5bYYrUn_qAZG9TtKFLPfUMRxiato.E162_2XAtCTZLFQTbNk2Rz6Zm_juSakFE_aaBPp",
+        "accessToken":"XXXXXXXXXXXX(Replace with your access token)",
         "apiUrl":"https://ap2.salesforce.com",
-        "clientId": "3MVG9ZL0ppGP5UrBrnsanGUZRgHqc8gTV4t_6tfuef8Zz4LhFPipmlooU6GBszpplbTzVXXWjqkGHubhRip1s",
-        "refreshToken": "5Aep861TSESvWeug_xvFHRBTTbf_YrTWgEyjBJo7Xr34yOQ7GCFUN5DnNPxzDIoGoWi4evqOl_lT1B9nE5dAtSb",
-        "clientSecret": "9104967092887676680",
         "hostName": "https://login.salesforce.com",
         "apiVersion": "v32.0",
-        "intervalTime" : "100000",
         "sObjectName": "Account",
         "workflowRuleId": "01QD0000000APli",
-        "registryPath": "connectors/SalesforceRest"
     }
     ```
 
@@ -1711,16 +1618,11 @@ To use the Salesforce REST connector, add the `<salesforcerest.init>` element in
 
     ```json
     {
-        "accessToken":"00D280000017q6q!AQoAQOeXcp7zKo3gUdy6r064_LsJ5bYYrUn_qAZG9TtKFLPfUMRxiato.E162_2XAtCTZLFQTbNk2Rz6Zm_juSakFE_aaBPp",
+        "accessToken":"XXXXXXXXXXXX(Replace with your access token)",
         "apiUrl":"https://ap2.salesforce.com",
-        "clientId": "3MVG9ZL0ppGP5UrBrnsanGUZRgHqc8gTV4t_6tfuef8Zz4LhFPipmlooU6GBszpplbTzVXXWjqkGHubhRip1s",
-        "refreshToken": "5Aep861TSESvWeug_xvFHRBTTbf_YrTWgEyjBJo7Xr34yOQ7GCFUN5DnNPxzDIoGoWi4evqOl_lT1B9nE5dAtSb",
-        "clientSecret": "9104967092887676680",
         "hostName": "https://login.salesforce.com",
         "apiVersion": "v32.0",
-        "intervalTime" : "100000",
         "queryString": "select id, name from Account",
-        "registryPath": "connectors/SalesforceRest"
     }
     ```
 
@@ -1799,16 +1701,11 @@ To use the Salesforce REST connector, add the `<salesforcerest.init>` element in
 
     ```json
     {
-        "accessToken":"00D280000017q6q!AQoAQOeXcp7zKo3gUdy6r064_LsJ5bYYrUn_qAZG9TtKFLPfUMRxiato.E162_2XAtCTZLFQTbNk2Rz6Zm_juSakFE_aaBPp",
+        "accessToken":"XXXXXXXXXXXX(Replace with your access token)",
         "apiUrl":"https://ap2.salesforce.com",
-        "clientId": "3MVG9ZL0ppGP5UrBrnsanGUZRgHqc8gTV4t_6tfuef8Zz4LhFPipmlooU6GBszpplbTzVXXWjqkGHubhRip1s",
-        "refreshToken": "5Aep861TSESvWeug_xvFHRBTTbf_YrTWgEyjBJo7Xr34yOQ7GCFUN5DnNPxzDIoGoWi4evqOl_lT1B9nE5dAtSb",
-        "clientSecret": "9104967092887676680",
         "hostName": "https://login.salesforce.com",
         "apiVersion": "v32.0",
-        "intervalTime" : "100000",
         "nextRecordsUrl": "QWE45HUJ39D9UISD00",
-        "registryPath": "connectors/SalesforceRest"
     }
     ```
 
@@ -1855,16 +1752,11 @@ To use the Salesforce REST connector, add the `<salesforcerest.init>` element in
 
     ```json
     {
-        "accessToken":"00D280000017q6q!AQoAQOeXcp7zKo3gUdy6r064_LsJ5bYYrUn_qAZG9TtKFLPfUMRxiato.E162_2XAtCTZLFQTbNk2Rz6Zm_juSakFE_aaBPp",
+        "accessToken":"XXXXXXXXXXXX(Replace with your access token)",
         "apiUrl":"https://ap2.salesforce.com",
-        "clientId": "3MVG9ZL0ppGP5UrBrnsanGUZRgHqc8gTV4t_6tfuef8Zz4LhFPipmlooU6GBszpplbTzVXXWjqkGHubhRip1s",
-        "refreshToken": "5Aep861TSESvWeug_xvFHRBTTbf_YrTWgEyjBJo7Xr34yOQ7GCFUN5DnNPxzDIoGoWi4evqOl_lT1B9nE5dAtSb",
-        "clientSecret": "9104967092887676680",
         "hostName": "https://login.salesforce.com",
         "apiVersion": "v32.0",
-        "intervalTime" : "100000",
         "queryString": "select id, name from Account",
-        "registryPath": "connectors/SalesforceRest"
     }
     ```
 
@@ -1920,16 +1812,11 @@ To use the Salesforce REST connector, add the `<salesforcerest.init>` element in
 
     ```json
     {
-        "accessToken":"00D280000017q6q!AQoAQOeXcp7zKo3gUdy6r064_LsJ5bYYrUn_qAZG9TtKFLPfUMRxiato.E162_2XAtCTZLFQTbNk2Rz6Zm_juSakFE_aaBPp",
+        "accessToken":"XXXXXXXXXXXX(Replace with your access token)",
         "apiUrl":"https://ap2.salesforce.com",
-        "clientId": "3MVG9ZL0ppGP5UrBrnsanGUZRgHqc8gTV4t_6tfuef8Zz4LhFPipmlooU6GBszpplbTzVXXWjqkGHubhRip1s",
-        "refreshToken": "5Aep861TSESvWeug_xvFHRBTTbf_YrTWgEyjBJo7Xr34yOQ7GCFUN5DnNPxzDIoGoWi4evqOl_lT1B9nE5dAtSb",
-        "clientSecret": "9104967092887676680",
         "hostName": "https://login.salesforce.com",
         "apiVersion": "v32.0",
-        "intervalTime" : "100000",
         "listViewID":"00B28000002yqeVEAQ",
-        "registryPath": "connectors/SalesforceRest"
     }
     ```
 
@@ -1985,15 +1872,10 @@ To use the Salesforce REST connector, add the `<salesforcerest.init>` element in
 
     ```json
     {
-        "accessToken":"00D280000017q6q!AQoAQOeXcp7zKo3gUdy6r064_LsJ5bYYrUn_qAZG9TtKFLPfUMRxiato.E162_2XAtCTZLFQTbNk2Rz6Zm_juSakFE_aaBPp",
+        "accessToken":"XXXXXXXXXXXX(Replace with your access token)",
         "apiUrl":"https://ap2.salesforce.com",
-        "clientId": "3MVG9ZL0ppGP5UrBrnsanGUZRgHqc8gTV4t_6tfuef8Zz4LhFPipmlooU6GBszpplbTzVXXWjqkGHubhRip1s",
-        "refreshToken": "5Aep861TSESvWeug_xvFHRBTTbf_YrTWgEyjBJo7Xr34yOQ7GCFUN5DnNPxzDIoGoWi4evqOl_lT1B9nE5dAtSb",
-        "clientSecret": "9104967092887676680",
         "hostName": "https://login.salesforce.com",
         "apiVersion": "v32.0",
-        "intervalTime" : "100000",
-        "registryPath": "connectors/SalesforceRest"
     }
     ```
 
@@ -2045,16 +1927,11 @@ To use the Salesforce REST connector, add the `<salesforcerest.init>` element in
 
     ```json
     {
-        "accessToken":"00D280000017q6q!AQoAQOeXcp7zKo3gUdy6r064_LsJ5bYYrUn_qAZG9TtKFLPfUMRxiato.E162_2XAtCTZLFQTbNk2Rz6Zm_juSakFE_aaBPp",
+        "accessToken":"XXXXXXXXXXXX(Replace with your access token)",
         "apiUrl":"https://ap2.salesforce.com",
-        "clientId": "3MVG9ZL0ppGP5UrBrnsanGUZRgHqc8gTV4t_6tfuef8Zz4LhFPipmlooU6GBszpplbTzVXXWjqkGHubhRip1s",
-        "refreshToken": "5Aep861TSESvWeug_xvFHRBTTbf_YrTWgEyjBJo7Xr34yOQ7GCFUN5DnNPxzDIoGoWi4evqOl_lT1B9nE5dAtSb",
-        "clientSecret": "9104967092887676680",
         "hostName": "https://login.salesforce.com",
         "apiVersion": "v32.0",
-        "intervalTime" : "100000",
         "sObjectName": "Account",
-        "registryPath": "connectors/SalesforceRest"
     }
     ```
 
@@ -2108,16 +1985,11 @@ To use the Salesforce REST connector, add the `<salesforcerest.init>` element in
 
     ```json
     {
-        "accessToken":"00D280000017q6q!AQoAQOeXcp7zKo3gUdy6r064_LsJ5bYYrUn_qAZG9TtKFLPfUMRxiato.E162_2XAtCTZLFQTbNk2Rz6Zm_juSakFE_aaBPp",
+        "accessToken":"XXXXXXXXXXXX(Replace with your access token)",
         "apiUrl":"https://ap2.salesforce.com",
-        "clientId": "3MVG9ZL0ppGP5UrBrnsanGUZRgHqc8gTV4t_6tfuef8Zz4LhFPipmlooU6GBszpplbTzVXXWjqkGHubhRip1s",
-        "refreshToken": "5Aep861TSESvWeug_xvFHRBTTbf_YrTWgEyjBJo7Xr34yOQ7GCFUN5DnNPxzDIoGoWi4evqOl_lT1B9nE5dAtSb",
-        "clientSecret": "9104967092887676680",
         "hostName": "https://login.salesforce.com",
         "apiVersion": "v32.0",
-        "intervalTime" : "100000",
         "actionName":"hariprasath__LogACall",
-        "registryPath": "connectors/SalesforceRest"
     }
     ```
 
@@ -2181,16 +2053,11 @@ To use the Salesforce REST connector, add the `<salesforcerest.init>` element in
 
     ```json
     {
-        "accessToken":"00D280000017q6q!AQoAQOeXcp7zKo3gUdy6r064_LsJ5bYYrUn_qAZG9TtKFLPfUMRxiato.E162_2XAtCTZLFQTbNk2Rz6Zm_juSakFE_aaBPp",
+        "accessToken":"XXXXXXXXXXXX(Replace with your access token)",
         "apiUrl":"https://ap2.salesforce.com",
-        "clientId": "3MVG9ZL0ppGP5UrBrnsanGUZRgHqc8gTV4t_6tfuef8Zz4LhFPipmlooU6GBszpplbTzVXXWjqkGHubhRip1s",
-        "refreshToken": "5Aep861TSESvWeug_xvFHRBTTbf_YrTWgEyjBJo7Xr34yOQ7GCFUN5DnNPxzDIoGoWi4evqOl_lT1B9nE5dAtSb",
-        "clientSecret": "9104967092887676680",
         "hostName": "https://login.salesforce.com",
         "apiVersion": "v32.0",
-        "intervalTime" : "100000",
         "sObjectName":"Account",
-        "registryPath": "connectors/SalesforceRest"
     }
     ```
 
@@ -2254,16 +2121,11 @@ To use the Salesforce REST connector, add the `<salesforcerest.init>` element in
 
     ```json
     {
-        "accessToken":"00D280000017q6q!AQoAQOeXcp7zKo3gUdy6r064_LsJ5bYYrUn_qAZG9TtKFLPfUMRxiato.E162_2XAtCTZLFQTbNk2Rz6Zm_juSakFE_aaBPp",
+        "accessToken":"XXXXXXXXXXXX(Replace with your access token)",
         "apiUrl":"https://ap2.salesforce.com",
-        "clientId": "3MVG9ZL0ppGP5UrBrnsanGUZRgHqc8gTV4t_6tfuef8Zz4LhFPipmlooU6GBszpplbTzVXXWjqkGHubhRip1s",
-        "refreshToken": "5Aep861TSESvWeug_xvFHRBTTbf_YrTWgEyjBJo7Xr34yOQ7GCFUN5DnNPxzDIoGoWi4evqOl_lT1B9nE5dAtSb",
-        "clientSecret": "9104967092887676680",
         "hostName": "https://login.salesforce.com",
         "apiVersion": "v32.0",
-        "intervalTime" : "100000",
         "actionName":"hariprasath__LogACall",
-        "registryPath": "connectors/SalesforceRest"
     }
     ```
 
@@ -2334,16 +2196,11 @@ To use the Salesforce REST connector, add the `<salesforcerest.init>` element in
 
     ```json
     {
-        "accessToken":"00D280000017q6q!AQoAQOeXcp7zKo3gUdy6r064_LsJ5bYYrUn_qAZG9TtKFLPfUMRxiato.E162_2XAtCTZLFQTbNk2Rz6Zm_juSakFE_aaBPp",
+        "accessToken":"XXXXXXXXXXXX(Replace with your access token)",
         "apiUrl":"https://ap2.salesforce.com",
-        "clientId": "3MVG9ZL0ppGP5UrBrnsanGUZRgHqc8gTV4t_6tfuef8Zz4LhFPipmlooU6GBszpplbTzVXXWjqkGHubhRip1s",
-        "refreshToken": "5Aep861TSESvWeug_xvFHRBTTbf_YrTWgEyjBJo7Xr34yOQ7GCFUN5DnNPxzDIoGoWi4evqOl_lT1B9nE5dAtSb",
-        "clientSecret": "9104967092887676680",
         "hostName": "https://login.salesforce.com",
-        "intervalTime" : "100000",
         "apiVersion": "v32.0",
-        "sObjectName":"Account",
-        "registryPath": "connectors/SalesforceRest",
+        "sObjectName":"Account",,
         "fieldAndValue": {
             "name": "wso2",
             "description":"This Account belongs to WSO2"
@@ -2437,16 +2294,11 @@ To use the Salesforce REST connector, add the `<salesforcerest.init>` element in
 
     ```json
     {
-        "accessToken":"00D280000017q6q!AQoAQOeXcp7zKo3gUdy6r064_LsJ5bYYrUn_qAZG9TtKFLPfUMRxiato.E162_2XAtCTZLFQTbNk2Rz6Zm_juSakFE_aaBPp",
+        "accessToken":"XXXXXXXXXXXX(Replace with your access token)",
         "apiUrl":"https://ap2.salesforce.com",
-        "clientId": "3MVG9ZL0ppGP5UrBrnsanGUZRgHqc8gTV4t_6tfuef8Zz4LhFPipmlooU6GBszpplbTzVXXWjqkGHubhRip1s",
-        "refreshToken": "5Aep861TSESvWeug_xvFHRBTTbf_YrTWgEyjBJo7Xr34yOQ7GCFUN5DnNPxzDIoGoWi4evqOl_lT1B9nE5dAtSb",
-        "clientSecret": "9104967092887676680",
         "hostName": "https://login.salesforce.com",
         "apiVersion": "v32.0",
-        "intervalTime" : "100000",
-        "sObjectName":"Account",
-        "registryPath": "connectors/SalesforceRest",
+        "sObjectName":"Account",,
         "fieldAndValue": {
         "records": [
             {
@@ -2632,16 +2484,11 @@ To use the Salesforce REST connector, add the `<salesforcerest.init>` element in
 
     ```json
     {
-        "accessToken":"00D280000017q6q!AQoAQOeXcp7zKo3gUdy6r064_LsJ5bYYrUn_qAZG9TtKFLPfUMRxiato.E162_2XAtCTZLFQTbNk2Rz6Zm_juSakFE_aaBPp",
+        "accessToken":"XXXXXXXXXXXX(Replace with your access token)",
         "apiUrl":"https://ap2.salesforce.com",
-        "clientId": "3MVG9ZL0ppGP5UrBrnsanGUZRgHqc8gTV4t_6tfuef8Zz4LhFPipmlooU6GBszpplbTzVXXWjqkGHubhRip1s",
-        "refreshToken": "5Aep861TSESvWeug_xvFHRBTTbf_YrTWgEyjBJo7Xr34yOQ7GCFUN5DnNPxzDIoGoWi4evqOl_lT1B9nE5dAtSb",
-        "clientSecret": "9104967092887676680",
         "hostName": "https://login.salesforce.com",
-        "intervalTime" : "100000",
         "apiVersion": "v32.0",
-        "sObjectName":"Account",
-        "registryPath": "connectors/SalesforceRest",
+        "sObjectName":"Account",,
         "fieldAndValue":
         {
         "records" :[{
@@ -2775,17 +2622,12 @@ To use the Salesforce REST connector, add the `<salesforcerest.init>` element in
 
     ```json
     {
-        "accessToken":"00D280000017q6q!AQoAQOeXcp7zKo3gUdy6r064_LsJ5bYYrUn_qAZG9TtKFLPfUMRxiato.E162_2XAtCTZLFQTbNk2Rz6Zm_juSakFE_aaBPp",
+        "accessToken":"XXXXXXXXXXXX(Replace with your access token)",
         "apiUrl":"https://ap2.salesforce.com",
-        "clientId": "3MVG9ZL0ppGP5UrBrnsanGUZRgHqc8gTV4t_6tfuef8Zz4LhFPipmlooU6GBszpplbTzVXXWjqkGHubhRip1s",
-        "refreshToken": "5Aep861TSESvWeug_xvFHRBTTbf_YrTWgEyjBJo7Xr34yOQ7GCFUN5DnNPxzDIoGoWi4evqOl_lT1B9nE5dAtSb",
-        "clientSecret": "9104967092887676680",
         "hostName": "https://login.salesforce.com",
-        "intervalTime" : "100000",
         "apiVersion": "v32.0",
         "sObjectName":"Account",
-        "Id":"00128000002OOhD",
-        "registryPath": "connectors/SalesforceRest",
+        "Id":"00128000002OOhD",,
         "fieldAndValue": {
             "name": "wso2",
             "description":"This Account belongs to WSO2"
@@ -2832,17 +2674,12 @@ To use the Salesforce REST connector, add the `<salesforcerest.init>` element in
 
     ```json
     {
-        "accessToken":"00D280000017q6q!AQoAQOeXcp7zKo3gUdy6r064_LsJ5bYYrUn_qAZG9TtKFLPfUMRxiato.E162_2XAtCTZLFQTbNk2Rz6Zm_juSakFE_aaBPp",
+        "accessToken":"XXXXXXXXXXXX(Replace with your access token)",
         "apiUrl":"https://ap2.salesforce.com",
-        "clientId": "3MVG9ZL0ppGP5UrBrnsanGUZRgHqc8gTV4t_6tfuef8Zz4LhFPipmlooU6GBszpplbTzVXXWjqkGHubhRip1s",
-        "refreshToken": "5Aep861TSESvWeug_xvFHRBTTbf_YrTWgEyjBJo7Xr34yOQ7GCFUN5DnNPxzDIoGoWi4evqOl_lT1B9nE5dAtSb",
-        "clientSecret": "9104967092887676680",
         "hostName": "https://login.salesforce.com",
-        "intervalTime" : "100000",
         "apiVersion": "v32.0",
         "sObjectName":"Account",
         "idToDelete":"00128000002OOhD",
-        "registryPath": "connectors/SalesforceRest"
     }
     ```
 
@@ -2877,16 +2714,11 @@ To use the Salesforce REST connector, add the `<salesforcerest.init>` element in
 
     ```json
     {
-        "accessToken":"00D280000017q6q!AQoAQOeXcp7zKo3gUdy6r064_LsJ5bYYrUn_qAZG9TtKFLPfUMRxiato.E162_2XAtCTZLFQTbNk2Rz6Zm_juSakFE_aaBPp",
+        "accessToken":"XXXXXXXXXXXX(Replace with your access token)",
         "apiUrl":"https://ap2.salesforce.com",
-        "clientId": "3MVG9ZL0ppGP5UrBrnsanGUZRgHqc8gTV4t_6tfuef8Zz4LhFPipmlooU6GBszpplbTzVXXWjqkGHubhRip1s",
-        "refreshToken": "5Aep861TSESvWeug_xvFHRBTTbf_YrTWgEyjBJo7Xr34yOQ7GCFUN5DnNPxzDIoGoWi4evqOl_lT1B9nE5dAtSb",
-        "clientSecret": "9104967092887676680",
         "hostName": "https://login.salesforce.com",
-        "intervalTime" : "100000",
         "apiVersion": "v32.0",
         "limit":"5",
-        "registryPath": "connectors/SalesforceRest"
     }
     ```
 
@@ -2950,18 +2782,13 @@ To use the Salesforce REST connector, add the `<salesforcerest.init>` element in
 
     ```json
     {
-        "accessToken":"00D280000017q6q!AQoAQOeXcp7zKo3gUdy6r064_LsJ5bYYrUn_qAZG9TtKFLPfUMRxiato.E162_2XAtCTZLFQTbNk2Rz6Zm_juSakFE_aaBPp",
+        "accessToken":"XXXXXXXXXXXX(Replace with your access token)",
         "apiUrl":"https://ap2.salesforce.com",
-        "clientId": "3MVG9ZL0ppGP5UrBrnsanGUZRgHqc8gTV4t_6tfuef8Zz4LhFPipmlooU6GBszpplbTzVXXWjqkGHubhRip1s",
-        "refreshToken": "5Aep861TSESvWeug_xvFHRBTTbf_YrTWgEyjBJo7Xr34yOQ7GCFUN5DnNPxzDIoGoWi4evqOl_lT1B9nE5dAtSb",
-        "clientSecret": "9104967092887676680",
         "hostName": "https://login.salesforce.com",
-        "intervalTime" : "100000",
         "apiVersion": "v32.0",
         "sObjectName": "Account",
         "rowId":"00128000005YjDnAAK",
         "fields":"AccountNumber,BillingPostalCode",
-        "registryPath": "connectors/SalesforceRest"
     }
     ```
 
@@ -3042,8 +2869,7 @@ To use the Salesforce REST connector, add the `<salesforcerest.init>` element in
         "clientSecret": "9104967092887676680",
         "hostName": "https://login.salesforce.com",
         "apiVersion": "v32.0",
-        "sObjectName":"Account",
-        "registryPath": "connectors/Salesforcerest",
+        "sObjectName":"Account",,
         "intervalTime" : "2400000",
         "externalIDField":"sample__c",
         "Id":"15222",
@@ -3083,15 +2909,10 @@ To use the Salesforce REST connector, add the `<salesforcerest.init>` element in
 
     ```json
     {
-        "accessToken":"00D280000017q6q!AQoAQOeXcp7zKo3gUdy6r064_LsJ5bYYrUn_qAZG9TtKFLPfUMRxiato.E162_2XAtCTZLFQTbNk2Rz6Zm_juSakFE_aaBPp",
+        "accessToken":"XXXXXXXXXXXX(Replace with your access token)",
         "apiUrl":"https://ap2.salesforce.com",
-        "clientId": "3MVG9ZL0ppGP5UrBrnsanGUZRgHqc8gTV4t_6tfuef8Zz4LhFPipmlooU6GBszpplbTzVXXWjqkGHubhRip1s",
-        "refreshToken": "5Aep861TSESvWeug_xvFHRBTTbf_YrTWgEyjBJo7Xr34yOQ7GCFUN5DnNPxzDIoGoWi4evqOl_lT1B9nE5dAtSb",
-        "clientSecret": "9104967092887676680",
         "hostName": "https://login.salesforce.com",
         "apiVersion": "v32.0",
-        "intervalTime" : "100000",
-        "registryPath": "connectors/SalesforceRest"
     }
     ```
 
@@ -3168,16 +2989,11 @@ To use the Salesforce REST connector, add the `<salesforcerest.init>` element in
 
     ```json
     {
-        "accessToken":"00D280000017q6q!AQoAQOeXcp7zKo3gUdy6r064_LsJ5bYYrUn_qAZG9TtKFLPfUMRxiato.E162_2XAtCTZLFQTbNk2Rz6Zm_juSakFE_aaBPp",
+        "accessToken":"XXXXXXXXXXXX(Replace with your access token)",
         "apiUrl":"https://ap2.salesforce.com",
-        "clientId": "3MVG9ZL0ppGP5UrBrnsanGUZRgHqc8gTV4t_6tfuef8Zz4LhFPipmlooU6GBszpplbTzVXXWjqkGHubhRip1s",
-        "refreshToken": "5Aep861TSESvWeug_xvFHRBTTbf_YrTWgEyjBJo7Xr34yOQ7GCFUN5DnNPxzDIoGoWi4evqOl_lT1B9nE5dAtSb",
-        "clientSecret": "9104967092887676680",
         "hostName": "https://login.salesforce.com",
         "apiVersion": "v32.0",
-        "intervalTime" : "100000",
         "sObjectName":"Account",
-        "registryPath": "connectors/SalesforceRest"
     }
     ```
 
@@ -3226,15 +3042,10 @@ To use the Salesforce REST connector, add the `<salesforcerest.init>` element in
 
     ```json
     {
-        "accessToken":"00D280000017q6q!AQoAQOeXcp7zKo3gUdy6r064_LsJ5bYYrUn_qAZG9TtKFLPfUMRxiato.E162_2XAtCTZLFQTbNk2Rz6Zm_juSakFE_aaBPp",
+        "accessToken":"XXXXXXXXXXXX(Replace with your access token)",
         "apiUrl":"https://ap2.salesforce.com",
-        "clientId": "3MVG9ZL0ppGP5UrBrnsanGUZRgHqc8gTV4t_6tfuef8Zz4LhFPipmlooU6GBszpplbTzVXXWjqkGHubhRip1s",
-        "refreshToken": "5Aep861TSESvWeug_xvFHRBTTbf_YrTWgEyjBJo7Xr34yOQ7GCFUN5DnNPxzDIoGoWi4evqOl_lT1B9nE5dAtSb",
-        "clientSecret": "9104967092887676680",
         "hostName": "https://login.salesforce.com",
         "apiVersion": "v32.0",
-        "intervalTime" : "100000",
-        "registryPath": "connectors/SalesforceRest"
     }
     ```
 
@@ -3267,15 +3078,10 @@ To use the Salesforce REST connector, add the `<salesforcerest.init>` element in
 
     ```json
     {
-        "accessToken":"00D280000017q6q!AQoAQOeXcp7zKo3gUdy6r064_LsJ5bYYrUn_qAZG9TtKFLPfUMRxiato.E162_2XAtCTZLFQTbNk2Rz6Zm_juSakFE_aaBPp",
+        "accessToken":"XXXXXXXXXXXX(Replace with your access token)",
         "apiUrl":"https://ap2.salesforce.com",
-        "clientId": "3MVG9ZL0ppGP5UrBrnsanGUZRgHqc8gTV4t_6tfuef8Zz4LhFPipmlooU6GBszpplbTzVXXWjqkGHubhRip1s",
-        "refreshToken": "5Aep861TSESvWeug_xvFHRBTTbf_YrTWgEyjBJo7Xr34yOQ7GCFUN5DnNPxzDIoGoWi4evqOl_lT1B9nE5dAtSb",
-        "clientSecret": "9104967092887676680",
         "hostName": "https://login.salesforce.com",
         "apiVersion": "v32.0",
-        "intervalTime" : "100000",
-        "registryPath": "connectors/SalesforceRest"
     }
     ```
 
@@ -3319,15 +3125,10 @@ To use the Salesforce REST connector, add the `<salesforcerest.init>` element in
 
     ```json
     {
-        "accessToken":"00D280000017q6q!AQoAQOeXcp7zKo3gUdy6r064_LsJ5bYYrUn_qAZG9TtKFLPfUMRxiato.E162_2XAtCTZLFQTbNk2Rz6Zm_juSakFE_aaBPp",
+        "accessToken":"XXXXXXXXXXXX(Replace with your access token)",
         "apiUrl":"https://ap2.salesforce.com",
-        "clientId": "3MVG9ZL0ppGP5UrBrnsanGUZRgHqc8gTV4t_6tfuef8Zz4LhFPipmlooU6GBszpplbTzVXXWjqkGHubhRip1s",
-        "refreshToken": "5Aep861TSESvWeug_xvFHRBTTbf_YrTWgEyjBJo7Xr34yOQ7GCFUN5DnNPxzDIoGoWi4evqOl_lT1B9nE5dAtSb",
-        "clientSecret": "9104967092887676680",
         "hostName": "https://login.salesforce.com",
         "apiVersion": "v32.0",
-        "intervalTime" : "100000",
-        "registryPath": "connectors/SalesforceRest"
     }
     ```
 
@@ -3382,16 +3183,11 @@ To use the Salesforce REST connector, add the `<salesforcerest.init>` element in
 
     ```json
     {
-        "accessToken":"00D280000017q6q!AQoAQOeXcp7zKo3gUdy6r064_LsJ5bYYrUn_qAZG9TtKFLPfUMRxiato.E162_2XAtCTZLFQTbNk2Rz6Zm_juSakFE_aaBPp",
+        "accessToken":"XXXXXXXXXXXX(Replace with your access token)",
         "apiUrl":"https://ap2.salesforce.com",
-        "clientId": "3MVG9ZL0ppGP5UrBrnsanGUZRgHqc8gTV4t_6tfuef8Zz4LhFPipmlooU6GBszpplbTzVXXWjqkGHubhRip1s",
-        "refreshToken": "5Aep861TSESvWeug_xvFHRBTTbf_YrTWgEyjBJo7Xr34yOQ7GCFUN5DnNPxzDIoGoWi4evqOl_lT1B9nE5dAtSb",
-        "clientSecret": "9104967092887676680",
         "hostName": "https://login.salesforce.com",
         "apiVersion": "v32.0",
-        "intervalTime" : "100000",
         "sObjectName":"Account",
-        "registryPath": "connectors/SalesforceRest"
     }
     ```
 
@@ -3476,18 +3272,13 @@ To use the Salesforce REST connector, add the `<salesforcerest.init>` element in
 
     ```json
     {
-        "accessToken":"00D280000017q6q!AQoAQOeXcp7zKo3gUdy6r064_LsJ5bYYrUn_qAZG9TtKFLPfUMRxiato.E162_2XAtCTZLFQTbNk2Rz6Zm_juSakFE_aaBPp",
+        "accessToken":"XXXXXXXXXXXX(Replace with your access token)",
         "apiUrl":"https://ap2.salesforce.com",
-        "clientId": "3MVG9ZL0ppGP5UrBrnsanGUZRgHqc8gTV4t_6tfuef8Zz4LhFPipmlooU6GBszpplbTzVXXWjqkGHubhRip1s",
-        "refreshToken": "5Aep861TSESvWeug_xvFHRBTTbf_YrTWgEyjBJo7Xr34yOQ7GCFUN5DnNPxzDIoGoWi4evqOl_lT1B9nE5dAtSb",
-        "clientSecret": "9104967092887676680",
         "hostName": "https://login.salesforce.com",
         "apiVersion": "v32.0",
         "sObjectName":"Account",
-        "intervalTime" : "100000",
         "startTime":"2015-10-05T12:30:30+05:30",
         "endTime":"2015-10-10T20:30:30+05:30",
-        "registryPath": "connectors/SalesforceRest"
     }
     ```
 
@@ -3572,18 +3363,13 @@ To use the Salesforce REST connector, add the `<salesforcerest.init>` element in
 
     ```json
     {
-        "accessToken":"00D280000017q6q!AQoAQOeXcp7zKo3gUdy6r064_LsJ5bYYrUn_qAZG9TtKFLPfUMRxiato.E162_2XAtCTZLFQTbNk2Rz6Zm_juSakFE_aaBPp",
+        "accessToken":"XXXXXXXXXXXX(Replace with your access token)",
         "apiUrl":"https://ap2.salesforce.com",
-        "clientId": "3MVG9ZL0ppGP5UrBrnsanGUZRgHqc8gTV4t_6tfuef8Zz4LhFPipmlooU6GBszpplbTzVXXWjqkGHubhRip1s",
-        "refreshToken": "5Aep861TSESvWeug_xvFHRBTTbf_YrTWgEyjBJo7Xr34yOQ7GCFUN5DnNPxzDIoGoWi4evqOl_lT1B9nE5dAtSb",
-        "clientSecret": "9104967092887676680",
         "hostName": "https://login.salesforce.com",
         "apiVersion": "v32.0",
         "sObjectName":"Account",
-        "intervalTime" : "100000",
         "startTime":"2015-10-05T12:30:30+05:30",
         "endTime":"2015-10-10T20:30:30+05:30",
-        "registryPath": "connectors/SalesforceRest"
     }
     ```
 
@@ -3615,15 +3401,10 @@ To use the Salesforce REST connector, add the `<salesforcerest.init>` element in
 
     ```json
     {
-        "accessToken":"00D280000017q6q!AQoAQOeXcp7zKo3gUdy6r064_LsJ5bYYrUn_qAZG9TtKFLPfUMRxiato.E162_2XAtCTZLFQTbNk2Rz6Zm_juSakFE_aaBPp",
+        "accessToken":"XXXXXXXXXXXX(Replace with your access token)",
         "apiUrl":"https://ap2.salesforce.com",
-        "clientId": "3MVG9ZL0ppGP5UrBrnsanGUZRgHqc8gTV4t_6tfuef8Zz4LhFPipmlooU6GBszpplbTzVXXWjqkGHubhRip1s",
-        "refreshToken": "5Aep861TSESvWeug_xvFHRBTTbf_YrTWgEyjBJo7Xr34yOQ7GCFUN5DnNPxzDIoGoWi4evqOl_lT1B9nE5dAtSb",
-        "clientSecret": "9104967092887676680",
         "hostName": "https://login.salesforce.com",
         "apiVersion": "v32.0",
-        "intervalTime" : "100000",
-        "registryPath": "connectors/SalesforceRest"
     }
     ```
 
@@ -3704,17 +3485,12 @@ To use the Salesforce REST connector, add the `<salesforcerest.init>` element in
 
     ```json
     {
-        "accessToken":"00D280000017q6q!AQoAQOeXcp7zKo3gUdy6r064_LsJ5bYYrUn_qAZG9TtKFLPfUMRxiato.E162_2XAtCTZLFQTbNk2Rz6Zm_juSakFE_aaBPp",
+        "accessToken":"XXXXXXXXXXXX(Replace with your access token)",
         "apiUrl":"https://ap2.salesforce.com",
-        "clientId": "3MVG9ZL0ppGP5UrBrnsanGUZRgHqc8gTV4t_6tfuef8Zz4LhFPipmlooU6GBszpplbTzVXXWjqkGHubhRip1s",
-        "refreshToken": "5Aep861TSESvWeug_xvFHRBTTbf_YrTWgEyjBJo7Xr34yOQ7GCFUN5DnNPxzDIoGoWi4evqOl_lT1B9nE5dAtSb",
-        "clientSecret": "9104967092887676680",
         "hostName": "https://login.salesforce.com",
         "apiVersion": "v32.0",
         "sObjectName":"Account",
-        "intervalTime" : "100000",
         "rowId":"00128000005YjDnAAK",
-        "registryPath": "connectors/SalesforceRest"
     }
     ```
 
@@ -3762,16 +3538,11 @@ To use the Salesforce REST connector, add the `<salesforcerest.init>` element in
 
     ```json
     {
-        "accessToken":"00D280000017q6q!AQoAQOeXcp7zKo3gUdy6r064_LsJ5bYYrUn_qAZG9TtKFLPfUMRxiato.E162_2XAtCTZLFQTbNk2Rz6Zm_juSakFE_aaBPp",
+        "accessToken":"XXXXXXXXXXXX(Replace with your access token)",
         "apiUrl":"https://ap2.salesforce.com",
-        "clientId": "3MVG9ZL0ppGP5UrBrnsanGUZRgHqc8gTV4t_6tfuef8Zz4LhFPipmlooU6GBszpplbTzVXXWjqkGHubhRip1s",
-        "refreshToken": "5Aep861TSESvWeug_xvFHRBTTbf_YrTWgEyjBJo7Xr34yOQ7GCFUN5DnNPxzDIoGoWi4evqOl_lT1B9nE5dAtSb",
-        "clientSecret": "9104967092887676680",
         "hostName": "https://login.salesforce.com",
         "apiVersion": "v32.0",
-        "intervalTime" : "100000",
         "searchString": "FIND {map*} IN ALL FIELDS RETURNING Account (Id, Name), Contact, Opportunity, Lead",
-        "registryPath": "connectors/SalesforceRest"
     }
     ```
 
@@ -3800,15 +3571,10 @@ To use the Salesforce REST connector, add the `<salesforcerest.init>` element in
 
     ```json
     {
-        "accessToken":"00D280000017q6q!AQoAQOeXcp7zKo3gUdy6r064_LsJ5bYYrUn_qAZG9TtKFLPfUMRxiato.E162_2XAtCTZLFQTbNk2Rz6Zm_juSakFE_aaBPp",
+        "accessToken":"XXXXXXXXXXXX(Replace with your access token)",
         "apiUrl":"https://ap2.salesforce.com",
-        "clientId": "3MVG9ZL0ppGP5UrBrnsanGUZRgHqc8gTV4t_6tfuef8Zz4LhFPipmlooU6GBszpplbTzVXXWjqkGHubhRip1s",
-        "refreshToken": "5Aep861TSESvWeug_xvFHRBTTbf_YrTWgEyjBJo7Xr34yOQ7GCFUN5DnNPxzDIoGoWi4evqOl_lT1B9nE5dAtSb",
-        "clientSecret": "9104967092887676680",
         "hostName": "https://login.salesforce.com",
         "apiVersion": "v32.0",
-        "intervalTime" : "100000",
-        "registryPath": "connectors/SalesforceRest"
     }
     ```
 
@@ -3853,16 +3619,11 @@ To use the Salesforce REST connector, add the `<salesforcerest.init>` element in
 
     ```json
     {
-        "accessToken":"00D280000017q6q!AQoAQOeXcp7zKo3gUdy6r064_LsJ5bYYrUn_qAZG9TtKFLPfUMRxiato.E162_2XAtCTZLFQTbNk2Rz6Zm_juSakFE_aaBPp",
+        "accessToken":"XXXXXXXXXXXX(Replace with your access token)",
         "apiUrl":"https://ap2.salesforce.com",
-        "clientId": "3MVG9ZL0ppGP5UrBrnsanGUZRgHqc8gTV4t_6tfuef8Zz4LhFPipmlooU6GBszpplbTzVXXWjqkGHubhRip1s",
-        "refreshToken": "5Aep861TSESvWeug_xvFHRBTTbf_YrTWgEyjBJo7Xr34yOQ7GCFUN5DnNPxzDIoGoWi4evqOl_lT1B9nE5dAtSb",
-        "clientSecret": "9104967092887676680",
         "hostName": "https://login.salesforce.com",
         "apiVersion": "v32.0",
-        "intervalTime" : "100000",
         "sObjectNameList": "Account,User",
-        "registryPath": "connectors/SalesforceRest"
     }
     ```
 
@@ -3914,17 +3675,12 @@ To use the Salesforce REST connector, add the `<salesforcerest.init>` element in
 
     ```json
     {
-        "accessToken":"00D280000017q6q!AQoAQOeXcp7zKo3gUdy6r064_LsJ5bYYrUn_qAZG9TtKFLPfUMRxiato.E162_2XAtCTZLFQTbNk2Rz6Zm_juSakFE_aaBPp",
+        "accessToken":"XXXXXXXXXXXX(Replace with your access token)",
         "apiUrl":"https://ap2.salesforce.com",
-        "clientId": "3MVG9ZL0ppGP5UrBrnsanGUZRgHqc8gTV4t_6tfuef8Zz4LhFPipmlooU6GBszpplbTzVXXWjqkGHubhRip1s",
-        "refreshToken": "5Aep861TSESvWeug_xvFHRBTTbf_YrTWgEyjBJo7Xr34yOQ7GCFUN5DnNPxzDIoGoWi4evqOl_lT1B9nE5dAtSb",
-        "clientSecret": "9104967092887676680",
         "hostName": "https://login.salesforce.com",
         "apiVersion": "v32.0",
-        "intervalTime" : "100000",
         "sObjectName": "Account",
         "stringForSearch": "hari",
-        "registryPath": "connectors/SalesforceRest"
     }
     ```
 
@@ -3971,16 +3727,11 @@ To use the Salesforce REST connector, add the `<salesforcerest.init>` element in
 
     ```json
     {
-        "accessToken":"00D280000017q6q!AQoAQOeXcp7zKo3gUdy6r064_LsJ5bYYrUn_qAZG9TtKFLPfUMRxiato.E162_2XAtCTZLFQTbNk2Rz6Zm_juSakFE_aaBPp",
+        "accessToken":"XXXXXXXXXXXX(Replace with your access token)",
         "apiUrl":"https://ap2.salesforce.com",
-        "clientId": "3MVG9ZL0ppGP5UrBrnsanGUZRgHqc8gTV4t_6tfuef8Zz4LhFPipmlooU6GBszpplbTzVXXWjqkGHubhRip1s",
-        "refreshToken": "5Aep861TSESvWeug_xvFHRBTTbf_YrTWgEyjBJo7Xr34yOQ7GCFUN5DnNPxzDIoGoWi4evqOl_lT1B9nE5dAtSb",
-        "clientSecret": "9104967092887676680",
         "hostName": "https://login.salesforce.com",
         "apiVersion": "v32.0",
-        "intervalTime" : "100000",
         "userId": "00528000000yl7j",
-        "registryPath": "connectors/SalesforceRest"
     }
     ```
 
@@ -4040,16 +3791,11 @@ To use the Salesforce REST connector, add the `<salesforcerest.init>` element in
 
     ```json
     {
-        "accessToken":"00D280000017q6q!AQoAQOeXcp7zKo3gUdy6r064_LsJ5bYYrUn_qAZG9TtKFLPfUMRxiato.E162_2XAtCTZLFQTbNk2Rz6Zm_juSakFE_aaBPp",
+        "accessToken":"XXXXXXXXXXXX(Replace with your access token)",
         "apiUrl":"https://ap2.salesforce.com",
-        "clientId": "3MVG9ZL0ppGP5UrBrnsanGUZRgHqc8gTV4t_6tfuef8Zz4LhFPipmlooU6GBszpplbTzVXXWjqkGHubhRip1s",
-        "refreshToken": "5Aep861TSESvWeug_xvFHRBTTbf_YrTWgEyjBJo7Xr34yOQ7GCFUN5DnNPxzDIoGoWi4evqOl_lT1B9nE5dAtSb",
-        "clientSecret": "9104967092887676680",
         "hostName": "https://login.salesforce.com",
         "apiVersion": "v32.0",
-        "intervalTime" : "100000",
         "userId": "00528000000yl7j",
-        "registryPath": "connectors/SalesforceRest"
     }
     ```
 
