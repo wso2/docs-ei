@@ -50,6 +50,6 @@ Its native support for Kubernetes with a [K8s Operator](https://siddhi.io/en/v5.
 Deploying SI as a highly available [minimum HA cluster](../setup/deploying-si-as-minimum-ha-cluster.md) allows you to achieve zero data loss with just two SI nodes.
 
 !!! tip "What's Next"
-    - [Get started with WSO2 SI in 5 minutes](../quick-start-guide/getting-started-with-si.md)<br/>
+    - [Quick Start Guide](../quick-start-guide/quick-start-guide.md)<br/>
     - [Create Your First Siddhi Application](../quick-start-guide/getting-started/getting-started-guide-overview.md)
 
