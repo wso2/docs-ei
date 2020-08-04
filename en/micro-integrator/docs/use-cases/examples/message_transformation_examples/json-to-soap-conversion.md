@@ -235,12 +235,12 @@ The JSON client will receive the following response from the backend with the re
                 "last": 177.66987465262923,
                 "low": -176.30898912339075,
                 "marketCap": 56495579.98178506,
-                "name": " Company",
+                "name": "IBM Company",
                 "open": 185.62740369461244,
                 "peRatio": 24.341353665128693,
                 "percentageChange": -1.4930577008849097,
                 "prevClose": 192.11844053187397,
-                "symbol": null,
+                "symbol": "IBM",
                 "volume": 7791
             }
         }
