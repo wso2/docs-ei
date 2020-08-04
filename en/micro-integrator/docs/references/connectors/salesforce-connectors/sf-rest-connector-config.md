@@ -2965,6 +2965,78 @@ To use the Salesforce REST connector, add the `<salesforcerest.init>` element in
     }
     ```
 
+??? note "getUpdated"
+    To retrieve a list of individual records that have been updated within the given timespan for the specified object, 
+    use salesforcerest.getUpdated. The date and time should be provided in ISO 8601 format:YYYY-MM-DDThh:mm:ss+hh:mm.
+    See the [related API documentation](https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/resources_getupdated.htm) 
+    for more information.
+
+    <table>
+        <tr>
+            <th>Parameter Name</th>
+            <th>Description</th>
+            <th>Required</th>
+            <th>Sample Value</th>
+        </tr>
+        <tr>
+            <td>sObjectName</td>
+            <td>The object where you want to look for updated records</td>
+            <td>Yes</td>
+            <td>Account</td>
+        </tr>
+        <tr>
+            <td>startTime</td>
+            <td>Starting date/time (Coordinated Universal Time (UTC)—not local—timezone) of the timespan for which to retrieve the data.</td>
+            <td>Yes</td>
+            <td>2015-10-05T12:30:30+05:30</td>
+        </tr>
+        <tr>
+            <td>endTime</td>
+            <td>Ending date/time (Coordinated Universal Time (UTC)—not local—timezone) of the timespan for which to retrieve the data.</td>
+            <td>Yes</td>
+            <td>2015-10-10T20:30:30+05:30</td>
+        </tr>
+    </table>
+
+    **Sample configuration**
+
+    ```xml
+    <salesforcerest.getUpdated>
+        <sObjectName>{$ctx:sObjectName}</sObjectName>
+        <startTime>{$ctx:startTime}</startTime>
+        <endTime>{$ctx:endTime}</endTime>
+    </salesforcerest.getUpdated>
+    ```
+
+    **Sample request**
+
+    The following is a sample request that can be handled by the getUpdated operation.
+
+    ```json
+    {
+      "accessToken":"XXXXXXXXXXXX(Replace with your access token)",
+      "apiUrl":"https://(your_instance).salesforce.com",
+      "hostName": "https://login.salesforce.com",
+      "apiVersion": "v32.0",
+      "sObjectName":"Account",
+      "startTime":"2015-10-05T12:30:30+05:30",
+      "endTime":"2015-10-10T20:30:30+05:30"
+    }
+    ```
+
+    **Sample Response**
+
+    Given below is a sample response for the getDeleted operation.
+
+    ```json
+    {
+       "ids":[
+    
+       ],
+       "latestDateCovered":"2018-10-27T15:00:00.000+0000"
+    }
+    ```
+
 ### sObjects
 
 ??? note "describeGlobal"
