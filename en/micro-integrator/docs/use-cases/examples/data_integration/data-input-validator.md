@@ -71,7 +71,7 @@ Create the artifacts:
     !!! Note
         If the driver class does not exist in the relevant folders when you create the datasource, you will get an exception such as `Cannot load JDBC driver class com.mysql.jdbc.Driver`.
         
-3. [Create a Data Service project](../../../../develop/creating-projects/#data-services-project)
+3. [Create a Data Service project](../../../../develop/create-data-services-configs).
 4. [Create the data service](../../../../develop/creating-artifacts/data-services/creating-data-services) with the configurations given above.
 5. [Deploy the artifacts](../../../../develop/deploy-artifacts) in your Micro Integrator. 
 

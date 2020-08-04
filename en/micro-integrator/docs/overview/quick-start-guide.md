@@ -10,9 +10,9 @@ In the above scenario, the following takes place:
 
 1. The client makes a call to the Healthcare API created using Micro Integrator.
 
-2. The Healthcare API calls the Pine Valley Hospital backend service and gets the queried information.
+2. The Healthcare API calls the Pine Valley Hospital back-end service and gets the queried information.
 
-3. The Healthcare API calls the Grand Oak Hospital backend service and gets the queried information.
+3. The Healthcare API calls the Grand Oak Hospital back-end service and gets the queried information.
 
 4. The response is returned to the client with the required information.
 
@@ -45,7 +45,7 @@ Let’s implement a simple integration solution that can be used to query the av
 1. Go to the [website](https://www.wso2.com/integration/micro-integrator) to download the Micro Integrator. When you click **Download**, the installation options will be listed. For this quick start, you can either download and run the **installer**, or use the **binary** file.
 
     !!! Info
-        For more information, see the [installation instructions](../../setup/installation/install_in_vm/).
+        For more information, see the [installation instructions](../../setup/installation/install_in_vm_installer/).
 
 2. Download the [sample files](https://github.com/wso2/docs-ei/blob/master/en/micro-integrator/docs/assets/attach/quick-start-guide/MI_QSG_HOME-JDK11.zip). From this point onwards, let's refer to this folder as `<MI_QSG_HOME>`.
 3. Download [curl](https://curl.haxx.se/) or a similar tool that can call an HTTP endpoint.
@@ -54,26 +54,24 @@ Let’s implement a simple integration solution that can be used to query the av
 
 To set up the integration workspace for this quick start guide, we will use an integration project that was built using WSO2 Integration Studio:
 
-Go to the `<MI_QSG_HOME>` directory. The following project files and executable backend services are available.
+Go to the `<MI_QSG_HOME>` directory. The following project files and executable back-end services are available.
 
-- **HealthcareConfigProject**: This is the ESB Config Project folder with the integration artifacts for the healthcare service. This service consists of the following REST API:
-  ![Scenario API](../assets/img/quick-start-guide/qsg-api.png)
-  <details>
-            <summary>HealthcareAPI.xml</summary>
-	    ```xml
+- **HealthcareConfigs**: This is the ESB Config module with the integration artifacts for the healthcare service. This service consists of the following REST API:
+
+      <img src="../../assets/img/quick-start-guide/qsg-api.png">
+
+      <details>
+                <summary>HealthcareAPI.xml</summary>
+    	    ```xml
             <?xml version="1.0" encoding="UTF-8"?>
             <api context="/healthcare" name="HealthcareAPI" xmlns="http://ws.apache.org/ns/synapse">
                 <resource methods="GET" uri-template="/doctor/{doctorType}">
                     <inSequence>
-                        <!-- Invoke Grand Oak service with a GET request -->
-                        <!-- Construct the payload required for Pine Valley service -->
                         <clone>
                             <target>
                                 <sequence>
                                     <call>
-                                        <endpoint>
-                                            <http method="get" uri-template="http://localhost:9090/grandOak/doctors/{uri.var.doctorType}"/>
-                                         </endpoint>
+                                        <endpoint key="GrandOakEndpoint"/>
                                     </call>
                                 </sequence>
                             </target>
@@ -81,49 +79,47 @@ Go to the `<MI_QSG_HOME>` directory. The following project files and executable 
                                 <sequence>
                                     <payloadFactory media-type="json">
                                         <format>{
-                                                  "doctorType": "$1"
-                                                }
-                                        </format>
+                                        "doctorType": "$1"
+                                        }</format>
                                         <args>
                                             <arg evaluator="xml" expression="$ctx:uri.var.doctorType"/>
                                         </args>
                                     </payloadFactory>
-                                    <!--  Invoke the Pine Valley service with a POST request -->
                                     <call>
-                                        <endpoint>
-                                            <http method="post" uri-template="http://localhost:9091/pineValley/doctors"/>
-                                        </endpoint>
+                                        <endpoint key="PineValleyEndpoint"/>
                                     </call>
                                 </sequence>
                             </target>
                         </clone>
                         <aggregate>
-                            <onComplete expression="json-eval($.doctors.doctor)">
+                            <completeCondition>
+                                <messageCount max="-1" min="-1"/>
+                            </completeCondition>
+                            <onComplete aggregateElementType="root" expression="json-eval($.doctors.doctor)">
                                 <respond/>
                             </onComplete>
                         </aggregate>
                     </inSequence>
-                 </resource>
+                    <outSequence/>
+                    <faultSequence/>
+                </resource>
             </api>
-	    ```    
-  </details>
+    	    ```    
+      </details>
 
-    !!! Note
-        For this scenario, endpoints are defined inline in the API configuration for better clarity in reading the configuration. However, the best practice is to define them as named endpoint configurations so that they can be externalized to an environment specific entity.
+- **HealthcareCompositeExporter**: This is the Composite Application Project folder, which contains the packaged CAR file of the healthcare service.
 
-- **HealthcareConfigProjectCompositeApplication**: This is the Composite Application Project folder, which contains the packaged CAR file of the healthcare service.
-
-- **Backend**: This contains an executable .jar file that contains mock backend service implementations for the Pine Valley Hospital and Grand Oak Hospital.
+- **Backend**: This contains an executable .jar file that contains mock back-end service implementations for the Pine Valley Hospital and Grand Oak Hospital.
 
 ## Running the integration artifacts
 
 Follow the steps given below to run the integration artifacts we developed on a Micro Integrator instance that is installed on a VM.
 
-#### Start backend services
+#### Start back-end services
 
 Two mock hospital information services are available in the `DoctorInfo-JDK11.jar` file located in the `<MI_QSG_HOME>/Backend/` directory. 
 
-Open a terminal window and use the following command to start the services:
+Open a terminal window, navigate to the `<MI_QSG_HOME>/Backend/` folder and use the following command to start the services:
 
 ```bash
 java -jar DoctorInfo-JDK11.jar
@@ -131,14 +127,14 @@ java -jar DoctorInfo-JDK11.jar
 
 #### Deploy the healthcare service
 
-Copy the CAR file of the healthcare service (HealthcareConfigProjectCompositeApplication_1.0.0.car) from the `<MI_QSG_HOME>/HealthcareConfigProjectCompositeApplication/target/` directory to the `<MI_HOME>/repository/deployment/server/carbonapps` directory.
+Copy the CAR file of the healthcare service (HealthcareCompositeExporter_1.0.0.car) from the `<MI_QSG_HOME>/HealthcareCompositeExporter/target/` directory to the `<MI_HOME>/repository/deployment/server/carbonapps` directory.
 
 !!! Note
-    If you [set up the product](#before-you-begin) using the **installer**, the `<MI_HOME>` [location](../../setup/installation/install_in_vm/#accessing-the-home-directory) is specific to your OS.
+    If you [set up the product](#before-you-begin) using the **installer**, the `<MI_HOME>` [location](../../setup/installation/install_in_vm_installer/#accessing-the-mi_home-directory) is specific to your OS.
 
 #### Start the Micro Integrator
 
-If you [set up the product](#before-you-begin) using the **installer**, follow the steps relevant to your OS as shown below.
+If you set up the product using the **installer**, follow the steps relevant to your OS as shown below.
 
 -   On **MacOS/Linux/CentOS**, open a terminal and execute the following command:
 
@@ -148,21 +144,15 @@ If you [set up the product](#before-you-begin) using the **installer**, follow t
     
 -   On **Windows**, go to **Start Menu -> Programs -> WSO2 -> Micro Integrator**. This will open a terminal and start the Micro Integrator.
 
-If you [set up the product](#before-you-begin) using the **binary** file, open a terminal, navigate to the `<MI_HOME>/bin` directory, and execute the command relevant to your OS as shown below.
+If you set up the product using the **binary** file, open a terminal, navigate to the `<MI_HOME>/bin` directory, and execute the command relevant to your OS as shown below.
 
--   On **MacOS/Linux/CentOS**:
+```bash tab='On MacOS/Linux/CentOS'
+sh micro-integrator.sh
+```
 
-    ```bash
-    sh micro-integrator.sh
-    ```
-
--   On **Windows**:
-
-    ```bash
-    micro-integrator.bat
-    ```
-
-Read more about [starting the Micro Integrator](../../setup/installation/install_in_vm/#running-the-micro-integrator).
+```bash tab='On Windows'
+micro-integrator.bat
+```
 
 #### Invoke the healthcare service
 
@@ -203,7 +193,11 @@ Upon invocation, you should be able to observe the following response:
 ]
 ```
 
+## Streaming Integration
+
+To get started with the Streaming Integrator of WSO2 Enterprise Integrator, see the [Streaming Integrator Quick Start Guide](https://ei.docs.wso2.com/en/7.1.0/streaming-integrator/quick-start-guide/quick-start-guide/)
+
 ## What's next?
 
 - [Develop your first integration solution](../../develop/integration-development-kickstart/).
-- Try out the **tutorials** and **examples** available in the [Learn section of our documentation](../../use-cases/integration-use-cases/).
+- Try out the **tutorials** and **examples** available in the [Learn section of our documentation](../../use-cases/learn-overview).
