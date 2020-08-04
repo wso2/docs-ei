@@ -61,7 +61,7 @@ Create the artifacts:
 3. [Create the rest api](../../../../develop/creating-artifacts/creating-an-api) with the configurations given above.
 4. [Deploy the artifacts](../../../../develop/deploy-artifacts) in your Micro Integrator.
 
-[Configure a read-only LDAP user store](../../../../setup/user_stores/setting_up_ro_ldap).
+[Configure an external user store](../../../../setup/user_stores/setting_up_a_userstore).
 
 Set up the back-end service:
 

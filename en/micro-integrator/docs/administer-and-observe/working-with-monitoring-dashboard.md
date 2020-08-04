@@ -86,7 +86,7 @@ To download the dashboard, go to [**WSO2 Micro Integrator** website](https://wso
             </th>
             <td>
                 The user name to sign in.</br></br>
-                <b>Note</b>: This should be a valid user name that is saved in the Micro Integrator server's user store. See <a href="../../../setup/user_stores/setting_up_a_userstore">configuring user stores</a> for information.
+                <b>Note</b>: This should be a valid user name that is saved in the Micro Integrator server's user store. See <a href="../../setup/user_stores/setting_up_a_userstore">configuring user stores</a> for information.
             </td>
         </tr>
         <tr>

@@ -55,7 +55,7 @@ The management API has multiple resources to provide information regarding the d
 
 -	**Resource**: `/users`
 
-	**Description**: Retrieves a list of all users stored in an [external user store](../../../setup/user_stores/setting_up_a_userstore).
+	**Description**: Retrieves a list of all users stored in an [external user store](../../setup/user_stores/setting_up_a_userstore).
 
 	**Example**:
 
@@ -77,7 +77,7 @@ The management API has multiple resources to provide information regarding the d
 
 -	**Resource**: `/users/{user_id}`
 
-	**Description**: Retrieves information related to a specified user stored in the [external user store](../../../setup/user_stores/setting_up_a_userstore).
+	**Description**: Retrieves information related to a specified user stored in the [external user store](../../setup/user_stores/setting_up_a_userstore).
 
 	**Example**:
 
@@ -99,7 +99,7 @@ The management API has multiple resources to provide information regarding the d
 
 -	**Resource**: `/users/pattern=”*”&role=admin`
 
-	**Description**: Retrieves information related to user names (stored in an [external user store](../../../setup/user_stores/setting_up_a_userstore)) that match a specific pattern and user role.
+	**Description**: Retrieves information related to user names (stored in an [external user store](../../setup/user_stores/setting_up_a_userstore)) that match a specific pattern and user role.
 
 	**Example**:
 
@@ -123,7 +123,7 @@ The management API has multiple resources to provide information regarding the d
 
 -	**Resource**: `/users`
 
-	**Description**: Adds a user to the [external user store](../../../setup/user_stores/setting_up_a_userstore). Note that only admin users can create other users with admin access.
+	**Description**: Adds a user to the [external user store](../../setup/user_stores/setting_up_a_userstore). Note that only admin users can create other users with admin access.
 
 	**Example**:
 
@@ -154,7 +154,7 @@ The management API has multiple resources to provide information regarding the d
 
 -	**Resource**: `/users`
 
-	**Description**: Removes a user from the [external user store](../../../setup/user_stores/setting_up_a_userstore). Note that only admin users can remove other users with admin access.
+	**Description**: Removes a user from the [external user store](../../setup/user_stores/setting_up_a_userstore). Note that only admin users can remove other users with admin access.
 
 	**Example**:
 

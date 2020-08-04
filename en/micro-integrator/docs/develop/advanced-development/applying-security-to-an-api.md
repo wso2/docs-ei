@@ -9,7 +9,7 @@ If required, you can implement a custom basic auth handler (instead of the defau
 
 ### Prerequisites
 
-**Before you begin**, be sure to [configure a user store](../../../setup/user_stores/setting_up_ro_ldap) for the Micro Integrator and add the required users and roles.
+**Before you begin**, be sure to [configure a user store](../../../setup/user_stores/setting_up_a_userstore) for the Micro Integrator and add the required users and roles.
 
 ### Creating the custom handler
 
@@ -168,7 +168,7 @@ You can now send a request to the secured API.
 
 ### Prerequisites
 
-**Before you begin**, be sure to [configure a user store](../../../setup/user_stores/setting_up_ro_ldap) for the Micro Integrator and add the required users and roles.
+**Before you begin**, be sure to [configure a user store](../../../setup/user_stores/setting_up_a_userstores) for the Micro Integrator and add the required users and roles.
 
 ### Setting up the Kerberos server
 
@@ -289,7 +289,7 @@ You can generate an OAuth base security token using WSO2 Identity Server, and th
 
 ### Prerequisites
 
-**Before you begin**, be sure to [configure a user store](../../../setup/user_stores/setting_up_ro_ldap) for the Micro Integrator and add the required users and roles.
+**Before you begin**, be sure to [configure a user store](../../../setup/user_stores/setting_up_a_userstore) for the Micro Integrator and add the required users and roles.
     
 ### Creating the custom handler
     
@@ -505,7 +505,7 @@ You can connect a REST client to a secured back-end service (such as a SOAP serv
 
 ### Prerequisites
 
-**Before you begin**, be sure to [configure a user store](../../../setup/user_stores/setting_up_ro_ldap) for the Micro Integrator and add the required users and roles.
+**Before you begin**, be sure to [configure a user store](../../../setup/user_stores/setting_up_a_userstore) for the Micro Integrator and add the required users and roles.
 
 ### Creating the REST API
         
@@ -609,7 +609,7 @@ REST clients typically use Basic Auth over HTTP to authenticate the user name an
 
 ### Prerequisites
 
-**Before you begin**, be sure to [configure a user store](../../../setup/user_stores/setting_up_ro_ldap) for the Micro Integrator and add the required users and roles.
+**Before you begin**, be sure to [configure a user store](../../../setup/user_stores/setting_up_a_userstore) for the Micro Integrator and add the required users and roles.
 
 ### Creating the REST API
 To achieve this transformation, you configure the Micro Integrator to expose the API to the REST client as shown in the previous example, but you add the HTTPS protocol and Basic Auth handler to the configuration as shown below:
