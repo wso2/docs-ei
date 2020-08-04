@@ -1,6 +1,6 @@
 # A topic used to broadcast a message to all consumers
 
-This sample demonstrates how WSO2 Micro Integrator can be used to implement a publisher-subscriber messaging scenario using RabbitMQ topics. 
+This sample demonstrates how WSO2 Micro Integrator can be used to implement a publisher-subscriber messaging scenario using RabbitMQ topics. That is, a message publisher can broadcast a message to multiple consumers through the RabbitMQ topic.
 
 As shown below, the publisher proxy in the Micro Integrator will publish messages to a RabbitMQ topic, which multiple subscriber proxies (defined in the Micro Integrator) will consume.
 
