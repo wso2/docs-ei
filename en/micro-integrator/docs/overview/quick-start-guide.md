@@ -195,7 +195,7 @@ Upon invocation, you should be able to observe the following response:
 
 ## Streaming Integration
 
-To get started with the Streaming Integrator of WSO2 Enterprise Integrator, see the [Streaming Integrator Quick Start Guide](../../../streaming-integrator/docs/quick-start-guide/quick-start-guide.md)
+To get started with the Streaming Integrator of WSO2 Enterprise Integrator, see the [Streaming Integrator Quick Start Guide](https://ei.docs.wso2.com/en/7.1.0/streaming-integrator/quick-start-guide/quick-start-guide/)
 
 ## What's next?
 
