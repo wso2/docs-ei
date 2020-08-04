@@ -114,9 +114,9 @@ Now, let's look at how you can use the new connector in a mediation sequence.
        <target>
           <inSequence>
              <property name="searchQuery" expression="json-eval($.searchQuery)"/>
-             <googlebooks.listVolume>
+             <googleBooks.listVolume>
                 <searchQuery>{$ctx:searchQuery}</searchQuery>
-             </googlebooks.listVolume>
+             </googleBooks.listVolume>
              <respond/>
           </inSequence>
        </target>
