@@ -25,7 +25,25 @@ Disadvantages of asynchronous messaging includes the additional component of a m
 			</ul>
 		</td>
 		<td>
-			<b>Examples</b>
+			<b>RabbitMQ Examples</b>
+            <ul>
+                <li><a href="../../../use-cases/examples/rabbitmq_examples/point-to-point-rabbitmq">Point to Point</a></li>
+                <li><a href="../../../use-cases/examples/rabbitmq_examples/pub-sub-rabbitmq">Publish/Subscribe</a></li>
+                <li>Guaranteed Delivery 
+                    <ul>
+                        <li><a href="../../../use-cases/examples/rabbitmq_examples/store-forward-rabbitmq">Message Store and Message Processor</a></li>
+                        <li><a href="../../../use-cases/examples/rabbitmq_examples/retry-delay-failed-msgs-rabbitmq">Retry failed messages with a delay</a></li>
+                        <li><a href="../../../use-cases/examples/rabbitmq_examples/requeue-msgs-with-errors-rabbitmq">Requeue a message preserving the order</a></li>
+                        <li><a href="../../../use-cases/examples/rabbitmq_examples/move-msgs-to-dlq-rabbitmq">Publish messages to DLX</a></li>
+                    </ul>
+                </li>
+                <li>
+                	<a href="../../../use-cases/examples/rabbitmq_examples/request-response-rabbitmq">Dual Channel</a>
+                </li>
+            </ul>
+		</td>
+		<td>
+			<b>JMS Examples</b>
 			<ul>
 				<li>
 					<a href="../../../use-cases/examples/jms_examples/consuming-jms">Consuming JMS Messages</a>

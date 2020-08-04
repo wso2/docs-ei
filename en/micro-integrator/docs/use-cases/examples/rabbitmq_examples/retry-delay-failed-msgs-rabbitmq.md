@@ -1,18 +1,15 @@
 # Control the number of retries and delay message in case of error
 
-This sample demonstrates how you can control the number of message delivery retries to an endpoint and also to delay 
-the message delivery (in the event of an error in delivery).
+This sample demonstrates how the WSO2 Micro Integrator can guarantee message delivery to an endpoint by controling the number of delivery retries during errors. You can also configure a delay in message delivery from the RabbitMQ broker.
 
 <img src="../../../../assets/img/rabbitmq/rabbitmq-retry-delay-messages.png">
 
-The Micro Integrator first consumes a message from RabbitMQ and attempts to deliver it to the endpoint. 
-However, if there is an error in delivery, the message is moved to the dead letter exchange (DLX) configured in RabbitMQ.
-The message will then be re-queued by RabbitMQ subject to a specified **delay**. Note that you have to configure this delay 
-in the RabbitMQ broker itself (using the `x-message-ttl` property). If the message delivery to the endpoint continuous to fail, 
-the Micro Integrator will **retry** for the number times specified by the `rabbitmq.message.max.dead.lettered.count`
-parameter in the proxy. When this value is exceeded, the message will be either discarded or moved to a different 
-queue in RabbitMQ (specified by the `rabbitmq.message.error.exchange.name` and `rabbitmq.message.error.queue.routing.key` 
-parameters in the proxy.
+1.  The Micro Integrator first consumes a message from RabbitMQ and attempts to deliver it to the endpoint. 
+2.  When there is an error in delivery, the `SET_ROLLBACK_ONLY` property in the Micro Integrator moves the message to the dead letter exchange (DLX) configured in RabbitMQ.
+3.  The message will then be re-queued by RabbitMQ subject to a specified **delay**. Note that you have to configure this delay in the RabbitMQ broker itself (using the `x-message-ttl` property). 
+4.  If the message delivery to the endpoint continuous to fail, the Micro Integrator will **retry** for the number times specified by the `rabbitmq.message.max.dead.lettered.count` parameter in the proxy. 
+5.  When the maximum retry count is exceeded, the message will be either discarded or moved to a different 
+queue in RabbitMQ (specified by the `rabbitmq.message.error.exchange.name` and `rabbitmq.message.error.queue.routing.key` parameters in the proxy.
 
 ## Synapse configurations
 

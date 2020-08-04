@@ -1,7 +1,8 @@
 # Publish unacked messages to Dead Letter Exchange
 
-This sample demonstrates how you can configure a RabbitMQ consumer proxy to move the failed messages into a 
-dead letter exchange. When a message is sent to a consumer, if the message fails to deliver, it will be routed to the DLX.
+This sample demonstrates how WSO2 Micro Integrator can ensure guaranteed delivery of messages by using the <b>Dead Letter Exchange (DLX)</b> of RabbitMQ.
+
+As shown below, a proxy service in the Micro Integrator consumes messages from the RabbitMQ broker and sends it to the endpoint. If the message delivery fails, the Micro Integrator will route the message to the dead letter exchange of RabbitMQ.
 
 <img src="../../../../assets/img/rabbitmq/rabbitmq-dead-letter-exchange.png">
 
