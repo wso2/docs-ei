@@ -10,9 +10,9 @@ In the above scenario, the following takes place:
 
 1. The client makes a call to the Healthcare API created using Micro Integrator.
 
-2. The Healthcare API calls the Pine Valley Hospital backend service and gets the queried information.
+2. The Healthcare API calls the Pine Valley Hospital back-end service and gets the queried information.
 
-3. The Healthcare API calls the Grand Oak Hospital backend service and gets the queried information.
+3. The Healthcare API calls the Grand Oak Hospital back-end service and gets the queried information.
 
 4. The response is returned to the client with the required information.
 
@@ -54,9 +54,9 @@ Let’s implement a simple integration solution that can be used to query the av
 
 To set up the integration workspace for this quick start guide, we will use an integration project that was built using WSO2 Integration Studio:
 
-Go to the `<MI_QSG_HOME>` directory. The following project files and executable backend services are available.
+Go to the `<MI_QSG_HOME>` directory. The following project files and executable back-end services are available.
 
-- **HealthcareConfigProject**: This is the ESB Config Project folder with the integration artifacts for the healthcare service. This service consists of the following REST API:
+- **HealthcareConfigs**: This is the ESB Config module with the integration artifacts for the healthcare service. This service consists of the following REST API:
   ![Scenario API](../assets/img/quick-start-guide/qsg-api.png)
   <details>
             <summary>HealthcareAPI.xml</summary>
@@ -111,19 +111,19 @@ Go to the `<MI_QSG_HOME>` directory. The following project files and executable 
     !!! Note
         For this scenario, endpoints are defined inline in the API configuration for better clarity in reading the configuration. However, the best practice is to define them as named endpoint configurations so that they can be externalized to an environment specific entity.
 
-- **HealthcareConfigProjectCompositeApplication**: This is the Composite Application Project folder, which contains the packaged CAR file of the healthcare service.
+- **HealthcareCompositeExporter**: This is the Composite Application Project folder, which contains the packaged CAR file of the healthcare service.
 
-- **Backend**: This contains an executable .jar file that contains mock backend service implementations for the Pine Valley Hospital and Grand Oak Hospital.
+- **Backend**: This contains an executable .jar file that contains mock back-end service implementations for the Pine Valley Hospital and Grand Oak Hospital.
 
 ## Running the integration artifacts
 
 Follow the steps given below to run the integration artifacts we developed on a Micro Integrator instance that is installed on a VM.
 
-#### Start backend services
+#### Start back-end services
 
 Two mock hospital information services are available in the `DoctorInfo-JDK11.jar` file located in the `<MI_QSG_HOME>/Backend/` directory. 
 
-Open a terminal window and use the following command to start the services:
+Open a terminal window, navigate to the `<MI_QSG_HOME>/Backend/` folder and use the following command to start the services:
 
 ```bash
 java -jar DoctorInfo-JDK11.jar
@@ -131,7 +131,7 @@ java -jar DoctorInfo-JDK11.jar
 
 #### Deploy the healthcare service
 
-Copy the CAR file of the healthcare service (HealthcareConfigProjectCompositeApplication_1.0.0.car) from the `<MI_QSG_HOME>/HealthcareConfigProjectCompositeApplication/target/` directory to the `<MI_HOME>/repository/deployment/server/carbonapps` directory.
+Copy the CAR file of the healthcare service (HealthcareCompositeExporter_1.0.0.car) from the `<MI_QSG_HOME>/HealthcareCompositeExporter/target/` directory to the `<MI_HOME>/repository/deployment/server/carbonapps` directory.
 
 !!! Note
     If you [set up the product](#before-you-begin) using the **installer**, the `<MI_HOME>` [location](../../setup/installation/install_in_vm_installer/#accessing-the-mi_home-directory) is specific to your OS.
