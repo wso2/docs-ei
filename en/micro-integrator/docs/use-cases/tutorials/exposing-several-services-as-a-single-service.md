@@ -575,8 +575,8 @@ You can now start updating the API resource with the mediation flow.
                    <li>Select <strong>Expression</strong> from the list.
                     </li>
                    <li>
-                      Enter "$ctx:uri.var.appointment_id".
-                      Note that the "$ctx" method is similar to using the <code>get-property</code> method. This method checks in the message context.
+                      Enter `$ctx:uri.var.appointment_id`.
+                      Note that the `$ctx` method is similar to using the <code>get-property</code> method. This method checks in the message context.
                    </li>
                    <li>Click <strong>OK.</strong> <strong><br/>
                       </strong>
