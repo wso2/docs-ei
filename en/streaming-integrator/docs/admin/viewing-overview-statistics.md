@@ -5,11 +5,11 @@
 
 ## Viewing overall statistics
 
- This dashboard displays statistics related to streaming events that are received and/or published by all the CDC or file related Siddhi extensions.
+ This dashboard displays statistics related to streaming events that are received and/or published by all the file, RDBMS, and CDC related Siddhi extensions.
  
 ### Total Inputs
 
-This indicates all the streaming events received by WSO2 Enterprise Integrator via CDC and file related Siddhi extensions.
+This indicates all the streaming events received by WSO2 Streaming Integrator via CDC and file related Siddhi extensions.
 
 ### Total Outputs
 

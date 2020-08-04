@@ -19,3 +19,7 @@ As shown above, if your organization is running on a decentralized, cloud-native
 ## Graphical integration desigining
 
 WSO2 Micro Integrator is coupled with [WSO2 Integration Studio](../../develop/WSO2-Integration-Studio); a comprehensive graphical integration flow designer for building integrations using a simple drag-and-drop functionality.
+
+## Streaming integration
+
+The Streaming Integrator of WSO2 Enterprise Integrator allows you to integrate static data sources with streaming data sources. Thus, it enables various types applications (e.g., files, cloud based applications, data stores, streaming applications) to access streaming data as well as expose their output in a streaming manner. This is useful for performing ETL (Extract, Transform, Load) operation, capturing change data (i.e., CDC operations), and stream processing.

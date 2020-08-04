@@ -18,6 +18,7 @@ To import dashboards, follow the procedure below:
 
 6. Click **Import**.
 
+
 ## Organizing dashboards in folders
 
 !!! Before you begin:
@@ -77,4 +78,23 @@ In the message that appears to confirm whether you want to delete the dashboard,
 
 ## Viewing dashboards
 
-For detailed information on viewing dashboards, sharing them and analyzing the presented content, see [Viewing Dashboards]().
+To view a dashboard, follow the procedure below:
+
+1. Navigate to the **Dashboards**/**Manage** tab. 
+
+2. To expand the folder that contains the dashboard you want to view, click on it.
+
+    ![Expand Folder](../images/managing-grafana-dashboard/expand-folder.png)
+ 
+3. Click on the specific dashboard that you want to view.
+
+    ![View Dashboard](../images/managing-grafana-dashboard/view-dashboard.png)
+
+4. Once the dashboard opens, click on the bar shown below to expand it and specify the time range for which you want to view statistics.
+
+    ![Select Time Range](../images/managing-grafana-dashboard/view-dashboard.png)
+    
+    Once you expand the time range bar, you can select the required time interval or specify a custom time interval.
+    
+    ![Select or Specify Time Range](../images/managing-grafana-dashboard/select-or-specify-time-range.png)
+    
