@@ -11,7 +11,7 @@ An integration project is the recommended way of creating an “Integration Solu
 2. Open WSO2 Integration Studio and click **New Integration Project** in the **Getting Started** view as shown below.
     <img src="../../assets/img/new-project/new-integration-project.png" title="New Integration Project" width="700" alt="New Integration Project"/>
 
-3. In the **New Integration Project** dialog that opens, enter a name for your integration project. Select the relevant check boxes if you want to create **Registry Resources**, **Connector Exporter**, **Docker Exporter**, or **Kubernetes Exporter** in addition to the **ESB Configs** and **Composite Exporter**.
+3. In the **New Integration Project** dialog box that opens, enter a name for your integration project. Select the relevant check boxes if you want to create **Registry Resources**, **Connector Exporter**, **Docker Exporter**, or **Kubernetes Exporter** in addition to the **ESB Configs** and **Composite Exporter**.
     <img src="../../assets/img/new-project/create-a-project.png" title="Create a New Integration Project" width="700" alt="Create a New Integration Project"/>
 
 ## Sub projects

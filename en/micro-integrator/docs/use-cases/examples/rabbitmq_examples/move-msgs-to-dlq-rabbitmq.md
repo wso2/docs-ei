@@ -3,6 +3,8 @@
 This sample demonstrates how you can configure a RabbitMQ consumer proxy to move the failed messages into a 
 dead letter exchange. When a message is sent to a consumer, if the message fails to deliver, it will be routed to the DLX.
 
+<img src="../../../../assets/img/rabbitmq/rabbitmq-dead-letter-exchange.png">
+
 ## Synapse configurations
 
 See the instructions on how to [build and run](#build-and-run) this example.

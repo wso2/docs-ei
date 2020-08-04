@@ -62,7 +62,7 @@ nav:
         - 'Protocol Switching': 'use-cases/integration-use-case/protocol-switching-overview.md'
         - 'Gateway': 'use-cases/integration-use-case/gateway-overview.md'
         - 'File Processing': 'use-cases/integration-use-case/file-processing-overview.md'
-        - 'Periodic Execution of Integration Processes': 'use-case/integration-use-case/scheduled-task-overview.md'
+        - 'Periodic Execution of Integration Processes': 'use-cases/integration-use-case/scheduled-task-overview.md'
       - Tutorials:
         - 'Sending a Simple Message to a Service': 'use-cases/tutorials/sending-a-simple-message-to-a-service.md'
         - 'Message Routing': 'use-cases/tutorials/routing-requests-based-on-message-content.md'
@@ -217,8 +217,8 @@ nav:
         - 'Troubleshooting WSO2 Integration Studio': 'develop/troubleshooting-WSO2-Integration-Studio.md'
       - Creating Projects:
         - 'Creating an Integration Project': 'develop/create-integration-project.md'
-        - 'Creating a Data Service Configs': 'develop/create-data-services.md'
-        - 'Creating a Datasource Configs': 'develop/create-datasources.md'
+        - 'Creating Data Service Configs': 'develop/create-data-services-configs.md'
+        - 'Creating Datasource Configs': 'develop/create-datasources.md'
         - 'Importing Projects': 'develop/importing-projects.md'
         - 'Exporting Projects': 'develop/export_project.md'
         - 'Creating Docker Exporter': 'develop/create-docker-project.md'
