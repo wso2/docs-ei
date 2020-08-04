@@ -61,7 +61,9 @@ Let's create an integration project with the required modules (to store artifact
 
     <img src="../../assets/img/developing-first-integration/2-dev-get-started-integration-proj.png" width="500">
 
-3. Click **Finish**. The integration project with the ESB Config modul (`HealthcareConfigs`) and Composite Exporter module (`HealthcareCompositeExporter`) are created as shown below.
+3. Click **Finish**. 
+
+	The integration project with the ESB Config module (`HealthcareConfigs`) and Composite Exporter module (`HealthcareCompositeExporter`) are created as shown below.
 
     <img src="../../assets/img/developing-first-integration/3-dev-get-started-proj-explorer.png" width="300">
 
@@ -75,7 +77,7 @@ Let's create two Endpoint artifacts for the two healthcare services:
 
     <img src="../../assets/img/developing-first-integration/4-dev-get-started-select-endpoint.png" width="500">
     
-2.  Select **Create a New Endpoint** and click **Next**.
+2.  In the <b>New Endpoint Artifact</b> dialog box that opens, select **Create a New Endpoint** and click **Next**.
 3.  For the ‘Grand Oak hospital service’, let’s use the following values:
 
     <table>
@@ -273,7 +275,7 @@ go to **New** → **REST API** to open the **API Artifact Creation Options** dia
     </table>
 
     Note the `$1` in the Payload format. It denotes a parameter that can get a value assigned dynamically. The value for the parameters need to be assigned using Arguments **(Args)**. 
-    **Args** can be added using the **PayloadFactoryArgument** dialog box, which appears when you click the + sign.
+    **Args** can be added using the **PayloadFactoryArgument** dialog box, which appears when you click the (<img src="../../assets/img/tutorials/common/plus-icon.png" width="20">) sign.
 
     <img src="../../assets/img/developing-first-integration/14-dev-get-started-payloadfactory-expression.png" width="700">
         
@@ -388,7 +390,7 @@ The embedded Micro Integrator starts with the deployed artifacts. You will see t
 
 Once you have downloaded and set up the Micro Integrator locally, follow the steps given below.
 
-1.  **Export the artifacts as a deployable CAR file**: Right-click `HealthcareConfigProjectProjectCompositeApplication` in WSO2 Integration Studio and select **Export Composite Application Project**.
+1.  **Export the artifacts as a deployable CAR file**: Right-click `HealthcareCompositeExporter` in WSO2 Integration Studio and select **Export Composite Application Project**.
    
 2.  **Deploy the Healthcare service**: Copy the exported CAR file of the Healthcare service to the `MI_HOME/repository/deployment/server/carbonapps` directory.
 
@@ -404,14 +406,13 @@ Once you have downloaded and set up the Micro Integrator locally, follow the ste
 
     If you set up the product using the **binary** distribution, open a terminal, navigate to the `<MI_HOME>/bin` directory, and execute the command relevant to your OS as shown below.
 
-    -   On **MacOS/Linux/CentOS**:
-        ```bash
-        sh micro-integrator.sh
-        ```
-    -   On **Windows**:
-        ```bash
-        micro-integrator.bat
-        ```
+    ```bash tab='On MacOS/Linux/CentOS'
+    sh micro-integrator.sh
+    ```
+
+    ```bash tab='On Windows'
+    micro-integrator.bat
+    ```
 
 ## Observe deployed artifacts
 
