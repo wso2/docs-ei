@@ -43,14 +43,14 @@ The log message type sent to the system log server.
 
 ## Setting the Threshold
 
-Filters log entries based on their level. For example, threshold set to 'WARN' will allow the log entry to pass into appender. If its level is 'WARN', 'ERROR' or 'FATAL', other entries will be discarded. This is the minimum log level at which you can log a message. See descriptions of the available log levels .
+Filters log entries based on their level. For example, threshold set to 'WARN' will allow the log entry to pass into appender. If its level is 'WARN', 'ERROR' or 'FATAL', other entries will be discarded. This is the minimum log level at which you can log a message. See descriptions of the available log levels.
 
 ## Configuring Log4j2 Appenders
 
 This section allows you to configure appenders individually. Log4j2 allows logging requests to print to multiple destinations. These output destinations are called 'Appenders'. You can attach several appenders to one logger.
 
 -   **CARBON_CONSOLE**: Logs to the console when the server is running.
--   **CARBON_LOGFILE**: Writes the logs to MI_HOME/repository/logs/wso2carbon.log .
+-   **CARBON_LOGFILE**: Writes the logs to `MI_HOME/repository/logs/wso2carbon.log`.
 -   **SERVICE_APPENDER**: Writes service invocations to `MI_HOME/repository/logswso2-MI-service.log`.             
 -   **ERROR_LOGFILE**: Writes warning/error messages to the `MI_HOME/repository/logs/wso2-MI-service.log`.
 -   **TRACE _ APPENDER**: Writes tracing/debug messages to the `MI_HOME/repository/logs/wso2-MI-trace.log` for tracing enabled services.
