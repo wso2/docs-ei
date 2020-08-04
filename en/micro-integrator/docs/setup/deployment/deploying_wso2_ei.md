@@ -9,7 +9,7 @@ This deployment scenario is a two-node Micro Integrator deployment. That is, two
 
 ## Install the Micro Integrator
 
-[Download and install WSO2 Micro Integrator](../../setup/installation/install_in_vm.md).
+[Download and install WSO2 Micro Integrator](../../../setup/installation/install_in_vm_installer).
 
 Let's set up two instances of the Micro Integrator server.
 

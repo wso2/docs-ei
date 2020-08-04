@@ -121,7 +121,7 @@ Click on the relevant tab to view the syntax for a script mediator using an Inli
 
 ## Configuration
 
-- **Inline**: If this script type is selected, the script is specified inline. The parameters available to configure a Script mediator using an inlinem script are as follows.
+- **Inline**: If this script type is selected, the script is specified inline. The parameters available to configure a Script mediator using an inline script are as follows.
     <table>
     <thead>
     <tr class="header">

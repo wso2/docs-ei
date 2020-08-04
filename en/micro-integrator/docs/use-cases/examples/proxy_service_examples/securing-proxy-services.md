@@ -65,7 +65,7 @@ Set up the SOAP client:
 2. Create a new SOAP project in the SoapUI using following wsdl file:
 
    ```bash
-   http://localhost:8253/services/StockQuoteProxy?wsdl
+   https://localhost:8253/services/StockQuoteProxy?wsdl
    ```
 3.  Use the `getQuote` operation. 
 4.  Set [Authorization](https://www.soapui.org/soap-and-wsdl/authenticating-soap-requests.html) in the SoapUI request. You will need this to call a secure service.

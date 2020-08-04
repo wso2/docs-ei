@@ -57,7 +57,7 @@ Alternatively, you can use a custom file stored in a file system instead of the 
 
 **Updating the System property**
 
-In the the product startup scripts (integrator.sh and integrator.bat file), which are available in the `<MI_HOME>/bin` directory, a system variable is defined as shown below and the value is set to default. When the system property is set to default as shown below, the system reads the parameters from the file.properties file that is available in the <>/conf directory.
+In the product startup scripts (integrator.sh and integrator.bat file), which are available in the `<MI_HOME>/bin` directory, a system variable is defined as shown below and the value is set to default. When the system property is set to default as shown below, the system reads the parameters from the file.properties file that is available in the `MI_HOME/conf` directory.
 
 ```bash
 -Dproperties.file.path=default
