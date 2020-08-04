@@ -1,15 +1,15 @@
-# Upgrading from Streaming Integrator 1.0.1
+# Upgrading from Streaming Integrator 1.0.0
 
-To upgrade from Streaming Integrator 1.0.1 to Streaming Integrator 1.1.0, follow the steps below:
+To upgrade from Streaming Integrator 1.0.0 to Streaming Integrator 1.1.0, follow the steps below:
 
 !!! tip "Before you begin:"
     Download Streaming Integrator 1.1.0 version from the [Streaming Integrator Page](https://wso2.com/integration/streaming-integrator/)
 
 ## Step 1: Deploy the Siddhi applications
 
-To deploy the Siddhi applications you have been running in Streaming Integrator 1.0.1 to Streaming Integrator 1.1.0, follow the procedure below:
+To deploy the Siddhi applications you have been running in Streaming Integrator 1.0.0 to Streaming Integrator 1.1.0, follow the procedure below:
 
-1. Open the `<SI 1.0.1_HOME>/wso2/server/deployment/siddhi-files` directory. Then copy all the siddhi files in it.
+1. Open the `<SI 1.0.0_HOME>/wso2/server/deployment/siddhi-files` directory. Then copy all the siddhi files in it.
 
 2. Paste all the Siddhi files that you copied in the `<SI 1.1.0_HOME>/wso2/server/deployment/siddhi-files` directory.
 
@@ -17,7 +17,7 @@ Now your Siddhi applications are deployed in Streaming Integrator 1.1.0.
 
 ## Step 2: Update configuration files
 
-To configure Streaming Integrator 1.1.0 the same way as Streaming Integrator 1.0.1, open the `<SI 1.0.1_HOME>/conf/server/deployment.yaml` file. Then read each line, and update the `<SI 1.1.0_HOME>/conf/server/deployment.yaml` file with the same values
+To configure Streaming Integrator 1.1.0 the same way as Streaming Integrator 1.0.0, open the `<SI 1.0.0_HOME>/conf/server/deployment.yaml` file. Then read each line, and update the `<SI 1.1.0_HOME>/conf/server/deployment.yaml` file with the same values
 
 !!! note
     The deployment.yaml files must not be copied directly between servers due to certain differences in the parameters included in the two Streaming Integrator versions.
