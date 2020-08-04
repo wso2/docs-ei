@@ -8,7 +8,7 @@ Follow the instructions given below to create a new [Message Store](../../../ref
 
 1.	Right-click the [ESB Config project](../../creating-projects/#esb-config-project) and go to **New → Message Store** to open the **New Message Store Artifact** dialog box.
 
-	<img src="../../../assets/img/create_artifacts/new_message_store/select-message-store.png">
+	<img src="../../../assets/img/create_artifacts/new_message_store/select-message-store.png" width="600">
 
 2.	Select the **Create a new message-store artifact** option and click **Next**.
 

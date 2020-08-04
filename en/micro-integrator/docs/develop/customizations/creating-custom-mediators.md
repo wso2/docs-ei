@@ -26,7 +26,7 @@ The mediator project is created in the workspace location you specified with a n
 
 Follow the steps below to import a Java mediator project (that includes a Java class, which extends the `         org.apache.synapse.mediators.AbstractMediator        ` class) to WSO2 Integration Studio.
 
-1.  Open <b>WSO2 Integration Studio</b> and click <b>Miscellaneous → Create Mediator Project</b> in the <b>Getting Started</b> view as shown below.
+1.  Open <b>WSO2 Integration Studio</b> and click on <b>Create Mediator Project</b> in the <b>Getting Started</b> view as shown above.
 2.  In the dialog that opens, select **Import From Workspace** and click **Next**.
 3.  Specify the mediator project in this workspace that you want to import. Only projects with source files that extend `org.apache.synapse.mediators.AbstractMediator` are listed. Optionally, you can change the location where the mediator project will be created and add it to working sets.
 4.  Click **Finish**.

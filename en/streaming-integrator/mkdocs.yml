@@ -241,11 +241,7 @@ nav:
     - 'Monitoring SI via Grafana Dashboards':
       - 'Configuring Grafana Dashboards': 'admin/setting-up-grafana-dashboards.md'
       - 'Managing Grafana Dashboards': 'admin/managing-grafana-dashboards.md'
-      - 'Viewing Grafana Dashboards':
-        - 'Viewing Overview Statistics': 'admin/viewing-overview-statistics.md'
-        - 'Viewing CDC Statistics': 'admin/viewing-cdc-statistice.md'
-        - 'Viewing File Statistics': 'admin/viewing-file-statistice.md'
-        - 'Viewing RDBMS Statistics': 'admin/viewing-rdbms-statistice.md'
+      - 'Monitoring the WSO2 SI with Grafana': 'admin/viewing-dashboards.md'
     - 'Monitoring SI via Analytics Dashboard': 'admin/monitoring-the-streaming-integrator.md'
   - 'Connectors':
     - 'Streaming Integrator Connectors Overview': 'connectors/connectors-overview.md'

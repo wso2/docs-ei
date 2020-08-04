@@ -12,7 +12,7 @@ Log growth in [Carbon logs](../monitoring_logs/#carbon-logs) can be managed by t
 -   **Log rotation based on time as opposed to size**: This helps to inspect the events that occurred during a specific time.
 -   Log files are archived to maximise the use of space.
 
-The log4j2- based logging mechanism uses appenders to
+The log4j2-based logging mechanism uses appenders to
 append all the log messages into a file. That is, at the end of the log
 rotation period, a new file will be created with the appended logs and
 archived. The name of the archived log file will always contain the date
