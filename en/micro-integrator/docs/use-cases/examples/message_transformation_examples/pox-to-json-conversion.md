@@ -4,13 +4,13 @@ The following examples explain different methods of converting POX messages to J
 
 ## Using the messageType property
 
-Let's convert a POX message to JSON using the [messageType property](../../../../references/mediators/property-reference/generic-Properties).
+Let's convert a POX message to JSON using the [messageType property](../../../../references/mediators/property-reference/generic-Properties#messagetype).
 
 ### Synapse configuration
 Following is a sample proxy service configuration that we can use to implement this scenario. 
 
 !!! Tip
-    Note that after the [messageType property](../../../../references/mediators/property-reference/generic-Properties) completes the message convertion, we are using the [Respond mediator](../../../../references/mediators/respond-Mediator) to return the converted message back to the JSON client.
+    Note that after the [messageType property](../../../../references/mediators/property-reference/generic-Properties#messagetype) completes the message convertion, we are using the [Respond mediator](../../../../references/mediators/respond-Mediator) to return the converted message back to the JSON client.
 
 See the instructions on how to [build and run](#build-and-run-example-1) this example.
 
