@@ -23,8 +23,14 @@ A **data service** provides a web service interface to access data that is stor
         ```bash
         CREATE DATABASE Employees;
         ```
+    4. Create a user and grant the user access to the Database.
+    
+        ```
+       CREATE USER 'user'@'localhost' IDENTIFIED BY 'password';
+       GRANT ALL PRIVILEGES ON Employees.* TO 'user'@'localhost';
+       ```
 
-    4.  Create the Employee table inside the Employees database:
+    5.  Create the Employee table inside the Employees database:
 
         ```bash
         USE Employees;
@@ -36,25 +42,39 @@ A **data service** provides a web service interface to access data that is stor
 
 Follow the steps given below to create a new data service.
 
-#### Creating a data service project
+#### Creating a Maven Multi Module project
 
 All the data services' artifacts that you create should be stored in a
-Data Service project. Follow the steps given below to create a project:
+Data Service Module. Follow the steps given below to create a module:
 
-1.  Open **WSO2 Integration Studio** and click **New Data Service** in the **Getting Started** tab as shown below.  
-    ![](../../assets/img/create_project/create_data_service_project.png)
+1.  Open **WSO2 Integration Studio** and click **New Maven Multi Module Project** in 
+    the **Getting Started** tab as shown below.  
+    ![](../../assets/img/create_project/create_mmm_project.png)
 
-2.  In the **New Data Service Project** dialog box that opens, give a name
-    for the project and click **Next**.
+2.  In the **Maven Modules Creation** dialog box that opens, give a name
+    (artifactId) for the project.
 3.  If required, change the Maven information about the project.
 4.  Click **Finish**. The new project will be listed in the project
+    explorer.
+    
+#### Creating a data service module
+
+All the data services' artifacts that you create should be stored in a
+Data Service Module. Follow the steps given below to create a module:
+
+1.  Right click on the created **Maven Multi Module Project** and goto 
+    **New -> Data Service Configs**.  
+2.  In the **New Data Service Configs** dialog box that opens, give a name
+    for the config module and click **Next**.
+3.  If required, change the Maven information about the config module.
+4.  Click **Finish**. The new module will be listed in the project
     explorer.
 
 #### Creating the data service
 
 Follow the steps given below to create the data service file:
 
-1.  Select the already created **Data Service Project** in the project
+1.  Select the already-created **Data Service Config** module in the project
     explorer, right-click and go to **New -> Data Service**.  
     The **New Data Service** window will open as shown below.  
     ![](../../assets/img/tutorials/data_services/119130577/119130578.png)
@@ -78,7 +98,7 @@ Follow the steps given below to create the data service file:
     </table>
     
 A data service file (DBS file) will now be created in your data service
-project as shown below.
+module as shown below.
 
 ![](../../assets/img/tutorials/data_services/dataservice_view.png)
 
@@ -98,7 +118,8 @@ project as shown below.
     | Database Engine                    | MySQL                                 |
     | Driver Class                       | com.mysql.jdbc.Driver                 |
     | URL                                | jdbc:mysql://localhost:3306/Employees |
-    | User Name                          | root                                  |
+    | User Name                          | user                                  |
+    | Password                           | password                              |
 
 4.  Click **Test Connection** to expand the section.
     ![](../../assets/img/tutorials/data_services/test_connection.png)
@@ -125,15 +146,32 @@ configured in the previous step:
 
 4.  Click **Input Mappings** to expand the section. 
     ![](../../assets/img/tutorials/data_services/input_mapping_expanded.png)
-5.  Click **Add New** to open the **Add Input Mapping** page.
-    ![](../../assets/img/tutorials/data_services/add_input_mappings.png)
-5.  Enter the following input mapping details:
+5.  Click **Generate** to generate input mappings automatically.
 
-    | Property       | Description    |
-    |----------------|----------------|
-    | Mapping Name   | EmployeeNumber |
-    | Parameter Type | SCALAR         |
-    | SQL Type       | STRING         |
+    !!! Tip
+        Alternatively, you can manually add the mappings:
+        1. Click **Add New** to open the **Add Input Mapping** page.
+        2. Enter the following input element details.
+            <table>
+            <tr>
+                    <th>Property</th>
+                    <th>Description</th>
+                </tr>
+            <tbody>
+            <tr class="odd">
+            <td>Mapping Name</td>
+            <td>EmployeeNumber</td>
+            </tr>
+            <tr class="even">
+            <td>Parameter Type</td>
+            <td>SCALAR</td>
+            </tr>
+            <tr class="odd">
+            <td>SQL Type</td>
+            <td>SCALAR</td>
+            </tr>
+            </tbody>
+            </table>
 
 5.  Save the input mapping.
     ![](../../assets/img/tutorials/data_services/input_mappings.png)
@@ -230,9 +268,9 @@ Now, let's create a REST resource that can be used to invoke the query.
 
 ### Step 3: Package the artifacts
 
-Create a new composite application project:
+Create a new composite exporter module
 
-1.  Right-click the project explorer and go to <b>New -> Project</b> and select <b>Composite Application Project</b> from the list.
+1.  Right-click the **Maven Multi Module Project** go to <b>New -> Composite Exporter</b>.
 2.  In the dialog box that opens, select the data service file, and click **Finish**.  
     ![Create new CAPP](../../assets/img/tutorials/data_services/composite_app.png)
 
@@ -240,7 +278,7 @@ Package the artifacts in your composite exporter to be able to deploy the artifa
 
 1.  Open the `pom.xml` file in the composite application.
 2.  Ensure that your data service file is selected in the POM file.
-3.  Save the project.
+3.  Save the file.
 
 ### Step 4: Configure the Micro Integrator server
 
@@ -248,7 +286,7 @@ We will use the embedded Micro Integrator of WSO2 Integration Studio to run this
 
 To add the MySQL database driver to the server:
 
-1. Click the <b>Embedded Micro Integrator Configuration</b> icon on the upper menu to open the dialog box.
+1. Click the <b>Embedded Micro Integrator Configuration (<img src="../../../assets/img/tutorials/common/server-config-64x64.png" width="20">)</b> icon on the upper menu to open the dialog box.
 2. Click the (<img src="../../../assets/img/tutorials/common/plus-icon.png" width="20">) icon to add the MySQL driver JAR (see [Setting up the Workspace](#step-1-set-up-the-workspace)) to the `/lib` directory of the embedded Micro Integrator.
 
 If the driver class does not exist in the relevant directory, you will get an exception such as `Cannot load JDBC driver class com.mysql.jdbc.Driver` when the Micro Integrator starts.
