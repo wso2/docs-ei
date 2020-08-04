@@ -576,6 +576,7 @@ nav:
           - 'ForEach Mediator' : 'references/mediators/forEach-Mediator.md'
           - 'Header Mediator' : 'references/mediators/header-Mediator.md'
           - 'Iterate Mediator' : 'references/mediators/iterate-Mediator.md'
+          - 'JSON Transform Mediator' : 'references/mediators/json-Transform-Mediator.md'
           - 'Log Mediator' : 'references/mediators/log-Mediator.md'
           - 'Loopback Mediator' : 'references/mediators/loopback-Mediator.md'
           - 'OAuth Mediator' : 'references/mediators/oAuth-Mediator.md'
