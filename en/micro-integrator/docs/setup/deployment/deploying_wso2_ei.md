@@ -108,7 +108,7 @@ When the nodes in the cluster need to communicate with each other, the Micro Int
     ```
     
 !!! Note
-    RDBMS-based coordination needs the system time of each node to be synchronized. Having them not synchronized will lead to unexpected behaviors. Please refer [EI_1758](https://github.com/wso2/docs-ei/issues/1758) for one of possible issues.
+    RDBMS-based coordination needs the system time of each node to be synchronized. Having them not synchronized will lead to unexpected behavior. Please refer [EI_1758](https://github.com/wso2/docs-ei/issues/1758) for one of the possible issues.
      
 ### Node ID
 
