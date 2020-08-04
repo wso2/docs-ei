@@ -37,7 +37,7 @@ To use the Salesforce REST connector, add the `<salesforcerest.init>` element in
             <td>accessToken</td>
             <td>The access token to authenticate your API calls.</td>
             <td>No</td>
-            <td>XXXXXXXXXXXX(Replace with your access token)</td>
+            <td>XXXXXXXXXXXX (Replace with your access token)</td>
         </tr>
         <tr>
             <td>apiUrl</td>
@@ -55,19 +55,19 @@ To use the Salesforce REST connector, add the `<salesforcerest.init>` element in
             <td>refreshToken</td>
             <td>The refresh token that you received to refresh the API access token.</td>
             <td>No</td>
-            <td>XXXXXXXXXXXX(Replace with your refresh token)</td>
+            <td>XXXXXXXXXXXX (Replace with your refresh token)</td>
         </tr>
         <tr>
             <td>clientId</td>
             <td>The consumer key of the connected application that you created.</td>
             <td>No</td>
-            <td>XXXXXXXXXXXX(Replace with your client ID)</td>
+            <td>XXXXXXXXXXXX (Replace with your client ID)</td>
         </tr>
         <tr>
             <td>clientSecret</td>
             <td>The consumer secret of the connected application that you created.</td>
             <td>No</td>
-            <td>XXXXXXXXXXXX(Replace with your client secret)</td>
+            <td>XXXXXXXXXXXX (Replace with your client secret)</td>
         </tr>
         <tr>
             <td>blocking</td>
@@ -95,39 +95,11 @@ To use the Salesforce REST connector, add the `<salesforcerest.init>` element in
     {
         "hostName": "https://login.salesforce.com",
         "apiVersion": "v32.0",
-        "accessToken":"XXXXXXXXXXXX(Replace with your access token)",
+        "accessToken":"XXXXXXXXXXXX (Replace with your access token)",
         "apiUrl":"https://(your_instance).salesforce.com",
         "blocking" : "false"
     }
     ```
-    
-    Or if you want connector to handle access token expiry internally,
-    
-    Config:
-    ```xml
-    <salesforcerest.init>
-        <apiUrl>{$ctx:apiUrl}</apiUrl>
-        <clientId>{$ctx:clientId}</clientId>
-        <clientSecret>{$ctx:clientSecret}</clientSecret>
-        <refreshToken>{$ctx:refreshToken}</refreshToken>
-        <hostName>{$ctx:hostName}</hostName>
-        <apiVersion>{$ctx:apiVersion}</apiVersion>
-        <blocking>{$ctx:blocking}</blocking>
-    </salesforcerest.init>
-    ```
-    
-    Request:
-    ```json
-        {
-            "hostName": "https://login.salesforce.com",
-            "apiVersion": "v32.0",
-            "refreshToken":"XXXXXXXXXXXX(Replace with your refresh token)",
-            "clientId":"XXXXXXXXXXXX(Replace with your client ID)",
-            "clientSecret":"XXXXXXXXXXXX(Replace with your client secret)",
-            "apiUrl":"https://(your_instance).salesforce.com",
-            "blocking" : "false"
-        }
-        ```
 
 ??? note "salesforcerest.init for username/password flow"
     The salesforcerest.init operation initializes the connector to interact with the Salesforce REST API using a username/password flow. See the [related API documentation](https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/intro_understanding_username_password_oauth_flow.htm) for more information.
@@ -160,13 +132,13 @@ To use the Salesforce REST connector, add the `<salesforcerest.init>` element in
             <td>clientId</td>
             <td>The consumer key of the connected application that you created.</td>
             <td>Yes</td>
-            <td>XXXXXXXXXXXX(Replace with your client ID)</td>
+            <td>XXXXXXXXXXXX (Replace with your client ID)</td>
         </tr>
         <tr>
             <td>clientSecret</td>
             <td>The consumer secret of the connected application that you created.</td>
             <td>Yes</td>
-            <td>XXXXXXXXXXXX(Replace with your client secret)</td>
+            <td>XXXXXXXXXXXX (Replace with your client secret)</td>
         </tr>
         <tr>
             <td>username</td>
@@ -251,7 +223,7 @@ To use the Salesforce REST connector, add the `<salesforcerest.init>` element in
 
     ```json
     {
-        "accessToken":"XXXXXXXXXXXX(Replace with your access token)",
+        "accessToken":"XXXXXXXXXXXX (Replace with your access token)",
         "apiUrl":"https://(your_instance).salesforce.com",
         "hostName": "https://login.salesforce.com",
         "apiVersion": "v32.0",
@@ -280,7 +252,7 @@ To use the Salesforce REST connector, add the `<salesforcerest.init>` element in
 
     ```json
     {
-        "accessToken":"XXXXXXXXXXXX(Replace with your access token)",
+        "accessToken":"XXXXXXXXXXXX (Replace with your access token)",
         "apiUrl":"https://(your_instance).salesforce.com",
         "hostName": "https://login.salesforce.com",
         "apiVersion": "v32.0",
@@ -310,7 +282,7 @@ To use the Salesforce REST connector, add the `<salesforcerest.init>` element in
 
     ```json
     {
-        "accessToken":"XXXXXXXXXXXX(Replace with your access token)",
+        "accessToken":"XXXXXXXXXXXX (Replace with your access token)",
         "apiUrl":"https://(your_instance).salesforce.com",
         "hostName": "https://login.salesforce.com",
         "apiVersion": "v32.0",
@@ -359,7 +331,7 @@ To use the Salesforce REST connector, add the `<salesforcerest.init>` element in
 
     ```json
     {
-        "accessToken":"XXXXXXXXXXXX(Replace with your access token)",
+        "accessToken":"XXXXXXXXXXXX (Replace with your access token)",
         "apiUrl":"https://(your_instance).salesforce.com",
         "hostName": "https://login.salesforce.com",
         "apiVersion": "v32.0",
@@ -397,7 +369,7 @@ To use the Salesforce REST connector, add the `<salesforcerest.init>` element in
 
     ```json
     {
-        "accessToken":"XXXXXXXXXXXX(Replace with your access token)",
+        "accessToken":"XXXXXXXXXXXX (Replace with your access token)",
         "apiUrl":"https://(your_instance).salesforce.com",
         "hostName": "https://login.salesforce.com",
         "apiVersion": "v32.0",
@@ -465,7 +437,7 @@ To use the Salesforce REST connector, add the `<salesforcerest.init>` element in
 
     ```json
     {
-        "accessToken":"XXXXXXXXXXXX(Replace with your access token)",
+        "accessToken":"XXXXXXXXXXXX (Replace with your access token)",
         "apiUrl":"https://(your_instance).salesforce.com",
         "clientId": "3MVG9ZL0ppGP5UrBztM9gSLYyUe7VwAVhD9.yQnZX2mmCu_48Uwc._doxrBTgY4jqmOSDhxRAiUBf8gCr2mk7",
         "refreshToken": "5Aep861TSESvWeug_ztpnAk6BGQxRdovMLhHso81iyYKO6hTm45JVxz3FLewCKgI4BbUp19OzGfqG2TdCfqa2ZU",
@@ -530,7 +502,7 @@ To use the Salesforce REST connector, add the `<salesforcerest.init>` element in
 
     ```json
     {
-        "accessToken":"XXXXXXXXXXXX(Replace with your access token)",
+        "accessToken":"XXXXXXXXXXXX (Replace with your access token)",
         "apiUrl":"https://(your_instance).salesforce.com",
         "hostName": "https://login.salesforce.com",
         "apiVersion": "v32.0",
@@ -579,7 +551,7 @@ To use the Salesforce REST connector, add the `<salesforcerest.init>` element in
 
     ```json
     {
-        "accessToken":"XXXXXXXXXXXX(Replace with your access token)",
+        "accessToken":"XXXXXXXXXXXX (Replace with your access token)",
         "apiUrl":"https://(your_instance).salesforce.com",
         "hostName": "https://login.salesforce.com",
         "apiVersion": "v32.0",
@@ -636,7 +608,7 @@ To use the Salesforce REST connector, add the `<salesforcerest.init>` element in
 
     ```json
     {
-        "accessToken":"XXXXXXXXXXXX(Replace with your access token)",
+        "accessToken":"XXXXXXXXXXXX (Replace with your access token)",
         "apiUrl":"https://(your_instance).salesforce.com",
         "hostName": "https://login.salesforce.com",
         "apiVersion": "v32.0",
@@ -700,7 +672,7 @@ To use the Salesforce REST connector, add the `<salesforcerest.init>` element in
 
     ```json
     {
-        "accessToken":"XXXXXXXXXXXX(Replace with your access token)",
+        "accessToken":"XXXXXXXXXXXX (Replace with your access token)",
         "apiUrl":"https://(your_instance).salesforce.com",
         "hostName": "https://login.salesforce.com",
         "apiVersion": "v32.0",
@@ -772,7 +744,7 @@ To use the Salesforce REST connector, add the `<salesforcerest.init>` element in
 
     ```json
     {
-        "accessToken":"XXXXXXXXXXXX(Replace with your access token)",
+        "accessToken":"XXXXXXXXXXXX (Replace with your access token)",
         "apiUrl":"https://(your_instance).salesforce.com",
         "hostName": "https://login.salesforce.com",
         "apiVersion": "v32.0",
@@ -835,7 +807,7 @@ To use the Salesforce REST connector, add the `<salesforcerest.init>` element in
 
     ```json
     {
-        "accessToken":"XXXXXXXXXXXX(Replace with your access token)",
+        "accessToken":"XXXXXXXXXXXX (Replace with your access token)",
         "apiUrl":"https://(your_instance).salesforce.com",
         "hostName": "https://login.salesforce.com",
         "apiVersion": "v32.0",
@@ -916,7 +888,7 @@ To use the Salesforce REST connector, add the `<salesforcerest.init>` element in
 
     ```json
     {
-        "accessToken":"XXXXXXXXXXXX(Replace with your access token)",
+        "accessToken":"XXXXXXXXXXXX (Replace with your access token)",
         "apiUrl":"https://(your_instance).salesforce.com",
         "hostName": "https://login.salesforce.com",
         "apiVersion": "v32.0",
@@ -963,7 +935,7 @@ To use the Salesforce REST connector, add the `<salesforcerest.init>` element in
 
     ```json
     {
-        "accessToken":"XXXXXXXXXXXX(Replace with your access token)",
+        "accessToken":"XXXXXXXXXXXX (Replace with your access token)",
         "apiUrl":"https://(your_instance).salesforce.com",
         "hostName": "https://login.salesforce.com",
         "apiVersion": "v32.0",
@@ -1042,7 +1014,7 @@ To use the Salesforce REST connector, add the `<salesforcerest.init>` element in
 
     ```json
     {
-        "accessToken":"XXXXXXXXXXXX(Replace with your access token)",
+        "accessToken":"XXXXXXXXXXXX (Replace with your access token)",
         "apiUrl":"https://(your_instance).salesforce.com",
         "hostName": "https://login.salesforce.com",
         "apiVersion": "v32.0",
@@ -1136,7 +1108,7 @@ To use the Salesforce REST connector, add the `<salesforcerest.init>` element in
 
     ```json
     {
-        "accessToken":"XXXXXXXXXXXX(Replace with your access token)",
+        "accessToken":"XXXXXXXXXXXX (Replace with your access token)",
         "apiUrl":"https://(your_instance).salesforce.com",
         "hostName": "https://login.salesforce.com",
         "apiVersion": "v32.0",
@@ -1208,7 +1180,7 @@ To use the Salesforce REST connector, add the `<salesforcerest.init>` element in
 
     ```json
     {
-        "accessToken":"XXXXXXXXXXXX(Replace with your access token)",
+        "accessToken":"XXXXXXXXXXXX (Replace with your access token)",
         "apiUrl":"https://(your_instance).salesforce.com",
         "hostName": "https://login.salesforce.com",
         "apiVersion": "v32.0",
@@ -1264,7 +1236,7 @@ To use the Salesforce REST connector, add the `<salesforcerest.init>` element in
 
     ```json
     {
-        "accessToken":"XXXXXXXXXXXX(Replace with your access token)",
+        "accessToken":"XXXXXXXXXXXX (Replace with your access token)",
         "apiUrl":"https://(your_instance).salesforce.com",
         "hostName": "https://login.salesforce.com",
         "apiVersion": "v32.0",
@@ -1336,7 +1308,7 @@ To use the Salesforce REST connector, add the `<salesforcerest.init>` element in
 
     ```json
     {
-        "accessToken":"XXXXXXXXXXXX(Replace with your access token)",
+        "accessToken":"XXXXXXXXXXXX (Replace with your access token)",
         "apiUrl":"https://(your_instance).salesforce.com",
         "hostName": "https://login.salesforce.com",
         "apiVersion": "v32.0",
@@ -1431,7 +1403,7 @@ To use the Salesforce REST connector, add the `<salesforcerest.init>` element in
 
     ```json
     {
-        "accessToken":"XXXXXXXXXXXX(Replace with your access token)",
+        "accessToken":"XXXXXXXXXXXX (Replace with your access token)",
         "apiUrl":"https://(your_instance).salesforce.com",
         "hostName": "https://login.salesforce.com",
         "apiVersion": "v32.0",
@@ -1490,7 +1462,7 @@ To use the Salesforce REST connector, add the `<salesforcerest.init>` element in
 
     ```json
     {
-        "accessToken":"XXXXXXXXXXXX(Replace with your access token)",
+        "accessToken":"XXXXXXXXXXXX (Replace with your access token)",
         "apiUrl":"https://(your_instance).salesforce.com",
         "hostName": "https://login.salesforce.com",
         "apiVersion": "v32.0",
@@ -1547,7 +1519,7 @@ To use the Salesforce REST connector, add the `<salesforcerest.init>` element in
 
     ```json
     {
-        "accessToken":"XXXXXXXXXXXX(Replace with your access token)",
+        "accessToken":"XXXXXXXXXXXX (Replace with your access token)",
         "apiUrl":"https://(your_instance).salesforce.com",
         "hostName": "https://login.salesforce.com",
         "apiVersion": "v32.0",
@@ -1618,7 +1590,7 @@ To use the Salesforce REST connector, add the `<salesforcerest.init>` element in
 
     ```json
     {
-        "accessToken":"XXXXXXXXXXXX(Replace with your access token)",
+        "accessToken":"XXXXXXXXXXXX (Replace with your access token)",
         "apiUrl":"https://(your_instance).salesforce.com",
         "hostName": "https://login.salesforce.com",
         "apiVersion": "v32.0",
@@ -1701,7 +1673,7 @@ To use the Salesforce REST connector, add the `<salesforcerest.init>` element in
 
     ```json
     {
-        "accessToken":"XXXXXXXXXXXX(Replace with your access token)",
+        "accessToken":"XXXXXXXXXXXX (Replace with your access token)",
         "apiUrl":"https://(your_instance).salesforce.com",
         "hostName": "https://login.salesforce.com",
         "apiVersion": "v32.0",
@@ -1752,7 +1724,7 @@ To use the Salesforce REST connector, add the `<salesforcerest.init>` element in
 
     ```json
     {
-        "accessToken":"XXXXXXXXXXXX(Replace with your access token)",
+        "accessToken":"XXXXXXXXXXXX (Replace with your access token)",
         "apiUrl":"https://(your_instance).salesforce.com",
         "hostName": "https://login.salesforce.com",
         "apiVersion": "v32.0",
@@ -1812,7 +1784,7 @@ To use the Salesforce REST connector, add the `<salesforcerest.init>` element in
 
     ```json
     {
-        "accessToken":"XXXXXXXXXXXX(Replace with your access token)",
+        "accessToken":"XXXXXXXXXXXX (Replace with your access token)",
         "apiUrl":"https://(your_instance).salesforce.com",
         "hostName": "https://login.salesforce.com",
         "apiVersion": "v32.0",
@@ -1872,7 +1844,7 @@ To use the Salesforce REST connector, add the `<salesforcerest.init>` element in
 
     ```json
     {
-        "accessToken":"XXXXXXXXXXXX(Replace with your access token)",
+        "accessToken":"XXXXXXXXXXXX (Replace with your access token)",
         "apiUrl":"https://(your_instance).salesforce.com",
         "hostName": "https://login.salesforce.com",
         "apiVersion": "v32.0",
@@ -1927,7 +1899,7 @@ To use the Salesforce REST connector, add the `<salesforcerest.init>` element in
 
     ```json
     {
-        "accessToken":"XXXXXXXXXXXX(Replace with your access token)",
+        "accessToken":"XXXXXXXXXXXX (Replace with your access token)",
         "apiUrl":"https://(your_instance).salesforce.com",
         "hostName": "https://login.salesforce.com",
         "apiVersion": "v32.0",
@@ -1985,7 +1957,7 @@ To use the Salesforce REST connector, add the `<salesforcerest.init>` element in
 
     ```json
     {
-        "accessToken":"XXXXXXXXXXXX(Replace with your access token)",
+        "accessToken":"XXXXXXXXXXXX (Replace with your access token)",
         "apiUrl":"https://(your_instance).salesforce.com",
         "hostName": "https://login.salesforce.com",
         "apiVersion": "v32.0",
@@ -2053,7 +2025,7 @@ To use the Salesforce REST connector, add the `<salesforcerest.init>` element in
 
     ```json
     {
-        "accessToken":"XXXXXXXXXXXX(Replace with your access token)",
+        "accessToken":"XXXXXXXXXXXX (Replace with your access token)",
         "apiUrl":"https://(your_instance).salesforce.com",
         "hostName": "https://login.salesforce.com",
         "apiVersion": "v32.0",
@@ -2121,7 +2093,7 @@ To use the Salesforce REST connector, add the `<salesforcerest.init>` element in
 
     ```json
     {
-        "accessToken":"XXXXXXXXXXXX(Replace with your access token)",
+        "accessToken":"XXXXXXXXXXXX (Replace with your access token)",
         "apiUrl":"https://(your_instance).salesforce.com",
         "hostName": "https://login.salesforce.com",
         "apiVersion": "v32.0",
@@ -2196,7 +2168,7 @@ To use the Salesforce REST connector, add the `<salesforcerest.init>` element in
 
     ```json
     {
-        "accessToken":"XXXXXXXXXXXX(Replace with your access token)",
+        "accessToken":"XXXXXXXXXXXX (Replace with your access token)",
         "apiUrl":"https://(your_instance).salesforce.com",
         "hostName": "https://login.salesforce.com",
         "apiVersion": "v32.0",
@@ -2294,7 +2266,7 @@ To use the Salesforce REST connector, add the `<salesforcerest.init>` element in
 
     ```json
     {
-        "accessToken":"XXXXXXXXXXXX(Replace with your access token)",
+        "accessToken":"XXXXXXXXXXXX (Replace with your access token)",
         "apiUrl":"https://(your_instance).salesforce.com",
         "hostName": "https://login.salesforce.com",
         "apiVersion": "v32.0",
@@ -2484,7 +2456,7 @@ To use the Salesforce REST connector, add the `<salesforcerest.init>` element in
 
     ```json
     {
-        "accessToken":"XXXXXXXXXXXX(Replace with your access token)",
+        "accessToken":"XXXXXXXXXXXX (Replace with your access token)",
         "apiUrl":"https://(your_instance).salesforce.com",
         "hostName": "https://login.salesforce.com",
         "apiVersion": "v32.0",
@@ -2622,7 +2594,7 @@ To use the Salesforce REST connector, add the `<salesforcerest.init>` element in
 
     ```json
     {
-        "accessToken":"XXXXXXXXXXXX(Replace with your access token)",
+        "accessToken":"XXXXXXXXXXXX (Replace with your access token)",
         "apiUrl":"https://(your_instance).salesforce.com",
         "hostName": "https://login.salesforce.com",
         "apiVersion": "v32.0",
@@ -2674,7 +2646,7 @@ To use the Salesforce REST connector, add the `<salesforcerest.init>` element in
 
     ```json
     {
-        "accessToken":"XXXXXXXXXXXX(Replace with your access token)",
+        "accessToken":"XXXXXXXXXXXX (Replace with your access token)",
         "apiUrl":"https://(your_instance).salesforce.com",
         "hostName": "https://login.salesforce.com",
         "apiVersion": "v32.0",
@@ -2714,7 +2686,7 @@ To use the Salesforce REST connector, add the `<salesforcerest.init>` element in
 
     ```json
     {
-        "accessToken":"XXXXXXXXXXXX(Replace with your access token)",
+        "accessToken":"XXXXXXXXXXXX (Replace with your access token)",
         "apiUrl":"https://(your_instance).salesforce.com",
         "hostName": "https://login.salesforce.com",
         "apiVersion": "v32.0",
@@ -2782,7 +2754,7 @@ To use the Salesforce REST connector, add the `<salesforcerest.init>` element in
 
     ```json
     {
-        "accessToken":"XXXXXXXXXXXX(Replace with your access token)",
+        "accessToken":"XXXXXXXXXXXX (Replace with your access token)",
         "apiUrl":"https://(your_instance).salesforce.com",
         "hostName": "https://login.salesforce.com",
         "apiVersion": "v32.0",
@@ -2941,7 +2913,7 @@ To use the Salesforce REST connector, add the `<salesforcerest.init>` element in
 
     ```json
     {
-      "accessToken":"XXXXXXXXXXXX(Replace with your access token)",
+      "accessToken":"XXXXXXXXXXXX (Replace with your access token)",
       "apiUrl":"https://(your_instance).salesforce.com",
       "hostName": "https://login.salesforce.com",
       "apiVersion": "v32.0",
@@ -3014,7 +2986,7 @@ To use the Salesforce REST connector, add the `<salesforcerest.init>` element in
 
     ```json
     {
-      "accessToken":"XXXXXXXXXXXX(Replace with your access token)",
+      "accessToken":"XXXXXXXXXXXX (Replace with your access token)",
       "apiUrl":"https://(your_instance).salesforce.com",
       "hostName": "https://login.salesforce.com",
       "apiVersion": "v32.0",
@@ -3054,7 +3026,7 @@ To use the Salesforce REST connector, add the `<salesforcerest.init>` element in
 
     ```json
     {
-        "accessToken":"XXXXXXXXXXXX(Replace with your access token)",
+        "accessToken":"XXXXXXXXXXXX (Replace with your access token)",
         "apiUrl":"https://(your_instance).salesforce.com",
         "hostName": "https://login.salesforce.com",
         "apiVersion": "v32.0",
@@ -3134,7 +3106,7 @@ To use the Salesforce REST connector, add the `<salesforcerest.init>` element in
 
     ```json
     {
-        "accessToken":"XXXXXXXXXXXX(Replace with your access token)",
+        "accessToken":"XXXXXXXXXXXX (Replace with your access token)",
         "apiUrl":"https://(your_instance).salesforce.com",
         "hostName": "https://login.salesforce.com",
         "apiVersion": "v32.0",
@@ -3187,7 +3159,7 @@ To use the Salesforce REST connector, add the `<salesforcerest.init>` element in
 
     ```json
     {
-        "accessToken":"XXXXXXXXXXXX(Replace with your access token)",
+        "accessToken":"XXXXXXXXXXXX (Replace with your access token)",
         "apiUrl":"https://(your_instance).salesforce.com",
         "hostName": "https://login.salesforce.com",
         "apiVersion": "v32.0",
@@ -3223,7 +3195,7 @@ To use the Salesforce REST connector, add the `<salesforcerest.init>` element in
 
     ```json
     {
-        "accessToken":"XXXXXXXXXXXX(Replace with your access token)",
+        "accessToken":"XXXXXXXXXXXX (Replace with your access token)",
         "apiUrl":"https://(your_instance).salesforce.com",
         "hostName": "https://login.salesforce.com",
         "apiVersion": "v32.0",
@@ -3270,7 +3242,7 @@ To use the Salesforce REST connector, add the `<salesforcerest.init>` element in
 
     ```json
     {
-        "accessToken":"XXXXXXXXXXXX(Replace with your access token)",
+        "accessToken":"XXXXXXXXXXXX (Replace with your access token)",
         "apiUrl":"https://(your_instance).salesforce.com",
         "hostName": "https://login.salesforce.com",
         "apiVersion": "v32.0",
@@ -3328,7 +3300,7 @@ To use the Salesforce REST connector, add the `<salesforcerest.init>` element in
 
     ```json
     {
-        "accessToken":"XXXXXXXXXXXX(Replace with your access token)",
+        "accessToken":"XXXXXXXXXXXX (Replace with your access token)",
         "apiUrl":"https://(your_instance).salesforce.com",
         "hostName": "https://login.salesforce.com",
         "apiVersion": "v32.0",
@@ -3417,7 +3389,7 @@ To use the Salesforce REST connector, add the `<salesforcerest.init>` element in
 
     ```json
     {
-        "accessToken":"XXXXXXXXXXXX(Replace with your access token)",
+        "accessToken":"XXXXXXXXXXXX (Replace with your access token)",
         "apiUrl":"https://(your_instance).salesforce.com",
         "hostName": "https://login.salesforce.com",
         "apiVersion": "v32.0",
@@ -3508,7 +3480,7 @@ To use the Salesforce REST connector, add the `<salesforcerest.init>` element in
 
     ```json
     {
-        "accessToken":"XXXXXXXXXXXX(Replace with your access token)",
+        "accessToken":"XXXXXXXXXXXX (Replace with your access token)",
         "apiUrl":"https://(your_instance).salesforce.com",
         "hostName": "https://login.salesforce.com",
         "apiVersion": "v32.0",
@@ -3546,7 +3518,7 @@ To use the Salesforce REST connector, add the `<salesforcerest.init>` element in
 
     ```json
     {
-        "accessToken":"XXXXXXXXXXXX(Replace with your access token)",
+        "accessToken":"XXXXXXXXXXXX (Replace with your access token)",
         "apiUrl":"https://(your_instance).salesforce.com",
         "hostName": "https://login.salesforce.com",
         "apiVersion": "v32.0",
@@ -3630,7 +3602,7 @@ To use the Salesforce REST connector, add the `<salesforcerest.init>` element in
 
     ```json
     {
-        "accessToken":"XXXXXXXXXXXX(Replace with your access token)",
+        "accessToken":"XXXXXXXXXXXX (Replace with your access token)",
         "apiUrl":"https://(your_instance).salesforce.com",
         "hostName": "https://login.salesforce.com",
         "apiVersion": "v32.0",
@@ -3683,7 +3655,7 @@ To use the Salesforce REST connector, add the `<salesforcerest.init>` element in
 
     ```json
     {
-        "accessToken":"XXXXXXXXXXXX(Replace with your access token)",
+        "accessToken":"XXXXXXXXXXXX (Replace with your access token)",
         "apiUrl":"https://(your_instance).salesforce.com",
         "hostName": "https://login.salesforce.com",
         "apiVersion": "v32.0",
@@ -3716,7 +3688,7 @@ To use the Salesforce REST connector, add the `<salesforcerest.init>` element in
 
     ```json
     {
-        "accessToken":"XXXXXXXXXXXX(Replace with your access token)",
+        "accessToken":"XXXXXXXXXXXX (Replace with your access token)",
         "apiUrl":"https://(your_instance).salesforce.com",
         "hostName": "https://login.salesforce.com",
         "apiVersion": "v32.0",
@@ -3764,7 +3736,7 @@ To use the Salesforce REST connector, add the `<salesforcerest.init>` element in
 
     ```json
     {
-        "accessToken":"XXXXXXXXXXXX(Replace with your access token)",
+        "accessToken":"XXXXXXXXXXXX (Replace with your access token)",
         "apiUrl":"https://(your_instance).salesforce.com",
         "hostName": "https://login.salesforce.com",
         "apiVersion": "v32.0",
@@ -3820,7 +3792,7 @@ To use the Salesforce REST connector, add the `<salesforcerest.init>` element in
 
     ```json
     {
-        "accessToken":"XXXXXXXXXXXX(Replace with your access token)",
+        "accessToken":"XXXXXXXXXXXX (Replace with your access token)",
         "apiUrl":"https://(your_instance).salesforce.com",
         "hostName": "https://login.salesforce.com",
         "apiVersion": "v32.0",
@@ -3872,7 +3844,7 @@ To use the Salesforce REST connector, add the `<salesforcerest.init>` element in
 
     ```json
     {
-        "accessToken":"XXXXXXXXXXXX(Replace with your access token)",
+        "accessToken":"XXXXXXXXXXXX (Replace with your access token)",
         "apiUrl":"https://(your_instance).salesforce.com",
         "hostName": "https://login.salesforce.com",
         "apiVersion": "v32.0",
@@ -3936,7 +3908,7 @@ To use the Salesforce REST connector, add the `<salesforcerest.init>` element in
 
     ```json
     {
-        "accessToken":"XXXXXXXXXXXX(Replace with your access token)",
+        "accessToken":"XXXXXXXXXXXX (Replace with your access token)",
         "apiUrl":"https://(your_instance).salesforce.com",
         "hostName": "https://login.salesforce.com",
         "apiVersion": "v32.0",
